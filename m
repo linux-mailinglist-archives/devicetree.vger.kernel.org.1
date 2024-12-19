@@ -1,135 +1,90 @@
-Return-Path: <devicetree+bounces-132564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B2CF9F7766
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:35:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F809F7762
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:35:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F4737A210B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:35:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EA99189386E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B0F22206AC;
-	Thu, 19 Dec 2024 08:35:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313F71FC7E0;
+	Thu, 19 Dec 2024 08:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XlSP+Y1W"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="I4uiIuB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C527D21CFF4;
-	Thu, 19 Dec 2024 08:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D7738F9C;
+	Thu, 19 Dec 2024 08:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734597309; cv=none; b=LF98G0NXFckZzjKDmBeHPHLyKzP8yNa3m5iDKhII+4Crr8vrcJiwwCZEUmXEMFvvKR9DIl91+w33pqpYoqTbJZqPiJhV2F1o27xzyurP0FmmTgz618c/QJvfhNKh6+fO4PUdh7tLPizibqdJ8DqvbGXztKT91BEsNpGv4KZhBS4=
+	t=1734597307; cv=none; b=ANMIZZVuYIb9TKsZTJRfH2SOwekreqDfDjAXGTZrTW9SpoEeGKxW1ad6CNmY8VfBveiO6vpcYZFGO2CxkQ5JonU2dUI5pZFOosUErrItkzuTvlY+n9Xk4B+N8znQTQLgTkcMHaufS5K5GlvE4rgIqIo8ex3LJse7wcRZMbT2T9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734597309; c=relaxed/simple;
-	bh=VF8ptOFU6OnT3cwXZhIox3P9gEpjMSXbzCdDZcLtezI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iMwfxUoueJL+PZFoCQiRCGKScUjDUHf7aUiaky4bZpHnzeGM1bmQrN69Hm70bzuZAX3zAvFUJUpC6eYAAXeDx3q+qE17CiKwgC5KjkgxbRdMLMKyw+FmLtKQUthrwVu7ugebOzOJUU4uM4nblno4DGm9VAcwrSO9ZTcr0oNC/x0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XlSP+Y1W; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ880rp003254;
-	Thu, 19 Dec 2024 08:34:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kj/rjxH0jYZkCS4iM/splU3w4uHLw2AWL0pYNO0b6Og=; b=XlSP+Y1WAuaZbp3r
-	ZxrSK/JBHuvca3oDBBLmwb2E+9AIBGrxZsR86gPojj2TZvhioSrA44kGzeLLtVcf
-	10WDOafrLVn0BN9OX5dr9ZkfCAN8r1jDZcN6GXmtQwPXXnKq+wPCOxmNpxmzASd0
-	po3k88pxo1RoNUc1QNhTX7MQD4E26HAopyRTDstIpBlvbiDkrGoa+XwGW8d3hGSf
-	YXXidrwvV9iHhVqKgh5bOR6V0PlO5IyYwKjUqJ+PtveJM9pi5/gI9XoA3oFrBI7s
-	2STowJFAhnGMtry/4uy1f99DwcyPe+A9KifJAoFr7a0uAq+SZiPyKBKlKHgOlMd4
-	IPQekg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43mfq4g28r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 08:34:50 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BJ8YmtZ015371
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 08:34:49 GMT
-Received: from [10.231.216.103] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 19 Dec
- 2024 00:34:45 -0800
-Message-ID: <2219aeab-7b03-448a-9a70-a4874bce903d@quicinc.com>
-Date: Thu, 19 Dec 2024 16:34:43 +0800
+	s=arc-20240116; t=1734597307; c=relaxed/simple;
+	bh=IlULEW6CU1yyixZ3R+dQ+GB/FPBKJ83g8wU5BMmhDWo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WqPTKqDFTiQYpL/xHBeCes0MVz2QryjVr6vC7b8g7yxBSZqu19wY5Y5G2KkHKWxPnQO6jkOcMbar7r+JRostXpg5D197UOKOFxHSaCXgGW4rCpEJud5YLVaEOaH0r1qzObs3DTxrXTkfNo4AlcxTvfM91eQOVhYKkG0EZCFjFrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=I4uiIuB7; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=/BYLrICp9x+JYyEpqanBXgVDeHhnlhnaH+bHyihcbew=; b=I4uiIuB7vc0YXL7NZrUwKeYzDI
+	6e3U4/cLWrFA/MxaKF3Cruz5uwQ4jwvejDpEyOPt6uL+KgzG6lhW6upDgOdBlpJC4Gt4PQpM3BdCa
+	aQG6W3c8FzzsvMyRSIsf5eMPlBnJSiPTDbEScVe0sZ/pwNOGg8/scOoOhlyMQSAaNH+E=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tOBzm-001Y2J-3s; Thu, 19 Dec 2024 09:34:58 +0100
+Date: Thu, 19 Dec 2024 09:34:58 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King - ARM Linux <linux@armlinux.org.uk>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+	David Miller <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Simon Horman <horms@kernel.org>,
+	linux-omap@vger.kernel.org,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Subject: Re: [PATCH net-next 2/3] net: ethernet: ti: cpsw: disable PHY EEE
+ advertisement
+Message-ID: <270e31cf-7d91-45c1-bc3d-c5d171545fd3@lunn.ch>
+References: <5139374e-7151-4d0d-8ba9-9ec3d9b52f67@gmail.com>
+ <d08a798e-8565-422c-b2ed-121794db077f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/4] dt-bindings: media: add support for video hardware
- on QCS615 platform
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stanimir Varbanov
-	<stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241219-add-venus-for-qcs615-v6-0-e9a74d3b003d@quicinc.com>
- <20241219-add-venus-for-qcs615-v6-1-e9a74d3b003d@quicinc.com>
- <7d4476c9-d9a2-4ef7-95c7-91391b355ee2@linaro.org>
-Content-Language: en-US
-From: Renjiang Han <quic_renjiang@quicinc.com>
-In-Reply-To: <7d4476c9-d9a2-4ef7-95c7-91391b355ee2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zebQHW2pdgIXY9r2-qnzJrKRKGCYwfex
-X-Proofpoint-ORIG-GUID: zebQHW2pdgIXY9r2-qnzJrKRKGCYwfex
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- clxscore=1015 suspectscore=0 spamscore=0 adultscore=0 priorityscore=1501
- malwarescore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412190067
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d08a798e-8565-422c-b2ed-121794db077f@gmail.com>
 
+On Mon, Dec 16, 2024 at 10:32:25PM +0100, Heiner Kallweit wrote:
+> It seems the cpsw MAC doesn't support EEE. See e.g. the commit message of
+> ce2899428ec0 ("ARM: dts: am335x-baltos: disable EEE for Atheros 8035 PHY").
+> There are cases where this causes issues if the PHY's on both sides have
+> negotiated EEE. As a workaround EEE modes of the PHY are marked broken
+> in DT, effectively disabling EEE advertisement.
+> Improve this by using new function phy_disable_eee() in the MAC driver.
+> This properly disables EEE advertisement, and allows to remove the
+> eee-broken-xxx properties from DT. As EEE is disabled anyway, we can
+> remove also the set_eee ethtool op.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-On 12/19/2024 4:19 PM, Krzysztof Kozlowski wrote:
-> On 19/12/2024 06:41, Renjiang Han wrote:
->> QCS615 uses the same video core as SC7180.
->>
->> Therefore, add qcom,qcs615-venus compatible to qcom,sc7180-venus.yaml to
->> enable video hardware support on QCS615 platform. Make qcom,qcs615-venus
->> fallback to qcom,sc7180-venus to ensure compatibility with existing
->> configurations.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
->> ---
-> I received this multiple times. Don't send so many versions the same day
-> (or don't send to people internal testing things, not sure what was the
-> point of other posting).
->
-> Best regards,
-> Krzysztof
-OK, got it. I asked internal colleagues to review it first, and then 
-post it.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
--- 
-Best Regards,
-Renjiang
-
+    Andrew
 
