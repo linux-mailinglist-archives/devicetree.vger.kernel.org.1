@@ -1,173 +1,146 @@
-Return-Path: <devicetree+bounces-132525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF019F75F8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:44:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25DC79F7604
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:46:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7841188B1CD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:43:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76CBB1697D5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:46:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24545217647;
-	Thu, 19 Dec 2024 07:43:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33DE32163BC;
+	Thu, 19 Dec 2024 07:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="Zyim+WEM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A0iu4QfA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61797216E24
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:43:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DFB2163A9;
+	Thu, 19 Dec 2024 07:46:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734594193; cv=none; b=iyCsj0j5GxAdDmn5OPdWFVgM9ChHCUIljYq0EM6+Vf8kpWRRiVfHXACWIc2Me98k1nDBelLO9KZbaN9mNyfe6eT/QzaBUWlCjpESwePvKTAxo4VHKp3rn3EbHx7LCDIm0cGjr1o5jD80qTL7q3bsBQfPXzAtZndmz9C9Jdiyn4Q=
+	t=1734594363; cv=none; b=sldK+d/xOdeKojuYWwV5QM7MrkN4Il5HHIQp4FTjCtoIoCpMNbNVgbSN2SoP3zhwHS9KMHM0V2S6Gzr6ruFn46/3RApX1bzXWMLkmUzho/rFOeYlCuvtPMHTc423lqC7Ju3kGOlpQP4UVMwiBuKaLtTJ+rfKo6NRG5SFv08hfqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734594193; c=relaxed/simple;
-	bh=VacssBPVArSm6k/3qDdJeMgOVxZskDxHg9GeKEaHoMM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oVjcRgngc0Zz5ZyiqxkXhgShe6j+tG/jTFM+8o5HDSE8P28jYh1y32AsHiAp2N0tJ7HIyfzvYeUhiJOorHTTzpox2940QlWnrCjdBHv0brE3NsUmTWapWUBPpd6TlMWPUXG8pMSu6unoomgamNA9DnSlbXk3+e+hf/N2nPeF2cw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=Zyim+WEM; arc=none smtp.client-ip=209.85.166.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-844ce213af6so18887539f.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 23:43:11 -0800 (PST)
+	s=arc-20240116; t=1734594363; c=relaxed/simple;
+	bh=oP5teu4dAVEO/gKhR/xdQlvE9CI9kDiN4WDPbO1YnrQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LX9q4SSqw/7Yv1XzEsTn4LMKuLlozeEgUgzWPNNGL3opdje4IuW/jx/2/ZcHPbJH9E9toY5qWeO3DZrMUzaVUuEkvZbH84bSTygi9+sFLyweLqnShBXo7wXxGr8VT4Yl+1BV9mLHuFYNj9mLxETjIwy7Yqu/JFRDkxFvlmPxTq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A0iu4QfA; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-385e06af753so243325f8f.2;
+        Wed, 18 Dec 2024 23:46:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1734594190; x=1735198990; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1OBSLf6ezAUOBKlVMuu5hWXIY5CF9SG01M/FkrWs7IM=;
-        b=Zyim+WEMchFZGGrpuToBRvAytqNVClL3yfQTYorWO4lzImaVWSi+8UPvCCiGmbAPyf
-         G16lhJJwX69bv2Tusc72pZy6CesbIHzKU8R018QIvK3fGQhKscDkUHSTBApR6qzAoW1v
-         FyWqyAAyufgIbouyh5li6QqWXULL8HB4xegx8rsFlgq3MkBHBPpAH+nrQzCYHble5U+C
-         e/6TEqwu5Iz2iTeOaKSI/rdsBTSD9rFjL0ZBz5zTlCGHxakOwShPfwikE+RTwa5GAebT
-         xidQqdGQ/r6PFBeAOW0z/s02HZt8KmXEuv4rVcmGcjjBlFgEvR985uAaab27I335ZxQd
-         Y8xA==
+        d=gmail.com; s=20230601; t=1734594359; x=1735199159; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QZM+QxhLRSlEDIbK525i5yp4y3A6mGOecqumrW65Ovo=;
+        b=A0iu4QfAF0LvhI+A0N1lypHOVxpLuwqEm9jmWm5asKsboH/NCmmNrcVsvffjA2lYkM
+         9KmSpv9U6pofikmZAeZDMRDx5ueH18Zs23J5PKtGr6hH45dKs1DLTFd9xayx6szzLRlp
+         F2DdMqMe7JJsWVuawiX+0c1xswsuxxJ2Bad8i2bqnnKfyfS4TGX7Jrthm1RbvtY7lXyO
+         CPw6htYgafInbpxeykuzgqWW0Q806m7LfVFfnUsoSOSFzUm7Wgu3tZbj8wwyBOe+InEV
+         pY/Fdtba7jB/v1LYOzbWht3xVJ0hN+uDfsw8MJ9TTIfmtLWVkBr+rmaSJ4Zs01v6cdnj
+         hpaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734594190; x=1735198990;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1OBSLf6ezAUOBKlVMuu5hWXIY5CF9SG01M/FkrWs7IM=;
-        b=iI75iAhE696yu/FWNQMv7khLBPZgBIKACFyMenTTBGcBv58iwSH5XSmncxnP5QyVQ2
-         CdtEU8lhzgI/56/9og9Xx6XzEZcFtzHydVrrPHmxOpM4uWnH9YmhWyQ7/XxAUZToO0D1
-         hfzJcPT8slmn5/FZto0y0O42YZZMLwbVM6zKhG3A28b03jS3qX7/iXgd/r5YhS/lwywn
-         Wbbt3q9mHiQsuaKRAa0Uc90qXDRNtrJz4Y3VedZWAHIg7JfbU6Y+MipqISa98h6556TV
-         6H51B3tk0tfaDdcNy8Sm5L4cz2//U43380CPFI57RMnbdTjT/4eW+fchPqajm+Xj2hwf
-         IwGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUNtfcP+U8X+9S0SX0oNfD8DpAsDTQzIcT5WEXmt05a3Q5JNoCy6ksveV6oMqKPNoHBjZ7M2fqpeyQf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQdSJVE1ujc+VJ9K4BVOn0Hbw8Bu/oP6WfRryoR4OHYziGqZc3
-	Tbgmnpwc8Y4LPeiXc2/27YD8BnhoJJCLHaqDjpml9bwFtZoV4kQFIXap+ScOWkhBp+ueceueocM
-	SRFglXb4kAD6MJ6uTBlSgNtD635ptdZAG82ycGQ==
-X-Gm-Gg: ASbGncuoX23ZSonCGowTovVfKIjYHvXjel5bIn3b/x8n5LK7nhqkTrGnx6TqRXwYhU4
-	6tiktBVy7Rzhwe6fQDDjyZi6VJuI9Okv3v7zFQBva
-X-Google-Smtp-Source: AGHT+IEYkbHFgP7rWEbUL4gJw6AmdAq+2B/xjkc5BL4zM4osboITpF6FofLzy/cYgFT9HyU3ZxpxXw1GxTtEEJ9scZ0=
-X-Received: by 2002:a05:6e02:160a:b0:3a7:e86a:e80f with SMTP id
- e9e14a558f8ab-3bdc003ea26mr62053815ab.3.1734594190381; Wed, 18 Dec 2024
- 23:43:10 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734594359; x=1735199159;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QZM+QxhLRSlEDIbK525i5yp4y3A6mGOecqumrW65Ovo=;
+        b=h5nmqALutcBkL2U5ymsu6L58q8hcQwQRuWCq6YjruwmZRJxzWUyKh+4jf5nSUqkG2A
+         XG+c5lea0WyRt+c4J9s9EOyqCAyhqg1vdaYwDz7okurNMnFHanUlb7MtotH4lUi3H9ml
+         FpcK0aHDy4JAfZDrAeR3Td8RYw8NvMfHGqLZ/0JRWSVb5rihvY40+zZJxWhzYdgXJP9O
+         SFcH7Kgfk75r9dSrXqhl6wYrBMVQQNcwLjOhfa6+DdT2oFdqWQaJlrEusJ/Cq9PqMH5S
+         FWFUWm1w9N8oCWwbyf1RcN+MNBu8oO0sedNVBsi/DsXGQroqAIsq9FT41V31OatlrK/B
+         /eKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUNjba/VQKThmjYaLWY0xNnuvHkv8tkeWPpLYYbvkqNofmeT2V3xq9Zw1fImhewCCVjTNhVX3LOGvNdoJL8@vger.kernel.org, AJvYcCV/VuvovKUzmCGyhMxQHB4p6x88UQrvws2IJsKFHeuRfoQBTSeBBj4V8bvaQf0T3bgrye23swW2VxNpoig=@vger.kernel.org, AJvYcCVf+BTaKLtZtIxz/f8K/ENz52YSpIsE2bawad67ru3chP3cQwIRw68qu2v9jAUmS5QmjvP/ttuzrKRA@vger.kernel.org, AJvYcCVoXOWyBVyuxecQ8ES8Kno3yEdXRptjfN4kyS6I5jVQr4Pj4hB8FcaMFBzWmdKzmsGsy/qHvcD2oSAaJ1dI@vger.kernel.org, AJvYcCWeG9KneR6zK7eLwPRf3qYRjnG3w5F5AUOEVJHgYFh0d5nVPLDUBbkN0sPfC9IouTfr1UVAxigSS2ocwQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1aImcaxVJr8bQ8R02PG7wIQe7b+KPKFF/H5Ysq57QZvvy4vSe
+	qABbrbAwk2M0TyshvHuEyc7VpMoorDyLsJNDHiyQIRBG1EPssQaB
+X-Gm-Gg: ASbGnctHXJcq6cI0fSWvwhwMqMTa4eEZEHssuDe3bwppI+7hpS8tO4GL4zpp4J7TLX1
+	XK0G4TG1Rfp9KI94r/hdf4MFtrPMMqQIKis9ZFbcfGJKLXwLZvCIZquCRh0LEAH5Fncn8g3FI/S
+	ccZ84hXjFbfhxL85NmU6L8dhSPQNDfybAhTdBGpv/50Rr6VrfGhc33h7Ynj8XLQaDNnUbjibMy1
+	xBmQqpl5da278hctRAsWl5Ep+XakHi9wM80yrBq+K9U8TzaxWih+GNsODXve24qU7fk+Q==
+X-Google-Smtp-Source: AGHT+IFsoM61V0joaKHqVc4PbvJqDSLkddTcQASbEuaO4DVFiG7iQND5F6fjo4oTT30j0Clqz9fEIQ==
+X-Received: by 2002:a05:6000:18a5:b0:385:f7a3:fed1 with SMTP id ffacd0b85a97d-388e4dae6d6mr5642139f8f.44.1734594359217;
+        Wed, 18 Dec 2024 23:45:59 -0800 (PST)
+Received: from [192.168.1.10] ([95.43.220.235])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4364b14f241sm65398125e9.1.2024.12.18.23.45.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Dec 2024 23:45:58 -0800 (PST)
+Message-ID: <b9220ab2-0992-41d0-abef-f9ec6e306af1@gmail.com>
+Date: Thu, 19 Dec 2024 09:45:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240619153913.867263-1-cleger@rivosinc.com> <20240619153913.867263-6-cleger@rivosinc.com>
-In-Reply-To: <20240619153913.867263-6-cleger@rivosinc.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Thu, 19 Dec 2024 13:12:58 +0530
-X-Gm-Features: AbW1kvZ_WXwEDbsqmAKgoCiT1ZSWNjyowoJciFKcgfWXJoYFYtMyuYjF6-4g-mE
-Message-ID: <CAAhSdy3gYPa82zj+fAXtkDvJuKXoWBNj5Mx+XjHXkn=a2c__ig@mail.gmail.com>
-Subject: Re: [PATCH 5/5] KVM: riscv: selftests: Add Zaamo/Zalrsc extensions to
- get-reg-list test
-To: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Shuah Khan <shuah@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, kvm@vger.kernel.org, 
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] tty: n_gsm: Add support for serdev drivers
+To: Pavel Machek <pavel@ucw.cz>, Johan Hovold <johan@kernel.org>
+Cc: Tony Lindgren <tony@atomide.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
+ Lee Jones <lee.jones@linaro.org>, Jiri Slaby <jslaby@suse.cz>,
+ Merlijn Wajer <merlijn@wizzup.org>, Peter Hurley <peter@hurleysoftware.com>,
+ Sebastian Reichel <sre@kernel.org>, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20200512214713.40501-1-tony@atomide.com>
+ <20200512214713.40501-2-tony@atomide.com> <20200528093102.GC10358@localhost>
+ <20201129205144.GA15038@duo.ucw.cz>
+Content-Language: en-GB
+From: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+In-Reply-To: <20201129205144.GA15038@duo.ucw.cz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 19, 2024 at 9:11=E2=80=AFPM Cl=C3=A9ment L=C3=A9ger <cleger@riv=
-osinc.com> wrote:
->
-> The KVM RISC-V allows Zaamo/Zalrsc extensions for Guest/VM so add these
-> extensions to get-reg-list test.
->
-> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <cleger@rivosinc.com>
+Hi,
 
-LGTM.
+...
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
+On 29.11.20 г. 22:51 ч., Pavel Machek wrote:
+>>
+>> It looks like you may also have a problem with tty hangups, which serdev
+>> does not support currently. There are multiple paths in n_gsm which can
+>> trigger a hangup (e.g. based on remote input) and would likely lead to a
+>> crash
+> 
+> I don't believe we need to support hangups for the Droid 4, but
+> obviously it would be good not to crash. But I don't know where to
+> start looking, do you have any hints?
+> 
+
+I changed the patch so it calls tty_port_register_device_serdev, ported 
+gnss driver to use serdev_device, got it working:
+
+root@devuan-droid4:~# cat /dev/gnss0
+$GPGGA,,,,,,0,,,,,,,,*66
+$GNGNS,,,,,,NN,,,,,,*53
+$GNGNS,,,,,,NN,,,,,,*53
+$GNGNS,,,,,,NN,,,,,,*53
+$GPVTG,,T,,M,,N,,K,N*2C
+$GPRMC,,V,,,,,,,,,,N*53
+$GPGSA,A,1,,,,,,,,,,,,,,,*1E
+$GLGSV,1,1,01,255,,,37*52
+$GPGGA,,,,,,0,,,,,,,,*66
+$GNGNS,,,,,,NN,,,,,,*53
+$GNGNS,,,,,,NN,,,,,,*53
+$GNGNS,,,,,,NN,,,,,,*53
+
+However, I get:
+
+gsmtty gsmtty4: tty_hangup: tty->count(1) != (#fd's(0) + #kopen's(0))
+
+when closing /dev/gnss0
+
+Any hint what shall be implemented in serdev to properly handle hangups? 
+Or, shall I ignore that warning?
 
 Regards,
-Anup
-
-> ---
->  tools/testing/selftests/kvm/riscv/get-reg-list.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/tes=
-ting/selftests/kvm/riscv/get-reg-list.c
-> index 1a5637a6ea1e..70216a1760c3 100644
-> --- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
-> +++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
-> @@ -48,7 +48,9 @@ bool filter_reg(__u64 reg)
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SVINVAL:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SVNAPOT:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_SVPBMT:
-> +       case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZAAMO:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZACAS:
-> +       case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZALRSC:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZBA:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZBB:
->         case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV=
-_ISA_EXT_ZBC:
-> @@ -420,7 +422,9 @@ static const char *isa_ext_single_id_to_str(__u64 reg=
-_off)
->                 KVM_ISA_EXT_ARR(SVINVAL),
->                 KVM_ISA_EXT_ARR(SVNAPOT),
->                 KVM_ISA_EXT_ARR(SVPBMT),
-> +               KVM_ISA_EXT_ARR(ZAAMO),
->                 KVM_ISA_EXT_ARR(ZACAS),
-> +               KVM_ISA_EXT_ARR(ZALRSC),
->                 KVM_ISA_EXT_ARR(ZBA),
->                 KVM_ISA_EXT_ARR(ZBB),
->                 KVM_ISA_EXT_ARR(ZBC),
-> @@ -950,7 +954,9 @@ KVM_ISA_EXT_SIMPLE_CONFIG(sstc, SSTC);
->  KVM_ISA_EXT_SIMPLE_CONFIG(svinval, SVINVAL);
->  KVM_ISA_EXT_SIMPLE_CONFIG(svnapot, SVNAPOT);
->  KVM_ISA_EXT_SIMPLE_CONFIG(svpbmt, SVPBMT);
-> +KVM_ISA_EXT_SIMPLE_CONFIG(zaamo, ZAAMO);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zacas, ZACAS);
-> +KVM_ISA_EXT_SIMPLE_CONFIG(zalrsc, ZALRSC);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zba, ZBA);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zbb, ZBB);
->  KVM_ISA_EXT_SIMPLE_CONFIG(zbc, ZBC);
-> @@ -1012,7 +1018,9 @@ struct vcpu_reg_list *vcpu_configs[] =3D {
->         &config_svinval,
->         &config_svnapot,
->         &config_svpbmt,
-> +       &config_zaamo,
->         &config_zacas,
-> +       &config_zalrsc,
->         &config_zba,
->         &config_zbb,
->         &config_zbc,
-> --
-> 2.45.2
->
+Ivo
 
