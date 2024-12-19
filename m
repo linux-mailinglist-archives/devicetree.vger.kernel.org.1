@@ -1,147 +1,171 @@
-Return-Path: <devicetree+bounces-132863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C926F9F857E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:11:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 015B89F8584
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:12:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EC3C1650DE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:11:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECB0F168B9C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC471D5ADE;
-	Thu, 19 Dec 2024 20:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D731BD9F9;
+	Thu, 19 Dec 2024 20:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZAR9aHvm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TwZjYF+3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE7F31C1738;
-	Thu, 19 Dec 2024 20:08:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D38C1BD9E9;
+	Thu, 19 Dec 2024 20:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734638921; cv=none; b=FcLZ61vUYDac99RZ73GL2WbU8Kz1rHsr4DjAq/kfUhPc44wVPFgsAY5diDQqFRF4PgakJUdlBVvHLVdHuD9KwvBnZIFjkLRnYIfEi5dIN43wPRAS+52k1xGzLSgEGbZwiEG0T/e7lNhINCkfRjhmOK4zVMC+4WqrnGuvCt3J8sU=
+	t=1734639070; cv=none; b=fM0O/On1uc6KUoKFalRGoFfMNyyQusyYkusSCNByrj0lzy7VaQIbJ51ON26tm9IH/xP3O2MSy+c0ZqDSi6JDTfnp0bInaNFXnHS82AX7buLIQlJCU8jgb9n8fx5bLHc6OHd4lCnA6VUxnu4Q4iGyq4f23DWuI5qwxE61iJ2rfY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734638921; c=relaxed/simple;
-	bh=YgN6D9Ys/2Lezq3gR3imw5IwQRTwzbav7hGzaKEanFo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=W6KPc9xt174qAmUo2N5zKh4htzPLuOELNZBcs8fJK4So1HJLe9iS+1H2IPTtMLGfSvulX2HnfsxMEUUUtaVUDpFwY/R52VZdGSRqOXW2gAXakF34TrchU43+wIyTiZyqtE6s3cb6ijj8vPiw8kxszh22fN+0HTdkBuwmO8d1wqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZAR9aHvm; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53f757134cdso1144585e87.2;
-        Thu, 19 Dec 2024 12:08:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734638918; x=1735243718; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KcbSv/BZ9r21elj2oBuH8EFKvDsTWgFDboQJeEWvOGw=;
-        b=ZAR9aHvmV701fUNH6YLM5anx+6RPSnd2TjsTrVeiGhtU9BUUBlSHdBhoe2jyCvQyvD
-         mDpgKKJDGPT6exoXeYZ9tFWaenfyGHzn3uVKMY6ehwsmJjkQVteC055UehFsuT6grbqa
-         hjjHHi5If9BBSCJ1U/ou8Aj3cxDuy2LasD/SmQjBBtLUtEEREQ+1kT1cjfo1wW0XUCvj
-         fZAZLEuIfWRAK2jgJi0KFmo//P/V78OZp4J28Hk6g4j7mxcJ95qcjRUzhTBu6DaeJDUn
-         jGVlVIeBwJS8rhkPf9bOSQg8euNb3SGgZVJRAjlFhqgpD2p8Z50Gn9qPJ1dAW3wa6jrP
-         S57w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734638918; x=1735243718;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KcbSv/BZ9r21elj2oBuH8EFKvDsTWgFDboQJeEWvOGw=;
-        b=PsUP9wPzBlcDENFPk8GUKXnlTrTVaMR3POB+gO9hfBU+xw8QAhH9uV92DJqQMe/vJO
-         J8GKeYcoDTaglZUN0rLm3yGQggGm+WJ0O9AYS8vf5qVKyg0nlpTFaJw6FeUS0UvHi+g1
-         VIfq6Hd/DVJR6FfnjKACyWh3tPNLskOgFFEdY4yqtq6Xu0wjgWjlAtP71cu5vNMBbrsZ
-         VU+jGY2WpfzBio2A4NGRaohfoMxfY1qnpDXwrdmYVpc0frupxQMI0eelbHwjo+Rv5+9Y
-         Ss90chcZ5w4Dj0QSCFNaqXDLG5Uf2cghA6GQ0MfMTz7yP+KivkiHJR5Y/cBEI822FPxu
-         OPvg==
-X-Forwarded-Encrypted: i=1; AJvYcCUdFSgYUKro9E+dN3jB7dbThFfEK8lXX/b7gfWs44aCnggGbGR2vjvLZczx+31DQWMQ5hu4UblCfjpX/hgw@vger.kernel.org, AJvYcCXEkjZGNu9007u8BBXnh4k8J7yoYZO2lmDWZWy1fvHBF87EUGMJ+UzOfkLpsNfJtkVuO9ibcQHL3OCI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgTnU/ZBlPbTB+3Kups5k1zGnhxU9VzuZtUvmHpIqwIC0HljA1
-	O9njXJRj7DigxdTiOAyx1xsieO5/U7ltlbIRIPsMKttgS+nQXrX0HRv3cMhNqWo=
-X-Gm-Gg: ASbGnctB1aRjQ54VRDypzKRxyJAMWLQHmbDxEVWtqX9rgfrP3FyObq8MmrSM/ayJocC
-	1QnvQNck2ruS7FQzv54+MJSMK4MqkA8Jd25VNEATt0OaKMNQ0oTw67WtUJjH8J3kwPyW0gWKhAW
-	Sr9ZFDjwkC45YgjDhqOfwOZ5lDq8Ytms7QrkhCrw9rB2N80ijMoJ7DY7of8LWWMRbmveJ4+zLMQ
-	J4kl1GSAKWqt2gQJEpTwnUo3BWM84AYc2Pm9km3k5gu8JMvs8E3PgLluoYMnuoDXkSCWnHv/2T/
-	bPo=
-X-Google-Smtp-Source: AGHT+IEEvi2/2raC9kDgH7WhZ4VHJYZltCSM0Jn3wdfI79zWF1LU0I4Y3nWZK+5qF+mF/eQJf/EF0w==
-X-Received: by 2002:a05:6512:3f20:b0:53d:dd02:7cc5 with SMTP id 2adb3069b0e04-54229524640mr7620e87.7.1734638917633;
-        Thu, 19 Dec 2024 12:08:37 -0800 (PST)
-Received: from localhost.localdomain ([2a02:a311:80b0:1c80:9433:9060:39fc:2954])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542238135d8sm265642e87.145.2024.12.19.12.08.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 12:08:37 -0800 (PST)
-From: Maya Matuszczyk <maccraft123mc@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1734639070; c=relaxed/simple;
+	bh=Oxv7gQG1cNXbG0Fp3Bpc5LzhotYBPEpA0l2FLf6oEvM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RCMZ4BPBRWgpzoeQlJfQYJElPDs/R0qBzhtcNxyo0ZjG/3UwCzF4ptCEitKvQoyqKmDarWE0keMUGpfDQRjQp4zmnUjy4TzAT8wJNWhIf596xy+yYYdzCT3fBTmQbhxhzzLUymDCXgl/G9f/KHdngSvUEmySmzkcmM9PoRKwlvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TwZjYF+3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78F60C4CED4;
+	Thu, 19 Dec 2024 20:11:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734639070;
+	bh=Oxv7gQG1cNXbG0Fp3Bpc5LzhotYBPEpA0l2FLf6oEvM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TwZjYF+3NvizdHmvVN9RAsyQzBQkvEOjm5w/XOMpU39UcRQH0f1qop4Bax3JqGV7W
+	 bplpnRxoDMZyeuZ8WxbCqUUfbXQGYFW3vpNqvSdsw5VTADUl0kYL4ZCgMA0tIWZbjf
+	 /uDT4XaDk30CdDndhAgksSFqC969dtsuRNJQlV8ATaYZqf+H+Lq6rvI4OUAbR/mcsc
+	 8whZew4hdzVtIO7ZPuCvMshqSsTG22DCod0pAX+YoXzPBCvryOPaQ4nIyeR3X8FANJ
+	 oDgovQcR2EGA6aZ9T3gRRZFPnXjA8ccKV3Hl/r7NaE5d1OSW72M0ru/8lBiKukv6xS
+	 /TTXhi+l2t4gA==
+Date: Thu, 19 Dec 2024 20:11:05 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	Maya Matuszczyk <maccraft123mc@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add the EC
-Date: Thu, 19 Dec 2024 21:08:20 +0100
-Message-ID: <20241219200821.8328-3-maccraft123mc@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241219200821.8328-1-maccraft123mc@gmail.com>
-References: <20241219200821.8328-1-maccraft123mc@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: move compatible property to its
+ specific binding
+Message-ID: <20241219-scenic-revision-17da9231d61a@spud>
+References: <20241219-mmc-slot-v1-1-dfc747a3d3fb@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="E6C8VplMw1mOJcDT"
+Content-Disposition: inline
+In-Reply-To: <20241219-mmc-slot-v1-1-dfc747a3d3fb@microchip.com>
 
-Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
----
- .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index 0cdaff9c8cf0..dfe009613b0c 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -538,6 +538,22 @@ keyboard@3a {
- 	};
- };
- 
-+&i2c5 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	embedded-controller@76 {
-+		compatible = "lenovo,yoga-slim7x-ec", "qcom,x1e-it8987-ec";
-+		reg = <0x76>;
-+
-+		interrupts-extended = <&tlmm 66 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-0 = <&ec_int_n_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
- &i2c8 {
- 	clock-frequency = <400000>;
- 
-@@ -796,6 +812,12 @@ &tlmm {
- 			       <44 4>, /* SPI (TPM) */
- 			       <238 1>; /* UFS Reset */
- 
-+	ec_int_n_default: ec-int-n-state {
-+		pins = "gpio66";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
- 	edp_reg_en: edp-reg-en-state {
- 		pins = "gpio70";
- 		function = "gpio";
--- 
-2.45.2
+--E6C8VplMw1mOJcDT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Dec 19, 2024 at 09:40:41AM +0530, Dharma Balasubiramani wrote:
+> Move the `compatible` property into its specific binding to make the MMC
+> slot more generic and modular.
+
+This makes no sense, as presented. What's the real reason for this
+change? You want to ref mmc-slot.yaml but the compatible is causing a
+driver to probe?
+Otherwise, if this is just to avoid having to fix up some devicetree
+source files, I don't think we should do this.
+
+Thanks,
+Conor.
+
+>=20
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml | 4 ++++
+>  Documentation/devicetree/bindings/mmc/mmc-slot.yaml              | 7 +--=
+----
+>  2 files changed, 5 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.=
+yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
+> index 022682a977c6..7600a4988eca 100644
+> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
+> @@ -54,6 +54,10 @@ patternProperties:
+>        A node for each slot provided by the MMC controller
+> =20
+>      properties:
+> +      compatible:
+> +        items:
+> +          - const: mmc-slot
+> +
+>        reg:
+>          enum: [0, 1, 2]
+> =20
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Docume=
+ntation/devicetree/bindings/mmc/mmc-slot.yaml
+> index 1f0667828063..84c4605658e0 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+> @@ -20,19 +20,15 @@ properties:
+>    $nodename:
+>      pattern: "^slot(@.*)?$"
+> =20
+> -  compatible:
+> -    const: mmc-slot
+> -
+>    reg:
+>      description:
+>        the slot (or "port") ID
+>      maxItems: 1
+> =20
+>  required:
+> -  - compatible
+>    - reg
+> =20
+> -unevaluatedProperties: false
+> +additionalProperties: true
+> =20
+>  examples:
+>    - |
+> @@ -40,7 +36,6 @@ examples:
+>        #address-cells =3D <1>;
+>        #size-cells =3D <0>;
+>        slot@0 {
+> -        compatible =3D "mmc-slot";
+>          reg =3D <0>;
+>          bus-width =3D <4>;
+>        };
+>=20
+> ---
+> base-commit: 7fa366f1b6e376c38966faa42da7f0f2e013fdab
+> change-id: 20241219-mmc-slot-0574889daea3
+>=20
+> Best regards,
+> --=20
+> Dharma Balasubiramani <dharma.b@microchip.com>
+>=20
+
+--E6C8VplMw1mOJcDT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2R92QAKCRB4tDGHoIJi
+0uF0AQCCkZ/AGdPEHj/YRGeKMFGk8lttRZIYHRKX8V3//6ycbgD/T1LEsSfzTuzT
+XIO5WbdO0FiyWZ0dsPH7aR+mC0O2Jgg=
+=My4h
+-----END PGP SIGNATURE-----
+
+--E6C8VplMw1mOJcDT--
 
