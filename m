@@ -1,131 +1,246 @@
-Return-Path: <devicetree+bounces-132791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE119F81DD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:31:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAE849F8202
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:35:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 956837A2927
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:31:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C71F7A2531
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD3D219E965;
-	Thu, 19 Dec 2024 17:31:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54C719AD5C;
+	Thu, 19 Dec 2024 17:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VLVC3z1a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F015313B59A;
-	Thu, 19 Dec 2024 17:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734629466; cv=none; b=YeU6Upgver3NW7hBZwhLqkic14tuspmPSXcdljewx3PRcWJlaTRN51Y0YcHwkhNWgHs9KBgjfbdOvDkDyssFzh09Xt+3vJ+jy2KEwFzuHX3ykisqa38D842jv+yrDAgicoY18V62IpthO+aYNfqQv46Mv0XmgPtZ5oP1XJLQGvU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734629466; c=relaxed/simple;
-	bh=CpTk07fv0BVDdJ3AzH3B9ulCuQynYC7GH7ywepL9S7U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MRqAOQWa0UoqdGTtLcH1FgmlrcNNl++VCnTIwRHNXIxhqqkrz4DePxNEoL5PtlYbgx4pk9jD9qwwxiDLnBPsiszyWPVMfrQzz+wTJYK/6KkJTa0vbFdzPsts06aTTa2xQU0CFVYyAtc9ekX0ttGwGaeerB442CzAlgPkZNSsxiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3916F1480;
-	Thu, 19 Dec 2024 09:31:32 -0800 (PST)
-Received: from [10.1.196.72] (e119884-lin.cambridge.arm.com [10.1.196.72])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6118D3F528;
-	Thu, 19 Dec 2024 09:31:03 -0800 (PST)
-Message-ID: <a7f9dc73-6ec7-4c72-9c10-afaca727e961@arm.com>
-Date: Thu, 19 Dec 2024 17:31:01 +0000
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2069.outbound.protection.outlook.com [40.107.22.69])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 617C61953A2;
+	Thu, 19 Dec 2024 17:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734629673; cv=fail; b=Xta6eLPvbGrRJqpqDFiu2XaH0IxDdL6Zbk3ED3aleuRKq7liZ39x92pO5X8UWRS6KVSp821vhFFeZuv7vLhipu2QqFt8ERng/nqfU790BBUHxAF0i2H8t3YjuiDZ48dvb26Ag6awHClyykHayYcmaKbrw+OsaZua/9poCwiuSQE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734629673; c=relaxed/simple;
+	bh=AzfbML3WK0/ZBRjXTxGauMbtZ5WoNr1JWS4NgjchUQE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=U2AICgbsw7aoS4Y7N+auG3qh/pav9zmeaGscOMTiqb1TmOi6Tl4SdJ9KlsdJtdEfcI4vIkL/EtjZHPh4v3aSpiNZwWgILzGEQIIbWNs9dzvPXHnnSyUBhWeGo6NyoEqs1C2GoRSPXy60wGreXQYZVyqaN6pZ5dv2rfxYPzn4twk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VLVC3z1a; arc=fail smtp.client-ip=40.107.22.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=O6tj/w9mRYvwVc1cUocJuFd/vSqhU4xEbLSJEOQlIt2uHNdTcxRWMjyZes5L+Ez3WSVl7XxAQVQeiP4OokCkH70S2d8iPejaYR8Y8DyoNBoJJpu04BC3pd9vDvyPDUkOMsKXNlts4kDEpJKR7b0MepENezdKfIfOAUcUy2h8oa5uesrlXZGaeDCKi3AHeuexokIU/KWSLsAsGL9duc+uq7/D5y5RjN+XVUVcQ+6dcRP7jF9p2h6jimoF6NVgSIPMXCiUaa8VzkG8pR8txCWAeqB0rOtKRiIaQp8jpyLis8nHzoO3m1MToyFBmDXjxxieHPiQEQoBLgaNysI0o9ep2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vvY9fMjDoVrIodD3uYfzvQyxyqhk6LiB3Th0WtyQWUw=;
+ b=oC8O3EW15tymmwtfp9VcgD5yECwF9zbrHZUrPbNHYLj73GZcJE/TfrpEExSNHjEg1YkSs83OXQoCyjk1bqS4PfIe3xoMCjwVd5xWqAuL+DWgaGy9QHlD8pbRp5YVxQBF28vqm2JX9UbMS59oeoB/zL+k9SdPuhB19L1lVU1kXEaETbh9yTKXuGB0fgaI8f5i5x4752whiFyliDTBzzdQCVoGPyjVZ1GQpsydGXnLzQD2x3566KcABLJaUSqsC0HWQLoceufyHHQRWpiLSQ3RGb1WTwTzXNbtkNr6j6/hhiVG9F7jframGPsVshkCV6r5qcLriQ2AxsYhU6eZdMazQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vvY9fMjDoVrIodD3uYfzvQyxyqhk6LiB3Th0WtyQWUw=;
+ b=VLVC3z1aLg00tA1oSLqjqy+rNUdWJ2PFHIiwcTsJ7OkrQ17n3mu0tDOozSsIocYyeO1oBtJywtSsewFfPERUxZnQoINK2VRs/+tD3Vxz6D6rqp7oOqCYT0kdWQZsNLrTBvv7usF7+gx0W4YY2E3BeneOKPcno8QdZPt9K4Zd8W17UJEcvwMUTdYpUK0zLehdrvVUMkfmlIV1D+fkF7HVO6WJwNCE0us3lLud0NzoV7HLKuE5nvITLvwihXM5Lp43ivtYkxRRHdT5L78zelVy8qCajqQO4eEl4PQyS+Lyv6XfYfCagBYoOiLukmYQny3S+4Ebnq+BB/rukLIg3/5vWw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU2PR04MB9194.eurprd04.prod.outlook.com (2603:10a6:10:2f9::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.19; Thu, 19 Dec
+ 2024 17:34:27 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8272.005; Thu, 19 Dec 2024
+ 17:34:27 +0000
+Date: Thu, 19 Dec 2024 12:34:19 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/10] arm64: dts: imx8mp-skov: use I2C5 for DDC
+Message-ID: <Z2RZG7pAElG3TGLx@lizhi-Precision-Tower-5810>
+References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
+ <20241219-skov-dt-updates-v1-3-38bf80dc22df@pengutronix.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241219-skov-dt-updates-v1-3-38bf80dc22df@pengutronix.de>
+X-ClientProxiedBy: SJ0PR05CA0002.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::7) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] arm64: dts: Add Arm Morello System Development
- Platform support
-To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>
-References: <20241213163221.3626261-1-vincenzo.frascino@arm.com>
- <20241213163221.3626261-7-vincenzo.frascino@arm.com>
- <bc4ff071-ffc5-4b16-8e3a-977e47475816@kernel.org>
-Content-Language: en-US
-From: Vincenzo Frascino <vincenzo.frascino@arm.com>
-In-Reply-To: <bc4ff071-ffc5-4b16-8e3a-977e47475816@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB9194:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0d0de2e-85e0-4f4d-44f1-08dd2053633e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|366016|52116014|1800799024|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?F5KyKDSaP6tLE5S0h5gAk6GtfOVj46NWBn7SHBa+tAWMJeLikuYcfGHYkZ2T?=
+ =?us-ascii?Q?CfRL/BvSWbbKQ/4h9JoE3T6x/ogVuqPqmg3u35V5mQ5uJwO5SzHF0NPfVYCG?=
+ =?us-ascii?Q?BR8T4sMcVP9Ljyi+2DtRiULPdX/AT/0WRhwAdhYfLa6Mpqh6ORJq2z/ZibAV?=
+ =?us-ascii?Q?z2YLdktfhPKxwKWhr3Ess1iPJoIXWJAPLWRHwEdMA+Akhmxjxn/LP/dnY8VY?=
+ =?us-ascii?Q?mVwQnrJQTF/VWcK+fchhft/6/sAMZFy22589hFUu1lXzInDKMZGeqn9DWkZL?=
+ =?us-ascii?Q?EzvXH5Pfw9Vl7gqaNt7BUW4W5UbuQ/b4wHQ4sUxtKzaCmqXxyouSyQjt4csC?=
+ =?us-ascii?Q?jaZMl26gQ+tqVffh8Ip5evdWXhhLWdjPrwDVPHR/s0FE7WUzyu1XUgCheTuk?=
+ =?us-ascii?Q?2pBi1mrhT8NRwuEloGEzAP4tdRry8Shm/8o4iwhb6YRb/qfdW78y/4rn8xzB?=
+ =?us-ascii?Q?/fUihQ/RuIjWwzGvJydsZzxc69V+gvG5ol57OWd7ztrX3Nqj5l4nVu2Eqnlx?=
+ =?us-ascii?Q?f+vemFUaMGprBbqe8XkbU1uOM6htda9aJJfqYONmdsOzRR3suwLz3lFNPNgm?=
+ =?us-ascii?Q?vDAefwaRWgn96hOKzw5PmfBxv/358zNpgrUCnWUB1RUuEt7KXmADDtehefDp?=
+ =?us-ascii?Q?w+DEccOF0GSGwqp+swepwOJ4EpxTzeIc9QrLTd4D316i3Bf2EIaKvPLg5O75?=
+ =?us-ascii?Q?G0Ch0T1bR2e+D78EgTqSzh2+TQpb7C6x6wyCQNK6/rXEnEsmBtO9tH9iWJxY?=
+ =?us-ascii?Q?twvFb9K6he86lxG+9TpXsroFhzZ9goLBIfrMAwiHtlh1IcS04479dU04ecQF?=
+ =?us-ascii?Q?LgtAuSqeFy5VrbDka9pp0ywYWJdqcKQvdgZkBrmmc79s9v4jnqsZWUFAxQLs?=
+ =?us-ascii?Q?qip+LFj57G9S/IPbJ6vup8P+nxYVAXtvtQ/TAwtL85iXhm3NP/mh76v7KmR0?=
+ =?us-ascii?Q?gLtTn0d75UBkc7R1tqNbHUVzWTJaj52Jl4LmPUB5Fm7b8pSee0B6sODWpwiE?=
+ =?us-ascii?Q?wteKNmoF2v8vU50q4Q62Ll/1TJLfx3sQR39ZArWr4x9NrqXDoVjN5cmyT2PD?=
+ =?us-ascii?Q?sP9IlrsLDh0NeErh3snnku0xM+DNNqEvnjDnnjXSGfCojBZZE1wJQUUhpKd7?=
+ =?us-ascii?Q?PpxpiHk7LFTPX5Le9TS5ilWzZSf3EeP32CmbipJ1iurc1LfRsvbl9QdJrWcH?=
+ =?us-ascii?Q?SGVuvzSq0IS0hgRxkEPadTJpUAs0aTqxIHQa5EIsSPrWZEQM9Sh8HQIRsI5y?=
+ =?us-ascii?Q?g5bCtKigp58I9BoZABHAmYPpynOtddFSxcoiTGgvIMHc7uYj7zCoLkna8FJE?=
+ =?us-ascii?Q?kPh4doJ5QVczqwyxsjhByQd/a/jJrH57tT7BrTzfjfXHPpv9k/8qRJ7hQBgc?=
+ =?us-ascii?Q?QG7PNPX1Ri+tT0tRp1oGZ5Q2h5qE9tExf6qssHTFYTBfUcJ3UJZ8V5ZvEZ2S?=
+ =?us-ascii?Q?ao/S7WWpOAA2tMF4HXDXDPLku3FKG8/1?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(52116014)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?7spRSco1woM5rTtqvnd9pDy7rwzXKpfs2y+uDcm0+HOmdjtRtJqnS8yfu5md?=
+ =?us-ascii?Q?10RopXV/bKteIRmj9Q598x3fsUs2F6Lvx0Njb7nyHBwbzVw3k59R/b01jbh3?=
+ =?us-ascii?Q?T8hwlui1GtxtGTsmOnMza5/+Xss9BtfArxmKg2W+s765++yp9Dfv1iPEEk9e?=
+ =?us-ascii?Q?N1XuSckewIIh+aZSFDT8y2DGI4jVg6XJMGrWgrI7igpRFuSaaOsQaWEUqvL4?=
+ =?us-ascii?Q?W0U6U8C9Ie6gMnzAeIKh5TAci7hEdWSR69FdkQ1v2kV6mOeDiQzOGPfqlpQs?=
+ =?us-ascii?Q?behGK8u8wfR3dQTCLG3WtaYhNn3o/KzQCnIm70Tfh6AEr1z47v+z9DSRh1Eh?=
+ =?us-ascii?Q?tViZhas0tNpOfnBHIMfQfDCiWCh6Bi85Iw4KHh2XOXK9Sewt8mR1Z743Kmvl?=
+ =?us-ascii?Q?qgdixjOw4hn7Uvl6Hg7NIjX4YsHBqyCsbUB4GvCpUuj8r7HfiRI6m2mcCizL?=
+ =?us-ascii?Q?zwmGaMo7rsBD9S9AV6BYsnS/MQadR58+LuTHkGoxIHuxh0nx/Kmy8KVvyElW?=
+ =?us-ascii?Q?zQS60IwQ8Ms4PitW+XC4Bsx7qLtK8ATDpD3jnWwQ+N3K0ZT6gnfFEphqvAuU?=
+ =?us-ascii?Q?w/gVds7pNIQ3EtQvUSi14kAkPojEI2wE3GW23ccUjsT/mhHaCyS/Ms0DF+Yw?=
+ =?us-ascii?Q?hzD3u11hELsER4xEhysuePmcYhvYx6zCHZ4qjrI0ZnV/+kZMOBmUNgUaQiA+?=
+ =?us-ascii?Q?5q2yUmR2ik68SC3Df132YQeWpnduCCiD2nttVThbMR0LduGluH5ydXTlEOTF?=
+ =?us-ascii?Q?8dgBgJdx7AkrGZzMqbe84UDfTmZPppgWa43RnDWowsR1AZsgp+lA0BhRfZXU?=
+ =?us-ascii?Q?4tZm5Tu4m3OHiao76r9k3oCBGw8DtuyC7ZRPOn5NsB0xFJTnqxbyA/+c3oIv?=
+ =?us-ascii?Q?Gv2KXrqTpY3cU/h3wziZWtfjTaCybTO2FYTKJv4N/O3jHjqfvOWhGexhVWVi?=
+ =?us-ascii?Q?24ZC/x9OTP6ng9aoxUtl5atYJs9I5R/NIQXNoZTWgI9/taLPLiG0kDUNXChn?=
+ =?us-ascii?Q?z/VzN7i/hjOsPd4wQ3oC1V14JdiEML5YcM19u0Ggm+Uh1w9s6HQMm9Qfc9yW?=
+ =?us-ascii?Q?pRdpbxxb2GUplmOC4Y/IegqVAvWRfz6CZppOfQVh0jUHcThBSha9An5jdQaE?=
+ =?us-ascii?Q?TwRAVWB++nQJV80wnRWWUmJy5/CDm+xTs+jl40kHfy77g/j3uFHTcc3ZGJCX?=
+ =?us-ascii?Q?qFMb1ac9stjFuKk80dTmwPPQv6gqdra53G8SWy+9dG9oKE8PWWVwQ9GoWnP4?=
+ =?us-ascii?Q?GcGAOBpyej2D6fYKXgmgDOEoAf3z0Vac8Bk5oPpWSwSitEVNFp64ZPl2UCM2?=
+ =?us-ascii?Q?Nu3BCwaFcyVK3O3W7kgzmC4cEEvl5JP8YlQih6PI5O9/ZsyOaAElEtGI85ss?=
+ =?us-ascii?Q?BZfilx490c3HIU/60n9RLvdkPXxyTNzWft90K2CnCTt/xaJQVr3ILQQg4Ahl?=
+ =?us-ascii?Q?r2VCXo8zm4P4nevASApEHUBpH1HOPM6LJcdEJTqkhAB8hB0FKYPaVjhM3vKb?=
+ =?us-ascii?Q?6nGf2wSRMAxx0lfofs49upNmxJ5oId7qswhVxFiuLVklvxcQdJVB9kwsB86o?=
+ =?us-ascii?Q?yomRZTSvbslUDV3Ny6jucajyGp1KuCxA1yl5OjGZ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0d0de2e-85e0-4f4d-44f1-08dd2053633e
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2024 17:34:27.6830
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VebW6W40Lfo/U24TNhmDOnEKixQRoYXB9pOmoC1h4iDWUO22aWhhlFbrTtjcOqO+qa6+vC8fGo5Azco+xkulYg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9194
 
+On Thu, Dec 19, 2024 at 08:25:27AM +0100, Ahmad Fatoum wrote:
+> The HDMI DDC pads can be muxed either to an i.MX I2C controller or
+> to a limited I2C controller within the Designware HDMI bridge.
+>
+> So far we muxed the pads to the HDMI bridge, but the i.MX I2C controller
+> is the better choice:
 
+Switch to the i.MX I2C controller because
 
-On 14/12/2024 10:14, Krzysztof Kozlowski wrote:
-> On 13/12/2024 17:32, Vincenzo Frascino wrote:
->> The Morello architecture is an experimental extension to Armv8.2-A,
->> which extends the AArch64 state with the principles proposed in
->> version 7 of the Capability Hardware Enhanced RISC Instructions
->> (CHERI) ISA.
->>
->> Introduce Arm Morello System Development Platform support.
->>
->> Cc: Sudeep Holla <sudeep.holla@arm.com>
->> Cc: Rob Herring <robh@kernel.org>
->> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
->> ---
->>  arch/arm64/boot/dts/arm/Makefile | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/arm/Makefile
->> index d908e96d7ddc..0a821808692e 100644
->> --- a/arch/arm64/boot/dts/arm/Makefile
->> +++ b/arch/arm64/boot/dts/arm/Makefile
->> @@ -7,3 +7,4 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += rtsm_ve-aemv8a.dtb
->>  dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7-ca53x2.dtb
->>  dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
->>  dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000-mps3.dtb
->> +dtb-$(CONFIG_ARCH_MORELLO) += morello-soc.dtb
-> 
-> No, you organize patches in insane way. Makefile is never, never
-> separate entry.
-> 
-> Look how all existing submissions were done.
-> 
-> Squash the patches.
-> 
+>
+>   - We use DDC/CI commands for display brightness configuration, but the
+>     Linux driver refuses[1] transfers to/from address 0x37, because the
+>     controller doesn't support multi-byte requests.
 
-Generally in v1 I tend to make evident things on which I want comments to make
-sure they are not missed.
+      Designware HDMI Limited I2C controller doesn't support multi-byte
+requests and display brightness configuration by DDC/CI command need it.
 
-Here and in the previous patch I wanted to know if ARCH_MORELLO could live as a
-separate entity.
+>
+>   - The driver doesn't support I2C bus recovery, but we need that,
+>     because some HDMI panels used with the board can be flaky.
 
-Now that you replied, it will be squashed where it belongs in v2.
+      Designware HDMI Limited I2C controller doesn't support I2C bus
+recovery.
 
-> You also did not CC several people and at least arm kernel list. Use
-> standard tools for development instead of inventing your own process.
-> 
-> <form letter>
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC (and consider --no-git-fallback argument, so you will
-> not CC people just because they made one commit years ago). It might
-> happen, that command when run on an older kernel, gives you outdated
-> entries. Therefore please be sure you base your patches on recent Linux
-> kernel.
-> 
-> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-> people, so fix your workflow. Tools might also fail if you work on some
-> ancient tree (don't, instead use mainline) or work on fork of kernel
-> (don't, instead use mainline). Just use b4 and everything should be
-> fine, although remember about `b4 prep --auto-to-cc` if you added new
-> patches to the patchset.
-> </form letter>
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
+>
+> As the i.MX I2C controller doesn't have either of these limitations,
+> let's make use of it instead.
 
--- 
-Regards,
-Vincenzo
+Reduntant. can be removed.
 
+Frank
+>
+> [1]: https://lore.kernel.org/all/20190722181945.244395-1-mka@chromium.org/
+>
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> ---
+>  .../boot/dts/freescale/imx8mp-skov-revb-hdmi.dts   | 26 ++++++++++++++++++++--
+>  1 file changed, 24 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
+> index c1ca69da3cb8..206116be8166 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
+> @@ -9,12 +9,34 @@ / {
+>  	compatible = "skov,imx8mp-skov-revb-hdmi", "fsl,imx8mp";
+>  };
+>
+> +&i2c5 {
+> +	pinctrl-names = "default", "gpio";
+> +	pinctrl-0 = <&pinctrl_i2c5>;
+> +	pinctrl-1 = <&pinctrl_i2c5_gpio>;
+> +	scl-gpios = <&gpio3 26 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	sda-gpios = <&gpio3 27 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +};
+> +
+>  &iomuxc {
+>  	pinctrl_hdmi: hdmigrp {
+>  		fsl,pins = <
+> -			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL		0x1c3
+> -			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA		0x1c3
+>  			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD			0x19
+>  		>;
+>  	};
+> +
+> +	pinctrl_i2c5: i2c5grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_HDMI_DDC_SCL__I2C5_SCL			0x400001c2
+> +			MX8MP_IOMUXC_HDMI_DDC_SDA__I2C5_SDA			0x400001c2
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c5_gpio: i2c5gpiogrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_HDMI_DDC_SCL__GPIO3_IO26			0x400001c2
+> +			MX8MP_IOMUXC_HDMI_DDC_SDA__GPIO3_IO27			0x400001c2
+> +		>;
+> +	};
+>  };
+>
+> --
+> 2.39.5
+>
 
