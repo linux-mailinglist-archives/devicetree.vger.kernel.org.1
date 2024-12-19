@@ -1,298 +1,167 @@
-Return-Path: <devicetree+bounces-132834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9B79F8434
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:27:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D2E39F8455
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:32:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF6EF16A59A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:27:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C70B416AA29
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:32:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4453C1AF0A3;
-	Thu, 19 Dec 2024 19:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82E5D1B041E;
+	Thu, 19 Dec 2024 19:32:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="QbGkbd+l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UVoS8Tnq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound.mail.protection.outlook.com (mail-am6eur05on2056.outbound.protection.outlook.com [40.107.22.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0469C1AAA0D;
-	Thu, 19 Dec 2024 19:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.56
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734636461; cv=fail; b=rPfIzn/Gjzmojvx5Wlfulp6pJ609853L0oNlMGKx+oT9gimUmv/Z7FnmlsnJzv8NWbLqa3Puhw7koq3LCQ+5zJ9pCBQmsd8UyRr8SQWAsWSj/2hSBS/1AOtHKBOsAdTatGcYlKyO+SsL6tXSRpkinG076uaPgz3Jzd7R9M92j5s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734636461; c=relaxed/simple;
-	bh=MWdBEdGwe4GmFkdBKa0IkZlTCa/YU9B9cEB1vf7Sepo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=XIq8RjQcoRC3vTcnp5eVv3nGCbcz1P/qoBTDTSeCTdE1nD/lWI/T66TC0TmpQN+2+fODmF+ir9hywW6HVHahgLpC+fT2o7gGsv0vK0XKcyMGV/k9pNJmiv03DhPR/5Jf7C1pwW1sieMk7pwiB0Qz58xJ1Ebh0saLZNqXLliL47w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=QbGkbd+l; arc=fail smtp.client-ip=40.107.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FLmdDs9uf82pPjIli+tgQ4rD5vCSuq8lhkNAGTQuTeJlOlqqAAMSB70PsYkl+IpuaKvlQycEAdmZdfqfy4BVnDFthJ5/rKAsgkiv6fBb6V1JDHRg3VAnDZS6W2lOZcwLd1O9aFYql9UWpupLrBQ78v8VJKAH7uSTk21N1DJmMd+AmEWYLKkxRLLDCjuxKm1WHSBj9NGUxpcORl3KGb+1CQRQQqYL3SYfFUP1Uc8J3VAd88ftAh3/kl5Epodu4WjSub1We9GqWf9/tPxSHeeFrEzi74LUuDBb1NdzbPttE/CDBuCDw/6OnSmRD2NsaUebHaUFPdaH8ofVqXLD08BZ9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fBw5kp9SSBwQvZpMGmAbVD+2jgyl0mQ5vHpGEW5CPmE=;
- b=rHwtJV/UYIPnXrkoBMAt5Rvheg1fOSM85gKJSt4Xo9K072L2ParQnSTmQRZs003IHxYxNqyGtWxTypu7LU7MgvvP2E+t59wEsx5LnnxYyWiHwIWj4iCFGtdJX9hCQBwymWGKEhLRxL3DJA/8sWEGQlTpUxzZZnSotXwt6mvvvMqOMYV2I+Pd8k555zmhJ1k6Ag3e0oBkbSYMkh3kZJXcAX54rumpPcbfi9iXKS6OMQjSFMC1Bnmnp+VA7PqVCFSkCIrlOxyKkj0qPJJD2NOMrw1295xS6hzEYAfWzBTbelL3qLHCJw3YB5xdXD5GwMgbtJ4rikiXbDHLbOK6KKgc8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fBw5kp9SSBwQvZpMGmAbVD+2jgyl0mQ5vHpGEW5CPmE=;
- b=QbGkbd+l62j+ZjwGuLRMUsSe3fKqgTxvk/U+Fts8WEpKyfQUZvRiuKzswM2S/HFhxVTIq5Di1uh2/oYycNMoeQ1Pamjieb4iakXxf7+xZ9+WyTWXFxXAcx2BE9o1MrIw7/9Wfi311y5PECm/pNWq+DEZ4H7NGoCNChoqQSTZEoIfKKvKt5AoQGWVCHo1+3VVQnvJU1x2FWQpBm/o2wGAyOUWHSGdBfbNUzRJ2VwT5Xv5ZoE4NzOe8ucL5DRihCMnVv+dmQ/3tJrATXiXWKMFRd96hNSooh1K/TE2c7up/DgbwfnRLgrcyJkQBRbr6DKLNCy1sMLTe0SbC24CUX7BoQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS1PR04MB9453.eurprd04.prod.outlook.com (2603:10a6:20b:4da::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.13; Thu, 19 Dec
- 2024 19:27:36 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8272.005; Thu, 19 Dec 2024
- 19:27:36 +0000
-Date: Thu, 19 Dec 2024 14:27:28 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 03/10] arm64: dts: imx8mp-skov: use I2C5 for DDC
-Message-ID: <Z2RzoITPUmZFoX09@lizhi-Precision-Tower-5810>
-References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
- <20241219-skov-dt-updates-v1-3-38bf80dc22df@pengutronix.de>
- <Z2RZG7pAElG3TGLx@lizhi-Precision-Tower-5810>
- <a30baba6-6252-4c69-b6a7-e4099e823920@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a30baba6-6252-4c69-b6a7-e4099e823920@pengutronix.de>
-X-ClientProxiedBy: SJ0PR13CA0228.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 664341A4F09
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 19:32:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734636748; cv=none; b=iZSD9yJ7fRZxcHQQLGR7O+bIv8/h31dV//TO6EggmdoDWZGwBQkjvdsAgyOHW3XoJtORr4HV3dJofP08RTCiDtARljw2E3mS71SvMOWH5cgGinrGmfEWDlt9xS14LNsoX1ucYAuPncu4MzkVucoPXRFBB9k80V5lYRb3gwDBQMY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734636748; c=relaxed/simple;
+	bh=XisdETZGt1xGd/tAcysR1gf7SJZ+Q0OQ6PAQF/dE/QU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=md/3YmF6/CjUYoj55fEE34LcEHk0ehc79mnvyoO5b3gU7VmVTJkZfRXLm/D0NEVAbrNMUTKWHYSeKis6yrtWga4ML1Y13BU9U4VTq7cnVnTXLfK4PCQesMC4IFqqwwoRAg34ElZ/6MWrDfOsA28i+TgWDIWN+9SONvlB6iKIPzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UVoS8Tnq; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5401c2bb7ccso96538e87.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 11:32:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734636744; x=1735241544; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IW/1H+wBsYHEd+yu91SFC/VMNkW4y30uxY2FjxFoA0k=;
+        b=UVoS8Tnqvuihmed2kUERhKZeQvCpgyWsPVaDN7L9hyd6tUbSpenigE12GRuJFJZhvq
+         tFQy2fSgsZ+9iAStZ7rDB6gw9nzmd4fGCIgx5Z7OzWDQmKA6Z8mHTeBPb9cfmGJTQdc/
+         opaTLmKM8igS7ONiZ5wTj8RIip2RAZ1K8jva0b0Eck3fClr/mwl/PDIHUc0/H4EeP/6v
+         ZqRTPBSSaw/q06TFFOLTnXZmd3Sa7QblVGyZfVrE8sXO3XESwe/cPFJkTwnvKbyKnYuo
+         LSvkLxn7RRh4BWKIccHXv4+thDs7VxPa6OY5h1NJPG/Xirn1kZvfzrMG0ShIw5nGSe9Z
+         5j5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734636744; x=1735241544;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IW/1H+wBsYHEd+yu91SFC/VMNkW4y30uxY2FjxFoA0k=;
+        b=io6bjRaLWzlG5qohbG7N7gGZV4Yn7Bb+IRwcnx3gD6TBu2qaODy1RIRsBm0EqmrGPj
+         iLO3ytV7xbB9rBaddq6hZ0Ro+h/Dz6noZ2wCPz52jepjjpkR9zoQnqTQBrw3Fh3itN5Y
+         bsGge734JepWQ5LFbRJUj5OcBq36ipHhBxPs40R3ovM2KJ/QCmAnqKfkWsq81Ojk1a7d
+         jFZISq7RZDltzoLJ5aSgGGdCxMH4i2yGMtUj8n3BMLde6Ve7qQA2DxE2tfkguJUMw48a
+         fryqm2Eqkn4PnczjnbcqufqDRGkaVAySzicrEFnZJ6GVqUA9rSmlAxGCszYKKjuj76Ks
+         zDKw==
+X-Forwarded-Encrypted: i=1; AJvYcCXx6S2UKBQjQ2pJu34DnrgEfnjbq+dOSeYcTENEqTynkR2IMEFXJOmjCMtLP43KFIek8NLmNUWhzF0z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw25ITSq/75R9k0tBHj675rvecnWAVPcamAECHgPnmxaJbvchgf
+	3e27Z3BnOYdh7iIjXCJ3AylGxyAgoyTfeWy0mzDNK0GuDPT7X2cuC+37UdmVLt8=
+X-Gm-Gg: ASbGnctuoWGGmHZRQP9Nu0lHECWtv8yATXgFOESzkRRutT3t8I8cCwZsztnnIU8In4M
+	MTgbosKuXolVuYDjH+NMoUxLH/iYIduIbOM2urkiO9jFi/0n23WWQxl1lXD4B8UsKkl0euNVcNL
+	Q7XziuvfM0tiFSE25uQSrUk3kg5GOSpUWwKYJaTh6YwBjkJf4vyWSLnehTBR2M2oM1WRGCauFIX
+	H8uuwL9LfIeIFccDaOPHqRyso049vZ6h8zDk13c8xRuK1IfRi353fnW/+JDI+fm6c2WN6D1q62A
+	alkWGqP+sz0r0c31nmoAAvbCK1zqQa2W0mQ=
+X-Google-Smtp-Source: AGHT+IHUvBst8RiUn9IST8/5AjNtAtHUWTb9tBGd8LLvhOk3TajPDIYTYMQtaGEJvz/fTfQPjsQaIg==
+X-Received: by 2002:a05:6512:398d:b0:540:2aeb:5d3c with SMTP id 2adb3069b0e04-541e673d7c7mr950150e87.2.1734636744478;
+        Thu, 19 Dec 2024 11:32:24 -0800 (PST)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542235f5d88sm256403e87.15.2024.12.19.11.32.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Dec 2024 11:32:23 -0800 (PST)
+Message-ID: <c7253f5f-eb4a-4636-b0f9-7d284a2f5a8d@linaro.org>
+Date: Thu, 19 Dec 2024 21:32:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS1PR04MB9453:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2adda695-47a6-4485-8720-08dd20633196
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|1800799024|52116014|366016|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?VDNzaFpZb293bFFsa3Y3amY4OEdXUHE3SVhVdEJiSnIrWFBwTFQ1RXUyU2U2?=
- =?utf-8?B?NTB5bnRZa0dmWm1CNmR6R3cxTjBIdEt3RVRuMGFheHdMbE5mMkdqN2FLWXdl?=
- =?utf-8?B?QXgvY0VvOVRiWlU5ekNmNGRzZk9NbUJhK09na09iVWpVK20vQ29KRTB0TkZ5?=
- =?utf-8?B?U3Y5dyt6R3d5d09lTHU4NDJOVERQSlJZazZWckwzbXhWa0RrWFFXdHZtUC9C?=
- =?utf-8?B?Q29hUmdDeE5QaExYL0trenZ6bFg4L0ZVSUVCbnBPYS9JK25OU1NlZm9wZ3pR?=
- =?utf-8?B?Z3RRUXNzdGJJTW53bkpXWldSb0xiK2t2QWJoR1Z1L1BIM01NeTI4cXFHZFRD?=
- =?utf-8?B?QjNIS0VzcXowM3VFaHNCNVpUS21mdU5xQlBXLytmSUdlU2Q2T3NuanUveTNp?=
- =?utf-8?B?a2ptWWlGcTl3ZmpRS2VIOUgzMG1zUU1pcDcybWNnU055a1JiSnFRa1ltQ3U0?=
- =?utf-8?B?b2FHcFErVTBpV0RQZERVdGJOYTE1OFNVQmpiYXZsc2tGNzlyY0tTL3MxczlS?=
- =?utf-8?B?NFhwTWxXVStWVXF4bWR0b21wU0hFTVM5Z21wSTU4M3VIRkdzaCtJK1ZtRXV6?=
- =?utf-8?B?Z2VXQjN0WE1nU01zbzJaRjd1Z0cvWUJFdnhsVHJUMFRRZVlKZGxZTUVMQU0v?=
- =?utf-8?B?em1LbFJyZzdnOUcrT2hSdG5MVlFVSEdxMVFYRjNMcnNGUzJJUTNBK2h5QTY5?=
- =?utf-8?B?WDZCVXNSRXcwZE90bVRNQnprTVhCUkZFTkRSNTkzSEZwWldQaDgvMndNTnhX?=
- =?utf-8?B?Szl5LzlaK081N3V6ZkdOYUlNVlc0VllTU3NqNGdkcU5wOHdQTW1TVW9HRUZF?=
- =?utf-8?B?MVd4eXJGQy9od1lZSVB6QkZSdllsM3Nkd0F6dkVNbzliZWUzQzVSTkFtWFli?=
- =?utf-8?B?YWthQkgrYWtWZjBUOGg5LzFTWGNpTmNMV09vSTRpaWZMUHg4bTc5b2xWWmxm?=
- =?utf-8?B?UlFLVUpjdjMyNjc4b1pJdmVDb29sWHA2QVhITW5GNkRmOFNOTVdYV2E5ZVR1?=
- =?utf-8?B?OC81ZWw4TklkMGg5cit3Z1FIajVObytqTlcwRUdBdVQ5UmhMTmtLUnFyU2FJ?=
- =?utf-8?B?SEdKYkRvYTdkWVVubnpDYkIxZHdhWGxWRjMycTRLNzJHcS9OMXpackUrS3Zr?=
- =?utf-8?B?RWVZTGJkWm4rV0F1VmRyM1AyQ1dhUUt1azVPMFRkR1ZUUUxtWTdCSDlPVkZM?=
- =?utf-8?B?M1lNSmgweERFUCtTY3I4Q2NLZC9PK3plUHVBQ1hCMDBIQlY0bXpVR1lyS3dY?=
- =?utf-8?B?MUljdWFaN1o1dU8wb1lrMUxpNCszSTRtYnpoTjVHRXRNL0lZYlFWdXNMSkcz?=
- =?utf-8?B?bXRBZDcza2orTW1VZHZybXJhbEYvbjRJMXJ4K3VSWjFqeXFSaWFsY3h6elJH?=
- =?utf-8?B?T2NCamhMeUhXaUI2QmJXaGR4VmdCdnhhQlJRaUgvL1BzQlNNdStOSytFcUlZ?=
- =?utf-8?B?cTBKcnJmdzc1cjlob2NCbTBudWVzLy84eXRlUTFKMHN3OEhIQi9yU2pYN2U2?=
- =?utf-8?B?dHdKVGh6U2V3V3YrRzRtWHJBVklTdmJId1JOV3QzZ0NKVVdxQnpFU2pNQ1Na?=
- =?utf-8?B?ekFkU1J4bURBTWV4Ni9kbjNxajZEQTFLWG9ROUcweVJyOGxPOVhJUlJkYjdt?=
- =?utf-8?B?TUpIYklWOWFkN09aaDRHR0xTNkNEOUZOMEZpbUdJT2p5L1MxYmUxMzExdW1J?=
- =?utf-8?B?YXdZbzRrbE5PTnE0QzN1STQ5UUxhNFluc0o4QThaaEdNMGh6Z2Mra3pGRG5G?=
- =?utf-8?B?alNteTRUazR0QnNWanNLbjFiRjdnL1Z1dnc2dHJ1c2tkQ2xCZk5FelVZWDlt?=
- =?utf-8?B?L2dRS0VKVE1yYUwvM281MVhmbnlUaS8wTVdJbXZoSGl3cWlmMXpkcFJxRUhN?=
- =?utf-8?Q?t5Bc2KW3nmg5W?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(52116014)(366016)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?M29sK3VDTUk2NmJtWk9iWVNYajM1R1lTQk5weXVlVlVYc1JXYjMrZWNjTW8w?=
- =?utf-8?B?R1dWc1lObjIzeVVoaVVwclg1ZXJXYys3RmU5Ti9UNlpHS1NSSW5XanZQaXc4?=
- =?utf-8?B?OGZDV1V4aG9ETVh5aksxUGl1Z3RCUi9PMWNUREtDNEFUd3Ezbnh1RjdwWkxU?=
- =?utf-8?B?YzNxVGwrQmhiLzBJVW9Od0Z4MEtaZmczekRsa1crdFc2cC9ZSTIxL2FIbVRD?=
- =?utf-8?B?L2ZPSG42ZTBORW5DVmdKWStJTTBubm0wbWxzb1JJRER4L3RnT3Z5RU5MdDJN?=
- =?utf-8?B?TnYwUlg2cmdUU3RFbjFzRGpUKzVVNWU4blJwd081d2JCcVdyN2lhN3FwV2J2?=
- =?utf-8?B?WThmQXc0L3FIcDR5RGp0dkkxR3Vqb3ViRythRklKZ0c3VFhuZ0NnbWJVcjlP?=
- =?utf-8?B?Z0dDSXBHem1OSjJweTQ2VGhYVCtud0RyZGJhaXFaYmMxTUVReG5MR3M1VzV1?=
- =?utf-8?B?SW14cmNmZURobEFLS1RKSytSc1U0R3RTc2x3UWRuZkt3dFhrMnltWjNWejlq?=
- =?utf-8?B?Q3dIQ0NKTnBDZ2ZTNWtVaGZ5eUtGUlFsb2FBVU90enFxOTVvWUFlNEN1a3FG?=
- =?utf-8?B?bldyVU1JcWh3aVBNdnppTEJTNkx2WTZZMGx1eFJsY1MxUjNLQ3M4Mktyd0N6?=
- =?utf-8?B?R0MxWHY3RnE5b294M05Gd2JLeFpaTVlsOTVZNXJFZ1NqdDBGdkY2VzEzQnBu?=
- =?utf-8?B?OEFwcTJ0SmFLZmhmMHJiMHhOMlpOUVhlZGtkcGV0VDh6dFRLcElsekdBTnZE?=
- =?utf-8?B?RlV4RUJkUG1HTTdVZ1NSZ3FpNEtsUGVxRjJJbms3dVRJYXJ0MkxCd1g1dFE4?=
- =?utf-8?B?V2hycGJNYzI4L3A1U21SUzZpaWdybFphbUJwZ0hPRm1DY1hkd0s4NDJIS1Uv?=
- =?utf-8?B?U3RqZC8vT1ErUFpYUHJnV01uYXVPcXJZMmREaE9VaWw2SzQvdWh4b3RTT1Ez?=
- =?utf-8?B?a0RUOHowR1FRME1yY0F3ajloRFhaMk4vVUIwVFRIdUpQcDVnSnlqTHZuUGdi?=
- =?utf-8?B?aGRTYUZHVThUdjNKU09SRVBoeXVpQW41OFZ2U01pZEw3MXlIcUwwdWlqUkR0?=
- =?utf-8?B?Tnk2U255d1RSK3ZxYmFSZ1E0QVZTL3Y1WTg5Z3RKWXVEcFk4RExOaUpPWU9y?=
- =?utf-8?B?Mkt6NlVqM09XMGVGVkhXRjNuem94bXVRUnZmV0hxUkprR1YzSnozOENvRDla?=
- =?utf-8?B?Z2F3TjErejBoQi9aQkVuWDAwUytVcCswdDVMMDZNS0pqcGZsR2o4cldkSDMr?=
- =?utf-8?B?c1VzclB0Vm9VZW4rR1VxM0F6a0wyY0tkYUI0cy9RTGhPNmZEaTVqaVFmRFRv?=
- =?utf-8?B?V2Y0SlNJbVgwc1hLQW9qcmUxWVBXUWhMbS9NS05nN0RGWVN5NUpoYnhVdjJo?=
- =?utf-8?B?enBwYVlZQ3hkK0xWc1dra3BMalBQNWRwL3U5VGtBTkFKYzNDUmRQbytkNVMv?=
- =?utf-8?B?Rk5OTzdkOFEzdCtvN1BsbzJpSStsZVArdFRaTEVRUlRJcWZwU3RDbTJrZGJO?=
- =?utf-8?B?TlZUUUp3NW5YYjNqRFJHbVZBVXJkZ2VRMDg3R0pFUndHRmI0U1lERC9YaTRj?=
- =?utf-8?B?RzF6aUMxZHVPOFR6aW5XN3ZlcXJ6QnFUTjMyRUcrYzFtQWFBbFhzY1lETGJI?=
- =?utf-8?B?QS94VUc1aUdaSTV2ODJGaVRKeFkvVk45bFlvK2IvaWpWWmd0dm9rL0JrbTEv?=
- =?utf-8?B?VEdaZzFoMmFLMjJ5VzFPNWozbzJobEZPY3BIS0pNdVhxMDVuOHJua2JXaG5F?=
- =?utf-8?B?Z3hVeFBkKzlScnkrcFlMbnF2Q0VtdnBkK0pCRXBrRmoxZkdsSHN4Y2VLamJw?=
- =?utf-8?B?N0FmOXdaR3RXN2todi9BY3BZenI3VnNOODVMV3RtSm9UREdFT1cxNTVxTW9G?=
- =?utf-8?B?NDVIYXljWTUyd3llR3JLZEU2V0JYenZ0bHc2cjRKWVR6SVdlVUNrZ2t4eE40?=
- =?utf-8?B?MUVPM3M5ZHRZVVBwbS9zT3VuR0RWbUswcG5kWmlyK0s5Rloza0w4K1M4ODky?=
- =?utf-8?B?ZnV4RGJTMFFsVzhTRGdpL1NDZ0VpTDdrSTdtNklpeDNiUGovdVZuNmhrSEFM?=
- =?utf-8?B?aytjU1RqSGxBVHZJNjJvQkNSMlZSejcwRmd5KzhpS1RiMWdHRUptZEJyRG81?=
- =?utf-8?Q?pHTSz8W/JRlWnYaQ1BSkEwmJN?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2adda695-47a6-4485-8720-08dd20633196
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2024 19:27:36.4819
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Cjid+8wMkygXiR/vmTNzyiNOq1VGVcoGLmwsc3Pgb4sysxDb09jCszkFA/jiSgJhfSDSUFXWnwiyLyF9VNGs5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9453
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 4/4] arm64: dts: qcom:
+ qcs6490-rb3gen2-vision-mezzanine: Add vision mezzanine
+Content-Language: ru-RU
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ akapatra@quicinc.com, hariramp@quicinc.com, andersson@kernel.org,
+ konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+ cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20241217140656.965235-1-quic_vikramsa@quicinc.com>
+ <20241217140656.965235-5-quic_vikramsa@quicinc.com>
+ <22479c27-9265-4994-8974-9739ecbae5ee@linaro.org>
+ <99cf5f7e-43f6-4ac4-a4a2-dc731b695572@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <99cf5f7e-43f6-4ac4-a4a2-dc731b695572@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 19, 2024 at 06:43:56PM +0100, Ahmad Fatoum wrote:
-> Hello Frank,
->
-> On 19.12.24 18:34, Frank Li wrote:
-> > On Thu, Dec 19, 2024 at 08:25:27AM +0100, Ahmad Fatoum wrote:
-> >> The HDMI DDC pads can be muxed either to an i.MX I2C controller or
-> >> to a limited I2C controller within the Designware HDMI bridge.
-> >>
-> >> So far we muxed the pads to the HDMI bridge, but the i.MX I2C controller
-> >> is the better choice:
-> >
-> > Switch to the i.MX I2C controller because
-> >
-> >>
-> >>   - We use DDC/CI commands for display brightness configuration, but the
-> >>     Linux driver refuses[1] transfers to/from address 0x37, because the
-> >>     controller doesn't support multi-byte requests.
-> >
-> >       Designware HDMI Limited I2C controller doesn't support multi-byte
-> > requests and display brightness configuration by DDC/CI command need it.
-> >
-> >>
-> >>   - The driver doesn't support I2C bus recovery, but we need that,
-> >>     because some HDMI panels used with the board can be flaky.
-> >
-> >       Designware HDMI Limited I2C controller doesn't support I2C bus
-> > recovery.
-> >
-> >>
-> >> As the i.MX I2C controller doesn't have either of these limitations,
-> >> let's make use of it instead.
-> >
-> > Reduntant. can be removed.
->
-> Sorry, I am very much open to review feedback, but I fail to see how
-> your subjective take improves things.
+On 12/19/24 21:06, Konrad Dybcio wrote:
+> On 17.12.2024 3:40 PM, Vladimir Zapolskiy wrote:
+>> On 12/17/24 16:06, Vikram Sharma wrote:
+>>> The Vision Mezzanine for the RB3 ships with an imx577 camera sensor.
+>>> Enable the IMX577 on the vision mezzanine.
+>>>
+>>> An example media-ctl pipeline for the imx577 is:
+>>>
+>>> media-ctl --reset
+>>> media-ctl -v -V '"imx577 '19-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
+>>> media-ctl -V '"msm_csiphy3":0[fmt:SRGGB10/4056x3040]'
+>>> media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+>>> media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+>>> media-ctl -l '"msm_csiphy3":1->"msm_csid0":0[1]'
+>>> media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+>>>
+>>> yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
+>>>
+>>> Signed-off-by: Hariram Purushothaman <quic_hariramp@quicinc.com>
+>>> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+>>> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>> ---
+> 
+> [...]
+> 
+>>> +        rst-pins {
+>>> +            pins = "gpio78";
+>>> +            function = "gpio";
+>>> +            drive-strength = <2>;
+>>> +            bias-pull-down;
+>>> +            output-low;
+>>> +        };
+>>
+>> I have doubts that it's proper to embed a reset gpio into driver's
+>> pinctrl suspend/resume power management.
+>>
+>> Konrad, can you please confirm that it's really accepted?
+>>
+>> I'd rather ask to remove this reset pin control.
+> 
+> There's certainly some appearances of this in the tree.
+> 
+> You could make the argument that it makes sense to prevent misconfiguration
+> (i.e. the bootloader may set the pin in input mode), but then the counter
+> argument is that the (Linux) gpiod APIs request OUT_LOW/HIGH, and we would
+> expect that the driver uses that if the GPIO is requested through
+> e.g. reset-gpios.
+> 
+> I'm not particularly sure what to recommend here. Krzysztof?
+> 
 
-Ref https://docs.kernel.org/process/submitting-patches.html
+I'm worried by a possibility that a device reset/shutdown control GPIO could
+be turned off by entering the "sleep" pinctrl setup. If a particular GPIO/pin
+is off, is it still continuously functional as a control GPIO of some device?
+I believe it is not anymore in general, this is my concern here.
 
-"Describe your changes in imperative mood, e.g. “make xyzzy do frotz”
-instead of “[This patch] makes xyzzy do frotz” or “[I] changed xyzzy to do
-frotz”, as if you are giving orders to the codebase to change its behaviour."
-
-Avoid use "we(same as "I" in above example) ..."
-
-Frank
-
->
-> Thanks,
-> Ahmad
->
->
->
->
-> >
-> > Frank
-> >>
-> >> [1]: https://lore.kernel.org/all/20190722181945.244395-1-mka@chromium.org/
-> >>
-> >> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> >> ---
-> >>  .../boot/dts/freescale/imx8mp-skov-revb-hdmi.dts   | 26 ++++++++++++++++++++--
-> >>  1 file changed, 24 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
-> >> index c1ca69da3cb8..206116be8166 100644
-> >> --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
-> >> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
-> >> @@ -9,12 +9,34 @@ / {
-> >>  	compatible = "skov,imx8mp-skov-revb-hdmi", "fsl,imx8mp";
-> >>  };
-> >>
-> >> +&i2c5 {
-> >> +	pinctrl-names = "default", "gpio";
-> >> +	pinctrl-0 = <&pinctrl_i2c5>;
-> >> +	pinctrl-1 = <&pinctrl_i2c5_gpio>;
-> >> +	scl-gpios = <&gpio3 26 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> >> +	sda-gpios = <&gpio3 27 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> >> +	clock-frequency = <100000>;
-> >> +	status = "okay";
-> >> +};
-> >> +
-> >>  &iomuxc {
-> >>  	pinctrl_hdmi: hdmigrp {
-> >>  		fsl,pins = <
-> >> -			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL		0x1c3
-> >> -			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA		0x1c3
-> >>  			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD			0x19
-> >>  		>;
-> >>  	};
-> >> +
-> >> +	pinctrl_i2c5: i2c5grp {
-> >> +		fsl,pins = <
-> >> +			MX8MP_IOMUXC_HDMI_DDC_SCL__I2C5_SCL			0x400001c2
-> >> +			MX8MP_IOMUXC_HDMI_DDC_SDA__I2C5_SDA			0x400001c2
-> >> +		>;
-> >> +	};
-> >> +
-> >> +	pinctrl_i2c5_gpio: i2c5gpiogrp {
-> >> +		fsl,pins = <
-> >> +			MX8MP_IOMUXC_HDMI_DDC_SCL__GPIO3_IO26			0x400001c2
-> >> +			MX8MP_IOMUXC_HDMI_DDC_SDA__GPIO3_IO27			0x400001c2
-> >> +		>;
-> >> +	};
-> >>  };
-> >>
-> >> --
-> >> 2.39.5
-> >>
-> >
->
->
-> --
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+--
+Best wishes,
+Vladimir
 
