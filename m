@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-132488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D449F7566
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:26:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE25B9F7641
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:52:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4F127A2A26
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:26:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99B0418909D8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:52:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA9B2217716;
-	Thu, 19 Dec 2024 07:25:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDD4218ACC;
+	Thu, 19 Dec 2024 07:50:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 402D4217671
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D2B217F3A
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734593148; cv=none; b=oNnvTGruteaSkL1L/FJQ5uRIjayfaTWysvGFvYDGZH+4EsmcMJqgMs/m5tI5Ef/1TOaxhlMyUOj5PbMPVHYQAxKjxQYoWtIYTrWz14A6cgZM7avHkt49qSGe/FF8WCh6Og8WXNyagAaifqotWJEf1wDPEt3BlHTNryPs6/zUR94=
+	t=1734594636; cv=none; b=KfDvKkM/U84gEM6sa7eW/OS/sGWwwRAhhr05BHAAd8tQx1G8s6aAQk4XTSINU2uXwcgNIHi6C2O6wk5p3MofBC+68PGk3cmFJG56NYTFGbdVL7BI1MZRGG7yjQ+38sFSkDYAnkuwaDPqMdQrWXTOwnuD/6spSumeiaGuKNyxccM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734593148; c=relaxed/simple;
-	bh=YX07+/n9XASjJgCpeP2uJbf77HswOZmpelyYpm2bwIo=;
+	s=arc-20240116; t=1734594636; c=relaxed/simple;
+	bh=1dHr0GxyXFRCo61qRrgOgRhJv+Uel5rV+jGzMdXU3og=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kOJKG1vKDIjDBP2evjYk4qPhObxmAa3er+kgA4ladE2AN1aNqnJ4URCUBdvnmT18ovwtln8Mk4W+24l+Zr8TWRcG5wMrEr02Wq7ioRHphiVel7uodl7XaZ46UHFEEV21aW1k5ziWjBXmZCcdnI8aoY6gOedSh1tPXnS8QjuYXTc=
+	 In-Reply-To:To:Cc; b=rk3DUAFsZd/FrkO8TKsWjVasxxazmFNDDnjf6b+qSO3y2sunypppKbfzOV2pUDw0lIsxxueL0YeO/byBDTsqks1mfS5ofrsowhL+3mpJKDCZhIAa2UE2C5NieufsxMrkncV3PfyubLKV4sZqv8qo8ohoayAclzHBjzsBB2xg1TU=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,21 +33,22 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAuc-00064P-1L; Thu, 19 Dec 2024 08:25:34 +0100
+	id 1tOBId-0003kV-98; Thu, 19 Dec 2024 08:50:23 +0100
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAua-004AOI-2t;
-	Thu, 19 Dec 2024 08:25:33 +0100
+	id 1tOBIc-004AWk-0k;
+	Thu, 19 Dec 2024 08:50:23 +0100
 Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
 	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAub-00GenW-1m;
+	id 1tOAub-00GenW-1n;
 	Thu, 19 Dec 2024 08:25:33 +0100
 From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Date: Thu, 19 Dec 2024 08:25:33 +0100
-Subject: [PATCH 09/10] arm64: dts: imx8mp-skov: fix phy-mode
+Date: Thu, 19 Dec 2024 08:25:34 +0100
+Subject: [PATCH 10/10] arm64: dts: imx8mp-skov: increase I2C clock
+ frequency for RTC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241219-skov-dt-updates-v1-9-38bf80dc22df@pengutronix.de>
+Message-Id: <20241219-skov-dt-updates-v1-10-38bf80dc22df@pengutronix.de>
 References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
 In-Reply-To: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -76,8 +77,9 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 
-Use rgmii-rxid instead of rgmii-txid. It should have no effect here,
-but rxid is the correct value in our case.
+The NXP PCF85063TP RTC we use is capable of up to 400 kHz of SCL clock
+frequency, so let's make use of this instead of the 100 kHz bus frequency
+we are currently using.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
@@ -86,18 +88,18 @@ Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
-index 80d212acc0c3..a683f46fcbab 100644
+index a683f46fcbab..ec7857db7bf0 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
-@@ -215,7 +215,7 @@ adc: adc@0 {
- &eqos {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_eqos>;
--	phy-mode = "rgmii-txid";
-+	phy-mode = "rgmii-rxid";
- 	status = "okay";
+@@ -333,7 +333,7 @@ reg_nvcc_sd2: LDO5 {
+ };
  
- 	fixed-link {
+ &i2c3 {
+-	clock-frequency = <100000>;
++	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c3>;
+ 	status = "okay";
 
 -- 
 2.39.5
