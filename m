@@ -1,258 +1,127 @@
-Return-Path: <devicetree+bounces-132647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D714C9F7B11
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AFA99F7B18
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:20:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44E7218919E9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:18:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBABD1892789
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42DE3223E65;
-	Thu, 19 Dec 2024 12:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771B3223E77;
+	Thu, 19 Dec 2024 12:19:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="eL9XxyyI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Krv5cCs9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5301622488B
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 12:18:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3B9B221D80;
+	Thu, 19 Dec 2024 12:19:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734610719; cv=none; b=YmM/WH2s0GvO8WFzH2nWVpUomRTvip5Ig7KzlAj1n4+XRMwuEKoGb7pXQhdILLro15T71XrdCYglwuwqTcqdRFpvv6UEERdVPiTI2kYenFIxICG6LvbXNxut1selfpLk9mJAwPC3GPoyadaYxvgpCSzuGYV7jjxp4YeFF1kkv0Y=
+	t=1734610770; cv=none; b=lFpBca2aRa8LPDog2ufMh0vzx4QgLbxeT7K1sSyuRJRKesFHlD77qmoBx7CIzrNhOWzuIjrt2k5b1FK32XJy5tB5DPvnGocrntfk8Qk3v+5UMns2sJZ5+DEYpgEEjOQB2LprLHRRSnvkA7AlBQg1OBJxawUU1a8aGWFAHSnbWPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734610719; c=relaxed/simple;
-	bh=lwcW9BplthifTyZcaYcUmWZevOpZ9jI7jAxhpB143zs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SpMCV2hz3f//+znmR6bVhf5Og6ycavIl4xBFEvEOz9POR9Dn1XpPsoMedoDvlyQmxF7b70bQTjW/e6H5M9zpichuOzcEO07baXhCjcXqLKn0JpfgGraNRf+7XCRSSDTnBUra0pSIN7/Lfib/PUbwb8VXGmEuPq1sZX+C439yzTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=eL9XxyyI; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6f00b10bc1dso5593167b3.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 04:18:37 -0800 (PST)
+	s=arc-20240116; t=1734610770; c=relaxed/simple;
+	bh=PgfDE5K20sJkmjHKfX+qO6Vd1BtqUvoxW4eyrcXDNSU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bNErPCSLYZahDhzcw2t8Fo2cD3RWSS1SQYtRiw41bIotT7KtpTaMN9j3HQH15RGXFnBtyAjuLWzeXOiFFmeNaPvEQ0inT9NmpkaAnb1CmxQKWFOTBcgVs7Cza88mFxkCbNhe7wJd2UFMcUok4R6/XunxKm/FibHi+jnyo+fPBfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Krv5cCs9; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43624b2d453so7472315e9.2;
+        Thu, 19 Dec 2024 04:19:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1734610716; x=1735215516; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKElXei+0mSP3tUshAw0E8nj/P9Wr6r0nFHCMfiQMBM=;
-        b=eL9XxyyIYEFu+y7UGNxotMB/Ikx5k54Pe/2AXsOpb9pLuiw2TyRLuAtVf1P+Zro0Yd
-         fgBHAmlJgqjxeTV9Q8a0IjCBYE/IN18TdHqzewe+aLaw2mzvY01o0RlFOhWzGtDdznZ0
-         JVG4p2YZdSGLpxOz/SjDsL/umDKxinxKNbwWSVFfDY6woDfFYRiPEcHc4RAkfME7pq6f
-         dj+4PhaN12I/Y78QVPtvTnLRvMFqCJyfkdc3tUdZjUEtGIW7X6JAt1U39L8mhUKg3N49
-         KWW4a+UzpslbF4zjzfsOrSQ/3d7wHMvDJDapLVw2SEN04cqEUUmEtKc43DamdseKVQFd
-         13Dg==
+        d=gmail.com; s=20230601; t=1734610766; x=1735215566; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pUlwPfx2tzwzQUez9JevYHjfZdtPbECxmSChhEuFiKQ=;
+        b=Krv5cCs9jZ2p6xPJM9yLpfDtPGiAUeHPw+S2Mk1iU72GyJKP1HyD7o9Gnkcynoz69Q
+         QlI3Y0X8L66MrxjSQNLiCsii2/oldas8qtEfSy7Maxz/KHmHTEPWyQa64yi2QzI8Zk36
+         TyVKd+PUiC1+bnTJyqkuXUYrGIQH1nsU/9EZN1gkP6Ejssw1BR6nutMlFTgOTJw9ni7s
+         EN2ZVQpnTDF5uQ5Y2Dj1Mw5gCxrov/8JBeFlkzoLOEHyVWxm53UdTY5Tu0bcBLx+3UoB
+         +OMhQeAVyIz60AETtvwcfeDd6L4RhCE3VRST6tIl5QAWkBi/XmIERRNqN+sVM4bDoW6f
+         Jm7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734610716; x=1735215516;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1734610766; x=1735215566;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZKElXei+0mSP3tUshAw0E8nj/P9Wr6r0nFHCMfiQMBM=;
-        b=Sb0znicK61IIpF1T+PiAiGXbFHONOVL/eOONAtG4YrUGZiPMEqFgYnQ/BvoF33Mmp4
-         YB6sCmB/R9xcQv//n03g217YbI03G/7dkH6NftRZeLx6fDTsXpsHcnvk2ktG4UibISHW
-         Q+AWtG34ZrKBMhdOlh6ObELGPfgdKQxdVwLMfy9c/auQa4WHt62W7dyVSDl4R6Wt6MHY
-         EhZCMrmrnHn/qXCh8YwHSrWEPU/SVkcynM8QdW+UnGOcaiuUmej3sHpdbvXDfstzhPMT
-         AedShU9HvlkvtiUM26Xv7iO2BKvYG1XSGsMewtsMTVnJyF9c/dRMR7yr1/KCYFNP/CEp
-         a3sA==
-X-Forwarded-Encrypted: i=1; AJvYcCV6372RzDHSwZv9kNpjHe/Q3Zabbauh0mqOqsyWjyRyvbuvv6Ffqao/uNAquomRYMPHZQnl5ZQ1GYg6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUCMwEl6bqn4cOj0nV2nIlXA7aOZPB0ktmOsYbV3gExZneaSe+
-	lRESlXEFN1qWm4zAqlPweYBz16pvFjijy7P6NO6bEjsz2waCYqx9aojYnklNpcKetbWnlx2coz+
-	P5G8cr9zjkAjl4SlvxE2z0ijY/Q4xVyJwDrjl/A==
-X-Gm-Gg: ASbGncui9+Dv8xG2y/uOMX/9LNT6z7fFcAtR6oFWEdBllL+KsjPVsuq8aGYUtd1nVh5
-	hLhyNOypFNjcLLcLSqN6JiLrNjRya7hsuzNmiqw==
-X-Google-Smtp-Source: AGHT+IHraW7wpbF8fJqXT45CLs6MHm0bG2jAMI06aKTMUcj3YkWcIfGKnVrC7HIFs/1/hf+1Y67F/W4zse9YCT/oErg=
-X-Received: by 2002:a05:690c:6107:b0:6ef:e39f:bb1 with SMTP id
- 00721157ae682-6f3e1bd4915mr25231957b3.27.1734610716405; Thu, 19 Dec 2024
- 04:18:36 -0800 (PST)
+        bh=pUlwPfx2tzwzQUez9JevYHjfZdtPbECxmSChhEuFiKQ=;
+        b=WZwcIkLhWKHqM0YCdHobXenqSd75bE3ooNFT/lFHuJ8uZq9r1L6ITIlqwttTI6mURU
+         OZmhwHs1RLp4yd39Kw83vlXZstjg2sII9fW41CCunU1LbfpmpjvawtdHLFpXAArArvTG
+         /pEomLxLdpNT83y8If2ogV1jOQczQdP4R44dUEk37Mw3w4bVQEciJnv/GytWEKCOb+s0
+         O7Xy5t9az7T0N7ClERXEpTY6ZdrSYBDvQkF6yR3HUkCAEkCv3hSOBs/jRgnUc9jmgsE7
+         lEbpQkgLnjhGj7oyfC55ByeOgTvjovtdRabfGxD3jX4BGknbYLTS+TWNIcXqKcMPz3Iz
+         EKLw==
+X-Forwarded-Encrypted: i=1; AJvYcCUl7fF5j8P9ix2mC620Zd9qWSW+clDLY9PZieUjJ3cE2g7ZGU6tXnqxDaP8UTVH99OigQZHQ6Zxs0iCf3sx@vger.kernel.org, AJvYcCV9WOYqzsrV04vc5qqemEBXpOHpFQKMG+HOI3D83QbpHCp3BBo/FwY1qR9z/KvspyuPJEeNjVv/w+wL@vger.kernel.org, AJvYcCWz92597vbKfYbaeBSXfdZxAHEy8sAWCsvyxXMqTHCVz2FBoaQYgbhGu4jKPkCZk7iMKCiAIFjf44JA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz76nKG7drrx0QJdpAMRQ9z4ycyihWR7cjjV+Uwx/fW7+7yCY2o
+	U+bVPgYiqnHPYCznYF1jAubL6aYnUu4U7TKs9KRNxAgL80BL/UFtsk7q+A==
+X-Gm-Gg: ASbGncuVyVQekCungylhDF7SYwyM5m9bYP7sZXRUtKYFljn2fZH8NLS/GUBTfPy0bDx
+	FTwTpGlWetUsEU++jyTZwRo/biV5kmSl0RGRO9o4N4FBpMwIaW0HsO2u5lOEHIlkqDZhVqu2Ubl
+	cBxrUwVZvbuw4wofI3zqvJ6xXFS/ws8LNeb3OCj+nTlQqZKqy0O2WCoggq8gHmILnF8sd0DarXi
+	oJiUpvAe5Txf1er0dAUebEyidbIKQ+bfDgQlZrQj03SZh+kdFcopKomrWtdDqd4XOFmUuHdK6A+
+	r51uRYG/PFV4T/y2rh+msQPirOHOM2lqniAtzepXPsQ=
+X-Google-Smtp-Source: AGHT+IEYb/TxWH7h9rIJYdFAhCx5Y6IaZqou1OZ01+Q2yYFx9tNkyEvjOAUAcCjaMbDGrpe7Y/AIAg==
+X-Received: by 2002:a05:600c:4f47:b0:436:1baa:de1c with SMTP id 5b1f17b1804b1-4365c78125cmr26618105e9.13.1734610765626;
+        Thu, 19 Dec 2024 04:19:25 -0800 (PST)
+Received: from localhost.localdomain (host-80-181-61-65.pool80181.interbusiness.it. [80.181.61.65])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436611fc762sm16679975e9.11.2024.12.19.04.19.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Dec 2024 04:19:25 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	upstream@airoha.com
+Cc: Christian Marangi <ansuelsmth@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 1/4] dt-bindings: clock: add ID for eMMC for EN7581
+Date: Thu, 19 Dec 2024 13:18:50 +0100
+Message-ID: <20241219121902.16339-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241218-dt-bcm2712-fixes-v4-0-54cc88b6c229@raspberrypi.com>
- <20241218-dt-bcm2712-fixes-v4-2-54cc88b6c229@raspberrypi.com>
- <lzvcaspulvsulbulqinzftt3xtdyro64hi674u2bnkpvbrihri@e2o247mjom5s>
- <CAPY8ntCX8+yg1RFhAXu4ystGF_JivTh43RY=k2P0bUm5JxvzRA@mail.gmail.com> <09bee93e-48bd-4a7c-b975-b10dce945d60@kernel.org>
-In-Reply-To: <09bee93e-48bd-4a7c-b975-b10dce945d60@kernel.org>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Thu, 19 Dec 2024 12:18:18 +0000
-Message-ID: <CAPY8ntDWGaY9__BdR9Sfmom6YsZEhRZZsLghRNR1cvAZMxJyMA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: display: Fix BCM2835 HVS bindings for BCM2712
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>, 
-	=?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, Doug Berger <opendmb@gmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Thomas Gleixner <tglx@linutronix.de>, Stefan Wahren <wahrenst@gmx.net>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Florian Fainelli <f.fainelli@gmail.com>, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, 19 Dec 2024 at 12:14, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 19/12/2024 12:54, Dave Stevenson wrote:
-> > Hi Krzysztof
-> >
-> > On Thu, 19 Dec 2024 at 08:42, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >>
-> >> On Wed, Dec 18, 2024 at 02:48:33PM +0000, Dave Stevenson wrote:
-> >>> Commit 6cfcbe548a3a ("dt-bindings: display: Add BCM2712 HVS bindings")
-> >>> added the compatible string for BCM2712, but missed out that
-> >>> the number of interrupts and clocks changed too, and both need to be
-> >>> named.
-> >>>
-> >>> Update to validate clock, interrupts, and their names for the variants.
-> >>>
-> >>> Fixes: 6cfcbe548a3a ("dt-bindings: display: Add BCM2712 HVS bindings")
-> >>> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> >>> ---
-> >>>  .../bindings/display/brcm,bcm2835-hvs.yaml         | 84 ++++++++++++++++++----
-> >>>  1 file changed, 70 insertions(+), 14 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml
-> >>> index f91c9dce2a44..fd25ee5ce301 100644
-> >>> --- a/Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml
-> >>> +++ b/Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml
-> >>> @@ -20,11 +20,20 @@ properties:
-> >>>      maxItems: 1
-> >>>
-> >>>    interrupts:
-> >>> -    maxItems: 1
-> >>> +    minItems: 1
-> >>> +    maxItems: 3
-> >>> +
-> >>> +  interrupt-names:
-> >>> +    minItems: 1
-> >>> +    maxItems: 3
-> >>>
-> >>>    clocks:
-> >>> -    maxItems: 1
-> >>> -    description: Core Clock
-> >>> +    minItems: 1
-> >>> +    maxItems: 2
-> >>> +
-> >>> +  clock-names:
-> >>> +    minItems: 1
-> >>> +    maxItems: 2
-> >>>
-> >>>  required:
-> >>>    - compatible
-> >>> @@ -33,17 +42,64 @@ required:
-> >>>
-> >>>  additionalProperties: false
-> >>>
-> >>> -if:
-> >>> -  properties:
-> >>> -    compatible:
-> >>> -      contains:
-> >>> -        enum:
-> >>> -          - brcm,bcm2711-hvs
-> >>> -          - brcm,bcm2712-hvs
-> >>> -
-> >>> -then:
-> >>> -  required:
-> >>> -    - clocks
-> >>> +allOf:
-> >>> +  - if:
-> >>> +      properties:
-> >>> +        compatible:
-> >>> +          contains:
-> >>> +            const: brcm,bcm2711-hvs
-> >>> +
-> >>> +    then:
-> >>> +      properties:
-> >>> +        clocks:
-> >>> +          items:
-> >>> +            - description: Core Clock
-> >>> +        interrupts:
-> >>> +          maxItems: 1
-> >>
-> >>
-> >> clock-names and interrupt-names: false, unless driver needs them but all
-> >> this should be explained in the commit msg because it would be a change
-> >> to the binding.
-> >
-> > False it is then.
-> >
-> > Is there actually a full guide to binding requirements?
-> > https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-schema.html
-> > is the closest I've found, but it doesn't obviously cover these types
-> > of things.
-> >
-> >>> +
-> >>> +      required:
-> >>> +        - clocks
-> >>> +
-> >>> +  - if:
-> >>> +      properties:
-> >>> +        compatible:
-> >>> +          contains:
-> >>> +            const: brcm,bcm2712-hvs
-> >>> +
-> >>> +    then:
-> >>> +      properties:
-> >>> +        clocks:
-> >>> +          minItems: 2
-> >>> +          maxItems: 2
-> >>> +        clock-names:
-> >>> +          items:
-> >>> +            - const: core
-> >>> +            - const: disp
-> >>> +        interrupts:
-> >>> +          items:
-> >>> +            - description: Channel 0 End of frame
-> >>> +            - description: Channel 1 End of frame
-> >>> +            - description: Channel 2 End of frame
-> >>> +        interrupt-names:
-> >>> +          items:
-> >>> +            - const: ch0-eof
-> >>> +            - const: ch1-eof
-> >>> +            - const: ch2-eof
-> >>> +      required:
-> >>> +        - clocks
-> >>> +        - clock-names
-> >>> +        - interrupt-names
-> >>
-> >> My previous comment still stands. Reply to people's feedback instead of
-> >> ignoring it.
-> >
-> > Your previous comment was
-> > "Why requiring last two names? Commit msg does not explain that."
-> >
-> > I didn't ignore it. The driver needs them, and the commit msg states
->
-> Uh, so someone added undocumented ABI. How this passed any checks? Or no
-> one cared to run validation?
+Add ID for eMMC for EN7581. This is to control clock selection of eMMC
+between 200MHz and 150MHz.
 
-See the cover letter:
-"I missed the DT errors from the recent patchset[1] (DT patches
-in linux-next via Florian, DRM bindings patches on dri-misc-next)
-as Rob's bot report got spam filtered, so this is a fixup set."
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Changes v3:
+- Add ack tag
+Changes v2:
+- Drop additional define for EN7581_NUM_CLOCKS
 
-> > " but missed out that the number of interrupts and clocks changed too,
-> > and *both need to be
-> > named*.
->
-> Ah, I really did not get this.
->
-> > Update to validate clock, interrupts, and *their names* for the variants."
->
-> Please say explicitly that since some commit driver needs this. There
-> should be a clear reason in the commit msg why you are adding this ABI.
+ include/dt-bindings/clock/en7523-clk.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-OK, will do.
+diff --git a/include/dt-bindings/clock/en7523-clk.h b/include/dt-bindings/clock/en7523-clk.h
+index 717d23a5e5ae..c4f8a161b981 100644
+--- a/include/dt-bindings/clock/en7523-clk.h
++++ b/include/dt-bindings/clock/en7523-clk.h
+@@ -12,6 +12,8 @@
+ #define EN7523_CLK_CRYPTO	6
+ #define EN7523_CLK_PCIE		7
+ 
++#define EN7581_CLK_EMMC		8
++
+ #define EN7523_NUM_CLOCKS	8
+ 
+ #endif /* _DT_BINDINGS_CLOCK_AIROHA_EN7523_H_ */
+-- 
+2.45.2
 
-  Dave
-
-> Best regards,
-> Krzysztof
 
