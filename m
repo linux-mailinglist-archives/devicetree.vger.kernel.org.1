@@ -1,147 +1,154 @@
-Return-Path: <devicetree+bounces-132637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F3A9F7A8B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:40:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76FF9F7A8E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:40:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B768B7A2FEA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:40:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2831188F26D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F53D223C7B;
-	Thu, 19 Dec 2024 11:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A37223C7B;
+	Thu, 19 Dec 2024 11:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZX2hWVBe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pFGDTvua"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67DEF2236EB;
-	Thu, 19 Dec 2024 11:40:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94972236EB;
+	Thu, 19 Dec 2024 11:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734608405; cv=none; b=PGhF9rFhJS85iQtDR8NP7wZWXvhZDmqlmT7ELnwWqt+Rkh12JuHK95WeW7i5trYcWie2di+eaEZo46QjtNahrZ5lSBFGITZ73xoy6vWbw4/tnwyuI9cmsabcie7ca2Ez4z5Rj5h20xR+TtoZeKukLThQyROqs+L994+KZcVHNg4=
+	t=1734608436; cv=none; b=QaEr2ul1lGFA8l8oBx1bUtWULvy8AiSTg02azvTt9X683tTN30KYLZPHEMg+V9czAa1tWmZNuXXsCXLysx0ovyEGXz3+V/tumkDxNAmLdN31HI/3K8eaeLb0Q+9TezvTS9PlpDudkMLj+cjgsRfB5H4wWwljDSIw5ivydyaFYuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734608405; c=relaxed/simple;
-	bh=GsWX0vVkkirrGEurGYJ73upRE090niXMZMeSM5m6kh8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pN20oFCJxjLrsB/GTHoT8oXDGrrpiOr6zbSJBWzAJjoOJ6+I+nmBhUZGXkCG5HOBkUyPqIUPFT98gcKZO6LIaFdEXqG5jHfbzd8Q3I9FoX95LxPiYiaBPMn5nKxMXisj0Nk3v2WUVR5wBpGMMdpsHBQIgB+93WEqSNter/KnSYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZX2hWVBe; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53e3778bffdso692148e87.0;
-        Thu, 19 Dec 2024 03:40:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734608401; x=1735213201; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=h6kur+fgYF8cqbUvJGhld4diSdQInsPI0wEyhGiq1Sg=;
-        b=ZX2hWVBejCJsrs5SWZVzNmrMYfkTtyQbZEJWQ8j1AF5dam5xSey2S4FR54H+2mkCUz
-         rJGsEjYUEIRD0PgUsXnsCBkyGm03VZt4d1FW1UnlFSoH0xV5X6dyiHOctDHTkvTrHv65
-         rM5Egz39MOvACztBi/PoBJqSry4rtIbmoeXuZ8YmNZkmChNiMQMz8AriqkYzDuCYwlO7
-         vx6Lyj/21SSljiEIWnjbWIUWSmq7UFhC1fFDy7tKvQrVYQ1xCTWsq8Y1nx0ARneW1ROk
-         lYpot/qIpFvoZELLzKy7yIme4rXuUXfrM8z0Obop00gLvTMRVH0VvMAIvbKmVwFv5sF3
-         mLRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734608401; x=1735213201;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h6kur+fgYF8cqbUvJGhld4diSdQInsPI0wEyhGiq1Sg=;
-        b=sTfX6t+ICsBBi6mNkoSpBOUr5mH/2TGfetEOQawNv5A8PaLGCjZETSUoI9rTi68g1r
-         gLMoSbCaXb7KuppcG3b4z9o998UrCJJlMT6IVPmAT6NTjr44rlAdTcbkDmL1Q/RRIAlW
-         9iGjfS//fSQ8qyR5Qxq+SIbo6nIBoxLkGtRgnwY6Z5q3hnYR8wbWxSKUgzYibCu0dX/S
-         EpUWHWlPrtc1D8BhknoOhc8HWrBTyd7xJYgFdwAnrpBT+d4Q4TuXvmihheMdg0Et2nun
-         4jAKSuLcVSyQnpqJwwhxTNmF3XaEVXq0XB2+1gicHwULeyGS2lO7jC4KPxYtgleGXOc/
-         kSyA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8KKDKxv70Dh02uOnuJW6uI9bQTju7LP3J6aXOoEtY2VRZT8XChcBGkU8zoYeai1iG2Me985NUaz2n@vger.kernel.org, AJvYcCVZD2QpXvdtWR1e+41M5lmRT+sDD+9F7PQEKp7wixuMeU6dVUv7avWqW0mplQ4HOGjaH36whuqQUQT6@vger.kernel.org, AJvYcCWxGORktWbtXADtFB4g2G0UT9OExfnh7QGHiFTzBPOWim5EsOdnoPa5jKlk7EKTJGJIRTYcQpGcTF0O+5aG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsvzmBow2Y4PWlgpRJDTYa1lx1f4F+5SUgJxiX1Y874Ad0ui1f
-	3w6YgGFIC0qLdv/U3jML2BciAkt3eJxUbZLGaSqTybkbqD8g8QA4
-X-Gm-Gg: ASbGncvLSOiiZFp6xgynRNqLaIoujHot15eyKpZnBeypUtOZh0MZ7inLgmA6qJ+pLmv
-	rYoehSDwLEtLPrP25pIOK3UJF90i/qjOg81uQcahLIV4cdqu0O1xfXNvv9NTYiZ4E7XI9t2DMc9
-	4HrTJechnLQUqD9C05+TcH5qkXB2ZSVtm6bCCutNma26iveajKpaXuDOKMX5M5Vh9q9CzP48+qy
-	HxSO++pvq9qLSnd6DHyfUf+gesRwWQlnh7UmUKZsSrDI/Q/HOR2EzBdvZw=
-X-Google-Smtp-Source: AGHT+IEjjBezRcljXDPG5A4unoJxUR/ijpAt9XHxlqsVSoLPsvSc5YtkKgIxlBOQkA4qy7BdPW6yvQ==
-X-Received: by 2002:a05:6512:224a:b0:542:24c8:e072 with SMTP id 2adb3069b0e04-54224c8e0e8mr488352e87.18.1734608401260;
-        Thu, 19 Dec 2024 03:40:01 -0800 (PST)
-Received: from mva-rohm ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542238217f9sm146250e87.211.2024.12.19.03.39.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 03:40:00 -0800 (PST)
-Date: Thu, 19 Dec 2024 13:39:55 +0200
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] MAINTAINERS: Add maintainer for ROHM BD79703
-Message-ID: <5e99d4153b61a0d62174b8bde2ba6ae49da1e970.1734608215.git.mazziesaccount@gmail.com>
-References: <cover.1734608215.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1734608436; c=relaxed/simple;
+	bh=bXf1n5av++1NpzldNupTfjreWKWKA3AaiMuabD8m+hQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KlhsfjioObCV26Uuyi7gXcDamcWRqgMmctPKgZhNCRbK4FOnWE66AYxEn+L0iyyXcXHACY6XwFl2iywQSgDxfsU3YE+Vc+L2/bgN+JGCJ6+QicR5rQxeiWkorgqM0XGJ1dSRDkEqmSqwBOECf4f+fObbR8iRwxuD+wUTmOhP82k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pFGDTvua; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A50D6C4CECE;
+	Thu, 19 Dec 2024 11:40:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734608436;
+	bh=bXf1n5av++1NpzldNupTfjreWKWKA3AaiMuabD8m+hQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pFGDTvuaBFdrwRN7mos2xpbaqirH3A4Gc4bJuBccj4t80IWcimfpBZ4rPhu9k3sQq
+	 2J4WMAfR/NY6hkNB4V5TLN/s7/3pKzI2G2ZRhBGfCTk//qZWENa3une6PX/tjb99ST
+	 pW7v3JSgfqWZLhUhYQyg83LeYUz4iksvD+LzXsAgIhoQBaiNydBzgwgNp3haNNE/s8
+	 C6QWhwnXrsx0SSoNSiZP+1xoEIF+qBnB+a7Y85zOCi8qUPiIJCephujKyyLPXW6xyB
+	 KRaEQzw/KKFVcB+fwqbYrLB+Q8siczbbeWe9munP7bfBGVz6t5X1GpsWwCuup95V1t
+	 I/4u8G5fZEyOg==
+Message-ID: <73077b74-10b0-4191-a024-8b9edb21f507@kernel.org>
+Date: Thu, 19 Dec 2024 12:40:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="iYubq3X35aU1OuNi"
-Content-Disposition: inline
-In-Reply-To: <cover.1734608215.git.mazziesaccount@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] clk: cs2600: Add Fractional-N clock driver
+To: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: Paul Handrigan <paulha@opensource.cirrus.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, linux-clk@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ patches@opensource.cirrus.com
+References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
+ <20241219024631.3145377-3-paulha@opensource.cirrus.com>
+ <wv5od7uzup275onlvq36w4gvyh2j5oxepqkxiptanm5udidq5u@mbr64dxodkwd>
+ <Z2P6wgUowoW3v7UX@opensource.cirrus.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Z2P6wgUowoW3v7UX@opensource.cirrus.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 19/12/2024 11:51, Charles Keepax wrote:
+> On Thu, Dec 19, 2024 at 09:48:05AM +0100, Krzysztof Kozlowski wrote:
+>> On Wed, Dec 18, 2024 at 08:46:31PM -0600, Paul Handrigan wrote:
+>>> +/* DEVICE_ID2 */
+>>> +#define CS2600_AREVID_MASK		GENMASK(7, 4)
+>>> +#define CS2600_MTLRVID_MASK		GENMASK(3, 0)
+>>> +
+>>> +/* UNLOCK_INDICATORS */
+>>> +#define CS2600_P_UNLOCK_STICKY		BIT(3)
+>>> +#define CS2600_P_UNLOCK			BIT(2)
+>>> +#define CS2600_F_UNLOCK_STICKY		BIT(1)
+>>> +#define CS2600_F_UNLOCK			BIT(0)
+>>> +
+>>> +/* ERROR_STS */
+>>> +#define CS2600_ERR_DEV_DEFECT		BIT(7) /* Device defective */
+>>> +#define CS2600_ERR_OTP_CORRUPT		BIT(6)
+>>> +#define CS2600_ERR_REG_CFG		BIT(5) /* Invalid register config */
+>>> +#define CS2600_ERR_PLL_DISABLED		BIT(4)
+>>> +#define CS2600_ERR_HW_CFG		BIT(3) /* Invalid HW Config */
+>>> +#define CS2600_ERR_REFCLK_MISSING	BIT(2)
+>>> +#define CS2600_ERR_CLKIN_UNSTABLE	BIT(1)
+>>> +#define CS2600_ERR_CLKIN_MISSING	BIT(0)
+>>> +
+>>> +#define CS2600_PLL_OUT			0
+>>> +#define CS2600_CLK_OUT			1
+>>> +#define CS2600_BCLK_OUT			2
+>>> +#define CS2600_FSYNC_OUT		3
+>>
+>> No, the entire point of the binding header is to bind. Drop all four
+>> above and use properly your header.
+>>
+>> Otherwise I claim your binding header is not used or not really a
+>> binding.
+>>
+> 
+> This excert is from the drivers internal header not the binding
+> header?
+I replied in patch two, stripping unnecessary context. There is no
+binding header here, so I do not understand your comment.
 
---iYubq3X35aU1OuNi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Add undersigned as a maintainer for the ROHM BD79703 DAC driver.
-
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8e5167443cea..98a3c1e46311 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20286,6 +20286,11 @@ L:	linux-serial@vger.kernel.org
- S:	Odd Fixes
- F:	drivers/tty/serial/rp2.*
-=20
-+ROHM BD79703 DAC
-+M:	Matti Vaittinen <mazziesaccount@gmail.com>
-+S:	Supported
-+F:	drivers/iio/dac/rohm-bd79703.c
-+
- ROHM BD99954 CHARGER IC
- M:	Matti Vaittinen <mazziesaccount@gmail.com>
- S:	Supported
---=20
-2.47.0
-
-
---iYubq3X35aU1OuNi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmdkBgsACgkQeFA3/03a
-ocXDsgf/erOfwszOIiFolJkx8xGhrowZ3vlsDrr7lBEQM+R4cQZ+WKqso9cS0aqd
-FIbnBBt+jlOAklLFviyttHhzQxT/cjCle6uvgBXAN70F/WAQG4XXHI1JBrD/HsvZ
-R2cBUqmADBLNtzg1Yl0Wh5/Yn3Prkzs/CwxKs4YvKc3cNAWlEFOjpPo5zgg2to8U
-mDbuVMA5ZI2Dn9Y7H9sLVGjuFoHB73Czjuc+pqHvVM+RuKBaQl/U7PFRBRH0VhMT
-pN1X46obvLklG2llMdZvqQ3Xu8AUWWLHErszGwvOQwhFc3u6DqHGUiThTzZr5c9r
-0lIIHSuctSckEm3bq9XsIA8OYR4zsg==
-=rz50
------END PGP SIGNATURE-----
-
---iYubq3X35aU1OuNi--
+Best regards,
+Krzysztof
 
