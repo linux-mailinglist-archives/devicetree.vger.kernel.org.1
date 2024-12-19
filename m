@@ -1,124 +1,120 @@
-Return-Path: <devicetree+bounces-132620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9969F79D8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:52:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A542A9F79DE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:53:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A14207A4767
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:52:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F285C168F9F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9353222566;
-	Thu, 19 Dec 2024 10:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DEC4222580;
+	Thu, 19 Dec 2024 10:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="hUily0q5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f+lmQdU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14487208A7;
-	Thu, 19 Dec 2024 10:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69706222566;
+	Thu, 19 Dec 2024 10:53:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734605527; cv=none; b=PKUFTBGF8G45uIO/7L9sPmcqRXgkd3tKVaGEzRNPv0DgSJGDZCi3Z4SLLuA7qmeblh/kzdETEMCERlZCtAE0vwXbt3sLRGZzyGI/D9pFecnMXj2CGb/5wNDuW4qJHHNZyN8nXNioRiwIjcUp+ieLQFYayYOLiM0Jyvg2vS2IVCs=
+	t=1734605601; cv=none; b=OI2zqnIsgVpmDq7FK891+pKb/99XXE20w5AjESium8PkEgWhnCEZ8D26zqOU4h3yP9+5NA9tLVlp+OKwtPIbi1T6R7aT2XyB4HXJ0aN9ORSIBkDRqJnvaB4iRBMjQIKPShg5qLJT3KBPGRS6fo7Sm1T3xhjP80xIKr6hEkFChV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734605527; c=relaxed/simple;
-	bh=wBUK7+rKLRuHZH2CMR3yei5t3BON8FwX1RUYysMH+Ho=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mJdJwp5jbxU7Rzmf+XyxCKB6aBfOGT+Rkv/FZB8VdXOcpWOh9yQrYIAbR2gfkosD7bYUfJDRaBlSCvLokn7nXeDqIr/xBBXHh12YJ6lPd57wmRkRRT+6QlCXIYuhm1ZcTZUdj7TVmg+mneUb7tPnyPH7lKsrxrd+W5YlNEE/C8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=hUily0q5; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ7FeGG023978;
-	Thu, 19 Dec 2024 04:51:50 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=PODMain02222019; bh=GI8wmABLWW6RdZjo36
-	kAMFPsgMqY6Mcbk6sSJ8H49oM=; b=hUily0q5GIuQUrypLAtPshRhwISuwAZN6Y
-	r1w23hh9IvnOhTUZgDpzQZpDtB2cOI+vw2pkHmiXzRGLZzLCKMkPjemvl2fGRByp
-	MDGIWZZYExSLUdMThWJKOQQN+PNqmR3wIpnUxtY5JY6e6Tg1q75G0yHuXP1Ljphg
-	mVJS8Qq8xvoMDNM3i3WJsFprPfrOqszrsdjpm0UkU+e8VgMPeaMroihJVXn00TLQ
-	qWAnqosPGZz1FnjTl3iKhQdFDOJOQCXINg03n8P7jqYr5MMAAL+eOb51S5SwUI7F
-	MwG1HYHL5/g+8S1ZpwkSoHnkQGH54Vavbspqc3dM0xcGwIAtx1lw==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 43h8a266g8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 04:51:49 -0600 (CST)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Thu, 19 Dec
- 2024 10:51:47 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
- 15.2.1544.13 via Frontend Transport; Thu, 19 Dec 2024 10:51:47 +0000
-Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 88E19820247;
-	Thu, 19 Dec 2024 10:51:47 +0000 (UTC)
-Date: Thu, 19 Dec 2024 10:51:46 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Paul Handrigan <paulha@opensource.cirrus.com>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
-Subject: Re: [PATCH v2 2/2] clk: cs2600: Add Fractional-N clock driver
-Message-ID: <Z2P6wgUowoW3v7UX@opensource.cirrus.com>
-References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
- <20241219024631.3145377-3-paulha@opensource.cirrus.com>
- <wv5od7uzup275onlvq36w4gvyh2j5oxepqkxiptanm5udidq5u@mbr64dxodkwd>
+	s=arc-20240116; t=1734605601; c=relaxed/simple;
+	bh=RpuYyr3iEI9pJoKS8TGxrFFOZ8RRcoKwdnKtdEJS7oo=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=nX/h9FDetJmZyTl4RdZd0DPNfIHlJUIW2/p2ntYMbjZ6Yiql7eEb8aBEdCdGP8wTeU32yWC+nJQtalPGDeUWyyCrs08g5n6KVrLWM4p9ipx96VZg2sux7+vhDaMDQ/POoLvdp+5juKt6Ebe+l/FqRlWwMPaKGF5daaDSqCEX2lA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f+lmQdU2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209F1C4CED0;
+	Thu, 19 Dec 2024 10:53:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734605601;
+	bh=RpuYyr3iEI9pJoKS8TGxrFFOZ8RRcoKwdnKtdEJS7oo=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=f+lmQdU26+HCxPMf/l7I9BtP0ocP4GNnvWw5cF0TS9JeqY1fMK3mVW2D40SZTJMxl
+	 AVODtVJRkw0Slzi/7tmqMdmYortm+Us48c62APa8KinkZtv/tJ7Gi7FRCUvTovigPp
+	 2PA1pFaLCg4FenTAHiTVtaGRMwB9TOOhyzwfFoYE435hwimFA7oJjqAjHmrtc5SCPe
+	 29xPVCxBXVge9n3W3Jnq4BFDTUa1ms7rJGADEeO8NkLTFp/oisgkl0tMpCOIi+f3Mc
+	 cs6Vqmy8j+1fvBC74CTbmGJTd6Qo8JcCCTYpXeQ0H1KS5zOPi+czn9gWb09jkT2MYG
+	 17MF4MwySy55w==
+From: Andreas Hindborg <a.hindborg@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org,  rafael@kernel.org,  bhelgaas@google.com,
+  ojeda@kernel.org,  alex.gaynor@gmail.com,  boqun.feng@gmail.com,
+  gary@garyguo.net,  bjorn3_gh@protonmail.com,  benno.lossin@proton.me,
+  tmgross@umich.edu,  a.hindborg@samsung.com,  aliceryhl@google.com,
+  airlied@gmail.com,  fujita.tomonori@gmail.com,  lina@asahilina.net,
+  pstanner@redhat.com,  ajanulgu@redhat.com,  lyude@redhat.com,
+  robh@kernel.org,  daniel.almeida@collabora.com,  saravanak@google.com,
+  dirk.behme@de.bosch.com,  j@jannau.net,  fabien.parent@linaro.org,
+  chrisi.schrefl@gmail.com,  paulmck@kernel.org,
+  rust-for-linux@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-pci@vger.kernel.org,  devicetree@vger.kernel.org,
+  rcu@vger.kernel.org
+Subject: Re: [PATCH v6 13/16] rust: driver: implement `Adapter`
+In-Reply-To: <20241212163357.35934-14-dakr@kernel.org> (Danilo Krummrich's
+	message of "Thu, 12 Dec 2024 17:33:44 +0100")
+References: <20241212163357.35934-1-dakr@kernel.org>
+	<20241212163357.35934-14-dakr@kernel.org>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Thu, 19 Dec 2024 11:53:06 +0100
+Message-ID: <87r064kkq5.fsf@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <wv5od7uzup275onlvq36w4gvyh2j5oxepqkxiptanm5udidq5u@mbr64dxodkwd>
-X-Proofpoint-ORIG-GUID: X1s2aJ_6-1fY9fEMps7Yd01IZyuXaCAa
-X-Proofpoint-GUID: X1s2aJ_6-1fY9fEMps7Yd01IZyuXaCAa
-X-Proofpoint-Spam-Reason: safe
+Content-Type: text/plain
 
-On Thu, Dec 19, 2024 at 09:48:05AM +0100, Krzysztof Kozlowski wrote:
-> On Wed, Dec 18, 2024 at 08:46:31PM -0600, Paul Handrigan wrote:
-> > +/* DEVICE_ID2 */
-> > +#define CS2600_AREVID_MASK		GENMASK(7, 4)
-> > +#define CS2600_MTLRVID_MASK		GENMASK(3, 0)
-> > +
-> > +/* UNLOCK_INDICATORS */
-> > +#define CS2600_P_UNLOCK_STICKY		BIT(3)
-> > +#define CS2600_P_UNLOCK			BIT(2)
-> > +#define CS2600_F_UNLOCK_STICKY		BIT(1)
-> > +#define CS2600_F_UNLOCK			BIT(0)
-> > +
-> > +/* ERROR_STS */
-> > +#define CS2600_ERR_DEV_DEFECT		BIT(7) /* Device defective */
-> > +#define CS2600_ERR_OTP_CORRUPT		BIT(6)
-> > +#define CS2600_ERR_REG_CFG		BIT(5) /* Invalid register config */
-> > +#define CS2600_ERR_PLL_DISABLED		BIT(4)
-> > +#define CS2600_ERR_HW_CFG		BIT(3) /* Invalid HW Config */
-> > +#define CS2600_ERR_REFCLK_MISSING	BIT(2)
-> > +#define CS2600_ERR_CLKIN_UNSTABLE	BIT(1)
-> > +#define CS2600_ERR_CLKIN_MISSING	BIT(0)
-> > +
-> > +#define CS2600_PLL_OUT			0
-> > +#define CS2600_CLK_OUT			1
-> > +#define CS2600_BCLK_OUT			2
-> > +#define CS2600_FSYNC_OUT		3
-> 
-> No, the entire point of the binding header is to bind. Drop all four
-> above and use properly your header.
-> 
-> Otherwise I claim your binding header is not used or not really a
-> binding.
-> 
 
-This excert is from the drivers internal header not the binding
-header?
+Hi Danilo,
 
-Thanks,
-Charles
+Danilo Krummrich <dakr@kernel.org> writes:
+
+> In order to not duplicate code in bus specific implementations (e.g.
+> platform), implement a generic `driver::Adapter` to represent the
+> connection of matched drivers and devices.
+>
+> Bus specific `Adapter` implementations can simply implement this trait
+> to inherit generic functionality, such as matching OF or ACPI device IDs
+> and ID table entries.
+>
+> Suggested-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> ---
+
+I get some warnings when applying this patch:
+
+>   RUSTC L rust/kernel.o
+> warning: unused import: `device_id`
+>   --> /home/aeh/src/linux-rust/rnvme-v6.13-rc3/rust/kernel/driver.rs:10:13
+>    |
+> 10 |     device, device_id, init::PinInit, of, str::CStr, try_pin_init, types::Opaque, ThisModule,
+>    |             ^^^^^^^^^
+>    |
+>    = note: `#[warn(unused_imports)]` on by default
+> 
+> warning: missing documentation for an associated function
+>    --> /home/aeh/src/linux-rust/rnvme-v6.13-rc3/rust/kernel/driver.rs:158:5
+>     |
+> 158 |     fn of_id_info(_dev: &device::Device) -> Option<&'static Self::IdInfo> {
+>     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>     |
+>     = note: requested on the command line with `-W missing-docs`
+> 
+> warning: 2 warnings emitted
+
+
+Looks like the latter one is from patch 13.
+
+
+Best regards,
+Andreas Hindborg
+
+
 
