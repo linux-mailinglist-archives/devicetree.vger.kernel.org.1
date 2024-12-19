@@ -1,87 +1,93 @@
-Return-Path: <devicetree+bounces-132862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFFF09F8579
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:10:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C926F9F857E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:11:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F04E163D74
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:10:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EC3C1650DE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F8401BC061;
-	Thu, 19 Dec 2024 20:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC471D5ADE;
+	Thu, 19 Dec 2024 20:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NCbeebHP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZAR9aHvm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B0DC1B4F0D;
-	Thu, 19 Dec 2024 20:08:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE7F31C1738;
+	Thu, 19 Dec 2024 20:08:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734638914; cv=none; b=a76/o/Kaw53wuHGsh/jnaFfdW5E8oBO911XRHXB1G7wTQqIdgWUUNH7bamRLioiZw3n5hY98gEXssunZUt4MiY5zuZyVAWrwEGvZhoyBf/JB1oS3LTezfoapxudq8hLDvte6YyBElFUuXB34xnUh7ZAP+FXnL/KRmM9c2lAMqHs=
+	t=1734638921; cv=none; b=FcLZ61vUYDac99RZ73GL2WbU8Kz1rHsr4DjAq/kfUhPc44wVPFgsAY5diDQqFRF4PgakJUdlBVvHLVdHuD9KwvBnZIFjkLRnYIfEi5dIN43wPRAS+52k1xGzLSgEGbZwiEG0T/e7lNhINCkfRjhmOK4zVMC+4WqrnGuvCt3J8sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734638914; c=relaxed/simple;
-	bh=cHklw5dKsrv89Er4BjLbZiUv1d0LB4CJNkTF5GFFHn8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nkCQoIO7XvLPmaqDRJ6eMlUk2gmz35q8ks0j8X1uadPwRrGZA+b022WUPTWJK17pzoPaL1uxAV7I1jcUID1qW6fBrFNBhyikVM8xsVitmjePswK+BM9CM/iZ0RHkZDLccf+K+cglDXK4llTs4xT+HrwzkVwkrXzzzXoLzD108F8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NCbeebHP; arc=none smtp.client-ip=209.85.208.174
+	s=arc-20240116; t=1734638921; c=relaxed/simple;
+	bh=YgN6D9Ys/2Lezq3gR3imw5IwQRTwzbav7hGzaKEanFo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=W6KPc9xt174qAmUo2N5zKh4htzPLuOELNZBcs8fJK4So1HJLe9iS+1H2IPTtMLGfSvulX2HnfsxMEUUUtaVUDpFwY/R52VZdGSRqOXW2gAXakF34TrchU43+wIyTiZyqtE6s3cb6ijj8vPiw8kxszh22fN+0HTdkBuwmO8d1wqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZAR9aHvm; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-3043e84c687so10828861fa.1;
-        Thu, 19 Dec 2024 12:08:32 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53f757134cdso1144585e87.2;
+        Thu, 19 Dec 2024 12:08:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734638910; x=1735243710; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GcQ7NpJKtc8NYOK8uYoyPnqF29xdASVJC1p61Zb5blk=;
-        b=NCbeebHPD4Bs4SeNYXh3kLrLdMtREWUedaw/WVSBzZpPsz5v9ie8g5XO1v94ZoxZwq
-         GSb5T6/gFXjGBtxcY+jG+SvEvrMhHL3VjnqpItPZjTDIMF5DRV8/979YAomO8+c7MRX6
-         jRi8G69naQ5uv/7iz9q/1LqCiL1unT0PA+PxZA4Oa3/j3QH/5JRmofe0iA3UjObHXuPD
-         s6D3v2jZX0gUiA2qySVcGKsQ60GBise1inRhY5VY5pglGxzYQoWAhLnfbSBU/1kgtFpP
-         5vmpgpMsNhl0/XwyikPDE0hSvvcDqdaLUwnFXptv9tPj6WH6Bv09MyrQ4NSrSDzMK5BX
-         JCFQ==
+        d=gmail.com; s=20230601; t=1734638918; x=1735243718; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KcbSv/BZ9r21elj2oBuH8EFKvDsTWgFDboQJeEWvOGw=;
+        b=ZAR9aHvmV701fUNH6YLM5anx+6RPSnd2TjsTrVeiGhtU9BUUBlSHdBhoe2jyCvQyvD
+         mDpgKKJDGPT6exoXeYZ9tFWaenfyGHzn3uVKMY6ehwsmJjkQVteC055UehFsuT6grbqa
+         hjjHHi5If9BBSCJ1U/ou8Aj3cxDuy2LasD/SmQjBBtLUtEEREQ+1kT1cjfo1wW0XUCvj
+         fZAZLEuIfWRAK2jgJi0KFmo//P/V78OZp4J28Hk6g4j7mxcJ95qcjRUzhTBu6DaeJDUn
+         jGVlVIeBwJS8rhkPf9bOSQg8euNb3SGgZVJRAjlFhqgpD2p8Z50Gn9qPJ1dAW3wa6jrP
+         S57w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734638910; x=1735243710;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GcQ7NpJKtc8NYOK8uYoyPnqF29xdASVJC1p61Zb5blk=;
-        b=slUQG8losY9VAdw1jB8FeG4k0t5fSmAomIqjrkDpWoU420ZzpGR8BILmY2jtyZtca4
-         VuHz16Z4bHHEWK7Fdh08E+JL1/VItK7dzPHQZa8pFm1wJkcrzz/xOXvrQxNDY6E9KpKJ
-         /ihcO2S9x3bMNwyjPXOQ40k0XvvGBAnCi8tY7N2NipjsPebx92vSyinoFKULjTqveoWK
-         JDYU3Es6AMWIQ1KTujjM1uOlP2xy41ssi7obdlAOXJ3AIkAEBV5HksfY7+ncAl559GwV
-         3in8cNMXJGGHHd8FfQQxsJjgprZ9lJq5FwFud9nm9Z3G59LGeewCf8YQ54PcnRjTvCPa
-         xivA==
-X-Forwarded-Encrypted: i=1; AJvYcCVsn0okp/m/uK+7cCzUF9vft2ZgeAnBNwgEcL+ot8jZ3QNSIcv3Gs9DyRSnYj/klSz36LKMrEyg3179qT64@vger.kernel.org, AJvYcCX3K0QuW1gBXLJKGBwZGayEDXWrzLN5ngNOU82br6BoMoVtGbeZx0B37O2o+CLvZC7z43kF+WXFOCOA@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywr03XRAdEmcXgjPpAv+FEJUMaM3umsZWOcH56UNP0YHPE0jknY
-	XFSNB1Md/JKA5Mwd+T4OP2osJys4mxmrvsSgAn3htGsiJBiL3zEY
-X-Gm-Gg: ASbGnctb8xo020KsJYAdRUvgZlW4HOYC/wSL9Eu2nXgSP4LPc8kMPp/AyyMFgtyD1T8
-	rtXYfUQwwunDJTM4FpY609twbA32V2nitcp2woHHbrgLVCMZmb65e8hcwTUkWETiS1nLsJAWJJ9
-	T1yiMHXHTIW580AWXksrKzrRuMPM/HXZRp4pKQVyRL0zfMB87+M+P3gkqq+sOc1cyZ9a2nUnPLf
-	GuFUOiIP7j+0eyd0DcHCysLBH3b9bzZ8Pjthkcks49oGc26NhKDTw5mjnMk7hGRv7U58NWztp1R
-	F9U=
-X-Google-Smtp-Source: AGHT+IGy9vuiJjvXqboSFuFdTvH/i/YxpbxiK38dPYU/oInaVl1MSYEuwXPyCSHnbInt1rZn23zlXA==
-X-Received: by 2002:a05:6512:318e:b0:540:2fd2:6c87 with SMTP id 2adb3069b0e04-54229533e65mr5023e87.16.1734638910099;
-        Thu, 19 Dec 2024 12:08:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734638918; x=1735243718;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KcbSv/BZ9r21elj2oBuH8EFKvDsTWgFDboQJeEWvOGw=;
+        b=PsUP9wPzBlcDENFPk8GUKXnlTrTVaMR3POB+gO9hfBU+xw8QAhH9uV92DJqQMe/vJO
+         J8GKeYcoDTaglZUN0rLm3yGQggGm+WJ0O9AYS8vf5qVKyg0nlpTFaJw6FeUS0UvHi+g1
+         VIfq6Hd/DVJR6FfnjKACyWh3tPNLskOgFFEdY4yqtq6Xu0wjgWjlAtP71cu5vNMBbrsZ
+         VU+jGY2WpfzBio2A4NGRaohfoMxfY1qnpDXwrdmYVpc0frupxQMI0eelbHwjo+Rv5+9Y
+         Ss90chcZ5w4Dj0QSCFNaqXDLG5Uf2cghA6GQ0MfMTz7yP+KivkiHJR5Y/cBEI822FPxu
+         OPvg==
+X-Forwarded-Encrypted: i=1; AJvYcCUdFSgYUKro9E+dN3jB7dbThFfEK8lXX/b7gfWs44aCnggGbGR2vjvLZczx+31DQWMQ5hu4UblCfjpX/hgw@vger.kernel.org, AJvYcCXEkjZGNu9007u8BBXnh4k8J7yoYZO2lmDWZWy1fvHBF87EUGMJ+UzOfkLpsNfJtkVuO9ibcQHL3OCI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgTnU/ZBlPbTB+3Kups5k1zGnhxU9VzuZtUvmHpIqwIC0HljA1
+	O9njXJRj7DigxdTiOAyx1xsieO5/U7ltlbIRIPsMKttgS+nQXrX0HRv3cMhNqWo=
+X-Gm-Gg: ASbGnctB1aRjQ54VRDypzKRxyJAMWLQHmbDxEVWtqX9rgfrP3FyObq8MmrSM/ayJocC
+	1QnvQNck2ruS7FQzv54+MJSMK4MqkA8Jd25VNEATt0OaKMNQ0oTw67WtUJjH8J3kwPyW0gWKhAW
+	Sr9ZFDjwkC45YgjDhqOfwOZ5lDq8Ytms7QrkhCrw9rB2N80ijMoJ7DY7of8LWWMRbmveJ4+zLMQ
+	J4kl1GSAKWqt2gQJEpTwnUo3BWM84AYc2Pm9km3k5gu8JMvs8E3PgLluoYMnuoDXkSCWnHv/2T/
+	bPo=
+X-Google-Smtp-Source: AGHT+IEEvi2/2raC9kDgH7WhZ4VHJYZltCSM0Jn3wdfI79zWF1LU0I4Y3nWZK+5qF+mF/eQJf/EF0w==
+X-Received: by 2002:a05:6512:3f20:b0:53d:dd02:7cc5 with SMTP id 2adb3069b0e04-54229524640mr7620e87.7.1734638917633;
+        Thu, 19 Dec 2024 12:08:37 -0800 (PST)
 Received: from localhost.localdomain ([2a02:a311:80b0:1c80:9433:9060:39fc:2954])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542238135d8sm265642e87.145.2024.12.19.12.08.27
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542238135d8sm265642e87.145.2024.12.19.12.08.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 12:08:29 -0800 (PST)
+        Thu, 19 Dec 2024 12:08:37 -0800 (PST)
 From: Maya Matuszczyk <maccraft123mc@gmail.com>
-To: Maya Matuszczyk <maccraft123mc@gmail.com>,
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org,
+	Maya Matuszczyk <maccraft123mc@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/3] dt-bindings: platform: Add bindings for Qcom's EC on IT8987
-Date: Thu, 19 Dec 2024 21:08:18 +0100
-Message-ID: <20241219200821.8328-1-maccraft123mc@gmail.com>
+Subject: [PATCH v2 3/3] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add the EC
+Date: Thu, 19 Dec 2024 21:08:20 +0100
+Message-ID: <20241219200821.8328-3-maccraft123mc@gmail.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241219200821.8328-1-maccraft123mc@gmail.com>
+References: <20241219200821.8328-1-maccraft123mc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,73 +96,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patch adds bindings for the EC firmware running on IT8987 present
-on most of X1E80100 devices
-
 Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
 ---
- .../bindings/platform/qcom,x1e-it8987-ec.yaml | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+ .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
-new file mode 100644
-index 000000000000..4a4f6eb63072
---- /dev/null
-+++ b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/platform/qcom,x1e-it8987-ec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+index 0cdaff9c8cf0..dfe009613b0c 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+@@ -538,6 +538,22 @@ keyboard@3a {
+ 	};
+ };
+ 
++&i2c5 {
++	clock-frequency = <400000>;
 +
-+title: Qualcomm Embedded Controller on IT8987 chip.
++	status = "okay";
 +
-+maintainers:
-+  - Maya Matuszczyk <maccraft123mc@gmail.com>
++	embedded-controller@76 {
++		compatible = "lenovo,yoga-slim7x-ec", "qcom,x1e-it8987-ec";
++		reg = <0x76>;
 +
-+description:
-+  Most x1e80100 laptops have an EC running on IT8987 MCU chip. The EC controls
-+  minor functions, like fans, power LED, and on some laptops it also handles
-+  keyboard hotkeys.
++		interrupts-extended = <&tlmm 66 IRQ_TYPE_EDGE_FALLING>;
 +
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: qcom,x1e-it8987-ec
-+      - items:
-+        - const: lenovo,yoga-slim7x-ec
-+        - const: qcom,x1e-it8987-ec
++		pinctrl-0 = <&ec_int_n_default>;
++		pinctrl-names = "default";
++	};
++};
 +
-+  reg:
-+    const: 0x76
+ &i2c8 {
+ 	clock-frequency = <400000>;
+ 
+@@ -796,6 +812,12 @@ &tlmm {
+ 			       <44 4>, /* SPI (TPM) */
+ 			       <238 1>; /* UFS Reset */
+ 
++	ec_int_n_default: ec-int-n-state {
++		pins = "gpio66";
++		function = "gpio";
++		bias-disable;
++	};
 +
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        embedded-controller@76 {
-+            compatible = "lenovo,yoga-slim7x-ec", "qcom,x1e-it8987-ec";
-+            reg = <0x76>;
-+
-+            interrupts-extended = <&tlmm 66 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-+...
+ 	edp_reg_en: edp-reg-en-state {
+ 		pins = "gpio70";
+ 		function = "gpio";
 -- 
 2.45.2
 
