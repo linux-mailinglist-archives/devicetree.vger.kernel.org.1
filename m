@@ -1,52 +1,80 @@
-Return-Path: <devicetree+bounces-132732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694C89F7ED8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:05:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D84A9F7EFC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:11:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA3657A3138
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:05:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A8AE188F325
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC47226881;
-	Thu, 19 Dec 2024 16:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0996E226898;
+	Thu, 19 Dec 2024 16:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KRn/LzPq"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="s+iYf4Ht"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC602165F7;
-	Thu, 19 Dec 2024 16:05:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA4922618E
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 16:11:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734624336; cv=none; b=VzoPoVMzQoosr7Xu52BKokJJA4g20jmpbrRqSnaMt4FVwi19W2N7GGjVPK3qFGi7WaJx6jyRlwLfyFdmWeX0lhgJ6FezH0tcFRvqdv9wgjfvmPk/TRF9TFWVWFqWYdo9sSVGABusl98Uug1yLK+SiKM7ytuD7FBg59yhUDl6tpM=
+	t=1734624683; cv=none; b=hX6TPy9qFcd6doaXD2lfJ9+EejXAw5K75vH/q6ilCezfhKMKeXif85Q4h/L7xrLCsTbcUUwvzBuOi9pzAaWYTRfY5rnUHAM6b9GFgd66NUrS2MMgETo8cKXdEaTNwgPdnIEG79re7aFIe7RqZ+wKYUEOpS4sFumg7TrI7NFNQC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734624336; c=relaxed/simple;
-	bh=30HQjXPL9CwszPeQJkg6tvnIAkzcATAQF6HEPZrhWKc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=eSrgbQxQvViC4tCMtVHfbGg5SmPnqQqGhUxJr9HDVeSkVyJZiJwAHeyj0UrQeZqrlD1ZYibGtO5vKaryD9VyY+8UlvbcKftbNuQj8a1n5c/0VciI6B8EMZIRxZv7e24Ma9bpiUBQZFntY1exZwAZe8ZayOncUAvDIHkeJi/Uogs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KRn/LzPq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AD144C4CECE;
-	Thu, 19 Dec 2024 16:05:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734624335;
-	bh=30HQjXPL9CwszPeQJkg6tvnIAkzcATAQF6HEPZrhWKc=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=KRn/LzPqr7BDjw7uiCbS7U9rpSW61rErqt594Otp33I56LibegVAFhqdu3/MEJBH+
-	 1zvLG1LPCbfPXhgRYVgJVhyVQlfdPvUetdas0XvrhWpgLINLPu2tdFiMYnzSqMUy7v
-	 wO4dsOr1uRHZnAPZZM2waMYiAlxUGfg7x4/Ty23G619z/TYRS6uPOi197qH8oDRCIK
-	 mYwzd6nludSA7aLM+gdbuTNeNI+4cMKj8Qayfqidl/lFao13DWfYa7PSZzLGD1I961
-	 E9DrjtHvKIKgC7oJ0xbg2i0eBTEEaGDFpG3QZvVh7g7ygRvCz3+TOFhXfAu0MVBKjC
-	 WygvJn8349jNQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A854E77184;
-	Thu, 19 Dec 2024 16:05:35 +0000 (UTC)
-From: Anthony Ruhier via B4 Relay <devnull+aruhier.mailbox.org@kernel.org>
-Date: Thu, 19 Dec 2024 17:05:08 +0100
-Subject: [PATCH v3] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add lid
- switch
+	s=arc-20240116; t=1734624683; c=relaxed/simple;
+	bh=TuSLnfytoiZKQrGa0aVZTwnSTT1o3V/5YIhyblbFV+E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=D6h+29VY+ROuiKJpQWwBxfdA7VnH1tmVKR+iYmm7LLBVeMcjyG8wl7ZrkEHJBGSeGUIZnFo4An9cyHRq5yukVbo8rjLvJ++h3gZAjj+kQ2f9LPQadlUJALvY/hCV77wvYE15ksjXIBWnT2RUDzGpxKEA9hDYc+r5rGgR7scMUzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=s+iYf4Ht; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4361815b96cso7131055e9.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 08:11:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734624679; x=1735229479; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=idL1KayfOK5+HUGE3XGnDILC4Z4s3dG5NEY4/7eehpE=;
+        b=s+iYf4HtfIFZRxbUAzy1IsssG8adv5E40uKHmXj7Hh2ehrNUZsYfUyYCQU9DetlGF2
+         JYrC8xgn6kx7B27aKEwmcACEXAlnUSbmoB3VGtz/wEGnSr6ZAUZsmAz1TlBJx9ptNmtS
+         7BnpmyYMTXfIJzPJ+GUXhbItPdE2w2b6MRODnCKrbt6ECTuvGxJKbiBicBtvoyouL0oM
+         Gu4VT1AVZWFw/0w5mKEUUDHpsmmt03AL7VMTIcUG2JQx82gbbxx1SsfebNQCyzzpjRu4
+         xG9PH1XD6VJO+HcapbJpzyc+p1UTJRhI0MNJwHEUIiw75s+evBkghuAxBErCcP5riGil
+         MoWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734624679; x=1735229479;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=idL1KayfOK5+HUGE3XGnDILC4Z4s3dG5NEY4/7eehpE=;
+        b=UY/r1hS7gZLUmd9noPXDn1Ek1A03zsF3xS/iwjgAcF8K5qGrCQFWxxYMITFxTlHIRT
+         d1Dn0rz+Lc/Plm2ZJlNvr0vQ1O9rbqlJ6Zrbtkz9vfvY8SgQ77e0oDgg9dDIdG1MO6em
+         g+EblJvql4VuMs3PrB70zECb6qTcDQY6lUpCLFXed0OM1v87QXcibGHX3SHc8f+JIuu1
+         isgpaSEuMn+CgbW3j7wQnda/kJXm3K6dbQaFDxEXGsqY7A7aKMAcpT2oxuXD6i6yK3rm
+         BkbGd+TxBBUpEYzLrAXCKstrVfRtSj8nALCdiYCrvt0Hzp0o7CNGb9S2Gqfbf67on58Z
+         n3/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUtsWMgTN0Sxf9zDqXohLTX20BeHWWUVcE/a69N7PU7+nv3+1hImF6H3CI+EKse6JHaYVvBErepFdSa@vger.kernel.org
+X-Gm-Message-State: AOJu0YysdmQmscyedHyoYIzbgLyZIovqpfuo5vYlxBAh7ufoYLFlaKmm
+	LEJVFAHoXfDVppQ9K7fwQMqeNGeiGcSfZqRZ4WM0Cj3flKNm5jb5Ex20dXwijK4=
+X-Gm-Gg: ASbGncslt4kj5AwP/DTuakzBnbOsLgWrRCvEXfLj/xCEfkSRP3xIxSpJ7eqfnJizGio
+	sBudsU2LAqnjAC7S45c5eNwgkcrBwDadIXu2oJtxoVVhKTJedupJ4rQ9CAqTuzQTST8emq8mjuJ
+	jCItGAbHGh/JJEMVivbwyImZd9C7+QQG1RLl+BoDVvuO5LFMCD75BazqntVvwdjxv+1qBiqOl2m
+	9AYzSNXclaZBezOW3KSsDnoaxk2bTs9dmpMhprBCUsGd0wD8NNpWB7aqnlUe93nWromM4mqpm+G
+	D6s1ZhWzgJqJbJi+e8vOhd5jVtXCbfox9jJ1Ig==
+X-Google-Smtp-Source: AGHT+IGw3sHfdibR6Vlt2PKJZSRjrXSSMm2zF9L0IzRyvk5Mt96c+3CNucl27O4rMyt0yOWSoTsQ5w==
+X-Received: by 2002:a05:600c:3c97:b0:434:fe4b:be18 with SMTP id 5b1f17b1804b1-4365c793e01mr36946255e9.18.1734624678467;
+        Thu, 19 Dec 2024 08:11:18 -0800 (PST)
+Received: from [127.0.0.1] (amontpellier-556-1-148-206.w109-210.abo.wanadoo.fr. [109.210.4.206])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b3b295sm57526225e9.33.2024.12.19.08.11.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Dec 2024 08:11:18 -0800 (PST)
+From: Esteban Blanc <eblanc@baylibre.com>
+Subject: [PATCH v2 0/6] iio: adc: ad4030: new driver for AD4030 and similar
+ ADCs
+Date: Thu, 19 Dec 2024 17:10:35 +0100
+Message-Id: <20241219-eblanc-ad4630_v1-v2-0-f36e55907bf5@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,134 +83,103 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241219-patch-lenovo-yoga-v3-1-9c4a79068141@mailbox.org>
-X-B4-Tracking: v=1; b=H4sIADNEZGcC/32NQQ6CMBBFr2Jm7Rg61CiuvIdhUeoAkyBDWtJAC
- He3cgCX7yX//Q0iB+EIj9MGgZNE0TFDeT6B793YMco7M1BB1pCpcHKz73HgUZPiqp1Dc7P26gt
- XeCbIuylwK8vRfNWZe4mzhvW4SPSz/2qJ0KCtSnLc+qby9+fHydDoctHQQb3v+xfSqW6etAAAA
- A==
-X-Change-ID: 20241219-patch-lenovo-yoga-17445c0a0ce2
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAHtFZGcC/32NywrCMBBFf0WyNjJ5mLSu/A8pksfUBmoriRRL6
+ b+bFjeCFWZzLpwzE0kYAyZy2k0k4hBS6LsMfL8jrjHdDWnwmQkHLkFxSdG2pnPUeKkEXAdGmQE
+ todRoS0ay9ohYh9eavFSZm5CefRzXDwNb1j+xfECVN0pLx4SVeLZmbIONeHD9fcl/XL3h1t6BY
+ uC4sPDbLTjfcI9OFbUQXNfef7vVPM9vY5bosisBAAA=
+X-Change-ID: 20240624-eblanc-ad4630_v1-1a074097eb91
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Maya Matuszczyk <maccraft123mc@gmail.com>, 
- Anthony Ruhier <aruhier@mailbox.org>
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: Michael Hennerich <michael.hennerich@analog.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Esteban Blanc <eblanc@baylibre.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3018;
- i=aruhier@mailbox.org; h=from:subject:message-id;
- bh=uDmiSiifdArMxe2Gtww5z4PcJOuwqHEtKieS1LFlNuY=;
- b=owGbwMvMwCVW2Nrw47jsO3/G02pJDOkpLn7zm43WOgV3svQqGMy+rPPzzKMNskGXmjrD3AvOT
- K2/bZjYUcrCIMbFICumyFKyP0r4tkrHfYe1y1lg5rAygQxh4OIUgIncrWH4HxTdtC4xnPNX6rUp
- AoVp6XNePJ8Wc3Pu5xWHGR2ZbFP9+hl+MatPvlCitOz1OpmFc00NJ+1xtujYLTBx8qm51c8PCGR
- f5wUA
-X-Developer-Key: i=aruhier@mailbox.org; a=openpgp;
- fpr=F4A378DD8D494AE48EBA554CB00FBC7D08D231D9
-X-Endpoint-Received: by B4 Relay for aruhier@mailbox.org/default with
- auth_id=302
-X-Original-From: Anthony Ruhier <aruhier@mailbox.org>
-Reply-To: aruhier@mailbox.org
 
-From: Anthony Ruhier <aruhier@mailbox.org>
+This is adding DT bindings and a new driver for AD4030, AD4630 and
+AD4632 ADCs.
 
-Add the lid switch for the Lenovo Yoga Slim 7x.
+This work is being done in collaboration with Analog Devices Inc.,
+hence they are listed as maintainers rather than me.
 
-Other x1e80100 laptops use the GPIO pin 92 only, however on the Yoga
-Slim 7x this pin seems to be bridged with the pin 71. By default, the
-pin 71 is set as output-high, which blocks any event on pin 92.
+The code has been tested on a Zedboard with an EVAL-AD4030-24FMCZ,
+an EVAL-AD4630-24FMCZ and an EVAL-AD4630-16FMCZ. As there is no eval
+board for AD4632 the support can't be tested at the moment. The main
+difference is the reduced throughput.
 
-This patch sets the pin 71 as output-disable and sets the LID switch on
-pin 92. This is aligned with how they're configured on Windows:
-    GPIO  71 | 0xf147000 | in | func0 | hi | pull up   | 16 mA
-    GPIO  92 | 0xf15c000 | in | func0 | lo | no pull   |  2 mA
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Tested-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-Signed-off-by: Anthony Ruhier <aruhier@mailbox.org>
+Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
 ---
-Changes in v3:
-- Changes the key order to respect the DTS coding style.
-- Link to v2: https://lore.kernel.org/r/20241219-patch-lenovo-yoga-v2-1-4932aefcb9c8@mailbox.org
+Changes since RFC:
+- Reorder IIO channels to have the common byte channel next to its differential
+  channel.
+- Extended names for IIO channels.
+- Diffrential data channels are marked as differential channels on IIO
+  side.
+- Use get/put_unaligned_be24 for offset and sign extend it.
+- Common byte channel now has 32 realbits. This will be the same as what the
+  FPGA will return, avoiding different channel layouts.
+- Fix missing newline in some error messages.
+- Add comment for the use of spi_sync_transfer instead of
+  spi_write_then_read in ad4030_spi_read.
+- Use DMA safe buffers for regmap operations.
+- Clarify calculation for number of bytes to read from the device during
+  conversion.
+- Formating fixes.
+- Add documentation page.
+- Link to RFC: https://lore.kernel.org/r/20240627-eblanc-ad4630_v1-v1-0-fdc0610c23b0@baylibre.com
 
-Changes in v2:
-- Fixes patch format.
----
- .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 38 ++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Changes since V1:
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-index ca5a808f2c7df66a861a933df407fd4bdaea3fe1..0beec4b0f3cc843d7d508e23d5037140a8d96ef6 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
- #include "x1e80100.dtsi"
-@@ -23,6 +24,21 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&hall_int_n_default>;
-+		pinctrl-names = "default";
-+
-+		switch-lid {
-+			gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			wakeup-source;
-+			wakeup-event-action = <EV_ACT_DEASSERTED>;
-+		};
-+	};
-+
- 	pmic-glink {
- 		compatible = "qcom,x1e80100-pmic-glink",
- 			     "qcom,sm8550-pmic-glink",
-@@ -811,6 +827,28 @@ edp_reg_en: edp-reg-en-state {
- 		bias-disable;
- 	};
- 
-+	hall_int_n_default: hall-int-n-state {
-+		lid-n-pins {
-+			pins = "gpio92";
-+			function = "gpio";
-+			bias-disable;
-+		};
-+
-+		/*
-+		 * Pins 71 and 92 seem to be bridged together (pin 71 and 92 show the same
-+		 * events). By default, pin 71 is set as output-high, which blocks any
-+		 * event on pin 92. Output-disable on pin 71 is necessary to get events on
-+		 * pin 92.
-+		 * The purpose of pin 71 is not yet known; lid-pull is a supposition.
-+		 */
-+		lid-pull-n-pins {
-+			pins = "gpio71";
-+			function = "gpio";
-+			bias-pull-up;
-+			output-disable;
-+		};
-+	};
-+
- 	kybd_default: kybd-default-state {
- 		pins = "gpio67";
- 		function = "gpio";
+The most important change is the use of the RFC's IIO channel layout as it's
+the most space efficient compared to the V1. In the event of a future DMA
+enabled version using the ADI's SPI Engine, the IIO channel layout would be
+different anyway. The V1 layout had a more logical ordering of the IIO
+channels but since we are using labels in this version, there is no reason
+to keep it.
+
+- Use REGMAP instead of REGMAP_SPI in Kconfig
+- Select IIO_TRIGGERED_BUFFER in Kconfig
+- Use layout with the differential channels first then the common byte channels.
+- Flatten rx_data union/struct layout
+- Use get/put_unaligned_beXX
+- Scale read is done without requiring direct mode
+- Grade check is just a warning now
+- Use label instead of extend names
+- Use IIO_VAL_INT_PLUS_NANO for gain values
+- Discard out of bounds values when setting oversampling ratio
+- Merge AD4030_OUT_DATA_MD_(16|24)_DIFF together
+- Use iio_chan_spec channel field to avoid maths in several places
+- Fix typos and formating
+- Link to v1: https://lore.kernel.org/r/20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com
 
 ---
-base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
-change-id: 20241219-patch-lenovo-yoga-17445c0a0ce2
+Esteban Blanc (6):
+      dt-bindings: iio: adc: add ADI ad4030, ad4630 and ad4632
+      iio: adc: ad4030: add driver for ad4030-24
+      iio: adc: ad4030: add averaging support
+      iio: adc: ad4030: add support for ad4630-24 and ad4630-16
+      iio: adc: ad4030: add support for ad4632-16 and ad4632-24
+      docs: iio: ad4030: add documentation
+
+ .../devicetree/bindings/iio/adc/adi,ad4030.yaml    |  111 ++
+ Documentation/iio/ad4030.rst                       |  181 +++
+ Documentation/iio/index.rst                        |    1 +
+ MAINTAINERS                                        |   11 +
+ drivers/iio/adc/Kconfig                            |   14 +
+ drivers/iio/adc/Makefile                           |    1 +
+ drivers/iio/adc/ad4030.c                           | 1233 ++++++++++++++++++++
+ 7 files changed, 1552 insertions(+)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20240624-eblanc-ad4630_v1-1a074097eb91
 
 Best regards,
 -- 
-Anthony Ruhier <aruhier@mailbox.org>
-
+Esteban Blanc <eblanc@baylibre.com>
 
 
