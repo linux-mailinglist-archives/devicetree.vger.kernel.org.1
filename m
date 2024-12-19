@@ -1,127 +1,101 @@
-Return-Path: <devicetree+bounces-132708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 088A09F7DA1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:07:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C2699F7DAA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 104DE188BF3F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:07:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B8267A3504
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E64FA226199;
-	Thu, 19 Dec 2024 15:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tu15QJeH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFEFA226193;
+	Thu, 19 Dec 2024 15:07:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD672225788;
-	Thu, 19 Dec 2024 15:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD3122578E;
+	Thu, 19 Dec 2024 15:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734620837; cv=none; b=gjJM5Jbiy2sKPxoyf7kZNO4lSpPCqdTbStsJT45s/FVXUwNoL4OFgGJrdSwoQNm8e9JScrafepd6I+5mrTKuKai9BGwRfF26M5T5oFGDmT3KqahOyjpt2TaPBzgCz4en5qYmAabqcVCNcb8A37fOvnywi0u3wAD+eVLfrmChq4c=
+	t=1734620876; cv=none; b=tcYAksW7YImk+yUCr9hXOqfRSBkC3sSkGg9pKedFvx448Zc67QzMTiNjLxCYAkoVZzACzFq5c4cXgPjZUM5kDOWnWuhhltrm6JWe5x7b98GcrzvV0cwoH62V0i3SzH/6rYofDgoiyWb0nVTzNLMyejCUvxeqZLpNptr3T22rkL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734620837; c=relaxed/simple;
-	bh=pkEUowd/uM4MPorVImAC2M5988GASgMMRYF0vEx3zM0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sNrFtTJ1NzGjwMbT6TnEZZnY7kdm4xsiFxr6bUfjE1mKgXNniNd6G+NCBj3YwiHaRepkNxyOsw1DO42CM9y7Ea4AZFlgrqwiiWbpwjguoOWNxmHf3/yvxL6ZcEWiQ0G9w5GqRHfgK6/hIsP3IZkjkJ/2bOpbRMDGfZP6yph/v5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tu15QJeH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AB1FC4CED0;
-	Thu, 19 Dec 2024 15:07:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734620837;
-	bh=pkEUowd/uM4MPorVImAC2M5988GASgMMRYF0vEx3zM0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tu15QJeH3+NLP+eD6uY35HNHzqfEC4VZbS2OZDVfbm9IA31pwkAtJR2r1MlXHc9SV
-	 VwmbZMoyD1q4Iy5NVtd/WMJ8HXbsirKxzxR/eb82OQMVpz7CmL5Chjkij7E5g9/n8Z
-	 xAvgwehqCGkwKDqnOuZBY8lSFO5IHU7r3/FXmznA55Idgfrba++2J20bHduZYe4q+P
-	 /p5glJ6zwdpuCf95FXDxM0s+Fm6oP7LOrAGuvt5A/ty7nRVEbzkE7FHJp1oxpKtsE4
-	 zMxwrmfbjSg3lN1QiUCj4zQDLNhXmHMK5XsRR+dlu2xnn409GSWFmdaXeHWHSxHtSP
-	 Td1E6XDLnTDTA==
-Date: Thu, 19 Dec 2024 16:07:09 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Andreas Hindborg <a.hindborg@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	robh@kernel.org, daniel.almeida@collabora.com, saravanak@google.com,
-	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com, paulmck@kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	rcu@vger.kernel.org
-Subject: Re: [PATCH v6 13/16] rust: driver: implement `Adapter`
-Message-ID: <Z2Q2nYIJs2hqU_mo@pollux.localdomain>
-References: <20241212163357.35934-1-dakr@kernel.org>
- <20241212163357.35934-14-dakr@kernel.org>
- <87r064kkq5.fsf@kernel.org>
+	s=arc-20240116; t=1734620876; c=relaxed/simple;
+	bh=LHBS8Mtv3+u2RS8jYvi5qs9reZLQXuXxml2Hb4VhliE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lEEVRw9AzP/cLjV2VVDUwcv9wD+n8/7VbpptD5Q2ux41C7/zLHEgq5Yuk2dAT2XimfNzyPZ3drnbyqag4TLHXZJaz1OkilaMBNyYmBrES8n4EvoLwkZAG3zmK1mSAWkJK3p6J8jcJXuQmLzv00B11Gs5IX263pPP4nsDefLNh9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E64BB1480;
+	Thu, 19 Dec 2024 07:08:15 -0800 (PST)
+Received: from [10.1.196.72] (e119884-lin.cambridge.arm.com [10.1.196.72])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E783D3F528;
+	Thu, 19 Dec 2024 07:07:46 -0800 (PST)
+Message-ID: <5b045230-b45c-4451-a76c-61cd1dc51644@arm.com>
+Date: Thu, 19 Dec 2024 15:07:44 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87r064kkq5.fsf@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/8] dt-bindings: arm: Add Morello compatibility
+To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>
+References: <20241213163221.3626261-1-vincenzo.frascino@arm.com>
+ <20241213163221.3626261-2-vincenzo.frascino@arm.com>
+ <28b22474-1b50-47aa-ad89-87b2270189f2@kernel.org>
+Content-Language: en-US
+From: Vincenzo Frascino <vincenzo.frascino@arm.com>
+In-Reply-To: <28b22474-1b50-47aa-ad89-87b2270189f2@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 19, 2024 at 11:53:06AM +0100, Andreas Hindborg wrote:
-> 
-> Hi Danilo,
-> 
-> Danilo Krummrich <dakr@kernel.org> writes:
-> 
-> > In order to not duplicate code in bus specific implementations (e.g.
-> > platform), implement a generic `driver::Adapter` to represent the
-> > connection of matched drivers and devices.
-> >
-> > Bus specific `Adapter` implementations can simply implement this trait
-> > to inherit generic functionality, such as matching OF or ACPI device IDs
-> > and ID table entries.
-> >
-> > Suggested-by: Rob Herring (Arm) <robh@kernel.org>
-> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> > ---
-> 
-> I get some warnings when applying this patch:
+Hi Krzysztof,
 
-Ah, that's because your're probably having CONFIG_OF=n and some imports are only
-used within `of_id_info`.
+Thank you for your review.
 
-Gonna fix it for CONFIG_OF=n.
+On 14/12/2024 10:08, Krzysztof Kozlowski wrote:
+> On 13/12/2024 17:32, Vincenzo Frascino wrote:
+>> Add compatibility to Arm Morello System Development Platform.
+>>
+>> Cc: Sudeep Holla <sudeep.holla@arm.com>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+>> ---
+>>  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+>> index 8dd6b6446394..ea5a5e179ed1 100644
+>> --- a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+>> @@ -118,6 +118,9 @@ properties:
+>>          items:
+>>            - const: arm,foundation-aarch64
+>>            - const: arm,vexpress
+>> +      - description: Arm Morello System Development Platform
+>> +        items:
+>> +          - const: arm,morello
+> 
+> Why is this only SoC? Your commit msg is supposed to explain any
+> oddities, because on first look that's just clearly wrong.
+> 
 
-> 
-> >   RUSTC L rust/kernel.o
-> > warning: unused import: `device_id`
-> >   --> /home/aeh/src/linux-rust/rnvme-v6.13-rc3/rust/kernel/driver.rs:10:13
-> >    |
-> > 10 |     device, device_id, init::PinInit, of, str::CStr, try_pin_init, types::Opaque, ThisModule,
-> >    |             ^^^^^^^^^
-> >    |
-> >    = note: `#[warn(unused_imports)]` on by default
-> > 
-> > warning: missing documentation for an associated function
-> >    --> /home/aeh/src/linux-rust/rnvme-v6.13-rc3/rust/kernel/driver.rs:158:5
-> >     |
-> > 158 |     fn of_id_info(_dev: &device::Device) -> Option<&'static Self::IdInfo> {
-> >     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> >     |
-> >     = note: requested on the command line with `-W missing-docs`
-> > 
-> > warning: 2 warnings emitted
-> 
-> 
-> Looks like the latter one is from patch 13.
-> 
-> 
+Morello is at the same time the name of an Architecture and of an SoC.
+I will add more information to the commit message in the next iteration.
+
+Could you please provide more information of why you think it is clearly wrong?
+
 > Best regards,
-> Andreas Hindborg
-> 
-> 
+> Krzysztof
+
+-- 
+Regards,
+Vincenzo
+
 
