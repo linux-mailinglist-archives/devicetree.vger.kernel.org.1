@@ -1,175 +1,194 @@
-Return-Path: <devicetree+bounces-132685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F7279F7C1F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:14:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8484B9F7C23
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:16:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4ECD7A0FE0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:14:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C9A818928C0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926822236E4;
-	Thu, 19 Dec 2024 13:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3F613BAF1;
+	Thu, 19 Dec 2024 13:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qSpLqMu8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RJAOnQrT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBD11BC5C
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 13:14:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43E22111;
+	Thu, 19 Dec 2024 13:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734614075; cv=none; b=LMPf1uOHOrvmS9tuG+6h4f1tzB2RryHtgzft/ISGHrRDNTgYO/2tAvX1KfzEhkFPt6yfsHG9kzScTT7GPCwczNtRHmpMDSrFyDHYDTXY2ZM3J0PVIibLpIjeEGeGJYerxwSUa4eNJO14NNeDkodbXIh7/Ih6brPLnq3Bzl6rsbg=
+	t=1734614191; cv=none; b=NTmVcBmJGOMku4twQEvlurrBpnm+ZFLTWWCAZoag/Lhpso6qtTFiok+v82kD4MG+XvroUElxqObRJBWOEzc5FxBn9qs10JdKDYRloIS0wlr21UFltkqd2A3f0ic5wl6FfUe3FOP9FdUj46J233h7V5M5rSc4SjcvzHbPZONjAZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734614075; c=relaxed/simple;
-	bh=GW2/KJjN04w8khdOlzLuwqCJRH59oP9AEwB8kVbiqqQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hTr2hsZBqJ00J8ESBkCZLm5FYXtz3RKCtUqxfZQDnBqPSh8u3bvP6WtVPGM5Q05vi7aYuuFhkT/aIbPatC43IbB5HyQG/sek9kfHJJPFPru5iIiRaqgEpI5ij7CgK3HS73IlUW7sUJgvPVKFMIg+j1KzWsLyxRcXpjgHFZpLNH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qSpLqMu8; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53e384e3481so597792e87.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 05:14:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734614072; x=1735218872; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wDxskw9f45RUSU86hbyjLbbAWKLThzhhQcb+B0wtv7M=;
-        b=qSpLqMu8K4IG49Cq9tmONZQmOXmc0VEzoFZ64LDz+k9QI2YtWIz1sAABaBYnEfggNH
-         65hWNmxd9NQ6LTN6U5pIh3LFMu3F5vLGu8+YhkWLmX/Wbv6gnXj4g13jOWLuyvJf2LtY
-         9ikj031oAUHyY+2phUM94wxKAxSN7DhgZJWc73cpoLsoRck5Bc+BMv7/a//UuAex0CAb
-         HyemzHzxNpW4Y493bW1IAr2QG3dAPjRcAFvIxIbSpMaO6yRp524WaEbzCbt3BUOhSl78
-         aPTXk6Fk+7QHRyVJoY13XDV7eAwHdCCDkW/kHG5hzTdekjNTLCdtaaJKOG0l1hVs0v3D
-         rZMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734614072; x=1735218872;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wDxskw9f45RUSU86hbyjLbbAWKLThzhhQcb+B0wtv7M=;
-        b=YCaUUJwPLcbb2EFFM3VYGpFn5wUjDBVmfBf4NtldtKpXuAAMukmibxJdSfYoiK2YE+
-         m2P25TjOmTqFMROq/n30IJTJu9yeBhmY9wJy9QZA9glifmCcjMZE85fziYSR2U6TX9av
-         Ayf/MoinYvIk+aPH1/g29fHRqYCCeBw7I/RnSmNvvkUNNrBFTyiUsrPazR2ll5tVulTK
-         vDJky9sbItTuBh4tFSD7i9aB5nAtlqKrb6u43mPnflUrqCFmmzf8UNWsQ2Kb6S7VUEbZ
-         D1qOY4cry8YDZbiOw2lJofCAGq6SgvpKK8Lvc6wV6bSUjWWgiyhHq7ThYgRnI9N2cwRA
-         3LJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVy25AIVdFbye0RGyw59VwB/VaYFfxHgZipGOMhtNpc7TpQPcRLr+iY0RWPTh3OKfSbxroKHqirHiRD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyT+Kwas7ZGGqIn6aTNHViOr/h+0SCcQYfGqKx4aDBK/U2FMSo8
-	Z4DFbHtWrlAg7QCK3QNpOSxZ6ExZLn232PeQIaO3jIazHTuo+GYJ9pzEw3SUmRI=
-X-Gm-Gg: ASbGnctx1HVgipyC6uI+sIKAKfNememYJKkHsWtGHFXK/94M0YR/L3cDxfuHyp29DZz
-	AcgAbjcMZC8IwpYvjd55HLHnOADoNVPO1neztfqXpQo4UAXPsjrmt9ftEYVYY9qxIOp6nk2UvVe
-	3EuBYuneBx7mR6l+2Q34t0z3frg6wVfZt4U6kPvATJ7LWX1Fm0HfKfPY6thU6DFciltqYjZwzVo
-	QBjKOgd20IEOyuJNiTuHgQ3XKGIeKRxltFaCNefO9E8me6Mn2leH30F+3kk0LswMrCEmqjkOTaR
-	bkhpSFYKp5OIISO0059Qq5ieB9FmO9ngmB5x
-X-Google-Smtp-Source: AGHT+IF8AisnJgwFnkXU6DRymHTDSjq7pbCiGElXFGrbjnm7/GAEX/1jFZfMnRkeNxN9xRJqY8ZIsg==
-X-Received: by 2002:a05:6512:1281:b0:540:3566:9744 with SMTP id 2adb3069b0e04-541e674c7f4mr2120568e87.21.1734614072005;
-        Thu, 19 Dec 2024 05:14:32 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542238216b5sm168924e87.182.2024.12.19.05.14.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 05:14:30 -0800 (PST)
-Date: Thu, 19 Dec 2024 15:14:28 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Prashanth K <quic_prashk@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, cros-qcom-dts-watchers@chromium.org
-Subject: Re: [PATCH v3 00/19] Disable USB U1/U2 entry for QC targets
-Message-ID: <h4e5jmbglic5aa5e3fyqr3elvso2lotekafqhu7v3h56nbfwf2@qq7lqpptyrai>
-References: <20241218102707.76272-1-quic_prashk@quicinc.com>
- <nvhrhnfls2i4sb6rrlax2dh3hf5thfttrq54bgug2jc7ol26rj@cnk5dtampfes>
- <e15bc97d-eef3-4e49-badf-5b3afbc113d9@quicinc.com>
- <3h2ur3wv3tso3qxv4ws2af4vmvdjdpvhax5smngszaaaotvgku@bo2q5cmhds2z>
- <d6d176ac-e08a-4877-a5de-83e8b070fe47@quicinc.com>
+	s=arc-20240116; t=1734614191; c=relaxed/simple;
+	bh=tbyc0WNAgDJHC4Vl5WmzrFRgY4K0gc/nEmc1D7ounhI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h83trE/69Rcbz2wooXzoaqmBAJESyd/3sHRYMWe4DreA1KzJmVrIS/Mc9oY0E2hsznN0EOJEfYnb32uUALxEY8ddB35BKHqrr+trlrCwLfkJ/mGx0BY+ZKWLtkdA7qXR+wpKOuazTWm2OXj63yL3+nJJJT6PiSNwpj4VnzIzLMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RJAOnQrT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF4D2C4CECE;
+	Thu, 19 Dec 2024 13:16:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734614190;
+	bh=tbyc0WNAgDJHC4Vl5WmzrFRgY4K0gc/nEmc1D7ounhI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RJAOnQrTskuvFoT+XwL2yB5fXxRJtnO7s7gHLhtaEfa+IifQSaXc7IrcEfzPNwoTv
+	 F71JQqEtXKK1V55W2QV+rI9Q76KAmNBrQy+CWi7s1dOuNGVMnpJ89MCKSPRuNOOLwk
+	 7HxbvfIyCAYEYyuF9LQkvr/IIr4zs2isKOz6zxhNAGzO3wcqBre4WflYZq7gILeNLF
+	 sPkgpt2570XrjEPik/vhC+yxyDYTuX9f2Sjh7q02YOa4TNtprp6WlWVnWD1kYaLmGH
+	 /MlGeBguVK6aWWm7OI/ympXqgPymt/haYFiEHcoIMn0bGLXhLDIRCfDkOjU4t2PMZt
+	 n8/Y5267maRQQ==
+Message-ID: <ebc6bc7d-d847-46fe-908c-c618d94e3345@kernel.org>
+Date: Thu, 19 Dec 2024 14:16:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d6d176ac-e08a-4877-a5de-83e8b070fe47@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-binding: clock: cs2600: Add support for the
+ CS2600
+To: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: Paul Handrigan <paulha@opensource.cirrus.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, linux-clk@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ patches@opensource.cirrus.com
+References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
+ <20241219024631.3145377-2-paulha@opensource.cirrus.com>
+ <3glyuu4yg7wbykdsfm33m5evnn7fwg4dbplrkgzcceld3cgu2s@t3xjlhryt2y6>
+ <Z2P9X5b+oTo4Du/n@opensource.cirrus.com>
+ <3c09367c-808b-4414-bf6a-99e0bdaa3a27@kernel.org>
+ <Z2QYooZJ9kFeYzgc@opensource.cirrus.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Z2QYooZJ9kFeYzgc@opensource.cirrus.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 19, 2024 at 09:47:12AM +0530, Prashanth K wrote:
+On 19/12/2024 13:59, Charles Keepax wrote:
+> On Thu, Dec 19, 2024 at 12:39:38PM +0100, Krzysztof Kozlowski wrote:
+>> On 19/12/2024 12:02, Charles Keepax wrote:
+>>> On Thu, Dec 19, 2024 at 09:51:00AM +0100, Krzysztof Kozlowski wrote:
+>>>> On Wed, Dec 18, 2024 at 08:46:30PM -0600, Paul Handrigan wrote:
+>>>>> +/* CS2600 Auxiliary Output */
+>>>>> +#define CS2600_AUX_OUTPUT_FREQ_UNLOCK	0
+>>>>> +#define CS2600_AUX_OUTPUT_PHASE_UNLOCK	1
+>>>>> +#define CS2600_AUX_OUTPUT_NO_CLKIN	2
+>>>>
+>>>> I still don't see why these three are supposed to be bindings. Drop
+>>>> them.
+>>>
+>>> In a binding one would presumably do:
+>>>
+>>> cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
+>>>
+>>> Apologies but I don't quite understand what you mean by the values
+>>> are not used in the binding? The driver reads the property and sets
+>>
+>> There is no user of these defines, so not a binding.
+>>
+>>> the pin to have the appropriate function. Admittedly one could drop
+>>
+>> It's not a proof that this is a binding.
+>>
+>>> the defines and then DTS would just have to do:
+>>>
+>>> cirrus,aux-output-source = <0>;
+>>>
+>>> But that feels a bit less helpful when reading the binding.
+>>
+>> Binding and being helpful are two different things. This to be the
+>> binding, it has to be used as a binding, so some translation layer
+>> between driver and DTS. It must have an user in DTS. I keep repeating
+>> this over and over...
+>>
 > 
+> Apologies, but I not sure I totally follow this, and apologies if
+> you have already explained this are there some docs I can look
+> at?
 > 
-> On 19-12-24 08:37 am, Dmitry Baryshkov wrote:
-> > On Wed, Dec 18, 2024 at 05:18:50PM +0530, Prashanth K wrote:
-> >>
-> >>
-> >> On 18-12-24 04:57 pm, Dmitry Baryshkov wrote:
-> >>> On Wed, Dec 18, 2024 at 03:56:48PM +0530, Prashanth K wrote:
-> >>>> Enabling U1 and U2 power-saving states can lead to stability and
-> >>>> performance issues, particularly for latency-sensitive or high-
-> >>>> throughput applications. These low-power link states are intended
-> >>>> to reduce power consumption by allowing the device to enter partial
-> >>>> low-power modes during idle periods. However, they can sometimes
-> >>>> result in unexpected behavior. Over the years, some of the issues
-> >>>> seen are as follows:
-> >>>>
-> >>>
-> >>> [..]
-> >>>
-> >>>>
-> >>>> This series was earlier started by Krishna Kurapati where he disabled
-> >>>> U1/U2 on some SM targets. I'm extending this to more devices including
-> >>>> Auto, Compute and IOT platforms. On a side note, this quirk has been
-> >>>> already included on some mobile targets like SM8550/8650.
-> >>>
-> >>> Why are you resending previous patches rather than adding another series
-> >>> on top of it?
-> >>>
-> >> Hi Dmitry,
-> >>
-> >> RFC had only one patch with quirks (to disable u1/u2) only for few
-> >> targets (SM8150, 8250, 8350, 8450). It was later decided to split it
-> >> into per-file commits as per the review comments. Hence I clubbed
-> >> Krishna's changes along with few more targets. Let me know if this needs
-> >> to be changed.
-> > 
-> > No, it's fine. The text in the commit message lead me to a wrong
-> > conclusion.
-> > 
-> Ok sure.
-> >>
-> >>>>
-> >>>> Changes in v2:
-> >>>> - Removed the wrongly added quirks from tcsr_mutex node.
-> >>>> - Link to v2: https://lore.kernel.org/all/20241213095237.1409174-1-quic_prashk@quicinc.com/
-> >>>
-> >>> What was changed in v3?
-> >> It was supposed to be "Changes in v3" instead of v2.
-> > 
-> > Then where is a changelog between RFC and v2?
-> > 
-> > Please consider switching to the b4 tool, it handles such issues for
-> > you.
-> > 
-> Ok, Should I send a new version updating the cover letter?
-
-
-For now you can provide data in the reply. Just make sure to include it
-in the cover letter if the patchset gets reposted.
-
-> >>>
-> >>>>
-> >>>> Link to RFC:
-> >>>> https://lore.kernel.org/all/20241107073650.13473-1-quic_kriskura@quicinc.com/#Z31arch:arm64:boot:dts:qcom:sm8250.dtsi
-> >>>>
-> >>>
-> >> Regards,
-> >> Prashanth K
-> >>
-> > 
+> I think you are saying because these defines merely represent the
+> valid values for a device tree property and are not translated
+> into different values you can't put defines for them in the binding
+> header?
 > 
+> So this would not be allowed:
+> 
+>   #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 0
+> 
+>   cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
+> 
+>   device_property_read_u32(dev, "cirrus,aux-output-source", &val);
+>   regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
+> 
+> But this would be fine:
+> 
+>   #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 1
+> 
+>   cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
+> 
+>   device_property_read_u32(dev, "cirrus,aux-output-source", &val);
+>   switch (val) {
+>   case CS2600_AUX_OUTPUT_FREQ_UNLOCK:
+>     regmap_write(regmap, CS2600_OUTPUT_CFG2, 0);
+>   }
+> 
+> And this would also be fine?
+> 
+>   cirrus,aux-output-source = <0>;
+> 
+>   device_property_read_u32(dev, "cirrus,aux-output-source", &val);
+>   regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
+> 
+Yes. If you want to use in DTS user-readable values, then use string.
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
