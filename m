@@ -1,181 +1,264 @@
-Return-Path: <devicetree+bounces-132693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC7D9F7C7F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:36:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FBF09F7CB5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:55:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5DD71891E8B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:36:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 468DA1893795
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E00360890;
-	Thu, 19 Dec 2024 13:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22842253EC;
+	Thu, 19 Dec 2024 13:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="oC7cHeEr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VriswTZz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEA428E37;
-	Thu, 19 Dec 2024 13:36:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89005FDA7
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 13:55:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734615406; cv=none; b=R8sV/IBGt+jZpFtH1HGE8T3pEnVg0RCAEt7dg9rHrdDCvvedcM6FhjByjKAKl5CuDAcUaDPfXn4Hsu158tiWfr83qhraySF7oRCAJkRq3WtGjskVdtkgiO1mrC+Qb2OoyFiKCsgaaKefziWGJ2M2/KYDs+YUe1xnuuf/WFg9ZoU=
+	t=1734616516; cv=none; b=OPxLwP94rqMJaOPxkJgIF+FmEiGnQSeBXXMyQNE+S5FEBY/jCgSW5ypIodf9hbfmfwxXHZgR4bHEkiVC7WdshK1LbydjoO/zkwQwAWAOQlNwo1QSsmTUCmGt/2Qs5EKjRYGCa+INFpA3XzgbE8IvJof9Fr/sfzcH5UQ+nzQ1Tl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734615406; c=relaxed/simple;
-	bh=0IckwFL91Q4fxWJADgq3EYPJ/+DamnhHCBDNi7DH3LI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZopJIZY2H6OM7wVKh48H5FVVl4e6pWVZeGCZA/K2Xd+/jrYR/FuWgfj8n9VlMtB163OLFbboPzcYEWXtsKSuGy/fU9mDaAhbmcozR2wURU3MajnIplc6pBpccHvWEGnOIYXIpe/LPy8fg8auLhU5RgifOUo4dwCvVB30/x+KQUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=oC7cHeEr; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ5Ik67024760;
-	Thu, 19 Dec 2024 07:36:40 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	PODMain02222019; bh=sCD+MGsuo/Z9wyljr5In2Zq1sfIHzX8XYf+WKwDTZjY=; b=
-	oC7cHeErQPMLEYxYEJ6vrXHgnY4nbzC/qKW4qX48wsBB87pg6Xim4vYmYLd1by3s
-	4w+KJhG2b79BY30kI81Y9Qqlok8vf82+zH5+CSB+7CiVVFsdj/T4lYg3gYwgLZge
-	V3LXZUqwtEVrwikPpqR8KIFFImODhsdjpstRJz9S8GXRjMAQrRoNBhgYlBjgd858
-	/l56GHjqgXmYJYeAQqtAgJ39fkSCEeSNdg1GNmZPtd4Z6utN9r+ZCjHjZzUWev0q
-	HZVKAzuHCmNPLGOuh0YBSiZJE5NHO/xASKjVESQ+8oN7NzP+U8NaveX3DCucAFU1
-	FDVLGD845ECvCajecGq4mA==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 43h8a26aur-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 07:36:40 -0600 (CST)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Thu, 19 Dec
- 2024 13:36:38 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
- 15.2.1544.13 via Frontend Transport; Thu, 19 Dec 2024 13:36:38 +0000
-Received: from [198.61.68.170] (EDIN4L06LR3.ad.cirrus.com [198.61.68.170])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 9B2CE820247;
-	Thu, 19 Dec 2024 13:36:37 +0000 (UTC)
-Message-ID: <a23a5e89-0a55-4b17-9911-a12cfa154ef2@opensource.cirrus.com>
-Date: Thu, 19 Dec 2024 13:36:37 +0000
+	s=arc-20240116; t=1734616516; c=relaxed/simple;
+	bh=ANB1CObm+7QH/t4YKy5hJsXI3MV3D9QR+4gNAq+h//E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TKnc0BpEOpW7x5sudQlvZDHnOQidQvwvuFIgWVQyIcL4TlHgqtFr8sgZUHXPfcfEMM06uv57cLXgQaqb0flgPXiiVU2qYLLNtFjvkUrwmc/rxRY36C0E2G4pS9/4UIV9Un6K2JKDCTW7c3SW4YAJ0zmp+U98XKByO681/tfbEB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VriswTZz; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6ef7f8d4f30so6672487b3.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 05:55:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734616513; x=1735221313; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dqjglsHNEzFU9vaMiL5RfRpC+S8PcoDfSHitlHm4rHY=;
+        b=VriswTZz6Oi8xLgfdqiWA5lF2pW1YeVgz72nFaenfAKhL2a4nwChnPdJr5t21mZ0OO
+         z6rupEXdxs2ymP8+qs6QiO60bEIxw9M1lrxLOUVdBZDikoOKQmmfoWb1FUQr6E1H2tA4
+         cAGDHhaDhCTByUrmpySpgZ64vDaXNPS8Ld6FG+YdyGVac9wyH+2WzA47htF03cgfORcL
+         4x2gDKlb3ZojzQ8YolpU/USWj2jOa1u/ggmuzudqtZm2+hqAIhPjGPkUMq27RFTO9ZnL
+         nc+lAxHYjleSnDFW5LMgUNnYSRDktyF3lPQ+CDHjkQZ2pD+zqkc3919KwrqnszrHT+NI
+         b8Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734616513; x=1735221313;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dqjglsHNEzFU9vaMiL5RfRpC+S8PcoDfSHitlHm4rHY=;
+        b=R5pxOh0BW22Sr/dC7N6rfo/iqhbG/zSbozBjH1QcgyRc1yfRA2Bidb0ueJjHT5/5b9
+         yRnJsy+T0OKdQeB45bWUOTKi6um2vjBsL5p7Ehbw0HaLX3qdavgvUHV/F3B4TZT7ucu6
+         q+u/tiZzNtkxxCWD2ru9UdT+juUuSPJ2FqbijS232CThM5IWyDd7zQBzQtLT0Ue/Z9Tb
+         WhEhvul/9RlJ9Os9s2XtQ0sBOMDuZ7uDXGy5QTEyjwxOKyxhshNPmtcxkzQprX6jkAQx
+         QKPmvj15pemWFTeD/QTdfJASjlszx4sD7zULG50NA/LXcGSZ9OBf3kEYax/fnUESBsx0
+         d1oA==
+X-Forwarded-Encrypted: i=1; AJvYcCUJ+7QqGGv8/fqu1gyHbSGcCbsvY2YiVSbuPpLDagTsJxnwcPyUj7VcLrTnBIggy9P5zW0zyZNAoEVh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yykgyk9wtP2YGamiUIdb7yu9FLWZeKPbdCSJg9lnr5CVqH7uUbw
+	RDy6QAxf4apzoUK4tFlo9B49hhbUpdnWGHmDLALxzgK1so3dGB0TEGNtNJ0ZsKfXCq7MCms6azC
+	kaMhqi8bOWdCmhlBM5kbjz6i+Y5ti25Z+lY0DhQ==
+X-Gm-Gg: ASbGnctmIX+g/NpkI60Hu4uSKxpFIEg11EdP6WRGgbGApiPKkN9G759Ps0Ry11OtG9E
+	hAPV4oKxuhil54YmLdviP60uv4nCpn66OiaaV9zs=
+X-Google-Smtp-Source: AGHT+IEXzGoehdhMl3Q9vXxU+XSlMdQxyfyUpu/ioGXoirnSYyBAN5iDxXWzj6qyDS6IkjSMMPWxu5Uknzpw4GSHDrQ=
+X-Received: by 2002:a05:690c:6990:b0:6ef:4fba:8158 with SMTP id
+ 00721157ae682-6f3e19864e9mr35032897b3.0.1734616512781; Thu, 19 Dec 2024
+ 05:55:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-binding: clock: cs2600: Add support for the
- CS2600
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Charles Keepax
-	<ckeepax@opensource.cirrus.com>
-CC: Paul Handrigan <paulha@opensource.cirrus.com>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
-References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
- <20241219024631.3145377-2-paulha@opensource.cirrus.com>
- <3glyuu4yg7wbykdsfm33m5evnn7fwg4dbplrkgzcceld3cgu2s@t3xjlhryt2y6>
- <Z2P9X5b+oTo4Du/n@opensource.cirrus.com>
- <3c09367c-808b-4414-bf6a-99e0bdaa3a27@kernel.org>
- <Z2QYooZJ9kFeYzgc@opensource.cirrus.com>
- <ebc6bc7d-d847-46fe-908c-c618d94e3345@kernel.org>
-Content-Language: en-US
-From: Richard Fitzgerald <rf@opensource.cirrus.com>
-In-Reply-To: <ebc6bc7d-d847-46fe-908c-c618d94e3345@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: jeWE6MR1dbBk8fQEIC2xkxfQZbWNkYpw
-X-Proofpoint-GUID: jeWE6MR1dbBk8fQEIC2xkxfQZbWNkYpw
-X-Proofpoint-Spam-Reason: safe
+References: <20241211143044.9550-1-sebastian.reichel@collabora.com>
+ <20241211143044.9550-4-sebastian.reichel@collabora.com> <CAMdYzYqLq=kSC8fiBapRS_8w0s8PaL9Yd46VgM56YbTEmUG1xA@mail.gmail.com>
+ <xe2wqm4ktutycxj7x4rskz4pn4cfmoci6zcgfxecmvc5bu7cqi@mqxi3pnehqq3>
+ <CAMdYzYpDXHtz_Fq5NJXqTdxVTcJcHkjcjU4-J=zwmE0BWmSsNw@mail.gmail.com>
+ <CAPDyKFoW5-U8hLcU-sryuMSP5-E2_yudFZ2-wH8-s62jn4qJ8A@mail.gmail.com> <v4oh6r5lr6eg3rg2poucotbuoddjllfp63lvmf7vuaawe2spvy@f2gv4nvubiw3>
+In-Reply-To: <v4oh6r5lr6eg3rg2poucotbuoddjllfp63lvmf7vuaawe2spvy@f2gv4nvubiw3>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 19 Dec 2024 14:54:35 +0100
+Message-ID: <CAPDyKFooBYfmWWpy=vw38sw=ANuaadJO4eCRKnq=286vftRPAA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/7] pmdomain: rockchip: forward rockchip_do_pmu_set_power_domain
+ errors
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Mark Brown <broonie@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>, 
+	=?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?= <adrian.larumbe@collabora.com>, 
+	Boris Brezillon <boris.brezillon@collabora.com>, Chen-Yu Tsai <wens@csie.org>, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com, 
+	Dragan Simic <dsimic@manjaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 19/12/24 13:16, Krzysztof Kozlowski wrote:
-> On 19/12/2024 13:59, Charles Keepax wrote:
->> On Thu, Dec 19, 2024 at 12:39:38PM +0100, Krzysztof Kozlowski wrote:
->>> On 19/12/2024 12:02, Charles Keepax wrote:
->>>> On Thu, Dec 19, 2024 at 09:51:00AM +0100, Krzysztof Kozlowski wrote:
->>>>> On Wed, Dec 18, 2024 at 08:46:30PM -0600, Paul Handrigan wrote:
->>>>>> +/* CS2600 Auxiliary Output */
->>>>>> +#define CS2600_AUX_OUTPUT_FREQ_UNLOCK	0
->>>>>> +#define CS2600_AUX_OUTPUT_PHASE_UNLOCK	1
->>>>>> +#define CS2600_AUX_OUTPUT_NO_CLKIN	2
->>>>>
->>>>> I still don't see why these three are supposed to be bindings. Drop
->>>>> them.
->>>>
->>>> In a binding one would presumably do:
->>>>
->>>> cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
->>>>
->>>> Apologies but I don't quite understand what you mean by the values
->>>> are not used in the binding? The driver reads the property and sets
->>>
->>> There is no user of these defines, so not a binding.
->>>
->>>> the pin to have the appropriate function. Admittedly one could drop
->>>
->>> It's not a proof that this is a binding.
->>>
->>>> the defines and then DTS would just have to do:
->>>>
->>>> cirrus,aux-output-source = <0>;
->>>>
->>>> But that feels a bit less helpful when reading the binding.
->>>
->>> Binding and being helpful are two different things. This to be the
->>> binding, it has to be used as a binding, so some translation layer
->>> between driver and DTS. It must have an user in DTS. I keep repeating
->>> this over and over...
->>>
->>
->> Apologies, but I not sure I totally follow this, and apologies if
->> you have already explained this are there some docs I can look
->> at?
->>
->> I think you are saying because these defines merely represent the
->> valid values for a device tree property and are not translated
->> into different values you can't put defines for them in the binding
->> header?
->>
->> So this would not be allowed:
->>
->>    #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 0
->>
->>    cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
->>
->>    device_property_read_u32(dev, "cirrus,aux-output-source", &val);
->>    regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
->>
->> But this would be fine:
->>
->>    #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 1
->>
->>    cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
->>
->>    device_property_read_u32(dev, "cirrus,aux-output-source", &val);
->>    switch (val) {
->>    case CS2600_AUX_OUTPUT_FREQ_UNLOCK:
->>      regmap_write(regmap, CS2600_OUTPUT_CFG2, 0);
->>    }
->>
->> And this would also be fine?
->>
->>    cirrus,aux-output-source = <0>;
->>
->>    device_property_read_u32(dev, "cirrus,aux-output-source", &val);
->>    regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
->>
-> Yes. If you want to use in DTS user-readable values, then use string.
-> 
+On Thu, 12 Dec 2024 at 20:14, Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Hi,
+>
+> On Thu, Dec 12, 2024 at 12:26:42PM +0100, Ulf Hansson wrote:
+> > On Thu, 12 Dec 2024 at 00:11, Peter Geis <pgwipeout@gmail.com> wrote:
+> > > On Wed, Dec 11, 2024 at 3:46=E2=80=AFPM Sebastian Reichel
+> > > <sebastian.reichel@collabora.com> wrote:
+> > > > On Wed, Dec 11, 2024 at 02:53:34PM -0500, Peter Geis wrote:
+> > > > > On Wed, Dec 11, 2024 at 9:32=E2=80=AFAM Sebastian Reichel
+> > > > > <sebastian.reichel@collabora.com> wrote:
+> > > > > >
+> > > > > > Currently rockchip_do_pmu_set_power_domain prints a warning if =
+there
+> > > > > > have been errors turning on the power domain, but it does not r=
+eturn
+> > > > > > any errors and rockchip_pd_power() tries to continue setting up=
+ the
+> > > > > > QOS registers. This usually results in accessing unpowered regi=
+sters,
+> > > > > > which triggers an SError and a full system hang.
+> > > > > >
+> > > > > > This improves the error handling by forwarding the error to avo=
+id
+> > > > > > kernel panics.
+> > > > >
+> > > > > I think we should merge your patch here with my patch for returni=
+ng
+> > > > > errors from rockchip_pmu_set_idle_request [1].
+> > > >
+> > > > I will have a look.
+> > > >
+> > > > > > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> > > > > > Tested-by: Heiko Stuebner <heiko@sntech.de>
+> > > > > > Tested-by: Adrian Larumbe <adrian.larumbe@collabora.com> # On R=
+ock 5B
+> > > > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.c=
+om>
+> > > > > > ---
+> > > > > >  drivers/pmdomain/rockchip/pm-domains.c | 34 +++++++++++++++++-=
+--------
+> > > > > >  1 file changed, 22 insertions(+), 12 deletions(-)
+> > > > > >
+> > > > > > diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/p=
+mdomain/rockchip/pm-domains.c
+> > > > > > index a161ee13c633..8f440f2883db 100644
+> > > > > > --- a/drivers/pmdomain/rockchip/pm-domains.c
+> > > > > > +++ b/drivers/pmdomain/rockchip/pm-domains.c
+> > > > > > @@ -533,16 +533,17 @@ static int rockchip_pmu_domain_mem_reset(=
+struct rockchip_pm_domain *pd)
+> > > > > >         return ret;
+> > > > > >  }
+> > > > > >
+> > > > > > -static void rockchip_do_pmu_set_power_domain(struct rockchip_p=
+m_domain *pd,
+> > > > > > -                                            bool on)
+> > > > > > +static int rockchip_do_pmu_set_power_domain(struct rockchip_pm=
+_domain *pd,
+> > > > > > +                                           bool on)
+> > > > > >  {
+> > > > > >         struct rockchip_pmu *pmu =3D pd->pmu;
+> > > > > >         struct generic_pm_domain *genpd =3D &pd->genpd;
+> > > > > >         u32 pd_pwr_offset =3D pd->info->pwr_offset;
+> > > > > >         bool is_on, is_mem_on =3D false;
+> > > > > > +       int ret;
+> > > > > >
+> > > > > >         if (pd->info->pwr_mask =3D=3D 0)
+> > > > > > -               return;
+> > > > > > +               return 0;
+> > > > > >
+> > > > > >         if (on && pd->info->mem_status_mask)
+> > > > > >                 is_mem_on =3D rockchip_pmu_domain_is_mem_on(pd)=
+;
+> > > > > > @@ -557,16 +558,21 @@ static void rockchip_do_pmu_set_power_dom=
+ain(struct rockchip_pm_domain *pd,
+> > > > > >
+> > > > > >         wmb();
+> > > > > >
+> > > > > > -       if (is_mem_on && rockchip_pmu_domain_mem_reset(pd))
+> > > > > > -               return;
+> > > > > > +       if (is_mem_on) {
+> > > > > > +               ret =3D rockchip_pmu_domain_mem_reset(pd);
+> > > > > > +               if (ret)
+> > > > > > +                       return ret;
+> > > > > > +       }
+> > > > > >
+> > > > > > -       if (readx_poll_timeout_atomic(rockchip_pmu_domain_is_on=
+, pd, is_on,
+> > > > > > -                                     is_on =3D=3D on, 0, 10000=
+)) {
+> > > > > > -               dev_err(pmu->dev,
+> > > > > > -                       "failed to set domain '%s', val=3D%d\n"=
+,
+> > > > > > -                       genpd->name, is_on);
+> > > > > > -               return;
+> > > > > > +       ret =3D readx_poll_timeout_atomic(rockchip_pmu_domain_i=
+s_on, pd, is_on,
+> > > > > > +                                       is_on =3D=3D on, 0, 100=
+00);
+> > > > > > +       if (ret) {
+> > > > > > +               dev_err(pmu->dev, "failed to set domain '%s' %s=
+, val=3D%d\n",
+> > > > > > +                       genpd->name, on ? "on" : "off", is_on);
+> > > > > > +               return ret;
+> > > > > >         }
+> > > > > > +
+> > > > > > +       return 0;
+> > > > > >  }
+> > > > > >
+> > > > > >  static int rockchip_pd_power(struct rockchip_pm_domain *pd, bo=
+ol power_on)
+> > > > > > @@ -592,7 +598,11 @@ static int rockchip_pd_power(struct rockch=
+ip_pm_domain *pd, bool power_on)
+> > > > > >                         rockchip_pmu_set_idle_request(pd, true)=
+;
+> > > > > >                 }
+> > > > > >
+> > > > > > -               rockchip_do_pmu_set_power_domain(pd, power_on);
+> > > > > > +               ret =3D rockchip_do_pmu_set_power_domain(pd, po=
+wer_on);
+> > > > > > +               if (ret < 0) {
+> > > > > > +                       clk_bulk_disable(pd->num_clks, pd->clks=
+);
+> > > > > > +                       return ret;
+> > > > >
+> > > > > Looking at it, we shouldn't return directly from here because the
+> > > > > mutex never gets unlocked.
+> > > >
+> > > > Yes, we should do that after patch 2/7 from this series :)
+> > >
+> > > That's excellent!
+> > >
+> > > >
+> > > > > Instead of repeating clk_bulk_disable and return ret for each fai=
+lure,
+> > > > > we can initialize ret =3D 0, have a goto: out pointing to
+> > > > > clk_bulk_disable, and change return 0 to return ret at the end.
+> > > >
+> > > > Right now there is only a single clk_bulk_disable() in an error
+> > > > case, so I did not use the typical error goto chain. I suppose
+> > > > it makes a lot more sense with proper error handling for the calls
+> > > > to rockchip_pmu_set_idle_request().
+> > >
+> > > If you'd like, I can base my v2 on this patch series with the changes
+> > > I'm suggesting?
+> >
+> > I leave you guys to decide the best way forward, but please keep in
+> > mind that fixes/stable patches are easier managed if they are as
+> > simple as possible and without relying on cleanup patches. Better fix
+> > the problem first, then clean up the code.
+>
+> I had this ordered the other way around initially and as Heiko
+> pointed out that makes things more complicated overall:
+>
+> https://lore.kernel.org/linux-rockchip/4864529.A9s0UXYOmP@diego/
 
-I don't understand this. Why should we have to use a string value for
-something that only needs a simple integer value? Why can't we define
-constants with meaningful names?
+Right, I have no strong opinions, but leave the decision to you.
 
-> Best regards,
-> Krzysztof
+Still, we need confirmation on the regulator-patch (patch1) from Mark,
+before I can apply any of this.
 
+Kind regards
+Uffe
 
