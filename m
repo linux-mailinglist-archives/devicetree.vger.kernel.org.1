@@ -1,153 +1,118 @@
-Return-Path: <devicetree+bounces-132572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 964849F77B8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:51:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E98C59F77C8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:56:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF82218958A2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:51:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41C2216E4D4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0B721D003;
-	Thu, 19 Dec 2024 08:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82A122144B;
+	Thu, 19 Dec 2024 08:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JzdojG2z"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="r0NPr/Ua"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A036FC147;
-	Thu, 19 Dec 2024 08:51:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B45752165E4;
+	Thu, 19 Dec 2024 08:55:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734598264; cv=none; b=NzFsNVWOOGt6qQSA1ncv4EOn7F43Lufi+0yWNSJWW0u2DNskFPa3TOPr5SvSTk6355yAtFTtRTFhCVrUyflAXzSAmam/ISS6t7fZFGHAL1N40VyKPX5PRRFnhUX1Qo+foOxqwCaQ5SbwMcyep9NmAKC5W81YzRsqtSWR6SnZG4s=
+	t=1734598560; cv=none; b=QP/5tPJR6t+RuKIWNhaX701yDXjqmy6BQ45s2IC1SCjekrZYaS2NtD314pc6QfOuxCiKN/LE5TAW5MYi257o0pcHN09WHlA1B5GOLqalPM4tZ5YcLR6LxW9lMa7m1j3WKezdmhJHrJP/ZD+SdXuTH7mzK1qNgRnnNu3t3mUbNNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734598264; c=relaxed/simple;
-	bh=FY7UgRIJY0I7XhQ9puZS3wRTOEvSjmNAtnDfKwmRvoA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JuHqRXBq0lK38NC41ihywPH2BqQG+ub17r9qnjC5r0mAlfLhGe+qvRg+cHyw3BeARHSdgjRZ25Vk6oC8HFUPyI8+DgPgbkWNfKMnH6oKs7HinRQ3Hy39rA9X0HUZkHxZXT50rIJOa3Gp0gjcsFFVMPI0iG/pfuu22tVLqcQzyAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JzdojG2z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53385C4CECE;
-	Thu, 19 Dec 2024 08:51:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734598264;
-	bh=FY7UgRIJY0I7XhQ9puZS3wRTOEvSjmNAtnDfKwmRvoA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JzdojG2zOyxT4yrFvM8wd+m2KjjbC5J3JJ08Nfa00J0ivi73jUZ5BAwosifrRN6Ef
-	 pr1/QaWpeMJf9YcHJwiOD09vrN5Lg9+Bs1ny/SUOzlhwwkXDMb41UKVyHh+YCb7mr2
-	 UArj6uYLs2NM11FcGK8WqlJP6hzJWwyhR051+da9jeJlnTcUX8wbPUNrvcvyrSD22y
-	 tI59t0wda6LsmrcSRBGI6OI941vw3/fKvI6Jbi2hLOzjKKfk5GSF5oMxGvyfqfCmTi
-	 y7gqOi4F5pN7mmSMD2UCfI3omeWK9XCk/NL2vz1qKcPNuEk4sHGtWKGjMdPkT49BFL
-	 62MMTNxyUdoqw==
-Date: Thu, 19 Dec 2024 09:51:00 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Paul Handrigan <paulha@opensource.cirrus.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, linux-clk@vger.kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH v2 1/2] dt-binding: clock: cs2600: Add support for the
- CS2600
-Message-ID: <3glyuu4yg7wbykdsfm33m5evnn7fwg4dbplrkgzcceld3cgu2s@t3xjlhryt2y6>
-References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
- <20241219024631.3145377-2-paulha@opensource.cirrus.com>
+	s=arc-20240116; t=1734598560; c=relaxed/simple;
+	bh=rElFZunKyOeqvSduX0Ih6J3fuL1PExrrcfkAKFsI3ew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XbAy3paaWDUk8fjccJ7JZpwBH1FzbNfMA6aBFIZvwxtUVDTpVbPDwReT05xvercvPzoXHNFIyfcliIrYn47DKRO50G9PFGWL93pNrNNW9/bwpz2dX1YsFS3pYzcqgD9JaJk7ps6LYE7tFVxI+dYFr29khW4xw51rLPB1imwxpo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=r0NPr/Ua; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ74BUE030261;
+	Thu, 19 Dec 2024 09:55:29 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	XSP1i4Lkz0rGvHcNwMWUKOJJ90fMoethAw45GkcmGoY=; b=r0NPr/UaypnBGk7b
+	xeNvFt3gt2Omw8BekjKcBxFdzXl9HdlxmDA12apbeeCi7NswXrZdvwJy9nRda9bQ
+	8dKQGTJjZ6uvEJjfiyRfg39DcwX6uH9DINFDiUvwypbFaJSB9g5EeHyOHSopChOc
+	IQjZhXDxf/yJ5jLoAd6Kv60wPgVzCmTDax2S6qrmxM00L9xxt5iVXNTBq14hRWHw
+	p/V1jhnNVn1yuuV7GQEb1w7ptRVymrpJj6s1GqvMWprDkBF1Gf4f9RcACOawIT6Q
+	rtR6P7n6/6YwvQTm//eJ9XQepRme6k9zpvvEBC4+a3tYiwjgHJWs+2oOWj7skpYx
+	PGe82g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43mes98g5v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Dec 2024 09:55:29 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1062F4004B;
+	Thu, 19 Dec 2024 09:54:29 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B594825F51B;
+	Thu, 19 Dec 2024 09:53:59 +0100 (CET)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 19 Dec
+ 2024 09:53:59 +0100
+Message-ID: <11ea410e-a7df-4f1e-87df-8487b5532229@foss.st.com>
+Date: Thu, 19 Dec 2024 09:53:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241219024631.3145377-2-paulha@opensource.cirrus.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] ARM: dts: stm32: add counter nodes on stm32mp13 and
+ stm32mp15
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <olivier.moysan@foss.st.com>
+References: <20241216153908.3069548-1-fabrice.gasnier@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20241216153908.3069548-1-fabrice.gasnier@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Wed, Dec 18, 2024 at 08:46:30PM -0600, Paul Handrigan wrote:
-> +  clock-output-names:
-> +    maxItems: 3
-> +    description: Names for CLK_OUT, BCLK_OUT and FSYNC_OUT clocks.
-> +
-> +  cirrus,aux-output-source:
-> +    description:
-> +      Specifies the function of the auxiliary output pin
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum:
-> +      - 0 # CS2600_AUX_OUTPUT_FREQ_UNLOCK: Frequency unlock notification
-> +      - 1 # CS2600_AUX_OUTPUT_PHASE_UNLOCK: Phase unlock notification
-> +      - 2 # CS2600_AUX_OUTPUT_NO_CLKIN: CLK_IN is not available
+Hi Fabrice
 
-I still do not understand how "clk_in", which is required, could be not
-available. To me it contradicts itself, but maybe just description is a
-bit incomplete.
+On 12/16/24 16:39, Fabrice Gasnier wrote:
+> Counter driver originally had support limited to quadrature interface
+> and simple counter. It has been improved[1], so populate and enable
+> stm32 timer counter nodes on stm32mp13 and stm32mp15.
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20240307133306.383045-1-fabrice.gasnier@foss.st.com/
+> 
+> Fabrice Gasnier (5):
+>    ARM: dts: stm32: populate all timer counter nodes on stm32mp13
+>    ARM: dts: stm32: populate all timer counter nodes on stm32mp15
+>    ARM: dts: stm32: add counter subnodes on stm32mp135f-dk
+>    ARM: dts: stm32: add counter subnodes on stm32mp157c-ev1
+>    ARM: dts: stm32: add counter subnodes on stm32mp157 dk boards
+> 
+>   arch/arm/boot/dts/st/stm32mp131.dtsi      | 40 ++++++++++++++++++++++
+>   arch/arm/boot/dts/st/stm32mp135f-dk.dts   | 12 +++++++
+>   arch/arm/boot/dts/st/stm32mp151.dtsi      | 41 +++++++++++++++++++++++
+>   arch/arm/boot/dts/st/stm32mp157c-ev1.dts  |  9 +++++
+>   arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi | 18 ++++++++++
+>   5 files changed, 120 insertions(+)
+> 
 
-Anyway, why this cannot be simple string?
+Series applied on stm32-next.
 
-
-> +    default: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/cirrus,cs2600.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      clock-controller@2c {
-> +        #clock-cells = <1>;
-
-Use order from DTS coding style.
-
-> +        compatible = "cirrus,cs2600";
-> +        reg = <0x2c>;
-> +        clocks = <&xtl_clk>, <&sync_clock>;
-> +        clock-names = "xti", "clk_in";
-> +        clock-output-names = "audio_clk_out", "audio_bclk", "audio_lrclk";
-> +        vdd-supply = <&vreg>;
-> +      };
-> +    };
-> diff --git a/include/dt-bindings/clock/cirrus,cs2600.h b/include/dt-bindings/clock/cirrus,cs2600.h
-> new file mode 100644
-> index 000000000000..86065f94a2b2
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/cirrus,cs2600.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +/*
-> + * Copyright (c) 2024 Cirrus Logic, Inc. and
-> + *		      Cirrus Logic International Simiconductor Ltd.
-> + *
-> + * Author: Paul Handrigan <paulha@opensource.cirrus.com>
-> + *
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_CIRRUS_CS2600_H
-> +#define _DT_BINDINGS_CLK_CIRRUS_CS2600_H
-> +
-> +/* CS2600 Clocks  */
-> +#define CS2600_PLL      0 /* Internal clock */
-> +#define CS2600_CLK		1
-> +#define CS2600_BCLK		2
-> +#define CS2600_FSYNC	3
-> +
-> +/* CS2600 Auxiliary Output */
-> +#define CS2600_AUX_OUTPUT_FREQ_UNLOCK	0
-> +#define CS2600_AUX_OUTPUT_PHASE_UNLOCK	1
-> +#define CS2600_AUX_OUTPUT_NO_CLKIN	2
-
-I still don't see why these three are supposed to be bindings. Drop
-them.
-
-Best regards,
-Krzysztof
-
+Thanks!
+Alex
 
