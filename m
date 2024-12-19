@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-132857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC2CB9F8564
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:08:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 890979F8567
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:08:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BAEF16C543
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:08:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B6C5164CBF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:08:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670AE1DC990;
-	Thu, 19 Dec 2024 20:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EB4D1DE3D7;
+	Thu, 19 Dec 2024 20:03:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nGat3Ra6"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XkN41dM7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7233E1D8DF6
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4F431D9A40
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:03:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734638628; cv=none; b=c0NXBTWbLkakbaJCUYVnTQeVtDh6nscFnk7djpCeuCHQnnGsq1HIuM7yYx5z87DmCLOJyo18qqB2gHXGHZr5vO84JvGfNnikt5U4w/UiUIewpbEBW3TAsIRKsyLxECiQ/d913+Ri2A+BqYUDYi4Rrmc57qnOUkN7wap/nywwx0w=
+	t=1734638630; cv=none; b=pmdItzTwTPCzRC4L5nC/JWT1rcsMVaamsCycfnh0NctuEUXR6KHKCXIvw3P1i/OyPKjkohTRQxYINgC8wr8GP3guTSUKo+NPVprNMtNLr/HQVeWEV+jrUDeibinZAmpd5nQ0lQjcro91vWty82YVJoOJmUuIgfhyNMkfXlbNwow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734638628; c=relaxed/simple;
-	bh=r5ZUm8egrlEYPDoShASduxwkqRTGU1fuNRSx+4vY6C0=;
+	s=arc-20240116; t=1734638630; c=relaxed/simple;
+	bh=rrxkM9wENQkQ5BRvp3GV3Fgk68SnQpzcLBWyU5asn80=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=q/BrzgPc+IMU6XoCwywLiwenWrto+U6tWnUPkcdRCWMKsRpnM184swT0Q2qwcU1w8wDNOS4lq/yMlbfbnUw6GaplmZOWQPqyD4Jq2d+oWbVOpykL+DswQXejITBXwuZTVoXmlhTn/eEvhEqE8+4l3Ms6K8j7ncJWFSqaSTchc3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nGat3Ra6; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:To:Cc; b=cUNpxF/8mMcUhW6mwSD3ZnBzi4tfc0ieeqQVVALlsRvkhIKQ9ll/pR1uJzMdFDsRklYUcq83mdfOOwyjdUhSdFoUzvkPWf0GewnMm8F1gi3zxERvlybM2iO0rsaKGsWocMSSSOkkZNkLNCX6wYQxvXJSDGOAeYerLVS4seYeJV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XkN41dM7; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aabbb507998so223872866b.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 12:03:46 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-aa66ead88b3so217783066b.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 12:03:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734638625; x=1735243425; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734638626; x=1735243426; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=P7TbOAl0J1+553i2D7Hvckux88gOuL0DZy0CmTdqsmc=;
-        b=nGat3Ra6sX9drZ64x3kTYbq7yqu3+MCTrWOzKKXiShaXOCBGZyYTofRxMmFZ5lEC5m
-         +xAuIeGj1a9S2vXy1ArIkDmU4Xih/fUUKOyFZpLxmHHc0MpeBi4t3k3s9yWi+i4pGlsV
-         WJwpOS1z3IUBqAqqcqDCx8pRLe8YC5Jx+RF6laOoGKzm9me/HX3bRGc5ARfGLIJm3jn+
-         Upwrjam4uOGzTPGyvLWo+f8rpWh8pa4IkNEcRgMn+0K8y5Nog/I9MrDr7A9479fJpHXl
-         fDB1/Y7u1wfRLhIFUJJo/KDmkRx0ARpSRqC+630ztuGtbHSLAYyk79NA4IIjBkWg3Wjm
-         us5A==
+        bh=uFRZT6aUXjKTbCGojpalElYCZdqSqNPmKq/izywmlN4=;
+        b=XkN41dM7JA/JLLgzIxGsDTsnus9tHcHVWsVeOejbBFtvdumAyj0lqC+F0jZJ6AkK10
+         uNoByreUaE1fcoc+JXNe3XHZrZJyR0TeITZ7yI6/MRmq7pm7eqZIWyUR/kUiBAHAgWS3
+         UftrNfvFWOhexkofc8xOBGtGBODkm1CjHraNWb3TlHI818HK5UrRvdaisCt9o50BE0k2
+         qih+XYEDTByBxrltdA1xkFhoC3e/rOTbP/6+8184A3q+1jCK3TQCJb71OC1iS1lSel7c
+         XMaYUbtLC68B1LaU+bxxt/S2MWfFAjA4lp3ipQpIXxHUmbBg2BQTbsv2nWNmOu0gJnjl
+         LEdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734638625; x=1735243425;
+        d=1e100.net; s=20230601; t=1734638626; x=1735243426;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=P7TbOAl0J1+553i2D7Hvckux88gOuL0DZy0CmTdqsmc=;
-        b=s9nPlMpr+VDiI/T8w+M9KWb6TR0gxoJDNeYa6zir3A4hdwymYet0Txz1LTRlIrDI2B
-         tORgRU+EUqHTVh0F0Yh8fSdd2LDG0kzD19H4huIMzQ/JkZPqY+mMWBJaoNJH1tizdI6a
-         bg6jY9O7w6HHpI7wMRMnbWhJ12e8zEKTUVT0NPelTnSaW8+MHyXxWCp7SMyz95VsjeBR
-         8GZKuNTbPhb94kOZ2RXVSS16qUXTXVYXo9k+TyDkV020/FkB9LZjJncWLJtg0AlBGlQT
-         y5oe3mD7Z+9QyZKWTQwOiW9BoztV1TzkLF3KTEsoBvE53Fj7kVN68fIsTB1HFEMMRp6K
-         Ye9A==
-X-Forwarded-Encrypted: i=1; AJvYcCVfoDNYZFsf0NZc8mDw1mN+g4OhGMJFGRsQ1sd89hilzXNst+lzeFUBa7Sd8UOxw5/cOq1XUSytwlaq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxO63C8cV46L0khCluAXjG/z/jwylu4JeikSpjltiyc4bt5qPV4
-	n4+cq9SixM6cOqGu126TmHWhB9KyyjP1XeTSXC7y8vTRc3ZBfpqiiCmtWHIOh48=
-X-Gm-Gg: ASbGncuZwBD2a1CFQu0e8k0JPrmtPmz6bN+doXyRcPOqwbSxOhamOJA9OrkwlyKXK8M
-	1XaVoU1zmOX/fVwCLmPPhGF1zauIoaDIc9SWML6u8SvvyP4HdBE8QI+q3aM9rX+1iCELfTVMI/y
-	A610epUr5PM/IAOrSfwggh41wpwSmq0rkKhuQF2PLsgt0P6lxzJh0ULGGOZNnQDUpOEVRqjnjNR
-	3rXuV0RirFDLI7T5VvDg8BZ/UyBF0PdIMYihBP7hZ2umghrpw==
-X-Google-Smtp-Source: AGHT+IGUjzXtWgTATIKd5bQdVHnA1/eo1JxNSwRoyL3yoIMsS7bxhfApz1VdWzX+tRETXv44jWlE+Q==
-X-Received: by 2002:a17:907:3e8c:b0:aa6:abe2:5cb8 with SMTP id a640c23a62f3a-aac3366f16emr5355966b.60.1734638624897;
-        Thu, 19 Dec 2024 12:03:44 -0800 (PST)
+        bh=uFRZT6aUXjKTbCGojpalElYCZdqSqNPmKq/izywmlN4=;
+        b=jxupuzAo3jEoBGwk92OzD5Jj8CFyb87ZHY7/Koqm05HIgCZJe0+QyZgCITaY6DLI/l
+         ohXOGWu1Q5IAOCPreP10kTFP5wkXhA11cCj8UZRltUu7MRayofaPiAOF+z/vlRzi4Ayt
+         zO1H9lEGh1xDpyEfY8SZM05Ss2eV2OXYbbz4VZ3eCTE25LmfmmrK3e3U21zu+n3+L1al
+         rFNY8baey2t81q/ha5uLikCIBZcb26cO723nGMYLc1Q0UP3no1OOHPwug6JAdOmXI7Xy
+         wVlvB13knDeGMiVyy6CKcOqLbWQPyVayY1B4C9IovfdDx5lW7NhIKb966PDKGYdM299k
+         yeZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUD1YTt/m4h05hUFBFR6+qp5j3Mv9WWfGbJtsOjkrD/o1VFj4A9nNP5pVz0X3nVvFgh66EsiFc3A2BM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBeW4n/7D/xxE7PHbG9rUp/82le9naWCaEQfSyCTiE+asC2dJ3
+	aY3W8EMNwg0gKZpOyuN+s8jNMDYy6adjnPjIvn6N156ACdxtRCNtJprVXXORnWAqM+cOiJQkvB6
+	n
+X-Gm-Gg: ASbGncs/oqMU8XIavdL7InFYcf+45UyvkOGb/e//dXJo5NIHV2lHbGjg5Y6MurQVcPa
+	NkawM6S/kqXDB33zCCM+Ks0utGr0PtmzDteWCwiNyHy/EZD4OCx0qEWtgtlH8BXdM6M6tiXqZ9X
+	qvmXi88bDgL8Hp/63Jtcd7qVXk+BgcwrCbwckLYYukeArweiFomsqyzg4GN4oRXNqNecx38Eqtm
+	PyLleDjFfpg7ijnj8PNF+6lhtYz+T5MRC1c1MPptAT50OkOag==
+X-Google-Smtp-Source: AGHT+IEUHdNFbmAQ3AycKsc1OqVii/2jmmJDssrKygmG3svwpvJf2fJe2z0LuAZH9swXToIpEPPk/w==
+X-Received: by 2002:a17:907:3d8a:b0:aab:9842:71f9 with SMTP id a640c23a62f3a-aac2ad8c58dmr5033166b.22.1734638626100;
+        Thu, 19 Dec 2024 12:03:46 -0800 (PST)
 Received: from localhost ([2001:4090:a244:82f5:6854:cb:184:5d19])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e8954adsm99935266b.64.2024.12.19.12.03.44
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f066130sm98016366b.183.2024.12.19.12.03.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 12:03:44 -0800 (PST)
+        Thu, 19 Dec 2024 12:03:45 -0800 (PST)
 From: Markus Schneider-Pargmann <msp@baylibre.com>
-Date: Thu, 19 Dec 2024 21:02:12 +0100
-Subject: [PATCH v4 1/4] firmware: ti_sci: Support transfers without
- response
+Date: Thu, 19 Dec 2024 21:02:13 +0100
+Subject: [PATCH v4 2/4] firmware: ti_sci: Partial-IO support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241219-topic-am62-partialio-v6-12-b4-v4-1-1cb8eabd407e@baylibre.com>
+Message-Id: <20241219-topic-am62-partialio-v6-12-b4-v4-2-1cb8eabd407e@baylibre.com>
 References: <20241219-topic-am62-partialio-v6-12-b4-v4-0-1cb8eabd407e@baylibre.com>
 In-Reply-To: <20241219-topic-am62-partialio-v6-12-b4-v4-0-1cb8eabd407e@baylibre.com>
 To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
@@ -96,60 +96,203 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
  Markus Schneider-Pargmann <msp@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1782; i=msp@baylibre.com;
- h=from:subject:message-id; bh=r5ZUm8egrlEYPDoShASduxwkqRTGU1fuNRSx+4vY6C0=;
- b=owGbwMvMwCGm0rPl0RXRdfaMp9WSGNJTarj39TIrHVuh58/m8JBRxrr1qJ5uREmCxJxbSsaiq
- ZwXu7Z0lLIwiHEwyIopstz9sPBdndz1BRHrHjnCzGFlAhnCwMUpABP5tJ6RYZPROX8WkaCDr54v
- ar7xNHraOY+HXUInGqX2H0xJm9e4Upfhn+otye2fkkWaw2PnSnS2aloe7Hv+uyqESeRU+tFuzap
- 8BgA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6234; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=rrxkM9wENQkQ5BRvp3GV3Fgk68SnQpzcLBWyU5asn80=;
+ b=owGbwMvMwCGm0rPl0RXRdfaMp9WSGNJTavhLGkUXvH4w9/vuA289jCQ/sJ2Szn3/On7dpYsBP
+ kVvqmfLdZSyMIhxMMiKKbLc/bDwXZ3c9QUR6x45wsxhZQIZwsDFKQATOTeB4b/D7DXBOyd2G66e
+ lTqxX/OJ36E96avWPr6x1P2PuMkULt3nDP+Uvuq99HbiuvmpKHCn8kOe038VGSSETe6edjm+Skx
+ hzhpOAA==
 X-Developer-Key: i=msp@baylibre.com; a=openpgp;
  fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 
-Check the header flags if an response is expected or not. If it is not
-expected skip the receive part of ti_sci_do_xfer(). This prepares the
-driver for one-way messages as prepare_sleep for Partial-IO.
+Add support for Partial-IO poweroff. In Partial-IO pins of a few
+hardware units can generate system wakeups while DDR memory is not
+powered resulting in a fresh boot of the system. These hardware units in
+the SoC are always powered so that some logic can detect pin activity.
+
+If the system supports Partial-IO as described in the fw capabilities, a
+sys_off handler is added. This sys_off handler decides if the poweroff
+is executed by entering normal poweroff or Partial-IO instead. The
+decision is made by checking if wakeup is enabled on all devices that
+may wake up the SoC from Partial-IO.
+
+The possible wakeup devices are found by checking which devices have the
+"poweroff" in the list of wakeup-source power states. Only devices that
+are actually enabled by the user will be considered as an active wakeup
+source. If none of the wakeup sources is enabled the system will do a
+normal poweroff. If at least one wakeup source is enabled it will
+instead send a TI_SCI_MSG_PREPARE_SLEEP message from the sys_off
+handler. Sending this message will result in an immediate shutdown of
+the system. No execution is expected after this point. The code will
+wait for 5s and do an emergency_restart afterwards if Partial-IO wasn't
+entered at that point.
+
+A short documentation about Partial-IO can be found in section 6.2.4.5
+of the TRM at
+  https://www.ti.com/lit/pdf/spruiv7
 
 Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 ---
- drivers/firmware/ti_sci.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/firmware/ti_sci.c | 115 +++++++++++++++++++++++++++++++++++++++++++++-
+ drivers/firmware/ti_sci.h |   5 ++
+ 2 files changed, 119 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
-index 806a975fff22ae00ecb88587b2c47ba172120bc2..ec0c54935ac0d667323d98b86ac9d288b73be6aa 100644
+index ec0c54935ac0d667323d98b86ac9d288b73be6aa..693ac816f8ba3941a9156bd39524099ca476d712 100644
 --- a/drivers/firmware/ti_sci.c
 +++ b/drivers/firmware/ti_sci.c
-@@ -398,10 +398,13 @@ static void ti_sci_put_one_xfer(struct ti_sci_xfers_info *minfo,
- static inline int ti_sci_do_xfer(struct ti_sci_info *info,
- 				 struct ti_sci_xfer *xfer)
- {
-+	struct ti_sci_msg_hdr *hdr = (struct ti_sci_msg_hdr *)xfer->tx_message.buf;
- 	int ret;
- 	int timeout;
- 	struct device *dev = info->dev;
- 	bool done_state = true;
-+	bool response_expected = !!(hdr->flags & (TI_SCI_FLAG_REQ_ACK_ON_PROCESSED |
-+						  TI_SCI_FLAG_REQ_ACK_ON_RECEIVED));
+@@ -3746,6 +3746,100 @@ static const struct dev_pm_ops ti_sci_pm_ops = {
+ #endif
+ };
  
- 	ret = mbox_send_message(info->chan_tx, &xfer->tx_message);
- 	if (ret < 0)
-@@ -409,6 +412,9 @@ static inline int ti_sci_do_xfer(struct ti_sci_info *info,
- 
- 	ret = 0;
- 
-+	if (!response_expected)
-+		goto no_response;
++/*
++ * Enter Partial-IO, which disables everything including DDR with only a small
++ * logic being active for wakeup.
++ */
++static int tisci_enter_partial_io(struct ti_sci_info *info)
++{
++	struct ti_sci_msg_req_prepare_sleep *req;
++	struct ti_sci_xfer *xfer;
++	struct device *dev = info->dev;
++	int ret = 0;
 +
- 	if (system_state <= SYSTEM_RUNNING) {
- 		/* And we wait for the response. */
- 		timeout = msecs_to_jiffies(info->desc->max_rx_timeout_ms);
-@@ -429,6 +435,7 @@ static inline int ti_sci_do_xfer(struct ti_sci_info *info,
- 		dev_err(dev, "Mbox timedout in resp(caller: %pS)\n",
- 			(void *)_RET_IP_);
++	xfer = ti_sci_get_one_xfer(info, TI_SCI_MSG_PREPARE_SLEEP,
++				   TI_SCI_FLAG_REQ_GENERIC_NORESPONSE,
++				   sizeof(*req), sizeof(struct ti_sci_msg_hdr));
++	if (IS_ERR(xfer)) {
++		ret = PTR_ERR(xfer);
++		dev_err(dev, "Message alloc failed(%d)\n", ret);
++		return ret;
++	}
++
++	req = (struct ti_sci_msg_req_prepare_sleep *)xfer->xfer_buf;
++	req->mode = TISCI_MSG_VALUE_SLEEP_MODE_PARTIAL_IO;
++	req->ctx_lo = 0;
++	req->ctx_hi = 0;
++	req->debug_flags = 0;
++
++	dev_info(dev, "Entering Partial-IO because a powered wakeup-enabled device was found.\n");
++
++	ret = ti_sci_do_xfer(info, xfer);
++	if (ret) {
++		dev_err(dev, "Mbox send fail %d\n", ret);
++		goto fail;
++	}
++
++fail:
++	ti_sci_put_one_xfer(&info->minfo, xfer);
++
++	return ret;
++}
++
++static bool tisci_canuart_wakeup_enabled(struct ti_sci_info *info)
++{
++	struct device_node *wakeup_node = NULL;
++
++	for (wakeup_node = of_find_node_with_property(NULL, "wakeup-source");
++	     wakeup_node;
++	     wakeup_node = of_find_node_with_property(wakeup_node, "wakeup-source")) {
++		struct platform_device *pdev;
++		int index;
++
++		index = of_property_match_string(wakeup_node, "wakeup-source", "poweroff");
++		if (index < 0)
++			continue;
++
++		pdev = of_find_device_by_node(wakeup_node);
++		if (!pdev)
++			break;
++
++		if (device_may_wakeup(&pdev->dev)) {
++			dev_dbg(info->dev, "%pOF identified as wakeup source for Partial-IO\n",
++				wakeup_node);
++			put_device(&pdev->dev);
++			of_node_put(wakeup_node);
++			return true;
++		}
++	}
++
++	return false;
++}
++
++static int tisci_sys_off_handler(struct sys_off_data *data)
++{
++	struct ti_sci_info *info = data->cb_data;
++	bool enter_partial_io = tisci_canuart_wakeup_enabled(info);
++	int ret;
++
++	if (!enter_partial_io)
++		return NOTIFY_DONE;
++
++	ret = tisci_enter_partial_io(info);
++
++	if (ret) {
++		dev_err(info->dev,
++			"Failed to enter Partial-IO %pe, trying to do an emergency restart\n",
++			ERR_PTR(ret));
++		emergency_restart();
++	}
++
++	mdelay(5000);
++	emergency_restart();
++
++	return NOTIFY_DONE;
++}
++
+ /* Description for K2G */
+ static const struct ti_sci_desc ti_sci_pmmc_k2g_desc = {
+ 	.default_host_id = 2,
+@@ -3889,6 +3983,19 @@ static int ti_sci_probe(struct platform_device *pdev)
+ 		goto out;
+ 	}
  
-+no_response:
- 	/*
- 	 * NOTE: we might prefer not to need the mailbox ticker to manage the
- 	 * transfer queueing since the protocol layer queues things by itself.
++	if (info->fw_caps & MSG_FLAG_CAPS_LPM_PARTIAL_IO) {
++		ret = devm_register_sys_off_handler(dev,
++						    SYS_OFF_MODE_POWER_OFF,
++						    SYS_OFF_PRIO_FIRMWARE,
++						    tisci_sys_off_handler,
++						    info);
++		if (ret) {
++			dev_err(dev, "Failed to register sys_off_handler %pe\n",
++				ERR_PTR(ret));
++			goto out;
++		}
++	}
++
+ 	dev_info(dev, "ABI: %d.%d (firmware rev 0x%04x '%s')\n",
+ 		 info->handle.version.abi_major, info->handle.version.abi_minor,
+ 		 info->handle.version.firmware_revision,
+@@ -3898,7 +4005,13 @@ static int ti_sci_probe(struct platform_device *pdev)
+ 	list_add_tail(&info->node, &ti_sci_list);
+ 	mutex_unlock(&ti_sci_list_mutex);
+ 
+-	return of_platform_populate(dev->of_node, NULL, NULL, dev);
++	ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
++	if (ret) {
++		dev_err(dev, "platform_populate failed %pe\n", ERR_PTR(ret));
++		goto out;
++	}
++	return 0;
++
+ out:
+ 	if (!IS_ERR(info->chan_tx))
+ 		mbox_free_channel(info->chan_tx);
+diff --git a/drivers/firmware/ti_sci.h b/drivers/firmware/ti_sci.h
+index 053387d7baa064498e6a208daa7f70040ef87281..dec9e20cbe5da8f6d9393d56bb9a1e73cb083a42 100644
+--- a/drivers/firmware/ti_sci.h
++++ b/drivers/firmware/ti_sci.h
+@@ -592,6 +592,11 @@ struct ti_sci_msg_resp_get_clock_freq {
+ struct ti_sci_msg_req_prepare_sleep {
+ 	struct ti_sci_msg_hdr	hdr;
+ 
++/*
++ * When sending perpare_sleep with MODE_PARTIAL_IO no response will be sent,
++ * no further steps are required.
++ */
++#define TISCI_MSG_VALUE_SLEEP_MODE_PARTIAL_IO				0x03
+ #define TISCI_MSG_VALUE_SLEEP_MODE_DM_MANAGED				0xfd
+ 	u8			mode;
+ 	u32			ctx_lo;
 
 -- 
 2.45.2
