@@ -1,48 +1,79 @@
-Return-Path: <devicetree+bounces-132549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB269F76F7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:13:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F79B9F770B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:15:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5E0B1882360
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:13:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D68B5161C27
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09B4217672;
-	Thu, 19 Dec 2024 08:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D06A216E32;
+	Thu, 19 Dec 2024 08:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kWXIgQkn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YF8O/PCe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7AB1FAC26;
-	Thu, 19 Dec 2024 08:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED351853
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 08:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734595995; cv=none; b=h5YNDbyf5/WqkrJ2BaF8/kgrOB6faiRM4TTeFWL0f/jyZdWGnVtazl8XdYuEebTcsH2FDYYdj36sXFsqegJgds2YynqBY7e3kbLNig8Aei/5Lirs7miEoeqSDOJ41LEOLBP4cR3DG+YaBSyH+nQxcC/5knTr7WC3gB8EIHRH5mk=
+	t=1734596152; cv=none; b=eP9AMtZk9InmnnPrdmbLRfSbaV8UI06dTp0gFx57MDgU+Jx8LH/UlPmcEUG7QjBxEmp6eGBDAznQBRujFYPmF2Q4uk6c0jc7PEQx60Sa6QKGsDG/I7n/TIAf7D1PqCA0/Yuvqcxe3anYdjmsBwg7O1CPK929XAWIst3ql6G6ZZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734595995; c=relaxed/simple;
-	bh=djzTY7PPd0rJb6S6MlPCqmv652dWt/UD2wFzE4GtDkY=;
+	s=arc-20240116; t=1734596152; c=relaxed/simple;
+	bh=1Pa7ZqK8jBJ9o6HDfo2fK6P6onPvi8M5AseR46YM6Rw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kr75h9U+YhrBHN+gN75UaM2ttTiP7H+5EKJ0d/aDeG8ePnWydSmdCLY6NETHpmY4VO91YqMTY7fft8gXz88+C3+muSRL0+/YSljvz+PaDRK7rHYpUJFm8mnNw7fmHv+WwbDaNWh0tWeOnCG+Dqd41+Po8+rI/+lJnHd5NWklw+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kWXIgQkn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E0C7C4CECE;
-	Thu, 19 Dec 2024 08:13:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734595994;
-	bh=djzTY7PPd0rJb6S6MlPCqmv652dWt/UD2wFzE4GtDkY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kWXIgQkn5RoHM6qAaPsovMQokU9goUpFqZfx3HIeuRHXFUuRu7ctt+5vUxgZFJbP6
-	 9LRtO6lAL2hjymHdEvwpgxsDuQlCrcSYRPmAkS8/0An6kjL0vK5zoGr1LlpbEx9tJ3
-	 t/fGnRWyEysqIpRAV/28wvh5nFLZUkX67DtHUUxTTscUWkpODW0RQJxAnfFhaOajZK
-	 I4oj69gXhtrlqLL5ajRn68HG1MmmdaYtvjNCt11q5IGcksY0bkKKUQc6BUGKfix0AH
-	 8Sa5NIZBsZQ4xM70wu4ShZozMrafoWlJ2Un4ntmjd4nLuXH7/7YiNfklEd8b5LydlE
-	 VznEAIqy2niJQ==
-Message-ID: <a319101a-ab6a-40fd-9753-0593641b08f6@kernel.org>
-Date: Thu, 19 Dec 2024 09:13:08 +0100
+	 In-Reply-To:Content-Type; b=lDV5Fqfp9Nfb3O07Gg8pkWqiRI1lFOz6Un4ICvWxbCP+XroqSxliMMmSB7fDVOWtW/G/AbO45isVcRxe39DMtE7KQRAddnaCSIO5bLWpCgFNPwktdSXfw98XeHsxJ+D9GngfV1qCZpwUlWmtSlG0OD7HbfouSr1QL4XcEm8s57c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YF8O/PCe; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43616c12d72so797975e9.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 00:15:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734596148; x=1735200948; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=R8nkKPNVeuZfDWhVmISypup3R+4qveiv6WjtfKLomVM=;
+        b=YF8O/PCelwIgGTUoekeovDGYmBUfJZLYHgzHI8k3vB76+oG/NLCgV901xfQKkBlrsf
+         j54cv2zdUSuYUOgQQt59X22ivV7g5qBjkuWxIMqv23EVRb/FKHWolLgsfwruB1Il25Rc
+         fN9DhT95aJ+UAVZBonm30W4wF3U/kug/7paneADsQeaCmABJrcfld/O2BO2UiUOY2jKP
+         wXUcoC3O1lJDUWXrKCoi/Q9fe35iBX7976nRdZgvSBqLa087qyjhaRTv46ij/Gzyu8me
+         zVrbzliWd9mDFq/s3CDkkHpDG7wk+e80GM60e89lk8euXKu55+fvYs+o6Z2voyEwOajG
+         6zFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734596148; x=1735200948;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R8nkKPNVeuZfDWhVmISypup3R+4qveiv6WjtfKLomVM=;
+        b=nwKSs83onq4HaFF5EV2RwW1lDj04JQ/fxgPNhpGjTAP6Xom+bLrhICelu6HQWNernm
+         jhciXfIIGPE7Bb7j5epA0ot8RaJ2igjPoGLSxjbX/BaKXCVZXkzYfDABQ7vKF5SO5yoQ
+         TZ8S6iltst972w9O1W9aGou3t00mSXTd17pacykoMYV0/3Kd9ssw2harzyR+gM9AMIkl
+         HjEADequT7x10ygeCFRaP1T2Af52Cw6Iucb9IEaFowvvZbu/VaPw+yxOEl6BpA4vMuzZ
+         NhkXWLNHU3vrY1KZxXj3Yma7y3ikCY6Ypa1dYFiMtOknlIvJAwbMrJlDSalQV0kVRlhE
+         J//w==
+X-Forwarded-Encrypted: i=1; AJvYcCXZfvX0yQOIRWPb/glqtzItfvAXzKqtfwkJSs/3s9swoj1URYpijDisgKvbgLOVKRbFLhFvmGHCPstn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyVz9RJ84k+/DXRMary20U+lRfF0HKtJlijmPppDJk+UBN77zf
+	gij2cG0wB7RQmUKh2BTSOyK/FT0ZO+oycrPfY+rNDiYh6ibIXOAp5kG9Ef+K9YE=
+X-Gm-Gg: ASbGncvoLPf9HIgwRoJI3inl+SdswxaRYxpPrRt4bwJuHTaBxmrMc6cKz1mS2SPQF/b
+	QD66SfJYJtcdTg9Z/VRx3v4DL3p9DfDGl9jJhiSGUMs9W9Dt12miOgD+JUN9ZxKNUTwK9cgBLZL
+	cqxj88fmRaB50ZFx2kYg0w8UOiyOr44Jo2WJ8IUtw/2jW5KKtavbIZjZCctGcNxtXj3peM6Xwrg
+	4Q2RH0MdEFm+0WeFUhgaxtDmTfzk9mlus6wddJWfOnB6HfKEwVAzF13yqFryaBOod/bRJ6e5Awc
+X-Google-Smtp-Source: AGHT+IG20Dvi1Dz67p3T/a6LyvS1PnaCCT3e57rdfQ3NKuFlKzLHvMEgrF9Ihf72tkGDhtPx/hc0BQ==
+X-Received: by 2002:a5d:59ab:0:b0:385:ed78:e188 with SMTP id ffacd0b85a97d-388e4d4f60dmr1851988f8f.5.1734596148550;
+        Thu, 19 Dec 2024 00:15:48 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8330e0sm931348f8f.34.2024.12.19.00.15.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Dec 2024 00:15:47 -0800 (PST)
+Message-ID: <2867cd9e-4de9-47dd-b4e8-c88f78b1113d@linaro.org>
+Date: Thu, 19 Dec 2024 09:15:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +81,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] power: supply: gpio-charger: Support to disable
- charger
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Stefan Raufhake <raufhakestefan@gmail.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- s.raufhake@beckhoff.com, s.dirkwinkel@beckhoff.com, s.raufhake@beckhoff.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-References: <4tvn5k6zbsbyc2n3r2jnkrasyfhzfua4cap6ql65yjfmwzu3xw@lx6jmqvzypqv>
- <20241213102825.5509-1-raufhakestefan@gmail.com>
- <8a7948f8-b80e-463d-95ef-2f3461b96896@kernel.org>
- <xmjsvdyp63clrjkef4up7k4cgk5wfyldbij5ycsb7kumitnypi@pz6jpyyz45rv>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/6] dt-bindings: pinctrl: qcom: correct gpio-ranges in
+ examples for qcs615
+To: Lijuan Gao <quic_lijuang@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jingyi Wang <quic_jingyw@quicinc.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241219-correct_gpio_ranges-v2-0-19af8588dbd0@quicinc.com>
+ <20241219-correct_gpio_ranges-v2-1-19af8588dbd0@quicinc.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -73,168 +106,70 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 fv0=
-In-Reply-To: <xmjsvdyp63clrjkef4up7k4cgk5wfyldbij5ycsb7kumitnypi@pz6jpyyz45rv>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20241219-correct_gpio_ranges-v2-1-19af8588dbd0@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2024 01:58, Sebastian Reichel wrote:
-> Hi,
+On 19/12/2024 08:59, Lijuan Gao wrote:
+> Correct the gpio-ranges in the QCS615 TLMM pin controller example to
+> include the UFS_RESET pin, which is expected to be wired to the reset
+> pin of the primary UFS memory. This allows the UFS driver to toggle it.
 > 
-> On Mon, Dec 16, 2024 at 08:30:45AM +0100, Krzysztof Kozlowski wrote:
->> On 13/12/2024 11:28, Stefan Raufhake wrote:
->>> Hallo Krzysztof,
->>>
->>>>
->>>> On Tue, Dec 10, 2024 at 09:23:43AM +0000, Stefan Raufhake wrote:
->>>>> From: Stefan Raufhake <s.raufhake@beckhoff.de>
->>>>>
->>>>> Some GPIO-controlled power supplies can be turned off (charging disabled).
->>>>> Support changing the charging state by setting charge_type to
->>>>> POWER_SUPPLY_CHARGE_TYPE_STANDARD and disabling charging by setting
->>>>> charge_type to POWER_SUPPLY_CHARGE_TYPE_NONE. One potential use case for
->>>>> this is disabling battery backup on a UPS.
->>>>>
->>>>> Signed-off-by: Stefan Raufhake <s.raufhake@beckhoff.de>
->>>>> ---
->>>>>  .../bindings/power/supply/gpio-charger.yaml   |  6 +++
->>>>>  drivers/power/supply/gpio-charger.c           | 43 +++++++++++++++++++
->>>>>  2 files changed, 49 insertions(+)
->>>>>
->>>>
->>>> <form letter>
->>>> This is a friendly reminder during the review process.
->>>>
->>>> It seems my or other reviewer's previous comments were not fully
->>>> addressed. Maybe the feedback got lost between the quotes, maybe you
->>>> just forgot to apply it. Please go back to the previous discussion and
->>>> either implement all requested changes or keep discussing them.
->>>>
->>>> Thank you.
->>>> </form letter>
->>>
->>> Sorry, it seems I made a mistake during the patch review process. 
->>> Should I reply to your email about version 1 of the patch or only about
->>> version 2? I don't want to make another mistake and open two discussions 
->>> at the same time. 
->>> I hope to do better in the future.
->>>
->>>>
->>>>> diff --git a/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml b/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
->>>>> index 89f8e2bcb2d7..084520bfc040 100644
->>>>> --- a/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
->>>>> +++ b/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
->>>>> @@ -44,6 +44,10 @@ properties:
->>>>>      maxItems: 32
->>>>>      description: GPIOs used for current limiting
->>>>>
->>>>> +  enable-gpios:
->>>>> +    maxItems: 1
->>>>> +    description: GPIO is used to enable/disable the charger
->>>>> +
->>>>
->>>> You did not respond to my comments, nothing improved. Without
->>>> explanation based on hardware - which I asked - this is still a no.
->>>>
->>>> Implement and respond fully to previous feedback.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>>
->>>
->>> Sorry, I'm new to this and don't really know what exactly you want for the
->>> hardware description and how best to represent our hardware in dts.
->>> For the gpio power supply, it can basically be any circuit that implements
->>> a "fully charged" GPIO and a "disable ups" GPIO.
->>>
->>> We're using a circuit built around the LTC3350 (super capacitor ups chip):
->>> We use this pin to indicate that our UPS is fully charged (once the input
->>> is gone, it's not fully charged anymore):
->>> PFO (pin 38): Power-Fail Status Output. This open-drain output is pulled
->>> low when a power failure has occurred.
->>>  
->>> For the "disable ups" GPIO, we have some external circuitry around the 
->>> LTC3350. I can't share the schematic, but it boils down to "disable usage
->>> of ups" so that the device shuts down immediately when power is lost.
->>>  
->>> We've implemented this in many of our devices, but first we're looking 
->>> at [1] and [2], which we also want to upstream the device trees for.
->>> [1] https://www.beckhoff.com/en-en/products/ipc/embedded-pcs/cx9240-arm-r-cortex-r-a53/cx9240.html
->>> [2] https://www.beckhoff.com/en-en/products/ipc/embedded-pcs/cx8200-arm-r-cortex-r-a53/cx8200.html
->>>
->>> For the LTC3350, there is a separate driver posted to the Linux kernel
->>> mail list [3] by another devolper that we would like to use in the future,
->>> but without this gpio, our circuit won't work.
->>> [3] https://lore.kernel.org/all/?q=power%3A+supply%3A+ltc3350-charger
->>
->> This does not address my concerns at all. Read the previous comments -
->> you are duplicating existing property.
-> 
-> I think there is some misunderstanding. IIUIC you (Krzysztof) are
-> referencing the following existing gpios property without any
-> prefix?
-> 
->>  gpios:
->>    maxItems: 1
->>    description: GPIO indicating the charger presence
-> 
-> This informs the operating system, that the charger has been plugged
-> in (so the GPIO is an input from operating system point of view).
-> 
-> The work from Stefan is not about presence detection, but
-> controlling if the charging should happen at all (so the GPIO is an
-> output from operating system point of view). So that's two very
-> different things.
+> Fixes: 55c487ea6084 ("dt-bindings: pinctrl: document the QCS615 Top Level Mode Multiplexer")
+> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+> ---
 
-So the gpios and charging status are input GPIOs and this is an output?
-If so this seems right, indeed.
+<form letter>
+This is a friendly reminder during the review process.
 
-> 
-> Technically there is some overlap with another existing property:
-> charge-current-limit-gpios. I suppose a charger device limited to
-> 0 Microampere is effectively off. But I think its fair to have a
-> dedicated GPIO for explicit disabling.
-> 
-> If my analysis of the situation is correct, the documentation seems
-> to be bad. Please suggest better wording :)
-> 
-> P.S.: binding and driver should be send in separate patches.
+It looks like you received a tag and forgot to add it.
 
-Yeah, still all my comments should be addressed.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
