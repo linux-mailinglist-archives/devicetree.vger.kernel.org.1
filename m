@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-132500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1741B9F7581
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:30:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6EC09F7587
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:30:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A2F316F20C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:30:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C56C41896D14
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8B521882D;
-	Thu, 19 Dec 2024 07:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30691217F32;
+	Thu, 19 Dec 2024 07:27:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92ADB218837
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D18921771F
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734593284; cv=none; b=JsJaAE4KPWfI7dN9B9SQWdo6rBoRnq0STkcGag6/IJraM4yQpifyJEREXDH8urEKG6DzOR8s2Ue/vpI1fNHnnSWSgzMXE8VxK8j21SHTDpOf7ThMuvHZqCa7KgRlU6DOIHdCgU68UMjKADo4eZKmAGBkfHeombcF5a1L5Xgy/6c=
+	t=1734593271; cv=none; b=Lsyf3ZYP51E1+QBYlS+2gvu6Rr8RYMMj4qJfarstk2hVBGQEXUaItpp9UiLp7Fjh5d6qjfu3kxQr0Qms8itpwfI9QngeW99CdUvFTNUzvkXkDEKSoVR/IyEkXmmw2rQNk5vzYgkvNehy8oepCMT5XgIL3DA7kAURNn1aRQFhWlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734593284; c=relaxed/simple;
-	bh=4wlXlrcvAoFBD5bO4p74HPRRLLelFGeOYkDT9zVIU6E=;
+	s=arc-20240116; t=1734593271; c=relaxed/simple;
+	bh=NzLPUjzkwg42wr5THSGaKbuEvpnBvbts77TTZwZkb/Q=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eZFQEFmo8CCOCtqlf6/J7Mhue5Lxsdfnbnnl8zDze7YV/4l/lI3F3m3zxv4OVRMemcPbl+oA5i6UkOeiYLM3FDtwb0tMYezwKqqJPjs2ohDhBnITD0lT31H9rU+TCDlXxn8luOGor/+41ukGv6te2z7I/uA+6RFKpnw4MjaFXgE=
+	 In-Reply-To:To:Cc; b=fBocSJsv5aBrpMfFyciyhF37dwTOpAKnuyzW/VZqHRtUtkXKd7Isv/PTU202Afc8K8IZwxk2PR/TmPgwBAtcEBsAhoEDnvKnHFyIsAPLDpHMXveioBBytpaTR5AM1TsiJ8aI/PMVM/CYiFWci3rQ42LPEUXsiOpj4rXEj67tEe4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,22 +33,22 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAwX-000728-N6; Thu, 19 Dec 2024 08:27:33 +0100
+	id 1tOAwX-00072A-My; Thu, 19 Dec 2024 08:27:33 +0100
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAwW-004AP6-1J;
+	id 1tOAwW-004AP7-1O;
 	Thu, 19 Dec 2024 08:27:33 +0100
 Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
 	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAwX-00Gewn-0J;
+	id 1tOAwX-00Gewn-0K;
 	Thu, 19 Dec 2024 08:27:33 +0100
 From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Date: Thu, 19 Dec 2024 08:27:32 +0100
-Subject: [PATCH 1/6] dt-bindings: clock: imx8m: document nominal/overdrive
- properties
+Date: Thu, 19 Dec 2024 08:27:33 +0100
+Subject: [PATCH 2/6] arm64: dts: imx8mp: Add optional nominal drive mode
+ DTSI
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241219-imx8m-clk-v1-1-cfaffa087da6@pengutronix.de>
+Message-Id: <20241219-imx8m-clk-v1-2-cfaffa087da6@pengutronix.de>
 References: <20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de>
 In-Reply-To: <20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de>
 To: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
@@ -78,57 +78,91 @@ X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The imx8m-clock.yaml binding covers the clock controller inside all
-of the i.MX8M Q/M/N/P SoCs. All of them have in common that they
-support two operating modes: nominal and overdrive mode.
+Unlike the i.MX8MM and i.MX8MN SoCs added earlier, the device tree for
+the i.MX8MP configures some clocks at frequencies that are only validated
+for overdrive mode, i.e. when VDD_SOC is 950 mV.
 
-While the overdrive mode allows for higher frequencies for many IPs,
-the nominal mode needs a lower SoC voltage, thereby reducing
-heat generation and power usage.
+Boards may want to run their SoC at the lower voltage of 850 mV though
+to reduce heat generation and power usage. For this to work, clock rates
+need to adhere to the limits of the nominal drive mode.
 
-In any case, software should respect the maximum clock rate limits
-described in the datasheet for each of the two operating modes.
-
-To allow device tree consumers to enforce these limits, document two new
-optional properties that can be used to sanity check the clock tree.
+Add an optional DTSI file which can be included by various boards to run
+in this mode.
 
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 ---
- Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mp-nominal.dtsi | 63 +++++++++++++++++++++++
+ 1 file changed, 63 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-index c643d4a81478..a6ae5257ef53 100644
---- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-@@ -43,6 +43,14 @@ properties:
-       ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-clock.h
-       for the full list of i.MX8M clock IDs.
- 
-+  fsl,nominal-mode:
-+    description: Set if SoC is operated in nominal mode
-+    $ref: /schemas/types.yaml#/definitions/flag
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-nominal.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-nominal.dtsi
+new file mode 100644
+index 000000000000..f9a82a663033
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-nominal.dtsi
+@@ -0,0 +1,63 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2024 Pengutronix, Ahmad Fatoum <kernel@pengutronix.de>
++ */
 +
-+  fsl,overdrive-mode:
-+    description: Set if SoC is operated in overdrive mode
-+    $ref: /schemas/types.yaml#/definitions/flag
++&clk {
++	assigned-clocks = <&clk IMX8MP_CLK_A53_SRC>,
++			  <&clk IMX8MP_CLK_A53_CORE>,
++			  <&clk IMX8MP_SYS_PLL3>,
++			  <&clk IMX8MP_CLK_NOC>,
++			  <&clk IMX8MP_CLK_NOC_IO>,
++			  <&clk IMX8MP_CLK_GIC>;
++	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
++				 <&clk IMX8MP_ARM_PLL_OUT>,
++				 <0>,
++				 <&clk IMX8MP_SYS_PLL1_800M>,
++				 <&clk IMX8MP_SYS_PLL3_OUT>,
++				 <&clk IMX8MP_SYS_PLL1_800M>;
++	assigned-clock-rates = <0>, <0>,
++			       <600000000>,
++			       <800000000>,
++			       <600000000>,
++			       <400000000>;
++};
 +
- required:
-   - compatible
-   - reg
-@@ -95,6 +103,12 @@ allOf:
-             - const: clk_ext2
-             - const: clk_ext3
-             - const: clk_ext4
-+  - if:
-+      required:
-+        - fsl,overdrive-mode
-+    then:
-+      properties:
-+        fsl,nominal-mode: false
- 
- additionalProperties: false
- 
++&pgc_hdmimix {
++	assigned-clocks = <&clk IMX8MP_CLK_HDMI_AXI>,
++			  <&clk IMX8MP_CLK_HDMI_APB>;
++	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
++				 <&clk IMX8MP_SYS_PLL1_133M>;
++	assigned-clock-rates = <400000000>, <133000000>;
++};
++
++&pgc_hsiomix {
++	assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
++	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
++	assigned-clock-rates = <400000000>;
++};
++
++&pgc_gpumix {
++	assigned-clocks = <&clk IMX8MP_CLK_GPU_AXI>,
++			  <&clk IMX8MP_CLK_GPU_AHB>;
++	assigned-clock-parents = <&clk IMX8MP_SYS_PLL3_OUT>,
++				 <&clk IMX8MP_SYS_PLL3_OUT>;
++	assigned-clock-rates = <600000000>, <300000000>;
++};
++
++&media_blk_ctrl {
++	assigned-clocks = <&clk IMX8MP_CLK_MEDIA_AXI>,
++			  <&clk IMX8MP_CLK_MEDIA_APB>,
++			  <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
++			  <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
++			  <&clk IMX8MP_CLK_MEDIA_ISP>,
++			  <&clk IMX8MP_VIDEO_PLL1>;
++	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
++				 <&clk IMX8MP_SYS_PLL1_800M>,
++				 <&clk IMX8MP_VIDEO_PLL1_OUT>,
++				 <&clk IMX8MP_VIDEO_PLL1_OUT>,
++				 <&clk IMX8MP_SYS_PLL1_800M>;
++	assigned-clock-rates = <400000000>, <200000000>,
++			       <0>, <0>, <400000000>,
++			       <1039500000>;
++};
 
 -- 
 2.39.5
