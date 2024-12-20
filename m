@@ -1,133 +1,113 @@
-Return-Path: <devicetree+bounces-132944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCDEC9F8CBB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 07:30:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7432C9F8CD2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 07:39:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DBB31604F4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 06:30:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77C44188D4B3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 06:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7527F156F3F;
-	Fri, 20 Dec 2024 06:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6D018A6B8;
+	Fri, 20 Dec 2024 06:39:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="to/xTtYL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F13253C2F
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 06:30:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D596175D29
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 06:39:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734676246; cv=none; b=DVyRmpBC3Ji7WoMEtRlunWQqDTb/cfDmVonsAXhgtwtkkA2h5RGTOVb/2dka3/pZgIjPNU4tCU/JY/jxFAUp2C9+DfUHfvSs7WfllG3yVEakn8tOhJsyBUDAMvMVTMzQhj9lgc75FWkdw5XtH6vsYM6V6uvoy0b3rGfkr+EwHB4=
+	t=1734676753; cv=none; b=hjBe2pJ+aRyLrEWjjSiHzelaCUGuNbKfq9O/JjYjLfDH7vfZW1CLu7FlJrMH6kpi+szvWTmK1YqwFIUmW0BmuGChqjDSpS4vY+wuD1yvPsy36B/PURvLE/U7zgpmh0tkMvECpG3TyrfKTHlq+MO5kQVfOkzdaGd2a1KeEMVruYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734676246; c=relaxed/simple;
-	bh=IVxmxRsUjPDNci3aW8KFHK8c5c/lUIdBZzb/adO2oZQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rusLU1XkLttQ/HT2UMQXRDedrg+zBQwN3coEsFOrXG6hzANwS8pzsFeKK2rOXfvfGaslYDr8zxaKWZT5YWSPyt3uZQ9yA4+Q81zSTqdbVO9dLntYH50+vfVZrGOh29bvkESGOfMzSt62ZufZyz/Mhfu+ZvXk9UabnSV+BXc1tRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOWWs-0002z3-6O; Fri, 20 Dec 2024 07:30:30 +0100
-Message-ID: <22faf38d-3e64-40b8-9896-dcccefcc181a@pengutronix.de>
-Date: Fri, 20 Dec 2024 07:30:28 +0100
+	s=arc-20240116; t=1734676753; c=relaxed/simple;
+	bh=lYjTLSqGh6cFIpHRIQDXikLVUXa318JWO4n5ZhUJuBY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eA0qPbLNN0BdGPwEormaM7vHYl3YXackoDWKJbXDDg51lJQZl6KqnJydQNsKiC22Fc1ns9HhMpegDaeHEwphA8NZWbNt0AYC44rF58ARx9gUop0v51241OGuwISN3640uyXiFHVVC6K88/obvAiwpsjaw7iClEXT2B9h0nlMlg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=to/xTtYL; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2ee9a780de4so1035761a91.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 22:39:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734676752; x=1735281552; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=DX+s8SYjoLyT8V5e9PoQro4jGwH4zJksKdm1dnt49Ms=;
+        b=to/xTtYLGcQLRMXWZoo0LtxOTMtxiEkPb+ZzPgFwBWAUHePEo34oNLnLhCRYlsQk1i
+         41QsKDXTfwwUzdFwh5vG5Q5qWBYImj1U2dLbZ0H18pDmqI+azTDH8d1vAedqgvoTKiVj
+         30AgEQwpdODJXw0UsuQj5TNgjg3Js2mviiCZzNIfE1639AYfvD1HvxyVUz40pBh/9E04
+         CFIJq4GjyYOG10hzVzKchS5KJNKQ3LquiYQcS1HiG3j24TmyQSnwGfQAIfLNqhaSaRmE
+         yP0Tnm5veZfqezwECbPWIVIxJuHEc1BpVdxUX2vNlTX2b8cz8w4TtZasQuyEKlnBtjfA
+         f2bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734676752; x=1735281552;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DX+s8SYjoLyT8V5e9PoQro4jGwH4zJksKdm1dnt49Ms=;
+        b=dboH6TkB/adH2uXGawsd6ak5+hK7bBTwPujOXhsIeaiMajq+Pxr6Sd33bXgGO4G5nE
+         mXDyZrjmkxGnuL8/MsySvQXunWmXemhbpncz4w2nJRusosAa02K1ohDAqKFunz/qvQ6a
+         jMEkFP4N6jv591fejARcvRopqPjhR845gG6FVKBnF2gUC7biNx1mTz92wbWA5hr0cOxb
+         ToiXGidbKShLN1zYt15ronG7Ub1Kv7ncmzihQnX44+ADMphAhuexgtK3DGUXqf2gUIbT
+         fMPB3SeNugc9vYhgY+x569D1adZxc0PTZdBRrgLfjfLDGvm2GveGZoi1EAedKMIePX4r
+         KB4A==
+X-Forwarded-Encrypted: i=1; AJvYcCX6R75KNBbF/DIEjtEPwxY4wdoL8di6WZyVUUXu3ROCK0VgdTaYz8EA2izycvB2xQYz9zExRAI970X7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGpQIaM/vqi6KjaRNtwi4gNnoa5yoNMnCeQjDp7Q1k5+aFEiJA
+	B+Iu9PF/tsuesRYWmCm8T+fAptf+dexbRVYhV0cpuAqL/ks3+Uw/9xmDpgXHgTo=
+X-Gm-Gg: ASbGncseE8V5stHaOiAlDJ3RzIQnwKAUGkPdacxW+O/SMMwkkrkXfbszW9VAJmv1Iiq
+	yvPqADl7Fox74Uud8Lmp/oIEMAbgbu/LFTnJq2UN58eecGCTxswZdPrsyE8oKnIX6gP5pfBfbIJ
+	lUL9rLg3DvfTSTJ3bfiQYdE58LHl9nGuHXmYFIgqurlLqGwYCk4lSUB8w4Yp2PHijO7Mkl28cGA
+	5mdN+slkr190F6Z4hikxNrzyXDL3HfxCRic7Ul1zxEyZqfuOiILGjBFpPs=
+X-Google-Smtp-Source: AGHT+IHmdLCLVNBWI5BWwKKNhNvlrQ7mUVMYbsTuM9iwdeWGmXMlPqQG8bCfHySO5m70NUB4661tpQ==
+X-Received: by 2002:a17:90b:4ec6:b0:2ee:cdea:ad91 with SMTP id 98e67ed59e1d1-2f452e2e460mr3213467a91.15.1734676751857;
+        Thu, 19 Dec 2024 22:39:11 -0800 (PST)
+Received: from localhost ([122.172.83.132])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f2ed52cf35sm4432536a91.11.2024.12.19.22.39.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Dec 2024 22:39:11 -0800 (PST)
+Date: Fri, 20 Dec 2024 12:09:09 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Asahi Linux <asahi@lists.linux.dev>,
+	Linux ARM Kernel Architecture <linux-arm-kernel@lists.infradead.org>,
+	Linux power management <linux-pm@vger.kernel.org>,
+	Devicetree <devicetree@vger.kernel.org>,
+	LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/7] Apple A7-A11, T2 SoC cpufreq support
+Message-ID: <20241220063909.hrqrch5fy44nywl2@vireshk-i7>
+References: <20241218182834.22334-1-towinchenmi@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] clk: imx8mp: inform CCF of maximum frequency of
- clocks
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Abel Vesa <abel.vesa@linaro.org>,
- Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org, imx@lists.linux.dev,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de>
- <20241219-imx8m-clk-v1-6-cfaffa087da6@pengutronix.de>
- <20241220061805.GC8295@localhost.localdomain>
-Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20241220061805.GC8295@localhost.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241218182834.22334-1-towinchenmi@gmail.com>
 
-Hi Peng,
-
-On 20.12.24 07:18, Peng Fan wrote:
-> On Thu, Dec 19, 2024 at 08:27:37AM +0100, Ahmad Fatoum wrote:
->> The IMX8MPCEC datasheet lists maximum frequencies allowed for different
->> modules. Some of these limits are universal, but some depend on
->> whether the SoC is operating in nominal or in overdrive mode.
->>
->> The imx8mp.dtsi currently assumes overdrive mode and configures some
->> clocks in accordance with this. Boards wishing to make use of nominal
->> mode will need to override some of the clock rates manually.
->>
->> As operating the clocks outside of their allowed range can lead to
->> difficult to debug issues, it makes sense to register the maximum rates
->> allowed in the driver, so the CCF can take them into account.
->>
->> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-
->> +	imx8mp_clocks_apply_constraints(imx8mp_clock_common_constraints);
->> +
->> +	if (of_property_read_bool(np, "fsl,nominal-mode"))
->> +		imx8mp_clocks_apply_constraints(imx8mp_clock_nominal_constraints);
->> +	else if (of_property_read_bool(np, "fsl,overdrive-mode"))
->> +		imx8mp_clocks_apply_constraints(imx8mp_clock_overdrive_constraints);
+On 19-12-24, 02:25, Nick Chan wrote:
+> This series add driver support for cpufreq Apple A7-A11, T2 SoCs.
+> Device Tree nodes will be included in another series.
 > 
-> As I replied, a boot parameter should be better? the mode is a soc level mode,
-> not just clock controller.
-
-I think it's counterproductive for a sanity check to be enforced via kernel
-command-line.
-
-The Skov board shouldn't run with overdrive frequencies and I prefer to encode
-that in the same device tree, where I define the permissible VDD_SOC range
-and configure the initial clock rates.
-
-The mode is selected by the VDD_SOC voltage, but affects AFAICS only the clock
-tree. IMO, the clock controller module is thus a natural place for the property.
-
-Cheers,
-Ahmad
-
+> Changes since v2:
+> - Use NSEC_PER_USEC instead of 1000 as multplier.
 > 
-> Thanks,
-> Peng
-> 
->> +
->> 	err = of_clk_add_hw_provider(np, of_clk_hw_onecell_get, clk_hw_data);
->> 	if (err < 0) {
->> 		dev_err(dev, "failed to register hws for i.MX8MP\n");
->>
->> -- 
->> 2.39.5
->>
-> 
+> v2: https://lore.kernel.org/asahi/20241212070344.3858-1-towinchenmi@gmail.com/T
 
+Applied. Thanks.
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+viresh
 
