@@ -1,119 +1,274 @@
-Return-Path: <devicetree+bounces-133142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14FA09F960B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:10:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA8D9F961B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:13:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AF9B1887308
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:10:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D6A016541A
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:12:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 286B9218AA8;
-	Fri, 20 Dec 2024 16:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 995B4219A9B;
+	Fri, 20 Dec 2024 16:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Dqgar4bG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ob0iH/5c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA77C39FF3;
-	Fri, 20 Dec 2024 16:09:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DBF522301;
+	Fri, 20 Dec 2024 16:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734710999; cv=none; b=L3LTNxbLwYe7HbRIO9ofNWQHcbVDblvgLJ7RTqjJTp/D3+EcAeAXxjNtywyi24cir0vlI9cVuh9NPJv/yP6SrNgSA+Oj2bU9rhn/3qt+VGiLHoocMJqqv/YtBinTFNbh2UwRLniaMyqt2EL5NUH5XADfYY9q9vrA9+a1w3orark=
+	t=1734711168; cv=none; b=ecTer71+tJQMfB7pfK4viHm+dKthrXjxEBT/vJGYkbERTFU7ObRa13FlxESXgETPfFZyisluVEIzBoV30E0a9WPGnG+ci11Hq6pNWc2WARCE1VJJUqQtMDt4RMizt0MzpIxxG/h5ZpdxWolPEsD7V5jnAcM9gx23yu7c4IqIsZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734710999; c=relaxed/simple;
-	bh=fSXg3M/0mE8dVreQMS+uKgIjGxP4AW3NuyFyKIkJBq8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k1FZzPLBqWskIi5M7AZ7okUHu6AOk3tnkMfuY8GetkrM5gMQAoE6Or63OzMeBOnd8AyDGWsK41wzlDZSc9EQ3PFw5xW3mODXrZfw8DLBwOysRZGx/JH68fb5YA9n2CKTesrGL/MYWszU7cXOJJZ9NS7cTl//PoMJZCh346FCk28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Dqgar4bG; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1734710994;
-	bh=fSXg3M/0mE8dVreQMS+uKgIjGxP4AW3NuyFyKIkJBq8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Dqgar4bGC/BLTv2QAKUIkd2BygKD5e+I0N6V1xCCiHT4NcuJf81I2UBZKgl/I2g0I
-	 xe9LrGIyhi7C1/heLBUBDO9Skf77DK2pj7i7SxlKOg/5f9AzGqx52JiQelpf/+sZZ0
-	 u+Ty20bmSfwigAHVjK7LVjv7NACp3IIM0822nozSR64AdZiFSUZm1aDySRvxihfbnZ
-	 5HvHwXOW8O7OYTTygAdQi5vEaXe6sZwaQKCGAkgRPGo8DxDVWt+YsSiZRyabLxHEml
-	 5CCY8Q9OkSZe6yVrutIwuFPJwcNeQez0WcFSAZePgyev6fQJttjdxW1p/RjjvfFnW/
-	 C85XNIPcbjE1g==
-Received: from notapiano (unknown [IPv6:2804:14c:1a9:53ee::1000])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CE71617E37AB;
-	Fri, 20 Dec 2024 17:09:48 +0100 (CET)
-Date: Fri, 20 Dec 2024 13:09:45 -0300
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: patchwork-bot+netdevbpf@kernel.org, Jakub Kicinski <kuba@kernel.org>
-Cc: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado_=3Cnfraprado=40collabora=2Ecom?=@codeaurora.org,
-	=?utf-8?q?=3E?=@codeaurora.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-	biao.huang@mediatek.com, alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
-	bartosz.golaszewski@linaro.org, ahalaney@redhat.com,
-	horms@kernel.org, kernel@collabora.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1734711168; c=relaxed/simple;
+	bh=lT+NvKXEt+wDw547wMVflj0Ny9W3OCFAz0S4kRCQXyc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IRgiNxPi4ZZWcPeNRUgejUTgZWh9fqCGTPmxKxNeAlxViBOZSYnNrPxQ7WkbXKwQwTtrBykt5+9Echd8/WG16KSoa9hpsZ7bBqrBbSjEpdnsU3OWWU5QV7daEPVQ9axEo65xHX/gCcjnkRsN9rXdKXUUaDXhAkOcCNOyt52ojbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ob0iH/5c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D146FC4CECD;
+	Fri, 20 Dec 2024 16:12:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734711168;
+	bh=lT+NvKXEt+wDw547wMVflj0Ny9W3OCFAz0S4kRCQXyc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Ob0iH/5cVvLnjtYxJS4SzD2U2vUzqvczNK6PKb13onAJa1JdH2JcBa/LUx469WpFV
+	 51MkXpZbQLTKD2tXqJUL6GpN9flX2/kHmqo84lzpxZ1HR3rTAvWCy9jLDfSlg0F1CC
+	 F+m1C+/9J6W5eoqZ/ILzoUxCsXolwifQfCcRcG/WJFyxQzBE4a/R/imyrQb6TSOIby
+	 mLerfWhHLLnG9lL5nd9G884coJy3ORjfeVZYgjR2mEb91uFjTXZDoasXy/B9vCsZEb
+	 vxVdLGM3UTr08eUKoNW7QrXuIwg/Ib/i563jV3g2G10T9QTm7I60ihfU7zHumgN6z4
+	 Ds0nAp7zXUkjA==
+Received: by wens.tw (Postfix, from userid 1000)
+	id DBAD15FB8F; Sat, 21 Dec 2024 00:12:44 +0800 (CST)
+From: Chen-Yu Tsai <wens@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Chen-Yu Tsai <wens@csie.org>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 0/2] net: stmmac: dwmac-mediatek: Fix inverted logic
- for mediatek,mac-wol
-Message-ID: <876cf020-e2ba-46a7-b9b2-82dcd47f7a04@notapiano>
-References: <20241109-mediatek-mac-wol-noninverted-v2-0-0e264e213878@collabora.com>
- <173155682775.1476954.16636894744432122406.git-patchwork-notify@kernel.org>
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>
+Subject: [PATCH v2] arm64: dts: rockchip: orangepi-5-plus: Enable USB 3.0 ports
+Date: Sat, 21 Dec 2024 00:12:40 +0800
+Message-Id: <20241220161240.109253-1-wens@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <173155682775.1476954.16636894744432122406.git-patchwork-notify@kernel.org>
 
-On Thu, Nov 14, 2024 at 04:00:27AM +0000, patchwork-bot+netdevbpf@kernel.org wrote:
-> Hello:
-> 
-> This series was applied to netdev/net.git (main)
-> by Jakub Kicinski <kuba@kernel.org>:
-> 
-> On Sat, 09 Nov 2024 10:16:31 -0500 you wrote:
-> > This series fixes the inverted handling of the mediatek,mac-wol DT
-> > property. This was done with backwards compatibility in v1, but based on
-> > the feedback received, all boards should be using MAC WOL, so many of
-> > them were incorrectly described and didn't have working WOL tested
-> > anyway. So for v2, the approach is simpler: just fix the driver handling
-> > and update the DTs to enable MAC WOL everywhere.
-> > 
-> > [...]
-> 
-> Here is the summary with links:
->   - [v2,1/2] net: stmmac: dwmac-mediatek: Fix inverted handling of mediatek,mac-wol
->     https://git.kernel.org/netdev/net/c/a03b18a71c12
->   - [v2,2/2] arm64: dts: mediatek: Set mediatek,mac-wol on DWMAC node for all boards
->     (no matching commit)
+From: Chen-Yu Tsai <wens@csie.org>
 
-Hi Jakub,
+The Orange Pi 5 Plus has its first USB 3.0 interface on the SoC wired
+directly to the USB type C port next to the MASKROM button, and the
+second interface wired to a USB 3.0 hub which in turn is connected to
+the USB 3.0 host ports on the board, as well as the USB 2.0 connection
+on the M.2 E-key slot.
 
-This message implies patch 2 was also applied, but I only see patch 1, not patch
-2 there:
-https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/log/?qt=grep&q=mac-wol
+Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
-So I just wanted to confirm whether it was applied or not. It would be fine for
-patch 2 to be merged through the mediatek tree as is usual if you haven't
-already taken it.
+---
+Changes since v1:
+- Dropped source current to 1.4A
+- Dropped sink current to 10mA, since it doesn't actually sink current
+- Added try-power-role
+- Added newline before endpoint device nodes in USB connector node
+---
+ .../dts/rockchip/rk3588-orangepi-5-plus.dts   | 133 ++++++++++++++++++
+ 1 file changed, 133 insertions(+)
 
-(Also, FYI, I was not CC'ed in this message from the patchwork bot)
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+index 9f5a38b290bf..000d353645a9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+@@ -218,6 +218,18 @@ vcc5v0_sys: regulator-vcc5v0-sys {
+ 		regulator-max-microvolt = <5000000>;
+ 	};
+ 
++	vbus5v0_typec: vbus-typec-regulator {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&typec5v_pwren>;
++		regulator-name = "vbus5v0_typec";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
++
+ 	vcc5v0_usb20: regulator-vcc5v0-usb20 {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+@@ -344,6 +356,57 @@ &i2c6 {
+ 	clock-frequency = <400000>;
+ 	status = "okay";
+ 
++	usbc0: usb-typec@22 {
++		compatible = "fcs,fusb302";
++		reg = <0x22>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PD3 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&usbc0_int>;
++		vbus-supply = <&vbus5v0_typec>;
++		status = "okay";
++
++		usb_con: connector {
++			compatible = "usb-c-connector";
++			label = "USB-C";
++			data-role = "dual";
++			power-role = "dual";
++			source-pdos = <PDO_FIXED(5000, 1400, PDO_FIXED_USB_COMM)>;
++			sink-pdos = <PDO_FIXED(5000, 10, PDO_FIXED_USB_COMM)>;
++			op-sink-microwatt = <10>;
++			try-power-role = "source";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usbc0_hs: endpoint {
++						remote-endpoint = <&usb_host0_xhci_drd_sw>;
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usbc0_ss: endpoint {
++						remote-endpoint = <&usbdp_phy0_typec_ss>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					usbc0_sbu: endpoint {
++						remote-endpoint = <&usbdp_phy0_typec_sbu>;
++					};
++				};
++			};
++		};
++	};
++
+ 	hym8563: rtc@51 {
+ 		compatible = "haoyu,hym8563";
+ 		reg = <0x51>;
+@@ -485,6 +548,16 @@ vcc5v0_usb20_en: vcc5v0-usb20-en {
+ 			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
++
++	usb-typec {
++		usbc0_int: usbc0-int {
++			rockchip,pins = <0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++
++		typec5v_pwren: typec5v-pwren {
++			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
+ };
+ 
+ &pwm2 {
+@@ -876,6 +949,23 @@ &tsadc {
+ 	status = "okay";
+ };
+ 
++&u2phy0 {
++	status = "okay";
++};
++
++&u2phy0_otg {
++	status = "okay";
++};
++
++&u2phy1 {
++	status = "okay";
++};
++
++&u2phy1_otg {
++	phy-supply = <&vcc5v0_sys>;
++	status = "okay";
++};
++
+ &u2phy2 {
+ 	status = "okay";
+ };
+@@ -904,6 +994,33 @@ &uart9 {
+ 	status = "okay";
+ };
+ 
++&usbdp_phy0 {
++	mode-switch;
++	orientation-switch;
++	sbu1-dc-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
++	sbu2-dc-gpios = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
++	status = "okay";
++
++	port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		usbdp_phy0_typec_ss: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&usbc0_ss>;
++		};
++
++		usbdp_phy0_typec_sbu: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&usbc0_sbu>;
++		};
++	};
++};
++
++&usbdp_phy1 {
++	status = "okay";
++};
++
+ &usb_host0_ehci {
+ 	status = "okay";
+ };
+@@ -912,6 +1029,17 @@ &usb_host0_ohci {
+ 	status = "okay";
+ };
+ 
++&usb_host0_xhci {
++	usb-role-switch;
++	status = "okay";
++
++	port {
++		usb_host0_xhci_drd_sw: endpoint {
++			remote-endpoint = <&usbc0_hs>;
++		};
++	};
++};
++
+ &usb_host1_ehci {
+ 	status = "okay";
+ };
+@@ -920,6 +1048,11 @@ &usb_host1_ohci {
+ 	status = "okay";
+ };
+ 
++&usb_host1_xhci {
++	dr_mode = "host";
++	status = "okay";
++};
++
+ &vop_mmu {
+ 	status = "okay";
+ };
+-- 
+2.39.5
 
-Thanks,
-Nícolas
 
