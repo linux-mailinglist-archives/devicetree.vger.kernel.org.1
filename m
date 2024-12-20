@@ -1,139 +1,165 @@
-Return-Path: <devicetree+bounces-133037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCA8A9F912B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:27:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBAA49F9146
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:30:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2F18188F0C0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:27:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FDAB7A3CD2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:30:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90A9A1C5F10;
-	Fri, 20 Dec 2024 11:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7F561C5F31;
+	Fri, 20 Dec 2024 11:28:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oXx5tpzD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533C31ABEB7;
-	Fri, 20 Dec 2024 11:27:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12831C5F1D
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 11:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734694031; cv=none; b=Kk43zsCHaCCD+0cAL4oZrq3CR4IIzfyYqqysMKPY9RCoS7baGd7N4BINAO8IOQKASnnkjD8cg9zz8nrkAtpiesfDYXmALtZMo6t4UeCiVHLd5DFYPpkfhfxJDHgtowWjCP7hpKY/TVhxJUbFdvqUWNF6wlOB8jvwszW7NkM+Igw=
+	t=1734694081; cv=none; b=uE7ITeow83NMA5QB/GLBz5toseS1O+6DXfTuubbSP+bjBPUv3lYUdUB9zjeSeLYAAM6qvY1qDFKiWm5KCv4sgCphjYJswOpbehi8TFefiYWx8siUWhtawhxhjHqs6JVVLnL/K86oGGNG7IHvU/adI4Xm8QV3rPZrIzBGw9513hM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734694031; c=relaxed/simple;
-	bh=z1DjV6lFG0FNp3hEITPnp85ERL6hxq0qTRKArvOILnk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GzWoafqvdAbRbd0IcQElzuJWbGwDjig8Tj1w8f6kKadXrA14PuQjeEo6DQp+VQ/ctqGMTRkll5+prjwYWEHlA3dRtloffkLfCCmpx2km5kl8d57WDn0pea0X0Vv/l49g21CLRC9LYuFajASL3mIhGLpoQt/ZH4aEFBDa1gwAUKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CFB221480;
-	Fri, 20 Dec 2024 03:27:36 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D60593F58B;
-	Fri, 20 Dec 2024 03:27:06 -0800 (PST)
-Date: Fri, 20 Dec 2024 11:27:04 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm,psci: Allow S2RAM power_state
- parameter description
-Message-ID: <Z2VUiHWHgbWowdal@bogus>
-References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
- <20241028-topic-cpu_suspend_s2ram-v1-1-9fdd9a04b75c@oss.qualcomm.com>
- <Z1LQOmEfFy640PjG@bogus>
- <54cc4221-ba5f-4741-9033-20874265ca01@oss.qualcomm.com>
+	s=arc-20240116; t=1734694081; c=relaxed/simple;
+	bh=LW9NlVQ1ZU8KJiqYxsvxHLTdhOAcCb8IC1f+fzi3wEs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=vCRYmfG9LfiPpfEHZB7tr4XktQaG60Z6eXl+1XtKmgNLUYQ6ffdIMgYDtC+tQy29+sIHWZ2MqL9NmDTDaRZBsLZzb665yLjwKfWT6+4lttyfGuvQY0zISbOd5NzmYIvvezww2FQVVRQH6mJJAJvRQpoXQPjejLE4Ak2WxitcWnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oXx5tpzD; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5d3f65844deso2711390a12.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 03:27:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734694078; x=1735298878; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fPnFnnIbk1GG60/+MNJYGRtUv6D7I7cGesD5TPc/BLc=;
+        b=oXx5tpzDNeers9c36bmjF4PqNIqWV5AEYjfuHoe1rn+FVWpDFlfyb6NfzTTTQxn25u
+         IsW/H+PUFKs4KWonMiMLI2TTcXPt9Lo02lW6NWXYf1bHtMo/eTbjseW8N/o7cq4SBnAp
+         M3lfdsU869nDgzHMfMzg1lQEY5LCOY9JhesPWsQB5UE71iZqgc7QFrEsat4rYICxn+tR
+         /x7baDihng3x7zjWWVfHbkDe8vMzhjxzrHjh5jAG8f6SYSl34hPz0uGLgyz3mPo0HHeD
+         HVaCL9TKu+KPCeNNuycZi5j5OuHVUYJA6OzGR2eWcLh4G+zCB4W5+gTm5uClJMTizQcS
+         vgdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734694078; x=1735298878;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fPnFnnIbk1GG60/+MNJYGRtUv6D7I7cGesD5TPc/BLc=;
+        b=Tc01Ks7KBM0t8CcYWhMBAGf20TbsS54E2bCpgaR3Iql+RlocOPOGcub2lJII9Xo6mP
+         BHsGGbvXNBipukIA/sqemV3/n5PG4C8UHJBjbKe0aOT8GlBYvy4C63QXXJoyrmHhuxBj
+         tf0vSYHGcz2BPVLoJW73ACUP2Iz1BZFLyNC3RAY5En2gRScLQX6zFFljp0866O191L+L
+         YHm3+S8hfB7NgOLtbvjYMFAsjQtHiayeA0YnjWrG43rmt++ejELe6pzimLD4Ozt+EXbj
+         MMmCYaldKuopNzFlzNGhJhwqBZQI/EHcH/tvroh89r/Yu3ShhKAhdIvpdDyvxGHdfSBn
+         w7Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCWd9U4W7k90LAJbrdeaQVvAV3PnL8GqOe8/ahgcquNII7WsBAQuK0AQ8wUAK333u8uVv+lCHtifL41T@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxEG0E0KSmLYLXx2TbogGlmzKtJYro2Hp8qyFv+aUwuAB6bP++
+	FXrK97HjQVYmyffyXJvbbwKcvThLxLvEYqSRU2WNpOlCYTQVRQ+ZzXCVEembSeM=
+X-Gm-Gg: ASbGncsxJ/UoYxUmde3oKGNMAuh+9Ok9q85MUCokoLxeDcjPvmtDzJrchtvJs0lZlNN
+	kqef0zewqJWd3PsK1EsV6diqay+7aPa/KkAKr44HGq2nnmtbSt172jQFvqcuy1WE3O1FlyWi8dn
+	IwBR7U9JCdbPS/3UcPc3fd5TfX8M9E5hCzs/C9xUpbqIlerBScENLCQqrjlhJQOB1XwqbVcib7I
+	gxOyl7sYGOqKt8te58kwu3Jb691P9Y9Xr+HeRFVxzVjjtsiFlzbAv2DSrMT0p08/MVcCxGWM9yp
+	V+BC09utn2gwkrY5Al7hWn32Gkz0BV5le5knxgZo
+X-Google-Smtp-Source: AGHT+IFCw5/PULuUVcI3llc0y1a6yuLGG1HzrWtHK+9OOBjslUtrFHMO2qLGPE6HaWlamqpm+rB8Qg==
+X-Received: by 2002:a05:6402:501b:b0:5d0:efaf:fb73 with SMTP id 4fb4d7f45d1cf-5d81ddc3ca4mr1883854a12.15.1734694077983;
+        Fri, 20 Dec 2024 03:27:57 -0800 (PST)
+Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80701abd1sm1632634a12.76.2024.12.20.03.27.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Dec 2024 03:27:57 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v2 0/3] Google Pixel 6 Pro support
+Date: Fri, 20 Dec 2024 11:27:23 +0000
+Message-Id: <20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <54cc4221-ba5f-4741-9033-20874265ca01@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJtUZWcC/3XMQQrCMBCF4auUWRvJRLHBlfeQLmIyTQdqUzISl
+ JK7G7t3+T943wZCmUng2m2QqbBwWlqYQwd+ckskxaE1GG3OaPCioqBGJfxcZxofyjpHVpveUui
+ hndZMI7938D60nlheKX92v+Bv/UsVVFpZ711Ae9LG4m3mxeV0TDnCUGv9AlSb5nWtAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.13.0
 
-On Thu, Dec 19, 2024 at 08:43:27PM +0100, Konrad Dybcio wrote:
-> On 6.12.2024 11:21 AM, Sudeep Holla wrote:
-> > On Mon, Oct 28, 2024 at 03:22:57PM +0100, Konrad Dybcio wrote:
-> >> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> >>
-> >> Certain firmware implementations (such as the ones found on Qualcomm
-> >> SoCs between roughly 2015 and 2023) expose an S3-like S2RAM state
-> >> through the CPU_SUSPEND call, as opposed to exposing PSCIv1.0's
-> >> optional PSCI_SYSTEM_SUSPEND.
-> >>
-> > 
-> > If so, can you elaborate why s2idle doesn't work as an alternative to what
-> > you are hacking up here.
-> 
-> Please see other branches of this thread
-> 
-> > 
-> >> This really doesn't work well with the model where we associate all
-> >> calls to CPU_SUSPEND with cpuidle. Allow specifying a single special
-> >> CPU_SUSPEND suspend parameter value that is to be treated just like
-> >> SYSTEM_SUSPEND from the OS's point of view.
-> >>
-> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/arm/psci.yaml | 6 ++++++
-> >>  1 file changed, 6 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
-> >> index cbb012e217ab80c1ca88e611e7acc06c6d56fad0..a6901878697c8e1ec1cbfed62298ae3bc58f2501 100644
-> >> --- a/Documentation/devicetree/bindings/arm/psci.yaml
-> >> +++ b/Documentation/devicetree/bindings/arm/psci.yaml
-> >> @@ -98,6 +98,12 @@ properties:
-> >>        [1] Kernel documentation - ARM idle states bindings
-> >>          Documentation/devicetree/bindings/cpu/idle-states.yaml
-> >>  
-> >> +  arm,psci-s2ram-param:
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    description:
-> >> +      power_state parameter denoting the S2RAM/S3-like system suspend state
-> > 
-> > Yet another NACK as this corresponds to PSCI SYSTEM_SUSPEND and as per
-> > specification it takes no such parameter. This is just misleading.
-> > 
-> 
-> Yeah PSCI_SYSTEM_SUSPEND takes care of this on platforms that expose it.
->
+Hi,
 
-And those that don't advertise/expose don't get to use, simple.
+This series enables support for Google Pixel 6 Pro.
 
-> DEN0022F.b Section 6.5. recommends that CPU_SUSPEND StateID includes
-> a field for system-level power down states. This binding change only
-> adds a way for DT-based platforms to associate such state with S2RAM
-> suspend.
->
+Since Pixel 6 and Pixel 6 Pro use a different resolution display, we
+now need to add explicit support for it, we can not piggyback on the
+non-Pro version anymore. This means having to separate them into their
+respective DTs, and provide one for each of them.
+There are other differences between the two of course, like battery
+design capacity, etc., but they don't matter at this stage due to
+incomplete upstream support.
 
-Sure, just use the CPU_SUSPEND bindings that already exist. No need to
-define this as some special case if it is exposed as CPU_SUSPEND idle
-state. Not sure why you want to do it differently. I understand the
-need to handle it different in the kernel, but I don't understand to
-define the new bindings for that. Just use the existing bindings for the
-idle states. Again I see no exception for this case.
+* dependency note *
 
-> That may be a bit Linux-specific whereas bindings are supposed to be
-> OS-agnostic, but since we effectively want one PSCI state for deep
-> suspend regardless of the OS, I would think this kind of hint is fine.
->
+Due to the renaming of the gs101-oriole.dts, this series will conflict
+with any pending patches touching the same file. I have therefore based
+this series on top of my USB series from
+https://lore.kernel.org/r/20241203-gs101-phy-lanes-orientation-dts-v2-0-1412783a6b01@linaro.org
+and the patch enabling framebuffer support for Pixel 6 from
+https://lore.kernel.org/r/20241220-gs101-simplefb-oriole-v2-1-df60e566932a@linaro.org
 
-Exactly, that's the reason for not changing this into special case and
-special binding for that special case created.
+* dependency note end *
 
---
-Regards,
-Sudeep
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+Changes in v2:
+- We now have a generic gs101-based Pixel board DT, which can work on
+  any Pixel 6 / 6 Pro / 6a
+- Pixel 6 (Pro) are overlays onto that one.
+  This has the advantage that all boards can be supported without
+  having to have a full copy of the DT for each of them. We still
+  instruct kbuild to create merged DTBs (in addition to the DTBOs) so
+  that existing scripts can keep working while giving the option to
+  just apply the overlay before boot (e.g. by the bootloader).
+- The binding has been updated according to the above points
+- I've changed the simple-framebuffer node to specify the memory via
+  memory-region instead of reg, as that avoids unnecessary duplication
+  (of the size), and it avoids having to specify #address-cells
+  and #size-cells in the chosen node (and duplicating this in the
+  DTSO), which is otherwise necessary to keep dt_binding_check happy
+  and DT validation working in general.
+- sort overriding/extending nodes ordered by label name (Krzysztof)
+- format patches with diff.renames=copies (Krzysztof)
+- dependencies have been updated, see below
+- Link to v1: https://lore.kernel.org/r/20241216-gs101-simplefb-v1-0-8ccad1830281@linaro.org
+
+---
+André Draszik (3):
+      dt-bindings: arm: google: add gs101-raven and generic gs101-pixel
+      arm64: dts: exynos: gs101-pixel: add generic gs101-based Pixel support
+      arm64: dts: exynos: gs101-raven: add new board file
+
+ Documentation/devicetree/bindings/arm/google.yaml  | 18 +++++++++---
+ arch/arm64/boot/dts/exynos/google/Makefile         |  9 ++++--
+ .../arm64/boot/dts/exynos/google/gs101-oriole.dtso | 33 ++++++++++++++++++++++
+ .../{gs101-oriole.dts => gs101-pixel-generic.dts}  | 24 +++++++---------
+ arch/arm64/boot/dts/exynos/google/gs101-raven.dtso | 33 ++++++++++++++++++++++
+ 5 files changed, 97 insertions(+), 20 deletions(-)
+---
+base-commit: f70ddfc479f2fac1d0b744148743c25ce1778f01
+change-id: 20241216-gs101-simplefb-8aae80278ed7
+
+Best regards,
+-- 
+André Draszik <andre.draszik@linaro.org>
+
 
