@@ -1,69 +1,78 @@
-Return-Path: <devicetree+bounces-132996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99F829F8F67
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:55:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 342DF9F8F6E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:56:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A89971895872
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 09:55:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43B5318970C8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 09:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CE41B041E;
-	Fri, 20 Dec 2024 09:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0681B6D0D;
+	Fri, 20 Dec 2024 09:56:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="F60g8FrS"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="VfM+/K4F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57EE4143744;
-	Fri, 20 Dec 2024 09:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F1DA1AA1F4;
+	Fri, 20 Dec 2024 09:56:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734688527; cv=none; b=g55zUJxtUnKrvcVytDdTDKkQcTfk/TeeTTfDn2gEy2CKE84yvUibfnJbDp/H03/JagvU2m0wyNE6UJBGG3cdzDzH8w9oJlZgIZ8mAx085rw6utPSBPKoexQf5ctJAP8BIahVomTcEE81xTEiarGh8opYqoKLLbsH0oWGaKSAMW0=
+	t=1734688602; cv=none; b=MjYxdIH+ok66xYpfvCJq+WsdcdG5ltjiURKMQA8wFFruEyRfiiar9JdKZQh3NBv4rEND/5tZwubGMVVRb0fdbLmdMc6eGHyDlXv1Yz+Rc6gfvvjM6sPP/m35mL5aa1OpqiZGA2n9U7CNHCVFdbxfz98U1arZZ/IlPZbm8fy2RKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734688527; c=relaxed/simple;
-	bh=WHChlDaqD1NI//1QWqx55kv+LHwkC4ZSA3jnQaPpveg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gZfjXuiJ55KAiN2Fn+eKYDIC4D3UPPK1IwQTfvjfmaT9WRRMV1ubPHJwL9rkjz3a04t9yz7bOqzJAOUxS+eMl0aNiFqP7FpaoR9XO2c+07/DueeDzkq5HaRBhr5NEoiv4khGOh3Rm5FLPmgNNNfZm8dpWBh+nrnuh45CqWqmF9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=F60g8FrS; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1734688523;
-	bh=WHChlDaqD1NI//1QWqx55kv+LHwkC4ZSA3jnQaPpveg=;
-	h=From:To:Cc:Subject:Date:From;
-	b=F60g8FrSwNGHo93KDtU2Wv8kJQTXl0IAw0LrR21/41ra8CZ88pfZ/XMFLt1ySfbHn
-	 Dlnm6qVZNslF8Tce3qrXbyvrCJG11WAFjYanwPIDQSIVXSQWCbmolqoLqysr3vUhbl
-	 +pEd62Wksz+i9pXbmQep7NDFs8lul5UQ5EplhzisQnDFKwgsvWm9cWlmR2Y4nyQNQ7
-	 N0G1WDSU/p1MrkG4j2Qn/fzAiXGNXkXHNT7FnVCIR7ttqtaHLsoMR5/yJ6EPX90PvA
-	 BhwwKbnD9nmkyc4hPZS91wyFn2gN3J9zjlRfDBrLgrAEhhXC9A38P3uWau9ZRiay0x
-	 btt5JrhhdSMPQ==
-Received: from beast.luon.net (simons.connected.by.freedominter.net [45.83.240.172])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sjoerd)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2500A17E120F;
-	Fri, 20 Dec 2024 10:55:23 +0100 (CET)
-Received: by beast.luon.net (Postfix, from userid 1000)
-	id CF3F7D8F3932; Fri, 20 Dec 2024 10:55:22 +0100 (CET)
-From: Sjoerd Simons <sjoerd@collabora.com>
-To: linux-mediatek@lists.infradead.org
-Cc: kernel@collabora.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: mediatek: Set ethernet alias for mt8365-evk
-Date: Fri, 20 Dec 2024 10:55:06 +0100
-Message-ID: <20241220095522.2026002-1-sjoerd@collabora.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1734688602; c=relaxed/simple;
+	bh=h70jEkjwDWoMMWgwpubkSckWpzRGWO+REXBSil5mb8E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SPR6Jkq2HMzwUkSfFF/qy23KBHbJmfhg3zDtvadyLHkD09kbZvYZneH5mCTA+t5yUXNrv7d9cZ23DKJn5JqsWUdvLXF6Gwv4z9Y+D6CtphQWs44CqEjuHX2Q+Kl5JJ78fHJRPAwKUPn0HOf2D0/NkDJ7unVvqkGueaoNJCPrv34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=VfM+/K4F; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK8i79w014094;
+	Fri, 20 Dec 2024 04:56:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=g9ViHUI+OVFBQSue1RmTlAEXr1i
+	ICB3gG0ilQTSt53E=; b=VfM+/K4F+VwtTrxMw+l8qrZlqrO/tl3ugmOEmhz9iiq
+	T0aUx7j410FlMDcQI0W1n3RDumjGxIhR/xFkF7wQe0d/wTgIlrOw5UcWQGuHKEm6
+	WrdBYYl5S1l49XtWWKE4M59GtU5dig+bn4FsMIJW1yNM3F/cHUmLtAgUGUvrDiCO
+	/L63RH2zvLshxN3QYdArQESc+yDO1G+6Exe2gWrgLpJdkXDL8hwYK741dE07qWqS
+	D6GWnPF7LtufhGO9F0ibq7A/iIwy849XG02drD/L2mCjswrDPVL5uc/JhaseqYU7
+	cfEvROpMQRDXZd8MwRWeZ+qCmB68OuJwXwj/W53SnAg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 43n5b589by-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 04:56:37 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 4BK9uadH002452
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 20 Dec 2024 04:56:36 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 20 Dec 2024 04:56:36 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 20 Dec 2024 04:56:36 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 20 Dec 2024 04:56:36 -0500
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.133])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4BK9uROU023622;
+	Fri, 20 Dec 2024 04:56:29 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v3 0/3] ADF4371 refin mode and doubler support
+Date: Fri, 20 Dec 2024 11:56:12 +0200
+Message-ID: <20241220095620.4918-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,30 +80,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: n4TAAU2UetccHrS3yXVIVWnMjQ-YukFG
+X-Proofpoint-ORIG-GUID: n4TAAU2UetccHrS3yXVIVWnMjQ-YukFG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 mlxlogscore=962 malwarescore=0 impostorscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 phishscore=0 clxscore=1015 mlxscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412200081
 
-Configure an the ethernet alias to match the ethernet controller (even
-if it's off by default). This allows e.g. u-boot to configure the mac
-address on boot properly
+Add support for selecting between single-ended and differential
+reference input. By default the single-ended input is enabled.
 
-Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
----
+Input frequency boundaries are change based on the mode selected
+(single-ended/differential).
 
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 1 +
- 1 file changed, 1 insertion(+)
+Add support for the reference doubler. This feature is enabled
+automatically to improve noise performance if the input frequency
+is within the accepted range.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index 7d90112a7e27..44c61094c4d5 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -21,6 +21,7 @@ / {
- 
- 	aliases {
- 		serial0 = &uart0;
-+		ethernet = &ethernet;
- 	};
- 
- 	chosen {
+Antoniu Miclaus (3):
+  dt-bindings: iio: adf4371: add refin mode
+  iio: frequency: adf4371: add refin mode
+  iio: frequency: adf4371: add ref doubler
+
+ .../bindings/iio/frequency/adf4371.yaml       |  7 ++++
+ drivers/iio/frequency/adf4371.c               | 38 ++++++++++++++++++-
+ 2 files changed, 43 insertions(+), 2 deletions(-)
+
 -- 
-2.45.2
+2.47.1
 
 
