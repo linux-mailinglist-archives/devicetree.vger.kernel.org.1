@@ -1,61 +1,52 @@
-Return-Path: <devicetree+bounces-133112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CA0B9F93ED
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:07:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 965009F941E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:19:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DC721883EF0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:04:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 406177A25A4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 577F0215716;
-	Fri, 20 Dec 2024 14:04:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC8321C5488;
+	Fri, 20 Dec 2024 14:19:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D821C5488;
-	Fri, 20 Dec 2024 14:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C668CA4E;
+	Fri, 20 Dec 2024 14:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734703455; cv=none; b=VJDkiCK17qalCSetv4cnF+HQqNRr3L18evq3TDdKjLNUnnVxWJpSD+ynzO+XOTaaQfF04EeVGLHLQJExANsYfgyvhK7qXehp/ILoUjqK5/BkwqbeU3Mo5d929vCSY3zqhd1HidloLWrFl/yfHvlQDbakBgNUHTGgtyeKirR+hAc=
+	t=1734704380; cv=none; b=HGsoti9qyLHb0tD/iV3li3TaSHbIVxfGRJ0DDhOi69LqhNH22T7M22uIiHkSZ8bPFlPH6CkJXiPLvV95xIEVmZQrBly+InXsOOHrqMWjcQe5Uo0Pw0EV1OYEwsEGZLhO2foWdF5gmicVPe75KnSxAVJ5nU6NGnfMVbLSe0OMtV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734703455; c=relaxed/simple;
-	bh=FK7hFF0fYPrGrgkACLya+718ufRWscu+DBF1qzLiJGs=;
+	s=arc-20240116; t=1734704380; c=relaxed/simple;
+	bh=ASLUFO5R2CgGQPwQ8a6jkmVEdXgBx+P8ojf6e49k7bw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=skOWv7bOH+QaQ+vRakJLlkWDPtA4DzU3IenTx+fmIc6oJKtr0CDSTUEP8+wzJGpl+IR0YNf2lhVsBkdTSzvrWsb1ACvhQL0VH1DxHIGYJbeDkRZKikhEffBZs0pKy57rs6kjkHqiBpwi1AavvuHUCBwxcz8Wl2OvJRWLSDGwCnE=
+	 Content-Type:Content-Disposition:In-Reply-To; b=JtpXpuSpl/gpxOqpkpAe3HK+lOdI20OGuj/7hrsxkU0732dwab9GPkzrtrvs7CHhgpfOZDkUOihVEyZ5pMoNYb0pQPYSjEDqBk4fie39GMaAfpduyYW0pZAioWpsXxWjpp8jnaNsV3I3WBlr6MCBkG1VewNkffyog3inx+rxb7U=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 183AE1480;
-	Fri, 20 Dec 2024 06:04:41 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 033D51480;
+	Fri, 20 Dec 2024 06:20:06 -0800 (PST)
 Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E84FB3F720;
-	Fri, 20 Dec 2024 06:04:10 -0800 (PST)
-Date: Fri, 20 Dec 2024 14:04:08 +0000
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9FB343F720;
+	Fri, 20 Dec 2024 06:19:36 -0800 (PST)
+Date: Fri, 20 Dec 2024 14:19:34 +0000
 From: Sudeep Holla <sudeep.holla@arm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm,psci: Allow S2RAM power_state
- parameter description
-Message-ID: <Z2V5WMN5aHQwQlNH@bogus>
-References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
- <20241028-topic-cpu_suspend_s2ram-v1-1-9fdd9a04b75c@oss.qualcomm.com>
- <Z1LQOmEfFy640PjG@bogus>
- <54cc4221-ba5f-4741-9033-20874265ca01@oss.qualcomm.com>
- <Z2VUiHWHgbWowdal@bogus>
- <349bac70-87e0-4870-a3f0-9f6a3b3e6824@oss.qualcomm.com>
- <Z2V3amqWYDUWA2uM@bogus>
- <c80c4cdb-48e1-4b6f-8ab8-fad6e100af00@oss.qualcomm.com>
+	upstream@airoha.com
+Subject: Re: [PATCH v7 2/2] cpufreq: airoha: Add EN7581 CPUFreq SMCCC driver
+Message-ID: <Z2V89nHKetwwRGS0@bogus>
+References: <20241206211145.2823-1-ansuelsmth@gmail.com>
+ <20241206211145.2823-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,21 +55,114 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c80c4cdb-48e1-4b6f-8ab8-fad6e100af00@oss.qualcomm.com>
+In-Reply-To: <20241206211145.2823-2-ansuelsmth@gmail.com>
 
-On Fri, Dec 20, 2024 at 02:57:34PM +0100, Konrad Dybcio wrote:
-> On 20.12.2024 2:55 PM, Sudeep Holla wrote:
-> > 
-> > Please take a look at the preconditions for both the calls. They are
-> > different.
+On Fri, Dec 06, 2024 at 10:11:25PM +0100, Christian Marangi wrote:
+> Add simple CPU Freq driver for Airoha EN7581 SoC that control CPU
+> frequency scaling with SMC APIs and register a generic "cpufreq-dt"
+> device.
 > 
-> Which is *precisely* why I want to tell the OS that it's a S2RAM state,
-> so that different actions can be taken in peripheral device drivers.
+> CPUFreq driver registers a get-only clock to get the current global CPU
+> frequency from SMC and a Power Domain to configure the performance state
+> for each OPP to apply the requested frequency from cpufreq-dt. This is
+> needed as SMC use index instead of raw frequency.
+> 
+> All CPU share the same frequency and can't be controlled independently.
+> Current shared CPU frequency is returned by the related SMC command.
+> 
+> Add SoC compatible to cpufreq-dt-plat block list as a dedicated cpufreq
+> driver is needed with OPP v2 nodes declared in DTS.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-Yes we do that for SYSTEM_SUSPEND. And CPU_SUSPEND is not SYSTEM_SUSPEND
-hence 2 different APIs. My NACK still stands.
+[...]
 
---
+> diff --git a/drivers/cpufreq/airoha-cpufreq.c b/drivers/cpufreq/airoha-cpufreq.c
+> new file mode 100644
+> index 000000000000..29738f61f401
+> --- /dev/null
+> +++ b/drivers/cpufreq/airoha-cpufreq.c
+> @@ -0,0 +1,222 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/arm-smccc.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/cpufreq.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/slab.h>
+> +
+> +#include "cpufreq-dt.h"
+> +
+
+[...]
+
+
+> +
+> +static unsigned long airoha_cpufreq_clk_get(struct clk_hw *hw,
+> +					    unsigned long parent_rate)
+> +{
+> +	const struct arm_smccc_1_2_regs args = {
+> +		.a0 = AIROHA_SIP_AVS_HANDLE,
+> +		.a1 = AIROHA_AVS_OP_GET_FREQ,
+> +	};
+> +	struct arm_smccc_1_2_regs res;
+> +
+> +	arm_smccc_1_2_smc(&args, &res);
+
+See below comment. Same applies here.
+
+> +
+> +	/* SMCCC returns freq in MHz */
+> +	return res.a0 * 1000 * 1000;
+> +}
+> +
+> +/* Airoha CPU clk SMCC is always enabled */
+> +static int airoha_cpufreq_clk_is_enabled(struct clk_hw *hw)
+> +{
+> +	return true;
+> +}
+> +
+> +static const struct clk_ops airoha_cpufreq_clk_ops = {
+> +	.recalc_rate = airoha_cpufreq_clk_get,
+> +	.is_enabled = airoha_cpufreq_clk_is_enabled,
+> +	.round_rate = airoha_cpufreq_clk_round,
+> +};
+> +
+> +static const char * const airoha_cpufreq_clk_names[] = { "cpu", NULL };
+> +
+> +/* NOP function to disable OPP from setting clock */
+> +static int airoha_cpufreq_config_clks_nop(struct device *dev,
+> +					  struct opp_table *opp_table,
+> +					  struct dev_pm_opp *opp,
+> +					  void *data, bool scaling_down)
+> +{
+> +	return 0;
+> +}
+> +
+> +static const char * const airoha_cpufreq_pd_names[] = { "perf" };
+> +
+> +static int airoha_cpufreq_set_performance_state(struct generic_pm_domain *domain,
+> +						unsigned int state)
+> +{
+> +	const struct arm_smccc_1_2_regs args = {
+> +		.a0 = AIROHA_SIP_AVS_HANDLE,
+> +		.a1 = AIROHA_AVS_OP_FREQ_DYN_ADJ,
+> +		.a3 = state,
+> +	};
+> +	struct arm_smccc_1_2_regs res;
+> +
+> +	arm_smccc_1_2_smc(&args, &res);
+> +
+
+I assume the compatible suggests SMCCCv1.2+ is implemented, but it is good
+to check  arm_smccc_get_version() and add build config dependency on
+HAVE_ARM_SMCCC_DISCOVERY. Also use the SMCCC conduit and don't assume SMC.
+
+-- 
 Regards,
 Sudeep
 
