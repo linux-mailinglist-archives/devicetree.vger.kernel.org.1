@@ -1,352 +1,237 @@
-Return-Path: <devicetree+bounces-133132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 397799F95BA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:47:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 541A49F95DC
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:56:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B23A16F569
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:46:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AD0816653C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:54:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5842521B1AB;
-	Fri, 20 Dec 2024 15:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B1F218E9F;
+	Fri, 20 Dec 2024 15:54:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="nOlzcccl"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MMV73hYt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2085.outbound.protection.outlook.com [40.107.247.85])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33379218E9A;
-	Fri, 20 Dec 2024 15:45:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.85
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734709507; cv=fail; b=t3+/4OOipNP2oX1ddiDI9DYLglFsCgKVEmLTEDfD+V78P9yAfWdREEwaDqW4N37+vS2AhIMpXZbrMSoxOg12KKZum/5CrMpJOhlWTE/FhnyXSGVJpWAQpw0Mw/2B9iAVHphwbWbnIWAzs5ZUiwla+w8VNdhMkBMasroxsEjt7/A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734709507; c=relaxed/simple;
-	bh=jxLYPZcaJ7J6y7tIgyk6kR3lM+tAC1Vdyzec8wVpgqM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=hW2HkKPI5M972UKOYDl921nedg4IDGYdORtpcfcN0PTPv3EW67NNgCqfQ88ize5+vNFkil7mvZayYrW/O28uNzQECL3pThu8GHRHmUsHgxZBQKaCeRqWP4tvX2iFCv7zwm0TC+E3YiKool5ZrGLgcVOOGrpA49gc5edAK/u7mFk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=nOlzcccl; arc=fail smtp.client-ip=40.107.247.85
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=t/ubVU0FF1zwAwcfWeOCO0M7UnX8kAY8lw0HSqH0LB+I0VSiNcRZQaMxJSW7g8T5CbOOrjcKTvYsPOfCejWQQ6u0aInOnKpvgJ9v/UC2ZWD5RoY/dMR3tozHwwqvJOhQM4qvODsHIExbrE7C0+HaLJQTh4pAGrTxqonYeK89LHfkeXYWfnVMtamXm9burbx8frsIbnfiihxtpBSdpX+sXmNbplU5/A3cBJk419FAOK82fLi73BLU7hZF7H873lHMycqlNIljAsa9o+6+5vb3bKWPEuxSb5F3aSDwsfCRkGy/ClLmvAKj0M9uZrWguXriyy6Lpjl+2w7oteuGn4czTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=czxjzRHvyyJMmZjDwZGHQzIxSH1FE4F1OHXGHeGGiy0=;
- b=NJt5+Rwk6GaNTLq9T4ufVPKwOIGVR2Uw/qZKz2eJR8OXaGqBT9is4jS992r862ThNgjvg0ynBgXvWiwac7QY0SBCEKfycB2yYNWctrOQa5d73ULwc9JI5/xbsFVDwa/6opmcW5o9wgkwk3glAOdwkY9D85d3fKzFPb/m7jaLmU4hxATKGIVwiG7ZQBDmYGtG7S3kEMWYoIcIXku0Z/JnLh7VKLjnxiFu4Uf/UIsMwincyWz0I11aMkv5oDKP43pQ270kJBOw5Rbo6zSKgdmmdBNEXiYcr+5PaCn6Dho31xW/7HY6DBT1al6KNN+79v2C/uYdg2YV5kSEK06kJb40lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=czxjzRHvyyJMmZjDwZGHQzIxSH1FE4F1OHXGHeGGiy0=;
- b=nOlzcccl7ogrBYedP4kp3Pgm+2FrcUDKcOkIEFGbTo57hmkCMbXo+V+S2scm7KKE2kWCE5/QGE6bhBEy9EKRbwlcMdHNvRu7nflnDsGiJkaNz8enWIdTJVTW+LWXehC9Qdbu3CQPGReoPtfzW/kFDMzrzFGCAUZAM9GFYLLhLP1yJyLGLlAnQ3bRkt8/nfhan9CqLvN7tHHNrLXQvp7J9tDHclob/D1GDVm/S9mVhOjuKuiOoUta0O8/1LwRQsvRTKsgTZTaDFuZu7KB4l8z9bC3XSXX1gpe3+oyz7/CjkGiz55UoBgccjLGdk6zKntcMDt1jfiOLn6mYB+KEQJqtg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI1PR04MB9761.eurprd04.prod.outlook.com (2603:10a6:800:1df::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.13; Fri, 20 Dec
- 2024 15:45:00 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8272.005; Fri, 20 Dec 2024
- 15:45:00 +0000
-Date: Fri, 20 Dec 2024 10:44:50 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC38216397;
+	Fri, 20 Dec 2024 15:54:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734710089; cv=none; b=pKzlaQ1be8JEWkwsAGMWm7etPoqmoeYmEL0P3NRDa0XULm8s9zh8Q5Wc2w7T96AuSJIUGvsLyOV3/gQvBKc08XgyvT7hX6PjI2Oyab0QtV90iTy8p/eT7jPmWU/b55C2zRUty27Ms947Jmq5ekzD6UST45IQv5Qa2Lj0KKvhtaE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734710089; c=relaxed/simple;
+	bh=nBCegtq0A5NfOXgKUOhNhCAdUczJYCehEj8+f1RmnXY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IUglM5KmFApbCxmtme8/iDegPe3ipwUYLyRQSJApr3E1Q0McG3Tq4LJx72ykfkafMATHa+MqAjzlLaa8B12lyafxK8s1kP4D9YK0jmDRQYXfGGtDOKFmh/FPzLBucBI5jDnHILvjfnbSj98H+guiGW2EOoS36TDiwCoEMi+M7l0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MMV73hYt; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1734710087; x=1766246087;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nBCegtq0A5NfOXgKUOhNhCAdUczJYCehEj8+f1RmnXY=;
+  b=MMV73hYtvK4oR6hzBzJRKlICAak7zzmIhaGaR4ktnmAZ7ZOU5BuwwKg6
+   zapF0JFVkabwoppUCaqbzuoJTiWZtFQbRVf8xH2jnYy8PbJV/FJG4+UO7
+   8aW/ZjfmGmJqe9oKv2cXgULgxAeSm0npGTVlQKEUtSquJqbwgqHz5VQQI
+   Nl+N1JR7j8cOEKo7q63JCuavwekZ8o1FiIL3ZVmRLFsJzbfMM6hL1CLUE
+   LTh+YyaTnhJLGx1xTPlLECT9wOkXTxbbO1fL4G6eWbU2iyXLSQVIb0JxJ
+   upirvbJfcpcOWVfBjLG/dYGmXoYjogyUE4byo/aNowu2syiUtaD1q8xgC
+   w==;
+X-CSE-ConnectionGUID: T53sJChwQDWv6KkKUU2HGQ==
+X-CSE-MsgGUID: O55e9k4sTMqF/zPhzBXfwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="46269703"
+X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; 
+   d="scan'208";a="46269703"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2024 07:54:46 -0800
+X-CSE-ConnectionGUID: 5jkc7+XRS2S1jemaFJJbBw==
+X-CSE-MsgGUID: kb9btt2NQViRmPqhqw+FLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; 
+   d="scan'208";a="98603535"
+Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 20 Dec 2024 07:54:42 -0800
+Received: from kbuild by a46f226878e0 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tOfKp-0001MN-2E;
+	Fri, 20 Dec 2024 15:54:39 +0000
+Date: Fri, 20 Dec 2024 23:54:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	NXP S32 Linux <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH v4 1/4] arm64: dts: s32g: add 'I2C' common board support
-Message-ID: <Z2WQ8j2kIQ462dxX@lizhi-Precision-Tower-5810>
-References: <20241220123916.1452582-1-ciprianmarian.costea@oss.nxp.com>
- <20241220123916.1452582-2-ciprianmarian.costea@oss.nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241220123916.1452582-2-ciprianmarian.costea@oss.nxp.com>
-X-ClientProxiedBy: BY5PR17CA0011.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Subject: Re: [PATCH 5/8] gpio: max7360: Add MAX7360 gpio support
+Message-ID: <202412202337.8jOygMaK-lkp@intel.com>
+References: <20241219-mdb-max7360-support-v1-5-8e8317584121@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI1PR04MB9761:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e545f60-31c1-4e83-9787-08dd210d434a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|7416014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?8cDF498e+ufOcywk+ltEu3xN3mT1IHIbS1Zn8Ah1XLhEms2GI9GUyuzOsyPO?=
- =?us-ascii?Q?g7EJEym/uR9YvimJy78inok/n56Q+Ya8092Wa9pUKNOaHG9MbE/fnV8C4h7H?=
- =?us-ascii?Q?GyR2vYTfjmduTfCa0/ZJjGmBpm841DhP6fMKGj8M/NTLYxYLwhysDBcGwiv4?=
- =?us-ascii?Q?MBiVcWC/DuDY9CehXeKduP5H2XMBEVXvbstj3htTCSR7vsm/ZhH6nMLOU4eE?=
- =?us-ascii?Q?XF+082I0b7+EQ3QbeTg92S9Tl7A/hvLJL9SFa+6DeB0r0uNko4O61uFiLunN?=
- =?us-ascii?Q?ahYCaId3X5OC0XaBeqr62W9vP313kvMY6ZJEmlBEjPufWV+auEXjZdciySm2?=
- =?us-ascii?Q?PA0E+VVpwl0JQNiocUxdN2lLBS0So5AwrZmhS1644cjhAJhLzvnhOUyJJ2z+?=
- =?us-ascii?Q?6p3f74l+5F3QC4Kdg9lAcW6ilfjum9YPIpRIS+3GGT76Kgi4pnPq6AU33EgN?=
- =?us-ascii?Q?LvAeehxTa2io2PbmM8qSLo4Gqd6XYreD9wUF4uC+bhhVKard/AZV26f1jfBS?=
- =?us-ascii?Q?C2U71x9wpw9RUzeNWkABSwNvMtA2AOc3wtZdSmHhHMPq6t0fXiycIZvxHXU1?=
- =?us-ascii?Q?zBLZHSDhP9V07UBrRbZSiQ5pH4gSp1bVwYDW+1/s9W8YQI3gpX4Kx/ZDlBN6?=
- =?us-ascii?Q?OGewdp/VoV0QgGNE/aG2Xx6cI90tpiXjgCwd/vOrjXeUWXcraFXlyLoVTQhF?=
- =?us-ascii?Q?Xm5vyakY6HylJjbMbqIAyBJSSJNIFJyYwkTAgVr0TvraNMcvud5BsN+5ZX+/?=
- =?us-ascii?Q?gYd7Igy381pL1zdKWua6STLNJ80pMPIP4vjRB0DAwG4DkyoG4eKJfKXRv0Ta?=
- =?us-ascii?Q?Lr52n8rsH3ZUtwQfL6dkGAcpizU28d4Fv/wtVSR0nFrq55XS4NZMgePCgdHv?=
- =?us-ascii?Q?QU/pWjQ7X54QHO3R1a5e+ewiQ7FybYcpDTCKLj7eHWDeNpTnqlGbhU+J/5Ql?=
- =?us-ascii?Q?ivdqBvd16WjMy27PUGLukVxvTGuNjkmXCTgozGp0Nuipg2NcaLA3b6jIpGBp?=
- =?us-ascii?Q?1iFDIhAmpusTc7cqVsSy/qs0gTmsnDPQFCQyhiLBSptu2YgKlZeFIKwuA3oP?=
- =?us-ascii?Q?GnoX4K9uBKQFVOfAcrkJ0UmEIpVT3WejxTgZ238ZjDkFZYXSUnajJlbzUdbp?=
- =?us-ascii?Q?Egdu9QjNbmr+30VzMb4CsMbn/3LOkDfqLouFkwpDNCEaptR9ScoqV2va5/XK?=
- =?us-ascii?Q?WmUaxzq5pmR0j+nc87y1r5046E4+VNnkDOL8Ctf0nnntERbrQpYU7+qlqijU?=
- =?us-ascii?Q?Oml5Rvbh7mzvjx95/6hXm9723ZUeo62/7U7oMxo/lrIcH+9rN9WIUfe5mkyg?=
- =?us-ascii?Q?aHjmrT+pq1wicgY/BWu59SljADSU6XGG25OqR5reE6s+g6qMpcqn5BiONkyf?=
- =?us-ascii?Q?Tl8S/1k736Q/AEIBuE3Jqb+z/XhXra/82lhUq2owcgZ0fSwE+gviSuQldp0t?=
- =?us-ascii?Q?IBiLF67QCFJVrQ8dJpxOAXjEt8ZajOtK?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?IFDX4ACgKfGKvVonsOLlGaJkkkrLYEAB1J/Rl9F+iYG/2M7xzJq5ZqbkpYRI?=
- =?us-ascii?Q?wUjoyr9wrHRREG8p7NemR5TrLoe9jrYthtR1hDhgNIqnIomWlnQtUDUVqCJh?=
- =?us-ascii?Q?hcFuJaye9fHFrfUlRW1KfRjDBRaL5PmMBtogFBX2TqdL+YgUeD9jy5HVu5Y0?=
- =?us-ascii?Q?UGhu2hMDKmEh5PFDUVlAAuYX0XSn6RkJxYjBDjCq+nkbdA0QwkYRZkY/nRCI?=
- =?us-ascii?Q?m+BF9ooAJP6ApeWpbua7gY0Bh1EGphPXba875rolQJ71nL5qBPFSV03fq66i?=
- =?us-ascii?Q?jytYO3px6uZuHTxBCk5NimGQKuRFfTrk4NksTW+kVC4ZKSKf92uO1iARX2+a?=
- =?us-ascii?Q?a480Dg8I95r8fItimpoTQfMkDXqyJZDB7jLMbDw3FZCo8sMjFuK6Rn6wy6iW?=
- =?us-ascii?Q?UnsuK5edpRSyr9PiFSOE1k5SFxfC1tKmU3OZhLfcmSr58G0ukVn/1+yIQCgJ?=
- =?us-ascii?Q?1a8Xy2DDJZtUKy0OH7ClriyX+ETYl7/KoagO6Lc2kiqbuY4pUL/MtJB7nbh4?=
- =?us-ascii?Q?oD0sbOQ8UNu3fNTwzfhKtRGzM+dIMOKzLqE26KoB5pqZ7aRyB2hpRJxafy1d?=
- =?us-ascii?Q?WG3hO0dm7MFcIY924JdaQce3F3z58hgJhARBdfznToK8uE1hHQSAbI2hNjPg?=
- =?us-ascii?Q?yP+hST4wvhhcPIjJDREcMdGcoKkfJq/Kn4cFQRAs6tcJBDEMYjWmwKPCim6D?=
- =?us-ascii?Q?xCFeSL+BS7HqPs0GxkOO10BSBcnA+qgW7cZbKGycnMLb0zYgSYEZNxa35Kho?=
- =?us-ascii?Q?9CG7T9Tm6qBlYhnXR22aYS/FAr1d/osSE2/2U/AlyySnv+sx8/PEqDZZOzHS?=
- =?us-ascii?Q?dBrqO8CVQFz0/yleS89iae6qN0kyBJcw5UjpzTee9jiuKlTxRfoHYa6sMIhW?=
- =?us-ascii?Q?/ww3deQm+g/6H2FMa06Gb13V09VuBWWYx/ntYXzbWFjCr9kH/ceDSJHH7CLU?=
- =?us-ascii?Q?apvvhnW5zHsTJyBJLqSIuSvYwlSSb+7bQuCUD2Np3Cm4bdD6krAMNSvMFgr0?=
- =?us-ascii?Q?GB58IsPQBSRpnxtkSdW8dcFpkMYATof+U9Hr/uGrkkpqonnjN2Xn/ESUrwr8?=
- =?us-ascii?Q?VakAeM2RSgEzAcw/9JMhQ1j3T5nghx/vzeThqGyRcaE0GofbrwI1cxbsi0Gg?=
- =?us-ascii?Q?0DpzKz/ZKPEufrhpAbscJME/uhras2xo4CJZ+ycu822I643MZ/D4+BV94Div?=
- =?us-ascii?Q?KEUk0arkwuw1R+SDB/mP4bgiO4aIuuC/B6Ddjx456n57RTpBa0uds30BZUgp?=
- =?us-ascii?Q?1uvGeMAZILgedhVR4Y113/Paz8tROYug5dpCnlrUm9y75H6JzM1YsT9b4d7u?=
- =?us-ascii?Q?KKo14DenEAQW/8VBBaFJvbIxAsY4wUckFRehn5VT8dNZlStXMeTBPXz6F5xW?=
- =?us-ascii?Q?YKcc63zzNXi92Aa5kjUkmVm3d0AKSwylFRFBXJLs0JAgSPhxAgcpEcNRKCme?=
- =?us-ascii?Q?2FRP5Z0RCIO817Fi60oo3c2LeC7UgM9j+XhQCrLQlpBsnTmbuO1Iq6m7PMoI?=
- =?us-ascii?Q?OcdZX56DWr7aTswaRjk8tG+3qLmDVZRWscsJoUvaU7S8W0rNAG7s5EDyFQxx?=
- =?us-ascii?Q?N2XUY8eDsa/DOlboVC0EdVWVXdDn7muUZ0yUaBzd?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e545f60-31c1-4e83-9787-08dd210d434a
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2024 15:45:00.5195
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3Ti8il1WPQtC1L5RLbw+d5owtf0boBFiSacc0v6XgWdBr5PvBJyfIu9GpkJL5G38AAm4j0xVGd8Mtx1n/sdu2w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB9761
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241219-mdb-max7360-support-v1-5-8e8317584121@bootlin.com>
 
-On Fri, Dec 20, 2024 at 02:39:13PM +0200, Ciprian Costea wrote:
+Hi Mathieu,
 
-Subject is wrong, this patch is not for common board
+kernel test robot noticed the following build warnings:
 
-Simple said:  "Add I2C[0..2] support for s32g2 and s32g3"
+[auto build test WARNING on 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8]
 
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->
-> On both 'S32G2' and 'S32G3' SoCs there are five i2c controllers available
-> (i2c0-i2c4). Specific S32G2/S32G3 based board 'i2c' dts device support
-> will be added in further commits.
+url:    https://github.com/intel-lab-lkp/linux/commits/Mathieu-Dubois-Briand/dt-bindings-Add-MAX7360-MFD-device/20241220-002541
+base:   78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+patch link:    https://lore.kernel.org/r/20241219-mdb-max7360-support-v1-5-8e8317584121%40bootlin.com
+patch subject: [PATCH 5/8] gpio: max7360: Add MAX7360 gpio support
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20241220/202412202337.8jOygMaK-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241220/202412202337.8jOygMaK-lkp@intel.com/reproduce)
 
-This commit have not touch "based board".
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412202337.8jOygMaK-lkp@intel.com/
 
-So"Add I2C[0..2] for S32G and S32G3 SoCs commit dts."
+All warnings (new ones prefixed by >>):
 
-Allow only copy subject here for such simple add some nodes.
+   drivers/gpio/gpio-max7360.c:57:41: warning: variable 'val' is uninitialized when used here [-Wuninitialized]
+      57 |                         "failed to set value %d on gpio-%d", val, pin);
+         |                                                              ^~~
+   include/linux/dev_printk.h:154:65: note: expanded from macro 'dev_err'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                                        ^~~~~~~~~~~
+   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                                     ^~~~~~~~~~~
+   drivers/gpio/gpio-max7360.c:42:18: note: initialize the variable 'val' to silence this warning
+      42 |         unsigned int val;
+         |                         ^
+         |                          = 0
+>> drivers/gpio/gpio-max7360.c:370:32: warning: cast to smaller integer type 'int' from 'const void *' [-Wvoid-pointer-to-int-cast]
+     370 |         max7360_gpio->gpio_function = (int)device_get_match_data(&pdev->dev);
+         |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   2 warnings generated.
 
->
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/s32g2.dtsi | 55 ++++++++++++++++++++++
->  arch/arm64/boot/dts/freescale/s32g3.dtsi | 60 ++++++++++++++++++++++++
->  2 files changed, 115 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> index 7be430b78c83..1a9683c234b7 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> @@ -333,6 +333,39 @@ uart1: serial@401cc000 {
->  			status = "disabled";
->  		};
->
-> +		i2c0: i2c@401e4000 {
-> +			compatible = "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x401e4000 0x1000>;
 
-reg should just after compatible.
+vim +370 drivers/gpio/gpio-max7360.c
 
-Frank
+   333	
+   334	static int max7360_gpio_probe(struct platform_device *pdev)
+   335	{
+   336		struct max7360_gpio *max7360_gpio;
+   337		unsigned int ngpios;
+   338		unsigned int outconf;
+   339		struct gpio_irq_chip *girq;
+   340		unsigned long flags;
+   341		int irq;
+   342		int ret;
+   343	
+   344		if (!pdev->dev.parent) {
+   345			dev_err(&pdev->dev, "no parent device\n");
+   346			return -ENODEV;
+   347		}
+   348	
+   349		max7360_gpio = devm_kzalloc(&pdev->dev, sizeof(struct max7360_gpio),
+   350					    GFP_KERNEL);
+   351		if (!max7360_gpio)
+   352			return -ENOMEM;
+   353	
+   354		if (of_property_read_u32(pdev->dev.of_node, "ngpios", &ngpios)) {
+   355			dev_err(&pdev->dev, "Missing ngpios OF property\n");
+   356			return -ENODEV;
+   357		}
+   358	
+   359		max7360_gpio->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+   360		if (!max7360_gpio->regmap) {
+   361			dev_err(&pdev->dev, "could not get parent regmap\n");
+   362			return -ENODEV;
+   363		}
+   364	
+   365		max7360_gpio->dev = &pdev->dev;
+   366		max7360_gpio->chip = max7360_gpio_chip;
+   367		max7360_gpio->chip.ngpio = ngpios;
+   368		max7360_gpio->chip.parent = &pdev->dev;
+   369		max7360_gpio->chip.base = -1;
+ > 370		max7360_gpio->gpio_function = (int)device_get_match_data(&pdev->dev);
+   371	
+   372		dev_dbg(&pdev->dev, "gpio count: %d\n", max7360_gpio->chip.ngpio);
+   373	
+   374		if (max7360_gpio->gpio_function == MAX7360_GPIO_PORT) {
+   375			/* Port GPIOs: set output mode configuration (constant-current
+   376			 * or not).
+   377			 * This property is optional.
+   378			 */
+   379			outconf = 0;
+   380			ret = of_property_read_u32(pdev->dev.of_node,
+   381						   "constant-current-disable", &outconf);
+   382			if (ret && (ret != -EINVAL)) {
+   383				dev_err(&pdev->dev,
+   384					"Failed to read constant-current-disable OF property\n");
+   385				return -ENODEV;
+   386			}
+   387	
+   388		    regmap_write(max7360_gpio->regmap, MAX7360_REG_GPIOOUTM, outconf);
+   389		}
+   390	
+   391		if (max7360_gpio->gpio_function == MAX7360_GPIO_PORT &&
+   392		    of_property_read_bool(pdev->dev.of_node, "interrupt-controller")) {
+   393			/* Port GPIOs: declare IRQ chip, if configuration was provided.
+   394			 */
+   395			irq = platform_get_irq(pdev, 0);
+   396			if (irq < 0)
+   397				return dev_err_probe(&pdev->dev, irq,
+   398						     "Failed to get IRQ");
+   399	
+   400			flags = IRQF_TRIGGER_LOW | IRQF_ONESHOT | IRQF_SHARED;
+   401			ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
+   402							max7360_gpio_irq, flags,
+   403							"max7360-gpio", max7360_gpio);
+   404			if (ret)
+   405				return dev_err_probe(&pdev->dev, ret,
+   406						     "Failed to register interrupt: %d\n",
+   407						     ret);
+   408	
+   409			girq = &max7360_gpio->chip.irq;
+   410			gpio_irq_chip_set_chip(girq, &max7360_gpio_irqchip);
+   411			girq->parent_handler = NULL;
+   412			girq->num_parents = 0;
+   413			girq->parents = NULL;
+   414			girq->threaded = true;
+   415			girq->default_type = IRQ_TYPE_NONE;
+   416			girq->handler = handle_simple_irq;
+   417		}
+   418	
+   419		ret = devm_gpiochip_add_data(&pdev->dev, &max7360_gpio->chip, max7360_gpio);
+   420		if (ret) {
+   421			dev_err(&pdev->dev, "unable to add gpiochip: %d\n", ret);
+   422			return ret;
+   423		}
+   424	
+   425		return 0;
+   426	}
+   427	
 
-> +			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c1: i2c@401e8000 {
-> +			compatible = "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x401e8000 0x1000>;
-> +			interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c2: i2c@401ec000 {
-> +			compatible = "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x401ec000 0x1000>;
-> +			interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
->  		uart2: serial@402bc000 {
->  			compatible = "nxp,s32g2-linflexuart",
->  				     "fsl,s32v234-linflexuart";
-> @@ -341,6 +374,28 @@ uart2: serial@402bc000 {
->  			status = "disabled";
->  		};
->
-> +		i2c3: i2c@402d8000 {
-> +			compatible = "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x402d8000 0x1000>;
-> +			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c4: i2c@402dc000 {
-> +			compatible = "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x402dc000 0x1000>;
-> +			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
->  		usdhc0: mmc@402f0000 {
->  			compatible = "nxp,s32g2-usdhc";
->  			reg = <0x402f0000 0x1000>;
-> diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> index 6c572ffe37ca..5d28b439906d 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> @@ -390,6 +390,42 @@ uart1: serial@401cc000 {
->  			status = "disabled";
->  		};
->
-> +		i2c0: i2c@401e4000 {
-> +			compatible = "nxp,s32g3-i2c",
-> +				     "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x401e4000 0x1000>;
-> +			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c1: i2c@401e8000 {
-> +			compatible = "nxp,s32g3-i2c",
-> +				     "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x401e8000 0x1000>;
-> +			interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c2: i2c@401ec000 {
-> +			compatible = "nxp,s32g3-i2c",
-> +				     "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x401ec000 0x1000>;
-> +			interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
->  		uart2: serial@402bc000 {
->  			compatible = "nxp,s32g3-linflexuart",
->  				     "fsl,s32v234-linflexuart";
-> @@ -398,6 +434,30 @@ uart2: serial@402bc000 {
->  			status = "disabled";
->  		};
->
-> +		i2c3: i2c@402d8000 {
-> +			compatible = "nxp,s32g3-i2c",
-> +				     "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x402d8000 0x1000>;
-> +			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
-> +		i2c4: i2c@402dc000 {
-> +			compatible = "nxp,s32g3-i2c",
-> +				     "nxp,s32g2-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x402dc000 0x1000>;
-> +			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clks 40>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
->  		usdhc0: mmc@402f0000 {
->  			compatible = "nxp,s32g3-usdhc",
->  				     "nxp,s32g2-usdhc";
-> --
-> 2.45.2
->
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
