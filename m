@@ -1,148 +1,108 @@
-Return-Path: <devicetree+bounces-133119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A0C99F9472
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:33:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881EE9F948C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:36:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07F877A41E3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:33:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E17961892825
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:36:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DDD621859E;
-	Fri, 20 Dec 2024 14:33:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kravGRXK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3FD2163A7;
+	Fri, 20 Dec 2024 14:36:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6D0216E2D
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 14:33:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7515C215F62;
+	Fri, 20 Dec 2024 14:36:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734705184; cv=none; b=sOXE6qzLvjXHwAONrMCHzw6saPRvTTNsykZ6Cj/kNxRWAHuAtuCfOhKJgaMLAwK5NkFKLEg/UQmzDUHY93dn8Tn8BdG2Op60fhEAvEc4gWAqAETiz/eZOZLFsngXTM0yjWma53Ih+WKzBOMKRdXzKAIzLePmq0aIH+oLjvuM7aY=
+	t=1734705369; cv=none; b=ktDmst96yFgDg2sx427AScI6jJ8oVk90OixaIOFXRa5PczwAlGGoN5jyF9pr+n2RfbY+YXF22jJYryQWfm031OsDm+gFdbyWHeCYrnsdexrRH1HlTSD7WHXvYAtFYyLA+9h81AiRePBZ3Z6k6aWYTCH+FD5tvZupfqdCtjOQ7Yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734705184; c=relaxed/simple;
-	bh=eSZdwYGKTRLMLKjhMwehJVR3CZn1udCQMKHYP9Vi+QM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kkbKtxmYWlUFsp9AK+Ae16G/cXcePR0OSyO+dgbEOBNqWr+l/XsFChg/oFTqeQL4AZ6VIyGTKVtTShM9xfgWBz8Iu3AZ6/okgkZhfDXna3uHTMdgl4WhK7Wfhs3spOZnLGRXDCRjO5ndb/rVT7AhT3LipSXoHQuowMMMietbaN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kravGRXK; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso13577165e9.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 06:33:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734705180; x=1735309980; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1mYnhokjNt0uDzSYYfMK2GDmQyVt4apt3y0nj5Xm9bw=;
-        b=kravGRXKsHZNwFKmTC2MMKhGHCw+uMTcxZ8ovt2ZnkNkj9aIjd6TzEGgWsSb/Oo+rH
-         FlxB48zi9/pXic8jLb885VYGzS/H0hKXxEOhK/Gj7jKqtvmZJ0bJ1H4YVcISaxdGxkJW
-         PlGpvmaHP3qs4XYe+Gd0OoQeQE90Cjz+71XQsLxnJJPVTuqZf0050ndV/fA9FxTN46Iq
-         lgofMXr+kaLU0UomgZl7+D5ANeXEel/jAMi/dUm9JTawIYsODeUHds3rTAbsruU1faC8
-         VeAieWdaXDmsXxrc0VyrS1Ykh6UWHsDPjvsfD5QuVNHk6mskTBiq/0bfRRGSDSlebnMQ
-         l6Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734705180; x=1735309980;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1mYnhokjNt0uDzSYYfMK2GDmQyVt4apt3y0nj5Xm9bw=;
-        b=rSTtKokslDvHZwlHef2e0NgzzQYbw+kRuboy5cxXflvThhK+cogCG639ln34SdmN9C
-         A9LahqS6z98PCISg5DovigtSY9Wko6p64sCNAs/TJ8OMEoIQKpglWkQhouL4muEUZume
-         VzgcO8SoluXh+XrnmcVn52/OAceC/F792F4zcrass9mF2owKHXlcwmS9irNVDa3P5ORu
-         pD0detakJA1jgLCQi7GF/EZ3Qw75a5tYlpoBMelbrC82V66h3XlOdMtTvShEiMiWMPGg
-         0VjbnTchhxj8eFOqdbacC8Tv7S8dmszQtJNIguFzKNcCzTs6f4hM3o52Tvv5rYJsudLG
-         CsSA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+sXksnkzT5q5nQP9yEVOsWPXXTNiH+KHP46y9foHt//Bt40zwjMmVxyOxwak5w+AV+pJw+OM0e6nG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3VhyVxekhIyl4k5oIlve6MRveIY4OXVtxYdc2pROcmN7mHUBj
-	O00BS6Yb7l5+tagIMomskXmKKqTQtlv6bhYPsJKVdAkP3f2nrN+eAEGEirJKmsw=
-X-Gm-Gg: ASbGncvDqrNyTPMdbOx0khoh7ZQ9pv/7aZpAUIA2nYzxPxD5+N3F+ZEDf5kFvyJVSj+
-	g/3aqq55YU4X8QlWJfcranqJLUQimNiVjEfnKVoMOSi8MqWYtM1y2HvBGlALBYtpq96ByjotYhU
-	xd1PaMQmHWXPwYyABnmIR6qNYX0Ibt9s+0moSsNOkNz3YfVi91Wqp+PAe7U2xaOzSLxs/idAhsW
-	8V9ILVyTtZtDheUrfJQupkMFa725ks7PoQnBUgd9dJyvmbCeS6lbRBnm+SCGq6II0oBkDcOo94o
-	vw1qJdQav3hyK21ojLKkn+cfB5RefOO3XLc3
-X-Google-Smtp-Source: AGHT+IEySYUHs5Msg3dUau73lIpORU8/P7Ekp5SpHvtYJlD2/+BIvX/q40CI3mk0cfTV9g2X9nmu9Q==
-X-Received: by 2002:a05:6000:1fae:b0:385:dea3:6059 with SMTP id ffacd0b85a97d-38a223fd3e5mr2354097f8f.49.1734705180210;
-        Fri, 20 Dec 2024 06:33:00 -0800 (PST)
-Received: from ta2.c.googlers.com (130.173.34.34.bc.googleusercontent.com. [34.34.173.130])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c829235sm4140321f8f.15.2024.12.20.06.32.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Dec 2024 06:32:59 -0800 (PST)
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Fri, 20 Dec 2024 14:32:53 +0000
-Subject: [PATCH v5 3/3] MAINTAINERS: add entry for the Samsung Exynos ACPM
- mailbox protocol
+	s=arc-20240116; t=1734705369; c=relaxed/simple;
+	bh=OYN8HM4We1odY5HnKn+7RCWQnj1cjAeUmenMBmBMQz0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TuhZEUeyr6U9yjdBGBx4KLCvknCbeVppcRQZgBAKAAolJeqWIBAteeArovMJnU+Dy6n2W81YsCxLOB9cssLmGVrapNi66klWtTFEiqU8iQuVeM/HWFxnKpKJwqMQNE9pWRITq93f44zhWx3sn68chTAF5tiZZwcUSPoNqnWoRGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E1F921480;
+	Fri, 20 Dec 2024 06:36:34 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C8F533F720;
+	Fri, 20 Dec 2024 06:36:04 -0800 (PST)
+Date: Fri, 20 Dec 2024 14:36:02 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Elliot Berman <quic_eberman@quicinc.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+Subject: Re: [PATCH 0/3] Allow specifying an S2RAM sleep on
+ pre-SYSTEM_SUSPEND PSCI impls
+Message-ID: <Z2WA0o0QJS64ftVh@bogus>
+References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
+ <20241113165329590-0800.eberman@hu-eberman-lv.qualcomm.com>
+ <e4509104-c809-4d45-bdbb-a2d754a816db@oss.qualcomm.com>
+ <Z2VXgkJ4x5TJTKJ_@bogus>
+ <765bb1c8-31de-4aec-b8ef-f141a3e25c56@oss.qualcomm.com>
+ <Z2V4IblZNgnS4T2Z@bogus>
+ <875342b7-3825-47bf-810a-effdbeacab46@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241220-gs101-acpm-v5-3-4f26b7fb3f5f@linaro.org>
-References: <20241220-gs101-acpm-v5-0-4f26b7fb3f5f@linaro.org>
-In-Reply-To: <20241220-gs101-acpm-v5-0-4f26b7fb3f5f@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Jassi Brar <jassisinghbrar@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
- peter.griffin@linaro.org, daniel.lezcano@linaro.org, 
- vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de, 
- Tudor Ambarus <tudor.ambarus@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734705176; l=1244;
- i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=eSZdwYGKTRLMLKjhMwehJVR3CZn1udCQMKHYP9Vi+QM=;
- b=7GpgLiWRUZQf2xjdHsJ+TT73a5wVceNgNw3meXcEv0/TbaflXZPWfg6NcpISW+QoinH5dAbYr
- zPhMUOl56SyBjUEhDYjCcNqbdOqEE21RAuDAUJ4U3f+gkEjNZnJmEJ1
-X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
- pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <875342b7-3825-47bf-810a-effdbeacab46@oss.qualcomm.com>
 
-Add entry for the Samsung Exynos ACPM mailbox protocol.
+On Fri, Dec 20, 2024 at 03:20:37PM +0100, Konrad Dybcio wrote:
+>
+> I would happen to think that, yes. Especially since the reference firmware
+> implementation does *exactly this*:
+>
+> https://github.com/ARM-software/arm-trusted-firmware/blob/master/lib/psci/psci_main.c#L179-L221
+>
+> PSCI_SYSTEM_SUSPEND seems to be simply meant as a wrapper around a specific
+> CPU_SUSPEND state (which may or may not be only callable from inside the
+> firmware when SYSTEM_SUSPEND specifically is requested, for reasons),
+> in a platform-agnostic way, so that the OS can enter suspend without
+> providing that magic StateID on all supported platforms.
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Exactly, that's how it can be OS and platform agnostic. Yet this platform
+considered to optimise by not just providing it as a wrapper(if it was
+that simple on your platform too) without running any tests and leaving
+it to interested parties like you to mess around to get it working.
+That practice needs to be fixed and this change won't help and once we
+fix this, more such special treatment fixes are needed on newer platforms.
+So lets stop and ensure things are fixed properly.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index baf0eeb9a355..5cfec7cac9eb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3023,6 +3023,7 @@ F:	drivers/*/*s3c24*
- F:	drivers/*/*s3c64xx*
- F:	drivers/*/*s5pv210*
- F:	drivers/clocksource/samsung_pwm_timer.c
-+F:	drivers/firmware/samsung/
- F:	drivers/memory/samsung/
- F:	drivers/pwm/pwm-samsung.c
- F:	drivers/soc/samsung/
-@@ -20717,6 +20718,15 @@ F:	arch/arm64/boot/dts/exynos/exynos850*
- F:	drivers/clk/samsung/clk-exynos850.c
- F:	include/dt-bindings/clock/exynos850.h
- 
-+SAMSUNG EXYNOS ACPM MAILBOX PROTOCOL
-+M:	Tudor Ambarus <tudor.ambarus@linaro.org>
-+L:	linux-kernel@vger.kernel.org
-+L:	linux-samsung-soc@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/firmware/google,gs101-acpm-ipc.yaml
-+F:	drivers/firmware/samsung/exynos-acpm*
-+F:	include/linux/firmware/samsung/exynos-acpm-protocol.h
-+
- SAMSUNG EXYNOS PSEUDO RANDOM NUMBER GENERATOR (RNG) DRIVER
- M:	Krzysztof Kozlowski <krzk@kernel.org>
- L:	linux-crypto@vger.kernel.org
+> But since it already requires more elbow grease on the peripheral IP side,
+> I'm not really convinced it's that much useful.
+>
+> Plus, the optional bit of doing more work behind the scenes doesn't seem
+> to be very wildly used across TF-A supported platforms.
+>
+> So please, stop making the argument that it's any different. The firmware
+> I'm dealing with simply didn't expose the same thing twice, in perfect
+> accordance with the spec.
+>
 
--- 
-2.47.1.613.gc27f4b7a9f-goog
+So that it can continue to do so in the future ?
+Thanks but no thanks. NACK with no arguments as requested.
 
+--
+Regards,
+Sudeep
 
