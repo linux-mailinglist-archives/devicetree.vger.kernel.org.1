@@ -1,104 +1,126 @@
-Return-Path: <devicetree+bounces-133160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0B8F9F96C8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:45:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C9E9F96C5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:44:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39C2A16B8A9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:44:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0CEB16A653
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52AE21A95D;
-	Fri, 20 Dec 2024 16:44:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA3D219EB8;
+	Fri, 20 Dec 2024 16:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="J+UVRoPM"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="u+mX9gp0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB381C4A1C;
-	Fri, 20 Dec 2024 16:44:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACAF1C4A1C;
+	Fri, 20 Dec 2024 16:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734713081; cv=none; b=qKhjUIRfO4R+q5Hp5Hp+0NFr8BzH52Z3UNgBzOtN9cKZvXV75t6TbLiiGGhG4Qpd7XSxl+8ZYWTG+Dc0tpeWt9s4ATKn8wPRgam/K7uz3+ToBXM8IRzWHLPhQ+Cx9okN2ebrx4rSIv1uF30MExpHfGqmlUxSg9gqZLazlOkU63Q=
+	t=1734713076; cv=none; b=COgC2IhxjNwrbY+lvuO4vtSq+GD8+2txsM214WHW/kZV9R/7GekpjLtiR2/JkQsvZk15U52CtwXM+AfJZzmDf38i8pbbwf9mGXs33B2J+9yfDtwRBJhJHjj0cEwu276Ud4LyroeFivAi4dVbURPnMT5Q2xdZPVJXAZQjE9TkcMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734713081; c=relaxed/simple;
-	bh=sx9Xc9CzjrFXYpRyMGKjk585rr/PweCL4hg0epZFIUc=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=dL7eUXmTq0UiR4nnVeI8tXjpF13U6hJ4Pn2K+ynlo+mJA0plBShoxXAJeUbUHz5g52aJzk7GeB4Oq51kBB9rmVNozO9SLJxbHnxD5mlYqlDPLVKEzz2Lyjzh1Mu4QhGDzp+LXWSKosDWIbMy/q4F3b1Be0myaMWu36CIiMLOSCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=J+UVRoPM; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1734713063; x=1735317863; i=frank-w@public-files.de;
-	bh=sx9Xc9CzjrFXYpRyMGKjk585rr/PweCL4hg0epZFIUc=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=J+UVRoPM2UjUuH+jG8g74p8CA9ABHoXvM85hjdhM8VUmjGYPkNyMh3hjLuajxXcJ
-	 qLkaPbyziQpxMtgpaExz7mSQiQ92+nYt8JqI5FNf5fpopmBliLzP+pOVMHVSfGlA2
-	 urgG5uuyXjPPutZBa+1y9OtrwmLQz/nv+p+hPA5IHaeiFJzkvTeVj3dAUb/sNbvvI
-	 qufJNRsa/yNAkA6p2AgAMdA8ndWAm2S1N5n2EWfhsT+lG/mLt9T6GUOWL8Aokt6Y0
-	 p2Ud6+lIKfihG7nmDpYhThisfox7Bs2Kjz6TMxcOKON+6MyneKMPeUMnHTURbxaAM
-	 CviIYA3G1ZSRN07TUA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [157.180.224.233] ([157.180.224.233]) by
- trinity-msg-rest-gmx-gmx-live-548599f845-5xz2p (via HTTP); Fri, 20 Dec 2024
- 16:44:22 +0000
+	s=arc-20240116; t=1734713076; c=relaxed/simple;
+	bh=/W6KyWLZlMH11g0ZeGK+Lh6aIPfQrX8kBjIMECm+d5M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IPTwFg94V6YDvhy7ZlOeect4AH5Rzi4ybZPuJrqlpQj8eRGFULI9VhRJLi0oAs7uXD3bT/+g09BOUuxCg+NBFe2G90Nw34jZWias1IrN8bE73Ys7x3carwNnesE50u3fe8ogsoaTIZeG8dQhEOJnbRor4JRH6kmRWthq79Wwv+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=u+mX9gp0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1311CC4CECD;
+	Fri, 20 Dec 2024 16:44:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1734713075;
+	bh=/W6KyWLZlMH11g0ZeGK+Lh6aIPfQrX8kBjIMECm+d5M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u+mX9gp0NI1sL3o4th4djHYK5dBf/0xQlg/OKaDCpAkkl8mPc+JPsPsMk7iEHvjvf
+	 KRqSuRlfZUGpDQDYTy3cCL4ZIoh4RY/0jVHHmd0qT7gYwenPiEJvcJaWOCOyMke5A7
+	 cJyC18i4ooGBrDaXfc/xGbwcGxM2IvRCtnXHCiEE=
+Date: Fri, 20 Dec 2024 17:44:31 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
+	alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, paulmck@kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	rcu@vger.kernel.org
+Subject: Re: [PATCH v7 00/16] Device / Driver PCI / Platform Rust abstractions
+Message-ID: <2024122031-outfit-mop-86d0@gregkh>
+References: <20241219170425.12036-1-dakr@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-bbda816d-6467-433a-a516-19da45abe816-1734713062840@trinity-msg-rest-gmx-gmx-live-548599f845-5xz2p>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: linux@fw-web.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Aw: [PATCH v8 0/2] Add Pmic to Bpi-R4
-Content-Type: text/plain; charset=UTF-8
-Importance: normal
-Date: Fri, 20 Dec 2024 16:44:22 +0000
-Sensitivity: Normal
-In-Reply-To: <20241220163838.114786-1-linux@fw-web.de>
-References: <20241220163838.114786-1-linux@fw-web.de>
-X-Priority: 3
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:BVA17PosCUUJmGpk8D2/WIrGMlb2jBpW45Y0IdGwTab0ZrzD0Fka3U/UFoG5AGjRRYm6S
- xd1kkN/PAqp1nqFVxFQbl36yRslF8d8tpoCRBEGPazjdGn4EbOs6SRdhreFE7Q4NQH+45vSv6O3e
- AMeZJIGlIOSczWdAFeLqTjanu2uWq3gN0mCk29vxqIund3fpt388yO9mu7XkuFvDWeXqzDEqVJFQ
- SMz7ZBAS1pQatS63mXkSLVd1VYX3f8KlcG3iFvyhFqLulqoIl0T8YU8Zzwh7uB0PdWjxW0WraMSC
- pSOwyw6S64xEwASvoywteCVk5HY0qVHvZd81BZTX/OQFT6UvY/gJVwAn0xxhEEtY1M=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:GY76qXWr6o4=;/SH78jAFF/8MBVk/bgogUrwzGhg
- EQjLq8aJ4mnW2vJAfJ8EKOQ6nmOf2b2QX9U4eIuTWk2iPa6ES3Qy078sxuEcD1bPeLhWp+i5+
- DuqLV5J60uCd4VR8ku1rsEm91I3pjW3bEgsPBcB+XYW5Qu5zhwberhNZ/Y5B2snKCPD60Z+Js
- aags9DZumvnUfQn8zXiAmWLHf0uwoV4dx5H5/xkdfODAbXhcdbActjjHEVGZjqmt06o/S+Lpg
- wbH5WPYmUFOpjznbAHOav2MCftn4duKyQNT+plsH+OGW4IKFjzUEIzAoLlr84pooOOm4VZOPi
- kCdlf2sGHEyMTxJC5lMfVubO/5/BXBFSKVOR2t9y0eXkl6VBsXesIGdVosgvFBy4f/CFzLCZE
- nW3obcdO4LlBvazaRLjpzKD4vq4dFzQZj9OwNKRPbcoupFUfMyoEzOChF0goQmTFVodJ9VOYd
- 8GgNAqNKfcuAVIMfY38SdE/CQQcG4XawDoA3LB8pHcOBlOLUD09kwsYYG0APk89p08WG+IEVc
- 1/kAV8SUPFsabXb+inY7vHFjK5aNu3BObCu/qPPOfd25uAZjUpCDTWifT6suXqHisrOTSRoY0
- 9/UyT/myg7tnalUzp1UjSgPYANir14geTZh6BeYb6cmdCPSvbw8ug2eZjP2ezKTNIIoArPaab
- ILNM056IsHK4z5xXY2Xd5TEK+Y+d0c13E1orPSTOVoaEsmVab7dNIr3vk7wwUG2rEeNxmiRyi
- z5Jn/0aSlWUrpPXk4i207MlEN/9DOtLyzIsqxFHhUUQ+6jxDBK/TlP21HfWzAZmUFGsjWz+yg
- /zvBroS8DxDeRIfu82yNu5vcvBNqbHsxkf0EKXJgAcsgKb/EBCz4kHW5T3hoBiTNSQV1myUdD
- dQcfZaDovyzSFZA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241219170425.12036-1-dakr@kernel.org>
 
-Sorry, seems i made mistake with version-number...
+On Thu, Dec 19, 2024 at 06:04:02PM +0100, Danilo Krummrich wrote:
+> This patch series implements the necessary Rust abstractions to implement
+> device drivers in Rust.
+> 
+> This includes some basic generalizations for driver registration, handling of ID
+> tables, MMIO operations and device resource handling.
+> 
+> Those generalizations are used to implement device driver support for two
+> busses, the PCI and platform bus (with OF IDs) in order to provide some evidence
+> that the generalizations work as intended.
+> 
+> The patch series also includes two patches adding two driver samples, one PCI
+> driver and one platform driver.
+> 
+> The PCI bits are motivated by the Nova driver project [1], but are used by at
+> least one more OOT driver (rnvme [2]).
+> 
+> The platform bits, besides adding some more evidence to the base abstractions,
+> are required by a few more OOT drivers aiming at going upstream, i.e. rvkms [3],
+> cpufreq-dt [4], asahi [5] and the i2c work from Fabien [6].
+> 
+> The patches of this series can also be [7], [8] and [9].
+> 
+> Changes in v7:
+> ==============
+> - Revocable:
+>   - replace `compare_exchange` with `swap`
+> 
+> - Driver:
+>   - fix warning when CONFIG_OF=n
+> 
+> - I/O:
+>   - remove unnecessary return statement in rust_helper_iounmap()
+>   - fix cast in doctest for `bindings::ioremap`
+> 
+> - Devres:
+>   - fix cast in doctest for `bindings::ioremap`
+> 
+> - PCI:
+>   - remove `Deref` of `pci::DeviceId`
+>   - rename `DeviceId` constructors
+>     - `new`       -> `from_id`
+>     - `with_class -> `from_class`
+> 
+> - MISC:
+>   - use `kernel::ffi::c_*` instead of `core::ffi::c_*`
+>   - rebase onto latest rust-next (0c5928deada15a8d075516e6e0d9ee19011bb000)
 
-these 2 patches were dropped from the linked v3.
+Thanks for this last round of changes, looks great to me!  I've added
+them all to my driver-core-testing branch, and if 0-day doesn't
+complain, will move it to driver-core-next for merging into 6.14-rc1.
 
-there is no v4-v7
+Thanks for persisting with this, looks great.  Now the real work starts :)
 
-not sure why i had increased my changelog in first patch to v7 before...
-maybe mixed with the pinctrl series
+thanks,
 
-regards Frank
+greg k-h
 
