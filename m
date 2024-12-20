@@ -1,187 +1,167 @@
-Return-Path: <devicetree+bounces-133025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F5FB9F904D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:32:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1CA49F9056
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:36:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFF5F164C01
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:32:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9EDF1896CAD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:36:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1A71BD017;
-	Fri, 20 Dec 2024 10:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0799E1BDAB5;
+	Fri, 20 Dec 2024 10:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vPXm/m2s"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NWOU2qXt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700B91ABEB7
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 10:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41DE52C859;
+	Fri, 20 Dec 2024 10:36:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734690774; cv=none; b=ZoxmyAxRuCNyWjQYaUhoSQG1swe4sPxeyjDCu3aacj6kD2lPuFpLMWwUeXCgBtwzNxUIgSru6CfTRM8Ps+i1cHEfDEeVmQbwGEoZEKvD5mXyMDkiCa+aSvUnkBFVU6wI60nM0T+nYJGFXlrm9N920lpKC4/AlwgQBtjbn0mmThI=
+	t=1734690983; cv=none; b=dmIR7SZjzN3Ma3m06SvG6qhM/C5vVD7Gko2p3p7Zi+Yavk+xwLOZ3yMiZEY4uXEHbqOjUJpNwx09uDcJ+zDgtui1LYBBZDnIgXzj9ZBRU/5Xb7jhasiAVMaHA+0xrg2D6+xL9FOxZkJXqw5RtxANuQMaCAxfVN4DwlY3cg4GyaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734690774; c=relaxed/simple;
-	bh=AhRBht02RHZ29E7oO4jKae+4/7Omd+mmnzz7/jvmNsg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Q2W34dwn+QQuXNxILQWH0nzo2cC2JKLRVY9D4g9WYmw+8cZ03UnMd9MtOR+KISm8y/+pKEakuX/jhQaSMXlwe/EwWa8wOTMikZBDcTWpS7rVa6oFlRCHwEWQTi9SQa5wg8Y4nkDS5QsvZmZuBHeQhojEHzTN8ozn3KRgresQP8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vPXm/m2s; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aa6997f33e4so291723866b.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 02:32:52 -0800 (PST)
+	s=arc-20240116; t=1734690983; c=relaxed/simple;
+	bh=5ZEY+r5qQ+AMYuZ7XFhExXY/85ImD6gfTOM4YM4hv3w=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fjdQ98zaW6FuDa0Yo2ibogH5MipUZKTa26R9gRl/p8tudlbGOhySyzo27qDC66x5+p1yD27NbsmVG1XMnFupB4NRT1YvkzImujbka2li6/pkR76c/C7KxCYzsfylc386J86CWbaolJJT/Dxo9o9p9Y8M8xezimx3GpZnV4GF/Bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NWOU2qXt; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43622354a3eso11991605e9.1;
+        Fri, 20 Dec 2024 02:36:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734690771; x=1735295571; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cnPh/juyVOiTzWCImlW3ZTqxEo/ZPE8pe0CN7AE6LjQ=;
-        b=vPXm/m2sS6RTlk3xmPJt6upRYxk+DiVQo3RLl7wszesahugNAKH0NEgX7SqzItMn3U
-         0njMmuvrl3OoH+iSfQL9sCaI96mwfUPuKFiXvFGYgSj1FXlNg9gJuuy0fDOa/Sccjqyf
-         GRJs3/0UT2a1Jv1zpAtpu8jOAnhDSnzBYlmnchQQ6TapIDaojjfSK3TCplL0jCoEKhed
-         nXGM1fuQPxO7zx1C7giCi3/GSpTRk4C/mFV5ym1vZqbvmWcrQzzWLR4OEH5mv6Jf9yYb
-         WFrpnc457U4hMfoqKQNilNbJkkSjrNhQHUzOY2qGUBvpVCTcp3XS5A1iR66xS/SBM850
-         Yvqw==
+        d=gmail.com; s=20230601; t=1734690980; x=1735295780; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=4AxlDXOdbX1NGFPQpTvVqnJBNKIwf38rf+x+0J3lvQ4=;
+        b=NWOU2qXt5X8N138gUGwU0qpi4u3B3X4U7hl2jjHrEdL2TEN3UTZpOUoRehbVHNSHfL
+         4RTlXHtD2y0IUWtcaDP4W7zB8FexP6JIjfR+7ZFpfr7H0xtbH+T8272JRQiLgJpb5UR3
+         HHyzVQ/xeVuY8fSR0Q3RoqgQgby8L1MNu3nWJyS4N+hbEYMK3QMDw9yTXn4XxR+yRtEU
+         TM+s2bYm3ZhiGeTE0k1Y29Gculvs2XvrbqZX5Ah1FCzdtQ8mzoLweX1jdnyMg+pW3d/S
+         cStXlhO/NCKN64qx/UwjwEnVplUx2ocISioE6I6YrUPjZqIXRgo6IT0mul/hTTK+A+Xy
+         hseg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734690771; x=1735295571;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cnPh/juyVOiTzWCImlW3ZTqxEo/ZPE8pe0CN7AE6LjQ=;
-        b=rwGM305BrmzdNc/hUwYmANQX8V9PCtUE2+Z1CnYiv4brkqARwXQhZQo8NE0SHcOK4A
-         GKheo5EG8TGvhGuG/2yn6eduYs4to358T967zpcRDBReRGRbdQxoy3rkgLHNSvkjz2EI
-         Nt+Yg6CXJbQbLQQgIdGfA1d7lQsOjlAvUyfzjHVMEOjrgDqfWZ6BnZd6Uu99w7ToUVb8
-         igcSuAFPyAauNz0Z7GS4TvG0CW2+2diBdlk6G0+BvBmEsRzOy5A1lC6cPitRjbS3RMbH
-         C8ZjTjUJujtCDK0dyifBlbRQ6G2I9k7mE90hNMVmMBktCITXy0DxdpXu5iGqcp/dXKCn
-         /oxw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjrsUMTYmHGQ20pR0x/j7i5Rq5ErFfwoM6CzTzQ2n7C6q4cDUKySxaCJRdPQAXndJe+BAYTwLTfZwH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLhnyxV1VjqpdBOQ/dVWPNjET64GFqjcXkTrs6vywmGbmH4zoL
-	AJ8IzM/jk+C2756UjrNZt4+nj0AcAEg04EWDf6Lb+Tg2HpepE0mOGcetghJRbK4=
-X-Gm-Gg: ASbGncsu9uvJ82OMZ8rKPyul/b6qRH0EcZUKFuRPzgSeklcx6631CuBpCFrYEomRBKj
-	8v4hCffEOGzqYspMK8h6bDhWAgjNlWigmqmo4MSQkuMJ8l59HvnvyGNVDlZD8e1bXB8vISMGx6S
-	+a8aGB9zEVVc+3hrZB9l1Pb4zsSYEZSSXR80AI3XnSMIeg6ygPz1jkyrLxnehCrxgGJ/TD74voJ
-	sn/Da6GOlvOst70iV5zZv3KmdVoahQ3+hM2xguMuf/uBpIPQlr4G9g8vrtTf/Ukf0BWXE87rNZl
-	/dUYU65VoqqakUaBSPxgh4IxXk6by/GNG5QX7q0H
-X-Google-Smtp-Source: AGHT+IExwMGLFo9EP9y/Egh+BLh+KfOHOoPkz6X1qvfx7pdCFx5WJHmb12wq7ReFv0+A2rj/5cCZNQ==
-X-Received: by 2002:a17:907:5c3:b0:aa6:8a1b:8b74 with SMTP id a640c23a62f3a-aac342179f3mr160475866b.53.1734690770668;
-        Fri, 20 Dec 2024 02:32:50 -0800 (PST)
-Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f06543asm161604566b.175.2024.12.20.02.32.50
+        d=1e100.net; s=20230601; t=1734690980; x=1735295780;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4AxlDXOdbX1NGFPQpTvVqnJBNKIwf38rf+x+0J3lvQ4=;
+        b=uVqyWC7RHqNZONWM39olwk4J8p7/RVUTC+Mzzpg4A/mZvdOeAvi95Vb7zSLcavKoEm
+         DynI3VTeqjST7oZzG1EoaZ8SouxvdGU9OtTG7WD0uQYC/hLdzZPfY1QI2z4+1NhSTSOi
+         QVYBPmi8gStMSM6HBk1DGIMINlDmTKGJZU1y4gvlqGD3uPkjMrp/uFPXai9KiWW10iZa
+         mIBGvUgWs/G4Xy7FkYzjV4AAhukF+ubCvv/Is+Nmdo/y7K5gv7NxwWYiHXT3ekRXtxjg
+         sfzxfkujYkUwlvg8kN34Nny18kZ3yppR8vslMHjh2XRMwz7c0c9Gk7ptS3+I96q/v6vQ
+         wwFg==
+X-Forwarded-Encrypted: i=1; AJvYcCVOWLawhuB2wNIEHeKTaRBakGh1fIvJCyjn3or+JOYMZbmSnwWnSQh+GVxIg2OTCPfk/2fD7GTPqfo=@vger.kernel.org, AJvYcCVm3z3pmlIh3CJLYDrWTqAk0UJ9w9ysRIitpICl2eaUQvjD1wkPAE2yjoS1FERibyedR7G7glQhkTi+GDQB@vger.kernel.org, AJvYcCW2qdQTUgIiOzVXO3QYoDfA3b/5xRwtAmqpveIkelGAPEws3KEPch1+0RJ8Hi8cZEKgtTtoMmjuz223@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8bG6mIw5PklpdxEou6+JIPRTIidVxPA/GmUiE7nxDRGofaoS7
+	48QH5tGhm8OLnx0ocbJhYumBATTWwltIyrdn3KIySG4wGLbYd0AO
+X-Gm-Gg: ASbGncsEhmU3MQ0WFdz09VCWKbb3s9rBA7Ylm9jZ4PXNVelt3YMRJewLP5sxDexZ9L7
+	sb2y0W9EYV70kww1AfuibGk6vEfX25W7lUw/cuvOAaSp9Xj4nHmiPvUsfH/ZvpdIEEHev+V+Z5Z
+	riF9jR/bb5cnU/Yakehdl/WonR8kuruFipHrP4Ws/KJ3osjOMt9REc+GJxd647ohl62Sx84e2BO
+	gDTiq1m3fMeUX4Ef6fAHXxgqAcY/+sgEgMvxK8SYi6+rY/g7WpDagUEwyYmFKwZ4f5FRY7gjIWc
+	mR/ImyoAe/GFWU2W0pz1bCcv8A==
+X-Google-Smtp-Source: AGHT+IF2Qdcxxt1R0R++BV7eITFAXb/Wj5U7hOYNI4VeDmzZWOtyS4Gwa0cTfnRVbIHoCAL304lHlQ==
+X-Received: by 2002:a5d:59ac:0:b0:386:2fc8:ef86 with SMTP id ffacd0b85a97d-38a221fac08mr2245628f8f.14.1734690980197;
+        Fri, 20 Dec 2024 02:36:20 -0800 (PST)
+Received: from Ansuel-XPS. (host-80-181-61-65.retail.telecomitalia.it. [80.181.61.65])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a2432e587sm823346f8f.95.2024.12.20.02.36.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Dec 2024 02:32:50 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 20 Dec 2024 10:32:50 +0000
-Subject: [PATCH v2] arm64: dts: exynos: gs101-oriole: configure
- simple-framebuffer
+        Fri, 20 Dec 2024 02:36:19 -0800 (PST)
+Message-ID: <676548a3.df0a0220.16c730.268c@mx.google.com>
+X-Google-Original-Message-ID: <Z2VIo8I6O301MnGy@Ansuel-XPS.>
+Date: Fri, 20 Dec 2024 11:36:19 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [PATCH v7 2/2] cpufreq: airoha: Add EN7581 CPUFreq SMCCC driver
+References: <20241206211145.2823-1-ansuelsmth@gmail.com>
+ <20241206211145.2823-2-ansuelsmth@gmail.com>
+ <CAPDyKFovtfR7BiXBfH-79Cyf1=rd-kmOoEnEdMArjGUxSks-Aw@mail.gmail.com>
+ <20241213040001.jaqeuxyuhcc73ihg@vireshk-i7>
+ <675cb6b2.050a0220.149877.5bab@mx.google.com>
+ <CAPDyKFq7c607_NtiEF=4HinL5HABv7+fW9EGi1xfwpOpUPO6Bg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241220-gs101-simplefb-oriole-v2-1-df60e566932a@linaro.org>
-X-B4-Tracking: v=1; b=H4sIANFHZWcC/x3MMQqAMAxA0atIZgNNVVCvIg5q0xpQKw2IIN7d4
- viG/x9QTsIKffFA4ktU4pFhywKWdToCo7hssMbWZKnDoGQIVfZzYz9jTBI3Rlf5yZFv5rprIbd
- nYi/3/x3G9/0A2QmCsGcAAAA=
-To: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFq7c607_NtiEF=4HinL5HABv7+fW9EGi1xfwpOpUPO6Bg@mail.gmail.com>
 
-The bootloader configures the display hardware for a framebuffer at the
-given address, let's add a simple-framebuffer node here until we get a
-proper DRM driver.
+On Thu, Dec 19, 2024 at 04:23:52PM +0100, Ulf Hansson wrote:
+> On Fri, 13 Dec 2024 at 23:35, Christian Marangi <ansuelsmth@gmail.com> wrote:
+> >
+> > On Fri, Dec 13, 2024 at 09:30:01AM +0530, Viresh Kumar wrote:
+> > > On 12-12-24, 13:01, Ulf Hansson wrote:
+> > > > On Fri, 6 Dec 2024 at 22:16, Christian Marangi <ansuelsmth@gmail.com> wrote:
+> > > > Hmm, it looks like this needs to be moved and possibly split up.
+> > > >
+> > > > The provider part (for the clock and power-domain) belongs in
+> > > > /drivers/pmdomain/*, along with the other power-domain providers.
+> > > >
+> > > > Other than that, I was really expecting the cpufreq-dt to take care of the rest.
+> > > >
+> > > > To me, the above code belongs in a power-domain provider driver. While
+> > > > the below should be taken care of in cpufreq-dt, except for the device
+> > > > registration of the cpufreq-dt device, I guess.
+> > > >
+> > > > Viresh, what's your view on this?
+> > >
+> > > Sure, no issues.. These are all cpufreq related, but don't necessarily belong in
+> > > the cpufreq directory.
+> > >
+> >
+> > Problem is really DT schema... I wonder if it's acceptable to push a
+> > name-only driver in pmdomain just do detach from cpufreq. The cpufreq
+> > driver would manually probe the pmdomain. Is it acceptable?
+> >
+> > Or do you have alternative solution for this?
+> 
+> The power-domain provider driver should use the compatible
+> "airoha,en7581-cpufreq". This driver should be responsible for
+> registering the genpd and the clock.
 
-This has several benefits since it's an OLED display:
-* energy consumption goes down significantly, as it changes from white
-  (as left by bootloader) to black (linux console), and we generally
-  don't run out of battery anymore when plugged into a USB port
-* less of a burn-in effect I assume
-* phone stays cooler due to reduced energy consumption by display
+Is it ok to have clk provider in power-domain driver?
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-Tested-by: Peter Griffin <peter.griffin@linaro.org>
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
-This is marked as v2, because it has been split out from my original
-series in [1] to make it independent, for two reasons:
-* drop the dependency on other patches touching the same file
-* no need to mingle this one with adding Pixel 6 Pro support
+> 
+> Potentially, the power-domain provider driver could also register the
+> "cpufreq-dt" platform-device. To make this work, we also need to
+> extend the cpufreq-dt driver (maybe extend its platform-data too?) to
+> be capable of attaching the corresponding cpu-devices to their
+> power(perf)-domains. For the moment, this isn't supported, but I think
+> it would be nice if it could. Another option, would be to use an
+> additional separate name-based cpufreq-driver, as in the
+> qcom-cpufreq-nvmem.c, that then becomes responsible for registering
+> the cpufreq-dt device.
 
-Other than that, there are no changes and I kept the existing trailers.
+Well a simple init/exit driver should be ok, we still need to have the
+custom function for opp so a specific driver in cpufreq is needed
+anyway.
 
-For those who want to try this out:
-The stock bootloader disables the decon hardware trigger before jumping
-to Linux, preventing framebuffer updates from reaching the display. We
-have added a work-around in our Yocto BSP layer for the time being
-(until a proper display exists upstream). An alternative might be to
-port and use uniLoader from https://github.com/ivoszbg/uniLoader, as
-seems to be done for some other Exynos platforms.
----
-Changes in v2:
-- split out of original series
-- Link to v1 series: https://lore.kernel.org/r/20241216-gs101-simplefb-v1-0-8ccad1830281@linaro.org
----
- arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+> 
+> Viresh, do you have a better approach in mind?
+>
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-index 387fb779bd29..a00cb27e167e 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-@@ -22,9 +22,23 @@ aliases {
- 	};
- 
- 	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+		ranges;
-+
- 		/* Bootloader expects bootargs specified otherwise it crashes */
- 		bootargs = "";
- 		stdout-path = &serial_0;
-+
-+		/* Use display framebuffer as setup by bootloader */
-+		framebuffer0: framebuffer@fac00000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0xfac00000 (1080 * 2400 * 4)>;
-+			width = <1080>;
-+			height = <2400>;
-+			stride = <(1080 * 4)>;
-+			format = "a8r8g8b8";
-+		};
- 	};
- 
- 	gpio-keys {
-@@ -68,6 +82,13 @@ ufs_0_fixed_vcc_reg: regulator-1 {
- 		regulator-boot-on;
- 		enable-active-high;
- 	};
-+
-+	reserved-memory {
-+		cont_splash_mem: splash@fac00000 {
-+			reg = <0x0 0xfac00000 (1080 * 2400 * 4)>;
-+			no-map;
-+		};
-+	};
- };
- 
- &ext_24_5m {
+If both are ok with this approach I will:
+- move pm domain and clock to pmdomain driver directory
+- rework the cpufreq driver to an init/exit implementation (no
+  compatible) and just register cpufreq-dt with the custom opp
+  OPs.
 
----
-base-commit: 8503810115fbff903f626adc0788daa048302bc0
-change-id: 20241219-gs101-simplefb-oriole-d3fad1f5b498
+This should work and make everything well organized.
 
-Best regards,
 -- 
-André Draszik <andre.draszik@linaro.org>
-
+	Ansuel
 
