@@ -1,178 +1,212 @@
-Return-Path: <devicetree+bounces-133080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 088EC9F92F2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:17:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C3989F9306
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:23:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B59416A0A2
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:16:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F28757A10F8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:23:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01204207665;
-	Fri, 20 Dec 2024 13:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 324C22156E0;
+	Fri, 20 Dec 2024 13:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VJA8JWcW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LYay0/A3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFA086349;
-	Fri, 20 Dec 2024 13:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E732046A3;
+	Fri, 20 Dec 2024 13:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734700589; cv=none; b=DD9uIJsvQVtpF3bpAvfjlHsRuNvCgJveLNvtNOGYjH/2vDw4tLS18C33yRz49z664oCyjg+Yu3iBLvKGR67wfkk7Wxd4gfv+1URNS/V62sJVGeA90kX4tYA4N+Dk3qJW0Y48jirtV0OY034OZHKKqoODGfpB6sjZqnt9BnbBTOI=
+	t=1734701007; cv=none; b=lHP2AUK28uluKAMu4LHqw560eZ+ic0NGrq1JWD1/YT6vWV2r7N3nFpDCHaMWqUEGd1oJUyIlZ//Scc3/oymkrt+B7koYuAlvlATLWkqVV9lPVexvcWvKZdq6vMEfmWm5PxraZ2k+V0vOOEeGAvQwGIHRcVtTTmqBkzEc0PbYqhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734700589; c=relaxed/simple;
-	bh=fcbMFdWZ9oZ+6cASJ3ukH0vsKnGZwM2cLwN4nCdwGB0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qf1yy9szqyupVMUAfWsf3LTaAk2feBIRZdmtgY5Y0rbElUGnZVuogQRciYZwuo0ZUorVUxUaMvOD+3JJ5NdyevR8Le3DnTHkg123BJ+mycY6I9HUtCrVbiUZCQo4VPahiStBHhG2v/3lO4gibi57eaP9qQef6893jHydl72UrxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VJA8JWcW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21130C4CECD;
-	Fri, 20 Dec 2024 13:16:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734700589;
-	bh=fcbMFdWZ9oZ+6cASJ3ukH0vsKnGZwM2cLwN4nCdwGB0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VJA8JWcW6wj/aeYHmdpmoU1S4cbHBPdj8dAQO9dWuZm8JVl4XxeMF8qzfC9Vsrwil
-	 vygkmIBFN5FCILk4U4vx/luokf/YaYks3puux9yXw5NNmdiRYoF35opgsFbaD61Zex
-	 gGQwv7GmVS+/R77b8xvjJrCyWeUD4fvt58zWJYzSyglEHpZClCx2SFsW0Zd5k3j36v
-	 lLR+mMemkmpN0kZytjiNBBQZy+P24BEOBjIc54PI4wc7XqoEru9EGJT43Svm855SEX
-	 VSqQLZHzAGRN9S/Y/Qo62seOYhx4vHfVSVgG8qBe5ikXVaXzFxj+4VPsWWwzEkNW8V
-	 036lDY6x4svjA==
-Date: Fri, 20 Dec 2024 13:16:21 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Fabien Parent <parent.f@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	vinod.koul@linaro.org, Fabien Parent <fabien.parent@linaro.org>
-Subject: Re: [PATCH 2/9] rust: add abstraction for regmap
-Message-ID: <8b85fbfa-ffb5-48d0-ba7b-0e26001ab3ae@sirena.org.uk>
-References: <20241218-ncv6336-v1-0-b8d973747f7a@gmail.com>
- <20241218-ncv6336-v1-2-b8d973747f7a@gmail.com>
+	s=arc-20240116; t=1734701007; c=relaxed/simple;
+	bh=uLSgQV8DwTUD0/vY1qsGmb/xX0ql53RpMCD1BEW+4u0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ba7V/xFgTlGt/Y/zEVwS+LTRq4F9qfjXrzaciWwM4zF+0tWLadA4HZgYotmx0bq++hTL/P2r3q3FA5muGlSzLC8eCFoJCsoSjlbLlNYTEtogfQI6PBHNWH5G6l4tIVK9q6AG5CTDITVHlYkjZfVOTcSUiI/8NNJFCgd14nCgy98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LYay0/A3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BKCicfb012737;
+	Fri, 20 Dec 2024 13:23:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=5CxdEYtfuAGbkvKFILymcZ
+	slrCUQSfWtQGLMzjFQYkA=; b=LYay0/A3oAkSy/Ipbch7b74s82twC1Ej7H/n9A
+	PPINlc7zvtIOKCQ7bRuvn1J0oXEWK2C7XN2rcbdkyK2BZq/pw76HLnZHm+fCAZtG
+	Gt3EANwUugrU97QaRBo2Qk98/wcHipG13l/xOdjxoTAES1Fnxll8l5DPJ2HFq27m
+	YNdWB28VZd1JNHNddwxYSQz0zIVYzAsA/YPpJp5e12mNNPxzOXhpH/y/3yq7SPhF
+	Oolw4pUZVLBOK939GcyEgBjspPlU4C157GB1ORcp2o2ZMggXd8EfbQnM/3F8DNF2
+	1mlCb8hRXG190W5rX92g3xcZnolkN8uNbrxEofPxdD5OjFgg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n8uvg32c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 13:23:15 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BKDNFmQ006872
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 13:23:15 GMT
+Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 20 Dec 2024 05:23:09 -0800
+From: Luo Jie <quic_luoj@quicinc.com>
+Subject: [PATCH v7 0/5] Add CMN PLL clock controller driver for IPQ9574
+Date: Fri, 20 Dec 2024 21:22:41 +0800
+Message-ID: <20241220-qcom_ipq_cmnpll-v7-0-438a1b5cb98e@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lAMR5aRUK7y3jhHD"
-Content-Disposition: inline
-In-Reply-To: <20241218-ncv6336-v1-2-b8d973747f7a@gmail.com>
-X-Cookie: Body by Nautilus, Brain by Mattel.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKFvZWcC/x2NQQ6CMBBFr0JmbU2ppTCsvIchBIYik0CBVomGc
+ Hcry/eT/94OwXq2AcpkB283Djy7CPklARoa97SCu8igpNKpSo1YaZ5qXtaaJreMo+gzKnSudNd
+ iB/G1eNvz5zQ+qsgDh9fsv2dgM/8VVGZSRIkCJSmhZVMItBpFcWtaZVpDfY739c3Ejq4xB9VxH
+ D9pPYnzqgAAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
+        <bartosz.golaszewski@linaro.org>, <srinivas.kandagatla@linaro.org>,
+        Luo Jie
+	<quic_luoj@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1734700989; l=4282;
+ i=quic_luoj@quicinc.com; s=20240808; h=from:subject:message-id;
+ bh=uLSgQV8DwTUD0/vY1qsGmb/xX0ql53RpMCD1BEW+4u0=;
+ b=wmbLGrny8lc11y7/cCzP+gFLhVOtG5Sx5++jPxBI/ItmJk7MzQoZZ7ixrfBoaC8SEkoN3cEed
+ /R50J98sYCzDTQmWIXDrGU2adUsmF7iX3U6/1zuGjkGNohKyC8UKRri
+X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
+ pk=P81jeEL23FcOkZtXZXeDDiPwIwgAHVZFASJV12w3U6w=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 1UChyD-PZHXZrebBz-8-FMY05f1sQZ3-
+X-Proofpoint-ORIG-GUID: 1UChyD-PZHXZrebBz-8-FMY05f1sQZ3-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501
+ suspectscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0 clxscore=1015
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412200110
 
+The CMN PLL clock controller in Qualcomm IPQ chipsets provides
+the clocks to the networking hardware blocks that are internal
+or external to the SoC, and to the GCC. This driver configures
+the CMN PLL clock controller to enable the output clocks. The
+networking blocks include the internal blocks such as PPE
+(Packet Process Engine) and PCS blocks, and external hardware
+such as Ethernet PHY or switch. The CMN PLL block also outputs
+fixed rate clocks to GCC, such as 24 MHZ as XO clock and 32 KHZ
+as sleep clock supplied to GCC.
 
---lAMR5aRUK7y3jhHD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The controller expects the input reference clock from the internal
+Wi-Fi block acting as the clock source. The output clocks supplied
+by the controller are fixed rate clocks.
 
-On Wed, Dec 18, 2024 at 03:36:32PM -0800, Fabien Parent wrote:
+The CMN PLL hardware block does not include any other function
+other than enabling the clocks to the networking hardware blocks
+and GCC.
 
-> The abstraction is bringing only a small subset of all the features
-> provided by regmap by only supporting the most vital field from
-> `struct regmap_config`.
+The driver is being enabled to support IPQ9574 SoC initially, and
+will be extended for other SoCs.
 
-I'm not so sure about that...
+Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+---
+Changes in v7:
+- Update to use API regmap_set and clear_bits.
+- Update comment of CMN PLL reference clock to mention .xo could be
+  48 MHZ or 96 MHZ on different IPQ9574 RDP board.
+- Link to v6: https://lore.kernel.org/r/20241107-qcom_ipq_cmnpll-v6-0-a5cfe09de485@quicinc.com
 
-> +int rust_helper_regmap_field_write(struct regmap_field *field, unsigned int val)
-> +{
-> +	return regmap_field_write(field, val);
-> +}
+Changes in v6:
+- Rename the reference clock of CMN PLL to ref_48mhz_clk.
+- Add the patch to update xo_board_clk to use fixed factor clock.
+- Link to v5: https://lore.kernel.org/r/20241028-qcom_ipq_cmnpll-v5-0-339994b0388d@quicinc.com
 
-...this is wrapping the field API.  That's not very widely used at all,
-and all the usages are in leaf drivers rather than frameworks.  Given
-this and that the code is basically simple syntactic sugar rather than
-any substantial logic I would suggest not wrapping this for Rust but
-instead writing native Rust abstractions that do the same thing.  That
-seems likely to be less work and give something that is more pleasant to
-use in the Rust environment.
+Changes in v5:
+- Move the hardware configurations into set_rate() from determine_rate().
+- Remove the dependency on IPQ_GCC_9574.
+- Correct the header files included.
+- Update reference clock of CMN PLL to use fixed factor clock.
+- Link to v4: https://lore.kernel.org/r/20241015-qcom_ipq_cmnpll-v4-0-27817fbe3505@quicinc.com
 
-Indeed, it looks like the actual core regmap APIs aren't wrapped at all,
-only the field ones?
+Changes in v4:
+- Rename driver file to ipq-cmn-pll.c
+- Register CMN PLL as a 12 GHZ clock.
+- Configure CMN PLL input ref clock using clk_ops::determine_rate().
+  Add the additional output clocks to GCC and PCS.
+- Update the same information in dtbindings.
+- Use PM clock APIs for input clock enablement.
+- Link to v3: https://lore.kernel.org/r/20240827-qcom_ipq_cmnpll-v3-0-8e009cece8b2@quicinc.com
 
-> +//! ```ignore
-> +//! regmap::define_regmap_field_descs!(FIELD_DESCS, {
-> +//!     (pid, 0x3, READ, { value => raw([7:0], ro) }),
-> +//!     (limconf, 0x16, RW, {
-> +//!         rearm     => bit(0, rw),
-> +//!         rststatus => bit(1, rw),
-> +//!         tpwth     => enum([5:4], rw, {
-> +//!             Temp83C  = 0x0,
-> +//!             Temp94C  = 0x1,
-> +//!             Temp105C  = 0x2,
-> +//!             Temp116C  = 0x3,
-> +//!         }),
-> +//!     })
-> +//! });
+Changes in v3:
+- Update description of dt-binding to explain scope of 'CMN' in CMN PLL.
+- Collect Reviewed-by tags for dtbindings and defconfig patches.
+- Enable PLL_LOCKED check for the stability of output clocks.
+- Link to v2: https://lore.kernel.org/r/20240820-qcom_ipq_cmnpll-v2-0-b000dd335280@quicinc.com
 
-You might want to include some explanation as to what this does because
-it's quite unclear.
+Changes in v2:
+- Rename the dt-binding file with the compatible.
+- Remove property 'clock-output-names' from dt-bindings and define
+  names in the driver. Add qcom,ipq-cmn-pll.h to export the output
+  clock specifier.
+- Alphanumeric ordering of 'cmn_pll_ref_clk' node in DTS.
+- Fix allmodconfig error reported by test robot.
+- Replace usage of "common" to "CMN" to match the name with the
+  hardware specification.
+- Clarify in commit message on scope of CMN PLL function.
+- Link to v1: https://lore.kernel.org/r/20240808-qcom_ipq_cmnpll-v1-0-b0631dcbf785@quicinc.com
 
-> +//! fn probe(client: &mut i2c::Client) -> Result {
-> +//!     let config = regmap::Config::<AccessOps>::new(8, 8)
-> +//!         .with_max_register(0x16)
-> +//!         .with_cache_type(regmap::CacheType::RbTree);
+---
+Luo Jie (5):
+      dt-bindings: clock: qcom: Add CMN PLL clock controller for IPQ SoC
+      clk: qcom: Add CMN PLL clock controller driver for IPQ SoC
+      arm64: defconfig: Enable Qualcomm IPQ CMN PLL clock controller
+      arm64: dts: qcom: Add CMN PLL node for IPQ9574 SoC
+      arm64: dts: qcom: Update IPQ9574 xo_board_clk to use fixed factor clock
 
-New code should use maple tree unless it's got a good reason.
+ .../bindings/clock/qcom,ipq9574-cmn-pll.yaml       |  85 ++++
+ arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi   |  24 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  27 +-
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/ipq-cmn-pll.c                     | 435 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,ipq-cmn-pll.h       |  22 ++
+ 8 files changed, 601 insertions(+), 3 deletions(-)
+---
+base-commit: e25c8d66f6786300b680866c0e0139981273feba
+change-id: 20241216-qcom_ipq_cmnpll-f5c84724db9d
 
-> +    /// Use RbTree caching
-> +    RbTree = bindings::regcache_type_REGCACHE_RBTREE,
-> +    /// Use Flat caching
-> +    Flat = bindings::regcache_type_REGCACHE_FLAT,
-> +    /// Use Maple caching
-> +    Maple = bindings::regcache_type_REGCACHE_MAPLE,
+Best regards,
+-- 
+Luo Jie <quic_luoj@quicinc.com>
 
-Maple Tree.
-
-> +impl Regmap {
-> +    #[cfg(CONFIG_REGMAP_I2C = "y")]
-
-Built in only?
-
-> +/// `raw` should be used when bits cannot be represented by any other field types. It provides
-> +/// raw access to the register bits.
-> +///
-> +/// # Syntax
-> +///
-> +/// `raw(bits_range, access)`
-
-Given how many register fields are just a number I'm not sure calling
-them "raw" fields really conveys the right message, it sounds like this
-is bypassing things that should be there rather than a perfectly normal
-thing to do.
-
---lAMR5aRUK7y3jhHD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdlbiQACgkQJNaLcl1U
-h9BZYQf/YWG6Ra0eYK7OmmDmcOPVNpFJekn/pwMDeRk0IqTqww4wjrKoT6K728BZ
-RLor6g+fPM18bqUNbgqoJa2vDsTzv5PKrp3YPQ0cYfGKPABXm25fwvBup7nx+VML
-cmi9Lm/h5ojqMPvFMDQf+ElF80JqWLC4mLPgMCd/ZST87Pg+qaMk+IPolTe8f1f7
-qOiQJ35oxDMqKD4JBUeQfXTFKh3Qx7VeMXS4b7PZaec1ZbaAjnsA9Nue8T4boRnp
-jivFsszBtu5KflBtVX04N8BzMw0KvA6dVE2Lx3ijsBXkwihIHldXjKg/RayRkScJ
-k5RA2Br+WX+KDnU+xk5sR+ExExzQGg==
-=k8x4
------END PGP SIGNATURE-----
-
---lAMR5aRUK7y3jhHD--
 
