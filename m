@@ -1,137 +1,134 @@
-Return-Path: <devicetree+bounces-133065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7DBC9F91F1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:11:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88E59F9209
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:22:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF0377A2819
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:11:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAC1A18978A0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2301C5CA1;
-	Fri, 20 Dec 2024 12:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08663204596;
+	Fri, 20 Dec 2024 12:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pRM7cEsl"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Yq+tb1ps"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12DDC1C549D
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 12:10:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AFA31A7AE3;
+	Fri, 20 Dec 2024 12:21:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734696661; cv=none; b=ui/qdjvaNbK6AJuc6dBQeNc/eK62HQUVphwyziRlrraQ/pnlKQx6n2IKQyYoSMCPileLOm3lZEpSL4QDgPvxy34ScJn3DrHJ/0T2mmjDpAAVm5sH+onD49O30Wdz0+kf3p0B65FuenTMJl2R6vf7X7JYr3kW7bbn1598C18a1yI=
+	t=1734697316; cv=none; b=TDIiwUUrEtm6twyomjSCct5MRfRt/tgfmLYP7tyGJs4zp4xeEktFTHJOdvfE01lI03uCkzQFBbROcerheaD7e1Pu7nDazQAmuoNnEMzaWZzeP63emPIcJxjJSyZmaBXCOh+SizanyH5ZATwo+XqSJFMZREv9avFiCAWnI/EZYp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734696661; c=relaxed/simple;
-	bh=ixsC8OUURgIZhAe8Mkq7/VLolocawMQe0qsbVbYNxo0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mIGS6hcYQiQfMIdAcBJx1u4bpHv6D5UYygzfaCmNorYMO/d5kXyWxl1uJbrjKslx58Pi8GInYkin6TfxKfb23L6lJg8vZFvloTVso6Dei1avoyF58wi4gZtfzOFQQnxe8Fdwef6lAtaOetEJH9Ip7nmScpAlfkqyXb2esAbHE94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pRM7cEsl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK4PwMD024806
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 12:10:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tR3RktHelgHkpqS43pQviEzDpPVdWgKiqsqXO164Q+Y=; b=pRM7cEslYzawNh5F
-	ODyr0sFsvrItzJmKADhmTjujJ5iiW9NJVrZAbMGpfjIlncePIJtHcTLKom9jmK6I
-	jNr/epzrE/EFoqUivdRg5k5Kj1B6SI7vLounccdqTaXNF31LRyOf0cm/gObsY277
-	SaW28ZkfqudE8VqO8ETbveDsYGJ1u6pkMcQIy1lZ5t3W1TfIOnzlyRxSANyGEaUv
-	W8/3poN4ZonP3g0skhyPAi8lsRsyWezPfFlciKb4sQ7/5us9P7wLG2loncsROKJC
-	k5XOi/KSX4Rmg4fW3IoKNjOO4IZ+6qgfLCt2lugJFkmHqUgZoNsE8B410k1gHpiE
-	uNcikQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n1hx15bx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 12:10:59 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6d88fe63f21so4397726d6.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 04:10:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734696657; x=1735301457;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tR3RktHelgHkpqS43pQviEzDpPVdWgKiqsqXO164Q+Y=;
-        b=EVMMX/2epxvmLUE4wha8M/33M89cnF7ZN5v3mNjeQM+lAKNC81ry5pOb7wIM8mKcZj
-         U04BYboymMpHXJF9tUVlt1u8JbKlwfqizf2YfnPeKXQi56UtVfUqmIRS8fwOPwNjcKVD
-         dG+ysJL1fuovRSnFcQt2ZKvuzSgeCxCfL7QVJNlB/24xJPvLRDIpo0ET+PwjmcP4CCoz
-         FV/K802aY3KvnOM1kdIJ3xZn2g2s6YuDkb64+3MGZpiFvWa+KXGlowb8iMYDhij7ArXr
-         2+K3JGQhXgWRFMob3lmZKG56Qgw5AU9UDKjK63Etrckj+GgH+e4w5jGzN14o6ZOUnzOC
-         RguQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUMW4Pcty8TjchL/mwKPq+Ks44/K2CBO/fwNds5pKp3zp+ImfcxpyN6qg263NcB0MSbJsnyvEFwbT5w@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxfnU6V7G68EAZlWrm3JpP5Lun1eltLDmO/U+HsHaF4SumRNmK
-	Tvet1xWX+XGcunPRf1QOJ/0kgGDKqc5L/nYDqWh2W0dZ6P1bs5ZGXuzGM7zCLU0TsP/bUIBbAA8
-	QtGoHwD3aHQw4VvC8rYjWAdXc/uu8Fx3RXPC5b3Zueze364FGXqGVewu+qw7/DgOA4vWk
-X-Gm-Gg: ASbGncuEJPi61XR+L7nOARvDSC2WRxB+su95Iol83cCYtOJpSZn/F8ufSiOA8oPPkd5
-	pSZhNR757uxFqTS8nc084dO3jvsUOoDGVT0MffJvq23m9T02+9IIQlh9RNwNDOFWC2IAwaBbMNq
-	soRJurIlZyhPmviR1KmuwyRMpuUAGkhLzlTTL329ulbWLoXlTksD1qwmxq6GHJLzBkLEsV/7yKl
-	XIXG95/WT/Qm4tfWTrCWXAmKHExGa36p3BmBIHHJamfvuBDqWxY732Y5GX07Y/PbYdqFoGXPNbM
-	V14LNuiYyxj71xhQhty306BMv8+qevbbOJc=
-X-Received: by 2002:a05:620a:26a4:b0:7b8:5629:5d58 with SMTP id af79cd13be357-7b9ba743a88mr148180685a.4.1734696657549;
-        Fri, 20 Dec 2024 04:10:57 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEp1Tme9VmNjTRC8n0yRS7LgoBf7/6a2YtTs9BUveVcRYh7GuIm5Nkh0GTzoPGQRv00zVEA0A==
-X-Received: by 2002:a05:620a:26a4:b0:7b8:5629:5d58 with SMTP id af79cd13be357-7b9ba743a88mr148178985a.4.1734696657191;
-        Fri, 20 Dec 2024 04:10:57 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e830af1sm170563966b.14.2024.12.20.04.10.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Dec 2024 04:10:56 -0800 (PST)
-Message-ID: <65d46d28-05d1-4c47-a1f2-7694552a743c@oss.qualcomm.com>
-Date: Fri, 20 Dec 2024 13:10:54 +0100
+	s=arc-20240116; t=1734697316; c=relaxed/simple;
+	bh=JduFaswRmxN5tGLStvzwUiaywMEIItZVTSmKsVx9nOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rm4jRIh61FDTqFa4Wqoho1YpUA8bygGHav7a9cstSMKlhSuVDC+bbPGXdAGx77au9BuXy6CUCYnYD8s6iLuqXiGA0AboG0Jzab3zzVyaGpoHQxF9Cz88n2PtJg4pJpREJiF49Btjh0DQYiAwCcpna2SOfS5Lr4jX7ZEmu8z7lBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Yq+tb1ps; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02B3BC4CECD;
+	Fri, 20 Dec 2024 12:21:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1734697316;
+	bh=JduFaswRmxN5tGLStvzwUiaywMEIItZVTSmKsVx9nOI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Yq+tb1psbAD0EEaGVo62BeRkwh9Xj1zwGjU1RnX9bPc3zuKVZ+vFaKjzZirLF0O5Q
+	 cWqZTrj/8oUOashMDH0in9idt9Jf9pCN3xfKSbuna7zWsHJDYmyLi1Jgqy+04F5+b+
+	 WkFCtRLWZn13uCsuIFDP/5NAmVeHVQ3OLBfdEu0A=
+Date: Fri, 20 Dec 2024 13:21:51 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
+	Simon Xue <xxm@rock-chips.com>, Lee Jones <lee@kernel.org>,
+	dri-devel@lists.freedesktop.org, Zhang Rui <rui.zhang@intel.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, Andy Yan <andyshrk@163.com>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-pm@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Jose Abreu <joabreu@synopsys.com>, Jamie Iles <jamie@jamieiles.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Frank Wang <frank.wang@rock-chips.com>, linux-mmc@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>, linux-i2c@vger.kernel.org,
+	Simona Vetter <simona@ffwll.ch>,
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-watchdog@vger.kernel.org, David Wu <david.wu@rock-chips.com>,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>, linux-iio@vger.kernel.org,
+	linux-pci@vger.kernel.org, David Airlie <airlied@gmail.com>,
+	linux-phy@lists.infradead.org, Jonas Karlman <jonas@kwiboo.se>,
+	Maxime Ripard <mripard@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Vinod Koul <vkoul@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Jiri Slaby <jirislaby@kernel.org>, linux-pwm@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Mark Brown <broonie@kernel.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	linux-serial@vger.kernel.org,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	devicetree@vger.kernel.org,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Tim Lunn <tim@feathertop.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
+Subject: Re: [PATCH 00/38] rockchip: Add rk3562 support
+Message-ID: <2024122018-groove-glitzy-f3bc@gregkh>
+References: <20241220103825.3509421-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add
- the EC
-To: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20241219200821.8328-1-maccraft123mc@gmail.com>
- <20241219200821.8328-3-maccraft123mc@gmail.com>
- <d301a695-a5d8-4e76-862a-a6ea5c125617@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <d301a695-a5d8-4e76-862a-a6ea5c125617@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: cSuamcZjoSniit-S0-jbNoCKOykzKwet
-X-Proofpoint-ORIG-GUID: cSuamcZjoSniit-S0-jbNoCKOykzKwet
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- phishscore=0 adultscore=0 bulkscore=0 mlxlogscore=997 impostorscore=0
- malwarescore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412200100
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241220103825.3509421-1-kever.yang@rock-chips.com>
 
-On 20.12.2024 12:52 PM, Aiqun(Maria) Yu wrote:
-> On 12/20/2024 4:08 AM, Maya Matuszczyk wrote:
->> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+On Fri, Dec 20, 2024 at 06:37:46PM +0800, Kever Yang wrote:
 > 
-> Is the commit message missing for this patch?
+> This patch set adds rk3562 SoC and its evb support.
+> 
+> The patch number is a little bit too big, some of them may need to split
+> out for different maintainers, please let me know which patch need to
+> split out.
 
-Yeah
+I recommend you doing the split-apart as you know the dependencies here
+the best, right?  Otherwise we all will just probably ignore them
+assuming someone else is going to review/accept them...
 
-Maya, please add a short summary (some backstory about the EC, what
-it does or so).
+thanks,
 
-You'll probably be asked to do the same with the bindings commit, but
-you can mostly repeat the same thing both here and there.
-
-Konrad
-
+greg k-h
 
