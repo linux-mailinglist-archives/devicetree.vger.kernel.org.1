@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-133150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4F69F9666
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:24:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B510D9F9663
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:24:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1EF8188D2CC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:23:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F01A816C690
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:24:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CE121C9F6;
-	Fri, 20 Dec 2024 16:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 012A321D5AE;
+	Fri, 20 Dec 2024 16:21:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="WKG3s9Ca"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="Jk/K4z8/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F2321CA05
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 16:21:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE5821D00B
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 16:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734711703; cv=none; b=lvixwfc3RWZGHATDbjmMgqRfdRQkcc04TZNGb6/tw/uNIu9BUYIXS/10qEEY+/lG1N2qE0celWD0+kdsSGT5UoHwfefyBzTDi/1p/NQJ21V6ttnuYo738tGLS9LK163Pwp+S5wFMS5KF6x9g/pk5+7Mse7gGYZ2hUWxt8SiR9DA=
+	t=1734711704; cv=none; b=nDl57ECxz57Qp55+OklV61hwUTfTpJ7s+lFmIuOrUaOlS29nC2dXp3TchdYgU3Jq/9FK6JhP9zCVwBRh7zaS3Oy1fW/GZGpgyQwPnPMgr3svGX/XoIquPTqGDD4Qx6dcDLIS51qcaCnbaUer5CiKfPtE+6iE5Rl7c2wcYjvdfKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734711703; c=relaxed/simple;
-	bh=pXK+2+/QfGO0TyFvojht0JPWl8TlZGLLNkgaH46ud5g=;
+	s=arc-20240116; t=1734711704; c=relaxed/simple;
+	bh=lP5fUIxnwfA9TrVj9PxAP3nMhg0Xse1CCwTK/R9Ub5Q=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DfVBMWJmBxUSy9sT0QsIl480jPa53ffhk+fqaPRMWke+1dugvFTnMFMMOCd3Z2mLWy9nEDI00ev8sDWGx+ubgfXby2BPwsKYvqvjvdG+JVkwwVX2cuJ4R4UblRuMWNMdjEOttCv/7DBhPx71lCKqcM6BypdREFsGUX0apenIiAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=WKG3s9Ca; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:To:Cc; b=bJfW0RQNeAU1rnCeTRKf92quck6iSydEPhTUNug0Yh1gp2loP5LSZ6oN3U/m8e9YyKt8MeNHrTvNTde7uDEEzPdo63ERfHG9RFPqNdw82du9/2G7/j+V2dYI7KR4wqkGBhXPl8qQ6OAiasgUDL7q2MLmg2WdCe8BRdPhupf+nIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=Jk/K4z8/; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso14636785e9.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 08:21:41 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43622267b2eso21267485e9.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 08:21:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1734711700; x=1735316500; darn=vger.kernel.org;
+        d=raspberrypi.com; s=google; t=1734711701; x=1735316501; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=v2BNxauvgR86wVgxl1iZjGE4qN7o21GTD/GjGRmEaXA=;
-        b=WKG3s9CaGk63UdGjCS9EK+gXlHQMqvqj1f0M1sK5BV0RHMlq6vbmuXpW3Q5n/8CJWt
-         2kd/J9qyd2yg03/1ydt6ZR3hi3Nt/Xfe4IVDq71YPNuOzBUVfXRGDx/0rP/D0ahZm8w1
-         isRMs3cX8JnFL3/fXyQrF6ws4U0gnYPRciIkRcViKCoNHgRDi6GlZBqVhh3iKHkuMX8m
-         Qr98R6PAJIoYfw0vlDK4VQrL8FumfAraMhugzm0dATNvxF4IABPYTnnv6DumM/ADFNP2
-         1WNN3q5bMVTz5dhB3eWLDYA/aOnmZCRy2iUTQEQrpz5PlGRzIUU5NqW/uOIR5L0Cr4Kw
-         E58w==
+        bh=av9B4J24iSkn+3gVD9YhMsMCbMdNI6QkecYKJAVC1Bg=;
+        b=Jk/K4z8/VO6btyAfWwYJhGJCeLrSB8ZzvmSYN7b8BdnaGH/lQI4LgumXcEQSjUoE1S
+         gP62wQTcNrJRAV0Js3cXRAhGZgmJU6sbHsg/pNmvJfvi/3CKftvy894bIfk6BGae2r65
+         jdsDp6O6DCDIq+4N9qOaOd5JkdhSyQoVbYIJY8Je2HJi+0+dFHBeGJRXagZlYe86bWrg
+         9LzFCwkC+I8ZOoDCUOiVUrLrMiBsYkwPWHMUOzAFUfFH4TQjoSNlAe54AQQgyf8SreKs
+         j8yEcKPXHYJ+LYAwvyw+gcisYeUMSpqr2w0kcBYgqGnO0XieCCQECQVmnWFfhBdyyKtf
+         iFVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734711700; x=1735316500;
+        d=1e100.net; s=20230601; t=1734711701; x=1735316501;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=v2BNxauvgR86wVgxl1iZjGE4qN7o21GTD/GjGRmEaXA=;
-        b=Wwnrn2HKxEBql30d2wfnRZrQ/xzIu1k01T6aBiBynNfT3idi6KHs2g0VuCFBXOOtF3
-         Y9W8bLE1xnK8nNO0LdoSjWMIsEBTIYjPNsPUJ5945495nMK8IMIHHOgrrUGRU1aA/l3L
-         DkbnUdahQHmUBv9y17gLznaz1idJJDVMmqKbYhRgL5yzO6PNFnxML5daf4uUfQYz8VwP
-         M6UyEGG+s+oC36JAWeuLEwMQVV3Ey7f7ggIIAUWnLJ1QP8bvUuAxgLaWeI5w7UdepmJD
-         qb9enQCAKT8LTfHcu8SgQ7y6RYy6yBCxGJi+STr09uOqyFbmQIU2lXgC4+gUSwP40/pv
-         OvSA==
-X-Forwarded-Encrypted: i=1; AJvYcCUdO57wrjQ6ENb8+SAIl+L692wZYe5gYYvQTrIh77x/StVeo2BtlvmxojKiaykwj4vWruGEj4uwr3Qy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2QZj7NjSAHPmw6V5PWkGKACsUZEMOc6BtuN8mxq0mqZtiXEHU
-	E6kl97AGq7xDwcHFPc7Wo/+q7Lc5T+CnYOm4cvHt8dSyl6hWBchCFySXgewQs8U=
-X-Gm-Gg: ASbGncvQc3UOyA7ioUAGYC1R/EHpWnRj5CeLaerP/b9WoqoLZqlj9EI2+YRwS4VQahj
-	/jzsduEHd7R9fS4B82DnaTACXhpDPbcmMv8IJUflDWLFfB5bIJ5xe2O3XnzU2KSnxrNiKvwGmc6
-	YNFTQQryKpQSFUsqK+zA9X+l5Rn7A/qRYeFDhckU6dP5JreT+ehM+mfXefUL3Gv+f1YclDgseVa
-	ZHpI5WeJpN0deMOVM8oGb38Z8ZY+SwrDQGNtI4mofBbbMHR
-X-Google-Smtp-Source: AGHT+IHZKwXSt3EtkR4/vJsXBDTgJju7+F4kSqL+22sBCcY1J09BA0FGI2cPpS1gnn5GDXEf6EXehw==
-X-Received: by 2002:a05:600c:138d:b0:434:ff08:202b with SMTP id 5b1f17b1804b1-43668643173mr32952625e9.12.1734711699939;
-        Fri, 20 Dec 2024 08:21:39 -0800 (PST)
+        bh=av9B4J24iSkn+3gVD9YhMsMCbMdNI6QkecYKJAVC1Bg=;
+        b=rw9nRc2UNtE7p7MH8J48osFbwrf6SMgajgxcmnrW/XKmXgmLjcT7ld+UcI9PCwXwtF
+         rcWxPwOMy65yoD24IoLcNL4alvUoisUWXJoZQofnin3UnV3iDztzZ8otG7B1dBaPETG/
+         G8WgpIhur/TEa2J0unkWe3ZvyfFzYXign+BCE7P9AP4MCo7a8a1GxV3vITqeIBUP79Zr
+         qGvFhXrdwAgbvT2YcampFYhVM7ld2Ukg1TiExR9k7xLHYxzckpD9WLmmj6imTsi/Lgiu
+         T2MSFjdRIbPPSxP510hOwKPJb64NsJYCEopzFK8Ur+Ea13fmmPZtK40EJIA40zmeJOWr
+         ZjQg==
+X-Forwarded-Encrypted: i=1; AJvYcCUMaEGB+FAOFfasIRvVUTjaFyrS6/ffzqNU1qW+dmRidgjnzNuG6aL5SG8m8yUyB1BCQ4s46cGXNL4s@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1JtDJsV7jAl0BMzpmUNgYU1H6HWfdAJFiDGA88mK5cB+fUfDc
+	st4RjBtAt6Hnyp7NLinJxEE8Ct4pdQfNiOLFqviS1mRYb3rE2aOLqr3KZTIJuW0=
+X-Gm-Gg: ASbGncvcaojpAczeB9J6YWK1AMxeCM60i2laQ8t7PTK2VhDsN/Quw4TS+y190Yyi38Q
+	2ps8vqbBlvmVHdgNdx43fis5hqFwP2UKtdfqIkh2FSKNenFZV0YGlLbTlIPnLyDujgn3wK8f2sT
+	u9FLxQvqQgNp4DwcIRHeDUM97EV/fgyy/52j6d9qNDWLkYIABrc+Ri3xCuYjlXRBLXRrMiIRPiC
+	71eC46bKkjIK06ckr1Buwytci2pQYsDCtBqjeedMyX5ZeXM
+X-Google-Smtp-Source: AGHT+IHg6VTmT54UYl9JM2Jsfkok9cq3oZeEbcD5pJ5HR0oeS3QenygH1VZpwXBGmdab27CtHTitYQ==
+X-Received: by 2002:a05:600c:35c1:b0:434:a94f:f8a9 with SMTP id 5b1f17b1804b1-43668b7873emr26854825e9.28.1734711700897;
+        Fri, 20 Dec 2024 08:21:40 -0800 (PST)
 Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43656b013e1sm82824045e9.12.2024.12.20.08.21.39
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43656b013e1sm82824045e9.12.2024.12.20.08.21.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Dec 2024 08:21:39 -0800 (PST)
+        Fri, 20 Dec 2024 08:21:40 -0800 (PST)
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Fri, 20 Dec 2024 16:21:17 +0000
-Subject: [PATCH 6/7] RFC: v4l2-mem2mem: Remove warning from
- v4l2_m2m_job_finish
+Date: Fri, 20 Dec 2024 16:21:18 +0000
+Subject: [PATCH 7/7] arm: dts: bcm2711-rpi: Add HEVC decoder node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241220-media-rpi-hevc-dec-v1-6-0ebcc04ed42e@raspberrypi.com>
+Message-Id: <20241220-media-rpi-hevc-dec-v1-7-0ebcc04ed42e@raspberrypi.com>
 References: <20241220-media-rpi-hevc-dec-v1-0-0ebcc04ed42e@raspberrypi.com>
 In-Reply-To: <20241220-media-rpi-hevc-dec-v1-0-0ebcc04ed42e@raspberrypi.com>
 To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
@@ -102,47 +101,47 @@ Cc: John Cox <jc@kynesim.co.uk>, linux-media@vger.kernel.org,
  Dave Stevenson <dave.stevenson@raspberrypi.com>
 X-Mailer: b4 0.14.1
 
-From: John Cox <john.cox@raspberrypi.com>
+Add the configuration information for the HEVC decoder.
 
-The Raspberry Pi HEVC decoder has a 2 stage pipeline
-where the OUTPUT buffer is finished with before the
-CAPTURE buffer is ready.
-
-v4l2_m2m_job_finish allows us to do this, however as
-the driver handles VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-this warn fires on every buffer as drivers that hold capture
-buffers are expected to use v4l2_m2m_buf_done_and_job_finish
-(introduced with [1]).
-That doesn't allow us to handle not returning the destination
-buffer.
-
-[1] Commit f8cca8c97a63 ("media: v4l2-mem2mem: support held
-capture buffers")
-
-Signed-off-by: John Cox <john.cox@raspberrypi.com>
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
- drivers/media/v4l2-core/v4l2-mem2mem.c | 7 -------
- 1 file changed, 7 deletions(-)
+ arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi | 5 +++++
+ arch/arm/boot/dts/broadcom/bcm2711.dtsi     | 9 +++++++++
+ 2 files changed, 14 insertions(+)
 
-diff --git a/drivers/media/v4l2-core/v4l2-mem2mem.c b/drivers/media/v4l2-core/v4l2-mem2mem.c
-index eb22d6172462..325a518beff7 100644
---- a/drivers/media/v4l2-core/v4l2-mem2mem.c
-+++ b/drivers/media/v4l2-core/v4l2-mem2mem.c
-@@ -490,13 +490,6 @@ void v4l2_m2m_job_finish(struct v4l2_m2m_dev *m2m_dev,
- 	unsigned long flags;
- 	bool schedule_next;
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
+index 6bf4241fe3b7..43fa2d82cedc 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi
+@@ -105,3 +105,8 @@ &vchiq {
+ &xhci {
+ 	power-domains = <&power RPI_POWER_DOMAIN_USB>;
+ };
++
++&hevc_dec {
++	clocks = <&firmware_clocks 11>;
++	clock-names = "hevc";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+index e4e42af21ef3..0a1f05a26a6a 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
+@@ -628,6 +628,15 @@ v3d: gpu@7ec00000 {
+ 			resets = <&pm BCM2835_RESET_V3D>;
+ 			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
++
++		hevc_dec: codec@7eb10000 {
++			compatible = "raspberrypi,hevc-dec";
++			reg = <0x0 0x7eb10000  0x1000>,  /* INTC */
++			      <0x0 0x7eb00000  0x10000>; /* HEVC */
++			reg-names = "intc",
++				    "hevc";
++			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
+ };
  
--	/*
--	 * This function should not be used for drivers that support
--	 * holding capture buffers. Those should use
--	 * v4l2_m2m_buf_done_and_job_finish() instead.
--	 */
--	WARN_ON(m2m_ctx->out_q_ctx.q.subsystem_flags &
--		VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF);
- 	spin_lock_irqsave(&m2m_dev->job_spinlock, flags);
- 	schedule_next = _v4l2_m2m_job_finish(m2m_dev, m2m_ctx);
- 	spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
 
 -- 
 2.34.1
