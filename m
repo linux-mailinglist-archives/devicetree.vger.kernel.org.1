@@ -1,78 +1,63 @@
-Return-Path: <devicetree+bounces-132965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC6ED9F8DBE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 09:09:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F62B9F8DD2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 09:17:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5F437A24B1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 08:09:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66685189453E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 08:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CC801A38F9;
-	Fri, 20 Dec 2024 08:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A23A19FA93;
+	Fri, 20 Dec 2024 08:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cogentembedded-com.20230601.gappssmtp.com header.i=@cogentembedded-com.20230601.gappssmtp.com header.b="rxDamQGY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FVrEUV99"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB761A0732
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 08:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 848501804A;
+	Fri, 20 Dec 2024 08:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734682179; cv=none; b=EEkdL+SAk26RbCXt3phnjxrRzDRt7RvywOghibHUcmLdHEgNZ+BUwlMjZD7DltajxXhxJjoiR3crlXcqREr1B84ZwU+AiJEe9UWNAB62KiDONH4WHRtqi6KiNIL/2k1dOJUIeipucuO04MrvqoyW9jnkWhc5wg0nRBfdm3tY3FA=
+	t=1734682653; cv=none; b=IYGON/iL588XX11pY83YJSCiuKN7f0VxGBwL/6QjlTdaS5d3ColUmApo3tka8L3RQGxwY8JaYOuUSu8XZ69p8wVGIXNRIFMcYt3CvafCZJhz13d1ThlfXJwTpCIxldPasH2+owid711RAiYEGtKj/ewA6rne4TzUdFNNb3Wievc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734682179; c=relaxed/simple;
-	bh=RZGLnoL48vAfpOS6MUjRxghvSaxCzIP33faA7KSTB48=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ok74lhpTE81Jls99S2stIWotkAxYKDUEuVyZ17JPt3z3INkucgABlWFu5Em1vxB0b0R2sfL8orUW6dKbtclcYuy9yaLOdQWzpPatDrCBsYXx2f0GY2X54j0mTBiGmfAttXv+1Y2NfhFFCv2ny3NlglwesCMm1fgyDjzR5dr/cpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cogentembedded.com; spf=pass smtp.mailfrom=cogentembedded.com; dkim=pass (2048-bit key) header.d=cogentembedded-com.20230601.gappssmtp.com header.i=@cogentembedded-com.20230601.gappssmtp.com header.b=rxDamQGY; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cogentembedded.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cogentembedded.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53e3a37ae07so1665048e87.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 00:09:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20230601.gappssmtp.com; s=20230601; t=1734682176; x=1735286976; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QF6UIXiEkHZmXmCHoNP/5n9jgMJUTxHNacJ4sboJOKQ=;
-        b=rxDamQGYKGbdHhDUbXzBaxDcQWqBp3kKy1zSvmUtYoKfbVxEOp32S3EuaYpKnu2Qji
-         tWzg7YxZui37wLjz+nQp0o+AimwT8cqLNAoIgN9JGewGLfrEco0H9QSvjKmyt8UgHtD7
-         uMtDGm+1HLoSJWYzekl+Vrx1H26Xie05uI1bfcUaKyAB67zRomlIw+VPOSQBaImi0qFq
-         L/BIo/Cy4wQMxHWo3S0DXrxqs5KM7q0b9zP0qSfHDiWXkVGEQsk7Vq1OEf9ONY6ClR1R
-         s6HerZ4tZ59+KX8BGsr4zbON4Bzn/TdbNOPm6MmK4EioJ2iagCaDznksKBglLGMtmgMw
-         F8lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734682176; x=1735286976;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QF6UIXiEkHZmXmCHoNP/5n9jgMJUTxHNacJ4sboJOKQ=;
-        b=b6o+mJPTSm5LPgNGnsS4zwVLH4ZbX36cUy/Yi/Q/8qUJuHBoZQ1cZ912Q3sZIScdvQ
-         ZDHQOrAj8pJg+1WwFu94lJAidkqiJ3eZW0VmJ2kBGwmLLpkHcsCzBEhUlGlNuqrvD4rX
-         PBf0rBBEUtKk2DgmlPfqgLVLHgojIYvMlT1gfhvHbABodIWjzXggyq0NSF+ULb3jS3n7
-         7mEGafzeaVsG6SMPIKmWI5oS/qRpz9EH+EjnPIN87RTRDvwQZl+tO2huaYGwtR16l/i1
-         RcIhnJIvKGDNY0y2KOOq5lT+7zEC0dUcOO4487r/PxMb3OO5cfSY3JikuHk+jYjXbMo0
-         ZB1w==
-X-Forwarded-Encrypted: i=1; AJvYcCXGrZCroybkmh3G8ED7E6zQlkeDZfVmtJHWR47J41T4g81pRd0CR2GwBOvyxFH8gt78n0F1LcKRUrKN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNfi79E+DQToHrCnSP7fN2rA7kfR9OMpdjXumT4BvKgIdEYwqe
-	Qutq2robOXO0fXZKyVYsRidmYLpJpy85oWVixRXYe37qiKSMZXlGB4+YedSa+U0=
-X-Gm-Gg: ASbGncurmiN6pboW3LGhDAfeCmplPuwoQSCk1poyU1rCauS2xt9BwkyxOs0oyCxKx16
-	sUYPePUVJwSbfINJdDezI9i5E3Ich58JoSWC3CEa1IpTgAp8msATDNbKRv1KGE4AoYTV52KjXBe
-	/gxv+3cuDnM4WTD6djh2VcZ430GimfzR1CPIuq8dyGvJVUghbNg7xcY7oxKV1icbNRx9WlODCYl
-	sd6Lz5U9MS1s06FFQLr3DATG2K3fccjtfCU3Np5H3WwuS5A/9icl91NiYNlXsjOoQLhBoJS9kRA
-X-Google-Smtp-Source: AGHT+IFwM9giffUHrEP/MTz0pVObL+nMy8Xk6RiX3KQ+DCpfdFx5uhdfpy/4qHCmQMHFdCluSPPBOQ==
-X-Received: by 2002:a05:6512:1387:b0:53e:3804:57ae with SMTP id 2adb3069b0e04-5422957ac55mr661172e87.51.1734682175720;
-        Fri, 20 Dec 2024 00:09:35 -0800 (PST)
-Received: from [192.168.0.104] ([91.198.101.25])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542235fee84sm419634e87.69.2024.12.20.00.09.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Dec 2024 00:09:35 -0800 (PST)
-Message-ID: <7b009b7f-0406-4dc1-80b3-79927d6143f0@cogentembedded.com>
-Date: Fri, 20 Dec 2024 13:09:27 +0500
+	s=arc-20240116; t=1734682653; c=relaxed/simple;
+	bh=zTxPnwWb00tyx5IV3P7ou5G7Z7FrzvbiLd7SdiiiJ2o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tLXe3acbmNirK8WlPzkXELdkWy8I7SAo1nSGY0X0s0D+92ebA8cQOqtC4OBQSod0ySDheq5FgMlpQiNFYIv7Q/q4xkF1/9tM3HarKwK2wa98y750QikefpCY/fZfygvAr8yCemF2iSRYzTqo5qVAEnBeTSZFAZ8uL7nNHO5/ppM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FVrEUV99; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK6me3k002947;
+	Fri, 20 Dec 2024 08:17:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zffLWLUSCtFkXCaFxksO/9w2Cv27+Onxk0TFVbWZn7g=; b=FVrEUV99SN1XpoA5
+	CknxSjKaQtUO7h7VcVti86s3c8U4OBgt5ZCZsnycSMtKQmsW5G+08d2xl6dQf1mx
+	YJj8eyMxqn2d1EguRxU3wIUGiT9/ra1epN/IODM1UhN5r/hnAz20JMtCoOGQvZSG
+	LlMQEEaCVOf0+LvoVdhgFSt+r/BTGvemmuImq2StVQwzBbYadJqbY+3V03susqhg
+	9cxFvz7B19EAAlGod+ENDQSviwzXuBflAD6q+jJsRx625KsGpZyn7I4Sxs677gxK
+	uGyGciY8IittjjrFR+L45FSPgyhxJ1ZZGWrFIvFKg8jDhoJ+CqUo6hOTEXFVCiBc
+	Lz/yQQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n3my07nf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 08:17:27 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BK8HQL7017649
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 08:17:26 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Dec
+ 2024 00:17:20 -0800
+Message-ID: <37606da1-66ca-4134-a78e-ec9befc0285a@quicinc.com>
+Date: Fri, 20 Dec 2024 16:17:18 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,37 +65,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/2] net: renesas: rswitch: use per-port irq
- handlers
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>, netdev@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Michael Dege <michael.dege@renesas.com>,
- Christian Mardmoeller <christian.mardmoeller@renesas.com>,
- Dennis Ostermann <dennis.ostermann@renesas.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-References: <20241220041659.2985492-1-nikita.yoush@cogentembedded.com>
- <20241220041659.2985492-2-nikita.yoush@cogentembedded.com>
- <CAMuHMdXV-2bdU9Cmk_VHTJ=M3Afg5aTfY=_k=p6v1igzpV5kBA@mail.gmail.com>
-Content-Language: en-US, ru-RU
-From: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-In-Reply-To: <CAMuHMdXV-2bdU9Cmk_VHTJ=M3Afg5aTfY=_k=p6v1igzpV5kBA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v2] arm64: dts: qcom: sdx75: Correct IRQ number of EL2
+ non-secure physical timer
+To: Cong Zhang <quic_congzhan@quicinc.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241205-correct_timer_irq-v2-1-7db282a5e475@quicinc.com>
+Content-Language: en-US
+From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
+In-Reply-To: <20241205-correct_timer_irq-v2-1-7db282a5e475@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: z14EsJ8OY7KfSbULeYJH-5LzBLH7-WE8
+X-Proofpoint-ORIG-GUID: z14EsJ8OY7KfSbULeYJH-5LzBLH7-WE8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 phishscore=0 bulkscore=0 mlxlogscore=910
+ spamscore=0 clxscore=1015 mlxscore=0 suspectscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412200068
 
->> But it is not required to use the same interrupt for all ports - GWCA
->> provides 8 data interrupts and allows arbitrary per-queue assignment
->> of those. Support that by reading interrupt index for each port from
->> optional 'irq-index' device tree property.
+On 12/5/2024 6:28 PM, Cong Zhang wrote:
+> The INTID of EL2 non-secure physical timer is 26. In linux, the IRQ
+> number has a fixed 16 offset for PPIs. Therefore, the linux IRQ number
+> of EL2 non-secure physical timer should be 10 (26 - 16).
 > 
-> Sorry, but I can't find where this property is documented?
 
-I will add this.
+Please add a 'Fixed' tag, as it is indeed a fix.
+> Signed-off-by: Cong Zhang <quic_congzhan@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sdx75.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+> index 5f7e59ecf1ca6298cb252ee0654bc7eaeefbd303..b0775173278f3eed0f301b40dfba0f2680d7b0d0 100644
+> --- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+> @@ -1548,6 +1548,6 @@ timer {
+>  		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+>  			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+>  			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> -			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+>  	};
+>  };
+> 
+> ---
+> base-commit: bcf2acd8f64b0a5783deeeb5fd70c6163ec5acd7
+> change-id: 20241205-correct_timer_irq-d7e6fc4c616d
+> 
+> Best regards,
 
-Nikita
+
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
