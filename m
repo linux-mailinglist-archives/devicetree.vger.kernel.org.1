@@ -1,212 +1,115 @@
-Return-Path: <devicetree+bounces-133051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B77219F91AD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:51:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051799F91B4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:52:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9AD61895FC5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:51:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B30518961A4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:52:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA2E1C5F20;
-	Fri, 20 Dec 2024 11:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2267E1C330D;
+	Fri, 20 Dec 2024 11:52:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q3P8OMAZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AiKjFUUG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 460002594B5;
-	Fri, 20 Dec 2024 11:51:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979631853;
+	Fri, 20 Dec 2024 11:52:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734695468; cv=none; b=XSwDTSStuRTEDDulpVuo6plkA8leUeu1sqqc7OI0T5K2PLmAuPFXH+YtdchADUCmuTYeXZU8o54Cv1O0kRFLZOj52IOBJFpeANV0Y972w+trjbH8cdNL6XYax1qsIoD9TyyFXCfIjKzfB0e+fIWbnsLyIiwLggHp/1Mw0CtwmHg=
+	t=1734695553; cv=none; b=gTBbD65HQvIJDMhNeKmMNwdLzUwNwgR1bq4hxZ7qspwGbmeTEfZJwtJWK5sbmqQJ1y0MyBQkLOrYXN3RJK7DWZ+xEXJcJcsvGrMNqLoESJc8jDtyfv7v7Nb1EaQVmzm95VL2vjtf4TINSsq/d95zRsGnPUY9qJweENMZCH5tBgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734695468; c=relaxed/simple;
-	bh=S3LF4IJU9JotiK7p+SXFg1MUAru+xOziP63TS5y0GWQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iEQWbT9qwaNt4o9zQOJDYg/hkG8T+82aYP+rp4pee/D6HD4I3AGByStWJborUUt3A8e1H9sJmnKneMrndXRqCX8J6ZxUrxFxNfNRJncrUTNGfFfkHuIMbdIaz/7hLnvJBiNk+1fteYLYfM67+OK4PqDKsNQAtF0kuU6I6Ph9s/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Q3P8OMAZ; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4BKBojsi006872;
-	Fri, 20 Dec 2024 05:50:45 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1734695445;
-	bh=tGedN05yDyYA7Seb0LX9K4nmEUYLSyJdSXcb+rtc3Y8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Q3P8OMAZnR1ML4OecptuPSeIRv3jws4wqLq4Snh8VS+mEvu2FFWwAy/SGP02hwJwy
-	 Kijs36sfbjLp1WLV33c5Ecfkfce1woZFFxzlro5Sxbko5p3XUH7xBqdBUoJ2b19u3S
-	 ka7+7WlIyHs9zcyRlV9vtGkWGaSmNxzOwAPOyvDc=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4BKBojYq104259
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 20 Dec 2024 05:50:45 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 20
- Dec 2024 05:50:44 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 20 Dec 2024 05:50:44 -0600
-Received: from localhost (lcpd911.dhcp.ti.com [172.24.227.226])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BKBohWO059097;
-	Fri, 20 Dec 2024 05:50:44 -0600
-Date: Fri, 20 Dec 2024 17:20:43 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Santosh
- Shilimkar <ssantosh@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>, Anand Gadiyar <gadiyar@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Vishal Mahaveer <vishalm@ti.com>,
-        Kevin Hilman
-	<khilman@baylibre.com>
-Subject: Re: [PATCH v4 2/4] firmware: ti_sci: Partial-IO support
-Message-ID: <20241220115043.qhjroeqc4gl3pwtz@lcpd911>
-References: <20241219-topic-am62-partialio-v6-12-b4-v4-0-1cb8eabd407e@baylibre.com>
- <20241219-topic-am62-partialio-v6-12-b4-v4-2-1cb8eabd407e@baylibre.com>
+	s=arc-20240116; t=1734695553; c=relaxed/simple;
+	bh=/G4AGvnq1wWWq9F/jQE9R0fzA6MhXpuSkNRl8GA4AP8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HXq/ZdzDlBLLQBg7PfmkyJYvGKlxm4KPwfgec2ryaTXU+xxN53faA5jlIFNeG3WgMVF+Jx8PB62qdQquDWwoh1FN2Zuozybj3wktQUwT7jIElGopS9czjQKpDt1hUZT+jmXy2XIWv3WVwm5+3G0MRMgGaHUGTlCZ9Hqfjbu/hqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AiKjFUUG; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK7LqdI028658;
+	Fri, 20 Dec 2024 11:52:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VVfYQabebuq6Njt2Oq7HSoeCUvuGxMqCgHX7O5Eoxrc=; b=AiKjFUUGL/mMEBCb
+	jQoxulm0hbOGMGWurxQKYYSKLq5EouD4YqCPkrwYjSE3Y6NjhLCD+pvsREDoMdPs
+	ZwjUT5oYsZOBPlu6h3vhmC4FA+laKxSgWcn26xsFrmxeWBST4LBi5NoEZpaNJnFw
+	Xp7BVcWII6aQFjcM2HRI2ev/kk1s1+DpYJHERqziemccTtB/INWymSuME5jg8JX1
+	RLzlCViIqEgYm96p8wMa+77AQ6i08u5Lhcq5kc4EGDKW2MQyPcdCZDy5kyPhK/u4
+	KO2VRg4LvPzSHGqrfd1iaek9SjiTVQLBmIih/4yi2DSsf5V+rhSnQHzvWG6nuh4b
+	I2Pt1w==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n44hrq0w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 11:52:28 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BKBqRgR024631
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 11:52:27 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Dec
+ 2024 03:52:24 -0800
+Message-ID: <d301a695-a5d8-4e76-862a-a6ea5c125617@quicinc.com>
+Date: Fri, 20 Dec 2024 19:52:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241219-topic-am62-partialio-v6-12-b4-v4-2-1cb8eabd407e@baylibre.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add
+ the EC
+To: Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20241219200821.8328-1-maccraft123mc@gmail.com>
+ <20241219200821.8328-3-maccraft123mc@gmail.com>
+Content-Language: en-US
+From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
+In-Reply-To: <20241219200821.8328-3-maccraft123mc@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: OFIo3lUKH1CipchLDM4VRp0lvoDoS24r
+X-Proofpoint-ORIG-GUID: OFIo3lUKH1CipchLDM4VRp0lvoDoS24r
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ mlxlogscore=862 phishscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ adultscore=0 suspectscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412200098
 
-Hi Markus,
+On 12/20/2024 4:08 AM, Maya Matuszczyk wrote:
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
 
-On Dec 19, 2024 at 21:02:13 +0100, Markus Schneider-Pargmann wrote:
-> Add support for Partial-IO poweroff. In Partial-IO pins of a few
-
-Maybe add a comma after the In partial-IO, a few pins in this SOC can generate....
-
-> hardware units can generate system wakeups while DDR memory is not
-> powered resulting in a fresh boot of the system. These hardware units in
-> the SoC are always powered so that some logic can detect pin activity.
-> 
-> If the system supports Partial-IO as described in the fw capabilities, a
-> sys_off handler is added. This sys_off handler decides if the poweroff
-> is executed by entering normal poweroff or Partial-IO instead. The
-> decision is made by checking if wakeup is enabled on all devices that
-> may wake up the SoC from Partial-IO.
-> 
-> The possible wakeup devices are found by checking which devices have the
-> "poweroff" in the list of wakeup-source power states. Only devices that
-> are actually enabled by the user will be considered as an active wakeup
-> source. If none of the wakeup sources is enabled the system will do a
-> normal poweroff. If at least one wakeup source is enabled it will
-> instead send a TI_SCI_MSG_PREPARE_SLEEP message from the sys_off
-> handler. Sending this message will result in an immediate shutdown of
-> the system. No execution is expected after this point. The code will
-> wait for 5s and do an emergency_restart afterwards if Partial-IO wasn't
-> entered at that point.
-> 
-> A short documentation about Partial-IO can be found in section 6.2.4.5
-> of the TRM at
->   https://www.ti.com/lit/pdf/spruiv7
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+Is the commit message missing for this patch?
 > ---
->  drivers/firmware/ti_sci.c | 115 +++++++++++++++++++++++++++++++++++++++++++++-
->  drivers/firmware/ti_sci.h |   5 ++
->  2 files changed, 119 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
-> index ec0c54935ac0d667323d98b86ac9d288b73be6aa..693ac816f8ba3941a9156bd39524099ca476d712 100644
-> --- a/drivers/firmware/ti_sci.c
-> +++ b/drivers/firmware/ti_sci.c
-> @@ -3746,6 +3746,100 @@ static const struct dev_pm_ops ti_sci_pm_ops = {
->  #endif
->  };
->  
-> +/*
-> + * Enter Partial-IO, which disables everything including DDR with only a small
-> + * logic being active for wakeup.
-> + */
-> +static int tisci_enter_partial_io(struct ti_sci_info *info)
-
-Isn't the function naming style in the driver ti_sci_XXX ? You're
-missing one `_` I guess
-
-> +{
-> +	struct ti_sci_msg_req_prepare_sleep *req;
-> +	struct ti_sci_xfer *xfer;
-> +	struct device *dev = info->dev;
-> +	int ret = 0;
-> +
-> +	xfer = ti_sci_get_one_xfer(info, TI_SCI_MSG_PREPARE_SLEEP,
-> +				   TI_SCI_FLAG_REQ_GENERIC_NORESPONSE,
-> +				   sizeof(*req), sizeof(struct ti_sci_msg_hdr));
-> +	if (IS_ERR(xfer)) {
-> +		ret = PTR_ERR(xfer);
-> +		dev_err(dev, "Message alloc failed(%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	req = (struct ti_sci_msg_req_prepare_sleep *)xfer->xfer_buf;
-> +	req->mode = TISCI_MSG_VALUE_SLEEP_MODE_PARTIAL_IO;
-> +	req->ctx_lo = 0;
-> +	req->ctx_hi = 0;
-> +	req->debug_flags = 0;
-> +
-> +	dev_info(dev, "Entering Partial-IO because a powered wakeup-enabled device was found.\n");
-> +
-> +	ret = ti_sci_do_xfer(info, xfer);
-> +	if (ret) {
-> +		dev_err(dev, "Mbox send fail %d\n", ret);
-> +		goto fail;
-> +	}
-> +
-> +fail:
-> +	ti_sci_put_one_xfer(&info->minfo, xfer);
-> +
-> +	return ret;
-> +}
-> +
-> +static bool tisci_canuart_wakeup_enabled(struct ti_sci_info *info)
-
-Add some documentation around this please.
-
-> +{
-> +	struct device_node *wakeup_node = NULL;
-> +
-> +	for (wakeup_node = of_find_node_with_property(NULL, "wakeup-source");
-> +	     wakeup_node;
-> +	     wakeup_node = of_find_node_with_property(wakeup_node, "wakeup-source")) {
-> +		struct platform_device *pdev;
-> +		int index;
-> +
-> +		index = of_property_match_string(wakeup_node, "wakeup-source", "poweroff");
-> +		if (index < 0)
-> +			continue;
-
-Doesn't the fact that we're inside the for loop already ensure this is > 0?
-
-> +
-> +		pdev = of_find_device_by_node(wakeup_node);
-> +		if (!pdev)
-> +			break;
-
-Same here? Would we otherwise be in the loop?
-Just having a quick look here, I could be wrong, please just check once.
-
+>  .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+[...]
 
 
 -- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
+Thx and BRs,
+Aiqun(Maria) Yu
 
