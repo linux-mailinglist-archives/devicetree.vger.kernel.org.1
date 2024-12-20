@@ -1,171 +1,156 @@
-Return-Path: <devicetree+bounces-133044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F9269F914B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCAD59F9159
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:32:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADA7C16C654
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:30:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4C8D164247
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B1E1D8DFE;
-	Fri, 20 Dec 2024 11:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7561C3F39;
+	Fri, 20 Dec 2024 11:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vD0sD9BM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lARRes2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E11C81C5F37
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 11:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A0731C5496;
+	Fri, 20 Dec 2024 11:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734694084; cv=none; b=e+1FIHSOxxyh1ZOo+iLd5uwHcGVe2teTGCb0gnXH3CUIRQKAqAkG7nqtAISrSLB7p20ekPyIcKdxRv+VKX3YPDrBCRTlXHZPmgpeNoYFcoZRf5kqcl95X81fVTOwqN9nif4qFeaLgs0Q9PjkpJLNTyYxTcxuNmgOknHDJDEAfRA=
+	t=1734694159; cv=none; b=iLPtKH6yFrzTVQppZJYcWAjeo08t7atx9vdFsy9MrYpjL1wnc7G61h0f1JWjhcpg1Prxr2Gb2PVA+GEKh2YOyzpy5I+HIr+FwmwwP5YKYlsSl5U8fmkjIolUYbELphETluXsiGX3MBe3je7g3c0xWbTkaS0oPsgUMchlvZfYoFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734694084; c=relaxed/simple;
-	bh=Z1Fdvmr/EBe2JBleWGaCfGElV0L0pkXxy27DY9A+b84=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QNb1H4tzIfq77bAQ99ru5l6ho3EuElWsJA6hZjhBIDz/CWSvZ+5Cycp81J2RCErfxsPjrVsL8s+gLXa9h2W2YZ8sjFKO7Vc2eGqOFy3SfBDFHr3mvw6srhsnHf45rwX19GOBX8fzxQt3u4CDfeCAAEgW39L//SJwn33umu2EJ2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vD0sD9BM; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aa1e6ecd353so257512166b.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 03:28:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734694080; x=1735298880; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vhMGmKlGGOtZ2SvpqF+i7oaaEFRcqd8HwZsDBdF9tV0=;
-        b=vD0sD9BMQRSMcsHV7ig/FLLvCGKZ9iEZiGJ3ogoycEtc1JQAse+QJyyzkm0hRe1DoB
-         qvw6zstr6KI7DIF34gzB8BOkjk80WeLjBsFp96nNuzAi++5JnH2svcn9xzvQO2ECURpI
-         3zHu526L1dzFEXJFjnoEhRJX+WSu5Jicemv3bcbSdiBE97G63heSv6a8kvIwzPWDtLHG
-         9Dycv1fwQ2fXJ8WmFf/PQPg/M93pn0J6LKcWh8sYG5nzV2Nh4pgaPixy8TfnsU0A2SKd
-         kcXXh/+hLP7/8cQrYkrNzI9AZp/Un4gw9AU4ZGqeYLk6MCVkeiKnX9yXUefFeFekeCUD
-         QVnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734694080; x=1735298880;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vhMGmKlGGOtZ2SvpqF+i7oaaEFRcqd8HwZsDBdF9tV0=;
-        b=XpiPsswfXzqCs/4Tx6qqVWehfP/d3t0zMlUUgyhEJMjvcz1luNap+XPuvK8Kkm0suI
-         kmoCdwWoIUjj5P1rE0G9mqCwq4/X4ERgEX72F0KXgpgKhvwfUy+IsYYFkMDO0UUHuVI4
-         oLBFDKdMjcb/pNS6dbQezut63+7C3LnDTx8KLl3NVrakRRekwZljsdoQTmSunruRmc3Z
-         mJ2Di8LdbFMYl5dy+2TW+RyJ0LX8Rw376mdXvl6SapSynZ2bokLZOf27eWyn+XbCZ5G+
-         s1gspOzX5NOhI2sW6H98uyRPoOZ9//I8MUAtTwu2LGbJApxznvw7+FnThcKIWyx61Tnm
-         PjQw==
-X-Forwarded-Encrypted: i=1; AJvYcCVK+/GybCbyrgM4+9Ot1mPuPGG+P9hdpsRivwH7irRWR/6IH3Gi+c1+gzu9/QS0+B/1LcvPhHfsAsFU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNhZDmYuSDkgxu5oN2EVaMy9od6XbroYjMhIgYU887kUEBsApg
-	e+gz5E1d14MVlWx/E4gLectw3oG6kBOD+/QeyHwuqcm1O92ETFo8sanC9W9hsHY=
-X-Gm-Gg: ASbGncuCHxbR5e/ybig1XSIHknMosf9+3E5rMk4h3+7lj0wMYz9zbLADiUcGXOYxQy9
-	Q17jpOxPOzRhGRbclBeFxguo+aaH/9Y1eHMc2QPbSCaG1XjP+rVD0uSUexZjnHLS7yd5nHnhJ8v
-	16+JTGBu0xlxjo53SP4+6NDL5mbOeGLBW0phWhwWkO6I/qX3xBtsLfKdxgFWEs6hoU0uFxM3DyA
-	cgBJDLjMIWT5TlQM9XCa/YdPy25DhAoBHy9E+KxyNKyjhFK5ZO1NtoCZXQKpvbZ0Jar9a0Enxev
-	gl8A9bNbix6xIYZL7s2+IFWD7oYqNEee+A+ZEd0o
-X-Google-Smtp-Source: AGHT+IFU2H+Pw1Dmh9hoL+lth2FhsMr8S0vXuAclD0J3+yf3rw+Dc8UEEShqb5npXBaErUn+eaUhdA==
-X-Received: by 2002:a05:6402:3206:b0:5d1:2377:5af3 with SMTP id 4fb4d7f45d1cf-5d81dd83b23mr5556412a12.5.1734694080230;
-        Fri, 20 Dec 2024 03:28:00 -0800 (PST)
-Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80701abd1sm1632634a12.76.2024.12.20.03.27.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Dec 2024 03:27:59 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 20 Dec 2024 11:27:26 +0000
-Subject: [PATCH v2 3/3] arm64: dts: exynos: gs101-raven: add new board file
+	s=arc-20240116; t=1734694159; c=relaxed/simple;
+	bh=e6RRTNZKSVTO862lwIFBvL5ei0oT+HVqaOxrltcfMNA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=J5jR+4S/4pNFjam69uV6IkPY//HVBUc/23hCN0i8cLH//xaZD54nBpZcHmWpSgNl4xY6nEkylNgdkO8nkRaMKiG6qkQe0XpAWMUlTfug39cXNTPh4nrAa7vJg5w55bAA4v7I6UGrFtfqwRncC9NbCPZ9SAOA+izOHUUGB9A3+ls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lARRes2y; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK6n0EH028591;
+	Fri, 20 Dec 2024 11:29:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MPWkcTcIYJFDpVK5XdmX72WZWvyJATmGLKiYjjvUxyk=; b=lARRes2yO1cckMn/
+	aRJcXX9jFE0TYkSR2jsIi3ipcd3yWcOs8FnTtucriIVxt/YDdnzYrbb2q7yQZqim
+	3OiEVBH0zAOspaKs9M+Yj+XDZfoSRCpYLv4X8tnZZOvQ3dUL9n0+nj5VffpyV3zV
+	IGv0KlYE1NmCR1/OqouguBN68Gr9BBNCMvjybpaV96gkpa9THUFhCMSTKohqmcK2
+	iJQD9SNCkM+cm5rvUVp8rdzkBHSpNYf6EckYIIORC51/cPqOTRTHf5u8Lf/4dJvy
+	sRDHLCT1ir8WP2Osn6zQGyCCAQRnhgq7MBiJnA3ZmLbgZqbtI3fwQeRqclX6lnXK
+	08aMrQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n3mxrr0p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 11:29:05 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BKBT46d028128
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 11:29:04 GMT
+Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Dec
+ 2024 03:28:56 -0800
+Message-ID: <0c7c1979-6fc3-4059-bf08-c94f6424b1dd@quicinc.com>
+Date: Fri, 20 Dec 2024 16:58:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241220-gs101-simplefb-v2-3-c10a8f9e490b@linaro.org>
-References: <20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org>
-In-Reply-To: <20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.13.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: ipq5424: Add PCIe PHYs and
+ controller nodes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <bhelgaas@google.com>,
+        <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20241213134950.234946-1-quic_mmanikan@quicinc.com>
+ <20241213134950.234946-4-quic_mmanikan@quicinc.com>
+ <69dffe54-939d-47c3-b951-4a4dea11eae0@oss.qualcomm.com>
+ <08fbde92-a827-4270-a143-cca56a274e6c@quicinc.com>
+ <71d2135f-664a-465d-bc1f-051cc07c8537@oss.qualcomm.com>
+Content-Language: en-US
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <71d2135f-664a-465d-bc1f-051cc07c8537@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZzBnjh2nN8OwLgERvuK6_pJLmUbpRQ1g
+X-Proofpoint-ORIG-GUID: ZzBnjh2nN8OwLgERvuK6_pJLmUbpRQ1g
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
+ spamscore=0 suspectscore=0 malwarescore=0 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 impostorscore=0 clxscore=1015 adultscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412200095
 
-Raven is Google's code name for Pixel 6 Pro. Similar to Pixel 6
-(Oriole), this is also based around its Tensor gs101 SoC.
 
-For now, the relevant difference here is the display resolution:
-1440 x 3120 instead of 1080 x 2400.
 
-Create a new board file to reflect this difference.
+On 12/20/2024 3:18 PM, Konrad Dybcio wrote:
+> On 20.12.2024 7:42 AM, Manikanta Mylavarapu wrote:
+>>
+>>
+>> On 12/13/2024 8:36 PM, Konrad Dybcio wrote:
+>>> On 13.12.2024 2:49 PM, Manikanta Mylavarapu wrote:
+>>>> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
+>>>> found on IPQ5424 platform. The PCIe0 & PCIe1 are 1-lane Gen3
+>>>> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
+>>>>
+>>>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>>>> ---
+> 
+> [...]
+> 
+>>>>  		tlmm: pinctrl@1000000 {
+>>>>  			compatible = "qcom,ipq5424-tlmm";
+>>>> @@ -168,11 +261,11 @@ gcc: clock-controller@1800000 {
+>>>>  			reg = <0 0x01800000 0 0x40000>;
+>>>>  			clocks = <&xo_board>,
+>>>>  				 <&sleep_clk>,
+>>>> +				 <&pcie0_phy>,
+>>>> +				 <&pcie1_phy>,
+>>>>  				 <0>,
+>>>
+>>> This leftover zero needs to be removed too, currently the wrong
+>>> clocks are used as parents
+>>>
+>>
+>> Hi Konrad,
+>>
+>> The '<0>' entry is for "USB PCIE wrapper pipe clock source".
+>> And, will update the pcie entries as follows
+>> 	<&pcie0_phy GCC_PCIE0_PIPE_CLK>
+>> 	<&pcie1_phy GCC_PCIE1_PIPE_CLK>
+>> 	<&pcie2_phy GCC_PCIE2_PIPE_CLK>
+>> 	<&pcie3_phy GCC_PCIE3_PIPE_CLK>
+>>
+>> Please correct me if i am wrong.
+> 
+> The order of these is fixed by the first enum in
+> drivers/clk/qcom/gcc-ipq5424.c. The <0> entry must be at the end of
+> the clocks list for it to do what you want it to.
+> 
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
+I understand your point. I will move the <0> entry to the end and 
+incorporate this change in the next version.
 
----
-Note: MAINTAINERS doesn't need updating, it covers this whole directory
----
- arch/arm64/boot/dts/exynos/google/Makefile         |  3 ++
- arch/arm64/boot/dts/exynos/google/gs101-raven.dtso | 33 ++++++++++++++++++++++
- 2 files changed, 36 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/google/Makefile b/arch/arm64/boot/dts/exynos/google/Makefile
-index 6e6b5319212a..bc6d600fda84 100644
---- a/arch/arm64/boot/dts/exynos/google/Makefile
-+++ b/arch/arm64/boot/dts/exynos/google/Makefile
-@@ -4,3 +4,6 @@ dtb-$(CONFIG_ARCH_EXYNOS) += gs101-pixel-generic.dtb
- 
- gs101-oriole-dtbs := gs101-pixel-generic.dtb gs101-oriole.dtbo
- dtb-$(CONFIG_ARCH_EXYNOS) += gs101-oriole.dtb
-+
-+gs101-raven-dtbs := gs101-pixel-generic.dtb gs101-raven.dtbo
-+dtb-$(CONFIG_ARCH_EXYNOS) += gs101-raven.dtb
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-raven.dtso b/arch/arm64/boot/dts/exynos/google/gs101-raven.dtso
-new file mode 100644
-index 000000000000..577f52a4fdad
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-raven.dtso
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Raven Device Tree
-+ *
-+ * Copyright 2021-2023 Google LLC
-+ * Copyright 2023-2024 Linaro Ltd
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	model = "Raven";
-+	compatible = "google,gs101-raven", "google,gs101-pixel", "google,gs101";
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+
-+		splash@fac00000 {
-+			reg = <0x0 0xfac00000 (1440 * 3120 * 4)>;
-+			status = "okay";
-+		};
-+	};
-+};
-+
-+&framebuffer0 {
-+	width = <1440>;
-+	height = <3120>;
-+	stride = <(1440 * 4)>;
-+	format = "a8r8g8b8";
-+	status = "okay";
-+};
-
--- 
-2.47.1.613.gc27f4b7a9f-goog
-
+Thanks & Regards,
+Manikanta.
 
