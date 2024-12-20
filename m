@@ -1,90 +1,85 @@
-Return-Path: <devicetree+bounces-133169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9069F996E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 19:26:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2E219F9991
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 19:32:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 616BC19606C9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 18:06:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B019189FA88
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 18:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BA221E0AC;
-	Fri, 20 Dec 2024 17:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 680F7225A30;
+	Fri, 20 Dec 2024 18:05:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q7Tsgw82"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bbgEylPG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D26F41A072C
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 17:50:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE018225764
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 18:05:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734717050; cv=none; b=nU6oBk0m7Mq6TTvok24Ej1rzejsnhpAUvw+fHKcur1wRdIUi5kDa8wPjyVT77oKk1x6xDAOTW4wyG+NJ9a0UnrLGP0qhI8gWWT3rLb9mYEDMnuLGl573xz0OGiwl7E+SeTuM/7EMNbI35mG0KmmRCtbYEnPeSROQUIvEltB/b70=
+	t=1734717912; cv=none; b=Rn2L9hfDZSaOwOJeGoeTfeL45MQfMoCk+wQH9pW0Jy88m252ANlkdq4xixeYKecAqnM9txgxUiKRDIVXRgTWU0D6J2bn7QEPtrCjGsJ7fLyfy2F/IJ00KS8amunk89xvIU5t5lSHpxyxZHfQ5W8YIitgbquzXRdRuc8kLtoa8Fw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734717050; c=relaxed/simple;
-	bh=g+oA4lZy7Z9uEfshTPFqUG9rQSZq8pffg8GsEGaP10I=;
+	s=arc-20240116; t=1734717912; c=relaxed/simple;
+	bh=e93gnd+HNMY37U/5lpNe4iPYbXAu8F+qckDxbB7DMSU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NOyqDJ+z0cYpKu6Bg8cPLcIqvNg8RAGzLT0P8src7wEbT3fkikRaHH7z/OIQc7tJdRSQBVO2ed2W4ScdmowxX9BV0ECTzT7PcFDfLL1vuV0ywTLsjuCFKLIeMHBIj5QJGdr1NREzgltMcJgAptSPnoGiQcaqb55kmR4VHy2UGRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q7Tsgw82; arc=none smtp.client-ip=209.85.208.50
+	 Content-Type:Content-Disposition:In-Reply-To; b=jV6q6qXvBt4pJDhFIP9HXfrVo9LrBM1q0DgMSwlRqAfvsMd+9ubrw2jzjvgqQiLjSw/KMQzyE7q9z8TftxDviJD/c0u1WtgnvJN3gL1jpbHKdeTvIgM1U8lc4JxqxlOKJci6/yxoKt2eCdXlCQrnUNtj00K7mpszhZSPhfPhleQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bbgEylPG; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5d3f28881d6so2899475a12.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 09:50:48 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d3e9f60bf4so3407798a12.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 10:05:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734717047; x=1735321847; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1734717907; x=1735322707; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=skWg29qb61yYIk3EkJUYELMdbMMItE1lZwAy9NtBhR8=;
-        b=q7Tsgw82Lb4U/ZzE8ZxaW9ybifZOVhRAvZ9bV3TeB9uudrPjtC8MxtqmAoq9pLPNg1
-         p04aT9fxeqi0aVlcRa0T8dQhc3M5dXjPOygbo/WEFnZJpfQAlS1TokWP8U2X25i5vT9h
-         RcwRjdHdx8UIh6VUdnBHAnoX9Vlo1dmC8deDAGXnql+QwC1I7bBdImJOsXyrPU2tNlUv
-         IPqdAz033BrGO99upFVvBgMxqTd74tnAdi5WxhJYdQF6+yU0BqxBqszL0rjCxIk9tmaq
-         ktrAkddYuMvj3f7KFdtN4Ywyh5LI7wo18xIw6GF2Hzxh2cVQU3cbejsl0Ph/H5AhBm4d
-         B9Lg==
+        bh=ha8GqgZXmMH7R06nfVWYy2HAs9IqUsEUGcLXeArf4II=;
+        b=bbgEylPG6Mj2BxXzZc2aG9jJjRn/tM0JeJEeWeIvRecOd9/mhRJKPRneykFk/v+uOk
+         69AGceNQZQ5EczregpkByl7UyM2LaIoyLaAIdxIHcwomN2xcW86RNF+E252gFXEzYr5v
+         YGpQkbdq2CMX2/KTfsPyRoohwIl14T4NTyfyan3W4tBN7TqUmmH3VRn5COWEkhYUSrE1
+         vBvxo1+3WsY7xvDa68MNd2YotQ6rBe1I3O3nwMHvIkIWW4jD9RfKksgf0FebCeE1ox0P
+         SWzw8AwwDrEhfAq+IYEXxph1YxshjZ5Ee5bFPgj/6yPH2m8jT/WD0v6qgirmAknE1ah/
+         Wjgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734717047; x=1735321847;
+        d=1e100.net; s=20230601; t=1734717907; x=1735322707;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=skWg29qb61yYIk3EkJUYELMdbMMItE1lZwAy9NtBhR8=;
-        b=wy+rl4VMu644810HAqaTuOsiIGU/oEWRqD2GtXUfV9FfWZXAiRiaOiQNVQLhkNE0qU
-         3TKijPQvd+CbZzNVnxp0EcEcF/xV4Qcf57nPq4ZG/chiwPQVnMDIuMTOfjUA340CTbEM
-         fhkbynRKiwDyTg2r/MZ2VuW7rN/HFZr6tmjRgWgO0UCiwnGrOCHkkShSMpt2xs930HiX
-         x+nCdFaLC6SMgeFEOBuSyAMF9GKVP61Y/5DMrfDZsH8FxVcOnhS/+7ft++U5FNzolnW7
-         02yOEBVzbz9Zkoxb5zkrLbp3Ogw7QiKWiNUei3QRtRu7yKLV1U+Os85P8FeljALueoV3
-         OfKw==
-X-Forwarded-Encrypted: i=1; AJvYcCUbPTUDfxasdIUrsEMj9Mrb+TVtfWFiIOI5lMEsz27iGPhcLssNLmEDtmu3QEIvtIdcv2U74PzuKN7L@vger.kernel.org
-X-Gm-Message-State: AOJu0YzC2wH+b3kDnYp6Dw0e1wpfl/gy2+BOvPpaTWbO61cI+woI/G2C
-	QIaWmgbumdOO7mXtVdEkssQpc1fsF78ac44QIk80Bpi9x3aEqTHpxKmI7rC6mdgNBViYDgI47CJ
-	o
-X-Gm-Gg: ASbGncsBaivgSKGS7NAKcB8nfHDw0zeu5J1WNAeBMaKISFsX/XqsTXtyeg1C1CsBFmM
-	bJ+bJTBUxbBx8TVu3YyAEDH4MtXsypOVSAn3Xub8cVtvvr/369fHZ50VrnwD81HI+77JiopUWw9
-	RR8QO9I1iJAl2By0AK+SHgPd+KBP456R802zeOvufia7MDMFa3JD2ViSZcdDuKZKjuiEseDGwki
-	nMUw0Pz19LZ6uqwtZHggKdDftRyXgj4GKWqgBYYvSxHCAwircbEO2RrFLRUBmOoAStl
-X-Google-Smtp-Source: AGHT+IHvA6F8csyZbEnJh0AwsIg4HgqcuFT7xr7OmR5oK1AEVmNJyA8I4rh95bT8dg665NoN1rus3w==
-X-Received: by 2002:a05:6402:1588:b0:5d3:ba42:e9e3 with SMTP id 4fb4d7f45d1cf-5d81dd9ce81mr8433085a12.13.1734717047139;
-        Fri, 20 Dec 2024 09:50:47 -0800 (PST)
+        bh=ha8GqgZXmMH7R06nfVWYy2HAs9IqUsEUGcLXeArf4II=;
+        b=Xd2pyoYR2QX0eYOJDEe4pJmxBQsbkh4el1m1HDZskBnb5Y1uesHqTx91Nqebq9QSLe
+         3JCzXxBspLRrU81bXQ7iJmrEplL8L6ZvfVN8yudqFes6CcJdpzlbN/Qclwa9LDVHLmhe
+         WnXp7c9Lv+md863UupuaSRO6gB6lzVwJxS1SX25FAZ9E8uVv1Q8xdsz85OfNIGP7RJ3n
+         jtR/sCpN+llI6PSGm6e1mVgfMNw1OFgb7T4vV+ZoVxD3il0tWn5X1w1+sODHfOHzWJaP
+         FI9chWrSFbN12DySYOPDJjW/C1U2ewSiMqfl7TNTtTKsA4PDJS9yEWaw6EkwWXj2bwGL
+         0ABg==
+X-Forwarded-Encrypted: i=1; AJvYcCWeTyuMe3lmhIcAW+l10ZW1H4lExcfmatKiokxx5ogqY8mK3ZQG3bTCX4vEvwOF3TZ1EiDMvJf9gVr3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+Cada2dfGwu0Fa9/BHQDUnvtEASrohnTgC0ho3QU/AwT8cTAo
+	wgJpEhLwZMt+wCvtv1hAdDdMJ4ksYGj4ozaAIGbipclNfoD7TddOglMU+MfWldM=
+X-Gm-Gg: ASbGncuoJvJ+pe+y3zY++In5v4upR3zhZ5oN1fqhHv6acWPOIHiD3CPQcVkVhJzZw94
+	9bIVZQEEh7l5gK6jYwPXov2CV0Dn0hyRsSYddrUpWcUyg71I3+8ooglsRqK8ia3hqvLOQ8ETzTB
+	g/m0ocx4m9Qtw5E0jtk9dSIa97q4aiA1uvBkTBwyyhRhF03rDkcX7ZusuJqIX9hK8f6pW7Ed8G/
+	xLbmQFS9CobPXMcEgbQKlsIIfmMx+du5mlH5GDpTRQ3p6yAFuyqIl5nZyB2eocdoGu2
+X-Google-Smtp-Source: AGHT+IFUqR7T4/3vVfrawc/1bS3gPuhZ4shoLWlGJR8JJ6/HT2ykKjWMqBNHlAHudkeEgxEbBlSprw==
+X-Received: by 2002:a05:6402:5255:b0:5d3:cfd0:8d4b with SMTP id 4fb4d7f45d1cf-5d81de38c45mr3212851a12.33.1734717907246;
+        Fri, 20 Dec 2024 10:05:07 -0800 (PST)
 Received: from linaro.org ([2a02:2454:ff21:ef80:6d2c:6f87:64ef:2237])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e89598csm197034866b.56.2024.12.20.09.50.46
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80678c8dbsm1935723a12.40.2024.12.20.10.05.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Dec 2024 09:50:46 -0800 (PST)
-Date: Fri, 20 Dec 2024 18:50:41 +0100
+        Fri, 20 Dec 2024 10:05:06 -0800 (PST)
+Date: Fri, 20 Dec 2024 19:05:02 +0100
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: maud_spierings@hotmail.com
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: x1e80100-vivobook-s15: Add
- bluetooth
-Message-ID: <Z2WucXuxJ5bKzifa@linaro.org>
-References: <20241204-asus_qcom_display-v6-0-91079cd8234e@hotmail.com>
- <20241204-asus_qcom_display-v6-3-91079cd8234e@hotmail.com>
+To: Maya Matuszczyk <maccraft123mc@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: platform: Add bindings for Qcom's EC
+ on IT8987
+Message-ID: <Z2WxzvKRVcOz5d2V@linaro.org>
+References: <20241219200821.8328-1-maccraft123mc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,82 +88,56 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241204-asus_qcom_display-v6-3-91079cd8234e@hotmail.com>
+In-Reply-To: <20241219200821.8328-1-maccraft123mc@gmail.com>
 
-On Wed, Dec 04, 2024 at 01:26:39PM +0100, Maud Spierings via B4 Relay wrote:
-> From: Maud Spierings <maud_spierings@hotmail.com>
+On Thu, Dec 19, 2024 at 09:08:18PM +0100, Maya Matuszczyk wrote:
+> This patch adds bindings for the EC firmware running on IT8987 present
+> on most of X1E80100 devices
 > 
-> Add bluetooth for the asus vivobook s15
-> Describe wlan configuration
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
 > ---
->  .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts   | 161 +++++++++++++++++++++
->  1 file changed, 161 insertions(+)
+>  .../bindings/platform/qcom,x1e-it8987-ec.yaml | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-> index ba52c0eef4e32019f6eb7c7ae3c4cd727df23490..6564386e92e5c8c08ae2807ba512f83537358cf5 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-> @@ -19,6 +19,10 @@ / {
->  	compatible = "asus,vivobook-s15", "qcom,x1e80100";
->  	chassis-type = "laptop";
->  
-> +	aliases {
-> +		serial1 = &uart14;
-> +	};
+> diff --git a/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+> new file mode 100644
+> index 000000000000..4a4f6eb63072
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/platform/qcom,x1e-it8987-ec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  	gpio-keys {
->  		compatible = "gpio-keys";
->  		pinctrl-0 = <&hall_int_n_default>;
-> @@ -153,6 +157,101 @@ vph_pwr: regulator-vph-pwr {
->  		regulator-always-on;
->  		regulator-boot-on;
->  	};
+> +title: Qualcomm Embedded Controller on IT8987 chip.
 > +
-> +	vreg_wcn_0p95: regulator-wcn-0p95 {
-> +		compatible = "regulator-fixed";
+> +maintainers:
+> +  - Maya Matuszczyk <maccraft123mc@gmail.com>
 > +
-> +		regulator-name = "VREG_WCN_0P95";
-> +		regulator-min-microvolt = <950000>;
-> +		regulator-max-microvolt = <950000>;
+> +description:
+> +  Most x1e80100 laptops have an EC running on IT8987 MCU chip. The EC controls
+> +  minor functions, like fans, power LED, and on some laptops it also handles
+> +  keyboard hotkeys.
 > +
-> +		vin-supply = <&vreg_wcn_3p3>;
-> +	};
-> +
-> +	vreg_wcn_1p9: regulator-wcn-1p9 {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_WCN_1P9";
-> +		regulator-min-microvolt = <1900000>;
-> +		regulator-max-microvolt = <1900000>;
-> +
-> +		vin-supply = <&vreg_wcn_3p3>;
-> +	};
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: qcom,x1e-it8987-ec
 
-The reason we haven't pushed these patches for CRD, T14s etc is that
-unlike for QCP these two regulators are not actually present on the
-mainboard, they are part of a soldered or removable M.2 card. You can
-find this TODO in the commit message/patch on Johan's kernel tree:
+Given that ECs tend to be somewhat device-specific and many vendors
+might have slightly customized the EC firmware(?), I think it would be
+better to disallow using this generic compatible without a more specific
+one. In other words, I would drop this line and just keep the case
+below:
 
-https://github.com/jhovold/linux/commit/32cfeff737b0f9a2f8787d21a875e549a22e9e8b
-https://github.com/jhovold/linux/commit/2a7fee4007670e2f0f7696eb9e992e74d3be460f
+> +      - items:
+> +        - const: lenovo,yoga-slim7x-ec
+> +        - const: qcom,x1e-it8987-ec
 
-We haven't come to a conclusion yet how to model these M.2 cards
-properly. Perhaps we should stop blocking this and merge this for all
-the laptops as temporary solution to get Bluetooth running, but then we
-should at least preserve the TODO comment block to make that clear:
-
-	/*
-	 * TODO: These two regulators are actually part of the removable M.2
-	 * card and not the CRD mainboard. Need to describe this differently.
-	 * Functionally it works correctly, because all we need to do is to
-	 * turn on the actual 3.3V supply above.
-	 */
-
-@Konrad: Given that you acked this patch, do you have any opinion if we
-should merge these with this open question?
+People can add compatible entries for other devices as needed.
 
 Thanks,
 Stephan
