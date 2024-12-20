@@ -1,181 +1,163 @@
-Return-Path: <devicetree+bounces-133003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 205599F8F9A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:02:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49CBD9F8FC8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:06:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0BDA57A3BAD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:02:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 310D01896BE5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:05:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 755531BDAB9;
-	Fri, 20 Dec 2024 10:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E725E1C1F07;
+	Fri, 20 Dec 2024 10:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="LUGtwFxJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RRpyMvDH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D27B1AAA1C;
-	Fri, 20 Dec 2024 10:02:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F86D1C0DD3;
+	Fri, 20 Dec 2024 10:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734688956; cv=none; b=YBFzQmjeC9Bbp/wJDC6yjPVuu8eLjvVzV5olEpQtSjEOhkC77FZRZ0PHWrB5684Cit4FHEn0t/L3rJMKiAtj3XeoPUNDNK7Os3dJQ19/iQOkkMNPwYzAiJ8L/t2VxQwYia4JZrr+7DlSuuBUC2iTVH39JqtlO+IADj433HHKu1k=
+	t=1734689082; cv=none; b=Pgg9OSciC1E0Ap7hc0ZgBpwIKnKghSoLyaDNr+4ZzjZk/wa3HYXMmBWer0ts/Qap48EeiTrnjjfeGBhOmy0EMSXi6eRp4L0rZqzDiGlrwyI/QXlIWQ8t7ukRDPdPj0QdG9y6aLHUMiKnhHyltFT6qpqOoPH3hZj8p4Up2UNWPv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734688956; c=relaxed/simple;
-	bh=fx4PfkUpPvqRRQU4K7YqmcOhuSi/rAkNRt4a3ovcj6k=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EUs6OqzmS2qteAwBGHw4uN8RloxJ07xhVkfZVtuAnrvzMdOFR29F5Wk5GM3/oO59j9eh42isuYx/Mu+1hj7Oe6RpfsanIH2K0nsf5yuubqcfukyQqUbPxGd7gqW1IG7dVELNC22vjW6EmzBmY5Q00FD0CnwHTh5tvAnuO551Elk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=LUGtwFxJ; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK89MWV013574;
-	Fri, 20 Dec 2024 11:02:04 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	s=arc-20240116; t=1734689082; c=relaxed/simple;
+	bh=gUwgz71CV+Sb+fex+RhOpBU75zH4vvkMU4AvQgioVow=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=arwOSQ+k4b50ifWCx+RAwO4KwvIId68oc0rM7hlC6+50nP5GhL4SDm1uGkoGYu/hMuH70BQsbgusxiXiRg/3heD9SP0rcRt59MnmykTCQB4w+8u7vBXYDE+Ojso1V6dH/2sNdpl91orwgOr0dczbjkFWhuK4wnFoJ0JsyDaFtpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RRpyMvDH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK82j2p018674;
+	Fri, 20 Dec 2024 10:04:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	yo5Xx8h3uCqqmk4Dv0r1R0rtmXCq2HKncRpeohdg7BQ=; b=LUGtwFxJD+v4G+EJ
-	F0u0JJYijUKbd5dfxEPXb/cTIL9DElink2YkG9Pg9tEYWof7RZ0v5fyj4BiPPmoK
-	/uhiSrzfcrFjswHaYBMOEvQQq8RN2S8AIDoumhlX0b0WSmYyBbBECa54jbtnhG5N
-	zmRIQ/NKtvcLT3N1vXmPD4NvZVfTzDpqm6R1RucscxSczS8cKGqAr/6IcR4J3802
-	ySKQ1qAaWpdaaEotVqwW5RTcU1aVec8xKFetLkAZY2slHbNlSx7fBW9PDQakGRp0
-	vG8ofJiBzdhnTiwn2bbbifWeY5lqerHEe4+rhKWrrFtsTUSDH1kxp/Ank6c1udQ1
-	/TnRAg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43n34brywx-1
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YbqfZU5/rpM64DK1jNZD/7wTZN06f2M3HDFEwIJvF6w=; b=RRpyMvDHBefGb/FH
+	Hmrkq3B3sC8NQnB/oBkqQEj5VgWPin05BuJD8/DeoGlsS2uqMUXwP7BJrfC+17dX
+	+M5mgD+xnAyUAGtwZommqLvKTeuayxerXk9be4ojHGFnVNlxHlFdhudz65hUSH2w
+	omNPeBeenmDH/h7EB/waAxCJFbVeFtfzgo2aauv4lSBncNcqzqtwO5sbadIg9wX+
+	jDC1kKSc4WNneB87M8GyJewtKE9L1G95p8ymUtl6R/rx2j0s1R+eJVj0DhSPTL/0
+	AixTdAi3Lz1d2rFmabu6erjWvQGLUQlqC6buOi025hervmojP1YVsoTkh/0yoIXy
+	PTLDkQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n4qmrbkh-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Dec 2024 11:02:04 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 54D7D4004D;
-	Fri, 20 Dec 2024 11:01:21 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A4E3A25C235;
-	Fri, 20 Dec 2024 11:00:13 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
- (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 20 Dec
- 2024 11:00:13 +0100
-Received: from localhost (10.48.86.222) by SAFDAG1NODE1.st.com (10.75.90.17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 20 Dec
- 2024 11:00:13 +0100
-From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <wbg@kernel.org>, <jic23@kernel.org>, <ukleinek@kernel.org>
-CC: <catalin.marinas@arm.com>, <will@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <olivier.moysan@foss.st.com>
-Subject: [PATCH v2 9/9] arm64: dts: st: add timer nodes on stm32mp257f-ev1
-Date: Fri, 20 Dec 2024 10:59:27 +0100
-Message-ID: <20241220095927.1122782-10-fabrice.gasnier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241220095927.1122782-1-fabrice.gasnier@foss.st.com>
-References: <20241220095927.1122782-1-fabrice.gasnier@foss.st.com>
+	Fri, 20 Dec 2024 10:04:37 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BKA4bYI005181
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 10:04:37 GMT
+Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Dec
+ 2024 02:04:32 -0800
+Message-ID: <61bead44-c1ee-4960-8cc3-b12900fd4751@quicinc.com>
+Date: Fri, 20 Dec 2024 15:34:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SAFDAG1NODE1.st.com
- (10.75.90.17)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: ipq5424: add spi0 node
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
+        <linus.walleij@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <konradybcio@kernel.org>,
+        <quic_srichara@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <quic_varada@quicinc.com>
+References: <20241217091308.3253897-1-quic_mmanikan@quicinc.com>
+ <20241217091308.3253897-4-quic_mmanikan@quicinc.com>
+ <ca0ecc07-fd45-4116-9927-8eb3e737505f@oss.qualcomm.com>
+ <f51b7196-1774-45b0-a63b-1070091441dc@quicinc.com>
+ <17ff74d9-2336-446e-95bf-be8d70d20a07@oss.qualcomm.com>
+Content-Language: en-US
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <17ff74d9-2336-446e-95bf-be8d70d20a07@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: xTLXkITabUkGIg0tMZOQLeoKSgm4n85s
+X-Proofpoint-GUID: xTLXkITabUkGIg0tMZOQLeoKSgm4n85s
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
+ priorityscore=1501 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ impostorscore=0 mlxscore=0 phishscore=0 mlxlogscore=974 bulkscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412200083
 
-Configure timer nodes on stm32mp257f-ev1:
-- Timer3 CH2 is available on mikroBUS connector for PWM
-- timer8 CH1, timer8 CH4, timer10 CH1 and timer12 CH2 are available
-  on EXPANSION connector.
-Timers are kept disabled by default, so the pins can be used for any
-other purpose (and the timers can be assigned to any of the processors).
-Arbitrary choice is to use all these timers as PWM (or counter on
-internal clock signal), except for timer10 that is configured with
-CH1 as an input (for capture).
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 58 ++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 6f393b082789..6601ca411006 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -156,6 +156,64 @@ &spi8 {
- 	status = "disabled";
- };
- 
-+&timers3 {
-+	status = "disabled";
-+	counter {
-+		status = "okay";
-+	};
-+	pwm {
-+		pinctrl-0 = <&pwm3_pins_a>;
-+		pinctrl-1 = <&pwm3_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+	timer@2 {
-+		status = "okay";
-+	};
-+};
-+
-+&timers8 {
-+	status = "disabled";
-+	counter {
-+		status = "okay";
-+	};
-+	pwm {
-+		pinctrl-0 = <&pwm8_pins_a>;
-+		pinctrl-1 = <&pwm8_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+	timer@7 {
-+		status = "okay";
-+	};
-+};
-+
-+&timers10 {
-+	status = "disabled";
-+	counter {
-+		pinctrl-0 = <&tim10_counter_pins_a>;
-+		pinctrl-1 = <&tim10_counter_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+};
-+
-+&timers12 {
-+	status = "disabled";
-+	counter {
-+		status = "okay";
-+	};
-+	pwm {
-+		pinctrl-0 = <&pwm12_pins_a>;
-+		pinctrl-1 = <&pwm12_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+	timer@11 {
-+		status = "okay";
-+	};
-+};
-+
- &usart2 {
- 	pinctrl-names = "default", "idle", "sleep";
- 	pinctrl-0 = <&usart2_pins_a>;
--- 
-2.25.1
+On 12/20/2024 3:15 PM, Konrad Dybcio wrote:
+> On 20.12.2024 8:25 AM, Manikanta Mylavarapu wrote:
+>>
+>>
+>> On 12/20/2024 2:06 AM, Konrad Dybcio wrote:
+>>> On 17.12.2024 10:13 AM, Manikanta Mylavarapu wrote:
+>>>> Add SPI0 node for IPQ5424 SoC.
+>>>>
+>>>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>>>> ---
+>>>> Changes in V2:
+>>>> 	- No change
+>>>>
+>>>>  arch/arm64/boot/dts/qcom/ipq5424.dtsi | 11 +++++++++++
+>>>>  1 file changed, 11 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+>>>> index 5e219f900412..b4d736cd8610 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+>>>> @@ -201,6 +201,17 @@ uart1: serial@1a84000 {
+>>>>  				clock-names = "se";
+>>>>  				interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
+>>>>  			};
+>>>> +
+>>>> +			spi0: spi@1a90000 {
+>>>> +				compatible = "qcom,geni-spi";
+>>>> +				reg = <0 0x01a90000 0 0x4000>;
+>>>> +				clocks = <&gcc GCC_QUPV3_SPI0_CLK>;
+>>>
+>>> This register base suggests SPI4 for both the name and clock
+>>>
+>>
+>> Hi Konrad,
+>>
+>> Thank you for reviewing the patch.
+>>
+>> The IPQ5424 doesn't have SPI4, and according to the Qualcomm IPQ5424 register catalog,
+>> the register base maps to SPI0.
+> 
+> I'm looking at that register catalog and what you added here is
+> called SE4
+> 
+
+I understand your point and will rename it to SPI4.
+
+Thanks & Regards,
+Manikanta.
+
+>>
+>>> The existing UART1 similarly should be UART0
+>>
+>> I didn't understand your comment. UART0 not yet posted.
+>> In IPQ5424, UART1 is the main UART used for console
+>> and UART0 is HS-UART used for some debugging purpose.
+> 
+> Here it's my mistake, 0x01a84000 is SE1 indeed
+> 
+> Konrad
 
 
