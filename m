@@ -1,157 +1,195 @@
-Return-Path: <devicetree+bounces-133216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E339F9CFC
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 00:06:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BFD59F9D1F
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 00:41:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C13C188FBF9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 23:06:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A154F16B69E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 23:41:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F132210C0;
-	Fri, 20 Dec 2024 23:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE548227B8A;
+	Fri, 20 Dec 2024 23:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="ko0NoC85"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="h6A/XROA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF9531AAA00;
-	Fri, 20 Dec 2024 23:06:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0256F2253EE;
+	Fri, 20 Dec 2024 23:41:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734735989; cv=none; b=AEEhS997a/E77qiLD4RxVb7iX70rD009DOEiC1QndK4tleHmYBiaDGj8LLb9mO8BCmvAuni+KmNFGGk7heWDNa/Yx6gnZ2qF/d1YXj4Rn5K7sMFCNlZ3+rpXutqSFFey59rLjZruDKHGZmAEZBG9KGtXGe4RR12ACpsJ2BrPMOs=
+	t=1734738071; cv=none; b=scidBKcAYhaQQT7gOQG1oZMwiAIsnkG8HwFv+CvmnC64k9LMDx0NLZerhtdhTJoksZKSLdvxBa8mxUraOWAzam+qozJ7AF2IIhenuUDJjDLLTSbjz/HDmIUUSg4ZITh0PBII0ZWfsuo0VZTFP+R26JSxkaM25z34D91gE0Gh3UA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734735989; c=relaxed/simple;
-	bh=rDnT4CiiEQHDei+WTY8t89wAldSK7/wzy9hzuNQ2FY0=;
-	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
-	 Mime-Version:Content-Type; b=mR9kqnewnuKbl4Z6HKX782zc6ZZY4ffOkl8y89IwF3ijfVzjD0RbX27USRLC159FaDuSuyd7NUSOJE8/OXSOBBawVmJms95i9/qtPJtetAe58F47wxu7KZXAN7QgK8e4bcHWohEozn+w06AOc3PBkG39JKGUGyQJBhltZ0C3u5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b=ko0NoC85; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51D4DC4CECD;
-	Fri, 20 Dec 2024 23:06:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
-	s=korg; t=1734735987;
-	bh=rDnT4CiiEQHDei+WTY8t89wAldSK7/wzy9hzuNQ2FY0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ko0NoC85TGcP1IppTBQ7r5GFZyBBTG2SpQ0tFrc/AJkG+/T9Itx2K+hPhmLUjOFT3
-	 W/JopMsDfKdWQ+Sgte/CaZu5u4oCC9X7AhqHTGt1/QNG5SKrdk/OmLPnondMcorXOq
-	 YK2sRjfqtNIqcRTWYGNAXSYWTaR7HQTBx80wOGXo=
-Date: Fri, 20 Dec 2024 15:06:23 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Guo Weikang <guoweikang.kernel@gmail.com>
-Cc: Mike Rapoport <rppt@kernel.org>, Dennis Zhou <dennis@kernel.org>, Tejun
- Heo <tj@kernel.org>, Christoph Lameter <cl@linux.com>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, Sam Creasey <sammy@sammy.net>, Geert
- Uytterhoeven <geert@linux-m68k.org>, Huacai Chen <chenhuacai@kernel.org>,
- Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Oreoluwa Babatunde <quic_obabatun@quicinc.com>, rafael.j.wysocki@intel.com,
- Palmer Dabbelt <palmer@rivosinc.com>, Hanjun Guo <guohanjun@huawei.com>,
- Easwar Hariharan <eahariha@linux.microsoft.com>, Johannes Berg
- <johannes.berg@intel.com>, Ingo Molnar <mingo@kernel.org>, Dave Hansen
- <dave.hansen@intel.com>, Christian Brauner <brauner@kernel.org>, KP Singh
- <kpsingh@kernel.org>, Richard Henderson <richard.henderson@linaro.org>,
- Matt Turner <mattst88@gmail.com>, Russell King <linux@armlinux.org.uk>,
- WANG Xuerui <kernel@xen0n.name>, Michael Ellerman <mpe@ellerman.id.au>,
- Jonas Bonn <jonas@southpole.se>, Stefan Kristiansson
- <stefan.kristiansson@saunalahti.fi>, Stafford Horne <shorne@gmail.com>,
- Helge Deller <deller@gmx.de>, Nicholas Piggin <npiggin@gmail.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>, Naveen N Rao
- <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>, Geoff
- Levand <geoff@infradead.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Andrey Ryabinin <ryabinin.a.a@gmail.com>, Alexander Potapenko
- <glider@google.com>, Andrey Konovalov <andreyknvl@gmail.com>, Dmitry Vyukov
- <dvyukov@google.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, Heiko
- Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Alexander
- Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
- <borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Yoshinori
- Sato <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, John Paul
- Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Andreas Larsson
- <andreas@gaisler.com>, Richard Weinberger <richard@nod.at>, Anton Ivanov
- <anton.ivanov@cambridgegreys.com>, Johannes Berg
- <johannes@sipsolutions.net>, Thomas Gleixner <tglx@linutronix.de>, Ingo
- Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, Dave Hansen
- <dave.hansen@linux.intel.com>, x86@kernel.org, Len Brown <lenb@kernel.org>,
- Juergen Gross <jgross@suse.com>, Boris Ostrovsky
- <boris.ostrovsky@oracle.com>, Chris Zankel <chris@zankel.net>, Max Filippov
- <jcmvbkbc@gmail.com>, Tero Kristo <kristo@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
- <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Pavel Machek
- <pavel@ucw.cz>, Yury Norov <yury.norov@gmail.com>, Rasmus Villemoes
- <linux@rasmusvillemoes.dk>, Marco Elver <elver@google.com>, Al Viro
- <viro@zeniv.linux.org.uk>, Arnd Bergmann <arnd@arndb.de>,
- linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
- linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org,
- linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
- kasan-dev@googlegroups.com, linux-s390@vger.kernel.org,
- linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
- linux-um@lists.infradead.org, linux-acpi@vger.kernel.org,
- xen-devel@lists.xenproject.org, linux-omap@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-mm@kvack.org,
- linux-pm@vger.kernel.org
-Subject: Re: [PATCH] mm/memblock: Add memblock_alloc_or_panic interface
-Message-Id: <20241220150623.278e8fa9f073b66dc81edfe6@linux-foundation.org>
-In-Reply-To: <20241220092638.2611414-1-guoweikang.kernel@gmail.com>
-References: <20241220092638.2611414-1-guoweikang.kernel@gmail.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1734738071; c=relaxed/simple;
+	bh=sCXu2gmOdDmbBFG2lCJY1mdmHIob9H6tgLAI1ct5784=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OjyP11OMfIytwW0z3lvFpmNiF1fnwjYx8qXheWN+6dbXaQyzMOObu7Ck1l39KtZUchPNkwOSZtcicPw72LwJtxK3gh/82oHaK633zoXvvC59y/Dz9MOGOIJezbwz6jgTnITNQnv9ibWD3rvB9LbtTukFBwaG7KA8q/JHPI5QBxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=h6A/XROA; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from [192.168.30.162] (254C14D2.nat.pool.telekom.hu [37.76.20.210])
+	by mail.mainlining.org (Postfix) with ESMTPSA id ECF22E450C;
+	Fri, 20 Dec 2024 23:41:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1734738066;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ppnPh7QXZxj5t1x0IJTETaaoJaoVwNkQB1J6Xh3LMLA=;
+	b=h6A/XROApXQH93eEbOYiw3GxRCkH9rNMLv8bK4++Z5kuMsKX6UPoq99CWH3X+dyveaTL41
+	K2v7fVf+o8pcLqRQ9xR+I94YtAZ+hTSU3k6VPxCQosFRS8ZVyAw1i27tG3onRwdK8PTrcU
+	H+F7rcn9u+T51h1S1vBcgEaXo3reWiCSWYGHNQJVnjxq9Upo2HI/TVSzvGCoPe4qgemyTr
+	VZsX2GDG4Vised+UdNCuIm04bMeMvJKSA8QQg19MKA4+TzZZ672Z8y4TvThnqHuNmXk/vA
+	ptpgYE2u2raHA1196VftZBbrfUlB8EaVchZYJER3oOMjkKjK9RgO9pa/PM5mPQ==
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH v11 0/4] Add MSM8917/PM8937/Redmi 5A
+Date: Sat, 21 Dec 2024 00:40:47 +0100
+Message-Id: <20241221-msm8917-v11-0-901a74db4805@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAH8AZmcC/3XSzW7DIAwA4FepOC8TtiHATnuPaQeHnxZpTatki
+ jZVffeRXkAqO9ri85+4iTUuOa7i7XATS9zymi9zCQBeDsKfeD7GIYeSEChRgQQ3nNezdWAGMJ6
+ CTEmxRlFeX5eY8s+j1MdniU95/b4sv4/KG+zZ5xobDHJIkMgzBGujfj9znr/ynOfj62U5ir3Qh
+ g0mqBgLtiyNTszWTdDFVDFIUzEVPIbgNfvgjJ26WLW4GVvtnafonFTGIfexbjBgxbrgsjCpQAQ
+ O+nhsMVU8FuxJ2TRp51JMXWwajKpis+8MaNBZUqMeu9hWjNBc2xYMzrD3UqGkPnYt1hW7gif2z
+ Dgmiv+MDbLRKJtfIveTBW1IReuJn3vf7/c/QL8kSssCAAA=
+X-Change-ID: 20241019-msm8917-17c3d0ff4a52
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Amit Kucheria <amitk@kernel.org>, 
+ Thara Gopinath <thara.gopinath@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Joerg Roedel <joro@8bytes.org>, 
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-pm@vger.kernel.org, iommu@lists.linux.dev, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ Dang Huynh <danct12@riseup.net>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Stephan Gerhold <stephan.gerhold@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1734738064; l=3702;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=sCXu2gmOdDmbBFG2lCJY1mdmHIob9H6tgLAI1ct5784=;
+ b=QCWVBYLdt3QvrsE5+KfOkicwOiW0qnMskDZ0SiAZ2/8EcVKyDkMh4BnJydOaWPqobK7F/tbeH
+ 3G9875JKZfZCSgJAgq41T3ZucCKBt8rM9uqjfiJrJQ8kw8yb7klMZ5S
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
-On Fri, 20 Dec 2024 17:26:38 +0800 Guo Weikang <guoweikang.kernel@gmail.com> wrote:
+This patch series add support for MSM8917 soc with PM8937 and
+Xiaomi Redmi 5A (riva).
 
-> Before SLUB initialization, various subsystems used memblock_alloc to
-> allocate memory. In most cases, when memory allocation fails, an immediate
-> panic is required. To simplify this behavior and reduce repetitive checks,
-> introduce `memblock_alloc_or_panic`. This function ensures that memory
-> allocation failures result in a panic automatically, improving code
-> readability and consistency across subsystems that require this behavior.
-> 
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Changes in v11:
+- msm8917:
+  - pll_opp_table: fix indentation
+  - gpu_opp_table: change to ascending order
+- Remove applied patches.
+- Link to v10: https://lore.kernel.org/r/20241220-msm8917-v10-0-3d5734e8c3a6@mainlining.org
 
-Seems nice.
+Changes in v10:
+- msm8917: sdc1 cmd_on, cmd_off change bias-disable to bias-pull-up
+- Remove applied patches.
+- Link to v9: https://lore.kernel.org/r/20241215-msm8917-v9-0-bacaa26f3eef@mainlining.org
 
-> ...
->
-> --- a/include/linux/memblock.h
-> +++ b/include/linux/memblock.h
-> @@ -417,6 +417,19 @@ static __always_inline void *memblock_alloc(phys_addr_t size, phys_addr_t align)
->  				      MEMBLOCK_ALLOC_ACCESSIBLE, NUMA_NO_NODE);
->  }
->  
-> +static __always_inline void *memblock_alloc_or_panic(phys_addr_t size, phys_addr_t align)
+Changes in v9:
+- msm8917:
+ - add some empty lines for separating pins more
+ - order compatible, reg, ranges properties
+- Link to v8: https://lore.kernel.org/r/20241211-msm8917-v8-0-197acc042036@mainlining.org
 
-We lost the printing of the function name, but it's easy to retain with
-something like
+Changes in v8:
+- pm8937, msm8917, msm8917-xiaomi-riva: remove unused includes
+- Link to v7: https://lore.kernel.org/r/20241124-msm8917-v7-0-612729834656@mainlining.org
 
-#define memblock_alloc_or_panic(size, align)	\
-		__memblock_alloc_or_panic(size, align, __func__)
+Changes in v7:
+- msm8917-xiaomi-riva:
+  - Add pinctrls for used GPIO pins.
+  - Use interrupts-extend for charger.
+  - Order properies.
+- Link to v6: https://lore.kernel.org/r/20241113-msm8917-v6-0-c348fb599fef@mainlining.org
 
-> +{
-> +	void *addr = memblock_alloc(size, align);
-> +
-> +	if (unlikely(!addr))
-> +#ifdef CONFIG_PHYS_ADDR_T_64BIT
-> +		panic("%s: Failed to allocate %llu bytes\n", __func__, size);
+Changes in v6:
+- msm8917:
+  - Consolidate SDC pins, remove sdc2-cd-on/off pins.
+  - Remove cluster-sleep-0 and cluster-sleep-1
+  and rename cluster-sleep-2 to cluster-sleep-0.
+  - Fix spi, i2c and related pinctrl namings.
+- msm8917-xiaomi-riva: follow i2c name changes.
+- Link to v5: https://lore.kernel.org/r/20241112-msm8917-v5-0-3ca34d33191b@mainlining.org
 
-Won't this always print "memblock_alloc_or_panic: Failed ..."?  Not
-very useful.
+Changes in v5:
+- msm8917:
+  - Remove aliases.
+  - Rename spi, i2c labels and pins.
+  - Remove clock-frequency from timers
+  - Remove unused mpss_mem region.
+  - Use mboxes where it can be used, only smd-edge uses qcom,ipc.
+- msm8917-xiaomi-riva: Follow i2c label changes.
+- Link to v4: https://lore.kernel.org/r/20241109-msm8917-v4-0-8be9904792ab@mainlining.org
 
-> +#else
-> +		panic("%s: Failed to allocate %u bytes\n", __func__, size);
-> +#endif
+Changes in v4:
+- msm8917 pinctrl: Fix gpio regexp in the schema.
+- msm8937 tsens: Rename ops_msm8976 to ops_common and use it for msm8937.
+- msm8917: fix address padding, naming and ordering, remove polling-delays.
+- Remove applied patches from the series.
+- Link to v3: https://lore.kernel.org/r/20241107-msm8917-v3-0-6ddc5acd978b@mainlining.org
 
-We can avoid the ifdef with printk's "%pap"?
+Changes in v3:
+- msm8917-xiaomi-riva: Fix issues addressed by Konrad.
+- msm8917: Fix node addresses, orders of some properties.
+- pm8937: simplify vadc channels.
+- msm8917 pinctrl: Fix schema issues addressed by Krzysztof. 
+- Remove applied tcsr patch from this series.
+- Reword some commit title.
+- Link to v2: https://lore.kernel.org/r/20241031-msm8917-v2-0-8a075faa89b1@mainlining.org
 
-> +	return addr;
-> +}
+Changes in v2:
+- Add msm8937 tsens support.
+- Fix issues addressed by reviews.
+- Link to v1: https://lore.kernel.org/r/20241019-msm8917-v1-0-f1f3ca1d88e5@mainlining.org
+
+---
+Barnabás Czémán (2):
+      dt-bindings: arm: qcom: Add Xiaomi Redmi 5A
+      arm64: dts: qcom: Add Xiaomi Redmi 5A
+
+Dang Huynh (1):
+      arm64: dts: qcom: Add PM8937 PMIC
+
+Otto Pflüger (1):
+      arm64: dts: qcom: Add initial support for MSM8917
+
+ Documentation/devicetree/bindings/arm/qcom.yaml  |    7 +
+ arch/arm64/boot/dts/qcom/Makefile                |    1 +
+ arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts |  333 ++++
+ arch/arm64/boot/dts/qcom/msm8917.dtsi            | 1954 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8937.dtsi             |  150 ++
+ 5 files changed, 2445 insertions(+)
+---
+base-commit: 8503810115fbff903f626adc0788daa048302bc0
+change-id: 20241019-msm8917-17c3d0ff4a52
+
+Best regards,
+-- 
+Barnabás Czémán <barnabas.czeman@mainlining.org>
 
 
