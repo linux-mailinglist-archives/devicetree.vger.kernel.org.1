@@ -1,237 +1,212 @@
-Return-Path: <devicetree+bounces-133133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 541A49F95DC
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:56:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 249B19F95F1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:00:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AD0816653C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:54:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6DD9188D758
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B1F218E9F;
-	Fri, 20 Dec 2024 15:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49EE8218EA2;
+	Fri, 20 Dec 2024 15:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MMV73hYt"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="npEi7c6F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011049.outbound.protection.outlook.com [52.101.65.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC38216397;
-	Fri, 20 Dec 2024 15:54:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734710089; cv=none; b=pKzlaQ1be8JEWkwsAGMWm7etPoqmoeYmEL0P3NRDa0XULm8s9zh8Q5Wc2w7T96AuSJIUGvsLyOV3/gQvBKc08XgyvT7hX6PjI2Oyab0QtV90iTy8p/eT7jPmWU/b55C2zRUty27Ms947Jmq5ekzD6UST45IQv5Qa2Lj0KKvhtaE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734710089; c=relaxed/simple;
-	bh=nBCegtq0A5NfOXgKUOhNhCAdUczJYCehEj8+f1RmnXY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IUglM5KmFApbCxmtme8/iDegPe3ipwUYLyRQSJApr3E1Q0McG3Tq4LJx72ykfkafMATHa+MqAjzlLaa8B12lyafxK8s1kP4D9YK0jmDRQYXfGGtDOKFmh/FPzLBucBI5jDnHILvjfnbSj98H+guiGW2EOoS36TDiwCoEMi+M7l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MMV73hYt; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734710087; x=1766246087;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nBCegtq0A5NfOXgKUOhNhCAdUczJYCehEj8+f1RmnXY=;
-  b=MMV73hYtvK4oR6hzBzJRKlICAak7zzmIhaGaR4ktnmAZ7ZOU5BuwwKg6
-   zapF0JFVkabwoppUCaqbzuoJTiWZtFQbRVf8xH2jnYy8PbJV/FJG4+UO7
-   8aW/ZjfmGmJqe9oKv2cXgULgxAeSm0npGTVlQKEUtSquJqbwgqHz5VQQI
-   Nl+N1JR7j8cOEKo7q63JCuavwekZ8o1FiIL3ZVmRLFsJzbfMM6hL1CLUE
-   LTh+YyaTnhJLGx1xTPlLECT9wOkXTxbbO1fL4G6eWbU2iyXLSQVIb0JxJ
-   upirvbJfcpcOWVfBjLG/dYGmXoYjogyUE4byo/aNowu2syiUtaD1q8xgC
-   w==;
-X-CSE-ConnectionGUID: T53sJChwQDWv6KkKUU2HGQ==
-X-CSE-MsgGUID: O55e9k4sTMqF/zPhzBXfwg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="46269703"
-X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; 
-   d="scan'208";a="46269703"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2024 07:54:46 -0800
-X-CSE-ConnectionGUID: 5jkc7+XRS2S1jemaFJJbBw==
-X-CSE-MsgGUID: kb9btt2NQViRmPqhqw+FLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; 
-   d="scan'208";a="98603535"
-Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 20 Dec 2024 07:54:42 -0800
-Received: from kbuild by a46f226878e0 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tOfKp-0001MN-2E;
-	Fri, 20 Dec 2024 15:54:39 +0000
-Date: Fri, 20 Dec 2024 23:54:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78353218AB7;
+	Fri, 20 Dec 2024 15:56:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734710173; cv=fail; b=hc6LYAcInssz0wsSrRvbPZWOaXyV0sorBeZw3TlM/YSQt5B7CHOa0LHQUo6PuG/J8+J6TPjr1xiyRqxaRCdPyb2wsvtqxARLR5ZxswUETH0zf/MQ1bK5X7/TBeaJ8f4aUrIivFuqMQAD+0xv09rZaapRMSNLmlNydtEp+ezhT/I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734710173; c=relaxed/simple;
+	bh=1HA2GVa7v8FQemoN8E9sG2BjuQ3Db6CdjAnLZbBMuoo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=I/6e1svIcg3THAgENe39DfRZPrVhSi1YJFvOQhXzcmtQpr2INPzlV1l0wQzBH7PBxmKmGtbzGJggK6Ta6IUHNRhLworGrcDX5JDjBQ1aHXTbcwUjnHlIthFBm90d7uD0E7kZyhGBZaKf5Bhkb+SXY+BFRwhOVDmi8EbQ5lcify8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=npEi7c6F; arc=fail smtp.client-ip=52.101.65.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nronWCA+VTIhwdno5qtZaHcAAW13yjFnfBEdyjo9rXE89DCgN7xPt5SWaojNiEG94pSU4eDHhPXLLopaeC+xbd3/rf7yOdK31Ax0iu9qec59qKbhEe1cYhRgzR4bY++vOC5DIgTPmk7rxk3MsfVpP59jBieeF5ZI4Ek9YkN5aUDI3N64m8MzA7Ec0p9QRjPIM7+9jpw8w2brTd1fc0SEuaB5oSJ1u/Ed2OdNcus+qw5IIXJKcPoXv8TSOlzloRhoNTg3XUSe4U8EGDcTVdp1oomAEY7o8kyFCrheNvMmDzZUZJebKb3Iv3Nj4gUOtw4HkoAb0nzyDsP0ShFuhrQr3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TPVQYCovU+v/lk/3/Yre/GzsLEcZkJkMQDfl3IrlKsY=;
+ b=KYlNhkVhamMtmSEViDAx0vn42NkW+Tn6L9EQ4cZL4KuUuIjBb55F54DEKKTiGzDKYpNuboMgcIKI537ErLC9vAfWbdbMWyJ0N88Reso9JADLF6jk0b/Ps5mziPbYFZ23k5uZHk8wAfVTykEd9zvUcgvqbEdD/EH7spJDiDCcLajkkj5iL2UdRV2VA+JuBp7y5SoWLaZU1VGuVw0KlEXlmm5e/Xv4ao1tMjcdAQ3Fx56JJxE4uJHU9jFNVhzvR29+RG/jS/2LtMKLiqGXavs6u6roiwjhqqQOLZO49SUD3noDX/8EabofugAXFoPkra1JJLAvm4z8vPEXYBJuhvi/Bw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TPVQYCovU+v/lk/3/Yre/GzsLEcZkJkMQDfl3IrlKsY=;
+ b=npEi7c6F0giQtbZNUQ8lGddkS7/al+wvELZeS8xKYrqsMEIZ3x9uykroUPW9qVO9r6o2oBLKGiV9KiY4aiOnzs/n+RuvZ+WmdfNM1BeNFinuf83EZKaAT3jhU8GK++yxo3FWwYDGpLY+Q1bKuNQuKBsymredF/qCVrmUDOKNhduRoUF4J/DeZ9bK5POMKPp9uUl2VKySMEnZsSqv12RBxTd9k3RvjfPuHgpPawUWzvT6RmInTEFTjX/khdCD8OR9aNGGTUOsTZBjB1q4Tw8nJRWAf2QxUP7eg8CDxbgquuIqSi/u1aMzpK16Kufk/iY1DcSFEnKXtkcjykpfCOByhQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB7830.eurprd04.prod.outlook.com (2603:10a6:20b:2ac::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.17; Fri, 20 Dec
+ 2024 15:56:02 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8272.005; Fri, 20 Dec 2024
+ 15:56:02 +0000
+Date: Fri, 20 Dec 2024 10:55:56 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Subject: Re: [PATCH 5/8] gpio: max7360: Add MAX7360 gpio support
-Message-ID: <202412202337.8jOygMaK-lkp@intel.com>
-References: <20241219-mdb-max7360-support-v1-5-8e8317584121@bootlin.com>
+	NXP S32 Linux <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH v4 4/4] arm64: dts: s32g399a-rdb3: Add INA231 sensor
+ entry over I2C4
+Message-ID: <Z2WTjETLunBr83AN@lizhi-Precision-Tower-5810>
+References: <20241220123916.1452582-1-ciprianmarian.costea@oss.nxp.com>
+ <20241220123916.1452582-5-ciprianmarian.costea@oss.nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241220123916.1452582-5-ciprianmarian.costea@oss.nxp.com>
+X-ClientProxiedBy: SA0PR11CA0043.namprd11.prod.outlook.com
+ (2603:10b6:806:d0::18) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241219-mdb-max7360-support-v1-5-8e8317584121@bootlin.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7830:EE_
+X-MS-Office365-Filtering-Correlation-Id: 919a6bb4-9fe0-405c-e900-08dd210ecdf3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|376014|7416014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?tOrIZX6hs/zIwsOh2RX5rMoJeQ27t0VbLitVYBEs6BOLu68Ux0XHPQ32akTB?=
+ =?us-ascii?Q?kqimj5USDctOFeGORjA7SPuBYGu43OilZDDeJSkfoHn2DFthXT5XkBm2wwJc?=
+ =?us-ascii?Q?rZz3SJHa2KYNR4BF6eQXLhcL7Sx0Y3z6ZG7w7D5Ym3TtKY162sbK0XieeG8Y?=
+ =?us-ascii?Q?nSYnUUcS7iwYxtcxjbMNiY8JBD5/YtXFZfvxgCmYJnN3KhYN1wZxcizMUAvP?=
+ =?us-ascii?Q?T1/IDhT00KHTm51LcdO4wSFeoasc0EHvRwRBjitmw0zg5LylN0MZuhwpv8KW?=
+ =?us-ascii?Q?ghPuuiH4OkktC4O3zKW34VoUrGCLpjDQbes2HiqOGwZ40kzn7ReA0QHLyM5d?=
+ =?us-ascii?Q?jDVvgXCyZSy20sQPmoiEjECNsU3tWz4Ch/H+JU/3OGvHfkEu1RMXG9ZzhHnK?=
+ =?us-ascii?Q?1+2TyHvw5T+XmdtIkcFWPLbcS/DU2N/f36nQmj4FLBH43HhZBHIUMUDe1tgh?=
+ =?us-ascii?Q?ToKhTtYXgbzGzPnOm7CiqxnHmzHoNwZl9FuWcoYSOmcb/Vju/eC6rxbhaRzL?=
+ =?us-ascii?Q?ax6+q+jbbMdkgU80NnWXoAY//buj77Zsxm5xAdLnlJp7RJbkyh6RIMpq7maH?=
+ =?us-ascii?Q?9xJ1LQ34AkIIdL26NvWw8GP60h2PFbd31T4EN6eXZLnIlkwpU+xhkw2+Cpfd?=
+ =?us-ascii?Q?rW5vUXYE3KwhyxnSWApH3/fSQwU0rlOwR4J397Tns4dowh34OmeTLvUruJlc?=
+ =?us-ascii?Q?f95IZ6T5sRCM9q0ULkHllNdaTXBP/a3/iVhQdj7hEU9WV1L9TVQu9wHonrC6?=
+ =?us-ascii?Q?jrA7LEkXDrpg0UIJ3tjTVjaJq3eKumMEEjEDu4HQp2cCu7UPO0uzb/fVKQHW?=
+ =?us-ascii?Q?hXc2Ld6SN5tz9CDyF/zFJ9xWqo0jtis43nLoWLemid0OTKdEcNIvYUVWOuAZ?=
+ =?us-ascii?Q?tnXj6am/IVsEHp+Xtfm6WLXJ4ugRicMbAZaaPvAaCmRcgKPiqvJxIj2WClqM?=
+ =?us-ascii?Q?uwJLZyiY9ckc+9DZHms3s7tb60dShiA/DXDYgyezflv1vdLEZW2eseGv0LCj?=
+ =?us-ascii?Q?oGUGyMe3cw171RdpLldUbEmc/+xAtqRX6Y2h9zcXy0iKDeMdtqHX2GO3hIt6?=
+ =?us-ascii?Q?5819YPQ5AM9JQjvRU5KXI/c5ZRwXw5fPu0m2F/ab12jlLkyLtEqz2s0Cevbe?=
+ =?us-ascii?Q?94k6DQfnsi2a5As+vp57AO1EJXduS1O1PGR34JAZOl83s290p+sNMt+LunLN?=
+ =?us-ascii?Q?XQyqrE1uVng9G+SM0mOU3Dg8jTX0LYxjMwy0HvMGLqk95aZcmDbiD4KHpm52?=
+ =?us-ascii?Q?7BJLiYYmB9JW4cUc6BbEaR36Mofl4eExEvG/Qn1k7a4ZmHlCuofVA0x1EcZS?=
+ =?us-ascii?Q?qsLU+qRs35zH6sg9n7f0UQulpIzdTwHhfmh1Adq3CL7IzS4bsuknCKubOXii?=
+ =?us-ascii?Q?epwkQoPtzSmy7MlB/X23deC+YRKe?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Ue9Jr2u6KKNrtly5GtXVD4DZa56mcBCAgR3ontmyGHZCNEAedtMZVGGBOSMu?=
+ =?us-ascii?Q?jz+EVJyubLGXKpQeY7r2ia2Onqhy1Z1+OVNW3AuF1vBYlkvgGCDGgwTGSSQX?=
+ =?us-ascii?Q?J9S4zTPnSgt2eA5bHjnV9BNQ+7OjRlTVptWSf/iDa9RNdNc2YqbAK0xi1i5I?=
+ =?us-ascii?Q?CLyM+O3m2jDpDP1DJu0fOyhmws0dLt0Zhh23zv2Tdq2zZVZmPIHRJX8KjcDH?=
+ =?us-ascii?Q?BFHDUdwmQirys9KcmxWsX2hs4ImqohByaSPVpAgLIVDJpM2uBhi8tCPx4jfk?=
+ =?us-ascii?Q?IzRCcvvVu6PDeW+jttda0mDkmdxSA0bfUhEPy7ZYgCpYwpDsUXdrH/MC4sc6?=
+ =?us-ascii?Q?7wj1BijhwQZZFrQtikD26Yqiedazkq4z2xe93vujCyPsoP5u8nes3qwo2tYK?=
+ =?us-ascii?Q?upgh3bm0+QY5U+SnQ1eYK4Uksne4PB/3OuPd/ZdQqYwOZEjavo4f4pXDCYkA?=
+ =?us-ascii?Q?mjZ0nD8IBSdyqZkw3ncZZnHDRmzOvXktCoBfyyL+WRcJ+FphJ8b/LkBeI7mm?=
+ =?us-ascii?Q?QZ1bxUMLy0qTroUdMJ/BXQgc9K4pC3isG48lfFztfi4V9mAqELzgIBE583A/?=
+ =?us-ascii?Q?asA/vP1EgURGcwK/rOkkT5GrEmXSXnUcc08+ag4WEn956AZOc/G8H191vH1f?=
+ =?us-ascii?Q?RXIdSzx3iWGN/KfauNtTFrpI7wrKb6VK3zojPrjLm/PZP3U0eREPGtLMD6Mn?=
+ =?us-ascii?Q?MxgM9sqZML+llNE4XDYQXT40nE0XyPalpX+KntrW3TJRBciMm8eg0M0SjaMG?=
+ =?us-ascii?Q?VrondHNxS3PMryBXaEm+TgE9AxN3IBV2pdn1nOU3lKz9mDJZbz7OCzDIyNis?=
+ =?us-ascii?Q?QSjiZmhPl4/sSO7a4mOzIinHs3DAudnRbQhW5Q2qavwhZxjTqrSFlnonnQk1?=
+ =?us-ascii?Q?kf/9mcPa7TG4zE1Cw3Zvv6/CHRm7I5bF9+cIwrIeUklcFgipynPzgMn1eI1a?=
+ =?us-ascii?Q?i5l8l/7AhRfIYTI2+pAoLjUqH9ZVJIocnK7IiYIbG+OFM0TKyGvVviEeAJYH?=
+ =?us-ascii?Q?95HgrEgFwPLeTB7KPvceelV3fiD7KdNB/uiDeo6PC/03Nw1q+UDN+8MP4iVs?=
+ =?us-ascii?Q?Pi16vXGoV4g3sb9JDOSfATyCLTaEY+T9ahK5/w0BJ64TBJ25TIihsS2Mz/cY?=
+ =?us-ascii?Q?WIUAAYrUUx5c1s0ZDSs7fxqRzOAMoUZ1MjeaZ1EYpmyDp2qk74Y4kTU8sbAa?=
+ =?us-ascii?Q?DpB8vAhZFPy8LLpxza6pZlRkbkJGn8Yqd0hYYMqRk/cMiPHPNC0HUc9yiGAk?=
+ =?us-ascii?Q?dSX+Wp1hXLkM3zO4+2I8mqgf2ezFVdkIRLwbXk55saETAsXh/JE2iFfeE0bH?=
+ =?us-ascii?Q?FLLXsLt21GSO6ovmeoWNzdMnN+5pfQm87Ze5yM5CaTQHnv9ZtLL72rT6kGp6?=
+ =?us-ascii?Q?bYtDbMM2tzfYZ0acdGWhFg6rQGai7HgSFDM3cXe355xzEUuz3I2x09hliVT7?=
+ =?us-ascii?Q?opUGJnL22BMraF/ljpLIKscYkjahmIJjsRz6Rvj6hSLkAUDlfy5iVp5bbqO5?=
+ =?us-ascii?Q?UE5WkE8UTAVmtrG5QTiEKKkmXBQaH6ZfOaDjvhi3FsXW5gBNq2qhpIEIb+t/?=
+ =?us-ascii?Q?jQGNJmWvthaV0N/PJPXkW09R/eHXCVO69XyoxuSi?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 919a6bb4-9fe0-405c-e900-08dd210ecdf3
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2024 15:56:02.6120
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hNRkOU36Uvbuox0RbHw6P0B2bj5CvbePn4XztKreHDmekBdXAmD/0bxBS/vP67qpnYdCgQJWcvWLfTxX/eAysg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7830
 
-Hi Mathieu,
+On Fri, Dec 20, 2024 at 02:39:16PM +0200, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>
+> On S32G399A-RDB3 boards, an INA231 current sensor is connected over
+> I2C4 bus.
 
-kernel test robot noticed the following build warnings:
+Add INA231 current sensor for S32G399A-RDB3 boards.
 
-[auto build test WARNING on 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8]
+>
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts b/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+> index 94f531be4017..5f8739c068c6 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+> +++ b/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
+> @@ -40,6 +40,14 @@ &uart1 {
+>  	status = "okay";
+>  };
+>
+> +&i2c4 {
+> +	ina231@40 {
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mathieu-Dubois-Briand/dt-bindings-Add-MAX7360-MFD-device/20241220-002541
-base:   78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
-patch link:    https://lore.kernel.org/r/20241219-mdb-max7360-support-v1-5-8e8317584121%40bootlin.com
-patch subject: [PATCH 5/8] gpio: max7360: Add MAX7360 gpio support
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20241220/202412202337.8jOygMaK-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241220/202412202337.8jOygMaK-lkp@intel.com/reproduce)
+Need use general node name:
+https://devicetree-specification.readthedocs.io/en/v0.3/devicetree-basics.html#node-names
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412202337.8jOygMaK-lkp@intel.com/
+look like should be current-sensor
 
-All warnings (new ones prefixed by >>):
+Frank
 
-   drivers/gpio/gpio-max7360.c:57:41: warning: variable 'val' is uninitialized when used here [-Wuninitialized]
-      57 |                         "failed to set value %d on gpio-%d", val, pin);
-         |                                                              ^~~
-   include/linux/dev_printk.h:154:65: note: expanded from macro 'dev_err'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                                        ^~~~~~~~~~~
-   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                                     ^~~~~~~~~~~
-   drivers/gpio/gpio-max7360.c:42:18: note: initialize the variable 'val' to silence this warning
-      42 |         unsigned int val;
-         |                         ^
-         |                          = 0
->> drivers/gpio/gpio-max7360.c:370:32: warning: cast to smaller integer type 'int' from 'const void *' [-Wvoid-pointer-to-int-cast]
-     370 |         max7360_gpio->gpio_function = (int)device_get_match_data(&pdev->dev);
-         |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   2 warnings generated.
-
-
-vim +370 drivers/gpio/gpio-max7360.c
-
-   333	
-   334	static int max7360_gpio_probe(struct platform_device *pdev)
-   335	{
-   336		struct max7360_gpio *max7360_gpio;
-   337		unsigned int ngpios;
-   338		unsigned int outconf;
-   339		struct gpio_irq_chip *girq;
-   340		unsigned long flags;
-   341		int irq;
-   342		int ret;
-   343	
-   344		if (!pdev->dev.parent) {
-   345			dev_err(&pdev->dev, "no parent device\n");
-   346			return -ENODEV;
-   347		}
-   348	
-   349		max7360_gpio = devm_kzalloc(&pdev->dev, sizeof(struct max7360_gpio),
-   350					    GFP_KERNEL);
-   351		if (!max7360_gpio)
-   352			return -ENOMEM;
-   353	
-   354		if (of_property_read_u32(pdev->dev.of_node, "ngpios", &ngpios)) {
-   355			dev_err(&pdev->dev, "Missing ngpios OF property\n");
-   356			return -ENODEV;
-   357		}
-   358	
-   359		max7360_gpio->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-   360		if (!max7360_gpio->regmap) {
-   361			dev_err(&pdev->dev, "could not get parent regmap\n");
-   362			return -ENODEV;
-   363		}
-   364	
-   365		max7360_gpio->dev = &pdev->dev;
-   366		max7360_gpio->chip = max7360_gpio_chip;
-   367		max7360_gpio->chip.ngpio = ngpios;
-   368		max7360_gpio->chip.parent = &pdev->dev;
-   369		max7360_gpio->chip.base = -1;
- > 370		max7360_gpio->gpio_function = (int)device_get_match_data(&pdev->dev);
-   371	
-   372		dev_dbg(&pdev->dev, "gpio count: %d\n", max7360_gpio->chip.ngpio);
-   373	
-   374		if (max7360_gpio->gpio_function == MAX7360_GPIO_PORT) {
-   375			/* Port GPIOs: set output mode configuration (constant-current
-   376			 * or not).
-   377			 * This property is optional.
-   378			 */
-   379			outconf = 0;
-   380			ret = of_property_read_u32(pdev->dev.of_node,
-   381						   "constant-current-disable", &outconf);
-   382			if (ret && (ret != -EINVAL)) {
-   383				dev_err(&pdev->dev,
-   384					"Failed to read constant-current-disable OF property\n");
-   385				return -ENODEV;
-   386			}
-   387	
-   388		    regmap_write(max7360_gpio->regmap, MAX7360_REG_GPIOOUTM, outconf);
-   389		}
-   390	
-   391		if (max7360_gpio->gpio_function == MAX7360_GPIO_PORT &&
-   392		    of_property_read_bool(pdev->dev.of_node, "interrupt-controller")) {
-   393			/* Port GPIOs: declare IRQ chip, if configuration was provided.
-   394			 */
-   395			irq = platform_get_irq(pdev, 0);
-   396			if (irq < 0)
-   397				return dev_err_probe(&pdev->dev, irq,
-   398						     "Failed to get IRQ");
-   399	
-   400			flags = IRQF_TRIGGER_LOW | IRQF_ONESHOT | IRQF_SHARED;
-   401			ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
-   402							max7360_gpio_irq, flags,
-   403							"max7360-gpio", max7360_gpio);
-   404			if (ret)
-   405				return dev_err_probe(&pdev->dev, ret,
-   406						     "Failed to register interrupt: %d\n",
-   407						     ret);
-   408	
-   409			girq = &max7360_gpio->chip.irq;
-   410			gpio_irq_chip_set_chip(girq, &max7360_gpio_irqchip);
-   411			girq->parent_handler = NULL;
-   412			girq->num_parents = 0;
-   413			girq->parents = NULL;
-   414			girq->threaded = true;
-   415			girq->default_type = IRQ_TYPE_NONE;
-   416			girq->handler = handle_simple_irq;
-   417		}
-   418	
-   419		ret = devm_gpiochip_add_data(&pdev->dev, &max7360_gpio->chip, max7360_gpio);
-   420		if (ret) {
-   421			dev_err(&pdev->dev, "unable to add gpiochip: %d\n", ret);
-   422			return ret;
-   423		}
-   424	
-   425		return 0;
-   426	}
-   427	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +		compatible = "ti,ina231";
+> +		reg = <0x40>;
+> +		shunt-resistor = <1000>;
+> +	};
+> +};
+> +
+>  &usdhc0 {
+>  	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>  	pinctrl-0 = <&pinctrl_usdhc0>;
+> --
+> 2.45.2
+>
 
