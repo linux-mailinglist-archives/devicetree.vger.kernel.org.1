@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-133146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F098E9F964B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:22:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 003339F9652
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:22:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7E8718916DA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:22:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23CA6162D7F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A362F21B908;
-	Fri, 20 Dec 2024 16:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5EE21B8F2;
+	Fri, 20 Dec 2024 16:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="dDwqENyV"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="IvD5h2hd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B070E219A99
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 16:21:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA6821B1B4
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 16:21:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734711698; cv=none; b=cLWbQyywOHtsm6lj6ciys+M0R715w2MJ3h2iXiR/WvM27R2q+rdm3K6lH0wOczAWIbXH3kzfqLnhqgODN8voK18E8dcqRUk3Kuxo2b1XHZNzKVp6npknaJumaCUvpHI2r5aFYs0rywmQq7CO9s/q1Yiuu79Djma5ZfQNFnuVTns=
+	t=1734711699; cv=none; b=G1eRVkykZCCUcTJv3R69AAoHY0Zxt7VCWvH3go+XLC4d1k2DGRGmbGNN+jFKGf0f+TIOvE7MvQMVzlC7E5XpFj9Vh5Dugy/oyYE8woYR7f07bETfvYDYTUQfY5KryNehLqDcbdhvqNpIVBcOQyyQSJYrpe2FLtdjgNYa8TOKq7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734711698; c=relaxed/simple;
-	bh=u7CN+LXBVFhvYjq1zTe9T89sN0vtVt41mpjiend2Zuw=;
+	s=arc-20240116; t=1734711699; c=relaxed/simple;
+	bh=evUDjlbbbIVWbgnJkzWE2IDXuslB3YSmbdbxGGC+Rsc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=m1Q3aCCfAZrTGFl5uvgbjMXGVpvGjlJHpjdxcP+Qs8/0X3hAQcIJFrpghljgmLa63QWzWqmGeySflIhCbc+e/TU+RUyQ3Qxs7EC5q0LmZ8xQEYSXXQaj601m68oUCBjW2MIIrolCvRliIlvUs+5HSk8qvbV6125epxUFDr/FCKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=dDwqENyV; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:To:Cc; b=VU4is7JZsfA7uIGQ7qsrxtcozj+mhUp7yLS6uN/Qws/FMLaCmMI/p6cZ8kUR4ONzM7SzmRQNdOy/qh3qJkjMcRQAcP9UoGRaGcAgBOeYaJ/nrmquKUan1k9KzLq7pjLWeqZt03hUR2vS1lSzCQP06kBeJ/9XxmqCz6zbjO9RM1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=IvD5h2hd; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4362bae4d7dso15488395e9.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 08:21:36 -0800 (PST)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-435f8f29f8aso15646835e9.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 08:21:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1734711695; x=1735316495; darn=vger.kernel.org;
+        d=raspberrypi.com; s=google; t=1734711696; x=1735316496; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ehuxIelX8DO1vrFPZF560cKcYx8GrjFEJ42I4SDiRJw=;
-        b=dDwqENyVoY87EyeCVKpeGbTPK/DA3S+4cyo45h+iLcNd4vpcMQyDGNG2OLKpqJdKpS
-         5zKi4RyqnEg9fw5pp4Av7Us46p/GCgtdyCFMzmNgWveaJOKB4XUXNIbCuA/znV+x/AM+
-         whvo3byMuSTZvTZf9ydiuE3NtUKLuOyiu1M94I3MYrV/SX12kaNkABj+3WeaL+nB7nJ5
-         VdBT4DaZHMyfjMMzPlvVAEtjq7L/t6k2r/zJgfkvv+KS/ybD9IhZYMGocGx8d8AwHdwz
-         1P0EcRDvGs7AV10otCFxFUK60kZPkELZuOp/tJfyo2N7aN5WGhFaT6JhhN5z7fKQ8s1J
-         ievA==
+        bh=x8tvjSHvBnYEUrXXehqqoug7u5Rbl1jMwLkYtbBCoO8=;
+        b=IvD5h2hd3bcHmmdqvDTUSs06Zm6uaLyobfjNviTDHcvyks+JayJCSHKyCygDD2G5yH
+         URQOeAHHKMt5GwLh+fL6Rf+fzkCfCH4Ci69cydJ2hU0aeP0dy3WtwNkBnsnxf1ofW31V
+         /WYOQ4SGXMyI0bOGoN2dzWNXChNuEpli0reIM+t9wttC4Uu+ycTaluUFaXVewTs/+lWO
+         6rUcE+m/HGk5+SQeiPMcI8M3FBU0Cldu9pxhw1ULKlASdQ0bkHANGEmJfdKhJO6a+1hu
+         5v6Zf+AZ/JLmbHsuRqzezd0jKUsrVtaV/f8XYqpaB1eznltGfWevnhu6uhfpxt5AoTij
+         2zYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734711695; x=1735316495;
+        d=1e100.net; s=20230601; t=1734711696; x=1735316496;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ehuxIelX8DO1vrFPZF560cKcYx8GrjFEJ42I4SDiRJw=;
-        b=tgU6Sant46Jc+GkNIITkLq5DL62NGQkh7Mcm2flxjWPfnlHbuc3ytJQQCDx6J/2UD9
-         rc4wDmkXzxmWy+gBFmYnW8VYRV+yMmee3K1Lp4KhpH9g178GA/4TL/xHICtHfAfLGTvr
-         i6DW4cggdif7vkavEumDve1W3HP/9rrAEY7lRcL1m6acxWazDff09sNDB4KJZDeJ5p6T
-         I7dsD9VlTVlJ2nTGoiH8VZAtBsOhzdp3MEbW523AujeYcrQ5WBLA72ShJFYcvqtvDfsz
-         Y6gaYsgOCypDtjw/cocNH36l+zVNbmWrRIRux4zHUq1sC2MMpQQbWBP5SUfLF8+hUcKP
-         TVTA==
-X-Forwarded-Encrypted: i=1; AJvYcCX8sXIasIgRPNXhk8adSYEl0fIbu/xJiDygEAVR2khLhCNbrxTjVUEsJl1H+ccQYxPBIqBtaV2p+Nu1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE3YTbPzOv5WEkbYxpVWfv/VhcRecH4JlYJkJLXE2OC2/WglUK
-	qne1fSunCEAtuLJqegnpAY9f2xMRq5SFQGY+NT9TIRWiEBatc7wy7D/odAZki/0=
-X-Gm-Gg: ASbGncuXFCfDQRDmCScR/FYuipufU7eoyRWMGv5bd8/1DM/vMbthDXYIPGKLsykfaDM
-	Lpe2rlETJd4f0P7QR6I3NkYQmApjypZipe/6cFL5aa53h2W7IBcmYu3XnutyvwzD2O0lAWy5p4r
-	19L4yEl1TzXZTKRVQBrng1C8gUS4AHI2V9MyqxJelBRqXWlBWEgsrNWNnrbnmI/xbssbkYqfnj0
-	AjeALc3JzBTW5PVx51J7jBYDAlW776jWZE+n3WDL3QCbb80
-X-Google-Smtp-Source: AGHT+IFgSqb5b0E+v9TtN0vGwY/ilsvnvmz9GDFQcbPASO0ILJQEFvVgGISRslh9RDK/uoVDtsQUvg==
-X-Received: by 2002:a05:600c:450f:b0:434:fb65:ebbb with SMTP id 5b1f17b1804b1-436686461cbmr32737635e9.17.1734711695038;
-        Fri, 20 Dec 2024 08:21:35 -0800 (PST)
+        bh=x8tvjSHvBnYEUrXXehqqoug7u5Rbl1jMwLkYtbBCoO8=;
+        b=stcEseT83FjPQCXrfRnBZ0s0G3jjdWOkAqvuAWsQHh+dTOY7BxaIrGzJQxbBOTY95P
+         fqOuFGmO+TF4ylVGBQoCAxQOtsSc2MHFIfQu6CxDZTk8huGBIYTw93uSQ2DcJZqRC9zZ
+         aEWR5X7fG8YfpLOVJctIrvrfvNgZsSXrnqrUFsX7qM1iMyMKG5SIz1LMYIHI2pS/QwNo
+         AF7phJHnPpqchZ+w3EDYlUwMFAgoH5PEZ2iFQUspHhK+eBf54Fz3hmBjP7ejiNN5LAM0
+         kYVGfi60UxAxKA2KEh/HpCOF+HAeMSmFl/njHBU1IyBcqp7d6L56gR1gPhiAMxrngfv2
+         Ib6w==
+X-Forwarded-Encrypted: i=1; AJvYcCXYIf2YTcDwJQBdbW6gBbkQNg6m5Um6pAhp2PNlRq8z7KQC0gUFv8Km50RG6u2QoQp7WgKbACZHnMjE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzu+YsIwDhccRNkd/7b/a9az3J156NsIRskepsui9FdfqY3K9Tk
+	9FHZpxfEnwclCC8/aejQ3twK7HmVOQq1YoEjK+WHWeppxdgKURNZxQT8bxEEkWg=
+X-Gm-Gg: ASbGncviSKRQCL2bpl9gCapatbuC7DLvhGQ6RlkBLdSbh8msXZJgzhZ87iKF51Cmtea
+	Lur5sk/Cd8IpSVAZKE/LSDYtIWbiwrDSma9uEncbHhsRiWkbihqYTEwnaRdiRBsmMNgGqoQhKsj
+	92iqsQ9Aa8C4kqgC9sJZsARfpDnNmStuoIGWLuv98orA4WfvPeQ80ppSgnDPgVinuz3W3O1jE+p
+	uN7Rs6PLgVrJBvdWr3abT17bIre4pUebQaNbKFyE/4fpSwk
+X-Google-Smtp-Source: AGHT+IEVPW76VkTXU2nIJfPsd/7W6ZLfDVF9Rnt4kJTE9CYOpNt7uO369Z3pkgOqLTDRQ8mK233MkA==
+X-Received: by 2002:a05:600c:1ca7:b0:434:fe3c:c67c with SMTP id 5b1f17b1804b1-43668b5e201mr28263535e9.26.1734711696100;
+        Fri, 20 Dec 2024 08:21:36 -0800 (PST)
 Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43656b013e1sm82824045e9.12.2024.12.20.08.21.34
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43656b013e1sm82824045e9.12.2024.12.20.08.21.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Dec 2024 08:21:34 -0800 (PST)
+        Fri, 20 Dec 2024 08:21:35 -0800 (PST)
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Fri, 20 Dec 2024 16:21:12 +0000
-Subject: [PATCH 1/7] RFC: media: Add media_request_{pin,unpin} API
+Date: Fri, 20 Dec 2024 16:21:13 +0000
+Subject: [PATCH 2/7] docs: uapi: media: Document Raspberry Pi NV12 column
+ format
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241220-media-rpi-hevc-dec-v1-1-0ebcc04ed42e@raspberrypi.com>
+Message-Id: <20241220-media-rpi-hevc-dec-v1-2-0ebcc04ed42e@raspberrypi.com>
 References: <20241220-media-rpi-hevc-dec-v1-0-0ebcc04ed42e@raspberrypi.com>
 In-Reply-To: <20241220-media-rpi-hevc-dec-v1-0-0ebcc04ed42e@raspberrypi.com>
 To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
@@ -98,106 +99,71 @@ To: Sakari Ailus <sakari.ailus@linux.intel.com>,
 Cc: John Cox <jc@kynesim.co.uk>, linux-media@vger.kernel.org, 
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- John Cox <john.cox@raspberypi.com>
+ Dave Stevenson <dave.stevenson@raspberrypi.com>
 X-Mailer: b4 0.14.1
 
-From: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+The Raspberry Pi HEVC decoder uses a tiled format based on
+columns for 8 and 10 bit YUV images, so document them as
+NV12MT_COL128 and NV12MT_10_COL128.
 
-This is probably not the API we will want to add, but it
-should show what semantics are needed by drivers.
-
-The goal is to allow the OUTPUT (aka source) buffer and the
-controls associated to a request to be released from the request,
-and in particular return the OUTPUT buffer back to userspace,
-without signalling the media request fd.
-
-This is useful for devices that are able to pre-process
-the OUTPUT buffer, therefore able to release it before
-the decoding is finished. These drivers should signal
-the media request fd only after the CAPTURE buffer is done.
-
-Tested-by: John Cox <john.cox@raspberypi.com>
-Signed-off-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
- drivers/media/mc/mc-request.c | 35 +++++++++++++++++++++++++++++++++++
- include/media/media-request.h | 12 ++++++++++++
- 2 files changed, 47 insertions(+)
+ .../userspace-api/media/v4l/pixfmt-yuv-planar.rst  | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-diff --git a/drivers/media/mc/mc-request.c b/drivers/media/mc/mc-request.c
-index 5edfc2791ce7..b5334389d846 100644
---- a/drivers/media/mc/mc-request.c
-+++ b/drivers/media/mc/mc-request.c
-@@ -499,3 +499,38 @@ void media_request_object_complete(struct media_request_object *obj)
- 		media_request_put(req);
- }
- EXPORT_SYMBOL_GPL(media_request_object_complete);
-+
-+void media_request_pin(struct media_request *req)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&req->lock, flags);
-+	if (WARN_ON(req->state != MEDIA_REQUEST_STATE_QUEUED))
-+		goto unlock;
-+	req->num_incomplete_objects++;
-+unlock:
-+	spin_unlock_irqrestore(&req->lock, flags);
-+}
-+EXPORT_SYMBOL_GPL(media_request_pin);
-+
-+void media_request_unpin(struct media_request *req)
-+{
-+	unsigned long flags;
-+	bool completed = false;
-+
-+	spin_lock_irqsave(&req->lock, flags);
-+	if (WARN_ON(!req->num_incomplete_objects) ||
-+	    WARN_ON(req->state != MEDIA_REQUEST_STATE_QUEUED))
-+		goto unlock;
-+
-+	if (!--req->num_incomplete_objects) {
-+		req->state = MEDIA_REQUEST_STATE_COMPLETE;
-+		wake_up_interruptible_all(&req->poll_wait);
-+		completed = true;
-+	}
-+unlock:
-+	spin_unlock_irqrestore(&req->lock, flags);
-+	if (completed)
-+		media_request_put(req);
-+}
-+EXPORT_SYMBOL_GPL(media_request_unpin);
-diff --git a/include/media/media-request.h b/include/media/media-request.h
-index d4ac557678a7..c48cfb710959 100644
---- a/include/media/media-request.h
-+++ b/include/media/media-request.h
-@@ -189,6 +189,10 @@ static inline void media_request_get(struct media_request *req)
-  */
- void media_request_put(struct media_request *req);
+diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+index b788f6933855..90414491d7b5 100644
+--- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
++++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+@@ -827,6 +827,48 @@ Data in the 12 high bits, zeros in the 4 low bits, arranged in little endian ord
+       - Cb\ :sub:`11`
+       - Cr\ :sub:`11`
  
-+void media_request_pin(struct media_request *req);
++NV12MT_COL128 and NV12MT_10_COL128
++----------------------------------
 +
-+void media_request_unpin(struct media_request *req);
++``V4L2_PIX_FMT_NV12MT_COL128`` is a tiled version of
++``V4L2_PIX_FMT_NV12M`` where the two planes are split into 128 byte wide columns
++of Y or interleaved CbCr.
 +
- /**
-  * media_request_get_by_fd - Get a media request by fd
-  *
-@@ -228,6 +232,14 @@ static inline void media_request_put(struct media_request *req)
- {
- }
++NV12MT_10_COL128 expands that as a 10 bit format where 3 10 bit values are
++packed into a 32bit word. A 128 byte wide column therefore holds 96 samples
++(either Y or interleaved CrCb). That effectively makes it 6 values in a 64 bit
++word for the CbCr plane, as the values always go in pairs.
++
++Bit-packed representation.
++
++.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3.2cm}|
++
++.. flat-table::
++    :header-rows:  0
++    :stub-columns: 0
++    :widths: 8 8 8 8
++
++    * - Y'\ :sub:`00[7:0]`
++      - Y'\ :sub:`01[5:0] (bits 7--2)` Y'\ :sub:`00[9:8]`\ (bits 1--0)
++      - Y'\ :sub:`02[3:0] (bits 7--4)` Y'\ :sub:`01[9:6]`\ (bits 3--0)
++      - unused (bits 7--6)` Y'\ :sub:`02[9:4]`\ (bits 5--0)
++
++.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3.2cm}|
++
++.. flat-table::
++    :header-rows:  0
++    :stub-columns: 0
++    :widths: 12 12 12 12 12 12 12 12
++
++    * - Cb\ :sub:`00[7:0]`
++      - Cr\ :sub:`00[5:0]`\ (bits 7--2) Cb\ :sub:`00[9:8]`\ (bits 1--0)
++      - Cb\ :sub:`01[3:0]`\ (bits 7--4) Cr\ :sub:`00[9:6]`\ (bits 3--0)
++      - unused (bits 7--6) Cb\ :sub:`02[9:4]`\ (bits 5--0)
++      - Cr\ :sub:`01[7:0]`
++      - Cb\ :sub:`02[5:0]`\ (bits 7--2) Cr\ :sub:`01[9:8]`\ (bits 1--0)
++      - Cr\ :sub:`02[3:0]`\ (bits 7--4) Cb\ :sub:`02[9:6]`\ (bits 3--0)
++      - unused (bits 7--6) Cr\ :sub:`02[9:4]`\ (bits 5--0)
++
  
-+static inline void media_request_pin(struct media_request *req)
-+{
-+}
-+
-+static inline void media_request_unpin(struct media_request *req)
-+{
-+}
-+
- static inline struct media_request *
- media_request_get_by_fd(struct media_device *mdev, int request_fd)
- {
+ Fully Planar YUV Formats
+ ========================
 
 -- 
 2.34.1
