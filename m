@@ -1,143 +1,138 @@
-Return-Path: <devicetree+bounces-133087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC769F933D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:29:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 766889F9368
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:41:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A9D8189A2FF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:27:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5879C1885E59
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:41:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 743C9215F68;
-	Fri, 20 Dec 2024 13:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884742156E2;
+	Fri, 20 Dec 2024 13:40:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pKW0EyTr"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="PlrtsRtp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D49215783
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 13:26:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B856F215197
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 13:40:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734701179; cv=none; b=GV6rEu6fGSncrOvNwUU5LWSVDeemwVdShaB0s07terFXM99acNWUFpAfPoqEFRFGqrSRamXY21eHLbFzElOL+PIeRI4aMklaFw0WMWSxacy1TK29rgGoShvkNGZvRgDGatxQJ2k6jVcD8NqpoIyaaTlh7WQafQM/ZJ+kF/31FWo=
+	t=1734702059; cv=none; b=l0OrJbpWm06EayWloG4HT6NhU1Gy0d2sYrLQ018cRRliOSbpV4kGBOywBtK/ZCMxzC9SnV6hGTfo/EcsVxAnzJHfcSnbB1PuT6VgJgy2w4eVb6lL8vqs/rLns5MCXoXxRNhKxQatLrfxXcOaSd6vpHXbiw6ZcQAOLgOV1HJzzgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734701179; c=relaxed/simple;
-	bh=n4pdjIE8wk6+RrT25j2XZ+MN5qzobRKdoai9EioUYbg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DiH1L4kGgeFnHiO1HputmbbdfZ4DFyjtHdu8GW5tkpVu4ZA7DjKqLTOH3dFxpvQi76kdsRlsa+sWKj1aDsuLPh2953Pn6k1eWBVk2iHVLYfQE2FDRikR43NxPm4M34gXrTRzptr1qRaRVx+EwpU7iiZB3NXWpfVM4KAXhckKOpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pKW0EyTr; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BKA4Xds016204
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 13:26:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1i0DA82kkn8WuMBOuii7HiTKNDRCyKMaAec5At2Bx5g=; b=pKW0EyTri/sXirk8
-	DqTpbTjast0OqJWtHVOIjLeWwU0zch1+6n8TCbafhNcaARUr1tW3SV3a0WCdVkte
-	mAjpydCR0lnLDoX9amtfSYmtP0twAEp1ddHWC+yu7J9U5BKCuRKnRRdUla7upPYj
-	BnlQnQFOz24VZORjj3i8402+5xnUSe2ReCgZU8YbfzncfeIib5VpreAUiirppin/
-	rBvnS4X+5D4N1iXPIH7kKIHAFaKQdr8RD9a1DBA10k7X2OB1Rjg+A2MKYl6mI06i
-	wpAGuarPOa6Jh96o1ysoaohtqsxlhFDW9hBxYEwWrzTX+b1C2bMAkMkhYXiLT5bJ
-	uWacAA==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n6gugfeh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 13:26:16 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6d880eea0a1so5548156d6.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 05:26:16 -0800 (PST)
+	s=arc-20240116; t=1734702059; c=relaxed/simple;
+	bh=Wb7iNHmEf3kwk8PZ83J0Vflb2+dZOrkblrsPmP2Xs6k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EliCsuWLZPSXq+xMYZKrBVjGpujnuh3swJ1WcfMGffGIsjE3WSGYebxB4wIw8pzAovYv7NTjXmypjxm2BPbNoCLk3sy/5gpHwnQJFj0KRamF3pITyisujM1tZsLtzrbZZnfUyGdZ3k/T7VBbTGsz+KVK1WMCOz1h0ns0IalZdUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=PlrtsRtp; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53e3778bffdso2144439e87.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 05:40:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1734702056; x=1735306856; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Wb7iNHmEf3kwk8PZ83J0Vflb2+dZOrkblrsPmP2Xs6k=;
+        b=PlrtsRtpJR+MCZuROhIz+hTyRIaxkL7RztJep+rPl0zojLMBYJqI5MfjNBgzmfOu9A
+         rCE43D7a9WIShPDLSgWZlm/jWfAzrpHXtDMPcS63mF0i4/80Fyasj01t8zHwP4GCdT0E
+         ge/3zETtx+fqW4zao3hIxh07hosx5R4t8TW97T2hvXMgWqqveLgaeEkroouR7MHrp/7f
+         7YdYGsHrwE1fo/p7P1X/N9lEx9sY/9Ow+7kwzBFgXiEbeAi2qvoyEq3nQbpSoIrbgW+d
+         47VdldqxJ8lhKJf2kTjBZ1nr0RVn3bm/PhtSf6OkXybKa2TRRzOIuYA66jm51HRDRoVh
+         H+4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734701161; x=1735305961;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1i0DA82kkn8WuMBOuii7HiTKNDRCyKMaAec5At2Bx5g=;
-        b=DQ6bvraSjSzZKx6QRvMlN8JSZv7FLe0AvxLoF+haMAd0P11flcNWNYvIo+VfzacZPs
-         2j/hhxd5GZizKfFwiRfHrzz5dFpQ9V+Jntmk2g9Tc1M5xRSivINtnLYKQnu2kAIPSdjq
-         upqjcNSmTvhD8MlgwZj1JSJPBBk7WDeL1vUqK50izTkihMhp5TpupGK1zcBSIlBjIy7l
-         LoZGblj20LYj3RgLY1q32owi7V5nfEDi1hbJwRvElscFOhIF1DMCn2xjZTtOf6TQie2Y
-         C/C23kxzwNR6PqvlSEfPPpiXqXEZl8tnK38rCS8biwQ57TyrKtEWw+bzQmp7Q5jZmiBg
-         R8VA==
-X-Forwarded-Encrypted: i=1; AJvYcCV/vCBBPPebNL33XELteCkqUdxOy7tBn44fHLEWveCOPDPj8wxWq7MohApFEDOA2mWTk7z/koeqYV2y@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFGXYkVP/4B4x3ZeK7QEHKVFkevnxPA8yMWS4l5LV4KW+yvqF7
-	ujtR8m1hEdUssAL2dUNSvXjMmKZy2fHGavXCuc409ZS+jQVRG/hSZFJPG1qJL2hC/jg0g9HckKu
-	IbMlSPp+cre847vXN07CD8zv6KV8C4dGNhn/9zyUEJC3BOnxUmrjo3+UjJCKs
-X-Gm-Gg: ASbGncuKdQWYeA78yPIpxCNbvVQz4CP8cCBHAyDgc+gVUMz2ndUw8xTIwtW36oC3zsh
-	L3UydzTmSV97Imu2UBEQcbjhZIQHMCfjQgXZ/vS3S3LRir25IaIbYE3TWHuwbRNQlAj85tto9qN
-	cibfoXhwvz+kEQUoFNoRQtKSDGhBGa9/YtZoDGXQBuYLUO8eXCk7PMSqZDqfti0a8f7GE0Ppkct
-	S9cCQOSjBw/DfC0Cj/VLKGfe06RQ/YtWrRZ+3TQU14w3evPnBMm6UBGFvoq38N8o/0gb5rKoy28
-	ibeZC7g54b8dySnnXpzts/lq3wDvsLbJeN8=
-X-Received: by 2002:a05:6214:5504:b0:6d8:8283:445c with SMTP id 6a1803df08f44-6dd2332ec62mr16425106d6.4.1734701161305;
-        Fri, 20 Dec 2024 05:26:01 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFkq09EQ0ae97mVq22oeA9jfGWGDmW+Y+xZX/h1a5jnx6pnSBVt7BZ44l6VTdHgTK4Dtqih8Q==
-X-Received: by 2002:a05:6214:5504:b0:6d8:8283:445c with SMTP id 6a1803df08f44-6dd2332ec62mr16424876d6.4.1734701160960;
-        Fri, 20 Dec 2024 05:26:00 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f015270sm175995166b.162.2024.12.20.05.25.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Dec 2024 05:26:00 -0800 (PST)
-Message-ID: <7d33eed7-92ba-4cbb-89b0-9b7e894f1c94@oss.qualcomm.com>
-Date: Fri, 20 Dec 2024 14:25:57 +0100
+        d=1e100.net; s=20230601; t=1734702056; x=1735306856;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Wb7iNHmEf3kwk8PZ83J0Vflb2+dZOrkblrsPmP2Xs6k=;
+        b=WAHVr47iO/v5AT3kfUV1DA6PMiaqUo8Y/AWYIYEevXP6rwKlnOsDK340lCZIczDyFX
+         alZFtqvb+f5PBOL42jHRoXmsL6IEuyXxpmlZCvehizxFLhZdn1WAHkuyTkfcvDYEXTjZ
+         mj+XU++hCBTTwuWA83YVxlsrck4VkariyiC3ZkUhaDOHB3BLMNzhuikskSPYgMOfQvZx
+         AzQPBN9mPt7/sNqRMuuZUaACMD/VQPwuNOgZvXLoCr3mcjgM53PPli5VdgUO5ob2UKaZ
+         pgrI3cBAZIvlCxaPPcMriPCAInv72p9fKBxZFCYDQtN0ruW7GO71iCVE50V8Tweobep1
+         1Zcw==
+X-Forwarded-Encrypted: i=1; AJvYcCVb6Y52bIDOCNr3vJFrdV+UMa2bLlKQ1Te1fCu3+PEJCrWXk/Y5+q7Xkl+urnYNA+20aRio1E4W8hAj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqcBkme3CFXb4Gw4ZHw62L7zZmJ66o6fL7PyRVseBvi5PFNB87
+	uv2vLYkXxjw3kmYpRF7SR/myV8VLpOoDRpaeLd/mCSm22qc1wW78tiZyQAX/2UO8i6sTEG1Q2xN
+	m1QHV3fnrgVLHs2qD9UvgBfUPgC9fNo15p5oAxg==
+X-Gm-Gg: ASbGnct42nT4KZTnPLSEF2jVM8NLWUQslzHYvOn59dF/mYswxsHl8PLQ71MxnO2aIJ+
+	deEmkW3+c7c11PsqraL6aDtnkIwisuPJzLpoFd3EnK7OZXSD1xzxhB84OlGHAIM9KzAsKkg==
+X-Google-Smtp-Source: AGHT+IEMcr6UeakjvG9LcaBj7crEG/f7t7TlT4cYf0tYtIrj73ltbIs/soNZTMABMCsyh5ylcV4ql8R8oH3XQgmpM/I=
+X-Received: by 2002:a05:6512:398d:b0:540:1a40:ab0f with SMTP id
+ 2adb3069b0e04-5422954b160mr821931e87.27.1734702055700; Fri, 20 Dec 2024
+ 05:40:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: qcom,ipa: document qcm2290
- compatible
-To: Wojciech Slenska <wojciech.slenska@gmail.com>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S . Miller"
- <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-References: <20241220073540.37631-1-wojciech.slenska@gmail.com>
- <20241220073540.37631-2-wojciech.slenska@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241220073540.37631-2-wojciech.slenska@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 0UdvF92AVLEkHYXH5D8tT_5ALWz0ztjY
-X-Proofpoint-GUID: 0UdvF92AVLEkHYXH5D8tT_5ALWz0ztjY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- spamscore=0 impostorscore=0 lowpriorityscore=0 priorityscore=1501
- bulkscore=0 clxscore=1015 adultscore=0 mlxlogscore=955 malwarescore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412200111
+References: <20241212-dt-bcm2712-fixes-v3-0-44a7f3390331@raspberrypi.com>
+ <20241212-dt-bcm2712-fixes-v3-3-44a7f3390331@raspberrypi.com>
+ <CACRpkdaB9kqcjmhaXd5RxpYvqdSVMZkj0wHAtEgdqDs03+wzJg@mail.gmail.com> <CAPY8ntBJqukSJs7VUXvUFAsiKqNWknL8VjgtQG_VAEmw576EPQ@mail.gmail.com>
+In-Reply-To: <CAPY8ntBJqukSJs7VUXvUFAsiKqNWknL8VjgtQG_VAEmw576EPQ@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 20 Dec 2024 14:40:44 +0100
+Message-ID: <CAMRc=McmtEuc06YdEOXho8hkW30hYEYOtbOR3+mttmg4yrzrxg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] dt-bindings: gpio: brcmstb: permit gpio-line-names property
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>, 
+	=?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, Doug Berger <opendmb@gmail.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Stefan Wahren <wahrenst@gmx.net>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Florian Fainelli <f.fainelli@gmail.com>, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 20.12.2024 8:35 AM, Wojciech Slenska wrote:
-> Document that ipa on qcm2290 uses version 4.2, the same
-> as sc7180.
-> 
-> Signed-off-by: Wojciech Slenska <wojciech.slenska@gmail.com>
-> ---
+On Fri, Dec 20, 2024 at 2:02=E2=80=AFPM Dave Stevenson
+<dave.stevenson@raspberrypi.com> wrote:
+>
+> Hi Linus
+>
+> On Fri, 20 Dec 2024 at 12:50, Linus Walleij <linus.walleij@linaro.org> wr=
+ote:
+> >
+> > On Thu, Dec 12, 2024 at 7:36=E2=80=AFPM Dave Stevenson
+> > <dave.stevenson@raspberrypi.com> wrote:
+> >
+> > > gpio-line-names is a generic property that can be supported by any
+> > > GPIO controller, so permit it through the binding.
+> > >
+> > > It is permitted to have a variable number of GPIOs per node based
+> > > on brcm,gpio-bank-widths, so define an arbitrary maximum number of
+> > > items based on current users.
+> > >
+> > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> >
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> Thank you.
+>
+> > Perhaps Bartosz can just apply this one patch separately?
+>
+> I believe he already has, but commented against the cover letter
+> rather than this patch -
+> https://lore.kernel.org/linux-arm-kernel/173434013318.38429.8084137212485=
+42013.b4-ty@linaro.org/
+>
 
-FWIW this needs some more work on the Linux side, the IPA driver
-currently hardcodes a reference to IMEM, which has a different
-base between these two SoCs.
+Ah, this is how b4 works. Even if you apply a single patch, it
+responds to the cover letter (or the first patch in the series if
+there's no cover letter).
 
-The IMEM region doesn't seem to be used as of current, but things
-will explode the second it is.
-
-A long overdue update would be to make the IPA driver consume
-a syscon/memory-region-like property pointing to IMEM (or a slice
-of it, maybe Alex knows what it was supposed to be used for).
-
-Konrad
+Bart
 
