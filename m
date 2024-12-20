@@ -1,133 +1,164 @@
-Return-Path: <devicetree+bounces-132953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D98B9F8D04
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 08:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EA5D9F8D36
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 08:25:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 057177A317E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 07:02:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 393BB7A3AD8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 07:24:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1CF81A7AF7;
-	Fri, 20 Dec 2024 07:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D5F1A83E2;
+	Fri, 20 Dec 2024 07:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bFb/sVXQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GMjKp2Sg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB23918B464;
-	Fri, 20 Dec 2024 07:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CF119FA9D;
+	Fri, 20 Dec 2024 07:24:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734678102; cv=none; b=Y9SuY1Xk6JgOVS8JvKiLTfraNyxHMHjRsJI09RY55sVg96ems9uKnbwCb4pSYcKnESL+cdTsReuIivnJ3xVGPqMHZ+KiKjtIJP5uXrIVy3/aDCW9Uq78vybkGHHlb3UAQCurfsBa71WxrffXxwwrfiOZqmWFNWOOeXXdzh52E+w=
+	t=1734679492; cv=none; b=Cxr9n/32PiAcCiKOXbUSOMMm6R7SmKPx1z4ciVUu2U8hVDxCPzNu8k6aenDAr66C7ba5dgpsa4/QNJ+zyQHOX+KRrkszap/9S8WH+Trws5GA+IKekMb0JO3HY9JNhL/rwQlJSyn4JvVV6mhnZzSuqpwy/y00nooEvMfUWoEVqbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734678102; c=relaxed/simple;
-	bh=Zyk025q1osxf6eadSR4YxVCk37K612GGtF3dUJx8UIw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NBOsRV6ByCnmAzUEmiw8fq/MY+Q+JSbaVX7jcXoYo0Uq363uhnEg81gCe+CIWT735BHQ5KdnAY5lEEoFzenf9LGDSxhxHvKNSgsDKBNUIdlDzEJ/LeZ5pX12R+Q0+uT8+wHeVcCtA8XakAbqjml5SAT6UEUTZSySH3leEOoQc2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bFb/sVXQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK6nJMO004127;
-	Fri, 20 Dec 2024 07:01:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	sEkwrbgTyC0pD7FMFU1ma/BfXWRgZgXGEoYnKDNyJFA=; b=bFb/sVXQN+VfHF2g
-	kZgbwHA6fetQ1HZldYSXzllMydKYmAHau52Ra1NjwdpGlIw4IMp6/3F9gG4BUNvr
-	gP/jb98CcRbaedKeQntUcJzyvgdJjPsjhYIe4qt0pIDxO/bkuWl78rpM3Cr9GL9S
-	+SR/0vZN4fV8I+vNydHHpxJh1QnQmklmbgx/Ecygu7ay5obkBGiUX2szE97TWPUg
-	mR0uGX8evNSow+G0jHSmvASM7Se0JLX3sMErIthgkalMqmgjDHcQG9Tx3AgSMp66
-	ji8vT0G5tsOQVJk4dvVIm3Tf3b0Q92PssLblBrBjC6wceCI18A84fjkI/EWaRxo1
-	+nAYXw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n3my0101-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Dec 2024 07:01:34 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BK71Mu6021779
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Dec 2024 07:01:22 GMT
-Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 19 Dec 2024 23:01:18 -0800
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-To: <herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <quic_mmanikan@quicinc.com>, <quic_srichara@quicinc.com>,
-        <quic_varada@quicinc.com>, <quic_mdalam@quicinc.com>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: ipq5332: update TRNG compatible
-Date: Fri, 20 Dec 2024 12:30:36 +0530
-Message-ID: <20241220070036.3434658-5-quic_mdalam@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241220070036.3434658-1-quic_mdalam@quicinc.com>
-References: <20241220070036.3434658-1-quic_mdalam@quicinc.com>
+	s=arc-20240116; t=1734679492; c=relaxed/simple;
+	bh=wI74LX221mPtoUsM7Ghs9jBZJLJE4lCDTW38aEi1dyc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=A8lxNRDRxmyS/5+x1BspoSV/NMZIUihEW7GVHnlO7HvIjZ38fGMclgkTMWCMmPh8weh9UtxyEbnhHIhibSRWtZrF9IVhS5HKczjzlif3QgoP1DzlyU+wPI0v02XQAffMWTMeIIfOZcwSQWHqdU7YTJFyONz02taucifu0nVrV3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GMjKp2Sg; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d3bdccba49so2671927a12.1;
+        Thu, 19 Dec 2024 23:24:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734679487; x=1735284287; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ORTg5dVLT+DfsB7NLY9HYeMdx6LrBrYY3N/RITbt1kI=;
+        b=GMjKp2SguJSv41vHdYhi9sV10s6NwRhyjXsdmdoaOPjLVyBxOjE+ZDZFwLnbY52Yrx
+         TsrUENyBcsFoFWEO5mqvv/agQMGs2RtdbwKyHLQ8t6erYWEn0Qxc1sRU4nMui/lv/IPz
+         qm/QsGTxuxjg1QZaI9x8R5Ocex4bxGXuRcuHHxa9LkrMnc5hTc5Mu+ydwPfcBhRzYuBZ
+         8hiEmRyq7MwMwtJ6X+5Gu5ApuD4q4iNcnIiFf0U2WYnxSVu4lCx8slCYeRNGsJuq5tUx
+         DNPANakINLjKYh1wFN96ZG1xQZeyJ9/Jy91muH2CQVsxs87XQF44ji+5lNPuCxGvTyzN
+         KdUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734679487; x=1735284287;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ORTg5dVLT+DfsB7NLY9HYeMdx6LrBrYY3N/RITbt1kI=;
+        b=JBrbIVNFFnMHUJ9icD6KJyAHOMxtvRblrgOK6es9BL0V8jwRzL+xW4S+nel1f8+QHG
+         sTuVB+pIY35yeifpuYj8p/W1L+v7c1/I9LlS03Nm+nYQaKGgT2A3Bh8jzSJCa0N7ZteM
+         y5wMRDW4gMsgXw1SbLCrzbkfrnAIiDp0KBfxHpqD0GG2c31dVpidrv1x/rAI/WXWooDa
+         VO4xeuHEPckwdS+RBmPWA9Rd3FD/3rowuTeftDw5cw914UbDAGzrgxNyuH/g8Cqf4Oob
+         ZMjvJVoXHJCDzpLshgbjJjuKaE7+9slSq8QhRiaAnT+Wz9I2ES7ZCeaefkziqKbv1R9V
+         EZzg==
+X-Forwarded-Encrypted: i=1; AJvYcCUmfoB0mPLt2RblAvzoL8ky2VKlWX3nGjo/ikq4GY99HGS+xRLWQ3P4PSVXu6FteV0TH9LUPB0ZmC1C@vger.kernel.org, AJvYcCV4AuoM+3Cfib6Qc17dxYvL2W0/lTYOLwEoyhoQ6MnpY4CKYB24Pq8A6Cju/OjmSOfXpAqH@vger.kernel.org, AJvYcCVtRjx+xRIOoD9yoXIa0XceHScMsrfF3QzgJ7sdSoBVxG0vTSAIeDl1GM4weuY4amUOH+JOfvkCKZtmGOlO@vger.kernel.org, AJvYcCW/XjIDw+8USZ8Y0CCeeMMXwODJaNKdvKgynSOuzM54+4znj5IrlYzFUl4cl7IPilgWtwtq6VH1FMuG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzyqf0CrsK+tSBDMzog5honTa0JEVfao2ajewVDTnoLHkj/ei90
+	hZ9isi0SK3QXkl2Dho09VPaTTwwwVcOfIhyUupK4xbXXpiR35SWy
+X-Gm-Gg: ASbGncvlIowlQecT32NEJOhCu1yTz/ZAAHPJbSmFGwrBxXfWX7RzfExrXESUr2GDOrq
+	USV5r7/3Gs4J45Re7UOmQ+VfYL5dPgAu/0ZzA70x0YA5flJ6ywShkUqxDbPnEEysMtAaSXnzPmG
+	JtWJbB2T1ozDMpELUBrcF1fNydGYwD3uAFsXz2GDPOOXniWWc0wjFE5QwBDjHR3AgyRC5cNnhYE
+	JCvWqvpcWD4QNOTr3Iw683F88yLq/aaPghCeiiJhAwTXhacT0gKdpDapS61kI/DBImkKjZ/tLNb
+	uo/g38EpCUMitA5jfsPTPpmVUCPmJ0ksG21cubNNRltRPXW6YBGIMvROXH1ijYinbSY5I+TUAHJ
+	4Sq2LGlWaJJed
+X-Google-Smtp-Source: AGHT+IGbbKKdBnxcE917q6Ei+pU8l+/ETyCtOsYjSEOWzPRg71Rrv86cR/bfi3NhUj0QgDs/d+CLAw==
+X-Received: by 2002:a05:6402:5241:b0:5d0:e826:f0dc with SMTP id 4fb4d7f45d1cf-5d81dd9cc74mr1175724a12.12.1734679487017;
+        Thu, 19 Dec 2024 23:24:47 -0800 (PST)
+Received: from ?IPV6:2003:df:bf0d:b400:75b4:5445:d424:a5f6? (p200300dfbf0db40075b45445d424a5f6.dip0.t-ipconnect.de. [2003:df:bf0d:b400:75b4:5445:d424:a5f6])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80701c822sm1426756a12.77.2024.12.19.23.24.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Dec 2024 23:24:46 -0800 (PST)
+Message-ID: <a6346fd1-3161-4130-8121-5d0e98fd5141@gmail.com>
+Date: Fri, 20 Dec 2024 08:24:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: lUDrey1Cu21PbgmcogZzm6ikujsSbF_o
-X-Proofpoint-ORIG-GUID: lUDrey1Cu21PbgmcogZzm6ikujsSbF_o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
- lowpriorityscore=0 malwarescore=0 phishscore=0 bulkscore=0 mlxlogscore=949
- spamscore=0 clxscore=1015 mlxscore=0 suspectscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412200058
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 00/16] Device / Driver PCI / Platform Rust abstractions
+To: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org,
+ rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+ a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+ fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+ daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com,
+ j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com,
+ paulmck@kernel.org
+Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org, rcu@vger.kernel.org
+References: <20241219170425.12036-1-dakr@kernel.org>
+Content-Language: de-AT-frami, en-US
+From: Dirk Behme <dirk.behme@gmail.com>
+In-Reply-To: <20241219170425.12036-1-dakr@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-RNG hardware versions greater than 3.0 are Truly Random Number
-Generators (TRNG). In IPQ5332, the RNGblock is a TRNG.
+On 19.12.24 18:04, Danilo Krummrich wrote:
+> This patch series implements the necessary Rust abstractions to implement
+> device drivers in Rust.
+> 
+> This includes some basic generalizations for driver registration, handling of ID
+> tables, MMIO operations and device resource handling.
+> 
+> Those generalizations are used to implement device driver support for two
+> busses, the PCI and platform bus (with OF IDs) in order to provide some evidence
+> that the generalizations work as intended.
+> 
+> The patch series also includes two patches adding two driver samples, one PCI
+> driver and one platform driver.
+> 
+> The PCI bits are motivated by the Nova driver project [1], but are used by at
+> least one more OOT driver (rnvme [2]).
+> 
+> The platform bits, besides adding some more evidence to the base abstractions,
+> are required by a few more OOT drivers aiming at going upstream, i.e. rvkms [3],
+> cpufreq-dt [4], asahi [5] and the i2c work from Fabien [6].
+> 
+> The patches of this series can also be [7], [8] and [9].
+> 
+> Changes in v7:
+> ==============
+> - Revocable:
+>   - replace `compare_exchange` with `swap`
+> 
+> - Driver:
+>   - fix warning when CONFIG_OF=n
+> 
+> - I/O:
+>   - remove unnecessary return statement in rust_helper_iounmap()
+>   - fix cast in doctest for `bindings::ioremap`
+> 
+> - Devres:
+>   - fix cast in doctest for `bindings::ioremap`
+> 
+> - PCI:
+>   - remove `Deref` of `pci::DeviceId`
+>   - rename `DeviceId` constructors
+>     - `new`       -> `from_id`
+>     - `with_class -> `from_class`
+> 
+> - MISC:
+>   - use `kernel::ffi::c_*` instead of `core::ffi::c_*`
+>   - rebase onto latest rust-next (0c5928deada15a8d075516e6e0d9ee19011bb000)
 
-This patch corrects the compatible property which correctly describes
-the hardware without making any functional changes
 
-Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
----
+Not sure if resending is required, but after a quick retest the
+Tested-by from v6 still stands:
 
-Change in [v2]
+Tested-by: Dirk Behme <dirk.behme@de.bosch.com>
 
-* Revised the commit message
-* updated compatible string
+Thanks
 
-Change in [v1]
+Dirk
 
-* Submitted initial patche to activate TRNG
-
- arch/arm64/boot/dts/qcom/ipq5332.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index d3c3e215a15c..ca3da95730bd 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -180,7 +180,7 @@ cpu_speed_bin: cpu-speed-bin@1d {
- 		};
- 
- 		rng: rng@e3000 {
--			compatible = "qcom,prng-ee";
-+			compatible = "qcom,ipq5332-trng", "qcom,trng";
- 			reg = <0x000e3000 0x1000>;
- 			clocks = <&gcc GCC_PRNG_AHB_CLK>;
- 			clock-names = "core";
--- 
-2.34.1
 
 
