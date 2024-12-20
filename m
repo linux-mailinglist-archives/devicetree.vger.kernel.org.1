@@ -1,73 +1,75 @@
-Return-Path: <devicetree+bounces-133053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A82BA9F91BF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:00:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D1559F91C0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:00:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDB991694A7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:00:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA8CC169645
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 183EE1C5CC7;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41691C5F14;
 	Fri, 20 Dec 2024 12:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DA/Glhd9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NFPCb2qL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE0C1C3F01
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 024801C54BB
 	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 12:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734696045; cv=none; b=NVdW9tCMPSJm4Q7BGLAHEBf7+FJeKPjNwPFY34we3jnBKG/XojR2tThjp8b8azuizshVL6mWnQzpX58YBITNvytFY6eLA4b8DfyqtbiAM9ZxccF0nhbGwL+h5Pj89RYpRhB+tokoeJaUHYPvkZfaBUwAfdDvbtd31ONnrPhFupU=
+	t=1734696045; cv=none; b=J0pLH6geLtgFuwKWjefwXR39OhRmwbXdfIeqfMJOzzJyj+H3ui5MyeitZl6UO38cn9/F/txGP8Qi4as33RjNNDprZnnupcmwqqZuy6sDTyYeuLEyyWS4kJfI6OW6DC8vuyq8cmv3uixK4Iv9CsGJW8D9XONdBFKAkHRwiLZwqy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1734696045; c=relaxed/simple;
-	bh=WPaf9+f7z78MLonieCgvlL1vPCUCSw7zVcDi3rsIbZg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ToxaMImRExxLoRQGFM9+HCQTfU2HFsec8+xmYp3/N0OZwGCQ8PYXYgu/x4g36Hr3V7gBdj5hpP4yf0mmTl67QRnksabCgJ8Tr5t2NJ3Nd5q00haD+/tk0XKaL7GwKn0HG27IVJn84ENSkKoXJ2nhW4X9ESpONAsh/mJEf0QHkHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DA/Glhd9; arc=none smtp.client-ip=209.85.221.53
+	bh=D2tZXzEqgyEKFEmVwk/d41UosHsvKgGX0qY3bx1cllc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=B7dh2IXJNozTf5v31GfhdellVXz9mrc6F4BDGi+EU6JRgEWpKgtNWf2TOBVsF+lxdZVXEP7Tu7NxRsDUoPApU7dYxIvzkzj+8nnwfE/69RmCdX2vZEVKQqh56vMN3ix3YVcVztRYAqx/Y4vVQw9ANjV+7r1fSq9wbOySzGoJXio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NFPCb2qL; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3862d161947so920545f8f.3
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-385f07cd1a4so1222572f8f.1
         for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 04:00:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1734696042; x=1735300842; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oK8cRe+fHR1VWCxiDadEgLXPU4PatzYvmC0Gyvp01XQ=;
-        b=DA/Glhd9AegE+3ODTEdAc6Wo61rHy18q7u3W0iaTenVOYe0W1awzolHnCKWwIW5y4I
-         5eCpmUt8BRya9kZtuUG4uMrZZCI329i64KY5sMAQ38OVGmxCgH7DO3CWOZwXC1sY81sE
-         jUqoPLfZXvyZ/G38kFuzF27EU+DnHWgUKbbgEZdr3/iL6j16YkoNUTZ7V3AX4ANS6mfz
-         T0q+nshN3ws9BklaJzhsPghKRS46xb0MR1afW34u57QfjFdRjd/aTDkZE/5ETJB2dpUW
-         tms3f3yDPz3VbcOZ2XQiW44tg4dzJ6wj2O3+j3leqQXv3siTiAxLNBoVtkX5xPI001JS
-         cD3A==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0PSZeHHkCW6wlnu9PsCgTdp/ZEwb0V+NyqcmEQUOdns=;
+        b=NFPCb2qLjQ3LjSf3cJBGVycsHz3xACa/SkEp5HYOQGJns9wFQjgYigRycbX5H0FtIg
+         h0ToOlSo66QTl1nkT9a92j4uUXJsnYJZjVmiESGXJ/w3YsivlCUhNwXQdK8Z8EbTOaoy
+         ObGsSCssrxlJvaLEyF3T/x+ycvbsn327sGnw+hubDjmic8YpePNdxWa1EYaCPobQSr7T
+         tEwVw/djj0IoIx46J8vITioSGcX0sd8nsjtV/NJAThw0KYI0RoPpLDZ4qnseMS1D3Ldo
+         CL5VI334fOgctcG31gsx0xFGwj1tqWmrWAe71XNbd4bzvsAX7/e87VAlXxhnW91S+2aA
+         rS3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1734696042; x=1735300842;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oK8cRe+fHR1VWCxiDadEgLXPU4PatzYvmC0Gyvp01XQ=;
-        b=dVwAOF2lEpLuj3xO/hj5y6EFurLeX8Mt5R8OZ77hLv29ieTDT8gxorb9TLi+gavcMY
-         z95T44CRMLcgiBmE5do75uzalO+H0okGmFS6wnyBo92IfOAoxwGOUCFclwwdxqEhDpMw
-         ATvDNDkIkoTpvG/3/GvAUxpvcH1n1bfnUYVI65LKUx+ZdzxY7Npe4whwNR9X2/9oUrew
-         eXmrNfD4fcJ8Iffau4/a8yw/H0qVZmb6CvQHZBKo/hDiypaJkyjP6QcF8CIRbEuCZ7Z+
-         asdgk7sZuTmB83mIyspMcMX8qKImpMdnNwXvlXiOJOW+X2WKPjEhXmwpks+CRSbpLyZl
-         N5/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU6p9GSW2PCzsoXf5IiZ7H3sTsZ9uczRKbyDqcC7eyHYbTT3Fi0qd8jFFQA+pPsnFdBMU6CBMFDXEZt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzj1TMbOHHjjXVpD2RtufyRuns4Q2iA3NkG3jvaHqmgqCYnotxz
-	7DHtJZVeLNVC6IpnoP8QmXEzAsunzcTsj6z63I3MpPnI7xW49p8n
-X-Gm-Gg: ASbGncvRH5L+s9Ncz/6CzlxeZX9CGC03zOa7+ZpglbKmXRtMzeM/dZlVVhUimdP/bsR
-	Cl1cC/QtJ8x1mG8O4XtWiL6ZPMdybwj9e57Q9lrjDenefmWOF8Hae2Y9iqfRcaWXfV9d07IXuI0
-	LQ+J0Ply8beBkug5h/ya2kaY2ebh9HtmXkr1jgaUksrftpGXScSPVeny9xF9odxKVLgYMMWPwCQ
-	fJ7O3FbCRKbcnyJqXvdZ+OshIZvRnH9m4OcHiZlfnbZefWkyAadJl2UVW//5A6ui7b6FTKMISSZ
-	1Z0glxxeEXqDzjdU3CJ3m+5Uu3fiEJNXtGMpWeb9+ud/5PDn2SVlZMdRNXiORA==
-X-Google-Smtp-Source: AGHT+IHGkBxd31pWu+xtwPWlWhzqK08a5e0QfwzpYag5XqwWVGkcAgvkQ2m1qj/zjZ9WwhUM2P+gTg==
-X-Received: by 2002:a5d:648d:0:b0:388:da10:ff13 with SMTP id ffacd0b85a97d-38a221eaf55mr2906782f8f.21.1734696041476;
-        Fri, 20 Dec 2024 04:00:41 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0PSZeHHkCW6wlnu9PsCgTdp/ZEwb0V+NyqcmEQUOdns=;
+        b=RjYHMFaZFS5ykAQD554hSJNu2rfiLCjye2Ss3OKdc9lPJxIyTVzNRgMbXkBAjx4uLa
+         PYxFLqfjPnMAo8rMXyVFOQ7adaE8j/ufxmeA7PqzqQS+0F+P5JpDVp8vU0/YBDRTT7r9
+         xgvP+dD3oRulDwc4WQWepB72bGnMKnZzQ9xBM6uZj5gh0SjD9ilz/hXh/KX+yTaNidfQ
+         AjexOsR7AmUNJvcvZONWqC/5uNiDD8hLs/LEb7pXy33MkD30B0u/Tz8q6OOu76GrrTtg
+         mkXOvcHxDEY3nBxRKeE0+dHnwr+zYGdV5LRiYzDWg8yGrNQldjH0uQLEdqPc8Z9nf6Gm
+         /Czg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwm6Fvk7fMOkjfG3P1kqA0WcONd8K/JlgG3wKYiWyWwjm0mOpnYDvS3PijLYCL805ajEUp7my3If5+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjViJmiYGWFTOc8v/e+ZC4Jtgg8kkO0e/HHyR5FDKOlZ2nbnRZ
+	StmJLeG4nngwDRJQ1CsJbGYrLJDVktQdjGnzec972deJsVClRE2d
+X-Gm-Gg: ASbGncv5rDWnVJlbwN/0exBX52/ao6LOK2lO0OzWAKzlouy+FH4u12BHBmI0YCOn5R7
+	ExV2f+HQ6BeK8V3Re7IrAmQim3RIZbqLLKrnhJlwKGXP7Y5v7dlPzwTrenabXx8kCzoLLLq15D+
+	VX0I0yNXC/6AUnd0czPpaEZs0Jv+8UfWhGwh22N0R1GOFkp3MEvOJSkJ8NusfqmHDfbe2jrt/UV
+	GP2u0E5yxBZLVSd5LSR/SkW/LP32+bqy5nqmh+3uZjozI8ctM372foT3C741GY/wqtWvfgW8G2H
+	qsbXXqA3QCJBdM/EWIcBT8ZZQsgFH6kUj2cUjplz+AYerSIO92WXdcCQ7hGw7g==
+X-Google-Smtp-Source: AGHT+IHmWsMA9nW1lsPiSxNBhMagfaDdRvhKKxRsgc2zMuwWmMdOEPQP3bdm0aS3GFPGO5WQ8QG6Pw==
+X-Received: by 2002:a5d:6d84:0:b0:386:45e9:fc8a with SMTP id ffacd0b85a97d-38a221e1dfemr2502314f8f.5.1734696042080;
+        Fri, 20 Dec 2024 04:00:42 -0800 (PST)
 Received: from cypher.localdomain (e.b.8.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::8be])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38a1c8b830csm3921038f8f.108.2024.12.20.04.00.40
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38a1c8b830csm3921038f8f.108.2024.12.20.04.00.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 20 Dec 2024 04:00:41 -0800 (PST)
 From: Peter Robinson <pbrobinson@gmail.com>
@@ -81,10 +83,12 @@ To: Rob Herring <robh@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev
 Cc: Peter Robinson <pbrobinson@gmail.com>
-Subject: [PATCH v2 0/2] Add support for WiFi/BT header on Pine64 A64
-Date: Fri, 20 Dec 2024 12:00:29 +0000
-Message-ID: <20241220120038.3137248-1-pbrobinson@gmail.com>
+Subject: [PATCH v2 1/2] arm64: dts: allwinner: a64: Add WiFi/BT header on Pine64
+Date: Fri, 20 Dec 2024 12:00:30 +0000
+Message-ID: <20241220120038.3137248-2-pbrobinson@gmail.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20241220120038.3137248-1-pbrobinson@gmail.com>
+References: <20241220120038.3137248-1-pbrobinson@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,20 +97,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add the BT and WiFi pins on the WiFi/BT header on the Pine64/Sopine
-boards.
+This adds all the pin mappings on the WiFi/BT header on
+the original Pine64. They're disabled by default as the
+modules don't ship by default. This includes, where they
+haven't been already, UART1 for BT and mmc1 for WiFi.
 
-Changes in v2:
-- drop patch that enables the WiFi module, it'll move to a overlay later
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
+ .../boot/dts/allwinner/sun50i-a64-pine64.dts    | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-Peter Robinson (2):
-  arm64: dts: allwinner: a64: Add WiFi/BT header on Pine64
-  arm64: dts: allwinner: a64: Add WiFi/BT header on SoPine
-
- .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 17 +++++++++++++
- .../allwinner/sun50i-a64-sopine-baseboard.dts | 24 +++++++++++++++++++
- 2 files changed, 41 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+index 09e71fd60785..f04f0f1badc4 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
+@@ -35,6 +35,11 @@ hdmi_con_in: endpoint {
+ 			};
+ 		};
+ 	};
++
++	wifi_pwrseq: pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 */
++	};
+ };
+ 
+ &codec {
+@@ -124,6 +129,17 @@ &mmc0 {
+ 	status = "okay";
+ };
+ 
++/* On Wifi/BT connector */
++&mmc1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc1_pins>;
++	vmmc-supply = <&reg_dldo4>;
++	vqmmc-supply = <&reg_eldo1>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	bus-width = <4>;
++	non-removable;
++};
++
+ &ohci0 {
+ 	status = "okay";
+ };
+@@ -286,6 +302,7 @@ &uart0 {
+ &uart1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
++	uart-has-rtscts;
+ 	status = "disabled";
+ };
+ 
 -- 
 2.47.1
 
