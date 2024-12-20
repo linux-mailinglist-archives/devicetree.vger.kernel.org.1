@@ -1,186 +1,150 @@
-Return-Path: <devicetree+bounces-132960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18F729F8D5D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 08:37:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 049629F8D6F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 08:51:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAC717A4074
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 07:37:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A06116336E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 07:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACABF1A8415;
-	Fri, 20 Dec 2024 07:36:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2AC199E84;
+	Fri, 20 Dec 2024 07:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OxCUzdBm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BUhZPMgB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C941A8404;
-	Fri, 20 Dec 2024 07:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E1015689A
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 07:51:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734680185; cv=none; b=Zy8v3hyuYs4Y1nMPNwAGYHfu6hi3WpGR6nGo3vvhZBkvFIuGQHMSew8XT6GbZC2V2VopL8wiXZs1WCiKgvgtIEFd4qfYecLwJGAGvgpJc3csFlI86Tc69B25wyu1tlnoastqtBkQoeJviz3vF8iiblhMPdPCnUALnrAo5NQI3MI=
+	t=1734681098; cv=none; b=XODNP4VgOnJn0XTIqINCESzsAmNMZFLwgR6Q4G6TbWxhj6lkL+i0VH/1c85wiCeKT8vvZg0LFFVplt3p3btbnkgxC+VgGD1oXu3ZRW5xdLn4LWxO6HiIoGZx1KWUvxLkmHIP3cfyn90pZhYOnuapD4KnV4o5ynEE7BID0QhSXrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734680185; c=relaxed/simple;
-	bh=bB/cH1BkAsnNPyV0OvXZ7kfOHU9q1gs/7zfd18lXTe4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lGj7U3kgu8xCi2SUfCcSWea1mFnqPTETeNAgMdYtD5A0DlrFWbL7XaDZjWa+h1soQ84LO2pFvEYTLcYQv6USNCWQZ3w88MAlQlcALEe8kMr6AljWRN2xlYeIm20TSe3lmv/B8HA3AGNr283T8Xu5zmi1qZX9TusAzrLFwAgzNtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OxCUzdBm; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5d3dce16a3dso2951134a12.1;
-        Thu, 19 Dec 2024 23:36:23 -0800 (PST)
+	s=arc-20240116; t=1734681098; c=relaxed/simple;
+	bh=OkhxNHA3+1HeXND2fLL7BiKnkbPD6f7VLBpp4jFIE9I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FnrAKh4pzEOIIRWoxGQaHdn5aMTp/8OiYi31U4sXq3VfsiKBmZA3mXg3/MxoAMooN61tSj9NtlZ2B+9tCWZkT96LzWNrt/jNe7/qdNwWeKrT0b383EV4r6vFBy4pgxWV328EURHk4vubKLW6P+cKMy4875Vunqf9gWbFAv7r8fI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BUhZPMgB; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5d34030ebb2so2566351a12.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 23:51:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734680182; x=1735284982; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BjvoTnLajbhK8stDtq3vTnpcqmR1DBp3TItoZOoWAbk=;
-        b=OxCUzdBmD8108UaAYBCn/3ZIrCypdVjoaXL85Vitw6V4KArcGvfmz0LP9po9btKeqg
-         JofTIu7aT1fegIH+kkPzwuuvEHTr5xD1KK4YFuEk3EnZH+pDEPn4bhjonB8a700i9zWd
-         pa9UhAGhk9bbKI42YdoOhDC0mFPOLr2r7dm0fzBE/Xb7wSBB2Dlla2mVq52z415wJY0w
-         mord6fFbwT676/7e82e5+9KUBaFIys2USW7NmhI9r+QLcuelzbFxOTLRH0Xgbv6suxIw
-         /1QWET31JwRZTfEfe2/C/UegRRure2d3y02laY6T8Y7s3Smb7n12IWwoyL0goXUdPznq
-         XhNQ==
+        d=linaro.org; s=google; t=1734681095; x=1735285895; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1yDNEjeOXhSBQxVpqQzt29i9g5xlvEhh8lAhoI+DC6A=;
+        b=BUhZPMgB+pTKuonASRxgax/MwsDc/6h6DZLcwbGWsjU9+g+pw462OQMFWOVvjE7tbg
+         ZIIFtVyPtL1g93g270N6dg/9o4AXQzns62VBEjUpOVBDIFpvka7AF3qIoK2O5rIxMN9t
+         U5YB9OOVCibTQ+vzlL6HcxsS2FWUzhfwS9bg7wYyGukKuhqfLga8g0JCvq+ZuTIAjXIZ
+         Q/5rpIrI/Z/iaTzhdMLzIs27mC4LWPRqztN9O0dwKT9bX+wAXBXZaGqoveWgBCa8+S6A
+         aN5XFfafQqTbwgJ2pu/fixzRZlEx0SX9VH9jDBUgDsnTgOKRUed1WMLtiK1JxJrGa1cr
+         g4DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734680182; x=1735284982;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BjvoTnLajbhK8stDtq3vTnpcqmR1DBp3TItoZOoWAbk=;
-        b=ekVoy6TNc+GtJauhsCD5/Qh7s/gDkvO3BEg0BGSW420AgTdLIYg0PFiTPs99cdfsk5
-         /ELqRjTc9jyGvVap45r4patXSlNBNgea3lWrQSGhJRb724yYsGxdjuCvh+fyHYreAJdR
-         HvK7lL2D8HaksArDghalsrX0NiaNPCbtYFY+NjxtH4VMaBskHRTEAmgr+drJ1LhLfwwP
-         s3RjCNz8/BHcxwMJu6s/63k0ODfnuTLL/fAISn6ewe1p3/rg9y/XFfxQgj7h3nWh1NTZ
-         JNRKSJPT9nZ+117nGJevoTmFduQF7R/wyhv352AR2cNRO2MoNdVFYXcjJ6ZiHp8e66ir
-         OcTA==
-X-Forwarded-Encrypted: i=1; AJvYcCX/kyDX6egmMeoFEzHgWIeTjzIEMcqMhGUp3dm7yqBf6/m6OqVAaFUYBs7QyHE/y4P7fpL2J9c8@vger.kernel.org, AJvYcCXKwpoNfAdn8MTfU5MIe0PQe/VD1AtyRcJYnlcV4n8TTUbSfz8QFr5d+iv61eZ7H2mrwdEsdM1/czm2dtWR@vger.kernel.org, AJvYcCXimdoiIo+1mc+fLqN5PZlZDPhyMCzj+DwOyI1vM6fdF+LynR0wOgLMnQR2nFU8baWdUkMrjIHNcXcq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpFCgmyAIKFLKyk1ZSuILz+zxYtimZXBLjZz03xoWoqMq0xkQf
-	7p7Ur5+8iD8zcQ5DumAq0ZT5fEk7WS8q8og3V3DQZRkwG2faGJqyOFcg425v
-X-Gm-Gg: ASbGnctSqjTRQn0O8KYG83PMosaDDA199Tq6CGHSmTcWT7lYBH5HLfwSdN6NdllbWim
-	PgiM6d8atyzyc63nfVjyOgFfmRv+nuaR32nkAep58cMrd+nK8iOOmsn2fNvYD7sdDQH4FjruvZU
-	UbwE1yFxStKMJydyD0gMFNAG9UZ6mOBkXmI/+jvepwwe5W8JYWzkzq4daX847whM/D3IiTj9Srt
-	vOSYRDsH+o2HKORcIGPuFohvNWfZEErq7EW5NTKDEBEby0AFMdEUS9wVEZC9n2ck6V2pWAaP+K8
-	diW3o7iK9qfPMw==
-X-Google-Smtp-Source: AGHT+IF5hFtXwu90C8+PKA1Z+lLcJXUlxYVeoE8KY7FRpA8mHLqCsPWY6ZHEBkBJbGLKh8x3+jVFeA==
-X-Received: by 2002:a05:6402:3585:b0:5d0:d845:2882 with SMTP id 4fb4d7f45d1cf-5d81e8c134fmr1090627a12.13.1734680182121;
-        Thu, 19 Dec 2024 23:36:22 -0800 (PST)
-Received: from T15.. (wireless-nat-94.ip4.greenlan.pl. [185.56.211.94])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5d80675a375sm1509229a12.2.2024.12.19.23.36.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 23:36:21 -0800 (PST)
-From: Wojciech Slenska <wojciech.slenska@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alex Elder <elder@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	Wojciech Slenska <wojciech.slenska@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: qcom: qcm2290: Add IPA nodes
-Date: Fri, 20 Dec 2024 08:35:40 +0100
-Message-Id: <20241220073540.37631-3-wojciech.slenska@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241220073540.37631-1-wojciech.slenska@gmail.com>
-References: <20241220073540.37631-1-wojciech.slenska@gmail.com>
+        d=1e100.net; s=20230601; t=1734681095; x=1735285895;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1yDNEjeOXhSBQxVpqQzt29i9g5xlvEhh8lAhoI+DC6A=;
+        b=afbv289lSvtQwP8wAKz11QeIof5IRFfpxEPblVaab+qUTVMUr34RXl65ozc/U373hM
+         kca6Zt/EmVxfWP/NMxHMQ3g5OFtScpHopzy8mrtdnRfmclgE93zLolqxy59p2GgdGAEB
+         T3nfD++DJOYlhqQ5VTSCcVVD81Rso8FLhlFpGCp55117szcfa6ufd5Gcc3qeZ8hZNcXk
+         BWD4NoFCUYMYYa9aK2zjYrKUVZHPHQysMpOFpusd8Sspu7pPXf/bQSO9Mt+1k7GAL5O0
+         sNp6qPVUdwqMm9Kfyxn9mo1CcuIQiyenTor9U3EBd3J6fu4wII6FqOdqCLT2bw/6kBeO
+         a8aA==
+X-Forwarded-Encrypted: i=1; AJvYcCU45JduPBrVAFXWb5kfXB2eb1GEnAobh7PyiOFUu7ubA687PfukFvOkcL+kkzbMKD9zlfXv5I7k1Pjp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNCdS32f1y3dzMtTXTqYSL/4ch+V+VGztf7i/TMeCbSR/DvIbg
+	GdxEDGZWV/+9khgXRXLo2IfC1BkKUNJMa0pqgFJRqJt6Wz8T9WFfL0egu+JxGKc=
+X-Gm-Gg: ASbGncvKpHKF2W6HRGh1ScCcjv6wDoztDvxbpImOajd49bvm9mg+DEQy/hYN/wDHb0p
+	p5guzCDoWcr67z6mASZR8hbiSAU5KP5CA685lv9MA6+RmIj9NYy2nhryy5NE/fwiSNv8MjDEZCV
+	ZrB4A9N9KOtuPr8wYMy30uHka5fmYF3xdHQzhMZ3hQf57kGySmta/O8gdNg3tHu9rRQU9BQcAZc
+	KBLLGLJoXLjupAVJx/Iu5SKqAW40OGol+zyhUC9aHcl3ozEg6/mgqo7n+UfjbgD
+X-Google-Smtp-Source: AGHT+IEI1vajsERhxoY7nkjgpoa5z0LmbYvw4+7EEXmu89uOcdENi+jRRpqlKSn6v1OKOHvsdYTmuw==
+X-Received: by 2002:a05:6402:518f:b0:5d0:b51c:8478 with SMTP id 4fb4d7f45d1cf-5d81dd7f300mr1334456a12.12.1734681094719;
+        Thu, 19 Dec 2024 23:51:34 -0800 (PST)
+Received: from [192.168.0.14] ([188.26.61.92])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80675a41esm1450399a12.1.2024.12.19.23.51.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Dec 2024 23:51:34 -0800 (PST)
+Message-ID: <463d5955-a056-40e1-a46e-f89ac0dadccf@linaro.org>
+Date: Fri, 20 Dec 2024 07:51:32 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: add support for referencing
+ controllers solely by node
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org,
+ peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com,
+ daniel.lezcano@linaro.org, vincent.guittot@linaro.org,
+ ulf.hansson@linaro.org, arnd@arndb.de
+References: <20241219-mbox_request_channel_by_args-v1-0-617a6910f842@linaro.org>
+ <20241219-mbox_request_channel_by_args-v1-1-617a6910f842@linaro.org>
+ <20241219-recent-everyone-865b19864693@wendy>
+ <d9e635c8-de05-4812-bf2b-11651f6da5c1@linaro.org>
+ <20241219-strum-cheese-89e5e60d22c3@spud>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20241219-strum-cheese-89e5e60d22c3@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Added IPA nodes and definitions.
 
-Signed-off-by: Wojciech Slenska <wojciech.slenska@gmail.com>
----
- arch/arm64/boot/dts/qcom/qcm2290.dtsi | 52 +++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-index 79bc42ffb6a1..0d39fd73888a 100644
---- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-@@ -428,6 +428,17 @@ wlan_smp2p_in: wlan-wpss-to-ap {
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 		};
-+
-+		ipa_smp2p_out: ipa-ap-to-modem {
-+			qcom,entry-name = "ipa";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		ipa_smp2p_in: ipa-modem-to-ap {
-+			qcom,entry-name = "ipa";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
- 	};
- 
- 	soc: soc@0 {
-@@ -1431,6 +1442,47 @@ usb_dwc3_ss: endpoint {
- 			};
- 		};
- 
-+		ipa: ipa@5840000 {
-+			compatible = "qcom,qcm2290-ipa", "qcom,sc7180-ipa";
-+
-+			iommus = <&apps_smmu 0x140 0x0>;
-+			reg = <0x0 0x5840000 0x0 0x7000>,
-+			      <0x0 0x5847000 0x0 0x2000>,
-+			      <0x0 0x5804000 0x0 0x2c000>;
-+			reg-names = "ipa-reg",
-+				    "ipa-shared",
-+				    "gsi";
-+
-+			interrupts-extended = <&intc GIC_SPI 257 IRQ_TYPE_EDGE_RISING>,
-+					      <&intc GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-+					      <&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "ipa",
-+					  "gsi",
-+					  "ipa-clock-query",
-+					  "ipa-setup-ready";
-+
-+			clocks = <&rpmcc RPM_SMD_IPA_CLK>;
-+			clock-names = "core";
-+
-+			interconnects = <&system_noc MASTER_IPA RPM_ALWAYS_TAG
-+					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>,
-+					<&system_noc MASTER_IPA RPM_ALWAYS_TAG
-+					 &system_noc SLAVE_IMEM RPM_ALWAYS_TAG>,
-+					<&bimc MASTER_APPSS_PROC RPM_ALWAYS_TAG
-+					 &config_noc SLAVE_IPA_CFG RPM_ALWAYS_TAG>;
-+			interconnect-names = "memory",
-+					     "imem",
-+					     "config";
-+
-+			qcom,smem-states = <&ipa_smp2p_out 0>,
-+					   <&ipa_smp2p_out 1>;
-+			qcom,smem-state-names = "ipa-clock-enabled-valid",
-+						"ipa-clock-enabled";
-+
-+			status = "disabled";
-+		};
-+
- 		gpu: gpu@5900000 {
- 			compatible = "qcom,adreno-07000200", "qcom,adreno";
- 			reg = <0x0 0x05900000 0x0 0x40000>;
--- 
-2.34.1
+On 12/19/24 6:58 PM, Conor Dooley wrote:
+> On Thu, Dec 19, 2024 at 03:42:11PM +0000, Tudor Ambarus wrote:
+>> Hi, Conor,
+>>
+>> On 12/19/24 2:11 PM, Conor Dooley wrote:
+>>>> There are mailbox clients that can discover the mailbox channel ID at
+>>>> run-time. For such cases passing the channel identifier via DT is
+>>>> redundant. Add support for referencing controllers solely by node.
+>>> I don't really get your implementation, why not just allow #mbox-cells = 0?
+>>> That's what's done for things like fixed frequency clocks that only have
+>>> a single output.
+>>
+>> Ah, indeed!
+>>
+>> instead of:
+>> 	of_parse_phandle(dev->of_node, "mbox", 0);
+>> I can do a:
+>> 	of_parse_phandle_with_args(dev->of_node, "mboxes",
+>>                                    "#mbox-cells", 0, &of_args)
+>> where #mbox-cells = 0;
+>>
+>> Or ... can I pass NULL for cells_name and make the #mbox-cells property
+>> optional and still keeping its requirement of being at least 1?
+> 
+> I think the mbox-cells = 0 approach is preferred, that property is what
+> marks it as a mailbox controller after all. Perhaps Rob or Krzysztof can
+> comment?
 
+I think using mbox-cells = 0 is better indeed. In my proposal I
+considered the list to always have a single phandle, thus a reference to
+a single mailbox controller, whereas it may be possible that clients to
+reference multiple mailbox controllers. If so, #mbox-cells needs to be
+defined in all the controllers, for consistency reasons, similar to what
+happens with fixed clocks, as you already mentioned.
+
+Thus I'll change the method to:
+struct mbox_chan *mbox_request_channel_by_args(struct mbox_client *cl,
+                       int index, const struct mbox_xlate_args *spec);
+and use of_parse_phandle_with_args() in it.
+
+Thanks, Conor!
+ta
 
