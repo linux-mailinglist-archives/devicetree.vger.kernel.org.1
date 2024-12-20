@@ -1,155 +1,134 @@
-Return-Path: <devicetree+bounces-133214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CCE29F9CC3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 23:35:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F2B39F9CF5
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 00:02:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5838416CB80
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 22:35:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1295E188F5EF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 23:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BE21C0DED;
-	Fri, 20 Dec 2024 22:35:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05482210D1;
+	Fri, 20 Dec 2024 23:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LEawztcS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cf4ZbIEF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A131A9B27;
-	Fri, 20 Dec 2024 22:35:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2DC218E8F;
+	Fri, 20 Dec 2024 23:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734734137; cv=none; b=BUeunSF+kldoebkhOfBjjNBHWB60PoeUJ4wue+oW40gMkiJbuTf6LRtQwQDgeL7tH//n2RBSoFaq0qo9GCQD+ocWIV4HcgrsaVyJDDBCLs7ajbodxKCQB1AI7+vHjgNwcITO7AZymalYSvHA3TWIYJd3frSxQVkxB9UdlikR/GU=
+	t=1734735751; cv=none; b=DNQ4p0oPxnpnmnCoqOgPmuC06oiGjiFMBM61FNkTsl/YzTqJdtgqEGi1LWd30OLWeB9yfxP7cPbqklNVMkaDjHQz4G17Xd1eQYoExVn4e09+bktaoTfe/gPtqLX4qzFsTRWRto67LMAqGkATMH7BAxqxSvY1MzbKArQvA7W4iQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734734137; c=relaxed/simple;
-	bh=hCrPLBGKXul9fIWu9qcpnA6H6FZUmgnLsyZii4L7flw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WBweazDb1sgYsgypK8QeGL5sOT40wgd91Ad/NcIqqZBp7Pz/6UC9WKPDN6euU410tQx80iEMk9Vv2cF/RzUCQ3stjGE6PxRh7MbPqg3pDAEPi/raZwbxPHkOjIvGMzv0hyyBQ7egWgINp2jHdNwMi5ifUEoyuwPn8hERXC8CJXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LEawztcS; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4BKMZOnq072626;
-	Fri, 20 Dec 2024 16:35:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1734734124;
-	bh=E0h3P4N9j75w7+HF6CeZ/8OdGu2MqcdwPSKxnMEMrkk=;
-	h=From:To:CC:Subject:Date;
-	b=LEawztcSSn2ZsUfgpUtFFS/uCt7JYhPEaLBNXTyrtsKX58MrRw2p4q2LvXKzORYSN
-	 eZAKNVQtwsDfVqM7vBnaXaxGmaRwdpzUI1fux84lJ9/Ai2I6If8OkcmUr0TtLTOVg0
-	 av1Thnn77Pi+4f9Vv/u/nEForI/Sd8aegzbygw1k=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BKMZOqB120869;
-	Fri, 20 Dec 2024 16:35:24 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 20
- Dec 2024 16:35:23 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 20 Dec 2024 16:35:23 -0600
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BKMZNm6095687;
-	Fri, 20 Dec 2024 16:35:23 -0600
-From: Judith Mendez <jm@ti.com>
-To: Tony Lindgren <tony@atomide.com>, Kevin Hilman <khilman@ti.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-omap@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sukrut Bellary
-	<sbellary@baylibre.com>, Bin Liu <b-liu@ti.com>
-Subject: [PATCH] ARM: dts: ti: am437x-l4: remove autoidle for UART
-Date: Fri, 20 Dec 2024 16:35:23 -0600
-Message-ID: <20241220223523.2125278-1-jm@ti.com>
-X-Mailer: git-send-email 2.47.1
+	s=arc-20240116; t=1734735751; c=relaxed/simple;
+	bh=YOM0sxWH2NOdQ0u5BkPEsP69Y/I1eG5N0wfi3uJ7IMw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NLfnS+IfX4yLGMdROxEErT559mNRY116eeXQXDhj5ym3o8cKDqXw+rdeH+CorCbCawHyd/02t8HZQKwrAlVj09fEIPKFi8gbVbQI0pcClA/ufvpjf9DDr1ijC+sVHI13EAjfN/JhwTEhwoXkx7dB4O4hbwPjfkgkk7gYBYkPDT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cf4ZbIEF; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1734735750; x=1766271750;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YOM0sxWH2NOdQ0u5BkPEsP69Y/I1eG5N0wfi3uJ7IMw=;
+  b=cf4ZbIEF4JVC0j/tMxUFhanQzlIMCbHAcIqozWlRXuLLHwRUG2Qxtccv
+   IeyTDIw7Qn4SrDVUZr3g9iNxVsYDa0a7sB62pNsei5r1RgO20En89YP/l
+   nI2G0WjESfQ5KSXap8HfhOrrHY1qwz+H07wMyNHo/sXR3ugShj8lf0cWn
+   43FxBrquckxu2m7IREXIdMD+Qv7+hl9HvOq49iVPVfkmNt2VsCNSc55J9
+   qFKQtOQnuCQ2ZwDPcA1+w4UuRL/2j4canYREbdz88e7CS/wsGpUDKwhZs
+   Syhme7PYklDPtEOVQGN4yelnAlLlT1L44Gan4GpT2ZjtrcQTKFp5sSnGg
+   w==;
+X-CSE-ConnectionGUID: csslQBuzRl6QmJVlp+4FlQ==
+X-CSE-MsgGUID: p9Rcx2xQQlqOkfZ91ofJxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="35007764"
+X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; 
+   d="scan'208";a="35007764"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2024 15:02:29 -0800
+X-CSE-ConnectionGUID: CaRNdNAcSueE7TASKZn7NQ==
+X-CSE-MsgGUID: 4X7QR5sVQvu52XqFyyAAYA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="102745710"
+Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 20 Dec 2024 15:02:25 -0800
+Received: from kbuild by a46f226878e0 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tOm0k-0001ix-3B;
+	Fri, 20 Dec 2024 23:02:22 +0000
+Date: Sat, 21 Dec 2024 07:01:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: mathieu.dubois-briand@bootlin.com, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Subject: Re: [PATCH 3/8] mfd: Add max7360 support
+Message-ID: <202412210613.xoQvMKlk-lkp@intel.com>
+References: <20241219-mdb-max7360-support-v1-3-8e8317584121@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241219-mdb-max7360-support-v1-3-8e8317584121@bootlin.com>
 
-According to the TRM [0] in 21.5.1.42 UART_SYSC Register,
-the autoidle bit should not be set for UART, so remove the
-appropriate SYSC_OMAP2_AUTOIDLE flag.
+Hi,
 
-[0] https://www.ti.com/lit/ug/spruhl7i/spruhl7i.pdf
-Signed-off-by: Judith Mendez <jm@ti.com>
----
- arch/arm/boot/dts/ti/omap/am437x-l4.dtsi | 18 ++++++------------
- 1 file changed, 6 insertions(+), 12 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm/boot/dts/ti/omap/am437x-l4.dtsi b/arch/arm/boot/dts/ti/omap/am437x-l4.dtsi
-index 824b9415ebbe9..fd4634f8c6293 100644
---- a/arch/arm/boot/dts/ti/omap/am437x-l4.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/am437x-l4.dtsi
-@@ -180,8 +180,7 @@ target-module@9000 {			/* 0x44e09000, ap 16 04.0 */
- 			      <0x9058 0x4>;
- 			reg-names = "rev", "sysc", "syss";
- 			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
--					 SYSC_OMAP2_SOFTRESET |
--					 SYSC_OMAP2_AUTOIDLE)>;
-+					 SYSC_OMAP2_SOFTRESET)>;
- 			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
- 					<SYSC_IDLE_NO>,
- 					<SYSC_IDLE_SMART>,
-@@ -698,8 +697,7 @@ target-module@22000 {			/* 0x48022000, ap 8 0a.0 */
- 			      <0x22058 0x4>;
- 			reg-names = "rev", "sysc", "syss";
- 			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
--					 SYSC_OMAP2_SOFTRESET |
--					 SYSC_OMAP2_AUTOIDLE)>;
-+					 SYSC_OMAP2_SOFTRESET)>;
- 			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
- 					<SYSC_IDLE_NO>,
- 					<SYSC_IDLE_SMART>,
-@@ -726,8 +724,7 @@ target-module@24000 {			/* 0x48024000, ap 10 1c.0 */
- 			      <0x24058 0x4>;
- 			reg-names = "rev", "sysc", "syss";
- 			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
--					 SYSC_OMAP2_SOFTRESET |
--					 SYSC_OMAP2_AUTOIDLE)>;
-+					 SYSC_OMAP2_SOFTRESET)>;
- 			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
- 					<SYSC_IDLE_NO>,
- 					<SYSC_IDLE_SMART>,
-@@ -1385,8 +1382,7 @@ target-module@a6000 {			/* 0x481a6000, ap 40 16.0 */
- 			      <0xa6058 0x4>;
- 			reg-names = "rev", "sysc", "syss";
- 			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
--					 SYSC_OMAP2_SOFTRESET |
--					 SYSC_OMAP2_AUTOIDLE)>;
-+					 SYSC_OMAP2_SOFTRESET)>;
- 			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
- 					<SYSC_IDLE_NO>,
- 					<SYSC_IDLE_SMART>,
-@@ -1413,8 +1409,7 @@ target-module@a8000 {			/* 0x481a8000, ap 42 20.0 */
- 			      <0xa8058 0x4>;
- 			reg-names = "rev", "sysc", "syss";
- 			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
--					 SYSC_OMAP2_SOFTRESET |
--					 SYSC_OMAP2_AUTOIDLE)>;
-+					 SYSC_OMAP2_SOFTRESET)>;
- 			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
- 					<SYSC_IDLE_NO>,
- 					<SYSC_IDLE_SMART>,
-@@ -1441,8 +1436,7 @@ target-module@aa000 {			/* 0x481aa000, ap 44 12.0 */
- 			      <0xaa058 0x4>;
- 			reg-names = "rev", "sysc", "syss";
- 			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
--					 SYSC_OMAP2_SOFTRESET |
--					 SYSC_OMAP2_AUTOIDLE)>;
-+					 SYSC_OMAP2_SOFTRESET)>;
- 			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
- 					<SYSC_IDLE_NO>,
- 					<SYSC_IDLE_SMART>,
+[auto build test WARNING on 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Mathieu-Dubois-Briand/dt-bindings-Add-MAX7360-MFD-device/20241220-002541
+base:   78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+patch link:    https://lore.kernel.org/r/20241219-mdb-max7360-support-v1-3-8e8317584121%40bootlin.com
+patch subject: [PATCH 3/8] mfd: Add max7360 support
+config: openrisc-randconfig-r122-20241220 (https://download.01.org/0day-ci/archive/20241221/202412210613.xoQvMKlk-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 14.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20241221/202412210613.xoQvMKlk-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412210613.xoQvMKlk-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/mfd/max7360.c:52:27: sparse: sparse: symbol 'max7360_volatile_ranges' was not declared. Should it be static?
+
+vim +/max7360_volatile_ranges +52 drivers/mfd/max7360.c
+
+    51	
+  > 52	const struct regmap_range max7360_volatile_ranges[] = {
+    53		{
+    54			.range_min = MAX7360_REG_KEYFIFO,
+    55			.range_max = MAX7360_REG_KEYFIFO,
+    56		}, {
+    57			.range_min = 0x48,
+    58			.range_max = 0x4a,
+    59		},
+    60	};
+    61	
+
 -- 
-2.47.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
