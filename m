@@ -1,108 +1,128 @@
-Return-Path: <devicetree+bounces-133121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 881EE9F948C
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:36:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5F69F94B5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:43:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E17961892825
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:36:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED88116AF1F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:42:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3FD2163A7;
-	Fri, 20 Dec 2024 14:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DADDD218859;
+	Fri, 20 Dec 2024 14:42:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SY8NaXRa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7515C215F62;
-	Fri, 20 Dec 2024 14:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EF5218855
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 14:42:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734705369; cv=none; b=ktDmst96yFgDg2sx427AScI6jJ8oVk90OixaIOFXRa5PczwAlGGoN5jyF9pr+n2RfbY+YXF22jJYryQWfm031OsDm+gFdbyWHeCYrnsdexrRH1HlTSD7WHXvYAtFYyLA+9h81AiRePBZ3Z6k6aWYTCH+FD5tvZupfqdCtjOQ7Yo=
+	t=1734705774; cv=none; b=jsrnyzXsFReZOC0toHwjKrmxfzgKXyrNhrYUqP7YISKoCsMTmcBPW7B5H1Qt4F/2OdmDVfRzfox5Qk3Ajt6zXUGJH9Xv3JLszoUgeBhXOw6EZBA0jmGtMZG234mbtYN7PXQlElcqZdh8HCAx8m8CM3TYKpYk4RTJ/LksVoPttrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734705369; c=relaxed/simple;
-	bh=OYN8HM4We1odY5HnKn+7RCWQnj1cjAeUmenMBmBMQz0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TuhZEUeyr6U9yjdBGBx4KLCvknCbeVppcRQZgBAKAAolJeqWIBAteeArovMJnU+Dy6n2W81YsCxLOB9cssLmGVrapNi66klWtTFEiqU8iQuVeM/HWFxnKpKJwqMQNE9pWRITq93f44zhWx3sn68chTAF5tiZZwcUSPoNqnWoRGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E1F921480;
-	Fri, 20 Dec 2024 06:36:34 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C8F533F720;
-	Fri, 20 Dec 2024 06:36:04 -0800 (PST)
-Date: Fri, 20 Dec 2024 14:36:02 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Elliot Berman <quic_eberman@quicinc.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-Subject: Re: [PATCH 0/3] Allow specifying an S2RAM sleep on
- pre-SYSTEM_SUSPEND PSCI impls
-Message-ID: <Z2WA0o0QJS64ftVh@bogus>
-References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
- <20241113165329590-0800.eberman@hu-eberman-lv.qualcomm.com>
- <e4509104-c809-4d45-bdbb-a2d754a816db@oss.qualcomm.com>
- <Z2VXgkJ4x5TJTKJ_@bogus>
- <765bb1c8-31de-4aec-b8ef-f141a3e25c56@oss.qualcomm.com>
- <Z2V4IblZNgnS4T2Z@bogus>
- <875342b7-3825-47bf-810a-effdbeacab46@oss.qualcomm.com>
+	s=arc-20240116; t=1734705774; c=relaxed/simple;
+	bh=tFI4fUt1sI8nwfpq3FJ1MtiKgsdZm78mtJAIZ0bc/uQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=UIA5gtVSuvL6pP8HQD5BbwisNGSAk84F8pznaBMwXTV6waTYJMYHgBTqlTGKb6WXxsU0ks5+e1Fm3aQVJN0bAUKbu1klSy+NZluKB+WIHeirapBZ73L3Tmwoln0MA8KfMpumpr9AlV7vs15p6ccWRAz8fqU6bmjLa4cFQa+ETrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SY8NaXRa; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-38a25d4b9d4so64975f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 06:42:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734705771; x=1735310571; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=tFI4fUt1sI8nwfpq3FJ1MtiKgsdZm78mtJAIZ0bc/uQ=;
+        b=SY8NaXRaGNt7hwGPJgGTYgQOqLj5DE/dxZHmhkAFe+uRH4A2glSfnqEvnRGKng+yQ/
+         SLwh5WneVEOzO0NIhhyA2xT8pGSNv89pcg3NnE0BBLRbL7sPdUKF7nq6oxdQX2A2jzWY
+         SLAUdju0DWQjrl8066/jvG9EDnng4PmpBCvhpN0TH4Hjjm9o3wY/PJLkv4MAYdpgwCcc
+         Ra9yQYBZjl+reOwbcamFNDmRkIY4GEtC4pdzF4Y2qhLCZUnsmxmiS471dx8toYWceexe
+         0z7tfG7FPdjRym5nhJh8zH13pkC1eHr+qTz6FJFGRKHUphyDC5iVqPK66SAYKvB1aMQx
+         7Nqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734705771; x=1735310571;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tFI4fUt1sI8nwfpq3FJ1MtiKgsdZm78mtJAIZ0bc/uQ=;
+        b=GnGmbwNszjr5ceQxN6tKAegnSUbmqeVZcHKrKLJcAuYEpxN4I2POxts/dVLuQ7lrms
+         Hg8LYccjXQxIJJ5DMunxUG4kbqJFHgFdE8DpDAG2Kc8uNEF11Hg2CS8P1im/z4nAjSkV
+         A7Rp5RDDGQt414Il+iBJ5Iwow/89wyMTqRQli1clogrq6gHydrkUDTQWAft8a+veWpjV
+         l/5SsIO2xeKJ9RIu29S5macX3ZH0zARLN6k2XnxSUYFW3lg+k/o3cvnuiqwh/EX0gEdg
+         gT2/tm/NlwrY1eTOyPywdHokpXJw+Y9KaJhu11boheaY1FPtNb/IgnJdL8BkO1sVAIyg
+         0Ezw==
+X-Forwarded-Encrypted: i=1; AJvYcCXSQnXkUqd6hPLAYGIJm51K2i4UxkLmVxG52jLk/tagn6Rbn7155wrdGoGstUMfDr2na6DxbkFY0RNB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdqrnhT830+MJ1NSmZ4YPndFZ2+4xq9nsHcZniVJZazolhQ6jJ
+	WrN6g1qwXo0MSMsMhfAKvE+WtkP82cbtkPh1mSweR8uArFK5nNYe0A0Xo3Ua0fw=
+X-Gm-Gg: ASbGncsMmbVeuhtKWANC4yG2kmYH/k+Ucb2RCwLH34doauWNP6QoUUrHDu5UeOUm3fj
+	rGXZHLQNMlwNXltuH0VTbiRL/Y1JsBiZMCuax5XwnxIFnPLGCQEHjGsrlDrM0gBDIvXYFAzxK/m
+	1SFvzyBqhB2xz18eYhbih4wkI+XXiWJGf+58CPc3dq43IRV8RkK3niv2eLw4xsHfN3khNcu2If7
+	4a/W0fIFYMBg90k9lRlH9wtHogz+heD9kbHuSuLhPiVvwDhA43smJkJtMy9Eg==
+X-Google-Smtp-Source: AGHT+IFt4rSrOvohVwd4q64VIVCiXXusgKxJgOvFR5SJjIJN9uX1E4X8Khns9mw+xl4mziHbQxzjwA==
+X-Received: by 2002:a05:6000:1446:b0:385:fae4:424e with SMTP id ffacd0b85a97d-38a22408624mr2696915f8f.52.1734705771310;
+        Fri, 20 Dec 2024 06:42:51 -0800 (PST)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c89e150sm4190849f8f.66.2024.12.20.06.42.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Dec 2024 06:42:50 -0800 (PST)
+Message-ID: <21d1605c49d7d6a0f7f0f532d99cd7d285bd2958.camel@linaro.org>
+Subject: Re: [PATCH v2 0/3] Google Pixel 6 Pro support
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Date: Fri, 20 Dec 2024 14:42:49 +0000
+In-Reply-To: <20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org>
+References: <20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1-4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <875342b7-3825-47bf-810a-effdbeacab46@oss.qualcomm.com>
 
-On Fri, Dec 20, 2024 at 03:20:37PM +0100, Konrad Dybcio wrote:
->
-> I would happen to think that, yes. Especially since the reference firmware
-> implementation does *exactly this*:
->
-> https://github.com/ARM-software/arm-trusted-firmware/blob/master/lib/psci/psci_main.c#L179-L221
->
-> PSCI_SYSTEM_SUSPEND seems to be simply meant as a wrapper around a specific
-> CPU_SUSPEND state (which may or may not be only callable from inside the
-> firmware when SYSTEM_SUSPEND specifically is requested, for reasons),
-> in a platform-agnostic way, so that the OS can enter suspend without
-> providing that magic StateID on all supported platforms.
+On Fri, 2024-12-20 at 11:27 +0000, Andr=C3=A9 Draszik wrote:
+> Hi,
+>=20
+> This series enables support for Google Pixel 6 Pro.
+>=20
+> Since Pixel 6 and Pixel 6 Pro use a different resolution display, we
+> now need to add explicit support for it, we can not piggyback on the
+> non-Pro version anymore. This means having to separate them into their
+> respective DTs, and provide one for each of them.
+> There are other differences between the two of course, like battery
+> design capacity, etc., but they don't matter at this stage due to
+> incomplete upstream support.
+>=20
+> * dependency note *
+>=20
+> Due to the renaming of the gs101-oriole.dts, this series will conflict
+> with any pending patches touching the same file. I have therefore based
+> this series on top of my USB series from
+> https://lore.kernel.org/r/20241203-gs101-phy-lanes-orientation-dts-v2-0-1=
+412783a6b01@linaro.org
+> and the patch enabling framebuffer support for Pixel 6 from
+> https://lore.kernel.org/r/20241220-gs101-simplefb-oriole-v2-1-df60e566932=
+a@linaro.org
 
-Exactly, that's how it can be OS and platform agnostic. Yet this platform
-considered to optimise by not just providing it as a wrapper(if it was
-that simple on your platform too) without running any tests and leaving
-it to interested parties like you to mess around to get it working.
-That practice needs to be fixed and this change won't help and once we
-fix this, more such special treatment fixes are needed on newer platforms.
-So lets stop and ensure things are fixed properly.
+Actually, since this series was regenerated with git's
+diff.renames=3Dcopies, it doesn't depend on my USB series
+anymore, just on the framebuffer enablement for Pixel 6.
 
-> But since it already requires more elbow grease on the peripheral IP side,
-> I'm not really convinced it's that much useful.
->
-> Plus, the optional bit of doing more work behind the scenes doesn't seem
-> to be very wildly used across TF-A supported platforms.
->
-> So please, stop making the argument that it's any different. The firmware
-> I'm dealing with simply didn't expose the same thing twice, in perfect
-> accordance with the spec.
->
+Cheers,
+Andre'
 
-So that it can continue to do so in the future ?
-Thanks but no thanks. NACK with no arguments as requested.
-
---
-Regards,
-Sudeep
 
