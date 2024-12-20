@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-133114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DCEC9F9421
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:20:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7209F9426
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 15:21:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE48316374D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:20:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 173FE18878C3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A517215717;
-	Fri, 20 Dec 2024 14:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD742215776;
+	Fri, 20 Dec 2024 14:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZgX4FUs9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iaWSZsD8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D3B2046A2
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 14:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72EC9CA4E
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 14:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734704446; cv=none; b=LWb9cb322RUvhk9KWCuMAJE85xSZ9aFUsxn4WPdHuTEvCN6z4ydHuPp2TuGFVYt16l4hRM+UB0szOxQBwutoXrTYX2r/dCz6S5hEbGSPZI6WDcqU6URIeoId2uLQeijfPgJEl++QRd4ODAu/pcT4pdZ8f7dNOnK/4OnHiCfPDig=
+	t=1734704513; cv=none; b=pYKa6mwkdrx67UsEfuPWasiFru+PcbUQrFANikgIBhB9YLoelUOj6oIyvUuCq5vHwNIS1creXJGOQMKVx4rZUrR3CrweNarU8+k3Bsuk6xTFqwTMnXiKQ0BLJzjiPeALLUYxV03jy0gOP4Qz+lESZOPnrdnUa887Ee7JQhnPfpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734704446; c=relaxed/simple;
-	bh=qFIYTw50g8omFtQvU7ugZUUVqMyxaMbXhyvAVRJJbKY=;
+	s=arc-20240116; t=1734704513; c=relaxed/simple;
+	bh=8AakwH4rqZlU+awr+cwOGReVlcD/QCsqlL3Xg8IoU64=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=USpLLofLSXYvfBL9p+c/tiUiRqPqWBd4kXpo7ecMqA8XTf9Mk06QQ5nL+eXa4CjgQJhGv/LTrPRuombXSqQ41CCg+8hOeUZPqVFBoM4SFsojwAhY/OsGN9S/GB44CGiPpkxGk64E5tdSH6vVzcRXTJovDrWipYYpGyXVy78OFTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZgX4FUs9; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=qYeFFeMa/tzbCqOwZvl2ITce4cC5U7rxN7beQN0NcmF1ETdVhFgM0IxiZHe/FtfKAAAwfQPIMYJOSIU14yUhbPAWlrloUZEgMaraSSDOa+Pk8hzeQlYnmOvXYKBxJAAnwJ2Pypwigl481nDK+SNbTWNI3Y9CvSh8YQxIINFnpYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iaWSZsD8; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK4PcQl024649
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 14:20:43 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BKAKVG3002745
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 14:21:51 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oF9Gt4jUsSVFBsboD3SxXYWnqJhf/Ez7AfP4JxIL9eQ=; b=ZgX4FUs9pJIBi5/4
-	N5RTz48QS+/ZDy1iR/Sohak4vi9HVcCFpWqzjHtXA6rkcb+v3EZw7ONVh0DAB/ik
-	ToCXxPOWACFb2PqSqeKNTPZTR8aEOE2IK75U60Duj+FjgfGpVua4G6EsmbRqvpcg
-	4d1tr1OZyMDAohbGnQiPUThqzLnya+rcYA6lVcZ9TMrCkNDLGgBqpgMUGUW6i23A
-	dTr4kAJWpgDcTqlUkCrJ1Ddf232qxOZjC4+LHCMUdgwBuco2RodhwVmn3Kequn0s
-	VDTALlvA383TtGnChnbyRgulk43KhwslaHNAdiiGANEQOO2UjqWQG9hTc+SzvelX
-	yrzEVg==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n1hx1f4p-1
+	Vu6zYvRhveH1aQ5tqrWnMeH/DKiFK4P29CLhabZGtgI=; b=iaWSZsD8KoOMnYJD
+	5+5lpE1Z8adJZdTnNKXpjNePmUBnh/uUCQo+UdwASToOluAKa72T4mE4ZP+HKdYo
+	w7NiWxSSmQx+y6xpW6ubVsTiZmiOONplLruAeeDdeF5H9yaYYluS03AdNa6NOkm1
+	wKvLxRbsqt/ymSsItjfIQOhoE0YFD+Jay3PHqB6T1SxEET54bDY3Regt1WdvHvfa
+	RPv4wJfUmMxwnVXfKZgnOlZac8VMnTx52d9o01liFKY+diFUKirfWy4WYpG891kB
+	AnN4hD/qzaTkC65qC3vHsPPfppeJmvbKKPqHtUtFnVz3YepDUr7ltOv2sU1moMnu
+	xo4kKg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n6ra8jdk-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 14:20:43 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d88fe63f21so4670686d6.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 06:20:43 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 14:21:51 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-467975f1b53so4862361cf.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 06:21:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734704442; x=1735309242;
+        d=1e100.net; s=20230601; t=1734704510; x=1735309310;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oF9Gt4jUsSVFBsboD3SxXYWnqJhf/Ez7AfP4JxIL9eQ=;
-        b=NBxnJMcAEGq0yXpjbrk6XvqulUUy29BWEfbAtDeztdETESRe3Nif4/liAB4d+MBUGB
-         sY50XGw/NDG4T9Rucv1hmtTKxIhLraw3MUB9/MSAriXZN5MLlH7L22spzk+z6+q9nFM8
-         6yEdgr7PLUb2IIDXJWul6qTThv0QECQCwDms3GLCvmxv4Co4L/Bs1eO+8bMf3HbKkF2N
-         l4OTeK3dxWEFJn0vXcXfi6npkl4qMqWQRm/U+IjNJOmNE4gsuDJpJdI7AMoyheYsNk+L
-         ItsD5I4sjIHy6HEaqK6bRoM0MZLV67vDk32a8PKd+YtBPNSWMDdISRooeWrsy6z3xD2I
-         PWyg==
-X-Forwarded-Encrypted: i=1; AJvYcCWeQfjeFfW5z+HC96tATI0oYie1Kk5g4WRIXGrJp22EuVSGAgSs3lHSrMCPkI+NdxzZsD/lZg8luoyq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH8QxGIdStpEPxQgFhvcHWT7eoHwR29OJtcnDq+hO/elv7p5DI
-	26pxEypS5KqOn8745ExyT7w9kHjySYCtpMfcWXCDUhmj2kfBSj4K8JokoQ15XuCNzDS1tdtqPd+
-	ZXO1UK6KkQCdUta+iNiv3RCJgjYoGurlGmpZnbs7etNv5kKRGxuV9oCuoKR0P
-X-Gm-Gg: ASbGncv9UrRgnu8N8sxi0+W+avMFMVge136bhhC0ZlDLzJN6Ack42JIJvdU7T8fUqtc
-	dnfBxPbOq6tE+qKAx0W/DrKIerlNGTAY5Z4EqevmNFu88Ip7A3WANUe6locq0XDQOgSj6VuELTx
-	p6tbTif0xwBbNg0LfolRELQ/fFAWnUCCANHs2a0Znl+4Txj8G6kY/OdtGHhSuPvVeTfJQRV1vXc
-	0FMhljyt6Ee1yO4w34FYNjNKQkNsltFcifxTmqxLFqzeHWOqQ2pOXOihnICGtJJ0TBJvOIaWL8p
-	ABAx1BT4yThQxBgqSArz8oJnhNqY2pGTRI4=
-X-Received: by 2002:a05:6214:3c9e:b0:6d8:b66e:d26a with SMTP id 6a1803df08f44-6dd233b1640mr17010596d6.7.1734704442223;
-        Fri, 20 Dec 2024 06:20:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGx88afG3o45UtefzCawfy2RE//adxw/WGB3ljEGjNT53HTDF4pUUmWxMynUrzD3E+f8jCNOA==
-X-Received: by 2002:a05:6214:3c9e:b0:6d8:b66e:d26a with SMTP id 6a1803df08f44-6dd233b1640mr17010446d6.7.1734704441799;
-        Fri, 20 Dec 2024 06:20:41 -0800 (PST)
+        bh=Vu6zYvRhveH1aQ5tqrWnMeH/DKiFK4P29CLhabZGtgI=;
+        b=HHXccck9i7BTHg7ji99+Ttg+b1d5+++y0/SRYArNCWKa/D8hjViBCpbmz8Gr5WUd9W
+         As3/AJDIOto0qgFrukmq0Qffuqqy7Lv+AaG+blRdxHMu9VuWmF9JRfxnEvYB5xiSNbQA
+         WdDQlpQqnkvPoTHYHxqN3Z+i8sgzzftgv4GWCKfQ16lTZtX8ooGc5jAAsPSMoFenjJsV
+         ZCDM0N7oXBKfVv+o+H3Mrgabz8V1guDpof7B1wSuQGoFH0WwdNFLtKFQftHhCm+91Igm
+         PCNwkRoJSWXeFQBgFpNU00V5Do7mrZB/6BM8AfTktcnQVGwDQkS9rsmsKNYx+VrWK96w
+         4nig==
+X-Forwarded-Encrypted: i=1; AJvYcCV3GvhpjlRV/fRDWsuDJoZ6naI+Ypk9WZMtnmAk3pqlGRnIvVOSn8SrDO3Qb99wgktWQQuDQwTRvytS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJIHyZO3gI1fy2omdw1BBaveggYqep+fFCYLfRCIXq1Kp9DY4R
+	9EtFI7UYUI8EyFdfU1wdIcEW9lO8aO3qYf2zqx8GlcQnABBdUjZKYHbUXy5NNQNIUzXSdm3oR24
+	AlJD2VN9lOgipXf/1iZc0mhvrTM7M/gJUPF2uwl54ektvZf/5jE9s6D24FcrD
+X-Gm-Gg: ASbGnctOQNC/xPTxP2eWZ6/vPwRYASJqOxZKBW6k1TcFbGHkk64K9wVYqi1RxIBCz08
+	aYy7JnpWCp3TduUoE5/73UyGwizefJAeEuR/aESyWDNew2p1+qhdxBU4/1fcAHudFQRFJg8W119
+	yWyczlMgsmAIOH4ENdYBb4Perwpj1DgM9hQWu5zJVJi+AdUv1ykHPsNSBW4vPOFtuDsFhYdhOL5
+	3JhM2fSRjLAQ/YAAceF2SAZ/jPdMixZEXHIYMJO8UeQGld0LnSBDwI+zAXVm19r/3JmMHZwuzW1
+	MxD2ziSeE2Dx4bQdTUwxsjJwBC338yMTa6U=
+X-Received: by 2002:ac8:5dce:0:b0:466:8e17:cd1f with SMTP id d75a77b69052e-46a4a8bd2f0mr20728631cf.3.1734704510431;
+        Fri, 20 Dec 2024 06:21:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH/huOKz3oK3ncU1RlSH6JPb5PAB/jklXXog8HcSxMtduI2FodLBdwfml/OQZAz6MVvpKX+1A==
+X-Received: by 2002:ac8:5dce:0:b0:466:8e17:cd1f with SMTP id d75a77b69052e-46a4a8bd2f0mr20728491cf.3.1734704509990;
+        Fri, 20 Dec 2024 06:21:49 -0800 (PST)
 Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d806fed752sm1845135a12.54.2024.12.20.06.20.39
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80701b148sm1767714a12.73.2024.12.20.06.21.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Dec 2024 06:20:40 -0800 (PST)
-Message-ID: <875342b7-3825-47bf-810a-effdbeacab46@oss.qualcomm.com>
-Date: Fri, 20 Dec 2024 15:20:37 +0100
+        Fri, 20 Dec 2024 06:21:48 -0800 (PST)
+Message-ID: <b533ab3e-41e8-4078-99c9-1a9d80470279@oss.qualcomm.com>
+Date: Fri, 20 Dec 2024 15:21:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,12 +89,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Allow specifying an S2RAM sleep on pre-SYSTEM_SUSPEND
- PSCI impls
+Subject: Re: [PATCH 1/3] dt-bindings: arm,psci: Allow S2RAM power_state
+ parameter description
 To: Sudeep Holla <sudeep.holla@arm.com>,
         Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Elliot Berman <quic_eberman@quicinc.com>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley
  <conor+dt@kernel.org>,
@@ -105,89 +104,47 @@ Cc: Elliot Berman <quic_eberman@quicinc.com>,
         linux-arm-kernel@lists.infradead.org,
         Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
 References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
- <20241113165329590-0800.eberman@hu-eberman-lv.qualcomm.com>
- <e4509104-c809-4d45-bdbb-a2d754a816db@oss.qualcomm.com>
- <Z2VXgkJ4x5TJTKJ_@bogus>
- <765bb1c8-31de-4aec-b8ef-f141a3e25c56@oss.qualcomm.com>
- <Z2V4IblZNgnS4T2Z@bogus>
+ <20241028-topic-cpu_suspend_s2ram-v1-1-9fdd9a04b75c@oss.qualcomm.com>
+ <Z1LQOmEfFy640PjG@bogus>
+ <54cc4221-ba5f-4741-9033-20874265ca01@oss.qualcomm.com>
+ <Z2VUiHWHgbWowdal@bogus>
+ <349bac70-87e0-4870-a3f0-9f6a3b3e6824@oss.qualcomm.com>
+ <Z2V3amqWYDUWA2uM@bogus>
+ <c80c4cdb-48e1-4b6f-8ab8-fad6e100af00@oss.qualcomm.com>
+ <Z2V5WMN5aHQwQlNH@bogus>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <Z2V4IblZNgnS4T2Z@bogus>
+In-Reply-To: <Z2V5WMN5aHQwQlNH@bogus>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: K9iGInrhmVHmeVJDOkUrHWnmGboHvp8U
-X-Proofpoint-ORIG-GUID: K9iGInrhmVHmeVJDOkUrHWnmGboHvp8U
+X-Proofpoint-GUID: 4UKPT2hTJgaX1csA6O5NCIoPch1xhUjo
+X-Proofpoint-ORIG-GUID: 4UKPT2hTJgaX1csA6O5NCIoPch1xhUjo
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- phishscore=0 adultscore=0 bulkscore=0 mlxlogscore=999 impostorscore=0
- malwarescore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ spamscore=0 mlxlogscore=657 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 impostorscore=0 adultscore=0 clxscore=1015
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2411120000 definitions=main-2412200118
 
-On 20.12.2024 2:58 PM, Sudeep Holla wrote:
-> On Fri, Dec 20, 2024 at 01:42:04PM +0100, Konrad Dybcio wrote:
->> On 20.12.2024 12:39 PM, Sudeep Holla wrote:
->>> On Thu, Dec 19, 2024 at 08:26:51PM +0100, Konrad Dybcio wrote:
->>>> On 14.11.2024 2:10 AM, Elliot Berman wrote:
->>>>
->>>>> I'm not sure why you'd like to support s2ram. Is it *only* that you'd
->>>>> like to be able to set pm_set_supend/resume_via_firmware()? I hope this
->>>>> doesn't sound silly: what if you register a platform_s2idle_ops for the
->>>>> relevant SoCs which calls pm_set_suspend/resume_via_firwmare()?
->>>>
->>>> S2RAM is what you get after entering a certain state, but currently
->>>> it's presented as just another (s2idle) idle state.
->>>>
+On 20.12.2024 3:04 PM, Sudeep Holla wrote:
+> On Fri, Dec 20, 2024 at 02:57:34PM +0100, Konrad Dybcio wrote:
+>> On 20.12.2024 2:55 PM, Sudeep Holla wrote:
 >>>
->>> Just to be clear, I assume you mean CPU_SUSPEND idle state. There is
->>> no special or different s2idle idle states IIUC.
+>>> Please take a look at the preconditions for both the calls. They are
+>>> different.
 >>
->> Yeah, right.
->>
->>>> That means some hardware that may need to be reinitialized, isn't as
->>>> Linux has no clue it might have lost power.
->>>>
->>>
->>> Interesting, so this means firmware doesn't automatically save and restore
->>> states yet exposes it as CPU_SUSPEND idle state.
->>
->> Reading the spec, I'm pretty sure PSCI calls should only mess with the
->> power state of the cores, core-adjacent peripherals and GIC.
->>
->> Reading section 5.20.1 (SYSTEM_SUSPEND / Intended use) I think it says
->> mostly what I'm trying to convey:
->>
->>
->> "In a typical implementation, the semantics are equivalent to a
->> CPU_SUSPEND to the deepest low-power state. However, it is possible that
->> an implementation might reserve a deeper state for SYSTEM_SUSPEND than
->> those used with CPU_SUSPEND."
->>
+>> Which is *precisely* why I want to tell the OS that it's a S2RAM state,
+>> so that different actions can be taken in peripheral device drivers.
 > 
-> Yes these text help to understand the interface easily. If they were same,
-> do you think we would have defined 2 different interfaces.
+> Yes we do that for SYSTEM_SUSPEND. And CPU_SUSPEND is not SYSTEM_SUSPEND
+> hence 2 different APIs. My NACK still stands.
 
-I would happen to think that, yes. Especially since the reference firmware
-implementation does *exactly this*:
+I'll just paste it here one more time to reassure you they are indeed
+the same under the hood
 
 https://github.com/ARM-software/arm-trusted-firmware/blob/master/lib/psci/psci_main.c#L179-L221
-
-PSCI_SYSTEM_SUSPEND seems to be simply meant as a wrapper around a specific
-CPU_SUSPEND state (which may or may not be only callable from inside the
-firmware when SYSTEM_SUSPEND specifically is requested, for reasons),
-in a platform-agnostic way, so that the OS can enter suspend without
-providing that magic StateID on all supported platforms.
-But since it already requires more elbow grease on the peripheral IP side,
-I'm not really convinced it's that much useful.
-
-Plus, the optional bit of doing more work behind the scenes doesn't seem
-to be very wildly used across TF-A supported platforms.
-
-So please, stop making the argument that it's any different. The firmware
-I'm dealing with simply didn't expose the same thing twice, in perfect
-accordance with the spec.
 
 Konrad
 
