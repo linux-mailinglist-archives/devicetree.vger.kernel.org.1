@@ -1,216 +1,132 @@
-Return-Path: <devicetree+bounces-133021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E56049F9010
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:18:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C33CC9F9013
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:18:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3F7E162188
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:18:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39C02164938
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:18:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7612B1C549C;
-	Fri, 20 Dec 2024 10:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E751C5CAC;
+	Fri, 20 Dec 2024 10:17:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CFQWcV3i"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hAxU+lgF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3831C4A34;
-	Fri, 20 Dec 2024 10:17:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872AD1C1F26
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 10:17:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734689834; cv=none; b=VOlvJGILJRpRL2yHsdYgKfQkoq3Whia8Xrh4AOSw0FCXoFTebhzJTlsWsCWz+9GOV9RpRVlumJyclUx/ERckRm6m7GU1PYWU9zg85W4Y/h6BrYZbqh34dGB/LN09XTQtezuU4dgihZIohkZttfzw+LffWz0R8lEky2ugN2DZv/g=
+	t=1734689849; cv=none; b=nK6uwA1rRHrMojdUoRov4Kfg0XI1w7iATm5u6P4PDGqACx5VnnCWXXKOYLaDZUCKZGYnQBDpHrzdXBZL6eEyp8WakyYC1xegmiP933CIoIWEmGhkcKTVXneUnf0v+8/phpOEw6QkgxEyGERIL2PspmA7LFqJ+MK5HDX3cJtGJSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734689834; c=relaxed/simple;
-	bh=J4+DE+ytXna4c/lGuTqvaPFNwdWpZeeaGNTmlEpZr1c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=saMaHz6biycLyRHc5JQ9qaNSHweRQ7s4gwPL8weaJ8ISzNLiewEbxaUd6XXzsBeCfi+fBHS+Mv+mgazuPbfRtuGjbb1pJVIXvVcowLbHoq5Z+WPNjy8OgiBhbw5jVOwmbiy56WGJY33ohfkRDslADT1EBa8mYfEv6IJV6WbDlpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CFQWcV3i; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734689833; x=1766225833;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=J4+DE+ytXna4c/lGuTqvaPFNwdWpZeeaGNTmlEpZr1c=;
-  b=CFQWcV3iBuE6aiJlL9foijxlztWHwB2hG1t8TRVOi6R+CrHKNUJdVIFQ
-   GpyjFMIO5RWE+Dzb4ciLg9xBcd3DvK7NX9n+BVWQ0ePlGjX/6S6+LX4NI
-   x7EBgWrULmqu81sHwnFmyIPXKMv6EoUGqA1t48VpDeDHlb3He46qwjQL9
-   S1JbQX0LPVt7jtogZ5NVJzi4QskLf01kg+rl3tm/0rrqj6UZItr/qNlnm
-   oazVGMGD02M1UrB+nuJqUoFkksRMw5TPrW/Udvrm01WLcsJiEutQ9YOJz
-   weDjWs09hg8rrEm4uhD2KmSzBrjHk4zPf3e9sKJdaER9swCNLteQMkBsR
-   A==;
-X-CSE-ConnectionGUID: wc25caVQQdO8jM6D37ai+A==
-X-CSE-MsgGUID: K4b0ekbqRbOSS7cTresfqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="46244140"
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; 
-   d="scan'208";a="46244140"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2024 02:17:12 -0800
-X-CSE-ConnectionGUID: qvtwB8niQJKNCwAW228hNQ==
-X-CSE-MsgGUID: 3JhIfnHXRTS7jy2ZLzABnQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; 
-   d="scan'208";a="129294318"
-Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 20 Dec 2024 02:17:06 -0800
-Received: from kbuild by a46f226878e0 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tOa48-00012x-1C;
-	Fri, 20 Dec 2024 10:17:04 +0000
-Date: Fri, 20 Dec 2024 18:17:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	perex@perex.cz, tiwai@suse.com, ivprusov@salutedevices.com,
-	neil.armstrong@linaro.org, jack.yu@realtek.com,
-	rf@opensource.cirrus.com, zhoubinbin@loongson.cn,
-	quic_pkumpatl@quicinc.com, herve.codina@bootlin.com,
-	masahiroy@kernel.org, nuno.sa@analog.com, yesanishhere@gmail.com,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, yijiangtao@awinic.com
-Subject: Re: [PATCH V2 2/2] ASoC: codecs: Add aw88083 amplifier driver
-Message-ID: <202412201745.fBpf3Ui5-lkp@intel.com>
-References: <20241219123047.33330-3-wangweidong.a@awinic.com>
+	s=arc-20240116; t=1734689849; c=relaxed/simple;
+	bh=SFDPgxVu6wtDC2GsMxKEW9jpJd3//ZBI6GCKoD59BXg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ihL3zra2nBzz8t/VnjyIkiFqQ2sQgbdPH4pFERXqygoDLY1K8DiSg6MyIIWxF9MRf9iLiyfXiSklu5l12QUowbEzRmkfKW3T+zU3Vta7T+0/XJtao82uUPKi3AhPBPlR7+tUoBBMZfiuss5VNsTv1B2tiBPK0X/juowdu9et5Ew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hAxU+lgF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK6lbxr001414
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 10:17:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wrpm/RvJv4pqacQSl95wP5M/EJZnFTnri3TZQLQlVCA=; b=hAxU+lgFGE2X/6wu
+	NdYIb+VZLP0ogvuttHDlq34Q1iUgb07Fn+CSka9QhOucMSGFyfoqogBKHhL4iMcn
+	qpu+ifJCdiFiRQq41YqstBOF4ThFX+LNjitowUzzSJTndh4u53F1DAVsRZsRhuFO
+	nse171owuVycrLxtG5JIagm50Mf3w3jkZxAr3+7WTmAGl+RlZgsePv7IrUU6xnm6
+	xoPbMxsDscCTiVwPUp2Z7g6mh+d7Qomrdj9PM0qoG8A/A30Mz70IrMrOsP3uRSVK
+	EBzE9VElQU5N2by+dMl/VpMuYrDEH28sknxojrHeDYID0053jzZIZX1bKxaaY2MN
+	9vnImg==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n3mfrk08-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 10:17:27 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6d887d2f283so4548296d6.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 02:17:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734689846; x=1735294646;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wrpm/RvJv4pqacQSl95wP5M/EJZnFTnri3TZQLQlVCA=;
+        b=Yr6igMx/abMNgaOKgP0pdQX2XERncCu8+SqzNlGkpTTaupNXYzXeqRfbOXFTthcPzm
+         K1/5iGBeictWp+yHgbxZjc+wR2j4yrEohOmgRZYVtOwdbTz6xhRFx2QC3v8sz2nx06zT
+         6wHlGBL0tybK/1PyRUOp8sm7Gn5UZrLQodkiAcGU1d3Y0HjDfyGS/CDA5d3/dzqLJ/ZB
+         fwegVkhlnHrP1OphagAoB90n4F1bjqcx3i7Xjnm+1bVUTpAT6TWPwYiQxeCotAfW74P8
+         BuazVqke29f4R+Yv03TcWN1ZhdZbUPcvNMbDEA0sQ0IqsB+H9mbrfqUj8vfGDtQQTCzY
+         qKAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWIlh7m4xoQCAJRB/wKaCtqaQ7vPATDtqGhpY8fsfrty/1kjexePMdq+WY0ClCheyxFo+Ro1XcQ5nBY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yza2DklJ4/h+n9Top3kbNikm26kNLd42hFjFV5beQr3ooRc0XW+
+	7lDC7cyWSLgmhbJReFgZluanQswXlsTJOOkqi4fIgW+m0esJBYek8yj8tSl/+RUfXAMFzHEY15D
+	pGiPvST5afA1etnw0/nx/HEU+JeGYwnoef6tULgrQyA6KyeoSeeY+fK0JR/qB
+X-Gm-Gg: ASbGnctbIN0k13ShPs5Qv56nLVwsyoyfQPpjqk6ha3n9z+OCwQhYlw0PnFYe7cUPrXA
+	lMpgXn9VFgcdUvCPR/Kg0HmymV5ablZhmipzKii6+rXQdW682YdK35aJBKzKhTAgZ4Liv6VA97C
+	S5LphSeyJLyN4586mNrrGxJRE5HuVJ57gg6X76uico9Li6jk415xK/eKrIeaH7et5ejY/KiHTjD
+	k6NW1903SM4Nr/SBKeLX9/aj+n5RUq4BZOM4f9qMJDw56JmB7RaQjUjjRDMgBHDRCBrLuM6GCJD
+	AgO1HRtMiINhjufZOi0hlhDS1n7AycweYjw=
+X-Received: by 2002:a05:620a:4455:b0:7a9:bc9b:b27 with SMTP id af79cd13be357-7b9ba733805mr115537485a.6.1734689846366;
+        Fri, 20 Dec 2024 02:17:26 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHWt/HpECNmTA7E5A2IgoO13Yn8mzdDwcbQ+XpPB87YicCL8ukox//oEwyNPqrgS2GNb+JyvQ==
+X-Received: by 2002:a05:620a:4455:b0:7a9:bc9b:b27 with SMTP id af79cd13be357-7b9ba733805mr115534485a.6.1734689845814;
+        Fri, 20 Dec 2024 02:17:25 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e82f5f4sm159878766b.6.2024.12.20.02.17.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Dec 2024 02:17:25 -0800 (PST)
+Message-ID: <ab23e0ca-3c2f-44ab-b6d1-cfcf63f29f74@oss.qualcomm.com>
+Date: Fri, 20 Dec 2024 11:17:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241219123047.33330-3-wangweidong.a@awinic.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 8/8] arm64: dts: qcom: qcs8300: enable pcie1 for
+ qcs8300 platform
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>, vkoul@kernel.org,
+        kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, dmitry.baryshkov@linaro.org,
+        neil.armstrong@linaro.org, abel.vesa@linaro.org,
+        manivannan.sadhasivam@linaro.org, lpieralisi@kernel.org, kw@linux.com,
+        bhelgaas@google.com, andersson@kernel.org, konradybcio@kernel.org
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, quic_qianyu@quicinc.com,
+        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
+References: <20241220055239.2744024-1-quic_ziyuzhan@quicinc.com>
+ <20241220055239.2744024-9-quic_ziyuzhan@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241220055239.2744024-9-quic_ziyuzhan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: WAIInqfgNDh3pc_IP8cCH942lNRVGjKv
+X-Proofpoint-ORIG-GUID: WAIInqfgNDh3pc_IP8cCH942lNRVGjKv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 spamscore=0 malwarescore=0 phishscore=0
+ adultscore=0 mlxlogscore=670 impostorscore=0 clxscore=1015 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412200084
 
-Hi,
+On 20.12.2024 6:52 AM, Ziyue Zhang wrote:
+> Add configurations in devicetree for PCIe1, board related gpios,
+> PMIC regulators, etc.
+> 
+> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+> ---
 
-kernel test robot noticed the following build errors:
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-[auto build test ERROR on eabcdba3ad4098460a376538df2ae36500223c1e]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/wangweidong-a-awinic-com/ASoC-dt-bindings-Add-schema-for-awinic-aw88083/20241219-203933
-base:   eabcdba3ad4098460a376538df2ae36500223c1e
-patch link:    https://lore.kernel.org/r/20241219123047.33330-3-wangweidong.a%40awinic.com
-patch subject: [PATCH V2 2/2] ASoC: codecs: Add aw88083 amplifier driver
-config: arc-randconfig-002-20241220 (https://download.01.org/0day-ci/archive/20241220/202412201745.fBpf3Ui5-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241220/202412201745.fBpf3Ui5-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412201745.fBpf3Ui5-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:15,
-                    from include/linux/acpi.h:14,
-                    from include/linux/i2c.h:13,
-                    from sound/soc/codecs/aw88081.c:11:
-   sound/soc/codecs/aw88081.c: In function 'aw8808x_reg_value_check':
->> sound/soc/codecs/aw88081.c:407:25: error: passing argument 1 of '_dev_err' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     407 |                 dev_err(aw_dev, "unsupported this device\n");
-         |                         ^~~~~~
-         |                         |
-         |                         struct aw_device *
-   include/linux/dev_printk.h:110:25: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                         ^~~
-   sound/soc/codecs/aw88081.c:407:17: note: in expansion of macro 'dev_err'
-     407 |                 dev_err(aw_dev, "unsupported this device\n");
-         |                 ^~~~~~~
-   include/linux/dev_printk.h:50:36: note: expected 'const struct device *' but argument is of type 'struct aw_device *'
-      50 | void _dev_err(const struct device *dev, const char *fmt, ...);
-         |               ~~~~~~~~~~~~~~~~~~~~~^~~
-   sound/soc/codecs/aw88081.c: In function 'aw88081_dev_reg_update':
->> sound/soc/codecs/aw88081.c:442:66: error: passing argument 3 of 'aw8808x_reg_value_check' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     442 |                 ret = aw8808x_reg_value_check(aw88081, reg_addr, &reg_val);
-         |                                                                  ^~~~~~~~
-         |                                                                  |
-         |                                                                  u16 * {aka short unsigned int *}
-   sound/soc/codecs/aw88081.c:394:78: note: expected 'unsigned int *' but argument is of type 'u16 *' {aka 'short unsigned int *'}
-     394 |                                         unsigned int reg_addr, unsigned int *reg_val)
-         |                                                                ~~~~~~~~~~~~~~^~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +/_dev_err +407 sound/soc/codecs/aw88081.c
-
-   392	
-   393	static int aw8808x_reg_value_check(struct aw88081 *aw88081,
-   394						unsigned int reg_addr, unsigned int *reg_val)
-   395	{
-   396		struct aw_device *aw_dev = aw88081->aw_pa;
-   397		int ret;
-   398	
-   399		switch (aw88081->devtype) {
-   400		case AW88081:
-   401			ret = aw88081_dev_reg_value_check(aw_dev, reg_addr, reg_val);
-   402			break;
-   403		case AW88083:
-   404			ret = aw88083_dev_reg_value_check(aw_dev, reg_addr, reg_val);
-   405			break;
-   406		default:
- > 407			dev_err(aw_dev, "unsupported this device\n");
-   408			ret = -EINVAL;
-   409			break;
-   410		}
-   411	
-   412		return ret;
-   413	}
-   414	
-   415	static int aw88081_dev_reg_update(struct aw88081 *aw88081,
-   416						unsigned char *data, unsigned int len)
-   417	{
-   418		struct aw_device *aw_dev = aw88081->aw_pa;
-   419		struct aw_volume_desc *vol_desc = &aw_dev->volume_desc;
-   420		int data_len, i, ret;
-   421		int16_t *reg_data;
-   422		u16 reg_val;
-   423		u8 reg_addr;
-   424	
-   425		if (!len || !data) {
-   426			dev_err(aw_dev->dev, "reg data is null or len is 0");
-   427			return -EINVAL;
-   428		}
-   429	
-   430		reg_data = (int16_t *)data;
-   431		data_len = len >> 1;
-   432	
-   433		if (data_len & 0x1) {
-   434			dev_err(aw_dev->dev, "data len:%d unsupported",	data_len);
-   435			return -EINVAL;
-   436		}
-   437	
-   438		for (i = 0; i < data_len; i += 2) {
-   439			reg_addr = reg_data[i];
-   440			reg_val = reg_data[i + 1];
-   441	
- > 442			ret = aw8808x_reg_value_check(aw88081, reg_addr, &reg_val);
-   443			if (ret)
-   444				return ret;
-   445	
-   446			ret = regmap_write(aw_dev->regmap, reg_addr, reg_val);
-   447			if (ret)
-   448				return ret;
-   449		}
-   450	
-   451		if (aw_dev->prof_cur != aw_dev->prof_index)
-   452			vol_desc->ctl_volume = 0;
-   453	
-   454		/* keep min volume */
-   455		aw88081_dev_set_volume(aw_dev, vol_desc->mute_volume);
-   456	
-   457		return 0;
-   458	}
-   459	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
 
