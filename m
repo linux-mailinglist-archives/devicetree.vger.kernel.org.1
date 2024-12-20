@@ -1,215 +1,132 @@
-Return-Path: <devicetree+bounces-133077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4073F9F92A0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:55:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FC0F9F92C0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:02:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C501B7A1956
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:55:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 438B47A3AA5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A4E2156E2;
-	Fri, 20 Dec 2024 12:54:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D221CBE8C;
+	Fri, 20 Dec 2024 13:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pmX18UQL"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="sWEJGebz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF5721519B
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 12:54:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B499C1C5F25
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 13:02:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734699293; cv=none; b=VGzuqS0jc15zkslB2MBjOcfJ5UDzC/m4ITuXDeKQdSFtpyIIMDocUURwxlK+57Hc2cLzNi+YQg+ZDWZ9P7KS3BRmoccSmpmr4bAZGlXp4FNIk+OB5Edm6Yd07lC5VMNFAENKn2YhsQCpkDJzlv9kpGhGwg92IOaXHcbLmuq4BoM=
+	t=1734699732; cv=none; b=KqKPb9gosZteo/dvTiystqqshqNCvkxSfz2Vvka5HSnINgwdahbqqk9dmL0tGF10rZ3r2XPqharOnvVi3+RGs1rBJlJPkpqA+ur/tQdOO8E5Atd1pvOqjQ+9kqQpW/P6peGpNQA3tlCEjYLBHsy9qFUxSdQZZv9IVlP3TC/Tbtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734699293; c=relaxed/simple;
-	bh=Pe8SHXyg6eYI2kthWaJBClGql2i+k6hNjsS3CXqFy5I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VkVPZ8ODzeotifam42RV0gLlg05ksAoQ4kYtbSPDhW0J+Jmf+tYtv6zuHenXL7aehc/QG/gFip409QAcbIw3V5C0GESbUHirC7YwkCxfldInwzntw2lF8976pfqcT2nw3jTlct+EELDMwqTcyQFQcxJ3mwUftiEPIIPzJzZi9zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pmX18UQL; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK4Pir4024660
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 12:54:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1glOxkn1IDIgd0UCki0Nf++sUdgcqfIdre3vsIotpyM=; b=pmX18UQLuSX88CLk
-	MhVSc8dtXRsGWf5WGvy24lwct93xuTUWxTcYx7aSEmCufyVckvc9OFXxu4XmUNdN
-	fwxel1A1agJy6GkzT6oSUzLZZxWfPOa/bcv3vi14h0ypmagBA50Rfec1KCnbnGbo
-	vU1z8lvQrIvcsnaGrharGpXuFKE2NLrMB2XD1FrFJbyT3UB0wPyGRVwpMyk+w3w5
-	1GjAajYsYOqXkcxUmo6KPrc2bljVR09YTXQgVL+s7L1DqUVnFVDdCYDdkBZn7d4P
-	UCBY8+xEI2amEkFSAx7ik3VHyDxbwepGkAjxe/GOhLh4wlTrNbpPIgX8EjoU/KWI
-	uR9fWQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n1hx18e2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 12:54:51 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6d8a3cb9dbfso3348006d6.1
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 04:54:51 -0800 (PST)
+	s=arc-20240116; t=1734699732; c=relaxed/simple;
+	bh=UJUoqMSoN46C6emAk6ngwii5w0Pg5f+ZVhkuvKrwfnk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JtUI/XOVY6I0QZ1EsgIRgBRX5nt8PTQqdKQhlKS/6iiifzBPR9YTo6lFOxzuizXdcRTLNZlmGVdcc9CgVZjFBs+tE8HD9kxjnv54ZD0wPoOmgKZsn/Mle4JE3AM2ipCaNUMIZesbTejUGzkpSxvQ5rXPnv6Ie6vKuzTf8r+52LU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=sWEJGebz; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6ef4b6719d1so16437397b3.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 05:02:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1734699729; x=1735304529; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Fu02/Fmh4ZbtCqxR5/+0fGOTzDcq8jLPwYadQJ7QU4I=;
+        b=sWEJGebzj9iMaVvJWg0OIij+9RSLcmJ5PvbvVWrrgCHpA5tfPCdx/Kx+5A1OHcCIuB
+         o4KSp9Y+f1A/fdzM4c1l+vd59XTMZZZtMzhC1r+5bIZpi0HMYLYPJ4k+ohvIwtacDLgM
+         c7JaT4vmGWOSNjiAOIpzaAccsbJHrKlOrTys60Sfvtqs2C/Gfl/MuCOHwmM/S6bq1gCY
+         /yYzq28Mqm4g0yOC/kyEqfRpUQAxWSiJAxIPgLRvfH6bMesIRM1YMpZ+Y08Otasz711T
+         /k8gu/SPLBmjmuXzJ5kV33aUvogYlNhIcoLL9/vrxltwagqTb+P1usl0mfGWasrafIUB
+         jYvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734699290; x=1735304090;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1glOxkn1IDIgd0UCki0Nf++sUdgcqfIdre3vsIotpyM=;
-        b=iBPgUs6loXrVAH4tMadRtVpDGT3h7iCE3+a7UG5EHDWgaAqDWQSZuYGoazPnUFKFGw
-         14/moI7q8EvhTd/gYO/UHRaxSSiPfWYOvxMSzhrYu17EPfakFgFD4480ZKw+v2P+G+Mg
-         DGRJdIE0RtGg+bIATNUt4NRcCKNgaf/EybtYcv+hzU9VyD0vNo/oOhLNEy1A5xEBfs0d
-         h/bEbQehvaONZKNFrpKVDpW0p1wPKC7IRce8snB0f830Ru/5kTWNct2t+QVZdrwQHmf0
-         1W3vuSObM5O0C9FaGNPBNXWxIkFVFUU6fCmZUVJKbpajQvDXnoqYgrb62uz9EV/r70Zq
-         OcfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXFZdHaXVPmTt8kcMs+iyYhSP3J5vEdYTRo8F1fSKZX9HZT7BfreM7DhUwhdvqmGe+COSBVzRSxofU7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOpEiMX4A3ITcN94sC8FSNpRZov3Gxz9rQ+Nc0/mhoCiXatxTz
-	v+QhYXK4cG2tLhluupqX9XE2RMIp/QZ5r05sLueRdXVog6bKyc8TSVKnXNE5O7oP7D/bIPDVeB6
-	7wjwwChm8quSQQXnvVV6oWLflKyZRwDE3JRVnGa1YbKHu46BffyC4wh8myu3N
-X-Gm-Gg: ASbGncu8F3mRAp0NhRI01NoLjecY8YHxLVAzQ1khitpywyqtkeBzVL4oE9j4d2yXeiX
-	FVDzjL7hW71ldIAyPvfWF4jWKBSNWcqbjMr0MJII86WNFt289keTjSQ952GUVuC/hDhPXTAQfmg
-	0bUaw+xyyo9jGBvHXhu8cCuCLp9DIyIZ9D1F7z0jgO4TF/zYTbHVYMhn//D0QsZoocAt1BsYzXC
-	Q1F2eFBjNB7PZEzRi40HXv1gpD3+fjImpQoroV2EeKRnM9J7Z7XQ7jMiTh0v38qLfJ5sqO1/eLY
-	hsyF3rdrautmYNDBeJLrEknbognxRWWlQu8=
-X-Received: by 2002:a05:620a:1999:b0:7b6:d252:b4f1 with SMTP id af79cd13be357-7b9ba7c8376mr131314185a.11.1734699288408;
-        Fri, 20 Dec 2024 04:54:48 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFauhfwJ3WJ9nZ/J7KQQZfJVN6/UgwZW5dzxwD9LiwBWG5nYGkVE6qtjqC+2RPuPXzjDKtKTw==
-X-Received: by 2002:a05:620a:1999:b0:7b6:d252:b4f1 with SMTP id af79cd13be357-7b9ba7c8376mr131312185a.11.1734699288018;
-        Fri, 20 Dec 2024 04:54:48 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0eae71desm172876166b.89.2024.12.20.04.54.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Dec 2024 04:54:47 -0800 (PST)
-Message-ID: <349bac70-87e0-4870-a3f0-9f6a3b3e6824@oss.qualcomm.com>
-Date: Fri, 20 Dec 2024 13:54:45 +0100
+        d=1e100.net; s=20230601; t=1734699729; x=1735304529;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Fu02/Fmh4ZbtCqxR5/+0fGOTzDcq8jLPwYadQJ7QU4I=;
+        b=GQCTNxVrXqrSQUgmIgPsc35ZajobyEJQHsTyOJ+bN61jmqZwEoIsuEcrSlvOlZokDk
+         xH1MyZ5d3Wzvaikyrl03BAkZRGED2T9xIrPQFfLQgoXZBJi6cZcojjtcEX+QVHkH5Dd/
+         LJi9FNuN/MLnf+KHYADYkU3wa/nTn3Z0Y7jMMhePP6gd/tPKaNo77lNo0eADBC1KulIn
+         uFmBcVmqMLqJtk9Nv0nRHshat0u8lOFewYvNfuF3BhphlTBzEYyEIUqVAYovqXaWwUmI
+         TFLB1ZHWQCKM7OOzxCJVBt73iQWe0Gc0RuVaAZQ/gF3H2ZXQKXt9yMukql1XIPqQ4UvT
+         rOtw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3556qkICFMV93382ifaO9cdrZsp8aVx+iDgxHtNX5cslZU9yiQGr0GfFsuKCZbi0XsGNnAt7WuHre@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSK6ZhfT0Qikm90hpuRaz3XkthTDPdkOQ4SsG9Sqikeh0w6tsm
+	C2j37Mef6T1byAn5BEjM/PhUliOdlOWq9X+cVFY6HNb9WhqNmT6u/b0bdC7N5uRN3VBobBjVmBk
+	gykIba5U+iejFSc5nY9VtVuD+pT7FlgJJV/5Zhw==
+X-Gm-Gg: ASbGncsLModMk/0R69O7sl/6obSMNR/Mka5kSos494hzr0wudJmFB/dslpz+B+nxm85
+	VFFUMP/NFaU1xfzmIvWk+Az6lXtRYWh56jrb+eA==
+X-Google-Smtp-Source: AGHT+IFzQLWMZQE/IRCrzQuJ49iVkiuSr8lSUXTeAQq7Q5a0dorvlXsI8IoArLc+t/qm0OgPgCykCrt4mTj6yv3UQxo=
+X-Received: by 2002:a05:690c:368f:b0:6ef:60db:5e8d with SMTP id
+ 00721157ae682-6f3f80d626dmr17834807b3.4.1734699729509; Fri, 20 Dec 2024
+ 05:02:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: arm,psci: Allow S2RAM power_state
- parameter description
-To: Sudeep Holla <sudeep.holla@arm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
- <20241028-topic-cpu_suspend_s2ram-v1-1-9fdd9a04b75c@oss.qualcomm.com>
- <Z1LQOmEfFy640PjG@bogus>
- <54cc4221-ba5f-4741-9033-20874265ca01@oss.qualcomm.com>
- <Z2VUiHWHgbWowdal@bogus>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <Z2VUiHWHgbWowdal@bogus>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: xirlyxtw46OVdO0_QHSp4ddpJDG6yWme
-X-Proofpoint-ORIG-GUID: xirlyxtw46OVdO0_QHSp4ddpJDG6yWme
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- phishscore=0 adultscore=0 bulkscore=0 mlxlogscore=999 impostorscore=0
- malwarescore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412200105
+References: <20241212-dt-bcm2712-fixes-v3-0-44a7f3390331@raspberrypi.com>
+ <20241212-dt-bcm2712-fixes-v3-3-44a7f3390331@raspberrypi.com> <CACRpkdaB9kqcjmhaXd5RxpYvqdSVMZkj0wHAtEgdqDs03+wzJg@mail.gmail.com>
+In-Reply-To: <CACRpkdaB9kqcjmhaXd5RxpYvqdSVMZkj0wHAtEgdqDs03+wzJg@mail.gmail.com>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Fri, 20 Dec 2024 13:01:51 +0000
+Message-ID: <CAPY8ntBJqukSJs7VUXvUFAsiKqNWknL8VjgtQG_VAEmw576EPQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] dt-bindings: gpio: brcmstb: permit gpio-line-names property
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>, 
+	=?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, Doug Berger <opendmb@gmail.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Thomas Gleixner <tglx@linutronix.de>, Stefan Wahren <wahrenst@gmx.net>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>, 
+	linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 20.12.2024 12:27 PM, Sudeep Holla wrote:
-> On Thu, Dec 19, 2024 at 08:43:27PM +0100, Konrad Dybcio wrote:
->> On 6.12.2024 11:21 AM, Sudeep Holla wrote:
->>> On Mon, Oct 28, 2024 at 03:22:57PM +0100, Konrad Dybcio wrote:
->>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>>
->>>> Certain firmware implementations (such as the ones found on Qualcomm
->>>> SoCs between roughly 2015 and 2023) expose an S3-like S2RAM state
->>>> through the CPU_SUSPEND call, as opposed to exposing PSCIv1.0's
->>>> optional PSCI_SYSTEM_SUSPEND.
->>>>
->>>
->>> If so, can you elaborate why s2idle doesn't work as an alternative to what
->>> you are hacking up here.
->>
->> Please see other branches of this thread
->>
->>>
->>>> This really doesn't work well with the model where we associate all
->>>> calls to CPU_SUSPEND with cpuidle. Allow specifying a single special
->>>> CPU_SUSPEND suspend parameter value that is to be treated just like
->>>> SYSTEM_SUSPEND from the OS's point of view.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/arm/psci.yaml | 6 ++++++
->>>>  1 file changed, 6 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
->>>> index cbb012e217ab80c1ca88e611e7acc06c6d56fad0..a6901878697c8e1ec1cbfed62298ae3bc58f2501 100644
->>>> --- a/Documentation/devicetree/bindings/arm/psci.yaml
->>>> +++ b/Documentation/devicetree/bindings/arm/psci.yaml
->>>> @@ -98,6 +98,12 @@ properties:
->>>>        [1] Kernel documentation - ARM idle states bindings
->>>>          Documentation/devicetree/bindings/cpu/idle-states.yaml
->>>>  
->>>> +  arm,psci-s2ram-param:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    description:
->>>> +      power_state parameter denoting the S2RAM/S3-like system suspend state
->>>
->>> Yet another NACK as this corresponds to PSCI SYSTEM_SUSPEND and as per
->>> specification it takes no such parameter. This is just misleading.
->>>
->>
->> Yeah PSCI_SYSTEM_SUSPEND takes care of this on platforms that expose it.
->>
-> 
-> And those that don't advertise/expose don't get to use, simple.
+Hi Linus
 
-The spec says:
+On Fri, 20 Dec 2024 at 12:50, Linus Walleij <linus.walleij@linaro.org> wrot=
+e:
+>
+> On Thu, Dec 12, 2024 at 7:36=E2=80=AFPM Dave Stevenson
+> <dave.stevenson@raspberrypi.com> wrote:
+>
+> > gpio-line-names is a generic property that can be supported by any
+> > GPIO controller, so permit it through the binding.
+> >
+> > It is permitted to have a variable number of GPIOs per node based
+> > on brcm,gpio-bank-widths, so define an arbitrary maximum number of
+> > items based on current users.
+> >
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-"The call is equivalent to using the CPU_SUSPEND call for the
-deepest possible platform powerdown state."
+Thank you.
 
-so by that logic, I'd rather call implementing PSCI_SYSTEM_SUSPEND in
-Linux unnecessary bloat..
+> Perhaps Bartosz can just apply this one patch separately?
 
->> DEN0022F.b Section 6.5. recommends that CPU_SUSPEND StateID includes
->> a field for system-level power down states. This binding change only
->> adds a way for DT-based platforms to associate such state with S2RAM
->> suspend.
->>
-> 
-> Sure, just use the CPU_SUSPEND bindings that already exist. No need to
-> define this as some special case if it is exposed as CPU_SUSPEND idle
-> state. Not sure why you want to do it differently. I understand the
-> need to handle it different in the kernel, but I don't understand to
-> define the new bindings for that. Just use the existing bindings for the
-> idle states. Again I see no exception for this case.
+I believe he already has, but commented against the cover letter
+rather than this patch -
+https://lore.kernel.org/linux-arm-kernel/173434013318.38429.808413721248542=
+013.b4-ty@linaro.org/
 
-The bindings exist for core/cluster idle states. This whole series tries
-to include a system-wide suspend state that has no business being
-described as a cpuidle one and depends on more than just the CPUs being
-powered down.
+  Dave
 
->> That may be a bit Linux-specific whereas bindings are supposed to be
->> OS-agnostic, but since we effectively want one PSCI state for deep
->> suspend regardless of the OS, I would think this kind of hint is fine.
->>
-> 
-> Exactly, that's the reason for not changing this into special case and
-> special binding for that special case created.
-
-I simply don't think it's fitting to lie about system suspend states being
-just CPU idle states, see above.
-
-Konrad
+> Yours,
+> Linus Walleij
 
