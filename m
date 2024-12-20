@@ -1,125 +1,185 @@
-Return-Path: <devicetree+bounces-133091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F5139F9382
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:47:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A20809F9381
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 14:46:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F34E1883952
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:46:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BBC57A119B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE9A2153DE;
-	Fri, 20 Dec 2024 13:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 509FB2156FA;
+	Fri, 20 Dec 2024 13:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EWE6JEsI"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PujpZNKK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ECE6CA4E;
-	Fri, 20 Dec 2024 13:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52C62156E2
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 13:46:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734702367; cv=none; b=Dz71/GeteqjuWD56jPcCCsPFe4B5Cfe4TtsreZe+xpGDdDLqjbq/4wGuKqJEh5HQXn3sHnT30xK6Ox0TnU4KrFrxqGCH5vdx3YudOlv8PfEkFAWVDL36zw46qATm2ZWZiBzZ4zkOWvYJp98yPR7roUBjELI1xTCK+5Ki4CMs+gM=
+	t=1734702394; cv=none; b=af4C58csuUQdEadrzjwILjTF2vpcLiAfEHZLNvtadSsnfoN4AkIFK/5HJpxWcKiO1f/+W5Eqn2N5S5VgcEnqLm3HwQJLnIJOlRc4ej1cGxMzVKrMEcGfOYAHcpOpvXJWd7YP4UkZkX5bSMFbPj6p3O4Nf/SR/9jLqvJmR54Iryo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734702367; c=relaxed/simple;
-	bh=N8D225wvf8/TZijhy30Bcyga+eaIRxy/Gz/liwg1YDc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q+xSyLjqvbfkUUvdSceffKMS+A/F4jHxhysi+5kacXGyZUdmnjm/ZAORB2gHubb5TRt51aif5kRtxraCJvGnmBXndOfWdicnjClWsvXgPD1CD1f4vpoCGs1nHTSdkjxxzMy7ntZk2DTEW7EDNNfJS37R1Wr8slQCDXmj/Np8SG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EWE6JEsI; arc=none smtp.client-ip=209.85.210.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-71e565708beso1044590a34.1;
-        Fri, 20 Dec 2024 05:46:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734702365; x=1735307165; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9+vSQI62Q3dsLifjk+T6TXnWRXA7dEHBhjtBdW3Ox+s=;
-        b=EWE6JEsIDPRXm2ILBDwGxy7Qrf24d/gohVM/hmojM9Zwu9f70L1A6M+U7GVyICr+YI
-         5HYacdMt8ToUIVRvMAa/nGfuT4kKCfytQGBuofPwez4+JNfYb3FQz60b5t9ka8lFVbLR
-         PDxXswQXbFgNKt0JbLaj4gnsEkYrKcqQSlySqiThXxhemd38D8JT3fUWZ1YQTLF3+/KZ
-         QbwyDCtI+enuS+Q7DZexJ7BJu1YnIVn5wgce/mE9cFDVoxOl6WpdAa/Njxw8/D+tL/j+
-         AVhlLlhEUiwXSAwkyuXbWDv4rNBM4sqlMMv0UeQT2wfveMKxXgDD/2MljrbUrRpvVzi3
-         Y1VQ==
+	s=arc-20240116; t=1734702394; c=relaxed/simple;
+	bh=kbNZd6uBHvAqqv62kriVCFc9O8AGr/zhqKitzwxTBfw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L2s/ZR6a0MrraZjRwpuTsPtLzB0sMU0vmORzKJjpSid8hylxR92KJvo8sKhkKVdEZAQpmHqlGQOFOhDYDDuE1KF+sxY+oSYr3RqwwJ8HMsyr5gxN88tKHqOg0eEFhj1KExE0o8DvUmZHvHQvRm2GRCiOA8Sek0wDvJsFQrzqYaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PujpZNKK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BKAKoFu004211
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 13:46:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sennr2JFKCSXKhQvKtkDEiv3JJZQJL3xM0/QiG7iw3c=; b=PujpZNKK4BMvn0h7
+	jSYlDXehfGwC0FMCEHtc8ho3NRBDfeKTlvlC4XQWo+ADRMtrSF2jvCE/QbqQxP/h
+	UbykpEdU9hiGD3dMqah0XWon+gkN9kM410HpjWo4LO6qb+H3P06FzS6o2hiTaUAV
+	tVn5rgaIUikE4Yp9pdj2uQB58xQr7y2dmfgzOV9vd46wDgZQxJz/Z6OHrut3VxnC
+	r8WuZC0nQC/A4U+SkD6ELB/9fN10sRZ7+GMaLol8E5NGofbDDS9Zy0R1KCrN07q3
+	rqR/DunUp1gMGxWbse8FJtRyynoBStTftM4D7/tae75g8uii9ALx4Vsgp2i3VZ4J
+	eHIXBw==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n6ra8frn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 13:46:31 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6d887d2f283so4932846d6.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 05:46:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734702365; x=1735307165;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9+vSQI62Q3dsLifjk+T6TXnWRXA7dEHBhjtBdW3Ox+s=;
-        b=VJubN9BV+2N4yf0fSoW6hTwVMAD0RVBKol6FQyU5hceS1VHLisJ8swSg3bWJut/a0G
-         NwT1r1vkkOfXoVQnm4gvsv+yDqUR7zIqcHq1KvkptzTb/YGz9U+oNWKtzCJ+hzpzna9M
-         o1oKIGNlmNWtn9ABc7tu/8Adia6vwkWi6dH8UnYZkNDQaZXwrZ+IYqe9Xa0dGGoURmpE
-         qrYhjFwclwW63eZI5zLE+xSSk4LaOXxrIPuqrN8hQDTM7/3vH+GvDWXyJhPKKmh1rbv4
-         mfRhZqojoQvFqq9tNbvOMbWsb5+83YNvOn+9mHYKMYeKGHSA8sja7D1YVvc/Uon4Wq3p
-         /wsw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdD2NZITM931NJ6aN5sQn7VVHRJKmJiU7TwIYM83/Pc5DXPNQgVgAQm02wJ+0VK3L/XO4CtvOGbtpQjjP+@vger.kernel.org, AJvYcCX1fkFaFs/e+1opssL7CnbY7pvduAHMx9EwRy4jx/g7iAlcDlWCElodTW9+aDr80ah7e6GVeyEfYjja@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdkYvwirmoijGoFYr66ffb7ZhY14Zm/Zd6KnQyJ2Cg42pZibxV
-	L0aObMcwKy+gtskumY92l3SVM7wYDfpQmeEVqldQ0U1gEtOF5J3UypXW5XurA9uVDSsdWAj9WED
-	6o0bNGDVo/DwlFbOz3Qp7J6s+tDTXLW9/
-X-Gm-Gg: ASbGncurmlGYwjsH0RYEtb2qw4EEBCJH60olJwZN5WQlg5qlkR89y6HWkyOqBuFyGM1
-	Oca8CK/l7QseOFnzOIhFiis9tJTXfTdqIbIY6DcI=
-X-Google-Smtp-Source: AGHT+IE9ZPcWwA3AIv9xh6RPuCiuyn/+nkgkF4iovtUahECHhWgqR2cqtcr8C+qsM6vKu9ZCfNRRol3oxLfCXFfaa2U=
-X-Received: by 2002:a05:6871:e41a:b0:29e:460d:f74a with SMTP id
- 586e51a60fabf-2a7fb00b118mr1599205fac.3.1734702365559; Fri, 20 Dec 2024
- 05:46:05 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734702390; x=1735307190;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sennr2JFKCSXKhQvKtkDEiv3JJZQJL3xM0/QiG7iw3c=;
+        b=w1Gjx6E6k12Pj3dXm2jC+GD6JDLzbdRrW6xwbtIg4gh7r5x5w7OwwybusHi+duXE4h
+         mi03ThZ3tFG4vAVNU25nZsWYZJsOAXmG3FZdeq5zOT8eZ7e/MQEj/b0TRZeGrJezBVPc
+         AqiDKcH8eDEMaiTnjypJ6So1mFGPBXCc6tvLcHmHyc6YmO/FO1+oyeA7OSpCKge4iN5h
+         UpOURa/Udl+2GAizgY5Ax6sLuP74ItUqdcv5CT2gd9NlosVlDu9n/l0kjFuYulV+Cz2G
+         PqLgUYCVtz4XcEog1PLZv2A5zZPl5Ou88OYDzTOJi8w8Op8rOyYdoUmsHh+d8QUAShdD
+         K47Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUCjgBs37eapZfOBv9xolw1LwuOD5BrWUcBBmojOgf0C4R6xlmPWYoLcWNxkWavaYxoX7U/CoRZozUC@vger.kernel.org
+X-Gm-Message-State: AOJu0YycQHHTW7Tgkyi1rB7bguUCBxf0Hg1PrOo0YYaRWm9pE0XuvV5J
+	J78Ns9usu556apEaQjKpAFWmmexday4zulFOFwMlduwcmLE9DuOV3n05iy63Za8AZF/OvE9gb8t
+	XNIUEaXQI79jMj8EulEeYttRpVZWdnLViaVeR1/m7iH0YYMVywTONXRQUU3gA
+X-Gm-Gg: ASbGnctA2SpgMGArwJzfvwUJ/1Gx4e9smvOm4hdCfxMP8alKawVKCPgXUB6V/6q/BEB
+	Jq7hKX6mymKY3feO+rJAvhVgUUfP0eWcvGvV4eARCdLu0kGwsAnd60OnlvZAA6N5p7Z28hJSBAT
+	71Zm/5wqdY7HfwBzJZF0VcL5qeFFixDsCX3zjIxK6fBBFvg645N5JnaajWk/j+PQASvHm0wZpJs
+	KBueqbHQ8+80EqMnYGTkeIwn7hIJIEr/FDdj0H1VS6Hh3EwKKXwc2tcYCT10IVgMXQKq4kNfsNG
+	YXvtMcehhYBL1V1z2gODr99yN3Es+hwSyjc=
+X-Received: by 2002:a05:620a:8003:b0:7b6:e196:2219 with SMTP id af79cd13be357-7b9ba712ac7mr172030385a.2.1734702390566;
+        Fri, 20 Dec 2024 05:46:30 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGUIwWJnMfAnCj3BL1XwltVLXY+IkD8MooWIQeNVfKSco3iv5aZXDP4Y9gvt4UB93m01afHQw==
+X-Received: by 2002:a05:620a:8003:b0:7b6:e196:2219 with SMTP id af79cd13be357-7b9ba712ac7mr172027985a.2.1734702390202;
+        Fri, 20 Dec 2024 05:46:30 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80678c6dfsm1781568a12.37.2024.12.20.05.46.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Dec 2024 05:46:28 -0800 (PST)
+Message-ID: <d5fe224b-7ef5-47ae-840c-7b6df21da816@oss.qualcomm.com>
+Date: Fri, 20 Dec 2024 14:46:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241215124627.70525-1-joswang1221@gmail.com> <2024122046-backstage-laboring-3bcd@gregkh>
-In-Reply-To: <2024122046-backstage-laboring-3bcd@gregkh>
-From: Jos Wang <joswang1221@gmail.com>
-Date: Fri, 20 Dec 2024 21:45:58 +0800
-Message-ID: <CAMtoTm2y85o-q9SD7+OtOLohyouPXjc-VoAUr_aVU1fxX7A+eA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: connector: Add time property for sender response
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	amitsd@google.com, dmitry.baryshkov@linaro.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Jos Wang <joswang@lenovo.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] Bluetooth: qca: Update firmware-name to support
+ board specific nvm
+To: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Rob Herring
+ <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>
+Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        quic_jiaymao@quicinc.com, quic_shuaz@quicinc.com,
+        quic_zijuhu@quicinc.com, quic_mohamull@quicinc.com
+References: <20241212150232.3823088-1-quic_chejiang@quicinc.com>
+ <20241212150232.3823088-3-quic_chejiang@quicinc.com>
+ <94eae703-ed9e-4f57-9786-99db7aaa07d1@oss.qualcomm.com>
+ <db516034-81de-4e41-932d-c1bb26e1c55b@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <db516034-81de-4e41-932d-c1bb26e1c55b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 3ACmItss6dvCt2tX6nmX0GKK0yf9_W35
+X-Proofpoint-ORIG-GUID: 3ACmItss6dvCt2tX6nmX0GKK0yf9_W35
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ spamscore=0 mlxlogscore=999 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 impostorscore=0 adultscore=0 clxscore=1015
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412200114
 
-Thank you for your help in reviewing the code.
+On 13.12.2024 8:05 AM, Cheng Jiang (IOE) wrote:
 
-I will resubmit the V2 version as soon as possible=EF=BC=8Cput patch 1/2 an=
-d
-2/2 in the same thread.
+[...]
 
-Thank
+>> /*
+>>  * If the board-specific file is missing, try loading the default
+>>  * one, unless that was attempted already
+>>  */
+>>
+>> But, even more importantly:
+>>
+>> a) do we want to load the "incorrect" file?
+> Normally, there is a default NVM file ending with .bin, which is suitable 
+> for most boards. However, some boards have different configurations that 
+> require a specific NVM. If a board-specific NVM is not found, a default 
+> NVM is preferred over not loading any NVM.
 
-Jos Wang
+So, if one is specified, but not found, this should either be a loud error,
+or a very loud warning & fallback. Otherwise, the device may provide subpar
+user experience without the user getting a chance to know the reason.
 
-On Fri, Dec 20, 2024 at 8:25=E2=80=AFPM Greg KH <gregkh@linuxfoundation.org=
-> wrote:
->
-> On Sun, Dec 15, 2024 at 08:46:27PM +0800, joswang wrote:
-> > From: Jos Wang <joswang@lenovo.com>
-> >
-> > This commit adds the following properties:
-> >   * pd2-sender-response-time-ms
-> >   * pd3-sender-response-time-ms
-> >
-> > This is to enable setting of platform/board specific timer values as
-> > these timers have a range of acceptable values.
-> >
-> > Signed-off-by: Jos Wang <joswang@lenovo.com>
-> > ---
-> >  .../bindings/connector/usb-connector.yaml     | 20 +++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
->
-> Where is patch 2/2?  Oh, I now see it, but our tools do not :(
->
-> Please make them properly linked together, normally something like 'git
-> send-email' will do that for you.
->
-> thakns,
->
-> greg k-h
+I think failing is better here, as that sends a clearer message, and would
+only happen if the DT has a specific path (meaning the user put some
+intentions behind that choice)
+
+>> b) why would we want to specify the .bin file if it's the default anyway?
+> The default NVM directory is the root of qca. The 'firmware-name' property 
+> can specify an NVM file in another directory. This can be either a default 
+> NVM like 'QCA6698/hpnv21.bin' or a board-specific NVM like 'QCA6698/hpnv21.b205'.
+
+Do we expect QCA6698/hpnv21.bin and QCAabcd/hpnv21.bin to be compatible?
+
+[...]
+
+>>> -static inline void qca_get_nvm_name_generic(struct qca_fw_config *cfg,
+>>> -					    const char *stem, u8 rom_ver, u16 bid)
+>>> -{
+>>> -	if (bid == 0x0)
+>>> -		snprintf(cfg->fwname, sizeof(cfg->fwname), "qca/%snv%02x.bin", stem, rom_ver);
+>>> -	else if (bid & 0xff00)
+>>> -		snprintf(cfg->fwname, sizeof(cfg->fwname),
+>>> -			 "qca/%snv%02x.b%x", stem, rom_ver, bid);
+>>> -	else
+>>> -		snprintf(cfg->fwname, sizeof(cfg->fwname),
+>>> -			 "qca/%snv%02x.b%02x", stem, rom_ver, bid);
+>>> +	if (soc_type == QCA_WCN6855 || soc_type == QCA_QCA2066) {
+>>> +		/* hsp gf chip */
+>>
+>> This is a good opportunity to explain what that means
+>>
+> Ack. This means the chip is produced by GlobalFoundries.
+
+Please update the comment there
+
+Konrad
 
