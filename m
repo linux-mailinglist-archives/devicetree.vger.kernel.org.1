@@ -1,148 +1,90 @@
-Return-Path: <devicetree+bounces-133164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 555E79F9810
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 18:32:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0B59F98F6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 19:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2587B189E4BE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:24:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0672189D6A4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:44:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4E822D4C7;
-	Fri, 20 Dec 2024 17:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6FB721C186;
+	Fri, 20 Dec 2024 17:19:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FHipeApC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ptLZbOdk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E52B22CBEB;
-	Fri, 20 Dec 2024 17:12:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5BF521C175;
+	Fri, 20 Dec 2024 17:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734714778; cv=none; b=p4XeeOFnTruPXBjqol2s2yDdtQ7N+svIeCNqoXPyL3waKwEQlFAZVncoGC2L2DMcaHnYsMMejJ0k/iztZSNr4LWniAbAqukX4j/qI9QAghflSSugunnKjSiQzKYr0o6ou77LTPZVsa+tQBYwfHYll9V/wLUx26/K5/UralN47uw=
+	t=1734715167; cv=none; b=ns/9nIJvlD3poCncj+boyIq3tFAfX+6KjIwSWKaT/G6IWVCA7NX3sAOyPmki3rT/00CWw7dxT3Ufkq8BPhJkj1/haUE3KqsiD9F4ppE1R6dKGD2qFlDt4vugT9t9fnJFBUk9dW+8OWpVS528ZyuFYQOB5hq5Vr+EuLknkUHbVsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734714778; c=relaxed/simple;
-	bh=Qwmp8wqL9A+1QQCDa/upZTodhGWIHHVa7b1koKq2w0U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tJ/D8OV83HIrT+JVLqZ0jNqTzyPp9USsT3CdYLCaLTEQ2NwLvqbtbKrBajp08Xu0kGo8tNp0oMP7Ml1aT5rivFHf8HUoQeyW8uTpl+FDuuNK/1Q5qbECUPUgU2ZTldx/PkseCVVb8CMflhAEtHFHkHGih5HoBeBzrUyY1wgUuy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FHipeApC; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734714777; x=1766250777;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Qwmp8wqL9A+1QQCDa/upZTodhGWIHHVa7b1koKq2w0U=;
-  b=FHipeApCThsC8JWN5W57zlBQo3qby6wWgh0T+l1z+q0zFztJC+zUJM+m
-   vYFisPvq+hVD4MFh/02fD30M8Colg2HTS29yWlBnXKUEQk/7AfyKZGhM3
-   i041AQeq3Kt0rmPnBRqyM633arWRZZ65hrTN9WmAMUqcYvoZmc1rbD++H
-   Pkf9/jJ5FeYRrAVarH4/1MGK269Xw++vy4uXB4rfzgOtBCtvVu3hnmuRO
-   eCkJ7CxPlXQ5NvP45MUq/GRyY69roWKn38wjh/c+QzK//ksELcjAqHRbC
-   N/TGgsHI+ZmOcgqFFI3cz590KxLpAzaeBixzcJrJR5zYFKK5KuAVCFrHi
-   A==;
-X-CSE-ConnectionGUID: QbimFEhrRLa+oItTwu0WiQ==
-X-CSE-MsgGUID: 1iWvkrRQRfWQOPu2FIWoJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="52793325"
-X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; 
-   d="scan'208";a="52793325"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2024 09:12:56 -0800
-X-CSE-ConnectionGUID: 97ZJ116TSJuZWBgIdnOBcw==
-X-CSE-MsgGUID: +aNlGvqQSGuGgXVkVow3bA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="103174620"
-Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 20 Dec 2024 09:12:51 -0800
-Received: from kbuild by a46f226878e0 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tOgYT-0001St-1C;
-	Fri, 20 Dec 2024 17:12:49 +0000
-Date: Sat, 21 Dec 2024 01:12:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Subject: Re: [PATCH 6/8] input: keyboard: Add support for MAX7360 keypad
-Message-ID: <202412210024.DavK6KEl-lkp@intel.com>
-References: <20241219-mdb-max7360-support-v1-6-8e8317584121@bootlin.com>
+	s=arc-20240116; t=1734715167; c=relaxed/simple;
+	bh=FUIqa+Gitn30dawnqBvseQbi6wEPRxT9Aw0rFXxUhzs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rDwNhBfYY6sWRPPYk/LFmmz8NhgjHJYPlzApF4S9x8XcEeOoz7/e3Tx1B3D7vgo7mkzHkAXmbiEBE4eoLonow960RrOsSqX/5MRq/xlaFQAKKIktgS6hw43s/12+RNYPN82miVGtCxZGA2F9kPxt5hp30mHdCbSfxAgjAHv2CQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ptLZbOdk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7491CC4CECD;
+	Fri, 20 Dec 2024 17:19:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734715166;
+	bh=FUIqa+Gitn30dawnqBvseQbi6wEPRxT9Aw0rFXxUhzs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ptLZbOdk4hkPS7sLJGgNDzID6wVCo/WUmov2dWeJwFeW1b54vCS8XTfK3IUCres8I
+	 vC21u/08rQ0XHBDtkzTHB7pAZoI14szwxeY+hq2ypcVwcxUnEdpKmc6mFD0zdTg+yv
+	 ViEkipvCrPkIy+w89dQFFR6HVAJHjuvr4EjuudrUazMFNEir+Dz8iXhthtISGTLxGO
+	 qd0gjTFmgibNOVSUldAo/SeEcasfylKAR+DEP2gZATvyqz6Jm7Xqbp5WtsnN57WlMG
+	 3pxfl4/Aa1Qh3DgqWxHze/kBTsLDgw6o3q5TLObYWB5IdlZ0qFwXyVTXkHAQuCoDA6
+	 zai2Huh/QaVgw==
+Date: Fri, 20 Dec 2024 09:19:24 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: "=?UTF-8?B?TsOtY29sYXM=?= F. R. A. Prado" <nfraprado@collabora.com>
+Cc: patchwork-bot+netdevbpf@kernel.org,
+	"=?UTF-8?B?TsOtY29sYXM=?= F. R. A.  Prado" <"nfraprado@collabora.com"@aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org,>,
+	""@codeaurora.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, biao.huang@mediatek.com,
+	alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+	mcoquelin.stm32@gmail.com, bartosz.golaszewski@linaro.org,
+	ahalaney@redhat.com, horms@kernel.org, kernel@collabora.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v2 0/2] net: stmmac: dwmac-mediatek: Fix inverted logic
+ for mediatek,mac-wol
+Message-ID: <20241220091924.6be11286@kernel.org>
+In-Reply-To: <876cf020-e2ba-46a7-b9b2-82dcd47f7a04@notapiano>
+References: <20241109-mediatek-mac-wol-noninverted-v2-0-0e264e213878@collabora.com>
+	<173155682775.1476954.16636894744432122406.git-patchwork-notify@kernel.org>
+	<876cf020-e2ba-46a7-b9b2-82dcd47f7a04@notapiano>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241219-mdb-max7360-support-v1-6-8e8317584121@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Mathieu,
+On Fri, 20 Dec 2024 13:09:45 -0300 N=C3=ADcolas F. R. A. Prado wrote:
+> This message implies patch 2 was also applied, but I only see patch 1, no=
+t patch
+> 2 there:
+> https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/log/?qt=3D=
+grep&q=3Dmac-wol
+>=20
+> So I just wanted to confirm whether it was applied or not. It would be fi=
+ne for
+> patch 2 to be merged through the mediatek tree as is usual if you haven't
+> already taken it.
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Mathieu-Dubois-Briand/dt-bindings-Add-MAX7360-MFD-device/20241220-002541
-base:   78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
-patch link:    https://lore.kernel.org/r/20241219-mdb-max7360-support-v1-6-8e8317584121%40bootlin.com
-patch subject: [PATCH 6/8] input: keyboard: Add support for MAX7360 keypad
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20241221/202412210024.DavK6KEl-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241221/202412210024.DavK6KEl-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412210024.DavK6KEl-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/input/keyboard/max7360-keypad.c:105:24: warning: implicit conversion from 'unsigned long' to 'unsigned int' changes value from 18446744073709551487 to 4294967167 [-Wconstant-conversion]
-     104 |         ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_CONFIG,
-         |               ~~~~~~~~~~~~~~~~~
-     105 |                                 MAX7360_CFG_SLEEP, ~MAX7360_CFG_SLEEP);
-         |                                                    ^~~~~~~~~~~~~~~~~~
-   1 warning generated.
-
-
-vim +105 drivers/input/keyboard/max7360-keypad.c
-
-    95	
-    96	static void max7360_keypad_close(struct input_dev *pdev)
-    97	{
-    98		struct max7360_keypad *max7360_keypad = input_get_drvdata(pdev);
-    99		int ret;
-   100	
-   101		/*
-   102		 * Nobody is using the device anymore: go to sleep.
-   103		 */
-   104		ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_CONFIG,
- > 105					MAX7360_CFG_SLEEP, ~MAX7360_CFG_SLEEP);
-   106		if (ret) {
-   107			dev_err(&max7360_keypad->input->dev,
-   108				"Failed to write max7360 configuration");
-   109		}
-   110	}
-   111	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Yes, the DTS patch needs to go via the appropriate platform tree.
+Sorry for not calling it out.
 
