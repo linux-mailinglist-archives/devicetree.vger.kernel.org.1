@@ -1,126 +1,125 @@
-Return-Path: <devicetree+bounces-133159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81C9E9F96C5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:44:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2BB79F974F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 18:04:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0CEB16A653
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:44:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27B9216DAB6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA3D219EB8;
-	Fri, 20 Dec 2024 16:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9852721B182;
+	Fri, 20 Dec 2024 16:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="u+mX9gp0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CwFFs38L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACAF1C4A1C;
-	Fri, 20 Dec 2024 16:44:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41CA21A447
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 16:55:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734713076; cv=none; b=COgC2IhxjNwrbY+lvuO4vtSq+GD8+2txsM214WHW/kZV9R/7GekpjLtiR2/JkQsvZk15U52CtwXM+AfJZzmDf38i8pbbwf9mGXs33B2J+9yfDtwRBJhJHjj0cEwu276Ud4LyroeFivAi4dVbURPnMT5Q2xdZPVJXAZQjE9TkcMk=
+	t=1734713751; cv=none; b=MZN8L7OF7kqalBe826VSX+V79st7CaNncw5Lr4bmohxLytUXOzMq6yv1MpYjVuw9wgpOdE0cR5CxPEV6Z04mu30GsNgwp7XlP2s051OPdaBg/6jiWWzJxrqCFZ4Mm91gMYcjAePNLkbXzCaNIu57p0CyYvWcLw9x8+4R23Zky9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734713076; c=relaxed/simple;
-	bh=/W6KyWLZlMH11g0ZeGK+Lh6aIPfQrX8kBjIMECm+d5M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IPTwFg94V6YDvhy7ZlOeect4AH5Rzi4ybZPuJrqlpQj8eRGFULI9VhRJLi0oAs7uXD3bT/+g09BOUuxCg+NBFe2G90Nw34jZWias1IrN8bE73Ys7x3carwNnesE50u3fe8ogsoaTIZeG8dQhEOJnbRor4JRH6kmRWthq79Wwv+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=u+mX9gp0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1311CC4CECD;
-	Fri, 20 Dec 2024 16:44:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1734713075;
-	bh=/W6KyWLZlMH11g0ZeGK+Lh6aIPfQrX8kBjIMECm+d5M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u+mX9gp0NI1sL3o4th4djHYK5dBf/0xQlg/OKaDCpAkkl8mPc+JPsPsMk7iEHvjvf
-	 KRqSuRlfZUGpDQDYTy3cCL4ZIoh4RY/0jVHHmd0qT7gYwenPiEJvcJaWOCOyMke5A7
-	 cJyC18i4ooGBrDaXfc/xGbwcGxM2IvRCtnXHCiEE=
-Date: Fri, 20 Dec 2024 17:44:31 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
-	alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
-	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
-	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com, paulmck@kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	rcu@vger.kernel.org
-Subject: Re: [PATCH v7 00/16] Device / Driver PCI / Platform Rust abstractions
-Message-ID: <2024122031-outfit-mop-86d0@gregkh>
-References: <20241219170425.12036-1-dakr@kernel.org>
+	s=arc-20240116; t=1734713751; c=relaxed/simple;
+	bh=ZJ6BlFTh6Cd2QrVCVjLhtbcAD4DALAZMyCALpAZOwdY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=s2R5MngI0H6JuPhn8we5mx4ydReQNOhEwncJ6Ghq3uw9EK3qepUzaVRZDByK+tw+dONW+NdbXVtndLLZrGiLE+l2HWAFEiW1WADTGFEMjh1lpJrzdgQiMi4ZqyFrVUI8K5ReGW/+pvgfnzu1RoxhuKxcY0KhHXvwz2EKkiHHnHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CwFFs38L; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-434e3953b65so14928495e9.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 08:55:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734713748; x=1735318548; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bRMVd2Ct+RJM9mKq4M10JLL1AVbRbgv8gECSUOI9cfA=;
+        b=CwFFs38LKnX2qjiKc6bbdAzbp+KdKtYBLIujleUiabOgYkHbqcGa0k2A/rafCQj8oG
+         zTm0dUnZMLWXNwoeaINUX8puistLCf+mec9B6KJg/Dd1/08WkBe5YDgz9zn/QUYmQKGB
+         oiRyBx/B/Yh+7Y2D6Rt1Pe4j1/Y/fu+ElvY0hmgyQqfz3TaqNTk+buN9T5tWZDaNQDDM
+         nhGemds2do3u37g1NHKApqv0C0o6rjWrC5j0kcSDQgxAIwawT8gXybXxafX9Fmd34x0L
+         JV40zfdMOszC3960x/BE44M4ycp+t6oWjo9DK4Zwh+F7GGW1lwc/f1KvMu3kKCkywWjt
+         OmLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734713748; x=1735318548;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bRMVd2Ct+RJM9mKq4M10JLL1AVbRbgv8gECSUOI9cfA=;
+        b=ttYj1QCXXURu/3CeWnQ+zY7AyZCeZ5yA8gOj/g+a49MoWXNt2WUEJbIZDz+faPI6Qe
+         ASUGyOoqds9j5sfkW97INai9czG0rOJ2pEH53YFm2BmpDBTjttrUjJ4cyhJemeGAtHDo
+         dm0FEteIwODLicfN8VTm29bpjz6Gg3lT1Ge3CAFbnZBuWGYf6UxZUQ+vTvhBfxAVGeig
+         NbPhUQ4xDZcWDgtWifEs09Uf/bsq4WpZu5tX5SGf4aZIFjtyMxRfmVNMGu3xlrXW3XVB
+         wqP7oSbEjuYNGOrCtD1X1xG/Eb5WEOfm4S00QO0Vf0IFo8RjtgjzCNlw6j7tYAaGSwcv
+         rHsg==
+X-Forwarded-Encrypted: i=1; AJvYcCXeY79oRPaCVmE7LOuh/8iqjiLE49SkF4HusQ96L2/a8ik82hGdtbSb6ujFLtW56wX1pazL1/NhSZz7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyknHwIRcyuJ40QQxeJVfPcSuGKzV2SaTMrZ9Es3+eyztjaCfjl
+	QqRe3zFcFi6u3kKMTcgePnWZXwLjEvBL+F/TxTmD5b7qTGcAAnrMCZXhjoHeJ2o=
+X-Gm-Gg: ASbGncsMHobS9ltVsE1cstRvSXpSS82C4ayY0VelpKNMQsKHCyRyJnicm6PgIIH3o3U
+	NfWwiXeMKy4d8Z1J8hP+BD0XYi/dDUP+2YGbxQQQEH8OhBNQTnnxQbRaFBrNmvJwqJw8HhlDEwr
+	+79jvhQzbrJyYtI5FGsdrJc0/ddoDoA9J6nQ+LwsGXy5gFKUK9Z+AbKcDS/jR5CrJqwGv5NX4TZ
+	OTFPRXDryM9VBLIpMm+j0o18SV6ZFm5ym/gcT/s9Ex+6u4zKxBPp4kue9JXtunMht8Iu2nQeYQ=
+X-Google-Smtp-Source: AGHT+IEdH/GxYvmGV9OhqkZ4EH1vTHNkVaouX931hJminJB7ZTbk13vFQOd2dc1W1czg+c63hAfImg==
+X-Received: by 2002:a05:600c:1c87:b0:434:a10f:c3 with SMTP id 5b1f17b1804b1-4366864320emr36500145e9.9.1734713748019;
+        Fri, 20 Dec 2024 08:55:48 -0800 (PST)
+Received: from [192.168.68.114] ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c89e261sm4491454f8f.76.2024.12.20.08.55.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Dec 2024 08:55:47 -0800 (PST)
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Amit Kucheria <amitk@kernel.org>, 
+ Thara Gopinath <thara.gopinath@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Joerg Roedel <joro@8bytes.org>, 
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-pm@vger.kernel.org, iommu@lists.linux.dev, 
+ Dang Huynh <danct12@riseup.net>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241220-msm8917-v10-0-35c27f704d34@mainlining.org>
+References: <20241220-msm8917-v10-0-35c27f704d34@mainlining.org>
+Subject: Re: (subset) [PATCH v10 0/5] Add MSM8917/PM8937/Redmi 5A
+Message-Id: <173471374655.224301.13708019576127725452.b4-ty@linaro.org>
+Date: Fri, 20 Dec 2024 16:55:46 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241219170425.12036-1-dakr@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.2
 
-On Thu, Dec 19, 2024 at 06:04:02PM +0100, Danilo Krummrich wrote:
-> This patch series implements the necessary Rust abstractions to implement
-> device drivers in Rust.
-> 
-> This includes some basic generalizations for driver registration, handling of ID
-> tables, MMIO operations and device resource handling.
-> 
-> Those generalizations are used to implement device driver support for two
-> busses, the PCI and platform bus (with OF IDs) in order to provide some evidence
-> that the generalizations work as intended.
-> 
-> The patch series also includes two patches adding two driver samples, one PCI
-> driver and one platform driver.
-> 
-> The PCI bits are motivated by the Nova driver project [1], but are used by at
-> least one more OOT driver (rnvme [2]).
-> 
-> The platform bits, besides adding some more evidence to the base abstractions,
-> are required by a few more OOT drivers aiming at going upstream, i.e. rvkms [3],
-> cpufreq-dt [4], asahi [5] and the i2c work from Fabien [6].
-> 
-> The patches of this series can also be [7], [8] and [9].
-> 
-> Changes in v7:
-> ==============
-> - Revocable:
->   - replace `compare_exchange` with `swap`
-> 
-> - Driver:
->   - fix warning when CONFIG_OF=n
-> 
-> - I/O:
->   - remove unnecessary return statement in rust_helper_iounmap()
->   - fix cast in doctest for `bindings::ioremap`
-> 
-> - Devres:
->   - fix cast in doctest for `bindings::ioremap`
-> 
-> - PCI:
->   - remove `Deref` of `pci::DeviceId`
->   - rename `DeviceId` constructors
->     - `new`       -> `from_id`
->     - `with_class -> `from_class`
-> 
-> - MISC:
->   - use `kernel::ffi::c_*` instead of `core::ffi::c_*`
->   - rebase onto latest rust-next (0c5928deada15a8d075516e6e0d9ee19011bb000)
 
-Thanks for this last round of changes, looks great to me!  I've added
-them all to my driver-core-testing branch, and if 0-day doesn't
-complain, will move it to driver-core-next for merging into 6.14-rc1.
+On Fri, 20 Dec 2024 12:26:13 +0100, Barnabás Czémán wrote:
+> This patch series add support for MSM8917 soc with PM8937 and
+> Xiaomi Redmi 5A (riva).
+> 
+> 
 
-Thanks for persisting with this, looks great.  Now the real work starts :)
+Applied, thanks!
 
-thanks,
+[2/5] dt-bindings: nvmem: Add compatible for MS8917
+      commit: be7eb69d5db54ac9ce794c4dc7d278890a78e0fe
 
-greg k-h
+Best regards,
+-- 
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
 
