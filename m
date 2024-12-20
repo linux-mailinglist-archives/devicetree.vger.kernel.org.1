@@ -1,115 +1,113 @@
-Return-Path: <devicetree+bounces-133052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051799F91B4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:52:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A82BA9F91BF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:00:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B30518961A4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:52:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDB991694A7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:00:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2267E1C330D;
-	Fri, 20 Dec 2024 11:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 183EE1C5CC7;
+	Fri, 20 Dec 2024 12:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AiKjFUUG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DA/Glhd9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979631853;
-	Fri, 20 Dec 2024 11:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE0C1C3F01
+	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 12:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734695553; cv=none; b=gTBbD65HQvIJDMhNeKmMNwdLzUwNwgR1bq4hxZ7qspwGbmeTEfZJwtJWK5sbmqQJ1y0MyBQkLOrYXN3RJK7DWZ+xEXJcJcsvGrMNqLoESJc8jDtyfv7v7Nb1EaQVmzm95VL2vjtf4TINSsq/d95zRsGnPUY9qJweENMZCH5tBgs=
+	t=1734696045; cv=none; b=NVdW9tCMPSJm4Q7BGLAHEBf7+FJeKPjNwPFY34we3jnBKG/XojR2tThjp8b8azuizshVL6mWnQzpX58YBITNvytFY6eLA4b8DfyqtbiAM9ZxccF0nhbGwL+h5Pj89RYpRhB+tokoeJaUHYPvkZfaBUwAfdDvbtd31ONnrPhFupU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734695553; c=relaxed/simple;
-	bh=/G4AGvnq1wWWq9F/jQE9R0fzA6MhXpuSkNRl8GA4AP8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HXq/ZdzDlBLLQBg7PfmkyJYvGKlxm4KPwfgec2ryaTXU+xxN53faA5jlIFNeG3WgMVF+Jx8PB62qdQquDWwoh1FN2Zuozybj3wktQUwT7jIElGopS9czjQKpDt1hUZT+jmXy2XIWv3WVwm5+3G0MRMgGaHUGTlCZ9Hqfjbu/hqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AiKjFUUG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BK7LqdI028658;
-	Fri, 20 Dec 2024 11:52:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VVfYQabebuq6Njt2Oq7HSoeCUvuGxMqCgHX7O5Eoxrc=; b=AiKjFUUGL/mMEBCb
-	jQoxulm0hbOGMGWurxQKYYSKLq5EouD4YqCPkrwYjSE3Y6NjhLCD+pvsREDoMdPs
-	ZwjUT5oYsZOBPlu6h3vhmC4FA+laKxSgWcn26xsFrmxeWBST4LBi5NoEZpaNJnFw
-	Xp7BVcWII6aQFjcM2HRI2ev/kk1s1+DpYJHERqziemccTtB/INWymSuME5jg8JX1
-	RLzlCViIqEgYm96p8wMa+77AQ6i08u5Lhcq5kc4EGDKW2MQyPcdCZDy5kyPhK/u4
-	KO2VRg4LvPzSHGqrfd1iaek9SjiTVQLBmIih/4yi2DSsf5V+rhSnQHzvWG6nuh4b
-	I2Pt1w==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43n44hrq0w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Dec 2024 11:52:28 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BKBqRgR024631
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 20 Dec 2024 11:52:27 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 20 Dec
- 2024 03:52:24 -0800
-Message-ID: <d301a695-a5d8-4e76-862a-a6ea5c125617@quicinc.com>
-Date: Fri, 20 Dec 2024 19:52:22 +0800
+	s=arc-20240116; t=1734696045; c=relaxed/simple;
+	bh=WPaf9+f7z78MLonieCgvlL1vPCUCSw7zVcDi3rsIbZg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ToxaMImRExxLoRQGFM9+HCQTfU2HFsec8+xmYp3/N0OZwGCQ8PYXYgu/x4g36Hr3V7gBdj5hpP4yf0mmTl67QRnksabCgJ8Tr5t2NJ3Nd5q00haD+/tk0XKaL7GwKn0HG27IVJn84ENSkKoXJ2nhW4X9ESpONAsh/mJEf0QHkHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DA/Glhd9; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3862d161947so920545f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 04:00:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734696042; x=1735300842; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oK8cRe+fHR1VWCxiDadEgLXPU4PatzYvmC0Gyvp01XQ=;
+        b=DA/Glhd9AegE+3ODTEdAc6Wo61rHy18q7u3W0iaTenVOYe0W1awzolHnCKWwIW5y4I
+         5eCpmUt8BRya9kZtuUG4uMrZZCI329i64KY5sMAQ38OVGmxCgH7DO3CWOZwXC1sY81sE
+         jUqoPLfZXvyZ/G38kFuzF27EU+DnHWgUKbbgEZdr3/iL6j16YkoNUTZ7V3AX4ANS6mfz
+         T0q+nshN3ws9BklaJzhsPghKRS46xb0MR1afW34u57QfjFdRjd/aTDkZE/5ETJB2dpUW
+         tms3f3yDPz3VbcOZ2XQiW44tg4dzJ6wj2O3+j3leqQXv3siTiAxLNBoVtkX5xPI001JS
+         cD3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734696042; x=1735300842;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oK8cRe+fHR1VWCxiDadEgLXPU4PatzYvmC0Gyvp01XQ=;
+        b=dVwAOF2lEpLuj3xO/hj5y6EFurLeX8Mt5R8OZ77hLv29ieTDT8gxorb9TLi+gavcMY
+         z95T44CRMLcgiBmE5do75uzalO+H0okGmFS6wnyBo92IfOAoxwGOUCFclwwdxqEhDpMw
+         ATvDNDkIkoTpvG/3/GvAUxpvcH1n1bfnUYVI65LKUx+ZdzxY7Npe4whwNR9X2/9oUrew
+         eXmrNfD4fcJ8Iffau4/a8yw/H0qVZmb6CvQHZBKo/hDiypaJkyjP6QcF8CIRbEuCZ7Z+
+         asdgk7sZuTmB83mIyspMcMX8qKImpMdnNwXvlXiOJOW+X2WKPjEhXmwpks+CRSbpLyZl
+         N5/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU6p9GSW2PCzsoXf5IiZ7H3sTsZ9uczRKbyDqcC7eyHYbTT3Fi0qd8jFFQA+pPsnFdBMU6CBMFDXEZt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzj1TMbOHHjjXVpD2RtufyRuns4Q2iA3NkG3jvaHqmgqCYnotxz
+	7DHtJZVeLNVC6IpnoP8QmXEzAsunzcTsj6z63I3MpPnI7xW49p8n
+X-Gm-Gg: ASbGncvRH5L+s9Ncz/6CzlxeZX9CGC03zOa7+ZpglbKmXRtMzeM/dZlVVhUimdP/bsR
+	Cl1cC/QtJ8x1mG8O4XtWiL6ZPMdybwj9e57Q9lrjDenefmWOF8Hae2Y9iqfRcaWXfV9d07IXuI0
+	LQ+J0Ply8beBkug5h/ya2kaY2ebh9HtmXkr1jgaUksrftpGXScSPVeny9xF9odxKVLgYMMWPwCQ
+	fJ7O3FbCRKbcnyJqXvdZ+OshIZvRnH9m4OcHiZlfnbZefWkyAadJl2UVW//5A6ui7b6FTKMISSZ
+	1Z0glxxeEXqDzjdU3CJ3m+5Uu3fiEJNXtGMpWeb9+ud/5PDn2SVlZMdRNXiORA==
+X-Google-Smtp-Source: AGHT+IHGkBxd31pWu+xtwPWlWhzqK08a5e0QfwzpYag5XqwWVGkcAgvkQ2m1qj/zjZ9WwhUM2P+gTg==
+X-Received: by 2002:a5d:648d:0:b0:388:da10:ff13 with SMTP id ffacd0b85a97d-38a221eaf55mr2906782f8f.21.1734696041476;
+        Fri, 20 Dec 2024 04:00:41 -0800 (PST)
+Received: from cypher.localdomain (e.b.8.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::8be])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38a1c8b830csm3921038f8f.108.2024.12.20.04.00.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Dec 2024 04:00:41 -0800 (PST)
+From: Peter Robinson <pbrobinson@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Cc: Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH v2 0/2] Add support for WiFi/BT header on Pine64 A64
+Date: Fri, 20 Dec 2024 12:00:29 +0000
+Message-ID: <20241220120038.3137248-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add
- the EC
-To: Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241219200821.8328-1-maccraft123mc@gmail.com>
- <20241219200821.8328-3-maccraft123mc@gmail.com>
-Content-Language: en-US
-From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
-In-Reply-To: <20241219200821.8328-3-maccraft123mc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: OFIo3lUKH1CipchLDM4VRp0lvoDoS24r
-X-Proofpoint-ORIG-GUID: OFIo3lUKH1CipchLDM4VRp0lvoDoS24r
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- mlxlogscore=862 phishscore=0 malwarescore=0 impostorscore=0 bulkscore=0
- adultscore=0 suspectscore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412200098
+Content-Transfer-Encoding: 8bit
 
-On 12/20/2024 4:08 AM, Maya Matuszczyk wrote:
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+Add the BT and WiFi pins on the WiFi/BT header on the Pine64/Sopine
+boards.
 
-Is the commit message missing for this patch?
-> ---
->  .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
-[...]
+Changes in v2:
+- drop patch that enables the WiFi module, it'll move to a overlay later
 
+Peter Robinson (2):
+  arm64: dts: allwinner: a64: Add WiFi/BT header on Pine64
+  arm64: dts: allwinner: a64: Add WiFi/BT header on SoPine
+
+ .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 17 +++++++++++++
+ .../allwinner/sun50i-a64-sopine-baseboard.dts | 24 +++++++++++++++++++
+ 2 files changed, 41 insertions(+)
 
 -- 
-Thx and BRs,
-Aiqun(Maria) Yu
+2.47.1
+
 
