@@ -1,240 +1,221 @@
-Return-Path: <devicetree+bounces-133157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F00AA9F96BA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:40:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390B89F96C1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 17:41:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EF3A169675
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:40:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24CA71886610
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 16:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF2121A430;
-	Fri, 20 Dec 2024 16:39:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAEF521A45A;
+	Fri, 20 Dec 2024 16:39:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n/deixQq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gYxnbT1v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DF2218EAC;
-	Fri, 20 Dec 2024 16:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ECAC21A435;
+	Fri, 20 Dec 2024 16:39:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734712794; cv=none; b=o17Rovi0PsDiQ8xs775MY/62Ckcy6KBaOdq1PA1PZST+6OBM6ZzVqIMbGK4yYYjMxwk0tObWFrWOc9r2KdifvZETtV5mfxY81q9xlJ2KWY48FKZMOFu8Co2GG9TSoo7q7aXutsqdeCxxJPMOoQBjX9MltUSiy1O48LhkX15C7SI=
+	t=1734712795; cv=none; b=WXVUn8hlEV6pX5eWuk72CbDo0CTEiA/pGKcCiGY2G3tJ3FroALQFHJAK4voZn0pBtEKJzEta2msIVX5z6XXoV+xxyMsnJ7defJF0VOiP15smbWgzKwmNFGDtNf75I7JeWMG4xJAJZ/w3t9JRwkze33L5cgneCn7lLRb2OFe3JYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734712794; c=relaxed/simple;
-	bh=U/1mKpQTpHvOqgUoNrg55elV0rI3c1VcRHbvyZXZdRw=;
+	s=arc-20240116; t=1734712795; c=relaxed/simple;
+	bh=kmsROndDbyH8jm99K4jfljVJ484U72MZR37Sb/BMsQY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C8fOU8N5ab/y+zwOgdHFWRvfTIP3iyTo6OvfWFdYiSNPbXlW7ZHGtjbCDomTTb88CIBV63EIQCbK7VSs2rIh8wd8KTaU78x+iw2y+fOiOw90FtcykBGA/nQMqgQ+pOm1TEDhNTQnIXBhHIpF2y5EiGXXxQRLob0BfoTbwxvGXmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n/deixQq; arc=none smtp.client-ip=198.175.65.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z8pD04GbHlZMwBcupLocXjd6NzSQx+XzJydL8JAL9b/5ZbM2Bpkjqn0fvczRP/ycmPmFb4pD9PlWfNu4Z4i9TQQhnesFH9Yeg1+TMtsge4OqCLzi63qMWy+8vQ6rPaHpyOcZbsjX7udJr8iyJZ1Osbg2LAMUqLvZOrQ4dwHw2PM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gYxnbT1v; arc=none smtp.client-ip=198.175.65.17
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734712791; x=1766248791;
+  t=1734712793; x=1766248793;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=U/1mKpQTpHvOqgUoNrg55elV0rI3c1VcRHbvyZXZdRw=;
-  b=n/deixQqvxT6LtCi18xeZ8iy6jb74usJp8+Iyc+nwFSDUh/HEwWTqxUz
-   DDK7mkvQF046gL1VO8KcbsY4IQJaXlawvKaJ5gmw+zlNGDXxpilpx35lu
-   4rn5OXT2dHu9AevLlaoPDVj/DrkvvwD5BuZ0ew6PYQcwiq5PVmWhhJDXs
-   KHJiFzePkYSRael9lz5tcFtq1LHDeNfSThMrdkzn7gC39equp9AlQtNFG
-   vNTr9u9DESfpht1blAUx5eq/Ju87dArJv3v8KJpGFUGzwajrmjsmzERD4
-   wE2frRtXeDihPSocwfZ/xFkNfpuch0nZmCzr/6jRcnXBVhgVASk1+pS92
+   mime-version:in-reply-to;
+  bh=kmsROndDbyH8jm99K4jfljVJ484U72MZR37Sb/BMsQY=;
+  b=gYxnbT1vlmjTk3KHjccsIEt8J3IfcQ3cJaItqy7BXucjh9E5GmJojyYT
+   7eBIAAAycXjrLcbJfvn9As2M5b8B68yl26YE7hFaHNzrspy0HVy6VrVhc
+   FFN0oZwbpxgYjazdKg7fxu8sPcPp8DOXOy3LCwtVaB4+k+aKaPRdw69M3
+   4UzKJywUmLk5WMvqeRYLqLVwsiFdYBjRD/3ka1anSx320v2cktsEA6Mw6
+   MvH6gVPRSbovsTwGRWQL5QjyhvV72Q4Pv9QkcezoL3uynno4SrWya+pmS
+   gi/MRgqwxMlsexbeyqbkIaPYw27nReMrhWMyppc6aoMNfOTJVKr/KGSW1
    Q==;
-X-CSE-ConnectionGUID: 6LnsNDcVTWu1ikqYtTw2wA==
-X-CSE-MsgGUID: g1gOTqGbRhyhzCShQan8aw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="35295809"
+X-CSE-ConnectionGUID: BcOW1sFRTNSqKKdHTNxeiA==
+X-CSE-MsgGUID: 9UN2vs4JRmGT3ORL3j5Ldg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="35295812"
 X-IronPort-AV: E=Sophos;i="6.12,251,1728975600"; 
-   d="scan'208";a="35295809"
+   d="scan'208";a="35295812"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2024 08:39:50 -0800
-X-CSE-ConnectionGUID: yC19I6f+QhC3XADwBab0PQ==
-X-CSE-MsgGUID: /KVqTUQTRw2/FOTI+vtuvQ==
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2024 08:39:51 -0800
+X-CSE-ConnectionGUID: jCunitGgQ7CFeHp3hEWc9Q==
+X-CSE-MsgGUID: W/NJ3R13Q3atZN3br0ax1g==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="98386685"
+   d="scan'208";a="98386684"
 Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
   by orviesa010.jf.intel.com with ESMTP; 20 Dec 2024 08:39:48 -0800
 Received: from kbuild by a46f226878e0 with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1tOg2T-0001QD-2x;
+	id 1tOg2T-0001QB-2p;
 	Fri, 20 Dec 2024 16:39:45 +0000
-Date: Sat, 21 Dec 2024 00:39:06 +0800
+Date: Sat, 21 Dec 2024 00:39:08 +0800
 From: kernel test robot <lkp@intel.com>
-To: Esteban Blanc <eblanc@baylibre.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Esteban Blanc <eblanc@baylibre.com>
-Subject: Re: [PATCH v2 2/6] iio: adc: ad4030: add driver for ad4030-24
-Message-ID: <202412210010.ddQlStza-lkp@intel.com>
-References: <20241219-eblanc-ad4630_v1-v2-2-f36e55907bf5@baylibre.com>
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Subject: Re: [PATCH 5/8] gpio: max7360: Add MAX7360 gpio support
+Message-ID: <202412210008.Saks0Eu4-lkp@intel.com>
+References: <20241219-mdb-max7360-support-v1-5-8e8317584121@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241219-eblanc-ad4630_v1-v2-2-f36e55907bf5@baylibre.com>
+In-Reply-To: <20241219-mdb-max7360-support-v1-5-8e8317584121@bootlin.com>
 
-Hi Esteban,
+Hi Mathieu,
 
-kernel test robot noticed the following build errors:
+kernel test robot noticed the following build warnings:
 
-[auto build test ERROR on 40384c840ea1944d7c5a392e8975ed088ecf0b37]
+[auto build test WARNING on 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Esteban-Blanc/dt-bindings-iio-adc-add-ADI-ad4030-ad4630-and-ad4632/20241220-001408
-base:   40384c840ea1944d7c5a392e8975ed088ecf0b37
-patch link:    https://lore.kernel.org/r/20241219-eblanc-ad4630_v1-v2-2-f36e55907bf5%40baylibre.com
-patch subject: [PATCH v2 2/6] iio: adc: ad4030: add driver for ad4030-24
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20241221/202412210010.ddQlStza-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241221/202412210010.ddQlStza-lkp@intel.com/reproduce)
+url:    https://github.com/intel-lab-lkp/linux/commits/Mathieu-Dubois-Briand/dt-bindings-Add-MAX7360-MFD-device/20241220-002541
+base:   78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+patch link:    https://lore.kernel.org/r/20241219-mdb-max7360-support-v1-5-8e8317584121%40bootlin.com
+patch subject: [PATCH 5/8] gpio: max7360: Add MAX7360 gpio support
+config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20241221/202412210008.Saks0Eu4-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241221/202412210008.Saks0Eu4-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412210010.ddQlStza-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412210008.Saks0Eu4-lkp@intel.com/
 
-All errors (new ones prefixed by >>):
+All warnings (new ones prefixed by >>):
 
-   drivers/iio/adc/ad4030.c: In function 'ad4030_get_chan_calibscale':
->> drivers/iio/adc/ad4030.c:346:16: error: implicit declaration of function 'get_unaligned_be16' [-Wimplicit-function-declaration]
-     346 |         gain = get_unaligned_be16(st->rx_data.raw);
-         |                ^~~~~~~~~~~~~~~~~~
-   drivers/iio/adc/ad4030.c: In function 'ad4030_get_chan_calibbias':
->> drivers/iio/adc/ad4030.c:375:38: error: implicit declaration of function 'get_unaligned_be24' [-Wimplicit-function-declaration]
-     375 |                 *val = sign_extend32(get_unaligned_be24(st->rx_data.raw), 23);
-         |                                      ^~~~~~~~~~~~~~~~~~
-   drivers/iio/adc/ad4030.c: In function 'ad4030_set_chan_calibscale':
->> drivers/iio/adc/ad4030.c:399:9: error: implicit declaration of function 'put_unaligned_be16' [-Wimplicit-function-declaration]
-     399 |         put_unaligned_be16(DIV_ROUND_CLOSEST_ULL(gain * 0x8000, MICRO),
-         |         ^~~~~~~~~~~~~~~~~~
-   drivers/iio/adc/ad4030.c: In function 'ad4030_set_chan_calibbias':
->> drivers/iio/adc/ad4030.c:424:17: error: implicit declaration of function 'put_unaligned_be24' [-Wimplicit-function-declaration]
-     424 |                 put_unaligned_be24(offset, st->tx_data);
-         |                 ^~~~~~~~~~~~~~~~~~
+   drivers/gpio/gpio-max7360.c: In function 'max7360_gpio_probe':
+>> drivers/gpio/gpio-max7360.c:370:39: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     370 |         max7360_gpio->gpio_function = (int)device_get_match_data(&pdev->dev);
+         |                                       ^
 
 
-vim +/get_unaligned_be16 +346 drivers/iio/adc/ad4030.c
+vim +370 drivers/gpio/gpio-max7360.c
 
-   331	
-   332	static int ad4030_get_chan_calibscale(struct iio_dev *indio_dev,
-   333					      struct iio_chan_spec const *chan,
-   334					      int *val,
-   335					      int *val2)
-   336	{
-   337		struct ad4030_state *st = iio_priv(indio_dev);
-   338		u16 gain;
-   339		int ret;
-   340	
-   341		ret = regmap_bulk_read(st->regmap, AD4030_REG_GAIN_CHAN(chan->address),
-   342				       st->rx_data.raw, AD4030_REG_GAIN_BYTES_NB);
-   343		if (ret)
-   344			return ret;
-   345	
- > 346		gain = get_unaligned_be16(st->rx_data.raw);
-   347	
-   348		/* From datasheet: multiplied output = input × gain word/0x8000 */
-   349		*val = gain / 0x8000;
-   350		*val2 = mul_u64_u32_div(gain % 0x8000, NANO, 0x8000);
-   351	
-   352		return IIO_VAL_INT_PLUS_NANO;
-   353	}
-   354	
-   355	/* Returns the offset where 1 LSB = (VREF/2^precision_bits - 1)/gain */
-   356	static int ad4030_get_chan_calibbias(struct iio_dev *indio_dev,
-   357					     struct iio_chan_spec const *chan,
-   358					     int *val)
-   359	{
-   360		struct ad4030_state *st = iio_priv(indio_dev);
-   361		int ret;
-   362	
-   363		ret = regmap_bulk_read(st->regmap,
-   364				       AD4030_REG_OFFSET_CHAN(chan->address),
-   365				       st->rx_data.raw, AD4030_REG_OFFSET_BYTES_NB);
-   366		if (ret)
-   367			return ret;
-   368	
-   369		switch (st->chip->precision_bits) {
-   370		case 16:
-   371			*val = sign_extend32(get_unaligned_be16(st->rx_data.raw), 15);
-   372			return IIO_VAL_INT;
+   333	
+   334	static int max7360_gpio_probe(struct platform_device *pdev)
+   335	{
+   336		struct max7360_gpio *max7360_gpio;
+   337		unsigned int ngpios;
+   338		unsigned int outconf;
+   339		struct gpio_irq_chip *girq;
+   340		unsigned long flags;
+   341		int irq;
+   342		int ret;
+   343	
+   344		if (!pdev->dev.parent) {
+   345			dev_err(&pdev->dev, "no parent device\n");
+   346			return -ENODEV;
+   347		}
+   348	
+   349		max7360_gpio = devm_kzalloc(&pdev->dev, sizeof(struct max7360_gpio),
+   350					    GFP_KERNEL);
+   351		if (!max7360_gpio)
+   352			return -ENOMEM;
+   353	
+   354		if (of_property_read_u32(pdev->dev.of_node, "ngpios", &ngpios)) {
+   355			dev_err(&pdev->dev, "Missing ngpios OF property\n");
+   356			return -ENODEV;
+   357		}
+   358	
+   359		max7360_gpio->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+   360		if (!max7360_gpio->regmap) {
+   361			dev_err(&pdev->dev, "could not get parent regmap\n");
+   362			return -ENODEV;
+   363		}
+   364	
+   365		max7360_gpio->dev = &pdev->dev;
+   366		max7360_gpio->chip = max7360_gpio_chip;
+   367		max7360_gpio->chip.ngpio = ngpios;
+   368		max7360_gpio->chip.parent = &pdev->dev;
+   369		max7360_gpio->chip.base = -1;
+ > 370		max7360_gpio->gpio_function = (int)device_get_match_data(&pdev->dev);
+   371	
+   372		dev_dbg(&pdev->dev, "gpio count: %d\n", max7360_gpio->chip.ngpio);
    373	
-   374		case 24:
- > 375			*val = sign_extend32(get_unaligned_be24(st->rx_data.raw), 23);
-   376			return IIO_VAL_INT;
-   377	
-   378		default:
-   379			return -EINVAL;
-   380		}
-   381	}
-   382	
-   383	static int ad4030_set_chan_calibscale(struct iio_dev *indio_dev,
-   384					      struct iio_chan_spec const *chan,
-   385					      int gain_int,
-   386					      int gain_frac)
-   387	{
-   388		struct ad4030_state *st = iio_priv(indio_dev);
-   389		u64 gain;
+   374		if (max7360_gpio->gpio_function == MAX7360_GPIO_PORT) {
+   375			/* Port GPIOs: set output mode configuration (constant-current
+   376			 * or not).
+   377			 * This property is optional.
+   378			 */
+   379			outconf = 0;
+   380			ret = of_property_read_u32(pdev->dev.of_node,
+   381						   "constant-current-disable", &outconf);
+   382			if (ret && (ret != -EINVAL)) {
+   383				dev_err(&pdev->dev,
+   384					"Failed to read constant-current-disable OF property\n");
+   385				return -ENODEV;
+   386			}
+   387	
+   388		    regmap_write(max7360_gpio->regmap, MAX7360_REG_GPIOOUTM, outconf);
+   389		}
    390	
-   391		if (gain_int < 0 || gain_frac < 0)
-   392			return -EINVAL;
-   393	
-   394		gain = mul_u32_u32(gain_int, MICRO) + gain_frac;
-   395	
-   396		if (gain > AD4030_REG_GAIN_MAX_GAIN)
-   397			return -EINVAL;
-   398	
- > 399		put_unaligned_be16(DIV_ROUND_CLOSEST_ULL(gain * 0x8000, MICRO),
-   400				   st->tx_data);
-   401	
-   402		return regmap_bulk_write(st->regmap,
-   403					 AD4030_REG_GAIN_CHAN(chan->address),
-   404					 st->tx_data, AD4030_REG_GAIN_BYTES_NB);
-   405	}
-   406	
-   407	static int ad4030_set_chan_calibbias(struct iio_dev *indio_dev,
-   408					     struct iio_chan_spec const *chan,
-   409					     int offset)
-   410	{
-   411		struct ad4030_state *st = iio_priv(indio_dev);
-   412	
-   413		if (offset < st->offset_avail[0] || offset > st->offset_avail[2])
-   414			return -EINVAL;
-   415	
-   416		st->tx_data[2] = 0;
-   417	
-   418		switch (st->chip->precision_bits) {
-   419		case 16:
-   420			put_unaligned_be16(offset, st->tx_data);
-   421			break;
-   422	
-   423		case 24:
- > 424			put_unaligned_be24(offset, st->tx_data);
-   425			break;
-   426	
-   427		default:
-   428			return -EINVAL;
-   429		}
-   430	
-   431		return regmap_bulk_write(st->regmap,
-   432					 AD4030_REG_OFFSET_CHAN(chan->address),
-   433					 st->tx_data, AD4030_REG_OFFSET_BYTES_NB);
-   434	}
-   435	
+   391		if (max7360_gpio->gpio_function == MAX7360_GPIO_PORT &&
+   392		    of_property_read_bool(pdev->dev.of_node, "interrupt-controller")) {
+   393			/* Port GPIOs: declare IRQ chip, if configuration was provided.
+   394			 */
+   395			irq = platform_get_irq(pdev, 0);
+   396			if (irq < 0)
+   397				return dev_err_probe(&pdev->dev, irq,
+   398						     "Failed to get IRQ");
+   399	
+   400			flags = IRQF_TRIGGER_LOW | IRQF_ONESHOT | IRQF_SHARED;
+   401			ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
+   402							max7360_gpio_irq, flags,
+   403							"max7360-gpio", max7360_gpio);
+   404			if (ret)
+   405				return dev_err_probe(&pdev->dev, ret,
+   406						     "Failed to register interrupt: %d\n",
+   407						     ret);
+   408	
+   409			girq = &max7360_gpio->chip.irq;
+   410			gpio_irq_chip_set_chip(girq, &max7360_gpio_irqchip);
+   411			girq->parent_handler = NULL;
+   412			girq->num_parents = 0;
+   413			girq->parents = NULL;
+   414			girq->threaded = true;
+   415			girq->default_type = IRQ_TYPE_NONE;
+   416			girq->handler = handle_simple_irq;
+   417		}
+   418	
+   419		ret = devm_gpiochip_add_data(&pdev->dev, &max7360_gpio->chip, max7360_gpio);
+   420		if (ret) {
+   421			dev_err(&pdev->dev, "unable to add gpiochip: %d\n", ret);
+   422			return ret;
+   423		}
+   424	
+   425		return 0;
+   426	}
+   427	
 
 -- 
 0-DAY CI Kernel Test Service
