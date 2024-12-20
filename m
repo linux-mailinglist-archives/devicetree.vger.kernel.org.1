@@ -1,94 +1,76 @@
-Return-Path: <devicetree+bounces-133055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E6079F91C1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:00:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE8A9F91C2
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 13:02:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63112160A9D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:00:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D005116B659
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 12:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0706F1C5F2E;
-	Fri, 20 Dec 2024 12:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F59B1C3F27;
+	Fri, 20 Dec 2024 12:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KUse4qqS"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="tCCKwqQY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64DAF1C3F2B
-	for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 12:00:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49B5B1BCA19;
+	Fri, 20 Dec 2024 12:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734696045; cv=none; b=bsSnHaEwZg1v921/iiaSQRhKlZUxm0Xae+ceCiMnNF9XOb+HukGC+RVYCD0FVSw3v9KYiRGMNhd8bal6CQbXG4xD9ORLYZtbTbVzJxzvKzUfVrv1YypHsLt650Z8o5r3SFH7LVYh/EwQqpme69wFZpHTC1ysTsuRFi3/RR77GGA=
+	t=1734696121; cv=none; b=FtN5dek3HFpMHuclhvDLz42FLzbfS36K4N/homtH3bs3//eJuSKm2H226Jy8xOQPonYcYDfkPNsCu8eLRpOxPXEoKdQ8xF1HoL3NprOdewdsuiQtSiiUqAF9S/W3Q6CJq8iknUwtTfKmL6HNhwv4WKJ3Qm9DuqpPUXvtsCqsamY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734696045; c=relaxed/simple;
-	bh=ZvIQnE5umiaAN8ikC0HerlOXymza/w8b7xBF7bzrYuM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pa/R/EHYIjIi5ny/K79T9N4XROUWxYjR7lpvTLoVAGTJv43RphPM1axZVeZgq0BwDhYF9XSkgD8OoMkpccG3sQYCJJK5A9IkfHDbG+6d7UCDr/T1NvNJai87QtMVwtYAGT45cYZ9Bdrg7AYJWUHJUeGLHZRiF1a366qVMvep4do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KUse4qqS; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-388cae9eb9fso1057373f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 20 Dec 2024 04:00:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734696043; x=1735300843; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7c+9If8W7Xl+w31iRvENBg3VUkO/76wew21FGkaNGXY=;
-        b=KUse4qqS+RhEDnL/WWPge6xHhIni2piSy211NR1eNJRtOqksvBoVAK76A5PaYkLHij
-         LkkAR3wO7y8r3tMAqe9q81wOZprPpYQ2ijFSxy91sO1/bbyEJtN7FAjYlAsGOSvw493p
-         VUXOxB54pndDGxehcZeQbZvwcrmPXyfsMMp2QXgLoV79tBzb8+D02ZZPfu3EOBNLwLk0
-         dx5gXFaQGgm/uOcPyBEYvGx2USznbyohM2HqB6X6qYlbj81AbPnNMMjle7dbPlHw2xgc
-         Sp2vKVnJWhzeU92UAEtdBNdCCgC6tn2FCDusZC/h8oGVKDbeRpJ+wNDeTAA7/BjGz6Q/
-         N6iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734696043; x=1735300843;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7c+9If8W7Xl+w31iRvENBg3VUkO/76wew21FGkaNGXY=;
-        b=SxL42YL/OlGkkixpVgVzqy6G4KX+WY9i4k4+JIYf3jpTdgfnGUNE45UCLGT0fpm12J
-         U1rOXpuWotgHymdh8MT6jL37LMxr60QYPPo/F5jzKlVVab4fr2dWCK9qjjBIcq9YOLPN
-         eQGWqjkm7i7AWLSDiFEtwV420VXrJC2WEKj52iZOqAlkNy9U4SVA4u0XzKffvDFTDSiD
-         AHy2UHgXoz/CA3qba038KxLwnMLB9FCMlEJ7cumAFg9a9mPcjznrwudIsCpEQYFSNlYD
-         GbFeIlNR0Yn4+VUJBWeUjt9GF8mEIA5Cf2EK4BOnJsWJwUUVMzVetR+s1UfzROfgjPpQ
-         L7tA==
-X-Forwarded-Encrypted: i=1; AJvYcCWHmsR8G8mhazgSJu3EcekFyINlIdKYKiChXba6ZhA6INBfYIYkgtCRkC9mWX2pqCmXlH5fmGuq8SKA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPPn/K/EG/gIOM7nPeALcgnlzMdTPH71DU2k9N3eRdaBshVozf
-	N8n93LTVJoOCsJvGvKGMN6SKkGUqjqhe1JDQoX+eH+NkariiygQk
-X-Gm-Gg: ASbGncu9n8ysD20g+JDOp7pMxW7usnUiNiWt3XOZeKs6Zz9Qm8KlDWnSU8BbnDl6AcV
-	8BS+4TmIYxaS4rSQm4hDCGJQKcWg8RK+QviDaaEVJOpJ2Nrl6ibDDlWEYdNLakhDjhXcsj/KGMK
-	P+OZBtLW1oSpB2sb7+7Ys1RYSVuzljxWgHo2MZePEe/ygeGyqF055Vq/21hagBsay3Y2NtUrzmF
-	cfPy2V4676jxlNmBkodQR0fWgfKl0jmIm4vKHAsQNjYFI+OUaAIHzA6cZ/3b5GERaTAoJmHMjoQ
-	zk3+2vakVYPMRYol4PCsupC6FnXnW+BARBIbp2i4dsFbZhKVW2EvqgOjXyo5Lg==
-X-Google-Smtp-Source: AGHT+IE2c5XLJyzNR1zhyXkJ+darIKZUZG1iPFBT6zdD9tb9k+0R145WUAU3upIKBqOszM+jPqMnSg==
-X-Received: by 2002:a5d:59ac:0:b0:386:2fc8:ef86 with SMTP id ffacd0b85a97d-38a221fac08mr2551293f8f.14.1734696042701;
-        Fri, 20 Dec 2024 04:00:42 -0800 (PST)
-Received: from cypher.localdomain (e.b.8.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::8be])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38a1c8b830csm3921038f8f.108.2024.12.20.04.00.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Dec 2024 04:00:42 -0800 (PST)
-From: Peter Robinson <pbrobinson@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Cc: Peter Robinson <pbrobinson@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: allwinner: a64: Add WiFi/BT header on SoPine
-Date: Fri, 20 Dec 2024 12:00:31 +0000
-Message-ID: <20241220120038.3137248-3-pbrobinson@gmail.com>
+	s=arc-20240116; t=1734696121; c=relaxed/simple;
+	bh=n/4fvH2nCYzWA2a1FRO2lPyOqvd6+rL9N/9IttrfmlI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=X0Pre4AVIL3hRin3P8tlZq3tbCsjfxWy2o4wMxSz9NE7y4ojxEb9a67tdGTSXBHbsduaPOZ2BU2J7to1dkQoLbWOpx7JR3+hv7kY4wMB9bVCp2LSoK4zv/zd0LlC7smHnz3rjZ0TF2U1/CB1HNhLYrvXA9ddtAU/VP6MskonCdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=tCCKwqQY; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BKBG8Hv024429;
+	Fri, 20 Dec 2024 07:01:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=nZCvhBHrhJ7isF1591ZalB9oHME
+	kkxFTnVngHLyD72c=; b=tCCKwqQYbaXYqlH32fmUmsJcRQd4CyWmKR4XDwDQ2ZJ
+	dw1OOE0Dm4YGJBpuByqvj/bK+CWxwKLvuL+jJk40dYb5wAvhrQ03LvKVpt2xClbc
+	wYbm7FaqhMv/0FR24XYJSlVkQvs7RjTaYNZNoIk4XHJ9G2p6y8J7bZEbu/n8p6Mn
+	bLruVrlCakm8ggGLxGrIZ3Ctdy6laP5ZwEUginMNJMYazMvjvYQSDDNW3OeldhuV
+	NgCwo5Fl02TrdaoN3F90mtNM2w1FyqfXdP/0NW7L94tKvXeFMQ+2Aw1jBnNwkM/E
+	Ditz9OcH//zZIuUx4ph2MZ1VxrT2GQTbkkpvTXooc8w==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 43n7jdg520-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 20 Dec 2024 07:01:55 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 4BKC1pC4060585
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 20 Dec 2024 07:01:51 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 20 Dec
+ 2024 07:01:51 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 20 Dec 2024 07:01:51 -0500
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.133])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4BKC1fDh030363;
+	Fri, 20 Dec 2024 07:01:43 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        David Lechner
+	<dlechner@baylibre.com>
+Subject: [PATCH v9 1/8] iio: backend: add API for interface get
+Date: Fri, 20 Dec 2024 14:01:27 +0200
+Message-ID: <20241220120134.42760-1-antoniu.miclaus@analog.com>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241220120038.3137248-1-pbrobinson@gmail.com>
-References: <20241220120038.3137248-1-pbrobinson@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,66 +78,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: EKaRA_Q3lYOfvDNJqrdF1RmPzKlcnc3H
+X-Proofpoint-GUID: EKaRA_Q3lYOfvDNJqrdF1RmPzKlcnc3H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ spamscore=0 adultscore=0 mlxlogscore=999 phishscore=0 priorityscore=1501
+ clxscore=1015 mlxscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412200100
 
-This adds all the pin mappings on the WiFi/BT header on
-the SoPine baseboard/A64-LTS. They're disabled by default
-as the modules don't ship by default. This includes, where
-they haven't been already, UART1 for BT and mmc1 for WiFi.
+Add backend support for obtaining the interface type used.
 
-Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+Reviewed-by: David Lechner <dlechner@baylibre.com>
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 ---
- .../allwinner/sun50i-a64-sopine-baseboard.dts | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+changes in v9:
+ - rebase on iio/testing and use quotes for IIO_BACKEND
+ drivers/iio/industrialio-backend.c | 24 ++++++++++++++++++++++++
+ include/linux/iio/backend.h        | 11 +++++++++++
+ 2 files changed, 35 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-index be2347c8f267..752d2aae8465 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
-@@ -42,6 +42,11 @@ reg_vcc1v8: vcc1v8 {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <1800000>;
- 	};
+diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
+index 363281272035..8bf3d570da1b 100644
+--- a/drivers/iio/industrialio-backend.c
++++ b/drivers/iio/industrialio-backend.c
+@@ -636,6 +636,30 @@ ssize_t iio_backend_ext_info_set(struct iio_dev *indio_dev, uintptr_t private,
+ }
+ EXPORT_SYMBOL_NS_GPL(iio_backend_ext_info_set, "IIO_BACKEND");
+ 
++/**
++ * iio_backend_interface_type_get - get the interface type used.
++ * @back: Backend device
++ * @type: Interface type
++ *
++ * RETURNS:
++ * 0 on success, negative error number on failure.
++ */
++int iio_backend_interface_type_get(struct iio_backend *back,
++				   enum iio_backend_interface_type *type)
++{
++	int ret;
 +
-+	wifi_pwrseq: pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 */
-+	};
++	ret = iio_backend_op_call(back, interface_type_get, type);
++	if (ret)
++		return ret;
++
++	if (*type >= IIO_BACKEND_INTERFACE_MAX)
++		return -EINVAL;
++
++	return 0;
++}
++EXPORT_SYMBOL_NS_GPL(iio_backend_interface_type_get, "IIO_BACKEND");
++
+ /**
+  * iio_backend_extend_chan_spec - Extend an IIO channel
+  * @back: Backend device
+diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+index 10be00f3b120..a0ea6c29d7ba 100644
+--- a/include/linux/iio/backend.h
++++ b/include/linux/iio/backend.h
+@@ -70,6 +70,12 @@ enum iio_backend_sample_trigger {
+ 	IIO_BACKEND_SAMPLE_TRIGGER_MAX
  };
  
- &ac_power_supply {
-@@ -103,6 +108,17 @@ ext_rgmii_phy: ethernet-phy@1 {
- 	};
- };
- 
-+/* On Wifi/BT connector */
-+&mmc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pins>;
-+	vmmc-supply = <&reg_dldo4>;
-+	vqmmc-supply = <&reg_eldo1>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	bus-width = <4>;
-+	non-removable;
++enum iio_backend_interface_type {
++	IIO_BACKEND_INTERFACE_SERIAL_LVDS,
++	IIO_BACKEND_INTERFACE_SERIAL_CMOS,
++	IIO_BACKEND_INTERFACE_MAX
 +};
 +
- &mmc2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mmc2_pins>;
-@@ -175,6 +191,14 @@ &uart0 {
- 	status = "okay";
- };
- 
-+/* On Wifi/BT connector, with RTS/CTS */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status = "disabled";
-+};
-+
- /* On Pi-2 connector */
- &uart2 {
- 	pinctrl-names = "default";
+ /**
+  * struct iio_backend_ops - operations structure for an iio_backend
+  * @enable: Enable backend.
+@@ -88,6 +94,7 @@ enum iio_backend_sample_trigger {
+  * @extend_chan_spec: Extend an IIO channel.
+  * @ext_info_set: Extended info setter.
+  * @ext_info_get: Extended info getter.
++ * @interface_type_get: Interface type.
+  * @read_raw: Read a channel attribute from a backend device
+  * @debugfs_print_chan_status: Print channel status into a buffer.
+  * @debugfs_reg_access: Read or write register value of backend.
+@@ -128,6 +135,8 @@ struct iio_backend_ops {
+ 			    const char *buf, size_t len);
+ 	int (*ext_info_get)(struct iio_backend *back, uintptr_t private,
+ 			    const struct iio_chan_spec *chan, char *buf);
++	int (*interface_type_get)(struct iio_backend *back,
++				  enum iio_backend_interface_type *type);
+ 	int (*read_raw)(struct iio_backend *back,
+ 			struct iio_chan_spec const *chan, int *val, int *val2,
+ 			long mask);
+@@ -186,6 +195,8 @@ ssize_t iio_backend_ext_info_set(struct iio_dev *indio_dev, uintptr_t private,
+ 				 const char *buf, size_t len);
+ ssize_t iio_backend_ext_info_get(struct iio_dev *indio_dev, uintptr_t private,
+ 				 const struct iio_chan_spec *chan, char *buf);
++int iio_backend_interface_type_get(struct iio_backend *back,
++				   enum iio_backend_interface_type *type);
+ int iio_backend_read_raw(struct iio_backend *back,
+ 			 struct iio_chan_spec const *chan, int *val, int *val2,
+ 			 long mask);
 -- 
 2.47.1
 
