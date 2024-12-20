@@ -1,99 +1,80 @@
-Return-Path: <devicetree+bounces-133028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11A1C9F9061
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:39:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 158549F90BE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 11:52:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 750E11896FFD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:39:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A711165E3E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2024 10:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799B41C4A09;
-	Fri, 20 Dec 2024 10:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9962A1A8402;
+	Fri, 20 Dec 2024 10:52:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="QvguwkaR"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="FXwh9XBC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973177.qiye.163.com (mail-m1973177.qiye.163.com [220.197.31.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301481C3027;
-	Fri, 20 Dec 2024 10:38:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.77
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04A1172BD5;
+	Fri, 20 Dec 2024 10:52:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734691128; cv=none; b=bn4AxClHLVLBfMhMcLUo940nskY5BhojHrskIQY4ERC753h7jpeUoKoV4IiztNEFpuQeAhOYMzVi8gOCaSEV8NF9phc9qLNK3EENmOymCMEaiPvkRvK8s5wAc/4pE31rD6fvgLgIRqf4uX2qoMIv2XtOMleWC4awaeSroJPOMyY=
+	t=1734691955; cv=none; b=hpwv7H1cRXJ0DYAulYfGl5RQMgvyAZuuh8tpTFsm3ei8bQKkfoIVkigjPwueVOa7ubXNWHRcAeiOrY8foUVOsLqD5uAuQObR9ZFgtsz6922QjOoZGNa3OZNTeyWaR0FHee8RWa0+eezz2R8/NLEx9j97AXN3nitQrqSr5TdCWqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734691128; c=relaxed/simple;
-	bh=ZBLCYhCSoD7pW+Ub0/1s0qdW9maOConMFHDfc0YErXc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=F+TKt0EIO2U7bTc7eZpSPi2wW6qI3ydxlqDUUN86LKfMTp9++fgiBqDAgEheuQUh4v4c6wHco49PGXHlAG+7RobmKNJ7aRdoqrmKx7su5A7eWA/OCV0IuqL5t4+X3XeOQ2WlQctrwD17Fd3xX1YXQSMF+I+J9ixiEGVMptlR/Jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=QvguwkaR; arc=none smtp.client-ip=220.197.31.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 65699807;
-	Fri, 20 Dec 2024 18:38:36 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Kever Yang <kever.yang@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 04/38] dt-bindings: pinctrl: Add rk3562 pinctrl support
-Date: Fri, 20 Dec 2024 18:37:50 +0800
-Message-Id: <20241220103825.3509421-5-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241220103825.3509421-1-kever.yang@rock-chips.com>
-References: <20241220103825.3509421-1-kever.yang@rock-chips.com>
+	s=arc-20240116; t=1734691955; c=relaxed/simple;
+	bh=L3JTp4Zchb3YCGv/vAr9PA/1W4TWzDvDI93nASElA8Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=j5Uu4Hg2CYtXU8Vg37l7Jbj2IHktmR1iA3TBg8lZKu113J8TEOif3vRpQTFB4cndZd0ZNyIRqR5KMZjhwHrDJa5MomKgfA7GWuUcJfiUaSnr6wp9oXqc43hQgtcuglWFI6k2yHMRpmgpAUbBjGCiU5pvOnlaCwCMzROoj3pXsJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=FXwh9XBC reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=pRDaXkTGjX7R3KLIOZ+hFg8hT1FPiVLyVpMN6D7XCbA=; b=F
+	Xwh9XBChvVKvR3dLL7C8uBH0fqJhI5MtshgW9B3PmthsG6Wb4KNWuTetOAhCuZf/
+	UBqP+y7mPl4u9dqIxUbs8j6z3wAxclx9hea0cN3l8ezTLWADEpdNVBPFHiLGycwk
+	TsjpkTYP5A2xGH7VsucEGo4i+OKW/ZkrKphltYyQI4=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-138 (Coremail) ; Fri, 20 Dec 2024 18:51:11 +0800
+ (CST)
+Date: Fri, 20 Dec 2024 18:51:11 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, krzk+dt@kernel.org, 
+	joro@8bytes.org, heiko@sntech.de, iommu@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	"Andy Yan" <andy.yan@rock-chips.com>
+Subject: Re:Re: [PATCH] dt-bindings: iommu: rockchip: Add Rockchip RK3576
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2024 www.mailtech.cn 163com
+In-Reply-To: <172721001667.289647.10163147936752673484.robh@kernel.org>
+References: <20240920094947.7566-1-andyshrk@163.com>
+ <172721001667.289647.10163147936752673484.robh@kernel.org>
+X-NTES-SC: AL_Qu2YBvqSvkAs5yORY+lS0zJw2L5KLrXQ55RVgP4ISMMety/k0AwKZFNTPmLdzeRN0FVvuJIZPp+skrPvdt2I
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0kfTVYdQ0hCQ0xLH0JKTUNWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a93e3a5d73a03afkunm65699807
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nj46HBw5PDIKKgg1ThwIMSgP
-	TiEKCkNVSlVKTEhPTUJKSkpMQkJCVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFDSUI3Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=QvguwkaRAR+DxhHrWtFUyQq5fDOxONOwftlH9eTUC3KB/+D29ccZfPKoN+FX9tLmHZzUwDQjhnx5JvgqYSLv219I+keluYqIaY7e4yCUh3IpPO8QPI/ozAtd5kVmZKtFN7C+VzZLrZB1JY1Ic+lFoquYvW2QrAdbLmxDH14uoGc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=Xsz5HN/Gm6vz86vevKnGFWkVhhUxca+JtK1d2I18t4M=;
-	h=date:mime-version:subject:message-id:from;
+Message-ID: <662c9716.a714.193e3b15aac.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:iigvCgD3f88fTGVn9wlFAA--.16687W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqQW7XmdlQ8qU3gABsJ
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-Add the compatible string for the rk3562 SoC.
-
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
----
-
- Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-index 6a23d845f1f2..80a2b1934849 100644
---- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-@@ -44,6 +44,7 @@ properties:
-       - rockchip,rk3328-pinctrl
-       - rockchip,rk3368-pinctrl
-       - rockchip,rk3399-pinctrl
-+      - rockchip,rk3562-pinctrl
-       - rockchip,rk3568-pinctrl
-       - rockchip,rk3576-pinctrl
-       - rockchip,rk3588-pinctrl
--- 
-2.25.1
-
+CnBpbmcKCkF0IDIwMjQtMDktMjUgMDQ6MzM6MzcsICJSb2IgSGVycmluZyAoQXJtKSIgPHJvYmhA
+a2VybmVsLm9yZz4gd3JvdGU6Cj4KPk9uIEZyaSwgMjAgU2VwIDIwMjQgMTc6NDk6NDAgKzA4MDAs
+IEFuZHkgWWFuIHdyb3RlOgo+PiBGcm9tOiBBbmR5IFlhbiA8YW5keS55YW5Acm9jay1jaGlwcy5j
+b20+Cj4+IAo+PiBKdXN0IGxpa2UgUkszNTg4LCBSSzM1NzYgaXMgY29tcGF0aWJsZSB0byB0aGUg
+ZXhpc3RpbmcgcmszNTY4Cj4+IGJpbmRpbmcuCj4+IAo+PiBTaWduZWQtb2ZmLWJ5OiBBbmR5IFlh
+biA8YW5keS55YW5Acm9jay1jaGlwcy5jb20+Cj4+IC0tLQo+PiAKPj4gIERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9pb21tdS9yb2NrY2hpcCxpb21tdS55YW1sIHwgMSArCj4+ICAx
+IGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKPj4gCj4KPkFja2VkLWJ5OiBSb2IgSGVycmlu
+ZyAoQXJtKSA8cm9iaEBrZXJuZWwub3JnPgo+Cg==
 
