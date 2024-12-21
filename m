@@ -1,196 +1,269 @@
-Return-Path: <devicetree+bounces-133255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B979FA0DD
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 15:11:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C057C9FA149
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 16:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D4B5169B17
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 14:11:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CF6516939C
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 15:18:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621A21F427B;
-	Sat, 21 Dec 2024 14:10:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 032701BCA0F;
+	Sat, 21 Dec 2024 15:18:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="sElu2JSO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867212E64A;
-	Sat, 21 Dec 2024 14:10:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BEBC1FC0F4
+	for <devicetree@vger.kernel.org>; Sat, 21 Dec 2024 15:18:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734790259; cv=none; b=uDxeD3w/IXqzzD2icyxTAuQ3emsitVs2sHJ6Ae+L7eeEuenD/ulnQmVdJvPztn4WGdSYaZgkx8blbcS1+maHKu8ztgRirOeUWtCHPa9Adiqovhvb5qPoZs8X2XgAxXWwItYACHiTCD9LokMm/9jMJrKFuqNQM/9lvNwTywx/j6U=
+	t=1734794289; cv=none; b=jrugWUvK0rZ/TH8wg+UOh2KbupOu8eyR8rGIFRMeDpalyQjOe2hykrReb2CO7KdxVrX3h3hzByLWsD5F04xvs/T+MOeLUL8crZQ+AL35SvFek8M6rAuszDcoA05C8WEFhWrK6+fF0brTcuP7IH28YK+7ezNJAbCkSCAqQ8M6fyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734790259; c=relaxed/simple;
-	bh=nGWeQg8S6y6shLHbmW3aMKeXpkYiYJxrmAinLDsKRyY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WU1sFUVc8TS1ZZ5w/Aq1sE9ceRo3PzZoA7wR2S/0DVA01PtNs8ZS1Mg5qq/IPooUh96MLxf+j0gjAVrIAmOja/gSDALXEaadzVpipTJ6Vy3tDZayvliCnr2iwAphUkxmVgmdTGKCP48uKHqTUufWCNKDf1k3euGVAlFm3ZmORLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3eb9101419cso1522082b6e.0;
-        Sat, 21 Dec 2024 06:10:57 -0800 (PST)
+	s=arc-20240116; t=1734794289; c=relaxed/simple;
+	bh=S8t7lDXUh68YdGT7nRMTtHKmcqRZjrf5V/ri56kn+XI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UcI86e84dVdMId1lk3dtBCcKpzPbhZXyqKSsTB4qZLm9KctMcEv5mXp0vNvX4ypFM+XaDwfGwchGyp4pv1O49OzVAMJsgav3c2nTsJT/zuxuYt9J6q+VSPOcsRM1ykHCn29LHaCFFebVaIInrRW7rrAOJOciKqbIO6/ccyjZ/vg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai; spf=none smtp.mailfrom=edgeble.ai; dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b=sElu2JSO; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=edgeble.ai
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-728ea1573c0so2467848b3a.0
+        for <devicetree@vger.kernel.org>; Sat, 21 Dec 2024 07:18:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1734794287; x=1735399087; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bl4pEkJ+Bsnqat0NylNt98XfhDmcqD+zuY6vbF8ltmo=;
+        b=sElu2JSO86zrLoU9fsFY+8z5EUaY6NEkmVmxNUUXhBc7FLvRgMA8U3TZnd3QclTVTk
+         eifuH5YNc53nsgdT3QAUJ5s/i9rBX1ivwMKSYA+z8Yxeze3jspUZYjPknnHJs8h7R2DO
+         2nWMKmORiiP/M1/3nIxjzamHnz4ao4QSIAkpEznYB62vGHgNQXglAmYBCvulwUnCVy2U
+         uz6sHo/aljDJRU2blhlCrgjF/C6MCqZmdGfr/qH+pdvplkClFAeXKes1J1GqpYD5uML4
+         t7/e1IYjbmrhK4U6/SRY9dPcOSoBW0AklKO5FXnS0hWBq49Mr+alAdJzcvqrhgKBtduo
+         yRvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734790256; x=1735395056;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GpBog1LJdntPo57cyHdGkHydPz04prdcJbkki5MzpWU=;
-        b=TpWjqCsCmVQlHcmwTeicWaB1bGRUpy9Oi35DrzlHLfkoEF8h/+p4znIMe+MXbek/aJ
-         A30tDToASNtw6unuXN/XZR1wOw/bPAmFq2TMg+IlKY3YSjSWK+mnkoaphPX1vnP9599N
-         wUMerZlMbds7bHuKCSn7BzZdaajBvgnaTdDA3ulTNiqDEVTVUZVDZ4buJpQdzuHswjBk
-         3I9HM/0btUiiDwijEV+vSEc/aeR1W3ATu3hZS/ayMImrKdusmRFlvAI2ry9XUXZ9iLAB
-         r8Ztbtk6QuzB6xXKSFg60RsObz1vjD0KwIFPQlOMqsw3zu+V4DPqSdGkQcQKKcp3wudn
-         PH/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU8ZSN0l/FNIiORiuNvvy3KQRzYb9ZBpFCQeFHqSl2fSJ6Wr+OW/eTAJ2N96xr0K4aPOpNEuAfB8dRNq9ke@vger.kernel.org, AJvYcCUBlmTusJsjqlliT1kVkqQKqBa6s1nHP9iysYQtSGu6ToBqLbm2sReOy8LGF8+tzF99XtZ8B1JfLVA=@vger.kernel.org, AJvYcCUKo+hJqR4NBH9a9hpFTDgQLWXDgmlRq3vs04JblGMFdeUZMc1dUepyjJsqYZiddBzWdTx5urW3aClvsjak@vger.kernel.org, AJvYcCV14ShbOzS4bKriNt5asOm+ndEZvn6dQfp/sE0DfUW6lgEOzuDCNKE3XqN9WryzYAqZ7PYwI1WuNFYAZw==@vger.kernel.org, AJvYcCVQTr2t0sITj8Y/MBfZk89Q/HMqvl8WAd9KfN5J6phDx1vKAW3VwvRynualpf5YCHv7HHpTYuvUu6mV3Q==@vger.kernel.org, AJvYcCVYeQ8Efrz9JaLWmOuERvHmRHZaLcjFGQdOnz6EDS0QjXwRfGH1bB+emoacM2oR0sjhwyw5BPLI/KzDmA==@vger.kernel.org, AJvYcCVr1QJv7ra5wIBAD0BpJUXHWFuol5feRflZDgCrYGmTj5zB7tt2WGMoox0uqCB9DmXntbgxL2Vdx2r0@vger.kernel.org, AJvYcCW8rzViTQOEtl7tXuBcGpTllGifmP5AhHxAygpyeL9laxX/ofWd9M7MBgMcGAWOgaoFchoTaysm2Ig=@vger.kernel.org, AJvYcCWQJCMnCiq3rMTQCTfD4Met3n/Ky+1yH3U5S4m5EO+ctS6W+Yw2gzDgds/aZr5DNddv7oRULKOTsz5/+5E=@vger.kernel.org, AJvYcCWTcptxjWrekurmlfnHJoUA
- kOKmqqKndGU8LoVbD7WScKp+F4kiF5BXqrhIFsGpXg0KEE0AsAcp+R9UsOIy1I0=@vger.kernel.org, AJvYcCX9K+h4NnX5LMuWxMQWvwYQjMJhOTA3iCsdAXrc2/d8qYaoxzjMg6jVAoGWiJmc3LeAoNxXvJUgJaKSPQ==@vger.kernel.org, AJvYcCXWUY39GeoYz6s4VTnTTwkg4mgRuFQLW+fVQnWJfA2hJts4kRHZYK+0u0LUp8rCXJOOTxMn/fFUXusi@vger.kernel.org, AJvYcCXyHUl/pvPtdcg16hb+5sjjcIBcsYLI0bJ+FvENJBMcw8LhTfasiCep4NtlswPe+KqchfmK2tpZlJtnxw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3XjopM29SS5z3fiKI3gKgO4WfZ/Dr0yheM2nZ/25pCQi8TvY5
-	s/H9k3NwMtnLgb6xAt4xs8FVFduau1cEm1Vxl+bEK4g86NRGHAQy829BODNZ
-X-Gm-Gg: ASbGncvEJV2phJivv+o9cKVa3uv3hjuTHoUfRvGE8LeTL/aJyGrmGxNpzcbHIi1tOHc
-	Y/WOrgCZZPg2cKfHw78C9EU1PtZv0hPvnE3hk60gK6JYN3v6WEaTkA1VduSYL76k0N4gHqBZIyc
-	MSIplGxp/ExGjY/q05AKkNh4EXSeyXR9z5LMntZFeSD3b+fWYCNwpSNnFV0yny6tnDbscI2mzDY
-	MJ4wEjp12ALONgK61NrBU+qgDqNvdRJwVemiAoAcAUdb5DzXBcWo7kZL9NA0ts4E5rh0WwY7IN9
-	eY3r7xaSyDcFQceKVbyCS8o=
-X-Google-Smtp-Source: AGHT+IH318VFJbILSf0sP1FE+WYJEi2wjNgqOClVq+hkCsZd7dK/+ayurqjnTjV9+mscjiAoUQP/0w==
-X-Received: by 2002:a05:6808:3a0d:b0:3ea:64cc:4954 with SMTP id 5614622812f47-3ed890b8703mr4298465b6e.35.1734790256222;
-        Sat, 21 Dec 2024 06:10:56 -0800 (PST)
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com. [209.85.167.176])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3ece2704181sm1294420b6e.54.2024.12.21.06.10.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 Dec 2024 06:10:55 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3eb7f3b1342so1200263b6e.1;
-        Sat, 21 Dec 2024 06:10:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU5qjHC5OBeYp+fsU0OpwvBxiF8LJfAk0lpSSUsYAafpvA0T4jbtje9lVOviXu9Byx2wdSwbWky+X9xw5U=@vger.kernel.org,
- AJvYcCUAAGPX59ZfNvS16TjaiWtvAiE6M4FvRY6I7muA1i84i9BfENEgTm0CVyUQKmSedsifjBVZ5z4Q8nYxkA==@vger.kernel.org,
- AJvYcCUt8dhDHAOyzYgbuQo3CW4GnaDRlaLYQmu+vyva8ngINpYsg65wGnqlrNa4n4WRJbzjMD6ZhJBj61WKMQ==@vger.kernel.org,
- AJvYcCVK4lc15WqbGR9I1sOeLS1EfwTbOlvdDss78J2CUV4RAOF5s/CIj715yz2Ycl0dsRcIoQdPhmtfsINl@vger.kernel.org,
- AJvYcCVhk83g33hLQoaYdKuSQcAqT7DxCHQpxVF+L7bNFmns1K3Iwm+BWJiZQcIhHYa4nHkS2MfyGHkTjyzwLmkjY4U=@vger.kernel.org,
- AJvYcCW9K7C/JV0mbdHwZew7jwdlq0wr+2Ec4hil0cOUQzC2GgYS9auSYMMJjZ9DAIxq2DeLDRdVmioDXXdNR/FF@vger.kernel.org,
- AJvYcCWAT09k1OyRwzr+h4z+/VDVf+6LMYXGHloAQ02vdGbEIn/JgltizZ/L32m57B0g+OMGX5BbsW52PK4LBU78@vger.kernel.org,
- AJvYcCWLC7QGeElx3vXhxiOH5eUqzJ4mTk0md6HBC0lJY5phbzz4jHuZTWJPfmBAmgBZFAaV6yobf3ybtQs=@vger.kernel.org,
- AJvYcCWLSRCinRGZVH2gwEeKhVH132l7KBglAz0o0ZCXIjEzrVF4MeYzHq6JXwidhETOUthgKUrqmx/3U3DejQ==@vger.kernel.org,
- AJvYcCWgnIdgb0r3xvJvUQD2ACtDy8ZU4bbo4tScQyxxSanyuTo5OnM2SP7o6okoUGvduodBYsey6wF9udw=@vger.kernel.org,
- AJvYcCWk0q+dZBYwtXS4zPSOM/tpZbKgb3CeYvoQg890rGZkpusUi7yFyqGaVkEHKqtJT8PKzFH/AupTW1kNjA==@vger.kernel.org,
- AJvYcCWsVsySwKoxSiCZ7/hlAMfQ7Sr6pdToHkPEA4VtjBYQsbpAfYsdD5ic4pSIj1tmJ+gavwmyGtgWWjlS@vger.kernel.org,
- AJvYcCXFzo40MdKRZ0nH+B7H2KeC4Cw5gBcG8E+pJGPBNWLWTRg/GLVaMGYQTpEWNqbQ0lbWVdJ7NW+umeQ3jQ==@vger.kernel.org
-X-Received: by 2002:a05:6102:cc8:b0:4af:ef85:dae4 with SMTP id
- ada2fe7eead31-4b2cc313a2cmr7064126137.5.1734789822327; Sat, 21 Dec 2024
- 06:03:42 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734794287; x=1735399087;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bl4pEkJ+Bsnqat0NylNt98XfhDmcqD+zuY6vbF8ltmo=;
+        b=YqpHSPfgu48EKwSnWamUYT6rbYZgmNq4Cc3aCjRoEqjelRVXYi0Wc7HAf8cfwpgXPz
+         42nW/iZtrvDSlLb+BIAluptaeGC5O4ZjsOnlT7Jz7RYIf/pvSjfFsAX0zEPMxa8bUvjM
+         +hZ93EqQ+R4DVHzPS/qrwxv24kXCq8bi9K1/WUbOP+reXDPMaouGVA1AzghsMLxZ8cH4
+         2drbQAED0mkMn9l0j+uYeLjQmEea7G9h0vB5Xs3hXvAtL7f/61hxpPNNbjBSfjesDALE
+         V+NArAg7POgGdBeYrmxNPEu3sN4IclVRD3nAjIyAicRMJ7bCI/r4tqA8ssEA2sNz4OFh
+         8CNw==
+X-Forwarded-Encrypted: i=1; AJvYcCVvX3uUaS2v4ie7V07fh9qWUASdXw9DiuuJ/Iwv8NdgjeY5zE/QCxOUycNsTcks7yrxJTTE2YL7pyOx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFKinBLOePEkGPFdCuT2AiURdFFkPxUC1DNjiT4UFyWAYGoBpA
+	R8FEE5sZhAy2dkRT90M7usSeFk+uYKqX99Iab21jifGO3xi0i6+m3msRfJ5xXtY=
+X-Gm-Gg: ASbGncunaVT35Le81ahIWGLnJgGBrNNjwnf0LptopRnIDQ9aLo1u8ae06wJ0n8PE4yq
+	VYUavrd3QHbIcPzIpZKryHrnc+6t8tmRvv/aIzC1n2RvF+K1hwgFNzIIWG/dqEPPOTfvriP5QNQ
+	XO+Ycs21Oegx8hPW5e5ZW5q6hi9RfQRx7pVD0EXqB2BNWDBWaaszCcZhltCOM3yU8+zQ4AR+LLQ
+	f3DmptlGtTiot8ocDWVZnxaY5LHp0+Fxo+hLtYUsipQux5DpS7QwVCmoikCLDymDfj6
+X-Google-Smtp-Source: AGHT+IHaN8Ws7cNJxi+W+zqLPd3EnDfDJJBxBjqb4+tAZwpMW1/iij7gkAWdz4uBBQP31s/KRu8lVg==
+X-Received: by 2002:a05:6a00:1411:b0:725:f376:f4f4 with SMTP id d2e1a72fcca58-72abde01aa8mr9248366b3a.13.1734794287425;
+        Sat, 21 Dec 2024 07:18:07 -0800 (PST)
+Received: from tops-ThinkPad-E14-Gen-5.. ([183.82.41.52])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad90b949sm4877522b3a.176.2024.12.21.07.18.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Dec 2024 07:18:07 -0800 (PST)
+From: Jagan Teki <jagan@edgeble.ai>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Jagan Teki <jagan@edgeble.ai>,
+	Mitchell Ma <machuang@radxa.com>
+Subject: [PATCH] arm64: dts: rockchip: Fix PCIe3 handling for Edgeble-6TOPS Modules
+Date: Sat, 21 Dec 2024 20:47:58 +0530
+Message-Id: <20241221151758.345257-1-jagan@edgeble.ai>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241221104304.2655909-1-guoweikang.kernel@gmail.com>
-In-Reply-To: <20241221104304.2655909-1-guoweikang.kernel@gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Sat, 21 Dec 2024 15:03:30 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXbB-ksxZ9+YRz86wazPGSM09ZFX7JZoyH--=UDndS=TQ@mail.gmail.com>
-Message-ID: <CAMuHMdXbB-ksxZ9+YRz86wazPGSM09ZFX7JZoyH--=UDndS=TQ@mail.gmail.com>
-Subject: Re: [PATCH v2] mm/memblock: Add memblock_alloc_or_panic interface
-To: Guo Weikang <guoweikang.kernel@gmail.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>, 
-	Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>, Christoph Lameter <cl@linux.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Sam Creasey <sammy@sammy.net>, 
-	Huacai Chen <chenhuacai@kernel.org>, Will Deacon <will@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>, 
-	rafael.j.wysocki@intel.com, Palmer Dabbelt <palmer@rivosinc.com>, 
-	Hanjun Guo <guohanjun@huawei.com>, Easwar Hariharan <eahariha@linux.microsoft.com>, 
-	Johannes Berg <johannes.berg@intel.com>, Ingo Molnar <mingo@kernel.org>, 
-	Dave Hansen <dave.hansen@intel.com>, Christian Brauner <brauner@kernel.org>, 
-	KP Singh <kpsingh@kernel.org>, Richard Henderson <richard.henderson@linaro.org>, 
-	Matt Turner <mattst88@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	WANG Xuerui <kernel@xen0n.name>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>, Stafford Horne <shorne@gmail.com>, 
-	Helge Deller <deller@gmx.de>, Nicholas Piggin <npiggin@gmail.com>, 
-	Christophe Leroy <christophe.leroy@csgroup.eu>, Naveen N Rao <naveen@kernel.org>, 
-	Madhavan Srinivasan <maddy@linux.ibm.com>, Geoff Levand <geoff@infradead.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
-	Alexander Potapenko <glider@google.com>, Andrey Konovalov <andreyknvl@gmail.com>, 
-	Dmitry Vyukov <dvyukov@google.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
-	Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
-	Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger <borntraeger@linux.ibm.com>, 
-	Sven Schnelle <svens@linux.ibm.com>, Yoshinori Sato <ysato@users.sourceforge.jp>, 
-	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	Andreas Larsson <andreas@gaisler.com>, Richard Weinberger <richard@nod.at>, 
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>, Johannes Berg <johannes@sipsolutions.net>, 
-	Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, linux-alpha@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
-	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org, 
-	linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	linux-riscv@lists.infradead.org, kasan-dev@googlegroups.com, 
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
-	sparclinux@vger.kernel.org, linux-um@lists.infradead.org, 
-	linux-acpi@vger.kernel.org, xen-devel@lists.xenproject.org, 
-	linux-omap@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-mm@kvack.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Guo,
+The Edgeble 6TOPS modules has configured the PCIe3.0 with
+- 2 lanes on Port1 of pcie3x2 controller for M.2 M-Key
+- 2 lanes on Port0 of pcie3x4 controller for B and E-Key
 
-On Sat, Dec 21, 2024 at 11:43=E2=80=AFAM Guo Weikang
-<guoweikang.kernel@gmail.com> wrote:
-> Before SLUB initialization, various subsystems used memblock_alloc to
-> allocate memory. In most cases, when memory allocation fails, an immediat=
-e
-> panic is required. To simplify this behavior and reduce repetitive checks=
-,
-> introduce `memblock_alloc_or_panic`. This function ensures that memory
-> allocation failures result in a panic automatically, improving code
-> readability and consistency across subsystems that require this behavior.
->
-> Signed-off-by: Guo Weikang <guoweikang.kernel@gmail.com>
+The, current DT uses opposite controller nodes that indeed uses
+incorrect reset, regulator nodes.
 
-Thanks for your patch!
+The configuration also uses refclk oscillator that need to enable
+explicitly in DT to avoid the probe hang on while reading DBI.
 
-> --- a/include/linux/memblock.h
-> +++ b/include/linux/memblock.h
-> @@ -417,6 +417,20 @@ static __always_inline void *memblock_alloc(phys_add=
-r_t size, phys_addr_t align)
->                                       MEMBLOCK_ALLOC_ACCESSIBLE, NUMA_NO_=
-NODE);
->  }
->
-> +static __always_inline void *__memblock_alloc_or_panic(phys_addr_t size,
-> +                                                      phys_addr_t align,
-> +                                                      const char *func)
-> +{
-> +       void *addr =3D memblock_alloc(size, align);
-> +
-> +       if (unlikely(!addr))
-> +               panic("%s: Failed to allocate %llu bytes\n", func, size);
-> +       return addr;
-> +}
+So, this patch fixes all these essential issues and make this PCIe work
+properly.
 
-Please make this out-of-line, and move it to mm/memblock.c, so we have
-just a single copy in the final binary.
+Issues fixed are,
+- Fix the associate controller nodes for M and B, E-Key
+- Fix the reset gpio handlings
+- Fix the regulator handlings and naming convensions
+- Support pcie_refclk oscillator
 
-> +
-> +#define memblock_alloc_or_panic(size, align)    \
-> +        __memblock_alloc_or_panic(size, align, __func__)
-> +
->  static inline void *memblock_alloc_raw(phys_addr_t size,
->                                                phys_addr_t align)
->  {
-> diff --git a/init/main.c b/init/main.c
+Fixes: 92eaee21abbd ("arm64: dts: rockchip: Add Edgeble NCM6A-IO M.2
+B-Key, E-Key")
+Fixes: 5d85d4c7e03b ("arm64: dts: rockchip: Add Edgeble NCM6A-IO M.2
+M-Key")
+Reported-by: Mitchell Ma <machuang@radxa.com>
+Co-developed-by: Mitchell Ma <machuang@radxa.com>
+Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+---
+ .../dts/rockchip/rk3588-edgeble-neu6a-io.dtsi | 81 ++++++++++++++-----
+ 1 file changed, 59 insertions(+), 22 deletions(-)
 
-Gr{oetje,eeting}s,
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
+index 05ae9bdcfbbd..7125790bbed2 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
+@@ -10,6 +10,15 @@ chosen {
+ 		stdout-path = "serial2:1500000n8";
+ 	};
+ 
++	/* Unnamed gated oscillator: 100MHz,3.3V,3225 */
++	pcie30_port0_refclk: pcie30_port1_refclk: pcie-oscillator {
++		compatible = "gated-fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
++		clock-output-names = "pcie30_refclk";
++		vdd-supply = <&vcc3v3_pi6c_05>;
++	};
++
+ 	vcc3v3_pcie2x1l0: regulator-vcc3v3-pcie2x1l0 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc3v3_pcie2x1l0";
+@@ -19,26 +28,26 @@ vcc3v3_pcie2x1l0: regulator-vcc3v3-pcie2x1l0 {
+ 		vin-supply = <&vcc_3v3_s3>;
+ 	};
+ 
+-	vcc3v3_pcie3x2: regulator-vcc3v3-pcie3x2 {
++	vcc3v3_bkey: regulator-vcc3v3-bkey {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+ 		gpios = <&gpio2 RK_PC4 GPIO_ACTIVE_HIGH>; /* PCIE_4G_PWEN */
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&pcie3x2_vcc3v3_en>;
+-		regulator-name = "vcc3v3_pcie3x2";
++		pinctrl-0 = <&pcie_4g_pwen>;
++		regulator-name = "vcc3v3_bkey";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		startup-delay-us = <5000>;
+ 		vin-supply = <&vcc5v0_sys>;
+ 	};
+ 
+-	vcc3v3_pcie3x4: regulator-vcc3v3-pcie3x4 {
++	vcc3v3_pcie30: vcc3v3_pi6c_05: regulator-vcc3v3-pi6c-05 {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+ 		gpios = <&gpio2 RK_PC5 GPIO_ACTIVE_HIGH>; /* PCIE30x4_PWREN_H */
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&pcie3x4_vcc3v3_en>;
+-		regulator-name = "vcc3v3_pcie3x4";
++		pinctrl-0 = <&pcie30x4_pwren_h>;
++		regulator-name = "vcc3v3_pcie30";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		startup-delay-us = <5000>;
+@@ -98,24 +107,52 @@ &pcie2x1l0 {
+ };
+ 
+ &pcie30phy {
++	data-lanes = <1 1 2 2>;
++	/* separate clock lines from the clock generator to phy and devices */
++	rockchip,rx-common-refclk-mode = <0 0 0 0>;
+ 	status = "okay";
+ };
+ 
+-/* B-Key and E-Key */
++/* M-Key */
+ &pcie3x2 {
++	/*
++	 * The board has a "pcie_refclk" oscillator that needs enabling,
++	 * so add it to the list of clocks.
++	 */
++	clocks = <&cru ACLK_PCIE_2L_MSTR>, <&cru ACLK_PCIE_2L_SLV>,
++		 <&cru ACLK_PCIE_2L_DBI>, <&cru PCLK_PCIE_2L>,
++		 <&cru CLK_PCIE_AUX1>, <&cru CLK_PCIE2L_PIPE>,
++		 <&pcie30_port1_refclk>;
++	clock-names = "aclk_mst", "aclk_slv",
++		      "aclk_dbi", "pclk",
++		      "aux", "pipe",
++		      "ref";
++	num-lanes = <2>;
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pcie3x2_rst>;
+-	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>; /* PCIE30X4_PERSTn_M1_L */
+-	vpcie3v3-supply = <&vcc3v3_pcie3x2>;
++	pinctrl-0 = <&pcie30x2_perstn_m1_l>;
++	reset-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>; /* PCIE30X2_PERSTn_M1_L */
++	vpcie3v3-supply = <&vcc3v3_pcie30>;
+ 	status = "okay";
+ };
+ 
+-/* M-Key */
++/* B-Key and E-Key */
+ &pcie3x4 {
++	/*
++	 * The board has a "pcie_refclk" oscillator that needs enabling,
++	 * so add it to the list of clocks.
++	 */
++	clocks = <&cru ACLK_PCIE_4L_MSTR>, <&cru ACLK_PCIE_4L_SLV>,
++		 <&cru ACLK_PCIE_4L_DBI>, <&cru PCLK_PCIE_4L>,
++		 <&cru CLK_PCIE_AUX0>, <&cru CLK_PCIE4L_PIPE>,
++		 <&pcie30_port0_refclk>;
++	clock-names = "aclk_mst", "aclk_slv",
++		      "aclk_dbi", "pclk",
++		      "aux", "pipe",
++		      "ref";
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pcie3x4_rst>;
+-	reset-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>; /* PCIE30X2_PERSTn_M1_L */
+-	vpcie3v3-supply = <&vcc3v3_pcie3x4>;
++	pinctrl-0 = <&pcie30x4_perstn_m1_l>;
++	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>; /* PCIE30X4_PERSTn_M1_L */
++	vpcie3v3-supply = <&vcc3v3_bkey>;
+ 	status = "okay";
+ };
+ 
+@@ -127,20 +164,20 @@ pcie2_0_rst: pcie2-0-rst {
+ 	};
+ 
+ 	pcie3 {
+-		pcie3x2_rst: pcie3x2-rst {
+-			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
++		pcie30x2_perstn_m1_l: pcie30x2-perstn-m1-l {
++			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
+-		pcie3x2_vcc3v3_en: pcie3x2-vcc3v3-en {
+-			rockchip,pins = <2 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
++		pcie_4g_pwen: pcie-4g-pwen {
++			rockchip,pins = <2 RK_PC4 RK_FUNC_GPIO &pcfg_pull_down>;
+ 		};
+ 
+-		pcie3x4_rst: pcie3x4-rst {
+-			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
++		pcie30x4_perstn_m1_l: pcie30x4-perstn-m1-l {
++			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
+-		pcie3x4_vcc3v3_en: pcie3x4-vcc3v3-en {
+-			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
++		pcie30x4_pwren_h: pcie30x4-pwren-h {
++			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_down>;
+ 		};
+ 	};
+ 
+-- 
+2.34.1
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
