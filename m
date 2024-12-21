@@ -1,121 +1,113 @@
-Return-Path: <devicetree+bounces-133243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C24619FA079
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 12:45:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E65F9FA083
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 13:24:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68ED07A29A5
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 11:44:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C8691679C3
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 12:24:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 741591F2C5F;
-	Sat, 21 Dec 2024 11:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BDD1EC4F9;
+	Sat, 21 Dec 2024 12:24:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="VnF7EWmP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cQLPYFJn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B541F37BA;
-	Sat, 21 Dec 2024 11:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809855B1FB;
+	Sat, 21 Dec 2024 12:24:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734781489; cv=none; b=VFnOlvWJ3sfmPE95yxMX9tZi4VNXY+mKWPyB/fWoHRiKw02opG3ota3l387LNf5pNLj2Yx2j3yzdW1bUVnpXq082UoKIulauXTTQhDoCUaJRVcF+x3mVFpjz30W7kOQL43cgek2zUMaNnYojmXH6dgfFXirUJjdk5JKxSGcHluI=
+	t=1734783873; cv=none; b=uGNHliP2ey8dRVwukiXE0LpZTTDiMOGKw+Dz0FcY2WSbI7NeKnLfCovaQINq/yoAps+RUADIfCECzi+R1uYYvsGCmQDPEkiSOrsBzIXY+QiOJD/NTO0Tkcgd8amZOcTBBgjdKyR5nXEk843XwJfsZiBb2c4YAzUJaT2WB8a9ono=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734781489; c=relaxed/simple;
-	bh=R7FCkY8zEpmlZAj2CWJmeEAToi5k5RHpTuix11/39P0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HG5kuCLFgSCSwHqTExPSgMj/+dwgoalKafYFM/OjwNl+2vyf3wdkPqzI0BKVqrOVg8wg8H84LiCS+7KwoGa4O708h66qE+gnAjJbIMPIjDwWvG1En0czWFvrGqOzNAQdF272tppUk2tsnXhSWQ9NwtiIgdO41d/FJ9H7DeqUsas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=VnF7EWmP; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=fN6Rx54yRPxE2G3ZsB46AH54lVE8HoSDT2so6fXpjXU=; b=VnF7EWmPljHM2HV4Y88liP28v7
-	ny6VH++PizzB1H2eiFSneQeyzBPsAGUhqmyfU+hYenzGLwzneb2Zz/UM/lFtFVsGlVsIT311CnO3e
-	SEwYmXUoznFDU93xAaHbkRCCtvdFhti9UEK5kJi5pLlat3H6Qm3mT7gfp9QcySynDM3pE+jIuU10e
-	Qs+BkE/MFhLT6Pea106YHpTDVqwEdn2r28PZwSGCqe8TR4mbSvmGwGLhCN7B+KFi7jcsRuHmmEPhu
-	Y+URbgMKpO/SXOqIIj+3s+VCk0zOY+q6gt5SEVI7DYnGXSlnnrfirPnW5f7vwC59rfdJhI7dr/AjR
-	CruSTuNw==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1tOxhN-002Qdw-10;
-	Sat, 21 Dec 2024 19:44:31 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 21 Dec 2024 19:44:30 +0800
-Date: Sat, 21 Dec 2024 19:44:30 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com,
-	Richard van Schagen <vschagen@icloud.com>
-Subject: Re: [PATCH v9 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
- engine support
-Message-ID: <Z2aqHmrVAm3adVG6@gondor.apana.org.au>
-References: <20241214132808.19449-1-ansuelsmth@gmail.com>
- <20241214132808.19449-4-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1734783873; c=relaxed/simple;
+	bh=9uIF7zK9EIOCaX4c4DhQUzEU2qjXi64hgZtJIRoy7w4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ey5lhsw9PK9py88Y3+VJWWIRn0O3pNpsNwpn/JcOwsDWu5Us/0cF9ggNBxPCrVqQeSX71KWWQm+W1BgZdL+8TmJsGZ5ID0GCMc748UPqRI5F319zWI9xLou302P0Loyjbjc7CXstqGQI8q4pRHn5MsnBKsuIJYGfEr59tZjYv2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cQLPYFJn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C364C4CECE;
+	Sat, 21 Dec 2024 12:24:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734783872;
+	bh=9uIF7zK9EIOCaX4c4DhQUzEU2qjXi64hgZtJIRoy7w4=;
+	h=From:Subject:Date:To:Cc:From;
+	b=cQLPYFJn14aDekkn/IySHjodQ/3mpGx/TrgGI1/UmttRsvUe1xFQqcjh5UbfPwZL0
+	 RihDU4F/U45HHHWy6KymTmAQttlS/zhJTq7L5h5nnrHFW7WkAzpjhQ5Prts2Natk0X
+	 HmJLmS4/RFhbBDtdi5EnD5O9SyMqcJQL/a8KawyRazMqOaeOsYaaFPBsLLuS/yCJuJ
+	 5DxcwCn/RuoZsbgLW4br4Y7Frj//UhzaQ8kFOR3A9Wihjs3LDk8VOCUauR5DAez44X
+	 nP+tA/6rkJGnNv+h+LXsHBKY/YcmB+EwGrXqbyn0ZK7kYTrkm4KnR/CLm99UOtI/FX
+	 cTgDNEhUfKblg==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/3] X1P42100 clock changes
+Date: Sat, 21 Dec 2024 13:24:08 +0100
+Message-Id: <20241221-topic-x1p4_clk-v1-0-dbaeccb74884@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241214132808.19449-4-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGizZmcC/x3MQQqAIBBA0avErBMaMYquEhFmUw2FiUYI4t2Tl
+ m/xf4JAninAUCXw9HLg2xZgXYE5tN1J8FoMspEKpUTx3I6NiOjUbK5TaLVunaKFemyhRM7TxvE
+ fjlPOH10LYp1gAAAA
+X-Change-ID: 20241221-topic-x1p4_clk-a4df74ebe815
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1734783869; l=1405;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=9uIF7zK9EIOCaX4c4DhQUzEU2qjXi64hgZtJIRoy7w4=;
+ b=a20sO02KdXStZ/KLhxPPUnHLn0mGb0PEy7G8q0++dKayjPP3O6HagWBRfxUhbcnCSQ65wJnjd
+ syd0r8/SZN7AA1UJcdr36vLjGmuJqbpMFQ+xLwEbHfboYP6iGUvo3uV
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Sat, Dec 14, 2024 at 02:27:54PM +0100, Christian Marangi wrote:
->
-> +	ahash_tfm = crypto_alloc_ahash(alg_name, 0, 0);
-> +	if (IS_ERR(ahash_tfm))
-> +		return PTR_ERR(ahash_tfm);
-> +
-> +	req = ahash_request_alloc(ahash_tfm, GFP_ATOMIC);
-> +	if (!req) {
-> +		ret = -ENOMEM;
-> +		goto err_ahash;
-> +	}
-> +
-> +	rctx = ahash_request_ctx_dma(req);
-> +	crypto_init_wait(&wait);
-> +	ahash_request_set_callback(req, CRYPTO_TFM_REQ_MAY_BACKLOG,
-> +				   crypto_req_done, &wait);
-> +
-> +	/* Hash the key if > SHA256_BLOCK_SIZE */
-> +	if (keylen > SHA256_BLOCK_SIZE) {
-> +		sg_init_one(&sg[0], key, keylen);
-> +
-> +		ahash_request_set_crypt(req, sg, ipad, keylen);
-> +		ret = crypto_wait_req(crypto_ahash_digest(req), &wait);
+X1P42100 is heavily based upon X1E80100, but ultimately it's a
+separate design.
 
-Sleeping in setkey is no longer allowed.  I don't think it's
-fatal yet because the main user driving this currently uses
-sync ahashes only.  But we should avoid this in all new driver
-code.
+From the clocks POV, we need a new GPUCC driver (though for ease of DT
+integration the bindings part is reused from X1E - perhaps that's
+something to look into on a broader scale, but that's not for today).
 
-Easiest fix would be to allocate a sync ahash:
+GCC also has some tiny changes, enough to warrant a new compatible,
+however none of them are big enough to require driver changes today.
+Bindings are adjusted so that if/when such need arises, it'll be
+easy to take care of.
 
-	ahash_tfm = crypto_alloc_ahash(alg_name, 0, CRYPTO_ALG_SYNC);
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Konrad Dybcio (3):
+      dt-bindings: clock: qcom,x1e80100-gcc: Add X1P42100
+      dt-bindings: clock: qcom,x1e80100-gpucc: Extend for X1P42100
+      clk: qcom: Add X1P42100 GPUCC driver
 
-Thanks,
+ .../bindings/clock/qcom,sm8450-gpucc.yaml          |   1 +
+ .../bindings/clock/qcom,x1e80100-gcc.yaml          |   6 +-
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/gpucc-x1p42100.c                  | 587 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,x1e80100-gpucc.h    |  13 +
+ 6 files changed, 616 insertions(+), 1 deletion(-)
+---
+base-commit: 8155b4ef3466f0e289e8fcc9e6e62f3f4dceeac2
+change-id: 20241221-topic-x1p4_clk-a4df74ebe815
+
+Best regards,
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
 
