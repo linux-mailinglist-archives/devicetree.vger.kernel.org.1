@@ -1,147 +1,359 @@
-Return-Path: <devicetree+bounces-133223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A56769F9DE8
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 03:19:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED42A9F9E5E
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 06:02:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA1B2188CD78
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 02:19:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0A221893105
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 05:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E4D53365;
-	Sat, 21 Dec 2024 02:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BFE31DF246;
+	Sat, 21 Dec 2024 05:01:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JeBb5LZa"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f4mxLxly"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 869FD282EE;
-	Sat, 21 Dec 2024 02:19:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57F2D7DA6D;
+	Sat, 21 Dec 2024 05:01:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734747567; cv=none; b=YxC0w9T3iVehndVa03mAPpib0MZIatpDYc0wJdqiSWfOOPteTwBhF87vca6XKyWzkaJikNzST1KB4s3gpAecQq511Kej5WYp5xlU/R0JvEH8tsPPISEbagrv/B2JzMUSB8yZMxbqK7mj4W56MJGHM+c1CDzBPwLGPknhfsjnL+4=
+	t=1734757319; cv=none; b=nTfi/kBnJvynme+6X3x/CD6RE90dmraw/bqJ8SecsDRpe5J8t2kt769j+5uKDTZfaqKcdyNXJYR9sF1V4iZpRA7wS+dE56qQJYZv81NVokQJalWY4TwUy7id27bBaGpgwVxm9aM25OJ4LCS/s6nNabuwXFd+NRzOJs/vzdKX4ak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734747567; c=relaxed/simple;
-	bh=MFHZW+DA4786+BTEsULshpDqQAEKKcniZjYuNTdQ4OY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iJI/0Df49IaaNbIiBsYN5NlJaumjE94hbBjwfykz75TzZurKxQ9RT5tQwLajWO4aFkODxORXPGSlxWZCYbteVkmmjulr1pEuqgJKK39uZFJ0YWzt5+xlOTuBoxpXnKilRnHCn6zne3TVvUOIpEYxIURII/vlSbPKGoQ4ePsgb5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JeBb5LZa; arc=none smtp.client-ip=209.85.161.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5f31f8f4062so1064388eaf.3;
-        Fri, 20 Dec 2024 18:19:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734747564; x=1735352364; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=99y9Gx8J1zxXZLANLv3H9dAUA86Q1c/9yGCSI8+WhU8=;
-        b=JeBb5LZaxgo5dGTKbtC+p4WovwcvyCKyJihGhs3T83Z/W1WSc1g50D7wzvatgPlxHQ
-         ccGF92uZY2ES26yPG8DV/IKlfCyDVbSczIjuAXswTeL8PcKQRxp74S45ShIRKmQ1seP4
-         JOy/FFuMq5qgkZC/iATqtocdnt5SRVIU30A85U/j4S2qoxWkdD0ONtZo2MCATnRSjg2/
-         /JpYwqGeD6cVELE2iuckFcjo1/SRw5pRwLxB/qD/cEW/R9VMUgSk79jsvg4JOIQhMAlv
-         cksC5wDpKYomo4zb0OvRwrqMPjVDEIVD9ggE69IPeFGO7XUKo6IsJ/2HYidxqWJaMVq/
-         n6QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734747564; x=1735352364;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=99y9Gx8J1zxXZLANLv3H9dAUA86Q1c/9yGCSI8+WhU8=;
-        b=bqk0ooKOEEd45zYVx4rdfR/X4r7mDbg5iG5A/dS/fv9zVJAEDk0XZzjh1bvTRT+LUL
-         UgqpquvY40vnVMXeCTz5NYu8qIzwJCgzHuOe/Duk81FFXjNRoJOZmbfsGAD2FDgcUhzM
-         MWmGh9YvyIR+qFjiGI7Z7noBME7S0FZ2x6JwxZaUE92Wn5R5geV/HMGb/2I/1c57Rll1
-         fHouwTVxaKsD0ibe+bnN2Mj3IqQI7S+ZdTFn8GGGOclinJXHxFy3yoNvbmkfYI78//aA
-         vkX5YneSeJWiaCNh+lUep6BQKcJ7tBPfJU7zIF630bd6lgMaStiL4K6+Fo5pPWA12ZzF
-         KKnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVmlZXVzNN5qpk7m/MOAFdYzDmZtniXXnBBs5J07DKzW0Jfv9cKST4klkOOTx2c6zQsn+/SZX5aphQ+@vger.kernel.org, AJvYcCXC4pZVZwiYs1F2aKe2zszojS+N/mqLQUUiKvDlSWESF2AiNad0AN88fVU4tlxro2v/9wYaZFSkC3cyEhQrV9/Ngxk=@vger.kernel.org, AJvYcCXni0gvOaGWzQDM9/3Q8doHsetPOjJWIkDnJ6aiVGcfPDxnlbGWalUy+ox2NqMYKPShgeRXLW1csuoHWxsw@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywgz70y/ixdthL0SONAJA04hoNwM0l7j3A0Q6vgzh2U5RsJ4nrv
-	8c4C5SdGTUu+komwJnfynjNJ97MB+rnDLuTRNqE+cHv8Miwfz/Yk2Ae4SaACi4JNEP8k2scPoN+
-	2mcF61K9ANwauST/b4n3MlREfusiAKT/X
-X-Gm-Gg: ASbGncuo3YJTPoywHO8SgezonB3gkrURIsmWJr6KvoT0Q+AZaVFUJsdeXArIiQtsJ3a
-	EtAbwdb53zrU+wO+kRCIJoAIK5OdYVLvJi8tz8Sc=
-X-Google-Smtp-Source: AGHT+IG9p6et1FMSkfp7z6yuIUHa7COZ33lKNlvvXbakxbyS8JSwHcROiF1O8vCBbstSe/5GDdun5/C+sJ69wPoxTcg=
-X-Received: by 2002:a05:6871:808c:b0:29e:6394:fd4a with SMTP id
- 586e51a60fabf-2a7fb00b537mr3084159fac.2.1734747564617; Fri, 20 Dec 2024
- 18:19:24 -0800 (PST)
+	s=arc-20240116; t=1734757319; c=relaxed/simple;
+	bh=+e5G9Vhxklyeb7e8RpX8psgBXg1VFuf0Q5qX8n6rWbk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N8wh0qtxH4/bYjwVL5FUv1HAMPxLd/s8Y6BZ/9nDYeTZ6ZhxjAwVin48cVw92k66iLfof9q8F4hSkWsSFwbpUxd0rk+BjTaTHlCZXEa8LgXMLOc8RGjm8cSinhVHgxLmIdC8dVjPS6b5RZ1YXPolRPhF/RKhsg4RzBh7/8vuAPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f4mxLxly; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1734757317; x=1766293317;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+e5G9Vhxklyeb7e8RpX8psgBXg1VFuf0Q5qX8n6rWbk=;
+  b=f4mxLxlyhTxJASMUvsxuEqf3kb5IYUbC82jNiTDmnNtooc04A70INcqE
+   GhaMF75lmWEZZ6jZaV0uVyQZG/FtGW0VQwaENxbgLILF9KR/e27ooGYDy
+   NthLlPGlDKnrHTT4VZ7qNTGcCqhCaqf8gzt7GodeB+AUsqxRQd95A0Jlh
+   EJ6WExYCOEvvfqX41/qc9iafDVv8jzNmRiBsgTYvngpGVQyhXb6n2X1Do
+   +8Mlh2WqJ8uWxfS2j1OaJthAIq2QQja2O06PhJw1jRltwiiTBXpAVqY/4
+   hstKwaHHOD+JCRxSfKyJBRbo5zJna4ypH9Sz9tC/Pck3lBihDx/u9oyRk
+   w==;
+X-CSE-ConnectionGUID: iFIx4Z5qT/C369jiiE8AMg==
+X-CSE-MsgGUID: nshWsu3rRMGwlriDxm1NDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="39087371"
+X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; 
+   d="scan'208";a="39087371"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2024 21:01:56 -0800
+X-CSE-ConnectionGUID: rn3jpK3MT5uZbVAWSQ1jNA==
+X-CSE-MsgGUID: bcG8Dh6fRES5x+i2gqaBbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; 
+   d="scan'208";a="98907630"
+Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 20 Dec 2024 21:01:54 -0800
+Received: from kbuild by a46f226878e0 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tOrce-0001vz-0I;
+	Sat, 21 Dec 2024 05:01:52 +0000
+Date: Sat, 21 Dec 2024 13:01:23 +0800
+From: kernel test robot <lkp@intel.com>
+To: Kent Libetario <Kent.Libetario@analog.com>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/2] drivers: hwmon: add driver for max42500
+Message-ID: <202412211209.zqypWgoc-lkp@intel.com>
+References: <20241220012003.9568-3-Kent.Libetario@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241217-acpm-v4-upstream-mbox-v5-0-cd1d3951fe84@linaro.org>
- <20241217-acpm-v4-upstream-mbox-v5-1-cd1d3951fe84@linaro.org> <ec3cdfd1-df7a-466c-8581-c9546ca6b089@linaro.org>
-In-Reply-To: <ec3cdfd1-df7a-466c-8581-c9546ca6b089@linaro.org>
-From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Fri, 20 Dec 2024 20:19:13 -0600
-Message-ID: <CABb+yY0rBzP8JPAik5aaXp6GivQKEf++sgiMM9fTPgd_5YXT1w@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: mailbox: add google,gs101-mbox
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org, 
-	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
-	daniel.lezcano@linaro.org, vincent.guittot@linaro.org, ulf.hansson@linaro.org, 
-	arnd@arndb.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241220012003.9568-3-Kent.Libetario@analog.com>
 
-On Thu, Dec 19, 2024 at 4:51=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
-.org> wrote:
->
-> Hi, Krzysztof, Jassi,
->
-> On 12/17/24 9:40 AM, Tudor Ambarus wrote:
->
-> > diff --git a/Documentation/devicetree/bindings/mailbox/google,gs101-mbo=
-x.yaml b/Documentation/devicetree/bindings/mailbox/google,gs101-mbox.yaml
->
-> cut
->
-> > +
-> > +  '#mbox-cells':
-> > +    description: |
-> > +      <&phandle type channel>
-> > +      phandle : label name of controller.
-> > +      type    : channel type, doorbell or data-transfer.
-> > +      channel : channel number.
-> > +
-> > +      Here is how a client can reference them:
-> > +      mboxes =3D <&ap2apm_mailbox DOORBELL 2>;
-> > +      mboxes =3D <&ap2apm_mailbox DATA 3>;
-> > +    const: 2
-> > +
->
-> Revisiting this, I think that for the ACPM interface mailbox client use
-> case, it would be better to introduce a mbox property where I reference
-> just the phandle to the controller:
->         mbox =3D <&ap2apm_mailbox>;
->
-> The ACPM interface discovers the mailbox channel IDs at runtime by
-> parsing SRAM. And all ACPM's channels are of type DOORBELL, thus
-> specifying the type and channel in DT is redundant.
->
-> It would require to extend a bit the mailbox core to provide a
-> mbox_request_channel_by_args() method. I already wrote a draft and
-> tested it.
->
-> Do you find the idea fine?
->
-Looking at v6, I prefer this version... maybe modify it a bit.
+Hi Kent,
 
-Even if you get the channel number at runtime, the type (Data vs
-Doorbell) is static and needs to be passed via DT. You may have
-  mbox =3D <&ap2apm_mailbox DOORBELL>;
-and in your custom of_xlate implementation return any available
-"virtual" channel. You could use 'void *data' in
-exynos_mbox_send_data() to pass the h/w channel-id, instead of the
-index of the virtual channel.
+kernel test robot noticed the following build warnings:
 
-Thanks.
+[auto build test WARNING on de076198d1e4934c5fc17aa52d5f1884f469ce1a]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Kent-Libetario/dt-bindings-hwmon-add-adi-max42500-yaml/20241220-092728
+base:   de076198d1e4934c5fc17aa52d5f1884f469ce1a
+patch link:    https://lore.kernel.org/r/20241220012003.9568-3-Kent.Libetario%40analog.com
+patch subject: [PATCH 2/2] drivers: hwmon: add driver for max42500
+config: x86_64-randconfig-r072-20241221 (https://download.01.org/0day-ci/archive/20241221/202412211209.zqypWgoc-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241221/202412211209.zqypWgoc-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412211209.zqypWgoc-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/hwmon/max42500.c:206: warning: Cannot understand  * @brief Read a raw value from a register.
+    on line 206 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:251: warning: Cannot understand  * @brief Write a raw value to a register.
+    on line 251 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:278: warning: Cannot understand  * @brief Update a register's value based on a mask.
+    on line 278 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:298: warning: Cannot understand  * @brief Set nominal voltage for VM1 to VM5.
+    on line 298 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:331: warning: Cannot understand  * @brief Get the status of the voltage monitor input.
+    on line 331 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:390: warning: Cannot understand  * @brief Set the overvoltage threshold of VM1 to VM5.
+    on line 390 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:418: warning: Cannot understand  * @brief Set the overvoltage threshold of VM6 and VM7.
+    on line 418 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:446: warning: Cannot understand  * @brief Set the undervoltage threshold of VM1 to VM5.
+    on line 446 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:473: warning: Cannot understand  * @brief Set the undervoltage threshold of VM6 and VM7.
+    on line 473 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:501: warning: Cannot understand  * @brief Get the FPS clock divider value.
+    on line 501 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:520: warning: Cannot understand  * @brief Get power-up timestamp for a specified voltage monitor input.
+    on line 520 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:551: warning: Cannot understand  * @brief Get power-down timestamp for a specified voltage monitor input.
+    on line 551 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:582: warning: Cannot understand  * @brief Enable/Disable watchdog
+    on line 582 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:604: warning: Cannot understand  * @brief 8-bit watchdog key computation.
+    on line 604 - I thought it was a doc line
+>> drivers/hwmon/max42500.c:630: warning: Cannot understand  * @brief Update the watchdog key based on the mode and current value.
+    on line 630 - I thought it was a doc line
+
+
+vim +206 drivers/hwmon/max42500.c
+
+   203	
+   204	/************************ Functions Definitions **************************/
+   205	/**
+ > 206	 * @brief Read a raw value from a register.
+   207	 * @return 0 in case of success, error code otherwise.
+   208	 */
+   209	static int max42500_reg_read(struct max42500_state *st,
+   210									u8 reg_addr, u8 *reg_data)
+   211	{
+   212		int ret;
+   213		u8 i2c_data[MAX42500_I2C_RD_FRAME_SIZE] = {0};
+   214		u8 bytes_num;
+   215		u8 pece_value;
+   216	
+   217		/* PEC is computed over entire I2C frame from first START condition */
+   218		i2c_data[0] = (st->client->addr << 1);
+   219		i2c_data[1] = reg_addr;
+   220		i2c_data[2] = (st->client->addr << 1) | 0x1;
+   221	
+   222		/* I2C write target address */
+   223		bytes_num = 1;
+   224	
+   225		ret = regmap_bulk_write(st->regmap, reg_addr, &i2c_data[1], bytes_num);
+   226		if (ret)
+   227			return ret;
+   228	
+   229		/* Change byte count if PECE is enabled (1-byte data. 1-byte PEC) */
+   230		bytes_num = (st->config->pece) ? 2 : bytes_num;
+   231	
+   232		ret = regmap_bulk_read(st->regmap, reg_addr, &i2c_data[3], bytes_num);
+   233		if (ret)
+   234			return ret;
+   235	
+   236		if (st->config->pece) {
+   237			/* Compute CRC over entire I2C frame */
+   238			pece_value = crc8(max42500_crc8, i2c_data,
+   239								(MAX42500_I2C_RD_FRAME_SIZE - 1), 0);
+   240	
+   241			if (i2c_data[4] != pece_value)
+   242				return -EIO;
+   243		}
+   244	
+   245		*reg_data = i2c_data[3];
+   246	
+   247		return 0;
+   248	}
+   249	
+   250	/**
+ > 251	 * @brief Write a raw value to a register.
+   252	 * @return 0 in case of success, negative error code otherwise.
+   253	 */
+   254	static int max42500_reg_write(struct max42500_state *st,
+   255									u8 reg_addr, u8 data)
+   256	{
+   257		u8 i2c_data[MAX42500_I2C_WR_FRAME_SIZE] = {0};
+   258		u8 bytes_num;
+   259		u8 pece_value;
+   260	
+   261		bytes_num = (st->config->pece) ? (MAX42500_I2C_WR_FRAME_SIZE - 1) : 2;
+   262		i2c_data[0] = (st->client->addr << 1);
+   263		i2c_data[1] = reg_addr;
+   264		i2c_data[2] = (u8)(data & 0xFF);
+   265	
+   266		pece_value = 0;
+   267		if (st->config->pece)
+   268			pece_value = crc8(max42500_crc8, i2c_data, bytes_num, 0);
+   269	
+   270		i2c_data[0] = i2c_data[1];
+   271		i2c_data[1] = i2c_data[2];
+   272		i2c_data[2] = pece_value;
+   273	
+   274		return regmap_bulk_write(st->regmap, reg_addr, i2c_data, bytes_num);
+   275	}
+   276	
+   277	/**
+ > 278	 * @brief Update a register's value based on a mask.
+   279	 * @return 0 in case of success, negative error code otherwise.
+   280	 */
+   281	static int max42500_reg_update(struct max42500_state *st,
+   282									u8 reg_addr, u8 mask, u8 data)
+   283	{
+   284		int ret;
+   285		u8 reg_data;
+   286	
+   287		ret = max42500_reg_read(st, reg_addr, &reg_data);
+   288		if (ret)
+   289			return ret;
+   290	
+   291		reg_data &= ~mask;
+   292		reg_data |= mask & data;
+   293	
+   294		return max42500_reg_write(st, reg_addr, reg_data);
+   295	}
+   296	
+   297	/**
+ > 298	 * @brief Set nominal voltage for VM1 to VM5.
+   299	 * @return 0 in case of success, negative error code otherwise.
+   300	 */
+   301	static int max42500_set_nominal_voltage(struct max42500_state *st,
+   302		enum max42500_vm_input vm_in, u8 voltage)
+   303	{
+   304		u8 reg_addr;
+   305	
+   306		switch (vm_in) {
+   307		case MAX42500_VM1:
+   308		case MAX42500_VM2:
+   309		case MAX42500_VM3:
+   310		case MAX42500_VM4:
+   311			if (voltage < MAX42500_MIN_VNOM ||
+   312				voltage > MAX42500_VNOM_MAX_VM1_VM4)
+   313				return -EINVAL;
+   314			reg_addr = MAX42500_REG_VIN1 + vm_in;
+   315			break;
+   316		case MAX42500_VM5:
+   317			if (voltage < MAX42500_MIN_VNOM ||
+   318				voltage > MAX42500_VNOM_MAX_VM5)
+   319				return -EINVAL;
+   320			reg_addr = MAX42500_REG_VIN5;
+   321			break;
+   322		default:
+   323			return -EINVAL;
+   324		}
+   325	
+   326		st->nominal_volt[vm_in] = voltage;
+   327		return max42500_reg_write(st, reg_addr, voltage);
+   328	}
+   329	
+   330	/**
+ > 331	 * @brief Get the status of the voltage monitor input.
+   332	 * @return 0 in case of success, negative error code otherwise.
+   333	 */
+   334	static int max42500_get_comp_status(struct max42500_state *st,
+   335										u8 vm_in, u8 *status)
+   336	{
+   337		int ret;
+   338		u8 reg_addr;
+   339		u8 vm_in_status;
+   340	
+   341		switch (vm_in % MAX42500_COMP_STAT_MAX) {
+   342		case MAX42500_COMP_STAT_OFF:
+   343			reg_addr = MAX42500_REG_STATOFF;
+   344			break;
+   345		case MAX42500_COMP_STAT_UV:
+   346			reg_addr = MAX42500_REG_STATUV;
+   347			break;
+   348		case MAX42500_COMP_STAT_OV:
+   349			reg_addr = MAX42500_REG_STATOV;
+   350			break;
+   351		default:
+   352			return -EINVAL;
+   353		}
+   354	
+   355		ret = max42500_reg_read(st, reg_addr, &vm_in_status);
+   356		if (ret)
+   357			return ret;
+   358	
+   359		switch (vm_in % MAX42500_VM_MAX) {
+   360		case MAX42500_VM1:
+   361			*status = (u8)FIELD_GET(BIT(MAX42500_VM1), vm_in_status);
+   362			break;
+   363		case MAX42500_VM2:
+   364			*status = (u8)FIELD_GET(BIT(MAX42500_VM2), vm_in_status);
+   365			break;
+   366		case MAX42500_VM3:
+   367			*status = (u8)FIELD_GET(BIT(MAX42500_VM3), vm_in_status);
+   368			break;
+   369		case MAX42500_VM4:
+   370			*status = (u8)FIELD_GET(BIT(MAX42500_VM4), vm_in_status);
+   371			break;
+   372		case MAX42500_VM5:
+   373			*status = (u8)FIELD_GET(BIT(MAX42500_VM5), vm_in_status);
+   374			break;
+   375		case MAX42500_VM6:
+   376			*status = (u8)FIELD_GET(BIT(MAX42500_VM6), vm_in_status);
+   377			break;
+   378		case MAX42500_VM7:
+   379			*status = (u8)FIELD_GET(BIT(MAX42500_VM7), vm_in_status);
+   380			break;
+   381		default:
+   382			return -EINVAL;
+   383		}
+   384		st->comp_status[vm_in] = *status;
+   385	
+   386		return 0;
+   387	}
+   388	
+   389	/**
+ > 390	 * @brief Set the overvoltage threshold of VM1 to VM5.
+   391	 * @return 0 in case of success, negative error code otherwise.
+   392	 */
+   393	static int max42500_set_ov_thresh1(struct max42500_state *st,
+   394		enum max42500_vm_input vm_in, u8 thresh)
+   395	{
+   396		if (thresh < MAX42500_MIN_THRESH_VM1_VM5 ||
+   397			thresh > MAX42500_MAX_THRESH_VM1_VM5)
+   398			return -EINVAL;
+   399	
+   400		switch (vm_in) {
+   401		case MAX42500_VM1:
+   402		case MAX42500_VM2:
+   403		case MAX42500_VM3:
+   404		case MAX42500_VM4:
+   405		case MAX42500_VM5:
+   406			st->ov_thresh1[vm_in] = thresh;
+   407			return max42500_reg_update(st,
+   408									MAX42500_REG_OVUV1 + vm_in,
+   409									GENMASK(7, 4),
+   410									FIELD_PREP(GENMASK(7, 4),
+   411									thresh));
+   412		default:
+   413			return -EINVAL;
+   414		}
+   415	}
+   416	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
