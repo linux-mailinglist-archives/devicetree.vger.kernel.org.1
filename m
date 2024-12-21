@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-133272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76BB9FA257
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:07:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B6E9FA25C
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:11:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94502188958E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:07:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AE001606F9
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9967187872;
-	Sat, 21 Dec 2024 20:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB4B719C543;
+	Sat, 21 Dec 2024 20:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fjm90Yo4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ccnf6px3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CBDC1339A4;
-	Sat, 21 Dec 2024 20:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD1CC187870;
+	Sat, 21 Dec 2024 20:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734811653; cv=none; b=Cg2iu2JGEtdC4hxEMr8pbp+lYnS/aaAUWoVsN2I852ekYmnZhikfNsVdUmoqiNWWoOCXZvu3a7EOWs3+BsfVM+Ea7mub2/x84gu6VWNWB7fQPACB9aoD9PRdIF3sFJNQCKealT3suBddRAvYyUCCPZLWVuZ/OW70E5d6O6SBCeg=
+	t=1734811887; cv=none; b=QPhHabW2vKtxKfqzt6Ag7nnmn9p3R4moblEP4Pd3qTvx07dGtLFI90cqNRWLbAnqntqqz1KDQ8GO1ayZQnoUaEDBLJeQYcfJxZkxklY9AsvmcQM2CGVH0SsEtkc13W5UreXUHS4sVSME6DFbjrqrCn4B9950ZoBT0rHff0EfG+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734811653; c=relaxed/simple;
-	bh=XlCZDcdxAhLeRNPZYTuvJ+xHzL3s/QrV2X5skWgWDVk=;
+	s=arc-20240116; t=1734811887; c=relaxed/simple;
+	bh=AoiVOptiYVf3sXc6Wc3zef23U6V9pmhLL3rDLQSzFWw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gg/tM08djyQUhaHj3oia19UdEe0hCFCfX8KDtn6bFplNQocm3lB2cp38QzOpXSoxsJiCoirlCd4VUKRPxApDmSbLezcoS3qkpGyOLBZdw8Zf4dZiQUHEXpbyE+5B9nth2lWDd4UG2VHQ5tE1okzfaWIiBWX7QPbga0U5Y6JeNM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fjm90Yo4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21F8EC4CECE;
-	Sat, 21 Dec 2024 20:07:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=e+7pktciy+MnqdO49aLje4Ovk1fRgEbgku7gdbLm1aGHl88tHvDgg+NegeOi/o7SaYSd+2Sxxh66vyJsiSuTwBfz3had5kVutj+TxJxqzeEPGGxQSFIihIbAQjJPvvh6XleZBiqD53N53S3Gx67W+YtN6J/EHvJnBaKl82jKdaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ccnf6px3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD9BAC4CED4;
+	Sat, 21 Dec 2024 20:11:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734811653;
-	bh=XlCZDcdxAhLeRNPZYTuvJ+xHzL3s/QrV2X5skWgWDVk=;
+	s=k20201202; t=1734811887;
+	bh=AoiVOptiYVf3sXc6Wc3zef23U6V9pmhLL3rDLQSzFWw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Fjm90Yo44O3LZaMX8bYpYOmbPbtA5UB1gVtwvTu3hKCtKsMT2BYJeQUsWwYNpFU9a
-	 Cnk13WjpiUYREGobyO7rRz3v6K4KUlYRvz6D3eQghT3CdBHLzTE7f49tZxBSDWtZoG
-	 +YVEpL/KsXF8dYQG4VxGYke836JFGxM8BoJRfeQaaUJeMwWA4jO5f4OohOwf53oPdp
-	 5gcriF7rBIUUcbVmGYsC0UkrgkwewR9frv/NoQP++UY7sMukXsOk4O46AB6/aoQtxj
-	 Dfo6f8Kf1Vgi+gqZqcZUT0xXMqFRK8RNtraqCJqS5v3MjaLhsTBCSOWmsapfTFQjsT
-	 JmRUV9F2a9t8w==
-Message-ID: <95a385a7-6a15-4dc8-b00d-d7fdb121aa67@kernel.org>
-Date: Sat, 21 Dec 2024 21:07:29 +0100
+	b=ccnf6px3FpX6+kFq3Vh6WPLH8zAYR7lEH7uaMC+3FEdIBzGV2KFo/huiEqb2EfZWN
+	 oxvT9qTxj4HcIWefa7nJIvK/g5AllWUviOKlpXtUOUfXn0WqKntWQGhbiea7ZHATA1
+	 zakO01K6x8DX5sDxsvaBWbbPupksbyopwyphZGgUv5w3+KsDRYgtDJeUIyDgI05sOT
+	 OMIeSwVvzBQdhvW01l9ydyEyTYSskjWZr4V814uMDXEOTNcJvPVsEIpbo3UUxPtPxu
+	 0lxuTgRjrLIkF/LTbeGkO6rPT2xUriGwRiQ9c5aMUWqPUAwWQUdsQFreYT1asz7We0
+	 SuWHfxqK41SOA==
+Message-ID: <0af81029-0f68-4034-899f-4294d249f6a4@kernel.org>
+Date: Sat, 21 Dec 2024 21:11:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] MAINTAINERS: Add Vincenzo Frascino as Arm Morello
- Maintainer
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>
-References: <20241213163221.3626261-1-vincenzo.frascino@arm.com>
- <20241213163221.3626261-9-vincenzo.frascino@arm.com>
- <392a0cc0-bcd9-48a2-83f2-e520a460d2b8@kernel.org>
- <2d1333bb-0c47-498c-98c5-a3a307dc6626@arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 6/7] arm64: defconfig: enable cpu idle injection and
+ cpu idle cooling device
+To: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>,
+ Wasim Nazir <quic_wasimn@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@quicinc.com
+References: <20241217064856.2772305-1-quic_wasimn@quicinc.com>
+ <20241217064856.2772305-7-quic_wasimn@quicinc.com>
+ <59e96784-9efc-4958-baf0-a51e766e47e8@kernel.org>
+ <b98cc6ea-d215-2200-1537-1a53c2587c81@quicinc.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -104,63 +110,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <2d1333bb-0c47-498c-98c5-a3a307dc6626@arm.com>
+In-Reply-To: <b98cc6ea-d215-2200-1537-1a53c2587c81@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2024 18:45, Vincenzo Frascino wrote:
+On 20/12/2024 12:38, Manaf Meethalavalappu Pallikunhi wrote:
 > 
+> Hi Krzysztof,
 > 
-> On 14/12/2024 10:19, Krzysztof Kozlowski wrote:
->> On 13/12/2024 17:32, Vincenzo Frascino wrote:
->>> Cc: Sudeep Holla <sudeep.holla@arm.com>
->>> Cc: Rob Herring <robh@kernel.org>
->>> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
->>> ---
->>>  MAINTAINERS | 6 ++++++
->>>  1 file changed, 6 insertions(+)
+> Thank you for reviewing this patch.
+> 
+> On 12/18/2024 1:32 PM, Krzysztof Kozlowski wrote:
+>> On 17/12/2024 07:48, Wasim Nazir wrote:
+>>> From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
 >>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index e6e71b05710b..8199e5945fb2 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -3304,6 +3304,12 @@ F:	drivers/clocksource/timer-versatile.c
->>>  X:	drivers/cpufreq/vexpress-spc-cpufreq.c
->>>  X:	Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
->>>  
->>> +ARM MORELLO PLATFORM SUPPORT
->>
->> Wrongly placed, M is not after V, I know people cannot keep order but
->> let's try. No need for new Boogaloo.
->>
->> Plus look how all the titles are created and do not come with different
->> style.
->>
+>>> Enable cpu idle injection framework and thermal cpu idle cooling device
+>>> to throttle the cpu by injecting idle cycle during high thermal condition.
+>> I know what they do, but why do we need it in the defconfig? This is not
+>> a product defconfig, just in case you mirrored downstream patches.
 > 
-> Not sure I understand what you mean here. Do you mean that I have to put Morello
-> in alphabetical order in the file? Or just above VEXPRESS?
+> We believe these defconfigs serve as a generic framework rather than 
 
-Entries in maintainers are ordered, keep the order.
+No...
 
-> 
-> For what concerns the title, the MAINTAINERS file contains several styles (...
-> PLATFORM, PLATFORM SUPPORT, etc). What's your preference?
+> being tied to specific product features. Therefore, we have enabled them 
 
-Look how other arm platforms are called, e.g. vexpress. Create the same
-style.
+They are tied to specific products.
 
+> in the defconfig to ensure the end-to-end feature is available in the 
+> pristine upstream build. However, if you think this would introduce 
 
->>
->>
->> Missing bindings.
->>
->>
-> 
-> There are no bindings specific to morello. What should I add here?
-> 
+Why would we care about this end-to-end feature?
 
-Ah, indeed, you added these to Vexpress Juno bindings. I missed that.
-It's fine then.
+> overhead for other products, we will exclude this patch in the next 
+> revision.
+
+I just did not see here any explanation why this should be added. I
+don't need to come with extensive disagreement, because by default we do
+not enable everything. We enable only some things because of some
+reason. And that's why you have commit msg...
 
 Best regards,
 Krzysztof
