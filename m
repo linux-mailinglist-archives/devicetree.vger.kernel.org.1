@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-133277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6219FA271
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:22:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E09B09FA274
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:29:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73033188AF89
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:22:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8ED977A25F2
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:28:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35805189F39;
-	Sat, 21 Dec 2024 20:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504D21922EF;
+	Sat, 21 Dec 2024 20:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ssVTEa6K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SKP6AE4l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CB761632EF;
-	Sat, 21 Dec 2024 20:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17FB6189913;
+	Sat, 21 Dec 2024 20:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734812558; cv=none; b=ZtY/uNXEzY/Yc3fjyW7nfDEKuv3anu0rpcoRmlfh6O706qu8BYB+9fVRKXzL4VEJKjsx/iD2gzItMNonKtODw5By8safYxWcOVm8y5PKvQo99W4PUAlOg3Y1stSAAGz5qsbV/qaCmvu1kutV9h3Io1EbBPiaq93d/EKA658yh20=
+	t=1734812931; cv=none; b=nruHLPHEuL/1IwRGtr3/hMWs+FyBiJpjOrp4qKD8laDvHXvQ4Mz5TF5QxR6mxGX9hxRhiadc2ZEfOJEtIPEDQTcR0lrX/KcQNcPLuCqL3hyIUVnsqujpZN7Qzpi3puuV7d4MRzxsHDtlubG5/NadarMXXNGzLsp/Kg5nFdPjNvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734812558; c=relaxed/simple;
-	bh=ILdwy3p/h97ayVK8LVcOGCXBCe2aHYbodyIEirbROQE=;
+	s=arc-20240116; t=1734812931; c=relaxed/simple;
+	bh=WrI4iWJJppWw+6WrFMPqz60jD8QAY4GKuXwQ0jobz7g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZY2Zck6gnKmLot92tpoBSkDMpG5zt9jmneS35WvZzeMneChaCQqDaYoBC2D/MmX3AoGGBKaVonWr/wfKHVtJQj/26Trs9t/EMyEnxxsXdrb5iPJ9Hfy1MAkS1/CEEFYjQIFJWaxcSbkBEFS+bL3XPpYSa9/GI/77yYCj0tMkGnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ssVTEa6K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B47F7C4CECE;
-	Sat, 21 Dec 2024 20:22:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JBbmkFc4s8/e7ch+voRjwAe93jGt93zgZEcUlGigxP6ZODrzMpiMT0iJTdXMLX23rEUBInZSTgahngaUtuGhvlhE0miW9xk/242EcZQ2SYtgVPtmS+Wx+nzQW6OSthdrQHrSAMer83sr3M1H8D32boePWCNme5VT0RfvH1flW4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SKP6AE4l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAF38C4CECE;
+	Sat, 21 Dec 2024 20:28:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734812557;
-	bh=ILdwy3p/h97ayVK8LVcOGCXBCe2aHYbodyIEirbROQE=;
+	s=k20201202; t=1734812930;
+	bh=WrI4iWJJppWw+6WrFMPqz60jD8QAY4GKuXwQ0jobz7g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ssVTEa6K9JjjYPmiUr2SB9rYvkiEVA7B1kLLLIt3/Oj2DPWL0L9FGcim6Pptfvfvl
-	 Lq94mmOIrCrJAhrEBxEHP8gHwp+5+Gmck07HPsKRpKNzLALt+pocHvHBLJ9qUIhmOn
-	 2H+eButXQlwoGL6Foe7Lg8CqjXo6m/IjBgcTGwybGkcqOeLgiLgjVuDZSLjn221LrF
-	 696DI0c1vawO42yYb4TWaa3DOueOWzgFk6GJTsFqS+j4/I2IHzB6B7l0VtyqCxpkLj
-	 2gFOwXkwkdgYU04bM6jvPtCFwWRnIsROyZBLkB5Tu2moF6onw9dNXi+CZzPxsYy+jK
-	 iwau4KTZhKEqA==
-Message-ID: <425fd1b0-fcba-4547-81f6-84acee5ce7f4@kernel.org>
-Date: Sat, 21 Dec 2024 21:22:28 +0100
+	b=SKP6AE4lW6VKF9VZH+J9jteiggRT9D6sAN+ITZWnzSIs25J/QkqWR5sL2x/lmaTaZ
+	 dv7D+CvUjsgBOsxyhh7M1MqRZODvCHqmGlOjwDEVcxeD28kiQRtJFy1nkSLwDaOqM+
+	 upoRSfNLtF/SeihOj7CgEIejDD1C7xEfJqeeSWf9SiRK1Y1CnZzkbeQ4prr15vFzhb
+	 d8NB3oLw/dDuNcKG4IeGvODqpAZFcOW0CC6D3XxHYFaTrewArw9eo/nHp2dxyZzA+g
+	 Kx1VDod3LfvM4If/xk2OprHATf9EiieVkIqHZCgorGr0IGAEx3GXpRg8fi5Aqu4fLH
+	 XZDbgGDdAeaTg==
+Message-ID: <1090e560-85d8-4644-836d-45a31fbaa14c@kernel.org>
+Date: Sat, 21 Dec 2024 21:28:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/33] dt-bindings: display: mediatek: Add binding for
- MT8195 HDMI-TX v2
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
- simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, ck.hu@mediatek.com,
- jitao.shi@mediatek.com, jie.qiu@mediatek.com, junzhi.zhao@mediatek.com,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
- dmitry.baryshkov@linaro.org
-References: <20241217154345.276919-1-angelogioacchino.delregno@collabora.com>
- <20241217154345.276919-8-angelogioacchino.delregno@collabora.com>
- <rsnyljmkdf7i74bkrlf5nesp2sa3n6xcnzsqao4znmczjpfyq2@dsakz56s4ypt>
- <9a75e88c-d90d-4ea8-b5c3-6d056d4f0498@collabora.com>
+Subject: Re: [PATCH 1/8] dt-bindings: Add MAX7360 MFD device
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kamel Bouhara <kamel.bouhara@bootlin.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-pwm@vger.kernel.org, =?UTF-8?Q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20241219-mdb-max7360-support-v1-0-8e8317584121@bootlin.com>
+ <20241219-mdb-max7360-support-v1-1-8e8317584121@bootlin.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,28 +110,105 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <9a75e88c-d90d-4ea8-b5c3-6d056d4f0498@collabora.com>
+In-Reply-To: <20241219-mdb-max7360-support-v1-1-8e8317584121@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2024 11:54, AngeloGioacchino Del Regno wrote:
->> hdmi@
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Thanks for the great review krzk.
-> 
-> I was wondering if it'd be more straightforward to just send the bindings in a
-> different series, instead of sending another batch of 33 (actually, 34, because
-> I forgot one commit adding the DDC binding, ugh!) patches...
-> 
-> CK, any objections?
-Maybe just wait few more days for other people's review and then send v4
-of everything? You can split the bindings separately, although there is
-a risk we will get confused or we will forgot why they got separated.
+On 19/12/2024 17:21, Mathieu Dubois-Briand wrote:
+> Add device tree bindings for Maxim Integrated MAX7360 MFD device with
+> support for keypad, rotary, gpios and pwm functionalities.
 
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+Subject/commit msg: drop MFD and explain what the hardware is. MFD is
+Linuxism.
+
+> 
+> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/max7360.yaml | 56 ++++++++++++++++++++++
+
+Use compatible as filename.
+>  1 file changed, 56 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/max7360.yaml b/Documentation/devicetree/bindings/mfd/max7360.yaml
+> new file mode 100644
+> index 000000000000..49dd437fd313
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/max7360.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/max7360.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX7360 Keypad, Rotary encoder, PWM and GPIO controller
+> +
+> +maintainers:
+> +  - Kamel Bouhara <kamel.bouhara@bootlin.com>
+> +  - Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> +
+> +description: |
+> +  Maxim MAX7360 MFD device, with following functions:
+> +    - keypad controller
+> +    - rotary controller
+> +    - GPIO and GPO controller
+> +    - PWM controller
+> +
+> +  https://www.analog.com/en/products/max7360.html
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max7360
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: The interrupt line the device is connected to.
+
+Drop description,
+
+> +    maxItems: 1
+
+I don't think this was tested at all. It is heavily incomplete,
+considering this is sort of MFD device.
+
+Or you split patches in odd way. Look how other PMIC-style things are
+upstreamed.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      max7360@38 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +        compatible = "maxim,max7360";
+> +        reg = <0x38>;
+> +
 Best regards,
 Krzysztof
 
