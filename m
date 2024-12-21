@@ -1,83 +1,89 @@
-Return-Path: <devicetree+bounces-133240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B3859FA040
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 12:04:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 993D19FA06A
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 12:17:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C8EE167002
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 11:04:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1BC31687F8
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 11:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BD5B1F0E44;
-	Sat, 21 Dec 2024 11:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78ACA1F37A8;
+	Sat, 21 Dec 2024 11:17:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LmAVfz5e"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tS7B+7ao"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894CB163;
-	Sat, 21 Dec 2024 11:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B203F9D2
+	for <devicetree@vger.kernel.org>; Sat, 21 Dec 2024 11:17:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734779071; cv=none; b=nYE7T7Z89zwk4v4lSnvAFNbl/V6E/rpARWA75JCgtJeCPxkB3hbUd9huNbtyQgFY4trpJ3iH7iPvVdleEwzWKtNXdWMYYerp4YkrEe2MBUpISlyuo6org/bqOdRu/cl6GrI2jx9sDHZ94fJ72isXZ06bWcTdwGw2KJRK6/XjYGM=
+	t=1734779838; cv=none; b=j5rgDT++qLKvWQyIWWclRcFE6qoyoTsG8H9pgUX+7/Q3gh90IvgbcmhiUOGNy7IwyMdJmMMSqCePcy53EWX05Xxl5HBlISRWGKsfnu5q/E/2/Aym5Ny16mGyumCq38FDwFSDGk4Xx38IrFCDJFB3Y/TG81gPSIpKlfhd41Hf8/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734779071; c=relaxed/simple;
-	bh=ES8Y72tN7tCHNq2hsEeiaznpfJMqN6LAm9ib+DuisM4=;
+	s=arc-20240116; t=1734779838; c=relaxed/simple;
+	bh=G8GJdO5n3/0fPpcWJpIfNuyasHivROKITjpIp/CoHSU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SKGKYE2Z5w2oUnQc6N3YMpTGdE1J6pAXuIKMZS2WT3BzzGey33n7p67+NeYL591dLeR+ubv1UM+jNscLGVzjzJrVTVTLQUHvd7BMdES36q/bp0ukVy2kxGluQNgr7hV3+ndrXbrvPKK0ZjaXn6iMXsGVNyQrRHBJO6gIxBwxwuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LmAVfz5e; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734779070; x=1766315070;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ES8Y72tN7tCHNq2hsEeiaznpfJMqN6LAm9ib+DuisM4=;
-  b=LmAVfz5ebS24+5eUmdW/2PU+S/hkeXA9VY5TuS7UIEXqduf8fOTBXXcd
-   +4cPjpsUAD+zqGpXs14K6f3aG9PupEcKbXMY0HBfTsLoeLMttxIYaE5T7
-   ZCYUPthYmSYmIKe/EaFeqlGn0sVmi5jJcFxzwPJsDIOwUiKrBp1/1ae3K
-   cdeDQ3F0sU/aMvJG9AawyCL0GY3ZW2wNtZOZOy8J+Lc+NDnWkZP7Ubo0L
-   bYp6v8xmKcW8ObOQ7GGcJrXsGb67XnUrdYzZaVDNWhsh8Dwj3yyWEmaAD
-   Ug5Bs1EW/Ne4I9jkWYvk5JvCEeztoVQOvmEUOGo4Wz7MIRC2sV2fMXvkm
-   A==;
-X-CSE-ConnectionGUID: VTXAWAr6TW+7h99AKuCFEA==
-X-CSE-MsgGUID: MI19gvH4TZu+jnVqFKDCRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="39253551"
-X-IronPort-AV: E=Sophos;i="6.12,253,1728975600"; 
-   d="scan'208";a="39253551"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2024 03:04:29 -0800
-X-CSE-ConnectionGUID: uFj1EdARQcqphn1GerJJrA==
-X-CSE-MsgGUID: Lnl/soBsT22O45oTf0M77A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,253,1728975600"; 
-   d="scan'208";a="99145758"
-Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 21 Dec 2024 03:04:26 -0800
-Received: from kbuild by a46f226878e0 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tOxHT-000295-2w;
-	Sat, 21 Dec 2024 11:04:23 +0000
-Date: Sat, 21 Dec 2024 19:03:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Crystal Guo <crystal.guo@mediatek.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH 1/2] memory/mediatek: Add an interface to get current DDR
- data rate
-Message-ID: <202412211805.ulwSEmZa-lkp@intel.com>
-References: <20241212090029.13692-2-crystal.guo@mediatek.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pnFBvRJ1z5hZCLkY3H9IR52TsVBqm5ucqn+k9E/LeJlnnosAExCUSsNPHiirln3AJ+3Ch5fhYOo/u7eqPEInddmIaET421YI6BB2BG2MLSySr61H4CH3oLkKO0wOcSuSo6hIKm0gufHb/IRE8we8zmRA+lOgcd73XPWPHV6vwe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tS7B+7ao; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-725d9f57d90so2087371b3a.1
+        for <devicetree@vger.kernel.org>; Sat, 21 Dec 2024 03:17:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734779835; x=1735384635; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MUwi0cqWQPVLFktl7L0hzqf3cqViWihp2T6NPO7hxEA=;
+        b=tS7B+7aoIfrQNFn22grYLFzRIXnb4wtLc6Ru4JrXbNtIIowORYnizDZ8/j5mSng9cp
+         z3iWQLMbUBOGwjoLz/3gFEP3YUwgUpCUQPES0DzR2mV1+47hEC14AvLpez9I88sxg1gx
+         bod/5+49yI8S83KQD+92/PoeCYN6J6kqclaiLCX4KWE7lbi/z0yl9FJ5zNq0SQs7iyLC
+         wkWT+sFu7ziJwLebUpCa74IlZC3p55RX+4GbN8EzxMERx2MP+eLoHRNXdQ6DP1SHwS8J
+         rxYo7MfbT1C67SSRPYcfNAWZ4bk9cJrasUoO1WLIT3lJFGC+D7VMwHO1N79D/r32D/sV
+         NYug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734779835; x=1735384635;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MUwi0cqWQPVLFktl7L0hzqf3cqViWihp2T6NPO7hxEA=;
+        b=w5dzVoADE4oTqeT7vdG7Rj3o1RhF1g0ut4mBYvBGsmRMOblIlNox+i3jFl6g35w5qZ
+         padGDPBtpZfDcNL9D/CeGUCEyeSw9CD1+6iChDSDvQfk+vjjPAbwI6iJTmRUPvPe/78V
+         zEkywq4YvNXHCgD7mspLLCXVNs47j/usq8HizpBM+zOwxC3eXTBbu2mLPzefgz/Ne+Qc
+         RyP4rGXP2A4tomBBO/Z1cMP8LtZk0gkJ2tYk2fSOy0Inf86DVJLZQmicRVZbEorq2rqd
+         GE23SWAk8H9EKZLwiT1P65lIKMzKLiabo9K/EK10/JwSugOEwoLUIJ2OKND7MGfZzcDp
+         kATg==
+X-Forwarded-Encrypted: i=1; AJvYcCWKkMVYGhF0iTsMITudtDvMNEShfluy+Ii9UUiiZLIAIfrrlqYc3lUg4jnP7s4iiBTLxhC/I6XifwFn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrgxcEWj3PUoJdHl89G0EldnhBshYg8zdyYvm7s8WuWZmT7llv
+	gxGfYcLN+1XYdqgX+NgUT40bsegrEqqiKl7iMxU2BLhZC1hiZ816Q8jwgNxGB1UrKY8F8jHTi/A
+	z
+X-Gm-Gg: ASbGncuVW6JL6ua2Kwx63fqUmB57LgXlnjdgPYorR9h909sY9T926kLUrbzXbmuCLeL
+	ZR32A0DM2EDj6DfGz+Rq5xsOAhPg42L9N5YmzmQqd4/DoYRY9Lb7Ii3fkr3ivT8FLasNGuLUy2I
+	V4hhtXqY4F85p51bF1Ecwj4YkjLzyC+IZswVUsZ9CGJvS6aiPvLEsfSEivQ94pxyBPfm8trHWcs
+	AEx/4gdaMi++rnUsVuPa6xTSTAJJvmLWgA3TlhO4RVmHKbVnpw4/hcQCL/Zdr9jbqptPZFOhQo1
+	ARkiKwTygK6OBXRX
+X-Google-Smtp-Source: AGHT+IETtl39lfiWah7ZB6Wjx81ZG/H3eQ/XeN1Pwp4p0WHw+hzES8qCUaNjmE9BHQM4U1V4zI75bA==
+X-Received: by 2002:a05:6a20:7f8a:b0:1e3:e6f3:6372 with SMTP id adf61e73a8af0-1e5e07bc390mr9835251637.27.1734779834852;
+        Sat, 21 Dec 2024 03:17:14 -0800 (PST)
+Received: from dev-linux (syn-076-088-115-008.res.spectrum.com. [76.88.115.8])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad815804sm4585320b3a.32.2024.12.21.03.17.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Dec 2024 03:17:14 -0800 (PST)
+Date: Sat, 21 Dec 2024 03:16:26 -0800
+From: Sukrut Bellary <sbellary@baylibre.com>
+To: Judith Mendez <jm@ti.com>
+Cc: Tony Lindgren <tony@atomide.com>, Kevin Hilman <khilman@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Bin Liu <b-liu@ti.com>
+Subject: Re: [PATCH] ARM: dts: ti: am437x-l4: remove autoidle for UART
+Message-ID: <Z2ajiuumq0CeM/u7@dev-linux>
+References: <20241220223523.2125278-1-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,54 +92,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241212090029.13692-2-crystal.guo@mediatek.com>
+In-Reply-To: <20241220223523.2125278-1-jm@ti.com>
 
-Hi Crystal,
+On Fri, Dec 20, 2024 at 04:35:23PM -0600, Judith Mendez wrote:
+> According to the TRM [0] in 21.5.1.42 UART_SYSC Register,
+> the autoidle bit should not be set for UART, so remove the
+> appropriate SYSC_OMAP2_AUTOIDLE flag.
+> 
+> [0] https://www.ti.com/lit/ug/spruhl7i/spruhl7i.pdf
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+>  arch/arm/boot/dts/ti/omap/am437x-l4.dtsi | 18 ++++++------------
+>  1 file changed, 6 insertions(+), 12 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/ti/omap/am437x-l4.dtsi b/arch/arm/boot/dts/ti/omap/am437x-l4.dtsi
+> index 824b9415ebbe9..fd4634f8c6293 100644
+> --- a/arch/arm/boot/dts/ti/omap/am437x-l4.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/am437x-l4.dtsi
+> @@ -180,8 +180,7 @@ target-module@9000 {			/* 0x44e09000, ap 16 04.0 */
+>  			      <0x9058 0x4>;
+>  			reg-names = "rev", "sysc", "syss";
+>  			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+> -					 SYSC_OMAP2_SOFTRESET |
+> -					 SYSC_OMAP2_AUTOIDLE)>;
+> +					 SYSC_OMAP2_SOFTRESET)>;
+>  			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+>  					<SYSC_IDLE_NO>,
+>  					<SYSC_IDLE_SMART>,
+> @@ -698,8 +697,7 @@ target-module@22000 {			/* 0x48022000, ap 8 0a.0 */
+>  			      <0x22058 0x4>;
+>  			reg-names = "rev", "sysc", "syss";
+>  			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+> -					 SYSC_OMAP2_SOFTRESET |
+> -					 SYSC_OMAP2_AUTOIDLE)>;
+> +					 SYSC_OMAP2_SOFTRESET)>;
+>  			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+>  					<SYSC_IDLE_NO>,
+>  					<SYSC_IDLE_SMART>,
+> @@ -726,8 +724,7 @@ target-module@24000 {			/* 0x48024000, ap 10 1c.0 */
+>  			      <0x24058 0x4>;
+>  			reg-names = "rev", "sysc", "syss";
+>  			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+> -					 SYSC_OMAP2_SOFTRESET |
+> -					 SYSC_OMAP2_AUTOIDLE)>;
+> +					 SYSC_OMAP2_SOFTRESET)>;
+>  			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+>  					<SYSC_IDLE_NO>,
+>  					<SYSC_IDLE_SMART>,
+> @@ -1385,8 +1382,7 @@ target-module@a6000 {			/* 0x481a6000, ap 40 16.0 */
+>  			      <0xa6058 0x4>;
+>  			reg-names = "rev", "sysc", "syss";
+>  			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+> -					 SYSC_OMAP2_SOFTRESET |
+> -					 SYSC_OMAP2_AUTOIDLE)>;
+> +					 SYSC_OMAP2_SOFTRESET)>;
+>  			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+>  					<SYSC_IDLE_NO>,
+>  					<SYSC_IDLE_SMART>,
+> @@ -1413,8 +1409,7 @@ target-module@a8000 {			/* 0x481a8000, ap 42 20.0 */
+>  			      <0xa8058 0x4>;
+>  			reg-names = "rev", "sysc", "syss";
+>  			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+> -					 SYSC_OMAP2_SOFTRESET |
+> -					 SYSC_OMAP2_AUTOIDLE)>;
+> +					 SYSC_OMAP2_SOFTRESET)>;
+>  			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+>  					<SYSC_IDLE_NO>,
+>  					<SYSC_IDLE_SMART>,
+> @@ -1441,8 +1436,7 @@ target-module@aa000 {			/* 0x481aa000, ap 44 12.0 */
+>  			      <0xaa058 0x4>;
+>  			reg-names = "rev", "sysc", "syss";
+>  			ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+> -					 SYSC_OMAP2_SOFTRESET |
+> -					 SYSC_OMAP2_AUTOIDLE)>;
+> +					 SYSC_OMAP2_SOFTRESET)>;
+>  			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+>  					<SYSC_IDLE_NO>,
+>  					<SYSC_IDLE_SMART>,
+> -- 
+> 2.47.1
+>
 
-kernel test robot noticed the following build errors:
+Looks good to me.
 
-[auto build test ERROR on krzk-mem-ctrl/for-next]
-[also build test ERROR on robh/for-next krzk-dt/for-next linus/master v6.13-rc3 next-20241220]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Reviewed-by: Sukrut Bellary <sbellary@baylibre.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Crystal-Guo/memory-mediatek-Add-an-interface-to-get-current-DDR-data-rate/20241212-170306
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-mem-ctrl.git for-next
-patch link:    https://lore.kernel.org/r/20241212090029.13692-2-crystal.guo%40mediatek.com
-patch subject: [PATCH 1/2] memory/mediatek: Add an interface to get current DDR data rate
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20241221/202412211805.ulwSEmZa-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 9daf10ff8f29ba3a88a105aaa9d2379c21b77d35)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241221/202412211805.ulwSEmZa-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412211805.ulwSEmZa-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/memory/mediatek/mtk-dramc.c:300:12: error: incompatible function pointer types initializing 'void (*)(struct platform_device *)' with an expression of type 'int (struct platform_device *)' [-Wincompatible-function-pointer-types]
-     300 |         .remove = dramc_remove,
-         |                   ^~~~~~~~~~~~
-   1 error generated.
-
-
-vim +300 drivers/memory/mediatek/mtk-dramc.c
-
-   297	
-   298	static struct platform_driver dramc_drv = {
-   299		.probe = dramc_probe,
- > 300		.remove = dramc_remove,
-   301		.driver = {
-   302			.name = "dramc_drv",
-   303			.owner = THIS_MODULE,
-   304			.of_match_table = dramc_of_ids,
-   305		},
-   306	};
-   307	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
