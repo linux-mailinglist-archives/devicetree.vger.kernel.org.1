@@ -1,100 +1,119 @@
-Return-Path: <devicetree+bounces-133252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636E69FA0A3
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 13:37:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72F69FA0B6
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 13:55:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D1FC166603
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 12:37:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 799E27A108C
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 12:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F071F37A5;
-	Sat, 21 Dec 2024 12:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 041891F2C5B;
+	Sat, 21 Dec 2024 12:55:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l57+6I02"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="xZ6bak7B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7D131FBCBD;
-	Sat, 21 Dec 2024 12:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC9D1EC4C2;
+	Sat, 21 Dec 2024 12:55:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734784594; cv=none; b=f6XJ6LOOi6mZMXA7cWKqhh5RqAET4PiSG8doX7UPdLoE4tP+x0CsBYKJLeWArstQKDO643Dlbe3JGO3ihPr87ZyV27WcRCcyLwcv3igKhr0t7Udl1anw4C0xqL6KZPme/bWw4LgZO260R4MiHYtugGQgAJCft0lAY0VQqraNeF4=
+	t=1734785725; cv=none; b=O1WdDjbeQNGNyHO2gkO/Iwl+TiRTTvBTO+Bey6GsNs7dMqJ15fPGNq02mgaNavj8EzwwdruBF1gHG6xjxMylpNuB3OsD7vMKTm5DCRoWZMDCbX/jIZkT5B6SJNIPgTEGjotgdz9cGIigy/2+9NzPL9pghD26/UHYolKKMto3Kik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734784594; c=relaxed/simple;
-	bh=AihAtIICWQrBlRFhbXWHBZRKElmInlna0fxi1UtiDf0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DkkZ33I0suitbJoBLTNxgXIBhr57HAY2Lkzgk0s2l2HGebrXe4BPtZ3NoOM8s2WvH/IRW64c78l2VXQ4smqueBpvVIt8lfAeXsNJUt6YWoqS8Z58N2lbEOdYYZ7BpEBdxFAUn5Hl/pgurTyon3+imtcCXExPJGfazj9S61zU1PA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l57+6I02; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D1A5C4CED4;
-	Sat, 21 Dec 2024 12:36:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734784594;
-	bh=AihAtIICWQrBlRFhbXWHBZRKElmInlna0fxi1UtiDf0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=l57+6I02l7uImel9sh6RJiflXq5X3koswYKiJLsxX9tiDIJwfGhRUXRvd2Iqy+Iud
-	 tGyoU7gyKRHoa+63mju6/BgxUj3tWTkbRFHcPycTdT4xiMTiXUapnfqidm2F/9RIKO
-	 4RfZIBTvXP07hDzfJwSkkEDonLQrvVi2MkzhVx5KKAXJPsJOFZWLeipvcRoV/4vW1v
-	 FlZAoG5bFNrNmIfougfgA1qwCkQEQdxwH9b/62CRglhn54mogGvlVLuXfFkrrxWSmA
-	 JFFNRIxq3X42OWswrqesIs1FirgRowowCFu4csN30gQmiz/9pT4IJciv5UI3ftEKES
-	 SnWVOegBC2lHg==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Sat, 21 Dec 2024 13:36:03 +0100
-Subject: [PATCH 4/4] firmware: qcom: scm: Allow QSEECOM on X1P42100 CRD
+	s=arc-20240116; t=1734785725; c=relaxed/simple;
+	bh=6Te3vUnViwWIdqfOWK1BOrJ3D3wbtmw3I/MWxW67BCE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Arw0SaOrQQmmdIjoPQltmi6GWI/yAPaGgoz3XO/LpwX+QqDVGxbQRPAqdW4gG2GubMTajwZhHu+yRKx9RxC0SCdula1yW3Vsm3lJGAMYA39pz5m2XHgMHLm9JU0YETSaThDCN+pODDyiIBeNvJ9lPTPMNZkonC42gQFcYvexPe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=xZ6bak7B; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Tvo6xwYWGeSnCsDnjEWAgafbwiwjvh049xe5Nk5dpNg=; b=xZ6bak7BpkQBZ6tVs1jszJBZgY
+	2CC/heXQBljSq1+UnQj/pnQd+QVanLlfBQGcBRmIhQdmL2p7gXWOQyEyTM2Ag6SEzXVXG9Xz5if8L
+	blJSkMIW15bhu9sGbs1as/6txHDYYtb1hE1FM8GGlT5dBFjTzGdjEBQuE4g4gHL5uF4wZOT6053lE
+	/xYdiD08XmIfBXrRKTWC3+izfjyGfabO4OXRVl3wlihMEyEXvPhYuft/W8se4laZwvi4z3PHN0pZ3
+	kUpVr6NVyOnzmvGeIB6nvKe+o4Qn5zLWUlZpkPazLsCDchbWK6yNGBlvIQa0lamk3Bn7AIk/hxJcg
+	jNxua1LA==;
+Received: from i53875bfb.versanet.de ([83.135.91.251] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tOz0Y-0008N9-TD; Sat, 21 Dec 2024 13:55:02 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: dsimic@manjaro.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, krzk+dt@kernel.org,
+ Andy Yan <andy.yan@rock-chips.com>
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: aliase sdhci as mmc0 for rk3566 box demo
+Date: Sat, 21 Dec 2024 13:55:02 +0100
+Message-ID: <24438615.ouqheUzb2q@diego>
+In-Reply-To: <20241221104920.4193034-1-andyshrk@163.com>
+References: <20241221104920.4193034-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241221-topic-x1p4_soc-v1-4-55347831d73c@oss.qualcomm.com>
-References: <20241221-topic-x1p4_soc-v1-0-55347831d73c@oss.qualcomm.com>
-In-Reply-To: <20241221-topic-x1p4_soc-v1-0-55347831d73c@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734784578; l=768;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=vSX7eDnep2Rx1tciL+Cs56+ZSXSTnQuD10/73/fOsmk=;
- b=0w4vqU4DTIlPtHip1PO3S6qHSVrYWyB0RPEbOob6hXvRFyoRgxX8qV1jqal9dU1NASrpBh2M3
- ecPL54A6qWNBDYY+Uq7Ml12BGeJhTaA69zRfPZ5e+XD5+FSICZ38ybc
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Hi Andy,
 
-Add this board to the list to allow e.g. efivars access.
+Am Samstag, 21. Dezember 2024, 11:49:07 CET schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> Follow most others rk356x based boards, and u-boot only use mmc0/1
+> as mmc boot targets, so aliase sdhci as mmc0.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> ---
+> 
+>  arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> index 41b4cd5a4220..7d0eedf1bd0d 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> @@ -19,9 +19,9 @@ / {
+>  
+>  	aliases {
+>  		ethernet0 = &gmac1;
+> -		mmc0 = &sdmmc0;
+> -		mmc1 = &sdmmc1;
+> -		mmc2 = &sdhci;
+> +		mmc0 = &sdhci;
+> +		mmc1 = &sdmmc0;
+> +		mmc2 = &sdmmc1;
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- drivers/firmware/qcom/qcom_scm.c | 1 +
- 1 file changed, 1 insertion(+)
+sorry, but that won't be possible :-( .
 
-diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-index 72bf87ddcd969834609cda2aa915b67505e93943..4ef219684a2dc7cb93b4812b656bf11cdea5da1c 100644
---- a/drivers/firmware/qcom/qcom_scm.c
-+++ b/drivers/firmware/qcom/qcom_scm.c
-@@ -1780,6 +1780,7 @@ static const struct of_device_id qcom_scm_qseecom_allowlist[] __maybe_unused = {
- 	{ .compatible = "qcom,x1e001de-devkit" },
- 	{ .compatible = "qcom,x1e80100-crd" },
- 	{ .compatible = "qcom,x1e80100-qcp" },
-+	{ .compatible = "qcom,x1p42100-crd" },
- 	{ }
- };
- 
+The original aliases for the mmc order were added over 2 years ago
+(november 2022) and became part of the ABI then.
 
--- 
-2.47.1
+Imagine someone using that board with a rootfs=/dev/mmcblk2p1 part
+in the commandline to mount the old sdhci-part1 as rootfs, but now
+you reorder the controllers, so so that commandline would try to access
+sdmmc1, so their system won't boot anymore after just a simple kernel
+update.
+
+Breaking people's setup is one of those big no-go-s in the kernel, so
+sadly you'll need to live with the existing order.
+
+
+Heiko
+
 
 
