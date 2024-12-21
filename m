@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-133275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8403F9FA26A
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:19:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA92D9FA26C
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:21:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAF4C161758
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:19:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D70B161883
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:21:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72DC17995E;
-	Sat, 21 Dec 2024 20:19:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E75A9188CAE;
+	Sat, 21 Dec 2024 20:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EYNXg6FT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eW4syNRe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C992746C;
-	Sat, 21 Dec 2024 20:19:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBEB2746C;
+	Sat, 21 Dec 2024 20:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734812362; cv=none; b=Ze25FJGM+qNxLH45Jsz7ls25ELq05r2+qh+L89SuCfKn9QpgIgfkqJT05Ml0TulcOTs2pGvs/3v/ZdlTfLPnrwU101HAyegV7WIkZOwLguAExG4CMgNhwGC0Euh4AAk9i9kjCWLEyjj0daa5Oh08OmIJ94hgmdnrcARSWhH+TvE=
+	t=1734812464; cv=none; b=DhYz0bX43N+F1vOdkGMB+19epKtHjJfN94hYuG07uFy/xJgCcYz4eHe3hq//vmqBaZIJlhXzmOUNMVqf+FtQ9N9POLKBsgm484eHs3YUImvxl9UNmmtD2NPyoLDSPcYa1EyL+ClaN/G9zE5omlCEKqDH1/vdgTOrDG3b1qxmWKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734812362; c=relaxed/simple;
-	bh=eyn1IuEfhoj+k8zhwZKiparOtxsbTPRUkyexcAf3PyA=;
+	s=arc-20240116; t=1734812464; c=relaxed/simple;
+	bh=RwBQN4V18lBMwT0DKjlzAMtnW0sHWey9FzPwlM9BKUE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uHmnUaQcBwLc1cgEicPPVJ1TPS0CmObigUQJLqo6dP/lpCJB+OVDADx4xUMA1H+UxaXsske8FV4Z6N89kWkRu7xAnxAjbe3MvF/DPZq9vjoM0U4y6XcgUliv4O4R1xkv4yJ7UT5oQZhV5F+7EWHFY9FXXepaeNvb+46BmG1hbSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EYNXg6FT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0D2DC4CECE;
-	Sat, 21 Dec 2024 20:19:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CR9HCJ2GaLg/goanJD4Sj4bZcTSB/MQ+MQX5ebjRysS/fZx3HiK9k6jkkdmVAm6h7r114a4JW0hI2Eppdd1bJFa0lHe6AVO92EIFeh+nNGljhED2PKydYxc7OiR+545sVd2E7LCHsgLb8qVUfV8FiAyFIAHtaLIYgSAupOeRutM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eW4syNRe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13B1EC4CED4;
+	Sat, 21 Dec 2024 20:20:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734812362;
-	bh=eyn1IuEfhoj+k8zhwZKiparOtxsbTPRUkyexcAf3PyA=;
+	s=k20201202; t=1734812463;
+	bh=RwBQN4V18lBMwT0DKjlzAMtnW0sHWey9FzPwlM9BKUE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EYNXg6FTg8zUB2xIpThMeVdxgIWLuJt26mUgEqs8yupIFJGyU5vzdqEG/4ql6IILL
-	 LepgzyGplSl1WIQiOKGcxyrJOSbSeDBsZy1SQOaHOXKNBGdOJy2WBbv8UrCso3w4o6
-	 heHBBYh9GTuhgAIaiO/P40Feljcs0sBaoBYyA2GFKsqzKxvqxileoyQyQn2X+XYRyJ
-	 IZkQS/GZVVd9Wq9s6WHNT8THHK/V7yKKQnQr7IS1mCqeZ6mWWKlN3fcJX599gBhKxy
-	 q74FKhkU5md/5/CM8zmdhS+DQc/C2UDCVNaz3jF06tge13UMKLV83Ba38H8N6+wgMX
-	 c5SazDyk6+7zw==
-Message-ID: <9067df7d-01df-44d4-8fcf-0e4c37c91770@kernel.org>
-Date: Sat, 21 Dec 2024 21:19:16 +0100
+	b=eW4syNRexYwHBXAZ7KLB91qmfiuMQ7V8UPUolEEJqtANI5WRyI3DQrefN7x5uVtCG
+	 EMXslzfA7WxeT3XPK0SvFH1cu34EIh7jddR9ZLahVz4ySVT1f3x/iNoffVjnav5iq/
+	 BSVS/7U6hOlG2aGdCDB/IE5HZaNrKKGwnd35qRt6SWYbALQ8BXQT914OPnhS/8W+TG
+	 NN1rSFaKectgkh26x8+aU4W/PrhUsSiK047XAWA+98ue7W7xpE+hOUZ+dRq8Ok6bh1
+	 ZqVFtk4QK1wcBVZuHXtZWlY1gYdNsYfiQc8I7dD+2uqBnrfOxxcbRJBhIhs7KpDGV0
+	 0UW8ptWik+VtQ==
+Message-ID: <da90b2ee-20fa-43fe-9518-25f8cf6afd52@kernel.org>
+Date: Sat, 21 Dec 2024 21:20:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-binding: clock: cs2600: Add support for the
- CS2600
-To: Richard Fitzgerald <rf@opensource.cirrus.com>,
- Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc: Paul Handrigan <paulha@opensource.cirrus.com>, mturquette@baylibre.com,
- sboyd@kernel.org, linux-clk@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- patches@opensource.cirrus.com
-References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
- <20241219024631.3145377-2-paulha@opensource.cirrus.com>
- <3glyuu4yg7wbykdsfm33m5evnn7fwg4dbplrkgzcceld3cgu2s@t3xjlhryt2y6>
- <Z2P9X5b+oTo4Du/n@opensource.cirrus.com>
- <3c09367c-808b-4414-bf6a-99e0bdaa3a27@kernel.org>
- <Z2QYooZJ9kFeYzgc@opensource.cirrus.com>
- <ebc6bc7d-d847-46fe-908c-c618d94e3345@kernel.org>
- <a23a5e89-0a55-4b17-9911-a12cfa154ef2@opensource.cirrus.com>
- <c7278ed3-9361-4cd1-ad28-cdbcc3d84bcd@kernel.org>
- <51a5c92c-be2d-4e05-a3d8-8ba4fb0b759b@opensource.cirrus.com>
+Subject: Re: [PATCH 7/9] dt-bindings: regulator: add binding for ncv6336
+ regulator
+To: Fabien Parent <parent.f@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ vinod.koul@linaro.org, Fabien Parent <fabien.parent@linaro.org>
+References: <20241218-ncv6336-v1-0-b8d973747f7a@gmail.com>
+ <20241218-ncv6336-v1-7-b8d973747f7a@gmail.com>
+ <kb2ejk6c4uvazuumuezsd24qhjwh3k5bw76k2shywdugjqlf6e@lrghxcxxmnrm>
+ <CAL6vTrjD308v-Rzu1Sb7GCuLAb94Qt7BuZgrOgrnDCXm820P3Q@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,117 +119,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <51a5c92c-be2d-4e05-a3d8-8ba4fb0b759b@opensource.cirrus.com>
+In-Reply-To: <CAL6vTrjD308v-Rzu1Sb7GCuLAb94Qt7BuZgrOgrnDCXm820P3Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2024 17:22, Richard Fitzgerald wrote:
-> On 19/12/24 15:57, Krzysztof Kozlowski wrote:
->> On 19/12/2024 14:36, Richard Fitzgerald wrote:
->>> On 19/12/24 13:16, Krzysztof Kozlowski wrote:
->>>> On 19/12/2024 13:59, Charles Keepax wrote:
->>>>> On Thu, Dec 19, 2024 at 12:39:38PM +0100, Krzysztof Kozlowski wrote:
->>>>>> On 19/12/2024 12:02, Charles Keepax wrote:
->>>>>>> On Thu, Dec 19, 2024 at 09:51:00AM +0100, Krzysztof Kozlowski wrote:
->>>>>>>> On Wed, Dec 18, 2024 at 08:46:30PM -0600, Paul Handrigan wrote:
->>>>>>>>> +/* CS2600 Auxiliary Output */
->>>>>>>>> +#define CS2600_AUX_OUTPUT_FREQ_UNLOCK	0
->>>>>>>>> +#define CS2600_AUX_OUTPUT_PHASE_UNLOCK	1
->>>>>>>>> +#define CS2600_AUX_OUTPUT_NO_CLKIN	2
->>>>>>>>
->>>>>>>> I still don't see why these three are supposed to be bindings. Drop
->>>>>>>> them.
->>>>>>>
->>>>>>> In a binding one would presumably do:
->>>>>>>
->>>>>>> cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
->>>>>>>
->>>>>>> Apologies but I don't quite understand what you mean by the values
->>>>>>> are not used in the binding? The driver reads the property and sets
->>>>>>
->>>>>> There is no user of these defines, so not a binding.
->>>>>>
->>>>>>> the pin to have the appropriate function. Admittedly one could drop
->>>>>>
->>>>>> It's not a proof that this is a binding.
->>>>>>
->>>>>>> the defines and then DTS would just have to do:
->>>>>>>
->>>>>>> cirrus,aux-output-source = <0>;
->>>>>>>
->>>>>>> But that feels a bit less helpful when reading the binding.
->>>>>>
->>>>>> Binding and being helpful are two different things. This to be the
->>>>>> binding, it has to be used as a binding, so some translation layer
->>>>>> between driver and DTS. It must have an user in DTS. I keep repeating
->>>>>> this over and over...
->>>>>>
->>>>>
->>>>> Apologies, but I not sure I totally follow this, and apologies if
->>>>> you have already explained this are there some docs I can look
->>>>> at?
->>>>>
->>>>> I think you are saying because these defines merely represent the
->>>>> valid values for a device tree property and are not translated
->>>>> into different values you can't put defines for them in the binding
->>>>> header?
->>>>>
->>>>> So this would not be allowed:
->>>>>
->>>>>     #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 0
->>>>>
->>>>>     cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
->>>>>
->>>>>     device_property_read_u32(dev, "cirrus,aux-output-source", &val);
->>>>>     regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
->>>>>
->>>>> But this would be fine:
->>>>>
->>>>>     #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 1
->>>>>
->>>>>     cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
->>>>>
->>>>>     device_property_read_u32(dev, "cirrus,aux-output-source", &val);
->>>>>     switch (val) {
->>>>>     case CS2600_AUX_OUTPUT_FREQ_UNLOCK:
->>>>>       regmap_write(regmap, CS2600_OUTPUT_CFG2, 0);
->>>>>     }
->>>>>
->>>>> And this would also be fine?
->>>>>
->>>>>     cirrus,aux-output-source = <0>;
->>>>>
->>>>>     device_property_read_u32(dev, "cirrus,aux-output-source", &val);
->>>>>     regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
->>>>>
->>>> Yes. If you want to use in DTS user-readable values, then use string.
->>>>
->>>
->>> I don't understand this. Why should we have to use a string value for
->>> something that only needs a simple integer value? Why can't we define
->>> constants with meaningful names?
+On 19/12/2024 17:13, Fabien Parent wrote:
 >>
->> You can and you will find plenty examples of this, but as I explained
->> earlier - this is not a binding. We avoid defining as a binding
->> something which is not a binding.
+>>> +
+>>> +  compatible:
+>>> +    const: onnn,ncv6336
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  buck:
+>>> +    description: buck regulator description
 >>
+>> Why do you need "buck" node? Just merge the properties into this device
+>> node.
 > 
-> What does that mean?
-> Perhaps if you clearly explained what the problem is and what you want
-> us to change instead of making cryptic statements like "this is not a
-> binding" we wouldn't have to waste all this time exchanging emails that
-> aren't getting anywhere.
+> I decided to move the properties into a "buck" node to make the
+> upstream process of the driver
+> a little bit simpler. The driver is written in Rust, and if I want to
+> move the properties to the device
+> node I will need to provide a Rust abstraction for "struct
+> device_node". I decided to avoid this
+
+buck is already a device node, so I don't quite get how this design
+avoids such abstraction, but anyway driver design choices like this do
+not shape DT.
+
+> to keep the patch series simpler by having one less abstraction to review.
+> If you think that's a problem, let me know and I will implement it the
+> way you are suggesting for v2.
 > 
-> You didn't explain earlier. You typed some words earlier, but they
-> failed to explain, and you are continuing to fail to explain.
-Mentioned defines do not meet criteria of a binding, because of reasons
-I already stated very clear, so do not try to make them a binding.
-
-You got also pretty clear answer from Charles what to do, so what is
-unclear here? Drop these defines and use register values or better
-strings. Or fix them to be really a binding (and then come with a reason
-why these are bindings).
-
 Best regards,
 Krzysztof
 
