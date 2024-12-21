@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-133274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 211A89FA264
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:15:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8403F9FA26A
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:19:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C1E71606C3
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:15:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAF4C161758
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:19:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E101A2642;
-	Sat, 21 Dec 2024 20:15:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72DC17995E;
+	Sat, 21 Dec 2024 20:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CEZ8ixw6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EYNXg6FT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE34D18FDAE
-	for <devicetree@vger.kernel.org>; Sat, 21 Dec 2024 20:15:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C992746C;
+	Sat, 21 Dec 2024 20:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734812114; cv=none; b=iXZb4q1kHC1qTk7wKiX2LQZf0Rx+3oNl+N9KUxIQ4pjpLL1EZqIWOPU5vSTGWihRS+5Zj3P/mE8ftn5yE4ytxwtfVUU/IcHa2a24kI+Enok50BSPphdQ4ccJ0ePKZju5anrZriPtqzC+E5sNEF+ZQdVjdi1w5ig//GHRNE7CPUw=
+	t=1734812362; cv=none; b=Ze25FJGM+qNxLH45Jsz7ls25ELq05r2+qh+L89SuCfKn9QpgIgfkqJT05Ml0TulcOTs2pGvs/3v/ZdlTfLPnrwU101HAyegV7WIkZOwLguAExG4CMgNhwGC0Euh4AAk9i9kjCWLEyjj0daa5Oh08OmIJ94hgmdnrcARSWhH+TvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734812114; c=relaxed/simple;
-	bh=z4JnE8zgEfvurcDdcikxT1vxEbZjRKjBv9lfLT5RGds=;
+	s=arc-20240116; t=1734812362; c=relaxed/simple;
+	bh=eyn1IuEfhoj+k8zhwZKiparOtxsbTPRUkyexcAf3PyA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K63O8g2QWn6LB971vUZXi4yFC0AZSUNvXonMyftxBwLqKmCvld01sCSHin+MV1ATwQDsItyxbc61AngOUs6lVk3n39iUKjvENemQ3peGHfOjyj3uel3kxDmLGBYfblILTBkbG4I5Y8vuL/S9B7ITIfcrGu0l4vr4dFvMFhWF60o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CEZ8ixw6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67CEFC4CECE;
-	Sat, 21 Dec 2024 20:15:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uHmnUaQcBwLc1cgEicPPVJ1TPS0CmObigUQJLqo6dP/lpCJB+OVDADx4xUMA1H+UxaXsske8FV4Z6N89kWkRu7xAnxAjbe3MvF/DPZq9vjoM0U4y6XcgUliv4O4R1xkv4yJ7UT5oQZhV5F+7EWHFY9FXXepaeNvb+46BmG1hbSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EYNXg6FT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0D2DC4CECE;
+	Sat, 21 Dec 2024 20:19:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734812114;
-	bh=z4JnE8zgEfvurcDdcikxT1vxEbZjRKjBv9lfLT5RGds=;
+	s=k20201202; t=1734812362;
+	bh=eyn1IuEfhoj+k8zhwZKiparOtxsbTPRUkyexcAf3PyA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CEZ8ixw6mWrLi80dTPFinmDEOtYAS0hzhi2p1+ls2ZhgSIs1DdJ+FT+B29gtoWCBy
-	 b9p576LFCpi3ePKB+CE/qeqKbdqcWkvld8A2wc934h8QYwQ/7CotYkXO+L8d6UiaqV
-	 lvHcHiLsxp4YfXn8YgIlRhbKoGvtOizvP4KtFu/X6v8wvptz2AX2c8PfPKOGAMYIM8
-	 pFrwvFV+7DiuFJrQzqZMadt0xGEBh+1N+/jmYAXRtayQSbjV5Bkr9FswtNRzw6vRh7
-	 XiuxVdbo6Q4b9jmxCtijWo+teQ3Zy4vln+G1XnBmj8rS3C/XtRUZkWfMnXjEf37Pv4
-	 LYkVLm0+LqITA==
-Message-ID: <99e54beb-fa4b-4d51-9ab7-b35cc61dc164@kernel.org>
-Date: Sat, 21 Dec 2024 21:15:09 +0100
+	b=EYNXg6FTg8zUB2xIpThMeVdxgIWLuJt26mUgEqs8yupIFJGyU5vzdqEG/4ql6IILL
+	 LepgzyGplSl1WIQiOKGcxyrJOSbSeDBsZy1SQOaHOXKNBGdOJy2WBbv8UrCso3w4o6
+	 heHBBYh9GTuhgAIaiO/P40Feljcs0sBaoBYyA2GFKsqzKxvqxileoyQyQn2X+XYRyJ
+	 IZkQS/GZVVd9Wq9s6WHNT8THHK/V7yKKQnQr7IS1mCqeZ6mWWKlN3fcJX599gBhKxy
+	 q74FKhkU5md/5/CM8zmdhS+DQc/C2UDCVNaz3jF06tge13UMKLV83Ba38H8N6+wgMX
+	 c5SazDyk6+7zw==
+Message-ID: <9067df7d-01df-44d4-8fcf-0e4c37c91770@kernel.org>
+Date: Sat, 21 Dec 2024 21:19:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 04/12] arm64: dts: rockchip: Rename regulator for
- pcie2x1l2 for Radxa ROCK 5C
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dsimic@manjaro.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-5-naoki@radxa.com>
- <f525d875-734b-4c41-95ba-be07b11f8e1c@kernel.org>
- <47B1D9F5B9EC2A94+55e35302-64c6-4651-8f27-416723b8218b@radxa.com>
- <57C678CDC48F30E6+634c520a-a0b8-478f-9b5b-8b746aa5ab9c@radxa.com>
+Subject: Re: [PATCH v2 1/2] dt-binding: clock: cs2600: Add support for the
+ CS2600
+To: Richard Fitzgerald <rf@opensource.cirrus.com>,
+ Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: Paul Handrigan <paulha@opensource.cirrus.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, linux-clk@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ patches@opensource.cirrus.com
+References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
+ <20241219024631.3145377-2-paulha@opensource.cirrus.com>
+ <3glyuu4yg7wbykdsfm33m5evnn7fwg4dbplrkgzcceld3cgu2s@t3xjlhryt2y6>
+ <Z2P9X5b+oTo4Du/n@opensource.cirrus.com>
+ <3c09367c-808b-4414-bf6a-99e0bdaa3a27@kernel.org>
+ <Z2QYooZJ9kFeYzgc@opensource.cirrus.com>
+ <ebc6bc7d-d847-46fe-908c-c618d94e3345@kernel.org>
+ <a23a5e89-0a55-4b17-9911-a12cfa154ef2@opensource.cirrus.com>
+ <c7278ed3-9361-4cd1-ad28-cdbcc3d84bcd@kernel.org>
+ <51a5c92c-be2d-4e05-a3d8-8ba4fb0b759b@opensource.cirrus.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,91 +113,116 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <57C678CDC48F30E6+634c520a-a0b8-478f-9b5b-8b746aa5ab9c@radxa.com>
+In-Reply-To: <51a5c92c-be2d-4e05-a3d8-8ba4fb0b759b@opensource.cirrus.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/12/2024 07:51, FUKAUMI Naoki wrote:
-> Hi Krzysztof,
-> 
-> Could you please reply to this email?
-> (Not for me, but for everyone)
-
-You have me how much time... 3 days to reply?
-
-> 
-> Best regards,
-> 
-> --
-> FUKAUMI Naoki
-> Radxa Computer (Shenzhen) Co., Ltd.
-> 
-> On 12/17/24 10:11, FUKAUMI Naoki wrote:
->> On 12/16/24 22:38, Krzysztof Kozlowski wrote:
->>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
->>>> Use consistent name with other regulators. No functional change.
+On 19/12/2024 17:22, Richard Fitzgerald wrote:
+> On 19/12/24 15:57, Krzysztof Kozlowski wrote:
+>> On 19/12/2024 14:36, Richard Fitzgerald wrote:
+>>> On 19/12/24 13:16, Krzysztof Kozlowski wrote:
+>>>> On 19/12/2024 13:59, Charles Keepax wrote:
+>>>>> On Thu, Dec 19, 2024 at 12:39:38PM +0100, Krzysztof Kozlowski wrote:
+>>>>>> On 19/12/2024 12:02, Charles Keepax wrote:
+>>>>>>> On Thu, Dec 19, 2024 at 09:51:00AM +0100, Krzysztof Kozlowski wrote:
+>>>>>>>> On Wed, Dec 18, 2024 at 08:46:30PM -0600, Paul Handrigan wrote:
+>>>>>>>>> +/* CS2600 Auxiliary Output */
+>>>>>>>>> +#define CS2600_AUX_OUTPUT_FREQ_UNLOCK	0
+>>>>>>>>> +#define CS2600_AUX_OUTPUT_PHASE_UNLOCK	1
+>>>>>>>>> +#define CS2600_AUX_OUTPUT_NO_CLKIN	2
+>>>>>>>>
+>>>>>>>> I still don't see why these three are supposed to be bindings. Drop
+>>>>>>>> them.
+>>>>>>>
+>>>>>>> In a binding one would presumably do:
+>>>>>>>
+>>>>>>> cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
+>>>>>>>
+>>>>>>> Apologies but I don't quite understand what you mean by the values
+>>>>>>> are not used in the binding? The driver reads the property and sets
+>>>>>>
+>>>>>> There is no user of these defines, so not a binding.
+>>>>>>
+>>>>>>> the pin to have the appropriate function. Admittedly one could drop
+>>>>>>
+>>>>>> It's not a proof that this is a binding.
+>>>>>>
+>>>>>>> the defines and then DTS would just have to do:
+>>>>>>>
+>>>>>>> cirrus,aux-output-source = <0>;
+>>>>>>>
+>>>>>>> But that feels a bit less helpful when reading the binding.
+>>>>>>
+>>>>>> Binding and being helpful are two different things. This to be the
+>>>>>> binding, it has to be used as a binding, so some translation layer
+>>>>>> between driver and DTS. It must have an user in DTS. I keep repeating
+>>>>>> this over and over...
+>>>>>>
+>>>>>
+>>>>> Apologies, but I not sure I totally follow this, and apologies if
+>>>>> you have already explained this are there some docs I can look
+>>>>> at?
+>>>>>
+>>>>> I think you are saying because these defines merely represent the
+>>>>> valid values for a device tree property and are not translated
+>>>>> into different values you can't put defines for them in the binding
+>>>>> header?
+>>>>>
+>>>>> So this would not be allowed:
+>>>>>
+>>>>>     #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 0
+>>>>>
+>>>>>     cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
+>>>>>
+>>>>>     device_property_read_u32(dev, "cirrus,aux-output-source", &val);
+>>>>>     regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
+>>>>>
+>>>>> But this would be fine:
+>>>>>
+>>>>>     #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 1
+>>>>>
+>>>>>     cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
+>>>>>
+>>>>>     device_property_read_u32(dev, "cirrus,aux-output-source", &val);
+>>>>>     switch (val) {
+>>>>>     case CS2600_AUX_OUTPUT_FREQ_UNLOCK:
+>>>>>       regmap_write(regmap, CS2600_OUTPUT_CFG2, 0);
+>>>>>     }
+>>>>>
+>>>>> And this would also be fine?
+>>>>>
+>>>>>     cirrus,aux-output-source = <0>;
+>>>>>
+>>>>>     device_property_read_u32(dev, "cirrus,aux-output-source", &val);
+>>>>>     regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
+>>>>>
+>>>> Yes. If you want to use in DTS user-readable values, then use string.
 >>>>
->>>> Fixes: 3ddf5cdb77e6 ("arm64: dts: rockchip: add Radxa ROCK 5C")
->>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>>> ---
->>>> Changes in v5:
->>>> - Reword commit message
->>>> Changes in v4:
->>>> - reword commit message
->>>> Changes in v3:
->>>> - none
->>>> Changes in v2:
->>>> - new
->>>> ---
->>>>   arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 6 +++---
->>>>   1 file changed, 3 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts b/arch/ 
->>>> arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>>> index 85589d1a6d3b..61d75ab503b2 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>>> @@ -76,13 +76,13 @@ pwm-fan {
->>>>           pwms = <&pwm3 0 60000 0>;
->>>>       };
->>>> -    pcie2x1l2_3v3: regulator-pcie2x1l2-3v3 {
->>>> +    vcc3v3_pcie2x1l2: regulator-vcc3v3_pcie2x1l2 {
 >>>
->>> No, neither explained, nor correct. See DTS coding style.
->>>
->>> Please use name for all fixed regulators which matches current format
->>> recommendation: 'regulator-[0-9]v[0-9]'
->>>
->>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ 
->>> tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml? 
->>> h=v6.11-rc1#n46
+>>> I don't understand this. Why should we have to use a string value for
+>>> something that only needs a simple integer value? Why can't we define
+>>> constants with meaningful names?
 >>
->> 'regulator-[0-9]v[0-9]' is preferred, but 'regulator-[0-9a-z-]+' is also 
->> permitted, right?
+>> You can and you will find plenty examples of this, but as I explained
+>> earlier - this is not a binding. We avoid defining as a binding
+>> something which is not a binding.
 >>
->> i.e. regulator-vcc3v3_pcie2x1l2 should be regulator-vcc3v3-pcie2x1l2
->>
->>
->> Or, should we revert below patch and use 'regulator-[0-9]v[0-9]'?
->>
->>   https://lore.kernel.org/ 
->> all/0ae40493-93e9-40cd-9ca9-990ae064f21a@gmail.com/
->>
->> Is 'regulator-0v0' valid?
+> 
+> What does that mean?
+> Perhaps if you clearly explained what the problem is and what you want
+> us to change instead of making cryptic statements like "this is not a
+> binding" we wouldn't have to waste all this time exchanging emails that
+> aren't getting anywhere.
+> 
+> You didn't explain earlier. You typed some words earlier, but they
+> failed to explain, and you are continuing to fail to explain.
+Mentioned defines do not meet criteria of a binding, because of reasons
+I already stated very clear, so do not try to make them a binding.
 
-Why would it be valid? Can you have regulator with 0 volts?
-
->> Is 'regulator-12v0' invalid?
-
-Read the binding. I gave you very specific link.
-
->>
->> How should we handle multiple 1v8/3v3/5v0 regulators?
-
-Just add suffix. But usually more than one suffix, vcc+3v3+pcie_2x1l2,
-means you created a very specific name.
-
-
+You got also pretty clear answer from Charles what to do, so what is
+unclear here? Drop these defines and use register values or better
+strings. Or fix them to be really a binding (and then come with a reason
+why these are bindings).
 
 Best regards,
 Krzysztof
