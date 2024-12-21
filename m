@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-133280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B129FA27D
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:35:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5A89FA282
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 21:39:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D175188C0F6
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:35:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43B8C164BFC
+	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 20:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF9D1C5F20;
-	Sat, 21 Dec 2024 20:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1A01CBE94;
+	Sat, 21 Dec 2024 20:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qmNU7mTF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U9mpFS00"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72552183CBB;
-	Sat, 21 Dec 2024 20:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F99B1C9B97;
+	Sat, 21 Dec 2024 20:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734813330; cv=none; b=HnRA6zalrWqpjDEOR5swQv506Z5iBrSHpTRTNkSgnBDqafJa+AyxMTFtd/X6yf7gr2uqqHa5+S74o0z52QxjyDu7163IpMZJqF7KaceduTT93D9yiKje7E+AhRduCBVKyDb5d/0qa2/oG/uX12a63YmgWCk8AfF2KSaAkKbTs5Y=
+	t=1734813549; cv=none; b=X4ED+2yfC+gWzsSKJuUq8dOv0+dSuw0T60ZsgQAQsvdpFkNZgmDo+o7IXGRk3nLM3kKb6JZvNBJS7UVtwdJr6488aR8weT0fBSBbkSAq8vcY5N/kU6/RscAYWsrvBqvAMixW0rLc8AgjHGptkyl/kIHVk97ZX5ck6AybG7A/A68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734813330; c=relaxed/simple;
-	bh=ekl19ucpR2Fcoz2QsVFpdIVw86xZ3nM2uWZVPMJgU6k=;
+	s=arc-20240116; t=1734813549; c=relaxed/simple;
+	bh=dmERGegZ7dsGSRdD/2wWLUBMPao8eO1+h0rBZPkhzlM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HLC2fzLSyvDesGaIL7S7ewD6OSyfAgTrZkS24h8sHC7VuVs2/bCOCsF2gIkVwfPNn2GaMQjbNwMLgZJu+f89nkYTclr9XWZVL/ohib0zEDtOQOavb9r7FzV2Cx+wiZcfEt66xFSS5fX+OC4ZbrQ+Ol2cqWvgcq30gyrhKMQczqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qmNU7mTF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDD4AC4CECE;
-	Sat, 21 Dec 2024 20:35:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=foFD1UK77J+n3gnEQY98/twvf4FB3S7Gn6pU7J0D8FPlRt4PXwOANws8WXY3AljiWjzv87qmQHE8NA0pvvG0Ivr05Nip+1PJ4fL6IWZsAiJYN40kYslrzHxWpyRoSvzxBUs0gQX+On0SOOhgBelZEP+9ljnT6NYVQkt/x/qD/nA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U9mpFS00; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EE70C4CECE;
+	Sat, 21 Dec 2024 20:39:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734813329;
-	bh=ekl19ucpR2Fcoz2QsVFpdIVw86xZ3nM2uWZVPMJgU6k=;
+	s=k20201202; t=1734813549;
+	bh=dmERGegZ7dsGSRdD/2wWLUBMPao8eO1+h0rBZPkhzlM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qmNU7mTFtc/T4SK9N3/HJnsytsAC7yoifQzQMmyabNyokhgdS03QGW4OR0dB93EUN
-	 TK+NCEBa3JYYI63ZNkZlQhUrPL9pv0mTvzkaIBt+yOVgeuLteRAm9UNOuG7rL2UKla
-	 vuAXxgUeToZuj9j/yf9Mv8jx7mJJ7Mw2pSAsZCIu3+bE+osmfXTI2zNh748DizYg7O
-	 f2LLxiQ3wKCjUBCSPpIYzCfjIqaSlAmhrGXOvKjP+qzQvtftzcdWsRRx0PRflAG+3b
-	 SdchDm5rFE5GesIA5pfK6llVQKrTjfLA6kasAPd5r/wxjdrmuE+7Y6qC5PjNacaxNU
-	 6QF2/m1FobdaA==
-Message-ID: <45f6e5e0-c145-40d9-8f0a-ffb25ecffb28@kernel.org>
-Date: Sat, 21 Dec 2024 21:35:22 +0100
+	b=U9mpFS00o6xL2ffP13MyRzosjwghEYrgyvxaxtz7AtTkEnS/tno0uTXSyfzsU4BMZ
+	 yXHUN9pUYgMoRTW82UEImN8/mI31a1LpcCcE+HJyfYtQ87qZvTvYM5pOqhFC3526JB
+	 hFrpkhJh9XkY1S/xGuB2KzLYkxensGM5pNo1+KXgu0JdAy5W4+QeCf+k/ijAkvY3SH
+	 xJw+UDZyNR37xs+3slpin4LNOtYfXdIP+nB4IuxTyXJtc9HVtEDlVIzve0AufnDWpO
+	 H4Mc8SV7saRpLPsqD+GJJVhq6GV9/DogEkXdXD6dLSxr2KKbBwadNZJnoRgEsImxmp
+	 FhWfln2GtBvnw==
+Message-ID: <9080f2ca-e350-4ac5-9021-3d277145dc0c@kernel.org>
+Date: Sat, 21 Dec 2024 21:39:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] pwm: max7360: Add MAX7360 PWM support
-To: mathieu.dubois-briand@bootlin.com, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kamel Bouhara
- <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
- linux-pwm@vger.kernel.org, =?UTF-8?Q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20241219-mdb-max7360-support-v1-0-8e8317584121@bootlin.com>
- <20241219-mdb-max7360-support-v1-4-8e8317584121@bootlin.com>
+Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom-soc: Extend X1E prefix match
+ for X1P
+To: Konrad Dybcio <konradybcio@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20241221-topic-x1p4_soc-v1-0-55347831d73c@oss.qualcomm.com>
+ <20241221-topic-x1p4_soc-v1-1-55347831d73c@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,55 +105,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241219-mdb-max7360-support-v1-4-8e8317584121@bootlin.com>
+In-Reply-To: <20241221-topic-x1p4_soc-v1-1-55347831d73c@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/12/2024 17:21, mathieu.dubois-briand@bootlin.com wrote:
-> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+On 21/12/2024 13:36, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> Add driver for Maxim Integrated MAX7360 PWM controller, supporting up to
-> 8 independent PWM outputs.
+> The X1 series includes SoCs like X1P42100. Extend the pattern x1e match
+> to x1[ep] to also include these.
 > 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
 
-
-...
-
-> +
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id max7360_pwm_of_match[] = {
-> +	{ .compatible = "maxim,max7360-pwm", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, max7360_pwm_of_match);
-> +#endif
-> +
-> +static struct platform_driver max7360_pwm_driver = {
-> +	.driver = {
-> +		.name = "max7360-pwm",
-> +		.of_match_table = of_match_ptr(max7360_pwm_of_match),
-
-Better to drop of_match_ptr and #ifdef earlier, so ACPI could use it.
-
-> +	},
-> +	.probe = max7360_pwm_probe,
-> +};
-> +module_platform_driver(max7360_pwm_driver);
-> +
-> +MODULE_DESCRIPTION("MAX7360 PWM driver");
-> +MODULE_AUTHOR("Kamel BOUHARA <kamel.bouhara@bootlin.com>");
-> +MODULE_ALIAS("platform:max7360-pwm");
-
-
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
-
-Maybe you need it because OF table will get dropped, then it would be
-fine. But in current code it's unnecessary and copy-pasta from other
-drivers.
-
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
