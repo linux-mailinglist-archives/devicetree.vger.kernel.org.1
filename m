@@ -1,179 +1,255 @@
-Return-Path: <devicetree+bounces-133365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54D0A9FA646
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 15:53:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 346949FA659
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 16:08:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9115D1887CBD
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 14:53:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92DDD161FD1
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 15:08:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32A4618FDB2;
-	Sun, 22 Dec 2024 14:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03CC18D625;
+	Sun, 22 Dec 2024 15:08:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aZxUOHgc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W1uCoOm2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B74818FC6B
-	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 14:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B7F18A924;
+	Sun, 22 Dec 2024 15:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734879184; cv=none; b=NAuwSDZQGEK52E7yA1nL1z+e27NJuox1nVwHysM/VChsQ6BHkPT78y2gzpPkD1jJFerazbD12S49VHop3Qz5l0hYRoJIt0QAe4h/wAFbU6RT1nPmTEsPyicsswVJPXzDGHKHgBFh3EB21jZ2Dsu0U798+YiaFqfk387oKQSyJZI=
+	t=1734880094; cv=none; b=QwaopOYPEqnCpBODaF1fiDJnwDtF091obNeDSm39jmmVfdpSMo3mAec3GX+URR5vle/MSea6n3fHFw4e8TbZ5Sd/GlhqOYhMVlJPSKAQ4gwFed4v2NCy2zAqcURvr5vaYLRS28PJga3UJuIZUckOCP86TgWR7fzE0Jdgzq20L3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734879184; c=relaxed/simple;
-	bh=+d33dOGNSMQlOHHkjlGTTjjfImS0dtwZ7ZPSkBlaEWM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gNBjaVSVEXBhb1fPkiNNnDdXAGT8UheqF7DCI+w/ONhYL8oI62zfrZvBU0FJBQ+GLNJxYa+iwKOJOusOn/OAFMEwB1E/394EHwsbETxO2P3mZ+BI8Ohgv8tv0CsQyfCnRiACT8UdAc+E3SjX7kEZC7pmeHXGT5Dr4Udkaqy/mjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aZxUOHgc; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aa551d5dd72so64027366b.3
-        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 06:53:01 -0800 (PST)
+	s=arc-20240116; t=1734880094; c=relaxed/simple;
+	bh=KNQhSyi4ipTPPysSBkuG1N/VEAxn0uQWIXM+DCiPfNA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BOVlLEsIbzsk+WKfuUIbEIcEw8pvNJbxPE+On5fnSbEBGvdNR7gOH1PXdUwi0c2emGRTo8URiFJ/kJWHnCOJjRdEOAGRugD7l+oIuMvDrwLVuqgnybdZMpt+L4J/K1aGx1bO2151L3US3POYep7Ftog6njDJq+TZ0Qhc0Ot+wYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W1uCoOm2; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-29e5aedbebdso1562875fac.0;
+        Sun, 22 Dec 2024 07:08:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734879180; x=1735483980; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aMZe3KIsDQb+Ch5185jS18YCIZb5/VxUA7wsA3ESW1g=;
-        b=aZxUOHgcb3W5XVci2yenEwkalKnozqq29CZatva+hFnLPfDAMGJM0XpoB7aL5wIR/J
-         2PBwvAshhc96JXuivO9MRPwKOf1VZnmydM+sSPQrS1mfib0glMiP+iTt67HnnLnlwLGj
-         32y+cNWTuOetp7jpxWbi06S7hgQD+tgfC6OYTL0fGnW2heCzkJxRhNGBc0IitmyCJp/k
-         qe/653JSd74BVinH+E7g4/V5eVdNBaDje/cK+ZCVHJJJ0z259Kmt6cWBB1WkaCNcBKIQ
-         iXV8LzX4lC8g795Re7+gC4rl93OiOJMrhMASDEEDx0qzFU5ERKxuwgzxL3R7CXXDB0os
-         5IMw==
+        d=gmail.com; s=20230601; t=1734880092; x=1735484892; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mZ2sbrQyrrPcANBkGFQguh+3JYHXT7LPTlFvu+SnOAw=;
+        b=W1uCoOm2ZMqSOowqi6R6IsIdRwz/7LngDrVCPll+4aLpwCoCys+mJcVWWbf6b30dqe
+         1wCXNztMVk0OzOSSOwTbnlRa7fQqTUA3Lqtozxc5yB/yltVg24VHGxfz+/kMlRXNEaBo
+         oxrNX2HR143c5aSiHRjWK9FILukLSRz999lpJ/ZAHX2SgobMuF3hj6j+qZKCUWWOL/dk
+         NAUszlrY7O3crCj83ZGFNKsUPOpCy3zXv0G4E/SbVbGv/+fzhA8w6Xg0gDj/obS8Iqbs
+         iVy0+QMFkabPkoxcNnITqJuCqNg4dovhYdpaPshNmH0g4rYuG+MSW90WLo+pqBqxY0Jk
+         GPGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734879180; x=1735483980;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aMZe3KIsDQb+Ch5185jS18YCIZb5/VxUA7wsA3ESW1g=;
-        b=UOQhBZXd+YWHOcVRChbgpiZVfx2+rCQgGPsM8BAmH8VLpBbeEdWK93LDVXB31GBRVe
-         jZI9zkO/F4yNQtM8QKS9bK6bN/rufwgw41tqD41/T5ENF9/+XTFaR2UfOjfMsmmee31m
-         pRogX4t3zMyz+4J2XG9oFIkxzat7O6u9e96iVlAl/69Y5/8Av1PgEaIZVIKxeoAc7Tli
-         60KUYa507xiSU4/72cqn0ohzG6A7CMwgP8BwKw5kydY0GenCm23iaGv0zFlFBoEfIrfy
-         DP48BPIXJDKv8biin7lArbOMjs+bAf41Ytn261tm42mij9rOzgEORxj10BPPZhJaorhr
-         6N7w==
-X-Forwarded-Encrypted: i=1; AJvYcCUZZmjcvWxnJnDU5kMsAmnY+0Zqd7d0eqHZNf8qoGECVohAYjRVJbt4atZtICAR4p0pAk/4nQP+B8CY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgvXv8huwteSf2inZukaQvBjQU2fNBTHOk3uEcSmPhZcj0Zu8S
-	iytYBEY+4BE1Crkk4tb0sfnLxbgNRiImCskTxAUkcvG+C2wf7uzJEWJmnUw0JkQ=
-X-Gm-Gg: ASbGncuMuyFrcswAJH2ZILSUQaOGccCJGradNzQk3ayV5/WY6LRBMliDuyX+5TRYu5x
-	tLGLYKz+iwXayJ8kyzB0vWtBE1w312c1/GbQ4i6UKwlb6JRAg5tTqySTXBnEPy7E1Ojb1e8FFOK
-	vqzgpzyDvVFWKYnOT+cya6UT7NcDLtykPiB5dzbFdk/yV61QhfvK+sA1aKhNwSFL6pOycnlT2kb
-	Clc8z71tfWLvEjy7u0t25/6jCvfES4W5+pL67e8sMjAsDNi8gHeuT8aQiQsCIlGe8I2ny9UaZ5x
-	pz9S01uMCn9GgdUJo65SsomBgh/ILA==
-X-Google-Smtp-Source: AGHT+IHjZBO20DhCS6VWRIkYCvaJqzjKDPYq8fCPXpEgvr/Ih/lPcG98CqFloHsurYEW0cVqBYl2ww==
-X-Received: by 2002:a17:906:dc95:b0:aa6:75db:c34e with SMTP id a640c23a62f3a-aac3444a235mr315630266b.14.1734879179038;
-        Sun, 22 Dec 2024 06:52:59 -0800 (PST)
-Received: from krzk-bin.. (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0efe46f6sm395237866b.111.2024.12.22.06.52.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Dec 2024 06:52:58 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: exynos8895: Rename PMU nodes to fixup sorting
-Date: Sun, 22 Dec 2024 15:52:57 +0100
-Message-ID: <20241222145257.31451-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1734880092; x=1735484892;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mZ2sbrQyrrPcANBkGFQguh+3JYHXT7LPTlFvu+SnOAw=;
+        b=oBG9cljk4a7D59W247k34fOpQhYinsPmkNwqPtG1pw822Oqpw1NyOZUWysIvibnvWq
+         z2Q/uDI1Wvptt4aCxYr6Ag55MZ2Q4PbQuD00R8s2QGs5VnlIOvSeqdH3FltEfvO2dggb
+         Sav75Ij56veyWjj/R9sEDmRkSd+aBZky5DT1uVEWzmaLKf9oyxTHm+x/QB0BX2fVy1kw
+         ++czxOVqe9Nah3HpukOLgzntiHMnwlArLPnjG9E9PBA62n3ZhwSVxhXuBWbr1Md3Pb+A
+         3KednK/FZQtWR9FbRZYnRSf4GSGeNHIoQbVNr5V6648EKw48yGGk7OwYwHA3O4MWJ/HI
+         S5eQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUomYzCTR/1mikXrkEWFPcdyE7ZvJkVym72OD77rMsGMIv+DyPo5LxhvBKU2iKRqBoiqJ7UAnpr7q3GH1bK@vger.kernel.org, AJvYcCUqHdlqXuOcfG99qrKTlrSHiWoHiayFCE5DsEr8Uqr4Ri4Zxd+M3uR1Px1YusmBxojYw5ZyVkaslkqllduvcw==@vger.kernel.org, AJvYcCVmMI6l2OdiGLLD272M+pZRobjHlOlQJGB1X7Tv6CQlcPQKyj2JE92HmQJaXSDuOSKhVPFTxvu0GPby@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyd1lao0LpR/drvyjEB73A0N1IgGz9rxapgAnLNaaHKhwxdMCx6
+	VSAqrh/27yuHCEWpQdg/ZR7tz4rmU7glmsS01bMu9MPiBRyHyBvH4gEuw+58WbNm4L5o7P3m9k7
+	d22CLl7X4jKBh9tmm0IaSPL64X9o=
+X-Gm-Gg: ASbGncu1Z0WjcRFuRKaog0MC0bYGVr6SElKmmsRnzagW7hYwGQXIya5jBMLR1wM3YdD
+	e9c/hMYyOFBIn1W7oc+Iek51yVLctn7aOLmINLhk=
+X-Google-Smtp-Source: AGHT+IHOrO3Nptpr/pLzJxMo4JF+qwMmVwbfECZmbV0fgisN4KlsqBaoaQKUPVgL4heDFw0c1lTs2Otr/sYLBWMbrWk=
+X-Received: by 2002:a05:6870:ff43:b0:296:ff26:3cd1 with SMTP id
+ 586e51a60fabf-2a7fb14195cmr5567941fac.21.1734880091960; Sun, 22 Dec 2024
+ 07:08:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241219200821.8328-1-maccraft123mc@gmail.com>
+ <Z2WxzvKRVcOz5d2V@linaro.org> <CAO_MupJ7JtXNgGyXcxGa+EGAvsu-yG0O6MgneGUBdCEgKNG+MA@mail.gmail.com>
+ <Z2W2UhspMZNT1TRU@linaro.org> <c8677ae6-a145-411c-a221-02faa1ce809d@kernel.org>
+In-Reply-To: <c8677ae6-a145-411c-a221-02faa1ce809d@kernel.org>
+From: Maya Matuszczyk <maccraft123mc@gmail.com>
+Date: Sun, 22 Dec 2024 16:07:36 +0100
+Message-ID: <CAO_Mup+YFAT5oFRGYucW5h_eGcfp4C5FzF20hM6xF=qMR1DdQw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: platform: Add bindings for Qcom's EC
+ on IT8987
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Nodes should be sorted by name but it is also nice to have same class of
-devices together, so rename both PMU nodes (A53 and M2) to use "pmu"
-prefix, instead of suffix.
+niedz., 22 gru 2024 o 15:40 Krzysztof Kozlowski <krzk@kernel.org> napisa=C5=
+=82(a):
+>
+> On 20/12/2024 19:24, Stephan Gerhold wrote:
+> > On Fri, Dec 20, 2024 at 07:16:34PM +0100, Maya Matuszczyk wrote:
+> >> Excuse the formatting, I've typed this reply from my phone
+> >>
+> >> pt., 20 gru 2024, 19:05 u=C5=BCytkownik Stephan Gerhold <
+> >> stephan.gerhold@linaro.org> napisa=C5=82:
+> >>
+> >>> On Thu, Dec 19, 2024 at 09:08:18PM +0100, Maya Matuszczyk wrote:
+> >>>> This patch adds bindings for the EC firmware running on IT8987 prese=
+nt
+> >>>> on most of X1E80100 devices
+> >>>>
+> >>>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> >>>> ---
+> >>>>  .../bindings/platform/qcom,x1e-it8987-ec.yaml | 52 ++++++++++++++++=
++++
+> >>>>  1 file changed, 52 insertions(+)
+> >>>>  create mode 100644
+> >>> Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+> >>>>
+> >>>> diff --git
+> >>> a/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+> >>> b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..4a4f6eb63072
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.=
+yaml
+> >>>> @@ -0,0 +1,52 @@
+> >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: http://devicetree.org/schemas/platform/qcom,x1e-it8987-ec.yaml=
+#
+> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: Qualcomm Embedded Controller on IT8987 chip.
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Maya Matuszczyk <maccraft123mc@gmail.com>
+> >>>> +
+> >>>> +description:
+> >>>> +  Most x1e80100 laptops have an EC running on IT8987 MCU chip. The =
+EC
+> >>> controls
+> >>>> +  minor functions, like fans, power LED, and on some laptops it als=
+o
+> >>> handles
+> >>>> +  keyboard hotkeys.
+> >>>> +
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    oneOf:
+> >>>> +      - const: qcom,x1e-it8987-ec
+> >>>
+> >>> Given that ECs tend to be somewhat device-specific and many vendors
+> >>> might have slightly customized the EC firmware(?), I think it would b=
+e
+> >>> better to disallow using this generic compatible without a more speci=
+fic
+> >>> one. In other words, I would drop this line and just keep the case
+> >>> below:
+> >>>
+> >> I've looked at DSDT of other devices and they look to be compatible wi=
+th
+> >> what's on the devkit, with differences being extra features on magicbo=
+ok
+> >> art 14 and yoga slim 7x. Though this isn't a hill I'm willing to die o=
+n.
+> >>
+> >
+> > I think it's fine to keep qcom,x1e-it8987-ec as second compatible.
+>
+>
+> No, because:
+> 1. There is no such thing as x1e
+> 2. If there was a soc like this, this has nothing to do with SoC. It is
+> not a component inside SoC and that is the only allowed case when you
+> use SoC compatibles.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It was the closest thing I had for a "platform name"
 
----
+>
+> > However, without a more specific compatible, there is a risk we have
+> > nothing to match on in case device-specific handling becomes necessary
+> > in the driver at some point.
+> >
+> > It's certainly subjective, but it might be better to play it safe here
+> > and have a specific compatible that one can match, even if the behavior
+> > is 99% the same. There will often be subtly different behavior across
+> > devices, you mentioned the "keyboard backlight turning off and the powe=
+r
+> > LED slowly blinking", who knows what else exists.
+> >
+> > I suppose worst case we could also use of_machine_is_compatible() to
+> > just match the device the EC is running on, but I'm not sure if that
+> > would be frowned upon.
+>
+>
+> Unless you have some sort of insights or secret knowledge from Qualcomm
+> (Bjorn or Konrad can chime in here), I think these are pure guesses that
+> this is a Qualcomm product (implied by vendor prefix) or some sort of
+> re-usable generic firmware from Qualcomm present on multiple devices.
 
-I know we have everywhere else in pure-ARM designs nodes "arm-xxx-pmu",
-but this is too trivial and unimportant to change.  I however want to
-avoid copying unsorted-style code to new patches.
----
- arch/arm64/boot/dts/exynos/exynos8895.dtsi | 48 +++++++++++-----------
- 1 file changed, 24 insertions(+), 24 deletions(-)
+The x elite devkit also has the IT8987 EC chip, and when comparing the
+firmware of it and Yoga Slim 7x's EC there are similarities when
+running them through strings
+On both of them at the beginning there are strings that look like
+version identifiers:
+Devkit:
+UUBBK V:00.20.00$
+BBK-V20$
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-index 90b318b2f08a..d31d74cc4580 100644
---- a/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-@@ -26,30 +26,6 @@ aliases {
- 		pinctrl7 = &pinctrl_peric1;
- 	};
- 
--	arm-a53-pmu {
--		compatible = "arm,cortex-a53-pmu";
--		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-affinity = <&cpu0>,
--				     <&cpu1>,
--				     <&cpu2>,
--				     <&cpu3>;
--	};
--
--	mongoose-m2-pmu {
--		compatible = "samsung,mongoose-pmu";
--		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-affinity = <&cpu4>,
--				     <&cpu5>,
--				     <&cpu6>,
--				     <&cpu7>;
--	};
--
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -149,6 +125,30 @@ oscclk: osc-clock {
- 		clock-output-names = "oscclk";
- 	};
- 
-+	pmu-a53 {
-+		compatible = "arm,cortex-a53-pmu";
-+		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>,
-+				     <&cpu1>,
-+				     <&cpu2>,
-+				     <&cpu3>;
-+	};
-+
-+	pmu-mongoose-m2 {
-+		compatible = "samsung,mongoose-pmu";
-+		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu4>,
-+				     <&cpu5>,
-+				     <&cpu6>,
-+				     <&cpu7>;
-+	};
-+
- 	psci {
- 		compatible = "arm,psci";
- 		method = "smc";
--- 
-2.43.0
+Slim7x:
+UUBBK V:00.21.00$
+BBK-V21$
 
+With similar ones at the end:
+Devkit:
+EC VER:00.29.00$
+LsFv:00.29.00$
+Qualcomm$
+WoS 8c GenX$
+ODM$
+MB:A0$
+BUILD DATE:
+02/0//2/24$
+TIME:
+14:33:35$
+
+Slim7x:
+EC VER:00.60.00$
+LsFv:00.20.00$
+Qualcomm$
+WoS 8c GenX$
+ODM$
+MB:A0$
+BUILD DATE:
+2024/07/25$
+TIME:
+09:58:00$
+
+
+
+>
+> If the FW across devices is the same, then fallbacks for these are fine
+> with me.
+
+As the devkit has EC firmware that is handled the same way in DSDT
+tables of most of other x1e laptops with the same EC, and is a subset
+of what's done on Lenovo Yoga Slim 7x and Honor Magicbook Art 14 I
+think the devkit's compatible  + -ec would be a good pick.
+
+This conversation is getting long and I feel like I've said everything
+I wanted to say, I'll just do what you tell me to do about the
+fallback and binding filename.
+
+>
+> Best regards,
+> Krzysztof
 
