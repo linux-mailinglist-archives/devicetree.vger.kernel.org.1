@@ -1,224 +1,79 @@
-Return-Path: <devicetree+bounces-133372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E389FA6EC
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 17:53:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF86A9FA6F1
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 17:54:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 790671884A96
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 16:53:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC15E166730
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 16:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E61376E0;
-	Sun, 22 Dec 2024 16:53:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C9214375C;
+	Sun, 22 Dec 2024 16:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fWjVTCc+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A02C38DDB
-	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 16:53:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 793C139FD9;
+	Sun, 22 Dec 2024 16:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734886418; cv=none; b=N9sBvQZLh7pf1N8qJsoBjvhiORRwv7X2kD2EcHAFpFoyISi3SQaD5vbsjdg6VQUNWWs8pw0/iEGhvhr7rUV7ySUNHtl0sGA0Wasf5D91ZP5ryaWu3hlMyZkQi79ppuPgXquRPPzVVWowEmHuoMkyZYAv3wtNCGWdz16AQgac5sQ=
+	t=1734886479; cv=none; b=lxWWk0PU1/uSn34GOMJ6lSQZtVQVhDVPwfCjnnET/vyNubmRFtcqjWdi4I6gjKG0bF5fXgPvypyj2aXn6NzygWFjRCQZavW7jOB+8Rw0F2v5zVINLi3oQoBVbUYHQMehjSS88GGrHFbTRHeSm5KWUsY83Ty1STl7M9HsqTMPIYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734886418; c=relaxed/simple;
-	bh=b24JXmHyIqPfrtP3Giz1WaLiNv6wSkUBJDbwkdaKtnE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VXMOtOKXkUCghe9EJQ/uGfyoqsCaUMgpWJFwGlsiHVtKHFXwjtTLuAE/76AliNfVpw7B1eHRMctuJYspUYLriXgLEdQzoRPDumj8mvl+TxggHzgB6jC3efw2Ul26GfLlTHz/wtOQm3hBmc1MRA6PTXlZGOak/G/MKTqvDTAYnaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tPPCb-00079m-3w; Sun, 22 Dec 2024 17:53:13 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tPPCX-004jGl-1y;
-	Sun, 22 Dec 2024 17:53:10 +0100
-Received: from pengutronix.de (2a02-8206-240a-ed00-dcc8-6079-a37a-d53f.dynamic.ewe-ip-backbone.de [IPv6:2a02:8206:240a:ed00:dcc8:6079:a37a:d53f])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 54814393BE0;
-	Sun, 22 Dec 2024 16:53:09 +0000 (UTC)
-Date: Sun, 22 Dec 2024 17:53:08 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
-	Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
-	Simon Horman <horms@kernel.org>
-Subject: Re: [PATCH v6 0/7] can: m_can: Add am62 wakeup support
-Message-ID: <20241222-opalescent-athletic-cuttlefish-c96337-mkl@pengutronix.de>
-References: <20241219-topic-mcan-wakeup-source-v6-12-v6-0-1356c7f7cfda@baylibre.com>
+	s=arc-20240116; t=1734886479; c=relaxed/simple;
+	bh=LIFtHuARYkddVzDy5sdSE4REwE0emliPySGQGqjY6lY=;
+	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=X5B8bOUJmduC1hDD9xlqMx5yBiTIcS11aoNTa4oeE4jg24Z5gPOICncAXmkYq9dVaN//o3VJD5hYAKiPKLSTTmopwPok3LAYR498LGRWDb/NEz5V6J8XIYzaKjWffc1XdiS0vHANoRQdqpKlFvXaN6srDvXU/DcKP7KgRrWjxMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fWjVTCc+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2C78C4CECD;
+	Sun, 22 Dec 2024 16:54:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734886479;
+	bh=LIFtHuARYkddVzDy5sdSE4REwE0emliPySGQGqjY6lY=;
+	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+	b=fWjVTCc+gzEjzB9xRwZkqeMiuzWQ8FdhdsGgbbx23OoUAETDmPQfNvILRi4wrvHdi
+	 JkjsRmpkcMBFTsTZn6thREDEP1KvNZ9d4iZF9DWObIprTImsCLl+mmIWfj6R/dGkaL
+	 c+4FhXiPkzqnijoo2yOxE41WA9/lfFWJVilBYjeO9DR1kqe485TdEP5Ooy9dSdYmoU
+	 2/GrCg9Z/Hr2hmIYc07ihA5Kao9+8LgSD79IqudW3guxW3W94nENUcsrzFodZmv+HT
+	 BE9tHYOpdkkYyO2LCd6k+OTcZn/1QVdXhC8y3XuqznYqHuqhAziYVPN1C8lXKI+ljN
+	 DMczgnxT9mJCA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 71190380A955;
+	Sun, 22 Dec 2024 16:54:58 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v6.13, part 1
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <20241222150822.GA1972679-robh@kernel.org>
+References: <20241222150822.GA1972679-robh@kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20241222150822.GA1972679-robh@kernel.org>
+X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.13-1
+X-PR-Tracked-Commit-Id: 8600058ba28a7b07660ddcd150372d72fb3bc895
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: bcde95ce32b666478d6737219caa4f8005a8f201
+Message-Id: <173488649710.3369601.15873403946632490639.pr-tracker-bot@kernel.org>
+Date: Sun, 22 Dec 2024 16:54:57 +0000
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jydsmls263522sjm"
-Content-Disposition: inline
-In-Reply-To: <20241219-topic-mcan-wakeup-source-v6-12-v6-0-1356c7f7cfda@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+The pull request you sent on Sun, 22 Dec 2024 09:08:22 -0600:
 
---jydsmls263522sjm
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 0/7] can: m_can: Add am62 wakeup support
-MIME-Version: 1.0
+> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.13-1
 
-On 19.12.2024 20:57:51, Markus Schneider-Pargmann wrote:
-> Hi,
->=20
-> Series
-> ------
-> am62, am62a and am62p support Partial-IO, a poweroff SoC state with a
-> few pin groups being active for wakeup.
->=20
-> To support mcu_mcan0 and mcu_mcan1 wakeup for the mentioned SoCs, the
-> series introduces a notion of wake-on-lan for m_can. If the user decides
-> to enable wake-on-lan for a m_can device, the device is set to wakeup
-> enabled. A 'wakeup' pinctrl state is selected to enable wakeup flags for
-> the relevant pins. If wake-on-lan is disabled the default pinctrl is
-> selected.
->=20
-> After feedback from Nishanth and Krzysztof, I moved to a wakeup-source
-> property that can be a list of powerstates in which the device is wakeup
-> capable. This describes special cases like Partial-IO where the device
-> is powered off but pins can be sensible to changes and trigger a wakeup.
->=20
-> It is based on v6.13-rc1.
->=20
-> Partial-IO
-> ----------
-> This series is part of a bigger topic to support Partial-IO on am62,
-> am62a and am62p. Partial-IO is a poweroff state in which some pins are
-> able to wakeup the SoC. In detail MCU m_can and two serial port pins can
-> trigger the wakeup.
-> A documentation can also be found in section 6.2.4 in the TRM:
->   https://www.ti.com/lit/pdf/spruiv7
->=20
-> This other series is relevant for the support of Partial-IO:
->=20
->  - firmware: ti_sci: Partial-IO support
->    https://gitlab.baylibre.com/msp8/linux/-/tree/topic/am62-partialio/v6.=
-13?ref_type=3Dheads
->=20
-> Testing
-> -------
-> A test branch is available here that includes all patches required to
-> test Partial-IO:
->=20
-> https://gitlab.baylibre.com/msp8/linux/-/tree/integration/am62-partialio/=
-v6.13?ref_type=3Dheads
->=20
-> After enabling Wake-on-LAN the system can be powered off and will enter
-> the Partial-IO state in which it can be woken up by activity on the
-> specific pins:
->     ethtool -s can0 wol p
->     ethtool -s can1 wol p
->     poweroff
->=20
-> I tested these patches on am62-lp-sk.
->=20
-> Best,
-> Markus
->=20
-> Previous versions:
->  v1: https://lore.kernel.org/lkml/20240523075347.1282395-1-msp@baylibre.c=
-om/
->  v2: https://lore.kernel.org/lkml/20240729074135.3850634-1-msp@baylibre.c=
-om/
->  v3: https://lore.kernel.org/lkml/20241011-topic-mcan-wakeup-source-v6-12=
--v3-0-9752c714ad12@baylibre.com
->  v4: https://lore.kernel.org/r/20241015-topic-mcan-wakeup-source-v6-12-v4=
--0-fdac1d1e7aa6@baylibre.com
->  v5: https://lore.kernel.org/r/20241028-topic-mcan-wakeup-source-v6-12-v5=
--0-33edc0aba629@baylibre.com
->=20
-> Changes in v6:
->  - Rebased to v6.13-rc1
->  - After feedback of the other Partial-IO series, I updated this series
->    and removed all use of regulator-related patches.
->  - wakeup-source is now not only a boolean property but can also be a
->    list of power states in which the device is wakeup capable.
->=20
-> Changes in v5:
->  - Make the check of wol options nicer to read
->=20
-> Changes in v4:
->  - Remove leftover testing code that always returned -EIO in a specific
->  - Redesign pincontrol setup to be easier understandable and less nested
->  - Fix missing parantheses around wol_enable expression
->  - Remove | from binding description
->=20
-> Changes in v3:
->  - Rebase to v6.12-rc1
->  - Change 'wakeup-source' to only 'true'
->  - Simplify m_can_set_wol by returning early on error
->  - Add vio-suuply binding and handling of this optional property.
->    vio-supply is used to reflect the SoC architecture and which power
->    line powers the m_can unit. This is important as some units are
->    powered in special low power modes.
->=20
-> Changes in v2:
->  - Rebase to v6.11-rc1
->  - Squash these two patches for the binding into one:
->    dt-bindings: can: m_can: Add wakeup-source property
->    dt-bindings: can: m_can: Add wakeup pinctrl state
->  - Add error handling to multiple patches of the m_can driver
->  - Add error handling in m_can_class_allocate_dev(). This also required
->    to add a new patch to return error pointers from
->    m_can_class_allocate_dev().
->=20
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/bcde95ce32b666478d6737219caa4f8005a8f201
 
-LGTM, next we need Krzysztof Kozlowski's ACK for DT bindings update. The
-dts changes (patches 5...7) will not go via the CAN tree but AFAICS via
-Vignesh Raghavendra.
+Thank you!
 
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---jydsmls263522sjm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmdoQ/IACgkQKDiiPnot
-vG8slwf+PEhjyVyymqMXJI7WO4KDV5Dt3PhLwECF7uTVWkpjrtpMpPlkZZHNHojX
-4sw0LeKZJzXWmmxIW1QS8IXWeD6VRlVlihLMqpfFioxqWtbRvxgaPbhqJw8+7P3c
-Hq/wocZvllJXc3vWgSlYM943Bhpo7Mp4MBrkPEH1uL/xDfVgxozVf2NRYqu+O22A
-0657vbr7yRte/5+YB/aiHGKs9KtowpYEEJyK4HQHR4N9HqxPFGYGCmLABdswdmcj
-OQWoQUKQ0P27lnb7E54KE893tAoXA5n9z9Iu1SoxGdaEJLQ4NII/Qewd1MiNlhzV
-UfKlUvl1KNcqqA8KQEdpBeSGFuZLFw==
-=L59V
------END PGP SIGNATURE-----
-
---jydsmls263522sjm--
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 
