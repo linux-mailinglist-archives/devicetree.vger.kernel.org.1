@@ -1,194 +1,155 @@
-Return-Path: <devicetree+bounces-133407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B452A9FA765
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 18:46:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 098299FA76A
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 18:53:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8126B162DBE
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 17:46:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BBB6188341F
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 17:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E43C143759;
-	Sun, 22 Dec 2024 17:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9352D1714AC;
+	Sun, 22 Dec 2024 17:53:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="PiIQGtOK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ba39SYNl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CFDE33F3
-	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 17:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222AF33F3;
+	Sun, 22 Dec 2024 17:53:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734889602; cv=none; b=sSo+J7OuDkPyGoSF64CGoAUC0kFmvjDVYQicUTN0sE6H2SZSEO0kQEPMsvDT1XIwD9wfGwudQKZASK0YpzBcHNltQlG70gPIU2cYnpJ2rR65EM2/KjBJU1R29eYE4rQ+Uh16PfcBDGAoCfBAaGTTm5vNjYNOT9YzDk2en6aq1DY=
+	t=1734890009; cv=none; b=kflh3rgIgnF6+UNe/MlM2FekK16033SqDRMVsAQcaPlj0CDdn+B6TpNs9tUK0FVqYJZDYHwYyZohZ8r9OEeAXTak+PFEttLCfZgf3S6QnJsLnxlgPqwzee9RxJHnZ2rfrFFG+sbCPEmaMZ13Odv2zJmrtcfuG+YmEIpD5fqtSbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734889602; c=relaxed/simple;
-	bh=9n4KNUBmYNQNqQxoqp6mj0QdUaoNXC6ZRGgL2sYr9FQ=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=uEdiWHjNJ3b+/KGTeRwfYOWLUh8ZU8ReM5r9wVAAWNLLmZiXglIm6zCHDtVAZO3FQdxpCB49LzTZzfvg4428e6cnfTi39DW0o5zerWkgRvOHUM6v0b95ATSmv/v9ZjSwcVCp1gue3laTQXkHZFTdzB/P+mn1oocuFGljtVrx4VE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=PiIQGtOK; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1734890009; c=relaxed/simple;
+	bh=8MNRPepJkkLCTQ/iyaC5U9L9+CTiTsdOPf+rDYQGrVA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UlR0aY7GiBI4ypcphRmXqRBH7li5b5LGzVlmKvGsAzIcp6TOHAFcDASQBteYqpZVVdYomHbS/CKPG/rnFpEn9LikGGx13Z0fL6Zb1yu9igA8ZFEZbhTJqlv44BTKEsmjGoThkpoyfdsNl4XVNn4YbaulxiV8a5UlBxjjb2w8xkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ba39SYNl; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21649a7bcdcso31759835ad.1;
+        Sun, 22 Dec 2024 09:53:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734890007; x=1735494807; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zDMdLkzK4YXyBfIRpCGTdJZPn7J+kcoIKRDno7O4/7c=;
+        b=ba39SYNlqWDh/WAtGRqy2a89Efl40NU4G8UAJ6AQTcjkvVDvZSmEt+fv9OKTVenuch
+         r7m5k10rd78rvITEYbIhNsdQ+zQ+PIivltMF6x1VtxRLdw5wo5hINEPv4L+V5/IzO3mw
+         X64ai3cHDwVA+VCChyWX9t9H564zi38DGW+yffS9xfHzVfMpQd8cppT8uGyt1N7+9F6v
+         zOD99GYPuODiCDiU7j6YLpS9HP2iZRQcbUO56Krga9f5KrKeafik4gwrcnh3LrAUJasS
+         d8LMj30gw2z20oMV8Mq35oCKbTd91pSKh+peXBQrtc0V9/XQGIMczstJqC3ZttJpy4Hh
+         Uazw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734890007; x=1735494807;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zDMdLkzK4YXyBfIRpCGTdJZPn7J+kcoIKRDno7O4/7c=;
+        b=JJ2V4Qwgd1BsEdb+B3ySLIVmGBy5WEkyA3+UamIv6AgHx7SW6gAeHg2h1B4mwy6Y+O
+         1eBVQOUtZwuEAVoBr/jjlK2spFbvfXlrtBoyBSbW2V6yMbgJjICBDRWGEbnxfTM/2Mfa
+         9dEj5d45vXWdVWRPt28x6xfw08IySQr5S49mG6SNrDspzjEnUTFxvUQ9yTFmp6sdGQLg
+         IVyi4Us0cZFYZisjXzzzW4hcV5OfJcksG0bfanSvUpTOXhy0m8GOC6gVqI80PuIxPTPu
+         +Q+Lz4DrRka8xS8IRwpgEpt+DFBFr6GchVnxZWAWxS6Jalne1EdGd6j2zzA1fD1pxgcx
+         7sTg==
+X-Forwarded-Encrypted: i=1; AJvYcCU3Skko5A++ks+0tCuanoAW+FYUr3P6MZ0Puykc5GYaAYMdqC8TK5kECcH0OjfPyuiQkgR1eP4ClR6H@vger.kernel.org, AJvYcCXAu0pU3aUEncX4ovIOMTve+W2ijj2wVhWLn1jBZAGxy8dYYL9uZG4bcgXyPhdROabjMZKcktW9zoYzIMJB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNYnF3axTILY1bE0sBRjDqVpHKuWxd3c6ThXWRAiDxMLPNF0Xw
+	/eiQXzMlRdMuCmfSozOcLAZGx66HeELZZyzkMkzqhxamdUP5pky+
+X-Gm-Gg: ASbGncvDsQ4xfIMFIZwP6S5SYlv3tZgR5O/p8Ndr1UZm+v7QS/X0W+VKZFTZKRGIy6Z
+	0coLLPDg+6eATtutH2kkgGp/fc0hy99LskrAXyYmeNsKSqnTygGMDcLVCpzeTcD7pPs+1vp4dOU
+	FQ2XLgVI50MqQyL0Vt3++doGC4GHM14FF8E9kXiWYvr/W2lAbKSacNNyPbpBQ3OUXUvrwUIezM7
+	1A8xTPRUKzxAvEqsWiteMYcarPGv2Hzsf7/E4kxjnHVyZj6AK8VwilFTA==
+X-Google-Smtp-Source: AGHT+IG2c5ImIZhO72M0oe5oieCq6SaUFn68rpgEdkMuKrS32fV+fQUK2a/x6HLbVFBi143LXmxggA==
+X-Received: by 2002:a17:90b:534b:b0:2ee:ab29:1a65 with SMTP id 98e67ed59e1d1-2f452dfaee6mr14740405a91.4.1734890007511;
+        Sun, 22 Dec 2024 09:53:27 -0800 (PST)
+Received: from nick-mbp.. ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-219dca04c33sm59503685ad.247.2024.12.22.09.53.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Dec 2024 09:53:27 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH 0/9] Add Apple A7-A11, T2 SoC cpufreq nodes
+Date: Mon, 23 Dec 2024 01:52:00 +0800
+Message-ID: <20241222175314.151437-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1734889592;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ErMbVbPCDW7ngNvl87w1yb4T3zK/u9GamAsi4JosXm8=;
-	b=PiIQGtOKLREfP9gvAz7TFNOIuzbtU+9wbT47upcUqEPJzr2VSuKF/s+W870r9L92HzHUwi
-	dc+yKoKWIYGmWJAiG3ZlG28KEJh2FNo4+Z6/YuOQnXA9UR7N0aB/1SiTnmqjtlfVxAdAYL
-	n62e9/5MpDlU4WEZvn6e1ZDPxE6dEJq37/lakWhAq7+wIV9omaUGhZiWL168jipkXav0FX
-	NtpPaLEIaqukIiwaE2e+pIDlStDAfrlIsingeodLxI6H1fumry9T5qftan6Kjmb20h1SOV
-	DUteFHKpPBR1zovvhnI7UJYwoRQb8JyByewV62c8AYV/oXK3abuPEeaekzHgjg==
-Date: Sun, 22 Dec 2024 18:46:31 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v5 04/12] arm64: dts: rockchip: Rename regulator for
- pcie2x1l2 for Radxa ROCK 5C
-In-Reply-To: <90eafe45-7863-4c1d-b1e5-55a4fe32c806@kernel.org>
-References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-5-naoki@radxa.com>
- <f525d875-734b-4c41-95ba-be07b11f8e1c@kernel.org>
- <47B1D9F5B9EC2A94+55e35302-64c6-4651-8f27-416723b8218b@radxa.com>
- <57C678CDC48F30E6+634c520a-a0b8-478f-9b5b-8b746aa5ab9c@radxa.com>
- <99e54beb-fa4b-4d51-9ab7-b35cc61dc164@kernel.org>
- <F023D8BD1C0C2248+234bbc41-2871-49a9-be98-4475e4e6da49@radxa.com>
- <90eafe45-7863-4c1d-b1e5-55a4fe32c806@kernel.org>
-Message-ID: <44ba02e34d7bf6a6657894802a87b690@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Krzysztof,
+This series adds performance-controller and operating-points-v2 cpufreq
+nodes for Apple A7-A11, T2 SoCs.
 
-On 2024-12-22 07:27, Krzysztof Kozlowski wrote:
-> On 22/12/2024 04:18, FUKAUMI Naoki wrote:
->> On 12/22/24 05:15, Krzysztof Kozlowski wrote:
->>> On 20/12/2024 07:51, FUKAUMI Naoki wrote:
->>>> On 12/17/24 10:11, FUKAUMI Naoki wrote:
->>>>> On 12/16/24 22:38, Krzysztof Kozlowski wrote:
->>>>>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
->>>>>>> Use consistent name with other regulators. No functional change.
->>>>>>> 
->>>>>>> Fixes: 3ddf5cdb77e6 ("arm64: dts: rockchip: add Radxa ROCK 5C")
->>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>>>>>> ---
->>>>>>> Changes in v5:
->>>>>>> - Reword commit message
->>>>>>> Changes in v4:
->>>>>>> - reword commit message
->>>>>>> Changes in v3:
->>>>>>> - none
->>>>>>> Changes in v2:
->>>>>>> - new
->>>>>>> ---
->>>>>>>    arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 6 +++---
->>>>>>>    1 file changed, 3 insertions(+), 3 deletions(-)
->>>>>>> 
->>>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts 
->>>>>>> b/arch/
->>>>>>> arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>>>>>> index 85589d1a6d3b..61d75ab503b2 100644
->>>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>>>>>> @@ -76,13 +76,13 @@ pwm-fan {
->>>>>>>            pwms = <&pwm3 0 60000 0>;
->>>>>>>        };
->>>>>>> -    pcie2x1l2_3v3: regulator-pcie2x1l2-3v3 {
->>>>>>> +    vcc3v3_pcie2x1l2: regulator-vcc3v3_pcie2x1l2 {
->>>>>> 
->>>>>> No, neither explained, nor correct. See DTS coding style.
->>>>>> 
->>>>>> Please use name for all fixed regulators which matches current 
->>>>>> format
->>>>>> recommendation: 'regulator-[0-9]v[0-9]'
->>>>>> 
->>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
->>>>>> tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?
->>>>>> h=v6.11-rc1#n46
->>>>> 
->>>>> 'regulator-[0-9]v[0-9]' is preferred, but 'regulator-[0-9a-z-]+' is 
->>>>> also
->>>>> permitted, right?
->>>>> 
->>>>> i.e. regulator-vcc3v3_pcie2x1l2 should be 
->>>>> regulator-vcc3v3-pcie2x1l2
->>>>> 
->>>>> 
->>>>> Or, should we revert below patch and use 'regulator-[0-9]v[0-9]'?
->>>>> 
->>>>>    https://lore.kernel.org/
->>>>> all/0ae40493-93e9-40cd-9ca9-990ae064f21a@gmail.com/
->>>>> 
->>>>> Is 'regulator-0v0' valid?
->>> 
->>> Why would it be valid? Can you have regulator with 0 volts?
->> 
->> There may be a .dtsi that is shared across multiple .dts, so some
->> regulators may not be able to set a specific voltage in the .dtsi.
->> 
->> How should I describe it?
-> 
-> How fixed voltage regulator can have non-specific voltage? Sorry, 
-> that's
-> impossible. Shared DTSI with a regulator means that regulator is 
-> shared,
-> so it cannot be flexible.
-> 
->>>>> Is 'regulator-12v0' invalid?
->>> 
->>> Read the binding. I gave you very specific link.
->> 
->> 46|       - description: Preferred name is 'regulator-[0-9]v[0-9]'
->> 47|         pattern: '^regulator(-[0-9]+v[0-9]+|-[0-9a-z-]+)?$'
->> 
->> The "description" and "pattern" don't match. What you provided is a 
->> link
->> to the "description".
-> 
-> It's pretty obvious still...
-> 
->>>>> How should we handle multiple 1v8/3v3/5v0 regulators?
->>> 
->>> Just add suffix. But usually more than one suffix, 
->>> vcc+3v3+pcie_2x1l2,
->>> means you created a very specific name.
->> 
->> So shouldn't we refer to the schematic?
-> 
-> So that's the argument you define 10 fixed, uncontrollable regulators 
-> in
-> DTS? What is the benefit of that exactly? Just unnecessary bloat in 
-> DTS,
-> in kernel memory and for probe time?
+Dependencies:
 
-I'm quite surprised to hear you suggesting that some of the hardware
-components should be omitted from a board dts(i) file.  Regardless of
-some of the hardware components being fixed or adjustable, they should
-all be described, for the sake of transcribing the board schematic into
-the board dts(i) files accurately and completely.  Furthermore, some
-fixed components may actually be needed in the board dts(i) files; for
-example, a fixed regulator may be turned on at boot time, or turned on
-and off at runtime.
+- Apple A7-A11, T2 SoC cpufreq support, in PM tree.
+https://lore.kernel.org/asahi/20241218182834.22334-1-towinchenmi@gmail.com/T
 
-Technically, we could omit the fixed regulators from the board dts(i)
-files, _only_ if they aren't powered on and off at boot time or at
-runtime, of course, but many more things could technically be omitted
-as well from the dts(i) files if we'd follow that rule, which would
-result in a huge per-board inconsistency, leading to a mess.
+- arm64: dts: apple: Split s8000/s8003 SoC DTS files
+https://lore.kernel.org/asahi/20241206135051.56049-1-towinchenmi@gmail.com/T
+
+- Device Tree for Apple T2 (T8012) SoC devices
+https://lore.kernel.org/asahi/20241203051147.110980-1-towinchenmi@gmail.com/T
+
+Nick Chan
+
+---
+
+Nick Chan (9):
+  arm64: dts: apple: s5l8960x: Add cpufreq nodes
+  arm64: dts: apple: t7000: Add cpufreq nodes
+  arm64: dts: apple: t7001: Add cpufreq nodes
+  arm64: dts: apple: Add cpufreq nodes for S8000/S8003
+  arm64: dts: apple: s8001: Add cpufreq nodes
+  arm64: dts: apple: t8010: Add cpufreq nodes
+  arm64: dts: apple: t8011: Add cpufreq nodes
+  arm64: dts: apple: t8012: Add cpufreq nodes
+  arm64: dts: apple: t8015: Add cpufreq nodes
+
+ arch/arm64/boot/dts/apple/s5l8960x-5s.dtsi    |   1 +
+ arch/arm64/boot/dts/apple/s5l8960x-air1.dtsi  |   1 +
+ arch/arm64/boot/dts/apple/s5l8960x-mini2.dtsi |   1 +
+ arch/arm64/boot/dts/apple/s5l8960x-opp.dtsi   |  45 +++++++
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi       |  10 ++
+ arch/arm64/boot/dts/apple/s5l8965x-opp.dtsi   |  45 +++++++
+ arch/arm64/boot/dts/apple/s800-0-3.dtsi       |  10 ++
+ arch/arm64/boot/dts/apple/s8000.dtsi          |  53 +++++++-
+ arch/arm64/boot/dts/apple/s8001.dtsi          |  59 +++++++++
+ arch/arm64/boot/dts/apple/s8003.dtsi          |  53 +++++++-
+ arch/arm64/boot/dts/apple/t7000-6.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t7000-j42d.dts      |   4 +
+ arch/arm64/boot/dts/apple/t7000-mini4.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t7000.dtsi          |  46 +++++++
+ arch/arm64/boot/dts/apple/t7001.dtsi          |  52 ++++++++
+ arch/arm64/boot/dts/apple/t8010-7.dtsi        |   8 ++
+ arch/arm64/boot/dts/apple/t8010-ipad6.dtsi    |   8 ++
+ arch/arm64/boot/dts/apple/t8010.dtsi          |  86 ++++++++++++
+ arch/arm64/boot/dts/apple/t8011.dtsi          |  79 +++++++++++
+ arch/arm64/boot/dts/apple/t8012.dtsi          |  83 ++++++++++++
+ arch/arm64/boot/dts/apple/t8015.dtsi          | 123 ++++++++++++++++++
+ 21 files changed, 773 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/apple/s5l8960x-opp.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s5l8965x-opp.dtsi
+
+
+base-commit: 9a33cbb3b1e4a0b520a131aec028ddeb99da48c3
+-- 
+2.47.1
+
 
