@@ -1,130 +1,183 @@
-Return-Path: <devicetree+bounces-133328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2EB9FA4EC
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 10:04:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D6049FA4ED
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 10:09:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2463188767B
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 09:04:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FEF7164E09
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 09:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D511552FC;
-	Sun, 22 Dec 2024 09:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E472171658;
+	Sun, 22 Dec 2024 09:09:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yx5iqp74"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i4TdGfNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C460282EE
-	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 09:04:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618AC282EE
+	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 09:09:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734858274; cv=none; b=B/zC0gcwJPyfFenkZkyb2MtQ6OIbYwZn/GUJnSAiQ5VxrPWVFXhxEWuqxCJ8WHEkHu1YPB5ym6BdmB4ah76mokHWDJHI8VwEygnZGDq2cV/+R1UocflzHhRtvX40PF7fk4aOxa799Jgd0oYG2yjlcY2OvCLWpXYcEXA+BjZzV+Q=
+	t=1734858545; cv=none; b=ntnqcEF6V8a7NQxY6cBfS3Yi/ReoOPTsJuKozTR4UWFtUTMZda0se4pM1zBQRoh8VVBjaofDtK2d31QKyLjvsoKRYMsLBRm31IoDfVKt1iVDb6PqYGsKlNPGGx3vPpD3KYTTM/+s1uXoR3Lb5TA2y4UxrKS31sUxstkg/wiSjLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734858274; c=relaxed/simple;
-	bh=YREXXVGelktufefaexDX5YisyWqh+kibqX1uCmkxZjY=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nWhoNcDckRFUgMy4O3LLqjb57xmvgiuPol+3OpTD5wfQzEAIJyoVxMErRpS+CN/8mQjZmrj2jtkWur5uOBmJqTUaasgZMsM3I+LYFL4F3THNgjwjOVlcU8Nat8Joc3cuqSqjneWowJAQ4Obeok0z+ILD6hbZngpjzFuTF+P2O+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yx5iqp74; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 983A4C4CECD;
-	Sun, 22 Dec 2024 09:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734858273;
-	bh=YREXXVGelktufefaexDX5YisyWqh+kibqX1uCmkxZjY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Yx5iqp74ji8DZMvo5j9hE0gLbm1Dlv8qjoGduuD7q8GsNS3vyZlPFXXLzgtDaRzl9
-	 CAEHxHrtX+H/l778kvyNdh60piKmC8XNdiV0BGuukdxkdkxP5RboeGlIGcZYzsaWJk
-	 t/sc0AqUZy9jJxFWk5d1COKY+DrcXtCMiHloJxNFyGzYWXYbWjz2mMK+FoPlRopyeE
-	 jPG1pCvv8VYajRihhkMCMavKoOUX/5ZfjBW+JzOQcrOszoIj191OvfblmPqHnc6RZ7
-	 qOI/eOR14mcFE4t1HzvDQNABVv2ctGv4+BPbe2vQ19DkywKaZHZ9MezaBDl95CUC7/
-	 wKcMrDyqmHZRw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1tPHt0-0067Ay-SY;
-	Sun, 22 Dec 2024 09:04:31 +0000
-Date: Sun, 22 Dec 2024 09:04:29 +0000
-Message-ID: <86msgoozqa.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tglx@linutronix.de,
-	jonas@kwiboo.se,
-	macromorgan@hotmail.com,
-	andyshrk@163.com,
-	liujianfeng1994@gmail.com,
-	dmt.yashin@gmail.com,
-	dsimic@manjaro.org,
-	tim@feathertop.org,
-	marcin.juszkiewicz@linaro.org,
-	michael.riesch@wolfvision.net,
-	alchark@gmail.com,
-	sebastian.reichel@collabora.com,
-	jbx6244@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 1/3] irqchip/gic-v3: Enable Rockchip 3588001 erratum workaround for RK3582
-In-Reply-To: <20241222030355.2246-2-naoki@radxa.com>
-References: <20241222030355.2246-1-naoki@radxa.com>
-	<20241222030355.2246-2-naoki@radxa.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1734858545; c=relaxed/simple;
+	bh=bra/zZTbs7ooYryKUQXEtfmSRRa413Pa4baUhVF/D0c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XbQaXaDtDQWxmFtMcomor98ZeHUa6tRggQWejgTHvX2Wycq2RnfqsBmD5tan+3PEhK7MRdAiOcvgYsjXe4W7BtVvCeK9hE2M3FyxoZbEKLQy99EO7eweIWsev73kYu2Mozkyo4QTmyiSJtgJl5NFL4eJizjlCXHaKdNiqDIBelI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i4TdGfNj; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-300479ca5c6so33980471fa.3
+        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 01:09:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734858541; x=1735463341; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g+SzVktxDB05WNZgU2bzgDj3qvGv7E/lndUr61NmRhc=;
+        b=i4TdGfNjaOJzmZK7gZF51bYx6/R9ZSmeWqlLqrS3isxRYBNdaWtOx1Am8xfwCNMgYz
+         J7DcR5eVrixJcIvJQ1q1iMwrHQeNQZixMXB8Imslp4A2C3H8Zl/EsAV/LMLTCTY40C0d
+         raisqrrhl0QJ53TAT65Hhhbp9D5SZh4da8U9qVAqaaoWDcG7Tlsj/wGYpgUsHlWxNF7a
+         6Q84ADjqZi4tVsl9zWdfbSucgXaXkRCg+sgCF7GF0SndLf+/9Cwi5vpBAGuno0mY2ZHR
+         IWNW7eIL0uq3aTxxGHYRZ6j657YrliTrjDQahH7sOjKvet0ELDk6ZxQMibJJpl3CbO8h
+         4QUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734858541; x=1735463341;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=g+SzVktxDB05WNZgU2bzgDj3qvGv7E/lndUr61NmRhc=;
+        b=f8xWin1KXcKkWrU+cdXwdr3YDOE4IR5bwDCqrKGTkEFWgos8/Tp88+xiqya385rh7D
+         /nMDNF+NF7pmYe0bhor8+RF/Thwudke7/cCue6wIC3IRaYmLhWu+VOlJtPf553q8M+LY
+         tXPcD8ieP/RrqT03SZcoK63xsTENDDerfEurfaBSgWIITpm0WnRtyADH+uo1RMQgIFQQ
+         xOlDCx5ZgEu+iZDqAszCpsRGlPcsnjTqFtY1tAJQOZp4t+ue/M8AaoONPPCB6UKAftXc
+         7rWkwnbkOan8xnn5nyGNToxmy72NSPj+7qv35dGA2mHtxOTc8iKQptN8YIVAz+2f1VFa
+         vu5w==
+X-Forwarded-Encrypted: i=1; AJvYcCXQqNu+qAoySs7tNNayMNpFOjJeNLLyz6HqBmESZoCEUA46SQ9FWfx89cJgk5l8+VpXMudxON+CboLT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqcfFnSBwbOdeXBOUx2bHT0G4Pp55uneMPrQxZQSGvqUcgeU0P
+	MPLm6dIQ7/5zeDq8VdgEraWmuiyC9o/FVjaoNaQw3L23APvxUqTQU3BGDCTgsMMpn0gle5su2pX
+	/xSpACk1eC5NDKd+6jPrSK8r6sgGwMwkifopz4g==
+X-Gm-Gg: ASbGncvYsvfXXjFKETFjOAMVYPH46ey7Q+du5KqmPrQfjSRLNjXWyaFbVhay2JZ/PDv
+	/p9JnxXbSLZdUJrKU9CxDEO8OMnVRPJ2vkVs3
+X-Google-Smtp-Source: AGHT+IH187CUQCnfRfnFev/oxx361vRPpnGwZKGEC40JgvkudCId/KMDE/KgqulM/xdtkLXQpR7G1mShXSPT7tAyjMQ=
+X-Received: by 2002:a05:6512:104c:b0:541:1c48:8bf6 with SMTP id
+ 2adb3069b0e04-5422956c531mr2677617e87.53.1734858541379; Sun, 22 Dec 2024
+ 01:09:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: naoki@radxa.com, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de, jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com, liujianfeng1994@gmail.com, dmt.yashin@gmail.com, dsimic@manjaro.org, tim@feathertop.org, marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net, alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+References: <20241211-amlogic-pinctrl-v1-0-410727335119@amlogic.com>
+ <20241211-amlogic-pinctrl-v1-2-410727335119@amlogic.com> <CACRpkdbuj-_sPpdfcyg3_QNtzt9r7n-0HBGBKgy-rKUMhvGo4w@mail.gmail.com>
+ <23899c54-14ad-4724-9336-2df6fb485fd6@amlogic.com>
+In-Reply-To: <23899c54-14ad-4724-9336-2df6fb485fd6@amlogic.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Sun, 22 Dec 2024 10:08:50 +0100
+Message-ID: <CACRpkdZn75ks4Gc7rm8jzkKM6y0JeQmUF3qmbJA+O+cEA9r--Q@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/3] pinctrl: Add driver support for Amlogic SoCs
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 22 Dec 2024 03:03:53 +0000,
-FUKAUMI Naoki <naoki@radxa.com> wrote:
-> 
-> Rockchip RK3582 is a scaled down version of Rockchip RK3588(S). Apply
-> Rockchip 3588001 erratum workaround to RK3582.
-> 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
->  drivers/irqchip/irq-gic-v3-its.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-> index 92244cfa0464..c59ce9332dc0 100644
-> --- a/drivers/irqchip/irq-gic-v3-its.c
-> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> @@ -4861,7 +4861,8 @@ static bool __maybe_unused its_enable_rk3588001(void *data)
->  {
->  	struct its_node *its = data;
->  
-> -	if (!of_machine_is_compatible("rockchip,rk3588") &&
-> +	if (!of_machine_is_compatible("rockchip,rk3582") &&
-> +	    !of_machine_is_compatible("rockchip,rk3588") &&
->  	    !of_machine_is_compatible("rockchip,rk3588s"))
->  		return false;
->  
+Hi Xianwei!
 
-Please use the relevant property for that purpose ("dma-noncoherent")
-at the distributor and ITS levels. We're not adding extra compatibles
-for this anymore, and you might as well fix the core dtsi to expose
-such property.
+On Wed, Dec 18, 2024 at 10:37=E2=80=AFAM Xianwei Zhao <xianwei.zhao@amlogic=
+.com> wrote:
 
-Thanks,
+> [Me]
+> > In any way I recommend:
+> >
+> > - Renaming drivers/pinctrl/sunxi to drivers/pinctrl/amlogic
+> >    so we keep this sorted by actual vendor, sunxi is apparently
+> >    yours (AMlogic:s) isn't it?
+> >
+>
+> It isn't. Sunxi is Allwinner SoCs.
 
-	M.
+My apologies. I mixed it up completely. :(
 
--- 
-Without deviation from the norm, progress is not possible.
+What do you think of the idea of a separate drivers/pinctrl/amlogic directo=
+ry
+though? I think there are already quite a few amlogic SoCs that need
+to be supported and more will come.
+
+> >> +       ret =3D pinconf_generic_parse_dt_config(np, info->pctl, &grp->=
+configs,
+> >> +                                             &grp->num_configs);
+> >
+> > But can't you just move this code around? grp->num_configs give the
+> > number of configs, so why do you have to go and look up pinmux
+> > above, can't you just use grp->num_configs instead of of_pins
+> > and npins above?
+> >
+> They are different.
+> The of_pins(grp->npins) specifies the mux values for pin-mux register
+> and pin index in pinctrl. It can include multiple pins in groups.
+>
+> The grp->configs and grp->num_configs specify the configuration
+> information for all pins of this groups(such as bias-pull-up,
+> drive-strength-microamp)
+>
+> uart-d-pins2{
+>         pinmux=3D <AML_PINMUX(AMLOGIC_GPIO_T, 7, AF2)>,
+>                 <AML_PINMUX(AMLOGIC_GPIO_T, 8, AF2)>,
+>                 <AML_PINMUX(AMLOGIC_GPIO_T, 9, AF2)>,
+>                 <AML_PINMUX(AMLOGIC_GPIO_T, 10, AF2)>;
+>         bias-pull-up;
+>         drive-strength-microamp =3D <4000>;
+> };
+
+OK I get it ... I think. It's nice that you combine muxing and pin config
+into the same node like this, it's very readable.
+
+Think about if you even want to add generic helpers for this in
+the generic code.
+
+> >> +static void aml_pctl_dt_child_count(struct aml_pinctrl *info,
+> >> +                                   struct device_node *np)
+> >> +{
+> >> +       struct device_node *child;
+> >> +
+> >> +       for_each_child_of_node(np, child) {
+> >> +               if (of_property_read_bool(child, "gpio-controller")) {
+> >> +                       info->nbanks++;
+> >> +               } else {
+> >> +                       info->nfunctions++;
+> >> +                       info->ngroups +=3D of_get_child_count(child);
+> >> +               }
+> >> +       }
+> >> +}
+> >
+> > This looks like a weird dependency between gpio chips and
+> > pins that I don't quite understand. Some comments and
+> > references to the bindings will be needed so it is clear
+> > what is going on.
+> >
+>
+> A pinctrl device contains two types of nodes. The one named GPIO bank
+> which includes "gpio-controller" property. The other one named function
+> which includes one or more pin groups.
+> The pin group include pinmux property(pin index in pinctrl dev,and mux
+> vlaue in mux reg) and pin configuration properties.
+
+OK I  guess the binding patch explains why you need several
+separate gpio controller "bank" nodes instead of just the base
+node being one for all of the pins (which is the most
+common). In a way I like it because it often helps to divide
+up GPIOs by bank.
+
+Yours,
+Linus Walleij
 
