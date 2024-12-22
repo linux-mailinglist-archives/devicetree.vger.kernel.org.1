@@ -1,117 +1,162 @@
-Return-Path: <devicetree+bounces-133370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ABE19FA68F
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 17:09:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5DCA9FA6EB
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 17:51:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5BF9165966
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 16:08:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 245961666A9
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 16:51:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA4818BC20;
-	Sun, 22 Dec 2024 16:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3FE3FB9C;
+	Sun, 22 Dec 2024 16:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="mtx3UF6M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iheJ2kZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CAC0185B67;
-	Sun, 22 Dec 2024 16:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF1B376E0;
+	Sun, 22 Dec 2024 16:51:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734883738; cv=none; b=egedYp34xljTW28wKbI503GpJqrKNmxrbdlwvMuaTxTuxnWoV6Ky1F6+02nXFLD20fvf0xJbLR9AG/pGB0xzOtn7/7TlWGjpMUVaO+J7puP8A/L30yHc5GHZIpOAxXyD9ZuTjScR0+5ebX9M80V4ChDbm5nfQWZ87KWQVE8vBBE=
+	t=1734886288; cv=none; b=lAHZtOX3WsUXM/wJpff5DPCkxhaH+Pe41Enjwu7yE88NTteW6forE61Nl5+Q2l10hZpE5r4Cu+ymwqXMS2Z/yZBTzgiKS+9StdvjxaVGDQKKth20tzkbuEsBQxGvwfjL/qr2aTxGz2SXZxLs1UdSuZfyW5WToHB5DDOEQUHpuTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734883738; c=relaxed/simple;
-	bh=Mg4JqELBWl33hxA7WoGXdlwQKoT/c0enxWkde29SZlI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FjyqECNymQv+V9Imb3EE+79HfVTD4ibvUHSAD1D41ShInAsVUepAUpW8g78B/m3u8nNP6N26ID38sJV9Xgzk9pTSXlyrNXhjv3AbiCmpBGFxu2AMK7yCPBYY6SBsrBbmknI6yGnMsW5F0sUXoCkTx5ooYs1x+mS14LIxaOWB0/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=mtx3UF6M; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=OJAa8ZOX3JItAwodoe1YGgwTpC/WvMlwN7ZuIURxJy4=; b=mtx3UF6MStD6lN0ZiHem1bMs0J
-	TiC9lzMHSVEIOhhbC6DUZxlciz2kHnxOzRwZ4SfajY5h3b7nmd9LAmYoWU19C0HBY9/mhk9UHoXLu
-	fk5PrNo0Sn7IWVyL4LEkqIqUFJFasvHUr/YD3sWRGG688nEAsGVwus1R6FNrqAU8dYHQEA6EzTLWA
-	lOWEy0runwT/HFb196+jYXs8c4eJVmZ/8Ds7zC17lznGEj3rmvz1VjApdC2kn0DVUsXiU4YL69ll4
-	SLNB4ZOPHNOp6Jl5hgwngPzwpY/DHE5z2rKRkHW+iEsVvlILxPofzTjWDQuNVri7aWuETYmmXuf90
-	yjUUlsgA==;
-Received: from i53875adc.versanet.de ([83.135.90.220] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tPOVe-0007gW-Uv; Sun, 22 Dec 2024 17:08:50 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Kever Yang <kever.yang@rock-chips.com>
-Cc: linux-rockchip@lists.infradead.org,
- Finley Xiao <finley.xiao@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
- Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
- Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 02/38] clk: rockchip: add dt-binding header for rk3562
-Date: Sun, 22 Dec 2024 17:08:49 +0100
-Message-ID: <2261039.72vocr9iq0@diego>
-In-Reply-To: <20241220103825.3509421-3-kever.yang@rock-chips.com>
-References:
- <20241220103825.3509421-1-kever.yang@rock-chips.com>
- <20241220103825.3509421-3-kever.yang@rock-chips.com>
+	s=arc-20240116; t=1734886288; c=relaxed/simple;
+	bh=SsbXVSyTcrkPya+YAYeCev286lM8MMbSIv4JlipzZe8=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XBu+fjb8vHsY4xQZqzvcpj0RrfyjxENAj/Q0amyl/0EokrLBBVNMaek/TmiDso4SrcxIKrw4sBskeVIx9FVGysljUp2rHJQ0QsWeEztxTS7CayYFQtC0fS+3Qoo0bufpNtATd0sU3YwEbERgRxowPc1H1CaOL+APa93BYs1ob6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iheJ2kZS; arc=none smtp.client-ip=209.85.167.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3eb3c143727so2302744b6e.1;
+        Sun, 22 Dec 2024 08:51:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734886286; x=1735491086; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=llvFAMVKzgtFTmydFpXfdQntLEV5hPHDDyb2zSA1otM=;
+        b=iheJ2kZS5QcXnMuxhjiC3GbNBynrYaDkOCmqOryTB83vWqIGcsFfmngEh+14GpLGA6
+         /t8mYIx4gS9kfFDJEl7kVMtPM0IazW/RkVkErwRQzkqW8coHpMfRlQiDSQImr1/Ufd3B
+         AkIXDWIcM83O0didkvK4kcx8oKMzm0L9vEeM/+yEsX7UE5AbSt4+9sE7UItvuARlingV
+         e0vFT8OypNIjLLD7cr5toO/y0oRl07QU6m2OTk5bKZrHCHPpIGvrNoH3L8ySmerCfkkW
+         p9MJcMbQOBZHvcGenoIHW5znHXg4cfj9T66UzZsDhj1Ah/hPdjBwDtRsKR3NsK7lD4dM
+         5Z5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734886286; x=1735491086;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=llvFAMVKzgtFTmydFpXfdQntLEV5hPHDDyb2zSA1otM=;
+        b=AldWKgecn5LYtlDDjyR1XiTfC7M/yA8heA+BY+QZrx+G9dcGWrjUnpO46zT0riRTfH
+         GhpJbDIsxCGmVTii3fhCxDOCmglQ8r5m/6i/pH1jikv0HcNyt35OxfWKhpBwJiT9XEtr
+         +A0+J1w9PtQqXKHweFiVVz48WB3vdP2Ufjgnq/vlVv4a128JYZAtV07K7IIccTzDflCQ
+         VMJcoWalfPwnK9N8Ru2G7lAhjhANLVUZc0kpiCvlvYrNWWPLOsRVRqbFGKzlBLYpwN+u
+         /yPsqe25dbYoJpQNqKONnKvIgb8KJLnMszyOPI5rx6s8iornmgSoCnLzZhAbFf6PFTyF
+         Qx7w==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ4oq58T2L3ngR9+0fsoqwkIZx6PyovL49yQbUn7zeE9YlkPyXZ+1ii85AQH/2BhqCSv5ke1sQVGJk@vger.kernel.org, AJvYcCUpuuaSmaZYYEZ2mY3GFH3d+fGxpZjixVh9t5T8cTNXNWn9crQysbQL3UFynU46P3JbJ5lzcw2hGIgjsIQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyM2lfWJyHRBZ17diH9UyZHL2fyMlJkL++6YV0dIxhDKsCe746X
+	Lvpstdwzdx+HsAqWT/Ryc1pTATeWlH9spjiuTsEBjvWDqYhkGXT5
+X-Gm-Gg: ASbGncumJcrdu71gUj1xkLplYBJxYAcXth5iNY8Z5PZeeLg1A9zoWj5wGvBeA5MvQJw
+	aLr8vfeK8S6I2XsQYGjrs3aU91VDSXiv8oGY5082fVnj4KUiRDbT1BC2ldGdRDedZHkcp+uCgjl
+	E0zYe3SrYcLF/+FYzdPe3cyGY7fsLHEbBdU6aMUe8lW5ttu2bPG6o77Tv9ZgVxaITQnCIj2xJey
+	Z+JK0VOhq9p/BKnIJDPdUF6D8+ryrUnMYtvEvmp6dc=
+X-Google-Smtp-Source: AGHT+IGOSjWT5nZh7oa9tWjzH86Cpa0paHAdKsw6pkoTi7D+l+JPXI73dPghgcyucCe8yUcH/SZBQg==
+X-Received: by 2002:a05:6808:178b:b0:3ea:490f:da54 with SMTP id 5614622812f47-3ecdd77f492mr8640803b6e.19.1734886285936;
+        Sun, 22 Dec 2024 08:51:25 -0800 (PST)
+Received: from neuromancer. ([2600:1700:fb0:1bcf::54])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5f4db755632sm1757228eaf.27.2024.12.22.08.51.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Dec 2024 08:51:25 -0800 (PST)
+Message-ID: <6768438d.4a0a0220.399c57.89b6@mx.google.com>
+X-Google-Original-Message-ID: <Z2hDjJqf3YH5BEUo@neuromancer.>
+Date: Sun, 22 Dec 2024 10:51:24 -0600
+From: Chris Morgan <macroalpha82@gmail.com>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: sun4i-a10-codec: add hp-det-gpios
+References: <20241221094122.27325-1-ryan@testtoast.com>
+ <20241221094122.27325-2-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241221094122.27325-2-ryan@testtoast.com>
 
-Am Freitag, 20. Dezember 2024, 11:37:48 CET schrieb Kever Yang:
-> From: Finley Xiao <finley.xiao@rock-chips.com>
+On Sat, Dec 21, 2024 at 10:26:32PM +1300, Ryan Walklin wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Add the dt-bindings header for the rk3562, that gets shared between
-> the clock controller and the clock references in the dts.
-> Add softreset ID for rk3562.
+> Devices integrating Allwinner SoCs may use line-out or headphone jacks
+> with jack detection circuits attached to a GPIO. Support defining these
+> in DTs.
 > 
-> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> Signed-off-by: Liang Chen <cl@rock-chips.com>
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> A number of Anbernic devices featuring the H700 SoC use this mechanism
+> to switch between a headphone jack and an internal speaker, so add these
+> to the allowed routing items.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
 > ---
+>  .../bindings/sound/allwinner,sun4i-a10-codec.yaml           | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
->  include/dt-bindings/clock/rk3562-cru.h | 733 +++++++++++++++++++++++++
->  1 file changed, 733 insertions(+)
->  create mode 100644 include/dt-bindings/clock/rk3562-cru.h
+> diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
+> index ebc9097f936ad..b4b711e80b65a 100644
+> --- a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
+> +++ b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-codec.yaml
+> @@ -98,6 +98,10 @@ properties:
+>      maxItems: 1
+>      description: GPIO to enable the external amplifier
+>  
+> +  allwinner,hp-det-gpios:
+> +    maxItems: 1
+> +    description: GPIO for headphone/line-out detection
+> +
+
+If possible, I wonder if we can keep this without the vendor prefix?
+It looks like for now Nvidia and some Rockchip codecs have the vendor
+prefix, but audio-graph bindings and Freescale codec bindings have this
+as a non-specific property (and it looks like simple-audio-card does it
+either as "hp-det-gpios" or "simple-audio-card,hp-det-gpios" depending
+upon the circumstances).
+
+Also, the behavior of this is very specific to just the Headphone sink,
+so we should drop the line-out text from the description. If someone
+sets the routing as `"Headphone", "LINEOUT"` the state of the GPIO will
+affect the audio path, but `"Line Out", "LINEOUT"` will not be impacted
+by the state of the GPIO.
+
+Thank you,
+Chris
+
+>  required:
+>    - "#sound-dai-cells"
+>    - compatible
+> @@ -247,8 +251,10 @@ allOf:
+>          allwinner,audio-routing:
+>            items:
+>              enum:
+> +              - Headphone
+>                - LINEOUT
+>                - Line Out
+> +              - Speaker
+>  
+>          dmas:
+>            items:
+> -- 
+> 2.47.1
 > 
-> diff --git a/include/dt-bindings/clock/rk3562-cru.h b/include/dt-bindings/clock/rk3562-cru.h
-> new file mode 100644
-> index 000000000000..1b5a63a7e98d
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/rk3562-cru.h
-> @@ -0,0 +1,733 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2022-2024 Rockchip Electronics Co., Ltd.
-> + * Author: Finley Xiao <finley.xiao@rock-chips.com>
-> + */
-
-Forgot to add:
-
-We might want to follow newer file naming conventions, see 
-- include/dt-bindings/clock/rockchip,rk3576-cru.h
-- include/dt-bindings/clock/rockchip,rk3588-cru.h
-
-and please dual license, as
-/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-
-
-Heiko
-
-
+> 
 
