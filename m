@@ -1,172 +1,149 @@
-Return-Path: <devicetree+bounces-133338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75F159FA538
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 11:23:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D043B9FA54F
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 11:52:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9AEF16197A
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 10:23:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02C8D1888E0A
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 10:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF5301898ED;
-	Sun, 22 Dec 2024 10:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51C7C188A08;
+	Sun, 22 Dec 2024 10:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GC0F6jJ3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m9II3Ugt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00DC816FF4E;
-	Sun, 22 Dec 2024 10:23:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C970A2F5A;
+	Sun, 22 Dec 2024 10:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734862996; cv=none; b=qZkfCzLDWCOfQb/kuCmRW/HrLtuIdXnnYpK+/Jw2OwnLKlgUUIoB54flwYBFVFD0WN1METlKx+yQ5u+FABtXyceFvaYkQybVud5Zcr1KJpLTJb2ccEW8yKsCI0+wvElffYLlT3wPMwmOIMiRgQDxAenwlNeBnjjOBD4fyoGEJ9U=
+	t=1734864766; cv=none; b=R12kZSSSSy6a91c5K+LLucftoUqduzRH6L58s5aWKyfgnQPVO42U8Zdgy8OO2H0ixFg224MWQCeRB8qS5CZ10UYpwSaZYm6zgkeU5aBfKQQaFmfjX21ogbBoAj21ZJOXBOtpuCxsyo2XGzxXwnfSAi+IcwUQa4xWg5YqAvL6y1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734862996; c=relaxed/simple;
-	bh=dEo66FcDI4p/fSRRaGCbLAsywaZZ62dxKOVN94rpPqc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HaVklAnmbhku5UH8YjbPmjvCFuxkFS/eYXJIfqKvkTsFCRZb7Wj6rCrcg6wlKih5qVUTkqNwqcv9KLqvB9vzmDI5erZaW73dqJ25PqWV3PAIN5iZx9xDYu8fqk5t4SHlJVc/VITutmY8HWM53LQaU3lvZH1oBg1YMD9tFnS3jTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GC0F6jJ3; arc=none smtp.client-ip=209.85.128.182
+	s=arc-20240116; t=1734864766; c=relaxed/simple;
+	bh=QZRx4v/jpx8vo0DMYA795CZV0upHfVydtVP/cyYIjXE=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Nr5BJTHZI5U3yGoKBFbMVRLYvbqqqlGkq8ud+B2g/GGB6QcJJaGi8NRiJrJhyAc4GQLi/msaVOnMPmZMY+/1npiNsKQfLIEGqgHBeeFMcqaL4K859bEL0c6vSgD/ts5fpZafKkKe9ADF2w1AvggGBz7OOgyilYw559p0g6rDYTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m9II3Ugt; arc=none smtp.client-ip=209.85.214.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6ef81222be7so29025937b3.3;
-        Sun, 22 Dec 2024 02:23:13 -0800 (PST)
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-21649a7bcdcso30395095ad.1;
+        Sun, 22 Dec 2024 02:52:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734862993; x=1735467793; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ONVNbxYIwyadSLDvwLNaPGVW+13KFD/yyNlBVYXNzc=;
-        b=GC0F6jJ3M3IAe0WzNCWgVzkuhlUbmV8JSBcGfh92DeWPjE2gNVg5PcNdCk5zI0xZAp
-         U0I/Uuhndk6EdRhaQqX21r/o299XHojeWzUwAh3XVfxxsJ5Z5pgFhse5gDFo4beK+3bz
-         f22Ug/6FIyZjayWQb9UaJpiXKayRBN4j9nM1uGrAvaCcP4Dv+/wrXsQSi2NR0+M6CdPw
-         GizMQf9RpVgMCxidgverv61x2OXCwIWQSI8Ey36wvzND6hNtWHIDdjE/NxXHo0brmHC/
-         SlNBaT/pCsUybT2JD2lyF2OjOre4h5V9YdIRaGikOpYnOqZhktOY9VzoZ0hhlBFmXWUh
-         GRRg==
+        d=gmail.com; s=20230601; t=1734864764; x=1735469564; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vthXgYP4WwQA3x6xAS4WISKiv0WRm3MHf8XMiDkavAk=;
+        b=m9II3UgtnkX6pFBBfGjfgkl5E68KcGsfpDwBWqATpk5VUn9P0+5eRgFMc5swi28W/s
+         hStNvBtUhr7+Us8DQgiSskgilcivzQtJ0ikvHBDGyD7tbjbIoIoKd3+BIGPN59RG1arf
+         LMIsoTT7VEKI6q1klb/lPcgx/qSAW8VGfwdoMYw3Lxo/hNRHaRNHs0kAAZ2k9n8OkUBl
+         fZzmMN0KlbnBE4TsC241yI/nB7LFC2d7OTy4VL/bM/aeXtN8so9zJcfY4S8pNtl8ORb5
+         EAG/KMq1/ByP/JU4IpiSAM/a9sokenbPGycltfCOZ0BqT/8VkLz18LboBKeOAAjPsvXr
+         WU1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734862993; x=1735467793;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/ONVNbxYIwyadSLDvwLNaPGVW+13KFD/yyNlBVYXNzc=;
-        b=hb74LxWuxht6DNeUl8/PiVKKQjyOCCXmBZTCVcp/B1fnWStwX+J8oOUK1nE30gmB/G
-         LXYRxQNGNjQkYjxQIDIhzPMJm5N72R287BJ9V3p0IXaz2uU5bQdFMc3bx59m3HHbSvS8
-         MN/VYkaQ1sWmwwerqMvFPfwBTwcL+EsKHHJy621yZOSmRroTgmwwjWqJ9frR39Lmp2ni
-         o2092AHYmj1OLwpgH+FiCHilx3s17c84OVQkopH/antqRQ1tYk3DQyuwt6dSVeVI6H8/
-         cKfAPmeu2p3VEszem/MRocU23em6Sl0q2R2rJV9pivLe81M2Jq4sPK2+WN9epu7wzO8x
-         qWYA==
-X-Forwarded-Encrypted: i=1; AJvYcCU52zU5eGJph97yW+oIx0eJX2xlhSGYRERxmUDdzZcmlkM3hvrbCDlMva4hdvbofj/pCbSmvh6qxYg=@vger.kernel.org, AJvYcCUGsSxLqGdxSSR4q4sVFOjaWsdpjkt599D58N9VwPCX1sjvCs7mLsPSmydPW41P/rc9x+9Qxxyy0RZwE68rxzs=@vger.kernel.org, AJvYcCUInUsqxovThE5xH2qHnYR71ys5BbIlKZWutbTjBWDJeqcJ80ZcJkOSga+Uig3DRkqMHHFIGOdvV5ZITms=@vger.kernel.org, AJvYcCV1MSriMlF9TR0/GzsxqlRvW7Z4lEF25wjwV0CX0kEv4Z4tDv6iLPn5GBK6L+m3e8StoFtxf28IDnw=@vger.kernel.org, AJvYcCV77Nkfl0iJhfAKN4DjRkvQRBMhFguu2wSKir/Y2Wz9UMthk7WxnG1SGZAQ2e4vzgAp3A1lB+R6EFsLORMY@vger.kernel.org, AJvYcCVMrvcq6WLyEmFDJCStw5cFIF/9qnorfmFm1m1A3J9n3r9og/2n4Oy5baxGSZ0v309Nl805KIEstVJnzA==@vger.kernel.org, AJvYcCVNZvNxFpa5LL7Hqi+JfUN0dvMFsDj0VkI/8Gi7nLx6wqgZ918ZXBRuIY160p6DyNbnuAmlnDnR/h32qA==@vger.kernel.org, AJvYcCVbRhZTBQtkaWg98I/Jco0zdOMS3SM8UQEu7SXfPxUiDFtQ84VvxerNEARRSY5Fm5J8BGAk/MmcSfzJMg==@vger.kernel.org, AJvYcCVyzhwHh26a34O0mM+ESdHdk16SbJjXwcxsjBGUDdpOpO8kOqBXAm4Ln+nwOYhWAG9jXqnQ0fsiGCiZ@vger.kernel.org, AJvYcCWKUh6ja2W8L9fVH/Ew
- y7IVSGsN8BHBgafZrqXIS7oPLNB1qYfbV6F0ouyna+KiRgXzp3E54ZV2ad8vsw==@vger.kernel.org, AJvYcCWzmCQoPYpLUdujGCokWFYX/lnbqQfrZid/YfkVUosk5qnp2Ph3FPIVMXKWzqluToIfwEQ7qy2Ny2snjQ==@vger.kernel.org, AJvYcCXgEeJhlKIhzhsdnfkPqRwqvsJQLA65WLQuAjz7xliEMAy0WGuWG+J+Way3QFF+aPYq7YeTZOG8eUPl5Kab@vger.kernel.org, AJvYcCXpCE2ymZ4sQqvloZW3mbN11Isjt0bVgnNfN1tittrFisu7N26xciaYaHBX5lKWnUXW14URvhPoc7QN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGto3ioYXp7qlv99mFq5w0ywAFm8wfeZMDhsNqAztWUE4eVnca
-	1QL2D8lFmEXR94XFzPsahig2UAN6D0Zbf2phlwXPiK/K/V1+b12NTDuTtb7VEU7RFryV5Jpu5yJ
-	jrF9WET/eReVjytYB/LW0dPdCwlE=
-X-Gm-Gg: ASbGncsFlKM9BPfoM2VnvzPfGThQ3firgSFdYXUMtjR3kYay4dU6XxEEmqCbnSrHJtc
-	LDU/veT6iLOePvgTfYK1UnD/ttsQ77/SVL6qalQo=
-X-Google-Smtp-Source: AGHT+IHX0mjmsoNFu7Nk/P1ylkLtsHAmn22nfKbaHPnh1Btm1p2RULi24EAOG9MYK2JmawFo9lS/pEKQIPK2LOk3TLc=
-X-Received: by 2002:a05:690c:360c:b0:6f2:9704:405c with SMTP id
- 00721157ae682-6f3f8125edfmr74773997b3.15.1734862992817; Sun, 22 Dec 2024
- 02:23:12 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734864764; x=1735469564;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vthXgYP4WwQA3x6xAS4WISKiv0WRm3MHf8XMiDkavAk=;
+        b=wvp7Mbm6Z/Vl4k9zZqzZYJ+8AUTUshGgIC/5+sXuBlX7+CJYUoOsAwECxBRUA18xWL
+         sQA6iI+dv7dEkE5ydg4zh+Rv4UUVaSzF4ColU2kYaoRznANbWx12cRbwsMncHopfjYlo
+         VTFcQo0eFzfCxlas6fUQKgd3Bg9kbBLtcAZHovTkMaciz42KC6R5zCUdIAcHvvNckc5C
+         1unbpFUJP5diwXVN/bYU5dOLJb1+xtOhI1HeQN5I4iZyKYjkSvdDh/PN2vPQwPR/Qs4M
+         PvF6r91I6MHX00TQqUyzm47D7QZDSyYz7p05Q7OjBn+gj9GqtAKcwc9CN4+ktzVdh7YQ
+         hYkw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQNuE0/lZXsp2JAozWiCVS9QsRQ3n7Xg5nyhGyCgZJKNathTGolDZaSUg22YaGuijqb4cLPBr7ylyb@vger.kernel.org, AJvYcCVLhWbT8ODUCG565ht6ccFqkSLb2Mp+1xvZcaYiuIg6Vw1OPhsDTO26ES50hPSLGY7Gmj5Ped+Br+Hh@vger.kernel.org, AJvYcCWs8cIiEhJXGOSK06TZ4hw1arwaSwkfI7qDKTfFNaJ+w4OkZ2r2Tk97UEad5CGQbn4q0W8BcSowgaZqg7m2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZ5MxXfB2rH24CimOAAxcYSlWcEHeB+5t7USNjOBblASqTZRaL
+	cj4Qk6c8wDUyTkBL3fxTjC3ltN+k+qJwJk/mfbY9NPuRCXz83I7x
+X-Gm-Gg: ASbGncvEnsfpMtiXRG5WqJbKP7nX7zHxPARcs2+WlVVVXkh5ss5TQGBisC9EGjCAx+f
+	RfGFwARdHJFWBgcdsxB0ZULGcZNwd7dD1R+zzRaxpbarpVjER+34MJZZHwRPLc+yJsmACIwyWc7
+	HtWT1nGc7uAC+fjR083rQOHcwWLCNOz3EKNYeaSL5jqAs4EgB1Tio52lPPRqN2dbA6xBzgcIUiC
+	zpmKvATi7A9uIoajMr1RQoxU0XM/SYw2N67YTUFzOFhPTlSHrZ8V5XSCgdS9JdB
+X-Google-Smtp-Source: AGHT+IGetBkB9lqtfB+rvkpDktCBPtGEOstBzXi6g4XZj/3cVQ6wNgBsNwHyFn/+RZA6onBukM/KPA==
+X-Received: by 2002:a17:902:d488:b0:216:2426:767b with SMTP id d9443c01a7336-219e6e89ba9mr102242995ad.10.1734864763962;
+        Sun, 22 Dec 2024 02:52:43 -0800 (PST)
+Received: from localhost ([36.40.178.18])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9d9468sm54276805ad.120.2024.12.22.02.52.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 22 Dec 2024 02:52:43 -0800 (PST)
+From: joswang <joswang1221@gmail.com>
+To: heikki.krogerus@linux.intel.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: gregkh@linuxfoundation.org,
+	linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	rdbabiera@google.com,
+	Jos Wang <joswang@lenovo.com>
+Subject: [PATCH v2, 1/2] dt-bindings: connector: Add time property for sender response
+Date: Sun, 22 Dec 2024 18:52:38 +0800
+Message-Id: <20241222105239.2618-1-joswang1221@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20241222054331.2705948-1-guoweikang.kernel@gmail.com> <Z2fknmnNtiZbCc7x@kernel.org>
-In-Reply-To: <Z2fknmnNtiZbCc7x@kernel.org>
-From: Weikang Guo <guoweikang.kernel@gmail.com>
-Date: Sun, 22 Dec 2024 18:23:02 +0800
-Message-ID: <CAOm6qn=L0GzX4z4Mak1LH6R4wD282dz6qafMFmA39ADaBuLJJQ@mail.gmail.com>
-Subject: Re: [PATCH v6] mm/memblock: Add memblock_alloc_or_panic interface
-To: Mike Rapoport <rppt@kernel.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
-	Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>, Christoph Lameter <cl@linux.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Sam Creasey <sammy@sammy.net>, 
-	Huacai Chen <chenhuacai@kernel.org>, Will Deacon <will@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>, 
-	rafael.j.wysocki@intel.com, Palmer Dabbelt <palmer@rivosinc.com>, 
-	Hanjun Guo <guohanjun@huawei.com>, Easwar Hariharan <eahariha@linux.microsoft.com>, 
-	Johannes Berg <johannes.berg@intel.com>, Ingo Molnar <mingo@kernel.org>, 
-	Dave Hansen <dave.hansen@intel.com>, Christian Brauner <brauner@kernel.org>, 
-	KP Singh <kpsingh@kernel.org>, Richard Henderson <richard.henderson@linaro.org>, 
-	Matt Turner <mattst88@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	WANG Xuerui <kernel@xen0n.name>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>, Stafford Horne <shorne@gmail.com>, 
-	Helge Deller <deller@gmx.de>, Nicholas Piggin <npiggin@gmail.com>, 
-	Christophe Leroy <christophe.leroy@csgroup.eu>, Naveen N Rao <naveen@kernel.org>, 
-	Madhavan Srinivasan <maddy@linux.ibm.com>, Geoff Levand <geoff@infradead.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
-	Alexander Potapenko <glider@google.com>, Andrey Konovalov <andreyknvl@gmail.com>, 
-	Dmitry Vyukov <dvyukov@google.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
-	Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
-	Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger <borntraeger@linux.ibm.com>, 
-	Sven Schnelle <svens@linux.ibm.com>, Yoshinori Sato <ysato@users.sourceforge.jp>, 
-	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	Andreas Larsson <andreas@gaisler.com>, Richard Weinberger <richard@nod.at>, 
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>, Johannes Berg <johannes@sipsolutions.net>, 
-	Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, linux-alpha@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
-	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org, 
-	linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	linux-riscv@lists.infradead.org, kasan-dev@googlegroups.com, 
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
-	sparclinux@vger.kernel.org, linux-um@lists.infradead.org, 
-	linux-acpi@vger.kernel.org, xen-devel@lists.xenproject.org, 
-	linux-omap@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-mm@kvack.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 
-Mike Rapoport <rppt@kernel.org> wrote on Sunday, 22 December 2024 18:06
->
-> On Sun, Dec 22, 2024 at 01:43:31PM +0800, Guo Weikang wrote:
-> > Before SLUB initialization, various subsystems used memblock_alloc to
-> > allocate memory. In most cases, when memory allocation fails, an immediate
-> > panic is required. To simplify this behavior and reduce repetitive checks,
-> > introduce `memblock_alloc_or_panic`. This function ensures that memory
-> > allocation failures result in a panic automatically, improving code
-> > readability and consistency across subsystems that require this behavior.
-> >
-> > Signed-off-by: Guo Weikang <guoweikang.kernel@gmail.com>
-> > ---
->
-> ...
->
-> > diff --git a/include/linux/memblock.h b/include/linux/memblock.h
-> > index 673d5cae7c81..73af7ca3fa1c 100644
-> > --- a/include/linux/memblock.h
-> > +++ b/include/linux/memblock.h
-> > @@ -417,6 +417,12 @@ static __always_inline void *memblock_alloc(phys_addr_t size, phys_addr_t align)
-> >                                     MEMBLOCK_ALLOC_ACCESSIBLE, NUMA_NO_NODE);
-> >  }
-> >
-> > +void *__memblock_alloc_or_panic(phys_addr_t size, phys_addr_t align,
-> > +                                    const char *func);
->
-> Please align this line with the first parameter to the function.
-> Other than that
->
-> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
->
+From: Jos Wang <joswang@lenovo.com>
 
-Got it!  Thanks for the feedback!
+Add "pd2-sender-response-time-ms" and "pd3-sender-response-time-ms"
+DT attributes to better solve the following test items in the usb
+pd compliance test:
+  TEST.PD.PROT.SRC3.2 SenderResponseTimer Timeout
+  TEST.PD.PROT.SNK.6 SenderResponseTimer Timeout
 
-> > +
-> > +#define memblock_alloc_or_panic(size, align)    \
-> > +      __memblock_alloc_or_panic(size, align, __func__)
-> > +
-> >  static inline void *memblock_alloc_raw(phys_addr_t size,
-> >                                              phys_addr_t align)
-> >  {
->
->
-> --
-> Sincerely yours,
-> Mike.
+This is to enable setting of platform/board specific timer values as
+these timers have a range of acceptable values.
 
-Best regards.
-Guo
+[1] https://usb.org/document-library/
+    usb-power-delivery-compliance-test-specification-0/USB_PD3_CTS_Q4_2024_OR.zip
+
+Signed-off-by: Jos Wang <joswang@lenovo.com>
+---
+v1 -> v2:
+- modify the commit message
+- patch 1/2 and patch 2/2 are placed in the same thread
+
+ .../bindings/connector/usb-connector.yaml     | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+index 67700440e23b..83be66f6d406 100644
+--- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
++++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+@@ -293,6 +293,26 @@ properties:
+       PD negotiation till BC1.2 detection completes.
+     default: 0
+ 
++  pd2-sender-response-time-ms:
++    description: Represents the PD20 max time in ms that port started from
++      the time the last bit of the GoodCRC Message EOP has been received by
++      the Physical Layer, it shall be stopped when the last bit of the expected
++      response Message EOP has been received by the Physical Layer. A timeout
++      leads to a hard reset message by the port.
++    minimum: 24
++    maximum: 30
++    default: 27
++
++  pd3-sender-response-time-ms:
++    description: Represents the PD30 max time in ms that port started from
++      the time the last bit of the GoodCRC Message EOP has been received by
++      the Physical Layer, it shall be stopped when the last bit of the expected
++      response Message EOP has been received by the Physical Layer. A timeout
++      leads to a hard reset message by the port.
++    minimum: 27
++    maximum: 33
++    default: 30
++
+ dependencies:
+   sink-vdos-v1: [ sink-vdos ]
+   sink-vdos: [ sink-vdos-v1 ]
+-- 
+2.17.1
+
 
