@@ -1,53 +1,54 @@
-Return-Path: <devicetree+bounces-133314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C17629FA46B
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 07:53:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48DDE9FA473
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 08:00:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16BBE7A1BAC
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 06:52:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FEAA161C75
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 07:00:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59BEA13B7AE;
-	Sun, 22 Dec 2024 06:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C27D13D52B;
+	Sun, 22 Dec 2024 07:00:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EAE259489;
-	Sun, 22 Dec 2024 06:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6032F4A;
+	Sun, 22 Dec 2024 07:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734850379; cv=none; b=TH4Ort3kOTe8UZv9rHpu0NIzOANosrVAtgo9iooWU/whTAtZLhkSfKsmsgvi4GuA1Uvt4RbbiUopbuCrvpEG7Bh2MMsYRh4qNSROD2JpgwCHK2X1j23aRQGGWpUCiQEnunmV/k23wU3XDFFYsKdKY1/mvB6pys2odFH0wP+Qebw=
+	t=1734850851; cv=none; b=AhVLY/ONQ7dNkUTYlar8LLTlTRYEqQsa3Y8+pbok7hEckdlxDc5oHNoWrgwpG5qgOOPB122ounnVezIMcm9dqV8x77Fpp0F/KOPtDxSjl8f0/oDXgIDNG3NYdQD+9oc5poTcbIA72SFYPediqjuHdSN6QHvD75BPsp8tKvsXgLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734850379; c=relaxed/simple;
-	bh=kGmr4IhBm+Pqcbznp4K4b9bmnuwGRowErJ1M9Uo/OrI=;
+	s=arc-20240116; t=1734850851; c=relaxed/simple;
+	bh=qrvrRESqVRURt5DYbvM1oDi4VNM6kOLnhaE6Ds0zjKU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=G7UA/LOrDKsIIjtgE12z6biVXil0lzxYilsNSCGFgg499Br1f/+b3TND5FGPYRtcv7iffl/LJRKSHDnMUVAPp9zhsQmdGisBYvBir1N3a0bBPJjMawmPaodpm+COEGKAFe54NUgK3MMTm5dGiDUi5NkpF7Mu3mj76h5utbKbZcw=
+	 MIME-Version; b=ltfOhxUoQ3ATguFdpRlW/1ufG2VYSS+JdBzdCnNWrRdt/fTs/7LMV0vSK/Sq+uoSvnZvt4PDiTl3j+g9VWVsIrowbGUKNxORt1B0jUiAaVrUpqlP2GtICNbNqQd722aLisTN+x4NokmpK6t4NjGY8vPZnpiU9z4sknfaCLK2RVQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [116.25.95.193])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 66ff1284;
-	Sun, 22 Dec 2024 12:30:30 +0800 (GMT+08:00)
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:2500::1])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 66ff136b;
+	Sun, 22 Dec 2024 12:38:22 +0800 (GMT+08:00)
 From: Chukun Pan <amadeus@jmu.edu.cn>
-To: naoki@radxa.com
+To: konrad.dybcio@oss.qualcomm.com
 Cc: amadeus@jmu.edu.cn,
+	andersson@kernel.org,
 	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	heiko@sntech.de,
+	konradybcio@kernel.org,
 	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
+	robimarko@gmail.com
 Subject: Re: [PATCH 1/1] arm64: dts: rockchip: default to host mode for USB on Radxa E25
-Date: Sun, 22 Dec 2024 12:30:27 +0800
-Message-Id: <20241222043027.265865-1-amadeus@jmu.edu.cn>
+Date: Sun, 22 Dec 2024 12:38:18 +0800
+Message-Id: <20241222043818.266759-1-amadeus@jmu.edu.cn>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <6EFDC4E74A617E25+ed534e8a-fef0-4f09-a24b-a536b7f2f13b@radxa.com>
-References: <6EFDC4E74A617E25+ed534e8a-fef0-4f09-a24b-a536b7f2f13b@radxa.com>
+In-Reply-To: <206e1dd4-7e71-4e84-af80-19a0d448b469@oss.qualcomm.com>
+References: <206e1dd4-7e71-4e84-af80-19a0d448b469@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,29 +57,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCT0tNVh1DS0sZS0xCSx0aQ1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk5VSkJIWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
-	tLWQY+
-X-HM-Tid: 0a93eca18e0b03a2kunm66ff1284
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZSx8ZVhgZTUlMGEsaTE8fTVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQUlOS0tBQUpZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	JVSktLVUpCS0tZBg++
+X-HM-Tid: 0a93eca8c00b03a2kunm66ff136b
 X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Kz46ERw6HTIULg1NME4SFB82
-	FBhPCwxVSlVKTEhPQ09KQ0hKTU5OVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	TVVJTlVCTlVKQkhZV1kIAVlBSEpCNwY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PCo6Vhw*ATINFA1CCkgIFBRR
+	PTYKFElVSlVKTEhPQ09JSEtISElDVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0tBSU5LS0FBSllXWQgBWUFJT0g3Bg++
 
 Hi,
-> Could you check Product Brief P.4?
+>> @@ -31,5 +31,14 @@ ipq6018_s2: s2 {
+>>  			regulator-max-microvolt = <1062500>;
+>>  			regulator-always-on;
+>>  		};
+>> +
+>> +		ipq6018_l2: l2 {
 >
->  https://dl.radxa.com/cm3i/e25/radxa_e25_product_brief.pdf
->
-> There is "USB3.0 OTG Switch".
->
-> Best regards,
+> s/ipq6018/mp5496
 
-Oh, sorry, it was covered by the shell so I didn't notice it.
-BTW do you see any issues in the sd-uhs-sdr104 mode?
-
-Thanks,
-Chukun
+Does ipq6018_s2 also need to be changed?
 
 -- 
 2.25.1
