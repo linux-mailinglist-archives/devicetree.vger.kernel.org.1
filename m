@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-133358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 563259FA62C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 15:40:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F78D9FA631
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 15:47:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EBF51887592
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 14:40:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85DD716595D
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 14:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C839418D626;
-	Sun, 22 Dec 2024 14:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38A4318C928;
+	Sun, 22 Dec 2024 14:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uKcOyWiS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nu3A9On6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6EA18C928;
-	Sun, 22 Dec 2024 14:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1300136E;
+	Sun, 22 Dec 2024 14:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734878430; cv=none; b=FSw3rCdp7JVZ8xEQDcYh+K+NIrFQgGZOI/QhiwpplY8AdEtl4aYJNFFOTlfsTOWYERaYRuUkpHFDlfvUVa1X4DCSNn3L12qN3iXjnCnPjyHE2b08LqYUsJxdmNKi29jSNd/bhtbppk0S3hPA+yGhW14gB2BTd4QyjtwyMyyhq8I=
+	t=1734878820; cv=none; b=P4grkp0uitZWLE3RSO3AAgXmU5fXrCgwpUqXIelSBNHojIlcjAob2gyo12RsA4yVxwk+crVaNhKq64pmDUUKry7ksFb5ncbTqCjpJ2SrtrkY73asW7CkRIMF1BBfNKPGQtqjUzwkvEg37/pOTGEYBfF7qABzspHcsL0su+ZE9Vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734878430; c=relaxed/simple;
-	bh=1BMmdfzTmd8K7LJkzXBs3lB5Do33bBCBhWTf3hNUwcM=;
+	s=arc-20240116; t=1734878820; c=relaxed/simple;
+	bh=4+ISzXwrnznFHaTZ7D9DX0cu/mjxk9RF1t63bLKCH00=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jr7ZemW0abK7exoy2bVAf9jc34k/XnOd0C/vDqoRjepE7ykU3BZk33MMA2i3UFR0lJVQytLKvWJz46mYNiwEMRxhwQhj2FqeRaMROPDcZMuxM9mWf6BVwHkVcTV5x9mYoCyzhCEQaIryIpMBw7JS30bPrwVGKaoDTNmBDNwpqIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uKcOyWiS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31508C4CECD;
-	Sun, 22 Dec 2024 14:40:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PD4JLydFbtwhxKGj6S8j2FpvI0R/VBVS79kIQazXtCYv/SU/qQosWa7govqXNF/Lix2sBvrfxK25iE0fHCYziMoPxq7CqE/tToBJ913YxhY8OqkpdnYkOCH0aiXRQaz3Kc7GlaSdN+47RO8KhQNtCVvMWj8guCUjY3CdiRBEEps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nu3A9On6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54B20C4CECD;
+	Sun, 22 Dec 2024 14:46:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734878430;
-	bh=1BMmdfzTmd8K7LJkzXBs3lB5Do33bBCBhWTf3hNUwcM=;
+	s=k20201202; t=1734878819;
+	bh=4+ISzXwrnznFHaTZ7D9DX0cu/mjxk9RF1t63bLKCH00=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uKcOyWiSXk11ddg1jqxmeE2ZaYNgC3k9L77iPlj/a8ukxoFWme5tnLUwUmryuxvaW
-	 hvZQPvLr7sEGYdTL3jIp2Fa4/U4OszXKNN7B1HkUOG4JGV5ZA/w2t2diTvn3R8E04r
-	 Pr0DiMuwra17Eb02yFL7MtjHGMZP8QZ2ni1bTBJTUlTVhItoSxqQgBMSyeTinXnaOe
-	 wUfHlB2w13b95A/YW7zt+oP/ENe7EwItwzEIfQqDsDeveMOrd4QbLw84f5po0fOk+z
-	 +uaGGbTak2XRaS8nWhOON8TNpaypeymgRm2k7wF0+UChvuQ0qLZWUNhlQoYxmtKmBL
-	 +N1/wa52kcsMg==
-Message-ID: <c8677ae6-a145-411c-a221-02faa1ce809d@kernel.org>
-Date: Sun, 22 Dec 2024 15:40:26 +0100
+	b=nu3A9On6qfxZpOWWoA0swQddvI0iOzRuYBJCCWedSUYP4FJ3HN8RXTzHwGxQrsSyB
+	 RPjZvsr6Dk1Cr1w6mfHiPHoUKtjE3R272ZFQvbvli9cPN6alMJGn197QS91S6fk0rq
+	 rc1gI218OCSLL2UYr1EvoLpudvvhN1YUfflE4JF1XRhoUiKlf3fIxwnMIlaMnLDfb4
+	 8fVKaZkHEaPgwxAUmlkuFWTmRc5aJc40QyiQaGX+2XNozAGl3HmMkNonuPw0GI2sRX
+	 ys/gcK5p1CbGIbThcJRDdkPpYbJaKAqS+HZNf6WXOguhcyyKkwRS3eLFUy0+SVQ+0M
+	 W0s72U8j6Ppmg==
+Message-ID: <d1c6d2f2-f733-4cbe-8108-c9c9aaa417cc@kernel.org>
+Date: Sun, 22 Dec 2024 15:46:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: platform: Add bindings for Qcom's EC
- on IT8987
-To: Stephan Gerhold <stephan.gerhold@linaro.org>,
- Maya Matuszczyk <maccraft123mc@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org
-References: <20241219200821.8328-1-maccraft123mc@gmail.com>
- <Z2WxzvKRVcOz5d2V@linaro.org>
- <CAO_MupJ7JtXNgGyXcxGa+EGAvsu-yG0O6MgneGUBdCEgKNG+MA@mail.gmail.com>
- <Z2W2UhspMZNT1TRU@linaro.org>
+Subject: Re: [PATCH RESEND v4 1/2] arm64: dts: exynos: Add Exynos9810 SoC
+ support
+To: Markuss Broks <markuss.broks@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Tomasz Figa
+ <tomasz.figa@gmail.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Maksym Holovach <nergzd@nergzd723.xyz>
+References: <20241214-exynos9810-v4-0-4e91fbbc2133@gmail.com>
+ <20241214-exynos9810-v4-1-4e91fbbc2133@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,101 +111,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z2W2UhspMZNT1TRU@linaro.org>
+In-Reply-To: <20241214-exynos9810-v4-1-4e91fbbc2133@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/12/2024 19:24, Stephan Gerhold wrote:
-> On Fri, Dec 20, 2024 at 07:16:34PM +0100, Maya Matuszczyk wrote:
->> Excuse the formatting, I've typed this reply from my phone
->>
->> pt., 20 gru 2024, 19:05 użytkownik Stephan Gerhold <
->> stephan.gerhold@linaro.org> napisał:
->>
->>> On Thu, Dec 19, 2024 at 09:08:18PM +0100, Maya Matuszczyk wrote:
->>>> This patch adds bindings for the EC firmware running on IT8987 present
->>>> on most of X1E80100 devices
->>>>
->>>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
->>>> ---
->>>>  .../bindings/platform/qcom,x1e-it8987-ec.yaml | 52 +++++++++++++++++++
->>>>  1 file changed, 52 insertions(+)
->>>>  create mode 100644
->>> Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
->>>>
->>>> diff --git
->>> a/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
->>> b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
->>>> new file mode 100644
->>>> index 000000000000..4a4f6eb63072
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
->>>> @@ -0,0 +1,52 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/platform/qcom,x1e-it8987-ec.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Qualcomm Embedded Controller on IT8987 chip.
->>>> +
->>>> +maintainers:
->>>> +  - Maya Matuszczyk <maccraft123mc@gmail.com>
->>>> +
->>>> +description:
->>>> +  Most x1e80100 laptops have an EC running on IT8987 MCU chip. The EC
->>> controls
->>>> +  minor functions, like fans, power LED, and on some laptops it also
->>> handles
->>>> +  keyboard hotkeys.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    oneOf:
->>>> +      - const: qcom,x1e-it8987-ec
->>>
->>> Given that ECs tend to be somewhat device-specific and many vendors
->>> might have slightly customized the EC firmware(?), I think it would be
->>> better to disallow using this generic compatible without a more specific
->>> one. In other words, I would drop this line and just keep the case
->>> below:
->>>
->> I've looked at DSDT of other devices and they look to be compatible with
->> what's on the devkit, with differences being extra features on magicbook
->> art 14 and yoga slim 7x. Though this isn't a hill I'm willing to die on.
->>
-> 
-> I think it's fine to keep qcom,x1e-it8987-ec as second compatible.
+On 14/12/2024 15:56, Markuss Broks wrote:
 
+> +		pinctrl0 = &pinctrl_alive;
+> +		pinctrl1 = &pinctrl_aud;
+> +		pinctrl2 = &pinctrl_chub;
+> +		pinctrl3 = &pinctrl_cmgp;
+> +		pinctrl4 = &pinctrl_fsys0;
+> +		pinctrl5 = &pinctrl_fsys1;
+> +		pinctrl6 = &pinctrl_peric0;
+> +		pinctrl7 = &pinctrl_peric1;
+> +		pinctrl8 = &pinctrl_vts;
+> +	};
+> +
+> +	arm-a55-pmu {
+> +		compatible = "arm,cortex-a55-pmu";
+> +		interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>,
+> +				     <&cpu1>,
+> +				     <&cpu2>,
+> +				     <&cpu3>;
+> +	};
+> +
+> +	mongoose-m3-pmu {
+So the name chosen by previous people some time ago for arm PMU is
+obviously not the best - forces either messed sorting or having PMU
+nodes in different places. That's why people should almost always go
+with prefix, no suffix. See regulators and clocks.
 
-No, because:
-1. There is no such thing as x1e
-2. If there was a soc like this, this has nothing to do with SoC. It is
-not a component inside SoC and that is the only allowed case when you
-use SoC compatibles.
-
-> However, without a more specific compatible, there is a risk we have
-> nothing to match on in case device-specific handling becomes necessary
-> in the driver at some point.
-> 
-> It's certainly subjective, but it might be better to play it safe here
-> and have a specific compatible that one can match, even if the behavior
-> is 99% the same. There will often be subtly different behavior across
-> devices, you mentioned the "keyboard backlight turning off and the power
-> LED slowly blinking", who knows what else exists.
-> 
-> I suppose worst case we could also use of_machine_is_compatible() to
-> just match the device the EC is running on, but I'm not sure if that
-> would be frowned upon.
-
-
-Unless you have some sort of insights or secret knowledge from Qualcomm
-(Bjorn or Konrad can chime in here), I think these are pure guesses that
-this is a Qualcomm product (implied by vendor prefix) or some sort of
-re-usable generic firmware from Qualcomm present on multiple devices.
-
-If the FW across devices is the same, then fallbacks for these are fine
-with me.
+Fixed and applied.
 
 Best regards,
 Krzysztof
