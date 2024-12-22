@@ -1,149 +1,236 @@
-Return-Path: <devicetree+bounces-133424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 014159FA84C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 22:23:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34A1F9FA8A6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 00:16:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B93D165721
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 21:23:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83DFD1885C02
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 23:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F89186E20;
-	Sun, 22 Dec 2024 21:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1FE18F2CF;
+	Sun, 22 Dec 2024 23:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="QhFatHfz";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="sIXvwhNc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="naNCs+Eu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a1-smtp.messagingengine.com (fhigh-a1-smtp.messagingengine.com [103.168.172.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4270F17C21C;
-	Sun, 22 Dec 2024 21:23:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A1F7DA8C
+	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 23:16:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734902629; cv=none; b=D5gLO4/76WaW51G1bUgiOe4coZpP/eaOIHD45HkukZ+oLjGzYHi7dOKNsbqY8nHVtHlP4q3YAEVcRQT1wptGK9BDTapNMy8I7A1EADAilbnLtbjWYOCu0CmEbJPsNtC3eRgWTmJdNuKujrzVqm4ZYSI0jDK+6vWw6rdAn29FPD4=
+	t=1734909393; cv=none; b=GY//VA2MXGIqTgHplpYCA5/Z9PzJFzR1ouVVJBM+QKWLs1C9ICnatSrJlW5LJzlMbYO7EJrXtrtL5ivyj8nFQKgso7tu5ANdZ5FnXQnKIKRBkAC7HTpIJqmkh59vZXqLlEwD+huLpoYdBY0FgAwZeXE4nwDg05foas04riwuBVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734902629; c=relaxed/simple;
-	bh=7AcPV7/0ZMfbByZlBOXinUBbEdNe1xNeD6bz2Wkmsho=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=hwcdsK2oWc1t4dUvxIxMFGxhugmN2tvvEqJteMUjZUfDSCWVEqlxgXWpNjleelSkZQy6sfAJHybFK06S3HnqDpp+gOy364F/z7lRdNb8wYW8srhvQD2bKYeTSZZ59dLeleQwX+GGaQjrLcioTFNVurPrzy9Zbw+CZtuoILH5dMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=QhFatHfz; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=sIXvwhNc; arc=none smtp.client-ip=103.168.172.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 69CD21140138;
-	Sun, 22 Dec 2024 16:23:47 -0500 (EST)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-04.internal (MEProxy); Sun, 22 Dec 2024 16:23:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1734902627; x=1734989027; bh=360wG8yLe4tWjbNpiUFYMyVJ9AzyCTGt
-	U8xrSTR8xcY=; b=QhFatHfznEgV3fSaqD6hA0gkLh96yk91mWff20gxvUiXPLsn
-	x9ycXWKNKbhwn+qcYPIuGcREHaqhtY25dzxaHQWWAyLb+O7meZtRPTh8df/J52CF
-	2gjgFJPqME5h2vcRlbUI/Z9lk+4xtjDEZhfccEIZoOI4UIA4fVFkVHKgVlhqSySp
-	RrwtNRmd4am2/zla2I7KwsHJ/tQV0F2Itcwdqvrm18P2dkZcPx1DzWfJXc2r/b28
-	b5vBCdYtJLaXVvxiAiNanzBlF+LKBv9nnN4o3ElRX5E7BHJQs2lrZXsUVvUt7ACW
-	lks77DrYD0cE6dykzTsVZXRi0aLYJL897aH7cA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1734902627; x=
-	1734989027; bh=360wG8yLe4tWjbNpiUFYMyVJ9AzyCTGtU8xrSTR8xcY=; b=s
-	IXvwhNcgICYheYdYbSAyBmnTZTpHnttkVgaMfR1KDyaF5zztGR9w24B8TpmWbL6g
-	CNiPIlG5lduA7+NpOZ+CanruWSrVagi5KGPJrOlXQnb/oi6J4GQh46kIQIyrJPLY
-	bkNUBYpSaZTI0tJapG5RCkcI0PrK7wYGXQvkFZjroY+TV+tfzMNJ9ddci1cYptD1
-	9N0wzggEYN3T4xBn74pwyjoSCVHP2SltWl/WdfK8VTPOi4gHL95qnDdq1Aca/m/t
-	GOcdr8O0rJRDP8kvMGGVaDds/02g07naTUKxMbW7Rstnm1jJ1O4EdeFB5Cn2YhAA
-	fTE8ITmqGN5WwfZJm/1Iw==
-X-ME-Sender: <xms:YoNoZ3b7BPxOcomS74ZvhUL-xSi_t-0VLcq3CmVY__AQR5XSA-vEpA>
-    <xme:YoNoZ2YxyTTQzmG5m3NwAcQmo-yW2g7m7Y2tCS5Ve8p_oJxcw2kL807bp409ACum3
-    dP_WXEIy4yaKCwV3A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddruddtkedgudegjecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredt
-    tdenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
-    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeejhfeukeejjefguddvffehveevjefh
-    tddutdfhudduvdevfeejfffgvdelfeeugfenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
-    pghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeifvghnsh
-    estghsihgvrdhorhhgpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgr
-    ihhlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprh
-    gtphhtthhopehmrggtrhhorghlphhhrgekvdesghhmrghilhdrtghomhdprhgtphhtthho
-    pehmrggtrhhomhhorhhgrghnsehhohhtmhgrihhlrdgtohhmpdhrtghpthhtohepsghroh
-    honhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgv
-    rhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinh
-    hugidqshhunhigiheslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopehpvghr
-    vgigsehpvghrvgigrdgtii
-X-ME-Proxy: <xmx:YoNoZ58EdDFXg4bdLiJU-GuGUGcv4J0sXDqj9DC1lqL6MR7VQIEebg>
-    <xmx:YoNoZ9o9BLRdYNDHKOMPKGx-TO4kP-igDVtXOEBMGnGaA8QUEOrKAQ>
-    <xmx:YoNoZyr2m8L6N8JSUVB0LkCOPaEPiTxr2wAbparg7TxLYSOtB6ZTHw>
-    <xmx:YoNoZzQoMNeCouX9hYVoEwHTmjgGnHyJ8cB9Zf-yh-3QBWr-TgZW9A>
-    <xmx:Y4NoZ4imCsQYY7E9Oza0H3wcr4XbmCHibE2_MsY5VGC6nd9wLcAr4Oa3>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id C6449BA006F; Sun, 22 Dec 2024 16:23:46 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1734909393; c=relaxed/simple;
+	bh=sPExyfB5xDKjo6+h/9m7CJfp/uLSnGqHu8pchYo7G5U=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jyaQyI3O+5DNIZqfn+mLI1GzXnyT75EOMSRsSFtbC3Mt7k8qGAoTIQ6ril/WsKZPnjenVKoA+JIDAhxj1CJdCUc//DNHKjee4GkwY1lw4Cxuq/XQ84jTDdgFb4Ij/umBgLTUgmaGlZJlJklUXQHiJXOcWE7bekw0uCderYFA82g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=naNCs+Eu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59779C4CECD;
+	Sun, 22 Dec 2024 23:16:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734909393;
+	bh=sPExyfB5xDKjo6+h/9m7CJfp/uLSnGqHu8pchYo7G5U=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=naNCs+EuFAAcALfm760+rvgwFrB97BCO1EEIuTqdvBQYxdpX1QlUc1wbjNd15qTwO
+	 glBx7TpMrYqx/u7gZowjCzKV9BJAAHA4j3BXwuoOkd9CFkK2PnC3rEsygbab1UMgZw
+	 T0Ibarav9ZcPF0itvvs9q4NCZOfO5RWiGoS66uYzz+E+70wSdKtg7DCqFxNBz47f7v
+	 EqieAlVspcYmKYT+JJ1nY+Jqq4FKQjI1yNGg8tbMh/KQTbfKDYh8TiC+3yy9Wg9gpt
+	 Ke4Zs+mpI3BPWR8LdZVcI9VZ1CUOXLMrHIObG6soTJ0ZESXTsSt8MtYCsvAuLgbF+d
+	 sUAYa3ylCDU1Q==
+Received: from 91-161-240-24.subs.proxad.net ([91.161.240.24] helo=wait-a-minute.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1tPVBW-006FHJ-Me;
+	Sun, 22 Dec 2024 23:16:30 +0000
+Date: Sun, 22 Dec 2024 23:16:30 +0000
+Message-ID: <8734ifs3zl.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: FUKAUMI Naoki <naoki@radxa.com>,
+	heiko@sntech.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tglx@linutronix.de,
+	jonas@kwiboo.se,
+	macromorgan@hotmail.com,
+	andyshrk@163.com,
+	liujianfeng1994@gmail.com,
+	dmt.yashin@gmail.com,
+	tim@feathertop.org,
+	marcin.juszkiewicz@linaro.org,
+	michael.riesch@wolfvision.net,
+	alchark@gmail.com,
+	sebastian.reichel@collabora.com,
+	jbx6244@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/3] irqchip/gic-v3: Enable Rockchip 3588001 erratum workaround for RK3582
+In-Reply-To: <f93b3bfb5151e4b617b1c99c91b4956f@manjaro.org>
+References: <20241222030355.2246-1-naoki@radxa.com>
+	<20241222030355.2246-2-naoki@radxa.com>
+	<86msgoozqa.wl-maz@kernel.org>
+	<f93b3bfb5151e4b617b1c99c91b4956f@manjaro.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Date: Mon, 23 Dec 2024 10:23:25 +1300
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Chris Morgan" <macroalpha82@gmail.com>
-Cc: "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
- "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
- "Chen-Yu Tsai" <wens@csie.org>, "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>, linux-sound@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- devicetree@vger.kernel.org, "Chris Morgan" <macromorgan@hotmail.com>
-Message-Id: <c64563ac-ef6e-4d87-a634-9a5edde86a53@app.fastmail.com>
-In-Reply-To: <6768438d.4a0a0220.399c57.89b6@mx.google.com>
-References: <20241221094122.27325-1-ryan@testtoast.com>
- <20241221094122.27325-2-ryan@testtoast.com>
- <6768438d.4a0a0220.399c57.89b6@mx.google.com>
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: sun4i-a10-codec: add hp-det-gpios
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 91.161.240.24
+X-SA-Exim-Rcpt-To: dsimic@manjaro.org, naoki@radxa.com, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de, jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com, liujianfeng1994@gmail.com, dmt.yashin@gmail.com, tim@feathertop.org, marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net, alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Mon, 23 Dec 2024, at 5:51 AM, Chris Morgan wrote:
-> On Sat, Dec 21, 2024 at 10:26:32PM +1300, Ryan Walklin wrote:
->>  
->> +  allwinner,hp-det-gpios:
->> +    maxItems: 1
->> +    description: GPIO for headphone/line-out detection
->> +
+Dragan,
+
+On Sun, 22 Dec 2024 18:25:02 +0000,
+Dragan Simic <dsimic@manjaro.org> wrote:
+> 
+> Hello Marc,
+> 
+> On 2024-12-22 10:04, Marc Zyngier wrote:
+> > On Sun, 22 Dec 2024 03:03:53 +0000,
+> > FUKAUMI Naoki <naoki@radxa.com> wrote:
+> >> 
+> >> Rockchip RK3582 is a scaled down version of Rockchip RK3588(S). Apply
+> >> Rockchip 3588001 erratum workaround to RK3582.
+> >> 
+> >> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> >> ---
+> >>  drivers/irqchip/irq-gic-v3-its.c | 3 ++-
+> >>  1 file changed, 2 insertions(+), 1 deletion(-)
+> >> 
+> >> diff --git a/drivers/irqchip/irq-gic-v3-its.c
+> >> b/drivers/irqchip/irq-gic-v3-its.c
+> >> index 92244cfa0464..c59ce9332dc0 100644
+> >> --- a/drivers/irqchip/irq-gic-v3-its.c
+> >> +++ b/drivers/irqchip/irq-gic-v3-its.c
+> >> @@ -4861,7 +4861,8 @@ static bool __maybe_unused
+> >> its_enable_rk3588001(void *data)
+> >>  {
+> >>  	struct its_node *its = data;
+> >> 
+> >> -	if (!of_machine_is_compatible("rockchip,rk3588") &&
+> >> +	if (!of_machine_is_compatible("rockchip,rk3582") &&
+> >> +	    !of_machine_is_compatible("rockchip,rk3588") &&
+> >>  	    !of_machine_is_compatible("rockchip,rk3588s"))
+> >>  		return false;
+> >> 
+> > 
+> > Please use the relevant property for that purpose ("dma-noncoherent")
+> > at the distributor and ITS levels. We're not adding extra compatibles
+> > for this anymore, and you might as well fix the core dtsi to expose
+> > such property.
+> 
+> Thanks for your response.
+> 
+> After a more detailed look into drivers/irqchip/irq-gic-v3-its.c,
+> it seems that relying on the "dma-noncoherent" DT property may not
+> be equivalent to adding another compatible check.
+
+It is. My email makes it plain what needs doing.
+
+> Here are a few
+> quotations from irq-gic-v3-its.c, to illustrate this better:
+> 
+> 4746 static bool __maybe_unused its_enable_rk3588001(void *data)
+> 4747 {
+> 4748         struct its_node *its = data;
+> 4749
+> 4750         if (!of_machine_is_compatible("rockchip,rk3588") &&
+> 4751             !of_machine_is_compatible("rockchip,rk3588s"))
+> 4752                 return false;
+> 4753
+> 4754         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
+> 4755         gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
+> 4756
+> 4757         return true;
+> 4758 }
+> 4759
+> 4760 static bool its_set_non_coherent(void *data)
+> 4761 {
+> 4762         struct its_node *its = data;
+> 4763
+> 4764         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
+> 4765         return true;
+> 4766 }
+> 
+> 4814 #ifdef CONFIG_ROCKCHIP_ERRATUM_3588001
+> 4815         {
+> 4816                 .desc   = "ITS: Rockchip erratum RK3588001",
+> 4817                 .iidr   = 0x0201743b,
+> 4818                 .mask   = 0xffffffff,
+> 4819                 .init   = its_enable_rk3588001,
+> 4820         },
+> 4821 #endif
+> 4822         {
+> 4823                 .desc   = "ITS: non-coherent attribute",
+> 4824                 .property = "dma-noncoherent",
+> 4825                 .init   = its_set_non_coherent,
+> 4826         },
+
+Nothing tickles me more than having my own work being thrown back at
+me.
+
+> 
+> As visible above, using the "dma-noncoherent" DT property results
+> in not setting the RDIST_FLAGS_FORCE_NON_SHAREABLE flag, which the
+> its_enable_rk3588001() function does.  In other words, it doesn't
+> seem that "dma-noncoherent" is a "drop-in" replacement for adding
+> yet another compatible for the RK3582.
+
+You clearly haven't read what I wrote. Or rather, you read what you
+wanted to read, and ignored half of it.
+
 >
-> If possible, I wonder if we can keep this without the vendor prefix?
-> It looks like for now Nvidia and some Rockchip codecs have the vendor
-> prefix, but audio-graph bindings and Freescale codec bindings have this
-> as a non-specific property (and it looks like simple-audio-card does it
-> either as "hp-det-gpios" or "simple-audio-card,hp-det-gpios" depending
-> upon the circumstances).
+> Modifying the current behavior of the "dma-noncoherent" DT property
+> doesn't seem like an option, because it's already used in a couple
+> of board dts(i) files.  Should we introduce another DT property,
+> perhaps "dma-noncoherent-rdist" or something similar?
 
-I'm relaxed about either approach, it does work with the vendor prefix but agree just "hp-det-gpios" is probably appropriate given the intent is the same across vendors and devices.
+No. We have everything we need. Believe it or not, I actually know
+what I'm talking about. I know, this is surprising. I surprise myself
+sometimes.
 
-> Also, the behavior of this is very specific to just the Headphone sink,
-> so we should drop the line-out text from the description. If someone
-> sets the routing as `"Headphone", "LINEOUT"` the state of the GPIO will
-> affect the audio path, but `"Line Out", "LINEOUT"` will not be impacted
-> by the state of the GPIO.
+> Could you, please, advise on how to move forward with this?  I'm
 
-Agreed for this device, but this is a more generic description for the H616 generally, so I'm not sure we should remove the "Line Out" given that it may make sense for other H616 boards (Orange Pi etc) where someone may be using a 3.5mm jack as a line-level output rather than via an amp to headphones.
+I already have.
 
->
-> Thank you,
-> Chris
->
-Regards,
+> willing to implement the required patches, but I'd prefer to reduce
+> the possible back-and-forth on them, to save everyone's time.
 
-Ryan
+May I suggest that you read my email again? How about grepping through
+the upstream DT collection and (shock, horror) look at the imx95.dtsi
+file, which suffers from the same braindead behaviour as the RK stuff?
+
+For clarity, let me paste it here again, and add some emphasis for
+extra clarity:
+
+> > Please use the relevant property for that purpose ("dma-noncoherent")
+> > at the distributor and ITS levels. We're not adding extra compatibles
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Now, please go look at the code for real this time, appreciate how the
+"dma-noncoherent" property placed at the distributor *AND* ITS levels
+combine to give you the effects the hardware requires.
+
+To sum it up: the standard properties and the Rockchip hacks are
+strictly equivalent, there is no need for anything extra, and I stand
+by my NAK on this very patch.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
