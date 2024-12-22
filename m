@@ -1,291 +1,154 @@
-Return-Path: <devicetree+bounces-133417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D18769FA77C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 18:56:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 212069FA786
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 19:07:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0EDE1886F69
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 17:56:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B796164466
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 18:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01B981AB530;
-	Sun, 22 Dec 2024 17:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204071925BB;
+	Sun, 22 Dec 2024 18:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HVp9mOW8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kyqPxXXr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5D41AA7AB;
-	Sun, 22 Dec 2024 17:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E056512B17C;
+	Sun, 22 Dec 2024 18:07:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734890032; cv=none; b=ZEgX/j9O0ivE8rzDGJRHqTbrTvAaFr3DBTpNuWN2AwVzpzT4Q1H5oAgPlzlrzofEQjiIAYZRzXNP6ZEVc4TdN/LSFetIkezW7x4tukNeE6YITAxMaBDdG06J7Hzbj6CpErgSRxC9lvq1L+nWDJ0gMX7R3AM1eGr4TiJj40FYMj8=
+	t=1734890843; cv=none; b=PWlt2JjpWS88PUXVZ1Nm3a4MeeY46BGa/fnhaBwOvBS+oF0UbUUtbt9HOa1Ag/dO2ri6IBYjfzbJQz2NZBLsW6v8ypAJrzBiVgo3GlunfWAzc/r3SYeQSqlarff9CNrV3iVSeZ4EVzeyK0e/DI6S99Fp+bjhjIujGIdyd9oShm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734890032; c=relaxed/simple;
-	bh=FDt1FqU/zIoFTXuzxOz4REOMI6cmEaiKw/gsPCp8HkM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fIqkiOssBB4aFP0uMtSqwlpixDUzN4gfC/u2aOj0Zp5OdshEq/fVR+aqsCf8qlBVRviC1ADga1G0TacvNRQqB42DWird58oDI7DZrVjFl3BfTWAF5zMsQYdROxI9zcvAGoToXLrN8DbKL6mw1zGKCX/Q6CUv/hWJsb7W8iOtuWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HVp9mOW8; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2166651f752so34973255ad.3;
-        Sun, 22 Dec 2024 09:53:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734890031; x=1735494831; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z/0ozbwgqLpSEC7BNfh+14HxpMViab/4nt5SwTR3z10=;
-        b=HVp9mOW86MKz41OBs5h9ThxBWelq//0w15NTzKUbRxKgHtoEFgeuMdqINJ2kWPcCQI
-         yc0BZiPbt/RJ++faiJx446i5A2JV/mpsXr8uxF3bmQF3myemCyhds3NyZJcvDXRpUKBW
-         B0ATWUbvSjSOf2cPjEoHFSiSvH09Evtg7o+FZzEUa0gt/FfckRrpJ8T2/S04eJQZcBU3
-         B7kzeBGLZRBlNK80ceZZSv2C6BjjQUr2NwXOpacPLnzb4DiqbjtNI8Izz8SStetFrcEs
-         SxqTnCfoGHQVxT5anpTYvvEVPQ7DvpaOcPtSam3D8sx/KnIL/H1YZMvZ/CsN+OxX4An9
-         xMDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734890031; x=1735494831;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z/0ozbwgqLpSEC7BNfh+14HxpMViab/4nt5SwTR3z10=;
-        b=FU1Awo0NZfH+ADzVHbuNxoRrUXI2ClZ4awmwOC1Vq8KmBSRO6TTEb+qohlxvhZOoD5
-         g7V5STQ7b82Gu83HjaQIkYLtEJsgLgbXbSGd6in/I8yBLzVyYxhSJM7iMawiZgLdbuIm
-         tjy5fMj4102N+n3oc+PuX7XFol7nMNpY/W5uINHW+1DRoH1CiXjZJjhdg+rY2TOzsgBD
-         XMR9F8/m37+eS9pEOuxN6YNl9NplIra3NtHMURDYpLyA+/ckXCAJH4fDFzN6EsLlO352
-         Su+K7raDpKAee7IrIOVZZy+8Dhszx280YwZW3Q2rOuas9EgwLPAl/aSPlSqjVMiZzzUc
-         WBjw==
-X-Forwarded-Encrypted: i=1; AJvYcCVWlNColzcwJ1mWjeTZNvNuBdiyeQdFrRS5gP5+R4sc/UoeI/ezpHXrNAqwnizZyqQZqOdF4TvLjc1DG5ag@vger.kernel.org, AJvYcCWx+IoaOm4Rs9uE32fB5DtipTRVPU4er7Rl4LCyWAryjTqKBuVTxVyGqmYyVTPiANz6g/jxs7UGNxGi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/pHBGTJYYRevs4COlf4Jm/VHeBBxtsX/cDXy6ctR9uT+z2pKF
-	Y8Tadbl70Zub+CkYMWqDgHaS+mfkasYyurnnHuxQPjF7m9+dK5e0
-X-Gm-Gg: ASbGncv6vjUCOKR/73UNfzJY/WQHgovDgBeq6GK0a/7j1GhWasYjRNrm15YibpSzOvW
-	VUdZR72NK948Dqlz3lrWXMZDtZ6BTX4xCENhh7cA9jm0EAdlLmwwFu82T9kMBMNYYYMX/1PL+V+
-	gVh9dcUqFoqO73K1csxCFu6Tqs1cfjk1xy2wyjG6kTkXZa0/129SWpeuc+rHmJO4UboCZ4p7ih1
-	9aeEvXaEmuy841HqbuKcbQGqxjRwBBwXBvS6CpXs89YHgpcwzweKqbI3A==
-X-Google-Smtp-Source: AGHT+IH9Z25ox7c01rsb5rHxjzRde+7TgfHUfkTa1aO2FEH4mP2CeHiSwbC1+asK4GfWKXt5+iT0qg==
-X-Received: by 2002:a17:902:da81:b0:216:61d2:46b8 with SMTP id d9443c01a7336-219e6ea1c0cmr148322515ad.23.1734890030784;
-        Sun, 22 Dec 2024 09:53:50 -0800 (PST)
-Received: from nick-mbp.. ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-219dca04c33sm59503685ad.247.2024.12.22.09.53.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Dec 2024 09:53:50 -0800 (PST)
-From: Nick Chan <towinchenmi@gmail.com>
-To: Hector Martin <marcan@marcan.st>,
-	Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Nick Chan <towinchenmi@gmail.com>
-Subject: [PATCH 9/9] arm64: dts: apple: t8015: Add cpufreq nodes
-Date: Mon, 23 Dec 2024 01:52:09 +0800
-Message-ID: <20241222175314.151437-10-towinchenmi@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241222175314.151437-1-towinchenmi@gmail.com>
-References: <20241222175314.151437-1-towinchenmi@gmail.com>
+	s=arc-20240116; t=1734890843; c=relaxed/simple;
+	bh=L9kFGUCLB2E6GEnN77Qe+tRgv/r9Esyhg+Wv1RGtX+0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ja7Wzsy6fGNUQBdfSJY7fN7hznIHd5wLwZH5ZmGsr0IoQgiDZlJMHWQV/4YqV4iuAITRNoLOdDcz1DKPYF8qoBzVDCs68wvfLUKk7YFlccxzzVwWxR/qoJSX/EKcuW2jqIbO+VcVb1CP9ZO0i+msD7fANWkkJZwQX/m4DhonSUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kyqPxXXr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 902AAC4CECD;
+	Sun, 22 Dec 2024 18:07:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734890842;
+	bh=L9kFGUCLB2E6GEnN77Qe+tRgv/r9Esyhg+Wv1RGtX+0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=kyqPxXXrmrlaskEN4gV/sn85d+cg0NpYM7X3DdJOir81BqA24ayRCSVWmPsJ1g9sH
+	 YocszyRMLOZJSMLT/kWtWrfFcu31OvIyQzoy1iSWrxcO3LWeaj1OSvDcOeMnVlzMhB
+	 oOsSOTDw+WxFeLlxiwhtd3Siy9A+pmYYNqtfAZtkXaRhfLfQR9kumN09CZkXoygmyB
+	 ynxr6chXxU9R7E/TObtiyzwCOy6DsL6Z0joGp17LVudH7h3OwQHJrUecI5ddxbdDTl
+	 3X+IzkcizuGcvT976smNFe+3ihjqoLWVN9Bbyu8ZwjGypKevMiOqFaCIu1cvVCr4bp
+	 e3IZwsMK2UM5Q==
+Date: Sun, 22 Dec 2024 18:07:13 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, David Lechner <dlechner@baylibre.com>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Subject: Re: [PATCH v1 1/3] iio: adc: ad_sigma_delta: Add CS assert function
+Message-ID: <20241222180713.64f27040@jic23-huawei>
+In-Reply-To: <20241221155926.81954-2-alisa.roman@analog.com>
+References: <20241221155926.81954-1-alisa.roman@analog.com>
+	<20241221155926.81954-2-alisa.roman@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Add cpufreq nodes for Apple A11 SoC.
+On Sat, 21 Dec 2024 17:56:00 +0200
+Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- arch/arm64/boot/dts/apple/t8015.dtsi | 123 +++++++++++++++++++++++++++
- 1 file changed, 123 insertions(+)
+> Some sigma-delta ADCs, such as AD7191 and AD7780, have no registers and
+> start conversion when CS is asserted. Add helper function to support
+> this use case by allowing devices to assert CS without performing
+> register operations.
+Hi Alisa-Dariana,
 
-diff --git a/arch/arm64/boot/dts/apple/t8015.dtsi b/arch/arm64/boot/dts/apple/t8015.dtsi
-index 8828d830e5be..f93ce2c8b251 100644
---- a/arch/arm64/boot/dts/apple/t8015.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8015.dtsi
-@@ -58,6 +58,9 @@ cpu_e0: cpu@0 {
- 			compatible = "apple,mistral";
- 			reg = <0x0 0x0>;
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			performance-domains = <&cpufreq_e>;
-+			operating-points-v2 = <&mistral_opp>;
-+			capacity-dmips-mhz = <633>;
- 			enable-method = "spin-table";
- 			device_type = "cpu";
- 		};
-@@ -66,6 +69,9 @@ cpu_e1: cpu@1 {
- 			compatible = "apple,mistral";
- 			reg = <0x0 0x1>;
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			performance-domains = <&cpufreq_e>;
-+			operating-points-v2 = <&mistral_opp>;
-+			capacity-dmips-mhz = <633>;
- 			enable-method = "spin-table";
- 			device_type = "cpu";
- 		};
-@@ -74,6 +80,9 @@ cpu_e2: cpu@2 {
- 			compatible = "apple,mistral";
- 			reg = <0x0 0x2>;
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			performance-domains = <&cpufreq_e>;
-+			operating-points-v2 = <&mistral_opp>;
-+			capacity-dmips-mhz = <633>;
- 			enable-method = "spin-table";
- 			device_type = "cpu";
- 		};
-@@ -82,6 +91,9 @@ cpu_e3: cpu@3 {
- 			compatible = "apple,mistral";
- 			reg = <0x0 0x3>;
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			performance-domains = <&cpufreq_e>;
-+			operating-points-v2 = <&mistral_opp>;
-+			capacity-dmips-mhz = <633>;
- 			enable-method = "spin-table";
- 			device_type = "cpu";
- 		};
-@@ -90,6 +102,9 @@ cpu_p0: cpu@10004 {
- 			compatible = "apple,monsoon";
- 			reg = <0x0 0x10004>;
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			performance-domains = <&cpufreq_p>;
-+			operating-points-v2 = <&monsoon_opp>;
-+			capacity-dmips-mhz = <1024>;
- 			enable-method = "spin-table";
- 			device_type = "cpu";
- 		};
-@@ -98,11 +113,107 @@ cpu_p1: cpu@10005 {
- 			compatible = "apple,monsoon";
- 			reg = <0x0 0x10005>;
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			performance-domains = <&cpufreq_p>;
-+			operating-points-v2 = <&monsoon_opp>;
-+			capacity-dmips-mhz = <1024>;
- 			enable-method = "spin-table";
- 			device_type = "cpu";
- 		};
- 	};
- 
-+	mistral_opp: opp-table-0 {
-+		compatible = "operating-points-v2";
-+
-+		opp01 {
-+			opp-hz = /bits/ 64 <300000000>;
-+			opp-level = <1>;
-+			clock-latency-ns = <1800>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <453000000>;
-+			opp-level = <2>;
-+			clock-latency-ns = <140000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <672000000>;
-+			opp-level = <3>;
-+			clock-latency-ns = <105000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <972000000>;
-+			opp-level = <4>;
-+			clock-latency-ns = <115000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <1272000000>;
-+			opp-level = <5>;
-+			clock-latency-ns = <125000>;
-+		};
-+		opp06 {
-+			opp-hz = /bits/ 64 <1572000000>;
-+			opp-level = <6>;
-+			clock-latency-ns = <135000>;
-+		};
-+#if 0
-+		/* Not available until CPU deep sleep is implemented */
-+		opp07 {
-+			opp-hz = /bits/ 64 <1680000000>;
-+			opp-level = <7>;
-+			clock-latency-ns = <135000>;
-+			turbo-mode;
-+		};
-+#endif
-+	};
-+
-+	monsoon_opp: opp-table-1 {
-+		compatible = "operating-points-v2";
-+
-+		opp01 {
-+			opp-hz = /bits/ 64 <300000000>;
-+			opp-level = <1>;
-+			clock-latency-ns = <1400>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <453000000>;
-+			opp-level = <2>;
-+			clock-latency-ns = <140000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <853000000>;
-+			opp-level = <3>;
-+			clock-latency-ns = <110000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1332000000>;
-+			opp-level = <4>;
-+			clock-latency-ns = <110000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <1812000000>;
-+			opp-level = <5>;
-+			clock-latency-ns = <125000>;
-+		};
-+		opp06 {
-+			opp-hz = /bits/ 64 <2064000000>;
-+			opp-level = <6>;
-+			clock-latency-ns = <130000>;
-+		};
-+		opp07 {
-+			opp-hz = /bits/ 64 <2304000000>;
-+			opp-level = <7>;
-+			clock-latency-ns = <140000>;
-+		};
-+#if 0
-+		/* Not available until CPU deep sleep is implemented */
-+		opp08 {
-+			opp-hz = /bits/ 64 <2376000000>;
-+			opp-level = <8>;
-+			clock-latency-ns = <140000>;
-+			turbo-mode;
-+		};
-+#endif
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
-@@ -110,6 +221,18 @@ soc {
- 		nonposted-mmio;
- 		ranges;
- 
-+		cpufreq_e: performance-controller@208e20000 {
-+			compatible = "apple,t8015-cluster-cpufreq", "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
-+			reg = <0x2 0x08e20000 0 0x1000>;
-+			#performance-domain-cells = <0>;
-+		};
-+
-+		cpufreq_p: performance-controller@208ea0000 {
-+			compatible = "apple,t8015-cluster-cpufreq", "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
-+			reg = <0x2 0x08ea0000 0 0x1000>;
-+			#performance-domain-cells = <0>;
-+		};
-+
- 		serial0: serial@22e600000 {
- 			compatible = "apple,s5l-uart";
- 			reg = <0x2 0x2e600000 0x0 0x4000>;
--- 
-2.47.1
+I had a look at the ad7191 datasheet. Given this description,
+I was expecting to see it do a pre pulse of the chip select to trigger
+the acquisition.  However, what I see is a power down line (which is more
+or less a chip select) but it just has a specified t1 delay before the
+DOUT will change to the state for the first bit and the host
+can start driving the clock.
+
+That can be done by setting spi_device->cs_setup to whatever delay is
+needed.  The text is spi_device docs are a little vague,
+but I'd take it as t1 + t2 (maybe t3 to be safe).
+
+That is going to be more reliable than trying to hold the cs across
+messages / spi_sync() calls, particularly if the bus might not be
+locked (which the code below suggests).
+
+Jonathan
+
+
+> 
+> This function can be used by drivers through their set_mode callback.
+> 
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+> ---
+>  drivers/iio/adc/ad_sigma_delta.c       | 24 ++++++++++++++++++++++++
+>  include/linux/iio/adc/ad_sigma_delta.h |  1 +
+>  2 files changed, 25 insertions(+)
+> 
+> diff --git a/drivers/iio/adc/ad_sigma_delta.c b/drivers/iio/adc/ad_sigma_delta.c
+> index 0f355dac7813..c0f33d4baddf 100644
+> --- a/drivers/iio/adc/ad_sigma_delta.c
+> +++ b/drivers/iio/adc/ad_sigma_delta.c
+> @@ -48,6 +48,30 @@ void ad_sd_set_comm(struct ad_sigma_delta *sigma_delta, uint8_t comm)
+>  }
+>  EXPORT_SYMBOL_NS_GPL(ad_sd_set_comm, "IIO_AD_SIGMA_DELTA");
+>  
+> +/**
+> + * ad_sd_assert_cs() - Assert chip select line
+> + *
+> + * @sigma_delta: The sigma delta device
+> + *
+> + * Returns 0 on success, an error code otherwise.
+> + **/
+> +int ad_sd_assert_cs(struct ad_sigma_delta *sigma_delta)
+> +{
+> +	struct spi_transfer t = {
+> +		.len = 0,
+> +		.cs_change = sigma_delta->keep_cs_asserted,
+> +	};
+> +	struct spi_message m;
+> +
+> +	spi_message_init(&m);
+> +	spi_message_add_tail(&t, &m);
+> +
+> +	if (sigma_delta->bus_locked)
+> +		return spi_sync_locked(sigma_delta->spi, &m);
+> +	return spi_sync(sigma_delta->spi, &m);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(ad_sd_assert_cs, IIO_AD_SIGMA_DELTA);
+> +
+>  /**
+>   * ad_sd_write_reg() - Write a register
+>   *
+> diff --git a/include/linux/iio/adc/ad_sigma_delta.h b/include/linux/iio/adc/ad_sigma_delta.h
+> index 417073c52380..99ab56d04793 100644
+> --- a/include/linux/iio/adc/ad_sigma_delta.h
+> +++ b/include/linux/iio/adc/ad_sigma_delta.h
+> @@ -178,6 +178,7 @@ static inline int ad_sigma_delta_postprocess_sample(struct ad_sigma_delta *sd,
+>  }
+>  
+>  void ad_sd_set_comm(struct ad_sigma_delta *sigma_delta, uint8_t comm);
+> +int ad_sd_assert_cs(struct ad_sigma_delta *sigma_delta);
+>  int ad_sd_write_reg(struct ad_sigma_delta *sigma_delta, unsigned int reg,
+>  	unsigned int size, unsigned int val);
+>  int ad_sd_read_reg(struct ad_sigma_delta *sigma_delta, unsigned int reg,
 
 
