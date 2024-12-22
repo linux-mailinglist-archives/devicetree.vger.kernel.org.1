@@ -1,163 +1,124 @@
-Return-Path: <devicetree+bounces-133335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54F329FA518
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 11:07:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4580D9FA52C
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 11:08:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C33B0166427
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 10:06:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB03E18836C5
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 10:08:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 653AD188724;
-	Sun, 22 Dec 2024 10:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C93F18A6AF;
+	Sun, 22 Dec 2024 10:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s3+eZLw2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CLta0Ikr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09BD1846F;
-	Sun, 22 Dec 2024 10:06:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A48618872A
+	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 10:08:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734862018; cv=none; b=hx+MA92VCokCi+g7Q0JgtBwxhPmwqbE4czGuhC/rn5+PnwhRtJkPwHJ6Lw5/ARHAqiFpooBnkZXppISlVaqG1MXS42QCu8CFj/drhuQ+iSLVh622/DnfCIPHjHyZ3oeRq6Db8C9v5S+XICXdgjBJBJgaBiUp97dOQmju4rhm2y8=
+	t=1734862103; cv=none; b=izLON5Y06qmCzz1JHXB+UNdbz1Ua1IbHdgVnuGGNj1ONMn0GrtmNye2CmYgLheVD+8QlGWuvdvWK+KxRvku2zGtQbmImeSzAdwbRVnqac7Bab0nHOxsF4ct1MOaUX5y1WeyfzZXVPHxmh1Bt9JgtvpeTV0skk0qUuEJ90+eqIiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734862018; c=relaxed/simple;
-	bh=sHCtg4von/olng1R4HlYChWVtzpfTivVlSvduFQtli4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a50+JPbNJAI3bk4/q3jWIul6AA9xfDxPRFOIsZvvwvQ85pFZgIkRqpRxuiq0ZbFyeJc/vx1V6a/vHYVvEyTQAKL5fxX00nKu01gMIJKg52JZOZUDk9aKaRUJ9NjbgkQldXrPcSjjV8uYhkb1OLV5waWbQAAzXwgAr2afudiDXpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s3+eZLw2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7832C4CECD;
-	Sun, 22 Dec 2024 10:06:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734862017;
-	bh=sHCtg4von/olng1R4HlYChWVtzpfTivVlSvduFQtli4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s3+eZLw2H4fsTfYy7R26AMbxlUMiT45Y42thwzbQ7PzYcjCMV+xxnbiGc5SjcS8ee
-	 N/pq6zKrdaTkA0THA/ohfrCjL8qwibt1MJ2o6NoUYUPkl8EkNQJF5tSH+SY+J1fE/8
-	 Cvqm19I8xARPjWukujUbLNF0kg/VQ2JYfhr7BGGUm+m05r04yTqUEGCkxSjPDtezqD
-	 tVCjBp4QZY5na1pptfRr8OCkrj7c6+qsi21cr2LJfacf2iXQzPcBvoG6AX6jq7P+Mk
-	 T1nS6fK7nO7+rovxDAahs2X2IJBNreAhQtCCLuO9qzEwhrWBjbRlWnWXYxS/hWfdIV
-	 u6Jyj1v1mllWg==
-Date: Sun, 22 Dec 2024 12:06:22 +0200
-From: Mike Rapoport <rppt@kernel.org>
-To: Guo Weikang <guoweikang.kernel@gmail.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>,
-	Christoph Lameter <cl@linux.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Sam Creasey <sammy@sammy.net>, Huacai Chen <chenhuacai@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Oreoluwa Babatunde <quic_obabatun@quicinc.com>,
-	rafael.j.wysocki@intel.com, Palmer Dabbelt <palmer@rivosinc.com>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Easwar Hariharan <eahariha@linux.microsoft.com>,
-	Johannes Berg <johannes.berg@intel.com>,
-	Ingo Molnar <mingo@kernel.org>, Dave Hansen <dave.hansen@intel.com>,
-	Christian Brauner <brauner@kernel.org>,
-	KP Singh <kpsingh@kernel.org>,
-	Richard Henderson <richard.henderson@linaro.org>,
-	Matt Turner <mattst88@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	WANG Xuerui <kernel@xen0n.name>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-	Stafford Horne <shorne@gmail.com>, Helge Deller <deller@gmx.de>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Geoff Levand <geoff@infradead.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Andrey Ryabinin <ryabinin.a.a@gmail.com>,
-	Alexander Potapenko <glider@google.com>,
-	Andrey Konovalov <andreyknvl@gmail.com>,
-	Dmitry Vyukov <dvyukov@google.com>,
-	Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Vasily Gorbik <gor@linux.ibm.com>,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Christian Borntraeger <borntraeger@linux.ibm.com>,
-	Sven Schnelle <svens@linux.ibm.com>,
-	Yoshinori Sato <ysato@users.sourceforge.jp>,
-	Rich Felker <dalias@libc.org>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Andreas Larsson <andreas@gaisler.com>,
-	Richard Weinberger <richard@nod.at>,
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
-	linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org,
-	linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
-	kasan-dev@googlegroups.com, linux-s390@vger.kernel.org,
-	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
-	linux-um@lists.infradead.org, linux-acpi@vger.kernel.org,
-	xen-devel@lists.xenproject.org, linux-omap@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mm@kvack.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v6] mm/memblock: Add memblock_alloc_or_panic interface
-Message-ID: <Z2fknmnNtiZbCc7x@kernel.org>
-References: <20241222054331.2705948-1-guoweikang.kernel@gmail.com>
+	s=arc-20240116; t=1734862103; c=relaxed/simple;
+	bh=f7qlKwjyHU2R/7epqrorIwViobfnknfYkuky5gSijWA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=mJ/Usg7RxHJlYcrp/gPgJKQURmPN+TufVkU1aFp9ITNCmoSWDUScnzbGXPGSZFX5vsRlftKepXM41ab+z7r2j/PCna3P7lImaUAsWoK3tGEAYGA3C0Cv/VXUGJbPUrUVTucYJxsV82HWIBSiw4Gh5ctR/+FYe2fnfQ8HZ12GaL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CLta0Ikr; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5d44550adb7so592766a12.2
+        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 02:08:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734862099; x=1735466899; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vKBsYFS9v4iubTvWXqou78ADw4DmyfMOcWadZXgDRNA=;
+        b=CLta0IkrHu0ZkmFMoTTlY1daiolc2B/qIolQ8oJC5CBe3goozyNLQ79KdfFzH8lASu
+         z+Ok/C5J+8JFhxM9/b5zs748f+Dygw2O55RJ+cLc2YGGl0qwcKEwhh0hRpw1E/Z9jg2Z
+         HuzHokiVTdRExbk3WMkgvX8vJR/hLpSnP7LAQ1rbyFfaWkuRdTiL7KBNK2he68F3whzT
+         6MtDOQ6EMZMQ3dWRPN9JpTMWAeFC+8FVNDd0VSiBtT5hzHXiX+K9EqIXhKG7TEpxig5/
+         QYA+C1Qk9yFaBdtgEX1d41TzLuAJeyL4nfCnpfODFLoj2x/B/NbErwfN/xLqYgZ8jCum
+         woDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734862099; x=1735466899;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vKBsYFS9v4iubTvWXqou78ADw4DmyfMOcWadZXgDRNA=;
+        b=ROfjhbh0nKFnb0oIgkQMkfQ2SDwboL/uKX5qnt8NMPlC3NVutiQuawFOsPF9+/gQjO
+         Ljj/q95Xjyrc8zDNwP/sYi1xIBQkrVIe3VZVOFpw5lomPRvguz1rqG6wEOqIDz4SmnWA
+         aPA0Q/qpxefbB5dbADDP94V6VI7gPjAR7RbV8at+kxVH/8gmybAds8bBvwEntowSYQwA
+         fA+HE7bot9BudaLYSwm1GOrNSlxIHAnSQZn1ToRoEqhFyyrwfsCMEm6Djk3OqkIad/oi
+         6gYcsPrXmHFcGFSkf6Oez1xP+FtxPVOQPuwfMLJPaaa5WGcPX2+kXB273oUi0ejB1lAZ
+         SLzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWODYidwf54WT/Qp3w3PXd/nIfDvUfLzl/Z9G4t6TImAxYOeCHbNdGsRUQq0OgnkW3wAbBUh+hs2whO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyW6Vx98YuIHfSVerqvYbLnbDwF7ItypxfXTsFL3o6ART9UmP1x
+	R/DkGhZYFexeMqGc7aaLtdS8d/iai4aO/4Hr4qBVSrrXrVDyedUAkxTsZ/WOiCo=
+X-Gm-Gg: ASbGnctPZEFImg2LfOKL1vjfAZLBy4FgPXnWl3xMgkRkEqjfn+mt5QCwttVd37CZrn7
+	wY8U9DiLMts8YeWVQInYh5V1dUyG9fvQWuSL6RXGjPuEB4CsrZT4HrCQ54RA14L7qF0VY9LgUO/
+	PBCX4CaLwdPFLDTCFon4JwgTK4k0iE3zu7INLoM0kcZ6/EaTcx31RhAeuNqi5KJQwT4L58uSL3U
+	pjgbX23vpdfkfzGorpkAoPI8Ur6UEHkismWERg+hqDmtluYRiorW8vmbO71hhuYGA72r0GEq6cy
+	P3WmJMQfRW6Wtv4YHC7ynLG7sfXVAw==
+X-Google-Smtp-Source: AGHT+IE54OW7NxT5X1sBmLNd/D0kS8uVGSQ68xoYttBlaJ2oUwzQEa9S1NxTmY5pBfaOMmcVqyxeVA==
+X-Received: by 2002:a17:907:1c22:b0:aa6:8dd8:8152 with SMTP id a640c23a62f3a-aac33559ff6mr278592066b.10.1734862098635;
+        Sun, 22 Dec 2024 02:08:18 -0800 (PST)
+Received: from [127.0.1.1] (46-253-189-43.dynamic.monzoon.net. [46.253.189.43])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f015b53sm372279266b.163.2024.12.22.02.08.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Dec 2024 02:08:17 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20241220-gs101-simplefb-oriole-v2-1-df60e566932a@linaro.org>
+References: <20241220-gs101-simplefb-oriole-v2-1-df60e566932a@linaro.org>
+Subject: Re: [PATCH v2] arm64: dts: exynos: gs101-oriole: configure
+ simple-framebuffer
+Message-Id: <173486209717.9271.11039463162908346528.b4-ty@linaro.org>
+Date: Sun, 22 Dec 2024 11:08:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241222054331.2705948-1-guoweikang.kernel@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.14.2
 
-On Sun, Dec 22, 2024 at 01:43:31PM +0800, Guo Weikang wrote:
-> Before SLUB initialization, various subsystems used memblock_alloc to
-> allocate memory. In most cases, when memory allocation fails, an immediate
-> panic is required. To simplify this behavior and reduce repetitive checks,
-> introduce `memblock_alloc_or_panic`. This function ensures that memory
-> allocation failures result in a panic automatically, improving code
-> readability and consistency across subsystems that require this behavior.
+
+On Fri, 20 Dec 2024 10:32:50 +0000, André Draszik wrote:
+> The bootloader configures the display hardware for a framebuffer at the
+> given address, let's add a simple-framebuffer node here until we get a
+> proper DRM driver.
 > 
-> Signed-off-by: Guo Weikang <guoweikang.kernel@gmail.com>
-> ---
+> This has several benefits since it's an OLED display:
+> * energy consumption goes down significantly, as it changes from white
+>   (as left by bootloader) to black (linux console), and we generally
+>   don't run out of battery anymore when plugged into a USB port
+> * less of a burn-in effect I assume
+> * phone stays cooler due to reduced energy consumption by display
+> 
+> [...]
 
-...
+Applied, thanks!
 
-> diff --git a/include/linux/memblock.h b/include/linux/memblock.h
-> index 673d5cae7c81..73af7ca3fa1c 100644
-> --- a/include/linux/memblock.h
-> +++ b/include/linux/memblock.h
-> @@ -417,6 +417,12 @@ static __always_inline void *memblock_alloc(phys_addr_t size, phys_addr_t align)
->  				      MEMBLOCK_ALLOC_ACCESSIBLE, NUMA_NO_NODE);
->  }
->  
-> +void *__memblock_alloc_or_panic(phys_addr_t size, phys_addr_t align,
-> +				       const char *func);
+[1/1] arm64: dts: exynos: gs101-oriole: configure simple-framebuffer
+      https://git.kernel.org/krzk/linux/c/e32a7fc0b14564f9094f90053c74f500809ddf3c
 
-Please align this line with the first parameter to the function.
-Other than that
-
-Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-
-> +
-> +#define memblock_alloc_or_panic(size, align)    \
-> +	 __memblock_alloc_or_panic(size, align, __func__)
-> +
->  static inline void *memblock_alloc_raw(phys_addr_t size,
->  					       phys_addr_t align)
->  {
-
-
+Best regards,
 -- 
-Sincerely yours,
-Mike.
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
