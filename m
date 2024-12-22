@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-133285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC5D9FA2FD
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 01:04:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F0B9FA301
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 01:08:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B7BE7A1AC2
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 00:04:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04F4C188AEC5
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 00:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B0C1373;
-	Sun, 22 Dec 2024 00:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0ED376;
+	Sun, 22 Dec 2024 00:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tibXnB7M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iKQzd9jh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFD0710F7;
-	Sun, 22 Dec 2024 00:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16F277F9;
+	Sun, 22 Dec 2024 00:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734825870; cv=none; b=oOQT2wlY6r28CGLADiMMTnEQDOuagj5MAD1bsIUo/a4mYvOlrKOUxnpyrdHDGo+xrSbmLQWkinXar9X2ICvFCOgYZA50eaB+mnvyTVdukf7LdReai9HsDvoP4G3dZFAMXaNOr2wpEj27By9G40MggQsAdinqkdJn5UJ/1Xw9pA4=
+	t=1734826132; cv=none; b=k/9G5gX5UB+DY2n3zICIHACm4kZXHjyPOTagG0U9InxGGg1nEozL9A2qo2qKErk5Xb80Av8fiv7pPMLVhn6Wlt89UpIwYWeJJfGb446tskT5rMXH5cXydFZSpL/2mT0UH2sLYGp2ECQmMH602sCLlKM/hEnxQ1WBf2v7Fe8B1D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734825870; c=relaxed/simple;
-	bh=Y3o2XvVQ4GtYROoCvyNl10HrUHrowKjJsiLdrAdU1mA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nwRoup6TdfaXEBGcfom4oGP2XZbZVECpfCe+/nbc+Jk/KUBT4Mu+SlLPIbtDDA26G7fyvywQm0Y00vSLUd6nxwrBIRrCbdANvY+FfY6mZKm1xPBHtib9PRRGnxUhahRQXbebB9T7nV9RaxEB3dZO98SCeX/1VqVqA5umoHj2Ne8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tibXnB7M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD621C4CECE;
-	Sun, 22 Dec 2024 00:04:26 +0000 (UTC)
+	s=arc-20240116; t=1734826132; c=relaxed/simple;
+	bh=RwpQxzUx7RABG1xbrUAZH59uwhOac87f2TorUPeKLEg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qks8NNAVol1yFWPTvO/OzSjDy4s2Gvvc8vuCyiT5kcjZ6ib0MXyrr9HDRnBijoKg4oe7XpifK8r3DIQeDYpDbJKaBHPOi6afC5OuPEDMpiGtPEigr2E/72EKzX0wlism8Zp3+QQmoD6LGgJLBYKF8k1Rb9OXdzPoWAfiMvT7LH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iKQzd9jh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CF4FC4CECE;
+	Sun, 22 Dec 2024 00:08:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734825870;
-	bh=Y3o2XvVQ4GtYROoCvyNl10HrUHrowKjJsiLdrAdU1mA=;
+	s=k20201202; t=1734826131;
+	bh=RwpQxzUx7RABG1xbrUAZH59uwhOac87f2TorUPeKLEg=;
 	h=From:To:Cc:Subject:Date:From;
-	b=tibXnB7MTt7ZLcDp6I4t6NpX9Ncmz1uhpREqn7cfODgyOuSTZpg9m07svSXPO2zs8
-	 JNYWQo64OdJGUv/Uy3M3RIto5RmsfCWCS+pgaVmmxsLUy58ej0I9k6K5sZryWWSryD
-	 rW4wvLeuDldqCld1g3OTzYQRRNq6m3mK80M5ofNA7EI5r74iW7b8oFN8Trw70uZR/5
-	 RSVN3SqKVhnyGUPyr16+oHyWuPuxHZdOxFr8cgnwSmKqvf9b8v3u/XBjx74bgLcyjo
-	 nGKpmil+vGYXSrX26qgM1+iKghjufD7NbDN6+r8HFTe4SPCCvbZLdgkHURTQFIK+O7
-	 RlZVJD4Ubr0bg==
+	b=iKQzd9jhO43DC2AqJorSIO4Upy5lJ8guuei3VqhaWDpZbdv6ykkASzE5nlovthawC
+	 2cMT3hRTVK50nW9JXrzsNHnqsi7OkBmImLIczMFESsF/eHmiR1VFrZRLgreJHGdPLr
+	 AL7MgYaak6IR/g44CQIQKRQYJZCBr6ZiNQC0/UuJScvq8ePqeYX81Ug3vmigWRnL+L
+	 ze7NR2jdnKKKHC+NjgfyRdAnIsZxjVi/CryerTMm21yDYYCbl8jWFdGxe+Cx58X2Mr
+	 axNsCz/ZRi0CMUK085zhjlCJ1YHjv96bI2vOlPtaXn4Wh74SjJkV2odj8oHPITc0yG
+	 7/mpFO62rpwBw==
 From: Masahiro Yamada <masahiroy@kernel.org>
-To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	linux-mips@vger.kernel.org
+To: Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	linux-riscv@lists.infradead.org
 Cc: linux-kernel@vger.kernel.org,
 	Masahiro Yamada <masahiroy@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Cercueil <paul@crapouillou.net>,
 	Rob Herring <robh@kernel.org>,
-	UNGLinuxDriver@microchip.com,
 	devicetree@vger.kernel.org
-Subject: [PATCH] MIPS: migrate to generic rule for built-in DTBs
-Date: Sun, 22 Dec 2024 09:04:13 +0900
-Message-ID: <20241222000416.2577633-1-masahiroy@kernel.org>
+Subject: [PATCH] riscv: migrate to the generic rule for built-in DTB
+Date: Sun, 22 Dec 2024 09:08:25 +0900
+Message-ID: <20241222000836.2578171-1-masahiroy@kernel.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -67,159 +67,90 @@ Content-Transfer-Encoding: 8bit
 Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
 DTBs") introduced generic support for built-in DTBs.
 
-Select GENERIC_BUILTIN_DTB and BUILTIN_DTB_ALL when the built-in DTB
-support is enabled.
+Select GENERIC_BUILTIN_DTB when built-in DTB support is enabled.
 
-DTBs compiled under arch/mips/boot/dts/ will be wrapped by the generic
-rule in scripts/Makefile.vmlinux.
+To keep consistency across architectures, this commit also renames
+CONFIG_BUILTIN_DTB_SOURCE to CONFIG_BUILTIN_DTB_NAME.
 
 Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
 
- arch/mips/Kconfig                         | 2 ++
- arch/mips/Makefile                        | 3 ---
- arch/mips/boot/dts/Makefile               | 2 --
- arch/mips/boot/dts/brcm/Makefile          | 2 --
- arch/mips/boot/dts/cavium-octeon/Makefile | 2 --
- arch/mips/boot/dts/ingenic/Makefile       | 2 --
- arch/mips/boot/dts/lantiq/Makefile        | 2 --
- arch/mips/boot/dts/loongson/Makefile      | 2 --
- arch/mips/boot/dts/mscc/Makefile          | 3 ---
- arch/mips/boot/dts/mti/Makefile           | 2 --
- arch/mips/boot/dts/pic32/Makefile         | 2 --
- arch/mips/boot/dts/ralink/Makefile        | 2 --
- 12 files changed, 2 insertions(+), 24 deletions(-)
+ arch/riscv/Kbuild                              | 1 -
+ arch/riscv/Kconfig                             | 3 ++-
+ arch/riscv/boot/dts/Makefile                   | 2 --
+ arch/riscv/configs/nommu_k210_defconfig        | 2 +-
+ arch/riscv/configs/nommu_k210_sdcard_defconfig | 2 +-
+ 5 files changed, 4 insertions(+), 6 deletions(-)
 
-diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
-index 467b10f4361a..021656d6831b 100644
---- a/arch/mips/Kconfig
-+++ b/arch/mips/Kconfig
-@@ -29,10 +29,12 @@ config MIPS
- 	select ARCH_WANT_IPC_PARSE_VERSION
- 	select ARCH_WANT_LD_ORPHAN_WARN
- 	select BUILDTIME_TABLE_SORT
-+	select BUILTIN_DTB_ALL if BUILTIN_DTB
- 	select CLONE_BACKWARDS
- 	select CPU_NO_EFFICIENT_FFS if (TARGET_ISA_REV < 1)
- 	select CPU_PM if CPU_IDLE || SUSPEND
- 	select GENERIC_ATOMIC64 if !64BIT
-+	select GENERIC_BUILTIN_DTB if BUILTIN_DTB
- 	select GENERIC_CMOS_UPDATE
- 	select GENERIC_CPU_AUTOPROBE
- 	select GENERIC_GETTIMEOFDAY
-diff --git a/arch/mips/Makefile b/arch/mips/Makefile
-index 5785a3d5ccfb..be8cb44a89fd 100644
---- a/arch/mips/Makefile
-+++ b/arch/mips/Makefile
-@@ -423,9 +423,6 @@ endif
+diff --git a/arch/riscv/Kbuild b/arch/riscv/Kbuild
+index 2c585f7a0b6e..126fb738fc44 100644
+--- a/arch/riscv/Kbuild
++++ b/arch/riscv/Kbuild
+@@ -1,7 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0-only
  
- CLEAN_FILES += vmlinux.32 vmlinux.64
+ obj-y += kernel/ mm/ net/
+-obj-$(CONFIG_BUILTIN_DTB) += boot/dts/
+ obj-$(CONFIG_CRYPTO) += crypto/
+ obj-y += errata/
+ obj-$(CONFIG_KVM) += kvm/
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index d4a7ca0388c0..5f5774892a6e 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -1267,13 +1267,14 @@ config RISCV_ISA_FALLBACK
+ config BUILTIN_DTB
+ 	bool "Built-in device tree"
+ 	depends on OF && NONPORTABLE
++	select GENERIC_BUILTIN_DTB
+ 	help
+ 	  Build a device tree into the Linux image.
+ 	  This option should be selected if no bootloader is being used.
+ 	  If unsure, say N.
  
--# device-trees
--core-y += arch/mips/boot/dts/
--
- archprepare:
- ifdef CONFIG_MIPS32_N32
- 	@$(kecho) '  Checking missing-syscalls for N32'
-diff --git a/arch/mips/boot/dts/Makefile b/arch/mips/boot/dts/Makefile
-index e2476b12bb0c..ff468439a8c4 100644
---- a/arch/mips/boot/dts/Makefile
-+++ b/arch/mips/boot/dts/Makefile
-@@ -16,5 +16,3 @@ subdir-$(CONFIG_ATH79)			+= qca
- subdir-$(CONFIG_RALINK)			+= ralink
- subdir-$(CONFIG_MACH_REALTEK_RTL)	+= realtek
- subdir-$(CONFIG_FIT_IMAGE_FDT_XILFPGA)	+= xilfpga
--
--obj-$(CONFIG_BUILTIN_DTB)	:= $(addsuffix /, $(subdir-y))
-diff --git a/arch/mips/boot/dts/brcm/Makefile b/arch/mips/boot/dts/brcm/Makefile
-index d85f446cc0ce..1798209697c6 100644
---- a/arch/mips/boot/dts/brcm/Makefile
-+++ b/arch/mips/boot/dts/brcm/Makefile
-@@ -33,5 +33,3 @@ dtb-$(CONFIG_DT_NONE) += \
- 	bcm97420c.dtb \
- 	bcm97425svmb.dtb \
- 	bcm97435svmb.dtb
--
--obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/cavium-octeon/Makefile b/arch/mips/boot/dts/cavium-octeon/Makefile
-index 17aef35f311b..48085bca666c 100644
---- a/arch/mips/boot/dts/cavium-octeon/Makefile
-+++ b/arch/mips/boot/dts/cavium-octeon/Makefile
-@@ -1,4 +1,2 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_CAVIUM_OCTEON_SOC)	+= octeon_3xxx.dtb octeon_68xx.dtb
--
--obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/ingenic/Makefile b/arch/mips/boot/dts/ingenic/Makefile
-index 54aa0c4e6091..6e674f1a3aa3 100644
---- a/arch/mips/boot/dts/ingenic/Makefile
-+++ b/arch/mips/boot/dts/ingenic/Makefile
-@@ -5,5 +5,3 @@ dtb-$(CONFIG_JZ4770_GCW0)	+= gcw0.dtb
- dtb-$(CONFIG_JZ4780_CI20)	+= ci20.dtb
- dtb-$(CONFIG_X1000_CU1000_NEO)	+= cu1000-neo.dtb
- dtb-$(CONFIG_X1830_CU1830_NEO)	+= cu1830-neo.dtb
--
--obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/lantiq/Makefile b/arch/mips/boot/dts/lantiq/Makefile
-index ae6e3e21ebeb..d8531b4653c0 100644
---- a/arch/mips/boot/dts/lantiq/Makefile
-+++ b/arch/mips/boot/dts/lantiq/Makefile
-@@ -1,4 +1,2 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_DT_EASY50712)	+= danube_easy50712.dtb
--
--obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/loongson/Makefile b/arch/mips/boot/dts/loongson/Makefile
-index 5c6433e441ee..5e3ab984d70f 100644
---- a/arch/mips/boot/dts/loongson/Makefile
-+++ b/arch/mips/boot/dts/loongson/Makefile
-@@ -5,5 +5,3 @@ dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64c_4core_rs780e.dtb
- dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64c_8core_rs780e.dtb
- dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64g_4core_ls7a.dtb
- dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64v_4core_virtio.dtb
--
--obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/mscc/Makefile b/arch/mips/boot/dts/mscc/Makefile
-index eeb6b7aae83b..566dbec3c7fb 100644
---- a/arch/mips/boot/dts/mscc/Makefile
-+++ b/arch/mips/boot/dts/mscc/Makefile
-@@ -8,6 +8,3 @@ dtb-$(CONFIG_SOC_VCOREIII)	+= \
- 	ocelot_pcb123.dtb \
- 	serval_pcb105.dtb \
- 	serval_pcb106.dtb
--
--
--obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/mti/Makefile b/arch/mips/boot/dts/mti/Makefile
-index b5f7426998b1..c1c7b27296dd 100644
---- a/arch/mips/boot/dts/mti/Makefile
-+++ b/arch/mips/boot/dts/mti/Makefile
-@@ -1,5 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_MIPS_MALTA)	+= malta.dtb
- dtb-$(CONFIG_LEGACY_BOARD_SEAD3)	+= sead3.dtb
--
--obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/pic32/Makefile b/arch/mips/boot/dts/pic32/Makefile
-index fb57f36324db..4069cda2370c 100644
---- a/arch/mips/boot/dts/pic32/Makefile
-+++ b/arch/mips/boot/dts/pic32/Makefile
-@@ -3,5 +3,3 @@ dtb-$(CONFIG_DTB_PIC32_MZDA_SK)		+= pic32mzda_sk.dtb
  
- dtb-$(CONFIG_DTB_PIC32_NONE)		+= \
- 					pic32mzda_sk.dtb
+-config BUILTIN_DTB_SOURCE
++config BUILTIN_DTB_NAME
+ 	string "Built-in device tree source"
+ 	depends on BUILTIN_DTB
+ 	help
+diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
+index fdae05bbf556..b09678f9badc 100644
+--- a/arch/riscv/boot/dts/Makefile
++++ b/arch/riscv/boot/dts/Makefile
+@@ -7,5 +7,3 @@ subdir-y += sifive
+ subdir-y += sophgo
+ subdir-y += starfive
+ subdir-y += thead
 -
--obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
-index d27d7e8c700f..dc002152d843 100644
---- a/arch/mips/boot/dts/ralink/Makefile
-+++ b/arch/mips/boot/dts/ralink/Makefile
-@@ -10,5 +10,3 @@ dtb-$(CONFIG_SOC_MT7621) += \
- 	mt7621-gnubee-gb-pc1.dtb \
- 	mt7621-gnubee-gb-pc2.dtb \
- 	mt7621-tplink-hc220-g5-v1.dtb
--
--obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+-obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_SOURCE))
+diff --git a/arch/riscv/configs/nommu_k210_defconfig b/arch/riscv/configs/nommu_k210_defconfig
+index 87ff5a1233af..ee18d1e333f2 100644
+--- a/arch/riscv/configs/nommu_k210_defconfig
++++ b/arch/riscv/configs/nommu_k210_defconfig
+@@ -35,7 +35,7 @@ CONFIG_NR_CPUS=2
+ CONFIG_CMDLINE="earlycon console=ttySIF0"
+ CONFIG_CMDLINE_FORCE=y
+ CONFIG_BUILTIN_DTB=y
+-CONFIG_BUILTIN_DTB_SOURCE="canaan/k210_generic"
++CONFIG_BUILTIN_DTB_NAME="canaan/k210_generic"
+ # CONFIG_SECCOMP is not set
+ # CONFIG_STACKPROTECTOR is not set
+ # CONFIG_GCC_PLUGINS is not set
+diff --git a/arch/riscv/configs/nommu_k210_sdcard_defconfig b/arch/riscv/configs/nommu_k210_sdcard_defconfig
+index 95cbd574f291..e770d81b738e 100644
+--- a/arch/riscv/configs/nommu_k210_sdcard_defconfig
++++ b/arch/riscv/configs/nommu_k210_sdcard_defconfig
+@@ -27,7 +27,7 @@ CONFIG_NR_CPUS=2
+ CONFIG_CMDLINE="earlycon console=ttySIF0 root=/dev/mmcblk0p1 rootwait ro"
+ CONFIG_CMDLINE_FORCE=y
+ CONFIG_BUILTIN_DTB=y
+-CONFIG_BUILTIN_DTB_SOURCE="canaan/k210_generic"
++CONFIG_BUILTIN_DTB_NAME="canaan/k210_generic"
+ # CONFIG_SECCOMP is not set
+ # CONFIG_STACKPROTECTOR is not set
+ # CONFIG_GCC_PLUGINS is not set
 -- 
 2.43.0
 
