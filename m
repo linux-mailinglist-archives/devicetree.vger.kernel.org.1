@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-133356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B8D39FA61E
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 15:30:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC4239FA626
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 15:34:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89B7A18867B1
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 14:30:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0679118875C5
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 14:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E5518F2C1;
-	Sun, 22 Dec 2024 14:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7CE18BC36;
+	Sun, 22 Dec 2024 14:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EzWGAIm0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vnty3+C9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F19518CBF2;
-	Sun, 22 Dec 2024 14:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A13AF259484;
+	Sun, 22 Dec 2024 14:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734877799; cv=none; b=LaoWIpz6Tyvk+cvtnQdHqEBjUMU4LKaxEQjBck7yomkD9vmUVCIdCXvk/V5KJPLUZxiO8vwanpn9HJaB5RcCcFY7ZwvgeD4fX9eIBfrDGAkOX9KBXBkGzifnXs33Rc5Y/6UYdL9Vl0fxqDEn6SyxXgC6+9vFyuZNX8k4sggzs84=
+	t=1734878071; cv=none; b=dxqIMN06jGcwoI6IWiYL1yX5nVX6HaskiuuX93zDOrLFGxv3lhf1vuH1Hw0kP8+7JIvhzRWllEs8Wu80+PPcXp4xUgcKUMBzRgUxmzxhHbqEYV/89XoCKZ/7ELamRVKd3qlQUfVxJUirwszqlZNxvRSDZLS6pLsz14j3tLxE4GM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734877799; c=relaxed/simple;
-	bh=+mi++YEiSwwmYKxqT3wd9pH2Omz7srW+EFK+fOCC6i0=;
+	s=arc-20240116; t=1734878071; c=relaxed/simple;
+	bh=1bFFIMffdESlk/DfXVFVcVEr+JL75OSenaMM0ggWsR0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g/0+LXyr9gykBCct6nmjDDkxvs0KXAsHPHqTCij3m0QzcQ/EU2yWHBkh8XpWWdkgskm6+pYpELVzQCd5+u1lDQ2lTpcoGzl5Qj0hVotiQop0XUv+JSoUNGYBAaP7Bf17gS1vmAJu6oiYG7Yp+ayl9C9ZSan8eojErICkxNJC9OQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EzWGAIm0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97A19C4CECD;
-	Sun, 22 Dec 2024 14:29:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bg5CY7LWQDxm5wy8Jb7c8hYpWIGVsG5pIMWX6ifTBO+o6XLhtYBlEgBRRaT9zHxxh+0teMrkEnpA6kdYctb1b7xRq2oMLd0kQ7yXWLii7E/ykARlAi4PLT59SbFiRJwyrDVfF96ZqlTis3apzOiR0UWWPmpJeetjXm3UUju1XG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vnty3+C9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41EA5C4CECD;
+	Sun, 22 Dec 2024 14:34:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734877799;
-	bh=+mi++YEiSwwmYKxqT3wd9pH2Omz7srW+EFK+fOCC6i0=;
+	s=k20201202; t=1734878071;
+	bh=1bFFIMffdESlk/DfXVFVcVEr+JL75OSenaMM0ggWsR0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EzWGAIm0La6nlS0iG7hWG7FgO7oXFOU083cCifHRsO9sfjUPDDO1GX61ogmH24bjI
-	 GgsPl4ULsTccoG0FIhS2bkszHQ4v4qwNbeC4kpiUbKrcW+C+o5ahpIBdq3+dzYMBnk
-	 C9etRLFrffutimfGkFxg24Lbp4nC3n2SorjgRsHV16VdrZ1asvziu3HjTvdAZACJbk
-	 PfrsT75nR9mUZuajGS9qwTVMp7RVyX/N/isNCxshh0Z63ko7tmYi40uglWWqsFMOa2
-	 SzqFwTckZPVenKJAU995Y/mDO3JW2IW6SRjWDlCEOUp0TdjpqgolIMKAHg8soZ/k3u
-	 PUPN+8TF+6N3Q==
-Message-ID: <abadd51d-f350-4bf6-99b2-28976c6a6b66@kernel.org>
-Date: Sun, 22 Dec 2024 15:29:52 +0100
+	b=Vnty3+C9zJCMGusaGXRDl+cH7ccv0ZPs90OBf9esczi15vB85X91Wtjepksc8c3hb
+	 g2kvSIQryIc+VW7x7hDa3nf6N4olv8u6aaS/V4oY1R/kbt14CDi9opU0fL78Z7uJv+
+	 Y++2lMvagFPhIhpb7IAaLpUKOT5RqNmQYz8LY3R1a/bKstfArshSSmHGm3Pbq/YJEo
+	 NnzrLP4PrE8rDsSPfTgIjTxBRfmuEnvt0VdYPBO3pvufF/v3L/is1YWK9oMkVjBrOy
+	 NERzGvMkkWcF6xfvtM1G6cvPmvRYxkYLrdZRogxSWPYfng3dBzfbiXQwjokUnPtYHF
+	 Qg7Blh8BL+9HQ==
+Message-ID: <def949f2-301d-4edc-b303-0fbe02a18c3c@kernel.org>
+Date: Sun, 22 Dec 2024 15:34:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] dt-bindings: watchdog: renesas: Document
- `renesas,r9a09g057-syscon-wdt-errorrst` property
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Magnus Damm <magnus.damm@gmail.com>,
- linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20241218003414.490498-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20241218003414.490498-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <wouo4k7rd7y57jzez3qdrz27fscozofuksgs4ivft75y6cwvqa@zfq3wgerwaza>
- <CA+V-a8s-_OMJy=4v_whpBr7S4aE3Dn6KouFfCnQ=oUBM9MD4nA@mail.gmail.com>
- <53c2fc82-2b09-4f7e-a89f-c7c16c38cb8e@kernel.org>
- <CA+V-a8sXqWTPqRN_fFiYpNiSVghC9e+DHpVBF4CCG_e9s3s0TA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: platform: Add bindings for Qcom's EC
+ on IT8987
+To: Maya Matuszczyk <maccraft123mc@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241219200821.8328-1-maccraft123mc@gmail.com>
+ <tma7q7lfskdr7myfoeene7o27g7nhc5ca66kpmnqvgksv5oxqv@ziefqqp5khic>
+ <57515c0f-caa0-4651-96cf-dde75a13937f@kernel.org>
+ <CAO_MupJNuK2UyXEPdr-xufWotbP-EmHyUk81YiTwaQR=WccSEA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,39 +105,67 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CA+V-a8sXqWTPqRN_fFiYpNiSVghC9e+DHpVBF4CCG_e9s3s0TA@mail.gmail.com>
+In-Reply-To: <CAO_MupJNuK2UyXEPdr-xufWotbP-EmHyUk81YiTwaQR=WccSEA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 22/12/2024 12:11, Lad, Prabhakar wrote:
->>> [0] https://lore.kernel.org/all/20241218003414.490498-6-prabhakar.mahadev-lad.rj@bp.renesas.com/
+On 22/12/2024 08:55, Maya Matuszczyk wrote:
+> niedz., 22 gru 2024 o 07:40 Krzysztof Kozlowski <krzk@kernel.org> napisał(a):
 >>
->> Really? I see in rzv2h_wdt_probe():
+>> On 22/12/2024 07:33, Krzysztof Kozlowski wrote:
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    oneOf:
+>>>> +      - const: qcom,x1e-it8987-ec
+>>>
+>>> That's not a SoC, so I don't understand:
+>>> 1. referring to the SoC,
+>>> 2. Having this alone and as fallback.
+>>>
+>>> It does not look like you tested the bindings, at least after quick
+>>> look. Please run 'make dt_binding_check' (see
+>>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+>>> Maybe you need to update your dtschema and yamllint. Don't rely on
+>>> distro packages for dtschema and be sure you are using the latest
+>>> released dtschema.
 >>
->> +               if (ret)
->> +                       return ret;
->>
->> so to me you are failing the probe, not skipping anything.
->>
-> Yes really this wont break any ABI. From patch [0] we have the below:
+>> BTW, for sure Qualcomm did not develop/create it8987, so it cannot be
+>> used here. Come with specific compatible for this given, one product:
+>> embedded controller on one Lenovo laptop and use it also as filename.
 > 
-> [0] https://lore.kernel.org/all/20241218003414.490498-6-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> Under these assumptions:
 > 
->     /* Do not error out to maintain old DT compatibility */
->     syscon = syscon_regmap_lookup_by_phandle(np,
-> "renesas,syscon-cpg-error-rst");
+> - Qualcomm developed the firmware running on the IT8987 in most x1e machines
 
-Right, somehow I missed that part.
+No one here knows whether most x1e machines have this chip...
 
->     if (!IS_ERR(syscon)) {
->         struct of_phandle_args args;
->         u32 reg;
+> - IT8987 is also used in other machines with a non-compatible firmware
+> - The driver name should reflect the assumptions
+
+I don't care about driver here, so you can use it for the driver but
+these are not correct assumptions for the bindings.
+
+
+
 > 
->         ret = of_parse_phandle_with_fixed_args(np,
-> "renesas,syscon-cpg-error-rst",
->                                2, 0, &args);
->         if (ret)
->             return ret;
+> I think the name qcom,x1e-it8987-ec is not the worst name for it, as
+> "ite,it8987-ec" would imply compatibility with other devices running
+> non-compatible firmware,
+> and names specifying only the device wouldn't reflect the "firmware is
+> based on what qcom did and it's driven the same way" part
+> 
+> Which other names do you think would fit this better?
+
+I suggested the one in second reply:
+lenovo,yoga-slim-whatever-model-it-is-ec
+
+If you have any indication that Qualcomm firmware from a reference board
+was used as a reference, it could be used as fallback, but I do not
+believe you can have such indication considering downstream source code
+does not exist and all other docs are confidential. Therefore lenovo EC
+is the first implementation we see and we know anything about.
+
+
 Best regards,
 Krzysztof
 
