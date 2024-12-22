@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-133362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA6E9FA63B
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 15:49:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD379FA63F
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 15:51:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 286A11658FB
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 14:49:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 705471658AE
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 14:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B44418E054;
-	Sun, 22 Dec 2024 14:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E4518F2FB;
+	Sun, 22 Dec 2024 14:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwOLa0NH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J2wvSQGf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4D0282EE;
-	Sun, 22 Dec 2024 14:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE02480B;
+	Sun, 22 Dec 2024 14:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734878941; cv=none; b=EEehqnpLAQZnzztGUSfI9XwvPnYEOiUhcqLWLUO4UtmCcl/8D+YKAsVbVgvCkEQ13kX8HBQE6s0cBWCAqkI/F6nwOModGPZTgQFPrwKzOtO6M1Ea3+ZRHHF1bmY1GIv4Ya3OT3abTwS9IdUwjoqGTsnk8PUsQYkZIuXCvJRc8Bc=
+	t=1734879085; cv=none; b=dHaYiCIPJ19p9kCWG6jmYelCOmL99ELx/jVGwlINtGnhK2sbdLk4+QSHLsHwlQPzd7vE0hhzdLMDvVe/cHPzy9pgO3o60gDk+1+BHHFkBexJJF59b2G2I8sMQoF5egQ7ZlACH4PwfQA+8DMP94SjaU2UOLu6+pSYJbadFwLweD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734878941; c=relaxed/simple;
-	bh=+0JuRS1+pxAE7ViJS52geGKtFuPTzF7INi/AI1l7fkg=;
+	s=arc-20240116; t=1734879085; c=relaxed/simple;
+	bh=usjZ2ZTH34TQ1C1N/Wpm4Rx7OSioMF26Mal38rPNRY8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RcFHXM6lgK4swJvKspYtLfxJsKiH01qNmeT3qT0TZemA3NCqZd9xyFDbN64sL50L2m5LqURkpkv8X9lh7zQke/VBQEW2DPEZlw9H71AhA/gZxNT/HtxDEesu4RblnMrwE8IbIDZghs0B1sRJkDrYx0nuLRu/YJswNroaSegILBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwOLa0NH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3BDFC4CECD;
-	Sun, 22 Dec 2024 14:48:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hZ8CmpD2ErUKUYINzTJ1A9XjoCLy2TI0V1IVlBu4Zo6DxRtMZma69Qs0VDS9WlVjSuBUAcGsAF1fGwfubuG0jKk5+K9ddMTjVym0ST0IMlQ8+rY5EoCrJCMrfO/OHzPFFovbVF2rKOHPrm8zAvdbFuZBjuxpi+dtwflE98Y2+HU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J2wvSQGf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF6D0C4CECD;
+	Sun, 22 Dec 2024 14:51:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734878940;
-	bh=+0JuRS1+pxAE7ViJS52geGKtFuPTzF7INi/AI1l7fkg=;
+	s=k20201202; t=1734879085;
+	bh=usjZ2ZTH34TQ1C1N/Wpm4Rx7OSioMF26Mal38rPNRY8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CwOLa0NHJg75u0bw8qHidkLoSBn5jKkmZC1XT8plBAgmnxG/sNYZiGlOccGTI5au4
-	 R5DZYXI8LnEul7stQRXMANXJTpszvPGv1tgzUoI05NzCWx/NdKT6YcqwqU2rMDXYOT
-	 SYJrVHIkcPWgafe0I9yxj+9V6OFG8/aGMMXC8xLBWx9kQZ2CEwSB66o7jMle9QuO35
-	 PMTBxpTonZtnvnVSjp107MUWp13uevi4ycI+cuMYYDiHkBpk6AIbPWB1iCoPHOafbw
-	 FKrCr2E/WL5Oa1B0/4/i/AGfxjRTAKq2wZgzClIo7/e440NCKW2b/rs9lmQGX9XD3C
-	 z9IBxv7un4sEg==
-Date: Sun, 22 Dec 2024 14:48:56 +0000
+	b=J2wvSQGfuB/AjjrxeUvDs8Yw4zPVyKUgOou1CNiG1/v+jlnQ3UjtBYc/f9ppxoVcA
+	 CWIuXD2VAnJcsO3SSNOgRkGxVNgaK57pSRvjZiArCb15XaOyGcx4Zdg+bp7UJ7iryT
+	 jC4TdJcMRLQ2MaVwpbzw3X1xWxW7xN162/4S1tTBVA+wtrbV7fK8DnbTD7eVAQUYFr
+	 Hlb3iGPZrNdDkH04XefuM7TvB6cY0W1iT+c5AT6yc09NdG0EuEoarzH1gLNilRGXUQ
+	 8k1kUPvdi0j/8nMip6BH6qQ6CZ1QG7GJ2tvzO61C8z2C59St55geuR+PltnzKkuKds
+	 CeOt0sS6Ekxzg==
+Date: Sun, 22 Dec 2024 14:51:20 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Kever Yang <kever.yang@rock-chips.com>
 Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 04/38] dt-bindings: pinctrl: Add rk3562 pinctrl support
-Message-ID: <20241222-moonscape-humongous-65531a3f1f3d@spud>
+	Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 01/38] dt-bindings: clock: add rk3562 cru bindings
+Message-ID: <20241222-grandpa-vessel-66e9ca9cde75@spud>
 References: <20241220103825.3509421-1-kever.yang@rock-chips.com>
- <20241220103825.3509421-5-kever.yang@rock-chips.com>
+ <20241220103825.3509421-2-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,55 +63,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ALomkr6kdjlU1kTz"
+	protocol="application/pgp-signature"; boundary="WwHE6zSlu1Iv1ITo"
 Content-Disposition: inline
-In-Reply-To: <20241220103825.3509421-5-kever.yang@rock-chips.com>
+In-Reply-To: <20241220103825.3509421-2-kever.yang@rock-chips.com>
 
 
---ALomkr6kdjlU1kTz
+--WwHE6zSlu1Iv1ITo
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 20, 2024 at 06:37:50PM +0800, Kever Yang wrote:
-> Add the compatible string for the rk3562 SoC.
+On Fri, Dec 20, 2024 at 06:37:47PM +0800, Kever Yang wrote:
+> Document the device tree bindings of the rockchip rk3562 SoC
+> clock and reset unit.
 >=20
 > Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
 > ---
 >=20
->  Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/clock/rockchip,rk3562-cru.yaml   | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk35=
+62-cru.yaml
 >=20
-> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.y=
-aml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> index 6a23d845f1f2..80a2b1934849 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> @@ -44,6 +44,7 @@ properties:
->        - rockchip,rk3328-pinctrl
->        - rockchip,rk3368-pinctrl
->        - rockchip,rk3399-pinctrl
-> +      - rockchip,rk3562-pinctrl
->        - rockchip,rk3568-pinctrl
->        - rockchip,rk3576-pinctrl
->        - rockchip,rk3588-pinctrl
+> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3562-cru.=
+yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3562-cru.yaml
+> new file mode 100644
+> index 000000000000..aa8dedf2bfce
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3562-cru.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/rockchip,rk3562-cru.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip rk3562 Clock and Reset Control Module
+> +
+> +maintainers:
+> +  - Elaine Zhang <zhangqing@rock-chips.com>
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +description:
+> +  The RK3562 clock controller generates the clock and also implements a =
+reset
+> +  controller for SoC peripherals. For example it provides SCLK_UART2 and
+> +  PCLK_UART2, as well as SRST_P_UART2 and SRST_S_UART2 for the second UA=
+RT
+> +  module.
+> +
+> +properties:
+> +  compatible:
+> +    const: rockchip,rk3562-cru
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: xin24m
+> +      - const: xin32k
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the "general register files" (GRF),
+> +      if missing pll rates are not changeable, due to the missing pll
+> +      lock status.
+
+Two questions:
+- Why would it ever be missing? Seems like you should make it required.
+- Why is it not possible to look the grf up by compatible rather than
+  phandle?
+
+Cheers,
+Conor.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#clock-cells"
+> +  - "#reset-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clock-controller@ff100000 {
+> +      compatible =3D "rockchip,rk3562-cru";
+> +      reg =3D <0xff100000 0x40000>;
+> +      #clock-cells =3D <1>;
+> +      #reset-cells =3D <1>;
+> +    };
 > --=20
 > 2.25.1
 >=20
+>=20
 
---ALomkr6kdjlU1kTz
+--WwHE6zSlu1Iv1ITo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2gm2AAKCRB4tDGHoIJi
-0rJ+AP9jKt+goJkQoANa5w9EFvOUIPEWZxBmo2FrqduMEy2E+wD/Xk92XG4/tpD1
-TvQLAzDCEXwa95oanEMJEx9Ov5WmpQg=
-=cZw4
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2gnaAAKCRB4tDGHoIJi
+0iI5AP9UIw3hr7XnZEKTMekdzNbzE8jdl/gywdcNsXRR8649PAD+J3EGtf7uIB8X
+Xkt+VkIy6zUhiBUZdP3KF3OCqcEkgQE=
+=PnXt
 -----END PGP SIGNATURE-----
 
---ALomkr6kdjlU1kTz--
+--WwHE6zSlu1Iv1ITo--
 
