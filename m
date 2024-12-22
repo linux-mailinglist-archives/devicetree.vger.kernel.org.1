@@ -1,155 +1,114 @@
-Return-Path: <devicetree+bounces-133345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457239FA5BE
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 14:14:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 519189FA616
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 15:26:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43083164849
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 13:14:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 492F01886BAE
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 14:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8377518E02A;
-	Sun, 22 Dec 2024 13:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4801518F2DD;
+	Sun, 22 Dec 2024 14:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IO15F9Jm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HUzFO46q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D503987D
-	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 13:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4684E18A924
+	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 14:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734873244; cv=none; b=KnqRpovzEjQiree7+2w3S9dwjK0jZsc3QCfL1lS0wmeiJLS6agTthXZJO/FxplR9M9ENUqWPe1EIJjX/TqJyFcZGJOZbTemK3qSlMFPqmVm1mbqiE9fwVh+XyyN4O7QhcatyjumZwWuB2IAsVopcD91KbA/ZvZGUER/Nk5XWvAE=
+	t=1734877571; cv=none; b=lyEOAhUtdSo/VvmPBVX07MAv+Zvkst2yyNsvIM1K71A+amk+SxjU1MQNK1fBBcjkbbr9Ywj9PucfRmOhb4PvBxvNccuglJBG+XFDnQZVcbbqA91l7/ZcJXb8FSNuAyfUVLwa1kCb7vcbcfG07UhTsN/LAFdH4/WUAJa9zGt9pWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734873244; c=relaxed/simple;
-	bh=kYdP5yeZkzBAq4lBYi0ltwGr+zxdlCaWvTJWPfDhwf8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ThMFU8jnmJ6sQVjFfg7FBa66YQPPOpr9XZMdqYe51Z5Mp/YVb+OdYs8PRb9f3SpPAqSbsBnGf6gzATtvZqEAL/jGG/lCElHEHL9CgbUT/muJZlwtKxE6vgP7RZF/NVl7HecW2hWPGQIGXG2q8mw9rmZ4vbxVF0LJAvDkYHvwrIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IO15F9Jm; arc=none smtp.client-ip=209.85.167.50
+	s=arc-20240116; t=1734877571; c=relaxed/simple;
+	bh=nfREt+F6UPpxUaKDDrU1bIh3Hds8x0wN+gKl3MzzQOY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ivgQW5+QUfiOU6h6+Yg8JHP1+8VTPVzVNBAnvh1fArBG7zPMfnzJONQfprH0rrJVXa7g6NAO5K3kNR6ZpMu5geLq1yfHs/CyCa2Sc68ROom0sjQEO0qbppFSJKc8P6Q+fZj+QP8dYgT8gfVkGUOP2GXT3GyrbIcn7wLy+EdW6sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HUzFO46q; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5401c52000dso3753956e87.3
-        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 05:14:00 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5d3e5c225aaso581577a12.3
+        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 06:26:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734873239; x=1735478039; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5G1n789VI+iPhBQH5F4v6UNNOm0uHyaOkYxT8zl1MWs=;
-        b=IO15F9JmwFPZOb60k4WaszQc9Ux9nNrigHM05IbcqHKOkrd9VCYqsqCH4ZpiLCOKWI
-         gXHunWh8aYcFLMZaSqmKI69H6ckzM7fOfa++0jV8RdqNsgJMD5MivTiMYD3F1FENu+fI
-         fliGVCqvFY3crjZvBQuarOHUW32hhH79OlwaWeylzVQKRvsuhuvq0qINSgCpG+/VH45w
-         O7aRL1sKGvwcMdLGPf9EB/hTK/+2f7IzFxuB0uuFhGQd7tIb86zHHNoP+oc3UOfqo5vk
-         a66MhIyk4gXuLfOtiyEXTMragQH6QAsW9G7Zf3A0EK0EKYTvyEi3e9/JduMGNOSK8dUV
-         MyJQ==
+        d=linaro.org; s=google; t=1734877567; x=1735482367; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5fv2CUS7ZbxpkqmLJHrcp6kZwBl6Wt3zoIFWY+Ye6cE=;
+        b=HUzFO46qOFheUT4pLb3ggtXjMCyXnSV4CspxqPuLTO66IhdwdSCKInDqDvVdy4IH0O
+         QHLiT4LuwO9yPWLBr2hoVtZzWmYnPR/DuNATEzWDHWyyPTzgD+6XQY6oB5wPtlXpMAwY
+         W+3rku1HpLJ2qFrxHrfaxwKxxhojl+AY/VYjdFaCdWleJRkowAkzA+qQ5klNvks5fokD
+         4ubO2nG/DEVY69mhRqJpK/KandivR7iz6EECOppL45v1UZwMv51xlo19T+TRHV21AAeH
+         uv11C3+APc75/kqtpbLtCVA5C3S0K4dwylHg3EGtjssI44EkCCbRY6FxNWeJUoKnDy3y
+         rT+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734873239; x=1735478039;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5G1n789VI+iPhBQH5F4v6UNNOm0uHyaOkYxT8zl1MWs=;
-        b=ireMD8yLYbUpEk0NMFZfouZkUpGv2TIWT1tcjx/tdFx3HBTg/gkH5iCbBEHeb4Z/FS
-         Jh2oV5xaSs8sqHMAz2Y0zHiN5hOVxY3HGZ5/Dp90pgXjzeIAp/ZomLJxaaK1/h4c1R5r
-         f1LcSHykNR7V1WCNpfVjL07rvujn5c33b8QWG+//WbrouiLWx82rU9ZaWCNyZiHGYihK
-         x+8OtYPcC1O9jTKMF2sKw/Aorh9goioeZE5+TxRL1+HvexUrqYu/gLgAHYtdPIU1sSQ8
-         ekJCejKy0WccyKH1CIn/SYQYNqXUkPhi68CAlz+lpieSJLjQC5B02SKDm/NHm2O1uYw7
-         jWBA==
-X-Forwarded-Encrypted: i=1; AJvYcCV8a1xkpX97H1fGl/3GyWqyrMFgMs54dfjBiQfqk0Hct7nB4BVh5hmCObgs8ZoHswiIIeOG7Dwetweo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9D9dmqSNYdRpBDvvh5vLpQ96MlQhJH/Jzx7KW7v23OWvYqYXp
-	ByySXBge8qvz2+r/USg3tn4DmlEvQK9CSyEPRnyKTEw2krckZ4dlKVyPVuyTgos=
-X-Gm-Gg: ASbGncuAq+KVs8xl1Sv+H5zn0YNYo3q7q/vAUPrzU6N3X8htGpizpfN0AQCs8wdCSRM
-	Xq5B0S62LPLm9XnWE4CxrmwmrbLbuZr2w/tIJNSOH8ervOArInEK4FX1eD5R1NsmRc/JG/xDr41
-	89aiZ0Kd0gXNY1N1+eJ+SKxTp0BJJSpMnerXkNEWzAgEr3zQwlwJSPJDJ4/UXHbK346T6FoibRz
-	Qiid8z35hUdZsUZ9oFCbQQvPHNkWdB/4g5ZhRv0Fmh6btcHWgNjzggBgV623jLowGYONvC7OcNw
-	H96AoS+cKIefuTGMLkxDz5ED8ixvsZDSuZq6
-X-Google-Smtp-Source: AGHT+IEf5hoYBKrJGH61USlw3q8c948U1qUxhVRDxvwTtjOb9SST31C/wZsizm3j81A53TpLipPuxA==
-X-Received: by 2002:a05:6512:2246:b0:542:2e04:edd1 with SMTP id 2adb3069b0e04-5422e04f073mr1389823e87.42.1734873239122;
-        Sun, 22 Dec 2024 05:13:59 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542235fecb7sm951614e87.64.2024.12.22.05.13.56
+        d=1e100.net; s=20230601; t=1734877567; x=1735482367;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5fv2CUS7ZbxpkqmLJHrcp6kZwBl6Wt3zoIFWY+Ye6cE=;
+        b=J61gP70ctKH/JsdMCnllryEuOtEXA3zC4EppiJ4CPML7Ba21fNbrN/5aVaX1jdCNKi
+         j1rw111g/MpvwGbyXNcgoiJ3uFJdPqjP9kxMMKAM2g2qAYfWgI/HJD9qJgHvOP/+hAVO
+         xrJXcN+vLrpLOs16WGBY81OBCF7HmBIKF9rCelLg9QPatA1SkGcNAx2DpHTDCpPYioj4
+         J0vTzTv+vVserS3qpUAfACIg2tkhCCTqp+4YT0IulTx52MPxiqlMtC83gg+AQOQ01oso
+         9VFl8hCJfmN8k0I+zhX6zE810zU2teSVLr2JYWMSLgq0j+lIRUHYqbM3beUC/uh1WfyM
+         lZZQ==
+X-Gm-Message-State: AOJu0Yy6n5Rc5FRK7BG2ssKGKPTTb602P8O7MMqdg2JWzKftCCZA2qrs
+	hZqTApjAeTDF3/QQNT2lm4bjdcub4eq+Rc2x7OMv7ZphBmjRmkLpSR5LE7j+cv0=
+X-Gm-Gg: ASbGncs06IMFu+xVaE7s9wV08eUfr0721MlpXC3cWMGUR7G6G0H5Et+ie3IVEAiPxNi
+	32ZIs8IALpD6iaZYp1VPabzALSWjkFEZ2V/nP8oMCllEavyJHpHafA4lqgfoLiZr6iFhSjG4DgT
+	lMUEb/+ctdrWk8HlHtsBTwHk8rnJ3LpFVByzdc1Ybxw6pbZOUW+IYDTsAzPqvMsdmYk+dNZTM9L
+	Tkj03II+icQkrJU315w0uqR6LiWV1qLUEoHzhXH3ZcfKVYG43RpqLUPDpUf4VStiV5aL8jVTZqR
+	g0R55XX8hDHo45OJmJE5gwWXyaQNmhI=
+X-Google-Smtp-Source: AGHT+IF6cnIbn11yHwZazziFYqCjkPi3z318Kw+gMS01o7Ckh/xs17Fg9qz8u39nDgfnBnEA00iHqQ==
+X-Received: by 2002:a17:907:6d1f:b0:aa5:a60:ad6a with SMTP id a640c23a62f3a-aac2d4472c8mr325314866b.8.1734877567625;
+        Sun, 22 Dec 2024 06:26:07 -0800 (PST)
+Received: from [127.0.1.1] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e82f577sm392716066b.18.2024.12.22.06.26.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Dec 2024 05:13:57 -0800 (PST)
-Date: Sun, 22 Dec 2024 15:13:55 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: joswang <joswang1221@gmail.com>
-Cc: heikki.krogerus@linux.intel.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, rdbabiera@google.com, 
-	Jos Wang <joswang@lenovo.com>, stable@vger.kernel.org
-Subject: Re: [PATCH v2, 2/2] usb: typec: tcpm: fix the sender response time
- issue
-Message-ID: <exu4kkmysquqfygz4gk26kfzediyqmq3wsxvu5ro454mi4fgyp@gr44ymyyxmng>
-References: <20241222105239.2618-1-joswang1221@gmail.com>
- <20241222105239.2618-2-joswang1221@gmail.com>
+        Sun, 22 Dec 2024 06:26:06 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Umer Uddin <umer.uddin@mentallysanemainliners.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ igor.belwon@mentallysanemainliners.org
+In-Reply-To: <20241214115855.49138-2-umer.uddin@mentallysanemainliners.org>
+References: <20241214115855.49138-1-umer.uddin@mentallysanemainliners.org>
+ <20241214115855.49138-2-umer.uddin@mentallysanemainliners.org>
+Subject: Re: [PATCH v1 1/1] arm64: dts: exynos990: Add a PMU node for the
+ third cluster
+Message-Id: <173487756559.3738.15589488923856918285.b4-ty@linaro.org>
+Date: Sun, 22 Dec 2024 15:26:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241222105239.2618-2-joswang1221@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Sun, Dec 22, 2024 at 06:52:39PM +0800, joswang wrote:
-> From: Jos Wang <joswang@lenovo.com>
+
+On Sat, 14 Dec 2024 11:58:55 +0000, Umer Uddin wrote:
+> Since we have a PMU compatiable for Samsung's Mongoose cores now, drop
+> the comment that explains the lack of it and define the node.
 > 
-> According to the USB PD3 CTS specification
-> (https://usb.org/document-library/
-> usb-power-delivery-compliance-test-specification-0/
-> USB_PD3_CTS_Q4_2024_OR.zip), the requirements for
-> tSenderResponse are different in PD2 and PD3 modes, see
-> Table 19 Timing Table & Calculations. For PD2 mode, the
-> tSenderResponse min 24ms and max 30ms; for PD3 mode, the
-> tSenderResponse min 27ms and max 33ms.
 > 
-> For the "TEST.PD.PROT.SRC.2 Get_Source_Cap No Request" test
-> item, after receiving the Source_Capabilities Message sent by
-> the UUT, the tester deliberately does not send a Request Message
-> in order to force the SenderResponse timer on the Source UUT to
-> timeout. The Tester checks that a Hard Reset is detected between
-> tSenderResponse min and max，the delay is between the last bit of
-> the GoodCRC Message EOP has been sent and the first bit of Hard
-> Reset SOP has been received. The current code does not distinguish
-> between PD2 and PD3 modes, and tSenderResponse defaults to 60ms.
-> This will cause this test item and the following tests to fail:
-> TEST.PD.PROT.SRC3.2 SenderResponseTimer Timeout
-> TEST.PD.PROT.SNK.6 SenderResponseTimer Timeout
-> 
-> Considering factors such as SOC performance, i2c rate, and the speed
-> of PD chip sending data, "pd2-sender-response-time-ms" and
-> "pd3-sender-response-time-ms" DT time properties are added to allow
-> users to define platform timing. For values that have not been
-> explicitly defined in DT using this property, a default value of 27ms
-> for PD2 tSenderResponse and 30ms for PD3 tSenderResponse is set.
 
-You have several different changes squashed into the same commit:
-- Change the timeout from 60 ms to 27-30 ms (I'd recommend using 27 ms
-  as it fits both 24-30 ms and 27-33 ms ranges,
-- Make timeout depend on the PD version,
-- Make timeouts configurable via DT.
+Applied, thanks!
 
-Only the first item is a fix per se and only that change should be
-considered for backporting. Please unsquash your changes into logical
-commits.  Theoretically the second change can be thought about as a part
-of the third change (making timeouts configurable) or of the fist change
-(fix the timeout to follow the standard), but I'd suggest having three
-separate commits.
+[1/1] arm64: dts: exynos990: Add a PMU node for the third cluster
+      https://git.kernel.org/krzk/linux/c/86c0d7f230fe71952cddac9905e4c090e09ecf3c
 
-> 
-> Fixes: 2eadc33f40d4 ("typec: tcpm: Add core support for sink side PPS")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Jos Wang <joswang@lenovo.com>
-> ---
-> v1 -> v2:
-> - modify the commit message
-> - patch 1/2 and patch 2/2 are placed in the same thread
-
+Best regards,
 -- 
-With best wishes
-Dmitry
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
