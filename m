@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-133378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B3349FA70C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 18:07:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF9B9FA70D
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 18:07:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F01891668BD
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 17:07:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C8FA7A19FF
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 17:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970C1199EB7;
-	Sun, 22 Dec 2024 17:05:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFAC919C543;
+	Sun, 22 Dec 2024 17:05:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="HScMd8VX"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="BaSi4XK/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27A8192B85
-	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 17:05:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5284719992D
+	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 17:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734887152; cv=none; b=uWewaodxX8DjmMzjeymSQXn8B/btc+ZeiYUVqAcSqzCRnjwzA/RNsoZ5oeX5rZhQvWvxziPyNJKhEI1YF+gb+RQjUZJqKrrIvX5kqYjoJnGs0xJQzpNm/QKVbOzn7BhIpNc1UxfZwrAFURPcsQWwoJZYjO2LV4c7y4kVuAhPb/0=
+	t=1734887153; cv=none; b=LruFGFj41h9bY9t+NYjfhBOtjdj5cMUk3GPAG3X4r9oY9LN2wJHYUAavdpfc74iL3j8qOVE62bgqg3lxrk1vAO/K2l8ZhZxI+PodwYlWJ9vVt6gkj2KWSMGUtIxxNvjWL/NwJHvRaNGVdE/M+SnSvFppNZLpeqslRzdg3yySjVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734887152; c=relaxed/simple;
-	bh=4JJzIfTPYd1xwS7ML8LLTZkwdWqlo3aofGz7RuYx0M4=;
+	s=arc-20240116; t=1734887153; c=relaxed/simple;
+	bh=MWwhsP/1Gq2jtC+XMH/+PSmlpfJmY2R2gm9uwDR4fZI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aca4WcMuQfbJUObXSd29dvL6xwD+AQp3iAbVbPB9iWlKN0soxpp/LcZxO2ptuVLjZZcwut0i6Afak5aF1pcDWsTsdFVJZF9YvqB3Uja51y14F1W/eORERuZn8Pco9Eg4UjdMwebPzHoW33T595+gLT2NBVOwtpUDWTWSb2/hm0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=HScMd8VX; arc=none smtp.client-ip=209.85.218.49
+	 MIME-Version; b=gaw1HzCbXRJQD1Hv4D45LN24Tm2HhUn/Q+Ag14pTreX0kxH/APMy5DWC8C0Y9cLuYuI05Sg2zvG4h5z173ZG46XN3jqTKeRxbUVMA1U9Azo2kHo9xYJefwHtICUrVpLEWfFBPLNxuZsSM5WPevNpglZU+R4keXLOamVyINpNbEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=BaSi4XK/; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aaec111762bso154135966b.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 09:05:50 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aa69077b93fso499877766b.0
+        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 09:05:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1734887149; x=1735491949; darn=vger.kernel.org;
+        d=amarulasolutions.com; s=google; t=1734887151; x=1735491951; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hOYk7rkhvjRCnvuEcjwAqfr4aBzSa8a4sxHUvLuLnTs=;
-        b=HScMd8VX9Eu+BXSGi1TSngRx5GaXHJBjORHWmR4e0/mqIvK2bXH+r/+3Q1f3tsv+IL
-         l1sqpy11kDHjqbHSCkEJ+AAd6JjNbYUqUuG4zgTVST7XBv4zD7g7gUrfcx4Oh5JqeRho
-         jP6jjdFFzAVzfksg9Kz1VUVOphIZ6lKOFTp5U=
+        bh=Mr8rvSiMKhhr7+g2wBjSbr4ZapMlTY5YRIRH4XPzpek=;
+        b=BaSi4XK/INbEknW22yrMOk8Ifh9yhrMnFvJcDNXzvPEhjQXwUhoe5kGBFHs2Fbpalf
+         4i/vJyisPVa4T1gvh8Ty8gNz6MSusRi9j76Ob4AoUaKIwxPF4mQifW381D7+UR5Ais5M
+         QYthfznlPhDKbWcrNIYRI/xBEIhMdm2PYaf5A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734887149; x=1735491949;
+        d=1e100.net; s=20230601; t=1734887151; x=1735491951;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hOYk7rkhvjRCnvuEcjwAqfr4aBzSa8a4sxHUvLuLnTs=;
-        b=KjKFlkkR5ghLwQOwr6EXDzgRrBDghmMq/Rlrx4LnRL2qldpWwmVgsH0iKXizCorWyy
-         4R/BT1glWj1Cf6hgxkHph5oNaUuHrj2PxVzq76hwwZ8kllTQpYJsVB+h8Oyd3709VTa5
-         wzB1d5pIVEEkUkzEMMtc5QGVdEIF0sFPYOYD/LbvUjMynUDJdwqmwB9jTBqnC0vTECxI
-         XSgPYvyecoKN5mJdUGrvC4XqX/JKxiBk4pcAaz0CsLNxunQIX86zDPZ6wszZlkkKtJCJ
-         dY19hODU+4bB6HaWeXVz/oGEArxNReOyK3kpmAJ6/cIxaw2o2xqAtmqq8f+lI21x0dYw
-         xgDg==
-X-Forwarded-Encrypted: i=1; AJvYcCUev6iM692aXlmc+AVKBFj6L22UJ+HB8OH9ZQaBlXebBjEH5x5Ej1FDb+e2ANggwAfEk3i0qEIGCayP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwW5S9GnpkPX+7bJNG1Qsw6uf/sqigL5HpIB6rb6ITv/YSZZwx5
-	kCPPsipAzlpHgqhJ44IEdcfFs7MjlIhdQS2ktGUKwLItBHMwj+Tkm3iyPBaEQjo=
-X-Gm-Gg: ASbGncusXXqcjfCg6rDNxYV3zk0DFKcLwo7Jja6HGnokf4+ppM52r1ajKceq3LyWvsd
-	ZNRjnACcWl8rE5kiOH2OFqyG8NNcBtlnsIEF/YMbtH6oJ882fh0vmecjm6UdrZpCX9o30go+mvm
-	rjWs+deBtYEp6mlOLNh/hBXzCCiQzxQLtwhJhnYyA0822km+mc6VM6pYBlW/JGOQ08pEgnMyHsp
-	Y4K90fKLtKqQI/JrbgA99YsSKLhDpL5wumI5RsyX+wpHxNfhGGodRitrxg4mzk7ndPpM1HpDJ7D
-	SE9IInz9ngk2/w34UpIxWmBJ90m3m1/zxaWSqWqhCS+qJw==
-X-Google-Smtp-Source: AGHT+IGSlHwq4B58SjzQGkgABUjEiVbfFXilvkHQNYopTfPmITsuLQgwRjnV1F5sR2WhlM27g0eCtw==
-X-Received: by 2002:a17:907:2da1:b0:aa6:730c:acf with SMTP id a640c23a62f3a-aac2adc603fmr930499466b.13.1734887149146;
-        Sun, 22 Dec 2024 09:05:49 -0800 (PST)
+        bh=Mr8rvSiMKhhr7+g2wBjSbr4ZapMlTY5YRIRH4XPzpek=;
+        b=u8YEXbjjEq3IBLeQk5e80l3oZIpfQLciGT9JYfEO/KBhVDDy17cEms24e5dDabJDb4
+         /KIHpB6OEGRCeGzb7ryjE3n0EGs3fVxYiqa1sh9YmdhhJpZ3sVQjVHoxSIP93YQLKn3z
+         qlCjJ/FWVbGB18haGhNKFrVGZuQV3lfKoNorOU4J5/X9Tq1YeE072bZJvrADAa10BtW7
+         OhJ3980DB7hXme8hDc/Q8EUMkgdyok9ZINbgGg0MeNUhifmW+b+P8hCwBIuZ8n95vSFY
+         kfkdEy61bnYEe4ACa45kNgBZbEJAQI9Mpj9Rrz08RXOi5ojLP/q/W4gE+JSvb9e7/tvv
+         vetA==
+X-Forwarded-Encrypted: i=1; AJvYcCV0yY3B2YjmD2Xfmz/vpH3f5MQ9N2P8tFArtypi6THgnnNVZtEHQ8tTf51aoJv8cjxUIAu2DEx6u6Jp@vger.kernel.org
+X-Gm-Message-State: AOJu0YycytDLyW6LirU+bzf8PuWZC0Sdshy+T38a060KFNs5RxaCZBWi
+	7Ng1ZsBuYo2NFMiPW8keX8ELJRpMzhrFTVn4cqqbdVmCLkjrh6tXMU4QuR8lwfM=
+X-Gm-Gg: ASbGncs6LYYn7ggSwa55De+OK1bqx4QU+YpE08bT39Yez0UP597yE9Du3e/U+FNy4ZU
+	TPiSGm9OfFJAYzpe+UM6ePEcrGbEv39aVqOARlJcfBR1WWemdqc93nx4VIEIO+Rvh7hHi5G83nn
+	1kT3AOmfs8jEQB2dLBTDBqHvgUsyGZ1biuJ3mmapYZVso1mrzc5lf7CuHgCXw6X+6LJPOxrit+7
+	Cm8iufzXcYkgb57AGq7TbcA2pTFYKfHS9d1AvgzVBcTlaDUXcRLn+7lXXKclDTwNG4FcK8Pz6fZ
+	G2W7Xs2J0XoN/XWpEKDwsrgq62BlI+k/yClih/7j8d+dQA==
+X-Google-Smtp-Source: AGHT+IE7qlrIBo/sacNeaS4a8N/VEhyD3V5TtGsjcDWXgBSetS3Ohl7c0tUQC6AZfXDecI4twS+cow==
+X-Received: by 2002:a17:907:97d2:b0:aa6:ac19:b579 with SMTP id a640c23a62f3a-aac334b5806mr974631766b.26.1734887150752;
+        Sun, 22 Dec 2024 09:05:50 -0800 (PST)
 Received: from dario-ThinkPad-T14s-Gen-2i.amarulasolutions.com ([2.196.41.87])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0efe48d6sm414056566b.127.2024.12.22.09.05.47
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0efe48d6sm414056566b.127.2024.12.22.09.05.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Dec 2024 09:05:48 -0800 (PST)
+        Sun, 22 Dec 2024 09:05:50 -0800 (PST)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: linux-amarula@amarulasolutions.com,
@@ -83,9 +83,9 @@ Cc: linux-amarula@amarulasolutions.com,
 	devicetree@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v6 06/18] arm64: dts: imx8mm: add anatop clocks
-Date: Sun, 22 Dec 2024 18:04:21 +0100
-Message-ID: <20241222170534.3621453-7-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v6 07/18] arm64: dts: imx8mn: add anatop clocks
+Date: Sun, 22 Dec 2024 18:04:22 +0100
+Message-ID: <20241222170534.3621453-8-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241222170534.3621453-1-dario.binacchi@amarulasolutions.com>
 References: <20241222170534.3621453-1-dario.binacchi@amarulasolutions.com>
@@ -99,9 +99,6 @@ Content-Transfer-Encoding: 8bit
 
 Add clocks to anatop node.
 
-Add the bindings definitions for the anatop node. The patch is
-preparatory for future developments.
-
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
 ---
@@ -111,15 +108,15 @@ Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 Changes in v4:
 - New
 
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 ++
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 4de3bf22902b..597041a05073 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -600,6 +600,8 @@ anatop: clock-controller@30360000 {
- 				compatible = "fsl,imx8mm-anatop";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index a5f9cfb46e5d..49be492b5687 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -606,6 +606,8 @@ anatop: clock-controller@30360000 {
+ 				compatible = "fsl,imx8mn-anatop", "fsl,imx8mm-anatop";
  				reg = <0x30360000 0x10000>;
  				#clock-cells = <1>;
 +				clocks = <&osc_32k>, <&osc_24m>;
