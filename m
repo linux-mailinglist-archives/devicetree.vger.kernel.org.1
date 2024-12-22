@@ -1,162 +1,226 @@
-Return-Path: <devicetree+bounces-133284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 480AE9FA2BB
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 23:05:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCC5D9FA2FD
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 01:04:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C5911663D7
-	for <lists+devicetree@lfdr.de>; Sat, 21 Dec 2024 22:05:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B7BE7A1AC2
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 00:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469AB1D935C;
-	Sat, 21 Dec 2024 22:04:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B0C1373;
+	Sun, 22 Dec 2024 00:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K5SBW6uD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tibXnB7M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CEE259485;
-	Sat, 21 Dec 2024 22:04:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFD0710F7;
+	Sun, 22 Dec 2024 00:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734818698; cv=none; b=ccCABZ91B2LBse7IDZeeKX0p7Zjv0Ww+9DNazUdhxHacTaWGCEaoov3CstpjJqAbvSCye5CKRCeeUC8urSM3T64LBtxaZb4t9TFHxDkAw/mLwqZnCdbS/9Oz6GWulec0ik1e2t4mYnyXbCXqUUh2BENcQ/rf79FjdBlJXWevmYM=
+	t=1734825870; cv=none; b=oOQT2wlY6r28CGLADiMMTnEQDOuagj5MAD1bsIUo/a4mYvOlrKOUxnpyrdHDGo+xrSbmLQWkinXar9X2ICvFCOgYZA50eaB+mnvyTVdukf7LdReai9HsDvoP4G3dZFAMXaNOr2wpEj27By9G40MggQsAdinqkdJn5UJ/1Xw9pA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734818698; c=relaxed/simple;
-	bh=CICD31YuC2DWCxXe+MIAugbnVXPhDDnOk4ss85e+Uw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lu5Y03c6nkMFvV6LtPnBEIq9BttDhKHT+n5TPbu25WfJvxJQeWBTyQSarRL8yN3iJU2S3/oFcp6IDUGqYxGbozy7RatYX696dqU5yUcuPm/LhUC7rxaq/ZKhZKZsc3XCnIlPdexFiN3i2M+N3MZOXuQB28vIdaJWnZ4NcW60CEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K5SBW6uD; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734818697; x=1766354697;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CICD31YuC2DWCxXe+MIAugbnVXPhDDnOk4ss85e+Uw4=;
-  b=K5SBW6uDmpg3DOmoFCsJ+XX/kNOm+f/nBlL9WzwuN1nr/a+wN4tpeKm3
-   GuXsuGKJYG6GsC7GIOXm2H+N0Rbw/PydZID0wmtU8awRlBUknRIvq3N5k
-   yFdlivHp/nAmW0JVWriewfcOOcapOhqgrkfxNi6hLW9AnA5ThNS24xKwD
-   3lOMp33TzuWLSEhLhhhcdStAmCIAQeEfPHUqCiqEP7/hQWDo3w+ZV2lNI
-   3S1Tj3QuwJ076fIsJIQCjn/XIUPOHJx+cgrBDQy6HzkRqiEPqDmxM5HGK
-   ve7aO6gYpCBKLMD2fd2RcY1Oykq5Ae6ONvkALElIyAb9ttS1+akBbMqKt
-   g==;
-X-CSE-ConnectionGUID: qHnGWSh1S+a+BovwM2zZCQ==
-X-CSE-MsgGUID: 4FK9MrfsRCCfGZ9/dZjluA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11293"; a="39273846"
-X-IronPort-AV: E=Sophos;i="6.12,254,1728975600"; 
-   d="scan'208";a="39273846"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2024 14:04:56 -0800
-X-CSE-ConnectionGUID: ppUNR0XlQAKKVX8QBaEjjQ==
-X-CSE-MsgGUID: G5TmL7ZYQGSNcFw1Bt+xAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,254,1728975600"; 
-   d="scan'208";a="129669275"
-Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 21 Dec 2024 14:04:51 -0800
-Received: from kbuild by a46f226878e0 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tP7aZ-0002X5-2N;
-	Sat, 21 Dec 2024 22:04:47 +0000
-Date: Sun, 22 Dec 2024 06:04:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>, vkoul@kernel.org,
-	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dmitry.baryshkov@linaro.org,
-	neil.armstrong@linaro.org, abel.vesa@linaro.org,
-	manivannan.sadhasivam@linaro.org, lpieralisi@kernel.org,
-	kw@linux.com, bhelgaas@google.com, andersson@kernel.org,
-	konradybcio@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, quic_qianyu@quicinc.com,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-	Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Subject: Re: [PATCH v3 2/8] phy: qcom-qmp-pcie: add dual lane PHY support for
- QCS8300
-Message-ID: <202412220527.dEQSSoG8-lkp@intel.com>
-References: <20241220055239.2744024-3-quic_ziyuzhan@quicinc.com>
+	s=arc-20240116; t=1734825870; c=relaxed/simple;
+	bh=Y3o2XvVQ4GtYROoCvyNl10HrUHrowKjJsiLdrAdU1mA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nwRoup6TdfaXEBGcfom4oGP2XZbZVECpfCe+/nbc+Jk/KUBT4Mu+SlLPIbtDDA26G7fyvywQm0Y00vSLUd6nxwrBIRrCbdANvY+FfY6mZKm1xPBHtib9PRRGnxUhahRQXbebB9T7nV9RaxEB3dZO98SCeX/1VqVqA5umoHj2Ne8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tibXnB7M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD621C4CECE;
+	Sun, 22 Dec 2024 00:04:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734825870;
+	bh=Y3o2XvVQ4GtYROoCvyNl10HrUHrowKjJsiLdrAdU1mA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=tibXnB7MTt7ZLcDp6I4t6NpX9Ncmz1uhpREqn7cfODgyOuSTZpg9m07svSXPO2zs8
+	 JNYWQo64OdJGUv/Uy3M3RIto5RmsfCWCS+pgaVmmxsLUy58ej0I9k6K5sZryWWSryD
+	 rW4wvLeuDldqCld1g3OTzYQRRNq6m3mK80M5ofNA7EI5r74iW7b8oFN8Trw70uZR/5
+	 RSVN3SqKVhnyGUPyr16+oHyWuPuxHZdOxFr8cgnwSmKqvf9b8v3u/XBjx74bgLcyjo
+	 nGKpmil+vGYXSrX26qgM1+iKghjufD7NbDN6+r8HFTe4SPCCvbZLdgkHURTQFIK+O7
+	 RlZVJD4Ubr0bg==
+From: Masahiro Yamada <masahiroy@kernel.org>
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-mips@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Cercueil <paul@crapouillou.net>,
+	Rob Herring <robh@kernel.org>,
+	UNGLinuxDriver@microchip.com,
+	devicetree@vger.kernel.org
+Subject: [PATCH] MIPS: migrate to generic rule for built-in DTBs
+Date: Sun, 22 Dec 2024 09:04:13 +0900
+Message-ID: <20241222000416.2577633-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241220055239.2744024-3-quic_ziyuzhan@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Ziyue,
+Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
+DTBs") introduced generic support for built-in DTBs.
 
-kernel test robot noticed the following build errors:
+Select GENERIC_BUILTIN_DTB and BUILTIN_DTB_ALL when the built-in DTB
+support is enabled.
 
-[auto build test ERROR on 4176cf5c5651c33769de83bb61b0287f4ec7719f]
+DTBs compiled under arch/mips/boot/dts/ will be wrapped by the generic
+rule in scripts/Makefile.vmlinux.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ziyue-Zhang/dt-bindings-phy-qcom-sc8280xp-qmp-pcie-phy-Document-the-QCS8300-QMP-PCIe-PHY-Gen4-x2/20241220-135722
-base:   4176cf5c5651c33769de83bb61b0287f4ec7719f
-patch link:    https://lore.kernel.org/r/20241220055239.2744024-3-quic_ziyuzhan%40quicinc.com
-patch subject: [PATCH v3 2/8] phy: qcom-qmp-pcie: add dual lane PHY support for QCS8300
-config: arm64-randconfig-002-20241221 (https://download.01.org/0day-ci/archive/20241222/202412220527.dEQSSoG8-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241222/202412220527.dEQSSoG8-lkp@intel.com/reproduce)
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+---
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412220527.dEQSSoG8-lkp@intel.com/
+ arch/mips/Kconfig                         | 2 ++
+ arch/mips/Makefile                        | 3 ---
+ arch/mips/boot/dts/Makefile               | 2 --
+ arch/mips/boot/dts/brcm/Makefile          | 2 --
+ arch/mips/boot/dts/cavium-octeon/Makefile | 2 --
+ arch/mips/boot/dts/ingenic/Makefile       | 2 --
+ arch/mips/boot/dts/lantiq/Makefile        | 2 --
+ arch/mips/boot/dts/loongson/Makefile      | 2 --
+ arch/mips/boot/dts/mscc/Makefile          | 3 ---
+ arch/mips/boot/dts/mti/Makefile           | 2 --
+ arch/mips/boot/dts/pic32/Makefile         | 2 --
+ arch/mips/boot/dts/ralink/Makefile        | 2 --
+ 12 files changed, 2 insertions(+), 24 deletions(-)
 
-All errors (new ones prefixed by >>):
-
->> drivers/phy/qualcomm/phy-qcom-qmp-pcie.c:3419:12: error: use of undeclared identifier 'pciephy_v5_20_regs_layout'
-           .regs                   = pciephy_v5_20_regs_layout,
-                                     ^
-   1 error generated.
-
-
-vim +/pciephy_v5_20_regs_layout +3419 drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-
-  3390	
-  3391	static const struct qmp_phy_cfg qcs8300_qmp_gen4x2_pciephy_cfg = {
-  3392		.lanes			= 2,
-  3393		.offsets		= &qmp_pcie_offsets_v5_20,
-  3394	
-  3395		.tbls = {
-  3396			.serdes		= sa8775p_qmp_gen4x2_pcie_serdes_alt_tbl,
-  3397			.serdes_num		= ARRAY_SIZE(sa8775p_qmp_gen4x2_pcie_serdes_alt_tbl),
-  3398			.tx		= sa8775p_qmp_gen4_pcie_tx_tbl,
-  3399			.tx_num		= ARRAY_SIZE(sa8775p_qmp_gen4_pcie_tx_tbl),
-  3400			.rx		= qcs8300_qmp_gen4x2_pcie_rx_alt_tbl,
-  3401			.rx_num		= ARRAY_SIZE(qcs8300_qmp_gen4x2_pcie_rx_alt_tbl),
-  3402			.pcs		= sa8775p_qmp_gen4x2_pcie_pcs_alt_tbl,
-  3403			.pcs_num		= ARRAY_SIZE(sa8775p_qmp_gen4x2_pcie_pcs_alt_tbl),
-  3404			.pcs_misc		= sa8775p_qmp_gen4_pcie_pcs_misc_tbl,
-  3405			.pcs_misc_num	= ARRAY_SIZE(sa8775p_qmp_gen4_pcie_pcs_misc_tbl),
-  3406		},
-  3407	
-  3408		.tbls_rc = &(const struct qmp_phy_cfg_tbls) {
-  3409			.serdes		= sa8775p_qmp_gen4x2_pcie_rc_serdes_alt_tbl,
-  3410			.serdes_num	= ARRAY_SIZE(sa8775p_qmp_gen4x2_pcie_rc_serdes_alt_tbl),
-  3411			.pcs_misc	= sa8775p_qmp_gen4_pcie_rc_pcs_misc_tbl,
-  3412			.pcs_misc_num	= ARRAY_SIZE(sa8775p_qmp_gen4_pcie_rc_pcs_misc_tbl),
-  3413		},
-  3414	
-  3415		.reset_list		= sdm845_pciephy_reset_l,
-  3416		.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-  3417		.vreg_list		= qmp_phy_vreg_l,
-  3418		.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-> 3419		.regs			= pciephy_v5_20_regs_layout,
-  3420	
-  3421		.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-  3422		.phy_status		= PHYSTATUS_4_20,
-  3423	};
-  3424	
-
+diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
+index 467b10f4361a..021656d6831b 100644
+--- a/arch/mips/Kconfig
++++ b/arch/mips/Kconfig
+@@ -29,10 +29,12 @@ config MIPS
+ 	select ARCH_WANT_IPC_PARSE_VERSION
+ 	select ARCH_WANT_LD_ORPHAN_WARN
+ 	select BUILDTIME_TABLE_SORT
++	select BUILTIN_DTB_ALL if BUILTIN_DTB
+ 	select CLONE_BACKWARDS
+ 	select CPU_NO_EFFICIENT_FFS if (TARGET_ISA_REV < 1)
+ 	select CPU_PM if CPU_IDLE || SUSPEND
+ 	select GENERIC_ATOMIC64 if !64BIT
++	select GENERIC_BUILTIN_DTB if BUILTIN_DTB
+ 	select GENERIC_CMOS_UPDATE
+ 	select GENERIC_CPU_AUTOPROBE
+ 	select GENERIC_GETTIMEOFDAY
+diff --git a/arch/mips/Makefile b/arch/mips/Makefile
+index 5785a3d5ccfb..be8cb44a89fd 100644
+--- a/arch/mips/Makefile
++++ b/arch/mips/Makefile
+@@ -423,9 +423,6 @@ endif
+ 
+ CLEAN_FILES += vmlinux.32 vmlinux.64
+ 
+-# device-trees
+-core-y += arch/mips/boot/dts/
+-
+ archprepare:
+ ifdef CONFIG_MIPS32_N32
+ 	@$(kecho) '  Checking missing-syscalls for N32'
+diff --git a/arch/mips/boot/dts/Makefile b/arch/mips/boot/dts/Makefile
+index e2476b12bb0c..ff468439a8c4 100644
+--- a/arch/mips/boot/dts/Makefile
++++ b/arch/mips/boot/dts/Makefile
+@@ -16,5 +16,3 @@ subdir-$(CONFIG_ATH79)			+= qca
+ subdir-$(CONFIG_RALINK)			+= ralink
+ subdir-$(CONFIG_MACH_REALTEK_RTL)	+= realtek
+ subdir-$(CONFIG_FIT_IMAGE_FDT_XILFPGA)	+= xilfpga
+-
+-obj-$(CONFIG_BUILTIN_DTB)	:= $(addsuffix /, $(subdir-y))
+diff --git a/arch/mips/boot/dts/brcm/Makefile b/arch/mips/boot/dts/brcm/Makefile
+index d85f446cc0ce..1798209697c6 100644
+--- a/arch/mips/boot/dts/brcm/Makefile
++++ b/arch/mips/boot/dts/brcm/Makefile
+@@ -33,5 +33,3 @@ dtb-$(CONFIG_DT_NONE) += \
+ 	bcm97420c.dtb \
+ 	bcm97425svmb.dtb \
+ 	bcm97435svmb.dtb
+-
+-obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+diff --git a/arch/mips/boot/dts/cavium-octeon/Makefile b/arch/mips/boot/dts/cavium-octeon/Makefile
+index 17aef35f311b..48085bca666c 100644
+--- a/arch/mips/boot/dts/cavium-octeon/Makefile
++++ b/arch/mips/boot/dts/cavium-octeon/Makefile
+@@ -1,4 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0
+ dtb-$(CONFIG_CAVIUM_OCTEON_SOC)	+= octeon_3xxx.dtb octeon_68xx.dtb
+-
+-obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+diff --git a/arch/mips/boot/dts/ingenic/Makefile b/arch/mips/boot/dts/ingenic/Makefile
+index 54aa0c4e6091..6e674f1a3aa3 100644
+--- a/arch/mips/boot/dts/ingenic/Makefile
++++ b/arch/mips/boot/dts/ingenic/Makefile
+@@ -5,5 +5,3 @@ dtb-$(CONFIG_JZ4770_GCW0)	+= gcw0.dtb
+ dtb-$(CONFIG_JZ4780_CI20)	+= ci20.dtb
+ dtb-$(CONFIG_X1000_CU1000_NEO)	+= cu1000-neo.dtb
+ dtb-$(CONFIG_X1830_CU1830_NEO)	+= cu1830-neo.dtb
+-
+-obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+diff --git a/arch/mips/boot/dts/lantiq/Makefile b/arch/mips/boot/dts/lantiq/Makefile
+index ae6e3e21ebeb..d8531b4653c0 100644
+--- a/arch/mips/boot/dts/lantiq/Makefile
++++ b/arch/mips/boot/dts/lantiq/Makefile
+@@ -1,4 +1,2 @@
+ # SPDX-License-Identifier: GPL-2.0
+ dtb-$(CONFIG_DT_EASY50712)	+= danube_easy50712.dtb
+-
+-obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+diff --git a/arch/mips/boot/dts/loongson/Makefile b/arch/mips/boot/dts/loongson/Makefile
+index 5c6433e441ee..5e3ab984d70f 100644
+--- a/arch/mips/boot/dts/loongson/Makefile
++++ b/arch/mips/boot/dts/loongson/Makefile
+@@ -5,5 +5,3 @@ dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64c_4core_rs780e.dtb
+ dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64c_8core_rs780e.dtb
+ dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64g_4core_ls7a.dtb
+ dtb-$(CONFIG_MACH_LOONGSON64)	+= loongson64v_4core_virtio.dtb
+-
+-obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+diff --git a/arch/mips/boot/dts/mscc/Makefile b/arch/mips/boot/dts/mscc/Makefile
+index eeb6b7aae83b..566dbec3c7fb 100644
+--- a/arch/mips/boot/dts/mscc/Makefile
++++ b/arch/mips/boot/dts/mscc/Makefile
+@@ -8,6 +8,3 @@ dtb-$(CONFIG_SOC_VCOREIII)	+= \
+ 	ocelot_pcb123.dtb \
+ 	serval_pcb105.dtb \
+ 	serval_pcb106.dtb
+-
+-
+-obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+diff --git a/arch/mips/boot/dts/mti/Makefile b/arch/mips/boot/dts/mti/Makefile
+index b5f7426998b1..c1c7b27296dd 100644
+--- a/arch/mips/boot/dts/mti/Makefile
++++ b/arch/mips/boot/dts/mti/Makefile
+@@ -1,5 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0
+ dtb-$(CONFIG_MIPS_MALTA)	+= malta.dtb
+ dtb-$(CONFIG_LEGACY_BOARD_SEAD3)	+= sead3.dtb
+-
+-obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+diff --git a/arch/mips/boot/dts/pic32/Makefile b/arch/mips/boot/dts/pic32/Makefile
+index fb57f36324db..4069cda2370c 100644
+--- a/arch/mips/boot/dts/pic32/Makefile
++++ b/arch/mips/boot/dts/pic32/Makefile
+@@ -3,5 +3,3 @@ dtb-$(CONFIG_DTB_PIC32_MZDA_SK)		+= pic32mzda_sk.dtb
+ 
+ dtb-$(CONFIG_DTB_PIC32_NONE)		+= \
+ 					pic32mzda_sk.dtb
+-
+-obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
+diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
+index d27d7e8c700f..dc002152d843 100644
+--- a/arch/mips/boot/dts/ralink/Makefile
++++ b/arch/mips/boot/dts/ralink/Makefile
+@@ -10,5 +10,3 @@ dtb-$(CONFIG_SOC_MT7621) += \
+ 	mt7621-gnubee-gb-pc1.dtb \
+ 	mt7621-gnubee-gb-pc2.dtb \
+ 	mt7621-tplink-hc220-g5-v1.dtb
+-
+-obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
