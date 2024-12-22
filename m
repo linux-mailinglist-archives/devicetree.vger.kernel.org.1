@@ -1,109 +1,130 @@
-Return-Path: <devicetree+bounces-133327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599669FA4E7
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 09:59:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F2EB9FA4EC
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 10:04:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8AB7166EA6
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 08:59:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2463188767B
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 09:04:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02BA6188CC9;
-	Sun, 22 Dec 2024 08:58:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D511552FC;
+	Sun, 22 Dec 2024 09:04:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CFTzOMtM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yx5iqp74"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1677EEC5
-	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 08:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C460282EE
+	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 09:04:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734857935; cv=none; b=uJho9jeDP3D4jmddM5MW94IZzISqcjXFc9QazYhxF0LHs5XIMQNlftPbGT4vmGVvocLom4fjyZcwLU2dg9mMUKHzizPhBK9WyZ3LmgixvRJZkq1tEqHDxu0xf9nPRART2amycGkEd9It6nH96ubfxhdi4HcLGcUvR0ASlUXhq9c=
+	t=1734858274; cv=none; b=B/zC0gcwJPyfFenkZkyb2MtQ6OIbYwZn/GUJnSAiQ5VxrPWVFXhxEWuqxCJ8WHEkHu1YPB5ym6BdmB4ah76mokHWDJHI8VwEygnZGDq2cV/+R1UocflzHhRtvX40PF7fk4aOxa799Jgd0oYG2yjlcY2OvCLWpXYcEXA+BjZzV+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734857935; c=relaxed/simple;
-	bh=ydHFUbiWI2donZz3OfQDBbHRjDLFHb07jQfC4ZBZ7B0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CF/QhqmjrnI3DmEM5zLhFHAvNmd7a9YPGLXkjAB9IG2AHmGjywkUh+y2FmBF2kSFTmqjWv4OaZissn/FgyJ0SV8HfLwwLay21IeH2zUdSoKx6Q5v6O+IJKSa5G9rR8IR0JsU+f2LAQSTnbBPTdasifmEwB1VvhFKJRYpGfPqBQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CFTzOMtM; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30037784fceso34876541fa.2
-        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 00:58:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734857931; x=1735462731; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ydHFUbiWI2donZz3OfQDBbHRjDLFHb07jQfC4ZBZ7B0=;
-        b=CFTzOMtMV4uODjsiT1BiO2cr/UtATlnQUBaS258cAg+MXjSUtk/sM6bC58qQLcQpHt
-         R/UsxjDz24Z+IpfY+jxP9+xC5cA2qZcFo/47oidVMCPOBzVkcUXsFjkbjZYgdlMafB+B
-         rcyU4b/Zmq2Hfp9OINH6p16sqRHe+WZkFDuIHeW9MzIxb5Tjbi+mPgoSPbbzuiOYx/7H
-         yKZNTNMztOlMYUGTprMORCbd6P8t66BS9PjCp7j8yqzm6A0lEJxc2VvR0FKy+j5f01NS
-         +CUtYHNdNFox27xQuo603L1u87PrBQBtrnj9a4UUHruAnTTJA9kNE/zOLBK0nNrdl9kt
-         GU1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734857931; x=1735462731;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ydHFUbiWI2donZz3OfQDBbHRjDLFHb07jQfC4ZBZ7B0=;
-        b=XZT9FNHWxjNIdT4zfofFXhuRk1vQ0YdMw9TvtH8XMdB6bhFGbXAzRuNW61w/CExAVP
-         vVWx1v9mjrf+LPLeru70dL/VpxMUfiVXhfT3PHnEDdp7lAW67+OqWUY25jnJJ6Z3o2Zd
-         MNYI/K+ocrWnTIDMLId0zJwH2mU6gzZ9V9AjUZw5vW7DYGgzav0VhsknIAvh1yfkkitw
-         Pf8qbZtWxTxELwf7RcqxgZIxkh+h1d3/vdOSYI3/k/7R5N0CUBxhloxzPyJSeEHhvHlO
-         uJwTINu3vuvWM0LevjbXG5NQWjH5h6S60blutLwz26mdfLWVhj1iML+8b4eYqTdt9Nn3
-         QTVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWeDlKEm/OePOgSs3bzDxAy57iiWm2X6ZrGxbldyWm3zxO9kvdKOCYVv9IyulZ5m6p/VpO7w0EXUIAh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5CMDd9rZJrYQV/5pzXf0dl+yXS4Ko05LinWKp4WVsq6tvUjtI
-	8tewHcZoSgOIUwAXqFx3ma42DoK69DqMXOTVdVIghqvOg4Hx0XDYO9gcX0aKv1Sc+tRvJO5czqw
-	ZJKO0u2BfbhMTosJXOuY0PniMYjby6NP34HBZYw==
-X-Gm-Gg: ASbGnct9P/eGlEdoxWSpk5XN9Ksl3kGhP+UoZpt74YK7PnA2XmQIVxGwcezFfsV0sUT
-	kpXPYQvRH/tZbpVE+yJRP/8PcdmLNJLQxmyEY
-X-Google-Smtp-Source: AGHT+IF7qlESqqycmwiipzJ3ql72D1nNts6ClqeFtGCJ+61DYyayeljU8sIdBxu4QXjOvTVP/Ruoj4H2b41K46y60Qw=
-X-Received: by 2002:a05:6512:1592:b0:542:28e3:2156 with SMTP id
- 2adb3069b0e04-5422953feccmr2187706e87.25.1734857930624; Sun, 22 Dec 2024
- 00:58:50 -0800 (PST)
+	s=arc-20240116; t=1734858274; c=relaxed/simple;
+	bh=YREXXVGelktufefaexDX5YisyWqh+kibqX1uCmkxZjY=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nWhoNcDckRFUgMy4O3LLqjb57xmvgiuPol+3OpTD5wfQzEAIJyoVxMErRpS+CN/8mQjZmrj2jtkWur5uOBmJqTUaasgZMsM3I+LYFL4F3THNgjwjOVlcU8Nat8Joc3cuqSqjneWowJAQ4Obeok0z+ILD6hbZngpjzFuTF+P2O+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yx5iqp74; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 983A4C4CECD;
+	Sun, 22 Dec 2024 09:04:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734858273;
+	bh=YREXXVGelktufefaexDX5YisyWqh+kibqX1uCmkxZjY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Yx5iqp74ji8DZMvo5j9hE0gLbm1Dlv8qjoGduuD7q8GsNS3vyZlPFXXLzgtDaRzl9
+	 CAEHxHrtX+H/l778kvyNdh60piKmC8XNdiV0BGuukdxkdkxP5RboeGlIGcZYzsaWJk
+	 t/sc0AqUZy9jJxFWk5d1COKY+DrcXtCMiHloJxNFyGzYWXYbWjz2mMK+FoPlRopyeE
+	 jPG1pCvv8VYajRihhkMCMavKoOUX/5ZfjBW+JzOQcrOszoIj191OvfblmPqHnc6RZ7
+	 qOI/eOR14mcFE4t1HzvDQNABVv2ctGv4+BPbe2vQ19DkywKaZHZ9MezaBDl95CUC7/
+	 wKcMrDyqmHZRw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1tPHt0-0067Ay-SY;
+	Sun, 22 Dec 2024 09:04:31 +0000
+Date: Sun, 22 Dec 2024 09:04:29 +0000
+Message-ID: <86msgoozqa.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: heiko@sntech.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tglx@linutronix.de,
+	jonas@kwiboo.se,
+	macromorgan@hotmail.com,
+	andyshrk@163.com,
+	liujianfeng1994@gmail.com,
+	dmt.yashin@gmail.com,
+	dsimic@manjaro.org,
+	tim@feathertop.org,
+	marcin.juszkiewicz@linaro.org,
+	michael.riesch@wolfvision.net,
+	alchark@gmail.com,
+	sebastian.reichel@collabora.com,
+	jbx6244@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/3] irqchip/gic-v3: Enable Rockchip 3588001 erratum workaround for RK3582
+In-Reply-To: <20241222030355.2246-2-naoki@radxa.com>
+References: <20241222030355.2246-1-naoki@radxa.com>
+	<20241222030355.2246-2-naoki@radxa.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20241213-gpio74-v1-0-fa2c089caf41@posteo.net> <20241213-gpio74-v1-4-fa2c089caf41@posteo.net>
-In-Reply-To: <20241213-gpio74-v1-4-fa2c089caf41@posteo.net>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 22 Dec 2024 09:58:39 +0100
-Message-ID: <CACRpkdYibsJvnKazKaqQjLYyL4Hx1K1MpFpM2UPCRbDN3Gxh-w@mail.gmail.com>
-Subject: Re: [PATCH 4/4] gpio: 74x164: Add latch GPIO support
-To: j.ne@posteo.net
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: naoki@radxa.com, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de, jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com, liujianfeng1994@gmail.com, dmt.yashin@gmail.com, dsimic@manjaro.org, tim@feathertop.org, marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net, alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Fri, Dec 13, 2024 at 6:32=E2=80=AFPM J. Neusch=C3=A4fer via B4 Relay
-<devnull+j.ne.posteo.net@kernel.org> wrote:
+On Sun, 22 Dec 2024 03:03:53 +0000,
+FUKAUMI Naoki <naoki@radxa.com> wrote:
+> 
+> Rockchip RK3582 is a scaled down version of Rockchip RK3588(S). Apply
+> Rockchip 3588001 erratum workaround to RK3582.
+> 
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
+>  drivers/irqchip/irq-gic-v3-its.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+> index 92244cfa0464..c59ce9332dc0 100644
+> --- a/drivers/irqchip/irq-gic-v3-its.c
+> +++ b/drivers/irqchip/irq-gic-v3-its.c
+> @@ -4861,7 +4861,8 @@ static bool __maybe_unused its_enable_rk3588001(void *data)
+>  {
+>  	struct its_node *its = data;
+>  
+> -	if (!of_machine_is_compatible("rockchip,rk3588") &&
+> +	if (!of_machine_is_compatible("rockchip,rk3582") &&
+> +	    !of_machine_is_compatible("rockchip,rk3588") &&
+>  	    !of_machine_is_compatible("rockchip,rk3588s"))
+>  		return false;
+>  
 
-> From: "J. Neusch=C3=A4fer" <j.ne@posteo.net>
->
-> The Fairchild MM74HC595 and other compatible parts have a latch clock
-> input (also known as storage register clock input), which must be
-> clocked once in order to apply any value that was serially shifted in.
->
-> This patch adds driver support for using a GPIO that connects to the
-> latch clock.
->
-> Signed-off-by: J. Neusch=C3=A4fer <j.ne@posteo.net>
+Please use the relevant property for that purpose ("dma-noncoherent")
+at the distributor and ITS levels. We're not adding extra compatibles
+for this anymore, and you might as well fix the core dtsi to expose
+such property.
 
-This looks completely reasonable to me as far as 2/4 gets merged:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Thanks,
 
-Yours,
-Linus Walleij
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
