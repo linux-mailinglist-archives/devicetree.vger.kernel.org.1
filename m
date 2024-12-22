@@ -1,224 +1,169 @@
-Return-Path: <devicetree+bounces-133419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620229FA78E
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 19:19:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6D39FA790
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 19:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C912E7A21B9
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 18:19:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23C651649DF
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 18:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5834C189B80;
-	Sun, 22 Dec 2024 18:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0687713A86C;
+	Sun, 22 Dec 2024 18:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ng0fQ7wg"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="DeJZxdG4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F7B768FD;
-	Sun, 22 Dec 2024 18:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9D4157A48
+	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 18:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734891548; cv=none; b=Xi9UqXDcOZgxw0UCSk+Qvnl9WZ5Xh975xTbhNDCdpAlfo3WQzYd4Fla0LXv319Hkwms0IMWIjdmWKs7QLJa6XtMCx0AdEMP8cixR96bTWsJRPOgyvbfENkCWUG+kHPmOd1X5fPyzE0HnGMtIEhR0/JxIt6bJnW6PFxn/lh2ceAE=
+	t=1734891908; cv=none; b=QeNLxHlBgD0JOXw2mmIsQVfDVv4fFtT9RgV6qj7PhF2Q0VKOTn9Cc+vH69JuiOeLSmy6WJfh+k/ILjI7f733AEZDzzepLtpUEL9GUDv5NizYDpJtrA2Hn0R/JkLdxfF+TA1mH93y9mY25SWD8AEVdnIzX+PxFExBkk5HlOHFn/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734891548; c=relaxed/simple;
-	bh=nPShwzNLb0XGqp9ehI2fIBZPA/HNeo/pEvvLHwKOXIU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f70QUujHdZUzoXjmj03Uheeqe0O64WO55JFbs7QNMfqFMacSiiz5WW9Bl4m4TrdvHXlbRuM6nBnJ5yGVotap/nE5Pwo4dF8YaRjZ9dCeAIrrpMpPpTrBPEqVp6Z8Tva7dSlyqspbC8nxGksPdxbu08kUxMm49O52nm145vMcEQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ng0fQ7wg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 579A0C4CECD;
-	Sun, 22 Dec 2024 18:19:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734891547;
-	bh=nPShwzNLb0XGqp9ehI2fIBZPA/HNeo/pEvvLHwKOXIU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ng0fQ7wgj0dv8NeWWaEhy7c2dufQR/yA6d52CLxO0JOGkHYLJ1PVSRrqJ6ZOar/ry
-	 716H2JqPIKfpcD/l/FkPVtzomC7UfukBQHIXRtatg2gmEUfm3z9a/WCjdPFBom3Zz4
-	 6h3BOZEQKt3svo6FCcMfw4IN4qlix//ujJFRc9zGpx+gqAGK2IRdYMzmOQUOq8ni/p
-	 dpKFLSC3xyghrEherHC9zT8ReqYAZrFSZY/tQOXVVBFnGa7ULWNQJGCQYvyxNnnI3H
-	 6J0bxm77QhRII6T7mMMKKbdZmSqlzL0loKuiiAoYVqENqxgcwBKyOjZpVqJKmpiu3E
-	 cg3JWNQ5itNmQ==
-Date: Sun, 22 Dec 2024 18:18:57 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Alisa-Dariana Roman <alisadariana@gmail.com>, Alisa-Dariana Roman
- <alisa.roman@analog.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- David Lechner <dlechner@baylibre.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
- <ukleinek@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v1 2/3] dt-bindings: iio: adc: add AD7191
-Message-ID: <20241222181857.00b38e57@jic23-huawei>
-In-Reply-To: <20241222-sequester-mounted-42c0db97611f@spud>
-References: <20241221155926.81954-1-alisa.roman@analog.com>
-	<20241221155926.81954-3-alisa.roman@analog.com>
-	<20241222-sequester-mounted-42c0db97611f@spud>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1734891908; c=relaxed/simple;
+	bh=JeewzWKGSLkyAOw4YzUkKNLuvgHBMDeNnU3TuOpfAVo=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=WBOebcHpLp7y2fJDPEP1HVJcjsdiz7Udf1c1nzreTy6O/bFpjqjQCncIi+DRO3GwAv8UkD6rV6j0ccPqXfNSerCAHmgxOkaO4zJ2fD5L5NZFTCSZa33UaJn40goZgpB5v/51FVrMcvqg2auaWzADsP0y+KiBWsUfaFfbM2oYCgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=DeJZxdG4; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1734891904;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=N6HHZqHUNdVtJlOPyBhOIVZSJXQ5Yu5vErJJFMSA9nk=;
+	b=DeJZxdG4Hy4iOrkXhJUxhoikUNyS8J6aPoaQxkcCx/aiREhoPibwMEKvgNUy5fHsVrzVUi
+	nzCu5Jizs83gqciozYDkZvsac6BLAka3HeiB4ICV6uhCXdBTPdHNegrn5NcJp4qBKMz8ie
+	jF3N+l/LbkyVtx84PZfMcxtHLMgJ4y87nmIQ7AMwiJ0WDWCt3Rsm2zPOlRcOsJhIL0S3I7
+	m4na8aXg/FcbQl8xgvED+SPCxneL3Jgo1TEU3S6L+cxK6Q4IWbf14oYcqzaeGlq4WxxwQp
+	pNmfWxFiMM/uBhLpui+tFAz2BSqQBERiH5uFTU9/XIoGAvHobplQm8ZxKj5cPg==
+Date: Sun, 22 Dec 2024 19:25:02 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Marc Zyngier <maz@kernel.org>
+Cc: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de,
+ jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com,
+ liujianfeng1994@gmail.com, dmt.yashin@gmail.com, tim@feathertop.org,
+ marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net,
+ alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/3] irqchip/gic-v3: Enable Rockchip 3588001 erratum
+ workaround for RK3582
+In-Reply-To: <86msgoozqa.wl-maz@kernel.org>
+References: <20241222030355.2246-1-naoki@radxa.com>
+ <20241222030355.2246-2-naoki@radxa.com> <86msgoozqa.wl-maz@kernel.org>
+Message-ID: <f93b3bfb5151e4b617b1c99c91b4956f@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Sun, 22 Dec 2024 14:48:08 +0000
-Conor Dooley <conor@kernel.org> wrote:
+Hello Marc,
 
-> On Sat, Dec 21, 2024 at 05:56:01PM +0200, Alisa-Dariana Roman wrote:
-> > AD7191 is a pin-programmable, ultralow noise 24-bit sigma-delta ADC
-> > designed for precision bridge sensor measurements. It features two
-> > differential analog input channels, selectable output rates,
-> > programmable gain, internal temperature sensor and simultaneous
-> > 50Hz/60Hz rejection.
-> > 
-> > Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-
-Maybe I'm over thinking things, but comments inline about possibility of
-pinstrapping holding this device in a particular configuration, without
-the GPIOS connected.
-
-> > ---
-> >  .../bindings/iio/adc/adi,ad7191.yaml          | 128 ++++++++++++++++++
-> >  MAINTAINERS                                   |   7 +
-> >  2 files changed, 135 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
-> > new file mode 100644
-> > index 000000000000..f3e596918c22
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
-> > @@ -0,0 +1,128 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright 2025 Analog Devices Inc.
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/adc/adi,ad7191.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices AD7191 ADC device driver
-> > +
-> > +maintainers:
-> > +  - Alisa-Dariana Roman <alisa.roman@analog.com>
-> > +
-> > +description: |
-> > +  Bindings for the Analog Devices AD7191 ADC device. Datasheet can be
-> > +  found here:
-> > +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD7191.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - adi,ad7191
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  spi-cpol: true
-> > +
-> > +  spi-cpha: true
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +    description:
-> > +      Optionally, either a crystal can be attached externally between MCLK1 and
-> > +      MCLK2 pins, or an external CMOS-compatible clock can drive the MCLK2
-> > +      pin. If absent, internal 4.92MHz clock is used.  
+On 2024-12-22 10:04, Marc Zyngier wrote:
+> On Sun, 22 Dec 2024 03:03:53 +0000,
+> FUKAUMI Naoki <naoki@radxa.com> wrote:
+>> 
+>> Rockchip RK3582 is a scaled down version of Rockchip RK3588(S). Apply
+>> Rockchip 3588001 erratum workaround to RK3582.
+>> 
+>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>> ---
+>>  drivers/irqchip/irq-gic-v3-its.c | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/irqchip/irq-gic-v3-its.c 
+>> b/drivers/irqchip/irq-gic-v3-its.c
+>> index 92244cfa0464..c59ce9332dc0 100644
+>> --- a/drivers/irqchip/irq-gic-v3-its.c
+>> +++ b/drivers/irqchip/irq-gic-v3-its.c
+>> @@ -4861,7 +4861,8 @@ static bool __maybe_unused 
+>> its_enable_rk3588001(void *data)
+>>  {
+>>  	struct its_node *its = data;
+>> 
+>> -	if (!of_machine_is_compatible("rockchip,rk3588") &&
+>> +	if (!of_machine_is_compatible("rockchip,rk3582") &&
+>> +	    !of_machine_is_compatible("rockchip,rk3588") &&
+>>  	    !of_machine_is_compatible("rockchip,rk3588s"))
+>>  		return false;
+>> 
 > 
-> Without clock-names, how do you tell the difference between driven ctal and
-> the cmos-compatible clock? That CLKSEL's job?
+> Please use the relevant property for that purpose ("dma-noncoherent")
+> at the distributor and ITS levels. We're not adding extra compatibles
+> for this anymore, and you might as well fix the core dtsi to expose
+> such property.
 
-Seems it's an unusual part and there is no config associated with whether we
-have a clock or an xtal, so we probably don't need the name.
+Thanks for your response.
 
-Related to that, in many cases I'd expect clksel to be tied to always
-use the external clock or not (depending on whether one is connected)
-not to be a gpio.  So you probably need to take that configuration into
-account as well.
+After a more detailed look into drivers/irqchip/irq-gic-v3-its.c,
+it seems that relying on the "dma-noncoherent" DT property may not
+be equivalent to adding another compatible check.  Here are a few
+quotations from irq-gic-v3-its.c, to illustrate this better:
 
-Similar may apply for the odr, and pga pins.  Sometimes people
-hardwire those things.  There are examples in tree (I can't point at one
-right now though) that deal with this. Fairly sure at least 1 ADI part
-has a binding to handle that.  (the ad7606 does a bit of this as it needs
-a particular pinstrap for sw-mode).
+4746 static bool __maybe_unused its_enable_rk3588001(void *data)
+4747 {
+4748         struct its_node *its = data;
+4749
+4750         if (!of_machine_is_compatible("rockchip,rk3588") &&
+4751             !of_machine_is_compatible("rockchip,rk3588s"))
+4752                 return false;
+4753
+4754         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
+4755         gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
+4756
+4757         return true;
+4758 }
+4759
+4760 static bool its_set_non_coherent(void *data)
+4761 {
+4762         struct its_node *its = data;
+4763
+4764         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
+4765         return true;
+4766 }
 
-You should be fine with chan and temp always being GPIOs as it would be weird
-to buy a part with the extra channels + temperature sensor and not wire it
-to be useable.
+4814 #ifdef CONFIG_ROCKCHIP_ERRATUM_3588001
+4815         {
+4816                 .desc   = "ITS: Rockchip erratum RK3588001",
+4817                 .iidr   = 0x0201743b,
+4818                 .mask   = 0xffffffff,
+4819                 .init   = its_enable_rk3588001,
+4820         },
+4821 #endif
+4822         {
+4823                 .desc   = "ITS: non-coherent attribute",
+4824                 .property = "dma-noncoherent",
+4825                 .init   = its_set_non_coherent,
+4826         },
 
-> 
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  avdd-supply:
-> > +    description: AVdd voltage supply
-> > +
-> > +  dvdd-supply:
-> > +    description: DVdd voltage supply
-> > +
-> > +  vref-supply:
-> > +    description: Vref voltage supply
-> > +
-> > +  odr1-gpios:
-> > +    description: GPIO connected to ODR1 pin for output data rate selection
-> > +    maxItems: 1
-> > +
-> > +  odr2-gpios:
-> > +    description: GPIO connected to ODR2 pin for output data rate selection
-> > +    maxItems: 1
-> > +
-> > +  pga1-gpios:
-> > +    description: GPIO connected to PGA1 pin for gain selection
-> > +    maxItems: 1
-> > +
-> > +  pga2-gpios:
-> > +    description: GPIO connected to PGA2 pin for gain selection
-> > +    maxItems: 1
-> > +
-> > +  temp-gpios:
-> > +    description: GPIO connected to TEMP pin for temperature sensor enable
-> > +    maxItems: 1
-> > +
-> > +  chan-gpios:
-> > +    description: GPIO connected to CHAN pin for input channel selection
-> > +    maxItems: 1
-> > +
-> > +  clksel-gpios:
-> > +    description: GPIO connected to CLKSEL pin for clock source selection
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - avdd-supply
-> > +  - dvdd-supply
-> > +  - vref-supply
-> > +  - spi-cpol
-> > +  - spi-cpha  
-> 
-> > +  - odr1-gpios
-> > +  - odr2-gpios
-> > +  - pga1-gpios
-> > +  - pga2-gpios  
-> 
-> For these 4, since all are required, seems like grouping as odr-pgios
-> and pga-gpios would be a good idea?
-Agreed except for the annoying option of pin strapping.  Maybe we ignore that
-for now.  If it becomes a problem, we can add it safely as a driver predating
-that will try to grab the gpios and fail if it sees a DT not providing them.
-So will fail safe before we add pinstrapping.  Maybe we will never need to.
+As visible above, using the "dma-noncoherent" DT property results
+in not setting the RDIST_FLAGS_FORCE_NON_SHAREABLE flag, which the
+its_enable_rk3588001() function does.  In other words, it doesn't
+seem that "dma-noncoherent" is a "drop-in" replacement for adding
+yet another compatible for the RK3582.
 
-Jonathan
+Modifying the current behavior of the "dma-noncoherent" DT property
+doesn't seem like an option, because it's already used in a couple
+of board dts(i) files.  Should we introduce another DT property,
+perhaps "dma-noncoherent-rdist" or something similar?
 
-
-
+Could you, please, advise on how to move forward with this?  I'm
+willing to implement the required patches, but I'd prefer to reduce
+the possible back-and-forth on them, to save everyone's time.
 
