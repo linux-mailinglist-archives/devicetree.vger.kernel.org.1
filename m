@@ -1,151 +1,226 @@
-Return-Path: <devicetree+bounces-133307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB729FA435
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 07:07:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D6C9FA452
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 07:27:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCD14188960F
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 06:07:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFCAD18896D8
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 06:27:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778021531E8;
-	Sun, 22 Dec 2024 06:07:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5012E13C80C;
+	Sun, 22 Dec 2024 06:27:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QBGRRdBu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dtQBNv6S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28D0224FA;
-	Sun, 22 Dec 2024 06:07:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2997029A9
+	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 06:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734847641; cv=none; b=RH1ZA4jcL35mDeLrODBI96aHzsKVOMQrk2up52x7bvl2abzeKV483hV1gYRul5L4sQ13H/s/cTlm+crdd9yaneNByGMqktJYI+c4xbioYfuflsJlDjdsRaKLx5H1adZtZVP30CqGiiy2G5vSD1yp+9fdkRDB0FCTswXLq1m1Olg=
+	t=1734848870; cv=none; b=iDFtRcTFs9WkRpHWiCiEwT3kSUxf3Erk8Oz8377MckXJJYdCFd/ho5+c+tHWVh7hRi7RfGQ5713Go0jykVBlvlG6d6Rkw3w6ZK49JMUREVpBOdenlDiXdsUgZDrT+jbaZ93VfFs2OzrCF5D0h2LJhRiIW9OVF0KqVt1PH5sfECs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734847641; c=relaxed/simple;
-	bh=ZI7mtoNdl+3R+xCvx6C6G12E13skabgOFMAvirAjF+Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=blWHpgKaDL3HwuGj+qXmB48ePz/9NL6gMqWyW8FxyfujIZmY3EGyGAcjpXp7unGXjvoIL4Lp/BpnLwF33d2GjVHhJQFBtc0fhNQvzBFjlhvNuYPByDl3wXwmM97NPraH2lKxubjsZWsF+FjyWGgXKnhiDXTWrXBG6X9wI6JO7oM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QBGRRdBu; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e3fd6cd9ef7so3434396276.1;
-        Sat, 21 Dec 2024 22:07:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734847639; x=1735452439; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=htlpToW+3tDMXYk9LHSjN7kEjprwT0u1X/m/1Vl/oro=;
-        b=QBGRRdBuOr5GMZySiiLbNqypnvhh/Yx6dizJLtITvOav1Gx0J+VId0P26jpk03yBTS
-         99zppBa/1orI36oLn1Ve+eWvcJfDTMNpTMVnhdDUYidLCvHn7KsJ8ytX31syQ39xntET
-         4iQuIEpK2hNP86UgYCjbUzq9+c3L2cAAwYs9lK0y1Fdhvy/MBQzosCTQGHvhSkHt+MyU
-         W94bql7ATY+IFwwxzLTnYrIo6SQjgdMypcUuegXI6akCUtq3NvBW7Q9hKmWc/Kde6T0P
-         eWb3gSAIA/PQlwgH3OLKx3+7M/03bycnuXm+/4fIGBID+WGzN7v7OUy46BqXWzenArjn
-         rKeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734847639; x=1735452439;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=htlpToW+3tDMXYk9LHSjN7kEjprwT0u1X/m/1Vl/oro=;
-        b=JAJNkW5NJ4LVrqcCCCdIX0c+wwZ97jZxJM4lFQKf9RCfhT7LsG1agHxnJY3NIqKbZB
-         Ux29rMVivN19hny42u3ysSZPVKuG/2aTePrWpu6GKCMxtAIRIBbIcz7rDptgxIWTp64H
-         RsRJuiv/f+Glo+xc5pgKmQlcMwgU2P5o1tIaMy/OyJ0fELPg1cz0U0phs4IHpGs05aYM
-         lz2oY+WcsAFfTNw3XgiJYLeObYZxs01aNDwIpJnFK20OtjmS9B6w9++M0GfO9QdpQoUw
-         /AIpjJrMqOxd5xo3jS1kn2+VDgosNQSdTqpFK2gjORaG8ze6DUsiPqG4WfOV0oRMkka4
-         /JCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU+imrt3MmdCz/fooXLswRnu65ed8BLg3ZNxuEdgn/c8NK0A1ip+U6vEnPdv563s6zmB9anCFPvsWNfQA4M@vger.kernel.org, AJvYcCU82v7t5podpR8V2mEC7UU3b58G0QFI0ozLVvC0xQbUBP+UJVOohkUmxPy3tGVA30bQXAZ6HrLEnq4MMQ==@vger.kernel.org, AJvYcCUA3YBVro9rVx5l7yEaHVXqXCrGoGkLiKxUeiug4hwUatGUOrU3kL03UdwVM5+YVNstC81cScuTGn7h3Q==@vger.kernel.org, AJvYcCV4AheVfLYMaq0Uc+uoUGjnWxiU46pOUWUn8/FCwEwae07IbUwtC4tQ8nyUwmnB/AkZY/yTisy97HEk@vger.kernel.org, AJvYcCVBZf+XPmpSVW5om9bvAtMRg0jewZoPNJaae4NDwXvitqZ3qE768cajzIyHj4QltHPf15/Fo7UJh2gCtw==@vger.kernel.org, AJvYcCVCE3eEDuaN/UMO/Zb/y0P/vzsXeRoBHXCbFDoHA1wB+cLQ0ESn2zA+nJn1jbDkgxzhZX9I6ZOmVtri0p0m@vger.kernel.org, AJvYcCVUvsQ1pFYF3T2OcmIHFgsx2ZAx3QL96X+4xqgWUIoA9KPoWGJXRW2RVyg+Yr9lPIvGk2iJKGWAGNw6mw==@vger.kernel.org, AJvYcCVXk9ksaS9HPImXgVqm1udtJHi4C+pu+voPnopNnSS6wzqhZrQottwpXcrGtilrayrcbgbb7ivstqOO6VGirt8=@vger.kernel.org, AJvYcCVhRCnjcfmArWxdhRzF11YkOUQtWkOsAW0C2zK7oaf3G39X9cxtMHvnUvOql4YRwI4FBgYq0dtj8mE=@vger.kernel.org, AJvYcCWdPWJhwF7ytF/y
- PM/dvh7EYDsUMzC4oor+qXhQGfC/HuNYT4/dxztNtvWqrHctzs32lyOMtColJdj0Fg==@vger.kernel.org, AJvYcCWwDdeMvcNp9XrX6NdAuERUZRsuhzXFQewmd2y7EAOCAz0eBcV2tro+mrBjgoBpzVrjo81C74oVw3o=@vger.kernel.org, AJvYcCXBvAqbWcYP3mdqsThOp01RC1i1I7ztNGZ9YUNmBZY/sFmLwJtI6qJl9ro/r+RFlf0rV8nPpNOP+uGU@vger.kernel.org, AJvYcCXL0h4BXhpqHTCEJHPTcUUk1wmvLCcbvC1z0zRTqjsjPPjVf6eAPoTt5pq1yKuFslaR/Vod+bhmwr1wVF0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwstGfBq3ffKbylcLgM5DKQ/Hfv1gabGh4ciss8XkY1glVQ3r8r
-	sW0vLJs9vd11vrYMwjOBua1T0RXoKN7v3nViKPjsSkJZZURqAYQ1wFAM84T/+ge7wlvWNpAO3te
-	z5r7V1xuPIy6P9OiM9+OsE8QlSS4=
-X-Gm-Gg: ASbGncuCpW1mLvDu0I3nJuopxRxpCejhg1+8GTQk7TESot0oCztr6Wrr2wHmfUn8b3V
-	LR7W/EQ3zMmoIdNjYPreBe+wo2XXX8hqvc9NEYDI=
-X-Google-Smtp-Source: AGHT+IHTObibTWvFBx2RCqB+bk/1ZpT+xydtv33cOquvAas7ggMPQiaYSrqKqDsv5/UZU90VEPoAsSH6qDx1lw2KYn4=
-X-Received: by 2002:a05:690c:6908:b0:664:74cd:5548 with SMTP id
- 00721157ae682-6f3e2a65668mr105552167b3.1.1734847638651; Sat, 21 Dec 2024
- 22:07:18 -0800 (PST)
+	s=arc-20240116; t=1734848870; c=relaxed/simple;
+	bh=kyoH1ayzLhMIijhhROeaCRlE6M74DxfMn3E4TkOrA64=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sVrjwTKbbCgVbEr3IXp5ieqY1EqGlzBw6VBdLddBvMCkDKQXU/q2q621JBncni92as4N5RFkgwXi9Tch1vFRruSuamBdG+jz8mnRbi5UlpSGZuL15b4/3YwmFgSnG8ysFCIpxIJ00fyc2N0eYjn6vrfxwIN992/z7cxqyaEUWKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dtQBNv6S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C9D9C4CECD;
+	Sun, 22 Dec 2024 06:27:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734848869;
+	bh=kyoH1ayzLhMIijhhROeaCRlE6M74DxfMn3E4TkOrA64=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dtQBNv6SGBEfVtEPQ57YmOZxdgaDPnoiB1mLCHCRH/1c+OK9758g8zyqIhNvBJ0RZ
+	 sBZjhSgiSAEbZxB4xALeSzo2G0Dq+yYf0542GHYXyL4xJ9MND9Hp12vWfMjx2Q+sQ9
+	 eBpDnypZQ5fWIpkxUePizlTbF8oxgqLsdOJ92N9zROeMOuqZUlgz+lTRvm8u+a0w5j
+	 kyj0ZgaKB5E3bATB9qksizS/hAxalYt1IRnOf4lssTPLQqQ0eYlon8C7mtzEa4tCpx
+	 TzEjigCsQ3W1yw0lyrmU1v8qKcWONzlHlkeh9NOzDyuEEW/0gnfGokyk+9MvyJ527L
+	 U58z6XpLrGxuQ==
+Message-ID: <90eafe45-7863-4c1d-b1e5-55a4fe32c806@kernel.org>
+Date: Sun, 22 Dec 2024 07:27:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241222054331.2705948-1-guoweikang.kernel@gmail.com> <02d042a6590ddb1fadb9f98d95de169c4683b9e7.camel@xry111.site>
-In-Reply-To: <02d042a6590ddb1fadb9f98d95de169c4683b9e7.camel@xry111.site>
-From: Weikang Guo <guoweikang.kernel@gmail.com>
-Date: Sun, 22 Dec 2024 14:07:09 +0800
-Message-ID: <CAOm6qnk0KYJXuCLU=7Y10wjMjWnUQ+n_RDsJZv5rAqBmq9bkug@mail.gmail.com>
-Subject: Re: [PATCH v6] mm/memblock: Add memblock_alloc_or_panic interface
-To: Xi Ruoyao <xry111@xry111.site>
-Cc: Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>, 
-	Geert Uytterhoeven <geert@linux-m68k.org>, Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>, 
-	Christoph Lameter <cl@linux.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Sam Creasey <sammy@sammy.net>, 
-	Huacai Chen <chenhuacai@kernel.org>, Will Deacon <will@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>, 
-	rafael.j.wysocki@intel.com, Palmer Dabbelt <palmer@rivosinc.com>, 
-	Hanjun Guo <guohanjun@huawei.com>, Easwar Hariharan <eahariha@linux.microsoft.com>, 
-	Johannes Berg <johannes.berg@intel.com>, Ingo Molnar <mingo@kernel.org>, 
-	Dave Hansen <dave.hansen@intel.com>, Christian Brauner <brauner@kernel.org>, 
-	KP Singh <kpsingh@kernel.org>, Richard Henderson <richard.henderson@linaro.org>, 
-	Matt Turner <mattst88@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	WANG Xuerui <kernel@xen0n.name>, Michael Ellerman <mpe@ellerman.id.au>, 
-	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>, Stafford Horne <shorne@gmail.com>, 
-	Helge Deller <deller@gmx.de>, Nicholas Piggin <npiggin@gmail.com>, 
-	Christophe Leroy <christophe.leroy@csgroup.eu>, Naveen N Rao <naveen@kernel.org>, 
-	Madhavan Srinivasan <maddy@linux.ibm.com>, Geoff Levand <geoff@infradead.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
-	Alexander Potapenko <glider@google.com>, Andrey Konovalov <andreyknvl@gmail.com>, 
-	Dmitry Vyukov <dvyukov@google.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
-	Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
-	Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger <borntraeger@linux.ibm.com>, 
-	Sven Schnelle <svens@linux.ibm.com>, Yoshinori Sato <ysato@users.sourceforge.jp>, 
-	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	Andreas Larsson <andreas@gaisler.com>, Richard Weinberger <richard@nod.at>, 
-	Anton Ivanov <anton.ivanov@cambridgegreys.com>, Johannes Berg <johannes@sipsolutions.net>, 
-	Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, linux-alpha@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
-	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org, 
-	linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	linux-riscv@lists.infradead.org, kasan-dev@googlegroups.com, 
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
-	sparclinux@vger.kernel.org, linux-um@lists.infradead.org, 
-	linux-acpi@vger.kernel.org, xen-devel@lists.xenproject.org, 
-	linux-omap@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-mm@kvack.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 04/12] arm64: dts: rockchip: Rename regulator for
+ pcie2x1l2 for Radxa ROCK 5C
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dsimic@manjaro.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20241216113052.15696-1-naoki@radxa.com>
+ <20241216113052.15696-5-naoki@radxa.com>
+ <f525d875-734b-4c41-95ba-be07b11f8e1c@kernel.org>
+ <47B1D9F5B9EC2A94+55e35302-64c6-4651-8f27-416723b8218b@radxa.com>
+ <57C678CDC48F30E6+634c520a-a0b8-478f-9b5b-8b746aa5ab9c@radxa.com>
+ <99e54beb-fa4b-4d51-9ab7-b35cc61dc164@kernel.org>
+ <F023D8BD1C0C2248+234bbc41-2871-49a9-be98-4475e4e6da49@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <F023D8BD1C0C2248+234bbc41-2871-49a9-be98-4475e4e6da49@radxa.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Xi Ruoyao <xry111@xry111.site> wrote on Sunday, 22 December 2024 13:51:
->
-> On Sun, 2024-12-22 at 13:43 +0800, Guo Weikang wrote:
-> > Before SLUB initialization, various subsystems used memblock_alloc to
-> > allocate memory. In most cases, when memory allocation fails, an immediate
-> > panic is required. To simplify this behavior and reduce repetitive checks,
-> > introduce `memblock_alloc_or_panic`. This function ensures that memory
-> > allocation failures result in a panic automatically, improving code
-> > readability and consistency across subsystems that require this behavior.
-> >
-> > Signed-off-by: Guo Weikang <guoweikang.kernel@gmail.com>
-> > ---
->
->
-> Please try to avoid bumping the patch revision number so quickly.
->
-you are right,  I'll pay more attention to this in the future.
-> And if you must do it, you should embed a ChangeLog of your patch (below
-> this "---" line) so people can know what has been changed.
->
-The update was indeed due to my problem. CI prompted me that there
-were some compilation warnings that needed to be dealt with, so this
-update was to fix the CI warnings. Refer to this:
-- https://lore.kernel.org/oe-kbuild-all/202412221259.JuGNAUCq-lkp@intel.com/
+On 22/12/2024 04:18, FUKAUMI Naoki wrote:
+> On 12/22/24 05:15, Krzysztof Kozlowski wrote:
+>> On 20/12/2024 07:51, FUKAUMI Naoki wrote:
+>>> Hi Krzysztof,
+>>>
+>>> Could you please reply to this email?
+>>> (Not for me, but for everyone)
+>>
+>> You have me how much time... 3 days to reply?
+> 
+> sorry.
+> 
+>>> Best regards,
+>>>
+>>> --
+>>> FUKAUMI Naoki
+>>> Radxa Computer (Shenzhen) Co., Ltd.
+>>>
+>>> On 12/17/24 10:11, FUKAUMI Naoki wrote:
+>>>> On 12/16/24 22:38, Krzysztof Kozlowski wrote:
+>>>>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
+>>>>>> Use consistent name with other regulators. No functional change.
+>>>>>>
+>>>>>> Fixes: 3ddf5cdb77e6 ("arm64: dts: rockchip: add Radxa ROCK 5C")
+>>>>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>>>>> ---
+>>>>>> Changes in v5:
+>>>>>> - Reword commit message
+>>>>>> Changes in v4:
+>>>>>> - reword commit message
+>>>>>> Changes in v3:
+>>>>>> - none
+>>>>>> Changes in v2:
+>>>>>> - new
+>>>>>> ---
+>>>>>>    arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 6 +++---
+>>>>>>    1 file changed, 3 insertions(+), 3 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts b/arch/
+>>>>>> arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
+>>>>>> index 85589d1a6d3b..61d75ab503b2 100644
+>>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
+>>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
+>>>>>> @@ -76,13 +76,13 @@ pwm-fan {
+>>>>>>            pwms = <&pwm3 0 60000 0>;
+>>>>>>        };
+>>>>>> -    pcie2x1l2_3v3: regulator-pcie2x1l2-3v3 {
+>>>>>> +    vcc3v3_pcie2x1l2: regulator-vcc3v3_pcie2x1l2 {
+>>>>>
+>>>>> No, neither explained, nor correct. See DTS coding style.
+>>>>>
+>>>>> Please use name for all fixed regulators which matches current format
+>>>>> recommendation: 'regulator-[0-9]v[0-9]'
+>>>>>
+>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+>>>>> tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?
+>>>>> h=v6.11-rc1#n46
+>>>>
+>>>> 'regulator-[0-9]v[0-9]' is preferred, but 'regulator-[0-9a-z-]+' is also
+>>>> permitted, right?
+>>>>
+>>>> i.e. regulator-vcc3v3_pcie2x1l2 should be regulator-vcc3v3-pcie2x1l2
+>>>>
+>>>>
+>>>> Or, should we revert below patch and use 'regulator-[0-9]v[0-9]'?
+>>>>
+>>>>    https://lore.kernel.org/
+>>>> all/0ae40493-93e9-40cd-9ca9-990ae064f21a@gmail.com/
+>>>>
+>>>> Is 'regulator-0v0' valid?
+>>
+>> Why would it be valid? Can you have regulator with 0 volts?
+> 
+> There may be a .dtsi that is shared across multiple .dts, so some 
+> regulators may not be able to set a specific voltage in the .dtsi.
+> 
+> How should I describe it?
 
-> --
-> Xi Ruoyao <xry111@xry111.site>
-> School of Aerospace Science and Technology, Xidian University
+How fixed voltage regulator can have non-specific voltage? Sorry, that's
+impossible. Shared DTSI with a regulator means that regulator is shared,
+so it cannot be flexible.
+
+
+> 
+>>>> Is 'regulator-12v0' invalid?
+>>
+>> Read the binding. I gave you very specific link.
+> 
+> 46|       - description: Preferred name is 'regulator-[0-9]v[0-9]'
+> 47|         pattern: '^regulator(-[0-9]+v[0-9]+|-[0-9a-z-]+)?$'
+> 
+> The "description" and "pattern" don't match. What you provided is a link 
+> to the "description".
+
+It's pretty obvious still...
+
+> 
+>>>> How should we handle multiple 1v8/3v3/5v0 regulators?
+>>
+>> Just add suffix. But usually more than one suffix, vcc+3v3+pcie_2x1l2,
+>> means you created a very specific name.
+> 
+> So shouldn't we refer to the schematic?
+
+So that's the argument you define 10 fixed, uncontrollable regulators in
+DTS? What is the benefit of that exactly? Just unnecessary bloat in DTS,
+in kernel memory and for probe time?
+
+
+Best regards,
+Krzysztof
 
