@@ -1,190 +1,151 @@
-Return-Path: <devicetree+bounces-133306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE2F9FA425
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 06:56:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB729FA435
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 07:07:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A13D87A231D
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 05:56:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCD14188960F
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 06:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62767140E3C;
-	Sun, 22 Dec 2024 05:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778021531E8;
+	Sun, 22 Dec 2024 06:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KmUUqKKO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QBGRRdBu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABE0117BA9;
-	Sun, 22 Dec 2024 05:56:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28D0224FA;
+	Sun, 22 Dec 2024 06:07:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734847000; cv=none; b=nuFnyrDFYw8iZ0GdEtWdgerxqvkiNV98rSsz4c/t5pu8kbe2NJayTnrMLMlQAOKj/uG3lHV/EYYuZN+C1NEruc/5MeBrkfs3bf1jAciICcR6KXbPffdwADY13YPE4ILWSL+hu5p/Vjx0SLVKIkZQ4dkPB/wQMc0aZiiSFNYmc0k=
+	t=1734847641; cv=none; b=RH1ZA4jcL35mDeLrODBI96aHzsKVOMQrk2up52x7bvl2abzeKV483hV1gYRul5L4sQ13H/s/cTlm+crdd9yaneNByGMqktJYI+c4xbioYfuflsJlDjdsRaKLx5H1adZtZVP30CqGiiy2G5vSD1yp+9fdkRDB0FCTswXLq1m1Olg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734847000; c=relaxed/simple;
-	bh=rtAOpsMPWgRC8DgMJ/m1PF5WA8zSOXdQrLT3ciodyk4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EkNDumFgUbRmv3iE5pK+OkC3DyO1ocX/AUb7r1h06CLrh9qySiZTQ/DJ8YZiB3cfT7qgdeH98ztncETjg5UHQJq/HjuCxPGj9YEhIUNFwEoqsBCgKtVQ1qI0Pz6s38wuvJsnmZYGbIjkMh0RHnBMm6dS1S9IpxDMogCoRBOjO2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KmUUqKKO; arc=none smtp.client-ip=209.85.210.175
+	s=arc-20240116; t=1734847641; c=relaxed/simple;
+	bh=ZI7mtoNdl+3R+xCvx6C6G12E13skabgOFMAvirAjF+Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=blWHpgKaDL3HwuGj+qXmB48ePz/9NL6gMqWyW8FxyfujIZmY3EGyGAcjpXp7unGXjvoIL4Lp/BpnLwF33d2GjVHhJQFBtc0fhNQvzBFjlhvNuYPByDl3wXwmM97NPraH2lKxubjsZWsF+FjyWGgXKnhiDXTWrXBG6X9wI6JO7oM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QBGRRdBu; arc=none smtp.client-ip=209.85.219.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-72739105e02so3366272b3a.0;
-        Sat, 21 Dec 2024 21:56:38 -0800 (PST)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e3fd6cd9ef7so3434396276.1;
+        Sat, 21 Dec 2024 22:07:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734846998; x=1735451798; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5BwgJZPVtl4XhwNY1XFgizSA3iSqTzWQpG8IdnlsPp4=;
-        b=KmUUqKKO0rjxmlkWbvuZh0nm8qBx+osqUyNOxw3oOX97mFTV9K+sWgY3jP25xZnTqg
-         LTN8W0LdtpgI4cKb/NAVKw9bVeHmDZuojavWPH5YdZVlpWkSzfTqVoiASbYR/WTFrnlG
-         lheFPeuGDvottNMIwl5EWElFCnr5zEizn9tIetDzrZCVDTD7QVGE7EqITEXyE8CvnZnS
-         oAKIbzD7McNagfIPj/+xuioYZzAaI0+unDpeV4MQme8SBEQp+4gGpXzX4Ggcv47USwGm
-         a3zy9QbLrXL/PjhB3oMj8sPXbgQl9kC/l2qpUUxyT0yH1LVow3um+Sem3/tEJPufuu6U
-         HDjg==
+        d=gmail.com; s=20230601; t=1734847639; x=1735452439; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=htlpToW+3tDMXYk9LHSjN7kEjprwT0u1X/m/1Vl/oro=;
+        b=QBGRRdBuOr5GMZySiiLbNqypnvhh/Yx6dizJLtITvOav1Gx0J+VId0P26jpk03yBTS
+         99zppBa/1orI36oLn1Ve+eWvcJfDTMNpTMVnhdDUYidLCvHn7KsJ8ytX31syQ39xntET
+         4iQuIEpK2hNP86UgYCjbUzq9+c3L2cAAwYs9lK0y1Fdhvy/MBQzosCTQGHvhSkHt+MyU
+         W94bql7ATY+IFwwxzLTnYrIo6SQjgdMypcUuegXI6akCUtq3NvBW7Q9hKmWc/Kde6T0P
+         eWb3gSAIA/PQlwgH3OLKx3+7M/03bycnuXm+/4fIGBID+WGzN7v7OUy46BqXWzenArjn
+         rKeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734846998; x=1735451798;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5BwgJZPVtl4XhwNY1XFgizSA3iSqTzWQpG8IdnlsPp4=;
-        b=rDbwSjcUtNMFhpOe8snvaDpYwGFNX4DqihOd0CaNB68C5GPd5VS4HwKyWeszjp51Qq
-         fAhWG8xedDB5MFfk9705Q9lg2EalSHDX3lG3K+QvAUr1VKTCg6f8AuOUUOoSh2mtzPwI
-         VmtDgyWttnExT+XeqsYk4kqT/4Q6NZFMlFi6sE9VP/0UV7AU31C5vVqlYQYXv5bIqb5F
-         ViZaJwFh0W/DFVWkiJyGAP7hbVgdqtpj/8v0cDkTbLivYNPLzAOlTJ/cVkUwzcLMVA5F
-         zmd4AOlAdQ7qspOMDOZsdtBtiwnBkZPaW68KYv6HTIBE5IkdxZNTom6oWeq1J8N8WAuA
-         z18g==
-X-Forwarded-Encrypted: i=1; AJvYcCVcskzDBlzPJ8hcPW7BDmGPu4SOzip7kweebGiaoRxO+cEmz9m0RQZcT7NeOFdG6b8B+Oj4ef6n2wYDkt8G@vger.kernel.org, AJvYcCWeDw4bCYtB9lVKUmfDXdZ9olgrpD4UuGBUVL5qgP9Vj/A1WG43uF56xmgOj43jU57IGshZAWu3Yi4w@vger.kernel.org, AJvYcCX96ZNryv1AkCyjrv2kzxANH1D6fN7ewzD/cjgQ9SUjXbO5eVA3ZvZ4o5kss1rLHoBB56jBBZiflSI2@vger.kernel.org, AJvYcCXQjMU43D/NlaOV5SI7TwOH6pRKEcyotGqi1djtT6b506HzdQdrV5RU5uiZLLLYCbiGCkCKcoMh/bjL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6dY4xELqp9mM0tSvbDzIM5y8HxiuPG/EBKWLv11k9UP3fhA26
-	TFZsqp9DZoBJHEEOJEzGm4qC0yCF8nQxHDIQyiAeS0qMkCPhR3YJ
-X-Gm-Gg: ASbGncuSZYEib01W48WQTDAfF9y8+k0iCS/oMCRZXl/CJCM5fFcxdAB4WOsV9E3WivZ
-	SbkDeN8X5UyrkvEUcLp7JFUbvv5G0wPZY7aAC4eiAOAWhpDvAMhVc+CzVgPeUDq5UXVIau0ceXD
-	0nRWtq1Ku7romdmifTHSi7/SiCNbOQNxXUrJMywLZHJnQizW+WEmRdgQirN0Ym0IZLXF4j3o9Vp
-	+Dn9TjUQ0+68drS6QENeofGXxAb5YaXAHC2Ao02p9jIjN8HBUW4Djc2eLlf9GL0mw==
-X-Google-Smtp-Source: AGHT+IFmzvmOXgYF9y+4NfgUyaSRpQVJIRtpzFBicntYlHMruGNiqBTmQzgJb/9ooYLi/PXK0JTMLA==
-X-Received: by 2002:a05:6a00:8087:b0:725:ef4d:c1bd with SMTP id d2e1a72fcca58-72abde84667mr13284129b3a.19.1734846997952;
-        Sat, 21 Dec 2024 21:56:37 -0800 (PST)
-Received: from localhost ([2804:30c:4057:c200:dfe2:5075:a83a:1a44])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad8157f9sm5808035b3a.24.2024.12.21.21.56.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Dec 2024 21:56:37 -0800 (PST)
-Date: Sun, 22 Dec 2024 02:57:13 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Esteban Blanc <eblanc@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 2/6] iio: adc: ad4030: add driver for ad4030-24
-Message-ID: <Z2eqOSN2Uk8SfTq1@debian-BULLSEYE-live-builder-AMD64>
-References: <20241219-eblanc-ad4630_v1-v2-0-f36e55907bf5@baylibre.com>
- <20241219-eblanc-ad4630_v1-v2-2-f36e55907bf5@baylibre.com>
+        d=1e100.net; s=20230601; t=1734847639; x=1735452439;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=htlpToW+3tDMXYk9LHSjN7kEjprwT0u1X/m/1Vl/oro=;
+        b=JAJNkW5NJ4LVrqcCCCdIX0c+wwZ97jZxJM4lFQKf9RCfhT7LsG1agHxnJY3NIqKbZB
+         Ux29rMVivN19hny42u3ysSZPVKuG/2aTePrWpu6GKCMxtAIRIBbIcz7rDptgxIWTp64H
+         RsRJuiv/f+Glo+xc5pgKmQlcMwgU2P5o1tIaMy/OyJ0fELPg1cz0U0phs4IHpGs05aYM
+         lz2oY+WcsAFfTNw3XgiJYLeObYZxs01aNDwIpJnFK20OtjmS9B6w9++M0GfO9QdpQoUw
+         /AIpjJrMqOxd5xo3jS1kn2+VDgosNQSdTqpFK2gjORaG8ze6DUsiPqG4WfOV0oRMkka4
+         /JCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU+imrt3MmdCz/fooXLswRnu65ed8BLg3ZNxuEdgn/c8NK0A1ip+U6vEnPdv563s6zmB9anCFPvsWNfQA4M@vger.kernel.org, AJvYcCU82v7t5podpR8V2mEC7UU3b58G0QFI0ozLVvC0xQbUBP+UJVOohkUmxPy3tGVA30bQXAZ6HrLEnq4MMQ==@vger.kernel.org, AJvYcCUA3YBVro9rVx5l7yEaHVXqXCrGoGkLiKxUeiug4hwUatGUOrU3kL03UdwVM5+YVNstC81cScuTGn7h3Q==@vger.kernel.org, AJvYcCV4AheVfLYMaq0Uc+uoUGjnWxiU46pOUWUn8/FCwEwae07IbUwtC4tQ8nyUwmnB/AkZY/yTisy97HEk@vger.kernel.org, AJvYcCVBZf+XPmpSVW5om9bvAtMRg0jewZoPNJaae4NDwXvitqZ3qE768cajzIyHj4QltHPf15/Fo7UJh2gCtw==@vger.kernel.org, AJvYcCVCE3eEDuaN/UMO/Zb/y0P/vzsXeRoBHXCbFDoHA1wB+cLQ0ESn2zA+nJn1jbDkgxzhZX9I6ZOmVtri0p0m@vger.kernel.org, AJvYcCVUvsQ1pFYF3T2OcmIHFgsx2ZAx3QL96X+4xqgWUIoA9KPoWGJXRW2RVyg+Yr9lPIvGk2iJKGWAGNw6mw==@vger.kernel.org, AJvYcCVXk9ksaS9HPImXgVqm1udtJHi4C+pu+voPnopNnSS6wzqhZrQottwpXcrGtilrayrcbgbb7ivstqOO6VGirt8=@vger.kernel.org, AJvYcCVhRCnjcfmArWxdhRzF11YkOUQtWkOsAW0C2zK7oaf3G39X9cxtMHvnUvOql4YRwI4FBgYq0dtj8mE=@vger.kernel.org, AJvYcCWdPWJhwF7ytF/y
+ PM/dvh7EYDsUMzC4oor+qXhQGfC/HuNYT4/dxztNtvWqrHctzs32lyOMtColJdj0Fg==@vger.kernel.org, AJvYcCWwDdeMvcNp9XrX6NdAuERUZRsuhzXFQewmd2y7EAOCAz0eBcV2tro+mrBjgoBpzVrjo81C74oVw3o=@vger.kernel.org, AJvYcCXBvAqbWcYP3mdqsThOp01RC1i1I7ztNGZ9YUNmBZY/sFmLwJtI6qJl9ro/r+RFlf0rV8nPpNOP+uGU@vger.kernel.org, AJvYcCXL0h4BXhpqHTCEJHPTcUUk1wmvLCcbvC1z0zRTqjsjPPjVf6eAPoTt5pq1yKuFslaR/Vod+bhmwr1wVF0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwstGfBq3ffKbylcLgM5DKQ/Hfv1gabGh4ciss8XkY1glVQ3r8r
+	sW0vLJs9vd11vrYMwjOBua1T0RXoKN7v3nViKPjsSkJZZURqAYQ1wFAM84T/+ge7wlvWNpAO3te
+	z5r7V1xuPIy6P9OiM9+OsE8QlSS4=
+X-Gm-Gg: ASbGncuCpW1mLvDu0I3nJuopxRxpCejhg1+8GTQk7TESot0oCztr6Wrr2wHmfUn8b3V
+	LR7W/EQ3zMmoIdNjYPreBe+wo2XXX8hqvc9NEYDI=
+X-Google-Smtp-Source: AGHT+IHTObibTWvFBx2RCqB+bk/1ZpT+xydtv33cOquvAas7ggMPQiaYSrqKqDsv5/UZU90VEPoAsSH6qDx1lw2KYn4=
+X-Received: by 2002:a05:690c:6908:b0:664:74cd:5548 with SMTP id
+ 00721157ae682-6f3e2a65668mr105552167b3.1.1734847638651; Sat, 21 Dec 2024
+ 22:07:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241219-eblanc-ad4630_v1-v2-2-f36e55907bf5@baylibre.com>
+References: <20241222054331.2705948-1-guoweikang.kernel@gmail.com> <02d042a6590ddb1fadb9f98d95de169c4683b9e7.camel@xry111.site>
+In-Reply-To: <02d042a6590ddb1fadb9f98d95de169c4683b9e7.camel@xry111.site>
+From: Weikang Guo <guoweikang.kernel@gmail.com>
+Date: Sun, 22 Dec 2024 14:07:09 +0800
+Message-ID: <CAOm6qnk0KYJXuCLU=7Y10wjMjWnUQ+n_RDsJZv5rAqBmq9bkug@mail.gmail.com>
+Subject: Re: [PATCH v6] mm/memblock: Add memblock_alloc_or_panic interface
+To: Xi Ruoyao <xry111@xry111.site>
+Cc: Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>, 
+	Christoph Lameter <cl@linux.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Sam Creasey <sammy@sammy.net>, 
+	Huacai Chen <chenhuacai@kernel.org>, Will Deacon <will@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>, 
+	rafael.j.wysocki@intel.com, Palmer Dabbelt <palmer@rivosinc.com>, 
+	Hanjun Guo <guohanjun@huawei.com>, Easwar Hariharan <eahariha@linux.microsoft.com>, 
+	Johannes Berg <johannes.berg@intel.com>, Ingo Molnar <mingo@kernel.org>, 
+	Dave Hansen <dave.hansen@intel.com>, Christian Brauner <brauner@kernel.org>, 
+	KP Singh <kpsingh@kernel.org>, Richard Henderson <richard.henderson@linaro.org>, 
+	Matt Turner <mattst88@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	WANG Xuerui <kernel@xen0n.name>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>, Stafford Horne <shorne@gmail.com>, 
+	Helge Deller <deller@gmx.de>, Nicholas Piggin <npiggin@gmail.com>, 
+	Christophe Leroy <christophe.leroy@csgroup.eu>, Naveen N Rao <naveen@kernel.org>, 
+	Madhavan Srinivasan <maddy@linux.ibm.com>, Geoff Levand <geoff@infradead.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
+	Alexander Potapenko <glider@google.com>, Andrey Konovalov <andreyknvl@gmail.com>, 
+	Dmitry Vyukov <dvyukov@google.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
+	Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
+	Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger <borntraeger@linux.ibm.com>, 
+	Sven Schnelle <svens@linux.ibm.com>, Yoshinori Sato <ysato@users.sourceforge.jp>, 
+	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
+	Andreas Larsson <andreas@gaisler.com>, Richard Weinberger <richard@nod.at>, 
+	Anton Ivanov <anton.ivanov@cambridgegreys.com>, Johannes Berg <johannes@sipsolutions.net>, 
+	Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, linux-alpha@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
+	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org, 
+	linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-riscv@lists.infradead.org, kasan-dev@googlegroups.com, 
+	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
+	sparclinux@vger.kernel.org, linux-um@lists.infradead.org, 
+	linux-acpi@vger.kernel.org, xen-devel@lists.xenproject.org, 
+	linux-omap@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-mm@kvack.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hello Esteban, some comments inline.
+Xi Ruoyao <xry111@xry111.site> wrote on Sunday, 22 December 2024 13:51:
+>
+> On Sun, 2024-12-22 at 13:43 +0800, Guo Weikang wrote:
+> > Before SLUB initialization, various subsystems used memblock_alloc to
+> > allocate memory. In most cases, when memory allocation fails, an immediate
+> > panic is required. To simplify this behavior and reduce repetitive checks,
+> > introduce `memblock_alloc_or_panic`. This function ensures that memory
+> > allocation failures result in a panic automatically, improving code
+> > readability and consistency across subsystems that require this behavior.
+> >
+> > Signed-off-by: Guo Weikang <guoweikang.kernel@gmail.com>
+> > ---
+>
+>
+> Please try to avoid bumping the patch revision number so quickly.
+>
+you are right,  I'll pay more attention to this in the future.
+> And if you must do it, you should embed a ChangeLog of your patch (below
+> this "---" line) so people can know what has been changed.
+>
+The update was indeed due to my problem. CI prompted me that there
+were some compilation warnings that needed to be dealt with, so this
+update was to fix the CI warnings. Refer to this:
+- https://lore.kernel.org/oe-kbuild-all/202412221259.JuGNAUCq-lkp@intel.com/
 
-On 12/19, Esteban Blanc wrote:
-> This adds a new driver for the Analog Devices INC. AD4030-24 ADC.
-> 
-> The driver implements basic support for the AD4030-24 1 channel
-> differential ADC with hardware gain and offset control.
-> 
-> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
-> ---
-[...]
-> +
-> +static int ad4030_spi_read(void *context, const void *reg, size_t reg_size,
-> +			   void *val, size_t val_size)
-> +{
-> +	int ret;
-> +	struct ad4030_state *st = context;
-> +	struct spi_transfer xfer = {
-> +		.tx_buf = st->tx_data,
-> +		.rx_buf = st->rx_data.raw,
-> +		.len = reg_size + val_size,
-> +		.speed_hz = AD4030_SPI_MAX_REG_XFER_SPEED,
-Is speed_hz really needed? What happens if the controller can't clock at 80MHz?
-
-> +	};
-> +
-> +	if (xfer.len > ARRAY_SIZE(st->tx_data) ||
-> +	    xfer.len > ARRAY_SIZE(st->rx_data.raw))
-> +		return  -EINVAL;
-
-Would it make sense to bring register configuration mode commands into the
-regmap calls?
-I mean, to do the ad4030_enter_config_mode() transfer here and the
-ad4030_exit_config_mode() at the end of this function.
-From datasheet, it looks like both enter/exit config mode are required for reg
-access so why not doing them in the regmap callbacks?
-With that, I think it won't be needed to call register config mode functions
-in ad4030_single_conversion() and in buffer enable/disable functions.
-Might need implement regmap_config read and write callbacks to properly handle
-regmap_bulk_read/write interface.
-
-
-> +
-> +	memset(st->tx_data, 0, ARRAY_SIZE(st->tx_data));
-> +	memcpy(st->tx_data, reg, reg_size);
-> +
-> +	ret = spi_sync_transfer(st->spi, &xfer, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	memcpy(val, &st->rx_data.raw[reg_size], val_size);
-> +
-> +	return ret;
-> +}
-> +
-[...]
-> +
-> +static int ad4030_get_chan_calibscale(struct iio_dev *indio_dev,
-> +				      struct iio_chan_spec const *chan,
-> +				      int *val,
-> +				      int *val2)
-> +{
-> +	struct ad4030_state *st = iio_priv(indio_dev);
-> +	u16 gain;
-> +	int ret;
-> +
-> +	ret = regmap_bulk_read(st->regmap, AD4030_REG_GAIN_CHAN(chan->address),
-> +			       st->rx_data.raw, AD4030_REG_GAIN_BYTES_NB);
-> +	if (ret)
-> +		return ret;
-> +
-> +	gain = get_unaligned_be16(st->rx_data.raw);
-My impression is that it is a bit odd to handle endianness after/before
-calling regmap_read/write(). Can you try set
-.val_format_endian_default = REGMAP_ENDIAN_BIG, in ad4030_regmap_bus?
-If that doesn't help, what about doing the get/set_unaligned stuff within
-the bus read/write calls?
-
-> +
-> +	/* From datasheet: multiplied output = input × gain word/0x8000 */
-> +	*val = gain / 0x8000;
-Use a define to give a name to the gain constant?
-
-> +	*val2 = mul_u64_u32_div(gain % 0x8000, NANO, 0x8000);
-> +
-> +	return IIO_VAL_INT_PLUS_NANO;
-> +}
-> +
-[...]
+> --
+> Xi Ruoyao <xry111@xry111.site>
+> School of Aerospace Science and Technology, Xidian University
 
