@@ -1,143 +1,162 @@
-Return-Path: <devicetree+bounces-133332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 369739FA503
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 10:41:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B039FA50B
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 10:47:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 698EE188822C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 09:41:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE80A165947
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 09:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7911188591;
-	Sun, 22 Dec 2024 09:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A466176ADB;
+	Sun, 22 Dec 2024 09:47:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VDvyJf2G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s8Fu1CLv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E46A2D;
-	Sun, 22 Dec 2024 09:41:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159D3632;
+	Sun, 22 Dec 2024 09:47:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734860477; cv=none; b=oxFQ/KQzwdqKgyFTlGLvNL9WNYO0N1ukXbD5pBD7Kqx+R7tvCM4/2N+lRu2sPxDaozgv7XNA1hqh+J2dOSgkAKbktFgUdAhOlvwvHFuWrAeKWPOhGqpO9J2jZ4IW51Qbw1mbPKWFW/2Ginan047XN6rNikip3VYFcazJK6IdvuE=
+	t=1734860829; cv=none; b=SESLxyxRy+MykiCiuEJ/QCWpnPJ6XPKOzKrIMcqhGyrOFWOGSG+vMdNPlNb2/DmRLG5v3a0eJ7AvCe6mY05VUOiPkj9yFfk9UGNAWasTBgjA4eCVJDTPpTIrCbRhqfnKRugFM9Lg2jb4Y0B+hZ/uH8A5snS7Q/nHR4hrlsDeLws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734860477; c=relaxed/simple;
-	bh=4vNUwS5Gm+JncTKiGMk/8bmFD2dtvzK12MY8RWlLzcA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RDldEh5ttiGQC+2UVcCFBGyYigoaZ2uGoVazpQOi41vwIL2K7uwj8q/z61Z/q2azzG6tlu2ckIPe3v8Ct1Yqt1y27QAiDinrvcngdQsoE3FWDa5lUBYQXrEkIfOw0+VW+3AGudgsy/TNrIHEUtNC1lKOehI6EIcCtk2491xso0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VDvyJf2G; arc=none smtp.client-ip=209.85.160.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-29fb532b668so908663fac.0;
-        Sun, 22 Dec 2024 01:41:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734860475; x=1735465275; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ywcz1XGAqMPO58RLFF0U/ywOIQFLprEJJcNwPe8+up4=;
-        b=VDvyJf2GGn56rjRNSXEm62+EsTBvQ/SsPgMsSxjVvhoQjeK6USpbKWoLE85wNwOecQ
-         xI0RxPu7zwb6yTOcke4qvuRwL3U+UwYSXTyLvw7M4UsbeUYKWYUzstCYzgrV6+1C/4Hn
-         P1qAxyFzXUrkG/9Wn1bQu/55ODoEKtp45p+fUkiVCWIPDCMKWMTkkqIuYg9NJqsK5eJq
-         o+FutUK2Gj3n2IIxXQp8FrLevHsDa3XvHkD1JDsYC23U9tMFYTNBjeiB1RkIN8jCLAo7
-         tyATqDg+lT9uc5mH4utqYbA/j7JuWJq1mcO22OZxFyGEB+uXcnwgWGHAncB1NLlutKFJ
-         4T2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734860475; x=1735465275;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ywcz1XGAqMPO58RLFF0U/ywOIQFLprEJJcNwPe8+up4=;
-        b=bLGQXgOabPVKjSC/nroQRQY8yi90KuPcKTUDc08WaSQgTzQA9di9me6d/o30vdVjJi
-         zYz1hJJtG2gYUQ19fgylmim7YWloWtr38TBC0qGHbjiW4xxUxDleIrqmlNQTJIMjTTUt
-         rvssK87Wjn816aP41rKTUflOMsB8tq2FFPoMB1UqQXtoH5H+h5mJZOjR+3RXLgxcQ7et
-         qOqByXdEu2xHDMXjirbT/iQsi+1PH56Zb9gZ4fB8dKhdA4iRL2kOIQYRh6IusSLCEWu6
-         B36I0dD4BZstrNAki5rPwsFSuzNZ5NKzjLQMXaN68mTeW/7On4C4zmkO9Eof/rI/baxO
-         m1pw==
-X-Forwarded-Encrypted: i=1; AJvYcCVTA8fnmwsaaYB/OUvClRcOKMAKeA5S9a5eZuPdpVyxNNMUSfIsG7N4bFbCRcdvcS9pyeX0hugDw6H+m/gi@vger.kernel.org, AJvYcCWTmPXAIrSyxv5YqVYfzIMjlli9v+ZmQ1OFoVzv6QwuYHsf8czIFS0pYa9wdmZZ0hH6LXHhefa5YX7C@vger.kernel.org, AJvYcCX9+ypvBmDF8LjeJLnmosuy9TrGBBgLkdby63cJz1+qi64AWd54E/h3mYXYIzhICWNlCzluE/+rGeua5aMhIg==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1C253No10k+z1u9pQXXAXi51Orjkj2Id2qX+wOeUErvBor5tt
-	ebrz99KmWs30jW6bqkP/IwivtwXaaonJB+g8iQNKFdH0IDvar/EjhOziJfBN64qEfGr0xl4uos7
-	26vXBNtIibf80++CUmGCyxVxgzug=
-X-Gm-Gg: ASbGncsIAsucizVvXCPMN4AEI0jDGFTY+YdBCWUWu5DMqyx+Uoxc0+GhndFvmRPYDnX
-	q3MduQsffCgR4thrHk/PNHBidJ/T5fkbsWYTeAFA=
-X-Google-Smtp-Source: AGHT+IFT6tcQ2xd+4dRmJsUBrmSuf1Ghzyk3sYjHwklOohAY0o0pMcGfRE9iW/LtcmCJKQJEv7ffZASJhVP3YB8vNq0=
-X-Received: by 2002:a05:6870:8dce:b0:29e:2801:43e6 with SMTP id
- 586e51a60fabf-2a7fb168b5amr5015220fac.23.1734860475322; Sun, 22 Dec 2024
- 01:41:15 -0800 (PST)
+	s=arc-20240116; t=1734860829; c=relaxed/simple;
+	bh=e+GpFs/2upi4qQS+97SlZzj2M5prVKClM8sm6bEbAEM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PW0/md29W24jdz7v+W7H8CQbBLkdz/VaFnpoDYp+QGD7vbABD3RMKFXDrSP6vogkfTO2j6q8mPf68NooXM4APaRBsOI19BHPUnwszy6EK1PmM8cU42RpS340B985uZnCslwc8yVtBGG+5KMauMM1FtKCToRGDdxChcph/dV8wtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s8Fu1CLv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED0D2C4CECD;
+	Sun, 22 Dec 2024 09:47:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734860828;
+	bh=e+GpFs/2upi4qQS+97SlZzj2M5prVKClM8sm6bEbAEM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=s8Fu1CLvdrhKpnrRAPdUq/wut/EUOghyl7gfMs7z0uvLwjwxCxs2AlGAqvxePg33E
+	 acxNiRlt8m7gHEo2Ol8tqHYRGscJL21VTi4gVvlnDzh3yKseZuoi1UFIFlZaN9ifEv
+	 7OKmCGDzE5BRaU1nlTeAzmWTp3QZtHwQqN1TppKJDe6wocqZbSR/BxE0kucY4opMkV
+	 Dz7DJDYBvOzWIZRZdSKrkQCkOG51/1PlLiGU2UdkGY7Jz5/nS45tZTmHdtZHBGP0jC
+	 KJcDOPBD0Y7gq3JGcWjFyoEVLcXrkfY0I5W2hjeoC+jfowGgIF71NjLdDjlGtccYsH
+	 GtCmcc2mjECIA==
+From: Masahiro Yamada <masahiroy@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	Michal Simek <monstr@monstr.eu>
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] microblaze: migrate to the generic rule for built-in DTB
+Date: Sun, 22 Dec 2024 18:46:28 +0900
+Message-ID: <20241222094701.207592-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241219200821.8328-1-maccraft123mc@gmail.com>
- <tma7q7lfskdr7myfoeene7o27g7nhc5ca66kpmnqvgksv5oxqv@ziefqqp5khic>
- <57515c0f-caa0-4651-96cf-dde75a13937f@kernel.org> <CAO_MupJNuK2UyXEPdr-xufWotbP-EmHyUk81YiTwaQR=WccSEA@mail.gmail.com>
-In-Reply-To: <CAO_MupJNuK2UyXEPdr-xufWotbP-EmHyUk81YiTwaQR=WccSEA@mail.gmail.com>
-From: Maya Matuszczyk <maccraft123mc@gmail.com>
-Date: Sun, 22 Dec 2024 10:40:39 +0100
-Message-ID: <CAO_MupJDPTDtwY+XsQZ_v=T6FNqdMuyxoQmDFrh2Liqajn24Rw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: platform: Add bindings for Qcom's EC
- on IT8987
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-niedz., 22 gru 2024 o 08:55 Maya Matuszczyk <maccraft123mc@gmail.com>
-napisa=C5=82(a):
->
-> niedz., 22 gru 2024 o 07:40 Krzysztof Kozlowski <krzk@kernel.org> napisa=
-=C5=82(a):
-> >
-> > On 22/12/2024 07:33, Krzysztof Kozlowski wrote:
-> > >> +properties:
-> > >> +  compatible:
-> > >> +    oneOf:
-> > >> +      - const: qcom,x1e-it8987-ec
-> > >
-> > > That's not a SoC, so I don't understand:
-> > > 1. referring to the SoC,
-> > > 2. Having this alone and as fallback.
-> > >
-> > > It does not look like you tested the bindings, at least after quick
-> > > look. Please run 'make dt_binding_check' (see
-> > > Documentation/devicetree/bindings/writing-schema.rst for instructions=
-).
-> > > Maybe you need to update your dtschema and yamllint. Don't rely on
-> > > distro packages for dtschema and be sure you are using the latest
-> > > released dtschema.
-> >
-> > BTW, for sure Qualcomm did not develop/create it8987, so it cannot be
-> > used here. Come with specific compatible for this given, one product:
-> > embedded controller on one Lenovo laptop and use it also as filename.
->
-> Under these assumptions:
->
-> - Qualcomm developed the firmware running on the IT8987 in most x1e machi=
-nes
-> - IT8987 is also used in other machines with a non-compatible firmware
-> - The driver name should reflect the assumptions
->
-> I think the name qcom,x1e-it8987-ec is not the worst name for it, as
-> "ite,it8987-ec" would imply compatibility with other devices running
-> non-compatible firmware,
-> and names specifying only the device wouldn't reflect the "firmware is
-> based on what qcom did and it's driven the same way" part
->
-> Which other names do you think would fit this better?
+Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
+DTBs") introduced generic support for built-in DTBs.
 
-In case it wasn't clear:
-This was a genuine question - I have no idea how to name this driver
-and this was the best I could come up with
+Select GENERIC_BUILTIN_DTB to use the generic rule.
 
->
-> >
-> > Best regards,
-> > Krzysztof
+MicroBlaze is the only architecture that places the built-in DTB to its
+own section, __fdt_blob, rather than the standard location defined by
+the KERNEL_DTB() macro.
+
+For backward compatibility, arch/microblaze/boot/dts/system.dtb is still
+placed in the __fdt_blob section, and possibly overwritten by an externel
+DTB passed via the r7 register.
+
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+---
+
+ arch/microblaze/Kbuild                | 1 -
+ arch/microblaze/Kconfig               | 5 +++++
+ arch/microblaze/boot/dts/Makefile     | 5 -----
+ arch/microblaze/boot/dts/linked_dtb.S | 2 --
+ arch/microblaze/kernel/vmlinux.lds.S  | 2 +-
+ 5 files changed, 6 insertions(+), 9 deletions(-)
+ delete mode 100644 arch/microblaze/boot/dts/linked_dtb.S
+
+diff --git a/arch/microblaze/Kbuild b/arch/microblaze/Kbuild
+index 077a0b8e9615..70510389eb92 100644
+--- a/arch/microblaze/Kbuild
++++ b/arch/microblaze/Kbuild
+@@ -2,7 +2,6 @@
+ obj-y			+= kernel/
+ obj-y			+= mm/
+ obj-$(CONFIG_PCI)	+= pci/
+-obj-y			+= boot/dts/
+ 
+ # for cleaning
+ subdir- += boot
+diff --git a/arch/microblaze/Kconfig b/arch/microblaze/Kconfig
+index f18ec02ddeb2..4ed8ca89f0c9 100644
+--- a/arch/microblaze/Kconfig
++++ b/arch/microblaze/Kconfig
+@@ -10,6 +10,7 @@ config MICROBLAZE
+ 	select ARCH_MIGHT_HAVE_PC_PARPORT
+ 	select ARCH_WANT_IPC_PARSE_VERSION
+ 	select BUILDTIME_TABLE_SORT
++	select GENERIC_BUILTIN_DTB
+ 	select TIMER_OF
+ 	select CLONE_BACKWARDS3
+ 	select COMMON_CLK
+@@ -47,6 +48,10 @@ config MICROBLAZE
+ 	select TRACE_IRQFLAGS_SUPPORT
+ 	select GENERIC_IRQ_MULTI_HANDLER
+ 
++config BUILTIN_DTB_NAME
++	string
++	default "system"
++
+ # Endianness selection
+ choice
+ 	prompt "Endianness selection"
+diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/dts/Makefile
+index b84e2cbb20ee..87c1d25ff096 100644
+--- a/arch/microblaze/boot/dts/Makefile
++++ b/arch/microblaze/boot/dts/Makefile
+@@ -4,11 +4,6 @@
+ dtb-y := system.dtb
+ 
+ ifneq ($(DTB),)
+-obj-y += linked_dtb.o
+-
+-# Ensure system.dtb exists
+-$(obj)/linked_dtb.o: $(obj)/system.dtb
+-
+ # Generate system.dtb from $(DTB).dtb
+ ifneq ($(DTB),system)
+ $(obj)/system.dtb: $(obj)/$(DTB).dtb
+diff --git a/arch/microblaze/boot/dts/linked_dtb.S b/arch/microblaze/boot/dts/linked_dtb.S
+deleted file mode 100644
+index 23345af3721f..000000000000
+--- a/arch/microblaze/boot/dts/linked_dtb.S
++++ /dev/null
+@@ -1,2 +0,0 @@
+-.section __fdt_blob,"a"
+-.incbin "arch/microblaze/boot/dts/system.dtb"
+diff --git a/arch/microblaze/kernel/vmlinux.lds.S b/arch/microblaze/kernel/vmlinux.lds.S
+index ae50d3d04a7d..e86f9ca8e979 100644
+--- a/arch/microblaze/kernel/vmlinux.lds.S
++++ b/arch/microblaze/kernel/vmlinux.lds.S
+@@ -47,7 +47,7 @@ SECTIONS {
+ 	. = ALIGN (8) ;
+ 	__fdt_blob : AT(ADDR(__fdt_blob) - LOAD_OFFSET) {
+ 		_fdt_start = . ;		/* place for fdt blob */
+-		*(__fdt_blob) ;			/* Any link-placed DTB */
++		*(.dtb.init.rodata) ;		/* Any link-placed DTB */
+ 	        . = _fdt_start + 0x10000;	/* Pad up to 64kbyte */
+ 		_fdt_end = . ;
+ 	}
+-- 
+2.43.0
+
 
