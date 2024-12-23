@@ -1,73 +1,59 @@
-Return-Path: <devicetree+bounces-133514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 803239FAD6D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:07:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 552E49FADD3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:42:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5962E1884F66
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:07:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6B131632DD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C932B195B37;
-	Mon, 23 Dec 2024 11:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D08D019DF98;
+	Mon, 23 Dec 2024 11:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Zr0Kezkx"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="UAWoPzBC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m4920.qiye.163.com (mail-m4920.qiye.163.com [45.254.49.20])
+Received: from mail-m118212.qiye.163.com (mail-m118212.qiye.163.com [115.236.118.212])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39DD719342F;
-	Mon, 23 Dec 2024 11:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7724E1946BB;
+	Mon, 23 Dec 2024 11:42:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.118.212
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734952013; cv=none; b=TFOSATi457DjkGJz2QZkq3EgtBu/Q4HFsWXSx5Wkaehu/wilwnRvqFau4Td9J+hQJ/NJSjXb1hcQzl3A4d4os/0Djxdr7ce187kczR/DOaMvokAoPQr8JMr8dL8wmjtlDorahnYB+gm/ZdAa2z6dmWmqqAdMMKB9kVW9j/S1IuU=
+	t=1734954139; cv=none; b=mCeAvO74svxlejCDhqXBLPxL2RiMGEAR5OPf35I18CuVdHcQ4ZMTgwDJd3PXRFKC3nzzqIlChyYzB1XebQvz5/PmVfvjejFwuPotArxEmXhxdV9ciQ7HRSSrq/mXY9W3mfL0uU0u3wyW+jPxbCmZLFYagNDDfm6NpMTPbTDMy7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734952013; c=relaxed/simple;
-	bh=MN/MRSgYCILmaH7LqTJKtKk83Vemn/K60SDnUNvFzt0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pA7Eb5+mtXAV2GaxF1o0DijWolnvlydCmV4zjJk/eKp5EwVAtK5KkI7ihYEjrwLjrXxck+ji6iuS8W4IHK3Tc+m8XwGqd01sEBpnMUX+QaETFP89nRL0JKMOd5fP2v3n6FlR5sOnRFRwQ7FkQruma73k0kHAwTjBlnAQsJ2KRxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Zr0Kezkx; arc=none smtp.client-ip=45.254.49.20
+	s=arc-20240116; t=1734954139; c=relaxed/simple;
+	bh=jKwng64wsHpfCZbpAZ1rQkWxBiUnG1c94buPjjn/h50=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=TstXURaD7/LZiHJl4teLZtrco2H/4jPswpPnqC0eUhWobcQ1dXd1e/DeoEyxK3VmD3eJrhurEgGsUwe7JLOh96jsJT0A0oUT8HWOTyVslGv9hKcnLdP8pqgn0kJlMIRRFVDdYEVXYQc2xvJiC3KzPz1OXcvmDmyOmd00/ZHRrNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=UAWoPzBC; arc=none smtp.client-ip=115.236.118.212
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 68ea0131;
-	Mon, 23 Dec 2024 19:06:38 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 68ea0139;
+	Mon, 23 Dec 2024 19:06:40 +0800 (GMT+08:00)
 From: Kever Yang <kever.yang@rock-chips.com>
 To: heiko@sntech.de
 Cc: linux-rockchip@lists.infradead.org,
 	Kever Yang <kever.yang@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	linux-pci@vger.kernel.org,
-	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
+	devicetree@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
 	Finley Xiao <finley.xiao@rock-chips.com>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	devicetree@vger.kernel.org,
+	Frank Wang <frank.wang@rock-chips.com>,
 	Rob Herring <robh@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Tim Lunn <tim@feathertop.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Liang Chen <cl@rock-chips.com>,
-	Elon Zhang <zhangzj@rock-chips.com>,
-	Andy Yan <andyshrk@163.com>,
 	Detlev Casanova <detlev.casanova@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
 	linux-kernel@vger.kernel.org,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 0/7] Rockchip: add Rockchip rk3576 EVB1 board
-Date: Mon, 23 Dec 2024 19:06:30 +0800
-Message-Id: <20241223110637.3697974-1-kever.yang@rock-chips.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 1/7] arm64: dts: rockchip: Add rk3576 naneng combphy nodes
+Date: Mon, 23 Dec 2024 19:06:31 +0800
+Message-Id: <20241223110637.3697974-2-kever.yang@rock-chips.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241223110637.3697974-1-kever.yang@rock-chips.com>
+References: <20241223110637.3697974-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,61 +62,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh5LHVZIHx1KShhPTkIeHR9WFRQJFh
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGhpNTFYaHR9DTRpMSkwZSUhWFRQJFh
 	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
 	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a93f33294e803afkunm68ea0131
+X-HM-Tid: 0a93f3329dc903afkunm68ea0139
 X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NFE6Szo6MTIKCAEKN081GRMD
-	PxYKCwlVSlVKTEhPQk5JS0tLQ0tIVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKTkxMNwY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OiI6IQw5NDIQPgEqN0g6GQg9
+	NDAaFBdVSlVKTEhPQk5JS0tJSkNCVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJS0NPNwY+
 DKIM-Signature:a=rsa-sha256;
-	b=Zr0KezkxrrlHR7mhy/y4gFYBIO5808CgTCfiJ72APnW2QLkyU8OiV13w4eCF25b8MA+TsQXRhp9uXJ4yCdI8avyrV4BS8FyOWmTJeRrmUxkxjZWlSg38mZSi9rLEaQiWiuHnTXY2Nq9GEyWqgotxNEIzpM06QCPBFwJxPeOqtYo=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=hkUv9K/cbcAwXcBbSaeyYRD07IQjadduDFOI/Z3WPJc=;
+	b=UAWoPzBCQksB5hexX5WnhDhrSBetpuc8vTmDJa81kV3oEgDDxpwB/qpdcsPLi+TVWWKO8jM5Asc6IT1cbMBSDRbE209/3DZCGqY4MmevuM8HnIc7TG4Z70Z7oxiZzaVuQuMgf6/T3YATy8piVBofN8asFkuiWmeYa97/Fny2FE8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=7sxSfVv97iBuSyIpLekYzneOGrsaZ6m/UG6qMlKx0KQ=;
 	h=date:mime-version:subject:message-id:from;
 
-This patch set is for rockchip rk3576 evb1.
-Based on the naneng combphy patch from Frank Wang.
+rk3576 has two naneng combo phys:
+- combophy0 is used for one of pcie and sata;
+- combophy1 is used for one of pcie, sata and usb3;
 
-This version including the patch adding usb nodes from Frank Wang.
+Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+---
 
 Changes in v3:
 - Update the subject
-- Fix dtb check broken on rk3588
-- Update commit message
-- Update the subject
-- sort for all the board entries instead of two rockchip boards
-- update some properties order
 
 Changes in v2:
 - Update the clock and reset names to pass the DTB CHECK
-- remove required 'msi-map'
-- add interrupt name 'msi'
-- Update clock and reset names and sequence to pass DTB check
-- collect acked-by tag
-- collect acked-by tag
-- Enable USB nodes
 
-Frank Wang (1):
-  arm64: dts: rockchip: add usb related nodes for rk3576
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 36 ++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-Kever Yang (6):
-  arm64: dts: rockchip: Add rk3576 naneng combphy nodes
-  dt-bindings: PCI: dw: rockchip: Add rk3576 support
-  arm64: dts: rockchip: Add rk3576 pcie nodes
-  dt-bindings: arm: rockchip: Sort for boards not in correct order
-  dt-bindings: arm: rockchip: Add rk3576 evb1 board
-  arm64: dts: rockchip: Add rk3576 evb1 board
-
- .../devicetree/bindings/arm/rockchip.yaml     |  59 +-
- .../bindings/pci/rockchip-dw-pcie-common.yaml |   4 +-
- .../bindings/pci/rockchip-dw-pcie.yaml        |   4 +-
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3576-evb1-v10.dts     | 722 ++++++++++++++++++
- arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 278 +++++++
- 6 files changed, 1037 insertions(+), 31 deletions(-)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index 436232ffe4d1..a147879da501 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -1587,6 +1587,42 @@ uart11: serial@2afd0000 {
+ 			status = "disabled";
+ 		};
+ 
++		combphy0_ps: phy@2b050000 {
++			compatible = "rockchip,rk3576-naneng-combphy";
++			reg = <0x0 0x2b050000 0x0 0x100>;
++			#phy-cells = <1>;
++			clocks = <&cru CLK_REF_PCIE0_PHY>,
++				 <&cru PCLK_PCIE2_COMBOPHY0>,
++				 <&cru PCLK_PCIE0>;
++			clock-names = "ref", "apb", "pipe";
++			assigned-clocks = <&cru CLK_REF_PCIE0_PHY>;
++			assigned-clock-rates = <100000000>;
++			resets = <&cru SRST_PCIE0_PIPE_PHY>,
++				 <&cru SRST_P_PCIE2_COMBOPHY0>;
++			reset-names = "phy", "apb";
++			rockchip,pipe-grf = <&php_grf>;
++			rockchip,pipe-phy-grf = <&pipe_phy0_grf>;
++			status = "disabled";
++		};
++
++		combphy1_psu: phy@2b060000 {
++			compatible = "rockchip,rk3576-naneng-combphy";
++			reg = <0x0 0x2b060000 0x0 0x100>;
++			#phy-cells = <1>;
++			clocks = <&cru CLK_REF_PCIE1_PHY>,
++				 <&cru PCLK_PCIE2_COMBOPHY1>,
++				 <&cru PCLK_PCIE1>;
++			clock-names = "ref", "apb", "pipe";
++			assigned-clocks = <&cru CLK_REF_PCIE1_PHY>;
++			assigned-clock-rates = <100000000>;
++			resets = <&cru SRST_PCIE1_PIPE_PHY>,
++				 <&cru SRST_P_PCIE2_COMBOPHY1>;
++			reset-names = "phy", "apb";
++			rockchip,pipe-grf = <&php_grf>;
++			rockchip,pipe-phy-grf = <&pipe_phy1_grf>;
++			status = "disabled";
++		};
++
+ 		sram: sram@3ff88000 {
+ 			compatible = "mmio-sram";
+ 			reg = <0x0 0x3ff88000 0x0 0x78000>;
 -- 
 2.25.1
 
