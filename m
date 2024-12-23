@@ -1,79 +1,176 @@
-Return-Path: <devicetree+bounces-133612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66AB59FB06C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:58:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A7C9FB07B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:03:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FA1B188297B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:58:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E20916138B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 017DD1AF4EA;
-	Mon, 23 Dec 2024 14:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60811199943;
+	Mon, 23 Dec 2024 15:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JNx4YZzc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EJi1iZim"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5B41917D8;
-	Mon, 23 Dec 2024 14:58:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4258814287
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 15:02:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734965900; cv=none; b=qh5lpT9geg9Hv3mUcNnXybKAYgPFViVYC8176vFKfiyWl3FMb3GRdQMVp0rGdCkPgqEJ5fVwr0q2GpD63ypBPNLPkqQ1ZIgTJjHifQYLzBJSWAT9RCSIAq+zkSWDPiTEDyU+60EIgjaYX8hEFMWxN21LgTjzaNvogN5Y+C1Z+74=
+	t=1734966143; cv=none; b=F/gd2h+FjbJQtxElomXkL2AQeuEJL6NTOWZ0rIhkUEWthO7efznS56a15UB4pudzYMtri2AXXSZYccwkPmxvGwibXsXJctJ8ll8VM4naxSVo49TY0mtmYZj/Ak4J7N8GqOujHVnZb7v/iJM3O30LWCQVZ5X/0pn+N6pU9GUzYLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734965900; c=relaxed/simple;
-	bh=bTXyhy5LGoHUqetVuQXM4/3DpaWUAqTOWIbBAh3fDK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=loJpIl2idNGXJOZssqu03Sq65c+KFa9WdVlQdujOzjFfdgq9uCdN9OO9RBvL7Azp3ALWw4t8qL4Zrmv3YdJgyL5YgIV/fUlaDcp9kzu7rp1rcWys9czAbP7a1OJhMNcH2cjCec7bOPo6o3x8AfUjU7g2fqoMWUlmI5ofugJzBC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JNx4YZzc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81ECEC4CED3;
-	Mon, 23 Dec 2024 14:58:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734965900;
-	bh=bTXyhy5LGoHUqetVuQXM4/3DpaWUAqTOWIbBAh3fDK0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JNx4YZzc4TjHrZmhyFZpXk6bnCd5Ln6K0EQ8fDRhar6iWSp2e4Jj0ZAWde1gq8GkV
-	 Y89OjvHcaJprYB9HLq+tD7cbKDqAYSJEBZ1gO/jHaoUHKNvkETSX+WA0NeNdOcvCce
-	 u0ptLsttFTzb3VvSe9PeG2r6ub0TAZYd1lmykio60sgnjEh/l7w1icf7KsF9RpPsfA
-	 MtNEsuahDLTBpJt9CczFiai+wuKil0T3WvHYGRIOjvIyfmNuzlW6pxUOOZxXNom+Oi
-	 VYw7Y36sxY98yk3oQ8ZU8Jla0WD1J7QvKr+4S3ZINzDlrNy3prXWGRuEvBYv0U2gWb
-	 NovTQb+vvzfvQ==
-Date: Mon, 23 Dec 2024 15:58:17 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kever Yang <kever.yang@rock-chips.com>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Chris Morgan <macromorgan@hotmail.com>, Rob Herring <robh@kernel.org>, Dragan Simic <dsimic@manjaro.org>, 
-	Jonas Karlman <jonas@kwiboo.se>, linux-kernel@vger.kernel.org, Tim Lunn <tim@feathertop.org>, 
-	linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Andy Yan <andyshrk@163.com>
-Subject: Re: [PATCH v3 5/7] dt-bindings: arm: rockchip: Sort for boards not
- in correct order
-Message-ID: <dzrmlapgca6vwqpfxi7sub37z4taerinslfthqwqi7jltb4xxh@wtry22ybpd2r>
-References: <20241223110637.3697974-1-kever.yang@rock-chips.com>
- <20241223110637.3697974-6-kever.yang@rock-chips.com>
+	s=arc-20240116; t=1734966143; c=relaxed/simple;
+	bh=grlzk4olmyXkI1Xgyy2M1j32DqQ7AzAtRZoNmXWBG/Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aPbdloSAu0K4PJmaqD7U6vEunT++tCK6Glm7uRosAV22fDrbGtXeEZSSaWR+M6G0mRUdPayNVj5GPxRHPmXj7E4j+WpEo38qlzMfW5XoRZ/M2ex+sOTFgUyOP1FsdtngTns6YN5gkzD2IIafD+udwMkoj3ElCJIQoupA7nooE2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EJi1iZim; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BNCbN1W004932
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 15:02:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	jOueQRrVOdVdBWKPBRxKIz6jCEFS3rdEhZ18GsC/lhc=; b=EJi1iZimqFrk8pL4
+	0Z7jnBsgzo69O8LRaWOYiWzbsY6zNDwEWV8U/WToThuKWadCoLsOX/ZjzTlYwlRC
+	+3URRnWvvH8r+fakvVOJPSHQzVXRwlTnrFzOPOJw92H+EcsroAoU9uPmJuPcMHyx
+	BBymPLaPW9JWiNSd/lcOkl2f73wrZYutmfkFsttN1992BeyYRrwTpO/1ixjzM6GF
+	CYTQN+FW6fHHKCCP/XU/8Bp3Ld2id0fnfqxQ+Do617U2FckWY2cqBE7VZWmTXz2i
+	nw84c/FlXkiVKE9OF1Ng6hvp/qdxMAj2MqxgISDkF8f/7G56GKg2ZdC8hogN11yx
+	zKrJww==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q8168e4g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 15:02:19 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4679af4d6b7so12449491cf.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 07:02:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734966139; x=1735570939;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jOueQRrVOdVdBWKPBRxKIz6jCEFS3rdEhZ18GsC/lhc=;
+        b=VsjC/Exg8SQ2W6jQ6LgXMMTZwt13FNgxCgo5WO/RVLNROv8x4pKtbjjPSH3Vsu3DVQ
+         lraCAetUsS1U6LErsmBQ65mAHlXWm4Zq2fyu3IyHxM+gFWc9Y2T9dgYU5NyNRa1MxZJS
+         2eBdBu4ibVs3es6Daj6LKB8XWBhddFM/tY1AbE895lZscxQriNsaoV65Cls4q4YpC6lR
+         jHkelchi/OG8SRiBzqQGEKBLGs/UOQATD8WNSdKXg46iMhMgGJi74/ZD3wTVe7oYQTzR
+         g7mgoKmjUbrP3aDYzwtV63rOVIphM8DyDE3wDvqsXnjIk/Ei/4rjw2/EdcFMMqgWTnVt
+         0z/g==
+X-Forwarded-Encrypted: i=1; AJvYcCX7lBP3r1G5CkKUfEeJVAO599cpJrFFYbL5u6IBhnTQwts03za3CYgVSQKsL+Ul7fVQefASwRepwvwp@vger.kernel.org
+X-Gm-Message-State: AOJu0YygHmu8dBWSqt+KnsMY+/3JSWwWIjr1jCV+9d6HyeLB5nHXWsDM
+	h8i5UdxLVFi7T9tAQpgu/AGWC6u6bOylFl1/olqfHyi/myFeNaQK0BtgwdO3s9H2roGV2fsGJ2C
+	/XdNQrNMMxGFQx8sR/PywD24w0s0lEnAelOHkaojvK/lUmHoxytZ3lk2DUbYS
+X-Gm-Gg: ASbGncuzCQMs4f3nYRvkNqW/sMzkNVJ9Ii2DyAuQQRf/ENBkrwXHVnBclk0X/7Yc27u
+	8nc10g0wIRmT7ACXU5dQ6OY7qycsWZr/xlG+TPlOaCDH/wXnySQysqYTl3dNzAq/Wzm1Xl7eiiJ
+	yDjQaSt5rdMLFFAgK/LiujkRZZ5hLmNuIHO6MpZDnNDE01i9TbXtVpnajxo7txiMaGHd/3B1Tf8
+	rTgwf8HAAyoOVxjBlObMlXPNSHgWyXEOFP4xRjh1SjdXd+eCuDLdOA4Q+AtL0aDsdgCoElIwtHN
+	h5rWqFyvnuPbV49nRmsOmU1vMPYjjJ9+2hM=
+X-Received: by 2002:a05:620a:2496:b0:7b6:e61b:3e60 with SMTP id af79cd13be357-7b9ba742c0cmr820184585a.7.1734966138870;
+        Mon, 23 Dec 2024 07:02:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHREjQZz+CVTbzd5TYeq0dnl7WV9RvuT6R2vxSIAg60SPUsaB/sHNZeP/tyzrWvz3trjyaRwQ==
+X-Received: by 2002:a05:620a:2496:b0:7b6:e61b:3e60 with SMTP id af79cd13be357-7b9ba742c0cmr820181785a.7.1734966138353;
+        Mon, 23 Dec 2024 07:02:18 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f012229sm525618566b.133.2024.12.23.07.02.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Dec 2024 07:02:17 -0800 (PST)
+Message-ID: <f07d9efc-fa3d-44e2-83f5-621ffeaa9f91@oss.qualcomm.com>
+Date: Mon, 23 Dec 2024 16:02:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241223110637.3697974-6-kever.yang@rock-chips.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/7] drm/msm: adreno: dynamically generate GMU bw table
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20241217-topic-sm8x50-gpu-bw-vote-v6-0-1adaf97e7310@linaro.org>
+ <20241217-topic-sm8x50-gpu-bw-vote-v6-3-1adaf97e7310@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241217-topic-sm8x50-gpu-bw-vote-v6-3-1adaf97e7310@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: BpCkS9xvEUQGsuUxgdMRR8wwiy9NHwNU
+X-Proofpoint-GUID: BpCkS9xvEUQGsuUxgdMRR8wwiy9NHwNU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ suspectscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
+ clxscore=1015 mlxscore=0 priorityscore=1501 mlxlogscore=999
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412230134
 
-On Mon, Dec 23, 2024 at 07:06:35PM +0800, Kever Yang wrote:
-> The board entries should be sort in correct order.
+On 17.12.2024 3:51 PM, Neil Armstrong wrote:
+> The Adreno GPU Management Unit (GMU) can also scale the ddr
+> bandwidth along the frequency and power domain level, but for
+> now we statically fill the bw_table with values from the
+> downstream driver.
+> 
+> Only the first entry is used, which is a disable vote, so we
+> currently rely on scaling via the linux interconnect paths.
+> 
+> Let's dynamically generate the bw_table with the vote values
+> previously calculated from the OPPs.
+> 
+> Those entries will then be used by the GMU when passing the
+> appropriate bandwidth level while voting for a gpu frequency.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-And what is the sorting rule for this file? Board name? SoC compatible?
-Explain this in commit msg... and please test your patches before
-posting. Public infrastructure is not replacement of your tests (see
-failiure reported by Rob).
+[...]
 
-Best regards,
-Krzysztof
+> +	/*
+> +	 * These are the CX (CNOC) votes - these are used by the GMU
+> +	 * The 'CN0' BCM is used on all targets, and votes are basically
+> +	 * 'off' and 'on' states with first bit to enable the path.
+> +	 */
+> +
+> +	msg->cnoc_cmds_addrs[0] = cmd_db_read_addr("CN0");
+> +	msg->cnoc_cmds_num = 1;
+> +
+> +	msg->cnoc_cmds_data[0][0] = BCM_TCS_CMD(true, false, 0, 0);
+> +	msg->cnoc_cmds_data[1][0] = BCM_TCS_CMD(true, true, 0, BIT(0));
+> +
+> +	/* Compute the wait bitmask with each BCM having the commit bit */
+> +	msg->cnoc_wait_bitmask = 0;
+> +	for (j = 0; j < msg->cnoc_cmds_num; j++)
+> +		if (msg->cnoc_cmds_data[0][j] & BCM_TCS_CMD_COMMIT_MASK)
+> +			msg->cnoc_wait_bitmask |= BIT(j);
 
+Still very much not a fan of this.
+
+I think this would be equally telling:
+
+/* Always flush on/off commands */
+msg->cnoc_wait_bitmask = BIT(0);
+
+with or without that:
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+Konrad
 
