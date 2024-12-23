@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-133599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED029FAF59
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:18:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3435A9FB036
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:41:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 266BE165AE3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:18:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76C28188EA9D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B99561ABEC1;
-	Mon, 23 Dec 2024 14:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 376181B6CF6;
+	Mon, 23 Dec 2024 14:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E/R+imZt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TdJYg8jH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D791A8F68;
-	Mon, 23 Dec 2024 14:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 073351AB6CC;
+	Mon, 23 Dec 2024 14:25:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734963486; cv=none; b=XKiCuOUJ3tMbBTsKaPLlKix62jtxFPN296QtlA+LGM1W0oS+m5Ka3ACwKX4RrM/2lQocaT1wa7l82qJqU0Kj8lScsznHIy0Sx2rjCtL+jTha/n6305k2s7ZmyrLs5/CXpz989Vj4vHpy6WvvQvpCVi7M6t8Kp+weOSJZrPgGSuE=
+	t=1734963928; cv=none; b=uWXQTy3BhZV+Hm6b3dVpFS90eBsuQuNxXAWROXs4UVq2xpaQ1f0FgR0QNetV9J9KqOFit4h45pLkD0dxMtVCsUOp/rr4ODFy9b378XuG8U2sawEV5IfDxH9iYJPYgaqiecJ3RxDZNNxvfehtK5unUC3cFOBYsgHWFqG4yVATZ1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734963486; c=relaxed/simple;
-	bh=Dnx5jq8dk5gccywgJ8I1S6xTsLN9qwfE/Enn2jq1nSY=;
+	s=arc-20240116; t=1734963928; c=relaxed/simple;
+	bh=GILBKGvCBjSZr2xCDxzm6fc/WEXlbThb+v3LXQegTMA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q0WHSemZr7bya6QMav4FjvxnE55VbOK6Fc71aM06nf3pfFt10Tn2WPE8Bh8oDPaGtj+oH3rfOaCivPNl42wgYu/+3ZG7J0FBvnX13ZKSo+D1lbEeiqHvxlLzKfXiAl97A6GmCplRAQEqlwFF7OrAh1CzlwiHAeZRdXIkVntDYP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E/R+imZt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78D96C4CED3;
-	Mon, 23 Dec 2024 14:18:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RnbQj2gKwfXLpMOlnfuqDFCYclGVvHsMqIx6pg/v/AIVEyAN4aUYfQViBBLgl8Esw9A1HLJFSpnwJM+Kd57ovqRVooxeVPFPkTe5zfsD71ZbAtmr0Ufv8LCuxSsrDO0oPSjhXUboEFfH4oJ2IO/dtWIV1ecieV/60IpTHvLLdj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TdJYg8jH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 741CFC4CED4;
+	Mon, 23 Dec 2024 14:25:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734963486;
-	bh=Dnx5jq8dk5gccywgJ8I1S6xTsLN9qwfE/Enn2jq1nSY=;
+	s=k20201202; t=1734963927;
+	bh=GILBKGvCBjSZr2xCDxzm6fc/WEXlbThb+v3LXQegTMA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=E/R+imZt5bguB8G1UuKlY9bV0MshcchxOe7IWOxHoZHmL9l2teeuLZbBav5xbUDjj
-	 RBLEaatHYNdu3KT8aAPhhBUOBhaWDN9dh9MWcVTsCOv2n7V8GXPkaXIBSPfxtd7HxM
-	 w3jXIhEp41wSk3K1r2kiYJ5sPU/WvRKZdN05dIJPXjns81NzraJaWZbcPVlaLVTQq4
-	 FVS+G7FWN7fOscbsb5T4TfCmvW2rxtj88tF5C4pKOBknxW0wJQpJ+0jQjzv6X+rGol
-	 RmbLTUA6Py2PsPvRTXz26+mSZbLo3v1igqRQMRDwXmJ2JQlwn0oDNBEXApPvOwYr2D
-	 1wgiarhGV5dwg==
-Message-ID: <57d5cb47-5c4b-4334-98af-4fb842995366@kernel.org>
-Date: Mon, 23 Dec 2024 15:18:00 +0100
+	b=TdJYg8jHlzoq5yNuwvrrkRunv/U2u7qgHRmJOIP5BCF3zY6kutwWeeXzzyZwCOqbB
+	 lmVdqwhkiAkHGu8EfnHh0V9igqrcfjExcWg/BXmKI+LaPEfodxbLrzGk56qUsh2ufW
+	 o7l+Fupu/j+HljBFefjet2Kk1d+lUg3LJweoknKkR02KGaMl/BlEz9fsB6ptTYLkip
+	 7KwXW+KDBv93s7Ng2dBGlMiWHoMJ/b3iB6lrvH57tqRmcWQanKjZGSX0WD+9+XZ/nK
+	 fFr4ImmWtlqtmzUoWj5WPKCwc1hrR0+bM3pIoqoH8foJVbxJJyC5bQ+r+4X8MuoHLL
+	 V/83TOLL9l3+w==
+Message-ID: <26ba3710-9f7f-40ae-a65d-e1d6e384a142@kernel.org>
+Date: Mon, 23 Dec 2024 15:25:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: gs101-pixel: add generic
- gs101-based Pixel support
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+Subject: Re: [PATCH v2 1/3] dt-bindings: platform: Add bindings for Qcom's EC
+ on IT8987
+To: Maya Matuszczyk <maccraft123mc@gmail.com>
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org>
- <20241220-gs101-simplefb-v2-2-c10a8f9e490b@linaro.org>
- <33c7a520-dda9-4d3c-aa27-2f48786996a9@kernel.org>
- <e85505c808661bedf2cca2433ef4c06038505a5f.camel@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org
+References: <20241219200821.8328-1-maccraft123mc@gmail.com>
+ <Z2WxzvKRVcOz5d2V@linaro.org>
+ <CAO_MupJ7JtXNgGyXcxGa+EGAvsu-yG0O6MgneGUBdCEgKNG+MA@mail.gmail.com>
+ <Z2W2UhspMZNT1TRU@linaro.org>
+ <c8677ae6-a145-411c-a221-02faa1ce809d@kernel.org>
+ <CAO_Mup+YFAT5oFRGYucW5h_eGcfp4C5FzF20hM6xF=qMR1DdQw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,115 +108,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <e85505c808661bedf2cca2433ef4c06038505a5f.camel@linaro.org>
+In-Reply-To: <CAO_Mup+YFAT5oFRGYucW5h_eGcfp4C5FzF20hM6xF=qMR1DdQw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/12/2024 08:59, André Draszik wrote:
-> Hi Krzysztof,
+On 22/12/2024 16:07, Maya Matuszczyk wrote:
 > 
-> On Sun, 2024-12-22 at 12:42 +0100, Krzysztof Kozlowski wrote:
->> On 20/12/2024 12:27, André Draszik wrote:
->>> In order to support Pixel 6 (Oriole), Pixel 6 Pro (Raven), and Pixel 6a
->>> (Bluejay) correctly, we have to be able to distinguish them properly as
->>> we add support for more features.
->>>
->>> For example, Raven has a larger display. There are other differences,
->>> like battery design capacity, etc.
->>>
->>> To facilitate this, we create a generic gs101-based Pixel DT that can
->>> work on any such gs101-based device. At the same time, we move the
+> With similar ones at the end:
+> Devkit:
+> EC VER:00.29.00$
+> LsFv:00.29.00$
+> Qualcomm$
+> WoS 8c GenX$
+> ODM$
+> MB:A0$
+> BUILD DATE:
+> 02/0//2/24$
+> TIME:
+> 14:33:35$
+> 
+> Slim7x:
+> EC VER:00.60.00$
+> LsFv:00.20.00$
+> Qualcomm$
+> WoS 8c GenX$
+> ODM$
+> MB:A0$
+> BUILD DATE:
+> 2024/07/25$
+> TIME:
+> 09:58:00$
+> 
+> 
+> 
 >>
->> No, whatever insanity Android has there, please don't populate it to
->> upstream.
->>
->> There is no such thing as "generic board" thus cannot be a
->> "generic DTS".
+>> If the FW across devices is the same, then fallbacks for these are fine
+>> with me.
 > 
-> I'll rephrase to gs101-based Pixel base board. Unless you have a better
-> suggestion.
+> As the devkit has EC firmware that is handled the same way in DSDT
+> tables of most of other x1e laptops with the same EC, and is a subset
+> of what's done on Lenovo Yoga Slim 7x and Honor Magicbook Art 14 I
+> think the devkit's compatible  + -ec would be a good pick.
 > 
->>
->>> Oriole specific parts that we have at the moment (display) into an
->>> overlay, making it easy to add support for Raven and Bluejay in a
->>> similar way.
->>>
->>> Note1:
->>> Despite being an overlay, we instruct kbuild to create a merged
->>> gs101-oriole.dtb and a gs101-oriole.dtbo. This way existing scripts can
->>> keep working, but it also gives the option to just apply the overlay
->>> before boot (e.g. by the bootloader).
->>>
->>> Note2:
->>> I've changed the simple-framebuffer node to specify the memory via
->>> memory-region instead of reg, as that avoids unnecessary duplication
->>> (of the size), and it avoids having to specify #address-cells
->>> and #size-cells in the chosen node (and duplicating this in the DTSO),
->>> which is otherwise necessary to keep dt_binding_check happy and DT
->>> validation working in general.
->>>
->>> Signed-off-by: André Draszik <andre.draszik@linaro.org>
->>> ---
->>> Note: MAINTAINERS doesn't need updating, it covers this whole directory
->>> ---
->>>  arch/arm64/boot/dts/exynos/google/Makefile         |  6 ++--
->>>  .../arm64/boot/dts/exynos/google/gs101-oriole.dtso | 33 ++++++++++++++++++++++
->>>  .../{gs101-oriole.dts => gs101-pixel-generic.dts}  | 24 +++++++---------
->>>  3 files changed, 47 insertions(+), 16 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/exynos/google/Makefile b/arch/arm64/boot/dts/exynos/google/Makefile
->>> index 0a6d5e1fe4ee..6e6b5319212a 100644
->>> --- a/arch/arm64/boot/dts/exynos/google/Makefile
->>> +++ b/arch/arm64/boot/dts/exynos/google/Makefile
->>> @@ -1,4 +1,6 @@
->>>  # SPDX-License-Identifier: GPL-2.0
->>>  
->>> -dtb-$(CONFIG_ARCH_EXYNOS) += \
->>> -	gs101-oriole.dtb \
->>> +dtb-$(CONFIG_ARCH_EXYNOS) += gs101-pixel-generic.dtb
->>> +
->>> +gs101-oriole-dtbs := gs101-pixel-generic.dtb gs101-oriole.dtbo
->>> +dtb-$(CONFIG_ARCH_EXYNOS) += gs101-oriole.dtb
->>> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dtso b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dtso
->>> new file mode 100644
->>> index 000000000000..43572039cd07
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dtso
->>> @@ -0,0 +1,33 @@
->>> +// SPDX-License-Identifier: GPL-2.0-only
->>> +/*
->>> + * Oriole Device Tree
->>> + *
->>> + * Copyright 2021-2023 Google LLC
->>> + * Copyright 2023-2024 Linaro Ltd
->>> + */
->>> +
->>> +/dts-v1/;
->>> +/plugin/;
->>> +
->>> +&{/} {
->>> +	model = "Oriole";
->>> +	compatible = "google,gs101-oriole", "google,gs101-pixel", "google,gs101";
->>
->> Boards are not overlays. Board equals DTB.
-> 
-> You're saying this should move into a dts instead of dtso?
-> There are numerous boards upstream which use this same dtso
-> approach.
+> This conversation is getting long and I feel like I've said everything
+> I wanted to say, I'll just do what you tell me to do about the
+> fallback and binding filename.
 
-Numerous? My quick look found zero. There are for specific
-configurations, but not for boards. Look at something which could
-support your case: imx8mm-kontron-dl.dtso
-In first glance this is a board... but no! This is only about board with
-display panel, because panel is detachable.
-
-> 
-> There is a base board, and also different versions of it,
-> oriole being one of them.
-
-Well, I did not see here baseboard - you renamed it.
-
-
+Go with a device specific compatible (I think I proposed in other
+email). It is up to you if you want to add fallbacks. If you add
+fallbacks, then please include some summary of above in commit msg or
+binding description, so there will be a trace of that explanation/reason
+for fallbacks.
 
 Best regards,
 Krzysztof
