@@ -1,132 +1,275 @@
-Return-Path: <devicetree+bounces-133511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC2D9FAD5E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:59:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7286E9FAD63
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:01:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3584C161FCE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:59:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCDBF1630C9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:01:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6471196434;
-	Mon, 23 Dec 2024 10:58:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAAFD191F70;
+	Mon, 23 Dec 2024 11:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CX2LvCCA"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nZnQw1aE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51052188A0C
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:58:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F0A18F2FD
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 11:01:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734951535; cv=none; b=haVAUoYVOL5SvEXR3X4a3AESX3s3EdhDVFw1u7vGIz95hQJn3tP2S9trcimrv2FsPQFnm5tx+3DVdlV+kDVhhsebrKWiWBR7Yh2QqMMOBTdbWfIV08oPHmuJXl16gr7rzOQ+hQXHEAi/VEWrdjfXX7cJdRXFSWyNNcwvWj8Wk5U=
+	t=1734951662; cv=none; b=foreVLi27hlJz6GJ8PVoyVvsr7tq6FgWYXJGdqnvEiQMaYTQNnEf7CeBZ+eyk4J3brZ32+nU8Fz+1bGT5N+/1A0N7LfGlAiEIH9a5Ui8MBDcdl7UEjLfqAiNb+mEZZHYw1KTfkYVwRksUCLYR8WsLToOkKCwRrqrh9zo3yWbBaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734951535; c=relaxed/simple;
-	bh=e0dWjpJjQcWCbx/u+A6w6OHAbGzyogCIQYgZnzSQAGo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L084ZOXfhljfWdfT12ryildX8Xpi6wKAx7tEbDPLQKl5WlYNzuYty6CACt6jY0x/6GNpJspVtAMVvR3vBYkH2goVUAx0Mjs+Zd6a/bcPG7B1C5GEn23Rl2ymbcnVJVJWE11yP3mEz9DSc/N9jOZJGl87ZoYSX9VT/ibBp20t1oA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CX2LvCCA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN5rWEd018283
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:58:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oRzcPI1+TuTQC4gzrMMt9/un+Wkls1wYG08sSuxyaNk=; b=CX2LvCCAGPX5Th4h
-	4SJKoSZ50o1cYLCy9dyoSBwe5ECyRinKt7sU7EKss/bBVbpKKEDhUMMFyPOPTYjU
-	a/095fO9EEukT4FMgS0YFIluRaKKIwxvHNNC8MRIXRhefoNFkoiWoEgwYOXYFxTN
-	v49GoivwSkUi53fcWFGPJ+dzepa7ZxgiEiqi+oGOhrnVnaydaOdCUPsD7z6GqS/v
-	3Oal7AExlRwHBzRU/M2WLMU2kwYMD2z8ChFsm7PUpVzNCbFR97BoES/RDCyEJgAp
-	Wf94wlSjJ4PXT7emEOYyUgHuH2AuxGXWqFsX7WhgJTMLCRuFb1/gphZg4wErzryU
-	CS6jzQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q24591hx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:58:53 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-467a437e5feso9582381cf.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 02:58:53 -0800 (PST)
+	s=arc-20240116; t=1734951662; c=relaxed/simple;
+	bh=/HNwfmbtDd157iLSvs6i/GXIxqbOufs/CRMUZNFGOm0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k9K3YyBF31nPHfMyCOIXkcQf415QIOMaxCA1TlRPvTKgQFBzpQUIWlEP5C3vCUxc/k4OIyOmX/WWOvZX1O9dHvhrySLtFxXvOxqofA5tKwCDqdjsyTRqX4OMQysf0SldGdCSeuS1EVMgRXl+L0slpCEo9tT9MjkOPGMuYklAKhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nZnQw1aE; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-54020b0dcd2so5401108e87.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 03:01:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1734951659; x=1735556459; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0/yhLy0x2RPN2n+KfN3/CV+wY/86FBphCXJ0uI9cdtY=;
+        b=nZnQw1aE/6fgn3HkYo/yj+F2goJMhjcOF/ccipV7IP3lJwLXNuJEx22cvsP+s6WOGT
+         Spd51ztDDjPwhqsXAP0VSxgJf1ewwpeqlE26L6/pXo93MJ03TyUEI+GuHk33HCz7Zsu1
+         PxGWbjYKur8beoGDDU/bSd/CScsE2ee8jKOwg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734951532; x=1735556332;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oRzcPI1+TuTQC4gzrMMt9/un+Wkls1wYG08sSuxyaNk=;
-        b=HXFw39e1xbccP0gBV7F/pWe2pfCR9jCSJZFO1ojX8YQy90v5pccwm7mpTVunst0Wdq
-         snffzw1uuS+AuCzpO4H/3njzpoDkd642ngzkOPMK1gAueqAmWuQ703CPQLoyqg/1Wqe4
-         UxUhfVUrOj2cyeCpb0bJUOvHr3/w3Tw63VddqflfohFggmfgXbmhUL/GfshVjf/KvblG
-         mDww2llJLmv8JM5klmDQ78dijmXmDtqv62npT+YRwO3RNSz9XBEcrM4XyNXCTnJ4Ub+W
-         3KZ0TIi3hYEnT2lyOW9mO38P5LTcVUsCyrvSnqYs4GvlaTD3v4Yo3fxKxBBayZ2kIitE
-         LS7w==
-X-Forwarded-Encrypted: i=1; AJvYcCXLSmrymccm3oHhXckHwDguJy8O/NLF5BP4BxOTazlSPpyFwhAfYiAQCZozofCzPeEbo9BiqXCng49r@vger.kernel.org
-X-Gm-Message-State: AOJu0Yws2pzoOLjOe1DcVTkiHGghhUSFaY1QlNK0PufqhtSl2TEff7pZ
-	FlLEVe7WZGxGBIYCglPN3a5LulojLkQDAfdzPz6hPyJQPY8MPRBEfd/8Yd0UY04AKW9pnFizRet
-	1HsPQ6eZUzKphJW1Om+0UbWMczSACgzutNNxPFzc4V2rqsAXsI/0lJjCZ5syD
-X-Gm-Gg: ASbGncs+UuyFyQBNAtnSSNkc+wEAY9cPHnTEiD0f02SDoX1PzCyk+hRG1fVAVCxrW65
-	8N9phNyq7+kWZAMH8L12F8poEIQNSbdswPpvogqJ2bMZ5kvU0ZbkedSmH/c3K5Y+lsNIqzOrFfR
-	g30IW/f0TKXFCSwAtOTeTq1NmzgZG/ovzGylntkyFiy4ol34Ar4+xE3ivSFilS4xLbfAjb5Ekut
-	ySPWxLy5YIN++ofkBFN+wOQhx+5+ur3CyvTCbwIikcdqwJ7Kb1MT2JRAFvgckbc4kFuAsP7Wut3
-	Z8akSKZ8ehH/O3A3+CEjx/cxXK3pLLu0RFU=
-X-Received: by 2002:a05:622a:1a03:b0:467:5eaf:7d23 with SMTP id d75a77b69052e-46a4a8bd016mr70563481cf.2.1734951532058;
-        Mon, 23 Dec 2024 02:58:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGdV+seDv2awHbdKF8xhNBkzYxOk4O2z39YSAHcn8Bj2t1saETjBiJ6SGjFFHH/E7HlLw3rjA==
-X-Received: by 2002:a05:622a:1a03:b0:467:5eaf:7d23 with SMTP id d75a77b69052e-46a4a8bd016mr70563371cf.2.1734951531681;
-        Mon, 23 Dec 2024 02:58:51 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80676f496sm4780829a12.34.2024.12.23.02.58.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Dec 2024 02:58:51 -0800 (PST)
-Message-ID: <88cf612d-cc3d-4cfd-b6ba-49739d598e69@oss.qualcomm.com>
-Date: Mon, 23 Dec 2024 11:58:49 +0100
+        d=1e100.net; s=20230601; t=1734951659; x=1735556459;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0/yhLy0x2RPN2n+KfN3/CV+wY/86FBphCXJ0uI9cdtY=;
+        b=hUIiLXevs/b3dzyTKPg6nys9a0TDFJENATRFmkSZchKbQYJxChUdqa6owPGEJtguqj
+         I4emdD/jAVa6xq2JesXHefNmyWPrFtbF6vG9zyLiCus1J0fWh8csA5R3+Qy07KxwCDX6
+         Fok6+y/Lv3N33Bj2KJ5Rq+Oz8wyXU/DP5eVa7I65ShoXNGiwYftsgYZmEtPj3nEmVGKL
+         /6EnESWp7H+dJ1Ul6bsT29tqfl8XVWUHaGMGDaRtuW6Ea11LU4XnMKl4plj/juZRacBn
+         48CgHuANZe28vn5+DjJq54ijJ2ZWKoU8nGMSUAUWU6VwJFvbr9j7qTPjxB/NpplYP0/R
+         ShIg==
+X-Gm-Message-State: AOJu0YwLYK+6Pa9/Thwkm9j50IjY0Zj7L1NwBZFE5sjE0SFBzlz/+Eo/
+	m/gpchSJlfCv+ZYfJ2qivTglcrzjAk8GXxAjXGpZSSLzImrwUCASqK08did5lmmV0a/FTNLyn9V
+	ac5+BnkjA7D9jImTep9RNpIwpb5f3sZxK9RtW
+X-Gm-Gg: ASbGnctakC4C1ACzPdP5HTeP95qVj4rZoAXPOphA8tSlB/b4g1ng2EBn3JOClBFVr5V
+	1UMWAa52mcKRFZ1/YYOUaN1WODkm6IZVCO5A1yhHOVg/PoFCbNd0Nzeg9tzw84G8s/Q==
+X-Google-Smtp-Source: AGHT+IEeGxR1/A7YAIaQNwuIN8M3ispQzQz/1XgsBv21yWEtwbRwNLgwt8VDFiTZY3VyE4P157VtOboXyGxNebyt2WE=
+X-Received: by 2002:a05:6512:4010:b0:542:2e05:313b with SMTP id
+ 2adb3069b0e04-5422e053206mr2012579e87.21.1734951659121; Mon, 23 Dec 2024
+ 03:00:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] arm64: dts: qcom: ipq6018: add 1.2GHz CPU
- Frequency
-To: Chukun Pan <amadeus@jmu.edu.cn>, konrad.dybcio@oss.qualcomm.com
-Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-        konradybcio@kernel.org, krzk+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_srichara@quicinc.com
-References: <9957783a-3066-4dba-ae9e-d52618fef964@oss.qualcomm.com>
- <20241222052018.270053-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241222052018.270053-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: t7zlx4A6ZmkoPC_QoKxniXFV6Sa9zhja
-X-Proofpoint-GUID: t7zlx4A6ZmkoPC_QoKxniXFV6Sa9zhja
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- mlxlogscore=844 priorityscore=1501 malwarescore=0 mlxscore=0 spamscore=0
- suspectscore=0 impostorscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412230098
+References: <20241223101434.2170166-1-wenst@chromium.org> <20241223101434.2170166-2-wenst@chromium.org>
+In-Reply-To: <20241223101434.2170166-2-wenst@chromium.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 23 Dec 2024 19:00:47 +0800
+Message-ID: <CAGXv+5FvhaqvsApufntBABFGRRtGbr_sUjqieWfy-d3K2x+drg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8192: Drop Chromebook
+ variants that never shipped
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22.12.2024 6:20 AM, Chukun Pan wrote:
-> Hi,
->> I can't find anything to support that.
->>
->> Maybe Sricharan can help out here.
-> 
-> https://lore.kernel.org/lkml/4a11d946-3c32-42fd-959b-32e61cc61ab5@quicinc.com/
-> Based on the instructions in the link above, is there anything else I need to do?
+On Mon, Dec 23, 2024 at 6:14=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> The Hayato rev5 sku2 and Spherion rev4 variants were designed in
+> anticipation of shortages of the headphone codec. This never happened.
+> As far as our records show: the variants were never produced or
+> shipped, and no such devices were deployed to any lab.
+>
+> Drop them.
+>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>  .../mt8192-asurada-hayato-r5-sku2.dts         | 65 ----------------
+>  .../mediatek/mt8192-asurada-spherion-r4.dts   | 78 -------------------
 
-I think Kathiravan only wanted to make sure you have the latest bootloader.
+Please ignore this version. I forgot to remove them from the Makefile.
 
-Looking at the documentation, I don't see a 1.2 GHz frequency level for
-this platform.
+I will send a v2 tomorrow.
 
-Konrad
+ChenYu
+
+>  2 files changed, 143 deletions(-)
+>  delete mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5=
+-sku2.dts
+>  delete mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-=
+r4.dts
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.d=
+ts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
+> deleted file mode 100644
+> index cd86ad9ba28a..000000000000
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
+> +++ /dev/null
+> @@ -1,65 +0,0 @@
+> -// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> -/*
+> - * Copyright 2022 Google LLC
+> - */
+> -/dts-v1/;
+> -#include "mt8192-asurada.dtsi"
+> -
+> -/ {
+> -       model =3D "Google Hayato rev5";
+> -       chassis-type =3D "convertible";
+> -       compatible =3D "google,hayato-rev5-sku2", "google,hayato-sku2",
+> -                    "google,hayato", "mediatek,mt8192";
+> -};
+> -
+> -&keyboard_controller {
+> -       function-row-physmap =3D <
+> -               MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
+> -               MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
+> -               MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
+> -               MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
+> -               MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
+> -               MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
+> -               MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
+> -               MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
+> -               MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
+> -               MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
+> -       >;
+> -       linux,keymap =3D <
+> -               MATRIX_KEY(0x00, 0x02, KEY_BACK)
+> -               MATRIX_KEY(0x03, 0x02, KEY_FORWARD)
+> -               MATRIX_KEY(0x02, 0x02, KEY_REFRESH)
+> -               MATRIX_KEY(0x01, 0x02, KEY_FULL_SCREEN)
+> -               MATRIX_KEY(0x03, 0x04, KEY_SCALE)
+> -               MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
+> -               MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
+> -               MATRIX_KEY(0x02, 0x09, KEY_MUTE)
+> -               MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
+> -               MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
+> -
+> -               CROS_STD_MAIN_KEYMAP
+> -       >;
+> -};
+> -
+> -&rt5682 {
+> -       compatible =3D "realtek,rt5682s";
+> -};
+> -
+> -&sound {
+> -       compatible =3D "mediatek,mt8192_mt6359_rt1015p_rt5682s";
+> -
+> -       speaker-codecs {
+> -               sound-dai =3D <&rt1015p>;
+> -       };
+> -
+> -       headset-codec {
+> -               sound-dai =3D <&rt5682 0>;
+> -       };
+> -};
+> -
+> -&touchscreen {
+> -       compatible =3D "hid-over-i2c";
+> -       post-power-on-delay-ms =3D <10>;
+> -       hid-descr-addr =3D <0x0001>;
+> -       vdd-supply =3D <&pp3300_u>;
+> -};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts =
+b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
+> deleted file mode 100644
+> index 5e9e598bab90..000000000000
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
+> +++ /dev/null
+> @@ -1,78 +0,0 @@
+> -// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> -/*
+> - * Copyright 2022 Google LLC
+> - */
+> -/dts-v1/;
+> -#include "mt8192-asurada.dtsi"
+> -#include <dt-bindings/leds/common.h>
+> -
+> -/ {
+> -       model =3D "Google Spherion (rev4)";
+> -       chassis-type =3D "laptop";
+> -       compatible =3D "google,spherion-rev4", "google,spherion",
+> -                    "mediatek,mt8192";
+> -
+> -       pwmleds {
+> -               compatible =3D "pwm-leds";
+> -
+> -               led {
+> -                       function =3D LED_FUNCTION_KBD_BACKLIGHT;
+> -                       color =3D <LED_COLOR_ID_WHITE>;
+> -                       pwms =3D <&cros_ec_pwm 0>;
+> -                       max-brightness =3D <1023>;
+> -               };
+> -       };
+> -};
+> -
+> -&cros_ec_pwm {
+> -       status =3D "okay";
+> -};
+> -
+> -&keyboard_controller {
+> -       function-row-physmap =3D <
+> -               MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
+> -               MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
+> -               MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
+> -               MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
+> -               MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
+> -               MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
+> -               MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
+> -               MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
+> -               MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
+> -               MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
+> -       >;
+> -       linux,keymap =3D <
+> -               MATRIX_KEY(0x00, 0x02, KEY_BACK)
+> -               MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
+> -               MATRIX_KEY(0x02, 0x02, KEY_FULL_SCREEN)
+> -               MATRIX_KEY(0x01, 0x02, KEY_SCALE)
+> -               MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
+> -               MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
+> -               MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
+> -               MATRIX_KEY(0x02, 0x09, KEY_MUTE)
+> -               MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
+> -               MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
+> -
+> -               CROS_STD_MAIN_KEYMAP
+> -       >;
+> -};
+> -
+> -&rt5682 {
+> -       compatible =3D "realtek,rt5682s";
+> -};
+> -
+> -&sound {
+> -       compatible =3D "mediatek,mt8192_mt6359_rt1015p_rt5682s";
+> -
+> -       speaker-codecs {
+> -               sound-dai =3D <&rt1015p>;
+> -       };
+> -
+> -       headset-codec {
+> -               sound-dai =3D <&rt5682 0>;
+> -       };
+> -};
+> -
+> -&touchscreen {
+> -       compatible =3D "elan,ekth3500";
+> -};
+> --
+> 2.47.1.613.gc27f4b7a9f-goog
+>
 
