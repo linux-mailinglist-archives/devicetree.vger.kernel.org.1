@@ -1,116 +1,155 @@
-Return-Path: <devicetree+bounces-133449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C653D9FA9CC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 04:44:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54C2F9FA9DF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 05:24:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 223C7166252
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 03:44:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCA2D163882
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 04:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC447D3F4;
-	Mon, 23 Dec 2024 03:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D7CC143748;
+	Mon, 23 Dec 2024 04:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WuypARtW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QFdkfx8G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13B038385;
-	Mon, 23 Dec 2024 03:44:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9655C85270;
+	Mon, 23 Dec 2024 04:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734925486; cv=none; b=Y34vTl1ZX4SXyYwXursA9+h9Eg2DcaJurGvnR+Bn6ezCvGtxk5fLx2t+h80zFH8MnPa4PSoJEVUVY7j9uqFQpIhKjz3iFuzddI5ifYBHLLc0X0D6POc5kGg4/s9K6tH2q5VOW6F45AafUCMRTgT2W2sA0dAHh+5CRGU/TqKyZLE=
+	t=1734927880; cv=none; b=j/j/xIVyY7EEIVVBGvXboW1p2b/W4DWI+iAzRMvvaVyiYmqTXfAA3wlQYI0unK/uwNG2OJZtcOOk2vzcx7qkSlyauBrBPuhjd8c00cnnexjba0YGZKSDdqECJg8NDRa2u+RhFW9sm3GtIe3xJ+7R45pmODUdyDdeQjChuoK6OpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734925486; c=relaxed/simple;
-	bh=N1oO6n7jz4F2bvyIXKTMC26sF0wNIK17WTUzZwGcHS0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JItQykH7YwospXV6nWwDlHZRADkXMrK4XNm2oms5DyjHnB+No8Tt3rDtWroRy8xDM2F5sLUTUXfaTs2ARLHkVKsgmZzFnNKTWYTQHjTiov7a6SqJY/qNfdJ7YCLIgBfr8pXdYU3tX/4iLZJzxdjJ8KYVL61dpi1KmyFb2/TEHOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WuypARtW; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-725f3594965so3089477b3a.3;
-        Sun, 22 Dec 2024 19:44:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734925484; x=1735530284; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AKKBjAh93qnAKFGi6NvkSBxaiPeXPV+xvQIPqMHhl/w=;
-        b=WuypARtWHLU42ILv7dw4nJ/98wSMEDScX3Ght/IJJdH6pMkt+Pesjt02z8cX1p5wg4
-         IReyF4oSvmSzlYqChULCCzW5dkw0YVgVEpYpA4zcklDRGtsTMUvrBT5ob/N3x5XY8Dh9
-         4pAGPBdMLdkUK4y0XPGdCumj3Ofa9ltwrDI0hYL1QTFEBXoypcSczws7XgRq40mVNfLW
-         sKOCmKwNp92GG3Mw/gZM9S5fOCrIIw/zqYFs9vt/XMdye8xdldpH3Rb5F0QiQlU2e7Fk
-         dU2oc9uM6gjlXmJWupxSkzdjyPYG8unO2C1CEs0E4sjdlRCvUb0w/KDz84yK252TB1Fk
-         WUEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734925484; x=1735530284;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AKKBjAh93qnAKFGi6NvkSBxaiPeXPV+xvQIPqMHhl/w=;
-        b=CJMnId08RUJkx5oaxpu98dYN324Wu5mx1f0+fIxaEX3RR4HQpOIWfvLDAOjGXueK9G
-         vaW24PILbXoJzmCeS8IAaW/EWKn22nTEhrLR9M2RQYt4YDYQQDKyhcobtfQPS9gqhUUS
-         bChW+M8BQOpPv3jyCwHo8Q1yXMsngJC6LeMsKChwU7hoIzRezA24nCa3ZB7cwzFdafff
-         YxFYNJzkNjJEZAAbPWvnSgysbB5XW8gdASExiyEU62qcDfH3+CcYJvpdwnrKBaBa5g74
-         Qa2BjWj6bZWbw8ECCiUyzyoAFZqDXjywdWxc66MiFyBskUVk+XyvpNgP/UgqFsXb//sb
-         KTbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVCP3i70aytTtLzCc1Ogto+mGJQfA2Piu7K8ng1sPQqz04t1+wEHErnj4kOH0Qj8M9mN2zT2PCplnYG@vger.kernel.org, AJvYcCW4bTvIQlRrwvhWL2j1c0/ye6xbpvRvY++yWFr4Mrfbp2MDXkOkWomreb0rjvHZlx2DcStOgUvWxebfYKt+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxL8HdHSSpvTLGtQ4eAQNOph6Kb4ks+wLotdfu9H4Dt7aqCFOkP
-	ZrYoiQIKrs7LtnGa0ncX07a7YNWAO3KGo4KoWLWE4mVE0U6Gjh+r
-X-Gm-Gg: ASbGncuds0nxZQ5MM2VTv2u3iIlHWbuhGgl9OSDrxSpp8sgRgvyDn+4cM6i1jC63HrJ
-	rJosqYtiNncV+XETkftvENkhXujGJxJWr9lQCQjiT4kDNZsSmvtTK17ZGsRNFiT0h6UF7c6SzAM
-	nCnN6jVmgUNKlyQ+odPKA4MtqTaRvCihoHcQf/KfhgSPQf/PiGPVJ0trt55AMHkbqufnd+TPk/5
-	7/GBS7HrqKzFzBM7F1pPiW664uwvG79jOjtB1nXyNekN7x9Ce4MGnnqVAYeWzbWwec=
-X-Google-Smtp-Source: AGHT+IGXGi/ymw5DK+48JcWl1raXbKyN3cY5McOhGfWJjt1shtNZRnrQgK6NwymLsoqIkIXdjweENw==
-X-Received: by 2002:a05:6a21:670b:b0:1e0:d32f:24e2 with SMTP id adf61e73a8af0-1e5e081edf3mr20433594637.38.1734925484128;
-        Sun, 22 Dec 2024 19:44:44 -0800 (PST)
-Received: from guoguo-thinkbook.lan ([112.65.12.222])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-842aba72f44sm6388710a12.15.2024.12.22.19.44.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Dec 2024 19:44:43 -0800 (PST)
-From: Chuanhong Guo <gch981213@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chuanhong Guo <gch981213@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: vendor-prefixes: add Siflower
-Date: Mon, 23 Dec 2024 11:43:49 +0800
-Message-ID: <20241223034350.215375-1-gch981213@gmail.com>
-X-Mailer: git-send-email 2.47.1
+	s=arc-20240116; t=1734927880; c=relaxed/simple;
+	bh=zFgLApFNMhAUyw2nOibAlkeaJEy+7t+pRx1G3mbd8fc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Vhr7pfAXLeNsCAKF0xX0KUdkulp5MtkH7zeG7M7mEYMkopsPEnu0dS2/QvFHdgOBn0Xi4bDZ1Cx8AQJhbNQWPAndobtrqaEIq8i8pk0p2X8sdq1Wt7Tcoaio6rkF5EZGlm601fHmEF/6udyPe4zowZax+t7sUftdoykYRe6gK6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QFdkfx8G; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN3CT71007799;
+	Mon, 23 Dec 2024 04:24:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	07KN7FjkG/mIIcZlvzIW/LaKGeNa/Ht1lAI/yHaqYko=; b=QFdkfx8G/9BDbO4e
+	mG5cIyfXbplpz177i/pqRTATrunZidav/0XdkxfeDSGae6r9r2rmJ6kehOjyTi7q
+	rRjqqwJRY6ebBVXEnrwAJPctZSOub/Cp5wtJnYvH6tlV2/UhALWxndlwOZovXdMF
+	Iua6Oab+GAyF/1Ailitq3rGa7WGKgEnEwQCvfh9GbsJAl6Yhg+1nOCSdBE7ZnzYA
+	zI2yDJ4Azg5sUB1BJbwXdFkezT6CeCida6rem/V7uIgBl3lJ/WPa4lfjAgAfq1Mz
+	tiL86W3uXJCXpxmzDzrf/Y071NQeQaZpYnWl6xpu4a0d9wj4IV6JbBkkiY5AcLUO
+	9DMlbw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43pyrpr797-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 04:24:30 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BN4OTAR014780
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 04:24:29 GMT
+Received: from [10.151.41.196] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 22 Dec
+ 2024 20:24:25 -0800
+Message-ID: <de313b43-4e90-4b3a-a233-917a963810c8@quicinc.com>
+Date: Mon, 23 Dec 2024 09:53:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v3 1/5] dt-bindings: net: wireless: Describe ath12k
+ PCI module with WSI
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Jeff Johnson
+	<jeff.johnson@oss.qualcomm.com>,
+        <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20241105180444.770951-1-quic_rajkbhag@quicinc.com>
+ <20241105180444.770951-2-quic_rajkbhag@quicinc.com>
+ <9cbdca90-e76c-4ebb-a236-a0edbd94a629@oss.qualcomm.com>
+ <62c599b5-20b2-4e1e-810d-e4502abbc682@oss.qualcomm.com>
+ <768ef22a-855b-472d-9432-49db7daaf2df@oss.qualcomm.com>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <768ef22a-855b-472d-9432-49db7daaf2df@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: le6esRrgP00FhDPFggP_x5IMCb6Eqw9a
+X-Proofpoint-GUID: le6esRrgP00FhDPFggP_x5IMCb6Eqw9a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ lowpriorityscore=0 phishscore=0 impostorscore=0 bulkscore=0
+ mlxlogscore=999 priorityscore=1501 malwarescore=0 spamscore=0 mlxscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412230036
 
-Shanghai Siflower Communication Co. is a manufacturer for home router SoCs.
-Add a vendor prefix for it.
+On 12/21/2024 3:35 AM, Konrad Dybcio wrote:
+> On 20.12.2024 10:47 PM, Jeff Johnson wrote:
+>> On 12/20/2024 12:03 PM, Konrad Dybcio wrote:
+>>> On 5.11.2024 7:04 PM, Raj Kumar Bhagat wrote:
+>>>> The QCN9274 WiFi device supports WSI (WLAN Serial Interface). WSI is used
+>>>> to exchange specific control information across radios using a doorbell
+>>>> mechanism. This WSI connection is essential for exchanging control
+>>>> information among these devices. The WSI interface in the QCN9274 includes
+>>>> TX and RX ports, which are used to connect multiple WSI-supported devices
+>>>> together, forming a WSI group.
+>>>>
+>>>> Describe QCN9274 PCI wifi device with WSI interface.
+>>>>
+>>>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>>>> ---
+>>>
+>>> I think this description is missing the key points:
+>>>
+>>> * what is that control information (power, data, radio stuff?)
+>>> * what happens when the OS is unaware of all of this (i.e. what happens when
+>>>   we don't send any configuration)
+>>> * is this configurable, or does this describe a physical wiring topology
+>>>   (what/who decides which of the group configurations detailed below take
+>>>    effect)
+>>>
+>>> And the ultimate question:
+>>> * can the devices not just talk among themselves and negotiate that?
+>>>
+>>> Though AFAICU PCIe P2P communication is a shaky topic, so perhaps the answer
+>>> to the last question is 'no'
+>>>
+>>> Konrad
+>>
+>> We already pushed the non-RFC version to our -next tree so we cannot update
+>> the commit description without a forced push.
+>>
+>> https://lore.kernel.org/all/20241211153432.775335-2-kvalo@kernel.org/
+>>
+>> However, Raj Kumar can submit an update to the description in the file, which
+>> is probably the better place to have this information anyway.
+> 
+> Sounds good
+> 
 
-Link: http://www.siflower.com.cn/en
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 13222919da88..d99796e571e4 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1340,6 +1340,8 @@ patternProperties:
-     description: Siemens AG
-   "^sifive,.*":
-     description: SiFive, Inc.
-+  "^siflower,.*":
-+    description: Shanghai Siflower Communication Co.
-   "^sigma,.*":
-     description: Sigma Designs, Inc.
-   "^sii,.*":
--- 
-2.47.1
-
+Sure, will submit an update to the description.
 
