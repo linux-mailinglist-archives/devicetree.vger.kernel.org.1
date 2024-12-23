@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-133493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD4D9FABF8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:29:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B6269FAC13
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:40:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51C43160951
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 09:29:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3A75165877
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 09:40:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A251F19149F;
-	Mon, 23 Dec 2024 09:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E46F7192B63;
+	Mon, 23 Dec 2024 09:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HsszrnNy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T6KpVZF3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D33319068E
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 09:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFA22191F6F
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 09:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734946144; cv=none; b=X1PPfmQ0XVZwK9NriwfV+hIKx5dTrr5cApEv7mN6cdih+OS2RSE4t+MZpYIqdgzS3gLP/yEzby5zcq1FXPFzCYvyC8KIoQAEaZ7f63EEf7D5yiozeX8eh39Timj997Dowq/zSTmtGNYPsjIc2UWtIjaURFR9FBV6HN3rmkI8MNM=
+	t=1734946789; cv=none; b=E4QfKxE1CjRgPzVj+yenffa7Xcc+UCBEpMFZI9rxESWJL6+2YpcYhElzJcv81N3DVVET1Y63D8Elqv8XReLOg0tsZE2mDl46IB/TtnIP+BadcVQCKMYnq9FeVy9zsCNyYQEoioJ0ps6sd5YwvWFZ5cpZUNu09basSwKYtzGe7Ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734946144; c=relaxed/simple;
-	bh=N/umG6hkbDvFZTfuU7dZaG2b4mcblT58EocGnnvjib8=;
+	s=arc-20240116; t=1734946789; c=relaxed/simple;
+	bh=Euy4sMJkEwz5VdTY+bm3x+j/aIo7YZtp5N9LHcz3ZRE=;
 	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=g/UCKGnzBnPO7ruWENbZAaLogCe438j6p/ciEp+0CeMP/tUrxae/vjumnATI8m93EglJynexLa+l5gL80YP20sTAEBkMOlO9t4rUX04MUOcND3RIc6CXTycboCTtLD8H5X7gXTU6kn3rIfE54f6A/7cZ2YgJKAu+rjWau+7XeQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HsszrnNy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 096FBC4CED3;
-	Mon, 23 Dec 2024 09:29:04 +0000 (UTC)
+	 MIME-Version:Content-Type; b=m8beEAVYSkkKnokGRrUceiRodYZb/1ofv9pub+FQrinpWSpn6rxDwYboso6jUXrLJwT98rXDTqBI/+UkJGDg6z1gcCBlg3Z6ANq3OG0V8IdjmQNYNQT59o6ZpIXqkEjAE9FULMeayzi+fBVn1vrYp0g2EvbXHYDXwWgtNPklekw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T6KpVZF3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46BD6C4CED3;
+	Mon, 23 Dec 2024 09:39:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734946144;
-	bh=N/umG6hkbDvFZTfuU7dZaG2b4mcblT58EocGnnvjib8=;
+	s=k20201202; t=1734946789;
+	bh=Euy4sMJkEwz5VdTY+bm3x+j/aIo7YZtp5N9LHcz3ZRE=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HsszrnNyhNuu2fR3ncen4NNgnjCXnK1sBHA5zocVAQdgLvkK64Ug4OQwrtNDpVDhN
-	 fHECy4zVX8EuTZZ+ncWcvmDXL3CrwOrEdQ9kJe4nryS29RN/0VykWDRotMms1cm8l7
-	 X670PBv5P9i8mbMAz1kaMqNZ7gw6Xkq1DK01HvKCfMyJnLo7wmuilwNY83aadirqyz
-	 CkY9QH4ubhbN5MQU+XrJM30NWR4bNOytUOJ2bblwv2g/0lQqcRDXW0iIyxp9AkXECy
-	 2hd0eem+OAAzEFUEsta0ffo0+AM3AuSWfH/JELECp7czHBUjQ3adZqR6O7+02Dnitw
-	 dZ9GSN8SAB3ww==
+	b=T6KpVZF3DpZMaE9Vcnxi3b8d9Jox8AA/xKQ4sHL9WgIrrXkeOH4+ooG0/jtNSTSoZ
+	 hF+HGYgoyASpUnQTRHJM5EFbeCmiw3is876ObPoNy9e39xUwjUX8j8czyacN8YJg3Z
+	 tcVLRGboyuvPaoqI8W2rtvzXcMZVNprWjhUtWARh6JoGZd/9m49HLGa58vDXx5ifz2
+	 Mv7fZbv9V/kseMdqI/dnyg0heOy7zEuRx3th5au03IhsdP62lWAXPzA/kAJ3viVOP7
+	 ZlNHOKfi/o87VxtDNwsr0uIadKfdg2gnM8+G+dEX+dNLV/TAMROtJqkGstWoSgxaN2
+	 lq+34ROUfDeEA==
 Received: from 91-161-240-24.subs.proxad.net ([91.161.240.24] helo=wait-a-minute.misterjones.org)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.95)
 	(envelope-from <maz@kernel.org>)
-	id 1tPekH-006L1R-B9;
-	Mon, 23 Dec 2024 09:29:01 +0000
-Date: Mon, 23 Dec 2024 09:29:01 +0000
-Message-ID: <871pxysq76.wl-maz@kernel.org>
+	id 1tPeug-006LBL-GG;
+	Mon, 23 Dec 2024 09:39:46 +0000
+Date: Mon, 23 Dec 2024 09:39:45 +0000
+Message-ID: <87zfkmrb4u.wl-maz@kernel.org>
 From: Marc Zyngier <maz@kernel.org>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: FUKAUMI Naoki <naoki@radxa.com>,
-	heiko@sntech.de,
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: heiko@sntech.de,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
@@ -62,6 +61,7 @@ Cc: FUKAUMI Naoki <naoki@radxa.com>,
 	andyshrk@163.com,
 	liujianfeng1994@gmail.com,
 	dmt.yashin@gmail.com,
+	dsimic@manjaro.org,
 	tim@feathertop.org,
 	marcin.juszkiewicz@linaro.org,
 	michael.riesch@wolfvision.net,
@@ -71,14 +71,10 @@ Cc: FUKAUMI Naoki <naoki@radxa.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 1/3] irqchip/gic-v3: Enable Rockchip 3588001 erratum workaround for RK3582
-In-Reply-To: <e3498590dd81b150670e36561d99b6f4@manjaro.org>
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E52C
+In-Reply-To: <20241222030355.2246-4-naoki@radxa.com>
 References: <20241222030355.2246-1-naoki@radxa.com>
-	<20241222030355.2246-2-naoki@radxa.com>
-	<86msgoozqa.wl-maz@kernel.org>
-	<f93b3bfb5151e4b617b1c99c91b4956f@manjaro.org>
-	<8734ifs3zl.wl-maz@kernel.org>
-	<e3498590dd81b150670e36561d99b6f4@manjaro.org>
+	<20241222030355.2246-4-naoki@radxa.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
  (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -90,112 +86,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=US-ASCII
 X-SA-Exim-Connect-IP: 91.161.240.24
-X-SA-Exim-Rcpt-To: dsimic@manjaro.org, naoki@radxa.com, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de, jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com, liujianfeng1994@gmail.com, dmt.yashin@gmail.com, tim@feathertop.org, marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net, alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+X-SA-Exim-Rcpt-To: naoki@radxa.com, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de, jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com, liujianfeng1994@gmail.com, dmt.yashin@gmail.com, dsimic@manjaro.org, tim@feathertop.org, marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net, alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Mon, 23 Dec 2024 06:10:21 +0000,
-Dragan Simic <dsimic@manjaro.org> wrote:
+On Sun, 22 Dec 2024 03:03:55 +0000,
+FUKAUMI Naoki <naoki@radxa.com> wrote:
 > 
-> Hello Marc,
+> Radxa E52C is a compact network computer[1] based on the Rockchip
+> RK3582 SoC:
 > 
-> On 2024-12-23 00:16, Marc Zyngier wrote:
-> > On Sun, 22 Dec 2024 18:25:02 +0000,
-> > Dragan Simic <dsimic@manjaro.org> wrote:
-> >> On 2024-12-22 10:04, Marc Zyngier wrote:
-> >> > On Sun, 22 Dec 2024 03:03:53 +0000,
-> >> > FUKAUMI Naoki <naoki@radxa.com> wrote:
-> >> >>
-> >> >> Rockchip RK3582 is a scaled down version of Rockchip RK3588(S). Apply
-> >> >> Rockchip 3588001 erratum workaround to RK3582.
-> >> >>
-> >> >> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> >> >> ---
-> >> >>  drivers/irqchip/irq-gic-v3-its.c | 3 ++-
-> >> >>  1 file changed, 2 insertions(+), 1 deletion(-)
-> >> >>
-> >> >> diff --git a/drivers/irqchip/irq-gic-v3-its.c
-> >> >> b/drivers/irqchip/irq-gic-v3-its.c
-> >> >> index 92244cfa0464..c59ce9332dc0 100644
-> >> >> --- a/drivers/irqchip/irq-gic-v3-its.c
-> >> >> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> >> >> @@ -4861,7 +4861,8 @@ static bool __maybe_unused
-> >> >> its_enable_rk3588001(void *data)
-> >> >>  {
-> >> >>  	struct its_node *its = data;
-> >> >>
-> >> >> -	if (!of_machine_is_compatible("rockchip,rk3588") &&
-> >> >> +	if (!of_machine_is_compatible("rockchip,rk3582") &&
-> >> >> +	    !of_machine_is_compatible("rockchip,rk3588") &&
-> >> >>  	    !of_machine_is_compatible("rockchip,rk3588s"))
-> >> >>  		return false;
-> >> >>
-> >> >
-> >> > Please use the relevant property for that purpose ("dma-noncoherent")
-> >> > at the distributor and ITS levels. We're not adding extra compatibles
-> >> > for this anymore, and you might as well fix the core dtsi to expose
-> >> > such property.
-> >> 
-> >> Thanks for your response.
-> >> 
-> >> After a more detailed look into drivers/irqchip/irq-gic-v3-its.c,
-> >> it seems that relying on the "dma-noncoherent" DT property may not
-> >> be equivalent to adding another compatible check.
-> > 
-> > It is. My email makes it plain what needs doing.
-> > 
-> >> Here are a few
-> >> quotations from irq-gic-v3-its.c, to illustrate this better:
-> >> 
-> >> 4746 static bool __maybe_unused its_enable_rk3588001(void *data)
-> >> 4747 {
-> >> 4748         struct its_node *its = data;
-> >> 4749
-> >> 4750         if (!of_machine_is_compatible("rockchip,rk3588") &&
-> >> 4751             !of_machine_is_compatible("rockchip,rk3588s"))
-> >> 4752                 return false;
-> >> 4753
-> >> 4754         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
-> >> 4755         gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
-> >> 4756
-> >> 4757         return true;
-> >> 4758 }
-> >> 4759
-> >> 4760 static bool its_set_non_coherent(void *data)
-> >> 4761 {
-> >> 4762         struct its_node *its = data;
-> >> 4763
-> >> 4764         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
-> >> 4765         return true;
-> >> 4766 }
-> >> 
-> >> 4814 #ifdef CONFIG_ROCKCHIP_ERRATUM_3588001
-> >> 4815         {
-> >> 4816                 .desc   = "ITS: Rockchip erratum RK3588001",
-> >> 4817                 .iidr   = 0x0201743b,
-> >> 4818                 .mask   = 0xffffffff,
-> >> 4819                 .init   = its_enable_rk3588001,
-> >> 4820         },
-> >> 4821 #endif
-> >> 4822         {
-> >> 4823                 .desc   = "ITS: non-coherent attribute",
-> >> 4824                 .property = "dma-noncoherent",
-> >> 4825                 .init   = its_set_non_coherent,
-> >> 4826         },
-> > 
-> > Nothing tickles me more than having my own work being thrown back at
-> > me.
-> 
-> I'm sorry, that wasn't my intention.  I just wanted to make
-> referencing to what I was talking about a bit easier.  Though,
-> I now see that I was wrong, and I apologize for the noise.
+> - Dual Cortex-A76 and quad Cortex-A55 CPU
 
-No need to apologise. Just understand that the way you approached the
-discussion was suboptimal. Next time, just ask how the proposed
-solution works, rather than asserting that it doesn't.
+So you have *two* big cores.
 
-Hopefully we can move on and you and Naoki can come up with a set of
-patches that does the right thing.
+> - 5TOPS NPU
+> - 2GB/4GB/8GB LPDDR4 RAM
+> - 16GB/32GB/64GB on-board eMMC
+> - microSD card slot
+> - USB 3.0 Type-A HOST port
+> - USB Type-C debug port
+> - USB Type-C power port (5V only)
+> - 2x 2.5GbE ports
+> 
+> [1] https://radxa.com/products/network-computer/e52c
+> 
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3582-radxa-e52c.dts   | 729 ++++++++++++++++++
+>  2 files changed, 730 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+
+[...]
+
+> +&cpu_b0 {
+> +	cpu-supply = <&vdd_cpu_big0_s0>;
+> +};
+> +
+> +&cpu_b1 {
+> +	cpu-supply = <&vdd_cpu_big0_s0>;
+> +};
+> +
+> +&cpu_b2 {
+> +	cpu-supply = <&vdd_cpu_big1_s0>;
+> +};
+> +
+> +&cpu_b3 {
+> +	cpu-supply = <&vdd_cpu_big1_s0>;
+> +};
+
+And yet you configure 4. If your HW only has 2 A76s, surely something
+should remove these cores for this platform rather than keep them
+around.
+
+Thanks,
 
 	M.
 
