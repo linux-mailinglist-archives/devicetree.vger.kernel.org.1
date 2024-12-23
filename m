@@ -1,297 +1,169 @@
-Return-Path: <devicetree+bounces-133509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 043AA9FAD4F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:52:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 026549FAD53
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:52:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DF5C7A1C8B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:52:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ACEC1885593
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:52:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2E77192B9D;
-	Mon, 23 Dec 2024 10:51:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D05071957E9;
+	Mon, 23 Dec 2024 10:52:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qp9sfv/6"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="n7kH3aJC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE90D2F3E
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:51:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B7E92941C
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734951106; cv=none; b=rUHqCS8wHTsdmGkBv5LnxHbSrXuPWe2IHPuvO+O3Idf4CqRfKW4CuiQgeiDA2e33s55gq/itl3b/g+oatz/EIkM9ZW/8f8z2rEC3q94Uiyk8rU1frlkS4dIeuqeZ85zX1hj273b95l481EYmC/rOFmHwayPDiQi/HYibb50tFss=
+	t=1734951169; cv=none; b=FijGaDTxXWaF76fx4o0WeBJzVf7JmuQX3lemEc1YnJ/PPJ9v4Q+Mh6L6LJll8YuMk+cAh2Mr3iIM3iQEVa5OfZDRWGEctxxjsK/AI8Arb5GkyaEwWvHoN5+kHk+IWbIayuSlhR48xJ2tLDYLid1WXvOoIWwiIQnEQ73niX9p/Jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734951106; c=relaxed/simple;
-	bh=WI7HhcfpjcBt5fd7xwBht5+u2wyeHlcBV3wwBiN6ADY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nZhYxyuaYwMQQhl8ZJnT1krwQAVSBPuOB/cz0jVpAN0f62sgRPxoDJb2JRx8MFFlS/MJmh2088EVG6Fil+q5hE78vRFTXLiTL66ld8NKIyqhufLUXsHCMA+uykpl/s1pCnbhm/FqYnBHxAgitTUi1CuSkUYMVbS9SkGr3T8k6T8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qp9sfv/6; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-303489e8775so43021531fa.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 02:51:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734951103; x=1735555903; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PysGQXFhFIaY82I36Y7kVr5DOhB1P1lEm8vqt8odrR0=;
-        b=qp9sfv/6b/TIeLFX+haIkjrV13px+eiR4So7jhnkwaonusTgvOs55+imc17hfvKUYu
-         yDxhZ7T/GPfUvAA5lJYRdYUtFf0991FdfBAJcRtxKYUC3CfSJRH0SyoycamF+gGar6DL
-         0/qs8oDbZ5hjAOGDr76BsbDDyqCS5SyKsRt2G0JD1nvjCB92oUzcKKWidq1ikYCLhwyG
-         cJeBwfQITGbFixJHPVVbHsWKEd0yjYyatqtpqrirLIpvod+APMzms6OOYlfiBWR0Xz+/
-         1T03nFfBB0QnCUp3YsLMoOnyFH1y5BVyPYAY1aRqNaxUpW8hmnFcEgLWAjGaD3xt0R3f
-         OX3A==
+	s=arc-20240116; t=1734951169; c=relaxed/simple;
+	bh=LM8OSrUOYwCNDYvcciKV3jtUOXdDHD5fBI8wPPy/WcQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RvEt9LA1Xx1Hmk776f3sptwTU5Ca5SL0L3df7CwqR26fK7ifNNhyZ5J/1i1wJeoOyMtm002Kg+csMZEgeIkJ7OI4XsXGClvk9qX+Z3JR27Mar/H6IKqNefJEDNc3HJpLc56b130knymx4JaD0xmW+9vvO5iI/zjNunTQvjX3554=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=n7kH3aJC; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN6mbOU004776
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:52:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	EMRdg/OIqQNr7xAUZNOe3kvtmJPvcVqbFUcCeJgfvLc=; b=n7kH3aJCy/Ag6ORj
+	h2VESAr8H2fIwzzlcs1NnjhUnsY2gRho6saG11RgqmNZBeTh6OfG6i7zfqHoauVA
+	gJRq71lMsvfBngJlg/KMNbqCBIhewI0SWfKqHPfUYchPyIeux1QX0+Xxr+isypQ9
+	BLKvxqwU9zKOQhN7685OWjjkIytLKTKYPjRhukmuztT3LJCaweW75OCJ8md1fRaU
+	J5I4ArYcR+BRYOP933wUpHWEwlVFcIftV3y0prSBAcaeyVQAn1Z8aif5SOKpSxaV
+	rYhIiwquAKoQcaiDs1Li7hQWp/R7le6rxwUa4kInvQfL/RsjtdjGWP8NHCao1ejJ
+	V9FiSg==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q2ww8u94-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:52:47 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d880eea0a1so14927176d6.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 02:52:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734951103; x=1735555903;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PysGQXFhFIaY82I36Y7kVr5DOhB1P1lEm8vqt8odrR0=;
-        b=kEsbKDDbocSwCFYu0BLA3FSIVNe7saedshnpAl43UdDXvzl2Mx4mzkL15/iBjdgkly
-         Urqqpouo1is6CZ+8rkSMZqYmgS/NK6kd6YvFZia5n/ioVmVY8kKpkj87116QqY8DlRVX
-         IufhgI1gLLI8gqoYLE+k7ri92CQvvG6ZB4SqKt5oB1VFn6hQiUDwpYIOFBD/m739D46j
-         5If65HHsR8swXishQa1ywSscp2TjKOtaI1gJc5Qn1hAU0O4nGamEydRHSNOvt1sjTiJ0
-         29UWuB9EAchkXO2o1r6i4DaLgpoxg7u0lfjjVARlmpMkTVt9vEtyWw2IMIx4YB0DadER
-         pS5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVlwJuoBhLWnAEuxF80rl2L1zD/5k/+St0DsiRaQYjlAyGqEGsySnP+e66EPs/qvWzrvdVP93lGutUG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTPcUDVYbziI9JgU2uk8P9ylizR8SkidvlnnLzQTmjtcgU40+k
-	dALUo6Isq9IV3QH93qSu5LdEyUwv60s2lCuN5yZZGSUA99QlkoeN/N9iM3BmJ0Q=
-X-Gm-Gg: ASbGncvvT1gAFsh35Z+9dMuIEetS0wAC15XlY5ovf1Puusg9+VfGtOoV1AlctzBEDIp
-	EI7nbzW/JJnWHBPkzp1mL3f8ev0TVwYh6tRWXO2lHMKtU/Pudy61zpBUdDKzJ7x1L6GRqOgK6j3
-	aYrXwrpjGi48Xy632hRD/mhBbAn6p8X3hoxHJFZ9HUemjUWHuDQQUnLQpXFZRf8b180X+MTqceU
-	6gGula+soK0HLbW9B8ZFPWLzeMvqChMwBLbPQPP5F3T8vPBWBhFg9ArYpJKwJojJ9kI9hZg7e6i
-	hJHL5hdlSgk611mV8SKkoYRk5Um1lK8wQfpd
-X-Google-Smtp-Source: AGHT+IG+15flgGLqsMrZ5BL4gMnDHWQG9KiSz+F4gPV4kBjlj5dHbyvd5yf8E3fFs/QR/3iviG06Bg==
-X-Received: by 2002:a05:6512:1150:b0:541:cdef:7ca3 with SMTP id 2adb3069b0e04-5422953c1a8mr3075505e87.27.1734951102906;
-        Mon, 23 Dec 2024 02:51:42 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542238216c0sm1231593e87.218.2024.12.23.02.51.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Dec 2024 02:51:42 -0800 (PST)
-Date: Mon, 23 Dec 2024 12:51:40 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, p.zabel@pengutronix.de, 
-	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, tglx@linutronix.de, vkoul@kernel.org, 
-	kishon@kernel.org, aisheng.dong@nxp.com, agx@sigxcpu.org, 
-	u.kleine-koenig@baylibre.com, francesco@dolcini.it, frank.li@nxp.com
-Subject: Re: [PATCH v7 09/19] drm/imx: Add i.MX8qxp Display Controller
- display engine
-Message-ID: <6mhlb26vdfc7v3jmb7y3tlcuo336x7vkblbkzd5sosd6urirou@bbfalnfisdij>
-References: <20241223064147.3961652-1-victor.liu@nxp.com>
- <20241223064147.3961652-10-victor.liu@nxp.com>
+        d=1e100.net; s=20230601; t=1734951166; x=1735555966;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EMRdg/OIqQNr7xAUZNOe3kvtmJPvcVqbFUcCeJgfvLc=;
+        b=eE0nEbnWSTXFQO9WCvvDNMIadwL6P3onru22WcWGHsfySUi05XcKOjretiFXwC2Vk4
+         3Tl6T86umK6SIkcQE+MhoiaZncTjLN4wqfsDlv09W5d1RhYXGjRtBP2eIRLi6oiupA7j
+         rO6OWeIGQoOMHK/nh8ibEafFEeUjITjnRWh/eGcN1sSAZF5Xb4J+Gi2mZp8kBgq/Vc7k
+         /21Ys4K8mOfiKJv15uUN6UM2hmaMAu7Kq86lv79iErwmkDQrB3MeTEWWFxzVKaUTVW3/
+         qTutbtTOrzrxnMwesSVpdb0DSnXPgzTU5yiV3xdeMRls+j6sI4xUVhI5Z67nLf0+OiNY
+         6SNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWxF3TQv0ZNZ67m3Xwa27aZtKYDR3zN3lxpHJuNFnvFi6B++MvuNufCtdabWRZKfi7xvovr+PKVWjaZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMKPZHy+mUhXmyoP2hSy8DCosJBjaARRpGzpN5/W/7r5W1WQDY
+	yUp4VfVh64YA03b6NPmBePpdy3kltgeGpryvK/1sVOApKTEIuanoEk7rsAPn0fE88eI7/wHqX3c
+	khWCsnrm7NjH9VhF3JNPJSYD25F/Jr9emY3oxNYXERJcx3y+ayRR/gU+y6Ej6
+X-Gm-Gg: ASbGncsudDdCr8trNFl77LK0mcDEXWi6/PYzlBnYQ8dQP0xrltVIoE/7Z4A9lnhtOqn
+	xe4ZKBQEBtIwffmcwaAouiv4aEsi0i8dtzos49AC7cgYkrMTVND8bODXINvwNsf7VDCS9uyCcFC
+	mVm/CS6xthxnplxc7jL5IVucFH9ok+Ou6dOnVPh7uUSxV0OsBRfz4XchlR9yY5MHxU6/FkV+BFQ
+	wVdxAfOKbm4vWMWt5qIYCZRxtS2HtB26WE3zq2VeXOjuo4NDrsAHuFvGhQURQvh1MMs5oPXH35D
+	+C/8uAM35DZoTlDm/1CSA/hfQOORz8SyVmY=
+X-Received: by 2002:a05:622a:607:b0:467:58ae:b8dd with SMTP id d75a77b69052e-46a4a8cddb2mr80286421cf.4.1734951166061;
+        Mon, 23 Dec 2024 02:52:46 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHsvK7GklQCrRrb7YKGrDVuB/HHc6ybyiUNNilnmdUhns0V0MSYgjIsvc5OHNCe50TBFwWtNA==
+X-Received: by 2002:a05:622a:607:b0:467:58ae:b8dd with SMTP id d75a77b69052e-46a4a8cddb2mr80286201cf.4.1734951165621;
+        Mon, 23 Dec 2024 02:52:45 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0eae4369sm502017266b.87.2024.12.23.02.52.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Dec 2024 02:52:45 -0800 (PST)
+Message-ID: <253e7889-bef4-453c-9f39-19ba0a6dd5b0@oss.qualcomm.com>
+Date: Mon, 23 Dec 2024 11:52:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241223064147.3961652-10-victor.liu@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 00/23] arm64: dts: qcom: Fix remoteproc memory base and
+ length
+To: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Abel Vesa
+ <abel.vesa@linaro.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Luca Weiss <luca.weiss@fairphone.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20241213-dts-qcom-cdsp-mpss-base-address-v3-0-2e0036fccd8d@linaro.org>
+ <94a6b2ba-fa52-42d0-a60d-9dc31e37057c@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <94a6b2ba-fa52-42d0-a60d-9dc31e37057c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: EBwFuaTuy5pLTYJvJ4gieGaR_IGpsPel
+X-Proofpoint-GUID: EBwFuaTuy5pLTYJvJ4gieGaR_IGpsPel
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ spamscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
+ mlxlogscore=999 clxscore=1015 suspectscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412230097
 
-On Mon, Dec 23, 2024 at 02:41:37PM +0800, Liu Ying wrote:
-> i.MX8qxp Display Controller display engine consists of all processing
-> units that operate in a display clock domain.  Add minimal feature
-> support with FrameGen and TCon so that the engine can output display
-> timings.  The FrameGen driver, TCon driver and display engine driver
-> are components to be aggregated by a master registered in the upcoming
-> DRM driver.
+On 23.12.2024 10:21 AM, Aiqun(Maria) Yu wrote:
+> On 12/13/2024 10:53 PM, Krzysztof Kozlowski wrote:
+>> Changes in v3:
+>> - Add Rb tags
+>> - Add four new patches (at the end) for sdx75 and sm6115
+>> - Link to v2: https://lore.kernel.org/r/20241209-dts-qcom-cdsp-mpss-base-address-v2-0-d85a3bd5cced@linaro.org
+>>
+>> Changes in v2:
+>> - arm64: dts: qcom: x1e80100: Fix ADSP...:
+>>   Commit msg corrections, second paragraph (Johan)
+>> - Add tags
+>> - Link to v1: https://lore.kernel.org/r/20241206-dts-qcom-cdsp-mpss-base-address-v1-0-2f349e4d5a63@linaro.org
+>>
+>> Konrad pointed out during SM8750 review, that numbers are odd, so I
+>> looked at datasheets and downstream DTS for all previous platforms.
+>>
+>> Most numbers are odd.
+>>
+>> Older platforms like SM8150, SM8250, SC7280, SC8180X seem fine. I could
+>> not check few like SDX75 or SM6115, due to lack of access to datasheets.
+>>
+>> SM8350, SM8450, SM8550 tested on hardware. Others not, but I don't
+>> expect any failures because PAS drivers do not use the address space.
+>> Which also explains why odd numbers did not result in any failures.
 > 
-> Reviewed-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v7:
-> * Add kernel doc for struct dc_drm_device. (Dmitry)
-> * Fix regmap_config definitions by correcting name field, correcting read
->   ranges and setting max_register field.
-> * Get instance numbers from device data(compatible strings) instead of OF
->   aliases.
-
-Unfortunately no. Your instances are compatible on the hardware level
-(at least they were with the previous versions, I don't think that
-there was a silicon change).
-
-> * Collect Maxime's R-b tag.
-> * Trivial tweaks.
+> In my opinion, the "QCOM_Q6V5_PAS" based Peripheral Authentication
+> platforms may have the register information completely removed.
 > 
-> v6:
-> * No change.
-> 
-> v5:
-> * Replace .remove_new with .remove in dc-{de,fg,tc}.c. (Uwe)
-> * Select REGMAP and REGMAP_MMIO Kconfig options.
-> * Fix commit message to state that display engine driver is a component driver
->   instead of a master/aggregate driver.
-> 
-> v4:
-> * Use regmap to define register map for all registers. (Dmitry)
-> * Use regmap APIs to access registers. (Dmitry)
-> * Inline some small functions. (Dmitry)
-> * Move dc_fg_displaymode() and dc_fg_panic_displaymode() function calls from
->   KMS routine to initialization stage. (Dmitry)
-> * Use devm_kzalloc() to drmm_kzalloc() to allocate dc_* data strutures.
-> * Drop unnecessary private struct dc_*_priv.
-> * Set suppress_bind_attrs driver flag to true to avoid unnecessary sys
->   interfaces to bind/unbind the drivers.
-> 
-> v3:
-> * No change.
-> 
-> v2:
-> * Use OF alias id to get instance id.
-> * Add dev member to struct dc_tc.
-> 
->  drivers/gpu/drm/imx/Kconfig     |   1 +
->  drivers/gpu/drm/imx/Makefile    |   1 +
->  drivers/gpu/drm/imx/dc/Kconfig  |   7 +
->  drivers/gpu/drm/imx/dc/Makefile |   5 +
->  drivers/gpu/drm/imx/dc/dc-de.c  | 153 +++++++++++++
->  drivers/gpu/drm/imx/dc/dc-de.h  |  62 ++++++
->  drivers/gpu/drm/imx/dc/dc-drv.c |  32 +++
->  drivers/gpu/drm/imx/dc/dc-drv.h |  29 +++
->  drivers/gpu/drm/imx/dc/dc-fg.c  | 378 ++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/imx/dc/dc-tc.c  | 142 ++++++++++++
->  10 files changed, 810 insertions(+)
->  create mode 100644 drivers/gpu/drm/imx/dc/Kconfig
->  create mode 100644 drivers/gpu/drm/imx/dc/Makefile
->  create mode 100644 drivers/gpu/drm/imx/dc/dc-de.c
->  create mode 100644 drivers/gpu/drm/imx/dc/dc-de.h
->  create mode 100644 drivers/gpu/drm/imx/dc/dc-drv.c
->  create mode 100644 drivers/gpu/drm/imx/dc/dc-drv.h
->  create mode 100644 drivers/gpu/drm/imx/dc/dc-fg.c
->  create mode 100644 drivers/gpu/drm/imx/dc/dc-tc.c
-> 
+> There are two types of Peripheral Authentication supported:
+>   "QCOM_Q6V5_MSS" (self-authenticating)
+>   "QCOM_Q6V5_PAS" (trust-zone based Authentication)
+> For "QCOM_Q6V5_PAS" based Peripheral Authentication platforms, use SCM
+> calls instead of the register-based mechanism. So it is no need to
+> expose the PUB reg addresses for those platforms.
 
-[...]
+(Unfortunately) not all boards using the same SoC have the same
+firmware stack, and it's not obvious that self-authentication is not
+useful. Plus having an accurate register space description in the
+DT is "nice".
 
-> +
-> +static int dc_de_bind(struct device *dev, struct device *master, void *data)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct dc_drm_device *dc_drm = data;
-> +	void __iomem *base_top;
-> +	struct dc_de *de;
-> +	int ret;
-> +
-> +	de = devm_kzalloc(dev, sizeof(*de), GFP_KERNEL);
-> +	if (!de)
-> +		return -ENOMEM;
-> +
-> +	de->id = (enum dc_de_id)(uintptr_t)device_get_match_data(dev);
-> +
-> +	base_top = devm_platform_ioremap_resource_byname(pdev, "top");
-> +	if (IS_ERR(base_top))
-> +		return PTR_ERR(base_top);
-> +
-> +	de->reg_top = devm_regmap_init_mmio(dev, base_top,
-> +					    &dc_de_top_regmap_config);
-> +	if (IS_ERR(de->reg_top))
-> +		return PTR_ERR(de->reg_top);
-> +
-> +	de->irq_shdld = platform_get_irq_byname(pdev, "shdload");
-
-Nit: shdload or shdld? Which one is used in the documentation?
-
-> +	if (de->irq_shdld < 0)
-> +		return de->irq_shdld;
-> +
-> +	de->irq_framecomplete = platform_get_irq_byname(pdev, "framecomplete");
-> +	if (de->irq_framecomplete < 0)
-> +		return de->irq_framecomplete;
-> +
-> +	de->irq_seqcomplete = platform_get_irq_byname(pdev, "seqcomplete");
-> +	if (de->irq_seqcomplete < 0)
-> +		return de->irq_seqcomplete;
-> +
-> +	de->dev = dev;
-> +
-> +	dev_set_drvdata(dev, de);
-> +
-> +	ret = devm_pm_runtime_enable(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dc_drm->de[de->id] = de;
-> +
-> +	return 0;
-> +}
-> +
-
-[...]
-
-> +
-> +struct dc_de {
-> +	struct device *dev;
-> +	struct regmap *reg_top;
-> +	struct dc_fg *fg;
-> +	struct dc_tc *tc;
-> +	int irq_shdld;
-> +	int irq_framecomplete;
-> +	int irq_seqcomplete;
-> +	enum dc_de_id id;
-
-Why do you need to store it? This patch makes use of it just for the
-registration.
-
-> +};
-> +
-
-[...]
-
-> +static int dc_fg_bind(struct device *dev, struct device *master, void *data)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct dc_drm_device *dc_drm = data;
-> +	void __iomem *base;
-> +	enum dc_fg_id id;
-> +	struct dc_fg *fg;
-> +	struct dc_de *de;
-> +
-> +	fg = devm_kzalloc(dev, sizeof(*fg), GFP_KERNEL);
-> +	if (!fg)
-> +		return -ENOMEM;
-> +
-> +	id = (enum dc_fg_id)(uintptr_t)device_get_match_data(dev);
-> +
-> +	base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	fg->reg = devm_regmap_init_mmio(dev, base, &dc_fg_regmap_config);
-> +	if (IS_ERR(fg->reg))
-> +		return PTR_ERR(fg->reg);
-> +
-> +	fg->clk_disp = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(fg->clk_disp))
-> +		return dev_err_probe(dev, PTR_ERR(fg->clk_disp),
-> +				     "failed to get display clock\n");
-> +
-> +	fg->dev = dev;
-> +
-> +	de = dc_drm->de[id];
-
-This depends on a particular order of component's being bound. If the
-order changes for whatever reason (e.g. due to component.c
-implementation being changed) then your driver might crash here.
-
-This applies to several other places in the driver.
-
-> +	de->fg = fg;
-> +
-> +	return 0;
-> +}
-> +
-
--- 
-With best wishes
-Dmitry
+Konrad
 
