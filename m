@@ -1,189 +1,137 @@
-Return-Path: <devicetree+bounces-133498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 576859FAD01
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:11:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5B399FAD04
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:14:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 736F41881375
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:11:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6A4718837A7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B491917E8;
-	Mon, 23 Dec 2024 10:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33E6191F9E;
+	Mon, 23 Dec 2024 10:14:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="MZiQWl3t"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JVoGV1lk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9242AF1D
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:11:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F6BA2AF1D
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734948669; cv=none; b=AKHGEtGMKK7KOsBnqiHwzdHsQl/FgOf+FAZ5STrCThSlk6L6Df09AKVewqL2meEKuRoBrnUiSM7+MhpwX+Dn0aqb20jwQmsLDzmSSqitk1x5MSzJTgyW+W7W05Bkeoc8fYXgq2B+f7epB0iRGJzvb9V1EFp1AoD8s/HZtjoTAIg=
+	t=1734948886; cv=none; b=nyb6kggP9hlr2Fg1Hl7f1ZauvpINaliUI2VT2DyvmF73gaMLFWka7hABR997g9D8PvpTWww1Xapjua56UHRjZzFEBSLY7XcPcGw/uqsEHa/Hhm8eqs9X5l6ZJd165I6TaXivtCaY+tPmhruDSJKUWCkFXSHZMX5YT4T2Ja27ReA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734948669; c=relaxed/simple;
-	bh=7wYaE2ZZrrsYxE9bwroawsnJqulIu3EbYuWXThEBEzg=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=VyRomXsM6VjeRK2R9LKcdEiFeFNh1INMk/1XxxC/zCaFVqiXPGph+fgyGXa0RvcKwzrYsiI1FiaBaAiss8VN9jvgQMTjg+layKtigcrQ0g2jWOGrxqvDOHWm2uIQqLgHPBHNG26JtR2G9SDT6gKrZydtCebeFwcXe+kLvuXNV4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=MZiQWl3t; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1734948886; c=relaxed/simple;
+	bh=4xRPh3aNEVaV86x1c+zCLrSw8fC4MnFyYvsfD2YILaA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gBlKCx73Puf9PPPoJDZlLRMol8IK6MpScCQWWtYnDaqSbDyHq90IdEv+rtJiRP4WE9kEgWubEkQ77biHsylnJkFKEuNvcEImaWjybR76UuzAn3Fv3bfxaPL15WeM4fYUzdMLfvgumOAhx6QQFLyz3ZBb+TwKnWlnml2cKBnbi/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=JVoGV1lk; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2161eb94cceso25514285ad.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 02:14:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1734948884; x=1735553684; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IYylV8X3kG4etEmNRe4Z7PF9+9a1DSK0QLEu47Tihug=;
+        b=JVoGV1lkHjiAv+xJ98dwIlmxZpmTwJzt3WHXwON+4Yga40QLOske3MWgbaX7H3thG+
+         dv3kQ6+b/yWV5o7LE+CQ66bnwHivhKc7tlQA8eEGlScUwnYP7ldd8syRO2IOrpHmIjNe
+         LPEjToZYWtF3fK2J1y+LUsLs1WJ7fOg4eh0e4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734948884; x=1735553684;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IYylV8X3kG4etEmNRe4Z7PF9+9a1DSK0QLEu47Tihug=;
+        b=wHEGkQIIBaowGshYU5uzlXDb2sCOUzbTzY2UIPqKDgDWwwc710Te18orqOeFPaBUtJ
+         KtgQTQq7/7KUMG86DcGiEWSoGPzAKNAYRYDAUnh1YXkx4iiLSGaheTUViYc0ym1v5R0e
+         LydOrKhYRsCPvZfq/lIrjBWWwu+nTiZh3+AFxhiFea963XkeUUBOZWoBsWwtNNlMug3z
+         E/VpOb35T6fIqJxNcxlZpvzCqQ18VzKDloEmjz64reL4XaCpaczNZFKoF8iVWwa0ZUv/
+         rMauo6blwZD2RxqXES0yXbss1IGOEZVXfHH8UtHcSmkX7NkgZ/I38w5NB+/F8iIy03dm
+         CujA==
+X-Forwarded-Encrypted: i=1; AJvYcCUYJ7Z/Du025yhquTzZlynQ+qLQvxWH06cxVy22BnJ8tuThNUXOLUdUIrkNo6EUWi7H7g0VUCK0sEr4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvRwq2yQBgWVkrGgEA3lcgTEpYQSavWEsvgW2IXtMXxgi5Q7Vu
+	KLjIVz89rHAYgcJG1lGNzqaBkX/woQ70n/P6Iiomk24iv0qUlDRAc79KZCBlnwlxhTJ1aKRyWVw
+	=
+X-Gm-Gg: ASbGncvkzHBP1r730Gu01pHNs2CR7yrgA1gxT0dJoGIflfUX2Ll7Hfo5AddkbGRTJQZ
+	BbaXnGNPC9pFMymOVak1DU5crCNMJN204Pk6B+V1Cbg/Zf6oDMo7hKE2TFi6CAclSiPJghmvoyA
+	9DxxREc1RBNoKpgqqnIgawe1wL0zpkfD1IK78mr2+I8SssA5u5hssYMH+a5zIPpLQOEP+goSWfl
+	Yxl2TkauiR8tdT0vcI62fRMCc8dpX32NImBHzCgFojMCDjVWK1XIWCmoYLh0pg/IKggkQvI3Pg=
+X-Google-Smtp-Source: AGHT+IGYdqL5qn01ogk9p/xgsJMLTtx9vs0gfy/O/5AgnXiCHLrB4hynGoXLmR8ilJTbmNz5Qv1kfg==
+X-Received: by 2002:a17:902:e945:b0:215:4a4e:9262 with SMTP id d9443c01a7336-219e6e8c58amr194289615ad.8.1734948884572;
+        Mon, 23 Dec 2024 02:14:44 -0800 (PST)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:4fc4:9ee5:ceb8:cb2e])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9cdde7sm70193325ad.149.2024.12.23.02.14.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Dec 2024 02:14:44 -0800 (PST)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH 1/2] dt-bindings: arm: mediatek: Drop MT8192 Chromebook variants that never shipped
+Date: Mon, 23 Dec 2024 18:14:31 +0800
+Message-ID: <20241223101434.2170166-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.47.1.613.gc27f4b7a9f-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1734948664;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=msg5fBDnvA5A5aMJjXE3flrPRKktl7CdeY8acKw/CG0=;
-	b=MZiQWl3tHRj4qFxgPuKj4evBjkB6Bg+thjSP4v2GN+xwMO1uydBc90L0CPa7r4qPLme4CB
-	DGhy1ICtlQqZba59RPyB0yUNMEazxI3vZXo+ifjifFrCZZJk7jMCFLTxm/HJVMgynwjwnI
-	HejW81XMaXOcTmXBQvt8phKf17/oAB+8sAPKFE8CwqmeM3u6bavPOU5Q63zvwADvsje+0i
-	+XIj1hg/+4ZtyMEhy4faoFWYfAyxh5T8whEcYlmsy0k30mTXHNSSxf3I5MbEOhWBsLcQAw
-	lh2CYnusld9w5koro71jsFN7R31hwWdW2OlmEEmXl2K07QCEq/YPNPlISJUifw==
-Date: Mon, 23 Dec 2024 11:11:03 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Marc Zyngier <maz@kernel.org>
-Cc: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de,
- jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com,
- liujianfeng1994@gmail.com, dmt.yashin@gmail.com, tim@feathertop.org,
- marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net,
- alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 1/3] irqchip/gic-v3: Enable Rockchip 3588001 erratum
- workaround for RK3582
-In-Reply-To: <871pxysq76.wl-maz@kernel.org>
-References: <20241222030355.2246-1-naoki@radxa.com>
- <20241222030355.2246-2-naoki@radxa.com> <86msgoozqa.wl-maz@kernel.org>
- <f93b3bfb5151e4b617b1c99c91b4956f@manjaro.org>
- <8734ifs3zl.wl-maz@kernel.org>
- <e3498590dd81b150670e36561d99b6f4@manjaro.org>
- <871pxysq76.wl-maz@kernel.org>
-Message-ID: <d9919917c5d518608a7d4e3cac8faf53@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 8bit
 
-On 2024-12-23 10:29, Marc Zyngier wrote:
-> On Mon, 23 Dec 2024 06:10:21 +0000,
-> Dragan Simic <dsimic@manjaro.org> wrote:
->> On 2024-12-23 00:16, Marc Zyngier wrote:
->> > On Sun, 22 Dec 2024 18:25:02 +0000,
->> > Dragan Simic <dsimic@manjaro.org> wrote:
->> >> On 2024-12-22 10:04, Marc Zyngier wrote:
->> >> > On Sun, 22 Dec 2024 03:03:53 +0000,
->> >> > FUKAUMI Naoki <naoki@radxa.com> wrote:
->> >> >>
->> >> >> Rockchip RK3582 is a scaled down version of Rockchip RK3588(S). Apply
->> >> >> Rockchip 3588001 erratum workaround to RK3582.
->> >> >>
->> >> >> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->> >> >> ---
->> >> >>  drivers/irqchip/irq-gic-v3-its.c | 3 ++-
->> >> >>  1 file changed, 2 insertions(+), 1 deletion(-)
->> >> >>
->> >> >> diff --git a/drivers/irqchip/irq-gic-v3-its.c
->> >> >> b/drivers/irqchip/irq-gic-v3-its.c
->> >> >> index 92244cfa0464..c59ce9332dc0 100644
->> >> >> --- a/drivers/irqchip/irq-gic-v3-its.c
->> >> >> +++ b/drivers/irqchip/irq-gic-v3-its.c
->> >> >> @@ -4861,7 +4861,8 @@ static bool __maybe_unused
->> >> >> its_enable_rk3588001(void *data)
->> >> >>  {
->> >> >>  	struct its_node *its = data;
->> >> >>
->> >> >> -	if (!of_machine_is_compatible("rockchip,rk3588") &&
->> >> >> +	if (!of_machine_is_compatible("rockchip,rk3582") &&
->> >> >> +	    !of_machine_is_compatible("rockchip,rk3588") &&
->> >> >>  	    !of_machine_is_compatible("rockchip,rk3588s"))
->> >> >>  		return false;
->> >> >>
->> >> >
->> >> > Please use the relevant property for that purpose ("dma-noncoherent")
->> >> > at the distributor and ITS levels. We're not adding extra compatibles
->> >> > for this anymore, and you might as well fix the core dtsi to expose
->> >> > such property.
->> >>
->> >> Thanks for your response.
->> >>
->> >> After a more detailed look into drivers/irqchip/irq-gic-v3-its.c,
->> >> it seems that relying on the "dma-noncoherent" DT property may not
->> >> be equivalent to adding another compatible check.
->> >
->> > It is. My email makes it plain what needs doing.
->> >
->> >> Here are a few
->> >> quotations from irq-gic-v3-its.c, to illustrate this better:
->> >>
->> >> 4746 static bool __maybe_unused its_enable_rk3588001(void *data)
->> >> 4747 {
->> >> 4748         struct its_node *its = data;
->> >> 4749
->> >> 4750         if (!of_machine_is_compatible("rockchip,rk3588") &&
->> >> 4751             !of_machine_is_compatible("rockchip,rk3588s"))
->> >> 4752                 return false;
->> >> 4753
->> >> 4754         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
->> >> 4755         gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
->> >> 4756
->> >> 4757         return true;
->> >> 4758 }
->> >> 4759
->> >> 4760 static bool its_set_non_coherent(void *data)
->> >> 4761 {
->> >> 4762         struct its_node *its = data;
->> >> 4763
->> >> 4764         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
->> >> 4765         return true;
->> >> 4766 }
->> >>
->> >> 4814 #ifdef CONFIG_ROCKCHIP_ERRATUM_3588001
->> >> 4815         {
->> >> 4816                 .desc   = "ITS: Rockchip erratum RK3588001",
->> >> 4817                 .iidr   = 0x0201743b,
->> >> 4818                 .mask   = 0xffffffff,
->> >> 4819                 .init   = its_enable_rk3588001,
->> >> 4820         },
->> >> 4821 #endif
->> >> 4822         {
->> >> 4823                 .desc   = "ITS: non-coherent attribute",
->> >> 4824                 .property = "dma-noncoherent",
->> >> 4825                 .init   = its_set_non_coherent,
->> >> 4826         },
->> >
->> > Nothing tickles me more than having my own work being thrown back at
->> > me.
->> 
->> I'm sorry, that wasn't my intention.  I just wanted to make
->> referencing to what I was talking about a bit easier.  Though,
->> I now see that I was wrong, and I apologize for the noise.
-> 
-> No need to apologise. Just understand that the way you approached the
-> discussion was suboptimal. Next time, just ask how the proposed
-> solution works, rather than asserting that it doesn't.
+The Hayato rev5 sku2 and Spherion rev4 variants were designed in
+anticipation of shortages of the headphone codec. This never happened.
+As far as our records show: the variants were never produced or
+shipped, and no such devices were deployed to any lab.
 
-Thanks.  Indeed, the way I approached it was waaay suboptimal.
-I just wanted to clarify that it was an honest mistake resulting
-from not looking at the code carefully enough, nothing else.
+Drop them.
 
-> Hopefully we can move on and you and Naoki can come up with a set of
-> patches that does the right thing.
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 11 -----------
+ 1 file changed, 11 deletions(-)
 
-Of course.  I've already prepared a small patch series that,
-hopefully, does the right thing when it comes to the Rockchip
-3588001 errata.  I'll submit it soon, after I check the patches
-a bit further.
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index b1687bbc57c2..2336070abaf4 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -375,12 +375,6 @@ properties:
+           - const: google,hayato-rev1
+           - const: google,hayato
+           - const: mediatek,mt8192
+-      - description: Google Hayato rev5
+-        items:
+-          - const: google,hayato-rev5-sku2
+-          - const: google,hayato-sku2
+-          - const: google,hayato
+-          - const: mediatek,mt8192
+       - description: Google Spherion (Acer Chromebook 514)
+         items:
+           - const: google,spherion-rev3
+@@ -389,11 +383,6 @@ properties:
+           - const: google,spherion-rev0
+           - const: google,spherion
+           - const: mediatek,mt8192
+-      - description: Google Spherion rev4 (Acer Chromebook 514)
+-        items:
+-          - const: google,spherion-rev4
+-          - const: google,spherion
+-          - const: mediatek,mt8192
+       - items:
+           - enum:
+               - mediatek,mt8192-evb
+-- 
+2.47.1.613.gc27f4b7a9f-goog
+
 
