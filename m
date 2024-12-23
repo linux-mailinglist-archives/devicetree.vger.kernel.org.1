@@ -1,48 +1,72 @@
-Return-Path: <devicetree+bounces-133628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DCF99FB0F5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:59:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDCB19FB12B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 17:03:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 171E77A1D69
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:59:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43A05167708
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 825F51AF0B8;
-	Mon, 23 Dec 2024 15:59:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320AD1B21B4;
+	Mon, 23 Dec 2024 16:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hc5WpQ6V"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="lnUHAG41"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A6D13FEE;
-	Mon, 23 Dec 2024 15:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E2B1188006
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 16:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734969541; cv=none; b=gYNwqA1GWBEzGCt5Mk3Hg3xoO2LcUO7gMqeKHUkIUK5k5/QXz3DCJFVrTmvq5id24ytbsi3W4Lq2tUsES376pBF7lgNOw/+fstgM8nsH5S8eVjYoclu4QAKSKp/7teSiGibemzPK4Wtc8IQECvfVaRyOFh4U1Ts25eaS4KBYx3U=
+	t=1734969758; cv=none; b=lLD+AgWx/bhJG8vmxrPh2wJDm8dbmds+0u2BKtR8YrjcctUfar9w+DBbIaw6BgG2hwFy27uJHukuAiuDVt1u+wq0ssSb/7BePVoREDQIBHKbcvPQLoodcgq3y76nAwT/t45kz9OeceyZ3EHqaZa1AGgNGc+11OiMqNO9r6jGUmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734969541; c=relaxed/simple;
-	bh=IMhhqcikriEhghtj/Hx/wU1Ar/3/aaUENB36dKe9Uac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=opmknrgS3uaOMThH9QE8xS+lLNiERIllPNmxBKIQj1UwKbfBuqkbRUGzFzVguYg7aP2fNcKxMcq9tSSnnoDehMbw9ZqDIRRgZuGrgWLANemr9Q377E055KNHfZ66ef2XB/+QTFdfyKaWA6/5MjDi6LoumYdxqzORiMlbxjWpd9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hc5WpQ6V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D6E5C4CED3;
-	Mon, 23 Dec 2024 15:58:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734969540;
-	bh=IMhhqcikriEhghtj/Hx/wU1Ar/3/aaUENB36dKe9Uac=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Hc5WpQ6VAEQeB9w1r6KhyAWUOBNua6t529xu+9j4wBbp0jXGjBLRfxAG/Ot4nTkDh
-	 +tHsMsvG7JIjBFslmScvZKLzd5jW24S274uyf6KeGEyGPnsLBiKEWxaTZiixJrYS01
-	 AbnrgAgqSENEDEBrIm70L1j3aVQ3sU1t0uYivDnvs3CtcKUek47IXPRAMwcpxsRjmO
-	 BKWVfUNpmd/uGSu7ahd1+flb+1jyxfoQRt0aUZlpOyUpUgkceWrBuTRySHxm3iqKNn
-	 DvnrTFVcerpP3gnpIKf/y6P0dGCHLd3Z7qKnIWtebrVS6ccZKRVyRO6Vr7NmdG6Alp
-	 M9wT0gYXU5DYw==
-Message-ID: <45ef0069-5414-49a2-b7e4-4b0c70c0d1a4@kernel.org>
-Date: Mon, 23 Dec 2024 16:58:55 +0100
+	s=arc-20240116; t=1734969758; c=relaxed/simple;
+	bh=qhi03LMsVW4D9q4y026npXfkqwPAwt76OW4tM3c3vvg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=LSnavpoZOM8Sc8BgVqa55XggZDz5ip3fSx8tRVe6p3FiJzJY1E0NNPHh+zH/9ANX1rDwqZ+LonT6Sja1/AwCkoIX6Baq3wzWohdUjWC4b9SpXvHpXiWrtYswn84hSR1+yeH+Rdi2Cjw5eNGaoPBibRxdF5NWxFOornFkuAN6R3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=lnUHAG41; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20241223160233euoutp02a50f7568e93ec232ca7f43bfe329b0f2~T2cxxjonf1437814378euoutp02k
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 16:02:33 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20241223160233euoutp02a50f7568e93ec232ca7f43bfe329b0f2~T2cxxjonf1437814378euoutp02k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1734969753;
+	bh=X0CXheQbvp5Sphsquee3Aj3fdrNQ/Cg7QPvl2PzSmdk=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=lnUHAG41yUYwDKhqNDeoMS5K6PSFK6/gIeEeInPvbAtzAntg49AFUqR0LZf2+bw3k
+	 U5PzXx3mtcp4nhQ4AIqoKvHaUtwDQdXJi6GfRqtirsckN16xfP4JSqNIFvOeOrmlri
+	 HfVugz0X6yPoxJ0XEbnhwSlDJRW+PGXYA+ejGbu0=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20241223160233eucas1p1100f123c51fa8c93959d7d47e12d91a3~T2cxQ-7GT1283112831eucas1p1H;
+	Mon, 23 Dec 2024 16:02:33 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id 63.AB.20397.89989676; Mon, 23
+	Dec 2024 16:02:32 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20241223160232eucas1p25c0b7b3dfcf3f526d97fefd111c48ea8~T2cwvb25U1457614576eucas1p2n;
+	Mon, 23 Dec 2024 16:02:32 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20241223160232eusmtrp20225f35ca225352f0dc365b4811c65de~T2cwuYqbV0126101261eusmtrp2T;
+	Mon, 23 Dec 2024 16:02:32 +0000 (GMT)
+X-AuditID: cbfec7f5-e59c770000004fad-a5-67698998c9aa
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms1.samsung.com (EUCPMTA) with SMTP id 79.1A.19920.89989676; Mon, 23
+	Dec 2024 16:02:32 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20241223160230eusmtip27e32a14378ca33e77a1600e122b45abf~T2cvVXHIw1370013700eusmtip2i;
+	Mon, 23 Dec 2024 16:02:30 +0000 (GMT)
+Message-ID: <3b2fd94a-2b4d-4bdb-9266-203a09369982@samsung.com>
+Date: Mon, 23 Dec 2024 17:02:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,125 +74,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: google: add gs101-raven and
- generic gs101-pixel
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Griffin
- <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org>
- <20241220-gs101-simplefb-v2-1-c10a8f9e490b@linaro.org>
- <d0c1511f-b052-4690-aefb-3fb41e1e5875@kernel.org>
- <cfdc5b1b03140e3d2ce3fb58e8b342dc2ac06d04.camel@linaro.org>
- <d960e22e-01ad-406d-9616-d45edbef0232@kernel.org>
- <9507951f9ce4ee9d8c553d8964f00ef217f8ed1d.camel@linaro.org>
- <c2efb6c7-4a0b-4078-b0df-6e646eb88906@kernel.org>
- <34f62a976e4dd2d56eb34e4efa987ddc3e2f31ca.camel@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [RFC PATCH v2 03/19] dt-bindings: power: thead,th1520: Add
+ support for power domains
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: guoren@kernel.org, linux-riscv@lists.infradead.org, conor+dt@kernel.org,
+	krzk+dt@kernel.org, sboyd@kernel.org, mripard@kernel.org,
+	jassisinghbrar@gmail.com, dri-devel@lists.freedesktop.org,
+	m.szyprowski@samsung.com, palmer@dabbelt.com, jszhang@kernel.org,
+	aou@eecs.berkeley.edu, airlied@gmail.com, ulf.hansson@linaro.org,
+	frank.binns@imgtec.com, linux-pm@vger.kernel.org, paul.walmsley@sifive.com,
+	devicetree@vger.kernel.org, p.zabel@pengutronix.de,
+	linux-clk@vger.kernel.org, matt.coster@imgtec.com, mturquette@baylibre.com,
+	linux-kernel@vger.kernel.org, drew@pdp7.com, tzimmermann@suse.de,
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, wefu@redhat.com
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <34f62a976e4dd2d56eb34e4efa987ddc3e2f31ca.camel@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <173496697225.830201.2249501258776075204.robh@kernel.org>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa1BUZRjH5z3XZZvV40LxRhdyGxxABKl0XrIhm8I50wW1D1GW5gZnFhIW
+	3AUtMoFEFFhQScpOm5BhIMPKSAvCwooty+5yTdTAHGDXxIklLgPLnRFyOVR8+z2X93n+/2de
+	ES6tp3xEccpkTqWUx8soMVFjmftt07nsOMXmTu0WZOu5gKHqBZ5GFcZODBWZO0nUf1OPodtT
+	YxS6/OAGjQaNGQTqLvuBRscslRRy8v0UGtf0k+iWQUshV54ZoBpXJoV05j4a/TheTaCSWgNA
+	Wdk/k6irNQL19dsI5LylwVEWvxYtNdTSaLH7CoG+H22kkX74DImsuiiU2XiW2P4MO3bnOM0O
+	O50E23RykmaN08UEW8f30aymrh2wVeXZFNvb3UCx51t2s/ZcK8b+UpLGZuosGHvq4WZ27Nrv
+	FJuvLwfszWM99C7pHvErMVx83CFOFRK+XxybN/03ljTl8Vnu/V4iHZwS5QCRCDIvwcLrO3OA
+	WCRlygCsf9BICcEkgOnFLloIXADOzrVjOcBj+UWuvpJys5QpBdBcIBeaRgA0PJwn3WMlTDgc
+	vKFw9xCMH7TlmnE3S5h1sOW7AcLNjzO+0H73HO1mTyYaVp7NBG72YgJg66QRd8/EmUskPH6p
+	f7mAM97w7kDRsgiKeQE6SotIN3swO2DJQhMu9PjCqyPa5ceQ6RLDdqeOFFS/Aa/9xa+wJxyy
+	6mmBn4ZLdUUrzhKho3oCF/gIrNNYV3gb7O2cp9zG8EfqKg0hQvo1qHdOkMIZ18A7I+sECWtg
+	Qc23uJCWwJNZUqF7AyzU5P23tLOsBjsNZPyqq/CrTPKrzPD/7y0GRDnw5lLUCQpO/aKSOxys
+	lieoU5SK4OjEhCrw6H+3LVqnakHZ0HiwCWAiYAJQhMu8JCZpnEIqiZF/nsqpEj9WpcRzahN4
+	SkTIvCV+Mb6clFHIk7kDHJfEqf6tYiIPn3TMrys/wvpeWEmb7sjo2o8m8rf8eVvTkmrLDGoa
+	zC947kQaitgxG3nhXYePNOt84VVLwOWXQ/ZI7mX0zMw6ftppcFy/uCllkB2OtIV4LrXbxnsK
+	S2P837FG2E2/NtfbtVFbvyz8IlB7MHwD65Ad3QiebEvfV5ynnPewxDokOv/3h1I73vQ7msZP
+	++6aGchYfH3A79mwetw4FpYMdMoPPyAOPr+V7/i6+ZuNprflYOpVw955ShH+RJXyLbb7jKWR
+	DDicZPXx3/vYPs/QmNb9urYOo/2r7QtB09si7x8Y/bSioePE7uhxr09cXLMk9I97c+RpriLQ
+	bL14qG+9dcYr6EqUKkKTJiPUsfLQQFyllv8DryTP4U4EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPKsWRmVeSWpSXmKPExsVy+t/xe7ozOjPTDc5cEbU4cX0Rk8XW37PY
+	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWXzsucdq
+	cXnXHDaLz71HGC22fW5hs1h75C67xcKPW1ksluzYxWjR1rmM1eLiKVeLu/dOsFi8vNzDbNE2
+	i9/i/54d7Bb/rm1ksZj9bj+7xZY3E1ktjq8Nt2jZP4XFQdbj/Y1Wdo83L1+yeBzu+MLusffb
+	AhaPnbPusnv07DzD6LFpVSebx51re9g85p0M9LjffZzJY/OSeo+WtceYPPr/Gni833eVzaNv
+	yypGj0vN19kDhKL0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLL
+	Uov07RL0Mnq/vWYq+MpZ0f34DksDYz9HFyMnh4SAiUT3lvVsXYxcHEICSxklDq88yQKRkJG4
+	1v0SyhaW+HOtC6roNaPEzJYFrF2MHBy8AnYSLy6kg9SwCKhKnOg+wgxi8woISpyc+QSsV1RA
+	XuL+rRnsILawQLLE+iktjCC2iICmxKkve5lBZjILrGSVuLd6CzvEglYmiZn/poNVMQuIS9x6
+	Mp8JxGYTMJJ4sHw+K4jNKeAmseT3YWaQI5gF1CXWzxOCKJeX2P52DvMERqFZSO6YhWTSLISO
+	WUg6FjCyrGIUSS0tzk3PLTbUK07MLS7NS9dLzs/dxAhMWduO/dy8g3Heq496hxiZOBgPMUpw
+	MCuJ8B4SykwX4k1JrKxKLcqPLyrNSS0+xGgKDIuJzFKiyfnApJlXEm9oZmBqaGJmaWBqaWas
+	JM7rdvl8mpBAemJJanZqakFqEUwfEwenVAPTlNA2xuIso/iPN55uSW2ZPv1s+VKPA1dOfr5s
+	yFn/sfh3mF3H3c1nXU+0OnAUZsw59vX008ePZTK/cqtcyI2+Mbluk/nEg+5ulrX6es/NJDbL
+	pWtt1zefU7vt1cR7D3xk7R6uarFb4PLZtTFq9b4UoWyRCVP5D3X9+yypmLTJKax+jqd66eKJ
+	z6VCeo1cyoRCIrwSCjivRHhf74+8phjcNe/BNvvzL10WxRza57Fy5WLht87rnsp9D4oNipVc
+	f70n+/bJrId/Xi9Z7fvPIctPc0uxH19X2YVXImcOLmCJFf615ODZF6ZLhCMt8plnHXiWv30G
+	h8Wm3lfnbq/LSfL/vFnbr8Vo1Zc1rBmvzp/wUmIpzkg01GIuKk4EAKBXf/PiAwAA
+X-CMS-MailID: 20241223160232eucas1p25c0b7b3dfcf3f526d97fefd111c48ea8
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20241223125604eucas1p26b870756eeaf2a5666b70de3f7554c13
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20241223125604eucas1p26b870756eeaf2a5666b70de3f7554c13
+References: <20241223125553.3527812-1-m.wilczynski@samsung.com>
+	<CGME20241223125604eucas1p26b870756eeaf2a5666b70de3f7554c13@eucas1p2.samsung.com>
+	<20241223125553.3527812-4-m.wilczynski@samsung.com>
+	<173496697225.830201.2249501258776075204.robh@kernel.org>
 
-On 23/12/2024 16:54, André Draszik wrote:
-> On Mon, 2024-12-23 at 16:39 +0100, Krzysztof Kozlowski wrote:
->> On 23/12/2024 16:31, André Draszik wrote:
->>> On Mon, 2024-12-23 at 15:14 +0100, Krzysztof Kozlowski wrote:
->>>
->>>>
->>>> You now say that these are valid boards:
->>>>
->>>> compatible = "google,gs101", "google,gs101";
->>>
->>> Sorry, I don't see how (apart from the fact that dtbs_check flags
->>> non-unique elements anyway). The result of the patch is:
->>>
->>>         minItems: 2
->>>         maxItems: 3
->>>         items:
->>>           enum:
->>>             - google,gs101-oriole
->>>             - google,gs101-raven
->>>             - google,gs101-pixel
->>>             - google,gs101
->>
->> The problem is this line. Although entire concept of flexible list is
->> neither need nor ever recommended.
+
+
+On 12/23/24 16:16, Rob Herring (Arm) wrote:
 > 
-> All of this was inspired by Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-> I guess not a good example in this case...
-
-These are SoMs with multiple revisions, so quite a different case. Plus
-there is actual reason from Michal for doing that explained in commit msg.
-
+> On Mon, 23 Dec 2024 13:55:37 +0100, Michal Wilczynski wrote:
+>> Introduce a device tree binding for the T-HEAD TH1520 power domain
+>> controller. This allows devices to specify their power domain
+>> dependencies, thereby improving power management for subsystems such as
+>> the GPU. The new YAML schema describes the power domain node for the
+>> T-HEAD TH1520 SoC.
+>>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  .../bindings/power/thead,th1520-power.yaml    | 42 +++++++++++++++++++
+>>  MAINTAINERS                                   |  1 +
+>>  .../dt-bindings/power/thead,th1520-power.h    | 18 ++++++++
+>>  3 files changed, 61 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/power/thead,th1520-power.yaml
+>>  create mode 100644 include/dt-bindings/power/thead,th1520-power.h
+>>
 > 
->>
->>>         allOf:
->>>           - contains:
->>>               const: google,gs101-pixel
->>>           - contains:
->>>               const: google,gs101
->>>
->>> So one can not have 'google,gs101' twice. And if I only add
->>
->> Still can be, but indeed not with my example but:
->>
->> "google,gs101", "google,gs101", "google,gs101-pixel";
+> My bot found errors running 'make dt_binding_check' on your patch:
 > 
-> This example doesn't pass irrespective of binding, because
-> dtbs_check will complain about non-unique elements.
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/power/thead,th1520-power.example.dtb: /example-0/firmware/aon: failed to match any schema with compatible: ['thead,th1520-aon']
 
-Ah, cool, I wasn't really sure. I checked only dt_binding_check on some
-example and there it was not spotted.
-
-
-Best regards,
-Krzysztof
+It is introduced in the next commit in this patch series.
 
