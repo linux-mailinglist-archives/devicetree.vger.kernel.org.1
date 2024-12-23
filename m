@@ -1,447 +1,141 @@
-Return-Path: <devicetree+bounces-133543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BDC59FAE0D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 13:00:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9309FAE12
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 13:00:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E77E6164318
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:00:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE5C47A175E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8533D1A8F62;
-	Mon, 23 Dec 2024 12:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E3D9199956;
+	Mon, 23 Dec 2024 12:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AauwYI7r"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pzND3xLs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4340719A2B0;
-	Mon, 23 Dec 2024 12:00:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6335190471
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 12:00:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734955214; cv=none; b=CX8bbCbuIx17p1OeK14/T8bb2U3TfAQr2ODJS3LkLaU8pjzTP2NQvJTerJ4ISB3YEeLHgAk8+lDGcoFurylCvXVRk7y9Mw+f/6xAjSS1ERjdQnB1vIKzEW+D54Dgi49pjQYSPT0MW96afW6j8M5dHtGrJ/JuK5ckplAnubTC0JE=
+	t=1734955232; cv=none; b=X5cs6no9forrnM3CiSj+lLWMaJSo6S+fxwR8fBl7WadprgQUkZefN05qDgstbu1fBv3iFBOMoeUckQqNlRYP598XPAi9aRqIm0iQweFPk7t+1EM3KUTvGAZPqSZzk4jDlfjR5L0U3HOAzA0mJs6dC73aHwvQITYQjwZho8kwJEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734955214; c=relaxed/simple;
-	bh=eMBtvlonX6DFqouKQusWoFxDUDng4gku7MeD9UIBZ8Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rLDB+8YS60pFWOTnDqpQZKHIHa37SV82QLcbxPXhoNfNoV+TvhP9rAXw+A8OcxFgFgn5YTW3U2aMAW9qna9qj6FytSL2x3/nHRYaPNXVLT8sKmn0rE6p4e0jTnyU5SBLWyCVjOd8S6U2uOEyqAL3EfIZDEPkXXxozxQzeQ2bl+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AauwYI7r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD743C4CED3;
-	Mon, 23 Dec 2024 12:00:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734955213;
-	bh=eMBtvlonX6DFqouKQusWoFxDUDng4gku7MeD9UIBZ8Q=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=AauwYI7rgHHJI3jf+lci6S7Wu+tcW6TJE5YM1FOIq4Ic/KmaoRseGUm+NZ9Lw3iWe
-	 uUgVa/SQyn/VwhOKc0Ng9+zUnMIICb/qDlKHca4iLra7XBFtvyRHnMBh97f4DbH4Zf
-	 5m+NDTJU1BXlfeV+PWSF/iYCcL4+S5/EQit/d4nTrjPJOYbXtHcflbMY8eIwn8qcY+
-	 s8wzttZk0RbCROaFe5OI9HupeZfzUjEukKTDyu17WsvexEgifAQ8ZIayU2r2RNxqkr
-	 AYXa8ah0ICKCYuKGi/Ip4reY09+bG1yK4FNp8hiLJLyeeQaoaVNXx5rsbLS0LDoPUo
-	 pWvHs2FdN4MSw==
-Date: Mon, 23 Dec 2024 12:00:05 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH v9 8/8] iio: adc: ad4851: add ad485x driver
-Message-ID: <20241223120005.1bc9a208@jic23-huawei>
-In-Reply-To: <20241220120134.42760-8-antoniu.miclaus@analog.com>
-References: <20241220120134.42760-1-antoniu.miclaus@analog.com>
-	<20241220120134.42760-8-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1734955232; c=relaxed/simple;
+	bh=QV0VId4XPnG7jXmecEC7q4/L14x/wV2XNPe87e8Gr7c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WZQ+TA4hUbd9m0HfH2csVZgRehBPKoVnXJINlJpUQkpIDQx8S41cEpgm+AX9ScMpa9XvAveMUoS/oNFkIaki0e16qDhfGSTv5cH+OV7wIepg0aE/OrbUN3QMv/BbKIwCCVsbgf0D6Tp00kkbEHe4U6pW39hjsmRNKAaflKLbbDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pzND3xLs; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BNBhlG4026519
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 12:00:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	QV0VId4XPnG7jXmecEC7q4/L14x/wV2XNPe87e8Gr7c=; b=pzND3xLs1mZbBQfL
+	LFyQ0K5LxvUjhVkWgE0R2lvPpY+y2XbReqJcUcZ1qNSrkyqLfnu3g7uPzF1s46sI
+	N9N+eFbR/xLK6kHCZnIN3loij25D8AKH+9W4gNhIdiWZR7MZ1ONbpS//yNq8F+Nn
+	O49TiQZz69mEev4aJ4WL0uPxWOFMviQ/1D8aioF27Q8WIDDJWLiFzuft92DCPqSD
+	MXDrJlYJ6yfzDrmKejUUkjSpKhDL83UO4eMJ+Um+P6VrA68XCwNOGaZ4Fm+SUvJN
+	3VgBoID+wC2XZt6L6R2nRMI9hEiIWcIZPK+ylQ4hyBu80mBVSi6L5V+hTKXSH0eT
+	IIkCJQ==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q77rg0xp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 12:00:29 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6d8f77bf546so14405516d6.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 04:00:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734955229; x=1735560029;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QV0VId4XPnG7jXmecEC7q4/L14x/wV2XNPe87e8Gr7c=;
+        b=KONyS2QVpKM9sxMQIs8r3p4iQsxbpsvfbs7BiUBd8Ml8WWBCKB4+eKalr5YIIFRydE
+         j4QgfDnnhuaaoDz/wFTHw/lKV6Fn6xmAxTku+kVUEaQzv5cLHhDSfHJWxMVSBvSjtpWh
+         gJgMF5xdQ+O6EjYcSmBcgu9k5ptGqyKOgbUjlPzl9gaR2/9aPzu/gXV8TOMUS+3Nj10c
+         MvH5e7xkjOCdei0iHtLW6Vef1+JHRD1ylm4GZYnkGX9nQfZkGQ2Zb2ZJHIyqxT5tdqnP
+         kTQwVDkU6CBdP6s5tECmYZmMUPTP+3Xo9l/GOwddOLWmUrO7Q2oX//cnhtXlfJg7QF/F
+         Frcw==
+X-Forwarded-Encrypted: i=1; AJvYcCWxNqZUWTth8jwLQcbJtMekyfexPRMIQml2vuOvteRlEn5cz26GU5wewzmSGCOaQMqx8c887G5Zy5U8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQh4VRSrDSzSPsaftVJv2x0MWGoy5B9zAL2IsiGvaHRwB0wF7O
+	2qMosmA/tlRGAEVFCXWdxx1Q0QHzNm6xIw6OpNKLNRcHUoy5F0USK2gEcZYUYw9iC/+JYccAQF7
+	Kt+GDs6b3gYgsh1n70hQ0L8fQlHyGMSYXExeKiyofHstULm3+PFQnyDarCYZF
+X-Gm-Gg: ASbGncsxAWMsZ8HfESxOtoCHuW/PW/GrXIKc8A/8WrAeA8DkpDArerrnoefyopDreaP
+	VvcqN9IvA/bnQ99CM21htcUPrNtaJxcU0MVYufxvDNUeSmgaJzCreM4V+rBRrqeJI802T2NOgew
+	r9Y5p5aJAXRInmC1OIZzxa3YAB0XXRRdnLPcyn1tYI/rQul94e4BUDDyxJUUfrxDKYH96FOoK1y
+	W32bZS1BljQw9ESX45nT2qX2c6iW5AorUGtIJpCLhdnAMlwJwxmN1hbu9Nz0kl3ZvpPMIkHwG7x
+	YbiUh1bQwb5hqTwQExCSa08okLA3j2G4tdc=
+X-Received: by 2002:a05:6214:5f06:b0:6d8:a90b:1563 with SMTP id 6a1803df08f44-6dd2332ecfemr68471066d6.5.1734955228953;
+        Mon, 23 Dec 2024 04:00:28 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE07MyBvqIKUXBpiZsouFYlc+nl1/rZ97d+byZH8jLrT56I5P2mnvuDGR3tDVnKH0tgCJCmCA==
+X-Received: by 2002:a05:6214:5f06:b0:6d8:a90b:1563 with SMTP id 6a1803df08f44-6dd2332ecfemr68470616d6.5.1734955228521;
+        Mon, 23 Dec 2024 04:00:28 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80665253dsm4826443a12.0.2024.12.23.04.00.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Dec 2024 04:00:27 -0800 (PST)
+Message-ID: <e5dd4552-224f-45f7-b5f1-a6a5c695a268@oss.qualcomm.com>
+Date: Mon, 23 Dec 2024 13:00:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 5/5] arm64: dts: qcom: Add CTCU and ETR nodes for
+ SA8775p
+To: Jie Gan <quic_jiegan@quicinc.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+ <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20241210031545.3468561-1-quic_jiegan@quicinc.com>
+ <20241210031545.3468561-6-quic_jiegan@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241210031545.3468561-6-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: e-DXjMHn45btTrCT1-NkZhlBxqp_QQ2a
+X-Proofpoint-ORIG-GUID: e-DXjMHn45btTrCT1-NkZhlBxqp_QQ2a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ bulkscore=0 impostorscore=0 mlxscore=0 adultscore=0 priorityscore=1501
+ clxscore=1015 lowpriorityscore=0 mlxlogscore=687 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412230107
 
-On Fri, 20 Dec 2024 14:01:34 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+On 10.12.2024 4:15 AM, Jie Gan wrote:
+> Add CTCU and ETR nodes in DT to enable related functions.
 
-> Add support for the AD485X a fully buffered, 8-channel simultaneous
-> sampling, 16/20-bit, 1 MSPS data acquisition system (DAS) with
-> differential, wide common-mode range inputs.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> changes in v9:
->  - add back diff-channels property parsing.
->  - shrink code in one line where possible.
->  - use struct device *dev = &st->spi->dev
->  - split elements that are assigned from those which aren't in the places
->    mentioned by the review.
->  - avoid code duplication on num_channels
->  - parse bipolar and diff-channels properties separately.
->  - update comment on parse_channels
->  - use devm_regulator_get_enable_optional for vrefbuf and vrefio
->  - add devm_add_action_or_reset(&st->spi->dev, ad4851_pwm_disable, st->cnv)
->    after the pwm is turned on.
+subject:
+arm64: dts: qcom: sa8775p: Add CTCU and ETR nodes
 
-A few comments inline.  The one about checking for existence of voltage
-regulators is (I think) a bug. The rest more superficial stuff given
-you are going to be doing a v10.  I might otherwise have just tweaked
-some of these whilst applying.
+with that fixed:
 
-Thanks,
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Jonathan
-
-
-> diff --git a/drivers/iio/adc/ad4851.c b/drivers/iio/adc/ad4851.c
-> new file mode 100644
-> index 000000000000..c5525433990c
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad4851.c
-> @@ -0,0 +1,1290 @@
-
-...
-
-
-> +static void __ad4851_get_scale(struct iio_dev *indio_dev, int scale_tbl,
-> +			       unsigned int *val, unsigned int *val2)
-> +{
-> +	const struct iio_scan_type *scan_type;
-> +	unsigned int tmp;
-> +
-> +	scan_type = iio_get_current_scan_type(indio_dev, &indio_dev->channels[0]);
-> +
-> +	tmp = ((unsigned long long)scale_tbl * MICRO) >> scan_type->realbits;
-
-u64 for the cast so we know how big it is.
-
-
-> +	*val = tmp / MICRO;
-> +	*val2 = tmp % MICRO;
-> +}
-> +
-> +static int ad4851_scale_fill(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4851_state *st = iio_priv(indio_dev);
-> +	unsigned int i, val1, val2;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ad4851_scale_avail_se); i++) {
-> +		__ad4851_get_scale(indio_dev, ad4851_scale_avail_se[i], &val1, &val2);
-> +		st->scales_se[i][0] = val1;
-> +		st->scales_se[i][1] = val2;
-> +	}
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ad4851_scale_avail_diff); i++) {
-> +		__ad4851_get_scale(indio_dev, ad4851_scale_avail_diff[i], &val1, &val2);
-> +		st->scales_diff[i][0] = val1;
-> +		st->scales_diff[i][1] = val2;
-> +	}
-> +
-> +	return 0;
-> +}
-
-
-...
-
-> +static int ad4851_get_calibscale(struct ad4851_state *st, int ch, int *val, int *val2)
-> +{
-> +	unsigned int reg_val;
-> +	int gain;
-> +	int ret;
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	ret = regmap_read(st->regmap, AD4851_REG_CHX_GAIN_MSB(ch), &reg_val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	gain = reg_val << 8;
-> +
-> +	ret = regmap_read(st->regmap, AD4851_REG_CHX_GAIN_LSB(ch), &reg_val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	gain |= reg_val;
-> +
-> +	*val = gain;
-> +	*val2 = 32768;
-Why not use IIO_VAL_FRACTIONAL_LOG2;  Then you can make the power of 2 explicit.
-
-> +
-> +	return IIO_VAL_FRACTIONAL;
-> +}
-
-...
-
-> +
-> +static int ad4851_set_calibbias(struct ad4851_state *st, int ch, int val)
-> +{
-> +	u8 buf[3] = { 0 };
-> +	int ret;
-> +
-> +	if (val < 0)
-> +		return -EINVAL;
-> +
-> +	if (st->info->resolution == 16)
-> +		put_unaligned_be16(val, buf);
-> +	else
-> +		put_unaligned_be24(val << 4, buf);
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	ret = regmap_write(st->regmap, AD4851_REG_CHX_OFFSET_LSB(ch), buf[2]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, AD4851_REG_CHX_OFFSET_MID(ch), buf[1]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_write(st->regmap, AD4851_REG_CHX_OFFSET_MSB(ch), buf[0]);
-
-Add a comment somewhere on why this can't be a bulk read.  Otherwise someone
-will change it as it's obvious low hanging fruit for a cleanup.
-Perhaps up by the register definitions.  Obviously even better, figure out why
-and make it work as it's probably a timing of cs_change thing.
-
-> +}
-
-> +
-> +static const struct iio_scan_type ad4851_scan_type_20_0[] = {
-
-the _0 / _1 postfix isn't particularly intuitive. Maybe consider u vs b
-for unipolar vs bipolar or something along those lines?
-
-> +	[AD4851_SCAN_TYPE_NORMAL] = {
-> +		.sign = 'u',
-> +		.realbits = 20,
-> +		.storagebits = 32,
-> +	},
-> +	[AD4851_SCAN_TYPE_RESOLUTION_BOOST] = {
-> +		.sign = 'u',
-> +		.realbits = 24,
-> +		.storagebits = 32,
-> +	},
-> +};
-> +
-> +static const struct iio_scan_type ad4851_scan_type_20_1[] = {
-> +	[AD4851_SCAN_TYPE_NORMAL] = {
-> +		.sign = 's',
-> +		.realbits = 20,
-> +		.storagebits = 32,
-> +	},
-> +	[AD4851_SCAN_TYPE_RESOLUTION_BOOST] = {
-> +		.sign = 's',
-> +		.realbits = 24,
-> +		.storagebits = 32,
-> +	},
-> +};
-> +
-> +static int ad4851_get_current_scan_type(const struct iio_dev *indio_dev,
-> +					const struct iio_chan_spec *chan)
-> +{
-> +	struct ad4851_state *st = iio_priv(indio_dev);
-> +
-> +	return st->resolution_boost_enabled ? AD4851_SCAN_TYPE_RESOLUTION_BOOST
-> +					    : AD4851_SCAN_TYPE_NORMAL;
-> +}
-> +
-> +#define AD4851_IIO_CHANNEL(index, ch, diff)					\
-> +	.type = IIO_VOLTAGE,							\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_CALIBSCALE) |			\
-> +		BIT(IIO_CHAN_INFO_CALIBBIAS) |					\
-> +		BIT(IIO_CHAN_INFO_SCALE),					\
-> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ) |		\
-> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),				\
-> +	.info_mask_shared_by_all_available =					\
-> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),				\
-> +	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),		\
-> +	.indexed = 1,								\
-> +	.differential = diff,							\
-> +	.channel = ch,								\
-> +	.channel2 = ch + (diff * 8),						\
-> +	.scan_index = index,
-> +
-> +#define AD4858_IIO_CHANNEL(index, ch, diff)					\
-> +{										\
-> +	AD4851_IIO_CHANNEL(index, ch, diff)					\
-
-Add a comment on why you don't set the scan type stuff up for just this case.
-
-> +}
-> +
-> +#define AD4857_IIO_CHANNEL(index, ch, diff)					\
-> +{										\
-> +	AD4851_IIO_CHANNEL(index, ch, diff)					\
-> +	.scan_type = {								\
-> +		.sign = diff ? 's' : 'u',					\
-> +		.realbits = 16,							\
-> +		.storagebits = 16,						\
-> +	},									\
-> +}
-> +
-> +static int ad4851_parse_channels(struct iio_dev *indio_dev,
-> +				 struct iio_chan_spec **ad4851_channels,
-> +				 const struct iio_chan_spec ad4851_chan,
-> +				 const struct iio_chan_spec ad4851_chan_diff)
-> +{
-> +	struct ad4851_state *st = iio_priv(indio_dev);
-> +	struct device *dev = &st->spi->dev;
-> +	struct iio_chan_spec *channels;
-> +	unsigned int num_channels, reg;
-> +	unsigned int index = 0;
-> +	int ret;
-> +
-> +	num_channels = device_get_child_node_count(dev);
-> +	if (num_channels > AD4851_MAX_CH_NR)
-> +		return dev_err_probe(dev, -EINVAL, "Too many channels: %u\n",
-> +				     num_channels);
-> +
-> +	channels = devm_kcalloc(dev, num_channels,
-> +				sizeof(*channels), GFP_KERNEL);
-
-This is an oddly short wrap.  Check the whole driver for places where the wrap
-can be neater.  Aim for 80 char limit except when readability is substantially
-better if you go up to 100.
-
-> +	if (!channels)
-> +		return -ENOMEM;
-> +
-> +	indio_dev->channels = channels;
-> +	indio_dev->num_channels = num_channels;
-> +
-> +	device_for_each_child_node_scoped(dev, child) {
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Missing channel number\n");
-> +		if (fwnode_property_present(child, "diff-channels")) {
-> +			*channels = ad4851_chan_diff;
-> +			channels->scan_index = index++;
-> +			channels->channel = reg;
-> +			channels->channel2 = reg + AD4851_MAX_CH_NR;
-> +
-> +		} else {
-> +			*channels = ad4851_chan;
-> +			channels->scan_index = index++;
-> +			channels->channel = reg;
-> +		}
-> +		channels++;
-> +
-> +		if (fwnode_property_present(child, "bipolar")) {
-> +			st->bipolar_ch[reg] = true;
-> +		} else {
-> +			st->bipolar_ch[reg] = false;
-> +			ret = regmap_write(st->regmap, AD4851_REG_CHX_SOFTSPAN(reg),
-> +					   AD4851_SOFTSPAN_0V_40V);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +	}
-> +
-> +	*ad4851_channels = channels;
-> +
-> +	return 0;
-> +}
-
-> +static int ad4858_parse_channels(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4851_state *st = iio_priv(indio_dev);
-> +	struct device *dev = &st->spi->dev;
-> +	struct iio_chan_spec *ad4851_channels;
-> +	const struct iio_chan_spec ad4851_chan = AD4858_IIO_CHANNEL(0, 0, 0);
-> +	const struct iio_chan_spec ad4851_chan_diff = AD4858_IIO_CHANNEL(0, 0, 1);
-> +	unsigned int reg;
-> +	int ret;
-> +
-> +	ret = ad4851_parse_channels(indio_dev, &ad4851_channels, ad4851_chan, ad4851_chan_diff);
-
-Wrap this line. It's easy to keep it under 80 chars and that is still the preference
-for cases that don't hurt readability in IIO.  Check for similar lines and
-wrap them all.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	device_for_each_child_node_scoped(dev, child) {
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Missing channel number\n");
-> +		if (fwnode_property_present(child, "bipolar")) {
-> +			ad4851_channels->ext_scan_type = ad4851_scan_type_20_1;
-> +			ad4851_channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_1);
-> +
-> +		} else {
-> +			ad4851_channels->ext_scan_type = ad4851_scan_type_20_0;
-> +			ad4851_channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_0);
-> +		}
-> +		ad4851_channels++;
-> +	}
-> +
-> +	return 0;
-> +}
-
-> +static int ad4851_probe(struct spi_device *spi)
-> +{
-> +	struct iio_dev *indio_dev;
-> +	struct device *dev = &spi->dev;
-> +	struct ad4851_state *st;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +	st->spi = spi;
-> +
-> +	ret = devm_mutex_init(dev, &st->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_regulator_bulk_get_enable(dev,
-> +					     ARRAY_SIZE(ad4851_power_supplies),
-> +					     ad4851_power_supplies);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to get and enable supplies\n");
-> +
-> +	ret = devm_regulator_get_enable_optional(dev, "vddh");
-> +	if (ret < 0 && ret != -ENODEV)
-> +		return dev_err_probe(dev, ret, "failed to enable vddh voltage\n");
-> +
-> +	ret = devm_regulator_get_enable_optional(dev, "vddl");
-> +	if (ret < 0 && ret != -ENODEV)
-> +		return dev_err_probe(dev, ret, "failed to enable vddl voltage\n");
-> +
-> +	ret = devm_regulator_get_enable_optional(dev, "vrefbuf");
-> +	if (ret < 0 && ret != -ENODEV)
-> +		return dev_err_probe(dev, ret, "failed to enable vrefbuf voltage\n");
-> +
-> +	if (ret > 0)
-
-I'm fairly sure that call never returns a positive.  Will return 0 for success so I think this
-should be if (ret == 0)
-
-> +		st->vrefbuf_en = true;
-> +	else
-> +		st->vrefbuf_en = false;
-> +
-> +	ret = devm_regulator_get_enable_optional(dev, "vrefio");
-> +	if (ret < 0 && ret != -ENODEV)
-> +		return dev_err_probe(dev, ret, "failed to enable vrefio voltage\n");
-> +
-> +	if (ret > 0)
-
-Same here.
-
-> +		st->vrefio_en = true;
-> +	else
-> +		st->vrefio_en = false;
-> +
-...
-
-> +}
+Konrad
 
