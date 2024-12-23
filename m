@@ -1,293 +1,136 @@
-Return-Path: <devicetree+bounces-133659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 260F09FB33E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 17:45:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF9B9FB31B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 17:43:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 932D4164B62
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:45:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5910E1882578
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:43:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F309B1CBE94;
-	Mon, 23 Dec 2024 16:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442541B395B;
+	Mon, 23 Dec 2024 16:43:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GuaUUjwK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IX3pKdIp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE0E1C4A36;
-	Mon, 23 Dec 2024 16:43:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183401B393A;
+	Mon, 23 Dec 2024 16:43:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734972234; cv=none; b=ufJWze58ZxflZlKCNrWAjScYQW8jMjUd2JcuuPI+oKHrrrV02nAyFgtIwiMiY/GkHcQWrtCBisB/gJJQEqKE+dKi4umQkJlPzTWsKiU3lJbDB2EeXh1Lw5rFOMguGWzusc7qit6wHoomUA2hhJ13ACYq6x+UBgSMzsxK6tTKCuQ=
+	t=1734972225; cv=none; b=MQGd2IOmTZ80RkSI2IeDRaaIX4qU16wH/enAH8txB1xze6QPe4zA4FRnxCZ7RciNlgveFyUbKdXdX+tEUsZdOgNZ+CmGrw6wBL7WUS0bdEbZJsMAPvzJEUyBjk8RLCWOaboURyITiWCS8TJBOArsEbugb+0UjSU8Nsp6/AJZqmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734972234; c=relaxed/simple;
-	bh=cEHVCJXWCR8mt0P63ENuA004Qjp43ZyDRjcuMDTgSCU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dAGTlVSLLGAoJfZenCO1phx+MQCYTZWv6RFHc8tYW3vEZcMrfug9PHYnM27Un2YxCIgN+F1dPOKI4hdXBx/CcbIPQOHnoBznWU6hyz6wfWMY0RNoN+newhX9MdWhOhEHVy3XpBZGVouKreI0kfWLdbSkTNGT4XAQNJxPrajobGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GuaUUjwK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN9miwJ031095;
-	Mon, 23 Dec 2024 16:43:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9Y1pzVPUFOr7l0zmn+aaCj0VCzGBMpapt+l9I1eCZaQ=; b=GuaUUjwKBpRxyZsN
-	Ej5r7vjoIritDemxUSLi77wuGE9DOc39rIOo6gCsYGpRPV5UMcj14YIRYVtYXqRo
-	zc13LXxBW7ZhJXfHeOhCMPfoH8aLgwnq1Ew3dvxmFNqd/NMM45f8nh4SylQ6CORp
-	CK3Iqobo8mF/aKspzacLgr4QtWCP0Ot6IwdT5C9icXbIQqZsTfXCdiQJ/nCN4a+N
-	GIdzuXJiCN5uA2SBRGv4fzPMNBXcaoRcRdVd7HJXSzeuflIBS46YFnVluKo/8diX
-	p0dTVwi/g7+hM6ZW9nqZSmTQOzCe2dZlSzaHXntUV37n6UPSAhWTK1g/HiiXqsOn
-	hp0OaQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q5jb96fn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Dec 2024 16:43:40 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BNGhdNc008284
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Dec 2024 16:43:39 GMT
-Received: from [10.216.2.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 23 Dec
- 2024 08:43:33 -0800
-Message-ID: <7bc9f3f2-851c-3703-39b4-fea93d10bd7f@quicinc.com>
-Date: Mon, 23 Dec 2024 22:13:29 +0530
+	s=arc-20240116; t=1734972225; c=relaxed/simple;
+	bh=Mk3NGYkOGiwHaGkygr5436xmkrxcE36RytAaKs2OPOw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rjozspOBwfbMdNNO8bC13ZLJkx8ytMus8uavGM69FMve4djOt/kUGDsepc7Q03Raj2JwL91YTyiKGymKd+8oMd3wyiilBelFJZM5X9Zi2+1sgniDsIrtHMEjn+FGO8d7xR313TbhP0dCGjptj9IwnHgPYWodBzm5kt+7awidpkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IX3pKdIp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A6B1C4CED3;
+	Mon, 23 Dec 2024 16:43:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734972224;
+	bh=Mk3NGYkOGiwHaGkygr5436xmkrxcE36RytAaKs2OPOw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IX3pKdIpdGi5npDDULFAj3/ClRXOTGyx0zcC2b9Fbxh3zuj85ypBwhcR/RtjwlSso
+	 87/gdTjhyc6HkjIhwx0L9wbuALPXq2sFJY7FX320GEOOEkG2ASdTzD2XoQsIWA6z6n
+	 kkassgF2Bo81i5ROtdTmq74SkqRWg5fooIYG53YEw4s/FdNcDfolfpsVK3wj639Q3/
+	 w9AYas8ElXDXsKDph+LAgAZmq+tJscTdoTR7WqlaxQjZ3vSDrwfEN9dAL/mLq+cP28
+	 hQbhLIP4vKsvGTond2dxajT+hTUd3YFj3+e1WhMROpEox6JKG8E9DNGwwz4LXRub2e
+	 194JAJNQbmUnA==
+Message-ID: <9e17dd45-e81d-4c01-a751-b81ad20e7ff8@kernel.org>
+Date: Mon, 23 Dec 2024 17:43:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 2/4] PCI: of: Add API to retrieve equalization presets
- from device tree
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/4] MAINTAINERS: Add Vincenzo Frascino as Arm Morello
+ Maintainer
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Russell King <linux@armlinux.org.uk>
+References: <20241223162029.326997-1-vincenzo.frascino@arm.com>
+ <20241223162029.326997-5-vincenzo.frascino@arm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jingoo Han
-	<jingoohan1@gmail.com>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
-	<kw@linux.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <konrad.dybcio@oss.qualcomm.com>, <quic_mrana@quicinc.com>,
-        <quic_vbadigan@quicinc.com>, Bjorn Andersson
-	<andersson@kernel.org>
-References: <20241223-preset_v2-v3-0-a339f475caf5@oss.qualcomm.com>
- <20241223-preset_v2-v3-2-a339f475caf5@oss.qualcomm.com>
- <piccoomv7rx4dvvfdoesmxbzrdqz4ld6ii6neudsdf4hjj2yzm@2bcuacwa4feb>
- <d317c51a-3913-6c49-f8db-e75589f9289a@quicinc.com>
- <wjk32haduzgiea676mamqdr6mhbmm3rrb6eyhzghqpczjuiazx@ipik3jhjzmhz>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <wjk32haduzgiea676mamqdr6mhbmm3rrb6eyhzghqpczjuiazx@ipik3jhjzmhz>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20241223162029.326997-5-vincenzo.frascino@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tZgvjdUIjB8W1rT4w_Xn6YZPXIQBibYo
-X-Proofpoint-ORIG-GUID: tZgvjdUIjB8W1rT4w_Xn6YZPXIQBibYo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- priorityscore=1501 mlxscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 malwarescore=0 spamscore=0 bulkscore=0 suspectscore=0
- impostorscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2412230148
+
+On 23/12/2024 17:20, Vincenzo Frascino wrote:
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, especially from --strict run, but the code here
+looks like it needs a fix. Feel free to get in touch if the warning is
+not clear.
+
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Russell King <linux@armlinux.org.uk>
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+> ---
 
 
-
-On 12/23/2024 8:56 PM, Dmitry Baryshkov wrote:
-> On Mon, Dec 23, 2024 at 08:02:23PM +0530, Krishna Chaitanya Chundru wrote:
->>
->>
->> On 12/23/2024 5:17 PM, Dmitry Baryshkov wrote:
->>> On Mon, Dec 23, 2024 at 12:21:15PM +0530, Krishna Chaitanya Chundru wrote:
->>>> PCIe equalization presets are predefined settings used to optimize
->>>> signal integrity by compensating for signal loss and distortion in
->>>> high-speed data transmission.
->>>>
->>>> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
->>>> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
->>>> configure lane equalization presets for each lane to enhance the PCIe
->>>> link reliability. Each preset value represents a different combination
->>>> of pre-shoot and de-emphasis values. For each data rate, different
->>>> registers are defined: for 8.0 GT/s, registers are defined in section
->>>> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
->>>> an extra receiver preset hint, requiring 16 bits per lane, while the
->>>> remaining data rates use 8 bits per lane.
->>>>
->>>> Based on the number of lanes and the supported data rate, this function
->>>> reads the device tree property and stores in the presets structure.
->>>>
->>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
->>>> ---
->>>>    drivers/pci/of.c  | 45 +++++++++++++++++++++++++++++++++++++++++++++
->>>>    drivers/pci/pci.h | 17 +++++++++++++++--
->>>>    2 files changed, 60 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
->>>> index dacea3fc5128..99e0e7ae12e9 100644
->>>> --- a/drivers/pci/of.c
->>>> +++ b/drivers/pci/of.c
->>>> @@ -826,3 +826,48 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
->>>>    	return slot_power_limit_mw;
->>>>    }
->>>>    EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
->>>> +
->>>
->>> kerneldoc? Define who should free the memory and how.
->>>
->> I will update this in next series.
->> as we are allocating using devm_kzalloc it should be freed on driver
->> detach, as no special freeing is required.
->>>> +int of_pci_get_equalization_presets(struct device *dev,
->>>> +				    struct pci_eq_presets *presets,
->>>> +				    int num_lanes)
->>>> +{
->>>> +	char name[20];
->>>> +	void **preset;
->>>> +	void *temp;
->>>> +	int ret;
->>>> +
->>>> +	if (of_property_present(dev->of_node, "eq-presets-8gts")) {
->>>> +		presets->eq_presets_8gts = devm_kzalloc(dev, sizeof(u16) * num_lanes, GFP_KERNEL);
->>>> +		if (!presets->eq_presets_8gts)
->>>> +			return -ENOMEM;
->>>> +
->>>> +		ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
->>>> +						 presets->eq_presets_8gts, num_lanes);
->>>> +		if (ret) {
->>>> +			dev_err(dev, "Error reading eq-presets-8gts %d\n", ret);
->>>> +			return ret;
->>>> +		}
->>>> +	}
->>>> +
->>>> +	for (int i = 1; i < sizeof(struct pci_eq_presets) / sizeof(void *); i++) {
->>>> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << i);
->>>> +		if (of_property_present(dev->of_node, name)) {
->>>> +			temp = devm_kzalloc(dev, sizeof(u8) * num_lanes, GFP_KERNEL);
->>>> +			if (!temp)
->>>> +				return -ENOMEM;
->>>> +
->>>> +			ret = of_property_read_u8_array(dev->of_node, name,
->>>> +							temp, num_lanes);
->>>> +			if (ret) {
->>>> +				dev_err(dev, "Error %s %d\n", name, ret);
->>>> +				return ret;
->>>> +			}
->>>> +
->>>> +			preset = (void **)((u8 *)presets + i * sizeof(void *));
->>>
->>> Ugh.
->>>
->> I was trying iterate over each element on the structure as presets holds the
->> starting address of the structure and to that we are adding size of the void
->> * point to go to each element. I did this way to reduce the
->> redundant code to read all the gts which has same way of storing the data
->> from the device tree. I will add comments here in the next series.
-> 
-> Please rewrite this in a cleaner way. The code shouldn't raise
-> questions.
-> 
->>>> +			*preset = temp;
->>>> +		}
->>>> +	}
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
->>>> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
->>>> index 14d00ce45bfa..82362d58bedc 100644
->>>> --- a/drivers/pci/pci.h
->>>> +++ b/drivers/pci/pci.h
->>>> @@ -731,7 +731,12 @@ static inline u64 pci_rebar_size_to_bytes(int size)
->>>>    }
->>>>    struct device_node;
->>>> -
->>>> +struct pci_eq_presets {
->>>> +	void *eq_presets_8gts;
->>>> +	void *eq_presets_16gts;
->>>> +	void *eq_presets_32gts;
->>>> +	void *eq_presets_64gts;
->>>
->>> Why are all of those void*? 8gts is u16*, all other are u8*.
->>>
->> To have common parsing logic I moved them to void*, as these are pointers
->> actual memory is allocated by of_pci_get_equalization_presets()
->> based upon the gts these should not give any issues.
-> 
-> Please, don't. They have types. void pointers are for the opaque data.
-> 
-ok.
-
-I think then better to use v1 patch 
-https://lore.kernel.org/all/20241116-presets-v1-2-878a837a4fee@quicinc.com/
-
-konrad, any objection on using v1 as that will be cleaner way even if we
-have some repetitive code.
-
-- Krishna Chaitanya.
-
->>>> +};
->>>
->>> Empty lines before and after the struct definition.
->>>
->> ack.
->>
->> - Krishna Chaitanya.
->>>>    #ifdef CONFIG_OF
->>>>    int of_pci_parse_bus_range(struct device_node *node, struct resource *res);
->>>>    int of_get_pci_domain_nr(struct device_node *node);
->>>> @@ -746,7 +751,9 @@ void pci_set_bus_of_node(struct pci_bus *bus);
->>>>    void pci_release_bus_of_node(struct pci_bus *bus);
->>>>    int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge);
->>>> -
->>>> +int of_pci_get_equalization_presets(struct device *dev,
->>>> +				    struct pci_eq_presets *presets,
->>>> +				    int num_lanes);
->>>
->>> Keep the empty line.
->>>
->>>>    #else
->>>>    static inline int
->>>>    of_pci_parse_bus_range(struct device_node *node, struct resource *res)
->>>> @@ -793,6 +800,12 @@ static inline int devm_of_pci_bridge_init(struct device *dev, struct pci_host_br
->>>>    	return 0;
->>>>    }
->>>> +static inline int of_pci_get_equalization_presets(struct device *dev,
->>>> +						  struct pci_eq_presets *presets,
->>>> +						  int num_lanes)
->>>> +{
->>>> +	return 0;
->>>> +}
->>>>    #endif /* CONFIG_OF */
->>>>    struct of_changeset;
->>>>
->>>> -- 
->>>> 2.34.1
->>>>
->>>
-> 
+Best regards,
+Krzysztof
 
