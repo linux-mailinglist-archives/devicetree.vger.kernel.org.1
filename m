@@ -1,104 +1,149 @@
-Return-Path: <devicetree+bounces-133517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D0239FAD76
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:07:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE20C9FAD7E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:10:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A79BB18862ED
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:07:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0741E18841E2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9939C1990D9;
-	Mon, 23 Dec 2024 11:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E6A19D09F;
+	Mon, 23 Dec 2024 11:10:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="d2zfIiW8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Uf3Wo8Gb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C82E194AF9;
-	Mon, 23 Dec 2024 11:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B9B19D074;
+	Mon, 23 Dec 2024 11:09:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734952022; cv=none; b=KPI5CbZHqDcL0+f1mHxml+Vgr4ByiQMwemj0UQev7mHxmdkTn8D0RoyiROgtn3sjNPGRQC3V+iSOfbi0BWJ6o9tqQ58W08N5brWidFRDs8loySTGyu5xhfVZ4Wj5t20DQCbGnbrrJmTJQAx8PQpN+CCOpz0ba26K4hHr30rQ8Yc=
+	t=1734952200; cv=none; b=VTTInXuGlnvWpdBojd2vI5rNeSsr7jtQcZf6xJD0Vijq1tn0Fe+8IOjJe9Uwscvb6oMJKpiKsvWsLJIJ55A9PvHYCzLq/OmTAqsJTlMrV8hgQqINQjmGpvhio8iLi+bOEzBQpklO3Y1RAqjQvv+T/zQH8uZFEZ6z5zkMNvOwWAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734952022; c=relaxed/simple;
-	bh=uAlo+ULnWIqf2cgYUKQAKueI8CJurgRHKq0A+C/3s9Y=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=EoRZcV09bZ2sV5njYAmrxYNohyrA9pJYSQ9Zryk5gF/pnL7d6V2lxQdfo/oG11XUBbBSlyJ0OQhOeCKkv8dEocaTCb/KK1vkNERaYFPfHxZN5pjwVGavGsMboohwj3U2dsMXvsj7Q9JxcdgfgJnTZn8Db6ZKAvTvHTdCEAMvWwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=d2zfIiW8; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1734952013;
-	bh=uAlo+ULnWIqf2cgYUKQAKueI8CJurgRHKq0A+C/3s9Y=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=d2zfIiW8g5ELhktY/4rR2tCQf6VaZRSJfHPzLl5tE5D3Frym7FD3B29n7ZITHh7A+
-	 lTcXaAlCHlYtD2aQOCtBMln7AGGyYvDhKBzK9ziApJTulk043ash0OyhooayOU0wUD
-	 QzZEPMdMO7z9VywpZA6CEMiwvyYZI+HnHbXiXX9jp0eyBRfv/UoEzfi5OCnymIZCf7
-	 pYJM8gDAWJMJVdw7lSWauAv1yTjhVHtZ7eRDNrHLvVBHQTwJlyTVDET4qrupKU2pPl
-	 lLyig2oxxfyNccj+qfOvsvPcsPjDnujK7SKVWFHtgMzauLgX1VCqxFUZcuIPnuTKS5
-	 SyL7kwWKJXYog==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 07B7917E362C;
-	Mon, 23 Dec 2024 12:06:51 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Biao Huang <biao.huang@mediatek.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Jose Abreu <joabreu@synopsys.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- Andrew Halaney <ahalaney@redhat.com>, Simon Horman <horms@kernel.org>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Cc: kernel@collabora.com, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com
-In-Reply-To: <20241109-mediatek-mac-wol-noninverted-v2-0-0e264e213878@collabora.com>
-References: <20241109-mediatek-mac-wol-noninverted-v2-0-0e264e213878@collabora.com>
-Subject: Re: (subset) [PATCH v2 0/2] net: stmmac: dwmac-mediatek: Fix
- inverted logic for mediatek,mac-wol
-Message-Id: <173495201194.34262.3657458124783082964.b4-ty@collabora.com>
-Date: Mon, 23 Dec 2024 12:06:51 +0100
+	s=arc-20240116; t=1734952200; c=relaxed/simple;
+	bh=7nEoARmPuJcql7CnM6XAABuuVo9Xoq69Mry3K40LSDQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=B8athOkC20Z34d+Z0KBWA5yosQOqbQ10Ec5+clrEs+LPtmp437LfK04cnxWaKTI4++FNm34RwEm4E36P0WhoWObPhfvovpzy9782YipJQ2dA27rspHDAWWBSZ7P1AJOUG0c7jb/ZQ94wQV4oHUEg8g9omk0ZCde4SPegpHtgKFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Uf3Wo8Gb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN9TONY014901;
+	Mon, 23 Dec 2024 11:09:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=p6xTc6h4v548aS3R/mRUjG
+	zkTEj66fmYVZTPJiRhfww=; b=Uf3Wo8GbWajqmHgv3ScX/1mh5nXFtxDhVT76S7
+	3AsqczIm+NfVnWMJ81r/pe32RY7bQEe8X25Vf1reTkdIk5hxzykDHXRI3fQwDtyy
+	MCOo0AYjVGd3eAdeQF/Vc5SqR/heF90mIWZJCLdcrMa6pFI7aQBvoVXjqe22/a2H
+	sYuqj/UZrGRnAYcVCP9JEqDjKobXyxTm0F9TKXu94sAmwiqon4gwN+krFUl58dI0
+	JFzCnUhJpFNbW1RJrPbBX1RK5yW5iJ3AaHv6FTcxscuVSbkKbPR4sCTj0qqY6HtB
+	vi+d3U0SlF2NiSWSj6SE+NvtuvV4wkQqO3BPuzf7BBtkJRRA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43nnrsrsm3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 11:09:55 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BNB9sg2003707
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 11:09:54 GMT
+Received: from hu-yrangana-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 23 Dec 2024 03:09:50 -0800
+From: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_yrangana@quicinc.com>
+Subject: [PATCH v3] arm64: dts: qcom: qcs8300: add QCrypto nodes
+Date: Mon, 23 Dec 2024 16:39:36 +0530
+Message-ID: <20241223110936.3428125-1-quic_yrangana@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZWlhSuI9qILepqLwsM32P35z7-zJXQR7
+X-Proofpoint-ORIG-GUID: ZWlhSuI9qILepqLwsM32P35z7-zJXQR7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 bulkscore=0 phishscore=0 clxscore=1015 mlxscore=0
+ impostorscore=0 suspectscore=0 spamscore=0 malwarescore=0
+ priorityscore=1501 mlxlogscore=706 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412230099
 
-On Sat, 09 Nov 2024 10:16:31 -0500, Nícolas F. R. A. Prado wrote:
-> This series fixes the inverted handling of the mediatek,mac-wol DT
-> property. This was done with backwards compatibility in v1, but based on
-> the feedback received, all boards should be using MAC WOL, so many of
-> them were incorrectly described and didn't have working WOL tested
-> anyway. So for v2, the approach is simpler: just fix the driver handling
-> and update the DTs to enable MAC WOL everywhere.
-> 
-> [...]
+Add the QCE and Crypto BAM DMA nodes.
 
-Applied to v6.13-next/dts64, thanks!
+Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
+---
+Changes in v3:
+ - Wrap the lengthy lines
+ - Reduced the patch series as other patch is merged.
+ - Link to v2: https://lore.kernel.org/all/20241125111923.2218374-3-quic_yrangana@quicinc.com/
 
-[2/2] arm64: dts: mediatek: Set mediatek,mac-wol on DWMAC node for all boards
-      commit: f8a032834abceed9db3f20a5eb56064b21c84613
+Changes in v2:
+ - Set the interconnect tag to QCOM_ICC_TAG_ALWAYS instead of passing 0(no TAG). 
+ - Link to v1:  https://lore.kernel.org/all/20241113055830.2918347-1-quic_yrangana@quicinc.com/
 
-Cheers,
-Angelo
+---
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+index 73abf2ef9c9f..30c1de1c4ad2 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+@@ -736,6 +736,31 @@ ufs_mem_phy: phy@1d87000 {
+ 			status = "disabled";
+ 		};
+ 
++		cryptobam: dma-controller@1dc4000 {
++			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
++			reg = <0x0 0x01dc4000 0x0 0x28000>;
++			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
++			#dma-cells = <1>;
++			qcom,ee = <0>;
++			qcom,controlled-remotely;
++			num-channels = <20>;
++			qcom,num-ees = <4>;
++			iommus = <&apps_smmu 0x480 0x00>,
++				 <&apps_smmu 0x481 0x00>;
++		};
++
++		crypto: crypto@1dfa000 {
++			compatible = "qcom,qcs8300-qce", "qcom,qce";
++			reg = <0x0 0x01dfa000 0x0 0x6000>;
++			dmas = <&cryptobam 4>, <&cryptobam 5>;
++			dma-names = "rx", "tx";
++			iommus = <&apps_smmu 0x480 0x00>,
++				 <&apps_smmu 0x481 0x00>;
++			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE0 QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++			interconnect-names = "memory";
++		};
++
+ 		tcsr_mutex: hwlock@1f40000 {
+ 			compatible = "qcom,tcsr-mutex";
+ 			reg = <0x0 0x01f40000 0x0 0x20000>;
+-- 
+2.34.1
 
 
