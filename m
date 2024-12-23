@@ -1,102 +1,183 @@
-Return-Path: <devicetree+bounces-133484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FA199FAB0C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 08:27:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0179FAB24
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 08:32:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 943B47A200C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 07:27:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3ADFF7A1F4B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 07:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4462F18BB8E;
-	Mon, 23 Dec 2024 07:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5F8190058;
+	Mon, 23 Dec 2024 07:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gPUPbqBW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BP22g1SQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E963918052;
-	Mon, 23 Dec 2024 07:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D5017E473;
+	Mon, 23 Dec 2024 07:32:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734938867; cv=none; b=pZBsEVQ5OGLgQ9Ezh6h6Myc2+H0SDX3fKeoETSaqsJcdWVN0CQvoZoKYg1qnI+picUMugmGyEtKBWrgXuOu7DxdngqPVEyVpTX8FDRgtHl9ZHiFpXFpeUBBXGV9unGGa4Lmgj+3k2l3racz0p1HF6tyDUveiSLZfT1OdYYgZsNA=
+	t=1734939134; cv=none; b=C3V1k0A54CTuiXsy3u8WkQrmNkb1ykfYjGXJtl+HDn2/GdrE5A30fgDwWe7CGhUspIvIBFIQedte4VFH/k13RW6gDIWo6rGuiPCZSd3wOQ8ycGJbH6bTN+4ArldYqnpwFch7WREEz2wh8u1L9FI3M1KikugwuR9ksQiGEsg/Myo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734938867; c=relaxed/simple;
-	bh=VZyd4V5fwAkkf6j2lzdZSBdLb/bZPRnsMDycIJWbfl4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=nH8F/tKdD9JfwCVW9GKXk+rv2M45KoIqnLjWmcPW2AvrmYrpX3YL0rd6Ezk9aM+1UU8nxxYGwrQTsDO4VKLg2ibjJHAOv5g6ZdizQpePk5tNMeDmC1mp5nIm1nSEB6KH/j+Hfd+Hkxz4xq0faWhCmUl27x2tbLiM3SN+3uqMrqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gPUPbqBW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F6E8C4CED4;
-	Mon, 23 Dec 2024 07:27:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734938866;
-	bh=VZyd4V5fwAkkf6j2lzdZSBdLb/bZPRnsMDycIJWbfl4=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=gPUPbqBW7Zz0bqr3n+Q0DP7j1MuOJkmRg+E2AlJCXgxlIQmbM3BCjoKCGGaGZE9C5
-	 WPdcBZv2DlM3zsGAMvCu4PYQ0sXFsWgzBhxud2++xpZrvTK2w53AGjoIfeBJETHp+5
-	 btqsVYmMoX4xwBo+VwFgRTwyvamY+h06FWP3yJaK+xLLpE43n+H8SvseUcuxKwl3JO
-	 uizKVyzVyT4QKdSlX2U3DB65Z6FkB4WugmYcFUTPQmcar+kOxuTW7ZivB2BReeE145
-	 z/dq0VPW6EX/6dyGpmWb2J8bIrYDSt98Bd3+GDzk9CRxa1vuEezMnxNa59VqtEnYFW
-	 i3Svv7mEn+cjg==
-Date: Mon, 23 Dec 2024 01:27:44 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1734939134; c=relaxed/simple;
+	bh=OHoKVoEfq+gvl63nyXxm0Fs3Th2pjhxHONc5vMgjP0s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KeWFbkF6OBjvE4Wwm5drn7OEGmbID8CvsmVYPOa9LKe/TCGqDN5ACEqAVhyNhO72LPHVgW7fQiwpRRf8xcF7ouu7iF3AymDaplextW3pVbIi3yjKR9pFhXPdownxC0/MBWtFwFjiEuELvLONl+2xLc/5b0mkr0tNz8WaLKFz0WU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BP22g1SQ; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6eff4f0d627so33673057b3.1;
+        Sun, 22 Dec 2024 23:32:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734939132; x=1735543932; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0v6aG1YFkKVxPZgrKFkppCnD7setaclMAdKcShBz7Ms=;
+        b=BP22g1SQZbY9i1od9T1kbvclOQnH3UsBl9Mka2uHPJPhZs7CGx7onXRvo88+2mgqNW
+         g3K3qwzYPZKbVJaDCQOjTCeD5ldUP+p+eAknIbqtARokWH6vsYF1vX/C8s922zGNViBO
+         py1wDEqnHzNuHxuuTcyCCGscnoLR1ZwpoiWbfUdTTWt2Tw2x/06i9iWDoNqpEZ6qnfrT
+         DmRyhhJr89bPZKMhIfLRJwrtDJ2pFmMbJCIWov4OK0emlTuDCOlt4MycWH47ICOHLNKX
+         Ps/Bra3ALoIPlLWex5UzdG5yBMZ/4aJ7Rz7A+VehvZtjfa++2zUjc6f42eab+eMeumIk
+         hJQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734939132; x=1735543932;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0v6aG1YFkKVxPZgrKFkppCnD7setaclMAdKcShBz7Ms=;
+        b=X9Y1Z9Qi2cTcN2++HNHF0ZNFZRFV+qiM2xtBgqJxSr/ARtq9PkzqjCaYWsGlUJvtJx
+         2uhLwMyGxP/Wb3eVZuE+CZsh1u4YLudAQ5wiQDRVSS7mOGHZ0NEdOr3AQtzcRoeNQ1qG
+         +SGqWT/gSyUOEUhH8JxF+dZiaEA9e33pcmujqjJhCYVjfr8N/lF1f6BF+MUua/iiskYA
+         RGSitURlTZAZ2GNVxrEke+ddBzw9DpBxdsrcODimznDOlBtTkW13+awkOG6C34oVblF9
+         33GvZpu8A2Y+N+MQkUfe7uWnuxR/fwkUCpE0Pox0iVePxiQ1E5AHhS8fWMVFniCxoXQi
+         vjhg==
+X-Forwarded-Encrypted: i=1; AJvYcCU0gUzov8039tC6llGwkPckrSz06aWG4/zzZw86VUQfcVuv1pqCcq9hD7nVq/p3HfJM48ykseCBzbs=@vger.kernel.org, AJvYcCU9tax9EQ4iLlAr9lKPq1cP+yOz/KyCuERxxC95zQSTgIipdCsXuLVExUN5gNHviutdNScQnOqFO9yjnA==@vger.kernel.org, AJvYcCUMG8ACjtWY4lA5mmFuoMm4VQT2qeBPkAEg3wzqrISO7WcUiY0bH70fyg493Ctt81n+19oKNVlE/wBA30Y=@vger.kernel.org, AJvYcCUcxdMRlqWc2gWBG3WEnuCPsccHiIM9DV6NsanKb14I8uiBOr6p51PBjSibpAigPquhjy3/XgAwq4N2@vger.kernel.org, AJvYcCUvBZYEufWrncCeJuGQfXDFluLbMWLHn+RL5hsy8QZ++W4q4smrcsSCYtVJLTGuEUEpVaSILZ4WEhS4Deam@vger.kernel.org, AJvYcCV/S3DFRNc1G+aRSYwLd+PAkGMyjFFTzleUHRIL+iBBHakVQkajRXWdR6+Hg+KZw7/QbiP32QIFeafq/ufS@vger.kernel.org, AJvYcCVEDGcRO4DcpIBIEx3SmHK85Ba6wEPx3qZ9GOA/wLAGW//feGj/8+HCjS/fw2Zn07LBt9AahsDA9mPs/A==@vger.kernel.org, AJvYcCVaUsfHj5FAAtSoQBJn9a1xHrHIJQHI3+nIf81n8cd8bfkI3hJHGZEsjtBMMdIrRIR6OolgtQwwhSaPvg==@vger.kernel.org, AJvYcCW+R5duvAk+mkTVcOrqZpUb3Uige0W6XK1JP7QCZCcCfAaBma/wNrFAPzB6w1OSpXiTg4AXKoep9N+ARanUK5I=@vger.kernel.org, AJvYcCWAwlzq3LM0ioyt
+ EJvWoPV6vjsTUq7z7Veu2ljWFluOvVB3++Zz0tl+RLTpCWLUX+VbK3zl5QOx4AgiUg==@vger.kernel.org, AJvYcCWWci2QX4PvBsf06e9b3Ye5s51Ag352ZAzWVjQDBE9/mxeHRY6eabit0/zt/wVDZLyjT4hJW2my6MIcqw==@vger.kernel.org, AJvYcCWbpyJGeKVUulH5t6cRXti41VJ9KoFhzPhpC5Q9E0Z9+w0UlSC/GAqdDsxy72zrtVtnHKRyzRZsCfY7@vger.kernel.org, AJvYcCX9EbXXRiQiS/vjgsdbFXU4yFWqtugccQr+YIuZyYMX14H+aCkouFTyvKt4j6fsWaCcIwBRe0qbVsU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEY7S8Xm9nhlPmnKYmk1GVw/obRqTr8r/eKAcFAURue957d6kE
+	yltRt9EEOWedqFFY03TnSBC5gLGogI/Lho60KN0V4uWTj58O2biA+uVj0phlDIEhk6I/OondMDk
+	vp7gze5RB7Q7oTaFipK+noaMTx3A=
+X-Gm-Gg: ASbGncsRWRfUa+x3zY+Iez1jWv6JqvDfSlFJA+xH+ux2OmITjlrNwiMb23B6ZPrVH9b
+	z+DCfU8Tuou3JiZPQS5g9jfpkS6E6tpYAqes4NHM=
+X-Google-Smtp-Source: AGHT+IE9Zx6rrSxmo/TfVMJEMfCSEvv5kTOAJj2WU/ZWv6yREWR2EgA4NDWJv08ZAUMMHtBOTiCxaj5H+lZ0CIJRFqw=
+X-Received: by 2002:a05:690c:6e0c:b0:6ef:6b56:fb46 with SMTP id
+ 00721157ae682-6f3f824cb08mr87351047b3.40.1734939131915; Sun, 22 Dec 2024
+ 23:32:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-rtc@vger.kernel.org, 
- Jean Delvare <jdelvare@suse.com>, 
- Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: PavithraUdayakumar-adi <pavithra.u@analog.com>
-In-Reply-To: <20241223-max31331-driver-support-v1-1-f9499bd598f5@analog.com>
-References: <20241223-max31331-driver-support-v1-0-f9499bd598f5@analog.com>
- <20241223-max31331-driver-support-v1-1-f9499bd598f5@analog.com>
-Message-Id: <173493886450.3944320.9770471045980909625.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dtbindings:rtc:max31335:Add max31331 support
+References: <20241222111537.2720303-1-guoweikang.kernel@gmail.com> <Z2kNTjO8hXzN66bX@kernel.org>
+In-Reply-To: <Z2kNTjO8hXzN66bX@kernel.org>
+From: Weikang Guo <guoweikang.kernel@gmail.com>
+Date: Mon, 23 Dec 2024 15:32:01 +0800
+Message-ID: <CAOm6qnkRUMnVGj7tnem822nRpJ8R6kFVf6B4W9MhMSBQY8X7Kg@mail.gmail.com>
+Subject: Re: [PATCH v7] mm/memblock: Add memblock_alloc_or_panic interface
+To: Mike Rapoport <rppt@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
+	Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>, Christoph Lameter <cl@linux.com>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Sam Creasey <sammy@sammy.net>, 
+	Huacai Chen <chenhuacai@kernel.org>, Will Deacon <will@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>, 
+	rafael.j.wysocki@intel.com, Palmer Dabbelt <palmer@rivosinc.com>, 
+	Hanjun Guo <guohanjun@huawei.com>, Easwar Hariharan <eahariha@linux.microsoft.com>, 
+	Johannes Berg <johannes.berg@intel.com>, Ingo Molnar <mingo@kernel.org>, 
+	Dave Hansen <dave.hansen@intel.com>, Christian Brauner <brauner@kernel.org>, 
+	KP Singh <kpsingh@kernel.org>, Richard Henderson <richard.henderson@linaro.org>, 
+	Matt Turner <mattst88@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	WANG Xuerui <kernel@xen0n.name>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>, Stafford Horne <shorne@gmail.com>, 
+	Helge Deller <deller@gmx.de>, Nicholas Piggin <npiggin@gmail.com>, 
+	Christophe Leroy <christophe.leroy@csgroup.eu>, Naveen N Rao <naveen@kernel.org>, 
+	Madhavan Srinivasan <maddy@linux.ibm.com>, Geoff Levand <geoff@infradead.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
+	Alexander Potapenko <glider@google.com>, Andrey Konovalov <andreyknvl@gmail.com>, 
+	Dmitry Vyukov <dvyukov@google.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
+	Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
+	Alexander Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger <borntraeger@linux.ibm.com>, 
+	Sven Schnelle <svens@linux.ibm.com>, Yoshinori Sato <ysato@users.sourceforge.jp>, 
+	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
+	Andreas Larsson <andreas@gaisler.com>, Richard Weinberger <richard@nod.at>, 
+	Anton Ivanov <anton.ivanov@cambridgegreys.com>, Johannes Berg <johannes@sipsolutions.net>, 
+	Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, linux-alpha@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
+	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org, 
+	linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-riscv@lists.infradead.org, kasan-dev@googlegroups.com, 
+	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
+	sparclinux@vger.kernel.org, linux-um@lists.infradead.org, 
+	linux-acpi@vger.kernel.org, xen-devel@lists.xenproject.org, 
+	linux-omap@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-mm@kvack.org, linux-pm@vger.kernel.org, 
+	Xi Ruoyao <xry111@xry111.site>
+Content-Type: text/plain; charset="UTF-8"
+
+Mike Rapoport <rppt@kernel.org> wrote on Monday 23 December 2024 at 15:12
+>
+> On Sun, Dec 22, 2024 at 07:15:37PM +0800, Guo Weikang wrote:
+> > Before SLUB initialization, various subsystems used memblock_alloc to
+> > allocate memory. In most cases, when memory allocation fails, an immediate
+> > panic is required. To simplify this behavior and reduce repetitive checks,
+> > introduce `memblock_alloc_or_panic`. This function ensures that memory
+> > allocation failures result in a panic automatically, improving code
+> > readability and consistency across subsystems that require this behavior.
+> >
+> > Changelog:
+> > ----------
+> > v1: initial version
+> > v2: add __memblock_alloc_or_panic support panic output caller
+> > v3: panic output phys_addr_t use printk's %pap
+> > v4: make __memblock_alloc_or_panic out-of-line, move to memblock.c
+> > v6: Fix CI compile error
+> > Links to CI: https://lore.kernel.org/oe-kbuild-all/202412221000.r1NzXJUO-lkp@intel.com/
+> > v6: Fix CI compile warinigs
+> > Links to CI: https://lore.kernel.org/oe-kbuild-all/202412221259.JuGNAUCq-lkp@intel.com/
+> > v7: add chagelog and adjust function declaration alignment format
+> > ----------
+> >
+> > Signed-off-by: Guo Weikang <guoweikang.kernel@gmail.com>
+> > Reviewed-by: Andrew Morton <akpm@linux-foundation.org>
+> > Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> > Reviewed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> > Acked-by: Xi Ruoyao <xry111@xry111.site>
+>
+> If people commented on your patch it does not mean you should add
+> Reviewed-by or Acked-by tags for them. Wait for explicit tags from the
+> reviewers.
+
+First of all, thank you for your reminder and patience. In fact, this
+is the first time I received a patch discussion when submitting a
+patch.
+About Reviewed-by or Acked-by tags, I will not add it myself in the
+future. Regarding this patch, do I need to provide a new patch to
+update it? Or will you modify it?  Looking forward to your reply
+
+>
+> And don't respin that often, "Reviewers are busy people and may not get to
+> your patch right away" [1].
+>
+
+OK, I will be more patient and update after confirming that there are
+no more comments.
+
+> [1] https://docs.kernel.org/process/submitting-patches.html
+>
+>
+> --
+> Sincerely yours,
+> Mike.
 
 
-On Mon, 23 Dec 2024 11:57:44 +0530, PavithraUdayakumar-adi wrote:
-> Add support to max31331 RTC chip in adi,max31335.yaml
-> 
-> Signed-off-by: PavithraUdayakumar-adi <pavithra.u@analog.com>
-> ---
->  .../devicetree/bindings/rtc/adi,max31335.yaml      | 32 ++++++++++++++++++----
->  1 file changed, 26 insertions(+), 6 deletions(-)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/rtc/adi,max31335.example.dts:23.20-31.15: Warning (i2c_bus_reg): /example-0/i2c/rtc@68: I2C bus unit address format error, expected "69"
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241223-max31331-driver-support-v1-1-f9499bd598f5@analog.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--
+Best regards,
+Guo
 
