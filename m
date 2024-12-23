@@ -1,177 +1,164 @@
-Return-Path: <devicetree+bounces-133605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B9D59FB04F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:46:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AA39FAF46
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:04:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10D77163626
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:46:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 735327A316D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567A01ABEC1;
-	Mon, 23 Dec 2024 14:46:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884E71A8F98;
+	Mon, 23 Dec 2024 14:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JBPepMeS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gQCVXPsT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABE1145979;
-	Mon, 23 Dec 2024 14:46:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5829D1C36;
+	Mon, 23 Dec 2024 14:02:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734965195; cv=none; b=UfoDOIlfVIqfDwuG45U8tY2TPn482imRwHPY8jRnArmPxSNXFGk51LeapYdc0D7xoAq68x9mqHDyFcnEIN4HR3uSTGivlrc5PSrkIGSb1dX6TADtgtUdYFpuERc8c5rWpXWjy7BSlI1yTaEoN7PFABCN5uvw8aXteNrsJSWOqsY=
+	t=1734962553; cv=none; b=JO6je0sWZlygj17YYNx0pxj7pKJW4UQeYLmw8E9F6vUi8LD10TU0AHOpRdvIK0EYQs+h2A9Hi4GB7NOKFnDM0Ql3PKSau52jPrIBgERNgcf6Ko0azh3O4SREShSyZn0cU+Uqgc3NMkYbu+1Hs5naBpSwoi9XSH0pxrLtnPK/dEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734965195; c=relaxed/simple;
-	bh=QvmsSOXq3sop5Ct4jazwtfW9ssQWlojjbfYOKC9mB2A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AEwbqJVfx0IopPXRiYCsCpdrywZ5BhockotzJ9KqhvKUVerKLGYI2xZVd+AvRG1HnS07fLBtWlDQjZu6CspleLHjqhhzlxph0UNu5Yq3yuWlue2N2MQkxYQiZfw6UfTU/AftyWTwM4eaeynGwzek7gEHBE6bLaUdjl4qJ6UY/ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JBPepMeS; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BNBwwGF020173;
-	Mon, 23 Dec 2024 14:46:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NkQFu57Xw7aHa6drSo6fMkLlf1A2SffvDf56Onaz0Os=; b=JBPepMeSyd3m2Q4o
-	UWlf4SzmyZb6fWYrgGmWOhK7FIetzKzvaGjDVNl6z3qRUplofX4lDxFS+MrSApf3
-	lmgZzqNOZRToXggbnlVWlUaWcY7LIkMLPpQ+3grO5LuucOPb+D/FbpmJQ37C1En8
-	lyC4y4DUUxMYFZMEQ1ubFLbWGRkzPJnipc97EnS7+nkXMvXJRjaMnEK50AJVx1Na
-	IcDV1W7IFxlUEnzWGTfKElm+JVr8ZyU8ehyWWzJCeQG2JaNeFTBzFUGv8SdNkPFh
-	KUnVxcXaA6IVMdl6TM7tICr0TS9eTSS42ipq7qOOg6tGrJ7+WAlZXUpkLEqAXCYB
-	/HRrYw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q7ev0dep-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Dec 2024 14:46:22 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BNEk9Bt009224
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Dec 2024 14:46:09 GMT
-Received: from [10.190.163.187] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 23 Dec
- 2024 06:44:13 -0800
-Message-ID: <00c27553-5466-e59a-633a-e368a6e26167@quicinc.com>
-Date: Mon, 23 Dec 2024 19:30:46 +0530
+	s=arc-20240116; t=1734962553; c=relaxed/simple;
+	bh=2bc39lGmRDyRTMKFrvekKMPvbpMIxvBQYnK4Uqobs8A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I91Pm+TCBO6gDjS9fB1UlrL3a26HAYWemDN814FqKbXV7HlaCdxXtPnoL5mhUy9xDDqE+Qenc471iKsCZjE7cAxXzKMtEh+FAVnxeEXc1POnh7CfdujytJHSlq3qk9ReWcRJPXEFR9wwZbg43IxZl8jZwncQBPZMfpe0cAp3OGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gQCVXPsT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6591FC4CED6;
+	Mon, 23 Dec 2024 14:02:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734962552;
+	bh=2bc39lGmRDyRTMKFrvekKMPvbpMIxvBQYnK4Uqobs8A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gQCVXPsTumLIzKmb/KPHU3TPC3sKDjBHYxNBMe4CHhfDyHyvgrdtWRPOSAhEn3vHy
+	 Wh1QNijhPOogA4+OiwxOgVJNqZChKPHmAkWaiKcvH+1Z3V6uVWmIp7XZV22FBFWUBg
+	 JiAPkUW+7SWe/SpRCWcXp2obIYGCXUpJB6tLflanj4Mvi9Cx8xO95+snzcEnQuxZ57
+	 eblBZTITYPJZavCf5w6l4jxiYVP5ps36vo6izJNzLQXiOHuAl59fbGK0iVOKorUaih
+	 ceaWZc5D+srBJsB4pX342hvIZ3pHqC8A6k4wuROhnQoEkbdQeBh78fi9vFfN8lC3Ge
+	 mFa7gsqvGy78g==
+Message-ID: <c4b58b22-804b-4175-abb8-ff8929c5821d@kernel.org>
+Date: Mon, 23 Dec 2024 15:02:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V4 0/5] arm_scmi: vendors: Qualcomm Generic Vendor
- Extensions
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: memory-controllers: Add support for
+ Versal NET EDAC
+To: Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
+Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-edac@vger.kernel.org, git@amd.com, krzk@kernel.or, robh@kernel.org,
+ conor+dt@kernel.org, bp@alien8.de, tony.luck@intel.com, james.morse@arm.com,
+ mchehab@kernel.org, rric@kernel.org
+References: <20241122100625.24571-1-shubhrajyoti.datta@amd.com>
+ <20241122100625.24571-2-shubhrajyoti.datta@amd.com>
+ <uw5yvotdr4u5uau7bqjj2qdmkf5ay2bm7km3zhqunbixzljlw6@wi6cujvdhesk>
+ <CAKfKVtEREOLxK=SF5F-3MkpxyS+HcSTOH-pML2b4x2pCV13XMA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-CC: Cristian Marussi <cristian.marussi@arm.com>, <sudeep.holla@arm.com>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
-        <conor+dt@kernel.org>, <arm-scmi@vger.kernel.org>,
-        Ettore Chimenti <ettore.chimenti@linaro.org>
-References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
- <ZytnRc94iKUfMYH0@hovoldconsulting.com> <ZyvLktLUZOGP-LH5@pluto>
- <Zy4qvedrmkRdPR3x@hovoldconsulting.com>
- <8d42682b-0fa7-3962-da12-728cfe64903b@quicinc.com>
- <Z0BC203BhGEmXcJi@hovoldconsulting.com>
- <d61bb7bc-d824-883a-4edd-109ae74076c1@quicinc.com>
- <Z1HMWUa_QCsNA1-Q@hovoldconsulting.com>
- <132d1404-9009-9fb5-1fb9-63eca03ce9fc@quicinc.com>
- <Z2P3bh04xXsreBF7@hovoldconsulting.com>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <Z2P3bh04xXsreBF7@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0j4k8P_OsHqZvPH_hm1q_GerogBkN_h6
-X-Proofpoint-GUID: 0j4k8P_OsHqZvPH_hm1q_GerogBkN_h6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- spamscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0
- mlxlogscore=999 malwarescore=0 adultscore=0 suspectscore=0 bulkscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412230133
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAKfKVtEREOLxK=SF5F-3MkpxyS+HcSTOH-pML2b4x2pCV13XMA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-On 12/19/24 16:07, Johan Hovold wrote:
-> On Tue, Dec 17, 2024 at 05:19:25PM +0530, Sibi Sankar wrote:
->> On 12/5/24 21:22, Johan Hovold wrote:
->>> On Thu, Dec 05, 2024 at 04:26:55PM +0530, Sibi Sankar wrote:
->>>> On 11/22/24 14:07, Johan Hovold wrote:
->>>
->>>>> I have a Lenovo ThinkPad T14s set up now so I gave this series a spin
->>>>> there too, and there I do *not* see the above mentioned -EOPNOSUPP error
->>>>> and the memlat driver probes successfully.
->>>>>
->>>>> On the other hand, this series seems to have no effect on a kernel
->>>>> compilation benchmark. Is that expected?
->>>>
->>>> I can have a look at your tree. But memlat in general
->>>> depends on the cpu frequency when your benchmarks max
->>>> the cpu's the ddr/llcc are scaled accordingly by it.
->>>
->>> A kernel compilation should max out the CPU frequency on all cores.
+On 23/12/2024 10:58, Shubhrajyoti Datta wrote:
+> Hi Krzysztof,
 > 
-> Answering my own question here; bwmon should scale the buses for
-> benchmarks like kernel compilations so I guess the non-existing impact
-> of memlat is expected here.
-
-you would see impact only in cases where you would benefit from
-having ddr and llcc at a higher frequency i.e. latency workloads.
-I usually run geekbench with and we are expected to see a big
-difference with and without it.
-
-> 
-> Ettore helped me run some further benchmarks, including cachebench, but
-> also saw no positive (or negative) effect with this series running on an
-> X1E CRD (with recent firmware).
-> 
-> Do you have any suggestions of benchmarks to run where the effect of
-> memlat should show up? What have you been using for testing?
-> 
-> I did measure a possibly slightly higher (idle) power consumption with
-> memlat, but I guess that is also expected given the intended more
-> aggressive ramping of the bus clocks.
-> 
-> These are the branches (and configs; johan_defconfig) we've used for
-> testing:
-> 
-> 	https://github.com/jhovold/linux/tree/wip/x1e80100-6.13-rc3
-> 	https://github.com/jhovold/linux/tree/wip/x1e80100-6.13-rc3-memlat
-
-Thanks, we'll get this sorted out.
-
-> 
->>>>> And does this mean that you should stick with the uppercase "MEMLAT"
->>>>> string after all? The firmware on my CRD is not the latest one, but I am
->>>>> using the latest available firmware for the T14s.
->>>>
->>>> We should stick with "memlat" if we run into a device in the
->>>> wild that doesn't support "MEMLAT"
->>>
->>> Ok. So the updated firmware supports both strings?
+> On Sat, Nov 23, 2024 at 10:14 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> Sry for the delay, was out sick. Yes the updated firmware supports both
->> strings.
+>> On Fri, Nov 22, 2024 at 03:36:23PM +0530, Shubhrajyoti Datta wrote:
+>>> Add device tree bindings for AMD Versal NET EDAC for DDR controller.
+>>>
+>>> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+>>> ---
+>>>
+>>
+> ..
+>>> +
+>>> +  amd,dwidth:
+>>> +    description:
+>>> +      DDR memory controller device width.
+>>
+>> Use existing properties.
+> I am not finding any existing properties could you help me with some pointers.
+
+Really? `git grep width` gives plenty of choices, depending on the meaning.
+
+I don't know what this property is about - your description is not
+helping. Either obvious or not correct, because memory controller cannot
+have a width. Like width in cm? inches?
+
 > 
-> No worries, hope you're feeling better.
+>>
+>>
+>>> +    enum: [16, 32]
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +
+>>> +  amd,num-chans:
+>>> +    description:
+>>> +      Number of channels.
+>>
+>> Use existing properties, e.g. some of the DDR schemas describing memory.
+>> Look how other bindings describe actual chips.
 > 
-> I noticed that the firmware on the T14s indeed accepts both strings.
-> 
-> Johan
+> could you share any example. My search didnt return anything
+
+I don't believe you tried to search then... There are like 5 bindings
+describing some parts of memory bus to choose from. There are dedicated
+bindings for DDR memory - it's all there. Look how other bindings
+reference JEDEC DDR.
+
+
+Best regards,
+Krzysztof
 
