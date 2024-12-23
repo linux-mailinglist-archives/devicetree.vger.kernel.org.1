@@ -1,236 +1,253 @@
-Return-Path: <devicetree+bounces-133425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34A1F9FA8A6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 00:16:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E9F89FA8C2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 01:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83DFD1885C02
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2024 23:16:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D54E188595C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 00:46:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1FE18F2CF;
-	Sun, 22 Dec 2024 23:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0687A46B5;
+	Mon, 23 Dec 2024 00:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="naNCs+Eu"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="vvAw0ljf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2042.outbound.protection.outlook.com [40.107.21.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A1F7DA8C
-	for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 23:16:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734909393; cv=none; b=GY//VA2MXGIqTgHplpYCA5/Z9PzJFzR1ouVVJBM+QKWLs1C9ICnatSrJlW5LJzlMbYO7EJrXtrtL5ivyj8nFQKgso7tu5ANdZ5FnXQnKIKRBkAC7HTpIJqmkh59vZXqLlEwD+huLpoYdBY0FgAwZeXE4nwDg05foas04riwuBVE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734909393; c=relaxed/simple;
-	bh=sPExyfB5xDKjo6+h/9m7CJfp/uLSnGqHu8pchYo7G5U=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jyaQyI3O+5DNIZqfn+mLI1GzXnyT75EOMSRsSFtbC3Mt7k8qGAoTIQ6ril/WsKZPnjenVKoA+JIDAhxj1CJdCUc//DNHKjee4GkwY1lw4Cxuq/XQ84jTDdgFb4Ij/umBgLTUgmaGlZJlJklUXQHiJXOcWE7bekw0uCderYFA82g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=naNCs+Eu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59779C4CECD;
-	Sun, 22 Dec 2024 23:16:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734909393;
-	bh=sPExyfB5xDKjo6+h/9m7CJfp/uLSnGqHu8pchYo7G5U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=naNCs+EuFAAcALfm760+rvgwFrB97BCO1EEIuTqdvBQYxdpX1QlUc1wbjNd15qTwO
-	 glBx7TpMrYqx/u7gZowjCzKV9BJAAHA4j3BXwuoOkd9CFkK2PnC3rEsygbab1UMgZw
-	 T0Ibarav9ZcPF0itvvs9q4NCZOfO5RWiGoS66uYzz+E+70wSdKtg7DCqFxNBz47f7v
-	 EqieAlVspcYmKYT+JJ1nY+Jqq4FKQjI1yNGg8tbMh/KQTbfKDYh8TiC+3yy9Wg9gpt
-	 Ke4Zs+mpI3BPWR8LdZVcI9VZ1CUOXLMrHIObG6soTJ0ZESXTsSt8MtYCsvAuLgbF+d
-	 sUAYa3ylCDU1Q==
-Received: from 91-161-240-24.subs.proxad.net ([91.161.240.24] helo=wait-a-minute.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1tPVBW-006FHJ-Me;
-	Sun, 22 Dec 2024 23:16:30 +0000
-Date: Sun, 22 Dec 2024 23:16:30 +0000
-Message-ID: <8734ifs3zl.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: FUKAUMI Naoki <naoki@radxa.com>,
-	heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tglx@linutronix.de,
-	jonas@kwiboo.se,
-	macromorgan@hotmail.com,
-	andyshrk@163.com,
-	liujianfeng1994@gmail.com,
-	dmt.yashin@gmail.com,
-	tim@feathertop.org,
-	marcin.juszkiewicz@linaro.org,
-	michael.riesch@wolfvision.net,
-	alchark@gmail.com,
-	sebastian.reichel@collabora.com,
-	jbx6244@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 1/3] irqchip/gic-v3: Enable Rockchip 3588001 erratum workaround for RK3582
-In-Reply-To: <f93b3bfb5151e4b617b1c99c91b4956f@manjaro.org>
-References: <20241222030355.2246-1-naoki@radxa.com>
-	<20241222030355.2246-2-naoki@radxa.com>
-	<86msgoozqa.wl-maz@kernel.org>
-	<f93b3bfb5151e4b617b1c99c91b4956f@manjaro.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69EB42107;
+	Mon, 23 Dec 2024 00:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734914812; cv=fail; b=S+oJTK2s2wpj6MP0x3BSQnm83FzW0Z4Ta9CPX2giVA/4o1Ty5zhsNibsGjmrqJGOKMGdOmULg1ze0aZC54v7tmxeYxIP3NAqE5XiHLvpCORiadCbhyAI2M4QhZZcGxKD7JpDmgmGUzZhh6tNEVuZBisUZTt4riTWUJbuI5FgHCw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734914812; c=relaxed/simple;
+	bh=M135gGqHkVhoSlOrBmr5Bo3AjgJo1bmJm2/1nIOc0mE=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=ny9rQKjyiztoe7Oqubj9dBEQfG9dRCAi4rMyCgKDbCT9eca7ilpVDPE9WESo3NIxzJGPBfhHpUzhf8Z2Rp5qCY5jkad3rRINjb3uvVmYBpxtIGGJ7n+M2MSwMm7+pWYEfz3ScagQGc627odsSdtugk6B2U3EWV66fBWKuC9mjmg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=vvAw0ljf; arc=fail smtp.client-ip=40.107.21.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kZStlbLwsjy0OP/bGcqtHfNk6QKlwGIuveQ4Ts2QiegjvLlJWNgh+4tWJr7PPW6+sOPvXIe6ugoa9rrZ5PNqwgJ9tAlG/Lu7XI/9xYuALUwsvaKaVv4/BMnA2rTO9fU93JzYg3FkFLoWTP5Z0jH6Hry2+s+YVo2OVidtzolFB3XttcmiOHUcPEPoGTYP9x3bHJLQdvDlUDYJ/Un9p7TfT4fCxijkdgt+lQ3ISeMN2NZgSNXq5Weo0JUu/I+mJA5uSiuHSxkGR8JBagODQTgMnpd0JuS27QXQs4jhTbHZjPZW7P5t/1K6il1aXCAop3QdLiLi+UeEdC9O8yhkQ/FHVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Fhrf9Bu0AlmngK1cMVMeCSZrhIJPB54Sv2hXwfH6HUE=;
+ b=LsBgoC/Qq4Odzf1VLeCxQ6HQzBtJ84V47PvbEzwEkOLRsjUc35fuxCel5IpbcBOKyPVh7utusCZQtxoNB2LJrWhxfCyAw4Y/0HY1pAlWsioy5v5vO9QVsb9D3plcj6jPXVxOpFl5k67dHdrLl5waZFa9yLWIF50PCVKATDhNtKptl3nuQ6djQzDjtbWVIrPUsbsrgfCbX12RHWQ7++QmzlvHclq3WzuR6sfStPhGUg5f4Xj2ZSrCzjSO4LWjbnbT8KnKEX+7BGbmjj8eV6eyqqKPAesH+KbSqeCnaBXrGIDa9QPB0QCRX1Hz6LvGlHFq/N8P/fkjUiGtA2lnnX1JEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Fhrf9Bu0AlmngK1cMVMeCSZrhIJPB54Sv2hXwfH6HUE=;
+ b=vvAw0ljfdXpio1DssYf5MFTbgd+jmzWdiVTCnQHdG3N9VQ4n61dg6l8hsqDz3EbsRyQCvoEotKYzzDeEsWlsyglH16/qjkkKWC0e/4OMr1wjkxqn9zL+HRw4771Oh8I4YasflAH4KxsTUERn8Mhs0o49xfeUvj00xgeDA78NbmmCu0dTF2sLIsnNvbRfLDyJc8Vq2LEANYnBDDecLR6rqN60ZF1cL+kfFiLgIYJzUdpguMu1AInnJDomgG0T0nayHU8X/SB7DOCfClPMPAyZ018E9F+1y2MN4sRbyoY5haHc5rpCmDvv2mVi2SrqvSl5VL1aOgoAcYzfN9hee+gYkg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by AS8PR04MB8995.eurprd04.prod.outlook.com (2603:10a6:20b:42e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.20; Mon, 23 Dec
+ 2024 00:46:41 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%5]) with mapi id 15.20.8272.013; Mon, 23 Dec 2024
+ 00:46:41 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: [PATCH v4 0/2] Make i.MX9 OCOTP work as accessing controller
+Date: Mon, 23 Dec 2024 08:46:12 +0800
+Message-Id: <20241223-imx-ocotp-v4-0-f504c1420640@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANSyaGcC/23MTQ7CIBCG4as0rMUwA/bHlfcwLgDBsmhpoCE1T
+ e8u7UZMXH6Ted6VRBOcieRarSSY5KLzYx7iVBHdy/FlqHvmTZChAASkblio136eqFbGciZAMHs
+ h+X8KxrrlaN0fefcuzj68j3SC/fqvkoAyCl2rFJO2rSW7jct01n4geyNh6ZrSYXbcSllrZa0A9
+ et46brS8ewUIm+AdS1r4Ou2bfsAQM7dxRABAAA=
+X-Change-ID: 20241212-imx-ocotp-cbef304140f5
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1734914780; l=2461;
+ i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
+ bh=M135gGqHkVhoSlOrBmr5Bo3AjgJo1bmJm2/1nIOc0mE=;
+ b=UegpPg/2TrKumb4Ga56cr2gsFtCjeiNtGyPtnJrccyPBJXVjMXFAt94llrDWPpJWDvuQ1S86r
+ EAqjSduoJgGD3LYnxUxgvH4tpOvKj6w07d19kN7UuCuPy0QzXwZkURa
+X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
+ pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
+X-ClientProxiedBy: SI2PR02CA0033.apcprd02.prod.outlook.com
+ (2603:1096:4:195::20) To PAXPR04MB8459.eurprd04.prod.outlook.com
+ (2603:10a6:102:1da::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 91.161.240.24
-X-SA-Exim-Rcpt-To: dsimic@manjaro.org, naoki@radxa.com, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de, jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com, liujianfeng1994@gmail.com, dmt.yashin@gmail.com, tim@feathertop.org, marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net, alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AS8PR04MB8995:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8618d8cc-b28a-4179-79db-08dd22eb4440
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|7416014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cG96b1hVUThNREpIYksyK0laVXFmdG5WcUJjM1p2WDF2Y09uWWo5cHk5UjVu?=
+ =?utf-8?B?ZG5mVUVZbGlWVXFjZE5PL0pjbzEwRkdlVUZhV09HRTFRYTlmazVEdVA1a2Ju?=
+ =?utf-8?B?NXViSXIvVTBWS05RWCtMK0N3R0wxcHk4c2xFa0ZzbU9BUTlQSUJKQ3VoeHZ4?=
+ =?utf-8?B?MlZjZDJjUEFSOTdKci9MSStwRlVmS0RBVlM2ZjRYN25IV3p5OTlVaW1aWE1t?=
+ =?utf-8?B?ajVyekJnN0o5aUFYV2cvWGpqUDM3aEVNay9pVmdkUmNFSmswRXZMeTJpSG96?=
+ =?utf-8?B?ZlFkdUExdUFFUFZCZGhsOUFqQVo0Znoxd0RHRXlSekgzenp3MTM4QnhOSDhY?=
+ =?utf-8?B?WEZDZEVIUlNNYjNROUN1cjN1N1NZaTBrZk1IM1JkSFVOVGEvanVyYitFQ3ZC?=
+ =?utf-8?B?bHpUeVdoK2kwMnRobW1UK2d0dTExVC9acFZjajNXNjFrQ0FpZ1lROFp1Tmll?=
+ =?utf-8?B?Z0IrOXFGbVUvY3JBaVpYQnNBVkVSRTBpZHBpdmFTenA4a3M5azlWWWxKOEFV?=
+ =?utf-8?B?eFBsYk5vQ0FpQlM3T3huN0JsNmtzUGFGQk5LY3g0dnY4SjNDMUJ1TzR6NUQx?=
+ =?utf-8?B?bkYxdVRxV1RPM3VaNmovcG9Fb1VQTkVnQWtETWNpMVhlcFFkR2gydW5CcGNK?=
+ =?utf-8?B?QkNkSSt1Tk5WZFNtb3lqKzFGYTJtSFIyN0dsQnRpa24zRjFsY01DVUI2aGVF?=
+ =?utf-8?B?SDBiVjBua0ozM25WeFcyZmp2U2hJUVVtemhWbGF0MFZaYzJ6M1BMZmhRNEVV?=
+ =?utf-8?B?czJseWNxMGZGeEd2ZXBBbXdhYnJPcm1XNEFpcEhmczlzTHlSUFRKYUFtdjh0?=
+ =?utf-8?B?NGF0ampPZHZoa2c1UDVvaDVraW9mdDQzT1c5TWt4bXJlZmdhSEV2VmZnZ245?=
+ =?utf-8?B?RXgwbE1JaG4wK1ZGQmxiOVZqNXBsam1tbUR1MnBuNW5JSHA2U0dDSFltdHg1?=
+ =?utf-8?B?YStuU21vMXlHdDBkb3c1RWU1Z0VtTmk4b3haQm5HL0V2Y0JteHVnRk1hM3hj?=
+ =?utf-8?B?Yys0UG5jNEFGM1YvYzRuMVhEaFRqSGJOZGVsNXY4SS9FbThNd3U5WC80bk5p?=
+ =?utf-8?B?RlY3UjlhbWgvUTNPVUU2Q1AreFByMk1iTWt6MCtjQnVKSE5kcVRXZ3hGRkJi?=
+ =?utf-8?B?bWdmWllFcld4eGl4bjFwMDgydEQ2OTdqckNVUFVzZXQ5bTc0bURnc3E4Yjg0?=
+ =?utf-8?B?cEdMcXB5T2dHSDJaUUVrVmtxRU9WYVU5ejZ1bHNwaUNsTlNpa2NQdWpkM2M1?=
+ =?utf-8?B?MlhCWHlYNkYyVFlLdml0RTdvRU5qdGhCUW5MQTJNUUxFdmZNS01aN0ZKYjB2?=
+ =?utf-8?B?ZGlFWU4zK0RLbG5lSzN1RzdQWDBORjRoQk12dEJENDd3TVljUHkvUUJxUVRy?=
+ =?utf-8?B?UlJUMGROUmhpZXBZU00rSGg1V1p2M05uaEFvQ2hqL1gxUGtGN1RncXM5SlRz?=
+ =?utf-8?B?V285cUI3b2hmK1o0MmlCYXFSbHZib0ozWFRmZnVYeGJ6Vm5hT01SSDFZeXNN?=
+ =?utf-8?B?L1VSTTRqaDJ3OWxrWVBRbFpiNkJ2cFdiam9iWVdiaTJUY2dlQTNkMis0VTVE?=
+ =?utf-8?B?YUxzdmRJb1dLckw4Tjh6RDkveGFtTDRGVFlFdngzQjhEbDRZbDF4VW9UK1ht?=
+ =?utf-8?B?Mkt5cE5HSDNHcEVzT0pnaTZaRE9iRHAvRitCd0ovZ0tmQzR6T2pidmtRMnhE?=
+ =?utf-8?B?TkIwOW1wYm95bXdBMlBITnB5NDNQSFFWNklvQnFQK0RKRU9jd1NidDZ6SlVZ?=
+ =?utf-8?B?WkxpaW40Y2c0UXBldGJQRlF3M2dTUUlrV1VIU0dwYjJzdERwdU1FblZmTEVv?=
+ =?utf-8?B?NjdYbGJvZmpwaHMvZXp4TGVzWmV0YTlmVEFJVDJJS1hDOTlPbXU3OEZxYmFl?=
+ =?utf-8?B?ckJxODdFekt2c09oSEcraEliUUVIY0pTL1hBbkJ3aTJMMVR0SDhBdlB4b2NY?=
+ =?utf-8?B?WkwyZ0VpbmR3UW55bzZWZDdMOGxoUEFKU0M0ZkpnWWZqMXRSZ0Fmb2dua1dL?=
+ =?utf-8?B?OFpHWnNDMXp3PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SEt3aDIwZzFBNVU4RmtSQ2taV2VoamR1TVFxZy9zb09xM2hVOXJCVXNocGpu?=
+ =?utf-8?B?aDBmQVFUYW81YklxcXg0VzRFckpWV0dvMFcxcGRYSWV1QmFkSXJpY2VHZlFJ?=
+ =?utf-8?B?TzF6TUVkMHZubnFzT3ZmdTBlZDgySTlkclVwQ0U5clMxN2JQU21uM2theGdQ?=
+ =?utf-8?B?N0lpWUFzRHMwOUoxNUc0VnNYdjZ3b3BJYVRGcmhZUzJPTGNNQmh0Qi9TekJu?=
+ =?utf-8?B?K3lSZHpuQmh2Ukl2NENIQWRTRVRycEdCUUFQaXJ0OVdENVl2aEw0VTQvMDJM?=
+ =?utf-8?B?QldoV05EY3BadngrOVRyRW5WZTV3eTljdzBLaTFZK1VSM1RNUWcycU5WeGYw?=
+ =?utf-8?B?MUU4MnlrM0Q5SkVaUGJuT0NOclZUQzFlNk11b0RPaXVMV2NPM2h2YW1uWjF5?=
+ =?utf-8?B?MytjdWNvSkhaWUx0UUQ4MjE4bTZtQUNxRnhuZEVWc1pMNjk2V3lCLzdyVGhF?=
+ =?utf-8?B?c1M4S1RlRm9RcUR2cExqd0txc0FRK08wK2JzSzF2bVRIbGJCV3NKN2J3Z1ZQ?=
+ =?utf-8?B?UGVKZjJWSzRqSmQxYkRkZmNSWWE0LzI4UE0xejdDMnpGNWxWdjdTR25NdUZZ?=
+ =?utf-8?B?YW45RVpEL3NPQmY2dy9qZ084YXdsRXFSc1V3RWova0tteW4yY1N6blRwN3Zp?=
+ =?utf-8?B?T0c2NnBmSXA2MEhNOTJTZWhjRmJaSXpaYmZhci8wSkhaZ0V0WmE5UE9GL2h2?=
+ =?utf-8?B?dFBGQXpRblN2cktxdm02dnBxN1dOK0lneHZYaDY1OTIzZnM0L0hFMTAzTzIx?=
+ =?utf-8?B?R3hiWk1JQjFpTjFPdWNZOWlwZXZEMm1ScUxyZlJuLzNKSURhemRJQmtnWVpB?=
+ =?utf-8?B?YXpwckpFcFFEZTZiTHRoMnNGWXRZamdocXZPVlFhdWxRTFlIb2dxNEhhMFZv?=
+ =?utf-8?B?UHBiN2w0RVdHNDVOeERiUkpWY1dkQmthdVh4RURpTHlWWi9QdUFlQkRpQWlT?=
+ =?utf-8?B?TzlNbW43SXZWSXZlNnhWTjc4Ri9mZHd3TDJsaEM2eEtQQTFFc0lWN3IxcDVR?=
+ =?utf-8?B?UmVNQWZyWXJqOFdsS3hKV1BrWU5SUEJvVExVcWpzcFBBd0ZkVW11YjZEMUtE?=
+ =?utf-8?B?T2syOU0zTzRXZUFITG9KRFhpVU9KZ1pKdnBuS1BOdnV5d2JpamFzaWEyeEc3?=
+ =?utf-8?B?UVhsaXdrVk5hVHcwbnBoVGRPM3BESzFmQ2ZTZUlSL0NkRS8yakt0TWxib3R3?=
+ =?utf-8?B?VGJQQ3JWOThyejZJcVZSSEpBdzN2R29ZakhpTnphMHRadm1JZVRiMGg0NHRo?=
+ =?utf-8?B?S0pkUXRmSHhnN2QyVitXcUI4WUkwa1NyazZReHhrRVdKd3RzWkFWZlRoL0ln?=
+ =?utf-8?B?UUl1TVQrSmZuQ0tyVlRZclhMUVI1c05HM3RXZTdnOC9JaG9XM2R1OVpiTmhM?=
+ =?utf-8?B?WUV0OHhhTTZLZGY0R3N4NTBpazVzSy9UMmFZdDQ1OHB6T0oxYmg5ZnNhTHpS?=
+ =?utf-8?B?UlpYVnhBcjQ0K0F3ZGx1VU95Snp2QkdNRHJwWGcxYnAzdWE2WGN0K0FDd3Fr?=
+ =?utf-8?B?TzB5SDJlekJ6MTBCMDlEV3JxbUIxYmVMZm0xeDZjeE1FRCsxTkphV2tFQUZB?=
+ =?utf-8?B?OVluSU1kUlRFaUc3aVF6Umg4cW1Cbld5QlZTSm5xREM3dEdxZHNUUzljNm54?=
+ =?utf-8?B?dU9ZOFNHL1VzeC9JcEREQ0poZHJLb25sYUg5cElhaVArNjZIa3hlazYwbG5l?=
+ =?utf-8?B?YmQzTzhST1htZm9CZE01M1ZiTzIrcG5lMFdnZERucnZObERRcTJwdXQ1VXNi?=
+ =?utf-8?B?SDlUUUVocVhWOUwzVWJFU0tvUTFuejUyWGZKZUlZc3Eyd3BPRWpqMFNrTGM1?=
+ =?utf-8?B?QTB0VkR6NVdOQi9qSU1xSlRXQUJTdC9ReFY0SEJTcGk1Sk5CYUxvMmQ5S3Nz?=
+ =?utf-8?B?eXNIME4xdTBybGFBek5PNXk5b1N0SWt1NUsyeTIrajdXcThUcVVzYmdiUDk1?=
+ =?utf-8?B?YmVoZVlRbHVBUlB4SUZwazNqMTMyckNUU2pQdno5cFNLbE01M0Jxbzc4L1ZD?=
+ =?utf-8?B?OThUeHdDNXFqMUxMMk8vUnV4ZlhialhEWGxwK2hxZnhDUXpCUGo4dE45amF1?=
+ =?utf-8?B?c0RnVjF0TDV1ZElPaTVCcE56UzVQYkRzbDd6bWxLaG8xQTV6ZjNqM1JhbmpW?=
+ =?utf-8?Q?/5pWNvazvwxCWB3KcTjFGZhwo?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8618d8cc-b28a-4179-79db-08dd22eb4440
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2024 00:46:41.6194
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4/CYcpqRLPCKTJFU9hQdEvZyEuVApq3n0bDdbgRoPxGeTEFZPiyx0/kge5+q/VOsTzP+c4sCTlZNh+Ja1lQvQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8995
 
-Dragan,
+Previously there was discussion on using "feature-controller" or
+adding a specific node to group the fuse information for U-Boot to
+parse and update node. But rejected by DT maintainer(Rob).
 
-On Sun, 22 Dec 2024 18:25:02 +0000,
-Dragan Simic <dsimic@manjaro.org> wrote:
-> 
-> Hello Marc,
-> 
-> On 2024-12-22 10:04, Marc Zyngier wrote:
-> > On Sun, 22 Dec 2024 03:03:53 +0000,
-> > FUKAUMI Naoki <naoki@radxa.com> wrote:
-> >> 
-> >> Rockchip RK3582 is a scaled down version of Rockchip RK3588(S). Apply
-> >> Rockchip 3588001 erratum workaround to RK3582.
-> >> 
-> >> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> >> ---
-> >>  drivers/irqchip/irq-gic-v3-its.c | 3 ++-
-> >>  1 file changed, 2 insertions(+), 1 deletion(-)
-> >> 
-> >> diff --git a/drivers/irqchip/irq-gic-v3-its.c
-> >> b/drivers/irqchip/irq-gic-v3-its.c
-> >> index 92244cfa0464..c59ce9332dc0 100644
-> >> --- a/drivers/irqchip/irq-gic-v3-its.c
-> >> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> >> @@ -4861,7 +4861,8 @@ static bool __maybe_unused
-> >> its_enable_rk3588001(void *data)
-> >>  {
-> >>  	struct its_node *its = data;
-> >> 
-> >> -	if (!of_machine_is_compatible("rockchip,rk3588") &&
-> >> +	if (!of_machine_is_compatible("rockchip,rk3582") &&
-> >> +	    !of_machine_is_compatible("rockchip,rk3588") &&
-> >>  	    !of_machine_is_compatible("rockchip,rk3588s"))
-> >>  		return false;
-> >> 
-> > 
-> > Please use the relevant property for that purpose ("dma-noncoherent")
-> > at the distributor and ITS levels. We're not adding extra compatibles
-> > for this anymore, and you might as well fix the core dtsi to expose
-> > such property.
-> 
-> Thanks for your response.
-> 
-> After a more detailed look into drivers/irqchip/irq-gic-v3-its.c,
-> it seems that relying on the "dma-noncoherent" DT property may not
-> be equivalent to adding another compatible check.
+Since the STM32 engineers added access controller concept and landed
+the support in Linux Kernel, reuse the concept for i.MX.
 
-It is. My email makes it plain what needs doing.
+i.MX OCOTP eFuse has some bits to indicate a specific periphral or
+function is avaiable for current chip, for example i.MX93 has variants
+that not have NPU. So introduce '#access-controller-cells' for OCOTP,
+and add "#access-controllers = <&ocotp [gate_index]>" for periphrals
+that needs accessing control checking.
 
-> Here are a few
-> quotations from irq-gic-v3-its.c, to illustrate this better:
-> 
-> 4746 static bool __maybe_unused its_enable_rk3588001(void *data)
-> 4747 {
-> 4748         struct its_node *its = data;
-> 4749
-> 4750         if (!of_machine_is_compatible("rockchip,rk3588") &&
-> 4751             !of_machine_is_compatible("rockchip,rk3588s"))
-> 4752                 return false;
-> 4753
-> 4754         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
-> 4755         gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
-> 4756
-> 4757         return true;
-> 4758 }
-> 4759
-> 4760 static bool its_set_non_coherent(void *data)
-> 4761 {
-> 4762         struct its_node *its = data;
-> 4763
-> 4764         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
-> 4765         return true;
-> 4766 }
-> 
-> 4814 #ifdef CONFIG_ROCKCHIP_ERRATUM_3588001
-> 4815         {
-> 4816                 .desc   = "ITS: Rockchip erratum RK3588001",
-> 4817                 .iidr   = 0x0201743b,
-> 4818                 .mask   = 0xffffffff,
-> 4819                 .init   = its_enable_rk3588001,
-> 4820         },
-> 4821 #endif
-> 4822         {
-> 4823                 .desc   = "ITS: non-coherent attribute",
-> 4824                 .property = "dma-noncoherent",
-> 4825                 .init   = its_set_non_coherent,
-> 4826         },
+In OCOTP driver, the nodes under "/" will be iterated, and checked
+if property "#access-controllers" exsits. If not allow access, detach
+the node.
 
-Nothing tickles me more than having my own work being thrown back at
-me.
+In the end, cpu nodes should still be handled by bootloader.
+And I may also update i.MX8M to use same method to support variants
+if this patchset is good.
 
-> 
-> As visible above, using the "dma-noncoherent" DT property results
-> in not setting the RDIST_FLAGS_FORCE_NON_SHAREABLE flag, which the
-> its_enable_rk3588001() function does.  In other words, it doesn't
-> seem that "dma-noncoherent" is a "drop-in" replacement for adding
-> yet another compatible for the RK3582.
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+Changes in v4:
+- Add missing of_node_put(provider)
+- Typo fix in commit log
+- Link to v3: https://lore.kernel.org/r/20241219-imx-ocotp-v3-0-b22371098071@nxp.com
 
-You clearly haven't read what I wrote. Or rather, you read what you
-wanted to read, and ignored half of it.
+Changes in v3:
+- Add A-b for patch 1
+- Use scoped API when iterate nodes and address build warning in patch 2
+- I am also thinking that to drop patch 2 to let
+ bootloader to iterate the nodes that have access-controllers property and
+ update the nodes before booting the kernel. Then just need patch 1 for
+ the binding updates. Anyway, comments are welcomed.
+- Link to v2: https://lore.kernel.org/r/20241217-imx-ocotp-v2-0-3faa6cbff41b@nxp.com
 
->
-> Modifying the current behavior of the "dma-noncoherent" DT property
-> doesn't seem like an option, because it's already used in a couple
-> of board dts(i) files.  Should we introduce another DT property,
-> perhaps "dma-noncoherent-rdist" or something similar?
+Changes in v2:
+- Add R-b for patch 1
+- Use '/' root node instead of '/soc' or '/soc@0' for patch 2
+- Link to v1: https://lore.kernel.org/r/20241212-imx-ocotp-v1-0-198bb0af86a0@nxp.com
 
-No. We have everything we need. Believe it or not, I actually know
-what I'm talking about. I know, this is surprising. I surprise myself
-sometimes.
+---
+Peng Fan (2):
+      dt-bindings: nvmem: imx-ocotp: Introduce #access-controller-cells
+      nvmem: imx-ocotp-ele: Support accessing controller for i.MX9
 
-> Could you, please, advise on how to move forward with this?  I'm
+ .../devicetree/bindings/nvmem/imx-ocotp.yaml       |   5 +
+ drivers/nvmem/imx-ocotp-ele.c                      | 184 ++++++++++++++++++++-
+ include/dt-bindings/nvmem/fsl,imx93-ocotp.h        |  24 +++
+ include/dt-bindings/nvmem/fsl,imx95-ocotp.h        |  43 +++++
+ 4 files changed, 255 insertions(+), 1 deletion(-)
+---
+base-commit: 6d13015b67d58ddba56631c56e0a6f376ade0867
+change-id: 20241212-imx-ocotp-cbef304140f5
 
-I already have.
-
-> willing to implement the required patches, but I'd prefer to reduce
-> the possible back-and-forth on them, to save everyone's time.
-
-May I suggest that you read my email again? How about grepping through
-the upstream DT collection and (shock, horror) look at the imx95.dtsi
-file, which suffers from the same braindead behaviour as the RK stuff?
-
-For clarity, let me paste it here again, and add some emphasis for
-extra clarity:
-
-> > Please use the relevant property for that purpose ("dma-noncoherent")
-> > at the distributor and ITS levels. We're not adding extra compatibles
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Now, please go look at the code for real this time, appreciate how the
-"dma-noncoherent" property placed at the distributor *AND* ITS levels
-combine to give you the effects the hardware requires.
-
-To sum it up: the standard properties and the Rockchip hacks are
-strictly equivalent, there is no need for anything extra, and I stand
-by my NAK on this very patch.
-
-	M.
-
+Best regards,
 -- 
-Without deviation from the norm, progress is not possible.
+Peng Fan <peng.fan@nxp.com>
+
 
