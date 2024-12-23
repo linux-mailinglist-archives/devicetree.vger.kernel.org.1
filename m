@@ -1,275 +1,137 @@
-Return-Path: <devicetree+bounces-133512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7286E9FAD63
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:01:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 803239FAD6D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:07:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCDBF1630C9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:01:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5962E1884F66
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAAFD191F70;
-	Mon, 23 Dec 2024 11:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C932B195B37;
+	Mon, 23 Dec 2024 11:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nZnQw1aE"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Zr0Kezkx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m4920.qiye.163.com (mail-m4920.qiye.163.com [45.254.49.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F0A18F2FD
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 11:01:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39DD719342F;
+	Mon, 23 Dec 2024 11:06:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734951662; cv=none; b=foreVLi27hlJz6GJ8PVoyVvsr7tq6FgWYXJGdqnvEiQMaYTQNnEf7CeBZ+eyk4J3brZ32+nU8Fz+1bGT5N+/1A0N7LfGlAiEIH9a5Ui8MBDcdl7UEjLfqAiNb+mEZZHYw1KTfkYVwRksUCLYR8WsLToOkKCwRrqrh9zo3yWbBaU=
+	t=1734952013; cv=none; b=TFOSATi457DjkGJz2QZkq3EgtBu/Q4HFsWXSx5Wkaehu/wilwnRvqFau4Td9J+hQJ/NJSjXb1hcQzl3A4d4os/0Djxdr7ce187kczR/DOaMvokAoPQr8JMr8dL8wmjtlDorahnYB+gm/ZdAa2z6dmWmqqAdMMKB9kVW9j/S1IuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734951662; c=relaxed/simple;
-	bh=/HNwfmbtDd157iLSvs6i/GXIxqbOufs/CRMUZNFGOm0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k9K3YyBF31nPHfMyCOIXkcQf415QIOMaxCA1TlRPvTKgQFBzpQUIWlEP5C3vCUxc/k4OIyOmX/WWOvZX1O9dHvhrySLtFxXvOxqofA5tKwCDqdjsyTRqX4OMQysf0SldGdCSeuS1EVMgRXl+L0slpCEo9tT9MjkOPGMuYklAKhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nZnQw1aE; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-54020b0dcd2so5401108e87.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 03:01:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1734951659; x=1735556459; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0/yhLy0x2RPN2n+KfN3/CV+wY/86FBphCXJ0uI9cdtY=;
-        b=nZnQw1aE/6fgn3HkYo/yj+F2goJMhjcOF/ccipV7IP3lJwLXNuJEx22cvsP+s6WOGT
-         Spd51ztDDjPwhqsXAP0VSxgJf1ewwpeqlE26L6/pXo93MJ03TyUEI+GuHk33HCz7Zsu1
-         PxGWbjYKur8beoGDDU/bSd/CScsE2ee8jKOwg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734951659; x=1735556459;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0/yhLy0x2RPN2n+KfN3/CV+wY/86FBphCXJ0uI9cdtY=;
-        b=hUIiLXevs/b3dzyTKPg6nys9a0TDFJENATRFmkSZchKbQYJxChUdqa6owPGEJtguqj
-         I4emdD/jAVa6xq2JesXHefNmyWPrFtbF6vG9zyLiCus1J0fWh8csA5R3+Qy07KxwCDX6
-         Fok6+y/Lv3N33Bj2KJ5Rq+Oz8wyXU/DP5eVa7I65ShoXNGiwYftsgYZmEtPj3nEmVGKL
-         /6EnESWp7H+dJ1Ul6bsT29tqfl8XVWUHaGMGDaRtuW6Ea11LU4XnMKl4plj/juZRacBn
-         48CgHuANZe28vn5+DjJq54ijJ2ZWKoU8nGMSUAUWU6VwJFvbr9j7qTPjxB/NpplYP0/R
-         ShIg==
-X-Gm-Message-State: AOJu0YwLYK+6Pa9/Thwkm9j50IjY0Zj7L1NwBZFE5sjE0SFBzlz/+Eo/
-	m/gpchSJlfCv+ZYfJ2qivTglcrzjAk8GXxAjXGpZSSLzImrwUCASqK08did5lmmV0a/FTNLyn9V
-	ac5+BnkjA7D9jImTep9RNpIwpb5f3sZxK9RtW
-X-Gm-Gg: ASbGnctakC4C1ACzPdP5HTeP95qVj4rZoAXPOphA8tSlB/b4g1ng2EBn3JOClBFVr5V
-	1UMWAa52mcKRFZ1/YYOUaN1WODkm6IZVCO5A1yhHOVg/PoFCbNd0Nzeg9tzw84G8s/Q==
-X-Google-Smtp-Source: AGHT+IEeGxR1/A7YAIaQNwuIN8M3ispQzQz/1XgsBv21yWEtwbRwNLgwt8VDFiTZY3VyE4P157VtOboXyGxNebyt2WE=
-X-Received: by 2002:a05:6512:4010:b0:542:2e05:313b with SMTP id
- 2adb3069b0e04-5422e053206mr2012579e87.21.1734951659121; Mon, 23 Dec 2024
- 03:00:59 -0800 (PST)
+	s=arc-20240116; t=1734952013; c=relaxed/simple;
+	bh=MN/MRSgYCILmaH7LqTJKtKk83Vemn/K60SDnUNvFzt0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pA7Eb5+mtXAV2GaxF1o0DijWolnvlydCmV4zjJk/eKp5EwVAtK5KkI7ihYEjrwLjrXxck+ji6iuS8W4IHK3Tc+m8XwGqd01sEBpnMUX+QaETFP89nRL0JKMOd5fP2v3n6FlR5sOnRFRwQ7FkQruma73k0kHAwTjBlnAQsJ2KRxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Zr0Kezkx; arc=none smtp.client-ip=45.254.49.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 68ea0131;
+	Mon, 23 Dec 2024 19:06:38 +0800 (GMT+08:00)
+From: Kever Yang <kever.yang@rock-chips.com>
+To: heiko@sntech.de
+Cc: linux-rockchip@lists.infradead.org,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	linux-pci@vger.kernel.org,
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Tim Lunn <tim@feathertop.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Liang Chen <cl@rock-chips.com>,
+	Elon Zhang <zhangzj@rock-chips.com>,
+	Andy Yan <andyshrk@163.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	linux-kernel@vger.kernel.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 0/7] Rockchip: add Rockchip rk3576 EVB1 board
+Date: Mon, 23 Dec 2024 19:06:30 +0800
+Message-Id: <20241223110637.3697974-1-kever.yang@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241223101434.2170166-1-wenst@chromium.org> <20241223101434.2170166-2-wenst@chromium.org>
-In-Reply-To: <20241223101434.2170166-2-wenst@chromium.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 23 Dec 2024 19:00:47 +0800
-Message-ID: <CAGXv+5FvhaqvsApufntBABFGRRtGbr_sUjqieWfy-d3K2x+drg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8192: Drop Chromebook
- variants that never shipped
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh5LHVZIHx1KShhPTkIeHR9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a93f33294e803afkunm68ea0131
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NFE6Szo6MTIKCAEKN081GRMD
+	PxYKCwlVSlVKTEhPQk5JS0tLQ0tIVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKTkxMNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=Zr0KezkxrrlHR7mhy/y4gFYBIO5808CgTCfiJ72APnW2QLkyU8OiV13w4eCF25b8MA+TsQXRhp9uXJ4yCdI8avyrV4BS8FyOWmTJeRrmUxkxjZWlSg38mZSi9rLEaQiWiuHnTXY2Nq9GEyWqgotxNEIzpM06QCPBFwJxPeOqtYo=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=hkUv9K/cbcAwXcBbSaeyYRD07IQjadduDFOI/Z3WPJc=;
+	h=date:mime-version:subject:message-id:from;
 
-On Mon, Dec 23, 2024 at 6:14=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> The Hayato rev5 sku2 and Spherion rev4 variants were designed in
-> anticipation of shortages of the headphone codec. This never happened.
-> As far as our records show: the variants were never produced or
-> shipped, and no such devices were deployed to any lab.
->
-> Drop them.
->
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->  .../mt8192-asurada-hayato-r5-sku2.dts         | 65 ----------------
->  .../mediatek/mt8192-asurada-spherion-r4.dts   | 78 -------------------
+This patch set is for rockchip rk3576 evb1.
+Based on the naneng combphy patch from Frank Wang.
 
-Please ignore this version. I forgot to remove them from the Makefile.
+This version including the patch adding usb nodes from Frank Wang.
 
-I will send a v2 tomorrow.
+Changes in v3:
+- Update the subject
+- Fix dtb check broken on rk3588
+- Update commit message
+- Update the subject
+- sort for all the board entries instead of two rockchip boards
+- update some properties order
 
-ChenYu
+Changes in v2:
+- Update the clock and reset names to pass the DTB CHECK
+- remove required 'msi-map'
+- add interrupt name 'msi'
+- Update clock and reset names and sequence to pass DTB check
+- collect acked-by tag
+- collect acked-by tag
+- Enable USB nodes
 
->  2 files changed, 143 deletions(-)
->  delete mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5=
--sku2.dts
->  delete mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-=
-r4.dts
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.d=
-ts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
-> deleted file mode 100644
-> index cd86ad9ba28a..000000000000
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
-> +++ /dev/null
-> @@ -1,65 +0,0 @@
-> -// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> -/*
-> - * Copyright 2022 Google LLC
-> - */
-> -/dts-v1/;
-> -#include "mt8192-asurada.dtsi"
-> -
-> -/ {
-> -       model =3D "Google Hayato rev5";
-> -       chassis-type =3D "convertible";
-> -       compatible =3D "google,hayato-rev5-sku2", "google,hayato-sku2",
-> -                    "google,hayato", "mediatek,mt8192";
-> -};
-> -
-> -&keyboard_controller {
-> -       function-row-physmap =3D <
-> -               MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
-> -               MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
-> -               MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
-> -               MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
-> -               MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
-> -               MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
-> -               MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
-> -               MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
-> -               MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
-> -               MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
-> -       >;
-> -       linux,keymap =3D <
-> -               MATRIX_KEY(0x00, 0x02, KEY_BACK)
-> -               MATRIX_KEY(0x03, 0x02, KEY_FORWARD)
-> -               MATRIX_KEY(0x02, 0x02, KEY_REFRESH)
-> -               MATRIX_KEY(0x01, 0x02, KEY_FULL_SCREEN)
-> -               MATRIX_KEY(0x03, 0x04, KEY_SCALE)
-> -               MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-> -               MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-> -               MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-> -               MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-> -               MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-> -
-> -               CROS_STD_MAIN_KEYMAP
-> -       >;
-> -};
-> -
-> -&rt5682 {
-> -       compatible =3D "realtek,rt5682s";
-> -};
-> -
-> -&sound {
-> -       compatible =3D "mediatek,mt8192_mt6359_rt1015p_rt5682s";
-> -
-> -       speaker-codecs {
-> -               sound-dai =3D <&rt1015p>;
-> -       };
-> -
-> -       headset-codec {
-> -               sound-dai =3D <&rt5682 0>;
-> -       };
-> -};
-> -
-> -&touchscreen {
-> -       compatible =3D "hid-over-i2c";
-> -       post-power-on-delay-ms =3D <10>;
-> -       hid-descr-addr =3D <0x0001>;
-> -       vdd-supply =3D <&pp3300_u>;
-> -};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts =
-b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
-> deleted file mode 100644
-> index 5e9e598bab90..000000000000
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
-> +++ /dev/null
-> @@ -1,78 +0,0 @@
-> -// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> -/*
-> - * Copyright 2022 Google LLC
-> - */
-> -/dts-v1/;
-> -#include "mt8192-asurada.dtsi"
-> -#include <dt-bindings/leds/common.h>
-> -
-> -/ {
-> -       model =3D "Google Spherion (rev4)";
-> -       chassis-type =3D "laptop";
-> -       compatible =3D "google,spherion-rev4", "google,spherion",
-> -                    "mediatek,mt8192";
-> -
-> -       pwmleds {
-> -               compatible =3D "pwm-leds";
-> -
-> -               led {
-> -                       function =3D LED_FUNCTION_KBD_BACKLIGHT;
-> -                       color =3D <LED_COLOR_ID_WHITE>;
-> -                       pwms =3D <&cros_ec_pwm 0>;
-> -                       max-brightness =3D <1023>;
-> -               };
-> -       };
-> -};
-> -
-> -&cros_ec_pwm {
-> -       status =3D "okay";
-> -};
-> -
-> -&keyboard_controller {
-> -       function-row-physmap =3D <
-> -               MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
-> -               MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
-> -               MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
-> -               MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
-> -               MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
-> -               MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
-> -               MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
-> -               MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
-> -               MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
-> -               MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
-> -       >;
-> -       linux,keymap =3D <
-> -               MATRIX_KEY(0x00, 0x02, KEY_BACK)
-> -               MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-> -               MATRIX_KEY(0x02, 0x02, KEY_FULL_SCREEN)
-> -               MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-> -               MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-> -               MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-> -               MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-> -               MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-> -               MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-> -               MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-> -
-> -               CROS_STD_MAIN_KEYMAP
-> -       >;
-> -};
-> -
-> -&rt5682 {
-> -       compatible =3D "realtek,rt5682s";
-> -};
-> -
-> -&sound {
-> -       compatible =3D "mediatek,mt8192_mt6359_rt1015p_rt5682s";
-> -
-> -       speaker-codecs {
-> -               sound-dai =3D <&rt1015p>;
-> -       };
-> -
-> -       headset-codec {
-> -               sound-dai =3D <&rt5682 0>;
-> -       };
-> -};
-> -
-> -&touchscreen {
-> -       compatible =3D "elan,ekth3500";
-> -};
-> --
-> 2.47.1.613.gc27f4b7a9f-goog
->
+Frank Wang (1):
+  arm64: dts: rockchip: add usb related nodes for rk3576
+
+Kever Yang (6):
+  arm64: dts: rockchip: Add rk3576 naneng combphy nodes
+  dt-bindings: PCI: dw: rockchip: Add rk3576 support
+  arm64: dts: rockchip: Add rk3576 pcie nodes
+  dt-bindings: arm: rockchip: Sort for boards not in correct order
+  dt-bindings: arm: rockchip: Add rk3576 evb1 board
+  arm64: dts: rockchip: Add rk3576 evb1 board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  59 +-
+ .../bindings/pci/rockchip-dw-pcie-common.yaml |   4 +-
+ .../bindings/pci/rockchip-dw-pcie.yaml        |   4 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3576-evb1-v10.dts     | 722 ++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 278 +++++++
+ 6 files changed, 1037 insertions(+), 31 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+
+-- 
+2.25.1
+
 
