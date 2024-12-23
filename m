@@ -1,87 +1,48 @@
-Return-Path: <devicetree+bounces-133598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E9B9FAF55
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:18:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AED029FAF59
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:18:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87B4B1885407
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:18:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 266BE165AE3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31E21F941;
-	Mon, 23 Dec 2024 14:18:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B99561ABEC1;
+	Mon, 23 Dec 2024 14:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bvuBeFIj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E/R+imZt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8B711712
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 14:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D791A8F68;
+	Mon, 23 Dec 2024 14:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734963485; cv=none; b=DN4XdKrI1M3jtrN56MMJ0d5g+pXHna7HhEg5lPDLc+7UhhYcGybf4x41AW1DzaZekyLFrCV63oEi6TYcazDv7q6kjJDR0EbWyiN110OL3D0bPp7Z8ZP5UZeUAw70YG8HzRZlxxhSCq2SMHDaHiO/LPzDojbjQpzRL7a4ZdEeSSo=
+	t=1734963486; cv=none; b=XKiCuOUJ3tMbBTsKaPLlKix62jtxFPN296QtlA+LGM1W0oS+m5Ka3ACwKX4RrM/2lQocaT1wa7l82qJqU0Kj8lScsznHIy0Sx2rjCtL+jTha/n6305k2s7ZmyrLs5/CXpz989Vj4vHpy6WvvQvpCVi7M6t8Kp+weOSJZrPgGSuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734963485; c=relaxed/simple;
-	bh=XTU+vlqtXeeHOOIoe2EWIgZrUhV2CUswvVm/Ujuim4c=;
+	s=arc-20240116; t=1734963486; c=relaxed/simple;
+	bh=Dnx5jq8dk5gccywgJ8I1S6xTsLN9qwfE/Enn2jq1nSY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oBlTIa7zkfHJC75WAfODp3lPAd2mgYBiLBb7wusCuS5bO909mcTzTwDvBJyyd4ipljlxtIRwnAznCutYceH7ndyzUR82mBaOxGwboPN52srwwHykK0WsKLEUB2aXcfyf7mfpWW4SD6H6Cc1eUi0gZwxJOxlQlWToaqZJJSEt0oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bvuBeFIj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BNBVdYR002801
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 14:18:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	H8jWZ4RVBkQFzgMbQPoAekGo+aUiaBBpyu//XLY0V5A=; b=bvuBeFIjh6wyaix2
-	KywSx7nzLhvd8LzVAo2BYekCY6TT6aGWNTt1RM6DlrwZVeGSEjhNx2x8QrQQVNBQ
-	3QGTMQP0v1gXTLpbFpoN4nCOpN5LnIKFpLdakfpgIKF81i5hazMVxtU8pOO6FBdc
-	SsClrs3xOnnVZxsWtLThw43xMsDdCe7Sth/tw6iMbzSly15tlL1GDUb0FMOrALex
-	zNcrb5BOUNVL7eWaRzWZuotUNSK8IyXmGmfgxWIqF04ATm02znFjM0jlZCs2a51S
-	0Yo7PpR7zPmiWQhhNjvh4IpKcL0tqNKWjuGaWUpewIhUNFOpznA4c3+M26PSFqJ2
-	1VZc9A==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q72mrbf7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 14:18:02 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7b704c982eeso26379985a.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 06:18:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734963481; x=1735568281;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H8jWZ4RVBkQFzgMbQPoAekGo+aUiaBBpyu//XLY0V5A=;
-        b=P+syJMsdtFCjR3K8svzhBl3TsgTJkj94dHPwvm9zrWAcJszAQZtyUlSOsAxqQjUnrD
-         tbCeEncjq35RE25WepzNKkTZePsPrDkr+kZ76ZFirD0M1qqBzPluw9uKu82VunjVuiPD
-         JsyEXk3myP2vxMs3Wp81Z2/Hn2UBamh7hvttqF5QKtziaqSlrApElbld2tpocfUzB/qd
-         66DBUDgXh7PmOrSv2DojxdTHxi3bzLDny2t7AqBK2mysf4ej2bDu96qRBDGfM1C8nelx
-         zCaJaUrMPDuP7EJOsarWX9vY7NjXF5bzf249eMa62jG1AlJIXFajgJWvhRHY5+dIt4UW
-         KxBg==
-X-Forwarded-Encrypted: i=1; AJvYcCUQhQOwB1gDPV6wQa0TUllTeUOHkPSJ3uECyKiEgjt/HorA6GOKW2YY+xJPNQHEsaEsRkBXfo+NIbJU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkxvDh3z9d4zrEKwEDHNPCThbsO2JFnJB9lT3Nd7LNv4CnK0es
-	hI6t2twA9rwoOBZk3Te3JtVohSMVpzW+GHYlkST+l3dojJZHJUytovVe4+ofT1t1ysYbr9XAtLk
-	Edjbk5p0ay8MdMxYwfDMnM4MKaev/pxW+jLwA2Lo+IuCZi91SQTMW7NE1fbKk
-X-Gm-Gg: ASbGnctw0+uTC8lZ1ywO9KVq1N+aMtD7MvWHrmClDNP05NJj39OtOfbDolZOaRvqKuK
-	pd0wlXfhBR1d5ipwBZr4P/FLu5m8QJw5gxAvvnm1wF5Zws+uoCkNeH0t/giFVi1XXXnu0OEnj1h
-	JQSc+3S+oL/7TQ9zH+tpcWTnrr8WTYizUXCMRxMk3xy94D3J/dGdDQ1gEa1jDSZVoza3HBY5g/0
-	3+/een7FI8MYE/PNnpxLdl02R71EniGTA91Y5K2OqLtf4ITW4Xd4cPoDKdrP1y7wU8FDtZitl+c
-	wLUQK33pyfn7WRz//d+mF5dueUnidlFmTK0=
-X-Received: by 2002:a05:620a:4455:b0:7a9:bc9b:b27 with SMTP id af79cd13be357-7b9ba733805mr676982285a.6.1734963481632;
-        Mon, 23 Dec 2024 06:18:01 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH5mDH6W1vcPlFhnTy5y2Kiwrye7mKSnekDwlY0l6aOYBufWCIaRB1qlepbhjrjk5HeHuxcsQ==
-X-Received: by 2002:a05:620a:4455:b0:7a9:bc9b:b27 with SMTP id af79cd13be357-7b9ba733805mr676979885a.6.1734963481269;
-        Mon, 23 Dec 2024 06:18:01 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0efe4e5csm522086466b.115.2024.12.23.06.17.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Dec 2024 06:18:00 -0800 (PST)
-Message-ID: <fde279ad-27ed-4947-a408-23139bcd270a@oss.qualcomm.com>
-Date: Mon, 23 Dec 2024 15:17:58 +0100
+	 In-Reply-To:Content-Type; b=Q0WHSemZr7bya6QMav4FjvxnE55VbOK6Fc71aM06nf3pfFt10Tn2WPE8Bh8oDPaGtj+oH3rfOaCivPNl42wgYu/+3ZG7J0FBvnX13ZKSo+D1lbEeiqHvxlLzKfXiAl97A6GmCplRAQEqlwFF7OrAh1CzlwiHAeZRdXIkVntDYP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E/R+imZt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78D96C4CED3;
+	Mon, 23 Dec 2024 14:18:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734963486;
+	bh=Dnx5jq8dk5gccywgJ8I1S6xTsLN9qwfE/Enn2jq1nSY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=E/R+imZt5bguB8G1UuKlY9bV0MshcchxOe7IWOxHoZHmL9l2teeuLZbBav5xbUDjj
+	 RBLEaatHYNdu3KT8aAPhhBUOBhaWDN9dh9MWcVTsCOv2n7V8GXPkaXIBSPfxtd7HxM
+	 w3jXIhEp41wSk3K1r2kiYJ5sPU/WvRKZdN05dIJPXjns81NzraJaWZbcPVlaLVTQq4
+	 FVS+G7FWN7fOscbsb5T4TfCmvW2rxtj88tF5C4pKOBknxW0wJQpJ+0jQjzv6X+rGol
+	 RmbLTUA6Py2PsPvRTXz26+mSZbLo3v1igqRQMRDwXmJ2JQlwn0oDNBEXApPvOwYr2D
+	 1wgiarhGV5dwg==
+Message-ID: <57d5cb47-5c4b-4334-98af-4fb842995366@kernel.org>
+Date: Mon, 23 Dec 2024 15:18:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,83 +50,175 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/4] media: venus: pm_helpers: use opp-table for the
- frequency
-To: Renjiang Han <quic_renjiang@quicinc.com>,
-        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241219-add-venus-for-qcs615-v6-0-e9a74d3b003d@quicinc.com>
- <20241219-add-venus-for-qcs615-v6-2-e9a74d3b003d@quicinc.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: gs101-pixel: add generic
+ gs101-based Pixel support
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+References: <20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org>
+ <20241220-gs101-simplefb-v2-2-c10a8f9e490b@linaro.org>
+ <33c7a520-dda9-4d3c-aa27-2f48786996a9@kernel.org>
+ <e85505c808661bedf2cca2433ef4c06038505a5f.camel@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241219-add-venus-for-qcs615-v6-2-e9a74d3b003d@quicinc.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <e85505c808661bedf2cca2433ef4c06038505a5f.camel@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: VgtpqFGoRpPcXeC7mqFO07-Tn9cJ3yzt
-X-Proofpoint-GUID: VgtpqFGoRpPcXeC7mqFO07-Tn9cJ3yzt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- clxscore=1015 mlxscore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 spamscore=0 bulkscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412230128
+Content-Transfer-Encoding: 8bit
 
-On 19.12.2024 6:41 AM, Renjiang Han wrote:
-> The frequency value in the opp-table in the device tree and the freq_tbl
-> in the driver are the same.
+On 23/12/2024 08:59, André Draszik wrote:
+> Hi Krzysztof,
 > 
-> Therefore, update pm_helpers.c to use the opp-table for frequency values
-> for the v4 core.
-> If getting data from the opp table fails, fall back to using the frequency
-> table.
+> On Sun, 2024-12-22 at 12:42 +0100, Krzysztof Kozlowski wrote:
+>> On 20/12/2024 12:27, André Draszik wrote:
+>>> In order to support Pixel 6 (Oriole), Pixel 6 Pro (Raven), and Pixel 6a
+>>> (Bluejay) correctly, we have to be able to distinguish them properly as
+>>> we add support for more features.
+>>>
+>>> For example, Raven has a larger display. There are other differences,
+>>> like battery design capacity, etc.
+>>>
+>>> To facilitate this, we create a generic gs101-based Pixel DT that can
+>>> work on any such gs101-based device. At the same time, we move the
+>>
+>> No, whatever insanity Android has there, please don't populate it to
+>> upstream.
+>>
+>> There is no such thing as "generic board" thus cannot be a
+>> "generic DTS".
 > 
-> Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
-> ---
->  drivers/media/platform/qcom/venus/pm_helpers.c | 53 +++++++++++++++++++-------
->  1 file changed, 39 insertions(+), 14 deletions(-)
+> I'll rephrase to gs101-based Pixel base board. Unless you have a better
+> suggestion.
 > 
-> diff --git a/drivers/media/platform/qcom/venus/pm_helpers.c b/drivers/media/platform/qcom/venus/pm_helpers.c
-> index 33a5a659c0ada0ca97eebb5522c5f349f95c49c7..b61c0ad152878870b7223efa274e137d3636433b 100644
-> --- a/drivers/media/platform/qcom/venus/pm_helpers.c
-> +++ b/drivers/media/platform/qcom/venus/pm_helpers.c
-> @@ -43,14 +43,20 @@ static int core_clks_enable(struct venus_core *core)
->  	const struct venus_resources *res = core->res;
->  	const struct freq_tbl *freq_tbl = core->res->freq_tbl;
->  	unsigned int freq_tbl_size = core->res->freq_tbl_size;
-> +	struct device *dev = core->dev;
-> +	struct dev_pm_opp *opp;
->  	unsigned long freq;
->  	unsigned int i;
->  	int ret;
->  
-> -	if (!freq_tbl)
-> -		return -EINVAL;
-> -
-> -	freq = freq_tbl[freq_tbl_size - 1].freq;
-> +	opp = dev_pm_opp_find_freq_ceil(dev, &freq);
-> +	if (IS_ERR(opp)) {
-> +		if (!freq_tbl)
-> +			return -EINVAL;
-> +		freq = freq_tbl[freq_tbl_size - 1].freq;
-> +	} else {
-> +		dev_pm_opp_put(opp);
-> +	}
+>>
+>>> Oriole specific parts that we have at the moment (display) into an
+>>> overlay, making it easy to add support for Raven and Bluejay in a
+>>> similar way.
+>>>
+>>> Note1:
+>>> Despite being an overlay, we instruct kbuild to create a merged
+>>> gs101-oriole.dtb and a gs101-oriole.dtbo. This way existing scripts can
+>>> keep working, but it also gives the option to just apply the overlay
+>>> before boot (e.g. by the bootloader).
+>>>
+>>> Note2:
+>>> I've changed the simple-framebuffer node to specify the memory via
+>>> memory-region instead of reg, as that avoids unnecessary duplication
+>>> (of the size), and it avoids having to specify #address-cells
+>>> and #size-cells in the chosen node (and duplicating this in the DTSO),
+>>> which is otherwise necessary to keep dt_binding_check happy and DT
+>>> validation working in general.
+>>>
+>>> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+>>> ---
+>>> Note: MAINTAINERS doesn't need updating, it covers this whole directory
+>>> ---
+>>>  arch/arm64/boot/dts/exynos/google/Makefile         |  6 ++--
+>>>  .../arm64/boot/dts/exynos/google/gs101-oriole.dtso | 33 ++++++++++++++++++++++
+>>>  .../{gs101-oriole.dts => gs101-pixel-generic.dts}  | 24 +++++++---------
+>>>  3 files changed, 47 insertions(+), 16 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/exynos/google/Makefile b/arch/arm64/boot/dts/exynos/google/Makefile
+>>> index 0a6d5e1fe4ee..6e6b5319212a 100644
+>>> --- a/arch/arm64/boot/dts/exynos/google/Makefile
+>>> +++ b/arch/arm64/boot/dts/exynos/google/Makefile
+>>> @@ -1,4 +1,6 @@
+>>>  # SPDX-License-Identifier: GPL-2.0
+>>>  
+>>> -dtb-$(CONFIG_ARCH_EXYNOS) += \
+>>> -	gs101-oriole.dtb \
+>>> +dtb-$(CONFIG_ARCH_EXYNOS) += gs101-pixel-generic.dtb
+>>> +
+>>> +gs101-oriole-dtbs := gs101-pixel-generic.dtb gs101-oriole.dtbo
+>>> +dtb-$(CONFIG_ARCH_EXYNOS) += gs101-oriole.dtb
+>>> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dtso b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dtso
+>>> new file mode 100644
+>>> index 000000000000..43572039cd07
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dtso
+>>> @@ -0,0 +1,33 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/*
+>>> + * Oriole Device Tree
+>>> + *
+>>> + * Copyright 2021-2023 Google LLC
+>>> + * Copyright 2023-2024 Linaro Ltd
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +/plugin/;
+>>> +
+>>> +&{/} {
+>>> +	model = "Oriole";
+>>> +	compatible = "google,gs101-oriole", "google,gs101-pixel", "google,gs101";
+>>
+>> Boards are not overlays. Board equals DTB.
+> 
+> You're saying this should move into a dts instead of dtso?
+> There are numerous boards upstream which use this same dtso
+> approach.
 
-I'm not super convinced how this could have ever worked without
-scaling voltage levels, by the way. Perhaps this will squash some
-random bugs :|
+Numerous? My quick look found zero. There are for specific
+configurations, but not for boards. Look at something which could
+support your case: imx8mm-kontron-dl.dtso
+In first glance this is a board... but no! This is only about board with
+display panel, because panel is detachable.
 
-Konrad
+> 
+> There is a base board, and also different versions of it,
+> oriole being one of them.
+
+Well, I did not see here baseboard - you renamed it.
+
+
+
+Best regards,
+Krzysztof
 
