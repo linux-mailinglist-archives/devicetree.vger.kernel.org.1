@@ -1,114 +1,101 @@
-Return-Path: <devicetree+bounces-133673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41DCA9FB497
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 20:10:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 076C39FB499
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 20:15:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E0097A1AB5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 19:10:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 985D01659C8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 19:15:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25BA1C5CC6;
-	Mon, 23 Dec 2024 19:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071AE1C3BE2;
+	Mon, 23 Dec 2024 19:15:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BhCQvYMB"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Lb+mzfiK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AAA1C3C1C;
-	Mon, 23 Dec 2024 19:10:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535C71B87DD;
+	Mon, 23 Dec 2024 19:15:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734981022; cv=none; b=Q1Zrnu/SiiPvhSkaPPjximrvehOQT6uzyfD/jBuJH6LJojFLezk0qzwbEp7ibNUweMoqdTVFSJmMriloNmo14I3V5WtNqsL1omeiXrArdEYkgJc46vW3Q3ZwCOW5GTABgLVe+NCDsnPoVHPleCYd41Q2KkjHjllG4/BIijg+gF0=
+	t=1734981303; cv=none; b=Io+JoRMKEggA//0VY5L3q0cglVWXNVEWgPdnr/V02iWWOoH+obs4x0di5G+rDAMWdFd05UPBBfCSBp6QBuL2OpNP7obbVZ2li5xQ0b3R+/tTUWGml4JGgPx8ewEeXDHZz5TT+LQ0ZhIbn6PMUGKbTLOFEscHI6N0X4WpnBDZHzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734981022; c=relaxed/simple;
-	bh=22e0cf0mt6smWzc3GXJN29SgqDBF4lXxlE940Guk1RE=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=plJ4HiTtnewEZ6pelNLZMs7Z21BzXKoC57b7DeHHJ4rq1UUhqTTesYpyb4IsoOaG2cNhtHmrxKrDqwOEzV+3xju30mKmHEi70Zua+yONv7tSggnNva9O63QfzM3eaYmTROX8cjjTWlhBlrmQcWzgKoOQrE+n1Idinot+jC3bie4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BhCQvYMB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77258C4CED3;
-	Mon, 23 Dec 2024 19:10:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734981022;
-	bh=22e0cf0mt6smWzc3GXJN29SgqDBF4lXxlE940Guk1RE=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=BhCQvYMBrcl8bYr7S+fA9BVNl7tbEQiAN7gc+BUDHhjiF+NXS2jbb2YMac5Z8tdJB
-	 Kxj3+t1ofElWoskLWF/1w469IDGOj7iEegjXz+bCNEJKwT7Ex9qqg1N3XN38kzipG9
-	 LLNhsHHO553x0kId5TJyBkSutjUmBVlxRe4WEfjMc9ehWc+fKA8+7oic6tfI2PrU5V
-	 6+KCrisTIZQSoZzeg/8h7v3Z2UdwhaWgbMIp1EJ06kza2xWsWi6YdCrOTduCwGzwFv
-	 55hiPCgM/Pa0TmuuyASh2llQ5Tyo/9e/IEVyWoAXU9zBperO94yI0qWd5IHnyNtbjt
-	 JOfylLGYNRQ4g==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33D7A3805DB2;
-	Mon, 23 Dec 2024 19:10:42 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1734981303; c=relaxed/simple;
+	bh=U2OuHp4lYYEqziPyERTFGv6tmQUIwi6y4dJXQ7EdiOM=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=YX6hfdb2Hw2yOGzCRZgQufdw9RmeSazUiAeQZsB5Mkei2qJ3BWvMHoj/FypBRr3654Xo1eXFZ12RnDH5Fjtt3TtKw2R19MPziAwDiOgbSOCxzmmlTaEuNkHQ2025ohf3+Sk8abb1A/gd9BcOBByNp7dN9OEeahq8iJ571anUIek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Lb+mzfiK; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1421C20003;
+	Mon, 23 Dec 2024 19:14:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1734981299;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qIeJWXZlfXZpFSIC+Ak+j2IOuvjq9EfINowGfwcIn9g=;
+	b=Lb+mzfiKlKygiX60rPfm1+kW4cS17UC/FiL6RPAs7xgtZM7dRqNLtNP4f+z+vLPnU8UStE
+	rvyPZ2C6ebwe8be1HRCJ9dduz7Kppxq4D+66mFvWDCxzkwwcnIS6Qg5CohEO+s/PqRLaB2
+	n2KuVAP7e32xeShRm/U8OI0XiYQb7/RyvSHf4tMUsB4hwS17m4pZcVU/o2bg5ZsPYtVe4j
+	OCF75MzC/Jv9feaPWPJX3ID1DwXmJxxjR2ggu8L54cB8Nq5LBLFNkZS09mwULTAKG7x660
+	PtPqLx3AtQQk5/Z8MIQ0BNNDokBKgg7SMSOq0juxQR6F/SK4fnAVbSEb5dVujQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: <broonie@kernel.org>
+Cc: Md Sadre Alam <quic_mdalam@quicinc.com>, <robh@kernel.org>,
+  <krzk+dt@kernel.org>,  <conor+dt@kernel.org>,  <andersson@kernel.org>,
+  <konradybcio@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
+  <manivannan.sadhasivam@linaro.org>,  <linux-arm-msm@vger.kernel.org>,
+  <linux-spi@vger.kernel.org>,  <devicetree@vger.kernel.org>,
+  <linux-kernel@vger.kernel.org>,  <linux-mtd@lists.infradead.org>,
+  <quic_srichara@quicinc.com>,  <quic_varada@quicinc.com>
+Subject: Re: [PATCH v14 0/8] Add QPIC SPI NAND driver
+In-Reply-To: <87mshe58gq.fsf@bootlin.com> (Miquel Raynal's message of "Mon, 02
+	Dec 2024 17:57:09 +0100")
+References: <20241120091507.1404368-1-quic_mdalam@quicinc.com>
+	<87mshe58gq.fsf@bootlin.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 23 Dec 2024 20:14:56 +0100
+Message-ID: <87o712qki7.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v5 0/9] net: lan969x: add RGMII support
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <173498104074.3934211.3884630987619297533.git-patchwork-notify@kernel.org>
-Date: Mon, 23 Dec 2024 19:10:40 +0000
-References: <20241220-sparx5-lan969x-switch-driver-4-v5-0-fa8ba5dff732@microchip.com>
-In-Reply-To: <20241220-sparx5-lan969x-switch-driver-4-v5-0-fa8ba5dff732@microchip.com>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
- horatiu.vultur@microchip.com, linux@armlinux.org.uk,
- jacob.e.keller@intel.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- robert.marko@sartura.hr, rmk+kernel@armlinux.org.uk
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hello:
+Hi Mark,
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+>> v14:
+>>  * Updated commit message
+>>  * Fix spelling mistake
+>>  * Remove "inline" from multiple APIs from qcom_nandc.c file
+>>  * Move '|' in qcom_param_page_type_exec() APIs at the end of line
+>
+> I guess it is now time to move on, I can apply patches 2-5 and share an
+> immutable tag.
 
-On Fri, 20 Dec 2024 14:48:39 +0100 you wrote:
-> == Description:
-> 
-> This series is the fourth of a multi-part series, that prepares and adds
-> support for the new lan969x switch driver.
-> 
-> The upstreaming efforts is split into multiple series (might change a
-> bit as we go along):
-> 
-> [...]
+Do you want an immutable tag or will you wait the next cycle to apply
+the spi patches?
 
-Here is the summary with links:
-  - [net-next,v5,1/9] net: sparx5: do some preparation work
-    https://git.kernel.org/netdev/net-next/c/c71b59690aa1
-  - [net-next,v5,2/9] net: sparx5: add function for RGMII port check
-    https://git.kernel.org/netdev/net-next/c/dd2baee10840
-  - [net-next,v5,3/9] net: sparx5: use is_port_rgmii() throughout
-    https://git.kernel.org/netdev/net-next/c/05bda8a1bded
-  - [net-next,v5,4/9] net: sparx5: skip low-speed configuration when port is RGMII
-    https://git.kernel.org/netdev/net-next/c/d9450934f915
-  - [net-next,v5,5/9] net: sparx5: only return PCS for modes that require it
-    https://git.kernel.org/netdev/net-next/c/9b8d70ecfef7
-  - [net-next,v5,6/9] net: sparx5: verify RGMII speeds
-    https://git.kernel.org/netdev/net-next/c/95e467b85e69
-  - [net-next,v5,7/9] net: lan969x: add RGMII registers
-    https://git.kernel.org/netdev/net-next/c/fb6ac1829bb5
-  - [net-next,v5,8/9] net: lan969x: add RGMII implementation
-    https://git.kernel.org/netdev/net-next/c/010fe5dff164
-  - [net-next,v5,9/9] dt-bindings: net: sparx5: document RGMII delays
-    https://git.kernel.org/netdev/net-next/c/f0706c04721b
+Thanks,
+Miqu=C3=A8l
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+> However, due to the frequent inconsistencies observed
+> during the lifetime of this patchset, we might be slightly more
+> conservative than usual and split the patches over two kernel
+> releases. I fear there might be annoying fixes on the mtd side needed
+> because of some side effects. Without these, the spi tree might have
+> broken qcom support for several weeks. What do you think?
+>
+> Cheers,
+> Miqu=C3=A8l
 
