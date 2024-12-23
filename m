@@ -1,183 +1,212 @@
-Return-Path: <devicetree+bounces-133486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8B619FAB42
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 08:45:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 485DA9FAB48
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 08:50:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E4631885554
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 07:45:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1813165509
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 07:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1999A18E02A;
-	Mon, 23 Dec 2024 07:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9944918B476;
+	Mon, 23 Dec 2024 07:50:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vHL4HBK4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dCBOF2Y9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 040DD16C687
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 07:45:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1621189520;
+	Mon, 23 Dec 2024 07:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734939934; cv=none; b=B1y+w69tObhRGrF+5rQuW1FoTC2jtWbF/BiP4q/VsqvDd68OD3N2T7t5XhP4v3/ZbPvwGkSWRQ7GY685/RE+d3DACvpzvnqmHLTMno4lrOE36UUKIPSm0mB7zxVEus9ryB7jUUS2FTKJiu7qwhT8nyxfeZC+Jy8HnA/IDCA8IWs=
+	t=1734940226; cv=none; b=TsWdYcY2/C6QsV5r4CpCkWw3simd9QPCkniJCVfpgXZYz+o0QuwCCfe/WUaUJggy2qo7Vxml/xbUvg18gPJ9VUMrbuOCNx69PYjzS/zzotK0cGudv6zAq1qIifkQeUgLqMvx+db5QScgI7h4QzGjAWDRmQjJ4uuyJo/92d4dYAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734939934; c=relaxed/simple;
-	bh=szSMFpu0X/jKqyAJJIRLoz8ialA5hbvm/LWaFM/VFz4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lIrZs4kjPy1erf9OjlxTwfYzQA858Qn04kaRev342GvTJhbX4KM7a/vSY4ZtWTw7j4UnQZQ5OhtepOBYhc7D0iy0hQd9/mSo637/C3+1lIR+Br/EV/6j+znI6Nxa/MyR8AZrJxzM7XrQiNUqbBiHnzwkJP/z0Qo6wt5aKQCLpD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vHL4HBK4; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-385df53e559so3126391f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2024 23:45:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734939929; x=1735544729; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=szSMFpu0X/jKqyAJJIRLoz8ialA5hbvm/LWaFM/VFz4=;
-        b=vHL4HBK4fi5VOKMvNN2LTvJ/3FoFHWfInmQbr1eS9uY2GCulCkjL6iy37kAyR29Use
-         wBS70STY+qUyVFGvP2SOi+cNv1fHgmPZ9tvB/P0v5K/sa/xKE5H9y0UZoN3RdX//SaTN
-         koETAbOhbfE7DcF0CrhpPTXWvnGwhdqZcfUKTZGWaq2tYBPL5DdfvfmSp6YxTQOU0F/i
-         VWLv/HnoCP56ZFKYN8dBEYAIkhWAL3bZPfURQGi1C6QATAt2b1QaDqE0+U41MMa//IsA
-         hlA2EaIeStVSxlrZBS5uVsSOBaLS00UwmS28/yj2r70aw0WVyrhdhAX6Pd0qXAHco2MN
-         yJbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734939929; x=1735544729;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=szSMFpu0X/jKqyAJJIRLoz8ialA5hbvm/LWaFM/VFz4=;
-        b=wQWP1jf/H3mf++8kY8PD9WaMqFCziJtPa+YcUm8E0OKZjBHUD+xONg26CrvQH+G4zy
-         amn1EPNXar9qIDgltgg6HVvr38qE/XQjwSZqtIj0X8QCe/rC77+KGkhM6BNl078kpsUR
-         NVa082QfLs+df0hhtWDGbJrSKLP5WNkzG17Mi+y360MbER6XMOywM6rwgDqFc19yIzCk
-         3ZDgEJu5g5BB2pOV/cYffqO+MBY78Mq4AT7ZnI2z2TsUfkNA24HG2dqfLYrHWUYYP3Ux
-         szwQPS/AfQrxkQ1qIMPUoZRxkrr/kiK9t7Y7/fKByqL0sILjp2BbuVLYkqxcYKgrYD14
-         Su4g==
-X-Forwarded-Encrypted: i=1; AJvYcCXAKiapnp8ms4vbjtytQuYxlPXD8XUD7i3UhZgRtMem9Qmi5vseQ7v4tmhJBhBEYszYsWa8Ik5sxDah@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtDvkgJp+X+9dwoaCig7n914Gdak0/mhuLRMOEd0sXhtJq8uGL
-	KnfwY62fXr8l6yZhP1ORh5ACUyEpttWvJNg0x7cGMrN/Epp5hU6YIDL0pSBMw4Q=
-X-Gm-Gg: ASbGncu8ZE8RzJOO7V4gDqPhxSWTlQY9OVH4R4uukDcncfRkr7+45yKDb7aRXAAhGp1
-	iggER2EJcEsOJOjwiT1jqv3J6sg2MMj02vHugJ7zf1NuoCcsm8U4uRP7JIKl5Pykh+U5BejEOE8
-	10o1S1jl2nYT6XZZhHtEtpu7SKxDFdw3LWHfCxf4iRKLavN2l7cMBDbPeOtRZhjXCEa4PXE8Pzt
-	cnIBcTYwBdvo5zphTSHCPEagD5xbBlavuwq+uYGgPFc9lEJssZwB8lJsaQoqg==
-X-Google-Smtp-Source: AGHT+IGDaeMCJrgzifSr2TvDYMPQhcDT2MRZ+98RU5GMa6SGyaKWu+e0yHVKL1/bnGNvSM8bZo3RoA==
-X-Received: by 2002:a5d:598f:0:b0:385:ed20:3be6 with SMTP id ffacd0b85a97d-38a221fa7f9mr10193192f8f.22.1734939929304;
-        Sun, 22 Dec 2024 23:45:29 -0800 (PST)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8a6e19sm10645963f8f.100.2024.12.22.23.45.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Dec 2024 23:45:28 -0800 (PST)
-Message-ID: <cfdc5b1b03140e3d2ce3fb58e8b342dc2ac06d04.camel@linaro.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: google: add gs101-raven and
- generic gs101-pixel
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter Griffin
-	 <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Alim
- Akhtar <alim.akhtar@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Date: Mon, 23 Dec 2024 07:45:27 +0000
-In-Reply-To: <d0c1511f-b052-4690-aefb-3fb41e1e5875@kernel.org>
-References: <20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org>
-	 <20241220-gs101-simplefb-v2-1-c10a8f9e490b@linaro.org>
-	 <d0c1511f-b052-4690-aefb-3fb41e1e5875@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1-4 
+	s=arc-20240116; t=1734940226; c=relaxed/simple;
+	bh=KluvoRVs50gNq7a5yFRrEJBBDOWuB3gtzpqMMaQxMhA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A4fGhUvUpfUcxUt4DRxaq55Vgm9j/GWmzsyiMjMMK4n0RWSKw3zVKFQvqUTF9IAVF6par0uDWJHOB52pc6NI8HqYldbgvTupUP+1ng+fMUxy+7LxEVGidYQDFPR6FDfVUZkj+1KY/V5VzPKmNnjbPZATRbbr0GHMs57nap1qGc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dCBOF2Y9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN6mbwA004776;
+	Mon, 23 Dec 2024 07:50:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=o0ylRwCleiLePsy/R7nCCMSI
+	zCh9GGBByF9fUZV3WJo=; b=dCBOF2Y9bcfzYzkpPCbsZTO47lTzNynhM+D9tR5A
+	JCH/AJ4yl215RyWRNHdXxFz9EL5kw92yCTmgZNwuiNeRY5wVywF/GkwTFNUkU2NN
+	jdhqEzp19eWYbxw7PGm6NJD2VNJJ6bnzFwB+sGpQSi/SzlZ/XyGv02qKzER7WV/+
+	jv4jAVZxV4U+15PEuqPq/487WS7BDLQK1xtlMjVurjObYl49hXRuCv0iTDhD5cGP
+	6A8qSUsxa7WWiF2PBaA/4tqpeKXoDU1WIJsdD9kjs0bdcBJoB6x96BOQtUH8Pvyt
+	AAuDYkZgQVcjB2FS9X6PFJAXiVA8HkQZQW6gAM7Zv4yvcw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q2ww88bn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 07:50:07 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BN7o6Nm027292
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 07:50:06 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sun, 22 Dec 2024 23:50:00 -0800
+Date: Mon, 23 Dec 2024 13:19:57 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <p.zabel@pengutronix.de>, <quic_nsekar@quicinc.com>,
+        <dmitry.baryshkov@linaro.org>, <quic_srichara@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+Subject: Re: [PATCH v3 1/5] dt-bindings: phy: qcom,uniphy-pcie: Document PCIe
+ uniphy
+Message-ID: <Z2kWJb/77vunIPDg@hu-varada-blr.qualcomm.com>
+References: <20241217100359.4017214-1-quic_varada@quicinc.com>
+ <20241217100359.4017214-2-quic_varada@quicinc.com>
+ <nhzbr4knneo5k3zxvjy2ozx6ciqg2hivwyr2qxdld2x63vlzeb@mjrlqeqiykzp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <nhzbr4knneo5k3zxvjy2ozx6ciqg2hivwyr2qxdld2x63vlzeb@mjrlqeqiykzp>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: G7LY8sYViYMibK_Ix7Wj0HgbzslH0iz9
+X-Proofpoint-GUID: G7LY8sYViYMibK_Ix7Wj0HgbzslH0iz9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ spamscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
+ mlxlogscore=999 clxscore=1015 suspectscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412230068
 
-Hi Krzysztof,
-
-On Sun, 2024-12-22 at 12:38 +0100, Krzysztof Kozlowski wrote:
-> On 20/12/2024 12:27, Andr=C3=A9 Draszik wrote:
-> > Raven is Google's code name for Pixel 6 Pro. Since there are
-> > differences compared to Pixel 6 (Oriole), we need to add a separate
-> > compatible for it.
-> >=20
-> > We also want to support a generic DT, which can work on any type of
->=20
-> There are no such generic DT devices upstream, so we cannot add bindings
-> for them.
-
-Do you have a better suggestion for the wording?
-How about 'gs101-based Pixel base board'?
-
-> > gs101-based Pixel device, e.g. Pixel 6, or Pixel 6 Pro, or Pixel 6a (as
-> > a future addition). Such a DT will have certain nodes disabled / not
-> > added. To facilitate such a generic gs101-based Pixel device, also add
-> > a more generic gs101-pixel compatible. We can not just use the existing
-> > google,gs101 for that, as it refers to the SoC, not a board.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+On Wed, Dec 18, 2024 at 11:28:18AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Dec 17, 2024 at 03:33:55PM +0530, Varadarajan Narayanan wrote:
+> > From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> >
+> > Document the Qualcomm UNIPHY PCIe 28LP present in IPQ5332.
+> >
+> > Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > > ---
-> > =C2=A0Documentation/devicetree/bindings/arm/google.yaml | 18 ++++++++++=
-++++----
-> > =C2=A01 file changed, 14 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/google.yaml b/Docume=
-ntation/devicetree/bindings/arm/google.yaml
-> > index e20b5c9b16bc..a8faf2256242 100644
-> > --- a/Documentation/devicetree/bindings/arm/google.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/google.yaml
-> > @@ -34,11 +34,21 @@ properties:
-> > =C2=A0=C2=A0=C2=A0=C2=A0 const: '/'
-> > =C2=A0=C2=A0 compatible:
-> > =C2=A0=C2=A0=C2=A0=C2=A0 oneOf:
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Google Pixel 6 / Oriole
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Google GS101 Pixel devic=
-es, as generic Pixel, or Pixel 6
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (Oriole), or 6 =
-Pro (Raven)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 2
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 3
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - google,gs101-oriole
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: google=
-,gs101
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - g=
-oogle,gs101-oriole
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - g=
-oogle,gs101-raven
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - g=
-oogle,gs101-pixel
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - g=
-oogle,gs101
->=20
-> SoC cannot be a board in the same time.
+> > v3: Fix compatible string to be similar to other phys and rename file accordingly
+> >     Fix clocks minItems -> maxItems
+>
+> I think there was just one clock, so you increased it to two.
 
-Can you please expand? google,gs101 is the SoC, the other ones are boards.
-Is the commit message unclear?
+IPQ5018 patch series had one clock. IPQ5332 introduced additional
+clocks and it became four. Of the four clocks, two were NoC
+related clocks. Since the NoC clocks are handled in icc-clk based
+interconnect driver, have dropped those two and have incldued the
+two here.
 
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 allOf:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - contains:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 const: google,gs101-pixel
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - contains:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 const: google,gs101
->=20
-> This should be fixed list.
+> >     Change one of the maintainer from Sricharan to Varadarajan
+> >
+> > v2: Rename the file to match the compatible
+> >     Drop 'driver' from title
+> >     Dropped 'clock-names'
+> >     Fixed 'reset-names'
+> > --
+> >  .../phy/qcom,ipq5332-uniphy-pcie-phy.yaml     | 82 +++++++++++++++++++
+> >  1 file changed, 82 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml
+> > new file mode 100644
+> > index 000000000000..0634d4fb85d1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml
+> > @@ -0,0 +1,82 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/qcom,ipq5332-uniphy-pcie-phy.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm UNIPHY PCIe 28LP PHY
+> > +
+> > +maintainers:
+> > +  - Nitheesh Sekar <quic_nsekar@quicinc.com>
+> > +  - Varadarajan Narayanan <quic_varada@quicinc.com>
+> > +
+> > +description:
+> > +  PCIe and USB combo PHY found in Qualcomm IPQ5332 SoC
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qcom,ipq5332-uniphy-gen3x1-pcie-phy
+> > +      - qcom,ipq5332-uniphy-gen3x2-pcie-phy
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 2
+>
+> I should have been more specific last time, but I assumed you will take
+> other bindings as example.  well, so now proper review: you need to list
+> tiems.
 
-OK. (This was inspired by Documentation/devicetree/bindings/soc/xilinx/xili=
-nx.yaml)
+Sure.
 
-Cheers,
-Andre'
+> > +
+> > +  resets:
+> > +    minItems: 2
+> > +    maxItems: 3
+>
+> No answer to my previous question. Question stands.
 
+I assume this question:- "So where are three items?" [1]
+Will remove this and list the items.
+
+> > +
+> > +  reset-names:
+> > +    minItems: 2
+> > +    items:
+> > +      - const: phy
+> > +      - const: phy_ahb
+> > +      - const: phy_cfg
+> > +
+> > +  "#phy-cells":
+> > +    const: 0
+> > +
+> > +  "#clock-cells":
+> > +    const: 0
+> > +
+> > +  clock-output-names:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - resets
+> > +  - reset-names
+> > +  - clocks
+>
+> Keep the same order as in properties block.
+
+Ok.
+
+Thanks
+Varada
+
+1. https://lore.kernel.org/linux-arm-msm/c685ca4e-3992-4deb-adfb-da3bbcb59685@linaro.org/
 
