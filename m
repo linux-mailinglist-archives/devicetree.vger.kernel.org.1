@@ -1,158 +1,447 @@
-Return-Path: <devicetree+bounces-133542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E529FADFC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:56:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BDC59FAE0D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 13:00:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9132B18845B9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:56:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E77E6164318
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053661A7060;
-	Mon, 23 Dec 2024 11:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8533D1A8F62;
+	Mon, 23 Dec 2024 12:00:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aLqEEFAo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AauwYI7r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4231A3A95
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 11:56:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4340719A2B0;
+	Mon, 23 Dec 2024 12:00:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734954995; cv=none; b=iFGA0WdLMPTrQffAlFpuAczQlKmwer9cr24PbIUPtgEuYksoocmoJ0YLC2GzK1l0mat80LPi1/gvsn3ukKdvD1XS10PIMhA3z7DLErwgDgLJk0Cexyf939fqWKaYkfeqBanmwj7M8r4j9qfSvBKzmVndGkKli7XgntnmFzdm1oo=
+	t=1734955214; cv=none; b=CX8bbCbuIx17p1OeK14/T8bb2U3TfAQr2ODJS3LkLaU8pjzTP2NQvJTerJ4ISB3YEeLHgAk8+lDGcoFurylCvXVRk7y9Mw+f/6xAjSS1ERjdQnB1vIKzEW+D54Dgi49pjQYSPT0MW96afW6j8M5dHtGrJ/JuK5ckplAnubTC0JE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734954995; c=relaxed/simple;
-	bh=wF8rse61nN9uN/NmLu+QDRnXYImO3Eca1xE0p1QANuA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=smVb8lnQdqFyis1t1G0n7wzPxlOnKFFO0Phrrqis6P3EN/QK6bh58XfFwF2bEN+eiRdDQyCFEkEVsorDpeeeZPMP0IaoclTwx5SbHa2Lrkq8YzNje19IAhjuKWYRa2KO5bICBzgutAXQL1kZAfI4l8rc8Zmn0ea4GgNV5R/5WJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aLqEEFAo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN5rhSQ018516
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 11:56:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6dFOqreasfzXFaBopq9XoJ4t26Q8dQ3/HjPasthVKKs=; b=aLqEEFAoL9lg9Z5S
-	12pFLFR4yf2Y3nz0hWccZMjFVN2bPMNRYoQjQ1m2ibHGu9etKy8jsP+Eg6y/kKhR
-	Izhe8tTBOUcEgDBCKI84MFsYL6Rz/WsV3sSvD6pGW/jtsBpMCMB7kyctegWtcnk9
-	Pc2MwpdMo8tBnKL3gzlzhVFerYGHrQvIn5hzdFL38A4gvz6k/yjM38ZOdqB+ICzJ
-	baK8Z4uRPpymCFj0x9xwJQVJGaLhtmWSOtvMd8PTzhLughroS4FTjvFKcwGUcyJk
-	ILgkRs2UTluUeTchPbUROVDsfHC9/aqb7mAbMz7lBzshTI2OnMQI3cKQ9WFTJ+GY
-	TU1u0g==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q24595bh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 11:56:33 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6d8824c96cdso15158336d6.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 03:56:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734954992; x=1735559792;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6dFOqreasfzXFaBopq9XoJ4t26Q8dQ3/HjPasthVKKs=;
-        b=toufMKxUobr79NqWw2kVf18/jLymfErgtjYafWmf6HW8dP0aDEiMJZjezPueAZuE5E
-         XWbtZfMlIMjBoHph4h3veV54uJ+W0Vf2jzSqZzVjZig8xThGESPRiaLaFFR4AdDk9G1x
-         t/ZCwHcdTPx2XLPkzXInnK7vR1wk/jlX5BNxqla24jKRfCUp8fus0rjMhgAis8gXWJHf
-         8+HfDxIvV+XJzLsy9KXryHGNMG43oFFsX7anH9E4POqNuE+RC+yJdub/f6UDBb+fydE2
-         8QPE3uXtIl8FdOl3RbZjnBogARvtsWBxn4GdrlHbFrHB/BVWk709Rv/juS2/d1BpGGGX
-         2YfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWrHpl07X7OnFdpTwNjHCobpsGQ6jjvZMgHH2xMw56VSvWsMsZLzs01ZadGnuU55ZFQBP4oq/qQOgWP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkLRMz81bHTXRqOy32YumNXvsrMUkR/OiJQC3kmpSh5f2umU86
-	d6GbKRfC7R8J4DBeKFn9OAwU0D7SeWEHj3dQiImuaAZdm2tFK1iAnhYHtATAJrr5ksZRL3ncbRS
-	OZaUIzeYebVD2BC1ZXKaKA5RdktId3iFOPYb8uME8ld9e0+v3oKXOedu00Pz2
-X-Gm-Gg: ASbGnctPEUw7MVZOfQ2qntFNOiOhLuB5ogzsVFJa22v8YI5QwPIkHC9CjkOG4siMF/P
-	8PaOsPhzWL2T8riZmW9x8KFto5v7dQhQDmXrkb1Qw4837DUv3dN4l1Ei2z8LvqKtDewYLrgMj1+
-	9Mbzov+St7DWCN8nRY2Zf6ERAQ+ivLY/dGUb6088ghEAoGS7X6Bh9F1x0O2oeX8ev48490veAC6
-	eOVZGC/BvV7EkftksdmKNmVDcSHznZXpnQB7844BPH4xkDnFJwwTKbpEApUGOACIbz1Ca0OCp1w
-	ZxPauwukJkLaIrSnLWvBofQ3ZyuINgFvdlc=
-X-Received: by 2002:a05:622a:7:b0:467:4f9a:6514 with SMTP id d75a77b69052e-46a4a976ee8mr68404181cf.10.1734954992253;
-        Mon, 23 Dec 2024 03:56:32 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHTDyvDkCvC+wsD3AJQE94BNax7lYSHi6zG3Sda3qZhATwX1InOeemtZgBO+Y7Z1hSOPa8MAA==
-X-Received: by 2002:a05:622a:7:b0:467:4f9a:6514 with SMTP id d75a77b69052e-46a4a976ee8mr68404001cf.10.1734954991828;
-        Mon, 23 Dec 2024 03:56:31 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f01608fsm507581466b.150.2024.12.23.03.56.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Dec 2024 03:56:31 -0800 (PST)
-Message-ID: <7b33235f-dbf7-45f9-9e8a-5d69ec8ca863@oss.qualcomm.com>
-Date: Mon, 23 Dec 2024 12:56:30 +0100
+	s=arc-20240116; t=1734955214; c=relaxed/simple;
+	bh=eMBtvlonX6DFqouKQusWoFxDUDng4gku7MeD9UIBZ8Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rLDB+8YS60pFWOTnDqpQZKHIHa37SV82QLcbxPXhoNfNoV+TvhP9rAXw+A8OcxFgFgn5YTW3U2aMAW9qna9qj6FytSL2x3/nHRYaPNXVLT8sKmn0rE6p4e0jTnyU5SBLWyCVjOd8S6U2uOEyqAL3EfIZDEPkXXxozxQzeQ2bl+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AauwYI7r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD743C4CED3;
+	Mon, 23 Dec 2024 12:00:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734955213;
+	bh=eMBtvlonX6DFqouKQusWoFxDUDng4gku7MeD9UIBZ8Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=AauwYI7rgHHJI3jf+lci6S7Wu+tcW6TJE5YM1FOIq4Ic/KmaoRseGUm+NZ9Lw3iWe
+	 uUgVa/SQyn/VwhOKc0Ng9+zUnMIICb/qDlKHca4iLra7XBFtvyRHnMBh97f4DbH4Zf
+	 5m+NDTJU1BXlfeV+PWSF/iYCcL4+S5/EQit/d4nTrjPJOYbXtHcflbMY8eIwn8qcY+
+	 s8wzttZk0RbCROaFe5OI9HupeZfzUjEukKTDyu17WsvexEgifAQ8ZIayU2r2RNxqkr
+	 AYXa8ah0ICKCYuKGi/Ip4reY09+bG1yK4FNp8hiLJLyeeQaoaVNXx5rsbLS0LDoPUo
+	 pWvHs2FdN4MSw==
+Date: Mon, 23 Dec 2024 12:00:05 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>
+Subject: Re: [PATCH v9 8/8] iio: adc: ad4851: add ad485x driver
+Message-ID: <20241223120005.1bc9a208@jic23-huawei>
+In-Reply-To: <20241220120134.42760-8-antoniu.miclaus@analog.com>
+References: <20241220120134.42760-1-antoniu.miclaus@analog.com>
+	<20241220120134.42760-8-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: fix the secure device bootup
- issue
-To: Jie Gan <quic_jiegan@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>
-References: <20241219025216.3463527-1-quic_jiegan@quicinc.com>
- <2b4adb2d-29f5-459b-bd85-d5d12876f7eb@oss.qualcomm.com>
- <6d91567b-0cbc-4d85-be38-2467e873e91c@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <6d91567b-0cbc-4d85-be38-2467e873e91c@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: XGDpcV8ftJ3tZcd9f9mHYdZVV0eE51Su
-X-Proofpoint-GUID: XGDpcV8ftJ3tZcd9f9mHYdZVV0eE51Su
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- mlxlogscore=999 priorityscore=1501 malwarescore=0 mlxscore=0 spamscore=0
- suspectscore=0 impostorscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412230107
 
-On 20.12.2024 6:51 AM, Jie Gan wrote:
+On Fri, 20 Dec 2024 14:01:34 +0200
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+
+> Add support for the AD485X a fully buffered, 8-channel simultaneous
+> sampling, 16/20-bit, 1 MSPS data acquisition system (DAS) with
+> differential, wide common-mode range inputs.
 > 
-> 
-> On 12/20/2024 5:25 AM, Konrad Dybcio wrote:
->> On 19.12.2024 3:52 AM, Jie Gan wrote:
->>> The secure device(fused) cannot bootup with TPDM_DCC device. So
->>> disable it in DT.
->>>
->>> Fixes: 6596118ccdcd ("arm64: dts: qcom: Add coresight nodes for SA8775p")
->>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
->>> ---
->>
->> I was thinking, is there a QFPROM fuse we could read on both
->> secure and non-secure devices to determine whether all coresight
->> components will be accessible, and enable them based on that
->> information?
->>
-> There are two known TPDM devices had been disabled on secure device. One of these devices is TPDM_DCC. In downstream code, we have an API to check the secure status of the device in TPDM's probe function, to avoid unintentional enable. The downstream API will check the register that controls crash dump functionality in TZ and the crash dump functionality is disabled by default on secure devices.
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v9:
+>  - add back diff-channels property parsing.
+>  - shrink code in one line where possible.
+>  - use struct device *dev = &st->spi->dev
+>  - split elements that are assigned from those which aren't in the places
+>    mentioned by the review.
+>  - avoid code duplication on num_channels
+>  - parse bipolar and diff-channels properties separately.
+>  - update comment on parse_channels
+>  - use devm_regulator_get_enable_optional for vrefbuf and vrefio
+>  - add devm_add_action_or_reset(&st->spi->dev, ad4851_pwm_disable, st->cnv)
+>    after the pwm is turned on.
 
-That's an "eeeh" type solution, crashdump is a separate thing that may be
-enabled independently, and some prod devices from certain vendors actually
-do that
+A few comments inline.  The one about checking for existence of voltage
+regulators is (I think) a bug. The rest more superficial stuff given
+you are going to be doing a v10.  I might otherwise have just tweaked
+some of these whilst applying.
 
-> We need to verify if the downstream API is supported by the upstream kernel. We plan to upstream a patch to implement this functionality in the TPDM driver or any other device's driver that needed the functionality.
+Thanks,
 
-Please check if there's a coresight-specific fuse instead
+Jonathan
 
 
-> For the time being, we need to disable this TPDM device in DT because the TPDM_DCC will break the bootup process on secure devices.
+> diff --git a/drivers/iio/adc/ad4851.c b/drivers/iio/adc/ad4851.c
+> new file mode 100644
+> index 000000000000..c5525433990c
+> --- /dev/null
+> +++ b/drivers/iio/adc/ad4851.c
+> @@ -0,0 +1,1290 @@
 
-Yeah, right
+...
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Konrad
+> +static void __ad4851_get_scale(struct iio_dev *indio_dev, int scale_tbl,
+> +			       unsigned int *val, unsigned int *val2)
+> +{
+> +	const struct iio_scan_type *scan_type;
+> +	unsigned int tmp;
+> +
+> +	scan_type = iio_get_current_scan_type(indio_dev, &indio_dev->channels[0]);
+> +
+> +	tmp = ((unsigned long long)scale_tbl * MICRO) >> scan_type->realbits;
+
+u64 for the cast so we know how big it is.
+
+
+> +	*val = tmp / MICRO;
+> +	*val2 = tmp % MICRO;
+> +}
+> +
+> +static int ad4851_scale_fill(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4851_state *st = iio_priv(indio_dev);
+> +	unsigned int i, val1, val2;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(ad4851_scale_avail_se); i++) {
+> +		__ad4851_get_scale(indio_dev, ad4851_scale_avail_se[i], &val1, &val2);
+> +		st->scales_se[i][0] = val1;
+> +		st->scales_se[i][1] = val2;
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(ad4851_scale_avail_diff); i++) {
+> +		__ad4851_get_scale(indio_dev, ad4851_scale_avail_diff[i], &val1, &val2);
+> +		st->scales_diff[i][0] = val1;
+> +		st->scales_diff[i][1] = val2;
+> +	}
+> +
+> +	return 0;
+> +}
+
+
+...
+
+> +static int ad4851_get_calibscale(struct ad4851_state *st, int ch, int *val, int *val2)
+> +{
+> +	unsigned int reg_val;
+> +	int gain;
+> +	int ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	ret = regmap_read(st->regmap, AD4851_REG_CHX_GAIN_MSB(ch), &reg_val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	gain = reg_val << 8;
+> +
+> +	ret = regmap_read(st->regmap, AD4851_REG_CHX_GAIN_LSB(ch), &reg_val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	gain |= reg_val;
+> +
+> +	*val = gain;
+> +	*val2 = 32768;
+Why not use IIO_VAL_FRACTIONAL_LOG2;  Then you can make the power of 2 explicit.
+
+> +
+> +	return IIO_VAL_FRACTIONAL;
+> +}
+
+...
+
+> +
+> +static int ad4851_set_calibbias(struct ad4851_state *st, int ch, int val)
+> +{
+> +	u8 buf[3] = { 0 };
+> +	int ret;
+> +
+> +	if (val < 0)
+> +		return -EINVAL;
+> +
+> +	if (st->info->resolution == 16)
+> +		put_unaligned_be16(val, buf);
+> +	else
+> +		put_unaligned_be24(val << 4, buf);
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	ret = regmap_write(st->regmap, AD4851_REG_CHX_OFFSET_LSB(ch), buf[2]);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(st->regmap, AD4851_REG_CHX_OFFSET_MID(ch), buf[1]);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return regmap_write(st->regmap, AD4851_REG_CHX_OFFSET_MSB(ch), buf[0]);
+
+Add a comment somewhere on why this can't be a bulk read.  Otherwise someone
+will change it as it's obvious low hanging fruit for a cleanup.
+Perhaps up by the register definitions.  Obviously even better, figure out why
+and make it work as it's probably a timing of cs_change thing.
+
+> +}
+
+> +
+> +static const struct iio_scan_type ad4851_scan_type_20_0[] = {
+
+the _0 / _1 postfix isn't particularly intuitive. Maybe consider u vs b
+for unipolar vs bipolar or something along those lines?
+
+> +	[AD4851_SCAN_TYPE_NORMAL] = {
+> +		.sign = 'u',
+> +		.realbits = 20,
+> +		.storagebits = 32,
+> +	},
+> +	[AD4851_SCAN_TYPE_RESOLUTION_BOOST] = {
+> +		.sign = 'u',
+> +		.realbits = 24,
+> +		.storagebits = 32,
+> +	},
+> +};
+> +
+> +static const struct iio_scan_type ad4851_scan_type_20_1[] = {
+> +	[AD4851_SCAN_TYPE_NORMAL] = {
+> +		.sign = 's',
+> +		.realbits = 20,
+> +		.storagebits = 32,
+> +	},
+> +	[AD4851_SCAN_TYPE_RESOLUTION_BOOST] = {
+> +		.sign = 's',
+> +		.realbits = 24,
+> +		.storagebits = 32,
+> +	},
+> +};
+> +
+> +static int ad4851_get_current_scan_type(const struct iio_dev *indio_dev,
+> +					const struct iio_chan_spec *chan)
+> +{
+> +	struct ad4851_state *st = iio_priv(indio_dev);
+> +
+> +	return st->resolution_boost_enabled ? AD4851_SCAN_TYPE_RESOLUTION_BOOST
+> +					    : AD4851_SCAN_TYPE_NORMAL;
+> +}
+> +
+> +#define AD4851_IIO_CHANNEL(index, ch, diff)					\
+> +	.type = IIO_VOLTAGE,							\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_CALIBSCALE) |			\
+> +		BIT(IIO_CHAN_INFO_CALIBBIAS) |					\
+> +		BIT(IIO_CHAN_INFO_SCALE),					\
+> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ) |		\
+> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),				\
+> +	.info_mask_shared_by_all_available =					\
+> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),				\
+> +	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),		\
+> +	.indexed = 1,								\
+> +	.differential = diff,							\
+> +	.channel = ch,								\
+> +	.channel2 = ch + (diff * 8),						\
+> +	.scan_index = index,
+> +
+> +#define AD4858_IIO_CHANNEL(index, ch, diff)					\
+> +{										\
+> +	AD4851_IIO_CHANNEL(index, ch, diff)					\
+
+Add a comment on why you don't set the scan type stuff up for just this case.
+
+> +}
+> +
+> +#define AD4857_IIO_CHANNEL(index, ch, diff)					\
+> +{										\
+> +	AD4851_IIO_CHANNEL(index, ch, diff)					\
+> +	.scan_type = {								\
+> +		.sign = diff ? 's' : 'u',					\
+> +		.realbits = 16,							\
+> +		.storagebits = 16,						\
+> +	},									\
+> +}
+> +
+> +static int ad4851_parse_channels(struct iio_dev *indio_dev,
+> +				 struct iio_chan_spec **ad4851_channels,
+> +				 const struct iio_chan_spec ad4851_chan,
+> +				 const struct iio_chan_spec ad4851_chan_diff)
+> +{
+> +	struct ad4851_state *st = iio_priv(indio_dev);
+> +	struct device *dev = &st->spi->dev;
+> +	struct iio_chan_spec *channels;
+> +	unsigned int num_channels, reg;
+> +	unsigned int index = 0;
+> +	int ret;
+> +
+> +	num_channels = device_get_child_node_count(dev);
+> +	if (num_channels > AD4851_MAX_CH_NR)
+> +		return dev_err_probe(dev, -EINVAL, "Too many channels: %u\n",
+> +				     num_channels);
+> +
+> +	channels = devm_kcalloc(dev, num_channels,
+> +				sizeof(*channels), GFP_KERNEL);
+
+This is an oddly short wrap.  Check the whole driver for places where the wrap
+can be neater.  Aim for 80 char limit except when readability is substantially
+better if you go up to 100.
+
+> +	if (!channels)
+> +		return -ENOMEM;
+> +
+> +	indio_dev->channels = channels;
+> +	indio_dev->num_channels = num_channels;
+> +
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		ret = fwnode_property_read_u32(child, "reg", &reg);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Missing channel number\n");
+> +		if (fwnode_property_present(child, "diff-channels")) {
+> +			*channels = ad4851_chan_diff;
+> +			channels->scan_index = index++;
+> +			channels->channel = reg;
+> +			channels->channel2 = reg + AD4851_MAX_CH_NR;
+> +
+> +		} else {
+> +			*channels = ad4851_chan;
+> +			channels->scan_index = index++;
+> +			channels->channel = reg;
+> +		}
+> +		channels++;
+> +
+> +		if (fwnode_property_present(child, "bipolar")) {
+> +			st->bipolar_ch[reg] = true;
+> +		} else {
+> +			st->bipolar_ch[reg] = false;
+> +			ret = regmap_write(st->regmap, AD4851_REG_CHX_SOFTSPAN(reg),
+> +					   AD4851_SOFTSPAN_0V_40V);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +	}
+> +
+> +	*ad4851_channels = channels;
+> +
+> +	return 0;
+> +}
+
+> +static int ad4858_parse_channels(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4851_state *st = iio_priv(indio_dev);
+> +	struct device *dev = &st->spi->dev;
+> +	struct iio_chan_spec *ad4851_channels;
+> +	const struct iio_chan_spec ad4851_chan = AD4858_IIO_CHANNEL(0, 0, 0);
+> +	const struct iio_chan_spec ad4851_chan_diff = AD4858_IIO_CHANNEL(0, 0, 1);
+> +	unsigned int reg;
+> +	int ret;
+> +
+> +	ret = ad4851_parse_channels(indio_dev, &ad4851_channels, ad4851_chan, ad4851_chan_diff);
+
+Wrap this line. It's easy to keep it under 80 chars and that is still the preference
+for cases that don't hurt readability in IIO.  Check for similar lines and
+wrap them all.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		ret = fwnode_property_read_u32(child, "reg", &reg);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Missing channel number\n");
+> +		if (fwnode_property_present(child, "bipolar")) {
+> +			ad4851_channels->ext_scan_type = ad4851_scan_type_20_1;
+> +			ad4851_channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_1);
+> +
+> +		} else {
+> +			ad4851_channels->ext_scan_type = ad4851_scan_type_20_0;
+> +			ad4851_channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_0);
+> +		}
+> +		ad4851_channels++;
+> +	}
+> +
+> +	return 0;
+> +}
+
+> +static int ad4851_probe(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct device *dev = &spi->dev;
+> +	struct ad4851_state *st;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +	st->spi = spi;
+> +
+> +	ret = devm_mutex_init(dev, &st->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_regulator_bulk_get_enable(dev,
+> +					     ARRAY_SIZE(ad4851_power_supplies),
+> +					     ad4851_power_supplies);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to get and enable supplies\n");
+> +
+> +	ret = devm_regulator_get_enable_optional(dev, "vddh");
+> +	if (ret < 0 && ret != -ENODEV)
+> +		return dev_err_probe(dev, ret, "failed to enable vddh voltage\n");
+> +
+> +	ret = devm_regulator_get_enable_optional(dev, "vddl");
+> +	if (ret < 0 && ret != -ENODEV)
+> +		return dev_err_probe(dev, ret, "failed to enable vddl voltage\n");
+> +
+> +	ret = devm_regulator_get_enable_optional(dev, "vrefbuf");
+> +	if (ret < 0 && ret != -ENODEV)
+> +		return dev_err_probe(dev, ret, "failed to enable vrefbuf voltage\n");
+> +
+> +	if (ret > 0)
+
+I'm fairly sure that call never returns a positive.  Will return 0 for success so I think this
+should be if (ret == 0)
+
+> +		st->vrefbuf_en = true;
+> +	else
+> +		st->vrefbuf_en = false;
+> +
+> +	ret = devm_regulator_get_enable_optional(dev, "vrefio");
+> +	if (ret < 0 && ret != -ENODEV)
+> +		return dev_err_probe(dev, ret, "failed to enable vrefio voltage\n");
+> +
+> +	if (ret > 0)
+
+Same here.
+
+> +		st->vrefio_en = true;
+> +	else
+> +		st->vrefio_en = false;
+> +
+...
+
+> +}
 
