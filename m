@@ -1,141 +1,146 @@
-Return-Path: <devicetree+bounces-133491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 565139FABAA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 09:51:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831D79FABE9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:21:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A47B11885013
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 08:51:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 278777A11B8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 09:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E470219068E;
-	Mon, 23 Dec 2024 08:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388A118F2FC;
+	Mon, 23 Dec 2024 09:21:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KVakzAoy"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ro/X5Hy0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E433A13C9A3;
-	Mon, 23 Dec 2024 08:51:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B07EEB5;
+	Mon, 23 Dec 2024 09:21:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734943882; cv=none; b=WMIBb2Kr8ovbR5/S4U4jk1Y/z10y/ucMZvGES0S+UtsElsdxCvYXoBeJB1fFSxIeJIJtxaRYeHB6qitPq03kWMZe4TMniw9hnlvmhLAi5CyIwQsfBYZ+fM9YG1NQsu/rvgoVTJq5cpMXeBRqC7lUNNkXhu3dcIf/KfXmDNU7dDM=
+	t=1734945687; cv=none; b=HbAcAGug6N+n8uixC/nhD3TtKYbWOljSHVwDzMroOQXj8ifNWCsss3hzNG3uMyq7KCij9n58ARXZVOR8VB9dRKRT27ex9Kx1OPHNikQKgvVskkveJGZIWoIBlyslfbgiHPCxZoXgZLUF5tVhAUaBrrq6aCzTuin1it/AZaPqpBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734943882; c=relaxed/simple;
-	bh=DcT/xkQ3IoJNvF11Fezz34EsjMI79O5iPKyEyT3NujA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vp4Dnzm7tOD6hbTcU/YOAa7S7RRD78rLRVs49rUL5J0XPIp2wdbUS/vgDu1d2iM9qKBCWX2usapVJ+5LQgbwVfULIpqpAAkJSDn8s0XwGK5TgGxmSx0Fo553mrIwf1IFJOM1xayMZSRLF1SpMH9qmpLRiXpVwLwqeSoEd5v3wZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KVakzAoy; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734943881; x=1766479881;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DcT/xkQ3IoJNvF11Fezz34EsjMI79O5iPKyEyT3NujA=;
-  b=KVakzAoykSMysnmk8Ib6RAoUIErp6GWtwYwXgdJYgAPSYIzuCq409Knt
-   +qTO+UwzjFWGNq4+Xg/YlxlFdGl/SF6qFJuquxUvzl2gALqKhazrxIwHU
-   n0AMtHgWKmucmOG4ZzPKLVjI9C2dTuK3LyX+vjxetRFy+2Zpb+WhK3cEk
-   NTS3J6/Y72q69rAUY7wZ4S9KT51Un+UwrZiKxcp0fAd9V7yXYXRCbGHAW
-   iJGLTReJsTVkX9rQx/rswdLveyEkeWlFkyohWt+R37/BsxmGapTo+XT36
-   DHajUwgFgWmG1oSJCvqdGkr97RgalEFC22FX3P5WLeqOOEfxMJOiZvUFR
-   Q==;
-X-CSE-ConnectionGUID: GvxPQSKMRn2E7Ofly+Q6lA==
-X-CSE-MsgGUID: ARRUvifIQrGL/O5Z97VvgA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11294"; a="52930391"
-X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; 
-   d="scan'208";a="52930391"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Dec 2024 00:51:20 -0800
-X-CSE-ConnectionGUID: xjMRZDu7T7qfWLO9TBpfsA==
-X-CSE-MsgGUID: d81oGSVRRnWt40DbGLYnZQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="136466477"
-Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 23 Dec 2024 00:51:17 -0800
-Received: from kbuild by a46f226878e0 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tPe9i-0003V1-2c;
-	Mon, 23 Dec 2024 08:51:14 +0000
-Date: Mon, 23 Dec 2024 16:50:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: PavithraUdayakumar-adi via B4 Relay <devnull+pavithra.u.analog.com@kernel.org>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	PavithraUdayakumar-adi <pavithra.u@analog.com>
-Subject: Re: [PATCH 2/2] rtc:max31335: Add driver support for max31331
-Message-ID: <202412231656.5cWrGcHu-lkp@intel.com>
-References: <20241223-max31331-driver-support-v1-2-f9499bd598f5@analog.com>
+	s=arc-20240116; t=1734945687; c=relaxed/simple;
+	bh=doCWJOC/CoG9/QccIgUGFSj0lW31gC0SlA/2kgpfxlI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=i7jbEnpqSN55XnQ+T2KORCbUJ1SfICtOxiG7zS00jGSMlFhgY7NYeKev082ljQuH2/SLnuopz2ljMPdRVsBrlTsrk/kcnAaw4seF5tj1KHSXo0OUyuJQ8E7+JghxT+LtdZcJ0TdHT7MNzOw6biZ1bzAsuIqOa/SNTesBwBdEa24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ro/X5Hy0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN6Biu2020871;
+	Mon, 23 Dec 2024 09:21:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lXrbQ1W3pofZXCWlD/rXdIcY5F9H5Y1JMc5Jry2VdC0=; b=Ro/X5Hy0QTZZPniJ
+	FaW8QhB06rxTXAeH6GJImohEuHrWUtTM0hf3l+MyLtihu97wmtaMrQQ44oR3MNsJ
+	FCler0fJop1V0471hDFlFxqN+z1ZuAj60CW9zzevvr9Hz+d/I/cJHKF7vdOratWS
+	5C+cRDcs70IwR1ZZ7CEOa4s0N8LczZOTYfiAr9K6rfxu1MoOEzMOIyiDt6p3ic8f
+	E5JSCHxZUh9pYmhdrZs2eNux6fm+6SRlXMaZrde6wnqrS017/yY/k5Ro54torQg4
+	S93JDXj0acb1bHM4JT4Rdft6CPsuRwsvF0h2V5HBkQ7dNOGrGiXkccIda0yH6Fzl
+	eW07cQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q2cm0r3f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 09:21:21 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BN9L8Tu030499
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 09:21:08 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 23 Dec
+ 2024 01:21:05 -0800
+Message-ID: <94a6b2ba-fa52-42d0-a60d-9dc31e37057c@quicinc.com>
+Date: Mon, 23 Dec 2024 17:21:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241223-max31331-driver-support-v1-2-f9499bd598f5@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 00/23] arm64: dts: qcom: Fix remoteproc memory base and
+ length
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        "Luca
+ Weiss" <luca.weiss@fairphone.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>
+References: <20241213-dts-qcom-cdsp-mpss-base-address-v3-0-2e0036fccd8d@linaro.org>
+From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20241213-dts-qcom-cdsp-mpss-base-address-v3-0-2e0036fccd8d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8z61j_k-TvtsfNGw8Pj3YfqDPyZ4-08V
+X-Proofpoint-ORIG-GUID: 8z61j_k-TvtsfNGw8Pj3YfqDPyZ4-08V
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ priorityscore=1501 spamscore=0 phishscore=0 adultscore=0 suspectscore=0
+ mlxlogscore=864 impostorscore=0 lowpriorityscore=0 bulkscore=0 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412230084
 
-Hi PavithraUdayakumar-adi,
+On 12/13/2024 10:53 PM, Krzysztof Kozlowski wrote:
+> Changes in v3:
+> - Add Rb tags
+> - Add four new patches (at the end) for sdx75 and sm6115
+> - Link to v2: https://lore.kernel.org/r/20241209-dts-qcom-cdsp-mpss-base-address-v2-0-d85a3bd5cced@linaro.org
+> 
+> Changes in v2:
+> - arm64: dts: qcom: x1e80100: Fix ADSP...:
+>   Commit msg corrections, second paragraph (Johan)
+> - Add tags
+> - Link to v1: https://lore.kernel.org/r/20241206-dts-qcom-cdsp-mpss-base-address-v1-0-2f349e4d5a63@linaro.org
+> 
+> Konrad pointed out during SM8750 review, that numbers are odd, so I
+> looked at datasheets and downstream DTS for all previous platforms.
+> 
+> Most numbers are odd.
+> 
+> Older platforms like SM8150, SM8250, SC7280, SC8180X seem fine. I could
+> not check few like SDX75 or SM6115, due to lack of access to datasheets.
+> 
+> SM8350, SM8450, SM8550 tested on hardware. Others not, but I don't
+> expect any failures because PAS drivers do not use the address space.
+> Which also explains why odd numbers did not result in any failures.
 
-kernel test robot noticed the following build errors:
+In my opinion, the "QCOM_Q6V5_PAS" based Peripheral Authentication
+platforms may have the register information completely removed.
 
-[auto build test ERROR on 4bbf9020becbfd8fc2c3da790855b7042fad455b]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/PavithraUdayakumar-adi-via-B4-Relay/dtbindings-rtc-max31335-Add-max31331-support/20241223-142214
-base:   4bbf9020becbfd8fc2c3da790855b7042fad455b
-patch link:    https://lore.kernel.org/r/20241223-max31331-driver-support-v1-2-f9499bd598f5%40analog.com
-patch subject: [PATCH 2/2] rtc:max31335: Add driver support for max31331
-config: arc-randconfig-002-20241223 (https://download.01.org/0day-ci/archive/20241223/202412231656.5cWrGcHu-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241223/202412231656.5cWrGcHu-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412231656.5cWrGcHu-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/rtc/rtc-max31335.c:11:10: fatal error: asm-generic/unaligned.h: No such file or directory
-      11 | #include <asm-generic/unaligned.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +11 drivers/rtc/rtc-max31335.c
-
-  > 11	#include <asm-generic/unaligned.h>
-    12	#include <linux/bcd.h>
-    13	#include <linux/bitfield.h>
-    14	#include <linux/bitops.h>
-    15	#include <linux/clk.h>
-    16	#include <linux/clk-provider.h>
-    17	#include <linux/hwmon.h>
-    18	#include <linux/i2c.h>
-    19	#include <linux/interrupt.h>
-    20	#include <linux/kernel.h>
-    21	#include <linux/module.h>
-    22	#include <linux/of_device.h>
-    23	#include <linux/regmap.h>
-    24	#include <linux/rtc.h>
-    25	#include <linux/util_macros.h>
-    26	
+There are two types of Peripheral Authentication supported:
+  "QCOM_Q6V5_MSS" (self-authenticating)
+  "QCOM_Q6V5_PAS" (trust-zone based Authentication)
+For "QCOM_Q6V5_PAS" based Peripheral Authentication platforms, use SCM
+calls instead of the register-based mechanism. So it is no need to
+expose the PUB reg addresses for those platforms.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thx and BRs,
+Aiqun(Maria) Yu
 
