@@ -1,228 +1,189 @@
-Return-Path: <devicetree+bounces-133497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29CA89FACFC
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:09:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 576859FAD01
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:11:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B50A18864A7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:08:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 736F41881375
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1631C191F62;
-	Mon, 23 Dec 2024 10:08:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B491917E8;
+	Mon, 23 Dec 2024 10:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VW4ISvXV"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="MZiQWl3t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B5D19068E
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:08:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9242AF1D
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:11:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734948529; cv=none; b=biBVFESgwAE8b8dJR0Qjgm3e1DbRoHk5uSc4lUwAHLcvazcp4KXO1b3zzO3XzFxejlLONXAZPpFfZ3GVihF0fKBAyM0k7glb8fKDIi2Dr9s1Ll820n38EG6sVh8XeMUxI3m7/uOZxuS8MS9sd9IzfVjLd26/kUTnH0cF8bXFpkU=
+	t=1734948669; cv=none; b=AKHGEtGMKK7KOsBnqiHwzdHsQl/FgOf+FAZ5STrCThSlk6L6Df09AKVewqL2meEKuRoBrnUiSM7+MhpwX+Dn0aqb20jwQmsLDzmSSqitk1x5MSzJTgyW+W7W05Bkeoc8fYXgq2B+f7epB0iRGJzvb9V1EFp1AoD8s/HZtjoTAIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734948529; c=relaxed/simple;
-	bh=kPQuTN2bTvZUMa84REgaw4djkBEWhk2xsnVR5ROpB6k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u+qd/EyCikA3e/ODYuA56LyP/A9KTyn4biGPzH8/IOmRMp6xwmMIpNqJGEi+RaG9xvvmoDTRnJh2c1stsR77cSyN0MZ5neHLVfzdkbJwD6sam0ybPh89Yi8u3VAMdSKkVhOgH4iaRHDBfq3vsZF+l2KzrUtfO99B6yZ8vXhWq1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VW4ISvXV; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-3002c324e7eso43158571fa.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 02:08:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1734948525; x=1735553325; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fk7MGcc0UPnD2/Tewni5a5nHodnS01G5/qRyy3ZbDWo=;
-        b=VW4ISvXVjL3bpTlyFLFvuFUjuBGj0+dd1ovKHfJhUF4JAMVghp5nDMRxrYEVuWmww8
-         YVI4nqrTf3739n4eCzu+7bFjtbdzF5pKQR9MdFGhFwNJFy9HngG65ox0qN9x2ELphfpO
-         0CxNUB28b9xEwRVITxHIjqGdRNEGzhZ+ST4Gw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734948525; x=1735553325;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Fk7MGcc0UPnD2/Tewni5a5nHodnS01G5/qRyy3ZbDWo=;
-        b=EBBZuoXCz215Eh0zM5BjLl7u6rufAo5T1wntSIScwapvwvtQaqhdtHVQliZq8e45NG
-         ySkjQJgOzg1Ombo0Zst+/y1wt5Hucob9Wdf2EcjbrPdu4hEL5avfiG1aPO8rKHLm7VMG
-         Lhv7yz8jmBWo0MBimA8uwt8cUvW7ninWJn39Yt+LAUDc7EWZfnb4YuR9mOWXWiMhcDrA
-         /hX/R1uS7NREZ93rb8N7i5Evxu4k6rZVAJ56e3O8HX2GwPdOUjY2npolcv3tto2czvPi
-         1fZ2LAEKMgdJ1P23LHL8fLe3wpFKJcEqtVbvSTHKRLm9Ipvag22CS2Sik9A4g6FMWZel
-         wyug==
-X-Forwarded-Encrypted: i=1; AJvYcCXcHTccuc08FhmXm/iMyqAyVGCtNXsZ2jAgrTboa3rvdaHGsic/ccqX8Htm1mjalUON/1RD7FVu7pCr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPK6+OcSjFojwhkFn5+bbKM4SKPRum71THS7Gq7C4X8eeg3q9R
-	x3OUi5Djvof6s48G+vqx2IdQcrNNQW26el4qbWF7vgJuPzDEQRBtCHPIJy7dB7XBWtlYCSQM2ZK
-	TIjm2VRRS7LKM87ZC4vWmNgEfv5chMkjXBdZf
-X-Gm-Gg: ASbGnctqZQfuWcO3qpz+Gce3gQiFXsiGGRH4eSCAFaaDMqTj4unwSE+dkMQl94QPNnq
-	DHq13Rk44r6zlN/Dd/arMwRMuOGlMZhKv41EayhXSEiPPG6oQ2IJCaSXMaZGqUmmv8Q==
-X-Google-Smtp-Source: AGHT+IE1GbkeOMwKvJXveGcLyXZ44I3grNvdvMJNIb79mDo0zVej4a2EPyn7Fplxeyh9tvSXWx1drrNo+zpMiVd8f2I=
-X-Received: by 2002:a05:6512:3b0b:b0:542:2930:4376 with SMTP id
- 2adb3069b0e04-54229533e06mr3724081e87.20.1734948525145; Mon, 23 Dec 2024
- 02:08:45 -0800 (PST)
+	s=arc-20240116; t=1734948669; c=relaxed/simple;
+	bh=7wYaE2ZZrrsYxE9bwroawsnJqulIu3EbYuWXThEBEzg=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=VyRomXsM6VjeRK2R9LKcdEiFeFNh1INMk/1XxxC/zCaFVqiXPGph+fgyGXa0RvcKwzrYsiI1FiaBaAiss8VN9jvgQMTjg+layKtigcrQ0g2jWOGrxqvDOHWm2uIQqLgHPBHNG26JtR2G9SDT6gKrZydtCebeFwcXe+kLvuXNV4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=MZiQWl3t; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241030070224.1006331-1-wenst@chromium.org> <20241030070224.1006331-2-wenst@chromium.org>
- <CAGXv+5HVy41qee6kwVUeLV_DfA0=wk2X77kv81rBKAZDGE6mww@mail.gmail.com>
- <bbaa0c8f-9702-4252-a674-e46fb51f0a2a@collabora.com> <CAGXv+5GHP1M1rKwR8j+bN8GmpxWtpkfLTnvBdkg5wOvWanc-kw@mail.gmail.com>
- <35392d9d-56a3-4db8-b500-6272d0bd275c@collabora.com> <CAGXv+5H_=He4+vBcaoVbtO05c6hPWV46OTRfR+S8XVuvk_EaYg@mail.gmail.com>
-In-Reply-To: <CAGXv+5H_=He4+vBcaoVbtO05c6hPWV46OTRfR+S8XVuvk_EaYg@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 23 Dec 2024 18:08:34 +0800
-Message-ID: <CAGXv+5F2SvGZL+XKi+6wHf0ejgsxMMMSNnXQMU6T51OTdD2SBg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: mediatek: mt8183-kukui-jacuzzi: Drop
- pp3300_panel voltage settings
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1734948664;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=msg5fBDnvA5A5aMJjXE3flrPRKktl7CdeY8acKw/CG0=;
+	b=MZiQWl3tHRj4qFxgPuKj4evBjkB6Bg+thjSP4v2GN+xwMO1uydBc90L0CPa7r4qPLme4CB
+	DGhy1ICtlQqZba59RPyB0yUNMEazxI3vZXo+ifjifFrCZZJk7jMCFLTxm/HJVMgynwjwnI
+	HejW81XMaXOcTmXBQvt8phKf17/oAB+8sAPKFE8CwqmeM3u6bavPOU5Q63zvwADvsje+0i
+	+XIj1hg/+4ZtyMEhy4faoFWYfAyxh5T8whEcYlmsy0k30mTXHNSSxf3I5MbEOhWBsLcQAw
+	lh2CYnusld9w5koro71jsFN7R31hwWdW2OlmEEmXl2K07QCEq/YPNPlISJUifw==
+Date: Mon, 23 Dec 2024 11:11:03 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Marc Zyngier <maz@kernel.org>
+Cc: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de,
+ jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com,
+ liujianfeng1994@gmail.com, dmt.yashin@gmail.com, tim@feathertop.org,
+ marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net,
+ alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/3] irqchip/gic-v3: Enable Rockchip 3588001 erratum
+ workaround for RK3582
+In-Reply-To: <871pxysq76.wl-maz@kernel.org>
+References: <20241222030355.2246-1-naoki@radxa.com>
+ <20241222030355.2246-2-naoki@radxa.com> <86msgoozqa.wl-maz@kernel.org>
+ <f93b3bfb5151e4b617b1c99c91b4956f@manjaro.org>
+ <8734ifs3zl.wl-maz@kernel.org>
+ <e3498590dd81b150670e36561d99b6f4@manjaro.org>
+ <871pxysq76.wl-maz@kernel.org>
+Message-ID: <d9919917c5d518608a7d4e3cac8faf53@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Tue, Dec 10, 2024 at 4:40=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> On Tue, Dec 10, 2024 at 4:27=E2=80=AFPM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
-> >
-> > Il 04/11/24 14:47, Chen-Yu Tsai ha scritto:
-> > > On Mon, Nov 4, 2024 at 9:19=E2=80=AFPM AngeloGioacchino Del Regno
-> > > <angelogioacchino.delregno@collabora.com> wrote:
-> > >>
-> > >> Il 04/11/24 14:00, Chen-Yu Tsai ha scritto:
-> > >>> On Wed, Oct 30, 2024 at 3:02=E2=80=AFPM Chen-Yu Tsai <wenst@chromiu=
-m.org> wrote:
-> > >>>>
-> > >>>> The pp3300_panel fixed regulator is just a load switch. It does no=
-t have
-> > >>>> any regulating capabilities. Thus having voltage constraints on it=
- is
-> > >>>> wrong.
-> > >>>>
-> > >>>> Remove the voltage constraints.
-> > >>>>
-> > >>>> Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu b=
-oard")
-> > >>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > >>>
-> > >>> I see that the other three patches were merged and included in the =
-pull
-> > >>> request, but not this one. Were there any concerns?
-> > >>>
-> > >>
-> > >> Sorry I forgot to actually provide an explanation for that - yes, I =
-do have some
-> > >> comment about this one.
-> > >>
-> > >> Despite this being a load switch, it's still switching power from re=
-gulator A to
-> > >> target device X, so this is technically still providing 3.3V to devi=
-ce X.
-> > >>
-> > >> Think about how a "regular" full-fledged regulator works: you can (s=
-ometimes) set
-> > >> a voltage, and then you can ENABLE the VOUT for said regulator (/rai=
-l): this kind
-> > >> of "load switch" does exactly the same as the ENABLE switch for a fu=
-ll-fledged
-> > >> regulator.
-> > >
-> > > But it does not provide regulation. One cannot "set" the voltage on a=
- load
-> > > switch; one can only set it on its upstream supply, if that supply pr=
-ovides
-> > > regulation.
-> > >
-> > > IIRC Mark said some years ago that if a regulator doesn't regulate th=
-e
-> > > voltage, then the voltage constraints should not be given. The constr=
-aints
-> > > are then derived from its upstream supply.
-> > >
-> > > That's the guideline I've followed for all the regulator related chan=
-ges
-> > > I've done over the years. Does that work for you?
-> > >
-> >
-> > Ok, let's go with that then.
-> >
-> > There's only one problem - patches 2 to 4 don't apply for whatever reas=
-on, is there
-> > any dependency?
->
-> I believe they were already applied in the previous cycle? At least
-> they were dropped from my branch automatically after a recent rebase.
+On 2024-12-23 10:29, Marc Zyngier wrote:
+> On Mon, 23 Dec 2024 06:10:21 +0000,
+> Dragan Simic <dsimic@manjaro.org> wrote:
+>> On 2024-12-23 00:16, Marc Zyngier wrote:
+>> > On Sun, 22 Dec 2024 18:25:02 +0000,
+>> > Dragan Simic <dsimic@manjaro.org> wrote:
+>> >> On 2024-12-22 10:04, Marc Zyngier wrote:
+>> >> > On Sun, 22 Dec 2024 03:03:53 +0000,
+>> >> > FUKAUMI Naoki <naoki@radxa.com> wrote:
+>> >> >>
+>> >> >> Rockchip RK3582 is a scaled down version of Rockchip RK3588(S). Apply
+>> >> >> Rockchip 3588001 erratum workaround to RK3582.
+>> >> >>
+>> >> >> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>> >> >> ---
+>> >> >>  drivers/irqchip/irq-gic-v3-its.c | 3 ++-
+>> >> >>  1 file changed, 2 insertions(+), 1 deletion(-)
+>> >> >>
+>> >> >> diff --git a/drivers/irqchip/irq-gic-v3-its.c
+>> >> >> b/drivers/irqchip/irq-gic-v3-its.c
+>> >> >> index 92244cfa0464..c59ce9332dc0 100644
+>> >> >> --- a/drivers/irqchip/irq-gic-v3-its.c
+>> >> >> +++ b/drivers/irqchip/irq-gic-v3-its.c
+>> >> >> @@ -4861,7 +4861,8 @@ static bool __maybe_unused
+>> >> >> its_enable_rk3588001(void *data)
+>> >> >>  {
+>> >> >>  	struct its_node *its = data;
+>> >> >>
+>> >> >> -	if (!of_machine_is_compatible("rockchip,rk3588") &&
+>> >> >> +	if (!of_machine_is_compatible("rockchip,rk3582") &&
+>> >> >> +	    !of_machine_is_compatible("rockchip,rk3588") &&
+>> >> >>  	    !of_machine_is_compatible("rockchip,rk3588s"))
+>> >> >>  		return false;
+>> >> >>
+>> >> >
+>> >> > Please use the relevant property for that purpose ("dma-noncoherent")
+>> >> > at the distributor and ITS levels. We're not adding extra compatibles
+>> >> > for this anymore, and you might as well fix the core dtsi to expose
+>> >> > such property.
+>> >>
+>> >> Thanks for your response.
+>> >>
+>> >> After a more detailed look into drivers/irqchip/irq-gic-v3-its.c,
+>> >> it seems that relying on the "dma-noncoherent" DT property may not
+>> >> be equivalent to adding another compatible check.
+>> >
+>> > It is. My email makes it plain what needs doing.
+>> >
+>> >> Here are a few
+>> >> quotations from irq-gic-v3-its.c, to illustrate this better:
+>> >>
+>> >> 4746 static bool __maybe_unused its_enable_rk3588001(void *data)
+>> >> 4747 {
+>> >> 4748         struct its_node *its = data;
+>> >> 4749
+>> >> 4750         if (!of_machine_is_compatible("rockchip,rk3588") &&
+>> >> 4751             !of_machine_is_compatible("rockchip,rk3588s"))
+>> >> 4752                 return false;
+>> >> 4753
+>> >> 4754         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
+>> >> 4755         gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
+>> >> 4756
+>> >> 4757         return true;
+>> >> 4758 }
+>> >> 4759
+>> >> 4760 static bool its_set_non_coherent(void *data)
+>> >> 4761 {
+>> >> 4762         struct its_node *its = data;
+>> >> 4763
+>> >> 4764         its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
+>> >> 4765         return true;
+>> >> 4766 }
+>> >>
+>> >> 4814 #ifdef CONFIG_ROCKCHIP_ERRATUM_3588001
+>> >> 4815         {
+>> >> 4816                 .desc   = "ITS: Rockchip erratum RK3588001",
+>> >> 4817                 .iidr   = 0x0201743b,
+>> >> 4818                 .mask   = 0xffffffff,
+>> >> 4819                 .init   = its_enable_rk3588001,
+>> >> 4820         },
+>> >> 4821 #endif
+>> >> 4822         {
+>> >> 4823                 .desc   = "ITS: non-coherent attribute",
+>> >> 4824                 .property = "dma-noncoherent",
+>> >> 4825                 .init   = its_set_non_coherent,
+>> >> 4826         },
+>> >
+>> > Nothing tickles me more than having my own work being thrown back at
+>> > me.
+>> 
+>> I'm sorry, that wasn't my intention.  I just wanted to make
+>> referencing to what I was talking about a bit easier.  Though,
+>> I now see that I was wrong, and I apologize for the noise.
+> 
+> No need to apologise. Just understand that the way you approached the
+> discussion was suboptimal. Next time, just ask how the proposed
+> solution works, rather than asserting that it doesn't.
 
-Ping? This one still hasn't been merged.
+Thanks.  Indeed, the way I approached it was waaay suboptimal.
+I just wanted to clarify that it was an honest mistake resulting
+from not looking at the code carefully enough, nothing else.
 
-ChenYu
+> Hopefully we can move on and you and Naoki can come up with a set of
+> patches that does the right thing.
 
-> ChenYu
->
-> > Cheers,
-> > Angelo
-> >
-> > >> So, this is switching on and off a power rail that is derived from a=
- source rail,
-> > >> practically creating... well, a "new" rail, with...
-> > >>
-> > >>    VIN=3Dsomewhere-3.3v,
-> > >>    VOUT=3Dsomewhere-still-3.3v
-> > >>
-> > >> Any objections/doubts/etc? :-)
-> > >
-> > > I agree with most of it, except the part that I laid out above about =
-the
-> > > load switch not providing regulation.
-> > >
-> > >> P.S.: I'm writing fast, sorry if anything appears unclear, feel free=
- to shoot more
-> > >>         questions in case :-)
-> > >
-> > > No, it's pretty clear, and I believe one of the common interpretation=
-s
-> > > I see. Thank you for the quick response.
-> > >
-> > >
-> > > Thanks
-> > > ChenYu
-> > >
-> > >> Cheers,
-> > >> Angelo
-> > >>
-> > >>>
-> > >>> ChenYu
-> > >>>
-> > >>>> ---
-> > >>>>    arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 --
-> > >>>>    1 file changed, 2 deletions(-)
-> > >>>>
-> > >>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dts=
-i b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> > >>>> index 783c333107bc..7bbafe926558 100644
-> > >>>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> > >>>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> > >>>> @@ -35,8 +35,6 @@ pp1800_mipibrdg: pp1800-mipibrdg {
-> > >>>>           pp3300_panel: pp3300-panel {
-> > >>>>                   compatible =3D "regulator-fixed";
-> > >>>>                   regulator-name =3D "pp3300_panel";
-> > >>>> -               regulator-min-microvolt =3D <3300000>;
-> > >>>> -               regulator-max-microvolt =3D <3300000>;
-> > >>>>                   pinctrl-names =3D "default";
-> > >>>>                   pinctrl-0 =3D <&pp3300_panel_pins>;
-> > >>>>
-> > >>>> --
-> > >>>> 2.47.0.163.g1226f6d8fa-goog
-> > >>>>
-> > >>
-> >
-> >
+Of course.  I've already prepared a small patch series that,
+hopefully, does the right thing when it comes to the Rockchip
+3588001 errata.  I'll submit it soon, after I check the patches
+a bit further.
 
