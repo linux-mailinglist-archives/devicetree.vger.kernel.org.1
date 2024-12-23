@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-133645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47ADC9FB2F0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 17:35:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E17129FB2F4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 17:36:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F07371881A6F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:35:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71D4D1621BD
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF88B1B6CF4;
-	Mon, 23 Dec 2024 16:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C6E1B5823;
+	Mon, 23 Dec 2024 16:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KxCuIiLM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TU7NiHih"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEEA454F81;
-	Mon, 23 Dec 2024 16:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB2C15C14B;
+	Mon, 23 Dec 2024 16:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734971512; cv=none; b=CszCQCETovmK7g3PXBtKW/aULS8feY4ZjW1RRUkvnoIYnJvSSBj3R7JNaTOsiN5G9Ejqxx6dvDGl5ICNt81AXKxLlcql7utIMR3LHx79bdTEoDfIlJVEfrYYrvgrZBe8vQpjRMDel1RyobpSVo8FjIj6GACMeMzUaM7NQQAt7EI=
+	t=1734971585; cv=none; b=NKeVdhCHEwbK3r61v/s01+z7FZaYSUGkour6KxVa63TglPIWrUsjkcBOJaXjNp0kJR8Hrv3iExD+shUIOWSQKqnXqm7C18fBL03MBh1FkKOils/rB7h7/5pHPWUQK2wROnGFM9NukoP+mW4KY5TSn27TWIJ5rxs3CVlhXcGKbR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734971512; c=relaxed/simple;
-	bh=w+QV/mB1TkcNRz22qPGBMzO1669gtw0sjjDXxZLS0ps=;
+	s=arc-20240116; t=1734971585; c=relaxed/simple;
+	bh=w/lX3gQ1qF6gpES3UMeal7o9IJFl8s4WW/af1sfaPNU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SGthb1v5o72JSYfrlkIxQGIOh/Fycj1Ig/exfv3wpMKVEOJRwJybOGlA9beKSdPrDsEMDYfrcNUa5fDLtzX+KqzEwbSCS6WS9am2Kron1qscN9L8GSQNphQINUrchW0+9Z4UignkS4//XMRMJGiQqvq1GskTmWjVIAgF/iWDRcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KxCuIiLM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C734BC4CED3;
-	Mon, 23 Dec 2024 16:31:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=sCUdXRGgYE//oiW7PBtOssh3NWDoIOYZQbUUcT1Pi85wo5UGWNss1jjf5oc47+ozTqyJIrBOHxKhVMvzSWzko7fH7KxkJhbBId0NhmaYV/1dm/f5hxIYh1F9GXklhy1grd+GPX/z6nRdgmCGc4nBmbBTW5PzxsDCMSO14ZYRs2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TU7NiHih; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 944EDC4CED3;
+	Mon, 23 Dec 2024 16:33:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734971512;
-	bh=w+QV/mB1TkcNRz22qPGBMzO1669gtw0sjjDXxZLS0ps=;
+	s=k20201202; t=1734971584;
+	bh=w/lX3gQ1qF6gpES3UMeal7o9IJFl8s4WW/af1sfaPNU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KxCuIiLMWCOoFhkGB/Efi6bq45psfCemWTVlJ6X+jGmT0kiquKLM8AYW3CtfcH7Kx
-	 SOOeOaacl9o24FO0KtbJeP/oPO3rq8pomEiWI1BqWicuYz9PjS+m7UQ3UdK3QulANU
-	 cHgeAhjoZCl6YEtXSvbF/WbxKBrb4fB1Y79yaHcuYLWYsnPri8ukMTUjsSF0nilkjo
-	 3fZyKDeNBjlsfiiq/Xmx5k/PFOAUBRx/56xuqcxdRJBOqAx2KLlsPVCWXycMfF1q+k
-	 4jV0Ht9BbZXIAtkuRKuQMLv5ossb5j0qDmFSa4xNU+mMyESxczRN6dttK5SctnZJu9
-	 37MC5TVjDvfGQ==
-Message-ID: <6d488724-c315-4ba8-954f-1eaee3eb701d@kernel.org>
-Date: Mon, 23 Dec 2024 17:31:42 +0100
+	b=TU7NiHihQZuwv7iNwZq+TK2A1M2SSVv+srjgOVf+FQvqwN7Ea39206p93YnJFYyhe
+	 pwQp8RWTjvj+rfd89n7QaYcqQneQmqwIy6B9HcUivZP7P4m2w4i6IJ4kmazq+OjoPX
+	 hGY8TLaLjnWo39Agb7s3komtvWB3oaFlaXa3sgM/ec1Z60bJZ6fDZv6L/Z9/xkbiWQ
+	 PvRvmTbDSoOopxH/7uff1G2cWWLbwfU8P87WoXtC+eoXG92a3+YYLgSKPFpPTxKSDy
+	 badhS9pu5mWMyfjPdncT2Vo0MOMXt0Civ7JTQy8+/YbszGSRlJrZDwqUMWi51tup02
+	 JQrV5KK/eqIWw==
+Message-ID: <fc83ab3f-99fe-4566-9a33-670956dd76a4@kernel.org>
+Date: Mon, 23 Dec 2024 17:32:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 12/19] dt-bindings: gpu: Add compatibles for T-HEAD
- TH1520 GPU
-To: Michal Wilczynski <m.wilczynski@samsung.com>, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, jassisinghbrar@gmail.com,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- frank.binns@imgtec.com, matt.coster@imgtec.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
- jszhang@kernel.org, p.zabel@pengutronix.de, m.szyprowski@samsung.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
-References: <20241223125553.3527812-1-m.wilczynski@samsung.com>
- <CGME20241223125617eucas1p25256081c64ae4e64a12c6ec427f75e8e@eucas1p2.samsung.com>
- <20241223125553.3527812-13-m.wilczynski@samsung.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: arm: Add Morello compatibility
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Russell King <linux@armlinux.org.uk>
+References: <20241223162029.326997-1-vincenzo.frascino@arm.com>
+ <20241223162029.326997-2-vincenzo.frascino@arm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,64 +107,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241223125553.3527812-13-m.wilczynski@samsung.com>
+In-Reply-To: <20241223162029.326997-2-vincenzo.frascino@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/12/2024 13:55, Michal Wilczynski wrote:
-> Add a new SoC-specific compatible ("thead,th1520-gpu") for the T-HEAD
-> TH1520 GPU, alongside the Imagination BXM family compatible
-> ("img,img-bxm").  This documents the GPU integration on the T-HEAD
-> platform.
+On 23/12/2024 17:20, Vincenzo Frascino wrote:
+> Add compatibility to Arm Morello System Development Platform.
 > 
-> Also adjust clock name constraints to accommodate a second clock named
-> "sys" instead of "mem" for T-HEAD. This is achieved by changing the
-> order, and making the 'sys' appear before 'mem'.
+> Note: Morello is at the same time the name of an Architecture [1], an SoC
+> [2] and a Board [2].
+> To distinguish in between Architecture/SoC and Board we refer to the first
+> as arm,morello and to the second as arm,morello-sdp.
 > 
-> Provide example of the new GPU node.
+> [1] https://developer.arm.com/Architectures/Morello
+> [2] https://www.morello-project.org/
 > 
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Russell King <linux@armlinux.org.uk>
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 > ---
->  .../bindings/gpu/img,powervr-rogue.yaml       | 32 +++++++++++++++++--
->  1 file changed, 30 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> index 4078cc816ea1..1eb1c15baec4 100644
-> --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> @@ -15,7 +15,10 @@ properties:
->      items:
->        - enum:
->            - ti,am62-gpu
-> -      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
-> +          - thead,th1520-gpu
-> +      - enum:
-> +          - img,img-axe # IMG AXE GPU model/revision is fully discoverable
-> +          - img,img-bxm
+> diff --git a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+> index 8dd6b6446394..7934d2c4cba0 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+> @@ -118,6 +118,9 @@ properties:
+>          items:
+>            - const: arm,foundation-aarch64
+>            - const: arm,vexpress
+> +      - description: Arm Morello System Development Platform
+> +        items:
+> +          - const: arm,morello-sdp
+Also:
+const: arm,morello
 
-This cannot be flexible. You now changed am62-gpu. Look how other
-bindings do it: oneOf with two lists.
->  
->    reg:
->      maxItems: 1
-> @@ -27,8 +30,8 @@ properties:
->    clock-names:
->      items:
->        - const: core
-> -      - const: mem
->        - const: sys
-> +      - const: mem
+Unless you claim that this cannot be used in any other product than SDP,
+but this then needs explanation in commit msg.
 
-That's ABI break, so no.
-
-Widest constraints - min/maxItems - stay here. In allOf:if:then you
-specify the list of items. See:
-https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L127
-
-You will need to adjust existing variants - list the items there.
-
->      minItems: 1
->  
 Best regards,
 Krzysztof
 
