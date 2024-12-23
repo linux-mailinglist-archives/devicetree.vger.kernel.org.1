@@ -1,158 +1,102 @@
-Return-Path: <devicetree+bounces-133483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E00D9FAAFD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 08:16:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA199FAB0C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 08:27:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 569A91885EDA
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 07:16:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 943B47A200C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 07:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B3018A6C5;
-	Mon, 23 Dec 2024 07:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4462F18BB8E;
+	Mon, 23 Dec 2024 07:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="dYLhBand"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gPUPbqBW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from xry111.site (xry111.site [89.208.246.23])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5827E61FFE;
-	Mon, 23 Dec 2024 07:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.208.246.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E963918052;
+	Mon, 23 Dec 2024 07:27:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734938174; cv=none; b=K3wN3h9HNh9Oeos+GZSNMdTVzduL1znsOmCIXcQ+Ls8pP3n/PtLI0EmglhT6GhEcnC/w5AG/6RDwbeW2paHaVnFaDFJNsLMWrHaAyTnMaD4BRMICRDaBgD0Yzd7yYQ6n/MTzmHA4r7DvqX0xmUe04jD3kbHoUhKSzIUSsinMW3I=
+	t=1734938867; cv=none; b=pZBsEVQ5OGLgQ9Ezh6h6Myc2+H0SDX3fKeoETSaqsJcdWVN0CQvoZoKYg1qnI+picUMugmGyEtKBWrgXuOu7DxdngqPVEyVpTX8FDRgtHl9ZHiFpXFpeUBBXGV9unGGa4Lmgj+3k2l3racz0p1HF6tyDUveiSLZfT1OdYYgZsNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734938174; c=relaxed/simple;
-	bh=ZrcgZL9/LrEEus6L4Sj0r3Gfl0Npm9SW91wzmtQUfGo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tFh1YzTy6DuDUV6iTMIG9ynF9nMuaN1Ho49aA+xmM95gY2ppN+sr0pMp0PCKxyXDgPTCp+ZOLZwOuSba1l7q0OEGImco2hIJnP9uHwgvArOtPcE1ffXt7hiFlwmIpbzq3ZLFX+pZzI5wmyVv0/DU60MQdpZzHrQOGoo5vXwJlcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site; spf=pass smtp.mailfrom=xry111.site; dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b=dYLhBand; arc=none smtp.client-ip=89.208.246.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xry111.site
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
-	s=default; t=1734938153;
-	bh=ecGpjQJ+dPTMtl9IS6T8Zx3DPG9sUHrYzmuZ6ugsSWw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=dYLhBandMXiOWoijdab1gHiwxN4eR/VOe1BsVjVz9qXmRVOFQ3esRLy431bdS1dZk
-	 XfvgNo/mfzBUiJSkzYWjXUz9VNZqGIoxmAEmuMRQld4Umwy3a2m4Fwo8gIpR4U1JmC
-	 QNQagNSSgXTyOhRij3RWOWxKAWCl+3mSvRV2S1v8=
-Received: from [127.0.0.1] (unknown [IPv6:2001:470:683e::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1) server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id 1944F67671;
-	Mon, 23 Dec 2024 02:15:35 -0500 (EST)
-Message-ID: <6ac0e0f71990e5a8dc52f00c737cdf56916e0d4e.camel@xry111.site>
-Subject: Re: [PATCH v7] mm/memblock: Add memblock_alloc_or_panic interface
-From: Xi Ruoyao <xry111@xry111.site>
-To: Mike Rapoport <rppt@kernel.org>, Guo Weikang
- <guoweikang.kernel@gmail.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, Geert Uytterhoeven	
- <geert@linux-m68k.org>, Dennis Zhou <dennis@kernel.org>, Tejun Heo
- <tj@kernel.org>,  Christoph Lameter	 <cl@linux.com>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, Sam Creasey	 <sammy@sammy.net>, Huacai Chen
- <chenhuacai@kernel.org>, Will Deacon	 <will@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>,
- rafael.j.wysocki@intel.com, Palmer Dabbelt <palmer@rivosinc.com>,  Hanjun
- Guo <guohanjun@huawei.com>, Easwar Hariharan
- <eahariha@linux.microsoft.com>, Johannes Berg	 <johannes.berg@intel.com>,
- Ingo Molnar <mingo@kernel.org>, Dave Hansen	 <dave.hansen@intel.com>,
- Christian Brauner <brauner@kernel.org>, KP Singh	 <kpsingh@kernel.org>,
- Richard Henderson <richard.henderson@linaro.org>, Matt Turner
- <mattst88@gmail.com>, Russell King <linux@armlinux.org.uk>, WANG Xuerui
- <kernel@xen0n.name>,  Michael Ellerman <mpe@ellerman.id.au>, Stefan
- Kristiansson <stefan.kristiansson@saunalahti.fi>, Stafford Horne	
- <shorne@gmail.com>, Helge Deller <deller@gmx.de>, Nicholas Piggin	
- <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>, Naveen
- N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>, Geoff
- Levand	 <geoff@infradead.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt	 <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Andrey Ryabinin	 <ryabinin.a.a@gmail.com>, Alexander Potapenko
- <glider@google.com>, Andrey Konovalov <andreyknvl@gmail.com>, Dmitry Vyukov
- <dvyukov@google.com>, Vincenzo Frascino	 <vincenzo.frascino@arm.com>, Heiko
- Carstens <hca@linux.ibm.com>, Vasily Gorbik	 <gor@linux.ibm.com>, Alexander
- Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
- <borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Yoshinori
- Sato	 <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, John
- Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Andreas Larsson
- <andreas@gaisler.com>, Richard Weinberger	 <richard@nod.at>, Anton Ivanov
- <anton.ivanov@cambridgegreys.com>, Johannes Berg	
- <johannes@sipsolutions.net>, Thomas Gleixner <tglx@linutronix.de>, Ingo
- Molnar	 <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, Dave Hansen	
- <dave.hansen@linux.intel.com>, x86@kernel.org, linux-alpha@vger.kernel.org,
- 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
-	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org, 
-	linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	linux-riscv@lists.infradead.org, kasan-dev@googlegroups.com, 
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, 	linux-um@lists.infradead.org,
- linux-acpi@vger.kernel.org, 	xen-devel@lists.xenproject.org,
- linux-omap@vger.kernel.org, 	linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-mm@kvack.org, 	linux-pm@vger.kernel.org
-Date: Mon, 23 Dec 2024 15:15:34 +0800
-In-Reply-To: <Z2kNTjO8hXzN66bX@kernel.org>
-References: <20241222111537.2720303-1-guoweikang.kernel@gmail.com>
-	 <Z2kNTjO8hXzN66bX@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+	s=arc-20240116; t=1734938867; c=relaxed/simple;
+	bh=VZyd4V5fwAkkf6j2lzdZSBdLb/bZPRnsMDycIJWbfl4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=nH8F/tKdD9JfwCVW9GKXk+rv2M45KoIqnLjWmcPW2AvrmYrpX3YL0rd6Ezk9aM+1UU8nxxYGwrQTsDO4VKLg2ibjJHAOv5g6ZdizQpePk5tNMeDmC1mp5nIm1nSEB6KH/j+Hfd+Hkxz4xq0faWhCmUl27x2tbLiM3SN+3uqMrqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gPUPbqBW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F6E8C4CED4;
+	Mon, 23 Dec 2024 07:27:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734938866;
+	bh=VZyd4V5fwAkkf6j2lzdZSBdLb/bZPRnsMDycIJWbfl4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=gPUPbqBW7Zz0bqr3n+Q0DP7j1MuOJkmRg+E2AlJCXgxlIQmbM3BCjoKCGGaGZE9C5
+	 WPdcBZv2DlM3zsGAMvCu4PYQ0sXFsWgzBhxud2++xpZrvTK2w53AGjoIfeBJETHp+5
+	 btqsVYmMoX4xwBo+VwFgRTwyvamY+h06FWP3yJaK+xLLpE43n+H8SvseUcuxKwl3JO
+	 uizKVyzVyT4QKdSlX2U3DB65Z6FkB4WugmYcFUTPQmcar+kOxuTW7ZivB2BReeE145
+	 z/dq0VPW6EX/6dyGpmWb2J8bIrYDSt98Bd3+GDzk9CRxa1vuEezMnxNa59VqtEnYFW
+	 i3Svv7mEn+cjg==
+Date: Mon, 23 Dec 2024 01:27:44 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hwmon@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-rtc@vger.kernel.org, 
+ Jean Delvare <jdelvare@suse.com>, 
+ Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: PavithraUdayakumar-adi <pavithra.u@analog.com>
+In-Reply-To: <20241223-max31331-driver-support-v1-1-f9499bd598f5@analog.com>
+References: <20241223-max31331-driver-support-v1-0-f9499bd598f5@analog.com>
+ <20241223-max31331-driver-support-v1-1-f9499bd598f5@analog.com>
+Message-Id: <173493886450.3944320.9770471045980909625.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dtbindings:rtc:max31335:Add max31331 support
 
-On Mon, 2024-12-23 at 09:12 +0200, Mike Rapoport wrote:
-> On Sun, Dec 22, 2024 at 07:15:37PM +0800, Guo Weikang wrote:
-> > Before SLUB initialization, various subsystems used memblock_alloc to
-> > allocate memory. In most cases, when memory allocation fails, an immedi=
-ate
-> > panic is required. To simplify this behavior and reduce repetitive chec=
-ks,
-> > introduce `memblock_alloc_or_panic`. This function ensures that memory
-> > allocation failures result in a panic automatically, improving code
-> > readability and consistency across subsystems that require this behavio=
-r.
-> >=20
-> > Changelog:
-> > ----------
-> > v1: initial version
-> > v2: add __memblock_alloc_or_panic support panic output caller
-> > v3: panic output phys_addr_t use printk's %pap
-> > v4: make __memblock_alloc_or_panic out-of-line, move to memblock.c
-> > v6: Fix CI compile error
-> > Links to CI: https://lore.kernel.org/oe-kbuild-all/202412221000.r1NzXJU=
-O-lkp@intel.com/
-> > v6: Fix CI compile warinigs
-> > Links to CI: https://lore.kernel.org/oe-kbuild-all/202412221259.JuGNAUC=
-q-lkp@intel.com/
-> > v7: add chagelog and adjust function declaration alignment format
-> > ----------
-> >=20
-> > Signed-off-by: Guo Weikang <guoweikang.kernel@gmail.com>
-> > Reviewed-by: Andrew Morton <akpm@linux-foundation.org>
-> > Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> > Reviewed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> > Acked-by: Xi Ruoyao <xry111@xry111.site>
->=20
-> If people commented on your patch it does not mean you should add
-> Reviewed-by or Acked-by tags for them. Wait for explicit tags from the
-> reviewers.
 
-And:
+On Mon, 23 Dec 2024 11:57:44 +0530, PavithraUdayakumar-adi wrote:
+> Add support to max31331 RTC chip in adi,max31335.yaml
+> 
+> Signed-off-by: PavithraUdayakumar-adi <pavithra.u@analog.com>
+> ---
+>  .../devicetree/bindings/rtc/adi,max31335.yaml      | 32 ++++++++++++++++++----
+>  1 file changed, 26 insertions(+), 6 deletions(-)
+> 
 
- - Acked-by: indicates an agreement by another developer (often a
-   maintainer of the relevant code) that the patch is appropriate for
-   inclusion into the kernel.=20
+My bot found errors running 'make dt_binding_check' on your patch:
 
-I'm not a maintainer so I even don't have the right to use Acked-by :).
+yamllint warnings/errors:
 
---=20
-Xi Ruoyao <xry111@xry111.site>
-School of Aerospace Science and Technology, Xidian University
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/rtc/adi,max31335.example.dts:23.20-31.15: Warning (i2c_bus_reg): /example-0/i2c/rtc@68: I2C bus unit address format error, expected "69"
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241223-max31331-driver-support-v1-1-f9499bd598f5@analog.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
