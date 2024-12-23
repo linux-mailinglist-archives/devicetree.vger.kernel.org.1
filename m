@@ -1,86 +1,81 @@
-Return-Path: <devicetree+bounces-133675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E4FB9FB4D1
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 20:54:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B2D89FB4D8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 20:58:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B685C1883E6F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 19:55:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57FEA18843AE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 19:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5421C3C1C;
-	Mon, 23 Dec 2024 19:54:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9741C5F10;
+	Mon, 23 Dec 2024 19:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RgAlmGOq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E/8geh7V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B0318A921;
-	Mon, 23 Dec 2024 19:54:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BAE1C3C1C;
+	Mon, 23 Dec 2024 19:58:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734983694; cv=none; b=F5Rj84r0fFcKdUeUuFJiohVe1acgJ0DcN57el3WYsoHlyDSQiSMU4bPGBNvWljlIi+4yKyIU/iZVL7KNmV/feyCZc539elkV2GJQMJWycaK/1Xqs3oz9YHyflrd2T9wPX5H+N5WduNqWNuY2h4sZFCOTHjWnko5/0zjffsZSYgE=
+	t=1734983916; cv=none; b=JNGRmK4mrS+ySpmubyk2ukeTbmvx5pbmQfrRQ41tnzd7iuTRn/FDd98m/ZJJDVetGumcdKtHWKnobFIVoGRrgynjHx8/IK+cpkht+QNzakHQv1ajzCUbhbA5XAydUVHmMgqMEgI1xkw1dL7HcJ7AWHA9fXuQmohZ3pfveLYYfxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734983694; c=relaxed/simple;
-	bh=1VD2EVmlIlsR0rtO4sh+F5RUXtekuQSnjvGo4zPhoyg=;
+	s=arc-20240116; t=1734983916; c=relaxed/simple;
+	bh=JFaFcA0nZKMMo3VFidoPrE63O/yVjrK2dWBgS5sUJS8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qkmmBtli68cwW4nVZX4ouRLNLp7OYfbtiVsejUHlBTmtnheTudl26uhbhO4ewFN80Na+ydhaKtK5u5bmrza0JKa98Z7SrNpPUapGCKm0BeSkmgo1A7t9JqEmFN10qKSmcz/NzLC70K2moP9y8DkLYvQt7lktmYWNcYBs1PcgTXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RgAlmGOq; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-4678664e22fso39287531cf.2;
-        Mon, 23 Dec 2024 11:54:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734983692; x=1735588492; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KCYHOdpxlngzw9mxp4CN6soXHAy3g4DMK4GbjfV46I0=;
-        b=RgAlmGOqQDq7Qtsesem8ux4Qup8/wl2YPcgqTgkMJMjS8OOqtf8ZWAlc0Id0FyN8iD
-         osdt1fyQa4Ihve7EbFn4PXBPawifEWqEq9YzgAzWQxEAwKZjGf3pOQQu4b3hdkLpVeE8
-         gzmENGciUud2PeJq6VANWknW+CP4L+RsLuOXoyckwFJpC7ceMu2sxdiWvqLhETzmFY+L
-         eUqhc4vBrq+jglgcNFmabjtkgTSzD/MX6+XwZvM6tQ8JFaTmNfM6tQWZIaEp3356IEBv
-         4pM2ZNCJT1v6UWvj/hXbOLGXwxW0VTNjrhym/4inK3HYjo++FAUWrejP4OHUgBn6mw82
-         1URw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734983692; x=1735588492;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KCYHOdpxlngzw9mxp4CN6soXHAy3g4DMK4GbjfV46I0=;
-        b=wLkrN5xZWkZiJJjDCpoRiac0ZFY38A7EUmL+7zywvz48TejDcFxmOZIkj+KHwzqUh4
-         fuV/U0UxMFnMbSpmaT9pyOES1PlqjLs9bDrVlsqAvjnSIxhKKTB/r7HbN6TDkpMuvEJD
-         Uzv4XlemJqzvI/jlz1QSUkV9HAw5BhoOYK9ZarQcIK5Rz6nYS/ptu1tQQQYoX3X8kV80
-         hHM3w5dXxcGT8GYoXVYwbJOhpbIXWcwG6MiEjcdXou6xSZWiQKEtvvZsjhsLXEwgmj00
-         aI32SFk7/WMpyvPirFTi7wxQrA7TUwl3TG6JKPPrlp1SLAvd4gz7toFEu+XhNZP9/76z
-         GJqw==
-X-Forwarded-Encrypted: i=1; AJvYcCUINKeECruNNWwlxZEDgaOianG3yi2WUCs5a/5EShAglcfJqzaVfhR0wOdSLArawk/F4lHXyos/Yp8P@vger.kernel.org, AJvYcCWNCdRdyjxPMtZ5f1pbsd2Gn7NF2y6L5727aOAbG+jBi/NCZyYhMoTOfICUaakzXYvfLFsUMuOb4XY1zh4T@vger.kernel.org, AJvYcCX8n8mbBGqXFzOzCcmZoSEMA20D5yNRP5ATDJhd1c5XAftGCxlZcwPPOzVihZsQPLIxMbd36Q287mI4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkjIU3YscDlaIrCfpPNYmc3JKkXRKAjcGNv6G9bCxqHELD79zO
-	1z4yJMDAFkqHTY3blwkNRDj/9xVEQdFiHyTI7nWnxZk8h3tV7OyR
-X-Gm-Gg: ASbGncvtI6e0rtRyHvFNoJqCbVTB2qmTUFkcLWwtjGzSr0iQ8t921ypow3vhX9SHUqz
-	L5ovSy5a1kOS+QmQRigK9+Fg8TVc0atl6od+qMlxpiLU/o+sseNmBt72YZkRGj9UTuUT3fIQc02
-	YleOwA+0uO1NmJ6PK63oRSvcgkyg0ssYaGOX8M+B8bHzT8easGqGqgbmRbpc5z/jpFWBaARhMwE
-	nxIEGtaj4cfkBteHQAGZsfa4OWePkRkRWT0LU8gJSnskr1ZaVc9lx/97Q==
-X-Google-Smtp-Source: AGHT+IG4MNY1QQyKOzMsb54VgP1U4hyPjs7QpeTc+3qPpe4RCySf1QJcK81jon+MynXP+4NYu0aFyQ==
-X-Received: by 2002:ac8:584e:0:b0:467:4fc5:9d72 with SMTP id d75a77b69052e-46a4a976e18mr228443071cf.36.1734983691988;
-        Mon, 23 Dec 2024 11:54:51 -0800 (PST)
-Received: from VM-Arch ([2600:1001:b151:a20a:c825:7073:d6bf:fa14])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-46a3e688cd3sm46567501cf.36.2024.12.23.11.54.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Dec 2024 11:54:51 -0800 (PST)
-Date: Mon, 23 Dec 2024 14:50:53 -0500
-From: Alex Lanzano <lanzano.alex@gmail.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, jagathjog1996@gmail.com, trabarni@gmail.com, danila@jiaxyga.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] dt-bindings: iio: imu: bmi270: add boolean type
- for drive-open-drain
-Message-ID: <uqn4jpowzqhchthn3i2fpg7j52c7y67gawg5ausrt5j3cemq52@c3l54jktq2wv>
-References: <20241219234745.58723-1-vassilisamir@gmail.com>
- <20241219234745.58723-3-vassilisamir@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pCPOh1qWw3fb+gUi+K2F/FwG6FgK2fuWepZcdz/R7HN4DZUR9akEdEMF2szhQzxsEo2U5nq17/lw368yuYcUIxyPvEu2LU+MUeWkOjE8VEjpbzWqio2QzuNz4/4cpkGYZ1WaflE/KPC81UPzicci9kTpDtyX3DzB6jZlvO9DGrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E/8geh7V; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1734983915; x=1766519915;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JFaFcA0nZKMMo3VFidoPrE63O/yVjrK2dWBgS5sUJS8=;
+  b=E/8geh7VVZEwxXC8ff5tAXJwpCmCwJq3EuHhvyRFjulJDjQAaSYuuwdj
+   Ap1pUyxMgsLCEOSq+GE5mja2p8j8vn2WdYnctYM7VnLP7kjUiKzprDdob
+   IuCRpv9GaAjXzH2fj6sD8B7Kkcu1ftz0NmpQ3XoPfrVnbnzOFEzgJs3kt
+   Mo+CdN5F6CziCC9KryG12VUloJLWLqSua4XZN1zOBjY0/Izq5cQVuUORT
+   Nx6TOn3HSEB+hdGCo4bELCh5FuY8py05DUO9Iim1cfHSc+hkn7Z1e6pMc
+   k6KXCwOBoBRSwsjm1RbYG3vB+B8QXQfJ10fQTmZWlVsZugjZge+NaJPgw
+   w==;
+X-CSE-ConnectionGUID: aCgHNOIMQA2A3VsSqzYo7w==
+X-CSE-MsgGUID: KI2MvWr7QyGmH79s/egWDg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11295"; a="35593207"
+X-IronPort-AV: E=Sophos;i="6.12,258,1728975600"; 
+   d="scan'208";a="35593207"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Dec 2024 11:58:34 -0800
+X-CSE-ConnectionGUID: JeXL2EZhTR2fWNyzwU+5qg==
+X-CSE-MsgGUID: sgl+nSgfScajHptNt/D+LQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,258,1728975600"; 
+   d="scan'208";a="130137834"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Dec 2024 11:58:31 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tPoZP-0000000BQST-43of;
+	Mon, 23 Dec 2024 21:58:27 +0200
+Date: Mon, 23 Dec 2024 21:58:27 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Saravana Kannan <saravanak@google.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Zijun Hu <quic_zijuhu@quicinc.com>, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] of: Add printf '%pOFm' for generating modalias
+Message-ID: <Z2nA46H_sRrC74n8@smile.fi.intel.com>
+References: <20241217183711.2525863-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,28 +84,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241219234745.58723-3-vassilisamir@gmail.com>
+In-Reply-To: <20241217183711.2525863-1-robh@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, Dec 20, 2024 at 12:47:44AM +0100, Vasileios Amoiridis wrote:
-> Add missing type description "boolean" for the drive-open-drain property.
+On Tue, Dec 17, 2024 at 12:37:09PM -0600, Rob Herring (Arm) wrote:
+> The callers for of_modalias() generally need the module alias as part of
+> some larger string. That results in some error prone manipulation of the
+> buffer prepend/append the module alias string. In fact,
+> of_device_uevent_modalias() has several issues. First, it's off by one
+> too few characters in utilization of the full buffer. Second, the error
+> paths leave OF_MODALIAS with a truncated value when in the end nothing
+> should be added to the buffer. It is also fragile because it needs
+> internal details of struct kobj_uevent_env. add_uevent_var() really
+> wants to write the env variable and value in one shot which would need
+> either a temporary buffer for value or a format specifier.
 > 
-> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-> ---
->  Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml b/Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml
-> index 7b0cde1c9b0a..860a6c1fea3c 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml
-> +++ b/Documentation/devicetree/bindings/iio/imu/bosch,bmi270.yaml
-> @@ -41,6 +41,7 @@ properties:
->          - INT2
->  
->    drive-open-drain:
-> +    type: boolean
->      description:
->        set if the specified interrupt pins should be configured as
->        open drain. If not set, defaults to push-pull.
+> Fix these issues by adding a new printf format specifier, "%pOFm". With
+> the format specifier in place, simplify all the callers of
+> of_modalias(). of_modalias() can also be simplified with vsprintf()
+> being the only caller as it avoids the error conditions.
 
-Signed-off-by: Alex Lanzano <lanzano.alex@gmail.com>
+Shouldn't ACPI case also be considered? Otherwise we might see a deviation and
+then completely asynced variants of modalias based on different type of fwnode.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
