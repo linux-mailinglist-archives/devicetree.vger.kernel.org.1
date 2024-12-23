@@ -1,152 +1,105 @@
-Return-Path: <devicetree+bounces-133662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69DB19FB34F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 17:48:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CDAD9FB368
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 18:05:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B31F51882701
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:48:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65C4E18843A8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 17:05:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94AE91B0F1B;
-	Mon, 23 Dec 2024 16:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4151B2183;
+	Mon, 23 Dec 2024 17:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XhN37A5W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QVmmm6os"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3DAD19DFB4;
-	Mon, 23 Dec 2024 16:48:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8F233987;
+	Mon, 23 Dec 2024 17:05:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734972529; cv=none; b=WWJsIpOyLaP9JK8QxugC3+pEotF0+JtGQExnX/GlvsK7z+Q4Qx9sQ2HTkguWo8GhYupkaVH2t1oAXLbcO3EDcwR1c2fR+VCERRds9+PfOqjSNXsNjzwec8SVwOKTVFPkvj4NFiCktTgAb4dXBhFUun8d+u2YHlg6Qs8f5U9tx8o=
+	t=1734973543; cv=none; b=cZ5BahCb4W40Dp1XMgEQWw44TKRCQSGcNyX8Z9KH58ZJQ7tpZlb29/kHndBqMz29QJdeKbavLmuTtL6ed57738JDyxJGN2tAB2pXCZgCp9RwKZr12w+RI8ODwNiEiPsKpTQGiAZuoVv8fKXMbNtpKk5DYs4QPheGFLSBqIDwTtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734972529; c=relaxed/simple;
-	bh=JKVVZ8h6pvui8g5pFna5Wb78q6p5q9rEgum20M2rYeU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=p5kkfwk+5qc6uAcAgbPu3JsmRrTJa5+h3saiIHXA6cN68Mn8RHQEPJYP6QgWt3xqL1IksB54FUDFvuvo6jhh4hIG51otN7KU+ghe0FH5SZy/MsG3HFw5GXsXn8dwONw7RfOuuJWtf5w3Osz6FsAa4OQacvxQ4jZJ6KWKLYfqB1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XhN37A5W; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BNBveF5018159;
-	Mon, 23 Dec 2024 16:48:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qgXoM3qZD93P9y7fdeuMK7YtPmiYP1Ht8W3TZcJbghA=; b=XhN37A5W7xnRvers
-	JqY0cWI2pDT+jzmzSwn7K/aha+G9TSdG+F6LE57/NDjBO+Jjz/eOIVHqnNmyTDHy
-	kw2DlFP1buqGxUKcf3tVeUrtiaZoSwXLcyl5bYUilnR+PCS0HvK1O3Pwd2f8Sqb5
-	kkvI/fXBIAe0P9vxYaWyN5y4LHYMEAthF0w8kndxx56dtI+p5vdMGg+M/WqDtYm0
-	1J4aRLpTviIRaXyXS2khwPIV02BqAWVTUZgDzZq/xf6wdTkYckEsNxp/CTSmhPE1
-	qPxgr3opar+C7MG5rA1B+6iT0jOALk9FH/5JZeq+mvxXQf9MeoIN6aANer+WeZ9k
-	BBP1aw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q7ev13a7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Dec 2024 16:48:36 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BNGmZ7D025085
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Dec 2024 16:48:35 GMT
-Received: from [10.216.2.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 23 Dec
- 2024 08:48:29 -0800
-Message-ID: <bf57eca8-69b5-9c21-0350-bf1c07de786f@quicinc.com>
-Date: Mon, 23 Dec 2024 22:18:24 +0530
+	s=arc-20240116; t=1734973543; c=relaxed/simple;
+	bh=zRNgJvNtpTbrnhug4GVekoVroaJAp8+M8OpXpJZFuP8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kfPVIOYPxocJe56+qNwcV3qOLlnsg5uZx0dCCoA0qwj2uNYoDpJCTDOeTESh6DiZolD7JbDp5cfuOsfrwG09t/EVDucMNH6V13dhzaf1hzB9iLXG8xaUDgk2nyTg0wMqLfKemzS5BDE7P/pSRSHj9PQKsaNUNdftOZffH/CoAVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QVmmm6os; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC98DC4CED3;
+	Mon, 23 Dec 2024 17:05:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734973542;
+	bh=zRNgJvNtpTbrnhug4GVekoVroaJAp8+M8OpXpJZFuP8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QVmmm6osBmKpBSwDHYuMU9ehRqxWFwKITHG1oAD6x7VBMPeLIJQgv5wMkENbJXCuq
+	 DUXxyqdRY8rX2mSaqjARLcXwmX9soACi9RpCxTDDyPFdBvZraB/gwZUBRBGWBCwjhz
+	 99JF3v/RO28gUp3e0af5cz69cVHLNzzg39r4CsMAXnuXdy9gLlwopNsxlr7PJjGenM
+	 ZsdsrqTqA3Gk9yuxg6kejw93h+0yIqED/U1rXqlOEh6oKwkQWjSJ6da8Yc6IOoFr3m
+	 cZypsVA1J3sSP/1Ha2ltpxF+XUYktwnnZ2NeCsInUoygUYVVQO2JwF2jhwe8UOOH9x
+	 rgCaCqXquO/vw==
+Date: Mon, 23 Dec 2024 18:05:39 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	=?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 0/7] Add support for MAX7360
+Message-ID: <f5memlwoahjjvvian4hutan724msi3ojbkhdaoqvtqstnhvfqt@xkdyrpfvy2gp>
+References: <20241223-mdb-max7360-support-v2-0-37a8d22c36ed@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 1/6] dt-bindings: PCI: Add binding for qps615
-Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bjorn Helgaas
-	<helgaas@kernel.org>, Rob Herring <robh@kernel.org>
-CC: <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        "Lorenzo
- Pieralisi" <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
-	<kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        Jingoo Han
-	<jingoohan1@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_vbadigan@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241112-qps615_pwr-v3-1-29a1e98aa2b0@quicinc.com>
- <20241204212559.GA3007963@bhelgaas>
- <20241211060000.3vn3iumouggjcbva@thinkpad>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20241211060000.3vn3iumouggjcbva@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uHZtNFkhffwq2ItHoC8DYL8pwgHJSffz
-X-Proofpoint-GUID: uHZtNFkhffwq2ItHoC8DYL8pwgHJSffz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- spamscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0
- mlxlogscore=999 malwarescore=0 adultscore=0 suspectscore=0 bulkscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412230149
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5odqxwxb7r4aev7t"
+Content-Disposition: inline
+In-Reply-To: <20241223-mdb-max7360-support-v2-0-37a8d22c36ed@bootlin.com>
 
 
+--5odqxwxb7r4aev7t
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v2 0/7] Add support for MAX7360
+MIME-Version: 1.0
 
-On 12/11/2024 11:30 AM, Manivannan Sadhasivam wrote:
-> On Wed, Dec 04, 2024 at 03:25:59PM -0600, Bjorn Helgaas wrote:
->> On Tue, Nov 12, 2024 at 08:31:33PM +0530, Krishna chaitanya chundru wrote:
->>> Add binding describing the Qualcomm PCIe switch, QPS615,
->>> which provides Ethernet MAC integrated to the 3rd downstream port
->>> and two downstream PCIe ports.
->>
->>> +$defs:
->>> +  qps615-node:
->>> +    type: object
->>> +
->>> +    properties:
->>> +      qcom,l0s-entry-delay-ns:
->>> +        description: Aspm l0s entry delay.
->>> +
->>> +      qcom,l1-entry-delay-ns:
->>> +        description: Aspm l1 entry delay.
->>
->> To match spec usage:
->> s/Aspm/ASPM/
->> s/l0s/L0s/
->> s/l1/L1/
->>
->> Other than the fact that qps615 needs the driver to configure these,
->> there's nothing qcom-specific here, so I suggest the names should omit
->> "qcom" and include "aspm".
->>
-> 
-> In that case, these properties should be documented in dt-schema:
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/pci/pci-bus-common.yaml
-> 
-> - Mani
-I am fine to move to pci-bus-common.yaml but currently these are being 
-used by qps615 only I hope that is fine.
+Hello Mathieu,
 
-- Krishna Chaitanya.
-> 
+On Mon, Dec 23, 2024 at 05:42:32PM +0100, Mathieu Dubois-Briand wrote:
+> - Removing device tree subnodes for keypad, rotary encoder and pwm
+>   functionalities.
+
+How did you test the pwm? Just using sysfs? Without a node there is
+hardly any other usage left, because you cannot pass the pwm to e.g. a
+pwm-fan node. So it might be sensible to drop the nodes for keypad and
+rotary encoder, but I think you better keep the pwm one.
+
+Best regards
+Uwe
+
+--5odqxwxb7r4aev7t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdpmGEACgkQj4D7WH0S
+/k7Hrwf/ZvCvOo1jC/lTO8ayYb/ThxscqnH8hZHyhP//NCbvj9SUrAPlTzhHSzxX
+O2IDQELMeDgh3VhMyCLtR+87pvLW64u4Ky6EyZTtjjH/V+aieGb/lV8CL6VgFf53
+e1ZFSaRO4fchhFZmYfatgboqidrNhO9Nu0LEUuiuk7QAx7FVTTx7dLE0KDw+J9mq
+Wc1fgdCAv7dFQ3cXSgF28Iq0CPlMTXKwPFw0TBZ6u/2nYt46UteIHVrhXVBCUqwI
+Z58pHoXV/eZf3U1rfsgeHuZNwba1KX4rQCcWbi6CufuFSQmL+p/EFzSxpDtvCYyp
+ZPLWP5ghYKfreOXQJ0ha8/5oJYb3bw==
+=tf+P
+-----END PGP SIGNATURE-----
+
+--5odqxwxb7r4aev7t--
 
