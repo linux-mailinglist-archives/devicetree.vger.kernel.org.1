@@ -1,149 +1,95 @@
-Return-Path: <devicetree+bounces-133519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE20C9FAD7E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:10:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9F39FAD8D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:13:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0741E18841E2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:10:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F4731885389
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:13:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E6A19D09F;
-	Mon, 23 Dec 2024 11:10:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613A31990DB;
+	Mon, 23 Dec 2024 11:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Uf3Wo8Gb"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qveWbVF2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B9B19D074;
-	Mon, 23 Dec 2024 11:09:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E4D1990D9;
+	Mon, 23 Dec 2024 11:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734952200; cv=none; b=VTTInXuGlnvWpdBojd2vI5rNeSsr7jtQcZf6xJD0Vijq1tn0Fe+8IOjJe9Uwscvb6oMJKpiKsvWsLJIJ55A9PvHYCzLq/OmTAqsJTlMrV8hgQqINQjmGpvhio8iLi+bOEzBQpklO3Y1RAqjQvv+T/zQH8uZFEZ6z5zkMNvOwWAI=
+	t=1734952376; cv=none; b=Ixdd0cLOBT5le90GEs+ki3sBJ7nhuHjtLT/y074EluFptlPmVP4kpOXeE2rvrWloKs0J/rskgrwFt2MSL/MwN4r9uxIPDWVIo4CWWKKzV2KTarsdugohUdOWcpA/9tDHB6WhHHvgqy05OOSrUoJeuwwXTOebhgUJJzcQVnIgg9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734952200; c=relaxed/simple;
-	bh=7nEoARmPuJcql7CnM6XAABuuVo9Xoq69Mry3K40LSDQ=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=B8athOkC20Z34d+Z0KBWA5yosQOqbQ10Ec5+clrEs+LPtmp437LfK04cnxWaKTI4++FNm34RwEm4E36P0WhoWObPhfvovpzy9782YipJQ2dA27rspHDAWWBSZ7P1AJOUG0c7jb/ZQ94wQV4oHUEg8g9omk0ZCde4SPegpHtgKFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Uf3Wo8Gb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN9TONY014901;
-	Mon, 23 Dec 2024 11:09:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=p6xTc6h4v548aS3R/mRUjG
-	zkTEj66fmYVZTPJiRhfww=; b=Uf3Wo8GbWajqmHgv3ScX/1mh5nXFtxDhVT76S7
-	3AsqczIm+NfVnWMJ81r/pe32RY7bQEe8X25Vf1reTkdIk5hxzykDHXRI3fQwDtyy
-	MCOo0AYjVGd3eAdeQF/Vc5SqR/heF90mIWZJCLdcrMa6pFI7aQBvoVXjqe22/a2H
-	sYuqj/UZrGRnAYcVCP9JEqDjKobXyxTm0F9TKXu94sAmwiqon4gwN+krFUl58dI0
-	JFzCnUhJpFNbW1RJrPbBX1RK5yW5iJ3AaHv6FTcxscuVSbkKbPR4sCTj0qqY6HtB
-	vi+d3U0SlF2NiSWSj6SE+NvtuvV4wkQqO3BPuzf7BBtkJRRA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43nnrsrsm3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Dec 2024 11:09:55 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BNB9sg2003707
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Dec 2024 11:09:54 GMT
-Received: from hu-yrangana-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 23 Dec 2024 03:09:50 -0800
-From: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_yrangana@quicinc.com>
-Subject: [PATCH v3] arm64: dts: qcom: qcs8300: add QCrypto nodes
-Date: Mon, 23 Dec 2024 16:39:36 +0530
-Message-ID: <20241223110936.3428125-1-quic_yrangana@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1734952376; c=relaxed/simple;
+	bh=8EB61xX3VXXIycCwZZXBxODcQBwh+DUhjBmAxfgL0QQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b0gTpH6mFZxNWvljU4rKvljCbW483Nez+MdZrLb/PeIo6NxRA0Cfd3IdoITqadRzZWKuMSYVZ0AdLZ3MQ8xT3U2v/2Wkq9yDqpZ4eNfeIj/sgy1DHuDsry3szjnPuujYpDfHcgfZk3mfDTjYU099bqMoV/JXqoCv1yXvgYYYi2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qveWbVF2; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1734952372;
+	bh=8EB61xX3VXXIycCwZZXBxODcQBwh+DUhjBmAxfgL0QQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qveWbVF2Jry1KkIWDjlhbJuQujpT0V6Vu2tkALDg6azdphIcp3yXMJdZ0N4LTFAAQ
+	 LpJ8+u0sDXR90+H43upRLvcUbE2KE7g5HnjN/idfiHf0IkF93fRwFoGoYtgOI6mCzT
+	 5NNEQbkDjH9aTJX0D9GhyoQuasfGmgdHQwenTwu9w3Kd8adhvjjMUsudStkkc8qH8c
+	 py1DXGhgA64d2hEhGB8NBDe72Eptq2ym5k3zZOH9IQLiqgYK95uHA6rQEgBGm3afi6
+	 zxQiWPssSxtCj0RBO9EUL0uuDt/hUkTogXtFZNreK0rCm13JM8/Sb5k29lDsXTY1z2
+	 b61/X+StNP5oA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D393817E362F;
+	Mon, 23 Dec 2024 12:12:51 +0100 (CET)
+Message-ID: <6cbe2f57-a63e-4993-938c-7696a869dc2f@collabora.com>
+Date: Mon, 23 Dec 2024 12:12:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ZWlhSuI9qILepqLwsM32P35z7-zJXQR7
-X-Proofpoint-ORIG-GUID: ZWlhSuI9qILepqLwsM32P35z7-zJXQR7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 bulkscore=0 phishscore=0 clxscore=1015 mlxscore=0
- impostorscore=0 suspectscore=0 spamscore=0 malwarescore=0
- priorityscore=1501 mlxlogscore=706 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2412230099
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: mediatek: ovl: Add
+ compatible strings for MT8188 MDP3
+To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
+ Shawn Sung <shawn.sung@mediatek.com>, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ Fei Shao <fshao@chromium.org>, Pin-yen Lin <treapking@chromium.org>
+References: <20241219181531.4282-1-jason-jh.lin@mediatek.com>
+ <20241219181531.4282-2-jason-jh.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241219181531.4282-2-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add the QCE and Crypto BAM DMA nodes.
+Il 19/12/24 19:15, Jason-JH.Lin ha scritto:
+> Add compatible strings for the MDP3 OVL hardware components in
+> MediaTek's MT8188 SoC and it is compatible with the existing
+> MT8195 MDP OVL components.
+> 
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
----
-Changes in v3:
- - Wrap the lengthy lines
- - Reduced the patch series as other patch is merged.
- - Link to v2: https://lore.kernel.org/all/20241125111923.2218374-3-quic_yrangana@quicinc.com/
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Changes in v2:
- - Set the interconnect tag to QCOM_ICC_TAG_ALWAYS instead of passing 0(no TAG). 
- - Link to v1:  https://lore.kernel.org/all/20241113055830.2918347-1-quic_yrangana@quicinc.com/
+Waiting for an ack to take everything through the mediatek tree :-)
 
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 73abf2ef9c9f..30c1de1c4ad2 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -736,6 +736,31 @@ ufs_mem_phy: phy@1d87000 {
- 			status = "disabled";
- 		};
- 
-+		cryptobam: dma-controller@1dc4000 {
-+			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
-+			reg = <0x0 0x01dc4000 0x0 0x28000>;
-+			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely;
-+			num-channels = <20>;
-+			qcom,num-ees = <4>;
-+			iommus = <&apps_smmu 0x480 0x00>,
-+				 <&apps_smmu 0x481 0x00>;
-+		};
-+
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,qcs8300-qce", "qcom,qce";
-+			reg = <0x0 0x01dfa000 0x0 0x6000>;
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x480 0x00>,
-+				 <&apps_smmu 0x481 0x00>;
-+			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE0 QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "memory";
-+		};
-+
- 		tcsr_mutex: hwlock@1f40000 {
- 			compatible = "qcom,tcsr-mutex";
- 			reg = <0x0 0x01f40000 0x0 0x20000>;
--- 
-2.34.1
+Cheers,
+Angelo
 
 
