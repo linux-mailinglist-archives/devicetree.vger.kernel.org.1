@@ -1,197 +1,268 @@
-Return-Path: <devicetree+bounces-133601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 613639FB021
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:39:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 873699FB02B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 15:40:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1BB31694E2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:37:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C883169172
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:37:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7291B21A6;
-	Mon, 23 Dec 2024 14:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E779D1B3944;
+	Mon, 23 Dec 2024 14:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JMgV0k0g"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="g/+Z1gGk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421DF1AB6D8
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 14:29:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E8F91B3929;
+	Mon, 23 Dec 2024 14:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734964163; cv=none; b=nq5E+zfXn+NwVOwUyV9ZDR5lqnrKDVew0B2zvvgygJo4X8GZRsLvjjqreDNYg2gJys2eRYQVbdSzX97em9YRAnkKZ3Zx0/bKG1q0RwDdzoFzUYccze+s9n38hD+l9uEajc1IFbsEiGfOGHuG9z0mNx+EwtGWYJHgNCoI2a3fY+s=
+	t=1734964368; cv=none; b=T3zViTneYi7aKZGL/fAJ4Xj3csMT9d0uf1VvZeiTaeYkCUES1MBuHENG/tGbUurv5DbN4Pk+0E0Y609f2kKw7IAPA8RzGRFLf+LM2ixzPaWi+SWujhVI8XbMB7KHtXar/yl+fwXZS5XxUAAS+7FVWV0q/U5Nlvhu0RNSCjSoFjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734964163; c=relaxed/simple;
-	bh=3dE+v4WYfgRHxcnqxklNMpWjQCmXMlS4tcHU3d80DeM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zoq9cyqFjZXU+IlYDTpXvyrt0Akwl/SQsxIIr6bEVMq6YJIRaW/s5k8dJjJizxVKzYYdmALRbJmHpDuxO4sQHJDRVE3MEIvKihKBfAE2NzEWJg2u7nnQQxxm13wVj1bmz61v/kCQ0Gs+zUEDf6IGlq3wSrzdUP8Wf9d1uSwtPbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JMgV0k0g; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-aa67bc91f87so72705666b.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 06:29:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734964159; x=1735568959; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=rAqh6NsKdsBvHtpB6DSARs5FP9fo+coyC5VCCTaBA+I=;
-        b=JMgV0k0gpeAH+HuGcUZAfN2j+zRCOU48s3dE+uBrXG+j9Wwh1PoGxGlGRZSGCVV/Kp
-         cNtgDQs/cZ2Rfo+OOfAUAGHnBIXXBog6MkaEaVwuAcK+kTRuOBoWHjVnd3eC2nZ4fxeE
-         6nX9vCLASc45pz7TSFI6uXuJi1+rA6HPrG/s/VjYJxCD59/R2B6TGy4BWpGtCD0mtB5G
-         ZJpwSAPJsY8fVddwiOhgNznkiocI+9+JOVoghEqNtZ3fD8zRrT5rlchsZbWDPgnFE9q0
-         YuwNsm2GftFXYz86EeR5R/pZLM+yn5BKVsXPF8z18iGNQZ6QIarolmT3R/9VZTHDLjdl
-         hYvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734964159; x=1735568959;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rAqh6NsKdsBvHtpB6DSARs5FP9fo+coyC5VCCTaBA+I=;
-        b=Wgd5VOLtTF6OiDuVYm4NAh9gNBNSKUlNlXO5FH6+MWas1BxXkxBgjZcmqpuITu8nFj
-         Rxounvt7nBnzVJbJIUcwDd7bH1RYasSr9Ul+nX3NqRu/7fzacqL/cdoJa36RWIhHSL7V
-         dtqRP5q4lGX2jE4usC+2XbJqc3IZeJRS5y3JO0q2iotM529rgT3UKPIoXn/I5HJQRWSg
-         75t9sbtjd6LUmXM1/me7QgR0+JheWp7Okm//7dawsXZ7cueOjbj+0Vw9TpEJI1840taS
-         e2IdCUV3G3XZZbc6/Jx4ROSLk/GL5gleaQ+T3/Fu9VQSb2D0wKj0V+V4ca8E8Mf/utAF
-         aZ8w==
-X-Forwarded-Encrypted: i=1; AJvYcCWMoySYQLW6wkjd906CfSUwHW1foEvkipQpzHt9bnUrn2+alIrOIZMorZqel8C/D7Yr0HdKwIg57FbS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBwOeOWqt1yxzpZNdsvWZui6+2XA/GFkt7+URf10/L5P9EaO5T
-	b8BzSUSYAzljOoxmsbsg44YJ3Ivf/DfZgVYS560dx0J418NkUdxhCO880h32xZw=
-X-Gm-Gg: ASbGnctgnLJY1pffEDNYqUrvr9KkfoKdj4202MTOWzIKhzbJKeflfIJGKTboHUC1riq
-	uge4D0DuSsLG9OxqCIag3EDO1HRKZWYFjjS9d47Hp81LI5rKX3n8D0zerPG4ifbBVgFhzEXTIZQ
-	0d2mqgRbwEUpFWcpla1uut7uSWed5fBa6o4jHuD7qE8w2fVYQoij/cgeD+v4OOhU7oOmIi71zjv
-	xz4BUzXczFW6IpAd0iSOlBlpPXF2Y3x0eiOrnYE8dksBPDmu7HXmSURz5PU0DJfrM2FQIl7ahpR
-	qsnhO/qgpr4hCroWc3jOckQLhCZyPYooX5c=
-X-Google-Smtp-Source: AGHT+IES4HUmfaeY6ZkeJTU754L2mw/EvkulWr3aXvFlT4FFq2qQHLD9E+gJayvkPqjmyM0HmPEuZg==
-X-Received: by 2002:a17:907:3d86:b0:aa6:6386:44dc with SMTP id a640c23a62f3a-aac2714a13amr469215966b.1.1734964159412;
-        Mon, 23 Dec 2024 06:29:19 -0800 (PST)
-Received: from [192.168.0.18] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f015b1asm525192966b.148.2024.12.23.06.29.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Dec 2024 06:29:18 -0800 (PST)
-Message-ID: <766c50ca-cd2e-4d88-83d4-dd1cc2e0adda@linaro.org>
-Date: Mon, 23 Dec 2024 15:29:17 +0100
+	s=arc-20240116; t=1734964368; c=relaxed/simple;
+	bh=cTsolYltWuYKBh+2FKGBUJVLIxqagqNe4+UBZFb+jeE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=k7kOYFQpa5cuphAC9xjQZLK1AknBJTK3YovXMj50ycsbpKBgkSoSudfMdFhtsCT6yBj4STzrB/i+7A546NSqWDBWyf1LrTtj5/cnNipEB2FfRAS8ncR0AuSGW/pcimsA4WCqgVORYTIUyd0F+sWJ2nIBejv1aruOMPVk5uw+mXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=g/+Z1gGk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN9TQ9q019745;
+	Mon, 23 Dec 2024 14:32:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gZ+KzYl49hHTpFkqIHUSLaFZP2QFO+hk+TL11BAvvXM=; b=g/+Z1gGkd20f56no
+	maYu/0/dY4vvm3qEl2jjSNI4Yqk1q8Y3DV9EVy5hC6NTXgXsub3/QwTWgo8Fej8+
+	UefxsRXJHr3j0mq595HatTtVfV1sq//k8qJRFGlwld+e2NcUpSyqwUVzBr1KErq8
+	dI0nsgfd2VKKlm+pBy49n3An5SXuxI89g7jGkmhisOkp4qxtbpcJL31D3QHNSfdg
+	SAhgW5//8ZJAPUvnvXu+eImcVWAGPqkHx2EZtde1pwy5iA4mAv2IsyoBIz1xX9QY
+	B5CzSA4Np16ZiHO+Okq4qWz9YGbz/y4b8P5QCSrsgy9IPNm5o9eWIbkDrCIWFP1o
+	kptbeg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43nn8vs80y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 14:32:36 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BNEWZnc024675
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 14:32:35 GMT
+Received: from [10.216.2.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 23 Dec
+ 2024 06:32:27 -0800
+Message-ID: <d317c51a-3913-6c49-f8db-e75589f9289a@quicinc.com>
+Date: Mon, 23 Dec 2024 20:02:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/23] arm64: dts: qcom: Fix remoteproc memory base and
- length
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Abel Vesa
- <abel.vesa@linaro.org>, Sibi Sankar <quic_sibis@quicinc.com>,
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20241213-dts-qcom-cdsp-mpss-base-address-v3-0-2e0036fccd8d@linaro.org>
- <94a6b2ba-fa52-42d0-a60d-9dc31e37057c@quicinc.com>
- <253e7889-bef4-453c-9f39-19ba0a6dd5b0@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 2/4] PCI: of: Add API to retrieve equalization presets
+ from device tree
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <253e7889-bef4-453c-9f39-19ba0a6dd5b0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krishna Chaitanya Chundru
+	<krishna.chundru@oss.qualcomm.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <konrad.dybcio@oss.qualcomm.com>, <quic_mrana@quicinc.com>,
+        <quic_vbadigan@quicinc.com>, Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+References: <20241223-preset_v2-v3-0-a339f475caf5@oss.qualcomm.com>
+ <20241223-preset_v2-v3-2-a339f475caf5@oss.qualcomm.com>
+ <piccoomv7rx4dvvfdoesmxbzrdqz4ld6ii6neudsdf4hjj2yzm@2bcuacwa4feb>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <piccoomv7rx4dvvfdoesmxbzrdqz4ld6ii6neudsdf4hjj2yzm@2bcuacwa4feb>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: SHLgLfs82H1EkOOAjFXyOIGPjUaGK4Gk
+X-Proofpoint-ORIG-GUID: SHLgLfs82H1EkOOAjFXyOIGPjUaGK4Gk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ adultscore=0 malwarescore=0 mlxscore=0 priorityscore=1501 impostorscore=0
+ clxscore=1015 lowpriorityscore=0 mlxlogscore=999 phishscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412230131
 
-On 23/12/2024 11:52, Konrad Dybcio wrote:
-> On 23.12.2024 10:21 AM, Aiqun(Maria) Yu wrote:
->> On 12/13/2024 10:53 PM, Krzysztof Kozlowski wrote:
->>> Changes in v3:
->>> - Add Rb tags
->>> - Add four new patches (at the end) for sdx75 and sm6115
->>> - Link to v2: https://lore.kernel.org/r/20241209-dts-qcom-cdsp-mpss-base-address-v2-0-d85a3bd5cced@linaro.org
->>>
->>> Changes in v2:
->>> - arm64: dts: qcom: x1e80100: Fix ADSP...:
->>>   Commit msg corrections, second paragraph (Johan)
->>> - Add tags
->>> - Link to v1: https://lore.kernel.org/r/20241206-dts-qcom-cdsp-mpss-base-address-v1-0-2f349e4d5a63@linaro.org
->>>
->>> Konrad pointed out during SM8750 review, that numbers are odd, so I
->>> looked at datasheets and downstream DTS for all previous platforms.
->>>
->>> Most numbers are odd.
->>>
->>> Older platforms like SM8150, SM8250, SC7280, SC8180X seem fine. I could
->>> not check few like SDX75 or SM6115, due to lack of access to datasheets.
->>>
->>> SM8350, SM8450, SM8550 tested on hardware. Others not, but I don't
->>> expect any failures because PAS drivers do not use the address space.
->>> Which also explains why odd numbers did not result in any failures.
+
+
+On 12/23/2024 5:17 PM, Dmitry Baryshkov wrote:
+> On Mon, Dec 23, 2024 at 12:21:15PM +0530, Krishna Chaitanya Chundru wrote:
+>> PCIe equalization presets are predefined settings used to optimize
+>> signal integrity by compensating for signal loss and distortion in
+>> high-speed data transmission.
 >>
->> In my opinion, the "QCOM_Q6V5_PAS" based Peripheral Authentication
->> platforms may have the register information completely removed.
+>> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
+>> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
+>> configure lane equalization presets for each lane to enhance the PCIe
+>> link reliability. Each preset value represents a different combination
+>> of pre-shoot and de-emphasis values. For each data rate, different
+>> registers are defined: for 8.0 GT/s, registers are defined in section
+>> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
+>> an extra receiver preset hint, requiring 16 bits per lane, while the
+>> remaining data rates use 8 bits per lane.
 >>
->> There are two types of Peripheral Authentication supported:
->>   "QCOM_Q6V5_MSS" (self-authenticating)
->>   "QCOM_Q6V5_PAS" (trust-zone based Authentication)
->> For "QCOM_Q6V5_PAS" based Peripheral Authentication platforms, use SCM
->> calls instead of the register-based mechanism. So it is no need to
->> expose the PUB reg addresses for those platforms.
+>> Based on the number of lanes and the supported data rate, this function
+>> reads the device tree property and stores in the presets structure.
+>>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>   drivers/pci/of.c  | 45 +++++++++++++++++++++++++++++++++++++++++++++
+>>   drivers/pci/pci.h | 17 +++++++++++++++--
+>>   2 files changed, 60 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+>> index dacea3fc5128..99e0e7ae12e9 100644
+>> --- a/drivers/pci/of.c
+>> +++ b/drivers/pci/of.c
+>> @@ -826,3 +826,48 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
+>>   	return slot_power_limit_mw;
+>>   }
+>>   EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
+>> +
 > 
-> (Unfortunately) not all boards using the same SoC have the same
-> firmware stack, and it's not obvious that self-authentication is not
-> useful. Plus having an accurate register space description in the
-> DT is "nice".
+> kerneldoc? Define who should free the memory and how.
+> 
+I will update this in next series.
+as we are allocating using devm_kzalloc it should be freed on driver
+detach, as no special freeing is required.
+>> +int of_pci_get_equalization_presets(struct device *dev,
+>> +				    struct pci_eq_presets *presets,
+>> +				    int num_lanes)
+>> +{
+>> +	char name[20];
+>> +	void **preset;
+>> +	void *temp;
+>> +	int ret;
+>> +
+>> +	if (of_property_present(dev->of_node, "eq-presets-8gts")) {
+>> +		presets->eq_presets_8gts = devm_kzalloc(dev, sizeof(u16) * num_lanes, GFP_KERNEL);
+>> +		if (!presets->eq_presets_8gts)
+>> +			return -ENOMEM;
+>> +
+>> +		ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
+>> +						 presets->eq_presets_8gts, num_lanes);
+>> +		if (ret) {
+>> +			dev_err(dev, "Error reading eq-presets-8gts %d\n", ret);
+>> +			return ret;
+>> +		}
+>> +	}
+>> +
+>> +	for (int i = 1; i < sizeof(struct pci_eq_presets) / sizeof(void *); i++) {
+>> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << i);
+>> +		if (of_property_present(dev->of_node, name)) {
+>> +			temp = devm_kzalloc(dev, sizeof(u8) * num_lanes, GFP_KERNEL);
+>> +			if (!temp)
+>> +				return -ENOMEM;
+>> +
+>> +			ret = of_property_read_u8_array(dev->of_node, name,
+>> +							temp, num_lanes);
+>> +			if (ret) {
+>> +				dev_err(dev, "Error %s %d\n", name, ret);
+>> +				return ret;
+>> +			}
+>> +
+>> +			preset = (void **)((u8 *)presets + i * sizeof(void *));
+> 
+> Ugh.
+> 
+I was trying iterate over each element on the structure as presets holds 
+the starting address of the structure and to that we are adding size of 
+the void * point to go to each element. I did this way to reduce the
+redundant code to read all the gts which has same way of storing the 
+data from the device tree. I will add comments here in the next series.
+>> +			*preset = temp;
+>> +		}
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
+>> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+>> index 14d00ce45bfa..82362d58bedc 100644
+>> --- a/drivers/pci/pci.h
+>> +++ b/drivers/pci/pci.h
+>> @@ -731,7 +731,12 @@ static inline u64 pci_rebar_size_to_bytes(int size)
+>>   }
+>>   
+>>   struct device_node;
+>> -
+>> +struct pci_eq_presets {
+>> +	void *eq_presets_8gts;
+>> +	void *eq_presets_16gts;
+>> +	void *eq_presets_32gts;
+>> +	void *eq_presets_64gts;
+> 
+> Why are all of those void*? 8gts is u16*, all other are u8*.
+> 
+To have common parsing logic I moved them to void*, as these are 
+pointers actual memory is allocated by of_pci_get_equalization_presets()
+based upon the gts these should not give any issues.
+>> +};
+> 
+> Empty lines before and after the struct definition.
+> 
+ack.
 
-... And still a correct and complete hardware description.
-
-Best regards,
-Krzysztof
+- Krishna Chaitanya.
+>>   #ifdef CONFIG_OF
+>>   int of_pci_parse_bus_range(struct device_node *node, struct resource *res);
+>>   int of_get_pci_domain_nr(struct device_node *node);
+>> @@ -746,7 +751,9 @@ void pci_set_bus_of_node(struct pci_bus *bus);
+>>   void pci_release_bus_of_node(struct pci_bus *bus);
+>>   
+>>   int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge);
+>> -
+>> +int of_pci_get_equalization_presets(struct device *dev,
+>> +				    struct pci_eq_presets *presets,
+>> +				    int num_lanes);
+> 
+> Keep the empty line.
+> 
+>>   #else
+>>   static inline int
+>>   of_pci_parse_bus_range(struct device_node *node, struct resource *res)
+>> @@ -793,6 +800,12 @@ static inline int devm_of_pci_bridge_init(struct device *dev, struct pci_host_br
+>>   	return 0;
+>>   }
+>>   
+>> +static inline int of_pci_get_equalization_presets(struct device *dev,
+>> +						  struct pci_eq_presets *presets,
+>> +						  int num_lanes)
+>> +{
+>> +	return 0;
+>> +}
+>>   #endif /* CONFIG_OF */
+>>   
+>>   struct of_changeset;
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
 
