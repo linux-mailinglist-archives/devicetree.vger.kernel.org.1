@@ -1,181 +1,156 @@
-Return-Path: <devicetree+bounces-133576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 937BD9FAEC2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:01:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B983B9FAEC9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 14:08:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 069697A1AF4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 13:01:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F733163686
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 13:08:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00AE41D6DC8;
-	Mon, 23 Dec 2024 12:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99BD11A76C7;
+	Mon, 23 Dec 2024 13:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Qy7qhplv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AwPxUD/Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA891CDA14
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 12:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A41714293;
+	Mon, 23 Dec 2024 13:08:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734958591; cv=none; b=E+IkjCi/coTjYAsh3pbtTsaBOuQc0lgDdPq39Ptr0e2J8fEgUGnO4jKJkGNxHT22pqCrQoEb5JAWWq7GUfhstXO++HxEq7nr5kMKN4qU7AKcnPV02LYFvqYBje5hV8+5KpnPdU030MXOf3TeVYJqd9DOO98CqNySqlrUR4n66uw=
+	t=1734959332; cv=none; b=gn3stYJe/1LYwBnmNw23YVGIVzhs68rMjBoB2iNtb9s/jO7ayTH+CPTD6Y1k9JFn0QO6J5FDZ6rGgFkAO4SLGeptktv6ZRfC2GsFCg2lBYjZxIQ5+eOXqFCQkYRulgtq8gHQcvTW4kSm4WpdGrcfS/yc7k2YPCFj8kNpJG0ZoBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734958591; c=relaxed/simple;
-	bh=LMH2xhH9U8ImMNvg8PXT82OEB9ZpzVFvFNFhXPgi86Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=fBaO3tZBkuQQqDKyw9HMBWdzthBzFiMJvd8bX+/Cqjl3jHNBLVClg540HnYOKByzVJLvMaOmBngtLBKV8aKJw3iIdoqjy+U6C6UgtqqOq/mw9mEYnCj606sT6oxfNszhgBYvDThK0msuqqe6Le8Bqr0H7USKCbyEcD7J8JaqJmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Qy7qhplv; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20241223125628euoutp0204e95ab7789960db75b2adbb3a4faa53~Tz6TFp0oH0908209082euoutp02P
-	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 12:56:28 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20241223125628euoutp0204e95ab7789960db75b2adbb3a4faa53~Tz6TFp0oH0908209082euoutp02P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1734958588;
-	bh=79TKUoIgn5bsQ0j4gX4SnusAyqeYKBaYJkTOM5ztHhw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Qy7qhplvvhy7XBQyZfmJDDK9BM60Euvr0eMOYDw6BVnRU1vpFu5p9xp3kHyyV1MuW
-	 oA6PA6TCLFT6vb6jVmYae5DIp8Ws8CGk8bM7CKRU13JrcYItwVHk9Trt9JOVGDa7bw
-	 KRgJl/p/MsvrmekPT4Na5ZNQhZCs5jXlxptcCtkI=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20241223125627eucas1p262a100ead365c8854aaa8bab38b07e6c~Tz6SsSmLJ1252912529eucas1p2P;
-	Mon, 23 Dec 2024 12:56:27 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges2new.samsung.com (EUCPMTA) with SMTP id DE.1C.20409.BFD59676; Mon, 23
-	Dec 2024 12:56:27 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20241223125626eucas1p137d01dbee3cb24c38c0d4aa46404c7d5~Tz6SEPV3B2314123141eucas1p1f;
-	Mon, 23 Dec 2024 12:56:26 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20241223125626eusmtrp1f31182f393cfee7c832a3275f530abe8~Tz6SDDCA72098220982eusmtrp1G;
-	Mon, 23 Dec 2024 12:56:26 +0000 (GMT)
-X-AuditID: cbfec7f4-c0df970000004fb9-0b-67695dfb6f83
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id FA.04.19920.AFD59676; Mon, 23
-	Dec 2024 12:56:26 +0000 (GMT)
-Received: from AMDC4942.home (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20241223125625eusmtip2a5b953119c092d80f04961ad00fc292f~Tz6QszX0j2641026410eusmtip2o;
-	Mon, 23 Dec 2024 12:56:25 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
-	wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com,
-	matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
-	ulf.hansson@linaro.org, jszhang@kernel.org, p.zabel@pengutronix.de,
-	m.szyprowski@samsung.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org, Michal Wilczynski
-	<m.wilczynski@samsung.com>
-Subject: [RFC PATCH v2 19/19] riscv: dts: thead: Add GPU node to TH1520
- device tree
-Date: Mon, 23 Dec 2024 13:55:53 +0100
-Message-Id: <20241223125553.3527812-20-m.wilczynski@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241223125553.3527812-1-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1734959332; c=relaxed/simple;
+	bh=tjqJTiJ8FRPANf/4k5jCg10eJTvbE2riGBCge2fKz+g=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=oOXxbA0OQa4eAR5U+cmvrl9e2WKoiCoBVJFza0sh6iLAqs1sLfSpOFGjLKs8lEkD6/qHVKmSEAONyy7WULc55+xTxZd0L3If4BTpfOGuGSylqn033V9/0XitK+CfRNNfB+HBtIg38JVQIgHycSD7MSvfMN37nQeW+y/nOUgTqQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AwPxUD/Q; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-725abf74334so3513320b3a.3;
+        Mon, 23 Dec 2024 05:08:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734959330; x=1735564130; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/bMwBt3vULI4U/PfhJViv9u4okoT658TEEwfvSqeKv8=;
+        b=AwPxUD/QT62AqifVwPGPSW2vcOUDUKamSCQ0Ps4B15gvFZg03vEhakXhgbzCRG4d1b
+         BBBSTVX/C+VIMxnSjlMj1EqEj9t5XweQ3EZjxc5dNuLY7fmM32y/kpG8KxL4eXJ/hGKh
+         jrCMl7dtQ3hFuaebnkF1xf2B9K6qNGX/J6bAKNa9ml0HRvrHxpb8DP//7uZfJNHo+8tw
+         AhWBLxwHpG1D7+KNA2nMWvPpCJJQqHgye3oH5zG3OaESL2QvfcbL/Y61U2VtdBn/uDc+
+         FeqQ7XE+mrLdFgpy9jHxX8VAaSEfFsPAXKRYuNT3eZUummJn/BQlSC5D+7fv+W6y5K0s
+         R0SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734959330; x=1735564130;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/bMwBt3vULI4U/PfhJViv9u4okoT658TEEwfvSqeKv8=;
+        b=vYg5H6mok2wxdMz7v20/gCwvudl08SOz5V0HN03MY1ZsDA6NTQTcdKhzjHR+SyYJR5
+         /YkWY9DUyx4zqp55Zc9HJFt6CIR86wvB/b7BVBN8DMOMTeB4gIbAqRbuNauBybUEBUpy
+         LgWhDfy1ZkplNkIF975R0RV+lIzdbAoYutT+xAG1rZwH843uYjaU3wAXcDHwpVFZah96
+         r99yPyeH9yOm0B6PiE6h1BM8N+oEqgnixwoxgc3lW9ehxNW6GHteA1Z+zEPtyqvk3MOM
+         sErhCyyU1KdCFYqqw8T5li8ciA+4tNgHOTVuM17j16N8x3re1rAToZHO3/UCpSeIeI/k
+         4ibA==
+X-Forwarded-Encrypted: i=1; AJvYcCUEDj4W4Nbp/fVLniRe57bByfFYQ/sw/Rn2E3l2gTGx7xVJuENm46oS6ytD6+f09BcLjvkT1E/G7spU@vger.kernel.org, AJvYcCWbeAXmmyryWxTOKBQeb/pCpbEnk2mVubgASZGIB7fVYWIfYjyymbaSr2eJVzS06DXU8pb9Cjhwsj1mA+uX@vger.kernel.org, AJvYcCXZq2XIcXUsEifJOkBzDbhqwxls7IVUXPo7nZR90vHXieTl+vaue60bc9BeSbuc1+xPwaIJomrkwIfkJsBJcQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxF0DfnRmKQJ997SLZiSGuGo/+T/a/VecXetzWMT1opSfI5PSBP
+	pnSmoszYrBX1Zb/uebmM3gCyu681Cq+Z7cAnN+X+oB//nqram4+J
+X-Gm-Gg: ASbGncvJy03m4rbfeSDwIS1KDHo5asguH1wX7Zxv/b1I1FWkwQjWaGOT6tOHONa7CUw
+	LZBZONzQQV5YW/rfsWolVkK/PSnkGXGxanWomx3JMIkSrxzYANzHVtkcJLL4OlHfJ4/QXf93IAF
+	+whQ3Om/6UVdS1WUSKi7UY8o3q5ONEsup4gs3nI7f0RpNUoM3fpi3oLxhLk4hY+lkuGZFh/AfBU
+	2MOXdC+OgBF9ob9G582+HrYOcvJqGv9erte/1szpfhIFfru3m2lmmg=
+X-Google-Smtp-Source: AGHT+IHoxg9yuqRl1sRUSdUBj8cyZPew7i+a091UQnGfrFwd9D8OQKJxHVk3sivTnt7+9l6s72qbdw==
+X-Received: by 2002:a05:6a21:6f87:b0:1e1:ab51:f531 with SMTP id adf61e73a8af0-1e5e048adecmr24356855637.22.1734959330335;
+        Mon, 23 Dec 2024 05:08:50 -0800 (PST)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad90c133sm8049589b3a.183.2024.12.23.05.08.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Dec 2024 05:08:49 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: konrad.dybcio@oss.qualcomm.com
+Cc: andersson@kernel.org,
+	chenxuecong2009@outlook.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	gty0622@gmail.com,
+	johan+linaro@kernel.org,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mitltlatltl@gmail.com,
+	robh@kernel.org
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp: Add Huawei Matebook E Go (sc8280xp)
+Date: Mon, 23 Dec 2024 21:07:31 +0800
+Message-ID: <20241223130732.76968-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <d9c9cb80-0331-4cf0-9988-15f571d4cf7c@oss.qualcomm.com>
+References: <d9c9cb80-0331-4cf0-9988-15f571d4cf7c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sf1CTdRi/7/u+e9+X2ebr8PJ7mpIr7OwHIpV9u0rmCfXecRdEaV0cxa69
-	ty35oZtkeVxKMG7AQEESGSAQxI8JkTAW7IAFEcOsmZhIBAM7iiCQ2ABBwcV4pfzv8/k8n+f5
-	PM/dQ+OSb8jNtDr+KKeJl8dKSSFh6V50PHM3Wq0M/PtPKeq58QWGmu4aKVTb5sBQSZdDgJy9
-	Zgz9MjdNoq/++JlCf7UlE6ivuphCKd31JBo3Okk0Y3AK0DVrEYncWV0AWdypJKrrGqJQ/VwJ
-	hspmmghU0WwFKC29UoCu/hCKhpw9BBq/ZsBRmnE98rQ2U+he30UCFd6yUcg8mSNA9rq3Uaot
-	j5BtY6f7dRQ7OT5OsN/pZym2bb6UYFuMQxRraPkRsA2mdJId7Gsl2fOX3mCHM+0Y21hxgk2t
-	68bYU8uB7HT7dZLNNpsA25tyg4qQvCt8WcHFqj/iNLv2xghV+oYa8rBH+LFtYRQ7CZboDOBD
-	Q+Y5WL5UJsgAQlrCVAM4PmAheTILYM2Um+KJG8CUcznkWku+ca1QBaDDdQXnySSArvZi3Osi
-	mSA4UlWyOngjoyOg7vtk4CU4MwagZbRodZYvcwDaqvMpLyYYf5hdPLzaLWJkcObrsxif5wdt
-	HT+t6j4rem1GP+A9G+ClglHCi/EVT0pT4eoakKkTQt1E6f3mENhi0wEe+8IJu5ni8SPw8hkD
-	weMEONLkwnmcBFsM9vv4JTjouLOyKL0SsBPWW3fx8j444M6jvDJkxLB/agO/ghjmWvJxXhZB
-	fZqEd++Anxuy/gt1VFsw3sLCjvMRp8F24wO3GB+4xfh/bCnATWATl6iNU3LaoHjuWIBWHqdN
-	jFcGfJAQ1wBWfvvyPftsM6iamAnoBBgNOgGkcelGUadErZSIFPJPjnOahPc1ibGcthNsoQnp
-	JpG/wo+TMEr5Ue4Qxx3mNGtVjPbZfBIzX4hsd1lHf9/yyrehN9veuz2j+E3cGCJWmzIXzn6Z
-	XHvhQ1n0PEOFKawDvbvljSdeKEtPHjK59ohU4rFI4bO3VMJ3staFl4zkjAmeL4oVSLYJPl2K
-	cciqqgdVN3utIQqXfjnpqufQZ7pCsmDrm7X0Dk9FQF5QlFh1p3Ii7VXnqXC/8JrWqfhBfc/p
-	vRHSrWG+jz/2RFy73/7gA1nlx0ZiogKlT8msR6bt2HISWlzn7rn+cOXBMqJgPvKiK7hheN9B
-	07nQNGXpkejbg6P+0tdH5j0RvwbXxTy907XfcuXRtxLxofXZ+iVxbtRrHXP/ZFYuHDdLhC/u
-	aex+aDF1u6081xYbJiW0KvnuJ3GNVv4vFJVQf0oEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGKsWRmVeSWpSXmKPExsVy+t/xe7q/YjPTDTbOM7E4cX0Rk8XW37PY
-	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWXzsucdq
-	cXnXHDaLz71HGC22fW5hs1h75C67xfqv85ksFn7cymKxZMcuRou2zmWsFhdPuVrcvXeCxeLl
-	5R5mi7ZZ/Bb/9+xgt/h3bSOLxex3+9kttryZyGpxfG24Rcv+KSwOch7vb7Sye7x5+ZLF43DH
-	F3aPvd8WsHjsnHWX3aNn5xlGj02rOtk87lzbw+Yx72Sgx/3u40wem5fUe7SsPcbk0f/XwOP9
-	vqtsHn1bVjF6XGq+zh4gFKVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9n
-	k5Kak1mWWqRvl6CX0bFpJVvBf66K/T+eMDUw/uHoYuTkkBAwkZg+6zN7FyMXh5DAUkaJvV+v
-	sUIkZCSudb9kgbCFJf5c62KDKHrFKNH5fgNYgk3ASOLB8vlgDSICi1kk9u6rBCliFnjLKHF9
-	5kawImGBYInZZ36xg9gsAqoSfXPvM4PYvAIOEh83TGOC2CAvsf/gWbA4J1B8TdcNRhBbSMBe
-	4t+pD2wQ9YISJ2c+AZvJDFTfvHU28wRGgVlIUrOQpBYwMq1iFEktLc5Nzy021CtOzC0uzUvX
-	S87P3cQITDDbjv3cvINx3quPeocYmTgYDzFKcDArifAeEspMF+JNSaysSi3Kjy8qzUktPsRo
-	CnT3RGYp0eR8YIrLK4k3NDMwNTQxszQwtTQzVhLndbt8Pk1IID2xJDU7NbUgtQimj4mDU6qB
-	qe2GXUtiUrSczt1ZnGcv8i5ce2Tzi2cJTTEWdzsP8pV+3TZx5SeuFO225svvDpzmEZnz3emL
-	XVfi6SWTA6aoyHTHTlm/Y2/1/69XZMUNYi97H5n8oFZlHfeqH9quv9wtTwcVy3huV+eO2D/j
-	pcGLXJnqtzeOHeIo4jK48fH3z/x5p1YeV9T6xGl6S8lwWqD1ZtVvu2ZsU+zLXCi/vMWSM8Re
-	v1RPR7H9AXeGzZqkMD5d2cZH+14Kykxa6lqx68WPbcz9ybYtQm98uOpzhf4Gsvqq7ly8oFdC
-	ekNpfTWHJZtArcWV7nnPTyl9/Vpu9HNOm3blDOXcP+LJ7bU+H4/IzFm0x72St/vRt+0/vB7c
-	VGIpzkg01GIuKk4EAO7N0Ve5AwAA
-X-CMS-MailID: 20241223125626eucas1p137d01dbee3cb24c38c0d4aa46404c7d5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20241223125626eucas1p137d01dbee3cb24c38c0d4aa46404c7d5
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20241223125626eucas1p137d01dbee3cb24c38c0d4aa46404c7d5
-References: <20241223125553.3527812-1-m.wilczynski@samsung.com>
-	<CGME20241223125626eucas1p137d01dbee3cb24c38c0d4aa46404c7d5@eucas1p1.samsung.com>
 
-Add a device tree node for the IMG BXM-4-64 GPU present in the T-HEAD
-TH1520 SoC used by the Lichee Pi 4A board. This node enables support for
-the GPU using the drm/imagination driver.
+On Mon, Dec 23, 2024 at 8:25 PM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+> On 21.12.2024 8:57 AM, Pengyu Luo wrote:
+> > Messing up, reply again to fix thread.
+> >
+> > On Sat, Dec 21, 2024 at 5:14 AM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+> >> On 20.12.2024 5:05 PM, Pengyu Luo wrote:
+> >>
+> >
+> > [...]
+> >
+> >>> +     chosen {
+> >>> +             #address-cells = <2>;
+> >>> +             #size-cells = <2>;
+> >>> +             ranges;
+> >>> +
+> >>> +             framebuffer0: framebuffer@c6200000 {
+> >>> +                     compatible = "simple-framebuffer";
+> >>> +                     reg = <0x0 0xc6200000 0x0 0x02400000>;
+> >>> +                     width = <1600>;
+> >>> +                     height = <2560>;
+> >>> +                     stride = <(1600 * 4)>;
+> >>> +                     format = "a8r8g8b8";
+> >>> +             };
+> >>> +     };
+> >>
+> >> I still don't understand why efifb doesn't work for you.
+> >>
+> >
+> > In v1, you asked me
+>
+> Ahh sorry, I churn through a lot of emails and sometimes forget things.
+>
+> >
+> >> Very very weird. Are you booting with clk_ignore_unused pd_ignore_unused
+> >> in kernel cmdline?
+> >
+> > I said yes, as Johan suggested in here (see [1]). I am adding Johan.
+> >
+> >> Could you share your .config file?
+> >
+> > Here please, https://pastebin.com/UKew61ZC
+>
+> All the things one would expect for efifb to show up seem to be there.
+>
+> Maybe try earlycon=efifb video=efifb?
 
-By adding this node, the kernel can recognize and initialize the GPU,
-providing graphics acceleration capabilities on the Lichee Pi 4A and
-other boards based on the TH1520 SoC.
+Not work, whether or not adding clk_ignore_unused pd_ignore_unused.
 
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+>
+> Konrad
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index c6fe2ea3197d..7e4b97f9e1b5 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -506,6 +506,19 @@ clk: clock-controller@ffef010000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		gpu: gpu@ffef400000 {
-+			compatible = "thead,th1520-gpu", "img,img-bxm";
-+			reg = <0xff 0xef400000 0x0 0x100000>;
-+			interrupt-parent = <&plic>;
-+			interrupts = <102 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk CLK_GPU_CORE>,
-+				 <&clk CLK_GPU_CFG_ACLK>;
-+			clock-names = "core", "sys";
-+			power-domains = <&pd TH1520_AON_GPU_PD>;
-+			resets = <&rst TH1520_RESET_ID_GPU>;
-+			reset-names = "gpu";
-+		};
-+
- 		rst: reset-controller@ffef528000 {
- 			compatible = "thead,th1520-reset";
- 			reg = <0xff 0xef528000 0x0 0x4f>;
--- 
-2.34.1
-
+Best wishes,
+Pengyu
 
