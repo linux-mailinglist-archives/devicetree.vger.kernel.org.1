@@ -1,320 +1,293 @@
-Return-Path: <devicetree+bounces-133650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641529FB319
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 17:43:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 260F09FB33E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 17:45:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19039188265B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:43:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 932D4164B62
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 16:45:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 657F51B3944;
-	Mon, 23 Dec 2024 16:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F309B1CBE94;
+	Mon, 23 Dec 2024 16:43:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FnHiyfKY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GuaUUjwK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1F31AD3F6;
-	Mon, 23 Dec 2024 16:43:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE0E1C4A36;
+	Mon, 23 Dec 2024 16:43:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734972187; cv=none; b=EF1/DklLlCsR5+KnS/QiCGlLG8HAhFMGxkvShTTJFDBFNeUDDWKzqNqxAH0tuQE47CUxTERT1B9zGr3JBcqH9Nlujh3rBxqS/XdBnvXhiIHYZx6yV8mvOEw7oDLFIJmAelHaWV5nb8PxJs79cTJMBfwVuIZY1NhuXWS4RcSfJi4=
+	t=1734972234; cv=none; b=ufJWze58ZxflZlKCNrWAjScYQW8jMjUd2JcuuPI+oKHrrrV02nAyFgtIwiMiY/GkHcQWrtCBisB/gJJQEqKE+dKi4umQkJlPzTWsKiU3lJbDB2EeXh1Lw5rFOMguGWzusc7qit6wHoomUA2hhJ13ACYq6x+UBgSMzsxK6tTKCuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734972187; c=relaxed/simple;
-	bh=6reF2PZJUXaD4YUbmoRpNLyFTMbqR8aQXS3G3j070ws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S1LDgUUfVOm2yeObt0DLMAn45Fn7ji1SzDr6ssXcIUrh11mS7DdRtXBfxfOhb5IrAqneiHCsrivcPzR0UxXpEpE62wfrptqehwNk7K5WJq5kJCtEBhvNYtrWeyGUYypkhqpugrq5nBm7qMXXV33ilAxenGJ0XU4z2PDz8O+MTaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FnHiyfKY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F7BAC4CED3;
-	Mon, 23 Dec 2024 16:43:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734972185;
-	bh=6reF2PZJUXaD4YUbmoRpNLyFTMbqR8aQXS3G3j070ws=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FnHiyfKYbQ00IoZ9nWxDSs8IpwjgGw6nFLxbwjRMuyaDh8FAU/9Ty9LI6sIcKqpAc
-	 yKdb1lTrutZX2VnQdXUZ0v/0H2uNDiHj9lgKJXRxuEqs244ezT2roxRPiaTEipDuuS
-	 EUOzLhjOofFqQrVgSQloJn8VpC0SvPHoTGTYTgF8DTYVuaTDyOkh2WuXYemd9X5Yo5
-	 k/hr+8DKNAEaYAIzo6w9qEEkzSnzO/vfRC/EeWbIwSM1FRYRIhikUO3lQSOeGB8coC
-	 bZONJAjGLYLjsFb76ygW839pBXNLB0wat6DLUsT1BdITDSW1rl7Ap4DjIAFLkGsyVL
-	 rIod+teEy8Zbg==
-Message-ID: <62bf3b33-e2d1-43ef-91b0-ef12abef2132@kernel.org>
-Date: Mon, 23 Dec 2024 17:43:00 +0100
+	s=arc-20240116; t=1734972234; c=relaxed/simple;
+	bh=cEHVCJXWCR8mt0P63ENuA004Qjp43ZyDRjcuMDTgSCU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dAGTlVSLLGAoJfZenCO1phx+MQCYTZWv6RFHc8tYW3vEZcMrfug9PHYnM27Un2YxCIgN+F1dPOKI4hdXBx/CcbIPQOHnoBznWU6hyz6wfWMY0RNoN+newhX9MdWhOhEHVy3XpBZGVouKreI0kfWLdbSkTNGT4XAQNJxPrajobGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GuaUUjwK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BN9miwJ031095;
+	Mon, 23 Dec 2024 16:43:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9Y1pzVPUFOr7l0zmn+aaCj0VCzGBMpapt+l9I1eCZaQ=; b=GuaUUjwKBpRxyZsN
+	Ej5r7vjoIritDemxUSLi77wuGE9DOc39rIOo6gCsYGpRPV5UMcj14YIRYVtYXqRo
+	zc13LXxBW7ZhJXfHeOhCMPfoH8aLgwnq1Ew3dvxmFNqd/NMM45f8nh4SylQ6CORp
+	CK3Iqobo8mF/aKspzacLgr4QtWCP0Ot6IwdT5C9icXbIQqZsTfXCdiQJ/nCN4a+N
+	GIdzuXJiCN5uA2SBRGv4fzPMNBXcaoRcRdVd7HJXSzeuflIBS46YFnVluKo/8diX
+	p0dTVwi/g7+hM6ZW9nqZSmTQOzCe2dZlSzaHXntUV37n6UPSAhWTK1g/HiiXqsOn
+	hp0OaQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43q5jb96fn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 16:43:40 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BNGhdNc008284
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 16:43:39 GMT
+Received: from [10.216.2.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 23 Dec
+ 2024 08:43:33 -0800
+Message-ID: <7bc9f3f2-851c-3703-39b4-fea93d10bd7f@quicinc.com>
+Date: Mon, 23 Dec 2024 22:13:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: morello: Add support for soc dts
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Russell King <linux@armlinux.org.uk>
-References: <20241223162029.326997-1-vincenzo.frascino@arm.com>
- <20241223162029.326997-4-vincenzo.frascino@arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 2/4] PCI: of: Add API to retrieve equalization presets
+ from device tree
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241223162029.326997-4-vincenzo.frascino@arm.com>
-Content-Type: text/plain; charset=UTF-8
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jingoo Han
+	<jingoohan1@gmail.com>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <konrad.dybcio@oss.qualcomm.com>, <quic_mrana@quicinc.com>,
+        <quic_vbadigan@quicinc.com>, Bjorn Andersson
+	<andersson@kernel.org>
+References: <20241223-preset_v2-v3-0-a339f475caf5@oss.qualcomm.com>
+ <20241223-preset_v2-v3-2-a339f475caf5@oss.qualcomm.com>
+ <piccoomv7rx4dvvfdoesmxbzrdqz4ld6ii6neudsdf4hjj2yzm@2bcuacwa4feb>
+ <d317c51a-3913-6c49-f8db-e75589f9289a@quicinc.com>
+ <wjk32haduzgiea676mamqdr6mhbmm3rrb6eyhzghqpczjuiazx@ipik3jhjzmhz>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <wjk32haduzgiea676mamqdr6mhbmm3rrb6eyhzghqpczjuiazx@ipik3jhjzmhz>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tZgvjdUIjB8W1rT4w_Xn6YZPXIQBibYo
+X-Proofpoint-ORIG-GUID: tZgvjdUIjB8W1rT4w_Xn6YZPXIQBibYo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ priorityscore=1501 mlxscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 malwarescore=0 spamscore=0 bulkscore=0 suspectscore=0
+ impostorscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412230148
 
-On 23/12/2024 17:20, Vincenzo Frascino wrote:
-> The Morello architecture is an experimental extension to Armv8.2-A,
-> which extends the AArch64 state with the principles proposed in
-> version 7 of the Capability Hardware Enhanced RISC Instructions
-> (CHERI) ISA.
+
+
+On 12/23/2024 8:56 PM, Dmitry Baryshkov wrote:
+> On Mon, Dec 23, 2024 at 08:02:23PM +0530, Krishna Chaitanya Chundru wrote:
+>>
+>>
+>> On 12/23/2024 5:17 PM, Dmitry Baryshkov wrote:
+>>> On Mon, Dec 23, 2024 at 12:21:15PM +0530, Krishna Chaitanya Chundru wrote:
+>>>> PCIe equalization presets are predefined settings used to optimize
+>>>> signal integrity by compensating for signal loss and distortion in
+>>>> high-speed data transmission.
+>>>>
+>>>> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
+>>>> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
+>>>> configure lane equalization presets for each lane to enhance the PCIe
+>>>> link reliability. Each preset value represents a different combination
+>>>> of pre-shoot and de-emphasis values. For each data rate, different
+>>>> registers are defined: for 8.0 GT/s, registers are defined in section
+>>>> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
+>>>> an extra receiver preset hint, requiring 16 bits per lane, while the
+>>>> remaining data rates use 8 bits per lane.
+>>>>
+>>>> Based on the number of lanes and the supported data rate, this function
+>>>> reads the device tree property and stores in the presets structure.
+>>>>
+>>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>>>> ---
+>>>>    drivers/pci/of.c  | 45 +++++++++++++++++++++++++++++++++++++++++++++
+>>>>    drivers/pci/pci.h | 17 +++++++++++++++--
+>>>>    2 files changed, 60 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+>>>> index dacea3fc5128..99e0e7ae12e9 100644
+>>>> --- a/drivers/pci/of.c
+>>>> +++ b/drivers/pci/of.c
+>>>> @@ -826,3 +826,48 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
+>>>>    	return slot_power_limit_mw;
+>>>>    }
+>>>>    EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
+>>>> +
+>>>
+>>> kerneldoc? Define who should free the memory and how.
+>>>
+>> I will update this in next series.
+>> as we are allocating using devm_kzalloc it should be freed on driver
+>> detach, as no special freeing is required.
+>>>> +int of_pci_get_equalization_presets(struct device *dev,
+>>>> +				    struct pci_eq_presets *presets,
+>>>> +				    int num_lanes)
+>>>> +{
+>>>> +	char name[20];
+>>>> +	void **preset;
+>>>> +	void *temp;
+>>>> +	int ret;
+>>>> +
+>>>> +	if (of_property_present(dev->of_node, "eq-presets-8gts")) {
+>>>> +		presets->eq_presets_8gts = devm_kzalloc(dev, sizeof(u16) * num_lanes, GFP_KERNEL);
+>>>> +		if (!presets->eq_presets_8gts)
+>>>> +			return -ENOMEM;
+>>>> +
+>>>> +		ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
+>>>> +						 presets->eq_presets_8gts, num_lanes);
+>>>> +		if (ret) {
+>>>> +			dev_err(dev, "Error reading eq-presets-8gts %d\n", ret);
+>>>> +			return ret;
+>>>> +		}
+>>>> +	}
+>>>> +
+>>>> +	for (int i = 1; i < sizeof(struct pci_eq_presets) / sizeof(void *); i++) {
+>>>> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << i);
+>>>> +		if (of_property_present(dev->of_node, name)) {
+>>>> +			temp = devm_kzalloc(dev, sizeof(u8) * num_lanes, GFP_KERNEL);
+>>>> +			if (!temp)
+>>>> +				return -ENOMEM;
+>>>> +
+>>>> +			ret = of_property_read_u8_array(dev->of_node, name,
+>>>> +							temp, num_lanes);
+>>>> +			if (ret) {
+>>>> +				dev_err(dev, "Error %s %d\n", name, ret);
+>>>> +				return ret;
+>>>> +			}
+>>>> +
+>>>> +			preset = (void **)((u8 *)presets + i * sizeof(void *));
+>>>
+>>> Ugh.
+>>>
+>> I was trying iterate over each element on the structure as presets holds the
+>> starting address of the structure and to that we are adding size of the void
+>> * point to go to each element. I did this way to reduce the
+>> redundant code to read all the gts which has same way of storing the data
+>> from the device tree. I will add comments here in the next series.
 > 
-> Introduce Morello SoC dts.
+> Please rewrite this in a cleaner way. The code shouldn't raise
+> questions.
 > 
-> Note: Morello is at the same time the name of an Architecture [1], an SoC
-> [2] and a Board [2].
-> To distinguish in between Architecture/SoC and Board we refer to the first
-> as arm,morello and to the second as arm,morello-sdp.
+>>>> +			*preset = temp;
+>>>> +		}
+>>>> +	}
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
+>>>> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+>>>> index 14d00ce45bfa..82362d58bedc 100644
+>>>> --- a/drivers/pci/pci.h
+>>>> +++ b/drivers/pci/pci.h
+>>>> @@ -731,7 +731,12 @@ static inline u64 pci_rebar_size_to_bytes(int size)
+>>>>    }
+>>>>    struct device_node;
+>>>> -
+>>>> +struct pci_eq_presets {
+>>>> +	void *eq_presets_8gts;
+>>>> +	void *eq_presets_16gts;
+>>>> +	void *eq_presets_32gts;
+>>>> +	void *eq_presets_64gts;
+>>>
+>>> Why are all of those void*? 8gts is u16*, all other are u8*.
+>>>
+>> To have common parsing logic I moved them to void*, as these are pointers
+>> actual memory is allocated by of_pci_get_equalization_presets()
+>> based upon the gts these should not give any issues.
 > 
-> [1] https://developer.arm.com/Architectures/Morello
-> [2] https://www.morello-project.org/
-
-Drop both above paragraphs, you already said this in previous commit.
-This still does not help me (See further questions).
+> Please, don't. They have types. void pointers are for the opaque data.
 > 
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+ok.
 
-Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
-commit msg. There is no single need to store automated output of
-get_maintainers.pl in the git log. It can be easily re-created at any
-given time, thus its presence in the git history is redundant and
-obfuscates the log.
+I think then better to use v1 patch 
+https://lore.kernel.org/all/20241116-presets-v1-2-878a837a4fee@quicinc.com/
 
-If you need it for your own patch management purposes, keep it under the
---- separator.
+konrad, any objection on using v1 as that will be cleaner way even if we
+have some repetitive code.
 
-Or just use b4 and none of these are needed.
+- Krishna Chaitanya.
 
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Sudeep Holla <sudeep.holla@arm.com>
-> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Russell King <linux@armlinux.org.uk>
-> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
-> ---
->  arch/arm64/boot/dts/arm/Makefile        |   1 +
->  arch/arm64/boot/dts/arm/morello-sdp.dts | 116 ++++++++++++++++++++++++
->  2 files changed, 117 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/arm/morello-sdp.dts
+>>>> +};
+>>>
+>>> Empty lines before and after the struct definition.
+>>>
+>> ack.
+>>
+>> - Krishna Chaitanya.
+>>>>    #ifdef CONFIG_OF
+>>>>    int of_pci_parse_bus_range(struct device_node *node, struct resource *res);
+>>>>    int of_get_pci_domain_nr(struct device_node *node);
+>>>> @@ -746,7 +751,9 @@ void pci_set_bus_of_node(struct pci_bus *bus);
+>>>>    void pci_release_bus_of_node(struct pci_bus *bus);
+>>>>    int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge);
+>>>> -
+>>>> +int of_pci_get_equalization_presets(struct device *dev,
+>>>> +				    struct pci_eq_presets *presets,
+>>>> +				    int num_lanes);
+>>>
+>>> Keep the empty line.
+>>>
+>>>>    #else
+>>>>    static inline int
+>>>>    of_pci_parse_bus_range(struct device_node *node, struct resource *res)
+>>>> @@ -793,6 +800,12 @@ static inline int devm_of_pci_bridge_init(struct device *dev, struct pci_host_br
+>>>>    	return 0;
+>>>>    }
+>>>> +static inline int of_pci_get_equalization_presets(struct device *dev,
+>>>> +						  struct pci_eq_presets *presets,
+>>>> +						  int num_lanes)
+>>>> +{
+>>>> +	return 0;
+>>>> +}
+>>>>    #endif /* CONFIG_OF */
+>>>>    struct of_changeset;
+>>>>
+>>>> -- 
+>>>> 2.34.1
+>>>>
+>>>
 > 
-> diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/arm/Makefile
-> index d908e96d7ddc..869667bef7c0 100644
-> --- a/arch/arm64/boot/dts/arm/Makefile
-> +++ b/arch/arm64/boot/dts/arm/Makefile
-> @@ -7,3 +7,4 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += rtsm_ve-aemv8a.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7-ca53x2.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000-mps3.dtb
-> +dtb-$(CONFIG_ARCH_VEXPRESS) += morello-sdp.dtb
-> diff --git a/arch/arm64/boot/dts/arm/morello-sdp.dts b/arch/arm64/boot/dts/arm/morello-sdp.dts
-> new file mode 100644
-> index 000000000000..143e644361e4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/arm/morello-sdp.dts
-> @@ -0,0 +1,116 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
-> +/*
-> + * Copyright (c) 2021-2024, Arm Limited. All rights reserved.
-> +
-> + */
-> +
-> +/dts-v1/;
-> +#include "morello.dtsi"
-> +
-> +/ {
-> +	model = "Arm Morello System Development Platform";
-> +	compatible = "arm,morello-sdp";
-> +
-> +	smmu_dp: iommu@2ce00000 {
-
-Well, this is confusing. Boards are almost never adding things to the
-soc node, where this belongs to.
-
-Your commit msg should explain this.
-
-> +		compatible = "arm,smmu-v3";
-> +		reg = <0 0x2ce00000 0 0x40000>;
-> +		interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>,
-> +				<GIC_SPI 80 IRQ_TYPE_EDGE_RISING>,
-> +				<GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
-> +		interrupt-names = "eventq", "gerror", "cmdq-sync";
-> +		#iommu-cells = <1>;
-> +	};
-> +
-> +	dp0: display@2cc00000 {
-
-display/GPU is outside of SoC? Really? Please explain the hardware in
-the commit msg.
-
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "arm,mali-d32", "arm,mali-d71";
-> +		reg = <0 0x2cc00000 0 0x20000>;
-> +		interrupts = <0 69 4>;
-> +		clocks = <&dpu_aclk>;
-> +		clock-names = "aclk";
-> +		iommus = <&smmu_dp 0>, <&smmu_dp 1>, <&smmu_dp 2>, <&smmu_dp 3>,
-> +			<&smmu_dp 8>;
-> +
-> +		pl0: pipeline@0 {
-> +			reg = <0>;
-> +			clocks = <&dpu_pixel_clk>;
-> +			clock-names = "pxclk";
-> +			port {
-> +				dp_pl0_out0: endpoint {
-> +					remote-endpoint = <&tda998x_0_input>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	i2c@1c0f0000 {
-> +		compatible = "cdns,i2c-r1p14";
-
-I really doubt that you can package cdns IP block outside of SoC.
-
-> +		reg = <0x0 0x1c0f0000 0x0 0x1000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		clock-frequency = <100000>;
-> +		interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&dpu_aclk>;
-> +
-> +		hdmi_tx: hdmi-transmitter@70 {
-> +			compatible = "nxp,tda998x";
-> +			reg = <0x70>;
-> +			video-ports = <0x234501>;
-> +			port {
-> +				tda998x_0_input: endpoint {
-> +					remote-endpoint = <&dp_pl0_out0>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	dpu_aclk: dpu_aclk {
-
-Use consistent names
-
-> +		/* 77.1 MHz derived from 24 MHz reference clock */
-
-77.1 or 35?
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <350000000>;
-> +		clock-output-names = "aclk";
-
-aclk? Sounds like something belonging to the clock controller.
-
-> +	};
-> +
-> +	dpu_pixel_clk: dpu-pixel-clk {
-
-Same comment
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <148500000>;
-> +		clock-output-names = "pxclk";
-> +	};
-> +};
-> +
-> +&gic {
-> +	reg = <0x0 0x30000000 0 0x10000>,	/* GICD */
-> +	      <0x0 0x300c0000 0 0x80000>;	/* GICR */
-> +	interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +	its1: msi-controller@30040000 {
-> +		compatible = "arm,gic-v3-its";
-> +		msi-controller;
-> +		#msi-cells = <1>;
-> +		reg = <0x0 0x30040000 0x0 0x20000>;
-> +	};
-> +
-> +	its2: msi-controller@30060000 {
-> +		compatible = "arm,gic-v3-its";
-> +		msi-controller;
-> +		#msi-cells = <1>;
-> +		reg = <0x0 0x30060000 0x0 0x20000>;
-> +	};
-> +
-> +	its_ccix: msi-controller@30080000 {
-> +		compatible = "arm,gic-v3-its";
-> +		msi-controller;
-> +		#msi-cells = <1>;
-> +		reg = <0x0 0x30080000 0x0 0x20000>;
-> +	};
-> +
-> +	its_pcie: msi-controller@300a0000 {
-> +		compatible = "arm,gic-v3-its";
-> +		msi-controller;
-> +		#msi-cells = <1>;
-> +		reg = <0x0 0x300a0000 0x0 0x20000>;
-> +	};
-> +};
-
-
-Best regards,
-Krzysztof
 
