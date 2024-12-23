@@ -1,41 +1,48 @@
-Return-Path: <devicetree+bounces-133513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43629FAD6A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 12:04:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E555E9FAD49
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:50:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DE701644B1
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 11:04:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C7DD7A1B70
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 10:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D585F19342E;
-	Mon, 23 Dec 2024 11:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C93C191F7F;
+	Mon, 23 Dec 2024 10:50:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jPUVWrsg"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="sON0gedR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32122.qiye.163.com (mail-m32122.qiye.163.com [220.197.32.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02264171CD;
-	Mon, 23 Dec 2024 11:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 772202F3E
+	for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 10:50:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734951892; cv=none; b=aLecvpclGcE1wDQGw73C2KCFDMHbv8v2gHpvv4DsUvLOuPyejEfJOX6N01Ssq6wFYjWb1tn2ooKBBCoz9+xyM697DDCq9pFOHLmweVi0di7O+c+21SNRXc+csSaI4rZv396LnHoNqDzfgQE3/W1hRsSkXdx0ECcfuK1OjrUCVOA=
+	t=1734951045; cv=none; b=uL2Qvf4jjjo6h6IWP9eIJTlDhXIoRJPX46pMzYGR3Q6SO3H4I3UO/AGHDpymEpw9Jm8QfOw3QrdLuTuVx29mjo+7iA5m05NTPbq28jLjpswdTIdBiOzf6iM56BZ2osR406R1vLXllPP3m1zt9ATgdiCLVcxEaB+XaWdWtQYz6To=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734951892; c=relaxed/simple;
-	bh=JLtV6VEhJLXpILrmhrFxeAA+f1fJ9YgRXqwz8YG1Ve8=;
+	s=arc-20240116; t=1734951045; c=relaxed/simple;
+	bh=/ZRM1AVdixnBzAAenG8SiCip2DhqMFihMrbB4HmTYwM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FtV7QGpZnQaHEttHUwWfvUuFT9yVBQYhZ1heF+WdICQeA7wJaZbnbqX76CSuWs2zdnT6mewbHhPb2ZmqJE2a3hS/DptzBbF297+prtFvc5+4vc2BhJUJLN2ltOBkyfPeCK2IUMcecEHw5y2yee6nDM/HhUkA2/BH9QEUhVc5TS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jPUVWrsg; arc=none smtp.client-ip=220.197.32.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.67] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 68e43e06;
-	Mon, 23 Dec 2024 18:49:23 +0800 (GMT+08:00)
-Message-ID: <bfd84b6b-9b19-4d9b-b0a3-cb6ed1f8084c@rock-chips.com>
-Date: Mon, 23 Dec 2024 18:49:23 +0800
+	 In-Reply-To:Content-Type; b=lnhMepPxJ+AfZ3mgx51xEQjlOm1CjLokGevpl0RXJMJQM+IS7KKJ+SdMpMrS5cp9BJRHmA8tPRfmpnFLoYoff3YEVy2YHMP3mt6VJgIC+vQleYEkizJ9pZLyygZWqeovnkuc8kqpXELwLoAyzfjlSF88SVSHV/LTK3z7KRRvhHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=sON0gedR; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1734951030;
+ bh=ldpU7U+iDeDqdGmWrr2McLkbrGNSwEPYJtJhCL7zXIg=;
+ b=sON0gedR1ram4Gzmd9Faq6dzeR17akklVFBSXvGjjUwmqklid9X6a0eJdsw8upYSLHeY/WuN8
+ OTbSbkvSsyb4by2A3Pp0P6yRRA3mDi+jiGVr24NJhOBRX8vlmzWRm1ke8XrSKW4mIdkNS0zQ2hR
+ f9ApoMvv+0RxTs7dgafEp+mx/4oeN582Qjfz1ElVs0e9XxuJgnRWnHmRbu5OFAj/yCj/xdPafwq
+ rOfnpCF4/rjIpdBvWsZsBkk7YcRC05MCNmaquOdUJPnyCiGM8IfCyhM5vBfFLwOaDZ3djvtgRlw
+ hXZYFVxIIpTu7whGC1otWVYyGrAjjEoOQAPIlj/kHg3A==
+Message-ID: <d7b2e993-c6c8-4e60-bfe2-80857ca8a992@kwiboo.se>
+Date: Mon, 23 Dec 2024 11:50:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,86 +50,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] dts: arm64: rockchip: Add rk3576 pcie nodes
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Finley Xiao <finley.xiao@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>, Rob Herring <robh@kernel.org>,
- Liang Chen <cl@rock-chips.com>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Elaine Zhang <zhangqing@rock-chips.com>, linux-arm-kernel@lists.infradead.org
-References: <20241220101551.3505917-1-kever.yang@rock-chips.com>
- <20241220101551.3505917-4-kever.yang@rock-chips.com>
- <i54jjqt7uaxrurdapsyxwmb5iokiwzgm5cvlaamlggycrpyd3v@azhmfwgetrzm>
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: default to host mode for USB on
+ Radxa E25
+To: Chukun Pan <amadeus@jmu.edu.cn>, naoki@radxa.com
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <4D8217DF36191C3E+be8bbb4f-ea52-4f81-8501-ff551f54621c@radxa.com>
+ <20241223030006.852427-1-amadeus@jmu.edu.cn>
 Content-Language: en-US
-From: Kever Yang <kever.yang@rock-chips.com>
-In-Reply-To: <i54jjqt7uaxrurdapsyxwmb5iokiwzgm5cvlaamlggycrpyd3v@azhmfwgetrzm>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20241223030006.852427-1-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkhLSlZOTkgYTxoZTkkaHhhWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a93f322c9a803afkunm68e43e06
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MTY6Mio4HDILLgECNy8#Dx82
-	NwIwFC5VSlVKTEhPQk5LQk1PQkhJVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKTU1PNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=jPUVWrsgyzKi94L9A8rKusVeSNeYfH7N6p8iP3gNWad+4NpdkFj6cn7s91hmeDuM6sCh0VBHf9h6oj6jDopFv+rZ4wkLpHWMmy/OxyVnp1pZDPHa6ks2evflHT1JziZs7SkZjHRSsAwnPppEVGBBoZXyiqIPY1zDMp+XBmKNxWA=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=PV13Ub+8jid25AmeIHH2+OOK0XdtZ0k68I4uUJsLJ/Y=;
-	h=date:mime-version:subject:message-id:from;
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 67694076445b82250f09d24a
 
-Hi Krzysztof,
-
-On 2024/12/22 14:38, Krzysztof Kozlowski wrote:
-> On Fri, Dec 20, 2024 at 06:15:47PM +0800, Kever Yang wrote:
->> rk3576 has two pcie controller, both are pcie2x1 used with
->> naneng-combphy.
+On 2024-12-23 04:00, Chukun Pan wrote:
+> Hi,
+>> I've been using the uSD card for a long time as a bootloader only,
+>> so I don't know what the problem is.
 >>
->> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
->> ---
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
->
-Will update with arm64: dts: .
->> Changes in v2:
->> - Update clock and reset names and sequence to pass DTB check
+>> Do you have any information on how to reproduce the problem?
 >>
->>   arch/arm64/boot/dts/rockchip/rk3576.dtsi | 109 +++++++++++++++++++++++
->>   1 file changed, 109 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> index a147879da501..df7dfe702221 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
->> @@ -1016,6 +1016,115 @@ qos_npu_m1ro: qos@27f22100 {
->>   			reg = <0x0 0x27f22100 0x0 0x20>;
->>   		};
->>   
->> +		pcie0: pcie@2a200000 {
->> +			compatible = "rockchip,rk3576-pcie", "rockchip,rk3568-pcie";
->> +			bus-range = <0x0 0xf>;
-> Follow DTS coding style in properties order and everything around here.
+>> Best regards,
+> 
+> Not stable on openwrt/lede, sometimes falling to sd-highspeed.
+> Maybe it would be better to switch to sd-uhs-sdr50 mode.
 
-I can do it for most of the properties, but is there any other rules 
-other than sort,
+I would advise against using any sd-uhs- mode for sd-card on Rockchip
+RK356x boards because of a timing issue during boot between mmc,
+regulator and IO-domain drivers.
 
-eg. compatible and reg in the beginning and status in the end?
+Any board that support changing between 1v8 or 3v3 io-voltage for the
+sd-card is possible affected.
 
+There is a race condition during boot and when IO-domain driver has not
+been probed before UHS tuning is started the tuning is done using a 3v3
+IO-domain configuration instead of 1v8.
 
-Thanks,
+This can typically be seen by comparing UHS tuning during boot and when
+same sd-card is removed and re-inserted after boot.
 
-- Kever
+Ideally this race condition should be solved instead of limiting use
+of UHS modes. However, use of sd-uhs-sdr50 is typically more forgiving
+and has been used on other boards.
 
->
-> Best regards,
-> Krzysztof
->
->
+Regards,
+Jonas
+
+> 
+> Thanks,
+> Chukun
+> 
+
 
