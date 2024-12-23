@@ -1,44 +1,63 @@
-Return-Path: <devicetree+bounces-133445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA4139FA94F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 03:19:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B196F9FA963
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 03:47:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28C521885D5D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 02:19:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B5E0164FBE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 02:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB022941C;
-	Mon, 23 Dec 2024 02:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69402208A0;
+	Mon, 23 Dec 2024 02:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BuiyCQb8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EDB01F5FA;
-	Mon, 23 Dec 2024 02:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF22184E;
+	Mon, 23 Dec 2024 02:47:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734920365; cv=none; b=QGhbNJoX9Q5mE0lRtGaxxafCGHYIx0ka/zg3yMAXfVYygI8ftV2gE+dtujWiDKZx+eooKagBNXLe/FBk0XOpLHkt5hYNxJz9ZgBkLuVL8LkSAfxxlnS8IDXZCW3na4YWOUSHW0o1SJ5rXj0lWKjCYrjQogp9Hh8dvkHlqKz7ceA=
+	t=1734922062; cv=none; b=Qhwr+WdZbmGfT++jDVzxDNVZLtcjmEgz8l00/htfFVIOX1qYn1DZyBG5VcK94e3l8KYUkzoNTqYqwgQTLQ7r2+TqSYRUITWo5YT5Ao02fVBvHBD6w1Kt5NwGWxV2FJWQCBkccorAJEdFyDspjBMygnZtu0AYMMeg8j5fgQJbGHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734920365; c=relaxed/simple;
-	bh=Ln6IIokJ2Vqy9R2/oVUXT2dCNrjmoWc0HIZkc8uSR4k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TDsAyzUzrK3uzp6m4pI/t5FUx2FIEwdA7a7OdQ+bc6iZK1XS7o2BL3udXpPSvQGZG5r6Crh0sbSr7JiX1tdUTPedmqnQcYR5MkX3c7YvSi/6kJNRNOMo0NpOri6Gp0SQwTfdQAfPae9c0ylWitioL817R4jCh6o5mD6I+xU1Ug8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip2t1734920304tea5qv3
-X-QQ-Originating-IP: ezt7iJeIOhFwRGcZt6RvbLLr7yMoO95fCZuILLkjiHk=
-Received: from [IPV6:240f:10b:7440:1:5968:fbf4 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 23 Dec 2024 10:18:19 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2941970314100960228
-Message-ID: <4D8217DF36191C3E+be8bbb4f-ea52-4f81-8501-ff551f54621c@radxa.com>
-Date: Mon, 23 Dec 2024 11:18:19 +0900
+	s=arc-20240116; t=1734922062; c=relaxed/simple;
+	bh=nkgNXsoqW++NHxpadYs094XZDYjmIzYos5p6pRuddnw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HjgqFsrwxL2RQugx0UEhIGg5fAdoFSSHTzL/yFzPcX5vsrNE3qHfiUCyFwrdchwqXTcfg6GMETxSY9jwHC2N1SDBaBdUtZ0lF1Nt5xWvRHqDWsj/sldw7foUBVYKr4iY85VCnbTzHZatY0Fa+YIwx69/DEBQF/ucVP1z1ZG9Nys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BuiyCQb8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BMCMaS0028860;
+	Mon, 23 Dec 2024 02:47:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YPKrapVVVWGcnjYH8nOSfxItt2fi/Z85ZO3JY9SDS24=; b=BuiyCQb8efVcFlqe
+	Y6PstAK868Dl8ZlNk5cRnZZs65UgjM7ZY0ijFD9jdnPM9cTDAohBga2gZKhsGTfS
+	JtSEhqGBA07ZYPvHVIcN+gba6xag4JOosPTtm9EMVAK85JCaMOduUCMzLfre+Yjr
+	TMLS98vI1AmrqhNpJ8Udz2Kh58dNYLLvMxSk1h8ygmOKXDF8BD2j9b05EdbZGcK8
+	cPZbrGjpE/pvvX3WB6ahNk/POIAh/pHJsAf9pKnik48MUydmb5ZLTe1Sku80efl6
+	nkgn3YU+kfvk6DWk74x2igjRryHoa3XCE/ehFwPY0Mvt6UdY+JG9kdBN/UUXxrzk
+	TdM0yg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43p6v92uvm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 02:47:21 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BN2lKxb029716
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Dec 2024 02:47:20 GMT
+Received: from [10.231.216.175] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 22 Dec
+ 2024 18:47:15 -0800
+Message-ID: <3a8fe16f-aca7-482e-b1cb-e6fa37717843@quicinc.com>
+Date: Mon, 23 Dec 2024 10:47:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,68 +65,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: default to host mode for USB on
- Radxa E25
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <6EFDC4E74A617E25+ed534e8a-fef0-4f09-a24b-a536b7f2f13b@radxa.com>
- <20241222043027.265865-1-amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v5 2/4] Bluetooth: qca: Update firmware-name to support
+ board specific nvm
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Marcel Holtmann
+	<marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konradybcio@kernel.org>,
+        Balakrishna Godavarthi
+	<quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>
+CC: <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_jiaymao@quicinc.com>, <quic_shuaz@quicinc.com>,
+        <quic_zijuhu@quicinc.com>, <quic_mohamull@quicinc.com>
+References: <20241212150232.3823088-1-quic_chejiang@quicinc.com>
+ <20241212150232.3823088-3-quic_chejiang@quicinc.com>
+ <94eae703-ed9e-4f57-9786-99db7aaa07d1@oss.qualcomm.com>
+ <db516034-81de-4e41-932d-c1bb26e1c55b@quicinc.com>
+ <d5fe224b-7ef5-47ae-840c-7b6df21da816@oss.qualcomm.com>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-Organization: Radxa Computer (Shenzhen) Co., Ltd.
-In-Reply-To: <20241222043027.265865-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
+In-Reply-To: <d5fe224b-7ef5-47ae-840c-7b6df21da816@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: Mc2Lb5E8Dw57IpQAYMCTMkZySUR0dtV7t7Zlbho6KTZnT/o9Naw1qD62
-	jlXcihawLwY5N0XA613U/hkcov42RA4/2miqlKZ9kRssAFYHg6Al8+f6VMmqgLMk7bzhc8I
-	3oh6s94hHAIQSWAhAgVw16WBOR36EC3ulcinikhwq91kKXUgTqhzv2l87Lr2p6ykUWBNhjb
-	EZMiL6pcXwku0Bv65fR1aQWCAUHCXd7ED3x31IIF2oOL3zv1VPktyRm3nxFT2pNf/w4g/5I
-	INd7lioXYvhdiNlm4MlQNW/IVL3BVVjtczDP9BVOB3wDPzS074CeaPlPu1t3finnGXzlRZJ
-	71bI5ff0F9A+NI7+73gd2Ksy5GtTG/B/hgMqxm+TClM83u9ZpNS+atoNaass/W0LMjgA0fj
-	n+90EWN5hpnoXAZmzryU6A1pCNtXF4nT06IPHGVrl9KajcDXJV67En/XGQHDO9Y+zw60tcy
-	cXBn26KIZQc67pJDJ+Fxr+K1RnAzcj4/GxKpCSpPo/bQ+gt/6Ri5a2Y+PDYMUnrU5AP7ZVL
-	v1z6Eesw3cuhRq1AHQBLIJGNTBQN6xMgoZB6Pzl2KVyWRZlfffuY1rKU3Z/CRQ/FN74ZnS/
-	gaETeZaKIp8MpR6GLvlGY6b4jV9bQQs0WSIfkWtlAEBhPALqqp2dMrt2ry0KP/Lzo+GBV9R
-	m+DqcMGlByA6lgKW6I+SYIivpHfoVlxCEsygu8vifDDCVNoVPxJqUnXXVYjF24JqQKaweG0
-	Op01XyZhEkkhAhqnjx1X2sIdGSmuplHvEa5YREeSqHKG0f8jN4HBdOrGzEKk6+fHeNh0MIY
-	g41on44f6c7LKs9NH6jW2tZPNCAVYOWNHDHOq77IE3hmUzWmZOyYuscUN9rTg9dfot4tfJa
-	dIKnuFyxuvHJdufSCTtDU83NGwoqGRjas/hZDksQAh1jiGW9EgTwAehSmlpyalIn7uG8rL4
-	/UBwBlLdGyO8NM1nh7ww4K2ZJ
-X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
-X-QQ-RECHKSPAM: 0
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: j2v-jFoDOpkq-CfStqgsPLNm9iD7stRq
+X-Proofpoint-ORIG-GUID: j2v-jFoDOpkq-CfStqgsPLNm9iD7stRq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
+ impostorscore=0 phishscore=0 priorityscore=1501 spamscore=0 bulkscore=0
+ adultscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412230023
 
-Hi Chukun,
+Hi Konrad,
 
-On 12/22/24 13:30, Chukun Pan wrote:
-> Hi,
->> Could you check Product Brief P.4?
->>
->>   https://dl.radxa.com/cm3i/e25/radxa_e25_product_brief.pdf
->>
->> There is "USB3.0 OTG Switch".
->>
->> Best regards,
+On 12/20/2024 9:46 PM, Konrad Dybcio wrote:
+> On 13.12.2024 8:05 AM, Cheng Jiang (IOE) wrote:
 > 
-> Oh, sorry, it was covered by the shell so I didn't notice it.
-> BTW do you see any issues in the sd-uhs-sdr104 mode?
-
-I've been using the uSD card for a long time as a bootloader only, so I 
-don't know what the problem is.
-
-Do you have any information on how to reproduce the problem?
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Thanks,
-> Chukun
+> [...]
 > 
+>>> /*
+>>>  * If the board-specific file is missing, try loading the default
+>>>  * one, unless that was attempted already
+>>>  */
+>>>
+>>> But, even more importantly:
+>>>
+>>> a) do we want to load the "incorrect" file?
+>> Normally, there is a default NVM file ending with .bin, which is suitable 
+>> for most boards. However, some boards have different configurations that 
+>> require a specific NVM. If a board-specific NVM is not found, a default 
+>> NVM is preferred over not loading any NVM.
+> 
+> So, if one is specified, but not found, this should either be a loud error,
+> or a very loud warning & fallback. Otherwise, the device may provide subpar
+> user experience without the user getting a chance to know the reason.
+> 
+> I think failing is better here, as that sends a clearer message, and would
+> only happen if the DT has a specific path (meaning the user put some
+> intentions behind that choice)
+> 
+In the existing BT driver implementation, even if the rampatch/nvm are not found,
+BT still works with ROM code only. No fails, just a warning in the dmesg. For this
+new approach, we use the similar logic. 
+
+The fallback to load a default nvm file is due to each board has a unique board
+id, it's not necessary to upstream all the board-specific nvm since most of them 
+may be the same, the default nvm file is suitable for them. But we can't set the 
+default nvm file name in the DT, since the platform can attach different 
+connectivity boards. This is a reasonable way to approach this. 
+
+>>> b) why would we want to specify the .bin file if it's the default anyway?
+>> The default NVM directory is the root of qca. The 'firmware-name' property 
+>> can specify an NVM file in another directory. This can be either a default 
+>> NVM like 'QCA6698/hpnv21.bin' or a board-specific NVM like 'QCA6698/hpnv21.b205'.
+> 
+> Do we expect QCA6698/hpnv21.bin and QCAabcd/hpnv21.bin to be compatible?
+> 
+No. It may be different. 
+> [...]
+> 
+>>>> -static inline void qca_get_nvm_name_generic(struct qca_fw_config *cfg,
+>>>> -					    const char *stem, u8 rom_ver, u16 bid)
+>>>> -{
+>>>> -	if (bid == 0x0)
+>>>> -		snprintf(cfg->fwname, sizeof(cfg->fwname), "qca/%snv%02x.bin", stem, rom_ver);
+>>>> -	else if (bid & 0xff00)
+>>>> -		snprintf(cfg->fwname, sizeof(cfg->fwname),
+>>>> -			 "qca/%snv%02x.b%x", stem, rom_ver, bid);
+>>>> -	else
+>>>> -		snprintf(cfg->fwname, sizeof(cfg->fwname),
+>>>> -			 "qca/%snv%02x.b%02x", stem, rom_ver, bid);
+>>>> +	if (soc_type == QCA_WCN6855 || soc_type == QCA_QCA2066) {
+>>>> +		/* hsp gf chip */
+>>>
+>>> This is a good opportunity to explain what that means
+>>>
+>> Ack. This means the chip is produced by GlobalFoundries.
+> 
+> Please update the comment there
+> 
+ACK. 
+> Konrad
 
 
