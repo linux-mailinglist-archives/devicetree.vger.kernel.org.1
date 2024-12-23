@@ -1,115 +1,98 @@
-Return-Path: <devicetree+bounces-133676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B2D89FB4D8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 20:58:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E75A9FB5CE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 21:51:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57FEA18843AE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 19:58:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DACB1882439
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2024 20:51:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D9741C5F10;
-	Mon, 23 Dec 2024 19:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B851D63F8;
+	Mon, 23 Dec 2024 20:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E/8geh7V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sSOCwWnL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BAE1C3C1C;
-	Mon, 23 Dec 2024 19:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 627851CD205;
+	Mon, 23 Dec 2024 20:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734983916; cv=none; b=JNGRmK4mrS+ySpmubyk2ukeTbmvx5pbmQfrRQ41tnzd7iuTRn/FDd98m/ZJJDVetGumcdKtHWKnobFIVoGRrgynjHx8/IK+cpkht+QNzakHQv1ajzCUbhbA5XAydUVHmMgqMEgI1xkw1dL7HcJ7AWHA9fXuQmohZ3pfveLYYfxw=
+	t=1734987062; cv=none; b=fQoRz4HKGVyK56TDmdpjxmUEd+q39338qNtFQiQocYNjaG2634lH9S1H8yOXe597bi+eAFzYPeTHQMrBmLmDl/V8QOcIZkAyLwk88hFeI/InGBFnwqPXWrn5mnSmHLX2CVEtHVTEixNhaC17rDyeRewdKNVoWrnaoDCn8IOlS+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734983916; c=relaxed/simple;
-	bh=JFaFcA0nZKMMo3VFidoPrE63O/yVjrK2dWBgS5sUJS8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pCPOh1qWw3fb+gUi+K2F/FwG6FgK2fuWepZcdz/R7HN4DZUR9akEdEMF2szhQzxsEo2U5nq17/lw368yuYcUIxyPvEu2LU+MUeWkOjE8VEjpbzWqio2QzuNz4/4cpkGYZ1WaflE/KPC81UPzicci9kTpDtyX3DzB6jZlvO9DGrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E/8geh7V; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734983915; x=1766519915;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JFaFcA0nZKMMo3VFidoPrE63O/yVjrK2dWBgS5sUJS8=;
-  b=E/8geh7VVZEwxXC8ff5tAXJwpCmCwJq3EuHhvyRFjulJDjQAaSYuuwdj
-   Ap1pUyxMgsLCEOSq+GE5mja2p8j8vn2WdYnctYM7VnLP7kjUiKzprDdob
-   IuCRpv9GaAjXzH2fj6sD8B7Kkcu1ftz0NmpQ3XoPfrVnbnzOFEzgJs3kt
-   Mo+CdN5F6CziCC9KryG12VUloJLWLqSua4XZN1zOBjY0/Izq5cQVuUORT
-   Nx6TOn3HSEB+hdGCo4bELCh5FuY8py05DUO9Iim1cfHSc+hkn7Z1e6pMc
-   k6KXCwOBoBRSwsjm1RbYG3vB+B8QXQfJ10fQTmZWlVsZugjZge+NaJPgw
-   w==;
-X-CSE-ConnectionGUID: aCgHNOIMQA2A3VsSqzYo7w==
-X-CSE-MsgGUID: KI2MvWr7QyGmH79s/egWDg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11295"; a="35593207"
-X-IronPort-AV: E=Sophos;i="6.12,258,1728975600"; 
-   d="scan'208";a="35593207"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Dec 2024 11:58:34 -0800
-X-CSE-ConnectionGUID: JeXL2EZhTR2fWNyzwU+5qg==
-X-CSE-MsgGUID: sgl+nSgfScajHptNt/D+LQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,258,1728975600"; 
-   d="scan'208";a="130137834"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Dec 2024 11:58:31 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tPoZP-0000000BQST-43of;
-	Mon, 23 Dec 2024 21:58:27 +0200
-Date: Mon, 23 Dec 2024 21:58:27 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-	Sergey Senozhatsky <senozhatsky@chromium.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Saravana Kannan <saravanak@google.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Zijun Hu <quic_zijuhu@quicinc.com>, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] of: Add printf '%pOFm' for generating modalias
-Message-ID: <Z2nA46H_sRrC74n8@smile.fi.intel.com>
-References: <20241217183711.2525863-1-robh@kernel.org>
+	s=arc-20240116; t=1734987062; c=relaxed/simple;
+	bh=7vXp6bg3mIjFXJtB/znIi7nXzs2VzEStHvDISKqmwas=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=SNhGYQJhxBbaAYRP2MmEE32RnK9YScjC+cP8tK89bv/dQ1IXndn/rkx4LbKH6xA3FMx/IoRE8ix+s0Aaglw6rXh8+FqMTOjoxbJOJefZ4wUc4b6TOZ3OkeLhXsF8kNP10eSZ8mfbT+pBsilLB3Yhklw/ZsSej4aXw2Xh9+peKZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sSOCwWnL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4109C4CED3;
+	Mon, 23 Dec 2024 20:51:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734987061;
+	bh=7vXp6bg3mIjFXJtB/znIi7nXzs2VzEStHvDISKqmwas=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=sSOCwWnLvbLB7dADE52q5aALdUxvb09wMkoarI/KHYD6xnMZCS9HA0QgYGvJeVPvC
+	 4jT9A4kyA/stK3cZITP0N3WB1YFxk0FDAs2fglyqg3HwQK2tV727ewQ4MGed2Rg4RY
+	 btCD6CqdOm2cdAUrdryVpUklmsJXvW4awF0LN6dV2FgK7dQwxof3qdeH93xKvie8NL
+	 XBizgv1/9TFlJ9Ws9wiSeJQJ3aCRcOoLRUA2103q171a3ojEi8sinaB6XYqOKxk8aq
+	 QmuXfwf5aH893lR84Uqqq742Wfkw5Wq/EEYRZkMhxFQShUQ2o1xHQK7eYNc6X8xB8u
+	 ds4jlVT/frsPg==
+Message-ID: <2cd0c34fbd14a0d69e689d04c2241938.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241217183711.2525863-1-robh@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241223125553.3527812-2-m.wilczynski@samsung.com>
+References: <20241223125553.3527812-1-m.wilczynski@samsung.com> <CGME20241223125601eucas1p1d274193122638075dc65310a22616bae@eucas1p1.samsung.com> <20241223125553.3527812-2-m.wilczynski@samsung.com>
+Subject: Re: [RFC PATCH v2 01/19] dt-bindings: clock: Add VO subsystem clocks and update address requirements
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org, Michal Wilczynski <m.wilczynski@samsung.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>, airlied@gmail.com, aou@eecs.berkeley.edu, conor+dt@kernel.org, drew@pdp7.com, frank.binns@imgtec.com, guoren@kernel.org, jassisinghbrar@gmail.com, jszhang@kernel.org, krzk+dt@kernel.org, m.szyprowski@samsung.com, maarten.lankhorst@linux.intel.com, matt.coster@imgtec.com, mripard@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de, palmer@dabbelt.com, paul.walmsley@sifive.com, robh@kernel.org, simona@ffwll.ch, tzimmermann@suse.de, ulf.hansson@linaro.org, wefu@redhat.com
+Date: Mon, 23 Dec 2024 12:50:59 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-On Tue, Dec 17, 2024 at 12:37:09PM -0600, Rob Herring (Arm) wrote:
-> The callers for of_modalias() generally need the module alias as part of
-> some larger string. That results in some error prone manipulation of the
-> buffer prepend/append the module alias string. In fact,
-> of_device_uevent_modalias() has several issues. First, it's off by one
-> too few characters in utilization of the full buffer. Second, the error
-> paths leave OF_MODALIAS with a truncated value when in the end nothing
-> should be added to the buffer. It is also fragile because it needs
-> internal details of struct kobj_uevent_env. add_uevent_var() really
-> wants to write the env variable and value in one shot which would need
-> either a temporary buffer for value or a format specifier.
-> 
-> Fix these issues by adding a new printf format specifier, "%pOFm". With
-> the format specifier in place, simplify all the callers of
-> of_modalias(). of_modalias() can also be simplified with vsprintf()
-> being the only caller as it avoids the error conditions.
+Quoting Michal Wilczynski (2024-12-23 04:55:35)
+> The T-Head TH1520 SoC=E2=80=99s AP clock controller now needs two address=
+ ranges
+> to manage both the Application Processor (AP) and Video Output (VO)
+> subsystem clocks. Update the device tree bindings to require two `reg`
+> entries, one for the AP clocks and one for the VO clocks.
+>=20
+> Additionally, introduce new VO subsystem clock constants in the header
+> file. These constants will be used by the driver to control VO-related
+> components such as display and graphics units.
+>=20
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+[...]
+> diff --git a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.=
+yaml b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+> index 0129bd0ba4b3..f0df97a450ef 100644
+> --- a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+> +++ b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+> @@ -47,7 +54,9 @@ examples:
+>      #include <dt-bindings/clock/thead,th1520-clk-ap.h>
+>      clock-controller@ef010000 {
+>          compatible =3D "thead,th1520-clk-ap";
+> -        reg =3D <0xef010000 0x1000>;
+> +        reg =3D <0xef010000 0x1000>,
+> +              <0xff010000 0x1000>;
 
-Shouldn't ACPI case also be considered? Otherwise we might see a deviation and
-then completely asynced variants of modalias based on different type of fwnode.
+I don't get it. Why not have two nodes and two devices? They have
+different register regions so likely they're different devices on the
+internal SoC bus. They may have the same input clks, but otherwise I
+don't see how they're the same node.
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> +        reg-names =3D "ap-clks", "vo-clks";
+>          clocks =3D <&osc>;
+>          #clock-cells =3D <1>;
+>      };
 
