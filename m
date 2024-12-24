@@ -1,642 +1,500 @@
-Return-Path: <devicetree+bounces-133690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B7749FB8F4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 04:19:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C25D09FB8FA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 04:36:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08BA5163889
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 03:19:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 383E8163FD8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 03:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0287A14A60A;
-	Tue, 24 Dec 2024 03:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D5C3219E0;
+	Tue, 24 Dec 2024 03:36:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-193.mail.aliyun.com (out28-193.mail.aliyun.com [115.124.28.193])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2112.outbound.protection.partner.outlook.cn [139.219.146.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80F6149DF0;
-	Tue, 24 Dec 2024 03:19:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.193
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735010372; cv=none; b=XEhXldUBrexG5xdLqj7jOBh7DR4y1/QjXmKuCKwhJNwgqfKwXTAkyYNxzBGjg8ApwGkEeOjstK5+susBn0dWXGNdbE4q7llzraeH4HJbO7PVnuIZS1dMeEVIXRp+evAo6PUP2J9Ykr16o5pMXxolHGlgHCs3kiu1Ec+5gUoMzWc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735010372; c=relaxed/simple;
-	bh=3khdGhmio7CGGJ9BQhIndDohD7okGabrAKlkiFBUwbA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uYUGNzCPaOxzXs5liNR0X2Kp4jtTn7CEdwijtMC7wiZiZaZao7WJVMACM6+3Io2L0p0ypmKAol1NPc+wAtd8redTK0mm22/Rw+rXuVFGuh3Rb3VN/oYle9kQXGgCHLTqEO7vUL1k6DsNON9qg2kSRx1PCv+jM37+y3XNUrdCa6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.alWruUh_1735010351 cluster:ay29)
-          by smtp.aliyun-inc.com;
-          Tue, 24 Dec 2024 11:19:17 +0800
-From: wangweidong.a@awinic.com
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	perex@perex.cz,
-	tiwai@suse.com,
-	ivprusov@salutedevices.com,
-	neil.armstrong@linaro.org,
-	jack.yu@realtek.com,
-	rf@opensource.cirrus.com,
-	luca.ceresoli@bootlin.com,
-	quic_pkumpatl@quicinc.com,
-	herve.codina@bootlin.com,
-	masahiroy@kernel.org,
-	nuno.sa@analog.com,
-	wangweidong.a@awinic.com,
-	yesanishhere@gmail.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: yijiangtao@awinic.com,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH V3 2/2] ASoC: codecs: Add aw88083 amplifier driver
-Date: Tue, 24 Dec 2024 11:18:23 +0800
-Message-ID: <20241224031823.363777-3-wangweidong.a@awinic.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241224031823.363777-1-wangweidong.a@awinic.com>
-References: <20241224031823.363777-1-wangweidong.a@awinic.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E223EA47;
+	Tue, 24 Dec 2024 03:36:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735011372; cv=fail; b=HrlD2L8u8yv1248A3eBvyj6PfJucHYQ5NjgDpOm1Qc3HdTKs7ZkQDB6k33OcFjpQa7eJejA7H3rUaYLWD9PfpPRI2sIQPpWCWVuJgwL8KKSLh065WG+kouGCXOqkGC+5C2M1uSririSyrx3TYV3BQVTFwRooTbmYlai0wKPJnk0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735011372; c=relaxed/simple;
+	bh=+xdDuc/GMPrE5rfppGAeeCjhy7/36c8DK4p4pelAT8U=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=VTMRKTvCDE3K0sa6GA2g0y6m7VVudha6eJVYcQAq6rvynTYACYRTrSkBv9UnY0pmr3Ved860Vp0G1SccKUV+F4r+39oxCDcWs8YaODUXx2ih5zk3J6Q3Cf3TAZNxJXo2kJyuSfK1MfzMVWHeVvTi0M1FHpiPF9XIUsDWXBsW28U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AlJ1l2Da3wkk+eC1nshFGyLyrDCpALYjXm18eC5jLM84gfxABq00L6QFEdSe0/XUmPMTw+HnCUafstNe/3hyrqHwKO4nsW3AEYM6oJAV6VHLf76TEzNUWFEbx/70nOThiDmFSIy2Uh7tJq7G0c9xXNxjKNTzaMXMbLI2Y6F88YM/ed2hYubz3zia1iBK7t6jyLPHH35SAxwfs4gEmCgVsOCjYSANLhll8+YQzt0TD5pVTOftUuMz2GpzRDgP86ZRKhNq2NyaDiCH3K+9to3wgzjUhro1Izeph1ESyNxOpBijjy8N+Q9F/YnVM4h3pOrAq4s2QV8j6IQ6+Y1+C2EZVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=d4IkmCG/qv/vQVCqhg+YuJNP2BNgvUcL5loUMbuIoQI=;
+ b=R6C7ordsjn2j5cGSztycx1MADrxTalhWnJcJ7uglKvUktn/YNBcohkDQ0jM4MhifyR2ku+p0i7fglIX6cmLJHu5n9tNT/5mFWAa93tvvjy5hMsVdepDsFkJwS5IwkPu1V7yxoOhwLgZZaRK0Oep6nA3gPIS3K/DxYUUvA/D+xh2FcGcMfstSoYlT9JH7thrqLD7/GFfW2Vc4bkz5ZdGOdpk9C1Hz7EDj/ZOlD+lVTGILLnYy5D3r62tIqTTCREp+edH7gJRAw4lE1s2JIjnrUdcSIg1zOo7+uDLBXs0DexLh7pghMHE9ld2ebOFfgZbi5QU7reZAOS6pc4+Zn0nmpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:f::12) by ZQZPR01MB0964.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:a::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.16; Tue, 24 Dec
+ 2024 03:21:08 +0000
+Received: from ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn
+ ([fe80::617c:34a2:c5bf:8095]) by
+ ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn ([fe80::617c:34a2:c5bf:8095%6])
+ with mapi id 15.20.8137.030; Tue, 24 Dec 2024 03:21:08 +0000
+From: Leyfoon Tan <leyfoon.tan@starfivetech.com>
+To: Anup Patel <apatel@ventanamicro.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Sunil V L <sunilvl@ventanamicro.com>, Rahul
+ Pathak <rpathak@ventanamicro.com>, Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>, Anup Patel <anup@brainfault.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [RFC PATCH 6/8] mailbox: Add RISC-V SBI message proxy (MPXY)
+ based mailbox driver
+Thread-Topic: [RFC PATCH 6/8] mailbox: Add RISC-V SBI message proxy (MPXY)
+ based mailbox driver
+Thread-Index: AQHbT5dxu/OqLWhH40y9wWQoYkVsiLL0uNNA
+Date: Tue, 24 Dec 2024 03:21:07 +0000
+Message-ID:
+ <ZQZPR01MB097909421AF1E0415795D2028A03A@ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn>
+References: <20241216084817.373131-1-apatel@ventanamicro.com>
+ <20241216084817.373131-7-apatel@ventanamicro.com>
+In-Reply-To: <20241216084817.373131-7-apatel@ventanamicro.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQZPR01MB0979:EE_|ZQZPR01MB0964:EE_
+x-ms-office365-filtering-correlation-id: 606ead4c-8a91-4d47-193a-08dd23ca01fc
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|41320700013|366016|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ JTc74pyv0ZpakmyggMCWHBl18dMZL37WI4lBctfHDXQqNfftdLIaHtAyNPG/kaUuPij9CIS4tUym77dmBDwkdhr7+/YiAmRvWMxjrLWZr/coa3re1rNthUAR/8cBUJ5NNOsYPVdimemeREkVemUom/gaz5odnYZfSQcoA3qWT5UHT3UhcLB2oaCBKpJWlHoCEu+df1ynuIgu08v7lj5CL0xd/ROJXn6TztvmeJBd1aT7n74dY0weaUTSu1Ydf/Fs6BnHqMbEXnvFYOvNXtA/c55xEFpb4klLrKE67qWawWjjvNOfBCMCg1s2+RfSj9T60IOEiQeF4fJBwOzJGubKfckIZo8LumBL0yRo+v8hsGxuzG6C7YST8zXklw0q2YOQ09OiS8bQjfjA6eDK0GR0j3rHVHxeY3pMFQfXP5XmGJyuFsarT6FOvUUYWAYhJW8kcUJy+6BqH92OJ5yH9XcYcYaioIsziUxj9uCauPegnePQiJz/8+MzTwHb4Y0X8Tr91nwNj6wn+9SzOyX1ocxNAemUmq/ZkuRp6TzEk/wBYzxJfStxMvlddd3gcSzozJXIRFTXL1g/5Dwq1pp7AxWTV/bc+Np3NkXwbLGT+33uGvU=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(41320700013)(366016)(7416014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?m0Sd6B8d2UsLaeKtawz8hqSY772GL/1EGz0fI+5ILHirpEt/+kiRWQ5Xi/e9?=
+ =?us-ascii?Q?3Kpayzli33WO5yOGyjEfG0gPEvElIM0fa3noKeDnC5RG8V7DHYcUoRdBlbUa?=
+ =?us-ascii?Q?VlL5hhrfeKGNf05ql2Z41N1Z2Jy6E15KyKpQ25n4USSqr2sxmNg9ciM0CwGw?=
+ =?us-ascii?Q?QPHuMyVmkfDkfFMLttKNbCNrbAgVORTDr7ysBw2bpbl/KTVyyzKcx+KX1ht6?=
+ =?us-ascii?Q?Y3BYYHFKv4RCYov7nqj5jq/lI65bR7vuefLImbqPwFbl2MIM8+6ixwfOpRTf?=
+ =?us-ascii?Q?mLsvhB3UVuL46v6jDwWy3Z3TwbV19f8yn+Kw9C/L7K0xVZxkzjlXERhuAyKo?=
+ =?us-ascii?Q?SyrYaegRILJqHTqRYFJqnH7qqN17oh2ZxmIf/NEC0T9pO3y0rqShDjGTqymt?=
+ =?us-ascii?Q?D6jnUS7yzS44gJpQ5mlr0xyNSoiLWQpIg+miUxbfolIkbNuoSZL9DGsiLu7s?=
+ =?us-ascii?Q?Ed59fDBEXE/PpJLS0m4oTzNIgJuEegZqQZ3hh0rjm8+e+4If84/fN7fStl81?=
+ =?us-ascii?Q?r4FF/+kuYh2bvTiU6188EB5Fg13HETbtJhjtn3qDc2fsO0cAOKD4kL9GokM1?=
+ =?us-ascii?Q?JAiTYC48KMtpoO8k+MIFcYjE9pG2T36UXtMwaROKvf4VNsqq9Eei5/KX8wRk?=
+ =?us-ascii?Q?OoSVywdsyXnFa7UUO6QWXbCRHzTSorTrCj3fk6WtPLQtJPb1y0xVCPb7UleD?=
+ =?us-ascii?Q?Xz3Lf9FfXkTGv1PzK9ybFMIM3Z5ZwzI3L/i4rkvjuqQ1mW0+zLku3mHvc4CL?=
+ =?us-ascii?Q?Vos1K5tC4HlXPw/WMYQ756StOQTOeo4dtFN3olD9OxpwVjpgQzChkSuHb3+t?=
+ =?us-ascii?Q?J1TYzhTrEHI+h5pKnu0BvpDorI+NDiRJOEQ5LiYRTR/vALZg3f0cE/3MTgpM?=
+ =?us-ascii?Q?5oUt8/w281qPOznfdsc794LSERfEMhVv0R6uNdGC/fI7wHMX9dGvLRqt6qQf?=
+ =?us-ascii?Q?fD1gLKeJThtil/Bpp+7mhSqy7MWLrUYrChUMLW7XvNPd6m1JnyJJXPFnbWMB?=
+ =?us-ascii?Q?9g+id1tN3ZCS8a6BUoHUo316G0KOw3qfD+d7eHL2klaTF/eb7db47xUPLZ3+?=
+ =?us-ascii?Q?D5O+/9kS5HKjct40wyMsLU3bpdZucU9XE8/LwNHJYFWOoTMp3E9j/uJbsRXD?=
+ =?us-ascii?Q?EcZZCDV247O4QgLe05BhW0YpySVs/VkPegPcbFKeVmQiK8HUxRZPxl4X3Ith?=
+ =?us-ascii?Q?YzypmzH4ljxGml/sjhVRlCo8KRczdhsAZiEtmUd0Ov0nRbSsjWudBDzh6fy/?=
+ =?us-ascii?Q?h4Zxb54pSGCHfdPyschiPN9+BL9DQ7XoWdvpwATDjUVaAdqRSgUCzPVJ2P/n?=
+ =?us-ascii?Q?KMvEiJ5WtolDsBSZayOpHkW0Qi1FX1eB6Tn45EH0PP3k7Kc+qppDkUEs3hr1?=
+ =?us-ascii?Q?334otQ24hx6De3E6Ji6mMD34WBsoZOYhj+rBi0b0A2MY+saKUMODo8N9Weir?=
+ =?us-ascii?Q?6tJf85ZIADJMoyDKfh8jKgP9Uw7YnSYIrZY9NbDfb8qmPeXobNE/LLhoYo46?=
+ =?us-ascii?Q?wPW99f23Yx+TzRtpuEpiUe1Z33O6vQUnSHxmAI6kKJio9YHFhAZpg1oR44LV?=
+ =?us-ascii?Q?fvJHjH8L6PywJ5dRc/yQK0b0yLymrZ6Xx5auiuAS38IOsJqH0KzUkCwOmCKK?=
+ =?us-ascii?Q?ZQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 606ead4c-8a91-4d47-193a-08dd23ca01fc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Dec 2024 03:21:07.9978
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VIIwGNDHWpGhKIENeirYjNhSwx8+MJTgo20cuQxo9dnekNpX2DK+6mhvPtesa3PIKuD4/jHd/I3lHZsdr5b3KIHNWw3R6U2ZAOqhIOOn/NE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQZPR01MB0964
 
-From: Weidong Wang <wangweidong.a@awinic.com>
 
-The driver is for amplifiers aw88083 of Awinic Technology
-Corporation. The AW88083 is an intelligent digital audio
-amplifier with low noise.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202412201745.fBpf3Ui5-lkp@intel.com/
-Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
----
- sound/soc/codecs/Kconfig   |   2 +-
- sound/soc/codecs/aw88081.c | 333 ++++++++++++++++++++++++++++++-------
- sound/soc/codecs/aw88081.h |  43 +++++
- 3 files changed, 321 insertions(+), 57 deletions(-)
+> -----Original Message-----
+> From: Anup Patel <apatel@ventanamicro.com>
+> Sent: Monday, December 16, 2024 4:48 PM
+> To: Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
+> <sboyd@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Jassi Brar
+> <jassisinghbrar@gmail.com>
+> Cc: Palmer Dabbelt <palmer@dabbelt.com>; Paul Walmsley
+> <paul.walmsley@sifive.com>; Sunil V L <sunilvl@ventanamicro.com>; Rahul
+> Pathak <rpathak@ventanamicro.com>; Leyfoon Tan
+> <leyfoon.tan@starfivetech.com>; Atish Patra <atishp@atishpatra.org>;
+> Andrew Jones <ajones@ventanamicro.com>; Anup Patel
+> <anup@brainfault.org>; linux-clk@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-
+> kernel@vger.kernel.org; Anup Patel <apatel@ventanamicro.com>
+> Subject: [RFC PATCH 6/8] mailbox: Add RISC-V SBI message proxy (MPXY)
+> based mailbox driver
+>=20
+> Add a mailbox controller driver for the new SBI message proxy extension
+> which is part of the SBI v3.0 specification.
+>=20
+> Co-developed-by: Rahul Pathak <rpathak@ventanamicro.com>
+> Signed-off-by: Rahul Pathak <rpathak@ventanamicro.com>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  drivers/mailbox/Kconfig               |  11 +
+>  drivers/mailbox/Makefile              |   2 +
+>  drivers/mailbox/riscv-sbi-mpxy-mbox.c | 979
+> ++++++++++++++++++++++++++
+>  3 files changed, 992 insertions(+)
+>  create mode 100644 drivers/mailbox/riscv-sbi-mpxy-mbox.c
+>=20
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 0f2df7c91e18..0ba319683b6b 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -692,7 +692,7 @@ config SND_SOC_AW88261
- 	  the input amplitude.
- 
- config SND_SOC_AW88081
--	tristate "Soc Audio for awinic aw88081"
-+	tristate "Soc Audio for awinic aw88081/aw88083"
- 	depends on I2C
- 	select REGMAP_I2C
- 	select SND_SOC_AW88395_LIB
-diff --git a/sound/soc/codecs/aw88081.c b/sound/soc/codecs/aw88081.c
-index 58b8e002d76f..ad16ab6812cd 100644
---- a/sound/soc/codecs/aw88081.c
-+++ b/sound/soc/codecs/aw88081.c
-@@ -14,13 +14,18 @@
- #include "aw88081.h"
- #include "aw88395/aw88395_device.h"
- 
-+enum aw8808x_type {
-+	AW88081,
-+	AW88083,
-+};
-+
- struct aw88081 {
- 	struct aw_device *aw_pa;
- 	struct mutex lock;
- 	struct delayed_work start_work;
- 	struct regmap *regmap;
- 	struct aw_container *aw_cfg;
--
-+	enum aw8808x_type devtype;
- 	bool phase_sync;
- };
- 
-@@ -32,6 +37,14 @@ static const struct regmap_config aw88081_regmap_config = {
- 	.val_format_endian = REGMAP_ENDIAN_BIG,
- };
- 
-+static const struct regmap_config aw88083_regmap_config = {
-+	.val_bits = 16,
-+	.reg_bits = 8,
-+	.max_register = AW88083_REG_MAX,
-+	.reg_format_endian = REGMAP_ENDIAN_LITTLE,
-+	.val_format_endian = REGMAP_ENDIAN_BIG,
-+};
-+
- static int aw88081_dev_get_iis_status(struct aw_device *aw_dev)
- {
- 	unsigned int reg_val;
-@@ -196,6 +209,41 @@ static void aw88081_dev_amppd(struct aw_device *aw_dev, bool amppd)
- 				~AW88081_EN_PA_MASK, AW88081_EN_PA_WORKING_VALUE);
- }
- 
-+static void aw88083_i2c_wen(struct aw88081 *aw88081, bool flag)
-+{
-+	struct aw_device *aw_dev = aw88081->aw_pa;
-+
-+	if (aw88081->devtype != AW88083)
-+		return;
-+
-+	if (flag)
-+		regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
-+				~AW88083_I2C_WEN_MASK, AW88083_I2C_WEN_ENABLE_VALUE);
-+	else
-+		regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
-+				~AW88083_I2C_WEN_MASK, AW88083_I2C_WEN_DISABLE_VALUE);
-+}
-+
-+static void aw88083_dev_amppd(struct aw_device *aw_dev, bool amppd)
-+{
-+	if (amppd)
-+		regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
-+				~AW88083_AMPPD_MASK, AW88083_AMPPD_POWER_DOWN_VALUE);
-+	else
-+		regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
-+				~AW88083_AMPPD_MASK, AW88083_AMPPD_WORKING_VALUE);
-+}
-+
-+static void aw88083_dev_pllpd(struct aw_device *aw_dev, bool pllpd)
-+{
-+	if (pllpd)
-+		regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
-+				~AW88083_PLL_PD_MASK, AW88083_PLL_PD_WORKING_VALUE);
-+	else
-+		regmap_update_bits(aw_dev->regmap, AW88081_SYSCTRL_REG,
-+				~AW88083_PLL_PD_MASK, AW88083_PLL_PD_POWER_DOWN_VALUE);
-+}
-+
- static void aw88081_dev_clear_int_status(struct aw_device *aw_dev)
- {
- 	unsigned int int_status;
-@@ -284,12 +332,90 @@ static void aw88081_dev_uls_hmute(struct aw_device *aw_dev, bool uls_hmute)
- 				AW88081_ULS_HMUTE_DISABLE_VALUE);
- }
- 
-+static int aw88081_dev_reg_value_check(struct aw_device *aw_dev,
-+					unsigned char reg_addr, unsigned short *reg_val)
-+{
-+	unsigned int read_vol;
-+
-+	if (reg_addr == AW88081_SYSCTRL_REG) {
-+		*reg_val &= ~(~AW88081_EN_PA_MASK |
-+			      ~AW88081_PWDN_MASK |
-+			      ~AW88081_HMUTE_MASK |
-+			      ~AW88081_ULS_HMUTE_MASK);
-+
-+		*reg_val |= AW88081_EN_PA_POWER_DOWN_VALUE |
-+			    AW88081_PWDN_POWER_DOWN_VALUE |
-+			    AW88081_HMUTE_ENABLE_VALUE |
-+			    AW88081_ULS_HMUTE_ENABLE_VALUE;
-+	}
-+
-+	if (reg_addr == AW88081_SYSCTRL2_REG) {
-+		read_vol = (*reg_val & (~AW88081_VOL_MASK)) >> AW88081_VOL_START_BIT;
-+		aw_dev->volume_desc.init_volume = read_vol;
-+	}
-+
-+	/* i2stxen */
-+	if (reg_addr == AW88081_I2SCTRL3_REG) {
-+		/* close tx */
-+		*reg_val &= AW88081_I2STXEN_MASK;
-+		*reg_val |= AW88081_I2STXEN_DISABLE_VALUE;
-+	}
-+
-+	return 0;
-+}
-+
-+static int aw88083_dev_reg_value_check(struct aw_device *aw_dev,
-+					unsigned char reg_addr, unsigned short *reg_val)
-+{
-+	unsigned int read_vol;
-+
-+	if (reg_addr == AW88081_SYSCTRL_REG) {
-+		*reg_val &= ~(~AW88083_AMPPD_MASK |
-+			      ~AW88081_PWDN_MASK |
-+			      ~AW88081_HMUTE_MASK |
-+			      ~AW88083_I2C_WEN_MASK);
-+
-+		*reg_val |= AW88083_AMPPD_POWER_DOWN_VALUE |
-+			    AW88081_PWDN_POWER_DOWN_VALUE |
-+			    AW88081_HMUTE_ENABLE_VALUE |
-+			    AW88083_I2C_WEN_ENABLE_VALUE;
-+	}
-+
-+	if (reg_addr == AW88081_SYSCTRL2_REG) {
-+		read_vol = (*reg_val & (~AW88081_VOL_MASK)) >> AW88081_VOL_START_BIT;
-+		aw_dev->volume_desc.init_volume = read_vol;
-+	}
-+
-+	return 0;
-+}
-+
-+static int aw88081_reg_value_check(struct aw88081 *aw88081,
-+					unsigned char reg_addr, unsigned short *reg_val)
-+{
-+	struct aw_device *aw_dev = aw88081->aw_pa;
-+	int ret;
-+
-+	switch (aw88081->devtype) {
-+	case AW88081:
-+		ret = aw88081_dev_reg_value_check(aw_dev, reg_addr, reg_val);
-+		break;
-+	case AW88083:
-+		ret = aw88083_dev_reg_value_check(aw_dev, reg_addr, reg_val);
-+		break;
-+	default:
-+		dev_err(aw_dev->dev, "unsupported device\n");
-+		ret = -EINVAL;
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
- static int aw88081_dev_reg_update(struct aw88081 *aw88081,
- 					unsigned char *data, unsigned int len)
- {
- 	struct aw_device *aw_dev = aw88081->aw_pa;
- 	struct aw_volume_desc *vol_desc = &aw_dev->volume_desc;
--	unsigned int read_vol;
- 	int data_len, i, ret;
- 	int16_t *reg_data;
- 	u16 reg_val;
-@@ -312,30 +438,9 @@ static int aw88081_dev_reg_update(struct aw88081 *aw88081,
- 		reg_addr = reg_data[i];
- 		reg_val = reg_data[i + 1];
- 
--		if (reg_addr == AW88081_SYSCTRL_REG) {
--			reg_val &= ~(~AW88081_EN_PA_MASK |
--				    ~AW88081_PWDN_MASK |
--				    ~AW88081_HMUTE_MASK |
--				    ~AW88081_ULS_HMUTE_MASK);
--
--			reg_val |= AW88081_EN_PA_POWER_DOWN_VALUE |
--				   AW88081_PWDN_POWER_DOWN_VALUE |
--				   AW88081_HMUTE_ENABLE_VALUE |
--				   AW88081_ULS_HMUTE_ENABLE_VALUE;
--		}
--
--		if (reg_addr == AW88081_SYSCTRL2_REG) {
--			read_vol = (reg_val & (~AW88081_VOL_MASK)) >>
--				AW88081_VOL_START_BIT;
--			aw_dev->volume_desc.init_volume = read_vol;
--		}
--
--		/* i2stxen */
--		if (reg_addr == AW88081_I2SCTRL3_REG) {
--			/* close tx */
--			reg_val &= AW88081_I2STXEN_MASK;
--			reg_val |= AW88081_I2STXEN_DISABLE_VALUE;
--		}
-+		ret = aw88081_reg_value_check(aw88081, reg_addr, &reg_val);
-+		if (ret)
-+			return ret;
- 
- 		ret = regmap_write(aw_dev->regmap, reg_addr, reg_val);
- 		if (ret)
-@@ -474,8 +579,60 @@ static int aw88081_dev_start(struct aw88081 *aw88081)
- 	return ret;
- }
- 
--static int aw88081_dev_stop(struct aw_device *aw_dev)
-+static int aw88083_dev_start(struct aw88081 *aw88081)
-+{
-+	struct aw_device *aw_dev = aw88081->aw_pa;
-+
-+	if (aw_dev->status == AW88081_DEV_PW_ON) {
-+		dev_dbg(aw_dev->dev, "already power on");
-+		return 0;
-+	}
-+
-+	aw88083_i2c_wen(aw88081, true);
-+
-+	/* power on */
-+	aw88081_dev_pwd(aw_dev, false);
-+	usleep_range(AW88081_2000_US, AW88081_2000_US + 10);
-+
-+	aw88083_dev_pllpd(aw_dev, true);
-+	/* amppd on */
-+	aw88083_dev_amppd(aw_dev, false);
-+	usleep_range(AW88081_2000_US, AW88081_2000_US + 50);
-+
-+	/* close mute */
-+	aw88081_dev_mute(aw_dev, false);
-+
-+	aw88083_i2c_wen(aw88081, false);
-+
-+	aw_dev->status = AW88081_DEV_PW_ON;
-+
-+	return 0;
-+}
-+
-+static int aw88081_device_start(struct aw88081 *aw88081)
-+{
-+	int ret;
-+
-+	switch (aw88081->devtype) {
-+	case AW88081:
-+		ret = aw88081_dev_start(aw88081);
-+		break;
-+	case AW88083:
-+		ret = aw88083_dev_start(aw88081);
-+		break;
-+	default:
-+		ret = -EINVAL;
-+		dev_err(aw88081->aw_pa->dev, "unsupported device\n");
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
-+static int aw88081_dev_stop(struct aw88081 *aw88081)
- {
-+	struct aw_device *aw_dev = aw88081->aw_pa;
-+
- 	if (aw_dev->status == AW88081_DEV_PW_OFF) {
- 		dev_dbg(aw_dev->dev, "already power off");
- 		return 0;
-@@ -503,6 +660,56 @@ static int aw88081_dev_stop(struct aw_device *aw_dev)
- 	return 0;
- }
- 
-+static int aw88083_dev_stop(struct aw88081 *aw88081)
-+{
-+	struct aw_device *aw_dev = aw88081->aw_pa;
-+
-+	if (aw_dev->status == AW88081_DEV_PW_OFF) {
-+		dev_dbg(aw_dev->dev, "already power off");
-+		return 0;
-+	}
-+
-+	aw_dev->status = AW88081_DEV_PW_OFF;
-+
-+	aw88083_i2c_wen(aw88081, true);
-+	/* set mute */
-+	aw88081_dev_mute(aw_dev, true);
-+
-+	usleep_range(AW88081_2000_US, AW88081_2000_US + 100);
-+
-+	/* enable amppd */
-+	aw88083_dev_amppd(aw_dev, true);
-+
-+	aw88083_dev_pllpd(aw_dev, false);
-+
-+	/* set power down */
-+	aw88081_dev_pwd(aw_dev, true);
-+
-+	aw88083_i2c_wen(aw88081, false);
-+
-+	return 0;
-+}
-+
-+static int aw88081_stop(struct aw88081 *aw88081)
-+{
-+	int ret;
-+
-+	switch (aw88081->devtype) {
-+	case AW88081:
-+		ret = aw88081_dev_stop(aw88081);
-+		break;
-+	case AW88083:
-+		ret = aw88083_dev_stop(aw88081);
-+		break;
-+	default:
-+		dev_err(aw88081->aw_pa->dev, "unsupported device\n");
-+		ret = -EINVAL;
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
- static int aw88081_reg_update(struct aw88081 *aw88081, bool force)
- {
- 	struct aw_device *aw_dev = aw88081->aw_pa;
-@@ -540,7 +747,7 @@ static void aw88081_start_pa(struct aw88081 *aw88081)
- 			dev_err(aw88081->aw_pa->dev, "fw update failed, cnt:%d\n", i);
- 			continue;
- 		}
--		ret = aw88081_dev_start(aw88081);
-+		ret = aw88081_device_start(aw88081);
- 		if (ret) {
- 			dev_err(aw88081->aw_pa->dev, "aw88081 device start failed. retry = %d", i);
- 			continue;
-@@ -745,7 +952,7 @@ static int aw88081_profile_set(struct snd_kcontrol *kcontrol,
- 	}
- 
- 	if (aw88081->aw_pa->status) {
--		aw88081_dev_stop(aw88081->aw_pa);
-+		aw88081_stop(aw88081);
- 		aw88081_start(aw88081, AW88081_SYNC_START);
- 	}
- 
-@@ -781,12 +988,16 @@ static int aw88081_volume_set(struct snd_kcontrol *kcontrol,
- 	if (value < mc->min || value > mc->max)
- 		return -EINVAL;
- 
-+	aw88083_i2c_wen(aw88081, true);
-+
- 	if (vol_desc->ctl_volume != value) {
- 		vol_desc->ctl_volume = value;
- 		aw88081_dev_set_volume(aw88081->aw_pa, vol_desc->ctl_volume);
- 		return 1;
- 	}
- 
-+	aw88083_i2c_wen(aw88081, false);
-+
- 	return 0;
- }
- 
-@@ -860,13 +1071,19 @@ static int aw88081_init(struct aw88081 *aw88081, struct i2c_client *i2c, struct
- 		dev_err(&i2c->dev, "%s read chipid error. ret = %d", __func__, ret);
- 		return ret;
- 	}
--	if (chip_id != AW88081_CHIP_ID) {
-+
-+	switch (chip_id) {
-+	case AW88081_CHIP_ID:
-+		dev_dbg(&i2c->dev, "chip id = 0x%x\n", chip_id);
-+		break;
-+	case AW88083_CHIP_ID:
-+		dev_dbg(&i2c->dev, "chip id = 0x%x\n", chip_id);
-+		break;
-+	default:
- 		dev_err(&i2c->dev, "unsupported device");
- 		return -ENXIO;
- 	}
- 
--	dev_dbg(&i2c->dev, "chip id = %x\n", chip_id);
--
- 	aw_dev = devm_kzalloc(&i2c->dev, sizeof(*aw_dev), GFP_KERNEL);
- 	if (!aw_dev)
- 		return -ENOMEM;
-@@ -875,7 +1092,7 @@ static int aw88081_init(struct aw88081 *aw88081, struct i2c_client *i2c, struct
- 	aw_dev->i2c = i2c;
- 	aw_dev->regmap = regmap;
- 	aw_dev->dev = &i2c->dev;
--	aw_dev->chip_id = AW88081_CHIP_ID;
-+	aw_dev->chip_id = chip_id;
- 	aw_dev->acf = NULL;
- 	aw_dev->prof_info.prof_desc = NULL;
- 	aw_dev->prof_info.prof_type = AW88395_DEV_NONE_TYPE_ID;
-@@ -912,21 +1129,8 @@ static int aw88081_dev_init(struct aw88081 *aw88081, struct aw_container *aw_cfg
- 		return ret;
- 	}
- 
--	aw88081_dev_clear_int_status(aw_dev);
--
--	aw88081_dev_uls_hmute(aw_dev, true);
--
--	aw88081_dev_mute(aw_dev, true);
--
--	usleep_range(AW88081_5000_US, AW88081_5000_US + 10);
--
--	aw88081_dev_i2s_tx_enable(aw_dev, false);
--
--	usleep_range(AW88081_1000_US, AW88081_1000_US + 100);
--
--	aw88081_dev_amppd(aw_dev, true);
--
--	aw88081_dev_pwd(aw_dev, true);
-+	aw_dev->status = AW88081_DEV_PW_ON;
-+	aw88081_stop(aw88081);
- 
- 	return 0;
- }
-@@ -977,7 +1181,7 @@ static int aw88081_playback_event(struct snd_soc_dapm_widget *w,
- 		aw88081_start(aw88081, AW88081_ASYNC_START);
- 		break;
- 	case SND_SOC_DAPM_POST_PMD:
--		aw88081_dev_stop(aw88081->aw_pa);
-+		aw88081_stop(aw88081);
- 		break;
- 	default:
- 		break;
-@@ -1036,8 +1240,17 @@ static const struct snd_soc_component_driver soc_codec_dev_aw88081 = {
- 	.num_controls = ARRAY_SIZE(aw88081_controls),
- };
- 
-+static const struct i2c_device_id aw88081_i2c_id[] = {
-+	{ AW88081_I2C_NAME, AW88081},
-+	{ AW88083_I2C_NAME, AW88083},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, aw88081_i2c_id);
-+
- static int aw88081_i2c_probe(struct i2c_client *i2c)
- {
-+	const struct regmap_config *regmap_config;
-+	const struct i2c_device_id *id;
- 	struct aw88081 *aw88081;
- 	int ret;
- 
-@@ -1049,11 +1262,25 @@ static int aw88081_i2c_probe(struct i2c_client *i2c)
- 	if (!aw88081)
- 		return -ENOMEM;
- 
-+	id = i2c_match_id(aw88081_i2c_id, i2c);
-+	aw88081->devtype = id->driver_data;
-+
- 	mutex_init(&aw88081->lock);
- 
- 	i2c_set_clientdata(i2c, aw88081);
- 
--	aw88081->regmap = devm_regmap_init_i2c(i2c, &aw88081_regmap_config);
-+	switch (aw88081->devtype) {
-+	case AW88081:
-+		regmap_config = &aw88081_regmap_config;
-+		break;
-+	case AW88083:
-+		regmap_config = &aw88083_regmap_config;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	aw88081->regmap = devm_regmap_init_i2c(i2c, regmap_config);
- 	if (IS_ERR(aw88081->regmap))
- 		return dev_err_probe(&i2c->dev, PTR_ERR(aw88081->regmap),
- 						"failed to init regmap\n");
-@@ -1068,12 +1295,6 @@ static int aw88081_i2c_probe(struct i2c_client *i2c)
- 			aw88081_dai, ARRAY_SIZE(aw88081_dai));
- }
- 
--static const struct i2c_device_id aw88081_i2c_id[] = {
--	{ AW88081_I2C_NAME },
--	{ }
--};
--MODULE_DEVICE_TABLE(i2c, aw88081_i2c_id);
--
- static struct i2c_driver aw88081_i2c_driver = {
- 	.driver = {
- 		.name = AW88081_I2C_NAME,
-diff --git a/sound/soc/codecs/aw88081.h b/sound/soc/codecs/aw88081.h
-index b4bf7288021a..c4679476f524 100644
---- a/sound/soc/codecs/aw88081.h
-+++ b/sound/soc/codecs/aw88081.h
-@@ -231,6 +231,49 @@
- #define AW88081_CCO_MUX_BYPASS_VALUE	\
- 	(AW88081_CCO_MUX_BYPASS << AW88081_CCO_MUX_START_BIT)
- 
-+#define AW88083_I2C_WEN_START_BIT	(14)
-+#define AW88083_I2C_WEN_BITS_LEN	(2)
-+#define AW88083_I2C_WEN_MASK		\
-+	(~(((1<<AW88083_I2C_WEN_BITS_LEN)-1) << AW88083_I2C_WEN_START_BIT))
-+
-+#define AW88083_I2C_WEN_DISABLE	(0)
-+#define AW88083_I2C_WEN_DISABLE_VALUE	\
-+	(AW88083_I2C_WEN_DISABLE << AW88083_I2C_WEN_START_BIT)
-+
-+#define AW88083_I2C_WEN_ENABLE		(2)
-+#define AW88083_I2C_WEN_ENABLE_VALUE	\
-+	(AW88083_I2C_WEN_ENABLE << AW88083_I2C_WEN_START_BIT)
-+
-+#define AW88083_PLL_PD_START_BIT	(2)
-+#define AW88083_PLL_PD_BITS_LEN	(1)
-+#define AW88083_PLL_PD_MASK		\
-+	(~(((1<<AW88083_PLL_PD_BITS_LEN)-1) << AW88083_PLL_PD_START_BIT))
-+
-+#define AW88083_PLL_PD_POWER_DOWN	(1)
-+#define AW88083_PLL_PD_POWER_DOWN_VALUE	\
-+	(AW88083_PLL_PD_POWER_DOWN << AW88083_PLL_PD_START_BIT)
-+
-+#define AW88083_PLL_PD_WORKING		(0)
-+#define AW88083_PLL_PD_WORKING_VALUE	\
-+	(AW88083_PLL_PD_WORKING << AW88083_PLL_PD_START_BIT)
-+
-+#define AW88083_AMPPD_START_BIT	(1)
-+#define AW88083_AMPPD_BITS_LEN		(1)
-+#define AW88083_AMPPD_MASK		\
-+	(~(((1<<AW88083_AMPPD_BITS_LEN)-1) << AW88083_AMPPD_START_BIT))
-+
-+#define AW88083_AMPPD_WORKING		(0)
-+#define AW88083_AMPPD_WORKING_VALUE	\
-+	(AW88083_AMPPD_WORKING << AW88083_AMPPD_START_BIT)
-+
-+#define AW88083_AMPPD_POWER_DOWN	(1)
-+#define AW88083_AMPPD_POWER_DOWN_VALUE	\
-+	(AW88083_AMPPD_POWER_DOWN << AW88083_AMPPD_START_BIT)
-+
-+#define AW88083_REG_MAX		(0x7D)
-+#define AW88083_I2C_NAME		"aw88083"
-+#define AW88083_CHIP_ID		0x2407
-+
- #define AW88081_START_RETRIES		(5)
- #define AW88081_START_WORK_DELAY_MS	(0)
- 
--- 
-2.47.0
+[...]
 
+> sbi-mpxy-mbox.c
+> new file mode 100644
+> index 000000000000..0592df3028f9
+> --- /dev/null
+> +++ b/drivers/mailbox/riscv-sbi-mpxy-mbox.c
+> @@ -0,0 +1,979 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * RISC-V SBI Message Proxy (MPXY) mailbox controller driver
+> + *
+> + * Copyright (C) 2024 Ventana Micro Systems Inc.
+> + */
+> +
+> +#include <asm/sbi.h>
+> +#include <linux/cpu.h>
+> +#include <linux/err.h>
+> +#include <linux/init.h>
+> +#include <linux/jump_label.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/mailbox/riscv-rpmi-message.h>
+
+> +#include <linux/mm.h>
+> +#include <linux/msi.h>
+> +#include <linux/module.h>
+> +#include <linux/of_irq.h>
+Sorting include header files based on alphanumeric.
+
+> +#include <linux/percpu.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/smp.h>
+> +
+> +/* =3D=3D=3D=3D=3D=3D SBI MPXY extension data structures =3D=3D=3D=3D=3D=
+=3D */
+> +
+> +/* SBI MPXY MSI related channel attributes */ struct sbi_mpxy_msi_info
+> +{
+> +	/* Lower 32-bits of the MSI target address */
+> +	u32 msi_addr_lo;
+> +	/* Upper 32-bits of the MSI target address */
+> +	u32 msi_addr_hi;
+> +	/* MSI data value */
+> +	u32 msi_data;
+> +};
+> +
+> +/*
+> + * SBI MPXY standard channel attributes.
+> + *
+> + * NOTE: The sequence of attribute fields are as-per the
+> + * defined sequence in the attribute table in spec (or
+> + * as-per the enum sbi_mpxy_attribute_id).
+> + */
+> +struct sbi_mpxy_channel_attrs {
+> +	/* Message protocol ID */
+> +	u32 msg_proto_id;
+> +	/* Message protocol Version */
+Don't need capital letter for "version" .
+
+> +	u32 msg_proto_version;
+> +	/* Message protocol maximum message length */
+> +	u32 msg_max_len;
+> +	/* Message protocol message send timeout in microseconds */
+> +	u32 msg_send_timeout;
+> +	/* Message protocol message completion timeout in microseconds */
+> +	u32 msg_completion_timeout;
+> +	/* Bit array for channel capabilities */
+> +	u32 capability;
+> +	/* SSE Event Id */
+Same for 'event'.
+> +	u32 sse_event_id;
+> +	/* MSI enable/disable control knob */
+> +	u32 msi_control;
+> +	/* Channel MSI info */
+> +	struct sbi_mpxy_msi_info msi_info;
+> +	/* Events State Control */
+Same here
+
+> +	u32 events_state_ctrl;
+> +};
+> +
+> +/*
+
+
+[...]
+
+> +
+> +static int mpxy_send_message_with_resp(u32 channel_id, u32 msg_id,
+> +				       void *tx, unsigned long tx_len,
+> +				       void *rx, unsigned long max_rx_len,
+> +				       unsigned long *rx_len)
+> +{
+> +	struct mpxy_local *mpxy =3D this_cpu_ptr(&mpxy_local);
+> +	unsigned long rx_bytes;
+> +	struct sbiret sret;
+> +
+> +	if (!mpxy->shmem_active)
+> +		return -ENODEV;
+> +	if (!tx && tx_len)
+> +		return -EINVAL;
+> +
+> +	get_cpu();
+> +
+> +	/* Message protocols allowed to have no data in messages */
+> +	if (tx_len)
+> +		memcpy(mpxy->shmem, tx, tx_len);
+> +
+> +	sret =3D sbi_ecall(SBI_EXT_MPXY,
+> SBI_EXT_MPXY_SEND_MSG_WITH_RESP,
+> +			 channel_id, msg_id, tx_len, 0, 0, 0);
+> +	if (rx && !sret.error) {
+> +		rx_bytes =3D sret.value;
+> +		rx_bytes =3D min(max_rx_len, rx_bytes);
+
+Caller should know if the rx_bytes is larger than max_rx_len?
+
+> +		memcpy(rx, mpxy->shmem, rx_bytes);
+> +		if (rx_len)
+> +			*rx_len =3D rx_bytes;
+> +	}
+> +
+> +	put_cpu();
+> +	return sbi_err_map_linux_errno(sret.error);
+> +}
+> +
+
+[...]
+
+> +
+> +static int mpxy_mbox_setup_msi(struct mbox_chan *chan,
+> +			       struct mpxy_mbox_channel *mchan) {
+> +	struct device *dev =3D mchan->mbox->dev;
+> +	int rc;
+> +
+> +	/* Do nothing if MSI not supported */
+> +	if (mchan->msi_irq =3D=3D U32_MAX)
+> +		return 0;
+> +
+> +	/* Request channel MSI handler */
+> +	rc =3D request_threaded_irq(mchan->msi_irq,
+> +				  mpxy_mbox_irq_event,
+> +				  mpxy_mbox_irq_thread,
+> +				  0, dev_name(dev), chan);
+> +	if (rc) {
+> +		dev_err(dev, "failed to request MPXY channel 0x%x IRQ\n",
+> +			mchan->channel_id);
+> +		return rc;
+> +	}
+> +
+> +	/* Enable channel MSI control */
+> +	mchan->attrs.msi_control =3D 1;
+> +	rc =3D mpxy_write_attrs(mchan->channel_id,
+> SBI_MPXY_ATTR_MSI_CONTROL,
+> +			      1, &mchan->attrs.msi_control);
+> +	if (rc) {
+> +		dev_err(dev, "enable MSI control failed for MPXY channel
+> 0x%x\n",
+> +			mchan->channel_id);
+> +		free_irq(mchan->msi_irq, chan);
+
+Set mchan->attrs.msi_control =3D 0 if failed?
+
+> +		return rc;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void mpxy_mbox_cleanup_msi(struct mbox_chan *chan,
+> +				  struct mpxy_mbox_channel *mchan)
+> +{
+> +	struct device *dev =3D mchan->mbox->dev;
+> +	int rc;
+> +
+> +	/* Do nothing if MSI not supported */
+> +	if (mchan->msi_irq =3D=3D U32_MAX)
+
+
+Should check if(!mchan->attrs.msi_control) instead of mchan->msi_irq?
+
+
+> +		return;
+> +
+> +	/* Disable channel MSI control */
+> +	mchan->attrs.msi_control =3D 0;
+> +	rc =3D mpxy_write_attrs(mchan->channel_id,
+> SBI_MPXY_ATTR_MSI_CONTROL,
+> +			      1, &mchan->attrs.msi_control);
+> +	if (rc) {
+> +		dev_err(dev, "disable MSI control failed for MPXY channel
+> 0x%x\n",
+> +			mchan->channel_id);
+> +	}
+> +
+> +	/* Free channel MSI handler */
+> +	free_irq(mchan->msi_irq, chan);
+> +}
+> +
+> +static int mpxy_mbox_setup_events(struct mpxy_mbox_channel *mchan) {
+> +	struct device *dev =3D mchan->mbox->dev;
+> +	int rc;
+> +
+> +	/* Do nothing if events state not supported */
+> +	if (!mchan->have_events_state)
+> +		return 0;
+> +
+> +	/* Enable channel events state */
+> +	mchan->attrs.events_state_ctrl =3D 1;
+> +	rc =3D mpxy_write_attrs(mchan->channel_id,
+> SBI_MPXY_ATTR_EVENTS_STATE_CONTROL,
+> +			      1, &mchan->attrs.events_state_ctrl);
+> +	if (rc) {
+> +		dev_err(dev, "enable events state failed for MPXY channel
+> 0x%x\n",
+> +			mchan->channel_id);
+
+Should set mchan->attrs.events_state_ctrl =3D 0; ?
+
+> +		return rc;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void mpxy_mbox_cleanup_events(struct mpxy_mbox_channel
+> *mchan) {
+> +	struct device *dev =3D mchan->mbox->dev;
+> +	int rc;
+> +
+> +	/* Do nothing if events state not supported */
+> +	if (!mchan->have_events_state)
+Check also if (!mchan->attrs.events_state_ctrl)?
+
+> +		return;
+> +
+> +	/* Disable channel events state */
+> +	mchan->attrs.events_state_ctrl =3D 0;
+> +	rc =3D mpxy_write_attrs(mchan->channel_id,
+> SBI_MPXY_ATTR_EVENTS_STATE_CONTROL,
+> +			      1, &mchan->attrs.events_state_ctrl);
+> +	if (rc) {
+> +		dev_err(dev, "disbable events state failed for MPXY channel
+
+Typo ' disbable'.
+
+> 0x%x\n",
+> +			mchan->channel_id);
+> +	}
+> +}
+> +
+
+
+[...]
+
+
+> +
+> +static int mpxy_mbox_probe(struct platform_device *pdev) {
+> +	struct device *dev =3D &pdev->dev;
+> +	struct mpxy_mbox_channel *mchan;
+> +	struct mpxy_mbox *mbox;
+> +	int i, msi_idx, rc;
+> +	u32 *channel_ids;
+> +
+> +	/*
+> +	 * Initialize MPXY shared memory only once. This also ensures
+> +	 * that SBI MPXY mailbox is probed only once.
+> +	 */
+> +	if (mpxy_shmem_init_done) {
+> +		dev_err(dev, "SBI MPXY mailbox already initialized\n");
+> +		return -EALREADY;
+> +	}
+> +
+> +	/* Probe for SBI MPXY extension */
+> +	if (sbi_spec_version < sbi_mk_version(1, 0) ||
+> +	    sbi_probe_extension(SBI_EXT_MPXY) <=3D 0) {
+> +		dev_info(dev, "SBI MPXY extension not available\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Setup cpuhp notifier for per-CPU MPXY shared memory */
+> +	cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "riscv/sbi-mpxy-
+> shmem",
+> +			  mpxy_setup_shmem, mpxy_cleanup_shmem);
+> +
+> +	/* Mark as MPXY shared memory initialization done */
+> +	mpxy_shmem_init_done =3D true;
+> +
+> +	/* Allocate mailbox instance */
+> +	mbox =3D devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
+> +	if (!mbox)
+> +		return -ENOMEM;
+> +	mbox->dev =3D dev;
+> +	platform_set_drvdata(pdev, mbox);
+> +
+> +	/* Find-out of number of channels */
+> +	rc =3D mpxy_get_channel_count(&mbox->channel_count);
+> +	if (rc) {
+> +		dev_err(dev, "failed to get number of MPXY channels\n");
+Suggest print 'rc' value when error. Same for other error messages below.
+
+> +		return rc;
+> +	}
+> +	if (!mbox->channel_count) {
+> +		dev_err(dev, "no MPXY channels available\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Allocate and fetch all channel IDs */
+> +	channel_ids =3D devm_kcalloc(dev, mbox->channel_count,
+> +				   sizeof(*channel_ids), GFP_KERNEL);
+> +	if (!channel_ids)
+> +		return -ENOMEM;
+> +	rc =3D mpxy_get_channel_ids(mbox->channel_count, channel_ids);
+> +	if (rc) {
+> +		dev_err(dev, "failed to get number of MPXY channels\n");
+> +		return rc;
+> +	}
+> +
+
+[...]
+
+Regards
+Ley Foon
 
