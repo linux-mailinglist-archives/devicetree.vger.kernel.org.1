@@ -1,210 +1,99 @@
-Return-Path: <devicetree+bounces-133880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55A3A9FC235
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 21:22:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F06EE9FC238
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 21:23:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDEE2160FCB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 20:22:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79469160D1F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 20:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75E0B212F89;
-	Tue, 24 Dec 2024 20:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965AA1CCED2;
+	Tue, 24 Dec 2024 20:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SvTtF2P1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nzEUXpNF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BCAF212D65;
-	Tue, 24 Dec 2024 20:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61784142E76;
+	Tue, 24 Dec 2024 20:23:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735071719; cv=none; b=TPM8r9EaiRFSev6CaKtWmeaccwiCoBCVMTYsOsINYFp0oWQVQo1TBXKUHL/ZBnh2GqoxcEAPPS8QLgkdxqdO3ygtH7zDKVO/xKQVXxKxUeqZ6pCj3dOW/OEgcgXTknV04zsarUeSsdhDLW3WiJE1oAv7Lp6OoZogUsfI1tY0SmM=
+	t=1735071810; cv=none; b=ZOZnRMrlhwEC+ch2qkyc9nddV/L8aV42mnPueTjZ76enCM9IrKGpkOE6H7NdDvW/mE83lflgsbn7FP0OjLVBY8SKo+OVM3NpLu0FWcZsIxQemmxEFRwQb8YgQMY9TaL21Bzkb3FN6DVSl22ZAkRIh/4vE8/HwqSkaUT/5D772ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735071719; c=relaxed/simple;
-	bh=lrZuvtJLO+ODhBjiaYakRFdOqlf92oZVKHokzkG0r/c=;
+	s=arc-20240116; t=1735071810; c=relaxed/simple;
+	bh=EC2aOyKAHM/NGAvJumdbaihXbX/U643UmpylBh9+8+8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BO+5JwgyqzXoqx0mm7GYCSiMfRfvu80RxH//MteFAfXtyJrK0xquSYtph3OAIQxSmLVQWeH04g4rMeZ4T7PMcG5eRalxe9moMjLp2l41vPOqFKy9/gu9h0dWY2CwuS1ZrR4XTBKWWGxLRAVXhwAFGA1wO5POSki1wsPg1eMo2TM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SvTtF2P1; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3862d161947so2619581f8f.3;
-        Tue, 24 Dec 2024 12:21:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735071716; x=1735676516; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=atbGifQIM2H5IJ+rpy7vbzj9n0kS26ASFPC2gnvIgMw=;
-        b=SvTtF2P18giy2X6stKsaNCOrvoJSNzxOzB7LKczoISBEeDDCDQJMXXJ7xl1fpnmHiS
-         HUCFZ2QoXf4l8Nr7SGAE1rH/RCnr4ZoUcmrViQLYgatjPsYRx0Z47Pgu3MDluSeJI7ff
-         WhK+NokqfTzg56FU66widApV7SgNZgqv/+Q7mmj96bffGQyXupC9DK1dMpOMXspytRkN
-         DEXBmBCY5ZNrpNJfhi/A8wm7ujgWHz6/VvJvZZIF5zv993u7GDVCPBVhf+Ty2YOiog5r
-         QOTcJDs+ozM0tF+tuw0HjQGDrbSRj8jrvBzvupAfa0x6RYPRZmqeugsAuhUUA7gEvwG8
-         fhHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735071716; x=1735676516;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=atbGifQIM2H5IJ+rpy7vbzj9n0kS26ASFPC2gnvIgMw=;
-        b=NKDSnqr0K2tBsZR7eHWmqaVjF8mm889a/zGRXch7KnHdhhSTmg/sAK8eA8TbtRQb1g
-         qXgLlrBX0UjCPFGrV2se/mXf8nbDmW5EzODqdAFZfvLEsGcCzOt/HwKT9d64EsV7/BTj
-         iJmsZHDLmVIzYs8TXGNSa7gjF20dWnh6PnEVIAdaN76BJZ+ANCCYB9/bx9z5uJtWVmPJ
-         gUaVFV89gOIQ/sOk0gUMxSS1/1oHb7L9YNSSm1Rzm0cOW14IgCrc620zWoNr6IGpfH0w
-         eOL8rG5PSOSH/744hpLQqe5CLzGnHKtQhueGsqJNBRL5COlxmb1hArcYhCEYUoXMGthN
-         2/4g==
-X-Forwarded-Encrypted: i=1; AJvYcCUiI+pPpLPZJU7Z5+iwmDhj0iEX7ugnObC6DHWiT7AQHvJPua7i/cR4j6/otXuFrzGeTR30OyShCQc4ZXUW@vger.kernel.org, AJvYcCVwVqYNmKYmPLEkdaw1PTzIe4VdL/C9wooMrRDUWS2daQtHmWntkaN84RGvf0RuGe6ng0Q1pUOO/pZd@vger.kernel.org, AJvYcCWItDYnoh+gYDaL82yEIIneGeMIIiZ/opYHo3xOOZdAgi03/tp99BpZegxutmP3mNQzi9PtfYgQUv2tB6YE/p8=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9Ych6Xo33+q9uUwOKqRyZX0XG70u5Y2o4Fio2ZeR2DaTc92dA
-	aDGYkxinTYrebCxzSoC4a1kPQtXo9neYj6xPenIDP7o6hgVdAYTfPtUlIcQyusQ=
-X-Gm-Gg: ASbGncsJ3j36O+jX3CkZhvc0r+eKG+2fvgl7npo0SN6YaKy9i19WFObGl9H+Gdbdvam
-	dpLkKppwfa8fMo1qMYhhNxhzQnvC/cxVG0WbfuSLPfhmKz6XDVE/UkGlrRZZOfwYV92Qn1NqEom
-	4ch1u4ETfB6Cb9dy3gD9mPQnqnCRhEkf7ngsWTfXGACbIF7OXSas1UZrwlGdhrv+EAO6l8CBbGR
-	2W/BacgnGlpWaDP0CxdQuRL8yxcAkP9C/MVfeXxiKf9fJ5FxEWUDX9K1kMibaH1Ej4ZCffQuykt
-	XjYlge5tAn0Ys81HGPz4
-X-Google-Smtp-Source: AGHT+IFTtglOPOnR65bnQJNVIFMfAuslZGfpnY/WuS/Unk8l/SSDeHIHXRhKgP9srRxl3LeizZ0Gnw==
-X-Received: by 2002:a05:6000:178c:b0:385:d7f9:f15d with SMTP id ffacd0b85a97d-38a221e300amr16069720f8f.11.1735071715809;
-        Tue, 24 Dec 2024 12:21:55 -0800 (PST)
-Received: from localhost (cpc1-brnt4-2-0-cust862.4-2.cable.virginm.net. [86.9.131.95])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c89e126sm14711673f8f.65.2024.12.24.12.21.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Dec 2024 12:21:54 -0800 (PST)
-Date: Tue, 24 Dec 2024 20:21:53 +0000
-From: Stafford Horne <shorne@gmail.com>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: Jonas Bonn <jonas@southpole.se>,
-	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-	linux-openrisc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Df6oglKfQZd8+cEmUvleHR1jDQvaTsgOLoGwXQahwmxD0xz9h/2XqJGev5cg6iXWxk92lTsfTg+b+FIWhd0/uqWGrzWXJqfnMot+zCBTJdnpoavnbjYoevZwVc1+bQVYTlnmY8gcVMaeMlmNTIxNSXxlE8YrgyfcGpf3bIyiDpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nzEUXpNF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E04B2C4CED0;
+	Tue, 24 Dec 2024 20:23:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735071809;
+	bh=EC2aOyKAHM/NGAvJumdbaihXbX/U643UmpylBh9+8+8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nzEUXpNFWPsyDZeZT1chG9IH76S8CVzGfAxVvKCap7L3wA9viL9qVEl0LgoF+HdG2
+	 mJrXB6U67m/glazwOrOeVgWbl73DronV/I1ej/7Tj703WIMxwJGu8BvtiaRDS2UrbY
+	 YQfiY2mSs01D+/0xpTDvlg6/0M4FFAD2ey//9+k28l/WFuLpcLqohxmwiiiiH7XpvD
+	 c1VIKTIEuZTr9VwAIw5UcYCRlEczFUWdF66xkP4NihhPXxrlTHmsW8KDldNOVmbj6R
+	 8RyI/z3xdOCn/cOOVLGA7j2BfjLuYk3XS5U+CD+C1cWzZNGFPph5v7g7IpCJY6VLfH
+	 DpCP+D2YTNLCA==
+Date: Tue, 24 Dec 2024 20:23:25 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Gabriel Somlo <gsomlo@gmail.com>, Joel Stanley <joel@jms.id.au>,
-	Karol Gugala <kgugala@antmicro.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mateusz Holenko <mholenko@antmicro.com>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] openrisc: migrate to the generic rule for built-in DTB
-Message-ID: <Z2sX4UwT_ds_6TFt@antec>
-References: <20241222002355.2581242-1-masahiroy@kernel.org>
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: mediatek: Drop MT8192 Chromebook
+ variants that never shipped
+Message-ID: <20241224-darkness-lecturer-e61cc4cc65e1@spud>
+References: <20241223101434.2170166-1-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="kM8DONBKrAlpha1E"
+Content-Disposition: inline
+In-Reply-To: <20241223101434.2170166-1-wenst@chromium.org>
+
+
+--kM8DONBKrAlpha1E
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241222002355.2581242-1-masahiroy@kernel.org>
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Dec 22, 2024 at 09:23:50AM +0900, Masahiro Yamada wrote:
-> Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
-> DTBs") introduced generic support for built-in DTBs.
-> 
-> Select GENERIC_BUILTIN_DTB to use the generic rule.
-> 
-> To keep consistency across architectures, this commit also renames
-> CONFIG_OPENRISC_BUILTIN_DTB_NAME to CONFIG_BUILTIN_DTB_NAME.
-> 
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+On Mon, Dec 23, 2024 at 06:14:31PM +0800, Chen-Yu Tsai wrote:
+> The Hayato rev5 sku2 and Spherion rev4 variants were designed in
+> anticipation of shortages of the headphone codec. This never happened.
+> As far as our records show: the variants were never produced or
+> shipped, and no such devices were deployed to any lab.
+>=20
+> Drop them.
+>=20
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Thanks,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-This looks good to me. I will queue this for 6.14.
+--kM8DONBKrAlpha1E
+Content-Type: application/pgp-signature; name="signature.asc"
 
--Stafford
+-----BEGIN PGP SIGNATURE-----
 
-> ---
-> 
->  arch/openrisc/Kbuild                       | 1 -
->  arch/openrisc/Kconfig                      | 3 ++-
->  arch/openrisc/boot/dts/Makefile            | 2 +-
->  arch/openrisc/configs/or1klitex_defconfig  | 2 +-
->  arch/openrisc/configs/or1ksim_defconfig    | 2 +-
->  arch/openrisc/configs/simple_smp_defconfig | 2 +-
->  6 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/openrisc/Kbuild b/arch/openrisc/Kbuild
-> index b0b0f2b03f87..70bdb24ff204 100644
-> --- a/arch/openrisc/Kbuild
-> +++ b/arch/openrisc/Kbuild
-> @@ -1,6 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0
->  obj-y += lib/ kernel/ mm/
-> -obj-y += boot/dts/
->  
->  # for cleaning
->  subdir- += boot
-> diff --git a/arch/openrisc/Kconfig b/arch/openrisc/Kconfig
-> index 3279ef457c57..3d053e0b59f4 100644
-> --- a/arch/openrisc/Kconfig
-> +++ b/arch/openrisc/Kconfig
-> @@ -10,6 +10,7 @@ config OPENRISC
->  	select ARCH_HAS_DMA_SET_UNCACHED
->  	select ARCH_HAS_DMA_CLEAR_UNCACHED
->  	select ARCH_HAS_SYNC_DMA_FOR_DEVICE
-> +	select GENERIC_BUILTIN_DTB
->  	select COMMON_CLK
->  	select OF
->  	select OF_EARLY_FLATTREE
-> @@ -92,7 +93,7 @@ config DCACHE_WRITETHROUGH
->  
->  	  If unsure say N here
->  
-> -config OPENRISC_BUILTIN_DTB
-> +config BUILTIN_DTB_NAME
->  	string "Builtin DTB"
->  	default ""
->  
-> diff --git a/arch/openrisc/boot/dts/Makefile b/arch/openrisc/boot/dts/Makefile
-> index 13db5a2aab52..3a66e0ef3985 100644
-> --- a/arch/openrisc/boot/dts/Makefile
-> +++ b/arch/openrisc/boot/dts/Makefile
-> @@ -1,4 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -obj-y += $(addsuffix .dtb.o, $(CONFIG_OPENRISC_BUILTIN_DTB))
-> +dtb-y += $(addsuffix .dtb, $(CONFIG_BUILTIN_DTB_NAME))
->  
->  #DTC_FLAGS ?= -p 1024
-> diff --git a/arch/openrisc/configs/or1klitex_defconfig b/arch/openrisc/configs/or1klitex_defconfig
-> index 466f31a091be..3e849d25838a 100644
-> --- a/arch/openrisc/configs/or1klitex_defconfig
-> +++ b/arch/openrisc/configs/or1klitex_defconfig
-> @@ -7,7 +7,7 @@ CONFIG_BLK_DEV_INITRD=y
->  CONFIG_CC_OPTIMIZE_FOR_SIZE=y
->  CONFIG_SGETMASK_SYSCALL=y
->  CONFIG_EXPERT=y
-> -CONFIG_OPENRISC_BUILTIN_DTB="or1klitex"
-> +CONFIG_BUILTIN_DTB_NAME="or1klitex"
->  CONFIG_HZ_100=y
->  CONFIG_OPENRISC_HAVE_SHADOW_GPRS=y
->  CONFIG_NET=y
-> diff --git a/arch/openrisc/configs/or1ksim_defconfig b/arch/openrisc/configs/or1ksim_defconfig
-> index 0116e465238f..59fe33cefba2 100644
-> --- a/arch/openrisc/configs/or1ksim_defconfig
-> +++ b/arch/openrisc/configs/or1ksim_defconfig
-> @@ -14,7 +14,7 @@ CONFIG_SLUB=y
->  CONFIG_SLUB_TINY=y
->  CONFIG_MODULES=y
->  # CONFIG_BLOCK is not set
-> -CONFIG_OPENRISC_BUILTIN_DTB="or1ksim"
-> +CONFIG_BUILTIN_DTB_NAME="or1ksim"
->  CONFIG_HZ_100=y
->  CONFIG_NET=y
->  CONFIG_PACKET=y
-> diff --git a/arch/openrisc/configs/simple_smp_defconfig b/arch/openrisc/configs/simple_smp_defconfig
-> index b990cb6c9309..6008e824d31c 100644
-> --- a/arch/openrisc/configs/simple_smp_defconfig
-> +++ b/arch/openrisc/configs/simple_smp_defconfig
-> @@ -20,7 +20,7 @@ CONFIG_SLUB=y
->  CONFIG_SLUB_TINY=y
->  CONFIG_MODULES=y
->  # CONFIG_BLOCK is not set
-> -CONFIG_OPENRISC_BUILTIN_DTB="simple_smp"
-> +CONFIG_BUILTIN_DTB_NAME="simple_smp"
->  CONFIG_SMP=y
->  CONFIG_HZ_100=y
->  CONFIG_OPENRISC_HAVE_SHADOW_GPRS=y
-> -- 
-> 2.43.0
-> 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2sYPQAKCRB4tDGHoIJi
+0h7wAQDuZqhHgxKCjeoyKOA8jPzvU0D+UZF+MTUn612O+Tq5SwD/ebZTuMVlsTwc
+gHHtgJeNdCYB/wr/ICsI4IphJ0olgwo=
+=FITb
+-----END PGP SIGNATURE-----
+
+--kM8DONBKrAlpha1E--
 
