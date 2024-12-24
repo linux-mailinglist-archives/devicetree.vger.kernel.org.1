@@ -1,36 +1,37 @@
-Return-Path: <devicetree+bounces-133689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A97C19FB8F2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 04:19:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 408F19FB8F6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 04:20:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08AA91883195
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 03:19:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 790737A21A3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 03:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7FF13D28F;
-	Tue, 24 Dec 2024 03:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC6615383B;
+	Tue, 24 Dec 2024 03:19:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-76.mail.aliyun.com (out28-76.mail.aliyun.com [115.124.28.76])
+Received: from out198-14.us.a.mail.aliyun.com (out198-14.us.a.mail.aliyun.com [47.90.198.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3CA43166;
-	Tue, 24 Dec 2024 03:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D1128EB;
+	Tue, 24 Dec 2024 03:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=47.90.198.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735010366; cv=none; b=byUsMt6xwXGpYqj5B6+Ynt/vRvBvpTv26SDOAssAaWvcNYh+ZI65ZjxnppieaCARuF5tVMEjefXBdRD6S1Tm1vl5eFBGg/UsFESdwnAVkI42PETvuq9gRH+uVMmogi0wOdVpz3rH5LMBNAFFRwV48fjlh6ixVvDAdEOLKaNo81Q=
+	t=1735010376; cv=none; b=OLm/k1Yq5bzsnHm61jdIlihfPC2/Wx4PciEb+EjxBEYM98ueowfGVc9phWBwMzofBjBVeJXqyEedO6muK7+1XdnHZhs8bAJ0TRBAzTPvYBL2f0No6vdUvovGXB792HXKdCLXpRTZklnfUppGs5b/oY9Qg2o9WnKnJdWdx4C3qUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735010366; c=relaxed/simple;
-	bh=kFzYWGvNuH62cBmZzCb7ubi42H27Y13gmSyHNMj1/4M=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WVqjNVSjpzJdm41pM46tywPc22ysGij/2tDx+EBO9q1D8Ua+cxaXaj5y+/BRqEt00Me9VDTvLwixaJgwBhaF/8jModlcEvFJ+q1h6MXTiRQCZotA2oTzqObJJLAApkPr3CCN04M7rPJaJc3POwh/DrW7T4dkueH1jope1Zwuaho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.76
+	s=arc-20240116; t=1735010376; c=relaxed/simple;
+	bh=AiwyJH3F7xFqdpOh3+7secJHibxrjCi4Mo557SWasw8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=kxlMbXa9AqKxgRkHf6Kxo/mb4HLmdE1beHafkPoXCkIROPjMlQ9aZ3DFpq5r2UFkuL0wqUaIH6HHBR52oS9EQI7jq9F/T2bPEAwZRnFNAbNhMqljzCzbiUCJOue0LSnqfyZn586bLPeoMKyNNmc0y9S+hcJi7CKMFMbx5IFnlwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=47.90.198.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.alWru9m_1735010338 cluster:ay29)
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.alWruKJ_1735010345 cluster:ay29)
           by smtp.aliyun-inc.com;
-          Tue, 24 Dec 2024 11:19:04 +0800
+          Tue, 24 Dec 2024 11:19:11 +0800
 From: wangweidong.a@awinic.com
 To: lgirdwood@gmail.com,
 	broonie@kernel.org,
@@ -53,11 +54,14 @@ To: lgirdwood@gmail.com,
 	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: yijiangtao@awinic.com
-Subject: [PATCH V3 0/2] ASoC: codecs: Add aw88083 amplifier driver
-Date: Tue, 24 Dec 2024 11:18:21 +0800
-Message-ID: <20241224031823.363777-1-wangweidong.a@awinic.com>
+Cc: yijiangtao@awinic.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH V3 1/2] ASoC: dt-bindings: Add schema for "awinic,aw88083"
+Date: Tue, 24 Dec 2024 11:18:22 +0800
+Message-ID: <20241224031823.363777-2-wangweidong.a@awinic.com>
 X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241224031823.363777-1-wangweidong.a@awinic.com>
+References: <20241224031823.363777-1-wangweidong.a@awinic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,24 +74,32 @@ From: Weidong Wang <wangweidong.a@awinic.com>
 
 Add the awinic,aw88083 property to support the aw88083 chip.
 
-The driver is for amplifiers aw88083 of Awinic Technology
-Corporation. The AW88083 is an intelligent digital audio
-amplifier with low noise.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
+---
+ Documentation/devicetree/bindings/sound/awinic,aw88395.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-v2 -> v3: Modify function formal parameter type error
-
-Weidong Wang (2):
-  ASoC: dt-bindings: Add schema for "awinic,aw88083"
-  ASoC: codecs: Add aw88083 amplifier driver
-
- .../bindings/sound/awinic,aw88395.yaml        |   2 +
- sound/soc/codecs/Kconfig                      |   2 +-
- sound/soc/codecs/aw88081.c                    | 333 +++++++++++++++---
- sound/soc/codecs/aw88081.h                    |  43 +++
- 4 files changed, 323 insertions(+), 57 deletions(-)
-
-
-base-commit: f07044dd0df0c9d0ad177c3098b62ccddb735a2d
+diff --git a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
+index 3b0b743e49c4..6676406bf2de 100644
+--- a/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
++++ b/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml
+@@ -18,6 +18,7 @@ properties:
+   compatible:
+     enum:
+       - awinic,aw88081
++      - awinic,aw88083
+       - awinic,aw88261
+       - awinic,aw88395
+       - awinic,aw88399
+@@ -58,6 +59,7 @@ allOf:
+           contains:
+             enum:
+               - awinic,aw88081
++              - awinic,aw88083
+               - awinic,aw88261
+     then:
+       properties:
 -- 
 2.47.0
 
