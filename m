@@ -1,166 +1,152 @@
-Return-Path: <devicetree+bounces-133848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D1F9FBEA3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 14:32:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B65D49FBEA2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 14:32:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C87561880423
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 13:25:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6505D1656CB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 13:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F483EA71;
-	Tue, 24 Dec 2024 13:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D78811B5ECB;
+	Tue, 24 Dec 2024 13:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h3X39GqI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VwpVNRhs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9326FCA6B
-	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 13:25:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A783ECA6B;
+	Tue, 24 Dec 2024 13:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735046746; cv=none; b=NTEWFuIv70pFrjq5D86Z5KSgEBhOOPpmgCGuKkfUjTWMlIvFsohllY3PSEJzF21VQA6SY9L/KuJBceI/gzLOcEs4lbYVFM5pdd979IMCmU8zQYKF+/ANKwuy/WrDx39de6qWkQ4cQDYTWIl5BehZ8qHWg92i9G2FCD0er32Toy8=
+	t=1735046835; cv=none; b=hh1RMhMvd4QhNJQPwgfTE6KAbusBM+xLm8Uf6uG3aq8Nt03upoiS/6EXhaM4dePCMjzZltT2UxlGvmab117yeVT87bMMudQts+5SEkcYhtoLfydFGVKK6ElaNZVVgsGdudQHXsZhLhu8NgbVmzbCzKZJFG8l8auU6t+UV3RVaAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735046746; c=relaxed/simple;
-	bh=U7A1u+JJfcKyPCoIyoFaip7cCsy9h7TTdvIZdlMjGqs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n9It3IJzgCSAaHq3zuHvVgpZvgzcKag5RoESJuW60nEyWa6bCMEHyqe83IqkwcG7IWD2Wlt33xTgJj+LDFTJ8Vcx3sYPFD25u+G9jzMJhMQYX+UZN7Tqwg8VrXMvoudMsspQPVwPN4c1l2RvogmFrbNIO4QnKFrwXfkvPgFtCDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h3X39GqI; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-30225b2586cso65826061fa.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 05:25:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735046743; x=1735651543; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hv30jFOQ39cBCdo28rZ29NibAXM1yv1msAZG8kg/Yg8=;
-        b=h3X39GqIhZPdkoqzVMKIB8m7A0m0Jtm9GUd+5XmUxB6kpVdkZhs8wD25lFuw5SfuDJ
-         tsriSQsW6j1lpTyR1d+4qKMoNTOf/XbBSeE2s+zcLO7hTDtz3c+Ca/eRF6tEAwyPi3JD
-         ZK5OEAMR3Fmy2541xxUfGTfNIAGqdPKLO/M9uCmgeou8LjJ+RQwqsj5pF+xdj9fxj4Ag
-         tL1paeIrr5FSm6c4fShle+/spXfQPTDOl9KlSAxcu186SsCaq7e3v2I329LbjjVYhF1w
-         ORe5Jqr4ehb143WPqb7Fs+ppkHgXgwpK1nih/5gdgGxdNs2+4aHKozNeC6iJ51vyTEfp
-         9dWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735046743; x=1735651543;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hv30jFOQ39cBCdo28rZ29NibAXM1yv1msAZG8kg/Yg8=;
-        b=t+iaAKuAsUnAeqWY33XUJWLx6GmDTR6OFnnIzAFGjS9ttGnijVr9AG2y7yefzMWd42
-         Zp+PsF23xaPGrkqoo4rsjvselU+CdwpwyEBPF7joxJpFTjtptd2elq7XUfaCmbvjtQPW
-         m3pDCpeaOMsSqx7PGC5SWCurr7ezCh6VpuaW2vs/Zbe6PzhxGa5a7+ux6VColu+fA/q9
-         WwoxqHhec06M3bLODMlg/xt3HLCdrBN5OQ+XsXNaqyOR7Q6NcksDfbhjhkvw7ZeRMpdI
-         oOAJvqRxUDQby4bRfYjlrOgxWPX9bdEEJfiZt1uH1+miCVjvU53S1orm+6spB6Jm02F1
-         +X5g==
-X-Forwarded-Encrypted: i=1; AJvYcCXf7UUJYP9TKl3Fj03bOjf2NNUXFaQjMPDAozvxRXDkKrpO9ymkKzMudlo8cikbuZYEbetcBZ8ROM8q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRCKPWoeRpKO3SUELrORzMXURKdpUFHTevPYN4308WBDflU3jY
-	JZTcTuDYHCNCKzmCoGUKp8kvu3Fbr1QlheB4w5b+AF/VlwVDAEeuMJDk6iFoCcC9qxyav7dRNBX
-	7
-X-Gm-Gg: ASbGncszzwvuk9jLmltAzFN+E1OQPtNFL0iSwYIByHp5r0I0ZT1Z9o3OWz5IzmhqK2h
-	XLMUzxyW7fF2b0TYzlhLYBnEgr7nVUEttYt+xU4fNi1Bm3odiL8D10ejrBer/0Lgdjh5mgXr48P
-	rJG/rxLUqg5GmtBaMJIHaMrRCejLBxznScO21B9ieCCn43KLwqoY16ujeQTQgcjBUqMMSK4SYm5
-	X+Yw3Ov/p72d0c8lIU2Q/pBGDB8QokqIm0FOyWE/mOS2tJvmo2q6IrudQBjmE+HX+tDzdAA30VG
-	m7tp9ilorg9sNQWgpDwAhXHc6gJZnTpdZAGy
-X-Google-Smtp-Source: AGHT+IHJZH8ANhU8/YIizeYlLT7pab12drEMXwuvQIS6w5Ypom40nZXywZPK+ZkrHbO1srQH+7HtJw==
-X-Received: by 2002:a2e:6109:0:b0:302:3021:9b23 with SMTP id 38308e7fff4ca-30469bffe1amr43750481fa.17.1735046742432;
-        Tue, 24 Dec 2024 05:25:42 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3045ad6c604sm17259641fa.15.2024.12.24.05.25.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Dec 2024 05:25:41 -0800 (PST)
-Date: Tue, 24 Dec 2024 15:25:38 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Pratyush Brahma <quic_pbrahma@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: qcs8300: Add device node for
- gfx_smmu
-Message-ID: <7sy7ogdlvvahk7pdfusdi4sx5fc2qoqexvgcwskoxywnmtx6tt@2od6sbwzohg3>
-References: <20241224100521.7616-1-quic_pbrahma@quicinc.com>
+	s=arc-20240116; t=1735046835; c=relaxed/simple;
+	bh=pkh010ZgW6U+zHbDtj7qlSr13nNp6D47W6Cgw6MI9O0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g62t9V1NDvD5LlDKMcOcnWa9Ju5ZvM/a6hj9P1bKbN1wkU0wvllmVxdh25/pQBc8rSo8BtXaLsWsGzbL9V4FDgYLl3UCobb/l8E4qYoPi78NqFQkrvfQrwdq2WujDaVz3yCM4obEBtREBE9mS/T1nabcDgsqjd97SNzboS9Zi2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VwpVNRhs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E39D8C4CED0;
+	Tue, 24 Dec 2024 13:27:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735046835;
+	bh=pkh010ZgW6U+zHbDtj7qlSr13nNp6D47W6Cgw6MI9O0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VwpVNRhssEvB0hyiGwtPRM/FrvRT5IV/tGwps/aKdG+9vhpLsDgPuKhKEJuJ1dOqL
+	 NQe7wx4v8C/OTUZzooYjNlHNeoet/KtkEF94pDoMVi4xhnuB5pAvhdbvqBmn5N8qPu
+	 0Wq5fQy0sE0SnBMVcK67Ha6wemRHV9VbkD60JoSQfL3RAHleU3HwGUP0LvlcVcMpTE
+	 lOs2yfrhsFaYM+D7LMzk+35nl40nXONG467en28jXgZqBIVvrproc5FgsgMOBqJI4w
+	 LQZzvTjJyzvrcrJtJw5yKrNCjuniRLY9L8v7kTlkFFxV9l32YxnTa8rSbgTAmAnbTy
+	 u1ZdVW9ya/s2A==
+Message-ID: <31ddcb1f-4606-4c5b-893a-179718ed6339@kernel.org>
+Date: Tue, 24 Dec 2024 14:27:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241224100521.7616-1-quic_pbrahma@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/1] dt-bindings: bluetooth: update the wcn6750
+ required properties
+To: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+ Rocky Liao <quic_rjliao@quicinc.com>, quic_mohamull@quicinc.com,
+ quic_hbandi@quicinc.com, quic_anubhavg@quicinc.com,
+ linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241223135700.22660-1-quic_janathot@quicinc.com>
+ <20241223135700.22660-2-quic_janathot@quicinc.com>
+ <mzfad53v2paz7cawaepvaqeht2rr5spxyctqrlniiqgyfyyqlv@ixhxcksd3guz>
+ <c87b12d2-06cd-4982-838d-ecaa97572369@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <c87b12d2-06cd-4982-838d-ecaa97572369@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 24, 2024 at 03:35:21PM +0530, Pratyush Brahma wrote:
-> Adding device node for gfx smmu that is served for gpu.
+On 24/12/2024 12:51, Janaki Ramaiah Thota wrote:
 > 
-> This patch depends on the patch series [1] posted by Imran Shaik
-> adding the clock support for gpu.
 > 
-> [1] https://lore.kernel.org/all/802d32f1-ff7e-4d61-83f1-f804ee1750ed@oss.qualcomm.com/
+> On 12/24/2024 2:46 PM, Krzysztof Kozlowski wrote:
+>> On Mon, Dec 23, 2024 at 07:27:00PM +0530, Janaki Ramaiah Thota wrote:
+>>
+>> Subject: everything is an update... say something useful, e.g. use PMU
+>> abstraction for WCN6750
+>>
 > 
-> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 37 +++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
+> Sure will correct it in next patch.
+> 
+>>> Drop the inputs from the host and instead expect the Bluetooth node to
+>>> consume the outputs of the internal PMU.
+>>
+>> On which device?
+>>
+> 
+> It is for BT module wcn6750 attached on qcs6490-rb3gen2 board.
+> will update same on next commit message.
+> 
+>> But anyway I have doubts this is correct. enable GPIO is a pin going
+>> from the host, not from PMU.
+>>
+> 
+> Yes you are correct, enable GPIO is out pin of host, but here updated 
+> the entries required for Bluetooth node from PMU, not from host to PMU.
 
-It doesn't seem that this was tested against the current bindings.
+Hm? No, you removed for example enable-gpios, which is input from the
+host. Sorry, I don't understand the reason behind this patch and commit
+msg does not help me there.
 
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> index 80226992a65d..8eb688e2df0a 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> @@ -816,6 +816,43 @@
->  			#power-domain-cells = <1>;
->  		};
->  
-> +		adreno_smmu: iommu@3da0000 {
-> +			compatible = "qcom,qcs8300-smmu-500", "qcom,adreno-smmu",
-> +				   "qcom,smmu-500", "arm,mmu-500";
-> +			reg = <0x0 0x3da0000 0x0 0x20000>;
-> +			#iommu-cells = <2>;
-> +			#global-interrupts = <2>;
-> +			dma-coherent;
-> +
-> +			power-domains = <&gpucc GPU_CC_CX_GDSC>;
-> +			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
-> +				 <&gpucc GPU_CC_AHB_CLK>,
-> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
-> +				 <&gpucc GPU_CC_CX_GMU_CLK>,
-> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
-> +				 <&gpucc GPU_CC_HUB_AON_CLK>;
-> +			clock-names = "gcc_gpu_memnoc_gfx_clk",
-> +				      "gcc_gpu_snoc_dvm_gfx_clk",
-> +				      "gpu_cc_ahb_clk",
-> +				      "gpu_cc_hlos1_vote_gpu_smmu_clk",
-> +				      "gpu_cc_cx_gmu_clk",
-> +				      "gpu_cc_hub_cx_int_clk",
-> +				      "gpu_cc_hub_aon_clk";
-> +			interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
->  		pmu@9091000 {
->  			compatible = "qcom,qcs8300-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
->  			reg = <0x0 0x9091000 0x0 0x1000>;
-> -- 
-> 2.17.1
-> 
-
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
