@@ -1,1103 +1,302 @@
-Return-Path: <devicetree+bounces-133889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6523A9FC280
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 22:10:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2349FC298
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 22:53:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADDD31883791
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 21:10:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B1561883F60
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 21:53:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1B21FF5FB;
-	Tue, 24 Dec 2024 21:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ABC51D8A0B;
+	Tue, 24 Dec 2024 21:53:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=garyguo.net header.i=@garyguo.net header.b="dl5/t7GH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+Received: from CWXP265CU009.outbound.protection.outlook.com (mail-ukwestazon11021097.outbound.protection.outlook.com [52.101.100.97])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C3818DF93
-	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 21:10:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735074611; cv=none; b=cZVKKiMGE3w5sK0T9jHFlXJGi/KfPndEyWGYoTCioZxRYARXgBqiqkBK7lRtSzmBwVT6619cHGIcYLp05Uut5FU22o2taeACj9Qepcy/C1GKxolQH29vglNKp3tuaCd+BP9mVFbuVK4NJZ9fk+WN5uFkAwxfygvInd8ivChz388=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735074611; c=relaxed/simple;
-	bh=UU7wfxQsw70M/jKxstFNqrDS+s4ijxtyAK9Mwp4eeqw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=suV49Z005h83Fs8jyY594DPrPH4PUMkfs3la0SSAqvJtHL6XS8NkNLaDI2sIy6Wba22GN681UyWWBgVnwkc25a0qcf3IIfDbCq+o/MwuBJzIfVvISYPNEOuY9PqskmmGoGtB7ttS6NbZCrPxrg9xcngwrAW7W6Il8rHE8FHkxs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 4BOL9KQE031471;
-	Wed, 25 Dec 2024 06:09:23 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        dsimic@manjaro.org, jonas@kwiboo.se, macromorgan@hotmail.com,
-        liujianfeng1994@gmail.com, dmt.yashin@gmail.com, tim@feathertop.org,
-        marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net,
-        sebastian.reichel@collabora.com, alchark@gmail.com, inindev@gmail.com,
-        kever.yang@rock-chips.com, cristian.ciocaltea@collabora.com,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH 3/3] arm64: dts: rockchip: Convert Radxa ROCK 5B to use shared .dtsi
-Date: Tue, 24 Dec 2024 21:09:12 +0000
-Message-ID: <20241224210912.2121-4-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241224210912.2121-1-naoki@radxa.com>
-References: <20241224210912.2121-1-naoki@radxa.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E07A18AE2;
+	Tue, 24 Dec 2024 21:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.100.97
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735077220; cv=fail; b=nSsZfP4HqdMqFo0OJ6P+xZWCTMARbieuapLKX0h0gOAO2Swq0kgY669M2ioe5Q/BiYmDGtEP/+UeEffN63fWNDv1qbr283Xq1vM4h2v7sT7A7vOijJut6o9xo6gC9DNPbzvPnFBsuDJK5C7JJpLtpfN0qKru/khnmT+UKRKafwA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735077220; c=relaxed/simple;
+	bh=Uvo5D9vCD/VIaBqRWjG89sIXVktAyNPStPOkyfYZjKQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=AZ8ULp1cDyg8JPu29WINsWUWoEpcec2cF1Rvf53IKVvrLX4fietbnlVGC39J41GbxqoAwmcgs9MFN3rTFMOvZX+ZnSnZJl8AJZo8X7PO6+/Hj7WdPcWRKmuBMaXcXhau+YBzMknptHbrmVYkKZDXQ3+yPEWOt537Lb7j7Ii3BB8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=garyguo.net; spf=pass smtp.mailfrom=garyguo.net; dkim=pass (1024-bit key) header.d=garyguo.net header.i=@garyguo.net header.b=dl5/t7GH; arc=fail smtp.client-ip=52.101.100.97
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=garyguo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=garyguo.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=k4tesBHfzlg9QmNjzqSUWWaNEx/dHx+sBQQ+7e7aRWWsaJH8kgxDdfhP5eBjdtsDs30KjEjHaP3ef5USojNlAlb6G88gwaL+0E9fPO7mdC3IhfdwhAQOYzzNtQFsTh9dKV4c8S5K4GkKJnbJ1QzBLpu6TNFx73yUMkVIq67Rx5OqTT/WBlpJK36W/ptLHO+5XLUe/f6RJ2SdT19zU4ENbyn7IXpto5/Yzc50Ew/hY1aMHbpAfBtZ0ORID4Sk/yKHvbCvrpkT1ZB/y6DQOvM8RD4CcXmYanT3CxJKhWY3T46xqoAkZ19bi5o5V8QAb0cCGW7NOlxVp/i41iwPdCYCGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qMJ5DVIPmR0GGyKuj9yCCK91LLnvLn8at/DfeavIHlA=;
+ b=Werp8uz1MkTm7i4TsqzbfYABLxC77P1PHlWHZ7wCVvlUKOJcfRTnBvMU+mig5OayJQ/zThtnQAHIDOiKasI7CcP0ii2cJ1yN10U6cqOB6tgoC5DF4YcMy1FJqv3Z6PL5YSRajuOWaxyL4HjsOgQikSuL1KJf7xNXyIKcFadrJPgjIwadZtp7l2DEBdRvz6huP5JwgmCRmxHPzTGUCcziLd0pktKwbKcJmG5lDB2SyglqKC3X47rEcX+LUGDLmbx3ABmcHpiHNq93iQ/PbN+AWPoVrsGyDi/i3kWF+ZNXajBos1YAh1GBIVyKhZ/mYo+n5dba4N49n/vcz+6Cf/RuOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qMJ5DVIPmR0GGyKuj9yCCK91LLnvLn8at/DfeavIHlA=;
+ b=dl5/t7GHTOrQpQsOc90oxMofPV8F9OXqPenVrLIccJxdCPFe7yeJRMDzW1xdE1CR/bdBPq2Y9n4eT97/ExHZzmNGPB9KiPoJvd7/HETGLg0MayEyotf0eoNkaSvWq+iireIRJjQ5OjM5kr5dd14KvF+285hUzCuwRxXvZWTismI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=garyguo.net;
+Received: from LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:253::10)
+ by LO6P265MB7215.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:347::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.21; Tue, 24 Dec
+ 2024 21:53:34 +0000
+Received: from LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1818:a2bf:38a7:a1e7]) by LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1818:a2bf:38a7:a1e7%3]) with mapi id 15.20.8293.000; Tue, 24 Dec 2024
+ 21:53:29 +0000
+Date: Tue, 24 Dec 2024 21:53:23 +0000
+From: Gary Guo <gary@garyguo.net>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+ ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+ a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+ fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+ daniel.almeida@collabora.com, saravanak@google.com,
+ dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+ chrisi.schrefl@gmail.com, paulmck@kernel.org,
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org, rcu@vger.kernel.org
+Subject: Re: [PATCH v7 08/16] rust: add devres abstraction
+Message-ID: <20241224215323.560f17a9.gary@garyguo.net>
+In-Reply-To: <20241219170425.12036-9-dakr@kernel.org>
+References: <20241219170425.12036-1-dakr@kernel.org>
+	<20241219170425.12036-9-dakr@kernel.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DUZPR01CA0287.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b7::29) To LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:253::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LO2P265MB5183:EE_|LO6P265MB7215:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f6ba5e7-caae-4a4a-8dd5-08dd246566d2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|366016|10070799003|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?c3TKK9hF1OjZAtE08/TuN6/3ylMqxlw0yZhBLM/Q7x10Aquag2IBaMznVH4k?=
+ =?us-ascii?Q?h3dwZgn9rxfKLrXo27sQio5cXBH4bt5i8Q4o0MKGYc2cqPfEfkzvYUyy4MrU?=
+ =?us-ascii?Q?ZV6gNSFSlojMMhS54WxcrnrTrMdI0HuNXm1oRNuJHD9WDiXypoTiPAuQNIZd?=
+ =?us-ascii?Q?0xYCmaAK36zPUVC7n6zsBXw07i6Z+7wwRa4RhHv2omLa3KDbQohtQX8M7/16?=
+ =?us-ascii?Q?fouW6hzyIccoIu4ExE2A5XMtrSRG8O7LiG0lTkhWxt6Tyna2S20NJpOop8fy?=
+ =?us-ascii?Q?6qHWXiqdLLO/lJm6+dAWCD1nzjqlDq6YRIGZVFFTroZCF5v6tgDSJtRZoRns?=
+ =?us-ascii?Q?LNPCob52kK3ln8CWhyKgVTZbrmlH+kFR8rvetBD9YFnL+VNNsVVS2GUD0rEV?=
+ =?us-ascii?Q?8MwngEgi+hoUPqcAMCxxNEf6t7D4SZpoWoYej3ov8katBlC4H+5rYrSz0XJS?=
+ =?us-ascii?Q?f+TgsH+86k+Jmdg/KKLJQbprhUbsvbaIDgALO0h58gY+TUeCVNY55QjMqe3J?=
+ =?us-ascii?Q?hXhX67LumPwmj2R3+gwJEZsKlVZtKDkIGmO9Ak/LUkVXneJz60QHSo8NUxII?=
+ =?us-ascii?Q?4VeWzwyuUqEzjW5vyh/N17O/8y2YSQab6QXzYWSfYXLY05/GpZqUrWHy8kCQ?=
+ =?us-ascii?Q?aFdGkj2I1gKbqQVcgouo7ZZ9sBJDjAhSk1Qh0W3W7kbLSG3gCY1Zha3pRq/s?=
+ =?us-ascii?Q?QdTORDJOQE9G2lN2fjrBnswu3B42Ifj74jg7WMY1mlQ6/szfhpaYIJMGxsSW?=
+ =?us-ascii?Q?eELViNAeEibbxHV+NirQWsmFjpugjrNAd9x8m45WSoB3+Qze1wQGF1HSKD+x?=
+ =?us-ascii?Q?4+8BCcGh5f4vRXbsKct+NgyL/ZDioPSy7ealW/ZoIZss1p7JB4RYOQxsLr53?=
+ =?us-ascii?Q?pW+bsk2unx04mybTounSuHdDIqwR+kt1ocGmdyeZLDDMoiwsjWs9ZqTzPscc?=
+ =?us-ascii?Q?UzFm3+Pqwc6oY9D+bk0zcqNtnHvPrYhsnD+Ldz5fOL2LfYiMypIqMT7/5A8e?=
+ =?us-ascii?Q?Fu8+sfJxBSJEDhJ1ABLEioBj2wk6hRG6bX6imd4GygdyJaYgztkAwbi9Ow5r?=
+ =?us-ascii?Q?EP8bnZTRaniyKV5aCKruYq0LI1v7/mVbjoUt7arNNRmRRkgaJAqeSQWjsc7A?=
+ =?us-ascii?Q?keAI+BT0WHMFuYTsAdtd9K20o4zuj8bozL2ql0KrtWZHdbohNX/HRt+s/RxV?=
+ =?us-ascii?Q?DiR4a3SCmFz7FgTHC9XdD8ns/CyROzN6ddpJhheGcJP+jAPrrcNmqOnhk6Cv?=
+ =?us-ascii?Q?dBriZiOjGNYlnvRSUUAdP6DtsOdc88YDl9GpJghHbdvo/wCTqCIMUX86YU+h?=
+ =?us-ascii?Q?J4eCooB3djW1sfz+J0KSTBZt7Ukk7Yub2V6YLh2jbWcTy5gki7LH1GJKgKtN?=
+ =?us-ascii?Q?ToZ/892Cv3UwM9kHn26g0CmY3tsy?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(10070799003)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Sq7ImJ48s3i0mFk/nKDf6QSQLmLsZoOBlEa6+4v8FK6/HUvimTL4rZuYMlcV?=
+ =?us-ascii?Q?cMeuY1opBQND/6AKMmhIYfe+rQlMhWqwD1PaY6quu++NjHnEf4CPtIFKnruN?=
+ =?us-ascii?Q?zAs61jO2CJCJLUTSGJd3Amioae9O35a63V8vyju/zTh+PI4NkjGVqUGMW+2d?=
+ =?us-ascii?Q?NFsNEHtlsmFu1WdVvXEdOufmWZWS5DaDzfxc1FlT/scR9JCflL4sPYb0k8BF?=
+ =?us-ascii?Q?NLUUf6ZUrWyPZC3ZT4s378gEKJz5qWMe+qwEdlG6ydiPprC2KbdHXpWtSc4W?=
+ =?us-ascii?Q?i+9YpXh1MNindlqWbeK1jX0qYK1VgZ0zFDfuli6msHcWdkRYaicVxclz+CnE?=
+ =?us-ascii?Q?2OlE75tSj/fLfe6idD3cUOA4Vtlog+UA80EqADgfaroC/ACdy+wjHNGcb3aV?=
+ =?us-ascii?Q?FB7m4rxfa1TexznF+jAyi6yzaHj1zxZczJAsRO9PQVeJ0Gt7cTPWDUEJCMNr?=
+ =?us-ascii?Q?rf0JovVD21DAZzuM6YUY9tQXlRESXn3GCZLxWFOdcF6CGUtzchNhUq5dp8Rm?=
+ =?us-ascii?Q?ZgN43e+tzS5TMceiO8Nd9ta2F9RIhIkCqZBRDjidvPrbWy29sDkgL7tNpooO?=
+ =?us-ascii?Q?NntEEl18iqLc8VUq1p5QGdFTarRjOReTMJs20Ni5sbU3uEM2NETTgz19QFgo?=
+ =?us-ascii?Q?K1x45F6LbUzYxA40QDjGefKyKOhfG0iHGndain5zPJqfGZlJrVttNQmgwodN?=
+ =?us-ascii?Q?014YWbsboCz7Id/PCW114ISu2xeQV4fpkt6QsWISA+9RnwvaJJ+n9VSznway?=
+ =?us-ascii?Q?J5tYxZT2LbxlIYASxuHHVxFFxZpOm+hHlegoDJ+50bDGzxq6SU+oFeQu0hR+?=
+ =?us-ascii?Q?Qfc94p8tiTFyPkFZcf2b6ZrbSPSZiUcfvKZMdbPrFt+8g/FNA3NEbBkVs+MQ?=
+ =?us-ascii?Q?iwKSWJkvfl1Wj2R6LZ6ZbrUWgUMbfq0QZi2Ni0/1ty+4BU8mAYXCtHy5coWp?=
+ =?us-ascii?Q?brEkBtrwj8usOAp1LB8rLuOYNRURMbvpP8dJ5nNU+atXRWtg8LKXkn5zB5hE?=
+ =?us-ascii?Q?tnegFBbk0N6rMqJ5H9Uch9HkRf/96kfRU+D6LsUO5sXCvF1Z+J6Ji99o78Lp?=
+ =?us-ascii?Q?iMwW1rqOCqFMilOoLGWfytr0Ff5IDTdhjTBvoeMsh6Rl65ETzua9MtwpKz2Y?=
+ =?us-ascii?Q?0sxNqF/HsfFxgu/CCCmc+fJi6wjZLLRBwZhdTQI0F/zduNHCPkpLS/DNPIfV?=
+ =?us-ascii?Q?wn8LWZ46WnICjH5ZcgjRsdWq7v/HtJP+J5Io3zZRb5KzrAa9fcjoXxIXFl4O?=
+ =?us-ascii?Q?P775tTScqfyaQFK+0SzqGW74wxpEcQifTI+Y6YuecW/NsLC5qD2DJ2iWOR0j?=
+ =?us-ascii?Q?Fcg8M9XqyFiykG8xoBPL8ZVYdh75Ax8d+334WicBqT4lNKgNBzWqMTrxZmul?=
+ =?us-ascii?Q?aERbgt/g7r+rLkoeyu4UFjJJv7y8l/Hk5lyaWTCPzNN5L6hSEpAOTBh8OCWB?=
+ =?us-ascii?Q?K0xZqIMBUTnXCPd/E+PU49XRzrSeiDhQTrV4vPEuati7bgptyS7OdSobZzot?=
+ =?us-ascii?Q?M672Pd7Rxh2OG4YARZibFU1BcF2SnPoGGAq+OsXnb4JAnutYh1T3tWHREPIa?=
+ =?us-ascii?Q?Nwm34EQeDlIk1hFez0A26vTzc/JCPwuhXEKibEfHWginvR+l99kIhFQx17tV?=
+ =?us-ascii?Q?9w=3D=3D?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f6ba5e7-caae-4a4a-8dd5-08dd246566d2
+X-MS-Exchange-CrossTenant-AuthSource: LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Dec 2024 21:53:29.3624
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xXpl+b5Oiffj90o+ru8dmETY8dK0ygoGGkgmtj6gre7ItFYT6j6z9dynEtVj0ggfZgTxJ3lnMcDNdjZLmg6vtA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO6P265MB7215
 
-Use the shared rk3588-rock-5.dtsi and the board-specific
-rk3588-rock-5b.dts.
+On Thu, 19 Dec 2024 18:04:10 +0100
+Danilo Krummrich <dakr@kernel.org> wrote:
 
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 1026 ++---------------
- 1 file changed, 119 insertions(+), 907 deletions(-)
- rewrite arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts (93%)
+> Add a Rust abstraction for the kernel's devres (device resource
+> management) implementation.
+> 
+> The Devres type acts as a container to manage the lifetime and
+> accessibility of device bound resources. Therefore it registers a
+> devres callback and revokes access to the resource on invocation.
+> 
+> Users of the Devres abstraction can simply free the corresponding
+> resources in their Drop implementation, which is invoked when either the
+> Devres instance goes out of scope or the devres callback leads to the
+> resource being revoked, which implies a call to drop_in_place().
+> 
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> ---
+>  MAINTAINERS            |   1 +
+>  rust/helpers/device.c  |  10 +++
+>  rust/helpers/helpers.c |   1 +
+>  rust/kernel/devres.rs  | 178 +++++++++++++++++++++++++++++++++++++++++
+>  rust/kernel/lib.rs     |   1 +
+>  5 files changed, 191 insertions(+)
+>  create mode 100644 rust/helpers/device.c
+>  create mode 100644 rust/kernel/devres.rs
+> 
+> <snip>
+>
+> +pub struct Devres<T>(Arc<DevresInner<T>>);
+> +
+> +impl<T> DevresInner<T> {
+> +    fn new(dev: &Device, data: T, flags: Flags) -> Result<Arc<DevresInner<T>>> {
+> +        let inner = Arc::pin_init(
+> +            pin_init!( DevresInner {
+> +                data <- Revocable::new(data),
+> +            }),
+> +            flags,
+> +        )?;
+> +
+> +        // Convert `Arc<DevresInner>` into a raw pointer and make devres own this reference until
+> +        // `Self::devres_callback` is called.
+> +        let data = inner.clone().into_raw();
+> +
+> +        // SAFETY: `devm_add_action` guarantees to call `Self::devres_callback` once `dev` is
+> +        // detached.
+> +        let ret = unsafe {
+> +            bindings::devm_add_action(dev.as_raw(), Some(Self::devres_callback), data as _)
+> +        };
+> +
+> +        if ret != 0 {
+> +            // SAFETY: We just created another reference to `inner` in order to pass it to
+> +            // `bindings::devm_add_action`. If `bindings::devm_add_action` fails, we have to drop
+> +            // this reference accordingly.
+> +            let _ = unsafe { Arc::from_raw(data) };
+> +            return Err(Error::from_errno(ret));
+> +        }
+> +
+> +        Ok(inner)
+> +    }
+> +
+> +    #[allow(clippy::missing_safety_doc)]
+> +    unsafe extern "C" fn devres_callback(ptr: *mut kernel::ffi::c_void) {
+> +        let ptr = ptr as *mut DevresInner<T>;
+> +        // Devres owned this memory; now that we received the callback, drop the `Arc` and hence the
+> +        // reference.
+> +        // SAFETY: Safe, since we leaked an `Arc` reference to devm_add_action() in
+> +        //         `DevresInner::new`.
+> +        let inner = unsafe { Arc::from_raw(ptr) };
+> +
+> +        inner.data.revoke();
+> +    }
+> +}
+> +
+> +impl<T> Devres<T> {
+> +    /// Creates a new [`Devres`] instance of the given `data`. The `data` encapsulated within the
+> +    /// returned `Devres` instance' `data` will be revoked once the device is detached.
+> +    pub fn new(dev: &Device, data: T, flags: Flags) -> Result<Self> {
+> +        let inner = DevresInner::new(dev, data, flags)?;
+> +
+> +        Ok(Devres(inner))
+> +    }
+> +
+> +    /// Same as [`Devres::new`], but does not return a `Devres` instance. Instead the given `data`
+> +    /// is owned by devres and will be revoked / dropped, once the device is detached.
+> +    pub fn new_foreign_owned(dev: &Device, data: T, flags: Flags) -> Result {
+> +        let _ = DevresInner::new(dev, data, flags)?;
+> +
+> +        Ok(())
+> +    }
+> +}
+> +
+> +impl<T> Deref for Devres<T> {
+> +    type Target = Revocable<T>;
+> +
+> +    fn deref(&self) -> &Self::Target {
+> +        &self.0.data
+> +    }
+> +}
+> +
+> +impl<T> Drop for Devres<T> {
+> +    fn drop(&mut self) {
+> +        // Revoke the data, such that it gets dropped already and the actual resource is freed.
+> +        //
+> +        // `DevresInner` has to stay alive until the devres callback has been called. This is
+> +        // necessary since we don't know when `Devres` is dropped and calling
+> +        // `devm_remove_action()` instead could race with `devres_release_all()`.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-dissimilarity index 93%
-index d597112f1d5b..7e2f569af123 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -1,907 +1,119 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--
--/dts-v1/;
--
--#include <dt-bindings/gpio/gpio.h>
--#include <dt-bindings/leds/common.h>
--#include <dt-bindings/soc/rockchip,vop2.h>
--#include "rk3588.dtsi"
--
--/ {
--	model = "Radxa ROCK 5B";
--	compatible = "radxa,rock-5b", "rockchip,rk3588";
--
--	aliases {
--		mmc0 = &sdhci;
--		mmc1 = &sdmmc;
--		mmc2 = &sdio;
--	};
--
--	chosen {
--		stdout-path = "serial2:1500000n8";
--	};
--
--	analog-sound {
--		compatible = "audio-graph-card";
--		label = "rk3588-es8316";
--
--		widgets = "Microphone", "Mic Jack",
--			  "Headphone", "Headphones";
--
--		routing = "MIC2", "Mic Jack",
--			  "Headphones", "HPOL",
--			  "Headphones", "HPOR";
--
--		dais = <&i2s0_8ch_p0>;
--		hp-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&hp_detect>;
--	};
--
--	hdmi0-con {
--		compatible = "hdmi-connector";
--		type = "a";
--
--		port {
--			hdmi0_con_in: endpoint {
--				remote-endpoint = <&hdmi0_out_con>;
--			};
--		};
--	};
--
--	leds {
--		compatible = "gpio-leds";
--		pinctrl-names = "default";
--		pinctrl-0 = <&led_rgb_b>;
--
--		led_rgb_b {
--			function = LED_FUNCTION_STATUS;
--			color = <LED_COLOR_ID_BLUE>;
--			gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
--			linux,default-trigger = "heartbeat";
--		};
--	};
--
--	fan: pwm-fan {
--		compatible = "pwm-fan";
--		cooling-levels = <0 120 150 180 210 240 255>;
--		fan-supply = <&vcc5v0_sys>;
--		pwms = <&pwm1 0 50000 0>;
--		#cooling-cells = <2>;
--	};
--
--	rfkill {
--		compatible = "rfkill-gpio";
--		label = "rfkill-m2-wlan";
--		radio-type = "wlan";
--		shutdown-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
--	};
--
--	rfkill-bt {
--		compatible = "rfkill-gpio";
--		label = "rfkill-m2-bt";
--		radio-type = "bluetooth";
--		shutdown-gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
--	};
--
--	vcc3v3_pcie2x1l0: regulator-vcc3v3-pcie2x1l0 {
--		compatible = "regulator-fixed";
--		enable-active-high;
--		gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pcie2_0_vcc3v3_en>;
--		regulator-name = "vcc3v3_pcie2x1l0";
--		regulator-always-on;
--		regulator-boot-on;
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		startup-delay-us = <50000>;
--		vin-supply = <&vcc5v0_sys>;
--	};
--
--	vcc3v3_pcie2x1l2: regulator-vcc3v3-pcie2x1l2 {
--		compatible = "regulator-fixed";
--		regulator-name = "vcc3v3_pcie2x1l2";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		startup-delay-us = <5000>;
--		vin-supply = <&vcc_3v3_s3>;
--	};
--
--	vcc3v3_pcie30: regulator-vcc3v3-pcie30 {
--		compatible = "regulator-fixed";
--		enable-active-high;
--		gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pcie3_vcc3v3_en>;
--		regulator-name = "vcc3v3_pcie30";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		startup-delay-us = <5000>;
--		vin-supply = <&vcc5v0_sys>;
--	};
--
--	vcc5v0_host: regulator-vcc5v0-host {
--		compatible = "regulator-fixed";
--		regulator-name = "vcc5v0_host";
--		regulator-boot-on;
--		regulator-always-on;
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--		enable-active-high;
--		gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&vcc5v0_host_en>;
--		vin-supply = <&vcc5v0_sys>;
--	};
--
--	vcc5v0_sys: regulator-vcc5v0-sys {
--		compatible = "regulator-fixed";
--		regulator-name = "vcc5v0_sys";
--		regulator-always-on;
--		regulator-boot-on;
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--	};
--
--	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
--		compatible = "regulator-fixed";
--		regulator-name = "vcc_1v1_nldo_s3";
--		regulator-always-on;
--		regulator-boot-on;
--		regulator-min-microvolt = <1100000>;
--		regulator-max-microvolt = <1100000>;
--		vin-supply = <&vcc5v0_sys>;
--	};
--};
--
--&combphy0_ps {
--	status = "okay";
--};
--
--&combphy1_ps {
--	status = "okay";
--};
--
--&combphy2_psu {
--	status = "okay";
--};
--
--&cpu_b0 {
--	cpu-supply = <&vdd_cpu_big0_s0>;
--};
--
--&cpu_b1 {
--	cpu-supply = <&vdd_cpu_big0_s0>;
--};
--
--&cpu_b2 {
--	cpu-supply = <&vdd_cpu_big1_s0>;
--};
--
--&cpu_b3 {
--	cpu-supply = <&vdd_cpu_big1_s0>;
--};
--
--&cpu_l0 {
--	cpu-supply = <&vdd_cpu_lit_s0>;
--};
--
--&cpu_l1 {
--	cpu-supply = <&vdd_cpu_lit_s0>;
--};
--
--&cpu_l2 {
--	cpu-supply = <&vdd_cpu_lit_s0>;
--};
--
--&cpu_l3 {
--	cpu-supply = <&vdd_cpu_lit_s0>;
--};
--
--&gpu {
--	mali-supply = <&vdd_gpu_s0>;
--	status = "okay";
--};
--
--&hdmi0 {
--	status = "okay";
--};
--
--&hdmi0_in {
--	hdmi0_in_vp0: endpoint {
--		remote-endpoint = <&vp0_out_hdmi0>;
--	};
--};
--
--&hdmi0_out {
--	hdmi0_out_con: endpoint {
--		remote-endpoint = <&hdmi0_con_in>;
--	};
--};
--
--&hdptxphy_hdmi0 {
--	status = "okay";
--};
--
--&i2c0 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&i2c0m2_xfer>;
--	status = "okay";
--
--	vdd_cpu_big0_s0: regulator@42 {
--		compatible = "rockchip,rk8602";
--		reg = <0x42>;
--		fcs,suspend-voltage-selector = <1>;
--		regulator-name = "vdd_cpu_big0_s0";
--		regulator-always-on;
--		regulator-boot-on;
--		regulator-min-microvolt = <550000>;
--		regulator-max-microvolt = <1050000>;
--		regulator-ramp-delay = <2300>;
--		vin-supply = <&vcc5v0_sys>;
--
--		regulator-state-mem {
--			regulator-off-in-suspend;
--		};
--	};
--
--	vdd_cpu_big1_s0: regulator@43 {
--		compatible = "rockchip,rk8603", "rockchip,rk8602";
--		reg = <0x43>;
--		fcs,suspend-voltage-selector = <1>;
--		regulator-name = "vdd_cpu_big1_s0";
--		regulator-always-on;
--		regulator-boot-on;
--		regulator-min-microvolt = <550000>;
--		regulator-max-microvolt = <1050000>;
--		regulator-ramp-delay = <2300>;
--		vin-supply = <&vcc5v0_sys>;
--
--		regulator-state-mem {
--			regulator-off-in-suspend;
--		};
--	};
--};
--
--&i2c6 {
--	status = "okay";
--
--	hym8563: rtc@51 {
--		compatible = "haoyu,hym8563";
--		reg = <0x51>;
--		#clock-cells = <0>;
--		clock-output-names = "hym8563";
--		pinctrl-names = "default";
--		pinctrl-0 = <&hym8563_int>;
--		interrupt-parent = <&gpio0>;
--		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
--		wakeup-source;
--	};
--};
--
--&i2c7 {
--	status = "okay";
--
--	es8316: audio-codec@11 {
--		compatible = "everest,es8316";
--		reg = <0x11>;
--		clocks = <&cru I2S0_8CH_MCLKOUT>;
--		clock-names = "mclk";
--		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
--		assigned-clock-rates = <12288000>;
--		#sound-dai-cells = <0>;
--
--		port {
--			es8316_p0_0: endpoint {
--				remote-endpoint = <&i2s0_8ch_p0_0>;
--			};
--		};
--	};
--};
--
--&i2s0_8ch {
--	pinctrl-names = "default";
--	pinctrl-0 = <&i2s0_lrck
--		     &i2s0_mclk
--		     &i2s0_sclk
--		     &i2s0_sdi0
--		     &i2s0_sdo0>;
--	status = "okay";
--
--	i2s0_8ch_p0: port {
--		i2s0_8ch_p0_0: endpoint {
--			dai-format = "i2s";
--			mclk-fs = <256>;
--			remote-endpoint = <&es8316_p0_0>;
--		};
--	};
--};
--
--&package_thermal {
--	polling-delay = <1000>;
--
--	trips {
--		package_fan0: package-fan0 {
--			temperature = <55000>;
--			hysteresis = <2000>;
--			type = "active";
--		};
--
--		package_fan1: package-fan1 {
--			temperature = <65000>;
--			hysteresis = <2000>;
--			type = "active";
--		};
--	};
--
--	cooling-maps {
--		map0 {
--			trip = <&package_fan0>;
--			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
--		};
--
--		map1 {
--			trip = <&package_fan1>;
--			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
--		};
--	};
--};
--
--&pcie2x1l0 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&pcie2_0_rst>;
--	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
--	vpcie3v3-supply = <&vcc3v3_pcie2x1l0>;
--	status = "okay";
--};
--
--&pcie2x1l2 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&pcie2_2_rst>;
--	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
--	vpcie3v3-supply = <&vcc3v3_pcie2x1l2>;
--	status = "okay";
--};
--
--&pcie30phy {
--	status = "okay";
--};
--
--&pcie3x4 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&pcie3_rst>;
--	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
--	vpcie3v3-supply = <&vcc3v3_pcie30>;
--	status = "okay";
--};
--
--&pinctrl {
--	hym8563 {
--		hym8563_int: hym8563-int {
--			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
--	leds {
--		led_rgb_b: led-rgb-b {
--			rockchip,pins = <0 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
--	sound {
--		hp_detect: hp-detect {
--			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
--	pcie2 {
--		pcie2_0_rst: pcie2-0-rst {
--			rockchip,pins = <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--
--		pcie2_0_vcc3v3_en: pcie2-0-vcc-en {
--			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--
--		pcie2_2_rst: pcie2-2-rst {
--			rockchip,pins = <3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
--	pcie3 {
--		pcie3_rst: pcie3-rst {
--			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--
--		pcie3_vcc3v3_en: pcie3-vcc3v3-en {
--			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
--	usb {
--		vcc5v0_host_en: vcc5v0-host-en {
--			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--};
--
--&pwm1 {
--	status = "okay";
--};
--
--&saradc {
--	vref-supply = <&avcc_1v8_s0>;
--	status = "okay";
--};
--
--&sdhci {
--	bus-width = <8>;
--	no-sdio;
--	no-sd;
--	non-removable;
--	mmc-hs400-1_8v;
--	mmc-hs400-enhanced-strobe;
--	status = "okay";
--};
--
--&sdmmc {
--	max-frequency = <200000000>;
--	no-sdio;
--	no-mmc;
--	bus-width = <4>;
--	cap-mmc-highspeed;
--	cap-sd-highspeed;
--	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
--	disable-wp;
--	sd-uhs-sdr104;
--	vmmc-supply = <&vcc_3v3_s3>;
--	vqmmc-supply = <&vccio_sd_s0>;
--	status = "okay";
--};
--
--&sdio {
--	max-frequency = <200000000>;
--	no-sd;
--	no-mmc;
--	non-removable;
--	bus-width = <4>;
--	cap-sdio-irq;
--	disable-wp;
--	keep-power-in-suspend;
--	wakeup-source;
--	sd-uhs-sdr12;
--	sd-uhs-sdr25;
--	sd-uhs-sdr50;
--	sd-uhs-sdr104;
--	vmmc-supply = <&vcc3v3_pcie2x1l0>;
--	vqmmc-supply = <&vcc_1v8_s3>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&sdiom0_pins>;
--	status = "okay";
--};
--
--&sfc {
--	pinctrl-names = "default";
--	pinctrl-0 = <&fspim2_pins>;
--	status = "okay";
--
--	flash@0 {
--		compatible = "jedec,spi-nor";
--		reg = <0>;
--		spi-max-frequency = <104000000>;
--		spi-rx-bus-width = <4>;
--		spi-tx-bus-width = <1>;
--	};
--};
--
--&uart6 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&uart6m1_xfer &uart6m1_ctsn &uart6m1_rtsn>;
--	status = "okay";
--};
--
--&spi2 {
--	status = "okay";
--	assigned-clocks = <&cru CLK_SPI2>;
--	assigned-clock-rates = <200000000>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
--	num-cs = <1>;
--
--	pmic@0 {
--		compatible = "rockchip,rk806";
--		spi-max-frequency = <1000000>;
--		reg = <0x0>;
--
--		interrupt-parent = <&gpio0>;
--		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
--			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
--
--		system-power-controller;
--
--		vcc1-supply = <&vcc5v0_sys>;
--		vcc2-supply = <&vcc5v0_sys>;
--		vcc3-supply = <&vcc5v0_sys>;
--		vcc4-supply = <&vcc5v0_sys>;
--		vcc5-supply = <&vcc5v0_sys>;
--		vcc6-supply = <&vcc5v0_sys>;
--		vcc7-supply = <&vcc5v0_sys>;
--		vcc8-supply = <&vcc5v0_sys>;
--		vcc9-supply = <&vcc5v0_sys>;
--		vcc10-supply = <&vcc5v0_sys>;
--		vcc11-supply = <&vcc_2v0_pldo_s3>;
--		vcc12-supply = <&vcc5v0_sys>;
--		vcc13-supply = <&vcc_1v1_nldo_s3>;
--		vcc14-supply = <&vcc_1v1_nldo_s3>;
--		vcca-supply = <&vcc5v0_sys>;
--
--		gpio-controller;
--		#gpio-cells = <2>;
--
--		rk806_dvs1_null: dvs1-null-pins {
--			pins = "gpio_pwrctrl1";
--			function = "pin_fun0";
--		};
--
--		rk806_dvs2_null: dvs2-null-pins {
--			pins = "gpio_pwrctrl2";
--			function = "pin_fun0";
--		};
--
--		rk806_dvs3_null: dvs3-null-pins {
--			pins = "gpio_pwrctrl3";
--			function = "pin_fun0";
--		};
--
--		regulators {
--			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
--				regulator-boot-on;
--				regulator-min-microvolt = <550000>;
--				regulator-max-microvolt = <950000>;
--				regulator-ramp-delay = <12500>;
--				regulator-name = "vdd_gpu_s0";
--				regulator-enable-ramp-delay = <400>;
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			vdd_cpu_lit_s0: vdd_cpu_lit_mem_s0: dcdc-reg2 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <550000>;
--				regulator-max-microvolt = <950000>;
--				regulator-ramp-delay = <12500>;
--				regulator-name = "vdd_cpu_lit_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			vdd_log_s0: dcdc-reg3 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <675000>;
--				regulator-max-microvolt = <750000>;
--				regulator-ramp-delay = <12500>;
--				regulator-name = "vdd_log_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--					regulator-suspend-microvolt = <750000>;
--				};
--			};
--
--			vdd_vdenc_s0: vdd_vdenc_mem_s0: dcdc-reg4 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <550000>;
--				regulator-max-microvolt = <950000>;
--				regulator-ramp-delay = <12500>;
--				regulator-name = "vdd_vdenc_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			vdd_ddr_s0: dcdc-reg5 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <675000>;
--				regulator-max-microvolt = <900000>;
--				regulator-ramp-delay = <12500>;
--				regulator-name = "vdd_ddr_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--					regulator-suspend-microvolt = <850000>;
--				};
--			};
--
--			vdd2_ddr_s3: dcdc-reg6 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-name = "vdd2_ddr_s3";
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--				};
--			};
--
--			vcc_2v0_pldo_s3: dcdc-reg7 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <2000000>;
--				regulator-max-microvolt = <2000000>;
--				regulator-ramp-delay = <12500>;
--				regulator-name = "vdd_2v0_pldo_s3";
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <2000000>;
--				};
--			};
--
--			vcc_3v3_s3: dcdc-reg8 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
--				regulator-name = "vcc_3v3_s3";
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <3300000>;
--				};
--			};
--
--			vddq_ddr_s0: dcdc-reg9 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-name = "vddq_ddr_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			vcc_1v8_s3: dcdc-reg10 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
--				regulator-name = "vcc_1v8_s3";
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1800000>;
--				};
--			};
--
--			avcc_1v8_s0: pldo-reg1 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
--				regulator-name = "avcc_1v8_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			vcc_1v8_s0: pldo-reg2 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
--				regulator-name = "vcc_1v8_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--					regulator-suspend-microvolt = <1800000>;
--				};
--			};
--
--			avdd_1v2_s0: pldo-reg3 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1200000>;
--				regulator-max-microvolt = <1200000>;
--				regulator-name = "avdd_1v2_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			vcc_3v3_s0: pldo-reg4 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
--				regulator-ramp-delay = <12500>;
--				regulator-name = "vcc_3v3_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			vccio_sd_s0: pldo-reg5 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <3300000>;
--				regulator-ramp-delay = <12500>;
--				regulator-name = "vccio_sd_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			pldo6_s3: pldo-reg6 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
--				regulator-name = "pldo6_s3";
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1800000>;
--				};
--			};
--
--			vdd_0v75_s3: nldo-reg1 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <750000>;
--				regulator-max-microvolt = <750000>;
--				regulator-name = "vdd_0v75_s3";
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <750000>;
--				};
--			};
--
--			vdd_ddr_pll_s0: nldo-reg2 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <850000>;
--				regulator-max-microvolt = <850000>;
--				regulator-name = "vdd_ddr_pll_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--					regulator-suspend-microvolt = <850000>;
--				};
--			};
--
--			avdd_0v75_s0: nldo-reg3 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <750000>;
--				regulator-max-microvolt = <750000>;
--				regulator-name = "avdd_0v75_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			vdd_0v85_s0: nldo-reg4 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <850000>;
--				regulator-max-microvolt = <850000>;
--				regulator-name = "vdd_0v85_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--
--			vdd_0v75_s0: nldo-reg5 {
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <750000>;
--				regulator-max-microvolt = <750000>;
--				regulator-name = "vdd_0v75_s0";
--
--				regulator-state-mem {
--					regulator-off-in-suspend;
--				};
--			};
--		};
--	};
--};
--
--&tsadc {
--	status = "okay";
--};
--
--&uart2 {
--	pinctrl-0 = <&uart2m0_xfer>;
--	status = "okay";
--};
--
--&u2phy1 {
--	status = "okay";
--};
--
--&u2phy1_otg {
--	status = "okay";
--};
--
--&u2phy2 {
--	status = "okay";
--};
--
--&u2phy2_host {
--	/* connected to USB hub, which is powered by vcc5v0_sys */
--	phy-supply = <&vcc5v0_sys>;
--	status = "okay";
--};
--
--&u2phy3 {
--	status = "okay";
--};
--
--&u2phy3_host {
--	phy-supply = <&vcc5v0_host>;
--	status = "okay";
--};
--
--&usbdp_phy1 {
--	status = "okay";
--};
--
--&usb_host0_ehci {
--	status = "okay";
--};
--
--&usb_host0_ohci {
--	status = "okay";
--};
--
--&usb_host1_ehci {
--	status = "okay";
--};
--
--&usb_host1_ohci {
--	status = "okay";
--};
--
--&usb_host1_xhci {
--	dr_mode = "host";
--	status = "okay";
--};
--
--&usb_host2_xhci {
--	status = "okay";
--};
--
--&vop_mmu {
--	status = "okay";
--};
--
--&vop {
--	status = "okay";
--};
--
--&vp0 {
--	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
--		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
--		remote-endpoint = <&hdmi0_in_vp0>;
--	};
--};
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Radxa Computer (Shenzhen) Co., Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "rk3588-rock-5.dtsi"
-+
-+/delete-node/ &eeprom;
-+/delete-node/ &pcie30x2_perstn_m1;
-+/delete-node/ &pcie3x2;
-+/delete-node/ &vcc_5v;
-+
-+/ {
-+	model = "Radxa ROCK 5B";
-+	compatible = "radxa,rock-5b", "rockchip,rk3588";
-+
-+	aliases {
-+		mmc2 = &sdio;
-+	};
-+
-+	regulator-3v3-1 {
-+		gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	regulator-5v0-2 {
-+		gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	rfkill {
-+		label = "rfkill-m2-wlan";
-+		shutdown-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	rfkill-bt {
-+		label = "rfkill-m2-bt";
-+	};
-+
-+	sound {
-+		hp-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&pinctrl {
-+	pcie {
-+		ekey_en: regulator-3v3-1 {
-+			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	sound {
-+		hp_detect: sound-0 {
-+			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb {
-+		usb_host_pwren_h: regulator-5v0-2 {
-+			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&sdio {
-+	bus-width = <4>;
-+	cap-sdio-irq;
-+	disable-wp;
-+	keep-power-in-suspend;
-+	no-mmc;
-+	no-sd;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdiom0_pins>;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc3v3_wf>;
-+	vqmmc-supply = <&vcc_1v8_s3>;
-+	wakeup-source;
-+	status = "okay";
-+};
-+
-+&u2phy1_otg {
-+	phy-supply = <&vcc5v_usb>;
-+};
-+
-+&u2phy2_host {
-+	/* connected to USB hub, which is powered by vcc5v0_sys */
-+	phy-supply = <&vcc5v0_sys>;
-+};
-+
-+&uart6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart6m1_xfer &uart6m1_ctsn &uart6m1_rtsn>;
-+	status = "okay";
-+};
-+
-+&usbc0 {
-+	/*
-+	 * When the board is starting to send power-delivery messages
-+	 * too late (5 seconds according to the specification), the
-+	 * power-supply reacts with a hard-reset. That removes the
-+	 * power from VBUS for some time, which resets the whole board.
-+	 */
-+	status = "fail";
-+};
-+
-+&usbc0_con {
-+	power-role = "sink";
-+	try-power-role = "sink";
-+	op-sink-microwatt = <1000000>;
-+	sink-pdos =
-+		<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>,
-+		<PDO_VAR(5000, 20000, 5000)>;
-+};
-+
-+&usbdp_phy0 {
-+	sbu1-dc-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
-+};
--- 
-2.43.0
+IIUC, the outcome of that race is the `WARN` if
+devres_release_all takes the spinlock first and has already remvoed the
+action?
+
+Could you do a custom devres_release here that mimick
+`devm_remove_action` but omit the `WARN`? This way it allows the memory
+behind DevresInner to be freed early without keeping it allocated until
+the end of device lifetime.
+
+> +        //
+> +        // SAFETY: When `drop` runs, it's guaranteed that nobody is accessing the revocable data
+> +        // anymore, hence it is safe not to wait for the grace period to finish.
+> +        unsafe { self.revoke_nosync() };
+> +    }
+> +}
+> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> index 6c836ab73771..2b61bf99d1ee 100644
+> --- a/rust/kernel/lib.rs
+> +++ b/rust/kernel/lib.rs
+> @@ -41,6 +41,7 @@
+>  pub mod cred;
+>  pub mod device;
+>  pub mod device_id;
+> +pub mod devres;
+>  pub mod driver;
+>  pub mod error;
+>  #[cfg(CONFIG_RUST_FW_LOADER_ABSTRACTIONS)]
 
 
