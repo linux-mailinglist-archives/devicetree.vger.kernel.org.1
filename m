@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-133835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D679FBD44
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 13:28:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53C619FBD58
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 13:32:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D286188094F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 12:28:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F8261661B6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 12:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3D311B6CF6;
-	Tue, 24 Dec 2024 12:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C47D1CDA14;
+	Tue, 24 Dec 2024 12:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zJMnPWxs"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="f9IvIx1g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB2F419D074;
-	Tue, 24 Dec 2024 12:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7BCF1B414D;
+	Tue, 24 Dec 2024 12:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735043284; cv=none; b=EwCWe5nJ2Dcfbm8ADQFQS18SYxvCK89Xe1DTuhxSldzOPIP4WM5MuvndDbEhGknewydFQHYbmgPAKaWml9lhBW5IM8ZaipDL/ILgrdYu81/A/ewkkGBnoy4bttxpM3ryLl0e9rcdm7aKuIBY4ndsOJb/ZVxhnueVDIstcp7AJKc=
+	t=1735043424; cv=none; b=Ev14fZ0dXBm8iC+apmHPPFq8ZPemQXzTa3EScOA8Q4OIbpC0phP7yglLm7Is7wUZyKl4WiAypEjDzMgcyNfnM55fTQqoQwXpl+tT+Na+wcc0qj2YbXclA/Kil9E36U1MM3QY2aWsoALSxdREHDXLlGczNGGDFe92gmBB8lpeLOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735043284; c=relaxed/simple;
-	bh=jMlF2wD6T0UM8plYKEtVQopdar0C7UDxweX1sIVepUs=;
+	s=arc-20240116; t=1735043424; c=relaxed/simple;
+	bh=olMfb7m5MvI6gvlwrBDmprG90c472yWRjwKN8LHnkPk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iN0SwI9w38j0CEzptZ3yS+44LLPX3A15dDxDo6tPB+6JjzullBRqNKIpeGCMpHRkkn9heL2HULt2qFvWvJcjqSn1h5HBr2qYg6OfV0kaYcxzCg+/ZJfWhfLvKsrmmZQt3xlJH3krL8yP0vqt9GJT+iu3ts6FWC0SM2Hn/pqcfhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zJMnPWxs; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=hBxFQbiRC9emnflQPb6sOU0F/pj1RG7yinKf9yvpJBxco0DvQahRj+7NIXzjknn7lUvvOaqb9dsZczYZslLdurQf3Cn6CYBzg8Srq7XrADPEWjM0BCsz3vPwN1IcDSefJiLO9vcgto6NPk/fS7inWlG8YR3dxSFgAprlfz55zXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=f9IvIx1g; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,17 +37,17 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=FpgSUxP8zy9z3Ozm+IeXLmSotIQFRVFdlAAn52p9XAk=; b=zJMnPWxsL2xtSkCXoWlGw8VLzA
-	hTNv5gQmIrm3nEfhiAXMtjlfwkkLzbXlFq2dLB1LwznnOH+h6+edEo/U4ktfxtvYMIMJfAchIeHcX
-	bmG3yfi4h2u+TyyjoSsQcLCz5ITJJyrwVqOaZA98oy/TgQ6/fUq+AqFqizV6yRbO1USJUl9/IjVdN
-	lqZKstEV8knrnwD4NqpgDcghDrNGu3Z/HwyWQXJl6XAPlokKzRl5WxcULPddtpbmHVwfiyTHD/42d
-	ufO/wrr5mLrTDZTOB+lnPnGfQ3HhWVbhSjr/mOL9gON/l3ToqetmH7kiNzcffRoFqlA84tFzCyIdo
-	rhdJBSyw==;
+	bh=4dyEAv3A9O4YKkslfXjx3dtbBj+iHetygGQxkZZo12I=; b=f9IvIx1gExi2NQvCb7U8Rs0YB2
+	KWLntdwOHLv1jDtsEFUF1ssTNIYv69SNjpIhp9OYNrH2H2U1/Q5nenWJCXXmqSsUDdILbzm56/nqB
+	kTTUZf6Cq7JtkORvZHwjsy98MNy20iZEbd9YrKvQmnZzdjhubqse6PgmH86k4ZkmJ5/1mSiwxgneS
+	tZzfbDJoeQDq3aHoYib5DN37We8m+BmuxtwMva/AC2IAMnAU/nKvKDrudosJBvJuCPYogjJozaj42
+	eNaZUUqLXvDTHKdTQ2/Dd2n6OajxGga2mVQbeac1NMGO9Yf+TPhYih8BX7pU+CYAiwiFns2BDlMet
+	TjlGBROg==;
 Received: from i5e860d12.versanet.de ([94.134.13.18] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tQ40u-00016A-Dw; Tue, 24 Dec 2024 13:27:52 +0100
+	id 1tQ43I-0001Ap-VH; Tue, 24 Dec 2024 13:30:20 +0100
 From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
 To: Kever Yang <kever.yang@rock-chips.com>
 Cc: linux-rockchip@lists.infradead.org,
@@ -57,11 +57,13 @@ Cc: linux-rockchip@lists.infradead.org,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-phy@lists.infradead.org,
  Kishon Vijay Abraham I <kishon@kernel.org>,
  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add rk3562
-Date: Tue, 24 Dec 2024 13:27:51 +0100
-Message-ID: <1956693.6tgchFWduM@diego>
-In-Reply-To: <20241224094240.3817261-1-kever.yang@rock-chips.com>
-References: <20241224094240.3817261-1-kever.yang@rock-chips.com>
+Subject:
+ Re: [PATCH 1/2] dt-bindings: phy: rockchip: Add rk3562 naneng-combophy
+ compatible
+Date: Tue, 24 Dec 2024 13:30:20 +0100
+Message-ID: <4353493.mogB4TqSGs@diego>
+In-Reply-To: <20241224094217.3817100-1-kever.yang@rock-chips.com>
+References: <20241224094217.3817100-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,49 +73,12 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Am Dienstag, 24. Dezember 2024, 10:42:39 CET schrieb Kever Yang:
-> Add compatible for the USB2 phy in the Rockchip RK3562 SoC.
+Am Dienstag, 24. Dezember 2024, 10:42:15 CET schrieb Kever Yang:
+> rk3562 use the same Naneng Combo Phy driver as rk3568.
 > 
 > Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
 
 Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-> ---
-> 
->  .../devicetree/bindings/phy/rockchip,inno-usb2phy.yaml         | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-> index 6a7ef556414c..367297f6f8b5 100644
-> --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-> @@ -19,6 +19,7 @@ properties:
->        - rockchip,rk3328-usb2phy
->        - rockchip,rk3366-usb2phy
->        - rockchip,rk3399-usb2phy
-> +      - rockchip,rk3562-usb2phy
->        - rockchip,rk3568-usb2phy
->        - rockchip,rk3576-usb2phy
->        - rockchip,rk3588-usb2phy
-> @@ -150,7 +151,6 @@ allOf:
->              enum:
->                - rockchip,rk3568-usb2phy
->                - rockchip,rk3588-usb2phy
-> -
->      then:
->        properties:
->          host-port:
-> @@ -190,6 +190,7 @@ allOf:
->                - rockchip,rk3328-usb2phy
->                - rockchip,rk3366-usb2phy
->                - rockchip,rk3399-usb2phy
-> +              - rockchip,rk3562-usb2phy
->                - rockchip,rk3568-usb2phy
->                - rockchip,rk3588-usb2phy
->                - rockchip,rv1108-usb2phy
-> 
-
-
 
 
 
