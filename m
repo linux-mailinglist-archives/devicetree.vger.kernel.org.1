@@ -1,133 +1,95 @@
-Return-Path: <devicetree+bounces-133723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC0BA9FBA58
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:02:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D9BD9FBA76
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:24:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7B00188567A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 08:02:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F87418844EF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 08:24:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D601190679;
-	Tue, 24 Dec 2024 08:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8363183CD1;
+	Tue, 24 Dec 2024 08:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qLVmvkrl"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="XFOUyotv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F7417B502;
-	Tue, 24 Dec 2024 08:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C31F327702;
+	Tue, 24 Dec 2024 08:24:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735027366; cv=none; b=t7gSU6cb0IXX5dcnW6d7LTw0w/tS1g5CSwXMp42bssUVL8t4sDR0Fcv8s/oyQqdz2/SkidTWQhuu5zdd7aPxPzhGpSjrD+be9wijUl6qigVgYPQT7Sy2L6ryYTqJz6aB+JzGgvBkAWowQv5MFyo+FtykjWE/6VEfU9w6xBS4EBc=
+	t=1735028643; cv=none; b=trT/ygwJOahEPmMO2ull/sgBnxpO4NPRP1+JNzNCM1fLNViZztjS2hO5bek3c8QNTPqsxSM1fhe245Wupn/ocpsmDcOG53Ak+VB9HOLqUPx2fGku8dkGYDzScGp0fe2xYf/lHSxIuAZxcNfOS5SiRRw2pPsOGPVQ5kIJ77Te/2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735027366; c=relaxed/simple;
-	bh=Z/XD1h0VJikgWhizjAxa3XqMcam4ZcSOMqnUDbPdub0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PrmhDqMY88q9b5s/bsGEezYRFQj6pHxPBlOIL9ADpEsOfrr5uha0TKc5Fyl3wne0/r0uWIr+AhEAnxJxFIROhTHBjSAIxja1hmHmh4WzJnNlKkq4chk6CpMTAPt5Zju1jVrGGwcnLGbvHQIQT8aN7e2zRg7vSWuGLNyKoEejLng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qLVmvkrl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 94288C4CEE1;
-	Tue, 24 Dec 2024 08:02:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735027365;
-	bh=Z/XD1h0VJikgWhizjAxa3XqMcam4ZcSOMqnUDbPdub0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=qLVmvkrloatNJ5lEvW0jKORICokpbU9hg4errjFx3mqucUZzGLgRMAw0U7yukDw2U
-	 zKrrk+UOwiy1UsIC4mqTdnWj2zAA+w16Ytov6q9Q8T7Xv+GYdPVspsMCvORFh9eFxo
-	 gyXqDNXV1zeVL8SYsKzec+1FWaTlL9AXTUBqU2ZO02OoypdQ9eNyKI0Ildq9SJ/FYC
-	 kbKDOx9Ezr2q2g9gaoTfSj9M4WMJjIJtG2ZvoZRXIeUzykbDD4+L2TDiGS1EIG27Of
-	 s7HdyRSJ+1VB3/GRR+fAKBYBvrCDkqiLGEffPAl1GBYE6gKo524W8QTMrRe9q9HvXY
-	 BNpVGV7syjdow==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 83F89E7718E;
-	Tue, 24 Dec 2024 08:02:45 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Tue, 24 Dec 2024 09:02:12 +0100
-Subject: [PATCH v2 3/3] dt-bindings: gpio: fairchild,74hc595: Document chip
- select vs. latch clock
+	s=arc-20240116; t=1735028643; c=relaxed/simple;
+	bh=LAUZHMRcN88MW4EajhRbRQ8ljSNAjtpgQzecKPwIMmc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LgMrullQweP8VslQ8rKA2NI8v+JEEDW4noBiW04HXLEVdX26Qux0beNEQ0Yz0JVHCHaZrLaXtCjSJnob/DR4ZFWjEFEnbfjFN4d0Vx7Y35eJmtzXdjHFjX7ztutrQ0z0IrcpA07TmdCpSikETmDCXDz8dGJX/01E9RPUsJJDjjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=XFOUyotv; arc=none smtp.client-ip=117.135.210.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=4e1ob
+	V0cPgwgcDo8hxgun6VysOTGhY7lznRi05MbxUo=; b=XFOUyotvyRIhch8RN2oEj
+	a6coWCFhfprvFsF2HxT78buQS8B2Y9ZwSBBk2fp2+PEGq33VPGLBady9lOWLeaMT
+	cKXmEgstp/orNNB9cXPHCebNIJq8CHTuE+Ic5SyVw2hzjKZD6J7ZoudWAh0JMJT8
+	dVLALRjGWfE9OQFc2ya5PE=
+Received: from ProDesk.. (unknown [])
+	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wD3R1F0b2pnfyNbBQ--.5317S2;
+	Tue, 24 Dec 2024 16:23:20 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: cristian.ciocaltea@collabora.com,
+	detlev.casanova@collabora.com,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	sebastian.reichel@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH] dt-bindings: soc: rockchip: add rk3576 hdptxphy grf syscon
+Date: Tue, 24 Dec 2024 16:23:09 +0800
+Message-ID: <20241224082315.264091-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241224-gpio74-v2-3-bbcf14183191@posteo.net>
-References: <20241224-gpio74-v2-0-bbcf14183191@posteo.net>
-In-Reply-To: <20241224-gpio74-v2-0-bbcf14183191@posteo.net>
-To: Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735027364; l=1852;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=cH5xit3DV86hTLAfvgIOa3yWbYuQXqh7Jhuym93dIKo=;
- b=wgPZt5Bm15HKsHlWSLf2fWzDXXz5ECnO5nU6CLR0GH+pCQu3++Eq8NuFFDkBTXOQSL3N09quU
- y/EBzlQ46rJBW5cuDhEMPp3YcjFIOzt72DDzM1i7rZdKA74mI5y9JM8
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+X-CM-TRANSID:_____wD3R1F0b2pnfyNbBQ--.5317S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Gr1rGw13Ww4UJr43CF45KFg_yoWfJFgEya
+	4xZw1UZFs5tr1Fgw1DAayI9Fn8Aas7Kr95CF4UAF48CayqkFZ5KF95Xw1akr18W3WxuFyf
+	ua1IqrWUGanxGjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU1yrW7UUUUU==
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiMx2-XmdqaMi32AAAsN
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+From: Andy Yan <andy.yan@rock-chips.com>
 
-From looking at the data sheets, it is not obvious that CS# and latch
-clock can be treated at the same, but doing so works fine and saves the
-hassle of (1) trying to specify a SPI device without CS, and (2) adding
-another property to drive the latch clock[1].
+Add hdptxphy grf syscon compatibles for rk3576.
 
-[1]: https://lore.kernel.org/lkml/20241213-gpio74-v1-2-fa2c089caf41@posteo.net/
-
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 ---
 
-v2:
-- new patch
----
- .../devicetree/bindings/gpio/fairchild,74hc595.yaml     | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
-index 629cf9b2ab8e4a63fbe17f56792a46d2066d40c3..a209c5b4f6e01ae9a376148b229273db7fdf0aa0 100644
---- a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
-+++ b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
-@@ -6,6 +6,23 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Generic 8-bit shift register
- 
-+description: |
-+  NOTE: These chips nominally don't have a chip select pin. They do however
-+  have a rising-edge triggered latch clock (or storage register clock) pin,
-+  which behaves like an active-low chip select.
-+
-+  After the bits are shifted into the shift register, CS# is driven high, which
-+  the 74HC595 sees as a rising edge on the latch clock that results in a
-+  transfer of the bits from the shift register to the storage register and thus
-+  to the output pins.
-+                      _   _       _   _
-+  shift clock    ____| |_| |_..._| |_| |_________
-+
-+  latch clock                           * trigger
-+                 ___                     ________
-+  chip select#      |___________________|
-+
-+
- maintainers:
-   - Maxime Ripard <mripard@kernel.org>
- 
-
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 7eca9e1ad6a3..61f38b68a4a3 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -23,6 +23,7 @@ properties:
+               - rockchip,rk3576-bigcore-grf
+               - rockchip,rk3576-cci-grf
+               - rockchip,rk3576-gpu-grf
++              - rockchip,rk3576-hdptxphy-grf
+               - rockchip,rk3576-litcore-grf
+               - rockchip,rk3576-npu-grf
+               - rockchip,rk3576-php-grf
 -- 
-2.45.2
-
+2.34.1
 
 
