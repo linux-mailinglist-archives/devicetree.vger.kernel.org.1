@@ -1,94 +1,176 @@
-Return-Path: <devicetree+bounces-133746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2A9F9FBB05
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:17:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C27DB9FBB0A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:17:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0301F188556C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:17:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0BE57A072F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:17:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D797E19CC0F;
-	Tue, 24 Dec 2024 09:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3998D1B0F15;
+	Tue, 24 Dec 2024 09:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZZsJ6ceZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SDiO5VY2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB251925BF;
-	Tue, 24 Dec 2024 09:16:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EBD417B502;
+	Tue, 24 Dec 2024 09:17:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735031809; cv=none; b=rN2d70OEH0Si2owd6vDeyql9a4lhk19n9KWOnX7AMTZCK0Rq5zK5G5o9QXmsWgVrFdTT0y2n7o1ZfSm5/NOzl82E2kyQo1tDxqRiO7zMugibl5fH4QmXmC48tAfdMET+s/XnWpkToKZ8tTm5Ze1AFv7yZqmZl2673oQViwiIovA=
+	t=1735031845; cv=none; b=n1YK3BCJKKA0URfV7ZK1m93rgo/Nh9NNctVbVSm2Uh4eoMJ8mwXyLpiAnNgmyV1tdRMEhnYFCObtlWL50n022igpys964YNuMHKT7Bl+QI2QWrY2umXF7kLcpmbVCLkGTcqCp/z5wkM6t6vZAQa39HMXofZv+OxoPg/Km5GLcvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735031809; c=relaxed/simple;
-	bh=68gQ61YFtNb5/b2Ev2aLsynR409DaN2niltpErMKk5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HYGYLTJ3FVeC1ZvwUtI06h+TxHo2sFs/b/5Z+IVB7LI9I/E8GmFJWX9GN8LbmSE1Xr0ssY84Jw01twInWmHEfxbJ7V3aXBBUdsXZ8ZOR6qqBh5FkQcK8/gfazMX0kEcEuIRIe42dX7dnf4b26iIPX6U5qziJijFc+vSPtSQbF/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZZsJ6ceZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E9BBC4CED7;
-	Tue, 24 Dec 2024 09:16:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735031809;
-	bh=68gQ61YFtNb5/b2Ev2aLsynR409DaN2niltpErMKk5k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZZsJ6ceZ5zPOSXemu45/hILaSsPdBx2SDLP+LBwv5XQOWZOybeXORzW+RCOL7KIut
-	 7s8fCz30nPzNtO0MPUph4zOmsbGXJoaRGlOteTHxG7sZoh718QcBTQ+iVZMZQFooVJ
-	 174ZI95bERxaQbvnB4Ak5b1xoMfHSjZHbZGlI7jQFioGPoB1STPLvG69a4HfXSpiQp
-	 4U3GXphBcjbyHsvIt//5vgRBjGdzjIOT8tMFjm/vwg6uZpwjDU5r1r3yFXyGpm+Vrc
-	 cUfiJ/EOhRFp47M+M64XB3ajJXnDWlx8jleZOIFtaht/tt4w+ej10ALYJyIvdfOb6y
-	 73ldnO8QMookQ==
-Date: Tue, 24 Dec 2024 10:16:46 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, quic_mohamull@quicinc.com, 
-	quic_hbandi@quicinc.com, quic_anubhavg@quicinc.com, linux-bluetooth@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/1] dt-bindings: bluetooth: update the wcn6750
- required properties
-Message-ID: <mzfad53v2paz7cawaepvaqeht2rr5spxyctqrlniiqgyfyyqlv@ixhxcksd3guz>
-References: <20241223135700.22660-1-quic_janathot@quicinc.com>
- <20241223135700.22660-2-quic_janathot@quicinc.com>
+	s=arc-20240116; t=1735031845; c=relaxed/simple;
+	bh=r3LnchZt5jiUFC/pRAo2XnQFUmzjbmH3/bh/08GwTGI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MpMgg0zpPUrohHUL6BJ89VNIB0pTQfkLQEoBgyAICATyl6slEGJToiVokZrlIQmy2WDrh2xR8LRJC06dQh7qF2R+wrmWMiVKxGq2Vehd4jzumtPkk4TMQm+nIBujReI1GolGlekxRtBUnW04XkGfxz78PiDuRh1glb6/M75aFUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SDiO5VY2; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BNJt0SX029914;
+	Tue, 24 Dec 2024 09:17:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4aMx8dzF99zpwMjEq3djGBe4XE2DbTVdqlX8oyPwli8=; b=SDiO5VY2wTSxGHwJ
+	xgPMITu7vyRMj+KPTOmJnIu3Ew9lu8SL6cOQo7+yxIMuG84siCrrRU6wmftKDmHt
+	qw6TxDP4Imjd2iavX8MWcBeF2M/LXN6/o2KChdhFyE/6aBSUWEFVbKlbwQigdv77
+	4yqJswTXxVEO2ka9J0QDXmUpq5hnyBrnVgdniYifKSUZ76OAC1gGle27Q7AF2+kW
+	pvLEoAi7v14JF3vk5SapiUUunzDWGtia3jxyQLbROWYlb4woI3vGDKPG/trOMtTD
+	pNZeVhSsQUE0LSZvJiWz9sK6N/Dbs/17CLQbdcCwE5LH3RN4jCIvNaZJpu2sl+EJ
+	e/medQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43qee0j8f6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Dec 2024 09:17:05 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BO9H4m1014212
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Dec 2024 09:17:04 GMT
+Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 24 Dec
+ 2024 01:16:55 -0800
+Message-ID: <db61cf6e-24a9-4b99-b4f0-4871f7fefae8@quicinc.com>
+Date: Tue, 24 Dec 2024 14:46:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241223135700.22660-2-quic_janathot@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 3/5] net: pcs: qcom-ipq9574: Add PCS
+ instantiation and phylink operations
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Lei Wei <quic_leiwei@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit
+	<hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_luoj@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
+        <vsmuthu@qti.qualcomm.com>, <john@phrozen.org>
+References: <20241216-ipq_pcs_6-13_rc1-v3-0-3abefda0fc48@quicinc.com>
+ <20241216-ipq_pcs_6-13_rc1-v3-3-3abefda0fc48@quicinc.com>
+ <d278ad9a-5d23-4cb8-9de7-5a51d838ba5d@quicinc.com>
+ <yfh7kghxy5hjblnzlapcpzj54chep45pjkgpvelzbp4ijuq7ci@e6te6c36mkxc>
+Content-Language: en-US
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <yfh7kghxy5hjblnzlapcpzj54chep45pjkgpvelzbp4ijuq7ci@e6te6c36mkxc>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 37VCoxNVgZKIElLSVId1cePEXBARo0vS
+X-Proofpoint-GUID: 37VCoxNVgZKIElLSVId1cePEXBARo0vS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ clxscore=1015 priorityscore=1501 bulkscore=0 spamscore=0 phishscore=0
+ mlxscore=0 malwarescore=0 mlxlogscore=686 lowpriorityscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412240078
 
-On Mon, Dec 23, 2024 at 07:27:00PM +0530, Janaki Ramaiah Thota wrote:
 
-Subject: everything is an update... say something useful, e.g. use PMU
-abstraction for WCN6750
 
-> Drop the inputs from the host and instead expect the Bluetooth node to
-> consume the outputs of the internal PMU.
-
-On which device?
-
-But anyway I have doubts this is correct. enable GPIO is a pin going
-from the host, not from PMU.
-
+On 12/24/2024 12:45 PM, Dmitry Baryshkov wrote:
+> On Tue, Dec 24, 2024 at 12:29:56PM +0530, Manikanta Mylavarapu wrote:
+>>
+>>
+>> On 12/16/2024 7:10 PM, Lei Wei wrote:
+>>> This patch adds the following PCS functionality for the PCS driver
+>>> for IPQ9574 SoC:
+>>>
+>>> a.) Parses PCS MII DT nodes and instantiate each MII PCS instance.
+>>> b.) Exports PCS instance get and put APIs. The network driver calls
+>>> the PCS get API to get and associate the PCS instance with the port
+>>> MAC.
+>>> c.) PCS phylink operations for SGMII/QSGMII interface modes.
+>>>
+>>> Signed-off-by: Lei Wei <quic_leiwei@quicinc.com>
+>>> ---
+>>>  drivers/net/pcs/pcs-qcom-ipq9574.c   | 463 +++++++++++++++++++++++++++++++++++
+>>>  include/linux/pcs/pcs-qcom-ipq9574.h |  16 ++
+>>>  2 files changed, 479 insertions(+)
+>>>
 > 
-> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-> ---
->  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml           | 5 -----
->  1 file changed, 5 deletions(-)
+>>> +
+>>> +/* Parse the PCS MII DT nodes which are child nodes of the PCS node,
+>>> + * and instantiate each MII PCS instance.
+>>> + */
+>>> +static int ipq_pcs_create_miis(struct ipq_pcs *qpcs)
+>>> +{
+>>> +	struct device *dev = qpcs->dev;
+>>> +	struct ipq_pcs_mii *qpcs_mii;
+>>> +	struct device_node *mii_np;
+>>> +	u32 index;
+>>> +	int ret;
+>>> +
+>>> +	for_each_available_child_of_node(dev->of_node, mii_np) {
+>>> +		ret = of_property_read_u32(mii_np, "reg", &index);
+>>> +		if (ret) {
+>>> +			dev_err(dev, "Failed to read MII index\n");
+>>> +			of_node_put(mii_np);
+>>
+>> Assume, the second child node failed here.
+>> Returning without calling the first child node of_node_put().
+>>
+>> Please clear the previous child nodes resources before return.
+> 
+> s/clear child nodes/put OF nodes/
+> 
+> Note, for_each_available_child_of_node() handles refcounting for
+> the nodes that we looped through. So, I don't think the comment is
+> valid. If I missed something, please expand your comment.
 > 
 
-I don't understand why this is v6 of previous patchset. There was no
-such patch before.
+Yes, you are correct. for_each_available_child_of_node() handles the
+refcount. I am dropping my comment.
 
-Best regards,
-Krzysztof
+> P.S. Please also trim your messages. There is no need to resend the
+> whole patch if you are commenting a single function.
+> 
 
+Got it. Thank you for your input.
+
+Thanks & Regards,
+Manikanta.
 
