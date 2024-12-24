@@ -1,195 +1,166 @@
-Return-Path: <devicetree+bounces-133728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D419FBA8C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:35:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 036FB9FBA9E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:46:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D240165680
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 08:35:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51AF87A1BF4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 08:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F235187346;
-	Tue, 24 Dec 2024 08:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C57D18E37B;
+	Tue, 24 Dec 2024 08:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HJC+Q58M"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YqM9bkAp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDEB13D503;
-	Tue, 24 Dec 2024 08:35:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2D31714A1
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 08:46:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735029307; cv=none; b=HiD96moOUhgACUw03Xg2xrPiE35c3fz8vEdXzax+6BXlpyiJlHl13ZBRR/BwdIqOkSrDZr7GKKSHS+pzVUXG0Yv20nJWRf/QdAnJ4WpYIH1dN873T8GxBx+h+CoXvePPm0E2Xod2Z7Q7Ha1zc2NyXcXQapJuxqIKvzfYAJdNyZ0=
+	t=1735029995; cv=none; b=lbpdQlNe+2c+VWvbVWEDcJbjRPtJA++1Bt/UIvGrxW2GzWCRcc4viIHlZZg6Qji2Dn3EgXA+paWlYSHGGpnQj11iVQNxiRzkk3ePWrrJELqAswr4KSpjUEpe+CzfGYbHVQ1fdEU8i83lPp6cC6BS7y5+e6iou2nnIyoCW5FXXxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735029307; c=relaxed/simple;
-	bh=LVK4FW2pIWOu8VxpMW2J0s2UCHgv4bTwZ5mPP0NHWTM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tiLOYLcmMw2tk4JaPfWdski1wtQWjBLpkg3dtxfZtLCmwHTWOFZUQx/UQVy2CVSHJ75PZG5kcRQbYv98O99eLVkkHiClwDa39X4mG3fg95EBqPownaRdhAXKV7gpvTsSSEAs+Jtf59Ncx8bPuyJuEfzul+GWJgWfKhwrQmid2Fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HJC+Q58M; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e461015fbd4so3956575276.2;
-        Tue, 24 Dec 2024 00:35:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735029304; x=1735634104; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BgCVgeN0wOheXPUe0p+npMyY7H/G+TEP8YjiV9rhOnQ=;
-        b=HJC+Q58MfN1HxxWdxiPsr6zLcJCsP1Mqledf2foMdmIGJznCPTJAUEpOFAyIzxNz5C
-         sqr8sjTt5EsJgWDmHerrdNZQTimByzcnOBOE7P1nOQRlSSiRJvl5ohJvtDJSRlMVi472
-         Ys6IHw23l9JE7QAtWMrjj8Ly/0zDMzUx+OWCane1jGG6meA0SGTOilZ3FnOxXBvq2BjL
-         On/6CqwwipExon2EEYc0V8yGal648IqCPckY5+WUKN6jfybapRdm99LTmQc44di7R/2i
-         mukrul6mcVhgOqp5w0Y1Amc5wtu6YQ1MZLQ5a+ZdIWWXZf+bjNDWR9c2Vzg/FI0df+mp
-         w/jA==
+	s=arc-20240116; t=1735029995; c=relaxed/simple;
+	bh=6m3t0Q+ee8LpnU5pwY7dC/s+jt8r2vlpmVm/8YgvW3o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JcpCO72Hje1MmR8zH4K33LSrWHRiomfKytRXnjqzkC7mNGGT4d05SDKOU/EBAm8zOLooI1bzxg8KAHex4QCBfEhXd5f9teRq5WDMP5QkwshOI2bEy9KjrNIpotYo9vhcEFkQX0pjhpWinpyVs9ZFdEsDMd+Hq+3vywezzl0Jwj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YqM9bkAp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BO0mpmZ028999
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 08:46:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=/dFp7/inuZ2ik3aChnKC4Hn4A+aJ5IKNhmJ
+	4jwh2274=; b=YqM9bkAp0N/XzURdMolOT3S28pZZssHslkXEiR52EjCm8EzHhXV
+	BOWDtePHVVPiZI4oUheSNC29xHTV8t1rHH4xIGkuLxBjOfVi6T0LEEG+g6PVA+ZA
+	F8RGiV+nFxfLmm5U5Wv6Yobc/wpBORuloD0Nk6AyQPtAeGtqMj2fhAx8XR0T2Nbr
+	VgHkO/FuEojVQC3ThrVFf/HirKLBLTJL8fVG+jcwlb8EbhoTI8ib3ZH/xkJroD8t
+	BSGYpjIMR9m0CqtDDI02/r7vG53ouzutNzbqtthIMZZ+jZi4cEXDCw+jym6Tj0hn
+	c44P5ABvtHxN5FT0Kr4XgusJPdjrEBg1r1w==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43qjqvhqqg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 08:46:32 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-21648c8601cso43150225ad.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 00:46:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735029304; x=1735634104;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BgCVgeN0wOheXPUe0p+npMyY7H/G+TEP8YjiV9rhOnQ=;
-        b=iwXQ4FSyo/i83v1W/ZoBHyWV0FHVTEMTZEivtwBvN1GWvNWS0CZCnj4SQSFzX6OK4i
-         heQwe3RCf2ZMzL6NiOt+8SwgLGo3vGWKvBg7SlIJk+G194SmXLDjf3BRdgD1o+yIOVCi
-         KABR3ljifzptPY6Iq6IcvVNhApcvKF7qPGizPlxhTPK1NA3jUI91YRPWCwL1Pp98smyL
-         wdAFIPrglumjHDk7GiJXp/jdVE9SFe+6OLVKORjZJkoynmKDK7/UoICFlcLU7jWkTiuY
-         FqIx4rFgbBuQeYfdXFNoxHqOOrN4oAoOzwcTDqSFSR+UFsXcvwB3Rxi+uyChJG4MX4c4
-         9KGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUpLdiEHk2X5a8xe7vj7sAbho51FEroRa/lQHw1huKzmeH2zaPK4G2f+eBgxhTz9GURzTK9yKeGPUxr@vger.kernel.org, AJvYcCVRoTp/V8Gam08WAIZKhXteXZEjs1Td9RzgNw6xzW3iWxExJGKt9iOQQo5lVT5TJHofF0K/gbQPC2ry@vger.kernel.org, AJvYcCVT5XLhr4hoLIIjgW1qPhoA7I9whsWshjKSPFsTVDb8/PFf9ab9NhyIQReyPpr0JtafUgkhUDHy2Qrx7pLS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgWCg098fFrGMvEMOhiMZHkmY5m/3ZKHSyeDMB3zQzE/05A8UQ
-	k8LqAOOXl1yRAfmBWI1bIxT8qFfvHR3TjwIHF7/dcqaoPZ2JxCtZlw2hXZrkqeSko0eujXuQK9m
-	R7J8EJkwdb7wpZC0yDsp+SaJJkx8=
-X-Gm-Gg: ASbGncs7W0kL3Ghgbr011cKjDVj0hx163rKL64R4ho7INrK9i6KryFLQS0Q4oCuZyzz
-	mhFQbpbyCeMNDm46R6up0b71QfMohRydM8/BOEjTo
-X-Google-Smtp-Source: AGHT+IHi7ZkSCFx2vwI8ZF7AXi5AHBQsK++ke2rv1PF8DQ0znblHAfcvl+lWC3uBrJAstXD0hu8gA2de7Y4XVRLgaZI=
-X-Received: by 2002:a05:6902:240e:b0:e38:a081:f533 with SMTP id
- 3f1490d57ef6-e538c20dfc4mr10174313276.7.1735029304401; Tue, 24 Dec 2024
- 00:35:04 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735029991; x=1735634791;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/dFp7/inuZ2ik3aChnKC4Hn4A+aJ5IKNhmJ4jwh2274=;
+        b=Nb+8UZBlLiRwkQGa/Wvcvj8caV6FKKSaYn8cZKFkP5rH3p0P7TE5/meGnoj1ovxsHn
+         Aj1LJU1QH66oDquGNy2zI4fg1oQ0Y8s3zYmlYd00Y7L1IfDX6v8KkWdMRxiztjOgMeV6
+         gQUWEGySnfscFVRQK76e2Met7RFF5vtyQ758S6JV0oOnVsYnNakbtZl0x2f5i87tyHMI
+         sIpVWjLyOd0so4vcWKFyriiZHdCTRZiruj04rXesKzuz9cdAh6TdkEjZbp9CpxL1dU4J
+         9xE7ssgrPdG4582RD/abM7ofcahSei+lXQH+WVxHecWwLPHKouA/pE18yjn5ssopKK0L
+         KTsg==
+X-Forwarded-Encrypted: i=1; AJvYcCVk9h4tbItezzbzL/aUQs020U4I7uDqMmLeINsFcNN0eeJcabrB36QvCNJH4WUhHwGJ8exyeh9MFNKa@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMVdvujQpcORzHhyiO2iI7RhdXvSpgIee/lMuOO9wF9Eqpx4nD
+	IKxguIl/hLGHPjzOoIud1pB3c5EDgzFzYuhFXCaDLwLegeu6Ak1IjFcF8UXtqS4jXIZznQdhRto
+	NuF7E+XmRW8qrZzDU/+b+YMvUBI6yKxQesrE9IlbBcTlPVEK7+XXaR/rj08eR
+X-Gm-Gg: ASbGncuuJEpv8RRVlW6nbzS6LUu7QTQwlqrasNhjMSOSRr6tw4CDJd+irz1sXRuSUqN
+	OdePspqG4D4OIvyd+L5ieylCPFXFet5V2Z3sF9aK6I6oY8xkDdsvfdghzboAQpoP99EJOrlDi2s
+	el+BG+vi0N22Y9aDBcjaPWfI3R7IqzjiBSf9LSeiKy7c/qjeNPLU+8Q9YJTLe2O78fedsYglmqo
+	yr11hl2dJrgsptnb/T/d4EEiY67+QeqSpaWVm1bAbiDjrpj3l723vNRVSZYtf1TEmIUP1SljWFo
+	HWeFeaRcgXUHZ6Df4jY=
+X-Received: by 2002:a17:903:2306:b0:205:4721:19c with SMTP id d9443c01a7336-219e6f1448cmr197392615ad.37.1735029991377;
+        Tue, 24 Dec 2024 00:46:31 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFx6N+BNVCJnCmEfHaE8WX8Zsoe41fiC374QBtCvPlMKHKhsQSSjWcfjL9+FH+eBLnuvq+wjg==
+X-Received: by 2002:a17:903:2306:b0:205:4721:19c with SMTP id d9443c01a7336-219e6f1448cmr197392315ad.37.1735029990976;
+        Tue, 24 Dec 2024 00:46:30 -0800 (PST)
+Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9f692fsm85471195ad.216.2024.12.24.00.46.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Dec 2024 00:46:30 -0800 (PST)
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Varadarajan Narayanan <quic_varada@quicinc.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_ppratap@quicinc.com,
+        quic_jackp@quicinc.com,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Subject: [PATCH v3 0/3] Add support for USB controllers on QCS615
+Date: Tue, 24 Dec 2024 14:16:18 +0530
+Message-Id: <20241224084621.4139021-1-krishna.kurapati@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240222081231.213406-1-nylon.chen@sifive.com>
- <20240222081231.213406-4-nylon.chen@sifive.com> <jvwgsszvs4jtcytcphsdjulzgqfqzdp4sisu236ddwsqgmvriw@ngi4ljgh5b74>
- <CAHh=Yk92=hp+kaTJWL13_jwJ5gzAAi8gbRF=Ns9=yq2trRUQEg@mail.gmail.com> <xf6ympnaljfjztptb5w5qdpuluckptozdz5a7gtuycsev32ngr@x2ovibqv6evr>
-In-Reply-To: <xf6ympnaljfjztptb5w5qdpuluckptozdz5a7gtuycsev32ngr@x2ovibqv6evr>
-From: Nylon Chen <nylon7717@gmail.com>
-Date: Tue, 24 Dec 2024 16:34:53 +0800
-Message-ID: <CAGKtFavQAZOof5QSTFCEaRJEPETm5aBqzkV4g24n3ioiBAOgDA@mail.gmail.com>
-Subject: Re: [PATCH v9 3/3] pwm: sifive: Fix the error in the idempotent test
- within the pwm_apply_state_debug function
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Nylon Chen <nylon.chen@sifive.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, conor@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, 
-	paul.walmsley@sifive.com, aou@eecs.berkeley.edu, thierry.reding@gmail.com, 
-	vincent.chen@sifive.com, zong.li@sifive.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: mFwwH5By6gHgNoO4i07q8VQEPHoQ3WqT
+X-Proofpoint-GUID: mFwwH5By6gHgNoO4i07q8VQEPHoQ3WqT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ priorityscore=1501 phishscore=0 bulkscore=0 mlxscore=0 lowpriorityscore=0
+ mlxlogscore=999 clxscore=1015 adultscore=0 impostorscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412240072
 
-Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2024=E5=B9=
-=B44=E6=9C=8812=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=883:05=E5=AF=AB=
-=E9=81=93=EF=BC=9A
->
-> On Tue, Apr 02, 2024 at 10:01:39AM +0800, Nylon Chen wrote:
-> > Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2024=
-=E5=B9=B43=E6=9C=8819=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:17=E5=
-=AF=AB=E9=81=93=EF=BC=9A
-> > >
-> > > Hello,
-> > >
-> > > On Thu, Feb 22, 2024 at 04:12:31PM +0800, Nylon Chen wrote:
-> > > > Round the result to the nearest whole number. This ensures that
-> > > > real_period is always a reasonable integer that is not lower than t=
-he
-> > > > actual value.
-> > > >
-> > > > e.g.
-> > > > $ echo 110 > /sys/devices/platform/led-controller-1/leds/d12/bright=
-ness
-> > > > $ .apply is not idempotent (ena=3D1 pol=3D0 1739692/4032985) -> (en=
-a=3D1 pol=3D0 1739630/4032985)
-> > > >
-> > > > Co-developed-by: Zong Li <zong.li@sifive.com>
-> > > > Signed-off-by: Zong Li <zong.li@sifive.com>
-> > > > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> > > > ---
-> > > >  drivers/pwm/pwm-sifive.c | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-> > > > index a586cfe4191b..bebcbebacccd 100644
-> > > > --- a/drivers/pwm/pwm-sifive.c
-> > > > +++ b/drivers/pwm/pwm-sifive.c
-> > > > @@ -101,7 +101,7 @@ static void pwm_sifive_update_clock(struct pwm_=
-sifive_ddata *ddata,
-> > > >
-> > > >       /* As scale <=3D 15 the shift operation cannot overflow. */
-> > > >       num =3D (unsigned long long)NSEC_PER_SEC << (PWM_SIFIVE_CMPWI=
-DTH + scale);
-> > > > -     ddata->real_period =3D div64_ul(num, rate);
-> > > > +     ddata->real_period =3D DIV_ROUND_UP_ULL(num, rate);
-> > > >       dev_dbg(ddata->chip.dev,
-> > > >               "New real_period =3D %u ns\n", ddata->real_period);
-> > > >  }
-> > Hi Uwe
-> > >
-> > > pwm_sifive_apply has a DIV64_U64_ROUND_CLOSEST(). I wonder if that ne=
-eds
-> > > adaption, too?!
-> > According to my experiments, no adjustment is necessary.
->
-> Did you enable PWM_DEBUG and tested with something like:
->
->         seq 5000 100000 | while read p; do echo p > /sys/class/pwm/pwmchi=
-pX/pwmY/period; done
->
-Hi Uwe,
-I apologize for the significant delay in responding to your query,
-I've now completed a thorough verification of the PWM_DEBUG
-functionality.
+This series aims at enabling USB on QCS615 which has 2 USB controllers.
+The primary controller is SuperSpeed capable and secondary one is
+High Speed only capable. The High Speed Phy is a QUSB2 phy and the
+SuperSpeed Phy is a QMP Uni Phy which supports non-concurrent DP.
 
-The Period Testing:
-seq 5000 5000 100000 | while read p; do echo $p >
-/sys/class/pwm/pwmchip0/pwm0/period echo "Testing period: $p" done
+Link to v1:
+https://lore.kernel.org/all/20241014084432.3310114-1-quic_kriskura@quicinc.com/
 
-The Duty Cycle Testing:
-for percent in 0 25 50 75 100; do duty=3D$((100000 * percent / 100))
-echo $duty > /sys/class/pwm/pwmchip0/pwm0/duty_cycle done
+Link to v2:
+https://lore.kernel.org/all/20241017130701.3301785-1-quic_kriskura@quicinc.com/
 
-- All period values from 5000ns to 100000ns were applied successfully
-- Various duty cycle ratios were tested without issues
-- Monitored dmesg output during tests - no kernel messages about wrong
-settings were observed
+All the patches are acked. But some are merged and some don't apply clean.
 
-Let me know if you need any additional test data or have other
-parameters you'd like me to verify.
+Phy bindings have been acked on v1 and have been merged from v1.
 
-> and then verified that this test didn't result in kernel messages about
-> wrong settings?
->
-> Best regards
-> Uwe
->
-> --
-> Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig       =
-     |
-> Industrial Linux Solutions                 | https://www.pengutronix.de/ =
-|
+The v2 DWC3 binding patch has been acked but conflicts with sar2130 code
+and hence v2-patch-1 doesn't apply cleanly.
 
---=20
+The QUSB2 phy driver changes in v2 conflict with IPQ changes that went in
+recently and hence v2-patch-4 doesn't apply cleanly.
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-sifive system software  team =E9=99=B3=E4=BC=AF=E7=B6=B8
+Changes in v3:
+Rebase on top of latest linux next to avoid conflicts.
+Updated mail ID from quicinc to OSS. So changed the SOBs and retained the
+ACKs since the author is still the same.
+Updated cover letter heading since the changes are for both ports and DT
+for first port is merged and second port is ACKed.
 
-Cell phone:  0989057854
-E-mail: nylon7717@gmail.com
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Changes in v2:
+Addressed comments in v1 by using lowercase for reg values.
+Removed explicitly setting of struct params to false (as they are
+already false).
+
+Krishna Kurapati (3):
+  dt-bindings: usb: qcom,dwc3: Add QCS615 to USB DWC3 bindings
+  phy: qcom-qusb2: Add support for QCS615
+  phy: qcom: qmp-usbc: Add qmp configuration for QCS615
+
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |  3 +++
+ drivers/phy/qualcomm/phy-qcom-qmp-usbc.c      |  3 +++
+ drivers/phy/qualcomm/phy-qcom-qusb2.c         | 27 +++++++++++++++++++
+ 3 files changed, 33 insertions(+)
+
+-- 
+2.34.1
+
 
