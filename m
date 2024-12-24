@@ -1,80 +1,41 @@
-Return-Path: <devicetree+bounces-133741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D29C29FBAE5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:04:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6343B9FBAF3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:12:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88A691885517
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:04:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F65F7A1FEE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C6571A8F95;
-	Tue, 24 Dec 2024 09:03:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2FE81922D4;
+	Tue, 24 Dec 2024 09:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MC/f6Nh/"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="BDoLd2np"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m121150.qiye.163.com (mail-m121150.qiye.163.com [115.236.121.150])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 049CAEC0
-	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 09:03:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3290986250;
+	Tue, 24 Dec 2024 09:11:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.121.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735031038; cv=none; b=KOi57pA0N0Ek4F1QneyEQXSi8egCQXmFH8V0JQj8F4fm0vjm2+oY6uMrE2/a+4lIsMQtUmTZ1jeaJmGpCr3CyuZ9wMnnMGkEm2R/0BPOzlQX/A4AJUFpdTRexSk5OD/+ig254tPySz+aEm8xhtsApj3H3K3LaxKhsg/F0MdPLu0=
+	t=1735031512; cv=none; b=RtaVHAgoAX8/BGCKZsmltlN6CA6/agc7TVA/H2OVgsWaMAiPMvGMPSTsu8jyguR8lzgIMnii6ZCPnTJca6VGHTBe9a4oAYsMX0smQh+NdSY7L9dPiuGstG45LwLB27mH+5AsI5kg8efGXMy1f6dRQuZ+WdVeMYnlLEc38j9/+r0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735031038; c=relaxed/simple;
-	bh=XVANS7F/Xw4Z8WCtDEP8nZReVbCeyFH5yTQDQD0wYzQ=;
+	s=arc-20240116; t=1735031512; c=relaxed/simple;
+	bh=63SIagATQ1gYYwEjwMbPv4smVM4SNhW6zJRftR1vPLY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AH8ZZCN3yGDgfVBNvgh7DgEXoYs6KF2EKx4usBlA5CgUwQh32H85ff9tHRm3tBQdVVr44Ik/Hs7lff1gVRfFT9zJVcNENv2W0XPemuJ/ZUW7RRbqv1e4K5I9k5DM081pFzHc2TRqzwU1xJqrhE/Jd1fDGW9Spf1/d+iYuZZ8rIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MC/f6Nh/; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aa6a38e64e4so100472966b.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 01:03:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735031033; x=1735635833; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=z0IZpYux0PQ21H1xi7uGwUCeGViaLFCCBjvWm749ZIg=;
-        b=MC/f6Nh/SjXxk5LpG1tnhFZleCVJCw6UOaliWUoqjdQF23mvjoFoUV50jXV1XRX7F4
-         2Itxv8QUykC2IXFFl1zKoe3VYWG0amdsm+v6vgYtV6jMh1xXLXIfTNKUbMBhOkfKlbnM
-         y9YBVq0QHPh78AFIW3VPYblFVg6EboXf4kVtpfHcOCvKz34sadbvKhzgtRjyFoDsY+/x
-         Zz10YPrtG8NpB41T1pC0267HUxD64TRX0mtIYsBbdtKL07hvGdBFfB9ycbBY6YwWYyt8
-         MIzxNViy7MG0WsjxudaO5MWqwzQeh6h8IVeUDAqp1Us5Mth/vH1CZIuSKMuh2qFJlqUQ
-         vGCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735031033; x=1735635833;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z0IZpYux0PQ21H1xi7uGwUCeGViaLFCCBjvWm749ZIg=;
-        b=kliDtD6205dKrYmpD3DacLo4zyYg53AV+ceNcq9zN5K2KGRjPfYbxk1RQS427oUBFl
-         tdi2GEo4rau4/l1AbrivGkVmk3mMqGrlSyEO9VtMdBB7PQS2KLvMNcsh+Y4ouR5J52b4
-         sp7ANmyK6TWimm/KYzbtru2AT6S0Ryu2FRI84Q4jJBF6Hj9g6wpdFYoLSnybM+3Jf9J/
-         CUN6P5DnwAIclvlz++lOai28YedGPmnEqyLOQUgK7+YZGuC5ZrrRle2WbFcDu9lQurNA
-         q92iuZRokHrr2zLV+LmrNwJhFNj+tRKaRjjE8aM2jPlEYD6hqvEBs+nrADlN0wwyocpF
-         X0Nw==
-X-Forwarded-Encrypted: i=1; AJvYcCWL1J/R+LTgP5fjAf5CXjQgg4Z9Pc6IDfDYGOHpe+eVBtn6ECDOTvmNj1OJ6PSMld4JG+AMsi9cwApb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxcq6QFidI1wLYUjJvSpESGFZHnvb/eNVTutcaUEWSNelWggFMq
-	RvYLiG62/qTJhg7ekjDOzSXrETV7eYImg0pOhihyb0qW2ioVdbnR65/kcHW8iM0=
-X-Gm-Gg: ASbGncuj/+Oo82tpnOzLOfjqUi9epoa+Dql+6e47nUnOfBvMq5+SRdF67qilK/KP06h
-	6P9C2X3BtPfQCdSn92fUcsT90rrsAonTHq/vC9rYo8vWRhoGodTeAr8E+Pl9ULJsNYEkW+WFqcx
-	RPAaWkOOWPMLOv+Jt//C4aOaVJ0ABMTwnoYfdbFyxzdpfuWUr3rPw94OQx07pt4FNqHKYIbVmha
-	KWAeHqzc3SDKLn/Kup0c8uBil0BnAHSlGrRDpFKLLhh44GPeD/RCufWtFu6t41gxPeEmgX8sFzC
-	e3pejN1Kd6dBKoXAncdIzDFw+onZeH3kukc=
-X-Google-Smtp-Source: AGHT+IGww99qrBBuovvVWKdRBOFSplKcqorPH8QQi3151rHPzuzT+tIstiqWmsZPCGiK7Ga5fpjAnw==
-X-Received: by 2002:a17:907:9621:b0:aa6:a9a4:7bd6 with SMTP id a640c23a62f3a-aac2adb6962mr589868266b.6.1735031033293;
-        Tue, 24 Dec 2024 01:03:53 -0800 (PST)
-Received: from [192.168.0.18] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0efe4c55sm624557866b.130.2024.12.24.01.03.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Dec 2024 01:03:52 -0800 (PST)
-Message-ID: <b0e8a58f-530b-485a-81fb-208fa7840980@linaro.org>
-Date: Tue, 24 Dec 2024 10:03:51 +0100
+	 In-Reply-To:Content-Type; b=Ilmtn+ohVQv5L654RzE0q016x3acaIwsbQ24invpkH+oCUkvOcBnGJKlQ7Dmd5vQHaGUFdM4Iy1U0BV9IbMQAkR20Pi6cwvvHmYVEcHxev4wDz+4EWe9q1vwzhutvM0Z41yohD1vwS/3hThw/Wv+u781sP4SICdf5JbQ4U9RZSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=BDoLd2np; arc=none smtp.client-ip=115.236.121.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.67] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 6a83f662;
+	Tue, 24 Dec 2024 16:36:12 +0800 (GMT+08:00)
+Message-ID: <e75b38b4-605f-4f9e-8c95-204877b9bf84@rock-chips.com>
+Date: Tue, 24 Dec 2024 16:36:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,85 +43,136 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: net: snps,dwmac: add description for
- qcs615
-To: Yijie Yang <quic_yijiyang@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
+Subject: Re: [PATCH 01/38] dt-bindings: clock: add rk3562 cru bindings
+To: Conor Dooley <conor@kernel.org>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
-References: <20241224-schema-v2-0-000ea9044c49@quicinc.com>
- <20241224-schema-v2-2-000ea9044c49@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20241220103825.3509421-1-kever.yang@rock-chips.com>
+ <20241220103825.3509421-2-kever.yang@rock-chips.com>
+ <20241222-grandpa-vessel-66e9ca9cde75@spud>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20241224-schema-v2-2-000ea9044c49@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Kever Yang <kever.yang@rock-chips.com>
+In-Reply-To: <20241222-grandpa-vessel-66e9ca9cde75@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkhITlZIGh1JQ0tLGh9CGE9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	JVSktLVUpCS0tZBg++
+X-HM-Tid: 0a93f7cf356603afkunm6a83f662
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OEk6Txw5HjILCEtDQiJNS0oC
+	CDwaCgFVSlVKTEhOS0lCSExIQkhKVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJQ09ONwY+
+DKIM-Signature:a=rsa-sha256;
+	b=BDoLd2npj0n6Om1OH5DJXSsVpoK+ms+L4VEFsKWa6Q0BUz0mLywgGE0K0gSQ1wUl+kIAVw6MhuIoiApVIqXDgVQhOx+++sWjEqjmkDWYpFpvd6MKN9JfoWOjlFO0Sd9OelNfkNzAb+tQPJ4C7mAajNDAC8Ru9FqNGdq8lAKktAk=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=YBxLONAc2YXY1BIJF//FZvX1aM+Sn/tfGnBkN7/bO1Q=;
+	h=date:mime-version:subject:message-id:from;
 
-On 24/12/2024 04:07, Yijie Yang wrote:
-> Add the necessary compatible entries for qcs615 to ensure its validation.
-> 
-> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-This should be squashed with previous, otherwise patchset is not bisectable.
+Hi Conor,
 
-Best regards,
-Krzysztof
+On 2024/12/22 22:51, Conor Dooley wrote:
+> On Fri, Dec 20, 2024 at 06:37:47PM +0800, Kever Yang wrote:
+>> Document the device tree bindings of the rockchip rk3562 SoC
+>> clock and reset unit.
+>>
+>> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+>> ---
+>>
+>>   .../bindings/clock/rockchip,rk3562-cru.yaml   | 62 +++++++++++++++++++
+>>   1 file changed, 62 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3562-cru.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3562-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3562-cru.yaml
+>> new file mode 100644
+>> index 000000000000..aa8dedf2bfce
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3562-cru.yaml
+>> @@ -0,0 +1,62 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/rockchip,rk3562-cru.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Rockchip rk3562 Clock and Reset Control Module
+>> +
+>> +maintainers:
+>> +  - Elaine Zhang <zhangqing@rock-chips.com>
+>> +  - Heiko Stuebner <heiko@sntech.de>
+>> +
+>> +description:
+>> +  The RK3562 clock controller generates the clock and also implements a reset
+>> +  controller for SoC peripherals. For example it provides SCLK_UART2 and
+>> +  PCLK_UART2, as well as SRST_P_UART2 and SRST_S_UART2 for the second UART
+>> +  module.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: rockchip,rk3562-cru
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  "#clock-cells":
+>> +    const: 1
+>> +
+>> +  "#reset-cells":
+>> +    const: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 2
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: xin24m
+>> +      - const: xin32k
+>> +
+>> +  rockchip,grf:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      Phandle to the syscon managing the "general register files" (GRF),
+>> +      if missing pll rates are not changeable, due to the missing pll
+>> +      lock status.
+> Two questions:
+> - Why would it ever be missing? Seems like you should make it required.
+
+This may not need for some of SoC, for the rk3562, we don't need it, I 
+will remove it.
+
+
+Thanks,
+- Kever
+> - Why is it not possible to look the grf up by compatible rather than
+>    phandle?
+>
+> Cheers,
+> Conor.
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - "#clock-cells"
+>> +  - "#reset-cells"
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    clock-controller@ff100000 {
+>> +      compatible = "rockchip,rk3562-cru";
+>> +      reg = <0xff100000 0x40000>;
+>> +      #clock-cells = <1>;
+>> +      #reset-cells = <1>;
+>> +    };
+>> -- 
+>> 2.25.1
+>>
+>>
 
