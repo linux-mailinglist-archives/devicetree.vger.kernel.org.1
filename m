@@ -1,170 +1,94 @@
-Return-Path: <devicetree+bounces-133686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3333E9FB8E2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 04:08:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A97C19FB8F2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 04:19:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42DB61885416
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 03:08:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08AA91883195
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 03:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AF57148832;
-	Tue, 24 Dec 2024 03:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ACktODu1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7FF13D28F;
+	Tue, 24 Dec 2024 03:19:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out28-76.mail.aliyun.com (out28-76.mail.aliyun.com [115.124.28.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4B112C499;
-	Tue, 24 Dec 2024 03:08:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3CA43166;
+	Tue, 24 Dec 2024 03:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735009701; cv=none; b=EZQha26e3HiVF3uGQ6z837BP2ctKerAr55YacGkf8b79922TqIz97QYOIbLDCpCfkayC1BDWslfcbVDtAOKhVCLFW9nC6AqXUAJ46HlfTmYgtH3Pt5SWPvyMNIaEDKLmZewzOqnuKjzDCY+rdZSnYvQ3uVhXTDm+UbesD+IijNk=
+	t=1735010366; cv=none; b=byUsMt6xwXGpYqj5B6+Ynt/vRvBvpTv26SDOAssAaWvcNYh+ZI65ZjxnppieaCARuF5tVMEjefXBdRD6S1Tm1vl5eFBGg/UsFESdwnAVkI42PETvuq9gRH+uVMmogi0wOdVpz3rH5LMBNAFFRwV48fjlh6ixVvDAdEOLKaNo81Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735009701; c=relaxed/simple;
-	bh=V7lalbixoBGJlxP3pf4NJMaXZaZuAQMqMIc+vgd+3BI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=QPnDO0quKGu/hJZXow5OCmxdMgfpnVbWGPEiHZYN5WUA9+75Q6hlj1FN515btZDZlYtNfDva616RJMDbRixG4RHtmsMuY6z/2J9H8FA7DYY/tJSh2BFVQj33aIx0ZwBIfdpYFO2f6u7bYKlP4SHJpw+FP5AS3GEUrTwiWCKP/gU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ACktODu1; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BNNU9fg013669;
-	Tue, 24 Dec 2024 03:08:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tIuhqDedNNE+RKLFjY7UPz+oQyiGEu+Qqb7U8Kyo+Bc=; b=ACktODu10Z4pDB75
-	Q9oRTf24VGYw0jakS5ZiBFaXGhAQJQLh1fam7tvqSbjMQRyoWG/P0oE5mLf1ra6N
-	eZZVvU0B25tmDan7nh5axSC/7TYlrg1Q7G5QMUp9O/pNknla+IhVKWS/d9WJJBd5
-	kVqiPpFeYY/DR9lTlibaJ44Fd+LHVeu9Uihb41mu1e5xnQYJhyHJZEbqOz22qeJC
-	hFV31VhvNXSnvL+UqyloXsCp+CmfYn5gcykjtBIi7b8o0Kb4pGXSap5MgSWNw2RV
-	osHTjlh1QzBs+dSOWJpKfFwZy4PBkiKsjRGSIT2eiyQuIsCo7N+Qzy0gidNPrxUZ
-	14PCXg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43qhk60fkp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Dec 2024 03:08:00 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BO37xiR010699
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Dec 2024 03:07:59 GMT
-Received: from yijiyang-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 23 Dec 2024 19:07:53 -0800
-From: Yijie Yang <quic_yijiyang@quicinc.com>
-Date: Tue, 24 Dec 2024 11:07:03 +0800
-Subject: [PATCH v2 3/3] net: stmmac: dwmac-qcom-ethqos: add support for
- EMAC on qcs615 platforms
+	s=arc-20240116; t=1735010366; c=relaxed/simple;
+	bh=kFzYWGvNuH62cBmZzCb7ubi42H27Y13gmSyHNMj1/4M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WVqjNVSjpzJdm41pM46tywPc22ysGij/2tDx+EBO9q1D8Ua+cxaXaj5y+/BRqEt00Me9VDTvLwixaJgwBhaF/8jModlcEvFJ+q1h6MXTiRQCZotA2oTzqObJJLAApkPr3CCN04M7rPJaJc3POwh/DrW7T4dkueH1jope1Zwuaho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.alWru9m_1735010338 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Tue, 24 Dec 2024 11:19:04 +0800
+From: wangweidong.a@awinic.com
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	ivprusov@salutedevices.com,
+	neil.armstrong@linaro.org,
+	jack.yu@realtek.com,
+	rf@opensource.cirrus.com,
+	luca.ceresoli@bootlin.com,
+	quic_pkumpatl@quicinc.com,
+	herve.codina@bootlin.com,
+	masahiroy@kernel.org,
+	nuno.sa@analog.com,
+	wangweidong.a@awinic.com,
+	yesanishhere@gmail.com,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: yijiangtao@awinic.com
+Subject: [PATCH V3 0/2] ASoC: codecs: Add aw88083 amplifier driver
+Date: Tue, 24 Dec 2024 11:18:21 +0800
+Message-ID: <20241224031823.363777-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241224-schema-v2-3-000ea9044c49@quicinc.com>
-References: <20241224-schema-v2-0-000ea9044c49@quicinc.com>
-In-Reply-To: <20241224-schema-v2-0-000ea9044c49@quicinc.com>
-To: Vinod Koul <vkoul@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David
- S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        "Alexandre
- Torgue" <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro
-	<peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>
-CC: <quic_yijiyang@quicinc.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        <netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735009654; l=2068;
- i=quic_yijiyang@quicinc.com; s=20240408; h=from:subject:message-id;
- bh=V7lalbixoBGJlxP3pf4NJMaXZaZuAQMqMIc+vgd+3BI=;
- b=/PcuxJDv44ngfb0NCh2hUJrxMhlHV2nGZecD0Mo6JagRjHC7h5siDtAVSLzQTi1Ss+MM5r4f1
- 6Fp6PFa1WtZD+7qhygEim3XOkb6FyHsQ/oQz4KfgP846x8rU4HdpzlA
-X-Developer-Key: i=quic_yijiyang@quicinc.com; a=ed25519;
- pk=XvMv0rxjrXLYFdBXoFjTdOdAwDT5SPbQ5uAKGESDihk=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: b9eCqun4IQgnbx5uL1MRRdjY8sp8VVgm
-X-Proofpoint-GUID: b9eCqun4IQgnbx5uL1MRRdjY8sp8VVgm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- impostorscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
- clxscore=1015 adultscore=0 mlxlogscore=999 priorityscore=1501
- malwarescore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412240024
+Content-Transfer-Encoding: 8bit
 
-qcs615 uses EMAC version 2.3.1, add the relevant defines and add the new
-compatible.
+From: Weidong Wang <wangweidong.a@awinic.com>
 
-Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Add the awinic,aw88083 property to support the aw88083 chip.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-index 901a3c1959fa57efb078da795ad4f92a8b6f71e1..8c76beaee48821eb2853f4e3f8bfd37db8cadf78 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-@@ -249,6 +249,22 @@ static const struct ethqos_emac_driver_data emac_v2_1_0_data = {
- 	.has_emac_ge_3 = false,
- };
- 
-+static const struct ethqos_emac_por emac_v2_3_1_por[] = {
-+	{ .offset = RGMII_IO_MACRO_CONFIG,	.value = 0x00C01343 },
-+	{ .offset = SDCC_HC_REG_DLL_CONFIG,	.value = 0x2004642C },
-+	{ .offset = SDCC_HC_REG_DDR_CONFIG,	.value = 0x00000000 },
-+	{ .offset = SDCC_HC_REG_DLL_CONFIG2,	.value = 0x00200000 },
-+	{ .offset = SDCC_USR_CTL,		.value = 0x00010800 },
-+	{ .offset = RGMII_IO_MACRO_CONFIG2,	.value = 0x00002060 },
-+};
-+
-+static const struct ethqos_emac_driver_data emac_v2_3_1_data = {
-+	.por = emac_v2_3_1_por,
-+	.num_por = ARRAY_SIZE(emac_v2_3_1_por),
-+	.rgmii_config_loopback_en = true,
-+	.has_emac_ge_3 = false,
-+};
-+
- static const struct ethqos_emac_por emac_v3_0_0_por[] = {
- 	{ .offset = RGMII_IO_MACRO_CONFIG,	.value = 0x40c01343 },
- 	{ .offset = SDCC_HC_REG_DLL_CONFIG,	.value = 0x2004642c },
-@@ -898,6 +914,7 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
- 
- static const struct of_device_id qcom_ethqos_match[] = {
- 	{ .compatible = "qcom,qcs404-ethqos", .data = &emac_v2_3_0_data},
-+	{ .compatible = "qcom,qcs615-ethqos", .data = &emac_v2_3_1_data},
- 	{ .compatible = "qcom,sa8775p-ethqos", .data = &emac_v4_0_0_data},
- 	{ .compatible = "qcom,sc8280xp-ethqos", .data = &emac_v3_0_0_data},
- 	{ .compatible = "qcom,sm8150-ethqos", .data = &emac_v2_1_0_data},
+The driver is for amplifiers aw88083 of Awinic Technology
+Corporation. The AW88083 is an intelligent digital audio
+amplifier with low noise.
 
+v2 -> v3: Modify function formal parameter type error
+
+Weidong Wang (2):
+  ASoC: dt-bindings: Add schema for "awinic,aw88083"
+  ASoC: codecs: Add aw88083 amplifier driver
+
+ .../bindings/sound/awinic,aw88395.yaml        |   2 +
+ sound/soc/codecs/Kconfig                      |   2 +-
+ sound/soc/codecs/aw88081.c                    | 333 +++++++++++++++---
+ sound/soc/codecs/aw88081.h                    |  43 +++
+ 4 files changed, 323 insertions(+), 57 deletions(-)
+
+
+base-commit: f07044dd0df0c9d0ad177c3098b62ccddb735a2d
 -- 
-2.34.1
+2.47.0
 
 
