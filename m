@@ -1,147 +1,177 @@
-Return-Path: <devicetree+bounces-133758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DFA99FBB5E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:41:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C67209FBB1B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:28:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8871D7A1928
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:37:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 048817A2033
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F19F1AE01C;
-	Tue, 24 Dec 2024 09:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC341A8F95;
+	Tue, 24 Dec 2024 09:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Du2AYfNn"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="lqgs05bU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB86191F7E;
-	Tue, 24 Dec 2024 09:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C6018EFED
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 09:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735033059; cv=none; b=Ycgh8q0q3avOGnVVe46GzGEfJOZd2dK3U8e5vq8MThedfpBAxsez6v0WSaxjsss1y+EZYubU4ZC4YnMdr4Szi/z9FQ3qAbFZpsZJAcmIrnwwvWTy/UU1wXvbAL1aT5gk+6XbhD1EWHR8VouLMaF5nI0UD7ZVhbMp+7EclFlO9pM=
+	t=1735032481; cv=none; b=CgpXZ4xPRq7MiFc+5AA38sB0Kaj/VQO0nVIGG27hJ+rJac5GtFztZOEzEnJO3tNJ5+Tr0Q0i9m3RZCutXbkfLGJ4+L4sB1VLHK3XL8U+GZQ2MInbXzJr6aImkdS7PwadVPnAI6qUp1TL4U4JMM1ESfSUcAVnmQmCG5eUs52wxzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735033059; c=relaxed/simple;
-	bh=jLmFWbWd3SQkC6J4LYdTAks5WNvEgPSVXIlgEkT9qUk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u5j3X0EKGsFSVblBLm6BeOnlF925E7JRTJZMxRo8HdRqZIA43ZG5DDpQ8fsI4fGYfQ3HjL+hU9ZkdB7eAUzpvLR04pzcTDlD87weQF1G0m9kx/MhelEND/txFDGPw32OIS78sg9tMv/WoJ25ZAGnvDzDotRq8EsdYev3AFMwAzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Du2AYfNn; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-21683192bf9so55173145ad.3;
-        Tue, 24 Dec 2024 01:37:38 -0800 (PST)
+	s=arc-20240116; t=1735032481; c=relaxed/simple;
+	bh=2t+mmYf+qQuZoqCXlanVjaUyuAIlUsomlX9EsaQMzNw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hdXVWqlEAV6QLO83AS5VYB0HnjOcuQYtMV5YUcBq2WJoEqUmiHNpwJW3cQMqPlSZ5auklqdWeNpjns1gxYqBnrlT24Be1q4tOh4OhYTAGbeVk2kmXrQHH9AoF+kEkmu21KwZy6w0W9cc1aP/TUxXumNqqc0iQXtiAYvmD4C1PNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=lqgs05bU; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-219f8263ae0so18383985ad.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 01:27:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735033057; x=1735637857; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jLmFWbWd3SQkC6J4LYdTAks5WNvEgPSVXIlgEkT9qUk=;
-        b=Du2AYfNn4o32QLe67BtlAn0MhUUzhOSi4LSX0o/I9DucaM3jvvjovIpPer6PsmnQfH
-         J7GqAqdb49aQyapcD2rZxd4kmfjZ0U77JjCfwxj9erplxiG+VztQR48g9D8AIinv1ENP
-         MPAb9wkqdtbPVxdW28Z6RPq6QqNrX6u90pbRreqthAMFiFCcazxyPw4nKphuQ2mAmOAg
-         lcQZRWz7415MoqVeKvS+VULyuGZ4RpLwp35QfTGrj2S3SSSww4U2TAN4lFdrCUNLmki8
-         TkT6JMCHwbd6JIAzjyQZJZ3NvtIiHVRGqkSGc5LjRbvuMu9p5QJXSZDOYQRs1Zep2m3a
-         oh1w==
+        d=sifive.com; s=google; t=1735032479; x=1735637279; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oLPJJm7xVkKFHYMyvGiaT5Jiz+ZLFC1VkzAq6OtMdxs=;
+        b=lqgs05bUVzZHIl2+cdmt8YreyyOW6IU5sRAX9fJ0489UKE5rXZxDlKwEhIPk33eXXr
+         bWxdjLYpu6n6G2x3IAQZej0Qb8N2EdhOstamDSMFTe/NZtsxALI6Hy3sO1BArIBt7aIH
+         wtxSN7wk6mw9w/8R3v++YVpPhdY1fFwH+oPi0GBYrFRAO8hLbm99jiuWix9vlEdEYEfJ
+         NaQIg2B3kl+9L19YYQS5+V0Q5gJigb4R+0lt8KCDVQldxh1ghnN5pd74I+sWv0yC5xxs
+         Ns6nC9FK19x7KSl2VGv5wxaMpZIkbdw37d1L8i4X3hWePjLK0/vZ/V+PIxlpmHPcdc2a
+         p2qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735033057; x=1735637857;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jLmFWbWd3SQkC6J4LYdTAks5WNvEgPSVXIlgEkT9qUk=;
-        b=kpNY1pfBEM+0vgmpiewJe36xmQfiy/yGl49kFBOpL7XnjjBH0iWPs3ZfEzHCkJrSQa
-         GRhLLYW7mlH1SbAabw4WaBH/PLTAxI5Tfeaje7lp5tXmzIyom9Js1Ar3RPOSjTD1n9Wt
-         zuJDwOeUjmVCO5fBB21P+AfLfddBFtfUsrKy8O0TB6DBy03DDAnrS2THFTtUPbekbFZ9
-         Hq8iGh/ZokRr39w4AXszQJp6/mXaCCRbWfHoaJxmnRILqBosu/Qk0DzDDRWAMOeROvCD
-         FSaDoH/F31mEwpk9+P6SKwFZjK2iP1GJbyye6ismT807SJe6ibL999t+tcsXKZF4NqjW
-         3bIA==
-X-Forwarded-Encrypted: i=1; AJvYcCUw925mVz92vdng/2FqZGHec2rlEpg2vMrEsgq80k3sLCQPS+Rjv8RPMJf83T/UVeMYJBdUWxz09EPE@vger.kernel.org, AJvYcCVJeyYlQnafOKnuc3su9b2ny4LyFnvty6FA6Lv7d9ZuJO3VrRBvYpW1fPLb5dsc0foCaaFQd0B1tUzo3uN+@vger.kernel.org, AJvYcCXC/eih8D9+HJ8i71dgrEW6eBXNTiet6ld6OauNIQ0Wp3RVKPLHNABHyMqyCgxDqsX5GG5cqnwm@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywhzb4p3uLECAEWem1VRfRreLsbrm6GVr53bBJicgzLmPo6p4wr
-	/dfTJxcRFFFQD4e1La16jswWJ81vCWM3mzrVKeQheUlF6Tavg722
-X-Gm-Gg: ASbGncuMj2Boj5k1DuFT6wBoVXbhltK+JnudiB/PKpA170UtW3fI+tE1CAGrX/iAQvA
-	cCO6Z7/S5fyUO9lek3gp3PqmTGJ5zRY8eRRK3B6XogjFwkOuXz3J8qvjwT92XTftjoUJEN2a186
-	ydIBdMoQerESdQpqiKR9C75ylqcwWinsqPdv/zhQK0fyQ2hQIOlPXubynvFA5deiDOkl7Bz3C8h
-	fi53qFgyytx6WNuww91njuRzFhafwoOLac0d1BZ83uxHGfGxwP3grUdiH693Im2X6IrITqoJykc
-	WQuhbDGZMvXEXlx2v0OTF+oSa+BIDcFChDg=
-X-Google-Smtp-Source: AGHT+IHeB/WWKd6mmgZbT26UjUM4RGWZKImwzEuCo8jzyGFGDy66eiSE5XasK5+ZN6cxtxmkvDMOCA==
-X-Received: by 2002:a05:6a00:8085:b0:725:ae5f:7f06 with SMTP id d2e1a72fcca58-72abe096383mr24761611b3a.23.1735033057380;
-        Tue, 24 Dec 2024 01:37:37 -0800 (PST)
-Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad90c1bcsm9590252b3a.187.2024.12.24.01.37.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Dec 2024 01:37:36 -0800 (PST)
-Message-ID: <5ae923d7-3b4f-430c-bb43-edee7f549e56@gmail.com>
-Date: Tue, 24 Dec 2024 17:37:30 +0800
+        d=1e100.net; s=20230601; t=1735032479; x=1735637279;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oLPJJm7xVkKFHYMyvGiaT5Jiz+ZLFC1VkzAq6OtMdxs=;
+        b=D2vNJLUrPiFq6Nnd/Xim3KgPVgnL6NQHF08/6CcdysV3ZUY06qISVpmaC3Sc8oJL5b
+         Fab+0frIJaQllF008uJPmoqKNA16vOT/TpQ93R7KdRTQva0ds6uCJGVyTm2ce3S5+Jq8
+         I7L4L7dR8LhqeazqGc0+24O9XtWoWyoIxkYT+B3kYfsI58mQ9TxIhZgQndQuITsQEDBU
+         IDdFHubSvMaA7Feja9K9qMwW0Tke3ddclksWuqqIQSveNsEURRAtC/AkCMf1YPWSoVXC
+         ws4EAskhP5fyMWAmnTrNPZHdmfrZ1EN+0WT5dwMTpEdQsOptK/QUEIsP4N42y1IaZNgc
+         9NUg==
+X-Forwarded-Encrypted: i=1; AJvYcCX64zS3QTAFz7Etx845XJmIHkDA1JJrlPgval+M10qFVEtEyvx6/w3mH4+yerxW7sGZPypuk+QmjZ9d@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIIhi78eunPFaPkF9EC+zn3Qmlb0urv1PAy49XJLUDlewxHgaR
+	aarJkHwsCOaqaflCa8YFjXUze4/Ly3uppYNNKnc2eCZTzeMjQU4gF8GLxjfSL3A=
+X-Gm-Gg: ASbGncscbLr2WcB/JBOB2gQ3uD+n1eTYnGbBNYzYyvcTGswCA5I2UvV4uftYEtY2Foj
+	pAIfM33/KPNz/puWV6/BRaU7xs83p/YpIkaalgArbHnSfQalm7jx5CdWdJntWq9yykfL2v1sQpd
+	Lh9Z4WHM/MCIGCEr8nCmDpE4bDGUEv9wbsoJCsGla2RDNz6hCQTvhNvkUTTH38zweN1HPEjhTtV
+	CxNSxuGMqqLhUvMTgLo13w7Ffifsp9aMpvShYytfGguGUhnwhol84E5t5EwBg3Lq95sHWcKfxl4
+	jNN/myjefvdyqFKsxw==
+X-Google-Smtp-Source: AGHT+IH+ikoM6foMB1cnNkvpUi/3NR/XA4SwC00DSiVzFNckaK82lZIWct9AHrEMi4yCGHwTjvIZrA==
+X-Received: by 2002:a05:6a21:670b:b0:1e3:e77d:1431 with SMTP id adf61e73a8af0-1e5e04a3035mr26453787637.23.1735032479006;
+        Tue, 24 Dec 2024 01:27:59 -0800 (PST)
+Received: from hsinchu36-syssw02.internal.sifive.com ([210.176.154.34])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72af8dcff60sm516341b3a.152.2024.12.24.01.27.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Dec 2024 01:27:58 -0800 (PST)
+From: Nylon Chen <nylon.chen@sifive.com>
+To: linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Nylon Chen <nylon.chen@sifive.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and algorithm
+Date: Tue, 24 Dec 2024 17:38:58 +0800
+Message-Id: <20241224093902.1632627-1-nylon.chen@sifive.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for
- Nuvoton MA35 family
-To: Przemek Kitszel <przemyslaw.kitszel@intel.com>
-Cc: alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
- schung@nuvoton.com, yclu4@nuvoton.com, peppe.cavallaro@st.com,
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com
-References: <20241218114442.137884-1-a0987203069@gmail.com>
- <20241218114442.137884-4-a0987203069@gmail.com>
- <7a4f5769-0010-40fd-8bb7-a20f2725114f@intel.com>
- <216e7c97-e0b1-4833-b344-a71834020b15@gmail.com>
- <c800e544-82af-43d3-b07a-e7b1a4028330@intel.com>
-Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <c800e544-82af-43d3-b07a-e7b1a4028330@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+According to the circuit diagram of User LEDs - RGB described in the
+manual hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
 
-Przemek Kitszel 於 12/20/2024 6:59 PM 寫道:
-> On 12/20/24 08:07, Joey Lu wrote:
->> Dear Przemek,
->>
->> Thank you for your reply.
->
-> sure :)
-> please also configure your email to write replies as plain-text, instead
-> of HTML
-Thank you for the reminder🙂
->
-> I also forgot to say, that you should have target this series for the
-> net-next (--subject-prefix for git-send-email)
->
-May I confirm if you are referring to netdev/net-next?
->
-> Please also note that your v2 should wait to be send in the new year,
-> as we will begin the Winter Break for netdev ML in a moment.
->
-Got it! Happy holidays! 🎉
->
->>>> +/* 2000ps is mapped to 0 ~ 0xF */
->>>> +#define PATH_DELAY_DEC      134
->>>
->>> would be great to previx your macros by NVT_
->> Got it.
->>>
->>> why 134 and not 125?
->>
->> The interval is confirmed to be 134. The mapping is as follows:
->>
->> |0000| = 0.00 ns
->> |0001| = 0.13 ns
->> |0010| = 0.27 ns
->> ...
->> |1111| = 2.00 ns
->
-> thanks, that's correct, sorry for confusion
->
->
+The behavior of PWM is acitve-high.
+
+According to the descriptionof PWM for pwmcmp in SiFive FU740-C000 Manual[2].
+
+The pwm algorithm is (PW) pulse active time  = (D) duty * (T) period.
+The `frac` variable is pulse "inactive" time so we need to invert it.
+
+So this patchset removes active-low in DTS and adds reverse logic to the driver.
+
+Updated patches: 1
+New patches: 0
+Unchanged patches: 2
+
+Links:
+- [0]: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf
+- [1]: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf
+- [2]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
+
+Changed in v10:
+ - Add 'inactive' variable in apply() to match pwm_sifive_get_state() style
+ - Update comment about hardware limitation - it cannot generate 0% duty
+   cycle rather than 100% duty cycle
+
+Changed in v9:
+ - Fix commit message to adhere to 75 columns rule.
+ - Update commit message's subject.
+ - Add a variable for inactive logic.
+
+Changed in v8:
+ - Fix Signed-off-by and Co-developed-by typo.
+
+Changed in v7:
+ - Remove active-low strings from hifive-unleashed-a00.dts file.
+
+Changed in v6:
+ - Separate the idempotent test bug fixes into a new patch.
+ - Move the reversing the duty before the line checking
+   state->enabled.
+ - Fix the algorithm and change it to take the minimum value first and
+   then reverse it.
+
+Changed in v5:
+ - Add the updates to the PWM algorithm based on version 2 back in.
+ - Replace div64_ul with DIV_ROUND_UP_ULL to correct the error in the
+   period value of the idempotent test in pwm_apply_state_debug.
+
+Changed in v4:
+ - Remove previous updates to the PWM algorithm.
+
+Changed in v3:
+ - Convert the reference link to standard link.
+ - Move the inverted function before taking the minimum value.
+ - Change polarity check condition(high and low).
+ - Pick the biggest period length possible that is not bigger than the
+   requested period.
+
+Changed in v2:
+ - Convert the reference link to standard link.
+ - Fix typo: s/sifive unmatched:/sifive: unmatched:/.
+ - Remove active-low from hifive-unleashed-a00.dts.
+ - Include this reference link in the dts and pwm commit messages.
+
+Nylon Chen (2):
+  pwm: sifive: change the PWM algorithm
+  pwm: sifive: Fix the error in the idempotent test within the
+    pwm_apply_state_debug function
+
+NylonChen (1):
+  riscv: dts: sifive: unleashed/unmatched: Remove PWM controlled LED's
+    active-low properties
+
+ .../boot/dts/sifive/hifive-unleashed-a00.dts   | 12 ++++--------
+ .../boot/dts/sifive/hifive-unmatched-a00.dts   | 12 ++++--------
+ drivers/pwm/pwm-sifive.c                       | 18 ++++++++++--------
+ 3 files changed, 18 insertions(+), 24 deletions(-)
+
+-- 
+2.34.1
+
 
