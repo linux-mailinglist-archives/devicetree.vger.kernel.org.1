@@ -1,105 +1,107 @@
-Return-Path: <devicetree+bounces-133827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A9549FBCDF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 12:09:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 049289FBCEA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 12:31:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9613F18821A9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:09:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 387F7163B01
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E02F1AC448;
-	Tue, 24 Dec 2024 11:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25C01B6D1F;
+	Tue, 24 Dec 2024 11:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VhSxux5O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-196.mail.aliyun.com (out28-196.mail.aliyun.com [115.124.28.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758A8190063;
-	Tue, 24 Dec 2024 11:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D331AF4E9;
+	Tue, 24 Dec 2024 11:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735038578; cv=none; b=tl1yxhwy/0Alv8Fp01OlbzDC7OzjV1xHbxEI5pvXu7nbKjrGGuMceinFJrwGoxpvTGg5Tc0oagoe722D1KPOpqR0SoilnHn2rf2hEUWtaduxBnhskyi7P/zoPFQlrLIqVfChIt/gNSkTr1KsLvvs9xZH9cTW+U7yrysaHq3HXeI=
+	t=1735039904; cv=none; b=aFq0ACf/OhmVCYxHrX+LiixeymszQB1q7tsWx/GoXjqbHn0XQLcGYvoBtCaZ55BL28GjU2wQT9vKSlk0Pm8a5C1Tc628EBj7N2I3uuTuwztfkr/qOr6IH3g3ADNwNc7q+TJOQzCzOklPBZwLoL+mHZYY5Pa2QBBjR0c7kpgbqjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735038578; c=relaxed/simple;
-	bh=961d1D19veUZ2eZsHI9UkKM6Jp8StVEfUkIJFS8r+1A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IVnfJCeLCYPPZ2oOcoRUPWYYO0N9KcUsWHN94FRAzuPhJc4W+acPCHzYtY0rtIpulJqc5CugFxuOvfEyE6fPh+/MTd/bC2cggpg8LGHhTrHmQx6UWORA5Os0w6hy/Uaz5CSrUE4oCk2y0JeD668UCmQA7GIA06+B1/7xfnApd7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.amG2jAB_1735038557 cluster:ay29)
-          by smtp.aliyun-inc.com;
-          Tue, 24 Dec 2024 19:09:23 +0800
-From: wangweidong.a@awinic.com
-To: luca.ceresoli@bootlin.com
-Cc: broonie@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	herve.codina@bootlin.com,
-	ivprusov@salutedevices.com,
-	jack.yu@realtek.com,
-	krzk+dt@kernel.org,
-	lgirdwood@gmail.com,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	lkp@intel.com,
-	masahiroy@kernel.org,
-	neil.armstrong@linaro.org,
-	nuno.sa@analog.com,
-	perex@perex.cz,
-	quic_pkumpatl@quicinc.com,
-	rf@opensource.cirrus.com,
-	robh@kernel.org,
-	tiwai@suse.com,
-	wangweidong.a@awinic.com,
-	yesanishhere@gmail.com,
-	yijiangtao@awinic.com
-Subject: Re: [PATCH V3 2/2] ASoC: codecs: Add aw88083 amplifier driver
-Date: Tue, 24 Dec 2024 19:09:16 +0800
-Message-ID: <20241224110916.373428-1-wangweidong.a@awinic.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241224105655.271068f8@booty>
-References: <20241224105655.271068f8@booty>
+	s=arc-20240116; t=1735039904; c=relaxed/simple;
+	bh=03ARuXNN1LYC6Y56lO4Z0KutZ2KDzQyEBAbl6atBMq4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Qek5TIo/qgkaKv++1jRG85DfPBlwwPApOGDjpu38TLE04gHjGmzqeYT+hoLSWuBBqsNfdvdQMF+lQEe17SgzNPMrfQ5P7bZvskYhmiILemmfRa9bWch+hOn1rqCug9VlLwJFJ2VHKpYXU6275GTPDv+V/ofCwfVriDX49yummAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VhSxux5O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 499BFC4CED0;
+	Tue, 24 Dec 2024 11:31:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735039904;
+	bh=03ARuXNN1LYC6Y56lO4Z0KutZ2KDzQyEBAbl6atBMq4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=VhSxux5OjALWeX9mJiVMA1KmH3gKWvY+37UDf0WLo2/An4aMSHs12zWW9u5uYHdtC
+	 xsOMmh3QAC8HKxB0/zvHtlZILXhAhsEmzJGJceH9eczG1gLGXemamg6GBdW2OyrXcb
+	 P4JhHTHiuOcsma/8QJXTgqdMPbt3qeQYlwFD/WNt/MMUiNio4iYcVOUX9KhW5CN7wf
+	 AY8SyTfbZw35bw6LkY07y0CGwVaHljO9XtZwYjtbzqwckaG+cx3OXSWAVma3yXNV5p
+	 jvg9dPkTLOtjHIXpAoTNO4sLNJSKupH/um9bt7bQxbmG+NqCnZU7+LwB1+JoIevYhj
+	 HYtzM5wwESR/w==
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-21675fd60feso66205415ad.2;
+        Tue, 24 Dec 2024 03:31:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUHUjN4DPaWObyEMPWTH3EPcDE0Fo/EVrf6c3WA3d+bR79fXrEMAcTCS0HKd7AO96aLiRIQO8y4asGx0AaK@vger.kernel.org, AJvYcCWajqYEmMIRr5VLIiMggJhaGfRAYpox16aA0cRpcm8LefvndWiBIYzlYKxDjwQseANgiJ6LGcVMkaLm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxtku7TGRlvHXUixLDEZPMXA9deBeSNlBDJlgqFd9reTc1bSLvo
+	ZxAzeRC1+ENcMxr29QaZbtikZM4n1weAsvWoqTVGG1nEaPtdPFTRUYB4nyWGxop+9u8Qyj0SaLa
+	nbeog7XiiCndFw1u5b1K0oPdRsQ==
+X-Google-Smtp-Source: AGHT+IF0Z2A1ZpCpDpYV0wej1AcD2Tjd35Ya5woNBEnskBD/S7v7TPAd15rnS+ywO0yVT1bM1GTtN5IF4uyo/ZC9CPI=
+X-Received: by 2002:a17:903:234e:b0:216:46f4:7e3d with SMTP id
+ d9443c01a7336-219e6e9fa68mr217969135ad.15.1735039903928; Tue, 24 Dec 2024
+ 03:31:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241219181531.4282-1-jason-jh.lin@mediatek.com>
+ <20241219181531.4282-2-jason-jh.lin@mediatek.com> <6cbe2f57-a63e-4993-938c-7696a869dc2f@collabora.com>
+In-Reply-To: <6cbe2f57-a63e-4993-938c-7696a869dc2f@collabora.com>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Tue, 24 Dec 2024 19:32:16 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8mUutkz+q4-JggbmQRpNn6tukM_GuQ-0rwVRCoOd0mGw@mail.gmail.com>
+Message-ID: <CAAOTY_8mUutkz+q4-JggbmQRpNn6tukM_GuQ-0rwVRCoOd0mGw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: mediatek: ovl: Add
+ compatible strings for MT8188 MDP3
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Singo Chang <singo.chang@mediatek.com>, 
+	Nancy Lin <nancy.lin@mediatek.com>, Shawn Sung <shawn.sung@mediatek.com>, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com, 
+	Fei Shao <fshao@chromium.org>, Pin-yen Lin <treapking@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 24 Dec 2024 10:56:55 +0100 luca.ceresoli@bootlin.com wrote:
-> On Tue, 24 Dec 2024 11:18:23 +0800
-> wangweidong.a@awinic.com wrote:
+AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
+=BC
+2024=E5=B9=B412=E6=9C=8823=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=887:=
+12=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Il 19/12/24 19:15, Jason-JH.Lin ha scritto:
+> > Add compatible strings for the MDP3 OVL hardware components in
+> > MediaTek's MT8188 SoC and it is compatible with the existing
+> > MT8195 MDP OVL components.
+> >
+> > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> > Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@col=
+labora.com>
+>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+>
+> Waiting for an ack to take everything through the mediatek tree :-)
 
->> From: Weidong Wang <wangweidong.a@awinic.com>
->> 
->> The driver is for amplifiers aw88083 of Awinic Technology
->> Corporation. The AW88083 is an intelligent digital audio
->> amplifier with low noise.
->> 
->> Reported-by: kernel test robot <lkp@intel.com>
->> Closes: https://lore.kernel.org/oe-kbuild-all/202412201745.fBpf3Ui5-lkp@intel.com/
+Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
-> You should not add these two lines. From the kernel test robot report:
-
->> If you fix the issue in a separate patch/commit (i.e. not just a new version of
->> the same patch/commit), kindly add following tags
->> | Reported-by: kernel test robot <lkp@intel.com>
->> | Closes: https://lore.kernel.org/oe-kbuild-all/202412201745.fBpf3Ui5-lkp@intel.com/
-
-> If you think about someone looking at git log in the future, they will
-> see the final version of your patch, they will never see v2. So the
-> final version (v3, v4, whatever) is not fixing any error as the error in
-> v2 will never be applied.
-
-hi Luca,
-
-Thank you very much for your review.
-I will remove these two lines in PATCH V4
-
-Best regards
-Weidong Wang
+>
+> Cheers,
+> Angelo
+>
 
