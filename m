@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-133806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F2E9FBC3C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:27:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4315B9FBC4C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:30:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB59A1886836
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:21:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 672C11882A0C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A5E1DAC97;
-	Tue, 24 Dec 2024 10:17:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5AE1DC99A;
+	Tue, 24 Dec 2024 10:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tuIsokOD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ET7Nnb4+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD88C1D63DE
-	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 10:17:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8CC1DB34E
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 10:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735035460; cv=none; b=LBgIYqOcTxPwTyhYlSj0z62bJzgZyF7otE7sVjrC/NXGYpvuDh4M9L6oK6HLOEDVhg+wTM0YDBu71H2jbtp6S3JdfVmBrRZ9SQGm+eFugWLP+Ve5KxhgymgBUVweh+n89RwnZrpNIGdjfoBrdzrQoxnHHsH9fFMzJzInga3d3xo=
+	t=1735035463; cv=none; b=ch30g9iW5XKDvIzXb1r/fyIPFcVfcNZf6gn4hWbjM0wJSX58zNpVFa53U1/yjcbsGkfJhOE+Y83eRMIR5WMB5PQMzSzf7uWwcvdzY6hF7DmBSqlmkRCmh3bbU9aBn0Sqw6Pl/Ok7Ck4WAARjItCBHio79X162Qo/7UPc+X4MpR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735035460; c=relaxed/simple;
-	bh=q3UE0E2mDZCC929aI9do16YaC9c3UMVZhi0tXk/GPcs=;
+	s=arc-20240116; t=1735035463; c=relaxed/simple;
+	bh=pg+0ixud7QxxrDakgimvHJR2/Qzsae3oMGYCum0sTmc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uQiyGXnqtBSRQu6KpFWYcI+THnAL6TenSnxIoQ5aid/lGI3QZQ5asgzsdgjDkTk4LjkO1LyBJcFELR4KQwi2M+zYF4qkgrJrSzIQqu8PXFW4VgsGE6PEQGKdDQU5k8M57F5TEW3gf+bfP0dBYno7j6VWAWX24PJnpwgb3T2RpTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tuIsokOD; arc=none smtp.client-ip=209.85.167.43
+	 In-Reply-To:To:Cc; b=PiLZ94k2FQJd3Eh7O2mYU/va6nKBAPv8n5Xp3VMhMys34ptnW7/YM1GQYHt6AbZQw58UdktMG4e+mnmV0qafV9MvGbYF46jHqHvC9tZcBBzNtaJK03a7EHhn86u730Rp9Zit17tVnicz8CV0wLASJBO35WyEJdaTqpZfrugfCv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ET7Nnb4+; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5401be44b58so5075627e87.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 02:17:38 -0800 (PST)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ffd6af012eso68769601fa.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 02:17:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735035457; x=1735640257; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1735035459; x=1735640259; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=R4ChnpSI8rQpGaKLPT4prgKqYz0wE7uQJXmY4boADvg=;
-        b=tuIsokODFA59n2AXVkspo7wAtJw+m4KNyKFATVY0s6n3n+hW7XtVmdMQt4X0QRBOso
-         uix/jjvoNIA0D3cmI7rYjCHAY1qosC19WtOS8RPxLNE6YWi3sWBU9UkswOus7WaeKqWI
-         qxVrm92PFzeqf1yeFhD/oHTHsN+sd1I2TkGqdnOvRvMxIbjTxyVjQyh2HgR+52qThFa7
-         eR4ppOTgfXVA+11WWgDDTlet+QFbNveNdJvREbNbA3nmC8buDNtCMgZJUdyb7DgzwRL1
-         UhXSIG1vT9k6vVfc4qLtViWsuu4rWlUDKTBrJzHxYfxh299PxRn0DJN76eZlgT8twsXl
-         tZcA==
+        bh=65t0GELKzjIJZOp61osw9K8U2WzNgdRx1Petkma+CoU=;
+        b=ET7Nnb4+BhaFUky0vn2IJhbFcy8d4agVIbcbqreS0mAD2/Z+IsuvAv0TVaAd8ZQQRG
+         T/9M9CGkN2wVtKHYr9yzcYAjsNH0D/WziIDQXIyMT44nQ/mpNJ8FOsN3IBFKW3RXipuo
+         it1lR9EnnBYak13wrq56g29WcNXs+kiJsVfZht009bzIjqMD9JzObtaT/znQ08zEZ7Th
+         y0ANbSnIxBmAp6EN/pbEuEkcO64R4F+6P/rGV38G69UAOHS11KHG8ZnXOvNq88UPJrQh
+         blJoobROCUSEZ70n0NDKts+godE+cgvT1RL5C99KdhKaYzGcl3CjAijE4dtErCNfIH5S
+         pOwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735035457; x=1735640257;
+        d=1e100.net; s=20230601; t=1735035459; x=1735640259;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=R4ChnpSI8rQpGaKLPT4prgKqYz0wE7uQJXmY4boADvg=;
-        b=gW1frGSKgmTkXoKUkTfdIqMP4N6skCIQd3FmjqDbj0MtXg+zavipJ0wBPblefL1+Ix
-         S15O3mpKId7NNKJE1uK88kXhZtEP2QU/k7zQhRhfjUY2H7nmySk/m3mEiFhEw6X0rfpC
-         C9iYMxMjGs3t3BvUIYXT09G61rJPqkgSYBd9mEAbIzuuTXsSP4ae6yHw2e/KCwr4kRj0
-         JmsVnowVqYNVYKkVncGR+vlX0Tj+6V/bIF/AIE+ezXrd7IbwjkaYQ97Q7eom3TvE2lG8
-         EAYw8Ywvw/Aqkhq+T3DWCJWPlmE6NczMZ+IR7lHzKeMH2FDG8gOXOYr8ZhrN9wIOpGrD
-         9Jxg==
-X-Forwarded-Encrypted: i=1; AJvYcCWwoeUbzny+0ppCZOEhTpnR1nTKJgb5UrjBjYDay4P6aOPWbagk7Zwll2H3kMQk/fb0H0lU83OtPTYj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGnRgXbCFH41r2GJegSw+R/eMhRY7x2a41Pm7F9fgiCtH9tIYU
-	TW7YwUhbPUYv01w/unqKV9CPLNjYdF7Q78Q361WCJ82iDd1/g+9/qgOs504oy64=
-X-Gm-Gg: ASbGnct6ssV7d7XRMVvQf2FEEhSHKTLOM+aTyZyRezVi8RkcIQCuWLUOllzEyC4GyBF
-	H3VA3i5mOKvele5tkGBBKImc43Cl5ySGNEFN2qgz+Uc92FoopeCa4Fz21Cx/DiWDtHcu85fBHS4
-	kcf0J3KJxUG3NbUuJKC4lwJqSLeu2aVA0DmXQKWT2m4m+IxAKKtZTguzzqb3cW8leiOZOia5pbM
-	HpUc5pXyrWIT3rHBM6QoBNLWHuyhIwTs/MaN70UicySyp0oTqqhy46XPXFLawtc
-X-Google-Smtp-Source: AGHT+IHQvDGtBLRPtn4oAi/Q6YyKVP1EkKyOfbksilEaRviVYS64GWXKMs9ktkPgjK1NJNxwpoI8MA==
-X-Received: by 2002:a05:6512:1149:b0:542:1b6b:1e89 with SMTP id 2adb3069b0e04-54229525408mr4584594e87.7.1735035456982;
-        Tue, 24 Dec 2024 02:17:36 -0800 (PST)
+        bh=65t0GELKzjIJZOp61osw9K8U2WzNgdRx1Petkma+CoU=;
+        b=FEYLm5A+Ke3AcgxTdzCXbm5pLFCvzZ/Sldzq77LB4b/TyA5OcB5/ZK3F69qM3KKKWq
+         djxk+oL4sjr8nU8xWRuAp74BX6lXEDKiTqon9XUjhYKAjtMyw7V+ZsPMb8Ss6V4CdnoF
+         /Q5xw1m0EB407iT94UmD3LCzQ+bI/Z8TUSQNkGCYhP3fcTqFWbJtmynxrX7jEvjn0dys
+         9gqnsPSBQa1EPVY8OI3NryOsoc3PhjYy7QNFvrcGTXHfVy0htjrX2Q8TW+z24bC59Fco
+         pP28ZWHvmhZPRO4N2QYcmyLNTNXnoE5bYkbk6YLtufZVZeQ0z7VwQNoSCr9gf2NBx1oJ
+         JR0g==
+X-Forwarded-Encrypted: i=1; AJvYcCXQ7rC8ZH9Bq/ybKVEralvRDbuMAxNqWbBbMu4FW5y2GiZ85HImsowuAML17oeTlWVP5RHLZSOVTi5H@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOM/WaByDVLQwW2DQJDqhjYe6eT2GvNgxmKdbnhf1yPHMQ/m41
+	SnHoqCQLxfmT2NWkTHUQrAoOB0yKaK3RwDeNG2aryPCmrD71itpc3YpRdsC/yao=
+X-Gm-Gg: ASbGnctJkcMv2cRGpQ45u/xo7BBHLuMFxaabFzd/rHO5uYFEYw9Hy0yW0+XCeh570Vx
+	yQtVS+Anjj4iDLcSdJB33rgktXv65t0WneLrs74/G6U9UxzbrapKm1HhOHxm8OKb98xBGeFHY8B
+	O3TlnerkcSHPA2GyiP2CeFIbT48AQmBTfoEB7AdZbgZFqAMWj1IcUiKXg3QUb3Y3qYw0RJr8NPq
+	vP5SZ98WY/Wzuq4uecdNhAd21kEwifTb41i8CexHL5ftjF7ejiIjNf+PjMI2NWW
+X-Google-Smtp-Source: AGHT+IFYwcJordC7LdvwCF4jj7rpAmVYZ+WoDa2QyiQBXK2TyG9wEBcLAocJ033QWHAxVrK862Ii1g==
+X-Received: by 2002:a05:6512:1247:b0:540:1fd9:b634 with SMTP id 2adb3069b0e04-542295493ffmr5167375e87.34.1735035459460;
+        Tue, 24 Dec 2024 02:17:39 -0800 (PST)
 Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223600596sm1576865e87.92.2024.12.24.02.17.34
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223600596sm1576865e87.92.2024.12.24.02.17.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Dec 2024 02:17:35 -0800 (PST)
+        Tue, 24 Dec 2024 02:17:38 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 24 Dec 2024 12:17:10 +0200
-Subject: [PATCH v3 11/21] arm64: dts: qcom: sm6125: correct sleep clock
+Date: Tue, 24 Dec 2024 12:17:11 +0200
+Subject: [PATCH v3 12/21] arm64: dts: qcom: sm6375: correct sleep clock
  frequency
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241224-fix-board-clocks-v3-11-e9b08fbeadd3@linaro.org>
+Message-Id: <20241224-fix-board-clocks-v3-12-e9b08fbeadd3@linaro.org>
 References: <20241224-fix-board-clocks-v3-0-e9b08fbeadd3@linaro.org>
 In-Reply-To: <20241224-fix-board-clocks-v3-0-e9b08fbeadd3@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -114,40 +114,40 @@ Cc: Leo Yan <leo.yan@linux.dev>, Georgi Djakov <djakov@kernel.org>,
  linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=928;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=912;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=q3UE0E2mDZCC929aI9do16YaC9c3UMVZhi0tXk/GPcs=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnaoohaSeH0eCgk1LpCGycJR3dezjhfMQyqDnwX
- /Gdqsr4IBSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ2qKIQAKCRCLPIo+Aiko
- 1fxICACl/LqbVvlbE5s56U6Vwtw+gkpp+S6Z1sHAaGAj1SJ5J/Vl1hgYtgk/7vgO8wPsIShgnti
- zgva+P8apKkkJjOnWFFHmW0kxKbUTES/GXsqw3TIX2ETlD8+jjFT5/XHLVTjTFfL3ALxhbL5kyI
- TG6TzD4A6qjVQctoOCspSFA2384bRPV5g6QTiutZTgy8nlVfiK5V1S0bVHkYbmHfa5x60FCmA/G
- ZzMGItKMP4UAbegOGNJO08Q7rURJchUwiSGZW3z2GZ2um7zJr8Zm21Go4ZT1n0oXre3CFsAo7xZ
- WLo+5xnJtYoZ5/k7KTcDfpwXqa0mlvSbGInRRtXtPGqhsLa1
+ bh=pg+0ixud7QxxrDakgimvHJR2/Qzsae3oMGYCum0sTmc=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnaooiuTqTnxaWWhR1X9lZBW6mQzWv7XY2rb4P6
+ pyIdLC+vl+JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ2qKIgAKCRCLPIo+Aiko
+ 1ckMB/0YmaGqWVXY///07eZg/fXcotYFcjfNsru0BqNeJd2W6uGW13/pPozbvv4rrsxx/Dystxg
+ gMT/1hBbMRiMEbAwFO9NEItjlNH3D+B7Nb6ulZSC+t3Qw7r9HKY9pkt4mfTaMtQW2/u1ISRV4MU
+ /XUcgM9Z65PsvgC+L7Xr5FJre6eC/oIASmd8mB9yhaH28y8mSh+CmeShQrhvKqjHkEoT+7MrF9h
+ Vtid7q1tSlZFAp7dFaMZ/nX2kbEYvFrZcIagz+CXH40vM1XhVASQWwOYfoCav13azRXUcKW6asB
+ pqHgZQoC4PynSa5y9pjdKL5JZl54hGE+FE7QtJ7wJ7Cdohku
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-The SM6125 platform uses PM6125 to provide sleep clock. According to the
+The SM6375 platform uses PM6125 to provide sleep clock. According to the
 documentation, that clock has 32.7645 kHz frequency. Correct the sleep
 clock definition.
 
-Fixes: cff4bbaf2a2d ("arm64: dts: qcom: Add support for SM6125")
+Fixes: 59d34ca97f91 ("arm64: dts: qcom: Add initial device tree for SM6375")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm6125.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sm6375.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-index 17d528d639343b9d649167d231aad3aa63474435..f3f207dcac84fa2f72fa9222c26ab3d7fe8813b2 100644
---- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-@@ -28,7 +28,7 @@ xo_board: xo-board {
+diff --git a/arch/arm64/boot/dts/qcom/sm6375.dtsi b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+index e0b1c54e98c0e8d244b5f658eaee2af5001c3855..7c929168ed0805e832b818516083d48968d3bbce 100644
+--- a/arch/arm64/boot/dts/qcom/sm6375.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6375.dtsi
+@@ -29,7 +29,7 @@ xo_board_clk: xo-board-clk {
+ 
  		sleep_clk: sleep-clk {
  			compatible = "fixed-clock";
- 			#clock-cells = <0>;
 -			clock-frequency = <32000>;
 +			clock-frequency = <32764>;
- 			clock-output-names = "sleep_clk";
+ 			#clock-cells = <0>;
  		};
  	};
 
