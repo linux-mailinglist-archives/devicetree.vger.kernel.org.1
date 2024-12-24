@@ -1,79 +1,78 @@
-Return-Path: <devicetree+bounces-133793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8C49FBC0D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:19:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFFAE9FBC1B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:22:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 569EE1886905
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:13:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70DD81885B2A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D7C1C1F0F;
-	Tue, 24 Dec 2024 10:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 468DD1B532F;
+	Tue, 24 Dec 2024 10:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xN3awfGa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qa5RSMid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E865E1BE251
-	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 10:12:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290851A8F63
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 10:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735035165; cv=none; b=W7sLGYo6r94aloVatMelGq3xoUJdJS73LcR41zMtWFCtoXy+DRZItqJkzk0m73O5G0CiXjiSnwM/1enEkGkn9xcTLsZQjdp73y7JQy0w+dDO96oq4fJQhtAPboA05GbwhF03ygpSy8qT5KNko/XzzFfJQh28Oc5pcpAxyiUxO8U=
+	t=1735035435; cv=none; b=ac+JiYQWNJkhFP4NJxlRamsjxE5j1NIOlKCpoCJKHanEMZU3OSF/Cq/GETxgUVSdG1kdsr13Txq3lXBkq8+qojZDmMWfSQHCJtPp2yRN6FrlE4bdTJtzTGw4G4qWoj37k069SAe3XTW3zFLRtHiUjRgkbcQWmR04B0SCfi5nopw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735035165; c=relaxed/simple;
-	bh=OZbwhp9v0yJpxtOAjrkOLCh412r4s/Pspr2Af7Z6HMk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pIVZLpPP+y9yWr5wpL/vMIr7cCGSHwfp4HjDWuJ/mg6ulRrJE7PV8gHguF/Vac+4+SosrJxTRa+HSUOEYKsaceU+EyiJSSMdXRfcuqojc4lYodvs7FyibefTwoGSlKdcstoGZURLSAQbs+gc0KnxY/Mdowq23AcefQNOEbVIVac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xN3awfGa; arc=none smtp.client-ip=209.85.167.45
+	s=arc-20240116; t=1735035435; c=relaxed/simple;
+	bh=bHUMlVVUIqYUKxAhgUPFopVezLFM2pjiI0w0VKzBVtk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QOIA5+smlHLbmdKfuy8ZEiJST9rv/tnbsCqZAe5M5bXoLpqsW+vOXFVAkA5ecVavLZBjHarhPbAwMzen/oxzOOBNZiQRWxg064DRVAUhdEUE6MPu2Gf3rLDAvZg4lmpFwI+usmsNG+6cHiWcfzdfRpRDjhNEM4+UyIwNg7omdts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qa5RSMid; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5401b7f7141so4469230e87.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 02:12:42 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5401bd6cdb7so5584702e87.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 02:17:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735035161; x=1735639961; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6mXzY4WhWP+aDJKEVsTsLjKHDeS6gGmOf+TLu798BVY=;
-        b=xN3awfGazW51/kCYeDWdQMLfCiYrk0BoFMpnO8qnRjfnLmHF4toj6dk1W1AaY4KmMP
-         fzW2OGtNmOF9RHyPfaG0LNoWDCfWGGhX5lQDWPyTtcw4TOqhmkFO96A937oCEI1qhFRm
-         oMxZfWTumlyYboo0w4etgTnpHCcserXzxi/2p/trkvf4Jo7E2bag3XUcs0HX4OZbSNmP
-         KSBuVykGdlJHXfIWsw+ArQPLzfGlRbwyLXSUWI3S1BAM9LmVnutMGUpM2ZCy1dFFpvw/
-         9MFPovOMwM/yuJ0DBixlpB04B0I4ALvyv3yn3wr4E6EP8WfhmNLyXB9V1X2phB3weip6
-         1MmA==
+        d=linaro.org; s=google; t=1735035430; x=1735640230; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZYjmRBq/4XH/cL1I6wGmugZF6A/m6XrFItxvu/qlOtM=;
+        b=qa5RSMidTqym3zo7Woq9GqNHy3QPtJjXPlE1dtjgcQzV5bur/3GGoc9ss4iWxMRNOP
+         lzOaoX+cZXk466g1VqbNquBlf7vQ3DCGLhW8PDfP5Cxz8YBCMDR03azb4XsucVD6Ty6C
+         XDtbp/lBPd/bIpEf+ymafIl79kHz0J3ZqyWeAlm0suf6BUOTJ8U1Y3oimGmkcxNoy0k9
+         F74DQBabSH+YGvMnQI3qEG/DtZQ/+vLS6X+bGFeJoiy/tJXpgcx6ZUbODX5i90A6PtLY
+         BGWcSbVwqS+aKZdzIHBzTbtfhGoqYve0YcrYTXf1HirnUsn8PQN2P9TR2a0m1SHTK5RW
+         g5kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735035161; x=1735639961;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6mXzY4WhWP+aDJKEVsTsLjKHDeS6gGmOf+TLu798BVY=;
-        b=lcrLDQ8xSSAbLifDsqB3vrylISjikH+5q+OTA5ZAod0hK2BMGktTMamWdEMO5ccKgJ
-         hLkNXx44+/eGS76XR81ACuCDYOBaV4oAM037oZPyxjgkFd2ne/QmqCDQGrhUqdoQ5X24
-         Es71Mjc8QKZ4j+8JfTX9fIXriq0oJUIlsGMpfvvjkEeuhtOYY0ffcZwlMnJQtofZVKt4
-         nliPRYlYMg+/nB37mL3JOPBVrpurRA3EtELL1xZWiU+zLRogXileLCFEPpqqz5FlH30C
-         CeIW0wzvY8EZ6gR+HS++9aTs2GOYN735Ob9unfSrvKeSSzuTX6QAFaS/PAOCdTn5u9aL
-         DC7w==
-X-Forwarded-Encrypted: i=1; AJvYcCVa8ZaD5YEXDYSwwZHKc4tj7FiTmVrekqvKZ8mVTz/u4QoKoHBZmGwS5+1cxnprVmyiYIVauKulpZBl@vger.kernel.org
-X-Gm-Message-State: AOJu0YytsCBT9dKwgPyyIZJHN87T2PeRe7/9vXJPGK/6CJSPr0Mcm76W
-	Z26PZsKBbCftZ3SI37MwVduPaUdm2sJFEz3G82VxY5XtzqzCUgPZ/k/L3eAjIFo=
-X-Gm-Gg: ASbGncuOIHQGwOz8dwInkPOq4mM5YUEb7KdBCYhzI4IhTGrAGRB9FG4M35lyPrNkSk0
-	C3HVpOZXz3lWT0IMYoK/48oF/b5cy8AByDY/7LZ1GCaNAez3SdFMp0mZgczAzwnhYc0uzgaL+49
-	L3Bvl0eo/2WMQrq0VOqjwJsMDDC9BZhCinAnhTPIr5UeyKJ+8tgdPBri2bUkKM3awnS3w3Zt4wM
-	nhT/T6A/tGQLohyq1YjB+ZzW8OZHXUUj+CoiH41dewE77CQT4ljN8St6R0rgWR5
-X-Google-Smtp-Source: AGHT+IE0ZELiwo7+KnvFDaM6stPOMYxeW2oSNkT4ubW9RCuiLLhXc0Cqj2kqttntd6Eru/iBwA9mmA==
-X-Received: by 2002:a05:6512:1053:b0:542:29e5:7323 with SMTP id 2adb3069b0e04-54229e573famr4655313e87.5.1735035161113;
-        Tue, 24 Dec 2024 02:12:41 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735035430; x=1735640230;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZYjmRBq/4XH/cL1I6wGmugZF6A/m6XrFItxvu/qlOtM=;
+        b=iAxqor4xSrhi8Pl4IZJ5hYeAbH0F7hilLPa/6Mr8aZGs/F/Hv8FlDADJYf0VFKyfK3
+         dVlqNJtifcHFK/5+bq0ohiaCun2jVKEkJ389sFX6yuYLlVQVscPuZ6M6qwVMVnV9bPdJ
+         H5i5ffNgdHwMAQhTnZClDAG2TAV3StADAaueODQmHMPeQTWimfRXmS56xd5SQSIP2QFp
+         /FdIvT1v3EfC9fd9DutS6Q1Mf9UISVjS3RoT0+k1wRYGeLtNo6eOUCmZsNK53p79AJHG
+         Q7CM79j3/F6AmltLcnIN/JMXmeCaqzPxyLG3ox+kvgyZ1VzPf05iG2N4v7X/X2xzOONZ
+         zGLA==
+X-Forwarded-Encrypted: i=1; AJvYcCU9t16gp9zyedlZmHJ9pJHpgN3ICXccr9/2UYM/J1515J7E4Oxdk+VQhcDAx622wsr2H96q9MfVoCxf@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqiCC56HPPIp/oO477timuTMAj7mu1z9wqV8hc0t8rNU9I9HfG
+	mBOVUk2slQNu2/SpD+6G4kNZCidGsILMcY/5DVENAwoi+lgeMUqS6YprRJl1gUM=
+X-Gm-Gg: ASbGncuf2vutFVYNn4wSI0TTaZRK3znBS03nGBxE2RegxZ2TqFA3Y6kri8neQzpoM/B
+	HCpR57nBtHWnZvwsBsG7gGTa23IDlIqNnrVFiLhNW02o8obTr1f9sXrAYSiTJC887ekLU2xd/eL
+	ml1yE9Cqqktj1KcxVh7JVtNJx0j0S4G//S51pORBXfSk7W2S7npQq5GBrmEBQbOZGBVJGdQipzd
+	nju7ySzRoRFUeQI9ZtiBnUhOpMlg+gVh8c+HKOfaCKLjN2u+RPNkkbceum8XzIk
+X-Google-Smtp-Source: AGHT+IFnaK4NWBMz3aMj5Du0Sz6qM1+ETmAMtqo/zne22jpNYdVabdxlAiO8L+hsOgqupDtPm33yJw==
+X-Received: by 2002:a05:6512:a8e:b0:540:1d37:e6c with SMTP id 2adb3069b0e04-5422953c42bmr4773614e87.30.1735035430226;
+        Tue, 24 Dec 2024 02:17:10 -0800 (PST)
 Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223832073sm1574233e87.260.2024.12.24.02.12.38
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223600596sm1576865e87.92.2024.12.24.02.17.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Dec 2024 02:12:39 -0800 (PST)
+        Tue, 24 Dec 2024 02:17:08 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 24 Dec 2024 12:12:16 +0200
-Subject: [PATCH 4/4] clk: qcom: mmcc-msm8960: handle LVDS clock
+Subject: [PATCH v3 00/21] arm64: dts: qcom: correct sleep clocks
+Date: Tue, 24 Dec 2024 12:16:59 +0200
+Message-Id: <20241224-fix-board-clocks-v3-0-e9b08fbeadd3@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,170 +81,134 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241224-apq8064-fix-mmcc-v1-4-c95d2e2bf143@linaro.org>
-References: <20241224-apq8064-fix-mmcc-v1-0-c95d2e2bf143@linaro.org>
-In-Reply-To: <20241224-apq8064-fix-mmcc-v1-0-c95d2e2bf143@linaro.org>
+X-B4-Tracking: v=1; b=H4sIABuKamcC/33NwQ6CMAyA4VchPVuzdQzQk+9hPIxRYNEws5lFQ
+ 3h3BydNjMe/ab/OEDk4jnAsZgicXHR+yqF2BdjRTAOj63IDCSqllBp798TWm9ChvXl7jcjK9Kx
+ JVFRbyGf3wHlnI8+X3KOLDx9e24ck1+kfLEkU2NhWCFP2urZ0urnJBL/3YYBVS/QhKPFDoCy0B
+ 6N0o5tK1/wlLMvyBpfJxfLzAAAA
+X-Change-ID: 20241115-fix-board-clocks-e3afe520627c
 To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jeffrey Hugo <quic_jhugo@quicinc.com>, 
- Taniya Das <quic_tdas@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, linux-arm-msm@vger.kernel.org, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Leo Yan <leo.yan@linux.dev>, Georgi Djakov <djakov@kernel.org>, 
+ Shawn Guo <shawn.guo@linaro.org>, Stephan Gerhold <stephan@gerhold.net>, 
+ Zac Crosby <zac@squareup.com>, 
+ =?utf-8?q?Bastian_K=C3=B6cher?= <git@kchr.de>, 
+ Jeremy McNicoll <jeremymc@redhat.com>, 
+ Rohit Agarwal <quic_rohiagar@quicinc.com>, 
+ Melody Olvera <quic_molvera@quicinc.com>, 
+ cros-qcom-dts-watchers@chromium.org, Stephen Boyd <swboyd@chromium.org>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>, 
+ Martin Botka <martin.botka@somainline.org>, 
+ Jonathan Marek <jonathan@marek.ca>, Vinod Koul <vkoul@kernel.org>, 
+ Tengfei Fan <quic_tengfan@quicinc.com>, 
+ Fenglin Wu <quic_fenglinw@quicinc.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Abel Vesa <abel.vesa@linaro.org>, 
+ Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Sibi Sankar <quic_sibis@quicinc.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Jun Nie <jun.nie@linaro.org>, 
+ Max Chen <mchen@squareup.com>, Vincent Knecht <vincent.knecht@mailoo.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4316;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4726;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=OZbwhp9v0yJpxtOAjrkOLCh412r4s/Pspr2Af7Z6HMk=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnaokMsdsE3iQatg9NHaGAS+xN1N7srVmo25Pzg
- qShpoD5dsmJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ2qJDAAKCRCLPIo+Aiko
- 1S1lB/9H9aVeyi0xwWm1S/oL5eqny/MQDJgd/VGN4W7Mbk2n7tfzTLlKVlknNt7GrD3yBCVlfFR
- qxcfLfRiqM1vXMw/SuPIaib3PSNquziqyCY4M1w23FRGzSSc3gAxb5fXfQXs/0l1aM3HcsFBgHa
- IPlOrK482rlJyZWoN1c04AncGx0lQ0Zp//SHl1EJUrGJzjWWtFg/YNVEqWk7MPcdC8kGMdcF02Q
- BGRmuPg2uBS80VAfz39hO10cFnLn04/3Xp6lQF+xacuWgMFLoufkL/I0LbdByJhBVVaUWxQM6cZ
- BOeY2alDVKmqYHd7vxlt+Rt74tSYL9WcEw6d4cdNxfIPpN7l
+ bh=bHUMlVVUIqYUKxAhgUPFopVezLFM2pjiI0w0VKzBVtk=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnaoogQjUIfCjjEUcauxTACeVoFZF9/P8RbUJoG
+ Baz5yrOWwKJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZ2qKIAAKCRCLPIo+Aiko
+ 1b1hB/9761DrLKZ8R+DrmbOpBAmO11qH5+pkLuN5ALUhkce0uvB7D00L1Dk//G/z2VszwRd/uDb
+ BoUUGnqLlV9yA5Ux+t9NvHAA3ylKbX1n80q2rdW2lgwWMtzwj8YMYS8WlMTnabaGPJ8DVaPmq5f
+ es+zGwzv94r3TUfZ5/Df5WSvN4ttLyOuh1wm+FO/pMFKrr7oVRHxI6+rEOhQW+Uq9O+NsEbUU2y
+ k00BIOt04qDAdeVOtokPv2wHkuwEx7jv/Gw1SzRAk8cpYWz2kzjTdm72Eq1YUtJWpC5O+I2OMJb
+ RObYWZfqpXw1xwEXwLN3MUSEbbGj1RFpkNTrgwOi8oEUsgRM
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On APQ8064 the DSI2_PIXEL_SRC clock can be used either to drive the
-second DSI host or to drive the LCDC controller. Add LVDS PLL as
-possible source to the clock and LVDS output clock. The DSI2_PIXEL_SRC
-clock has separate path to be used for the LVDS clock.  To represent
-both DSI and LVDS clocks properly, add intermediate clock which toggles
-the enable bit and make DSI2_PIXEL_CLK clock just check for the HALT
-bit.
+Correct sleep clock frequencies. For several platforms I wasn't able to
+find corresponding document and as such I didn't change defined clocks.
+These platforms are: IPQ5018, IPQ5332, IPQ5424, IPQ6018, IPQ8074,
+IPQ9574, MSM8953.
+
+Also several MSM8996 / MSM8994 devices define divisor clocks at
+32.768 kHz. Most likely these clocks are also generated by dividing the
+19.2 MHz clock and should have the frequency 32.764 kHz, but being not
+100% sure I decided to leave those as is for now.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/mmcc-msm8960.c | 61 ++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 57 insertions(+), 4 deletions(-)
+Changes in v3:
+- Dropped the patches NAK-ed by Krzysztof
+- Link to v2: https://lore.kernel.org/r/20241130-fix-board-clocks-v2-0-b9a35858657e@linaro.org
 
-diff --git a/drivers/clk/qcom/mmcc-msm8960.c b/drivers/clk/qcom/mmcc-msm8960.c
-index 3f41249c5ae4350a0d5a6e7ece0fa0416bfd9114..20d1c43f35d99ba531c4e138950c0b69c8c08786 100644
---- a/drivers/clk/qcom/mmcc-msm8960.c
-+++ b/drivers/clk/qcom/mmcc-msm8960.c
-@@ -37,6 +37,7 @@ enum {
- 	P_DSI2_PLL_DSICLK,
- 	P_DSI1_PLL_BYTECLK,
- 	P_DSI2_PLL_BYTECLK,
-+	P_LVDS_PLL,
- };
- 
- #define F_MN(f, s, _m, _n) { .freq = f, .src = s, .m = _m, .n = _n }
-@@ -143,6 +144,20 @@ static const struct clk_parent_data mmcc_pxo_dsi2_dsi1[] = {
- 	{ .fw_name = "dsi1pll", .name = "dsi1pll" },
- };
- 
-+static const struct parent_map mmcc_pxo_dsi2_dsi1_lvds_map[] = {
-+	{ P_PXO, 0 },
-+	{ P_DSI2_PLL_DSICLK, 1 },
-+	{ P_LVDS_PLL, 2 },
-+	{ P_DSI1_PLL_DSICLK, 3 },
-+};
-+
-+static const struct clk_parent_data mmcc_pxo_dsi2_dsi1_lvds[] = {
-+	{ .fw_name = "pxo", .name = "pxo_board" },
-+	{ .fw_name = "dsi2pll", .name = "dsi2pll" },
-+	{ .fw_name = "lvdspll", .name = "mpd4_lvds_pll" },
-+	{ .fw_name = "dsi1pll", .name = "dsi1pll" },
-+};
-+
- static const struct parent_map mmcc_pxo_dsi1_dsi2_byte_map[] = {
- 	{ P_PXO, 0 },
- 	{ P_DSI1_PLL_BYTECLK, 1 },
-@@ -2439,26 +2454,42 @@ static struct clk_rcg dsi2_pixel_src = {
- 	},
- 	.s = {
- 		.src_sel_shift = 0,
--		.parent_map = mmcc_pxo_dsi2_dsi1_map,
-+		.parent_map = mmcc_pxo_dsi2_dsi1_lvds_map,
- 	},
- 	.clkr = {
- 		.enable_reg = 0x0094,
- 		.enable_mask = BIT(2),
- 		.hw.init = &(struct clk_init_data){
- 			.name = "dsi2_pixel_src",
--			.parent_data = mmcc_pxo_dsi2_dsi1,
--			.num_parents = ARRAY_SIZE(mmcc_pxo_dsi2_dsi1),
-+			.parent_data = mmcc_pxo_dsi2_dsi1_lvds,
-+			.num_parents = ARRAY_SIZE(mmcc_pxo_dsi2_dsi1_lvds),
- 			.ops = &clk_rcg_pixel_ops,
- 		},
- 	},
- };
- 
-+static struct clk_branch dsi2_pixel_lvds_src = {
-+	.clkr = {
-+		.enable_reg = 0x0094,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "dsi2_pixel_lvds_src",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&dsi2_pixel_src.clkr.hw
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_branch_simple_ops,
-+			.flags = CLK_SET_RATE_PARENT,
-+		},
-+	},
-+};
-+
- static struct clk_branch dsi2_pixel_clk = {
- 	.halt_reg = 0x01d0,
- 	.halt_bit = 19,
- 	.clkr = {
- 		.enable_reg = 0x0094,
--		.enable_mask = BIT(0),
-+		.enable_mask = 0,
- 		.hw.init = &(struct clk_init_data){
- 			.name = "mdp_pclk2_clk",
- 			.parent_hws = (const struct clk_hw*[]){
-@@ -2471,6 +2502,24 @@ static struct clk_branch dsi2_pixel_clk = {
- 	},
- };
- 
-+static struct clk_branch lvds_clk = {
-+	.halt_reg = 0x024c,
-+	.halt_bit = 6,
-+	.clkr = {
-+		.enable_reg = 0x0264,
-+		.enable_mask = BIT(1),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "mdp_lvds_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&dsi2_pixel_lvds_src.clkr.hw
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_branch_ops,
-+			.flags = CLK_SET_RATE_PARENT,
-+		},
-+	},
-+};
-+
- static struct clk_branch gfx2d0_ahb_clk = {
- 	.hwcg_reg = 0x0038,
- 	.hwcg_bit = 28,
-@@ -2799,6 +2848,8 @@ static struct clk_regmap *mmcc_msm8960_clks[] = {
- 	[CSIPHY1_TIMER_CLK] = &csiphy1_timer_clk.clkr,
- 	[CSIPHY0_TIMER_CLK] = &csiphy0_timer_clk.clkr,
- 	[PLL2] = &pll2.clkr,
-+	[DSI2_PIXEL_LVDS_SRC] = &dsi2_pixel_lvds_src.clkr,
-+	[LVDS_CLK] = &lvds_clk.clkr,
- };
- 
- static const struct qcom_reset_map mmcc_msm8960_resets[] = {
-@@ -2983,6 +3034,8 @@ static struct clk_regmap *mmcc_apq8064_clks[] = {
- 	[VCAP_CLK] = &vcap_clk.clkr,
- 	[VCAP_NPL_CLK] = &vcap_npl_clk.clkr,
- 	[PLL15] = &pll15.clkr,
-+	[DSI2_PIXEL_LVDS_SRC] = &dsi2_pixel_lvds_src.clkr,
-+	[LVDS_CLK] = &lvds_clk.clkr,
- };
- 
- static const struct qcom_reset_map mmcc_apq8064_resets[] = {
+Changes in v2:
+- Move clocks to SoC DTSI (offline discussion with Bjorn)
+- Link to v1: https://lore.kernel.org/r/20241115-fix-board-clocks-v1-0-8cb00a4f57c2@linaro.org
 
+---
+Dmitry Baryshkov (21):
+      arm64: dts: qcom: msm8916: correct sleep clock frequency
+      arm64: dts: qcom: msm8939: correct sleep clock frequency
+      arm64: dts: qcom: msm8994: correct sleep clock frequency
+      arm64: dts: qcom: qcs404: correct sleep clock frequency
+      arm64: dts: qcom: q[dr]u1000: correct sleep clock frequency
+      arm64: dts: qcom: qrb4210-rb2: correct sleep clock frequency
+      arm64: dts: qcom: sar2130p: correct sleep clock frequency
+      arm64: dts: qcom: sc7280: correct sleep clock frequency
+      arm64: dts: qcom: sdx75: correct sleep clock frequency
+      arm64: dts: qcom: sm4450: correct sleep clock frequency
+      arm64: dts: qcom: sm6125: correct sleep clock frequency
+      arm64: dts: qcom: sm6375: correct sleep clock frequency
+      arm64: dts: qcom: sm8250: correct sleep clock frequency
+      arm64: dts: qcom: sm8350: correct sleep clock frequency
+      arm64: dts: qcom: sm8450: correct sleep clock frequency
+      arm64: dts: qcom: sm8550: correct sleep clock frequency
+      arm64: dts: qcom: sm8650: correct sleep clock frequency
+      arm64: dts: qcom: x1e80100: correct sleep clock frequency
+      arm64: dts: qcom: sc8180x: drop extra XO clock frequencies
+      arm64: dts: qcom: sdm670: move board clocks to sdm670.dtsi file
+      arm64: dts: qcom: q[dr]u1000: move board clocks to qdu1000.dtsi file
+
+ arch/arm64/boot/dts/qcom/msm8916.dtsi                      |  2 +-
+ arch/arm64/boot/dts/qcom/msm8939.dtsi                      |  2 +-
+ arch/arm64/boot/dts/qcom/msm8994.dtsi                      |  2 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi                       |  2 +-
+ arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi               |  2 +-
+ arch/arm64/boot/dts/qcom/qdu1000-idp.dts                   | 14 --------------
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi                      | 14 ++++++++++++++
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts                   |  2 +-
+ arch/arm64/boot/dts/qcom/qru1000-idp.dts                   | 14 --------------
+ arch/arm64/boot/dts/qcom/sar2130p.dtsi                     |  2 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi                       |  2 +-
+ arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts        |  4 ----
+ arch/arm64/boot/dts/qcom/sc8180x-primus.dts                |  4 ----
+ arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts           | 14 --------------
+ arch/arm64/boot/dts/qcom/sdm670.dtsi                       | 14 ++++++++++++++
+ arch/arm64/boot/dts/qcom/sdx75.dtsi                        |  2 +-
+ arch/arm64/boot/dts/qcom/sm4450.dtsi                       |  2 +-
+ arch/arm64/boot/dts/qcom/sm6125.dtsi                       |  2 +-
+ arch/arm64/boot/dts/qcom/sm6375.dtsi                       |  2 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi                       |  2 +-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi                       |  2 +-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi                       |  2 +-
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts                    |  2 +-
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts                    |  2 +-
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts                    |  2 +-
+ arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts            |  2 +-
+ .../arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts |  2 +-
+ arch/arm64/boot/dts/qcom/sm8650-hdk.dts                    |  2 +-
+ arch/arm64/boot/dts/qcom/sm8650-mtp.dts                    |  2 +-
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts                    |  2 +-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi                     |  2 +-
+ 31 files changed, 52 insertions(+), 74 deletions(-)
+---
+base-commit: 8155b4ef3466f0e289e8fcc9e6e62f3f4dceeac2
+change-id: 20241115-fix-board-clocks-e3afe520627c
+
+Best regards,
 -- 
-2.39.5
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
