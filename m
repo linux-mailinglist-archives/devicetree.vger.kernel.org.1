@@ -1,141 +1,103 @@
-Return-Path: <devicetree+bounces-133873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBFB09FC060
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 17:37:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EA269FC1A2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 20:19:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B55171618F0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 16:37:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAA34165D3C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 19:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D8E212B11;
-	Tue, 24 Dec 2024 16:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4CE7180A80;
+	Tue, 24 Dec 2024 19:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WCP+a7/h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YfjQ3GKh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D2C2AE6C;
-	Tue, 24 Dec 2024 16:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8191D18AE2;
+	Tue, 24 Dec 2024 19:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735058228; cv=none; b=P943pIIFGpswnnAZ8TGByW/PEt2/mFDHXyazCubb7vW1iDK6rhOYgTobvmiBmfbvgByOIvzqD3ccSCAIsLiga8iBY698xsiUo0a+k6e9WHvOXpNmISIrWFzjrzzyJZRAjcr5JMYOh9cNH3D/AqiT7wn9CA0j3NzlqCA5Vevsv3k=
+	t=1735067951; cv=none; b=d9qMSYgHSm/86Lm06B4FZWBRDpfqgACT2BzqbQFDUwttOqvBTRFFC90LLH5vr1dKGVUDikXmpv11F9a3JI600nyw9Pre/lLjnKAh1a4/E9hJlKTrdcKEoucABkMT7KxSpVxO/5ROLMFyb6ktnT3HF80xx42X+xvKmTy51Yer/2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735058228; c=relaxed/simple;
-	bh=dbSHHVNh84FA7Cls48I5xFZUDkqvJap9eZqrol1y794=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xnyfvu+BUWHRqLNngJKz2XPpZC1ieOsF6NvIPrdDj1QrFJ+5edEHUOkl2CoGX7BVmzjmunYKwo4kONOWGJx+J0fqKx4fo3/QasjUNWL/3cyDqTZySi53gl7m3Nd3TMt1k+4l9LFbXdDolG7eQYvZ1xmtrT7y4weRGa3HqGhcdUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WCP+a7/h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A143C4CED0;
-	Tue, 24 Dec 2024 16:37:03 +0000 (UTC)
+	s=arc-20240116; t=1735067951; c=relaxed/simple;
+	bh=/S6xr0AyVMFjE/yJ1Flixxto4mjlZUmMMHGYCrP+lLM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dyQAe/aODBNU5EesxlYBWtT79iGycCCRUHsQAfzpsLLadtVLUwPaFMkyqLP9E17KsDcwhAIf9r9zZt8mwIaC7C0u9vbkwpnRCX5r7HbfKZDI6CzlMtMYyylwBaj56zLO9yEZV5/GlE3zqE0LA5XaoaEK8IWfNGkE5l/LjHp/ohs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YfjQ3GKh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C4D4C4CED0;
+	Tue, 24 Dec 2024 19:19:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735058228;
-	bh=dbSHHVNh84FA7Cls48I5xFZUDkqvJap9eZqrol1y794=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WCP+a7/hS943herHaKunur/52SvD9kdk7k7YdTNsGDgOPPCKBhVcFkyV+dDgQQJKM
-	 1Phn6kNN1TJhPs7R4kvIfYs7Ora4ueuebasqeeNIayKU9ZIlwZnVx0BhFISnhArXTV
-	 Mj9hxZGFhpYeADjFpdTlNW0w3RCUMfTSwyUD1S/+GFlOVZOpS5ccCv8zcDQ0dDrxrJ
-	 tz4ul6tCFJ4Uk3XvaQLoCvY5fYeU8tAtjfaL4GwVV+PlJLtvQmfGpaQMmK8qs2wSff
-	 dJwMDrErJ21AKPk3e4ibyxIbZ0Uun1OYv0VuUybwcs1vBN21VlPCi6eqRdNFNmCBj3
-	 31IK9gBQiXg9w==
-Message-ID: <93f57211-7157-485a-b84a-ceffbd8591cc@kernel.org>
-Date: Tue, 24 Dec 2024 17:37:01 +0100
+	s=k20201202; t=1735067951;
+	bh=/S6xr0AyVMFjE/yJ1Flixxto4mjlZUmMMHGYCrP+lLM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YfjQ3GKhGZVLE3UR5HFV+NpvXj5HPnKhJylH9pJtVmu1zTV9qU/AZesuc9qlzyFIX
+	 QbaM4VMwFXxSRQwQOBzkG9PTofdyI8NkXGx+2CXC9qp6OQaXoD53CqlF10FCc1fRT6
+	 4gF3u6Kx285+EQ1VPoxat4Awpsi08an+78nmthff0p2sRhqyWiXhuPYHUvFoMrysAp
+	 Ewd/HVvDLaJQp3d7g5sLvz3HHFkylcR2PlE87kI2yFP41MWxbht7yh6w4n1x+GqIFk
+	 i2UO72TOzM3WgwDn4ORdgw55GMNOla3OtypvnXZXV0nAvadHR1NcEYt2YhrO2a/5jB
+	 vEY1App0k8+Ew==
+Date: Wed, 25 Dec 2024 00:49:07 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Varadarajan Narayanan <quic_varada@quicinc.com>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, quic_ppratap@quicinc.com,
+	quic_jackp@quicinc.com
+Subject: Re: (subset) [PATCH v3 0/3] Add support for USB controllers on QCS615
+Message-ID: <Z2sJK9g7hiHnPwYA@vaman>
+References: <20241224084621.4139021-1-krishna.kurapati@oss.qualcomm.com>
+ <173505391861.950293.11120368190852109172.b4-ty@kernel.org>
+ <anfqf3jvh7timbvbfqfidylb4iro47cdinbb2y64fdalbiszum@2s3n7axnxixb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: light: opt3001: add compatible for
- opt3004
-To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
- jic23@kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Emil Gedenryd <emil.gedenryd@axis.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Arthur Becker <arthur.becker@sentec.com>,
- Ivan Orlov <ivan.orlov0322@gmail.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
- Mudit Sharma <muditsharma.info@gmail.com>,
- Julien Stephan <jstephan@baylibre.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Andreas Dannenberg <dannenberg@ti.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241224061321.6048-1-hardevsinh.palaniya@siliconsignals.io>
- <20241224061321.6048-2-hardevsinh.palaniya@siliconsignals.io>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241224061321.6048-2-hardevsinh.palaniya@siliconsignals.io>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <anfqf3jvh7timbvbfqfidylb4iro47cdinbb2y64fdalbiszum@2s3n7axnxixb>
 
-On 24/12/2024 07:13, Hardevsinh Palaniya wrote:
-> Add Support for OPT3004 Digital ambient light sensor (ALS) with
-> increased angular IR rejection
+On 24-12-24, 17:38, Dmitry Baryshkov wrote:
+> On Tue, Dec 24, 2024 at 08:55:18PM +0530, Vinod Koul wrote:
+> > 
+> > On Tue, 24 Dec 2024 14:16:18 +0530, Krishna Kurapati wrote:
+> > > This series aims at enabling USB on QCS615 which has 2 USB controllers.
+> > > The primary controller is SuperSpeed capable and secondary one is
+> > > High Speed only capable. The High Speed Phy is a QUSB2 phy and the
+> > > SuperSpeed Phy is a QMP Uni Phy which supports non-concurrent DP.
+> > > 
+> > > Link to v1:
+> > > https://lore.kernel.org/all/20241014084432.3310114-1-quic_kriskura@quicinc.com/
+> > > 
+> > > [...]
+> > 
+> > Applied, thanks!
+> > 
+> > [2/3] phy: qcom-qusb2: Add support for QCS615
+> >       commit: 8adbf20e05025f588d68fb5b0fbbdab4e9a6f97e
 > 
-> The OPT3004 sensor shares the same functionality and scale range as
-> the OPT3001. This Adds the compatible string for OPT3004.
+> Is there any issue with the two remaining patches?
 
+Something wrong with b4... I have applied 2 & 3
+Patch 1 should go thru USB tree
 
-Make the devices compatible (use fallback).
-
-> 
-> Datasheet: https://www.ti.com/lit/gpn/opt3004
-> 
-> Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-> ---
-
-
-Best regards,
-Krzysztof
+-- 
+~Vinod
 
