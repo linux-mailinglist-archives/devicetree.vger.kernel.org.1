@@ -1,85 +1,117 @@
-Return-Path: <devicetree+bounces-133707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 443279FB9B9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 07:15:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CE949FB9C6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 07:21:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A10116552C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 06:14:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF19F1884E92
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 06:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6201547E7;
-	Tue, 24 Dec 2024 06:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6554E14AD02;
+	Tue, 24 Dec 2024 06:21:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ks0hxrpO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PNZPR01CU001.outbound.protection.outlook.com (mail-centralindiaazon11021142.outbound.protection.outlook.com [40.107.51.142])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119A814EC46;
-	Tue, 24 Dec 2024 06:14:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.51.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B2E13774D;
+	Tue, 24 Dec 2024 06:21:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.10
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735020877; cv=fail; b=LApEgaYCRIn+jM3PmkXdnsBkq6R+jU/4ZzwIyOPCcNBwr0QXtPW0p1k/GvtLZPU/wD1TLReI5zV/RPNbffIXfFYZaUVjH+eZVD0DnbvgUQfYgdoGfivwjEjvwKJ+f4+79Hn85TdNBujmsksbyksTFRpnuvtrer9aV18a45L2CBY=
+	t=1735021279; cv=fail; b=N/GS7WUA20vOp9I5EeiALTHVBMy+7EOFD8jOWb7hj7sqaJoy5WOwXp16JZFvQE/Tuf5Kzo14iHlEKwHdOSIOMH/gFI9+RSuFxtwj1FZjcYKmkfhr2u2udhGzH0myog/QQW4Ur0qstouTTJz603RhkWaf1B3/FKB2bVxXspEx/Sk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735020877; c=relaxed/simple;
-	bh=m6pdy0sFW7k+5pcG1eWdRFRrt8DTD6CTH4k9BoUJIAY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=PeRhCJWCufWL+Rb/rJEqkcIs+a7jJpNocArrNKFuzu3fS/L8DrAEZIqLQYaZrBMCrwx5cLqoKWzQLvAWIhePKwLjBpz6Db+J0top5aX/IS4jUl0FDOcdDDHvbKQDsxuIy3G4BBq7edy+5B3mFiHIl0xRjHAYlmd8DjzZTlx3HxY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.51.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+	s=arc-20240116; t=1735021279; c=relaxed/simple;
+	bh=Btd8DYZF+RrFi8Chl44tc5/1lZ0qTC9So7d0taAPu7Q=;
+	h=Date:From:To:CC:Subject:Message-ID:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=EadFDM/lpjxploKHJPgo43zIwLJSwSgQLZJWSYkZaM9sCnT0VVbcjwGBogbfv2iD29iC3ULJ1lILBvJHZUoNFzo8gJUVlQiL7Z/1zSX82uTP4G8/eCE9YcAcM77hIsoWZygvGscAtuRmR8scnPAMmPrbHuBOM6ENroydWUwOKLk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ks0hxrpO; arc=fail smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1735021277; x=1766557277;
+  h=date:from:to:cc:subject:message-id:in-reply-to:
+   mime-version;
+  bh=Btd8DYZF+RrFi8Chl44tc5/1lZ0qTC9So7d0taAPu7Q=;
+  b=Ks0hxrpOdjmlUvsuCM5N8MLe6cnLXkZNV4C3JtiUzErHbPOp3I+EHqf0
+   QrXiGhApQWmVqIDQ97wpGj22IahpwaHl8VLmRmsrR2HMdLrLQcrS4g1ao
+   y0S5ZTvRPLQdHqm3ck0LmvVE6ditVk4Y9cGjR/6sMOsKnDD2lX6rFKlnf
+   QjEjhT5yQ/G5FYkLeBIMTlM+GylTrtruS1HVYGX4T34zz5blT3fkvvWZp
+   XWvDGvTN2R5F/L/YcdUzWAuNBlCcp7zzXt3JmLtQ1LFbWSFTxAcyJafaq
+   /HLdSWyWOPPMAkirEnVuqXr9gNmpIgwzv4fniwBm8zHg1ANWp551CTG27
+   A==;
+X-CSE-ConnectionGUID: BFkuZmS8TvWTmNMKo+wDXw==
+X-CSE-MsgGUID: 6mWCqDiHRtG9FiiY3x8pNg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11295"; a="46908183"
+X-IronPort-AV: E=Sophos;i="6.12,259,1728975600"; 
+   d="scan'208";a="46908183"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Dec 2024 22:21:16 -0800
+X-CSE-ConnectionGUID: d3avUSZxQxKzJ3iXUMXzjw==
+X-CSE-MsgGUID: q27JWNROTXmQwXN4/BM1sA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="100240668"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+  by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 23 Dec 2024 22:21:16 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 23 Dec 2024 22:21:15 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Mon, 23 Dec 2024 22:21:15 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.170)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Mon, 23 Dec 2024 22:21:14 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mdXE8ladetC6OH6YzMi9Jn6ixiH/jinBIC4sE/8JUYx4vOM12PwwUMNsOwt4H8jpaHq7WhTsI+j6RB1MSMjOnpbRdjfHVvRSOrI26pCfi9sjxqx215WhLu37+mKAm4pAqN5YWKa3OFt8YAme9FScFjnSAts3byvr3xxOdVZ2k3+pwOtult6Sz4rJoHFBqH8QizaEXPMZ4LBcNjv/IImTaGrqb2yfmrBnZm/g/TdsRjxyO8Jqf3rJCSGw2yNORA5cX3ml0j9v3VjPJL23ATS5fVBqB2DQWKVrfYcLudpaxTvK/SjHW4YizgW/Sl2mTYdBnX4T/dRGAF6VCrqPAmdfRg==
+ b=qMsb0UnHr7KGEamFS+VrE82B2Tg3d6clFsdHvuKATM0xCnaEQXi6gAYX56nKieRFJtl9E5XUUYXV3gPqFnRl/7CMH35MMprX3tFXBK8Kld6l0YiXjDF373tkkaEY92DfJ6tOAFibQgIjsrtutrL8bXt5lgfMJV01iSskrsRpude0ol7TqvJZzI7tbvPudvrG6HZYCPBPfTd2MD5r/d50L67XJJNvvMOfPCtOMEibSW8kefmvf9ygGEnzkOxyYERRMBvXoc21JTkvud0lJtVhMfCldo2P7Yh5r1PUCkCXf3h4kkRMyQXmK/hZzqbvHXHsi19oEAQ+Vb8eHR7yZVKoPw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=teCbmW17gteq/hTogXQpoKpMYO3rjaCPo/wJkgj+Ri8=;
- b=Fq2araakXRmizU+2R5bP1F9tlbrk6Ekj+WYPSuSgVQFt/QkduUe8N+JbU8E7EfJ8bGYgmDqlRv1JVc36UDk/rUKPQ4d2H2q2jMIQzNzmIo2yl13YRUcsCrKxm3xbXzc1/mGcZSFf707ZoPaHNf7nFO6Ps3hcC/69TNNNyMC+M0Rw48H5BasdzDnQ35LHSCMCGHVMwMl2cwD5A3xC+8pwdw9SXJNY0rCOmO8+qAiXFmDRAPqbIcUwrCgfgYaPQBqox0M5x2uf2Frnokkf2NG/wOvKsMjf149j/t3oGvYA/P/vHVZx4Bs3whvvtvodf3v67xRjnE/XbspAiVOjOQcn6Q==
+ bh=UcyFPfPip59X8royj+hcMMzAvbIAv75BCnn8aE5URcs=;
+ b=Ki3PDfa2EJwGnmmnvnuhgg1xy0DGE5chuBlrSJi3wdzYNafgQ/13j4ygmpwuK1I7WIfehBGQshgVGX86+yZaVXp/2bqKuZJZGJvXUNDPH4TLXeX5vNLZaf2FqchBfo2H/lGnBs0BPAy0e7YqSg1wbXq2Z+w2IfKUi6q6iN7os8D+QeGUtM98vyKXIe+GRf1pYinnAzCKf1t1AhboviyMEbw/bav3VVqi5NnEA049SppALOHIxguPmNiXEpAgvNUlFp1O/Pn59fa1HxNUdcaLr99AF93YgKCyaxqRHo+2axcaLTi34qSuDaa2Di2NYWgHxK6oLDAD0LIIGQthpUijbw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
- header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siliconsignals.io;
-Received: from PN0P287MB2843.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:204::8)
- by MA0P287MB0331.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:b0::14) with
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LV3PR11MB8603.namprd11.prod.outlook.com (2603:10b6:408:1b6::9)
+ by DS0PR11MB7927.namprd11.prod.outlook.com (2603:10b6:8:fd::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.21; Tue, 24 Dec
- 2024 06:14:32 +0000
-Received: from PN0P287MB2843.INDP287.PROD.OUTLOOK.COM
- ([fe80::1134:92d7:1f68:2fac]) by PN0P287MB2843.INDP287.PROD.OUTLOOK.COM
- ([fe80::1134:92d7:1f68:2fac%4]) with mapi id 15.20.8272.013; Tue, 24 Dec 2024
- 06:14:31 +0000
-From: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-To: jic23@kernel.org
-Cc: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Gedenryd <emil.gedenryd@axis.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Arthur Becker <arthur.becker@sentec.com>,
-	Mudit Sharma <muditsharma.info@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
-	Julien Stephan <jstephan@baylibre.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Andreas Dannenberg <dannenberg@ti.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] iio: light: opt3001: Add Support for opt3004 light sensor
-Date: Tue, 24 Dec 2024 11:43:16 +0530
-Message-Id: <20241224061321.6048-3-hardevsinh.palaniya@siliconsignals.io>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241224061321.6048-1-hardevsinh.palaniya@siliconsignals.io>
-References: <20241224061321.6048-1-hardevsinh.palaniya@siliconsignals.io>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: PN2PR01CA0154.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:26::9) To PN0P287MB2843.INDP287.PROD.OUTLOOK.COM
- (2603:1096:c01:204::8)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.20; Tue, 24 Dec
+ 2024 06:21:03 +0000
+Received: from LV3PR11MB8603.namprd11.prod.outlook.com
+ ([fe80::4622:29cf:32b:7e5c]) by LV3PR11MB8603.namprd11.prod.outlook.com
+ ([fe80::4622:29cf:32b:7e5c%6]) with mapi id 15.20.8272.013; Tue, 24 Dec 2024
+ 06:21:03 +0000
+Date: Tue, 24 Dec 2024 14:20:51 +0800
+From: kernel test robot <oliver.sang@intel.com>
+To: Herve Codina <herve.codina@bootlin.com>
+CC: <oe-lkp@lists.linux.dev>, <lkp@intel.com>, <linux-pci@vger.kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+	<rafael@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan
+	<saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou
+	<lizhi.hou@amd.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+	<steen.hegelund@microchip.com>, Thomas Petazzoni
+	<thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>,
+	<oliver.sang@intel.com>
+Subject: Re: [PATCH v5 5/5] PCI: of: Create device-tree PCI host bridge node
+Message-ID: <202412241455.22d84a7f-lkp@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20241209130339.81354-6-herve.codina@bootlin.com>
+X-ClientProxiedBy: SI2PR01CA0048.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::17) To LV3PR11MB8603.namprd11.prod.outlook.com
+ (2603:10b6:408:1b6::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,133 +119,273 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PN0P287MB2843:EE_|MA0P287MB0331:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5e1c5b9c-c4dc-402f-a340-08dd23e23b16
+X-MS-TrafficTypeDiagnostic: LV3PR11MB8603:EE_|DS0PR11MB7927:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc3d806d-c9d9-4c71-1b0f-08dd23e324c1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|52116014|7416014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Hw48JdGbW8TzDQbjWJgoXiqHTsIAp3zgky05vU3da55j/zLYMfnaQKtLo32x?=
- =?us-ascii?Q?o4xBq+H8iSXeZG7m8igvbWOkniNri+nirt/V5xomCuRO9oATqR5G/Y8GX98T?=
- =?us-ascii?Q?Tc5HNi3r5RShad+Lx6TQCE70dSDa7WskKYjpRa0Fs1m72DMRu9mB9RjxRcw8?=
- =?us-ascii?Q?WTqZfHW6kOZ+IZw1OUblHvFPBBnAk8p+nzbIXgytx2rDIXge7wBig5cHu2X9?=
- =?us-ascii?Q?YDdeaxltjf9bEOK/9Re71Q3vezfTVERx4hA5l37FQLOKeyQfEl7n7DtwrpT1?=
- =?us-ascii?Q?RZcKzTavvSSVSzpfGUas0bRNeQOSxVcv+KV02r93OX16Zyul/LGr//2xVRoT?=
- =?us-ascii?Q?Dqz0HjNTRJCmK9QIZKa7YMsJCyfWcBpESJHL9J+nDKjsJ+lYuk5YwORh7+WX?=
- =?us-ascii?Q?GbuOkQLpCv6jaqYZ0sfEtVlZwVlPOVzQi3CchyG1D93Cu8ddb7cFgZN+Gx4s?=
- =?us-ascii?Q?QX0tK1XR8lO/nhxcZzqa/ClY4ubjQx701LPed+UCxg7C8MshIsND2uU4ARYp?=
- =?us-ascii?Q?Bn1ovlUHlB0ZrpXnMwCyVDMPIl9RpyJpL6YCPr7mE6AnJS0s3CHuFFMju2pm?=
- =?us-ascii?Q?Wp5IdlArXgcvbMh9ib1Eh3qZc5SjAbHOEqSnreU6wXHosRN8gJTSggr0KMsY?=
- =?us-ascii?Q?is5aaUYY19aEFifbXd+a9dhGoN0vqNOz83oHqXyKmCCoXbR0xt/4guBCDls/?=
- =?us-ascii?Q?nxC68N4wpO5sjCnn+H3WeKD1YmK6DtOzRH5Tu/lHeXa3gpjlSYzA7H3SscZV?=
- =?us-ascii?Q?7fejjEcBnH63fLYPX8yzlFPfjlKq/fwFj6fkq11gCkSDZPzHUtdkVIU57CCd?=
- =?us-ascii?Q?log0jcDZ8WKmpqdnMB7shQuvH8dlof87bZqDSGGIYxb+EUTr+AFUdMrV7PBT?=
- =?us-ascii?Q?vUC1fY1X3nX1zdWS4Kh05bDtMX9PcDBCq4YPsknyl7TfERY2uZhG8xO60Uj2?=
- =?us-ascii?Q?SPD9+Lj8avXAiatxRMySkUQa3RGOBpCDItHEu1nOtyrzDjfo5UhWClFCaZww?=
- =?us-ascii?Q?iCrDoAsQrmbDuMAKTJz6LB5ygalwM0KgdPMgRboLVgQNag03PiH6NqgY8Ysh?=
- =?us-ascii?Q?TYEjCJyutk0g4IHa4lVYvTINveuDBl0wU1gt3SLe39Nsk/3fotUdFLmHT9U7?=
- =?us-ascii?Q?8g8mrQQAOCY5n5zeN6dkNdcxZGwPNHL1WrYffpinXA2Z6pmUFC/wG9GVKgFN?=
- =?us-ascii?Q?A4EeipKViYDPn5gOFSwQAqIjvplmn5QDEY9RH51zGQW4PV/d1c95gLYn8I7Z?=
- =?us-ascii?Q?zl6Gu3GybaUOgDx0ibUo+JQET499Pw6TPXPpO/GKnRhZQ6cactmaU8vLsLFE?=
- =?us-ascii?Q?Y48q34oqxcO6aw0+8uM7dlF2TG/BxV4ynS9gBab4JobvHf/cXLE9WG1/5y9E?=
- =?us-ascii?Q?zWHeE4oq27wvJ6IJsD5P1gs6/HFtELDbtopzUVljeTq3ZH37iuWAdG2IaHdl?=
- =?us-ascii?Q?enWtIqGOt+NYn0Fryj908pv2Q9PLyZQT?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN0P287MB2843.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(52116014)(7416014)(366016)(38350700014);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|7416014|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?u5d89QzMkB5JrvYM9cgpws/CvHPyGqCqJpHxs+R3zGJ9G1nU2M450xdCXIa+?=
+ =?us-ascii?Q?R0GTohEXLUfZ+r5OyvIz684sEXkwWb+nsPrbxB6/yZNcDgOBDmXPd+728UEX?=
+ =?us-ascii?Q?JKl13Adx15CyOsfiJAyp2dAnBlCXRM6zVGbTSiOhJuYhNrnbbwvnKK96+Pbn?=
+ =?us-ascii?Q?f7fI1mgjehuFzbSxoA+HCy/uUmkCWlR55KRf6KOHjtm+RN8kj1VHchIZu7+2?=
+ =?us-ascii?Q?FvuPe6WABu6adWAHYtTi0txSdK7gdrb+HS4Akhfra38y875uySWwfORADhkL?=
+ =?us-ascii?Q?uN87b5ScGyvttB+FABqqLOcQLd5I+Gob5PJ1rhBDejahUImqmSX7FrGDmkJ0?=
+ =?us-ascii?Q?EsO+VMSfaJ1/CPYKoarxbwjzPsrwMCwiMP1Wuco4rjbW2/ovVkmqyzKl6wDB?=
+ =?us-ascii?Q?T2y4i5h7vJJ+orxWXhRcHh5u+MQr7gO6agZ0yKXKsoEqZakGh5KAeYWkaaes?=
+ =?us-ascii?Q?pkFz3yXvBVTmJplUaOfmBsK3O08bQxRsoKvkuZf6n6UVcEKsWi5uaEH4qFT0?=
+ =?us-ascii?Q?VI5H7MWrjYMQGXJndXOZLf1Mwbt8w7QFhybmGGErnKbACfAjlCpeySyX/VIX?=
+ =?us-ascii?Q?DYBpJfRpDEemuWQgRw/MZ8iXlZlZQSZK9v54/BwpDIc5+rD54CgzNppQ0I02?=
+ =?us-ascii?Q?eiLwQf+DuBNAaw/SWTY+H0/U/b9B+N6/HVFtrUWlVABiPP9il2aHP+rLh44a?=
+ =?us-ascii?Q?zOTajaI3C8SwlAK5s8/I7wy+iMbAptU4j3h/6aWRbzU5TO0VzXxqGS+n2ni0?=
+ =?us-ascii?Q?/+zV/i/X0gSC+93HXmwWIuvG23B9IfG9W1nynMee8x/Hl+DS9jEgQWe+nwvA?=
+ =?us-ascii?Q?k3p+G2SO81/yY8ZkJUoHmUGizNl7LPzQOFOD5PftTgcEpETp3xdcBk+Ftzlq?=
+ =?us-ascii?Q?Uou021Pmoj9T8rLxsEGHR53HzLmFK4rdKgMmrxBytMZyE3yhz41PasQXnRBl?=
+ =?us-ascii?Q?fnG9dfUQ5cZx0rTM0myNHmcCMzwrZqDGxGqPpdGTagqtfjZe12QUMXojS1SA?=
+ =?us-ascii?Q?P6hVn/Bw5xvzvcHv7mbF6pXL0RNt4ftifhsBkZQPqLquwly0u1sxa4f4NjxN?=
+ =?us-ascii?Q?OvE6ogl5UOkKycKCVXI+/PfsgPmp40wAZHFUTpaLmL2U78C3IRJof7Bt7VYN?=
+ =?us-ascii?Q?JZzvr61ujlzJK4S/HBcxXi/usX7BfWyyN7hCWxufwHGRME3zCmUCVd0KtlOx?=
+ =?us-ascii?Q?NgB8ZjSZKwAt+qyGzr6oBpQk//1B9G8xa6KvpcnyvKJoponOFKEDD6Wg1DiF?=
+ =?us-ascii?Q?5WnmOnQmzcPrU3jSZYCOTZ7lxI5y6LjYM47o5YLVBEIE9E6Rmp1t4ynGZcLl?=
+ =?us-ascii?Q?baEI8NJ0GxMz3lNLeD71oAGr7a4o98p2XE4/yoKOpPAI9g=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV3PR11MB8603.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(7053199007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?1OK6a6RIlsJDG2PqAN4nWWxB9y4LSXJ6249ieYyxKlGCtP5i8km9sn+lX3gK?=
- =?us-ascii?Q?sEWjJuS8/VROjzMK6FAZTIkSno/C//fESD4KWuaIgmQQaHdaqTTIO2hTyUW6?=
- =?us-ascii?Q?LNTio1jO4lBCB3HPruugxxA0TqSB4ETa9RPi57w6HigVZVEzrt68epntUvzM?=
- =?us-ascii?Q?/xZBQ1Et53K6HGYes+OO63IYnbYYkzwKSEx3XdojSme16wewQEf/4LRocpQl?=
- =?us-ascii?Q?9+e1ZEvtLjeyfI8dki/jfppdG8rWhOmelSUwMUEuLCDBLjpy4mBCkrk1Qa/x?=
- =?us-ascii?Q?LJG9rYdvoejQjZ6YKDLM3bpnGTcMqnBpsWdTRQbIOskX3Abq62Lg3WXPlJ72?=
- =?us-ascii?Q?rM1sEDfJNquTdorkdCpRHrOegu32rE5z72SXvdkopchfMuc5JLvQq1AB/IYV?=
- =?us-ascii?Q?VjSVeVpydzSg7Adq9Mlrb45HwZWr/IJh6apJKzcj9g5Ej62mfQBKWiwAb81v?=
- =?us-ascii?Q?eGqS+G0ze6aBtqiyRScuELdixYQvOE884nwwjCIh2cEowOccgZcMgQN3fqIU?=
- =?us-ascii?Q?hMv404cDqQDylF5xyvIT8Q9gtJ/SSN+EBDAE817MKXGVnq4Z28nC7qrXg8XR?=
- =?us-ascii?Q?NTb8/idJPhMIDFJj4JILWGhHPGCgVLuGB+CB9L1jkwZ5K5bwZU2+F8fdToBt?=
- =?us-ascii?Q?Z7NmR0ZdP/nhEblM77bqVVdG0Y6sChOXArXQQN7VxOZkD2hGJ/ihor2zN8i4?=
- =?us-ascii?Q?tegSGs+IfhWYErMDsRXgXoqAgQyvviIH6n3zauutH8YDxCkxjuTnJbpF7oPX?=
- =?us-ascii?Q?0BHoxdan2VKb6A/EZQp8Qo4F1EAhLHliZYoyPAUn3VDgq0hiAvqI58u2ueTc?=
- =?us-ascii?Q?O9ZGt5MYm8FGnEZt5rGBSrhGsRZDbfTgnkPOY3KMYSYJYlPJehmruB8fMRNS?=
- =?us-ascii?Q?VO+4dblryJ+0E4Tv2FixR2B5aimL3fzb0KyS9Ge2xj8/kAiLQKfVcc2phNBR?=
- =?us-ascii?Q?JsTw19uow7J6pkbyDD0rTe2ymVWEyRwYjLalR4L7DuLyvUGV2yXRcgKWHxt3?=
- =?us-ascii?Q?LSQfF8LRyoDbMmBXotFrhObXBXWSIFFHJeTPRD/8Fe/rbY+tAnMhpo1n045K?=
- =?us-ascii?Q?nrfbzT4OK4Biz5Ev/dz76Xlo1hsFBYOXgwdIIz9mBXdeuWTOiuNhJs3jpWEh?=
- =?us-ascii?Q?xfiZvLjmVxSjFYjmJCNJe2sDl/gU8ojR9HRMe1E8SIEwHCeYXW0ney8we0k7?=
- =?us-ascii?Q?embjvF6v6daAw0mZPTIor/KJCa/zTecwcvXvHnZp36V979qZxrJ2k5grCJ12?=
- =?us-ascii?Q?LwXTXmJI4XD2UHVolEHsclGfF6WCMgdKyqx/UkXA1NW9krJjbpeDSZcmqKzX?=
- =?us-ascii?Q?TpvAiOu0nQ4qLyEBi7EWyzRUt3P9JeDY9DKTYKWluJUPPA8g0CrEthYV072L?=
- =?us-ascii?Q?QmqZAOvjgTPoyuza8KXYOR09UB5bH8/tc8k7etyiKVHHUSiKLbozuwnvjJOM?=
- =?us-ascii?Q?Cfq9k07eI6NmEWfvas9xoOAj4L9vQlIPO03YtkTnR67aGlzLdzDvTL24J4TU?=
- =?us-ascii?Q?xQgLcTwyHG+1KioJlvwtRms4sQOs2PJR7kNkeBFlhgrd/8ONAFcbhEF5sF99?=
- =?us-ascii?Q?8Lxo9yChP8WZ2T4WiSIiFkHUgIsdRjIf4pwv9r96tlKuqr46VzjkHLO/4EHk?=
- =?us-ascii?Q?kXVI0fDSzlPospwByt8bnn0=3D?=
-X-OriginatorOrg: siliconsignals.io
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e1c5b9c-c4dc-402f-a340-08dd23e23b16
-X-MS-Exchange-CrossTenant-AuthSource: PN0P287MB2843.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gBmdsAvvFxU9Ce/wsdF0Wg0RrJEWuQuQGGTXZZ5QIx93LCelgD3++IEUaopi?=
+ =?us-ascii?Q?eA4w0HPy5fjT9255efKjjODRSYSM1dD8PqMx7inlsuSJStVauAPMXyGvRCCT?=
+ =?us-ascii?Q?Ed7FEYncMk7TRUNn/gdms8JzK4rG4bh7yqJP635BDJxLGx8Poc5+Sm1jdpTQ?=
+ =?us-ascii?Q?HgILe3iEWGcNZI0vfn+meoH4KLm61tS9J0rOi6Oy1uzn0SnELFd4X+A/+mpK?=
+ =?us-ascii?Q?mqZ8/Kz6NAjSUACkoglDKxQNIBAl/vc3wUo/GMZq5XWLTTXiId6q87xcX/1Q?=
+ =?us-ascii?Q?cpVf7Mo9ad8cbk4li5lstlglnRtr7WosbG+710M0FdFEJHntO48hrGFsY495?=
+ =?us-ascii?Q?okeGos+TGRPKhA+llpov2P3+w8H7yBj4VOWCO3irhcAc7t9ebS2PtmgbNgTz?=
+ =?us-ascii?Q?L7YW+RA2GTssUN3lAzUVD1Z2cDXoAyZyJEqm7np+Aef0CgUCgPTU03maHkPD?=
+ =?us-ascii?Q?h8BZ8tet1LqAHRcVtQIQlHnVDVDEzvivbifltuTTRyqKW+SnWlwG9/pvyA0I?=
+ =?us-ascii?Q?7PUu10CESrJP4Wo7WtQCbGHYR1d0ZR7xsylEW6i7yRZKYqYIyGRyzeKRNTVl?=
+ =?us-ascii?Q?BteZaORaSiNvJPSti6pVe+yIIIfbPBJfGc/fD4yjmYyoX4bGW9YrdKeg0pg9?=
+ =?us-ascii?Q?f3R0CFruAjT6q5kfIwv8ORWLIx0Vf5TEg6M3qC9teTP7/1ztXaolVhGIcQ/U?=
+ =?us-ascii?Q?51y4wBzOTlw0bw8tBIKUn0EqVmWeVqiOuFnmsliMpb2ieu0ZdRsD1oGJS7Ty?=
+ =?us-ascii?Q?ksnoxF4lr2O816YxuJr2SI1h9gYZXkru96qNerOpuQWEKiECgzBDx1Hys2ij?=
+ =?us-ascii?Q?Bchad89NHF9GnoHkxLjyUCJGSk9CwwkosdZGoUszbiumP1yhWGhX3PlUKB+N?=
+ =?us-ascii?Q?WQ/AV8ZJ2IqS6iXiO8BTHL14QBvOAcyyqsuKyrEdr5PFK2syvaihMcZ3WfGa?=
+ =?us-ascii?Q?Pkjf0knaZPLFxS0a5x6HqLj021+EzlH9QgGLz9eul+CKXWpHXW3fQWKCMwFd?=
+ =?us-ascii?Q?Uad0bQHmKPZK7Hfgqb5JkXbgw3U4he4UwuC4wA/k27BkfH9EKqUQAxL29qAE?=
+ =?us-ascii?Q?LZKziXUxp+DRPnrDOyCHO3EV7CcFRxqWr56M8HbWxeoQZcnrxvEL93R78qZX?=
+ =?us-ascii?Q?cyJSCq+10zJ4xPn7jezquiTj+6NW5pNDLjHKgkm1HSDvHYGpy0kmKgLqrSnS?=
+ =?us-ascii?Q?GgoeTfl12KIvs3RAVyGEo3f0Ll0ASXC1OvFnXmjUQ9ERlijr0c55hlbfeaqJ?=
+ =?us-ascii?Q?4ox42SyrWsEe3OckxLSJOYqpSkZgje9IAg3VewXM8gUztmkcHMxVtkT95Ifk?=
+ =?us-ascii?Q?XoBz8Ln41Mz8C1L+leJjLCv+WenmbAZHLg7a8X2mVnD/ifQqMJjCBH5SRqD6?=
+ =?us-ascii?Q?dTbZGzZd3VXZxpQCgYSm8NLayFROWGcg3V3r27XbWfpQq6ml5ZIIhjSQ3atf?=
+ =?us-ascii?Q?eQzQfNymTsFkd56lZPi3S+cvd2LWcXZk8HPZ5A1I8Dgi6SHsOf3IST00UsHy?=
+ =?us-ascii?Q?eUhXmPm7ueFO4Gij+Ow0azJ0VUvP1KopZANFdoqiKLRI1Z4NmY4K9yTs3XbC?=
+ =?us-ascii?Q?xQt68h76SUO9RyfDNS5XZrzsPJ/PCTOOocnKt0I/LdDUZZs/zfdciVWiC+t4?=
+ =?us-ascii?Q?5A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc3d806d-c9d9-4c71-1b0f-08dd23e324c1
+X-MS-Exchange-CrossTenant-AuthSource: LV3PR11MB8603.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Dec 2024 06:14:31.8768
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Dec 2024 06:21:03.8750
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xP0/Zcn7au2leUOuk1bZ3HRt/UINSPXegYmIyz4vluKopJeIcw18hECiHwt66kLG17PTjNNyN/TpIG1ceQQ56xFRWs47r78frqgNTgZVi4c4U26bX/2EiTpbKMAU+pna
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB0331
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5eqlx0su92qjNbS+Hnl3Mk+J+/i6UCws7WUa8MTixghPq4lQJM9QXwQLAsz3sD8ri3FCY977o0UgfIqMyE0jxw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7927
+X-OriginatorOrg: intel.com
 
-Add Support for OPT3004 Digital ambient light sensor (ALS) with
-increased angular IR rejection
 
-The OPT3004 sensor shares the same functionality and scale range as
-the OPT3001. This Adds the compatible string for OPT3004, enabling
-the driver to support it without any functional changes.
 
-Datasheet: https://www.ti.com/lit/gpn/opt3004
+Hello,
 
-Tested-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
----
- drivers/iio/light/Kconfig   | 3 ++-
- drivers/iio/light/opt3001.c | 2 ++
- 2 files changed, 4 insertions(+), 1 deletion(-)
+kernel test robot noticed "WARNING:at_drivers/of/base.c:#of_n_addr_cells" on:
 
-diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-index 29ffa8491927..748c8c2cd3e7 100644
---- a/drivers/iio/light/Kconfig
-+++ b/drivers/iio/light/Kconfig
-@@ -475,7 +475,8 @@ config OPT3001
- 	depends on I2C
- 	help
- 	  If you say Y or M here, you get support for Texas Instruments
--	  OPT3001 Ambient Light Sensor, OPT3002 Light-to-Digital Sensor.
-+	  OPT3001 Ambient Light Sensor, OPT3002 Light-to-Digital Sensor,
-+	  OPT3004 Digital ambient light sensor.
- 
- 	  If built as a dynamically linked module, it will be called
- 	  opt3001.
-diff --git a/drivers/iio/light/opt3001.c b/drivers/iio/light/opt3001.c
-index 65b295877b41..542af8612d34 100644
---- a/drivers/iio/light/opt3001.c
-+++ b/drivers/iio/light/opt3001.c
-@@ -949,6 +949,7 @@ static const struct opt3001_chip_info opt3002_chip_information = {
- static const struct i2c_device_id opt3001_id[] = {
- 	{ "opt3001", (kernel_ulong_t)&opt3001_chip_information },
- 	{ "opt3002", (kernel_ulong_t)&opt3002_chip_information },
-+	{ "opt3004", (kernel_ulong_t)&opt3001_chip_information },
- 	{ } /* Terminating Entry */
- };
- MODULE_DEVICE_TABLE(i2c, opt3001_id);
-@@ -956,6 +957,7 @@ MODULE_DEVICE_TABLE(i2c, opt3001_id);
- static const struct of_device_id opt3001_of_match[] = {
- 	{ .compatible = "ti,opt3001", .data = &opt3001_chip_information },
- 	{ .compatible = "ti,opt3002", .data = &opt3002_chip_information },
-+	{ .compatible = "ti,opt3004", .data = &opt3001_chip_information },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, opt3001_of_match);
+commit: 7e0c4ed7342d44f246bc8d905421f8010de74662 ("[PATCH v5 5/5] PCI: of: Create device-tree PCI host bridge node")
+url: https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/driver-core-Introduce-device_-add-remove-_of_node/20241209-211305
+base: https://git.kernel.org/cgit/linux/kernel/git/pci/pci.git next
+patch link: https://lore.kernel.org/all/20241209130339.81354-6-herve.codina@bootlin.com/
+patch subject: [PATCH v5 5/5] PCI: of: Create device-tree PCI host bridge node
+
+in testcase: boot
+
+config: i386-randconfig-001-20241220
+compiler: clang-19
+test machine: qemu-system-i386 -enable-kvm -cpu SandyBridge -smp 2 -m 4G
+
+(please refer to attached dmesg/kmsg for entire log/backtrace)
+
+
++-------------------------------------------------------------------------+------------+------------+
+|                                                                         | 320b0bf1d5 | 7e0c4ed734 |
++-------------------------------------------------------------------------+------------+------------+
+| WARNING:at_drivers/of/base.c:#of_n_addr_cells                           | 0          | 18         |
+| EIP:of_n_addr_cells                                                     | 0          | 18         |
++-------------------------------------------------------------------------+------------+------------+
+
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <oliver.sang@intel.com>
+| Closes: https://lore.kernel.org/oe-lkp/202412241455.22d84a7f-lkp@intel.com
+
+
+[    1.417876][    T1] ------------[ cut here ]------------
+[    1.418708][    T1] Missing '#address-cells' in
+[ 1.419500][ T1] WARNING: CPU: 1 PID: 1 at drivers/of/base.c:107 of_n_addr_cells (drivers/of/base.c:106 drivers/of/base.c:117)
+[    1.420197][    T1] Modules linked in:
+[    1.420818][    T1] CPU: 1 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.13.0-rc1-00012-g7e0c4ed7342d #1 4d930b120051bd0d99d76027ef034fe5e41e6f6f
+[    1.422678][    T1] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.16.2-debian-1.16.2-1 04/01/2014
+[ 1.424206][ T1] EIP: of_n_addr_cells (drivers/of/base.c:106 drivers/of/base.c:117)
+[ 1.424986][ T1] Code: c0 79 2b 80 3d 6f 0c 00 44 00 74 09 8b 7f 34 85 ff 75 d7 eb 1c c6 05 6f 0c 00 44 01 57 68 d7 08 1e 43 e8 53 12 a3 fe 83 c4 08 <0f> 0b eb de 8b 75 f0 89 f0 83 c4 04 5e 5f 5b 5d 31 c9 31 d2 c3 cc
+All code
+========
+   0:	c0 79 2b 80          	sarb   $0x80,0x2b(%rcx)
+   4:	3d 6f 0c 00 44       	cmp    $0x44000c6f,%eax
+   9:	00 74 09 8b          	add    %dh,-0x75(%rcx,%rcx,1)
+   d:	7f 34                	jg     0x43
+   f:	85 ff                	test   %edi,%edi
+  11:	75 d7                	jne    0xffffffffffffffea
+  13:	eb 1c                	jmp    0x31
+  15:	c6 05 6f 0c 00 44 01 	movb   $0x1,0x44000c6f(%rip)        # 0x44000c8b
+  1c:	57                   	push   %rdi
+  1d:	68 d7 08 1e 43       	push   $0x431e08d7
+  22:	e8 53 12 a3 fe       	call   0xfffffffffea3127a
+  27:	83 c4 08             	add    $0x8,%esp
+  2a:*	0f 0b                	ud2		<-- trapping instruction
+  2c:	eb de                	jmp    0xc
+  2e:	8b 75 f0             	mov    -0x10(%rbp),%esi
+  31:	89 f0                	mov    %esi,%eax
+  33:	83 c4 04             	add    $0x4,%esp
+  36:	5e                   	pop    %rsi
+  37:	5f                   	pop    %rdi
+  38:	5b                   	pop    %rbx
+  39:	5d                   	pop    %rbp
+  3a:	31 c9                	xor    %ecx,%ecx
+  3c:	31 d2                	xor    %edx,%edx
+  3e:	c3                   	ret
+  3f:	cc                   	int3
+
+Code starting with the faulting instruction
+===========================================
+   0:	0f 0b                	ud2
+   2:	eb de                	jmp    0xffffffffffffffe2
+   4:	8b 75 f0             	mov    -0x10(%rbp),%esi
+   7:	89 f0                	mov    %esi,%eax
+   9:	83 c4 04             	add    $0x4,%esp
+   c:	5e                   	pop    %rsi
+   d:	5f                   	pop    %rdi
+   e:	5b                   	pop    %rbx
+   f:	5d                   	pop    %rbp
+  10:	31 c9                	xor    %ecx,%ecx
+  12:	31 d2                	xor    %edx,%edx
+  14:	c3                   	ret
+  15:	cc                   	int3
+[    1.427777][    T1] EAX: 00000000 EBX: 44d5992c ECX: 00000000 EDX: 00000000
+[    1.428821][    T1] ESI: 00000001 EDI: ee7fdeb8 EBP: 44d5993c ESP: 44d5992c
+[    1.429891][    T1] DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068 EFLAGS: 00010202
+[    1.430985][    T1] CR0: 80050033 CR2: 00000000 CR3: 042ec000 CR4: 000406d0
+[    1.432049][    T1] DR0: 00000000 DR1: 00000000 DR2: 00000000 DR3: 00000000
+[    1.433214][    T1] DR6: fffe0ff0 DR7: 00000400
+[    1.433946][    T1] Call Trace:
+[ 1.434502][ T1] ? show_regs (arch/x86/kernel/dumpstack.c:478)
+[ 1.435199][ T1] ? of_n_addr_cells (drivers/of/base.c:106 drivers/of/base.c:117)
+[ 1.435949][ T1] ? __warn (kernel/panic.c:242)
+[ 1.436615][ T1] ? of_n_addr_cells (drivers/of/base.c:106 drivers/of/base.c:117)
+[ 1.437327][ T1] ? of_n_addr_cells (drivers/of/base.c:106 drivers/of/base.c:117)
+[ 1.437993][ T1] ? report_bug (lib/bug.c:199)
+[ 1.438659][ T1] ? exc_overflow (arch/x86/kernel/traps.c:301)
+[ 1.439808][ T1] ? handle_bug (arch/x86/kernel/traps.c:?)
+[ 1.440043][ T1] ? exc_invalid_op (arch/x86/kernel/traps.c:309)
+[ 1.440791][ T1] ? handle_exception (arch/x86/entry/entry_32.S:1048)
+[ 1.441635][ T1] ? exc_overflow (arch/x86/kernel/traps.c:301)
+[ 1.442355][ T1] ? of_n_addr_cells (drivers/of/base.c:106 drivers/of/base.c:117)
+[ 1.443145][ T1] ? exc_overflow (arch/x86/kernel/traps.c:301)
+[ 1.443829][ T1] ? of_n_addr_cells (drivers/of/base.c:106 drivers/of/base.c:117)
+[ 1.444564][ T1] ? of_pci_add_host_bridge_properties (drivers/pci/of_property.c:? drivers/pci/of_property.c:493)
+[ 1.445519][ T1] ? of_changeset_create_node (drivers/of/dynamic.c:917 include/linux/of.h:1614 drivers/of/dynamic.c:512)
+[ 1.446365][ T1] ? of_pci_make_host_bridge_node (drivers/pci/of.c:786)
+[ 1.447291][ T1] ? pci_register_host_bridge (drivers/pci/probe.c:1056)
+[ 1.448154][ T1] ? __raw_spin_lock_init (include/linux/lockdep.h:135 include/linux/lockdep.h:142 kernel/locking/spinlock_debug.c:25)
+[ 1.448953][ T1] ? __init_waitqueue_head (kernel/sched/wait.c:11)
+[ 1.449806][ T1] ? pci_create_root_bus (drivers/pci/probe.c:3093)
+[ 1.450039][ T1] ? acpi_pci_root_create (drivers/acpi/pci_root.c:1025)
+[ 1.450869][ T1] ? pci_acpi_scan_root (arch/x86/pci/acpi.c:574)
+[ 1.451682][ T1] ? acpi_pci_root_add (drivers/acpi/pci_root.c:728)
+[ 1.452495][ T1] ? acpi_bus_get_status (drivers/acpi/bus.c:82)
+[ 1.453269][ T1] ? acpi_bus_attach (drivers/acpi/scan.c:2261 drivers/acpi/scan.c:2309)
+[ 1.454031][ T1] ? klist_next (lib/klist.c:384)
+[ 1.454743][ T1] ? acpi_dev_for_one_check (drivers/acpi/bus.c:1145)
+[ 1.455569][ T1] ? acpi_dev_for_each_child (drivers/acpi/bus.c:1139)
+[ 1.456416][ T1] ? device_for_each_child (drivers/base/core.c:3993)
+[ 1.457227][ T1] ? acpi_dev_for_each_child (drivers/acpi/bus.c:1157)
+[ 1.458056][ T1] ? acpi_scan_clear_dep_fn (drivers/acpi/scan.c:2274)
+[ 1.459806][ T1] ? acpi_bus_attach (drivers/acpi/scan.c:2331)
+[ 1.459806][ T1] ? klist_next (lib/klist.c:384)
+[ 1.460029][ T1] ? acpi_dev_for_one_check (drivers/acpi/bus.c:1145)
+[ 1.460869][ T1] ? acpi_dev_for_each_child (drivers/acpi/bus.c:1139)
+[ 1.461729][ T1] ? device_for_each_child (drivers/base/core.c:3993)
+[ 1.462550][ T1] ? acpi_dev_for_each_child (drivers/acpi/bus.c:1157)
+[ 1.463350][ T1] ? acpi_scan_clear_dep_fn (drivers/acpi/scan.c:2274)
+[ 1.464160][ T1] ? acpi_bus_attach (drivers/acpi/scan.c:2331)
+[ 1.464912][ T1] ? acpi_bus_scan (drivers/acpi/scan.c:2541)
+[ 1.465639][ T1] ? acpi_scan_init (drivers/acpi/scan.c:2747)
+[ 1.466388][ T1] ? __pci_mmcfg_init (include/linux/list.h:373 arch/x86/pci/mmconfig-shared.c:691)
+[ 1.467151][ T1] ? acpi_init (drivers/acpi/bus.c:1468)
+[ 1.467841][ T1] ? __initstub__kmod_acpi__390_1478_acpi_init4 (drivers/acpi/bus.c:1478)
+[ 1.469805][ T1] ? do_one_initcall (init/main.c:1266)
+[ 1.469805][ T1] ? __lock_acquire (kernel/locking/lockdep.c:4670)
+[ 1.470057][ T1] ? kvm_sched_clock_read (arch/x86/kernel/kvmclock.c:91)
+[ 1.470854][ T1] ? sched_clock_noinstr (arch/x86/kernel/tsc.c:268)
+[ 1.471606][ T1] ? local_clock_noinstr (kernel/sched/clock.c:269 kernel/sched/clock.c:306)
+[ 1.472397][ T1] ? local_clock (arch/x86/include/asm/preempt.h:84 kernel/sched/clock.c:316)
+[ 1.473076][ T1] ? kvm_sched_clock_read (arch/x86/kernel/kvmclock.c:91)
+[ 1.473884][ T1] ? sched_clock_noinstr (arch/x86/kernel/tsc.c:268)
+[ 1.474646][ T1] ? local_clock_noinstr (kernel/sched/clock.c:269 kernel/sched/clock.c:306)
+[ 1.475469][ T1] ? local_clock (arch/x86/include/asm/preempt.h:84 kernel/sched/clock.c:316)
+[ 1.476194][ T1] ? ktime_get (include/linux/seqlock.h:226)
+[ 1.476927][ T1] ? ktime_get (kernel/time/timekeeping.c:226 kernel/time/timekeeping.c:335 kernel/time/timekeeping.c:812)
+[ 1.477633][ T1] ? sched_balance_trigger (kernel/sched/fair.c:12886)
+[ 1.479808][ T1] ? clockevents_program_event (kernel/time/clockevents.c:336)
+[ 1.479808][ T1] ? profile_tick (include/linux/profile.h:50)
+[ 1.480043][ T1] ? tick_periodic (kernel/time/tick-common.c:103)
+[ 1.480781][ T1] ? __lock_acquire (kernel/locking/lockdep.c:4670)
+[ 1.481550][ T1] ? sched_clock_noinstr (arch/x86/kernel/tsc.c:268)
+[ 1.482352][ T1] ? tick_handle_periodic (kernel/time/tick-common.c:132)
+[ 1.483169][ T1] ? trace_hardirqs_on (kernel/trace/trace_preemptirq.c:49)
+[ 1.483939][ T1] ? irqentry_exit (kernel/entry/common.c:?)
+[ 1.484656][ T1] ? sysvec_call_function_single (arch/x86/kernel/apic/apic.c:1049)
+[ 1.485505][ T1] ? sysvec_apic_timer_interrupt (arch/x86/kernel/apic/apic.c:1049)
+[ 1.486375][ T1] ? handle_exception (arch/x86/entry/entry_32.S:1048)
+[ 1.487143][ T1] ? xa_extract (lib/xarray.c:2157)
+[ 1.487863][ T1] ? next_arg (lib/cmdline.c:273)
+[ 1.489879][ T1] ? parse_args (kernel/params.c:153)
+[ 1.489879][ T1] ? acpi_sleep_init (drivers/acpi/bus.c:1478)
+[ 1.489879][ T1] ? do_initcall_level (init/main.c:1327)
+[ 1.490609][ T1] ? rest_init (init/main.c:1458)
+[ 1.491323][ T1] ? do_initcalls (init/main.c:1341)
+[ 1.492037][ T1] ? rest_init (init/main.c:1458)
+[ 1.492745][ T1] ? do_basic_setup (init/main.c:1364)
+[ 1.493510][ T1] ? kernel_init_freeable (init/main.c:1579)
+[ 1.494299][ T1] ? kernel_init (init/main.c:1468)
+[ 1.494991][ T1] ? ret_from_fork (arch/x86/kernel/process.c:153)
+[ 1.495713][ T1] ? ret_from_fork_asm (arch/x86/entry/entry_32.S:737)
+[ 1.496483][ T1] ? entry_INT80_32 (arch/x86/entry/entry_32.S:945)
+[    1.497262][    T1] irq event stamp: 46823
+[ 1.499897][ T1] hardirqs last enabled at (46835): __console_unlock (arch/x86/include/asm/irqflags.h:26 arch/x86/include/asm/irqflags.h:87 arch/x86/include/asm/irqflags.h:147 kernel/printk/printk.c:344 kernel/printk/printk.c:2869)
+[ 1.499897][ T1] hardirqs last disabled at (46844): __console_unlock (kernel/printk/printk.c:342)
+[ 1.500213][ T1] softirqs last enabled at (46858): __do_softirq (kernel/softirq.c:589)
+[ 1.501440][ T1] softirqs last disabled at (46853): __do_softirq (kernel/softirq.c:589)
+[    1.502694][    T1] ---[ end trace 0000000000000000 ]---
+[    1.503814][    T1] pci 0000:00:00.0: [8086:1237] type 00 class 0x060000 conventional PCI endpoint
+[    1.507268][    T1] pci 0000:00:01.0: [8086:7000] type 00 class 0x060100 conventional PCI endpoint
+[    1.510876][    T1] pci 0000:00:01.1: [8086:7010] type 00 class 0x010180 conventional PCI endpoint
+[    1.514831][    T1] pci 0000:00:01.1: BAR 4 [io  0xc140-0xc14f]
+[    1.516807][    T1] pci 0000:00:01.1: BAR 0 [io  0x01f0-0x01f7]: legacy IDE quirk
+[    1.519807][    T1] pci 0000:00:01.1: BAR 1 [io  0x03f6]: legacy IDE quirk
+
+
+The kernel config and materials to reproduce are available at:
+https://download.01.org/0day-ci/archive/20241224/202412241455.22d84a7f-lkp@intel.com
+
+
+
 -- 
-2.34.1
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
