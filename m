@@ -1,105 +1,141 @@
-Return-Path: <devicetree+bounces-133872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C5639FBFC3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 16:44:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBFB09FC060
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 17:37:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89F33188493D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 15:44:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B55171618F0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 16:37:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F801D79A6;
-	Tue, 24 Dec 2024 15:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D8E212B11;
+	Tue, 24 Dec 2024 16:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hLNElQX1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WCP+a7/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 553E7193409;
-	Tue, 24 Dec 2024 15:44:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D2C2AE6C;
+	Tue, 24 Dec 2024 16:37:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735055091; cv=none; b=P1hGvE09MDeY5qgvoxM17Pp/IkQDdszKB5FSSebUwB9+ikNDk/rDUdpi65SiywnKuTUa9xBUiwpduKz/0GdlhF4Atm+ruekBGHwUf6BHJt3JofvlG1Wp9M6V3GBx7n71XBTt0kbpKjK2sOfNCbcQRRRdFGrZ1shjkmxa6y82j80=
+	t=1735058228; cv=none; b=P943pIIFGpswnnAZ8TGByW/PEt2/mFDHXyazCubb7vW1iDK6rhOYgTobvmiBmfbvgByOIvzqD3ccSCAIsLiga8iBY698xsiUo0a+k6e9WHvOXpNmISIrWFzjrzzyJZRAjcr5JMYOh9cNH3D/AqiT7wn9CA0j3NzlqCA5Vevsv3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735055091; c=relaxed/simple;
-	bh=f94U8KYJXVOzQ/D009aCP0ESvA791ZOqrweMHFMciN0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lE4LvPrribeKrroexOxBGJrtBF8IVSY4XZ2pTpnzJaOq6hpBq41Vb91nG8FPUbNblZ4Vph8YyCTd1is6dKQ8DTGwsnrqiQnuu97YqdgyUFBj8rwHzIjDxklWAWEAodEZKd4HJvn32sF52s3pdbdSUuKg8CZphh5g9S3FFQi6tc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hLNElQX1; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e3978c00a5aso4758540276.1;
-        Tue, 24 Dec 2024 07:44:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735055089; x=1735659889; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IUthszcY7WUoYLW/EhDuHucO4Lic/IF30bEB9ypkHzU=;
-        b=hLNElQX1QlueJ9Em8jKbUkMFxIhdc96tm2XEyuWqLlvLnhaGw5qOn7Z+IDw6utX20U
-         0u22tYI5LuC9RYYGI/s/b8f0coRTUE6nfK/bVXc7z0q5h7d1gP5yPJwo0qn7CxXNkv+g
-         xWHmUC3jSWYrFuUqZAqz5WV4FsjZkhmsQK/CvUif3P/6FT2Lr+Oc0gYhnzb7KpO9I8oQ
-         HS4Y7AmUC6Jz8pQyrd5/jM7dTT/itnE/+hNoP991gW2wFhlBx0C99IJ+iLhIT0WBLarb
-         dslQzDSPEa1NPNo8vLewEI5XM1a/CW5Pp9Rbm5cQJ98wEWXNptn8Raw+bpxiD/tAfrMo
-         xltA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735055089; x=1735659889;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IUthszcY7WUoYLW/EhDuHucO4Lic/IF30bEB9ypkHzU=;
-        b=twST9YdPlsZtG6VY7x+b9yKfbA4Z5PrA1lR0btZ17AnVKle6vcUvxm5y2YhzT74IGu
-         mulTsJjNKNtS4xs72HMrP42eKa7iyv7ql8iqgNB94+vTvzXrYUt0SaqK9/VbvA6Hs/0p
-         q5UQaWOiz3OQYuxMY7iDnCP0yHWgC8YtrwBK6RqcyYpThUh9lHPVJ256Ib+ACLv9WP28
-         UVl8FIL0bMGzHNKHRPIjsnG5NTFBBmjoPpKS+nUzp58/WV1lTgQrK4gsCzwQ+H45vjP1
-         +GziXm0fcDOoYsZMu3CnazWijUAuxrT7Zz+g4OFVgiXdwqPV+1P1PBgMxnPekiGBhpi4
-         uYvA==
-X-Forwarded-Encrypted: i=1; AJvYcCVIiAG48LUaEoO04qqSpKgpFHNfWjqQY5UUYZ2V5gJIu0jwneoAac2qtkiYrnBuUXfQ/bigzbu39Hjt@vger.kernel.org, AJvYcCWTrWotOdx28U4ujQtxeEnSclvL+8+Nk6YhJfeOsIXkR1cUX7g4r6beAgvKyoTUl9B75zcCboJJY2lcN3OX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1qPGrx3accuuKcJf2U5NS8UoqE84WIfFma/zWvxKSZb6b1nmb
-	wdGNmEQYZPoQ/MVTUkwhkmfVlKU6/fL0RIBxPFTfv3zoQwOHn8ag
-X-Gm-Gg: ASbGncsjli/I+6Bheu7uXZ15vNRB+zSZEc0gnOXckg3UQKj7GTkwDbZmT79bj+MSrl5
-	xKnPjMPboSo3UaVCco26aD/VLgyRsYgOU4TDdXwK0UcpUIKtDibG3j7TU/Y1XKRoswyB+9/WezJ
-	s4dltRQFyGdUqF9tln1m0JNvOPqXh5xY9qn7SYAmzoB6hZOqqsfiHWjxxfEtuwlzpeHBwI2copU
-	T0RGMIMAsKZXnKkPXaZEBCBb4Fx3kECahUd7R5I4IDq9sk=
-X-Google-Smtp-Source: AGHT+IGS01EhQzLkGSG5QTs8kVJO38w9bONzDU7GkpYvQ0IQiouZvmnxnTA/0j1IS6e2jMjLsjqvdA==
-X-Received: by 2002:a05:690c:4d01:b0:6ef:529e:6049 with SMTP id 00721157ae682-6f3f80d5c86mr110219607b3.4.1735055089247;
-        Tue, 24 Dec 2024 07:44:49 -0800 (PST)
-Received: from halaneyt14s.local ([2600:1700:1ff0:d0e0::37])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6f3e7836ee2sm28920277b3.98.2024.12.24.07.44.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Dec 2024 07:44:48 -0800 (PST)
-Date: Tue, 24 Dec 2024 09:44:46 -0600
-From: Andrew Halaney <ajhalaney@gmail.com>
-To: Enric Balletbo i Serra <eballetb@redhat.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Andrew Halaney <ahalaney@redhat.com>, Udit Kumar <u-kumar1@ti.com>, Beleswar Padhi <b-padhi@ti.com>
-Subject: Re: [PATCH v4 0/2] arm64: dts: ti: k3-j784s4: Mark tps659413
-Message-ID: <bamrgf5yiksx6rgxljgw5r3y4nkno2el7qigynynubehullurd@q2xptf5wndcx>
-References: <20241113-b4-j784s4-tps6594-bootph-v4-0-102ddaa1bdc6@redhat.com>
+	s=arc-20240116; t=1735058228; c=relaxed/simple;
+	bh=dbSHHVNh84FA7Cls48I5xFZUDkqvJap9eZqrol1y794=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xnyfvu+BUWHRqLNngJKz2XPpZC1ieOsF6NvIPrdDj1QrFJ+5edEHUOkl2CoGX7BVmzjmunYKwo4kONOWGJx+J0fqKx4fo3/QasjUNWL/3cyDqTZySi53gl7m3Nd3TMt1k+4l9LFbXdDolG7eQYvZ1xmtrT7y4weRGa3HqGhcdUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WCP+a7/h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A143C4CED0;
+	Tue, 24 Dec 2024 16:37:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735058228;
+	bh=dbSHHVNh84FA7Cls48I5xFZUDkqvJap9eZqrol1y794=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WCP+a7/hS943herHaKunur/52SvD9kdk7k7YdTNsGDgOPPCKBhVcFkyV+dDgQQJKM
+	 1Phn6kNN1TJhPs7R4kvIfYs7Ora4ueuebasqeeNIayKU9ZIlwZnVx0BhFISnhArXTV
+	 Mj9hxZGFhpYeADjFpdTlNW0w3RCUMfTSwyUD1S/+GFlOVZOpS5ccCv8zcDQ0dDrxrJ
+	 tz4ul6tCFJ4Uk3XvaQLoCvY5fYeU8tAtjfaL4GwVV+PlJLtvQmfGpaQMmK8qs2wSff
+	 dJwMDrErJ21AKPk3e4ibyxIbZ0Uun1OYv0VuUybwcs1vBN21VlPCi6eqRdNFNmCBj3
+	 31IK9gBQiXg9w==
+Message-ID: <93f57211-7157-485a-b84a-ceffbd8591cc@kernel.org>
+Date: Tue, 24 Dec 2024 17:37:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241113-b4-j784s4-tps6594-bootph-v4-0-102ddaa1bdc6@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: light: opt3001: add compatible for
+ opt3004
+To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+ jic23@kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Emil Gedenryd <emil.gedenryd@axis.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Arthur Becker <arthur.becker@sentec.com>,
+ Ivan Orlov <ivan.orlov0322@gmail.com>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+ Mudit Sharma <muditsharma.info@gmail.com>,
+ Julien Stephan <jstephan@baylibre.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Andreas Dannenberg <dannenberg@ti.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241224061321.6048-1-hardevsinh.palaniya@siliconsignals.io>
+ <20241224061321.6048-2-hardevsinh.palaniya@siliconsignals.io>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241224061321.6048-2-hardevsinh.palaniya@siliconsignals.io>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 13, 2024 at 10:15:15AM +0100, Enric Balletbo i Serra wrote:
-> This series marks tps659413's regulators as bootph-all in order for
-> the nodes (and parent nodes) to be accessible during MCU's u-boot SPL.
+On 24/12/2024 07:13, Hardevsinh Palaniya wrote:
+> Add Support for OPT3004 Digital ambient light sensor (ALS) with
+> increased angular IR rejection
 > 
+> The OPT3004 sensor shares the same functionality and scale range as
+> the OPT3001. This Adds the compatible string for OPT3004.
 
-Merry xmas eve, going through my queue and thought
-this could use a gentle ping :)
 
-Seems to apply fine on next still and it would be
-nice to land the associated u-boot changes eventually
-to get the watchdog working!
+Make the devices compatible (use fallback).
+
+> 
+> Datasheet: https://www.ti.com/lit/gpn/opt3004
+> 
+> Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+> ---
+
+
+Best regards,
+Krzysztof
 
