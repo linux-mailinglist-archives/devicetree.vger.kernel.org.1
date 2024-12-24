@@ -1,173 +1,112 @@
-Return-Path: <devicetree+bounces-133737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 950029FBABE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:53:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C7259FBAC2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:53:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 047347A2318
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 08:52:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E6411884672
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 08:53:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631BF198853;
-	Tue, 24 Dec 2024 08:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A0919258C;
+	Tue, 24 Dec 2024 08:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VT4xLm7t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l7KL2Pd1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD351946B9;
-	Tue, 24 Dec 2024 08:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A7118E764;
+	Tue, 24 Dec 2024 08:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735030367; cv=none; b=FQeZpTd7de/LZhLsVyNduTBEOuX3IPWnC5GXYpS+dBlwX4O/l9ZTTsKehS05lX576bML1tcGXi0xTtmW1H+j3NBhNwahlaJ5ochayBJ6PPEvYnjkZEGIwgu/II6Ijwy0oRyFXPofODJlAHdV9oddQIxxhj4u6vxKjq+ULyXy1pQ=
+	t=1735030423; cv=none; b=OshjFRhbG5rDHxntUxUtDh4rB7lv9na4MKWb8keuD2395cDMG8buNH3MI4hRLFFTRmzDc7f8VaJQ+yoqwtZo4gioEPSyyfWa8nChOE78+qmwmZaV3MjQLEiEjoY+PHsGssJU6TpJq5t1JtAz9G5seqI5QDAhEPVAbZTsdY7i5K8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735030367; c=relaxed/simple;
-	bh=wsWYp7QfCmIW8xUSh5qe3ysDgOzJV8vy7SqdMnk84CA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YPxfMMNxSke/U3h4bsdz2DpXgZaf3AnwnWDAgCB7YqBSrNffIGvQJCXS0FSLYwQh03hP53xPRMYiu+5M28R3jB7Lh/A+lbaRppCWNhM61GoYjxRaO+QgABCaTyC2dLKGI3Isgc+5FgVjbBVyHHHUKQaUkbPOBqWjauDV0WEBQm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VT4xLm7t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C69DC4CED0;
-	Tue, 24 Dec 2024 08:52:43 +0000 (UTC)
+	s=arc-20240116; t=1735030423; c=relaxed/simple;
+	bh=oyUzWxScHY5JktUj76SAcLkQhUMTi1JD+++R1xKImUM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gDGvW+gJXJWaR1jtWrPxbv+xitc+dyEOvc+mDzxrccuhLNPiYFMZrymrsFTIEQuM7dMuHcSUxdkTczgJj4aqibQ919SNN2KlOyjK/1sJbNSBd3cMWtvHoNyo1lOyh7jbFqt/L2oLjnDR8oVIY1q3UQ2HdZxPLcl5CfQIZQtypUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l7KL2Pd1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E809EC4CED6;
+	Tue, 24 Dec 2024 08:53:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735030366;
-	bh=wsWYp7QfCmIW8xUSh5qe3ysDgOzJV8vy7SqdMnk84CA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VT4xLm7tJnv1ZBQhaeklQtG5dCsigiU404W9fMDUSamAFTL2VbXfpRUZKicS16vk8
-	 NF0mjM7Emmb1tSIZJY9xFs/8o1rzgRDsQdTPrq9E1Ogv8lqzKW4xKZohoAo41rh2am
-	 02F6ynaqJsJUtlAgIK87QqKAxTb6Sjp1JcCSn4BUVIbWX30Qn2QBQtD5feE52Rhv3l
-	 71zmcE9hmxy6G9HIGF5EbboK9u73m5L95/RSrH+B3zRg5yzgGmmExCJSLqLZdBhSD2
-	 r83014oGsyVTk9jpRAe9/MDyRxtXsyHqF3UwRhI99kdfqsiUD4e4QavuZXbRoYDHi8
-	 +/VuAeWLU0gXA==
-Message-ID: <d8fbc040-070e-4dfd-b634-e1b7fb42d67c@kernel.org>
-Date: Tue, 24 Dec 2024 09:52:41 +0100
+	s=k20201202; t=1735030423;
+	bh=oyUzWxScHY5JktUj76SAcLkQhUMTi1JD+++R1xKImUM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l7KL2Pd1eMbG7+IT5VzXzp8TwyhFDFBcm23dLtuEz+116n5GY9T5D7jFK0D+erV4/
+	 veBzuVbQU42IOdqMG0K3gJhluGz+D3/zi7a5PWcNqaB05v5N9+V/xzK8xbsWC+yVv/
+	 rjeRu+DpmOi95fF1JUHmGhuefWos3vvEjkkqJKssLscFggqVdixexfdYHiSC1BEN1t
+	 hNa1F7AACRErlNXOJ+X9cWYgZ9RumXmVJ68gq58V5MOZzOdu2vrfCBPYeJi2/vzzyQ
+	 k+qqyyyk4N612rDQJEKvdPm7Ppzi+jO6ABhJOuFpyMInHhPtIGo5cs1KvT8tcqVz09
+	 HQ1RMLWnIt/+w==
+Date: Tue, 24 Dec 2024 09:53:41 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Michal Wilczynski <m.wilczynski@samsung.com>, airlied@gmail.com, 
+	aou@eecs.berkeley.edu, conor+dt@kernel.org, drew@pdp7.com, frank.binns@imgtec.com, 
+	guoren@kernel.org, jassisinghbrar@gmail.com, jszhang@kernel.org, krzk+dt@kernel.org, 
+	m.szyprowski@samsung.com, maarten.lankhorst@linux.intel.com, matt.coster@imgtec.com, 
+	mripard@kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de, 
+	palmer@dabbelt.com, paul.walmsley@sifive.com, robh@kernel.org, simona@ffwll.ch, 
+	tzimmermann@suse.de, ulf.hansson@linaro.org, wefu@redhat.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Subject: Re: [RFC PATCH v2 01/19] dt-bindings: clock: Add VO subsystem clocks
+ and update address requirements
+Message-ID: <wjet4yvtcobjaf7c4u7to6rm3ppkvmgyitp6evoqjpndtno6qg@h5xxyukph6y6>
+References: <20241223125553.3527812-1-m.wilczynski@samsung.com>
+ <CGME20241223125601eucas1p1d274193122638075dc65310a22616bae@eucas1p1.samsung.com>
+ <20241223125553.3527812-2-m.wilczynski@samsung.com>
+ <2cd0c34fbd14a0d69e689d04c2241938.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: arm: Add Morello compatibility
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Russell King <linux@armlinux.org.uk>
-References: <20241223162029.326997-1-vincenzo.frascino@arm.com>
- <20241223162029.326997-2-vincenzo.frascino@arm.com>
- <fc83ab3f-99fe-4566-9a33-670956dd76a4@kernel.org>
- <342b3c31-7e82-41d1-a9f0-9f3973f99486@arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <342b3c31-7e82-41d1-a9f0-9f3973f99486@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <2cd0c34fbd14a0d69e689d04c2241938.sboyd@kernel.org>
 
-On 23/12/2024 17:41, Vincenzo Frascino wrote:
-> 
-> 
-> On 23/12/2024 16:32, Krzysztof Kozlowski wrote:
->> On 23/12/2024 17:20, Vincenzo Frascino wrote:
->>> Add compatibility to Arm Morello System Development Platform.
->>>
->>> Note: Morello is at the same time the name of an Architecture [1], an SoC
->>> [2] and a Board [2].
->>> To distinguish in between Architecture/SoC and Board we refer to the first
->>> as arm,morello and to the second as arm,morello-sdp.
->>>
->>> [1] https://developer.arm.com/Architectures/Morello
->>> [2] https://www.morello-project.org/
->>>
->>> Cc: Linus Walleij <linus.walleij@linaro.org>
->>> Cc: Rob Herring <robh@kernel.org>
->>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->>> Cc: Conor Dooley <conor+dt@kernel.org>
->>> Cc: Liviu Dudau <liviu.dudau@arm.com>
->>> Cc: Sudeep Holla <sudeep.holla@arm.com>
->>> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
->>> Cc: Russell King <linux@armlinux.org.uk>
->>> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml | 3 +++
->>>  1 file changed, 3 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
->>> index 8dd6b6446394..7934d2c4cba0 100644
->>> --- a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
->>> @@ -118,6 +118,9 @@ properties:
->>>          items:
->>>            - const: arm,foundation-aarch64
->>>            - const: arm,vexpress
->>> +      - description: Arm Morello System Development Platform
->>> +        items:
->>> +          - const: arm,morello-sdp
->> Also:
->> const: arm,morello
->>
->> Unless you claim that this cannot be used in any other product than SDP,
->> but this then needs explanation in commit msg.
->>
-> 
-> Morello is a Prototype architecture and there are no plans to use it outside of
-> SDP hence I did not add arm,morello.
-> 
-> I thought it was clear since the note states that Architecture, SoC and Board
-> have the same name, if not, happy do address it in v3.
-No, it's not clear because that statement still does not close
-possibility of creating "Morello SDP v2" board. You should have two
-compatibles, even if there are no plans to add new boards.
+On Mon, Dec 23, 2024 at 12:50:59PM -0800, Stephen Boyd wrote:
+> Quoting Michal Wilczynski (2024-12-23 04:55:35)
+> > The T-Head TH1520 SoC=E2=80=99s AP clock controller now needs two addre=
+ss ranges
+> > to manage both the Application Processor (AP) and Video Output (VO)
+> > subsystem clocks. Update the device tree bindings to require two `reg`
+> > entries, one for the AP clocks and one for the VO clocks.
+> >=20
+> > Additionally, introduce new VO subsystem clock constants in the header
+> > file. These constants will be used by the driver to control VO-related
+> > components such as display and graphics units.
+> >=20
+> > Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> > ---
+> [...]
+> > diff --git a/Documentation/devicetree/bindings/clock/thead,th1520-clk-a=
+p.yaml b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+> > index 0129bd0ba4b3..f0df97a450ef 100644
+> > --- a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
+> > @@ -47,7 +54,9 @@ examples:
+> >      #include <dt-bindings/clock/thead,th1520-clk-ap.h>
+> >      clock-controller@ef010000 {
+> >          compatible =3D "thead,th1520-clk-ap";
+> > -        reg =3D <0xef010000 0x1000>;
+> > +        reg =3D <0xef010000 0x1000>,
+> > +              <0xff010000 0x1000>;
+>=20
+> I don't get it. Why not have two nodes and two devices? They have
+> different register regions so likely they're different devices on the
+> internal SoC bus. They may have the same input clks, but otherwise I
+> don't see how they're the same node.
+
+That's a good point. Aren't here simply two different clock controllers?
 
 Best regards,
 Krzysztof
+
 
