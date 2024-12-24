@@ -1,53 +1,47 @@
-Return-Path: <devicetree+bounces-133844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A959B9FBE48
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 14:20:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A743F9FBE8F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 14:28:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1666E1880676
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 13:12:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E5BE168293
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 13:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0EB1D6DB5;
-	Tue, 24 Dec 2024 13:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="USCz0+cT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227821C548C;
+	Tue, 24 Dec 2024 13:14:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m127172.xmail.ntesmail.com (mail-m127172.xmail.ntesmail.com [115.236.127.172])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C8D1DF724
-	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 13:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867031B4138
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 13:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735045716; cv=none; b=aRededK3wWOGeRVn1jUsVWRO4FimEk7j0JWvPETVmqeMxt8oOP8yXRrWstRIQAWazaWGVm/YiOnXPAmGcQw1vwrJeqZYm+f3E+KAQ8HWs9z1UrcopblXgQ2IaW9+aMMSAzefKnHJa2Ms8hn30NRkhHc+FaigDQfVDJpHqvwrkLY=
+	t=1735046081; cv=none; b=trV+OtnGIWyX4cXR9a+GvN4qmfLnfYGX7OQzjl8+tjS9coKUGP8d9+YHJS/8viQ/6/2vjaXkbihqUaQ+NUYZr9H/Ke3b66c6tnu2+jdI3oSm8iXKhc3tA5iiI8AmZRLjdU3Kz0xe0OCbspcbOYDgNzELwszHUr9K/iYIYN05c6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735045716; c=relaxed/simple;
-	bh=joo+4kBLO+ogjD4Zt1TPGj0xW29p+/hknOrdvl1LK+E=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ctG5NqgNXrTDqBGmZhzyvNuo4fkLzQn2P2IVCoHBKfgxRlsuNweES0m10dC97EpIQA2MwuC8uRNu40sd+DgTUlSc+FowylhVBPsS6Ni5ELKBC00axz0cbbbQGBPuS7nbf7Zc/5cThIR7ZH1FkcVVQV1WJSC0prXxbJ4YvPunVl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=USCz0+cT; arc=none smtp.client-ip=115.236.127.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 6aa90325;
-	Tue, 24 Dec 2024 17:39:21 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
+	s=arc-20240116; t=1735046081; c=relaxed/simple;
+	bh=Mj9+IHs3TU72VGZ6Gt6ZuP8PNJnbkDHIicJIC8qXdrE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t9zHE12Edf0C654gZsJowBMhWiCOjl4oTat4zQ18CxNv552kuUR8E1DpnusOur8/0Pkf9bBzSrb7SYyoHkliQdKXSTNfzQf2eL7CwDZWgMCpEAw2ysWjJllBHRr3r/yX0coxvEhnu0dkJzTeGS0xpzdsc2bVcV68V0d5M8wzeJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 4BODDVP1030176;
+	Tue, 24 Dec 2024 22:13:31 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
 To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 1/2] dt-bindings: power: add power binding header for RK3562 SoC
-Date: Tue, 24 Dec 2024 17:39:19 +0800
-Message-Id: <20241224093920.3816071-1-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        dsimic@manjaro.org, alchark@gmail.com, cfsworks@gmail.com,
+        cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+        jing@jing.rocks, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH v6 0/2] arm64: dts: rockchip: Use shared .dtsi and board-specific .dts for Radxa ROCK 5A and 5C
+Date: Tue, 24 Dec 2024 13:13:25 +0000
+Message-ID: <20241224131327.4822-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,79 +49,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGhhCHlYZS0xJGRlJTElPTE9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a93f809083303afkunm6aa90325
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6K006ORw5KjIUTUoaPU83EC0t
-	ERMKCwJVSlVKTEhOS0hISk1JQ0tLVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKTUtINwY+
-DKIM-Signature:a=rsa-sha256;
-	b=USCz0+cTFZYqsuy50xTDM+NZLqMW8vVGjw+vgsjS6V3ay97cZ5EKbHJPjb7QvziW7spZJlabQkrMiGvD8Op2pbWtQbcgVv0xg5P3ro1ldQ7fOI/8NSbloKYdNAqxHnMnjFMVn5ggCvhHGIZ96GixPGMYY4lmpCZGeK/OGPMB1pM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=TF+TORshgAPHG06YtQFQVSUqYlUt1YDkgX4r9t+o1GA=;
-	h=date:mime-version:subject:message-id:from;
 
-From: Finley Xiao <finley.xiao@rock-chips.com>
+Radxa ROCK 5C is a slightly updated version of Radxa ROCK 5A, which
+can share almost all parts of the dts.
 
-According to a description from TRM, add all the power domains.
+This patch series splits ROCK 5C .dts into shareable .dtsi and
+board-specific .dts, and converts ROCK 5A .dts to use the shared .dtsi.
 
-Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
----
+(This patch series depends on the Radxa ROCK 5C patch series[1])
 
-Changes in v2:
-- rename to rockchip,rk3562-power.h
-- update the subject
-- use dual license
+[1] https://patchwork.kernel.org/project/linux-rockchip/cover/20241223013926.1134-1-naoki@radxa.com/
 
- .../dt-bindings/power/rockchip,rk3562-power.h | 35 +++++++++++++++++++
- 1 file changed, 35 insertions(+)
- create mode 100644 include/dt-bindings/power/rockchip,rk3562-power.h
+FUKAUMI Naoki (2):
+  arm64: dts: rockchip: Splits Radxa ROCK 5C dts into shareable .dtsi
+    and board-specific .dts
+  arm64: dts: rockchip: Convert Radxa ROCK 5A to use shared .dtsi
 
-diff --git a/include/dt-bindings/power/rockchip,rk3562-power.h b/include/dt-bindings/power/rockchip,rk3562-power.h
-new file mode 100644
-index 000000000000..d728c9ee908d
---- /dev/null
-+++ b/include/dt-bindings/power/rockchip,rk3562-power.h
-@@ -0,0 +1,35 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Copyright (c) 2022-2024 Rockchip Electronics Co., Ltd.
-+ */
-+#ifndef __DT_BINDINGS_POWER_RK3562_POWER_H__
-+#define __DT_BINDINGS_POWER_RK3562_POWER_H__
-+
-+/* VD_CORE */
-+#define RK3562_PD_CPU_0		0
-+#define RK3562_PD_CPU_1		1
-+#define RK3562_PD_CPU_2		2
-+#define RK3562_PD_CPU_3		3
-+#define RK3562_PD_CORE_ALIVE	4
-+
-+/* VD_PMU */
-+#define RK3562_PD_PMU		5
-+#define RK3562_PD_PMU_ALIVE	6
-+
-+/* VD_NPU */
-+#define RK3562_PD_NPU		7
-+
-+/* VD_GPU */
-+#define RK3562_PD_GPU		8
-+
-+/* VD_LOGIC */
-+#define RK3562_PD_DDR		9
-+#define RK3562_PD_VEPU		10
-+#define RK3562_PD_VDPU		11
-+#define RK3562_PD_VI		12
-+#define RK3562_PD_VO		13
-+#define RK3562_PD_RGA		14
-+#define RK3562_PD_PHP		15
-+#define RK3562_PD_LOGIC_ALIVE	16
-+
-+#endif
+ ...k3588s-rock-5c.dts => rk3588s-rock-5.dtsi} |  22 -
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     | 864 +---------------
+ .../boot/dts/rockchip/rk3588s-rock-5c.dts     | 934 +-----------------
+ 3 files changed, 56 insertions(+), 1764 deletions(-)
+ copy arch/arm64/boot/dts/rockchip/{rk3588s-rock-5c.dts => rk3588s-rock-5.dtsi} (96%)
+ rewrite arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts (98%)
+ rewrite arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts (95%)
+
 -- 
-2.25.1
+2.43.0
 
 
