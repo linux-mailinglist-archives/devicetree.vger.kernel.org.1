@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-133777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 739AB9FBBD4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:03:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE4109FBBFA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:13:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21C91188B35B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:56:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E192816120E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8517A1B4130;
-	Tue, 24 Dec 2024 09:54:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC1F1B0F33;
+	Tue, 24 Dec 2024 10:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="aIC4AIcW"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="PaW1ZunR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3277.qiye.163.com (mail-m3277.qiye.163.com [220.197.32.77])
+Received: from mail-m32122.qiye.163.com (mail-m32122.qiye.163.com [220.197.32.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA56017C220;
-	Tue, 24 Dec 2024 09:54:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C37511B0F15;
+	Tue, 24 Dec 2024 10:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735034094; cv=none; b=QIEb83L4tVBtMeIf1DbkNQZ2/w7gFSPnGtKnUoUcbVEPIs1/4fip6DfKqLPDAGnS85LDmFczMd3JPcC5El+n2z7PU+ABiT2OoEa2EgTJXyBZxUA4JYZQl4XPmWJ591OL7OSwPm90PjdcDfhBPTfaYdboyd2jampDeimDkiqisoM=
+	t=1735034699; cv=none; b=p7GsaPlrwJp8yce0iPsuhTxmEE+1KmU+3KfKx9jLCfw2wbX3zkfxwb+Wg00tKAXWM8eerqpzLd5MimQf9i1ONLfmuDPYFuvYD8COs4zQepnVdDO01jLmik1GxVBVoedu+JzxAlxwkAJvsj1yMSiOkFUxCM8Wjqkz19h8TU+bKB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735034094; c=relaxed/simple;
-	bh=NegVq0gVVmJ4TG/f+ZAU4nDfTp6uIPSBqRmjVKo0FmE=;
+	s=arc-20240116; t=1735034699; c=relaxed/simple;
+	bh=w1sYguIT9Fej9Y7r2rAQOrte9SJwK4CiC+goidounq4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VY1msJdrNlsa0zHR9EDCAAwSUuQPKnMN4u4nElDmXn0yE1bu0FJd2A9pg2I8ApyCON4YGyHMS9fjw1AFQL5CNOM6MlQ2XvLQ6ErQhPjutl9/KWYMn1R3VdYm+hKF3BL/zeGpPNNsjhoyNN2TKzjTIC6GMBX6y9djDRpKKEU6Gbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=aIC4AIcW; arc=none smtp.client-ip=220.197.32.77
+	 MIME-Version; b=nIP+3MvAK7bmUEBbaw03ZJ4/idiYNyfso7lZeLTDmMFA/RKvgmpTu7RPF08L7XB8hg8+lyB3iJrJIZ32+q//gE9WGEtpaD58wo9iZuHdsj5fWTQFSqnk4j5vBh/IKErAy/Nr/Izssf4YubdyhTM8iurjnNc/+Pgs+byrpAENR+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=PaW1ZunR; arc=none smtp.client-ip=220.197.32.122
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 6aad4f1b;
-	Tue, 24 Dec 2024 17:49:35 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 6aad4f50;
+	Tue, 24 Dec 2024 17:49:36 +0800 (GMT+08:00)
 From: Kever Yang <kever.yang@rock-chips.com>
 To: heiko@sntech.de
 Cc: linux-rockchip@lists.infradead.org,
@@ -41,14 +41,14 @@ Cc: linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-spi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 08/17] dt-bindings: spi: Add rockchip,rk3562-spi compatible
-Date: Tue, 24 Dec 2024 17:49:11 +0800
-Message-Id: <20241224094920.3821861-9-kever.yang@rock-chips.com>
+	linux-serial@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>
+Subject: [PATCH v2 09/17] dt-bindings: serial: snps-dw-apb-uart: Add support for rk3562
+Date: Tue, 24 Dec 2024 17:49:12 +0800
+Message-Id: <20241224094920.3821861-10-kever.yang@rock-chips.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241224094920.3821861-1-kever.yang@rock-chips.com>
 References: <20241224094920.3821861-1-kever.yang@rock-chips.com>
@@ -60,41 +60,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0JDTlYaT0pJTE9LSkkdQ0NWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	5VSktLVUpCS0tZBg++
-X-HM-Tid: 0a93f812647d03afkunm6aad4f1b
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGktJS1ZCSkhCHk4ZTR5DT05WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a93f81269ea03afkunm6aad4f50
 X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MS46Nxw5DjITPkodS1EvLCo1
-	NQMaCw9VSlVKTEhOS0hITExNT01KVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFDT0o3Bg++
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nyo6ORw6DTIQPkoXS0s3LChM
+	HxQKCihVSlVKTEhOS0hITExMTEJLVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFDQ083Bg++
 DKIM-Signature:a=rsa-sha256;
-	b=aIC4AIcWKqKoT7LNOzi3cjWVG65DmdskHtqwrE28ZQDWJltkEJs9GEM8YYIm/lHy6ezEtwUeZSGqS9x8XL/4bkC4F6pYHknE00uMA3alZaocRHp07Iqg93Yf5VPrlx4Fwe20YQkfz6soDVs5O5K7ryO9OYSnuv4IrLrqGF2AiO0=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=IOM1U89s1aYg720JAUn/jQO6iCYKE+w0kQFvGel09Ys=;
+	b=PaW1ZunRuKqrq2MEcyGvF1ID608tmpEBs1Ro/ydVWnjvr7HLMMz1O26g0VS1hqqnDc5P4TWf9gDt2Imm5nODPfT5p9LW1pKRKpA++M8yZHQFJBP84ZqWggVGGDH36hTeQ4RextZmgpNyVvv9ues5FURWMFR2LqgxBr9dBwve9+E=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=LL/r0W7SCVHJRGGyzbWqtnf2sNnv53u7nqfOYyaOwaI=;
 	h=date:mime-version:subject:message-id:from;
 
-Add rockchip,rk3562-spi compatible for rk3562.
+Add rockchip,rk3562-uart compitable for rk3562.
 
 Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
 ---
 
 Changes in v2: None
 
- Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
+ Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-index 46d9d6ee0923..104f5ffdd04e 100644
---- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-@@ -34,6 +34,7 @@ properties:
-               - rockchip,rk3328-spi
-               - rockchip,rk3368-spi
-               - rockchip,rk3399-spi
-+              - rockchip,rk3562-spi
-               - rockchip,rk3568-spi
-               - rockchip,rk3576-spi
-               - rockchip,rk3588-spi
+diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+index 1c163cb5dff1..1c16ca3b4e29 100644
+--- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+@@ -51,6 +51,7 @@ properties:
+               - rockchip,rk3368-uart
+               - rockchip,rk3399-uart
+               - rockchip,rk3528-uart
++              - rockchip,rk3562-uart
+               - rockchip,rk3568-uart
+               - rockchip,rk3576-uart
+               - rockchip,rk3588-uart
 -- 
 2.25.1
 
