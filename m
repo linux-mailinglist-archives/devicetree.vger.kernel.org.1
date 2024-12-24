@@ -1,113 +1,83 @@
-Return-Path: <devicetree+bounces-133782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB0799FBBEE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:09:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C16C9FBB6E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:43:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EADDE16430E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:58:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E54961884176
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2C951B652C;
-	Tue, 24 Dec 2024 09:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD81D1B0F15;
+	Tue, 24 Dec 2024 09:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Ol9pehjQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6qI958L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731111.qiye.163.com (mail-m19731111.qiye.163.com [220.197.31.111])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645BE183CD1;
-	Tue, 24 Dec 2024 09:58:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.111
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 899571AF4E9
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 09:43:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735034289; cv=none; b=fsk9uirWkyBT0Bv1KunrkRccvOLxudu5UELSU5M/v6CbUbujPL1hOz0EiLYG4jIKY7ae1FkBwUfe7MObCReAuN76g+NEmTZYhiQ5HJ1AaFooggiDuH7W7wgpcXuAd1mo5o0gWwaqb8ojp2Nkec8AMA8nbxJY5oooRGwtr7KYTlA=
+	t=1735033402; cv=none; b=YmvC9bw+4TJ0LIASlsR6IzjzeB01P3nCPkJ2VVsyoI2ZZL4Et+f7GDGgfRnqGjnW/O9lTb521o/ln2l6CMgQIEN+VkaT9dRBPiSUISViGL85dR9ba+o7uJ86KbiQ6wpKTdeAKpJ+K0nrnp5PxZiMU3pJ/vxcLZB1tWyhGGsYFuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735034289; c=relaxed/simple;
-	bh=KwvzXGmqe6Sg9ZryIYMTzbVbvSxsESSXgTgXtOFe7g0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=anc40Bn/3xn7mkzwy4O4bpqaaDR+gtYVCE9+6UfLjoCwJCkan0yJpvHCjkoZSUnsRvsf7MFnGkKthR8aY/iG67ez7OoAP6Zu7AxDj9EMdZgeZRi732Ds3108fNfGaQDt3uw+G5UwL4LYYj6UUifhtrpxI0beVqBEoW7Rh0mRdsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Ol9pehjQ; arc=none smtp.client-ip=220.197.31.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 6aaa2d19;
-	Tue, 24 Dec 2024 17:42:41 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Kever Yang <kever.yang@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-phy@lists.infradead.org,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/2] dt-bindings: phy: rockchip,inno-usb2phy: add rk3562
-Date: Tue, 24 Dec 2024 17:42:39 +0800
-Message-Id: <20241224094240.3817261-1-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1735033402; c=relaxed/simple;
+	bh=RA5sS+LHe7DdBB+p8rWK5aaRQ2sxjMPQzK5z1SuxXUs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lOXXVap6hBXmBsVHCi4JGrfTJM07HDynVSzx25hpwVDU364tDgi+RGOmqOE6Ucz3cohk8QmLXfiyNc0xT/+4tcadOEz65OrUZy42jAOe++UrC8ZSotUiUEG38Ff83xrnDaXzccp2fmsHArue+frqR0yM+znHD+6hNdRMr2u/Emo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6qI958L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB9F2C4CED0;
+	Tue, 24 Dec 2024 09:43:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735033402;
+	bh=RA5sS+LHe7DdBB+p8rWK5aaRQ2sxjMPQzK5z1SuxXUs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k6qI958LWgBe7Ke9QTtJLD1XdOBbpACohHvR6nPJtmrkDcf/Z5ViolwskfKJZ6bTF
+	 6kLd3fkOh5DR9istquPw0vId18UMY8qox43kfk2bvMpJ+3XANpyLr9l8b/940jl5M5
+	 liZ/V3Ch9iOXPKTv1aw7n6nIdSEvAvEervMA/iFgXh5TBD1PxSOf86LVLRv3GseEsg
+	 Hq1T45JthNOaB28WM0d1nipvNqwBY0O+PAIO2lCZZBBYEGO7+XIT+4daU44Hb6r7/+
+	 z9SJB07yNZ4f+snkD8lp5mWp2KCPkeiXy1Obr9qNXIBR+rE0uPCah5Ot3s9Qz4MQsh
+	 HmjEg/LBLFEPA==
+Date: Tue, 24 Dec 2024 10:43:18 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, dsimic@manjaro.org, jonas@kwiboo.se, macromorgan@hotmail.com, 
+	andyshrk@163.com, dmt.yashin@gmail.com, liujianfeng1994@gmail.com, 
+	tim@feathertop.org, marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net, 
+	alchark@gmail.com, jbx6244@gmail.com, kever.yang@rock-chips.com, jing@jing.rocks, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: rockchip: Add Radxa E52C
+Message-ID: <hs45mw6utovel4ok53iys2vxy5njv3etsimuotoylfqs2joybt@hgdrv647z4kp>
+References: <20241223015318.1999-1-naoki@radxa.com>
+ <20241223015318.1999-2-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0gZH1ZJTU9PSh1CTBoeTUxWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a93f80c153603afkunm6aaa2d19
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nyo6Ezo*CzIINkozPCpCExFD
-	TioaCilVSlVKTEhOS0hISE1IS0hPVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKSExPNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=Ol9pehjQY5ZO9Hb1Je/xHCCbv7adtbAUQlDUYe3f6o3uNDmh5K/jYQYjz90jmlmCwAw7yYd1fVmnEDOR1QpalOlEJaB+H0JTrcKVXgEhmF6VA4hEzU8xYzjjvBG9uX2dGJlPS/VqytqcTOATwsYjqqSCFMV2Z8E+x6rgriHJ5CE=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=l4sS4jdc6mI0+Llv9QtpAg8NbLOEBMveI73kPmorKsY=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241223015318.1999-2-naoki@radxa.com>
 
-Add compatible for the USB2 phy in the Rockchip RK3562 SoC.
+On Mon, Dec 23, 2024 at 01:53:17AM +0000, FUKAUMI Naoki wrote:
+> Add devicetree binding for the Radxa E52C.
+> 
+> Radxa E52C is a compact network computer based on the Rockchip RK3582
+> SoC.
+> 
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
+> Changes in v2:
+> - Add "rockchip,rk3588s"
 
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
----
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
- .../devicetree/bindings/phy/rockchip,inno-usb2phy.yaml         | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-index 6a7ef556414c..367297f6f8b5 100644
---- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-@@ -19,6 +19,7 @@ properties:
-       - rockchip,rk3328-usb2phy
-       - rockchip,rk3366-usb2phy
-       - rockchip,rk3399-usb2phy
-+      - rockchip,rk3562-usb2phy
-       - rockchip,rk3568-usb2phy
-       - rockchip,rk3576-usb2phy
-       - rockchip,rk3588-usb2phy
-@@ -150,7 +151,6 @@ allOf:
-             enum:
-               - rockchip,rk3568-usb2phy
-               - rockchip,rk3588-usb2phy
--
-     then:
-       properties:
-         host-port:
-@@ -190,6 +190,7 @@ allOf:
-               - rockchip,rk3328-usb2phy
-               - rockchip,rk3366-usb2phy
-               - rockchip,rk3399-usb2phy
-+              - rockchip,rk3562-usb2phy
-               - rockchip,rk3568-usb2phy
-               - rockchip,rk3588-usb2phy
-               - rockchip,rv1108-usb2phy
--- 
-2.25.1
+Best regards,
+Krzysztof
 
 
