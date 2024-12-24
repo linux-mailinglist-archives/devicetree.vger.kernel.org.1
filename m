@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-133739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BEB69FBAD4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:00:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B50BC9FBAE1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:03:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC95F161B17
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:00:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B276165E19
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 09:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FBF318C33B;
-	Tue, 24 Dec 2024 09:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF031AD3E5;
+	Tue, 24 Dec 2024 09:02:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QFPUsrfC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KYnEAfAZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3978C2BB15;
-	Tue, 24 Dec 2024 09:00:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A6718BBAC
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 09:02:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735030824; cv=none; b=ppc8svZNEfinL5AlpFuFjlYdHfOmp8ZnlywNwqdH8aipMfVWWUIH44CJmpUFe4JqYCAwKseUQmYRRs/TcHCYveGbTTQn4H6vouZCGl7AafrLzWqNncEFcS1nx4q9bqWxZJ83SQKWF3Oi5Jys8PMpO5PWOjqEJt5u71TvXPfZbIU=
+	t=1735030945; cv=none; b=MCqEU0jkVZC/qL4/HanWatIAchAE8ds8H0bwc1eojUgw5jYYtDd8QirQADw9B1/gFQAz94QNCk2BMHURQnVBrE1QAKa6GN5+KgdHwqCV+fvJdDmvgNMl+/ElH/kFhyIOC0jTy+zCui7sseoqsp6D61uqINV42+eZMcVdJcasmz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735030824; c=relaxed/simple;
-	bh=iIFRZhvlUCHjcvWzeF5tljgi55EYFpAF+OSKsDDBICk=;
+	s=arc-20240116; t=1735030945; c=relaxed/simple;
+	bh=gSoT9CVaoJwBZDjeIeye2Xw8oj02DWXFADqKpE40gdo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eFCwbag0SEBJBTwwfVdH/ImVyhCgsUp9GG2yXM+IGJIFSwAwPXRmZHPrnuBZejZiC36HNsNoVVj/4b5PrlfpC8/UqOgVmsmEaB7TZTcy/0byHT4n86RSuXRAglP2XR+SLZ2anKA5sabovg5hlTyDhOI9c9VZyHnTimZYX+jG2Co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QFPUsrfC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9126C4CED0;
-	Tue, 24 Dec 2024 09:00:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735030823;
-	bh=iIFRZhvlUCHjcvWzeF5tljgi55EYFpAF+OSKsDDBICk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QFPUsrfCNbb/EuUE2bR4P/Se3TgwvsvOKwb3LzdHN80KEZ5QcTlwi+cOH4eCngI8F
-	 vcBJ8XW8kkcgAkq6qWc25fUGY/gcqT33JQ3soPtRlOeoUq0eOq8JIpAI+bhTWcJoAa
-	 kEil1r7tuKaH7bGxDN2OR9p5O/2/wVERKPJdRJjf7ia7hln1x09C1uXuMRYbzP10Fh
-	 nwWRtfkvdT5sKSRP5Z6ahyyNfAE33aPyhqcy/z6taFkxU17Q/I+zlrsFP5Jm+SXEwu
-	 fY0i9xqBHpSCHiO7YSjGcx7aECOUUW2O12D+ob947jIFaptzLj+j3/Svj4aRPFjKR+
-	 BxvbYFDn2A4Lg==
-Message-ID: <b1d541c1-296a-4b56-bea3-52e5becadf0e@kernel.org>
-Date: Tue, 24 Dec 2024 10:00:17 +0100
+	 In-Reply-To:Content-Type; b=LnhYA3LPk4YaTscRqjjWmaneceIu/k6N0WLRgbhWe5kUxR4plOuqPZdPNY0JOYPXe1HA+JpQO0KpdqWtS6yx8Y/CMeK6ZgagUnUXF4jY5tVsPiSx37yML2KmC9nc48gYPaIu/Hd2nkd39cr1XSqlq/+B5kkoVvWNA4UHYi0NzUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KYnEAfAZ; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-aa67bc91f87so83212066b.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 01:02:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735030942; x=1735635742; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=rqjl308OuNRMbWugA4jzjOfqs1qN28qDlrGRi1lmlOA=;
+        b=KYnEAfAZeE6vOaSAR4hONbF9DgolWRVjaAY44iz0+jIXaWHear7Udb5jrD5sLcDAAR
+         9JsocFJr8zJgbGlrHajUkp1fpktwMN8WiPamNiS8+SiQouJKV1TR2Pq0LTSN0SeLnTde
+         4z8LbNLkS9+X9L50+mXsZsypuWQkaKRwrWnGap4NSZAtcsalkJln764zcA3u/bu1mbmN
+         V8LAXZD/FSyN3GVgO6Qzu7K3ftPtT9NICjpa014DgdPLysoOeEMTi2iuZRRPas+Wxh14
+         3m3PoZpdMqzqTcuosA7kAZLfOBaF6aER3WNjn5nkZ9dD4+CAZoRcBQYp2xVybCHNyZ3P
+         /4Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735030942; x=1735635742;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rqjl308OuNRMbWugA4jzjOfqs1qN28qDlrGRi1lmlOA=;
+        b=YRugcDrT9Ri3v7z9Oh6Byv/BiEo+KWvyMDAzqABxFhJipoQiN4hMOwW4ZyH3FmVlkF
+         /aZt3y89kZkh7ZvvNRSdpRIcWbz5r12/d+UhLVr3bN4Ni49GF4/Kr/2U/vMqtlJXj3kN
+         HUgr6z20iyPW0jxmLwP8YHatOjodpd6uGax/37Ns/B30CPEuJa1z3iK08O2JGqYzG9Xs
+         e+bXUv4+aCK1IPJBUeF8t7kigdbld1IoRrnlcipdvd3KOfKgmp+RqIIsbHdzLjdkkkOv
+         Jn4yuqOFjku8/cyp22rJTYa5bEz7OphnzWtSkBPrgxQO3VOELvuPtKM2vd4jty/2WqWO
+         3DWw==
+X-Forwarded-Encrypted: i=1; AJvYcCWV1ZcqgCCuydcVN5o85CVkNgbxuTnO3gM6YGUc2ZP/PpMa/hOYgyRpXsUEhifU94dNAfsKneFcpyVo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyq3NKyArQoF6sG47iYBa0FPo2bugdRycrID7KQBHQMpptPT4VC
+	XOkwsD5v6KLZHNkFNB681MxXZirOGB+7OwjxnCrRsVbmF7gc2ct+bwH3aEEgN+g=
+X-Gm-Gg: ASbGnctNMCgHLVfx6It8aj15NxjIBTpg+E71myzGEH2Zwx4zDpFFW5g8IbGZ3P79/ch
+	LzE6VA9sAFhUUqf8rHlz+kDuCs7IONdTxjosvlCcrTi0rPFY2SBcOo8lKGiAi/wzcQ421ZJoIQ6
+	4SUhW78WQinvKUpTy2ZIGsdOHIQ491HYzKm87Z9me4Cv+Jt8TZC1XHsL5hgLGkDWDVwDIFp3JEu
+	NqT5CooZqvaLO1wp0OeQm9ta81vblop6jHhVBwK/8/ffpcq9u4CficjsOrOiEvVR1FsiSxxpwGt
+	kbs7st7MnMRyCKpXV9KDpH1i/ReEZooqCVw=
+X-Google-Smtp-Source: AGHT+IGykTi7JHcE7u3RIbhw9nHMoGJBAN6VL/xBiSZ3UlC0+Pn4XzS4kF3dFtZfJ0nP0IfLmC2iOA==
+X-Received: by 2002:a17:907:2683:b0:a9a:8216:2f4d with SMTP id a640c23a62f3a-aac2714a5ecmr510447666b.3.1735030941539;
+        Tue, 24 Dec 2024 01:02:21 -0800 (PST)
+Received: from [192.168.0.18] (78-11-220-99.static.ip.netia.com.pl. [78.11.220.99])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0efe4b6bsm630137966b.93.2024.12.24.01.02.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Dec 2024 01:02:19 -0800 (PST)
+Message-ID: <7813f2b0-e76a-463c-91f9-c0bd50da1f0a@linaro.org>
+Date: Tue, 24 Dec 2024 10:02:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +82,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/8] dt-bindings: Add MAX7360 subdevices
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kamel Bouhara <kamel.bouhara@bootlin.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
- linux-pwm@vger.kernel.org, =?UTF-8?Q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20241219-mdb-max7360-support-v1-0-8e8317584121@bootlin.com>
- <20241219-mdb-max7360-support-v1-2-8e8317584121@bootlin.com>
- <58c80c2a-2532-4bc5-9c9f-52480b3af52a@kernel.org>
- <D6J6JNPPZRKM.3F9YUY9CW3L2F@bootlin.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: net: qcom,ethqos: Drop fallback
+ compatible for qcom,qcs615-ethqos
+To: Yijie Yang <quic_yijiyang@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20241224-schema-v2-0-000ea9044c49@quicinc.com>
+ <20241224-schema-v2-1-000ea9044c49@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -79,164 +113,61 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 fv0=
-In-Reply-To: <D6J6JNPPZRKM.3F9YUY9CW3L2F@bootlin.com>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20241224-schema-v2-1-000ea9044c49@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/12/2024 16:20, Mathieu Dubois-Briand wrote:
-> On Sat Dec 21, 2024 at 9:34 PM CET, Krzysztof Kozlowski wrote:
->> On 19/12/2024 17:21, Mathieu Dubois-Briand wrote:
->>> ---
->>>  .../devicetree/bindings/gpio/max7360-gpio.yaml     | 96 ++++++++++++++++++++++
->>>  .../devicetree/bindings/input/max7360-keypad.yaml  | 67 +++++++++++++++
->>>  .../devicetree/bindings/input/max7360-rotary.yaml  | 52 ++++++++++++
->>>  .../devicetree/bindings/pwm/max7360-pwm.yaml       | 35 ++++++++
->>>  4 files changed, 250 insertions(+)
->>
->>
->> I don't understand how this patchset was split. MFD binding cannot be
->> empty and cannot be before child devices.
->>
-> 
-> Ok, my bad. So I believe squashing both dt-bindings commit should fix
-> this.
-> 
->>> diff --git a/Documentation/devicetree/bindings/gpio/max7360-gpio.yaml b/Documentation/devicetree/bindings/gpio/max7360-gpio.yaml
->>> new file mode 100644
->>> index 000000000000..3c006dc0380b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/gpio/max7360-gpio.yaml
->>> @@ -0,0 +1,96 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/gpio/max7360-gpio.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Maxim MAX7360 GPIO controller
->>> +
->>> +maintainers:
->>> +  - Kamel Bouhara <kamel.bouhara@bootlin.com>
->>> +  - Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
->>> +
->>> +description: |
->>> +  Maxim MAX7360 GPIO controller, in MAX7360 MFD
->>> +  https://www.analog.com/en/products/max7360.html
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - maxim,max7360-gpio
->>> +      - maxim,max7360-gpo
->>
->> Why? What are the differences?
->>
-> 
-> Ok, so maybe my approach here is completely wrong. I'm not sure what
-> would be the best way to describe the device here, if you have any
-> suggestion I would be happy to use it. Let me try to summarize the GPIO
-> setup of the chip.
-> 
-> First we have two series of GPIOs on the chips, which I tend to think
-> about as two separate "banks". Thus two separate subnodes of the max7360
-> node.
+On 24/12/2024 04:07, Yijie Yang wrote:
+> The core version of EMAC on qcs615 has minor differences compared to that
+> on sm8150. During the bring-up routine, the loopback bit needs to be set,
+> and the Power-On Reset (POR) status of the registers isn't entirely
+> consistent with sm8150 either.
+> Therefore, it should be treated as a separate entity rather than a
+> fallback option.
 
-First, splitting MFD device into multiple children is pretty often wrong
-approach because it tries to mimic Linux driver design.
-
-Such split in DT makes sense if these are really separate blocks, e.g.
-separate I2C addresses, re-usable on different designs.
-
-In this case Functional Block Diagram shows separate blocks, but still
-the same I2C block. This can be one device. This can be also two devices
-if that's easier to represent in DT.
-
-But in any case binding description should explain this.
+... and explanation of ABI impact? You were asked about this last time,
+so this is supposed to end up here.
 
 > 
-> - On one side we have what I refer to as GPIOs, here with
->   maxim,max7360-gpio:
->   - PORT0 to PORT7 pins of the chip.
->   - Shared with PWM and rotary encoder functionalities. Functionality
->     selection can be made independently for each pin. This selection is
->     not described here. Runtime will have to ensure the same pin is not
->     used by two drivers at the same time. E.g. we cannot have at the
->     same time GPIO4 and PWM4.
->   - Supports input and interrupts.
->   - Outputs may be configured as constant current.
->   - 8 GPIOS supported, so ngpios maximum is 8. Thinking about it now, we
->     should probably also set minimum to 8, I don't see any reason to
->     have ngpios set to something less.
-> 
-> On the other side, we have what I refer to as GPOs, here with
-> maxim,max7360-gpo compatible:
->   - COL2 to COL7 pins of the chip.
->   - Shared with the keypad functionality. Selections is made by
->     partitioning the pins: first pins for keypad columns, last pins for
->     GPOs. Partition is described here by ngpios and on keypad node by
->     keypad,num-columns. Runtime will have to ensure values are coherent
->     and configure the chip accordingly.
->   - Only support outputs.
->   - No support for constant current mode.
->   - Supports 0 to 6 GPOs, so ngpios maximum is 6.
-> 
->>> +
->>> +  gpio-controller: true
->>> +
->>> +  "#gpio-cells":
->>> +    const: 2
->>> +
->>> +  ngpios:
->>> +    minimum: 0
->>> +    maximum: 8
->>
->> Why this is flexible?
->>
-> 
-> I believe this makes sense, as this keypad/gpos partition really changes
-> the actual number of GPIOS. Yet we could argue that this is just runtime
-> configuration. Tell me what you think about it, if you think this should
-> be a fixed value, I will find a way.
-
-Depends whether this is actual runtime configuration. If you configure
-keypad in DT, then the pins go away from GPIOs (especially considering
-that board might have these pins really connected to keypad). Anyway,
-explain this briefly in binding description.
-
-> 
+> Fixes: 32535b9410b8 ("dt-bindings: net: qcom,ethqos: add description for qcs615")
+> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
 Best regards,
 Krzysztof
 
