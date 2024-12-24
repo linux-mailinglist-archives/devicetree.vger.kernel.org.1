@@ -1,165 +1,102 @@
-Return-Path: <devicetree+bounces-133718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 390D79FBA1E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 08:15:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58B3D9FBA38
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 08:27:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B07F17A13C4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 07:15:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FABC1659B4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 07:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B22189F56;
-	Tue, 24 Dec 2024 07:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A1C1865E2;
+	Tue, 24 Dec 2024 07:26:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tITeap0A"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="Gg7kEJc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6207E0FF
-	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 07:15:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F6017B502
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 07:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735024522; cv=none; b=dIH/1ZA9SwmKAcU8DFIS7OIppb14roQTz40UypWXt2A31wB+RQmLEX4pq6avKpvW+qHwsLOtDD9CS+ZNrU+Ya0WmDgQkS35XLXzGQJlU3ThSRsmO5FhUsu1iNhatiVkTLtpYfq6UvFZJ/E871x1DyCus42Uxjpv3U6dJ0rxyWPI=
+	t=1735025193; cv=none; b=THEzty8tJ/2oB2BbB3yeDKoFGfdwWopBwGMutbet5niDMxeBTUYSD0YtRCDRe/K8Dq1IwSc6li+x2m7TDFAkjFibIlYcIOV9ek4Mh8xXejnS84dAJ0l84TMY5Vmq1yu2+bJHwsi3z2Gtsv+sIGIkbJpfIwpB4rmRYpyNwoULBTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735024522; c=relaxed/simple;
-	bh=YHJSI4t/qgGEI2FEsSHGesZLQnLP+7ZOWpEdS9vfwdY=;
+	s=arc-20240116; t=1735025193; c=relaxed/simple;
+	bh=wFGWkFzM79MAaQbHcpCM4hwvurGNVg6e4xgWNYwCnXw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mV+29de6dS+aFYUeHNl5MWvF2DP1xYhQ7Z/j/3LYcRGG3t+0Q/weaq0Pz/unvG1mzoBKbOkJFQ/rKtFnsUojqO3VBbaQAwl6NatO2/HK+0Oef8vpEKpcoYgH4jc4W74iJUYSPBRs1wTDdG2u2xhBJ1fC99o2RJj23XVLGf4zmw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tITeap0A; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5401d3ea5a1so5079069e87.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2024 23:15:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735024518; x=1735629318; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yWUlsCwdGlYVoLTTlNmK9JqyX+ELLJR/XrPbGHFiz4o=;
-        b=tITeap0ANTmSnrBxgskwGtsZYTnzP4g3R+f0MD+PSSDYR5a9HBvNLHJ3RqhohaAiUF
-         1p2mQdVqcKD+Eqhx98Cq9FY8gwY1q2G9d8cbH/sLRCs9MA8jdWpcSrsyYEU/pPDJi5ZN
-         1Wc9xE0/vI9Jm3w/lfNWls9yrx99bzbNsB0aEFdmA5ISZhWnF7uQHgFgVQXzhg9qlQmy
-         9AlVDjihFS2JAfprjmGKMekpthO744FKfZPrYqNMmhGeB51gXisSU18S0DpjLyqKbngZ
-         D3+dvSIzAPj/X+tXgKN0Q4H63+2ZNN7PFdxEeZdcyc5bNnUwP9eE7cLJV+iFrRoxTjwe
-         Q2Nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735024518; x=1735629318;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yWUlsCwdGlYVoLTTlNmK9JqyX+ELLJR/XrPbGHFiz4o=;
-        b=xHgslSafn1HZR44FgIcRgr7sqEoqOwuKs7Lugoh+phkmXJet0dt3zPvO6j411a/HhP
-         k6cJzXh444PemExNqE/PBxCEu6S2IRE3UkgIc6dzBxb9vtoH3vBIkP+BE7aPMxWClUQH
-         SMx1DGcntUmDp6p27CatpkCy/mTGN0qTVLpuLvLTfNUmpqSNohVS75uNv78mZ70ziTb7
-         MLiFn6vuuU/+kAglkpyOt+r+COIOX8fqKJN7s/ghh8RyDw8oXFtwYxtyti76SkIQPz3A
-         2dnUDE8+fsud/Exx0tMo3gdJ8WefvHTcHefiAfwo5U52KcQqQCswWZGLRMYKTj5rq0BM
-         eyMg==
-X-Forwarded-Encrypted: i=1; AJvYcCXQGjnI5vW4LV0At2REqfIgxavOwT+f3F55NO/ia4u0FEF3+XPaYuny4UacxK322aboZ3OBe2wYLFXq@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAzXUnP04L0UlHtZC/wh1VrHKlBOK+Izts55d2aAlOIk9eTeXN
-	u/5pD5+hRV5FDrdQGU/7fUB6ajxR1WUcVfwYWllX0MgiRywF6YMfteQ8cpWXMU4=
-X-Gm-Gg: ASbGncvrI4UI64D44DVIJIr7/0GgV7oQ2+dwW5pFL5hsteeHeDzuIcm3+66P59ZuRWC
-	2qr9AMRq5eyJGiLUrdPiguqqMwpgbYN6jYQb83sToXQEeVdA0R27RI6zrlUuC4DKaIDX8zyrF9b
-	NbiKxdeH8sMO2fwtBJSIJykdAMa6YD56ZiqmKKdFisUev39G+7kPMkr0f7jBYwk+3/sZhHBm7QW
-	fgUKM8t8RnObXhGpypSevCQk2AUSjExOLLh4YCgd88JsTSdSrJujWZR3a1RtLX51zwJhy9gqE6D
-	S31pyRbSom1LUdOTXyosSKjjHU5w5NMwBJz8
-X-Google-Smtp-Source: AGHT+IEKTeNBvQTu9YRBoejIqf1EgZ3qzhUiijhRn6wPkG9McwpCWPDfTiwpc8nJ3zhgXTioKcIefA==
-X-Received: by 2002:a05:6512:3e2a:b0:540:2311:28c5 with SMTP id 2adb3069b0e04-5422956c4c7mr4452369e87.57.1735024517908;
-        Mon, 23 Dec 2024 23:15:17 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542238138c3sm1507194e87.140.2024.12.23.23.15.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Dec 2024 23:15:16 -0800 (PST)
-Date: Tue, 24 Dec 2024 09:15:14 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-Cc: Lei Wei <quic_leiwei@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_pavir@quicinc.com, 
-	quic_linchen@quicinc.com, quic_luoj@quicinc.com, srinivas.kandagatla@linaro.org, 
-	bartosz.golaszewski@linaro.org, vsmuthu@qti.qualcomm.com, john@phrozen.org
-Subject: Re: [PATCH net-next v3 3/5] net: pcs: qcom-ipq9574: Add PCS
- instantiation and phylink operations
-Message-ID: <yfh7kghxy5hjblnzlapcpzj54chep45pjkgpvelzbp4ijuq7ci@e6te6c36mkxc>
-References: <20241216-ipq_pcs_6-13_rc1-v3-0-3abefda0fc48@quicinc.com>
- <20241216-ipq_pcs_6-13_rc1-v3-3-3abefda0fc48@quicinc.com>
- <d278ad9a-5d23-4cb8-9de7-5a51d838ba5d@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=k8f0iA/Ix2ANnk34MNDq+FF2+ap9LxTFRTyUgHHpjmQUBRb88Z0J0JR3PVATFaBzpM73ex9Pe5yFXMwvtERXFYThjc0NUse9P4tXlX4/wBvxgkzbZiexgR2TlldsdSNk8VnqKHtEHhlK1oY6osgD/5iMyYLhGlEX+a0z16swiOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=Gg7kEJc0; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id C8576240027
+	for <devicetree@vger.kernel.org>; Tue, 24 Dec 2024 08:26:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1735025182; bh=wFGWkFzM79MAaQbHcpCM4hwvurGNVg6e4xgWNYwCnXw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=Gg7kEJc0Ld1gby6kH+oyYTQDjIoG/hS+LE7bu/H0TSRv0JevyAIFl9gkFz0YDb7zZ
+	 8ifOEgVPVcNbw+ZnPnjdUfoQtgzsZ/iWL4ZHHfTnOEZkR7CSVCBYZ7vH3BKURo6IZx
+	 Xt57c5y040J5PMdq3QRt2ECXr7Y/D/KV4RbSbTILmyq510Cv+UclEBVFf7WVhNmhxg
+	 V264lFrOMugXVwiHiX4gA7wcVXSzHZ3vInMNErr4yEF9/SgF8iEinz/t4Z3qJ65Gsa
+	 Ndt3uGnL3BdcyJdA655NOK8y2oWZQ3KOS2n4S0q/vvP9LDbXMdfCfGP3tNteukHveL
+	 1m2ST/E2wNGmw==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YHRJs4p0tz9rxD;
+	Tue, 24 Dec 2024 08:26:21 +0100 (CET)
+Date: Tue, 24 Dec 2024 07:26:21 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: j.ne@posteo.net, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/4] gpio: 74x164: Add latch GPIO support
+Message-ID: <Z2piHTP63SpaatHv@probook>
+References: <20241213-gpio74-v1-0-fa2c089caf41@posteo.net>
+ <20241213-gpio74-v1-4-fa2c089caf41@posteo.net>
+ <CACRpkdYibsJvnKazKaqQjLYyL4Hx1K1MpFpM2UPCRbDN3Gxh-w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <d278ad9a-5d23-4cb8-9de7-5a51d838ba5d@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdYibsJvnKazKaqQjLYyL4Hx1K1MpFpM2UPCRbDN3Gxh-w@mail.gmail.com>
 
-On Tue, Dec 24, 2024 at 12:29:56PM +0530, Manikanta Mylavarapu wrote:
+On Sun, Dec 22, 2024 at 09:58:39AM +0100, Linus Walleij wrote:
+> On Fri, Dec 13, 2024 at 6:32 PM J. Neuschäfer via B4 Relay
+> <devnull+j.ne.posteo.net@kernel.org> wrote:
 > 
+> > From: "J. Neuschäfer" <j.ne@posteo.net>
+> >
+> > The Fairchild MM74HC595 and other compatible parts have a latch clock
+> > input (also known as storage register clock input), which must be
+> > clocked once in order to apply any value that was serially shifted in.
+> >
+> > This patch adds driver support for using a GPIO that connects to the
+> > latch clock.
+> >
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 > 
-> On 12/16/2024 7:10 PM, Lei Wei wrote:
-> > This patch adds the following PCS functionality for the PCS driver
-> > for IPQ9574 SoC:
-> > 
-> > a.) Parses PCS MII DT nodes and instantiate each MII PCS instance.
-> > b.) Exports PCS instance get and put APIs. The network driver calls
-> > the PCS get API to get and associate the PCS instance with the port
-> > MAC.
-> > c.) PCS phylink operations for SGMII/QSGMII interface modes.
-> > 
-> > Signed-off-by: Lei Wei <quic_leiwei@quicinc.com>
-> > ---
-> >  drivers/net/pcs/pcs-qcom-ipq9574.c   | 463 +++++++++++++++++++++++++++++++++++
-> >  include/linux/pcs/pcs-qcom-ipq9574.h |  16 ++
-> >  2 files changed, 479 insertions(+)
-> > 
+> This looks completely reasonable to me as far as 2/4 gets merged:
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-> > +
-> > +/* Parse the PCS MII DT nodes which are child nodes of the PCS node,
-> > + * and instantiate each MII PCS instance.
-> > + */
-> > +static int ipq_pcs_create_miis(struct ipq_pcs *qpcs)
-> > +{
-> > +	struct device *dev = qpcs->dev;
-> > +	struct ipq_pcs_mii *qpcs_mii;
-> > +	struct device_node *mii_np;
-> > +	u32 index;
-> > +	int ret;
-> > +
-> > +	for_each_available_child_of_node(dev->of_node, mii_np) {
-> > +		ret = of_property_read_u32(mii_np, "reg", &index);
-> > +		if (ret) {
-> > +			dev_err(dev, "Failed to read MII index\n");
-> > +			of_node_put(mii_np);
-> 
-> Assume, the second child node failed here.
-> Returning without calling the first child node of_node_put().
-> 
-> Please clear the previous child nodes resources before return.
+I think I prefer the other option, of documenting that the latch clock
+pin pretty much behaves as a chip select.
 
-s/clear child nodes/put OF nodes/
+Having a separately described latch clock would mean no CS for these
+chips, and the SPI bindings and drivers don't expect devices without CS.
 
-Note, for_each_available_child_of_node() handles refcounting for
-the nodes that we looped through. So, I don't think the comment is
-valid. If I missed something, please expand your comment.
 
-P.S. Please also trim your messages. There is no need to resend the
-whole patch if you are commenting a single function.
 
-> 
-> Thanks & Regards,
-> Manikanta.
-> 
-> > +			return ret;
-> > +		}
-> > +
-
--- 
-With best wishes
-Dmitry
+ -- jn
 
