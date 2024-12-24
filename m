@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-133821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8DD99FBC9A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:44:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 843E59FBCA0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 11:45:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC4E81885218
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:43:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD3681882C91
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2024 10:43:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FCE1C3BFF;
-	Tue, 24 Dec 2024 10:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1043C1D04A4;
+	Tue, 24 Dec 2024 10:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lChuJG9F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o8yk6Q6w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9FE71C3BE3;
-	Tue, 24 Dec 2024 10:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70DC1B4F3E;
+	Tue, 24 Dec 2024 10:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735036934; cv=none; b=M+GQoEw48AYNGJUdgTxguE4h74nLQgCzSXWPezb63bgvZ8rGcWJF3O3pCs6hx5TNzbEBKhs+zWwkCkcJcMES3AT7tJRY4pRsTzAtQ/WmkwGEhkjhKlsdW6WXf4cLlwwczurcYobYqgeNVE672lmKJzoXgYg+vImZw/4ldb9qZXA=
+	t=1735036942; cv=none; b=EqFPqogHo7lHus3mmHrjQzF3us9OA7gdvzuUpcYt4R5UfsFashZ3TceaSZzBmOHtfGviuOpHYCfRgF0D9Ht3pIdDyCuzAIEJnai4tHDGOBl8hyrgTnu8dhdYVctCU2zrlF2L8cDg3J+Uly15wk5WH1XN4zCWtIXbfE0K7qzFm7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735036934; c=relaxed/simple;
-	bh=aMnS4IKN1s//xM/IVQp+b/FMuKdwpIxp7wjx4jEt384=;
+	s=arc-20240116; t=1735036942; c=relaxed/simple;
+	bh=KbRfy1szNw/DI9kDip/Q/poL9Tig1koGv+0V+N3EvyU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=mxUVM0r9GsjWWxUsUK9SduUil9ZojXI0pk4zuV1W/04GVW1N9ruoLq23JndT49UDgZ9O1JBRdsoUo+frb66AlfyI2afWSvi40J5J7gJjO2DijbX/VkT/OG5z1G1BCUh/cCJb9JcAeGkGCal9u1YBLx2R4CFrkz083L3+0+yAVuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lChuJG9F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37C4FC4CED4;
-	Tue, 24 Dec 2024 10:42:10 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Bsoam6avbXCfEjZMp/QCQAKOl0IjPILSfrrL89moy5bGOF+Cc0/7YOsnmNqPwML2kEhobxSs2uOb7fqrn7FoEOLmYhJDbCkvyWKK8Kw5BuB5xG5pmabklTszw3ZYgeav0lKWntqFzsqT+zEb9Cqc2swVB/8TwQj2K24FG1WKnCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o8yk6Q6w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41A1CC4CED0;
+	Tue, 24 Dec 2024 10:42:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735036934;
-	bh=aMnS4IKN1s//xM/IVQp+b/FMuKdwpIxp7wjx4jEt384=;
+	s=k20201202; t=1735036942;
+	bh=KbRfy1szNw/DI9kDip/Q/poL9Tig1koGv+0V+N3EvyU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=lChuJG9FIOvI4BTnpJlyqTLwTUyeyLQlKv4lQWUXoirJUTJuM7B8KBqIrA+RKrPgu
-	 1OMGEr+erSrm6MWzfqSYok/b2tvdMP2XVeXCc5m94oguttiYurK0ntpy6OdiZvvfZo
-	 3784S1ETKNvjHHv0R75z95PSVxvE18dfZC1dPv5VjSo4YPNWO9/rfGIIoVPm5voZlW
-	 YtX/EoQOf6dJIwzMz+lY1i8cXU7PZyJIXdjAvmnnSO6Oz4ACTRO/x/dB3X+pxzGSFg
-	 zOGFwcPH/lsgoYlN5nwRP0yYfxZ5BRXDF/cmyyXBYjFzH9WtztV3qFq8VjUeAvm+o9
-	 PP2G6HjivknUQ==
+	b=o8yk6Q6wUiW+Fa/zJQ+UwIqKxWq+zft/mDhYTwYZOH+6fa7Sf81/iPWn4uw7w4X9a
+	 yDn39iocnSNNh27IdOOkZ61x1c1SM9eaSEKGGdRweht1p4XUpi1YsQXuT1VhR9a2rs
+	 K2Asiy43evTD57N7E1Xqem7WtRHyN5qOOrqO1jtkPfwOrK6DbNsj5PzyY6mR5Lv0Nw
+	 Ykr9YoWGv93s+1039zv2hEFwQCE5RFkt9PB8HzXSlnGEZC5PoBqcU3Mb2CipdMTUnM
+	 S47dmmslcvoKnTVt8oJAqn72DIUzfnxOFDVzdgJVdTQamzviNPPGViWs8PKRGJjbYH
+	 BFt5/TfM3oVmw==
 From: Vinod Koul <vkoul@kernel.org>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- Mohan Kumar D <mkumard@nvidia.com>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
- treding@nvidia.com, jonathanh@nvidia.com, spujar@nvidia.com
-In-Reply-To: <20241217074358.340180-1-mkumard@nvidia.com>
-References: <20241217074358.340180-1-mkumard@nvidia.com>
-Subject: Re: [PATCH v2 RESEND 0/2] Add Tegra ADMA channel page support
-Message-Id: <173503693084.903491.14497745388505993099.b4-ty@kernel.org>
-Date: Tue, 24 Dec 2024 16:12:10 +0530
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
+ David Lechner <dlechner@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20241216-axi-dma-dt-yaml-v3-0-7b994710c43f@baylibre.com>
+References: <20241216-axi-dma-dt-yaml-v3-0-7b994710c43f@baylibre.com>
+Subject: Re: [PATCH RESEND v3 0/2] dt-bindings: dma: adi,axi-dmac: convert
+ to yaml and update
+Message-Id: <173503693988.903491.18338368118586554434.b4-ty@kernel.org>
+Date: Tue, 24 Dec 2024 16:12:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,22 +64,17 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Tue, 17 Dec 2024 13:13:56 +0530, Mohan Kumar D wrote:
-> Multiple ADMA Channel page hardware support has been added from
-> TEGRA186 and onwards. Add channel page handling support in the tegra
-> adma driver
+On Mon, 16 Dec 2024 14:51:00 -0600, David Lechner wrote:
+> Convert the ADI AXI DMAC bindings to YAML and then update the bindings
+> to reflect the current actual use of the bindings.
 > 
-> Changelog
-> =========
-> 
-> [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: dma: Support channel page to nvidia,tegra210-adma
-      commit: 762b37fc6ae2af0c7ddf36556fe7427575e9c759
-[2/2] dmaengine: tegra210-adma: Support channel page
-      commit: 68811c928f88828f188656dd3c9c184eeec2ce86
+[1/2] dt-bindings: dma: adi,axi-dmac: convert to yaml schema
+      commit: 788726fcea1fd79ca238403c56c012ca9c159798
+[2/2] dt-bindings: dma: adi,axi-dmac: deprecate adi,channels node
+      commit: 06d5363296dbcffb9e52ca4c9cec097105eb81e9
 
 Best regards,
 -- 
