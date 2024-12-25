@@ -1,115 +1,194 @@
-Return-Path: <devicetree+bounces-133934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 784AA9FC53F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 13:54:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B9D09FC545
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 14:02:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10AD6163CA9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 12:54:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6337E18838D8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 13:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F24F7189F20;
-	Wed, 25 Dec 2024 12:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B315A1B21AB;
+	Wed, 25 Dec 2024 13:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cn2xtT1y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FtVJ+MDe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C870117993;
-	Wed, 25 Dec 2024 12:53:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB8B714E2E2;
+	Wed, 25 Dec 2024 13:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735131237; cv=none; b=rpgfsVbhjpjemjfkP4kd+i/cG8QIX3yQ5KI5BSDbbM+wNcOvnpFSvv9IeS1V9eBrlTEi8bAMH2kQ2+1ka1w0Xdk9m+BYRDwz117V1Iy0MLrDFn+FCFtMJebbZIwViWMfBCK6XW6NqTVAGSUvKWyMUUjP22aqHsCgN5YMYN89W/U=
+	t=1735131749; cv=none; b=b4D2XtHDHOWY3aZxfK3D+7MZaSdnQSDmqjjP+9SW7XCMLaHQf3oBm3DfAPAjsXRtj3tjoC39UMcXg72KRg6LPFCXrK5thekgAzj8IPlS2p9etOPSeMRkzPMtSFtRIlqSJ6kyI9AOHT4Pgnf22Mrtgy0f2YnI197yhLy+cqaJ83k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735131237; c=relaxed/simple;
-	bh=PJMCplFGaL2xcxrMFWZxT4JyB/8KOHMpGiDIatQ1R9k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=DB6KG0JXCLfX2R/NAu7EdTcuv1x7JAZYqa/6SXRjkYCKfCQdX0eXnbdkC7oAJkYbBo6fluxAPb1b2eZ17rg3eH2dROJUz4Gkcc1vtA6wXfvMsxwH/TCzvMayarra2VLbRu1s5r+ROwYDReXaYSdZh9mgYY3kDUjYspxHnq8/xNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cn2xtT1y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 41711C4CECD;
-	Wed, 25 Dec 2024 12:53:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735131237;
-	bh=PJMCplFGaL2xcxrMFWZxT4JyB/8KOHMpGiDIatQ1R9k=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=cn2xtT1yEQSgn/UEHHHogVsCEPmwdIUhrwkmK5ztjHKhfsdYbMM3PLXaLq+DueR8p
-	 PdswUAjc4ACpqUrKfF3rjGbBTa7ldh4dfnTRYPsqmsOI9LIQqrQRon7PokljodVRps
-	 BSOqWfJLEJgEUWonNKyO+1n93/IelNiXghlJEYA2bJ4avxEi4JY12iNt9DcZL5ZYJ1
-	 g9WsDCb/x8zjovknb1b6Q/tdMy5H/lqZjmPQc1wg9NUbtaoQ+txJQY6Mg8Le4jzCjA
-	 vxNPFTatbgqoY17yonMQWLXvjeiK2OEV5IVsr8uqADcLVSzoc2lq+hRcPBDqHw/DCw
-	 3kZl5FjbYoC2Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C6BEE7718B;
-	Wed, 25 Dec 2024 12:53:57 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Wed, 25 Dec 2024 13:53:42 +0100
-Subject: [PATCH] powerpc/microwatt: Fix model property in device tree
+	s=arc-20240116; t=1735131749; c=relaxed/simple;
+	bh=V72tC3QfUDNcNbLtR+4eFEIvd5zVqyKJaogtIFsFJJI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q7xScRFhn7zTS/GIOsS1CfSY8b6PZXztGLqAfg9/4wh92ne/udbqmb/mEB6NewfwATylHHxSiM1xiawPeDQH44nSyT7CsOz/f+vPEGsRMJyzkolKBFYTFi/zk4SQ7gJcTN4CMq1iFFchO9pyP+/BlhXAe6Lr2WnSKrXSQD13emc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FtVJ+MDe; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e3a0d9aab47so675278276.1;
+        Wed, 25 Dec 2024 05:02:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735131747; x=1735736547; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WYUfV8rMWmfrT0n4/d7WJieHYcMXg3SqOTiyM/7U9Qs=;
+        b=FtVJ+MDewsl4zwGrp3M7x2sOGp45UaNJYWp2xReK4OfJFQMCFu+UZuNvQqx7WNcHTO
+         /rZjOMSa9Q4i4H9USOl0gH6GknyKdhp50yb4RTHiYNuRbPQ0tZgIKIZcflYO8i0L7U3p
+         4u//QlKpNHk/HEEHGB7G1D0DqkzSQX89qI1vJB5vNXUGRTwlDlHPrYDzm3lYzYgSNLG7
+         ZHiGnqr1AO7HrP/sPXfHq5AVg1iXKyG5sl24FPEDvjzmFLBVtbkoSOAYLbCpwBCcjn0k
+         tOmOBCGBFCoH2/gxHnFOF2lObM3Luf899mf71RQMLSo4aMDkJRmLdJ3c+/SY49ubBf6l
+         o5Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735131747; x=1735736547;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WYUfV8rMWmfrT0n4/d7WJieHYcMXg3SqOTiyM/7U9Qs=;
+        b=XHYLgveTQ+AuNtwI0I6TRB37UrlttIo3rptzjUsKUoM9+M1uIZV/xxAx52OK7wfIfq
+         RZmVRip7Z0PE3HG/mM9yIb8+0KBfxZQH/TkyvMHIdmljJratt0ZHRQg3K1QYznuYrNvF
+         FwfecyI8w5S2JqvgHILT7sPASKse34d6mQTfU9zurcbRRLvcKzufATCxAZW3Yib41L38
+         w9E0Iwv0dfzA1lmumFcKYNfYh6o+S09rGvUXaNxZgNcD6zJHe2S/ttS0WSozFoZQIAIA
+         +FmqQslzLWnqDat1Q7bKuyD+ZMeNEHsIfLn2+Jn34eaxUBtGQiAlRNz96bDTOO1bDCCL
+         hkmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV3ix3To1hQNyNYYcqTOCO7J6gCEbhvlegoz4M+MonwaXkQtEy89fSxUZLh6d2fbiaBBPkGHtpJeTNX@vger.kernel.org, AJvYcCWJyG0bEbHbMgGIY7a5UAKoGffsToSkx9InAKo+N2m8XmgeAtbIdU5tghGO93bs/TmMpX56t9E77Qzx540M@vger.kernel.org, AJvYcCWTbBVu/DchxIpRGfOy3WCTsl1d7h3QAaAi0UYMkCfPiU07TUFZ4wPb88Y1Cpq29kMAcZ2hirm0kDg2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOBdp0vFcFOGs29mmpFm6os66b/FhM3Y1sUGL/kVF6SLFzJXtd
+	ugwX1DtcNVjSeEikm8Yj9CUUqLIzpH1GFRdU5lRLMp7ChZZR6vymhH/1y/cN+VTa0j+MqJeUEAe
+	+9lZi2JNUgM8QmOf6T1NiFAtUr8I=
+X-Gm-Gg: ASbGncvESZ+mdkFYuPTjNWCsHXLI6N9eKtnz4wd2WrPYigymvDoCeJ2MGhLLzo4n8ZE
+	9D0f65SnHzzOWKBefiVvQ7l/SdvO93hQS2gHZYA==
+X-Google-Smtp-Source: AGHT+IHNTqSdSMcUPy7sJ0+07c0EPJDC/weW68OgvRL26rvIUQQGE2LuhgisVQK0D/PqdI1MnjtfOTZdk7ONqPDG0Sw=
+X-Received: by 2002:a05:690c:6e82:b0:6e6:c8b:4ae3 with SMTP id
+ 00721157ae682-6f3f8291096mr69305427b3.10.1735131746717; Wed, 25 Dec 2024
+ 05:02:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241225-microwatt-v1-1-8e071fcfc2bd@posteo.net>
-X-B4-Tracking: v=1; b=H4sIAFUAbGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxNDIyNT3dzM5KL88sSSEt0USyNTC0MLy8S0NFMloPqCotS0zAqwWdGxtbU
- AJNlPVVsAAAA=
-X-Change-ID: 20241225-microwatt-d9258189aff5
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>, 
- Nicholas Piggin <npiggin@gmail.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735131236; l=823;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=3C1YCyi76jTrcxunvIWw4CH9zMDlOTH9wFP4VAcUHL0=;
- b=gkj0v9fIXqP50WvdD1SfkJUpjFjLAxSQVPwzXugvNYqFDK0iRkHSiJMzU4XvUxnmld76zHA1p
- pBfh2O1PUKDDClwd94hbm7Hf+I8lRPTvRO7Iz74DKLwhFi4IFvtAdAJ
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+References: <20241213211909.40896-1-l.rubusch@gmail.com> <20241213211909.40896-4-l.rubusch@gmail.com>
+ <20241214121057.5b12a236@jic23-huawei> <20241215-satisfied-expiring-9200ec935768@spud>
+ <20241219175815.797b376a@jic23-huawei> <20241219-pregame-blot-e15ff0fbfe45@spud>
+In-Reply-To: <20241219-pregame-blot-e15ff0fbfe45@spud>
+From: Lothar Rubusch <l.rubusch@gmail.com>
+Date: Wed, 25 Dec 2024 14:01:50 +0100
+Message-ID: <CAFXKEHaaLj7gePiDruMvwGGZKq5ctoq5z7_Qv_NC3bvBsL_BeA@mail.gmail.com>
+Subject: Re: [PATCH v7 3/7] dt-bindings: iio: accel: adxl345: add interrupt-names
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, lars@metafoo.de, Michael.Hennerich@analog.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, eraretuya@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+On Thu, Dec 19, 2024 at 7:21=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Thu, Dec 19, 2024 at 05:58:15PM +0000, Jonathan Cameron wrote:
+> > On Sun, 15 Dec 2024 14:56:58 +0000
+> > Conor Dooley <conor@kernel.org> wrote:
+> >
+> > > On Sat, Dec 14, 2024 at 12:10:57PM +0000, Jonathan Cameron wrote:
+> > > > On Fri, 13 Dec 2024 21:19:05 +0000
+> > > > Lothar Rubusch <l.rubusch@gmail.com> wrote:
+> > > >
+> > > > > Add interrupt-names INT1 and INT2 for the two interrupt lines of =
+the
+> > > > > sensor.
+> > > > >
+> > > > > When one of the two interrupt lines is connected, the interrupt a=
+s its
+> > > > > interrupt-name, need to be declared in the devicetree. The driver=
+ then
+> > > > > configures the sensor to indicate its events on either INT1 or IN=
+T2.
+> > > > >
+> > > > > If no interrupt is configured, then no interrupt-name should be
+> > > > > configured, and vice versa. In this case the sensor runs in FIFO =
+BYPASS
+> > > > > mode. This allows sensor measurements, but none of the sensor eve=
+nts.
+> > > > >
+> > > > > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> > > >
+> > > > Just to repeat what I sent in reply to v6 (well after you'd posted =
+this).
+> > > > Maybe we can maintain compatibility with the binding before this by=
+ adding
+> > > > a default of INT1.
+> > >
+> > > But can you make that assumption? If we did, and it's not universally
+> > > true, we break systems that had INT2 connected that previously worked=
+.
+> >
+> > I guess there is a possibility of a driver in some other OS assuming IN=
+T2, but
+> > seems an odd 'default' choice.
+>
+> Ye, I think that it is unlikely a driver author would think that way.
+>
+> > Also odd for a writer of DT for a platform
+> > to assume it.
+>
+> I agree, I think it is unlikely that someone would assume it'd work like
+> this. I think a lack of attention paid to the schematic of the board is
+> a more likely culprit.
+>
+> > There is a thing that comes up in spec orgs when discussing whether to
+> > rush out an errata.  "Is this bug something people would get wrong
+> > thinking the answer was clear, or something where the would ask a quest=
+ion?"
+> > Anyone who thinks INT2 is the obvious choice for me falls into the woul=
+d
+> > ask category.
+> >
+> > However, in the linux driver we would would go from assuming no interru=
+pts
+> > to assuming the wrong one.  That's indeed bad.  So I guess this doesn't=
+ work.
+> > Oh well no default it is.
+>
+> I don't think you really lose anything from having no default. The
+> driver works just fine without the interrupt, so the albeit small risk
+> just doesn't seem worth it.
 
-The standard property for the model name is called "model".
+Agree. To be honest, I'm not sure if I catch the point here. IMHO,
+falling back to FIFO bypass should match with backward compatibility.
+Please let me know what I'm missing here.
 
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
- arch/powerpc/boot/dts/microwatt.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I would prefer just to check for a specified INT name. Then configure
+the specified interrupt line in the probe. In this sense, the
+interrupt line is only useful also if the INT name is defined in the
+DT. If no INT name is specified, the iio driver will setup FIFO_BYPASS
+which is the legacy behavior (according to the datasheet: if none of
+the FIFO mode bits are set, defaults to bypass mode). This is the new
+behavior.
 
-diff --git a/arch/powerpc/boot/dts/microwatt.dts b/arch/powerpc/boot/dts/microwatt.dts
-index 269e930b3b0b14a2bf6a76261062294c1d003c72..162b5f2f8aac2d6c50824b55a8b894a19d741f07 100644
---- a/arch/powerpc/boot/dts/microwatt.dts
-+++ b/arch/powerpc/boot/dts/microwatt.dts
-@@ -3,7 +3,7 @@
- / {
- 	#size-cells = <0x02>;
- 	#address-cells = <0x02>;
--	model-name = "microwatt";
-+	model = "microwatt";
- 	compatible = "microwatt-soc";
- 
- 	aliases {
+The old iio driver did not use interrupts at all. It stayed in
+FIFO_BYPASS mode (or did not change it, after power on, it assumes
+FIFO_BYPASS to my interpretation). Thus declaring the IRQ line yes or
+no, with or without INT names - for the iio driver implementation
+before this patch series, should not make any difference. It uses
+FIFO_BYPASS in all cases.
 
----
-base-commit: 4bbf9020becbfd8fc2c3da790855b7042fad455b
-change-id: 20241225-microwatt-d9258189aff5
+The input driver (AFAIR we already agreed on ignoring this driver)
+needed interrupts. Defining INT names here does not change anything,
+either. The input driver configures by default INT1 and simply ignores
+what was specified as INT names in the DT.
 
-Best regards,
--- 
-J. Neuschäfer <j.ne@posteo.net>
+I cannot really think of any third case here. Please, let me know if
+I'm wrong. If not I will keep the above explained behavior, since to
+my understanding it should match the desired compatibility
+requirements. Am I wrong here?
 
-
+Sorry for the late answer. Best,
+L
 
