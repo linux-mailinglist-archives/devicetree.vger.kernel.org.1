@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-133930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69F39FC4D8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 11:54:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B24059FC4D6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 11:53:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E42116222F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 10:54:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 186E07A176D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 10:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9400A1922E6;
-	Wed, 25 Dec 2024 10:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6D21922E6;
+	Wed, 25 Dec 2024 10:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="KzBv9JSm"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="UDYk0o5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08FB615443F;
-	Wed, 25 Dec 2024 10:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9814C15443F;
+	Wed, 25 Dec 2024 10:53:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735124030; cv=none; b=syC556zkB15TFTsIQiCa9FxUUNQBUcFRag73yk5D4tqR72/MOxuppWbuh/qNn0iKmA/Nng/nADcYveS1Af7dysCOEgr7yu+qP+oQD/VvBlGpl0ZhYE40nY6YQUEuuo1zIhu/iqxbkjKzkQVbUfpNLPqHyWgyECh4P3LUAH2heqE=
+	t=1735124020; cv=none; b=gpTTjT69Fs5lJyjF2B4T8QKMlZJ88DSEvdtypKWX/b5E9xsxc1pLua5KeAY+8IZh0LrewVa8rJsDHA4RzXqRyG3iNnShRZ2PEn0uIHQhPbFbCiZdD9Hb8Ao+RJeeJhsjezTuAdg9/G/CHs41FpWv17Z9xrp2tw08fmXpNTbq3Rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735124030; c=relaxed/simple;
-	bh=mYlm1yetp/+pK0praJpLEKRuKYCMl9ShjZpi5IExGfo=;
+	s=arc-20240116; t=1735124020; c=relaxed/simple;
+	bh=pl/V7SBITmiPZbMNH9vsNTLIDz8y4mOCpj4BUZs0xlQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XQP1mSaCEiyZDctXcNFlfx8nXcR/RbLAogRu+gchArkmQ6ha6uJU3I6azDWwpFbcX+z5UPRHA3FZrzs/+quFwv0Eu1dCJLc3v8bO0yxeBf4w35cbNljcFm9EmQmNnkeqoFqCMg2SU+84TqkgfBkSfPptI5IiwOMT4RQd3je+enw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=KzBv9JSm; arc=none smtp.client-ip=117.135.210.4
+	 MIME-Version; b=A3hssY959hJp4NLOfSfzaWPjl2rqXI3TcvZp7fjTJsK9rxlg5JOGopTHIaN0UbN7CseLJx+FwyO7XcWSXQJWBQl94BHyGdki92IXG3RsQ5wBK3ZmTMht/GZBGC9juBvCHAGTYz3PSuSPtp0ha2wqhmu/5XEMsbefn/z+fAmRBkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=UDYk0o5e; arc=none smtp.client-ip=220.197.31.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=6aCxR
-	0l8EvSQGKG5+yEFrWRsCLXuZHQCauP7BxS/fhM=; b=KzBv9JSmXd62/Ko0aCDck
-	jLFtpQvlNfuvaupAt6/3zYKUGeoNsloVUU6CpyUXLT3ngQXLn6jkSttLsD3Kaw3z
-	HkRu3FVz3d6UYfyYsgLRLb31gASShuJCv0qnPepvMWYWYdFU5RU5kwGuoSkSWwug
-	7OKKO07qCPvpW+xdiPm96E=
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=tugzE
+	F7vML8oQTl8NO/7KFIxtE1ZfMc6QALSfy9yPcY=; b=UDYk0o5eEkTdvDR08B460
+	I9bEc0mfe5vOelO1cl4WXXn0BT5uQdBTQL5QF/XL9PWM6o+YleUPJnzRdX11f3TG
+	73VfJqmi02/ZSSbmuDsTjk76sATNiTVtorV3ExZ3+1JiJTRqXslXbKzymygbDHaJ
+	AQc/urSEYgYlf4506mpTDE=
 Received: from ProDesk.. (unknown [])
-	by gzsmtp4 (Coremail) with SMTP id PygvCgCnfIF24GtnkqkWCg--.3201S3;
+	by gzsmtp4 (Coremail) with SMTP id PygvCgCnfIF24GtnkqkWCg--.3201S4;
 	Wed, 25 Dec 2024 18:37:47 +0800 (CST)
 From: Andy Yan <andyshrk@163.com>
 To: heiko@sntech.de
@@ -50,9 +50,9 @@ Cc: cristian.ciocaltea@collabora.com,
 	linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
 	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH 1/3] drm/rockchip: dw_hdmi_qp: Add platform ctrl callback
-Date: Wed, 25 Dec 2024 18:37:29 +0800
-Message-ID: <20241225103741.364597-2-andyshrk@163.com>
+Subject: [PATCH 2/3] dt-bindings: display: rockchip: Add support for RK3576 HDMI TX Controller
+Date: Wed, 25 Dec 2024 18:37:30 +0800
+Message-ID: <20241225103741.364597-3-andyshrk@163.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241225103741.364597-1-andyshrk@163.com>
 References: <20241225103741.364597-1-andyshrk@163.com>
@@ -63,157 +63,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PygvCgCnfIF24GtnkqkWCg--.3201S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW3WFWrZF43WF4xJFyUAw4fKrg_yoW7GFWkp3
-	yUAw1YyrWkJF47Jr4FvF97tFW2y3W7J3ySqF97tFyYy3WYqrn5KF93Wa1rJr4SvF9xuF47
-	C39Yya4rJF1UGFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jSSoJUUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqR3AXmdr3gYzHgAAsT
+X-CM-TRANSID:PygvCgCnfIF24GtnkqkWCg--.3201S4
+X-Coremail-Antispam: 1Uf129KBjvdXoW7XFW3Kr4UZr1UWF48GrW7urg_yoWDJrgEqa
+	4xZ3Z0vFs5Zr1Y9w1DJ397Wws8Ja17KF4kGa1UAF4kJa4kKrZYqr95G34akFykAF17uFWx
+	CFn5WrWUCFnxJjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8WGQDUUUUU==
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqR3AXmdr3gYzHgABsS
 
 From: Andy Yan <andy.yan@rock-chips.com>
 
-There are some control bits for IO and interrupts status scattered
-across different GRF on differt SOC.
-Add platform callback for this IO setting and interrupts status
-handling.
+RK3576 HDMI TX Controller is very similar to that of RK3588, but with some
+control bits for IO and interrupts status scattered across different GRF.
 
 Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-
 ---
 
- .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 81 ++++++++++++-------
- 1 file changed, 54 insertions(+), 27 deletions(-)
+ .../bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml    | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-index c36fc130b734..b21e868e7c16 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-@@ -62,6 +62,12 @@ struct rockchip_hdmi_qp {
- 	int port_id;
- };
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
+index d8e761865f27..b838b5ec2dca 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
+@@ -29,6 +29,7 @@ allOf:
+ properties:
+   compatible:
+     enum:
++      - rockchip,rk3576-dw-hdmi-qp
+       - rockchip,rk3588-dw-hdmi-qp
  
-+struct rockchip_hdmi_qp_ctrl_ops {
-+	void (*io_init)(struct rockchip_hdmi_qp *hdmi);
-+	irqreturn_t (*irq_callback)(int irq, void *dev_id);
-+	irqreturn_t (*hardirq_callback)(int irq, void *dev_id);
-+};
-+
- static struct rockchip_hdmi_qp *to_rockchip_hdmi_qp(struct drm_encoder *encoder)
- {
- 	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-@@ -226,9 +232,47 @@ static irqreturn_t dw_hdmi_qp_rk3588_irq(int irq, void *dev_id)
- 	return IRQ_HANDLED;
- }
- 
-+static void dw_hdmi_qp_rk3588_io_init(struct rockchip_hdmi_qp *hdmi)
-+{
-+	u32 val;
-+
-+	val = HIWORD_UPDATE(RK3588_SCLIN_MASK, RK3588_SCLIN_MASK) |
-+	      HIWORD_UPDATE(RK3588_SDAIN_MASK, RK3588_SDAIN_MASK) |
-+	      HIWORD_UPDATE(RK3588_MODE_MASK, RK3588_MODE_MASK) |
-+	      HIWORD_UPDATE(RK3588_I2S_SEL_MASK, RK3588_I2S_SEL_MASK);
-+
-+	regmap_write(hdmi->vo_regmap,
-+		     hdmi->port_id ? RK3588_GRF_VO1_CON6 : RK3588_GRF_VO1_CON3,
-+		     val);
-+
-+	val = HIWORD_UPDATE(RK3588_SET_HPD_PATH_MASK, RK3588_SET_HPD_PATH_MASK);
-+	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON7, val);
-+
-+	if (hdmi->port_id)
-+		val = HIWORD_UPDATE(RK3588_HDMI1_GRANT_SEL,
-+				RK3588_HDMI1_GRANT_SEL);
-+	else
-+		val = HIWORD_UPDATE(RK3588_HDMI0_GRANT_SEL,
-+				RK3588_HDMI0_GRANT_SEL);
-+	regmap_write(hdmi->vo_regmap, RK3588_GRF_VO1_CON9, val);
-+
-+	if (hdmi->port_id)
-+		val = HIWORD_UPDATE(RK3588_HDMI1_HPD_INT_MSK, RK3588_HDMI1_HPD_INT_MSK);
-+	else
-+		val = HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_MSK, RK3588_HDMI0_HPD_INT_MSK);
-+	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
-+}
-+
-+static const struct rockchip_hdmi_qp_ctrl_ops rk3588_hdmi_ctrl_ops = {
-+	.io_init		= dw_hdmi_qp_rk3588_io_init,
-+	.irq_callback	        = dw_hdmi_qp_rk3588_irq,
-+	.hardirq_callback	= dw_hdmi_qp_rk3588_hardirq,
-+};
-+
- struct rockchip_hdmi_qp_cfg {
- 	unsigned int num_ports;
- 	unsigned int port_ids[MAX_HDMI_PORT_NUM];
-+	const struct rockchip_hdmi_qp_ctrl_ops *ctrl_ops;
- 	const struct dw_hdmi_qp_phy_ops *phy_ops;
- };
- 
-@@ -238,6 +282,7 @@ static const struct rockchip_hdmi_qp_cfg rk3588_hdmi_cfg = {
- 		0xfde80000,
- 		0xfdea0000,
- 	},
-+	.ctrl_ops = &rk3588_hdmi_ctrl_ops,
- 	.phy_ops = &rk3588_hdmi_phy_ops,
- };
- 
-@@ -282,6 +327,12 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
- 	if (!cfg)
- 		return -ENODEV;
- 
-+	if (!cfg->ctrl_ops || !cfg->ctrl_ops->io_init ||
-+	    !cfg->ctrl_ops->irq_callback || !cfg->ctrl_ops->irq_callback) {
-+		dev_err(dev, "Missing platform ctrl ops\n");
-+		return -ENODEV;
-+	}
-+
- 	hdmi->dev = &pdev->dev;
- 	hdmi->port_id = -ENODEV;
- 
-@@ -357,31 +408,7 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
- 		return ret;
- 	}
- 
--	val = HIWORD_UPDATE(RK3588_SCLIN_MASK, RK3588_SCLIN_MASK) |
--	      HIWORD_UPDATE(RK3588_SDAIN_MASK, RK3588_SDAIN_MASK) |
--	      HIWORD_UPDATE(RK3588_MODE_MASK, RK3588_MODE_MASK) |
--	      HIWORD_UPDATE(RK3588_I2S_SEL_MASK, RK3588_I2S_SEL_MASK);
--	regmap_write(hdmi->vo_regmap,
--		     hdmi->port_id ? RK3588_GRF_VO1_CON6 : RK3588_GRF_VO1_CON3,
--		     val);
--
--	val = HIWORD_UPDATE(RK3588_SET_HPD_PATH_MASK,
--			    RK3588_SET_HPD_PATH_MASK);
--	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON7, val);
--
--	if (hdmi->port_id)
--		val = HIWORD_UPDATE(RK3588_HDMI1_GRANT_SEL,
--				    RK3588_HDMI1_GRANT_SEL);
--	else
--		val = HIWORD_UPDATE(RK3588_HDMI0_GRANT_SEL,
--				    RK3588_HDMI0_GRANT_SEL);
--	regmap_write(hdmi->vo_regmap, RK3588_GRF_VO1_CON9, val);
--
--	if (hdmi->port_id)
--		val = HIWORD_UPDATE(RK3588_HDMI1_HPD_INT_MSK, RK3588_HDMI1_HPD_INT_MSK);
--	else
--		val = HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_MSK, RK3588_HDMI0_HPD_INT_MSK);
--	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
-+	cfg->ctrl_ops->io_init(hdmi);
- 
- 	INIT_DELAYED_WORK(&hdmi->hpd_work, dw_hdmi_qp_rk3588_hpd_work);
- 
-@@ -394,8 +421,8 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
- 		return irq;
- 
- 	ret = devm_request_threaded_irq(hdmi->dev, irq,
--					dw_hdmi_qp_rk3588_hardirq,
--					dw_hdmi_qp_rk3588_irq,
-+					cfg->ctrl_ops->hardirq_callback,
-+					cfg->ctrl_ops->irq_callback,
- 					IRQF_SHARED, "dw-hdmi-qp-hpd",
- 					hdmi);
- 	if (ret)
+   reg:
 -- 
 2.34.1
 
