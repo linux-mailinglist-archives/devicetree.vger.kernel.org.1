@@ -1,145 +1,141 @@
-Return-Path: <devicetree+bounces-133923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBEFA9FC4B1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 11:08:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECA1C9FC4BE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 11:11:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27856164065
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 10:08:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83FC216229A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 10:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7D717B50F;
-	Wed, 25 Dec 2024 10:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VGhNGQTc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394FD156F4A;
+	Wed, 25 Dec 2024 10:11:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpbg151.qq.com (smtpbg151.qq.com [18.169.211.239])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133381547E4;
-	Wed, 25 Dec 2024 10:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC05413211A
+	for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 10:11:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.169.211.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735121222; cv=none; b=is0SXgS5HzH2hNkr0j5PF7Bz2UjFR8HMmCRLe6CP64wJGyMCMgwdsg600R1wOyZa9FBSTwm9bT5x0RO4ba1goxAYkuZeqXsGBqSl+MXLRKfh21VsR/dqFtTeqEKCO8xkZ9V1QQAKSytqGDxQBK2qnI5WffQa/tnTdNxBcSsupWo=
+	t=1735121473; cv=none; b=EhhP4eyNmmfJJdUKo4pl4QmeISIX/gsWCffu+belFhbT+xs8FydV1ZtT3pnY/c9ooGKUNVcYmV29ajVCXd6JdlHhXoTDT/MUj9a/JB8cLUMIMHvT5ZyXrkp92wcWy0nYqOwt7ohZraAWVgrgd+rLXbW3m2xOXpxa12+DDYYCtoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735121222; c=relaxed/simple;
-	bh=aYUgZ35Qq8dOfct/sH6UGyo/Czo3JUICJUL+i9SmgFs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=iuq0CN7aRHH2+Vx+2FIQQCL20spbqONtzpl1S/mvbhvKNVRZO6VldPnaIHoKK5Vuz41xGrFI2VKWduqFTKBio8A2ihZDLQ8RXWUARr7GejwWJ1VHIYP4hB6rXnalW9v6NfX/uBIjfrv13O+KXZ2xI3d7iI5aUSOMPJUwEBk2fOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VGhNGQTc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BOMMS1i008690;
-	Wed, 25 Dec 2024 10:06:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BS0b+HMiePrCAfUAlHyLtR3Szgb+8xgLPznjz09vHvs=; b=VGhNGQTcxUru3b30
-	/sqNTuG/YZOhmLHFWvtYVE+Hgo2TKysAzzUTEsKeFh/t9CEosCgmzZTj1hKQyNMX
-	t2bcnIId8Pk9dUJi0zjrd0W7i0NCtJp+et3vL3r8cr+nzer5Rcx2FcnK3W0BCAcn
-	mNUxqgXcGfOJVLh9dBUPEIKOcmyQK7mRSnJHo8aV/b+poM6DLskKY2qOTnawCFwr
-	Z5+mD13rRV9QHTmIOIvAbPtKuJZ8UhPgeRSxb9ILWIXUMVmXmffzPQo6u9lXT0Xe
-	BNbSfVspgO29IGwDg0Mo1gYxRDzodR12/lApxBxDi/IKdkrOjOJwgdnFEz87Q5ph
-	oVEWig==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43qvngmwsu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Dec 2024 10:06:42 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BPA6fKE010946
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Dec 2024 10:06:41 GMT
-Received: from yijiyang-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 25 Dec 2024 02:06:35 -0800
-From: Yijie Yang <quic_yijiyang@quicinc.com>
-Date: Wed, 25 Dec 2024 18:04:47 +0800
-Subject: [PATCH 3/3] arm64: dts: qcom: qcs615-ride: Enable RX programmable
- swap on qcs615-ride
+	s=arc-20240116; t=1735121473; c=relaxed/simple;
+	bh=oi9Hmv1RyYEImL8kKJW6xxAW/IwBLYERqansZ05cbf8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e5xYXLMgHIXBJV1RvVeZfMulhwDsFe+EIGFT6aTYrjw/4pqEHuOhUIKiA1TcQLsbsQJPSZjBzq+oO8cMpaClXs+8ngWmxKo4iqRqK0V10uWzpYtgZSIJ4c0AsHq4BqzmZhhggNmP7qdfid2Qo8i+9ahyyvyhw4oYk5gxZD4y2go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.169.211.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtpip2t1735121387tkwd6g2
+X-QQ-Originating-IP: emESMqMKvjO+IcNFlbeJQJBnooD3qynZfOnK8JPR8iE=
+Received: from [IPV6:240f:10b:7440:1:44cd:ada9 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 25 Dec 2024 18:09:42 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 11688568092456734613
+Message-ID: <4FAC0C844CFF6787+c12ba0e7-c1da-4fe7-aa0f-79340b9ff81a@radxa.com>
+Date: Wed, 25 Dec 2024 19:09:41 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241225-support_10m100m-v1-3-4b52ef48b488@quicinc.com>
-References: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
-In-Reply-To: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
-To: Vinod Koul <vkoul@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David
- S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>
-CC: <netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Yijie Yang
-	<quic_yijiyang@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735121177; l=773;
- i=quic_yijiyang@quicinc.com; s=20240408; h=from:subject:message-id;
- bh=aYUgZ35Qq8dOfct/sH6UGyo/Czo3JUICJUL+i9SmgFs=;
- b=lw5nfj4Ao7+oYrEoc3xSl2pt3EqEAtD7UhtVvU2lPWfKlb2Gd+nSmWbypiRLHshJgSbPydUNO
- uzevepW92LuDp+bGeV3/bAJl4TWOZwKgobNrQzV6cW9dKRKH+viXQ1V
-X-Developer-Key: i=quic_yijiyang@quicinc.com; a=ed25519;
- pk=XvMv0rxjrXLYFdBXoFjTdOdAwDT5SPbQ5uAKGESDihk=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: KXXRbR0iUyI-HWacRhQnBRXd4pPh7E_x
-X-Proofpoint-ORIG-GUID: KXXRbR0iUyI-HWacRhQnBRXd4pPh7E_x
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 adultscore=0 mlxlogscore=687 priorityscore=1501 mlxscore=0
- bulkscore=0 phishscore=0 spamscore=0 clxscore=1015 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412250088
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] arm64: dts: rockchip: Add Radxa ROCK 5B+ and rebase
+ Radxa ROCK 5B
+To: Alexey Charkov <alchark@gmail.com>
+Cc: heiko@sntech.de, robh@kernel.org, conor+dt@kernel.org, inindev@gmail.com,
+ liujianfeng1994@gmail.com, jonas@kwiboo.se, dmt.yashin@gmail.com,
+ sebastian.reichel@collabora.com, tim@feathertop.org,
+ kever.yang@rock-chips.com, marcin.juszkiewicz@linaro.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ michael.riesch@wolfvision.net, macromorgan@hotmail.com, krzk+dt@kernel.org,
+ dsimic@manjaro.org
+References: <20241224210912.2121-1-naoki@radxa.com>
+ <CABjd4YxLnays9Ho0bDR0pTyz5Tjx3C=0U6bcRdQ8ntyu68VVGg@mail.gmail.com>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+Organization: Radxa Computer (Shenzhen) Co., Ltd.
+In-Reply-To: <CABjd4YxLnays9Ho0bDR0pTyz5Tjx3C=0U6bcRdQ8ntyu68VVGg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: MxijBxVjjH5DYEpn2I7kLj1e1qndFvK+cWaj6O5qplQMQcSQnetLIteI
+	1Cl8UaTzc0JW3g547Qh/IcO577ATbgWnOXNJWisqCAo9JfJV5Y4c3OP/eRXLmqIQnDyjkwo
+	rInJp1qyomh0amFmW2rn4LAQ7abOA7lRGruNXlIr70tCWSgf+rQyWgG+oztJbXg4kXDqAK5
+	5R80weH9RAAhyZUgm/XzYAr0eUpK6unoAdI1I3k/tRSgSnFFQmNFbCfAk0aCMvVnLr6cNIh
+	w+dFxHITByJ+GGbBEXh2TQoJfmifwBVx7a8wFo0q0e905v7ugYb25aP5CLVDe9OSZoLayC0
+	gTzHa+X8Q6at4PgOU1ZD3SEhuk32UtmhB4KnPL8dP2QdSXw7amrWBvBBb9fv4iI3WqHvw4R
+	ShWOfJYhH3lyT5BqaG8Rn2VttqiAdbgkRLodvy8WHO9zu2Sb5i6+T2XaVWwqKVPAgbuDbfq
+	qr/h2s/yAb/VN9vZm5718mjFKZVxLt6BF+cArg4DPMK1a1aXoYBlHZ149kp4s8MNb77E5b9
+	VTt29Ee4WNNbWkctWgAJSVr6YpAn4O3HhovW+UPUO0jpZo4LjOSv+DhuXsSEQirh4SycoQw
+	G37LatyLsjp8h0sS5KRoT9+06+6yNJKDHWVnHGMsnpExRB7hiKhw7n7H+x0nsFrQeNfliWj
+	48RXG8SrTQwIfocnbIfWDr3EulbAI310JHcP8dOKpj1Yo1rxLiylzjC8dyHBtHgBg//DMKP
+	kqAWF2+WcVtWzkhzZ/wYH7pGf6o4wicG30s5V8UXbba/KFDNJKWKDH2PQ0raOSnUcNMe8l7
+	7BrryYxgh0mqIiQ0cCFXZiB/Ob2LX241U498rW7B2543SVQMklPpclGc/QOK0S3HxUSF+Vp
+	ivVjX2BGThTm6Kxd2Mil2n5N8oidbxIRBZOUeGWOueHbrf+2UJfaU5wxPLP0kWrm
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+X-QQ-RECHKSPAM: 0
 
-The timing of sampling at the RX side for qcs615-ride needs adjustment.
-It varies from board to board.
+Hi Alexey,
 
-Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 1 +
- 1 file changed, 1 insertion(+)
+On 12/25/24 17:32, Alexey Charkov wrote:
+> Hi Naoki,
+> 
+> On Wed, Dec 25, 2024 at 12:22 PM FUKAUMI Naoki <naoki@radxa.com> wrote:
+>>
+>> The Radxa ROCK 5B+ is an upgraded version of the Radxa ROCK 5B.
+>>
+>> This patch series introduces a shared .dtsi that can be used on the
+>> new Radxa ROCK 5B+, the existing Radxa ROCK 5B, and the upcoming Radxa
+>> ROCK 5T.
+>>
+>> This patch series includes "arm64: dts: rockchip: Add USB-C support to
+>> ROCK 5B" by Sebastian Reichel[1].
+>>
+>> [1] https://patchwork.kernel.org/project/linux-rockchip/patch/20241210163615.120594-1-sebastian.reichel@collabora.com/
+>>
+>> FUKAUMI Naoki (3):
+>>    dt-bindings: arm: rockchip: Add Radxa ROCK 5B+
+>>    arm64: dts: rockchip: Add Radxa ROCK 5B+
+>>    arm64: dts: rockchip: Convert Radxa ROCK 5B to use shared .dtsi
+> 
+> This one doesn't look equivalent to the existing ROCK 5B device tree
+> after your changes (I've noticed in particular that fan cooling levels
+> are different - but that's just the part I remember well since I
+> modified it earlier, there might be more differences).
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index bfb5de4a0d440efece993dbf7a0001e001d5469b..f22a4a0b247a09bd1057b66203a34b666cd119a8 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -206,6 +206,7 @@ &ethernet {
- 	phy-handle = <&rgmii_phy>;
- 	phy-mode = "rgmii";
- 	max-speed = <1000>;
-+	qcom,rx-prog-swap;
- 
- 	snps,mtl-rx-config = <&mtl_rx_setup>;
- 	snps,mtl-tx-config = <&mtl_tx_setup>;
+Thanks for pointing!
 
--- 
-2.34.1
+> Would you mind rearranging the patches so that the split of ROCK 5B
+> dts into a common .dtsi and per-board .dts additions could be made
+> one-to-one equivalent without functional changes, and then add ROCK
+> 5B+ and any other required changes on top of that?
+
+My priority goal is to add support for ROCK 5B+ and 5T. This time, I 
+will not make any changes to ROCK 5B so as not to break it. Therefore, I 
+will drop PATCH 3/3.
+
+(I would like to make changes to ROCK 5B at some point.)
+
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> See what Dragan did where he prepared parent .dtsi for per-variant OPPs [1]
+> 
+> [1] https://lore.kernel.org/linux-rockchip/9ffedc0e2ca7f167d9d795b2a8f43cb9f56a653b.1717923308.git.dsimic@manjaro.org/
+> 
+> Best,
+> Alexey
+> 
 
 
