@@ -1,41 +1,87 @@
-Return-Path: <devicetree+bounces-133907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E4F19FC41C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 09:27:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD909FC436
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 09:31:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FC381883B3E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 08:27:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B21E163C9E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 08:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABFE114375D;
-	Wed, 25 Dec 2024 08:27:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54BFC14C59B;
+	Wed, 25 Dec 2024 08:31:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="UPC0f7qc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TGnoOGiN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49212.qiye.163.com (mail-m49212.qiye.163.com [45.254.49.212])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA36D1804E;
-	Wed, 25 Dec 2024 08:27:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.212
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8116A347B4
+	for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 08:31:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735115259; cv=none; b=kgq39OnUflUkSFlCdlmiNKUl7bGoIlSBszjQ8qBFNyAj8WB5YnQackbUM0Yf0dj668deml90tQ4EN9zT0VIDtPZyWQvsvTGMtgjR5RP+1flDu8dufHd40Vtqb1bZ1L253pfLkGG3QLvf99stFYV5+D2lMuaByAgy3X+0d6GUm5k=
+	t=1735115509; cv=none; b=FVdR6YAnXUX9cRLSTmw1/V4lwW+9NNZhhOn+fHkme3mrPvuSaB2IDhix+RUDT0Mj7AILGvvzkgaGxEt1P/AMAtAGkYTKYk8ukFr51ZfW1wRkFhVvKD+LFfIelKM/5VX0drVoqZajY7y1ZUXivoOXRq8I4RM6ivrNY0gk+JJUq5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735115259; c=relaxed/simple;
-	bh=HX4ZJ3HtMW1fPYtinwVG49hHl1Jm4Ce8fGOnVkafyZE=;
+	s=arc-20240116; t=1735115509; c=relaxed/simple;
+	bh=o2sc6pQ+XIlW+l7Chdoxra1zaFDgcsLWDZ1mZjoxgxk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MG4fRwFyae/sVkeMaH1oef8ypPHJOaVAfmf9SSCb/xOKevI6L4GtxXoay1Dh5AYG2NnapiU1tgl1tDAqsiaPS77uN/spFpf9Kd9ibauA7XjdOlU0atGtqp/1R/y2O14nmdp5CNRw/eRLzHUThGjPiRjlk+HR9BT89NRQ3Swvlmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=UPC0f7qc; arc=none smtp.client-ip=45.254.49.212
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 6c497887;
-	Wed, 25 Dec 2024 16:27:23 +0800 (GMT+08:00)
-Message-ID: <affff5b9-95fb-4d0a-ab09-371545e8450b@rock-chips.com>
-Date: Wed, 25 Dec 2024 16:27:23 +0800
+	 In-Reply-To:Content-Type; b=B25el8A6HxAOJmslkcAzccoZpUYlGg29h+0WrwaRK2e4+mSNgfCnEuKsHNwj9e96/AnZ9fCGyZCdyGm3ncvPf3/S+oEduKWqVpZcBqQNOPrpHljfmHyzrZRKoSc5N+mPaG2EXrrKi+q7I+lgcRvulk0B3pTIOGksxN1b417eu+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TGnoOGiN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BP66XpX030310
+	for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 08:31:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6Gqvd2emlMkTHneG8Hl7t95bMNl6maEOsj1Ec4P8BRw=; b=TGnoOGiN+M+VfTP6
+	nehLTRWyrjTWwq9oWwPYfRCqi86LWPPmV9ynmw38nXLNgroS+EUipPtTNOmqo2GW
+	sxod1gK+jLlMdDp2TGBmQCJv0gcyJCyR6CL0n+b6+Qf8VXMP9jQVT5bZNRJ/xu0D
+	KZ+ot65P8x2V9yPylkJf/ohVaAIzhNL4u/oeyyK5PNnnTJAoO0UagMK69HArYQPl
+	mqzN9Hm9ELitfDcg3asc5p52PWzv63/Pj8Ryk/fCElwv7P9Q91/eV8TaWbMZwaA8
+	5WO081gQzDeQ+bc3DnCTnpe+V5IFSNZl5z+1xrPpZbpoIOuIGSSWcDmx4vsn8FZR
+	UHfFHA==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43rcg8gf7g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 08:31:46 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2163dc0f5dbso61892895ad.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 00:31:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735115506; x=1735720306;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6Gqvd2emlMkTHneG8Hl7t95bMNl6maEOsj1Ec4P8BRw=;
+        b=QpfPJHeStA/6+rVtZlQK4NrdGF/925ChHb5FcRkVuzEDFQYGiKA8GOVeVUEXNzH28/
+         TbqfmZmrcWky6W71s2mRgGtZkwbDK2cLxwvuS9rJGztRf1Fq2ja5anulTpY7G3NSKixS
+         b8bUtZkH8zfZpbXg8QIdpFbOqR5CCRyhOGURWSoq4gkIH+GXo+KRYh/WPXuKrC3VaxCu
+         YZ5eoA3gcUnXLPvbV6yk1tYMWcrZpVbfBSQMd/kSL4+cTk8YSuhyd+ta1SSgpb6sTb0H
+         v5186cRe87AcS1z1AtBcT+AbxV4iMUR1UoW7eBCqt8ByoRBPlmBKH65JPLQqWfCulo8k
+         TESg==
+X-Forwarded-Encrypted: i=1; AJvYcCUshi6UIPkhQC8hN4fqST8SkpM0pM1xd3brtXglIQTkHNzq9dG+VuxZFuuFQMEyyHRQKzIgew+X6Bs8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2b7hsiwjYDL78w1YSkJBiDeIKq7ZtobxGks09U0hi8KTZHTHE
+	QVkt1OuugyE2GsgXy+THwU1Y7/38zO9mO0RAScgcwmkCQ5f773T9oQJnMJmCfApWawV+D3ZqStL
+	OBq8HV+uLzqRfqBxfTG9NSCfGm9nL7439tUqDRP4dzaLo0eO385iUiXYEImwy
+X-Gm-Gg: ASbGnctEnBjbX+ejkqARuqQQDC50hX9IQvIMX6c4Nb5rm5T3EzoxRFL0m6dal2+yG5v
+	ECDlNs8is02Yne9OQvG9kY8gycdBmgoWwi2CNBPuvbcNRlpYqm1wVkNSYf+jsb0Er/XJdNqx6FR
+	hN7NCcSOWm04YRGl4xABhu3Holhuu7AMv/QydQ4FNmxfsduTual3MIv5GOEwxr7WZAN9Q+F9ho2
+	t1H+UfR9IsuWPY8M6CHBQ/ZoYDjU8TtvHJ8BYxMVJ/qloG0RWs5naH+ZBJu7n2Qj3AQ5Iewn7ge
+	qKLbDYEoll+yXYISEKA=
+X-Received: by 2002:a05:6a20:c705:b0:1e0:f495:1bd9 with SMTP id adf61e73a8af0-1e5e04503e8mr33789959637.8.1735115505804;
+        Wed, 25 Dec 2024 00:31:45 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH/QzaLzF/fcbrHVZfxi3rRanW8WezvFhBWt0qWNZBvJfsBYIxgdw2reovgSkrqXear14rCtQ==
+X-Received: by 2002:a05:6a20:c705:b0:1e0:f495:1bd9 with SMTP id adf61e73a8af0-1e5e04503e8mr33789917637.8.1735115505392;
+        Wed, 25 Dec 2024 00:31:45 -0800 (PST)
+Received: from [192.168.31.128] ([152.59.237.95])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad90b949sm10835600b3a.176.2024.12.25.00.31.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Dec 2024 00:31:45 -0800 (PST)
+Message-ID: <318620fc-e174-4ef3-808a-69fe1d4e1df5@oss.qualcomm.com>
+Date: Wed, 25 Dec 2024 14:01:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,210 +89,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/15] drm/bridge: analogix_dp: Add support for phy
- configuration.
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
- sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
- l.stach@pengutronix.de, andy.yan@rock-chips.com, hjc@rock-chips.com,
- algea.cao@rock-chips.com, kever.yang@rock-chips.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20241219080604.1423600-1-damon.ding@rock-chips.com>
- <20241219080604.1423600-8-damon.ding@rock-chips.com>
- <a6vvydjbx3hbckoy74iiyzguyyacwvdh6iirqydjfvhwgocw3a@knecggjcbcid>
- <654c30ec-7d7e-4956-9a48-15bfcea34acc@rock-chips.com>
- <CAA8EJpqk-iim668ZTzQaROJmkTr2COBwA5G9Eg73uLE28XHYpg@mail.gmail.com>
+Subject: Re: (subset) [PATCH v3 0/3] Add support for USB controllers on QCS615
+To: Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Varadarajan Narayanan <quic_varada@quicinc.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20241224084621.4139021-1-krishna.kurapati@oss.qualcomm.com>
+ <173505391861.950293.11120368190852109172.b4-ty@kernel.org>
+ <anfqf3jvh7timbvbfqfidylb4iro47cdinbb2y64fdalbiszum@2s3n7axnxixb>
+ <Z2sJK9g7hiHnPwYA@vaman>
+ <i7gptvn2fitpqypycjhsyjnp63s2w5omx4jtpubylfc3hx3m5l@jbuin5uvxuoc>
+ <Z2sOl9ltv0ug4d82@vaman>
 Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <CAA8EJpqk-iim668ZTzQaROJmkTr2COBwA5G9Eg73uLE28XHYpg@mail.gmail.com>
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <Z2sOl9ltv0ug4d82@vaman>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ04YT1ZOGEIfTBlKSB8fSk5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a93fced818603a3kunm6c497887
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PS46Tjo5GjIcEE8YDys4KEMj
-	Kj0aFBBVSlVKTEhOSkpOSU9OTEtNVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFNQk9LNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=UPC0f7qcrwZe5+4cW9Y0k24vj4hFwCwq07GzJZR1NrL6UI77q+ZweU392GftAMLQYVyu/1jerhQCLTGDsIal4GHLyxA42x6uoOCFIy7dxZQD+xAhAIDn9gWTzPeA6c3aqMnzyEPmEElCv3pN2qgse8lKl+SP0u9RYeUgWfwByXY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=txPoZjhS7WmZRPL5mk+VeO5MESw98jX31iKdCOFZ2WY=;
-	h=date:mime-version:subject:message-id:from;
+X-Proofpoint-GUID: af6M_r93WY1oeiLLQ6l2Gw-hRJYVm84V
+X-Proofpoint-ORIG-GUID: af6M_r93WY1oeiLLQ6l2Gw-hRJYVm84V
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
+ phishscore=0 lowpriorityscore=0 mlxscore=0 suspectscore=0
+ priorityscore=1501 clxscore=1015 mlxlogscore=999 spamscore=0
+ impostorscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412250074
 
-Hi Dmitry,
 
-On 2024/12/20 13:37, Dmitry Baryshkov wrote:
-> On Fri, 20 Dec 2024 at 05:37, Damon Ding <damon.ding@rock-chips.com> wrote:
->>
->> Hi Dmitry,
->>
->> On 2024/12/20 8:13, Dmitry Baryshkov wrote:
->>> On Thu, Dec 19, 2024 at 04:05:56PM +0800, Damon Ding wrote:
->>>> Add support to configurate link rate, lane count, voltage swing and
->>>> pre-emphasis with phy_configure(). It is helpful in application scenarios
->>>> where analogix controller is mixed with the phy of other vendors.
+
+On 12/25/2024 1:12 AM, Vinod Koul wrote:
+> On 24-12-24, 21:33, Dmitry Baryshkov wrote:
+>> On Wed, Dec 25, 2024 at 12:49:07AM +0530, Vinod Koul wrote:
+>>> On 24-12-24, 17:38, Dmitry Baryshkov wrote:
+>>>> On Tue, Dec 24, 2024 at 08:55:18PM +0530, Vinod Koul wrote:
+>>>>>
+>>>>> On Tue, 24 Dec 2024 14:16:18 +0530, Krishna Kurapati wrote:
+>>>>>> This series aims at enabling USB on QCS615 which has 2 USB controllers.
+>>>>>> The primary controller is SuperSpeed capable and secondary one is
+>>>>>> High Speed only capable. The High Speed Phy is a QUSB2 phy and the
+>>>>>> SuperSpeed Phy is a QMP Uni Phy which supports non-concurrent DP.
+>>>>>>
+>>>>>> Link to v1:
+>>>>>> https://lore.kernel.org/all/20241014084432.3310114-1-quic_kriskura@quicinc.com/
+>>>>>>
+>>>>>> [...]
+>>>>>
+>>>>> Applied, thanks!
+>>>>>
+>>>>> [2/3] phy: qcom-qusb2: Add support for QCS615
+>>>>>        commit: 8adbf20e05025f588d68fb5b0fbbdab4e9a6f97ecommit e1b2772ea957c91694aa91b90e4c0a1d7b0fb144
+Author: Krishna Kurapati <quic_kriskura@quicinc.com>
+Date:   Mon Oct 14 14:14:30 2024 +0530
+
+     dt-bindings: phy: qcom,msm8998-qmp-usb3-phy: Add support for QCS615
+
+
 >>>>
->>>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->>>>
->>>> ---
->>>>
->>>> Changes in v2:
->>>> - remove needless assignments for phy_configure()
->>>> - remove unnecessary changes for phy_power_on()/phy_power_off()
->>>> ---
->>>>    .../drm/bridge/analogix/analogix_dp_core.c    |  1 +
->>>>    .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 56 +++++++++++++++++++
->>>>    2 files changed, 57 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->>>> index 6f10d88a34c5..9429c50cc1bc 100644
->>>> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->>>> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->>>> @@ -1696,6 +1696,7 @@ int analogix_dp_resume(struct analogix_dp_device *dp)
->>>>       if (dp->plat_data->power_on)
->>>>               dp->plat_data->power_on(dp->plat_data);
->>>>
->>>> +    phy_set_mode(dp->phy, PHY_MODE_DP);
->>>>       phy_power_on(dp->phy);
->>>>
->>>>       analogix_dp_init_dp(dp);
->>>> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
->>>> index 3afc73c858c4..613ce504bea6 100644
->>>> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
->>>> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
->>>> @@ -11,6 +11,7 @@
->>>>    #include <linux/gpio/consumer.h>
->>>>    #include <linux/io.h>
->>>>    #include <linux/iopoll.h>
->>>> +#include <linux/phy/phy.h>
->>>>
->>>>    #include <drm/bridge/analogix_dp.h>
->>>>
->>>> @@ -513,10 +514,25 @@ void analogix_dp_enable_sw_function(struct analogix_dp_device *dp)
->>>>    void analogix_dp_set_link_bandwidth(struct analogix_dp_device *dp, u32 bwtype)
->>>>    {
->>>>       u32 reg;
->>>> +    int ret;
->>>>
->>>>       reg = bwtype;
->>>>       if ((bwtype == DP_LINK_BW_2_7) || (bwtype == DP_LINK_BW_1_62))
->>>>               writel(reg, dp->reg_base + ANALOGIX_DP_LINK_BW_SET);
->>>> +
->>>> +    if (dp->phy) {
->>>> +            union phy_configure_opts phy_cfg = {0};
->>>> +
->>>> +            phy_cfg.dp.lanes = dp->link_train.lane_count;
+>>>> Is there any issue with the two remaining patches?
 >>>
->>> Should not be necessary, you are only setting the .set_rate.
+>>> Something wrong with b4... I have applied 2 & 3
+>>> Patch 1 should go thru USB tree
 >>
->> Indeed, this can be dropped.
->>
->>>
->>>> +            phy_cfg.dp.link_rate =
->>>> +                    drm_dp_bw_code_to_link_rate(dp->link_train.link_rate) / 100;
->>>> +            phy_cfg.dp.set_rate = true;
->>>> +            ret = phy_configure(dp->phy, &phy_cfg);
->>>> +            if (ret && ret != -EOPNOTSUPP) {
->>>> +                    dev_err(dp->dev, "%s: phy_configure() failed: %d\n", __func__, ret);
->>>> +                    return;
->>>> +            }
->>>> +    }
->>>>    }
->>>>
->>>>    void analogix_dp_get_link_bandwidth(struct analogix_dp_device *dp, u32 *bwtype)
->>>> @@ -530,9 +546,22 @@ void analogix_dp_get_link_bandwidth(struct analogix_dp_device *dp, u32 *bwtype)
->>>>    void analogix_dp_set_lane_count(struct analogix_dp_device *dp, u32 count)
->>>>    {
->>>>       u32 reg;
->>>> +    int ret;
->>>>
->>>>       reg = count;
->>>>       writel(reg, dp->reg_base + ANALOGIX_DP_LANE_COUNT_SET);
->>>> +
->>>> +    if (dp->phy) {
->>>> +            union phy_configure_opts phy_cfg = {0};
->>>> +
->>>> +            phy_cfg.dp.lanes = dp->link_train.lane_count;
->>>> +            phy_cfg.dp.set_lanes = true;
->>>> +            ret = phy_configure(dp->phy, &phy_cfg);
->>>> +            if (ret && ret != -EOPNOTSUPP) {
->>>> +                    dev_err(dp->dev, "%s: phy_configure() failed: %d\n", __func__, ret);
->>>> +                    return;
->>>> +            }
->>>> +    }
->>>>    }
->>>>
->>>>    void analogix_dp_get_lane_count(struct analogix_dp_device *dp, u32 *count)
->>>> @@ -546,10 +575,37 @@ void analogix_dp_get_lane_count(struct analogix_dp_device *dp, u32 *count)
->>>>    void analogix_dp_set_lane_link_training(struct analogix_dp_device *dp)
->>>>    {
->>>>       u8 lane;
->>>> +    int ret;
->>>>
->>>>       for (lane = 0; lane < dp->link_train.lane_count; lane++)
->>>>               writel(dp->link_train.training_lane[lane],
->>>>                      dp->reg_base + ANALOGIX_DP_LN0_LINK_TRAINING_CTL + 4 * lane);
->>>> +
->>>> +    if (dp->phy) {
->>>> +            union phy_configure_opts phy_cfg = {0};
->>>> +
->>>> +            for (lane = 0; lane < dp->link_train.lane_count; lane++) {
->>>> +                    u8 training_lane = dp->link_train.training_lane[lane];
->>>> +                    u8 vs, pe;
->>>> +
->>>> +                    vs = (training_lane & DP_TRAIN_VOLTAGE_SWING_MASK) >>
->>>> +                         DP_TRAIN_VOLTAGE_SWING_SHIFT;
->>>> +                    pe = (training_lane & DP_TRAIN_PRE_EMPHASIS_MASK) >>
->>>> +                         DP_TRAIN_PRE_EMPHASIS_SHIFT;
->>>> +                    phy_cfg.dp.voltage[lane] = vs;
->>>> +                    phy_cfg.dp.pre[lane] = pe;
->>>> +            }
->>>> +
->>>> +            phy_cfg.dp.lanes = dp->link_train.lane_count;
->>>> +            phy_cfg.dp.link_rate =
->>>> +                    drm_dp_bw_code_to_link_rate(dp->link_train.link_rate) / 100;
->>>
->>> This two should not be necessary, please drop them.
->>
->> These two are necessary for rk_hdptx_phy_set_voltage(), so they cannot
->> be dropped.
+>> Hmm, strange. But then, please excuse my ignorance, do we have bindings
+>> for these two patches?
 > 
-> Please review the documentation for struct phy_configure_opts_dp and
-> fix your PHY driver to skip the values for which the .set_foo isn't
-> set. Then you might have to change this part.
-> You are setting just .set_voltages. It means that the rate and .lanes
-> shouldn't be changed and can be used as they were set by the previous
-> calls to phy_configure().
+> I see to have missed one!
+> 
+> This one is documented see:
+> d146d384222e dt-bindings: phy: qcom,qusb2: Add bindings for QCS615
+> 
+> but, the third patch is sadly not... I am dropping the third patch
 > 
 
-Indeed, I will store the previous &phy_configure_opts.dp.link_rate and 
-&phy_configure_opts.dp.lanes in the struct rk_hdptx_phy, and will not 
-use both of them during the configuration process of the 
-&phy_cfg.dp.voltage[] and &phy_cfg.dp.pre[] in next version.
+Hi Dmitry, Vinod,
 
->>
->>>
->>>> +            phy_cfg.dp.set_voltages = true;
->>>> +            ret = phy_configure(dp->phy, &phy_cfg);
->>>> +            if (ret && ret != -EOPNOTSUPP) {
->>>> +                    dev_err(dp->dev, "%s: phy_configure() failed: %d\n", __func__, ret);
->>>> +                    return;
->>>> +            }
->>>> +    }
->>>>    }
->>>>
->>>>    u32 analogix_dp_get_lane_link_training(struct analogix_dp_device *dp, u8 lane)
->>>> --
->>>> 2.34.1
->>>>
->>>
+  I see the bindings for QMP PHY in linux next as follows:
 
-Best regards,
-Damon
+commit e1b2772ea957c91694aa91b90e4c0a1d7b0fb144
+Author: Krishna Kurapati <quic_kriskura@quicinc.com>
+Date:   Mon Oct 14 14:14:30 2024 +0530
 
+     dt-bindings: phy: qcom,msm8998-qmp-usb3-phy: Add support for QCS615
+
+As mentioned in the cover letter, the bindings of phy have been merged 
+from v1.
+
+Regards,
+Krishna,
 
