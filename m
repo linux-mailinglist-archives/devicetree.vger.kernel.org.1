@@ -1,133 +1,213 @@
-Return-Path: <devicetree+bounces-133909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3859FC439
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 09:32:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B90F9FC444
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 09:48:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4122218839EE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 08:32:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7B411881DAA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 08:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F319786341;
-	Wed, 25 Dec 2024 08:32:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4600B14A099;
+	Wed, 25 Dec 2024 08:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jRGv1uqo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nk4u6hX0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CF5585628
-	for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 08:32:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54D5A5C603;
+	Wed, 25 Dec 2024 08:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735115555; cv=none; b=rcemYGh8SGxSdrirLuamoCmkkz4IQdH61lxsADPUjwl9baoOnDrzPtQnPRqtqUFdJTKVaCPSZBfnhLiGq1DE5koNVt+gLoHiOihzUfFbiWv7HBWhXksNgNnkuMP+Kf+nGO4P7EIWWyFl0T94hzeggDFxLh4IuqVSZGsQ8RfU0cI=
+	t=1735116512; cv=none; b=JcmB27+CBCSj5c/w6Hf6tNP1xfnLTfYa44X30I8YKwrWgXmUijNEyUXPZPGb5soyPNdtWvgueLP+nCdxQlNKxlC3M79/OcmjtjOeag38IB8meuNhsyJu7IRlkqfbpEu6TOwdBNS27GgPb5nTHQqJdpL6EO12Z8icu75OzYjJhJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735115555; c=relaxed/simple;
-	bh=4GCZ4LdwqWc1KeMIB1Cx+yxeYgXOF9BY4KlE6GCbw5I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IOaNJULzw8o0AkgXAw0KqDS1S7xr/8h29nnvyhnwsDu1ztezf5KOshFl0nnk1kx41PeXbGFXlXxTy+l5ngEEille2Tmv3CuqOhDtIraCaICEj0ThrC6jWDvtFWeQ9iaW8GOXXcvNaAYeCHoPZh2VCzz62/4MLGK1/WMNXVTwuos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jRGv1uqo; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-467b74a1754so71674351cf.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 00:32:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735115553; x=1735720353; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m1nEzKzP9fnaPc+6XguAwC3CAJwIrK5wz/gyjqcVyfA=;
-        b=jRGv1uqovUn5p6xqANxTYV+b5v/ww97J+3nEaqiixQhlm0tV1/rMJeIpFHKOEDQIzk
-         TODeHfSVPJmiKM2xkgNkM6qstBGmtQ+PI57VXM2DyWCJPeuxw1271LsQD6SmD8kPeax5
-         5BMU2uKkZXN9utWjTRlT5Fd/+OburT0QUvr5Uk3GEPPwP+1qXlpZoaRK0yscb1qSN74R
-         X0EIm/PQP3QDLBIZyC1UIcaLt2CGlcDss+qvALmqXvbZ4SFzjh6Xhq7BlYj3coTWirR/
-         DV6MfYPbFm7vF+pqMsPMVH/6JVUwwaGvsKwlkKWtesGqPcgrh7ka+Ygl94hv4ckIjctT
-         CmRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735115553; x=1735720353;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m1nEzKzP9fnaPc+6XguAwC3CAJwIrK5wz/gyjqcVyfA=;
-        b=Wnz+gmnSgtNaa2P5OJFvfQ/RVEf+VVLKAD8o/qJgam1WRDe0fImwkuCft+wajAajdJ
-         eoljWacw/gfJoId137gLhu5B/DsdPBolRulTa5UWhA3ERK0EI5NjgzDzfRaf9RzuoCJx
-         6Njn6XKEHDpa3SjzWFoJ0D7vpm2qxasrnd4PI004K0SHdSLoGRy/qIpNIkgz7xda0hdt
-         3UNtw0GgpBYHcWw6dpO3ROt2PMCF0BViasp0nwaBNuOgHnCXxEz6qLPGeA9scBQmZId7
-         vhScZ5/0qnL1wkx04NldGfUupKXMscfXOoeeKSNlm99oXfc+kYv2GaWC6et3S5fUtPxo
-         crQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQipJDetMgZM4l4vLa2kMf4qnWe/AqrDU1QWev/5Ub+eMrOXRAQsLWqLIzjdbwVNxasdzucgIuoQLG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzwrpl2UJG6Rx8s9NYBu4iYLtMHnHr4yLstHPtQzeHrQXrVS0o0
-	8fGMRA+PXiKkDlWf+Od7bWF0OtXePYUtZSDwskh5Uf+CfIu295l9qKzWoEzkUM8znhH/GTIi8NC
-	/6kAE2aZwfazKTU3PqIbwu3dYfNc=
-X-Gm-Gg: ASbGncuWR5qq3EEdZinS+wxjGuNuGlODtucWOz6RGNqKB6mVmwF+FjlQXWuDnmtAN4q
-	Dc1PJI1r9ttfZD/kngONt03otJyoCbktML5WOXRgd9IxuQArzgq3o4S23nygIh6HKAgqycDo=
-X-Google-Smtp-Source: AGHT+IEybtIn3hEEhjJmY/GfM4Hfr2cLLyij9gXsk/wv+yCVO3Ezi2W+Ire0e3/x7nHCQJu55UtQ6Qk7xp5EYcK5vNU=
-X-Received: by 2002:a05:622a:1a28:b0:46a:3709:6780 with SMTP id
- d75a77b69052e-46a4a8dcbe6mr335774091cf.19.1735115553207; Wed, 25 Dec 2024
- 00:32:33 -0800 (PST)
+	s=arc-20240116; t=1735116512; c=relaxed/simple;
+	bh=xazrug+LH/ihK+1MZO9UNxR93oE0gAw3ANz1wEYcBCE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=aasdhgk3Vamj5wXouaBXqz7l4/yrjpj/ZzM+biT/NLphQUs5KtoMazYxEEBJ1bl7khMjXzDxV+r6wznBQ56YBrYJ1VNUd0wmzvqahpvh7gBSqqjayaSnnfZgclFde/c2grtvWU8qb7KhP2knKEZSGvfSvIQzNSvUpA0xHYMzr6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nk4u6hX0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BP0xUh6006885;
+	Wed, 25 Dec 2024 08:48:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2td9t4sfIhhiNuVIvJwjDuBHMbZHT4OKnAbzZuz6hjk=; b=nk4u6hX0zh4QRYqI
+	3yimNKrxrtvFuY22barlktzg24lqHylki76coa8kqeYkzO0Kv160S17sTTuF6WDn
+	GzClWYof2aham6ePrq1atz+DktvvE1Q7bV5HD/B+En5G1UJyCM2Aeu2yRQogWc7R
+	XGGNevivuLNxiafdcXUkauXTpJL631+3pmbn9w2KIZp9sDDCrVqhHPpV4B5/tthA
+	7K2QjRhT0IJTJmrm1sSlfU+oUG4MOgu4GMTJrjYQg6JcIsj07vgiTrISahHLvrtp
+	5AYhScpclENPDjQnY1xL9XsaNBBpBe8sC7EgdvtN1sZEmk6vcHsS/mGWaWXU8ica
+	vqR+0Q==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43qyv7usa2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Dec 2024 08:47:59 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BP8lwLF006187
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Dec 2024 08:47:58 GMT
+Received: from [10.253.36.144] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 25 Dec
+ 2024 00:47:53 -0800
+Message-ID: <d7b78ab4-bc3d-41b0-ad74-28a8ed630070@quicinc.com>
+Date: Wed, 25 Dec 2024 16:47:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241224210912.2121-1-naoki@radxa.com>
-In-Reply-To: <20241224210912.2121-1-naoki@radxa.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 25 Dec 2024 12:32:30 +0400
-Message-ID: <CABjd4YxLnays9Ho0bDR0pTyz5Tjx3C=0U6bcRdQ8ntyu68VVGg@mail.gmail.com>
-Subject: Re: [PATCH 0/3] arm64: dts: rockchip: Add Radxa ROCK 5B+ and rebase
- Radxa ROCK 5B
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: heiko@sntech.de, robh@kernel.org, conor+dt@kernel.org, inindev@gmail.com, 
-	liujianfeng1994@gmail.com, jonas@kwiboo.se, dmt.yashin@gmail.com, 
-	sebastian.reichel@collabora.com, tim@feathertop.org, 
-	kever.yang@rock-chips.com, marcin.juszkiewicz@linaro.org, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	michael.riesch@wolfvision.net, macromorgan@hotmail.com, krzk+dt@kernel.org, 
-	dsimic@manjaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] net: stmmac: dwmac-qcom-ethqos: add support for
+ EMAC on qcs615 platforms
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Vinod Koul <vkoul@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David
+ S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro
+	<peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        <netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20241224-schema-v2-0-000ea9044c49@quicinc.com>
+ <20241224-schema-v2-3-000ea9044c49@quicinc.com>
+ <62wm4samob5bzsk2br75fmllkrgptxxj2pgo7hztnhkhvwt54v@zz7edyq6ys77>
+ <bc143292-24e0-4887-bc56-ecaceebf3d82@quicinc.com>
+ <htnq5jjxwbsn3fjc3m6tzvyqrwzckipd3z63j2dotkliiwnqgk@lifzh4q35dqg>
+Content-Language: en-US
+From: Yijie Yang <quic_yijiyang@quicinc.com>
+In-Reply-To: <htnq5jjxwbsn3fjc3m6tzvyqrwzckipd3z63j2dotkliiwnqgk@lifzh4q35dqg>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Eutn9DNG8oTpUHbKArQu5mSd4FWJxpA_
+X-Proofpoint-ORIG-GUID: Eutn9DNG8oTpUHbKArQu5mSd4FWJxpA_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ clxscore=1015 suspectscore=0 adultscore=0 bulkscore=0 priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 mlxlogscore=999 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412250076
 
-Hi Naoki,
 
-On Wed, Dec 25, 2024 at 12:22=E2=80=AFPM FUKAUMI Naoki <naoki@radxa.com> wr=
-ote:
->
-> The Radxa ROCK 5B+ is an upgraded version of the Radxa ROCK 5B.
->
-> This patch series introduces a shared .dtsi that can be used on the
-> new Radxa ROCK 5B+, the existing Radxa ROCK 5B, and the upcoming Radxa
-> ROCK 5T.
->
-> This patch series includes "arm64: dts: rockchip: Add USB-C support to
-> ROCK 5B" by Sebastian Reichel[1].
->
-> [1] https://patchwork.kernel.org/project/linux-rockchip/patch/20241210163=
-615.120594-1-sebastian.reichel@collabora.com/
->
-> FUKAUMI Naoki (3):
->   dt-bindings: arm: rockchip: Add Radxa ROCK 5B+
->   arm64: dts: rockchip: Add Radxa ROCK 5B+
->   arm64: dts: rockchip: Convert Radxa ROCK 5B to use shared .dtsi
 
-This one doesn't look equivalent to the existing ROCK 5B device tree
-after your changes (I've noticed in particular that fan cooling levels
-are different - but that's just the part I remember well since I
-modified it earlier, there might be more differences).
+On 2024-12-24 13:05, Dmitry Baryshkov wrote:
+> On Tue, Dec 24, 2024 at 12:36:29PM +0800, Yijie Yang wrote:
+>>
+>>
+>> On 2024-12-24 12:18, Dmitry Baryshkov wrote:
+>>> On Tue, Dec 24, 2024 at 11:07:03AM +0800, Yijie Yang wrote:
+>>>> qcs615 uses EMAC version 2.3.1, add the relevant defines and add the new
+>>>> compatible.
+>>>>
+>>>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+>>>> ---
+>>>>    drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 17 +++++++++++++++++
+>>>>    1 file changed, 17 insertions(+)
+>>>>
+>>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+>>>> index 901a3c1959fa57efb078da795ad4f92a8b6f71e1..8c76beaee48821eb2853f4e3f8bfd37db8cadf78 100644
+>>>> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+>>>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+>>>> @@ -249,6 +249,22 @@ static const struct ethqos_emac_driver_data emac_v2_1_0_data = {
+>>>>    	.has_emac_ge_3 = false,
+>>>>    };
+>>>> +static const struct ethqos_emac_por emac_v2_3_1_por[] = {
+>>>> +	{ .offset = RGMII_IO_MACRO_CONFIG,	.value = 0x00C01343 },
+>>>> +	{ .offset = SDCC_HC_REG_DLL_CONFIG,	.value = 0x2004642C },
+>>>
+>>> lowercase the hex, please.
+>>
+>> I will take care of it.
+>>
+>>>
+>>>> +	{ .offset = SDCC_HC_REG_DDR_CONFIG,	.value = 0x00000000 },
+>>>> +	{ .offset = SDCC_HC_REG_DLL_CONFIG2,	.value = 0x00200000 },
+>>>> +	{ .offset = SDCC_USR_CTL,		.value = 0x00010800 },
+>>>> +	{ .offset = RGMII_IO_MACRO_CONFIG2,	.value = 0x00002060 },
+>>>> +};
+>>>> +
+>>>> +static const struct ethqos_emac_driver_data emac_v2_3_1_data = {
+>>>> +	.por = emac_v2_3_1_por,
+>>>> +	.num_por = ARRAY_SIZE(emac_v2_3_1_por),
+>>>> +	.rgmii_config_loopback_en = true,
+>>>> +	.has_emac_ge_3 = false,
+>>>> +};
+>>>
+>>> Modulo emac_v2_3_1_por vs emac_v2_3_0_por, this is the same as
+>>> emac_v2_3_0_data. Which means that bindings for qcs615-ethqos should be
+>>> corrected to use qcom,qcs404-ethqos as as fallback entry, making this
+>>> patch unused. Please correct the bindings instead.
+>>
+>> Although they currently share the same data, they are actually two different
+>> versions. Their differences are not apparent now but will become evident
+>> once new features are uploaded. If I revert to qcom,qcs404-ethqos now, it
+>> will be challenging to distinguish between them in the future.
+> 
+> Which features? Moreover, note, the use of the fallback doesn't preclude
+> you from addign a new compat entry later on. By having a fallback you
+> simply declare that the device A is also compatible with the device B.
+> 
 
-Would you mind rearranging the patches so that the split of ROCK 5B
-dts into a common .dtsi and per-board .dts additions could be made
-one-to-one equivalent without functional changes, and then add ROCK
-5B+ and any other required changes on top of that?
+Yes, you're right. I confirmed with the hardware team that the EMAC of 
+qcs615-ride is the same as that of qcs404. I will fall back the 
+compatible of qcs615 to the latter and drop the unnecessary patches.
 
-See what Dragan did where he prepared parent .dtsi for per-variant OPPs [1]
+>>
+>>>
+>>>> +
+>>>>    static const struct ethqos_emac_por emac_v3_0_0_por[] = {
+>>>>    	{ .offset = RGMII_IO_MACRO_CONFIG,	.value = 0x40c01343 },
+>>>>    	{ .offset = SDCC_HC_REG_DLL_CONFIG,	.value = 0x2004642c },
+>>>> @@ -898,6 +914,7 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+>>>>    static const struct of_device_id qcom_ethqos_match[] = {
+>>>>    	{ .compatible = "qcom,qcs404-ethqos", .data = &emac_v2_3_0_data},
+>>>> +	{ .compatible = "qcom,qcs615-ethqos", .data = &emac_v2_3_1_data},
+>>>>    	{ .compatible = "qcom,sa8775p-ethqos", .data = &emac_v4_0_0_data},
+>>>>    	{ .compatible = "qcom,sc8280xp-ethqos", .data = &emac_v3_0_0_data},
+>>>>    	{ .compatible = "qcom,sm8150-ethqos", .data = &emac_v2_1_0_data},
+>>>>
+>>>> -- 
+>>>> 2.34.1
+>>>>
+>>>
+>>
+>> -- 
+>> Best Regards,
+>> Yijie
+>>
+> 
 
-[1] https://lore.kernel.org/linux-rockchip/9ffedc0e2ca7f167d9d795b2a8f43cb9=
-f56a653b.1717923308.git.dsimic@manjaro.org/
+-- 
+Best Regards,
+Yijie
 
-Best,
-Alexey
 
