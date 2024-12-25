@@ -1,111 +1,152 @@
-Return-Path: <devicetree+bounces-133975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 877589FC665
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 20:28:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74AFF9FC66F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 20:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9E7D7A1432
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 19:28:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3A1F162C0D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 19:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA271BD9E4;
-	Wed, 25 Dec 2024 19:27:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="CFDQeefp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E248136E3B;
+	Wed, 25 Dec 2024 19:52:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-175.mta0.migadu.com (out-175.mta0.migadu.com [91.218.175.175])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18AB51922FB
-	for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 19:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C35E58BFF
+	for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 19:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735154865; cv=none; b=QzYGclG59JGxX45n3uaHgg0BWILsB7p36gHuCQaUVlLYPioRk9pXvwySOTK+BZs1VZ6aXxME9ziOd6z9GsjrBjwIpexeeFG45MFX0fL+QEqH39iaG6j4LzvdHNgE0RlXPvkjqOF3lBSzDgWYnrzVHXf2n0P2GthDwr2OgwlwyUw=
+	t=1735156360; cv=none; b=hwrnR7XcgCAarMypNhXVHIeWhg70qjSdCp3JAn1AyDJoXi3gEcCLYAlT0iCCnvLPq5/xDSmZ2gkdnQr+GyQgBBuWNN9F8z9QNGPYpC1XZIguubp1qx52dxRqiFYv0prT1oDWN4t6+qrJg1JAPKWTecqSKxZvU27wU2mlDVwZO5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735154865; c=relaxed/simple;
-	bh=SiL5gWedbYGY8jpPXvhrDlFzNYQymdn1BIJrR8bk+nc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dth8lXuM410W2sWrz6RPVv2rKgQWf+AAq95QPoKcV5/cufFmXvQeG/coMBXPvgh50WGptDjcu9V3Lux2UtLDvZAguJhLN8ab71cuEaWtnWcounTW5NG4YV9gg0xNoSz/pVi8BTIgqk0wOfhmeKI2YvJbKYEr/n8XPjZVEBOP4ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=CFDQeefp; arc=none smtp.client-ip=91.218.175.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1735154861;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ooCP4AVj6ouf61L4l6iIgaeJr118tdjjjQYgYlz/msQ=;
-	b=CFDQeefpWl35qibFOJxQB19HfXzQTL64mOoGsi7vOLZF42pQl5WEawIFFoJ3l0FrigyMfL
-	mJJQcBRSTXtuaejIjQD3imFpqgTCeOMjhD0oglA5Ow5OqqHQNcGxydxB1KOPs1BSUe8rBt
-	TWzp024niCUAllC8aZ78AGYky2JISF+EXq8k4+7V1IR1fK3biNofQVd0Fb6qLobLLSP5Sx
-	A8OqTiojt7TxldJZLlTZFqKMSxbsVRG813n4RzL7/BAzfB06AWc9V96myFf4dsPjatJBV8
-	BSB7cNEjp+5MMiKyd1ZjIpAXRZl4cItIVXK7eeJanAmKdmvBTTeFGnQ89QRG5g==
-From: Val Packett <val@packett.cool>
-To: 
-Cc: Val Packett <val@packett.cool>,
-	Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Fabien Parent <fparent@baylibre.com>,
-	Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH 3/3] arm64: dts: mediatek: mt8516: add keypad node
-Date: Wed, 25 Dec 2024 16:26:21 -0300
-Message-ID: <20241225192631.25017-4-val@packett.cool>
-In-Reply-To: <20241225192631.25017-1-val@packett.cool>
-References: <20241225192631.25017-1-val@packett.cool>
+	s=arc-20240116; t=1735156360; c=relaxed/simple;
+	bh=jpxqY2qTgsVEdyu7+bAB+CgPNnEQItGMPkbq/nKHwQE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jsNaNb24xBp2WGj2dZihLVCYNWlULVZzHAQVao9ErX5Y3W416hSu9FzLgdfyDMgW8BO4STATj/UF7w+7JBEp/Ic9c7mZCeIwfroBkE8xlqaTNxIcv09jAu6+4sxBO7KFJfSH2Iy+K4i+0ZgmNXrj8t4Q/iE0zx4h/sovNnde/sM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tQXQD-0000Jn-19; Wed, 25 Dec 2024 20:51:57 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tQXQ6-005EvM-35;
+	Wed, 25 Dec 2024 20:51:51 +0100
+Received: from pengutronix.de (2a02-8206-2430-9d00-8f68-253a-4589-f451.dynamic.ewe-ip-backbone.de [IPv6:2a02:8206:2430:9d00:8f68:253a:4589:f451])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 61711394F8A;
+	Wed, 25 Dec 2024 19:50:18 +0000 (UTC)
+Date: Wed, 25 Dec 2024 20:50:17 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
+	Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
+	Simon Horman <horms@kernel.org>
+Subject: Re: [PATCH v6 1/7] dt-bindings: can: m_can: Add wakeup properties
+Message-ID: <20241225-singing-passionate-antelope-88e154-mkl@pengutronix.de>
+References: <20241219-topic-mcan-wakeup-source-v6-12-v6-0-1356c7f7cfda@baylibre.com>
+ <20241219-topic-mcan-wakeup-source-v6-12-v6-1-1356c7f7cfda@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="srwhw2v5uya67a3g"
+Content-Disposition: inline
+In-Reply-To: <20241219-topic-mcan-wakeup-source-v6-12-v6-1-1356c7f7cfda@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add a keypad matrix node for the MT8516/MT8167 SoC.
 
-Signed-off-by: Val Packett <val@packett.cool>
----
- arch/arm64/boot/dts/mediatek/mt8516.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+--srwhw2v5uya67a3g
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 1/7] dt-bindings: can: m_can: Add wakeup properties
+MIME-Version: 1.0
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-index e30623ebac0e1..b5e753759465d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-@@ -220,6 +220,17 @@ timer: timer@10008000 {
- 			clock-names = "clk13m", "bus";
- 		};
- 
-+		keypad: keypad@10002000 {
-+			compatible = "mediatek,mt8516-keypad",
-+				     "mediatek,mt6779-keypad";
-+			reg = <0 0x10002000 0 0x1000>;
-+			wakeup-source;
-+			interrupts = <GIC_SPI 149 IRQ_TYPE_EDGE_FALLING>;
-+			clocks = <&clk26m>;
-+			clock-names = "kpd";
-+			status = "disabled";
-+		};
-+
- 		syscfg_pctl: syscfg-pctl@10005000 {
- 			compatible = "syscon";
- 			reg = <0 0x10005000 0 0x1000>;
--- 
-2.47.1
+On 19.12.2024 20:57:52, Markus Schneider-Pargmann wrote:
+> m_can can be a wakeup source on some devices. Especially on some of the
+> am62* SoCs pins, connected to m_can in the mcu, can be used to wakeup
+> the SoC.
+>=20
+> The wakeup-source property defines on which devices m_can can be used
+> for wakeup and in which power states.
+>=20
+> The pins associated with m_can have to have a special configuration to
+> be able to wakeup the SoC. This configuration is described in the wakeup
+> pinctrl state while the default state describes the default
+> configuration.
+>=20
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 
+The DTBS check fails:
+
+| $ make CHECK_DTBS=3Dy ti/k3-am625-beagleplay.dtb
+|   DTC [C] arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb
+| arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: can@4e08000: wakeup-sourc=
+e: 'oneOf' conditional failed, one must be fixed:
+|         ['suspend', 'poweroff'] is not of type 'boolean'
+|         ['suspend', 'poweroff'] is too long
+|         from schema $id: http://devicetree.org/schemas/net/can/bosch,m_ca=
+n.yaml#
+| arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: can@4e08000: wakeup-sourc=
+e: ['suspend', 'poweroff'] is not of type 'boolean'
+|         from schema $id: http://devicetree.org/schemas/wakeup-source.yaml#
+| arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: can@4e18000: wakeup-sourc=
+e: 'oneOf' conditional failed, one must be fixed:
+|         ['suspend', 'poweroff'] is not of type 'boolean'
+|         ['suspend', 'poweroff'] is too long
+|         from schema $id: http://devicetree.org/schemas/net/can/bosch,m_ca=
+n.yaml#
+| arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: can@4e18000: wakeup-sourc=
+e: ['suspend', 'poweroff'] is not of type 'boolean'
+|         from schema $id: http://devicetree.org/schemas/wakeup-source.yaml#
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--srwhw2v5uya67a3g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmdsYfYACgkQKDiiPnot
+vG8yoQf/TvollExLSNWWJR9S7tKurNCmxmlPYket9IZbscYEr9zwGB4CG9v6q/K/
+ee5jRaJ7ck8hiUEkIQpHwz8Ek+jq84GAJEQYWDjIT5dZSLwkQsZS54/Nv4wPgrbH
+3BPxTlMdkDiFHqlxSX/yOTyTbGD8sc3VU2pXx7DfFBl6C4f7bhup19guLiLosUr1
+1Nh8jnttzV2pSiG/YzsMQCuj5SuiCYnFpJnJzgUMRPSm4+WEZHlecq5BnszfWeS3
+hqZII3Wg1aCdm+CstUvAw+jIfa1InbNjtS2drU5kOsiawKcK0gzdCzQ0cBvvylaf
+bpK/ypEN0QZZxuSAkpBmm6+xF1hAyQ==
+=WQRL
+-----END PGP SIGNATURE-----
+
+--srwhw2v5uya67a3g--
 
