@@ -1,223 +1,121 @@
-Return-Path: <devicetree+bounces-133917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91689FC468
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 10:34:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF1B89FC46B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 10:35:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 247F57A1483
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 09:34:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BA151883AB0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 09:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB4814D2A2;
-	Wed, 25 Dec 2024 09:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAB43150981;
+	Wed, 25 Dec 2024 09:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="kaQs319T"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="CzvMFrhF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49237.qiye.163.com (mail-m49237.qiye.163.com [45.254.49.237])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7B0A935;
-	Wed, 25 Dec 2024 09:34:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.237
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC50A935
+	for <devicetree@vger.kernel.org>; Wed, 25 Dec 2024 09:35:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735119274; cv=none; b=DtopuQzHN8udh8qyNpW+gHNmGK8NtowRMdmyJ+S1pK22d8SFFQKTfuy8Vl4tLuEAi4xy6rIINobp/Sm20BFUduHdNXzTnZ5cX3LzUlgXkjXnosJ+Ftx7aH04qIBmzBReiU4vvbDvh2otDKfI3frQePPASz9kk09e9Co2f7ApAck=
+	t=1735119337; cv=none; b=p3l5eD16kPDF28y+dvIBzgN9sFqWv/13ZkSed8agm02dm7M3fS5/BzAXrsr5R/x2hHME3q9H8hGR0tLXF1gg8f8VLYgKDLvLjlGGr1TA5BPD1AnTPkIuT8ptMH57cG0Tyoz4VWFtC9eneOT+4L8j8Fx5gwGXz5LQBD4t81m4BYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735119274; c=relaxed/simple;
-	bh=BUaIvx5v8Pa8yaseCMKxx+JIjT3o4ecfRsjn6xaUB2E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jShLAggmcWoMLvCC+3OXPjPrWWIQfs8iI+DQKgqZSJhoqM3wp2x+NxjDRbl2Ay2gtBcDZ9Y/qQPh1HL4OaQiFnsNaEHN4QNRC0iWNK+CTZNySOdNaRFKaFFmyxKVQKYBKZYD25ascWWCEp+J3OtpF0uRJu0QYAIoARBUzuZOo1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=kaQs319T; arc=none smtp.client-ip=45.254.49.237
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 6c6e1666;
-	Wed, 25 Dec 2024 17:34:17 +0800 (GMT+08:00)
-Message-ID: <32c7ef0a-8da6-449a-8f2d-59965aa622ec@rock-chips.com>
-Date: Wed, 25 Dec 2024 17:34:17 +0800
+	s=arc-20240116; t=1735119337; c=relaxed/simple;
+	bh=qqfBQZnZKdJYvrR11UaMqbURB2C8KRdXO2UyYd632Xc=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=d4DBFLAR9OnUVJ8gq80blW2oRnClVLJQgS3wOioRxP6sPxwFb/emU4oP6aWvn/HMkGQRBTHIvTQ6WhgGc7NuCBhr6JWnIQ+lSaHUmo+pDM3f8SiVpdpCLVxwemAUT1SZXFAzIDq47/5RpwBjs6/98c3GT4e+IduHP4qMGkEpHW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=CzvMFrhF; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 14/15] arm64: dts: rockchip: Enable eDP0 display on
- RK3588S EVB1 board
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
- sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
- l.stach@pengutronix.de, andy.yan@rock-chips.com, hjc@rock-chips.com,
- algea.cao@rock-chips.com, kever.yang@rock-chips.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20241219080604.1423600-1-damon.ding@rock-chips.com>
- <20241219080604.1423600-15-damon.ding@rock-chips.com>
- <cg7bnhol4gvzji7agxazas7nkxy7zammzy67rjvhp35yqyraju@73daepsbmuae>
- <d2b47813-45fa-4148-8a4a-6cf4a18ee7ca@rock-chips.com>
- <CAA8EJpp0Smtqx7VQ5zdg9x3EhuLpk4u4vGv=rv8DHJ0rhei18w@mail.gmail.com>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <CAA8EJpp0Smtqx7VQ5zdg9x3EhuLpk4u4vGv=rv8DHJ0rhei18w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUweGVYeQk1KSx1MHR9OTEhWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a93fd2abf9b03a3kunm6c6e1666
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ODY6Ehw4NjIcNk4LOEswEgEB
-	KDhPCxJVSlVKTEhOSkpCSU5CSUhKVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFPSk1INwY+
-DKIM-Signature:a=rsa-sha256;
-	b=kaQs319TgZLgE3daBx/HJEGlYlzgtVyLFOX29FOzekUTHT2VO0cM3Rtl3ZVhJA+lzlxZk0zUL2BKuKKG4P8vmv29QCBtfzvhrskZJiATdGo4/HQ9nqRotKayLndUOxQ8Dww+D7xUD3qnxGbJptgP0wpZI0e4HT7SiKdehVWUlMg=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=pWriVfSDH2sEpg8pcOmkXvybXUKi737yhk7CRzVorzU=;
-	h=date:mime-version:subject:message-id:from;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1735119327;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fpIa73iwb0+bmyk8l/k9K8qRAzYUQwzwLHgKuu6+iTA=;
+	b=CzvMFrhFpjw048BmP5O7rSRZbXlQiIg8VslRibB+4JdDrHyzErWcVo0lXSn3HtB07hLtcV
+	5g6C+P7lxXfnnAzAvaYKYDOMGfGlwQP9PUQ+l6gZstPKnFxNzMeZRn80W1j+tUAqaLLfK6
+	OkvTKkGw1Fyt1q3TB/49hN/hKX+9j1OrjikdRewn+Rb2/Ts7Zq80m9uheG5hQv4l9O4/QA
+	Kqtar8qNCV7P1jVEZdXiFQSFdnfYeZfnhEo25zFyJ9Zepikkqdtu5e968aA72kxQ8043yb
+	xkdtt/dfPsOGQH2ykGuNonQrI2n62LUcAKyPc/1jvEreDxaSQv3ll11mcEZHNA==
+Date: Wed, 25 Dec 2024 10:35:26 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de, robh@kernel.org,
+ conor+dt@kernel.org, inindev@gmail.com, liujianfeng1994@gmail.com,
+ jonas@kwiboo.se, dmt.yashin@gmail.com, sebastian.reichel@collabora.com,
+ tim@feathertop.org, kever.yang@rock-chips.com,
+ marcin.juszkiewicz@linaro.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, michael.riesch@wolfvision.net,
+ macromorgan@hotmail.com, krzk+dt@kernel.org
+Subject: Re: [PATCH 0/3] arm64: dts: rockchip: Add Radxa ROCK 5B+ and rebase
+ Radxa ROCK 5B
+In-Reply-To: <CABjd4YxLnays9Ho0bDR0pTyz5Tjx3C=0U6bcRdQ8ntyu68VVGg@mail.gmail.com>
+References: <20241224210912.2121-1-naoki@radxa.com>
+ <CABjd4YxLnays9Ho0bDR0pTyz5Tjx3C=0U6bcRdQ8ntyu68VVGg@mail.gmail.com>
+Message-ID: <4bac4d58493cb0e7fc863095e02ffad3@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Dmitry,
+Hello Alexey and Naoki,
 
-On 2024/12/20 13:38, Dmitry Baryshkov wrote:
-> On Fri, 20 Dec 2024 at 04:38, Damon Ding <damon.ding@rock-chips.com> wrote:
->>
->> Hi Dmitry,
->>
->> On 2024/12/20 8:20, Dmitry Baryshkov wrote:
->>> On Thu, Dec 19, 2024 at 04:06:03PM +0800, Damon Ding wrote:
->>>> Add the necessary DT changes to enable eDP0 on RK3588S EVB1 board:
->>>> - Add edp-panel node
->>>> - Set pinctrl of pwm12 for backlight
->>>> - Enable edp0/hdptxphy0/vp2
->>>>
->>>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->>>>
->>>> ---
->>>>
->>>> Changes in v2:
->>>> - Remove brightness-levels and default-brightness-level properties in
->>>>     backlight node.
->>>> - Add the detail DT changes to commit message.
->>>>
->>>> Changes in v3:
->>>> - Use aux-bus instead of platform bus for edp-panel.
->>>> ---
->>>>    .../boot/dts/rockchip/rk3588s-evb1-v10.dts    | 52 +++++++++++++++++++
->>>>    1 file changed, 52 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
->>>> index bc4077575beb..9547ab18e596 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
->>>> @@ -9,6 +9,7 @@
->>>>    #include <dt-bindings/gpio/gpio.h>
->>>>    #include <dt-bindings/input/input.h>
->>>>    #include <dt-bindings/pinctrl/rockchip.h>
->>>> +#include <dt-bindings/soc/rockchip,vop2.h>
->>>>    #include <dt-bindings/usb/pd.h>
->>>>    #include "rk3588s.dtsi"
->>>>
->>>> @@ -238,6 +239,41 @@ &combphy2_psu {
->>>>       status = "okay";
->>>>    };
->>>>
->>>> +&edp0 {
->>>> +    force-hpd;
->>>> +    status = "okay";
->>>> +
->>>> +    aux-bus {
->>>> +            panel {
->>>> +                    compatible = "lg,lp079qx1-sp0v";
->>>
->>> Why do you need the particular compat string here? Can you use the
->>> generic "edp-panel" instead? What if the user swaps the panel?
->>>
->>
->> The eDP panels used in conjunction with the RK3588S EVB1 have broken
->> identification, which is one of the valid reasons for using a particular
->> compat string. So the generic_edp_panel_probe() can not return success
->> when using the "edp-panel".
+On 2024-12-25 09:32, Alexey Charkov wrote:
+> On Wed, Dec 25, 2024 at 12:22 PM FUKAUMI Naoki <naoki@radxa.com> wrote:
+>> 
+>> The Radxa ROCK 5B+ is an upgraded version of the Radxa ROCK 5B.
+>> 
+>> This patch series introduces a shared .dtsi that can be used on the
+>> new Radxa ROCK 5B+, the existing Radxa ROCK 5B, and the upcoming Radxa
+>> ROCK 5T.
+>> 
+>> This patch series includes "arm64: dts: rockchip: Add USB-C support to
+>> ROCK 5B" by Sebastian Reichel[1].
+>> 
+>> [1] 
+>> https://patchwork.kernel.org/project/linux-rockchip/patch/20241210163615.120594-1-sebastian.reichel@collabora.com/
+>> 
+>> FUKAUMI Naoki (3):
+>>   dt-bindings: arm: rockchip: Add Radxa ROCK 5B+
+>>   arm64: dts: rockchip: Add Radxa ROCK 5B+
+>>   arm64: dts: rockchip: Convert Radxa ROCK 5B to use shared .dtsi
 > 
-> Broken how? I don't see such info in the commit message.
+> This one doesn't look equivalent to the existing ROCK 5B device tree
+> after your changes (I've noticed in particular that fan cooling levels
+> are different - but that's just the part I remember well since I
+> modified it earlier, there might be more differences).
 > 
+> Would you mind rearranging the patches so that the split of ROCK 5B
+> dts into a common .dtsi and per-board .dts additions could be made
+> one-to-one equivalent without functional changes, and then add ROCK
+> 5B+ and any other required changes on top of that?
+> 
+> See what Dragan did where he prepared parent .dtsi for per-variant OPPs 
+> [1]
+> 
+> [1] 
+> https://lore.kernel.org/linux-rockchip/9ffedc0e2ca7f167d9d795b2a8f43cb9f56a653b.1717923308.git.dsimic@manjaro.org/
 
-The log related to the broken identification may be like:
+Just a brief note that I agree with Alexey's recommendation above.
+These patches should be reworked in a way that makes the transition
+to using the shared dtsi file much more obvious.
 
-[    0.623793] panel-simple-dp-aux aux-fdec0000.edp: Unknown panel ETC 
-0x0000, using conservative timings
-
-The eDP panel used in RK3588S EVB1 is indeed the LP079QX1_SP0V model, it 
-should be also reasonable to use the "lg,lp079qx1-sp0v".
-
-And I will mention all of the above in the commit message for the next 
-version.
-
->>
->>>> +                    backlight = <&backlight>;
->>>> +                    power-supply = <&vcc3v3_lcd_edp>;
->>>> +
->>>> +                    port {
->>>> +                            panel_in_edp: endpoint {
->>>> +                                    remote-endpoint = <&edp_out_panel>;
->>>> +                            };
->>>> +                    };
->>>> +            };
->>>> +    };
->>>> +};
->>>> +
->>>> +&edp0_in {
->>>> +    edp0_in_vp2: endpoint {
->>>> +            remote-endpoint = <&vp2_out_edp0>;
->>>> +    };
->>>> +};
->>>> +
->>>> +&edp0_out {
->>>> +    edp_out_panel: endpoint {
->>>> +            remote-endpoint = <&panel_in_edp>;
->>>> +    };
->>>> +};
->>>> +
->>>> +&hdptxphy0 {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>>    &i2c3 {
->>>>       status = "okay";
->>>>
->>>> @@ -399,6 +435,7 @@ usbc0_int: usbc0-int {
->>>>    };
->>>>
->>>>    &pwm12 {
->>>> +    pinctrl-0 = <&pwm12m1_pins>;
->>>>       status = "okay";
->>>>    };
->>>>
->>>> @@ -1168,3 +1205,18 @@ usbdp_phy0_dp_altmode_mux: endpoint@1 {
->>>>               };
->>>>       };
->>>>    };
->>>> +
->>>> +&vop_mmu {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&vop {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&vp2 {
->>>> +    vp2_out_edp0: endpoint@ROCKCHIP_VOP2_EP_EDP0 {
->>>> +            reg = <ROCKCHIP_VOP2_EP_EDP0>;
->>>> +            remote-endpoint = <&edp0_in_vp2>;
->>>> +    };
->>>> +};
->>>> --
->>>> 2.34.1
->>>>
-
-Best regards
-Damon
-
+Besides making these changes easier to review that way, and giving
+better chances to ensuring there are no issues that managed to slip
+through the cracks, it will also be much easier later to track down
+any possible regressions, in case they eventually are discovered.
 
