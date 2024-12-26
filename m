@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-133981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7459FC6FB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 01:39:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F9DA9FC6FE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 01:40:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AD7318826FE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 00:39:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7800162849
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 00:40:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0F9139E;
-	Thu, 26 Dec 2024 00:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34B720EB;
+	Thu, 26 Dec 2024 00:40:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="BF8ZUKmc"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Ae7hN19M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4A836C;
-	Thu, 26 Dec 2024 00:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 172B7139E;
+	Thu, 26 Dec 2024 00:40:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735173564; cv=none; b=kYoA62U813qJn/iotfBW+jicfDV4iLPvt1pnRRF/NHqAotgho2PT1NYq7YH6DleoQR/1pmLQ5kT1kcWKsts0b3thg1ylyGroJwFCKyVaXnrdNfKD6tDG1XRCj24B1p9AZa+rw/F2tJvvhJ/Uf0BjU/rCXSCHt6OkbfrHeRJ7ODc=
+	t=1735173624; cv=none; b=L0gwfsFz0YQZHqOaXW2veYoyBNUNQEC05wRkigw9CxyjyVTXwELYYZGUn4futxHUypsVqXXcHE/bsAqRpszl3kdztydEseYZVaQnLz7Cwaf1Kvo9rQMtwF2kv1G/xT1dyt4yXAYTGDa3/B96mtAIoLgGeSp66dlpT7pSfls5R0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735173564; c=relaxed/simple;
-	bh=SHDwITgKEgZd07tYanIYMyk8b7paCKDnYV75NPW17BY=;
+	s=arc-20240116; t=1735173624; c=relaxed/simple;
+	bh=AzDxw0Pt0r18i3mHjlJExSa+J4GJabojNRlJk6/AEak=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rfvAXvnl4RIP/UNiB+YdX0DM+RzpJCHrMj3S3J0OxHWqetobAEn2n3xjlbkZ9fnYhqP8k+Miq0ErvcReZfy7+4gDrn0aHmcYsu1fHn0Nd6Q5MUGWQbzh2DUziv8dCvVSn5fNY0Ba/3ggRCjmAVDizY1To7V/IE9uJBMoKZXu3/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=BF8ZUKmc; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=YUf8y6w3/0KpYsAnBYqGMBclVlCVgM8yhEtADMTvlmqtxvEj6Gs+a6A55E1Zl4gkIMPveRzKeUYeZsbNPFNV0LnamTw9LsWjnr0pgt/GWjSytDHrE42oEjxWyVbR/BOI2bSSFPrU2m6QjVI0sWBxCfjfVLbb6L1NGqyn9vG7onc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Ae7hN19M; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,34 +37,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vvqCUwKVTzYMhdJqzWkqyXvwsvG0AIMbePI763uVLm0=; b=BF8ZUKmcSGmiiBWE8iopcALx4c
-	gNQGI3iY+f7IR0v8nHOSAelarKX3GGPAIe5hl0CM+ZU+9JpsoAL/5m1O7g63WNh9Zy3ebRI98vgTa
-	+lIQwrWLABC71rGx0oyJIh75TqZU8zPUVtqpNKhhuglyLATI+vauvvBVJV/cysNufCQ56lhNYuP0y
-	WYGjqvNfA9JHNXtkUUd9iZXnn7ddNmFhNVnXcR0ONYVDRZNKZBfodMhJ77bfDipRKE43SHXkeSIBO
-	bZgt64EtNv36sYxvD/z5Jfz6Lufi1AvbID9ulD+nqTuMl//QUm12f9O1HQY9Vth0vXUOlc+QdW76q
-	7Y1b5mAQ==;
+	bh=u5llZW6P5VgqZyIbwE1Z+fO4Sf3FHIOkUoaY/KJnbH0=; b=Ae7hN19MSfO6dTUXPovA5cYOZq
+	9MIc8rqO6cHgeSvlIMy30s9SAN+gxmLlLc+poD6UgHXt4SnDx3YDBZJgIlPHoqhsyK2H4bb+U4Ktq
+	gWnZ+Vq2tCZkeSX+skuFExbd0WQPMPJfSHVND/k/bE4AEj+Kmu5kt7D1J71ThUmSO6zbyrcupkqec
+	m1hzzJdjCQlJABCweRe5k41N3Wuo2jpm0SWMYlb/3qjq3V++j0h0+S3trnpYYLDkyJtgeHj/hWOIp
+	kFD/Jrlfe1gEz0UjaeiiJFS3BplOJWiI7Jm2NCpMkogQYG7ICVfNwFfDv9OA85EEWJhNmQZmpUKvt
+	zIP729Pg==;
 Received: from i53875a54.versanet.de ([83.135.90.84] helo=phil.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tQbuL-0004LM-FN; Thu, 26 Dec 2024 01:39:21 +0100
+	id 1tQbvI-0004PD-Ex; Thu, 26 Dec 2024 01:40:20 +0100
 From: Heiko Stuebner <heiko@sntech.de>
 To: Kever Yang <kever.yang@rock-chips.com>
 Cc: linux-rockchip@lists.infradead.org,
- Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
+ Kever Yang <kever.yang@rock-chips.com>, Simon Xue <xxm@rock-chips.com>,
  Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Ulf Hansson <ulf.hansson@linaro.org>
+ Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+ Krzysztof =?utf-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ devicetree@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ linux-arm-kernel@lists.infradead.org
 Subject:
- Re: [PATCH v2 03/17] dt-bindings: mmc: rockchip-dw-mshc: Add rk3562
- compatible string
-Date: Thu, 26 Dec 2024 01:39:20 +0100
-Message-ID: <13860713.uLZWGnKmhe@phil>
-In-Reply-To: <20241224094920.3821861-4-kever.yang@rock-chips.com>
+ Re: [PATCH v2 01/17] dt-bindings: PCI: dwc: rockchip: Add rk3562 support
+Date: Thu, 26 Dec 2024 01:40:19 +0100
+Message-ID: <3522017.aeNJFYEL58@phil>
+In-Reply-To: <20241224094920.3821861-2-kever.yang@rock-chips.com>
 References:
  <20241224094920.3821861-1-kever.yang@rock-chips.com>
- <20241224094920.3821861-4-kever.yang@rock-chips.com>
+ <20241224094920.3821861-2-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,32 +77,32 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Am Dienstag, 24. Dezember 2024, 10:49:06 CET schrieb Kever Yang:
-> Add RK3588 compatible string for SD interface.
-
-	^ this still says rk3588
-
+Am Dienstag, 24. Dezember 2024, 10:49:04 CET schrieb Kever Yang:
+> rk3562 is using the same controller as rk3568.
 > 
 > Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+
 > ---
 > 
 > Changes in v2: None
 > 
->  Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
+>  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> index 06df1269f247..772f592291bf 100644
-> --- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-> @@ -38,6 +38,7 @@ properties:
->                - rockchip,rk3328-dw-mshc
->                - rockchip,rk3368-dw-mshc
->                - rockchip,rk3399-dw-mshc
-> +              - rockchip,rk3562-dw-mshc
->                - rockchip,rk3568-dw-mshc
->                - rockchip,rk3588-dw-mshc
->                - rockchip,rv1108-dw-mshc
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> index 9a464731fa4a..dce6d68865c7 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> @@ -26,6 +26,7 @@ properties:
+>        - const: rockchip,rk3568-pcie
+>        - items:
+>            - enum:
+> +              - rockchip,rk3562-pcie
+>                - rockchip,rk3576-pcie
+>                - rockchip,rk3588-pcie
+>            - const: rockchip,rk3568-pcie
 > 
 
 
