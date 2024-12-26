@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-134142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62CAF9FCCBA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 19:29:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23EEA9FCCC6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 19:30:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F30BB162C9A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:29:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED04D163126
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8C01D9A49;
-	Thu, 26 Dec 2024 18:27:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 411251DB958;
+	Thu, 26 Dec 2024 18:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tss6zVaG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F125hghx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FCDE1D95B3;
-	Thu, 26 Dec 2024 18:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FDBA1DB933;
+	Thu, 26 Dec 2024 18:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735237645; cv=none; b=IS2Wuhfwpjp959aDKVNYYhLDC33MRl67PIPDZYhZxC1erucD0xblNuKrbgcd+/7JrrC2ByvJMrY4FVv28RLvhlXr0zJc5l3dSV7M/ayyJ4krSeBJFSgCuDq80QU1fI+tueeLrBwWAl2q3zBq5Rp7qHKSzxhjiONPWfilE1AlUpo=
+	t=1735237649; cv=none; b=FFxikRra0OTK71T9Os6d0S4lfLqWDrqL/Yb/z5p+LY5zKQGG8EzVykajD+TjjX9wH0r0iaHtLcAI1EspVOxaBaYx2doPkHt/0QbNT7ZDpDff8xaN9b84lA5GcEVGXFSQACqKNOnwB023QBdsqVmZGyz2WtaJ7OYoPNSbjrdBuc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735237645; c=relaxed/simple;
-	bh=msGPvWfsO7CXVftOUMwhKvero+Hoo1ttpKtnVlXosmw=;
+	s=arc-20240116; t=1735237649; c=relaxed/simple;
+	bh=GpWvEosYE+MOeVXHv894f/KZ6FRugQ2cd6d3kLMslic=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cQUvk7SRSPNRkyvcUW9EbKsP/sAgCskvGKe86o7nZi4S7m9RaKqMX6Gh+cD56p2gLzNn7+IWl4ECFRGTsE41TkH7SuJUwwdznPoCe7N349gkSkZSJQwCp2+p1e18ZT7eVjkaHhdwmF++JWhvHMDc2762S9hGRxQR+TcUqH56IuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tss6zVaG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEA49C4CED4;
-	Thu, 26 Dec 2024 18:27:23 +0000 (UTC)
+	 MIME-Version:Content-Type; b=HhYplg1UoRNAZIT4iGW9Fx/EaEy5nprjLCTUjeO5wsn3KgFiaVOYTILi+dRKROCfd4fk1CPq5lzE0codtCjl33/csOpnfJShGfYT1BfE5XpjOxHmuVnquftTWRui6ohF0EsRV8sSg8mQz8iF96f728ov79m8Ciltniq1ntZb/yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F125hghx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF2FAC4CED7;
+	Thu, 26 Dec 2024 18:27:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735237644;
-	bh=msGPvWfsO7CXVftOUMwhKvero+Hoo1ttpKtnVlXosmw=;
+	s=k20201202; t=1735237648;
+	bh=GpWvEosYE+MOeVXHv894f/KZ6FRugQ2cd6d3kLMslic=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tss6zVaGt+sRrh8tCTdQT0C7qoOYrrIlg6fPZcH4+q/wDPpaIlzwtC6svPojKKkLW
-	 l3vWPozkGe/9x7s2ikrk06CORMQp6432v09iymR/fugPTq+NaF+63hP82fOibNOZGu
-	 scZyN/0PvUekK/c6fu/J1H+ui3j2YVJwzkW22+RRmnL9h9hGrzRU8oOnRwBEJLYV2H
-	 A/4uKc7SpgjFNM3ATYplj6BrWqJS/6AWuujPP8QDs+OQBj5cDIBWzkDs28xe6gnNfP
-	 aGi0AL7YEFii37lAJI21xnkwKIZVdmfE43zw8QqVk49MDf7xIlb9LaFqg3MJRVv0vp
-	 eqNL8K/yu8Fjw==
+	b=F125hghxBNOlXLdOwrWiCjfAsNKmEciiZ1/msGR9ulBFdZQlv7JNu2qMdQDlNr/lN
+	 4yzEMBd6JF/xSv/dKdjBqfJR4yz8nDMvMgc7S5/kCktUFCuExrBZEuH+NOrDQVkqJr
+	 zvyHxXNMBIPXWTy8LAmnIfxXo8Bjzvs7SPMYubjnPHXta/YmYFZL/xsucbUw6JBJpN
+	 cI7/p19f+LQAdt7g7jkiaq9Ib/Ii1pyOWfM+knpBDbxh5yZ/DlbZIJvFrM10UKkGh5
+	 j7g4bTgkNiiN1Pb/62ysGQfjnUMwqGewFrRJ4eJJxyIyQyAvtaa0WY7ZbRIu3fdNy0
+	 u/r3ojuTE+HQw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Viken Dadhaniya <quic_vdadhani@quicinc.com>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Use valid node names for GPI DMAs
-Date: Thu, 26 Dec 2024 12:26:42 -0600
-Message-ID: <173523761387.1412574.7197869872651859255.b4-ty@kernel.org>
+	stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm6350: Fix uart1 interconnect path
+Date: Thu, 26 Dec 2024 12:26:46 -0600
+Message-ID: <173523761376.1412574.9908609145092222648.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241107-topic-sa8775_dma-v1-1-eb633e07b007@oss.qualcomm.com>
-References: <20241107-topic-sa8775_dma-v1-1-eb633e07b007@oss.qualcomm.com>
+In-Reply-To: <20241220-sm6350-uart1-icc-v1-1-f4f10fd91adf@fairphone.com>
+References: <20241220-sm6350-uart1-icc-v1-1-f4f10fd91adf@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,20 +69,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 07 Nov 2024 22:14:23 +0100, Konrad Dybcio wrote:
-> As pointed out by Intel's robot, the node name doesn't adhere to
-> dt-bindings.
+On Fri, 20 Dec 2024 09:59:50 +0100, Luca Weiss wrote:
+> The path MASTER_QUP_0 to SLAVE_EBI_CH0 would be qup-memory path and not
+> qup-config. Since the qup-memory path is not part of the qcom,geni-uart
+> bindings, just replace that path with the correct path for qup-config.
 > 
-> Fix errors like this one:
 > 
-> qcs9100-ride.dtb: qcom,gpi-dma@800000: $nodename:0: 'qcom,gpi-dma@800000' does not match '^dma-controller(@.*)?$'
-> 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sa8775p: Use valid node names for GPI DMAs
-      commit: 86348c7587f556d3f0a3f117c3f5b91a69c39df6
+[1/1] arm64: dts: qcom: sm6350: Fix uart1 interconnect path
+      commit: be2f81eaa2c8e81d3de5b73dca5e133f63384cb3
 
 Best regards,
 -- 
