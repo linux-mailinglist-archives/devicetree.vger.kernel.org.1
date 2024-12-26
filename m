@@ -1,260 +1,159 @@
-Return-Path: <devicetree+bounces-134110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07479FCB99
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 16:32:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E6D9FCBB4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 16:57:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C35A162662
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 15:32:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 714BD162642
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 15:56:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFDB812F375;
-	Thu, 26 Dec 2024 15:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631A254279;
+	Thu, 26 Dec 2024 15:56:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="DK6w7lm3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UWMXLheL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C26D912C475;
-	Thu, 26 Dec 2024 15:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F1712E5B;
+	Thu, 26 Dec 2024 15:56:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735227141; cv=none; b=N44BT82vHBN82w3RaAS2s0+g91Lxql7aeZrxlgCk6jIiMWZ6szL1DG5gJfDK56aq/To81T0MbuBcNrYEHrwTzqBu5t/ic5k25HHnf+45uOUKETM4JrLnYu8pvrL8wTPtm97Kdb8OanyUQCuOKY+3N+OCQQWZjr9OLGXPAxLO1SA=
+	t=1735228602; cv=none; b=fyvQLhjzu+reuNllT2y9ogJZgbhanUvIdd5KpC/L1oVjhG9ly2YNJRGx2mJAEHdA0YPZ1ix1qzIa5bG0J35rBp0RAlCrn4EtqpyhgUbWTORQW9nW2rWrfFqBPlZP/sByMEwNZxvxvHfE75hw/HNN+1GD+zAbM92IQmm5G+zW0RI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735227141; c=relaxed/simple;
-	bh=G7FkfJM0ZFeH0jGDNkqh2vLmqKFJDBp57Re9vGTNVm4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pql5Y2K/tUquyEmjI0xmiiF+XL5AiTiQ1XkdlQ6sB10zalBc6j1wddsnb2cvzpJwJNuDKorbe0KQfGCfR1EMkwWUoRARJ04K5DjIYq9WduG+MuBaNUo622rCkeiv20w/3roTI6RhkowCeTO1SjAI/W/DDfJuMxTa9nedHntIZdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=DK6w7lm3; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EBD41104858B5;
-	Thu, 26 Dec 2024 16:32:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1735227137;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kKmoFE3dk1ZqBnU4d3e0plkYhv+Qub5uMFmN5vpUg0Q=;
-	b=DK6w7lm3WAmu6qYjMA6qq706PteRm01au4oTAGPIEJMGOz2V6s31I7AZdopX6ZBvx880fM
-	WyK2kUic1BRqDObxZRYvq54xzHZPF55aOxbimkitZb426+Igi6x5myHrrkCbWI8bINHcF0
-	moeM9RxHxZXj3vvceJ+uLbp1+x3vjvYn0iGZf7MiV4jCIf/mLJa/pZ/IOG16n3EoIdoyQM
-	NjglJR8y1qJwo29LHPQz9VL63d0LZq2cnyv/HVKIRYHKNjdF/65Yedyir3vv0GzY1HNyjT
-	miIa15vMcd7Oi15AcC/2UCpbvO2xxenk2NHjDdI90mM0b3fRd5WYm5x5BSKU4Q==
-From: Marek Vasut <marex@denx.de>
-To: linux-clk@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Michael Walle <michael@walle.cc>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Shengjiu Wang <shengjiu.wang@gmail.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Takashi Iwai <tiwai@suse.com>,
-	Xiubo Li <Xiubo.Lee@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: [PATCH 4/4] clk: fsl-sai: Add MCLK generation support
-Date: Thu, 26 Dec 2024 16:30:30 +0100
-Message-ID: <20241226153155.36351-4-marex@denx.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241226153155.36351-1-marex@denx.de>
-References: <20241226153155.36351-1-marex@denx.de>
+	s=arc-20240116; t=1735228602; c=relaxed/simple;
+	bh=EUYudVfdl1UvskIhgud++JbK868PfNKxrtqKcQKqNgM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D7x37+ARqiQd2JcJoxLlPxS2vjLPUWOI5pYY5dLTkgXmSDOLxD1sEvfdbyooHUadDV3jX6PrXEpbzOwwfgmgszIWGlL1NndIk170Hf25qz9vnrd1yQRV8LH6NCqPWssUJNWXhxO616HFyngE/cQsTugMrcYZMNuS7Hm2RpX0K9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UWMXLheL; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BQADbHr030599;
+	Thu, 26 Dec 2024 15:56:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+aYWXD/NpuSmJc7G7ZROW8aJWLf0BsoKjncZWj8tSe8=; b=UWMXLheL5ubJ6TmQ
+	ljxA6pveONzOFZbFQx+pwvOyaiIakMTFe9SWQkhGrSX0998MNlZPh4bKh9NB7BDF
+	Y+//kiWCQvZrL/ckxaS0C3BJGQJ9PAQtzccYinYrKD9IdKrUNRR/I/mhAuHAvgxL
+	vMjOiYyH0tdGrJTt6k0/J/hAUg89MpkKJYC2PFaH/eYCJ+6zv1ivhen1RT4BPr3K
+	pMCuXMMNHSq1kQVWrSqQKT35Su2NjZJYxWX89JMf0erIdBgcj0mINXa12bOS4aFA
+	7LOrUVTC/yGHIvrjbRsgFMC/4LrATIjkqltajfcoeb7+w402vtHWujDYimAJ3gz7
+	ZU1sFw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43s5731jge-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 15:56:36 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BQFuZPR030521
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 15:56:35 GMT
+Received: from [10.216.0.11] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 26 Dec
+ 2024 07:56:30 -0800
+Message-ID: <91f23c5d-0bc1-49e4-9b7a-85120732326f@quicinc.com>
+Date: Thu, 26 Dec 2024 21:26:16 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V6 3/4] dt-bindings: interconnect: Add generic compatible
+ qcom,epss-l3-perf
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>, Rob Herring <robh@kernel.org>
+CC: Georgi Djakov <djakov@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Odelu Kukatla
+	<quic_okukatla@quicinc.com>,
+        Mike Tipton <quic_mdtipton@quicinc.com>,
+        "Sibi
+ Sankar" <quic_sibis@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241125174511.45-1-quic_rlaggysh@quicinc.com>
+ <20241125174511.45-4-quic_rlaggysh@quicinc.com>
+ <20241127142304.GA3443205-robh@kernel.org>
+ <zchtx32wtii2mzy2pp4lp4gdaim7w56kih7jcqes4tyhu24r3n@dagazlsdgdcv>
+ <0ba0f4af-5075-4bb1-a7f6-815ef95bbda7@kernel.org>
+ <538761B6-5C8D-4600-AB9E-687F91B855FF@linaro.org>
+ <fff1a05c-5e7c-451d-9b08-4e835d6ab131@kernel.org>
+ <CD9BA30C-C38F-4F3B-9823-B8F5B4160BC6@linaro.org>
+Content-Language: en-US
+From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+In-Reply-To: <CD9BA30C-C38F-4F3B-9823-B8F5B4160BC6@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: byg3dUsB_ctoAqySPtXriAyy5DAL2bZo
+X-Proofpoint-ORIG-GUID: byg3dUsB_ctoAqySPtXriAyy5DAL2bZo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 adultscore=0
+ phishscore=0 clxscore=1015 bulkscore=0 impostorscore=0 spamscore=0
+ mlxscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412260141
 
-The driver currently supports generating BCLK. There are systems which
-require generation of MCLK instead. Register new MCLK clock and handle
-clock-cells = <1> to differentiate between BCLK and MCLK. In case of a
-legacy system with clock-cells = <0>, the driver behaves as before, i.e.
-always returns BCLK.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Jaroslav Kysela <perex@perex.cz>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Michael Walle <michael@walle.cc>
-Cc: Nicolin Chen <nicoleotsuka@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: Takashi Iwai <tiwai@suse.com>
-Cc: Xiubo Li <Xiubo.Lee@gmail.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-clk@vger.kernel.org
-Cc: linux-sound@vger.kernel.org
----
- drivers/clk/clk-fsl-sai.c | 81 ++++++++++++++++++++++++++++++++-------
- 1 file changed, 67 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/clk/clk-fsl-sai.c b/drivers/clk/clk-fsl-sai.c
-index 628e53a3a26fa..0f8e2f2662d87 100644
---- a/drivers/clk/clk-fsl-sai.c
-+++ b/drivers/clk/clk-fsl-sai.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/module.h>
- #include <linux/platform_device.h>
-+#include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/err.h>
- #include <linux/of.h>
-@@ -15,27 +16,44 @@
- 
- #define I2S_CSR		0x00
- #define I2S_CR2		0x08
-+#define I2S_MCR		0x100
- #define CSR_BCE_BIT	28
-+#define CSR_TE_BIT	31
- #define CR2_BCD		BIT(24)
- #define CR2_DIV_SHIFT	0
- #define CR2_DIV_WIDTH	8
-+#define MCR_MOE		BIT(30)
- 
- struct fsl_sai_clk {
--	struct clk_divider div;
--	struct clk_gate gate;
-+	struct clk_divider bclk_div;
-+	struct clk_divider mclk_div;
-+	struct clk_gate bclk_gate;
-+	struct clk_gate mclk_gate;
-+	struct clk_hw *bclk_hw;
-+	struct clk_hw *mclk_hw;
- 	spinlock_t lock;
- };
- 
- struct fsl_sai_data {
- 	unsigned int	offset;	/* Register offset */
-+	bool		have_mclk; /* Have MCLK control */
- };
- 
-+static struct clk_hw *
-+fsl_sai_of_clk_get(struct of_phandle_args *clkspec, void *data)
-+{
-+	struct fsl_sai_clk *sai_clk = data;
-+
-+	return clkspec->args[0] ? sai_clk->mclk_hw : sai_clk->bclk_hw;
-+}
-+
- static int fsl_sai_clk_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	const struct fsl_sai_data *data = device_get_match_data(dev);
--	struct fsl_sai_clk *sai_clk;
- 	struct clk_parent_data pdata = { .index = 0 };
-+	struct fsl_sai_clk *sai_clk;
-+	struct clk *clk_bus;
- 	void __iomem *base;
- 	struct clk_hw *hw;
- 
-@@ -47,39 +65,74 @@ static int fsl_sai_clk_probe(struct platform_device *pdev)
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
- 
-+	clk_bus = devm_clk_get_enabled(dev, "bus");
-+	if (IS_ERR(clk_bus))
-+		return PTR_ERR(clk_bus);
-+
- 	spin_lock_init(&sai_clk->lock);
- 
--	sai_clk->gate.reg = base + data->offset + I2S_CSR;
--	sai_clk->gate.bit_idx = CSR_BCE_BIT;
--	sai_clk->gate.lock = &sai_clk->lock;
-+	sai_clk->bclk_gate.reg = base + data->offset + I2S_CSR;
-+	sai_clk->bclk_gate.bit_idx = CSR_BCE_BIT;
-+	sai_clk->bclk_gate.lock = &sai_clk->lock;
- 
--	sai_clk->div.reg = base + data->offset + I2S_CR2;
--	sai_clk->div.shift = CR2_DIV_SHIFT;
--	sai_clk->div.width = CR2_DIV_WIDTH;
--	sai_clk->div.lock = &sai_clk->lock;
-+	sai_clk->bclk_div.reg = base + data->offset + I2S_CR2;
-+	sai_clk->bclk_div.shift = CR2_DIV_SHIFT;
-+	sai_clk->bclk_div.width = CR2_DIV_WIDTH;
-+	sai_clk->bclk_div.lock = &sai_clk->lock;
- 
- 	/* set clock direction, we are the BCLK master */
- 	writel(CR2_BCD, base + data->offset + I2S_CR2);
- 
--	hw = devm_clk_hw_register_composite_pdata(dev, dev->of_node->name,
-+	hw = devm_clk_hw_register_composite_pdata(dev, "BCLK",
- 						  &pdata, 1, NULL, NULL,
--						  &sai_clk->div.hw,
-+						  &sai_clk->bclk_div.hw,
- 						  &clk_divider_ops,
--						  &sai_clk->gate.hw,
-+						  &sai_clk->bclk_gate.hw,
- 						  &clk_gate_ops,
- 						  CLK_SET_RATE_GATE);
- 	if (IS_ERR(hw))
- 		return PTR_ERR(hw);
- 
--	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, hw);
-+	sai_clk->bclk_hw = hw;
-+
-+	if (data->have_mclk) {
-+		sai_clk->mclk_gate.reg = base + data->offset + I2S_CSR;
-+		sai_clk->mclk_gate.bit_idx = CSR_TE_BIT;
-+		sai_clk->mclk_gate.lock = &sai_clk->lock;
-+
-+		sai_clk->mclk_div.reg = base + I2S_MCR;
-+		sai_clk->mclk_div.shift = CR2_DIV_SHIFT;
-+		sai_clk->mclk_div.width = CR2_DIV_WIDTH;
-+		sai_clk->mclk_div.lock = &sai_clk->lock;
-+
-+		pdata.index = 1; /* MCLK1 */
-+		hw = devm_clk_hw_register_composite_pdata(dev, "MCLK",
-+							  &pdata, 1, NULL, NULL,
-+							  &sai_clk->mclk_div.hw,
-+							  &clk_divider_ops,
-+							  &sai_clk->mclk_gate.hw,
-+							  &clk_gate_ops,
-+							  CLK_SET_RATE_GATE);
-+		if (IS_ERR(hw))
-+			return PTR_ERR(hw);
-+
-+		sai_clk->mclk_hw = hw;
-+
-+		/* set clock direction, we are the MCLK output */
-+		writel(MCR_MOE, base + I2S_MCR);
-+	}
-+
-+	return devm_of_clk_add_hw_provider(dev, fsl_sai_of_clk_get, sai_clk);
- }
- 
- static const struct fsl_sai_data fsl_sai_vf610_data = {
- 	.offset	= 0,
-+	.have_mclk = false,
- };
- 
- static const struct fsl_sai_data fsl_sai_imx8mq_data = {
- 	.offset	= 8,
-+	.have_mclk = true,
- };
- 
- static const struct of_device_id of_fsl_sai_clk_ids[] = {
--- 
-2.45.2
+On 11/28/2024 1:15 AM, Dmitry Baryshkov wrote:
+> On 27 November 2024 21:22:02 EET, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On 27/11/2024 19:49, Dmitry Baryshkov wrote:
+>>> On 27 November 2024 20:27:27 EET, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>> On 27/11/2024 17:53, Dmitry Baryshkov wrote:
+>>>>> On Wed, Nov 27, 2024 at 08:23:04AM -0600, Rob Herring wrote:
+>>>>>> On Mon, Nov 25, 2024 at 05:45:10PM +0000, Raviteja Laggyshetty wrote:
+>>>>>>> EPSS instance on sc7280, sm8250 SoCs, use PERF_STATE register instead of
+>>>>>>> REG_L3_VOTE to scale L3 clocks, hence adding a new generic compatible
+>>>>>>> "qcom,epss-l3-perf" for these targets.
+>>>>>>
+>>>>>> Is this a h/w difference from prior blocks or you just want to use B 
+>>>>>> instead of A while the h/w has both A and B? The latter sounds like 
+>>>>>> driver policy.
+>>>>>>
+>>>>>> It is also an ABI break for s/w that didn't understand 
+>>>>>> qcom,epss-l3-perf.
+>>>>>
+>>>>> As the bindings keep old compatible strings in addition to the new
+>>>>> qcom,epss-l3-perf, where is the ABI break? Old SW will use old entries,
+>>>>> newer can use either of those.
+>>>> No, this change drops qcom,epss-l3 and adds new fallback. How old
+>>>> software can work in such case? It's broken.
+>>>
+>>> Oh, I see. We had a platform-specific overrides for those two. Then I think we should completely drop the new qcom,epss-l3-perf idea and follow the sm8250 / sc7280 example. This means compatible = "qcom,sa8775p-perf", "qcom,epss-l3". 
+>>
+>> It depends for example whether epss-l3 is valid at all. ABI is not
+>> broken if nothing was working in the first place, assuming it is
+>> explained in commit msg (not the case here).
+> 
+> Judging by the current schema, epss-l3 is defined as new HW block of aka not OSM L3, no matter which register is used for programming.
+> 
+
+I am going to remove the newly added "qcom,epss-l3-perf" compatible and
+add target specific compatible "qcom,sa8775p-epss-l3" along with
+existing generic "qcom,epss-l3" compatible.
+> 
+>>
+>> Best regards,
+>> Krzysztof
+> 
 
 
