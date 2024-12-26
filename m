@@ -1,108 +1,131 @@
-Return-Path: <devicetree+bounces-133977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-133978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 796329FC6BB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 23:59:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C82AE9FC6F3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 01:35:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EAD8162BB8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2024 22:59:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5280018826D9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 00:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A1C31A8F6B;
-	Wed, 25 Dec 2024 22:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB58139E;
+	Thu, 26 Dec 2024 00:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XahO4jNI"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zcexjbNi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ADC01BC3F;
-	Wed, 25 Dec 2024 22:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8700B2F36;
+	Thu, 26 Dec 2024 00:35:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735167565; cv=none; b=oTl59wkhgl+p1woBXz1KONoET+47oQxlW9zWgaNTzRcKbwDsNkUSomnQCi8mRqsJrS4eiSGAlSX1S6pYuq+DaA7JLUORVqOQeDUs8iJ6ODUlYa6uY4APl+h/U+Sn6edX153nZoSq8uKAi62sm3NzEmaVzQ64cXZV6eU4E5CFeS0=
+	t=1735173346; cv=none; b=PHGDzDLzNU+u3+2b6fz2OVeHsZBsrku0gfZTeYSf4Idq7TOQ9OptXSUtwO9HKbclQeJze7Z+WgmtFdjEVJl0g6f9nhRqe04b70r+brWt2w1/hIGmgs+ULs8Am66y3fVvO0Fb0aOOvJBTIsQT8MI8KO9f6THPg/U9ZIwtH5dVczM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735167565; c=relaxed/simple;
-	bh=1wNj/IVbA4Di3bccZAqMUVRlHal4Sy0QkfLVEqVzyew=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GMlyXSy6VhHjoBnqn6eZB1fnsScBJxihaJiImxblAnF9nPwcvAen+DEmXYKbna2/Qvqr++Fz/u1yAUG4mJU4pzhk82x1bwvBkWxLrXoRR92gXueKNikxlD5Xlfd3a80La3j57WI0pFtC+rfRFZM1DIwlhy3EIHjrP8PHQgwbUOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XahO4jNI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61D30C4CECD;
-	Wed, 25 Dec 2024 22:59:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735167564;
-	bh=1wNj/IVbA4Di3bccZAqMUVRlHal4Sy0QkfLVEqVzyew=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XahO4jNIq/4cyWj9bfxRnwgWOpJoYWtmJ2EwJYJa1czF1QzSPC81zo+/xMgMjH84S
-	 P2S2z7ZIxMbJcXYaVUGQRcgr64SzQb/Pv554A9pKU9f7aJIGSjXjRzuc1MW2Sf8Kem
-	 zaSFplJFo3RPdZ2mTNvtojwfZSqaEASp/luHU/ZhtVP+86XrQUb/j5omCMPjB8jtbx
-	 UGpsU46m4Tyf1F/7gQyXcX2EfV/ruLWnTf/8e6c0rN0rNahTR0qp0oMBK9v47EEHn4
-	 uj7+Eeevbvj5iqPXdElR+WM4D8ESsXn/Nq5WtoduX4A5Ifi5x5kPwqtG71YvgNh63X
-	 jVmiyN2HzlXaw==
-Date: Wed, 25 Dec 2024 23:59:20 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] i2c: exynos5: Add support for Exynos8895 SoC
-Message-ID: <djpcvn7von4rizjucplqwxlmpuaemrl7x3jsbqmojgzhybfu6o@n6l3dmtjy7jy>
-References: <20241221151937.1659139-1-ivo.ivanov.ivanov1@gmail.com>
- <20241221151937.1659139-3-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1735173346; c=relaxed/simple;
+	bh=dS/ZYu3PbfSbHlXUchVIhSAI21XQIwvZ0P+gfKlo6OI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qlNIRUufaWHjTZpB/qi85/OPE9q9N/mndmUjTiv7yVeGDEq6Am6isNc7aDOMNYTQ09/szJ2QtjqqSPX30UiUy4LL0U3uyEWK7jyLGfornh2wE+17xiVq64v1AzfiQ31Aw2WCFhJWIbO6LC0gcns1dJd42i0+wQyRpTJLfH5Ul6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zcexjbNi; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=XnjTBP16KGtGJBYXoy8uXq0dzk6OV5wbB39xpaT3xNQ=; b=zcexjbNiaR48aL+tug/mQWM3SR
+	eFibOXzfr4kBn1a+X8IHhAmJVWhBnlODLtV7LgWJ7ZZTcTIilPhtHhPdeTY8ISH/e59qtjAh5bRVt
+	+YwOD4nGqn82HHzxEXZXkItK58gMUN9nhNxoQgxhOoI6riePWpn6qjaRao8elbfiC0Wikl35SDRfy
+	CqG5GSLGNBZ4jOrJHcwlYcUtNUe/4fZd5bDxSz5Awo0HtS8KDMWho0tnVWQ+PpLn2mDJe7wbHMnmT
+	3do3z1uaZPg0RyTTVFGeNAfwVOz+87p5X7N2jZp38AEQtZVBvecLxGz+hVEYpEHgVr+RcJRYjrCDM
+	ikfipWMw==;
+Received: from i53875a54.versanet.de ([83.135.90.84] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tQbqc-0004Gf-SL; Thu, 26 Dec 2024 01:35:30 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: linux-rockchip@lists.infradead.org,
+ Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Jisheng Zhang <jszhang@kernel.org>, linux-mmc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v2 02/17] dt-bindings: mmc: Add support for rk3562 eMMC
+Date: Thu, 26 Dec 2024 01:35:29 +0100
+Message-ID: <5169773.31r3eYUQgx@phil>
+In-Reply-To: <20241224094920.3821861-3-kever.yang@rock-chips.com>
+References:
+ <20241224094920.3821861-1-kever.yang@rock-chips.com>
+ <20241224094920.3821861-3-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241221151937.1659139-3-ivo.ivanov.ivanov1@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Ivaylo,
+Hi Kever,
 
-On Sat, Dec 21, 2024 at 05:19:37PM +0200, Ivaylo Ivanov wrote:
-> Exynos8895 functioning logic mostly follows I2C_TYPE_EXYNOS7, but timing
-> and temp calculations are slightly changed according to the following
-
-/changed/different/
-
-> logic:
+Am Dienstag, 24. Dezember 2024, 10:49:05 CET schrieb Kever Yang:
+> rk3562 is using the same controller as rk3588.
 > 
-> FPCLK / FI2C = (CLK_DIV + 1) * (TSCLK_L + TSCLK_H + 2) + 2 *
-> ((FLT_CYCLE + 3) - (FLT_CYCLE + 3) % (CLK_DIV + 1))
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> ---
 > 
-> temp := (FPCLK / FI2C) - (FLT_CYCLE + 3) * 2
+> Changes in v2: None
 > 
+>  .../devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml      | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> index c3d5e0230af1..33f4288ff879 100644
+> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> @@ -14,16 +14,19 @@ properties:
+>    compatible:
+>      oneOf:
 
-...
+oneOf means what the naming suggests, the compatible needs to
+either follow the "items", the old one means:
+	"rockchip,rk3576-dwcmshc", "rockchip,rk3588-dwcmshc"
+or the enum below, which means "one" element from the enum
+list.
 
-> @@ -352,11 +369,19 @@ static int exynos5_i2c_set_timing(struct exynos5_i2c *i2c, bool hs_timings)
->  	 *
->  	 */
->  	t_ftl_cycle = (readl(i2c->regs + HSI2C_CONF) >> 16) & 0x7;
-> -	temp = clkin / op_clk - 8 - t_ftl_cycle;
-> +	if (i2c->variant->hw == I2C_TYPE_EXYNOS8895)
-> +		temp = clkin / op_clk - (t_ftl_cycle + 3) * 2;
-> +	else
-> +		temp = clkin / op_clk - 8 - t_ftl_cycle;
->  	if (i2c->variant->hw != I2C_TYPE_EXYNOS7)
->  		temp -= t_ftl_cycle;
+>        - items:
+> -          - const: rockchip,rk3576-dwcmshc
+> +          - const: rockchip,rk3568-dwcmshc
+>            - const: rockchip,rk3588-dwcmshc
 
-Could you please make this:
+That means, both the rk3568 and rk3588 entries in the enum below need
+to stay, as they represent the single-value compatibles and the items
+above should definitly not mention the rk3568, but instead be modified
+to just include the rk3562. So just modify the items above to include it:
 
-	if (i2c->variant->hw == I2C_TYPE_EXYNOS8895)
-		...
-	else if (i2c->variant->hw == I2C_TYPE_EXYNOS7)
-		...
-	else
-		...
+     - items:
+         - enum:
+             - rockchip,rk3562-dwcmshc
+             - rockchip,rk3576-dwcmshc
+         - const: rockchip,rk3588-dwcmshc
 
-For a better clarity.
+>        - enum:
+> -          - rockchip,rk3568-dwcmshc
+> -          - rockchip,rk3588-dwcmshc
+>            - snps,dwcmshc-sdhci
+>            - sophgo,cv1800b-dwcmshc
+>            - sophgo,sg2002-dwcmshc
+>            - sophgo,sg2042-dwcmshc
+>            - thead,th1520-dwcmshc
 
-Thanks,
-Andi
+
+Heiko
+
+
 
