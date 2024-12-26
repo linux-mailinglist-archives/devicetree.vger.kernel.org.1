@@ -1,121 +1,193 @@
-Return-Path: <devicetree+bounces-134123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ADA79FCC66
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:21:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A972B9FCC6B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:29:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3449162B82
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 17:21:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1822D1882DBC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 17:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D291386DA;
-	Thu, 26 Dec 2024 17:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34291145348;
+	Thu, 26 Dec 2024 17:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qAkkU0uX"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="0Owm/Hcu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF082AEE0;
-	Thu, 26 Dec 2024 17:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C67713B7A1
+	for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 17:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735233685; cv=none; b=VNGTxvME0Yl/iH5FzDz94aY1UC5N2ltAhzuvvqpz+oP96+onOckYNf5MLjhY4zvbHa1+QjlNyCMWrMp+WCjXNV/tPiuMDcpbHt2EXru55jtGCW3S2qeAwDrD+sTgLfWtVTeGdDtDQEOnYA9GY4c1Y9kl3RggWXd06Y43X/8fr+o=
+	t=1735234133; cv=none; b=fpuiaY7uh5+FOhKCM0EIGjniMRB+RAb4U2wMySBHv3rQasUojcww0RmLvlfzF0c4qulWScKc46f0/IZYqZmJUwrIhiKKaYweAPXxBaLbY5NNbLZ6X122JAq8yUSpM2qH0Zqkz4gKePeXj0n1NYKMRATzxcZMDzqzHbsFzPIWPdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735233685; c=relaxed/simple;
-	bh=5kZVBKaaxLNmw0g83FKHMa65Cp3iex2kCA+OMNcKW/4=;
+	s=arc-20240116; t=1735234133; c=relaxed/simple;
+	bh=E13a9HFey797Y+DFAx0KL1ZPpzzo0Vwzz0tfAjklBIU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b348eUpQtZPQDR+QV5FMbtT9R8JKzZDvQglXtSu5XQsN61U3gAGB4BGM+aCmYwEXIdlA13wEHeewty+UAhdw0CmngCGqvINQW8lGxQ9UeiYB63RNnh0NVT8tpnjOGd6iTasiP8prSp0qx4igiZOp2mRaeQHNSDVpXU/2Dfbf+2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qAkkU0uX; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=5N+wx0Qk5TqbeXwXzSz+Fa7T6lAtBAss99O2QCq8s3Q=; b=qAkkU0uXstPl9370wu/aPWwF6F
-	n7bPhHYuNGdw+aYgEPOqMZ6AUjgUqd41KmjtMYBxSJ1NNoQv5QKIy4f6qG2ZkzraAaL9zVwLBZY4B
-	CFhkBjr/xoKQ7gbEHQ6tOCXJ6ohc1T1CSOZOYA5ocqJNarZTb7di/ofgClcbRHAsxi9o=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tQrXk-00GQ7T-3M; Thu, 26 Dec 2024 18:21:04 +0100
-Date: Thu, 26 Dec 2024 18:21:04 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Yijie Yang <quic_yijiyang@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=fgf8BQQbJ0e9z99Nme+SOp3MoCuQj+QSGY0fZ+MWZxjVBy5pWl7m88Uy9xIXBtyg0UAaQ78ZGsRKruOtWCX/LbOXXEcFFqjuu9ajEboCup+SuqMz9MC6lhrC6BoyiFuRyyMn1cDcR0hQtk1CT+ANT/WVdZmpIWKnn2+L/lRvjvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=0Owm/Hcu; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-216281bc30fso90025975ad.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 09:28:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1735234131; x=1735838931; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MZM4CEUh2HGYEJA81GK95AB62iIhj0se6/I95TBn3+Q=;
+        b=0Owm/Hcu7bjnYuz098HKYwzySiwVoB4Ddu4QmHMTC9/waujSc9QAR1+fBOhQ8x04mM
+         oYldSU8xdKdiRC+Bk19V8wSANKIVsTd6Gof/uni8ekJ5ZxS5ok+DZYQxjBlwiiYx6vX2
+         6xfKnK9tmi+sGflzCrejXQXHbp42O+kTOPbjtcUHyCZYq4wqsE7dgBEL8JVMBY2i3LPv
+         3rs+X7oyDm91HCJk0YAsEQeC+bUE6bT3eFtLHPoU5bLkdwTaLJMNrmIgJHchq5WbHCoV
+         F9Y+PZ5d1vSqSNYk4aSAY5PgTvFE8f5rgI5Sg+BIULz2MyEYSkH5nAyfyms0EcJOAHmi
+         fzaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735234131; x=1735838931;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MZM4CEUh2HGYEJA81GK95AB62iIhj0se6/I95TBn3+Q=;
+        b=mvnXDKvOnugMlQFIhPhwEHhlK85rQqV6iEtis9gOeWghXScBa869RhGgRwILBGntei
+         UMmBcLb2LckEhJAKj9llw8iA5H+bTq+P2ZXepYOLv6LusmNqBBruad923YgPPHV/nmrl
+         2G+kuwSuJ2XO8fitoVeApsseeeFdEHRcby0ZNRUis5btFA+szY4FGR3TBx0lRy2jIb7h
+         8dvwrNFhvNSBPXdbgn9dpkMFS/lE9XCSVLJv9BTcaSN/GogSWGp+S2Oazgbjm6a1yxpF
+         BNa2+DpNOM4EHV9f45bjaSmY3l7S1B+wf5Z+jQ7uBD3DbaYAn+ZyLf0Qk3JBuGCOpCxw
+         4yug==
+X-Forwarded-Encrypted: i=1; AJvYcCV6Sy2vbs4bpSLoQOsIAVS35I/RcCeFeO66FPxuWjcT8EqKUQ/xE7xXPtYmcQK36MuSw2wGd0ysPDfT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4RXHVac7xHU375TC9ivV3TG5a964/bb28oLb0Jx5J2MfzXziZ
+	L35ChBt3OfRNiBwcvsF22XcCbRHn+gjQ8Pf+A+C+Z0CoSceme82N2daGUnT3aA==
+X-Gm-Gg: ASbGncuX45f8nUngo9XZAOyJ/LUM7T4Anae5YR4lwWQD0UR9MawxdxDWNWec7MWCPOe
+	Ud2jCsBQTPykUI3y9QfSLLElxOD4/NPA9rCBKLMfiQTcp7Dd74WEqx1fiOb90iC/FXEZ1DBO3SB
+	3EYaVJTejH7sFDByqghIWEySK1SL7bSRVMrL3TojsG9f6K4Ft4z2oYg7Mu/27I17pVplPcEP6Mg
+	1dEx8Psc7cois/9dVOJ7BmtJz+/prkrhiGcMQnfojZW8uul+9jXmgMIsAO08LwmqaEekaFT1qA+
+	HLJy0jZhpkDweu/k7D8sszG+
+X-Google-Smtp-Source: AGHT+IFBYpPcdLPqV6zNyGAlMP+fcIVUdggCbxsnyGgouqIm8mTzus1DxDfWnUwkq2+QguJv2z5GcA==
+X-Received: by 2002:a17:902:d502:b0:215:94eb:adb6 with SMTP id d9443c01a7336-219e6f2605emr383250035ad.40.1735234130575;
+        Thu, 26 Dec 2024 09:28:50 -0800 (PST)
+Received: from google.com (123.65.230.35.bc.googleusercontent.com. [35.230.65.123])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc962c05sm122006295ad.43.2024.12.26.09.28.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Dec 2024 09:28:50 -0800 (PST)
+Date: Thu, 26 Dec 2024 09:28:46 -0800
+From: William McVicker <willmcvicker@google.com>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] net: stmmac: qcom-ethqos: Enable RX programmable
- swap on qcs615
-Message-ID: <e47f3b5c-9efa-4b71-b854-3a5124af06d7@lunn.ch>
-References: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
- <20241225-support_10m100m-v1-2-4b52ef48b488@quicinc.com>
- <4b4ef1c1-a20b-4b65-ad37-b9aabe074ae1@kernel.org>
- <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Sam Protsenko <semen.protsenko@linaro.org>,
+	Roy Luo <royluo@google.com>, kernel-team@android.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 0/7] USB31DRD phy updates for Google Tensor gs101
+ (orientation & DWC3 rpm)
+Message-ID: <Z22STiGYnLdSkNnW@google.com>
+References: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
 
-On Thu, Dec 26, 2024 at 10:29:45AM +0800, Yijie Yang wrote:
+On 12/06/2024, André Draszik wrote:
+> Hi,
 > 
+> This series enables USB3 Type-C lane orientation detection and
+> configuration on platforms that support this (Google gs101), and it
+> also allows the DWC3 core to enter runtime suspend even when UDC is
+> active.
 > 
-> On 2024-12-25 19:37, Krzysztof Kozlowski wrote:
-> > On 25/12/2024 11:04, Yijie Yang wrote:
-> > 
-> > >   static int qcom_ethqos_probe(struct platform_device *pdev)
-> > >   {
-> > > -	struct device_node *np = pdev->dev.of_node;
-> > > +	struct device_node *np = pdev->dev.of_node, *root;
-> > >   	const struct ethqos_emac_driver_data *data;
-> > >   	struct plat_stmmacenet_data *plat_dat;
-> > >   	struct stmmac_resources stmmac_res;
-> > > @@ -810,6 +805,15 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
-> > >   	ret = of_get_phy_mode(np, &ethqos->phy_mode);
-> > >   	if (ret)
-> > >   		return dev_err_probe(dev, ret, "Failed to get phy mode\n");
-> > > +
-> > > +	root = of_find_node_by_path("/");
-> > > +	if (root && of_device_is_compatible(root, "qcom,sa8540p-ride"))
-> > 
-> > 
-> > Nope, your drivers are not supposed to poke root compatibles. Drop and
-> > fix your driver to behave correctly for all existing devices.
-> > 
+> For lane orientation, this driver now optionally (based on DT)
+> subscribes to the TCPC's lane orientation notifier and remembers the
+> orientation to later be used during phy_init().
 > 
-> Since this change introduces a new flag in the DTS, we must maintain ABI
-> compatibility with the kernel. The new flag is specific to the board, so I
-> need to ensure root nodes are matched to allow older boards to continue
-> functioning as before. I'm happy to adopt that approach if there are any
-> more elegant solutions.
+> To enable DWC3 runtime suspend, the gadget needs to inform the core via
+> dwc3_gadget_interrupt() with event type == DWC3_DEVICE_EVENT_DISCONNECT
+> of a cable disconnect. For that to allow to happen, this driver
+> therefore needs to stop forcing the Vbus and bvalid signals to active
+> and instead change their state based on actual conditions. The same
+> TCPC notifier is used to detect this, and program the hardware
+> accordingly.
+> 
+> That signal state is based on advice given by Thinh in
+> https://lore.kernel.org/all/20240813230625.jgkatqstyhcmpezv@synopsys.com/
+> 
+> Both changes together now allow cable orientation detection to work, as
+> the DWC3 will now call phy_exit() on cable disconnect, and we can
+> reprogram the lane mux in phy_init().
+> 
+> On top of that, there are some small related cleanup patches.
+> 
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> ---
+> Changes in v4:
+> - separate out patch 5 'phy: exynos5-usbdrd: gs101: ensure power is
+>   gated to SS phy in phy_exit()' from this series, as a stable patch
+>   shouldn't be buried inside a series like this (Greg)
+>   Link: https://lore.kernel.org/all/20241205-gs101-usb-phy-fix-v4-1-0278809fb810@linaro.org/
+> - Link to v3: https://lore.kernel.org/r/20241205-gs101-phy-lanes-orientation-phy-v3-0-32f721bed219@linaro.org
+> 
+> Changes in v3:
+> - patches 1 & 2: update as per Rob's suggestions
+> - patch 7 & 8: drop init to -1 of phy_drd->orientation (Vinod)
+> - patch 7: avoid an #ifdef 
+> - Link to v2: https://lore.kernel.org/r/20241203-gs101-phy-lanes-orientation-phy-v2-0-40dcf1b7670d@linaro.org
+> 
+> Changes in v2:
+> - squash patches #2 and #3 from v1 to actually disallow
+>   orientation-switch on !gs101 (not just optional) (Conor)
+> - update bindings commit message to clarify that the intention for the
+>   driver is to work with old and new DTS (Conor)
+> - add cc-stable and fixes tags to power gating patch (Krzysztof)
+> - fix an #include and typo (Peter)
+> - Link to v1: https://lore.kernel.org/r/20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org
+> 
+> ---
+> André Draszik (7):
+>       dt-bindings: phy: samsung,usb3-drd-phy: add blank lines between DT properties
+>       dt-bindings: phy: samsung,usb3-drd-phy: gs101: require Type-C properties
+>       phy: exynos5-usbdrd: convert to dev_err_probe
+>       phy: exynos5-usbdrd: fix EDS distribution tuning (gs101)
+>       phy: exynos5-usbdrd: gs101: configure SS lanes based on orientation
+>       phy: exynos5-usbdrd: subscribe to orientation notifier if required
+>       phy: exynos5-usbdrd: allow DWC3 runtime suspend with UDC bound (E850+)
+> 
+>  .../bindings/phy/samsung,usb3-drd-phy.yaml         |  21 ++-
+>  drivers/phy/samsung/Kconfig                        |   1 +
+>  drivers/phy/samsung/phy-exynos5-usbdrd.c           | 202 ++++++++++++++++-----
+>  3 files changed, 182 insertions(+), 42 deletions(-)
+> ---
+> base-commit: c245a7a79602ccbee780c004c1e4abcda66aec32
+> change-id: 20241127-gs101-phy-lanes-orientation-phy-29d20c6d84d2
+> 
+> Best regards,
+> -- 
+> André Draszik <andre.draszik@linaro.org>
+> 
 
-Why is it specific to this board? Does the board have a PHY which is
-broken and requires this property? What we are missing are the details
-needed to help you get to the correct way to solve the problem you are
-facing.
+Thanks Andre for getting this working! I've tested this on my Pixel 6 Pro.
+I was able to verify runtime PM works in both orientations with high-speed,
+super-speed, and super-speed-plus. Feel free to include:
 
-	Andrew
+Tested-by: Will McVicker <willmcvicker@google.com>
 
+Thanks,
+Will
 
