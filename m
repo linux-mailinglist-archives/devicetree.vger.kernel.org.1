@@ -1,69 +1,64 @@
-Return-Path: <devicetree+bounces-134150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F9DA9FCCE2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 19:33:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 971019FCCE8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 19:33:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2B33161E00
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:32:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2B707A06E8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8820C1DE4C0;
-	Thu, 26 Dec 2024 18:27:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6CA21DE880;
+	Thu, 26 Dec 2024 18:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="maaiEkpg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ferhNrYt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A1291DE3D7;
-	Thu, 26 Dec 2024 18:27:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EDA11DE3D7;
+	Thu, 26 Dec 2024 18:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735237659; cv=none; b=mgL5JxV5L9x7qFM3C/feQupKJAuGJHdS2PIj97lptiCalnprCBZFliqSVkBGZj+ViGB4BwUbJMBjKqSD0SGCjG0xEekL2UI17Ta3380kzAxPsvfaACsPJyZEWZXmqtZNpYe46anvvr3lFw1pwMve+mMalrMku+dGlmoUPxDLMDw=
+	t=1735237662; cv=none; b=UO7pGP9dEFfD4D00RoPiqjGJD+nqxMw88rOfTJTCUA01Yh0MR/6ZI3d2Q3oW1poJWFPYBzeDLsLeCzFg8thle0GTpOaJ1xLVEk9bYVBl9jbOAtYCbubEQf1hqd/ZTz3+M0D5mSvtpVnkqdAj77kAWXcB/cIVQbXWsFXju1QNTsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735237659; c=relaxed/simple;
-	bh=QfgcJUk1pizXTSyGOyzeOZix24tCPB3rQDgym8387Ac=;
+	s=arc-20240116; t=1735237662; c=relaxed/simple;
+	bh=J50wgV/HLMaFqdq5LYjpBBXDQ2yPaDmTLx07dLVumr0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O9vhBfLxaiyuiXcbqjfY1oIl5tJ371yLVcIJnnw15thqIRO4kHguYVe5YjqvePmCfx8rpMvvfi+WKxRjtwK2z+X0Rfe6OKsEdAyyTBoCqMcx2kLR+BRucb9Oz5CQAL8pMlTSS4xejV9wQEPrZfbHIw3y13A8SDTw3w3o4+9FhnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=maaiEkpg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC847C4CED7;
-	Thu, 26 Dec 2024 18:27:37 +0000 (UTC)
+	 MIME-Version:Content-Type; b=GW9jKlq8YoaSh7FzkpUofUFUksaIlRF2aiV9JvIBk27yWCdOdzEB79qgCCpLa72jmgE5LyzxrQXc6sKKWXow+MNV/h9FW443P2f2GfYG7+duCvtIPForACOVI1CsbuOE0z6bXyGJ54FCGFlUaV4rHDl/VdNG16t4hNNXWbo25So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ferhNrYt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45661C4CED6;
+	Thu, 26 Dec 2024 18:27:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735237659;
-	bh=QfgcJUk1pizXTSyGOyzeOZix24tCPB3rQDgym8387Ac=;
+	s=k20201202; t=1735237660;
+	bh=J50wgV/HLMaFqdq5LYjpBBXDQ2yPaDmTLx07dLVumr0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=maaiEkpgVWzGGx88z2+gy6SS3SrFBcVHFU4hyMK0jOVeeFev/27lZF0Vdty177C1v
-	 brG8lSSe0ICXLzrDUARsNAa5g/qUPcJXDSWC7Fhtr97KozUVmAnHnL6EiZ9P4HWi65
-	 1eQgWStkt8uJ7Hwm2f/U6rQhQscT57j//KIr8Vf8jGsVUZBI02qvwjvfrbyiz3ucUg
-	 7LO+9TqPgDJlrBhEuiR+O2aRYkBCM+l73nFB0NxZ8HUizErbnSRQNQhd/SAjVgxxns
-	 oalRWVoLwLUFjArq++jzQssBvIcHknH0AAU+A0zGFe865am7YpuJ9TiSZjFzketoq+
-	 Ac9BII+HuoE6g==
+	b=ferhNrYtR2pvU4YzYcEBZiASWIlcgL+5KiwTk2o3N5wjnZ1yZKyy7Qew0j6CaNcWY
+	 Gzgnlk7oYcGiSCxFqGoEipuaoeGny4qQUINrmSmlrtFV+fCdU+tj5YGmY3SP5CJqcr
+	 1XjCGoBrLgVsHTwNB7KWPMAlad+fvIMP6snbOq229RW2Z0z//8pI7wRuSL+8v5DW7D
+	 m6thMnmctDrFCpXzFGhYtz1fUMaNNdZYx+KHz3MkUuA6qsYFpmcP7eM3uG3Dz/lntE
+	 8Fy9YW94UZLAiqnN0Cx64QUYPo4aZIni1NpVJ6s44/Oer0QF6bBqrwhX6SH0/+13l+
+	 LJzM1GvCKKRMg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Xin Liu <quic_liuxin@quicinc.com>
-Cc: Rajendra Nayak <quic_rjendra@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+To: konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Ling Xu <quic_lxu5@quicinc.com>
+Cc: quic_kuiw@quicinc.com,
+	quic_ekangupt@quicinc.com,
 	kernel@quicinc.com,
-	quic_jiegan@quicinc.com,
-	quic_aiquny@quicinc.com,
-	quic_tingweiz@quicinc.com
-Subject: Re: [PATCH v4] arm64: dts: qcom: qcs8300: Add watchdog node
-Date: Thu, 26 Dec 2024 12:26:56 -0600
-Message-ID: <173523761370.1412574.13693734112650267984.b4-ty@kernel.org>
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: qcom: qcs8300: Add ADSP and CDSP0 fastrpc nodes
+Date: Thu, 26 Dec 2024 12:26:57 -0600
+Message-ID: <173523761391.1412574.16466466021430371214.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241216080640.509182-1-quic_liuxin@quicinc.com>
-References: <20241216080640.509182-1-quic_liuxin@quicinc.com>
+In-Reply-To: <20241119120635.687936-1-quic_lxu5@quicinc.com>
+References: <20241119120635.687936-1-quic_lxu5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,33 +69,15 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 16 Dec 2024 16:06:40 +0800, Xin Liu wrote:
-> Add the watchdog node for QCS8300 SoC.
+On Tue, 19 Nov 2024 17:36:35 +0530, Ling Xu wrote:
+> Add ADSP and CDSP0 fastrpc nodes for QCS8300 platform.
 > 
-> This patch depends on below patch series:
-> https://lore.kernel.org/linux-arm-msm/20241203-qcs8300_initial_dtsi-v4-0-d7c953484024@quicinc.com/
 > 
-> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
-> ---
-> Changes in v4:
-> - Patch dt-bindings is already applied.
-> - Move sleep_clk to SoC DT.
-> - Link to v3: https://lore.kernel.org/linux-arm-msm/20241125093503.1162412-1-quic_liuxin@quicinc.com/
-> Changes in v3:
-> - PATCH 3/3：Add \n at the last line of the file.
-> - Link to v2: https://lore.kernel.org/linux-arm-msm/20241119102315.3167607-1-quic_liuxin@quicinc.com/
-> Changes in v2:
-> - PATCH 1/3：Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> - PATCH 2/3：Drop the Reviewed-by tag that received by v1. Assign a label to
->   the wachdog node.
-> - Link to v1: https://lore.kernel.org/all/20241029031222.1653123-1-quic_liuxin@quicinc.com/
-> 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: qcs8300: Add watchdog node
-      commit: 3d0d8c8989d352b545ce1e52ad82e9f3503335f1
+[1/1] arm64: qcom: qcs8300: Add ADSP and CDSP0 fastrpc nodes
+      commit: ac92750c0395045023d9cfe3de5dec3c96504edc
 
 Best regards,
 -- 
