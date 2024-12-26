@@ -1,150 +1,189 @@
-Return-Path: <devicetree+bounces-134080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430859FCA21
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 10:50:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A85A79FCA2E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 11:16:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9547162359
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 09:50:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 320FB162E62
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 10:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30B241CEEB8;
-	Thu, 26 Dec 2024 09:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2809E1BF804;
+	Thu, 26 Dec 2024 10:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RMLQTKKU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Bf9rtxUh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 671B91E480;
-	Thu, 26 Dec 2024 09:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD802450F2;
+	Thu, 26 Dec 2024 10:16:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735206627; cv=none; b=PNan/ycSd/28O2LYJtb1OALDr71AlW1BXsJgUELqUYOBFU5Y4oD/W69r8P1lDhAlFk9LszYvUzZbRuW6eOfxwolrPCrV3K05eltBAowiHnqWbWDJ1XPbeUqZxrPkqJIniKFzghqQizgXVNpmWh8pPZg6m1mCRgx0YrKrSdYoioE=
+	t=1735208166; cv=none; b=ooRH2Lza7oB3PbjzMcZkOlwHD3jJNdUEgJXBHDTl2G/da2q+Qqpr9ybWBsNJfAz+5KU1/WyFDnTl4m5y4ZqgtPEOE/W7RbRFdCPvMr4cBy6ZZuJRAvxqmWBkccrrSL5iCvclP4NL+hpcfrXVKj41XSPr9q9yo+Um3exEFiz9TuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735206627; c=relaxed/simple;
-	bh=ZRZJGAbp+aHeP7BLaQqXzxB6yn0PoQl0043X1mqvG+8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XIkOgCm5GhBmb1s5cufCfpngCBmrF2qTTNPq4H2Sux2vLMGXQZ58EIjHQVUw4ieC9ZEBBFi85Ngv6mTGDeaERUsGDin+OnLuUui5bQ4PVGL6esjhwmSZz/zfK1rKW6b3oRL8o16Hol3iE94RjNKu4DhLOJPVfyUV7UBTxxq4yb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RMLQTKKU; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43635796b48so38271345e9.0;
-        Thu, 26 Dec 2024 01:50:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735206624; x=1735811424; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BNLCGvzUscrhE8DerepH+jSw+ytsX5ncOa/i7T7TvEo=;
-        b=RMLQTKKU5S0bCcKhyayi7E5drMRfAw8NBramjkejwhZZWqrjgHSGZZw1amiXGAuyU2
-         YqZZ8TiUYkS4gfwQFEMt8tTzv3xc9cY1yNrbsSn9JqQG4qeSOKd4xEoAPBsfAGmnM0MI
-         1fbKoGk1rIK4t3o9bpIpe5Dp7SPCdvgN0iunmvHtqS4H+ZI7VTxkZAksya8luchD6CUQ
-         Zau0ifgetDGkSeKeZSWmjLilJZuPQz5AA2IsfFZ66Qk8QY3Kg0zhk8ZwAgaI89lBrrX0
-         VrxhNW6BOFQ/F+CuckQ1owawnmMR4sd8pahbFjuGjpYFoZBpM8acNX8l1TIYg5ngSr4s
-         xfFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735206624; x=1735811424;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BNLCGvzUscrhE8DerepH+jSw+ytsX5ncOa/i7T7TvEo=;
-        b=RREa7S89bzxTM4I5RX2t6a+cHemgZ5C+g8PHROZeGbp5RfKtgvQCRUrmszREFtAqOt
-         w/OM16KAKWxh9Ezfcf9B0gj67IbgeODvQFJjcOlWKc4wVAJqP/nhBo69lT8fhf79eChg
-         CRthmUDok00Ja+sKpoymGl8cl5Ml+Ugpw1XjE5HzGOFQD28Hd91wlvsP7CyX5BFlKR67
-         KCSdU0h1isDFz5uZKsbsP/XD9xSK2mOy1pnfLw7M9nPI0tMcX6JYdxuOubY8//xEhsxY
-         5sj4pLQaSzXyKGvEe5L2WQqlat6WJsxRO0LCnhR1LAsXy7IJIYnvvvpF1NQ2PRErJfoH
-         0Gcw==
-X-Forwarded-Encrypted: i=1; AJvYcCVm62p6uqPWhY3bynPkbilNBlAPXQqKb/nwOB8TOW1KjSZs/V7cYvucoswRC6wGtofBrsUj6nbq+cm6W2c4@vger.kernel.org, AJvYcCWu4Tq/OVpZQOxQDgaoTo+9dLkCo2ZHLPf53K6beVxloxVRFgHmH7e0k9SSK0oab8WHt4oDdnt31Ce7WhEBcLT7iaw=@vger.kernel.org, AJvYcCWzbP6vyt8HGwam8DP+gT/0gdpIWyTByoKgH7h4eKcWMCmHXs3f/md4SuXrGUvUNuO1xp3QzMOaLwJ4@vger.kernel.org, AJvYcCXBe8mVlQtkePb55+Fa/xKDMmF2xKaAknRSxu4UJ6/w/12lWWnztCceN5Otxf5G6akrrNh5L1Hb5dEH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwP5nQ/8TMAmRN/wIZ7sz5AWXxbkq6DsZYaGFKGcWCvCruVHArE
-	qCOqajJONzL8XQ8MvzF+dH6yUg993otfH1R+3ZTPnP9OQysEDE/I
-X-Gm-Gg: ASbGncuen48gpcnz7Y2+wHAay2cX0F8449HgOsuyBPaLBfOWBPOoU8Es37f1iL5m5I8
-	aR11zaNwB4PkyRKj1ttq3yGkX8XYgpZS+j9ereJcNhsZCcEVmuYs2XcVoEwuD5BlfnHwENucGYg
-	4EhVyAESxlzSI9BjfsfAjhlpCTpZd3lyUSxW4YGIEaqgfsp9vkjOoOiq9431Jext6NJ+MZtt5z1
-	wY20Oe9nZ2B/4MRwydZxSzyH1PXaqvh1EZCR/nLcfbxG/KS6Dt26jU5WyMthorEqaHS118IZg==
-X-Google-Smtp-Source: AGHT+IH1vPF2yBNf9acUDO94c4harHqUE+o6S9YimBB9B6UkN15rPNW1AYhFIZiHD2u4Qj/D2KcHGw==
-X-Received: by 2002:a05:600c:3b8b:b0:434:f2af:6e74 with SMTP id 5b1f17b1804b1-4368d6e8d7bmr48232435e9.15.1735206623459;
-        Thu, 26 Dec 2024 01:50:23 -0800 (PST)
-Received: from [192.168.1.102] ([94.131.202.183])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436611ea3e0sm230270745e9.7.2024.12.26.01.50.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Dec 2024 01:50:23 -0800 (PST)
-Message-ID: <2cbb3ecf-fae8-4019-9b3e-43d48f3c9b25@gmail.com>
-Date: Thu, 26 Dec 2024 11:50:21 +0200
+	s=arc-20240116; t=1735208166; c=relaxed/simple;
+	bh=PNysoKr4x3TzAEfHcmAw8WO9zljvb8duad9elAZ9Cfo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W9VjaAQJcrvATzei1jGXL3pm0hnzWKAxjJTs/Y65TVZ7VLvfmqYBLQV0485tnoJA7mzyAnGKKkC5W0F081hG41Ypnc05hdlHjRPlJs8WSh3JNCGfH6BGJEwxJK8FbNfuvK38iDD6K8fBYzqJxOYB93FtbhCI9H74Y0CiR1WpbAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Bf9rtxUh; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1735208163; x=1766744163;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PNysoKr4x3TzAEfHcmAw8WO9zljvb8duad9elAZ9Cfo=;
+  b=Bf9rtxUh/zMZKBKXlhBTiuus8ljD6mFSNGJI3TPgenMWrqeYP3O/TJPP
+   cupAdv3ui2kZqPbbUqlNLbc57ZoUnPkqV+UuqFCR0FCx6jvQbqZrUTeUT
+   S3dY0PoJfxQkmzzGSsbqNDZuLqDWmLa3rb0YZkD6+Rt/2X9rztNC2JT6B
+   AGVd+Dsf4NWRoRJKgBZgEvhGq4OXd2ej4inLfjjyRmSEWlru6vneo5zSY
+   hIKI3AVbID7Ixbtan1tn12n+fnviy9BasAC7rSEIaCGHHkZOQk+/Ute47
+   ApHVPnN27U4hRzcyHk6C8BSuXzUzE6WbJV7oJ2HoeAmZUSEnN1vApX6p0
+   A==;
+X-CSE-ConnectionGUID: 9WSk4SJdTU+liyD/5XkPhA==
+X-CSE-MsgGUID: IqVDxrMBTCi/4NJwr1rmlg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11296"; a="35855076"
+X-IronPort-AV: E=Sophos;i="6.12,265,1728975600"; 
+   d="scan'208";a="35855076"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Dec 2024 02:16:02 -0800
+X-CSE-ConnectionGUID: YtWgRRzCSgS7Y0XstJNVKg==
+X-CSE-MsgGUID: SXJucXphRAa1naaBE0aT+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="100716808"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 26 Dec 2024 02:15:58 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tQkuJ-0002TS-1u;
+	Thu, 26 Dec 2024 10:15:55 +0000
+Date: Thu, 26 Dec 2024 18:15:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH v2 2/5] pinctrl: pinconf-generic: Add API for pinmux
+ propertity in DTS file
+Message-ID: <202412261752.6HK0iJXu-lkp@intel.com>
+References: <20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] i2c: exynos5: Add support for Exynos8895 SoC
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241221151937.1659139-1-ivo.ivanov.ivanov1@gmail.com>
- <20241221151937.1659139-3-ivo.ivanov.ivanov1@gmail.com>
- <djpcvn7von4rizjucplqwxlmpuaemrl7x3jsbqmojgzhybfu6o@n6l3dmtjy7jy>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <djpcvn7von4rizjucplqwxlmpuaemrl7x3jsbqmojgzhybfu6o@n6l3dmtjy7jy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com>
 
-On 12/26/24 00:59, Andi Shyti wrote:
-> Hi Ivaylo,
->
-> On Sat, Dec 21, 2024 at 05:19:37PM +0200, Ivaylo Ivanov wrote:
->> Exynos8895 functioning logic mostly follows I2C_TYPE_EXYNOS7, but timing
->> and temp calculations are slightly changed according to the following
-> /changed/different/
+Hi Xianwei,
 
-Sure.
+kernel test robot noticed the following build warnings:
 
->
->> logic:
->>
->> FPCLK / FI2C = (CLK_DIV + 1) * (TSCLK_L + TSCLK_H + 2) + 2 *
->> ((FLT_CYCLE + 3) - (FLT_CYCLE + 3) % (CLK_DIV + 1))
->>
->> temp := (FPCLK / FI2C) - (FLT_CYCLE + 3) * 2
->>
-> ...
->
->> @@ -352,11 +369,19 @@ static int exynos5_i2c_set_timing(struct exynos5_i2c *i2c, bool hs_timings)
->>  	 *
->>  	 */
->>  	t_ftl_cycle = (readl(i2c->regs + HSI2C_CONF) >> 16) & 0x7;
->> -	temp = clkin / op_clk - 8 - t_ftl_cycle;
->> +	if (i2c->variant->hw == I2C_TYPE_EXYNOS8895)
->> +		temp = clkin / op_clk - (t_ftl_cycle + 3) * 2;
->> +	else
->> +		temp = clkin / op_clk - 8 - t_ftl_cycle;
->>  	if (i2c->variant->hw != I2C_TYPE_EXYNOS7)
->>  		temp -= t_ftl_cycle;
-> Could you please make this:
->
-> 	if (i2c->variant->hw == I2C_TYPE_EXYNOS8895)
-> 		...
-> 	else if (i2c->variant->hw == I2C_TYPE_EXYNOS7)
-> 		...
-> 	else
-> 		...
->
-> For a better clarity.
+[auto build test WARNING on 4de5110762b94b9978fb8182a568572fb2194f8b]
 
-Alright. Will post a v3 soon.
+url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-pinctrl-Add-support-for-Amlogic-SoCs/20241226-155844
+base:   4de5110762b94b9978fb8182a568572fb2194f8b
+patch link:    https://lore.kernel.org/r/20241226-amlogic-pinctrl-v2-2-cdae42a67b76%40amlogic.com
+patch subject: [PATCH v2 2/5] pinctrl: pinconf-generic: Add API for pinmux propertity in DTS file
+config: arc-randconfig-001-20241226 (https://download.01.org/0day-ci/archive/20241226/202412261752.6HK0iJXu-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241226/202412261752.6HK0iJXu-lkp@intel.com/reproduce)
 
-Thanks!
-Best regards, Ivo.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412261752.6HK0iJXu-lkp@intel.com/
 
->
-> Thanks,
-> Andi
+All warnings (new ones prefixed by >>):
 
+>> drivers/pinctrl/pinconf-generic.c:250: warning: Function parameter or struct member 'dev' not described in 'pinconf_generic_parse_dt_pinmux'
+>> drivers/pinctrl/pinconf-generic.c:250: warning: Excess function parameter 'pctldev' description in 'pinconf_generic_parse_dt_pinmux'
+
+
+vim +250 drivers/pinctrl/pinconf-generic.c
+
+   235	
+   236	/**
+   237	 * pinconf_generic_parse_dt_pinmux()
+   238	 * parse the pinmux properties into generic pin mux values.
+   239	 * @np: node containing the pinmux properties
+   240	 * @pctldev: pincontrol device
+   241	 * @pid: array with pin identity entries
+   242	 * @pmux: array with pin mux value entries
+   243	 * @npins: number of pins
+   244	 *
+   245	 * pinmux propertity: mux value [0,7]bits and pin identity [8,31]bits.
+   246	 */
+   247	int pinconf_generic_parse_dt_pinmux(struct device_node *np, struct device *dev,
+   248					    unsigned int **pid, unsigned int **pmux,
+   249					    unsigned int *npins)
+ > 250	{
+   251		unsigned int *pid_t;
+   252		unsigned int *pmux_t;
+   253		struct property *prop;
+   254		unsigned int npins_t, i;
+   255		u32 value;
+   256		int ret;
+   257	
+   258		prop = of_find_property(np, "pinmux", NULL);
+   259		if (!prop) {
+   260			dev_info(dev, "Missing pinmux property\n");
+   261			return -ENOENT;
+   262		}
+   263	
+   264		if (!pid || !pmux || !npins) {
+   265			dev_err(dev, "paramers error\n");
+   266			return -EINVAL;
+   267		}
+   268	
+   269		npins_t = prop->length / sizeof(u32);
+   270		pid_t = devm_kcalloc(dev, npins_t, sizeof(*pid_t), GFP_KERNEL);
+   271		pmux_t = devm_kcalloc(dev, npins_t, sizeof(*pmux_t), GFP_KERNEL);
+   272		if (!pid_t || !pmux_t) {
+   273			dev_err(dev, "kalloc memory fail\n");
+   274			return -ENOMEM;
+   275		}
+   276		for (i = 0; i < npins_t; i++) {
+   277			ret = of_property_read_u32_index(np, "pinmux", i, &value);
+   278			if (ret) {
+   279				dev_err(dev, "get pinmux value fail\n");
+   280				goto exit;
+   281			}
+   282			pmux_t[i] = value & 0xff;
+   283			pid_t[i] = (value >> 8) & 0xffffff;
+   284		}
+   285		*pid = pid_t;
+   286		*pmux = pmux_t;
+   287		*npins = npins_t;
+   288	
+   289		return 0;
+   290	exit:
+   291		devm_kfree(dev, pid_t);
+   292		devm_kfree(dev, pmux_t);
+   293		return ret;
+   294	}
+   295	EXPORT_SYMBOL_GPL(pinconf_generic_parse_dt_pinmux);
+   296	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
