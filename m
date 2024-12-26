@@ -1,118 +1,169 @@
-Return-Path: <devicetree+bounces-134064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E87BA9FC95D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 08:09:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2FA99FC95B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 08:06:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BDDD1606FF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 07:09:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2C161883527
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 07:06:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D2114C5AF;
-	Thu, 26 Dec 2024 07:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A61714E2E2;
+	Thu, 26 Dec 2024 07:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="HbGIaXZW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kEXcGhlm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3288.qiye.163.com (mail-m3288.qiye.163.com [220.197.32.88])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B7C145B21;
-	Thu, 26 Dec 2024 07:09:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5697E12B71;
+	Thu, 26 Dec 2024 07:06:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735196954; cv=none; b=QQ1Qjki6AUMikO1xzloKrTE4gTFC+sBNQhg5FCrpwgEJ+vlDiwUkpaGPQ7CVb+vDoLAngAalY3cvO0t1IEqo0JSpSgE/ZPfWwwUlYqAuke4SpyAdytOPTbkkjLw728bHw5cO2nrlc6wCX6CrG3A+gmTOz2cDR6kbN2pmHi+XQ3M=
+	t=1735196802; cv=none; b=VFCP9EHAXxgWUcP4KEYbDIoPSAjCqe9N0ZKGWrDl+8TbxpNH0qfDUlkBj3umua6BJFO0xYF8YLuMzmJxnjI5LSMTVeK0O6gghBdhhVeKPXVoO8w3tvGG3Ll0S3O6F/GyrS5uAZ1+v70hgkZX2S8zq+RIPgwA+FLgKWrnuCWJ3HE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735196954; c=relaxed/simple;
-	bh=xlcgfDsyzM0bGXqw2WEfBW7/9PoJcWdEk5UxU2WZ10o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pnYC+WmHHJ/XdsKjfFLpU/5c/Ey2jcJ4MYvv+d5tAadM001fa+bqZOGAUQ53lHVPJ2UKiPhWiDHA898gXSRDR/eNJRPjlA+hDlA9VxNlmxlnXBh3UtoYzET7N0Jy8ixPSvrl2YA99KTJ97DHiXgNu5az1U7gn4bHsBm5oGbQLnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=HbGIaXZW; arc=none smtp.client-ip=220.197.32.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 6dc5114c;
-	Thu, 26 Dec 2024 14:33:36 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	rfoss@kernel.org,
-	vkoul@kernel.org,
-	sebastian.reichel@collabora.com,
-	cristian.ciocaltea@collabora.com,
-	l.stach@pengutronix.de,
-	andy.yan@rock-chips.com,
-	hjc@rock-chips.com,
-	algea.cao@rock-chips.com,
-	kever.yang@rock-chips.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v4 05/17] phy: phy-rockchip-samsung-hdptx: Supplement some register names with their full version
-Date: Thu, 26 Dec 2024 14:33:01 +0800
-Message-Id: <20241226063313.3267515-6-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241226063313.3267515-1-damon.ding@rock-chips.com>
-References: <20241226063313.3267515-1-damon.ding@rock-chips.com>
+	s=arc-20240116; t=1735196802; c=relaxed/simple;
+	bh=pEM8irB10Ema+6TlLRE2kdz1l0WA/w2TEBQaDq5dgTQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D1MlJ6Q54VzoxYlHWbJEz+ESid8i9OM8khGA5+VhA3wd1/SPbM/yABujcCIVHRgxNyhjqe+GjlYbJSGU828QdqpcPVuahGgoqeLR//w5h92lUAHVWgP2BxoGHHmX25qAJ3XzGGfbVKmIlhtiv4r6lT2GG1fP5zxqfrNnKWX3g74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kEXcGhlm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BQ5alVT003480;
+	Thu, 26 Dec 2024 07:06:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YeLxuuzatsnjAvtIwd7IxDMn6VpPy/R42vPI1syTlJA=; b=kEXcGhlmeZEU7qzB
+	5KUsRpQw4oXFAziLdIKU5i82vFY1IKskalk5xDqadcAggsmDBdbtUy6rxECTnO2g
+	TkCs5WZng7JafVdnpQsDVQwxwX2cBTejYocTNjtIULvaj5/vi3BxlnauDEMVANxc
+	I07BIaJrY6gxwMdN0W6igoEfw/HzU20xM3LdIFGdFA4nJdYEJeC+mpaLVzaciifj
+	+/4jMWQNu4fu2VTN5OkOXHUhPfTzYKAR88xEvY6DhTRo91vhu/y3xU1jL+88O/5n
+	AK8Z08m6KWiVo5llrZQOnrqEs3ECwJC+rdhaLxGlUc+VCfzvhGGRzKU7S5EWXjjy
+	3dXCOQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43s159gda5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 07:06:36 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BQ76Zs0003766
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 07:06:35 GMT
+Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 25 Dec
+ 2024 23:06:32 -0800
+Message-ID: <9a42ba40-9984-4c19-8de4-f814d27cb20d@quicinc.com>
+Date: Thu, 26 Dec 2024 15:06:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkNDH1YfH0JLGk4dS01NQxlWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9401abaf0803a3kunm6dc5114c
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Oj46Mww6PDIQGEw*CTgSKwIT
-	OS0wCjNVSlVKTEhOSkJPQ0pMQkxPVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKSkJLNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=HbGIaXZW06stzlj+Ni7SUzkq1VhQUqI3/3LVn/k11K6VGeZyPoSEHXN+n+UiCywKUicGXA0emSkWZ6ylAAdnuzOXt9qJMGT9mMw2oFxhgLm7otY+1CuK4o2jsanhRPNo20c9/gstOd002zkJuj17xsaV+ZKWSrfIl1FL6C2Xxu0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=85pejLq/1YmqyG5JXSXXrTjiBT8M9DCsqBYEKaF85uA=;
-	h=date:mime-version:subject:message-id:from;
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs8300-ride: Enable Display Port
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Ritesh Kumar <quic_riteshk@quicinc.com>
+References: <20241127-dp_dts_qcs8300-v1-0-e3d13dec4233@quicinc.com>
+ <20241127-dp_dts_qcs8300-v1-2-e3d13dec4233@quicinc.com>
+ <466ea213-5f20-4a9f-a9dc-751756792845@oss.qualcomm.com>
+Content-Language: en-US
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+In-Reply-To: <466ea213-5f20-4a9f-a9dc-751756792845@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: n1VYVQw24Bor3BsI94vTPd9uMzAbp6Ko
+X-Proofpoint-ORIG-GUID: n1VYVQw24Bor3BsI94vTPd9uMzAbp6Ko
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxlogscore=999 spamscore=0
+ clxscore=1015 phishscore=0 suspectscore=0 impostorscore=0 malwarescore=0
+ adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412260061
 
-Complete the register names of CMN_REG(0081) and CMN_REG(0087) to their
-full version, and it can help to better match the datasheet.
 
-Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
----
- drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-index 0fecbb1df6fb..2f3c69c7ee31 100644
---- a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-+++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-@@ -82,14 +82,14 @@
- #define ROPLL_SSC_EN			BIT(0)
- /* CMN_REG(0081) */
- #define OVRD_PLL_CD_CLK_EN		BIT(8)
--#define PLL_CD_HSCLK_EAST_EN		BIT(0)
-+#define ANA_PLL_CD_HSCLK_EAST_EN	BIT(0)
- /* CMN_REG(0086) */
- #define PLL_PCG_POSTDIV_SEL_MASK	GENMASK(7, 4)
- #define PLL_PCG_CLK_SEL_MASK		GENMASK(3, 1)
- #define PLL_PCG_CLK_EN			BIT(0)
- /* CMN_REG(0087) */
--#define PLL_FRL_MODE_EN			BIT(3)
--#define PLL_TX_HS_CLK_EN		BIT(2)
-+#define ANA_PLL_FRL_MODE_EN		BIT(3)
-+#define ANA_PLL_TX_HS_CLK_EN		BIT(2)
- /* CMN_REG(0089) */
- #define LCPLL_ALONE_MODE		BIT(1)
- /* CMN_REG(0097) */
--- 
-2.34.1
+On 2024/12/6 5:46, Konrad Dybcio wrote:
+> On 27.11.2024 11:45 AM, Yongxing Mou wrote:
+>> Enable DPTX0 along with their corresponding PHYs for
+>> qcs8300-ride platform.
+>>
+>> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+>> +
+>> +	dp0-connector {
+>> +		compatible = "dp-connector";
+>> +		label = "DP0";
+>> +		type = "full-size";
+> 
+> I was surprised to see it but yeah this is real
+> 
+>> +
+>> +		port {
+>> +			dp0_connector_in: endpoint {
+>> +				remote-endpoint = <&mdss_dp0_out>;
+>> +			};
+>> +		};
+>> +	};
+>>   };
+>>   
+>>   &apps_rsc {
+>> @@ -223,6 +235,30 @@ &gcc {
+>>   		 <0>;
+>>   };
+>>   
+>> +&mdss {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss_dp0 {
+>> +	status = "okay";
+> status should be the last property
+> 
+got it. thanks for ponit it.
+>> +
+>> +	pinctrl-0 = <&dp_hot_plug_det>;
+>> +	pinctrl-names = "default";
+>> +};
+>> +
+>> +&mdss_dp0_out {
+>> +	data-lanes = <0 1 2 3>;
+>> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+>> +	remote-endpoint = <&dp0_connector_in>;
+>> +};
+>> +
+>> +&mdss_dp0_phy {
+>> +	status = "okay";
+>> +
+>> +	vdda-phy-supply = <&vreg_l5a>;
+>> +	vdda-pll-supply = <&vreg_l4a>;
+> I couldn't find the reference for these, so I have to trust you
+> 
+yes, this two power can work for qcs8300.and we verify it.status also 
+should be last property?
+> Konrad
+> 
 
 
