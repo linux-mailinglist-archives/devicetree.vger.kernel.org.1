@@ -1,66 +1,69 @@
-Return-Path: <devicetree+bounces-134157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B52389FCD02
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 19:35:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 024229FCD0C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 19:36:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 812E518842AC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:35:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FB5518837DC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17411DF744;
-	Thu, 26 Dec 2024 18:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8617B1DFD86;
+	Thu, 26 Dec 2024 18:27:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XVAbhd86"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A6PwqRtV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B449F1DF73C;
-	Thu, 26 Dec 2024 18:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59ACF1DF998;
+	Thu, 26 Dec 2024 18:27:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735237669; cv=none; b=IaJwQ3JEUkMvJHij9THu0omQpt3bFW3tQbFSoNHqFx/hHzLCG48Jvf+wT45h46ktY84OWJTociWyX+Cck5k4cGQ5fwwIkSLEvKGKrtK/+NbR60/JYY2a+N8rNCcjVuo3i3tmh1/4nxhJUTXrdOsHCLBbktqSvsett/yyHimXdIQ=
+	t=1735237672; cv=none; b=HUbsnp2lcOVTen2kbTE+eAojOTrsonErHbF/CXc8M1kUyvWE/2FPUgkjQTYaI2LaXf99wDB04ljf+CWBXTfc9ifdnlPh7pr8dVGWh/5y26GlTkxu3o+DZaDt9Q3ziaXFul5aS+7CcowDjG6rER0qqQum6762654dAi/dcSYQSn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735237669; c=relaxed/simple;
-	bh=B+2Of2B5OUwvc314BUcwY6CEwIsr+VXSfnuYiTm6cM0=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EDKIR7J+xaIOEirzvKNF/H08E+jqH8841eG46fomdSDVtLA6TFi9TZ5Xq3+SPpF7SlyNM6rl6kM/wqWf8lUYLazf9yR2+iv/tjAKVnR3vhO9yJsGNutNGlh/fO2WDQgW2ONwvr3IrursJAcVcBbQOLdM7WHdxDqY8vg0YILL+1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XVAbhd86; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A650C4CED6;
-	Thu, 26 Dec 2024 18:27:48 +0000 (UTC)
+	s=arc-20240116; t=1735237672; c=relaxed/simple;
+	bh=gtMbYk3N6xgXQ7sqpgTBbuRqKJ5+ElAd4Ea2Xf2ZLSQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eQ0/3R/+W1cL9VE7eNQ7T4oFz283ogvPdtTsmQW6kedkqTzKyJdzfbg0ELkLdQBwHy6eTCITjJMYx/VB3ZWKfts9tq2/ATzm2KsFL0FSiq4BXZTFIbrZZK/pT2EUoI7GNTf5gkCLiyIxzYJqEsbtMxt5zuT7PNdwEvc6XMwOg+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A6PwqRtV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07D84C4CED1;
+	Thu, 26 Dec 2024 18:27:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735237669;
-	bh=B+2Of2B5OUwvc314BUcwY6CEwIsr+VXSfnuYiTm6cM0=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=XVAbhd86kOmHOv02f/4O/YY+ZedDncAsqeCVTXfmBhldBNGoZKuoWNW9LOuyvSlCM
-	 pGnCXBC50tkOa1kLVkPtMoRDFJihP9fsHDOjzMzX7cJpjfhKlaxJ5jUDUQ02Y/XGQ1
-	 z+KlQrjCI3FVg5CkdEuNczy3d+6PuliRBHMtWwwPnZ8n0Iyno5LwJk5Zpd4ShdXgzA
-	 P/7cDiha6sP6DlP+Nlaln2FhuQFLtYtPjSn5KXRCOmFIOBVFFEML0/pVKLSMcNC7K2
-	 0gx6YKdnlzbWYby2X6Lkn+Q450u+tLzkH+w61dwDgjDii0h+K3UMXnwVWZq6vKpTdG
-	 SsW9D+KkqCtyQ==
+	s=k20201202; t=1735237672;
+	bh=gtMbYk3N6xgXQ7sqpgTBbuRqKJ5+ElAd4Ea2Xf2ZLSQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=A6PwqRtVPQ/meAuloC8xJzVHe6Lm979qIRNZ1mhu9xpernVmPo5emfnn1g1KMqS98
+	 7s2eG3DH9/ncsqVltSodFZ34+P3ext+Hjah8JmOnaLpdegV3PcJUG5/HTpHdNg+RuI
+	 kck2uZD92XLeu7RwodKiaygBi03OWpRoywoSIp0SvJQfvbsq43EtgIeTubdS62kd84
+	 NWS2uTJFhBUtVDxrl98ixzYxVb4NHX1dztUjLywXHFenhYiGallN9FfYGDaSKHfCcb
+	 xWXrXpuoxk+GGopuMRX9Y5busNnuOfIS1w71o6IAByQQRMCOeLh1g1kRh4Z/N35ST6
+	 kHmvDqJ1DdOdA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	manivannan.sadhasivam@linaro.org,
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Taniya Das <quic_tdas@quicinc.com>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+	Imran Shaik <quic_imrashai@quicinc.com>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
 	linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Sricharan R <quic_srichara@quicinc.com>
-Subject: Re: (subset) [PATCH V7 0/4] Add PCIe support for IPQ9574
-Date: Thu, 26 Dec 2024 12:27:04 -0600
-Message-ID: <173523761381.1412574.6991994387056685375.b4-ty@kernel.org>
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: (subset) [PATCH v4 0/4] Add GCC and RPMH clock controller for QCS615 SoC
+Date: Thu, 26 Dec 2024 12:27:06 -0600
+Message-ID: <173523761388.1412574.15312254477268678919.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20240801054803.3015572-1-quic_srichara@quicinc.com>
-References: <20240801054803.3015572-1-quic_srichara@quicinc.com>
+In-Reply-To: <20241022-qcs615-clock-driver-v4-0-3d716ad0d987@quicinc.com>
+References: <20241022-qcs615-clock-driver-v4-0-3d716ad0d987@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,23 +74,25 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 01 Aug 2024 11:17:59 +0530, Sricharan R wrote:
-> This series adds support for enabling the PCIe host devices (PCIe0, PCIe1,
-> PCIe2, PCIe3) found on IPQ9574 platform. The PCIe0 & PCIe1 are 1-lane Gen3
-> host and PCIe2 & PCIe3 are 2-lane Gen3 host.
+On Tue, 22 Oct 2024 17:22:49 +0530, Taniya Das wrote:
+> Add support for Global clock controller(GCC) and the RPMH clock
+> controller for the Qualcomm QCS615 SoC.
 > 
-> [V7]    - Fixed review comments from Konrad, Krysztof, Manivannan and picked up review tags
->           Rebased patch 4 on top of [1] for avoiding DBI/ATU mirroring
->           Both dt_binding_check and dtbs_check passed and tested on ipq9574-rdp433
+> The QCS615 SoC is added as part of the below series.
+> https://lore.kernel.org/all/20240913-add_initial_support_for_qcs615-v2-0-9236223e7dab@quicinc.com/
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 > 
 > [...]
 
 Applied, thanks!
 
-[2/4] arm64: dts: qcom: ipq9574: Add PCIe PHYs and controller nodes
-      commit: d80c7fbfa908e3d893a1ea7fe178dfa82ed66bf1
-[3/4] arm64: dts: qcom: ipq9574: Enable PCIe PHYs and controllers
-      commit: 438d05fb9be6bcd565e713c7e8d9ffb97e5f8d1e
+[1/4] dt-bindings: clock: qcom-rpmhcc: Add RPMHCC bindings for QCS615
+      commit: 94465062260063143ab806cdd16d5e183643343d
+[2/4] clk: qcom: rpmhcc: Add support for QCS615 Clocks
+      commit: 42a1905a10d622ab0a4ff564b0117444f4384c35
+[4/4] clk: qcom: gcc: Add support for QCS615 GCC clocks
+      commit: 39d6dcf67fe955eadd787052a8963837be801794
 
 Best regards,
 -- 
