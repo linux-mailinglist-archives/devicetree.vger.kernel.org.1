@@ -1,129 +1,197 @@
-Return-Path: <devicetree+bounces-134073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 809119FC99C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 09:13:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6013F9FCA03
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 10:43:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 079DC1882AA0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 08:13:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E200118820E4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 09:43:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F611CEAC2;
-	Thu, 26 Dec 2024 08:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2321B4144;
+	Thu, 26 Dec 2024 09:43:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="C795e/Nz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ehv1lB/2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC77B42A87;
-	Thu, 26 Dec 2024 08:13:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD81877F10;
+	Thu, 26 Dec 2024 09:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735200786; cv=none; b=qlh0KESG+Mj04pV8wugQQiHSV+ndgJSRo5wuTSSXK3dApdVANPvrIxUT1zjZs9zk6GNwB7iSYCi7OsYfea1oK1Df0FLzyEYD3TMc4DlXIgPfbd8zHUksliI39eB0zOB/ine/G0V0eMJ62pzc0ybfGCzBIjem4sCIuS/Cilrp9JA=
+	t=1735206211; cv=none; b=m30BGUpxIgXgSAVtcWb4CsQR+9vhQXqQRs5t0TLn8SWGuglpMpYcRoGPo3xwC36Qf+ew3LJdqcxOOOkuAhQcUjlcI7t6XtmWgiOfGQxC617heO+dnd8AS5ZlRmQyP71LGdmFIpvkkBWLOYB68dHyozoLa9Z/GE6WNeiWoAo7GBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735200786; c=relaxed/simple;
-	bh=2+EB8IfsdOAAITam7PIsQ7kX1XNi1VZH/Xtl0oSaYyE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vie3KWdBxEjEuB5qeQQheu9nTADyDsLD/N4coOaJRLj/8XpwFiHnFOn+PnDYD2tfrARhnDAiEAyGHzngxXdCvwU/LGsgfud/CJTp++Ol5mN9TdX2plW1Vbq/Do+RVDpkkijEWY8yooFJME50ZVNZDBhRMsXZ9fV/XpsxCSOOlYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=C795e/Nz; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F3FCE20003;
-	Thu, 26 Dec 2024 08:12:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1735200775;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jRLLDqrlbPXEKICsvAwtwaBpDU3ufkWk/NXlNBOvtWY=;
-	b=C795e/NznBHV8+JxDmoiOpaLAzDOSvu41rz1dgVWL3FkOaUy3+p0uED+cYFYy3TUEO5/J9
-	c9itEWdsMuDh0dwqjsw8CNKGz7YVrEMC3T9MY9MpnSjBJHRBBcSV9Q1k95PQH5ce/TSzV2
-	daelh+bTVEodiiilT4SOQfddBqbN9a5eKCdvfURt3M/FtVFs+ZjvyNGT6Z9k9M30thYfhf
-	41QrUjxKR0wYHAZtj+RxUbtL1i0MS4Ce+yFvwrdthPQzW8dSLqO+Mvk+Ia5Q1CHojtF/IO
-	82GEUfGLkf4rWs9riKTpk3bSByZNLZdM2wGAjyVw7kLyyR5kN/7uAzM6GrLUiA==
-Date: Thu, 26 Dec 2024 09:12:53 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Val Packett <val@packett.cool>
-Cc: Fabien Parent <parent.f@gmail.com>, Rob Herring <robh@kernel.org>,
-	Lee Jones <lee.jones@linaro.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Eddie Huang <eddie.huang@mediatek.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Yassine Oudjana <y.oudjana@protonmail.com>,
-	Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 1/9] dt-bindings: mfd: mt6397: Add bindings for MT6392
- PMIC
-Message-ID: <20241226081253fbc6285c@mail.local>
-References: <20241226050205.30241-1-val@packett.cool>
- <20241226050205.30241-2-val@packett.cool>
+	s=arc-20240116; t=1735206211; c=relaxed/simple;
+	bh=HrZixsa4o407w0QLd9DyL3Cx7C9rBv6UU13xVhOl9Bg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=PnqLZ5vFgAoZC8t95rT1Tb7aTvNnkiaQuT0xJU/Ei7MZfhVNRWnjRpvp+SUm7jUkr28tr1qrZnsyyHRneDXZyNuLlU/8/kY6OCO+MHxzDM8VbTHa0nrRlwcz/DqG8fRaSxs5FzUTuNqJ22wG/2dBsfc4uZnUtSpyMiM+Blfr/fQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ehv1lB/2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BQ8BgEc022659;
+	Thu, 26 Dec 2024 09:43:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=QKhHf4JbsWGTY3FFN4/3Hj
+	rj/7m02iv0le2h5LxDSos=; b=ehv1lB/2Xvy+ufv2ehZLckFG+Zd1kXKqa1KstK
+	2fcojaaeZmirZFcpk+Kc62C/5oqVeA72CsgUHjpbcXsNtO3NE2F/mFbCO8TIrn/h
+	Rus+zvJ+qBfk+dGbzAWYZMZ6YjX85CaXuk8zkJv+FPE5U5FsKJ3YW03HBRevg4FA
+	EIw3Ue/KWDpFoypsq3hoH2Xmyvmses01wHDcu3RRs74MyY+v0Z20cTA0CMdDV/c9
+	vFgpwOkCOWuZKEITauh70hSG6zsNz+l7/3txz5CMxLbZuzZqqzZ+DfaftB+YcUKe
+	0GnvIn8KAdmZfPBafBMEgsG4t6L3vDPk/nTPIb9ucpgS4r9A==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43s3dwrr10-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 09:43:11 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BQ9h9ko026118
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 09:43:09 GMT
+Received: from cse-cd01-lnx.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 26 Dec 2024 01:43:03 -0800
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+Subject: [PATCH v2 0/5] Display enablement changes for Qualcomm QCS8300
+ platform
+Date: Thu, 26 Dec 2024 17:40:44 +0800
+Message-ID: <20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241226050205.30241-2-val@packett.cool>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALckbWcC/43Ry2rDMBAF0F8JWneKXrbkUEr/owQjj0aNqB+Jp
+ ZqWkH+v8iiEZpOFFjNIRxfugSWaIyW2Xh3YTEtMcRrLIJ9WDLdu/CCIvsxMcqmFlBoGn5LP7R6
+ TVZyDEJ2xVnmsecfKo91MIX6fwffNZZ5p/1XcfFmygVJyZ3e9ermwXMHVa+MYc3R963OKsGiQ4
+ A02ldJWl6tvRcI44jNOw+vpu3tM8PoPg2GAncu4pQSLAg6hFsLZYE0Q1SOU0LcUIvh8AWERIMC
+ 4xuiKWzSqfoArBzwFnMYQP9rkrDHVrsV+ws+2LPM89T3NJaostmtIoHfkjb2P2rlEUIYh5vXKi
+ qrqNAWl6zpwkrYhGxAbqqmWQQXtkcihZKc6tjHlaf45173Icx/XZqv/zZYYpV6O2AVFlcXmNgb
+ bHI/HX9VmbhQ9AgAA
+X-Change-ID: 20241224-mdssdt_qcs8300-11b7883dc60b
+To: Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        "Kuogee
+ Hsieh" <quic_khsieh@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Kishon
+ Vijay Abraham I" <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+CC: Yongxing Mou <quic_yongmou@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1735206178; l=3711;
+ i=quic_yongmou@quicinc.com; s=20241121; h=from:subject:message-id;
+ bh=HrZixsa4o407w0QLd9DyL3Cx7C9rBv6UU13xVhOl9Bg=;
+ b=bIaX7B/2+vkGmUQj9+iXg/N1jRIRdrjxQwdHYd5XFggH0hbBeB9az5La2tFVsJDXAa8lvUSKW
+ h0YTS/kz1bYDU184yG4Dt3zLsoN4rf8ys5zcOGPAGCOVEnK3HZYqz3O
+X-Developer-Key: i=quic_yongmou@quicinc.com; a=ed25519;
+ pk=zeCnFRUqtOQMeFvdwex2M5o0Yf67UHYfwCyBRQ3kFbU=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: KTiTMKdPGR80sw1UqhDk1UCgks9G9HG8
+X-Proofpoint-ORIG-GUID: KTiTMKdPGR80sw1UqhDk1UCgks9G9HG8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ suspectscore=0 lowpriorityscore=0 mlxlogscore=999 impostorscore=0
+ bulkscore=0 malwarescore=0 priorityscore=1501 adultscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412260085
 
-Hello,
+This series introduces support to enable the Mobile Display Subsystem (MDSS)
+, Display Processing Unit (DPU), DisplayPort controller and eDP PHY for 
+the Qualcomm QCS8300 target. It includes the addition of the hardware catalog,
+compatible string, and their YAML bindings.
 
-On 26/12/2024 01:58:01-0300, Val Packett wrote:
-> From: Fabien Parent <parent.f@gmail.com>
-> 
-> Add the currently supported bindings for the MT6392 PMIC.
-> 
-> Signed-off-by: Fabien Parent <parent.f@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+---
+This series depends on following series:
+https://lore.kernel.org/all/20241203-qcs8300_initial_dtsi-v4-2-d7c953484024@quicinc.com/
+https://lore.kernel.org/all/20241106-qcs8300-mm-patches-v3-0-f611a8f87f15@quicinc.com/
+https://lore.kernel.org/all/20241114-qcs8300-mm-cc-dt-patch-v1-1-7a974508c736@quicinc.com/
+https://lore.kernel.org/all/20241024-defconfig_sa8775p_clock_controllers-v2-1-a9e1cdaed785@quicinc.com/
+---
+Changes in v2:Fixed review comments from Krzysztof, Dmitry, Rob.
+- Decouple the devicetree changes from this series.[Dmitry][Krzysztof]
+- Drop the dpu driver changes and reuse SA8775P DPU driver.[Dmitry]
+- Fix compilation issues in MDSS bindings.[Rob][Krzysztof]
+- Correct formatting errors and remove unnecessary status in MDSS
+  bindings.[Krzysztof]
+- Add the the necessary information in MDSS changes commit msg.[Dmitry]
+- Rebase MDSS driver changes to https://lore.kernel.org/dri-devel/
+  20241127-msm-mdss-ubwc-v3-0-9782a7c2b023@linaro.org/.[Dmitry]
+- Package the DisplayPort controller and eDP PHY bindings document to
+  this patch series.
+- Collecting MDSS changes reviewd-by Dmitry.
+- Reuse the sa8775p eDP PHY as a fallback compat.[Dmitry]
+- Reuse the sm8650 DP controller as a fallback compat.[Dmitry]
+- Link to v1: https://lore.kernel.org/r/20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com
+~
 
-Your SoB is missing.
+---
+Yongxing Mou (5):
+      dt-bindings: display/msm: Document the DPU for QCS8300
+      dt-bindings: display: msm: dp-controller: document QCS8300 compatible
+      dt-bindings: display/msm: Document MDSS on QCS8300
+      dt-bindings: phy: Add eDP PHY compatible for QCS8300
+      drm/msm: mdss: Add QCS8300 support
 
-> ---
->  Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> index 86451f151a6ae..73103922978f7 100644
-> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> @@ -38,6 +38,7 @@ properties:
->            - mediatek,mt6331 # "mediatek,mt6331" for PMIC MT6331 and MT6332.
->            - mediatek,mt6358
->            - mediatek,mt6359
-> +          - mediatek,mt6392
->            - mediatek,mt6397
->        - items:
->            - enum:
-> @@ -66,6 +67,7 @@ properties:
->                - mediatek,mt6323-rtc
->                - mediatek,mt6331-rtc
->                - mediatek,mt6358-rtc
-> +              - mediatek,mt6392-rtc
->                - mediatek,mt6397-rtc
->            - items:
->                - enum:
-> -- 
-> 2.47.1
-> 
+ .../bindings/display/msm/dp-controller.yaml        |   4 +
+ .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 244 +++++++++++++++++++++
+ .../bindings/display/msm/qcom,sm8650-dpu.yaml      |  13 +-
+ .../devicetree/bindings/phy/qcom,edp-phy.yaml      |  19 +-
+ drivers/gpu/drm/msm/msm_mdss.c                     |  11 +
+ 5 files changed, 280 insertions(+), 11 deletions(-)
+---
+base-commit: 8155b4ef3466f0e289e8fcc9e6e62f3f4dceeac2
+change-id: 20241224-mdssdt_qcs8300-11b7883dc60b
+prerequisite-message-id: <20241203-qcs8300_initial_dtsi-v4-2-d7c953484024@quicinc.com>
+prerequisite-patch-id: 33f2488a8eb133431f200e17aac743598508dcf3
+prerequisite-patch-id: 7b653ebeaf1ca3f87620ccf7d876e3d1fe496c4a
+prerequisite-patch-id: e1b60af8a64332e5f0ecbd3a4ea2b6e090bd97cf
+prerequisite-patch-id: b823d744d2fb302e2496eaf0cf0c9c66312dcf2a
+prerequisite-message-id: <20241106-qcs8300-mm-patches-v3-0-f611a8f87f15@quicinc.com>
+prerequisite-patch-id: 367d9c742fe5087cfa6fb8e7b05ebe9bc78d68f3
+prerequisite-patch-id: ee0513c070ab96e63766d235b38ee53ca9b19181
+prerequisite-patch-id: 970974160bcdc837ccbe5ea3b5dcac582e90bc0d
+prerequisite-patch-id: 5b2bd9cc44a529b0b9e5d73128dca5d2ff9f2f44
+prerequisite-patch-id: 6a0a81242e1d0f051e3102533bf0191615c6e96b
+prerequisite-patch-id: 322540ce6d45c32f813ecef50e5135c6f08d9019
+prerequisite-message-id: <20241114-qcs8300-mm-cc-dt-patch-v1-1-7a974508c736@quicinc.com>
+prerequisite-patch-id: 8faad5c6d8ca255935d3e4d317dcbcc32b8261ff
+prerequisite-message-id: <20241024-defconfig_sa8775p_clock_controllers-v2-1-a9e1cdaed785@quicinc.com>
+prerequisite-patch-id: 81378ec66ab6e569bd828401c43c4f5af55db32c
 
+Best regards,
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Yongxing Mou <quic_yongmou@quicinc.com>
+
 
