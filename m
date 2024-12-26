@@ -1,185 +1,129 @@
-Return-Path: <devicetree+bounces-134131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5250F9FCC7D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:35:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E3DA9FCC7E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:36:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1A6316251B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 17:35:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6A3916251B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 17:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F4213DBBE;
-	Thu, 26 Dec 2024 17:35:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC49F143725;
+	Thu, 26 Dec 2024 17:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="C96YjZsm"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gqkbLQqW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9A0182CD
-	for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 17:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D532BCF5;
+	Thu, 26 Dec 2024 17:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735234554; cv=none; b=OOteS4m2stAYIjaiC3JLAMWX4QRGBsxH1pzmB54Aq33fOTIviPqpvYBlyo/8HR/SSwMBiNPrdRreGhp8WeMfjISQ4LqNC+EJrwa0f81aIUTaseCt2UGmGVdXMH3nYuvvmiko3VHoPVb3apgIp6uHuOW6tWrkCc4g0TkGBLI7eCU=
+	t=1735234602; cv=none; b=AAXGJbkXmRtsQkiqBsfh725JL4HhOzjS4l6rTCyDK0G9mpLkIo3XS/wZ0ESSScas6kPxyYxeh+N9c9xgyrz1BI8EvH4jOGWAnDT+DxVrKH/NSgayZAySJOpwZtQFweLTu64FXZjHneYimvZX/WCD6G+cqYPFwMsf+d2rzqZXTHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735234554; c=relaxed/simple;
-	bh=fQISsrbQuu+YvYCZOl1qGFY3NC+UYKOUTTOLOv+/akQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gAg125vTN/1W0H+r+urqFFOxHdZjjc1FGo3ddCJdbIISTRem5ih6f1YRz0k3Pp1SCV27GpLOaz6lYQ1v6XMjUXxK30CDep/FJexjXpKqwyUzjzEZRzJYXo+TxnmL+BQx2JswmYkVrDjgUwmLyfpGN3VEkv3zuRlLPFH6ndf8iF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai; spf=none smtp.mailfrom=edgeble.ai; dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b=C96YjZsm; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=edgeble.ai
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2ee8e8e29f6so6573278a91.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 09:35:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1735234552; x=1735839352; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E9Hxi9sszYSp2cS3KRHvqcLvWwaE0E5fecrWh0T8tms=;
-        b=C96YjZsmVGYsah8guYcfd63isMTMrkgqkZGMCpj9miW0VptPgRDi0OxmG6Wm8cUjBt
-         pK/YrKhjaLUFQAOuWQY5ayHhgSDcXp2TYr4n95aU5zEpE7ilOZ/1JInU76wIXjEOtL8o
-         Q5vd+hW/+MPf8pUe9NzDrp1sD1cHYGhY8Umn49dzKuYVp+FcU8MQeqcuB5vU3R3VcDmv
-         liD/s4mP74Y1wzsixGv+h+S53YtNYadOXAPQvwSKfn+Rb+O/oZlS01VtCuWeYirDL51I
-         wgfUO662f4C3Dl4ZEVo0wOh6h9kR+AiqDIwd7mucCHqwGrnjdEmoK3kBueXZW4D2nMUE
-         4TOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735234552; x=1735839352;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E9Hxi9sszYSp2cS3KRHvqcLvWwaE0E5fecrWh0T8tms=;
-        b=MFg9NbGZYTDhc2cHtE6HL9p6icIORkzrjfRJtkXZB4xj3haX724tOBNlO0LYu/G9ls
-         mHLr4c2Ga8A7Vz00QilpPK65PsVkbqvU642QTPpGdewF4oSIRiGmh5tOlxWoq4KJP1mI
-         pss4hOxdJAveLlOwZR+fWvbXFWWLulXl1wP53a2pvPh1vr+EOPmZPsEs2DEnwRTqimdS
-         iMhux54AoJgWAidgKMH+ZvkEedDZqRf2xtXjLKpWm4PIdboAf/FS1LXjI/a/pVdgBSX/
-         +s5XJ5RVEii9O2bcbSHRgVGAuWePy6O91f9pBSo//nxczHRGj3kL/pUNNSn+GmxkT2e8
-         2vpg==
-X-Forwarded-Encrypted: i=1; AJvYcCVFXss8agvDnYh3QFa+ATTvGcERpKuGh93hOVpTNXWLe1urMOsF4vkTRgFoGEDK9s2s4suQ1xw55wJq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlGiwV6UDAUX3Wa6SANSpGHj+P31zzTpozzGdv2tQA2xpNjig4
-	lBpOPb0GG9iKo38L3iuSEx5Vh6z5ah/UGStBflbA9NzQWD8iVPoErZQnRiHYls95hqaQLbUFoMK
-	poXY=
-X-Gm-Gg: ASbGncvvUiZr2T3oUSOQ0EsTe7kGp+SfKyh7aNIeJMsvWUO1s4nBZGd2jUli0aQSruX
-	hHZMM+puGwR+zTCDIMpVCFGNxrnP83DpmbsjmDVGFjo/Ue8V0U/usu3ugyh3bJfm7eYqeogYhHe
-	quiLgzqvjb81zwJMtuLKkNXMiiklszlVOyUYTn6fVNGANqaJE3G73xcahUyLmtyRISM80LG3xyV
-	U7ieZ9e/mk1Qs5xIuiG7p25wPu7diDrNZTqbikveZsLFaT9X8VND/8pazmHTtB+qcXOkpCk
-X-Google-Smtp-Source: AGHT+IGR8b1qFS8O/216LzEHsL2snOtTt/JUhfXE7hEdBOQDqshwj0GgvqkF0MIY6yWqZ4cmqEhOag==
-X-Received: by 2002:a17:90b:514d:b0:2ee:889b:b11e with SMTP id 98e67ed59e1d1-2f452ec3775mr36227157a91.30.1735234552633;
-        Thu, 26 Dec 2024 09:35:52 -0800 (PST)
-Received: from tops-ThinkPad-E14-Gen-5.. ([2405:201:c00a:a918:ba33:f9a0:ac68:19f])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f4477c8461sm14281147a91.13.2024.12.26.09.35.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Dec 2024 09:35:52 -0800 (PST)
-From: Jagan Teki <jagan@edgeble.ai>
-To: Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Enable HDMI1 out for Edgeble-6TOPS Modules
-Date: Thu, 26 Dec 2024 23:05:30 +0530
-Message-Id: <20241226173530.37037-2-jagan@edgeble.ai>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241226173530.37037-1-jagan@edgeble.ai>
-References: <20241226173530.37037-1-jagan@edgeble.ai>
+	s=arc-20240116; t=1735234602; c=relaxed/simple;
+	bh=E98IMWNWXz+q/sQ0HonTh/il92ipi5DSg9DWWA5c2aA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WF3oaBcwMFj/OqSo81ZG2mCkaTpn/bU4Nx3JbmAjRCIulc/GALDP7osFsclfwDh0e9pfvtXBPZH4M7kVCOretdjNFsetCUmKSVfKRVkiR3JlbWXlDMdHpYRWXoYfeOIrUGJqgmNTd/WnZYUxQwZ06Pa0HhvtGv6TLWuobe7WGHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gqkbLQqW; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4BQHa5Sm007975;
+	Thu, 26 Dec 2024 11:36:05 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1735234565;
+	bh=dx45m49A7rbyoDNzZ9IqzaqQc5ODntfqPsXgrpTfP7I=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=gqkbLQqWJJcNL4toy1hHZQ0RKhSDt+x218lryK14wGIr59q0ueCPV+89sOVFX4P2N
+	 bjDIStQwmUHsD1v2U5ZHCt+xwqmASS7GMwoznnTBuD4NjPLe5scDj9gxXFvCdD3nkg
+	 kGouUdr+t7sfusd959jzpgkZIi+EIfBcofPK9CzU=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BQHa55p078363;
+	Thu, 26 Dec 2024 11:36:05 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 26
+ Dec 2024 11:36:05 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 26 Dec 2024 11:36:05 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BQHa5xr072158;
+	Thu, 26 Dec 2024 11:36:05 -0600
+Date: Thu, 26 Dec 2024 11:36:05 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Kees Cook <kees@kernel.org>, Tony Luck
+	<tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        Felipe
+ Balbi <balbi@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>, Devarsh
+ Thakkar <devarsht@ti.com>,
+        Hari Nagalla <hnagalla@ti.com>, <linux@ew.tq-group.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: usb: dwc3: Allow connector in USB
+ controller node
+Message-ID: <20241226173605.hcvybgbi5pmmeh2b@sweep>
+References: <cover.1733737487.git.matthias.schiffer@ew.tq-group.com>
+ <06497b8aadc0b5becced274d0a5fbcd808d87a48.1733737487.git.matthias.schiffer@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <06497b8aadc0b5becced274d0a5fbcd808d87a48.1733737487.git.matthias.schiffer@ew.tq-group.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Edgeble-6TOPS modules configure HDMI1 for HDMI Out from RK3588.
+On 10:51-20241209, Matthias Schiffer wrote:
+> Allow specifying the connector directly in the USB controller node, as
+> supported by other USB controller bindings.
+> 
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 1cd0ca90127d9..2976fb1a58061 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -68,6 +68,12 @@ properties:
+>          - enum: [bus_early, ref, suspend]
+>          - true
+>  
+> +  connector:
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +    description: Connector for dual role switch
+> +    type: object
+> +    unevaluatedProperties: false
+> +
+>    dma-coherent: true
+>  
+>    extcon:
 
-Enable it on Edgeble-6TOPS IO Board dtsi.
+This needs to go via the USB subsystem team. The device tree changes can
+go once this is merged.
 
-Signed-off-by: Jagan Teki <jagan@edgeble.ai>
----
- .../dts/rockchip/rk3588-edgeble-neu6a-io.dtsi | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
-index 7125790bbed2..4883b31ddeaf 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
-@@ -4,12 +4,24 @@
-  */
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- 
- / {
- 	chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	hdmi1-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi1_con_in: endpoint {
-+				remote-endpoint = <&hdmi1_out_con>;
-+			};
-+		};
-+	};
-+
- 	/* Unnamed gated oscillator: 100MHz,3.3V,3225 */
- 	pcie30_port0_refclk: pcie30_port1_refclk: pcie-oscillator {
- 		compatible = "gated-fixed-clock";
-@@ -81,6 +93,26 @@ &combphy2_psu {
- 	status = "okay";
- };
- 
-+&hdmi1 {
-+	status = "okay";
-+};
-+
-+&hdmi1_in {
-+	hdmi1_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi1>;
-+	};
-+};
-+
-+&hdmi1_out {
-+	hdmi1_out_con: endpoint {
-+		remote-endpoint = <&hdmi1_con_in>;
-+	};
-+};
-+
-+&hdptxphy_hdmi1 {
-+	status = "okay";
-+};
-+
- &i2c6 {
- 	status = "okay";
- 
-@@ -275,3 +307,18 @@ &usb_host1_ohci {
- &usb_host2_xhci {
- 	status = "okay";
- };
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
-+		remote-endpoint = <&hdmi1_in_vp0>;
-+	};
-+};
 -- 
-2.34.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
