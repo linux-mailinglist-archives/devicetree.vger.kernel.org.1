@@ -1,72 +1,63 @@
-Return-Path: <devicetree+bounces-134194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904149FCEA2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 23:40:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB7719FCEAA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 23:41:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37FC7163836
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 22:40:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C4653A0328
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 22:41:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8832B1D5AA1;
-	Thu, 26 Dec 2024 22:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30051D7E26;
+	Thu, 26 Dec 2024 22:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nWLojLEF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IvY5ttTM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57AF11B21AB;
-	Thu, 26 Dec 2024 22:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7CD21D7994;
+	Thu, 26 Dec 2024 22:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735252747; cv=none; b=Bj+WmZAfoE9JYEz8UPwvfeq4nIm5o5/WDhUBvDxOdCR4hDCNKuxGXP6td/SsCmrgWueR8wEefK2JufOJnfcVcmheM0CztzPoOMeHHRjlvnUQyjJzIFqBieybougIlSXTyrUplEch0ouBRXSDM9jDgZkcanrqA97xnzSibEG5jGA=
+	t=1735252749; cv=none; b=WP0CbqVtji7IH6CfoEKg/hp1N9JtL4GkOEdGqcO6gLwQLtxPf90VZXYDyku0DP4QMHVrPDDSX8OwI6jLrSUSrw0PkVgmxWo4/0ioNKWxbemzJ+mERA/d8US3zCwUdbCbHY+3H3hriwPfrOSczPUOfjjEs1k93MXQFptFUalEjT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735252747; c=relaxed/simple;
-	bh=sgN/I8NAvChJySX/9fgdtVSSjB1bwkDhwzRlRrtVlfk=;
+	s=arc-20240116; t=1735252749; c=relaxed/simple;
+	bh=VFLTWnfQgdHkriO0SkXwz4JIVl+0PyLfE7mImr/Vtt4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tTp+dgMykCMg+1VSkr7B/fidKe26US8xksRGR7WdwWnJFNS7WDTFbVzA+zO3QD9B1ambS3iwVU05b8Mq+n2XJcQSp0nOdMlkShLmkSE37yTJQlTY6O5+Ee5aoYbaCHLYbXi6bjynyyZty51lE5MBnYEnpiZv6SWrGMVBIE3fe/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nWLojLEF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BA60C4CED3;
-	Thu, 26 Dec 2024 22:39:05 +0000 (UTC)
+	 MIME-Version:Content-Type; b=t1VD4ei5zTRLD/uxuRi0vSFOwO4MMWbdZ9VYEDyh9y6b/kvdpw/osr5aCjUvZXczEwWIJpr6R1BuvIZa3C9t9yFLm21GTXQtpNl/zJAKtPIz6Awjc4oCM1sr833NmUy1KV/MebA/b1lmy6J9LxPxvUYK9jDNadPMfHbHuxdO26I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IvY5ttTM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84ADDC4CED1;
+	Thu, 26 Dec 2024 22:39:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735252746;
-	bh=sgN/I8NAvChJySX/9fgdtVSSjB1bwkDhwzRlRrtVlfk=;
+	s=k20201202; t=1735252749;
+	bh=VFLTWnfQgdHkriO0SkXwz4JIVl+0PyLfE7mImr/Vtt4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=nWLojLEFRsUA2hzyZxAxkPI0TEiUqZa06kVh1J/1JoLvF2o1mzBiLVzjSzSuYdfye
-	 S3ZqdfLqCS7p+qVpv/+mwg2Fp9K27UOZ/rQJukmlJojGZTZiL1FzpiJAR+LYH6cyJy
-	 c9Ed3mkWxFKRO4Skfu9tr1HNzq/7/O6nOPgt1bpiEL2ovEqBZTj3WL7XPKNCBkJG1H
-	 vnV2fpMc0OqN+qfRTQJYwBoHJF6Xglx/S808ExivSb9C4OFJmwGxosvDgG2s8HtEUs
-	 94LTUDnbGtlNdah804Awhmwp8DZqPskgAITap8THpOSX1XzR4pRlRR92Lszn/XlqCV
-	 6zHkB1Giy+zpA==
+	b=IvY5ttTMTvx+Zi+3kwODikX3AVr4KfyjG96xMjhFHh5J3qfRy2y8u7CtwBcK0aUN6
+	 xEOydB6Wyw5yb+OZwK0tVOvIDprtsge89G+RFAm3E03eMVZ0Cm3QcPPaMpOtUNhn6C
+	 eonPprBnr46ArcPJt8rySn1njEc6LpX6k5Mlngo48UNd/HeYpQ1vBQSHWi1Pc8l/Or
+	 S5Ps/Slx2kdqpszwZrUiZal6a/fHGBqDaEQYr1IaZAvvRyXBoSaZZOFULYN+OXLCAk
+	 tueTPAGELf6ZtMXroufOBMbBr/B4N6TLLULNZk5efrtyLTroCKgtPk7tYjJY5FV9NL
+	 DWS2xGKBMDGRA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Yassine Oudjana <y.oudjana@protonmail.com>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
 	linux-arm-msm@vger.kernel.org,
-	linux-usb@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konradybcio@gmail.com>,
-	Petr Vorel <pvorel@suse.cz>,
-	=?UTF-8?q?Kry=C5=A1tof=20=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>,
-	Alexander Reimelt <alexander.reimelt@posteo.de>,
-	Dominik Kobinski <dominikkobinski314@gmail.com>,
-	Harry Austen <hpausten@protonmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [RFT PATCH 0/4] More QC DWC3 fixups
-Date: Thu, 26 Dec 2024 16:38:36 -0600
-Message-ID: <173525273248.1449028.5463368821621810712.b4-ty@kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e78100-t14s: add sound support
+Date: Thu, 26 Dec 2024 16:38:39 -0600
+Message-ID: <173525273255.1449028.10386868284360110581.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241129-topic-qcom_usb_dtb_fixup-v1-0-cba24120c058@oss.qualcomm.com>
-References: <20241129-topic-qcom_usb_dtb_fixup-v1-0-cba24120c058@oss.qualcomm.com>
+In-Reply-To: <20241203111229.48967-1-krzysztof.kozlowski@linaro.org>
+References: <20241203111229.48967-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +68,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 29 Nov 2024 23:12:44 +0100, Konrad Dybcio wrote:
-> Squashed a couple more warnings, the remaining ones I'll try to figure
-> out soon.
+On Tue, 03 Dec 2024 12:12:29 +0100, Krzysztof Kozlowski wrote:
+> Add support for audio on Lenovo T14s laptop, coming with two speakers,
+> audio jack and two digital microphones.
 > 
-> This is all based on what I was able to make out from docs. Couldn't get
-> any 8994 or 8996 boards I have access to booting reliably :(
-> Ccing some folks that I'm hoping could help out testing this
+> This is very early work, not yet complete:
+> 1. 2x speakers: work OK.
+> 2. 2x digital microphones: work OK.
+> 3. Headset (audio jack) recording: does not work.
+> 4. Headphones playback (audio jack): channels are intermixed.
 > 
 > [...]
 
 Applied, thanks!
 
-[3/4] arm64: dts: qcom: msm8996: Fix up USB3 interrupts
-      commit: 9cb9c9f4e1380da317a056afd26d66a835c5796c
-[4/4] arm64: dts: qcom: msm8994: Describe USB interrupts
-      commit: c910544d2234709660d60f80345c285616e73b1c
+[1/1] arm64: dts: qcom: x1e78100-t14s: add sound support
+      commit: 12805b0f998cb65f5c728bf93876f9603fe58477
 
 Best regards,
 -- 
