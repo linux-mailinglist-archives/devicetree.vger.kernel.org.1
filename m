@@ -1,74 +1,77 @@
-Return-Path: <devicetree+bounces-134130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607949FCC7C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5250F9FCC7D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:35:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB142162486
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 17:35:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1A6316251B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 17:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4175A82D66;
-	Thu, 26 Dec 2024 17:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F4213DBBE;
+	Thu, 26 Dec 2024 17:35:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="NPO/7X2H"
+	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="C96YjZsm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA770182CD
-	for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 17:35:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9A0182CD
+	for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 17:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735234547; cv=none; b=YumhWsGEYsxURObwEN8TLip9K6bVJeFPLzjgCDRchqU940WYAuc6EIjQVH+9qmpJ1RaIoUXNx+utNUJof0kiuM/wlwc8V/qPmFy8KJK1lWv2s7/K/z2R2db1YLMGTFz+TA/Follm1b7LPNj35zlolLxxeE2FH49/VbOiCnJblzk=
+	t=1735234554; cv=none; b=OOteS4m2stAYIjaiC3JLAMWX4QRGBsxH1pzmB54Aq33fOTIviPqpvYBlyo/8HR/SSwMBiNPrdRreGhp8WeMfjISQ4LqNC+EJrwa0f81aIUTaseCt2UGmGVdXMH3nYuvvmiko3VHoPVb3apgIp6uHuOW6tWrkCc4g0TkGBLI7eCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735234547; c=relaxed/simple;
-	bh=UJt6E4jjr2RjmIgAcBGPUEOamnVldWr/p98B77Px2S8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aew8h6ND9IZ/rY7kzyEjMhd6cnZV4SZLdcgllvZVuLj2uBAS/Xp0MDIYjaYGubrlLd2LMnyRCFCZQywOqy8RBttaAQaT6NUzB/3cWN2TLqjP8uCKhW7uQ7urmAKOihhOk3GECrd72MCucisnhNHUYBovkA733Y1mDt9jusvaXbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai; spf=none smtp.mailfrom=edgeble.ai; dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b=NPO/7X2H; arc=none smtp.client-ip=209.85.214.180
+	s=arc-20240116; t=1735234554; c=relaxed/simple;
+	bh=fQISsrbQuu+YvYCZOl1qGFY3NC+UYKOUTTOLOv+/akQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=gAg125vTN/1W0H+r+urqFFOxHdZjjc1FGo3ddCJdbIISTRem5ih6f1YRz0k3Pp1SCV27GpLOaz6lYQ1v6XMjUXxK30CDep/FJexjXpKqwyUzjzEZRzJYXo+TxnmL+BQx2JswmYkVrDjgUwmLyfpGN3VEkv3zuRlLPFH6ndf8iF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai; spf=none smtp.mailfrom=edgeble.ai; dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b=C96YjZsm; arc=none smtp.client-ip=209.85.216.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=edgeble.ai
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2163bd70069so76747135ad.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 09:35:45 -0800 (PST)
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2ee8e8e29f6so6573278a91.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 09:35:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1735234545; x=1735839345; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=X1dTeAMm/wW0dtPQtk6JGdAaI2aq0m9euZXSH3QbeHI=;
-        b=NPO/7X2HNJdFQ9sCULnGqPgIwsP+YXbCudxJcuL3NEttLBbizLFoFneiCGrr1gjpuO
-         dDp3CQq1BaMEDX+7LoKuaS0IXuAMil9YL3Sw5A4CX2ZGmqbNbJxBvBuiI4k58h3Iix1S
-         stO3Fz/mA9/jxJysJ0NtEB9mFYtRL69uq9GF1JI7PsHd5lHVGreFfK0X/xThesPalyOr
-         qkRjIYTr8Xf+4xuUExY4gzYXPBVvcCvut1dmOcA1rMEVHv3Mj0YcJkh33U0vpgxpZTq/
-         jO/KWApYhT3MPtHDGL4ybt5HgGpSbMkvQAAdEKP8PYqVAgsYXwQ6KhFKNQu9eiVHsuqs
-         VT4A==
+        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1735234552; x=1735839352; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E9Hxi9sszYSp2cS3KRHvqcLvWwaE0E5fecrWh0T8tms=;
+        b=C96YjZsmVGYsah8guYcfd63isMTMrkgqkZGMCpj9miW0VptPgRDi0OxmG6Wm8cUjBt
+         pK/YrKhjaLUFQAOuWQY5ayHhgSDcXp2TYr4n95aU5zEpE7ilOZ/1JInU76wIXjEOtL8o
+         Q5vd+hW/+MPf8pUe9NzDrp1sD1cHYGhY8Umn49dzKuYVp+FcU8MQeqcuB5vU3R3VcDmv
+         liD/s4mP74Y1wzsixGv+h+S53YtNYadOXAPQvwSKfn+Rb+O/oZlS01VtCuWeYirDL51I
+         wgfUO662f4C3Dl4ZEVo0wOh6h9kR+AiqDIwd7mucCHqwGrnjdEmoK3kBueXZW4D2nMUE
+         4TOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735234545; x=1735839345;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X1dTeAMm/wW0dtPQtk6JGdAaI2aq0m9euZXSH3QbeHI=;
-        b=AzKkCmZFHTtr+N8zJuCGpOoC+ifOy9oKsSiBi9aJJwc+jtqrlKcOKjJqNA/wUwP4NP
-         RQ5IPn8IrPQT6QceNsE0144CLigU/yy6ePmDzvWT+IwV8g/e75mBWFPldOX65G2GVDjZ
-         3zNdaionBNWE9SUu0jGjSqKy5VaxAyEJeErHABOJKZIT7RDT1lnzC50zfkQSBq1GnF6o
-         Fuo8Q4tKqa+EhKd3msiP9XRxflLokz6S6qKtjB3STwJx31UpQHpkZUQw8HGs6N5H8MTS
-         JFuUgP/kEZw3nW8ENDm8ZQfbCIOc+4Dmn/fcNRuYL4y9Vn8pFxAZmmFRZ3MNsyieIVfj
-         ImGA==
-X-Forwarded-Encrypted: i=1; AJvYcCXB030Qcrs+rCFNLCChop/WmQxMoQoi01bNfekW+p80YUVqoyYG6yyqS4W+xWB5tEglSVEk+NMygYOD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzS351csA5tH61PZbem3aRsLic6cNC9pVBAmwWpl5Pt3uhiDCom
-	iDpPICq++zvtqEztulps8LOWUk0D658eXcmLhRwdygB1uA0nEoYtHxw48NAsk+U=
-X-Gm-Gg: ASbGncu5suvmNtqjK+FDf4rEYP390YCMi8Lt++jEr1sBkJdgZCBvqT6DW1lFH8xl+rm
-	n5QRMEOeX+JgZCu5Ms5wYBjy5ZVWqN4tqVbApiIl3VPtso41elyLJw6zI4ewSjTmTIQ20/GqHCi
-	vBPrfDSq1CC2AMhWE3WGJR57PVoe22gKgIr+d3YHycgWVLNN9mbovq9AGzjtyXNmmahwXoHDmj4
-	M9AZkYEtUH7LrpEvOKH2PXJ9zkSL5vX/8/N/TYCwuryu+xJU1UY+KK0fj2x7mtwIYgHNeZ/
-X-Google-Smtp-Source: AGHT+IEIRjkv8xpdBRFHNmeOGEm+9+EQ5icIZIC9cV5XUaKkB1G4eZT7R8atLlQBaeefj8JDRZndLQ==
-X-Received: by 2002:a17:902:ef12:b0:216:52a5:dd41 with SMTP id d9443c01a7336-219e6ec13bcmr374141345ad.31.1735234544922;
-        Thu, 26 Dec 2024 09:35:44 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735234552; x=1735839352;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E9Hxi9sszYSp2cS3KRHvqcLvWwaE0E5fecrWh0T8tms=;
+        b=MFg9NbGZYTDhc2cHtE6HL9p6icIORkzrjfRJtkXZB4xj3haX724tOBNlO0LYu/G9ls
+         mHLr4c2Ga8A7Vz00QilpPK65PsVkbqvU642QTPpGdewF4oSIRiGmh5tOlxWoq4KJP1mI
+         pss4hOxdJAveLlOwZR+fWvbXFWWLulXl1wP53a2pvPh1vr+EOPmZPsEs2DEnwRTqimdS
+         iMhux54AoJgWAidgKMH+ZvkEedDZqRf2xtXjLKpWm4PIdboAf/FS1LXjI/a/pVdgBSX/
+         +s5XJ5RVEii9O2bcbSHRgVGAuWePy6O91f9pBSo//nxczHRGj3kL/pUNNSn+GmxkT2e8
+         2vpg==
+X-Forwarded-Encrypted: i=1; AJvYcCVFXss8agvDnYh3QFa+ATTvGcERpKuGh93hOVpTNXWLe1urMOsF4vkTRgFoGEDK9s2s4suQ1xw55wJq@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlGiwV6UDAUX3Wa6SANSpGHj+P31zzTpozzGdv2tQA2xpNjig4
+	lBpOPb0GG9iKo38L3iuSEx5Vh6z5ah/UGStBflbA9NzQWD8iVPoErZQnRiHYls95hqaQLbUFoMK
+	poXY=
+X-Gm-Gg: ASbGncvvUiZr2T3oUSOQ0EsTe7kGp+SfKyh7aNIeJMsvWUO1s4nBZGd2jUli0aQSruX
+	hHZMM+puGwR+zTCDIMpVCFGNxrnP83DpmbsjmDVGFjo/Ue8V0U/usu3ugyh3bJfm7eYqeogYhHe
+	quiLgzqvjb81zwJMtuLKkNXMiiklszlVOyUYTn6fVNGANqaJE3G73xcahUyLmtyRISM80LG3xyV
+	U7ieZ9e/mk1Qs5xIuiG7p25wPu7diDrNZTqbikveZsLFaT9X8VND/8pazmHTtB+qcXOkpCk
+X-Google-Smtp-Source: AGHT+IGR8b1qFS8O/216LzEHsL2snOtTt/JUhfXE7hEdBOQDqshwj0GgvqkF0MIY6yWqZ4cmqEhOag==
+X-Received: by 2002:a17:90b:514d:b0:2ee:889b:b11e with SMTP id 98e67ed59e1d1-2f452ec3775mr36227157a91.30.1735234552633;
+        Thu, 26 Dec 2024 09:35:52 -0800 (PST)
 Received: from tops-ThinkPad-E14-Gen-5.. ([2405:201:c00a:a918:ba33:f9a0:ac68:19f])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f4477c8461sm14281147a91.13.2024.12.26.09.35.41
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f4477c8461sm14281147a91.13.2024.12.26.09.35.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Dec 2024 09:35:44 -0800 (PST)
+        Thu, 26 Dec 2024 09:35:52 -0800 (PST)
 From: Jagan Teki <jagan@edgeble.ai>
 To: Heiko Stuebner <heiko@sntech.de>,
 	linux-rockchip@lists.infradead.org
@@ -78,10 +81,12 @@ Cc: Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH 1/2] arm64: dts: rockchip: Add HDMI1 node to rk3588
-Date: Thu, 26 Dec 2024 23:05:29 +0530
-Message-Id: <20241226173530.37037-1-jagan@edgeble.ai>
+Subject: [PATCH 2/2] arm64: dts: rockchip: Enable HDMI1 out for Edgeble-6TOPS Modules
+Date: Thu, 26 Dec 2024 23:05:30 +0530
+Message-Id: <20241226173530.37037-2-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241226173530.37037-1-jagan@edgeble.ai>
+References: <20241226173530.37037-1-jagan@edgeble.ai>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,104 +95,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-HDMI1 Output is available RK3588 (not for RK3588S).
+Edgeble-6TOPS modules configure HDMI1 for HDMI Out from RK3588.
 
-Add support for it.
+Enable it on Edgeble-6TOPS IO Board dtsi.
 
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
-Note: As of 1080p display is working
+ .../dts/rockchip/rk3588-edgeble-neu6a-io.dtsi | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
 
- .../arm64/boot/dts/rockchip/rk3588-extra.dtsi | 62 +++++++++++++++++++
- 1 file changed, 62 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-index ead151941e84..66bf5e780382 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-@@ -67,6 +67,11 @@ u2phy1_otg: otg-port {
- 		};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
+index 7125790bbed2..4883b31ddeaf 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
+@@ -4,12 +4,24 @@
+  */
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/soc/rockchip,vop2.h>
+ 
+ / {
+ 	chosen {
+ 		stdout-path = "serial2:1500000n8";
  	};
  
-+	hdptxphy1_grf: syscon@fd5e4000 {
-+		compatible = "rockchip,rk3588-hdptxphy-grf", "syscon";
-+		reg = <0x0 0xfd5e4000 0x0 0x100>;
-+	};
++	hdmi1-con {
++		compatible = "hdmi-connector";
++		type = "a";
 +
- 	i2s8_8ch: i2s@fddc8000 {
- 		compatible = "rockchip,rk3588-i2s-tdm";
- 		reg = <0x0 0xfddc8000 0x0 0x1000>;
-@@ -135,6 +140,47 @@ i2s10_8ch: i2s@fde00000 {
- 		status = "disabled";
- 	};
- 
-+	hdmi1: hdmi@fdea0000 {
-+		compatible = "rockchip,rk3588-dw-hdmi-qp";
-+		reg = <0x0 0xfdea0000 0x0 0x20000>;
-+		clocks = <&cru PCLK_HDMITX1>,
-+			 <&cru CLK_HDMITX1_EARC>,
-+			 <&cru CLK_HDMITX1_REF>,
-+			 <&cru MCLK_I2S6_8CH_TX>,
-+			 <&cru CLK_HDMIHDP1>,
-+			 <&cru HCLK_VO1>;
-+		clock-names = "pclk", "earc", "ref", "aud", "hdp", "hclk_vo1";
-+		interrupts = <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "avp", "cec", "earc", "main", "hpd";
-+		phys = <&hdptxphy_hdmi1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdmim2_tx1_cec &hdmim0_tx1_hpd
-+			     &hdmim1_tx1_scl &hdmim1_tx1_sda>;
-+		power-domains = <&power RK3588_PD_VO1>;
-+		resets = <&cru SRST_HDMITX1_REF>, <&cru SRST_HDMIHDP1>;
-+		reset-names = "ref", "hdp";
-+		rockchip,grf = <&sys_grf>;
-+		rockchip,vo-grf = <&vo1_grf>;
-+		status = "disabled";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			hdmi1_in: port@0 {
-+				reg = <0>;
-+			};
-+
-+			hdmi1_out: port@1 {
-+				reg = <1>;
++		port {
++			hdmi1_con_in: endpoint {
++				remote-endpoint = <&hdmi1_out_con>;
 +			};
 +		};
 +	};
 +
- 	pcie3x4: pcie@fe150000 {
- 		compatible = "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
- 		#address-cells = <3>;
-@@ -400,6 +446,22 @@ sata-port@0 {
- 		};
- 	};
+ 	/* Unnamed gated oscillator: 100MHz,3.3V,3225 */
+ 	pcie30_port0_refclk: pcie30_port1_refclk: pcie-oscillator {
+ 		compatible = "gated-fixed-clock";
+@@ -81,6 +93,26 @@ &combphy2_psu {
+ 	status = "okay";
+ };
  
-+	hdptxphy_hdmi1: phy@fed70000 {
-+		compatible = "rockchip,rk3588-hdptx-phy";
-+		reg = <0x0 0xfed70000 0x0 0x2000>;
-+		clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>, <&cru PCLK_HDPTX1>;
-+		clock-names = "ref", "apb";
-+		#phy-cells = <0>;
-+		resets = <&cru SRST_HDPTX1>, <&cru SRST_P_HDPTX1>,
-+			 <&cru SRST_HDPTX1_INIT>, <&cru SRST_HDPTX1_CMN>,
-+			 <&cru SRST_HDPTX1_LANE>, <&cru SRST_HDPTX1_ROPLL>,
-+			 <&cru SRST_HDPTX1_LCPLL>;
-+		reset-names = "phy", "apb", "init", "cmn", "lane", "ropll",
-+			      "lcpll";
-+		rockchip,grf = <&hdptxphy1_grf>;
-+		status = "disabled";
-+	};
++&hdmi1 {
++	status = "okay";
++};
 +
- 	usbdp_phy1: phy@fed90000 {
- 		compatible = "rockchip,rk3588-usbdp-phy";
- 		reg = <0x0 0xfed90000 0x0 0x10000>;
++&hdmi1_in {
++	hdmi1_in_vp0: endpoint {
++		remote-endpoint = <&vp0_out_hdmi1>;
++	};
++};
++
++&hdmi1_out {
++	hdmi1_out_con: endpoint {
++		remote-endpoint = <&hdmi1_con_in>;
++	};
++};
++
++&hdptxphy_hdmi1 {
++	status = "okay";
++};
++
+ &i2c6 {
+ 	status = "okay";
+ 
+@@ -275,3 +307,18 @@ &usb_host1_ohci {
+ &usb_host2_xhci {
+ 	status = "okay";
+ };
++
++&vop_mmu {
++	status = "okay";
++};
++
++&vop {
++	status = "okay";
++};
++
++&vp0 {
++	vp0_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
++		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
++		remote-endpoint = <&hdmi1_in_vp0>;
++	};
++};
 -- 
 2.34.1
 
