@@ -1,129 +1,94 @@
-Return-Path: <devicetree+bounces-134132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E3DA9FCC7E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:36:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 364F79FCC9E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 19:27:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6A3916251B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 17:36:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA190188328D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC49F143725;
-	Thu, 26 Dec 2024 17:36:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 744C41422C7;
+	Thu, 26 Dec 2024 18:27:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gqkbLQqW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I4/bOpx9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D532BCF5;
-	Thu, 26 Dec 2024 17:36:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433594E1CA;
+	Thu, 26 Dec 2024 18:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735234602; cv=none; b=AAXGJbkXmRtsQkiqBsfh725JL4HhOzjS4l6rTCyDK0G9mpLkIo3XS/wZ0ESSScas6kPxyYxeh+N9c9xgyrz1BI8EvH4jOGWAnDT+DxVrKH/NSgayZAySJOpwZtQFweLTu64FXZjHneYimvZX/WCD6G+cqYPFwMsf+d2rzqZXTHE=
+	t=1735237636; cv=none; b=n+L9zBsISDX/XU84IqXRquDoBiV8ZSbd0pwmnTJHqu9CP1Mor/g6+JGWsVOA3p8m8nP255Vbz/Ps9O6xJNR9W3sYhFXlSwjcQGYsNqQcZ8UpbZvpovn2Hbw74DAJ2JPJunJMnDvs48SkjapHZTFWZJgDXbLE6DvJLkhw+C/VmEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735234602; c=relaxed/simple;
-	bh=E98IMWNWXz+q/sQ0HonTh/il92ipi5DSg9DWWA5c2aA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WF3oaBcwMFj/OqSo81ZG2mCkaTpn/bU4Nx3JbmAjRCIulc/GALDP7osFsclfwDh0e9pfvtXBPZH4M7kVCOretdjNFsetCUmKSVfKRVkiR3JlbWXlDMdHpYRWXoYfeOIrUGJqgmNTd/WnZYUxQwZ06Pa0HhvtGv6TLWuobe7WGHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gqkbLQqW; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4BQHa5Sm007975;
-	Thu, 26 Dec 2024 11:36:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1735234565;
-	bh=dx45m49A7rbyoDNzZ9IqzaqQc5ODntfqPsXgrpTfP7I=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=gqkbLQqWJJcNL4toy1hHZQ0RKhSDt+x218lryK14wGIr59q0ueCPV+89sOVFX4P2N
-	 bjDIStQwmUHsD1v2U5ZHCt+xwqmASS7GMwoznnTBuD4NjPLe5scDj9gxXFvCdD3nkg
-	 kGouUdr+t7sfusd959jzpgkZIi+EIfBcofPK9CzU=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BQHa55p078363;
-	Thu, 26 Dec 2024 11:36:05 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 26
- Dec 2024 11:36:05 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 26 Dec 2024 11:36:05 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BQHa5xr072158;
-	Thu, 26 Dec 2024 11:36:05 -0600
-Date: Thu, 26 Dec 2024 11:36:05 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Kees Cook <kees@kernel.org>, Tony Luck
-	<tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        Felipe
- Balbi <balbi@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>, Devarsh
- Thakkar <devarsht@ti.com>,
-        Hari Nagalla <hnagalla@ti.com>, <linux@ew.tq-group.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: usb: dwc3: Allow connector in USB
- controller node
-Message-ID: <20241226173605.hcvybgbi5pmmeh2b@sweep>
-References: <cover.1733737487.git.matthias.schiffer@ew.tq-group.com>
- <06497b8aadc0b5becced274d0a5fbcd808d87a48.1733737487.git.matthias.schiffer@ew.tq-group.com>
+	s=arc-20240116; t=1735237636; c=relaxed/simple;
+	bh=Uhtp92dkcUkVDxdnGOIHjX8quu7l5PlB0PnfJ3M6lqA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WaNvzqiDEa0DisDNkDKEfMiNtpQc4eZXNsBIqBci/lhyWZS9cjdGnoREsEelBPUQ77B7lFxp1kGraVWxIWf8BxPkndl4LbRFaKOzuoo0n51bdUrIfgt1UADZfysMakrnQtGqECZxFuLo/LUdaXiXBLSfOkE2srxcFAhwD7R6D/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I4/bOpx9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8B7EC4CED1;
+	Thu, 26 Dec 2024 18:27:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735237634;
+	bh=Uhtp92dkcUkVDxdnGOIHjX8quu7l5PlB0PnfJ3M6lqA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=I4/bOpx9BKB9rDPR/x/S/fTKyLRt7FnCfgCYzq/zz2kLtXQ6RLVAurIPQbVprOu/U
+	 jRtXhAeKIVRR9l3A0Lqbb5lyYdub2nvWb3oOk6hkg+j0vH7vJHShvDAhUGW41TK9kN
+	 svmdrz9YagLtOA/s2nqzeHoY6+GxLhDgW0DlGcDzOsVtuHsVpIM0HukQXG2rxyic9I
+	 eHFu7/OApir7EqWJhLbyJJC9HQzZ77ho8JXQV2/Plu7syCJ2LlfUHWSNOJdeZc/PIi
+	 toxM1Orpn2wKACX5OPZ3+uYQFYexsze3AKTgWegM9po/F/PwxPPBculiRY9LtsoGSQ
+	 JyoEKueoTqmrg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>
+Cc: Johan Hovold <johan@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v4 0/2] arm64: dts: qcom: x1e80100: Describe SDCs and enable support on QCP
+Date: Thu, 26 Dec 2024 12:26:33 -0600
+Message-ID: <173523761371.1412574.9917534102710391938.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20241212-x1e80100-qcp-sdhc-v4-0-a74c48ee68a3@linaro.org>
+References: <20241212-x1e80100-qcp-sdhc-v4-0-a74c48ee68a3@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <06497b8aadc0b5becced274d0a5fbcd808d87a48.1733737487.git.matthias.schiffer@ew.tq-group.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 10:51-20241209, Matthias Schiffer wrote:
-> Allow specifying the connector directly in the USB controller node, as
-> supported by other USB controller bindings.
+
+On Thu, 12 Dec 2024 18:50:38 +0200, Abel Vesa wrote:
+> The X1E80100 has two SDHC controllers (called SDC2 and SDC4).
+> Describe both of them and enable the SDC2 on QCP. This brings
+> SD card support for the microSD port on QCP.
 > 
-> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> The SDC4 is described but there is no device outthere yet that makes
+> use of it, AFAIK.
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index 1cd0ca90127d9..2976fb1a58061 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -68,6 +68,12 @@ properties:
->          - enum: [bus_early, ref, suspend]
->          - true
->  
-> +  connector:
-> +    $ref: /schemas/connector/usb-connector.yaml#
-> +    description: Connector for dual role switch
-> +    type: object
-> +    unevaluatedProperties: false
-> +
->    dma-coherent: true
->  
->    extcon:
+> [...]
 
-This needs to go via the USB subsystem team. The device tree changes can
-go once this is merged.
+Applied, thanks!
 
+[1/2] arm64: dts: qcom: x1e80100: Describe the SDHC controllers
+      commit: ffb21c1e19b17f3b2f5f56c70e379ef7c96afad5
+[2/2] arm64: dts: qcom: x1e80100-qcp: Enable SD card support
+      commit: ab8f487d2f8905641541c27c7929363ee538b0f8
+
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Bjorn Andersson <andersson@kernel.org>
 
