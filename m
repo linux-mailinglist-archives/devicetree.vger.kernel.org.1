@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-134146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48269FCCD3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 19:31:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3489FCCDB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 19:32:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22F617A011F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:31:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BA351883765
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 18:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972A31DDA24;
-	Thu, 26 Dec 2024 18:27:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850631DDC2C;
+	Thu, 26 Dec 2024 18:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gvCcLmj3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BcMQnyfp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F3DB198E9B;
-	Thu, 26 Dec 2024 18:27:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BAFF1DDC21;
+	Thu, 26 Dec 2024 18:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735237653; cv=none; b=RaiWIduFWRRzYQQgCtFAwJkv6rCBQxy+Fw2Us2oXOvMadck+XdMXR7+gP+V17weZrypamdHzUY0xyYWB/r3q/nbD39Qm7ZYerKyVjij3yuNQkVTogQOqLRa4Jfg/jxm0OFTpckYjPX4g/PAbKTSy4N9ShlZZcgWxIgecUjHdHN4=
+	t=1735237655; cv=none; b=mUfk9VR8joY8Bg/yBvrKmLVf/9Vv+7SxWGtICiN5UFb8/QxTk/1kSwZiKJBI5Z0e143RtHHWqlGgIW2ta5fg4r6BKmFiX407nW/ppDhlIHzdkzmldGtdF5/yKrmLHN+J7n6jaKzqOAescdha3nv5678Ax1nlrPyVSPbuAUkcvZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735237653; c=relaxed/simple;
-	bh=wiHAYMlaZnvLr1hgim1YMb7gxYlq1ThyIG0imbA+IAE=;
+	s=arc-20240116; t=1735237655; c=relaxed/simple;
+	bh=LTc+WoUeCYnIQzjN6X4Ak9wbsCzm2YzVsqNifP2wGvw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YvrExJj4yjn4b8ojNW72zft0pAjeWAX1kb7F5xSsPpbRXplsZPny79vy76wlZVJooJ5woBnD4pT7umejRDyCoe7IGYv+8bKjqbr1KOOiTtMtno+NGEyYr6jbndrab9DHJa4blMTx9y0KMM6in+Btc9XdCy3Kr3EqFatVqLJucF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gvCcLmj3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B741C4CED1;
-	Thu, 26 Dec 2024 18:27:32 +0000 (UTC)
+	 MIME-Version:Content-Type; b=soJmgq9GfDAXF9wLQDOB1ax1pbypwW6NnRqFiqlM/5b3knghZhozS6Z/ISJUMujzmfSsz1DJ3FwjzyijqGDv223/Jo33K4Uxqc7XYqV0TjUzXZarpz0XkXOWz5G+EECpwjxTF05flrJm1fNNNNIZhv70elPsre1sl8AN1XMBnoQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BcMQnyfp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EEECC4CED6;
+	Thu, 26 Dec 2024 18:27:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735237653;
-	bh=wiHAYMlaZnvLr1hgim1YMb7gxYlq1ThyIG0imbA+IAE=;
+	s=k20201202; t=1735237655;
+	bh=LTc+WoUeCYnIQzjN6X4Ak9wbsCzm2YzVsqNifP2wGvw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=gvCcLmj31Wm5ySBZzq6kbWHqiVV577klPlktZu6UQ5SW+DOxuLmeJcjHfNbxRr1OH
-	 g/kPrkev66JBDDYKLU/pQDRCDLIdgqBrhdnEIQUPX91SeCfuoP0tVMF/yw7jzElrxa
-	 QYDeQFB0MkycCEtDdUQPtYLiHv3Shx6fIwNd6A/4w+yqYPWtifC+i1eWxxpjVt+rqG
-	 5LuRF0b6qxvS4mqFBA/qOR0a+qIJfWsgQVx/7UEUiEEeQuti7XdLeq634k/OprarlZ
-	 BiZLmTHFqMKGoIgQoJ6bxIxB1zcQKu8QnGTry1bvzIWbbJ6zd887aa1VaI3h4iPqF4
-	 BAnvLNtJKN9xw==
+	b=BcMQnyfpK9pQzjKCLsJc70+U+uStZ5fG5U7/0wORiUc1qkYYh/UVR+XILxSOeWcbt
+	 qXnOnl830rtgfndLL47zalkO5gC9Pjm4kFVNWFLDSnzjtHLY3dOZsAAIP6IFJ+jXZS
+	 03uvSuVnOJJPxiB+9K3c4eckylIqWYTGgZwQHygLSBp7JR4IxPanletpQXpTp+StqB
+	 5dD/iT7D4WjhKq86Py42ox1rwAfpWuIicm27wW6iOg7X8vgCWvGZ2kOPJg+JQ4QS/Y
+	 Uk+GbfAAeSJ6EyjpAUQ7UqLCeOALZd9Wogn8JaN3GCSydEyUtS+exvCPxMNf1yIU7k
+	 x6Ry4rzf1SfyQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: linux-arm-kernel@lists.infradead.org,
-	Marek Vasut <marex@denx.de>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jie Gan <quic_jiegan@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996-xiaomi-gemini: Fix LP5562 LED1 reg property
-Date: Thu, 26 Dec 2024 12:26:50 -0600
-Message-ID: <173523761382.1412574.17501027929471451345.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Tingwei Zhang <quic_tingweiz@quicinc.com>,
+	Jinlong Mao <quic_jinlmao@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: fix the secure device bootup issue
+Date: Thu, 26 Dec 2024 12:26:53 -0600
+Message-ID: <173523761378.1412574.8647451673427912090.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241006022012.366601-1-marex@denx.de>
-References: <20241006022012.366601-1-marex@denx.de>
+In-Reply-To: <20241219025216.3463527-1-quic_jiegan@quicinc.com>
+References: <20241219025216.3463527-1-quic_jiegan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,16 +68,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sun, 06 Oct 2024 04:19:48 +0200, Marek Vasut wrote:
-> The LP5562 led@1 reg property should likely be set to 1 to match
-> the unit. Fix it.
+On Thu, 19 Dec 2024 10:52:16 +0800, Jie Gan wrote:
+> The secure device(fused) cannot bootup with TPDM_DCC device. So
+> disable it in DT.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: msm8996-xiaomi-gemini: Fix LP5562 LED1 reg property
-      commit: 02e784c5023232c48c6ec79b52ac8929d4e4db34
+[1/1] arm64: dts: qcom: sa8775p: fix the secure device bootup issue
+      commit: 8a6442ec3437083348f32a6159b9a67bf66417bc
 
 Best regards,
 -- 
