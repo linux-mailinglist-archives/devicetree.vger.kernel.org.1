@@ -1,167 +1,150 @@
-Return-Path: <devicetree+bounces-134079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5F39FCA1C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 10:45:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 430859FCA21
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 10:50:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3FC47A16FD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 09:44:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9547162359
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 09:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A175C1D4618;
-	Thu, 26 Dec 2024 09:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30B241CEEB8;
+	Thu, 26 Dec 2024 09:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XFLOK+F5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RMLQTKKU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A161D433C;
-	Thu, 26 Dec 2024 09:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 671B91E480;
+	Thu, 26 Dec 2024 09:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735206235; cv=none; b=IRSjS3FEAZr4qrN3vy7CUWVGY0GAL0e7Wuit/QynOHHDdZqNQa9lQSEhPtI3Ut8rS8FC6yiARvo07z99QKzO3WJkFaO63e2/5F+Ky4BT/XVh9Wf9QQpU3UdoDWsIg+HM5aYZRYvzmLdoPGCzWikO9WIIKMEGhxylKqaWZYCxBz4=
+	t=1735206627; cv=none; b=PNan/ycSd/28O2LYJtb1OALDr71AlW1BXsJgUELqUYOBFU5Y4oD/W69r8P1lDhAlFk9LszYvUzZbRuW6eOfxwolrPCrV3K05eltBAowiHnqWbWDJ1XPbeUqZxrPkqJIniKFzghqQizgXVNpmWh8pPZg6m1mCRgx0YrKrSdYoioE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735206235; c=relaxed/simple;
-	bh=T1quEqzzRYSTMr7FDeES364YwjAI1nS3gNRFG9z4HNk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=gNIZ/n5qQ+oj34vYGVIiPYb9+ULzY87SLauZmuX/pMdBxpYsvEBtyAelci/QfK4auGBp2bEkbj51UrbYeqxHk4nYg39oQ04mVbILHy4+jvl71W4x0bLi+Zi3KFA2XsrXu+V9OTT8Cw06k5lOEZnmtcGOY1Rzq1aFc3l6l1xH/ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XFLOK+F5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BQ1vVCg001822;
-	Thu, 26 Dec 2024 09:43:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	l9D0iGf5gfsI47OTyHusqADcAsJb13cd95a9Ia17SRI=; b=XFLOK+F54Vmqa1Hh
-	jY2lmNj0bcXNo+x6mV+8fnXP37qDagMd/5+/7LFVNKneSPSJ+hjrpEGpqlQYGa+x
-	fuDVpV5PN36ybAnuhe8BctgewaFT4JylFIfetdyvw+Df4L6EIo9dNVdrMVT6KLpy
-	/nL0FcJE1vLo7CJVQcQNvbP9pB9Aw6fIPlQ+7Ci7HLvWK6kvUNmYJbZH2woWk4LL
-	uuxI3sq6u6Uc0AD+kTulqCG0po3OT2A5Sxe+00hp0XtnI4aqLtdmuVfHT2EguKdS
-	T/6J6Btp95It7rYXJbYShYwXYxe8obLv+YNW07K1L45+TgJg+z6BmXuIxHmA/R9K
-	G0zLGw==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43rwxja6g2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Dec 2024 09:43:41 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BQ9he9s005334
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Dec 2024 09:43:41 GMT
-Received: from cse-cd01-lnx.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 26 Dec 2024 01:43:34 -0800
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-Date: Thu, 26 Dec 2024 17:40:49 +0800
-Subject: [PATCH v2 5/5] drm/msm: mdss: Add QCS8300 support
+	s=arc-20240116; t=1735206627; c=relaxed/simple;
+	bh=ZRZJGAbp+aHeP7BLaQqXzxB6yn0PoQl0043X1mqvG+8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XIkOgCm5GhBmb1s5cufCfpngCBmrF2qTTNPq4H2Sux2vLMGXQZ58EIjHQVUw4ieC9ZEBBFi85Ngv6mTGDeaERUsGDin+OnLuUui5bQ4PVGL6esjhwmSZz/zfK1rKW6b3oRL8o16Hol3iE94RjNKu4DhLOJPVfyUV7UBTxxq4yb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RMLQTKKU; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43635796b48so38271345e9.0;
+        Thu, 26 Dec 2024 01:50:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735206624; x=1735811424; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BNLCGvzUscrhE8DerepH+jSw+ytsX5ncOa/i7T7TvEo=;
+        b=RMLQTKKU5S0bCcKhyayi7E5drMRfAw8NBramjkejwhZZWqrjgHSGZZw1amiXGAuyU2
+         YqZZ8TiUYkS4gfwQFEMt8tTzv3xc9cY1yNrbsSn9JqQG4qeSOKd4xEoAPBsfAGmnM0MI
+         1fbKoGk1rIK4t3o9bpIpe5Dp7SPCdvgN0iunmvHtqS4H+ZI7VTxkZAksya8luchD6CUQ
+         Zau0ifgetDGkSeKeZSWmjLilJZuPQz5AA2IsfFZ66Qk8QY3Kg0zhk8ZwAgaI89lBrrX0
+         VrxhNW6BOFQ/F+CuckQ1owawnmMR4sd8pahbFjuGjpYFoZBpM8acNX8l1TIYg5ngSr4s
+         xfFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735206624; x=1735811424;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BNLCGvzUscrhE8DerepH+jSw+ytsX5ncOa/i7T7TvEo=;
+        b=RREa7S89bzxTM4I5RX2t6a+cHemgZ5C+g8PHROZeGbp5RfKtgvQCRUrmszREFtAqOt
+         w/OM16KAKWxh9Ezfcf9B0gj67IbgeODvQFJjcOlWKc4wVAJqP/nhBo69lT8fhf79eChg
+         CRthmUDok00Ja+sKpoymGl8cl5Ml+Ugpw1XjE5HzGOFQD28Hd91wlvsP7CyX5BFlKR67
+         KCSdU0h1isDFz5uZKsbsP/XD9xSK2mOy1pnfLw7M9nPI0tMcX6JYdxuOubY8//xEhsxY
+         5sj4pLQaSzXyKGvEe5L2WQqlat6WJsxRO0LCnhR1LAsXy7IJIYnvvvpF1NQ2PRErJfoH
+         0Gcw==
+X-Forwarded-Encrypted: i=1; AJvYcCVm62p6uqPWhY3bynPkbilNBlAPXQqKb/nwOB8TOW1KjSZs/V7cYvucoswRC6wGtofBrsUj6nbq+cm6W2c4@vger.kernel.org, AJvYcCWu4Tq/OVpZQOxQDgaoTo+9dLkCo2ZHLPf53K6beVxloxVRFgHmH7e0k9SSK0oab8WHt4oDdnt31Ce7WhEBcLT7iaw=@vger.kernel.org, AJvYcCWzbP6vyt8HGwam8DP+gT/0gdpIWyTByoKgH7h4eKcWMCmHXs3f/md4SuXrGUvUNuO1xp3QzMOaLwJ4@vger.kernel.org, AJvYcCXBe8mVlQtkePb55+Fa/xKDMmF2xKaAknRSxu4UJ6/w/12lWWnztCceN5Otxf5G6akrrNh5L1Hb5dEH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwP5nQ/8TMAmRN/wIZ7sz5AWXxbkq6DsZYaGFKGcWCvCruVHArE
+	qCOqajJONzL8XQ8MvzF+dH6yUg993otfH1R+3ZTPnP9OQysEDE/I
+X-Gm-Gg: ASbGncuen48gpcnz7Y2+wHAay2cX0F8449HgOsuyBPaLBfOWBPOoU8Es37f1iL5m5I8
+	aR11zaNwB4PkyRKj1ttq3yGkX8XYgpZS+j9ereJcNhsZCcEVmuYs2XcVoEwuD5BlfnHwENucGYg
+	4EhVyAESxlzSI9BjfsfAjhlpCTpZd3lyUSxW4YGIEaqgfsp9vkjOoOiq9431Jext6NJ+MZtt5z1
+	wY20Oe9nZ2B/4MRwydZxSzyH1PXaqvh1EZCR/nLcfbxG/KS6Dt26jU5WyMthorEqaHS118IZg==
+X-Google-Smtp-Source: AGHT+IH1vPF2yBNf9acUDO94c4harHqUE+o6S9YimBB9B6UkN15rPNW1AYhFIZiHD2u4Qj/D2KcHGw==
+X-Received: by 2002:a05:600c:3b8b:b0:434:f2af:6e74 with SMTP id 5b1f17b1804b1-4368d6e8d7bmr48232435e9.15.1735206623459;
+        Thu, 26 Dec 2024 01:50:23 -0800 (PST)
+Received: from [192.168.1.102] ([94.131.202.183])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436611ea3e0sm230270745e9.7.2024.12.26.01.50.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Dec 2024 01:50:23 -0800 (PST)
+Message-ID: <2cbb3ecf-fae8-4019-9b3e-43d48f3c9b25@gmail.com>
+Date: Thu, 26 Dec 2024 11:50:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] i2c: exynos5: Add support for Exynos8895 SoC
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241221151937.1659139-1-ivo.ivanov.ivanov1@gmail.com>
+ <20241221151937.1659139-3-ivo.ivanov.ivanov1@gmail.com>
+ <djpcvn7von4rizjucplqwxlmpuaemrl7x3jsbqmojgzhybfu6o@n6l3dmtjy7jy>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <djpcvn7von4rizjucplqwxlmpuaemrl7x3jsbqmojgzhybfu6o@n6l3dmtjy7jy>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241226-mdssdt_qcs8300-v2-5-acba0db533ce@quicinc.com>
-References: <20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com>
-In-Reply-To: <20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com>
-To: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        "Kuogee
- Hsieh" <quic_khsieh@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Kishon
- Vijay Abraham I" <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: Yongxing Mou <quic_yongmou@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735206183; l=1622;
- i=quic_yongmou@quicinc.com; s=20241121; h=from:subject:message-id;
- bh=T1quEqzzRYSTMr7FDeES364YwjAI1nS3gNRFG9z4HNk=;
- b=HtbY/AX2zNsrOYqZMz2lkI1joXDehgg8w211gXR5XZurJny5uq/TmLMCotqGlx9mFrX7txLmn
- EkwHWH1AnqxB5hmzcEWugBSRbfomh5Cq8OHJNPPc2HJazLPb+tvNehX
-X-Developer-Key: i=quic_yongmou@quicinc.com; a=ed25519;
- pk=zeCnFRUqtOQMeFvdwex2M5o0Yf67UHYfwCyBRQ3kFbU=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 3chVvJ4-vkNoZcjvWDGztUvm3WrSbPDf
-X-Proofpoint-GUID: 3chVvJ4-vkNoZcjvWDGztUvm3WrSbPDf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- suspectscore=0 mlxscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0
- priorityscore=1501 impostorscore=0 mlxlogscore=999 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412260085
 
-Add Mobile Display Subsystem (MDSS) support for the QCS8300 platform.
-Due to different memory type, it use different mdss_data with SA8775P
-although using the same dpu.
+On 12/26/24 00:59, Andi Shyti wrote:
+> Hi Ivaylo,
+>
+> On Sat, Dec 21, 2024 at 05:19:37PM +0200, Ivaylo Ivanov wrote:
+>> Exynos8895 functioning logic mostly follows I2C_TYPE_EXYNOS7, but timing
+>> and temp calculations are slightly changed according to the following
+> /changed/different/
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
----
- drivers/gpu/drm/msm/msm_mdss.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Sure.
 
-diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
-index dcb49fd30402b80edd2cb5971f95a78eaad6081f..40c8b476763b8c39434b1448008cfa8ffac7a8ea 100644
---- a/drivers/gpu/drm/msm/msm_mdss.c
-+++ b/drivers/gpu/drm/msm/msm_mdss.c
-@@ -582,6 +582,16 @@ static const struct msm_mdss_data qcm2290_data = {
- 	.reg_bus_bw = 76800,
- };
- 
-+static const struct msm_mdss_data qcs8300_data = {
-+	.ubwc_enc_version = UBWC_4_0,
-+	.ubwc_dec_version = UBWC_4_0,
-+	.ubwc_swizzle = 6,
-+	.ubwc_bank_spread = true,
-+	.highest_bank_bit = 3,
-+	.macrotile_mode = true,
-+	.reg_bus_bw = 74000,
-+};
-+
- static const struct msm_mdss_data sa8775p_data = {
- 	.ubwc_enc_version = UBWC_4_0,
- 	.ubwc_dec_version = UBWC_4_0,
-@@ -737,6 +747,7 @@ static const struct of_device_id mdss_dt_match[] = {
- 	{ .compatible = "qcom,mdss" },
- 	{ .compatible = "qcom,msm8998-mdss", .data = &msm8998_data },
- 	{ .compatible = "qcom,qcm2290-mdss", .data = &qcm2290_data },
-+	{ .compatible = "qcom,qcs8300-mdss", .data = &qcs8300_data },
- 	{ .compatible = "qcom,sa8775p-mdss", .data = &sa8775p_data },
- 	{ .compatible = "qcom,sdm670-mdss", .data = &sdm670_data },
- 	{ .compatible = "qcom,sdm845-mdss", .data = &sdm845_data },
+>
+>> logic:
+>>
+>> FPCLK / FI2C = (CLK_DIV + 1) * (TSCLK_L + TSCLK_H + 2) + 2 *
+>> ((FLT_CYCLE + 3) - (FLT_CYCLE + 3) % (CLK_DIV + 1))
+>>
+>> temp := (FPCLK / FI2C) - (FLT_CYCLE + 3) * 2
+>>
+> ...
+>
+>> @@ -352,11 +369,19 @@ static int exynos5_i2c_set_timing(struct exynos5_i2c *i2c, bool hs_timings)
+>>  	 *
+>>  	 */
+>>  	t_ftl_cycle = (readl(i2c->regs + HSI2C_CONF) >> 16) & 0x7;
+>> -	temp = clkin / op_clk - 8 - t_ftl_cycle;
+>> +	if (i2c->variant->hw == I2C_TYPE_EXYNOS8895)
+>> +		temp = clkin / op_clk - (t_ftl_cycle + 3) * 2;
+>> +	else
+>> +		temp = clkin / op_clk - 8 - t_ftl_cycle;
+>>  	if (i2c->variant->hw != I2C_TYPE_EXYNOS7)
+>>  		temp -= t_ftl_cycle;
+> Could you please make this:
+>
+> 	if (i2c->variant->hw == I2C_TYPE_EXYNOS8895)
+> 		...
+> 	else if (i2c->variant->hw == I2C_TYPE_EXYNOS7)
+> 		...
+> 	else
+> 		...
+>
+> For a better clarity.
 
--- 
-2.34.1
+Alright. Will post a v3 soon.
+
+Thanks!
+Best regards, Ivo.
+
+>
+> Thanks,
+> Andi
 
 
