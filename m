@@ -1,118 +1,129 @@
-Return-Path: <devicetree+bounces-134071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F5439FC992
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 08:58:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 809119FC99C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 09:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B02731882B1E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 07:58:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 079DC1882AA0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 08:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B13771D2B22;
-	Thu, 26 Dec 2024 07:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F611CEAC2;
+	Thu, 26 Dec 2024 08:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XjYRt5S5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="C795e/Nz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE621CF5EC;
-	Thu, 26 Dec 2024 07:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC77B42A87;
+	Thu, 26 Dec 2024 08:13:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735199866; cv=none; b=doNnTWdQynYpr1lEr7x6YuLQE0+Ipn8p8hbojfRiE6qbvBeS3mTPaUmzlowjZTBKEs9Rg7Yz/TPInd0JHiJtuBUVGDU+2/lADxKS/6BYSuxLNnVM826hUymr5bXgN5BX60gvQLBT9gDQN3T8WmM8MudNfO2XDPELw8gYB7RaV54=
+	t=1735200786; cv=none; b=qlh0KESG+Mj04pV8wugQQiHSV+ndgJSRo5wuTSSXK3dApdVANPvrIxUT1zjZs9zk6GNwB7iSYCi7OsYfea1oK1Df0FLzyEYD3TMc4DlXIgPfbd8zHUksliI39eB0zOB/ine/G0V0eMJ62pzc0ybfGCzBIjem4sCIuS/Cilrp9JA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735199866; c=relaxed/simple;
-	bh=BIBrJL109H6KPuc+9XD6oy5aeMe7UkZxy1rC+jwAgJo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cYLxI5qPxRlYjlX2eGkgdR7XYul+yIOhZ4P3RKkU+RMWV7xzXgi9Jq33zon/gpGM51qKu1JePrVhI/kpf9ZHKX12O+Os2b0DLzDTDmZX5OZgRkSkAvmCSLkEb02mEFLlJrx0hO+Fyv0A/0zL4aHN9h9SrmhDtjWTGAsLAp9/ghk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XjYRt5S5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2C773C4CEE6;
-	Thu, 26 Dec 2024 07:57:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735199866;
-	bh=BIBrJL109H6KPuc+9XD6oy5aeMe7UkZxy1rC+jwAgJo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=XjYRt5S56KSW1Mch3gmqcdMIGSvNR9Z+FoDehJyiZIyf9pT5cGDdd4B5ku6oiMV/a
-	 fVp8Q8ahJwlZ8Stk1uoIwMr3oCmlswwRX9FxGIUAZGIp32KWq9uWxnS11baCutYh8B
-	 xArHxHAzqtIyXdm5dyKoz4Z5hCh34nsRX6jVQNWlfUiq/CWmx2d/SjN3C7Am+Iamrq
-	 OHdVIYeEExXuT2QgA648x43oMuIL7jPMhXDtytOnOyNQFVFRiAocdRCzv0vwwTmIHM
-	 ERu25pYGcDufPm6IT9n6ODonrA5086I2CoIo8ijgCsHB5TIAxsXi3fDTvLitWcRco8
-	 /uHu7Z2rML1VQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23CB0E77188;
-	Thu, 26 Dec 2024 07:57:46 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Thu, 26 Dec 2024 15:57:45 +0800
-Subject: [PATCH v2 5/5] MAINTAINERS: Add an entry for Amlogic pinctrl
- driver
+	s=arc-20240116; t=1735200786; c=relaxed/simple;
+	bh=2+EB8IfsdOAAITam7PIsQ7kX1XNi1VZH/Xtl0oSaYyE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vie3KWdBxEjEuB5qeQQheu9nTADyDsLD/N4coOaJRLj/8XpwFiHnFOn+PnDYD2tfrARhnDAiEAyGHzngxXdCvwU/LGsgfud/CJTp++Ol5mN9TdX2plW1Vbq/Do+RVDpkkijEWY8yooFJME50ZVNZDBhRMsXZ9fV/XpsxCSOOlYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=C795e/Nz; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id F3FCE20003;
+	Thu, 26 Dec 2024 08:12:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1735200775;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jRLLDqrlbPXEKICsvAwtwaBpDU3ufkWk/NXlNBOvtWY=;
+	b=C795e/NznBHV8+JxDmoiOpaLAzDOSvu41rz1dgVWL3FkOaUy3+p0uED+cYFYy3TUEO5/J9
+	c9itEWdsMuDh0dwqjsw8CNKGz7YVrEMC3T9MY9MpnSjBJHRBBcSV9Q1k95PQH5ce/TSzV2
+	daelh+bTVEodiiilT4SOQfddBqbN9a5eKCdvfURt3M/FtVFs+ZjvyNGT6Z9k9M30thYfhf
+	41QrUjxKR0wYHAZtj+RxUbtL1i0MS4Ce+yFvwrdthPQzW8dSLqO+Mvk+Ia5Q1CHojtF/IO
+	82GEUfGLkf4rWs9riKTpk3bSByZNLZdM2wGAjyVw7kLyyR5kN/7uAzM6GrLUiA==
+Date: Thu, 26 Dec 2024 09:12:53 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Val Packett <val@packett.cool>
+Cc: Fabien Parent <parent.f@gmail.com>, Rob Herring <robh@kernel.org>,
+	Lee Jones <lee.jones@linaro.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Eddie Huang <eddie.huang@mediatek.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Yassine Oudjana <y.oudjana@protonmail.com>,
+	Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH 1/9] dt-bindings: mfd: mt6397: Add bindings for MT6392
+ PMIC
+Message-ID: <20241226081253fbc6285c@mail.local>
+References: <20241226050205.30241-1-val@packett.cool>
+ <20241226050205.30241-2-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241226-amlogic-pinctrl-v2-5-cdae42a67b76@amlogic.com>
-References: <20241226-amlogic-pinctrl-v2-0-cdae42a67b76@amlogic.com>
-In-Reply-To: <20241226-amlogic-pinctrl-v2-0-cdae42a67b76@amlogic.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735199863; l=856;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=g90Y7KQss/y457N73Cj7ZyZIWWG4o61VIHvixhZOt74=;
- b=g7cEZyocn4mqnd6iOldMmY1d8HKX061PkPn1cFi+PZoXA4CRexByOfogvAjfEpbFFGbKLGHSp
- mtAIA0XZoJkDe/v4ozAil03zcldXydKzNj5hfS/5UxSKud1yzxy2Fas
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241226050205.30241-2-val@packett.cool>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Hello,
 
-Add Amlogic pinctrl entry to MAINTAINERS to clarify the maintainers.
+On 26/12/2024 01:58:01-0300, Val Packett wrote:
+> From: Fabien Parent <parent.f@gmail.com>
+> 
+> Add the currently supported bindings for the MT6392 PMIC.
+> 
+> Signed-off-by: Fabien Parent <parent.f@gmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Your SoB is missing.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e930c7a58b1..b8905e8aa802 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1218,6 +1218,14 @@ F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
- F:	drivers/perf/amlogic/
- F:	include/soc/amlogic/
- 
-+AMLOGIC PINCTRL DRIVER
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+L:	linux-gpio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-+F:	drivers/pinctrl/pinctrl-amlogic.c
-+
- AMLOGIC RTC DRIVER
- M:	Yiting Deng <yiting.deng@amlogic.com>
- M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> index 86451f151a6ae..73103922978f7 100644
+> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> @@ -38,6 +38,7 @@ properties:
+>            - mediatek,mt6331 # "mediatek,mt6331" for PMIC MT6331 and MT6332.
+>            - mediatek,mt6358
+>            - mediatek,mt6359
+> +          - mediatek,mt6392
+>            - mediatek,mt6397
+>        - items:
+>            - enum:
+> @@ -66,6 +67,7 @@ properties:
+>                - mediatek,mt6323-rtc
+>                - mediatek,mt6331-rtc
+>                - mediatek,mt6358-rtc
+> +              - mediatek,mt6392-rtc
+>                - mediatek,mt6397-rtc
+>            - items:
+>                - enum:
+> -- 
+> 2.47.1
+> 
 
 -- 
-2.37.1
-
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
