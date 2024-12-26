@@ -1,338 +1,140 @@
-Return-Path: <devicetree+bounces-134028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5381D9FC85B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 06:14:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3AE59FC81D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 06:09:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DAC9188163B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 05:14:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E9B01881751
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 05:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D5D1B6D04;
-	Thu, 26 Dec 2024 05:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25A1F152514;
+	Thu, 26 Dec 2024 05:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="kM45QCbA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SXbJ1F6k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com [91.218.175.173])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18F0171092
-	for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 05:12:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69ABF146017;
+	Thu, 26 Dec 2024 05:09:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735189965; cv=none; b=LJ5hryNund0QLA2nlGIKaJ073mYOUkMU+o/ut9jcsUFaMkft/PyJOHLxl7xgVBlrqemG49UMByIXcCywyXDucLfzsh2bFy/rJ3ZkAr/hR6MOFizgjCiAmJ0wm5r4avjRkeYEWvZdgKpI7LAMG99fY/Mh+qu+5/0fIw/GPyHe4Pk=
+	t=1735189767; cv=none; b=LmUchW8fNKJuxjipUOKOz/RBl3J5kBuTszsKPwBBfM9argm66siCQVe0VBVC/bPqFQ6WxkUCMGzgvVoYohWHKiwxBr2aSdf87FuDwPf8xv15tFmitQxOKM8PdS4jLTfRfb//+r1CaWKt6EbKIVmklaHGTW3Or9tuL483lLa1qig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735189965; c=relaxed/simple;
-	bh=+WwSr9Q+JQSUPt+KYRtDM3j/krPJZTfLhQeR5HvDEF4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HGjTFkHYbv/hoFVf1dMKl06pPAwRUtTUbOr3YPSRKkSficlkHsb1lH4x3IkHrfcYJ7PmW2mvZxbSN/D7Pu7s+xplXpXwYGs+Z6z01tYiYfVgTGNRkZVfR1VTduyVMW0EdV9Sm4NS+SoQko9K9jWSQ2j3hHe/MCs2E4Z5nVNQfuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=kM45QCbA; arc=none smtp.client-ip=91.218.175.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1735189961;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=upNmjojrv0EXOaMqSxtSK3czavePDk/4Zz+86baEfqk=;
-	b=kM45QCbANPdqx+bNe2Sj8x0De/9ILo/3HbUYMOguKQ/xzFsOpqscGERCDU0NZrxoPpw7kC
-	x8mZE29t7nP/CX3vVzk6qQQ0/plDHWQzSCL3niE5IqX7cMPvpZd57UXBMYg6SLOEjCgAm9
-	ipRuZvojOjXRc6VxAXgl/jOPKIu+yMJdgLPJFXVJbP/MorZtx5JYwl9ZwZxDtSYzfZoBJM
-	VO/twzik51fSWUjCvavzoNjTYMXAjCeKpDNqxKIWHwfEikyiWEZtAjvDoMu+HSVKIeQixS
-	Owu++K2g52JZpd0UqNGDwjEB6Np8phw0CpIOUg06A+LQaDAMNGS7+8cHLGCkgg==
-From: Val Packett <val@packett.cool>
-To: 
-Cc: Val Packett <val@packett.cool>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sen Chu <sen.chu@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Lee Jones <lee@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Eddie Huang <eddie.huang@mediatek.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Fabien Parent <parent.f@gmail.com>,
-	Yassine Oudjana <y.oudjana@protonmail.com>,
-	Chen Zhong <chen.zhong@mediatek.com>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-rtc@vger.kernel.org
-Subject: [PATCH 9/9] arm64: dts: mt6392: add mt6392 PMIC dtsi
-Date: Thu, 26 Dec 2024 01:58:09 -0300
-Message-ID: <20241226050205.30241-10-val@packett.cool>
-In-Reply-To: <20241226050205.30241-1-val@packett.cool>
-References: <20241226050205.30241-1-val@packett.cool>
+	s=arc-20240116; t=1735189767; c=relaxed/simple;
+	bh=jg5YC+mxHmOtn8HtQNj8oTwDZA03WRS8RIsJSSWPmgI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WsJ+9uWyyahKdaGbiPx82rCmMqygiTTPEhQ420G/LD73Et0RRJh4FuooHOmwVknq2XW/WWtVyL4WQyVFnRYo6TwijkT1aSJUfEXlbX6poGt/nSq2UhIugzPE0q/FTx90kSEt/fNL0PTwvzU/DF60htdIdQn97zxh/bGTKU/kPSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SXbJ1F6k; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BPMs2Fu008100;
+	Thu, 26 Dec 2024 05:08:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	b1evF5viwj8q0Qo95378Nk6C7zMyL5fb3Lyi4WXzP7M=; b=SXbJ1F6k1rzOpO3G
+	6LE/2rkhkZnqQFkWfjMyJLWDT07Z3mQvNuvFoqo84SwftQgFCxBz/yYeawtnkoT8
+	/3vynKFOEUM4AeX8HB/qoh1vG2mqVFEgFlyWGlDJT4fgN9MgoEq6et9bWzLrtIWx
+	6yIdP8zQY1VaCt6JBD7GVavymhy7klxQw9kLb2XnHXG32IHsHXmYaJwExGdCGoq9
+	nSHx1l+riy93bmwyZpK/ifb0ve45dtODkfRSKZwuYugYmfXLY1w90dQq8XBGTuhb
+	oidRXSS5rvgDXBU2wgNiLLe2GcqDrCG0nBh3Bh7TFQvwnO72WraspfRv1mN8zLZK
+	CzLlfQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43rkhs2m9g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 05:08:17 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BQ58GgO009016
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 05:08:16 GMT
+Received: from [10.50.10.232] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 25 Dec
+ 2024 21:08:11 -0800
+Message-ID: <53e124ff-62f7-246d-d31f-0f0a9760e4c9@quicinc.com>
+Date: Thu, 26 Dec 2024 10:38:08 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: crypto: qcom,prng: document ipq9574,
+ ipq5424 and ipq5322
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_mmanikan@quicinc.com>,
+        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20241220070036.3434658-1-quic_mdalam@quicinc.com>
+ <20241220070036.3434658-2-quic_mdalam@quicinc.com>
+ <2irlpuqdsdk3qdmcfkepabaw3z6z4r2v3b2ug7nywqwynhzd5v@rarvfnyugmaj>
+Content-Language: en-US
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <2irlpuqdsdk3qdmcfkepabaw3z6z4r2v3b2ug7nywqwynhzd5v@rarvfnyugmaj>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: QWbass37-y7rxMei4g7XztXsNaJV0sOf
+X-Proofpoint-GUID: QWbass37-y7rxMei4g7XztXsNaJV0sOf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 suspectscore=0 spamscore=0 phishscore=0 mlxlogscore=999
+ clxscore=1015 adultscore=0 mlxscore=0 malwarescore=0 bulkscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412260042
 
-Add the dts to be included by all boards using the MT6392 PMIC.
 
-Signed-off-by: Val Packett <val@packett.cool>
----
- arch/arm64/boot/dts/mediatek/mt6392.dtsi | 232 +++++++++++++++++++++++
- 1 file changed, 232 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt6392.dtsi
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6392.dtsi b/arch/arm64/boot/dts/mediatek/mt6392.dtsi
-new file mode 100644
-index 0000000000000..a7c65dbb043c1
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt6392.dtsi
-@@ -0,0 +1,232 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 MediaTek Inc.
-+ * Copyright (c) 2024 Val Packett <val@packett.cool>
-+ */
-+
-+#include <dt-bindings/input/input.h>
-+
-+&pwrap {
-+	pmic: mt6392 {
-+		compatible = "mediatek,mt6392";
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+
-+		regulators {
-+			compatible = "mediatek,mt6392-regulator";
-+
-+			mt6392_vproc_reg: buck_vproc {
-+				regulator-name = "buck_vproc";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vsys_reg: buck_vsys {
-+				regulator-name = "buck_vsys";
-+				regulator-min-microvolt = <1400000>;
-+				regulator-max-microvolt = <2987500>;
-+				regulator-ramp-delay = <25000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vcore_reg: buck_vcore {
-+				regulator-name = "buck_vcore";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vxo22_reg: ldo_vxo22 {
-+				regulator-name = "ldo_vxo22";
-+				regulator-min-microvolt = <2200000>;
-+				regulator-max-microvolt = <2200000>;
-+				regulator-enable-ramp-delay = <110>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vaud22_reg: ldo_vaud22 {
-+				regulator-name = "ldo_vaud22";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <2200000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vcama_reg: ldo_vcama {
-+				regulator-name = "ldo_vcama";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-enable-ramp-delay = <264>;
-+			};
-+
-+			mt6392_vaud28_reg: ldo_vaud28 {
-+				regulator-name = "ldo_vaud28";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vadc18_reg: ldo_vadc18 {
-+				regulator-name = "ldo_vadc18";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vcn35_reg: ldo_vcn35 {
-+				regulator-name = "ldo_vcn35";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3600000>;
-+				regulator-enable-ramp-delay = <264>;
-+			};
-+
-+			mt6392_vio28_reg: ldo_vio28 {
-+				regulator-name = "ldo_vio28";
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vusb_reg: ldo_vusb {
-+				regulator-name = "ldo_vusb";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vmc_reg: ldo_vmc {
-+				regulator-name = "ldo_vmc";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vmch_reg: ldo_vmch {
-+				regulator-name = "ldo_vmch";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vemc3v3_reg: ldo_vemc3v3 {
-+				regulator-name = "ldo_vemc3v3";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vgp1_reg: ldo_vgp1 {
-+				regulator-name = "ldo_vgp1";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-enable-ramp-delay = <264>;
-+			};
-+
-+			mt6392_vgp2_reg: ldo_vgp2 {
-+				regulator-name = "ldo_vgp2";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-enable-ramp-delay = <264>;
-+			};
-+
-+			mt6392_vcn18_reg: ldo_vcn18 {
-+				regulator-name = "ldo_vcn18";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-enable-ramp-delay = <264>;
-+			};
-+
-+			mt6392_vcamaf_reg: ldo_vcamaf {
-+				regulator-name = "ldo_vcamaf";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-enable-ramp-delay = <264>;
-+			};
-+
-+			mt6392_vm_reg: ldo_vm {
-+				regulator-name = "ldo_vm";
-+				regulator-min-microvolt = <1240000>;
-+				regulator-max-microvolt = <1390000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vio18_reg: ldo_vio18 {
-+				regulator-name = "ldo_vio18";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vcamd_reg: ldo_vcamd {
-+				regulator-name = "ldo_vcamd";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-enable-ramp-delay = <264>;
-+			};
-+
-+			mt6392_vcamio_reg: ldo_vcamio {
-+				regulator-name = "ldo_vcamio";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-enable-ramp-delay = <264>;
-+			};
-+
-+			mt6392_vm25_reg: ldo_vm25 {
-+				regulator-name = "ldo_vm25";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <2500000>;
-+				regulator-enable-ramp-delay = <264>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			mt6392_vefuse_reg: ldo_vefuse {
-+				regulator-name = "ldo_vefuse";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <2000000>;
-+				regulator-enable-ramp-delay = <264>;
-+			};
-+		};
-+
-+		rtc {
-+			compatible = "mediatek,mt6392-rtc";
-+		};
-+
-+		keys {
-+			compatible = "mediatek,mt6392-keys";
-+
-+			key-power {
-+				linux,keycodes = <KEY_POWER>;
-+				wakeup-source;
-+			};
-+
-+			key-home {
-+				linux,keycodes = <KEY_HOME>;
-+				wakeup-source;
-+			};
-+		};
-+	};
-+};
--- 
-2.47.1
-
+On 12/24/2024 3:12 PM, Krzysztof Kozlowski wrote:
+> On Fri, Dec 20, 2024 at 12:30:33PM +0530, Md Sadre Alam wrote:
+>> Document ipq9574, ipq5424 and ipq5322 compatible for the True Random Number
+>> Generator.
+>>
+>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+>> ---
+>>
+>> Change in [v2]
+>>
+>> * Added device tree binding change
+>>
+>> Change in [v1]
+>>
+>> * This patch was not included in [v1]
+>>
+>>   Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+>> index 2c959162e428..7ca1db52bbc5 100644
+>> --- a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+>> +++ b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+>> @@ -24,6 +24,9 @@ properties:
+>>                 - qcom,sm8450-trng
+>>                 - qcom,sm8550-trng
+>>                 - qcom,sm8650-trng
+>> +              - qcom,ipq5332-trng
+>> +              - qcom,ipq5424-trng
+>> +              - qcom,ipq9574-trng
+> 
+> Do not add new entries to the end of lists. Keep sorting.
+Sure, Will do in next revision.
+> 
+> Best regards,
+> Krzysztof
+> 
 
