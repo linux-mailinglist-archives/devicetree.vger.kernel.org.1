@@ -1,644 +1,167 @@
-Return-Path: <devicetree+bounces-134035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FF2B9FC8BC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 06:54:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B98CD9FC8C5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 07:02:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 124D3163381
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 05:54:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1581118829A2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 06:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BEEC15CD79;
-	Thu, 26 Dec 2024 05:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27646149C54;
+	Thu, 26 Dec 2024 06:02:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FWLEA2xn"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Cx5MmId5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2041.outbound.protection.outlook.com [40.107.95.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FFF1865E1;
-	Thu, 26 Dec 2024 05:53:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735192420; cv=none; b=tip3MIysaycraxPcCMNSM37mFLVT7mflko36MnEHFmci2H9Kzomac5iCagyKtfp8fW8Ho/nql9idvWACqSCzKk8/CZAlVixSCbjFulEWpxuycYGG70Sor6/9DIGJSxEUfCvQo4/Fnta9qkfYFaQ1W/uK6z0GBa4Z/6aMzUkD+3k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735192420; c=relaxed/simple;
-	bh=o0FrrGaGMhS9hGa4VLvorp6+/8EgEPyG2pq2b/Fp2YU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Wp1SpKzvKDofbGZLXgrsC5lOrOYD9XMTII6YY2g8sa1L0QZoArcZEbCyWXy0/HkH09tUBMzz313cRVsj99qNu+7t4Vql3mR1feKdRtc3JrpsnbbTRImYPBc7BL5pOXdznfZ2/KPIuRiDsR+grbRFvVrCLvI/G5TQNA+vPFEPpZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FWLEA2xn; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-21654fdd5daso67068835ad.1;
-        Wed, 25 Dec 2024 21:53:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735192417; x=1735797217; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iME034rfAdvC6Oc6Zo4UlGAybCc+y1bamQ3H77fNS/A=;
-        b=FWLEA2xnatO0Zy3DobgJVsY9K8rtIWQVBladd90/KzkCh5V4XtRi6KxiuAcN0OFBXY
-         gC60P7iMaxodynAYl2aftIcUOneTJEgFfyccpn5YUwPY7PEOoqiwFJ6P/zTdg7XmDqUN
-         uqvqBaR70Q7eH9HFvuHjW/UKryzaBsC1pRuvlTD9z36WjOfHYsM6FZSaiyv44VVCbagn
-         kWd5XXJuW4HJhpzts5ZIPQxlbvyJ3TC+KK8w7P9phAWPd+xGpVOukXF3/v3dJ3LR6H8i
-         l/Cy/vvHZWEPhd76ACtHqtK+R2Ui9Drv/3NE3w4yKck+PYdL0g2++i0rBtI9Au01Kr5b
-         0Smg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735192417; x=1735797217;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iME034rfAdvC6Oc6Zo4UlGAybCc+y1bamQ3H77fNS/A=;
-        b=KAf3/JJ/4BpxyA3F1wNXXtdN9KFG3ZCVzgaDd7rYu5gqZP+tQa6VXSeH6rqkArlQee
-         VzpyjwQy4eDhzhZ6jAXT0YEk1Z+bprAVEoxr22pB3CrBbyQGes7hgBCXUwzmuihF0c02
-         ptZ/pgwZGyY/t1isifg5Qno4E56QLWW8JSi/FzRs02dBbuBbIkUsULl+tj5fO0Qn6NeB
-         1NttmHhEKiJOe3To77Zfa5COa/BUT3S1YuX8oIePfnfdc+uCqoEioPupzIGIOuk+0A7j
-         R5auhej4U80Ck+1+rrZ26y4nyoYrZfrAZDQzTWW8TrHXrdyTgJtvtwXsEMY5TXwFi9Hk
-         56OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEWp5MN7H/2KFGx2+ZaW3L83OnMFEXrhd2414F1FA81WUEPaSJdsYvqqRp0nL6LGFoztyLRdndF42/DdGH@vger.kernel.org, AJvYcCWmwp1ZWfRutU218RNJaThkb9uf8JzjmrIyzwVEbuWqygxeFfxqAFo1oVxzS+DHUzT54iGhtyYcu+w3@vger.kernel.org, AJvYcCX8vrDTINK+iTZscBplI26d/LQxYlzYE/jVpxRrUzXdFPNbW2rnkyAWp8BdFEg0ASqE4R0SpSbYUcPI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxanR6S3OxCnRM4zHVt107VbF1K8jvIMmXyaLbC9lqg/oZtHljB
-	NHy9L94wVvJ7LSHW0yYKIHdd3IrThi0ooUZATDM9+Yq8q4l43imt
-X-Gm-Gg: ASbGncssweYA0Y0BTTEGatTOXrO/rbS5scSMQ/Hl/jbJ6NFXUpJxvnpHVi8Q0fUnHLW
-	ucyUbKLtNy27xpG6YH5sxDPt0x265lrsMpnQ+6aWhoTKyupZg+7OxFQwWAbnF3eUe2ZhKtRUDRP
-	r5ySmL2pmYEJEmL0ZjbbSVGcH+vvCiIHg9suahHn7dOX9VO/bxJ2pmH6RFl+pKUJqdk6AErJIry
-	WHsmKvSBwr/DyTuQ7lDZoPO3QudbH7dWiow9Bn6fGlJl0xTHpImGfH4Asnq0K6CB4M07BxYvXmd
-	IZn5AXb+csjf7FQ9UvwD1Q==
-X-Google-Smtp-Source: AGHT+IEaMDfh1YognyqbMwkqmbzJ6ptCtH031YYnq+sVyxzTo9YTKZG7i16CkFlr3kKgR0pmt1rlNA==
-X-Received: by 2002:a17:903:41c1:b0:215:b45a:6a63 with SMTP id d9443c01a7336-219e6ec0883mr313588145ad.32.1735192417555;
-        Wed, 25 Dec 2024 21:53:37 -0800 (PST)
-Received: from hcdev-d520mt.. (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc96312asm112679455ad.21.2024.12.25.21.53.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Dec 2024 21:53:36 -0800 (PST)
-From: Eason Yang <j2anfernee@gmail.com>
-To: avifishman70@gmail.com,
-	tmaimon77@gmail.com,
-	tali.perry1@gmail.com,
-	venture@google.com,
-	yuenn@google.com,
-	benjaminfair@google.com,
-	jic23@kernel.org,
-	lars@metafoo.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	nuno.sa@analog.com,
-	dlechner@baylibre.com,
-	javier.carrasco.cruz@gmail.com,
-	andriy.shevchenko@linux.intel.com,
-	marcelo.schmitt@analog.com,
-	olivier.moysan@foss.st.com,
-	mitrutzceclan@gmail.com,
-	tgamblin@baylibre.com,
-	matteomartelli3@gmail.com,
-	alisadariana@gmail.com,
-	gstols@baylibre.com,
-	thomas.bonnefille@bootlin.com,
-	herve.codina@bootlin.com,
-	chanh@os.amperecomputing.com,
-	KWLIU@nuvoton.com,
-	yhyang2@nuvoton.com
-Cc: openbmc@lists.ozlabs.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Eason Yang <j2anfernee@gmail.com>
-Subject: [PATCH v3 2/2] iio: adc: add Nuvoton NCT7201 ADC driver
-Date: Thu, 26 Dec 2024 13:53:13 +0800
-Message-Id: <20241226055313.2841977-3-j2anfernee@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241226055313.2841977-1-j2anfernee@gmail.com>
-References: <20241226055313.2841977-1-j2anfernee@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3372837A;
+	Thu, 26 Dec 2024 06:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735192927; cv=fail; b=l/yAx3si3oYicRMHbEyV1hoIX2Vzkp7GN7pIQn1zy0RBPT6c5yRGSgWA123m9nzd4iTqEpqHMl76m9w2yuQFDspDfzhV17A1ZB5rDfsX4Yc4zXEEnJZAz2Cke9VEqwQJHwe2QXPq3mjY/5Jd26MmropzBq4IQWnZ35RYFCZlK8k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735192927; c=relaxed/simple;
+	bh=9FSRkuHvkQrQ847vYl/LoJtaGbm2J+4c0TzGn+jjax0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RuqmYiWmTi07+mAiSqMxntMkYzxX0hGEXzdOe7HUXxLO4QpNIBesGmhxFLQboBZ6vsdsBdHq0m5zBlrbK5zDAhsV9CjXT2msrs8bTO6U8taD0wCYd/IwO1jeUilSBr8l33VDGYr8MLrB61aHJUgdEjs05duPJokoNOtXeIXhutI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Cx5MmId5; arc=fail smtp.client-ip=40.107.95.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=v/TFAUOvriCTGpGXhp2v9dsW+I+AjJ2pzV1VYnwqeir83h/YE88vQC2DdwYjq+gxrytBWXQmykpY5w77JfvImLCNn6MyrE17u6hi9VEY8saBocusGOGSO0VdIrvVItgsHHLqlJPNDBOlImS6WF2g5/oeI9ZyHEznwrcFSmduhSRyGgHxVJ1ra/ij0fp2523OZnhrQfNrliuDJduPYQl0h/pPvZbBGIx+pq3QTBjJHmK0f5cBzDUTTVOmWvm94N/jVvu/usZPH1kc1CN0N0MwdMUbk4VUw5RppRqE1darBtO69XHVJoxwJZkvgTJnkef1G+/B2FydgwrLzliOaCe9Xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IukivCrs/2nEppStdZoR0FzkH/FxMZF2dv3xMj7XnM0=;
+ b=n57ejNQB4JUmTSw+SdjN0hhk5Ar5hoHm7HlzFMYWQ7MBEkt2MpVp543xqwWwsBFppG7lnuoGI6FGhXu/RO4rywbaKap6Sn/zN5r+BuMDT0LuBj1VWkQbcgDqeIArUcIv7RBR+L7hBUxw2ixgS5fKhDkl5rfWymNPrAnu+jmzyRPSnS3nvHwPJkyYumw8jgPCA17DzFEfdwQoW1L953fg2LWK2sXMBQ/9cKjUtKweu2im7NFS3kvBS1j3N8vT5vZVuDVvqw6sgW8nkiDUJpWMSSLwsIUDtOoDGJgkIRQU5tnDRyibXl/O6/IxuU4Q4jv1CQyxaqIGMzaRDxAdpH+67A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IukivCrs/2nEppStdZoR0FzkH/FxMZF2dv3xMj7XnM0=;
+ b=Cx5MmId5N0pBiuxUmsfMnGc53ir29Z+h6RFpJ1Uet9qxX/1Ckyj3MeEMbcLF9FNK+TCtp8KJZOVgGBNIi4/G69zyYXyJEhRs86+0ccictVzUL1htDJAZm5Uc3MmKJOYnwMIGS8jo65JC4oqIo3hG5sbxDpYfjpkqJ/iWplDITTw=
+Received: from BN7PR02CA0015.namprd02.prod.outlook.com (2603:10b6:408:20::28)
+ by IA1PR12MB6626.namprd12.prod.outlook.com (2603:10b6:208:3a2::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.15; Thu, 26 Dec
+ 2024 06:01:57 +0000
+Received: from BL6PEPF0001AB71.namprd02.prod.outlook.com
+ (2603:10b6:408:20:cafe::9e) by BN7PR02CA0015.outlook.office365.com
+ (2603:10b6:408:20::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8293.14 via Frontend Transport; Thu,
+ 26 Dec 2024 06:01:57 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BL6PEPF0001AB71.mail.protection.outlook.com (10.167.242.164) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8293.12 via Frontend Transport; Thu, 26 Dec 2024 06:01:34 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 26 Dec
+ 2024 00:01:33 -0600
+Received: from xhdharinik40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Thu, 26 Dec 2024 00:01:30 -0600
+From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<manivannan.sadhasivam@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <jingoohan1@gmail.com>,
+	<michal.simek@amd.com>, <bharat.kumar.gogada@amd.com>, Thippeswamy Havalige
+	<thippeswamy.havalige@amd.com>
+Subject: [PATCH v6 0/3] Add support for AMD MDB IP as Root Port
+Date: Thu, 26 Dec 2024 11:30:40 +0530
+Message-ID: <20241226060043.18280-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: thippeswamy.havalige@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB71:EE_|IA1PR12MB6626:EE_
+X-MS-Office365-Filtering-Correlation-Id: 73557824-94d7-4a7e-179b-08dd2572ce31
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|7416014|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?KIMPflf2aMS3R6rwOl4jpK8Y77VwXVkmmgFIL/mGORzq04rGPQEHsIgWpQ/X?=
+ =?us-ascii?Q?DWCVhQiVnPJQSmkadLRRwATC+03pxAdSOXmMQYAQR+lOQSYiKumPUKLy0sRh?=
+ =?us-ascii?Q?2LTjXxn28DvPTOyN36d8X5LDwY/oXxKUfESVhYz4rvRGbo5pj0mr3eJLPZqB?=
+ =?us-ascii?Q?OOTFqenXXiZN2Jon2HZbKEXbpJPKi8w+yDK9R0tpqbfoscPrDDOjVLiuUzde?=
+ =?us-ascii?Q?nJSEiuKDHg4AuFteKAoAmYqwTXBTo3ECmfnsSr8EsvKzqA2hLGVI+sXxoY5Z?=
+ =?us-ascii?Q?rePOjiclrHv40CakhRr0CvuMIpPyXo7hFVKG2CI9+EHv2LVKpoTmO8JLut8R?=
+ =?us-ascii?Q?leTbk+sBYXqY5Ctrlbufj3L+vTFaVIHY+1C7prvUGOlC3E2VaWhmoKOfDYXN?=
+ =?us-ascii?Q?jrKiiPb9/7mHwLCxb6+V1RkOoWs4nUcpBWIZQzOvCpZkypjyrsk30p2YDAxn?=
+ =?us-ascii?Q?2o9Ly6yU+sl8a5f3k92zUOo61UbOFM5769ZbpsBdrJRXlY7az68q+Ru0OUi2?=
+ =?us-ascii?Q?hZuq+RxHfr25JGzZTcqVev6SD/DO3bVnUIchxMcDq6mEebng529yLmPzsNZQ?=
+ =?us-ascii?Q?laOQYxLNGfW7DoyAzNchX7mcKiadQ5W2a0eQGYVO2bkUH+HBpijCcPOksycs?=
+ =?us-ascii?Q?smsS8vJVclFkfOo4cpBVy1ka5u729+r7vYJxmCNWZ87mwOq+f6OPOjonxoXH?=
+ =?us-ascii?Q?Rv5DzaAB/bdCW3/fwviQTWonMt/+96RLkQuWeKQxZTM+gGps8LBvfyGJtw+t?=
+ =?us-ascii?Q?basvQ6BPgENPmr3kCewyb0Jzm1oncRJ0LUf7ciYFsxe8sBJdxRGhdfIMHfsb?=
+ =?us-ascii?Q?N3FvfQ0p/F1V8JDi2n+pUyt5nPYaCqHBJptQUoG01BaICcfhwXLBlG9poQls?=
+ =?us-ascii?Q?mMpOSUb7sm565oa0ZNMMYMrVXyFAJeKMr7L4Vr6xOVsAkLz/uOWPjBLb4sth?=
+ =?us-ascii?Q?dwSJ9BsPjHkeLeuJTfg5hvQdRbjJ7H/8NeihNBJExCzng+FLTAMzI9RztFFq?=
+ =?us-ascii?Q?9MEPmjP8r4eFKlqc4iH1YCL6X1RMboio4StjodxPOGVySCqMe8+UEU3llWX+?=
+ =?us-ascii?Q?/HCjRLrbUlrIi05Vzp35AFZaPpjjsvkweCv4XYcfxxaYiuIp6ITci6ISmeLN?=
+ =?us-ascii?Q?ZiFvLpXWW53XzCb8a8my1fWIn21wQ74FQBWq78d4quRVZrXqKKHH0kT1qv6U?=
+ =?us-ascii?Q?9DSfMVfBde/naYOFPkBT3Xqu/50b/I6/8HZpNwOT6SyyHwANLwTd2Ue8MGrF?=
+ =?us-ascii?Q?WoEGMzF+H6YtvQEtROpGx5KIQA5RGi3AkRqJ+rQi6S+ROPScwCL+ROtote2e?=
+ =?us-ascii?Q?CwTqbe+O4ZeyQjcwjE5h7wy/TBkiDTFtoq4Y/xIP+ZKhBvVRNGlEvbF+czMt?=
+ =?us-ascii?Q?wsaPkiqD5oKAsklss8VwjU62fPw92SyxP1u/RwyJiOyvxsAxfuIuhl7v1vxT?=
+ =?us-ascii?Q?9ATtqaXoFHkJxZKMtd/dPhCe0+UOltiZvCCIKAm00UzPqKIxcpxJma6rQ98M?=
+ =?us-ascii?Q?z623WUIKRVistK0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Dec 2024 06:01:34.9802
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73557824-94d7-4a7e-179b-08dd2572ce31
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB71.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6626
 
-Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
+This series of patch add support for AMD MDB IP as Root Port.
 
-NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up to
-4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins for
-independent alarm signals, and the all threshold values could be set for
-system protection without any timing delay. It also supports reset input
-RSTIN# to recover system from a fault condition.
+The AMD MDB IP support's 32 bit and 64bit BAR's at Gen5 speed.
+As Root Port it supports MSI and legacy interrupts.
 
-Currently, only single-edge mode conversion and threshold events support.
+Thippeswamy Havalige (3):
+  dt-bindings: PCI: dwc: Add AMD Versal2 mdb slcr support
+  dt-bindings: PCI: amd-mdb: Add AMD Versal2 MDB PCIe Root Port Bridge
+  PCI: amd-mdb: Add AMD MDB Root Port driver
 
-Signed-off-by: Eason Yang <j2anfernee@gmail.com>
----
- MAINTAINERS               |   1 +
- drivers/iio/adc/Kconfig   |  10 +
- drivers/iio/adc/Makefile  |   1 +
- drivers/iio/adc/nct7201.c | 449 ++++++++++++++++++++++++++++++++++++++
- 4 files changed, 461 insertions(+)
- create mode 100644 drivers/iio/adc/nct7201.c
+ .../bindings/pci/amd,versal2-mdb-host.yaml         | 121 ++++++
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml      |   2 +
+ drivers/pci/controller/dwc/Kconfig                 |  11 +
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pcie-amd-mdb.c          | 436 +++++++++++++++++++++
+ 5 files changed, 571 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-amd-mdb.c
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9c5328cbef17..592ccca88f04 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2799,6 +2799,7 @@ F:	arch/arm/mach-npcm/
- F:	arch/arm64/boot/dts/nuvoton/
- F:	drivers/*/*/*npcm*
- F:	drivers/*/*npcm*
-+F:	drivers/iio/adc/nct7201.c
- F:	drivers/rtc/rtc-nct3018y.c
- F:	include/dt-bindings/clock/nuvoton,npcm7xx-clock.h
- F:	include/dt-bindings/clock/nuvoton,npcm845-clk.h
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 849c90203071..abd8b21fdbac 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -1048,6 +1048,16 @@ config NAU7802
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called nau7802.
- 
-+config NCT7201
-+	tristate "Nuvoton Instruments NCT7201 and NCT7202 Power Monitor"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  If you say yes here you get support for the Nuvoton NCT7201 and
-+	  NCT7202 Voltage Monitor.
-+	  This driver can also be built as a module. If so, the module
-+	  will be called nct7201.
-+
- config NPCM_ADC
- 	tristate "Nuvoton NPCM ADC driver"
- 	depends on ARCH_NPCM || COMPILE_TEST
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index ee19afba62b7..0108472e141c 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -94,6 +94,7 @@ obj-$(CONFIG_MESON_SARADC) += meson_saradc.o
- obj-$(CONFIG_MP2629_ADC) += mp2629_adc.o
- obj-$(CONFIG_MXS_LRADC_ADC) += mxs-lradc-adc.o
- obj-$(CONFIG_NAU7802) += nau7802.o
-+obj-$(CONFIG_NCT7201) += nct7201.o
- obj-$(CONFIG_NPCM_ADC) += npcm_adc.o
- obj-$(CONFIG_PAC1921) += pac1921.o
- obj-$(CONFIG_PAC1934) += pac1934.o
-diff --git a/drivers/iio/adc/nct7201.c b/drivers/iio/adc/nct7201.c
-new file mode 100644
-index 000000000000..9ad4d2919461
---- /dev/null
-+++ b/drivers/iio/adc/nct7201.c
-@@ -0,0 +1,449 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Driver for Nuvoton nct7201 and nct7202 power monitor chips.
-+ *
-+ * Copyright (c) 2024 Nuvoton Inc.
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bits.h>
-+#include <linux/cleanup.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/regmap.h>
-+#include <linux/types.h>
-+#include <linux/unaligned.h>
-+
-+#include <linux/iio/events.h>
-+#include <linux/iio/iio.h>
-+
-+#define NCT7201_VIN_MAX					12	/* Counted from 1 */
-+#define NCT7201_IN_SCALING				4995
-+#define NCT7201_IN_SCALING_FACTOR			10000
-+
-+#define NCT7201_REG_INTERRUPT_STATUS_1			0x0C
-+#define NCT7201_REG_INTERRUPT_STATUS_2			0x0D
-+#define NCT7201_REG_VOLT_LOW_BYTE			0x0F
-+#define NCT7201_REG_CONFIGURATION			0x10
-+#define  NCT7201_BIT_CONFIGURATION_START		BIT(0)
-+#define  NCT7201_BIT_CONFIGURATION_ALERT_MSK		BIT(1)
-+#define  NCT7201_BIT_CONFIGURATION_CONV_RATE		BIT(2)
-+#define  NCT7201_BIT_CONFIGURATION_RESET		BIT(7)
-+
-+#define NCT7201_REG_ADVANCED_CONFIGURATION		0x11
-+#define  NCT7201_BIT_ADVANCED_CONF_MOD_ALERT		BIT(0)
-+#define  NCT7201_BIT_ADVANCED_CONF_MOD_STS		BIT(1)
-+#define  NCT7201_BIT_ADVANCED_CONF_FAULT_QUEUE		BIT(2)
-+#define  NCT7201_BIT_ADVANCED_CONF_EN_DEEP_SHUTDOWN	BIT(4)
-+#define  NCT7201_BIT_ADVANCED_CONF_EN_SMB_TIMEOUT	BIT(5)
-+#define  NCT7201_BIT_ADVANCED_CONF_MOD_RSTIN		BIT(7)
-+
-+#define NCT7201_REG_CHANNEL_INPUT_MODE			0x12
-+#define NCT7201_REG_CHANNEL_ENABLE_1			0x13
-+#define  NCT7201_REG_CHANNEL_ENABLE_1_MASK		GENMASK(7, 0)
-+#define NCT7201_REG_CHANNEL_ENABLE_2			0x14
-+#define  NCT7201_REG_CHANNEL_ENABLE_2_MASK		GENMASK(3, 0)
-+#define NCT7201_REG_INTERRUPT_MASK_1			0x15
-+#define NCT7201_REG_INTERRUPT_MASK_2			0x16
-+#define NCT7201_REG_BUSY_STATUS				0x1E
-+#define  NCT7201_BIT_BUSY				BIT(0)
-+#define  NCT7201_BIT_PWR_UP				BIT(1)
-+#define NCT7201_REG_ONE_SHOT				0x1F
-+#define NCT7201_REG_SMUS_ADDRESS			0xFC
-+#define NCT7201_REG_VIN_LIMIT_LSB_MASK			GENMASK(4, 0)
-+
-+#define NCT7201_REG_VIN(i)				(i)
-+#define NCT7201_REG_VIN_HIGH_LIMIT(i)			(0x20 + (i) * 2)
-+#define NCT7201_REG_VIN_LOW_LIMIT(i)			(0x21 + (i) * 2)
-+#define NCT7201_REG_VIN_HIGH_LIMIT_LSB(i)		(0x40 + (i) * 2)
-+#define NCT7201_REG_VIN_LOW_LIMIT_LSB(i)		(0x41 + (i) * 2)
-+
-+struct nct7201_chip_info {
-+	struct i2c_client *client;
-+	struct mutex access_lock;	/* for multi-byte read and write operations */
-+	struct regmap *regmap;
-+	struct regmap *regmap16;
-+	int num_vin_channels;
-+	u32 vin_mask;
-+};
-+
-+struct nct7201_adc_model_data {
-+	const char *model_name;
-+	const struct iio_chan_spec *channels;
-+	const int num_channels;
-+	int num_vin_channels;
-+};
-+
-+static const struct iio_event_spec nct7201_events[] = {
-+	{
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_RISING,
-+		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-+				 BIT(IIO_EV_INFO_ENABLE),
-+	}, {
-+		.type = IIO_EV_TYPE_THRESH,
-+		.dir = IIO_EV_DIR_FALLING,
-+		.mask_separate = BIT(IIO_EV_INFO_VALUE) |
-+				 BIT(IIO_EV_INFO_ENABLE),
-+	},
-+};
-+
-+#define NCT7201_VOLTAGE_CHANNEL(chan, addr)				\
-+	{								\
-+		.type = IIO_VOLTAGE,					\
-+		.indexed = 1,						\
-+		.channel = chan,					\
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-+		.address = addr,					\
-+		.event_spec = nct7201_events,				\
-+		.num_event_specs = ARRAY_SIZE(nct7201_events),		\
-+	}
-+
-+static const struct iio_chan_spec nct7201_channels[] = {
-+	NCT7201_VOLTAGE_CHANNEL(1, 0),
-+	NCT7201_VOLTAGE_CHANNEL(2, 1),
-+	NCT7201_VOLTAGE_CHANNEL(3, 2),
-+	NCT7201_VOLTAGE_CHANNEL(4, 3),
-+	NCT7201_VOLTAGE_CHANNEL(5, 4),
-+	NCT7201_VOLTAGE_CHANNEL(6, 5),
-+	NCT7201_VOLTAGE_CHANNEL(7, 6),
-+	NCT7201_VOLTAGE_CHANNEL(8, 7),
-+};
-+
-+static const struct iio_chan_spec nct7202_channels[] = {
-+	NCT7201_VOLTAGE_CHANNEL(1, 0),
-+	NCT7201_VOLTAGE_CHANNEL(2, 1),
-+	NCT7201_VOLTAGE_CHANNEL(3, 2),
-+	NCT7201_VOLTAGE_CHANNEL(4, 3),
-+	NCT7201_VOLTAGE_CHANNEL(5, 4),
-+	NCT7201_VOLTAGE_CHANNEL(6, 5),
-+	NCT7201_VOLTAGE_CHANNEL(7, 6),
-+	NCT7201_VOLTAGE_CHANNEL(8, 7),
-+	NCT7201_VOLTAGE_CHANNEL(9, 8),
-+	NCT7201_VOLTAGE_CHANNEL(10, 9),
-+	NCT7201_VOLTAGE_CHANNEL(11, 10),
-+	NCT7201_VOLTAGE_CHANNEL(12, 11),
-+};
-+
-+static int nct7201_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan,
-+			    int *val, int *val2, long mask)
-+{
-+	u16 volt;
-+	unsigned int value;
-+	int err;
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	guard(mutex)(&chip->access_lock);
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		err = regmap_read(chip->regmap16, NCT7201_REG_VIN(chan->address), &value);
-+		if (err < 0)
-+			return err;
-+		volt = value;
-+		*val = volt >> 3;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		/* From the datasheet, we have to multiply by 0.0004995 */
-+		*val = 0;
-+		*val2 = 499500;
-+		return IIO_VAL_INT_PLUS_NANO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int nct7201_read_event_value(struct iio_dev *indio_dev,
-+				    const struct iio_chan_spec *chan,
-+				    enum iio_event_type type,
-+				    enum iio_event_direction dir,
-+				    enum iio_event_info info,
-+				    int *val, int *val2)
-+{
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+	u16 volt;
-+	unsigned int value;
-+	int err;
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	if (info != IIO_EV_INFO_VALUE)
-+		return -EINVAL;
-+
-+	if (dir == IIO_EV_DIR_FALLING) {
-+		err = regmap_read(chip->regmap16, NCT7201_REG_VIN_LOW_LIMIT(chan->address), &value);
-+		if (err < 0)
-+			return err;
-+		volt = value;
-+	} else {
-+		err = regmap_read(chip->regmap16, NCT7201_REG_VIN_HIGH_LIMIT(chan->address), &value);
-+		if (err < 0)
-+			return err;
-+		volt = value;
-+	}
-+
-+	*val = volt >> 3;
-+
-+	return IIO_VAL_INT;
-+}
-+
-+static int nct7201_write_event_value(struct iio_dev *indio_dev,
-+				     const struct iio_chan_spec *chan,
-+				     enum iio_event_type type,
-+				     enum iio_event_direction dir,
-+				     enum iio_event_info info,
-+				     int val, int val2)
-+{
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+	long v1, v2;
-+
-+	v1 = val >> 5;
-+	v2 = FIELD_PREP(NCT7201_REG_VIN_LIMIT_LSB_MASK, val) << 3;
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	if (info == IIO_EV_INFO_VALUE) {
-+		guard(mutex)(&chip->access_lock);
-+		if (dir == IIO_EV_DIR_FALLING) {
-+			regmap_write(chip->regmap, NCT7201_REG_VIN_LOW_LIMIT(chan->address), v1);
-+			regmap_write(chip->regmap, NCT7201_REG_VIN_LOW_LIMIT_LSB(chan->address), v2);
-+		} else {
-+			regmap_write(chip->regmap, NCT7201_REG_VIN_HIGH_LIMIT(chan->address), v1);
-+			regmap_write(chip->regmap, NCT7201_REG_VIN_HIGH_LIMIT_LSB(chan->address), v2);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int nct7201_read_event_config(struct iio_dev *indio_dev,
-+				     const struct iio_chan_spec *chan,
-+				     enum iio_event_type type,
-+				     enum iio_event_direction dir)
-+{
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	return !!(chip->vin_mask & BIT(chan->address));
-+}
-+
-+static int nct7201_write_event_config(struct iio_dev *indio_dev,
-+				      const struct iio_chan_spec *chan,
-+				      enum iio_event_type type,
-+				      enum iio_event_direction dir,
-+				      bool state)
-+{
-+	struct nct7201_chip_info *chip = iio_priv(indio_dev);
-+	unsigned int mask;
-+
-+	if (chan->type != IIO_VOLTAGE)
-+		return -EOPNOTSUPP;
-+
-+	mask = BIT(chan->address);
-+
-+	if (!state && (chip->vin_mask & mask))
-+		chip->vin_mask &= ~mask;
-+	else if (state && !(chip->vin_mask & mask))
-+		chip->vin_mask |= mask;
-+
-+	guard(mutex)(&chip->access_lock);
-+	regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
-+		     chip->vin_mask & NCT7201_REG_CHANNEL_ENABLE_1_MASK);
-+	if (chip->num_vin_channels == 12)
-+		regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2,
-+			     chip->vin_mask & NCT7201_REG_CHANNEL_ENABLE_2_MASK);
-+
-+	return 0;
-+}
-+
-+static const struct iio_info nct7201_info = {
-+	.read_raw = nct7201_read_raw,
-+	.read_event_config = nct7201_read_event_config,
-+	.write_event_config = nct7201_write_event_config,
-+	.read_event_value = nct7201_read_event_value,
-+	.write_event_value = nct7201_write_event_value,
-+};
-+
-+static const struct iio_info nct7201_info_no_irq = {
-+	.read_raw = nct7201_read_raw,
-+};
-+
-+static const struct nct7201_adc_model_data nct7201_model_data = {
-+	.model_name = "nct7201",
-+	.channels = nct7201_channels,
-+	.num_channels = ARRAY_SIZE(nct7201_channels),
-+	.num_vin_channels = 8,
-+};
-+
-+static const struct nct7201_adc_model_data nct7202_model_data = {
-+	.model_name = "nct7202",
-+	.channels = nct7202_channels,
-+	.num_channels = ARRAY_SIZE(nct7202_channels),
-+	.num_vin_channels = 12,
-+};
-+
-+static int nct7201_init_chip(struct nct7201_chip_info *chip)
-+{
-+	u8 data[2];
-+	unsigned int value;
-+	int err;
-+
-+	regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION,
-+		     NCT7201_BIT_CONFIGURATION_RESET);
-+
-+	/*
-+	 * After about 25 msecs, the device should be ready and then
-+	 * the Power Up bit will be set to 1. If not, wait for it.
-+	 */
-+	mdelay(25);
-+	err = regmap_read(chip->regmap, NCT7201_REG_BUSY_STATUS, &value);
-+	if (err < 0)
-+		return err;
-+	if (!(value & NCT7201_BIT_PWR_UP))
-+		return dev_err_probe(&chip->client->dev, -EIO, "failed to power up after reset\n");
-+
-+	/* Enable Channel */
-+	guard(mutex)(&chip->access_lock);
-+	regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
-+		     NCT7201_REG_CHANNEL_ENABLE_1_MASK);
-+	if (chip->num_vin_channels == 12)
-+		regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2,
-+			     NCT7201_REG_CHANNEL_ENABLE_2_MASK);
-+
-+	err = regmap_read(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1, &value);
-+	if (err < 0)
-+		return err;
-+	data[0] = value;
-+
-+	err = regmap_read(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2, &value);
-+	if (err < 0)
-+		return err;
-+	data[1] = value;
-+
-+	value = get_unaligned_le16(data);
-+	chip->vin_mask = value;
-+
-+	/* Start monitoring if needed */
-+	err = regmap_read(chip->regmap, NCT7201_REG_CONFIGURATION, &value);
-+	if (err < 0) {
-+		dev_err_probe(&chip->client->dev, -EIO, "Failed to read REG_CONFIGURATION\n");
-+		return value;
-+	}
-+
-+	value |= NCT7201_BIT_CONFIGURATION_START;
-+	regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION, value);
-+
-+	return 0;
-+}
-+
-+static const struct regmap_config nct7201_regmap8_config = {
-+	.name = "vin-data-read-byte",
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0xff,
-+};
-+
-+static const struct regmap_config nct7201_regmap16_config = {
-+	.name = "vin-data-read-word",
-+	.reg_bits = 8,
-+	.val_bits = 16,
-+	.max_register = 0xff,
-+};
-+
-+static int nct7201_probe(struct i2c_client *client)
-+{
-+	const struct nct7201_adc_model_data *model_data;
-+	struct nct7201_chip_info *chip;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	model_data = i2c_get_match_data(client);
-+	if (!model_data)
-+		return -EINVAL;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+	chip = iio_priv(indio_dev);
-+
-+	chip->regmap = devm_regmap_init_i2c(client, &nct7201_regmap8_config);
-+	if (IS_ERR(chip->regmap))
-+		return dev_err_probe(&client->dev, PTR_ERR(chip->regmap),
-+			"Failed to init regmap\n");
-+
-+	chip->regmap16 = devm_regmap_init_i2c(client, &nct7201_regmap16_config);
-+	if (IS_ERR(chip->regmap16))
-+		return dev_err_probe(&client->dev, PTR_ERR(chip->regmap16),
-+			"Failed to init regmap16\n");
-+
-+	chip->num_vin_channels = model_data->num_vin_channels;
-+
-+	ret = devm_mutex_init(&client->dev, &chip->access_lock);
-+	if (ret)
-+		return ret;
-+
-+	chip->client = client;
-+
-+	ret = nct7201_init_chip(chip);
-+	if (ret < 0)
-+		return ret;
-+
-+	indio_dev->name = model_data->model_name;
-+	indio_dev->channels = model_data->channels;
-+	indio_dev->num_channels = model_data->num_channels;
-+	if (client->irq)
-+		indio_dev->info = &nct7201_info;
-+	else
-+		indio_dev->info = &nct7201_info_no_irq;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	return devm_iio_device_register(&client->dev, indio_dev);
-+}
-+
-+static const struct i2c_device_id nct7201_id[] = {
-+	{ .name = "nct7201", .driver_data = (kernel_ulong_t)&nct7201_model_data },
-+	{ .name = "nct7202", .driver_data = (kernel_ulong_t)&nct7202_model_data },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, nct7201_id);
-+
-+static const struct of_device_id nct7201_of_match[] = {
-+	{
-+		.compatible = "nuvoton,nct7201",
-+		.data = &nct7201_model_data,
-+	},
-+	{
-+		.compatible = "nuvoton,nct7202",
-+		.data = &nct7202_model_data,
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nct7201_of_match);
-+
-+static struct i2c_driver nct7201_driver = {
-+	.driver = {
-+		.name	= "nct7201",
-+		.of_match_table = nct7201_of_match,
-+	},
-+	.probe = nct7201_probe,
-+	.id_table = nct7201_id,
-+};
-+module_i2c_driver(nct7201_driver);
-+
-+MODULE_AUTHOR("Eason Yang <j2anfernee@gmail.com>");
-+MODULE_DESCRIPTION("Nuvoton NCT7201 voltage monitor driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.34.1
+1.8.3.1
 
 
