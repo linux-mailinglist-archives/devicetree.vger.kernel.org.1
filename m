@@ -1,189 +1,159 @@
-Return-Path: <devicetree+bounces-134081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A85A79FCA2E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 11:16:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1BDB9FCA35
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 11:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 320FB162E62
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 10:16:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54326162E9D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 10:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2809E1BF804;
-	Thu, 26 Dec 2024 10:16:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16D71BC9FE;
+	Thu, 26 Dec 2024 10:25:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Bf9rtxUh"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cybjRoEk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD802450F2;
-	Thu, 26 Dec 2024 10:16:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E154146A71;
+	Thu, 26 Dec 2024 10:25:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735208166; cv=none; b=ooRH2Lza7oB3PbjzMcZkOlwHD3jJNdUEgJXBHDTl2G/da2q+Qqpr9ybWBsNJfAz+5KU1/WyFDnTl4m5y4ZqgtPEOE/W7RbRFdCPvMr4cBy6ZZuJRAvxqmWBkccrrSL5iCvclP4NL+hpcfrXVKj41XSPr9q9yo+Um3exEFiz9TuA=
+	t=1735208717; cv=none; b=M2TLfniil2zNMNRA7j6nSR3mW517yp1Qs1XQTrjOWf5pDaaVkqcSSonxxUBVupYzKjQmLKNz9SSXb8pgjCKY7jLNw1vcriKtfcCLwiYBL8AFVSf7S3ttY6iEmPvVT944krKG1YWYnnFgSv+AJWPDHhOVQIR0lGj4Su7meg/Tlxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735208166; c=relaxed/simple;
-	bh=PNysoKr4x3TzAEfHcmAw8WO9zljvb8duad9elAZ9Cfo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W9VjaAQJcrvATzei1jGXL3pm0hnzWKAxjJTs/Y65TVZ7VLvfmqYBLQV0485tnoJA7mzyAnGKKkC5W0F081hG41Ypnc05hdlHjRPlJs8WSh3JNCGfH6BGJEwxJK8FbNfuvK38iDD6K8fBYzqJxOYB93FtbhCI9H74Y0CiR1WpbAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Bf9rtxUh; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1735208163; x=1766744163;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PNysoKr4x3TzAEfHcmAw8WO9zljvb8duad9elAZ9Cfo=;
-  b=Bf9rtxUh/zMZKBKXlhBTiuus8ljD6mFSNGJI3TPgenMWrqeYP3O/TJPP
-   cupAdv3ui2kZqPbbUqlNLbc57ZoUnPkqV+UuqFCR0FCx6jvQbqZrUTeUT
-   S3dY0PoJfxQkmzzGSsbqNDZuLqDWmLa3rb0YZkD6+Rt/2X9rztNC2JT6B
-   AGVd+Dsf4NWRoRJKgBZgEvhGq4OXd2ej4inLfjjyRmSEWlru6vneo5zSY
-   hIKI3AVbID7Ixbtan1tn12n+fnviy9BasAC7rSEIaCGHHkZOQk+/Ute47
-   ApHVPnN27U4hRzcyHk6C8BSuXzUzE6WbJV7oJ2HoeAmZUSEnN1vApX6p0
-   A==;
-X-CSE-ConnectionGUID: 9WSk4SJdTU+liyD/5XkPhA==
-X-CSE-MsgGUID: IqVDxrMBTCi/4NJwr1rmlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11296"; a="35855076"
-X-IronPort-AV: E=Sophos;i="6.12,265,1728975600"; 
-   d="scan'208";a="35855076"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Dec 2024 02:16:02 -0800
-X-CSE-ConnectionGUID: YtWgRRzCSgS7Y0XstJNVKg==
-X-CSE-MsgGUID: SXJucXphRAa1naaBE0aT+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="100716808"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 26 Dec 2024 02:15:58 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tQkuJ-0002TS-1u;
-	Thu, 26 Dec 2024 10:15:55 +0000
-Date: Thu, 26 Dec 2024 18:15:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH v2 2/5] pinctrl: pinconf-generic: Add API for pinmux
- propertity in DTS file
-Message-ID: <202412261752.6HK0iJXu-lkp@intel.com>
-References: <20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com>
+	s=arc-20240116; t=1735208717; c=relaxed/simple;
+	bh=zc2rimkhOAZHp5yHDodANblxd2z88rhW/LOyEsmVYQA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=H5tbAr5V+WQlq9trBnqvJklVedZSFokjhuaIvaooreJOHPQNT2b/M1R6ZpwFmKIly+4Joua8HpQPC5CiEMGhtxe/9aY9tFrULnhHxpRWfOq9iEHFgwTLurQ3xaphUPiHkQOQREgUU+K+462M4QewRWxHU6zaffgsnaZR2mrjBac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cybjRoEk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BQ8BvsD023185;
+	Thu, 26 Dec 2024 10:24:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=GDQzG1FrO7blb2wKQs4rgj
+	cv1kG7vBb0NbhNH3Xhd0I=; b=cybjRoEk6gLo7tAC2wzBy0PdC4kyi+Ewa5wkmL
+	ES6nKaHKVYtBVzaK/oLqbKuPV7bJiyLhoa4NIbgrbC7BQPGuKt8DEIr9YZKTHzyq
+	guo22beqHZf/Hgdkyf/jOXEbP+nrj+UTWysNp2vF2bQeGqESv9kFut6WY9kOr8Ye
+	WYoM3Gjb1wIuB7+q2ZUvA5VMj8LzeZCsXvlNmroUoOhKChAUqKWcT9nzyrBggRn9
+	l1fkmPU6viYzJ7nazh7WOQWUml486HQ0GiHn9kFEetwzeqJO13kxSjOWYAAVvuiY
+	L3zKX4OuZ8dfDjgRpZZemfXZUHWkSrjm+gO/zUuqDUgsl9TA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43s3dws36e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 10:24:52 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BQAOpVQ012542
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Dec 2024 10:24:51 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 26 Dec 2024 02:24:45 -0800
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <vkoul@kernel.org>, <kishon@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <p.zabel@pengutronix.de>,
+        <dmitry.baryshkov@linaro.org>, <quic_nsekar@quicinc.com>,
+        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>
+Subject: [PATCH v4 0/5] Add PCIe support for Qualcomm IPQ5332
+Date: Thu, 26 Dec 2024 15:54:27 +0530
+Message-ID: <20241226102432.3193366-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241226-amlogic-pinctrl-v2-2-cdae42a67b76@amlogic.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XgVW4IFGsRf8CZu-arBS6x9VUEqu32wB
+X-Proofpoint-ORIG-GUID: XgVW4IFGsRf8CZu-arBS6x9VUEqu32wB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ suspectscore=0 lowpriorityscore=0 mlxlogscore=999 impostorscore=0
+ bulkscore=0 malwarescore=0 priorityscore=1501 adultscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412260091
 
-Hi Xianwei,
+Patch series adds support for enabling the PCIe controller and
+UNIPHY found on Qualcomm IPQ5332 platform. PCIe0 is Gen3 X1 and
+PCIe1 is Gen3 X2 are added.
 
-kernel test robot noticed the following build warnings:
+This series combines [1] and [2]. [1] introduces IPQ5018 PCIe
+support and [2] depends on [1] to introduce IPQ5332 PCIe support.
+Since the community was interested in [2] (please see [3]), tried
+to revive IPQ5332's PCIe support with v2 of this patch series.
 
-[auto build test WARNING on 4de5110762b94b9978fb8182a568572fb2194f8b]
+v2 of this series pulled in the phy driver from [1] tried to
+address comments/feedback given in both [1] and [2].
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Xianwei-Zhao-via-B4-Relay/dt-bindings-pinctrl-Add-support-for-Amlogic-SoCs/20241226-155844
-base:   4de5110762b94b9978fb8182a568572fb2194f8b
-patch link:    https://lore.kernel.org/r/20241226-amlogic-pinctrl-v2-2-cdae42a67b76%40amlogic.com
-patch subject: [PATCH v2 2/5] pinctrl: pinconf-generic: Add API for pinmux propertity in DTS file
-config: arc-randconfig-001-20241226 (https://download.01.org/0day-ci/archive/20241226/202412261752.6HK0iJXu-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241226/202412261752.6HK0iJXu-lkp@intel.com/reproduce)
+1. Enable IPQ5018 PCI support (Nitheesh Sekar) - https://lore.kernel.org/all/20231003120846.28626-1-quic_nsekar@quicinc.com/
+2. Add PCIe support for Qualcomm IPQ5332 (Praveenkumar I) - https://lore.kernel.org/linux-arm-msm/20231214062847.2215542-1-quic_ipkumar@quicinc.com/
+3. Community interest - https://lore.kernel.org/linux-arm-msm/20240310132915.GE3390@thinkpad/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412261752.6HK0iJXu-lkp@intel.com/
+v4: * phy bindings - Create ipq5332 compatible instead of reusing ipq9574 for bindings
+    * phy bindings - Remove reset-names as the resets are handled with bulk APIs
+    * phy bindings - Fix order in the 'required' section
+    * phy bindings - Remove clock-output-names
+    * dtsi - Add missing reset for pcie1_phy
+    * dtsi - Convert 'reg-names' to a vertical list
+    * dts - Fix nodes sort order
+    * dts - Use property-n followed by property-names
 
-All warnings (new ones prefixed by >>):
+v3: * Update the cover letter with the sources of the patches
+    * Rename the dt-bindings yaml file similar to other phys
+    * Drop ipq5332 specific pcie controllor bindings and reuse
+      ipq9574 pcie controller bindings for ipq5332
+    * Please see patches for specific changes
+    * Set GPL license for phy-qcom-uniphy-pcie-28lp.c
 
->> drivers/pinctrl/pinconf-generic.c:250: warning: Function parameter or struct member 'dev' not described in 'pinconf_generic_parse_dt_pinmux'
->> drivers/pinctrl/pinconf-generic.c:250: warning: Excess function parameter 'pctldev' description in 'pinconf_generic_parse_dt_pinmux'
+v2: Address review comments from V1
+    Drop the 'required clocks' change that would break ABI (in dt-binding, dts, gcc-ipq5332.c)
+    Include phy driver from the dependent series
+
+v1: https://lore.kernel.org/linux-arm-msm/20231214062847.2215542-1-quic_ipkumar@quicinc.com/
+
+Nitheesh Sekar (2):
+  dt-bindings: phy: qcom,uniphy-pcie: Document PCIe uniphy
+  phy: qcom: Introduce PCIe UNIPHY 28LP driver
+
+Praveenkumar I (2):
+  arm64: dts: qcom: ipq5332: Add PCIe related nodes
+  arm64: dts: qcom: ipq5332-rdp441: Enable PCIe phys and controllers
+
+Varadarajan Narayanan (1):
+  dt-bindings: PCI: qcom: Document the IPQ5332 PCIe controller
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |   6 +-
+ .../phy/qcom,ipq5332-uniphy-pcie-phy.yaml     |  68 ++++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts   |  76 +++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 218 ++++++++++++-
+ drivers/phy/qualcomm/Kconfig                  |  12 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ .../phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c  | 294 ++++++++++++++++++
+ 7 files changed, 672 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
 
 
-vim +250 drivers/pinctrl/pinconf-generic.c
-
-   235	
-   236	/**
-   237	 * pinconf_generic_parse_dt_pinmux()
-   238	 * parse the pinmux properties into generic pin mux values.
-   239	 * @np: node containing the pinmux properties
-   240	 * @pctldev: pincontrol device
-   241	 * @pid: array with pin identity entries
-   242	 * @pmux: array with pin mux value entries
-   243	 * @npins: number of pins
-   244	 *
-   245	 * pinmux propertity: mux value [0,7]bits and pin identity [8,31]bits.
-   246	 */
-   247	int pinconf_generic_parse_dt_pinmux(struct device_node *np, struct device *dev,
-   248					    unsigned int **pid, unsigned int **pmux,
-   249					    unsigned int *npins)
- > 250	{
-   251		unsigned int *pid_t;
-   252		unsigned int *pmux_t;
-   253		struct property *prop;
-   254		unsigned int npins_t, i;
-   255		u32 value;
-   256		int ret;
-   257	
-   258		prop = of_find_property(np, "pinmux", NULL);
-   259		if (!prop) {
-   260			dev_info(dev, "Missing pinmux property\n");
-   261			return -ENOENT;
-   262		}
-   263	
-   264		if (!pid || !pmux || !npins) {
-   265			dev_err(dev, "paramers error\n");
-   266			return -EINVAL;
-   267		}
-   268	
-   269		npins_t = prop->length / sizeof(u32);
-   270		pid_t = devm_kcalloc(dev, npins_t, sizeof(*pid_t), GFP_KERNEL);
-   271		pmux_t = devm_kcalloc(dev, npins_t, sizeof(*pmux_t), GFP_KERNEL);
-   272		if (!pid_t || !pmux_t) {
-   273			dev_err(dev, "kalloc memory fail\n");
-   274			return -ENOMEM;
-   275		}
-   276		for (i = 0; i < npins_t; i++) {
-   277			ret = of_property_read_u32_index(np, "pinmux", i, &value);
-   278			if (ret) {
-   279				dev_err(dev, "get pinmux value fail\n");
-   280				goto exit;
-   281			}
-   282			pmux_t[i] = value & 0xff;
-   283			pid_t[i] = (value >> 8) & 0xffffff;
-   284		}
-   285		*pid = pid_t;
-   286		*pmux = pmux_t;
-   287		*npins = npins_t;
-   288	
-   289		return 0;
-   290	exit:
-   291		devm_kfree(dev, pid_t);
-   292		devm_kfree(dev, pmux_t);
-   293		return ret;
-   294	}
-   295	EXPORT_SYMBOL_GPL(pinconf_generic_parse_dt_pinmux);
-   296	
-
+base-commit: 8155b4ef3466f0e289e8fcc9e6e62f3f4dceeac2
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
