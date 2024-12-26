@@ -1,161 +1,83 @@
-Return-Path: <devicetree+bounces-134113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94639FCBC7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 17:16:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE9229FCBD0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 17:21:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D4B21620B8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 16:16:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59C951882438
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2024 16:21:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4E7537F8;
-	Thu, 26 Dec 2024 16:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D83546F06A;
+	Thu, 26 Dec 2024 16:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vNuTWzpO"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ZyTVpYKl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF8D64C74;
-	Thu, 26 Dec 2024 16:15:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23EA723DE;
+	Thu, 26 Dec 2024 16:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735229761; cv=none; b=j+5tIrbKP0EcG3obdL4EyDtP8b4+ZjLdhGHh0PNZzfdhCKEnJuwNIdWB9D8xqP9GxSy+xzTJGxJSOofSg2gJ0ePDee3IaB8lyXL9vp/2II/VHZcTinYiBd0lxGd9FWGjzDrtSv8sOw1g9o6AE7nYhudb1o7uyopMQyiD3BzMtec=
+	t=1735230062; cv=none; b=VhRTi143HtqPArtb94bk5OhDZJeu3Cms+IVtFW6pCM8vpGOGdOINis6/AAIw3+sqjdLjVSjDTPIVl/PYQpGCmRoJKQTWvupo2PGAzWHiMviiV9J1pKLuWHHMXwAyEXrCVoW0xI1fiMoHWJ6eBgOpZHDCWzJlIGRYhLpHBzgzMvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735229761; c=relaxed/simple;
-	bh=06nc+tg/4UKFLfBYN5nBlZntSO6n2nOqTRR922L+9gQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SXfCvlzNB+B26vNzpGAxSbB+eU0Jpp73oa1exz9q537IgsZqCdw8b5a1rsaUNEmUXqOR+SQ57dCeqWjD3G3ab4/+u552uRSGf/BG+Jsm6yNDeGDUn7/2X/Wn4MxczDEGI0bTJNtWLZ+vx5ZZIV83Gxf3hLCenIgITBBXvDZivVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vNuTWzpO; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (85-76-136-220-nat.elisa-mobile.fi [85.76.136.220])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 889ECC62;
-	Thu, 26 Dec 2024 17:15:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1735229707;
-	bh=06nc+tg/4UKFLfBYN5nBlZntSO6n2nOqTRR922L+9gQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vNuTWzpO+NV6jThFUEyFTevR8A7JtDlja0Gx5dRVeTlETjo07XJu3yGTZWW5HKq9w
-	 6NJ2VHN6AIoGBBH+QqPxDlKa+JrwSHVmYaKIxfQckW9EURh5bJo018KShjyNXnMK0j
-	 wnbE/uvP83eDqTeARSttnsfurIwNQ/WsLc4awxMw=
-Date: Thu, 26 Dec 2024 18:15:47 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: yuji2.ishikawa@toshiba.co.jp, mchehab@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-	nobuhiro1.iwamatsu@toshiba.co.jp, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v12 1/8] dt-bindings: media: platform: visconti: Add
- Toshiba Visconti MIPI CSI-2 Receiver
-Message-ID: <20241226161547.GB554@pendragon.ideasonboard.com>
-References: <20241125092146.1561901-1-yuji2.ishikawa@toshiba.co.jp>
- <20241125092146.1561901-2-yuji2.ishikawa@toshiba.co.jp>
- <07e0cc97-c0c4-42fd-b51d-87b0eaed4e4a@kernel.org>
- <TY3PR01MB9982FE7739FABB2275C79C0B923B2@TY3PR01MB9982.jpnprd01.prod.outlook.com>
- <cb6be804-1649-4d17-839c-fe58a39baa1d@kernel.org>
+	s=arc-20240116; t=1735230062; c=relaxed/simple;
+	bh=SqQcKYX5KnlIjymYXj3HhN92S1dQpKyuYeX4DMVPF8s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P1CL6g5JFEI51/S4RlnZ+0WgfVPAFDcTUf/UptsrudSIjYaE/367yhkkZqCQDmtbsWjwaovRSehWz1Np3EgUJnf6uB5iM67Dk/26w2dnwyPiErEC/pwDMatvtfRW2gAN146ly9++WTXSRes4zXVO9ohXFX4BWW07j8XhbKQvP6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ZyTVpYKl; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EDF19101ECB8B;
+	Thu, 26 Dec 2024 17:20:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1735230058;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SqQcKYX5KnlIjymYXj3HhN92S1dQpKyuYeX4DMVPF8s=;
+	b=ZyTVpYKlnaEZEhuTYKzqnC//WmmywExIhmLfbv0/X7VGt4KcGn3uxsaeJi+z7CJ0DZrtfx
+	zjBVHJzvnVv8VGf1Z0ebiKsTRv8edl7HsAamACDwM7GuXxAoiN7kGgfOu86aO6/BlXe6v6
+	KuSZYKR0u3ySClLWnPMwSxigtCLByTFJdyA33smifG6iVOMG1jTDJZJ1xX1C3sYd0FJ6gc
+	whb9VWUWz/w7JGYxiq1wimRA2cufLzDkvPewcxm/46E9ZtBEOXff05If67D3bBrwFILYNR
+	5bXhS+H/g2cZWMFpWuv43NkQVX5qnhviTdKlthS/oUO0beohxZiAE83qKs09zA==
+Message-ID: <1fea1252-04ef-40f1-95fa-41910f3c2e16@denx.de>
+Date: Thu, 26 Dec 2024 17:20:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <cb6be804-1649-4d17-839c-fe58a39baa1d@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] clk: fsl-sai: Add i.MX8M Mini support with 8 byte
+ register offset
+To: linux-clk@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Michael Walle
+ <michael@walle.cc>, Nicolin Chen <nicoleotsuka@gmail.com>,
+ Rob Herring <robh@kernel.org>, Shengjiu Wang <shengjiu.wang@gmail.com>,
+ Stephen Boyd <sboyd@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+ Xiubo Li <Xiubo.Lee@gmail.com>, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org
+References: <20241226153155.36351-1-marex@denx.de>
+ <20241226153155.36351-2-marex@denx.de>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20241226153155.36351-2-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Dec 17, 2024 at 06:44:58AM +0100, Krzysztof Kozlowski wrote:
-> On 17/12/2024 00:57, yuji2.ishikawa@toshiba.co.jp wrote:
-> >> On 25/11/2024 10:21, Yuji Ishikawa wrote:
-> >>> Adds the Device Tree binding documentation that allows to describe the
-> >>> MIPI CSI-2 Receiver found in Toshiba Visconti SoCs.
-> >>>
-> >>> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> >>> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> >>
-> >> How newly added patch can have already Rb tag? Was this review really, really
-> >> performed internally or you just satisfy some internal managers requirements
-> >> and fake the stats?
-> >>
-> > 
-> > I added this Reviewed-by tag because the patch was reviewed internally.
-> 
-> What issues were identified by internal review, especially in the
-> context of bindings?
-> 
-> >>> ---
-> >>>
-> >>> Changelog v12:
-> >>> - Newly add bindings for CSI2RX driver
-> >>>
-> >>>  .../media/toshiba,visconti5-csi2rx.yaml       | 104
-> >> ++++++++++++++++++
-> >>>  1 file changed, 104 insertions(+)
-> >>>  create mode 100644
-> >>> Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml
-> >>>
-> >>> diff --git
-> >>> a/Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yam
-> >>> l
-> >>> b/Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yam
-> >>> l
-> >>> new file mode 100644
-> >>> index 000000000000..5488072bc82a
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx
-> >>> +++ .yaml
-> >>> @@ -0,0 +1,104 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> >>> +---
-> >>> +$id:
-> >>> +http://devicetree.org/schemas/media/toshiba,visconti5-csi2rx.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Toshiba Visconti5 SoC MIPI CSI-2 receiver
-> >>> +
-> >>> +maintainers:
-> >>> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> >>> +
-> >>> +description: |-
-> >>
-> >> Drop |-
-> >>
-> > 
-> > I'll drop "|-"
-> > 
-> >>> +  Toshiba Visconti5 SoC MIPI CSI-2 receiver device receives MIPI
-> >>> + CSI-2 video  stream. Use with VIIF device. T.B.D
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: toshiba,visconti5-csi2rx
-> >>
-> >> Why this is called "RX"? Can you have a TX? I had impression that one cannot.
-> >>
-> > 
-> > VIIF has only MIPI CSI2 receiver (CSI2RX). There's no TX for it.
-> 
-> So this device cannot be anything else? Then drop rx.
-
-It's a compatible string, it identifies the IP core. As the SoC also has
-a CSI-2 transmitter (as mentioned by Ishikawa-san), it makes sense to
-name the CSI-2 receiver csi2rx.
-
-> > Visconti also has VOIF (Video Output Interface) hardware which has
-> > MIPI CSI2 (not DSI) transmitter (CSI2TX).
-> 
-> Or this can be something else? Confusing.
-
-In a camera capture pipeline the CSI-2 interface of the SoC is a CSI-2
-receiver, but SoCs commonly have CSI-2 transmitters as well (even if
-that's less common than receivers).
-
--- 
-Regards,
-
-Laurent Pinchart
+On 12/26/24 4:30 PM, Marek Vasut wrote:
+> The i.MX8M Mini/Nano/Plus variant of the SAI IP has control registers
+> shifted by +8 bytes, add support for the i.MX8M Mini variant of the IP
+> with this register shift.
+Ugh, V2 with updated commit message is coming.
 
