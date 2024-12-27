@@ -1,84 +1,114 @@
-Return-Path: <devicetree+bounces-134400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C45309FD60A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 17:40:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E899FD582
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 16:18:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5C7E3A2AFE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 16:40:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F1B53A462D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 15:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014171F76BE;
-	Fri, 27 Dec 2024 16:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1021C1F3D55;
+	Fri, 27 Dec 2024 15:18:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Zt7lHEvL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rIKZPbLc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D385B1F8662;
-	Fri, 27 Dec 2024 16:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEAE9F9D6
+	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 15:18:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735317621; cv=none; b=uNvAe7/yW0X3GSkdXbumO3YktC3Rlx8KWfw3pJ0xsB2fN3nvf/oCJ4LD03LLuMAP5YTBfaQwuZb3u4U77kKm4ECIwvaHIl2s1JD7ZbEeFzNAei9DuqamRc+JPv9Fgn3mcUZEjz6MNtYuFNI0xv/JFTKi6OiohySQ1KnXZeFGFa0=
+	t=1735312726; cv=none; b=HjicHCusldchTdrY1tBiOgMX6169jSRpBNlQ47nr2hkoE1J5LkNgbH1WXzIsHUPkiuKVQq7oEAzP96eMOTRjGPxPglmL4VD927xHXcyixb/dPs6QzqtgPWzUT4VE+48H7Gtdtk9torzUa5aE9oa57C97+fM1uHDhNC6ETiZTAj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735317621; c=relaxed/simple;
-	bh=m34uzEhxEFm8Pkht0brnD9Kz7nFsyXOA51OvSgJ3DVs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MwZxSr1T4w2vXyiY764psuWD3H3mgidp+uVcNYi7bwVk+oUpL6RefFEyuNWz/1ScBpJJegJXZcrtJPdEM+Jt0UnheX1+QXy08G1DaA0kXt7I9nk+SUM3cUMi/vZuPAX8xOrDN/g2dFRiso3pboANu7kpc/1VGix2tLPV4LFktns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Zt7lHEvL; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3561110408FAF;
-	Fri, 27 Dec 2024 17:40:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1735317617;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vDOUthU7q4/qupG9iVWUrtQQQgRrjg8BgH9r7Z4OERQ=;
-	b=Zt7lHEvLwnywX5A0iM5lO0i7k4jf5RIQ83CWlR2bzGay7UL/7+g2+qTg3IZmXU4KXylfSN
-	Hh1gvc3zLKckwYYkaFPMsBMN05W+XG5kEFZ4LbfCfhF26vK/a9VeiHNELD7YLtzNgeBWqM
-	oBnf6P/wBGCTB95Z3A4BiW5+tL6+v0/XfrfhpJYesN6bC/B9SBaSaOkcn3G1+mNTCr//fB
-	ACw6jy1BznDqBB9IuRAedQvwbnKl9j+Kp+Ju/FLxo7jwcKl3HegOkCBaU7Q7Pp8MJ1xZI3
-	ss1YtUf+TzaKfAI/CIJi88q3ZsPkgjwUqmrIAAWAerhK2zZCiYWIbFTkB6mCNw==
-Message-ID: <1a7826ed-5f0e-46ea-bc44-32a389b99171@denx.de>
-Date: Fri, 27 Dec 2024 16:00:53 +0100
+	s=arc-20240116; t=1735312726; c=relaxed/simple;
+	bh=7MZK9pGM0C6a9RgTon/RXiHnSmnoT6GggO0jezi5nUI=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Bh9IHrFxulxMkNbfRceRhU1maXkQO3yHh5qkQJcVmGyG/dQLZJ8/f9LjGgC6wuf2IESZJLNXgd8AjeBM1dN5afsxGF6AJaAOPhjqHodFdP1Rjjnm+9iB/1vvr16qg95BCUef5YNKU/+bjgFvJmeY0ENJiR+n7+zb5gkOtPTxZG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rIKZPbLc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A51BC4CED0;
+	Fri, 27 Dec 2024 15:18:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735312725;
+	bh=7MZK9pGM0C6a9RgTon/RXiHnSmnoT6GggO0jezi5nUI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=rIKZPbLco4M7mx3R21yzC3KOqqlZTJvuQymfjU71PPBlP+7oAXlkPyqii3fwgVFlu
+	 JB1UTEY2wqgCBXIpiVnYjWuqTej46CNi7N2+QnpujM7LAJC881cycFtR3xGZpMwYe8
+	 gWozI5gRSqXaSqpUm47gYTH0WysBYMajIJZoeU5uzzxUdU+WmF+jL4gnaYONKJ9U6e
+	 mcCnIiPOoD1eVQdzZ09+oxEhT+sIPJxeP4E5Xy7kzf2TKN64QXB1cOWRzGK+P7rNWG
+	 GpmfsBODpDWuJW58gGTDzpdDfFhOa+FYs8mp7UIpankuez9lCEDhYBLufXH/Vrdzfy
+	 +BdmO7vzrAP7g==
+Date: Fri, 27 Dec 2024 09:18:43 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: tpm: Add st,st33tphf2ei2c
-To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Jarkko Sakkinen <jarkko@kernel.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Lukas Wunner <lukas@wunner.de>, Peter Huewe <peterhuewe@gmx.de>,
- Rob Herring <robh@kernel.org>, linux-integrity@vger.kernel.org
-References: <20241226171124.83735-1-marex@denx.de>
- <81c31cbb-c632-4558-b415-7bfe5c527c75@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <81c31cbb-c632-4558-b415-7bfe5c527c75@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: dsimic@manjaro.org, heiko@sntech.de, linux-rockchip@lists.infradead.org, 
+ krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+To: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <20241223013926.1134-1-naoki@radxa.com>
+References: <20241223013926.1134-1-naoki@radxa.com>
+Message-Id: <173531252904.3886220.13460367625900532878.robh@kernel.org>
+Subject: Re: [PATCH v6 0/7] arm64: dts: rockchip: Refine dts for Radxa ROCK
+ 5C
 
-On 12/27/24 8:00 AM, Krzysztof Kozlowski wrote:
-> On 26/12/2024 18:10, Marek Vasut wrote:
->> Add the ST chip st33tphf2ei2c to the supported compatible strings of the
->> TPM TIS I2C schema. The Chip is compliant with the TCG PC Client TPM
->> Profile specification.
->>
+
+On Mon, 23 Dec 2024 01:39:19 +0000, FUKAUMI Naoki wrote:
+> This patch series includes fixes for improvements, trivial changes,
+> etc for Radxa ROCK 5C.
 > 
-> Where is any user of this?
-Submitted to linux-arm-kernel in
+> FUKAUMI Naoki (7):
+>   arm64: dts: rockchip: Change the function of the blue LED for Radxa
+>     ROCK 5C
+>   arm64: dts: rockchip: Use a longer PWM period for the fan on Radxa
+>     ROCK 5C
+>   arm64: dts: rockchip: Remove the RTC and related nodes for Radxa ROCK
+>     5C
+>   arm64: dts: rockchip: Add cd-gpios for sdmmc for Radxa ROCK 5C
+>   arm64: dts: rockchip: Fix the properties of the PMIC regulators for
+>     Radxa ROCK 5C
+>   arm64: dts: rockchip: Trivial changes for Radxa ROCK 5C
+>   arm64: dts: rockchip: Sort nodes for Radxa ROCK 5C
+> 
+>  .../boot/dts/rockchip/rk3588s-rock-5c.dts     | 239 ++++++++----------
+>  1 file changed, 107 insertions(+), 132 deletions(-)
+> 
+> --
+> 2.43.0
+> 
+> 
+> 
 
-[PATCH] arm64: dts: imx8mp: Update Data Modul i.MX8M Plus eDM SBC DT to 
-rev.903
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y rockchip/rk3588s-rock-5c.dtb' for 20241223013926.1134-1-naoki@radxa.com:
+
+arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dtb: ethernet-phy: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/net/ethernet-phy.yaml#
+
+
+
+
+
 
