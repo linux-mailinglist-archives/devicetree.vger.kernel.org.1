@@ -1,271 +1,174 @@
-Return-Path: <devicetree+bounces-134241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DDDF9FD0D3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:10:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AF229FD0E6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:13:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D454163A10
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:10:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5A4C3A0555
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A233E14B962;
-	Fri, 27 Dec 2024 07:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AE613DDD3;
+	Fri, 27 Dec 2024 07:13:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p0QlHb10"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nhK9BLFv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D76E14A4DF;
-	Fri, 27 Dec 2024 07:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E3B85FEED;
+	Fri, 27 Dec 2024 07:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735283378; cv=none; b=mfPwtwNR6P9QLPfE34iIcKdoY9SnvZP07YoD6VtviZQSwyfXVvptDWri8lJYCYYO+Z2UaQrvWZtv8O3TgpEQIoa14t+KpEHSa+hN+NC6uwX8f9tXp3bM43LvVTeBJbj6tJw8bNB91z9gk06/TcJjFM3ZzT2PKTkSXfi1F+MDyh4=
+	t=1735283597; cv=none; b=pzfHIbzEHD5u9Fuq1jRmqomP2lKKv88dbjO+0nDxxNllywpv6t4n0FNb1mSpyU/+GSMp7tpgmCdQEsErQARf5dX0hZfG6FZ3CBybyDo1SmmMVLA5vWvMkyv0cnP+plMmI8GI0CkG7tRKKx9wxXdLl+fBJ7D4TKM58KsiQFYK8xI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735283378; c=relaxed/simple;
-	bh=i1J0mhvW9a4DClwnnWZIzVLDzkCwppZXfkTj/GxfWcA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ub+wNDny3Isg4T2xvj5xpyrH+ErdANgHRYdNll5iCt++S6hvVjMLC3j5yWd6+3TPLXGnoLRxMxGJUrghkd+SY7HEvU33QejW+1gLU/phbqFAplQl1AneBX92wnWG3Tobkel7I/HN3NHE0ZWjd8zH9zvgvME8DVMyA/8wDnRhr0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p0QlHb10; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D14B4C4CEDD;
-	Fri, 27 Dec 2024 07:09:37 +0000 (UTC)
+	s=arc-20240116; t=1735283597; c=relaxed/simple;
+	bh=Hneaj+fwxQFh+es62rDaOqjmykKHnrlun6IE40T9xlY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ACqPWmw8JQyrRyEjqHLSSnEf8R9hqxqCC+sQmiiSRwebNFMFnW3jVIBSz6l1Hw5Rr7CcblgzSg5OVtMt3aSJognxejgKpXa85AjuaTdIP730O8QIs3G+fnBPfBZl/A47gTLeU7GM4V45X+rtAj4wtmADEgBx0NPwmuyyXj++Jbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nhK9BLFv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6399DC4CED0;
+	Fri, 27 Dec 2024 07:13:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735283377;
-	bh=i1J0mhvW9a4DClwnnWZIzVLDzkCwppZXfkTj/GxfWcA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=p0QlHb102oi2Bihigwq07IGH2EEoKkPEKRDSo3q0DoNiJRSauyswwLegaJOlotKJ4
-	 7eP2C0sYuYT5z1LhmIcLuda1wzKVWE2GKTH/45IRKKHlj8KU0cWMgslhd8QeLntqw6
-	 Zx8FlTRrXwAlTZ8A/8qbNhN6ABdtj0R5FLNSSnBWD2ua+WRlz5H7uGwQRTtor8ddL9
-	 A8tMB9LeB0zzJ7U2Mt2//a4l4oXvERhUJy8OFIV4Ayb08803K4Y2mEDX4oQTGb3tPX
-	 Xe9t0QbYG0WxD0TfZeYDJl5uQLgk16xLso/mrCGDycWhl3WYErMpnTShwifj2YuqUK
-	 C/lorILhE+Rxw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CA64EE7718F;
-	Fri, 27 Dec 2024 07:09:37 +0000 (UTC)
-From: Keke Li via B4 Relay <devnull+keke.li.amlogic.com@kernel.org>
-Date: Fri, 27 Dec 2024 15:09:19 +0800
-Subject: [PATCH v5 10/10] Documentation: media: add documentation file
- c3-isp.rst
+	s=k20201202; t=1735283596;
+	bh=Hneaj+fwxQFh+es62rDaOqjmykKHnrlun6IE40T9xlY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nhK9BLFvJ1kS96sUqIWR03McIgbI4ZhEaR44uoyPfJEd7Qg5FELaggRVCpOvDiOhE
+	 K07gDp6rnkAhLSsYR6ii31kuErM0WbtnqY2gCAvDIBMqbUAYcZXEsQufmB9kjixWZj
+	 GHn0angf3ewbzXCRHDM0C7uBKyfSz6gvHEtk9ev3pYPMQTYZnHuNYpMn2ykpGUnidW
+	 gxQKWyvIu+9kN1CYnKLCfQm2+Ya6vKbLz7W2Zqij/cIjSvg0w40YZnAWLG0zckOEPr
+	 Xeep/pgASDQu9AbVQUduWi5bN3c/BrgdYVONxZbmKYS8rgvLy1G8UsIrisJSx0GyD2
+	 0beqmLol0CqFQ==
+Message-ID: <63c14ff2-d3c2-4bbb-8d54-376b75c62fd4@kernel.org>
+Date: Fri, 27 Dec 2024 08:13:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/17] dt-bindings: display: rockchip: analogix-dp: Add
+ support for RK3588
+To: Damon Ding <damon.ding@rock-chips.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
+ cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
+ andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
+ kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20241226063313.3267515-1-damon.ding@rock-chips.com>
+ <20241226063313.3267515-3-damon.ding@rock-chips.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241226063313.3267515-3-damon.ding@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241227-c3isp-v5-10-c7124e762ff6@amlogic.com>
-References: <20241227-c3isp-v5-0-c7124e762ff6@amlogic.com>
-In-Reply-To: <20241227-c3isp-v5-0-c7124e762ff6@amlogic.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
- laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com, 
- jacopo.mondi@ideasonboard.com, Keke Li <keke.li@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735283374; l=8110;
- i=keke.li@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=1vRdKPzff/46+mgERVzXgPBajqANliFbOSvtsnU0Dac=;
- b=pQFTz6lKs9HNUk8OO+Rveftc6BgTH9PSDY0J38OCC6EeZ0wHvmJFORz9HdTq+g2PxBid9tWqU
- UmJlFKySxloA6V3JDZg6rLRoH4cXLkk54GcEddwPnZ/1r3tMjIokPpO
-X-Developer-Key: i=keke.li@amlogic.com; a=ed25519;
- pk=XxNPTsQ0YqMJLLekV456eoKV5gbSlxnViB1k1DhfRmU=
-X-Endpoint-Received: by B4 Relay for keke.li@amlogic.com/20240902 with
- auth_id=204
-X-Original-From: Keke Li <keke.li@amlogic.com>
-Reply-To: keke.li@amlogic.com
 
-From: Keke Li <keke.li@amlogic.com>
+On 26/12/2024 07:32, Damon Ding wrote:
+> Compared with RK3288/RK3399, the HBR2 link rate support is the main
+> improvement of RK3588 eDP TX controller, and there are also two
+> independent eDP display interfaces on RK3588 Soc.
+> 
+> The newly added 'apb' reset is to ensure the APB bus of eDP controller
+> works well on the RK3588 SoC.
+> 
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> 
+> ---
+> 
+> Changes in v2:
+> - Add the main defferences of the RK3588 eDP and the previous versions
+>   in commit message
+> 
+> Changes in v3:
+> - Expand the property clock-names, resets and reset-names
+> 
+> Changes in v4:
+> - Remove 'spdif' clock which added in v3
+> - Add the comment of newly added 'apb' reset in commit message
+> ---
+>  .../bindings/display/rockchip/rockchip,analogix-dp.yaml  | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+> index 60dedf9b2be7..200703905b29 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+> @@ -15,6 +15,7 @@ properties:
+>      enum:
+>        - rockchip,rk3288-dp
+>        - rockchip,rk3399-edp
+> +      - rockchip,rk3588-edp
+>  
+>    clocks:
+>      minItems: 2
+> @@ -31,10 +32,14 @@ properties:
+>      maxItems: 1
+>  
+>    resets:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    reset-names:
+> -    const: dp
+> +    minItems: 1
+> +    items:
+> +      - const: dp
+> +      - const: apb
 
-Add the file 'c3-isp.rst' that documents the c3-isp driver.
+I asked why existing variants get this new reset. This is not supposed
+to be flexible (which I wrote as well), but constrained per variant. Or
+explain why not.
 
-Signed-off-by: Keke Li <keke.li@amlogic.com>
----
- Documentation/admin-guide/media/c3-isp.dot      |  26 ++++++
- Documentation/admin-guide/media/c3-isp.rst      | 109 ++++++++++++++++++++++++
- Documentation/admin-guide/media/v4l-drivers.rst |   1 +
- MAINTAINERS                                     |   2 +
- 4 files changed, 138 insertions(+)
-
-diff --git a/Documentation/admin-guide/media/c3-isp.dot b/Documentation/admin-guide/media/c3-isp.dot
-new file mode 100644
-index 000000000000..f96217dbcebf
---- /dev/null
-+++ b/Documentation/admin-guide/media/c3-isp.dot
-@@ -0,0 +1,26 @@
-+digraph board {
-+	rankdir=TB
-+	n00000001 [label="{{<port0> 0 | <port1> 1} | c3-isp-core\n/dev/v4l-subdev0 | {<port2> 2 | <port3> 3}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000001:port3 -> n00000006:port0
-+	n00000001:port3 -> n00000009:port0
-+	n00000001:port3 -> n0000000c:port0
-+	n00000001:port2 -> n00000025
-+	n00000006 [label="{{<port0> 0} | c3-isp-resizer0\n/dev/v4l-subdev1 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000006:port1 -> n00000019 [style=bold]
-+	n00000009 [label="{{<port0> 0} | c3-isp-resizer1\n/dev/v4l-subdev2 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000009:port1 -> n0000001d [style=bold]
-+	n0000000c [label="{{<port0> 0} | c3-isp-resizer2\n/dev/v4l-subdev3 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000000c:port1 -> n00000021 [style=bold]
-+	n0000000f [label="{{<port0> 0} | c3-mipi-adapter\n/dev/v4l-subdev4 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000000f:port1 -> n00000001:port0 [style=bold]
-+	n00000014 [label="{{<port0> 0} | c3-mipi-csi2\n/dev/v4l-subdev5 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000014:port1 -> n0000000f:port0 [style=bold]
-+	n00000019 [label="c3-isp-cap0\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
-+	n0000001d [label="c3-isp-cap1\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
-+	n00000021 [label="c3-isp-cap2\n/dev/video2", shape=box, style=filled, fillcolor=yellow]
-+	n00000025 [label="c3-isp-stats\n/dev/video3", shape=box, style=filled, fillcolor=yellow]
-+	n00000029 [label="c3-isp-params\n/dev/video4", shape=box, style=filled, fillcolor=yellow]
-+	n00000029 -> n00000001:port1
-+	n0000003d [label="{{} | imx290 2-001a\n/dev/v4l-subdev6 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000003d:port0 -> n00000014:port0 [style=bold]
-+}
-diff --git a/Documentation/admin-guide/media/c3-isp.rst b/Documentation/admin-guide/media/c3-isp.rst
-new file mode 100644
-index 000000000000..8adac4605a6a
---- /dev/null
-+++ b/Documentation/admin-guide/media/c3-isp.rst
-@@ -0,0 +1,109 @@
-+.. SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-+
-+.. include:: <isonum.txt>
-+
-+=================================================
-+Amlogic C3 Image Signal Processing (C3ISP) driver
-+=================================================
-+
-+Introduction
-+============
-+
-+This file documents the Amlogic C3ISP driver located under
-+drivers/media/platform/amlogic/c3/isp.
-+
-+The current version of the driver supports the C3ISP found on
-+Amlogic C308L processor.
-+
-+The driver implements V4L2, Media controller and V4L2 subdev interfaces.
-+Camera sensor using V4L2 subdev interface in the kernel is supported.
-+
-+The driver has been tested on AW419-C308L-Socket platform.
-+
-+Anlogic Camera hardware
-+=======================
-+
-+The Camera hardware found on C308L processors and supported by
-+the driver consists of:
-+
-+- 1 MIPI-CSI2 module. It handle the Physical layer of the CSI2 receivers and
-+  receive MIPI data.
-+  A separate camera sensor can be connected to MIPI-CSi2 module.
-+- 1 MIPI-ADAPTER module. Organize MIPI data to meet ISP input requirements and
-+  send MIPI data to ISP
-+- 1 ISP (Image Signal Processing) module. Contain a pipeline of image processing
-+  hardware blocks.
-+  The ISP pipeline contains three scalers at the end.
-+  The ISP also contains the DMA interface which writes the output data to memory.
-+
-+A high level functional view of the C3 ISP is presented below. The ISP
-+takes input from the sensor.::
-+
-+                                                                   +---------+    +-------+
-+                                                                   | Scaler  |--->| WRMIF |
-+  +---------+    +------------+    +--------------+    +-------+   |---------+    +-------+
-+  | Sensor  |--->| MIPI CSI-2 |--->| MIPI ADAPTER |--->|  ISP  |---|---------+    +-------+
-+  +---------+    +------------+    +--------------+    +-------+   | Scaler  |--->| WRMIF |
-+                                                                   +---------+    +-------+
-+                                                                   |---------+    +-------+
-+                                                                   | Scaler  |--->| WRMIF |
-+                                                                   +---------+    +-------+
-+
-+Supported functionality
-+=======================
-+
-+The current version of the driver supports:
-+
-+- Input from camera sensor via MIPI-CSI2;
-+
-+- Pixel output interface of ISP
-+
-+  - Scaling support. Configuration of the scaler module
-+    for downscalling with ratio up to 8x.
-+
-+Driver Architecture and Design
-+==============================
-+
-+The driver implements the V4L2 subdev interface. With the goal to model the
-+hardware links between the modules and to expose a clean, logical and usable
-+interface, the driver is split into V4L2 sub-devices as follows:
-+
-+- 1 c3-mipi-csi2 sub-device - mipi-csi2 is represented by a single sub-device.
-+- 1 c3-mipi-adapter sub-device - mipi-adapter is represented by a single sub-devices.
-+- 1 c3-isp-core sub-device - isp-core is represented by a single sub-devices.
-+- 3 c3-isp-resizer sub-devices - isp-resizer is represented by a number of sub-devices
-+  equal to the number of capture device.
-+
-+c3-isp-core sub-device is linked to 2 separate video device nodes and
-+3 c3-isp-resizer sub-devices nodes.
-+
-+- 1 capture statistics video device node.
-+- 1 output parameters video device node.
-+- 3 c3-isp-resizer sub-device nodes.
-+
-+c3-isp-resizer sub-device is linked to capture video device node.
-+
-+- c3-isp-resizer0 is linked to c3-isp-cap0
-+- c3-isp-resizer1 is linked to c3-isp-cap1
-+- c3-isp-resizer2 is linked to c3-isp-cap2
-+
-+The media controller pipeline graph is as follows (with connected a
-+IMX290 camera sensor):
-+
-+.. _isp_topology_graph:
-+
-+.. kernel-figure:: c3-isp.dot
-+    :alt:   c3-isp.dot
-+    :align: center
-+
-+    Media pipeline topology
-+
-+Implementation
-+==============
-+
-+Runtime configuration of the hardware via 'c3-isp-params' video device node.
-+Acquiring statistics of ISP hardware via 'c3-isp-stats' video device node.
-+Acquiring output image of ISP hardware via 'c3-isp-cap[0, 2]' video device node.
-+
-+The output size of the scaler module in the ISP is configured with
-+the pixel format of 'c3-isp-cap[0, 2]' video device node.
-diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documentation/admin-guide/media/v4l-drivers.rst
-index e8761561b2fe..3bac5165b134 100644
---- a/Documentation/admin-guide/media/v4l-drivers.rst
-+++ b/Documentation/admin-guide/media/v4l-drivers.rst
-@@ -10,6 +10,7 @@ Video4Linux (V4L) driver-specific documentation
- 	:maxdepth: 2
- 
- 	bttv
-+	c3-isp
- 	cafe_ccic
- 	cx88
- 	fimc
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b2626a370cc0..0dd171521d6e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1247,6 +1247,8 @@ AMLOGIC ISP DRIVER
- M:	Keke Li <keke.li@amlogic.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
-+F:	Documentation/admin-guide/media/c3-isp.dot
-+F:	Documentation/admin-guide/media/c3-isp.rst
- F:	Documentation/devicetree/bindings/media/amlogic,c3-isp.yaml
- F:	Documentation/userspace-api/media/v4l/metafmt-c3-isp.rst
- F:	drivers/media/platform/amlogic/c3/isp/
-
--- 
-2.47.1
-
-
+Best regards,
+Krzysztof
 
