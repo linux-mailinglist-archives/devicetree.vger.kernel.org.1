@@ -1,48 +1,79 @@
-Return-Path: <devicetree+bounces-134242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AF229FD0E6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:13:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 207C19FD0EC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5A4C3A0555
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:13:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8ED2018829EE
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AE613DDD3;
-	Fri, 27 Dec 2024 07:13:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1606F1428E7;
+	Fri, 27 Dec 2024 07:14:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nhK9BLFv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SamE1l6/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E3B85FEED;
-	Fri, 27 Dec 2024 07:13:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25DED13EFF3
+	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 07:14:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735283597; cv=none; b=pzfHIbzEHD5u9Fuq1jRmqomP2lKKv88dbjO+0nDxxNllywpv6t4n0FNb1mSpyU/+GSMp7tpgmCdQEsErQARf5dX0hZfG6FZ3CBybyDo1SmmMVLA5vWvMkyv0cnP+plMmI8GI0CkG7tRKKx9wxXdLl+fBJ7D4TKM58KsiQFYK8xI=
+	t=1735283653; cv=none; b=nVCCDTv3WWtx2wDDT4bRoPZ7Ph46uiB8Q/YYtlBP57Wc6bqhn7aUclXBkv2dUYBgMANwDXHvaTKJ6uPc2yWfra8t1GbpSt/oSEtukolfmX1LTz8JSjLgzkBBllFJuDORUCjvg4bmPP/3dBtPCRWUFKOcR4EFF5Dog+9cuQPeFEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735283597; c=relaxed/simple;
-	bh=Hneaj+fwxQFh+es62rDaOqjmykKHnrlun6IE40T9xlY=;
+	s=arc-20240116; t=1735283653; c=relaxed/simple;
+	bh=JKqfkUfIWpafkL6AT6E9qFIgjz+nVnyw4kMqoRdyx6U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ACqPWmw8JQyrRyEjqHLSSnEf8R9hqxqCC+sQmiiSRwebNFMFnW3jVIBSz6l1Hw5Rr7CcblgzSg5OVtMt3aSJognxejgKpXa85AjuaTdIP730O8QIs3G+fnBPfBZl/A47gTLeU7GM4V45X+rtAj4wtmADEgBx0NPwmuyyXj++Jbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nhK9BLFv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6399DC4CED0;
-	Fri, 27 Dec 2024 07:13:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735283596;
-	bh=Hneaj+fwxQFh+es62rDaOqjmykKHnrlun6IE40T9xlY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nhK9BLFvJ1kS96sUqIWR03McIgbI4ZhEaR44uoyPfJEd7Qg5FELaggRVCpOvDiOhE
-	 K07gDp6rnkAhLSsYR6ii31kuErM0WbtnqY2gCAvDIBMqbUAYcZXEsQufmB9kjixWZj
-	 GHn0angf3ewbzXCRHDM0C7uBKyfSz6gvHEtk9ev3pYPMQTYZnHuNYpMn2ykpGUnidW
-	 gxQKWyvIu+9kN1CYnKLCfQm2+Ya6vKbLz7W2Zqij/cIjSvg0w40YZnAWLG0zckOEPr
-	 Xeep/pgASDQu9AbVQUduWi5bN3c/BrgdYVONxZbmKYS8rgvLy1G8UsIrisJSx0GyD2
-	 0beqmLol0CqFQ==
-Message-ID: <63c14ff2-d3c2-4bbb-8d54-376b75c62fd4@kernel.org>
-Date: Fri, 27 Dec 2024 08:13:07 +0100
+	 In-Reply-To:Content-Type; b=M8xAfj8cSdlw/QB/qIVLgbBpXTxPPTBFmcECoEBSRsWr7GpZah4QjkKXAdX+b3Uu3RRD6NiXh1zeC0Y48RDHxu/Cj5YZ9LxKXI/4dTNE2X9iEpg4rX+m2p9lUJ2Y5vJGO5Crbc87r2XTedSq3nHOyGYxjrGkbtGSsJUYmRCXlK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SamE1l6/; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43616c12d72so10985435e9.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 23:14:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735283649; x=1735888449; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=frArfcOpIQD2D9bW2N7xZXNPJ/+lIcxv0oBptC1BH5c=;
+        b=SamE1l6/DafUTMlRq6i31SeL1oc5462YyRrPvszm3SuUUHr8eoiTdJeRkQQ76qRDy4
+         yXRnGhjHksYZxvb/tO/HzbSDw8lQX7WJ85IPFxNNHh13uVpkVGxukLx2L2T7VS64bufu
+         wKVP2PMTMSzavy1DRHwTYbKuvhiZd44tVNdcBsaLymd8DLioGC8d+hvTHUFjx3laNuOv
+         66+vTCnzoQYPIJNaFp7E05ktt08r8GN6DG2kLHXGXCdqFYAIDXb37quye1is1IriM0+W
+         xWxMd79NLCQ1Ua7E4zO4UXNiUN2n8iJ/79zIOpDaaRHVdKvse1sVafxMW+0GPl9Bfg3h
+         lWOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735283649; x=1735888449;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=frArfcOpIQD2D9bW2N7xZXNPJ/+lIcxv0oBptC1BH5c=;
+        b=RuspOkpbyjQS1eQ7kbgJVWMeLN1LQ1g1d5b0pcUMTsRedfCbcb+Yx/ck34Kz63GqH7
+         BCXz4npQ0DNMtqNLrBtwbo2jEGWkOyWp3PjSnKag5qC4QrAaRSwEDB2cqeE3KGGeRDdf
+         WE5ZM4lH6xK/OkgzmsuCegK7W+c8bfTw+lYQhF3szwLCS7WAkqj4SwLVDekys17X+TsT
+         KqDm0zPhx00biOpQnN0UpODeRkBTkm4sQcPAUBxd5xRBFhdp60gzCYHaamTCyYCI5ShJ
+         eomHDcCABmjL0xLI1Urw8kKniFDmRHJ+Gz4rbcIu3vW1Wp6FGkfDPoUbQTOECASPiH6q
+         5MSg==
+X-Forwarded-Encrypted: i=1; AJvYcCUpdcm8jrcZK6oPF5DjGu/3ejDDT8CUVj6GQgopnjRUd0aV0fF2xNFRGmvaoJ866+8nrkee0vw0BVo8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyRV3YX7+M2/rPGAXSwlHyj6O3JwHnVStsH3DrmbVYKS5dx8Kx
+	rgPT74R0Sc2tmPMZRLYsc4cptLz8F0vacxEl/225bIRy2PcwULDPUwARX5zfnSE=
+X-Gm-Gg: ASbGncvLOooKTnLvB7p/+pPe2AdVSbAFyLhIMZUFLPuxLXZ4T3eSIcZPiS9cKNWuhsC
+	LSuXGe/luiMmxp437J4ktozVPBXQxde4EnrsuxS7pPutlwCpxk6uSFKTCOvCPGOTywAXLDIk7U/
+	XUyVlgeq5OTXdDYG/X9A0Aihsmo/z/tY7w4XPUvwM0JorZxGKw3GnRnUpDrwEujxK+7H3CTE9nq
+	7PfKmGmJWn22iaARgOSf/Y+BAiogsMNwyX+A8wqC03m1esqTj47O4xc2Y6iXXQzkTt0P3Vxf2BY
+X-Google-Smtp-Source: AGHT+IHGMnT9N8ZGhTsEAeR6OgbzNDuNXlwmbApK6j1in2vEtqAFfCzp8m3GGvL0hwmYp3IwlXUEKA==
+X-Received: by 2002:a05:600c:a0a:b0:42c:aeee:e604 with SMTP id 5b1f17b1804b1-43668b93b4fmr87670215e9.8.1735283649122;
+        Thu, 26 Dec 2024 23:14:09 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4366127c4d7sm255443905e9.34.2024.12.26.23.14.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Dec 2024 23:14:08 -0800 (PST)
+Message-ID: <b1e6e480-750c-4abd-9e13-6138c5e18284@linaro.org>
+Date: Fri, 27 Dec 2024 08:14:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +81,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/17] dt-bindings: display: rockchip: analogix-dp: Add
- support for RK3588
-To: Damon Ding <damon.ding@rock-chips.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
- cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
- andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
- kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20241226063313.3267515-1-damon.ding@rock-chips.com>
- <20241226063313.3267515-3-damon.ding@rock-chips.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: net: qcom,ethqos: Drop fallback
+ compatible for qcom,qcs615-ethqos
+To: Yijie Yang <quic_yijiyang@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20241224-schema-v2-0-000ea9044c49@quicinc.com>
+ <20241224-schema-v2-1-000ea9044c49@quicinc.com>
+ <7813f2b0-e76a-463c-91f9-c0bd50da1f0a@linaro.org>
+ <f68524de-7a56-4cc6-a9ab-13dbae0ee0e5@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -75,99 +114,66 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 fv0=
-In-Reply-To: <20241226063313.3267515-3-damon.ding@rock-chips.com>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <f68524de-7a56-4cc6-a9ab-13dbae0ee0e5@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/12/2024 07:32, Damon Ding wrote:
-> Compared with RK3288/RK3399, the HBR2 link rate support is the main
-> improvement of RK3588 eDP TX controller, and there are also two
-> independent eDP display interfaces on RK3588 Soc.
+On 25/12/2024 09:58, Yijie Yang wrote:
 > 
-> The newly added 'apb' reset is to ensure the APB bus of eDP controller
-> works well on the RK3588 SoC.
 > 
-> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> On 2024-12-24 17:02, Krzysztof Kozlowski wrote:
+>> On 24/12/2024 04:07, Yijie Yang wrote:
+>>> The core version of EMAC on qcs615 has minor differences compared to that
+>>> on sm8150. During the bring-up routine, the loopback bit needs to be set,
+>>> and the Power-On Reset (POR) status of the registers isn't entirely
+>>> consistent with sm8150 either.
+>>> Therefore, it should be treated as a separate entity rather than a
+>>> fallback option.
+>>
+>> ... and explanation of ABI impact? You were asked about this last time,
+>> so this is supposed to end up here.
 > 
-> ---
+> I actually replied to this query last time, but maybe it wasn't clear. 
+> Firstly, no one is using Ethernet on this platform yet. Secondly, the 
+> previous fallback to sm8150 is incorrect and causes packet loss. 
+> Instead, it should fall back to qcs404.
 > 
-> Changes in v2:
-> - Add the main defferences of the RK3588 eDP and the previous versions
->   in commit message
-> 
-> Changes in v3:
-> - Expand the property clock-names, resets and reset-names
-> 
-> Changes in v4:
-> - Remove 'spdif' clock which added in v3
-> - Add the comment of newly added 'apb' reset in commit message
-> ---
->  .../bindings/display/rockchip/rockchip,analogix-dp.yaml  | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-> index 60dedf9b2be7..200703905b29 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-> @@ -15,6 +15,7 @@ properties:
->      enum:
->        - rockchip,rk3288-dp
->        - rockchip,rk3399-edp
-> +      - rockchip,rk3588-edp
->  
->    clocks:
->      minItems: 2
-> @@ -31,10 +32,14 @@ properties:
->      maxItems: 1
->  
->    resets:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    reset-names:
-> -    const: dp
-> +    minItems: 1
-> +    items:
-> +      - const: dp
-> +      - const: apb
-
-I asked why existing variants get this new reset. This is not supposed
-to be flexible (which I wrote as well), but constrained per variant. Or
-explain why not.
+And if you send v3 with same commit msg, I will ask the same. Your
+commit msg must answer to this.
 
 Best regards,
 Krzysztof
