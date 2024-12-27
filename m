@@ -1,229 +1,665 @@
-Return-Path: <devicetree+bounces-134213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E6119FCFD1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 04:23:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3720A9FCFDC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 04:43:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3EFD18833EC
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 03:23:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 331417A0811
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 03:43:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BBA439AD6;
-	Fri, 27 Dec 2024 03:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528C643179;
+	Fri, 27 Dec 2024 03:43:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="NthmoklK";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="cOByqIeK"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="nOZTAZgx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108CC8821;
-	Fri, 27 Dec 2024 03:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735269807; cv=fail; b=KNSS1Ao9RmpKLDfEQ1o+lTE87pdBn9cch5+XzAJpSfDjnP7wg7JurxKNFcSQc+HtveaQsdw+n3I1cfPHZl9mlA3aFF61+CDYgGucyZLL5LCST2kGj16Z9aPt5jY4kBhfalMjgcrAA7tnjSaFoTL2y9lIuBpMcjpcdducyHczFjs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735269807; c=relaxed/simple;
-	bh=L41Mz45tcd1ydjJ/de9UJovEHGcvYAqe0n3KL00klRk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=jYM48QPgzuxfEfRAG53aVEcqPfejYg9pge2CBt0NV7dcqaKS/hrdw4yxox/yBz/uLGyC9shjnyxZpc2E0rXhOfQinaMTvJrlmXJgU5LhZbLs4rlCtZCS+Ap5Glp0Sgq7noirUmSXJT9AlxjPi/W8Vt/Li4FlJag+4AFuM699l1w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=NthmoklK; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=cOByqIeK; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: ebe7a3a4c40111ef99858b75a2457dd9-20241227
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=L41Mz45tcd1ydjJ/de9UJovEHGcvYAqe0n3KL00klRk=;
-	b=NthmoklK4MF19QbUDluREbuHK5btxuc6xlbMV+W+/kvgo7A9iikMB+hobVQ5PytIlSaWSZ7qA7by8Ik3sV2w2Slg5MJS1pqRjRF/LPq87WSnniEQx5XEUbh7IsSNiwRuh1kwK/Oe3Fgt6FabH+jG2Yvf1Uj643gB/kJbfQ6wfes=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:c5885b6b-c5e2-44c8-ab26-b6fc1bb499d1,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:44f9f636-e11c-4c1a-89f7-e7a032832c40,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
-	EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: ebe7a3a4c40111ef99858b75a2457dd9-20241227
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2107874277; Fri, 27 Dec 2024 11:23:20 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 27 Dec 2024 11:23:19 +0800
-Received: from HK2PR02CU002.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 27 Dec 2024 11:23:19 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gIhH9Y9txytw5xmeir7AqkXI+0tc8869mz3Pcyuz7V2R7Ypex6tpjVUYQee1LswEYHulWrapzGb9JSeAlzb4bmzMtwssfCKS+P9DDEbbq98DDs2xtOIRPnXlV1HaeP/Q+BdCsHCKJrzSlh9DojglVigE9pxo25CnGhjzBVZYtTYLLWXM2qRcQlRdkqOKnpwniRXzs+RkYM7A/p2+3jx8n8pEvGXT7jDOstqfMf6e7Pu9xbNDimrBuhrmAWRj7Yt/+/CfOpS/Jx99ChTDYTNyzE7SMuEDbLmo2SP1QFHHLDkR+18BSXvjqr5HPI/M1g8JNqQPFF6NKQM4wIuXFz9DYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L41Mz45tcd1ydjJ/de9UJovEHGcvYAqe0n3KL00klRk=;
- b=mwcBWZ3rokaclSK5VG5jh0nokBhF1UV20tBS+Be5QSNIZITRryllolOIIVB8leUyCmRV96b6RJDtI/QAGT37exaJGE/HIuVbeyK5GBZRgNxT2ZfMYgcjVtiOQdgPlCVML5Tm8xaiZMK6Uz2ClILLIxti2BBfUfxQZUv6mhAjq5UGNidSdpt0ZU3pz1a47+0Eww67B4Hy8eIwFoywuqtDIHrH9icJQznO9p/vG96/VKsr7yydB5QeULAM5S03Myzc5LMMdN5HuBOK4+l+uE6QJTi7HXal1SGklSXlTghnN6RLFyR0t4dxwztK8RHk6/M6BO3/LUuAoDg5fNu+wwMBYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BCDA35968
+	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 03:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735271012; cv=none; b=qWYumwjMEeTsFP96QAzOKmypYkMEZ7fMv8wZquXGfWmiVvYIl0ViThhda733/f943avUamoXPXiy0gre14qxN+ISVUb7bzgFR74jMRhLiPOZlEPS5X7kNBoHzH83N+RyEasNupvq3RGdq2Rkr+sTQFyKdQoC2i95ItX1O6kTQbQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735271012; c=relaxed/simple;
+	bh=S9visI6bqrSMYytUPX56cwqpl2uKaSdXw2NK9vqbRnQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rwC5mzBkONNoERIxRAjqxGh4UxTQpypf976zz9zW7JoT2LqvqNECsFa74jh6IhDFq/gsIkpB+QY/XRl1gFBwt6pW5Xjce2vbRotZPPvHCXoQVztiDvLjgKNWYSskTbdQdxupBRbZJ8DYmCCSfE0MMyZM73VI39Q3nBlPqLjlPBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=nOZTAZgx; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2ee709715d9so6585963a91.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Dec 2024 19:43:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L41Mz45tcd1ydjJ/de9UJovEHGcvYAqe0n3KL00klRk=;
- b=cOByqIeKit9eXPG8gKurrcizmwbhbcrnzdNeS1TBDztkNy1w7JunJugoIrvRKrlAp/PBipG7y7+ampsxxej8wDmPTRNf3v7XTc+RRUxm9yDfzr6DZLNh+h3fqiITZHeeLbSmyt4wvgUl5zS0PbFHxKJjPH6tq5laCkxsdvXBffw=
-Received: from SEYPR03MB6626.apcprd03.prod.outlook.com (2603:1096:101:83::7)
- by TYSPR03MB7738.apcprd03.prod.outlook.com (2603:1096:400:414::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.14; Fri, 27 Dec
- 2024 03:23:16 +0000
-Received: from SEYPR03MB6626.apcprd03.prod.outlook.com
- ([fe80::9fa0:ee98:d5ed:beba]) by SEYPR03MB6626.apcprd03.prod.outlook.com
- ([fe80::9fa0:ee98:d5ed:beba%5]) with mapi id 15.20.8272.013; Fri, 27 Dec 2024
- 03:23:16 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: "robh@kernel.org" <robh@kernel.org>, "mchehab@kernel.org"
-	<mchehab@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	=?utf-8?B?Qm8gS29uZyAo5a2U5rOiKQ==?= <Bo.Kong@mediatek.com>
-CC: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "AngeloGioacchino Del
- Regno" <angelogioacchino.delregno@collabora.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>
-Subject: Re: [PATCH v3 3/4] media: mediatek: add MT8188 AIE driver
-Thread-Topic: [PATCH v3 3/4] media: mediatek: add MT8188 AIE driver
-Thread-Index: AQHbVqv2E/LiiDV3F0q0O1OD05OMm7L5b/yA
-Date: Fri, 27 Dec 2024 03:23:16 +0000
-Message-ID: <198d50d7b2f5fe30f663b08a197be4b6299fc7d5.camel@mediatek.com>
-References: <20241225090113.17027-1-bo.kong@mediatek.com>
-	 <20241225090113.17027-4-bo.kong@mediatek.com>
-In-Reply-To: <20241225090113.17027-4-bo.kong@mediatek.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Evolution 3.52.3-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR03MB6626:EE_|TYSPR03MB7738:EE_
-x-ms-office365-filtering-correlation-id: a2e061f4-4d33-4e59-34db-08dd2625cdec
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?S0g5UVQyU0RWZ3ppbEg3SU9yMHk4ZWFpV1FFRmYyQU8ydDNZSGFzQ1RxUENK?=
- =?utf-8?B?a2h5dlRaR25pOGh2d3I0bXlMbUpaaHlGazVPU3FpZ3V1NW52L095cWJHaDBt?=
- =?utf-8?B?NWpSdVI3LzNqYUFlcDY2dDZLYk14cHlHZHNXM1RDaTJ4OXdDL3g5K3lwRDRz?=
- =?utf-8?B?RmUvR3FBS2ZncEtnWU4vR1ZDUFArdWxtZENNbmppanJKNFU2Y1VRSjZTZTJE?=
- =?utf-8?B?UTdEcEpCdFJoL3Q5dWY0OHVUMWFvZmZLZGI3cXZWdUVYRGx1SzlVYzdBcXhV?=
- =?utf-8?B?UzdRR3dvdWNENGNaQ3Z3U08vQlBqbmkxaTZWL2NTa2Q1ek1iRE10RHArY3Vp?=
- =?utf-8?B?SWVwWXczRTRVQm91VHZXbnFkT1ZhMzJrNnE0OEF3Si9qcnhtQlBaV3JObEdi?=
- =?utf-8?B?dkNRZUJnemhZL3dtcXRHY3ZRaUJ6WkoxaVZOY0s3WnZ3V282TkI3YTlVNS9y?=
- =?utf-8?B?R2grN2JjejJkNllueGx1bFFFUXI2OS9vR0x6aWMvNU9Xa2hJUDZiNkJMWXdr?=
- =?utf-8?B?TkFqVkIrY1dEdnFsemhvdFdCaGxGc3FMbEVhUXVRVExleGdqb0MxK0haV1dk?=
- =?utf-8?B?elVtSDVsK2I0NXF2cm5oYlo2c2ZORW14TTBYVXVERjhtZG9yLzJINGJuWXE1?=
- =?utf-8?B?WTlxUzlLVkU5SzYxQkQzSUVsUDkreGZnVUJqUXlJM05SeVpzWkw4ZWV4Qm9I?=
- =?utf-8?B?UncyYjc3R0YzcmNZV0pNaU90bk9Vc3J3b2NsUE4raU5wRlJFSVRwK0xReUJP?=
- =?utf-8?B?RHJQVXlsYWNvazhUOXArVU5JWFVXbVdZZkZzZnJXQWlFQlNtMi9tTjFEMml0?=
- =?utf-8?B?emZQSUtRRTdiQ09hbGF2TFVNVFBBMTJPQUtXNkdLd2dQV2dtQm13ZlpMNGhG?=
- =?utf-8?B?L1N5d3JrSmI4K2MzaFNHWWM2M0J4WEM1UVpyYkUyOEYyL1g1dFlaS0oxekpF?=
- =?utf-8?B?UzQrN01vbHV4dUMzcmhvZU0rOXRsZ3cySDNsc2x1TVdZZ2F2aW1YQmdPYXQz?=
- =?utf-8?B?RlpDeFBYMUdiVWs4dXVsQ1YvbUJaOGpjYlo5TUhRUjFZc3pwK2FqTnZHLy82?=
- =?utf-8?B?dEo3bkVNUWhLYldWVUxqS2FxVWcveXlzZWMwaEZBaW0rY3czeENqMU5LTnM5?=
- =?utf-8?B?NGxGSm5jbnB0aFVHcHVlekQ1YWdRMnlKN2cyRklzaTgyWGIyb2JSYWFObHV5?=
- =?utf-8?B?RnhrQ3ZGL3F6czJOZkFBa2dEQzMvUGUranhFdFh5Y1VVTVVlZkdUQTZ3Q0pR?=
- =?utf-8?B?Z1MzNk5MVEVBNzVNVjF6WkJvWTNYVG1CSlJzQjQxS3ZHeTR6Q0I4cjVuMTlE?=
- =?utf-8?B?d2cvaGRRcjNEU2VlWi9rMXB0K1RYVWlLamdMOWd4K21CZlVxZUtMQ0Y2UVY5?=
- =?utf-8?B?Mm9UTUhodTdBTW80Q21CcWx0bk1KRExoWTFDbGFzRXVxUEk1bXMvcStuWWVz?=
- =?utf-8?B?ZWpUa1JlYWorM256MVpwRTVCSTdqOXMrMlV3WE1SdWQvRWNmRGp4d05rNnNl?=
- =?utf-8?B?bWRxeUhGUWxOOXVTYmVETG5pb2tGbURPL2IycHdyYWduRDJzVmFvU0Ryellv?=
- =?utf-8?B?bmp0Y2F1SDJvbmgvVmxrVkY0MXAvQ3lDU2VKWklKc1JtNU9TTTZOYUhpWXor?=
- =?utf-8?B?dTdjWnpkVStYRGtpbUxIVlU0T0tQeUgybXNOeUs1VStCRU1OZ1c5UVJoeUpk?=
- =?utf-8?B?WEptRHVzTHkvdTZBSkFMSUhMNTU1UDlZeHFad3orRjFvaStBVGlEWGJKYlEy?=
- =?utf-8?B?YmIxUzZCWGF6RU83VUlKQURxRE0vT1JuWnpuOWtiWk9qTzI3V1RseTZGUVZu?=
- =?utf-8?B?bENTZUoyYjBWa2dIUjVvTFlGYkxkek8rSDRFdVo1bGFwQjhtSlRXUGg1VTYv?=
- =?utf-8?B?UFd6UmkvQTArTk9VODZDZGdvcWQreG55UGx5R1FkNkl6VEFuV1dmMjJvYkE1?=
- =?utf-8?Q?k+x2Pl0N0PrLGoejGgFJUuElFy5ufEOP?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR03MB6626.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?YWtaK09aMEZZbjA4TjNqbUxnc1NxY2k4eVNtdEVMYWhYRUJzd0xLSjRxaVFM?=
- =?utf-8?B?UlFPTkovLzBwZmhpZWJoSW4ralZsaTFEZnRrRHgxSGxvRXhqY3h6SzJlTHcr?=
- =?utf-8?B?UnFQQUVBcG1DUkpudG9NV1ZJNXJWOFpvNFJTN3JaaEFqRUpZYkF0VGtvQUNP?=
- =?utf-8?B?WEZ1d2FmZUhxZU9hSnQwcWJVWW5hQnNEL04xdEN5UWl1S3BOckt4OGJhN3Vj?=
- =?utf-8?B?VFJ6b0FhRkdBWWZ6a2x4RjdoMGthN1l6dG5CSFVYbHFMMXpDaFNwcENOQXBh?=
- =?utf-8?B?UzIzMkNuS1R3MzVHUnNXWFo1dXF0TnlsSTE4b1BQOGRxT2QzS3haQzZLcmVn?=
- =?utf-8?B?TWVWUGpROGZxRXkrVUVTUG9rd2NFMUVFbmMzREN5RHR0L04rbTkyTXEwTzRN?=
- =?utf-8?B?K3VETXF0Y003M3lLZk9SSTRBVy9WWm5aNWxHYmluUHBWVWdCb3FNeVVRRDBw?=
- =?utf-8?B?SlVEWmdIY2diOXlBSHRYK3JSak1wNXRIS1M4UXpsQmU1bVpFOG1GRGRJUXcz?=
- =?utf-8?B?Y3R6WE8xY0JqQWlSTG9BRDJaRVd3SVFIdXlRMTlUeTFwZDBXL1h2SHpBaVpi?=
- =?utf-8?B?MlZsYVNuOE9iQUxUVXRyd3RjSHZtSUp6UERONXRTdzlhYWptSyt0MWFOaHAz?=
- =?utf-8?B?NkxIYUYxWHJPblk2YnpwZ24zM2N4MGhnOE5nY0xISmphdm5qQjZMUGlLYkZV?=
- =?utf-8?B?Ly95azNQUEUrMVQxWWNuL1krZm9jNHRXOXBiRUx4WDM2azlqWUk3cHVZVVg5?=
- =?utf-8?B?czMzVzhuNFg4S1E1dWVWUVlFSHp0M2tESTZDaWtPQWVYQXE3ajZjeTdaVCtK?=
- =?utf-8?B?bWFTdzJTWVNCYkxQcThVc2JXYlZKeldZQWRJQ21leUJNUlFtZUEzV25uTkpv?=
- =?utf-8?B?OUNqNjg1Qjc0KzZGa1BZbi9MOVJDbTMvSWZMY2ZlT0p6ODlHd3JvaFI5eCtm?=
- =?utf-8?B?d2JVVGczVWs5UEEzRnRzUGxMQU9VNDF2RzlNVVBHVzBGUkIyemZJeCtkRVU5?=
- =?utf-8?B?VEJOMXU4TllDbm0xZW1QZW04OVcxdG5vbE5vVjB1NGVNNzlUN2F1ZG1TREx6?=
- =?utf-8?B?R0VuQ0NkYm5KNDFDUEVTVWhBM2NURzJmaDVkYmFYZ3l4OHRYQ3RRZFJwUGUr?=
- =?utf-8?B?dG9jTVY1OFZ1RStINFRmbVBCRndkNS9RZnpTeG1EUUVwKzZSYmFDRE5tV25u?=
- =?utf-8?B?ZGRWVVB1M2M3UmYvQ2xTUVh4Qko4YnJMVGVCL25xMHlWZlZuMmw0QjhDa01q?=
- =?utf-8?B?MnVwV0dOVjMxWkdZTHhtKzdYZmJpTVhsS21CN1NjRUhsY2NURmxiT3gvR2Z6?=
- =?utf-8?B?S3daa1UzckJEcjJyRDRkSndDSmJpZzZIWjFaUXk3OTZkc0hXMzVZd1NTYVNx?=
- =?utf-8?B?SGtJQkF5SlhTTU9HUEdRektwcTR0V2EvYzVOang1M2NvMGhGSVl3Lzk0QVk1?=
- =?utf-8?B?VGl3NEZkVEtxM05kU2V0VHA4cGJxbUgrMHpUMmpzUWpyY1ovSVV5SXQvK2ow?=
- =?utf-8?B?Z1BBaS8xMmFpZFNxR2gra2EvTGNXem9DOHdXSnVvaDJ3ZFVGTjhyY2Nhc1Vx?=
- =?utf-8?B?YjZHVmFCMnJrVFRoNmV1dVd6a3BXKzRZd3lUbGw2dVk1UEVzY2RWOC9sRmt5?=
- =?utf-8?B?Zkk0dkJzOU41SjVNMWhoL0ZvU2d4NUNndEUrcm9FaThEb1BIcnExY2o1QkpQ?=
- =?utf-8?B?SFN3MGowa2kzWDJteG94alo4VmthVC8xM3ZOY0FEeU5acldLcVZqd1lvSEdh?=
- =?utf-8?B?Y3g2UTFtOTRUMllncS8zbng2cytBOC9ZYU9hVGFUQy9DZGZ1Ym9EVW1iUXRF?=
- =?utf-8?B?Y0tJUXJESTcraE9xN3J6SEpaMjBobkxzSldyRVI1bnh4M2gxYi9GeHAvV203?=
- =?utf-8?B?bmttb2F6dnJiTEo4b2NMMmdtOHN4ZndtVnhCWWx4VUFPazlydGJ6a2NXTzkx?=
- =?utf-8?B?RUttV2ZobTU3a29nWCtDeEhZalhyNkhhY29vVGF0TEV6MUI1NnVFWWEzaHhS?=
- =?utf-8?B?d3ZuNEg4NWxMV1g1aldaTThKZXBoWWlqV3c2UmI5R212NldOM2FwV0d6d2Qy?=
- =?utf-8?B?TzVzVlo3S2plK2VtR2NZS2ZyUWVYSG95QVZ0dHdFczRGeUR3aUUrY3pLYjUx?=
- =?utf-8?Q?+liezj2Gv7KDRSyJP2Chy0v67?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <55C05602C5C3EA43A866F624AA28CEA0@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=ventanamicro.com; s=google; t=1735271009; x=1735875809; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E2jZqWLTNHFNaI41cZgqbK1vC1in57m0z7/Rrqs7BNQ=;
+        b=nOZTAZgxRClGDpghYPMlM0q6sx5sx+JNFFSA3YZSZA02EQLY1LcoN6vAMbEohDpBME
+         eC9r8gOsUCspubqLI2uQbFN2weC5DufmUhIUZhOLPhjRAMkYi8TtSdj2LeXcJdXa49fT
+         +N0+vVjysfRm5rshU/mLoO+6usg8d0jpODAQGU2RWWOQkMJCJoR3sg574bM2YvBD3ooB
+         nsd4JY0+oMSCDJv2BRWKva1+Ewi+Ed3dFOi41NWXw1SOFYYpwSWzBns6n8vEPoGz/TF1
+         T1uDe3RlZjQFV9415PmMW0rzrl452zUzfbhSB6Ybw2M38r2ejN7AhR6l8XwGyfDTilKo
+         6SYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735271009; x=1735875809;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E2jZqWLTNHFNaI41cZgqbK1vC1in57m0z7/Rrqs7BNQ=;
+        b=cVIBDWU+rOm9CJ5FscdyW5eQxLC7EEi/6iXf5NJSc8GAWXKVzcEvqOKzodJRt3Oy0I
+         lKC23j/oIfnr3+QQVvg9pdL2rqCArP6/cdN/3YADC+zI1+7p1uRTVliTRI25FWcHFiap
+         dDb5o9Zq0PavkzRj1zJf6I2urbI8QdsYC9LO6Xl6XmSUkM6S/I9JY0V/y6UxOP9CoHp5
+         aP8/FsXYhK4/W8e3yiBDAaaThXkx3y0ej/fRqWOm9w1gorWzaxBj4drDSA5nMtW1Dz6r
+         pUVpzS3UbfELm2/yey6EiajKB1YJ2WdhbFQY77PecBN3uqxxEJOPJ4Qe5HxthVFI6zbV
+         PdLA==
+X-Forwarded-Encrypted: i=1; AJvYcCUo7ATb7AedvMFlBM5WwBQ+K/f7MzZZWObpqq69ENPH9mva65Y6WFL85Wlfow2Dyn1HaY2nTe/nR59W@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXOQYIS5d0RU9KBeQImRL2el8X95C/AymEIa/wclZV1ZGPY5l0
+	JAdQJs2EN2OeK2sjzaqYQIwEYBq8eBkyronXMiNFUU47SXcmNyOIMw6D5SztmFef12D1dlyABiw
+	WZm5zFZyySVs01RFTO9CUhQa6pYOCmjtI/oLpng==
+X-Gm-Gg: ASbGncuCyDp9WZH/ru+Cfpc+le5z85lRMUJGFdXNEGTxOsUkWkliFIsarJDYrCZbZUQ
+	Kk+5MK4GwW4yzBHKh0EQesfy7tTRvlQ0X51LC31zrPgSiFCZO1NXQrrV6fn7Q+akbtiMeiQ==
+X-Google-Smtp-Source: AGHT+IH0YCO9g9o3jnAJ5Sp7HBIHYKUJI0Fshys8zGMaVrPHwkis+oYMBy0uSjgaDEWP712wjIJcWt94Zyk1OyW/nPo=
+X-Received: by 2002:a17:90a:fc48:b0:2ee:8e75:4aeb with SMTP id
+ 98e67ed59e1d1-2f452e49238mr39430381a91.17.1735271009382; Thu, 26 Dec 2024
+ 19:43:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR03MB6626.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2e061f4-4d33-4e59-34db-08dd2625cdec
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Dec 2024 03:23:16.6796
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EIhKdwS8w5lpUcrydcqn9YncrdL+UFw0fja1uO2+Lji3+ePdEnRX+UxBKFMaGBNgg2KJCLA7wnw7LazX4GcBcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB7738
+References: <20241216084817.373131-1-apatel@ventanamicro.com>
+ <20241216084817.373131-9-apatel@ventanamicro.com> <ZQZPR01MB0979D745074A662620993C668A03A@ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn>
+In-Reply-To: <ZQZPR01MB0979D745074A662620993C668A03A@ZQZPR01MB0979.CHNPR01.prod.partner.outlook.cn>
+From: Rahul Pathak <rpathak@ventanamicro.com>
+Date: Fri, 27 Dec 2024 09:12:53 +0530
+Message-ID: <CA+Oz1=Y9oyVdPaAnFP0zFVrYS-cp7WrAYerd1cDH_fSr98sfMw@mail.gmail.com>
+Subject: Re: [RFC PATCH 8/8] clk: Add clock driver for the RISC-V RPMI clock
+ service group
+To: Leyfoon Tan <leyfoon.tan@starfivetech.com>
+Cc: Anup Patel <apatel@ventanamicro.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
+	Anup Patel <anup@brainfault.org>, 
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-T24gV2VkLCAyMDI0LTEyLTI1IGF0IDE3OjAwICswODAwLCBiby5rb25nIHdyb3RlOg0KPiBGcm9t
-OiBCbyBLb25nIDxCby5Lb25nQG1lZGlhdGVrLmNvbT4NCj4gDQo+IEFkZCBhIFY0TDIgc3ViLWRl
-dmljZSBkcml2ZXIgZm9yIE1UODE4OCBBSUUuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBCbyBLb25n
-IDxCby5Lb25nQG1lZGlhdGVrLmNvbT4NCj4gLS0tDQoNCltzbmlwXQ0KDQo+ICtzdGF0aWMgaW50
-IG10a19haWVfaHdfY29ubmVjdChzdHJ1Y3QgbXRrX2FpZV9kZXYgKmZkKQ0KPiArew0KPiArCWlm
-IChtdGtfYWllX2h3X2VuYWJsZShmZCkpDQo+ICsJCXJldHVybiAtRUlOVkFMOw0KDQptdGtfYWll
-X2h3X2Nvbm5lY3QoKSBqdXN0IGNhbGwgbXRrX2FpZV9od19lbmFibGUoKSwNCmFuZCBtdGtfYWll
-X2h3X2VuYWJsZSgpIGp1c3QgcHJpbnQgc29tZSBtZXNzYWdlIGFuZCBjYWxsIGFpZV9pbml0KCks
-DQpzbyBkcm9wIG10a19haWVfaHdfY29ubmVjdCgpIGFuZCBtdGtfYWllX2h3X2VuYWJsZSgpIGFu
-ZCBjYWxsZXIgZGlyZWN0bHkgY2FsbCBhaWVfaW5pdCgpLg0KDQo+ICsNCj4gKwlyZXR1cm4gMDsN
-Cj4gK30NCj4gKw0KPiArc3RhdGljIHZvaWQgbXRrX2FpZV9od19kaXNjb25uZWN0KHN0cnVjdCBt
-dGtfYWllX2RldiAqZmQpDQo+ICt7DQo+ICsJYWllX3VuaW5pdChmZCk7DQoNCm10a19haWVfaHdf
-ZGlzY29ubmVjdCgpIGp1c3QgY2FsbCBhaWVfdW5uaXQoKSwNCnNvIGRyb3AgbXRrX2FpZV9od19k
-aXNjb25uZWN0KCkgYW5kIGNhbGxlciBkaXJlY3RseSBjYWxsIGFpZV91bmluaXQoKS4NCg0KUmVn
-YXJkcywNCkNLDQoNCj4gK30NCj4gKw0KDQo=
+Hi Leyfoon,
+
+On Tue, Dec 24, 2024 at 11:50=E2=80=AFAM Leyfoon Tan
+<leyfoon.tan@starfivetech.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Anup Patel <apatel@ventanamicro.com>
+> > Sent: Monday, December 16, 2024 4:48 PM
+> > To: Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
+> > <sboyd@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> > <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Jassi Brar
+> > <jassisinghbrar@gmail.com>
+> > Cc: Palmer Dabbelt <palmer@dabbelt.com>; Paul Walmsley
+> > <paul.walmsley@sifive.com>; Sunil V L <sunilvl@ventanamicro.com>; Rahul
+> > Pathak <rpathak@ventanamicro.com>; Leyfoon Tan
+> > <leyfoon.tan@starfivetech.com>; Atish Patra <atishp@atishpatra.org>;
+> > Andrew Jones <ajones@ventanamicro.com>; Anup Patel
+> > <anup@brainfault.org>; linux-clk@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-
+> > kernel@vger.kernel.org; Anup Patel <apatel@ventanamicro.com>
+> > Subject: [RFC PATCH 8/8] clk: Add clock driver for the RISC-V RPMI cloc=
+k
+> > service group
+> >
+> > From: Rahul Pathak <rpathak@ventanamicro.com>
+> >
+> > The RPMI specification defines a clock service group which can be acces=
+sed via
+> > SBI MPXY extension or dedicated S-mode RPMI transport.
+> >
+> > Add mailbox client based clock driver for the RISC-V RPMI clock service=
+ group.
+> >
+> > Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Rahul Pathak <rpathak@ventanamicro.com>
+> > ---
+>
+>
+> >  obj-y                                        +=3D actions/
+> > diff --git a/drivers/clk/clk-rpmi.c b/drivers/clk/clk-rpmi.c new file m=
+ode
+> > 100644 index 000000000000..ed8e32527d3d
+> > --- /dev/null
+> > +++ b/drivers/clk/clk-rpmi.c
+> > @@ -0,0 +1,588 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * RISC-V MPXY Based Clock Driver
+> > + *
+> > + * Copyright (C) 2024 Ventana Micro Systems Ltd.
+> > + */
+> > +
+> > +#include <linux/io.h>
+> > +#include <linux/mm.h>
+> > +#include <linux/of.h>
+> > +#include <linux/err.h>
+> > +#include <linux/slab.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/mailbox/riscv-rpmi-message.h>
+> > +#include <linux/mailbox_client.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/clk-provider.h>
+>
+> Sorting header files in alphabetical order.
+
+Already taken care of. also removed which are not needed.
+>
+> > +
+> > +#define RPMI_CLK_MAX_NUM_RATES               16
+> This macro only used for discrete clocks, so suggest change to RPMI_CLK_M=
+AX_DISCRETE_NUM_RATES.
+> Is 16 too few?
+
+I will change the name. We can keep 16 for now and
+may change later if we find this insufficient.
+
+>
+> > +#define RPMI_CLK_NAME_LEN            16
+> > +
+> > +#define GET_RATE_LO_U32(rate_u64)    ((u32)rate_u64)
+> > +#define GET_RATE_HI_U32(rate_u64)    ((u32)((u64)(rate_u64) >> 32))
+> > +#define GET_RATE_U64(hi_u32, lo_u32) ((u64)(hi_u32) << 32 |
+> > (lo_u32))
+> > +
+> > +enum rpmi_clk_config {
+> > +     RPMI_CLK_DISABLE =3D 0,
+> > +     RPMI_CLK_ENABLE =3D 1,
+> > +};
+> > +
+>
+> [...]
+>
+> > +static int rpmi_clk_get_supported_rates(u32 clkid, struct rpmi_clk
+> > +*rpmi_clk) {
+> > +     struct rpmi_clk_context *context =3D rpmi_clk->context;
+> > +     struct rpmi_get_supp_rates_tx tx;
+> > +     struct rpmi_get_supp_rates_rx rx;
+> > +     struct rpmi_mbox_message msg;
+> > +     size_t clk_rate_idx =3D 0;
+> > +     int ret, rateidx, j;
+> > +
+> > +     tx.clkid =3D cpu_to_le32(clkid);
+> > +     tx.clk_rate_idx =3D 0;
+> > +
+> > +     rpmi_mbox_init_send_with_response(&msg,
+> > RPMI_CLK_SRV_GET_SUPPORTED_RATES,
+> > +                                       &tx, sizeof(tx), &rx, sizeof(rx=
+));
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret)
+> > +             return ret;
+> > +     if (rx.status)
+> > +             return rpmi_to_linux_error(rx.status);
+> > +     if (!rx.returned)
+> > +             return -EINVAL;
+> > +
+> > +     if (rpmi_clk->type =3D=3D RPMI_CLK_DISCRETE) {
+> > +             for (rateidx =3D 0; rateidx < rx.returned; rateidx++) {
+>
+> Need to check RPMI_CLK_MAX_NUM_RATES limit as well.
+
+Sure, i will update
+
+>
+> > +                     rpmi_clk->rates->discrete[rateidx] =3D
+> > +
+> >       GET_RATE_U64(rx.rates.discrete[rateidx].hi,
+> > +
+> > rx.rates.discrete[rateidx].lo);
+> > +             }
+> > +
+> > +             while (rx.remaining) {
+> > +                     clk_rate_idx +=3D rx.returned;
+> > +                     tx.clk_rate_idx =3D clk_rate_idx;
+> > +
+> > +                     rpmi_mbox_init_send_with_response(&msg,
+> > +
+> > RPMI_CLK_SRV_GET_SUPPORTED_RATES,
+> > +                                                       &tx, sizeof(tx)=
+, &rx,
+> > sizeof(rx));
+> > +                     ret =3D rpmi_mbox_send_message(context->chan,
+> > &msg);
+> > +                     if (ret)
+> > +                             return ret;
+>
+> Need check if (rx.status) here?
+
+Sure, i will update
+
+>
+> > +
+> > +                     for (j =3D 0; j < rx.returned; j++) {
+> Same here, check RPMI_CLK_MAX_NUM_RATES.
+
+Sure, i will update
+
+>
+> > +                             if (rateidx >=3D (clk_rate_idx + rx.retur=
+ned))
+> > +                                     break;
+> > +                             rpmi_clk->rates->discrete[rateidx++] =3D
+> > +                                     GET_RATE_U64(rx.rates.discrete[j]=
+.hi,
+> > +                                                  rx.rates.discrete[j]=
+.lo);
+> > +                     }
+> > +             }
+> > +     } else if (rpmi_clk->type =3D=3D RPMI_CLK_LINEAR) {
+> > +             rpmi_clk->rates->linear.min =3D
+> > +                             GET_RATE_U64(rx.rates.linear.min_hi,
+> > +                                          rx.rates.linear.min_lo);
+> > +             rpmi_clk->rates->linear.max =3D
+> > +                             GET_RATE_U64(rx.rates.linear.max_hi,
+> > +                                          rx.rates.linear.max_lo);
+> > +             rpmi_clk->rates->linear.step =3D
+> > +                             GET_RATE_U64(rx.rates.linear.step_hi,
+> > +                                          rx.rates.linear.step_lo);
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static unsigned long rpmi_clk_recalc_rate(struct clk_hw *hw,
+> > +                                       unsigned long parent_rate)
+> > +{
+> > +     struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
+> > +     struct rpmi_clk_context *context =3D rpmi_clk->context;
+> > +     struct rpmi_mbox_message msg;
+> > +     struct rpmi_get_rate_tx tx;
+> > +     struct rpmi_get_rate_rx rx;
+> > +     int ret;
+> > +
+> > +     tx.clkid =3D cpu_to_le32(rpmi_clk->id);
+> > +
+> > +     rpmi_mbox_init_send_with_response(&msg,
+> > RPMI_CLK_SRV_GET_RATE,
+> > +                                       &tx, sizeof(tx), &rx, sizeof(rx=
+));
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret)
+> > +             return ret;
+> > +     if (rx.status)
+> > +             return rx.status;
+> > +
+> > +     return GET_RATE_U64(rx.hi, rx.lo);
+> > +}
+> > +
+> > +static long rpmi_clk_round_rate(struct clk_hw *hw,
+> > +                             unsigned long rate,
+> > +                             unsigned long *parent_rate)
+> > +{
+> > +     struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
+> > +     u64 fmin, fmax, ftmp;
+> > +
+> > +     if (rpmi_clk->type =3D=3D RPMI_CLK_DISCRETE)
+> > +             return rate;
+> > +
+> > +     fmin =3D rpmi_clk->rates->linear.min;
+> > +     fmax =3D rpmi_clk->rates->linear.max;
+> > +
+> > +     if (rate <=3D fmin)
+> > +             return fmin;
+> > +     else if (rate >=3D  fmax)
+> > +             return fmax;
+> > +
+> > +     ftmp =3D rate - fmin;
+> > +     ftmp +=3D rpmi_clk->rates->linear.step - 1;
+> > +     do_div(ftmp, rpmi_clk->rates->linear.step);
+> > +
+> > +     return ftmp * rpmi_clk->rates->linear.step + fmin; }
+> > +
+> > +static int rpmi_clk_set_rate(struct clk_hw *hw, unsigned long rate,
+> > +                          unsigned long parent_rate)
+> > +{
+> > +     struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
+> > +     struct rpmi_clk_context *context =3D rpmi_clk->context;
+> > +     struct rpmi_mbox_message msg;
+> > +     struct rpmi_set_rate_tx tx;
+> > +     struct rpmi_set_rate_rx rx;
+> > +     int ret;
+> > +
+> > +     tx.clkid =3D cpu_to_le32(rpmi_clk->id);
+> > +     tx.lo =3D cpu_to_le32(GET_RATE_LO_U32(rate));
+> > +     tx.hi =3D cpu_to_le32(GET_RATE_HI_U32(rate));
+> > +
+> > +     rpmi_mbox_init_send_with_response(&msg,
+> > RPMI_CLK_SRV_SET_RATE,
+> > +                                       &tx, sizeof(tx), &rx, sizeof(rx=
+));
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret)
+> > +             return ret;
+> > +     if (rx.status)
+> > +             return rpmi_to_linux_error(rx.status);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int rpmi_clk_enable(struct clk_hw *hw) {
+> > +     struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
+> > +     struct rpmi_clk_context *context =3D rpmi_clk->context;
+> > +     struct rpmi_mbox_message msg;
+> > +     struct rpmi_set_config_tx tx;
+> > +     struct rpmi_set_config_rx rx;
+> > +     int ret;
+> > +
+> > +     tx.config =3D cpu_to_le32(RPMI_CLK_ENABLE);
+> > +     tx.clkid =3D cpu_to_le32(rpmi_clk->id);
+> > +
+> > +     rpmi_mbox_init_send_with_response(&msg,
+> > RPMI_CLK_SRV_SET_CONFIG,
+> > +                                       &tx, sizeof(tx), &rx, sizeof(rx=
+));
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret)
+> > +             return ret;
+> > +     if (rx.status)
+> > +             return rpmi_to_linux_error(rx.status);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void rpmi_clk_disable(struct clk_hw *hw) {
+> > +     struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
+> > +     struct rpmi_clk_context *context =3D rpmi_clk->context;
+> > +     struct rpmi_mbox_message msg;
+> > +     struct rpmi_set_config_tx tx;
+> > +     struct rpmi_set_config_rx rx;
+> > +     int ret;
+> > +
+> > +     tx.config =3D cpu_to_le32(RPMI_CLK_DISABLE);
+> > +     tx.clkid =3D cpu_to_le32(rpmi_clk->id);
+> > +
+> > +     rpmi_mbox_init_send_with_response(&msg,
+> > RPMI_CLK_SRV_SET_CONFIG,
+> > +                                       &tx, sizeof(tx), &rx, sizeof(rx=
+));
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret || rx.status)
+> > +             pr_err("Failed to disable clk-%u\n", rpmi_clk->id); }
+> > +
+> > +static const struct clk_ops rpmi_clk_ops =3D {
+> > +     .recalc_rate =3D rpmi_clk_recalc_rate,
+> > +     .round_rate =3D rpmi_clk_round_rate,
+> > +     .set_rate =3D rpmi_clk_set_rate,
+> > +     .prepare =3D rpmi_clk_enable,
+> > +     .unprepare =3D rpmi_clk_disable,
+> > +};
+> > +
+> > +static struct clk_hw *rpmi_clk_enumerate(struct rpmi_clk_context
+> > +*context, u32 clkid) {
+> > +     struct device *dev =3D context->dev;
+> > +     unsigned long min_rate, max_rate;
+> > +     union rpmi_clk_rates *rates;
+> > +     struct rpmi_clk *rpmi_clk;
+> > +     struct clk_init_data init;
+> > +     struct clk_hw *clk_hw;
+> > +     int ret;
+> > +
+> > +     rates =3D devm_kzalloc(dev, sizeof(union rpmi_clk_rates), GFP_KER=
+NEL);
+> > +     if (!rates)
+> > +             return ERR_PTR(-ENOMEM);
+> > +
+> > +     rpmi_clk =3D devm_kzalloc(dev, sizeof(struct rpmi_clk), GFP_KERNE=
+L);
+> > +     if (!rpmi_clk)
+> > +             return ERR_PTR(-ENOMEM);
+> > +     rpmi_clk->context =3D context;
+> > +     rpmi_clk->rates =3D rates;
+> > +
+> > +     ret =3D rpmi_clk_get_attrs(clkid, rpmi_clk);
+> > +     if (ret) {
+> > +             dev_err(dev, "Failed to get clk-%u attributes\n", clkid);
+> > +             return ERR_PTR(ret);
+> > +     }
+> > +
+> > +     ret =3D rpmi_clk_get_supported_rates(clkid, rpmi_clk);
+> > +     if (ret) {
+> > +             dev_err(dev, "Get supported rates failed for clk-%u, %d\n=
+",
+> > +                     clkid, ret);
+> > +             return ERR_PTR(ret);
+> > +     }
+> > +
+> > +     init.flags =3D CLK_GET_RATE_NOCACHE;
+> > +     init.num_parents =3D 0;
+> > +     init.ops =3D &rpmi_clk_ops;
+> > +     init.name =3D rpmi_clk->name;
+> > +     clk_hw =3D &rpmi_clk->hw;
+> > +     clk_hw->init =3D &init;
+> > +
+> > +     ret =3D devm_clk_hw_register(dev, clk_hw);
+> > +     if (ret) {
+> > +             dev_err(dev, "Unable to register clk-%u\n", clkid);
+> > +             return ERR_PTR(ret);
+> > +     }
+> > +
+> > +     if (rpmi_clk->type =3D=3D RPMI_CLK_DISCRETE) {
+> > +             min_rate =3D rpmi_clk->rates->discrete[0];
+> > +             max_rate =3D rpmi_clk->rates->discrete[rpmi_clk->num_rate=
+s -
+> > 1];
+> > +     } else {
+> > +             min_rate =3D rpmi_clk->rates->linear.min;
+> > +             max_rate =3D rpmi_clk->rates->linear.max;
+> > +     }
+> > +
+> > +     clk_hw_set_rate_range(clk_hw, min_rate, max_rate);
+> > +
+> > +     return NULL;
+> > +}
+> > +
+> > +static void rpmi_clk_receive_message(struct mbox_client *cl, void *msg=
+)
+> > +{
+> > +     /* Nothing to do here. */
+> > +}
+> > +
+> > +static int rpmi_clk_probe(struct platform_device *pdev) {
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct clk_hw_onecell_data *clk_data;
+> > +     struct rpmi_clk_context *context;
+> > +     struct rpmi_mbox_message msg;
+> > +     int ret, num_clocks, i;
+> > +     struct clk_hw *hw_ptr;
+> > +
+> > +     /* Allocate RPMI clock context */
+> > +     context =3D devm_kzalloc(dev, sizeof(*context), GFP_KERNEL);
+> > +     if (!context)
+> > +             return -ENOMEM;
+> > +     context->dev =3D dev;
+> > +     platform_set_drvdata(pdev, context);
+> > +
+> > +     /* Setup mailbox client */
+> > +     context->client.dev             =3D context->dev;
+> > +     context->client.rx_callback     =3D rpmi_clk_receive_message;
+> > +     context->client.tx_block        =3D false;
+> > +     context->client.knows_txdone    =3D true;
+> > +     context->client.tx_tout         =3D 0;
+> > +
+> > +     /* Request mailbox channel */
+> > +     context->chan =3D mbox_request_channel(&context->client, 0);
+> > +     if (IS_ERR(context->chan))
+> > +             return PTR_ERR(context->chan);
+> > +
+> > +     /* Validate RPMI specification version */
+> > +     rpmi_mbox_init_get_attribute(&msg,
+> > RPMI_MBOX_ATTR_SPEC_VERSION);
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret) {
+> > +             dev_err(dev, "Failed to get spec version\n");
+> > +             goto fail_free_channel;
+> > +     }
+> > +     if (msg.attr.value < RPMI_MKVER(1, 0)) {
+> > +             dev_err(dev,
+> > +                     "msg protocol version mismatch, expected 0x%x,
+> > found 0x%x\n",
+> > +                     RPMI_MKVER(1, 0), msg.attr.value);
+> > +             ret =3D -EINVAL;
+> > +             goto fail_free_channel;
+> > +     }
+> > +
+> > +     /* Validate clock service group ID */
+> > +     rpmi_mbox_init_get_attribute(&msg,
+> > RPMI_MBOX_ATTR_SERVICEGROUP_ID);
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret) {
+> > +             dev_err(dev, "Failed to get service group ID\n");
+> > +             goto fail_free_channel;
+> > +     }
+> > +     if (msg.attr.value !=3D RPMI_SRVGRP_CLOCK) {
+> > +             dev_err(dev,
+> > +                     "service group match failed, expected 0x%x, found
+> > 0x%x\n",
+> > +                     RPMI_SRVGRP_CLOCK, msg.attr.value);
+> > +             ret =3D -EINVAL;
+> > +             goto fail_free_channel;
+> > +     }
+> > +
+> > +     /* Validate clock service group version */
+> > +     rpmi_mbox_init_get_attribute(&msg,
+> > RPMI_MBOX_ATTR_SERVICEGROUP_VERSION);
+> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
+> > +     if (ret) {
+> > +             dev_err(dev, "Failed to get service group version\n");
+> > +             goto fail_free_channel;
+> > +     }
+> > +     if (msg.attr.value < RPMI_MKVER(1, 0)) {
+> > +             dev_err(dev,
+> > +                     "service group version failed, expected 0x%x, fou=
+nd
+> > 0x%x\n",
+> > +                     RPMI_MKVER(1, 0), msg.attr.value);
+> > +             ret =3D -EINVAL;
+> > +             goto fail_free_channel;
+> > +     }
+> > +
+> > +     /* Find-out number of clocks */
+> > +     num_clocks =3D rpmi_clk_get_num_clocks(context);
+> > +     if (!num_clocks) {
+> > +             dev_err(dev, "No clocks found\n");
+> > +             ret =3D -ENODEV;
+> > +             goto fail_free_channel;
+> > +     }
+> > +
+> > +     /* Allocate clock data */
+> > +     clk_data =3D devm_kzalloc(dev, struct_size(clk_data, hws, num_clo=
+cks),
+> > +                             GFP_KERNEL);
+> > +     if (!clk_data) {
+> > +             ret =3D -ENOMEM;
+> > +             goto fail_free_channel;
+> > +     }
+> > +     clk_data->num =3D num_clocks;
+> > +
+> > +     /* Setup clock data */
+> > +     for (i =3D 0; i < clk_data->num; i++) {
+> > +             hw_ptr =3D rpmi_clk_enumerate(context, i);
+> > +             if (IS_ERR(hw_ptr)) {
+> > +                     dev_err(dev, "failed to register clk-%d\n", i);
+> > +                     ret =3D PTR_ERR(hw_ptr);
+> > +                     goto fail_free_channel;
+> > +             }
+> > +             clk_data->hws[i] =3D hw_ptr;
+> > +     }
+> > +
+> > +     /* Register clock HW provider */
+> > +     ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> > clk_data);
+> > +     if (ret) {
+> > +             dev_err(dev, "failed to register clock HW provider\n");
+> > +             goto fail_free_channel;
+> > +     }
+> > +
+> > +     dev_info(dev, "clk HW provider registered with %d clocks\n",
+> > +              num_clocks);
+> > +     return 0;
+> > +
+> > +fail_free_channel:
+> > +     mbox_free_channel(context->chan);
+> > +     return ret;
+> > +}
+> > +
+> > +static void rpmi_clk_remove(struct platform_device *pdev) {
+> > +     struct rpmi_clk_context *context =3D platform_get_drvdata(pdev);
+> > +
+> > +     mbox_free_channel(context->chan);
+> > +}
+> > +
+> > +static const struct of_device_id rpmi_clk_of_match[] =3D {
+> > +     { .compatible =3D "riscv,rpmi-clock" },
+> > +     { },
+> > +};
+> > +
+> > +MODULE_DEVICE_TABLE(of, rpmi_clk_of_match);
+> > +
+> > +static struct platform_driver rpmi_clk_driver =3D {
+> > +     .driver =3D {
+> > +             .name =3D "riscv-rpmi-clock",
+> > +             .of_match_table =3D rpmi_clk_of_match,
+> > +     },
+> > +     .probe =3D rpmi_clk_probe,
+> > +     .remove =3D rpmi_clk_remove,
+> > +};
+> > +module_platform_driver(rpmi_clk_driver);
+> > +
+> > +MODULE_AUTHOR("Rahul Pathak <rpathak@ventanamicro.com>");
+> > +MODULE_DESCRIPTION("Clock Driver based on RPMI message protocol");
+> > +MODULE_LICENSE("GPL");
+> > diff --git a/include/linux/mailbox/riscv-rpmi-message.h
+> > b/include/linux/mailbox/riscv-rpmi-message.h
+> > index 8f4b3a0edbce..4e9478c4c0a3 100644
+> > --- a/include/linux/mailbox/riscv-rpmi-message.h
+> > +++ b/include/linux/mailbox/riscv-rpmi-message.h
+> > @@ -89,6 +89,22 @@ static inline int rpmi_to_linux_error(int rpmi_error=
+)
+> >       }
+> >  }
+> >
+> > +/** RPMI service group IDs */
+> > +#define RPMI_SRVGRP_CLOCK            0x00007
+> > +
+> > +/** RPMI clock service IDs */
+> > +enum rpmi_clock_service_id {
+> > +     RPMI_CLK_SRV_ENABLE_NOTIFICATION =3D 0x01,
+> > +     RPMI_CLK_SRV_GET_NUM_CLOCKS =3D 0x02,
+> > +     RPMI_CLK_SRV_GET_ATTRIBUTES =3D 0x03,
+> > +     RPMI_CLK_SRV_GET_SUPPORTED_RATES =3D 0x04,
+> > +     RPMI_CLK_SRV_SET_CONFIG =3D 0x05,
+> > +     RPMI_CLK_SRV_GET_CONFIG =3D 0x06,
+> > +     RPMI_CLK_SRV_SET_RATE =3D 0x07,
+> > +     RPMI_CLK_SRV_GET_RATE =3D 0x08,
+> > +     RPMI_CLK_SRV_ID_MAX_COUNT,
+> > +};
+> > +
+> >  /** RPMI linux mailbox attribute IDs */  enum rpmi_mbox_attribute_id {
+> >       RPMI_MBOX_ATTR_SPEC_VERSION =3D 0,
+> > --
+> > 2.43.0
+>
 
