@@ -1,440 +1,153 @@
-Return-Path: <devicetree+bounces-134209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC339FCF91
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 03:15:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4002C9FCFBB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 04:10:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47EDD1883677
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 02:15:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DC50163AC7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 03:10:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 706191B960;
-	Fri, 27 Dec 2024 02:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 131E43596E;
+	Fri, 27 Dec 2024 03:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aNtbxD4l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pk0jhaPU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54DA063A9;
-	Fri, 27 Dec 2024 02:15:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE9935961;
+	Fri, 27 Dec 2024 03:10:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735265715; cv=none; b=Jfn+rTDXMnyxkGcOZsaMKGjJr/q0G1NZF6y5HncG8N2s+H/kLMp5Yd9adlRgzCxEYwhGVHye1+ken4i5shhN4ZUfuoMpSk+3wuBpfzrAfpmylkndt60RpgHGzJTYGOrvYk0opEbSh+KnjFpae1zn4ely5fyuFUXJe3Y6IkTT0lE=
+	t=1735269032; cv=none; b=ZJNnY2bvjKgupBk/9cKAZRq1W9YTmd7GveUnN/1xkql88ZPZfYm9LdDYuuj2OO9jwJFB3umMDJmDlqq6M2FJrdmAFUWre96m5FgUmeESL/uoWaDC8gvXziDnpABuy70tguOI+kRu+7eFHRVj11CYpRB5vbKMWEU4dA1oozPp2u8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735265715; c=relaxed/simple;
-	bh=XuECAYtITJVLSKeh7JN/Ih/Pb3R9Z/x6ojl19CsUMHc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=naczIP2EqQx5RWFNwAc7eIpUPK6hvAxx8Gq9hYdsXNyob8QLYIC+SNyq9OFL+yYK2XmftKIcG1/MZUUjwKv0Pr+5Fj8ytK2LDhLVvWOKHw26E79LqeW8ML1w0GnilEJH9jSzkHrb2fx2CGnXQ7deR2XBXI3YOctm6yNvmw8458E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aNtbxD4l; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BR0WFGQ022687;
-	Fri, 27 Dec 2024 02:15:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UqDJGz3CZ67fBvNrpQisa4AdwNqWOkrBK8cJLAhjDZg=; b=aNtbxD4lO0gdihn/
-	2PkeZmcEXqeRRa2Y8PLdkzRAhaR/hV3GbGJNk0g30GeLN3zH1DyI2sJFkTmq2n2z
-	03GkZBX9WvO3FBRkPmLB7agwIWKAs18ZnpygipdqPQVM3DOC2otAtTRx3dCj9wt/
-	81GXazCSuA9shDXvUSTYDD3eGDzRaG5Vo0nSoS7jzwAQ5LUEYBL0UPcxzGM69Qrk
-	AtJxTr7kQuny2SHyZdjYEs1OaTgGV3uTj2iPDMNMQJh3Ku4Tvxn7EHjMAs9k3J1b
-	myTlL/F6mfanrah5Pzgv55CngI828y7AgzHhY+tugPYP2ST6LdfoVUS9KLlGXvsa
-	UgLT3Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43s3dww3x4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Dec 2024 02:15:02 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BR2F1YD003265
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Dec 2024 02:15:01 GMT
-Received: from [10.216.58.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 26 Dec
- 2024 18:14:53 -0800
-Message-ID: <97c4f884-8915-a919-d565-cf6e9f83d2e4@quicinc.com>
-Date: Fri, 27 Dec 2024 07:44:49 +0530
+	s=arc-20240116; t=1735269032; c=relaxed/simple;
+	bh=eEZPMqnFAFZL6U2Nau2tHWImP2Mq85i2tQEbvcKc10U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ci6106/tbAZj5OsBMqw2Xzbhah75kqhDMtSMoj0nEgmSczxQQKRzv/2Je8wzNLv3I0gMrIXnC4o7yc5cWYGH9Rlh5UnK6zDYxfhjHb+lwE+2qCeapEdfts1YmeZ1bmidEg9uVpN721oNEAQssyI9CEWSEVbIPgcTgsCCHuMon+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pk0jhaPU; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-30227ccf803so83220821fa.2;
+        Thu, 26 Dec 2024 19:10:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735269028; x=1735873828; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=u9GzOqSFTFut+M0trF5n5rtYW7iZuRD8VsII4Yb9qIs=;
+        b=Pk0jhaPUV3L8sknfygnIPRPIgv4PVd20Q0XR8td2hM1vhAY4S1/I57P6NAZ7KSBqEB
+         1SmEW6uUZL+qG5q88BshkJXgjEDV18+m/469y0Cxety6rnhbvTD9mUc5q08PK6x/EiIq
+         A0YQ4a8DwZ8/ed52GiT0D1/x0sUNFXR7Z56P2yOAGQbZK+/MA6Y/bgp92eYs/AktgxaA
+         9HKWbsJSxkCxBHiaU+4I7jzVczfDpDewMLT0YongCGKLZ4i0LViGX9or8zG/TmRmF2rC
+         fhfwc9v1ZqsNB1FBLyHHBQ92sL9xyySlZ6aPeEX/dCnKr2K+k28lPjqjrpc2t+n1k3Cg
+         gX8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735269028; x=1735873828;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u9GzOqSFTFut+M0trF5n5rtYW7iZuRD8VsII4Yb9qIs=;
+        b=lcQlufgAPkDbojtoAZaz1/zRAYOaw3NpWsws+ZNwG15AgAZW0axT1P3UD8oLIGMhtc
+         e6UV+I8w3/K1E1U2Ex/qdLEdwJBT/QMEsx+za5HivXWrhm07f8gMXIQwoFuGSA4SJPvS
+         FVn5u9zPFlCfubQ+ltjtoVRuzJidrLCB7zF6bfiTVglNUEVBxuKsvelfgG5GQ7YQXnze
+         ymlOI24T8bJPngXOuVsIJAURtH6OJc8DHmGoZKLV3DGuzgmwBnD91wBq28eenbYvzbHP
+         nz3QycszBqql0Js066zisHX96/uwaglAguJIOLblSDSzCw4Vs2TvMN0LM0mUsT/qTipr
+         1ISw==
+X-Forwarded-Encrypted: i=1; AJvYcCW8Y7hTfGsXc2N4jQ2IXiGnIXoh7btmZynL3FyRaaoBfvO7LusVxTHNM1LwF5VbAeI+jhqjEJuTDGJxH7g=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3152X18XiWZyIPexOkmy7gM9AMHJjThjrG8U6GyCjYv67Taa9
+	g/1i/smlNb29Gkdcgo1RFuECOvyvUqFXrBcRvM1mvF1Yv4z6hH4=
+X-Gm-Gg: ASbGncsyQAJDx0yPr9RoSrFFxub/W/wMWXoWAWJUJKqzkYyHa50qINNZuF63dHihYaN
+	RKweBt3CtFuftxINWPL7UvWV/n7vEG3CX1sSuW82TbKpolcdhnNcRw4PzO1gznZp8xBBOg7xv+c
+	VH9RIRwn6IvsXIXycgemt9YbRNbKTv6Lz9Ez0V4xsGmim1ea3Oe0BzqGWxvbARV4XSWMAifyxsV
+	RBhNQSvpb2J8TdwybsyiROjruPUW+1xe+0KLHBcJD6qjKi0fKO3D03zK7U=
+X-Google-Smtp-Source: AGHT+IExyyy4jgRB3UWLgHTsEeFRs0/I8P7gVGIIOS5qg76b9sHxaxSVCTtLynrzkX+OeGPg7e1UAg==
+X-Received: by 2002:a2e:a701:0:b0:302:3021:9b03 with SMTP id 38308e7fff4ca-30468567821mr64398891fa.17.1735269027581;
+        Thu, 26 Dec 2024 19:10:27 -0800 (PST)
+Received: from JetTurbine.homenetwork ([2a0e:e6c0:20d3:2100::1d])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3045ad6cccasm24326141fa.1.2024.12.26.19.10.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Dec 2024 19:10:27 -0800 (PST)
+From: Ivan Sergeev <ivan8215145640@gmail.com>
+Subject: [PATCH v3 0/2] arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
+Date: Fri, 27 Dec 2024 06:10:12 +0300
+Message-Id: <20241227-bigtreetech-cb2-v3-0-91c556adcffe@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 1/6] dt-bindings: PCI: Add binding for qps615
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Herring <robh@kernel.org>, <andersson@kernel.org>,
-        Bjorn Helgaas
-	<bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
-        <quic_vbadigan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241112-qps615_pwr-v3-0-29a1e98aa2b0@quicinc.com>
- <20241112-qps615_pwr-v3-1-29a1e98aa2b0@quicinc.com>
- <20241115161848.GA2961450-robh@kernel.org>
- <74eaef67-18f2-c2a1-1b9c-ac97cefecc54@quicinc.com>
- <kssmfrzgo7ljxveys4rh5wqyaottufhjsdjnro7k7h7e6fdgcl@i7tdpohtny2x>
-Content-Language: en-US
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <kssmfrzgo7ljxveys4rh5wqyaottufhjsdjnro7k7h7e6fdgcl@i7tdpohtny2x>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pgair_oCmtemBDQu8q78uxM5tw_46Ejo
-X-Proofpoint-ORIG-GUID: pgair_oCmtemBDQu8q78uxM5tw_46Ejo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- suspectscore=0 lowpriorityscore=0 mlxlogscore=999 impostorscore=0
- bulkscore=0 malwarescore=0 priorityscore=1501 adultscore=0 phishscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412270017
+X-B4-Tracking: v=1; b=H4sIAJQabmcC/x3MQQqAIBBA0avIrBNyHCK7SrRIm2o2FSoRhHdPW
+ r7F/y8kjsIJBvVC5FuSnEeFbRSEfT421rJUA7ZIBpG0ly1H5sxh18GjNr0j8pacMx3U6oq8yvM
+ fx6mUD4afMxphAAAA
+X-Change-ID: 20241224-bigtreetech-cb2-18944b349916
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Ivan Sergeev <ivan8215145640@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1789;
+ i=ivan8215145640@gmail.com; h=from:subject:message-id;
+ bh=eEZPMqnFAFZL6U2Nau2tHWImP2Mq85i2tQEbvcKc10U=;
+ b=owEBbQKS/ZANAwAIAbzfXRlQM5b9AcsmYgBnbhqid1wH5MSiCj96ZCeJnpipynuRqmr3gltID
+ HJ6JOMyTM6JAjMEAAEIAB0WIQROCZtApKFz1fvvsOS8310ZUDOW/QUCZ24aogAKCRC8310ZUDOW
+ /RA6EACokGH4AkfQnCDMNuE1ab9eqYd5OpqsM1kRnmTCckb+s/fhcf+zmlOvMz/6tY7keWDMOkI
+ h01pY2Oo7uf4yAa9DkqM9gw5NgZsFcPnXRMtlbwjWOIk2ZW0xiXp6MgiMhFf/Y0FwoGHX2zb7B+
+ pmoL0G6br4N1oL+wPkHHoiImXft9pJQeWp6p01Qq4tMwFMOBtrSLOXg6Ra98w1rmTdeLNrm6RYA
+ lpkA9WCDaZqIEoCjaUFmVN9ddDcIocLcWq4bDh8a2EOGpHjwX6Ean/WYf2hVslhG1IEnE++juJU
+ 9zjkH5F+ZINJ9wXDB9DxjgYu63JcnQCD31blP0+yQObyPsPM5X5QCN3LCiNHekjxYZWV6r2hqdA
+ Rx2MfOr/a93JqlhsNzyzx7SVzYe3CGQsiC3NqZYx4Ht72BffT04hMBVvGCorLFxcHQO4oZ6JpfR
+ wKs9rIMPzau5AK0AcgSo65OGpvtrsORexLBB/+2ntOPj2A15G7ebSmscaBs2gTMNH5JnpaVUcO3
+ koA82atd+/DBb5zrzxKntdLGS/WEJlXqfgKM3fNqpCNaRsh/X+EHyox4I4sWmBqucqekb/SZz6S
+ 0qsfZjyhWevc8lfDTWjqch9BHHURsohzC+4IDMlDjSoM9/zNgYOKdMw/IuQgHV8aZks39/LqcH7
+ DRfMuHpKCFcBp1w==
+X-Developer-Key: i=ivan8215145640@gmail.com; a=openpgp;
+ fpr=4E099B40A4A173D5FBEFB0E4BCDF5D19503396FD
 
+BigTreeTech CB2 and Pi2 are Rockchip RK3566 SoM and SBC boards made by
+BigTreeTech for the intent of using as a 3d printer control board.
+It is a successor to the Allwinner H616-based BigTreeTech CB1 and Pi, so
+the device trees for CB2 and Pi2 are also done in the same manner: the
+common nodes and properties are put into a dtsi file that the
+board-specific device trees include.
 
+Changes in v3:
+- Proper formatting and patch series sending (using b4)
+- Converted spaces to tab indentation in the dtsi file
+- Fixed empty line where the license identifier should be
 
-On 12/24/2024 12:27 AM, Dmitry Baryshkov wrote:
-> On Sun, Nov 24, 2024 at 07:02:48AM +0530, Krishna Chaitanya Chundru wrote:
->>
->>
->> On 11/15/2024 9:48 PM, Rob Herring wrote:
->>> On Tue, Nov 12, 2024 at 08:31:33PM +0530, Krishna chaitanya chundru wrote:
->>>> Add binding describing the Qualcomm PCIe switch, QPS615,
->>>> which provides Ethernet MAC integrated to the 3rd downstream port
->>>> and two downstream PCIe ports.
->>>>
->>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>>> ---
->>>>    .../devicetree/bindings/pci/qcom,qps615.yaml       | 205 +++++++++++++++++++++
->>>>    1 file changed, 205 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,qps615.yaml b/Documentation/devicetree/bindings/pci/qcom,qps615.yaml
->>>> new file mode 100644
->>>> index 000000000000..e6a63a0bb0f3
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/pci/qcom,qps615.yaml
->>>> @@ -0,0 +1,205 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/pci/qcom,qps615.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Qualcomm QPS615 PCIe switch
->>>> +
->>>> +maintainers:
->>>> +  - Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>>> +
->>>> +description: |
->>>> +  Qualcomm QPS615 PCIe switch has one upstream and three downstream
->>>> +  ports. The 3rd downstream port has integrated endpoint device of
->>>> +  Ethernet MAC. Other two downstream ports are supposed to connect
->>>> +  to external device.
->>>> +
->>>> +  The QPS615 PCIe switch can be configured through I2C interface before
->>>> +  PCIe link is established to change FTS, ASPM related entry delays,
->>>> +  tx amplitude etc for better power efficiency and functionality.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - pci1179,0623
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  i2c-parent:
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>>> +    description: |
->>>
->>> Don't need '|' if no formatting to preserve.
->>>
->> ack
->>>> +      A phandle to the parent I2C node and the slave address of the device
->>>> +      used to do configure qps615 to change FTS, tx amplitude etc.
->>>> +    items:
->>>> +      - description: Phandle to the I2C controller node
->>>> +      - description: I2C slave address
->>>> +
->>>> +  vdd18-supply: true
->>>> +
->>>> +  vdd09-supply: true
->>>> +
->>>> +  vddc-supply: true
->>>> +
->>>> +  vddio1-supply: true
->>>> +
->>>> +  vddio2-supply: true
->>>> +
->>>> +  vddio18-supply: true
->>>> +
->>>> +  reset-gpios:
->>>> +    maxItems: 1
->>>> +    description:
->>>> +      GPIO controlling the RESX# pin.
->>>
->>> Is the PERST# or something else?
->>>
->> it is not PERST GPIO, it is similar to PERST in terms
->> of functionality which brings switch out from reset.
-> 
-> Do you have an actual PERST# on upstream facing port? Is it a separate
-> wire? Judging by the RB3 Gen2 this line is being used as PERST#
-> 
->>>> +
->>>> +  qps615,axi-clk-freq-hz:
->>>
->>> qps615 is not a vendor prefix.
->>>
->>>> +    description:
->>>> +      AXI clock rate which is internal bus of the switch
->>>> +      The switch only runs in two frequencies i.e 250MHz and 125MHz.
->>>> +    enum: [125000000, 250000000]
->>>> +
->>>> +allOf:
->>>> +  - $ref: "#/$defs/qps615-node"
->>>> +
->>>> +patternProperties:
->>>> +  "@1?[0-9a-f](,[0-7])?$":
->>>
->>> You have 3 ports. So isn't this fixed and limited to 0-2?
->>>
->> sure I will change it to below as suggested
->> "@1?[0-3](,[0-1])?$"
-> 
-> Why do you still need '1?' ?
-> 
->>>> +    description: child nodes describing the internal downstream ports
->>>> +      the qps615 switch.
->>>
->>> Please be consistent with starting after the ':' or on the next line.
->>>
->>> And start with capital C.
->>>
->>>
->> ack
->>
->>>> +    type: object
->>>> +    $ref: "#/$defs/qps615-node"
->>>> +    unevaluatedProperties: false
->>>> +
->>>> +$defs:
->>>> +  qps615-node:
->>>> +    type: object
->>>> +
->>>> +    properties:
->>>> +      qcom,l0s-entry-delay-ns:
->>>> +        description: Aspm l0s entry delay.
->>>> +
->>>> +      qcom,l1-entry-delay-ns:
->>>> +        description: Aspm l1 entry delay.
->>>
->>> These should probably be common being standard PCIe things. Though, why
->>> are they needed? I'm sure the timing is defined by the PCIe spec, so
->>> they are not compliant?
->>>
->> Usually the firmware in the endpoints/switches should do this these
->> configurations. But the qps615 PCIe switch doesn't have any firmware
->> running to configure these. So the hardware exposes i2c interface to
->> configure these before link training.
-> 
-> If they are following the standard, why do you need to have them in the
-> DT? Can you hardcode thos evalues in the driver?
-> 
->>>> +
->>>> +      qcom,tx-amplitude-millivolt:
->>>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>>> +        description: Change Tx Margin setting for low power consumption.
->>>> +
->>>> +      qcom,no-dfe-support:
->>>> +        type: boolean
->>>> +        description: Disable DFE (Decision Feedback Equalizer), which mitigates
->>>> +          intersymbol interference and some reflections caused by impedance mismatches.
->>>> +
->>>> +      qcom,nfts:
->>>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>>> +        description:
->>>> +          Number of Fast Training Sequence (FTS) used during L0s to L0 exit
->>>> +          for bit and Symbol lock.
->>>
->>> Also something common.
->>>
->>> The problem I have with all these properties is you are using them on
->>> both the upstream and downstream sides of the PCIe links. They belong in
->>> either the device's node (downstream) or the bus's node (upstream).
->>>
->> This switch allows us to configure both upstream, downstream ports and
->> also embedded Ethernet port which is internal to the switch. These
->> properties are applicable for all of those.
->>>> +
->>>> +    allOf:
->>>> +      - $ref: /schemas/pci/pci-bus.yaml#
->>>
->>> pci-pci-bridge.yaml is more specific and closer to what this device is.
->>>
->> I tried this now, I was getting warning saying the compatible
->> /local/mnt/workspace/skales/kobj/Documentation/devicetree/bindings/pci/qcom,qps615.example.dtb:
->> pcie@0,0: compatible: ['pci1179,0623'] does not contain items matching the
->> given schema
->>          from schema $id: http://devicetree.org/schemas/pci/qcom,qps615.yaml#
->> /local/mnt/workspace/skales/kobj/Documentation/devicetree/bindings/pci/qcom,qps615.example.dtb:
->> pcie@0,0: Unevaluated properties are not allowed ('#address-cells',
->> '#size-cells', 'bus-range', 'device_type', 'ranges' were unexpected)
->>
->> I think pci-pci-bridge is expecting the compatible string in this format
->> only "pciclass,0604".
-> 
-> I think the pci-pci-bridge schema requires to have "pciclass,0604" among
-> other compatibles. So you should be able to do something like:
-> 
-> compatible = "pci1179,0623", "pciclass,0604";
-> 
-> At least if follows PCI Bus Binding to Open Firmware document.
-> 
-There is a slot driver which is using this pciclass,0604 can we use
-still the suggested way.
+Changes in v2:
+- Added bigtreetech cb2 and pi2 boards to the list of platforms
+- Split BigTreeTech CB2 and Pi2 into two device trees using common dtsi
 
-https://lore.kernel.org/linux-pci/20241210-pci-pwrctrl-slot-v1-4-eae45e488040@linaro.org/
+Link to v2 1/2: https://lore.kernel.org/linux-rockchip/20241224135751.350379-2-ivan8215145640@gmail.com/
+Link to v2 2/2: https://lore.kernel.org/linux-rockchip/20241224140057.350667-2-ivan8215145640@gmail.com/
 
-- Krishna Chaitanya.
->>
->>>> +
->>>> +unevaluatedProperties: false
->>>> +
->>>> +required:
->>>> +  - vdd18-supply
->>>> +  - vdd09-supply
->>>> +  - vddc-supply
->>>> +  - vddio1-supply
->>>> +  - vddio2-supply
->>>> +  - vddio18-supply
->>>> +  - i2c-parent
->>>> +  - reset-gpios
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +
->>>> +    #include <dt-bindings/gpio/gpio.h>
->>>> +
->>>> +    pcie {
->>>> +        #address-cells = <3>;
->>>> +        #size-cells = <2>;
->>>> +
->>>> +        pcie@0 {
->>>> +            device_type = "pci";
->>>> +            reg = <0x0 0x0 0x0 0x0 0x0>;
->>>> +
->>>> +            #address-cells = <3>;
->>>> +            #size-cells = <2>;
->>>> +            ranges;
->>>> +            bus-range = <0x01 0xff>;
->>>> +
->>>> +            pcie@0,0 {
->>>> +                compatible = "pci1179,0623";
->>>> +                reg = <0x10000 0x0 0x0 0x0 0x0>;
->>>> +                device_type = "pci";
->>>> +                #address-cells = <3>;
->>>> +                #size-cells = <2>;
->>>> +                ranges;
->>>> +                bus-range = <0x02 0xff>;
->>>> +
->>>> +                i2c-parent = <&qup_i2c 0x77>;
->>>> +
->>>> +                vdd18-supply = <&vdd>;
->>>> +                vdd09-supply = <&vdd>;
->>>> +                vddc-supply = <&vdd>;
->>>> +                vddio1-supply = <&vdd>;
->>>> +                vddio2-supply = <&vdd>;
->>>> +                vddio18-supply = <&vdd>;
->>>> +
->>>> +                reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
->>>> +
->>>> +                pcie@1,0 {
->>>> +                    reg = <0x20800 0x0 0x0 0x0 0x0>;
->>>> +                    #address-cells = <3>;
->>>> +                    #size-cells = <2>;
->>>> +                    device_type = "pci";
->>>> +                    ranges;
->>>> +                    bus-range = <0x03 0xff>;
->>>> +
->>>> +                    qcom,no-dfe-support;
->>>> +                };
->>>> +
->>>> +                pcie@2,0 {
->>>> +                    reg = <0x21000 0x0 0x0 0x0 0x0>;
->>>> +                    #address-cells = <3>;
->>>> +                    #size-cells = <2>;
->>>> +                    device_type = "pci";
->>>> +                    ranges;
->>>> +                    bus-range = <0x04 0xff>;
->>>> +
->>>> +                    qcom,nfts = <10>;
->>>> +                };
->>>> +
->>>> +                pcie@3,0 {
->>>> +                    reg = <0x21800 0x0 0x0 0x0 0x0>;
->>>> +                    #address-cells = <3>;
->>>> +                    #size-cells = <2>;
->>>> +                    device_type = "pci";
->>>> +                    ranges;
->>>> +                    bus-range = <0x05 0xff>;
->>>> +
->>>> +                    qcom,tx-amplitude-millivolt = <10>;
->>>> +                    pcie@0,0 {
->>>> +                        reg = <0x50000 0x0 0x0 0x0 0x0>;
->>>> +                        #address-cells = <3>;
->>>> +                        #size-cells = <2>;
->>>> +                        device_type = "pci";
->>>
->>> There's a 2nd PCI-PCI bridge?
->> This the embedded ethernet port which is as part of DSP3.
-> 
-> So is there an adidtional bus for that ethernet device?
-> 
->>
->> - Krishna Chaitanya.
->>>
->>>> +                        ranges;
->>>> +
->>>> +                        qcom,l1-entry-delay-ns = <10>;
->>>> +                    };
->>>> +
->>>> +                    pcie@0,1 {
->>>> +                        reg = <0x50100 0x0 0x0 0x0 0x0>;
->>>> +                        #address-cells = <3>;
->>>> +                        #size-cells = <2>;
->>>> +                        device_type = "pci";
->>>> +                        ranges;
->>>> +
->>>> +                        qcom,l0s-entry-delay-ns = <10>;
->>>> +                    };
-> 
-> What is this?
-> 
->>>> +                };
->>>> +            };
->>>> +        };
->>>> +    };
->>>>
->>>> -- 
->>>> 2.34.1
->>>>
-> 
+Link to v1: https://lore.kernel.org/linux-rockchip/20241222203952.84217-2-ivan8215145640@gmail.com/
+
+Signed-off-by: Ivan Sergeev <ivan8215145640@gmail.com>
+---
+Ivan Sergeev (2):
+      dt-bindings: arm: rockchip: Add BigTreeTech CB2 and Pi2
+      arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
+
+ .../devicetree/bindings/arm/rockchip.yaml          |  11 +
+ arch/arm64/boot/dts/rockchip/Makefile              |   2 +
+ .../dts/rockchip/rk3566-bigtreetech-cb2-manta.dts  |  10 +
+ .../boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi  | 941 +++++++++++++++++++++
+ .../boot/dts/rockchip/rk3566-bigtreetech-pi2.dts   |  10 +
+ 5 files changed, 974 insertions(+)
+---
+base-commit: 4bbf9020becbfd8fc2c3da790855b7042fad455b
+change-id: 20241224-bigtreetech-cb2-18944b349916
+
+Best regards,
+-- 
+Ivan Sergeev <ivan8215145640@gmail.com>
+
 
