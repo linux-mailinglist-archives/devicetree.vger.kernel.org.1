@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-134229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08C709FD0B4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:03:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67A729FD0BA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:05:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CD091883770
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:03:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1713D3A0558
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A3413CA97;
-	Fri, 27 Dec 2024 07:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FAF13D244;
+	Fri, 27 Dec 2024 07:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r6KvYNQJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nT7H3Foy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A3F13BC39;
-	Fri, 27 Dec 2024 07:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E251E495;
+	Fri, 27 Dec 2024 07:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735283004; cv=none; b=MFzMEqncBRCrQ6R6TSu7NnXrXkjFRTdaIG633cVAJOjEsj92qALWVOdzDRbNFscGt15xRS5Jbt6U+F5G7IH5INnh54plgFmAZpl1H+ObGe0TgaoteiczzOJJzWBeZH63S5uWMz6QE2ACiC8P2nBccvv6jUM5l9d1lcW3S9769hQ=
+	t=1735283110; cv=none; b=bsDCQlp8MSlXx3ppp9t1F3/eNRhBqVLgg/w4p6i58m1VZ/HXawoy4FKdLFRQEc1h0xNgeDmUEi05DaWlmeYK1HOA+rmzgvnvxb+hzOBgDvbz+8FzPehiqZ8eLC2jmBvYMUVB0xn5b5tZN+UNdz96KeaufDgAW6c5F3ZiYGj+8a4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735283004; c=relaxed/simple;
-	bh=+7ck8eAbEdbMq4FfV8jX2AlQfAJ1DVeuk+4RvANLiyw=;
+	s=arc-20240116; t=1735283110; c=relaxed/simple;
+	bh=LqpB3Nrhp8OxuePd6i65Mh1x9lEO0tv5xigYprviJQw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c6OiHTB68lZbH2tDCkqBe+eCZ7+cAWF0j3deWaI/rfV7GpDwGSmgGQEQb3JYDtxVwMmOOEWeGmPnR/KwHcwC1ZbjuIPE5jFH9GG/ZA0DEj1eTCsYtqXUAENqqS3IHkOo1pZFg4ok1bzBVnzz1i719KcEIWmEsTr7q19tFIViCU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r6KvYNQJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C9DBC4CED0;
-	Fri, 27 Dec 2024 07:03:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nZGTFFUrbZ2SARxXzvIFihfzuBEbsT3v8EwdElM+U4v/O5XbYPD6rHVE52a+BfmDSgyqQJ4BCtMpwiici1Nl047k2q66/UEGs8oCzd+gLSy9t9M2j/0agQxrfbk22mSm5VbBHrzLmksVLcooN5j34OMFjW29nSmq0Q8Mq6F39Mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nT7H3Foy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A764C4CED0;
+	Fri, 27 Dec 2024 07:05:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735283003;
-	bh=+7ck8eAbEdbMq4FfV8jX2AlQfAJ1DVeuk+4RvANLiyw=;
+	s=k20201202; t=1735283110;
+	bh=LqpB3Nrhp8OxuePd6i65Mh1x9lEO0tv5xigYprviJQw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r6KvYNQJk2bTM+Lwx3TNBJUSgFN7bCJfYRhow8KY3L4fvo5mTd81stGiWryv4UxU7
-	 mQEvICFXIPeiyI3BKWoMS/AbdxyM08xZBi2XQrnucorQCdY2cy+Lzr/pIvHWbcoiPA
-	 tuWj0Vj2GHqKzYBgm7t4WQEJq4XLJNN1OeNkn5gt1oMAOIJjiVpV6kaeAj1ufhNb7w
-	 bfrzhAKq1mqfm5kYCrQv7llX7LFRcskyYgeh7qCHfaTmqsrlRdNoRqHxFpqZ0tkrC/
-	 t7+yt8cNiRZZxNGuiFKbAw6CQ/vEi2LUV+hmoimfGZknma1dTzQXYek6RHyiolamb0
-	 dg/w9deH6ulvQ==
-Message-ID: <df1e2fbd-7fae-4910-9908-10fdb78e4299@kernel.org>
-Date: Fri, 27 Dec 2024 08:03:15 +0100
+	b=nT7H3FoyDJjuK8WLoYtirqFCwBOce6JnrTepPXAmaquM2r5wIaMBezd9uwEYlRhJU
+	 P4skkRdasBwDTsCocy3gBiofMjoONpFeWGFErJHrCHaPV5pPSSyt+eOl4fbFWnt9jv
+	 3gzkigMoXJFk2TxDIWIx/YpiewzZ51C3La4GXaYPD/Wc3u1H2o0e91sx6uOHPAtsxi
+	 74WunHKjXQp19pLfBhABNzbzX4D8621eFJv6o1N3Xp3rQIE0O0UNyDwHPMhTQwAA9Y
+	 sIOVZF3rd++2DK2ejYoRhLmcIDZ1WPCTbgfdAyEVxJHfrDo71k+G5YBdxY07IQmaUD
+	 C3cA5qxuQor/A==
+Message-ID: <bfa6c330-6ba0-4361-aa6d-7ab7a61eb7f4@kernel.org>
+Date: Fri, 27 Dec 2024 08:05:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] net: stmmac: qcom-ethqos: Enable RX programmable swap
- on qcs615
-To: Yijie Yang <quic_yijiyang@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
- <20241225-support_10m100m-v1-2-4b52ef48b488@quicinc.com>
- <4b4ef1c1-a20b-4b65-ad37-b9aabe074ae1@kernel.org>
- <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
+Subject: Re: [PATCH v6 1/1] dt-bindings: bluetooth: update the wcn6750
+ required properties
+To: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+ Rocky Liao <quic_rjliao@quicinc.com>, quic_mohamull@quicinc.com,
+ quic_hbandi@quicinc.com, quic_anubhavg@quicinc.com,
+ linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241223135700.22660-1-quic_janathot@quicinc.com>
+ <20241223135700.22660-2-quic_janathot@quicinc.com>
+ <mzfad53v2paz7cawaepvaqeht2rr5spxyctqrlniiqgyfyyqlv@ixhxcksd3guz>
+ <c87b12d2-06cd-4982-838d-ecaa97572369@quicinc.com>
+ <31ddcb1f-4606-4c5b-893a-179718ed6339@kernel.org>
+ <d7b75672-4885-491c-9797-906261979e15@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,48 +113,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
+In-Reply-To: <d7b75672-4885-491c-9797-906261979e15@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 26/12/2024 03:29, Yijie Yang wrote:
+On 26/12/2024 07:11, Janaki Ramaiah Thota wrote:
 > 
 > 
-> On 2024-12-25 19:37, Krzysztof Kozlowski wrote:
->> On 25/12/2024 11:04, Yijie Yang wrote:
+> On 12/24/2024 6:57 PM, Krzysztof Kozlowski wrote:
+>> On 24/12/2024 12:51, Janaki Ramaiah Thota wrote:
+>>>
+>>>
+>>> On 12/24/2024 2:46 PM, Krzysztof Kozlowski wrote:
+>>>> On Mon, Dec 23, 2024 at 07:27:00PM +0530, Janaki Ramaiah Thota wrote:
+>>>>
+>>>> Subject: everything is an update... say something useful, e.g. use PMU
+>>>> abstraction for WCN6750
+>>>>
+>>>
+>>> Sure will correct it in next patch.
+>>>
+>>>>> Drop the inputs from the host and instead expect the Bluetooth node to
+>>>>> consume the outputs of the internal PMU.
+>>>>
+>>>> On which device?
+>>>>
+>>>
+>>> It is for BT module wcn6750 attached on qcs6490-rb3gen2 board.
+>>> will update same on next commit message.
+>>>
+>>>> But anyway I have doubts this is correct. enable GPIO is a pin going
+>>>> from the host, not from PMU.
+>>>>
+>>>
+>>> Yes you are correct, enable GPIO is out pin of host, but here updated
+>>> the entries required for Bluetooth node from PMU, not from host to PMU.
 >>
->>>   static int qcom_ethqos_probe(struct platform_device *pdev)
->>>   {
->>> -	struct device_node *np = pdev->dev.of_node;
->>> +	struct device_node *np = pdev->dev.of_node, *root;
->>>   	const struct ethqos_emac_driver_data *data;
->>>   	struct plat_stmmacenet_data *plat_dat;
->>>   	struct stmmac_resources stmmac_res;
->>> @@ -810,6 +805,15 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->>>   	ret = of_get_phy_mode(np, &ethqos->phy_mode);
->>>   	if (ret)
->>>   		return dev_err_probe(dev, ret, "Failed to get phy mode\n");
->>> +
->>> +	root = of_find_node_by_path("/");
->>> +	if (root && of_device_is_compatible(root, "qcom,sa8540p-ride"))
->>
->>
->> Nope, your drivers are not supposed to poke root compatibles. Drop and
->> fix your driver to behave correctly for all existing devices.
+>> Hm? No, you removed for example enable-gpios, which is input from the
+>> host. Sorry, I don't understand the reason behind this patch and commit
+>> msg does not help me there.
 >>
 > 
-> Since this change introduces a new flag in the DTS, we must maintain ABI 
-> compatibility with the kernel. The new flag is specific to the board, so 
-
-It's not, I don't see it specific to the board in the bindings.
-
-> I need to ensure root nodes are matched to allow older boards to 
-> continue functioning as before. I'm happy to adopt that approach if 
-> there are any more elegant solutions.
-
-I don't think you understood the problem. Why you are not handling this
-for my board, sa8775p-rideX and sa8225-pre-ride-yellow-shrimp?
-
+> We are migrating to powerseq for the WCN6750. As per Dmitry’s 
+> suggestion, we are now using the on-chip PMU, which necessitates the 
+> removal of some entries that are not mandatory to avoid binding errors. 
+> For example, the enable GPIO is now handled by the PMU with property 
+> bt-enable-gpios, as shown in the patch linked below
+> https://lore.kernel.org/linux-arm-msm/20241209103455.9675-3-quic_janathot@quicinc.com/
+I don't understand why this patch is separate from the others. Entire
+context is missing and nothing gets explained in commit msg.
 
 Best regards,
 Krzysztof
