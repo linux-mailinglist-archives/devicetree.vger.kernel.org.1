@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-134402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EBE79FD612
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 17:46:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A09EF9FD614
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 17:47:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B079116595F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 16:46:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41DFE3A2586
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 16:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CC01F754F;
-	Fri, 27 Dec 2024 16:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41EF41F7586;
+	Fri, 27 Dec 2024 16:47:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CTQ/LYXj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EF8lxMU+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7D761F2C34;
-	Fri, 27 Dec 2024 16:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B0377F10;
+	Fri, 27 Dec 2024 16:47:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735317982; cv=none; b=MQbfz4U6udwys1ZLOdlW+1Cd4zt966Bx4n7YBqC8irPvfbXlwAgUG6dC4rMZvXPaSg1HPJIX4+LRW0i70szpYORJNynZlos68/9J9Q+qwllKssnA/eMraHrX3Y8vBzKag4jNkT5dwT5FTlqctrmBhnExhMAuV1erNb+qMQBUyOc=
+	t=1735318062; cv=none; b=WqkJmVFroK+fcirG57aVHk/qlqa6MTSOM6xa664o16jeHqXv0lx1EKLYbPv62vZeKlYxHo4GXJTiKTD1vBqqoFYDL39cV532zhI26tQ4eWAWitWzhwc+i0N8/sIoreFZGP68ziSPoUMoOzWU9lNlLYrwPzL0QCos4N0KR2zombc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735317982; c=relaxed/simple;
-	bh=NR72lyZThb08GVl0XXhuv/BqbDdMj0okVQpzzBcEtRA=;
+	s=arc-20240116; t=1735318062; c=relaxed/simple;
+	bh=RbTLJ3TCnphcYvnAzlzQ9woXDDQOo0U23BlvBss9hvI=;
 	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jkMF9g7qz/J0d6ZVP3waHQBo012AK096q7yqSqMI5BMmb6aBNk/0QhX0nDJ1elkWOx5Nk/M0LlVoyncfceVQk7ZFinfVNWU8J6sQjclkY9SQrct+yFBqzrUmM6CNDlHV8nruSYiGIoYBaysQbT7znEJCN0J86K3jOZXCehdsdb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CTQ/LYXj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44AFDC4CED0;
-	Fri, 27 Dec 2024 16:46:22 +0000 (UTC)
+	 MIME-Version:Content-Type; b=p1MQkeVQhjH4E3cn4sSKh58R1Xxs2Arz1cAW2VyFmsNlA8Y1Eq9FWV/C7wQ/lP3yh9sZzmlbWSOftxISauBoeb3+4uW3qufjA2vKio8ZCc0WtMD6Zc4ZFClhNwZnPvWF0E701g2AP5uIMtS2hKNmRB6g19hJsWQ8gdemD7FV1mU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EF8lxMU+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84C5BC4CED3;
+	Fri, 27 Dec 2024 16:47:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735317982;
-	bh=NR72lyZThb08GVl0XXhuv/BqbDdMj0okVQpzzBcEtRA=;
+	s=k20201202; t=1735318061;
+	bh=RbTLJ3TCnphcYvnAzlzQ9woXDDQOo0U23BlvBss9hvI=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=CTQ/LYXjWiRbaQQXA64Zcxq1QSjQAXpvKLGMQrOegBRi6u24JpIQMKrWt9AnJXN98
-	 Z93AqzoO0zaMZcBND8q01tHQDwInC5CQNqvFus0xhyQsO+2CMbcKXoK1FX5jDjC1FT
-	 4JaudG+tEBQmn8ZWA/ESbbpVLFpuAQiDR2JIH/9cdHVndGqa8xYLvUPOtHp4SfFWdc
-	 FnCKMpLdOh3GWkP1E8HtbSipKayHT9XMy0RlKnojy8ahy1Sn6jRnW/sRWwrrlkGapx
-	 9WRi/kvya+iVYY5syMjNnaBW6nRkMDaIVbBKYaXrW3yMYhvH9wEex5tdDuRD9yLsO1
-	 +Cs645Qov3PYg==
+	b=EF8lxMU++oHFKL/9oY/5q1H3k0CcrTSZ4IWiDS3IxVA7eu/siHUcHk6ZduFsJfzPw
+	 ZX1roINHgeXBQONqI5rsiazqv4JBk3D/4NLGvUb7kScIwGCk5lVakNC5LjcfOoXCgs
+	 Zz5uoh3gFcJYjB9YjjkIyzrHLggufQUvVUCJt/4NVxNcCWjrHK+uA2UaWnkzCoAxq0
+	 KCnTLxmgWtw9pL+sCcWoexSPgx6UMq6YFWoWildsfwnv+PKU+Vio/pyC+k4plM6YSF
+	 2cz7GUUmS/sASXAVkq3HyX+K0aYXeRRq71dm93g9+sB3PvrOnNZ7fWG65jNc0nwbEL
+	 qrPZqYKGIwO1g==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
 	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.95)
 	(envelope-from <maz@kernel.org>)
-	id 1tRDTf-007FyL-Rc;
-	Fri, 27 Dec 2024 16:46:20 +0000
-Date: Fri, 27 Dec 2024 16:46:19 +0000
-Message-ID: <87bjwxoyzo.wl-maz@kernel.org>
+	id 1tRDUx-007Fyr-Ce;
+	Fri, 27 Dec 2024 16:47:39 +0000
+Date: Fri, 27 Dec 2024 16:47:39 +0000
+Message-ID: <87a5choyxg.wl-maz@kernel.org>
 From: Marc Zyngier <maz@kernel.org>
 To: Dragan Simic <dsimic@manjaro.org>
 Cc: linux-rockchip@lists.infradead.org,
@@ -61,10 +61,10 @@ Cc: linux-rockchip@lists.infradead.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	FUKAUMI Naoki <naoki@radxa.com>
-Subject: Re: [PATCH 2/2] irqchip/gic-v3-its: Make "dma-noncoherent" preferred for RK358x errata
-In-Reply-To: <1382cd99ec213b5fb6f3b23d4e895f078f587b8f.1735313870.git.dsimic@manjaro.org>
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Use "dma-noncoherent" in base RK3588 SoC dtsi
+In-Reply-To: <ecf3505af1a690ed8b975f60d095331778593339.1735313870.git.dsimic@manjaro.org>
 References: <cover.1735313870.git.dsimic@manjaro.org>
-	<1382cd99ec213b5fb6f3b23d4e895f078f587b8f.1735313870.git.dsimic@manjaro.org>
+	<ecf3505af1a690ed8b975f60d095331778593339.1735313870.git.dsimic@manjaro.org>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
  (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -80,75 +80,27 @@ X-SA-Exim-Rcpt-To: dsimic@manjaro.org, linux-rockchip@lists.infradead.org, heiko
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Fri, 27 Dec 2024 15:42:24 +0000,
+On Fri, 27 Dec 2024 15:42:23 +0000,
 Dragan Simic <dsimic@manjaro.org> wrote:
 > 
 > The preferred way to denote hardware with non-coherent DMA is to use the
-> "dma-noncoherent" DT property, [1] instead of relying on the compatibles. [2]
-> Alas, older versions of the Rockchip RK3588 and RK3588S SoC dts(i) files
-> failed to specify this DT property, which means that checking the compatibles
-> remains required for backward SoC dts(i) compatibility.
+> "dma-noncoherent" DT property, at both the GIC redistributor and the GIC ITS
+> levels, [1] instead of relying on the compatibles to handle hardware errata,
+> in this case the Rockchip 3588001 errata. [2]
 > 
-> Let's have the Rockchip 3588001 hardware errata handled the preferred way,
-> with newer versions of the Rockchip RK3588, RK3588S and RK3582 SoC dts(i)
-> files that properly specify the "dma-noncoherent" DT properties at both the
-> GIC redistributor and the GIC ITS levels, while falling back to checking the
-> compatibles for backward RK3588 and RK3588S SoC dts(i) compatibility.
+> Let's have the preferred way employed in the base Rockchip RK3588 SoC dtsi,
+> which also goes along with adding initial support for the Rockchip RK3582 SoC
+> variant, with its separate compatible. [2][3]
 > 
 > [1] Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
 > [2] https://lore.kernel.org/linux-rockchip/86msgoozqa.wl-maz@kernel.org/
+> [3] https://lore.kernel.org/linux-rockchip/20241222030355.2246-4-naoki@radxa.com/
 > 
 > Cc: Marc Zyngier <maz@kernel.org>
 > Cc: FUKAUMI Naoki <naoki@radxa.com>
 > Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> ---
->  drivers/irqchip/irq-gic-v3-its.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-> index fdec478ba5e7..982dcbb30f39 100644
-> --- a/drivers/irqchip/irq-gic-v3-its.c
-> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> @@ -4747,6 +4747,18 @@ static bool __maybe_unused its_enable_rk3588001(void *data)
->  {
->  	struct its_node *its = data;
->  
-> +	/*
-> +	 * The preferred way to denote hardware with non-coherent DMA is to use
-> +	 * the "dma-noncoherent" DT property, which the older RK3588 SoC dts(i)
-> +	 * files failed to specify, relying on the compatibles instead.
-> +	 *
-> +	 * Thus, check for the presence of "dma-noncoherent" DT property first,
-> +	 * to let the hardware quirk be handled the preferred way, and fall back
-> +	 * to checking the compatibles for backward dts(i) compatibility.
-> +	 */
-> +	if (!of_dma_is_coherent(to_of_node(its->fwnode_handle)))
-> +		return false;
-> +
->  	if (!of_machine_is_compatible("rockchip,rk3588") &&
->  	    !of_machine_is_compatible("rockchip,rk3588s"))
->  		return false;
-> 
 
-I'm sorry, but this patch serves no purpose. We already have a
-workaround in place, and we don't need to handle it *twice*.
-
-Worse, it is actively harmful. A DT that would only advertise the
-property on the ITS would result in a broken system, while it would
-work correctly with the current code.
-
-Additionally, look at what of_dma_is_coherent() does, and how it will
-fetch a property that is potentially completely unrelated to the GIC
-node, or eventually return some random default. The binding documents
-the dma-noncoherent property as part of the relevant nodes, and not
-anywhere else.
-
-In the end, this is just dead code, and potentially worse. So while
-I'm rather supportive of your first patch in this series as it allows
-OSs other than Linux to *maybe* avoid this hack, the Linux driver
-doesn't need any change.
-
-Thanks,
+Acked-by: Marc Zyngier <maz@kernel.org>
 
 	M.
 
