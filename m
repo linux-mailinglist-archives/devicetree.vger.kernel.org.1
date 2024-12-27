@@ -1,78 +1,80 @@
-Return-Path: <devicetree+bounces-134210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4002C9FCFBB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 04:10:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81D869FCFBD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 04:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DC50163AC7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 03:10:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D5693A03F6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 03:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 131E43596E;
-	Fri, 27 Dec 2024 03:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBF0381AF;
+	Fri, 27 Dec 2024 03:10:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pk0jhaPU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ggl1Et6x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE9935961;
-	Fri, 27 Dec 2024 03:10:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5038B3595F;
+	Fri, 27 Dec 2024 03:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735269032; cv=none; b=ZJNnY2bvjKgupBk/9cKAZRq1W9YTmd7GveUnN/1xkql88ZPZfYm9LdDYuuj2OO9jwJFB3umMDJmDlqq6M2FJrdmAFUWre96m5FgUmeESL/uoWaDC8gvXziDnpABuy70tguOI+kRu+7eFHRVj11CYpRB5vbKMWEU4dA1oozPp2u8=
+	t=1735269033; cv=none; b=cp8ANZmfJnm/i7Q/feaLbwUiR4ATJu4IfpXu5vDw0C8+fL6cAt6wQF9XKpLzjlylaNUM417Fj01oNH4zMgXETGnrjVu8UiHHOby9RVjsIc3YvkBAwp8d7bk42g8xwR22lxJQeGExgkuJ0laOEmCeMmXJt8cEnTMqq04gg606KTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735269032; c=relaxed/simple;
-	bh=eEZPMqnFAFZL6U2Nau2tHWImP2Mq85i2tQEbvcKc10U=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ci6106/tbAZj5OsBMqw2Xzbhah75kqhDMtSMoj0nEgmSczxQQKRzv/2Je8wzNLv3I0gMrIXnC4o7yc5cWYGH9Rlh5UnK6zDYxfhjHb+lwE+2qCeapEdfts1YmeZ1bmidEg9uVpN721oNEAQssyI9CEWSEVbIPgcTgsCCHuMon+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pk0jhaPU; arc=none smtp.client-ip=209.85.208.172
+	s=arc-20240116; t=1735269033; c=relaxed/simple;
+	bh=eZY7s59zRGufOHwhRf2+rkN8ue/jAjm+rs+cgeE8RzU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=ZmYjGNdQPtNzTwBO71K/6Z1amPz1KIDpDLzEZv3Rqs8zcr1+Ql41oPZqQxphrJTzB/PtvkwWsfMlhP3d6tMUc0Dtc4bfbGhTAw/DCTUBK8Yp5VZrTUVW5mtphv4iCQDC/N0eUOJ+sDGnYKK96oXRyixTQILH69QQjAtMa1SqgNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ggl1Et6x; arc=none smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-30227ccf803so83220821fa.2;
-        Thu, 26 Dec 2024 19:10:29 -0800 (PST)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3047818ac17so46542861fa.3;
+        Thu, 26 Dec 2024 19:10:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1735269028; x=1735873828; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=u9GzOqSFTFut+M0trF5n5rtYW7iZuRD8VsII4Yb9qIs=;
-        b=Pk0jhaPUV3L8sknfygnIPRPIgv4PVd20Q0XR8td2hM1vhAY4S1/I57P6NAZ7KSBqEB
-         1SmEW6uUZL+qG5q88BshkJXgjEDV18+m/469y0Cxety6rnhbvTD9mUc5q08PK6x/EiIq
-         A0YQ4a8DwZ8/ed52GiT0D1/x0sUNFXR7Z56P2yOAGQbZK+/MA6Y/bgp92eYs/AktgxaA
-         9HKWbsJSxkCxBHiaU+4I7jzVczfDpDewMLT0YongCGKLZ4i0LViGX9or8zG/TmRmF2rC
-         fhfwc9v1ZqsNB1FBLyHHBQ92sL9xyySlZ6aPeEX/dCnKr2K+k28lPjqjrpc2t+n1k3Cg
-         gX8A==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8sbDFkDnkCYP25YhC98DgH+FS2tPhMY3Ac2FnjguokY=;
+        b=Ggl1Et6xKXGrfsUIUr1xqs5f0juSEDKXFhlH9li9Zf8iREJ9dkHYjUOjGFvogfNkOh
+         8mZCdGsJj72RDggBl19dlaDoHj9gSfOPgMCbGmuG4JcilUrecIins6HO3thOBC6r6Jrx
+         G3jWLSxU716TZZh2gxG7+Y3ABvCLkFUQDEa1hLRekVruDB8bu19ynppBr8uXYI6axoz3
+         qvIGDf9byHZOM9fSOp9iRznr+pI6eX87jbidQDSsLxn2q9ZH2b3hBrJpHcaNvEQYmZlp
+         eItn15Jw0kLLQuCmBSPL1nc9SiK71ApsE/t/NYT7FstRj0f9T+p+5RQ2pRHqnlml8aXO
+         rc2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1735269028; x=1735873828;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=u9GzOqSFTFut+M0trF5n5rtYW7iZuRD8VsII4Yb9qIs=;
-        b=lcQlufgAPkDbojtoAZaz1/zRAYOaw3NpWsws+ZNwG15AgAZW0axT1P3UD8oLIGMhtc
-         e6UV+I8w3/K1E1U2Ex/qdLEdwJBT/QMEsx+za5HivXWrhm07f8gMXIQwoFuGSA4SJPvS
-         FVn5u9zPFlCfubQ+ltjtoVRuzJidrLCB7zF6bfiTVglNUEVBxuKsvelfgG5GQ7YQXnze
-         ymlOI24T8bJPngXOuVsIJAURtH6OJc8DHmGoZKLV3DGuzgmwBnD91wBq28eenbYvzbHP
-         nz3QycszBqql0Js066zisHX96/uwaglAguJIOLblSDSzCw4Vs2TvMN0LM0mUsT/qTipr
-         1ISw==
-X-Forwarded-Encrypted: i=1; AJvYcCW8Y7hTfGsXc2N4jQ2IXiGnIXoh7btmZynL3FyRaaoBfvO7LusVxTHNM1LwF5VbAeI+jhqjEJuTDGJxH7g=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3152X18XiWZyIPexOkmy7gM9AMHJjThjrG8U6GyCjYv67Taa9
-	g/1i/smlNb29Gkdcgo1RFuECOvyvUqFXrBcRvM1mvF1Yv4z6hH4=
-X-Gm-Gg: ASbGncsyQAJDx0yPr9RoSrFFxub/W/wMWXoWAWJUJKqzkYyHa50qINNZuF63dHihYaN
-	RKweBt3CtFuftxINWPL7UvWV/n7vEG3CX1sSuW82TbKpolcdhnNcRw4PzO1gznZp8xBBOg7xv+c
-	VH9RIRwn6IvsXIXycgemt9YbRNbKTv6Lz9Ez0V4xsGmim1ea3Oe0BzqGWxvbARV4XSWMAifyxsV
-	RBhNQSvpb2J8TdwybsyiROjruPUW+1xe+0KLHBcJD6qjKi0fKO3D03zK7U=
-X-Google-Smtp-Source: AGHT+IExyyy4jgRB3UWLgHTsEeFRs0/I8P7gVGIIOS5qg76b9sHxaxSVCTtLynrzkX+OeGPg7e1UAg==
-X-Received: by 2002:a2e:a701:0:b0:302:3021:9b03 with SMTP id 38308e7fff4ca-30468567821mr64398891fa.17.1735269027581;
-        Thu, 26 Dec 2024 19:10:27 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8sbDFkDnkCYP25YhC98DgH+FS2tPhMY3Ac2FnjguokY=;
+        b=pS3RtGX4uyTP2dQRTBc2nSANTkfns29YeT6kHiKZ4IE+qt0nJRcLNKCEzL3Ts+WdiW
+         ChIe7/oLFLaBBX1pN3C8AsOXFJdHS8Z59mz44Gpsc+iA0vzCOWrGSA2I7XLCO8nRlcmb
+         /6nbBnQ3Ow8ZksKdm5nfQ0hudGxgBIAkQpnoHM0XLNe75v1xX1QsLh11jYTrKVj+Fee+
+         jgcj1o8V4fIL5DUpiXoejqC3QgzqTvRprI/rbToockA4q6aMQG43N6x5fAELbQgySuAG
+         TQTBm+r/C54ViwlxBM30THn/plVDuWUlEm7eH+B+Ib8HqsbTjBI3LvxrHhZZ9EI0V0IW
+         GG/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXPbY7gJa2G+AoYDr50esMkgCfld53h6Vdo7g6DTJUAOT5975fYbOlvZ1PCd0PJS4QPMYbr/QppOSfdLCk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgqoCV/fqe6rEqphe5/4xBLQtrV51akSPxgwtyyPdKV6RXHdjE
+	tAxiq/oCof3rMph5g+Ong73EO73JrbMa2IAXJ2Sd9KBJuV8BzCE=
+X-Gm-Gg: ASbGncuYLfQ7n4Yk9gN1S11cv2+ZQYwXbgC42uxPSLv+1KJ68PgXfZ8HDsm1MP84BFb
+	6iq+sUGS1FZ2NqZPMFeSTVSWMXn2DYqy+rG47L6tMQAs+2ZJtF09KbK9j9oWT9+iIyiFPNZQgTM
+	zOqDHD76aqioR06+Ks2c++QMaR5lpcqyTMoG2zTIqncLHTNy3vMWcAXrNlwp7KnAdfE68HUyH3f
+	G3DL4GiNufVg1IgsOZ+jJ88LTmqMYgJJ0KF66xUAnb8uILxwfS7KZzP9f8=
+X-Google-Smtp-Source: AGHT+IFp0hUwzEvdI84M3ZlU+5PcWHgcj+st1Q6smg0tEtOHtQwhGA4VOM1BqLtbhs5hk/4Z/PHMkg==
+X-Received: by 2002:a2e:a991:0:b0:300:25f6:9b3d with SMTP id 38308e7fff4ca-30468542ddamr74919191fa.10.1735269028169;
+        Thu, 26 Dec 2024 19:10:28 -0800 (PST)
 Received: from JetTurbine.homenetwork ([2a0e:e6c0:20d3:2100::1d])
         by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3045ad6cccasm24326141fa.1.2024.12.26.19.10.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 26 Dec 2024 19:10:27 -0800 (PST)
 From: Ivan Sergeev <ivan8215145640@gmail.com>
-Subject: [PATCH v3 0/2] arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
-Date: Fri, 27 Dec 2024 06:10:12 +0300
-Message-Id: <20241227-bigtreetech-cb2-v3-0-91c556adcffe@gmail.com>
+Date: Fri, 27 Dec 2024 06:10:13 +0300
+Subject: [PATCH v3 1/2] dt-bindings: arm: rockchip: Add BigTreeTech CB2 and
+ Pi2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,73 +83,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJQabmcC/x3MQQqAIBBA0avIrBNyHCK7SrRIm2o2FSoRhHdPW
- r7F/y8kjsIJBvVC5FuSnEeFbRSEfT421rJUA7ZIBpG0ly1H5sxh18GjNr0j8pacMx3U6oq8yvM
- fx6mUD4afMxphAAAA
-X-Change-ID: 20241224-bigtreetech-cb2-18944b349916
+Message-Id: <20241227-bigtreetech-cb2-v3-1-91c556adcffe@gmail.com>
+References: <20241227-bigtreetech-cb2-v3-0-91c556adcffe@gmail.com>
+In-Reply-To: <20241227-bigtreetech-cb2-v3-0-91c556adcffe@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Ivan Sergeev <ivan8215145640@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1789;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1110;
  i=ivan8215145640@gmail.com; h=from:subject:message-id;
- bh=eEZPMqnFAFZL6U2Nau2tHWImP2Mq85i2tQEbvcKc10U=;
- b=owEBbQKS/ZANAwAIAbzfXRlQM5b9AcsmYgBnbhqid1wH5MSiCj96ZCeJnpipynuRqmr3gltID
- HJ6JOMyTM6JAjMEAAEIAB0WIQROCZtApKFz1fvvsOS8310ZUDOW/QUCZ24aogAKCRC8310ZUDOW
- /RA6EACokGH4AkfQnCDMNuE1ab9eqYd5OpqsM1kRnmTCckb+s/fhcf+zmlOvMz/6tY7keWDMOkI
- h01pY2Oo7uf4yAa9DkqM9gw5NgZsFcPnXRMtlbwjWOIk2ZW0xiXp6MgiMhFf/Y0FwoGHX2zb7B+
- pmoL0G6br4N1oL+wPkHHoiImXft9pJQeWp6p01Qq4tMwFMOBtrSLOXg6Ra98w1rmTdeLNrm6RYA
- lpkA9WCDaZqIEoCjaUFmVN9ddDcIocLcWq4bDh8a2EOGpHjwX6Ean/WYf2hVslhG1IEnE++juJU
- 9zjkH5F+ZINJ9wXDB9DxjgYu63JcnQCD31blP0+yQObyPsPM5X5QCN3LCiNHekjxYZWV6r2hqdA
- Rx2MfOr/a93JqlhsNzyzx7SVzYe3CGQsiC3NqZYx4Ht72BffT04hMBVvGCorLFxcHQO4oZ6JpfR
- wKs9rIMPzau5AK0AcgSo65OGpvtrsORexLBB/+2ntOPj2A15G7ebSmscaBs2gTMNH5JnpaVUcO3
- koA82atd+/DBb5zrzxKntdLGS/WEJlXqfgKM3fNqpCNaRsh/X+EHyox4I4sWmBqucqekb/SZz6S
- 0qsfZjyhWevc8lfDTWjqch9BHHURsohzC+4IDMlDjSoM9/zNgYOKdMw/IuQgHV8aZks39/LqcH7
- DRfMuHpKCFcBp1w==
+ bh=eZY7s59zRGufOHwhRf2+rkN8ue/jAjm+rs+cgeE8RzU=;
+ b=owEBbQKS/ZANAwAIAbzfXRlQM5b9AcsmYgBnbhqivExZ+Jq3gxJLjvHIzzDBbxC+394uKwHnA
+ fX9ZknH0MiJAjMEAAEIAB0WIQROCZtApKFz1fvvsOS8310ZUDOW/QUCZ24aogAKCRC8310ZUDOW
+ /R3VD/0b1VV/C/tIp+9Owh3X32blcfa82aA/HpBd6PaUn6guINA6wHhSOIRN9BJDnyX8Q9jdp50
+ 9lG4urt0xEcko6phFDyWt391G2L+6YXz42rjI5zO9RLsGORO1az6iPYZ2ET8z2vfDiUO1PFGbUi
+ GdMrK3h32vCirOUWOIa+eNG+z9PyHd/k5nY3JUrfnCGqILGhKCgT9bL00/eBR9VYQgTBJEzQRZj
+ Ng+zWt9US8nZpbpc2DsTX5XYJJtqV0C5HR7nCLn34YOI6WVeHghUaR4Ml9lxbQ6+UyP5+tnk5IL
+ 96rEKdLeXNqt4BNZD7y1E4BkMfA5y3C2+cD+H/gu1DjzprAt/PE5YqDmFUegXYGTI35EIdoPs89
+ AXxyGjhU2btLvyNyEfWH7RRGQ/PDghKMheXJBYrwFOD82xj9rnEbB2GSYkirxM6Nvk1WmDYxCdq
+ j0gJHibBVMKrXCrkR/+zbvsgfNoAu4k9M/WzrJV8nYGcdwGaAOtSkc3G7hctC8e9uRg6QUuEuc2
+ Di3/M5f6hQLXt7BMGTh4vjs4L8vH8KwW6zFyT60f8BwtP1ysXRyIaj4U9snqPqQekS2/nrvv83T
+ XQOVkhd2yHaOI/GFTa7QGdQgiNvV1GXp7/vD7Q8vb7OldIC2zR73OtbdAvvp0d8nesnSMaFCAef
+ JW0+5oSLhpeNirQ==
 X-Developer-Key: i=ivan8215145640@gmail.com; a=openpgp;
  fpr=4E099B40A4A173D5FBEFB0E4BCDF5D19503396FD
 
-BigTreeTech CB2 and Pi2 are Rockchip RK3566 SoM and SBC boards made by
-BigTreeTech for the intent of using as a 3d printer control board.
-It is a successor to the Allwinner H616-based BigTreeTech CB1 and Pi, so
-the device trees for CB2 and Pi2 are also done in the same manner: the
-common nodes and properties are put into a dtsi file that the
-board-specific device trees include.
-
-Changes in v3:
-- Proper formatting and patch series sending (using b4)
-- Converted spaces to tab indentation in the dtsi file
-- Fixed empty line where the license identifier should be
-
-Changes in v2:
-- Added bigtreetech cb2 and pi2 boards to the list of platforms
-- Split BigTreeTech CB2 and Pi2 into two device trees using common dtsi
-
-Link to v2 1/2: https://lore.kernel.org/linux-rockchip/20241224135751.350379-2-ivan8215145640@gmail.com/
-Link to v2 2/2: https://lore.kernel.org/linux-rockchip/20241224140057.350667-2-ivan8215145640@gmail.com/
-
-Link to v1: https://lore.kernel.org/linux-rockchip/20241222203952.84217-2-ivan8215145640@gmail.com/
+BigTreeTech CB2 and Pi2 are Rockchip RK3566 based boards
 
 Signed-off-by: Ivan Sergeev <ivan8215145640@gmail.com>
 ---
-Ivan Sergeev (2):
-      dt-bindings: arm: rockchip: Add BigTreeTech CB2 and Pi2
-      arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
- .../devicetree/bindings/arm/rockchip.yaml          |  11 +
- arch/arm64/boot/dts/rockchip/Makefile              |   2 +
- .../dts/rockchip/rk3566-bigtreetech-cb2-manta.dts  |  10 +
- .../boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi  | 941 +++++++++++++++++++++
- .../boot/dts/rockchip/rk3566-bigtreetech-pi2.dts   |  10 +
- 5 files changed, 974 insertions(+)
----
-base-commit: 4bbf9020becbfd8fc2c3da790855b7042fad455b
-change-id: 20241224-bigtreetech-cb2-18944b349916
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 753199a12923fadaa48c407a8e55e7854db7203e..349453b1676bfac45abf5cd49d6bd9f847281213 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -81,6 +81,17 @@ properties:
+           - const: azw,beelink-a1
+           - const: rockchip,rk3328
+ 
++      - description: BigTreeTech CB2 Manta M4/8P
++        items:
++          - const: bigtreetech,cb2-manta
++          - const: bigtreetech,cb2
++          - const: rockchip,rk3566
++
++      - description: BigTreeTech Pi 2
++        items:
++          - const: bigtreetech,pi2
++          - const: rockchip,rk3566
++
+       - description: bq Curie 2 tablet
+         items:
+           - const: mundoreader,bq-curie2
 
-Best regards,
 -- 
-Ivan Sergeev <ivan8215145640@gmail.com>
+2.45.2
 
 
