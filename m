@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-134271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F979FD1AA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:58:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 838E69FD1C4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:04:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65CCD1881220
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:58:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D4FF3A0602
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:04:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE9F514B07E;
-	Fri, 27 Dec 2024 07:58:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E674314D283;
+	Fri, 27 Dec 2024 08:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k8vUSzCK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+SShp0c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D8213D893;
-	Fri, 27 Dec 2024 07:58:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B16BD2BAF7;
+	Fri, 27 Dec 2024 08:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735286284; cv=none; b=bASvP9w9eerc/Fdg+keQaueUS8V5ef/WTqLu1qCfrZVQ2fJtiMaU63q9WEnCeMV1C3zT2gYcKPS3M9oMrhkT0elu4ZIeQpV0c4F9UtOZBV7Z13rzqTpS3wTzz1N3JQoq6VwmRQ+vR2B5PE8BK4DDAyeHQqWt2gZsk5ZW2XGEAQA=
+	t=1735286654; cv=none; b=h8cZ4TmER/1Gl66hJUrq5mhuxbWCh/P6BRgcMQyB00gfKsuJ4xM+bfv5SMtzjzs+rubJIP9XpIYLEZy/N4j4xX6gTazNQJ3ncBbHKKw6H/m3gKOu/JuhRaYuYmH7kyN0Qj3RnVCqDPtcJTrCxKY6a+9YflnTcbxNOJhfePEeASQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735286284; c=relaxed/simple;
-	bh=hZnnMoLnLYeiTLvDZgWkBiGL9rGzckdyrR0JJNzph8E=;
+	s=arc-20240116; t=1735286654; c=relaxed/simple;
+	bh=biCHUJ5+/8TVAXXt/3zdeR+eVLD02s5dFj+qLRU/u4I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VjMGnj3X20Dr+0pKGl+7LKW/UtoE6XzXwd42liEgdoffUrmLw7uljCJ4NzdhbzzUQf4Ty4XrfeiBh+F/RmfQmVlKMbaOtKre4Gc/GOFA+VRX1By/T61NqRnFzDhVz11bSVuOJ/ngHsMC+YK4EIWcl9vHSmDvE/Q6J7zUtnKMxoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k8vUSzCK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC493C4CED0;
-	Fri, 27 Dec 2024 07:58:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=m+YeRYhTMV6pXUvSy3S991+lokGgfDh3lDrmQbccVsLpDIKn4H5ck85Ye9c43jp9nw6VxCB2j2Tj98zV1Qmuq1qw1sQ5eTfxiGXfLpxpw5IOieRn+k2oRDrjpXXjPulLWzm60awIY69A6w4ySotweRMWmqqyheiHiVx6BqIbOqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+SShp0c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63DD4C4CED0;
+	Fri, 27 Dec 2024 08:04:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735286283;
-	bh=hZnnMoLnLYeiTLvDZgWkBiGL9rGzckdyrR0JJNzph8E=;
+	s=k20201202; t=1735286654;
+	bh=biCHUJ5+/8TVAXXt/3zdeR+eVLD02s5dFj+qLRU/u4I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k8vUSzCKv9lQFyYkfZF5L480BDiGtfq4pSx2cYSEhFT1ioFKLNx5CU6JGovHJzFQx
-	 y0OuvJ6QoErol/JO0oVR8OIkMv+6GyDAc2NzL4NEMfKs10Jb4zTNtg8MSEWZX5leVk
-	 aXa9ECVqn/4HamxoBGinad7Wi20Fuoaut+xrJIl1ufbJm1DSLpomnIky8UfMvmWxxe
-	 CsrHwvSTkLrhYDVBXVlQBG+PjcOn5s+XCDxljmWcTq1MfmgsRAdoJYIdPCfKLNVhbI
-	 1ubYa1p39FCuQfsuj0/YzsY6RGINWG8lPKIg2Jp8wzTGcK24/88SaeZw9/KvOsL7j4
-	 oom3YTX0/ij5g==
-Date: Fri, 27 Dec 2024 08:58:00 +0100
+	b=P+SShp0c8wwOpMs9hwz4VL+Rx6bWq5SN7auamJKsEb/6M3CmLkyVq9DWglwgTeApb
+	 DG5e1B26DiUXIebY61Zn0KaZiMz10JbSSHRoM9vrhTkaR7pR2USQT8FRV29zNzDI6q
+	 3WQRqNbOCpw35FH7y4mgQyVr+xKOsD3wcenaHKDR8veBX8RQUMhGlYlyMN6A6he+uD
+	 5Mt2zy9fzWiVm4UUqVkcMn6bgNKLyks6+b4rVgvERcmvbEmyfVFAgYeHt66eMebDm1
+	 lKiAdAmYbUm0y/9VznQu3a1I4OqDLGr8ojZCoSYswxa2o+DodbwvJKrSn0kuB67v/V
+	 rAXt/Lz9Lmq7Q==
+Date: Fri, 27 Dec 2024 09:04:10 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	eraretuya@gmail.com
-Subject: Re: [PATCH v8 3/7] dt-bindings: iio: accel: adxl345: add
- interrupt-names
-Message-ID: <36gtabgmu7f2mafxzq4siwbf2hocyoudgi7mhkr3v33ajqcn57@xq7l63lrgdxf>
-References: <20241225181338.69672-1-l.rubusch@gmail.com>
- <20241225181338.69672-4-l.rubusch@gmail.com>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	p.zabel@pengutronix.de, dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v4 1/5] dt-bindings: phy: qcom,uniphy-pcie: Document PCIe
+ uniphy
+Message-ID: <u6jrvxkp3hmodbly7kud4uykkxjza7qehkqifrfjjztzkw37et@qnp7uueafvwu>
+References: <20241226102432.3193366-1-quic_varada@quicinc.com>
+ <20241226102432.3193366-2-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,23 +63,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241225181338.69672-4-l.rubusch@gmail.com>
+In-Reply-To: <20241226102432.3193366-2-quic_varada@quicinc.com>
 
-On Wed, Dec 25, 2024 at 06:13:34PM +0000, Lothar Rubusch wrote:
-> Add interrupt-names INT1 and INT2 for the two interrupt lines of the
-> sensor.
-> 
-> When one of the two interrupt lines is connected, the interrupt as its
-> interrupt-name, need to be declared in the devicetree. The driver then
-> configures the sensor to indicate its events on either INT1 or INT2.
-> 
-> If no interrupt is configured, then no interrupt-name should be
-> configured, and vice versa. In this case the sensor runs in FIFO BYPASS
-> mode. This allows sensor measurements, but none of the sensor events.
-> 
-> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+On Thu, Dec 26, 2024 at 03:54:28PM +0530, Varadarajan Narayanan wrote:
+> +maintainers:
+> +  - Nitheesh Sekar <quic_nsekar@quicinc.com>
+> +  - Varadarajan Narayanan <quic_varada@quicinc.com>
+> +
+> +description:
+> +  PCIe and USB combo PHY found in Qualcomm IPQ5332 SoC
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,ipq5332-uniphy-gen3x1-pcie-phy
+> +      - qcom,ipq5332-uniphy-gen3x2-pcie-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You need to list and describe the items instead.
+
+> +
+> +  resets:
+> +    maxItems: 3
+
+You need to list and describe the items instead.
 
 Best regards,
 Krzysztof
