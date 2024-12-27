@@ -1,173 +1,165 @@
-Return-Path: <devicetree+bounces-134308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 879F59FD28D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 10:30:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E5A49FD2FD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 11:27:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 166EA16160E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:30:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4D941883801
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 10:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6B4155326;
-	Fri, 27 Dec 2024 09:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152941D319B;
+	Fri, 27 Dec 2024 10:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CCRQ6HvZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bcUiYQ56"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 677D2EEAA;
-	Fri, 27 Dec 2024 09:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33BB146A79
+	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 10:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735291825; cv=none; b=HmRj0fGAPzKdWU0iPIg4YUHI6AIef+5NJkFvgw6seyVWrg/u5ajmhFR4LTJGl/rc2jrcxbuZA0slydALpnSEXpTyjDWSyALwmNsVb234rPk1o+L0ITAqXDH5pVLfL3PoEEeydCkFLy5ccjhMQnML7pTkvt9dvSuEIHArchXAnI8=
+	t=1735295232; cv=none; b=airR9rKRuMkKKOGjTlV2qnTTRZBA+bDdDVzMUty6Id+vYJ0keqaLP11gAIx8OGdNRwS7mz2MDgn89Bi1K5k3IJLNtecGdDVVW7M+JC09NM5sOqn1SMar6kp8b7vGb/15bW6M0zwND5Lq+7q88U3mmurhFvXHYs5lO5RwsiqdWSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735291825; c=relaxed/simple;
-	bh=EP0IHX0DdWwe4SDS6MWrtqA/P1/jEzD1O9Y2saHQvrg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dEc/nqFUAprp5yTu+j/xifS+Kg/qHArmEb4p1lELhXLJc5pAXWBgsYYPs17oMSttULFciYagkHM+L/Qld1joiYDqGYjjXeiSchWWEfJMh25BUG8NA3M5/WAdZQumE27JVlQKcVh0JvpIgWGDqroNNnQS0SXxgZ1gPRxZY33IrWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CCRQ6HvZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46955C4CED0;
-	Fri, 27 Dec 2024 09:30:20 +0000 (UTC)
+	s=arc-20240116; t=1735295232; c=relaxed/simple;
+	bh=fU2sdWBrQB2PnLL4rIYUz4+FG6O6X/h4b2VgDw5HNtE=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TTgcPsoZkKaC0h8EPFyJunALvv0QWdKSt3ZX6QkR/m5oBsFiYPCoUCgh71scU4RvdMtv1FJNxL4D22GR9N0uzjiqfVb/hJxkhnXSzIhIyapB1p1e1s2tenUWltXgCP13tHFerMJgg/vffpQO7n5vQ/dGSzXNanXmTNcpmOfd3qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bcUiYQ56; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DA29C4CED0;
+	Fri, 27 Dec 2024 10:27:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735291824;
-	bh=EP0IHX0DdWwe4SDS6MWrtqA/P1/jEzD1O9Y2saHQvrg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CCRQ6HvZWl/GX8Z0SG8iQMImkPUR58U8vvTykakEwJhUb0UNeARr/9JbqZjRQUyEf
-	 aNn+bq2Om1eNo/HsfW3y1hx+nkn/R1VpaA8rIEsw5GQxwDfvQdVTZhClm6lOfXgPlH
-	 ULKAoEHfJRV315IuQm/9qVo3HjLyCRLGPrRyPzQjV/KPv5G/2MGUUsj1YJEaNpkojR
-	 KrG0aU48+6JnKLQD+AVpiXUZAhFJ87Wl/9vNsLv6c2O3zE+eVo4kKc9jJMSXxywXZ2
-	 fO9eX2oRkrJV2MtlWcRWe6gGBaKhCFpEZ68G/HEUGQloPi6hMzaFbmeGUcGTOwunl0
-	 M2mXg597ccOwg==
-Message-ID: <88b6e7ec-0265-4507-9ce1-a72217563e32@kernel.org>
-Date: Fri, 27 Dec 2024 10:30:17 +0100
+	s=k20201202; t=1735295231;
+	bh=fU2sdWBrQB2PnLL4rIYUz4+FG6O6X/h4b2VgDw5HNtE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=bcUiYQ56MdZSoZMlhWBuVuNaDbzwzUd1XqHWEPGV4DuHkTbAs8uc/0wF4uOYFkG73
+	 Bj9K/yyoR9BfvJTY+A/oMHvNjpFg0Cs/q2umEcfXgD7aq9Dj9h5KLTlsNBo2TnBZ9A
+	 HV/1UueVaEBTV5MBs9zINjS6F9vxzfWNGJeuYhrJBT8Ir4yqJsflIfwc7Lp37wRg8Q
+	 qkqaVH9zD+oMKfO9uKJ35AxGjS6SryFdoaIM/KagTnNilFCs1U2tobfQAIsvUVDvi6
+	 FN8pkpZz90uTJJH+2ghibilscbE1dJ2nVHQN60yrM7ozTgwFVLCMO/6CYR6SMpzHbs
+	 dfYyKSBIYJiJA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1tR7Yi-007CZr-OZ;
+	Fri, 27 Dec 2024 10:27:08 +0000
+Date: Fri, 27 Dec 2024 10:27:07 +0000
+Message-ID: <86ldw1pgjo.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: heiko@sntech.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tglx@linutronix.de,
+	jonas@kwiboo.se,
+	macromorgan@hotmail.com,
+	andyshrk@163.com,
+	liujianfeng1994@gmail.com,
+	dmt.yashin@gmail.com,
+	dsimic@manjaro.org,
+	tim@feathertop.org,
+	marcin.juszkiewicz@linaro.org,
+	michael.riesch@wolfvision.net,
+	alchark@gmail.com,
+	sebastian.reichel@collabora.com,
+	jbx6244@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E52C
+In-Reply-To: <5EDFB980DF778743+9f26c8cc-d86d-46ed-9642-cdca10fe7e91@radxa.com>
+References: <20241222030355.2246-1-naoki@radxa.com>
+	<20241222030355.2246-4-naoki@radxa.com>
+	<87zfkmrb4u.wl-maz@kernel.org>
+	<5EDFB980DF778743+9f26c8cc-d86d-46ed-9642-cdca10fe7e91@radxa.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] dt-bindings: pinctrl: qcom: rename spi0 pins on
- IPQ5424
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
- linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, konradybcio@kernel.org, mturquette@baylibre.com,
- sboyd@kernel.org, linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org
-Cc: quic_varada@quicinc.com, quic_srichara@quicinc.com
-References: <20241227072446.2545148-1-quic_mmanikan@quicinc.com>
- <20241227072446.2545148-2-quic_mmanikan@quicinc.com>
- <fbdf716d-0c4c-4f51-9f54-0f38931e26cd@kernel.org>
- <2234c9d5-f434-48cf-ba77-38e9109541eb@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <2234c9d5-f434-48cf-ba77-38e9109541eb@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: naoki@radxa.com, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de, jonas@kwiboo.se, macromorgan@hotmail.com, andyshrk@163.com, liujianfeng1994@gmail.com, dmt.yashin@gmail.com, dsimic@manjaro.org, tim@feathertop.org, marcin.juszkiewicz@linaro.org, michael.riesch@wolfvision.net, alchark@gmail.com, sebastian.reichel@collabora.com, jbx6244@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On 27/12/2024 10:18, Manikanta Mylavarapu wrote:
+On Mon, 23 Dec 2024 10:16:04 +0000,
+FUKAUMI Naoki <naoki@radxa.com> wrote:
 > 
+> Hi Marc,
 > 
-> On 12/27/2024 1:06 PM, Krzysztof Kozlowski wrote:
->> On 27/12/2024 08:24, Manikanta Mylavarapu wrote:
->>> SPI protocol runs on serial engine 4. Hence rename
->>> spi0 pins to spi4 like spi0_cs to spi4_cs etc.
->>>
->>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->>> ---
->>
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
->> of patchset, under or above your Signed-off-by tag, unless patch changed
->> significantly (e.g. new properties added to the DT bindings). Tag is
->> "received", when provided in a message replied to you on the mailing
->> list. Tools like b4 can help here. However, there's no need to repost
->> patches *only* to add the tags. The upstream maintainer will do that for
->> tags received on the version they apply.
->>
->> Please read:
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->> </form letter>
->>
+> On 12/23/24 18:39, Marc Zyngier wrote:
+> > On Sun, 22 Dec 2024 03:03:55 +0000,
+> > FUKAUMI Naoki <naoki@radxa.com> wrote:
+> >> 
+> >> Radxa E52C is a compact network computer[1] based on the Rockchip
+> >> RK3582 SoC:
+> >> 
+> >> - Dual Cortex-A76 and quad Cortex-A55 CPU
+> > 
+> > So you have *two* big cores.
+> > 
+> >> - 5TOPS NPU
+> >> - 2GB/4GB/8GB LPDDR4 RAM
+> >> - 16GB/32GB/64GB on-board eMMC
+> >> - microSD card slot
+> >> - USB 3.0 Type-A HOST port
+> >> - USB Type-C debug port
+> >> - USB Type-C power port (5V only)
+> >> - 2x 2.5GbE ports
+> >> 
+> >> [1] https://radxa.com/products/network-computer/e52c
+> >> 
+> >> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> >> ---
+> >>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> >>   .../boot/dts/rockchip/rk3582-radxa-e52c.dts   | 729 ++++++++++++++++++
+> >>   2 files changed, 730 insertions(+)
+> >>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
+> > 
+> > [...]
+> > 
+> >> +&cpu_b0 {
+> >> +	cpu-supply = <&vdd_cpu_big0_s0>;
+> >> +};
+> >> +
+> >> +&cpu_b1 {
+> >> +	cpu-supply = <&vdd_cpu_big0_s0>;
+> >> +};
+> >> +
+> >> +&cpu_b2 {
+> >> +	cpu-supply = <&vdd_cpu_big1_s0>;
+> >> +};
+> >> +
+> >> +&cpu_b3 {
+> >> +	cpu-supply = <&vdd_cpu_big1_s0>;
+> >> +};
+> > 
+> > And yet you configure 4. If your HW only has 2 A76s, surely something
+> > should remove these cores for this platform rather than keep them
+> > around.
 > 
-> Hi Krzysztof,
-> 
-> 	Patches #1 to #4 are newly added in V3 (to rename SPI0 to SPI4). Hence, there are no A-b/R-b
-> 	tags associated with these patches. I mentioned this information in the cover letter.
-> 	
-> 	I assume you are referring to Patch #1 from the V2 series.
-> 	Patch #1 [1] and #2 [2] from the V2 series have been merged into linux-next.
-> 	[1] https://lore.kernel.org/linux-arm-msm/20241217091308.3253897-2-quic_mmanikan@quicinc.com/
-> 	[2] https://lore.kernel.org/linux-arm-msm/20241217091308.3253897-3-quic_mmanikan@quicinc.com/
-> 
-> 	Please let me know if i missed anything.
+> One of the four cores may be defective. This information is stored in
+> the OTP, so we need to run our software to detect which core is
+> defective. Then we disable the cluster that contains the defective
+> core.
 
-v3 mislead me here and three different subsystems in one patchset.
+Is it one? Is it two? If anything, this sort of binning information
+should be clearly explained in the cover letter, and a comment placed
+in the DTS file to explain that the DT needs to be further processed
+by the bootloader to be valid.
 
-Anyway, if this is different patch then review follows - there is no ABI
-impact explanation and this is an ABI break. What's more, entries are
-not sorted anymore and why there is a gap? spi4, spi1 and spi10? Where
-is spi3?
+	M.
 
-Not sure if this renaming is useful or correct, especially considering
-not many arguments in commit msg (e.g. datasheet?).
-
-
-Best regards,
-Krzysztof
+-- 
+Without deviation from the norm, progress is not possible.
 
