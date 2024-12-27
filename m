@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-134304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A899FD26D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 10:10:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F0749FD273
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 10:11:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D2D2188191B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:10:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42A023A050E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:11:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76FD915575E;
-	Fri, 27 Dec 2024 09:10:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B88E15575E;
+	Fri, 27 Dec 2024 09:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cqLMzbiB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rAQzgFZx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43201155330;
-	Fri, 27 Dec 2024 09:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D356D153835;
+	Fri, 27 Dec 2024 09:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735290603; cv=none; b=sU+1pxzRvwc27YQl4K9zhMv2OKhtPhi0/vRaFAOGTM1H82LiX59arI6mrWXqmcxGF0IbtkscXuKechoHPTDPt9sgPbpUTm6Gpr7q6cS9wLO2TQcoA9PS8qTKXsQryt8NP30HvHdD7m9l96R0NUEJTl6qdJOOxNbCWSVrRZJxH48=
+	t=1735290684; cv=none; b=UcqKypwlqcZdyb7W0oRuKS4ZVWd7/AJmNsSxXYFBP4MoqeNDJnj38tl6eTbiaKKQqnq37Y+l7iHwzcEOvWH/otOcTjglpQMtnxqSPgnETJsPFvLDTlZeuOVuf3TAkXLYn1pA36AZmC0gKibyl/JFkXqxBv/b/tI3ad8hz0++fyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735290603; c=relaxed/simple;
-	bh=XpFjgBNVHQjdp9qaw76SEKy0qKalGuoo4yDayZIghgA=;
+	s=arc-20240116; t=1735290684; c=relaxed/simple;
+	bh=88ElJIqFyOFuJ3+w4V018XORRbvyV0TPA3MTIY3utmk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jHxlfe9dfmUNzootyPXqqiFIYBU5LPRzt3XJ/p6p6FTYJBlUq0DOySrc/2B5kIVcoMxcfIyIsyJ2HZMyWc8FdCff8uynN+iCdXY+oL+P1intvGCvZ0majAZ0qgO1/7HDGX3FrAFQzE5LlMGYtIWWsrh50E4AhMJgfwdm/UxyE40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cqLMzbiB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26F15C4CED0;
-	Fri, 27 Dec 2024 09:10:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z50RvUgwQInBSmz9Lo1UP1Z+pneM+MSjGRs2SH/wvoEK5dYOlxzbava2/teAVVIvZTvfpq1H3Y0UCWLxSERVzMTqShbMMyJnpLtLYTSFyKqmi2L/M9wqkeOGLAWgKRvEyf2YaFf9X8G9VB0wGGjJGYJyoHas1wbW3OvYxKYfcaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rAQzgFZx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 819FDC4CED0;
+	Fri, 27 Dec 2024 09:11:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735290602;
-	bh=XpFjgBNVHQjdp9qaw76SEKy0qKalGuoo4yDayZIghgA=;
+	s=k20201202; t=1735290684;
+	bh=88ElJIqFyOFuJ3+w4V018XORRbvyV0TPA3MTIY3utmk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cqLMzbiB94CeDC1gW0fOyxRdG53LrJN3vz05sXcZOMFZKMAhGvrYFYduuPfMoBqep
-	 YLhbRPaF3Tb7QPWakJMHC0dY2VoavTvzEOoJfNFbPaEodRdYjH2NaGDmZpU7kQsmlG
-	 oLWMi2YFPMy9m5CGSYWo6hEulsU5efhYYi6yZqhckNeJidLZksTVcd6cJudMo8b/VK
-	 Eq41sBS6R2Z3rcmMVFb6T010ccxJCaZs87/7a3P5ID5TcSu3GwZqLgdz7tQMWETroy
-	 QNkfCdLRu0IchWUA08E4B1HDvX+Xs2OLKC6KxTazvX1vPfJesOrs8LTxjL+iC+fy+w
-	 R+O4+P3xLCSFw==
-Date: Fri, 27 Dec 2024 10:10:00 +0100
+	b=rAQzgFZxDNdkx1KvuVMeKjmdRfubGJakH3dLvTMlIYyfkY2wGUfuLQXeYr1jFMYsx
+	 TNgyRw2fVnLe+35Cj1qvwKPWMkidxFcIsdLFbFXlyxgbKwC5yUEPGTsPE2iBru+QaV
+	 kPVTStjPVWctNmYZOADNERBQ3a3tpk/xfcfJzgu01bw13KHOYDoQLriEBgK7RwXIvb
+	 zaFfiLS1mA5g/JXUQe9WfHZxckrQe/khdVsMGB4XTP8T3Xh69WJd3DXnQv2M0LM3jn
+	 ejo5uD7/xNBANteVfgIIj1NPF+E4eC5vo0RJ5LmVAoaqCe4lUE9v2INEdLLr4V9KWZ
+	 qlAIiGo7RUHHw==
+Date: Fri, 27 Dec 2024 10:11:21 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Depeng Shao <quic_depengs@quicinc.com>
-Cc: rfoss@kernel.org, todor.too@gmail.com, bryan.odonoghue@linaro.org, 
-	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	vladimir.zapolskiy@linaro.org, quic_eberman@quicinc.com, linux-media@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
-Subject: Re: [PATCH 12/16] dt-bindings: media: camss: Add qcom,sm8550-camss
- binding
-Message-ID: <ql3sufugcdpoxqgvs2f4clmbnx75t4jh6ts2ryneu2u5oeuwzn@yizcouuzfj2s>
-References: <20241225133523.4034820-1-quic_depengs@quicinc.com>
- <20241225133523.4034820-13-quic_depengs@quicinc.com>
+To: Val Packett <val@packett.cool>
+Cc: Mattijs Korpershoek <mkorpershoek@baylibre.com>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Fabien Parent <fparent@baylibre.com>, 
+	Bernhard =?utf-8?Q?Rosenkr=C3=A4nzer?= <bero@baylibre.com>, Alexandre Mergnat <amergnat@baylibre.com>, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/3] arm64: dts: mediatek: add per-SoC compatibles for
+ keypad nodes
+Message-ID: <fvefi22ycl2tryz3hfkqp5ji4w75tdup235vdvbqs6b5uly2ia@i7efazaxu2eb>
+References: <20241225192631.25017-1-val@packett.cool>
+ <20241225192631.25017-3-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,33 +65,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241225133523.4034820-13-quic_depengs@quicinc.com>
+In-Reply-To: <20241225192631.25017-3-val@packett.cool>
 
-On Wed, Dec 25, 2024 at 07:05:19PM +0530, Depeng Shao wrote:
-> Add bindings for qcom,sm8550-camss in order to support the camera
-> subsystem for sm8550.
+On Wed, Dec 25, 2024 at 04:26:20PM -0300, Val Packett wrote:
+> The mt6779-keypad binding specifies using a compatible for the
+> actual SoC before the generic MT6779 one.
 > 
-> Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
-> Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
-> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
-> ---
+> Fixes: a8013418d35c ("arm64: dts: mediatek: mt8183: add keyboard node")
+> Fixes: 6ff945376556 ("arm64: dts: mediatek: Initial mt8365-evk support")
 
-Is this v7 or v1? Same issue was all the time in the past, so why can't
-you finally fix it?
-
-Look:
-
-$ b4 diff 20241225133523.4034820-13-quic_depengs@quicinc.com
-Breaking thread to remove parents of 20241225133523.4034820-1-quic_depengs@quicinc.com
-Checking for older revisions
-Grabbing search results from lore.kernel.org
-  Added from v6: 1 patches
----
-Analyzing 217 messages in the thread
-Could not find lower series to compare against.
-
-I am not going to perform review, maybe other maintaners have spare
-time to deal with this submission process.
+Not really a fix... or describe the bug.
 
 Best regards,
 Krzysztof
