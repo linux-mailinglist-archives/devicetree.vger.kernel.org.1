@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-134276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6082D9FD1D9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:13:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE9269FD1DE
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:17:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 098B63A0614
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:13:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 955651616A7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:17:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5AB14F9F3;
-	Fri, 27 Dec 2024 08:13:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C438C14AD0E;
+	Fri, 27 Dec 2024 08:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F2ikearV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QmyNvC5h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415A014B95A;
-	Fri, 27 Dec 2024 08:13:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992174204E;
+	Fri, 27 Dec 2024 08:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735287226; cv=none; b=Jo34uhxfs/tq0dtysfH9AyAqDnUAhUNmcBo2ECd8xP48ga3vCAGjb9goGQ2/sph+nAnMJfwHGoLNRZLppiI4fqFRfNmmgMJURK8kYPfLJdUbY0OjUvcoa30NYTaCxSW+aZRTO+QjG8eiucJ16DS+8QFV/CRUesuHJEnk9dbEnSs=
+	t=1735287470; cv=none; b=SCSr04BnuqRk/fII5KFK4y4yZYHxCUX9g0poZMyNKPDzsESMBAGXu3vQNDJ1W5Cw5s+on8PwhhRruGB8FY+Ht+AMznXuyIgOHuqJ5Kkwhi1+2ddysQQTQD8BFqDA0fn6OFvWoEK68xIbiIo1caZFa40To1ozdhXGjhaM/u3IdRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735287226; c=relaxed/simple;
-	bh=96Hwn3Z+nB6AngNQ+jC51nXEuFyFhKWFheg0DPO7DX4=;
+	s=arc-20240116; t=1735287470; c=relaxed/simple;
+	bh=TZfQMDuOUiOku2tocDJE/MOog1QxlRrq59siThHFlm0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MQUOiCiIFFHYMkK0WcJMhHEkiU7A2i0BFPqdhC5ahAhy5plMZQKMSFhyb9Kw7JfiZ6v4e8LHqHvnfcLL8YPI0i3WM8CrKRgFIyHIgMmVkyP5Y/lRc3n03UTNOs5KxBEO0yXy+7g/41USV0BziUFvMyS1SmWuXRkhpx335lqXoMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F2ikearV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE239C4CED0;
-	Fri, 27 Dec 2024 08:13:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YL3/JpYGZs24ep8cEI0mwRzDvWeLpgu29WuyRsZtPNAcSio55/GcZcMzsBHcq3f3x/GV3d60H7qPrh+kdVpl5iGheE3tBIIMDRsaD8NSDpsbx7FN5lIrpGdaQuwXk07SS44A4qGOfKT6Tm8eFgwLDajO+H3LuxmpYJ6IHqM1dCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QmyNvC5h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F933C4CED0;
+	Fri, 27 Dec 2024 08:17:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735287225;
-	bh=96Hwn3Z+nB6AngNQ+jC51nXEuFyFhKWFheg0DPO7DX4=;
+	s=k20201202; t=1735287470;
+	bh=TZfQMDuOUiOku2tocDJE/MOog1QxlRrq59siThHFlm0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F2ikearVIQGXVk7OUw6RZwnS3Un4zq4CnVNru13sDprPSxlmuJslono3QqU53AzIi
-	 iPjyUJQTbTlmqcKxYccWA9sz59f6kTxUWr1U5scoZCYgdQnIC8oyOQ/kLxMIHbxdGe
-	 Z2CYFJIys6HMhituaJUmBjsaqOj6CA43ciltrxZvFTzycx4SuJoAPSU/c+JiQ3h8da
-	 w6ZteDNJLbKk49ijJuslQwdm9g3tA5U/kx1Kf4mMD1LFK1j6VS0wvUcySQh0Foi31K
-	 XD9uAdac2+VkvcLqiqvXCp3mxgOlIRvo8xZm6MIyni7mnLC5eYO3opPXrgF/LxA+pi
-	 u0WEtVsS19kIQ==
-Date: Fri, 27 Dec 2024 09:13:42 +0100
+	b=QmyNvC5hhlproSM8IRx63sjNFTIfuc+0R5crGQrMFZe9OSGTcEWdsxt7wl9bdUoFX
+	 6UWUjyGe8UAtpE7iI61xBH1id0waMBrllvZVLsoEuDz9QPWDBhUbY+Io66RqlDncka
+	 h7RLFMvZIqHzGng1T46cFOjSz/BEqRl+6pikux7bU0XnviiEbbAJFEwVd6GQqDOuaN
+	 Y4y+yCTm/KiWohwy2NXtSGOrTrMOK1o5B7b4MYm0PV1OQ0f4DLqrxgtvxCAszc96Jp
+	 K48WDajJVSOsgrh4TuYYEDUO4MHOGw8boe3lC+IE9BEHkavXF6xOuWQK69PbL+/TYY
+	 Z0x9n66QVwlVw==
+Date: Fri, 27 Dec 2024 09:17:46 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-Cc: Jassi Brar <jassisinghbrar@gmail.com>, 
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-media@vger.kernel.org, Singo Chang <singo.chang@mediatek.com>, 
-	Nancy Lin <nancy.lin@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, 
-	Xavier Chang <xavier.chang@mediatek.com>, Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v3 1/7] dt-bindings: mailbox: mediatek: Add MT8196
- support for gce-mailbox
-Message-ID: <yg7b2iaz53avd7gpvuewhi6b3myh6owls3dt2hzpqc26lnykjf@tpu2vxqqkipe>
-References: <20241219170800.2957-1-jason-jh.lin@mediatek.com>
- <20241219170800.2957-2-jason-jh.lin@mediatek.com>
+To: Eason Yang <j2anfernee@gmail.com>
+Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, jic23@kernel.org, 
+	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com, 
+	andriy.shevchenko@linux.intel.com, marcelo.schmitt@analog.com, olivier.moysan@foss.st.com, 
+	mitrutzceclan@gmail.com, tgamblin@baylibre.com, matteomartelli3@gmail.com, 
+	alisadariana@gmail.com, gstols@baylibre.com, thomas.bonnefille@bootlin.com, 
+	herve.codina@bootlin.com, chanh@os.amperecomputing.com, KWLIU@nuvoton.com, 
+	yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: Add binding for Nuvoton
+ NCT720x ADCs
+Message-ID: <lfthwnvwodqogsk446r5nzpmjunfnpdv33xmaookedwjgpdu4n@llvla6siyl5f>
+References: <20241226055313.2841977-1-j2anfernee@gmail.com>
+ <20241226055313.2841977-2-j2anfernee@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,41 +67,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241219170800.2957-2-jason-jh.lin@mediatek.com>
+In-Reply-To: <20241226055313.2841977-2-j2anfernee@gmail.com>
 
-On Fri, Dec 20, 2024 at 01:07:54AM +0800, Jason-JH.Lin wrote:
->    2) GCE Subsys ID:
->    - Defined in the header file: `#define SUBSYS_1c00XXXX 3`
->    - Used in the Device Tree:
->    	`mediatek,gce-client-reg = <&gce SUBSYS_1c00XXXX 0x0000 0x1000>;`
->    - Parsed and used in the driver to configure subsys ID:
->      ```c
->      int cmdq_dev_get_client_reg(struct device *dev,
->      				 struct cmdq_client_reg *client_reg,
->      				 int idx)
->      {
->      	client_reg->subsys = (u8)spec.args[0];
->      	client_reg->offset = (u16)spec.args[1];
->      }
->      // GCE write the value to the register 0x1c000000 + 0x0000 + offset
->      cmdq_pkt_write(cmdq_handle, client_reg->subsys,
->      		    client_reg->offset + offset, value);
-
-This is a proof that SUBSYS_1300XXXX is not a binding. Your driver does
-not use it.
-
-Drop all such things which are not used by drivers or explain why they
-are needed to be in the binding - what do they bind.
-
-I asked for this already, for exactly the same thing.
+On Thu, Dec 26, 2024 at 01:53:12PM +0800, Eason Yang wrote:
+> Adds a binding specification for the Nuvoton NCT7201/NCT7202
 
 
-I did not check the rest, so next time I will choose any other random
-define and if I do not find it explained nor used, I will question it.
-Because you tend to apply pieces of review instead of really change your
-code.
+I gave you link to exact line with exact text to use. Read it again and
+use it, instead inventing your own wording. The documentation does not
+say "Adds" but explicitly asks you to say "Add". Why using different?
 
->      ```
+Subject: nothing improved.
+
+> 
+> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+> ---
+>  .../bindings/iio/adc/nuvoton,nct7201.yaml     | 49 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+> new file mode 100644
+> index 000000000000..08b52258e4af
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nct7201.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton nct7201 and similar ADCs
+> +
+> +maintainers:
+> +  - Eason Yang <j2anfernee@gmail.com>
+> +
+> +description: |
+> +   Family of ADCs with i2c interface.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,nct7201
+> +      - nuvoton,nct7202
+
+Devices aren't compatible? Explain in the commit msg why they aren't or
+use proper compatibility (oneOf, see numerous other bindings or example-schema).
+
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description:
+> +      Reset pin for the device.
+
+Drop description, obvious.
+
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@1d {
+> +            compatible = "nuvoton,nct7202";
+> +            reg = <0x1d>;
+
+
+Make the example complete: add interrupts and reset-gpios.
 
 Best regards,
 Krzysztof
