@@ -1,157 +1,170 @@
-Return-Path: <devicetree+bounces-134331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0DDE9FD3B7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 12:12:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E6E29FD40E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 13:05:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F3BE7A2787
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 11:12:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C57C6161739
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 12:05:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9CB91F5423;
-	Fri, 27 Dec 2024 11:09:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D265156C79;
+	Fri, 27 Dec 2024 12:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="PytkC0E6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TOOPEQTA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from omta036.useast.a.cloudfilter.net (omta036.useast.a.cloudfilter.net [44.202.169.35])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A008B1F5409
-	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 11:09:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.202.169.35
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C805D79CD;
+	Fri, 27 Dec 2024 12:05:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735297788; cv=none; b=G7bhmmCZHH7sOfbBuRq4hScIS7ZUCCkTXHe/LeeKqoYiX7qzsdtTRjw2ONQH3o+mniZy80ff3iEdIkUZFsqs8H5beEesSzPcHJRCSrlgHNkA56CuueWv8YsWrFPeWwkoa9C5tCslP2IqDqLwpo9ZcL4IoGkmOOiXNarcK96UlCw=
+	t=1735301105; cv=none; b=dtB2IDNe71EW4sySV3mv92BtpO3sFWtUVdYPj+bmI08EURoQ5qZ/Eaw4ldnI6ir1n6lXaWsLQ40P6q0oSKJ1KAI/404qDGw0Dts0J4quFUv55aXrlLCs2Cd7TOmDYuuOLTD89Jbk/7ji8lCJfiJmMNll5hiLMlefT74kbYW4eEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735297788; c=relaxed/simple;
-	bh=qvS7+D/RTyyMg86CwtqbsAA+5EMqHdzQTTB53paC81Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Y5wKZWBXEsJet2yhVnREywHRK/a9LgYDnKuEzwFUaGxYbrZ2dL7vLjHqjpv7RNmOvLOxx4Qtez5neURp8+UMJRFEnawOvBoA2Fta7Zw3G2AXqRJRZxP9SQF0XVvKi/U+GNekiydWPHgHgSxL5SfYPN9A7opNTM1sPz9lovZ9MpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=PytkC0E6; arc=none smtp.client-ip=44.202.169.35
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
-Received: from eig-obgw-6002a.ext.cloudfilter.net ([10.0.30.222])
-	by cmsmtp with ESMTPS
-	id R0a5tWjqLxoE1R8Dytkj2T; Fri, 27 Dec 2024 11:09:46 +0000
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-	by cmsmtp with ESMTPS
-	id R8DvtskkC65gFR8DxtfGOy; Fri, 27 Dec 2024 11:09:45 +0000
-X-Authority-Analysis: v=2.4 cv=Z58nH2RA c=1 sm=1 tr=0 ts=676e8af9
- a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
- a=IkcTkHD0fZMA:10 a=RZcAm9yDv7YA:10 a=-pn6D5nKLtMA:10 a=vU9dKmh3AAAA:8
- a=iM3t8g1HjrKnZeAfta4A:9 a=QEXdDO2ut3YA:10 a=rsP06fVo5MYu2ilr0aT5:22
- a=ZCPYImcxYIQFgLOT52_G:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-	; s=default; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=pGwPFK3xv/ptVPYpkqFPS9qGRy0Y0xu/iUwb0C9nXWg=; b=PytkC0E6+h8OO95GAaBDa6ToD/
-	X6RQBgyIH8yLV5owVMFw3iqDdsFtQ7HAhgXvnn++80/oOj9h12a7UwDVencs83+1ur5aknYnBbHfo
-	IlFfdbs9vOr14mDdckmSR3ntnnAZ39LJPqK9lC9zqTQ61W7VwgBb2fhR4dR/yqC4cBYD6L/VpumJT
-	bNXGByvvB0699BiYZg3Pq5nTJvZRms0xAAKqpyaFTYsQiwMDZS6p93PnIOLAOY9v21vNFe3extze8
-	/a7mKuI+Y37MesfcysEOGPf2nUBXtjkITvlJqeP9HiOAjVoEXo2OmIrM9S6dUT+v1OzkqfB4blkEA
-	K48J1JSA==;
-Received: from [122.165.245.213] (port=50828 helo=[127.0.1.1])
-	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <parthiban@linumiz.com>)
-	id 1tR8Do-000bEK-38;
-	Fri, 27 Dec 2024 16:39:37 +0530
-From: Parthiban Nallathambi <parthiban@linumiz.com>
-Date: Fri, 27 Dec 2024 16:38:03 +0530
-Subject: [PATCH 16/22] clk: sunxi-ng: sun8i-de2: Add support for a100/a133
+	s=arc-20240116; t=1735301105; c=relaxed/simple;
+	bh=WcIekhAguvpAJQc15sG+xo+PFwcUVS69lTUeOcBIsJY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PNFG/IBSfdqTcLy2aOCvdxI+ofd+cA50XXoA/9qYE+3d7+UNJuiUHzNCG+lVY9oR3LsVQOog8j1puQ+MVJb+1CE8jkFtDbMk7QBqX2W7y+pidt3Lpkx/mQZnUtFTx89R5rGa4TLeX7qAs+dJsBcJpOhF/EQsVFhgtwJzMsZ0Gq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TOOPEQTA; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1735301104; x=1766837104;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WcIekhAguvpAJQc15sG+xo+PFwcUVS69lTUeOcBIsJY=;
+  b=TOOPEQTAWeNWsT8MjKMyC8QGe1wiIkEbzfhsAn5e/FE8sdGD45sQ74hN
+   zQMtcuF74fQt2SJqDdkfiRt3pCWCOjp5EdOLztx9b3uWjRDpIzs5gCJfP
+   xFwXgXan43hR0G9D5mzwcciNIyO+8ZuSu1bCHWy61covB0EPJty2O8eZH
+   i0/nKIuNNzx8XlZon+xcXQ1Fx5Tu3NFy30ptAQZ7voXwA8NvdWfMelwFP
+   q7nohztNoSJM6Y4WCaEGqNVhVn3z8lQND23eaA9DPs9nBZ0rEObaz+YYK
+   KnVdwBNWGIaGYd4BlpDr+Vz7JZCFyv+BdS4Y3a4IP7LF1djRheB3lmtdv
+   Q==;
+X-CSE-ConnectionGUID: 7yQryVXpRw6tDfWJultrSg==
+X-CSE-MsgGUID: i+QG07gtQqi7qNp1n9mGFA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11298"; a="58165572"
+X-IronPort-AV: E=Sophos;i="6.12,269,1728975600"; 
+   d="scan'208";a="58165572"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2024 04:05:03 -0800
+X-CSE-ConnectionGUID: v7jgdhQAQHiFzqTOTwNuRQ==
+X-CSE-MsgGUID: oq9cl1xDQP2G8hZVjKFKlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,269,1728975600"; 
+   d="scan'208";a="99997009"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Dec 2024 04:04:59 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tR95L-0000000CwjQ-413o;
+	Fri, 27 Dec 2024 14:04:55 +0200
+Date: Fri, 27 Dec 2024 14:04:55 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+Cc: "jic23@kernel.org" <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Gedenryd <emil.gedenryd@axis.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Arthur Becker <arthur.becker@sentec.com>,
+	Mudit Sharma <muditsharma.info@gmail.com>,
+	Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+	Julien Stephan <jstephan@baylibre.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Andreas Dannenberg <dannenberg@ti.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] iio: light: opt3001: Add Support for opt3004 light
+ sensor
+Message-ID: <Z26X52u_5i5rsDao@smile.fi.intel.com>
+References: <20241224061321.6048-1-hardevsinh.palaniya@siliconsignals.io>
+ <20241224061321.6048-3-hardevsinh.palaniya@siliconsignals.io>
+ <Z2rRnBGd4qqJXAb5@smile.fi.intel.com>
+ <PN0P287MB2843562E6C965196D05E2BCFFF0C2@PN0P287MB2843.INDP287.PROD.OUTLOOK.COM>
+ <Z2wJ9BLsrLeDD-zb@smile.fi.intel.com>
+ <PN3P287MB2845E6B3A390BE3741CFBF13FF0D2@PN3P287MB2845.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241227-a133-display-support-v1-16-13b52f71fb14@linumiz.com>
-References: <20241227-a133-display-support-v1-0-13b52f71fb14@linumiz.com>
-In-Reply-To: <20241227-a133-display-support-v1-0-13b52f71fb14@linumiz.com>
-To: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Linus Walleij <linus.walleij@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>
-Cc: iommu@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
- linux-phy@lists.infradead.org, 
- Parthiban Nallathambi <parthiban@linumiz.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735297689; l=1043;
- i=parthiban@linumiz.com; s=20241125; h=from:subject:message-id;
- bh=qvS7+D/RTyyMg86CwtqbsAA+5EMqHdzQTTB53paC81Y=;
- b=XNyGVAs9WW8vlM4qOOilUjJeSmld8IS3muoSSmNHF7R0BNHYwWiLQzsMYl1WyxP5KH08pxwbs
- XX/zJxP3xkCCWn9sKa9YqO1pD/IsNIo4ZzA57+3OXY2mrliF2tLuPq7
-X-Developer-Key: i=parthiban@linumiz.com; a=ed25519;
- pk=PrcMZ/nwnHbeXNFUFUS833wF3DAX4hziDHEbBp1eNb8=
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 122.165.245.213
-X-Source-L: No
-X-Exim-ID: 1tR8Do-000bEK-38
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([127.0.1.1]) [122.165.245.213]:50828
-X-Source-Auth: parthiban@linumiz.com
-X-Email-Count: 483
-X-Org: HG=dishared_whb_net_legacy;ORG=directi;
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfOwvjyQHhVowc7gw4hCiplmRXulZMGkrjNYP72j1LYsuKp686ulivbTK0eBbfnzrJBqnkKwTikuJgbl0sTm6zFzSX1svL/QrQxjTr3jEjlBHGPblvzhR
- LAPJrrT3vf9RXuNuAcr3zk1QscisutHXMSo8c4Zbse1G7PDlcGqiCY2IVqBMtGuPzUS5Z2MnEoy4LTbHEKl9X6bKUF8sYJF7tXQ=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PN3P287MB2845E6B3A390BE3741CFBF13FF0D2@PN3P287MB2845.INDP287.PROD.OUTLOOK.COM>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Display clock uses 1 mixer without rotation support is same
-as v3s. There is also a hidden independent display engine
-with independent tcon_top available in A100/A133 bin (based
-on vendor BSP).
+On Thu, Dec 26, 2024 at 06:14:59AM +0000, Hardevsinh Palaniya wrote:
+> > On Wed, Dec 25, 2024 at 09:56:36AM +0000, Hardevsinh Palaniya wrote:
+> > > > On Tue, Dec 24, 2024 at 11:43:16AM +0530, Hardevsinh Palaniya wrote:
 
-Add new compatible for A100/A133 to accommodate the future changes
-for the independent DE.
+...
 
-Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
----
- drivers/clk/sunxi-ng/ccu-sun8i-de2.c | 4 ++++
- 1 file changed, 4 insertions(+)
+> > > > > The OPT3004 sensor shares the same functionality and scale range as
+> > > > > the OPT3001. This Adds the compatible string for OPT3004, enabling
+> > > > > the driver to support it without any functional changes.
+> > > > >
+> > > > > Datasheet: https://www.ti.com/lit/gpn/opt3004
+> > > >
+> > > > >
+> > > >
+> > > > This blank line is not needed.
 
-diff --git a/drivers/clk/sunxi-ng/ccu-sun8i-de2.c b/drivers/clk/sunxi-ng/ccu-sun8i-de2.c
-index 3e28c32050e0..067820ab704d 100644
---- a/drivers/clk/sunxi-ng/ccu-sun8i-de2.c
-+++ b/drivers/clk/sunxi-ng/ccu-sun8i-de2.c
-@@ -342,6 +342,10 @@ static const struct of_device_id sunxi_de2_clk_ids[] = {
- 		.compatible = "allwinner,sun50i-a64-de2-clk",
- 		.data = &sun50i_a64_de2_clk_desc,
- 	},
-+	{
-+		.compatible = "allwinner,sun50i-a100-de2-clk",
-+		.data = &sun8i_v3s_de2_clk_desc,
-+	},
- 	{
- 		.compatible = "allwinner,sun50i-h5-de2-clk",
- 		.data = &sun50i_h5_de2_clk_desc,
+> Regarding the second comment:
+> The blank line was added to differentiate between the commit message and the
+> SoB tag. Are you sure it should be removed?
+
+If I understood the intention properly the Datasheet is supposed to be a tag,
+so there shouldn't be blank lines among the tags in the tag block. With that
+I truly think you should remove that blank line.
+
+...
+
+> > > > >  static const struct of_device_id opt3001_of_match[] = {
+> > > > >       { .compatible = "ti,opt3001", .data = &opt3001_chip_information },
+> > > > >       { .compatible = "ti,opt3002", .data = &opt3002_chip_information },
+> > > > > +     { .compatible = "ti,opt3004", .data = &opt3001_chip_information },
+> > > > >       { }
+> > > > >  };
+> > > >
+> > > > I'm always puzzled why do we need a new compatible for the existing driver
+> > > > data? Is this hardware has an additional feature that driver does not (yet)
+> > > > implement?
+> > >
+> > > OPT3001 and OPT3004 sensors are functionally identical, and there are no
+> > > additional features in the OPT3004 that require separate handling in the driver.
+> > >
+> > > The new compatible string for the OPT3004 is being added, which will allow the
+> > > driver to recognize and support this sensor in the same way it handles the OPT3001.
+> > But why? I understand if you put two compatible strings into the DT to make it
+> > explicit in case of the future developments of the driver, but new compatible
+> > in the driver makes only sense when you have either quirk(s) or feature(s) that
+> > are different to the existing code. Since you haven't added either, what's the
+> > point?
+> 
+> Understood.
+> 
+> I also found a similar case with the ADXL346, which is identical to the ADXL345.
+> In the mainline kernel, a compatible string was added as a fallback in the bindings
+> but was not added to the driver itself.
+> 
+> Thanks for the insight.
+> 
+> In the next version, I will drop this patch and only submit the bindings for the OPT3004.
+> using the fallback mechanism.
+
+But the kernel help test is good to have been updated, as well as having the
+Datasheet link to be in the Git history (kinda documented).
 
 -- 
-2.39.5
+With Best Regards,
+Andy Shevchenko
+
 
 
