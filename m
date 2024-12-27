@@ -1,49 +1,58 @@
-Return-Path: <devicetree+bounces-134270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43B719FD1A1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:54:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F979FD1AA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:58:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5C7918830B5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:54:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65CCD1881220
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EA6145B3E;
-	Fri, 27 Dec 2024 07:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE9F514B07E;
+	Fri, 27 Dec 2024 07:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k8vUSzCK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8012913BC39;
-	Fri, 27 Dec 2024 07:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D8213D893;
+	Fri, 27 Dec 2024 07:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735286041; cv=none; b=EyttpfAvq9nN6sscCpdnn9Bg62jlIf1FZhNi/HjCoZwzx2Sf4Eq1zcaNEcv89pPqEVHK8vaC8fCAIP4Lazo8Mf/G2dDwb7aUw7FbAp6ClkQGOhKmsnP/lzXVfBQNL8pgDiqx7Jf9m6vquO8q1BdxOY/PP/iL7PILuSpkQefvlm0=
+	t=1735286284; cv=none; b=bASvP9w9eerc/Fdg+keQaueUS8V5ef/WTqLu1qCfrZVQ2fJtiMaU63q9WEnCeMV1C3zT2gYcKPS3M9oMrhkT0elu4ZIeQpV0c4F9UtOZBV7Z13rzqTpS3wTzz1N3JQoq6VwmRQ+vR2B5PE8BK4DDAyeHQqWt2gZsk5ZW2XGEAQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735286041; c=relaxed/simple;
-	bh=mH8/oQPJMfUvZk1dXQ7U+eqyCYSa45Oo7LIFidIbSqE=;
+	s=arc-20240116; t=1735286284; c=relaxed/simple;
+	bh=hZnnMoLnLYeiTLvDZgWkBiGL9rGzckdyrR0JJNzph8E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X5DiWaT/SYXbS/4Fyb4Dy01ynusxrq64I3Hm25544bBxtd6hhbi0tt99fubCFmlolwBj6wKwkdgzRVoLq5nPDT2behFwRS5Gv2b0FL9gruGKOgt7LC2ctz7FEYWXk26bNmDig4i+VPAK3MbKzxyU+txob4so55t/0DHluRB8udg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C94FC4CED0;
-	Fri, 27 Dec 2024 07:54:00 +0000 (UTC)
-Date: Fri, 27 Dec 2024 08:53:57 +0100
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org, 
-	sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
-	andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com, 
-	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v4 10/17] dt-bindings: display: rockchip: analogix-dp:
- Add support to get panel from the DP AUX bus
-Message-ID: <uwzrv4jgqqx6ge3lh3if37qvb6w7ubkusohunbn7ukmq5tt6du@e5fwoik4tex2>
-References: <20241226063313.3267515-1-damon.ding@rock-chips.com>
- <20241226063313.3267515-11-damon.ding@rock-chips.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VjMGnj3X20Dr+0pKGl+7LKW/UtoE6XzXwd42liEgdoffUrmLw7uljCJ4NzdhbzzUQf4Ty4XrfeiBh+F/RmfQmVlKMbaOtKre4Gc/GOFA+VRX1By/T61NqRnFzDhVz11bSVuOJ/ngHsMC+YK4EIWcl9vHSmDvE/Q6J7zUtnKMxoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k8vUSzCK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC493C4CED0;
+	Fri, 27 Dec 2024 07:58:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735286283;
+	bh=hZnnMoLnLYeiTLvDZgWkBiGL9rGzckdyrR0JJNzph8E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k8vUSzCKv9lQFyYkfZF5L480BDiGtfq4pSx2cYSEhFT1ioFKLNx5CU6JGovHJzFQx
+	 y0OuvJ6QoErol/JO0oVR8OIkMv+6GyDAc2NzL4NEMfKs10Jb4zTNtg8MSEWZX5leVk
+	 aXa9ECVqn/4HamxoBGinad7Wi20Fuoaut+xrJIl1ufbJm1DSLpomnIky8UfMvmWxxe
+	 CsrHwvSTkLrhYDVBXVlQBG+PjcOn5s+XCDxljmWcTq1MfmgsRAdoJYIdPCfKLNVhbI
+	 1ubYa1p39FCuQfsuj0/YzsY6RGINWG8lPKIg2Jp8wzTGcK24/88SaeZw9/KvOsL7j4
+	 oom3YTX0/ij5g==
+Date: Fri, 27 Dec 2024 08:58:00 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	eraretuya@gmail.com
+Subject: Re: [PATCH v8 3/7] dt-bindings: iio: accel: adxl345: add
+ interrupt-names
+Message-ID: <36gtabgmu7f2mafxzq4siwbf2hocyoudgi7mhkr3v33ajqcn57@xq7l63lrgdxf>
+References: <20241225181338.69672-1-l.rubusch@gmail.com>
+ <20241225181338.69672-4-l.rubusch@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,25 +61,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241226063313.3267515-11-damon.ding@rock-chips.com>
+In-Reply-To: <20241225181338.69672-4-l.rubusch@gmail.com>
 
-On Thu, Dec 26, 2024 at 02:33:06PM +0800, Damon Ding wrote:
-> According to Documentation/devicetree/bindings/display/dp-aux-bus.yaml,
-> it is a good way to get panel through the DP AUX bus.
+On Wed, Dec 25, 2024 at 06:13:34PM +0000, Lothar Rubusch wrote:
+> Add interrupt-names INT1 and INT2 for the two interrupt lines of the
+> sensor.
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> When one of the two interrupt lines is connected, the interrupt as its
+> interrupt-name, need to be declared in the devicetree. The driver then
+> configures the sensor to indicate its events on either INT1 or INT2.
 > 
-> Changes in v4:
-> - Move the dt-bindings commit before related driver commits
+> If no interrupt is configured, then no interrupt-name should be
+> configured, and vice versa. In this case the sensor runs in FIFO BYPASS
+> mode. This allows sensor measurements, but none of the sensor events.
+> 
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
 
-
-Changelog does not go to commit msg.
-
-Please run scripts/checkpatch.pl and fix reported warnings. After that,
-run also and (probably) fix more warnings. Some warnings can be
-ignored, especially from --strict run, but the code here looks like it
-needs a fix. Feel free to get in touch if the warning is not clear.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
