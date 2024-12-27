@@ -1,130 +1,109 @@
-Return-Path: <devicetree+bounces-134246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D57779FD100
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:22:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA0A69FD105
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:24:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7617D1882A0A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:22:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73275163A4E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FB7613DDD3;
-	Fri, 27 Dec 2024 07:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E801448DC;
+	Fri, 27 Dec 2024 07:24:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rsCpJfBc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DnpHTGvz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C251DA4E;
-	Fri, 27 Dec 2024 07:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858351DA4E;
+	Fri, 27 Dec 2024 07:24:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735284150; cv=none; b=CC4w57BV/ktxJBR4q20sUE5Q95/xl115oFQMI/kQZliuzxAayf+AN/skgz8O1tDbGJjax6jymKd5ad6wDRf3XYLj2+PFi9lCsSxav8BMlLlCO1dTSu6/gXo+fHn+gXKbD6NbVdBZ+k5/RQdshwLEHDuC9T1WUDnMeQFBscIfp1M=
+	t=1735284258; cv=none; b=sNyky9iiYzxuxx4enwiYLidrMstdRBwOkrJWjMvmXLVXDxL6hmFQjoAo3TEu79yuGpgxLWzus8X1KrCGDMBeRHs49TOGbz3U6kFDox2llC0knx+lK9GcNWa8Ou7ZgpLdJtB5nzVtHGWO4VGhjUqS9RmQPNrwtg0Edn9Cx/DMzoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735284150; c=relaxed/simple;
-	bh=T1vaXl5C9+j3lCTZbsNb2DubF06/7f89mPCLJb0pzys=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LGc76dFPuNvbluXZRAsV6bWmB3w6P758l8LPq/xizejt5tLaxXVE9pPiKrvPlcgXwWAI95bjVZFiRV+nngmm4iMvvmI3xlC4Suyw0ZhS0aCmo53tY+w+1efBBdYUGchJ8Nzm6hO1cpE+ymaGAYwI9+6lMXwF8QNS2BhVxGexLxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rsCpJfBc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17243C4CED0;
-	Fri, 27 Dec 2024 07:22:24 +0000 (UTC)
+	s=arc-20240116; t=1735284258; c=relaxed/simple;
+	bh=FKfiqhxldTWxKz+iVQbR99XJepNfxu1G8YzV3vCaeV4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hMnhM/bH5GVUnZ+t1A9PQIFPXtdJiXdV99WXfX0MpoyVETAGcHQfozfbrMBrQFKLg2NIy5PBlDe9PukRYcycsEQ3Tyyfuz0oqUIrQtBeIPx6j6ncbgZc0XR2WmGnn+pTNwENccWVmnIv3zLkfVO99S7zGEG9ow8ndH+6ipOj0Yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DnpHTGvz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83933C4CED0;
+	Fri, 27 Dec 2024 07:24:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735284149;
-	bh=T1vaXl5C9+j3lCTZbsNb2DubF06/7f89mPCLJb0pzys=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rsCpJfBcWEjal4Mt3A63pVrd10XxkTQiZcfOrGdBy2IadhB8cgbn854M3RPbSTEbP
-	 yKcJKR07FVjSbr52RiqO78kdXJS70XNp6SWQUoiWF/SfjbUzUfyyJCHMR3kwIZ3gqG
-	 jNKyiNVNpPe7KYWZiKQgsG4mdtLLB2jeE/GLreBaDvsvYItpSv3DAPWnFPHK5XM3ym
-	 lfyzMCv7eyl/MfUD0A6yOqCKHOnQ9mTUhpXC+XzESVaIfL4WKE0RR1x362bOZQehXm
-	 XkaRjskV3KkE0qgmUc8wXV1T2xs06AbfW0/HYrvSPq+PRGu2ulAdu1e3cvqc4WzfEh
-	 bbqXYOFFGH5mg==
-Message-ID: <0815e122-1f77-4f87-bc9d-386cc423c171@kernel.org>
-Date: Fri, 27 Dec 2024 08:22:22 +0100
+	s=k20201202; t=1735284258;
+	bh=FKfiqhxldTWxKz+iVQbR99XJepNfxu1G8YzV3vCaeV4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DnpHTGvzELQi4ilXrQrOGqMOk0PmfRmso0RHTS899n4t9073pdfPmKmjoYcD93IeQ
+	 L0GgACvFkw3PcknP4FOPlIjh6JSlBEnLCQitUnp4FYTSj42vzbYD9EnYafrvzC32C2
+	 3oHUb6q4SlpXVj9fbFGEAK95HdEFynqbQGe7qAqeBuRQw9T9ei5RmLoe9fpn161lHK
+	 FroMxYBdTXsWdfRFVerSFjHkQeKZd+/RuuL9c4QZEYHfWw52yItpY+9GHsWabw57I8
+	 aITjsCCfsd7hUGL490tjgokZZ3Nw5Y9ltpAgFiNE819w2uMFdH4Nr4cM5YeGoUdbcq
+	 6DbKuoam6ni/A==
+Date: Fri, 27 Dec 2024 08:24:15 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
+	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 11/17] dt-bindings: pwm: rockchip: Add
+ rockchip,rk3562-pwm
+Message-ID: <qvr7x4anlxxtpxjywrqjihxyxejw4i73wrh2ibl3hasayew4s2@obyuxce4ez4g>
+References: <20241224094920.3821861-1-kever.yang@rock-chips.com>
+ <20241224094920.3821861-12-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 05/10] dt-bindings: media: Add amlogic,c3-isp.yaml
-To: keke.li@amlogic.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com,
- laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com,
- jacopo.mondi@ideasonboard.com
-References: <20241227-c3isp-v5-0-c7124e762ff6@amlogic.com>
- <20241227-c3isp-v5-5-c7124e762ff6@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241227-c3isp-v5-5-c7124e762ff6@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="54zezqdhae62ynag"
+Content-Disposition: inline
+In-Reply-To: <20241224094920.3821861-12-kever.yang@rock-chips.com>
 
-On 27/12/2024 08:09, Keke Li via B4 Relay wrote:
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vapb
-> +      - const: isp0
-> +
-> +  assigned-clocks: true
-> +
-> +  assigned-clock-rates: true
 
-No, drop these. Request re-review if you add new properties.
+--54zezqdhae62ynag
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 11/17] dt-bindings: pwm: rockchip: Add
+ rockchip,rk3562-pwm
+MIME-Version: 1.0
 
-Best regards,
-Krzysztof
+On Tue, Dec 24, 2024 at 05:49:14PM +0800, Kever Yang wrote:
+> Add rockchip,rk3562-pwm compatible string.
+>=20
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+
+What is your merge plan here? From my POV merging the pwm update via my
+pwm tree would be the easiest. But if you want to let it go via (say)
+arm-soc to have it all in a single tree soon and then base new
+development on top of that, that would be fine for me, too.
+
+In the former case, please tell me. In the latter case:
+
+Acked-by: Uwe Kleine-K=F6nig <ukleinek@kernel.org>
+
+Best regards
+Uwe
+
+--54zezqdhae62ynag
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmduVhwACgkQj4D7WH0S
+/k4g1gf/euWj+DTnb2zE4V27eM419OFeA5x4S86KZ0uCp85R1Py/Yp+UYsm9Se4g
+Bf12EMuLDedAJ+ye72jM8cCD92w8nyOPAxgZRYhJMPy7eMd4R9KLYMwXrMZsqZ9w
+e0W4ufYVFQVtZGyW0dTUVnN2LIJKOCgtmhyQdOjoEGIcPGWdX2UYjqaXE3VzBLik
+yKtxvFZhvkc+GjnNcjtr9At/YlKcoSCweCN0vle1JcOi/qPrXy+WGQJ4xLdEDj5d
+OMNODhIYAuzd2DwxzzlzkKhLlrccEUMyFY15ZkINt8D3ScaKJimmzFYHkCfqjUzD
+Z6UW8hRjMmQNkmOS2bY9/MfQ9INGhQ==
+=wm9h
+-----END PGP SIGNATURE-----
+
+--54zezqdhae62ynag--
 
