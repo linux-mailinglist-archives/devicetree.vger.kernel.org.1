@@ -1,148 +1,150 @@
-Return-Path: <devicetree+bounces-134379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D2FB9FD52B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 15:24:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D919FD53A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 15:36:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF624161437
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 14:24:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20D4D188466E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 14:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FABE1F4E3F;
-	Fri, 27 Dec 2024 14:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C391F5405;
+	Fri, 27 Dec 2024 14:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ut0dNskT"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="YG1iVMf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from omta40.uswest2.a.cloudfilter.net (omta40.uswest2.a.cloudfilter.net [35.89.44.39])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D351F4E3D
-	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 14:24:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A62B6191
+	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 14:36:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.39
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735309487; cv=none; b=O0qKXgV6Je0i70Fnq7Xy5Yy88WdhwG61wC+fXeQvu7HfFlxMA8VFVBBx/BOH+aACtEDzPN69qIpFuv5uc/muN4wlOzQF/MQjA5WTOOyTxXVQGO2pNtQI66GIIan0S5QPLSAFYV91W1VfqtfCH9x60u4q/EuhusgfdiEQajGo/s0=
+	t=1735310215; cv=none; b=ZC29/MhCW203UbAYwLelIqIqey5PjmmtCmILmcdbFPtGMcSFcC5sBKQQXFc6F0nm+1D9hfRAzrgzkSn/s0oFAuHBjel2RWC5YlS14ae6d0teZaXuhrk4s9nSKToVTGs3nJjGTQaxve7N0oBVkR16l5zLxN2YRzRG8y9GWpPoh60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735309487; c=relaxed/simple;
-	bh=yN3VCQ2eEgORihH+VjaLe4jj2hX5YThAKOA+kgDMBeI=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=iyXuG/VR/bqGX625ZSS/fWONGC4Dxu/5mHKgy3A/mkKZmyCRKLKoFRy9AIflEjDOWT3tvN7EtJZj88+3od7rpP6J2RFhzf216u6RGsvvdONYO462+nnwoD3IAjgZC3OwDDF048nipSg5x/PyLjID+46VXX51Pi60RsSzec8Mhkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ut0dNskT; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1735310215; c=relaxed/simple;
+	bh=sCDFXA2d6qIG0HjSf+icovIGvMld5LVg65YZVLam7vw=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Fj4vnb40ljR1giGVQWmZsY773gFBNPdbKfJIFq9lzqCclgi6ivgA6FNXKkm38C3aq/WUJFf95TdVkdM11eypOYg/9FHWnei7q+96Rt83rKZuYH59PgzZJEKt+EfNHvdKSvTD1eBZhroWnPcGprx4PFAMevsf3nxtHAzE6co5JEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=YG1iVMf9; arc=none smtp.client-ip=35.89.44.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
+Received: from eig-obgw-5006a.ext.cloudfilter.net ([10.0.29.179])
+	by cmsmtp with ESMTPS
+	id R46ktExe2vH7lRBSPtKGMe; Fri, 27 Dec 2024 14:36:53 +0000
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+	by cmsmtp with ESMTPS
+	id RBSMtR9GH7mBqRBSOtxkjU; Fri, 27 Dec 2024 14:36:52 +0000
+X-Authority-Analysis: v=2.4 cv=Fewxxo+6 c=1 sm=1 tr=0 ts=676ebb84
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
+ a=IkcTkHD0fZMA:10 a=RZcAm9yDv7YA:10 a=-pn6D5nKLtMA:10 a=VwQbUJbxAAAA:8
+ a=vU9dKmh3AAAA:8 a=CPlf_J6x6-pEMq4byrgA:9 a=QEXdDO2ut3YA:10
+ a=rsP06fVo5MYu2ilr0aT5:22 a=ZCPYImcxYIQFgLOT52_G:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:To:Subject:Cc:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=wKy2kDXPQg5LSJ+WcxFbAZTOLG7mg+guZsqD/SyCt7Y=; b=YG1iVMf9n8nyhxGhXJ9JXjShIz
+	CyyVHB+uRKIVJ9+f3o66/63AWQ+e2tf91kaQlq03ZafdNpCFtSO20QO3/hkxSe3kZz2cMuN+OzSV/
+	gCH7NCp2ujKMEdg+x2fu58mSTaHD3ySNgyVpsQoPtbpHHFpHKT0CqpPYN+MJQ2Y2GY4JyMpuRZHsf
+	QfzCR7j02pPHzgiDiLeZeI3ubt//2OyB5LFWqTbPTRkhmqJoJi+H28/pzQGqEdZlyWTWH6CgYlj7m
+	YYTVSgzuV+COIIuZLeZcXAFZ+Qdrq9iKj3Z4UoIxMCpDDNX1ckqDTEzZVBcEcp5tYbwQ5s/Ibe/N6
+	9vkQx57Q==;
+Received: from [122.165.245.213] (port=40816 helo=[192.168.1.5])
+	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <parthiban@linumiz.com>)
+	id 1tRBS8-003aTF-2w;
+	Fri, 27 Dec 2024 20:06:36 +0530
+Message-ID: <314b6bbe-613e-41a6-955e-50db6e11ef8e@linumiz.com>
+Date: Fri, 27 Dec 2024 20:06:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1735309483;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=X7apG0q46MEHqecnkYUy7rU574wIsENCI9mgJgDKee4=;
-	b=ut0dNskTmiAvABEg8ub9FJjvur5A6EJOgFc6d//pXcwPebwLD+1USNgtK23DCrvT/lnjTH
-	gmSGo0AB7sp1boZaXOOQC5L/7BhFXTgXyr5Dtx5fJb9XnjRozJJ4O7yTb0Q4/azp2+sz7K
-	yPMki01qDID5Vm/5OYIENjPj+kH+h3EUCii/lB1oGWqZqihNiQjwfBg9b8WNTvAF0MQq/l
-	uCKPn1RGcCy0WGShWPUA2u7NN7LWw4bcpH5ktNUD9ZFezy+NnBl46W9s2Si/zAN+ZWENbf
-	ADxXfZAxn9bq/h9pNrUr9hDzWrPgAd7SRzz8r/HtgAeBJjDJZ8GlE99xV9Wy2w==
-Date: Fri, 27 Dec 2024 15:24:42 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Jagan Teki <jagan@edgeble.ai>
-Cc: Kever Yang <kever.yang@rock-chips.com>, Heiko Stuebner
- <heiko@sntech.de>, linux-rockchip@lists.infradead.org, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/4] arm64: dts: rockchip: Add Rockchip RK3588M
-In-Reply-To: <CA+VMnFwjbXbjb5nP6FBASOr0Tz+nSNTx0OoQu31xtLHkoWgE_g@mail.gmail.com>
-References: <20241227133420.169714-1-jagan@edgeble.ai>
- <8f40821508fde291aab01674618c0a2c@manjaro.org>
- <e03da44cd6ae417feeb3de3fbfbff7f9@manjaro.org>
- <CA+VMnFwjbXbjb5nP6FBASOr0Tz+nSNTx0OoQu31xtLHkoWgE_g@mail.gmail.com>
-Message-ID: <340be9d5b8f187ba3eb8bee67fa04905@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+User-Agent: Mozilla Thunderbird
+Cc: parthiban@linumiz.com, iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-phy@lists.infradead.org
+Subject: Re: [PATCH RESEND 00/22] Add support for A100/A133 display
+To: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Linus Walleij <linus.walleij@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>
+References: <20241227-a133-display-support-v1-0-abad35b3579c@linumiz.com>
+Content-Language: en-US
+From: Parthiban <parthiban@linumiz.com>
+Organization: Linumiz
+In-Reply-To: <20241227-a133-display-support-v1-0-abad35b3579c@linumiz.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 122.165.245.213
+X-Source-L: No
+X-Exim-ID: 1tRBS8-003aTF-2w
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.1.5]) [122.165.245.213]:40816
+X-Source-Auth: parthiban@linumiz.com
+X-Email-Count: 9
+X-Org: HG=dishared_whb_net_legacy;ORG=directi;
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfHfBoCqHaPwujRtTDvCU2bS6psocBvULYHazkRhqrs5sdoveQcl/ji5DK9PTCjzSf3cfEi3PvzoSmVMKTXPIQsqDpPGm8ZDMK6oHFA2/I0KRRqOSegfa
+ MAtfa5tg8o36VwaDM1um5Hf1dwK788iscjZ4pOFHfsnxDJ2ZfF3FaDFoEG0p9l6cDnT6vyJdr8wIgwGPtLo9NMmQfSi8GJNxKqY=
 
-On 2024-12-27 15:13, Jagan Teki wrote:
-> On Fri, 27 Dec 2024 at 19:37, Dragan Simic <dsimic@manjaro.org> wrote:
->> On 2024-12-27 14:48, Dragan Simic wrote:
->> > Please see a comment below.
->> >
->> > On 2024-12-27 14:34, Jagan Teki wrote:
->> >> Rockchip RK3588M is the automotive-grade version of RK3588 SoC and
->> >> is operated with -40 °C to +85 °C temparature.
->> >>
->> >> Add rk3588m specific dtsi for adding rk3588m specific operating points
->> >> and other changes to be add in future.
->> >>
->> >> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
->> >> ---
->> >>  arch/arm64/boot/dts/rockchip/rk3588m.dtsi | 7 +++++++
->> >>  1 file changed, 7 insertions(+)
->> >>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588m.dtsi
->> >>
->> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3588m.dtsi
->> >> b/arch/arm64/boot/dts/rockchip/rk3588m.dtsi
->> >> new file mode 100644
->> >> index 000000000000..0bbeee399a63
->> >> --- /dev/null
->> >> +++ b/arch/arm64/boot/dts/rockchip/rk3588m.dtsi
->> >> @@ -0,0 +1,7 @@
->> >> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> >> +/*
->> >> + * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
->> >> + *
->> >> + */
->> >> +
->> >> +#include "rk3588-extra.dtsi"
->> >
->> > I don't think we need or want a separate rk3588m.dtsi file for this
->> > purpose, unless the RK3588M variant actually differs from the regular
->> > RK3588 variant from the software standpoint.  The latter is already
->> > described in rk3588.dtsi, so it should just be included in the new
->> > board dts(i) file.
->> 
->> Actually, after having a look at the downstream code, it seems that
->> the RK3588J and RK3588M variants share the same OPPs, so actually
->> rk3588j.dtsi should be used for the RK3588M variant.  Could you,
->> please, confirm this?
->> 
->> Alas, it seems we've got some serious issues in the OPPs currently
->> defined in rk3588j.dtsi, which I'll double check to make sure I'm not
->> going crazy, :) and submit a patch that fixes those OPPs.
->> 
->> If you could confirm the RK3588M == RK3588J assumption above, I can
->> add some additional clarification to the rk3588j.dtsi file in the
->> above-mentioned fixes.
+On 12/27/24 6:30 PM, Parthiban Nallathambi wrote:
+> This series depends on [1] for the eMMC/MMC controller to work and
+> [2] (lined up for 6.14) which adds support for the sram nodes and
+> display engine extends it's usage. Idea of this series to get initial
+> feedback and adjust, which will be rebased for 6.14 once [2] is merged.
 > 
-> As-far-as-i-know both OPPs were different due to computation grades J
-> for Industrial and M for Automotive. What I saw from downstream
-> linux-6.1-stan-rkr1 was a simple dtsi for M variant and might have
-> changes to add OPPs which I cannot be sure at this point of time. I
-> keep that dtsi as separate even though it is nothing as i was
-> expecting some future changes on OPPs or so.
+> This patch series adds support for A133 display pipeline based on
+> LVDS. dt-bindigs are organized in the start and later with code
+> changes.
+> 
+> PHY is shared between DSI and LVDS, so to control the PHY specific
+> to DSI/LVDS, phy_ops set_mode is introduced. To enable the DSI
+> using set_mode, analog control register MIPI Enable is used, which
+> may not be available for A31 (shares the same driver).
+> 
+> Otherwise, A133 also got hidden independent display engine i.e
+> mixer + tcon top to handle parallel display. But this patch series
+> adds only support for the 1 mixer which is documented.
+> 
+> [1]: https://lore.kernel.org/linux-sunxi/20241109003739.3440904-1-masterr3c0rd@epochal.quest/
+> [2]: https://lore.kernel.org/linux-sunxi/20241218-a100-syscon-v2-0-dae60b9ce192@epochal.quest/
+> 
+> Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
+Apologize for polluting with resend again. My internal mail server got blocked due to
+volume count, which resulted in incomplete series again.
 
-After checking the downstream code again, [*] it seems to me that
-the RK3588J and RK3588M variants share the same OPPs.  Furthermore,
-if the OPPs for the RK3588M variant cannot be defined accurately
-at the moment, I'd suggest that the placeholder .dtsi is avoided
-and that a complete per-variant .dtsi is added later, when the OPPs
-are actually determined and defined.
+I will fix the mail server issue before resending the series. Sorry.
 
-Regarding the assumed issues with the current OPPs in rk3588j.dtsi,
-it's all about the IPA complaining about the same-voltage, lower-
-frequency OPPs being inefficient, which I already argued against.
-I remain committed to proving that to be inaccurate, but until that
-materializes, the current OPPs are there to stay.
+Thanks,
+Parthiban
 
-[*] 
-https://raw.githubusercontent.com/rockchip-linux/kernel/604cec4004abe5a96c734f2fab7b74809d2d742f/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
 
