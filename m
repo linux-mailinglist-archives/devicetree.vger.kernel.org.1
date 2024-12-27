@@ -1,187 +1,208 @@
-Return-Path: <devicetree+bounces-134370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4135A9FD4F3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 14:29:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 493299FD4F6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 14:31:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D30A11883CBD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 13:29:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4A463A11C0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 13:31:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958C41F37BA;
-	Fri, 27 Dec 2024 13:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="HMEf6+kI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1961F236A;
+	Fri, 27 Dec 2024 13:31:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32EA41D319B
-	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 13:29:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86751156F21;
+	Fri, 27 Dec 2024 13:31:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735306188; cv=none; b=LRz4DBdQ7AoWKqFSGdVPPsspSiAwuHZjip1X5Gb6qHu7LAvflXkKYqZkaTGpV8eqbq7NvyZ+HBrjfU+FlD408tTBKK08NbKmsY81mnXmSdDXXWIj57ArEXTT6jydpueIZp5qbBNz6/YoDDZWZEp35GS8zoZgDcZfFWm9WZOQknA=
+	t=1735306287; cv=none; b=KVNEn6ZUdyr+LMvxPh55/tj0pLDWgnQCni8E8AbHAMk5HWoVbd0zgmk4bTXpXoI6tWU9LH2u1vX2rbsyE4bdKqnOi/b1lU5x2MFcDzYrayvasJ5l1om494tp56xhc60yrg5C52CuzZGMkW3ti0J9gqZDoh3X/g8PIe34eaJenkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735306188; c=relaxed/simple;
-	bh=eEmUs+aFWCcI0GBb3YBRP+7KlNDXkeDsFUrdnMOaeEc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IlGX4bv2w6vZ4RplP+0VBqgR3vdADwqt+J3SJJCBSvbH9p8hWvUn50ftBeWA/6bHaJqxIgamfh8TsFTtGWDzdLPOnX2lDTr2E1klaMlirYPXx/v+dzdpomEEMcVv8P50JnbHzgRToIrUm+sLMpFkUsZBZHM1op7470VaSTE0Jmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai; spf=none smtp.mailfrom=edgeble.ai; dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b=HMEf6+kI; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=edgeble.ai
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2164b662090so78168785ad.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 05:29:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1735306186; x=1735910986; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=w6IDrf1UQsBPwLJSTWT95TeUNn5GWIJ2Bqwzoko6qnE=;
-        b=HMEf6+kIL3MYBsBx+B0kulHjz83Y5xoODXJOGgCQsx0e9L8o+JeVlyo0ufv/BnjImk
-         EOd7ILWWqiF+WLFdIJBU2pSrww7R49ZTP5cQLkCIZ6S6BqfoN9FHWmYL/Ulh02pbZIuy
-         hsoyT/u+wHk09SDgYRITC9phRt98bkFFzSVnag4qnws9ot2gMdRn8dILcZPopH98f1/t
-         YNTBzbzz5SI9DhpMljHs6Rm+UT4EZbfgeG4Dk4aZ9cKNpmROZM9eNEuoPaQvC5HXyPii
-         QCB5Ympv/XXXtLJWWub6nZPnv71CcyCc62Or3kbOfiC8EcY0gHuRPuN7Go0Vulm9wxTL
-         ft9Q==
+	s=arc-20240116; t=1735306287; c=relaxed/simple;
+	bh=hRr3pNzD0e6WpcXhNDQJM1fsvYY4RcNy64fnkD88HrQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eSH71C7DXNjT12tXOUNrmEEpHK7ioG9MzQt8Gx5yrTQ32ouS5clj6BcU5XIf7EfRrH1j+BaFmCXu8pJ8KaYjm3ja8BpJA9+mlV/6XItF7kZHtSYXJEFdI8g7UrARxwRC2XknLitamh3OjZsGLCNeXA0vcz4ggFipvljeNHLF+zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4affbb7ef2dso4784626137.0;
+        Fri, 27 Dec 2024 05:31:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735306186; x=1735910986;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w6IDrf1UQsBPwLJSTWT95TeUNn5GWIJ2Bqwzoko6qnE=;
-        b=ws2fJV0AO2TJe79vy1Y5lyS3fKVXAPuKFrMf8y5s7YY7JNeyh3rqttMdku/c06tZ3e
-         xA7hF6wBJ5ThHPFIVrSmGW5K1j/XY3cGWQzA9YmC0yBzY2U0oMvVv0ED0i9lvz2Na+Lc
-         RxEW6mJoYYmLFS1jyU5u4AUF2g7MPg1OgmWgu4CLBGg2ryMUXTvYbd7mQnD5a7Fbu36x
-         sOGWcBYF9JUzQz0vHfJAsBbNyeIh40MhvZpzOcfG8hmc04BWxD179csF9dQCN9cOP2wY
-         3KYH9Z9//P/RGOX1+sGkZGVk6KlFVjv/ED4YzSuzLYxfn59R2JARYHRRTyDGbsStik8w
-         c+nA==
-X-Forwarded-Encrypted: i=1; AJvYcCWMA52QERdMozphPSHfEIGHnOz6+XSKhnIe/EUYceEHo48VlewFx7WCbiYYmzWOYbsx6tUuOQ8bLEIh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNLpPhhWFLY+znfyRJ6lWBojvBZfcfbsfOrWjQXhLWWQVCkrGG
-	S0aYxloGxqu6LcSK+0S1VVIe4NSQ79VYNzq+YLI6EQVIzOcQ3Qo+0l+fOtlIRVY=
-X-Gm-Gg: ASbGnct+IvD0MJJjLYiCr8+L6P8PRhQXcaIWwc+yV67AyycvzHl2hLwGpzEuvdbrY4K
-	6T3VywsK5s5ib55Bf0LIDWLtPIIxgxfPbIAkRkE5/JHideKYQrknlITEtoYa3HGbtpXdcIcLeq0
-	izwmvsnGhNW9zDZe/otUL3bBGFQgVTtWSRZ5bcKKwDQyUn4Zn5yxw9yK/WQr070t3LULM+hghjK
-	+MmLNwyG4pAf60dp/SrNbUsPC2oZ8PuTvgQ2hq6Fj7KEX2mrJSPQGMGt9FjU1jVTNNatKs=
-X-Google-Smtp-Source: AGHT+IG+o5PNLAqY9O3P+IZr12zVMoET16tLK/MND1ykf51ykoLr+pbcQqxGVDb8pd31oedibkO65A==
-X-Received: by 2002:a05:6a00:35c3:b0:726:64a5:5f67 with SMTP id d2e1a72fcca58-72abde09893mr38212752b3a.12.1735306186439;
-        Fri, 27 Dec 2024 05:29:46 -0800 (PST)
-Received: from tops-ThinkPad-E14-Gen-5.. ([103.217.239.66])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad8dbb5asm14510517b3a.93.2024.12.27.05.29.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Dec 2024 05:29:45 -0800 (PST)
-From: Jagan Teki <jagan@edgeble.ai>
-To: Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Jagan Teki <jagan@edgeble.ai>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Subject: [PATCH V2] arm64: dts: rockchip: Enable HDMI1 out for Edgeble-6TOPS Modules
-Date: Fri, 27 Dec 2024 18:59:36 +0530
-Message-Id: <20241227132936.168100-1-jagan@edgeble.ai>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1735306283; x=1735911083;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Oqooa44AzmBAIMBX02bxMmp7g+GcRPDgC5SUGNdvpP0=;
+        b=mSe56jnx2Q+2Mvc+lsh/EQUAgs7QXOyBMOZ09+xmNa8YivPIMnCcQ3MpBkMjgqaViV
+         mY9GMbl583J+depKYYoYgkv2/JpMc8Fqab4urlFms2DUP3CmoeKKs8Tf7Uz2fb5zSRWm
+         lbb0wsTJdEqGcS0BtPEzjtCcdrovuWukOa8/xTNmgU3DKKJmH7h0XvPPPd6eK1YPx8iR
+         FzUCOGSWTR+7Pcfsx77nsiurPASKZHRqfab6fZ1XWkzrBPHwX5mwX7fCx2OPa0g3cKAR
+         fGu1+/9rCPnnAisWuoUQq++EZz4K1LKQOtKqq+WUAZ1cda3qiDEIVoOsmjcJxK+7U4Qx
+         YBfw==
+X-Forwarded-Encrypted: i=1; AJvYcCUM75mClTsO3GZvOOmPbE/Cce2mVzQGGzH1mUjQcNYHXKaKLti/9HZZ9vgiTzBR4YtfhexnNymbrWin@vger.kernel.org, AJvYcCV0eCCGJUTK9Da3F/jxtL3Jxy+FB1ad3BApFW31AeenqeHYvXjFM4CCZeL9AbBeMTrfD2JDWtRVdHDbSZo=@vger.kernel.org, AJvYcCWZcCaLj9VqLVRTr4tEkMvAy7F/e2maty7MBpKK2ndW0glX44KeYyTcX+3f/fZL/DiUt9M52A+0eOxZSYVDjcBfkNk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKtrDnpmmuWmNiDT2YnhOC5IL0fA7Wd1J1odrAaUyvxN3hOcxq
+	KRj7eG9BwX/9sgt37dmHE1oqzInpzSx/BTkreWCcO4etkNkRFsK3cqVDxMho
+X-Gm-Gg: ASbGncubPEG9zT5NMawO7Yvab4RVVYHGSECZhOizoA8D5mLaHbzuwWQLt2a3kuy1+jm
+	UxardHCfzLgqQCUbMViUNyfOhZB/uLg2MP1Vk/36kp8lF0cLRVFlJZbVGbxGT90GJD7mRLTRlTP
+	1K++cpgbCGZHSM3vF3iZNK1KdVb0TS+B9ckvfBd+RxAYbd7bYkMPYRL2/loQeWxuseiitNPosK+
+	E4Gnw2MKJdzyDdUm3AuqDmToDrhoBJ+G3aFqTwKCxu6fX4jEajwSgG7vMCpIpX7NoVkXOx1ONy5
+	XQTjTE+e0UjRnZjcXXc=
+X-Google-Smtp-Source: AGHT+IFHwifhC62JrFmSqklE7cKfq9jtKyjl3AajaATJMOc8IAcm+CMbIWXlY14YiBuRi6AeTgTrgQ==
+X-Received: by 2002:a05:6102:418a:b0:4b0:2d7c:43ca with SMTP id ada2fe7eead31-4b2cc45527cmr21765142137.18.1735306283473;
+        Fri, 27 Dec 2024 05:31:23 -0800 (PST)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4b2bf98ce0fsm2940679137.3.2024.12.27.05.31.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Dec 2024 05:31:23 -0800 (PST)
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4affbb7ef2dso4784623137.0;
+        Fri, 27 Dec 2024 05:31:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVyBWFIxUBuqtV4vA6ROxblc6GHcUI3DIzfZ1TB5qGBzv5nuuMiJwEAmejnw0nKgghLDPqCPCRYgrrK@vger.kernel.org, AJvYcCWFkwnUzsCig7/mTc0gUIno5W9UUpOYrRtotBaPv/uBKul/xCfHKx2xmnb6B2QC0wZeTrobY7wrjvLNbfaaQaK5yIE=@vger.kernel.org, AJvYcCXaQy129s9cUF/wHaU1Z7eetOdaeQnbsHdLTouQnOi8dFzbxbB5r8LeTf4xRB4DQoN44Wkd0FfWbiKE3P0=@vger.kernel.org
+X-Received: by 2002:a05:6102:5689:b0:4af:b94a:3c3e with SMTP id
+ ada2fe7eead31-4b2cc322226mr20735446137.5.1735306282732; Fri, 27 Dec 2024
+ 05:31:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se> <20241121134108.2029925-3-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20241121134108.2029925-3-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 27 Dec 2024 14:31:11 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXwqb7vhUeoMKDDJO5dp-V3LmnURZLSC1_ko=YL=cNyUA@mail.gmail.com>
+Message-ID: <CAMuHMdXwqb7vhUeoMKDDJO5dp-V3LmnURZLSC1_ko=YL=cNyUA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] media: v4l: fwnode: Parse MiPI DisCo for C-PHY line-orders
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Edgeble-6TOPS modules configure HDMI1 for HDMI Out from RK3588.
+Hi Niklas,
 
-Enable it on Edgeble-6TOPS IO Board dtsi.
+On Thu, Nov 21, 2024 at 2:41=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Extend the fwnode parsing to validate and fill in the CSI-2 C-PHY
+> line-orders order properties as defined in MIPI Discovery and
+> Configuration (DisCo) Specification for Imaging.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+> ---
+> * Changes since v1
+> - Use array instead of switch to get printable line order string for
+>   debug output.
+> - Wrap lines harder for 80 chars instead of 100, but keep string formats
+>   on same line even if they break the 80 chars.
 
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Signed-off-by: Jagan Teki <jagan@edgeble.ai>
----
-Changes for v2:
-- Rebase on top of Cristian's series
-https://patchwork.kernel.org/project/linux-rockchip/cover/20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com/
-- Update hdptxphy1
+Thanks for your patch, which is now commit 573b4adddbd22baf
+("media: v4l: fwnode: Parse MiPI DisCo for C-PHY line-orders") in
+media/master.
 
- .../dts/rockchip/rk3588-edgeble-neu6a-io.dtsi | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
+> --- a/drivers/media/v4l2-core/v4l2-fwnode.c
+> +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
+> @@ -250,6 +261,36 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struc=
+t fwnode_handle *fwnode,
+>                 } else {
+>                         pr_debug("no lane polarities defined, assuming no=
+t inverted\n");
+>                 }
+> +
+> +               if (have_line_orders) {
+> +                       fwnode_property_read_u32_array(fwnode,
+> +                                                      "line-orders", arr=
+ay,
+> +                                                      num_data_lanes);
+> +
+> +                       for (i =3D 0; i < num_data_lanes; i++) {
+> +                               static const char * const orders[] =3D {
+> +                                       "ABC", "ACB", "BAC", "BCA", "CAB"=
+, "CBA"
+> +                               };
+> +
+> +                               if (array[i] > 5) {
+> +                                       pr_warn("lane %u invalid line-ord=
+er assuming ABC (got %u)\n",
+> +                                               i, array[i]);
+> +                                       bus->line_orders[i] =3D
+> +                                               V4L2_MBUS_CSI2_CPHY_LINE_=
+ORDER_ABC;
+> +                                       continue;
+> +                               }
+> +
+> +                               bus->line_orders[i] =3D array[i];
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
-index 7125790bbed2..08920344a4b8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-io.dtsi
-@@ -4,12 +4,24 @@
-  */
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- 
- / {
- 	chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	hdmi1-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi1_con_in: endpoint {
-+				remote-endpoint = <&hdmi1_out_con>;
-+			};
-+		};
-+	};
-+
- 	/* Unnamed gated oscillator: 100MHz,3.3V,3225 */
- 	pcie30_port0_refclk: pcie30_port1_refclk: pcie-oscillator {
- 		compatible = "gated-fixed-clock";
-@@ -81,6 +93,26 @@ &combphy2_psu {
- 	status = "okay";
- };
- 
-+&hdmi1 {
-+	status = "okay";
-+};
-+
-+&hdmi1_in {
-+	hdmi1_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi1>;
-+	};
-+};
-+
-+&hdmi1_out {
-+	hdmi1_out_con: endpoint {
-+		remote-endpoint = <&hdmi1_con_in>;
-+	};
-+};
-+
-+&hdptxphy1 {
-+	status = "okay";
-+};
-+
- &i2c6 {
- 	status = "okay";
- 
-@@ -275,3 +307,18 @@ &usb_host1_ohci {
- &usb_host2_xhci {
- 	status = "okay";
- };
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
-+		remote-endpoint = <&hdmi1_in_vp0>;
-+	};
-+};
--- 
-2.34.1
+This does not do any translation (unlike v4l2_fwnode_bus_type_to_mbus()
+to translate from MEDIA_BUS_TYPE_* to V4L2_MBUS_* definitions) ...
 
+> +                               pr_debug("lane %u line order %s", i,
+> +                                        orders[array[i]]);
+> +                       }
+> +               } else {
+> +                       for (i =3D 0; i < num_data_lanes; i++)
+> +                               bus->line_orders[i] =3D
+> +                                       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_AB=
+C;
+> +
+> +                       pr_debug("no line orders defined, assuming ABC\n"=
+);
+> +               }
+>         }
+>
+>         return 0;
+> diff --git a/include/media/v4l2-mediabus.h b/include/media/v4l2-mediabus.=
+h
+> index 5bce6e423e94..e7f019f68c8d 100644
+> --- a/include/media/v4l2-mediabus.h
+> +++ b/include/media/v4l2-mediabus.h
+> @@ -73,6 +73,24 @@
+>
+>  #define V4L2_MBUS_CSI2_MAX_DATA_LANES          8
+>
+> +/**
+> + * enum v4l2_mbus_csi2_cphy_line_orders_type - CSI-2 C-PHY line order
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC: C-PHY line order ABC (default)
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ACB: C-PHY line order ACB
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BAC: C-PHY line order BAC
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BCA: C-PHY line order BCA
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CAB: C-PHY line order CAB
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CBA: C-PHY line order CBA
+> + */
+> +enum v4l2_mbus_csi2_cphy_line_orders_type {
+> +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC,
+> +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ACB,
+> +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BAC,
+> +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BCA,
+> +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CAB,
+> +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CBA,
+> +};
+
+... hence these values must be identical to the corresponding
+MEDIA_BUS_CSI2_CPHY_LINE_ORDER_* in
+include/dt-bindings/media/video-interfaces.h.
+So please provide a safe-guard to make sure they do not become out
+of sync.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
