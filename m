@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-134385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B649FD590
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 16:19:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD429FD58B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 16:19:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5084F18899B1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 15:19:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D1B716804A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 15:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315B61F7579;
-	Fri, 27 Dec 2024 15:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F199B1F7085;
+	Fri, 27 Dec 2024 15:18:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dzQ//AxP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QN+EisPs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8301F7571
-	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 15:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8551482F3
+	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 15:18:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735312734; cv=none; b=gJQMlh4LVEi0j6dfVI18wPcA97g8PBuTvyaYVhKsvTnd3HSY688V+rwyBXX30AmUGGY5UFEwdzfv1Etqt8jiDqq6sjcpbCf6iyfp3TooymZObml/IFwPg1mQo1hFHjUbxSxk5FbuWv0bv/1y8CZk4O1X/kZ90RAHmpppUcKknM0=
+	t=1735312735; cv=none; b=BV0ASDexEpjCv6zaVdxhI1bMf2Sr6+RYWnMoSgA15xblwjue1DPiSGdLGt2O7I6GufKVXmUp7lNpbCw3aXoW/MQ/Kt3bsYJYOLGK1SOS5egdm8+dYgD++xVOqOYnlf9D2X3DK5Itlkcy2Xh2uqIyVeR/VErZGr5XjPwVPgxs/Ss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735312734; c=relaxed/simple;
-	bh=tw6ZEAS9faDIB2cEYF9LXc8hyVuu18NNu4FmTjaXFxQ=;
+	s=arc-20240116; t=1735312735; c=relaxed/simple;
+	bh=5YTHa4eGEJf77KnvTKYeMSXaNSW6u8Zplgoi6QVQbqM=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=N1ejrAL8jJ2dusC3N2nQVMQW2iciT+mjo4nOwRNh7Q+5PoPLCVHPMWKaZppzF+cAw7bQoxaN02M+VS1waiDhEQa+ingRudrjyuS2qaZ3K+vcoeOpR6045gO9g8n9TxOBk+7/D5uaaybl6tEV7EfZVXNpOFpeagr0ZeMXICX8lzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dzQ//AxP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D8CDC4CEDC;
-	Fri, 27 Dec 2024 15:18:53 +0000 (UTC)
+	 Message-Id:Subject; b=WlBHk8/9Uo6bv0fVcrIM09spqUoeLwSz0TXMOOQ9jKQiPiZL+T8of6e/r6HuiR3O7I3JgCHmgOA0PjfEfhyYFY1v6GrYJZ0UHxhfy9r8Ja4WlJoD0UUQMVK7W/PvnII6Jbk98vQvxpmdojHoWSg1cR/mqrEbGNxy9238rIZ/nm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QN+EisPs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BA45C4CEDC;
+	Fri, 27 Dec 2024 15:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735312733;
-	bh=tw6ZEAS9faDIB2cEYF9LXc8hyVuu18NNu4FmTjaXFxQ=;
+	s=k20201202; t=1735312735;
+	bh=5YTHa4eGEJf77KnvTKYeMSXaNSW6u8Zplgoi6QVQbqM=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=dzQ//AxPvYQXZITJ8MjJmIp2+gH+tXJnwy0KolFV1/LCZqCZMRjket7I674G1BXpR
-	 eRU/+BDUlzVnwTIwGY/kcHjnxF96JS5MuMwa03O3pshO1Cg1HG2+T6RpXBXWWHttwq
-	 kTy6/r0ZRs7N5f5ZBU7uLnRed4uJcsPKX42oqLm4PBw4zq5erk13MmCfnkfIOHgBJR
-	 i3SSIzJQvfpsfkzpBEoqZUT/KdgjOkpQE4tYJzByjZxGhNz8uTFpMdSEeMWDIsW63o
-	 RORY7TdZizPINgDT7vo3SdfPHRWKaDYGZT2yWZp9+/YEEREX3f/Tp2bqcGKHbePjSs
-	 rRxbwXm5RPr0g==
-Date: Fri, 27 Dec 2024 09:18:51 -0600
+	b=QN+EisPs5fr9OHhUvbGfLiJkrkQwqGF0hURfjktsHHcKLRrGp2zVg2fWpV6R4ZG9g
+	 PjBYZPdnTcNAaM3kVhnLibrqvRxUxJxguEf7hv9TtjgdLJqo9Hot7njLfAWLjp/UvN
+	 3f+MjhAAkWT6HN7YLbb+NTvxA0gDnGhwYaY5DGhmKfpD5GyN8YCeG5nv3DGq+ETyab
+	 mZCAQTlpXo4i1e6EDTE70D4EyibOaId8v57NUtOQt54i7XeZesRdrsYOtTfBar987c
+	 pcCaJKRtCovqQAmK1mnNoH7Gu63JSvAsJjnfCe2/jLyVulYJxbM5jduA27lcRO+WNZ
+	 DLz7csgJaFZlQ==
+Date: Fri, 27 Dec 2024 09:18:53 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,37 +51,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: dsimic@manjaro.org, sebastian.reichel@collabora.com, 
- michael.riesch@wolfvision.net, alchark@gmail.com, jonas@kwiboo.se, 
- conor+dt@kernel.org, macromorgan@hotmail.com, dmt.yashin@gmail.com, 
- tim@feathertop.org, heiko@sntech.de, linux-rockchip@lists.infradead.org, 
- inindev@gmail.com, devicetree@vger.kernel.org, krzk+dt@kernel.org, 
- liujianfeng1994@gmail.com, marcin.juszkiewicz@linaro.org, jbx6244@gmail.com
+Cc: macromorgan@hotmail.com, marcin.juszkiewicz@linaro.org, 
+ jbx6244@gmail.com, krzk+dt@kernel.org, dmt.yashin@gmail.com, 
+ liujianfeng1994@gmail.com, conor+dt@kernel.org, 
+ sebastian.reichel@collabora.com, heiko@sntech.de, 
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ dsimic@manjaro.org, cristian.ciocaltea@collabora.com, jing@jing.rocks, 
+ michael.riesch@wolfvision.net, cfsworks@gmail.com, tim@feathertop.org, 
+ jonas@kwiboo.se
 To: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20241226005845.46473-1-naoki@radxa.com>
-References: <20241226005845.46473-1-naoki@radxa.com>
-Message-Id: <173531253298.3886427.1210602416910073025.robh@kernel.org>
-Subject: Re: [PATCH v2 0/2] arm64: dts: rockchip: Add Radxa ROCK 5B+
+In-Reply-To: <20241226024630.13702-1-naoki@radxa.com>
+References: <20241226024630.13702-1-naoki@radxa.com>
+Message-Id: <173531253348.3886444.7367728987902291048.robh@kernel.org>
+Subject: Re: [PATCH v3 0/2] rockchip: Add support for RK3582
 
 
-On Thu, 26 Dec 2024 00:58:42 +0000, FUKAUMI Naoki wrote:
-> The Radxa ROCK 5B+ is an upgraded version of the Radxa ROCK 5B.
+On Thu, 26 Dec 2024 02:46:28 +0000, FUKAUMI Naoki wrote:
+> Rockchip RK3582 is a scaled down version of Rockchip RK3588(S).
 > 
-> This patch series introduces a shared .dtsi that can be used on the
-> new Radxa ROCK 5B+, the existing Radxa ROCK 5B, and the upcoming Radxa
-> ROCK 5T.
+> - Dual Cortex-A76 and quad Cortex-A55 CPU
+> - No GPU
+> - 5TOPS NPU
+> - H.264/H.265 video encoder up to 4K@60fps
+> 
+> This patch series adds support for the Radxa E52C compact network
+> computer based on the RK3582.
 > 
 > FUKAUMI Naoki (2):
->   dt-bindings: arm: rockchip: Add Radxa ROCK 5B+
->   arm64: dts: rockchip: Add Radxa ROCK 5B+
+>   dt-bindings: arm: rockchip: Add Radxa E52C
+>   arm64: dts: rockchip: Add Radxa E52C
 > 
->  .../devicetree/bindings/arm/rockchip.yaml     |    5 +
->  arch/arm64/boot/dts/rockchip/Makefile         |    1 +
->  .../boot/dts/rockchip/rk3588-rock-5.dtsi      | 1042 +++++++++++++++++
->  .../boot/dts/rockchip/rk3588-rock-5b-plus.dts |   87 ++
->  4 files changed, 1135 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5.dtsi
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dts
+>  .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3582-radxa-e52c.dts   | 743 ++++++++++++++++++
+>  3 files changed, 750 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
 > 
 > --
 > 2.43.0
@@ -104,14 +108,26 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y rockchip/rk3588-rock-5b-plus.dtb' for 20241226005845.46473-1-naoki@radxa.com:
+New warnings running 'make CHECK_DTBS=y rockchip/rk3582-radxa-e52c.dtb' for 20241226024630.13702-1-naoki@radxa.com:
 
-arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dtb: phy@fee80000: 'phy-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,pcie3-phy.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dtb: keys-0: 'key-0' does not match any of the regexes: '^button-', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/input/adc-keys.yaml#
-arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus.dtb: keys-1: 'key-1' does not match any of the regexes: '^button-', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/input/adc-keys.yaml#
+arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dtb: leds-1: led-1:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+	'r8169-4-4100:00:link' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern', 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash', 'kbd-capslock', 'mtd', 'nand-disk', 'netdev', 'none', 'rc-feedback', 'torch', 'usb-gadget', 'usb-host', 'usbport']
+	'r8169-4-4100:00:link' does not match '^cpu[0-9]*$'
+	'r8169-4-4100:00:link' does not match '^hci[0-9]+-power$'
+	'r8169-4-4100:00:link' does not match '^mmc[0-9]+$'
+	'r8169-4-4100:00:link' does not match '^phy[0-9]+tx$'
+	from schema $id: http://devicetree.org/schemas/leds/leds-pwm.yaml#
+arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dtb: leds-1: led-1: Unevaluated properties are not allowed ('linux,default-trigger' was unexpected)
+	from schema $id: http://devicetree.org/schemas/leds/leds-pwm.yaml#
+arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dtb: leds-1: led-2:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+	'r8169-3-3100:00:link' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'disk-read', 'disk-write', 'timer', 'pattern', 'audio-micmute', 'audio-mute', 'bluetooth-power', 'flash', 'kbd-capslock', 'mtd', 'nand-disk', 'netdev', 'none', 'rc-feedback', 'torch', 'usb-gadget', 'usb-host', 'usbport']
+	'r8169-3-3100:00:link' does not match '^cpu[0-9]*$'
+	'r8169-3-3100:00:link' does not match '^hci[0-9]+-power$'
+	'r8169-3-3100:00:link' does not match '^mmc[0-9]+$'
+	'r8169-3-3100:00:link' does not match '^phy[0-9]+tx$'
+	from schema $id: http://devicetree.org/schemas/leds/leds-pwm.yaml#
+arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dtb: leds-1: led-2: Unevaluated properties are not allowed ('linux,default-trigger' was unexpected)
+	from schema $id: http://devicetree.org/schemas/leds/leds-pwm.yaml#
 
 
 
