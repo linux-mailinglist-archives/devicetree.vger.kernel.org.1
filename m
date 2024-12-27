@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-134292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E5529FD232
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:45:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E959FD23E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:50:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 126473A06C7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:45:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23832163093
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:50:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6993D14BF87;
-	Fri, 27 Dec 2024 08:45:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B76C4154457;
+	Fri, 27 Dec 2024 08:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qWdnReCo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CIj2NTRn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C80013B792;
-	Fri, 27 Dec 2024 08:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88E931876;
+	Fri, 27 Dec 2024 08:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735289115; cv=none; b=pvq4eiBr+HURes0Nm2y2cDHYKndD9SI7rWQAoLfo/u0l0BhH5Vz/8pnouQXq1rm0S63txdKJPhKcdzS8tFD3ixmzw4zEAZ1mBpEmmTUVwuauntNrG/uRoCuVlvkXPbJTVyFwALnDi5iAIT22h+Br8VWzLtN++i1b/TCRALZb+Ps=
+	t=1735289434; cv=none; b=oShRura9+fawNxG9jYKuR6rZTgQimQw6q4hQr9GAy5rKSX3sYX4zE0Fkkd4c87Ku7iisO7719trvwN7jNuYxOK5hrCHsqPyCKEhYEh5+t8Mccn32AbVsCNJGb1BWLNSEKABEnXkIYDzxRJJqHRWyXdWRq/yq/RC8yUJm/s7D/sA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735289115; c=relaxed/simple;
-	bh=CG+D3PLeFKUojrZy89Rw11jTjHomRQ4XSvONxfB6FpU=;
+	s=arc-20240116; t=1735289434; c=relaxed/simple;
+	bh=J1SodRkQ5CDrlHwM5jbelDUEQA2XquKaw1oB+fDXDgU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oWnyo6isExmCRcFoywmgrm6clixIm5vNhJriFjqfv1FRkQbzHzky5iYiszSMDgPjKXLOhqvqDDKVaqE5Qs3LO8j7/H8hlMUeDComXTI3gKOvSkj8vi3xyjByC6Od8+sZ2H82pmYm+V+PKxQl6d8lYMiQpe39XK/NbdbWMYr+s7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qWdnReCo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CEB1C4CED0;
-	Fri, 27 Dec 2024 08:45:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hH8f9TPQ0DIKnms19gplbZkEKBgesBtIuh+ZVDmC8KuvF7zMEiJ2D398artoaLbWIjOeF47LFIAUpDrX6Ivfa10UPRq4DDAvs2VTZUXYLchcIxdBQ8aV2qiQKlos5D9ftJsPrr2mfSnoLtvu+6btqwogNfL4JOQsj/ty4nvxOdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CIj2NTRn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 909D3C4CED0;
+	Fri, 27 Dec 2024 08:50:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735289114;
-	bh=CG+D3PLeFKUojrZy89Rw11jTjHomRQ4XSvONxfB6FpU=;
+	s=k20201202; t=1735289434;
+	bh=J1SodRkQ5CDrlHwM5jbelDUEQA2XquKaw1oB+fDXDgU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qWdnReCo0icfO9xFhltGXtCftoiymV53pXSowoMb/a+UOmkfRxGVtliBus1nfUM/P
-	 d3wn7J74fIcprpR/XClb0O5uI7VEwR1Cxak2jwhm8J+mG5SHKsXgfV1cjzq1pwPGEc
-	 XGLKRxZfmcCatE8Qt+bHyW9o5HNDSMUtSydbOgv4hh7OcQVemu5Jeh1eZ5H2YP+5vX
-	 OWxHtoJQD9sM78SI76b4jDDcvI8rAOXE4ybRI40ZwYF911HLHXKF3Kp54iI4W1YSQ3
-	 WbDa+9ee17uUntwlK/cOFEMJ6glRXGD6A3LfAfJVekPhvSQkEsXyakcVzYokBoMqQn
-	 H/HrGwTGcJuEQ==
-Date: Fri, 27 Dec 2024 09:45:10 +0100
+	b=CIj2NTRnqB4Qic/Af8EbU8qNSnH043B+nTfX9EAWQsUKofrlpF2woXtrBmjqWgREH
+	 mFAfU/j5H1DQBTKsXoLHXxvyfQBW2a0o0CsgtpIL31P59vzXPY6QBIBfbho6HgJZXq
+	 XN9nO57rvYGAG5zdeZtefHSbgamGBnSvNt/jQiELlmIppZYy8+UFBqQTJYM8VGyg/Z
+	 jqEhA28MBODYnS6fAL89zWFMZYevg42UMalGnTFFcVDQjvKLQzjvu5Kasl96h9fTKO
+	 lmNJVSMh04qD/eUNnorby8wmDHtVu+TgeObVXlDLLsTs4r7JDvj6S8Wvw45uGK/qB/
+	 2pVRdcURQLJLg==
+Date: Fri, 27 Dec 2024 09:50:31 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-Cc: jic23@kernel.org, krzk+dt@kernel.org, 
-	andriy.shevchenko@linux.intel.com, Lars-Peter Clausen <lars@metafoo.de>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Emil Gedenryd <emil.gedenryd@axis.com>, Andreas Dannenberg <dannenberg@ti.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: iio: light: opt3001: add compatible for
- opt3004
-Message-ID: <x6rl2gmvwkn7lidilo23lxwqwwkilesymo7lxk2uygvtietemh@qhbx4lj6r7eh>
-References: <20241226131736.23095-1-hardevsinh.palaniya@siliconsignals.io>
+To: Kent Libetario <Kent.Libetario@analog.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: add adi,max42500.yaml
+Message-ID: <bsxt5jk7snbweg6ocnlizsmmvlts5rmmpxxwpqqn75kqtperoa@u4faqhvioqon>
+References: <20241220012003.9568-1-Kent.Libetario@analog.com>
+ <20241220012003.9568-2-Kent.Libetario@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,52 +60,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241226131736.23095-1-hardevsinh.palaniya@siliconsignals.io>
+In-Reply-To: <20241220012003.9568-2-Kent.Libetario@analog.com>
 
-On Thu, Dec 26, 2024 at 06:47:35PM +0530, Hardevsinh Palaniya wrote:
-> Add Support for OPT3004 Digital ambient light sensor (ALS) with
-> increased angular IR rejection.
+On Fri, Dec 20, 2024 at 09:20:02AM +0800, Kent Libetario wrote:
+> Add documentation for devicetree bindings for MAX42500
 > 
-> The OPT3004 sensor shares the same functionality and scale range as
-> the OPT3001. the compatible string is added with fallback support to
-> ensure compatibility.
-> 
-> Datasheet: https://www.ti.com/lit/gpn/opt3004
-> 
-> Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-> ---
-> 
-> v1 -> v2:
-> 
-> - Use fallback mechanism for the OPT3004.
-> - Drop 2/2 patch from the patch series[1] as per feedback.
-> 
-> Link[1]: https://lore.kernel.org/linux-iio/20241224061321.6048-1-hardevsinh.palaniya@siliconsignals.io/T/#t
-> 
-> ---
->  .../devicetree/bindings/iio/light/ti,opt3001.yaml      | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/ti,opt3001.yaml b/Documentation/devicetree/bindings/iio/light/ti,opt3001.yaml
-> index 67ca8d08256a..56844710e79a 100644
-> --- a/Documentation/devicetree/bindings/iio/light/ti,opt3001.yaml
-> +++ b/Documentation/devicetree/bindings/iio/light/ti,opt3001.yaml
-> @@ -15,9 +15,13 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - ti,opt3001
-> -      - ti,opt3002
-> +    oneOf:
-> +      - enum:
-> +          - ti,opt3001
-> +          - ti,opt3002
-> +      - items:
-> +          - const: ti,opt3001
-> +          - const: ti,opt3004
+> Signed-off-by: Kent Libetario <Kent.Libetario@analog.com>
 
-3004 is not the fallback.
+Why not adding it to trivial devices? Aren't you missing some
+properties, like VDD, EN and RESET?
 
 Best regards,
 Krzysztof
