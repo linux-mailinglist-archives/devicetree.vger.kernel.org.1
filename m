@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-134283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ACA79FD1F5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:28:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F2779FD1FA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:31:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DE101883986
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:28:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEE7B161F33
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7318915383E;
-	Fri, 27 Dec 2024 08:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D7D12FB1B;
+	Fri, 27 Dec 2024 08:31:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IdwEqomw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KzxifEoX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D8314AD3D;
-	Fri, 27 Dec 2024 08:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC542BAF7;
+	Fri, 27 Dec 2024 08:31:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735288107; cv=none; b=PNhPeS/ZkkXgsANe6pqgL6PQ2EapWkAxSXrHBrXW2heYK5x4PrHJMPPWWDSHCdmdSvRWlcDfiOG6XZbhch89DTN/gsx5K00KHxFTCUuF96vq1rLiN58apXI2B+1/ZT6PE/kzXX3cUljov/nDOdvqj2nYc8X6EyeJneuSVqndyx4=
+	t=1735288277; cv=none; b=SuoQFAsdQL6GB8/nIu0asFKwdK/nX3Ys4b8vhlmEYmTJ35rI+8iu8ynyJL5A7s9LRSojAw/Rg6OD1tZCdNATFl+v4GXtXaDx02viWZ8PM0zWDt1AhGpyLM5tzHod2a/9q6rzcDA3ubjB8hJ/ev5Yc6b4Fdymx4W0TByo2Rs8ygE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735288107; c=relaxed/simple;
-	bh=p8zJeNpOL7BNADVFRZy7kL0pcKZuH29D+UKM40qaNt0=;
+	s=arc-20240116; t=1735288277; c=relaxed/simple;
+	bh=1J+WJdIlpcxBIfm9WuI/6Vi2vpa1pvsJuHCfl4h/3ac=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BhAs52aZTT1On9d9VZfsCYkKXZnLKsFczoVQHCEvjpI4Ybtw367nW/2aMCE7HvETQrPpNaXVuUpsDciiI4ZasT5tbliwZqnYHD9pRL0p3IG3Z3xgmjju7QuNqV5fePKyaVllATCTtZuAHPUBcaqB0Je1fKiPd+hf2hsbnYdkggE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IdwEqomw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6393C4CED0;
-	Fri, 27 Dec 2024 08:28:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VQChw0/dYELzPKp1WTdD4Rsuc3EQLbgnJmFVS1HaHU/ozV2Rf3gmN/Y1IvpQvDOX6g7JS4TPAhHqcVorAe7jXcLxY4bTRmtWJH84SiuSxNau8q32QmXM1yt2cnlbC4vaKYg2w1711E+BUx3+KTkQKAKg2dft8RNLXO/mRGxc7hE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KzxifEoX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD139C4CED0;
+	Fri, 27 Dec 2024 08:31:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735288106;
-	bh=p8zJeNpOL7BNADVFRZy7kL0pcKZuH29D+UKM40qaNt0=;
+	s=k20201202; t=1735288277;
+	bh=1J+WJdIlpcxBIfm9WuI/6Vi2vpa1pvsJuHCfl4h/3ac=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IdwEqomwr07J32xV1rjUBDpb/fkHGCsOjExRz2sOdvKz2W33GbeCkKKMZilA2gKPx
-	 KtPHw1JCZMqlA6AUr3bqiJSO3x9jfF46InAhKCBH3Uqc73A7FFbTC48+QzKWyPzU/v
-	 r9o6/rkGVcdvfM9B62IrZlrUAXsc5AnIqxu95uKLfRyME3QrbGG6JDCCQV1Dk7yV4a
-	 90MuHXbB3F469uLcYuQLfmzQnVe6fCbAe4KomuviANMiQJF8kKWxPB1+0W4u5Oz1Ys
-	 fUd6I4SzOhldP807P/yxwRB+KYevQ4zsE7T4PolWY+ig5uv7FQv7oipnMfYbRoCphd
-	 rMD5ytqMPAoYw==
-Date: Fri, 27 Dec 2024 09:28:23 +0100
+	b=KzxifEoXPYoAubCx4KW/WpzJUbauZZd54NrBpkh0sBV4fzJn0gFzV8wQXgi2cH954
+	 Jm3zxXAgT1DKNORuU/xmYsrfJqR/sxWCgtDflOZiQIYsE10AsdJY4gviX0AFqYkKqJ
+	 +M8OgphyWpuf/1Ho5WwK/N7lRa0aKZRxikZJTLyiTTZvy/NZzRQ76i/wNZ1RvXjq87
+	 7wSPOnD+nKKMATSXGLv4AIscvi4RMbc/rSjrLpD4cJxdeMcUaPGxCCzJwGt5TGFT5Q
+	 RE+eFYWw9MfDvdSCuUqWbWx+c9EhHl1mmwkIxfQqw5qeukvXJT96tPULgXvxi/KCtw
+	 5EgOIUQreDIlg==
+Date: Fri, 27 Dec 2024 09:31:14 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Kever Yang <kever.yang@rock-chips.com>
 Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
-	Finley Xiao <finley.xiao@rock-chips.com>, Liang Chen <cl@rock-chips.com>, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock, reset: rockchip: Add support
- for rk3562
-Message-ID: <z7jb32foci6bamqqddkkp34hazi2itp6uclarsoi5pkrgso2go@bxflagkaciq6>
-References: <20241224092310.3814460-1-kever.yang@rock-chips.com>
- <20241224092310.3814460-2-kever.yang@rock-chips.com>
+	Finley Xiao <finley.xiao@rock-chips.com>, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: add power binding header for
+ RK3562 SoC
+Message-ID: <f32nzf4x4mhmiyvby7b5g5ypre2457a7ziewglhjqfndfxhhnz@qxfagfw3bcsx>
+References: <20241224093920.3816071-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,79 +60,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241224092310.3814460-2-kever.yang@rock-chips.com>
+In-Reply-To: <20241224093920.3816071-1-kever.yang@rock-chips.com>
 
-On Tue, Dec 24, 2024 at 05:23:09PM +0800, Kever Yang wrote:
+On Tue, Dec 24, 2024 at 05:39:19PM +0800, Kever Yang wrote:
 > From: Finley Xiao <finley.xiao@rock-chips.com>
 > 
-> Add the dt-bindings header for the rk3562, that gets shared between
-> the clock controller and the clock references in the dts.
-> Add softreset ID for rk3562.
+> According to a description from TRM, add all the power domains.
 > 
 > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> Signed-off-by: Liang Chen <cl@rock-chips.com>
 > Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
 > ---
 > 
 > Changes in v2:
-> - rename the file to rockchip,rk3562-cru.h
-> - remove CLK_NR_CLKS
-> - add new file for reset ID
-> - update to use dual license
+> - rename to rockchip,rk3562-power.h
+> - update the subject
+> - use dual license
 > 
->  .../dt-bindings/clock/rockchip,rk3562-cru.h   | 377 ++++++++++++++++++
->  .../dt-bindings/reset/rockchip,rk3562-cru.h   | 360 +++++++++++++++++
+>  .../dt-bindings/power/rockchip,rk3562-power.h | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
 
 
-No, that's not a separate patch. Headers *ALWAYS* go with the bindings
-patch.
+No, where is the actual binding?
 
+Your split of patches is not bisectable, illogical and not helping.
+Bindings always go with the drivers.
 
->  2 files changed, 737 insertions(+)
->  create mode 100644 include/dt-bindings/clock/rockchip,rk3562-cru.h
->  create mode 100644 include/dt-bindings/reset/rockchip,rk3562-cru.h
+>  create mode 100644 include/dt-bindings/power/rockchip,rk3562-power.h
 > 
-> diff --git a/include/dt-bindings/clock/rockchip,rk3562-cru.h b/include/dt-bindings/clock/rockchip,rk3562-cru.h
+> diff --git a/include/dt-bindings/power/rockchip,rk3562-power.h b/include/dt-bindings/power/rockchip,rk3562-power.h
 > new file mode 100644
-> index 000000000000..ad07ad3a12ad
+> index 000000000000..d728c9ee908d
 > --- /dev/null
-> +++ b/include/dt-bindings/clock/rockchip,rk3562-cru.h
-> @@ -0,0 +1,377 @@
+> +++ b/include/dt-bindings/power/rockchip,rk3562-power.h
+> @@ -0,0 +1,35 @@
 > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
 
-Why not using license requested by checkpatch?
-
-> +/*
-> + * Copyright (c) 2022-2024 Rockchip Electronics Co., Ltd.
-> + * Author: Finley Xiao <finley.xiao@rock-chips.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_ROCKCHIP_RK3562_H
-> +#define _DT_BINDINGS_CLK_ROCKCHIP_RK3562_H
-> +
-> +/* cru-clocks indices */
-> +
-> +/* cru plls */
-> +#define PLL_APLL			1
-
-Start with 0. Your other binding also starts with 0, so be consistent.
-
-> +#define PLL_GPLL			2
-> +#define PLL_VPLL			3
-> +#define PLL_HPLL			4
-> +#define PLL_CPLL			5
-> +#define PLL_DPLL			6
-> +
-> +/* cru clocks */
-
-Missing clock for 7. You are not supposed to have any holes here.
-
-
-
-
-> +#define ARMCLK				8
-> +#define CLK_GPU				9
-> +#define ACLK_RKNN			10
+And why not license requested by checkpatch?
 
 Best regards,
 Krzysztof
