@@ -1,109 +1,128 @@
-Return-Path: <devicetree+bounces-134247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA0A69FD105
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:24:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A24E9FD10C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:25:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73275163A4E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:24:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 112793A05E6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E801448DC;
-	Fri, 27 Dec 2024 07:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC860145348;
+	Fri, 27 Dec 2024 07:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DnpHTGvz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hOL8jJDb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858351DA4E;
-	Fri, 27 Dec 2024 07:24:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3668D13665A;
+	Fri, 27 Dec 2024 07:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735284258; cv=none; b=sNyky9iiYzxuxx4enwiYLidrMstdRBwOkrJWjMvmXLVXDxL6hmFQjoAo3TEu79yuGpgxLWzus8X1KrCGDMBeRHs49TOGbz3U6kFDox2llC0knx+lK9GcNWa8Ou7ZgpLdJtB5nzVtHGWO4VGhjUqS9RmQPNrwtg0Edn9Cx/DMzoI=
+	t=1735284312; cv=none; b=cMyaUg3DgD5SGbuio11Q5HOO14GntH4HNS1DtdgWifEgPnZdDjsXeQ2KR/GbniJXs64n5QVYn+14foOUXTarxYBdcZiQMQOUb+CCZngD3gVcfZhQ8q0AGtxYAMSz9DWICQuxx0oBPrAqPLnC8CInSQkVEOLRoJlh0VI7u6WA2pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735284258; c=relaxed/simple;
-	bh=FKfiqhxldTWxKz+iVQbR99XJepNfxu1G8YzV3vCaeV4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hMnhM/bH5GVUnZ+t1A9PQIFPXtdJiXdV99WXfX0MpoyVETAGcHQfozfbrMBrQFKLg2NIy5PBlDe9PukRYcycsEQ3Tyyfuz0oqUIrQtBeIPx6j6ncbgZc0XR2WmGnn+pTNwENccWVmnIv3zLkfVO99S7zGEG9ow8ndH+6ipOj0Yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DnpHTGvz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83933C4CED0;
-	Fri, 27 Dec 2024 07:24:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735284258;
-	bh=FKfiqhxldTWxKz+iVQbR99XJepNfxu1G8YzV3vCaeV4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DnpHTGvzELQi4ilXrQrOGqMOk0PmfRmso0RHTS899n4t9073pdfPmKmjoYcD93IeQ
-	 L0GgACvFkw3PcknP4FOPlIjh6JSlBEnLCQitUnp4FYTSj42vzbYD9EnYafrvzC32C2
-	 3oHUb6q4SlpXVj9fbFGEAK95HdEFynqbQGe7qAqeBuRQw9T9ei5RmLoe9fpn161lHK
-	 FroMxYBdTXsWdfRFVerSFjHkQeKZd+/RuuL9c4QZEYHfWw52yItpY+9GHsWabw57I8
-	 aITjsCCfsd7hUGL490tjgokZZ3Nw5Y9ltpAgFiNE819w2uMFdH4Nr4cM5YeGoUdbcq
-	 6DbKuoam6ni/A==
-Date: Fri, 27 Dec 2024 08:24:15 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Kever Yang <kever.yang@rock-chips.com>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
-	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 11/17] dt-bindings: pwm: rockchip: Add
- rockchip,rk3562-pwm
-Message-ID: <qvr7x4anlxxtpxjywrqjihxyxejw4i73wrh2ibl3hasayew4s2@obyuxce4ez4g>
-References: <20241224094920.3821861-1-kever.yang@rock-chips.com>
- <20241224094920.3821861-12-kever.yang@rock-chips.com>
+	s=arc-20240116; t=1735284312; c=relaxed/simple;
+	bh=MQGxUlCth0J5+jnrABNvPAM2v/hXnFQ0CEMCOWQPDUQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MIYZkOFqH2ThuVKqKHCTAIAsy7m6BkpsuLPYQ/koXg0wAyvIKHTCUzU9cunZgdI3oDDdUyNvuCZ2NmZ2XtqwLv2Z/B8jMbdusiFY+L+LM+8zd9od3jyHXCmBtdBPX/MhKYm81SwJMNz9zGlJG3WQ5XIlfe9EOR7EnpdJsoywQ38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hOL8jJDb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BR2VeUt018877;
+	Fri, 27 Dec 2024 07:25:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Ysx3tSwuMiivqxmSkkVEwe
+	U5Nz+PhBGGTedaO8ubbZs=; b=hOL8jJDbS7laqAdU7UrF63Waea5lLjhffX5vje
+	FkNmzZpWzV2CkXguuRB4x2LN7JQeTUfVGrvJPXIFI6yGrw9sCXSKqkDSGbppzbWA
+	z08ztTjmZO2ire/WB7tBiUooV2c7To9IYmEuUz+BQgPiet3It3zQa6wSpJ0M/38J
+	bSxjc9mEhHgZkgyEAkiIK0LHZUikEnBSDwRepamZSZN7mK+kH9Gjz6VGmKbvOW4C
+	1ensbVhD5gkBwj0muZqJBVm/woiSv9eGKNeIdp/b9GeMftMsbaZB7kxTI1bZyOWn
+	D0+5X1KXnfu7csrtBZyQXLZwXWdmDR41rbGm3oNL/WMTyDHA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43skhgsfam-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Dec 2024 07:25:06 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BR7P5CJ030164
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Dec 2024 07:25:05 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 26 Dec 2024 23:25:01 -0800
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <andersson@kernel.org>, <linus.walleij@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <konradybcio@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+CC: <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
+Subject: [PATCH v3 0/6] Add SPI4 support for IPQ5424
+Date: Fri, 27 Dec 2024 12:54:40 +0530
+Message-ID: <20241227072446.2545148-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="54zezqdhae62ynag"
-Content-Disposition: inline
-In-Reply-To: <20241224094920.3821861-12-kever.yang@rock-chips.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: JyaTzsoXqDmDpY-zU3I0si_HCks3Vfxy
+X-Proofpoint-GUID: JyaTzsoXqDmDpY-zU3I0si_HCks3Vfxy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=951 adultscore=0 mlxscore=0 bulkscore=0
+ suspectscore=0 spamscore=0 priorityscore=1501 phishscore=0 malwarescore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412270062
+
+Add SPI4 node to the IPQ5424 device tree and update the relevant
+bindings, GPIO pin mappings accordingly.
+
+Changes in V3:
+	- Rename SPI0 to SPI4 because SPI protocol runs on serial engine 4
+	- Fixed all review comments from Konrad Dybico
+	- Patch #1 to #4 added in V3 to rename SPI0 clocks, gpio pins to SPI4.  
+	- Detailed change logs are added to the respective patches
+
+V2 can be found at:
+https://lore.kernel.org/linux-arm-msm/20241217091308.3253897-1-quic_mmanikan@quicinc.com/
+
+V1 can be found at:
+https://lore.kernel.org/linux-arm-msm/20241122124505.1688436-1-quic_mmanikan@quicinc.com/
+
+Manikanta Mylavarapu (6):
+  dt-bindings: pinctrl: qcom: rename spi0 pins on IPQ5424
+  dt-bindings: clock: qcom: gcc-ipq5424: add spi4 clocks
+  pinctrl: qcom: ipq5424: rename spi0 pins
+  clk: qcom: ipq5424: rename spi0 clocks
+  arm64: dts: qcom: ipq5424: add spi4 node
+  arm64: dts: qcom: ipq5424: configure spi4 node for rdp466
+
+ .../bindings/pinctrl/qcom,ipq5424-tlmm.yaml   |  2 +-
+ arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts   | 43 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi         | 11 +++++
+ drivers/clk/qcom/gcc-ipq5424.c                | 20 ++++-----
+ drivers/pinctrl/qcom/pinctrl-ipq5424.c        | 32 +++++++-------
+ include/dt-bindings/clock/qcom,ipq5424-gcc.h  |  2 +
+ 6 files changed, 83 insertions(+), 27 deletions(-)
 
 
---54zezqdhae62ynag
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 11/17] dt-bindings: pwm: rockchip: Add
- rockchip,rk3562-pwm
-MIME-Version: 1.0
+base-commit: 8155b4ef3466f0e289e8fcc9e6e62f3f4dceeac2
+-- 
+2.34.1
 
-On Tue, Dec 24, 2024 at 05:49:14PM +0800, Kever Yang wrote:
-> Add rockchip,rk3562-pwm compatible string.
->=20
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-
-What is your merge plan here? From my POV merging the pwm update via my
-pwm tree would be the easiest. But if you want to let it go via (say)
-arm-soc to have it all in a single tree soon and then base new
-development on top of that, that would be fine for me, too.
-
-In the former case, please tell me. In the latter case:
-
-Acked-by: Uwe Kleine-K=F6nig <ukleinek@kernel.org>
-
-Best regards
-Uwe
-
---54zezqdhae62ynag
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmduVhwACgkQj4D7WH0S
-/k4g1gf/euWj+DTnb2zE4V27eM419OFeA5x4S86KZ0uCp85R1Py/Yp+UYsm9Se4g
-Bf12EMuLDedAJ+ye72jM8cCD92w8nyOPAxgZRYhJMPy7eMd4R9KLYMwXrMZsqZ9w
-e0W4ufYVFQVtZGyW0dTUVnN2LIJKOCgtmhyQdOjoEGIcPGWdX2UYjqaXE3VzBLik
-yKtxvFZhvkc+GjnNcjtr9At/YlKcoSCweCN0vle1JcOi/qPrXy+WGQJ4xLdEDj5d
-OMNODhIYAuzd2DwxzzlzkKhLlrccEUMyFY15ZkINt8D3ScaKJimmzFYHkCfqjUzD
-Z6UW8hRjMmQNkmOS2bY9/MfQ9INGhQ==
-=wm9h
------END PGP SIGNATURE-----
-
---54zezqdhae62ynag--
 
