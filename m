@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-134228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 118529FD0B2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:01:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08C709FD0B4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:03:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BB091639BD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:01:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CD091883770
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5086A13212A;
-	Fri, 27 Dec 2024 07:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A3413CA97;
+	Fri, 27 Dec 2024 07:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oaoDwPxO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r6KvYNQJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26DFB1E495;
-	Fri, 27 Dec 2024 07:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A3F13BC39;
+	Fri, 27 Dec 2024 07:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735282865; cv=none; b=q0rpzzn3rDmDe4NFm22vS/L2iG76RVFAl3VwQv4yvPkZZGj2oaPNmt+NZfwa4Gl6XiznD+w0ad/B0slKx9DDGDP7x7RMb/q5HdLfvU9zP0OXezgwHi5AYWsqf06RBgLaxRAd4TgmhV/X9Y1h7PlVMKN5kj5YKOOysAW5Trd3GnY=
+	t=1735283004; cv=none; b=MFzMEqncBRCrQ6R6TSu7NnXrXkjFRTdaIG633cVAJOjEsj92qALWVOdzDRbNFscGt15xRS5Jbt6U+F5G7IH5INnh54plgFmAZpl1H+ObGe0TgaoteiczzOJJzWBeZH63S5uWMz6QE2ACiC8P2nBccvv6jUM5l9d1lcW3S9769hQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735282865; c=relaxed/simple;
-	bh=HP7A2AdUP90+CJj8LFvx2qk5FVG96SNgbh70BF1GnKI=;
+	s=arc-20240116; t=1735283004; c=relaxed/simple;
+	bh=+7ck8eAbEdbMq4FfV8jX2AlQfAJ1DVeuk+4RvANLiyw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ewTYwstWU6jrB3AagVOroxAJFJCaj0RRGwdgJOT5fJHuLYD+SdJ7D6tmigowkayrjeXqGgSmehNkeseLxn7xdKwCCMPDXrrxhg9oDD5TRCwP5bt1wi4/QGlelwZefnlBfSGZIaHdOYdJSKvQQvLGegfhKwFZNqfCqELNJt39SBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oaoDwPxO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98FB2C4CED0;
-	Fri, 27 Dec 2024 07:01:01 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=c6OiHTB68lZbH2tDCkqBe+eCZ7+cAWF0j3deWaI/rfV7GpDwGSmgGQEQb3JYDtxVwMmOOEWeGmPnR/KwHcwC1ZbjuIPE5jFH9GG/ZA0DEj1eTCsYtqXUAENqqS3IHkOo1pZFg4ok1bzBVnzz1i719KcEIWmEsTr7q19tFIViCU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r6KvYNQJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C9DBC4CED0;
+	Fri, 27 Dec 2024 07:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735282864;
-	bh=HP7A2AdUP90+CJj8LFvx2qk5FVG96SNgbh70BF1GnKI=;
+	s=k20201202; t=1735283003;
+	bh=+7ck8eAbEdbMq4FfV8jX2AlQfAJ1DVeuk+4RvANLiyw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oaoDwPxOgu8ajJRBSq++twB5XSZW9Sj3IOARN7zwFad5tPiRwTgKt0dnUGv6E9+oU
-	 mkWXlAqy4AxW4uEGhIXASNXVC+kxsBsyqx4BeGiaismsHL8ocFKCW/e3bpRSnZmThm
-	 aRaiQ9nJYLyzw/xT0Y9p/GdT+ilMayr45hdqpQTe9OVDecyCMbzRMahNA4lW/OGY2C
-	 Hl0CWjGSrVOKOMx6jaAFJ1CywSrGz2+DxvTNNv0l1aa83VdJ1S4I56zLINNo+ZwEZ/
-	 mVmJWG1Uz9Q8FW/eELF/9FyVTZUFcPK8bCYfOj8qMMJG+YHR+TUgUPr4ajnz4TA20V
-	 xAEgiJx0UhM8A==
-Message-ID: <81c31cbb-c632-4558-b415-7bfe5c527c75@kernel.org>
-Date: Fri, 27 Dec 2024 08:00:59 +0100
+	b=r6KvYNQJk2bTM+Lwx3TNBJUSgFN7bCJfYRhow8KY3L4fvo5mTd81stGiWryv4UxU7
+	 mQEvICFXIPeiyI3BKWoMS/AbdxyM08xZBi2XQrnucorQCdY2cy+Lzr/pIvHWbcoiPA
+	 tuWj0Vj2GHqKzYBgm7t4WQEJq4XLJNN1OeNkn5gt1oMAOIJjiVpV6kaeAj1ufhNb7w
+	 bfrzhAKq1mqfm5kYCrQv7llX7LFRcskyYgeh7qCHfaTmqsrlRdNoRqHxFpqZ0tkrC/
+	 t7+yt8cNiRZZxNGuiFKbAw6CQ/vEi2LUV+hmoimfGZknma1dTzQXYek6RHyiolamb0
+	 dg/w9deH6ulvQ==
+Message-ID: <df1e2fbd-7fae-4910-9908-10fdb78e4299@kernel.org>
+Date: Fri, 27 Dec 2024 08:03:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: tpm: Add st,st33tphf2ei2c
-To: Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Jarkko Sakkinen <jarkko@kernel.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Lukas Wunner <lukas@wunner.de>, Peter Huewe <peterhuewe@gmx.de>,
- Rob Herring <robh@kernel.org>, linux-integrity@vger.kernel.org
-References: <20241226171124.83735-1-marex@denx.de>
+Subject: Re: [PATCH 2/3] net: stmmac: qcom-ethqos: Enable RX programmable swap
+ on qcs615
+To: Yijie Yang <quic_yijiyang@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
+ <20241225-support_10m100m-v1-2-4b52ef48b488@quicinc.com>
+ <4b4ef1c1-a20b-4b65-ad37-b9aabe074ae1@kernel.org>
+ <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,17 +115,48 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241226171124.83735-1-marex@denx.de>
+In-Reply-To: <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/12/2024 18:10, Marek Vasut wrote:
-> Add the ST chip st33tphf2ei2c to the supported compatible strings of the
-> TPM TIS I2C schema. The Chip is compliant with the TCG PC Client TPM
-> Profile specification.
+On 26/12/2024 03:29, Yijie Yang wrote:
 > 
+> 
+> On 2024-12-25 19:37, Krzysztof Kozlowski wrote:
+>> On 25/12/2024 11:04, Yijie Yang wrote:
+>>
+>>>   static int qcom_ethqos_probe(struct platform_device *pdev)
+>>>   {
+>>> -	struct device_node *np = pdev->dev.of_node;
+>>> +	struct device_node *np = pdev->dev.of_node, *root;
+>>>   	const struct ethqos_emac_driver_data *data;
+>>>   	struct plat_stmmacenet_data *plat_dat;
+>>>   	struct stmmac_resources stmmac_res;
+>>> @@ -810,6 +805,15 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+>>>   	ret = of_get_phy_mode(np, &ethqos->phy_mode);
+>>>   	if (ret)
+>>>   		return dev_err_probe(dev, ret, "Failed to get phy mode\n");
+>>> +
+>>> +	root = of_find_node_by_path("/");
+>>> +	if (root && of_device_is_compatible(root, "qcom,sa8540p-ride"))
+>>
+>>
+>> Nope, your drivers are not supposed to poke root compatibles. Drop and
+>> fix your driver to behave correctly for all existing devices.
+>>
+> 
+> Since this change introduces a new flag in the DTS, we must maintain ABI 
+> compatibility with the kernel. The new flag is specific to the board, so 
 
-Where is any user of this?
+It's not, I don't see it specific to the board in the bindings.
+
+> I need to ensure root nodes are matched to allow older boards to 
+> continue functioning as before. I'm happy to adopt that approach if 
+> there are any more elegant solutions.
+
+I don't think you understood the problem. Why you are not handling this
+for my board, sa8775p-rideX and sa8225-pre-ride-yellow-shrimp?
+
 
 Best regards,
 Krzysztof
