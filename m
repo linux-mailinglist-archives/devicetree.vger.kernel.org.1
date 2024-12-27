@@ -1,202 +1,115 @@
-Return-Path: <devicetree+bounces-134438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669E69FD6CA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 18:55:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CAEF9FD6D9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 19:18:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D4D018862E4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 17:55:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC792188626C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 18:18:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C4351F8907;
-	Fri, 27 Dec 2024 17:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD3C1F8665;
+	Fri, 27 Dec 2024 18:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EyZhSxba"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rbfi2/Zp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA467080D;
-	Fri, 27 Dec 2024 17:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C6F57C93;
+	Fri, 27 Dec 2024 18:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735322136; cv=none; b=p5GKjpViJO/bjgk3xZPqKJit2Qz8JrX+LRz8CnJUwIHPhwEb2KKKXy/WQJYJH6xwFb9vvelUnSyE7djixLRs2uhTBS1GatW/cwXxDDYYLF77htoRBlQ/FN5WMBBG8M2QRuvtLMfzpIBb6Codra/wo42WIcXDld1ctkoT9HwrGis=
+	t=1735323504; cv=none; b=Ncgo3zPSG+MQ6t8BcFzAgm5bP9wdpOjGmltZ4kW6m2BTAYGsbMBPR97tZNxfyTQn65V36Lax85eKgptrnM51uSPd925t0SdZPCvyy8Qos7rNhxsI/DPcBr69NHewtq1EgmMVw//qkaa5CVQAJnBdh72OJJFlbIrUy5Mh4OhLd3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735322136; c=relaxed/simple;
-	bh=Cu1HgDuwyDIS4vBwN9X7WrfUbQNM9zs0yLysD9Ct/Mk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DdUmMHB/aYE8Upp+5z48ANGglZCHYlqpHtlVve4U2hI3Sh58QYNz5VSCqPmnxVVAS3g/qPfFCbaNiDauVvXho5EWU0U4ph3AH/vW6BRpYfA1xHofEC+ygIH1/FzQC3Tj7tpZBkBARuvDfDD9CmnY8EhrkqyPG7lAFHBUPnJMEnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EyZhSxba; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E304C4CED0;
-	Fri, 27 Dec 2024 17:55:32 +0000 (UTC)
+	s=arc-20240116; t=1735323504; c=relaxed/simple;
+	bh=24BUqcfdsdxMuG27h4cuGyjiUcqul2XhSU011v32JC0=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=nsJnmlDknlURoB4cTIRx3j/eUXXwFQkwGjcJhzK5F9yEv4uC8jmUcLboC0pSNZj7DuunvNM4giU/voz8z4xHSnRvYSnhla4oCltIv8TUJyCn+hSuNCJaPcfaK5ACFlcZCzVZwVLZMihzN5RDLdQxd431u6SGkVEihkUgeta/1YI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rbfi2/Zp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E562C4CED0;
+	Fri, 27 Dec 2024 18:18:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735322134;
-	bh=Cu1HgDuwyDIS4vBwN9X7WrfUbQNM9zs0yLysD9Ct/Mk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EyZhSxbay5mQLZKlAhOxEFCEwg47tRaNAMIW9XdQpeqWmXfAccEIxJRCC0svAKwwk
-	 ptBd6C7r9Tc6prsUmEgCBZlQUnTWuiboVXUVxCXXglhdoMa6F4HYLWj2DRFfj+Bo5U
-	 elW177x3hbPLyx3XUy635i1mIuKLiiomC8680DlpIpVPaGmf/+2KGfj2lbY3XyFrzD
-	 fqYUPiwYH8NPL2aABDWSD7vWeCf+07aw+6PQZxLG9M6MyHvHixnrF7wcmu54Rf5iPs
-	 kf+sghbjyX6lp5nb3GRue+9s0hgxuOX//SZH49DJD72SJIO4Nepi2beaiQIMzLQesh
-	 15+AxQrGXJe8A==
-Date: Fri, 27 Dec 2024 17:55:30 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, lars@metafoo.de,
-	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	eraretuya@gmail.com
-Subject: Re: [PATCH v7 3/7] dt-bindings: iio: accel: adxl345: add
- interrupt-names
-Message-ID: <20241227-facebook-paralyze-275c075d37a2@spud>
-References: <20241213211909.40896-1-l.rubusch@gmail.com>
- <20241213211909.40896-4-l.rubusch@gmail.com>
- <20241214121057.5b12a236@jic23-huawei>
- <20241215-satisfied-expiring-9200ec935768@spud>
- <20241219175815.797b376a@jic23-huawei>
- <20241219-pregame-blot-e15ff0fbfe45@spud>
- <CAFXKEHaaLj7gePiDruMvwGGZKq5ctoq5z7_Qv_NC3bvBsL_BeA@mail.gmail.com>
+	s=k20201202; t=1735323503;
+	bh=24BUqcfdsdxMuG27h4cuGyjiUcqul2XhSU011v32JC0=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Rbfi2/ZpdRa1qBu/fCPIrNaq+P+hBWeYws1C8JmcADtnW0aA4ybo7jlqSP5Fz12kf
+	 J/2PKE/8Jzwo3yAPh4qnqW5LeiOPEod0J/TmjdT7acBos2ivuo/jLTaGUOjQ9wPgmw
+	 VRC3MDnLteIj0lpMMuuRAaOh3jyvTc7qEzTTjUNa0YQSTAN7wO40OrCmbvDsk1dG5w
+	 gDKuospvCL0jugEM0FU8SVSqlDEdywtcltd/n4pfBJH2Aqd9qklPZacjE/lR24gHbn
+	 QclssAIge/h62j8LSlKZ9Dh68//sSIlPVEU+oZ2/2b6AouCDF6yVP76g0k2wr7qFm3
+	 BP/DfwA5QTztQ==
+Date: Fri, 27 Dec 2024 12:18:21 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="OA+MRQwrASpxgIbK"
-Content-Disposition: inline
-In-Reply-To: <CAFXKEHaaLj7gePiDruMvwGGZKq5ctoq5z7_Qv_NC3bvBsL_BeA@mail.gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Sebastian Reichel <sre@kernel.org>, linux-usb@vger.kernel.org, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Nikita Travkin <nikita@trvn.ru>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Hans de Goede <hdegoede@redhat.com>, platform-driver-x86@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+To: Pengyu Luo <mitltlatltl@gmail.com>
+In-Reply-To: <20241227171353.404432-2-mitltlatltl@gmail.com>
+References: <20241227171353.404432-1-mitltlatltl@gmail.com>
+ <20241227171353.404432-2-mitltlatltl@gmail.com>
+Message-Id: <173532350175.52721.17324669998498629489.robh@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
 
 
---OA+MRQwrASpxgIbK
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sat, 28 Dec 2024 01:13:49 +0800, Pengyu Luo wrote:
+> Add binding for the EC found in the Huawei Matebook E Go (sc8280xp) and
+> Huawei Matebook E Go LTE (sc8180x) 2in1 tablet.
+> 
+> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> ---
+>  .../bindings/platform/huawei,gaokun-ec.yaml   | 116 ++++++++++++++++++
+>  1 file changed, 116 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/platform/huawei,gaokun-ec.yaml
+> 
 
-On Wed, Dec 25, 2024 at 02:01:50PM +0100, Lothar Rubusch wrote:
-> On Thu, Dec 19, 2024 at 7:21=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Thu, Dec 19, 2024 at 05:58:15PM +0000, Jonathan Cameron wrote:
-> > > On Sun, 15 Dec 2024 14:56:58 +0000
-> > > Conor Dooley <conor@kernel.org> wrote:
-> > >
-> > > > On Sat, Dec 14, 2024 at 12:10:57PM +0000, Jonathan Cameron wrote:
-> > > > > On Fri, 13 Dec 2024 21:19:05 +0000
-> > > > > Lothar Rubusch <l.rubusch@gmail.com> wrote:
-> > > > >
-> > > > > > Add interrupt-names INT1 and INT2 for the two interrupt lines o=
-f the
-> > > > > > sensor.
-> > > > > >
-> > > > > > When one of the two interrupt lines is connected, the interrupt=
- as its
-> > > > > > interrupt-name, need to be declared in the devicetree. The driv=
-er then
-> > > > > > configures the sensor to indicate its events on either INT1 or =
-INT2.
-> > > > > >
-> > > > > > If no interrupt is configured, then no interrupt-name should be
-> > > > > > configured, and vice versa. In this case the sensor runs in FIF=
-O BYPASS
-> > > > > > mode. This allows sensor measurements, but none of the sensor e=
-vents.
-> > > > > >
-> > > > > > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> > > > >
-> > > > > Just to repeat what I sent in reply to v6 (well after you'd poste=
-d this).
-> > > > > Maybe we can maintain compatibility with the binding before this =
-by adding
-> > > > > a default of INT1.
-> > > >
-> > > > But can you make that assumption? If we did, and it's not universal=
-ly
-> > > > true, we break systems that had INT2 connected that previously work=
-ed.
-> > >
-> > > I guess there is a possibility of a driver in some other OS assuming =
-INT2, but
-> > > seems an odd 'default' choice.
-> >
-> > Ye, I think that it is unlikely a driver author would think that way.
-> >
-> > > Also odd for a writer of DT for a platform
-> > > to assume it.
-> >
-> > I agree, I think it is unlikely that someone would assume it'd work like
-> > this. I think a lack of attention paid to the schematic of the board is
-> > a more likely culprit.
-> >
-> > > There is a thing that comes up in spec orgs when discussing whether to
-> > > rush out an errata.  "Is this bug something people would get wrong
-> > > thinking the answer was clear, or something where the would ask a que=
-stion?"
-> > > Anyone who thinks INT2 is the obvious choice for me falls into the wo=
-uld
-> > > ask category.
-> > >
-> > > However, in the linux driver we would would go from assuming no inter=
-rupts
-> > > to assuming the wrong one.  That's indeed bad.  So I guess this doesn=
-'t work.
-> > > Oh well no default it is.
-> >
-> > I don't think you really lose anything from having no default. The
-> > driver works just fine without the interrupt, so the albeit small risk
-> > just doesn't seem worth it.
->=20
-> Agree. To be honest, I'm not sure if I catch the point here. IMHO,
-> falling back to FIFO bypass should match with backward compatibility.
-> Please let me know what I'm missing here.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Ye, falling back to the current behaviour is fine. The only problematic
-thing is not checking "for a specified INT name" but assuming the
-provided interrupt is either INT1 or INT2 when interrupt-names is not
-provided.
+yamllint warnings/errors:
 
->=20
-> I would prefer just to check for a specified INT name. Then configure
-> the specified interrupt line in the probe. In this sense, the
-> interrupt line is only useful also if the INT name is defined in the
-> DT. If no INT name is specified, the iio driver will setup FIFO_BYPASS
-> which is the legacy behavior (according to the datasheet: if none of
-> the FIFO mode bits are set, defaults to bypass mode). This is the new
-> behavior.
->=20
-> The old iio driver did not use interrupts at all. It stayed in
-> FIFO_BYPASS mode (or did not change it, after power on, it assumes
-> FIFO_BYPASS to my interpretation). Thus declaring the IRQ line yes or
-> no, with or without INT names - for the iio driver implementation
-> before this patch series, should not make any difference. It uses
-> FIFO_BYPASS in all cases.
->=20
-> The input driver (AFAIR we already agreed on ignoring this driver)
-> needed interrupts. Defining INT names here does not change anything,
-> either. The input driver configures by default INT1 and simply ignores
-> what was specified as INT names in the DT.
->=20
-> I cannot really think of any third case here. Please, let me know if
-> I'm wrong. If not I will keep the above explained behavior, since to
-> my understanding it should match the desired compatibility
-> requirements. Am I wrong here?
->=20
-> Sorry for the late answer. Best,
-> L
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/platform/huawei,gaokun-ec.example.dts:26.61-62 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/platform/huawei,gaokun-ec.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
---OA+MRQwrASpxgIbK
-Content-Type: application/pgp-signature; name="signature.asc"
+doc reference errors (make refcheckdocs):
 
------BEGIN PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241227171353.404432-2-mitltlatltl@gmail.com
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ27qEgAKCRB4tDGHoIJi
-0rzLAP0eTrjkxQeoiHg3FgqpH1pJyKp3kGBMt+wu1Mv5sSl2qQEA/B3g4ciq9h88
-sthwlXZyDrQGVGb9ak617ykmIfL7CQM=
-=uz3t
------END PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---OA+MRQwrASpxgIbK--
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
