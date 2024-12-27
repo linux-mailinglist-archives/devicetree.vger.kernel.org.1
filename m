@@ -1,78 +1,68 @@
-Return-Path: <devicetree+bounces-134340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7197A9FD43F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 13:58:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B7B9FD447
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 14:01:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74DF17A1308
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 12:58:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C99543A1045
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 13:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC811F2360;
-	Fri, 27 Dec 2024 12:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B13D1F2388;
+	Fri, 27 Dec 2024 13:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="knG86+ut"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="oiMun6aA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from omta36.uswest2.a.cloudfilter.net (omta36.uswest2.a.cloudfilter.net [35.89.44.35])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9341B2193
-	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 12:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC6D1E487
+	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 13:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.35
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735304326; cv=none; b=Aow2b5SltxyUJtrFN89TzulwUJkmZQygEyM1TreVIQESVJxGWsJyBGjz5536alVfxCxGwJbEfDcZylbA+IUav4EWICk7pWujbWLah0B9HHcaUYYWhibGmQvixA/eP3DbFklETSlyVRR6TxGK6P4pjUOsK+Ts2/G1BNOlL7q2QKg=
+	t=1735304487; cv=none; b=ozUlON8qug6dIoSpk8I9GDtxc2sWP/iARNAXqLN4z5x81uduWqidMBSriiLsDGF06XHDAS8hsLbTIV0KADtg3E93iT9cErrlcsb5xHhI5UfnZ47SQUIhP65vRs5ORCtNTmMta0n8Osz8FTlqSPSuZa/a6137VXB2j2ENBqUt3IU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735304326; c=relaxed/simple;
-	bh=I/hJbx+UhPHPiscNE9lP2YdCvgXCRwBeiiwDYlaGj4g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=HPMH9uXyn/HkDFOWECbQ6nXBTaR+ShcEd2KvfNrnCP3Xmmz7OVtRJp3T5UnLLlFHcokwcsn0vsypXiFpqdOYaA7pkLhC+gSyEoSuHpvyGx3AeFSYMQYiG9Nk9/0SqVGnqIRH74mfNmWUw2hpiMZh9rVTSivJEWpcj3Etj88ZfKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=knG86+ut; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43622354a3eso49686625e9.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 04:58:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735304323; x=1735909123; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aDdGEckgi4owvE+DWRBdebkpETzu1CKFX85k+EedgfM=;
-        b=knG86+utEeFPAm66D+PQJ6Y/eGZJJ6JWmGAUYVw2yKqye8NCuic1ifSonkZ9uHK5z5
-         TQiUKJIu0qSJ3bK+F6ioBagMDJQRgbK4ZSVBHAmnpj+nWKreA52/OdLYNvNC3OxgSVC0
-         RUp30BqS/L5AMaTgK6yG/dKfFq4A18U9n7RLb07wRpVTS7NP7CEuyGFlts7o+cpm0JMD
-         5WN/qjBPl3amNsMh5fUzhhHK0lGpW1uJfE5DjJethZy8Dyv7IVq3K6esooNWT2m9arsM
-         Rz2kIwYBC7r3R1MHKWdCcpqmS+J00oc2JIQ73F9XR9vmYo8hkRz6jcDakU6amkfCbSA1
-         AJ3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735304323; x=1735909123;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aDdGEckgi4owvE+DWRBdebkpETzu1CKFX85k+EedgfM=;
-        b=EnWbV91h3xV7PmedNgCSRBd4Wa5udN4DfTB4bM6MmwiuDv1hH0ajlx9eylgce0cFp2
-         KJGrBKtp9Bh6wMgcDFOsQ7n4JGYZRCLty4IIXPl06sYTTdx4yGZ1sC7v/g20fa5AuoJX
-         kEBFkTUU0BK17hjkKIEi4uu4+hel6+1c5Lwr8AoBAM/Tswwn3x3gpY4tvlP+9ezlK1Z2
-         mEAO4KnqFc6y2JvEzz+/8S/3gyb4d0rY5N0EsGSPHhOLy62UHuee5i0za+QNJ3Md1mJ3
-         Zc4HMXbYugfzrkV5LegGslkQZa9Xh0UuPqbyZmdzEjyFn3OiVuwJ9UxuhorUofpWXlLH
-         VXvg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9aCb/n5O9M3CYSvgO29RnzsI0CvQutzY9nO8ybDwRXa+dG9wGmZqP+4E0EK2rw/dPp1pBmg4QBTdQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXa4h4Ev84H1wOI+jzzBADe7p6koTDATwQOwwpB3VpFIIeojvt
-	IHHCjQ/5Wnvcvk/UWwU0WOSUYIm9cL0NAG//NEtINAcYaeQh01MuzPcqi1DP9kI=
-X-Gm-Gg: ASbGncsgTBfvZP1fsf6WNjzOq5I00B20mnRD1nw4Om22cpxRbVXcPeLm58SSKn9jd0D
-	OKqkNeRUOnz+s9HDJvM2hYiujJ2zhdQnFljfXXxoNXtmLYZNUQlc64Crab2C3m6ZLF+Jv4j6sxh
-	jtbRFXmP3E4A6TCnKDvK82TzsAUoYjzZNE/bo2MkE0ZvUjOTis5eZw1r8ynucb3hCm599LCyA2F
-	tYjvZ2qqGC08EUlZOVtMestfW3omlBBMLLJWXQc6DOvdgP4jKaJqz8l
-X-Google-Smtp-Source: AGHT+IFhkcxC0c+E0VfZles7rdAdsYhqqs+ATikjgURZTRqbT3bU1zZC8fVT4zxxYAFmI7TH0aDuLQ==
-X-Received: by 2002:a05:6000:2ae:b0:385:f560:7911 with SMTP id ffacd0b85a97d-38a221f300cmr21977862f8f.10.1735304322944;
-        Fri, 27 Dec 2024 04:58:42 -0800 (PST)
-Received: from [127.0.1.1] ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436724169afsm213946465e9.25.2024.12.27.04.58.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Dec 2024 04:58:41 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Fri, 27 Dec 2024 14:58:36 +0200
-Subject: [PATCH] arm64: dts: qcom: x1e80100: Fix interconnect tags for SDHC
- nodes
+	s=arc-20240116; t=1735304487; c=relaxed/simple;
+	bh=s6pgeYhBovYKLxAfzogU3RAM9N8F/zvXTKruRhJeLms=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LzwLavpxUz4q4gBCvVrr0dTpHQGBHjX9iRKm2c7l+4vRFxAr2AfAq5ISS+oO7wtFoloMYlF5ilZb1uq7MHC7u6Nah9tCgML0ZmJ5u1N67EUhPokt6fMIwf5F+GNJFvic+CqvIVddgBN4cdRI6XTxh8cfq/6iurU5bJnf8aJxF3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=oiMun6aA; arc=none smtp.client-ip=35.89.44.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
+Received: from eig-obgw-5002a.ext.cloudfilter.net ([10.0.29.215])
+	by cmsmtp with ESMTPS
+	id Quxgtc0iaqvuoR9xxtyHVe; Fri, 27 Dec 2024 13:01:21 +0000
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+	by cmsmtp with ESMTPS
+	id R9xutK2HncEKuR9xvt4oh2; Fri, 27 Dec 2024 13:01:20 +0000
+X-Authority-Analysis: v=2.4 cv=Z7YnH2RA c=1 sm=1 tr=0 ts=676ea520
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
+ a=IkcTkHD0fZMA:10 a=RZcAm9yDv7YA:10 a=-pn6D5nKLtMA:10 a=VwQbUJbxAAAA:8
+ a=vU9dKmh3AAAA:8 a=RKcyukLPUNyM5a_w4rQA:9 a=QEXdDO2ut3YA:10
+ a=rsP06fVo5MYu2ilr0aT5:22 a=ZCPYImcxYIQFgLOT52_G:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+	; s=default; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=Qi3UoCUDEqcy6/oiO96EhEgtnu7BnyUeV/rid1HTKPw=; b=oiMun6aAJKc2QS/GfxGw3ZpAbo
+	eqt4pnCoOOcSOcaeI0P6kujVagUlispeJfo87tz4QroK92xHf66VXCikwKNVeRRM362Wq7OxeQoeh
+	E1yTCzQbqlNCXfqwKn42U7JkHmZ6L8OX8yGF9tvVz7DJi0D1oePsEPivLWatej12oSvjcE2D9TY3L
+	p260RycW0eU3fbz5AvZgfhR3/FedkFVYbVQXVm8DnYC11xpiJ293WKam4I6AtGakz9LXeMuFU3Rk8
+	5INQdz4uTivaF1TZ3eEW8hz/0OVnZszBiih27bwu+VVWDJ45H4d0OMHK5VDE143g5utDRMNzf7Ztq
+	rk5F7Umg==;
+Received: from [122.165.245.213] (port=58270 helo=[127.0.1.1])
+	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <parthiban@linumiz.com>)
+	id 1tR9xq-002EaQ-22;
+	Fri, 27 Dec 2024 18:31:14 +0530
+From: Parthiban Nallathambi <parthiban@linumiz.com>
+Subject: [PATCH RESEND 00/22] Add support for A100/A133 display
+Date: Fri, 27 Dec 2024 18:30:49 +0530
+Message-Id: <20241227-a133-display-support-v1-0-abad35b3579c@linumiz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,90 +71,129 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241227-b4-x1e80100-qcp-sdhc-fixes-v1-1-cd971f7f0955@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAHukbmcC/x2MSQqAMAwAvyI5G0hLqeJXxIO2qebi0oAIxb9bP
- A7DTAHlLKwwNAUy36Jy7BVM20DY5n1llFgZLFlnrO1wcfgY7skQ4RVO1LgFTPKwou/90oUUE3k
- HdXBm/kXtx+l9P6+6ZvlsAAAA
-X-Change-ID: 20241227-b4-x1e80100-qcp-sdhc-fixes-686b7cfdf064
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2421; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=I/hJbx+UhPHPiscNE9lP2YdCvgXCRwBeiiwDYlaGj4g=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnbqR/XZNhn2y3VyDORttqYlP82xAV8I9hCbLN5
- CwtRTBCzEiJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZ26kfwAKCRAbX0TJAJUV
- Vgi5EAC+3ThsLdZjWaeqGZ7tyIlDZaDctj0YUYkUIn7Xg0XnTIMaSRopBYe3o5cKxGlcZ5dFwd8
- /dEQ+wQfB7u7920Azi5QVoSTb+6U/QFqg4G7jJFzdarsfKUKfQDhmXsYtjSQz0otg/gu3JNUWge
- ZlYErAUV1ZjUzqJ6KgrQ66O/PjpUp4buMPmY0CStTZWGwcKOzqfPAY0dJhPaDrVX7MBE7ZfYSNx
- +F7Ec8cTAokDccsrKcIT7kFpgmMNXOBs073vdynQvJhyfjvIumskoWL80SeODgicNWk8MYP3Q3J
- yVnvM7XOL2Gl3V8qyGJKKCMiUrKK8a3cI+5Mqh/hO1EBm7XbBR+rtXhCdJetRa+nyiptuyatNJH
- k0mtfARjRKvS8FYCQYob+UC2jHX/ImTqCuL08aFzwpHeh+0WhSCeFbLWLBQ1kO7fibYF8kgtRin
- 7meaklmePcttreQwb0xrT09pXq6PF7fv6s34a1RKeeP+f6dAxmeEo+DaftvY3ybe7Y6c/hxhEc/
- XjTInIpuNvnhGgMkozSgByHOvL1K3Zts/ojXKYkkDxbw3Sky2rHP3wUkECBsYwr5t7KmBSRREe2
- pmXzNN0uoYTMZK1SplP7Nev7Wuc1q+mM7m/jOa6o8TpzJTyDDAK5uk4qHWzzmUSaLmm/Hv8Y39D
- OB9Eija7e/Oix4A==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Linus Walleij <linus.walleij@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-phy@lists.infradead.org, 
+ Parthiban Nallathambi <parthiban@linumiz.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1735304468; l=4037;
+ i=parthiban@linumiz.com; s=20241125; h=from:subject:message-id;
+ bh=s6pgeYhBovYKLxAfzogU3RAM9N8F/zvXTKruRhJeLms=;
+ b=rUdWVAf2EzUVnilFnmP394/5gRG3wuQ4qZKiArbTwORd7JREQHwjrpu+VM2LSswVY088RCvTX
+ WqUG9bY0lJXCf7KJwRg9jmbIdsLD9nBHg6tLQw1PtNvmCAY0Mhmq7SE
+X-Developer-Key: i=parthiban@linumiz.com; a=ed25519;
+ pk=PrcMZ/nwnHbeXNFUFUS833wF3DAX4hziDHEbBp1eNb8=
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 122.165.245.213
+X-Source-L: No
+X-Exim-ID: 1tR9xq-002EaQ-22
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([127.0.1.1]) [122.165.245.213]:58270
+X-Source-Auth: parthiban@linumiz.com
+X-Email-Count: 26
+X-Org: HG=dishared_whb_net_legacy;ORG=directi;
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfIsNrTwg+zbpPjczitIOx2tsIfXvKJ11Qr5MoIaR0B7EhW/y0IM0CIJtuuOYkObaM+f5SEEMafWZMB4jydSqL3kp9DvUVlHCzTvsD3azVjBNWt0z6Xq1
+ N5sqoQz3K1TrlWR7uYmdjZdiUjHwgqe8rAknq7M6/sL8iyyqlcwEs3dz2/oUFc7ldx0Y7jbhITiYqcGDWX5EuKW6o/pgUSx9Dz0=
 
-The CPU-to-SDHC interconnect path for the SDHC_2 needs to have the
-active-only tags. The tags are missing entirely on for the SDHC_4
-controller interconnect paths.
+This series depends on [1] for the eMMC/MMC controller to work and
+[2] (lined up for 6.14) which adds support for the sram nodes and
+display engine extends it's usage. Idea of this series to get initial
+feedback and adjust, which will be rebased for 6.14 once [2] is merged.
 
-Fix all tags for both controllers.
+This patch series adds support for A133 display pipeline based on
+LVDS. dt-bindigs are organized in the start and later with code
+changes.
 
-Fixes: ffb21c1e19b1 ("arm64: dts: qcom: x1e80100: Describe the SDHC controllers")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+PHY is shared between DSI and LVDS, so to control the PHY specific
+to DSI/LVDS, phy_ops set_mode is introduced. To enable the DSI
+using set_mode, analog control register MIPI Enable is used, which
+may not be available for A31 (shares the same driver).
+
+Otherwise, A133 also got hidden independent display engine i.e
+mixer + tcon top to handle parallel display. But this patch series
+adds only support for the 1 mixer which is documented.
+
+[1]: https://lore.kernel.org/linux-sunxi/20241109003739.3440904-1-masterr3c0rd@epochal.quest/
+[2]: https://lore.kernel.org/linux-sunxi/20241218-a100-syscon-v2-0-dae60b9ce192@epochal.quest/
+
+Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
 ---
-Please note that the commit that this patch fixes hasn't
-made it beyond Bjorn's tree yet. So fixes tag points to that.
+Parthiban Nallathambi (22):
+      dt-bindings: iommu: sun50i: remove resets from required property
+      dt-bindings: display: sunxi: Add a100/a133 display engine compatibles
+      dt-bindings: clock: sun8i de2 clock: Add PLL com clock
+      dt-bindings: clock: sun8i de2 clock: Add a100/a133 compatible
+      dt-bindings: display: sun4i: add phy property
+      dt-bindings: display: sun4i: add a100/a133 tcon lcd
+      dt-bindings: vendor-prefixes: Shenzhen Baijie Technology
+      dt-bindings: arm: sunxi: document Szbaijie A133 helper board
+      iommu: sun50i: make reset control optional
+      pinctrl: sunxi: add missed lvds pins for a100/a133
+      drm/sun4i: Add support for a100/a133 display engine
+      drm/sun4i: Add support for a100/a133 mixer
+      drm/sun4i: make tcon top tv0 optional
+      drm/sun4i: add a100/a133 tcon top quirks
+      clk: sunxi-ng: sun8i-de2: add pll-com clock support
+      clk: sunxi-ng: sun8i-de2: Add support for a100/a133
+      phy: allwinner: phy-sun6i-mipi-dphy: add LVDS support
+      drm/sun4i: tcon: add a100/a133 lcd controller support
+      arm64: dts: allwinner: a100: add iommu
+      clk: sunxi-ng: add missing pll-com binding
+      arm64: dts: allwinner: a100: add display pipeline
+      arm64: dts: allwinner: a133: add szbaijie helper board
 
-Also this is based on Bjorn's arm64-for-6.14 to make sure it applies
-without conflicts.
+ Documentation/devicetree/bindings/arm/sunxi.yaml   |   6 +
+ .../clock/allwinner,sun8i-a83t-de2-clk.yaml        |   6 +
+ .../allwinner,sun4i-a10-display-engine.yaml        |   2 +
+ .../bindings/display/allwinner,sun4i-a10-tcon.yaml |   7 +
+ .../display/allwinner,sun8i-a83t-de2-mixer.yaml    |   1 +
+ .../display/allwinner,sun8i-r40-tcon-top.yaml      |  17 ++
+ .../bindings/iommu/allwinner,sun50i-h6-iommu.yaml  |   1 -
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm64/boot/dts/allwinner/Makefile             |   1 +
+ arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi     | 165 ++++++++++++++++++
+ .../dts/allwinner/sun50i-a133-helper-board.dts     | 129 ++++++++++++++
+ .../dts/allwinner/sun50i-a133-helper-core.dtsi     | 190 +++++++++++++++++++++
+ drivers/clk/sunxi-ng/ccu-sun8i-de2.c               |  23 ++-
+ drivers/gpu/drm/sun4i/sun4i_drv.c                  |   1 +
+ drivers/gpu/drm/sun4i/sun4i_tcon.c                 |  23 +++
+ drivers/gpu/drm/sun4i/sun8i_mixer.c                |  13 ++
+ drivers/gpu/drm/sun4i/sun8i_tcon_top.c             |  42 +++--
+ drivers/iommu/sun50i-iommu.c                       |   2 +-
+ drivers/phy/allwinner/phy-sun6i-mipi-dphy.c        |  23 ++-
+ drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c        |  12 ++
+ include/dt-bindings/clock/sun50i-a100-ccu.h        |   1 +
+ 21 files changed, 645 insertions(+), 22 deletions(-)
 ---
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 0e30029bfc1948d8412d62095a0c9b9274ebb9a2..9d31cb55b055d0726c73f726d6467edaf4607dbe 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -4315,8 +4315,10 @@ sdhc_2: mmc@8804000 {
- 			power-domains = <&rpmhpd RPMHPD_CX>;
- 			operating-points-v2 = <&sdhc2_opp_table>;
- 
--			interconnects = <&aggre2_noc MASTER_SDCC_2 QCOM_ICC_TAG_ALWAYS &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS &config_noc SLAVE_SDCC_2 QCOM_ICC_TAG_ALWAYS>;
-+			interconnects = <&aggre2_noc MASTER_SDCC_2 QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_SDCC_2 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "sdhc-ddr", "cpu-sdhc";
- 			bus-width = <4>;
- 			dma-coherent;
-@@ -4366,8 +4368,10 @@ sdhc_4: mmc@8844000 {
- 			power-domains = <&rpmhpd RPMHPD_CX>;
- 			operating-points-v2 = <&sdhc4_opp_table>;
- 
--			interconnects = <&aggre2_noc MASTER_SDCC_4 0 &mc_virt SLAVE_EBI1 0>,
--					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_4 0>;
-+			interconnects = <&aggre2_noc MASTER_SDCC_4 QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_SDCC_4 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "sdhc-ddr", "cpu-sdhc";
- 			bus-width = <4>;
- 			dma-coherent;
-
----
-base-commit: 1caf6149c3bf41a2ee07869449c4ea1ec8bbc2f8
-change-id: 20241227-b4-x1e80100-qcp-sdhc-fixes-686b7cfdf064
+base-commit: 6c086b91df8c6619239c6d6d6cbf6ae50da6c110
+change-id: 20241126-a133-display-support-ab43af32180a
 
 Best regards,
 -- 
-Abel Vesa <abel.vesa@linaro.org>
+Parthiban Nallathambi <parthiban@linumiz.com>
 
 
