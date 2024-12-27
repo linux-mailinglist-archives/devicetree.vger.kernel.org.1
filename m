@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-134265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121179FD18A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:42:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B04C9FD18E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:43:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6AA218830F4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:42:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E94E1163DE3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 07:43:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE7A14AD29;
-	Fri, 27 Dec 2024 07:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94DA14A4DD;
+	Fri, 27 Dec 2024 07:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0vkNPsd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RTfgVUPG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73080149DFA;
-	Fri, 27 Dec 2024 07:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E060149DFA;
+	Fri, 27 Dec 2024 07:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735285353; cv=none; b=SZfzv9zaGqfGI5UtjK3LHaya8KKbhebFUIiodFL0d8/zU8DglAEFG14CUgyJyMAyYZlVs3AKX1gd/ron/M8hvTPIXdJEhaapkkRlJovn8t5n78K98LReot24o2Z12T0jvCFDxR5ZBdReKaa/57EW8Gr1ej5CVEQOrwitUosK/FY=
+	t=1735285402; cv=none; b=S3uADjYTyHG3dfivL3iuniKQrN2A+g0B1/p2thhxQ0EG/ufjaHZc0L+fnaqCAmJhfKqJ8IwLLmaC7T1hC/MKWqHfM+OsimKwV/nwKvgDt+2pQa/sFiecFHpuNeJzD5/tmKJEuxO14+oiQeVq1IWWyUev4orGD/0V8WpyeU2cqTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735285353; c=relaxed/simple;
-	bh=yzjqwe7YAw9+sc6uCiawhBP9unb9wJPu48Etu3C6q+g=;
+	s=arc-20240116; t=1735285402; c=relaxed/simple;
+	bh=UpI1kDIDP+9wxN+lrRFVGk9iCMxhSweHXt23HZnkQJ4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cgTsUdjlTjIqXKCCC68q9BDKqEb0dritQd5TkXSOg5U8uKcgfQE4/wXPxaM+E6nhnPJzJAUAwgjQnynKWaIyM/p+Hmy+R9EKGgZWt33wb5jGUC6fbNiqhKX9j9fMcgd2ZlLTf0mOk1I8arNa0X2JBR11W1JS1Zk82I+VUGNx2y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0vkNPsd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DBE4C4CED0;
-	Fri, 27 Dec 2024 07:42:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lZ9HhxtihPMq4kSnwsgWpnb/BSYqRe/y8fwr8TIuhkJfNpF8MbQcj7nkR1xfxiZhVYF1oq03+5tXmSCp4Y5S4UgSwoB6CwHWyWZx90HQOzXL72WgBSTmEXbnsB90z0MAiKkPPMec/58LFzoOFVv2PMV1NyqZpJJ4V6UAAq8Fmqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RTfgVUPG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 713DEC4CED0;
+	Fri, 27 Dec 2024 07:43:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735285353;
-	bh=yzjqwe7YAw9+sc6uCiawhBP9unb9wJPu48Etu3C6q+g=;
+	s=k20201202; t=1735285402;
+	bh=UpI1kDIDP+9wxN+lrRFVGk9iCMxhSweHXt23HZnkQJ4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y0vkNPsdVfn+oGfKYtgbAakEJtXAg71dK9JD9RFMTPRd9mtd+M45eoIsidksyee9O
-	 K/Qc+BAawh/nrrRwdrkxN+UmVe2F11jKY3unrfQzQQBsuyZnU4qiBdUzsxRaBZXd1Z
-	 ShFO5A25PC9/PpKki0zUQOLQKIAuIEnxMTiOZPbEXldQN/qHnV7egzlVVxk0XA9X5z
-	 9yQLFUsxDuJc8X7pdQnK7YUbyGYvG1hFOL4XFW5G9jqFjHoW9bWNdy5quO3bWXkNii
-	 /D4dO1Y66l3MthZBlouE8B0UlFcBjD/eEK6Y9kZi1bzyVEhiSOKa9WXdxmmYEClk1k
-	 tNd9l775NIQkQ==
-Date: Fri, 27 Dec 2024 08:42:30 +0100
+	b=RTfgVUPGvILnEsFCcoRqMLWP67xbeZfQ5AxICwJM5p5gNXIpmy6WVReFEwXMO/fim
+	 Vk5DjqvVruX6zk2KA90RmE9AoWfZyEUl9n45OFMELB6hN9dF73mcPN340QRnql0uGn
+	 suF6yCDL5bEhelQM+6X5YmeciVuYBwmlrut+IOjiT8Ch5aAU684PnzMgUw6WaMBTSA
+	 3yvrKkqyHFftlk7Bo3Q1qRO4Vk1+ZfjdhULbrNJpPsy+je2xZYrE+B95NtEfbhOfev
+	 XjBnFqvJE/izUqZ3ctWXFeTzpX2///ulmouwrueliBkrqOArupEQdJxx+/321v8yM9
+	 PG6ttdkzMmC1g==
+Date: Fri, 27 Dec 2024 08:43:18 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Kever Yang <kever.yang@rock-chips.com>
 Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
-	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 11/17] dt-bindings: pwm: rockchip: Add
- rockchip,rk3562-pwm
-Message-ID: <c3r3ezqr6sg7vtvomngjchzlk6btyzrjtukezjvuqxesqbtrh5@cmlu3bw7dyzl>
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 08/17] dt-bindings: spi: Add rockchip,rk3562-spi
+ compatible
+Message-ID: <bq3jrw7r5wfzffosfh3eerngvqvd5lc6ilrnu6fstpxx5fmzm5@bdowzwie5qae>
 References: <20241224094920.3821861-1-kever.yang@rock-chips.com>
- <20241224094920.3821861-12-kever.yang@rock-chips.com>
+ <20241224094920.3821861-9-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,13 +61,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241224094920.3821861-12-kever.yang@rock-chips.com>
+In-Reply-To: <20241224094920.3821861-9-kever.yang@rock-chips.com>
 
-On Tue, Dec 24, 2024 at 05:49:14PM +0800, Kever Yang wrote:
-> Add rockchip,rk3562-pwm compatible string.
+On Tue, Dec 24, 2024 at 05:49:11PM +0800, Kever Yang wrote:
+> Add rockchip,rk3562-spi compatible for rk3562.
+
 
 This we see from the diff. Say something not obvious. Where is the
-driver change? Why devices are or are not compatible?
+driver change? Why aren't the devices compatible?
 
 Best regards,
 Krzysztof
