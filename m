@@ -1,170 +1,110 @@
-Return-Path: <devicetree+bounces-134280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 627409FD1E7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:20:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3A509FD1ED
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:23:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 152A53A060C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:20:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52B07161C27
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 08:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42E4D1531DB;
-	Fri, 27 Dec 2024 08:20:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CB2114BF92;
+	Fri, 27 Dec 2024 08:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LvyPPYYx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xZt0ZrpH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5F81494BB
-	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 08:20:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BF2B42070
+	for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 08:23:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735287628; cv=none; b=qUmnNw2ZJWnFUZ32ixCpnSu9O90fAV6rtbc7RJVNMFUkVK0ViKujDVne+rhTBE0RFEuq/qxBltt82RurWkTKxPe+EC44hS5SIFiQboSm45oxf7MlWw7mOiDDYCjCmss7XOaOZL21Jl53y6NQBGZXGgLUi4eu2nAIvXUbrQJZEPw=
+	t=1735287808; cv=none; b=b7v2fv7fMOLkFFcy+UbW8myoPpafBQkPCnMy0aS/ccbUcQdu6ofXOhILcQ+l1KpQrCtJYLHpoPHqFYpEx7g5I6zWRlMa6CmgDJT8S12QjM3pDkMGf65hc8fmGE5o6xqMPkXNkfxRBcOuo5UPuh+aA7G8Vph93wlFbeDRhw/Jd8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735287628; c=relaxed/simple;
-	bh=gjZyma2ZYER6csroLP4LBLybl+Rt0XNSkVRP7WNrBHw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C3UYMeJkT7TOg1ihORuxLzuUuTLxB+RvJ3ZPn20NqMx2sxUkvyMb/FhbReHGafjlgnizg7waCvGpSphto5O9LYA1Yd/OgtTY3XYeEsSRmo5bc4xz7X7kJXmWVSVQ8FPU5lF2qiFI3HT6aLijfG6D5dXxzbiyNBgSR2ATg4+fx8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=LvyPPYYx; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5d3bbb0f09dso11889139a12.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 00:20:25 -0800 (PST)
+	s=arc-20240116; t=1735287808; c=relaxed/simple;
+	bh=oXzi3CC+CiXNTQ5UNVpJvFDoaeyxklmAi50O6y7h7oI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QpnEVSDDLoaVI+uCLBGxxPhrTy0DGwagzVVHZgCBECcvjQT8d7J50cmgZbYrV50a9MDYbXT9zvxyUTavBfP7ggXnT5VTcN5W8NERDJ2YvI6h90DcPprtzpXJzNmyvzUYLFruFb3cJV7HYEtGg9DF1fqRjZDqkEFvnRuNOEMah9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xZt0ZrpH; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53e389d8dc7so7589333e87.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Dec 2024 00:23:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1735287624; x=1735892424; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8ymnkaFSKoa88cBBO+Aw6l4UGz2gfKbnPeK/qmnKF3M=;
-        b=LvyPPYYxlkPjrgJOGO6GPGmG/0CNSgwte5lVNDyVhDMMPQMKA0kRZxqvt0d+GpKZEF
-         9GZOzll7Uhl+xo2zBdCinUn+ziqT28f/94lXTiyC0mcwDymCSNHUFUPwfVNodiPa6CZT
-         9Pot1pqeV63cakqRVUv7FvFIbWVENG1VgtMus015GvE0GH+CSkRENCabkXj86p5OZZZ8
-         z1qUMmjs8NXeaZRe1Gv9/DOTZoSS4vYnDp9bWUMzTMONomH6gnmRV4GeH6aH55svSmiA
-         sQlPqfJhYYqxJP+Pv09ihYtZzVIWxLrESm2LN0LRmD2WvjMdPgmdhFa7VRTqZBkE2kW/
-         iPgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735287624; x=1735892424;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1735287805; x=1735892605; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8ymnkaFSKoa88cBBO+Aw6l4UGz2gfKbnPeK/qmnKF3M=;
-        b=K6qKde5+aWhjh3Zs+5aDwVw5xaQUJ4zedm6tXO6Tcpc1XdU3X3tKYHO/8I4fFsJvNB
-         vfvgMuSCWlZM28jKBeZFlqZ0wGObKqNqhlVHBtGNAQ2U2t1csDuTIG77IWRA/g/Kp4LR
-         RIwIMjtViYZSC6FvPF1tI+/bzso4AqTDUVlt02PjYeUZ5l6ZjqP3em5tmk8fMO4geCeV
-         oFJaZTSaw0LyPXg7L2ryu7r6r5wEfbyIFUDTEldvTqBOvOEmABMqcYA4Orp8klEnAdsx
-         l4vLf4QatYq6ao03AcZKA3MN+fKCt3XKqfJ6E0j0+It/H9oYkLKhpmkgzOglyk7m7nBz
-         +NMg==
-X-Forwarded-Encrypted: i=1; AJvYcCVHsE6zAO2Di4gYa7RmusU1zI5LxNwCGLUj6WsEdL74XeGzIePoJX6j1sDk0N4t9v3ePblwgWWx5KrO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7uGYXZY343oHebhV2H6NrQv+ga58Iy/z2HBVftSqJ3WcnDsc5
-	jJxd4T+AiHEY9d0bwqIGW4deUsCnNKK9N0o1boRsDKbG0Os1Q9OVwtQPRlxERmo=
-X-Gm-Gg: ASbGncu9txRYjwG3RUHHAzeynFdc4cClT2HOcgHRrSW8bp1XhQ3OMYgFoX9Paiklo76
-	0+KX2aHATE2Ii8z4UL/zjBVJwX4Cp4tJ0heW2Tn29JTYaWQvMgy+0vzMa0qDPXkwhWPG6u/5XOt
-	7CuIKuplvgKwI+K3NwxLr0nVfdLNOkf6rmWoj+B9n+3xR/zYZmzI+iFcSepEGpO+Q/l7CmBHxxX
-	KmdFRndHExKCj1RqLUjKN1cY+RVgZtv8V9qTToWqn+SHF3RAXKgyDLxZE/Av6rc88uvutc85xuK
-	ffjsmSNs7g==
-X-Google-Smtp-Source: AGHT+IHuzMycdQyfPrvUmgREwzA9rbFsJHptvmQJmTsllJlTLnfiJ98OYmXuSGvqenqvilnQMWt6pA==
-X-Received: by 2002:a17:907:1c0b:b0:aa6:7933:8b31 with SMTP id a640c23a62f3a-aac3352cef9mr2027761766b.46.1735287623480;
-        Fri, 27 Dec 2024 00:20:23 -0800 (PST)
-Received: from localhost (p50915bc6.dip0.t-ipconnect.de. [80.145.91.198])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e895366sm1072502266b.73.2024.12.27.00.20.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Dec 2024 00:20:22 -0800 (PST)
-Date: Fri, 27 Dec 2024 09:20:21 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Nylon Chen <nylon.chen@sifive.com>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Samuel Holland <samuel.holland@sifive.com>, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and
- algorithm
-Message-ID: <zqkx7cx5nalslfmxeoxdnsjbvrvzajrjybsmsyeyc65a64sntr@gpc5qp6aoyp7>
-References: <20241224093902.1632627-1-nylon.chen@sifive.com>
+        bh=dVcsrmKwkxIKz+eCCIw3WHKCv/X66XMcWh6vJ2SRqGw=;
+        b=xZt0ZrpHUZ6pUtSXDvpRwUu2J6ndKosPTDFYXeN+XszKw3d34ftrk9z8sC412Fu3RA
+         +iuFzda/orjO2NnVZY+q/kRUGIkbKUK75U3iArtNXciEzpCwfpkg4pGg98MaZui2LqZa
+         y729LCC1wQS+A1ONmw1A09b3nI2b64EmSfACLRiTR979PngOmmqsSLh6N6xv2GG8CQvT
+         4v5fs/H6J4MpXOGmQvG6fIMmtX9Ga4XO8a+OzMbgfrL2JDJ68HBxwKNHUlXRllLpKi0d
+         06n6mgJBFI0tBnFrPkmDYCIf9ROsb3/ADoZ2pVWqZwstIHT9kqF72SSVeA/UpBpjULP5
+         +rew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735287805; x=1735892605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dVcsrmKwkxIKz+eCCIw3WHKCv/X66XMcWh6vJ2SRqGw=;
+        b=XjnYULXFnH+SqnfWV2SYCVPX+2zRj9kKkH5hOOeKjcM/ryS3Q9LQ4pQksUwGPqfDOx
+         x0/o/lXwz8Il6p7EL/ucBrF1knYU4/F1w+7aRxNRdMEsl9vtxRegSlrYPWf53XtJvACz
+         xdnbkx/McyU5ZV/cslsxSQjXHmLLUuKPP303CApJCWc3VcoZBvanYgdOLmEkkcyhXZ+P
+         bbhuGSWnOXc4zI/cEFDYIKaar9Y0zVNX4yF+/ZPCfoDmbzD3TQu/ZrGkc8UMjDZrGp8O
+         wrFkXEr2HWPP0uo28VwDwLil/bTAmr6lTZ13/e5otiz/2xkst8FaPoYItCHnKisSnGa0
+         m7hQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVEie983Nl49XTDKwIt+g8WcArohw7lxqtWN5qhDOU4cmxh5NNxdM55exzIFzG83e5y9DP6bR5nwYq4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxb8oh3/fsgcF8x50YDUzQBjTdkqLqjKAKIG3uLLoU0kLt75WmJ
+	I4RP6Ho8IaQG9ZCqFSK+VS1bWmIReWymrKkxQC+1c+G0p3hPGsDrhllfz214VkvWrVYiUurS6yb
+	kvhpfq8aBLETcickkgPL4+RODCNkhqnJRa1S9Aw==
+X-Gm-Gg: ASbGncuf6iZLXz8IY8zAJ+nSukjG7EweklA9WeguNhxxXgoszNXa9Y6m7U8xEpwwX3M
+	RUnlW+sbSMRepb81bw8oWCz245+Sqjf5tJxKL
+X-Google-Smtp-Source: AGHT+IFYIOklSZ9sJMM5TQ3zMjDwQ23DBG0sFeGBh5tQkGSxcVbvZSf9AiFrryAVoUGw4Nv3w5+5ALeURj3MiEoam9I=
+X-Received: by 2002:a05:6512:1283:b0:53e:2f9d:6a7a with SMTP id
+ 2adb3069b0e04-54229562a50mr6753089e87.46.1735287805076; Fri, 27 Dec 2024
+ 00:23:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jxfkviocdptb27ky"
-Content-Disposition: inline
-In-Reply-To: <20241224093902.1632627-1-nylon.chen@sifive.com>
-
-
---jxfkviocdptb27ky
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+References: <20241217085435.9586-1-linux@fw-web.de>
+In-Reply-To: <20241217085435.9586-1-linux@fw-web.de>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 27 Dec 2024 09:23:13 +0100
+Message-ID: <CACRpkdakCrw3v=iEq_chxxhcEaUipqhyPA2GDZ9gp3tMTbuWBg@mail.gmail.com>
+Subject: Re: [PATCH v7 0/5] Add pinctrl support for mt7988
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>, 
+	Frank Wunderlich <frank-w@public-files.de>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and
- algorithm
-MIME-Version: 1.0
 
-Hello Nylon,
+On Tue, Dec 17, 2024 at 9:54=E2=80=AFAM Frank Wunderlich <linux@fw-web.de> =
+wrote:
 
-On Tue, Dec 24, 2024 at 05:38:58PM +0800, Nylon Chen wrote:
-> According to the circuit diagram of User LEDs - RGB described in the
-> manual hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf=
-[1].
->=20
-> The behavior of PWM is acitve-high.
->=20
-> According to the descriptionof PWM for pwmcmp in SiFive FU740-C000 Manual=
-[2].
->=20
-> The pwm algorithm is (PW) pulse active time  =3D (D) duty * (T) period.
-> The `frac` variable is pulse "inactive" time so we need to invert it.
+> This series adds pinctrl driver, dt-bindings and dts node for pinctrl
+> on mediatek mt7988 SoC.
+(...)
+> Daniel Golle (2):
+>   pinctrl: mediatek: add support for MTK_PULL_PD_TYPE
+>   pinctrl: mediatek: add MT7988 pinctrl driver
+>
+> Frank Wunderlich (3):
+>   dt-bindings: pinctrl: add binding for MT7988 SoC
 
-I'm trying to understand that. You're saying that the PWMCMP register
-holds the inactive time. Looking at the logic diagram (Figure 29) of
-"SiFive FU740-C000 Manual v1p6" that is because pwms is feed into the
-comparator after going through that XNOR where the lower input is always
-0 (as pwmcmpXcenter is always 0) and so effectively counts backwards,
-right?
-In that case the sentence "The output of each comparator is high
-whenever the value of pwms is greater than or equal to the corresponding
-pwmcmpX." from the description of the Compare Registers is wrong.
+These three patches applied to the pin control tree,
+please funnel the last two patches through the SoC tree.
 
-With that assumption there are a few issues with the second patch:
-
- - The Limitations paragraph still says "The hardware cannot generate a
-   100% duty cycle."
- - If pwm_sifive_apply() is called with state->duty_cycle =3D 0 the PWMCMP
-   register becomes (1U << PWM_SIFIVE_CMPWIDTH) - 1 which results in a
-   wave form that is active for 1 clock tick each period. That's bogus.
-   If duty_cycle =3D 0 is requested, either make sure the output is
-   inactive the whole time, or return an error.
- - With the above error in the official documentation, I'd like to have
-   a code comment that explains the mismatch such that a future reader
-   of the code has a chance to understand the situation without in
-   detail review of the manual and the driver.
-
-Orthogonal to your patches, I wonder about
-
-	frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-
-=2E Round-closest is usually wrong in an .apply() callback. I didn't do
-the detailed math, but I think you need to round up here.
-
-Best regards
-Uwe
-
---jxfkviocdptb27ky
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmduY0IACgkQj4D7WH0S
-/k4hLwf8DsoYI030gIP8IMTk9dgJdMG1D9J4fZJzTF3l7KOC2eyw0OZhH24H0ErS
-Nzmepa8T48/V4wFWqVZ00Zv5JI21c+i+8v0Z+ihxTZDgtgsnEvseEYGDeRVkghaM
-Fl3JjlknakL717HMTHLWkJFgS6Hm6VGlKJkinsyb1StbG9hEIP5cvcm8g/bKkfkV
-cZsxboyTFSOAXpCQokSpuurM8kl9uyXfXLXhIKPj5j972SMqS7G5BB61MSktm1Cw
-1gAH7Ym+E2f7DfqH+ebInOB7ErKsLJCM3UYSWV4OF5AtA9nit4Guc1FTZoEnzsv5
-+paB1cp9aflfh05vZYS9tAXVt4tIYg==
-=hGQh
------END PGP SIGNATURE-----
-
---jxfkviocdptb27ky--
+Yours,
+Linus Walleij
 
