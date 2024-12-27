@@ -1,56 +1,59 @@
-Return-Path: <devicetree+bounces-134303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D7E9FD265
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 10:06:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A899FD26D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 10:10:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61480163670
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:06:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D2D2188191B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66AA315535A;
-	Fri, 27 Dec 2024 09:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76FD915575E;
+	Fri, 27 Dec 2024 09:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EzCCXz9b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cqLMzbiB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393AC153835;
-	Fri, 27 Dec 2024 09:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43201155330;
+	Fri, 27 Dec 2024 09:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735290396; cv=none; b=Y10ybatVQWcvoWPahgPK8MYyr5ysWsseyahXiDcl5I1mYAGooYlb9cMFomgIkEW/8qTTsHWcbGAANRd/h0D3su/g8tZ1/IRj+zbwjnIzyNltaZhBXaqMgenhSqHymQ2r5RQcJazRO2AzhQqEV7k5PnXdv+ed1TpA/eim42VwQ4s=
+	t=1735290603; cv=none; b=sU+1pxzRvwc27YQl4K9zhMv2OKhtPhi0/vRaFAOGTM1H82LiX59arI6mrWXqmcxGF0IbtkscXuKechoHPTDPt9sgPbpUTm6Gpr7q6cS9wLO2TQcoA9PS8qTKXsQryt8NP30HvHdD7m9l96R0NUEJTl6qdJOOxNbCWSVrRZJxH48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735290396; c=relaxed/simple;
-	bh=+HAXub7KdKukdZMcSxzpAc/9QGT6YaLf8++bisLhM68=;
+	s=arc-20240116; t=1735290603; c=relaxed/simple;
+	bh=XpFjgBNVHQjdp9qaw76SEKy0qKalGuoo4yDayZIghgA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TEA8iVVsCDgtTj0aAMPtsLPZ/BNHZecAzNm7qtV23+b4D/eEYy6rAMAZXsLB7ymxXNwu0j7F3A+1xotXR26KYQIODhR3h1rGGzccLihehvpl33NV727ZbbvLkH63CVmS9cJsXrgVR78w1czmFdkTY8CqMAG9yAz5dQH/x6LDwzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EzCCXz9b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04294C4CED0;
-	Fri, 27 Dec 2024 09:06:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jHxlfe9dfmUNzootyPXqqiFIYBU5LPRzt3XJ/p6p6FTYJBlUq0DOySrc/2B5kIVcoMxcfIyIsyJ2HZMyWc8FdCff8uynN+iCdXY+oL+P1intvGCvZ0majAZ0qgO1/7HDGX3FrAFQzE5LlMGYtIWWsrh50E4AhMJgfwdm/UxyE40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cqLMzbiB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26F15C4CED0;
+	Fri, 27 Dec 2024 09:10:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735290395;
-	bh=+HAXub7KdKukdZMcSxzpAc/9QGT6YaLf8++bisLhM68=;
+	s=k20201202; t=1735290602;
+	bh=XpFjgBNVHQjdp9qaw76SEKy0qKalGuoo4yDayZIghgA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EzCCXz9bFOqQNPzHfyDcqTCdXqG9m4q3mgq38j769nhPs1cfR2OreTiDALRvG2KOL
-	 ad7dD+zjCd7PkuE4TJR1KR0nilMEVFZRd0iLtyYiRJxzCL8YQ77HKsuwQIiyG2HUio
-	 XuUX1AaOUTipu9zhv3sruwjAcpLcgSgjNbc2t030QZHBP96g9g+t4F2/KmB0gV1fgI
-	 ksUVpZg0hxqSF3VFsjWPKTbC8mZq3DSFIRcGgl6EmT6BBidPRmreXgMaNFi+Oxq46W
-	 adaD+YcuP1TrouhPax9c5HidrAhiH56IDhCoT0zsXQG9Z0YmDiNXeDwrKw0ivKmp8t
-	 UTPVOoPqCjstA==
-Date: Fri, 27 Dec 2024 10:06:32 +0100
+	b=cqLMzbiB94CeDC1gW0fOyxRdG53LrJN3vz05sXcZOMFZKMAhGvrYFYduuPfMoBqep
+	 YLhbRPaF3Tb7QPWakJMHC0dY2VoavTvzEOoJfNFbPaEodRdYjH2NaGDmZpU7kQsmlG
+	 oLWMi2YFPMy9m5CGSYWo6hEulsU5efhYYi6yZqhckNeJidLZksTVcd6cJudMo8b/VK
+	 Eq41sBS6R2Z3rcmMVFb6T010ccxJCaZs87/7a3P5ID5TcSu3GwZqLgdz7tQMWETroy
+	 QNkfCdLRu0IchWUA08E4B1HDvX+Xs2OLKC6KxTazvX1vPfJesOrs8LTxjL+iC+fy+w
+	 R+O4+P3xLCSFw==
+Date: Fri, 27 Dec 2024 10:10:00 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wenliang Yan <wenliang202407@163.com>
-Cc: linux@roeck-us.net, Jean Delvare <jdelvare@suse.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
-Message-ID: <srkay6cpegcxwx6q4jexs7iajydqqossfjctwoq3tctsanruxk@t44w4tbq3t5x>
-References: <20241225020305.440008-1-wenliang202407@163.com>
+To: Depeng Shao <quic_depengs@quicinc.com>
+Cc: rfoss@kernel.org, todor.too@gmail.com, bryan.odonoghue@linaro.org, 
+	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	vladimir.zapolskiy@linaro.org, quic_eberman@quicinc.com, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+Subject: Re: [PATCH 12/16] dt-bindings: media: camss: Add qcom,sm8550-camss
+ binding
+Message-ID: <ql3sufugcdpoxqgvs2f4clmbnx75t4jh6ts2ryneu2u5oeuwzn@yizcouuzfj2s>
+References: <20241225133523.4034820-1-quic_depengs@quicinc.com>
+ <20241225133523.4034820-13-quic_depengs@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,36 +62,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241225020305.440008-1-wenliang202407@163.com>
+In-Reply-To: <20241225133523.4034820-13-quic_depengs@quicinc.com>
 
-On Wed, Dec 25, 2024 at 10:03:05AM +0800, Wenliang Yan wrote:
-> From: Wenliang <wenliang202407@163.com>
+On Wed, Dec 25, 2024 at 07:05:19PM +0530, Depeng Shao wrote:
+> Add bindings for qcom,sm8550-camss in order to support the camera
+> subsystem for sm8550.
 > 
-> Document the compatible string for the Silergy SQ52206, this device
-> is a variant of the existing INA2xx devices and has the same device
-> tree bindings.
-> 
-> Signed-off-by: Wenliang <wenliang202407@163.com>
-
-Where is the rest of the patches? Why this is 3/3, not first, before the
-users (assuming there are users)? If there are no users, then that's a
-no...
-
+> Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
+> Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
+> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> index 05a9cb36cd82..f0b7758ab29f 100644
-> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> @@ -20,6 +20,7 @@ description: |
->  properties:
->    compatible:
->      enum:
-> +      - silergy,sq52206
 
-So it is compatible or not? You said same bindings, but not compatible?
+Is this v7 or v1? Same issue was all the time in the past, so why can't
+you finally fix it?
+
+Look:
+
+$ b4 diff 20241225133523.4034820-13-quic_depengs@quicinc.com
+Breaking thread to remove parents of 20241225133523.4034820-1-quic_depengs@quicinc.com
+Checking for older revisions
+Grabbing search results from lore.kernel.org
+  Added from v6: 1 patches
+---
+Analyzing 217 messages in the thread
+Could not find lower series to compare against.
+
+I am not going to perform review, maybe other maintaners have spare
+time to deal with this submission process.
 
 Best regards,
 Krzysztof
