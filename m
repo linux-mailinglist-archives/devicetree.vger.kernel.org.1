@@ -1,101 +1,147 @@
-Return-Path: <devicetree+bounces-134306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 218839FD276
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 10:12:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6785A9FD27F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 10:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C31B51881AB7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:12:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B3883A069E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2024 09:18:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4967E15575F;
-	Fri, 27 Dec 2024 09:12:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE7D1552E7;
+	Fri, 27 Dec 2024 09:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aYCwX0B5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NwRgS3ap"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC3C135A63;
-	Fri, 27 Dec 2024 09:12:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E56139597;
+	Fri, 27 Dec 2024 09:18:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735290740; cv=none; b=VnX4Vt1gWVPvkOlST6Rqwp40Q2bp99qdFmYBGQa5szwV2KQqkyz2muqJvPabYG7y4zc36GJBfRNFLp2/bCVzgf996usXxHnRSlhKYPclf8uBk2iTx//cLlOFBRDJmSHHesMaMY3qe4BB9r340KTw8YaWbvB8yWfufCoNITed5CU=
+	t=1735291099; cv=none; b=sOHEShoO2Ho37VsUyhuNx5pK19aibsDu+WGkkt/yvKxW+RZ9y3iXnHpZlWZerQ0dVCAplTaBKTTt4Cjyt5d4yOwUlgS/WtN59NRzwoqT8nJJVd5NCbLQhqMa5gbqjrFZuIL/eevioshx9BT2XKtlnx5hyxm4OXjaiullSJMjyLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735290740; c=relaxed/simple;
-	bh=C9m0pK+sHBtnCL2Zja1nhK8WY0KqFF0of4phBzhsUBI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j5OjUWvTDh6qCBb3gbHxBCBH/lowPvJM6CGORH7XkNyMciQYfHUXl89cyFTTgf8Yv3w4zu3cZulmil3McerTlehEy2yu01Dgdirk+8rmNRXQVoqjBIrJz2NvIULVcoVUDNfyzpH4xPcQ8WIINXaVtFxV7Dl6doNUQLBFoIA+6m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aYCwX0B5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ADF6C4CED0;
-	Fri, 27 Dec 2024 09:12:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735290738;
-	bh=C9m0pK+sHBtnCL2Zja1nhK8WY0KqFF0of4phBzhsUBI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aYCwX0B5jalzOdqKRrrXyTK2djttuPaYMO6me+VstDKTFZgaXEN3NHzkbxqyBh8dt
-	 u9NlpMcgGB5ui1YmYB6ZLq3f9Sv4W80QrmsijX5hPz2q+IQPX6v1UdtEEpRk3s8LDn
-	 +2yaURUvj6mEO2rFOhe6Agq89HqGcox6Bg18iLJHqHVPwfICYCr7l5IbG3ISOCFzgj
-	 ePBjXSGMTlGR6bVTHOUBOT4DsUweMfZ/ukCr16z4xWJUWrGW5WgJjuKujKYE7a377K
-	 +ECBlnqeehV0wYBLI710zq+opLt77y4/CW0wIeK5zPjUQQAwe3z0BlQCg1wnJ/tMxx
-	 +TZw075fxq5ug==
-Date: Fri, 27 Dec 2024 10:12:15 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Val Packett <val@packett.cool>
-Cc: Mattijs Korpershoek <mkorpershoek@baylibre.com>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Fabien Parent <fparent@baylibre.com>, 
-	Bernhard =?utf-8?Q?Rosenkr=C3=A4nzer?= <bero@baylibre.com>, Alexandre Mergnat <amergnat@baylibre.com>, 
-	Amjad Ouled-Ameur <aouledameur@baylibre.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: mediatek,mt6779-keypad: add more
- compatibles
-Message-ID: <2cikysv5mwmc4utckjg7iaqx66ncwu3nsxd4kqipj3gw4mymbf@3gipwanf44ji>
-References: <20241225192631.25017-1-val@packett.cool>
- <20241225192631.25017-2-val@packett.cool>
+	s=arc-20240116; t=1735291099; c=relaxed/simple;
+	bh=oxE3ORJ8AH4rIEZuEVIzU5AGj31OC1HgdJ6BeY3tdS4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QD/FTMIS5/E9v2A38ljSxJi+EvczmDRq31z19xujiJlSBuePWDW7n6zlJsLmLn7+XMgMI7k3wDcRTPzteKFpbJ/NHJimJE3rSjmI9EqoWz+WUHyPsjOED4lyRUnshKhSrvIg1J99ERfKcai32DyDKqq5sI2wict64Z6ineSxg4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NwRgS3ap; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BR8958X013363;
+	Fri, 27 Dec 2024 09:18:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mu00xLkrUdCBs8XEDuCgB0lbl1MTBEoFjytF1bmxo1E=; b=NwRgS3apM4+XkWaQ
+	NGEKS2gT7qIEP/uCN9XZ56aJgOsiacB9clPIxxD9wx5pMofDRFFW5LC/zRHmyaPi
+	6TdXHu51giSToWaVqbVt2u35mSRrdFxqIgfQOpOkoSP+/9ADTCfs95bxfueuEyuO
+	wCZET3S2IoL8pKTYnpLg8wqdxf/ownFbYww83fO+SwryyGQAesUh1ZVsNYE8Fh/7
+	FjM5JWi/3f4a131sHSIVF99MX3n9GuYviAV4BbHPFJZ1nXEpuCcL9FJL5buT9Pks
+	oN4Po4p6LL992Yc4l/80EC7jq5uRDoHk5vGoIW8mcAlzaeQz0rL2D6zVa0mmD3c2
+	nJ1Kdg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43srffgdmm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Dec 2024 09:18:12 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BR9IBbo015427
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Dec 2024 09:18:11 GMT
+Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 27 Dec
+ 2024 01:18:05 -0800
+Message-ID: <2234c9d5-f434-48cf-ba77-38e9109541eb@quicinc.com>
+Date: Fri, 27 Dec 2024 14:48:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241225192631.25017-2-val@packett.cool>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] dt-bindings: pinctrl: qcom: rename spi0 pins on
+ IPQ5424
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <linus.walleij@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <konradybcio@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+CC: <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
+References: <20241227072446.2545148-1-quic_mmanikan@quicinc.com>
+ <20241227072446.2545148-2-quic_mmanikan@quicinc.com>
+ <fbdf716d-0c4c-4f51-9f54-0f38931e26cd@kernel.org>
+Content-Language: en-US
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <fbdf716d-0c4c-4f51-9f54-0f38931e26cd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: QNh-p59KEcOZJyfLChe5KF5qB_iTzvAS
+X-Proofpoint-GUID: QNh-p59KEcOZJyfLChe5KF5qB_iTzvAS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 mlxlogscore=999 clxscore=1015 suspectscore=0 adultscore=0
+ mlxscore=0 priorityscore=1501 bulkscore=0 spamscore=0 phishscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412270077
 
-On Wed, Dec 25, 2024 at 04:26:19PM -0300, Val Packett wrote:
-> Add compatibles for SoCs using this device (mt8183, mt8365, mt8516).
 
-This we see from the diff. Say what is less visible, e.g. are they fully
-compatible with other variants? Partially?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 12/27/2024 1:06 PM, Krzysztof Kozlowski wrote:
+> On 27/12/2024 08:24, Manikanta Mylavarapu wrote:
+>> SPI protocol runs on serial engine 4. Hence rename
+>> spi0 pins to spi4 like spi0_cs to spi4_cs etc.
+>>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> ---
+> 
+> 
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
+> 
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+> of patchset, under or above your Signed-off-by tag, unless patch changed
+> significantly (e.g. new properties added to the DT bindings). Tag is
+> "received", when provided in a message replied to you on the mailing
+> list. Tools like b4 can help here. However, there's no need to repost
+> patches *only* to add the tags. The upstream maintainer will do that for
+> tags received on the version they apply.
+> 
+> Please read:
+> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+> 
 
----
+Hi Krzysztof,
 
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+	Patches #1 to #4 are newly added in V3 (to rename SPI0 to SPI4). Hence, there are no A-b/R-b
+	tags associated with these patches. I mentioned this information in the cover letter.
+	
+	I assume you are referring to Patch #1 from the V2 series.
+	Patch #1 [1] and #2 [2] from the V2 series have been merged into linux-next.
+	[1] https://lore.kernel.org/linux-arm-msm/20241217091308.3253897-2-quic_mmanikan@quicinc.com/
+	[2] https://lore.kernel.org/linux-arm-msm/20241217091308.3253897-3-quic_mmanikan@quicinc.com/
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here. However, there's no
-need to repost patches *only* to add the tags. The upstream maintainer
-will do that for tags received on the version they apply.
+	Please let me know if i missed anything.
 
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
-
-Best regards,
-Krzysztof
-
+Thanks & Regards,
+Manikanta.
 
