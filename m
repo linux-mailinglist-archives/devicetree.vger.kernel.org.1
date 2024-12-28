@@ -1,700 +1,531 @@
-Return-Path: <devicetree+bounces-134516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BAB89FDAF5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 15:39:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B179FDAF9
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 15:45:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D527E1882F21
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 14:39:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18B2A1882E6F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 14:45:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40FDB16DED2;
-	Sat, 28 Dec 2024 14:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADAFE16A930;
+	Sat, 28 Dec 2024 14:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VvZtaKHG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eRYzXzld"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2964642AB0;
-	Sat, 28 Dec 2024 14:39:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80189136672;
+	Sat, 28 Dec 2024 14:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735396788; cv=none; b=LolUFCOQT17zSi0qyKjGIvI6+Ahs53kX5M6Zgm4daKJdRks66SMxqGWEIgqZBZwpCGSg/CjOAkbya/PNo3yNUx9mdZRuoRh+3a+XK7/4cF6uZI69WNN+UOhLol+v+Dg9A3ZqmNl1N3Qvihz25/rWjrS2hM+0XmstpUcUvWjYnko=
+	t=1735397146; cv=none; b=ggG3frCSCGTajtAZbtChRuOqwg9z/XqKx1gP1mf2OOb2zwqabvyvDgVdY/iZ+qA+hPaOwBwdrhkzn45Rj4IwHKF1Vi9PfTpLknd6Du17RbxGHopDOICCShwSpdukHVQoHXc1yMFNURKBbH/e6E2hyw9kqCHcsK3JdrSM8WLc2so=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735396788; c=relaxed/simple;
-	bh=TQs0jnFRGn4Tw5LVjETUpI9hR8ohcSSQIkLDxP347mk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DTnq39SvqrxNDr4MWEPmGUb0D7IuR0OlJhh1CivQNYcpUtZBoho+rx7fwa31E1YzhtwebT3l3I6q643qmmW6aydOHCwl0eki+URw6ht9mjaJexmMiiTgfdM4ER0r35g5hvjg1HjGzGv/QMu62arKjXmhr6vuHrhQCrFCq77pIEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VvZtaKHG; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2167141dfa1so97584845ad.1;
-        Sat, 28 Dec 2024 06:39:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735396785; x=1736001585; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2DyCZ7mbH7c9hVv0HJi5tIL/Oo64F/SE/Xdflnf8vNA=;
-        b=VvZtaKHG/rtAAR9ts32M1JCYLB9iXnalpOpZS2OpdRTWbKjEsOGZLc3XfNgp0lRc+g
-         FJ1d9YX8phR+ZqQGbWI1M9P4qVaKDQ42hTkEvCmWXMmZ/Fqoxyb4ApRjntRPjyc8OU8b
-         dDlz2kP9ZUh8o3JbqpK1ov2foV2X9nkgcbgRL3ZAvsLoVOW38gEsdRxcP7rbnhUy0VGi
-         /E0H/ArIUKssVAko5PrDdOUCXWMdUkoPUEuNAutDeoxTpUjhWdKXkas9KdRZTy+HjOUB
-         jMCt6Ig5zYYTKAd4HTaGaYKHQ6oa8ZKcekuQsJvAWYKMhCHiFKK0x2bch1te1KwX7IlY
-         o9YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735396785; x=1736001585;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2DyCZ7mbH7c9hVv0HJi5tIL/Oo64F/SE/Xdflnf8vNA=;
-        b=BxJrHYEnGuczyKMwZkDM5PBVxN4WXeVO1dkoXoP6E8pe84r3TgyzDD5e0DNgmVZVGR
-         T5smKKZvU4N03NoxC/Muybwq0ni8v5uJ7N7GE7CojOFjMf/FnrOF9yZVU07+5RGIDNOS
-         +JkVIo6c8Zvre2eIQz8elUTNEpyzGbGeZm1EIgpa3g2Gd3kvHM2AwqYK22Dr1A+TGPQT
-         hBVFusGdU40znHf5JR6rcwIpmq1wc1IsJl2YnLJSHuBgIf6tDPDN0D53AdTpgk5aC7YG
-         vDZ/YQ4QieuclVr5xHRMjvcFXEaYuRtNPqdPGZXFVosQGlN/ag89pjGuKXJv94jOhPZQ
-         9i8g==
-X-Forwarded-Encrypted: i=1; AJvYcCU+zuVPWLRb5F8UBZ6dH2a62sAn+TAx9EmOK9Fz6nQbly9CWytiaAsx0KmEkVhJF6kssgzzng49de8w@vger.kernel.org, AJvYcCVdX4WXewkO0mlDEBtBSwSs7IfXMLVYWIGNzLRcRA17nszx08dX1bNWDAeBbHT6bmdkUn8M/booeIrGOhybug==@vger.kernel.org, AJvYcCW4C6oMBlKP3RVRaYSps6BmHi5B+nwh368pj9g0LxYoe4QZH2w6/Nure/zRUpZcFCeBTm6Jr482+zmv@vger.kernel.org, AJvYcCWbZKDsyVEhNo8Ttasgons8dPu/2ldbmgro9qEaJh2CXa5NhtEm72voHZMFXbqaZphoHS7OilNIdXjCbQINUv3EioRnrw==@vger.kernel.org, AJvYcCWkW20glhjyF7ORHbM/azEpePzvhXmTT/b06aIdjA2A8KrI4EKny1NoKrRdHCOKbQMNLxjxHsDrT1Ybd2GX@vger.kernel.org, AJvYcCWnol6toZWzgotxyoZBGDwnTMfBb14E3BwFO0Sd4tz4d4B9DqZEjQSD/84Edvo4Sbk+Di02rMdkSrk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcdHmGiOsGoLLrzD0aZheNNfHc47Wkm0qf3wGk1jDmdfpZDsMF
-	2wwH5MD+qDGkrGqUaCg5haBXu02UPSIXcLVxgBeo9fkzM60UNNPxUhEiZW75SBQIJuiO
-X-Gm-Gg: ASbGncsitkcf0VvVJCsdV/4RnWdksAjBKQVNJ6Bk2tCh1moQnWf1gg8N/vrr/NUOn0M
-	owLOU4mKLJpYFPZroACt7pG4lkj6UyvnB3twP4ZS5t8ZN4x1owHhfV8WkIgDzxF0gUvxeu20r/X
-	J2Iq6NFIb4pkiNVkgSm2n5QLksQ3TxkUY6J0g1DfThp/oR4bIXz+4BDOMB6FBbD59byUr3UTVZo
-	jY6gkGej9BIRrKMh0rBMebyNMybzkix38g7JWEF4JY=
-X-Google-Smtp-Source: AGHT+IHN80id7cpfVlAx/gc3KzaI0e+q0FU+z9Xy+lA/+lqwl8b4cXrO4tTFShneGfM2pup2jDcwJg==
-X-Received: by 2002:a17:902:f643:b0:216:59f1:c7d9 with SMTP id d9443c01a7336-219e6d599famr510985895ad.19.1735396785186;
-        Sat, 28 Dec 2024 06:39:45 -0800 (PST)
-Received: from nuvole.. ([2a09:bac1:76a0:dd10::2e9:62])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc962cc3sm150829855ad.28.2024.12.28.06.39.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Dec 2024 06:39:44 -0800 (PST)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: bryan.odonoghue@linaro.org
-Cc: andersson@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dmitry.baryshkov@linaro.org,
-	gregkh@linuxfoundation.org,
-	hdegoede@redhat.com,
-	heikki.krogerus@linux.intel.com,
-	ilpo.jarvinen@linux.intel.com,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	mitltlatltl@gmail.com,
-	nikita@trvn.ru,
-	platform-driver-x86@vger.kernel.org,
-	robh@kernel.org,
-	sre@kernel.org
-Subject: Re: [PATCH 3/5] usb: typec: ucsi: add Huawei Matebook E Go (sc8280xp) ucsi driver
-Date: Sat, 28 Dec 2024 22:38:29 +0800
-Message-ID: <20241228143830.613658-1-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <c17372ed-baf0-40a7-b267-25f1ff849cf7@linaro.org>
-References: <c17372ed-baf0-40a7-b267-25f1ff849cf7@linaro.org>
+	s=arc-20240116; t=1735397146; c=relaxed/simple;
+	bh=cjEd0Mhjm6Hrn6Z5HmAehCu/lgaVlg6MWfRsV5OIC+I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SRgLObjJ5QHjdUqCcEtBylEGly7G2x/DwCTMvaFSi+zaKSOCLXozlM/wtyfSj+iDEL6t6o5IL6x+tM7vBIOwlcPa+NdA6h6zsy5qIjl422/CBFa4D87iXtskDxjW/BJB07Iw4IYAqCFxOj4ZzM/l27sELE3n+kU3CawtE5ZvIBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eRYzXzld; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2C60C4CECD;
+	Sat, 28 Dec 2024 14:45:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735397146;
+	bh=cjEd0Mhjm6Hrn6Z5HmAehCu/lgaVlg6MWfRsV5OIC+I=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=eRYzXzld1RaNx83ay1AKomua1U6XMI6wBj0QAno7bGdYWShtLwRcBkm2xVZrf1BUN
+	 O10ZNL5p9qIeA9zVvdPYv/ZwGlWJQzSARMK4nwSJSiYG3qU8hoXXtRqRvD3jEAO7XZ
+	 5zXIlS4Eb8CmZSKjpVt3N/kJsyN2+7AA8voX5BxnaVtKHADd9AMALATe469dTYlwV8
+	 u9tcIqP/Oxc15VUAKVOXBEdFVx76zBJjtQxkvqFnLX+NQys6blAx/WVLdFZ26Ls6gT
+	 PeTVAZ0NwYLQsKT3AUxb8h/Is49CYUoye8NhUTkX7CL0KTsEJyGVZCPledTrBu4j++
+	 r9NiMZJ3yiieQ==
+Date: Sat, 28 Dec 2024 14:45:36 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ eraretuya@gmail.com
+Subject: Re: [PATCH v8 6/7] iio: accel: adxl345: add FIFO with watermark
+ events
+Message-ID: <20241228144536.12e2e8a5@jic23-huawei>
+In-Reply-To: <20241225181338.69672-7-l.rubusch@gmail.com>
+References: <20241225181338.69672-1-l.rubusch@gmail.com>
+	<20241225181338.69672-7-l.rubusch@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, Dec 28, 2024 at 9:06 PM Bryan O'Donoghue <bryan.odonoghue@linaro.org> wrote:
-> On 27/12/2024 17:13, Pengyu Luo wrote:
-> > The Huawei Matebook E Go (sc8280xp) tablet provides implements UCSI
-> > interface in the onboard EC. Add the glue driver to interface the
-> > platform's UCSI implementation.
-> >
-> > Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> > ---
-> >   drivers/usb/typec/ucsi/Kconfig              |   9 +
-> >   drivers/usb/typec/ucsi/Makefile             |   1 +
-> >   drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c | 481 ++++++++++++++++++++
-> >   3 files changed, 491 insertions(+)
-> >   create mode 100644 drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-> >
-> > diff --git a/drivers/usb/typec/ucsi/Kconfig b/drivers/usb/typec/ucsi/Kconfig
-> > index 680e1b87b..0d0f07488 100644
-> > --- a/drivers/usb/typec/ucsi/Kconfig
-> > +++ b/drivers/usb/typec/ucsi/Kconfig
-> > @@ -78,4 +78,13 @@ config UCSI_LENOVO_YOGA_C630
-> >         To compile the driver as a module, choose M here: the module will be
-> >         called ucsi_yoga_c630.
-> >
-> > +config UCSI_HUAWEI_GAOKUN
-> > +     tristate "UCSI Interface Driver for Huawei Matebook E Go (sc8280xp)"
-> > +     depends on EC_HUAWEI_GAOKUN
-> > +     help
-> > +       This driver enables UCSI support on the Huawei Matebook E Go tablet.
-> > +
-> > +       To compile the driver as a module, choose M here: the module will be
-> > +       called ucsi_huawei_gaokun.
-> > +
-> >   endif
-> > diff --git a/drivers/usb/typec/ucsi/Makefile b/drivers/usb/typec/ucsi/Makefile
-> > index aed41d238..0b400122b 100644
-> > --- a/drivers/usb/typec/ucsi/Makefile
-> > +++ b/drivers/usb/typec/ucsi/Makefile
-> > @@ -22,3 +22,4 @@ obj-$(CONFIG_UCSI_CCG)                      += ucsi_ccg.o
-> >   obj-$(CONFIG_UCSI_STM32G0)          += ucsi_stm32g0.o
-> >   obj-$(CONFIG_UCSI_PMIC_GLINK)               += ucsi_glink.o
-> >   obj-$(CONFIG_UCSI_LENOVO_YOGA_C630) += ucsi_yoga_c630.o
-> > +obj-$(CONFIG_UCSI_HUAWEI_GAOKUN)     += ucsi_huawei_gaokun.o
-> > diff --git a/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-> > new file mode 100644
-> > index 000000000..84ed0407d
-> > --- /dev/null
-> > +++ b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-> > @@ -0,0 +1,481 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * ucsi-huawei-gaokun - A UCSI driver for HUAWEI Matebook E Go (sc8280xp)
-> > + *
-> > + * reference: drivers/usb/typec/ucsi/ucsi_yoga_c630.c
-> > + *            drivers/usb/typec/ucsi/ucsi_glink.c
-> > + *            drivers/soc/qcom/pmic_glink_altmode.c
-> > + *
-> > + * Copyright (C) 2024 Pengyu Luo <mitltlatltl@gmail.com>
-> > + */
-> > +
-> > +#include <linux/auxiliary_bus.h>
-> > +#include <linux/bitops.h>
-> > +#include <linux/completion.h>
-> > +#include <linux/container_of.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/module.h>
-> > +#include <linux/notifier.h>
-> > +#include <linux/of.h>
-> > +#include <linux/string.h>
-> > +#include <linux/workqueue_types.h>
-> > +
-> > +#include <linux/usb/pd_vdo.h>
-> > +#include <drm/bridge/aux-bridge.h
->
-> Is there a reason you don't have strict include alphanumeric ordering here ?
->
+On Wed, 25 Dec 2024 18:13:37 +0000
+Lothar Rubusch <l.rubusch@gmail.com> wrote:
 
-These two is dp/alt mode related, so listing them out. Above of them are
-general things.
+> Add a basic setup for FIFO with configurable watermark. Add a handler
+> for watermark interrupt events and extend the channel for the
+> scan_index needed for the iio channel. The sensor is configurable to use
+> a FIFO_BYPASSED mode or a FIFO_STREAM mode. For the FIFO_STREAM mode now
+> a watermark can be configured, or disabled by setting 0. Further features
+> require a working FIFO setup.
+> 
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> ---
+>  drivers/iio/accel/adxl345.h      |  27 ++-
+>  drivers/iio/accel/adxl345_core.c | 305 ++++++++++++++++++++++++++++++-
+>  2 files changed, 321 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/iio/accel/adxl345.h b/drivers/iio/accel/adxl345.h
+> index 6f39f16d3..bf9e86cff 100644
+> --- a/drivers/iio/accel/adxl345.h
+> +++ b/drivers/iio/accel/adxl345.h
+> @@ -15,18 +15,32 @@
+>  #define ADXL345_REG_OFS_AXIS(index)	(ADXL345_REG_OFSX + (index))
+>  #define ADXL345_REG_BW_RATE		0x2C
+>  #define ADXL345_REG_POWER_CTL		0x2D
+> +#define ADXL345_REG_INT_ENABLE		0x2E
+> +#define ADXL345_REG_INT_MAP		0x2F
+> +#define ADXL345_REG_INT_SOURCE		0x30
+> +#define ADXL345_REG_INT_SOURCE_MSK	0xFF
+>  #define ADXL345_REG_DATA_FORMAT		0x31
+> -#define ADXL345_REG_DATAX0		0x32
+> -#define ADXL345_REG_DATAY0		0x34
+> -#define ADXL345_REG_DATAZ0		0x36
+> -#define ADXL345_REG_DATA_AXIS(index)	\
+> -	(ADXL345_REG_DATAX0 + (index) * sizeof(__le16))
+> +#define ADXL345_REG_XYZ_BASE		0x32
+> +#define ADXL345_REG_DATA_AXIS(index)				\
+> +	(ADXL345_REG_XYZ_BASE + (index) * sizeof(__le16))
+>  
+> +#define ADXL345_REG_FIFO_CTL		0x38
+> +#define ADXL345_REG_FIFO_STATUS	0x39
+> +#define ADXL345_REG_FIFO_STATUS_MSK	0x3F
+> +
+> +#define ADXL345_FIFO_CTL_SAMPLES(x)	FIELD_PREP(GENMASK(4, 0), x)
+These need linux/bitfield.h to be included.
 
-> >
-> > +
-> > +#include "ucsi.h"
-> > +#include <linux/platform_data/huawei-gaokun-ec.h>
-> > +
-> > +
-> > +#define EC_EVENT_UCSI        0x21
-> > +#define EC_EVENT_USB 0x22
-> > +
-> > +#define GAOKUN_CCX_MASK              GENMASK(1, 0)
-> > +#define GAOKUN_MUX_MASK              GENMASK(3, 2)
-> > +
-> > +#define GAOKUN_DPAM_MASK     GENMASK(3, 0)
-> > +#define GAOKUN_HPD_STATE_MASK        BIT(4)
-> > +#define GAOKUN_HPD_IRQ_MASK  BIT(5)
-> > +
-> > +#define CCX_TO_ORI(ccx) (++ccx % 3)
->
-> Why do you increment the value of the enum ?
-> Seems strange.
->
+However, that got me looking closer at this and it should be done
+differently.
 
-EC's logic, it is just a trick. Qualcomm maps
-0 1 2 to normal, reverse, none(no device insert)
-typec lib maps 1 2 0 to that.
+Just define the masks in here and put the FIELD_PREP() inline in the
+c file.  Same for the various other FIELD_PREP macros in here.
 
-> > +
-> > +#define GET_IDX(updt) (ffs(updt) - 1)
-> > +
-> > +/* Configuration Channel Extension */
-> > +enum gaokun_ucsi_ccx {
-> > +     USBC_CCX_NORMAL,
-> > +     USBC_CCX_REVERSE,
-> > +     USBC_CCX_NONE,
-> > +};
-> > +
-> > +enum gaokun_ucsi_mux {
-> > +     USBC_MUX_NONE,
-> > +     USBC_MUX_USB_2L,
-> > +     USBC_MUX_DP_4L,
-> > +     USBC_MUX_USB_DP,
-> > +};
-> > +
-> > +struct gaokun_ucsi_reg {
-> > +     u8 port_num;
-> > +     u8 port_updt;
-> > +     u8 port_data[4];
-> > +     u8 checksum;
-> > +     u8 reserved;
-> > +} __packed;
-> > +
-> > +struct gaokun_ucsi_port {
-> > +     struct completion usb_ack;
-> > +     spinlock_t lock;
-> > +
-> > +     struct gaokun_ucsi *ucsi;
-> > +     struct auxiliary_device *bridge;
-> > +
-> > +     int idx;
-> > +     enum gaokun_ucsi_ccx ccx;
-> > +     enum gaokun_ucsi_mux mux;
-> > +     u8 mode;
-> > +     u16 svid;
-> > +     u8 hpd_state;
-> > +     u8 hpd_irq;
-> > +};
-> > +
-> > +struct gaokun_ucsi {
-> > +     struct gaokun_ec *ec;
-> > +     struct ucsi *ucsi;
-> > +     struct gaokun_ucsi_port *ports;
-> > +     struct device *dev;
-> > +     struct work_struct work;
-> > +     struct notifier_block nb;
-> > +     u16 version;
-> > +     u8 port_num;
-> > +};
-> > +
-> > +/* -------------------------------------------------------------------------- */
-> > +/* For UCSI */
-> > +
-> > +static int gaokun_ucsi_read_version(struct ucsi *ucsi, u16 *version)
-> > +{
-> > +     struct gaokun_ucsi *uec = ucsi_get_drvdata(ucsi);
-> > +
-> > +     *version = uec->version;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int gaokun_ucsi_read_cci(struct ucsi *ucsi, u32 *cci)
-> > +{
-> > +     struct gaokun_ucsi *uec = ucsi_get_drvdata(ucsi);
-> > +     u8 buf[GAOKUN_UCSI_READ_SIZE];
-> > +     int ret;
-> > +
-> > +     ret = gaokun_ec_ucsi_read(uec->ec, buf);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     memcpy(cci, buf, sizeof(*cci));
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int gaokun_ucsi_read_message_in(struct ucsi *ucsi,
-> > +                                    void *val, size_t val_len)
-> > +{
-> > +     struct gaokun_ucsi *uec = ucsi_get_drvdata(ucsi);
-> > +     u8 buf[GAOKUN_UCSI_READ_SIZE];
-> > +     int ret;
-> > +
-> > +     ret = gaokun_ec_ucsi_read(uec->ec, buf);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     memcpy(val, buf + GAOKUN_UCSI_CCI_SIZE,
-> > +            min(val_len, GAOKUN_UCSI_DATA_SIZE));
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int gaokun_ucsi_async_control(struct ucsi *ucsi, u64 command)
-> > +{
-> > +     struct gaokun_ucsi *uec = ucsi_get_drvdata(ucsi);
-> > +     u8 buf[GAOKUN_UCSI_WRITE_SIZE] = {};
-> > +
-> > +     memcpy(buf, &command, sizeof(command));
-> > +
-> > +     return gaokun_ec_ucsi_write(uec->ec, buf);
-> > +}
-> > +
-> > +static void gaokun_ucsi_update_connector(struct ucsi_connector *con)
-> > +{
-> > +     struct gaokun_ucsi *uec = ucsi_get_drvdata(con->ucsi);
-> > +
-> > +     if (con->num > uec->port_num)
-> > +             return;
-> > +
-> > +     con->typec_cap.orientation_aware = true;
-> > +}
-> > +
-> > +static void gaokun_set_orientation(struct ucsi_connector *con,
-> > +                                struct gaokun_ucsi_port *port)
-> > +{
-> > +     enum gaokun_ucsi_ccx ccx;
-> > +     unsigned long flags;
-> > +
-> > +     spin_lock_irqsave(&port->lock, flags);
-> > +     ccx = port->ccx;
-> > +     spin_unlock_irqrestore(&port->lock, flags);
-> > +
-> > +     typec_set_orientation(con->port, CCX_TO_ORI(ccx));
-> > +}
-> > +
-> > +static void gaokun_ucsi_connector_status(struct ucsi_connector *con)
-> > +{
-> > +     struct gaokun_ucsi *uec = ucsi_get_drvdata(con->ucsi);
-> > +     int idx;
-> > +
-> > +     idx = con->num - 1;
-> > +     if (con->num > uec->port_num) {
-> > +             dev_warn(uec->ucsi->dev, "set orientation out of range: con%d\n", idx);
-> > +             return;
-> > +     }
-> > +
-> > +     gaokun_set_orientation(con, &uec->ports[idx]);
-> > +}
-> > +
-> > +const struct ucsi_operations gaokun_ucsi_ops = {
-> > +     .read_version = gaokun_ucsi_read_version,
-> > +     .read_cci = gaokun_ucsi_read_cci,
-> > +     .read_message_in = gaokun_ucsi_read_message_in,
-> > +     .sync_control = ucsi_sync_control_common,
-> > +     .async_control = gaokun_ucsi_async_control,
-> > +     .update_connector = gaokun_ucsi_update_connector,
-> > +     .connector_status = gaokun_ucsi_connector_status,
-> > +};
-> > +
-> > +/* -------------------------------------------------------------------------- */
-> > +/* For Altmode */
-> > +
-> > +static void gaokun_ucsi_port_update(struct gaokun_ucsi_port *port,
-> > +                                 const u8 *port_data)
-> > +{
-> > +     unsigned long flags;
-> > +     u8 dcc, ddi;
-> > +     int offset = port->idx * 2; /* every port has 2 Bytes data */
-> > +
-> > +     dcc = port_data[offset];
-> > +     ddi = port_data[offset + 1];
-> > +
-> > +     spin_lock_irqsave(&port->lock, flags);
-> > +
-> > +     port->ccx = FIELD_GET(GAOKUN_CCX_MASK, dcc);
-> > +     port->mux = FIELD_GET(GAOKUN_MUX_MASK, dcc);
-> > +     port->mode = FIELD_GET(GAOKUN_DPAM_MASK, ddi);
-> > +     port->hpd_state = FIELD_GET(GAOKUN_HPD_STATE_MASK, ddi);
-> > +     port->hpd_irq = FIELD_GET(GAOKUN_HPD_IRQ_MASK, ddi);
-> > +
-> > +     switch (port->mux) {
-> > +     case USBC_MUX_NONE:
-> > +             port->svid = 0;
-> > +             break;
-> > +     case USBC_MUX_USB_2L:
-> > +             port->svid = USB_SID_PD;
-> > +             break;
-> > +     case USBC_MUX_DP_4L:
-> > +     case USBC_MUX_USB_DP:
-> > +             port->svid = USB_SID_DISPLAYPORT;
-> > +             if (port->ccx == USBC_CCX_REVERSE)
-> > +                     port->mode -= 6;
->
-> why minus six ?
-> needs a comment.
->
+It may seem convenient to wrap all this up here, but in general
+I'd rather see that these are simple FIELD_PREP() calls where they
+are used inline.
 
-EC's logic. I don't know why, it is a quirk from Qualcomm or Huawei.
-I will mention this.
+Thanks,
 
-> > +             break;
-> > +     default:
-> > +             break;
-> > +     }
-> > +
-> > +     spin_unlock_irqrestore(&port->lock, flags);
-> > +}
-> > +
-> > +static int gaokun_ucsi_refresh(struct gaokun_ucsi *uec)
-> > +{
-> > +     struct gaokun_ucsi_reg ureg;
-> > +     int ret, idx;
-> > +
-> > +     ret = gaokun_ec_ucsi_get_reg(uec->ec, (u8 *)&ureg);
-> > +     if (ret)
-> > +             return -EIO;
-> > +
-> > +     uec->port_num = ureg.port_num;
-> > +     idx = GET_IDX(ureg.port_updt);
-> > +
-> > +     if (idx >= 0 && idx < ureg.port_num)
-> > +             gaokun_ucsi_port_update(&uec->ports[idx], ureg.port_data);
->
-> Since you are checking the validity of the index, you should -EINVAL if
-> the index is out of range.
->
+Jonathan
 
-EC / pmic glink encode every port in a bit
-0/1/2/4/... => ???/left/right/some port
+> +/* 0: INT1, 1: INT2 */
+> +#define ADXL345_FIFO_CTL_TRIGGER(x)	FIELD_PREP(BIT(5), x)
+> +#define ADXL345_FIFO_CTL_MODE(x)	FIELD_PREP(GENMASK(7, 6), x)
+> +
+> +#define ADXL345_INT_DATA_READY		BIT(7)
+> +#define ADXL345_INT_WATERMARK		BIT(1)
+> +#define ADXL345_INT_OVERRUN		BIT(0)
+>  #define ADXL345_BW_RATE			GENMASK(3, 0)
+>  #define ADXL345_BASE_RATE_NANO_HZ	97656250LL
+>  
+> -#define ADXL345_POWER_CTL_MEASURE	BIT(3)
+>  #define ADXL345_POWER_CTL_STANDBY	0x00
+> +#define ADXL345_POWER_CTL_MEASURE	BIT(3)
+>  
+>  #define ADXL345_DATA_FORMAT_RANGE	GENMASK(1, 0)	/* Set the g range */
+>  #define ADXL345_DATA_FORMAT_JUSTIFY	BIT(2)	/* Left-justified (MSB) mode */
+> @@ -40,6 +54,7 @@
+>  #define ADXL345_DATA_FORMAT_16G		3
+>  
+>  #define ADXL345_DEVID			0xE5
+> +#define ADXL345_FIFO_SIZE		32
+>  
+>  /*
+>   * In full-resolution mode, scale factor is maintained at ~4 mg/LSB
+> diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adxl345_core.c
+> index 987a0fe03..738960298 100644
+> --- a/drivers/iio/accel/adxl345_core.c
+> +++ b/drivers/iio/accel/adxl345_core.c
+> @@ -15,9 +15,17 @@
+>  
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/sysfs.h>
+> +#include <linux/iio/buffer.h>
+> +#include <linux/iio/kfifo_buf.h>
+>  
+>  #include "adxl345.h"
+>  
+> +#define ADXL345_FIFO_BYPASS	0
+> +#define ADXL345_FIFO_FIFO	1
+> +#define ADXL345_FIFO_STREAM	2
+> +
+> +#define ADXL345_DIRS 3
+> +
+>  #define ADXL345_INT_NONE		0xff
+>  #define ADXL345_INT1			0
+>  #define ADXL345_INT2			1
+> @@ -28,25 +36,66 @@ struct adxl345_state {
+>  	bool fifo_delay; /* delay: delay is needed for SPI */
+>  	int irq;
+>  	u8 intio;
+> +	u8 int_map;
+> +	u8 watermark;
+> +	u8 fifo_mode;
+> +	__le16 fifo_buf[ADXL345_DIRS * ADXL345_FIFO_SIZE + 1] __aligned(IIO_DMA_MINALIGN);
+>  };
+>  
+> -#define ADXL345_CHANNEL(index, axis) {					\
+> +#define ADXL345_CHANNEL(index, reg, axis) {					\
+>  	.type = IIO_ACCEL,						\
+>  	.modified = 1,							\
+>  	.channel2 = IIO_MOD_##axis,					\
+> -	.address = index,						\
+> +	.address = (reg),						\
+>  	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
+>  		BIT(IIO_CHAN_INFO_CALIBBIAS),				\
+>  	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |		\
+>  		BIT(IIO_CHAN_INFO_SAMP_FREQ),				\
+> +	.scan_index = (index),				\
+> +	.scan_type = {					\
+> +		.sign = 's',				\
+> +		.realbits = 13,				\
+> +		.storagebits = 16,			\
+> +		.endianness = IIO_LE,			\
+> +	},						\
+>  }
+>  
+> +enum adxl345_chans {
+> +	chan_x, chan_y, chan_z,
+> +};
+> +
+>  static const struct iio_chan_spec adxl345_channels[] = {
+> -	ADXL345_CHANNEL(0, X),
+> -	ADXL345_CHANNEL(1, Y),
+> -	ADXL345_CHANNEL(2, Z),
+> +	ADXL345_CHANNEL(0, chan_x, X),
+> +	ADXL345_CHANNEL(1, chan_y, Y),
+> +	ADXL345_CHANNEL(2, chan_z, Z),
+>  };
+>  
+> +static const unsigned long adxl345_scan_masks[] = {
+> +	BIT(chan_x) | BIT(chan_y) | BIT(chan_z),
+> +	0
+> +};
+> +
+> +static int adxl345_set_interrupts(struct adxl345_state *st)
+> +{
+> +	int ret;
+> +	unsigned int int_enable = st->int_map;
+> +	unsigned int int_map;
+> +
+> +	/*
+> +	 * Any bits set to 0 in the INT map register send their respective
+> +	 * interrupts to the INT1 pin, whereas bits set to 1 send their respective
+> +	 * interrupts to the INT2 pin. The intio shall convert this accordingly.
+> +	 */
+> +	int_map = FIELD_GET(ADXL345_REG_INT_SOURCE_MSK,
+> +			    st->intio ? st->int_map : ~st->int_map);
+> +
+> +	ret = regmap_write(st->regmap, ADXL345_REG_INT_MAP, int_map);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return regmap_write(st->regmap, ADXL345_REG_INT_ENABLE, int_enable);
+> +}
+> +
+>  static int adxl345_read_raw(struct iio_dev *indio_dev,
+>  			    struct iio_chan_spec const *chan,
+>  			    int *val, int *val2, long mask)
+> @@ -132,6 +181,24 @@ static int adxl345_write_raw(struct iio_dev *indio_dev,
+>  	return -EINVAL;
+>  }
+>  
+> +static int adxl345_set_watermark(struct iio_dev *indio_dev, unsigned int value)
+> +{
+> +	struct adxl345_state *st = iio_priv(indio_dev);
+> +	unsigned int fifo_mask = 0x1F;
+> +	int ret;
+> +
+> +	value = min(value, ADXL345_FIFO_SIZE - 1);
+> +
+> +	ret = regmap_update_bits(st->regmap, ADXL345_REG_FIFO_CTL, fifo_mask, value);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->watermark = value;
+> +	st->int_map |= ADXL345_INT_WATERMARK;
+> +
+> +	return 0;
+> +}
+> +
+>  static int adxl345_write_raw_get_fmt(struct iio_dev *indio_dev,
+>  				     struct iio_chan_spec const *chan,
+>  				     long mask)
+> @@ -186,11 +253,217 @@ static const struct attribute_group adxl345_attrs_group = {
+>  	.attrs = adxl345_attrs,
+>  };
+>  
+> +static int adxl345_set_fifo(struct adxl345_state *st)
+> +{
+> +	int ret;
+> +
+> +	/* FIFO should only be configured while in standby mode */
+> +	ret = adxl345_set_measure_en(st, false);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_write(st->regmap, ADXL345_REG_FIFO_CTL,
+> +			   ADXL345_FIFO_CTL_SAMPLES(st->watermark) |
+> +			   ADXL345_FIFO_CTL_TRIGGER(st->intio) |
+> +			   ADXL345_FIFO_CTL_MODE(st->fifo_mode));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return adxl345_set_measure_en(st, true);
+> +}
+> +
+> +/**
+> + * adxl345_get_samples() - Read number of FIFO entries.
+> + * @st: The initialized state instance of this driver.
+> + *
+> + * The sensor does not support treating any axis individually, or exclude them
+> + * from measuring.
+> + *
+> + * Return: negative error, or value.
+> + */
+> +static int adxl345_get_samples(struct adxl345_state *st)
+> +{
+> +	unsigned int regval = 0;
+> +	int ret;
+> +
+> +	ret = regmap_read(st->regmap, ADXL345_REG_FIFO_STATUS, &regval);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return FIELD_GET(ADXL345_REG_FIFO_STATUS_MSK, regval);
+> +}
+> +
+> +/**
+> + * adxl345_fifo_transfer() - Read samples number of elements.
+> + * @st: The instance of the state object of this sensor.
+> + * @samples: The number of lines in the FIFO referred to as fifo_entry.
+> + *
+> + * It is recommended that a multiple-byte read of all registers be performed to
+> + * prevent a change in data between reads of sequential registers. That is to
+> + * read out the data registers X0, X1, Y0, Y1, Z0, Z1, i.e. 6 bytes at once.
+> + *
+> + * Return: 0 or error value.
+> + */
+> +static int adxl345_fifo_transfer(struct adxl345_state *st, int samples)
+> +{
+> +	size_t count;
+> +	int i, ret = 0;
+> +
+> +	/* count is the 3x the fifo_buf element size, hence 6B */
+> +	count = sizeof(st->fifo_buf[0]) * ADXL345_DIRS;
+> +	for (i = 0; i < samples; i++) {
+> +		/* read 3x 2 byte elements from base address into next fifo_buf position */
+> +		ret = regmap_bulk_read(st->regmap, ADXL345_REG_XYZ_BASE,
+> +				       st->fifo_buf + (i * count / 2), count);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		/*
+> +		 * To ensure that the FIFO has completely popped, there must be at least 5
+> +		 * us between the end of reading the data registers, signified by the
+> +		 * transition to register 0x38 from 0x37 or the CS pin going high, and the
+> +		 * start of new reads of the FIFO or reading the FIFO_STATUS register. For
+> +		 * SPI operation at 1.5 MHz or lower, the register addressing portion of the
+> +		 * transmission is sufficient delay to ensure the FIFO has completely
+> +		 * popped. It is necessary for SPI operation greater than 1.5 MHz to
+> +		 * de-assert the CS pin to ensure a total of 5 us, which is at most 3.4 us
+> +		 * at 5 MHz operation.
+> +		 */
+> +		if (st->fifo_delay && samples > 1)
+> +			udelay(3);
+> +	}
+> +	return ret;
+> +}
+> +
+> +/**
+> + * adxl345_fifo_reset() - Empty the FIFO in error condition.
+> + * @st: The instance to the state object of the sensor.
+> + *
+> + * Read all elements of the FIFO. Reading the interrupt source register
+> + * resets the sensor.
+> + */
+> +static void adxl345_fifo_reset(struct adxl345_state *st)
+> +{
+> +	int regval;
+> +	int samples;
+> +
+> +	adxl345_set_measure_en(st, false);
+> +
+> +	samples = adxl345_get_samples(st);
+> +	if (samples > 0)
+> +		adxl345_fifo_transfer(st, samples);
+> +
+> +	regmap_read(st->regmap, ADXL345_REG_INT_SOURCE, &regval);
+> +
+> +	adxl345_set_measure_en(st, true);
+> +}
+> +
+> +static int adxl345_buffer_postenable(struct iio_dev *indio_dev)
+> +{
+> +	struct adxl345_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	ret = adxl345_set_interrupts(st);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	st->fifo_mode = ADXL345_FIFO_STREAM;
+> +	return adxl345_set_fifo(st);
+> +}
+> +
+> +static int adxl345_buffer_predisable(struct iio_dev *indio_dev)
+> +{
+> +	struct adxl345_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	st->fifo_mode = ADXL345_FIFO_BYPASS;
+> +	ret = adxl345_set_fifo(st);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	st->int_map = 0x00;
+> +	return adxl345_set_interrupts(st);
+> +}
+> +
+> +static const struct iio_buffer_setup_ops adxl345_buffer_ops = {
+> +	.postenable = adxl345_buffer_postenable,
+> +	.predisable = adxl345_buffer_predisable,
+> +};
+> +
+> +static int adxl345_get_status(struct adxl345_state *st)
+> +{
+> +	int ret;
+> +	unsigned int regval;
+> +
+> +	ret = regmap_read(st->regmap, ADXL345_REG_INT_SOURCE, &regval);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return FIELD_GET(ADXL345_REG_INT_SOURCE_MSK, regval);
+> +}
+> +
+> +static int adxl345_fifo_push(struct iio_dev *indio_dev,
+> +			     int samples)
+> +{
+> +	struct adxl345_state *st = iio_priv(indio_dev);
+> +	int i, ret;
+> +
+> +	if (samples <= 0)
+> +		return -EINVAL;
+> +
+> +	ret = adxl345_fifo_transfer(st, samples);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < ADXL345_DIRS * samples; i += ADXL345_DIRS)
+> +		iio_push_to_buffers(indio_dev, &st->fifo_buf[i]);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * adxl345_irq_handler() - Handle irqs of the ADXL345.
+> + * @irq: The irq being handled.
+> + * @p: The struct iio_device pointer for the device.
+> + *
+> + * Return: The interrupt was handled.
+> + */
+> +static irqreturn_t adxl345_irq_handler(int irq, void *p)
+> +{
+> +	struct iio_dev *indio_dev = p;
+> +	struct adxl345_state *st = iio_priv(indio_dev);
+> +	int int_stat;
+> +	int samples;
+> +
+> +	int_stat = adxl345_get_status(st);
+> +	if (int_stat <= 0)
+> +		return IRQ_NONE;
+> +
+> +	if (int_stat & ADXL345_INT_OVERRUN)
+> +		goto err;
+> +
+> +	if (int_stat & ADXL345_INT_WATERMARK) {
+> +		samples = adxl345_get_samples(st);
+> +		if (samples < 0)
+> +			goto err;
+> +
+> +		if (adxl345_fifo_push(indio_dev, samples) < 0)
+> +			goto err;
+> +	}
+> +	return IRQ_HANDLED;
+> +
+> +err:
+> +	adxl345_fifo_reset(st);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+>  static const struct iio_info adxl345_info = {
+>  	.attrs		= &adxl345_attrs_group,
+>  	.read_raw	= adxl345_read_raw,
+>  	.write_raw	= adxl345_write_raw,
+>  	.write_raw_get_fmt	= adxl345_write_raw_get_fmt,
+> +	.hwfifo_set_watermark = adxl345_set_watermark,
+>  };
+>  
+>  /**
+> @@ -221,6 +494,7 @@ int adxl345_core_probe(struct device *dev, struct regmap *regmap,
+>  					 ADXL345_DATA_FORMAT_JUSTIFY |
+>  					 ADXL345_DATA_FORMAT_FULL_RES |
+>  					 ADXL345_DATA_FORMAT_SELF_TEST);
+> +	u8 fifo_ctl;
+>  	int ret;
+>  
+>  	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> @@ -239,6 +513,7 @@ int adxl345_core_probe(struct device *dev, struct regmap *regmap,
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+>  	indio_dev->channels = adxl345_channels;
+>  	indio_dev->num_channels = ARRAY_SIZE(adxl345_channels);
+> +	indio_dev->available_scan_masks = adxl345_scan_masks;
+>  
+>  	if (setup) {
+>  		/* Perform optional initial bus specific configuration */
+> @@ -289,6 +564,26 @@ int adxl345_core_probe(struct device *dev, struct regmap *regmap,
+>  			st->intio = ADXL345_INT_NONE;
+>  	}
+>  
+> +	if (st->intio != ADXL345_INT_NONE) {
+> +		/* FIFO_STREAM mode is going to be activated later */
+> +		ret = devm_iio_kfifo_buffer_setup(dev, indio_dev, &adxl345_buffer_ops);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = devm_request_threaded_irq(dev, st->irq, NULL,
+> +						&adxl345_irq_handler,
+> +						IRQF_SHARED | IRQF_ONESHOT,
+> +						indio_dev->name, indio_dev);
+> +		if (ret)
+> +			return ret;
+> +	} else {
+> +		/* FIFO_BYPASS mode */
+> +		fifo_ctl = ADXL345_FIFO_CTL_MODE(ADXL345_FIFO_BYPASS);
+> +		ret = regmap_write(st->regmap, ADXL345_REG_FIFO_CTL, fifo_ctl);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+>  	return devm_iio_device_register(dev, indio_dev);
+>  }
+>  EXPORT_SYMBOL_NS_GPL(adxl345_core_probe, IIO_ADXL345);
 
-I remap it to -1/0/1/2, to access specific port exceptions(-1) are not
-harmful, later in gaokun_ucsi_altmode_notify_ind
-
-	if (idx < 0)
-		gaokun_ec_ucsi_pan_ack(uec->ec, idx);
-	else
-		gaokun_ucsi_handle_altmode(&uec->ports[idx]);
-
-gaokun_ec_ucsi_pan_ack can handle exceptions.
-
-> > +
-> > +     return idx;
-> > +}
-> > +
-> > +static void gaokun_ucsi_handle_altmode(struct gaokun_ucsi_port *port)
-> > +{
-> > +     struct gaokun_ucsi *uec = port->ucsi;
-> > +     int idx = port->idx;
-> > +
-> > +     if (idx >= uec->ucsi->cap.num_connectors || !uec->ucsi->connector) {
-> > +             dev_warn(uec->ucsi->dev, "altmode port out of range: %d\n", idx);
-> > +             return;
-> > +     }
-> > +
-> > +     /* UCSI callback .connector_status() have set orientation */
-> > +     if (port->bridge)
-> > +             drm_aux_hpd_bridge_notify(&port->bridge->dev,
-> > +                                       port->hpd_state ?
-> > +                                       connector_status_connected :
-> > +                                       connector_status_disconnected);
-> > +
-> > +     gaokun_ec_ucsi_pan_ack(uec->ec, port->idx);
-> > +}
-> > +
-> > +static void gaokun_ucsi_altmode_notify_ind(struct gaokun_ucsi *uec)
-> > +{
-> > +     int idx;
-> > +
-> > +     idx = gaokun_ucsi_refresh(uec);
-> > +     if (idx < 0)
-> > +             gaokun_ec_ucsi_pan_ack(uec->ec, idx);
-> > +     else
-> > +             gaokun_ucsi_handle_altmode(&uec->ports[idx]);
-> > +}
-> > +
-> > +/*
-> > + * USB event is necessary for enabling altmode, the event should follow
-> > + * UCSI event, if not after timeout(this notify may be disabled somehow),
-> > + * then force to enable altmode.
-> > + */
-> > +static void gaokun_ucsi_handle_no_usb_event(struct gaokun_ucsi *uec, int idx)
-> > +{
-> > +     struct gaokun_ucsi_port *port;
-> > +
-> > +     port = &uec->ports[idx];
-> > +     if (!wait_for_completion_timeout(&port->usb_ack, 2 * HZ)) {
-> > +             dev_warn(uec->dev, "No USB EVENT, triggered by UCSI EVENT");
-> > +             gaokun_ucsi_altmode_notify_ind(uec);
-> > +     }
-> > +}
-> > +
-> > +static int gaokun_ucsi_notify(struct notifier_block *nb,
-> > +                           unsigned long action, void *data)
-> > +{
-> > +     u32 cci;
-> > +     struct gaokun_ucsi *uec = container_of(nb, struct gaokun_ucsi, nb);
-> > +
-> > +     switch (action) {
-> > +     case EC_EVENT_USB:
-> > +             gaokun_ucsi_altmode_notify_ind(uec);
-> > +             return NOTIFY_OK;
-> > +
-> > +     case EC_EVENT_UCSI:
-> > +             uec->ucsi->ops->read_cci(uec->ucsi, &cci);
-> > +             ucsi_notify_common(uec->ucsi, cci);
-> > +             if (UCSI_CCI_CONNECTOR(cci))
-> > +                     gaokun_ucsi_handle_no_usb_event(uec, UCSI_CCI_CONNECTOR(cci) - 1);
-> > +
-> > +             return NOTIFY_OK;
-> > +
-> > +     default:
-> > +             return NOTIFY_DONE;
-> > +     }
-> > +}
-> > +
-> > +static int gaokun_ucsi_get_port_num(struct gaokun_ucsi *uec)
-> > +{
-> > +     struct gaokun_ucsi_reg ureg;
-> > +     int ret;
-> > +
-> > +     ret = gaokun_ec_ucsi_get_reg(uec->ec, (u8 *)&ureg);
-> > +
-> > +     return ret ? 0 : ureg.port_num;
-> > +}
-> > +
-> > +static int gaokun_ucsi_ports_init(struct gaokun_ucsi *uec)
-> > +{
-> > +     u32 port;
-> > +     int i, ret, port_num;
-> > +     struct device *dev = uec->dev;
-> > +     struct gaokun_ucsi_port *ucsi_port;
-> > +     struct fwnode_handle *fwnode;
-> > +
-> > +     port_num = gaokun_ucsi_get_port_num(uec);
-> > +     uec->port_num = port_num;
-> > +
-> > +     uec->ports = devm_kzalloc(dev, port_num * sizeof(*(uec->ports)),
-> > +                               GFP_KERNEL);
-> > +     if (!uec->ports)
-> > +             return -ENOMEM;
-> > +
-> > +     for (i = 0; i < port_num; ++i) {
-> > +             ucsi_port = &uec->ports[i];
-> > +             ucsi_port->ccx = USBC_CCX_NONE;
-> > +             ucsi_port->idx = i;
-> > +             ucsi_port->ucsi = uec;
-> > +             init_completion(&ucsi_port->usb_ack);
-> > +             spin_lock_init(&ucsi_port->lock);
-> > +     }
-> > +
-> > +     device_for_each_child_node(dev, fwnode) {
-> > +             ret = fwnode_property_read_u32(fwnode, "reg", &port);
-> > +             if (ret < 0) {
-> > +                     dev_err(dev, "missing reg property of %pOFn\n", fwnode);
-> > +                     fwnode_handle_put(fwnode);
-> > +                     return ret;
-> > +             }
-> > +
-> > +             if (port >= port_num) {
-> > +                     dev_warn(dev, "invalid connector number %d, ignoring\n", port);
-> > +                     continue;
-> > +             }
-> > +
-> > +             ucsi_port = &uec->ports[port];
-> > +             ucsi_port->bridge = devm_drm_dp_hpd_bridge_alloc(dev, to_of_node(fwnode));
-> > +             if (IS_ERR(ucsi_port->bridge)) {
-> > +                     fwnode_handle_put(fwnode);
-> > +                     return PTR_ERR(ucsi_port->bridge);
-> > +             }
-> > +     }
-> > +
-> > +     for (i = 0; i < port_num; i++) {
-> > +             if (!uec->ports[i].bridge)
-> > +                     continue;
-> > +
-> > +             ret = devm_drm_dp_hpd_bridge_add(dev, uec->ports[i].bridge);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void gaokun_ucsi_register_worker(struct work_struct *work)
-> > +{
-> > +     struct gaokun_ucsi *uec;
-> > +     struct ucsi *ucsi;
-> > +     int ret;
-> > +
-> > +     uec = container_of(work, struct gaokun_ucsi, work);
-> > +     ucsi = uec->ucsi;
-> > +
-> > +     ucsi->quirks = UCSI_NO_PARTNER_PDOS | UCSI_DELAY_DEVICE_PDOS;
-> > +
-> > +     ssleep(3); /* EC can't handle UCSI properly in the early stage */
->
-> Could you not schedule work for + 3 seconds instead of sleeping here -
-> representing the required stall time in some sort of state machine ?
->
-
-I see, I will check work schedule interface.
-
-> 3 seconds is an incredibly long time for a computer to sleep.
->
-
-This module will be loaded at about 5th second after power up, if not
-sleep, we will receive something disharmonious, sleeping for 3 seconds is
-a hack.
-
-> > +
-> > +     ret = gaokun_ec_register_notify(uec->ec, &uec->nb);
-> > +     if (ret) {
-> > +             dev_err_probe(ucsi->dev, ret, "notifier register failed\n");
-> > +             return;
-> > +     }
-> > +
-> > +     ret = ucsi_register(ucsi);
-> > +     if (ret)
-> > +             dev_err_probe(ucsi->dev, ret, "ucsi register failed\n");
-> > +}
-> > +
-> > +static int gaokun_ucsi_register(struct gaokun_ucsi *uec)
-> > +{
-> > +     schedule_work(&uec->work);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int gaokun_ucsi_probe(struct auxiliary_device *adev,
-> > +                          const struct auxiliary_device_id *id)
-> > +{
-> > +     struct gaokun_ec *ec = adev->dev.platform_data;
-> > +     struct device *dev = &adev->dev;
-> > +     struct gaokun_ucsi *uec;
-> > +     int ret;
-> > +
-> > +     uec = devm_kzalloc(dev, sizeof(*uec), GFP_KERNEL);
-> > +     if (!uec)
-> > +             return -ENOMEM;
-> > +
-> > +     uec->ec = ec;
-> > +     uec->dev = dev;
-> > +     uec->version = 0x0100;
-> > +     uec->nb.notifier_call = gaokun_ucsi_notify;
-> > +
-> > +     INIT_WORK(&uec->work, gaokun_ucsi_register_worker);
-> > +
-> > +     ret = gaokun_ucsi_ports_init(uec);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     uec->ucsi = ucsi_create(dev, &gaokun_ucsi_ops);
-> > +     if (IS_ERR(uec->ucsi))
-> > +             return PTR_ERR(uec->ucsi);
-> > +
-> > +     ucsi_set_drvdata(uec->ucsi, uec);
-> > +     auxiliary_set_drvdata(adev, uec);
-> > +
-> > +     return gaokun_ucsi_register(uec);
-> > +}
-> > +
-> > +static void gaokun_ucsi_remove(struct auxiliary_device *adev)
-> > +{
-> > +     struct gaokun_ucsi *uec = auxiliary_get_drvdata(adev);
-> > +
-> > +     gaokun_ec_unregister_notify(uec->ec, &uec->nb);
-> > +     ucsi_unregister(uec->ucsi);
-> > +     ucsi_destroy(uec->ucsi);
-> > +}
-> > +
-> > +static const struct auxiliary_device_id gaokun_ucsi_id_table[] = {
-> > +     { .name = GAOKUN_MOD_NAME "." GAOKUN_DEV_UCSI, },
-> > +     {}
-> > +};
-> > +MODULE_DEVICE_TABLE(auxiliary, gaokun_ucsi_id_table);
-> > +
-> > +static struct auxiliary_driver gaokun_ucsi_driver = {
-> > +     .name = GAOKUN_DEV_UCSI,
-> > +     .id_table = gaokun_ucsi_id_table,
-> > +     .probe = gaokun_ucsi_probe,
-> > +     .remove = gaokun_ucsi_remove,
-> > +};
-> > +
-> > +module_auxiliary_driver(gaokun_ucsi_driver);
-> > +
-> > +MODULE_DESCRIPTION("HUAWEI Matebook E Go UCSI driver");
-> > +MODULE_LICENSE("GPL");
->
-
-
-Best Wishes,
-Pengyu
 
