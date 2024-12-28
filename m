@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-134474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA129FD9D2
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 11:12:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D6CA9FD9D6
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 11:14:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05DD93A2285
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 10:12:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C68B83A1440
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 10:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A047D13B280;
-	Sat, 28 Dec 2024 10:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8DF13C9B3;
+	Sat, 28 Dec 2024 10:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fLRRjdmN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVDzfHvU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7394435952;
-	Sat, 28 Dec 2024 10:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D61A578F52;
+	Sat, 28 Dec 2024 10:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735380739; cv=none; b=VWu7f0rx1Wt7FEk9887hs+9Dy5G+yzsowYpqLwnd2hegKwmdixhYZWYy71CuGb/59EVzBCx6qNjpESMuMJy4OuRH8TXbL8HEPYwog3fMY9Ucmc5SrkzZiWwzY+uvljH7l2+MbRCL62OtIg69SZ3QfKrcIgwem1nZGSR42HfdIlg=
+	t=1735380844; cv=none; b=EidofqvD0gz4aJ3eBSf9pPYtfmQks5DbIumE5cHDvsiWbxXEnq59wtn8U4K3h8nmVoB+BU0lHwyUNMNXL58OO7UXMn/h26iC8TARatD99ZLJU6hmjkMWzdkfNYkWlM5iYfRBBD9HH+zkbiex2u+SXcaa4dXXyz2cOy8a/U9PmhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735380739; c=relaxed/simple;
-	bh=edBr7Id/A5MJc+x4re15u9kKzXTYYgwKbPkNMozVyiU=;
+	s=arc-20240116; t=1735380844; c=relaxed/simple;
+	bh=V425l5cE4e2eveyjEdyjyNN5SRe5r58TxGFHNQ3d5Hk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SVh5QlANVyL+eQK7AiRDLEwqya+no2FaE86d7QRvtptcg8yunfR1jPhnjMwP64yNslCi9XDAVOX2zBLMxGkZ7TyfsBIcLXKcyjHDkhbIxw5kz0MqhDlWgsIvmcZH3j0PHp3rlHVn0aqwrzNdsIuBHT5JWoTJTbHQ5KNDpGFv+KM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fLRRjdmN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E6CBC4CED4;
-	Sat, 28 Dec 2024 10:12:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dK5XomisA7s5ROMcQlCEGZkDiXyslDVNdBiXGKndIywKBVZW9m3oGsqS7s+VKDzRzKvRL3gpWmUsH3VqLPmVG8oEJhJylz4rtE8R2PDGKGRWVl1dTs7iF/BP/mgW/jYR2BImCJxX2qUPKi+AjbPFxv3ruT6pz6AH1PTzaXND00Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVDzfHvU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D3EAC4CECD;
+	Sat, 28 Dec 2024 10:14:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735380739;
-	bh=edBr7Id/A5MJc+x4re15u9kKzXTYYgwKbPkNMozVyiU=;
+	s=k20201202; t=1735380844;
+	bh=V425l5cE4e2eveyjEdyjyNN5SRe5r58TxGFHNQ3d5Hk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fLRRjdmNxBJ1bImqA+wkH5Yro5fb3d77RWS/8SA4Hzet2Jzw+VoL2y217L5cwtIBP
-	 aMyMSYlQ6+wHJOL7isxZ0S2pR0pRJ4nzDwZi9Nxm5FKwHTbJfmchJ4sJc1guLYGkzw
-	 ms+GAlRk3Wxu332XQf92z3zoOVn07ERLuc0VsmqpFqDq0l2REyRJ4/ryR2eal8qTZs
-	 PcNL6XJ05zTjiEknhcMlt3l68yxagR/GU2Y1XPrQt2irO3GzOftQhFUxOv6H/9ApiG
-	 9j7JgeRUt9BXPYaJwoTktHw5Gv/Bq5gwh8wQYhQfpZYtZ3xabfuafAOTvl8d90TZDx
-	 fkQ0Lzu/nClAQ==
-Date: Sat, 28 Dec 2024 11:12:15 +0100
+	b=qVDzfHvUg9GX2TTv5RYFEGSPaZcIu41LzzdzkYQ2Ii/Lb7hoKhLKpSp828QVNZr2f
+	 8b1NAJ2aM6cHXrIg36cPcdnmIC7wQW3063SeCpnO77gPqWwaaZaVtqwIOeuDrhy1KS
+	 fXTWy8FiTtgMK9eU1emhu0u/Qhdw47RIY2KFlyD27o27V9Et/CMAusT7RAjtWzoImj
+	 26UbHmj7gEIaIa7++tnTFJQOC/67X7qiF2CN5H+zvElj604k8+4GRRw2rgUj4g2t8y
+	 DDZnXbjSuXZ4aanqNPtwneU0uDVXuM4k4HshslfSL/fLWpFY6Lk/w4CSSrDd8fGigo
+	 qgVTlQkOk1rAw==
+Date: Sat, 28 Dec 2024 11:14:01 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Pratyush Brahma <quic_pbrahma@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm-smmu: Document QCS8300 GPU SMMU
-Message-ID: <bziwt6ixfol6ajiclkz6iupmcnbaotxrfvz3n3rvjklfpasz2a@ztcmvbmwk7o5>
-References: <20241227105818.28516-1-quic_pbrahma@quicinc.com>
- <20241227105818.28516-2-quic_pbrahma@quicinc.com>
+To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+Cc: jic23@kernel.org, krzk+dt@kernel.org, 
+	andriy.shevchenko@linux.intel.com, Lars-Peter Clausen <lars@metafoo.de>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Emil Gedenryd <emil.gedenryd@axis.com>, Andreas Dannenberg <dannenberg@ti.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: iio: light: opt3001: add compatible for
+ opt3004
+Message-ID: <qgottqtq5lvp6fifi37xzq7supalvm7leue755yjatyun6k5um@pju4v3kqoizq>
+References: <20241227131134.10810-1-hardevsinh.palaniya@siliconsignals.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,21 +61,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241227105818.28516-2-quic_pbrahma@quicinc.com>
+In-Reply-To: <20241227131134.10810-1-hardevsinh.palaniya@siliconsignals.io>
 
-On Fri, Dec 27, 2024 at 04:28:17PM +0530, Pratyush Brahma wrote:
-> Add the compatible for Qualcomm QCS8300 GPU SMMU. Add the compatible
-> in the list of clocks required by the GPU SMMU and remove it from the
-> list of disallowed clocks.
+On Fri, Dec 27, 2024 at 06:41:32PM +0530, Hardevsinh Palaniya wrote:
+> Add Support for OPT3004 Digital ambient light sensor (ALS) with
+> increased angular IR rejection.
 > 
-> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+> The OPT3004 sensor shares the same functionality and scale range as
+> the OPT3001. The compatible string is added with fallback support to
+> ensure compatibility.
+> 
+> Datasheet: https://www.ti.com/lit/gpn/opt3004
+> Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
 > ---
->  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> v2 -> v3:
+> 
+> - Reverse the order of compatible string
+> 
+> v1 -> v2:                                                                       
+>                                                                                 
+> - Use fallback mechanism for the OPT3004.                                       
+> - Drop 2/2 patch from the patch series[1] as per feedback.                      
+>                                                                                 
+> Link[1]: https://lore.kernel.org/linux-iio/20241224061321.6048-1-hardevsinh.palaniya@siliconsignals.io/T/#t
 
-I am skipping this patch due to other comments. Maybe they are not
-applicable here, but three maintainers investigating simple thing is way
-too much. Make it easy and obvious for us, not for you.
+
+And where is any user of this, the DTS? We don't take bindings just
+because there is such device out there.
+
+I looked and nothing:
+https://lore.kernel.org/all/?q=ti%2Copt3004
 
 Best regards,
 Krzysztof
