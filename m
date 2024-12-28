@@ -1,323 +1,447 @@
-Return-Path: <devicetree+bounces-134507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 292989FDAAF
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 14:33:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E1AC9FDAB3
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 14:35:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1A093A11BE
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 13:33:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCA6C161C5A
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 13:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C63C12BF02;
-	Sat, 28 Dec 2024 13:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11F114F9FD;
+	Sat, 28 Dec 2024 13:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RxF5Uk1F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UOUmiNPI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E79C8DF;
-	Sat, 28 Dec 2024 13:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FF88C8DF;
+	Sat, 28 Dec 2024 13:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735392825; cv=none; b=Vp2pqXxJZWl2dMhsYZ4wOjtWrbSWRhLFQEhER67htqrBbueOdvSSsdEXL6qjtxQZW+7sQNz+UeXuOcAZDR8ftwigyehG75ScIZ6fffAFLZN+gdX7KQgklur4WN6of7a6sDj15Q28KlEqccKU6ovXVhbX2JnfVLeBHMDvsCQysZo=
+	t=1735392946; cv=none; b=ef/PwCznmYdiJPAKgfdP5ZhjNJlh2yTvreF6HemA7wS9ARxg9nVYQla0WoP+d+GvsLptReZqIVCxfuSWPeJhqUHCdfYIqUw6VuQfzR+WULRTBqWxFh3onNQSVTXtRcIxXJMWbp7la8BzVks/OiNhUeR+pKpfrnOXgZqirovfsJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735392825; c=relaxed/simple;
-	bh=lpzmd5qgYbWzXDpiz51Kh68H/esSJWBky5nNUUWLAF0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e1rUKFCOM16ap29TY/dX2oUWWprLngwKzBH7hrxoxdmb+mYmcH6fTGXcVRoN4Pweqlq8iRM69fPxZIybxIPCY/8bBihaYRDIbmWIiQZUqUg5DcUC6FlOl+cx3Lb2KiUYGschXFM6k67VWt9LbYsMdyHufkM2Nmr3NpVT+ttd1nI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RxF5Uk1F; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-385de9f789cso5964870f8f.2;
-        Sat, 28 Dec 2024 05:33:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735392821; x=1735997621; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MGqAPkuHxLCasbPRd/+RCIFy7P37ySBYkC1/IthMi0g=;
-        b=RxF5Uk1FdVQkL2/c8qsu5o8DJ+vWJCzayCHLlurgKndmuO1Zzl0/8w7PAq2nqIc6o6
-         67juW8FjO+AFA22D4PcMp900ZJUdJJzy1Ol816bseA9RIXDabWlAH/FvfiXVH4IqOAY3
-         QHUGGEZwWEo3w8UkbQVeoU1ePyRlUiJf4jx+6+SQ95GtCxsL32mD7EUU20vxjZsPfdqF
-         102xijqh1D+M72XBrhFadeUEZ+EEFhw+jxeLCRdjZG1i5UI42HM7ynvdhGoKQAh5/Sw7
-         XJL6VBRbDy5R02okBZ135jLIOxb50hhIoF8IgAgDojATmScikW08wP0SkZ8PnEzHoAWO
-         8Vkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735392821; x=1735997621;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MGqAPkuHxLCasbPRd/+RCIFy7P37ySBYkC1/IthMi0g=;
-        b=LlmZ0ETox5E6yHkvovUTdyyU0AddqQJGmJQBuMkkv950UOFaU2GCePHeG/Zix5LPEV
-         DSujz/zfpGVZ7jZfJMKmiqHv7yYTZNC9kx9pU1DINcVd7LBcwKSTBO+iPA/GJHW6gMdC
-         syYzLbN6PHpO3nRtkZrc8WNHJE6NpXKarQ4AFxACoOQhk+dAV+CUDIms3sTU/rAs4/C3
-         s1H2GjZNpcT3f5T9B8dB7By8I5Hr1bowrMj1YXS3K8bHnMNK1mKcGhEXK0CDLZkUo5vU
-         z8D5065iCnDNSqOQAP9CccWEs7WkkaV0Geply0kHBrs/3nECJnzRaccUxgXN9dzz2z6K
-         pvcw==
-X-Forwarded-Encrypted: i=1; AJvYcCUxIybqG+ctmLIXb2uFh+F3j/cAyvhLqMCmobqw0yI6wnOBPWjI2jfO3wNf5Ory0m7spu+9jw7JklfJACu3Og==@vger.kernel.org, AJvYcCV3pFxVwB94eBeNl8jWdrinDq7OOejXfHH7vXKq8FnLSKsXFtJYLNoXeXsZtWB/h5emYiBK0UWJsbvGsJ4=@vger.kernel.org, AJvYcCWHAtUdmVFJCuVSgnuNM8awih9mN6DsUqCZ2wr1v452r0fv+TfwG6lhH65xbFINUKwgbZICPQu4BcdoLDEZ@vger.kernel.org, AJvYcCXqTnCC00k26zmvvsiyZKnJpqITng20WSh4o6cK99NiTqfOiElb5OmUD/3t0t6P9+iCS8esWiPta6DH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHQq5XvUeU0vrvUjjFPb+aCq03t31wePyQuNOxeZjrAn+VDi+M
-	cRQ8jcQwa8sklhJsQY9DET6OoZXwe5qzeEZN6ehK9eld2Lsfo35F
-X-Gm-Gg: ASbGnct/GZqrCvW8dtjp8jJaQXL8spRg0FBGAVJ2s3C6IsR/jm+LiIhAx1SSY4BhF7b
-	3wy63X4KFB8KBuEVpCbmpZbtd8vUYX/Q8NaNGD3MDZ9Ms+tYCI3OqWHtHbQxp9omB9cc4bPvCza
-	azGve262GmJZjRdBsA9qW+yF8auFTa/99US8wPYlI761Zhw90vOIS9QiDQSE3krjsHpyEe7ZRyt
-	FoU66o8LLnRVxcfqPMFAsakoIjC+/RlqLrGKwAclKCpeqik9udWiYafqlM+3H3iwbzAAlXsng==
-X-Google-Smtp-Source: AGHT+IHM8j1PH8EZy4GV+extmbmALyusaNgkpayRkYfRnQKStltS1QaoxKfvEx0dKXojXNCBt+7Apg==
-X-Received: by 2002:adf:ab09:0:b0:38a:4184:1520 with SMTP id ffacd0b85a97d-38a418416bdmr8493579f8f.27.1735392821060;
-        Sat, 28 Dec 2024 05:33:41 -0800 (PST)
-Received: from [192.168.100.6] ([87.97.240.137])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c847714sm25131265f8f.54.2024.12.28.05.33.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Dec 2024 05:33:40 -0800 (PST)
-Message-ID: <504ff336-3b11-4331-b2b6-86289b17ffd3@gmail.com>
-Date: Sat, 28 Dec 2024 15:33:38 +0200
+	s=arc-20240116; t=1735392946; c=relaxed/simple;
+	bh=pkh80hy3KgcNMaEFQuksOhp6OcKpv13Fv/7BoeTtOS0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PsfjUpqcaFvcJ/DvpjCMpyzvVWn0FY/bfilQmB8WTnMPLrz0fpRgZYN4TNTYNZNnDLmuyOU3QVQoFhF3N+8R+V6ansIUKZhp3oRYHhZ1Tggl/lZraMDbj8utl1jY4OHkkRrmghOxdI2Qv6qR4YNvMx+6Fa7pjYcndXDiOAaoNJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UOUmiNPI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24CEDC4CECD;
+	Sat, 28 Dec 2024 13:35:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735392946;
+	bh=pkh80hy3KgcNMaEFQuksOhp6OcKpv13Fv/7BoeTtOS0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=UOUmiNPI0nCG632CkqW1Tawi6jnXRaO5iIj+1Pe7XMcnnKWcR+KNa5QR/kFisEWSt
+	 2ytD2+Tb6TXyB6YpyZKO5fiKKHZdlJSb8QYS/DFwKmDEPAqu65Ap0OxJngLZZENiVi
+	 PVe6PnnjS+bo6QIQEWBJRicfSzaAJbQoS0yJLF70kGpIZ/CUb7yn8+lne4yuHsg+HY
+	 QtKu0lfotXiwvahqQQqeoSCSLeB6lP4LnH7uhhaUcMN4ZgsM3GwbcUnpX1eb06UBSD
+	 /gPK+zX8qQ5AYHji/GLGLJlB3UztEZZ41KelditkFCtYk4y/g8wWkH/akXh7+v2dTw
+	 RL9VKw7h9F5JA==
+Date: Sat, 28 Dec 2024 13:35:31 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Eason Yang <j2anfernee@gmail.com>, marcelo.schmitt@analog.com,
+ olivier.moysan@foss.st.com
+Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
+ andriy.shevchenko@linux.intel.com, mitrutzceclan@gmail.com,
+ tgamblin@baylibre.com, matteomartelli3@gmail.com, alisadariana@gmail.com,
+ gstols@baylibre.com, thomas.bonnefille@bootlin.com,
+ herve.codina@bootlin.com, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
+ yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: add Nuvoton NCT7201 ADC driver
+Message-ID: <20241228133531.5e98357e@jic23-huawei>
+In-Reply-To: <20241226055313.2841977-3-j2anfernee@gmail.com>
+References: <20241226055313.2841977-1-j2anfernee@gmail.com>
+	<20241226055313.2841977-3-j2anfernee@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] media: venus: Add support for static video
- encoder/decoder declarations
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: quic_renjiang@quicinc.com, quic_vnagar@quicinc.com,
- quic_dikshita@quicinc.com, konradybcio@kernel.org,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Stanimir Varbanov <stanimir.varbanov@linaro.org>
-References: <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-0-ef7e5f85f302@linaro.org>
- <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-1-ef7e5f85f302@linaro.org>
-Content-Language: en-US, bg-BG
-From: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>
-In-Reply-To: <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-1-ef7e5f85f302@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Bryan,
+On Thu, 26 Dec 2024 13:53:13 +0800
+Eason Yang <j2anfernee@gmail.com> wrote:
 
-Thank for your work !
+> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
+> 
+> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up to
+> 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins for
+> independent alarm signals, and the all threshold values could be set for
+> system protection without any timing delay. It also supports reset input
+> RSTIN# to recover system from a fault condition.
+> 
+> Currently, only single-edge mode conversion and threshold events support.
+> 
+> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+Hi Eason,
 
-On 9.12.24 г. 13:52 ч., Bryan O'Donoghue wrote:
-> Add resource structure data and probe() logic to support static
-> declarations of encoder and decoder.
-> 
-> Right now we rely on video encoder/decoder selection happening in the dtb
-> but, this goes against the remit of device tree which is supposed to
-> describe hardware, not select functional logic in Linux drivers.
-> 
-> Provide two strings in the venus resource structure enc_nodename and
-> dec_nodename.
-> 
-> When set the venus driver will create an OF entry in-memory consistent
-> with:
-> 
-> dec_nodename {
->      compat = "video-decoder";
-> };
-> 
-> and/or
-> 
-> enc_nodename {
->      compat = "video-encoder";
-> };
-> 
-> This will allow us to reuse the existing driver scheme of relying on compat
-> names maintaining compatibility with old dtb files.
-> 
-> dec_nodename can be "video-decoder" or "video0"
-> enc_nodename can be "video-encoder" or "video1"
-> 
-> This change relies on of_changeset() API as a result select OF_DYNAMIC will
-> be added to venus/Kconfig
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->   drivers/media/platform/qcom/venus/Kconfig |  1 +
->   drivers/media/platform/qcom/venus/core.c  | 94 ++++++++++++++++++++++++++++++-
->   drivers/media/platform/qcom/venus/core.h  |  4 ++
->   3 files changed, 98 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/Kconfig b/drivers/media/platform/qcom/venus/Kconfig
-> index bfd50e8f34219db8a1de7960d7ea93b20db2982a..bc2e410b29cb415a36540a4f98709eae44f4ec35 100644
-> --- a/drivers/media/platform/qcom/venus/Kconfig
-> +++ b/drivers/media/platform/qcom/venus/Kconfig
-> @@ -3,6 +3,7 @@ config VIDEO_QCOM_VENUS
->   	depends on V4L_MEM2MEM_DRIVERS
->   	depends on VIDEO_DEV && QCOM_SMEM
->   	depends on (ARCH_QCOM && IOMMU_DMA) || COMPILE_TEST
-> +	select OF_DYNAMIC if ARCH_QCOM
->   	select QCOM_MDT_LOADER if ARCH_QCOM
->   	select QCOM_SCM
->   	select VIDEOBUF2_DMA_CONTIG
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index 4e26b18790537885a77d66c1917a4e7a146eaf57..88dfa9f240dc6d18a7f58dc06b1bf10274b7121e 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -286,6 +286,89 @@ static irqreturn_t venus_isr_thread(int irq, void *dev_id)
->   	return ret;
->   }
->   
-> +#if defined(CONFIG_OF_DYNAMIC)
-> +static int venus_add_video_core(struct venus_core *core, const char *node_name,
-> +				const char *compat)
+Various minor comments in addition to what Andy has
+posted already.
+
+Jonathan
+
+> diff --git a/drivers/iio/adc/nct7201.c b/drivers/iio/adc/nct7201.c
+> new file mode 100644
+> index 000000000000..9ad4d2919461
+> --- /dev/null
+> +++ b/drivers/iio/adc/nct7201.c
+> @@ -0,0 +1,449 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Driver for Nuvoton nct7201 and nct7202 power monitor chips.
+> + *
+> + * Copyright (c) 2024 Nuvoton Inc.
+> + */
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/bits.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +#include <linux/types.h>
+> +#include <linux/unaligned.h>
+> +
+> +#include <linux/iio/events.h>
+> +#include <linux/iio/iio.h>
+> +
+> +#define NCT7201_VIN_MAX					12	/* Counted from 1 */
+> +#define NCT7201_IN_SCALING				4995
+> +#define NCT7201_IN_SCALING_FACTOR			10000
+> +
+> +#define NCT7201_REG_INTERRUPT_STATUS_1			0x0C
+> +#define NCT7201_REG_INTERRUPT_STATUS_2			0x0D
+> +#define NCT7201_REG_VOLT_LOW_BYTE			0x0F
+> +#define NCT7201_REG_CONFIGURATION			0x10
+> +#define  NCT7201_BIT_CONFIGURATION_START		BIT(0)
+> +#define  NCT7201_BIT_CONFIGURATION_ALERT_MSK		BIT(1)
+> +#define  NCT7201_BIT_CONFIGURATION_CONV_RATE		BIT(2)
+> +#define  NCT7201_BIT_CONFIGURATION_RESET		BIT(7)
+> +
+> +#define NCT7201_REG_ADVANCED_CONFIGURATION		0x11
+> +#define  NCT7201_BIT_ADVANCED_CONF_MOD_ALERT		BIT(0)
+> +#define  NCT7201_BIT_ADVANCED_CONF_MOD_STS		BIT(1)
+> +#define  NCT7201_BIT_ADVANCED_CONF_FAULT_QUEUE		BIT(2)
+> +#define  NCT7201_BIT_ADVANCED_CONF_EN_DEEP_SHUTDOWN	BIT(4)
+> +#define  NCT7201_BIT_ADVANCED_CONF_EN_SMB_TIMEOUT	BIT(5)
+> +#define  NCT7201_BIT_ADVANCED_CONF_MOD_RSTIN		BIT(7)
+> +
+> +#define NCT7201_REG_CHANNEL_INPUT_MODE			0x12
+> +#define NCT7201_REG_CHANNEL_ENABLE_1			0x13
+> +#define  NCT7201_REG_CHANNEL_ENABLE_1_MASK		GENMASK(7, 0)
+> +#define NCT7201_REG_CHANNEL_ENABLE_2			0x14
+> +#define  NCT7201_REG_CHANNEL_ENABLE_2_MASK		GENMASK(3, 0)
+
+As below. I'd treat these two registers as one larger register.
+
+> +static int nct7201_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val, int *val2, long mask)
 > +{
-> +	struct of_changeset *ocs = core->ocs;
-> +	struct device *dev = core->dev;
-> +	struct device_node *np, *enp;
-> +	int ret;
+> +	u16 volt;
+> +	unsigned int value;
+> +	int err;
+> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
 > +
-> +	if (!node_name)
-> +		return 0;
+> +	if (chan->type != IIO_VOLTAGE)
+> +		return -EOPNOTSUPP;
 > +
-> +	enp = of_find_node_by_name(dev->of_node, node_name);
-> +	if (enp) {
-> +		of_node_put(enp);
-> +		return 0;
+> +	guard(mutex)(&chip->access_lock);
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		err = regmap_read(chip->regmap16, NCT7201_REG_VIN(chan->address), &value);
+> +		if (err < 0)
+> +			return err;
+> +		volt = value;
+> +		*val = volt >> 3;
+
+As below, likely a FIELD_GET() is appropriate here.
+
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		/* From the datasheet, we have to multiply by 0.0004995 */
+> +		*val = 0;
+> +		*val2 = 499500;
+> +		return IIO_VAL_INT_PLUS_NANO;
+> +	default:
+> +		return -EINVAL;
 > +	}
-> +
-> +	np = of_changeset_create_node(ocs, dev->of_node, node_name);
-> +	if (!np) {
-> +		dev_err(dev, "Unable to create new node\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	ret = of_changeset_add_prop_string(ocs, np, "compatible", compat);
-> +	if (ret)
-> +		dev_err(dev, "unable to add %s\n", compat);
-> +
-> +	of_node_put(np);
-> +
-> +	return ret;
 > +}
 > +
-> +static int venus_add_dynamic_nodes(struct venus_core *core)
+> +static int nct7201_read_event_value(struct iio_dev *indio_dev,
+> +				    const struct iio_chan_spec *chan,
+> +				    enum iio_event_type type,
+> +				    enum iio_event_direction dir,
+> +				    enum iio_event_info info,
+> +				    int *val, int *val2)
 > +{
-> +	struct device *dev = core->dev;
+> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
+> +	u16 volt;
+> +	unsigned int value;
+> +	int err;
+> +
+> +	if (chan->type != IIO_VOLTAGE)
+> +		return -EOPNOTSUPP;
+> +
+> +	if (info != IIO_EV_INFO_VALUE)
+> +		return -EINVAL;
+> +
+> +	if (dir == IIO_EV_DIR_FALLING) {
+> +		err = regmap_read(chip->regmap16, NCT7201_REG_VIN_LOW_LIMIT(chan->address), &value);
+> +		if (err < 0)
+> +			return err;
+> +		volt = value;
+> +	} else {
+> +		err = regmap_read(chip->regmap16, NCT7201_REG_VIN_HIGH_LIMIT(chan->address), &value);
+> +		if (err < 0)
+> +			return err;
+> +		volt = value;
+> +	}
+> +
+> +	*val = volt >> 3;
+As Andy pointed out, likely a FIELD_GET() makes sense here.
+
+> +
+> +	return IIO_VAL_INT;
+> +}
+> +
+> +static int nct7201_write_event_value(struct iio_dev *indio_dev,
+> +				     const struct iio_chan_spec *chan,
+> +				     enum iio_event_type type,
+> +				     enum iio_event_direction dir,
+> +				     enum iio_event_info info,
+> +				     int val, int val2)
+> +{
+> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
+> +	long v1, v2;
+> +
+> +	v1 = val >> 5;
+> +	v2 = FIELD_PREP(NCT7201_REG_VIN_LIMIT_LSB_MASK, val) << 3;
+> +
+> +	if (chan->type != IIO_VOLTAGE)
+> +		return -EOPNOTSUPP;
+> +
+> +	if (info == IIO_EV_INFO_VALUE) {
+I'd flip this to
+	if (info != IIO_EV_INFO_VALUE)
+		return -EOPNOTSUPP;
+
+	guard().
+
+> +		guard(mutex)(&chip->access_lock);
+> +		if (dir == IIO_EV_DIR_FALLING) {
+> +			regmap_write(chip->regmap, NCT7201_REG_VIN_LOW_LIMIT(chan->address), v1);
+> +			regmap_write(chip->regmap, NCT7201_REG_VIN_LOW_LIMIT_LSB(chan->address), v2);
+
+Check for errors.
+
+> +		} else {
+> +			regmap_write(chip->regmap, NCT7201_REG_VIN_HIGH_LIMIT(chan->address), v1);
+> +			regmap_write(chip->regmap, NCT7201_REG_VIN_HIGH_LIMIT_LSB(chan->address), v2);
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+
+> +
+> +static int nct7201_write_event_config(struct iio_dev *indio_dev,
+> +				      const struct iio_chan_spec *chan,
+> +				      enum iio_event_type type,
+> +				      enum iio_event_direction dir,
+> +				      bool state)
+> +{
+> +	struct nct7201_chip_info *chip = iio_priv(indio_dev);
+> +	unsigned int mask;
+> +
+> +	if (chan->type != IIO_VOLTAGE)
+> +		return -EOPNOTSUPP;
+> +
+> +	mask = BIT(chan->address);
+> +
+> +	if (!state && (chip->vin_mask & mask))
+> +		chip->vin_mask &= ~mask;
+> +	else if (state && !(chip->vin_mask & mask))
+> +		chip->vin_mask |= mask;
+> +
+> +	guard(mutex)(&chip->access_lock);
+> +	regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
+> +		     chip->vin_mask & NCT7201_REG_CHANNEL_ENABLE_1_MASK);
+> +	if (chip->num_vin_channels == 12)
+> +		regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2,
+> +			     chip->vin_mask & NCT7201_REG_CHANNEL_ENABLE_2_MASK);
+
+This feels odd.  Don't you need to shift that vin_mask to get rid of channels
+that are enabled via ENABLE_1?
+
+> +
+> +	return 0;
+> +}
+
+> +static int nct7201_init_chip(struct nct7201_chip_info *chip)
+> +{
+> +	u8 data[2];
+> +	unsigned int value;
+> +	int err;
+> +
+> +	regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION,
+> +		     NCT7201_BIT_CONFIGURATION_RESET);
+
+Add a comment on why you don't check return value (or do check it if appropriate).
+
+> +
+> +	/*
+> +	 * After about 25 msecs, the device should be ready and then
+> +	 * the Power Up bit will be set to 1. If not, wait for it.
+> +	 */
+> +	mdelay(25);
+> +	err = regmap_read(chip->regmap, NCT7201_REG_BUSY_STATUS, &value);
+> +	if (err < 0)
+> +		return err;
+> +	if (!(value & NCT7201_BIT_PWR_UP))
+> +		return dev_err_probe(&chip->client->dev, -EIO, "failed to power up after reset\n");
+> +
+> +	/* Enable Channel */
+> +	guard(mutex)(&chip->access_lock);
+> +	regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
+> +		     NCT7201_REG_CHANNEL_ENABLE_1_MASK);
+
+Check return value.  This is over an I2C bus, not the most reliable of
+transports!
+
+Consider doing this differently and using a bulk write for the larger
+case.
+
+	if (chip->num_vin_channels <= 8)
+		ret = regmap_write();
+	else
+		ret = regmap_bulk_write();
+
+However as you read ENABLE_2 unconditionally below, can you instead just
+always use a bulk write here?
+
+> +	if (chip->num_vin_channels == 12)
+> +		regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2,
+> +			     NCT7201_REG_CHANNEL_ENABLE_2_MASK);
+> +
+> +	err = regmap_read(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1, &value);
+> +	if (err < 0)
+> +		return err;
+> +	data[0] = value;
+> +
+> +	err = regmap_read(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2, &value);
+> +	if (err < 0)
+> +		return err;
+> +	data[1] = value;
+
+Why does reading these back make sense?  Is there a reason the write
+above might not work if the I2C transfer is Acked?
+
+If this is part of discovery protocol for how many channels are there, then
+add comments.
+
+> +
+> +	value = get_unaligned_le16(data);
+> +	chip->vin_mask = value;
+> +
+> +	/* Start monitoring if needed */
+> +	err = regmap_read(chip->regmap, NCT7201_REG_CONFIGURATION, &value);
+> +	if (err < 0) {
+> +		dev_err_probe(&chip->client->dev, -EIO, "Failed to read REG_CONFIGURATION\n");
+> +		return value;
+
+Why return value if an error occurred?
+		retuen dev_err_probe();
+
+> +	}
+> +
+> +	value |= NCT7201_BIT_CONFIGURATION_START;
+> +	regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION, value);
+
+regmap_set_bits()
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct regmap_config nct7201_regmap8_config = {
+> +	.name = "vin-data-read-byte",
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = 0xff,
+> +};
+> +
+> +static const struct regmap_config nct7201_regmap16_config = {
+> +	.name = "vin-data-read-word",
+> +	.reg_bits = 8,
+> +	.val_bits = 16,
+> +	.max_register = 0xff,
+> +};
+> +
+> +static int nct7201_probe(struct i2c_client *client)
+> +{
+> +	const struct nct7201_adc_model_data *model_data;
+> +	struct nct7201_chip_info *chip;
+> +	struct iio_dev *indio_dev;
 > +	int ret;
 > +
-> +	core->ocs = kmalloc(sizeof(*core->ocs), GFP_KERNEL);
-> +	if (!core->ocs)
+> +	model_data = i2c_get_match_data(client);
+> +	if (!model_data)
+> +		return -EINVAL;
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*chip));
+> +	if (!indio_dev)
 > +		return -ENOMEM;
+> +	chip = iio_priv(indio_dev);
 > +
-> +	of_changeset_init(core->ocs);
+> +	chip->regmap = devm_regmap_init_i2c(client, &nct7201_regmap8_config);
+> +	if (IS_ERR(chip->regmap))
+> +		return dev_err_probe(&client->dev, PTR_ERR(chip->regmap),
+> +			"Failed to init regmap\n");
 > +
-> +	ret = venus_add_video_core(core, core->res->dec_nodename, "venus-decoder");
+> +	chip->regmap16 = devm_regmap_init_i2c(client, &nct7201_regmap16_config);
+> +	if (IS_ERR(chip->regmap16))
+> +		return dev_err_probe(&client->dev, PTR_ERR(chip->regmap16),
+> +			"Failed to init regmap16\n");
+> +
+> +	chip->num_vin_channels = model_data->num_vin_channels;
+> +
+> +	ret = devm_mutex_init(&client->dev, &chip->access_lock);
 > +	if (ret)
-> +		goto err;
+> +		return ret;
 > +
-> +	ret = venus_add_video_core(core, core->res->enc_nodename, "venus-encoder");
-> +	if (ret)
-> +		goto err;
+> +	chip->client = client;
 > +
-> +	ret = of_changeset_apply(core->ocs);
-> +	if (ret) {
-> +		dev_err(dev, "applying changeset fail ret %d\n", ret);
-> +		goto err;
-> +	}
+> +	ret = nct7201_init_chip(chip);
+> +	if (ret < 0)
+> +		return ret;
 > +
-> +	return 0;
-> +err:
-> +	of_changeset_destroy(core->ocs);
-> +	kfree(core->ocs);
-> +	core->ocs = NULL;
-> +	return ret;
+> +	indio_dev->name = model_data->model_name;
+> +	indio_dev->channels = model_data->channels;
+> +	indio_dev->num_channels = model_data->num_channels;
+> +	if (client->irq)
+> +		indio_dev->info = &nct7201_info;
+> +	else
+> +		indio_dev->info = &nct7201_info_no_irq;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	return devm_iio_device_register(&client->dev, indio_dev);
 > +}
-> +
-> +static void venus_remove_dynamic_nodes(struct venus_core *core)
-> +{
-> +	if (core->ocs) {
-> +		of_changeset_revert(core->ocs);
-> +		of_changeset_destroy(core->ocs);
-> +		kfree(core->ocs);
-> +	}
-> +}
-> +#else
-> +static int venus_add_dynamic_nodes(struct venus_core *core)
-> +{
-> +	return 0;
-> +}
-> +
-> +static void venus_remove_dynamic_nodes(struct venus_core *core) {}
-> +#endif
-> +
->   static int venus_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
-> @@ -365,9 +448,14 @@ static int venus_probe(struct platform_device *pdev)
->   	if (ret < 0)
->   		goto err_runtime_disable;
->   
-> +	if (core->res->dec_nodename || core->res->enc_nodename) {
-> +		if (venus_add_dynamic_nodes(core))
-
-It'd be good to pass the error code to the upper layer.
-
-> +			goto err_runtime_disable;
-> +	}
-> +
->   	ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
->   	if (ret)
-> -		goto err_runtime_disable;
-> +		goto err_remove_dynamic_nodes;
->   
->   	ret = venus_firmware_init(core);
->   	if (ret)
-> @@ -411,6 +499,8 @@ static int venus_probe(struct platform_device *pdev)
->   	venus_firmware_deinit(core);
->   err_of_depopulate:
->   	of_platform_depopulate(dev);
-> +err_remove_dynamic_nodes:
-> +	venus_remove_dynamic_nodes(core);
->   err_runtime_disable:
->   	pm_runtime_put_noidle(dev);
->   	pm_runtime_disable(dev);
-> @@ -443,6 +533,8 @@ static void venus_remove(struct platform_device *pdev)
->   
->   	venus_firmware_deinit(core);
->   
-> +	venus_remove_dynamic_nodes(core);
-> +
->   	pm_runtime_put_sync(dev);
->   	pm_runtime_disable(dev);
->   
-> diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
-> index 27784fd7082c321222b23ca4b2902a04c49e19ca..306231b4f7d0201175974b4a42574f30d23e08f0 100644
-> --- a/drivers/media/platform/qcom/venus/core.h
-> +++ b/drivers/media/platform/qcom/venus/core.h
-> @@ -90,6 +90,8 @@ struct venus_resources {
->   	u32 cp_nonpixel_start;
->   	u32 cp_nonpixel_size;
->   	const char *fwname;
-> +	const char *enc_nodename;
-> +	const char *dec_nodename;
->   };
->   
->   enum venus_fmt {
-> @@ -171,6 +173,7 @@ struct venus_format {
->    * @root:	debugfs root directory
->    * @venus_ver:	the venus firmware version
->    * @dump_core:	a flag indicating that a core dump is required
-> + * @ocs:	OF changeset pointer
->    */
->   struct venus_core {
->   	void __iomem *base;
-> @@ -235,6 +238,7 @@ struct venus_core {
->   		u32 rev;
->   	} venus_ver;
->   	unsigned long dump_core;
-> +	struct of_changeset *ocs;
->   };
->   
->   struct vdec_controls {
-> 
-
--- 
-regards,
-Stan
 
