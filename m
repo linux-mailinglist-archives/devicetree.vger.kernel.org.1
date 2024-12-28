@@ -1,146 +1,159 @@
-Return-Path: <devicetree+bounces-134521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A51609FDB98
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 16:48:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 449029FDB9D
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 17:01:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32DB93A10E9
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 15:48:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0AF318829A4
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 16:01:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 470F7165F18;
-	Sat, 28 Dec 2024 15:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E68F1662EF;
+	Sat, 28 Dec 2024 16:01:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RNOQIPvn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T1esKnso"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D2A35974;
-	Sat, 28 Dec 2024 15:48:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26913524F;
+	Sat, 28 Dec 2024 16:01:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735400930; cv=none; b=G/Lhz2Lvy2fM4Y+WkpDde+Y5WW99VmLl3wYfQcfX8ftYHVJaQKU+69MuQXnCMGvfE6HSLwR9N4PHigS/xUQEmwSZt61DbQXHHGsYdV1inlr5ytBSx90pNdlnEHtk8sKLaMdRRe77HwnsBRb3OjpxI9BJsIbi6fDSh5X7Ivs4WEE=
+	t=1735401708; cv=none; b=iFnzdzSCVnajGBOJKht98e/joO7ksg8yFfKDVhwQQ+EZuQ/PiXqehbPH0xLzR2jm7DoIb1yffTArtKbdMSqjF9Zbrt4mKDvlw+OvdLrKSuJ5Cqzo7tyXdzOXgCZV2v3sNOdvbpZOJFvviGA1gTrt6b2Moy2NaJ9rF8OBS+cIFgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735400930; c=relaxed/simple;
-	bh=Nw3L7MLQ+tyPLILkAtDl4C2iVwnfWc39qzaJyAgId8o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YY9uHURiFbJfbKvmT+gbLV40jPKWvtCyeGKHWG4yzAcw9j6QoLnLNjaGNq4Mx10NK6gOxjDdwJ1q48VyiSdAKmut4e6/FO44BZz8/i4wYelZy21z4+3mxR7GLG8GOoPodLCHALd0zb4IOeva2ZmPpfsD1N5+c9Q7InBbpX2rdUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RNOQIPvn; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e3a2f65144bso988973276.2;
-        Sat, 28 Dec 2024 07:48:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735400927; x=1736005727; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QvgUswmxw3tDOJ/gQN+m0U9kpjr4h9l94Qnt3dvTpDY=;
-        b=RNOQIPvnQedssXiylF/11Rb/fHw0cgyE70LMBsiQeQBL4mF9b5yO52xdj3MT8jCPIs
-         YoSqgw1Z038wS4isUchcLVdW+SegYHSFLyHvLh3F+rj32g7w+pZPGum/YOpNu5b1S2s1
-         ZYFgfz24IP2Hjm316uaF7fDG298ok6ZmMA2ZOxJ90J5syNwCoFeSs+28UHZj7nPwI/Ui
-         rA9JheyJecjH3UJFoDBP1clj7/GrZ9v7jtCUSqRxQUom8qAZkxiqL8K6/U5SRBfu59EC
-         N4BdqDjd1wqI7Whx8mdd9ehq9OVId1B5Psg4MYl2nwQemZ7Z4igIVZ/j9v7N1Pg4anOq
-         +siQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735400927; x=1736005727;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QvgUswmxw3tDOJ/gQN+m0U9kpjr4h9l94Qnt3dvTpDY=;
-        b=Yyg7l0G8vsh0KdIzT/xBgCFPWd7y/zGzdtsbYGScYxX2NEf6pmyxewnl5cPSMaNR/0
-         JQZWHKrEAS5PHNwZim/hzNHxEudczCgssD5jRNRo/+v/lp2wLpd29/Zq/DyZft2XlKZK
-         1qG81HMJ9NbfZL0QLTNrJlz0AWzaEuagfKMaS9scEgz1PYWnUcHey+5xYd39o0Ayz+3u
-         hAb9fU42xBPL7U6uYYbfiAJ7uOi52UmJtvdMD3Nm404gybzzx7CeFCLuWO+Jqoll6Zvx
-         gyPMSaWLbxfqpKSvxwd/vZfNfhzY5YFhxPR23XrmXGZuZGBW5BAhF7dQxNxS0SJhoUK+
-         PLwg==
-X-Forwarded-Encrypted: i=1; AJvYcCVID5wzch9lNT9mU7w8VVGAxRE0URHEyEFOhMRdlt/bHal4mTMV45cRqo5ZadNTDN0nSejrCy2VfjbN@vger.kernel.org, AJvYcCWQbLTfpEzSqZuMK0QHsRIxOYm2ZnmtkstccYjrGN06oNFRKHGsUIwCe5GQ0mOOrEaSYY5NbN16ysETft63@vger.kernel.org, AJvYcCX9MtinTUpvtEgduetUQiYfolGefbZbxipi1k2vTIPrck8Dp8hazkQiT0xeQCzPL2Tf1lnD47MW+YKT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzEzmQ3NEdKO5Ii35zt7/GgaunXRjgt7bC6JUZsCK64Xzk9/PH
-	YX15m6ddrPFP0vNvSAugDPzSznuvVT056fJoiI818jfvYxGJTcSK8CGYvrbCZfGVau7XviVxq6a
-	aJiCkLN14YH4mIFkHyde0WxdqT8Y=
-X-Gm-Gg: ASbGncstmrL2J/OWwmm5q4nyYu6Q5+1TaKhGQs7w3FRghhaq9BRFFcmuKZ4t1v74wfH
-	YpJZ9I2/MMWXmRnMDK1Mn3A+e3FEAKGCJ6NeLIA==
-X-Google-Smtp-Source: AGHT+IHdZpC1YGp93mLQ+nx/iTl6htJLNwxuarX9IUpcjwgjaaa/AKJfIzdp7YtQPJDW2ejn+6yKiANX90xRsA7PDGc=
-X-Received: by 2002:a05:6902:10c8:b0:e4a:ea18:b43a with SMTP id
- 3f1490d57ef6-e538c35d562mr10176626276.7.1735400927543; Sat, 28 Dec 2024
- 07:48:47 -0800 (PST)
+	s=arc-20240116; t=1735401708; c=relaxed/simple;
+	bh=18U5iz8pi3RBHmvQo2OtcOsNKBRj3kPVu7012TB52mo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gdXkA2SGOfTasqrvAswHjvt1Hjq/K3YGXIfoA9+E1St29NCStNIg7w2YnG0cf26x3oytkkS4Hjs1KZhMuqUjU9fBunQwYpktu3jPvBmJIpi5PeysQsmFCEtrNTyRl07FLoTNVqIVx9u3J1sJ/wmF2edsSCuMHtuzAuqy2LEIw14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T1esKnso; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD0ADC4CECD;
+	Sat, 28 Dec 2024 16:01:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735401707;
+	bh=18U5iz8pi3RBHmvQo2OtcOsNKBRj3kPVu7012TB52mo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T1esKnsogL2iJCDq7cGur+PfySNB+HuMauEx3ha+nFmHI04vjq6kSh/ABDgFgDrc7
+	 5xidS+d6tEJ1Nkzvi5JnmM/vWBd917TP+4Lr94DOQvJl42SB86lYS8KFs7SB1wmQYa
+	 /nKdx6AXEpJPSE67Ym4zd9dRSnM2gCe6GLcPaK79Ps5LcQVfR+FYYj0ET2AR5qyYFV
+	 2RRjCQZFWhQ9pz7e9UQr6V9TAhRlIkxd+j7dGLuw578IYozzLZRc4+cNm3wJaRf9P6
+	 nYLyPRIqjxJMFJj8TCRFmo/6rRS5npcr36EpKR+i/0oyn+7zooGRy0TUhwE0KDFJaB
+	 AzX0nOIuBQUOQ==
+Message-ID: <5af2e2fa-3f60-419e-be3e-74771a993de6@kernel.org>
+Date: Sat, 28 Dec 2024 18:01:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241225181338.69672-1-l.rubusch@gmail.com> <20241225181338.69672-8-l.rubusch@gmail.com>
- <20241228144714.2c1db6a8@jic23-huawei>
-In-Reply-To: <20241228144714.2c1db6a8@jic23-huawei>
-From: Lothar Rubusch <l.rubusch@gmail.com>
-Date: Sat, 28 Dec 2024 16:48:11 +0100
-Message-ID: <CAFXKEHb8vMs_en6_iBUG37YyWn90xn8xnz2yrRMB=4rues7BuA@mail.gmail.com>
-Subject: Re: [PATCH v8 7/7] iio: accel: adxl345: complete the list of defines
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
+To: Enric Balletbo i Serra <eballetb@redhat.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>
+References: <20241126-am69sk-dt-usb-v1-1-aa55aed7b89e@redhat.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20241126-am69sk-dt-usb-v1-1-aa55aed7b89e@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Dec 28, 2024 at 3:47=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Wed, 25 Dec 2024 18:13:38 +0000
-> Lothar Rubusch <l.rubusch@gmail.com> wrote:
->
-> > Having interrupts events and FIFO available allows to evaluate the
-> > sensor events. Cover the list of interrupt based sensor events. Keep
-> > them in the header file for readability.
-> >
-> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
->
-> One comment inline
->
-> Thanks,
->
-> Jonathan
->
-> >  #define ADXL345_REG_BW_RATE          0x2C
-> >  #define ADXL345_REG_POWER_CTL                0x2D
-> >  #define ADXL345_REG_INT_ENABLE               0x2E
-> > @@ -34,20 +59,40 @@
-> >  #define ADXL345_FIFO_CTL_MODE(x)     FIELD_PREP(GENMASK(7, 6), x)
-> >
-> >  #define ADXL345_INT_DATA_READY               BIT(7)
-> > +#define ADXL345_INT_SINGLE_TAP               BIT(6)
-> > +#define ADXL345_INT_DOUBLE_TAP               BIT(5)
-> > +#define ADXL345_INT_ACTIVITY         BIT(4)
-> > +#define ADXL345_INT_INACTIVITY               BIT(3)
-> > +#define ADXL345_INT_FREE_FALL                BIT(2)
-> >  #define ADXL345_INT_WATERMARK                BIT(1)
-> >  #define ADXL345_INT_OVERRUN          BIT(0)
-> > +
-> > +#define ADXL345_S_TAP_MSK    ADXL345_INT_SINGLE_TAP
-> > +#define ADXL345_D_TAP_MSK    ADXL345_INT_DOUBLE_TAP
->
-> Why have these?
->
+Hi Enric,
 
-To be honest, I'm unsure to keep this patch within this series now.
+On 26/11/2024 12:08, Enric Balletbo i Serra wrote:
+> From: Dasnavis Sabiya <sabiya.d@ti.com>
+> 
+> AM69 SK board has two stacked USB3 connectors:
+>    1. USB3 (Stacked TypeA + TypeC)
+>    2. USB3 TypeA Hub interfaced through TUSB8041.
+> 
+> The board uses SERDES0 Lane 3 for USB3 IP. So update the
+> SerDes lane info for PCIe and USB. Add the pin mux data
+> and enable USB 3.0 support with its respective SERDES settings.
+> 
+> Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
+> Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
+> ---
+> I've been carrying this patch for quite long time in my builds to have
+> support for USB on my AM69-SK board without problems. For some reason this
+> patch was never send to upstream or I couldn't find it. So I took the
+> opportunity, now that I rebased my build, to send upstream.
+> 
+> I have maintained the original author of the downstream patch as is
+> basically his work.
+> ---
+>  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 33 +++++++++++++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> index 1e36965a14032ca07143230855e04b9549f1d0d1..72797f4b689c1d069bf395d6d4fe1846dc4e4297 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+> @@ -484,6 +484,12 @@ J784S4_IOPAD(0x09C, PIN_OUTPUT, 0) /* (AF35) MCAN7_TX */
+>  		>;
+>  	};
+>  
+> +	main_usbss0_pins_default: main-usbss0-default-pins {
+> +		pinctrl-single,pins = <
+> +			J784S4_IOPAD(0x0EC, PIN_OUTPUT, 6) /* (AN37) TIMER_IO1.USB0_DRVVBUS */
 
-Initially, ..... long story short, having FIFO and interrupt handling
-now, it is possible to apply and use those ADXL345_INT_ constants. On
-the other side, having this more and more separated out of other
-patches, it becomes clear there is still some implementation pending
-to really use them. I'd like to focus this series rather on FIFO and
-interrupt mechanism.
+address offset should be lower case?
 
-Especially when it comes to the ADXL345_S_TAP_MSK defines, which
-probably make even less sense here, if I look at it now.
+> +		>;
+> +	};
+> +
+>  };
+>  
+>  &wkup_pmx0 {
+> @@ -1299,6 +1305,14 @@ serdes0_pcie_link: phy@0 {
+>  		cdns,phy-type = <PHY_TYPE_PCIE>;
+>  		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>, <&serdes_wiz0 3>;
+>  	};
+> +
+> +	serdes0_usb_link: phy@3 {
+> +		reg = <3>;
+> +		cdns,num-lanes = <1>;
+> +		#phy-cells = <0>;
+> +		cdns,phy-type = <PHY_TYPE_USB3>;
+> +		resets = <&serdes_wiz0 4>;
+> +	};
+>  };
+>  
+>  &serdes_wiz1 {
+> @@ -1339,3 +1353,22 @@ &pcie3_rc {
+>  	phy-names = "pcie-phy";
+>  	num-lanes = <1>;
+>  };
+> +
+> +&usb_serdes_mux {
+> +	idle-states = <0>; /* USB0 to SERDES0 */
+> +};
+> +
+> +&usbss0 {
+> +	status = "okay";
+> +	pinctrl-0 = <&main_usbss0_pins_default>;
+> +	pinctrl-names = "default";
+> +	ti,vbus-divider;
+> +};
+> +
+> +&usb0 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +	maximum-speed = "super-speed";
+> +	phys = <&serdes0_usb_link>;
+> +	phy-names = "cdns3,usb3-phy";
+> +};
 
-What would you recommend - Keep it? Drop it? Add just the ADXL345_INT_
-fields w/o the _MSKs?
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
->
->
+-- 
+cheers,
+-roger
+
 
