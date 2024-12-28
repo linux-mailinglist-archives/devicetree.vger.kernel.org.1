@@ -1,87 +1,107 @@
-Return-Path: <devicetree+bounces-134464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78A1D9FD8ED
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 04:40:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D81949FD903
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 06:18:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12CEE3A2563
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 03:39:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67E893A2624
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 05:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7D735969;
-	Sat, 28 Dec 2024 03:39:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j6KiLlXp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D916A3594F;
+	Sat, 28 Dec 2024 05:18:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225A433EA;
-	Sat, 28 Dec 2024 03:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19BC979F2;
+	Sat, 28 Dec 2024 05:18:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735357197; cv=none; b=ntGguDIcWxnMZxPicnXbS25UF7rDkY7LIcs7GJptxkzNaQC1iP08g0yDFjx/bpFl+mtBkC06bZevfRyuS94pq9yE7W9tGJrgVBvtPpo5BORdroW7wx+RlVKIlUHteZuBb4o1POsT3RwzT7xz6f1opHGyKOurvWrdycqh57fbKCw=
+	t=1735363117; cv=none; b=Ia5/T8Qpy2OAJlwkoQhbYhZA+fKguj+nIG5/i8rSK334gmuU/NeLG4ltK0IRVHx3ec4Lq5MUqVXuh1J+7AWIuvzm4NI07YY/xWYeo27GPln/z/2H+bW2WOPI4E36hdtQ12teTBRZR+beNfUvEQUlf/mhuzhGXj1oCbHDen+Z3Fs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735357197; c=relaxed/simple;
-	bh=gRLGLZMJDuaDn8BKAJgqm0Mrv3neWPxzWSRXMC4tCIg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CRHDh5kWXeTAkZcZOjkqsr8xwBCWdzt7c0vZkzuWU8knwVxBI/G2PM0gecIMJstugWWHYFsitbnEJ2A9DKj3cM/bY5veveHtCr+kCrxpY5dRKSZaMZCQ9YSKKLWKvyHekZjjxYgGEpUJrHTmodVqXghvWY5CB0CtnJka9P4xs/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j6KiLlXp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4A83C4CECD;
-	Sat, 28 Dec 2024 03:39:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735357196;
-	bh=gRLGLZMJDuaDn8BKAJgqm0Mrv3neWPxzWSRXMC4tCIg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=j6KiLlXpuqgRaaaXX/zgQpxJagva6w5I+mDE04t/l3M/IRGc19etr8+bH9MiCbdEi
-	 AjnEa9euXyR1+VEtmY5NEFSBTSuFOQso0XdLqOrw6mKHpJF1uPVbK/7cLQJS18iIIy
-	 eMg5IFYH9acSRQBvIrRviekMadPCWh9GEw3j+keYB0fHkzPEfF2Isinri5PP7nyae1
-	 Gfox7bgC0b0vSejc1Hjaw/HQb8U2jAx6uVgkNQCeEMJu5Kzp2M447qm3zAwRv+GUFB
-	 K0yVKTbf5ndq79KQf449b7eoHj8EteK5OeKOl7Y8ueDYlZ3RthlDraRBfDFXlvkj4O
-	 DoHSgxPYC+9Qw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1735363117; c=relaxed/simple;
+	bh=GVQmCyjgh9UxG5fCAHRuj2hOC72/PLm/7PRyUFcJdzc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l6sCIusEBD4gy2XmwqEe0S3WfgW+2ZNmPxMSY1D/Wpxv4hHbqyEnj3Yi4HlbARxgxb+frpul00g32ihH15OCbwCUZmXhvA2Ef1+b1jI2FnPxNL514aPy16lA4fCeu7e/Qg2MZEkAercd28kRTG7VwDKyLHE1G31EVa4lhYvI7lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Sat, 28 Dec 2024 13:18:24 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Fix interconnect tags for SDHC nodes
-Date: Fri, 27 Dec 2024 21:39:53 -0600
-Message-ID: <173535719177.1533665.14581872557543882948.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241227-b4-x1e80100-qcp-sdhc-fixes-v1-1-cd971f7f0955@linaro.org>
-References: <20241227-b4-x1e80100-qcp-sdhc-fixes-v1-1-cd971f7f0955@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: gpio: spacemit: add support for K1
+ SoC
+Message-ID: <20241228051824-GYA1079860@gentoo>
+References: <20241225-03-k1-gpio-v3-0-27bb7b441d62@gentoo.org>
+ <20241225-03-k1-gpio-v3-1-27bb7b441d62@gentoo.org>
+ <CACRpkdZPD2C2iPwOX_kW1Ug8jVkdHhhc7iFycHtzj5LQ0XWNgQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdZPD2C2iPwOX_kW1Ug8jVkdHhhc7iFycHtzj5LQ0XWNgQ@mail.gmail.com>
 
+Hi Linus:
 
-On Fri, 27 Dec 2024 14:58:36 +0200, Abel Vesa wrote:
-> The CPU-to-SDHC interconnect path for the SDHC_2 needs to have the
-> active-only tags. The tags are missing entirely on for the SDHC_4
-> controller interconnect paths.
+thanks for your review
+
+On 17:34 Fri 27 Dec     , Linus Walleij wrote:
+> On Wed, Dec 25, 2024 at 1:33 AM Yixun Lan <dlan@gentoo.org> wrote:
 > 
-> Fix all tags for both controllers.
+> > The GPIO controller of K1 support basic functions as input/output,
+> > all pins can be used as interrupt which route to one IRQ line,
+> > trigger type can be select between rising edge, failing edge, or both.
+> > There are four GPIO banks, each consisting of 32 pins.
+> (...)
+> > +description:
+> > +  The controller's registers are organized as sets of eight 32-bit
+> > +  registers with each set controlling a bank of up to 32 pins.  A single
+> > +  interrupt is shared for all of the banks handled by the controller.
 > 
+> I looked at the driver and came to the conclusion that it's better to use
+> 4 different instances of the chip, one for each set of 32bit registers,
+> so these 4 GPIO controllers are instantiated separately.
 > 
-> [...]
+sounds good to me, I will work according to this in next version
 
-Applied, thanks!
+> The operating system can handle the shared interrupt, there is no
+> need to use a single device instance just because the interrupt is
+> shared.
+> 
+> DT bindings are operating system neutral, but for example in Linux
+> (if we pretend this is just one possible example) then a driver
+> handling a shared IRQ can be requested with the flag IRQF_SHARED
+> and the driver can just return IRQ_HANDLED if it handled an IRQ
+> or IRQ_NONE if it didn't handle the irq (so other instances can
+> handle it).
+> 
+agree, make sense
 
-[1/1] arm64: dts: qcom: x1e80100: Fix interconnect tags for SDHC nodes
-      commit: fabdaa29f58124a30569008d419282d9ef9cc082
+> Yours,
+> Linus Walleij
 
-Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
