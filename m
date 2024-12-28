@@ -1,118 +1,109 @@
-Return-Path: <devicetree+bounces-134512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 840E59FDADE
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 15:09:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D79099FDAE7
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 15:29:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38517161B7F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 14:09:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 902421621E5
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 14:29:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8142D15B547;
-	Sat, 28 Dec 2024 14:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F9118A6C0;
+	Sat, 28 Dec 2024 14:29:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NkUtz/tz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b9EJb8S7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55803433A4;
-	Sat, 28 Dec 2024 14:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B181791F4;
+	Sat, 28 Dec 2024 14:29:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735394947; cv=none; b=F/N6Qijbipfq/RTorj72EzNeeMcO66Co5S5wsSiGRU/TeeXeSK9QLh2t01wd3mQpgThN0hDvBvUAGvXCzeP7lVj4+EOJC83UKsO4tnjUw7cy8jSygptRm047bgxwugc+FtAnwl8DC8JEpe0n+1gXcZuAgZUBwJjawgEW+ETwk10=
+	t=1735396156; cv=none; b=PXY+XIen5WrAos9hYzvWWxXLIxhwZFGNrDCvuWu7mscuqK+HCVEcBvl3cMCGBVZLESIw0O/WZEHMZYqOFW60qSb2m3M6lcsi9SIHYKHUaSPlKyGLiqhTZvREbXOcdyVkqjAr6ymFupY+W27L+7s6447G5aPLyzf+H5qwc+/fIqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735394947; c=relaxed/simple;
-	bh=Dkf6FNbmvczR6fwjr8TMuN/izWdItAgYtjp2h3zBUiU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=OwMEIpyIyHZZkOfrq3+nQGcFgkHupejawuJtw9dc5YcIwMUin6swvu/jc7PzK6Pq4fRB43WZzWJBzmwt9zapVjzK/AwwE30l6zGfIYnUAWty0XOxnXBZJPuoDX5WimFwLCm/1BYicIJIwE+mj9h2V2/kpHFsClVVM+mAaSHXj8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NkUtz/tz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99235C4CECD;
-	Sat, 28 Dec 2024 14:09:06 +0000 (UTC)
+	s=arc-20240116; t=1735396156; c=relaxed/simple;
+	bh=/E60l4xvUnJa++FV5HS62z4aZ6Fm1PtAg5KEME4Z5LA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rRcJ4EhcedurKH/8hz8SDb1vJIMYYv38iV4qpYtDFK0Uc6Udi2kbfJiNChpkC5svG/6Y/g5KANYIh+5CbWeQaqxUwx/Yv2Mp+yNB43qwPUHLGLiEBJXwdFjxPRPrhOPE6cH/aUaznk9u15EJ05SuVN0zmvslhpQagB59UfmHJGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b9EJb8S7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4C0DC4CECD;
+	Sat, 28 Dec 2024 14:29:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735394947;
-	bh=Dkf6FNbmvczR6fwjr8TMuN/izWdItAgYtjp2h3zBUiU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=NkUtz/tztIW/PhXP2LF3lMOFGClVFeWa5CrOwlzULAlP5973gEksD+7QteiFALTfX
-	 VSrG2ZV1ClfYJDpFKZ/XSzsPFm2GjtPLNXHsKUVmZkcoWAnQBhLqH4L1djr6ivwuzQ
-	 CC6JmtEo318beq4yK6HdKuaJ9UuwZpRwaEa96mxruNafNt1TqwFjEW/m7G75atqVpD
-	 TnbkkQCn+Sx7zNmI/vIDziT47eiZN+iW/fsCXv6NlpeB2jmRfGWJyA9Ktj38jF2evD
-	 aG0lOQ5LaKRaEoQT2DEchPI/mGcC+gG6q7Ee9tX+OGlrm9jeH73dwV2T65TrWBCRmL
-	 ICN4mGxILIv4Q==
-Date: Sat, 28 Dec 2024 08:09:05 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1735396156;
+	bh=/E60l4xvUnJa++FV5HS62z4aZ6Fm1PtAg5KEME4Z5LA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=b9EJb8S7hDp/R7/HaUAsfTkBaxmZEeOBoXDppFOuoh7rBNxkY/Ccqlq43IOnEvxJr
+	 c5hCD02j3GLPNQ2vmaiKmi3Lt03dHBZSfquuAn2R1lDObGyLud/WgiFUviQi/rbQ7U
+	 RwJSRrPtllHuJCjL/EXXVt8Klongl7kR4JAWFf5t6+kwqFYpn4gz3TQzNRllTr0F/7
+	 1AhU6pp8ords2oN2tCWp8bKL3MKi8GbSKS6TLPgkpZMusIDy2evZvsr4rzcxyoKRa9
+	 xplOjbBOBXR/33L0U5vVLXrnnYFwuVERW9Llg+GB+b810eonpAOCNGJRepy80EY7xx
+	 ZT7rmSjQ3TACw==
+Date: Sat, 28 Dec 2024 14:29:07 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ eraretuya@gmail.com
+Subject: Re: [PATCH v8 1/7] iio: accel: adxl345: add function to switch
+ measuring mode
+Message-ID: <20241228142907.20f94de8@jic23-huawei>
+In-Reply-To: <20241225181338.69672-2-l.rubusch@gmail.com>
+References: <20241225181338.69672-1-l.rubusch@gmail.com>
+	<20241225181338.69672-2-l.rubusch@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: vkoul@kernel.org, linux-phy@lists.infradead.org, 
- cristian.ciocaltea@collabora.com, Andy Yan <andy.yan@rock-chips.com>, 
- joro@8bytes.org, iommu@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-rockchip@lists.infradead.org, heiko@sntech.de, 
- dri-devel@lists.freedesktop.org, cl@rock-chips.com, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- detlev.casanova@collabora.com, hjc@rock-chips.com, krzk+dt@kernel.org
-To: Andy Yan <andyshrk@163.com>
-In-Reply-To: <20241228122155.646957-6-andyshrk@163.com>
-References: <20241228122155.646957-1-andyshrk@163.com>
- <20241228122155.646957-6-andyshrk@163.com>
-Message-Id: <173539494517.1967895.2732995549466236200.robh@kernel.org>
-Subject: Re: [PATCH v2 5/8] dt-bindings: display: vop2: Add rk3576 support
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Wed, 25 Dec 2024 18:13:32 +0000
+Lothar Rubusch <l.rubusch@gmail.com> wrote:
 
-On Sat, 28 Dec 2024 20:21:48 +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+> Replace the powerup / powerdown functions by a generic function to put
+> the sensor in STANDBY, or MEASURE mode. When configuring the FIFO for
+> several features of the accelerometer, it is recommended to put
+> measuring in STANDBY mode.
 > 
-> Add vop found on rk3576, the main difference between rk3576 and the
-> previous vop is that each VP has its own interrupt line.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> 
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
 > ---
+> Please squash with a3fb9f5202c3de0ca84848a475f59a0e0584d9fc
+Even when just sending something you'd like squashed please give
+meaningful title etc because it might not get squashed and so may need
+to stand on it's own.
+
+Anyhow, I have squashed it so no problem this time.
+
+Jonathan
+
 > 
-> Changes in v2:
-> - describe constraint SOC by SOC, as interrupts of rk3576 is very
->   different from others
-> - Drop Krzysztof's Reviewed-by, as this version changed a lot.
+> Just introduces a cosmetic simplification to the already applied
+> commit, under the same title.
 > 
-> Changes in v1:
-> - ordered by soc name
-> - Add description for newly added interrupt
+>  drivers/iio/accel/adxl345_core.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 > 
->  .../display/rockchip/rockchip-vop2.yaml       | 70 +++++++++++++++----
->  1 file changed, 56 insertions(+), 14 deletions(-)
-> 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml: properties:interrupts: {'minItems': 1, 'maxItems': 4, 'items': [{'description': 'vop system interrupt, such as bus error, and vsync for vop version under rk3576.'}, {'description': 'independent interrupts for each video port, such as vsync and other video port related error interrupts.'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241228122155.646957-6-andyshrk@163.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adxl345_core.c
+> index b48bc838c..27d70a1f0 100644
+> --- a/drivers/iio/accel/adxl345_core.c
+> +++ b/drivers/iio/accel/adxl345_core.c
+> @@ -153,9 +153,8 @@ static int adxl345_write_raw_get_fmt(struct iio_dev *indio_dev,
+>   */
+>  static int adxl345_set_measure_en(struct adxl345_state *st, bool en)
+>  {
+> -	unsigned int val = 0;
+> +	unsigned int val = en ? ADXL345_POWER_CTL_MEASURE : ADXL345_POWER_CTL_STANDBY;
+>  
+> -	val = (en) ? ADXL345_POWER_CTL_MEASURE : ADXL345_POWER_CTL_STANDBY;
+>  	return regmap_write(st->regmap, ADXL345_REG_POWER_CTL, val);
+>  }
+>  
 
 
