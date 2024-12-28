@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-134468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B2ED9FD9A3
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 10:37:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFD829FD9AB
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 10:54:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E28D116169C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 09:37:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71D3B3A1E04
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 09:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5235C524B0;
-	Sat, 28 Dec 2024 09:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFC812BF02;
+	Sat, 28 Dec 2024 09:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TY77gnmQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yf5mehRO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2722F635;
-	Sat, 28 Dec 2024 09:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D159A3D76;
+	Sat, 28 Dec 2024 09:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735378627; cv=none; b=ihciWzRo0vf6zLiYyCZGzfdM2he4iuoSyrbr4bMwrA2Cj+J34PakHlsdIv7F/0ssZP2BZWpQDOxvgWZR0CjOKZxpb3BO7ssukI1DVPbDIQnhZnjwktrTNIgm59AROuW8Cu+gI9mj2iBRZrKyTK1rA09XjADuGpJ/pms6of8KpsA=
+	t=1735379662; cv=none; b=AGOSV7eX7OlIne3zTF4A9ZSETK20v06Hj9UTqAKU/y5TGSDEAU6tv9cu5BI17spzU1jJt0IgLPLMkHe2UKehZXUfCIOL8Z6FCL8etHwXLikk+OvDfJGTDm3Ss2MHmNkSsOGs1xxXmQopmINiyPoe2pFREXQarbML+cH1UcqBAqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735378627; c=relaxed/simple;
-	bh=MhTd1I1G0tCi5HxKIRic2dbDaysJFzqxNwryy6PN9IU=;
+	s=arc-20240116; t=1735379662; c=relaxed/simple;
+	bh=FcnIkqxzD71OecOca/4hQUSkp6GWUTNw42/pT5ECcR8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kYcW34NSdSlssoEaXMMLb7gmp9lsEKgoyg8mlZ59mvXO8EOzjOfA94WHbuh/OXWdwRfqxBlwQX2ZobdSTtPJ4OZD250GEUWiwFCnH8ape0pLiEaC9WBK85s1BJ0Kcffu4oPd+KmTGfeCyIxDkmeZHcxunQskaunkcxfQ4xDNt6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TY77gnmQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01430C4CECD;
-	Sat, 28 Dec 2024 09:37:01 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZC1IVaNUuE5/Q3a2qoSgt88gEJI/LJb8x1cE1V2sPUf7OdxWvItA4GxcKgVtqqaUSLp4Y43Fy9IP7XXh+91Qo0z543zqj1x8AYkuWZ4EnpWZPuOa1BjwVVKQAIsK4vi2HqyEIBuLSmR8jfSckjoR8ttZzPPsWtRaoodQ+Xau0dU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yf5mehRO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29950C4CECD;
+	Sat, 28 Dec 2024 09:54:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735378625;
-	bh=MhTd1I1G0tCi5HxKIRic2dbDaysJFzqxNwryy6PN9IU=;
+	s=k20201202; t=1735379661;
+	bh=FcnIkqxzD71OecOca/4hQUSkp6GWUTNw42/pT5ECcR8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TY77gnmQR2hNM+xb7bnnXsNrYsXTbboOxBSOTouteFDUYExFxs+bkBDUTNMXl5+YY
-	 DJGdl84eaOpsEnZ8nBgg2zhEkOja1I15XzMWRxk3WN1f1hrcnZX8DEKYJrpjbBR8G/
-	 PG98+lYtBuRWvX78zIAc4SbsIkTw2tWSBTu+/99mQXDV5lYIR97OIAzabhl095PFaU
-	 Nw0fI3wWRPlpFASRTdOms9HEJDSkB/W+3W8VvR1rLDDJXGJ0xWZ4WAp3yeLTsvDe6Y
-	 /BaXoR8EahdMJn75bgbOWdU8Ms2txWq7d/IbjCb8AdfEmL6zHYB0XMUyw7Z+45UNjC
-	 5cs6hFVTwjViQ==
-Message-ID: <af945132-1ff3-41bd-a958-4241a9d171d5@kernel.org>
-Date: Sat, 28 Dec 2024 10:36:59 +0100
+	b=Yf5mehROfnmdFJwje+p2W54VMnQBBOuAy/qy3e950uz8gncXFqPFtmuvxjooVGfYL
+	 3bL47EUFcJvCi1gShRdjQdLURj49eF+f4SHVF9Ow6FtjqxSLkI1CIsgtlroQ5hNNyP
+	 MzAprc2uvSHB38boDntx0I+xGuqzZn7muHFXIPcJ5a4uvSFwPh/4mMY7Fp4OKaJCyq
+	 3EuUpAG5DedhiOUbjtnGQg7tNfdtfWTpkW5DjwsIz/hrxYPZ0bbbNM9BHvfcmIeDBK
+	 a03Tgy/oPBxir6aW/7KHI0NgQFhDUVc6LrxrxO1CmsiUzx9CpYeiKIaIMO2U+RF96M
+	 xlhUK3xwa0mEQ==
+Message-ID: <705f52a9-562b-4b17-8b28-ee837b41ea7d@kernel.org>
+Date: Sat, 28 Dec 2024 10:54:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: phy: add rk3576 hdptx phy
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, cristian.ciocaltea@collabora.com,
- detlev.casanova@collabora.com, krzk+dt@kernel.org, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, sebastian.reichel@collabora.com,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>
-References: <20241224091919.267698-1-andyshrk@163.com>
- <gkx4rmkwhngqsn5wotp3mdk6nn4oydrzgkfwhansd6j5ap5pek@rowfnww34rsd>
- <5de24299.9cde.19407b99e5c.Coremail.andyshrk@163.com>
+Subject: Re: [PATCH 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
+To: Pengyu Luo <mitltlatltl@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Sebastian Reichel <sre@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Nikita Travkin <nikita@trvn.ru>
+References: <20241227171353.404432-1-mitltlatltl@gmail.com>
+ <20241227171353.404432-2-mitltlatltl@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,33 +112,81 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <5de24299.9cde.19407b99e5c.Coremail.andyshrk@163.com>
+In-Reply-To: <20241227171353.404432-2-mitltlatltl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 27/12/2024 11:46, Andy Yan wrote:
->>
->>> +              - rockchip,rk3576-hdptx-phy
->>
->> So that's just enum with previous entry... but you said compatible, yet
->> nothing is here. Test your patches - DTS will fail on this. Driver as
->> well (assuming you expressed properly compatibility).
-> 
-> Is this the right way to write it ？：
-> 
-> properties:
->    compatible:
-> -    enum:
-> -      - rockchip,rk3588-hdptx-phy
-> +    oneOf:
+On 27/12/2024 18:13, Pengyu Luo wrote:
+> +
+> +description:
+> +  Different from other Qualcomm Snapdragon sc8180x sc8280xp based machines,
+> +  the Huawei Matebook E Go tablets use embedded controllers while others
+> +  use something called pmic glink which handles battery, UCSI, USB Type-C DP
+> +  alt mode. Huawei one handles even more, like charging thresholds, FN lock,
+> +  lid status, HPD events for the USB Type-C DP alt mode, etc.
+> +
+> +properties:
+> +  compatible:
+> +    items:
 > +      - enum:
-> +          - rockchip,rk3588-hdptx-phy
-> +      - items:
-> +          - enum:
-> +              - rockchip,rk3576-hdptx-phy
-> +          - const: rockchip,rk3588-hdptx-phy
+> +          - huawei,sc8180x-gaokun-ec
+> +          - huawei,sc8280xp-gaokun-ec
 
-Yes, assuming they are compatible.
+sc8180x and sc8280xp are not products of Huawei, so you cannot combine
+them. Use compatibles matching exactly your device, because I doubt any
+of us has actual schematics or datasheet of that device.
+
+> +      - const: huawei,gaokun-ec
+
+How did you get the name?
+
+> +
+> +  reg:
+> +    const: 0x38
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  connector:
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c15 {
+
+i2c
+
+> +        clock-frequency = <400000>;
+> +
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&i2c15_default>;
+
+Drop all three above and test your bindings. This cannot work and test
+will tell you what is missing.
+
+> +
+> +        embedded-controller@38 {
+> +            compatible = "huawei,sc8280xp-gaokun-ec", ""huawei,gaokun-ec";
+> +            reg = <0x38>;
+> +
+> +            interrupts-extended = <&tlmm 107 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            connector@0 {
+
+Test your bindings - you do not have node connector@0.
+
+
 
 Best regards,
 Krzysztof
