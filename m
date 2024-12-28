@@ -1,141 +1,323 @@
-Return-Path: <devicetree+bounces-134506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1EE59FDAA2
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 14:19:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 292989FDAAF
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 14:33:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7242E1620A5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 13:19:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1A093A11BE
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 13:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FB20158208;
-	Sat, 28 Dec 2024 13:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C63C12BF02;
+	Sat, 28 Dec 2024 13:33:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pIC/HVki"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RxF5Uk1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F4044A0C;
-	Sat, 28 Dec 2024 13:19:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E79C8DF;
+	Sat, 28 Dec 2024 13:33:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735391979; cv=none; b=AtgS9uNCaGEBeS28n9K6Y07w4RQ7GLK4Um9GFode5kRGks56FRWHXVXIcpGA5FqlHr8+PDxNgxCk/FW6gUvTo7vLdzShZ4hO7NoQiRME7H2l+25YXgBhbdQIWlqGesStc/BFa546nnByt6at9rF/XxE4RMDUD//d2G3bEJ3cTgM=
+	t=1735392825; cv=none; b=Vp2pqXxJZWl2dMhsYZ4wOjtWrbSWRhLFQEhER67htqrBbueOdvSSsdEXL6qjtxQZW+7sQNz+UeXuOcAZDR8ftwigyehG75ScIZ6fffAFLZN+gdX7KQgklur4WN6of7a6sDj15Q28KlEqccKU6ovXVhbX2JnfVLeBHMDvsCQysZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735391979; c=relaxed/simple;
-	bh=W1gPdwZJT9/UkD+0ajbugFzfJHap13mBYnKskhDpNFc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QHfwmFFSU+af6QpExTLx82sTwwnrjIGSLa85LyR5e8dT2eQtjJcnxqK5PBy2puk710vJetssxoZ1zEMSP4dBUmqv32YOMfUwNGNhTntPw8C2NWEsawCSj3oW9Mp7UwBQWz0sbL8El7X1HpCtoMUoiv95Wvcsewxvx70caoTQFts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pIC/HVki; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12386C4CECD;
-	Sat, 28 Dec 2024 13:19:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735391978;
-	bh=W1gPdwZJT9/UkD+0ajbugFzfJHap13mBYnKskhDpNFc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=pIC/HVkioqgXy0cq36uM8EKD2FOsBsof9G3s3zjHJ5RNf6UvcIpTe28LECBRwZgJu
-	 r+ds8eiVb1GwuKh7F8WG9es+j6G4BUFs7d7R66Z3rd41/mysefcmh7Jg4gnqyRivjX
-	 JXx1IjsAFDQAA73MiyA8W+51GHZ/BkLoP9HlhXFGZsMqGa8nUNyeB5px5rHJ3NWwcp
-	 09JKvlAPn6ZzPb+UZAmWIIBOgOM0NaLIxQGnJwYDz7cBXXkzj+HejrupKlzK2q0fuB
-	 Ypi+kCdH0+pR2omi3cVsMNnQ7JNKUlc4Eu6CTLZ0HnQvSP7Dx+aNFOXWPRixI5WN9V
-	 hgvGSEI+9BB4w==
-Date: Sat, 28 Dec 2024 13:19:29 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "andriy.shevchenko@linux.intel.com"
- <andriy.shevchenko@linux.intel.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Emil
- Gedenryd <emil.gedenryd@axis.com>, Andreas Dannenberg <dannenberg@ti.com>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: iio: light: opt3001: add compatible for
- opt3004
-Message-ID: <20241228131929.49e4a90d@jic23-huawei>
-In-Reply-To: <PN0P287MB2843E7005997F1728B0F9B2CFF0F2@PN0P287MB2843.INDP287.PROD.OUTLOOK.COM>
-References: <20241227131134.10810-1-hardevsinh.palaniya@siliconsignals.io>
-	<qgottqtq5lvp6fifi37xzq7supalvm7leue755yjatyun6k5um@pju4v3kqoizq>
-	<PN0P287MB2843E7005997F1728B0F9B2CFF0F2@PN0P287MB2843.INDP287.PROD.OUTLOOK.COM>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1735392825; c=relaxed/simple;
+	bh=lpzmd5qgYbWzXDpiz51Kh68H/esSJWBky5nNUUWLAF0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e1rUKFCOM16ap29TY/dX2oUWWprLngwKzBH7hrxoxdmb+mYmcH6fTGXcVRoN4Pweqlq8iRM69fPxZIybxIPCY/8bBihaYRDIbmWIiQZUqUg5DcUC6FlOl+cx3Lb2KiUYGschXFM6k67VWt9LbYsMdyHufkM2Nmr3NpVT+ttd1nI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RxF5Uk1F; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-385de9f789cso5964870f8f.2;
+        Sat, 28 Dec 2024 05:33:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735392821; x=1735997621; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MGqAPkuHxLCasbPRd/+RCIFy7P37ySBYkC1/IthMi0g=;
+        b=RxF5Uk1FdVQkL2/c8qsu5o8DJ+vWJCzayCHLlurgKndmuO1Zzl0/8w7PAq2nqIc6o6
+         67juW8FjO+AFA22D4PcMp900ZJUdJJzy1Ol816bseA9RIXDabWlAH/FvfiXVH4IqOAY3
+         QHUGGEZwWEo3w8UkbQVeoU1ePyRlUiJf4jx+6+SQ95GtCxsL32mD7EUU20vxjZsPfdqF
+         102xijqh1D+M72XBrhFadeUEZ+EEFhw+jxeLCRdjZG1i5UI42HM7ynvdhGoKQAh5/Sw7
+         XJL6VBRbDy5R02okBZ135jLIOxb50hhIoF8IgAgDojATmScikW08wP0SkZ8PnEzHoAWO
+         8Vkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735392821; x=1735997621;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MGqAPkuHxLCasbPRd/+RCIFy7P37ySBYkC1/IthMi0g=;
+        b=LlmZ0ETox5E6yHkvovUTdyyU0AddqQJGmJQBuMkkv950UOFaU2GCePHeG/Zix5LPEV
+         DSujz/zfpGVZ7jZfJMKmiqHv7yYTZNC9kx9pU1DINcVd7LBcwKSTBO+iPA/GJHW6gMdC
+         syYzLbN6PHpO3nRtkZrc8WNHJE6NpXKarQ4AFxACoOQhk+dAV+CUDIms3sTU/rAs4/C3
+         s1H2GjZNpcT3f5T9B8dB7By8I5Hr1bowrMj1YXS3K8bHnMNK1mKcGhEXK0CDLZkUo5vU
+         z8D5065iCnDNSqOQAP9CccWEs7WkkaV0Geply0kHBrs/3nECJnzRaccUxgXN9dzz2z6K
+         pvcw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxIybqG+ctmLIXb2uFh+F3j/cAyvhLqMCmobqw0yI6wnOBPWjI2jfO3wNf5Ory0m7spu+9jw7JklfJACu3Og==@vger.kernel.org, AJvYcCV3pFxVwB94eBeNl8jWdrinDq7OOejXfHH7vXKq8FnLSKsXFtJYLNoXeXsZtWB/h5emYiBK0UWJsbvGsJ4=@vger.kernel.org, AJvYcCWHAtUdmVFJCuVSgnuNM8awih9mN6DsUqCZ2wr1v452r0fv+TfwG6lhH65xbFINUKwgbZICPQu4BcdoLDEZ@vger.kernel.org, AJvYcCXqTnCC00k26zmvvsiyZKnJpqITng20WSh4o6cK99NiTqfOiElb5OmUD/3t0t6P9+iCS8esWiPta6DH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHQq5XvUeU0vrvUjjFPb+aCq03t31wePyQuNOxeZjrAn+VDi+M
+	cRQ8jcQwa8sklhJsQY9DET6OoZXwe5qzeEZN6ehK9eld2Lsfo35F
+X-Gm-Gg: ASbGnct/GZqrCvW8dtjp8jJaQXL8spRg0FBGAVJ2s3C6IsR/jm+LiIhAx1SSY4BhF7b
+	3wy63X4KFB8KBuEVpCbmpZbtd8vUYX/Q8NaNGD3MDZ9Ms+tYCI3OqWHtHbQxp9omB9cc4bPvCza
+	azGve262GmJZjRdBsA9qW+yF8auFTa/99US8wPYlI761Zhw90vOIS9QiDQSE3krjsHpyEe7ZRyt
+	FoU66o8LLnRVxcfqPMFAsakoIjC+/RlqLrGKwAclKCpeqik9udWiYafqlM+3H3iwbzAAlXsng==
+X-Google-Smtp-Source: AGHT+IHM8j1PH8EZy4GV+extmbmALyusaNgkpayRkYfRnQKStltS1QaoxKfvEx0dKXojXNCBt+7Apg==
+X-Received: by 2002:adf:ab09:0:b0:38a:4184:1520 with SMTP id ffacd0b85a97d-38a418416bdmr8493579f8f.27.1735392821060;
+        Sat, 28 Dec 2024 05:33:41 -0800 (PST)
+Received: from [192.168.100.6] ([87.97.240.137])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c847714sm25131265f8f.54.2024.12.28.05.33.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 28 Dec 2024 05:33:40 -0800 (PST)
+Message-ID: <504ff336-3b11-4331-b2b6-86289b17ffd3@gmail.com>
+Date: Sat, 28 Dec 2024 15:33:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/3] media: venus: Add support for static video
+ encoder/decoder declarations
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: quic_renjiang@quicinc.com, quic_vnagar@quicinc.com,
+ quic_dikshita@quicinc.com, konradybcio@kernel.org,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Stanimir Varbanov <stanimir.varbanov@linaro.org>
+References: <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-0-ef7e5f85f302@linaro.org>
+ <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-1-ef7e5f85f302@linaro.org>
+Content-Language: en-US, bg-BG
+From: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>
+In-Reply-To: <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-1-ef7e5f85f302@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sat, 28 Dec 2024 10:54:33 +0000
-Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io> wrote:
+Hi Bryan,
 
-> Hi Krzysztof,
-> =C2=A0
-> > On Fri, Dec 27, 2024 at 06:41:32PM +0530, Hardevsinh Palaniya wrote: =20
-> > > Add Support for OPT3004 Digital ambient light sensor (ALS) with
-> > > increased angular IR rejection.
-> > >
-> > > The OPT3004 sensor shares the same functionality and scale range as
-> > > the OPT3001. The compatible string is added with fallback support to
-> > > ensure compatibility.
-> > >
-> > > Datasheet: https://www.ti.com/lit/gpn/opt3004
-> > > Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignal=
-s.io>
-> > > ---
-> > >
-> > > v2 -> v3:
-> > >
-> > > - Reverse the order of compatible string
-> > >
-> > > v1 -> v2:
-> > >
-> > > - Use fallback mechanism for the OPT3004.
-> > > - Drop 2/2 patch from the patch series[1] as per feedback.
-> > >
-> > > Link[1]: https://lore.kernel.org/linux-iio/20241224061321.6048-1-hard=
-evsinh.palaniya@siliconsignals.io/T/#t =20
-> >=C2=A0
-> >
-> > And where is any user of this, the DTS? We don't take bindings just
-> > because there is such device out there.
-> >
-> > I looked and nothing:
-> > https://lore.kernel.org/all/?q=3Dti%2Copt3004 =20
-> =C2=A0
-> I added compatibility for the OPT3004 into the driver. However,=C2=A0
-> based on Andy's feedback, it seems there might not be a need=C2=A0
-> to include this directly in the driver.=C2=A0
-> (Refer to Link [1] from the changelog.)
-> =C2=A0
-> we could follow a similar approach to how we handled the ADXL346,
-> by just adding it to the bindings, since the ADXL346 is similar to the=C2=
-=A0
-> ADXL345.
-> =C2=A0
-> If I misunderstood then please let me know.
+Thank for your work !
 
-Perhaps give some more information on the device in which this is found?
-If that's a board that you plan to support upstream in the longer term
-then that would provide more justification for this patch.
+On 9.12.24 г. 13:52 ч., Bryan O'Donoghue wrote:
+> Add resource structure data and probe() logic to support static
+> declarations of encoder and decoder.
+> 
+> Right now we rely on video encoder/decoder selection happening in the dtb
+> but, this goes against the remit of device tree which is supposed to
+> describe hardware, not select functional logic in Linux drivers.
+> 
+> Provide two strings in the venus resource structure enc_nodename and
+> dec_nodename.
+> 
+> When set the venus driver will create an OF entry in-memory consistent
+> with:
+> 
+> dec_nodename {
+>      compat = "video-decoder";
+> };
+> 
+> and/or
+> 
+> enc_nodename {
+>      compat = "video-encoder";
+> };
+> 
+> This will allow us to reuse the existing driver scheme of relying on compat
+> names maintaining compatibility with old dtb files.
+> 
+> dec_nodename can be "video-decoder" or "video0"
+> enc_nodename can be "video-encoder" or "video1"
+> 
+> This change relies on of_changeset() API as a result select OF_DYNAMIC will
+> be added to venus/Kconfig
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>   drivers/media/platform/qcom/venus/Kconfig |  1 +
+>   drivers/media/platform/qcom/venus/core.c  | 94 ++++++++++++++++++++++++++++++-
+>   drivers/media/platform/qcom/venus/core.h  |  4 ++
+>   3 files changed, 98 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/media/platform/qcom/venus/Kconfig b/drivers/media/platform/qcom/venus/Kconfig
+> index bfd50e8f34219db8a1de7960d7ea93b20db2982a..bc2e410b29cb415a36540a4f98709eae44f4ec35 100644
+> --- a/drivers/media/platform/qcom/venus/Kconfig
+> +++ b/drivers/media/platform/qcom/venus/Kconfig
+> @@ -3,6 +3,7 @@ config VIDEO_QCOM_VENUS
+>   	depends on V4L_MEM2MEM_DRIVERS
+>   	depends on VIDEO_DEV && QCOM_SMEM
+>   	depends on (ARCH_QCOM && IOMMU_DMA) || COMPILE_TEST
+> +	select OF_DYNAMIC if ARCH_QCOM
+>   	select QCOM_MDT_LOADER if ARCH_QCOM
+>   	select QCOM_SCM
+>   	select VIDEOBUF2_DMA_CONTIG
+> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> index 4e26b18790537885a77d66c1917a4e7a146eaf57..88dfa9f240dc6d18a7f58dc06b1bf10274b7121e 100644
+> --- a/drivers/media/platform/qcom/venus/core.c
+> +++ b/drivers/media/platform/qcom/venus/core.c
+> @@ -286,6 +286,89 @@ static irqreturn_t venus_isr_thread(int irq, void *dev_id)
+>   	return ret;
+>   }
+>   
+> +#if defined(CONFIG_OF_DYNAMIC)
+> +static int venus_add_video_core(struct venus_core *core, const char *node_name,
+> +				const char *compat)
+> +{
+> +	struct of_changeset *ocs = core->ocs;
+> +	struct device *dev = core->dev;
+> +	struct device_node *np, *enp;
+> +	int ret;
+> +
+> +	if (!node_name)
+> +		return 0;
+> +
+> +	enp = of_find_node_by_name(dev->of_node, node_name);
+> +	if (enp) {
+> +		of_node_put(enp);
+> +		return 0;
+> +	}
+> +
+> +	np = of_changeset_create_node(ocs, dev->of_node, node_name);
+> +	if (!np) {
+> +		dev_err(dev, "Unable to create new node\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = of_changeset_add_prop_string(ocs, np, "compatible", compat);
+> +	if (ret)
+> +		dev_err(dev, "unable to add %s\n", compat);
+> +
+> +	of_node_put(np);
+> +
+> +	return ret;
+> +}
+> +
+> +static int venus_add_dynamic_nodes(struct venus_core *core)
+> +{
+> +	struct device *dev = core->dev;
+> +	int ret;
+> +
+> +	core->ocs = kmalloc(sizeof(*core->ocs), GFP_KERNEL);
+> +	if (!core->ocs)
+> +		return -ENOMEM;
+> +
+> +	of_changeset_init(core->ocs);
+> +
+> +	ret = venus_add_video_core(core, core->res->dec_nodename, "venus-decoder");
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = venus_add_video_core(core, core->res->enc_nodename, "venus-encoder");
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = of_changeset_apply(core->ocs);
+> +	if (ret) {
+> +		dev_err(dev, "applying changeset fail ret %d\n", ret);
+> +		goto err;
+> +	}
+> +
+> +	return 0;
+> +err:
+> +	of_changeset_destroy(core->ocs);
+> +	kfree(core->ocs);
+> +	core->ocs = NULL;
+> +	return ret;
+> +}
+> +
+> +static void venus_remove_dynamic_nodes(struct venus_core *core)
+> +{
+> +	if (core->ocs) {
+> +		of_changeset_revert(core->ocs);
+> +		of_changeset_destroy(core->ocs);
+> +		kfree(core->ocs);
+> +	}
+> +}
+> +#else
+> +static int venus_add_dynamic_nodes(struct venus_core *core)
+> +{
+> +	return 0;
+> +}
+> +
+> +static void venus_remove_dynamic_nodes(struct venus_core *core) {}
+> +#endif
+> +
+>   static int venus_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> @@ -365,9 +448,14 @@ static int venus_probe(struct platform_device *pdev)
+>   	if (ret < 0)
+>   		goto err_runtime_disable;
+>   
+> +	if (core->res->dec_nodename || core->res->enc_nodename) {
+> +		if (venus_add_dynamic_nodes(core))
 
-The note on the opt3001 page does give a hint as to how the parts are diffe=
-rent
-but saying the opt3004 has better IR rejection.  They also have a somewhat =
-different
-sensitivity curves. However, those are details we don't expose in the ABI a=
-nd the
-devices unhelpfully report the same ID register value, so it is not obvious=
- that
-we need to treat them differently.
+It'd be good to pass the error code to the upper layer.
 
-Jonathan
+> +			goto err_runtime_disable;
+> +	}
+> +
+>   	ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
+>   	if (ret)
+> -		goto err_runtime_disable;
+> +		goto err_remove_dynamic_nodes;
+>   
+>   	ret = venus_firmware_init(core);
+>   	if (ret)
+> @@ -411,6 +499,8 @@ static int venus_probe(struct platform_device *pdev)
+>   	venus_firmware_deinit(core);
+>   err_of_depopulate:
+>   	of_platform_depopulate(dev);
+> +err_remove_dynamic_nodes:
+> +	venus_remove_dynamic_nodes(core);
+>   err_runtime_disable:
+>   	pm_runtime_put_noidle(dev);
+>   	pm_runtime_disable(dev);
+> @@ -443,6 +533,8 @@ static void venus_remove(struct platform_device *pdev)
+>   
+>   	venus_firmware_deinit(core);
+>   
+> +	venus_remove_dynamic_nodes(core);
+> +
+>   	pm_runtime_put_sync(dev);
+>   	pm_runtime_disable(dev);
+>   
+> diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
+> index 27784fd7082c321222b23ca4b2902a04c49e19ca..306231b4f7d0201175974b4a42574f30d23e08f0 100644
+> --- a/drivers/media/platform/qcom/venus/core.h
+> +++ b/drivers/media/platform/qcom/venus/core.h
+> @@ -90,6 +90,8 @@ struct venus_resources {
+>   	u32 cp_nonpixel_start;
+>   	u32 cp_nonpixel_size;
+>   	const char *fwname;
+> +	const char *enc_nodename;
+> +	const char *dec_nodename;
+>   };
+>   
+>   enum venus_fmt {
+> @@ -171,6 +173,7 @@ struct venus_format {
+>    * @root:	debugfs root directory
+>    * @venus_ver:	the venus firmware version
+>    * @dump_core:	a flag indicating that a core dump is required
+> + * @ocs:	OF changeset pointer
+>    */
+>   struct venus_core {
+>   	void __iomem *base;
+> @@ -235,6 +238,7 @@ struct venus_core {
+>   		u32 rev;
+>   	} venus_ver;
+>   	unsigned long dump_core;
+> +	struct of_changeset *ocs;
+>   };
+>   
+>   struct vdec_controls {
+> 
 
-> =C2=A0
-> Best Regards,
-> Hardev
-
+-- 
+regards,
+Stan
 
