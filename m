@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-134475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D6CA9FD9D6
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 11:14:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 788FC9FD9DB
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 11:17:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C68B83A1440
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 10:14:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2895D1883FE1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 10:17:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8DF13C9B3;
-	Sat, 28 Dec 2024 10:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA30B78F4F;
+	Sat, 28 Dec 2024 10:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVDzfHvU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sjUs635n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D61A578F52;
-	Sat, 28 Dec 2024 10:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80522BE6C;
+	Sat, 28 Dec 2024 10:17:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735380844; cv=none; b=EidofqvD0gz4aJ3eBSf9pPYtfmQks5DbIumE5cHDvsiWbxXEnq59wtn8U4K3h8nmVoB+BU0lHwyUNMNXL58OO7UXMn/h26iC8TARatD99ZLJU6hmjkMWzdkfNYkWlM5iYfRBBD9HH+zkbiex2u+SXcaa4dXXyz2cOy8a/U9PmhA=
+	t=1735381035; cv=none; b=SyvH8i3n6PXEV9625KoEM+cXByGJakwfGr5YTiXZ6sxD3yyuKo2Xa75J8puqkLIotbDroVyS5Mt4tLY0r33X2GLBztK67rADGAdO7DtT8UXSChwslCNfiFewXxRBLktB2bYxlRs4TJud22+GAKnpq1eN5tP3uvpLosRNEQqgMKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735380844; c=relaxed/simple;
-	bh=V425l5cE4e2eveyjEdyjyNN5SRe5r58TxGFHNQ3d5Hk=;
+	s=arc-20240116; t=1735381035; c=relaxed/simple;
+	bh=5cYKv9mpdIN5LJ9ta0XDAgb1oAlvM6b6BtMv+WZ13QU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dK5XomisA7s5ROMcQlCEGZkDiXyslDVNdBiXGKndIywKBVZW9m3oGsqS7s+VKDzRzKvRL3gpWmUsH3VqLPmVG8oEJhJylz4rtE8R2PDGKGRWVl1dTs7iF/BP/mgW/jYR2BImCJxX2qUPKi+AjbPFxv3ruT6pz6AH1PTzaXND00Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVDzfHvU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D3EAC4CECD;
-	Sat, 28 Dec 2024 10:14:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QCSN8ZVmSlBaNI+P3NEIOp0dzVJzGKpnwu4eqTwyhMy8aVwkkQGX6u3pXgFue3tkSVKcugx8ZwLbTDTMZp4k6UySwyHb08KLmfgjXDgnu8vYkbkYTuuFKzbkTtyNHwcNBHrUMxDxOtZAApup5rU228OObnzPRAZJITOpws62ElU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sjUs635n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27AB9C4CECD;
+	Sat, 28 Dec 2024 10:17:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735380844;
-	bh=V425l5cE4e2eveyjEdyjyNN5SRe5r58TxGFHNQ3d5Hk=;
+	s=k20201202; t=1735381035;
+	bh=5cYKv9mpdIN5LJ9ta0XDAgb1oAlvM6b6BtMv+WZ13QU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qVDzfHvUg9GX2TTv5RYFEGSPaZcIu41LzzdzkYQ2Ii/Lb7hoKhLKpSp828QVNZr2f
-	 8b1NAJ2aM6cHXrIg36cPcdnmIC7wQW3063SeCpnO77gPqWwaaZaVtqwIOeuDrhy1KS
-	 fXTWy8FiTtgMK9eU1emhu0u/Qhdw47RIY2KFlyD27o27V9Et/CMAusT7RAjtWzoImj
-	 26UbHmj7gEIaIa7++tnTFJQOC/67X7qiF2CN5H+zvElj604k8+4GRRw2rgUj4g2t8y
-	 DDZnXbjSuXZ4aanqNPtwneU0uDVXuM4k4HshslfSL/fLWpFY6Lk/w4CSSrDd8fGigo
-	 qgVTlQkOk1rAw==
-Date: Sat, 28 Dec 2024 11:14:01 +0100
+	b=sjUs635nTcbqrpKviVK1iBOI9kxvutGV4rfn5oA9ZhBwjVZQyWUMF5xQ/NfVluiFr
+	 CyRpTsytmJH+irmb/pkYcbDfmvFDGbKHHK05xi9JOK89YW8H3EFt1hRcs9w20V7ThC
+	 U+PkE/zekyQuWgaTOHoTiKO0GyBHraANf1dKWB24k6Ggp+cP2CeegONe+azsucZS1C
+	 AsgtDZm9fNOMimU2szpLjPGDt9J7xFhYnJaivHEiOzPxL5pjxTbLQ1oJ1QK1pqzs/m
+	 KZPlvK8xWy+rQthjcjUM3PS9a45FLCN9p30ySyi6u1xKzvhB9iLE5JPSPNVs6CGc/9
+	 bse5dN5CZTSSQ==
+Date: Sat, 28 Dec 2024 11:17:11 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-Cc: jic23@kernel.org, krzk+dt@kernel.org, 
-	andriy.shevchenko@linux.intel.com, Lars-Peter Clausen <lars@metafoo.de>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Emil Gedenryd <emil.gedenryd@axis.com>, Andreas Dannenberg <dannenberg@ti.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: iio: light: opt3001: add compatible for
- opt3004
-Message-ID: <qgottqtq5lvp6fifi37xzq7supalvm7leue755yjatyun6k5um@pju4v3kqoizq>
-References: <20241227131134.10810-1-hardevsinh.palaniya@siliconsignals.io>
+To: Paul Handrigan <paulha@opensource.cirrus.com>
+Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com, 
+	devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	patches@opensource.cirrus.com
+Subject: Re: [PATCH v3 1/2] dt-binding: clock: cs2600: Add support for the
+ CS2600
+Message-ID: <gx7ripx5jf42ytxja6c3cqb67je5uy3hf65tmr3gntj6wfytxq@5lox64h7s4ct>
+References: <20241227224915.3813253-1-paulha@opensource.cirrus.com>
+ <20241227224915.3813253-2-paulha@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,37 +60,121 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241227131134.10810-1-hardevsinh.palaniya@siliconsignals.io>
+In-Reply-To: <20241227224915.3813253-2-paulha@opensource.cirrus.com>
 
-On Fri, Dec 27, 2024 at 06:41:32PM +0530, Hardevsinh Palaniya wrote:
-> Add Support for OPT3004 Digital ambient light sensor (ALS) with
-> increased angular IR rejection.
+On Fri, Dec 27, 2024 at 04:49:14PM -0600, Paul Handrigan wrote:
+> Add device tree support for the Cirrus Logic CS2600 clock
+> device.
 > 
-> The OPT3004 sensor shares the same functionality and scale range as
-> the OPT3001. The compatible string is added with fallback support to
-> ensure compatibility.
-> 
-> Datasheet: https://www.ti.com/lit/gpn/opt3004
-> Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+> Signed-off-by: Paul Handrigan <paulha@opensource.cirrus.com>
 > ---
+>  .../bindings/clock/cirrus,cs2600.yaml         | 89 +++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
 > 
-> v2 -> v3:
-> 
-> - Reverse the order of compatible string
-> 
-> v1 -> v2:                                                                       
->                                                                                 
-> - Use fallback mechanism for the OPT3004.                                       
-> - Drop 2/2 patch from the patch series[1] as per feedback.                      
->                                                                                 
-> Link[1]: https://lore.kernel.org/linux-iio/20241224061321.6048-1-hardevsinh.palaniya@siliconsignals.io/T/#t
+> diff --git a/Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml b/Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
+> new file mode 100644
+> index 000000000000..0be613c78a9c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/cirrus,cs2600.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus Logic Fractional-N Clock Synthesizer & Clock Multiplier
+> +
+> +maintainers:
+> +  - Paul Handrigan <paulha@opensource.cirrus.com>
+> +  - patches@opensource.cirrus.com>
+> +
+> +description:
+> +  The CS2600 is a system-clocking device that enables frequency synthesis and
+> +  clock generation from a stable timing reference clock. The device can
+> +  generate low-jitter clocks from a noisy clock reference at frequencies
+> +  as low as 50 Hz.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cirrus,cs2600
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      enum:
+> +        - xti
+> +        - clk_in
+> +    minItems: 1
+> +    maxItems: 2
+
+This does not match clocks. Nothing here, neither commit msg nor
+description, explains why this is so flexible.
 
 
-And where is any user of this, the DTS? We don't take bindings just
-because there is such device out there.
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
 
-I looked and nothing:
-https://lore.kernel.org/all/?q=ti%2Copt3004
+Keep the same order of properties as in required list.
+
+> +
+> +  vdd-supply:
+> +    description: Power Supply
+> +
+> +  clock-output-names:
+> +    maxItems: 3
+> +    description: Names for CLK_OUT, BCLK_OUT and FSYNC_OUT clocks.
+> +
+> +  cirrus,aux-output-source:
+> +    description:
+> +      Specifies the function of the auxiliary output pin with "PHASE_UNLOCK"
+> +      to indicate the input and output clocks are not in phase, "FREQ_UNLOCK"
+> +      to indicate the PLL is unlocked, and NO_CLKIN to indicate the clock on
+> +      the clk_in pin is not present.
+
+enum and lower-case
+
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +
+> +  cirrus,clock-mode:
+> +    description:
+> +      Sets the device into smart mode whith "SMART_MODE" and sets the device
+> +      into smart mode that only outputs a clock when clk_in starts with
+> +      "SMART_CLKIN_ONLY_MODE".
+
+enum and lower-case
+
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +
+> +unevaluatedProperties: false
+
+This is supposed to be additionalProperties. See example-schema.
+
+> +
+> +examples:
+> +  - |
+> +
+
+Drop blank line
+
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
 
 Best regards,
 Krzysztof
