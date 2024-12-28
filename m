@@ -1,262 +1,121 @@
-Return-Path: <devicetree+bounces-134488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93ADF9FDA2A
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 12:36:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 038649FDA36
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 12:45:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D520188306C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 11:36:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD2F7188363D
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 11:45:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044E314AD2B;
-	Sat, 28 Dec 2024 11:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96540143871;
+	Sat, 28 Dec 2024 11:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FSHg9OdW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hm7TMZBH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE594C62E;
-	Sat, 28 Dec 2024 11:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4BDF433DE;
+	Sat, 28 Dec 2024 11:45:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735385759; cv=none; b=dwQ9fAMePexVGj9v9q6h66lg+2eAGqK8rceoGPRb1WjghH8m+OIblp1csjWlgz9CGmJAX8xH+sj1eGDS2jumYMEk/l/tLwTZdmG8qhIh7eNB6oMbFWlK0dn192k7yCxbT2uRbfy9caLHDrE7Nwu/TKkxpB5SdHSXXrQOX6kvyRE=
+	t=1735386337; cv=none; b=bdAb+TZ7Ofs89IiLLpH+nSO1jI2UIJM9419RlzDfICLwlMWyVe+8uo9FPQzWqqbVXp8nDL7ItN5C8Ocx69im0QDObwcow7+2MfcHvmkXBHfz028tF40GOAcXbZHygvxIL/Eywr2gbRVgiBPWVjySfSJMZOFZvmJcgk7RS2XwRJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735385759; c=relaxed/simple;
-	bh=UTL48/8/QWekBUT1m3b7xoPVUOV0/2/gh/jUOyDHSo8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nFuLFrdavGK6KMzg+hTcYs8SsdXcnoy4pquI7lriVxzfGYF+Ibv83aogWPbbM6m1kuB1i1YXrHFeP+18eqHnHfmvwbbYRUCqW/xKS0D5jgYAjUdIXEo+eAF0zP+ZArxbpRrvD54E8hje0IyXGW8Bs/pMqs/ZhY/b9KC307W3WVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FSHg9OdW; arc=none smtp.client-ip=209.85.214.179
+	s=arc-20240116; t=1735386337; c=relaxed/simple;
+	bh=34yddgM7wdEdgm3HTsH930/5IVTSI0hT5ORAaGsJOuw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Dhfann6Ju/1tV6OYl/8MP74+ziGO9RkfHhpTEEFKLNBG7SvcyZP7fLuhWTjthWa2yZcQe6FGhf1qNAk7o6Oz7/vf2CEm3/VkQMwkPYPJyXPxtHIVggjEUX1EPFmorMyM3xl/0fuPBbGd1dmg1ol/pltqe0ZmIJAnFCCLEhQnIaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Hm7TMZBH; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-21680814d42so87058625ad.2;
-        Sat, 28 Dec 2024 03:35:58 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38789e5b6a7so4141929f8f.1;
+        Sat, 28 Dec 2024 03:45:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735385757; x=1735990557; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RxjuQXLL5v3IOrWzQlPRNZYnWRhMtcxT+eYpmkHFYZk=;
-        b=FSHg9OdWSpDkUfBAebVCy/NHBfZZwFzwkh3m2rGUXpfVeweoFTfqpz7IWWWYX3e5gE
-         /jTa2jnObANiinSttNC73kAj7SCWVbqQ3HUU2huP6jzDrn69md/JeA9uWU3XLHUuuRKl
-         MWHxn/RdnI4maSwi6JiyWbFGdjLdGZfd7sC+AiN6LybCCjtKYecXZ+yZBfeN8vOpEy6t
-         WDVt6xP7WavUhVC6cxrK3DCw1MEMFmvwsmY6jmR5NbNdeW5YRUN7gJwARESPswTottme
-         OrXBZQYrycHPXuiFFWdLbPcNDisCcPhqbyFsAlZS4ZACsC9isxNLuMjlAHS2vsQOXnM7
-         PdaA==
+        d=gmail.com; s=20230601; t=1735386334; x=1735991134; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qElSCzGpzRQFPoSlMm/iaBSBMhChDwP6OeCLqv0Xkks=;
+        b=Hm7TMZBHUwBohoZw/LX9bkQxnFx/sPet65WP+p9rGD/ZyCo5lzIPCQWTa9UhJeJfex
+         Owqdbwh2MG1dZSceYXrioSa3A5Nrb50pwqOcqo7OEHJLSFid1kFSrTdsXBjIlCefd0a2
+         LpAkV55hgrmyDWNGuTNiPmv83lKq57G2b+4FjKkM9YCWmPj5lpnvBYPVPaOd9I7RXLIx
+         81SANJZjCZPU4dKNxgRTkYpiG8QVYE+HfQbVCiOcAYkjGlOXAC9a5ckMmGfWB5qWxuPL
+         yxHbonM1VeAelgRqk5HhaRSQil7k6z9JMrnPCxBoPt6lLyFGGOzFT5okkFGxSpPGIDRo
+         g4sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735385757; x=1735990557;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RxjuQXLL5v3IOrWzQlPRNZYnWRhMtcxT+eYpmkHFYZk=;
-        b=Cp7f9p8izony6vzbPRUeLq4UVQH/TOEMc6gRJIkQfrZtcneVf1SHiGjK0NM04PppoW
-         M+58UYh1+eXaAEfPVFoUx8EqTRQOxFXXDNZhh0OdFf2twK7AZFeLRcgUoNEqHNRbiJtF
-         5dZQJ3iPTbWuU/5prjgPe26ZbycLsReAiqNQ2cqMfM8zdJSIGe+rq5hWmYzAULGgNWj5
-         AWMvUpW+NabkS9sjW/wRIHlfLZY3+amNvwfT110fLLUIZf9gisb/tuxExSabC9JMNSyw
-         9ynW3wT6u3w836yYMYM5KEWELcqAm8uktL+MuljJlnsid5vftsOTJfi3kg09X5MYMViC
-         Rxjg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOognMwV3BB81LmSZ5QjbxvKg/VgfzOjBnfvaCkwm48VZVn8R09QtyUCm2EBPjq23rB2dJg9YU+NfKilqZdQ==@vger.kernel.org, AJvYcCUQHugftA96NjLEmkxbWTx7ksafh1gQZp/tPhNiBp7hD6pH/IVxhTYPPMOx1fu0dCFWST5OGVjfw0vG65GXZJ16yEiBhA==@vger.kernel.org, AJvYcCUpSxzGqRoxoYaT2cQp8f2fq3WYgIqMTYCw3ug5mBxR88j2fDuClDCinabzmD78zeCPWNIqh0RvIkBs@vger.kernel.org, AJvYcCVjzFHW8/ICEIxvwDWCaEVU77253ONuk9dleAe6DlR/UHm5w5zPmL99HzIKXgYnfTe8/JHsawcaby8=@vger.kernel.org, AJvYcCVtXljsK2+ZPcbyUuTK0WEl04IaCBY7ylMJ7BekYcjN3sHxM4qDjR+cQRnwWtjTVc6i3JeM9BIklsHq@vger.kernel.org, AJvYcCWIfrrHfiRCIyszyx3ofjIs0phA7/7AlUUVggDEvOspQuIdYz2Xw687b/GjJbkzZUev54rPVVd1sHDCjY3w@vger.kernel.org
-X-Gm-Message-State: AOJu0YySKLraX4Sjh6SjsXIYg9MPMVtVy9dPo6rE+mN6BHSonleEGT6R
-	08B282ZAUXJ0piBkYC1tTJPsMsnNzVcvoTt/DeTqKgFq/3lGMDiBk/9TuuTA4b2tomzM
-X-Gm-Gg: ASbGncs2DcHVyYjPP4cDKf4wCHfXOpE8ulR/MANVYSjltir0B26wTByJJbncwOYKETl
-	N1IYHhuW/emZdamvko7PfZw3/EzI4BKWs64etyAl49YBMalt2uJQfXS9SbHCBo366X6MvIt6E00
-	AIT7DAniCPYvzzMlYKjJqhuURTIeRnNibWxYEkPpOPJZdBKK9P0RZHQgipg6MnxCD9pegWoWV8S
-	LGvyW5lONGB082v4MOSrgSGuwKHHRn87PvgobA0qGI=
-X-Google-Smtp-Source: AGHT+IEvHHLAoL0rQKTX8Cmq7nX5QwtvMoE6jSEq4VPP8x/RxBVGGrTpMKiGvXDKDS4pFXPen0TeVw==
-X-Received: by 2002:a17:902:f693:b0:216:1367:7e48 with SMTP id d9443c01a7336-219e6ccdcb2mr417104425ad.0.1735385757455;
-        Sat, 28 Dec 2024 03:35:57 -0800 (PST)
-Received: from nuvole.. ([2a09:bac1:76a0:dd10::2e9:62])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9d9481sm148178955ad.135.2024.12.28.03.35.52
+        d=1e100.net; s=20230601; t=1735386334; x=1735991134;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qElSCzGpzRQFPoSlMm/iaBSBMhChDwP6OeCLqv0Xkks=;
+        b=kzsHGj0d6FEK5RI7Jj5tOoRqqpO1B7QLRzin+Q4zCMj/BvLOzaZVBoNb9x94kwg2fA
+         Bc3FPgtPjctsoEUSd6PSFxlvUxr6YdVjRjw78qz1Yds8oIrIOtXOdeoOz6/rQtAdOqpn
+         SBma5XIkyhercAJwVU48iqKaMp8im8HhfYJ8zVqe8GOV3LgjnnU/eA8FDI1LPcF2RbbJ
+         ruAuapXke5W5mOr4Vh3ECfqSq+B6hXcyGdvV3qeTCa2yu+XWNIIZSEuoAwO9VDDU/bgP
+         vlfHGd1Z5bO4/IXCretY1b6zYSoFLNKq0Z2MnFd4XHASK3NVks2N5iDpJ4zjfT5KVWjB
+         ewDg==
+X-Forwarded-Encrypted: i=1; AJvYcCU0Cau8YM0uhMUz9EXqRle/0/n6U8r7Qd16hrsVSPimx+MyGFBa0fYrf3QjSOH8llVUtrgsRMcglzVpieE=@vger.kernel.org, AJvYcCU2tFvVHpW1RfB5jfunTEXz9p3iOCiywkksS1WmenAO3xrbklrCik0hlvGc+BC4mc3nfq12FUu4eHAr65U=@vger.kernel.org, AJvYcCXzLX3u3x912Y+Hy1gv5BJHCZG7hyD5w0RT2lQMCKcPNGaFlsOaXFOk/3PnW+Dey9DRe2U94CTHSQEY2g==@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywljeva8kg5ilfgwBJoYvgrsEYthiCM2ftErYw3u8qn23iCdue4
+	pvQjx7X5bNYfQjeWDSjq9ljJSYj1Ps9OLausC5FW3mZrpaWqO427
+X-Gm-Gg: ASbGncsqXmEAhuAKnzVv1QNCF2bkzL5aNmSLMHz76ajdA9ju6qjmSSKDCYg2sRa0OCt
+	R/zMaEdrp1ghH45Um8PZlx02M5H/qzZTA9SwPYWWpQswW2DluxjWyJbVIlLySXHpaCMqJOOtDO0
+	kY3/Oqm6xwaFzVvF4FI+PfXOj+iTYAptxMiY71mz6ujTWDZ7vihn6D7EHy37YA6YjJNMLIdNA3J
+	H+FK06Tth8MkbXq4Q9eccDVpAjeFv1YjgDVC3nThROvY1Mnsq2HUn558x08wQurpNqSWvhpaSoc
+	u6I=
+X-Google-Smtp-Source: AGHT+IEInlMt8hSiLqoNGNSPE2DufcAInsQykOna2HBvJoOOu+UV8VXInxn2IQf8RQRc/r/GR5tgMA==
+X-Received: by 2002:a5d:64a6:0:b0:386:32ca:aa0e with SMTP id ffacd0b85a97d-38a221e1455mr29267955f8f.5.1735386333974;
+        Sat, 28 Dec 2024 03:45:33 -0800 (PST)
+Received: from localhost.localdomain ([95.43.220.235])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436604e9c2csm295344975e9.43.2024.12.28.03.45.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Dec 2024 03:35:57 -0800 (PST)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: krzk@kernel.org
-Cc: andersson@kernel.org,
-	bryan.odonoghue@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dmitry.baryshkov@linaro.org,
-	gregkh@linuxfoundation.org,
-	hdegoede@redhat.com,
-	heikki.krogerus@linux.intel.com,
-	ilpo.jarvinen@linux.intel.com,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
+        Sat, 28 Dec 2024 03:45:33 -0800 (PST)
+From: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	mitltlatltl@gmail.com,
-	nikita@trvn.ru,
-	platform-driver-x86@vger.kernel.org,
-	robh@kernel.org,
-	sre@kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
-Date: Sat, 28 Dec 2024 19:34:37 +0800
-Message-ID: <20241228113438.591254-1-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <53da6468-501c-4c0f-a73b-4eac99c72b8c@kernel.org>
-References: <53da6468-501c-4c0f-a73b-4eac99c72b8c@kernel.org>
+	linux-omap@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+Subject: [PATCH 0/5] ASoC: cpcap: Implement jack headset detection
+Date: Sat, 28 Dec 2024 13:45:09 +0200
+Message-Id: <20241228114514.91594-1-ivo.g.dimitrov.75@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-> On Sat, Dec 28, 2024 at 5:58 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> On 27/12/2024 18:13, Pengyu Luo wrote:
-> > +
-> > +#include <linux/platform_data/huawei-gaokun-ec.h>
-> > +
-> > +#define EC_EVENT             0x06
-> > +
-> > +/* Also can be found in ACPI specification 12.3 */
-> > +#define EC_READ                      0x80
-> > +#define EC_WRITE             0x81
-> > +#define EC_BURST             0x82
-> > +#define EC_QUERY             0x84
-> > +
-> > +
-> > +#define EC_EVENT_LID         0x81
-> > +
-> > +#define EC_LID_STATE         0x80
-> > +#define EC_LID_OPEN          BIT(1)
-> > +
-> > +#define UCSI_REG_SIZE                7
-> > +
-> > +/* for tx, command sequences are arranged as
->
-> Use Linux style comments, see coding style.
->
+cpcap audio codec found on cpcap PMIC supports headset detection
+and PTT button through its 3.5 mm jack. This series implements
+support for those capabilities.
 
-Agree
+Ivaylo Dimitrov (5):
+  arch: arm: dts: cpcap-mapphone: Set VAUDIO regulator always-on
+  ASoC: cpcap: Implement .set_bias_level
+  dt-bindings: mfd: motorola-cpcap: Document audio-codec interrupts
+  arch: arm: dts: cpcap-mapphone: Add audio-codec jack detection
+    interrupts
+  ASoC: cpcap: Implement jack detection
 
-> > + * {master_cmd, slave_cmd, data_len, data_seq}
-> > + */
-> > +#define REQ_HDR_SIZE         3
-> > +#define INPUT_SIZE_OFFSET    2
-> > +#define INPUT_DATA_OFFSET    3
-> > +
-> > +/* for rx, data sequences are arranged as
-> > + * {status, data_len(unreliable), data_seq}
-> > + */
-> > +#define RESP_HDR_SIZE                2
-> > +#define DATA_OFFSET          2
-> > +
-> > +
-> > +struct gaokun_ec {
-> > +     struct i2c_client *client;
-> > +     struct mutex lock;
->
-> Missing doc. Run Checkpatch --strict, so you will know what is missing here.
->
+ .../bindings/mfd/motorola-cpcap.txt           |   9 +
+ .../dts/ti/omap/motorola-cpcap-mapphone.dtsi  |   8 +-
+ sound/soc/codecs/cpcap.c                      | 200 +++++++++++++++++-
+ 3 files changed, 215 insertions(+), 2 deletions(-)
 
-I see. A comment for mutex lock.
+-- 
+2.30.2
 
-> > +     struct blocking_notifier_head notifier_list;
-> > +     struct input_dev *idev;
-> > +     bool suspended;
-> > +};
-> > +
->
->
->
-> ...
->
-> > +
-> > +static DEVICE_ATTR_RO(temperature);
-> > +
-> > +static struct attribute *gaokun_wmi_features_attrs[] = {
-> > +     &dev_attr_charge_control_thresholds.attr,
-> > +     &dev_attr_smart_charge_param.attr,
-> > +     &dev_attr_smart_charge.attr,
-> > +     &dev_attr_fn_lock_state.attr,
-> > +     &dev_attr_temperature.attr,
-> > +     NULL,
-> > +};
->
->
-> No, don't expose your own interface. Charging is already exposed by
-> power supply framework. Temperature by hwmon sensors. Drop all these and
-> never re-implement existing kernel user-space interfaces.
->
-
-I don't quite understand what you mean. You mean I should use hwmon
-interface like hwmon_device_register_with_groups to register it, right?
-As for battery, get/set_propery allow us to handle charging thresholds
-things, but there are smart_charge_param, smart_charge and fn_lock to handle.
-
->
-> > diff --git a/include/linux/platform_data/huawei-gaokun-ec.h b/include/linux/platform_data/huawei-gaokun-ec.h
-> > new file mode 100644
-> > index 000000000..a649e9ecf
-> > --- /dev/null
-> > +++ b/include/linux/platform_data/huawei-gaokun-ec.h
-> > @@ -0,0 +1,90 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/* Huawei Matebook E Go (sc8280xp) Embedded Controller
-> > + *
-> > + * Copyright (C) 2024 Pengyu Luo <mitltlatltl@gmail.com>
-> > + *
-> > + */
-> > +
-> > +#ifndef __HUAWEI_GAOKUN_EC_H__
-> > +#define __HUAWEI_GAOKUN_EC_H__
-> > +
-> > +#define GAOKUN_UCSI_CCI_SIZE 4
-> > +#define GAOKUN_UCSI_DATA_SIZE        16
-> > +#define GAOKUN_UCSI_READ_SIZE        (GAOKUN_UCSI_CCI_SIZE + GAOKUN_UCSI_DATA_SIZE)
-> > +#define GAOKUN_UCSI_WRITE_SIZE       0x18
-> > +
-> > +#define GAOKUN_TZ_REG_NUM    20
-> > +#define GAOKUN_SMART_CHARGE_DATA_SIZE        4 /* mode, delay, start, end */
-> > +
-> > +/* -------------------------------------------------------------------------- */
-> > +
-> > +struct gaokun_ec;
-> > +struct notifier_block;
->
-> Drop, include proper header instead.
->
-
-I agree, I copy 'struct notifier_block;' from
-include/linux/platform_data/lenovo-yoga-c630.h
-
-> > +
-> > +#define GAOKUN_MOD_NAME                      "huawei_gaokun_ec"
-> > +#define GAOKUN_DEV_PSY                       "psy"
-> > +#define GAOKUN_DEV_WMI                       "wmi"
-> > +#define GAOKUN_DEV_UCSI                      "ucsi"
-> > +
-> > +/* -------------------------------------------------------------------------- */
-> > +/* Common API */
-> > +
-> > +int gaokun_ec_register_notify(struct gaokun_ec *ec,
-> > +                           struct notifier_block *nb);
-> > +void gaokun_ec_unregister_notify(struct gaokun_ec *ec,
-> > +                              struct notifier_block *nb);
-> > +
-> > +int gaokun_ec_read(struct gaokun_ec *ec, const u8 *req,
-> > +                size_t resp_len, u8 *resp);
-> > +int gaokun_ec_write(struct gaokun_ec *ec, u8 *req);
-> > +int gaokun_ec_read_byte(struct gaokun_ec *ec, u8 *req, u8 *byte);
->
->
-> You need kerneldoc, in the C file, for all exported functions.
->
-
-I got it.
-
->
->
-> Best regards,
-> Krzysztof
-
-Best Wishes,
-Pengyu
 
