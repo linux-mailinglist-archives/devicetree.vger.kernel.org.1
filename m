@@ -1,58 +1,56 @@
-Return-Path: <devicetree+bounces-134473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2DD49FD9C7
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 11:10:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA129FD9D2
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 11:12:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 470113A27AB
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 10:10:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05DD93A2285
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 10:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A3013B280;
-	Sat, 28 Dec 2024 10:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A047D13B280;
+	Sat, 28 Dec 2024 10:12:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ayZG5ZjU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fLRRjdmN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB5035952;
-	Sat, 28 Dec 2024 10:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7394435952;
+	Sat, 28 Dec 2024 10:12:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735380637; cv=none; b=pQXyRL89BEe/HLh7HOn7RVULqe7vWCQ922C7ddjoRlm1VVDNYIL6uLVYUQKiRbPO+BMM/kYGGmUqeyqQqgRiCvt9tB3OOKacNg1Vm4epaPj8xhN5TrFFRUVsQD8GDNh3d/G4OKUmXR93g37EQO5M3aujwT0LI4AJL/SzGEiluMc=
+	t=1735380739; cv=none; b=VWu7f0rx1Wt7FEk9887hs+9Dy5G+yzsowYpqLwnd2hegKwmdixhYZWYy71CuGb/59EVzBCx6qNjpESMuMJy4OuRH8TXbL8HEPYwog3fMY9Ucmc5SrkzZiWwzY+uvljH7l2+MbRCL62OtIg69SZ3QfKrcIgwem1nZGSR42HfdIlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735380637; c=relaxed/simple;
-	bh=r6gRgb+HzWyUI1pVVSyjM3Qgva8ccc6sKs1xaAlm+wU=;
+	s=arc-20240116; t=1735380739; c=relaxed/simple;
+	bh=edBr7Id/A5MJc+x4re15u9kKzXTYYgwKbPkNMozVyiU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AAt/EPTvI66uZ53EdT75+TjrBvv378Hy4JW+F0UyjTrTnkCw+McQbEtIRVDF0Rii6HqUtfgMrlRU7uVGU6UFeK73kStijmzMFHE7dRe74j2Ck1di+dAnDXLqf0BLUEDOw8G8O+22x3DWbD+xsV0oD/BcqgZO0iYamHlROR7xjhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ayZG5ZjU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2031EC4CECD;
-	Sat, 28 Dec 2024 10:10:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SVh5QlANVyL+eQK7AiRDLEwqya+no2FaE86d7QRvtptcg8yunfR1jPhnjMwP64yNslCi9XDAVOX2zBLMxGkZ7TyfsBIcLXKcyjHDkhbIxw5kz0MqhDlWgsIvmcZH3j0PHp3rlHVn0aqwrzNdsIuBHT5JWoTJTbHQ5KNDpGFv+KM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fLRRjdmN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E6CBC4CED4;
+	Sat, 28 Dec 2024 10:12:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735380636;
-	bh=r6gRgb+HzWyUI1pVVSyjM3Qgva8ccc6sKs1xaAlm+wU=;
+	s=k20201202; t=1735380739;
+	bh=edBr7Id/A5MJc+x4re15u9kKzXTYYgwKbPkNMozVyiU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ayZG5ZjUTXCZZGSJlNbFTIB8JDV6uShrNgsiZ8q0bwL+4juyGWBkdHxbxbRxJa11f
-	 DlNHLjczcC38UROuVoXz8WffC00F0mJQukoQIf930w9oHoOITIcyLuXVftpgqDXywc
-	 MfeSqUKtApVn0/MkeZ3VDpPnwN8latZMLLpI9SDLPHRTTBcPJgl2bgnDVMKNE4Od9Y
-	 /XLg23NnkA7982EvrHndEkHCl1NHk8sada9b5l/I1taNulYM4+mFWf0gmBbqTiLgfi
-	 CgRM/SwCCXPxcuFD/4ZSIpwLt7k20gT24EiZT2q8NFhADxVjmLWX54hHCUr54VZwq3
-	 FMKoXtZ9DKtGg==
-Date: Sat, 28 Dec 2024 11:10:27 +0100
+	b=fLRRjdmNxBJ1bImqA+wkH5Yro5fb3d77RWS/8SA4Hzet2Jzw+VoL2y217L5cwtIBP
+	 aMyMSYlQ6+wHJOL7isxZ0S2pR0pRJ4nzDwZi9Nxm5FKwHTbJfmchJ4sJc1guLYGkzw
+	 ms+GAlRk3Wxu332XQf92z3zoOVn07ERLuc0VsmqpFqDq0l2REyRJ4/ryR2eal8qTZs
+	 PcNL6XJ05zTjiEknhcMlt3l68yxagR/GU2Y1XPrQt2irO3GzOftQhFUxOv6H/9ApiG
+	 9j7JgeRUt9BXPYaJwoTktHw5Gv/Bq5gwh8wQYhQfpZYtZ3xabfuafAOTvl8d90TZDx
+	 fkQ0Lzu/nClAQ==
+Date: Sat, 28 Dec 2024 11:12:15 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-Cc: andersson@kernel.org, linus.walleij@linaro.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, quic_varada@quicinc.com, quic_srichara@quicinc.com
-Subject: Re: [PATCH v3 4/6] clk: qcom: ipq5424: rename spi0 clocks
-Message-ID: <lfau6kvsoeq4cpwbct2cxk4on4umw44gahoitmk2kdaxmcin4f@fudkimyrmjln>
-References: <20241227072446.2545148-1-quic_mmanikan@quicinc.com>
- <20241227072446.2545148-5-quic_mmanikan@quicinc.com>
+To: Pratyush Brahma <quic_pbrahma@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm-smmu: Document QCS8300 GPU SMMU
+Message-ID: <bziwt6ixfol6ajiclkz6iupmcnbaotxrfvz3n3rvjklfpasz2a@ztcmvbmwk7o5>
+References: <20241227105818.28516-1-quic_pbrahma@quicinc.com>
+ <20241227105818.28516-2-quic_pbrahma@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,21 +59,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241227072446.2545148-5-quic_mmanikan@quicinc.com>
+In-Reply-To: <20241227105818.28516-2-quic_pbrahma@quicinc.com>
 
-On Fri, Dec 27, 2024 at 12:54:44PM +0530, Manikanta Mylavarapu wrote:
->  			.num_parents = 1,
->  			.flags = CLK_SET_RATE_PARENT,
-> @@ -2862,8 +2862,8 @@ static struct clk_regmap *gcc_ipq5424_clocks[] = {
->  	[GCC_QUPV3_I2C1_CLK] = &gcc_qupv3_i2c1_clk.clkr,
->  	[GCC_QUPV3_I2C1_CLK_SRC] = &gcc_qupv3_i2c1_clk_src.clkr,
->  	[GCC_QUPV3_I2C1_DIV_CLK_SRC] = &gcc_qupv3_i2c1_div_clk_src.clkr,
-> -	[GCC_QUPV3_SPI0_CLK] = &gcc_qupv3_spi0_clk.clkr,
-> -	[GCC_QUPV3_SPI0_CLK_SRC] = &gcc_qupv3_spi0_clk_src.clkr,
-> +	[GCC_QUPV3_SPI4_CLK] = &gcc_qupv3_spi4_clk.clkr,
-> +	[GCC_QUPV3_SPI4_CLK_SRC] = &gcc_qupv3_spi4_clk_src.clkr,
+On Fri, Dec 27, 2024 at 04:28:17PM +0530, Pratyush Brahma wrote:
+> Add the compatible for Qualcomm QCS8300 GPU SMMU. Add the compatible
+> in the list of clocks required by the GPU SMMU and remove it from the
+> list of disallowed clocks.
+> 
+> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 
-ABI break without any explanation, real justification.
+I am skipping this patch due to other comments. Maybe they are not
+applicable here, but three maintainers investigating simple thing is way
+too much. Make it easy and obvious for us, not for you.
 
 Best regards,
 Krzysztof
