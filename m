@@ -1,77 +1,146 @@
-Return-Path: <devicetree+bounces-134520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 600E79FDB70
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 16:09:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A51609FDB98
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 16:48:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 144E8161719
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 15:09:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32DB93A10E9
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 15:48:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C756D18A922;
-	Sat, 28 Dec 2024 15:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 470F7165F18;
+	Sat, 28 Dec 2024 15:48:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GnP+MoHE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RNOQIPvn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CA7F15A842;
-	Sat, 28 Dec 2024 15:09:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D2A35974;
+	Sat, 28 Dec 2024 15:48:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735398569; cv=none; b=HUoPQ7bZhh2S8vMXFpR1HOMAAvYX3ladmfaWH6i8zBiwLaOyxGS0ldlsODax13gNbsKw5ugr2EmEBB7lygDINOJFxHZ6jb9y2ugQg7nQH8nTQp7MQYpkYYSGgCRprKXfAWZD280trYxqzH9iBUiacyqoVJsCilcLaGsG+EPb9i0=
+	t=1735400930; cv=none; b=G/Lhz2Lvy2fM4Y+WkpDde+Y5WW99VmLl3wYfQcfX8ftYHVJaQKU+69MuQXnCMGvfE6HSLwR9N4PHigS/xUQEmwSZt61DbQXHHGsYdV1inlr5ytBSx90pNdlnEHtk8sKLaMdRRe77HwnsBRb3OjpxI9BJsIbi6fDSh5X7Ivs4WEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735398569; c=relaxed/simple;
-	bh=YGFktZ9edCTGmBVJdWffFblUSWddkTUls5OAQ/cXnmU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yv8Vh4M9gNXvTzUIlJYtPvGKSOi9VFqV4Jaq5j6bjh0UU4IwHOv5vLaOxd2uwv16HQ3pmHub/FikF1b2PYnh/zkQPXQQ8ivMCkU7TRdBYaJlC9m7Vx0624GcYGcMVFaW5T6bYAWVYodm9r2/FQA3aOmjPkwM3NfboMdZPOVV1dY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GnP+MoHE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E035C4CECD;
-	Sat, 28 Dec 2024 15:09:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735398569;
-	bh=YGFktZ9edCTGmBVJdWffFblUSWddkTUls5OAQ/cXnmU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GnP+MoHEGM5RF0MFXsjpHDZ4XVt8+xWSs7h0uUeRADOY89nqolT5U6ruTbu5BxeLX
-	 g+A4R++YhRI2hjtNboh03a/o2k5kYt5S+YwNxsRY3Pj6GSgzAgjmuyAxJoTj/gDtCR
-	 8Egqj0ofpVYroaqOhDVd8jTTzgsqplVDg/7xmNYwLfd7/dECOWky5jLYZbvy307ZW+
-	 mpxjdM3rQ1KgB7mRQu9Z7QsUIcwPA2uOK2abZQbIKyUF0+rzSfy4hfcb0rU+rNexNl
-	 PURi/nr9Y6nHDk1K1u7sG6OeYO3Z8eIL3Xz4chn4pMbbn1eMQjtDiZ5COtsqIVPkRz
-	 monVx2SiLB/Og==
-Message-ID: <76a93a4c-1dc0-4ce8-b851-924b0d0d963d@kernel.org>
-Date: Sat, 28 Dec 2024 17:09:23 +0200
+	s=arc-20240116; t=1735400930; c=relaxed/simple;
+	bh=Nw3L7MLQ+tyPLILkAtDl4C2iVwnfWc39qzaJyAgId8o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YY9uHURiFbJfbKvmT+gbLV40jPKWvtCyeGKHWG4yzAcw9j6QoLnLNjaGNq4Mx10NK6gOxjDdwJ1q48VyiSdAKmut4e6/FO44BZz8/i4wYelZy21z4+3mxR7GLG8GOoPodLCHALd0zb4IOeva2ZmPpfsD1N5+c9Q7InBbpX2rdUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RNOQIPvn; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e3a2f65144bso988973276.2;
+        Sat, 28 Dec 2024 07:48:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735400927; x=1736005727; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QvgUswmxw3tDOJ/gQN+m0U9kpjr4h9l94Qnt3dvTpDY=;
+        b=RNOQIPvnQedssXiylF/11Rb/fHw0cgyE70LMBsiQeQBL4mF9b5yO52xdj3MT8jCPIs
+         YoSqgw1Z038wS4isUchcLVdW+SegYHSFLyHvLh3F+rj32g7w+pZPGum/YOpNu5b1S2s1
+         ZYFgfz24IP2Hjm316uaF7fDG298ok6ZmMA2ZOxJ90J5syNwCoFeSs+28UHZj7nPwI/Ui
+         rA9JheyJecjH3UJFoDBP1clj7/GrZ9v7jtCUSqRxQUom8qAZkxiqL8K6/U5SRBfu59EC
+         N4BdqDjd1wqI7Whx8mdd9ehq9OVId1B5Psg4MYl2nwQemZ7Z4igIVZ/j9v7N1Pg4anOq
+         +siQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735400927; x=1736005727;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QvgUswmxw3tDOJ/gQN+m0U9kpjr4h9l94Qnt3dvTpDY=;
+        b=Yyg7l0G8vsh0KdIzT/xBgCFPWd7y/zGzdtsbYGScYxX2NEf6pmyxewnl5cPSMaNR/0
+         JQZWHKrEAS5PHNwZim/hzNHxEudczCgssD5jRNRo/+v/lp2wLpd29/Zq/DyZft2XlKZK
+         1qG81HMJ9NbfZL0QLTNrJlz0AWzaEuagfKMaS9scEgz1PYWnUcHey+5xYd39o0Ayz+3u
+         hAb9fU42xBPL7U6uYYbfiAJ7uOi52UmJtvdMD3Nm404gybzzx7CeFCLuWO+Jqoll6Zvx
+         gyPMSaWLbxfqpKSvxwd/vZfNfhzY5YFhxPR23XrmXGZuZGBW5BAhF7dQxNxS0SJhoUK+
+         PLwg==
+X-Forwarded-Encrypted: i=1; AJvYcCVID5wzch9lNT9mU7w8VVGAxRE0URHEyEFOhMRdlt/bHal4mTMV45cRqo5ZadNTDN0nSejrCy2VfjbN@vger.kernel.org, AJvYcCWQbLTfpEzSqZuMK0QHsRIxOYm2ZnmtkstccYjrGN06oNFRKHGsUIwCe5GQ0mOOrEaSYY5NbN16ysETft63@vger.kernel.org, AJvYcCX9MtinTUpvtEgduetUQiYfolGefbZbxipi1k2vTIPrck8Dp8hazkQiT0xeQCzPL2Tf1lnD47MW+YKT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzEzmQ3NEdKO5Ii35zt7/GgaunXRjgt7bC6JUZsCK64Xzk9/PH
+	YX15m6ddrPFP0vNvSAugDPzSznuvVT056fJoiI818jfvYxGJTcSK8CGYvrbCZfGVau7XviVxq6a
+	aJiCkLN14YH4mIFkHyde0WxdqT8Y=
+X-Gm-Gg: ASbGncstmrL2J/OWwmm5q4nyYu6Q5+1TaKhGQs7w3FRghhaq9BRFFcmuKZ4t1v74wfH
+	YpJZ9I2/MMWXmRnMDK1Mn3A+e3FEAKGCJ6NeLIA==
+X-Google-Smtp-Source: AGHT+IHdZpC1YGp93mLQ+nx/iTl6htJLNwxuarX9IUpcjwgjaaa/AKJfIzdp7YtQPJDW2ejn+6yKiANX90xRsA7PDGc=
+X-Received: by 2002:a05:6902:10c8:b0:e4a:ea18:b43a with SMTP id
+ 3f1490d57ef6-e538c35d562mr10176626276.7.1735400927543; Sat, 28 Dec 2024
+ 07:48:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-j722s-common-main: enable USB0
- for DFU boot
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, srk@ti.com
-References: <20241220054550.153360-1-s-vadapalli@ti.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20241220054550.153360-1-s-vadapalli@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241225181338.69672-1-l.rubusch@gmail.com> <20241225181338.69672-8-l.rubusch@gmail.com>
+ <20241228144714.2c1db6a8@jic23-huawei>
+In-Reply-To: <20241228144714.2c1db6a8@jic23-huawei>
+From: Lothar Rubusch <l.rubusch@gmail.com>
+Date: Sat, 28 Dec 2024 16:48:11 +0100
+Message-ID: <CAFXKEHb8vMs_en6_iBUG37YyWn90xn8xnz2yrRMB=4rues7BuA@mail.gmail.com>
+Subject: Re: [PATCH v8 7/7] iio: accel: adxl345: complete the list of defines
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, eraretuya@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Sat, Dec 28, 2024 at 3:47=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
+ wrote:
+>
+> On Wed, 25 Dec 2024 18:13:38 +0000
+> Lothar Rubusch <l.rubusch@gmail.com> wrote:
+>
+> > Having interrupts events and FIFO available allows to evaluate the
+> > sensor events. Cover the list of interrupt based sensor events. Keep
+> > them in the header file for readability.
+> >
+> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+>
+> One comment inline
+>
+> Thanks,
+>
+> Jonathan
+>
+> >  #define ADXL345_REG_BW_RATE          0x2C
+> >  #define ADXL345_REG_POWER_CTL                0x2D
+> >  #define ADXL345_REG_INT_ENABLE               0x2E
+> > @@ -34,20 +59,40 @@
+> >  #define ADXL345_FIFO_CTL_MODE(x)     FIELD_PREP(GENMASK(7, 6), x)
+> >
+> >  #define ADXL345_INT_DATA_READY               BIT(7)
+> > +#define ADXL345_INT_SINGLE_TAP               BIT(6)
+> > +#define ADXL345_INT_DOUBLE_TAP               BIT(5)
+> > +#define ADXL345_INT_ACTIVITY         BIT(4)
+> > +#define ADXL345_INT_INACTIVITY               BIT(3)
+> > +#define ADXL345_INT_FREE_FALL                BIT(2)
+> >  #define ADXL345_INT_WATERMARK                BIT(1)
+> >  #define ADXL345_INT_OVERRUN          BIT(0)
+> > +
+> > +#define ADXL345_S_TAP_MSK    ADXL345_INT_SINGLE_TAP
+> > +#define ADXL345_D_TAP_MSK    ADXL345_INT_DOUBLE_TAP
+>
+> Why have these?
+>
 
+To be honest, I'm unsure to keep this patch within this series now.
 
-On 20/12/2024 07:45, Siddharth Vadapalli wrote:
-> Add the "bootph-all" property to the "usb0" device-tree node. This is
-> required for the USB0 instance of USB to be functional at all stages of
-> USB DFU boot.
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Initially, ..... long story short, having FIFO and interrupt handling
+now, it is possible to apply and use those ADXL345_INT_ constants. On
+the other side, having this more and more separated out of other
+patches, it becomes clear there is still some implementation pending
+to really use them. I'd like to focus this series rather on FIFO and
+interrupt mechanism.
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+Especially when it comes to the ADXL345_S_TAP_MSK defines, which
+probably make even less sense here, if I look at it now.
 
+What would you recommend - Keep it? Drop it? Add just the ADXL345_INT_
+fields w/o the _MSKs?
+
+>
+>
 
