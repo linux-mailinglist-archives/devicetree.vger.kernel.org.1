@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-134500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 987B69FDA7F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 13:23:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 338D19FDA82
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 13:23:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E7EC3A1209
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 12:23:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2B863A13AD
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2024 12:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B1616F900;
-	Sat, 28 Dec 2024 12:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25EF5176ABA;
+	Sat, 28 Dec 2024 12:22:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="LXGi/i2C"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="HYDS1cyT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E737B15B54A;
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F68215B984;
 	Sat, 28 Dec 2024 12:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735388572; cv=none; b=uutVR6C+3bpjdK0jGbk3pHOmOpxjUJwMdrviuogo91ASUmBqZg9lggxAfFd4Eb0e01axSmA6zzbDU7nFQis6kRsYIBE4IJ31jnehQpbkRWhj5VsilPoVpp7W6GVZsignHjueTvQfsDd8RsIql4V3eaHvTRmfR6gGsyV3kD65EV0=
+	t=1735388573; cv=none; b=b2m3jTLl+CI3bNoZZEgQNTeqEQdNpHvV8mMEAZKyQ2T4zNVNbMKQONtgYXFmGshy90qJ6w1IFJ2tulzMMV92zVKlDpfwshGW2Ge03NEBLoz1mzWRDGvDvyD7rBxqsn63YmIsKtyEB8m5xu1PFt/XYaAZZ57l6uDbF2XcqZn11DA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735388572; c=relaxed/simple;
-	bh=uY/vrtonJknJiPjcrNdxF2in+We3Hm2EnHymmUFSl8I=;
+	s=arc-20240116; t=1735388573; c=relaxed/simple;
+	bh=NuQZgT2E2kjwMSQpPKEZ71g5Fxiw1Vc0q9hWAqrNdfc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VXm2nEyR4hL21XoEOG5SdjI66+Xe0NSW9xCJDsI1d1uYXnGLBvnOZkew/Hp0sZ83A9jFkamQed9WJw8NKjoiFnrM8Tm1iHkAAgMNL4pGlrW/mV4d/FyY5CUbqlhdHJDuMekmxU0rtIpaXDcjaEv3CZd52wP986UBWOT0s2fdnwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=LXGi/i2C; arc=none smtp.client-ip=220.197.31.4
+	 MIME-Version; b=Fc9afLqUAYHoLHr3PFx3VYL7W6JiEjwofqQFVNSMx5Vwli3BzWeqXR4LaEZFXXsRlSTPpcpC3thtZL8tpUFDIsuhos/q6WEGa3Zy7etZTEoW5cE3sXPDQqz1RNqC2piv6bUj8mv58vg4eXJnFk2X5NiC2EVnl6O0fPrJLYGPKQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=HYDS1cyT; arc=none smtp.client-ip=220.197.31.3
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=tWjTA
-	OLgd9HkbIXFzlj06PfRlzkvfWEKiYD/XWeq8os=; b=LXGi/i2CbK8w97uz6lNmS
-	fevRKfb7w9vg03qEzbeuO6Xpdrs7vlVFmDxID48ZcUnJBWw7PR3F+AfIQ0bh1vXG
-	8ErwPmIwr0Z8g7evJjVT4J+hRPLDrXzSjtXAW88tYMlsWZMmXOR01riv5dahx1yV
-	gpXGS/fByXPWdZjDRJK4iU=
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=5EpTE
+	79/6drSRRiwOZ9rtrjeU7y9GmdVcMImOalthfk=; b=HYDS1cyTZ4/oL9yISMplu
+	vLrB3ZQh4PVMJVLe2U0TEDoT/6F1pXPpZJBI/IsmGS+Sl9IvpmnqFilCgLtzRK8o
+	7CDKL7JYJTodSXNR3CPH5meLf5JnHG2VdAyA84GJeb5UKnud4IKJzHcK8OR+9OUJ
+	tZiaiDAjVU/qyb70QyuUmc=
 Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g1-0 (Coremail) with SMTP id _____wD3t0tl7W9nUxdCCQ--.1009S7;
-	Sat, 28 Dec 2024 20:22:07 +0800 (CST)
+	by gzga-smtp-mtada-g1-0 (Coremail) with SMTP id _____wD3t0tl7W9nUxdCCQ--.1009S8;
+	Sat, 28 Dec 2024 20:22:08 +0800 (CST)
 From: Andy Yan <andyshrk@163.com>
 To: heiko@sntech.de,
 	krzk+dt@kernel.org,
@@ -56,9 +56,9 @@ Cc: cl@rock-chips.com,
 	linux-phy@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v2 5/8] dt-bindings: display: vop2: Add rk3576 support
-Date: Sat, 28 Dec 2024 20:21:48 +0800
-Message-ID: <20241228122155.646957-6-andyshrk@163.com>
+Subject: [PATCH v2 6/8] arm64: dts: rockchip: Add vop for rk3576
+Date: Sat, 28 Dec 2024 20:21:49 +0800
+Message-ID: <20241228122155.646957-7-andyshrk@163.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241228122155.646957-1-andyshrk@163.com>
 References: <20241228122155.646957-1-andyshrk@163.com>
@@ -69,144 +69,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3t0tl7W9nUxdCCQ--.1009S7
-X-Coremail-Antispam: 1Uf129KBjvJXoWxWr1kWFWxArW5XFyUKr4xXrb_yoW5XF13pa
-	93CFyDXrWxGF1UXw4ktFn5Can5tF9Yyw4Ykrn7ta17KrsIgF4kWw4agr1DJr13WF17ZayY
-	9FsYk347G39avr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j7L05UUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqA-DXmdv62k-HQAAsS
+X-CM-TRANSID:_____wD3t0tl7W9nUxdCCQ--.1009S8
+X-Coremail-Antispam: 1Uf129KBjvJXoW7CFyrXFy5WF4Uuw1UKFy8Xwb_yoW8KFyxp3
+	ZrCrW8JrW8uF12qa9xKFyvyrZ5Jan5Can3KwnxAF18Kr1Skr9rKryfKr93A3ZrJFW8Xa12
+	qFs2kry8KFnxXw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jgNVkUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0hHDXmdv5N-vSgAAsI
 
 From: Andy Yan <andy.yan@rock-chips.com>
 
-Add vop found on rk3576, the main difference between rk3576 and the
-previous vop is that each VP has its own interrupt line.
+Add VOP and VOP_MMU found on rk3576.
 
 Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-
 ---
 
-Changes in v2:
-- describe constraint SOC by SOC, as interrupts of rk3576 is very
-  different from others
-- Drop Krzysztof's Reviewed-by, as this version changed a lot.
+(no changes since v1)
 
-Changes in v1:
-- ordered by soc name
-- Add description for newly added interrupt
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 68 ++++++++++++++++++++++++
+ 1 file changed, 68 insertions(+)
 
- .../display/rockchip/rockchip-vop2.yaml       | 70 +++++++++++++++----
- 1 file changed, 56 insertions(+), 14 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-index 2531726af306..f28cea4a6d82 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-@@ -20,6 +20,7 @@ properties:
-     enum:
-       - rockchip,rk3566-vop
-       - rockchip,rk3568-vop
-+      - rockchip,rk3576-vop
-       - rockchip,rk3588-vop
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index 436232ffe4d1..130d11a2cc89 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -393,6 +393,11 @@ opp-950000000 {
+ 		};
+ 	};
  
-   reg:
-@@ -37,10 +38,22 @@ properties:
-       - const: gamma-lut
- 
-   interrupts:
--    maxItems: 1
--    description:
--      The VOP interrupt is shared by several interrupt sources, such as
--      frame start (VSYNC), line flag and other status interrupts.
-+    minItems: 1
-+    maxItems: 4
-+    items:
-+      - description:
-+          vop system interrupt, such as bus error, and vsync for vop version under
-+          rk3576.
-+      - description:
-+          independent interrupts for each video port, such as vsync and other video
-+          port related error interrupts.
++	display_subsystem: display-subsystem {
++		compatible = "rockchip,display-subsystem";
++		ports = <&vop_out>;
++	};
 +
-+  interrupt-names:
-+    items:
-+      - const: vop-sys
-+      - const: vop-vp0
-+      - const: vop-vp1
-+      - const: vop-vp2
+ 	firmware {
+ 		scmi: scmi {
+ 			compatible = "arm,scmi-smc";
+@@ -826,6 +831,69 @@ gpu: gpu@27800000 {
+ 			status = "disabled";
+ 		};
  
-   # See compatible-specific constraints below.
-   clocks:
-@@ -127,31 +140,60 @@ allOf:
-           minItems: 7
-         clock-names:
-           minItems: 7
--
-         ports:
-           required:
-             - port@0
-             - port@1
-             - port@2
-             - port@3
--
-       required:
-         - rockchip,grf
-         - rockchip,vo1-grf
-         - rockchip,vop-grf
-         - rockchip,pmu
- 
--    else:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - rockchip,rk3576-vop
-+    then:
-       properties:
--        rockchip,vo1-grf: false
--        rockchip,vop-grf: false
--        rockchip,pmu: false
--
-         clocks:
--          maxItems: 5
-+          minItems: 5
-         clock-names:
--          maxItems: 5
--
-+          minItems: 5
-+        ports:
-+          required:
-+            - port@0
-+            - port@1
-+            - port@2
-+        interrupts:
-+          minItems: 4
-+          maxItems: 4
-+        interrupt-names:
-+          items:
-+            - const: vop-sys
-+            - const: vop-vp0
-+            - const: vop-vp1
-+            - const: vop-vp2
-+      required:
-+        - rockchip,grf
-+        - rockchip,pmu
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - rockchip,rk3568-vop
-+              - rockchip,rk3566-vop
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+        clock-names:
-+          minItems: 5
-         ports:
-           required:
-             - port@0
++		vop: vop@27d00000 {
++			compatible = "rockchip,rk3576-vop";
++			reg = <0x0 0x27d00000 0x0 0x3000>, <0x0 0x27d05000 0x0 0x1000>;
++			reg-names = "vop", "gamma-lut";
++			interrupts = <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "vop-sys",
++					  "vop-vp0",
++					  "vop-vp1",
++					  "vop-vp2";
++			clocks = <&cru ACLK_VOP>,
++				 <&cru HCLK_VOP>,
++				 <&cru DCLK_VP0>,
++				 <&cru DCLK_VP1>,
++				 <&cru DCLK_VP2>;
++			clock-names = "aclk",
++				      "hclk",
++				      "dclk_vp0",
++				      "dclk_vp1",
++				      "dclk_vp2";
++			iommus = <&vop_mmu>;
++			power-domains = <&power RK3576_PD_VOP>;
++			rockchip,grf = <&sys_grf>;
++			rockchip,pmu = <&pmu>;
++			status = "disabled";
++
++			vop_out: ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				vp0: port@0 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <0>;
++				};
++
++				vp1: port@1 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <1>;
++				};
++
++				vp2: port@2 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <2>;
++				};
++			};
++		};
++
++		vop_mmu: iommu@27d07e00 {
++			compatible = "rockchip,rk3576-iommu", "rockchip,rk3568-iommu";
++			reg = <0x0 0x27d07e00 0x0 0x100>, <0x0 0x27d07f00 0x0 0x100>;
++			interrupts = <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
++			clock-names = "aclk", "iface";
++			#iommu-cells = <0>;
++			power-domains = <&power RK3576_PD_VOP>;
++			status = "disabled";
++		};
++
+ 		qos_hdcp1: qos@27f02000 {
+ 			compatible = "rockchip,rk3576-qos", "syscon";
+ 			reg = <0x0 0x27f02000 0x0 0x20>;
 -- 
 2.34.1
 
