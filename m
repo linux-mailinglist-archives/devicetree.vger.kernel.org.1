@@ -1,236 +1,346 @@
-Return-Path: <devicetree+bounces-134580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98CC89FDF7F
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 15:54:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E109A9FDF87
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 15:54:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AD2C18824E3
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 14:54:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D8FC188236D
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 14:54:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22BA19F41C;
-	Sun, 29 Dec 2024 14:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1067F198845;
+	Sun, 29 Dec 2024 14:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="I40BOtED"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e6ckRCNd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A614719E998
-	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 14:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97919192B65
+	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 14:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735483861; cv=none; b=bvUj8RZVpLEl5FX6hICQymJrTFr86NpTKZoYX0vDPVEJQaXaO+fAuUT9W845ApDe+tHuxnBuKXoEzJIfk1jKORvHoUhenQtBMT6G3DNxI+CE6WKbaXB6k1tLDq84SIJHn+SLMymO7MjmET0MN8xGahccRsLjCPT7pXD+bknf3Wk=
+	t=1735483923; cv=none; b=ZBiaXD/bEoMSSSxUfn5DyDPnlSZAdy4srE8/ScXU5f0Dr+OCqu1dMTxICYDiDBtUhnvlcM7uT1XnWMOY1MXfNCJD4/1Cn3EPuPBMjK/PoOcHdUgNVHX7GnYrt7wYdRDZ8LfuaBlTWzSIEKRduWceW+Lc776yNaSwB5RWbl4xMhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735483861; c=relaxed/simple;
-	bh=El72Xw99HLuBdH9KtR0LW7UzZsYG3PNdKxTAjv0VMF0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BMndqCCbubde8SXPebIcJcm/yVTrP7PRieB5Tc5Y4ieRrEUEDXBozUuLBFEVGQ2r5J2lFsOOKawnngIAyaQpTvMMQg3o3NIIpPzd2FO7AMl7xajgBFqEy/eUbAqzMCnnzF04v9yjVYV0WxP3jmV95p7QA6Qv2SCf6ink3ruiZ44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=I40BOtED; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aa689a37dd4so1278918666b.3
-        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 06:50:59 -0800 (PST)
+	s=arc-20240116; t=1735483923; c=relaxed/simple;
+	bh=NH+R1Gq5a4ptQDjw4VRo6cce3Q3VMA+UUnZJpCGlVLg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M/FlSSMOMewVVSJu6ExYP6PeGbzWlxp/0Ck6wF09CbBVgfGMRmahhC4mqiR+GQQi3JtE3bDiUcHBq/fclz70Yf6Gtz5DgmCGylyg1BrtPxRF3q/9dDplsWSWhG96GlCd7CByjlEocWaicQKpSpGWp+rxkpm1NE7hbLsOfq2FqVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e6ckRCNd; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3862b364538so4804877f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 06:52:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1735483858; x=1736088658; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aXOt2DStfgxzjFuE8T9ZB+qgm2XwGSAXjcE/H4FasAs=;
-        b=I40BOtEDtH5hY+98pr6yMKrKtgu/XXpN5k3txPIcYgJqW1mjQcB4Msc1AF05fgMOqG
-         ossIKeMP8pCmZMVog4v5/WqnPuPaYxS45YR0bf5Fxacnyebg+306t5g3dFJduluuY/pc
-         FMqU/ntSrE2a+Lrv8Et6QQFb7xyPFw/gbJOt4=
+        d=linaro.org; s=google; t=1735483920; x=1736088720; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2RkB7UfRiNg6MyNlWMJbO93WwIH7bFs9T4rAheWdhbk=;
+        b=e6ckRCNdSqMFd3uZRSm5JGkr0zPLgH0I5ANLlyX33gNReQr8+2aO58MsnQqN3ioguy
+         5Jio11Ml17/FE2tLS2mODCvwHHgTEM1sNxSVm8WXircvWOo1SPqBjdZJJzSAgndsnQ5+
+         obAI/A1lDWs1HQjtQSW4O3hfXd237r6CfawSO0Yh1kaoYoX29sZPzMR2Y6jjquoRhu+t
+         hxw0k07S3Yx3+hBf/Sll/eybPnwpWF4prOQndr95tw8Aes8KkOfXUoJZjXX3xIHvq+8D
+         18Lv8ii5fbbsL4w7l6UA3tRLb+IcvQglxqzhUmOUdMVIpQ7t5Ib2CbsWaBrSjxZ2mN4T
+         s2LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735483858; x=1736088658;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aXOt2DStfgxzjFuE8T9ZB+qgm2XwGSAXjcE/H4FasAs=;
-        b=SkuCqHavt+RKuN22g0XkdwXtFO9mf7y/W5YCafK/ulFzjf0J82FmnIY4gWDMorqSav
-         Y4lJtnft1lxaSo8h0Bd7g8zMdc2XWVgV8+crAtNF/7a0cV/8qMvLA3hhviNUuKSgEyiQ
-         4LcK8W7pTr2DLzTzCp0zMJ12ILWBc+awk0Qrb01mV3JcYC752juVGef0n0OoYtrjDhBt
-         XNmvtRm0EsORUzrzmPAomdsBtzggDEfuYsgZz5JoncPIdXx6kCfRphwgcB2aBvP0L3BX
-         ykXEeNAEIeAVb4rjWGucjNGKSKuem+vXYlfLgpdEOJebW0pn1v43WMuK1OW9gkzydIIh
-         nJbA==
-X-Forwarded-Encrypted: i=1; AJvYcCXS1YWbmKPNpEpE+IhCHNZx7U5wYxyVX0SWyOuoW/eqM2SToegd/9yoILHMtlhWYcORXS8lcH3s5Joy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdmVd5dn6QABzX5x7S6NsZD0ACKdPSPnKnrns6tPr6t2LRar7A
-	MNWnH2iWuxPlnws6VUiGCFvWj2Bl0IutJWUTeksgs5qTEZ13hztPdRpqmHykuL4=
-X-Gm-Gg: ASbGncvY7+OzpTdZaL4OblP1wTGZ3yDGMwJEug1r2myW5mmIhFpVyk3A+hkUgkW/yIK
-	eQsyu6ydQCVwZU9zPKTiCAf2EPk6d4KMDKRtG5iWIz6xa+a0qkyTQOSwEuaVaDTw1tNWYsX1usu
-	AjCMWcYyot79xZKVokB1N1viQlOZI/jLxl7B5ku+COPkeTds56hm/3kcQqUCL9Q8LQLb+Y4uL8Z
-	Ff3BP1AHM/8h1Yh6DJpi1x92Uyme/ZfcSYWQ6MweVsqta+S7FwB28EIU7IGzllmjeo5s2urgeAw
-	SnWaP621f+FDNZTW3uqo5g==
-X-Google-Smtp-Source: AGHT+IFUZKKdB0iUzGRoX60NeZj/L8H0CgHBD5QlmlsHW+jn/bxgVOxw8oTNEA264fbFGQVGlo990A==
-X-Received: by 2002:a17:907:9621:b0:aa6:6f92:74b1 with SMTP id a640c23a62f3a-aac2ad7fa01mr3093170366b.13.1735483857971;
-        Sun, 29 Dec 2024 06:50:57 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.. ([2.196.43.175])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e895080sm1362084466b.47.2024.12.29.06.50.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Dec 2024 06:50:57 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Abel Vesa <abelvesa@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v8 16/18] dt-bindings: clock: imx8m-clock: support spread spectrum clocking
-Date: Sun, 29 Dec 2024 15:49:40 +0100
-Message-ID: <20241229145027.3984542-17-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241229145027.3984542-1-dario.binacchi@amarulasolutions.com>
-References: <20241229145027.3984542-1-dario.binacchi@amarulasolutions.com>
+        d=1e100.net; s=20230601; t=1735483920; x=1736088720;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2RkB7UfRiNg6MyNlWMJbO93WwIH7bFs9T4rAheWdhbk=;
+        b=VZ/ZUvatuyizlRGidVhaUBKFPon2vvJbdR5KZhWNhOs5GPsTIRNPj3cOm+zcPTPxF/
+         3viJE/To1RJSaLXuqD+kQUVdvWOJVpV4EsUC0mvS8YMsg9e3V/nIq1V9CvOoXOC4ErNn
+         DyAZG3nS78u4m0FGy7+tFWPdjjfweG04KA1vMoxiolOmEVjgWgQaiovQ7PzlK3DQu8tQ
+         AMCSgtWeVH+kJvP7ad0UU0zFy0NTijSXRO94lUrg/in6Az1H6wnkC3JdOhwMCwp8mf/n
+         ctqHh2q0ieX6kawlVgkBWA57ghfo358gQ5oWeeA/lIwdLOwoJCFBENQfaWokJfKfDFVO
+         yDLA==
+X-Forwarded-Encrypted: i=1; AJvYcCVqaVAdEtIj3f8ExZ6g9NeviCG8eOjjZU863OLAZ/Ih2rMFJVS/h4Bgs22Q3XqaGVHkA1cYG0QqYuZ2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw77VYxtBzQk3bm8PrU0Onw04LSOBwrJRCyy41LsM66+CEbcx4r
+	PogvoUwQs/yQxbnD8dBVSR8PhVYZuYGFBv92GoghN/BtSNCAcMHnige5V8OlONWG31qPt1k3sWm
+	i
+X-Gm-Gg: ASbGncvllr+IzXnFjZNSKQJFMoA6Dne4rnB6yKryeHf0xt4tGGIdOu2xmGBsQwZhEnW
+	wcel7SlOTRQmzdxFRPEhAl2saxKA0zPhqz7H7oM2UY/UAr5Ous9KBMAz6CsONy6bE/cdQ/WPl+4
+	Ee77pgAIHX+y7JOZZYqcFPbfbzaJIEW8qzpNvBVX570uva8xn2spA8qh3KXONZKsIXjOgxh/FZp
+	y7UGwhwKnjBqSbCk6ljJdPkfBfthiEwrVSEXb1qXutvz+bmLR6euRxXwbramO7LepoVLw==
+X-Google-Smtp-Source: AGHT+IFGQdUBCOz+F0Jdt8T/X7wzDgUoFUYLmOZIeAMTzUhMqCz8ekRTaHkUH6qYyBefzRQQ0RDeZQ==
+X-Received: by 2002:a05:6000:704:b0:385:ea40:b46b with SMTP id ffacd0b85a97d-38a229ed094mr26533826f8f.4.1735483919862;
+        Sun, 29 Dec 2024 06:51:59 -0800 (PST)
+Received: from [192.168.0.43] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8332absm27199663f8f.38.2024.12.29.06.51.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Dec 2024 06:51:59 -0800 (PST)
+Message-ID: <5310962f-c0d8-4ada-bb95-b727a3c88b00@linaro.org>
+Date: Sun, 29 Dec 2024 14:51:57 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] usb: typec: ucsi: add Huawei Matebook E Go (sc8280xp)
+ ucsi driver
+To: Pengyu Luo <mitltlatltl@gmail.com>
+Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dmitry.baryshkov@linaro.org, gregkh@linuxfoundation.org,
+ hdegoede@redhat.com, heikki.krogerus@linux.intel.com,
+ ilpo.jarvinen@linux.intel.com, konradybcio@kernel.org, krzk+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-usb@vger.kernel.org, nikita@trvn.ru,
+ platform-driver-x86@vger.kernel.org, robh@kernel.org, sre@kernel.org
+References: <c17372ed-baf0-40a7-b267-25f1ff849cf7@linaro.org>
+ <20241228143830.613658-1-mitltlatltl@gmail.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20241228143830.613658-1-mitltlatltl@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-The addition of DT bindings for enabling and tuning spread spectrum
-clocking generation can be applied specifically to the PLLs.
+On 28/12/2024 14:38, Pengyu Luo wrote:
+> On Sat, Dec 28, 2024 at 9:06 PM Bryan O'Donoghue <bryan.odonoghue@linaro.org> wrote:
+>> On 27/12/2024 17:13, Pengyu Luo wrote:
+>>> The Huawei Matebook E Go (sc8280xp) tablet provides implements UCSI
+>>> interface in the onboard EC. Add the glue driver to interface the
+>>> platform's UCSI implementation.
+>>>
+>>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+>>> ---
+>>>    drivers/usb/typec/ucsi/Kconfig              |   9 +
+>>>    drivers/usb/typec/ucsi/Makefile             |   1 +
+>>>    drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c | 481 ++++++++++++++++++++
+>>>    3 files changed, 491 insertions(+)
+>>>    create mode 100644 drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
+>>>
+>>> diff --git a/drivers/usb/typec/ucsi/Kconfig b/drivers/usb/typec/ucsi/Kconfig
+>>> index 680e1b87b..0d0f07488 100644
+>>> --- a/drivers/usb/typec/ucsi/Kconfig
+>>> +++ b/drivers/usb/typec/ucsi/Kconfig
+>>> @@ -78,4 +78,13 @@ config UCSI_LENOVO_YOGA_C630
+>>>          To compile the driver as a module, choose M here: the module will be
+>>>          called ucsi_yoga_c630.
+>>>
+>>> +config UCSI_HUAWEI_GAOKUN
+>>> +     tristate "UCSI Interface Driver for Huawei Matebook E Go (sc8280xp)"
+>>> +     depends on EC_HUAWEI_GAOKUN
+>>> +     help
+>>> +       This driver enables UCSI support on the Huawei Matebook E Go tablet.
+>>> +
+>>> +       To compile the driver as a module, choose M here: the module will be
+>>> +       called ucsi_huawei_gaokun.
+>>> +
+>>>    endif
+>>> diff --git a/drivers/usb/typec/ucsi/Makefile b/drivers/usb/typec/ucsi/Makefile
+>>> index aed41d238..0b400122b 100644
+>>> --- a/drivers/usb/typec/ucsi/Makefile
+>>> +++ b/drivers/usb/typec/ucsi/Makefile
+>>> @@ -22,3 +22,4 @@ obj-$(CONFIG_UCSI_CCG)                      += ucsi_ccg.o
+>>>    obj-$(CONFIG_UCSI_STM32G0)          += ucsi_stm32g0.o
+>>>    obj-$(CONFIG_UCSI_PMIC_GLINK)               += ucsi_glink.o
+>>>    obj-$(CONFIG_UCSI_LENOVO_YOGA_C630) += ucsi_yoga_c630.o
+>>> +obj-$(CONFIG_UCSI_HUAWEI_GAOKUN)     += ucsi_huawei_gaokun.o
+>>> diff --git a/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
+>>> new file mode 100644
+>>> index 000000000..84ed0407d
+>>> --- /dev/null
+>>> +++ b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
+>>> @@ -0,0 +1,481 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/*
+>>> + * ucsi-huawei-gaokun - A UCSI driver for HUAWEI Matebook E Go (sc8280xp)
+>>> + *
+>>> + * reference: drivers/usb/typec/ucsi/ucsi_yoga_c630.c
+>>> + *            drivers/usb/typec/ucsi/ucsi_glink.c
+>>> + *            drivers/soc/qcom/pmic_glink_altmode.c
+>>> + *
+>>> + * Copyright (C) 2024 Pengyu Luo <mitltlatltl@gmail.com>
+>>> + */
+>>> +
+>>> +#include <linux/auxiliary_bus.h>
+>>> +#include <linux/bitops.h>
+>>> +#include <linux/completion.h>
+>>> +#include <linux/container_of.h>
+>>> +#include <linux/delay.h>
+>>> +#include <linux/module.h>
+>>> +#include <linux/notifier.h>
+>>> +#include <linux/of.h>
+>>> +#include <linux/string.h>
+>>> +#include <linux/workqueue_types.h>
+>>> +
+>>> +#include <linux/usb/pd_vdo.h>
+>>> +#include <drm/bridge/aux-bridge.h
+>>
+>> Is there a reason you don't have strict include alphanumeric ordering here ?
+>>
+> 
+> These two is dp/alt mode related, so listing them out. Above of them are
+> general things.
 
-The "" value for the fsl,ssc-method property is specifically intended to
-specify a "no SSC" case, as in the example, when you don't want to
-configure spread spectrum for one of the PLLs, thus avoiding the use of
-a method that would only make sense if SSC were being set.
+OK. Unless there's an include dependency reason you need to, please just 
+sort the headers alphanumerically in order
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+#include <globals_first>
+#include <globals_first_alpha>
+
+#include "locals_next"
+#include "locals_next_alpha_also"
+
+>>>
+>>> +
+>>> +#include "ucsi.h"
+>>> +#include <linux/platform_data/huawei-gaokun-ec.h>
+>>> +
+>>> +
+>>> +#define EC_EVENT_UCSI        0x21
+>>> +#define EC_EVENT_USB 0x22
+>>> +
+>>> +#define GAOKUN_CCX_MASK              GENMASK(1, 0)
+>>> +#define GAOKUN_MUX_MASK              GENMASK(3, 2)
+>>> +
+>>> +#define GAOKUN_DPAM_MASK     GENMASK(3, 0)
+>>> +#define GAOKUN_HPD_STATE_MASK        BIT(4)
+>>> +#define GAOKUN_HPD_IRQ_MASK  BIT(5)
+>>> +
+>>> +#define CCX_TO_ORI(ccx) (++ccx % 3)
+>>
+>> Why do you increment the value of the enum ?
+>> Seems strange.
+>>
+> 
+> EC's logic, it is just a trick. Qualcomm maps
+> 0 1 2 to normal, reverse, none(no device insert)
+> typec lib maps 1 2 0 to that.
+
+I'd suggest making the trick much more obvious.
+
+Either with a comment or just mapping 1:1 between EC and Linux' view of 
+this data.
+
+The main reason for that is to make it easier to 
+read/understand/maintain/debug.
+
+
+
+>>> +             port->svid = USB_SID_DISPLAYPORT;
+>>> +             if (port->ccx == USBC_CCX_REVERSE)
+>>> +                     port->mode -= 6;
+>>
+>> why minus six ?
+>> needs a comment.
+>>
+> 
+> EC's logic. I don't know why, it is a quirk from Qualcomm or Huawei.
+> I will mention this.
+
+Instead of hard-coding a mapping between the EC's mode and Linux' UCSI 
+enum - just make a define or an inline, ideally something with
+
+switch(port->mode)
+case GOAKUN_MODE_0:
+	val = LINUX_UCSI_MODE_X;
+case GOAKUN_MODE_1:
+	val = LINUX_UCSI_MODE_Y;
+}
+
+That will make the mapping obvious and also ensure both to yourself and 
+to your reviewers that you have accounted for _all_ of the potential 
+mappings and if those mappings don't exist then the default: of your 
+switch statement should make some noise about it
+
+dev_err(dev, "GOKUN UCSI mode %d unmapped\n"); or something like that.
+
+
+> 
+>>> +             break;
+>>> +     default:
+>>> +             break;
+>>> +     }
+>>> +
+>>> +     spin_unlock_irqrestore(&port->lock, flags);
+>>> +}
+>>> +
+>>> +static int gaokun_ucsi_refresh(struct gaokun_ucsi *uec)
+>>> +{
+>>> +     struct gaokun_ucsi_reg ureg;
+>>> +     int ret, idx;
+>>> +
+>>> +     ret = gaokun_ec_ucsi_get_reg(uec->ec, (u8 *)&ureg);
+>>> +     if (ret)
+>>> +             return -EIO;
+>>> +
+>>> +     uec->port_num = ureg.port_num;
+>>> +     idx = GET_IDX(ureg.port_updt);
+>>> +
+>>> +     if (idx >= 0 && idx < ureg.port_num)
+>>> +             gaokun_ucsi_port_update(&uec->ports[idx], ureg.port_data);
+>>
+>> Since you are checking the validity of the index, you should -EINVAL if
+>> the index is out of range.
+>>
+> 
+> EC / pmic glink encode every port in a bit
+> 0/1/2/4/... => ???/left/right/some port
+> 
+> I remap it to -1/0/1/2, to access specific port exceptions(-1) are not
+> harmful, later in gaokun_ucsi_altmode_notify_ind
+> 
+> 	if (idx < 0)
+> 		gaokun_ec_ucsi_pan_ack(uec->ec, idx);
+> 	else
+> 		gaokun_ucsi_handle_altmode(&uec->ports[idx]);
+> 
+> gaokun_ec_ucsi_pan_ack can handle exceptions.
+> 
+
+gaokun_ucsi_refresh() can return
+
+-EIO
+-1
+ >=0
+
+Where -EIO and -1 both trigger gaokun_ec_ucsi_pan_ack() in 
+gaokun_ucsi_altmode_notify_ind()
+
+So if the index doesn't matter and < 0 => pan_ack() is OK or -EIO is not 
+returning meaningful error.
+
+Either way strongly advise against mixing a negative index as having a 
+valid meaning with actual -E error codes...
+
+As a reviewer doing a fist-pass this looks suspicous and implies more 
+thought/refinement should be done to the flow.
+
+
+>>> +
+>>> +     ucsi->quirks = UCSI_NO_PARTNER_PDOS | UCSI_DELAY_DEVICE_PDOS;
+>>> +
+>>> +     ssleep(3); /* EC can't handle UCSI properly in the early stage */
+>>
+>> Could you not schedule work for + 3 seconds instead of sleeping here -
+>> representing the required stall time in some sort of state machine ?
+>>
+> 
+> I see, I will check work schedule interface.
+> 
+>> 3 seconds is an incredibly long time for a computer to sleep.
+>>
+> 
+> This module will be loaded at about 5th second after power up, if not
+> sleep, we will receive something disharmonious, sleeping for 3 seconds is
+> a hack.
+
+Yes it is. You could schedule some work to complete three seconds from 
+here instead of doing this long sleep here.
+
+In fact you are registering a worker here right ?
+
+In which case its pretty trivial to schedule some work on that worker 
+for three seconds hence ..
+
+Please investigate.
 
 ---
-
-(no changes since v7)
-
-Changes in v7:
-- List the PLLs to strictly define the setup order for each of the
-  added properties
-- Drop maxItems from "fsl,ssc-modfreq-hz" and "fsl,ssc-modrate-percent"
-  properties
-- Add 'Reviewed-by' tag of Krzysztof Kozlowski
-
-Changes in v6:
-- Improve the commit message
-- change minItems from 7 to 1 for all the ssc properties added
-- change maxItems from 10 to 4 for alle the ssc properties added
-- update the DTS example
-
-Changes in v4:
-- Drop "fsl,ssc-clocks" property. The other added properties now refer
-  to the clock list.
-- Updated minItems and maxItems of
-  - clocks
-  - clock-names
-  - fsl,ssc-modfreq-hz
-  - fsl,ssc-modrate-percent
-  - fsl,ssc-modmethod
-- Updated the dts examples
-
-Changes in v3:
-- Added in v3
-- The dt-bindings have been moved from fsl,imx8m-anatop.yaml to
-  imx8m-clock.yaml. The anatop device (fsl,imx8m-anatop.yaml) is
-  indeed more or less a syscon, so it represents a memory area
-  accessible by ccm (imx8m-clock.yaml) to setup the PLLs.
-
-Changes in v2:
-- Add "allOf:" and place it after "required:" block, like in the
-  example schema.
-- Move the properties definition to the top-level.
-- Drop unit types as requested by the "make dt_binding_check" command.
-
- .../bindings/clock/imx8m-clock.yaml           | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-index d96570bf60dc..d347d630764a 100644
---- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-@@ -43,6 +43,46 @@ properties:
-       ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-clock.h
-       for the full list of i.MX8M clock IDs.
- 
-+  fsl,ssc-modfreq-hz:
-+    description:
-+      The values of modulation frequency (Hz unit) for each clock
-+      supporting spread spectrum.
-+    minItems: 1
-+    items:
-+      - description: audio_pll1
-+      - description: audio_pll2
-+      - description: dram_pll
-+      - description: video_pll
-+
-+  fsl,ssc-modrate-percent:
-+    description:
-+      The percentage values of modulation rate for each clock
-+      supporting spread spectrum.
-+    minItems: 1
-+    items:
-+      - description: audio_pll1
-+      - description: audio_pll2
-+      - description: dram_pll
-+      - description: video_pll
-+
-+  fsl,ssc-modmethod:
-+    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-+    description: |
-+      The modulation techniques for each clock supporting spread
-+      spectrum in this order::
-+      - audio_pll1
-+      - audio_pll2
-+      - dram_pll
-+      - video_pll
-+    minItems: 1
-+    maxItems: 4
-+    items:
-+      enum:
-+        - ""
-+        - down-spread
-+        - up-spread
-+        - center-spread
-+
- required:
-   - compatible
-   - reg
-@@ -76,6 +116,10 @@ allOf:
-             - const: clk_ext2
-             - const: clk_ext3
-             - const: clk_ext4
-+        fsl,ssc-modfreq-hz: false
-+        fsl,ssc-modrate-percent: false
-+        fsl,ssc-modmethod: false
-+
-     else:
-       properties:
-         clocks:
-@@ -124,6 +168,9 @@ examples:
-         clock-names = "osc_32k", "osc_24m", "clk_ext1", "clk_ext2",
-                       "clk_ext3", "clk_ext4", "audio_pll1", "audio_pll2",
-                       "dram_pll", "video_pll";
-+        fsl,ssc-modfreq-hz = <6818>, <0>, <0>, <2419>;
-+        fsl,ssc-modrate-percent = <3>, <0>, <0>, <7>;
-+        fsl,ssc-modmethod = "down-spread", "", "", "center-spread";
-     };
- 
-   - |
--- 
-2.43.0
-
+bod
 
