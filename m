@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-134600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D15039FE03A
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 19:45:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5E8E9FE03B
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 19:45:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34A9C3A1A73
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 18:45:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4822D3A1A55
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 18:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79DE0198845;
-	Sun, 29 Dec 2024 18:45:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61252158A09;
+	Sun, 29 Dec 2024 18:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="crIVmMVg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F8QN9kuD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 384B6199239
-	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 18:45:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6FC5210FB
+	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 18:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735497915; cv=none; b=uYJRrTMHIOs+sb4IVm7Aoap+bi13F2CCtybNqkUrB4NNUdCuusczdgHjsSvEwWuC120BaLdeIdKGXWcpikAjl5bmmNvvcDvLrCHlOIHNEjFLVdR2uroy6cmT1yKT6Fr9RCohtUlGL3B7syXK35JVo3XyE0jMn/FmR9tv0Qz42F0=
+	t=1735497921; cv=none; b=niTc5kcXglhJdOr1au0fLjvIgC1GKfFeU1/AVaF7yO4RuWqeUy6U4TS0Ptdp5PizIEFQgdspZb4vmguUL0n+Wtb4+NVs1tf5ahUrgptMvZZq49cBLSFB5V8MIkOshjKkBE+6+u/OwfMvGiLLWrCtDsouVTZMidQgPKDvS7+Zaoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735497915; c=relaxed/simple;
-	bh=SBapEnWDI4X3WTBefbZvVdfQtpdp66DNF9aUk9eMyFI=;
+	s=arc-20240116; t=1735497921; c=relaxed/simple;
+	bh=yemAYE/O/0i8bawf74tTjL4IepEYb9tFhMFby2rOkaY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BLu0D1Q8d9GTB/e0zCQPKi8n1FCwFEMEYYJ0fNyWZ0Ao9Y//VAIxypr9LzDDrWZ7TJoJuYKZ8bSEiFTAKx/5UlCy9GXINDMRstnro5ZDEwsXFiMMN7kBfFLEKfJ8URkNqQQCZoI9Uwj9EJu1zuX+21FvYviZUAfdh0IWsljFLRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=crIVmMVg; arc=none smtp.client-ip=209.85.210.52
+	 MIME-Version; b=tATk1gXua3N5Pk1XwUXgq2uqXY953grxWNTIfUXuJG1YFKWn4WfEb5DpWacYPvIM/zYu1bqypv3vm1ZMuLGj0EMsv2WIJUIKMO+ARjJzrULVgB3EH3ZDx+h1lJhQi2haG78vpMht2SDJ3dZmTLmTTbKsrP8jWCgypEMFESz9jrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F8QN9kuD; arc=none smtp.client-ip=209.85.167.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-71e1597e3b4so2185295a34.3
-        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 10:45:12 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3eba5848ee4so1929548b6e.3
+        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 10:45:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735497912; x=1736102712; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1735497919; x=1736102719; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KKu1TS5Psj7hTyzCNbm0iN4cOOpfVFcu5dCXNycI6ow=;
-        b=crIVmMVgA5sQKGdUsqzTiCmfj1VHl3tk94U9zrA+DUXKyBrJnzYweFXGE/ng9Y64ji
-         EjuLZQhFdQmpbYEYybAvPHl75jM9JNWGLvUPveqS4ihWkCLXqtq2Aslt7Lfci0Qun1AM
-         KzrRjYv9qbC/NrtFjnVf0hgrWnUEwBOE0dVNkru0CW5VBwtOMpnkWqiri8DAn+NMVegC
-         jDrn0OO5TFzRELGsbu+7Q/dWZx2h2vSZV3r4w3xgX1H7MPA33LhKOviJ9fhwnL4vaqpu
-         KHZQqtazSaitYluBhBGtttPRKP7mHY6tRS0eXyTyyDyILomR6TQNkN+4ipF8nteV4pR7
-         j0Kw==
+        bh=xhbPOgs5hdCM6+iNzYizeI0jRjlgIwhloeZJA197DFE=;
+        b=F8QN9kuD729q7IYh8a2AbAP+7o+GN1yw1VpTuOZstzkdyN/MIRzYU/xMbd1HzpSzZA
+         i7gew853C0c6pZPvFohgNqVJiUbSFi+lKMI7memdlpLDZvPFqyajIk1pgxjRk46CzAWY
+         6dCn8AHTKRaNG4eUMUKj/ODnfwXedC3o0oK8oOkE8gLNHAg9A+cKSIN0D/vD44IXzUpR
+         X34M/US9vomRCr/g/ltnenCAP8IsMj9UuPnQYT2hgOwvR1IRoFA6jnJSyKDy0JrfwGaw
+         ChGaiSxDb8YGBDuHBKMOThCKSxOcCJ9reCg1jOjmMG8Mcf0FZuOLvTg27Th8MmHc7s0i
+         ElhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735497912; x=1736102712;
+        d=1e100.net; s=20230601; t=1735497919; x=1736102719;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=KKu1TS5Psj7hTyzCNbm0iN4cOOpfVFcu5dCXNycI6ow=;
-        b=vh8BV3dOyUqSdnZnq6n3nS5/HMF4CRe95VhL9wNDZGVUTamQySaJfJzkmcCn5oQHtA
-         IssUmgqC5EIynLs/Di4MmUK8h6OgCc4t7M5Zoqu2E7A2riV9C7Tm7awstDnNL5BRcivv
-         rYshIbxLunBrwfZrMwocra1f6kpJgogc9RhiwXppo2hNNqHVo4yvgkwfercVEV4jF+pQ
-         kL9hnBiLFi2gUTg2Y33x8TAMnQ1mX1jNizmxnqez7rxmxZvQy8z7NouWqnFnMnN95sH8
-         zmqqy2qC3otnZ5HL+k/1nZk9GibWL37pelnhPJRQgW+ZJZCYgDIf3ZdD3UiYIvAxPkaJ
-         Kqqw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5hRURB+nlbYF8sC58UX70VP3kltEuyarpoI0F732L8O/1ycPqr6/oUg4JBMFyX/iswEBISIS6EkrQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxb6VWawiFsIpAbn0DuhqBeEgvTn6Y4ygB9//A50rRgxxZ34x64
-	IOH4eUmg7sFsClMgmP3UxhI6yYKKlVji3th4NoXwO40zsJ6TJruo
-X-Gm-Gg: ASbGncsPaSgHqXg/uie87OLv2QEDT6To02SkDy7vTfeAEqxjfJuq3UeulszD28bMdBm
-	/a5NVM3yuqo3d+YLnoRpIf5ULmEmPW9z/u0jg9RDMjwiwNf6q31V0iNEDRBZ9ypt6lQYUCrkosz
-	5Lw4+cHTJvuDiPQI72rjYhjykx4BXj694omdTOqjhJJoZ2DZSDpttFVxz1J0goMBhlVNwMj0Gf7
-	3yjK1t+jduAlzqOmjxWEmWdN4lWH5U8yiZuH++cHzYakmZRojU7I7A8RlJSbPjA
-X-Google-Smtp-Source: AGHT+IETOyubIpNaewSb5YWblmDG49HSLncL7ygLwmf7mXu2oV9Tarb4CVAUQOoSuZ0xPYYC/d9Emw==
-X-Received: by 2002:a05:6830:718c:b0:71e:223c:1789 with SMTP id 46e09a7af769-720ff894f99mr22567508a34.16.1735497912149;
-        Sun, 29 Dec 2024 10:45:12 -0800 (PST)
+        bh=xhbPOgs5hdCM6+iNzYizeI0jRjlgIwhloeZJA197DFE=;
+        b=ao/EO43mnvu2vozNINz0hqqz1n4faD3UoaGMGQuaVJQrWfnmbtbrJXl2N5hhMPTTq2
+         dmDXLswN7DY23/z6IF6iwmx3BzHlBTRicyDPOOrj45bfjBZ/N7oSuPcA5ieRpZdkeSTq
+         rukoaTccCwp9P4cCv/SKGLhTes/JXRHYSbRBrEr2ctL9+YIlzrfvDYVCUYD1mgY59S3s
+         onPQvGuyzf0vBsiAHNdYMJnMZ56AxvbAVtpD+EqalVmXDDM34Oe/Vhg8XYBYKbcS4iW+
+         yK0sihw4pqknTAWkT/Kv7LCtgAApe+/MwiXYC79iSCauup4peUJraUNw/RQo4VlGqxoN
+         BWGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUI9wq6Ffvt3cSKiCFL5tnyfCNsc17kWiuM4pkjzaqMy2F7mG+GoggDqy4lU5syH3033UKksZOvn6fT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx09JAci5VvzbdDBMXDPlIgRJVhAK27+56ruFPqiOEMv8uoGE/I
+	bYexJ3S9MJaw9VUBDegRMC9dSiheMmNXpA1uwTSOH5HHTbtwKSKa
+X-Gm-Gg: ASbGncup7/nWribxL9kSya+J6mkMHpH6vXJqRBraPdXRBtDL6H1M2HsgJU231HIMiAw
+	0ccLTX3eXTXP457QjUHGGtLXZdTmC/RNdxdq4OQKcGH7FVK5+qxMAjv+hFvrA346qlzn5u6jJH7
+	lcLqMw3mHH3yCr9xPtAScqw/BTDoqy0YpESE9eiLfKzhbJocgJmwHh0EQ135+OHWb7U0PsyiQZ6
+	BSd1gcwIc7ymrZQV5hoi4ZYsIx0Z8+1um8elFr1CCY0YX14I8mO36rAIZ4gI1CJ
+X-Google-Smtp-Source: AGHT+IG5Dz6PKTeZW52qvpIKHumr7L106ymsa0PWmwxEz12ib8r4giLp1CEwxs+6Mx00o60XZ9fD4Q==
+X-Received: by 2002:a05:6808:1903:b0:3eb:62d4:7098 with SMTP id 5614622812f47-3ed890b15f0mr18259001b6e.37.1735497919043;
+        Sun, 29 Dec 2024 10:45:19 -0800 (PST)
 Received: from tower.cjhon.com ([2603:8081:ad00:4a:e765:a49c:5c4:1103])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71fc97d6fafsm5515645a34.31.2024.12.29.10.45.10
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71fc97d6fafsm5515645a34.31.2024.12.29.10.45.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Dec 2024 10:45:11 -0800 (PST)
+        Sun, 29 Dec 2024 10:45:17 -0800 (PST)
 From: Jimmy Hon <honyuenkwun@gmail.com>
 To: Heiko Stuebner <heiko@sntech.de>
 Cc: Ondrej Jirman <megi@xff.cz>,
@@ -81,9 +81,9 @@ Cc: Ondrej Jirman <megi@xff.cz>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	Jimmy Hon <honyuenkwun@gmail.com>
-Subject: [RFC 5/7] arm64: dts: rockchip: Add Orange Pi 5 Ultra board
-Date: Sun, 29 Dec 2024 12:41:33 -0600
-Message-ID: <20241229184256.1870-10-honyuenkwun@gmail.com>
+Subject: [PATCH 6/7] arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Max
+Date: Sun, 29 Dec 2024 12:41:34 -0600
+Message-ID: <20241229184256.1870-11-honyuenkwun@gmail.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20241229184256.1870-2-honyuenkwun@gmail.com>
 References: <20241229184256.1870-2-honyuenkwun@gmail.com>
@@ -95,72 +95,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The RK3588 Single Board Computer includes
-- eMMC
-- microSD
-- UART
-- 2 PWM LEDs
-- RTC
-- RTL8125 network controller on PCIe 2.0x1.
-- M.2 M-key connector routed to PCIe 3.0x4
-- PWM controlled heat sink fan.
-- 2 USB2 ports
-- lower USB3 port
-- upper USB3 port with OTG capability
-- Mali GPU
-- SPI NOR flash
-- Mask Rom button
-- Analog audio using es8388 codec via the headset jack and onboard mic
-- HDMI1
-- HDMI IN
-
-the vcc5v0_usb30 regulator shares the same enable gpio pin as the
-vcc5v0_usb20 regulator.
+Enable the second HDMI output port on the Orange Pi 5 Max
 
 Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../dts/rockchip/rk3588-orangepi-5-ultra.dts  | 21 +++++++++++++++++++
- 2 files changed, 22 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
+ .../dts/rockchip/rk3588-orangepi-5-max.dts    | 41 +++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 83ad11650f0b..7c7560b8fda3 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -144,6 +144,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6-lts.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-ok3588-c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-max.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-ultra.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
-new file mode 100644
-index 000000000000..41d8d297ce4b
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts
+index ce44549babf4..ecfbed2d0059 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts
+@@ -21,6 +21,17 @@ hdmi0_con_in: endpoint {
+ 			};
+ 		};
+ 	};
 +
-+/dts-v1/;
++	hdmi1-con {
++		compatible = "hdmi-connector";
++		type = "a";
 +
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk3588-orangepi-5-compact.dtsi"
-+
-+/ {
-+	model = "Xunlong Orange Pi 5 Ultra";
-+	compatible = "xunlong,orangepi-5-ultra", "rockchip,rk3588";
++		port {
++			hdmi1_con_in: endpoint {
++				remote-endpoint = <&hdmi1_out_con>;
++			};
++		};
++	};
+ };
+ 
+ &hdmi0 {
+@@ -39,10 +50,33 @@ hdmi0_out_con: endpoint {
+ 	};
+ };
+ 
++&hdmi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&hdmim0_tx1_cec &hdmim0_tx1_hpd
++			     &hdmim1_tx1_scl &hdmim1_tx1_sda>;
++	status = "okay";
 +};
 +
-+&pinctrl {
++&hdmi1_in {
++	hdmi1_in_vp1: endpoint {
++		remote-endpoint = <&vp1_out_hdmi1>;
++	};
++};
 +
-+	usb {
-+		usb_otg_pwren: usb-otg-pwren {
-+			rockchip,pins = <4 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
++&hdmi1_out {
++	hdmi1_out_con: endpoint {
++		remote-endpoint = <&hdmi1_con_in>;
++	};
++};
++
+ &hdptxphy_hdmi0 {
+ 	status = "okay";
+ };
+ 
++&hdptxphy1 {
++	status = "okay";
++};
++
+ &pinctrl {
+ 
+ 	usb {
+@@ -58,3 +92,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+ 		remote-endpoint = <&hdmi0_in_vp0>;
+ 	};
+ };
++
++&vp1 {
++	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
++		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
++		remote-endpoint = <&hdmi1_in_vp1>;
 +	};
 +};
 -- 
