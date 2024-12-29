@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-134569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E2E49FDF5E
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 15:50:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 740399FDF60
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 15:51:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42AA97A12F8
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 14:50:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 243F57A0798
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 14:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99780194C96;
-	Sun, 29 Dec 2024 14:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F034E19885F;
+	Sun, 29 Dec 2024 14:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="gHtmf5Xu"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="AVrmEmSO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B664B18A956
-	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 14:50:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F174195FEC
+	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 14:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735483837; cv=none; b=ELUMyiVazGWz2gSVPkRVI3tjsLNV0Tuq/NJRhlnQftjF+qIVnMSQ8QcZ7RyhqOXd3fQcYSg47NGws7gS0v52bF1Ih1ZuE71ZXnl2JowenETxwXWuFbgwc7ubPGkszcMN7BPC25qSUT2CkcVRUsv1QM5GSigduXS1Ca/Xb1mXvXA=
+	t=1735483839; cv=none; b=F40fPmqmpHYVzJ70ygB5p6LTK/QyeAEer72gHBdepfjBxPOX6JAOk+7pfKLnWZfyo5YR+m2IdmulDn8c6BLVXmyacUtEIDbl8HLt8t2kxg0GPzXVJiPx2c0WS+Vl49SJbYxkz8mCXGTSmz8AAtnZ7dNOv7SBAqFW/wq5dg6rx+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735483837; c=relaxed/simple;
-	bh=+1wDCnUf6V6waC2u4F0CjceMoJUJQ3m5duPgNX1wMjo=;
+	s=arc-20240116; t=1735483839; c=relaxed/simple;
+	bh=xUBRrkr1aLPPwLeMGNd5Xto6SUkG0PhtvIzCxxAX118=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lV66TC2x/xy45S7FCueTbVWgH3ESYsrkaMNsTi85FyGuPfQoIClTvE1iQAhNK5febQZ4crfeRiCSFJfSLhUPHxfucLGVxLPhmZM4tUWXt56xXI9PKP3h3J3Nk8FgYL4LcE+ezcCVpInw1lDt+V9JTsYeTdmwm9gOjPL/i63JBc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=gHtmf5Xu; arc=none smtp.client-ip=209.85.218.47
+	 MIME-Version; b=sB9Pl2PCMRNjqAXTLmkMqN9tuxWe2yxZGoIcemIGt7SwxWVn82Pp3lg0fyg1gKBVvc/kq4qWFC/AyQl2wfhAP99EssQK8kPUGNo5RlEQ0sVM+RBS3uPE1NP1I3L7cBqKNvR2euwbqOkQVTwNSpGKgEDL5DHjAJzxlmu2bluAxts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=AVrmEmSO; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aa692211331so1632516866b.1
-        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 06:50:34 -0800 (PST)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aab6fa3e20eso1416032866b.2
+        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 06:50:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1735483833; x=1736088633; darn=vger.kernel.org;
+        d=amarulasolutions.com; s=google; t=1735483836; x=1736088636; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0D3K2ln9Lb+MNQxN4twGUjq+Zn0uEKE9IsRwsBI/jVw=;
-        b=gHtmf5XuC9i4a8ViQuXEmZ/iroMQLVn4ZbLpbRinDSC78zUJ7d/MqZIiGVssSQ8pME
-         mP1IE6WEXS+ki3TZLKLw94Pm4kn2M6yt2CChFhZLmzj1BDRPy/m/2tG6ev8a5bEjbdv2
-         hE1IBkM0tMsjKrb+2A+ZImMca8Gnqd/OM3G+E=
+        bh=T8/6J4AE7rdE7DvbcqL7lv8LvF8nVi/MJUfgoa9DfhY=;
+        b=AVrmEmSOEOGihK/K3eNASyprPdP2kVAtTHF7GcJp53eiZEkQLrjRIKcwHGHqR8Cu9C
+         a8HpqBlPDT0UAiNlCxNfgA12eBNhW95PfvH8TqL4E2Faa8AwMUs9u7WJ4bcdYjs65+90
+         1yjq2o0hApmb0VMTXMkPSJAmMds1ud53e8lGU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735483833; x=1736088633;
+        d=1e100.net; s=20230601; t=1735483836; x=1736088636;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=0D3K2ln9Lb+MNQxN4twGUjq+Zn0uEKE9IsRwsBI/jVw=;
-        b=uwnA2EONvxKu2mDl964b5azCKgiz72pPFieIxaNbZgvu6I19CkiwqiJy6e72qXrNcn
-         RDFaUc5PYVR+2KlvOsYd8SdTrc/p6GN3/KDt0Ct2kv7I9UCMlQ7NBxLdLViKa29yXv4A
-         phw6IM20g1hZkAKQYKpBkcDRHYc1qxQuXXsdaUjCxuYEQmAtK/f78b8QCMtxVASKvivw
-         eKBNWbfY76jVhKtZmcg9yJd5hw95WbbUObVr6SabQUFR5gUuSseBI9EEeisZm+oNhSL/
-         2ypR2EaFl9BmGFotZMCl1BfQ9eUG4qninnYQnA7Hy05mi9+na5o19i8kJPyI0dM56zJI
-         lGTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWKxYi/+/EaW/C1sGLIfFAahGjNkw3XwPRktSdq9yjBHwZBaDW4ACRqxrdV6u+UX+Fq0S3WyP0K6miH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaHQEsn6aipMyAsndGKuXFScvb5S82eAULrMzsFR3XKc3iV4mw
-	49Khl7xTUbedDiCvFI4JExD7i9iGB2xiik5x6mcIuGwUZfW+GHmuFGmC5kmXnaQ=
-X-Gm-Gg: ASbGnctMyt58laW6olW3A5CzBQzYswXE5LoIbl4h+fc/VBiKPpxUJNCkOzaV9XVst3k
-	giOP1jmQDNwcpRfb4auW+MYCP7to1t8z2bgT4TsQahwmhwu1ncwlFeYTnBITeB5yX/xECQ3bjiS
-	pmnRggFfyY/l3T8qW3SIrYl1Mhp0L2KLy0ZUBIz1VhriQUluEAL+1MKKY02E/jh1ECypJ5VUqwz
-	hDJq3YhXYxPZXEMn4ngjiWKcvauU0FHMkaZ56MbPbMbKJkea/yRNpc1dWNH07kNDMGJIExiAlFE
-	v3VZd7VS0Kc60mV50m34fg==
-X-Google-Smtp-Source: AGHT+IFV6+DUifWNgtI/l9xv/1AQmyY+vn0i8+uFyhjAZ8e8hW4Xl/fClO119sqnG2ifR6YSa9Jbvw==
-X-Received: by 2002:a17:906:415a:b0:aaf:c0:be7e with SMTP id a640c23a62f3a-aaf00c0c9d4mr1166766266b.29.1735483833021;
-        Sun, 29 Dec 2024 06:50:33 -0800 (PST)
+        bh=T8/6J4AE7rdE7DvbcqL7lv8LvF8nVi/MJUfgoa9DfhY=;
+        b=b0Joiyydl4upNqhdH6viPIhdSmEyhPcvmWoYq9unMXFygEPLS1douciluhzSb0YO5T
+         G6pCxrwFygA3D1yT62vkUWQQYCg7tH/NJbOJ+kHN7NnrpKzyBsiiFAQ9G3uTrQcgfKR2
+         E6VD4SjWQZk69357l0LYxKuxXvFSlKyonDEh6/QjpbxugY11nqWHP2eMsKHJg9JMhcRH
+         5ztsnKeXUgBSPJF7laOoKRXGgogr5XPyuS4k+YQERQidhKmEtGY+Nj8SQ1fFSfy5BGvf
+         kgcys8L6kj7wNI65JV/qhJA3PPf/mtd3U7gwbYQq9+ZKaOMIYy0ffR5PG2Hna9uNyoeT
+         296Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXBA5a2QDcHMcsv5U/W0CsbzD7mj00hiSXP/l2dDCUl6WinIWCgaByt9ru/JuVfYi45Xu82TWAgQP06@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyb8Woh4lrh1Yf/+1VPSa5VUtjVuuJLAyDkpvepO2TMjeGsgOSo
+	zML9dAD+iRwQM9LXz6ZfEeFQIUtxpOWm7rsN/pmfgaJhUpQjHa1nARJ350bEqd4=
+X-Gm-Gg: ASbGncuSXwAbYh/JD0R7lsxG7NTNRXU7W0UP4hOzw/FtBTWhXv5lGI1abhZxfBn14Sk
+	SYpNMDAQ0WdvauUD/J5xseeE+POs4v+o4qtFa4xhHQ3SgXTiBlmBpGsO1oSz1r3adjiDhFEUHRZ
+	IAeHPhCK4xzssatFt4XJ+9Ol+EDQdTMn1thGITXBuvMG1b3d9IV8GlsCj2VvKtmRFUPsJVjYRRs
+	4jX/MaL3/Rv4DHVAxfD6kYPq5W9LYXr1HVJu32qCmaNh828rvWJ7a52LgCX29srluzEjjPQ+Emz
+	b7PNDHZFJqnVfdhEQbHp2g==
+X-Google-Smtp-Source: AGHT+IFnuv6eSrJEFnSGoJ55pW6N8ZEy/aXetue0XOxKvCv2upMLBhB089HmsyjDVf6iCwLAHcCppg==
+X-Received: by 2002:a17:907:3f89:b0:aa6:9624:78fd with SMTP id a640c23a62f3a-aac3444eb22mr3253470566b.48.1735483836473;
+        Sun, 29 Dec 2024 06:50:36 -0800 (PST)
 Received: from dario-ThinkPad-T14s-Gen-2i.. ([2.196.43.175])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e895080sm1362084466b.47.2024.12.29.06.50.31
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e895080sm1362084466b.47.2024.12.29.06.50.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Dec 2024 06:50:32 -0800 (PST)
+        Sun, 29 Dec 2024 06:50:36 -0800 (PST)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: linux-amarula@amarulasolutions.com,
@@ -89,9 +89,9 @@ Cc: linux-amarula@amarulasolutions.com,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-clk@vger.kernel.org
-Subject: [PATCH v8 01/18] dt-bindings: clock: imx8mm: add VIDEO_PLL clocks
-Date: Sun, 29 Dec 2024 15:49:25 +0100
-Message-ID: <20241229145027.3984542-2-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v8 03/18] dt-bindings: clock: imx8mp: add VIDEO_PLL clocks
+Date: Sun, 29 Dec 2024 15:49:27 +0100
+Message-ID: <20241229145027.3984542-4-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241229145027.3984542-1-dario.binacchi@amarulasolutions.com>
 References: <20241229145027.3984542-1-dario.binacchi@amarulasolutions.com>
@@ -104,10 +104,10 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 Unlike audio_pll1 and audio_pll2, there is no video_pll2. Further, the
-name used in the RM is video_pll. So, let's add the IMX8MM_VIDEO_PLL[_*]
+name used in the RM is video_pll. So, let's add the IMX8MP_VIDEO_PLL[_*]
 definitions to be consistent with the RM and avoid misunderstandings.
 
-The IMX8MM_VIDEO_PLL1* constants have not been removed to ensure
+The IMX8MP_VIDEO_PLL1* constants have not been removed to ensure
 backward compatibility of the patch.
 
 No functional changes intended.
@@ -125,53 +125,53 @@ Changes in v6:
 Changes in v5:
 - New
 
- include/dt-bindings/clock/imx8mm-clock.h | 12 ++++++++----
+ include/dt-bindings/clock/imx8mp-clock.h | 12 ++++++++----
  1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/include/dt-bindings/clock/imx8mm-clock.h b/include/dt-bindings/clock/imx8mm-clock.h
-index 1f768b2eeb1a..102d8a6cdb55 100644
---- a/include/dt-bindings/clock/imx8mm-clock.h
-+++ b/include/dt-bindings/clock/imx8mm-clock.h
+diff --git a/include/dt-bindings/clock/imx8mp-clock.h b/include/dt-bindings/clock/imx8mp-clock.h
+index 7da4243984b2..3235d7de3b62 100644
+--- a/include/dt-bindings/clock/imx8mp-clock.h
++++ b/include/dt-bindings/clock/imx8mp-clock.h
 @@ -16,7 +16,8 @@
- #define IMX8MM_CLK_EXT4				7
- #define IMX8MM_AUDIO_PLL1_REF_SEL		8
- #define IMX8MM_AUDIO_PLL2_REF_SEL		9
--#define IMX8MM_VIDEO_PLL1_REF_SEL		10
-+#define IMX8MM_VIDEO_PLL_REF_SEL		10
-+#define IMX8MM_VIDEO_PLL1_REF_SEL		IMX8MM_VIDEO_PLL_REF_SEL
- #define IMX8MM_DRAM_PLL_REF_SEL			11
- #define IMX8MM_GPU_PLL_REF_SEL			12
- #define IMX8MM_VPU_PLL_REF_SEL			13
+ #define IMX8MP_CLK_EXT4				7
+ #define IMX8MP_AUDIO_PLL1_REF_SEL		8
+ #define IMX8MP_AUDIO_PLL2_REF_SEL		9
+-#define IMX8MP_VIDEO_PLL1_REF_SEL		10
++#define IMX8MP_VIDEO_PLL_REF_SEL		10
++#define IMX8MP_VIDEO_PLL1_REF_SEL		IMX8MP_VIDEO_PLL_REF_SEL
+ #define IMX8MP_DRAM_PLL_REF_SEL			11
+ #define IMX8MP_GPU_PLL_REF_SEL			12
+ #define IMX8MP_VPU_PLL_REF_SEL			13
 @@ -26,7 +27,8 @@
- #define IMX8MM_SYS_PLL3_REF_SEL			17
- #define IMX8MM_AUDIO_PLL1			18
- #define IMX8MM_AUDIO_PLL2			19
--#define IMX8MM_VIDEO_PLL1			20
-+#define IMX8MM_VIDEO_PLL			20
-+#define IMX8MM_VIDEO_PLL1			IMX8MM_VIDEO_PLL
- #define IMX8MM_DRAM_PLL				21
- #define IMX8MM_GPU_PLL				22
- #define IMX8MM_VPU_PLL				23
+ #define IMX8MP_SYS_PLL3_REF_SEL			17
+ #define IMX8MP_AUDIO_PLL1			18
+ #define IMX8MP_AUDIO_PLL2			19
+-#define IMX8MP_VIDEO_PLL1			20
++#define IMX8MP_VIDEO_PLL			20
++#define IMX8MP_VIDEO_PLL1			IMX8MP_VIDEO_PLL
+ #define IMX8MP_DRAM_PLL				21
+ #define IMX8MP_GPU_PLL				22
+ #define IMX8MP_VPU_PLL				23
 @@ -36,7 +38,8 @@
- #define IMX8MM_SYS_PLL3				27
- #define IMX8MM_AUDIO_PLL1_BYPASS		28
- #define IMX8MM_AUDIO_PLL2_BYPASS		29
--#define IMX8MM_VIDEO_PLL1_BYPASS		30
-+#define IMX8MM_VIDEO_PLL_BYPASS			30
-+#define IMX8MM_VIDEO_PLL1_BYPASS		IMX8MM_VIDEO_PLL_BYPASS
- #define IMX8MM_DRAM_PLL_BYPASS			31
- #define IMX8MM_GPU_PLL_BYPASS			32
- #define IMX8MM_VPU_PLL_BYPASS			33
+ #define IMX8MP_SYS_PLL3				27
+ #define IMX8MP_AUDIO_PLL1_BYPASS		28
+ #define IMX8MP_AUDIO_PLL2_BYPASS		29
+-#define IMX8MP_VIDEO_PLL1_BYPASS		30
++#define IMX8MP_VIDEO_PLL_BYPASS			30
++#define IMX8MP_VIDEO_PLL1_BYPASS		IMX8MP_VIDEO_PLL_BYPASS
+ #define IMX8MP_DRAM_PLL_BYPASS			31
+ #define IMX8MP_GPU_PLL_BYPASS			32
+ #define IMX8MP_VPU_PLL_BYPASS			33
 @@ -46,7 +49,8 @@
- #define IMX8MM_SYS_PLL3_BYPASS			37
- #define IMX8MM_AUDIO_PLL1_OUT			38
- #define IMX8MM_AUDIO_PLL2_OUT			39
--#define IMX8MM_VIDEO_PLL1_OUT			40
-+#define IMX8MM_VIDEO_PLL_OUT			40
-+#define IMX8MM_VIDEO_PLL1_OUT			IMX8MM_VIDEO_PLL_OUT
- #define IMX8MM_DRAM_PLL_OUT			41
- #define IMX8MM_GPU_PLL_OUT			42
- #define IMX8MM_VPU_PLL_OUT			43
+ #define IMX8MP_SYS_PLL3_BYPASS			37
+ #define IMX8MP_AUDIO_PLL1_OUT			38
+ #define IMX8MP_AUDIO_PLL2_OUT			39
+-#define IMX8MP_VIDEO_PLL1_OUT			40
++#define IMX8MP_VIDEO_PLL_OUT			40
++#define IMX8MP_VIDEO_PLL1_OUT			IMX8MP_VIDEO_PLL_OUT
+ #define IMX8MP_DRAM_PLL_OUT			41
+ #define IMX8MP_GPU_PLL_OUT			42
+ #define IMX8MP_VPU_PLL_OUT			43
 -- 
 2.43.0
 
