@@ -1,138 +1,121 @@
-Return-Path: <devicetree+bounces-134557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2665D9FDEC2
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 12:14:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 775099FDEEC
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 14:22:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D046216182E
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 11:14:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0D3E3A1828
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 13:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D4E15ADA6;
-	Sun, 29 Dec 2024 11:14:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8E0154BE5;
+	Sun, 29 Dec 2024 13:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lWOh41HU"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="NmEuHmaj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-o94.zoho.com (sender4-pp-o94.zoho.com [136.143.188.94])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183DC172BD5;
-	Sun, 29 Dec 2024 11:14:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735470859; cv=none; b=CkIJge5lRgCvun8KuPQzJc8QZbMqTS79l4JUiJCcXMT8pSUYUP2eiR1YqVXvmzk+kN96y8tyOhH2EIO96VCNMFlxAEgJBe+mmNFJBYOp/zHqgALxXsJH0l7OyFB3N+34hXwCk9Rx0Ygv/qWreA9ZiDslTb3HyFRj+qEN0aQ9CvY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735470859; c=relaxed/simple;
-	bh=YYeDbhIsCX0ErJFbadBI6Svg8sUwSIAIaRJnDZ+vcPE=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dxPC8INwmtZgEKXnF6EPR3iJ9/Lb/AD3XpWeXWWLRjixBgw4h9Ld+msTve/RqTEg0dvwNsuiQ1KiOyNu6b1kka0vAjhXz7qWNhzcZIOCr+1JQMi4DqTjb/ewYOO4F/URXW+Xnc1+MYFFK4GivV1kfPfIufmJ2r/nsZDCH4+pIR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lWOh41HU; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-21654fdd5daso100430185ad.1;
-        Sun, 29 Dec 2024 03:14:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735470857; x=1736075657; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a9J38BNMU1Uzv4f7FCoN1Yfwc75lF73CELPPui56iYw=;
-        b=lWOh41HUYl/tr9k1VTy+2B83r8Z8sLC6gr/QdYyg508EqjYX5w3AObaXgpXdR1eO8J
-         70Y6/kM1k8uFgmJMajFakpw+DgrxxxCxRRZjflqtJx2kIjkJNn4PQgLlrbqG40u+Znr1
-         hxT+ywR8HmaXKtnQ2QIuYpPksC+sjvL92bPgRTG+OXSqn49djhTvgWOn4iIEba2NGDV4
-         Yv5c/kTn+on7M6+6XpPfzm/yREW7GIcDjDxyjClazFy5j0Om1wbC78fhGV1aP9Tf/xz3
-         GQ0c47HTMr6YocqizcXHLoCWv7s40/4TPPwZKFayiEPkvofSKPS1wIC8rFo6hEpkBbhi
-         sE1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735470857; x=1736075657;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a9J38BNMU1Uzv4f7FCoN1Yfwc75lF73CELPPui56iYw=;
-        b=kKrIu1zM2UkFUNL7+jTpueesYQ1tpzbQdS/IgOAS5toa52aaebDG0ct9NwKzzjGk0e
-         OdPdPGnd/m5dXN23BVQcycC71d8BAFSQDSj2NHKerl7q79n/F+eEm+S14r/l1FhuXHRh
-         NOttM8Vl4hHXK1cc5wnYGsecLKCj5V2V8aZD9LqA6IyGhQRC7r3xdcbLSgb74GpJ35fK
-         +mL+ibzTJf0kSe/FQy5XeuXaGjFiJFtFN0yv/RFCsskpX/DGU2N3qFlbBZySBnAoWMnd
-         R9rw/lA9WKxN7uu6B2qBnSQDVL3aQA7swFpr7w14H7G+we2VO5j0nJXmf9hndkIA6bPv
-         xHnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV3q7h+E/3WES9GfN77LM2MsNAUMGmtaMAeSUWzXdYC4K+tQV7/atz+Z6kpcf85rVufoWkA/aDALRQj@vger.kernel.org, AJvYcCVqWPeTT1gxWtSISwCKg5H7GDfA9Eno7PfJNmSVUEjKBh+vZm9HiNKTJ97/2woMWyzwTXB2lOdDVO3iKZSC@vger.kernel.org, AJvYcCW9cJC9D74mff2VW9yLWSFOiTJUTBoSTJ3oennuVZkdvepMLkdNGNub4bwcyM13LsUNzn+k1wWFwT0Y5Q==@vger.kernel.org, AJvYcCXdaerqE5HDNCcqEW1JqjansfEMwLxpSRRrFeUG4TqOC8goLdOcQx8BGySR5jSsALexo1a4Z+1DUfCaiG0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYUiVNXdgDdvsYJwHd61WMhRq6zM5bXAAlGc94VwiaECmnN+8L
-	nAyfnfYUlh8ba1NVY4Rl7cNtBRMWwVt5OizlOus0XOGhUfRvVDWM
-X-Gm-Gg: ASbGncsFAWbSMY1PaE3UdH5/+0N/5Jdl2pnomE3rVdjuSqj317rhBOYWJm0PfNhNPw1
-	Ey7585DEaZSKjA7TTLPdf4puJU+KTkbL7DAKw7ZINJ9y4yIJzP3dBCIfs7Svg/MF/MtYwzIBx+i
-	yBMbMOIMVfOrOG1+QBlub5VY+svAKpdZ7FwUloLWRnvAItrLVGWZ9+aRtJ4qusmr0+Sj0OJMzqQ
-	iLg2QTwMd8V4PLUPqHWIYhRZROlcnxPHDjx2GjAMRq/ZZq4+OkeRNMptg==
-X-Google-Smtp-Source: AGHT+IHj1y3F1X3HGHzS3Px3LuQKUEyT2NVI7IfSKzHwkiIrQ3sJyJpJf3UtrIia+cnNqjNTX6LRiw==
-X-Received: by 2002:a17:902:c412:b0:216:4972:f8e0 with SMTP id d9443c01a7336-219e6f2ffb4mr459732985ad.44.1735470857377;
-        Sun, 29 Dec 2024 03:14:17 -0800 (PST)
-Received: from nick-mbp.. ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-219dca02544sm161655895ad.255.2024.12.29.03.14.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Dec 2024 03:14:16 -0800 (PST)
-From: Nick Chan <towinchenmi@gmail.com>
-To: Hector Martin <marcan@marcan.st>,
-	Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Lee Jones <lee@kernel.org>,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Helge Deller <deller@gmx.de>,
-	Nick Chan <towinchenmi@gmail.com>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: [PATCH v4 RESEND 3/3] MAINTAINERS: Add entries for Apple DWI backlight controller
-Date: Sun, 29 Dec 2024 19:11:19 +0800
-Message-ID: <20241229111322.4139-4-towinchenmi@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241229111322.4139-1-towinchenmi@gmail.com>
-References: <20241229111322.4139-1-towinchenmi@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1532594B7;
+	Sun, 29 Dec 2024 13:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.94
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735478514; cv=pass; b=f8P+4Z/eDAD/ZciJTaIsbz4NfuJnXfZUFPrVf74UDs2O82jq0W5tM9A3Soc3Puw28GJi6M5ro8eLBgmhaAnMoTUbLbVOZ1UEU9qXn9g3MuTsD4YQmZ7OzrNT4htjMHsCpiwbvhe23VQSRqKP1977eNHGO/KbR+FJWp3VkluRMpo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735478514; c=relaxed/simple;
+	bh=R9+ZOjhk7rZ9alv/RYZh/NZGDEXe9E2sBHxnuDFshkY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e4N4ZwueivkBkGvPHWFqEVWunLNYO0TtdxsI8fZLG2pjHKDSeFJwlEyT8J69hslYKlA7cR36+7wIX7YQVBOi/Ae83tAP2sevMMxM3ZjtLT7UVPvqTBU+5pCjcfqfv7sRXZCAOLvB1/l81jRcwmZqGeGkHBHSDkbmRgDhQEFZ51A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=NmEuHmaj; arc=pass smtp.client-ip=136.143.188.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1735478499; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=n3827YCQ90OjtH1qeBS452G1wDsl09TQlhPgxUv/msb/8EjqUE/GQXB8lm95C71PLSjdrCtVQaCMjog7eIxevVAyGIPXwqjX29ku1889Crpcn0P9v5XCsAA12ONTIkNb9LsFXc0nqNTCUSPeQOyfDn1WYmCSEDuFTeNGHP+ZHhY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1735478499; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=AjIqxlfqfeaHFhz5gbRv+vJZKDqzBfyGpsdRttHWgcE=; 
+	b=Vo+HChFcsVTmzvXCaMJHvWQUWiHjzfF1bqZ3KBPF7cvOFVnIm+39PiuIljvdXu6ZP2IaymJnsiPfygQmOp/CZYc2BhJkhZ9bEtgD/zVwQagkjZnwKqPd95tyzydFQlmoBOjSUJMd84gUbcTjTty2s0ppVfisL0cqDfzGVLO51AY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1735478498;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Feedback-ID:Reply-To;
+	bh=AjIqxlfqfeaHFhz5gbRv+vJZKDqzBfyGpsdRttHWgcE=;
+	b=NmEuHmajTxltOE24eXb7tpkHYzq+kFk98TcH8k4IbzJuV4RrB3ZDzAdEoRtJSrf5
+	VkLWZZXXjlm21nbcof9ldZat012ilkGDxJEavPs4f4xK6HRjN/V+/VM7bOEfjLxzpbl
+	m5Bs7/Zm30xWWHjWTN0UE7XJb7RYidkcY9uNYBls=
+Received: by mx.zohomail.com with SMTPS id 1735478497781153.95017233760746;
+	Sun, 29 Dec 2024 05:21:37 -0800 (PST)
+From: Xukai Wang <kingxukai@zohomail.com>
+Subject: [PATCH 0/3] riscv: canaan: Add support for K230-Canmv clock
+Date: Sun, 29 Dec 2024 21:21:07 +0800
+Message-Id: <20241229-b4-k230-clk-v1-0-221a917e80ed@zohomail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMNMcWcC/12Py07DMBBFfyXyGiO/7WTFfyAW9syYWG2aNgkRU
+ OXfcVMWlFn5Wjpn5l7ZTFOhmXXNlU20lrmMpxrkU8Ogj6d34gVrZkooI5VwPBl+UFpwOB54q2z
+ WOhM6UKwS54ly+dxtr2/3PNHlo0qX+yc7xwX6quwaJIwajFdZ1MkZjQBE9JAd6mRJocfoEW7eF
+ GfiMA5DWbrGRyt9Spg1QmijimStEFXnPAWlc8gKtMvEbhf0ZV7G6Wuvt+r9hN8m/qHJqnl9JOl
+ bK0Mg71++x34cYjk+1727ajV/cGkecVNxCaKF6JI2If7Dt237AbxTOjFqAQAA
+X-Change-ID: 20241206-b4-k230-clk-925f33fed6c2
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Troy Mitchell <TroyMitchell988@gmail.com>
+X-Mailer: b4 0.14.2
+Feedback-ID: rr08011227acfe2c37fdb5bc123623805100004d44063a7931d60f4752c72f31742b2bc1c99a19a8032823e2:zu0801122778e3bd03f400f1243611e13200001f8e9179054b9ffcc99ccaeaf98d4de53664911df14cfd5745:rf0801122d927dee58506e4c5a4c8bda8c0000b9d71284fc34e593d5343c5cf16017752d93b38e423c030f0e79e6f90c4dc7:ZohoMail
+X-ZohoMailClient: External
 
-Add MAINTAINERS entries for the driver.
+This patch series adds clock controller support for the Canaan Kendryte
+K230 SoC. The K230 SoC includes an external 24MHz OSC and 4 internal
+PLLs, with the controller managing these sources and their derived clocks.
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+The clock tree and hardware-specific definition can be found in the
+vendor's DTS [1],
+and this series is based on the K230 initial series [2].
+
+Link: https://github.com/kendryte/k230_sdk/blob/main/src/little/linux/arch/riscv/boot/dts/kendryte/clock_provider.dtsi [1]
+Link: https://lore.kernel.org/linux-clk/tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com/ [2]
+
+Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
+Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
+
 ---
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Xukai Wang (3):
+      dt-bindings: clock: Add bindings for Canaan K230 clock controller
+      clk: canaan: Add clock driver for Canaan K230
+      riscv: dts: canaan: Add clock initial support for K230
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 910305c11e8a..54a6c8ca7017 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2196,6 +2196,7 @@ F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
- F:	Documentation/devicetree/bindings/iommu/apple,dart.yaml
- F:	Documentation/devicetree/bindings/iommu/apple,sart.yaml
-+F:	Documentation/devicetree/bindings/leds/backlight/apple,dwi-bl.yaml
- F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
- F:	Documentation/devicetree/bindings/net/bluetooth/brcm,bcm4377-bluetooth.yaml
- F:	Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
-@@ -2221,6 +2222,7 @@ F:	drivers/nvmem/apple-efuses.c
- F:	drivers/pinctrl/pinctrl-apple-gpio.c
- F:	drivers/pwm/pwm-apple.c
- F:	drivers/soc/apple/*
-+F:	drivers/video/backlight/dwi_bl.c
- F:	drivers/watchdog/apple_wdt.c
- F:	include/dt-bindings/interrupt-controller/apple-aic.h
- F:	include/dt-bindings/pinctrl/apple.h
+ .../devicetree/bindings/clock/canaan,k230-clk.yaml |   41 +
+ arch/riscv/boot/dts/canaan/k230.dtsi               |   27 +
+ drivers/clk/Kconfig                                |    6 +
+ drivers/clk/Makefile                               |    1 +
+ drivers/clk/clk-k230.c                             | 1422 ++++++++++++++++++++
+ include/dt-bindings/clock/k230-clk.h               |   49 +
+ 6 files changed, 1546 insertions(+)
+---
+base-commit: 7a517bbdf3dc89a2ae5500ded67e823f8f2c36fe
+change-id: 20241206-b4-k230-clk-925f33fed6c2
+prerequisite-patch-id: deda3c472f0000ffd40cddd7cf6d3b5e2d7da7dc
+
+Best regards,
 -- 
-2.47.1
+Xukai Wang <kingxukai@zohomail.com>
 
 
