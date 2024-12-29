@@ -1,187 +1,129 @@
-Return-Path: <devicetree+bounces-134609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A04E9FE0C8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 00:01:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A58489FE0DA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 00:28:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D76213A18D2
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 23:01:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0D6C3A1819
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 23:28:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3019199FC9;
-	Sun, 29 Dec 2024 23:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C491991CA;
+	Sun, 29 Dec 2024 23:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="GQftgAD9"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="ZtQbmIQ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E52EC147;
-	Sun, 29 Dec 2024 23:01:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE85B8F4A
+	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 23:28:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735513295; cv=none; b=dkxT2eMdADTFS9mER3Qp/wKiJrdlcSyYZJJhKSpqCL6BdgyEBUFSJUvyHgKiQ29+K+78POqi0k3bThfOnH0FG8lTf7YmCvp8Be8OK+7x0lmACsP8/SolY7aVAaatPrY0OVliyQjbyQn15Qv1W0jd5ncPRs09g2ao2keTYwgWyzs=
+	t=1735514921; cv=none; b=QBhGUWlQkhxWOeJdT+xYf1Ft/Q8slQpR7AkiWphb41bQhuX3zfUL3jBLHbXVtoLb3X8wlTILhoULvs8mEGAoXRkZnA0+kFxlUP2AU3H9RgBmDkiSByVWBOjg7qPpaakbqFfJ7Nr7aHpgJ3EyM4h/fcq3c6VCH9wmcWCCMr/gLY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735513295; c=relaxed/simple;
-	bh=EOFemFTpkCTmOdM08EmZeDolCDDqXmXOLeBZxjDNQU4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fzrT01iOhKbFeZy3NCIXDWZdu8B27oZPqF9Gh+XTfSsHbgsPoclPQxX4QybmHA1CP84w/5hXEcqbD0uiTumFPPWTGfcsjTbWY9dzj+3QO4l5lle0K4YB7IKPZCyRRINnNha+uC74Gpi3zMnJHjgLQ2DZ2D2dLqD+phnA3/EVwXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=GQftgAD9; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=RWFIWvZf9YSfcXmJnHyBcE4IPXxvzWqpy1dD2oC7RBM=; b=GQftgAD9YxQGHCvaSW2Ezlv7nd
-	x6Wt6XyehbBlRtHgpEnrDTegts8tVBw8SvtHaFzUNxnCQu6ZP66sgi12JYH9sJJH8ehzEWdNVo5rc
-	vtJWl0atQHYC8bDaf5Pea1KjrshgZNWoLOQBzwNMFfZCJjS4RG7UNcl+g5rqcx3J3e3txJCGuMXTX
-	2Dd5ifKba3jj+5uss4jhhNkXF/d0PWCoxo6+g7y7UqUpEFd2XNPhm+u7auMxGuSjHq1ie4EAgyIVS
-	+RPVmHqmDEodxADJA+e0AP58xZha45U2UB19LebloQC3TTGsxwyhkhi/IOc3enq8CmDwPlRRyLYzS
-	0YHu8xbg==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-omap@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Roger Quadros <rogerq@kernel.org>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Kevin Hilman <khilman@baylibre.com>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH 2/2] ARM: dts: omap4: panda: cleanup bluetooth
-Date: Mon, 30 Dec 2024 00:01:25 +0100
-Message-Id: <20241229230125.85787-3-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241229230125.85787-1-andreas@kemnade.info>
-References: <20241229230125.85787-1-andreas@kemnade.info>
+	s=arc-20240116; t=1735514921; c=relaxed/simple;
+	bh=BEQ8z1ut2cQHekD22fD5Tb5BXFAjsP0xhOK/q2xwRf8=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=ImfYksjCsJoT0ZX/2WA0qxblFTo3p30EnfL5W4S5tugqZShRcI3R5k+KEyExjDKthjfMzzBOuSF8R+8Vb8RDG24L6nuzQsXItw1wV5MECB4zvDUpWxG0/tgd2Gyf+pglVH+PHUWUHD7utC33seIRUL3rNB8Aov6W0wUGvOdcGsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=ZtQbmIQ8; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21619108a6bso102865375ad.3
+        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 15:28:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1735514919; x=1736119719; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Umzb/cpVkBSMsf5TuOtyuUgveg3g8v8YPbqtINmhT0k=;
+        b=ZtQbmIQ86ey9a19utM4ZJU6b6S6pkyeTFRetwWU5ukEkQyDhwgszUdA5VQUwg1d18p
+         Cx5COx5lHu/ze/hl39a+Us5vX1YxkgFmE08088eTSGhIxi/G0Zt6/0QBoaN2GdxCrJ5l
+         hmy/NSpeQRix/Z0U5+n38HGSUTtDa4cf73O2ARWYmdfQMZSRmW4A1VpOsed5QgJvJhsH
+         WCTxoKTh/lVUpbF6TQwRX/mix46bImQgBHxxeHdKpUtFcWbjH0nMML3Aq+HbSxunNGD8
+         CXXOrjdSVL/yZE9iJQj5HaX9JpwzzjN1yN9nD53kdm0G7+1L+zdDKBz8QGkOYpc/rwVY
+         Q0Ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735514919; x=1736119719;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Umzb/cpVkBSMsf5TuOtyuUgveg3g8v8YPbqtINmhT0k=;
+        b=FmHiYPsKR7xaPh9asSNw/3XK0pRSCJEVgJUc5gMEAo/P7HdRBTXBqSKBnw8M/PB+k8
+         aGTmiJOmVLQDxprdkyjkRU/OK7nI6mBmtgx6ymPzyJ+3K+QqB1PyTulEq8Y1WHzeMEL6
+         pXa9Ss9+KYqqqwHV26yfc4+IfwCiyJdN58rdVXs47AnBlA0OvzbpRUeRNfMrEZAfHREX
+         iHracZhwNpCSv98lb2nRoDOto1Ap1JmYBxDFUgHSLtDOny0PTVyFUQExpRMvscmwpTs9
+         nNcCduMTZdCa2bBWu0ylPCSgQ922dqwj08C0elm/S95waBBVbY2rTIEDb5pVp3Q3tWmM
+         ye5A==
+X-Forwarded-Encrypted: i=1; AJvYcCX/5NEPlFjmgS/AQBD3G/MznuGVaK4iToN0HYpl0VXAUBCZQ5VgtQAyUaXlwiI1Arm/W3ZrnAoBhhrE@vger.kernel.org
+X-Gm-Message-State: AOJu0YweBdlMet4cOZEOwS4bK7dp5rxjFenJhCSSfVQ+BbGnKUmwd88h
+	TPG2PtrciXTwZ0fTjlzCgDcDrvVc/cErxnZ3xzg9yGLHHSlWmnv/OVDok7i+wRI=
+X-Gm-Gg: ASbGncu8EdY0I6fGQS8wDVVP9Cb87iNNKnnTo+IDShfpWwkgUSUGBsWMCzSxHtKLrPS
+	pl2eMfJmCufL87Ib4na/Tpx4yTxF37QDcQH5ElZoGYqSdT2BXOSTD4812tptowpsk9A7rBBluXC
+	NaYjiT1tOIiyAnRH9O2YPaKA9hCKALWi3sMPtHeUur9XCcpC3+cM1FDBNZlIrbRJGxCtj6Zjhjt
+	sKiEEkLN73B29TScZQ4vu9FUBzRXOyiDdJZajbwoYwkN3Tsgq950apW+IeSefV54w==
+X-Google-Smtp-Source: AGHT+IHldvMkQufBuQX10YCQFp+ijImIhHav6sI7E20XU6PffBB8+yEkV3TBxa5dVe+iW9flE+V8GA==
+X-Received: by 2002:a05:6a21:3989:b0:1db:e3a2:ea47 with SMTP id adf61e73a8af0-1e5e0461d58mr55130767637.14.1735514919066;
+        Sun, 29 Dec 2024 15:28:39 -0800 (PST)
+Received: from x1 (75-164-218-15.ptld.qwest.net. [75.164.218.15])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad90c133sm18592573b3a.183.2024.12.29.15.28.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Dec 2024 15:28:38 -0800 (PST)
+Date: Sun, 29 Dec 2024 15:28:36 -0800
+From: Drew Fustini <drew@pdp7.com>
+To: soc@kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>, Conor Dooley <conor@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [GIT PULL] RISC-V T-HEAD Devicetrees for v6.14
+Message-ID: <Z3HbJPwZB+siJuAR@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Bluetooth is available on the other Panda board versions, too, so move
-stuff to common and specify the needed clock properly.
+Hi Arnd,
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- .../boot/dts/ti/omap/omap4-panda-common.dtsi  | 30 +++++++++++++++--
- arch/arm/boot/dts/ti/omap/omap4-panda-es.dts  | 32 -------------------
- 2 files changed, 28 insertions(+), 34 deletions(-)
+There is only one thead device tree change for this cycle. I have run
+W=1 dtbs_check, and it has been in linux-next for over 2 weeks.
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi b/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi
-index c860b590142a..c048ab9af053 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi
-@@ -368,9 +368,7 @@ OMAP4_IOPAD(0x130, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c4_sda */
- 	wl12xx_gpio: wl12xx-gpio-pins {
- 		pinctrl-single,pins = <
- 			OMAP4_IOPAD(0x066, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a19.gpio_43 */
--			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a22.gpio_46 */
- 			OMAP4_IOPAD(0x070, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a24.gpio_48 */
--			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a25.gpio_49 */
- 		>;
- 	};
- 
-@@ -393,6 +391,22 @@ button_pins: button-pins {
- 			OMAP4_IOPAD(0x114, PIN_INPUT_PULLUP | MUX_MODE3)	/* gpio_121 */
- 		>;
- 	};
-+
-+	bt_pins: bt-pins {
-+		pinctrl-single,pins = <
-+			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)	  /* BTEN */
-+			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3) /* BTWAKEUP */
-+		>;
-+	};
-+
-+	uart2_pins: uart2-pins {
-+		pinctrl-single,pins = <
-+			OMAP4_IOPAD(0x118, PIN_INPUT_PULLUP | MUX_MODE0)  /* uart2_cts - HCI */
-+			OMAP4_IOPAD(0x11a, PIN_OUTPUT | MUX_MODE0)	  /* uart2_rts */
-+			OMAP4_IOPAD(0x11c, PIN_INPUT_PULLUP | MUX_MODE0)  /* uart2_rx */
-+			OMAP4_IOPAD(0x11e, PIN_OUTPUT | MUX_MODE0)	  /* uart2_tx */
-+		>;
-+	};
- };
- 
- &omap4_pmx_wkup {
-@@ -531,8 +545,20 @@ &twl_usb_comparator {
- };
- 
- &uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2_pins>;
-+
- 	interrupts-extended = <&wakeupgen GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH
- 			       &omap4_pmx_core OMAP4_UART2_RX>;
-+
-+	bluetooth {
-+		compatible = "ti,wl1271-st";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_pins>;
-+		enable-gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>;	/* GPIO_46 */
-+		clocks = <&twl 0>;
-+		clock-names = "ext_clock";
-+	};
- };
- 
- &uart3 {
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts b/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts
-index fe7b156d10ed..a933fe560834 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts
-@@ -49,22 +49,6 @@ button_pins: button-pins {
- 			OMAP4_IOPAD(0x0fc, PIN_INPUT_PULLUP | MUX_MODE3) /* gpio_113 */
- 		>;
- 	};
--
--	bt_pins: bt-pins {
--		pinctrl-single,pins = <
--			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a22.gpio_46 - BTEN */
--			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a25.gpio_49 - BTWAKEUP */
--		>;
--	};
--
--	uart2_pins: uart2-pins {
--		pinctrl-single,pins = <
--			OMAP4_IOPAD(0x118, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart2_cts.uart2_cts - HCI */
--			OMAP4_IOPAD(0x11a, PIN_OUTPUT | MUX_MODE0)		/* uart2_rts.uart2_rts */
--			OMAP4_IOPAD(0x11c, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart2_rx.uart2_rx */
--			OMAP4_IOPAD(0x11e, PIN_OUTPUT | MUX_MODE0)		/* uart2_tx.uart2_tx */
--		>;
--	};
- };
- 
- &led_wkgpio_pins {
-@@ -96,19 +80,3 @@ buttonS2 {
- &gpio1_target {
- 	 ti,no-reset-on-init;
- };
--
--&wl12xx_gpio {
--	pinctrl-single,pins = <
--		OMAP4_IOPAD(0x066, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a19.gpio_43 */
--		OMAP4_IOPAD(0x070, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a24.gpio_48 */
--	>;
--};
--
--&uart2 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&uart2_pins &bt_pins>;
--	bluetooth: tiwi {
--		compatible = "ti,wl1271-st";
--		enable-gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>;	/* GPIO_46 */
--	};
--};
--- 
-2.39.5
+Thanks,
+Drew
 
+The following changes since commit 40384c840ea1944d7c5a392e8975ed088ecf0b37:
+
+  Linux 6.13-rc1 (2024-12-01 14:28:56 -0800)
+
+are available in the Git repository at:
+
+  git@github.com:pdp7/linux.git tags/thead-dt-for-v6.14
+
+for you to fetch changes up to c95c1362e5bcd90c45987828bbef02236d181ffd:
+
+  riscv: dts: thead: Add mailbox node (2024-12-12 20:07:16 -0800)
+
+----------------------------------------------------------------
+thead-dt-for-v6.14: T-HEAD Devicetrees for v6.14
+
+Add mailbox node for the T-Head TH1520 RISC-V SoC. The mailbox bindings
+and driver were already merged in v6.13:
+
+b2cf36e4a2ac ("dt-bindings: mailbox: Add thead,th1520-mailbox bindings")
+5d4d263e1c6b ("mailbox: Introduce support for T-head TH1520 Mailbox driver")
+
+Signed-off-by: Drew Fustini <drew@pdp7.com>
+
+----------------------------------------------------------------
+Michal Wilczynski (1):
+      riscv: dts: thead: Add mailbox node
+
+ arch/riscv/boot/dts/thead/th1520.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
