@@ -1,79 +1,78 @@
-Return-Path: <devicetree+bounces-134581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E109A9FDF87
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 15:54:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16BA59FDF99
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 16:16:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D8FC188236D
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 14:54:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D573E1881C57
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 15:16:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1067F198845;
-	Sun, 29 Dec 2024 14:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BAF2176AC5;
+	Sun, 29 Dec 2024 15:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e6ckRCNd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iJiBdIg/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97919192B65
-	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 14:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89308AD23;
+	Sun, 29 Dec 2024 15:16:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735483923; cv=none; b=ZBiaXD/bEoMSSSxUfn5DyDPnlSZAdy4srE8/ScXU5f0Dr+OCqu1dMTxICYDiDBtUhnvlcM7uT1XnWMOY1MXfNCJD4/1Cn3EPuPBMjK/PoOcHdUgNVHX7GnYrt7wYdRDZ8LfuaBlTWzSIEKRduWceW+Lc776yNaSwB5RWbl4xMhQ=
+	t=1735485395; cv=none; b=onnrJRHW9q/YaG2n01Z9pzmBrVFD/WHAPfdIaQ1+nRcXTGas2S7/L5e31+vTX1V1mOLxZRQZlPTjizHO3xtS+I2b0gFXSCq7hALvnQjz01QUjIg2nnRsAg/2L152L0ssJZo0GNEf96q0xTtYkJ11eEnPJDw873kMHV15H0rrdtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735483923; c=relaxed/simple;
-	bh=NH+R1Gq5a4ptQDjw4VRo6cce3Q3VMA+UUnZJpCGlVLg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M/FlSSMOMewVVSJu6ExYP6PeGbzWlxp/0Ck6wF09CbBVgfGMRmahhC4mqiR+GQQi3JtE3bDiUcHBq/fclz70Yf6Gtz5DgmCGylyg1BrtPxRF3q/9dDplsWSWhG96GlCd7CByjlEocWaicQKpSpGWp+rxkpm1NE7hbLsOfq2FqVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e6ckRCNd; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3862b364538so4804877f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 06:52:01 -0800 (PST)
+	s=arc-20240116; t=1735485395; c=relaxed/simple;
+	bh=8Ryfifp5KD6fwG1ehPT+X5npHFy8EeQOutvzLhRMWLk=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=f7d5JgSypoVscOQD23E+3AIOos+MFwRVFfMiak5gAKKYNVi/liWCF37d/LeYBa4dEleIkAWgNawzYHCaGSaK/uwqSa1NifUyT0pL9iiZRKgVY+/P1oc2vjmO/dSHqZodJy5bOCSGleOyxGMRqkq4qHh7iUr0dE/slQcuasndVYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iJiBdIg/; arc=none smtp.client-ip=209.85.214.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f196.google.com with SMTP id d9443c01a7336-21670dce0a7so6684335ad.1;
+        Sun, 29 Dec 2024 07:16:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735483920; x=1736088720; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1735485394; x=1736090194; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2RkB7UfRiNg6MyNlWMJbO93WwIH7bFs9T4rAheWdhbk=;
-        b=e6ckRCNdSqMFd3uZRSm5JGkr0zPLgH0I5ANLlyX33gNReQr8+2aO58MsnQqN3ioguy
-         5Jio11Ml17/FE2tLS2mODCvwHHgTEM1sNxSVm8WXircvWOo1SPqBjdZJJzSAgndsnQ5+
-         obAI/A1lDWs1HQjtQSW4O3hfXd237r6CfawSO0Yh1kaoYoX29sZPzMR2Y6jjquoRhu+t
-         hxw0k07S3Yx3+hBf/Sll/eybPnwpWF4prOQndr95tw8Aes8KkOfXUoJZjXX3xIHvq+8D
-         18Lv8ii5fbbsL4w7l6UA3tRLb+IcvQglxqzhUmOUdMVIpQ7t5Ib2CbsWaBrSjxZ2mN4T
-         s2LQ==
+        bh=hq78cmiaEPaV4FfrF6EAh1QhQFFCPQzra4GNWV266D0=;
+        b=iJiBdIg/skwD30VLjI0Rcyr8NhJK7Te9F4CFxkmDJgwO1Ce/DJffdlEkEoN5Ts3rJT
+         ZEsM/uwvrCv3DuIhIegJb18WXjf1Y/OcQYlG17jQGIqETLYp9eWYfIfaxpj/9LLA0WLO
+         qj103FlYbbjnOwLqDvNYDKpiSDYU7ff3HnTZamWddWD4z7XdzoMA06uz0mxq2a5atRkN
+         uZ2QDLABetzD8bfSuf13YJpURTXS+7m0s8eVw6ZGIc1Vl997Z0ksaY9N9czCfSs1isKD
+         mLDTHzjaGzS6LkDX2phpxQYaDxZPCh0iZqDi5WYlHa4CXseqwmHkt+L7phr345KCxWpd
+         ANsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735483920; x=1736088720;
+        d=1e100.net; s=20230601; t=1735485394; x=1736090194;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2RkB7UfRiNg6MyNlWMJbO93WwIH7bFs9T4rAheWdhbk=;
-        b=VZ/ZUvatuyizlRGidVhaUBKFPon2vvJbdR5KZhWNhOs5GPsTIRNPj3cOm+zcPTPxF/
-         3viJE/To1RJSaLXuqD+kQUVdvWOJVpV4EsUC0mvS8YMsg9e3V/nIq1V9CvOoXOC4ErNn
-         DyAZG3nS78u4m0FGy7+tFWPdjjfweG04KA1vMoxiolOmEVjgWgQaiovQ7PzlK3DQu8tQ
-         AMCSgtWeVH+kJvP7ad0UU0zFy0NTijSXRO94lUrg/in6Az1H6wnkC3JdOhwMCwp8mf/n
-         ctqHh2q0ieX6kawlVgkBWA57ghfo358gQ5oWeeA/lIwdLOwoJCFBENQfaWokJfKfDFVO
-         yDLA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqaVAdEtIj3f8ExZ6g9NeviCG8eOjjZU863OLAZ/Ih2rMFJVS/h4Bgs22Q3XqaGVHkA1cYG0QqYuZ2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw77VYxtBzQk3bm8PrU0Onw04LSOBwrJRCyy41LsM66+CEbcx4r
-	PogvoUwQs/yQxbnD8dBVSR8PhVYZuYGFBv92GoghN/BtSNCAcMHnige5V8OlONWG31qPt1k3sWm
-	i
-X-Gm-Gg: ASbGncvllr+IzXnFjZNSKQJFMoA6Dne4rnB6yKryeHf0xt4tGGIdOu2xmGBsQwZhEnW
-	wcel7SlOTRQmzdxFRPEhAl2saxKA0zPhqz7H7oM2UY/UAr5Ous9KBMAz6CsONy6bE/cdQ/WPl+4
-	Ee77pgAIHX+y7JOZZYqcFPbfbzaJIEW8qzpNvBVX570uva8xn2spA8qh3KXONZKsIXjOgxh/FZp
-	y7UGwhwKnjBqSbCk6ljJdPkfBfthiEwrVSEXb1qXutvz+bmLR6euRxXwbramO7LepoVLw==
-X-Google-Smtp-Source: AGHT+IFGQdUBCOz+F0Jdt8T/X7wzDgUoFUYLmOZIeAMTzUhMqCz8ekRTaHkUH6qYyBefzRQQ0RDeZQ==
-X-Received: by 2002:a05:6000:704:b0:385:ea40:b46b with SMTP id ffacd0b85a97d-38a229ed094mr26533826f8f.4.1735483919862;
-        Sun, 29 Dec 2024 06:51:59 -0800 (PST)
-Received: from [192.168.0.43] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8332absm27199663f8f.38.2024.12.29.06.51.58
+        bh=hq78cmiaEPaV4FfrF6EAh1QhQFFCPQzra4GNWV266D0=;
+        b=sGtfsthT3//3eqbHI2GCk7H2Rdl2gPIIKCPghuDRsWt057ZZpMew9Kr/fSC/S9z30U
+         HmucWR4vrWOd8gECNAiAJoa7OMHP2zuk9q+eD/rwbmLnYE6AQ//jFmp2vqT3LDFeumL7
+         mbk7vZJt6t1tvUv6AnwXDpKBzUFXOQw9gaT9FMx5oRoDJIBM3j5eigmAlqmaycrIYam3
+         TpU3uF1EeypYXWNAYPZh0LW/Ra5R8ATZsCzRK6LfhJ2zyQkp5t6yZMvYmTGfn1QGo0x/
+         QTXcIK1/Bc/A6KiO2eij4vLKM7Dv4MqO4TVKb12iJQuHhNLVAUq5xBDgVTgnMaa8F+2b
+         uFuA==
+X-Forwarded-Encrypted: i=1; AJvYcCW/Zhu1qwTzHWEWn//Ypfrg5ioK+iV5/TuWFMP6aoxgpHwGAEPWlqPYeZoF3GmphFHqnlT5WzG9Mlj0Pt/D@vger.kernel.org, AJvYcCXN4YarPZ6rRE+fwNc8mNCEC7u4ulUAjZJzyN4eEROM1jAKZDynFEWCX0nYpOvb5pBN6DRpXfrkgxrR@vger.kernel.org, AJvYcCXQVKsl6Qb4TBXU5cP9/6y8+tI3y5M40sv43XKQVNAMza0N4hdGtOTu/gjFj5maTudhpcdEe9RpYRUa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtuL1yJ9tX3MTDbwOMASJbX0bdP4kCFPHrimvHnFuPrQR2ZWAF
+	VEhubAqKMeWto7FGqVGbZNhsZvjHrj5Q1nARBSVh6aH2vxcScYy8
+X-Gm-Gg: ASbGncsni39qRenSwRv5x2bolykO4dR5kpQbDQ6PociRk7MFB0bUrxFg3OLKomyB7AZ
+	7aXKj5prNvKPV2PzWGAsajZUL7biOeaRHI7en0qQosEhLDhXqyske8dstYPDxaiFdJJQbXts803
+	JbAPe60PIw7MlaWzLBRTZ+PlposuSUWqG7/1XFJfmp1KF/ZhfOHeJx69GWlYpbxeSl12B8/yjoO
+	V+OV/JFuuArlxu4isekH9Thg37y/dqgCQOw8GoU
+X-Google-Smtp-Source: AGHT+IFFEwNrJMwRkLT29asUZ9fj0F/Jg8lbFG6p3eIzLyKLwNVq/VPJMBS9ZdTV8E4XHszzqYw5dw==
+X-Received: by 2002:a17:903:2c8:b0:215:a412:4f12 with SMTP id d9443c01a7336-219e6ed00ddmr391630595ad.33.1735485393650;
+        Sun, 29 Dec 2024 07:16:33 -0800 (PST)
+Received: from [127.0.0.1] ([2a0d:2683:c100::bf])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc97432dsm163693425ad.110.2024.12.29.07.16.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Dec 2024 06:51:59 -0800 (PST)
-Message-ID: <5310962f-c0d8-4ada-bb95-b727a3c88b00@linaro.org>
-Date: Sun, 29 Dec 2024 14:51:57 +0000
+        Sun, 29 Dec 2024 07:16:32 -0800 (PST)
+Message-ID: <65709464-8a34-4842-9b06-6365b549ce49@gmail.com>
+Date: Sun, 29 Dec 2024 23:16:24 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,266 +80,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] usb: typec: ucsi: add Huawei Matebook E Go (sc8280xp)
- ucsi driver
-To: Pengyu Luo <mitltlatltl@gmail.com>
-Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- dmitry.baryshkov@linaro.org, gregkh@linuxfoundation.org,
- hdegoede@redhat.com, heikki.krogerus@linux.intel.com,
- ilpo.jarvinen@linux.intel.com, konradybcio@kernel.org, krzk+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-usb@vger.kernel.org, nikita@trvn.ru,
- platform-driver-x86@vger.kernel.org, robh@kernel.org, sre@kernel.org
-References: <c17372ed-baf0-40a7-b267-25f1ff849cf7@linaro.org>
- <20241228143830.613658-1-mitltlatltl@gmail.com>
+Cc: troymitchell988@gmail.com, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: clock: Add bindings for Canaan K230
+ clock controller
+To: Xukai Wang <kingxukai@zohomail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+References: <20241229-b4-k230-clk-v1-0-221a917e80ed@zohomail.com>
+ <20241229-b4-k230-clk-v1-1-221a917e80ed@zohomail.com>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20241228143830.613658-1-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Troy Mitchell <troymitchell988@gmail.com>
+In-Reply-To: <20241229-b4-k230-clk-v1-1-221a917e80ed@zohomail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 28/12/2024 14:38, Pengyu Luo wrote:
-> On Sat, Dec 28, 2024 at 9:06 PM Bryan O'Donoghue <bryan.odonoghue@linaro.org> wrote:
->> On 27/12/2024 17:13, Pengyu Luo wrote:
->>> The Huawei Matebook E Go (sc8280xp) tablet provides implements UCSI
->>> interface in the onboard EC. Add the glue driver to interface the
->>> platform's UCSI implementation.
->>>
->>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
->>> ---
->>>    drivers/usb/typec/ucsi/Kconfig              |   9 +
->>>    drivers/usb/typec/ucsi/Makefile             |   1 +
->>>    drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c | 481 ++++++++++++++++++++
->>>    3 files changed, 491 insertions(+)
->>>    create mode 100644 drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
->>>
->>> diff --git a/drivers/usb/typec/ucsi/Kconfig b/drivers/usb/typec/ucsi/Kconfig
->>> index 680e1b87b..0d0f07488 100644
->>> --- a/drivers/usb/typec/ucsi/Kconfig
->>> +++ b/drivers/usb/typec/ucsi/Kconfig
->>> @@ -78,4 +78,13 @@ config UCSI_LENOVO_YOGA_C630
->>>          To compile the driver as a module, choose M here: the module will be
->>>          called ucsi_yoga_c630.
->>>
->>> +config UCSI_HUAWEI_GAOKUN
->>> +     tristate "UCSI Interface Driver for Huawei Matebook E Go (sc8280xp)"
->>> +     depends on EC_HUAWEI_GAOKUN
->>> +     help
->>> +       This driver enables UCSI support on the Huawei Matebook E Go tablet.
->>> +
->>> +       To compile the driver as a module, choose M here: the module will be
->>> +       called ucsi_huawei_gaokun.
->>> +
->>>    endif
->>> diff --git a/drivers/usb/typec/ucsi/Makefile b/drivers/usb/typec/ucsi/Makefile
->>> index aed41d238..0b400122b 100644
->>> --- a/drivers/usb/typec/ucsi/Makefile
->>> +++ b/drivers/usb/typec/ucsi/Makefile
->>> @@ -22,3 +22,4 @@ obj-$(CONFIG_UCSI_CCG)                      += ucsi_ccg.o
->>>    obj-$(CONFIG_UCSI_STM32G0)          += ucsi_stm32g0.o
->>>    obj-$(CONFIG_UCSI_PMIC_GLINK)               += ucsi_glink.o
->>>    obj-$(CONFIG_UCSI_LENOVO_YOGA_C630) += ucsi_yoga_c630.o
->>> +obj-$(CONFIG_UCSI_HUAWEI_GAOKUN)     += ucsi_huawei_gaokun.o
->>> diff --git a/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
->>> new file mode 100644
->>> index 000000000..84ed0407d
->>> --- /dev/null
->>> +++ b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
->>> @@ -0,0 +1,481 @@
->>> +// SPDX-License-Identifier: GPL-2.0-only
->>> +/*
->>> + * ucsi-huawei-gaokun - A UCSI driver for HUAWEI Matebook E Go (sc8280xp)
->>> + *
->>> + * reference: drivers/usb/typec/ucsi/ucsi_yoga_c630.c
->>> + *            drivers/usb/typec/ucsi/ucsi_glink.c
->>> + *            drivers/soc/qcom/pmic_glink_altmode.c
->>> + *
->>> + * Copyright (C) 2024 Pengyu Luo <mitltlatltl@gmail.com>
->>> + */
->>> +
->>> +#include <linux/auxiliary_bus.h>
->>> +#include <linux/bitops.h>
->>> +#include <linux/completion.h>
->>> +#include <linux/container_of.h>
->>> +#include <linux/delay.h>
->>> +#include <linux/module.h>
->>> +#include <linux/notifier.h>
->>> +#include <linux/of.h>
->>> +#include <linux/string.h>
->>> +#include <linux/workqueue_types.h>
->>> +
->>> +#include <linux/usb/pd_vdo.h>
->>> +#include <drm/bridge/aux-bridge.h
->>
->> Is there a reason you don't have strict include alphanumeric ordering here ?
->>
+On 2024/12/29 21:21, Xukai Wang wrote:
+> This patch adds the Device Tree binding for the clock controller
+> on Canaan k230. The binding defines the new clocks available and
+> the required properties to configure them correctly.
 > 
-> These two is dp/alt mode related, so listing them out. Above of them are
-> general things.
-
-OK. Unless there's an include dependency reason you need to, please just 
-sort the headers alphanumerically in order
-
-#include <globals_first>
-#include <globals_first_alpha>
-
-#include "locals_next"
-#include "locals_next_alpha_also"
-
->>>
->>> +
->>> +#include "ucsi.h"
->>> +#include <linux/platform_data/huawei-gaokun-ec.h>
->>> +
->>> +
->>> +#define EC_EVENT_UCSI        0x21
->>> +#define EC_EVENT_USB 0x22
->>> +
->>> +#define GAOKUN_CCX_MASK              GENMASK(1, 0)
->>> +#define GAOKUN_MUX_MASK              GENMASK(3, 2)
->>> +
->>> +#define GAOKUN_DPAM_MASK     GENMASK(3, 0)
->>> +#define GAOKUN_HPD_STATE_MASK        BIT(4)
->>> +#define GAOKUN_HPD_IRQ_MASK  BIT(5)
->>> +
->>> +#define CCX_TO_ORI(ccx) (++ccx % 3)
->>
->> Why do you increment the value of the enum ?
->> Seems strange.
->>
+> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
+> ---
+>  .../devicetree/bindings/clock/canaan,k230-clk.yaml | 41 ++++++++++++++++++
+>  include/dt-bindings/clock/k230-clk.h               | 49 ++++++++++++++++++++++
+>  2 files changed, 90 insertions(+)
 > 
-> EC's logic, it is just a trick. Qualcomm maps
-> 0 1 2 to normal, reverse, none(no device insert)
-> typec lib maps 1 2 0 to that.
+> diff --git a/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ffd4e0b052455bf3dcedd9355d93764119df3d68
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/canaan,k230-clk.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Canaan Kendryte K230 Clock
+> +
+> +maintainers:
+> +  - Xukai Wang <kingxukai@zohomail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: canaan,k230-clk
+> +
+> +  clocks: 
+> +    const: 1
+`maxItems: 1` instead of `const: 1`
+> +
 
-I'd suggest making the trick much more obvious.
-
-Either with a comment or just mapping 1:1 between EC and Linux' view of 
-this data.
-
-The main reason for that is to make it easier to 
-read/understand/maintain/debug.
-
-
-
->>> +             port->svid = USB_SID_DISPLAYPORT;
->>> +             if (port->ccx == USBC_CCX_REVERSE)
->>> +                     port->mode -= 6;
->>
->> why minus six ?
->> needs a comment.
->>
-> 
-> EC's logic. I don't know why, it is a quirk from Qualcomm or Huawei.
-> I will mention this.
-
-Instead of hard-coding a mapping between the EC's mode and Linux' UCSI 
-enum - just make a define or an inline, ideally something with
-
-switch(port->mode)
-case GOAKUN_MODE_0:
-	val = LINUX_UCSI_MODE_X;
-case GOAKUN_MODE_1:
-	val = LINUX_UCSI_MODE_Y;
-}
-
-That will make the mapping obvious and also ensure both to yourself and 
-to your reviewers that you have accounted for _all_ of the potential 
-mappings and if those mappings don't exist then the default: of your 
-switch statement should make some noise about it
-
-dev_err(dev, "GOKUN UCSI mode %d unmapped\n"); or something like that.
-
-
-> 
->>> +             break;
->>> +     default:
->>> +             break;
->>> +     }
->>> +
->>> +     spin_unlock_irqrestore(&port->lock, flags);
->>> +}
->>> +
->>> +static int gaokun_ucsi_refresh(struct gaokun_ucsi *uec)
->>> +{
->>> +     struct gaokun_ucsi_reg ureg;
->>> +     int ret, idx;
->>> +
->>> +     ret = gaokun_ec_ucsi_get_reg(uec->ec, (u8 *)&ureg);
->>> +     if (ret)
->>> +             return -EIO;
->>> +
->>> +     uec->port_num = ureg.port_num;
->>> +     idx = GET_IDX(ureg.port_updt);
->>> +
->>> +     if (idx >= 0 && idx < ureg.port_num)
->>> +             gaokun_ucsi_port_update(&uec->ports[idx], ureg.port_data);
->>
->> Since you are checking the validity of the index, you should -EINVAL if
->> the index is out of range.
->>
-> 
-> EC / pmic glink encode every port in a bit
-> 0/1/2/4/... => ???/left/right/some port
-> 
-> I remap it to -1/0/1/2, to access specific port exceptions(-1) are not
-> harmful, later in gaokun_ucsi_altmode_notify_ind
-> 
-> 	if (idx < 0)
-> 		gaokun_ec_ucsi_pan_ack(uec->ec, idx);
-> 	else
-> 		gaokun_ucsi_handle_altmode(&uec->ports[idx]);
-> 
-> gaokun_ec_ucsi_pan_ack can handle exceptions.
-> 
-
-gaokun_ucsi_refresh() can return
-
--EIO
--1
- >=0
-
-Where -EIO and -1 both trigger gaokun_ec_ucsi_pan_ack() in 
-gaokun_ucsi_altmode_notify_ind()
-
-So if the index doesn't matter and < 0 => pan_ack() is OK or -EIO is not 
-returning meaningful error.
-
-Either way strongly advise against mixing a negative index as having a 
-valid meaning with actual -E error codes...
-
-As a reviewer doing a fist-pass this looks suspicous and implies more 
-thought/refinement should be done to the flow.
-
-
->>> +
->>> +     ucsi->quirks = UCSI_NO_PARTNER_PDOS | UCSI_DELAY_DEVICE_PDOS;
->>> +
->>> +     ssleep(3); /* EC can't handle UCSI properly in the early stage */
->>
->> Could you not schedule work for + 3 seconds instead of sleeping here -
->> representing the required stall time in some sort of state machine ?
->>
-> 
-> I see, I will check work schedule interface.
-> 
->> 3 seconds is an incredibly long time for a computer to sleep.
->>
-> 
-> This module will be loaded at about 5th second after power up, if not
-> sleep, we will receive something disharmonious, sleeping for 3 seconds is
-> a hack.
-
-Yes it is. You could schedule some work to complete three seconds from 
-here instead of doing this long sleep here.
-
-In fact you are registering a worker here right ?
-
-In which case its pretty trivial to schedule some work on that worker 
-for three seconds hence ..
-
-Please investigate.
-
----
-bod
+-- 
+Troy Mitchell
 
