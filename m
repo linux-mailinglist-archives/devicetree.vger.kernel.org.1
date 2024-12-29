@@ -1,116 +1,126 @@
-Return-Path: <devicetree+bounces-134550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B719FDE94
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 11:28:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62BDC9FDEAA
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 11:51:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 157441881CBD
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 10:28:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1689B161709
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 10:50:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E863713959D;
-	Sun, 29 Dec 2024 10:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E85813AD22;
+	Sun, 29 Dec 2024 10:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NRReA6gA"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="F/q3zeel"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61B27083F;
-	Sun, 29 Dec 2024 10:28:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD278494;
+	Sun, 29 Dec 2024 10:50:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735468130; cv=none; b=PY/YFCm8ug6tqiP2uiS27f++oPlpkR8TK1tYVIcayBAdV0BFqYTI1CTM0kGjqREEehVhMN8muo1puqihtNbj4RpEXvFfXDBLlKsPBCjtWWZashCjV8HeC3d0VUi2anqfEjmg7ipd0XlK3VcYbQvQm1dMC0J4w5Yai0INuOWQuGU=
+	t=1735469456; cv=none; b=oyeWHwfBGsDK15K1xTGx1kG4IId9yFBonebn/kTHumJCWqFBeZFigmK6IY8z3M7mjOQuedMshyeUvL91YHz7TMm/tsx8Yd1IS0tf3wt00xlUplWyucpke4frBSKhfKXCzKlEaiMIAzw0/CMY60sTqh4wuPqC9Udyp4uK/NKKnxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735468130; c=relaxed/simple;
-	bh=ig4iN1Yr9gJWPJqwhCorg9Cn3LvqNba//d1GZVxk2TU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NMYKGbfuTRU85nThZwqLl8V5NlDdVyhNNJD5j/Cir0fFW9DMONadNBj+y0i64UMbwZ1weB0Q1ZOpQueTtDrw+mPzA+mqCgVFxVJlU0YRNNG1xr/8YpqLAgW6raU4yZDgsDUfxHz9+apQ3Wh1MXDgkE4fwKnITeSdrGzDv+sAMsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NRReA6gA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90694C4CED1;
-	Sun, 29 Dec 2024 10:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735468130;
-	bh=ig4iN1Yr9gJWPJqwhCorg9Cn3LvqNba//d1GZVxk2TU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NRReA6gAA8A2Q9nv9sACUKVAbYDprVe5i53s/cPkX6ioODKCFKnGUsuRCpuQAfDaw
-	 uVfCj1/fZA9r8vq+2FakhM+ugIS+G7cyEG1DCTysYa01fp4c6r3C544gCmrELe4xku
-	 /f1COgf+Hgby3zxI2VbSecF16nwEcaHQ9BKonC5qLaYPUc4uiDetr9lLGsVYETpzC4
-	 MnNCy3GiZLWYmRD8UMMF+XA2mKSWhv9gUHpBoyUsSz4SCD61H5UnVJ+qVd1JH0b+Al
-	 32Df9qz/AL3KDt6FWWJAUSH+yVMlyNCNk/S4owAdbkDcqNBVXCgeHkGu1RArpSySu2
-	 seeHmR8btxPcw==
-Date: Sun, 29 Dec 2024 11:28:47 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v7 10/23] dt-bindings: clock: imx8m-clock: add phandle to
- the anatop
-Message-ID: <rua4s52moqfxxv7qozs2ef4os4huyfsb3knhfzdwxl6rjo4noh@atq6ipuwj7xd>
-References: <20241227165719.3902388-1-dario.binacchi@amarulasolutions.com>
- <20241227165719.3902388-11-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1735469456; c=relaxed/simple;
+	bh=q1gEjD3TbD0ubPGJ6ySk4Sa58uaIyggiR94fEg1DvNk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=KQap/xOu1Se3IVGDT00G5jNXataKrRc1YzeRh0RkVF6Tr7/uZyHsma+EU9K897N/P6TLn7a3QHotAb+PxpxrzG6mM0i49F3CUiV8c9/+DBopoqBE6xS6O4/ZSbHE+R5cRyM2yKZlNFwSsUERYog5h3LmDhGOEe3413i4X0I0dhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=F/q3zeel reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=6x6DDz8OXltjHQDY/Nb8O3LQiGK4ytUH+XsVeWN6k7M=; b=F
+	/q3zeels/yRCPMpYd0L8TenzEk7sD6Vblu5Ibux4tuxUHO9aqIIbXK62SZ7UXFpQ
+	UtKXMoDsR4tNc6BEa6nlKMmPgeHPOXE04XMCAD6iQKyw+/o/lHgpDkiNdlUrrb7w
+	FbKIqiCd9+nnT3uoW9AXKEOcjKbPNq+G590TSWi/Bs=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-135 (Coremail) ; Sun, 29 Dec 2024 18:49:38 +0800
+ (CST)
+Date: Sun, 29 Dec 2024 18:49:38 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc: robh@kernel.org, iommu@lists.linux.dev, heiko@sntech.de, 
+	devicetree@vger.kernel.org, joro@8bytes.org, hjc@rock-chips.com, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, vkoul@kernel.org, 
+	detlev.casanova@collabora.com, linux-arm-kernel@lists.infradead.org, 
+	"Andy Yan" <andy.yan@rock-chips.com>, 
+	linux-rockchip@lists.infradead.org, krzk+dt@kernel.org, 
+	cl@rock-chips.com
+Subject: Re:Re: [PATCH v2 5/8] dt-bindings: display: vop2: Add rk3576
+ support
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2024 www.mailtech.cn 163com
+In-Reply-To: <ihvrdnntfuvvycnlhysnm43wylotovvnivu4wxcne3bwc6etpj@n2rq6n77lmma>
+References: <20241228122155.646957-1-andyshrk@163.com>
+ <20241228122155.646957-6-andyshrk@163.com>
+ <ihvrdnntfuvvycnlhysnm43wylotovvnivu4wxcne3bwc6etpj@n2rq6n77lmma>
+X-NTES-SC: AL_Qu2YB/idtkss7iGeYOlS3TJ694VEL57u+a5GusA2ecAsnATi4iQeZGRsL2rN79jltAEHsN6nekZl9Y1BVSkd
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241227165719.3902388-11-dario.binacchi@amarulasolutions.com>
+Message-ID: <4847f6b1.1c60.19412092a7a.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:hygvCgDn76xCKXFnKw9LAA--.48082W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqQTEXmdxJJEE4wADsw
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Fri, Dec 27, 2024 at 05:56:13PM +0100, Dario Binacchi wrote:
-> Adding the phandle to the anatop node will break the ABI but will allow
-> for a better description of the clock generation hardware, making the
-> dependency of CCM on anatop explicit. Indeed, the CCM receives the PLLs
-> generated by anatop as inputs, which, together with the oscillators,
-> are used to generate the clocks for the on-chip peripherals.
-
-I don't get this. If this device (CCM?) receives PLLs, then these are
-clock inputs, not a phandle.
-
-> 
-> By doing this, it will also be possible to generalize the CCM driver
-> code, which will no longer require the platform's compatible string to
-> retrieve the anatop device node.
-> 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> 
-> ---
-> 
-> Changes in v7:
-> - New
-> 
->  .../devicetree/bindings/clock/imx8m-clock.yaml         | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> index c643d4a81478..b23e639e6389 100644
-> --- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> @@ -43,12 +43,20 @@ properties:
->        ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-clock.h
->        for the full list of i.MX8M clock IDs.
->  
-> +  fsl,anatop:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      The phandle to the anatop module that outputs the PLLs, which,
-> +      along with the oscillators, are used to generate the clocks for
-> +      the on-chip peripherals.
-
-Explain how this is used by this device. If the explanation is "PLLs",
-then it is wrong: PLLs are clock inputs.
-
-Best regards,
-Krzysztof
-
+CgpIaSBLcnp5c3p0b2YsCgpBdCAyMDI0LTEyLTI5IDE4OjEzOjM5LCAiS3J6eXN6dG9mIEtvemxv
+d3NraSIgPGtyemtAa2VybmVsLm9yZz4gd3JvdGU6Cj5PbiBTYXQsIERlYyAyOCwgMjAyNCBhdCAw
+ODoyMTo0OFBNICswODAwLCBBbmR5IFlhbiB3cm90ZToKPj4gRnJvbTogQW5keSBZYW4gPGFuZHku
+eWFuQHJvY2stY2hpcHMuY29tPgo+PiAKPj4gQWRkIHZvcCBmb3VuZCBvbiByazM1NzYsIHRoZSBt
+YWluIGRpZmZlcmVuY2UgYmV0d2VlbiByazM1NzYgYW5kIHRoZQo+PiBwcmV2aW91cyB2b3AgaXMg
+dGhhdCBlYWNoIFZQIGhhcyBpdHMgb3duIGludGVycnVwdCBsaW5lLgo+PiAKPj4gU2lnbmVkLW9m
+Zi1ieTogQW5keSBZYW4gPGFuZHkueWFuQHJvY2stY2hpcHMuY29tPgo+PiAKPj4gLS0tCj4+IAo+
+PiBDaGFuZ2VzIGluIHYyOgo+PiAtIGRlc2NyaWJlIGNvbnN0cmFpbnQgU09DIGJ5IFNPQywgYXMg
+aW50ZXJydXB0cyBvZiByazM1NzYgaXMgdmVyeQo+PiAgIGRpZmZlcmVudCBmcm9tIG90aGVycwo+
+PiAtIERyb3AgS3J6eXN6dG9mJ3MgUmV2aWV3ZWQtYnksIGFzIHRoaXMgdmVyc2lvbiBjaGFuZ2Vk
+IGEgbG90Lgo+PiAKPj4gQ2hhbmdlcyBpbiB2MToKPj4gLSBvcmRlcmVkIGJ5IHNvYyBuYW1lCj4+
+IC0gQWRkIGRlc2NyaXB0aW9uIGZvciBuZXdseSBhZGRlZCBpbnRlcnJ1cHQKPj4gCj4+ICAuLi4v
+ZGlzcGxheS9yb2NrY2hpcC9yb2NrY2hpcC12b3AyLnlhbWwgICAgICAgfCA3MCArKysrKysrKysr
+KysrKystLS0tCj4+ICAxIGZpbGUgY2hhbmdlZCwgNTYgaW5zZXJ0aW9ucygrKSwgMTQgZGVsZXRp
+b25zKC0pCj4+IAo+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL2Rpc3BsYXkvcm9ja2NoaXAvcm9ja2NoaXAtdm9wMi55YW1sIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvcm9ja2NoaXAvcm9ja2NoaXAtdm9wMi55YW1sCj4+
+IGluZGV4IDI1MzE3MjZhZjMwNi4uZjI4Y2VhNGE2ZDgyIDEwMDY0NAo+PiAtLS0gYS9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9yb2NrY2hpcC9yb2NrY2hpcC12b3Ay
+LnlhbWwKPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkv
+cm9ja2NoaXAvcm9ja2NoaXAtdm9wMi55YW1sCj4+IEBAIC0yMCw2ICsyMCw3IEBAIHByb3BlcnRp
+ZXM6Cj4+ICAgICAgZW51bToKPj4gICAgICAgIC0gcm9ja2NoaXAscmszNTY2LXZvcAo+PiAgICAg
+ICAgLSByb2NrY2hpcCxyazM1Njgtdm9wCj4+ICsgICAgICAtIHJvY2tjaGlwLHJrMzU3Ni12b3AK
+Pj4gICAgICAgIC0gcm9ja2NoaXAscmszNTg4LXZvcAo+PiAgCj4+ICAgIHJlZzoKPj4gQEAgLTM3
+LDEwICszOCwyMiBAQCBwcm9wZXJ0aWVzOgo+PiAgICAgICAgLSBjb25zdDogZ2FtbWEtbHV0Cj4+
+ICAKPj4gICAgaW50ZXJydXB0czoKPj4gLSAgICBtYXhJdGVtczogMQo+PiAtICAgIGRlc2NyaXB0
+aW9uOgo+PiAtICAgICAgVGhlIFZPUCBpbnRlcnJ1cHQgaXMgc2hhcmVkIGJ5IHNldmVyYWwgaW50
+ZXJydXB0IHNvdXJjZXMsIHN1Y2ggYXMKPj4gLSAgICAgIGZyYW1lIHN0YXJ0IChWU1lOQyksIGxp
+bmUgZmxhZyBhbmQgb3RoZXIgc3RhdHVzIGludGVycnVwdHMuCj4+ICsgICAgbWluSXRlbXM6IDEK
+Pj4gKyAgICBtYXhJdGVtczogNAo+PiArICAgIGl0ZW1zOgo+PiArICAgICAgLSBkZXNjcmlwdGlv
+bjoKPgo+VGhhdCdzIGNvbnRyYWRpY3RvcnkuIG1pbi9tYXggc2F5IDEtNCwgYnV0IGhlcmUgeW91
+IGxpc3QgdHdvIGludGVycnVwdHMuCgpUaGVyZSBhcmUgNCBpbnRlcnJ1cHRzIG9uIHJrMzU3Niwg
+YW5kIHRoZSBvdGhlciBTT0Mgb25seSBoYXZlIG9uZS4KSSBhbSBzb3JyeSB0aGF0IEkgYW0gbm90
+IGZhbWlsaWFyIHdpdGggdGhpcyBzY2hlbWEgbGFuZ3VhZ2U7IEkgaGF2ZSByZWFkIG1hbnkKb3Ro
+ZXIgWUFNTCBiaW5kaW5ncyB0aGVzZSBkYXlzIGFuZCB0cnkgdG8gd3JpdGUgaXQgY29ycmVjdGx5
+LgoKTWF5YmUgSSBzaG91bGQgbm90IGxpc3QgdGhlIGludGVycnVwdHMtbmFtZXMgaGVyZSh0aGVu
+IGxpc3QgdGhlIGludGVycnVwdC1uYW1lIGJ5IHNvYyBhdCBhbGxPZjogIHBhcnQpLAogbGlrZSB0
+aGUgY2xvY2tzIGhhbmRsZXMgaW4gc2Ftc3VuZyx1c2IzLWRyZC1waHkueWFtbCAgPwoKPgo+PiAr
+ICAgICAgICAgIHZvcCBzeXN0ZW0gaW50ZXJydXB0LCBzdWNoIGFzIGJ1cyBlcnJvciwgYW5kIHZz
+eW5jIGZvciB2b3AgdmVyc2lvbiB1bmRlcgo+PiArICAgICAgICAgIHJrMzU3Ni4KPj4gKyAgICAg
+IC0gZGVzY3JpcHRpb246Cj4+ICsgICAgICAgICAgaW5kZXBlbmRlbnQgaW50ZXJydXB0cyBmb3Ig
+ZWFjaCB2aWRlbyBwb3J0LCBzdWNoIGFzIHZzeW5jIGFuZCBvdGhlciB2aWRlbwo+PiArICAgICAg
+ICAgIHBvcnQgcmVsYXRlZCBlcnJvciBpbnRlcnJ1cHRzLgo+PiArCj4+ICsgIGludGVycnVwdC1u
+YW1lczoKPj4gKyAgICBpdGVtczoKPj4gKyAgICAgIC0gY29uc3Q6IHZvcC1zeXMKPj4gKyAgICAg
+IC0gY29uc3Q6IHZvcC12cDAKPj4gKyAgICAgIC0gY29uc3Q6IHZvcC12cDEKPj4gKyAgICAgIC0g
+Y29uc3Q6IHZvcC12cDIKPgo+QW5kIHRoaXMgc2F5cyBleGFjdGx5IDQuCj4KPkJlc3QgcmVnYXJk
+cywKPktyenlzenRvZgo+Cj4KPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj5MaW51eC1yb2NrY2hpcCBtYWlsaW5nIGxpc3QKPkxpbnV4LXJvY2tjaGlwQGxp
+c3RzLmluZnJhZGVhZC5vcmcKPmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vbGludXgtcm9ja2NoaXAK
 
