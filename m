@@ -1,97 +1,105 @@
-Return-Path: <devicetree+bounces-134604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24AF39FE046
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 20:07:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE689FE049
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 20:13:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 351C0160F06
-	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 19:07:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C99B18819AD
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2024 19:13:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A25197A8F;
-	Sun, 29 Dec 2024 19:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C15197A8F;
+	Sun, 29 Dec 2024 19:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZQIifcAk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VN+WvzQj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E74208AD
-	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 19:07:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554DF1C6BE
+	for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 19:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735499225; cv=none; b=qFrqCgIKt5utERJ4+InLtYuiUD/GBBrLHcDo0O1yX6n6yRDxzoZ1CIiRQeupd3IyxCsqgZ5VcThjjKUrxac4oZzwbwa5vdedsMqprZeG22BCLUQ2dCBFt+aJ72y5XDb1CA0UDJdvRtV9Q3zofmPCWRryziLT9f/bV0U9pj1S7MU=
+	t=1735499593; cv=none; b=YL6kxNPNLAzqVNEP6Q4ZG8mWxW7ZJm6HM3k1+S/NkO+Car1yJG8BjMT/5jCWVxaHqhskt3PM8uEzCYkZlsfguRhfuxABap7UJzhzDzqDqiYgQnUyxi52W19st8iYb4XpseoqInYakJjjIWTQVnio2BLWvVZ4OD1LYMLihephSqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735499225; c=relaxed/simple;
-	bh=g6inF7f44On/YZUVFYeOmYHex6qxOXPpddZ32JxTI6g=;
+	s=arc-20240116; t=1735499593; c=relaxed/simple;
+	bh=XSYlkdXTDhUZMNeGWRwLKX8uqdyB3KZMifVtg9ZbK18=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TPI8CAkbbojv2QNSmsD/9TNuLyOQik9duhlqn4Rs2QLL8uIWKHB+VzlelPo9Bx5dj7tdru8i1smE+A/9VCGv+4Bp6b/f9NX66FJY0XP+UwgHXCFjNiaK2M52WOg/dQz+gzqT6C658G57t94hkjiWEkUrDBsmKpiNHU6BDeySjKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZQIifcAk; arc=none smtp.client-ip=209.85.128.54
+	 To:Cc:Content-Type; b=FEC9H7/I/IJPuVuSDbPdyjnDl2bBdUb5CP2mJMpHqzf2zj5QObMxsD1QXxw48b/G7pSiKFtye9Z5cPby4g0oBne/O2gVnvShSLbvd67F+pxVVphEbFXIQrtAlqXOkBvngQyAlkj/ertiI8UzymJeq9Yiv5Xlz/KYgp8v/VBMNSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VN+WvzQj; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43634b570c1so62004265e9.0
-        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 11:07:03 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-436341f575fso90738685e9.1
+        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 11:13:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735499222; x=1736104022; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=g6inF7f44On/YZUVFYeOmYHex6qxOXPpddZ32JxTI6g=;
-        b=ZQIifcAkdzrjcq30kIBspFeHIaa/gs6MPem+FQ65Dnv2Qu79wGgNOP/b/VT3mD2o6b
-         uWqgXWkA/xeKe8DOvhhFUQ2GdZtG+9y/Rj1NQZYVl7aWkBpLXfotRNyuI6nVSwLJWjGY
-         XyPBWB4V+WWQeEOxABkdmfjpfSzbi/2BYQq5UnI1niH6c113QTGud/rWN3/pvfcKziLU
-         LzDw6e5tdo9cbsmZvV8m11f37VcHagvICnxWrTE5lPfjsi17nuv4YeDNeVpZVsaqWPIo
-         SR3plqA2a/WpMUcO058FNCYI3DxCMmMWCIfKz9qHSdjvCioXI+2PTnDyg5/gqh9ANMY1
-         Kq8Q==
+        d=gmail.com; s=20230601; t=1735499591; x=1736104391; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JB6RWy27UAdhtIGPVvajCMjk6utO9+OJ6w7pMgBIS2Q=;
+        b=VN+WvzQjXhP1YaZFz5hsRficrQm8R2EHyufjbNN1Ed0XwCNRj/zX7bJY65bx45bl3l
+         DUhbAFQlLR0UcaZyKvlrufrjPa/xlaKRC9U2OqF7+p0WdSCZVgmjIersiKjfmSDl/9w9
+         MYBQJFN5mBaUkBVuG7DfjgsiJlCBBflNcsSrwYuzGNq+txmDuopt75MMkosZS5SjD4BV
+         0x/oSRaBK30jaI1K/J9TZzblRb5cloxPh6/mn2Xnc3xhsJAFIwWB6Ul6RbHEwQlg9vVW
+         na5aN2EPsnU5s5SwxkuFTUFcGYgclNVakbmiPGbtY78/ZlEXsDuLeKPLzH+qShawxPq4
+         FBvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735499222; x=1736104022;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=g6inF7f44On/YZUVFYeOmYHex6qxOXPpddZ32JxTI6g=;
-        b=ORNY5ud5+VYYkLCCuNgr6XLmAAfoBwpdTejoRzQVkN8tuM7mmCsDnESO0uU7M0qOqY
-         TnLdH9txBHXZiv1SVgATgyDHLHdUKN1fFH59CxQc34CFLMMuwAheeZKLPR+Uz0IgwYG1
-         M3fd1CfMq77VeD62eUJxziHo39wH89P9/5lTEDb/AlUkrJ8DdQDgA9dOHh8nSy+gixUu
-         gDre06Ynntn5rcO8T/RC00Zngw7UPmB1Y3re3AjImCudjReNQYBfFErTptuVCdsOofVl
-         UIRY3UrUqwZUggCwdGmkYrfVuqcYZHEmJPKSDkTusBXscboJQ8opit7kmlLudQSsNKwX
-         k2Ng==
-X-Forwarded-Encrypted: i=1; AJvYcCU1JdX8Epm8smkz7yRXov1QUtwLrCYR5Txmxn3lSrPY5SZ0DoDpAxC35FjQA73GiBkTqvvpN8zLT+qJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4kcJKJyAiEIzNBD2PgpDtEMwV/9tBj9DWuzn8cn9Gsbw9fK3t
-	qYzixWytnErDjsU2DqRywtNidk0CFPUByJI4e/nebNRsB8z0g8eZiHB9AeUK4bKZICmpMvURbPh
-	FHZ4OOx3g1t18f0u4YWL6qw78HH11aDfj8Rg=
-X-Gm-Gg: ASbGncuy7MA4BdFDlB7n80dgtYIm0/4lIeWA5boZdp1yYqwSEA+eCf5IAyFYgxDWKI4
-	RSfY36gaPDW//DNPXSufz4oYuByEDzM/1Guyw38O33gYV9kaq7/GuPAq3kYgJSslK8czP+g==
-X-Google-Smtp-Source: AGHT+IFoaSVE4xOPuKcw8tvGDALo/AfZU6mL7LQ8VG4tPxNBzjVjMKo4B3pHiiIS8Yv9lpRKvu4j2gPDjF3ecFYmaDI=
-X-Received: by 2002:a05:600c:3b24:b0:436:5165:f206 with SMTP id
- 5b1f17b1804b1-43668b78debmr303253755e9.31.1735499221513; Sun, 29 Dec 2024
- 11:07:01 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735499591; x=1736104391;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JB6RWy27UAdhtIGPVvajCMjk6utO9+OJ6w7pMgBIS2Q=;
+        b=mddRjQmt9M2ywmAqqnm31SBvzRJZxgZnqXN0F6kvOHF8cw7jj6ej0aGfMaAty03gHo
+         O8FumQJHy0J50uZFgB5iHYHUHIIOLVtVXiPAaorqhUpanIyQ0dcZ+MIS39pqgYrYVm2F
+         gWl3pmP7OrN7NgDeAkfubFXeJiVGCfqt6/Jiad+e0DKwm9krUdwYsPjMsWvKcv4NTgMI
+         ooHQiT5e/8XomMp8qKDNEyud78oSKYy0OccuQLGCJ40y82QAmMkoWFmhIsnvjOFOR1hu
+         wceGwCguavBnHk2QaqefhrpIu6//bUkYn+Ur1lXnrXayambrbejpK5wldfJRGPHHkz7Y
+         li7A==
+X-Forwarded-Encrypted: i=1; AJvYcCXgInaWSZmculrloO1vk+gFVxxXrUoeCOP9k7AxTEfP4yo/KtOSiDiLHMF6DIS6FdZnT3SFJ+u0jQrM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRqv0jmwqBECCmKuysUIt5fsidpLXKr4ayLXD3lCDRIshPQ86R
+	V61XsPUwo8SqRd6YwOss4saKwCMXu2G3nZrA0QX8YZChOS8BMzJ10P7Pk9dE5w+ez0LNcW+UyJ8
+	ntC+SLarAcw/RYtdry+15ImZvaC8PCzE8rc4=
+X-Gm-Gg: ASbGnctOOdxVO3R0sQdhFY8J5LrjETw/i5wKh6eIwZ7aYjIplsJOO/QF+PhkVsrK8B/
+	IAd0OXlhZh+4+9I/HV2SKZhLeIEHP0oiYFAfWA2j3/+OJzoYJPY1Tbv7Vg7fAsRVDF+oYNQ==
+X-Google-Smtp-Source: AGHT+IFyd5Msx632w46tfWX0hlTHeVsnNhwuiCp4vm2FWrZmduOH4ED55+NPC4x26rTlShL/wyyhKorVA+5b15950H4=
+X-Received: by 2002:a05:6000:1846:b0:385:e88a:7037 with SMTP id
+ ffacd0b85a97d-38a221e27afmr28707300f8f.6.1735499590563; Sun, 29 Dec 2024
+ 11:13:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241229184256.1870-2-honyuenkwun@gmail.com> <20241229184256.1870-10-honyuenkwun@gmail.com>
-In-Reply-To: <20241229184256.1870-10-honyuenkwun@gmail.com>
+References: <20241229184256.1870-2-honyuenkwun@gmail.com> <20241229184256.1870-11-honyuenkwun@gmail.com>
+In-Reply-To: <20241229184256.1870-11-honyuenkwun@gmail.com>
 From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Sun, 29 Dec 2024 13:06:50 -0600
-Message-ID: <CALWfF7K0x18sTdQ+Lvyo1-=FiZvRy4jyGgcO-FoJeFWCxKh3HA@mail.gmail.com>
-Subject: Re: [RFC 5/7] arm64: dts: rockchip: Add Orange Pi 5 Ultra board
+Date: Sun, 29 Dec 2024 13:12:59 -0600
+Message-ID: <CALWfF7JEzMd0YgOKD85z4YiuKHUoNT4OzyRVXTDO2o7HTPWF3g@mail.gmail.com>
+Subject: Re: [PATCH 6/7] arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Max
 To: Heiko Stuebner <heiko@sntech.de>
 Cc: Ondrej Jirman <megi@xff.cz>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The 5 Ultra is an RFC because the board schematics have not been
-published yet [1].
-So I'm basing the differences so far from the marketing image [2] and
-the vendor kernel DTS [3]
+On Sun, Dec 29, 2024 at 12:45=E2=80=AFPM Jimmy Hon <honyuenkwun@gmail.com> =
+wrote:
+>
+> Enable the second HDMI output port on the Orange Pi 5 Max
+>
+> Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
+> ---
+>  .../dts/rockchip/rk3588-orangepi-5-max.dts    | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
 
-This will at least give an example of how the DTS hierarchy is structured.
+This is based on the HDMI1 enablement [1]. I tested using Cristian's branch=
+ [2].
 
-[1] http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-5-Ultra.html
-[2] http://www.orangepi.org/img/pi5-ultra/11vs12.png
-[3] https://github.com/orangepi-xunlong/linux-orangepi/blob/orange-pi-6.1-rk35xx/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
+[1] https://lore.kernel.org/linux-rockchip/20241211-rk3588-hdmi1-v2-0-02cdc=
+a22ff68@collabora.com/
+[2] https://gitlab.collabora.com/cristicc/linux-next/-/commits/rk3588-hdmi1
 
