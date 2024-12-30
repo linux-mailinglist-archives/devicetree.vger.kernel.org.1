@@ -1,172 +1,161 @@
-Return-Path: <devicetree+bounces-134646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483C09FE248
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 04:33:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C08F9FE24B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 04:46:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED38316059A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 03:33:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 696FC160ECE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 03:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA66A1442F4;
-	Mon, 30 Dec 2024 03:33:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B11E142624;
+	Mon, 30 Dec 2024 03:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eY9Wy6/a"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="s/9mem8u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7F42F50;
-	Mon, 30 Dec 2024 03:33:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2621210E4;
+	Mon, 30 Dec 2024 03:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735529582; cv=none; b=DEmqG6xtBqp1VDQtaIYVp7wx7sjTirOLwAqjgVddQ2QPc0uiGdjoWrzPtrqOIJGTqcXiTvKwIOQH94O6Vo/cvXOPFjHhhkOfazo9/xgrXXUcFPRAAg9lcowXwUhg/SMELDOS+0pO//BI5ZIRKQftDLiJriVem75hk1FK3uYiA4w=
+	t=1735530401; cv=none; b=oPNV6TEinZfuF7UhvtpeD8hMW4squPBGWasekVbb4QJFZNlxPSH1G+nGZAi7zMgmwOxud7YfKJbOjkgi4I5wMVV1KrDlCNCw/jYwTjO9eUlvWleN8x1qo/JK8EzA7lmVIlvvHJsTwM1f6z45B1nq4prvWlt7jA9JIQc16fv1DIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735529582; c=relaxed/simple;
-	bh=KIt0HAy42z71/3lgpLJEWSNSl+1GFjE9znSs37mBt7s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FNNDfvMre1c0CqLgKrZCs03Vcoacjfc0fqNmrJQX+j3C1FruG9xlbF5pBPJGLxSQ5fE/IuTVUqsBnt9Hb6psRy79Cap97iJfOl79GYNBgZszZRBlGp0KlPpjTh2+MsqqdUbbU18hfivksTQTjDZSdWnoAPte2cuVoKYDIm+ayyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eY9Wy6/a; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BTNxdTa002885;
-	Mon, 30 Dec 2024 03:32:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JDMeTX4VHUuzUjH0TDsesXYCUdVso4afO9XNi4BhHb0=; b=eY9Wy6/aRqH9ya1m
-	uXyRU8cYTMebz6Mm9rPm/0lpiBIp+Z2M8qNbBlUN6lQ+S10MUGFkMm8BGPag1QNQ
-	dfuHt+FlYOevL9uOyBfzrM6j57o1Am6neSw66m/pdnw3Q3Wc8SD+DJ+FSGve/Urv
-	SYeBwOQtUfizshJlCIe6vYj1hDDIWKCyz0vlk1SB2Ey46t1tSsBJwQN8eyKze9hK
-	5u8diKiXbSxQmYDk+ZeBMBFTyLiKpx8xh/d4SEmSpKWnucVj/YQakq1FxAtSLqd5
-	+WcbvuA1DOYNOgaC77qwAYxPjjoeJMvRz9t5Z0xFmg0aOdHC7iLKJZ6Te8qEaGdH
-	knwNHQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43t71e2c06-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 03:32:46 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BU3WkAk007345
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 03:32:46 GMT
-Received: from [10.64.16.151] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Dec
- 2024 19:32:39 -0800
-Message-ID: <11443d91-6341-456a-ac31-c02122f1e4c7@quicinc.com>
-Date: Mon, 30 Dec 2024 11:32:37 +0800
+	s=arc-20240116; t=1735530401; c=relaxed/simple;
+	bh=TiDkg6AiYPkdZWrAmzK+VU8EjtgTH1UQrBNXlOjfIXY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Sa69I1CiwK3Ighpq8hEHpP/cPUdihW17SQB1KbDFiJLGfRSR/Mn2N2XXH+DGRP0WpNAWk8etB0ErH06FLlYOP5vFGjMyFWYCHaNqaJrH9Jy+hb8ci9wiX749sBc0QN1MtcOCj56ICjn1RTgpWvkPjqDd4Gt6ROI9Uqc6MKjqp5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=s/9mem8u; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: a67ee6a4c66011ef99858b75a2457dd9-20241230
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=qsNIN8cQf/8LrBXZhXmWKQYMiuKK9ftCpSHglr/VApQ=;
+	b=s/9mem8us8DYNxC6tIle+W0hzqYLMNMf/fLwEDlq1Wvcj3iJRRdkLuHOy+zapK/cz7feXdt0OJRK4+e9nLbzsvxnmjjOKqsHYu8A9J3bwg6PrTGGfJYOrF9/rjML+BIG46mQkZ/7x/6/j3uLdPmTvptbgu9ftPGy+eJNvrVU70s=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:f8e4f335-ccf1-4af7-9243-f59b45e58ac2,IP:0,U
+	RL:0,TC:0,Content:100,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:100
+X-CID-META: VersionHash:60aa074,CLOUDID:ebf16125-8650-4337-bf57-045b64170f0c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|801,TC:nil,Content:3|50,EDM:-3,I
+	P:nil,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,A
+	V:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: a67ee6a4c66011ef99858b75a2457dd9-20241230
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
+	(envelope-from <karl.li@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1554501497; Mon, 30 Dec 2024 11:46:28 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 30 Dec 2024 11:46:26 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 30 Dec 2024 11:46:26 +0800
+From: Karl.Li <karl.li@mediatek.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Karl Li <Karl.Li@mediatek.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	Chungying Lu <chungying.lu@mediatek.com>, Chien-Chih Tseng
+	<Chien-Chih.Tseng@mediatek.com>, Andy Teng <Andy.Teng@mediatek.com>, Chen-Yu
+ Tsai <wenst@chromium.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Karl Li
+	<karl.li@mediatek.com>
+Subject: [PATCH v2 0/3] Add MediaTek APU Mailbox Support For MT8196
+Date: Mon, 30 Dec 2024 11:43:34 +0800
+Message-ID: <20241230034446.1195728-1-karl.li@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 9/9] arm64: dts: qcom: Add display support for QCS615
- RIDE board
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Krishna
- Manikandan" <quic_mkrishn@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Liu Li
-	<quic_lliu6@quicinc.com>,
-        Xiangxu Yin <quic_xiangxuy@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241210-add-display-support-for-qcs615-platform-v4-0-2d875a67602d@quicinc.com>
- <20241210-add-display-support-for-qcs615-platform-v4-9-2d875a67602d@quicinc.com>
- <cfdyvcxdkmf4sv5f75koflayyx74wd3tuscdl7byp5peaag5ty@yhr3275jhftn>
- <92b6335e-a303-49d3-9b77-f951663fc10c@quicinc.com>
- <CAA8EJpqyM-r3jvY7sTpG-KKRHP9K7c3q0xfoLb_f0th7vunPYw@mail.gmail.com>
- <baab6fc5-755a-4675-a42d-ba7ba7facf0c@quicinc.com>
- <bwnsxcimgl7oqnzhrxurn3gs2ea3r6n4o5fulyhpooqnzbjllb@t7nljbwf3t3n>
-Content-Language: en-US
-From: fange zhang <quic_fangez@quicinc.com>
-In-Reply-To: <bwnsxcimgl7oqnzhrxurn3gs2ea3r6n4o5fulyhpooqnzbjllb@t7nljbwf3t3n>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: YGBXAi8ozgiBrlagMYxak2wF2zeg-YHS
-X-Proofpoint-GUID: YGBXAi8ozgiBrlagMYxak2wF2zeg-YHS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 adultscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0
- suspectscore=0 malwarescore=0 mlxscore=0 mlxlogscore=687 impostorscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412300027
+Content-Type: text/plain
 
+From: Karl Li <karl.li@mediatek.com>
 
+Based on tag: next-20241220, linux-next/master
 
-On 2024/12/18 19:44, Dmitry Baryshkov wrote:
-> On Wed, Dec 18, 2024 at 11:18:01AM +0800, fange zhang wrote:
->>
->>
->> On 2024/12/13 18:19, Dmitry Baryshkov wrote:
->>> On Fri, 13 Dec 2024 at 11:21, fange zhang <quic_fangez@quicinc.com> wrote:
->>>>
->>>>
->>>>
->>>> On 2024/12/10 19:02, Dmitry Baryshkov wrote:
->>>>> On Tue, Dec 10, 2024 at 02:54:00PM +0800, Fange Zhang wrote:
-> 
->>>>>
->>>>>> +            i2c@0 {
->>>>>> +                    reg = <0>;
->>>>>> +                    #address-cells = <1>;
->>>>>> +                    #size-cells = <0>;
->>>>>> +
->>>>>> +                    anx7625@58 {
->>>>>> +                            compatible = "analogix,anx7625";
->>>>>> +                            reg = <0x58>;
->>>>>> +                            interrupt-parent = <&ioexp>;
->>>>>> +                            interrupts = <0 0>;
->>>> will change it to interrupts-extended in next patch
->>>> -               interrupt-parent = <&ioexp>;
->>>> -               interrupts = <0 0>;
->>>> +               interrupts-extended = <&ioexp 0 IRQ_TYPE_NONE>;
->>>
->>> Yes, much better. BTW: are you sure that it's really IRQ_TYPE_NONE?
->> We extensively tested FALLING and BOTH type, and they all work. However, I
->> believe it’s better to use the default type, which is the same as the
->> downstream approach. This way, it will be more stable.
-> 
-> Following downstream is a lame reason. Downstream kernels are frequently
-> wrong in many ways. So please check the actual documentation for ANX7625
-> and specify correct interrupt type.
-after checked ANX7625 and semtech,sx1509q documentation,
-will do these change:
-1.change NONE to FALLING for ioexp
-- interrupts-extended = <&tlmm 58 IRQ_TYPE_NONE>;
-+ interrupts-extended = <&tlmm 58 IRQ_TYPE_EDGE_FALLING>;
-2.remove interrupts-extended from anx7625@58
+Hello,
 
+This patch series introduces support for the MediaTek APU (AI Processing Unit) mailbox, a crucial component for facilitating communication between the APU and other system processors within MediaTek platforms. The APU subsystem relies on a message-passing mechanism built atop the mailbox infrastructure, necessitating enhancements to the existing mailbox framework to accommodate the APU's communication requirements.
 
-> 
+The series begins by adding the necessary device tree bindings for the APU mailbox, followed by an enhancement to the mailbox framework allowing for bottom-half processing of received data. This is particularly important for the APU's operation, as it relies on a combination of mailbox messages and shared memory for data exchange. Finally, we introduce the MediaTek APU mailbox driver itself, which implements the communication protocol and exposes additional hardware features for broader system integration.
+
+Patch Summary:
+1. dt-bindings: mailbox: mediatek: Add apu-mailbox document
+   - Introduces the device tree bindings necessary for describing the APU mailbox in device tree sources, enabling the kernel to correctly configure and utilize this component.
+
+2. mailbox: add support for bottom half received data
+   - Enhances the mailbox framework to support sleepable contexts in the processing of received messages. This is critical for APU communication, where message handling may require operations that cannot be performed in atomic contexts.
+
+3. mailbox: mediatek: Add mtk-apu-mailbox driver
+   - Adds the driver for the MediaTek APU mailbox, facilitating communication with the APU microprocessor and providing interfaces for other system components to interact with the APU through spare registers.
+
+This work is a step towards fully integrating MediaTek's APU capabilities with the Linux kernel, enhancing support for AI features on MediaTek platforms.
+
+Please review and provide feedback.
+
+Best regards
+
+---
+
+Changes in v2
+- [1/3]
+	- Add APU description in commit message and dt-bindings description.
+	- Remove mt8188 in dt-bindings to make this patch focus on mt8196.
+	- Drop "apu_mailbox" label since no one reference to it.
+	- Modify the rule of compatible property.
+	- Add cells number to resolve dt_binding_check error.
+- [2/3]
+	- Add more description in commit message to describe why we need sleepable callback function.
+- [3/3]
+	- Use regmap provide spare register operation.
+	- Remove global variable `g_mbox`.
+	- Add `MTK_APU_MBOX` prefix for each macro define.
+	- Only keep mt8196 compatible to make this patch focus on mt8196.
+	- Rename mbox_controller to `mbox`.
+	- Use mtk_apu_mbox_msg to define msgs in mtk_apu_mailbox.
+	- Rename top-half and bottom-half function.
+	- Change to pass mbox.chans to isr.
+	- Move platform_get_irq before register controller.
+	- Remove `remove` callback function.
+	- Rename send_cnt to data_cnt, and using u8 instead of int.
+	- Use platform data to support the available slots for different platforms.
+	- Use memory copy to sync mailbox data.
+	- Use outbox irq bits to indicate the received slots number.
+
+---
+
+Karl Li (3):
+  dt-bindings: mailbox: mediatek: Add apu-mailbox dt-bindings
+  mailbox: add support for bottom half received data
+  mailbox: mediatek: Add mtk-apu-mailbox driver
+
+ .../mailbox/mediatek,apu-mailbox.yaml         |  60 ++++++
+ drivers/mailbox/Kconfig                       |   9 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mailbox.c                     |  16 ++
+ drivers/mailbox/mtk-apu-mailbox.c             | 202 ++++++++++++++++++
+ include/linux/mailbox/mtk-apu-mailbox.h       |  15 ++
+ include/linux/mailbox_client.h                |   2 +
+ include/linux/mailbox_controller.h            |   1 +
+ 8 files changed, 307 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,apu-mailbox.yaml
+ create mode 100644 drivers/mailbox/mtk-apu-mailbox.c
+ create mode 100644 include/linux/mailbox/mtk-apu-mailbox.h
+
+-- 
+2.18.0
 
 
