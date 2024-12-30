@@ -1,113 +1,87 @@
-Return-Path: <devicetree+bounces-134666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA989FE30B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:52:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A5C09FE32F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:22:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EF00161A3E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 06:52:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FCAC1881C1C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7259419E833;
-	Mon, 30 Dec 2024 06:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEBD1974FE;
+	Mon, 30 Dec 2024 07:22:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="patvKnbP"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="NETHTdzZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B770A335BA;
-	Mon, 30 Dec 2024 06:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 852738F4A
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 07:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735541523; cv=none; b=Y5jwRxdZWxNdIRG/ObkDJxuS3OCKCKQ7Q0syKueniAj0FaLygaLKTYtx3SnpbuVCiT4Z3OsPzITqaYQN6pSkNKNZaOPeQBIaKRLbhq7vX2yUYgYS3PRotpQmLkvj2UBsYe+q/j47WcR8HTyFYieXelcbU4Sm0E0bv5iQCSBKjtQ=
+	t=1735543346; cv=none; b=dyJklfubRwdFY03XDt2DhbUhsCkRBoOOVyQmVdUH9V1xMGpXGKX3TXcGk6J2ZpzlvmAWawVoIdBLivbd+agUafUqc43Hz5NRpcrTObtRcgWp2L8LXExlXZRn7Uw6Z1tlTBxvZs4oP+Z999MNGGhDQ2XnlLm34GusVbvPG6/fRHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735541523; c=relaxed/simple;
-	bh=vkCraO+Ig7stjn5gvKeunHMQ+Wj73HfpI3V4dSWqzzw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qtSRdPgDOJpv/T8mIgjvHLbzFDUYgvzl6CQCZh6yQor1atBQ4ISp22Q8uF+bWNPjhfPyBOuni1kyLADzEZXijMvNPQWAZ626LNkCEwMLuhdfQxdhcsmkEEQdEU1xFGcz60FyA661XuyXqM1Tvdvc/COj+TVBvO6T2kEl7/ZnLPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=patvKnbP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU2kDJB027066;
-	Mon, 30 Dec 2024 06:51:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WWXtJULQGiJJVIBh3B7lfeJ0krwDnFaYhJyLvuXbwcg=; b=patvKnbPaB3XpjUV
-	8JQ5uy0L7tyoo28NyCbLksRN2T4MtKak3bg6R6yBXliMlIH9AntUYDSaQmjACCdJ
-	VBsqBsRvhy+O1z/tPmFQjprkNQY5f3sixkYHa+ljka4W1SJ2amWffeSlnfYj3Y7r
-	OMUfXw/MfMmeG72qWX9Dg/IW+IaY+ZMOieqUwsNJ8+ZXQSGpYmU0sjJEaSqBRHio
-	TnS+x7CD01B3DJjFXSioaO+2iZxWxeUosXtcJwFbarJK/ZdbPqWNnaeRk3XMJtqF
-	dOUKqGpMWwH9yIlJQAXuKxNL8RABY1/oHBJQMcWOQvsqtycCnweFtXgsXLyNgFUN
-	KP9v7g==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43uk120d61-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 06:51:57 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BU6pubi028470
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 06:51:56 GMT
-Received: from [10.216.11.39] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Dec
- 2024 22:51:50 -0800
-Message-ID: <e673dbdf-9b16-4c64-a3e0-cf5bb31e2b82@quicinc.com>
-Date: Mon, 30 Dec 2024 12:21:41 +0530
+	s=arc-20240116; t=1735543346; c=relaxed/simple;
+	bh=ejiIhZBkr+pxFjMxIZuU5K9e7hu7uM+u54Tdq8/zmV8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V1/9TOWJ+dOYBE62psrxpcaVxuozuOkG+hBvT7vqkCMNefx2lKDkT5Z85ay9jF+vpbw3v7Ud1ElKk+nHheE5uU7hxo/5Yzn8zR7y7BLyQP88RYWqYsMFiEIFxa+NskKkfV0MGaB0z4BP2wA8perdBqCbUe7pgeWRQWpvoY0niIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=NETHTdzZ; arc=none smtp.client-ip=1.95.21.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=Ni0/JXBdNOrRusohFjRxi3utlOmJOryGodrzHL5Q1yM=;
+	b=NETHTdzZPxV/6p/IBSYZ+MiJK/VNwXVHn+DM2oh2TVefCARJrwhk7stAltdKs5
+	BK/4w7piqUwQxv8LUHufQYBjLoWI+vng4TvFJTPLLBsYEH4P+EHHN7hCdK/0HDJ1
+	kBLOqP/vjyzTWSv1D7pxGNC5Zmd8A32NL0ce5hSSGy66g=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAHbinJSXJnSekeBg--.61568S3;
+	Mon, 30 Dec 2024 15:20:42 +0800 (CST)
+Date: Mon, 30 Dec 2024 15:20:40 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2 2/2] arm64: dts: imx8mm-phg: Add LVDS compatible string
+Message-ID: <Z3JJyDsHSpH7jJuu@dragon>
+References: <20241210105705.116116-1-festevam@gmail.com>
+ <20241210105705.116116-2-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] Add SPI4 support for IPQ5424
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, <andersson@kernel.org>,
-        <linus.walleij@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <konradybcio@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-CC: <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
-References: <20241227072446.2545148-1-quic_mmanikan@quicinc.com>
-Content-Language: en-US
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <20241227072446.2545148-1-quic_mmanikan@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0dPMx3QJzgiWtWZZzi7drn84RGXK9dFn
-X-Proofpoint-GUID: 0dPMx3QJzgiWtWZZzi7drn84RGXK9dFn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- priorityscore=1501 phishscore=0 mlxscore=0 lowpriorityscore=0
- clxscore=1011 bulkscore=0 impostorscore=0 suspectscore=0 mlxlogscore=865
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412300056
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241210105705.116116-2-festevam@gmail.com>
+X-CM-TRANSID:Ms8vCgAHbinJSXJnSekeBg--.61568S3
+X-Coremail-Antispam: 1Uf129KBjvdXoWrKry8tw43Jr48KrW5uFWkCrg_yoWxCrgEkF
+	1FvF4xCw47ZF48JF15Can5JFWUua1DCay3Awn8J3yqgw1v9FyrWF15tryUJrW8ArZxCr97
+	tF45X3s5t39rGjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU08MaUUUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgXFZWdyDiXY5AAAs1
 
-
-
-On 12/27/2024 12:54 PM, Manikanta Mylavarapu wrote:
-> Add SPI4 node to the IPQ5424 device tree and update the relevant
-> bindings, GPIO pin mappings accordingly.
+On Tue, Dec 10, 2024 at 07:57:05AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Changes in V3:
-> 	- Rename SPI0 to SPI4 because SPI protocol runs on serial engine 4
+> The imx8mm-phg board has an AUO G084SN05 V9 8.4" 800x600 LVDS panel.
+> 
+> Improve the devicetree description by passing the LVDS compatible
+> string to fix the following dt-schema warning:
+> 
+> imx8mm-phg.dtb: panel: compatible:0: 'panel-lvds' is not one of
+> ['admatec,9904379', 'auo,b101ew05', 'auo,g084sn05',
+> 'chunghwa,claa070wp03xg','edt,etml0700z9ndha', 'hannstar,hsd101pww2',
+> 'hydis,hv070wx2-1e0', 'jenson,bl-jt60050-01a', 'tbs,a711-panel']
+> ...
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Do we really need to do this? If so, it will not align with the HW 
-documentation and will lead to the confusion down the line. IMHO, we 
-should stick with the convention followed in the HW documentation.
+Applied, thanks!
 
-Thanks,
-Kathiravan T.
 
