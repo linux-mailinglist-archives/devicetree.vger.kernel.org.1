@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-134693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2195B9FE4F3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:42:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAFE9FE4F5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:42:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCA8218829D0
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 09:42:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6834D1623C0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 09:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694FC1A262D;
-	Mon, 30 Dec 2024 09:42:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0851A2C04;
+	Mon, 30 Dec 2024 09:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oqm3Nasu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dvHv8Qld"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC8E1A2545
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 09:42:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2024213A88A
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 09:42:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735551727; cv=none; b=BpVJ4Nl0OfPAQCuUMY1hYFYl/HHRjEPE6FmMJpe2EZmfhlcTq6VEIRmcc4zbMyoqFE7U+UAyFsSh/xwT0oj+/diJj8sx1hYu4KheO63ykPMHsUcLXUCpY10Z76XwRroj8qcseYIuBWKoSUK937hEC289xILVyRIEmy7IF/P7CQY=
+	t=1735551736; cv=none; b=KiUVYHbIjb0UN3rry9zXz6wTI8YQuKpbYWBC870X+JqfuNZTiYY2DtqeucRK+4rxl3AJF3eI1sUa7QzOg5kGE+CpvkmWe5w344fTjSeBZm1+l6x0nx4bLMHydxZb10Yyt3QHUpzJer3d6ILgapJl9LiQHmRNcJOTxkc9NCyNcAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735551727; c=relaxed/simple;
-	bh=q4Bi/DK4f9rPwTXQyZoH6miWtZlHbm7p0nHl4NmkjpU=;
+	s=arc-20240116; t=1735551736; c=relaxed/simple;
+	bh=wkAMKoK9eXHvisljqOh0xduQCxlWVCM79SXkoNDWUZs=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=sSCVdAzZgGDwWi0u2cNnM/GRouVpTXOT4E/tTVFoY6bhZR0ZTHtcds2/XEGQnU4DXbNJzATTz8UAqk5NzZKqvM5VVN06Fx/aJLJsgwfzBiSTAfWH6yB9Nh//Au8q1OHxuDfy0nV77oF/AxTkdDgXwVYOXLN11QhaWAKXgjETRqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oqm3Nasu; arc=none smtp.client-ip=209.85.128.48
+	 In-Reply-To:Content-Type; b=OGSoSrWsDQcOyZZcVr9LqYDRtI77iIb3eAZcxOlpl5olRuPgXXlHA0w0BFEd/psa+jz+3P+km/lTPyMXH9/4SL0ZdtWCRZPLBb9RtiDX64ha3ZFDzkjuEVIperwCQuBF74mPtPDqyh6askO6tmW+azcCSf4puX7on7E8g9j0wpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dvHv8Qld; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43618283d48so65390555e9.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 01:42:05 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4361f796586so94467595e9.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 01:42:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735551724; x=1736156524; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1735551732; x=1736156532; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5ZVPsGT6sGm4wbZwtsYOd5IIMM1dkI3s4LrtjpZusVM=;
-        b=oqm3NasuStalGLHE2odsYuqCvxOvRsI22/iPvTIbDz7uU8pAmm3LM7raV64JzH6lNG
-         Kpwf8EejznHAbk2ZgHP9vFU9Lugikvf0rA//dt3Z9GIRzhwmLJ8ZZrHnUKhASHOiBDH0
-         y/uKJLSOKL/FXdPCvHWrYMUc8mqmI994T3+HeD0GBPz9hNE4qHzTGX8xs2t4KPHYiGY9
-         IFww1ZXyTSp7n7Ccw3c71Nam9nu3GVXW27ICoE6+D19+aJTR/VQ8+7vrG3nt755XKnkA
-         +NeJF6mEil8/AU0DkCh+V5Cv2CmvsiB4dCZQI0cMmhEfqmPamTLgUOV+saX7PA2zQtDM
-         WsVw==
+        bh=gGIMD82EQXCe920lMZBT0vgSEL4JqCzlYEeZ1q3K4Rw=;
+        b=dvHv8QldCd2g37uY6VQAPy/KlAuE1TwCcDl02pB9j/lJl0b4HRzMv7kEzVZFFuQ1X8
+         7eX6kICXjPZJHtz1zA59WZkMJddUod/BcFssAhYT5NDxtUQX9t49Ybz54zdkk5kFG0JC
+         ka4Pe9UpIqKGKQLVF6eIx+IpbkZv7AExp2j6KQdyjMd47q+M+hIrF0bA8VTiTZKVjRCd
+         18tpK51d0clx8ss+rahblk7s6UpoHAGZ0dGnpj148Mb5R41BLET3wMfVCP9I603Qi3Pn
+         C4g+AtkzPYDVFCQgwzK6RJztIEJFuGd57EsVjPITOpgtsZkan/2KAy2OfT0XqJ4RrYNy
+         m0Ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735551724; x=1736156524;
+        d=1e100.net; s=20230601; t=1735551732; x=1736156532;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=5ZVPsGT6sGm4wbZwtsYOd5IIMM1dkI3s4LrtjpZusVM=;
-        b=uxavXZWMj/EcHmzIVodthkiUQiQZ3er4YJoAxeHjoGVaB6zfdsMvkK2BF5Ribw8e+g
-         O8wCWTlYJCaBTianbUoUmn8BiJgD+3fw5Rbj9rZZSeQPLH8QJyvuBmDeg0rWQStGL3YL
-         wluzcMEmWJ9ojosWLZXeo2miXuXdF3KfvlVn6P+0i1JJnGD0htGKISLnfPkJmrkgIdP2
-         AdJomYFXxilxcnb7nHmHdcgMXPKsK5t/vb8fNwtIuQmwdnGB7cGKo3AUG/9BX6W4ZJ2N
-         f/wM8iMbP6wVGIdFn3/pgbld19+H+Pye6PpUXXhQ9Xk+crrBbYO+qzBQeTwxDANmsxt2
-         GbjA==
-X-Forwarded-Encrypted: i=1; AJvYcCUT1X4adBz65FRtMYIx8AtS/bbloG07O6tQSFHKvM9Ql3GLinmsMTlT95i2AAVa+fBWkgaDBaNdhB7K@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmsTwI7eh5YXpV+ppmH7/RawPaV0gmKLlA1P0xOx/WM9SbPTZQ
-	UeQ3nVpV1Pjo7tKZEwAJIgxPx8iHy2TVRxRvbsXkgnp2CyUdWp5sJwXbeuBk4VY=
-X-Gm-Gg: ASbGnctMokGgtdkyeE1wRz7SEP5tyS7G+zSj0nvXZxOHIv0eIPWoJGN+f5QggsbmS2U
-	GUX8Tk6C3Lc20ANaaQopxaBKBvf/iAadn2UgcNigKR+2YuwCuefGXkW9qzgtAyuzwfc2Nn4p9Zx
-	gGtNgcfW89I5xTi8/cAACwThTuHOyBWjepMsJTDa+tSXJfkfkIvtYun5ey8i9hrWoXsQsDlymXU
-	nQSrIjDXI+FScMLPVpFrQ7Vad3o+UlBTXAs4POOEbMgsP/tl10Qgt43kVa8wdv+iPXo00qHmdgM
-	uFVZs1/0i3RazwBpTctginL2SjdSfiwHgg==
-X-Google-Smtp-Source: AGHT+IGX7PafjbYuzY138Djqzj8xa3fmRQFFVZDsgB/bpDkSlBlW6u365Zj1l0NdH66bQBCv25ds4Q==
-X-Received: by 2002:a05:600c:3ca1:b0:434:a350:207c with SMTP id 5b1f17b1804b1-43668b5e22fmr265731125e9.23.1735551723808;
-        Mon, 30 Dec 2024 01:42:03 -0800 (PST)
+        bh=gGIMD82EQXCe920lMZBT0vgSEL4JqCzlYEeZ1q3K4Rw=;
+        b=pJODa86H+07tturwiaTrP82DJhjhT57MwNVC2eEqSCUyuGvEWa+JzRrCJ+a/jeIYQQ
+         Iw/syQDrTE+AE8qIjSOX6DksPAVz4qMNsyEOB75a0C8JwIUAdNiorcXcH34XR+PpjNV7
+         Faomjjk//S360cmMkHJ/tY2F5yZ7wQWqHRJjiVIvNux9gyJZ3yhJeZRbnxlvFzplAQP3
+         atK+YxWl7NUuzqH098pWXV+2dtW4ma/ZUQ5HxsS/mxRgwfa25wOfsJu9NzpKwQO+hprq
+         OIEeswalzXfrkaQXM88Ru323Am79axQ4w0JdVp11SNMIX5+KGrC//Oi7I18F94sM2IDX
+         Oo1w==
+X-Forwarded-Encrypted: i=1; AJvYcCUYgikOHB1hPuKItoHFEFOyt5wPSJc/HxDyW+JAwnXh+TU3zEtGmUmPeISKrhsQcpe6QiS6k4MRjLNs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzfmn8dcPI2flEg54ilyV1tsQwNuzlf3uU0msJGbWJFNTX0JJZ1
+	frGJann9kO5SOhoP1mu+MT6sr5DEuKuTIDYir/Sd0GubE/SplJ+eJrsVCRnvNAg=
+X-Gm-Gg: ASbGncsWSX0vTQZsABB6khZEiayh7aUqhvE2BlEi5GFAM3sOT2bIwe5jam/l6i0r2fn
+	e4oSFXHos0dP7niKfEFoUILi6c2tREkPL6Jy3fXMvWwuVXJf6j6IJiMP8nrbOTcE1W7+TF8/Y9f
+	cMxNDQ8u9P1DcShA8q+ttfroiHVpAAVvovhdslNWErpuaMs0QgeV+/FTZ+stXam5wIcYbcaJrTx
+	oB+7KUDIRsa8d67Ime70TRvrMAnEQZ6cwbR1qPKCviIa3YsF5rCePC4w5jm4+fwMzCW7NC/JJdc
+	U5JSFZ+b2tYdgwGWJCregZtJiKIRFFKxzA==
+X-Google-Smtp-Source: AGHT+IHBKn4a3ySWSY/uoCuvBX0ugkKYOuHtD4GkEJzkGHuDK6bAar0fJXWvVbPXYOXhtB8znXv28g==
+X-Received: by 2002:a05:6000:1f87:b0:386:256c:8e59 with SMTP id ffacd0b85a97d-38a221e2757mr35807480f8f.3.1735551732484;
+        Mon, 30 Dec 2024 01:42:12 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:883b:3c16:2465:ad55? ([2a01:e0a:982:cbb0:883b:3c16:2465:ad55])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436604e9c2csm351355895e9.43.2024.12.30.01.42.02
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c89e357sm30390424f8f.72.2024.12.30.01.42.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Dec 2024 01:42:03 -0800 (PST)
-Message-ID: <b3417a8f-d1a0-412a-8c00-9a002b908446@linaro.org>
-Date: Mon, 30 Dec 2024 10:42:01 +0100
+        Mon, 30 Dec 2024 01:42:12 -0800 (PST)
+Message-ID: <a6106504-8b0b-4e0e-b287-7bc08a04b932@linaro.org>
+Date: Mon, 30 Dec 2024 10:42:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 17/21] arm64: dts: qcom: sm8650: correct sleep clock
+Subject: Re: [PATCH v3 16/21] arm64: dts: qcom: sm8550: correct sleep clock
  frequency
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -112,7 +112,7 @@ Cc: Leo Yan <leo.yan@linux.dev>, Georgi Djakov <djakov@kernel.org>,
  linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20241224-fix-board-clocks-v3-0-e9b08fbeadd3@linaro.org>
- <20241224-fix-board-clocks-v3-17-e9b08fbeadd3@linaro.org>
+ <20241224-fix-board-clocks-v3-16-e9b08fbeadd3@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -139,30 +139,49 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20241224-fix-board-clocks-v3-17-e9b08fbeadd3@linaro.org>
+In-Reply-To: <20241224-fix-board-clocks-v3-16-e9b08fbeadd3@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 24/12/2024 11:17, Dmitry Baryshkov wrote:
-> The SM8650 platform uses PMK8550 to provide sleep clock. According to the
+> The SM8550 platform uses PMK8550 to provide sleep clock. According to the
 > documentation, that clock has 32.7645 kHz frequency. Correct the sleep
 > clock definition.
 > 
-> Fixes: 6fbdb3c1fac7 ("arm64: dts: qcom: sm8650: add initial SM8650 MTP dts")
-> Fixes: a834911d50c1 ("arm64: dts: qcom: sm8650: add initial SM8650 QRD dts")
-> Fixes: 01061441029e ("arm64: dts: qcom: sm8650: add support for the SM8650-HDK board")
+> Fixes: 0b12da4e28d8 ("arm64: dts: qcom: add base AIM300 dtsi")
+> Fixes: b5e25ded2721 ("arm64: dts: qcom: sm8550: add support for the SM8550-HDK board")
+> Fixes: 71342fb91eae ("arm64: dts: qcom: Add base SM8550 MTP dts")
+> Fixes: d228efe88469 ("arm64: dts: qcom: sm8550-qrd: add QRD8550")
+> Fixes: ba2c082a401f ("arm64: dts: qcom: sm8550: Add support for Samsung Galaxy Z Fold5")
+> Fixes: 39c596304e44 ("arm64: dts: qcom: Add SM8550 Xperia 1 V")
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 2 +-
->   arch/arm64/boot/dts/qcom/sm8650-mtp.dts | 2 +-
->   arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 2 +-
->   3 files changed, 3 insertions(+), 3 deletions(-)
+>   arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi                | 2 +-
+>   arch/arm64/boot/dts/qcom/sm8550-hdk.dts                     | 2 +-
+>   arch/arm64/boot/dts/qcom/sm8550-mtp.dts                     | 2 +-
+>   arch/arm64/boot/dts/qcom/sm8550-qrd.dts                     | 2 +-
+>   arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts             | 2 +-
+>   arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts | 2 +-
+>   6 files changed, 6 insertions(+), 6 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-> index f00bdff4280af22f6f8b23e33238f53c602bc169..d0912735b54e5090f9f213c2c9341e03effbbbff 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-> @@ -1113,7 +1113,7 @@ &sdhc_2 {
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi b/arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi
+> index f6960e2d466a26bec4e5c3d31ac0bf54168ca1e5..e6ac529e6b7216ac4b9e10900c5ddc9a06c9011c 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi
+> @@ -367,7 +367,7 @@ &pm8550b_eusb2_repeater {
+>   };
+>   
+>   &sleep_clk {
+> -	clock-frequency = <32000>;
+> +	clock-frequency = <32764>;
+>   };
+>   
+>   &ufs_mem_hc {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> index 01c921602605726928bcba71abd937869880ea0d..29bc1ddfc7b25f203c9f3b530610e45c44ae4fb2 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> @@ -1172,7 +1172,7 @@ &sdhc_2 {
 >   };
 >   
 >   &sleep_clk {
@@ -171,11 +190,11 @@ On 24/12/2024 11:17, Dmitry Baryshkov wrote:
 >   };
 >   
 >   &swr0 {
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-> index 0db2cb03f252d19a1f8b171a562a8e06290c8a21..76ef43c10f77d8329ccf0a05c9d590a46372315f 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-> @@ -730,7 +730,7 @@ &sdhc_2 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> index ab447fc252f7dd705fbe29725805bc1c146c10f9..5648ab60ba4c4bfaf5baa289969898277ee57cef 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> @@ -825,7 +825,7 @@ &sdhc_2 {
 >   };
 >   
 >   &sleep_clk {
@@ -184,11 +203,11 @@ On 24/12/2024 11:17, Dmitry Baryshkov wrote:
 >   };
 >   
 >   &swr0 {
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-> index c5e8c3c2df91a49476f49832c0bd6418f4dfae3d..71033fba21b56bc63620dca3e453c14191739675 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-> @@ -1041,7 +1041,7 @@ &remoteproc_mpss {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> index 6052dd922ec55c65089e6b08e36c355b01bf24fa..3a6cb279130489168f8d20a6e27808647debdb41 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> @@ -1005,7 +1005,7 @@ &remoteproc_mpss {
 >   };
 >   
 >   &sleep_clk {
@@ -196,7 +215,33 @@ On 24/12/2024 11:17, Dmitry Baryshkov wrote:
 > +	clock-frequency = <32764>;
 >   };
 >   
->   &spi4 {
+>   &swr0 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts b/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
+> index 3c5d8d26704fd925857b5ddcc6067c2b14e1403d..e8383faac576a2f401fff74231a764712c832291 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
+> @@ -565,7 +565,7 @@ &remoteproc_mpss {
+>   };
+>   
+>   &sleep_clk {
+> -	clock-frequency = <32000>;
+> +	clock-frequency = <32764>;
+>   };
+>   
+>   &tlmm {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
+> index 85d487ef80a0be5c3586d9de69327abd2b64209b..d90dc7b37c4a74cbfb03c929646fda3381413084 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
+> @@ -722,7 +722,7 @@ &sdhc_2 {
+>   };
+>   
+>   &sleep_clk {
+> -	clock-frequency = <32000>;
+> +	clock-frequency = <32764>;
+>   };
+>   
+>   &tlmm {
 > 
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
