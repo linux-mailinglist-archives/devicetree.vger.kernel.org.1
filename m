@@ -1,186 +1,172 @@
-Return-Path: <devicetree+bounces-134678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 887879FE381
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:55:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A03859FE38D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 09:01:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF44B3A1C01
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:55:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB9673A1C74
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914891A01BF;
-	Mon, 30 Dec 2024 07:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51C8419F419;
+	Mon, 30 Dec 2024 08:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HK+jzUdS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BCZktviX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC185156C6F;
-	Mon, 30 Dec 2024 07:55:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8A029429;
+	Mon, 30 Dec 2024 08:01:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735545345; cv=none; b=JpRD2sy/ITEM6Nxa/9JgRSU8wEDMsvQQVLtne42q0vzmVpmSwzzNxrFUPnT5LZeIMLHquGyZiG/lhzu4uglKNS8mDFNrDCnE/AaUfIHpgih/sKFWy+1jz37LvBK6kzE+VVeM96RaV9UZHsXRdBSMElRpg3nb7uAQqvDOEVcu4NI=
+	t=1735545709; cv=none; b=HT953mupA8wjmiUl0zRrcVXLN0hF0+k9atW8N47VaSzsh8N7MeQe1WJ0kd8LDS5eGZ8Hm84kSiql5K7wZycGut5qBEgPFJSeJ0idP7Mt/Gxa0SO9UHOzez961iDf9ftrMz4tO2u04IeawPQG8KcOx0iL+wGXXnLHX/PVaw5f/Qg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735545345; c=relaxed/simple;
-	bh=UznonsLB1/1VElz70YeWXmhy2SsBvdwmLQBT9pg45kc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=pqx0w9tZ6o+Wfb9RtLvbRdLyT1zuBanAGdCIpGBk+H6ZD0vnZVaqDxrbiKr5ah7GQvA1WvCn5aqXm3Ut0RJbzKj3fR42pTps8Vt4RuVHP0HN8hloWUWlK2RVKiXJ37POvb06X8Tb1+wl3nQ/SIhaWoM/va/W1F37GvSvs2WR8zY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HK+jzUdS; arc=none smtp.client-ip=209.85.128.49
+	s=arc-20240116; t=1735545709; c=relaxed/simple;
+	bh=O9PoAHErQR2KnT7INGvogE+M2TZhZCnyZbEu8H7Od1s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=trJizbiMRB00Dm71NokA1qg9RHeH0nnbcFy3q7INCDVt5ejHp2fBzx4COsrMLxQEmOWyos2bOEfe/NrWpmvBPrXbTTVMMm0tsuM0aK0wuC65TnpDhji3bpf5qUMu7R0kbcjTqsGU32FqrkjkxC13iXevIpmomMBwUxBenlnF71c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BCZktviX; arc=none smtp.client-ip=209.85.216.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43675b1155bso74064135e9.2;
-        Sun, 29 Dec 2024 23:55:43 -0800 (PST)
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2ef72924e53so11767611a91.3;
+        Mon, 30 Dec 2024 00:01:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735545342; x=1736150142; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+jPQzETbuKo49mi8wQANfNeYO7kgQRt1+vSf7zU80tA=;
-        b=HK+jzUdSWKr0onCvOtB8IzyhIJ36n9rYK8qbNDufUPn4UsPy579lGLEXzE6mkhdAQ+
-         +ttM/6e64swcak5Aro/FiZfKBO8rxJAbOWZcnv+lLGussNiHanrCRcK6JfiZl/IpNJEf
-         euuKdWfrxvn5RCMeELehW7F8UOqlF8dvWj9bmKajgTCVFsNEmkZcSMw1+F04U4U0t95x
-         dNJTYRNeHbsxO9MOAFZZYUIRbZgP38gFgodXVAqWlQpw4ySnp5wh5clfqhzLvQSVXrzj
-         0NajeCqKABWUl1lGuRyA9TMnasPVDLQQZaGg+a3XxRCm2S7N7O4/mmsB1BxkWsRjz4Yk
-         GAZg==
+        d=gmail.com; s=20230601; t=1735545707; x=1736150507; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cVqcRLSJWbwcYt3XcGtyBdDtB8cA84MCKgUW1EbTZx8=;
+        b=BCZktviXQpbtsRD2VLMLy8S9L7/lh8fQnLfwEazVwXrBplqPT+qbW350Nd2qAdMFUw
+         EJOTu9Injz+eNXDD6G9DZN8HuBXATHE2P7F9I3hqX+wmFbypTUDwW0OqddAf0b+m3bEr
+         XkA++jBmt1w0KzNVbPkq3z5JrjFMRBGBREaEI9sMaGwabHTuSO7Isp5Oswz8Izil7Irv
+         zieJGWKX40vzf/EShhMkVx4xOBxVNy5jtCbDzKLd+L7RlhhCAuU8N/UbWXVEikB/p3bh
+         n4aYwhrQCzZn1cE5SImT0+Mm41tQ0gR5tmAb72lXIyJkX+ctOJqYOMzhSk6lpMX2R0IJ
+         IMKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735545342; x=1736150142;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+jPQzETbuKo49mi8wQANfNeYO7kgQRt1+vSf7zU80tA=;
-        b=wlWw97y8CLQt1hB4mwiDYalRORBGmBWTdCvwurB4TI1UhvuKgbDxlZll/kYsv/KLWI
-         AJ6J65j/zsY0SKvlosVO4dm4t0c+Jea8p8SxrXqDVGuZqffN9Iji7gIUZUtIk9BGxgUI
-         ATjbZIDxO597cWLj4SGixWKCn2PQYgSgonJ7wEsOgtr+jM9/Rt9C4RS6ntrlQIfdZjWf
-         d4Ee9NMNAF0Sg8UcNexirCDQKdtSNoZC+wRXMoGD2h/iRDaSsAfuNWZDUsFIUVaAIU3x
-         WywQHrpVOrFliURL/H9Qjq0LlIWf5isdoJR3b9j9/Ux6l2x841+wB6PyOROIwltAOoST
-         VYXg==
-X-Forwarded-Encrypted: i=1; AJvYcCWmhoDGVS10r3qXozuQ9sSG10pB7TcQm0wHvZDwva8d1GICVEzlSiBWhTczwkUI/ZtGEXUiYQTC7ZJqVRfz8iUL21Q=@vger.kernel.org, AJvYcCXX0hLMcPTgr1JQotsfsxE2/lXUCkzIRK1HoWJQQTOaNyroZAp7Z2EKtVEOruvtba5/Oj7EkuAGgfuqvaxS@vger.kernel.org, AJvYcCXmvyZjElfwbLlFZIfThw0nxPMqQTYWXUDPevMX3n+JLpeYN1QfEXc3YQuSXhTYm1/hjqVhrKtjvJJC@vger.kernel.org
-X-Gm-Message-State: AOJu0YynNB8wFILjDD6giUd1gk6ZheXP+Wij6XEETWsdzcAKfmhpI/FP
-	h9L5kyUEqEaar6adETKurs0YNvb4DAsMBZVsqZplgLMxrxewqVkArpBhHw==
-X-Gm-Gg: ASbGncvGnFiBO7yu6IKbWCqHuw15GT/ZEoxCyjaBaB7BEQPomDcaASfHA+zdgAvGKSn
-	HaxXNeupMI5dYG9nbCmCKe+Ck6JP/8uJL+jwLTX5iNg0yRnlMwUx0IEqAkhkOJpZqW9HHCrN10J
-	9oedDnAjzuBxGp/I6ldRGUTGHkRO5EtSKiKTU5tUvXvf1i3XWsJoWDjNy65VPKpIM4HguO2xfLO
-	na9H7uuu/rszaOFnF1Nwmk9VKXiQ0Z7djU/t1clKBZpwKvjZZjjx/dtfSJeK58R9aW4fho34A==
-X-Google-Smtp-Source: AGHT+IG2dh4UWHVSRIJXHl7OjSsaZff31+ehklabWaUsZJyeJBLzx13CbR+b1hLaxiOcwwHHm6XF2A==
-X-Received: by 2002:a5d:5e09:0:b0:385:e3c1:50d5 with SMTP id ffacd0b85a97d-38a223fc3d0mr34519211f8f.48.1735545342134;
-        Sun, 29 Dec 2024 23:55:42 -0800 (PST)
-Received: from [192.168.1.104] ([94.131.202.183])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8a8d3dsm29034261f8f.94.2024.12.29.23.55.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Dec 2024 23:55:41 -0800 (PST)
-Message-ID: <a9c25aa2-d61e-4f67-8e88-a214e2b8d628@gmail.com>
-Date: Mon, 30 Dec 2024 09:55:40 +0200
+        d=1e100.net; s=20230601; t=1735545707; x=1736150507;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cVqcRLSJWbwcYt3XcGtyBdDtB8cA84MCKgUW1EbTZx8=;
+        b=R0W9aBrOFafDp+CGoGMhVPbDwgQA6x7AOKprB3pO9T8PfdV2L5TpQ4OYpRmiCUjgCj
+         pfAxgNbSNeYuPM8Qx2QQWfg7wcWxQhFLhXvC3ZYBil0n8wgldezyNL0uwGpyHKEjieiY
+         Wma0mG7BQ1gNfIn3bHzf8+P4MF2SvTnM56fqJXz5cDs3n3MPxzm1oTSSKbUjofCw6/NK
+         OVjjHP/67DkNiiTpiQ7h1uovOZCxbsyDyIFOM430kgTO3Dy0q6DAiH2jUNRVAgi2s8bz
+         DnHfDw8289qm4xBOEndmkZ7txjx1qVfly72DPZc6m+XnKhOUhBo/+7jsk0+IfNGnD1sH
+         T57A==
+X-Forwarded-Encrypted: i=1; AJvYcCUvGUaVxTp2LQma4oea5S3HnVpFK5fhax+hhUssfyjPM5DDnvd8eneXKhOk/xTbp0mE9nyeN1VHQByV@vger.kernel.org, AJvYcCVAV1tEOW18s0svXsv4LC/lgmuL3RI4xDxJEiGIdTeMUxh0gqSc2T2Re7fxuOR2/2RIspvp1+ip9MA=@vger.kernel.org, AJvYcCVB3gOtkZqFsXDJNwRpoBhmnXFnD68RXy63XSewcIhTqbQNIY69jrTXxElrQ9tVcxeHjlI6jrDsl6SUgWobyA==@vger.kernel.org, AJvYcCVir8qFhlC+d5S/G49Ajr6P1Q5ZPrIyyLJ27IqCz58PXoIZatjut77H9UZ5h+kPlUquLyRovKDkmUbINnoky+x/rSsiLA==@vger.kernel.org, AJvYcCWO3ap2YkGTVysc8m0rP8hG8ERX9iN55P3co7XkCjCV1avkHLhidd/Y9JpaMT0YLfSeEENRNIMJyirY@vger.kernel.org, AJvYcCWnMZxXCs8NS3x19yurZiPjYNERL5O5g9nFJBrMJIqSPT4lUcqDEXxuNellfOoLndQIP2vAmBDA04hhubXb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYOkl+U8BW56AOzf64iZP/WH3B2kRJBbupA7i+sVm1q7XAVoF0
+	+YP4xKCzJt4LmwUYQ9HC+P2O1OTEnChv/MtEl9I3raKQkkPKt3OW
+X-Gm-Gg: ASbGnctkDZny9Mj6bhOpQtP5OlRixPPVAH8GYjNi1eaJvJXJmLxB91tWdu1eZ7YLGZy
+	4i9zvZG0b0t2aYQmMckdc9eFdB38CKW9KuyelZ/HCp1bpDdQEaiS7O4sBlNMJbjz9mZi04qlj7Y
+	Xqq3cdz+b1GtR45TevmgvY8RMohFfJNgBgLihVKnLFSNwy/r22+p2eEc7OShzQirz7PIsMAlPCD
+	4bwZk3slTB50ZjA6Guf+Lx36d3qSPR30m1r0N+XR+c=
+X-Google-Smtp-Source: AGHT+IFT6+MQFqRHcdFz9mQ/DD3//GAwwRxOIzlDDnrve8D77GoT8HMloboONUjp1fmoganGx5hEOQ==
+X-Received: by 2002:a17:90b:5208:b0:2ee:dcf6:1c8f with SMTP id 98e67ed59e1d1-2f452e1814bmr54483386a91.16.1735545706924;
+        Mon, 30 Dec 2024 00:01:46 -0800 (PST)
+Received: from nuvole.. ([2a09:bac1:76a0:dd10::2e9:e5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f4478828besm20067447a91.34.2024.12.30.00.01.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Dec 2024 00:01:46 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: quic_aiquny@quicinc.com
+Cc: andersson@kernel.org,
+	bryan.odonoghue@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dmitry.baryshkov@linaro.org,
+	gregkh@linuxfoundation.org,
+	hdegoede@redhat.com,
+	heikki.krogerus@linux.intel.com,
+	ilpo.jarvinen@linux.intel.com,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	krzk@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	mitltlatltl@gmail.com,
+	nikita@trvn.ru,
+	platform-driver-x86@vger.kernel.org,
+	robh@kernel.org,
+	sre@kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
+Date: Mon, 30 Dec 2024 16:00:27 +0800
+Message-ID: <20241230080028.141054-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <7fc6c727-d3c1-4c6d-a990-8caeb95c43c5@quicinc.com>
+References: <7fc6c727-d3c1-4c6d-a990-8caeb95c43c5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: exynos8895: Rename PMU nodes to fixup sorting
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241222145257.31451-1-krzysztof.kozlowski@linaro.org>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20241222145257.31451-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/22/24 16:52, Krzysztof Kozlowski wrote:
-> Nodes should be sorted by name but it is also nice to have same class of
-> devices together, so rename both PMU nodes (A53 and M2) to use "pmu"
-> prefix, instead of suffix.
+On Mon, Dec 30, 2024 at 3:28 PM Aiqun(Maria) Yu <quic_aiquny@quicinc.com> wrote:
+> On 12/29/2024 6:12 PM, Pengyu Luo wrote:
+> [...]
+> >>>>> +      - const: huawei,gaokun-ec
+> >>>>
+> >>>> How did you get the name?
+> >>>>
+> >>>
+> >>> From website of Huawei([1]), please search for 'gaokun' here, we can know
 >
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Gaokun appears to be a code name from Huawei for the HUAWEI MateBook E
+> Go devices.
 >
-> ---
+> Could you please specify which EC functions are customized specifically
+> for Gaokun and which EC functions are common features used in
+> qcom,sc8180x and qcom,sc8280xp boards? For example, the upstreamed ones
+> like sc8180x (Lenovo Flex 5G/Primus) and sc8280xp (CRD/Lenovo ThinkPad
+> X13s/Microsoft Arcata).
 >
-> I know we have everywhere else in pure-ARM designs nodes "arm-xxx-pmu",
-> but this is too trivial and unimportant to change.  I however want to
-> avoid copying unsorted-style code to new patches.
 
-Looks good to me. I'll make sure to inform other people too, considering
-we should have at least 3 SoCs lined up for Q1 2025.
+Generally, pmic glink is a subset to this EC,
+common functions(slightlg different in implementations):
+- Battery and charger monitoring; (drivers/power/supply/qcom_battmgr.c)
+- UCSI (drivers/usb/typec/ucsi/ucsi_glink.c)
+- Altmodes (drivers/soc/qcom/pmic_glink_altmode.c)
 
-Best regards,
-Ivo
+EC extended:
+- Charge control and smart charge;
+- Fn_lock settings;
+- Tablet lid status;
+- Temperature sensors;
+- many other thngs (watchdog, more WMI functions, it is hard to reverse for me)
 
-> ---
->  arch/arm64/boot/dts/exynos/exynos8895.dtsi | 48 +++++++++++-----------
->  1 file changed, 24 insertions(+), 24 deletions(-)
+If necessary, I will add them to dt-binding, it is a bit bloated.
+
+> >>
+> [...]
+> >>
+> >
+> > Check the motherboard, https://postimg.cc/V5r4KCgx (Credit to Tianyu Gao <gty0622@gmail.com>)
 >
-> diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> index 90b318b2f08a..d31d74cc4580 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> @@ -26,30 +26,6 @@ aliases {
->  		pinctrl7 = &pinctrl_peric1;
->  	};
->  
-> -	arm-a53-pmu {
-> -		compatible = "arm,cortex-a53-pmu";
-> -		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-> -		interrupt-affinity = <&cpu0>,
-> -				     <&cpu1>,
-> -				     <&cpu2>,
-> -				     <&cpu3>;
-> -	};
-> -
-> -	mongoose-m2-pmu {
-> -		compatible = "samsung,mongoose-pmu";
-> -		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-> -		interrupt-affinity = <&cpu4>,
-> -				     <&cpu5>,
-> -				     <&cpu6>,
-> -				     <&cpu7>;
-> -	};
-> -
->  	cpus {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> @@ -149,6 +125,30 @@ oscclk: osc-clock {
->  		clock-output-names = "oscclk";
->  	};
->  
-> +	pmu-a53 {
-> +		compatible = "arm,cortex-a53-pmu";
-> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity = <&cpu0>,
-> +				     <&cpu1>,
-> +				     <&cpu2>,
-> +				     <&cpu3>;
-> +	};
-> +
-> +	pmu-mongoose-m2 {
-> +		compatible = "samsung,mongoose-pmu";
-> +		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity = <&cpu4>,
-> +				     <&cpu5>,
-> +				     <&cpu6>,
-> +				     <&cpu7>;
-> +	};
-> +
->  	psci {
->  		compatible = "arm,psci";
->  		method = "smc";
+> The link is not accessible from my end. Could you please help follow the
+> document tips referenced by [1] if this content is important for the
+> overall naming design?
+>
+> Here are some snippets for reference:
+> "for 'volatile' documents, please create an entry in the kernel
+> bugzilla https://bugzilla.kernel.org and attach a copy of these documents
+> to the bugzilla entry. Finally, provide the URL of the bugzilla entry in
+> the changelog."
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/maintainer-tip.rst
+> [1]
+>
 
+I am an amateur, I have only read a small part of the documentation so
+far. I will have a try in v2 after reading the doc.
+
+Best wishes,
+Pengyu
 
