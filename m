@@ -1,328 +1,362 @@
-Return-Path: <devicetree+bounces-134786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED219FE94B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 18:01:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 965CF9FE95D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 18:15:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16F83162544
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 17:01:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE5833A1F2A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 17:15:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 435321B4222;
-	Mon, 30 Dec 2024 17:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21B931AA792;
+	Mon, 30 Dec 2024 17:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W5AVc4rG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="agqmFo8B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B171B0434
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 17:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB93710F2;
+	Mon, 30 Dec 2024 17:15:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735578050; cv=none; b=b+9dK5IHD3RfnErhswunuWs4FcN4zvQ9tWJp+8wokU8q+BIo6mdty2f82jDblY7+fKubTVqRQSq9d9/krkxsBYSK6tXQyyAVU3qVpPMfzEF/dys0/zLoJpkf3Dnuiu5w/IhB3xzd037RhHsjVExc3gFKzTEDN4rLqPxDajVh3qM=
+	t=1735578920; cv=none; b=nhP1QmgXfMswjBcIBprHYp1SDi9jv29rxsOl8lrub7Q+p3w5d2BPzV10BFmfst9dGJiBEXsxFpMkMl9XFWw00RVaNsBDAqWdp0QGRlRGmf8Lqiuu+MPlZc4h9WbFjE4UdJlijksFyonSnIrq/POU6FFTntCd2pOrf36a1+7/tvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735578050; c=relaxed/simple;
-	bh=lveT01XJFbPiCHFrg6nSo0zlm6T0yWAAHdtlgddNXio=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oSFO4WRt5438U42/c0/W+9cv9e9nw//g9LFhVsfUwrxgIi0VM7++PU6+MKT7nrXc1cEz8CNJgtlteQTSdXrM3mn07L/g8VEb/XkUKx9hpQxakZ5ku32OtXAZaNhfvnpDUXCnAf+tdKK2QE6poLX+DAQjfkUSJwy+W7rvD1uP1NE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W5AVc4rG; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-436281c8a38so67314205e9.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 09:00:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735578046; x=1736182846; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t3dDvW0+Cz6kszp6aCIpBOpaxsGIqiTVCAZVfI6Gurs=;
-        b=W5AVc4rG2MH4lbUskBbmtjaiyUOjnwZ8oEpA4A8X+of9iwLhLQ+ypGyjJ6pLD1m05E
-         ObL+QIVrUcKtjEt3Jb4daGxcghJLBt69UgSLaf1km0EdZgazjs+//fkMlET4olH3l+gd
-         GSGIPM2qsgYxtIq+X+ScsejvqFF0mnYwVwSfiB3LKo7h4tOo5Hw+5woWlkMTa5UyloCo
-         R3vaGVff1adUK4UmtE2cIwW7pTacaxzGrO0LdK/AP50H28MfSBAEtEuLbLcjCwjNDG8Q
-         gWzLX/aN4vvp/Z6sR9PT5j4UBMQNhED1DnEUkabm1ZVP+QHDtoDbOEaEuz4d7tX8Jz6Z
-         cOlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735578046; x=1736182846;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t3dDvW0+Cz6kszp6aCIpBOpaxsGIqiTVCAZVfI6Gurs=;
-        b=Y1WGgFAJa903am5AX9hskJJJNevaugVnkQc4ilLHngMfV6xPskk+UdIKbmkDeiPMaM
-         YowDK3E54anyoxpjy7EV9D2Uwdh3im3pAdQpcf7ZViTJRmeuKkTGpvIstH055bWqmQ1K
-         fdvM4LEwD8X1M5geId0i9sysUSLi8nCx11sehCEoCHr9tMdWZT3qhgFqLancc1HvQdPZ
-         fgoZCWAhNFUBr9xvXukxwwfOxbnZ31BPR2ea58oWCrzBJuHOt6P5tJz44fJj/yEYYtHG
-         zDXllemMhgCOoWy9PNiDJAlPcK4GK89s1T49CWyoaOShz+zV1nu8vZVErUxGs8BduRwB
-         SIzw==
-X-Forwarded-Encrypted: i=1; AJvYcCVQX486YplBhbYUpPAlhxTQJKw2p8QrG5kK8iqt49EmoPsu21PKy/tp/4xRPIfwZorW/3/x0eyRxMu9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPc02BZwlBNk9dN3VSbdImZf6FVzzuuxPW22H8liXrw/c6ZNGZ
-	DO1VO4qW+ZtcyR1Ji16t6tjPc/ZuMePdL59OveBfdr6hVq41YFsznq5fJTBX8ME=
-X-Gm-Gg: ASbGncsmBK9eSB4R6J1/J0ZAk0OfjKvhmuieW2ZoatMN56+PUfa/ZgkqYVhylh4EgFH
-	4SZI/O+Bsf6a0MlPX8LDqreHKGmM5R1Cs7Aw4kup3XN8jWDKqQcJjiKZs1se6d7I/QxgwNezfJz
-	n89XAHlacB4YInVSU06C/CR4VHsqmAb0TnzxFAaRREt0mCas8PXNhkzxUB+Dz5YBz8OffE+UQC6
-	aLPsmyS5AXeQ0Z0PjR/cYiRjqGuF6ZGFVj1Bnqqjuq5PgXAPNNGd1jJIM2xEFu5iw==
-X-Google-Smtp-Source: AGHT+IFoQuecmMEqmlM8wzWMcChbvuztNzebTrloFvz2r4fCOv6EyW/iVu2r8l0AOzhM8x6DgdV2Tg==
-X-Received: by 2002:a05:6000:4913:b0:385:f1f2:13ee with SMTP id ffacd0b85a97d-38a223f71bamr30161080f8f.46.1735578046024;
-        Mon, 30 Dec 2024 09:00:46 -0800 (PST)
-Received: from [127.0.0.1] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436611fc161sm359757955e9.10.2024.12.30.09.00.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Dec 2024 09:00:44 -0800 (PST)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Mon, 30 Dec 2024 17:00:35 +0000
-Subject: [PATCH v6 3/3] media: dt-bindings: qcom-venus: Deprecate
- video-decoder and video-encoder where applicable
+	s=arc-20240116; t=1735578920; c=relaxed/simple;
+	bh=0sjAsH5ayPW6hXrHhiuC0iSM/SUSpFO7ltP1BGYOyEk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FBwPf9/anSnF+BfXIqRzGPJ/3+KnAzduJhPLbohGniDlDMFnsl+TA4xU34um7uR7b/sqUelFj9JQtTtTAAfT3fOqdMe376Tt7gSEHXEZCLwlF12usf8Bgsz/xjMArVNdFycnLPw/TcCjoGqJsufs+tDI/Qe8cb4ehtisvNfbfTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=agqmFo8B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52FDEC4CED0;
+	Mon, 30 Dec 2024 17:15:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735578918;
+	bh=0sjAsH5ayPW6hXrHhiuC0iSM/SUSpFO7ltP1BGYOyEk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=agqmFo8BLeJcd6/KPD2GqpQMC8/YmfniwxVbeLgJgRq7rAA8NLpoQXKDyS95FWTZB
+	 ij8vk5kGY2rRm4CAMPUngJhHCEBg0lcQdxdYf94p3GXSEcqJVZz1KhmK1bV0iNyIB5
+	 lZIuBEmNalXvudGAl8rfpBQoSZVNr/h2V9Zqz8yPSrmPTfOALtC9uF2CAKDUIg6nea
+	 9VrG/x5CjU7rx/8evKn5r5cq3l34WSAHi7fPsnbpTUCZVBiVo46CaBQdSMY0DHcud3
+	 AA31veUrwV67tZAzkXg2XRS7vQZyrd/1LrNLlwDIDrUzDnTAWCoDKAFPtwkK3spwvR
+	 hrjK/VurZMOxw==
+Message-ID: <2122a623-4124-4551-92a6-44273c43f71e@kernel.org>
+Date: Mon, 30 Dec 2024 18:15:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
+To: Ivan Sergeev <ivan8215145640@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241230-bigtreetech-cb2-v4-0-26d2d30e07ce@gmail.com>
+ <20241230-bigtreetech-cb2-v4-2-26d2d30e07ce@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20241230-bigtreetech-cb2-v4-2-26d2d30e07ce@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241230-media-staging-24-11-25-rb3-hw-compat-string-v6-3-a4d5070d3aaa@linaro.org>
-References: <20241230-media-staging-24-11-25-rb3-hw-compat-string-v6-0-a4d5070d3aaa@linaro.org>
-In-Reply-To: <20241230-media-staging-24-11-25-rb3-hw-compat-string-v6-0-a4d5070d3aaa@linaro.org>
-To: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
- Vikash Garodia <quic_vgarodia@quicinc.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: quic_renjiang@quicinc.com, quic_vnagar@quicinc.com, 
- quic_dikshita@quicinc.com, konradybcio@kernel.org, 
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Stanimir Varbanov <stanimir.varbanov@linaro.org>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
 
-For the list of yaml files here the video-decoder and video-encoder nodes
-provide nothing more than configuration input for the driver. These entries
-do not in fact impart hardware specific data and should be deprecated.
+On 30/12/2024 15:58, Ivan Sergeev wrote:
+> BigTreeTech CB2 and Pi2 share a lot of hardware configuration, so a
+> common dtsi file was used to define common nodes and properties. This is
+> similar to how BigTreeTech CB1 and Pi are implemented.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../devicetree/bindings/media/qcom,msm8916-venus.yaml        | 12 ++----------
- .../devicetree/bindings/media/qcom,sc7180-venus.yaml         | 12 ++----------
- .../devicetree/bindings/media/qcom,sc7280-venus.yaml         | 12 ++----------
- .../devicetree/bindings/media/qcom,sdm845-venus-v2.yaml      | 12 ++----------
- .../devicetree/bindings/media/qcom,sm8250-venus.yaml         | 12 ++----------
- 5 files changed, 10 insertions(+), 50 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-index 9410f13ca97c181973c62fe62d0399fc9e82f05d..da140c2e3d3f3c3e886496e3e2303eda1df99bb4 100644
---- a/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-@@ -45,6 +45,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-encoder:
-@@ -57,13 +58,12 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-   - compatible
-   - iommus
--  - video-decoder
--  - video-encoder
- 
- unevaluatedProperties: false
- 
-@@ -83,12 +83,4 @@ examples:
-         power-domains = <&gcc VENUS_GDSC>;
-         iommus = <&apps_iommu 5>;
-         memory-region = <&venus_mem>;
--
--        video-decoder {
--            compatible = "venus-decoder";
--        };
--
--        video-encoder {
--            compatible = "venus-encoder";
--        };
-     };
-diff --git a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-index 5cec1d077cda77817f6d876109defcb0abbfeb2c..83c4a5d95f020437bd160d6456850bc84a2cf5ff 100644
---- a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-@@ -70,6 +70,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-encoder:
-@@ -82,14 +83,13 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-   - compatible
-   - power-domain-names
-   - iommus
--  - video-decoder
--  - video-encoder
- 
- unevaluatedProperties: false
- 
-@@ -114,12 +114,4 @@ examples:
-                       "vcodec0_core", "vcodec0_bus";
-         iommus = <&apps_smmu 0x0c00 0x60>;
-         memory-region = <&venus_mem>;
--
--        video-decoder {
--            compatible = "venus-decoder";
--        };
--
--        video-encoder {
--            compatible = "venus-encoder";
--        };
-     };
-diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-index 10c334e6b3dcf25967fa438f8e6e5035448af1b9..413c5b4ee6504ba1d5fe9f74d5be04ad8c90c318 100644
---- a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-@@ -68,6 +68,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-encoder:
-@@ -80,14 +81,13 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-   - compatible
-   - power-domain-names
-   - iommus
--  - video-decoder
--  - video-encoder
- 
- unevaluatedProperties: false
- 
-@@ -125,14 +125,6 @@ examples:
- 
-         memory-region = <&video_mem>;
- 
--        video-decoder {
--            compatible = "venus-decoder";
--        };
--
--        video-encoder {
--            compatible = "venus-encoder";
--        };
--
-         video-firmware {
-             iommus = <&apps_smmu 0x21a2 0x0>;
-         };
-diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-index 6228fd2b324631f3138e128c918266da58f6b544..c839cb1ebc0999e10b865f4bb43ea76ffa2bf46d 100644
---- a/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-@@ -70,6 +70,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-core1:
-@@ -82,14 +83,13 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-   - compatible
-   - power-domain-names
-   - iommus
--  - video-core0
--  - video-core1
- 
- unevaluatedProperties: false
- 
-@@ -119,12 +119,4 @@ examples:
-         iommus = <&apps_smmu 0x10a0 0x8>,
-                  <&apps_smmu 0x10b0 0x0>;
-         memory-region = <&venus_mem>;
--
--        video-core0 {
--            compatible = "venus-decoder";
--        };
--
--        video-core1 {
--            compatible = "venus-encoder";
--        };
-     };
-diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
-index f66033ae8b590e7b6f1e344c368994744411aca2..da54493220c9dc90e7d9f5fcfce7590acb241c85 100644
---- a/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
-@@ -73,6 +73,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-encoder:
-@@ -85,6 +86,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-@@ -95,8 +97,6 @@ required:
-   - iommus
-   - resets
-   - reset-names
--  - video-decoder
--  - video-encoder
- 
- unevaluatedProperties: false
- 
-@@ -132,12 +132,4 @@ examples:
-         resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
-                  <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
-         reset-names = "bus", "core";
--
--        video-decoder {
--            compatible = "venus-decoder";
--        };
--
--        video-encoder {
--            compatible = "venus-encoder";
--        };
-     };
+...
 
--- 
-2.47.1
+> +			vcc3v3_sd: SWITCH_REG2 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-name = "vcc3v3_sd";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +		};
+> +
+> +		codec {
+> +			rockchip,mic-in-differential;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-0 = <&i2c2m1_xfer>;
+> +};
+> +
+> +&i2c3 {
+> +	status = "okay";
+> +
+> +	tft_tp: ns2009@48 {
 
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+
+> +		compatible = "ti,tsc2007";
+> +		reg = <0x48>;
+> +		status = "okay";
+> +		ti,x-plate-ohms = <660>;
+> +		ti,rt-thr = <3000>;
+> +		ti,fuzzx = <32>;
+> +		ti,fuzzy = <16>;
+> +	};
+> +};
+> +
+> +&i2s0_8ch {
+> +	status = "okay";
+> +};
+> +
+> +&i2s1_8ch {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2s1m0_sclktx
+> +			&i2s1m0_lrcktx
+> +			&i2s1m0_sdi0
+> +			&i2s1m0_sdo0>;
+
+Why this can't be one line?
+
+> +	rockchip,trcm-sync-tx-only;
+> +	status = "okay";
+> +};
+> +
+> +&spi1 {
+> +	pinctrl-0 = <&spi1m1_cs0 &spi1m1_pins>;
+> +
+> +	can_mcp2515: can-mcp2515@0 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		status = "disabled";
+
+Why? Anyway, srtatus is never the first property for new nodes.
+
+> +		compatible = "microchip,mcp2515";
+> +		reg = <0x00>;
+> +		interrupt-parent = <&gpio4>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +		spi-max-frequency = <10000000>;
+> +		clocks = <&can_mcp2515_osc>;
+> +		vdd-supply = <&vcc3v3_sys>;
+> +		xceiver-supply = <&vcc3v3_sys>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&mcp2515_int_pin>;
+> +	};
+> +};
+> +
+> +&spi3 {
+> +	pinctrl-0 = <&spi3m1_cs0 &spi3m1_pins>;
+> +};
+> +
+> +&pcie2x1 {
+> +	reset-gpios = <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie_reset_h>;
+> +	vpcie3v3-supply = <&vcc3v3_pcie>;
+> +	status = "okay";
+> +};
+> +
+> +&pinctrl {
+> +	wireless-bluetooth {
+> +		uart1_gpios: uart1-gpios {
+> +			rockchip,pins = <2 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	sd {
+> +		sdmmc0_pwr_h: sdmmc0-pwr-h {
+> +			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	mxc6655xa {
+> +		mxc6655xa_irq_gpio: mxc6655xa_irq_gpio {
+
+
+...
+
+> +	};
+> +
+> +	bt {
+> +		bt_enable: bt-enable-h {
+> +			rockchip,pins = <2 RK_PB7 RK_FUNC_GPIO &pcfg_pull_down>;
+> +		};
+> +
+> +		bt_host_wake: bt-host-wake-l {
+> +			rockchip,pins = <2 RK_PC1 RK_FUNC_GPIO &pcfg_pull_down>;
+> +		};
+> +
+> +		bt_wake: bt-wake-l {
+> +			rockchip,pins = <2 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	mcp2515_int_pin {
+> +		mcp2515_int_pin: mcp2515_in_pin {
+
+Don't use underscore. See DTS coding style.
+
+> +			rockchip,pins = <4 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +	};
+> +};
+> +
+> +&pmu_io_domains {
+> +		status = "okay";
+> +		pmuio1-supply = <&vcc3v3_pmu>;
+> +		pmuio2-supply = <&vcc3v3_pmu>;
+> +		vccio1-supply = <&vcc_3v3>;
+> +		vccio2-supply = <&vcc_1v8>;
+> +		vccio3-supply = <&vccio_sd>;
+> +		vccio4-supply = <&vcc_1v8>;
+> +		vccio5-supply = <&vcc_3v3>;
+> +		vccio6-supply = <&vcc_3v3>;
+> +		vccio7-supply = <&vcc_3v3>;
+
+Messed indentation
+
+
+
+> +
+> +&sdmmc0 {
+> +	max-frequency = <150000000>;
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+> +	cap-sd-highspeed;
+> +	disable-wp;
+> +	//sd-uhs-sdr104;
+
+Drop dead code
+
+> +	vmmc-supply = <&vcc_sd>;
+> +	vqmmc-supply = <&vccio_sd>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc1 {
+> +	/* WiFi & BT combo module AMPAK AP6256 */
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	max-frequency = <150000000>;
+> +	bus-width = <4>;
+> +	disable-wp;
+> +	cap-sd-highspeed;
+> +	cap-sdio-irq;
+> +	keep-power-in-suspend;
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +	non-removable;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc1_bus4 &sdmmc1_cmd &sdmmc1_clk>;
+> +	sd-uhs-sdr104;
+> +	status = "okay";
+
+Status is always the last property... or the first in overrides, but not
+middle.
+
+> +	rockchip,default-sample-phase = <90>;
+> +
+> +	sdio-wifi@1 {
+> +		compatible = "brcm,bcm4329-fmac";
+> +		reg = <1>;
+> +		interrupt-parent = <&gpio2>;
+> +		interrupts = <9 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "host-wake";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_host_wake>;
+> +		brcm,drive-strength = <10>;
+> +	};
+> +};
+> +
+> +&sfc {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +};
+> +
+> +&tsadc {
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart1m0_xfer &uart1m0_ctsn &uart1m0_rtsn>;
+> +	uart-has-rtscts;
+> +	dma-names = "tx\0rx";
+
+Hm? NUL byte?
+
+> +
+> +	bluetooth {
+> +		compatible = "brcm,bcm4345c5";
+> +		clocks = <&rk809 1>;
+> +		clock-names = "lpo";
+> +		device-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+> +		host-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
+> +		shutdown-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
+> +		//pinctrl-names = "default";
+> +		//pinctrl-0 = <&bt_host_wake &bt_wake &bt_enable>;
+Drop dead code
+
+Best regards,
+Krzysztof
 
