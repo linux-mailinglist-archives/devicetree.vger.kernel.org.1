@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-134699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 953AE9FE50F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:55:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C14CE9FE518
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:57:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC0083A1EFC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 09:55:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7322216237C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 09:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD0B1A2C29;
-	Mon, 30 Dec 2024 09:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B8A1A7253;
+	Mon, 30 Dec 2024 09:57:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D1SM288U"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="utgezJyr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2171A264A
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 09:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E161A264A
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 09:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735552533; cv=none; b=KAzcoKJ3rLp4PZQWqNhQ8GG4Rr5JfUAw4INY+Zx/Fmx4ZZsEe8c+ZaI8avTz7IfQ1+cl3yw5ntEfQ+rL36qZXqR4IHQ1aTGIFdTH+4RPMTyJTfS2hPNzf00nGT3RK39dHIxgb7GNeHg1w7wuVjbZqH+acIUCAXj4WoCqccEa0F4=
+	t=1735552620; cv=none; b=olcyTBEUK3Ag+bHZk0Kx7gpvVWTEHVYN7+oQ1Bgh1KH2Gavrc+aUFfe0fF77Jd+UUUj/MZr/l39iodkUHi5VZ7MZ2ZvumDymtVkWhKdu5wJZ1zL219wVPHEQRo18L4OWyXoXodFX0C9JOQNfjEdRTcZkHOtgD4/9odXqyWPZfEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735552533; c=relaxed/simple;
-	bh=M+miScDDFHqmTi+GiN+Oi+U8XR2e1tcdufXlXPqEJds=;
+	s=arc-20240116; t=1735552620; c=relaxed/simple;
+	bh=bpyPmzy7EU69ZZrQFeXjNMMP0TEu4tny5lzf4yx24FM=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=lFDiQuVg4dd523t8mfZhm+Q0GZgdvfPcuN9kSXo8G5QYTQEPVbPeO6/NWgZpCq4V0ybIRq5Y9bW7Q/FeHcNHkZGslEXHbE7C+BaNyWN0G4qhYYvjb8cypoRDzOVHnaspFCZRygK6TVvsIkLTTgn2caRvBu6SUH5n2UjNQwiB7sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D1SM288U; arc=none smtp.client-ip=209.85.128.48
+	 In-Reply-To:Content-Type; b=SWQzx4BYHKjbd38ytMx/0rkg5NENqvrfNHAocul1ckM1eZLDAMTeNCiXlYDHemBtCmQgpkGi4AgUj42NTGgU/ko5G45V3s+EGT2ZbBQ8lgPwKCMOp8coq7Qv3oueIPRwursJBGdoFyGX4EHRKwaf3aZQZVYOH2CuyGhqMRUFbJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=utgezJyr; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4362f61757fso90348245e9.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 01:55:31 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-436341f575fso94677555e9.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 01:56:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735552530; x=1736157330; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1735552617; x=1736157417; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=EwAnJkcxsn7EAvnKUqGy9C9BQqWODnfQQiu9/oYFC0k=;
-        b=D1SM288UneI6SBPbj9sRB6cIHorzVKEBcY5+SFsH/DkqxeDUTJ4qIVCFvUIRXI3epc
-         fHkO3xtlqGQRp9t13wlz7nVupOc8b/uW8Do1F7uAaEdOUjhpVHICiQRC9I86wqZOSMmb
-         cQcc5GK3LEU7crSGbrovW2iux4dU45NeZzBNVT91y+dLgHAFBiSfj46cQ+OuvAV8hiGs
-         e/3zxDwOZo10nYb10qN5t6sIUuZkFJmifZmG0ZcPllBc+gZ7Xpr4X8btm0KPQ1UQ3SoO
-         a3H92mxPe87Pmr/q4TefTQeMkJ4p/FzsLdym+f1dJ/iAyWGZbp+6TlsEysBQHxSeEy8z
-         qulA==
+        bh=5I15+dY+aIukWIWhqchquvXUi0oT/lsxucwaaW3b9T4=;
+        b=utgezJyr0tZDOaTh6VudraDNasRvmpGQUmp7RyZeJe+QWT9NQnwp7IZOizIalxtGH2
+         pkPioy9tzIbOoViyToHU4Rf95/J6GtJAPWEGvG4A9dxq138fxXviDm28jDwV3xHku+Og
+         xjMHx0hCQRrLFoICN2iWm4VIFBdK/4oeMQd4oVYqwT+fqLfjLk3CVqHF1a927IR7uYVg
+         yfbHGILPRq9iowwGPhpqyz1+Uypk28KbXHHfZQC4QZ0fKIwqi8YS7vBkmbgtft93h72V
+         7/gcslKJ6wy/kjcMoTnONqfAwABEzfrIB2M/TAVxHZF118gV0o+/18Ik5QbUlwNVgq4K
+         RDgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735552530; x=1736157330;
+        d=1e100.net; s=20230601; t=1735552617; x=1736157417;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=EwAnJkcxsn7EAvnKUqGy9C9BQqWODnfQQiu9/oYFC0k=;
-        b=slYS0dxsWkl7mLqDBv3oXT/irp4kQNr0bHe/FKE+g76pTZvqoJMNm98/eIseYO7S7V
-         vj6xhbodIKa70Zs8WLCWu0PCdEN4afcb7zUsxjbTdh+Y3T4FgoOwgiIIPu5DyjJJ64+W
-         XekppRWbsw6WWLVdhuOhxLv+hiefiyyE7DZvm3WTQtK4HHmDNO6g3yyibP0pthYfgaL5
-         okyvZydtZpV/pwjlED2Se40Me8RM+QBfhopf21xeDZf16Lp/q7DhgOvhJUz6ErutaZ2g
-         hqOiRbCdgzuWwv1bvpU4sp0loD0iWCLLcHDQsoArpgLXXV75dqPWMi5Prer4TPQChLNM
-         hBiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWENVHl/IiZmfiuv3cAhO4DPFmaQ75Hcm09ur3yf6a63kfLjaCP27gpOtIFMzcmiAtzDoOkOPNdg/fy@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBVKWYumxrE/5TuVBd1BGueBSe0trxFaxpWwc6PaAihuNqg+p6
-	xcEhZkMHtq1D9w76sdx3BY/ApWWSdsuugmQbtHe5eDJgHAa8yIfBWi7Y7W2Ug8c=
-X-Gm-Gg: ASbGncuCdW+u+FQBSjRRLWQLcxfJVqdCmFQVuf+gp/zVgUNcnKEs75Acjv5ICx5XS4+
-	PosoRemqaj8ycYAxhpAuwZb0br+VzZnU5+RprKCahxW8bVEqO4t9wat6bBHKZGNt9jRXLvfQaMu
-	f6u+ULJbFTLDt4Cfn5YZj5MxjQHqZ4xQ809UT29ZmGuyzpO4DKvY/lWSfzNw3i7sqaLAALgN2+8
-	Pt20cqRj/KshAJTXsjKkNcioAs7L00pOw7C1Ersi/EaWnialIyTKUKVcSBlqBM5J6ou56wAjwAw
-	Glbv6An3FXwov5PUdHzaJ8k88tQaa1gXwA==
-X-Google-Smtp-Source: AGHT+IFdNbJoTRyUHSe3BWfH+hpDzCDJYSHHchJ9jf6Jrt8SN+H4dATnk9L+2XQ1MCTWkCD61qL+qQ==
-X-Received: by 2002:a05:600c:4510:b0:434:feb1:adbb with SMTP id 5b1f17b1804b1-43668b76a08mr321281525e9.31.1735552530302;
-        Mon, 30 Dec 2024 01:55:30 -0800 (PST)
+        bh=5I15+dY+aIukWIWhqchquvXUi0oT/lsxucwaaW3b9T4=;
+        b=ScF3s02ObsCQDz8FWUF0bkQygYkHUhUh+yb0ZcBC3Pl9ccG2fPJlBM537Jwwa2ZEe/
+         3fHJ9gAQrxjYTsWYDs1D6A9hp+Uez6UKUstamkVIGf3gdtn7QDRJcd1evHXu/Eg+INde
+         EYEp3RNqYY43e9DL2MzAy1gydBf7aifSgPW4Pc7Bs31sISRgWuabb93TADcvedUUb4gm
+         A5Fwbc2CnoIGZUduNCy4cjetvqPQEGvzPUuGJL2G04hlwkhQdmkI+WRwnLeoSNRr1/Ta
+         rZrDiKaQ5pJ5jmuK8jFV9rC72v6t4rgqnFM09xKSPCxUlUwTsXOCoYOJY6NUDN/K+AZG
+         Wp3A==
+X-Forwarded-Encrypted: i=1; AJvYcCVxG0Aw7zp7ZsDHlV6udSPZfU/4vnqX3FAEIj3jmeB+68bmlVWcDYnVnWYPiWEg78CJ55PX5ayGWLau@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1tXgU4d9CVqM12l62D2o5Im5k61bNJ6DnGjL/N9IO013SEcJQ
+	44ln8lA1zz2I+a5O3RQh7osQYZ5G09krQG0dtTIaZ2PgAapmFBDZFsD6QYg82DM=
+X-Gm-Gg: ASbGncuUFWDdUgWfNxDjR5X8gabbLkrXirFwRsGz2Q9OQ7agn0u8Gx61jW+AjCogEU+
+	TkTktk6Fb0u0vRS14DHQRRmOUmIoLKwVWtFFn2iuD1ju+SlQV4Q1Mf//vExSYA8zpsEIY1K4D+z
+	L6Y1iteUqxOmbpQCmLXp5RPclLTJ2w8iwtGR+Ua21co0voaKIuxarW6X88o0o2tFsSQIAWMTEl/
+	s2heG3zWqRa7p51HY52nyJPDqz88rH423EKtbFsq4CG09j3alEJPPtDrQIGcasG/MbWnNfwYg8M
+	HVNc2rzouMAUJBY2AHtOYIu85p62CLcCrA==
+X-Google-Smtp-Source: AGHT+IEBE78/HeRDA/F7+TamaKKbELYqVuNJpyUAMgc9BzN9CCa+wQXxK+QSy+ywq+gUvsq3dokZUw==
+X-Received: by 2002:a05:600c:350c:b0:434:9ec0:9e4e with SMTP id 5b1f17b1804b1-43668b5f6f7mr315772855e9.30.1735552616872;
+        Mon, 30 Dec 2024 01:56:56 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:883b:3c16:2465:ad55? ([2a01:e0a:982:cbb0:883b:3c16:2465:ad55])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8472casm30168549f8f.45.2024.12.30.01.55.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4366128a3c9sm352128265e9.40.2024.12.30.01.56.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Dec 2024 01:55:29 -0800 (PST)
-Message-ID: <e08e5be6-9d0e-4d32-9d67-eec57634f6db@linaro.org>
-Date: Mon, 30 Dec 2024 10:55:29 +0100
+        Mon, 30 Dec 2024 01:56:56 -0800 (PST)
+Message-ID: <da394f9e-e1f7-432d-871d-e0ae400e38ca@linaro.org>
+Date: Mon, 30 Dec 2024 10:56:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,13 +85,13 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] ARM: dts: amlogic: meson: remove size and address cells
- from USB nodes
+Subject: Re: [PATCH 0/5] dts: amlogic: switch to the new PWM controller
+ binding
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20241226220352.965505-1-martin.blumenstingl@googlemail.com>
+ devicetree@vger.kernel.org, jbrunet@baylibre.com
+References: <20241227212514.1376682-1-martin.blumenstingl@googlemail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -118,45 +118,96 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20241226220352.965505-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20241227212514.1376682-1-martin.blumenstingl@googlemail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 26/12/2024 23:03, Martin Blumenstingl wrote:
-> The only board that actually requires these properties is
-> meson8b-odroidc1.dts but that already sets it on it's own. Drop these
-> properties from meson.dtsi because otherwise they can cause dtc
-> warnings:
->    /soc/usb@c9040000: unnecessary #address-cells/#size-cells without
->    "ranges", "dma-ranges" or child "reg" property
+On 27/12/2024 22:25, Martin Blumenstingl wrote:
+> This series switches all Amlogic SoCs to use the new PWM controller
+> binding. The main benefits of the new binding are:
+> - the pwm controller driver now picks the best possible clock to
+>    achieve the most accurate pwm output
+> - board.dts don't have to know about the pwm clock inputs anymore (as
+>    the driver picks the best one automatically)
+> - new SoCs only need a new compatible string but no pwm-meson driver
+>    changes, assuming only the clock inputs differ from older IP
+>    revisions
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->   arch/arm/boot/dts/amlogic/meson.dtsi | 4 ----
->   1 file changed, 4 deletions(-)
+> This silences the following warning(s) at boot (for each pwm
+> controller instance):
+>    using obsolete compatible, please consider updating dt
 > 
-> diff --git a/arch/arm/boot/dts/amlogic/meson.dtsi b/arch/arm/boot/dts/amlogic/meson.dtsi
-> index 8cb0fc78b2af..28ec2c821cdc 100644
-> --- a/arch/arm/boot/dts/amlogic/meson.dtsi
-> +++ b/arch/arm/boot/dts/amlogic/meson.dtsi
-> @@ -255,8 +255,6 @@ rtc: rtc@740 {
->   
->   		usb0: usb@c9040000 {
->   			compatible = "snps,dwc2";
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
->   			reg = <0xc9040000 0x40000>;
->   			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
->   			phys = <&usb0_phy>;
-> @@ -270,8 +268,6 @@ usb0: usb@c9040000 {
->   
->   		usb1: usb@c90c0000 {
->   			compatible = "snps,dwc2";
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
->   			reg = <0xc90c0000 0x40000>;
->   			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
->   			phys = <&usb1_phy>;
+> I have tested this on two devices:
+> - meson8b: odroidc1 (boots fine and cycling through all CPU
+>    frequencies and thus voltages works fine)
+> - meson-sm1: x96-air-gbit (boots and the rtw8822cs SDIO card is
+>    detected, so the 32kHz clock for the SDIO card works)
+> 
+> Since I cannot test all devices I'm asking for this series to be
+> applied so the Kernel CI board farm can help verify it works on all
+> boards available there.
 
+Ack I'll appply them for the next release so it stays in -next for a while.
+
+For the serie:
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Thanks!
+Neil
+
+> 
+> 
+> Martin Blumenstingl (5):
+>    ARM: dts: amlogic: meson8: switch to the new PWM controller binding
+>    ARM: dts: amlogic: meson8b: switch to the new PWM controller binding
+>    arm64: dts: amlogic: gx: switch to the new PWM controller binding
+>    arm64: dts: amlogic: axg: switch to the new PWM controller binding
+>    arm64: dts: amlogic: g12: switch to the new PWM controller binding
+> 
+>   arch/arm/boot/dts/amlogic/meson8.dtsi         | 18 ++++++++--
+>   arch/arm/boot/dts/amlogic/meson8b-ec100.dts   |  2 --
+>   arch/arm/boot/dts/amlogic/meson8b-mxq.dts     |  2 --
+>   .../arm/boot/dts/amlogic/meson8b-odroidc1.dts |  2 --
+>   arch/arm/boot/dts/amlogic/meson8b.dtsi        | 18 ++++++++--
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    | 24 +++++++++++---
+>   .../boot/dts/amlogic/meson-g12-common.dtsi    | 33 ++++++++++++++++---
+>   .../boot/dts/amlogic/meson-g12a-fbx8am.dts    |  4 ---
+>   .../dts/amlogic/meson-g12a-radxa-zero.dts     |  4 ---
+>   .../boot/dts/amlogic/meson-g12a-sei510.dts    |  4 ---
+>   .../boot/dts/amlogic/meson-g12a-u200.dts      |  2 --
+>   .../boot/dts/amlogic/meson-g12a-x96-max.dts   |  4 ---
+>   .../amlogic/meson-g12b-a311d-libretech-cc.dts |  2 --
+>   .../dts/amlogic/meson-g12b-bananapi-cm4.dtsi  |  4 ---
+>   .../boot/dts/amlogic/meson-g12b-bananapi.dtsi |  4 ---
+>   .../dts/amlogic/meson-g12b-khadas-vim3.dtsi   |  4 ---
+>   .../boot/dts/amlogic/meson-g12b-odroid.dtsi   |  4 ---
+>   .../dts/amlogic/meson-g12b-radxa-zero2.dts    |  8 -----
+>   .../boot/dts/amlogic/meson-g12b-w400.dtsi     |  6 ----
+>   .../dts/amlogic/meson-gx-libretech-pc.dtsi    |  6 ----
+>   .../boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  |  2 --
+>   arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |  8 ++---
+>   .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts |  2 --
+>   .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  2 --
+>   .../boot/dts/amlogic/meson-gxbb-p20x.dtsi     |  2 --
+>   .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi |  2 --
+>   .../boot/dts/amlogic/meson-gxbb-wetek.dtsi    |  2 --
+>   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi   | 25 ++++++++++++++
+>   .../boot/dts/amlogic/meson-gxl-s805x-p241.dts |  2 --
+>   .../meson-gxl-s905w-jethome-jethub-j80.dts    |  2 --
+>   .../meson-gxl-s905x-hwacom-amazetv.dts        |  2 --
+>   .../amlogic/meson-gxl-s905x-khadas-vim.dts    |  2 --
+>   .../amlogic/meson-gxl-s905x-nexbox-a95x.dts   |  2 --
+>   .../dts/amlogic/meson-gxl-s905x-p212.dtsi     |  2 --
+>   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    | 25 ++++++++++++++
+>   .../dts/amlogic/meson-gxm-khadas-vim2.dts     |  4 ---
+>   .../boot/dts/amlogic/meson-gxm-rbox-pro.dts   |  2 --
+>   .../amlogic/meson-libretech-cottonwood.dtsi   |  6 ----
+>   .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     |  6 ----
+>   .../boot/dts/amlogic/meson-sm1-bananapi.dtsi  |  2 --
+>   .../dts/amlogic/meson-sm1-khadas-vim3l.dts    |  2 --
+>   .../boot/dts/amlogic/meson-sm1-odroid.dtsi    |  2 --
+>   .../boot/dts/amlogic/meson-sm1-sei610.dts     |  6 ----
+>   43 files changed, 132 insertions(+), 135 deletions(-)
+> 
+
 
