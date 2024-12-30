@@ -1,78 +1,48 @@
-Return-Path: <devicetree+bounces-134691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56AF59FE4DF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:34:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDEE19FE4E3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:36:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 076F41624ED
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 09:34:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2538E3A1F08
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 09:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC591A2380;
-	Mon, 30 Dec 2024 09:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12931A2550;
+	Mon, 30 Dec 2024 09:36:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BMwOfNZq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOmnbA0O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 668B31A3AB8
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 09:33:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A043B1A00D1;
+	Mon, 30 Dec 2024 09:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735551235; cv=none; b=fiS1GrtbqaZ5wt5QCAnbR2XoiZKabhaaWb+p1/lnW1ABEk9jO6i16ZLUhccDO5nrJ+5SimGUJsVYtLWfgYrzVB95XaqCvG95cN8PQYG2cOhmMaN2g8uccf6/uJLNmSuU24wPRPVIvYK8xd2gWO0t2kaWTJ6trXWujsDc3eKIEkQ=
+	t=1735551373; cv=none; b=ZNERf/5plQZNLDQlIxIzNhh9UUv7Qcp9ZvnaA4kQPnbOE1CN1/Cd060MEtKOl5ATn6Nf5CBuRZexcePTgzTSZhPdEa9kxx5v3DFHlmFdNw+EeeIqzgeInXzTzRmFioTiUbROjfmXUWhN0owUwGpgskxYrrN5NY+e1haagRlAcRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735551235; c=relaxed/simple;
-	bh=dYwHpSJUhuUAG0fqkuiQHa2k6x4/1UvSqmN7TRAtCSE=;
+	s=arc-20240116; t=1735551373; c=relaxed/simple;
+	bh=itDnOX1cmFGanlvFrFtpBbKs+0xecaDvZQna087YyGk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RunlWnhSziKRPWSQ8ADF/1iCvyARQ8DbftqO3oTU5yGR5Un0ti62MfoQ8vtRQF8wGObv7t96fhIuZ1q/CjTH+5xiW2/3YnEJG2Mzf/lrTBnck7D0BRBk+bIBdaPg8bYETTsMPl7+YukcAHe6PKmumLrEqJJ4x9NQex91WNCnNJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BMwOfNZq; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-385de59c1a0so5490478f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 01:33:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735551232; x=1736156032; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CWxCLyK4AJgfk1FfjpH9G6YxLoJtD0ixlqlSrDwjPFI=;
-        b=BMwOfNZqxJdxb5G6NDUdiCws70XcndKFjb/Dz0WEzww65LAM4z6/JPYmcZdaowceu6
-         syW20bfbOGc7c+04FCab0dhZncE3xFrN9pNtHom2X/700PsjpvIvunQWZI1TTUquUHBK
-         nYDSdY4p8pPzXMSAPObVupqR8hMdtxcgjHihnmCX7kJToFjZd/9yNsJ3wnJpAxK8RTBp
-         LG8tw7B5s8Z83z7krL2seYWAN4Q8r3Gf1LehCWlCm37nm2Ys6OHF+/LBiQ2rECnq9hCA
-         bepDEPVfUvw6alkIv+I424gWQkIRaFOLi4R11Z89VaeCif489h6fO4W6358EEFfbCOYz
-         tW1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735551232; x=1736156032;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CWxCLyK4AJgfk1FfjpH9G6YxLoJtD0ixlqlSrDwjPFI=;
-        b=RW3ebzRa8jgaCpt5D/YTlJeRc93AYcDhXTouImirxRnemQ5+g9I0ucHCiPdyK/rmpL
-         7+DRB4cVaYwvnM3eHH3w/xj8mU6aGRQx4AF/RrydSRiITmCbRy8ywNgkaLZteH//YyV8
-         kjW5yWWqJej3a2xUFyTDccoR5ly/askwlqmJi0xI6tqFGeRSokBDrwPKCYM7KSpgZrqX
-         lmZwrE6ghebgxeaqmA14r2WhxnbfPXifs/yjYiEaxeeun10fxUDDBWi0efnNG+i7xVMq
-         T9Lv+vbh8kOcXqpoc/+uw88N5CknOQb9Luv0zzuLEEbUKmuYMZl9f0StvWCwSpKdvaqi
-         0hBw==
-X-Forwarded-Encrypted: i=1; AJvYcCX8Lwx/V1ZudReza/nQrtE4nCby6zt/+3XnxuAnYtw1/50zvADWZ+0cAU+faLUrVRb5HwWP7m0OjcOo@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZGsOPVs3FI8qE8qoqgg4U9WFJNFILeuRx/K73F4jnDBYayq8s
-	39CQGcywTua0N75nYbYw8Ajw2rUykqF2Vz9KLa7SgUxXAPIMa9bbRyGN1pnbtzI=
-X-Gm-Gg: ASbGncsb4IP6iZ04K9saEmy4amdQi9ZEx54KQdg3A3H8on2za4W6GsA1w4m7rdsQ5GQ
-	xPmtsP8xsZd9/oNHSq9zoAVKgMH9kIxl25SGQVjVlEOnoBvdckxbe67dHnNA2SmmtuIrsgvoLZO
-	zx5z5uD8/2+GuKBywOF+ixL5lMk9K6t5o0kIpDgCDyBNS5giQW+USyzV3oHC+fxPx93x9IFh6q3
-	4NBGd4Lflnj7oOFz/O15jO8c38i3YQ0j4xpb6ER7xi+iQxtw4LLRn/fGLqqct0y
-X-Google-Smtp-Source: AGHT+IGt9+hFPNfKD0vYj/l0vMmTZmm4MtaV//fw/vdTlSexZfNqLe9/5huEQLBsPI/BCg5Yf4wjuw==
-X-Received: by 2002:a05:6000:400c:b0:385:f23a:2fe1 with SMTP id ffacd0b85a97d-38a221f92c9mr32375904f8f.26.1735551231816;
-        Mon, 30 Dec 2024 01:33:51 -0800 (PST)
-Received: from [192.168.0.14] ([188.26.61.92])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c847dabsm29231573f8f.59.2024.12.30.01.33.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Dec 2024 01:33:51 -0800 (PST)
-Message-ID: <d852b956-b61a-4770-8d93-9987a982080d@linaro.org>
-Date: Mon, 30 Dec 2024 09:33:49 +0000
+	 In-Reply-To:Content-Type; b=aUNpoyse5ykIyStPLVYvWLb2PlcW5VEjv5Hb3PKVoMB+cvN+YtwFIMIVyGGaQV83vUYypzI/12KwzuraaleP9bjza+dkAj60m+O4UJIH0HjtR1vmueRsIcgz0B8Olb5F65RL2GgDVdreaCL6moU23WDPCL7DXTT3g8U3cNnAhNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOmnbA0O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 649C9C4CED0;
+	Mon, 30 Dec 2024 09:36:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735551373;
+	bh=itDnOX1cmFGanlvFrFtpBbKs+0xecaDvZQna087YyGk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NOmnbA0OhC3yBF3Zd2i8V8sJrO+4e7lPRuOV5Wdx176WuCxFE8jTRHojGuAzjGXzc
+	 bC7OL5IHuHgERoj6YpFQ9nG9mK5aOQp2KQfg40emYI3Lr53zW9edcNP/bSoBopHsJ6
+	 DMM4qgik2XvCAWHHLJjOQoAtUTYc/FNb4uW2oJcEeMjdnd0p7KsL0uVoq/SBZu3YQY
+	 C12jgWI8+NHBsFw99iNVcm+U5AF0G2q3otq5Oo7+6v+mCSDS365AEf/nCfn62jX3Re
+	 ZFuhxj3+poiKpst9KXuSFdYLMptHR4b9ctdglxDe3ZQMGuijs71JaW5VzKbwlw5IN5
+	 f1syRs9/w0cew==
+Message-ID: <372bdb4d-95a3-429f-be16-64eb909ec5fb@kernel.org>
+Date: Mon, 30 Dec 2024 10:36:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,74 +50,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] arm64: dts: exynos: gs101: add AP to APM mailbox
- node
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Jassi Brar <jassisinghbrar@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
- daniel.lezcano@linaro.org, vincent.guittot@linaro.org,
- ulf.hansson@linaro.org, arnd@arndb.de
-References: <20241220-gs101-acpm-dt-v3-0-642d64daa5d1@linaro.org>
- <20241220-gs101-acpm-dt-v3-2-642d64daa5d1@linaro.org>
- <f5e3d00e-8f98-46c6-8f1a-85a2169324ee@kernel.org>
+Subject: Re: [PATCH] arm: dts: qcom: ipq4019: Fix indentation error
+To: Sanjay Chitroda <quic_ckantibh@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <e4193859e99d87e2450b78f1d480b661d65fa5bd.1734945223.git.quic_ckantibh@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <f5e3d00e-8f98-46c6-8f1a-85a2169324ee@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <e4193859e99d87e2450b78f1d480b661d65fa5bd.1734945223.git.quic_ckantibh@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 12/22/24 11:47 AM, Krzysztof Kozlowski wrote:
-> On 20/12/2024 15:45, Tudor Ambarus wrote:
->> GS101 has 14 mailbox controllers. Add the AP to APM mailbox node.
->>
->> Mailbox controllers have a shared register that can be used for passing
->> the mailbox messages. The AP to APM mailbox controller is used just as a
->> doorbell mechanism. It raises interrupt to the firmware after the mailbox
->> message has been written to SRAM where the TX/RX rings are defined.
->>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->> ---
->>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 9 +++++++++
->>  1 file changed, 9 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
->> index 1441e9a252c2..6947dd081a0e 100644
->> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
->> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
->> @@ -1445,6 +1445,15 @@ wakeup-interrupt-controller {
->>  			};
->>  		};
->>  
->> +		ap2apm_mailbox: mailbox@17610000 {
->> +			compatible = "google,gs101-mbox";
+On 30/12/2024 10:27, Sanjay Chitroda wrote:
+> Corrected indentation issues in the qcom-ipq4019-ap.dk07.1.dtsi file as
+> identified by ./scripts/checkpatch.pl.
 > 
+> Signed-off-by: Sanjay Chitroda <quic_ckantibh@quicinc.com>
+> ---
+>  arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk07.1.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> I don't think I have this in my tree and cover letter does not explain
-> where I can find bindings. Nothing in next from few days ago. Always
-> document in DTS patchset where are the bindings, unless it's obvious.
-> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk07.1.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk07.1.dtsi
+> index cc88cf5f0d9b..5a95a2d03c42 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk07.1.dtsi
+> +++ b/arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk07.1.dtsi
+> @@ -43,7 +43,7 @@ nand_pins: nand-state {
+>  				       "gpio64", "gpio65", "gpio66",
+>  				       "gpio67", "gpio68", "gpio69";
+>  				function = "qpic";
+> -                        };
+> +			};
 
-Noted, will add such details. For the reference the bindings are part of
-these patch sets:
-https://lore.kernel.org/linux-arm-kernel/20241220-acpm-v4-upstream-mbox-v6-0-a6942806e52a@linaro.org/
-https://lore.kernel.org/linux-arm-kernel/20241220-gs101-acpm-v5-0-4f26b7fb3f5f@linaro.org/
+There are at least three instances in arm qcom, so fix all of them
+please, not one by one.
 
-I'll ping you once we all have an agreement on the bindings. I'm still
-waiting for Jassi to let me know if he's fine with dropping the channel
-type argument for the ACPM use case or not. ACPM always uses the mailbox
-channel in DOORBELL mode, but this info can't be retrieved from SRAM at
-runtime. Jassi suggested that I shall pass the channel type via DT.
-While I don't mind, I don't find this necessary. Discussion at:
-https://lore.kernel.org/linux-arm-kernel/eaab647a-f6f4-4562-89fa-e64daa80bdf4@linaro.org/
-
-Thanks!
-ta
+Best regards,
+Krzysztof
 
