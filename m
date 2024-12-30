@@ -1,101 +1,138 @@
-Return-Path: <devicetree+bounces-134674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063619FE362
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:44:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FEFF9FE360
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:43:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA2D3188108A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:44:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 601A2161ED6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A43619F13B;
-	Mon, 30 Dec 2024 07:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E7019F42C;
+	Mon, 30 Dec 2024 07:43:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="d92MefF6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DG1wQQSi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2B61547F0;
-	Mon, 30 Dec 2024 07:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA0054D8CB;
+	Mon, 30 Dec 2024 07:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735544637; cv=none; b=tsirjCBdS10xdzOFkvU1hWFK53qD0bFF5SXzaSOD1bXVip3jqPZKhLo5j++ol/hHRIpZyyJfu13hO1zdUgQvCg51RwAbIiWn/ASHDa4QjQw4hNubFGxtXZ9xKHmKj2O5m272JsWeRXZiFIC3DQnHk2G16yow3EBWoFGEoPP1f0I=
+	t=1735544601; cv=none; b=AtQB5lwtBDPA9kWygYAkFuX0XvY8o7T7EGuPp0+B3xZ1Dn5+j6iT5bptd1Pe4BHagZLMzjay7XwU5FURxklXe81SE4uXr5R0Eea9IM2QsYVWB+jZun24ImpZNclCL3noiBulBbTqgWW8o5Glab3xU+jy0+06E3Y0BWvbRpnu4l4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735544637; c=relaxed/simple;
-	bh=EC5UT1z0IgKwoO8Ixq/bu8hGWGM31xEuDEzz7LISNRk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p8peKvvg1xVtm4zv7DgvHN1QwjctJrKRlLIdGlrgjg7NUDqgY9EhaDA9uVQ9oELjZkyt/JgrQ715+z2MzWMRc12gNs0dX0+xgUJ4WModBc8YvrhteiWEZFMn0qwKP/i9ni29/5l16rcDpMZYBwrdSgcw9HZ8lwfpkcaLlPczmCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=d92MefF6; arc=none smtp.client-ip=220.197.32.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=gy54HaJtZV3aXuq/5zN+MYA9MTDJ14jB3IIBVXkWUo4=;
-	b=d92MefF67V5RbQfyJ1F0o4q0fhIqz2KU/9C5/xXRCXqz8SUysw7qjWUhYpOnek
-	/BkVWTuMhpPgMXEEyfdw8N6D1AGd9LpRUgJdDx22kHvCxWvfRjug0y00jQiGP/fR
-	QViJqf7Npi3LYg5/U/PPXDPCMkj26SwhGtXA3L+43633E=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgB3XBXKTnJn1T74BQ--.60267S3;
-	Mon, 30 Dec 2024 15:42:04 +0800 (CST)
-Date: Mon, 30 Dec 2024 15:42:02 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	NXP S32 Linux <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH] arm64: dts: s32g: add I2C support
-Message-ID: <Z3JOyuehpLSfT+RL@dragon>
-References: <20241206123119.1688712-1-ciprianmarian.costea@oss.nxp.com>
- <Z3IkYGFGb12LCVIO@dragon>
+	s=arc-20240116; t=1735544601; c=relaxed/simple;
+	bh=/QpnLbAUQl4xLhtBrgh3PAoCXgKT38MC1TD6x8eepe4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=VZWv5pWRMYsAmQjh4fyFL/wyQcNq+yzeG+PI+2mXg2Jo9to5IWXvluW9H2mWPzpYmS4GVQf671DgEmKED+HydFLR1E2g/SwabSckC55Y1pnTnlQu8qTWYWCHQSizuw03deRUCujLZMCw8AbryQEBucdj2TFA80IKd5W1IDhsOAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DG1wQQSi; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU1X4kj028167;
+	Mon, 30 Dec 2024 07:43:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VlO35bkYq37/EUrx13xJgaQfSl335GfdaycmJLn79XU=; b=DG1wQQSifvlrO9FP
+	f/WDk9Y5/OoS14kWyt/dotjfxXrs6XjmeOLn5C8BThWdOtDWHmObIRYLTbsuCW1R
+	5FivgMpqc8B361sKt+9HxWBH/BV1zVuXIeFPP18vWFzpFAgkfKOX4n9bmS/NRw3B
+	c5nqMTJ5+zSYXFrhh7zxAmTanOY2b2CDXoYadL4xSvC0+jitCA8GFh1JMyrKSoDD
+	BrsN4H8tQPjiUpCMNCnKOc9sC6b59AU4yOMhAm8PPeWzcA1bwi2GEd5Ksp/XMjdA
+	1V62oC8VNVVKw99JV8z7+6iQ3TehryL2sKfr+VIv0zG1GiLo0GhEmPcp+YXk/HtK
+	tTDwyg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43uhxvrkyx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Dec 2024 07:43:15 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BU7hFXt005421
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Dec 2024 07:43:15 GMT
+Received: from [10.216.61.31] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Dec
+ 2024 23:43:11 -0800
+Message-ID: <7924984d-57e9-40f8-8998-b37d6e1bc78c@quicinc.com>
+Date: Mon, 30 Dec 2024 13:13:08 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z3IkYGFGb12LCVIO@dragon>
-X-CM-TRANSID:M88vCgB3XBXKTnJn1T74BQ--.60267S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrtF1fAFy3tF1fZFyUKFW8Crg_yoWfGFb_uF
-	WSyr1kCrs8JF1xKr1fXws8G342g3yUGr93Zr4fGa93X3Z3JrsxGFsIqr10van8X3y2vr9I
-	vr15JrWIkr9rXjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0IdgJUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRvFZWdyEULbFgAAs5
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] nvmem: qfprom: Ensure access to qfprom is word
+ aligned
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Naman Jain
+	<quic_namajain@quicinc.com>
+References: <20241027-sar2130p-nvmem-v2-0-743c1271bf2d@linaro.org>
+ <20241027-sar2130p-nvmem-v2-1-743c1271bf2d@linaro.org>
+ <60068361-ddb7-4906-84ca-195e5eb13a0f@linaro.org>
+ <plemc4swba7ybrncyxt3axxpb3qjbdktfkt7kqt3dqymlusfpq@sfgwakjp7z3g>
+Content-Language: en-US
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+In-Reply-To: <plemc4swba7ybrncyxt3axxpb3qjbdktfkt7kqt3dqymlusfpq@sfgwakjp7z3g>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: i2mnV6tOuyR_PuhY9TogA0z-v7Dz-SoB
+X-Proofpoint-GUID: i2mnV6tOuyR_PuhY9TogA0z-v7Dz-SoB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=999 phishscore=0 clxscore=1011 bulkscore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0
+ mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412300064
 
-On Mon, Dec 30, 2024 at 12:41:04PM +0800, Shawn Guo wrote:
-> On Fri, Dec 06, 2024 at 02:31:19PM +0200, Ciprian Costea wrote:
-> > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > 
-> > Add the I2C Devicetree nodes and pinmux for S32G2 and S32G3 SoCs.
-> > 
-> > With respect to S32G2/S32G3 SoC based boards, there are multiple RDB
-> > (rdb2 vs rdb3) and EVB (for G2 vs for G3) board revisions. These versions
-> > are quite similar. The common part for the EVB revisions will be
-> > centralized in 's32gxxa-evb.dtsi' file, while the RDB commonalities will
-> > be placed in 's32gxxa-rdb.dtsi' file.
-> > 
-> > This refactor will also serve for other modules in the future, such as
-> > FlexCAN, DSPI.
-> > 
-> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+On 12/9/2024 4:23 PM, Dmitry Baryshkov wrote:
+> On Mon, Dec 09, 2024 at 09:55:14AM +0000, Srinivas Kandagatla wrote:
+>>
+>>
+>> On 26/10/2024 23:42, Dmitry Baryshkov wrote:
+>>> From: Naman Jain <quic_namajain@quicinc.com>
+>>>
+>>> Add logic for alignment of address for reading in qfprom driver to avoid
+>>> NOC error issues due to unaligned access. The problem manifests on the
+>>> SAR2130P platform, but in msm-5.x kernels the fix is applied
+>>
+>> Is this only issue with SAR2130P?
+
+This is applicable to all chipsets with sys arch newer than Snapdragon 8
+Gen 1.
+
 > 
-> Applied, thanks!
+> I don't know. I know that it manifests on SAR2130P, but in the vendor
+> kernels the fix is applied to all the platforms.
+> 
+>>
+>>> uncoditionally. Follow this approach and uncoditionally perform aligned
+>>> reads.
+>>
+>> If there is a need of having proper register alignment this should go as
+>> part of the nvmem_config->stride and word_size configuration and not in
+>> reg_read callbacks.
+> 
+> Thanks, I'll explore that option. Indeed, it might be easier to handle.
 
-Dropped.  Just noticed that review is still ongoing.
+Dmitry, any update here? I need similar change for X1E GPU speedbin support.
 
-Shawn
+-Akhil
+
+> 
 
 
