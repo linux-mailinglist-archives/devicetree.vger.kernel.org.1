@@ -1,89 +1,79 @@
-Return-Path: <devicetree+bounces-134703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CC1A9FE520
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 11:00:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3289FE524
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 11:03:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF755162558
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:00:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78BF73A1EA1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D84BC1A0728;
-	Mon, 30 Dec 2024 10:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 905081A0BFB;
+	Mon, 30 Dec 2024 10:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ea0pGJaL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l2t2i0qg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFEF3171C9
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 10:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27F6171C9;
+	Mon, 30 Dec 2024 10:03:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735552823; cv=none; b=IHG9j7r75GuDSJQfnqEeRNPEIRQf502fFSsKywGFzt21cwHnWOi6cMZ3rTvdqNIaz0nu/ldrz7unmc3oY5ndsNLhwEZ4/S/GbV50BBk9Xonw17AS3DGmk5yw1XI5DVBN0SugaCahgXA/Fu3jXdpUfDoLCDmOVlpIKidG9CXIFT4=
+	t=1735553004; cv=none; b=iBua0dIM79jQELarxAhndWlz09KuSHN4ppb6bN/9lu6F5hwgcYmNjyQnaw92RofqieSmXHJbw+utVnWnCiHHiKYzZ1oFpP4a4TIQY6n0bFNCMxsPL0CxMdd0PMbk29WmAD4GyA6HOWA9hC9lcLetXodIUk1m8llovXzCio/2+is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735552823; c=relaxed/simple;
-	bh=fOjkv1D88de8gXreGyoDFXpiiXpXl153IZ6mKq/jnkg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=bGJmtl7vD9iUZwbrNQ/9EFjUe/fklCSkuQatBTK2WV5GigNwG1xSiy7a5en09jbnG3ZOX9bY1Rx/hQ/YzDnIIPZ3mLY8vpCDZisHKOH7udyzIOjaf6+Gtg4NWpbyfjhVSs3WcXLQa3AC+9/NSqFQwcZ4zotu2+/o7qfRkj6NPKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ea0pGJaL; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4364a37a1d7so95637255e9.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 02:00:21 -0800 (PST)
+	s=arc-20240116; t=1735553004; c=relaxed/simple;
+	bh=fI0SD4pW+QS8nc8Wtiy3t42Rgh3UaOlu+jqWvydrJwo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ajZZ56d8hWyiagMjVAox6mMalLzS27UWSmCEITJj2vgzV+2jTe/zUIDmwkNia2ofPdtu8K1WhZDYjDJZPDZ5XAs5Y5rVo5L4Cwwa/dTaLrOSycVfTtSCu2yhmHgH/c3pFk+EqeMKsvvZ58XBvQ2mtwnfbEX+NHGXTxbsO9mAP+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l2t2i0qg; arc=none smtp.client-ip=209.85.214.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-21683192bf9so117143325ad.3;
+        Mon, 30 Dec 2024 02:03:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735552820; x=1736157620; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6jfp9SmUDH518VNnaMu3qm3fIwFvpgmQiefan0yTgrM=;
-        b=ea0pGJaLhCFCgcWhCmLkmnlbEHaGlZZCpihjRg6vLospFJB5tIhzQ8N0wXh9KfgNTU
-         OX9Z8fGnooUw1kD7mLsQE/Cc/BYPpBxp8U6MI04fuohm9TeBBSJV7ExzsLJb/0IiwOU/
-         hcXIrC7qt6Bgmrw7xdtyI1PrJc9NXSWC4RTBh/PK0iajQrUwb3/jFJllNaNdb5b/YrHU
-         iu8IP8yTxiyk81jht7Cezh4UaK7ipniYUqU7XszeLgDrFwFyMCdNeuMKSPACIDC4kWH1
-         sKfeQLjqJBtYdYtqaDSnzf/1F7S5MbN6BHtQp+3+3cJBs5yMatlB6jVTWJNAzzOXH+3L
-         aFpA==
+        d=gmail.com; s=20230601; t=1735553002; x=1736157802; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OGcdgmSPp8Rl4ve8WcljtcuxciOP3V5C9soW1Jk7mGg=;
+        b=l2t2i0qgVYLQ2OS40pK08IUx6L1TciDz9oUbPX+qD9aP+sEam+hbHsQApkFV+pv1IC
+         gtLl5d4oYn13gsPptv21D17YvoOBgyH4SLcOg9pQJOqoUZjyJS8JbPHR5jL3FZP5wcoR
+         P9keFlYkFuX9i5sZ6g2uvaMEji/tTseYUIoXq05jn8QunKAy3r+K3jxWiRog1DZECZuc
+         KQclF5T3eBo9LO62La95wwI8lgc8W9aUj+NhbCmRGyFj9OhlDXmuF4Ev9NUvedyo5tDN
+         mM2oBjGkALRZjYekuKqbOraiLJD0lsZm1BKcuXInHnVQEd9a11t1KZ+igURbEs3LVvZP
+         C2/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735552820; x=1736157620;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6jfp9SmUDH518VNnaMu3qm3fIwFvpgmQiefan0yTgrM=;
-        b=rBcSN7IMLDQc0GJOxiBLC20sKJu3O+iHgg2/52PWuLcCRPxEJ+GzGvfcrVPVNQaaUH
-         sWNKc3zEq9ybl4uX5/nGK3xhiBsSfogFaBOb31Rb7WXb6hVXk5Ckyjhx/3g62CQJ0Ftr
-         mRygFpBPV3HySQcNO1iIY3Qah5eOQruqY45kJBkREOhPeCrMG7aFeVucd9LLEEdkbBxg
-         FyVDfd7Hfn4XfG5LwRM+iDDwJ/bTIZJKukQ3hKQKNofdDseC323KdXHjEFqOg1miq5c6
-         Q2f2oV9YvQ9WF5Q2rRYN+25n7Hj1q3K3DhSIIamZ73RCyJhfoducDzhAf0Kh/Fn/gT5t
-         1Kqg==
-X-Forwarded-Encrypted: i=1; AJvYcCWuPT8OkPlkzC6JVFiIViPF6s0v6CCjfOsjk3giD/B5pkV6pu4FpBQdrwxfCko25K1Pb3VtlDkzJoaI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwF0H3d8qKWt9a4ytFvcRFrRQwowv+gKTQ+7iMdR4sVcd43fVl
-	D/8QPpoZj3ULkyx5ipHvSNIcdHwpEINEjvWtGrq4tyK4hkk5xUnx97OvaV/zQepZTcehpck8x0X
-	x
-X-Gm-Gg: ASbGncvZ373rg1bxcuLektiC+ei8z4fX71qBTb2Z0pvDIScMQSKf+6WqdfoGKvPF8Hl
-	ADAedC0UPMuhd1Fv07QqUe+MUnrAw2SPACZsBhVU7cJKtfsqZvOhGYdH9wgrzJCgmZemx5h7Jt0
-	UYpdCPJ2r/45fB0fp5DSggCBVPHu1+rkKp+NUAI0Nabm/MGQZNmS2X1az+dYYiW9OyAbnK1itTJ
-	Ckbo0zGLNldn1eWQSLXiKG4vXwUk7fA5WYznwSPlt1xXcanZQ+t+YM6BznIig+3VVSs6hW02WPW
-	BQ==
-X-Google-Smtp-Source: AGHT+IEuGi6MCYipXIk5Q5oobmNxWaU1dKW0QbR9Td99CaPeqsk/klM4UWZLTAwld9MSa5fELHIXHw==
-X-Received: by 2002:a5d:5e09:0:b0:37c:d23f:e464 with SMTP id ffacd0b85a97d-38a223f75bdmr31618551f8f.38.1735552820388;
-        Mon, 30 Dec 2024 02:00:20 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4365c08afcbsm360576575e9.21.2024.12.30.02.00.19
+        d=1e100.net; s=20230601; t=1735553002; x=1736157802;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OGcdgmSPp8Rl4ve8WcljtcuxciOP3V5C9soW1Jk7mGg=;
+        b=Wwj2+mdXK/KOKi/78c7gVjZIsbP/VkYlvHEjUZNgMnGzwlXhZ+x2rnLm3fExjByr0w
+         XhVAk+6xWj37AV3U19xqENpmRv+ukRLOrzG4S2TO5xtG+w7an1vbS0F0srH4wMKIZdeY
+         3GPOhj3RoObh4PtnjNYAmQMzSmmErDJlKvgX+3pCZue+xhZK8wXbn0wdO+M+Dzq6EU2g
+         uWo2lxtQm+8uMGRcDXEkUgXcQCbDKSIOy4ZKPHf/gfKwE4oLqOIidb2xZtJwi49uwTgI
+         EFtJknTCqpWZ7bZCuJMwdEQ0KDc7ApvAtmq0vebWfVO5EbB14Tb+XCr8A9q5wL1vT5r2
+         mZrw==
+X-Forwarded-Encrypted: i=1; AJvYcCUT9uxhSyte6X6yo8sS7YjE+XfSoFwhcrDQxzgUeGPucHK/utuz31eDkdbQNKSvXTO8GI12ft87uS0A9OTw@vger.kernel.org, AJvYcCWn8iWk6y4xSDAvIz0w2ecIJP8W5w76TgsIa9UxnjLqDEhzAQRDbhp7Qb1xuPwVirnF6MjG/H3HqMPv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyo+gegZY6rnAGp7QKPkBCOuNcSyU4Y6DzOKef8DO2coXoFZqJ7
+	T9P5REbiTmCYLfiTxZNtJcKg7wgFLNNx/YK0A7ymU8cjww2/ALHUXi49NMpY0cZ+dQ==
+X-Gm-Gg: ASbGncsomcyQInqVdzYO1lS08/kFknyUVJtVGCBr5myi8rRzC0su57nUjUWGzP1ByNh
+	lyCKg+7EAf6k77+tthAQGWvFXBOj5AzGYYNX4PuVw0xdQ1BFbZ6QMeKTtqIeIhdlc6+ZLialbJr
+	DkE906yA6+loFgrV4nx+x/+v4GDnPawcgqjSZxnp+FvfKlr+g7ikcceDoR6o2TOYXRdWVO8NYx7
+	oXL9mNR+oWTpOJLlL/QzbtFNxmVkEaK0AmMHd1cYQgvXKEE/st5hJO5lqs2OSKk
+X-Google-Smtp-Source: AGHT+IFxQtXcUqnaBXMvwVGaoOUYs6B2QF/v0AdY3gjC3294y6oxY0eiuEfhGeiAYtPx65Wz+vhr5w==
+X-Received: by 2002:a05:6a21:900e:b0:1db:df34:a1d6 with SMTP id adf61e73a8af0-1e5e082e79bmr49152095637.42.1735553002000;
+        Mon, 30 Dec 2024 02:03:22 -0800 (PST)
+Received: from [127.0.1.1] ([106.114.236.41])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-842aba72f71sm17328587a12.9.2024.12.30.02.03.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Dec 2024 02:00:20 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: linux-amlogic@lists.infradead.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20241226220352.965505-1-martin.blumenstingl@googlemail.com>
-References: <20241226220352.965505-1-martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH] ARM: dts: amlogic: meson: remove size and address
- cells from USB nodes
-Message-Id: <173555281977.2076800.1598444993782802807.b4-ty@linaro.org>
-Date: Mon, 30 Dec 2024 11:00:19 +0100
+        Mon, 30 Dec 2024 02:03:21 -0800 (PST)
+From: Troy Mitchell <troymitchell988@gmail.com>
+X-Google-Original-From: Troy Mitchell <TroyMitchell988@gmail.com>
+Subject: [PATCH 0/2] Add support for the P1 PMIC from SpacemiT
+Date: Mon, 30 Dec 2024 18:02:04 +0800
+Message-Id: <20241230-k1-p1-v1-0-aa4e02b9f993@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,47 +82,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ1vcmcC/02OSW7DMAwAv2LoXAIitbjSV4ocZIpuhcJJKrlGg
+ SB/jxwf0uOQnAFvqkkt0lQcbqrKVlq5nDvg26D4K50/BUrurEiTRdIWvhGuCNliyiMHl0dS/fZ
+ aZS5/z87H6eAqP789tx7DVy0Oz5Y2uLcKMSyprVJhlnEeJ51ZgombVf9fOCTtye+SRphSKwx5B
+ UzJoIhMnClubrf6ToAvy1LWOLxLoMCTs17EEofkMZOdk3jttZMgBgMZZ9Xpfn8AjwnWkw4BAAA
+ =
+X-Change-ID: 20241204-k1-p1-d41ad7c95d72
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Troy Mitchell <troymitchell988@gmail.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Troy Mitchell <TroyMitchell988@gmail.com>
 X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1735552935; l=2380;
+ i=TroyMitchell988@gmail.com; h=from:subject:message-id;
+ bh=fI0SD4pW+QS8nc8Wtiy3t42Rgh3UaOlu+jqWvydrJwo=;
+ b=UhyyEJ1EwogsuDv3Id3hoR0cg5sPnSEbuP1If4fUFCbeiWOIYm4Z75BcR27meOATZWSShv1eF
+ n+OVvy3Nz+iDt1B5yAEGTjegJw0Qa63i/rcbiQD3w4k6okaB4ke6skz
+X-Developer-Key: i=TroyMitchell988@gmail.com; a=ed25519;
+ pk=2spEMGBd/Wkpd36N1aD9KFWOk0aHrhVxZQt+jxLXVC0=
 
-Hi,
+P1 is a multi-channel power management IC from SpacemiT.[1]
 
-On Thu, 26 Dec 2024 23:03:52 +0100, Martin Blumenstingl wrote:
-> The only board that actually requires these properties is
-> meson8b-odroidc1.dts but that already sets it on it's own. Drop these
-> properties from meson.dtsi because otherwise they can cause dtc
-> warnings:
->   /soc/usb@c9040000: unnecessary #address-cells/#size-cells without
->   "ranges", "dma-ranges" or child "reg" property
-> 
-> [...]
+It has 6 constant-on-time (COT) buck converters, 12 low-dropout
+regulators (LDOs), as well as pinctrl, RTC, and pwrkey functions.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.14/arm-dt)
+The datasheet of P1 can be found here. [2]
 
-[1/1] ARM: dts: amlogic: meson: remove size and address cells from USB nodes
-      https://git.kernel.org/amlogic/c/3a4bb81850662bebab74f1ad27071652b1825d58
+This series is based on K1 initial series [3] and I2C of K1 series [4].
 
-These changes has been applied on the intermediate git tree [1].
+Link:
+https://developer.spacemit.com/documentation?token=JtOgwFZzGiExmHkoLFDcE1aSnHe&type=pdf [1]
+https://developer.spacemit.com/documentation?token=WsLAwb7OqiMbcMkRZw4cVJWWnlg [2]
+https://lore.kernel.org/all/20240730-k1-01-basic-dt-v5-0-98263aae83be@gentoo.org [3]
+https://lore.kernel.org/all/20241125-k1-i2c-master-v4-0-0f3d5886336b@gmail.com [4]
 
-The v6.14/arm-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+---
+Troy Mitchell (2):
+      dt-bindings: mfd: add support for P1 from SpacemiT
+      mfd: add new driver for P1 PMIC from SpacemiT
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+ .../devicetree/bindings/mfd/spacemit,p1.yaml       | 153 +++++++
+ drivers/mfd/Kconfig                                |  14 +
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/spacemit-pmic.c                        | 159 +++++++
+ include/linux/mfd/spacemit/spacemit-p1.h           | 491 +++++++++++++++++++++
+ include/linux/mfd/spacemit/spacemit-pmic.h         |  39 ++
+ 6 files changed, 857 insertions(+)
+---
+base-commit: 8e929cb546ee42c9a61d24fae60605e9e3192354
+change-id: 20241204-k1-p1-d41ad7c95d72
+prerequisite-change-id: 20241031-k1-i2c-master-fe7f7b0dce93:v4
+prerequisite-patch-id: 9526a79ce73cba25daaf9d748aa0073b5f0ab283
+prerequisite-patch-id: d75871ad3cdf179f429be441cb9e69874fb83d1e
+prerequisite-change-id: 20240626-k1-01-basic-dt-1aa31eeebcd2:v5
+prerequisite-patch-id: 47dcf6861f7d434d25855b379e6d7ef4ce369c9c
+prerequisite-patch-id: 77787fe82911923aff15ccf565e8fa451538c3a6
+prerequisite-patch-id: b0bdb1742d96c5738f05262c3b0059102761390b
+prerequisite-patch-id: 3927d39d8d77e35d5bfe53d9950da574ff8f2054
+prerequisite-patch-id: a98039136a4796252a6029e474f03906f2541643
+prerequisite-patch-id: c95f6dc0547a2a63a76e3cba0cf5c623b212b4e6
+prerequisite-patch-id: 66e750e438ee959ddc2a6f0650814a2d8c989139
+prerequisite-patch-id: 29a0fd8c36c1a4340f0d0b68a4c34d2b8abfb1ab
+prerequisite-patch-id: 0bdfff661c33c380d1cf00a6c68688e05f88c0b3
+prerequisite-patch-id: 99f15718e0bfbb7ed1a96dfa19f35841b004dae9
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+Best regards,
 -- 
-Neil
+Troy Mitchell <TroyMitchell988@gmail.com>
 
 
