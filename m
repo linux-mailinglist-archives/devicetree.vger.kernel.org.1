@@ -1,143 +1,123 @@
-Return-Path: <devicetree+bounces-134754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6CD49FE6DC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 15:11:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FDEA9FE6E0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 15:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C61DE1882487
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:11:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F6CC7A0FDB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A3AC1AA1CC;
-	Mon, 30 Dec 2024 14:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aXSalNya"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E53E1AA1C0;
+	Mon, 30 Dec 2024 14:12:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99ADA1A9B4C
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 14:11:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9CF13633F;
+	Mon, 30 Dec 2024 14:11:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735567874; cv=none; b=DGDWMpcT6D7UNfnrexbx5V2VsG5dqlvzTyNSeU5y66sD27bXggflJ1JqlHed31L1sTVwzDmxkJE+o7MKfMRmEFeygOaXfAzCwis7NrdqUI1EvjJBku4sr+0N8a+339hH36XC5gyt3P6TvDx5rIa4ql+D+6Nk3rKLyXo97j8cHk0=
+	t=1735567920; cv=none; b=YO1aJReMtfIbKAOttRb1vSQ5VuKxrakHbruGU39AdJu0NFot0GKYvtjejYNi42NOcGmSddDHfBnLLCbhyLI/ov3l9JkWteOgrYPDYf3H7FiXSfVYgaZal2WteqwhKpbGEpNBrayFLGSKDyFeO4rsjjvh9bgRaoK/bBElIrXhMkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735567874; c=relaxed/simple;
-	bh=74DbNi3gkLWnHHlux0W29faGFC3Ka11FDqctEq9j4EU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZTcGTI9kNvif/iG85vtd2ALMHunWTrbVHVX5CbcUy9wWJWu6B9gukjWPFBSCbyCwBAhp6cNgYI0s2sDDHTpUB+cTxFPr59Hxk1V6CoNWlBc60NLKN6dZgXykJiHgCdSEwJENniiDKKf38r+7+0aM0KwXAUgdLFEgfwHmhAWqfwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aXSalNya; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e4930eca0d4so10534594276.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 06:11:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735567870; x=1736172670; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/xyIxL+k0/r10u7r0j6LNml5wuNs20+/LP1O8usk/34=;
-        b=aXSalNyagGIbw2pt7E257exIij4HHhb4oPNSaYrIpjdzjNpjO7z8du5OxkXnzLjjEL
-         qLF5Rv6hyZ0McXA5isPhD06vnoBhPqJ5o4uMdxPFn95XuoI5DZPDAM5I9xbMtBhw4XDa
-         P9jQP8lHDbJKFj/x7g3E2ucn0uNYEFCp5r88GyHhp7tObsHqD91rhprSS56Iw4gRwZa8
-         tZBy4mPX1gxvntQXpbBY6rnZ/0qaqtNkJ/sKElpBUNOLjmVxtuXQqwrIdciBzLfxNRsC
-         IZ22cBI20xB8Q9cMms4/jPKpDdE6OOAzsbLLfUDN+PFnixDakSQOIcz3R5KQtT3VAN35
-         brcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735567870; x=1736172670;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/xyIxL+k0/r10u7r0j6LNml5wuNs20+/LP1O8usk/34=;
-        b=BlV7DxCtIrSDQzm6Ob3i3nejYp78fbFjCtixH262Lp8x27e9oGcaehPAWPnrhUsnA8
-         kI+Uk4SjJfzjwLak5OjlrXksudP/XdYfa/Y4eiU0RC804JDnafU2E6jHtVM/BIAvfbcC
-         Nnyou24/szZWUL0SehWqLmmgEgrpj0ZkdgqASErDcEUp3Yh4ICwhtRLWw8nhJcdxa7Rf
-         Z5RYq0uGM7NtLixRlNG8mXkYP1DC5RRMciTKDjboZ+TkTqaRVQH+KtrkIpOuKxXeHvPv
-         1VYZ6wowtc+TpXyUGfgrg3y2FkVM3r7gGGLrQLLH/xC7dNIYmXrZPUC1rWoD46tPhmu6
-         0Hog==
-X-Forwarded-Encrypted: i=1; AJvYcCWfRsYPLcOW7FHsetOELWmT7GNl128qI0WCmsFpUFCAH8S+fD6TpJjAR5VVs1ns0oK47gfnLgcFV4ON@vger.kernel.org
-X-Gm-Message-State: AOJu0YzP3gDimWYzWtnlsVXxH5XD8b9C4LjEikjX4+Y1qtBrDnhuUrvk
-	RNVi7lcYDVX4fZkOkrucwI0bENyZ5C0+gWIsh/WzsUgLjyBdPqN7cDtrBAb/7FuH4ag9SwcuclS
-	CfOLtvnkxjsupvN1Vpz3fpnJYGD3MU4gd1OLSQg==
-X-Gm-Gg: ASbGnctale8B9o3irIqogoVDZDCjp3YsJqC6XrTZgu21MsiqXdmUV5iZWPHshScnNWM
-	RBOWmBUcPCLla5BM4gLXslj8cGL7AvmZ3mUM+UYbtYXEoqkdzmzrcH5NntUK5PglHnuoetHQ=
-X-Google-Smtp-Source: AGHT+IHzrNBziegt8zjXLaQXL/tSraGvcZwJ3NeJVtJCcPX1lrPezFgy6uNUX+DLRta49V0Gojj+Ck3r0hCdW86fc6c=
-X-Received: by 2002:a05:690c:4b05:b0:6ef:801f:437d with SMTP id
- 00721157ae682-6f3f820e12amr285731497b3.26.1735567870524; Mon, 30 Dec 2024
- 06:11:10 -0800 (PST)
+	s=arc-20240116; t=1735567920; c=relaxed/simple;
+	bh=KLogfWKejvtXzSBCyfhmc0eYpL/eDcrVcNlejQC7Yro=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rDY6LWiO4y4Ee5L2OU4sn2xiVq6r8aB6id1i5zz4oSPBnOoX8XvVEx/fccjI6PoqVSwImBSNu1woHifLaskeabhDZKRfbqpePmcK8ZE6tYi5RXzH0NsYzpGjno4sPwNTvz34yKKM4JtLjeGGIedRIpB7ncQNp/nsGNo7vD0jrZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E04FF143D;
+	Mon, 30 Dec 2024 06:12:25 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C93193F59E;
+	Mon, 30 Dec 2024 06:11:52 -0800 (PST)
+Date: Mon, 30 Dec 2024 14:11:50 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Parthiban <parthiban@linumiz.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin
+ Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu
+ Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Linus
+ Walleij <linus.walleij@linaro.org>, Vinod Koul <vkoul@kernel.org>, Kishon
+ Vijay Abraham I <kishon@kernel.org>, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH RESEND 00/22] Add support for A100/A133 display
+Message-ID: <20241230141150.3d0c3ae6@donnerap.manchester.arm.com>
+In-Reply-To: <314b6bbe-613e-41a6-955e-50db6e11ef8e@linumiz.com>
+References: <20241227-a133-display-support-v1-0-abad35b3579c@linumiz.com>
+	<314b6bbe-613e-41a6-955e-50db6e11ef8e@linumiz.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241224-fix-board-clocks-v3-0-e9b08fbeadd3@linaro.org>
- <20241224-fix-board-clocks-v3-2-e9b08fbeadd3@linaro.org> <ef139090-8c93-475c-a715-9413ca28e4c7@linaro.org>
-In-Reply-To: <ef139090-8c93-475c-a715-9413ca28e4c7@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 30 Dec 2024 16:10:59 +0200
-Message-ID: <CAA8EJpp1a=qpc-0OVQWeLvbndyTGv6oXPU1FiM9rgV6q_i=XxA@mail.gmail.com>
-Subject: Re: [PATCH v3 02/21] arm64: dts: qcom: msm8939: correct sleep clock frequency
-To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Leo Yan <leo.yan@linux.dev>, Georgi Djakov <djakov@kernel.org>, Shawn Guo <shawn.guo@linaro.org>, 
-	Stephan Gerhold <stephan@gerhold.net>, Zac Crosby <zac@squareup.com>, =?UTF-8?Q?Bastian_K=C3=B6cher?= <git@kchr.de>, 
-	Jeremy McNicoll <jeremymc@redhat.com>, Rohit Agarwal <quic_rohiagar@quicinc.com>, 
-	Melody Olvera <quic_molvera@quicinc.com>, cros-qcom-dts-watchers@chromium.org, 
-	Stephen Boyd <swboyd@chromium.org>, Rajendra Nayak <quic_rjendra@quicinc.com>, 
-	Martin Botka <martin.botka@somainline.org>, Jonathan Marek <jonathan@marek.ca>, 
-	Vinod Koul <vkoul@kernel.org>, Tengfei Fan <quic_tengfan@quicinc.com>, 
-	Fenglin Wu <quic_fenglinw@quicinc.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Abel Vesa <abel.vesa@linaro.org>, Alexandru Marc Serdeliuc <serdeliuk@yahoo.com>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
-	Jun Nie <jun.nie@linaro.org>, Max Chen <mchen@squareup.com>, 
-	Vincent Knecht <vincent.knecht@mailoo.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, 30 Dec 2024 at 11:49, Bryan O'Donoghue
-<bryan.odonoghue@linaro.org> wrote:
->
-> On 24/12/2024 10:17, Dmitry Baryshkov wrote:
-> > The MSM8939 platform uses PM8916 to provide sleep clock. According to the
-> > documentation, that clock has 32.7645 kHz frequency. Correct the sleep
-> > clock definition.
-> >
-> > Fixes: 61550c6c156c ("arm64: dts: qcom: Add msm8939 SoC")
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >   arch/arm64/boot/dts/qcom/msm8939.dtsi | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> > index 7a6f1eeaa3fc438f7b6c1d3b2dd17fb1b6f81d9a..7cd5660de1b33def5b9dc8a0d02583c3eaffb17f 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> > @@ -34,7 +34,7 @@ xo_board: xo-board {
-> >               sleep_clk: sleep-clk {
-> >                       compatible = "fixed-clock";
-> >                       #clock-cells = <0>;
-> > -                     clock-frequency = <32768>;
-> > +                     clock-frequency = <32764>;
-> >               };
-> >       };
-> >
-> >
->
-> Here's a quote from "MSM8936/MSM8939 Clock Plan"
-> Section 2.1:
->
-> "The chip does not have a separate sleep crystal. The sleep clock, whose
-> oscillation frequency is 32.768 kHz, used as the source for timetick is
-> generated from XO using a divisor of 586."
+On Fri, 27 Dec 2024 20:06:30 +0530
+Parthiban <parthiban@linumiz.com> wrote:
 
-19200000 / 586 = 32764.5
+> On 12/27/24 6:30 PM, Parthiban Nallathambi wrote:
+> > This series depends on [1] for the eMMC/MMC controller to work and
+> > [2] (lined up for 6.14) which adds support for the sram nodes and
+> > display engine extends it's usage. Idea of this series to get initial
+> > feedback and adjust, which will be rebased for 6.14 once [2] is merged.
+> > 
+> > This patch series adds support for A133 display pipeline based on
+> > LVDS. dt-bindigs are organized in the start and later with code
+> > changes.
+> > 
+> > PHY is shared between DSI and LVDS, so to control the PHY specific
+> > to DSI/LVDS, phy_ops set_mode is introduced. To enable the DSI
+> > using set_mode, analog control register MIPI Enable is used, which
+> > may not be available for A31 (shares the same driver).
+> > 
+> > Otherwise, A133 also got hidden independent display engine i.e
+> > mixer + tcon top to handle parallel display. But this patch series
+> > adds only support for the 1 mixer which is documented.
+> > 
+> > [1]: https://lore.kernel.org/linux-sunxi/20241109003739.3440904-1-masterr3c0rd@epochal.quest/
+> > [2]: https://lore.kernel.org/linux-sunxi/20241218-a100-syscon-v2-0-dae60b9ce192@epochal.quest/
+> > 
+> > Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>  
+> Apologize for polluting with resend again. My internal mail server got blocked due to
+> volume count, which resulted in incomplete series again.
 
+I guess an incomplete send was the reason for the original resend? Please
+note this at the top of the cover letter then, otherwise it's not easy
+to see why you send something again. Something like:
 
--- 
-With best wishes
-Dmitry
+*** Re-sent due to mail server not sending out the complete series. ***
+
+It also helps to split up the recipients, so that everyone gets the cover
+letter, but only the respective subsystem maintainers get the patches
+touching their subsystem. I would CC: the DT maintainers on every patch,
+though.
+It's a bit more complicated to set up, but keeps the noise down for those
+large-ish series, for instance for the IOMMU people, who presumably have
+little interest in DT or graphics code.
+
+Cheers,
+Andre
+
+> I will fix the mail server issue before resending the series. Sorry.
+> 
+> Thanks,
+> Parthiban
+> 
+> 
+
 
