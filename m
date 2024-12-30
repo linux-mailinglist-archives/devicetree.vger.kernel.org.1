@@ -1,118 +1,182 @@
-Return-Path: <devicetree+bounces-134714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8B849FE5D1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 13:30:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C5DC9FE5D3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 13:30:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 661B5162110
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 12:30:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5181C7A113D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 12:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C8171A7AE3;
-	Mon, 30 Dec 2024 12:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D728419ABC3;
+	Mon, 30 Dec 2024 12:30:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iinet.net.au header.i=@iinet.net.au header.b="qA2yn4Ka"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m4LlZvCa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from omr008.pc5.atmailcloud.com (omr008.pc5.atmailcloud.com [103.150.252.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25052AD3B;
-	Mon, 30 Dec 2024 12:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.150.252.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8C3A3C39
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 12:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735561801; cv=none; b=ixS8uFERjK3/ugKcVfWCo6KCOh7q/8mb/Riox2A/tZCVDEvfm1rkFl7cAVSeq5gM9OyTX0WbWLrjTbk/cBx+OnxED/Ptyqw218dIZH83229IwZPTxOyh8S5FKtrowGaUggLb8Aj/+DEx2U1BqPHWwCKOouMlgaqI5d2C85HubQg=
+	t=1735561845; cv=none; b=YFANIwfsKEtKsRyfH2o00vLUetbtMnStqId4vr/cZAFXqnRWh6tPFnfbgvDL4yL/p7TcTlwa7MvDQd96eKgngoH3lzwgNz5EJGxyhNqt8uxgPoeMM3WCKJfXkMNTSvt3/iw3WZsPta9z61h3pHTIev4wKnToYWDE52x8S0bevk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735561801; c=relaxed/simple;
-	bh=/mED2z8jeQ0HyrQPaltISs/+vUoRXgyzQ2DpYRjteRQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MNMn3SHRrcNjsRFULb1GmdsFUqcAZ6F8VqDTwUc8jQcWrDZFjpIzPlPc/IJ2STdlWkl76mjOdHVMcx8MFd7qVZ9ssC/Et9RTevAxl0wQPQ9rdx9aJdTWU1/1UumEqFuGI5OWOQ5MEoXCSfmXo4aCAAiZxGsWI7fUY3KnMOtXFMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iinet.net.au; spf=pass smtp.mailfrom=iinet.net.au; dkim=pass (2048-bit key) header.d=iinet.net.au header.i=@iinet.net.au header.b=qA2yn4Ka; arc=none smtp.client-ip=103.150.252.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iinet.net.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iinet.net.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=iinet.net.au; s=202309; h=MIME-Version:Message-Id:Date:Subject:To:From:
-	content-type; bh=/yDHyEOF65iv+WBloERa+yQVzEhn1FRFrUf1tU99xFM=; b=qA2yn4KaEgsP
-	Id3p0MTRPekTU52A41qbIbgJUdbzXrQAqBQIQwIjaRNwdFCjP5eI4iG48BvklgaQKqC3Zt9kJSaNs
-	UK9ayvNLlXomCVm0ZtT38W/mpHDVnxYhk2CH9iP5Ry5NS1/ghaKBK+EuYT6G5HhTdtaCU5uMBWGco
-	ui79UVobyniaBeg0lcwJ2c6DqnQM0dfwpni0uj4RNq3TivjqhdlyvzHG3D+aIAIXfOJFCXMhoLbrV
-	7gMlFw6uDZQ+H4mm/ARPC6sOBKFrnCUQ7J3QujQjzmrfYWtj2RVY7w1RSB9p5Z6hyL5qeaKzsD4ng
-	MnTPpPdEsQVwrbZqIqxNGw==;
-Received: from cmr-kakadu03.internal.pc5.atmailcloud.com (cmr-kakadu03.internal.pc5.atmailcloud.com [192.168.1.5]) 
-	by omr.internal.pc5.atmailcloud.com (Exim/cmr-kakadu03.i-08cc005e7aeb759a2) with ESMTPS
-	(envelope-from <gordoste@iinet.net.au>)
-	id 1tSEUQ-000000000jB-2t0B ;
-	Mon, 30 Dec 2024 12:03:18 +0000
-Received: from [220.233.184.101] (helo=localhost)
-	 by CMR-KAKADU03.i-08cc005e7aeb759a2 with esmtpsa
-	(envelope-from <gordoste@iinet.net.au>)
-	id 1tSEUQ-000000008QV-1BuF;
-	Mon, 30 Dec 2024 12:03:18 +0000
-From: Stephen Gordon <gordoste@iinet.net.au>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Stephen Gordon <gordoste@iinet.net.au>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] of: dynamic: Avoid reversing sibling order
-Date: Mon, 30 Dec 2024 23:03:14 +1100
-Message-Id: <20241230120315.2490-1-gordoste@iinet.net.au>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1735561845; c=relaxed/simple;
+	bh=1Da+aWYWjUDDOnKx0JPqyCvQMJnsbX+TLRKFOsYKlyY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KrS1Ze8CQMnCOB1ox1oABwzwgL0Hy45O+vmfo84bWjL4SVronspvnIw2WDxwJvpzqhPDBzzwACeRCcISAAOXD5MmPFlv1Otf2Xm4gaEXyPdIVvNqaOSK8ndODFQScW+9ygDtKGUCbY1Pz3IfTRkL2Cc4uNAB+YlvVVXv+drsc3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m4LlZvCa; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5401c68b89eso11363092e87.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 04:30:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735561842; x=1736166642; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vwalPoVfhXMCQGFYr9ryIpasntXwzfLlG4s9wl797Go=;
+        b=m4LlZvCaer64MC10062eyNnl6w6HmOVUqFz+fz3I4gCPUMc8Xepbi4eithAe6NS4Sv
+         qiGXPvxXcRXmeuXtm/mTepF2+7OiVbdIp9F380o7iCcsWGt1AWmU55usB0zoFoOS8Ily
+         hnWaJLHQ4W4Bhx6Tb0UfapCK2uus1ZbjKssy17BWZcZ3nHa6hWtCX71+fA/y7jqAQsM2
+         0gN5qDCDU8AYf1mccZyBFvoJzDRkIrG1FM82Tl/UEYFU3RtKKhR5hHc8RCS8W2VbsUyF
+         q66DWJUM97Nh6uG9USGk4V1eqgw+nvI3rBwzuDJv1H6yujPixpg6stKfvv0iZBbJtLkb
+         f/aA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735561842; x=1736166642;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vwalPoVfhXMCQGFYr9ryIpasntXwzfLlG4s9wl797Go=;
+        b=aNFIujL+g9n8iHxpCLQVIvC/EyXTabwYLG1N0kn4jDkAC6K66tE3rWvAScRERxAb6y
+         a2ZJkYh5MCakbeOnFMmMunh/MkghcidPkkGfISUNZzacXCPobi/POpkqX+hKqWO9VBgr
+         lJnHQxQA9kYRQNgxvRsC45dYA9hbC1CrGV+m82EBZs0TcWUegqrUGZV2NbtX10TlfuA8
+         RUo2whH1wS+WlyhDtsww7KirhvJNl1SPSBx+lI+p6wJIEtHRb/y74lNeRqfstgztMTJ6
+         ztVVI1NawspWkdf3eyV06jShuY3Tq4S02pG+90KQxqAbZ2c2c25wx58AXbPFhmUFBxyY
+         IjJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXweCLaLFf3w8w6oNezFJieSpjiVZFv2OpsCG4GwGkWAZzz6lm8ZPz2UCCHMDgMy3iZDUj8K0W1HJ+r@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2gXwlx3iE45iDzmB9mPfiC3GjhNhs5HYsIsIS7VUtUrUFIdWb
+	by+A/MuHApaE6qKKF+xzhnz5rQNtvn6xq3Nk7ScEOEAIUPkyaV5XCFtjebxHtqQ=
+X-Gm-Gg: ASbGncspBpWHSGtZVC557b5R8WT79FVZ7qCITSGDzg4s2LFDNqaKygPdA8pjCTbQlvF
+	oa0D2gMCR3jNOOjc+ULZKtSNcRv3q9cKQCXlCnHnSPT50S4MjUJg69sfrcuB/IMvYZ22KMWvhCi
+	v9cM/ym/A/iFN3AOIk37GaOzgEGJ8LJcsdE7qS+LnixPZ6OaG626TeE1Yw54xbJIJEeK1Xi0lRq
+	VGvTbbSewM32bqZBpk9Ct5+0E2gmcI3gzPqNmu4WU5FcF1jXu9nU+NA3wGhNd3iTtvHdGWkETjB
+	767mV47sK/Q6D+VM4oaOnQeRwVWZXxe8uL8U
+X-Google-Smtp-Source: AGHT+IGs664Z6a1VXnL1IU1qIYV7pMmpsbWRxTp2wEqrbi2vMMk6KM7ZX9fIIcaItp6yhkS4k5KJrg==
+X-Received: by 2002:a05:6512:10ce:b0:540:2fbb:22fe with SMTP id 2adb3069b0e04-54229474ebcmr9865558e87.26.1735561841796;
+        Mon, 30 Dec 2024 04:30:41 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542235f6073sm3157778e87.27.2024.12.30.04.30.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Dec 2024 04:30:40 -0800 (PST)
+Date: Mon, 30 Dec 2024 14:30:37 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, p.zabel@pengutronix.de, 
+	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, tglx@linutronix.de, vkoul@kernel.org, 
+	kishon@kernel.org, aisheng.dong@nxp.com, agx@sigxcpu.org, 
+	u.kleine-koenig@baylibre.com, francesco@dolcini.it, frank.li@nxp.com
+Subject: Re: [PATCH v8 09/19] drm/imx: Add i.MX8qxp Display Controller
+ display engine
+Message-ID: <kwipz3wzydihroelii6enzxv63yyfuidmrua2fzhdvjdbjpqqp@s66fwhbbvcs5>
+References: <20241230021207.220144-1-victor.liu@nxp.com>
+ <20241230021207.220144-10-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Atmail-Id: gordoste@iinet.net.au
-X-atmailcloud-spam-action: no action
-X-Cm-Analysis: v=2.4 cv=e8UAS7p/ c=1 sm=1 tr=0 ts=67728c06 a=HSUqTxjWRdnMbJspRni59w==:117 a=HSUqTxjWRdnMbJspRni59w==:17 a=RZcAm9yDv7YA:10 a=x7bEGLp0ZPQA:10 a=4jraHwQkAAAA:8 a=JyCHAW5VufVdRi9fBWIA:9
-X-Cm-Envelope: MS4xfK52l2AhI9NBeLt00C/KebwJV7bsgtEsqP273pCBe75b5VwLIpyv6n/LNxO6N7FVwmJSW3vRqHoQm5PxUkdX+Om+HJNSiDtrZ2hLXm4qbCVqXPopDPfG WowtGvm+ZthGQIQwl54/kx1PDg8XBJzXVEYIk6Q3FfS0y/hpn85LppRKU7YWdFwTBuHfaGK6sPH9QA==
-X-atmailcloud-route: unknown
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241230021207.220144-10-victor.liu@nxp.com>
 
-Current implementation inserts nodes at the head of the list, resulting
-in sibling order being reversed from the .dts file. Some drivers care
-about the order and do not work properly. These changes add nodes at the
-end of the list instead, preversing sibling order.
+On Mon, Dec 30, 2024 at 10:11:57AM +0800, Liu Ying wrote:
+> i.MX8qxp Display Controller display engine consists of all processing
+> units that operate in a display clock domain.  Add minimal feature
+> support with FrameGen and TCon so that the engine can output display
+> timings.  The FrameGen driver, TCon driver and display engine driver
+> are components to be aggregated by a master registered in the upcoming
+> DRM driver.
+> 
+> Reviewed-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v8:
+> * Get DE/FG/TC device instance numbers through register start addresses of the
+>   devices, instead of compatible strings. (Dmitry)
+> * s/shdld/shdload/ for DE IRQs. (Dmitry)
+> * Drop id member from struct dc_de. (Dmitry)
+> * Add dc_de_post_bind(), to avoid dependency on the component helper's way of
+>   implementing component binding order. (Dmitry)
+> 
+> v7:
+> * Add kernel doc for struct dc_drm_device. (Dmitry)
+> * Fix regmap_config definitions by correcting name field, correcting read
+>   ranges and setting max_register field.
+> * Get instance numbers from device data(compatible strings) instead of OF
+>   aliases.
+> * Collect Maxime's R-b tag.
+> * Trivial tweaks.
+> 
+> v6:
+> * No change.
+> 
+> v5:
+> * Replace .remove_new with .remove in dc-{de,fg,tc}.c. (Uwe)
+> * Select REGMAP and REGMAP_MMIO Kconfig options.
+> * Fix commit message to state that display engine driver is a component driver
+>   instead of a master/aggregate driver.
+> 
+> v4:
+> * Use regmap to define register map for all registers. (Dmitry)
+> * Use regmap APIs to access registers. (Dmitry)
+> * Inline some small functions. (Dmitry)
+> * Move dc_fg_displaymode() and dc_fg_panic_displaymode() function calls from
+>   KMS routine to initialization stage. (Dmitry)
+> * Use devm_kzalloc() to drmm_kzalloc() to allocate dc_* data strutures.
+> * Drop unnecessary private struct dc_*_priv.
+> * Set suppress_bind_attrs driver flag to true to avoid unnecessary sys
+>   interfaces to bind/unbind the drivers.
+> 
+> v3:
+> * No change.
+> 
+> v2:
+> * Use OF alias id to get instance id.
+> * Add dev member to struct dc_tc.
+> 
+>  drivers/gpu/drm/imx/Kconfig     |   1 +
+>  drivers/gpu/drm/imx/Makefile    |   1 +
+>  drivers/gpu/drm/imx/dc/Kconfig  |   7 +
+>  drivers/gpu/drm/imx/dc/Makefile |   5 +
+>  drivers/gpu/drm/imx/dc/dc-de.c  | 177 +++++++++++++++
+>  drivers/gpu/drm/imx/dc/dc-de.h  |  56 +++++
+>  drivers/gpu/drm/imx/dc/dc-drv.c |  32 +++
+>  drivers/gpu/drm/imx/dc/dc-drv.h |  57 +++++
+>  drivers/gpu/drm/imx/dc/dc-fg.c  | 376 ++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/imx/dc/dc-tc.c  | 141 ++++++++++++
+>  10 files changed, 853 insertions(+)
+>  create mode 100644 drivers/gpu/drm/imx/dc/Kconfig
+>  create mode 100644 drivers/gpu/drm/imx/dc/Makefile
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-de.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-de.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-drv.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-drv.h
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-fg.c
+>  create mode 100644 drivers/gpu/drm/imx/dc/dc-tc.c
+> 
 
-Signed-off-by: Stephen Gordon <gordoste@iinet.net.au>
----
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-I ran across this issue using the ASoC audio_graph_card2 driver. Prior
-to the fix, I needed to reverse sibling order in the .dts to make things
-work. After the fix, it all works as expected.
-
-Also, I noticed that drivers/of/fdt.c line 325-330 fix the same problem
-for flattened device trees.
-
-
- drivers/of/dynamic.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-index 0aba760f7577..57bea2d4af30 100644
---- a/drivers/of/dynamic.c
-+++ b/drivers/of/dynamic.c
-@@ -222,8 +222,15 @@ static void __of_attach_node(struct device_node *np)
- 	}
- 
- 	np->child = NULL;
--	np->sibling = np->parent->child;
--	np->parent->child = np;
-+	np->sibling = NULL;
-+	struct device_node *last_child = np->parent->child;
-+	if (!last_child)
-+		np->parent->child = np;
-+	else {
-+		while (last_child->sibling)
-+			last_child = last_child->sibling;
-+		last_child->sibling = np;
-+	}
- 	of_node_clear_flag(np, OF_DETACHED);
- 	np->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
- 
 -- 
-2.39.5
-
+With best wishes
+Dmitry
 
