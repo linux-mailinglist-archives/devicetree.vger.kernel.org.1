@@ -1,271 +1,128 @@
-Return-Path: <devicetree+bounces-134641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C469FE211
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 03:45:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A79FE9FE227
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 04:04:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DBFC161BEF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 02:45:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FA19188206D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 03:04:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E68583CDA;
-	Mon, 30 Dec 2024 02:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D7C7E792;
+	Mon, 30 Dec 2024 03:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hMGISW9C"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SFlCjTpV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F2F42594B3;
-	Mon, 30 Dec 2024 02:45:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183F940BF5
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 03:04:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735526744; cv=none; b=OTsF9ebybe959m2rT5jV7Ql2IwJ/hpjg9oHYeJ93D1acsxb7lX7QrD6UlKEK5VtQtBiGoBhbP+eHIv0PNTwh8Oao1R6uOSi5HgWFIg76CApc+S+dQ1NsWpZfAvhtbd9VIoBdcU8Xtz8LcnnpGpAadRp8X2FmiD10xeTx1hzeXMw=
+	t=1735527894; cv=none; b=QigytX9t45OKl2hydIyqMrEN2oP6+ASkGL2GqLGcYSuTP/b2GBd1OWWI6TbPROCdp0j/1aqab7Qt4NTn5G6emp22iy2YaI6gi7UP40GPuXd5X93U9li7tY+QKcm30tn9I0ge6S2+LZCoYzRSacZpbPk4x10426ZOXXVG6qSkGWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735526744; c=relaxed/simple;
-	bh=lINa1NYSiACMmhycuUyTv6a4CZG69fV1i6lwXOcA2cY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=COaey/pXf+jUqTw5v2kIarRu/Eb1RpQlw1QV4Xxg71fzfHAu8+7Y3gZmjXbQ3Z9emWknKfUtEgFXgfoTK9weAxxNEAg6GVzFY3KbG9+xcoeCWgjmSw6HExnZT751B7/Yy+rRmpo2RUrDFlEAgxHzhMgRIEs90/4E/VyIxWE6XXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hMGISW9C; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU0j8oh013510;
-	Mon, 30 Dec 2024 02:45:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dNUUS20lJs9Xa/JNwr4yZaC/X3cCdfHkMVbCHo62G8c=; b=hMGISW9CM7VijkUU
-	cygagMc9PKZWtxU1i8hjWVyHAR+9P3dX0792uG5wL23ggEg2aXWZzVbqqLug1Vvs
-	UFnZEY9aNJNhR5XidG3uk+33Y52NZrfHjGxXymjbQp261Q+8VMCYJDbO5k/5BYYp
-	WtQhKLOQ0ITCT7E+1YJ/gD0077MFWvDNyFXNJ8dSGuQVnNKRbN0wQPTkQimwL+rF
-	ySJxUXo4befIby28YT07rd261aSN/DhaSa9e4SSsYVD2tTfnBhOfOdW03+4kkn5J
-	Pei7Iw0i9yMdVDaB/w9P4aHnsXgG/3nUeyAOigbiSkJtGvQ4yCRzLledwZC2feNR
-	YhkACQ==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43uh8e85n6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 02:45:25 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BU2jO5h004565
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 02:45:24 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Dec
- 2024 18:45:22 -0800
-Message-ID: <23a29a97-4d0f-4bc3-a0bf-10b32cc4ea7c@quicinc.com>
-Date: Mon, 30 Dec 2024 10:45:19 +0800
+	s=arc-20240116; t=1735527894; c=relaxed/simple;
+	bh=M6nCHa9Ey66A5jxQHmJjtx5jpwPsgKxN28xApbDPEkI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t5hXv7DXu+j/oxKY3ssgG1tbPVgRO7s2gdvbykeDUxCS5AUu7G7lve7nbY5uxbwk2taEsPC30n8dEnvmG9LkrgsVJgfZQS14TJs42PvumNIfvYjMk9dVN4WFxp+2DBmiiMcbfZdFmEZWWeRwot5rEEHa96ZtAujQm6hJQD67jBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SFlCjTpV; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1735527892; x=1767063892;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=M6nCHa9Ey66A5jxQHmJjtx5jpwPsgKxN28xApbDPEkI=;
+  b=SFlCjTpVtu8JS/uBxpnSAOc2m821fa/aLalbhi163WTi4fgyTjfb7d5q
+   KShPuDpm172WWBUb2V35e9p3jHJU08bHHoJiICyiAvJCQr4dyypx7+In8
+   0KBF/KpEPRiYtUoFD6WMWXDCaPzjurdY9Sip/CviLk/PYWLfkLe6LElZ/
+   WsY25DQvXXU33Sw2PKWVOS3urLl8w9oiAhfALGerPJwMlczCKdYdFQ+KN
+   +UM1E3VRrD5T5an0/6bcsAw+N43vFvdV6rsiVQeTrU9RC7+rl8/JalYGZ
+   PpVFrw5zhd5X2AVUbM4FAUGQ/T6BQWAxNIqnzZrbuNAep8JtkfTd/Cyr+
+   w==;
+X-CSE-ConnectionGUID: SQKltP0LQUuANCTjby+Yww==
+X-CSE-MsgGUID: 0pGCCb84SPOz3QwvkndYDA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11299"; a="35977024"
+X-IronPort-AV: E=Sophos;i="6.12,275,1728975600"; 
+   d="scan'208";a="35977024"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2024 19:04:51 -0800
+X-CSE-ConnectionGUID: /2SdGqVkSP6n5nJdtLySpg==
+X-CSE-MsgGUID: w+bSGEFJTHGSxxdiD4Jv/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="105663454"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 29 Dec 2024 19:04:49 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tS65G-0005Jc-20;
+	Mon, 30 Dec 2024 03:04:46 +0000
+Date: Mon, 30 Dec 2024 11:04:26 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jimmy Hon <honyuenkwun@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: oe-kbuild-all@lists.linux.dev, Ondrej Jirman <megi@xff.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Jimmy Hon <honyuenkwun@gmail.com>
+Subject: Re: [PATCH 6/7] arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Max
+Message-ID: <202412301002.E6G16osA-lkp@intel.com>
+References: <20241229184256.1870-11-honyuenkwun@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: platform: Add bindings for Qcom's EC
- on IT8987
-To: Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>
-CC: Stephan Gerhold <stephan.gerhold@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        devicetree
-	<devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241219200821.8328-1-maccraft123mc@gmail.com>
- <Z2WxzvKRVcOz5d2V@linaro.org>
- <CAO_MupJ7JtXNgGyXcxGa+EGAvsu-yG0O6MgneGUBdCEgKNG+MA@mail.gmail.com>
- <Z2W2UhspMZNT1TRU@linaro.org>
- <c8677ae6-a145-411c-a221-02faa1ce809d@kernel.org>
- <CAO_Mup+YFAT5oFRGYucW5h_eGcfp4C5FzF20hM6xF=qMR1DdQw@mail.gmail.com>
-From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <CAO_Mup+YFAT5oFRGYucW5h_eGcfp4C5FzF20hM6xF=qMR1DdQw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4d8cwamUx5Yb-IslZFQji25la9kEiFs7
-X-Proofpoint-ORIG-GUID: 4d8cwamUx5Yb-IslZFQji25la9kEiFs7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
- phishscore=0 spamscore=0 suspectscore=0 priorityscore=1501 mlxscore=0
- bulkscore=0 mlxlogscore=999 malwarescore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412300020
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241229184256.1870-11-honyuenkwun@gmail.com>
 
-On 12/22/2024 11:07 PM, Maya Matuszczyk wrote:
-> niedz., 22 gru 2024 o 15:40 Krzysztof Kozlowski <krzk@kernel.org> napisał(a):
->>
->> On 20/12/2024 19:24, Stephan Gerhold wrote:
->>> On Fri, Dec 20, 2024 at 07:16:34PM +0100, Maya Matuszczyk wrote:
->>>> Excuse the formatting, I've typed this reply from my phone
->>>>
->>>> pt., 20 gru 2024, 19:05 użytkownik Stephan Gerhold <
->>>> stephan.gerhold@linaro.org> napisał:
->>>>
->>>>> On Thu, Dec 19, 2024 at 09:08:18PM +0100, Maya Matuszczyk wrote:
->>>>>> This patch adds bindings for the EC firmware running on IT8987 present
->>>>>> on most of X1E80100 devices
->>>>>>
->>>>>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
->>>>>> ---
->>>>>>  .../bindings/platform/qcom,x1e-it8987-ec.yaml | 52 +++++++++++++++++++
->>>>>>  1 file changed, 52 insertions(+)
->>>>>>  create mode 100644
->>>>> Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
->>>>>>
->>>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
->>>>> b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..4a4f6eb63072
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
->>>>>> @@ -0,0 +1,52 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/platform/qcom,x1e-it8987-ec.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: Qualcomm Embedded Controller on IT8987 chip.
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Maya Matuszczyk <maccraft123mc@gmail.com>
->>>>>> +
->>>>>> +description:
->>>>>> +  Most x1e80100 laptops have an EC running on IT8987 MCU chip. The EC
->>>>> controls
->>>>>> +  minor functions, like fans, power LED, and on some laptops it also
->>>>> handles
->>>>>> +  keyboard hotkeys.
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    oneOf:
->>>>>> +      - const: qcom,x1e-it8987-ec
->>>>>
->>>>> Given that ECs tend to be somewhat device-specific and many vendors
->>>>> might have slightly customized the EC firmware(?), I think it would be
->>>>> better to disallow using this generic compatible without a more specific
->>>>> one. In other words, I would drop this line and just keep the case
->>>>> below:
->>>>>
->>>> I've looked at DSDT of other devices and they look to be compatible with
->>>> what's on the devkit, with differences being extra features on magicbook
->>>> art 14 and yoga slim 7x. Though this isn't a hill I'm willing to die on.
->>>>
->>>
->>> I think it's fine to keep qcom,x1e-it8987-ec as second compatible.
->>
->>
->> No, because:
->> 1. There is no such thing as x1e
->> 2. If there was a soc like this, this has nothing to do with SoC. It is
->> not a component inside SoC and that is the only allowed case when you
->> use SoC compatibles.
-> 
-> It was the closest thing I had for a "platform name"
-> 
->>
->>> However, without a more specific compatible, there is a risk we have
->>> nothing to match on in case device-specific handling becomes necessary
->>> in the driver at some point.
->>>
->>> It's certainly subjective, but it might be better to play it safe here
->>> and have a specific compatible that one can match, even if the behavior
->>> is 99% the same. There will often be subtly different behavior across
->>> devices, you mentioned the "keyboard backlight turning off and the power
->>> LED slowly blinking", who knows what else exists.
->>>
->>> I suppose worst case we could also use of_machine_is_compatible() to
->>> just match the device the EC is running on, but I'm not sure if that
->>> would be frowned upon.
->>
->>
->> Unless you have some sort of insights or secret knowledge from Qualcomm
->> (Bjorn or Konrad can chime in here), I think these are pure guesses that
->> this is a Qualcomm product (implied by vendor prefix) or some sort of
->> re-usable generic firmware from Qualcomm present on multiple devices.
-> 
-> The x elite devkit also has the IT8987 EC chip, and when comparing the
-> firmware of it and Yoga Slim 7x's EC there are similarities when
-> running them through strings
-> On both of them at the beginning there are strings that look like
-> version identifiers:
-> Devkit:
-> UUBBK V:00.20.00$
-> BBK-V20$
-> 
-> Slim7x:
-> UUBBK V:00.21.00$
-> BBK-V21$
-> 
-> With similar ones at the end:
-> Devkit:
-> EC VER:00.29.00$
-> LsFv:00.29.00$
-> Qualcomm$
-> WoS 8c GenX$
-> ODM$
-> MB:A0$
-> BUILD DATE:
-> 02/0//2/24$
-> TIME:
-> 14:33:35$
-> 
-> Slim7x:
-> EC VER:00.60.00$
-> LsFv:00.20.00$
-> Qualcomm$
-> WoS 8c GenX$
-> ODM$
-> MB:A0$
-> BUILD DATE:
-> 2024/07/25$
-> TIME:
-> 09:58:00$
-> 
-> 
-> 
->>
->> If the FW across devices is the same, then fallbacks for these are fine
->> with me.
-> 
-> As the devkit has EC firmware that is handled the same way in DSDT
-> tables of most of other x1e laptops with the same EC, and is a subset
-> of what's done on Lenovo Yoga Slim 7x and Honor Magicbook Art 14 I
-> think the devkit's compatible  + -ec would be a good pick.
-> 
-> This conversation is getting long and I feel like I've said everything
-> I wanted to say, I'll just do what you tell me to do about the
-> fallback and binding filename.
-> 
+Hi Jimmy,
 
-I have raised this topic internally at Qualcomm. However, since some key
-personnel are currently on holiday, an immediate response is not
-possible. Rest assured, the topic is under review internally. Please
-stay tuned for updates.
+kernel test robot noticed the following build errors:
 
-I want to personally thank you for your current support and efforts.
->>
->> Best regards,
->> Krzysztof
+[auto build test ERROR on rockchip/for-next]
+[also build test ERROR on robh/for-next linus/master v6.13-rc5 next-20241220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Jimmy-Hon/arm64-dts-rockchip-refactor-common-rk3588-orangepi-5-dtsi/20241230-064740
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20241229184256.1870-11-honyuenkwun%40gmail.com
+patch subject: [PATCH 6/7] arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Max
+config: arm64-randconfig-001-20241230 (https://download.01.org/0day-ci/archive/20241230/202412301002.E6G16osA-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241230/202412301002.E6G16osA-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412301002.E6G16osA-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts:53.1-7 Label or path hdmi1 not found
+>> Error: arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts:60.1-10 Label or path hdmi1_in not found
+>> Error: arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts:66.1-11 Label or path hdmi1_out not found
+>> Error: arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts:76.1-11 Label or path hdptxphy1 not found
+   FATAL ERROR: Syntax error parsing input tree
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for FB_IOMEM_HELPERS
+   Depends on [n]: HAS_IOMEM [=y] && FB_CORE [=n]
+   Selected by [m]:
+   - DRM_XE_DISPLAY [=y] && HAS_IOMEM [=y] && DRM [=m] && DRM_XE [=m] && DRM_XE [=m]=m [=m] && HAS_IOPORT [=y]
 
 -- 
-Thx and BRs,
-Aiqun(Maria) Yu
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
