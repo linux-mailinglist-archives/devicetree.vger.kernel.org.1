@@ -1,267 +1,271 @@
-Return-Path: <devicetree+bounces-134640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C2AD9FE1FD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 03:25:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98C469FE211
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 03:45:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9476D3A18E1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 02:25:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DBFC161BEF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 02:45:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7415F7BAEC;
-	Mon, 30 Dec 2024 02:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E68583CDA;
+	Mon, 30 Dec 2024 02:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="TwhPhpmE";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="i3qiPDFy"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hMGISW9C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB03933F6;
-	Mon, 30 Dec 2024 02:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735525521; cv=fail; b=SgJ86MK/nQ2T9xCDdJN3Tv7k2Ztff0c/pnPGDQJ1IwCu1HVXP+NDaLRdThFg59nrx8d6c16lugDosP2VxvPdM+8Zpouoqos/LpUDIfNcME5OGlqoGf0B6UJKzuj+766eLboS4m5gqF13PYY6hrqD6ExikbHZlUkeN2H12e9o7vI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735525521; c=relaxed/simple;
-	bh=HtHQfn9mq5235jmp09fn7liNtg+jBmVpJekh7QzktA8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=O5KbQdBar47HRjDJwu3YsaTyH8a0ZnFyIVnSuF4PnhgYT9OuFfJNMXCSBuZ+ELMm3LUWYoOQrpfU4sMjM8/nLz6EBS0HBiEH6AQK19NIqaizGqEanGmNatZ5Bzcrrm4dAm6T3FJAj2mNs6SkPQd+5mGRSWcRP9pVExId4NEIXA4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=TwhPhpmE; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=i3qiPDFy; arc=fail smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 48af14fac65511efbd192953cf12861f-20241230
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=HtHQfn9mq5235jmp09fn7liNtg+jBmVpJekh7QzktA8=;
-	b=TwhPhpmEzxzD6rCzS/XN1xjGL6+98NplN7yFpQQ4Tn2uD22ir2+DwYTm0pvC7AVqYj9I3q/x2wylA/hpsXp7K+XMIMebHYgHKHZpUYgcn465ByhqYEmrvHGuUItF4HhA3AmtIhwkNveGndKpD77eAVFzcJQQYmTO5uRylUlg6Lg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:ce71763c-ed2b-4b18-a08a-bb047ded08c3,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:e4a46025-8650-4337-bf57-045b64170f0c,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
-	EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 48af14fac65511efbd192953cf12861f-20241230
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1942925998; Mon, 30 Dec 2024 10:25:06 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 30 Dec 2024 10:25:05 +0800
-Received: from SEYPR02CU001.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 30 Dec 2024 10:25:05 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NJdQ8J6pbUl1aCNdfOsKdkDIGIuZa8rIE9nCzooQ5wOZ/DpcYPyZDCG3T+UX5FwUyStFF+6i2G4J/FYQKU/epblvrDrWKV/EQrLFcz+6kOkUgivW5VYBQ7PQclmj9XilPM/iYEaEgC0bEG3DjNH838Wy6QXq6anJ42Daq04+BdR4wPfr8+fU9kTFfM0jrUEOG9z90AugfQr+0Jf5/qOrI4ZRVCigrkurOe/efYLKA6VvLGmp9XNAY5UBGu2vg4GCXVRZ35DGVyrsxWZ6vTOiftWZnok84xCOsGxVETxd4P5doM15IQaNPa+aUq0RHfuvEyw2xX1FnP1LxI7UaBzeyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HtHQfn9mq5235jmp09fn7liNtg+jBmVpJekh7QzktA8=;
- b=FRyaQYOIJmiO1BhY/s9nUr32Kz51ZmMy0WAnmXRUeMscBAUxmfiIqdIt40CzLrp3bD8QfgbPq+oS+Im7VoOGZLtQYnz+FvP+LRxMirsVd5FquIyIrC/vcub9p64GmlZu6KoeevXRD9BKRRQqhYgK0s1cBDzwe+638P7tbLh8oU1aq6vhshXpKnIgw6Y7xSSZP4ak0K6vMWOOt8GDMMv3lLfWndwZvzhHzYTSJQ1eoD7oqrdyiHB1LF4KE3+DE0S0vd88m+9IBWAWC5uSJpsY6kBbXH75vZhZyw6BeAhNGQBeU0VA4uyRinA5NKTWU2jW+13cnIRDS/YKtYWAqDGNwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HtHQfn9mq5235jmp09fn7liNtg+jBmVpJekh7QzktA8=;
- b=i3qiPDFytrrdNTNE2OtN4gmsprIGsi9qGVzsdygtOQXadW7YAg+I+qj6BESmJ5vOiZBse6/XGNDa3WBJm5ogeozDQljnCuVjcBp6b4lmiwQiAsudxEabyVk1g992DTb86znbEwA1w4wOSoMw4Gl3Hrw5vqmNkV+KBRhimfe+HqU=
-Received: from SEYPR03MB7682.apcprd03.prod.outlook.com (2603:1096:101:149::11)
- by SEYPR03MB6878.apcprd03.prod.outlook.com (2603:1096:101:b7::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.19; Mon, 30 Dec
- 2024 02:25:02 +0000
-Received: from SEYPR03MB7682.apcprd03.prod.outlook.com
- ([fe80::c6cc:cbf7:59cf:62b6]) by SEYPR03MB7682.apcprd03.prod.outlook.com
- ([fe80::c6cc:cbf7:59cf:62b6%3]) with mapi id 15.20.8293.000; Mon, 30 Dec 2024
- 02:25:02 +0000
-From: =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-To: "krzk@kernel.org" <krzk@kernel.org>
-CC: Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "robh@kernel.org"
-	<robh@kernel.org>, "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>, "simona@ffwll.ch" <simona@ffwll.ch>,
-	"mchehab@kernel.org" <mchehab@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "chunkuang.hu@kernel.org"
-	<chunkuang.hu@kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "jassisinghbrar@gmail.com"
-	<jassisinghbrar@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
-	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "airlied@gmail.com"
-	<airlied@gmail.com>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	=?utf-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
-	=?utf-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>
-Subject: Re: [PATCH v3 1/7] dt-bindings: mailbox: mediatek: Add MT8196 support
- for gce-mailbox
-Thread-Topic: [PATCH v3 1/7] dt-bindings: mailbox: mediatek: Add MT8196
- support for gce-mailbox
-Thread-Index: AQHbUjifwIYL/sR61UKff0WQOKSFC7L5yV2AgARWP4A=
-Date: Mon, 30 Dec 2024 02:25:02 +0000
-Message-ID: <11d058874ec4d9302bbc25a69a8de63e56dc8f64.camel@mediatek.com>
-References: <20241219170800.2957-1-jason-jh.lin@mediatek.com>
-	 <20241219170800.2957-2-jason-jh.lin@mediatek.com>
-	 <gfopo2xjqljehbwkrxlf2t3vqwrqi4namh7dlt2rf4bc4ri25k@xm7pawszl4ix>
-In-Reply-To: <gfopo2xjqljehbwkrxlf2t3vqwrqi4namh7dlt2rf4bc4ri25k@xm7pawszl4ix>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR03MB7682:EE_|SEYPR03MB6878:EE_
-x-ms-office365-filtering-correlation-id: 4751423e-2053-486b-d08f-08dd28792a71
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|7416014|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?RTR6OVNhYkNIT3A0QWcwNDR3VXY2akFXY3hGQm1WdDJKSDA2UDVTbE4yOWZw?=
- =?utf-8?B?Qm5yb09qbkRhNVpmTmhSWWR4bW5IVElhVDhBTmpOdm9RYzNPVXZwdlg5dFFJ?=
- =?utf-8?B?djk3QkQxNnRmUUFSR3pBbVg2a2NVWmlFS1VKdzZRckE1UlAwNDUyNWZ4QktS?=
- =?utf-8?B?Q0krZGprUWR5cjNiQmVJMitYNmRNL2Q1dlhXdXozTXFYZkdabEJPN3VHWjhy?=
- =?utf-8?B?bmxJVGpyZDFoSGZJTDdwRmtSNTNxUXRJc29mR3V2SHgrd2U0dXYwVWE0aSt3?=
- =?utf-8?B?UENpTUhhRzhMdThPUERCSWNUOWh0TzFUSUYzZGpNby9TU25DcndPTFJnYkJr?=
- =?utf-8?B?OEVsQllqcmVEdFdJZHhSbkNZOWcxSitaajlLeEt3ejd4bFRMLzBBM2NFVWV4?=
- =?utf-8?B?TEw0aTJ4MU8rUVBRL1hld1VhUWJzbTA0a2xaYVdJWVZITVJja00rTmtSZlNj?=
- =?utf-8?B?UVc5cnM2Njc3djdseEV6d2pRemVYMDhpWjdnS20yUFo4bGVQdWY2TGhqWVRQ?=
- =?utf-8?B?dGEzNEtrZ05tdkd6NWkwOSt3UTRXR2JGTzlZM2RJemlhWExKQlBCNy9kSW5a?=
- =?utf-8?B?eDBJUllRdTIrc0lzdklSTTVmY0cyWGVjK0MwNEV6RXZ6VDZsNFNVR3RwblJC?=
- =?utf-8?B?OEUvRFBuNXdQVUJYNDBuZXg1dVg4L21ZUkp3S1JoREMveGZlUXNuSzNQMUpC?=
- =?utf-8?B?UjVUYkVnOHNxT1ROTVI4Tnh2SDlsY0Q3UjdNQVNycFN6S3k4a3l5SHdNeUNq?=
- =?utf-8?B?VUpXVnAwQXY1elhqb0F2eGZEWUVUVGxNL0RkVVV1V2x5VUcrZDhxUWxuR0dJ?=
- =?utf-8?B?S1FhQTd2MVlicnd0TmlwNFpIWitlNnVzRFdTZ1VrZ0NGNWFacGs3VmtaMjhN?=
- =?utf-8?B?aHVsN2tYOWhuSmJ5ZTRtNVFRY3JjZGJHeGNZZ2NLRk52N0VVQmY4OC9Bd2pp?=
- =?utf-8?B?K2h0b00xM205REcxT2dpYWtkVjlPT0ZtVlJjeGJwd2FYRDdiTDFjMWpMZmxM?=
- =?utf-8?B?M2puaXFLRzFlSmNOd0ExS0lHUVFiNnJFeWxoSlhyZDJ3bk12cXoxdEJ4U0dS?=
- =?utf-8?B?QnVPWUVQdE05UFNKS2F1TGpQcDl6cHJDMm0vTVNaSTFuM1dBK3B4MEJsajY2?=
- =?utf-8?B?WVVhK05Pc2lyQ0pPcjBlM1dPcG9ZNDhqQm9QWXdPZHkzQnpQT05yUlBIYmg0?=
- =?utf-8?B?SFgvczdOM0JMRlhVNUJiZXpwMGZEelNuMWRCcW00eHkzcHVvV3RBZUc4dDZx?=
- =?utf-8?B?NkxqM2N1QlF1SWI2TXRIWFZqVkpHa1ZJNVNLSHpnZXR3clJlczA4MmlYQ2Mr?=
- =?utf-8?B?bTFwSDA1WGlNOGgrVWZETFVqL1Q3M01WYUM0OUNxWUFLU0Z1MjU0N1p0b3JH?=
- =?utf-8?B?UVU4emFoaytzcGViWEpqMDY3MGZEaU5XbkwrWm1RUlZaNHFqY0Z2VkpGcCs3?=
- =?utf-8?B?Y3kvMndCRWFPcUFJRXhxUDhKTkoweTVRV1RJZSs5ZG92YnJRVzM0ZCtBOERo?=
- =?utf-8?B?TWdXV09SUFk1UmprbDB2Z3VTOWJ2OUVMWngrb0hRWW5uZUh4dlB2dFNUK0Ez?=
- =?utf-8?B?Yit6eXdxNy9BQU5QYVl5SDkyTVk3aUZkejA4SDQwdUw4R2szQmRZMkhCbjZM?=
- =?utf-8?B?R0NSampuc3Z4UmZwK0ttMnphSlBVUXJVQWF6c2duQWpBMTV0QkhQRTZiUzQ4?=
- =?utf-8?B?ZXlScS9Lb2xyRXRpbXRjS1R1WXhVKzh2MTNpVi9SdW9XdHBHVWpIbUFkc2ZF?=
- =?utf-8?B?UEJDNEZCdlZMZHdjSlJrbk9aNTN0OWU1dWQrYVlQQVd4YTg4YTA5UmtFdzYz?=
- =?utf-8?B?Unc2SDJjS2owZlBmTzlmVDR4T1U1bFJYZEZDdU02SDloSmZuUjEvRUVoTXlq?=
- =?utf-8?B?aG14bzNMZ1dqalZ0R2Zzd3NMMTQ4R1l0Ri9kZ05TMmRwOFZSWUQ1WGtqd0RV?=
- =?utf-8?Q?wxuV+Hl0/i4YGMaQgDbbmltGTxnbQ15P?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR03MB7682.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MEJ4U1BYUFNZQ3g4aDA2Q1RVQVhVbUYrcjJWbjdQM2N1Vkg2SVBPTEFBVC9Z?=
- =?utf-8?B?RkhLUThXd1ZFSmQvVFJLYWJPd2NoeVVScnJzZHRLQm5lWXQwRG1sSjQ3NFRa?=
- =?utf-8?B?N2RIbGhzYzRWOXBkSmlMRTBYcXNwR3krTXVOQTdYWVdrZjNnS2NLSlhNOWJa?=
- =?utf-8?B?OEdXMnpKdFZsSmViVFRlb3diT1pKSjVXOWx0RlFqYzBERGpMMTM4bWJEbWFC?=
- =?utf-8?B?V1E2bjllc2FlMVQ0R1RpTXJEM1RueVZwYzl1aFh0NmtCSFpiUFNvcWtJMjJk?=
- =?utf-8?B?QmZrR00wWVBCL21QdEdUN3N5YVVPOFU1SnJaZXErUmI1WS9OaEJYN05lZWFO?=
- =?utf-8?B?ODhXM3JFaU1SNCt2cmovaUNGZ1BRYVBYaHoydjY0N3Z1S3NPdUJtWkliR2xJ?=
- =?utf-8?B?Y1NXWDdkdkRJV09EQ0RCQVJia0cwbCtUaTVTa0Q0WHFRbi9tMUs0K211RWxD?=
- =?utf-8?B?alcySTI0Szd4VU5pRmhxbXV5QUwyVktSbnBreVJKUlNyUE1EZlR6NEUzcVJm?=
- =?utf-8?B?UE1KU2NZUFJMa3VwTXpHV3IzVXQrR3YvbituUFRVNE9JcVdwZXpjYnFVODFj?=
- =?utf-8?B?ZFErQXdRYkVzQ0JDWWF5bHo5eEtzdEQ1Yjdpd1A0UkZvMDJiUkF0UTBYMEVq?=
- =?utf-8?B?b1oyMGNFTldNN1RLRGpkay9CNWp4TUZoQ1o3VS9xd04vVTBzYW9RVUljcXlZ?=
- =?utf-8?B?YTFlRm1hTUdQWHBmdm4wQUw5QkhwRUpIcGNjQ2dJTDNxZnVmMnhMRVVlbWVF?=
- =?utf-8?B?MnZTd2JvdU01dEdUaGRiZ2ZudzIvWlQrWjczcUFsS3Q0TnFQUmRKcmV4eHht?=
- =?utf-8?B?SHhqclBSeXFRa3dXVktodW5ubFNFeklnWGxLcmV1WFhLdGtOVm5HcWNJeTRS?=
- =?utf-8?B?ajFkUjFGVDZNdVhMNnU0dWRiNUtCdGhZdStoN0Y1QlJ6ZGhNS1EvekNvaVdu?=
- =?utf-8?B?ZTJIZFdGMU9NYnZLVkdWZDBsWnNkbCtST2lXZnVza2tpendJVGtsNDZHZUdr?=
- =?utf-8?B?QytPTmdWeDVZdko5SWVWcm8wMmo5MVk1RGdHdFAzVDB2SDVKWktKK3ZjTkNZ?=
- =?utf-8?B?dzE4akFqaGpNNUNDTTIzVTBKZEJrR2QzdDdMVmszbzUyUGFZZ1RMZ05jckF6?=
- =?utf-8?B?Z2c1bjFDSWFHeGNuK1Q1M3NaTnVRaVBqd0xLZnNEdEk3L3dQYlR4Umo3YmZa?=
- =?utf-8?B?RFdOckE0L050ZG9kVWhqVmJEdmduSzNWMGZUR1VXYm1jeU42WnQwaG9qTGtI?=
- =?utf-8?B?QnBVWG4vZ1pNL0xSYzVNRFlzWXUzRG1rM2p2eFFBT2Vmd29RcXFqamUxQ1FJ?=
- =?utf-8?B?eHJZaHpFNGVUUmNTZmNNNE1UbnhvcjRxdC8xbEhXTENiT1N1WS94Q2xVTndu?=
- =?utf-8?B?U2h1S0JQajU2SkkyY1R4Z3hsTEhmUjJtZGtNT0VzYzB0blY1NDRIZ2Ird3Ro?=
- =?utf-8?B?bHlnRCtYT0lWSEUvUGllNUZUUGlSaDJFUmJseDBTbEEyUWtLODhQNVRzV0I0?=
- =?utf-8?B?MEZPNHV0bmlIOEVTaG5iS2JRSnRRbkwrd0JxNUJaeWMyWFBqcUVVckVBRHlV?=
- =?utf-8?B?Tm54OE1FTFpFMVlWdWs1cE1wWXNyRE0vSUt6VUJuNUVUM2VXdjBoMkVzd0pN?=
- =?utf-8?B?TFNXTkNnTXZMMmRTSTAzM3cxNm1HcFB0V2h5WWxnOUFVc1h0Wmkza2RPcTdr?=
- =?utf-8?B?S29ERHkyL2hYcC9sV0ZEcVJpVVVvL1FoTG5XVHdzQzRvLzlTcGxXdXF2QlZw?=
- =?utf-8?B?ckpsbGxFdUNxWlUvVjhnMnowWVAzTEdQNy9MSWNYL2RONXZMb0h0MmQ4MWRo?=
- =?utf-8?B?QklKdlhDZVRUc2ZzV1Z2R1lCZGUwOFFxdjZvc3FpQzBvUzRncXEyWVdGaGRZ?=
- =?utf-8?B?S3A1ZnpCb1NBOGltb0FYOEh1TDFuTGlaNGU3cWRPM0d0UWRjSHcydzNUU3pQ?=
- =?utf-8?B?NmVOUzY0WGRJb0NlKzNWMXk2cWNRRFcyOGFqVktwcWJWQ0NGNzZOSng0cmxB?=
- =?utf-8?B?My96NkRySWZsS3BXUExWelNuRzk5ek1pU2xxYUJjVWZPckRwL0podjh2Q01v?=
- =?utf-8?B?QXJIeis3OHNNYXlaYVd6aXFhb09RaXU1eFlXdjJscjVESTkwcVpVMnF0YWlU?=
- =?utf-8?B?TkJ0MU9hcStDa3JhMk56SHFyQlU2bmJQRFBGL3lIVUVFK3BSSHg4RnlXZjJJ?=
- =?utf-8?B?V0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <75C41ED8FFA75D4DA521137BE8673562@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F2F42594B3;
+	Mon, 30 Dec 2024 02:45:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735526744; cv=none; b=OTsF9ebybe959m2rT5jV7Ql2IwJ/hpjg9oHYeJ93D1acsxb7lX7QrD6UlKEK5VtQtBiGoBhbP+eHIv0PNTwh8Oao1R6uOSi5HgWFIg76CApc+S+dQ1NsWpZfAvhtbd9VIoBdcU8Xtz8LcnnpGpAadRp8X2FmiD10xeTx1hzeXMw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735526744; c=relaxed/simple;
+	bh=lINa1NYSiACMmhycuUyTv6a4CZG69fV1i6lwXOcA2cY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=COaey/pXf+jUqTw5v2kIarRu/Eb1RpQlw1QV4Xxg71fzfHAu8+7Y3gZmjXbQ3Z9emWknKfUtEgFXgfoTK9weAxxNEAg6GVzFY3KbG9+xcoeCWgjmSw6HExnZT751B7/Yy+rRmpo2RUrDFlEAgxHzhMgRIEs90/4E/VyIxWE6XXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hMGISW9C; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU0j8oh013510;
+	Mon, 30 Dec 2024 02:45:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dNUUS20lJs9Xa/JNwr4yZaC/X3cCdfHkMVbCHo62G8c=; b=hMGISW9CM7VijkUU
+	cygagMc9PKZWtxU1i8hjWVyHAR+9P3dX0792uG5wL23ggEg2aXWZzVbqqLug1Vvs
+	UFnZEY9aNJNhR5XidG3uk+33Y52NZrfHjGxXymjbQp261Q+8VMCYJDbO5k/5BYYp
+	WtQhKLOQ0ITCT7E+1YJ/gD0077MFWvDNyFXNJ8dSGuQVnNKRbN0wQPTkQimwL+rF
+	ySJxUXo4befIby28YT07rd261aSN/DhaSa9e4SSsYVD2tTfnBhOfOdW03+4kkn5J
+	Pei7Iw0i9yMdVDaB/w9P4aHnsXgG/3nUeyAOigbiSkJtGvQ4yCRzLledwZC2feNR
+	YhkACQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43uh8e85n6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Dec 2024 02:45:25 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BU2jO5h004565
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Dec 2024 02:45:24 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Dec
+ 2024 18:45:22 -0800
+Message-ID: <23a29a97-4d0f-4bc3-a0bf-10b32cc4ea7c@quicinc.com>
+Date: Mon, 30 Dec 2024 10:45:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR03MB7682.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4751423e-2053-486b-d08f-08dd28792a71
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Dec 2024 02:25:02.4114
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RN36dnT7vvA6TL0xx0N+jP9/QoKfGaLkm7bCGgIb+qwHyecfh7OAbkVXyEp5AeSu+PJu3zSCYVUm8ptAz2balk1tw9FKMBBwszaptduSFsY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB6878
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: platform: Add bindings for Qcom's EC
+ on IT8987
+To: Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>
+CC: Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        devicetree
+	<devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20241219200821.8328-1-maccraft123mc@gmail.com>
+ <Z2WxzvKRVcOz5d2V@linaro.org>
+ <CAO_MupJ7JtXNgGyXcxGa+EGAvsu-yG0O6MgneGUBdCEgKNG+MA@mail.gmail.com>
+ <Z2W2UhspMZNT1TRU@linaro.org>
+ <c8677ae6-a145-411c-a221-02faa1ce809d@kernel.org>
+ <CAO_Mup+YFAT5oFRGYucW5h_eGcfp4C5FzF20hM6xF=qMR1DdQw@mail.gmail.com>
+From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <CAO_Mup+YFAT5oFRGYucW5h_eGcfp4C5FzF20hM6xF=qMR1DdQw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4d8cwamUx5Yb-IslZFQji25la9kEiFs7
+X-Proofpoint-ORIG-GUID: 4d8cwamUx5Yb-IslZFQji25la9kEiFs7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ phishscore=0 spamscore=0 suspectscore=0 priorityscore=1501 mlxscore=0
+ bulkscore=0 mlxlogscore=999 malwarescore=0 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412300020
 
-SGkgS3J6eXN6dG9mLA0KDQpPbiBGcmksIDIwMjQtMTItMjcgYXQgMDk6MTEgKzAxMDAsIEtyenlz
-enRvZiBLb3psb3dza2kgd3JvdGU6DQo+IA0KPiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBu
-b3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJp
-ZmllZCB0aGUgc2VuZGVyIG9yIHRoZSBjb250ZW50Lg0KPiANCj4gDQo+IE9uIEZyaSwgRGVjIDIw
-LCAyMDI0IGF0IDAxOjA3OjU0QU0gKzA4MDAsIEphc29uLUpILkxpbiB3cm90ZToNCj4gPiAxLiBB
-ZGQgY29tcGF0aWJsZSBuYW1lIGFuZCBpb21tdXMgcHJvcGVydHkgdG8gbWVkaWF0ZWssZ2NlLQ0K
-PiA+IG1haWxib3gueWFtbA0KPiA+IMKgwqAgZm9yIE1UODE5Ni4NCj4gPiANCj4gPiDCoMKgIC0g
-VGhlIGNvbXBhdGlibGUgbmFtZSAibWVkaWF0ZWssbXQ4MTk2LWdjZS1tYWlsYm94IiBpcyBhZGRl
-ZCB0bw0KPiA+IMKgwqDCoMKgIGVuc3VyZSB0aGF0IHRoZSBkZXZpY2UgdHJlZSBjYW4gY29ycmVj
-dGx5IGlkZW50aWZ5IGFuZA0KPiA+IGNvbmZpZ3VyZQ0KPiANCj4gDQo+IFRoaXMgaXMgMTAwJSBy
-ZWR1bmRhbnQgc3RhdGVtZW50LiBEb24ndCBzdGF0ZSB0aGUgb2J2aW91cyBhbmQgZG9uJ3QNCj4g
-ZXhwbGFpbiB0byB1cyBob3cgRFQgd29ya3MuDQo+IA0KDQpPSywgSSdsbCBkcm9wIHRoaXMuDQoN
-Cj4gPiDCoMKgwqDCoCB0aGUgR0NFIG1haWxib3ggZm9yIHRoZSBNVDgxOTYgU29DLg0KPiA+IA0K
-PiA+IMKgwqAgLSBUaGUgaW9tbXVzIHByb3BlcnR5IGlzIGFkZGVkIHRvIHNwZWNpZnkgdGhlIElP
-TU1VDQo+ID4gY29uZmlndXJhdGlvbg0KPiA+IMKgwqDCoMKgIGZvciB0aGUgR0NFIG1haWxib3gs
-IGVuc3VyaW5nIHByb3BlciBtZW1vcnkgbWFuYWdlbWVudCBhbmQNCj4gPiBhY2Nlc3MNCj4gPiDC
-oMKgwqDCoCBjb250cm9sLg0KPiANCj4gWW91IHNob3VsZCBzYXkgd2hldGhlciBkZXZpY2Ugc3Vw
-cG9ydHMgb3IgZG9lcyBub3Qgc3VwcG9ydCBJT01NVS4gU28NCj4gYWxsDQo+IGRldmljZXMgbm93
-IHdvcmsgd2l0aCBJT01NVT8gSSBndWVzcyBJIGFza2VkIGFib3V0IGl0IGFscmVhZHksIG5vDQo+
-IGltcHJvdmVtZW50cy4gU28gYWdhaW4sIGRvbid0IHN0YXRlIHRoZSBvYnZpb3VzLg0KPiANCg0K
-WWVzLMKgSSdsbCBjaGFuZ2UgdGhlIGFib3ZlIHN0YXRlbWVudCBhcyBiZWxvdzoNCg0KSW4gTVQ4
-MTk2LCBhbGwgdGhlIGNvbW1hbmQgYnVmZmVycyBhbGxvY2F0ZWQgYW5kIHVzZWQgYnkgR0NFIGRl
-dmljZSBhcmUNCndvcmtpbmcgd2l0aCBJT01NVS4NCg0KPiA+IA0KPiA+IDIuIEFkZCB0aGUgR2xv
-YmFsIENvbW1hbmQgRW5naW5lIChHQ0UpIGJpbmRpbmcgaGVhZGVyIHRvIGRlZmluZSB0aGUNCj4g
-PiDCoMKgIGFic3RyY3Qgc3ltYm9sIGJpbmRpbmcgdG8gdGhlIEdDRSBoYXJkd2FyZSBzZXR0aW5n
-cyBvZiBHQ0UNCj4gPiBUaHJlYWQNCj4gDQo+IHR5cG8NCg0KVGhhbmtzLCBJJ2xsIGZpeCBpdC4N
-Cg0KPiANCj4gPiDCoMKgIFByaW9yaXR5LCBHQ0UgU3Vic3lzIElEIGFuZCBHQ0UgRXZlbnQgZm9y
-IE1UODE5Ni4NCj4gPiANCj4gPiDCoMKgIC0gR0NFIFRocmVhZCBQcmlvcml0eTogRGVmaW5lZCB0
-byBjb25maWd1cmUgdGhlIHByaW9yaXR5IGxldmVsDQo+ID4gZm9yDQo+ID4gwqDCoMKgwqAgZWFj
-aCBHQ0UgaGFyZHdhcmUgdGhyZWFkLiBUaGlzIGlzIG5lY2Vzc2FyeSBmb3IgcHJvcGVyDQo+ID4g
-c2NoZWR1bGluZw0KPiA+IMKgwqDCoMKgIGFuZCBleGVjdXRpb24gb2YgY29tbWFuZHMgaW4gdGhl
-IEdDRS4NCj4gPiANCj4gPiDCoMKgIC0gR0NFIFN1YnN5cyBJRDogRGVmaW5lZCB0byBzcGVjaWZ5
-IHRoZSBzdWJzeXN0ZW0gSUQgZm9yIEdDRQ0KPiA+IGNsaWVudHMuDQo+ID4gwqDCoMKgwqAgVGhp
-cyBpcyB1c2VkIHRvIGNvcnJlY3RseSBhZGRyZXNzIGFuZCBhY2Nlc3MgZGlmZmVyZW50DQo+ID4g
-c3Vic3lzdGVtcw0KPiA+IMKgwqDCoMKgIHdpdGhpbiB0aGUgR0NFLg0KPiA+IA0KPiA+IMKgwqAg
-LSBHQ0UgRXZlbnQ6IERlZmluZWQgdG8gc3BlY2lmeSB0aGUgZXZlbnRzIHRoYXQgdGhlIEdDRSBj
-YW4NCj4gPiBoYW5kbGUuDQo+ID4gwqDCoMKgwqAgVGhlc2UgZXZlbnRzIGFyZSB1c2VkIGJ5IHRo
-ZSBkcml2ZXIgdG8gc3luY2hyb25pemUgYW5kIG1hbmFnZQ0KPiA+IMKgwqDCoMKgIGhhcmR3YXJl
-IG9wZXJhdGlvbnMuDQo+ID4gDQo+ID4gwqDCoCBFeGFtcGxlcyBvZiB0aGUgYmluZGluZyB1c2Fn
-ZSBpbiB0aGUgZHJpdmVyIGNvZGU6DQo+IA0KPiBEcm9wIGFsbCBiZWxvdyBmcm9tIGNvbW1pdCBt
-c2cuIERvbid0IHBhc3RlIEMgY29kZSBpbnRvIHRoZSBiaW5kaW5ncy4NCj4gDQpPSywgSSdsbCBk
-cm9wIHRoZW0uDQoNClJlZ2FyZHMsDQpKYXNvbi1KSC5MaW4NCg0KPiBCZXN0IHJlZ2FyZHMsDQo+
-IEtyenlzenRvZg0KPiANCg0K
+On 12/22/2024 11:07 PM, Maya Matuszczyk wrote:
+> niedz., 22 gru 2024 o 15:40 Krzysztof Kozlowski <krzk@kernel.org> napisał(a):
+>>
+>> On 20/12/2024 19:24, Stephan Gerhold wrote:
+>>> On Fri, Dec 20, 2024 at 07:16:34PM +0100, Maya Matuszczyk wrote:
+>>>> Excuse the formatting, I've typed this reply from my phone
+>>>>
+>>>> pt., 20 gru 2024, 19:05 użytkownik Stephan Gerhold <
+>>>> stephan.gerhold@linaro.org> napisał:
+>>>>
+>>>>> On Thu, Dec 19, 2024 at 09:08:18PM +0100, Maya Matuszczyk wrote:
+>>>>>> This patch adds bindings for the EC firmware running on IT8987 present
+>>>>>> on most of X1E80100 devices
+>>>>>>
+>>>>>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>>>>>> ---
+>>>>>>  .../bindings/platform/qcom,x1e-it8987-ec.yaml | 52 +++++++++++++++++++
+>>>>>>  1 file changed, 52 insertions(+)
+>>>>>>  create mode 100644
+>>>>> Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+>>>>>>
+>>>>>> diff --git
+>>>>> a/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+>>>>> b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..4a4f6eb63072
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/platform/qcom,x1e-it8987-ec.yaml
+>>>>>> @@ -0,0 +1,52 @@
+>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>> +%YAML 1.2
+>>>>>> +---
+>>>>>> +$id: http://devicetree.org/schemas/platform/qcom,x1e-it8987-ec.yaml#
+>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>> +
+>>>>>> +title: Qualcomm Embedded Controller on IT8987 chip.
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Maya Matuszczyk <maccraft123mc@gmail.com>
+>>>>>> +
+>>>>>> +description:
+>>>>>> +  Most x1e80100 laptops have an EC running on IT8987 MCU chip. The EC
+>>>>> controls
+>>>>>> +  minor functions, like fans, power LED, and on some laptops it also
+>>>>> handles
+>>>>>> +  keyboard hotkeys.
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    oneOf:
+>>>>>> +      - const: qcom,x1e-it8987-ec
+>>>>>
+>>>>> Given that ECs tend to be somewhat device-specific and many vendors
+>>>>> might have slightly customized the EC firmware(?), I think it would be
+>>>>> better to disallow using this generic compatible without a more specific
+>>>>> one. In other words, I would drop this line and just keep the case
+>>>>> below:
+>>>>>
+>>>> I've looked at DSDT of other devices and they look to be compatible with
+>>>> what's on the devkit, with differences being extra features on magicbook
+>>>> art 14 and yoga slim 7x. Though this isn't a hill I'm willing to die on.
+>>>>
+>>>
+>>> I think it's fine to keep qcom,x1e-it8987-ec as second compatible.
+>>
+>>
+>> No, because:
+>> 1. There is no such thing as x1e
+>> 2. If there was a soc like this, this has nothing to do with SoC. It is
+>> not a component inside SoC and that is the only allowed case when you
+>> use SoC compatibles.
+> 
+> It was the closest thing I had for a "platform name"
+> 
+>>
+>>> However, without a more specific compatible, there is a risk we have
+>>> nothing to match on in case device-specific handling becomes necessary
+>>> in the driver at some point.
+>>>
+>>> It's certainly subjective, but it might be better to play it safe here
+>>> and have a specific compatible that one can match, even if the behavior
+>>> is 99% the same. There will often be subtly different behavior across
+>>> devices, you mentioned the "keyboard backlight turning off and the power
+>>> LED slowly blinking", who knows what else exists.
+>>>
+>>> I suppose worst case we could also use of_machine_is_compatible() to
+>>> just match the device the EC is running on, but I'm not sure if that
+>>> would be frowned upon.
+>>
+>>
+>> Unless you have some sort of insights or secret knowledge from Qualcomm
+>> (Bjorn or Konrad can chime in here), I think these are pure guesses that
+>> this is a Qualcomm product (implied by vendor prefix) or some sort of
+>> re-usable generic firmware from Qualcomm present on multiple devices.
+> 
+> The x elite devkit also has the IT8987 EC chip, and when comparing the
+> firmware of it and Yoga Slim 7x's EC there are similarities when
+> running them through strings
+> On both of them at the beginning there are strings that look like
+> version identifiers:
+> Devkit:
+> UUBBK V:00.20.00$
+> BBK-V20$
+> 
+> Slim7x:
+> UUBBK V:00.21.00$
+> BBK-V21$
+> 
+> With similar ones at the end:
+> Devkit:
+> EC VER:00.29.00$
+> LsFv:00.29.00$
+> Qualcomm$
+> WoS 8c GenX$
+> ODM$
+> MB:A0$
+> BUILD DATE:
+> 02/0//2/24$
+> TIME:
+> 14:33:35$
+> 
+> Slim7x:
+> EC VER:00.60.00$
+> LsFv:00.20.00$
+> Qualcomm$
+> WoS 8c GenX$
+> ODM$
+> MB:A0$
+> BUILD DATE:
+> 2024/07/25$
+> TIME:
+> 09:58:00$
+> 
+> 
+> 
+>>
+>> If the FW across devices is the same, then fallbacks for these are fine
+>> with me.
+> 
+> As the devkit has EC firmware that is handled the same way in DSDT
+> tables of most of other x1e laptops with the same EC, and is a subset
+> of what's done on Lenovo Yoga Slim 7x and Honor Magicbook Art 14 I
+> think the devkit's compatible  + -ec would be a good pick.
+> 
+> This conversation is getting long and I feel like I've said everything
+> I wanted to say, I'll just do what you tell me to do about the
+> fallback and binding filename.
+> 
+
+I have raised this topic internally at Qualcomm. However, since some key
+personnel are currently on holiday, an immediate response is not
+possible. Rest assured, the topic is under review internally. Please
+stay tuned for updates.
+
+I want to personally thank you for your current support and efforts.
+>>
+>> Best regards,
+>> Krzysztof
+
+
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
