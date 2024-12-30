@@ -1,123 +1,136 @@
-Return-Path: <devicetree+bounces-134755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FDEA9FE6E0
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 15:12:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 505FB9FE6EB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 15:15:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F6CC7A0FDB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:12:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0847D7A0FC3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:15:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E53E1AA1C0;
-	Mon, 30 Dec 2024 14:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172D11A76DE;
+	Mon, 30 Dec 2024 14:15:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ItAbCoRg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9CF13633F;
-	Mon, 30 Dec 2024 14:11:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8579525949E
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 14:15:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735567920; cv=none; b=YO1aJReMtfIbKAOttRb1vSQ5VuKxrakHbruGU39AdJu0NFot0GKYvtjejYNi42NOcGmSddDHfBnLLCbhyLI/ov3l9JkWteOgrYPDYf3H7FiXSfVYgaZal2WteqwhKpbGEpNBrayFLGSKDyFeO4rsjjvh9bgRaoK/bBElIrXhMkw=
+	t=1735568141; cv=none; b=kzUoaCI54nzj7G8fhoERs4bug+As5mqW2ANu6UA/v9XKzF/SfrZXr0ynxR14MgwreZrw3CYDf+HTb8SBK3sOM1yXelnDxWdi+MFNvHC/9Q3hau9NtGd3CPwOmDl19nxM6CuuYv6F6iCdKm4VgBH2tqbA0gMRCJMCxBQppVhyDbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735567920; c=relaxed/simple;
-	bh=KLogfWKejvtXzSBCyfhmc0eYpL/eDcrVcNlejQC7Yro=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rDY6LWiO4y4Ee5L2OU4sn2xiVq6r8aB6id1i5zz4oSPBnOoX8XvVEx/fccjI6PoqVSwImBSNu1woHifLaskeabhDZKRfbqpePmcK8ZE6tYi5RXzH0NsYzpGjno4sPwNTvz34yKKM4JtLjeGGIedRIpB7ncQNp/nsGNo7vD0jrZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E04FF143D;
-	Mon, 30 Dec 2024 06:12:25 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C93193F59E;
-	Mon, 30 Dec 2024 06:11:52 -0800 (PST)
-Date: Mon, 30 Dec 2024 14:11:50 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Parthiban <parthiban@linumiz.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin
- Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu
- Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Linus
- Walleij <linus.walleij@linaro.org>, Vinod Koul <vkoul@kernel.org>, Kishon
- Vijay Abraham I <kishon@kernel.org>, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH RESEND 00/22] Add support for A100/A133 display
-Message-ID: <20241230141150.3d0c3ae6@donnerap.manchester.arm.com>
-In-Reply-To: <314b6bbe-613e-41a6-955e-50db6e11ef8e@linumiz.com>
-References: <20241227-a133-display-support-v1-0-abad35b3579c@linumiz.com>
-	<314b6bbe-613e-41a6-955e-50db6e11ef8e@linumiz.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1735568141; c=relaxed/simple;
+	bh=2gJiDrg83SW5AzpajXuqJjoZxEcycpK73A6wF6BlEw8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GG+U6fNzM3SDsSOQ5NYIoRPuLutVgZ6trM8PWIHj7YrOMmbNsv+BkG1w7JVoDMb0Xap/tKOeU/IEanDy2IBIruZeIBLlm6P53FIH0hu3pnACjr1DC5+0B8cJ5pQNBPZh8iStfxmEYIqajzoDr6bVtYKtLkFfCPOyz9i2Q/EqQHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ItAbCoRg; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU67nq3022967
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 14:15:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PywX6BU9UcYXAQBoM8N0DJyd44/lchAxK7xEfOTSNWc=; b=ItAbCoRgA91tgvZq
+	TaQn7GhKRBBRAMImQHqwYUDuqiEXPye+j8EkQ+iBp+9pYcWecOufD5+/DZAASUs1
+	Ly5CAYqMmA996xE+bC7M+BHV0aPld7cd2V8/B7eKpnW+5skZiKEqFrnd17n97Eth
+	ginsjNz9F8wTAuZ4/hjqdy47T1D2chDc2sc51BHs4F5kze90yVXnVdOtrMb4+bY9
+	eS2DOJbYwgWAzoIS3wsXId4nyelwOlZhONlNamzyO8Jyq+GZInUKw7HxmNMeQ/Xh
+	pgZ3qTNSM9fWQB+sxMq+4gdBTTYd7w+a/l3XdpQnMYk4aRp38TPKTRHexsziYOk9
+	jEd6xA==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43unys0y3f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 14:15:38 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-467bb3eeb04so24156501cf.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 06:15:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735568137; x=1736172937;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PywX6BU9UcYXAQBoM8N0DJyd44/lchAxK7xEfOTSNWc=;
+        b=I90pWxM/vnxRYIHdeNYxVHAEw2T1YTI1NzK+L8FPGmClcFbKebnSsUJPJCoTnPGKsL
+         RbElglfzXsXHHE7akth8cjdrfAwnNg8Zg0NeEVnsEpv196LvU29h+SgKyPHpxTKjZMzM
+         79R4mneej3PURQT9rKqD3K1QKbAvYGNyLzGzv9ghrUIM3DiOO7pkIUamKThXdUMSeW7X
+         +zl+Tlu6ZrEjt8W364hgZ8zvseSdHR3swz0OWbM4UoVGBi7K8u8ark5qn7E2/yLVvd6j
+         fRmJaHrM37u/+ZEGZvO3A7FOAfCgTdAuybH6Bu2v77ImW/gwmksapPn02tF0F5JAzCpj
+         wQMA==
+X-Forwarded-Encrypted: i=1; AJvYcCXT6Wa8OZ6ZxsPtipOPoPt6HXwrU3kMeOKKAPGqJuHC4net2gqV2DEWCzseg4f4NvN01RhfjLI8zT0u@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM7j47LPso6EOyr5Ev/MvRXfGVba92sc38oCEMzwYQvVsiyftL
+	SCHkSGpFUHusek0cyS+BXKU14w0CXetPrEOLr3/zqtsZQ87sPzfnKnSafd3H/dyTqA7D4GhenF1
+	XT3Hd1R10hrv5rCEKMoHqHwZ/GmjrIJ7Ml9EfbXnj3o3yZt2gefmXU6ZjeS8LS8jso8w9
+X-Gm-Gg: ASbGnctGdkp9pycdKr9NvWq0NC66IiAtDH48ylnyfXMe04C669vpD1haOx3uSuts5Ey
+	n1xdAjPwSABxeeV181qzMyKEJMN69NX8Recfgv6vYupGQb0vsgLq5vpdNL+rVdvMtX5WV0yQw2p
+	nZt/S6s3QN+U11VgNhDh6mSK4zyq0o9TUWS6v4FdG2PnCPJAy0VM8yjy6O649iqIxc3eKU32J6Q
+	ph/dP2nGU2YGJGan0H+0OUZC8mTgxJvy89uRN58uIsqJUI+yzf9gadYRF0P2RUMdQGdY1C1GEbo
+	JqsQeeS1hqMGHxuzivv/67mFE2oGbHHKWr0=
+X-Received: by 2002:ac8:5f4b:0:b0:464:9faf:664b with SMTP id d75a77b69052e-46a4a8b7f74mr204199601cf.2.1735568137304;
+        Mon, 30 Dec 2024 06:15:37 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEeqG3snSa1trEhInzGZS8PZrAUjWlvEMbkDearlGy+9rV+yGg2Nuls3EGHim3OtC6duVecdQ==
+X-Received: by 2002:ac8:5f4b:0:b0:464:9faf:664b with SMTP id d75a77b69052e-46a4a8b7f74mr204199351cf.2.1735568136947;
+        Mon, 30 Dec 2024 06:15:36 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80676f26dsm15303185a12.20.2024.12.30.06.15.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Dec 2024 06:15:35 -0800 (PST)
+Message-ID: <cb90fd75-60de-4df7-bef1-e5c832601a75@oss.qualcomm.com>
+Date: Mon, 30 Dec 2024 15:15:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] arm64: dts: qcom: ipq6018: add 1.2GHz CPU
+ Frequency
+To: Chukun Pan <amadeus@jmu.edu.cn>, konrad.dybcio@oss.qualcomm.com
+Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        konradybcio@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_srichara@quicinc.com
+References: <88cf612d-cc3d-4cfd-b6ba-49739d598e69@oss.qualcomm.com>
+ <20241224070018.2264908-1-amadeus@jmu.edu.cn>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241224070018.2264908-1-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: BD6YDz5PuRruiAeylchDokY30K9Wi45X
+X-Proofpoint-ORIG-GUID: BD6YDz5PuRruiAeylchDokY30K9Wi45X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=923
+ malwarescore=0 suspectscore=0 adultscore=0 clxscore=1015 impostorscore=0
+ bulkscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412300123
 
-On Fri, 27 Dec 2024 20:06:30 +0530
-Parthiban <parthiban@linumiz.com> wrote:
-
-> On 12/27/24 6:30 PM, Parthiban Nallathambi wrote:
-> > This series depends on [1] for the eMMC/MMC controller to work and
-> > [2] (lined up for 6.14) which adds support for the sram nodes and
-> > display engine extends it's usage. Idea of this series to get initial
-> > feedback and adjust, which will be rebased for 6.14 once [2] is merged.
-> > 
-> > This patch series adds support for A133 display pipeline based on
-> > LVDS. dt-bindigs are organized in the start and later with code
-> > changes.
-> > 
-> > PHY is shared between DSI and LVDS, so to control the PHY specific
-> > to DSI/LVDS, phy_ops set_mode is introduced. To enable the DSI
-> > using set_mode, analog control register MIPI Enable is used, which
-> > may not be available for A31 (shares the same driver).
-> > 
-> > Otherwise, A133 also got hidden independent display engine i.e
-> > mixer + tcon top to handle parallel display. But this patch series
-> > adds only support for the 1 mixer which is documented.
-> > 
-> > [1]: https://lore.kernel.org/linux-sunxi/20241109003739.3440904-1-masterr3c0rd@epochal.quest/
-> > [2]: https://lore.kernel.org/linux-sunxi/20241218-a100-syscon-v2-0-dae60b9ce192@epochal.quest/
-> > 
-> > Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>  
-> Apologize for polluting with resend again. My internal mail server got blocked due to
-> volume count, which resulted in incomplete series again.
-
-I guess an incomplete send was the reason for the original resend? Please
-note this at the top of the cover letter then, otherwise it's not easy
-to see why you send something again. Something like:
-
-*** Re-sent due to mail server not sending out the complete series. ***
-
-It also helps to split up the recipients, so that everyone gets the cover
-letter, but only the respective subsystem maintainers get the patches
-touching their subsystem. I would CC: the DT maintainers on every patch,
-though.
-It's a bit more complicated to set up, but keeps the noise down for those
-large-ish series, for instance for the IOMMU people, who presumably have
-little interest in DT or graphics code.
-
-Cheers,
-Andre
-
-> I will fix the mail server issue before resending the series. Sorry.
+On 24.12.2024 8:00 AM, Chukun Pan wrote:
+> Hi,
+>> I think Kathiravan only wanted to make sure you have the latest bootloader.
+>>
+>> Looking at the documentation, I don't see a 1.2 GHz frequency level for
+>> this platform.
 > 
-> Thanks,
-> Parthiban
+> But from the merchant's publicity, ipq6000 is 1.2GHz:
 > 
-> 
+> https://wikidevi.wi-cat.ru/Qualcomm/IPQ6000
+> https://www.gl-inet.com/products/gl-ax1800 (CPU Part)
+> https://www.alldatasheet.com/datasheet-pdf/pdf/1246071/COMPEX/AP.CP03.html
 
+Could you try to boot the BSP software and read out the related
+registers to determine the real CPU frequency?
+
+Or perhaps, if there's a cpufreq driver (I don't know), check syfs
+
+Konrad
 
