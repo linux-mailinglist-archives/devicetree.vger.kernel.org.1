@@ -1,161 +1,471 @@
-Return-Path: <devicetree+bounces-134774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4EEB9FE7A6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 16:36:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9B149FE7B6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 16:40:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9E903A19DD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 15:36:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4B0E7A13E3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 15:40:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE371AA7BF;
-	Mon, 30 Dec 2024 15:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 584EC1AAA1C;
+	Mon, 30 Dec 2024 15:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YiuZkCiA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cnFoWxtK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 438091AA1D0
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 15:36:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BE4C126C13
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 15:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735572969; cv=none; b=i0Qewekjy+rpwrDxnRtWfu/NrNAwTfvzhZfTMo8bZ/PjvpjZ/+kvG9MXHYEJEiQ7aMW1xzjyDamtM64iwS6pOjQuI8Y16+NbESKKBw+8VaJL+ujzfEBqCIdbVua7UYp9FSrcBZemaN+6MYBCr6cPWSD0EDIvmY9ziPuqTr6guJk=
+	t=1735573230; cv=none; b=u3VGKABNhTRSoIRwNpWyhOaSSXk+My6ZP9lTSGxdwcmJw+NNtgrKLH30J51YxVu8Rp7PEwYywG7YgJP93wg9/4tSyBAZ8pBGFTlRCgyrHwz4hnkZ7gjPmqiWVq1eQGrHHyzeCFg+rVeLg+Dd99OfEVdkTSXIzXbece0mGT3G6eA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735572969; c=relaxed/simple;
-	bh=wkeG7P4UChRzJtrhWCiRAM2V3yJ4AXjEyMvJFckL1vg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=syxWnXQ/W1yXtkYGL23m4WW13hMjwnYaxjq8VB+3xzSXrAzDtnQVe3d5T0u5xW0KESfAhyPXJQx7d/s+uyQ4g26qy/IJNYUcSMQRmRucvpftbz+AZqmSzls8Xu0L1yU+QmEz7O+VoX4SykWyCahuxZX17oVzajMWgIPf1M4HSKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YiuZkCiA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU7GIKt028140
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 15:36:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QlRM+Tt9HfLWUo5Qja07NOP2unyO6boK9jX6MFLYbss=; b=YiuZkCiAgKoaSu6I
-	T7wuFOM30jnPMCFlD/2Ycy1t2gju+g9FFZkeU9CmrAq8s5rgkLxKjKbHa9VD4oMq
-	gKak7txiI99BvXno+E8spyxdFRJVo+cEAPskuIlel7hcLRC2Uu6GUjonHjgspvu2
-	mDAVHYETYJ8wGRFPIbRHsKZQhDqtVxERfx4tp+1z4FsoWhftT7XGwRGcB0BAqSDK
-	xjQfF7THQ2jdRNKJ8pMz3KvNyP3fmo/7EEXf0cMwV8xydSZjuBW+tp1TVzkTzYu5
-	cf6v0LkMk8Yd+GuvvVpnTpGfIJT0mdtNva8AimAjzD1QFqTjWjrAPn5AmVl27RZv
-	zdJ4bw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43upyr90u5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 15:36:07 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7b6faf8b78aso99970985a.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 07:36:07 -0800 (PST)
+	s=arc-20240116; t=1735573230; c=relaxed/simple;
+	bh=nayYYP1By29yNkwAI1pZyVdajz2RfMP0eDuhac/GLds=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I1ZmDxV6F/F4UqiXyYPx2LRtgbvZQmv4ojZwGs1wtJ8GKf4EgrysCdKrxWBXEu+Zv2SQNzMlDtGpVes/r9b7k6EW627XNh7al7wIK4dtXu/TcCLP28/OuRKhRlNRm8X3lFfBPlo7uNw+kaVbENK/ERvytufdv9je74GMZ7qxDFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cnFoWxtK; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-3003e203acaso97445611fa.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 07:40:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735573226; x=1736178026; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=26qMH+5rkTrY7u7DfslpeBwBLGqdW1qgd9R5Aer4O1U=;
+        b=cnFoWxtKZrcuuTzeW3mrbjbTVA11JVvMxUVyPgY/eUN5kYKQ5Spi1JiMS1Gz16heHu
+         oaam7r9v27IpxSOGjpGyNaqY/HlZSZdgZTqoU8K05tMp8rOcJeWpeSmXrKlLyKUpJEV6
+         4cGZJQa9F0XZ4uf1sGMKtgDH68n3Oib7d3giqO3TY93j4ov1kLGJMKKMQgoe6vqYOybt
+         6k+Mx09NumDVTgezmtIvMH9Y5C6Wx8E7O/UtB6pDYUqzjL/WT/APlftIEXGzXmd+B03H
+         wGWK5tEBLDHHrR4dUNHU78Eu+E9QFlfQMvQTEv0g/Y2fIel2zJ8vBCYX9nZptVKVbKyE
+         EdVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735572966; x=1736177766;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QlRM+Tt9HfLWUo5Qja07NOP2unyO6boK9jX6MFLYbss=;
-        b=wZHYB1gA6ujs973qOcSqgKyGosnbfkUQdN2FM7BtS/O6v0hDEHWfuPwJJ+1Td+ezdc
-         VQI4Zd7JjPEL1RSj6ziZacxGNPuEi1Ceau4boBOJn9K6D6tPhHREFVkXpHsUC3TeDTW1
-         wsuxhYdsRag9JlH/xpU/9DHeJmZb/nJDA0AmtXWIUfXK6NOBgjo5JXS9pRxMv5kUvd0N
-         Kx1NpSoQpxpQ+c2Pd6De6wO/yvQuriYX0IVyLBXXLmckn42VRQUClLjRoYA/fXMU+zSe
-         x0hkx6c5ORJ73TBEOzoI7FqCyy3/EGw+Dw5Q69ruD9/y/CcRSz8gn5MYIoliW+bg9cHH
-         xSQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWBsmFSsKm/vJI6S3yYQOOJP4stBg/mfZiuACG7SDqwgHHQZaYs91RP8+yI6as6uRoYkMMOvhqdLlfU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyptdPcDSImHzhlrJJxj7Fn4Pqd3rY8a2JwS7ZbR3px3U57B9TS
-	Iw/BSxvkXEv+XfYTXTFH4jgCi4sCEh/byXU0UcE4KXulKJ1Klx45pP5zrXdGXhxkDaniN+2jbkX
-	0KvTnauN4bEE2rqMnqYv3/J8jAQrf3ThJFR0RqeEhXQx/QoRlSDKMA0hA92pl
-X-Gm-Gg: ASbGncshZC0ukEOBYXMBCsl5sPc182+ObYv0pgR8Amb5JEKKke8StMqWDep/SB9qO3P
-	DI9wCMHrt7009SdIXOImCSZfxbKmfK9wqPstTgEYcFC95b834erEI5nr9DARUuH9Bo2o9nO69sU
-	Is0YC3hp8Oki7zCk96gg/eIc2P4fKt8sLMTMjxIJ3OZAhxOhwU1fAB14jOVVbURwFomifPZudUR
-	8MCGjYZ110DCCaSk2OVr+Az+veHDuoWxa6Mf6aeH10JXJDi5eohojEZmw85/HgpWzd+ouOwltjB
-	8dbaofaiPOEUc39PDWGP9UlBa5H+ji4lfHY=
-X-Received: by 2002:a05:620a:2496:b0:7b6:e61b:3e60 with SMTP id af79cd13be357-7b9ba742c0cmr2250330285a.7.1735572966277;
-        Mon, 30 Dec 2024 07:36:06 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEi4DQS+Ey4mwcCBBrhyHtkNV/V1K4BRSDlma3sCc3zl5NHxwgFKp47MXICxUIytxfQe/LDZQ==
-X-Received: by 2002:a05:620a:2496:b0:7b6:e61b:3e60 with SMTP id af79cd13be357-7b9ba742c0cmr2250326985a.7.1735572965855;
-        Mon, 30 Dec 2024 07:36:05 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f01228bsm1477930666b.143.2024.12.30.07.36.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Dec 2024 07:36:05 -0800 (PST)
-Message-ID: <34ab59a1-b735-44d1-918a-1b82954a4423@oss.qualcomm.com>
-Date: Mon, 30 Dec 2024 16:36:03 +0100
+        d=1e100.net; s=20230601; t=1735573226; x=1736178026;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=26qMH+5rkTrY7u7DfslpeBwBLGqdW1qgd9R5Aer4O1U=;
+        b=Qvsekxy/qa3xl1QlHgGwhwPvcTqPHk+veTh6BmWBfo/sEALqmXub6mp0S6/EDGtkxS
+         aRI1jHpNX/AaaTpzE6MmaXrZpjQ3Y/JYZH7QCjrbF4djNP189zn1X4sJobP1rfOs5/cp
+         oEEhZz/d14w3B/m+koUpQkuwcvvy3BLJ/Q1VsHSh9s1w9c0bakDuxJ5YRD3vTZgnx52X
+         CIbOos7MMgLlpEygqRCDuFh35/HmKYDaylZe8dBqqzT/G8AzkeYUWufUMgxKblaza+oS
+         BxASv/ENlb6767MIsgOlJTyydZh1rG4dns3u+yYsTJqTCDJJGkB7+edlk2C3nUkdgbVj
+         054w==
+X-Forwarded-Encrypted: i=1; AJvYcCVVRLew9h/8vYOMdLHNOXypiGcI3CNR2EgHAPDUdgyVfSTl8H4SFSPp7aF0kAHHkREQvGPsLUmznnly@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKL41JTvMYJsuLVBUcoz3C9wTiLEJqUebw4lV1lx3IbF2VRL4c
+	c/zvwPajjLQKuWqgw+1BYDympV35s+DdGTPjJZxRJJwypxbOeJi05UgCn8t3024=
+X-Gm-Gg: ASbGnctT5SYKwxU5ogAKp6n2hnNfIKFYS4/a/0coxH17qTM4r1x7arCki59pOf2rwUd
+	MhEuh8ILMjAX9u8VtuEpCuwSxpl5xBtsi9kgZZOnaqQU3qVyf2zbSSJEbNTrby7Z0q7htmrFPyS
+	IafefzLYJjPsbXvPYffbsk5osKC0VMjTJxuoA9RWsu9zFcv1DjUGbjQTU173FPiMOJEtoUc6i+W
+	hheLhCrxisaCKU3fLG+nsJkR3hABuiz77BCvVAwnnkvBOd4uyVYjwRkOTniWqzxNsaS+SU2hg+L
+	E+ok+Rw8402pS2J22Avp6M1/odl91W6+tbL+
+X-Google-Smtp-Source: AGHT+IEZ2AleHCNRaGyu54MVHn9krzsSUyp1V8199qrdJRPfOzBAClJbSFlHgYesIFnnxgkfRewZsg==
+X-Received: by 2002:a05:651c:2115:b0:302:2598:de91 with SMTP id 38308e7fff4ca-304685484a2mr122093701fa.16.1735573226185;
+        Mon, 30 Dec 2024 07:40:26 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30460542c0asm33717771fa.5.2024.12.30.07.40.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Dec 2024 07:40:24 -0800 (PST)
+Date: Mon, 30 Dec 2024 17:40:22 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Wasim Nazir <quic_wasimn@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	kernel@quicinc.com, Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
+Subject: Re: [PATCH v5 6/6] arm64: dts: qcom: Enable cpu cooling devices for
+ QCS9075 platforms
+Message-ID: <zn4uf3mmlmt3who474hwkr44poycfqtjtidshybbg55a3hr63y@zxefqbhiwkbg>
+References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
+ <20241229152332.3068172-7-quic_wasimn@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] Add SPI4 support for IPQ5424
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
-        linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, konradybcio@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Cc: quic_varada@quicinc.com, quic_srichara@quicinc.com
-References: <20241227072446.2545148-1-quic_mmanikan@quicinc.com>
- <e673dbdf-9b16-4c64-a3e0-cf5bb31e2b82@quicinc.com>
- <d4875732-ec24-4e35-9a7b-af05c6ee7d4b@oss.qualcomm.com>
- <fbf019aa-e8f9-4169-9543-f85d2a17ce7f@oss.qualcomm.com>
- <52fa8219-0485-4fc6-8f3f-5759649057cf@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <52fa8219-0485-4fc6-8f3f-5759649057cf@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: MQFAgrMN1YoNblXav-rjF1u5WcjNlOEA
-X-Proofpoint-ORIG-GUID: MQFAgrMN1YoNblXav-rjF1u5WcjNlOEA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- bulkscore=0 lowpriorityscore=0 mlxlogscore=943 adultscore=0 clxscore=1015
- impostorscore=0 priorityscore=1501 suspectscore=0 phishscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412300135
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241229152332.3068172-7-quic_wasimn@quicinc.com>
 
-On 30.12.2024 4:34 PM, Kathiravan Thirumoorthy wrote:
+On Sun, Dec 29, 2024 at 08:53:32PM +0530, Wasim Nazir wrote:
+> From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
 > 
+> In QCS9100 SoC, the safety subsystem monitors all thermal sensors and
+> does corrective action for each subsystem based on sensor violation
+> to comply safety standards. But as QCS9075 is non-safe SoC it
+> requires conventional thermal mitigation to control thermal for
+> different subsystems.
 > 
-> On 12/30/2024 7:28 PM, Konrad Dybcio wrote:
->> On 30.12.2024 2:54 PM, Konrad Dybcio wrote:
->>> On 30.12.2024 7:51 AM, Kathiravan Thirumoorthy wrote:
->>>>
->>>>
->>>> On 12/27/2024 12:54 PM, Manikanta Mylavarapu wrote:
->>>>> Add SPI4 node to the IPQ5424 device tree and update the relevant
->>>>> bindings, GPIO pin mappings accordingly.
->>>>>
->>>>> Changes in V3:
->>>>>      - Rename SPI0 to SPI4 because SPI protocol runs on serial engine 4
->>>>
->>>> Do we really need to do this? If so, it will not align with the HW documentation and will lead to the confusion down the line. IMHO, we should stick with the convention followed in the HW documentation.
->>>
->>> +1, the clocks are called SPI0/SPI1 internally
->>
->> Ok, I looked at a bit more documentation and it looks like
->> somebody just had fun naming things..
->>
->> SPI0 is on SE4 and SPI1 is on something else, with no more
->> clock provisions for that protocol.. Which is not usually the
->> case.
+> The cpu frequency throttling for different cpu tsens is enabled in
+> hardware as first defense for cpu thermal control. But QCS9075 SoC
+> has higher ambient specification. During high ambient condition, even
+> lowest frequency with multi cores can slowly build heat over the time
+> and it can lead to thermal run-away situations. This patch restrict
+> cpu cores during this scenario helps further thermal control and
+> avoids thermal critical violation.
 > 
+> Add cpu idle injection cooling bindings for cpu tsens thermal zones
+> as a mitigation for cpu subsystem prior to thermal shutdown.
 > 
-> IPQ5424 has one QUPV3 instance with 6 SEs. SE0-SE4 are Mini core and SE5 is FW core.
-> 
-> SE0 and SE1 are for 4-wire UART and 2-wire UART respectively. SE2 and SE3 are for I2C protocol. SE4 is for SPI.
-> 
-> Since SE5 is FW based (some RDPs use this SE for I2C). In GCC block, clocks for this instance is named after SPI as SPI1.
+> Add cpu frequency cooling devices that will be used by userspace
+> thermal governor to mitigate skin thermal management.
 
-Thanks for the explanation.
+Does anything prevent us from having this config as a part of the basic
+sa8775p.dtsi setup? If HW is present in the base version but it is not
+accessible for whatever reason, please move it the base device config
+and use status "disabled" or "reserved" to the respective board files.
 
-Manikanta, please refer to this in the commit message as well
+> 
+> Signed-off-by: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs9075-rb8.dts      |   1 +
+>  arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts  |   1 +
+>  arch/arm64/boot/dts/qcom/qcs9075-ride.dts     |   1 +
+>  arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi | 287 ++++++++++++++++++
+>  4 files changed, 290 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts b/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
+> index ecaa383b6508..3ab6deeaacf1 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
+> @@ -9,6 +9,7 @@
+> 
+>  #include "sa8775p.dtsi"
+>  #include "sa8775p-pmics.dtsi"
+> +#include "qcs9075-thermal.dtsi"
+> 
+>  / {
+>  	model = "Qualcomm Technologies, Inc. Robotics RB8";
+> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> index d9a8956d3a76..5f2d9f416617 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> @@ -5,6 +5,7 @@
+>  /dts-v1/;
+> 
+>  #include "sa8775p-ride.dtsi"
+> +#include "qcs9075-thermal.dtsi"
+> 
+>  / {
+>  	model = "Qualcomm Technologies, Inc. QCS9075 Ride Rev3";
+> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> index 3b524359a72d..10ce48e7ba2f 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> @@ -5,6 +5,7 @@
+>  /dts-v1/;
+> 
+>  #include "sa8775p-ride.dtsi"
+> +#include "qcs9075-thermal.dtsi"
+> 
+>  / {
+>  	model = "Qualcomm Technologies, Inc. QCS9075 Ride";
+> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi b/arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi
+> new file mode 100644
+> index 000000000000..40544c8582c4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi
+> @@ -0,0 +1,287 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/thermal/thermal.h>
+> +
+> +&cpu0 {
+> +	#cooling-cells = <2>;
+> +};
+> +
+> +&cpu1 {
+> +	#cooling-cells = <2>;
+> +	cpu1_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <800000>;
+> +		exit-latency-us = <10000>;
+> +	};
+> +};
+> +
+> +&cpu2 {
+> +	#cooling-cells = <2>;
+> +	cpu2_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <800000>;
+> +		exit-latency-us = <10000>;
+> +	};
+> +};
+> +
+> +&cpu3 {
+> +	#cooling-cells = <2>;
+> +	cpu3_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <800000>;
+> +		exit-latency-us = <10000>;
+> +	};
+> +};
+> +
+> +&cpu4 {
+> +	#cooling-cells = <2>;
+> +	cpu4_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <800000>;
+> +		exit-latency-us = <10000>;
+> +	};
+> +};
+> +
+> +&cpu5 {
+> +	#cooling-cells = <2>;
+> +	cpu5_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <800000>;
+> +		exit-latency-us = <10000>;
+> +	};
+> +};
+> +
+> +&cpu6 {
+> +	#cooling-cells = <2>;
+> +	cpu6_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <800000>;
+> +		exit-latency-us = <10000>;
+> +	};
+> +};
+> +
+> +&cpu7 {
+> +	#cooling-cells = <2>;
+> +	cpu7_idle: thermal-idle {
+> +		#cooling-cells = <2>;
+> +		duration-us = <800000>;
+> +		exit-latency-us = <10000>;
+> +	};
+> +};
+> +
+> +/ {
+> +	thermal-zones {
+> +		cpu-0-1-0-thermal {
+> +			trips {
+> +				cpu_0_1_0_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_0_1_0_passive>;
+> +					cooling-device = <&cpu1_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-0-2-0-thermal {
+> +			trips {
+> +				cpu_0_2_0_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_0_2_0_passive>;
+> +					cooling-device = <&cpu2_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-0-3-0-thermal {
+> +			trips {
+> +				cpu_0_3_0_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_0_3_0_passive>;
+> +					cooling-device = <&cpu3_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-0-1-1-thermal {
+> +			trips {
+> +				cpu_0_1_1_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_0_1_1_passive>;
+> +					cooling-device = <&cpu1_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-0-2-1-thermal {
+> +			trips {
+> +				cpu_0_2_1_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_0_2_1_passive>;
+> +					cooling-device = <&cpu2_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-0-3-1-thermal {
+> +			trips {
+> +				cpu_0_3_1_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_0_3_1_passive>;
+> +					cooling-device = <&cpu3_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-1-0-0-thermal {
+> +			trips {
+> +				cpu_1_0_0_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_1_0_0_passive>;
+> +					cooling-device = <&cpu4_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-1-1-0-thermal {
+> +			trips {
+> +				cpu_1_1_0_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_1_1_0_passive>;
+> +					cooling-device = <&cpu5_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-1-2-0-thermal {
+> +			trips {
+> +				cpu_1_2_0_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_1_2_0_passive>;
+> +					cooling-device = <&cpu6_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-1-3-0-thermal {
+> +			trips {
+> +				cpu_1_3_0_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_1_3_0_passive>;
+> +					cooling-device = <&cpu7_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-1-0-1-thermal {
+> +			trips {
+> +				cpu_1_0_1_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_1_0_1_passive>;
+> +					cooling-device = <&cpu4_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-1-1-1-thermal {
+> +			trips {
+> +				cpu_1_1_1_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_1_1_1_passive>;
+> +					cooling-device = <&cpu5_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-1-2-1-thermal {
+> +			trips {
+> +				cpu_1_2_1_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_1_2_1_passive>;
+> +					cooling-device = <&cpu6_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu-1-3-1-thermal {
+> +			trips {
+> +				cpu_1_3_1_passive: trip-point1 {
+> +					temperature = <116000>;
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_1_3_1_passive>;
+> +					cooling-device = <&cpu7_idle 100 100>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> --
+> 2.47.0
+> 
 
-Konrad
+-- 
+With best wishes
+Dmitry
 
