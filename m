@@ -1,164 +1,149 @@
-Return-Path: <devicetree+bounces-134790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 724889FE9C2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 19:17:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 339C59FE9C9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 19:22:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F9F63A343F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 18:17:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA406161064
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 18:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927FC1B3946;
-	Mon, 30 Dec 2024 18:17:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434851B0422;
+	Mon, 30 Dec 2024 18:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zhffs2bb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o3JIZJ5t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6974A1B3938;
-	Mon, 30 Dec 2024 18:17:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC8F1AE877
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 18:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735582635; cv=none; b=h9Hl2zCZa+0cXPZuAKGWzIBGmEM2I2P9K8eenICtTh5aXadbg9p8oq38i41IG7cECnrT5GNR0vL08REyiWHZgTYzJaYbL3YFOewsF79vERRhm1cdp/0G+h1k27xG/vt1TRSn2S/ZmxA9GqoVHVGwuAjMitVCjDEQUnUCipy0MAo=
+	t=1735582932; cv=none; b=tSfRQW5upffVCWo4kJKqNu3iIIvT0plGzah452J4r600+TUqDpoGYqoKgGAOr6Raq4JixYAavaVaxFkExkprMyEVIp+K6KhqCU/riGmch3E+/lInRTZJ9vU83RBHu++Lt1bxchyx9IjtlcLTnShemy1bnXbpEg+KIT4maoD0rOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735582635; c=relaxed/simple;
-	bh=yO/bDAAjALbmdooiFvPDhcv3ctrG92wc4GGL6V+fiSk=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=uMZGxtbFmmbYC0kDU8K4dSk/KydYxCu94w85pwjoxB5bTyheYW+HNyZ6TIXQr9GSTO/pxMpK3LrKXNbyA++/bz9JE3qzq6URNOywU9/2x96IO2BW8mBXLiZoEu+NkARNKnZWSb1IqxortPk1vDCJay5g55vZVTE7BvlZNhnXx7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zhffs2bb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2DD2C4CED6;
-	Mon, 30 Dec 2024 18:17:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735582634;
-	bh=yO/bDAAjALbmdooiFvPDhcv3ctrG92wc4GGL6V+fiSk=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Zhffs2bbyXPE3L1zn5MNztjnOMSJAzkqiRxv2VHJnIX4tbQYGojgAgpYtH2DJu80o
-	 bctRSbqot6s7R73zULPZaN29ngPsiEtnxlqJYrT6rLAtnlUthxgyTj0DDfbxa7QUtP
-	 ydUwinjHQH6mCKXfOnB9ykYmqRlWKW+5BESYiq1YFMsK7CKqkAG9t721YaQLVuR2uZ
-	 V6LPodkOIUoqLTPwtfTlNTClcH1LH6+pIhFRwGnHNZLZrU5eNKWM/lz0ACdpvACh/e
-	 qIXkjyMwLUcDoPAGdvwnK1KRWG2n/EPGBF62o5tneVKLdtqzJPay2GGBWWkk7yrBv2
-	 B/H2x6UzisL+A==
-Date: Mon, 30 Dec 2024 12:17:13 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1735582932; c=relaxed/simple;
+	bh=ohF53bAlZOK876b57Tr3oe/521IXGf1Fjs/51DFutQE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S2w3cxrSwWKmBZljOHNWPLeaNikWymLxznJRWR7ghvhpdnBhPKVuR10oF1T+ItxF8ArsJMBMWU6aUeoVqN6n8V0O0ZDVBHNSUTpO9iONN10/fLSYZBvdTPq9tXjyvW2sPWt0gZqln1SZEx4wZ69IcG1DerRqwoC18R9628a6dRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o3JIZJ5t; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2166360285dso123708635ad.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 10:22:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735582930; x=1736187730; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5whvZzYfxvB02wpstYeTdMUU94BDcz8zNaK1N90VIoo=;
+        b=o3JIZJ5tj4Q4rthqLRFbX03w3iVVH4nzv+rERY0ULIXZ4gG/jiXrIRTeL1FsLOEoGu
+         7VXZD4wPN2NNCFHmz0OkqifX7GjIMwtCgvn2cTdM7N1QmXHNd5/l+p0IqE5JT2CVMHFg
+         ZviJEQIXeLeBj9eNzvf0O/K+K54rbjAM+Ob0TtBG75xEu8D8kwDIpC8i1etDULudTomU
+         V93U01gOB43JylOdEXcr6T0O/7cu8ZvURVyooLJn4VheinRfiVMfN8BpNMqN7CcVI36v
+         VGqbg3GkGt5xMkwKZ7ZeqpK0z8xTa8Lo2/RSnx7KICqi0qeTtqQ/jiDIk7A8ZQ/A3F5S
+         OJsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735582930; x=1736187730;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5whvZzYfxvB02wpstYeTdMUU94BDcz8zNaK1N90VIoo=;
+        b=Z4bhto/gIwTPdCbJFTju9WBNVk/E2i/n6BfuP0WqHHIpvD3IWdxsOIE7h1iiuKFt0p
+         bOWGSI0OquF9juNINyaNuDNMx/E95/iLkq47Q6PKgRKp/y8/qkMSK+Kry2kFYssrkB72
+         AAYU2M69JMxAY06le3Lvmhf54faUlaxOjyViwQeXIRGnyor4O4db4RumJwRBAZGPvOls
+         b2X/tyaIHUOLh09jgwdb38iSrsWGMM8XmR3ZtAA1bDbYHS3LeM5+b8Q+iDgHvKfAdIzP
+         5hyVVtyou0QW/QdVVrWE/7yYnlTUJ81rJgQ4n+1nvyhcwqbgh5LsEVWIyvlEcvwq2/ps
+         pcXw==
+X-Forwarded-Encrypted: i=1; AJvYcCUFdER/oA/giF2uM9JLUhLgX1Y85ldxEiEjITS51VWAVgAmI1+XFjbv4GVw6YlUpCuf7KFhGF+hcq/i@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxk+HkBJADaWCy0KZ1MmhbhavLdiPoAADwe1RfvfvGe7IKKFEO5
+	fUhBO1CINfe80+EaENnhmPEDRbjZlNWTYI/HqE6Bz5oVFuTy8Fe2rihfkLH/2g==
+X-Gm-Gg: ASbGnctBoBfjFzhrHYRe2phglGsitZOoL+O/di08xYSjlYjZjOGo6Zc5r2LDhKmTaI7
+	eaNRAZRyuAZoPrYU56Y7XBwX4qw9KlxGouu1A65Vjx42lOkA4WTVko64Mq6MyWxy2Rff8H+cKg5
+	qTmxlwOrOYgBFvQwA/UFZFNxQeZ068pX2FnzbXfNIQxlYornYsAlSoXxRGFlUitM6lZx3Q8hET5
+	k+d3Qg6/aFqmFk5JMdAitSVvjWAFfYG6+u7JzHYdItuDK6vL+WNQ7JPRgRmyFRgAQ==
+X-Google-Smtp-Source: AGHT+IGmAZQbul0x33kNY3z5xhEmDXlGSFKtrk3n8yKah2UX0yu94Zn1yQJJuIjjti5kcSEoiVFc5A==
+X-Received: by 2002:a17:902:d48b:b0:216:7d22:f69 with SMTP id d9443c01a7336-219e6f262c4mr415053615ad.50.1735582929838;
+        Mon, 30 Dec 2024 10:22:09 -0800 (PST)
+Received: from thinkpad ([120.60.54.70])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-842dc7edbadsm17723516a12.65.2024.12.30.10.22.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Dec 2024 10:22:09 -0800 (PST)
+Date: Mon, 30 Dec 2024 23:52:01 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
+	Rob Herring <robh@kernel.org>, andersson@kernel.org,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicinc.com,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: PCI: Add binding for qps615
+Message-ID: <20241230182201.4nem2dvg4lg5vdjv@thinkpad>
+References: <20241112-qps615_pwr-v3-0-29a1e98aa2b0@quicinc.com>
+ <20241112-qps615_pwr-v3-1-29a1e98aa2b0@quicinc.com>
+ <20241115161848.GA2961450-robh@kernel.org>
+ <74eaef67-18f2-c2a1-1b9c-ac97cefecc54@quicinc.com>
+ <kssmfrzgo7ljxveys4rh5wqyaottufhjsdjnro7k7h7e6fdgcl@i7tdpohtny2x>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-rockchip@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Heiko Stuebner <heiko@sntech.de>, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org
-To: Ivan Sergeev <ivan8215145640@gmail.com>
-In-Reply-To: <20241230-bigtreetech-cb2-v4-0-26d2d30e07ce@gmail.com>
-References: <20241230-bigtreetech-cb2-v4-0-26d2d30e07ce@gmail.com>
-Message-Id: <173558214299.2262675.7745978856834508715.robh@kernel.org>
-Subject: Re: [PATCH v4 0/2] arm64: dts: rockchip: Add BigTreeTech CB2 and
- Pi2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <kssmfrzgo7ljxveys4rh5wqyaottufhjsdjnro7k7h7e6fdgcl@i7tdpohtny2x>
 
+On Mon, Dec 23, 2024 at 08:57:37PM +0200, Dmitry Baryshkov wrote:
 
-On Mon, 30 Dec 2024 17:58:17 +0300, Ivan Sergeev wrote:
-> BigTreeTech CB2 and Pi2 are Rockchip RK3566 SoM and SBC boards made by
-> BigTreeTech for the intent of using as a 3d printer control board.
-> It is a successor to the Allwinner H616-based BigTreeTech CB1 and Pi, so
-> the device trees for CB2 and Pi2 are also done in the same manner: the
-> common nodes and properties are put into a dtsi file that the
-> board-specific device trees include.
+[...]
+
+> > This switch allows us to configure both upstream, downstream ports and
+> > also embedded Ethernet port which is internal to the switch. These
+> > properties are applicable for all of those.
+> > > > +
+> > > > +    allOf:
+> > > > +      - $ref: /schemas/pci/pci-bus.yaml#
+> > > 
+> > > pci-pci-bridge.yaml is more specific and closer to what this device is.
+> > > 
+> > I tried this now, I was getting warning saying the compatible
+> > /local/mnt/workspace/skales/kobj/Documentation/devicetree/bindings/pci/qcom,qps615.example.dtb:
+> > pcie@0,0: compatible: ['pci1179,0623'] does not contain items matching the
+> > given schema
+> >         from schema $id: http://devicetree.org/schemas/pci/qcom,qps615.yaml#
+> > /local/mnt/workspace/skales/kobj/Documentation/devicetree/bindings/pci/qcom,qps615.example.dtb:
+> > pcie@0,0: Unevaluated properties are not allowed ('#address-cells',
+> > '#size-cells', 'bus-range', 'device_type', 'ranges' were unexpected)
+> > 
+> > I think pci-pci-bridge is expecting the compatible string in this format
+> > only "pciclass,0604".
 > 
-> Changes in v4:
-> - Removed invalid `i2c,ignore-nak` properties
-> - Set `#address-cells` and `size-cells` on `sdmmc1`
-> - Fixed `phy-supply` properties of usb host nodes
-> - Link to v3: https://lore.kernel.org/r/20241227-bigtreetech-cb2-v3-0-91c556adcffe@gmail.com
+> I think the pci-pci-bridge schema requires to have "pciclass,0604" among
+> other compatibles. So you should be able to do something like:
 > 
-> Changes in v3:
-> - Proper formatting and patch series sending (using b4)
-> - Converted spaces to tab indentation in the dtsi file
-> - Fixed empty line where the license identifier should be
-> - Link to v2 1/2: https://lore.kernel.org/linux-rockchip/20241224135751.350379-2-ivan8215145640@gmail.com/
-> - Link to v2 2/2: https://lore.kernel.org/linux-rockchip/20241224140057.350667-2-ivan8215145640@gmail.com/
-> 
-> Changes in v2:
-> - Added bigtreetech cb2 and pi2 boards to the list of platforms
-> - Split BigTreeTech CB2 and Pi2 into two device trees using common dtsi
-> - Link to v1: https://lore.kernel.org/linux-rockchip/20241222203952.84217-2-ivan8215145640@gmail.com/
-> 
-> Signed-off-by: Ivan Sergeev <ivan8215145640@gmail.com>
-> ---
-> Ivan Sergeev (2):
->       dt-bindings: arm: rockchip: Add BigTreeTech CB2 and Pi2
->       arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
-> 
->  .../devicetree/bindings/arm/rockchip.yaml          |  11 +
->  arch/arm64/boot/dts/rockchip/Makefile              |   2 +
->  .../dts/rockchip/rk3566-bigtreetech-cb2-manta.dts  |  10 +
->  .../boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi  | 943 +++++++++++++++++++++
->  .../boot/dts/rockchip/rk3566-bigtreetech-pi2.dts   |  10 +
->  5 files changed, 976 insertions(+)
-> ---
-> base-commit: d6ef8b40d075c425f548002d2f35ae3f06e9cf96
-> change-id: 20241224-bigtreetech-cb2-18944b349916
-> 
-> Best regards,
-> --
-> Ivan Sergeev <ivan8215145640@gmail.com>
-> 
-> 
+> compatible = "pci1179,0623", "pciclass,0604";
 > 
 
+Even though a PCIe switch is supposed to be a network of PCI bridges, using
+PCI bridge fallback for this switch is not technically correct IMO. Mostly
+because, this switch requires other configurations which are not applicable to
+PCI bridges. So the drivers matching against the bridge compatible won't be able
+to use this switch.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+- Mani
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y rockchip/rk3566-bigtreetech-cb2-manta.dtb rockchip/rk3566-bigtreetech-pi2.dtb' for 20241230-bigtreetech-cb2-v4-0-26d2d30e07ce@gmail.com:
-
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-pi2.dtb: /i2c@fe5c0000/ns2009@48: failed to match any schema with compatible: ['ti,tsc2007']
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2-manta.dtb: /i2c@fe5c0000/ns2009@48: failed to match any schema with compatible: ['ti,tsc2007']
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-pi2.dtb: host-port: phy-supply: 'oneOf' conditional failed, one must be fixed:
-	[[181, 182]] is not of type 'object'
-	[181, 182] is too long
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-pi2.dtb: host-port: phy-supply: 'oneOf' conditional failed, one must be fixed:
-	[[184, 185]] is not of type 'object'
-	[184, 185] is too long
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2-manta.dtb: host-port: phy-supply: 'oneOf' conditional failed, one must be fixed:
-	[[181, 182]] is not of type 'object'
-	[181, 182] is too long
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2-manta.dtb: host-port: phy-supply: 'oneOf' conditional failed, one must be fixed:
-	[[184, 185]] is not of type 'object'
-	[184, 185] is too long
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-pi2.dtb: wireless-bluetooth: uart1-gpios: {'rockchip,pins': [[2, 13, 0, 187]]} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-pi2.dtb: touch: touch-gpio: {'rockchip,pins': [[0, 13, 0, 189], [0, 14, 0, 187]]} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2-manta.dtb: wireless-bluetooth: uart1-gpios: {'rockchip,pins': [[2, 13, 0, 187]]} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2-manta.dtb: touch: touch-gpio: {'rockchip,pins': [[0, 13, 0, 189], [0, 14, 0, 187]]} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-
-
-
-
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
