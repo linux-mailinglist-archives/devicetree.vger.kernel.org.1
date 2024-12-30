@@ -1,176 +1,150 @@
-Return-Path: <devicetree+bounces-134744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E6D9FE68B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:33:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFFC9FE68D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:35:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BC6B161759
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 13:33:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA92D188236E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 13:35:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919B51A7ADD;
-	Mon, 30 Dec 2024 13:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746191A3BD8;
+	Mon, 30 Dec 2024 13:35:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="G+bYM/6D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aLwDPkUN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FD9198E91
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:33:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F15198E91
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:35:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735565632; cv=none; b=jtOl6ossBtEGCKMAjLPvMiBslXRgI9LNy5bKk3C/DetyAgsKmzbrOP/hqhlpxQw/eYU72ktnLWS05JN2j0pvXAfjgmkMPwlGjErxNtIsqMP5+vuRAFwT58jkaeDInOtsAOHwPq6tBc3d30Hje9gLJ3ZtjS/ZZ1P+rL8ijVZzVhs=
+	t=1735565741; cv=none; b=pDXSo3aKPMA/JgbILCtJnTcM3LOX6YG8HEf5Ioqy5cD9/Pwl1YOGHKroXj6Pl/oHDD1QIUham6199YEwowEf9yLSwcqT7nRe/im596cWt6P/xgTVC3qeRryuLcE2e5VLzTIq2CkBr9UG7zhq7UVpoFBH6UHFYipBBBXpv+eslR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735565632; c=relaxed/simple;
-	bh=HGb6bwX20d0y0kEwKOwOzl/emWna6kiI8/3r6L/10iE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DwB0V8sgafHSpEtld+cf8A1ParblSf/uNgoIpnsibfgb90f53DgsaUgnlLkeEgoONqZ22EXjpX83CpFisSheE5P0G5hDH/Dw0uVokaKmIfgAAOIQ3g/E7Awu7qIWpxaSrA9riIIDwcNoik1+P1+4nChJbo7LjoYoAR+WkNms4zU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=G+bYM/6D; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU1Wur0027988
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:33:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EbOPV4gqNqmGQXQo27/FmMyL71tlrIDPYuT+OGI2Sig=; b=G+bYM/6DdengpT8b
-	5CBEFyjPWxkUzj/RlRVIY3xfSr9Td6RndRDg+gfILES/6qtsU5G58ukFgbN1l3Lh
-	/0g+g+/Wp68kplJRlqcqRoBhzZm46eFK/ZOhCseBAMKTqBYJeUFEfNpBRutXUbaR
-	hyEnqDftZf5ZGsJq8RIpuU75brqWJmWzM3lH6wxikM17J760nvcUbbItX06vqdUQ
-	1eu2wLHFT+xW+DHOAlbSR5/01vdOIiDWx6x3CdbEC2Bto2u2gqiuIPTXuAfEoZP1
-	SQxOQnf1X6ipD3NMIesmRWx5vXdV5l/UtqAV4RjHvkRzVQJyuoeU0UodmFHK8KW0
-	UJ7D9g==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43uhxvs9mr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:33:49 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-467bb3eeb04so24080111cf.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 05:33:49 -0800 (PST)
+	s=arc-20240116; t=1735565741; c=relaxed/simple;
+	bh=GSFBmUjah0vvOA/YDhWZSFLH7EwY2stR7NjQ6ebE9G4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B0R6E1EcrbOJ64pVtovLPyEjYdxA0w6+H8YliMBzmMapwjjoIr2V9i5YxuEHDJfEEww1LBqux7Qmc2yo3IgCbTAPKErOjMrm5ls3ptvKMur2J+jEogrlWerUlNcPfqfqPvlXuichwzpOfqjvwYqpGwTdvm4yrC03ft9ZnHLOhkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aLwDPkUN; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53df19bf6a9so14209489e87.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 05:35:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735565738; x=1736170538; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=q5prvbL4qVVxyUau/62tjpzq6Xjuv+m8EjzcAcEKEz4=;
+        b=aLwDPkUNR8GZ5mZmZ8IWq6yWWot0PpzWDgzOsnwmNbRCdCf13QahkT6OQMl/doehzF
+         12J+D51MaZ6V8X/5PKxsC/RM1c5HlVas9mWc3GWEmtu45QlcG9mh+SDS2frt74G2rOgk
+         SxVAAvLBm/+E4eKIQjPEV06fSKjgD85T/icbBjZ4QhGrKIwVe4LUUa2laSyBkMuXl1ap
+         6td78lEDsnNEWbh8UQ/ejD/l2J05PuC/cTPsrPqlnUkV3UsXgEni9hMyOlFrSZV4wQow
+         QCINVfQEokwpBFVf4raxS3exIGi5k+KF3XJ5/1z0pSko7X/EzLEE7aYXNIvPs0KU12pV
+         6wVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735565628; x=1736170428;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EbOPV4gqNqmGQXQo27/FmMyL71tlrIDPYuT+OGI2Sig=;
-        b=L/J4ZdB/xBbSo54OQDnl1Myp5KwY+JLPgCn+Huy+QLxQh3TdGKlkjDlk1wqlo4Y4V/
-         ouJ3C7cwmgqhUmOZc0DAN0VGNrKQAbUE6iCuJqe8cZYRG2xYO//ualh74Mdsz1XECpUy
-         oZTXla9XNy6Gf6LXUq+8qC/FazXWjXZVLg4MgQyeRJzM5r15YAQd4/wqOozRsseVp7yz
-         AoiEAWuGWCHBjmON6IQ4HOlZaziC0iiORxE4Xo022iH25zrfFxw9P281T3rQWtLEXsbZ
-         s6kTQpBCMUT/y/y1EDoRJ37UnBJcXlhhHgqwI/1iVSM/3gATsMEZTLaddxnBtPUO96Wr
-         do3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVP29mMqPv4yIcCS0CNyjEb1LUTdSWFnoSuwwSKJeWdVySL5XhuKsNj7FD7qEqgdN0+HEtlIuRwuzoZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5vms5YyBuITWpjqPt+5KZqhwm/rhj2Xc/Eb+s5oWwa7jc34ae
-	7nw3BgzZpr6nWWFa0oudN7b7iOtK9Jox9P98M2QbAxAY2aCUHVglFlv/ztIqPX7YCx8s4v5/FjS
-	cHRkzat/VbjIpjAUyDbgFU9J4GtOxSfk/PxCCVb3Ft9SkmtOd3cD/wfzl+Xg5
-X-Gm-Gg: ASbGncveGjvA85IZtf0F+EcXRDRB8/3cgpOtGdbDSc5+N9Z2PuwHCaH1u4ogD5WevOr
-	GIltnDPj5te7vpE/jBAEfC8b6mFcPE/0huNUEUZHCwhjHbz7b/OPmnshSvP+A3McdrWSMx0i7Ds
-	5CpDBtbWbUIbddhUUXlfwohiMrjXWGlkVZ3EsDOPOorNalSG9wSJVQcZW9n8z0kE3u5zBTDQy7u
-	JarrfkQX2uUI5wLW7tdh9+nNHkZBsBONtWrGKtXZq9KsB88WUX9pusUUZuirPRafQyBG2fsyYtC
-	5y22Q4gSGKVNA6NzZZ/lKRE5x3Zxl+Yzqok=
-X-Received: by 2002:ac8:5d07:0:b0:467:6eee:1138 with SMTP id d75a77b69052e-46a4a8cdd91mr216166331cf.6.1735565628544;
-        Mon, 30 Dec 2024 05:33:48 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFPKjPl0dgBxEjH5BKFomyDlmgGJotQE46CTwVku3D1K7pHx64/HPSVoHIJLOrxaV6ZMe8PzQ==
-X-Received: by 2002:ac8:5d07:0:b0:467:6eee:1138 with SMTP id d75a77b69052e-46a4a8cdd91mr216166171cf.6.1735565628178;
-        Mon, 30 Dec 2024 05:33:48 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f06c7a8sm1485864566b.182.2024.12.30.05.33.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Dec 2024 05:33:47 -0800 (PST)
-Message-ID: <2ec46ef4-16d8-4421-a086-7a9177d5ea6d@oss.qualcomm.com>
-Date: Mon, 30 Dec 2024 14:33:46 +0100
+        d=1e100.net; s=20230601; t=1735565738; x=1736170538;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q5prvbL4qVVxyUau/62tjpzq6Xjuv+m8EjzcAcEKEz4=;
+        b=qwhGOK8obKpiNBlddufroX0e23KZCaWQtmZ1oVdegSPrOq6t6qWrWLtPtdHET33VQR
+         ATQKXEczez/3Um2ZAkmYMzLPiPW9LsBAqJEvlwSY7yE3xtdpEN9QJyhvzz5rvxNos8iA
+         aPzuL5bLAR37rTR5v2S3IDfC6TViPg+gsTcaATUmrUfgb3Waam8HK69h6TcvqXLcowkS
+         f4RpBYw/7TC9lr2CAYSrYwGVzCJtbk+MYhCmKZxE9XiNeM+c/omcL1rwddvkQiChYLpP
+         JBByXO7ZsAHFRFiKYWxJ9b3oQEWElo8Sx7/vNe0nrgSH1dT/jlu66foXwfEoEIJSEV7G
+         6umg==
+X-Forwarded-Encrypted: i=1; AJvYcCXUNX9CZGtydpna3OmZ2brGsuRazbdZRUt7I6rgu/kOAZF/s8vJDRwh2MTHx4/aS2nLDHHe3djD2boF@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGybd0NC+va4pxXaix4re3EuZQGi996SCV9FKmyVQMkOvM9fyD
+	dMmNdHY9JjXIyYzIq0WJQENRUgIt5bfbRINyPDR5io5FE5YUDckhb1e7BYBr7gY=
+X-Gm-Gg: ASbGnctOYHX5m9UDUFsTSu6qEKTM/n/ascLovcxrXSpc6W3Y/+qR1wEqA85hOpOHvdM
+	TnL+AoZdntFDomnzECYGa2i6iLRLMsg1OiUjSog4z5OahdHgWknAwmuwkjCW+NpXyOB/yjONU35
+	skFXBIeRnh2xXAt2bD6PY0E2F77yKNuE4vRE0wGuB902ItuUIq6XekQh1AjPf3q85sfPUgt7MTT
+	7jgssPiE0matsGa85II6Q9FJM0JlqrOPTVqtAW06keMYMNVP8XFzD0Ta5CnyljqZHr+jC1m2s4y
+	45uq9R+adr+N9Qj+sjZ4oc/mi32c8nM9UeIF
+X-Google-Smtp-Source: AGHT+IGYRhZnLXNmLM+FMzz0ZpamPsZkQchJSYMBUnIzcz5KdEvg8k8tQLs0cvWfBZIvHDrkMU6Dow==
+X-Received: by 2002:a05:6512:3ca8:b0:542:2a20:e694 with SMTP id 2adb3069b0e04-5422a20e73dmr10688219e87.20.1735565737587;
+        Mon, 30 Dec 2024 05:35:37 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5423e0662e3sm1661166e87.188.2024.12.30.05.35.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Dec 2024 05:35:36 -0800 (PST)
+Date: Mon, 30 Dec 2024 15:35:33 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org, 
+	sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
+	andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com, 
+	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v4 13/17] drm/bridge: analogix_dp: Convert
+ &analogix_dp_device.aux into a pointer
+Message-ID: <e52pbjnusvuoqiyoorjr5msrfmgeqs2jt5sk6zcesvzy7cszzk@fzrtpsjoklgu>
+References: <20241226063313.3267515-1-damon.ding@rock-chips.com>
+ <20241226063313.3267515-14-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/19] Disable USB U1/U2 entry for QC targets
-To: Prashanth K <quic_prashk@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, cros-qcom-dts-watchers@chromium.org
-References: <20241218102707.76272-1-quic_prashk@quicinc.com>
- <whfe57qqbe2chb75igiidzmruhgwpc6ueeghnf552wsa3yrru6@m4tuyfnsoqvo>
- <756d26dc-da89-4478-acf9-136f662874d1@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <756d26dc-da89-4478-acf9-136f662874d1@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: zqgiYMCYSP2RKFPGzh4eicX_OQimPG5K
-X-Proofpoint-GUID: zqgiYMCYSP2RKFPGzh4eicX_OQimPG5K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=648 phishscore=0 clxscore=1015 bulkscore=0 spamscore=0
- impostorscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0
- mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412300117
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241226063313.3267515-14-damon.ding@rock-chips.com>
 
-On 26.12.2024 5:55 AM, Prashanth K wrote:
+On Thu, Dec 26, 2024 at 02:33:09PM +0800, Damon Ding wrote:
+> With the previous patch related to the support of getting panel from
+> the DP AUX bus, the &analogix_dp_device.aux can be obtained from the
+> &analogix_dp_plat_data.aux.
 > 
+> Furthermore, the assignment of &analogix_dp_plat_data.connector is
+> intended to obtain the pointer of struct analogix_dp_device within the
+> analogix_dpaux_transfer() function.
 > 
-> On 26-12-24 10:13 am, Bjorn Andersson wrote:
->> On Wed, Dec 18, 2024 at 03:56:48PM +0530, Prashanth K wrote:
->>> Enabling U1 and U2 power-saving states can lead to stability and
->>> performance issues, particularly for latency-sensitive or high-
->>> throughput applications. These low-power link states are intended
->>> to reduce power consumption by allowing the device to enter partial
->>> low-power modes during idle periods. However, they can sometimes
->>> result in unexpected behavior. Over the years, some of the issues
->>> seen are as follows:
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> ---
+>  .../drm/bridge/analogix/analogix_dp_core.c    | 92 ++++++++++---------
+>  .../drm/bridge/analogix/analogix_dp_core.h    |  2 +-
+>  .../gpu/drm/bridge/analogix/analogix_dp_reg.c |  2 +-
+>  3 files changed, 50 insertions(+), 46 deletions(-)
 > 
-> [...]
-> 
->>> Krishna Kurapati (8):
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SM8350
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SM8450
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SM8150
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SM6125
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SM8250
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SM6350
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SC7280
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SA8775P
->>
->> Thank you for submitting this, changes looks good and this is very
->> welcome corrections!
->>
->> But patch subject is not okay. The prefix should match other changes in
->> these files, and no "for XYZ" suffix.
->>
->> As such, these should all look like:
->>
->> "arm64: dts: qcom: <soc>: Disable USB U1/U2 entry"
->>
->>>
->>> Prashanth K (11):
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SDM630
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SDM845
->>>   arm64: dts: qcom: Disable USB U1/U2 entry for SDX75
->>>   ARM: dts: qcom: Disable USB U1/U2 entry for SDX65
->>>   ARM: dts: qcom: Disable USB U1/U2 entry for SDX55
->>
->> I merge Arm and Arm64 patches through different trees, so I would
->> appreciate if you send these two as a separate series (also v4).
->>
-> 
-> Sure, will update the subject for all patches, and split it into 2
-> series (v4 for for both arm and arm64). I hope its fine to keep the
-> Reviewed-by tag from Konrad on next version.
 
-Yes, you can usually feel free to keep tags, unless there's major
-changes
+[...]
 
-Konrad
+> @@ -1127,6 +1128,7 @@ static int analogix_dp_bridge_attach(struct drm_bridge *bridge,
+>  
+>  	if (!dp->plat_data->skip_connector) {
+>  		connector = &dp->connector;
+> +		dp->plat_data->connector = &dp->connector;
+>  		connector->polled = DRM_CONNECTOR_POLL_HPD;
+>  
+>  		ret = drm_connector_init(dp->drm_dev, connector,
+> @@ -1535,7 +1537,9 @@ static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
+>  static ssize_t analogix_dpaux_transfer(struct drm_dp_aux *aux,
+>  				       struct drm_dp_aux_msg *msg)
+>  {
+> -	struct analogix_dp_device *dp = to_dp(aux);
+> +	struct analogix_dp_plat_data *plat_data = to_pdata(aux);
+> +	struct drm_connector *connector = plat_data->connector;
+> +	struct analogix_dp_device *dp = to_dp(connector);
+
+I see that Analogix DP driver doesn't support
+DRM_BRIDGE_ATTACH_NO_CONNECTOR, but at the same time I don't think this
+is the step in the right direction. Instead please keep the AUX bus on
+the Analogix side and add an API to go from struct drm_dp_aux to struct
+analogix_dp_plat_data. Then your done_probing() callback can use that
+function.
+
+>  	int ret;
+>  
+>  	pm_runtime_get_sync(dp->dev);
+> 
+
+-- 
+With best wishes
+Dmitry
 
