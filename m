@@ -1,295 +1,463 @@
-Return-Path: <devicetree+bounces-134747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2098B9FE69E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:43:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B64C9FE6B3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:54:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE3E618826A4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 13:43:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8E6C162024
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 13:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634201A83EF;
-	Mon, 30 Dec 2024 13:43:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EBC51A8413;
+	Mon, 30 Dec 2024 13:54:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nlrPD2DT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qRGFnvd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EADA27FBA2
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:43:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B372126BEE
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:54:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735566202; cv=none; b=jEpK+qsy9a6iWW8nqXgEohkG7+9RQD4vw/GH2sGdSoEP1RumQxwrrO61x89A5dR2LBKbG9mHcylcrpEv1M8WVpkMnQAaFGx8rmoy/dsg7kPGjkzw2TxJS652HrSK8ps7uPc/1WDTisDC5t43k++2zqxGXRTFy3mRNHGxFAOu1kQ=
+	t=1735566846; cv=none; b=Lnt/B7vcKMkrtY4dWACOE20ceyF1JyL08Xj0UttiVNifRVyrgfjo3GZvJ08aFTgwKBPJs5u9L+jAFGVM+ySRusq+fq5oLx2+w64xh3RLMfc7V3MS7fZ6XWYQ2KFnl9v4Cyw5kfDRDWfn0IQ6VCOTWqYGJHd3EmyWCwQiEafqHa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735566202; c=relaxed/simple;
-	bh=m6hU27TBEEhcaTE7+Rqk+okx4JmGPQlDtKTwf0UXu7E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qn4EsHRUQ7rLbYIloDVPXtKtG36MScGAToDAVrEDk2oSeNq+GkakS/lOZR6VCr5wxJthrEbUS38oIuywDyM4V6v/4ogN8LrUokjWTQO+glRnmdB+4ByObAUphkEW+nogZ7+6l9ruYHc64NoeACTdyFZiEvMSYyorjxB4a0GCYR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nlrPD2DT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU1WolT027922
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:43:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WwwDGBMgOXIZ8xtI34NEI5uYC8sWbdLnPMjigTlmeR4=; b=nlrPD2DT9+ZlNJLm
-	5XL83PG7q64RD5ORvvlKPWbkkValeyS6EO3afGv5TwI33E83bWbQURW4b92pv+q4
-	fvms88LHgzIOSjUaB8SNCkfztRsddAhthDUlXmGQfe3vvvdcTtns2pcBBc0IeBz9
-	huyzeM3mlmq99+Zq6RrAP7kOwHRsBavR9QjwRfTkZJRDc3NLQ0MZcvULDsz2ypTZ
-	B5y1Jee/4VWpdzd43Fv/nhepX2ZBEXca5EymYJme5KauAM/X6tOmJaror3JeXcgs
-	r+m4jkP2HIkDhn2hXw5/7EMY++MKSD6S7Xkae0srA9/W4UVWy8Lr5ygQ2KpiuuQu
-	97//0w==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43uhxvsa40-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:43:18 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-467a97dec51so6228091cf.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 05:43:18 -0800 (PST)
+	s=arc-20240116; t=1735566846; c=relaxed/simple;
+	bh=UpXd1k9FoRK6L54HkO0ToPsPCv86hT8khfIHlleNjrY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YXHcaWdKi+yJrBH9nl9kegMgbI7frzz8aQnfHdV2m5JygIgFBhSMCfzEuBxCJsjVmJDMsAG7gogCg95BQcCsIp0fH3J7+chJeagLv4vb19NuBlDToPGvTz3u9lwjL1ZgT8t6tsWFoqzGab+Q8vgUM9EEe0+fhVka09fzP4c0uos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qRGFnvd3; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5401b7f7141so8189314e87.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 05:54:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735566842; x=1736171642; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LZVM2zPN6L2gDpXgEClDD4y7loTVwnmztC78xHYfwSA=;
+        b=qRGFnvd30eEqQtzhHKQGKGqfr0oKaW1WTWSTXbElOOIdmWL3Khi1kRJNHq12Mg2Jji
+         Ab6DwL3WCWTavk5m6crzhPgqdCI99UbJRCu5+4Lu51JJkWcjicTJU5UbgMADaxqPO9+H
+         saSO2ZlfJLaNiG58iHe4FN23q6XgkNI0/yB2xyGremnAS0RBgeP/mhH5KyKz4YgDVBeP
+         iLd3/SgMPdcJAv4HJL2aChnGlgxeIW7HXKy1xgNLqsI7uIThZ5ug1Bqox7Kfl5e6ZdF+
+         kA/nGBsiKWNR564Xk5MpNHtQXLxdYsdcSqp9HS3PD9L2bmIuDLdjiL3727QKvk1wo4od
+         B3Kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735566198; x=1736170998;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WwwDGBMgOXIZ8xtI34NEI5uYC8sWbdLnPMjigTlmeR4=;
-        b=C5Pt//g7C4l+IpjdV0wZRXtENcskxdhXSvD82SeC1h0QvWm1fnGSSgD/CfaoO07TiF
-         tiHqpbIhzMUjahgF8XppeJ29sgaTS0H1x/zhtNtT/w6Umiwt/xGWja1cWDvraFx8jILr
-         Yz4hGxrRUWv0stNANN50eNPYU2sBcyi9FmQjTxx0G+W+Tg31+bzYz0bW/lV5cZWhwU/X
-         NFYHRukE+EZxp9gKu50DoIcQ5CV6z4PHiOjW/D1jM2i4h7TWmk7VQ/aOKyVAUKXIGIYE
-         lp362Bv75e0cCSUhiGoLEXdGMb6BkREbsfEuojA/yKycaMy62V4SEoqMgb1IhzgKvYLU
-         se/w==
-X-Forwarded-Encrypted: i=1; AJvYcCVP177ugaSdzXJG0LgeuEwHNDB7odc3aGKx7ZeAXozYgDr65EGq+t6AiPO6DgF+1UofCq1cLsVSx+mR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOdDaJPQ60Q69y5yaP+zFm8YTESmsvAoZQkixKnh0vFRxHAblI
-	kNPh4m1GYeD/ZnUMgdI6KBeIEjHo+m1UfUyWpiR5of6CElpnVKJV3bhsnbR/EHksLXTVBCFw/db
-	LR8OkzQJlwvqVcvbBAQWP6A22KHotlqay+8Pc7YN1/Mlf779HbhKFFPTaqa50
-X-Gm-Gg: ASbGncvCOT8CBJMRDZ17KenHZGHjH48eJyE9EO9QBwHCVK9AFr0WAxO3KN7WIVdSAXx
-	3MdHE5Rq684KJYVzGfRy0heX9HWALs3ypoLqfKih2hoecS8aQEgXzRHqQFj07+6QO2gLvLUOaDK
-	W6VJbHPBSBVjZuJhSDzjv9WLzxVXY20I9oIQ2IOdZAonKfUQyWFcY/nFRRWExRPBqW+uXOfbN3O
-	pzffzKkSUDtoWfg6JYW9HVo3Y6MNaJZnKwWMLgpUf6iDR/RW3psecIx0lrF2cKmetrvWM+RSPUY
-	OD7wkziqYjTPCn0gzC7wypQ+YQLQUeWEXD4=
-X-Received: by 2002:a05:622a:164d:b0:467:6092:841c with SMTP id d75a77b69052e-46a4a68fa8emr187744081cf.0.1735566197768;
-        Mon, 30 Dec 2024 05:43:17 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGAjRoiWof2jJBR8zSK4dTRGmDsgvTNhJFdCqLpQJ/+Ct+IbHJY+8yv7jzELs/t4O5Vr5Jn7A==
-X-Received: by 2002:a05:622a:164d:b0:467:6092:841c with SMTP id d75a77b69052e-46a4a68fa8emr187743771cf.0.1735566197247;
-        Mon, 30 Dec 2024 05:43:17 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aae8b7de1cesm1287944566b.23.2024.12.30.05.43.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Dec 2024 05:43:16 -0800 (PST)
-Message-ID: <c20485a0-1f0a-473a-afd9-8c6db855279b@oss.qualcomm.com>
-Date: Mon, 30 Dec 2024 14:43:14 +0100
+        d=1e100.net; s=20230601; t=1735566842; x=1736171642;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LZVM2zPN6L2gDpXgEClDD4y7loTVwnmztC78xHYfwSA=;
+        b=slvy28YTb4EGHdPUhP5+eRJY3h1oyimet4ZKE74cEXNunw215mOLySzg8VuhPtWVwO
+         K2nJu9yA5aOsjz2Omc1My3yoR6XOh7PjCk1qBarlGBNfmWFLkia3AKhsBSCxzu6niCVL
+         UtmRAnYYoe6HOux3Gv2cSZwseyHgxpi/3BK2VC16B0cyC7Jx3feRJeotUcoYyVTXdQnC
+         gos7LPlmG8KsSJlGLOwXpjB+N7Fr5Nv3Uzxxp/MsyhEsi3moHhGMGTLABA1PRMxBeaey
+         cyRXiIkeEo+ke0jfR8dleDbb0n9UsbfJKjJCWsKzR6yMjq7pjn9M39J/tiMXOs+vEFpB
+         f86g==
+X-Forwarded-Encrypted: i=1; AJvYcCUlUMRm+e7HcfPOf2/rYHhExfebxKZCeVHI2JrmnpKlnEmZDa1Ls35Dzb5CgZ8qnoGJZRUfu9vfAd+K@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrpR/6HSXDHQ08jmwYOs7n6ifMfyrdzWQ2f2Kjjvi44GH+eDqG
+	WEGAR6r+bgDoZJXlBm0DB/AQbwV2htKHICVuaQy5NsfHEEapEjDWT4X3Rhi20+U=
+X-Gm-Gg: ASbGncvv9ZbjYKyOdB8KdE8+m+MpA/N/1ZNCyjz8hZQ++x0++6Pat1dS1lOWpbBWdQw
+	D0lf+PeB6Kdz/GUp3aWcEWcFsSG71+9FGQ8hHNEWO/j8k1EyzmVDd67TSAhSQpXI0uLVX3FZoD5
+	j9kUnhbMC/nWQKWYtFcZzacUsuJIls79YEcAXhjbTEUIltjtdVPezLQIXB1RkJ7yDrr1XjbwBS2
+	24igKiXzThbDeTMA04qtGqrdskn6Sn37aE3n7sg7+2kjRDOMCRyeO1gskpvgD2Mm0ttpKKMux1o
+	kHonXEtAXymSGg50L5DI+0ZzxIkeL9WAMJvd
+X-Google-Smtp-Source: AGHT+IGkoo0Vy3n2XSE61emNSga/H7UrJDmZxbosqVYNBSs3wJ7j24LD7CrYiFc4wcwMO4B5yUjSfA==
+X-Received: by 2002:a05:6512:1193:b0:540:1e17:10eb with SMTP id 2adb3069b0e04-5422957acaamr10481149e87.48.1735566841639;
+        Mon, 30 Dec 2024 05:54:01 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5422382161esm3024084e87.204.2024.12.30.05.53.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Dec 2024 05:54:00 -0800 (PST)
+Date: Mon, 30 Dec 2024 15:53:57 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Sandor Yu <sandor.yu@nxp.com>
+Cc: "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, 
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	"jonas@kwiboo.se" <jonas@kwiboo.se>, "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, 
+	"airlied@gmail.com" <airlied@gmail.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>, 
+	"robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
+	"vkoul@kernel.org" <vkoul@kernel.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, "mripard@kernel.org" <mripard@kernel.org>, 
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, dl-linux-imx <linux-imx@nxp.com>, 
+	Oliver Brown <oliver.brown@nxp.com>, 
+	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>, "sam@ravnborg.org" <sam@ravnborg.org>
+Subject: Re: [PATCH v20 5/9] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+Message-ID: <dpj333mzr5azqhrgw3cxd7x5kiwxms4iomwy74uqfhr2zu4ocr@36rkth27d2jc>
+References: <cover.1734340233.git.Sandor.yu@nxp.com>
+ <fbd12029fab1f60e2ba4fad75ef650298a59cb15.1734340233.git.Sandor.yu@nxp.com>
+ <3ivd4mdmcb56mrgg2yo3rszksiusfkyxr3eycuw5kspczqcqse@4nub63fnrsur>
+ <DB9PR04MB94528AAF7B7B60C48710CDFEF40C2@DB9PR04MB9452.eurprd04.prod.outlook.com>
+ <zrigjfyxzbc57ab3xm2m5gcjandsotcbmlgoc4ma7olz2iobqd@7cmsyinjw4xc>
+ <PAXPR04MB9448D9906E03A8216081D315F4092@PAXPR04MB9448.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: opp: Add v2-qcom-adreno vendor
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Herring
- <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <mz4zpcr4tqh2w7vt75f4ofxjzfve54ozzgpdbi2jjzk5pdxbk7@t36tlt3mmprt>
- <d858dadb-4098-4c9f-b4f0-393dc988db5f@quicinc.com>
- <4426b4kybtac6rc4twa5pgm3hvlegofemvqjcrvh6ni7f5z2h6@5dnlv3hgywh5>
- <c5e868e1-2dae-466c-a6fc-ef0f247fa0ce@quicinc.com>
- <278e62e1-02a4-4e33-8592-fb4fafcedf7e@quicinc.com>
- <CAA8EJprgshjbNqNErOb06jqV__LmbWvocsK5eD8PQqL+FaLb1g@mail.gmail.com>
- <f67c72c3-7393-47b0-9b9c-1bfadce13110@quicinc.com>
- <CAA8EJppy+V9m-t_qPEJh2iTkC7tyDcf2y8wD9vYoHtFSp=HrkQ@mail.gmail.com>
- <982686bb-0ddd-45a2-b620-564af4f01800@quicinc.com>
- <16e1145c-6ef4-4274-a8f9-966f0edef9fe@oss.qualcomm.com>
- <rzhm6lkryxfqepgejpgmu4mr2z5qlzcvuptmmxhhndafc4kwlo@uw6eiw4cqlmd>
- <f1cf95be-af6c-45d9-8e26-2b978327260f@quicinc.com>
- <8d2092a6-e0c3-49ab-8a3e-64eb9051d353@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <8d2092a6-e0c3-49ab-8a3e-64eb9051d353@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: JwcOjkxqzt-4G19bAEDby2NRZtvuQXog
-X-Proofpoint-GUID: JwcOjkxqzt-4G19bAEDby2NRZtvuQXog
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=999 phishscore=0 clxscore=1015 bulkscore=0 spamscore=0
- impostorscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0
- mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412300119
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB9448D9906E03A8216081D315F4092@PAXPR04MB9448.eurprd04.prod.outlook.com>
 
-On 24.12.2024 9:51 AM, Krzysztof Kozlowski wrote:
-> On 23/12/2024 22:31, Akhil P Oommen wrote:
->> On 12/23/2024 5:24 PM, Dmitry Baryshkov wrote:
->>> On Mon, Dec 23, 2024 at 12:31:27PM +0100, Konrad Dybcio wrote:
->>>> On 4.12.2024 7:18 PM, Akhil P Oommen wrote:
->>>>> On 11/16/2024 1:17 AM, Dmitry Baryshkov wrote:
->>>>>> On Fri, 15 Nov 2024 at 19:54, Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
->>>>>>>
->>>>>>> On 11/15/2024 3:54 AM, Dmitry Baryshkov wrote:
->>>>>>>> Hello Akhil,
->>>>>>>>
->>>>>>>> On Thu, 14 Nov 2024 at 20:50, Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
->>>>>>>>>
->>>>>>>>> On 11/1/2024 9:54 PM, Akhil P Oommen wrote:
->>>>>>>>>> On 10/25/2024 11:58 AM, Dmitry Baryshkov wrote:
->>>>>>>>>>> On Thu, Oct 24, 2024 at 12:56:58AM +0530, Akhil P Oommen wrote:
->>>>>>>>>>>> On 10/22/2024 11:19 AM, Krzysztof Kozlowski wrote:
->>>>>>>>>>>>> On Mon, Oct 21, 2024 at 05:23:43PM +0530, Akhil P Oommen wrote:
->>>>>>>>>>>>>> Add a new schema which extends opp-v2 to support a new vendor specific
->>>>>>>>>>>>>> property required for Adreno GPUs found in Qualcomm's SoCs. The new
->>>>>>>>>>>>>> property called "qcom,opp-acd-level" carries a u32 value recommended
->>>>>>>>>>>>>> for each opp needs to be shared to GMU during runtime.
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> Cc: Rob Clark <robdclark@gmail.com>
->>>>>>>>>>>>>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->>>>>>>>>>>>>> ---
->>>>>>>>>>>>>>  .../bindings/opp/opp-v2-qcom-adreno.yaml           | 96 ++++++++++++++++++++++
->>>>>>>>>>>>>>  1 file changed, 96 insertions(+)
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
->>>>>>>>>>>>>> new file mode 100644
->>>>>>>>>>>>>> index 000000000000..6d50c0405ef8
->>>>>>>>>>>>>> --- /dev/null
->>>>>>>>>>>>>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
->>>>>>>>>>>>>> @@ -0,0 +1,96 @@
->>>>>>>>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>>>>>>>>>> +%YAML 1.2
->>>>>>>>>>>>>> +---
->>>>>>>>>>>>>> +$id: http://devicetree.org/schemas/opp/opp-v2-qcom-adreno.yaml#
->>>>>>>>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +title: Qualcomm Adreno compatible OPP supply
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +description:
->>>>>>>>>>>>>> +  Adreno GPUs present in Qualcomm's Snapdragon chipsets uses an OPP specific
->>>>>>>>>>>>>> +  ACD related information tailored for the specific chipset. This binding
->>>>>>>>>>>>>> +  provides the information needed to describe such a hardware value.
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +maintainers:
->>>>>>>>>>>>>> +  - Rob Clark <robdclark@gmail.com>
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +allOf:
->>>>>>>>>>>>>> +  - $ref: opp-v2-base.yaml#
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +properties:
->>>>>>>>>>>>>> +  compatible:
->>>>>>>>>>>>>> +    items:
->>>>>>>>>>>>>> +      - const: operating-points-v2-adreno
->>>>>>>>>>>>>> +      - const: operating-points-v2
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +patternProperties:
->>>>>>>>>>>>>> +  '^opp-?[0-9]+$':
->>>>>>>>>>>>>
->>>>>>>>>>>>> '-' should not be optional. opp1 is not expected name.
->>>>>>>>>>>>
->>>>>>>>>>>> Agree. Will change this to '^opp-[0-9]+$'
->>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>>> +    type: object
->>>>>>>>>>>>>> +    additionalProperties: false
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +    properties:
->>>>>>>>>>>>>> +      opp-hz: true
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +      opp-level: true
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +      opp-peak-kBps: true
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +      opp-supported-hw: true
->>>>>>>>>>>>>> +
->>>>>>>>>>>>>> +      qcom,opp-acd-level:
->>>>>>>>>>>>>> +        description: |
->>>>>>>>>>>>>> +          A positive value representing the ACD (Adaptive Clock Distribution,
->>>>>>>>>>>>>> +          a fancy name for clk throttling during voltage droop) level associated
->>>>>>>>>>>>>> +          with this OPP node. This value is shared to a co-processor inside GPU
->>>>>>>>>>>>>> +          (called Graphics Management Unit a.k.a GMU) during wake up. It may not
->>>>>>>>>>>>>> +          be present for some OPPs and GMU will disable ACD while transitioning
->>>>>>>>>>>>>> +          to that OPP. This value encodes a voltage threshold and few other knobs
->>>>>>>>>>>>>> +          which are identified by characterization of the SoC. So, it doesn't have
->>>>>>>>>>>>>> +          any unit.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Thanks for explanation and other updates. I am still not happy with this
->>>>>>>>>>>>> property. I do not see reason why DT should encode magic values in a
->>>>>>>>>>>>> quite generic piece of code. This creates poor ABI, difficult to
->>>>>>>>>>>>> maintain or understand.
->>>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>> Configuring GPU ACD block with its respective value is a requirement for each OPP.
->>>>>>>>>>>> So OPP node seems like the natural place for this data.
->>>>>>>>>>>>
->>>>>>>>>>>> If it helps to resolve your concerns, I can elaborate the documentation with
->>>>>>>>>>>> details on the GMU HFI interface where this value should be passed on to the
->>>>>>>>>>>> hardware. Also replace "few other knobs" with "Delay cycles & Calibration margin"
->>>>>>>>>>>> in the above doc.
->>>>>>>>>>>
->>>>>>>>>>> Usually the preference for DT is to specify data in a sensible way
->>>>>>>>>>> rather than just the values being programmed to the register. Is it
->>>>>>>>>>> possible to implement this approach for ACD values?
->>>>>>>>>
->>>>>>>>> Krzysztof/Dmitry,
->>>>>>>>>
->>>>>>>>> BIT(0)-BIT(15) are static configurations which doesn't change between
->>>>>>>>> OPPs. We can move it to driver.
->>>>>>>>>
->>>>>>>>> BIT(16)-BIT(31) indicates a threshold margin which triggers ACD. We can
->>>>>>>>> keep this in the devicetree. And the driver can construct the final
->>>>>>>>> value from both data and send it to GMU.
->>>>>>>>>
->>>>>>>>> If this is acceptable, I will send the v3 revision.
->>>>>>>>
->>>>>>>> Can the upper bitfield have a sensible representation in DT (like uV
->>>>>>>> or something similar)?
->>>>>>>
->>>>>>> Closest approximation is quantized voltage steps. So, unit-less.
->>>>>>> Converting it to the exact voltage requires identifying the pmic voltage
->>>>>>> steps and other stuffs which are outside of my expertise.
->>>>>>>
->>>>>>> It is convenient if we can abstract it as an integer which correlates
->>>>>>> with the voltage margin that should be maintained for each regulator corner.
->>>>>
->>>>> Krzysztof,
->>>>>
->>>>> Could you please confirm if this approach would be acceptable?
->>>>>
->>>>> To reiterate, move the lower 16 bits which is same across OPPs to the
->>>>> driver. Abstract the higher 16 bits as number of quantized voltage
->>>>> margin when ACD mitigation gets triggered.
->>>>
->>>> I know I'm not Krzysztof, but given this is ultimately a magic value
->>>> passed to the firmware, I'm a bit lukewarm on decomposing it and would
->>>> rather see the entire 32b passed in a property, so that if a future
->>>> target needs a different constant in the lower word, we don't have to
->>>> pull our hair out again, trying to add more spaghetti logic to account
->>>> for that.
+On Mon, Dec 30, 2024 at 08:05:33AM +0000, Sandor Yu wrote:
+>  
+> > On Wed, Dec 25, 2024 at 07:57:01AM +0000, Sandor Yu wrote:
+> > > >
+> > > > On Tue, Dec 17, 2024 at 02:51:47PM +0800, Sandor Yu wrote:
+> > > > > Add a new DRM DisplayPort and HDMI bridge driver for Candence
+> > > > MHDP8501
+> > > > > used in i.MX8MQ SOC. MHDP8501 could support HDMI or DisplayPort
+> > > > > standards according embedded Firmware running in the uCPU.
+> > > > >
+> > > > > For iMX8MQ SOC, the DisplayPort/HDMI FW was loaded and activated
+> > > > > by SOC's ROM code. Bootload binary included respective specific
+> > > > > firmware is required.
+> > > > >
+> > > > > Driver will check display connector type and then load the
+> > > > > corresponding driver.
+> > > > >
+> > > > > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> > > > > ---
+> > > > > v19->v20:
+> > > > > - Dump mhdp FW version by debugfs
+> > > > > - Combine HDMI and DP cable detect functions into one function
+> > > > > - Combine HDMI and DP cable bridge_mode_valid() functions into one
+> > > > function
+> > > > > - Rename cdns_hdmi_reset_link() to cdns_hdmi_handle_hotplug()
+> > > > > - Add comments for EDID in cdns_hdmi_handle_hotplug() and
+> > > > cdns_dp_check_link_state()
+> > > > > - Add atomic_get_input_bus_fmts() and bridge_atomic_check() for DP
+> > > > > driver
+> > > > > - Remove bpc and color_fmt init in atomic_enable() function.
+> > > > > - More detail comments for DDC adapter only support
+> > > > SCDC_I2C_SLAVE_ADDRESS
+> > > > >   read and write in HDMI driver.
+> > > > >
+> > > > >
+> > > > > v18->v19:
+> > > > > - Get endpoint for data-lanes as it had move to endpoint of port@1
+> > > > > - Update clock management as devm_clk_get_enabled() introduced.
+> > > > > - Fix clear_infoframe() function is not work issue.
+> > > > > - Manage PHY power state via phy_power_on() and phy_power_off().
+> > > > >
+> > > > > v17->v18:
+> > > > > - MHDP8501 HDMI and DP commands that need access mailbox are
+> > > > rewrited
+> > > > >   with new API functions created in patch #1.
+> > > > > - replace lane-mapping with data-lanes, use the value from data-lanes
+> > > > >   to reorder HDMI and DP lane mapping.
+> > > > > - create I2C adapter for HDMI SCDC, remove cdns_hdmi_scdc_write()
+> > > > function.
+> > > > > - Rewrite cdns_hdmi_sink_config() function, use HDMI SCDC helper
+> > function
+> > > > >   drm_scdc_set_high_tmds_clock_ratio() and
+> > drm_scdc_set_scrambling()
+> > > > >   to config HDMI sink TMDS.
+> > > > > - Remove struct video_info from HDMI driver.
+> > > > > - Remove tmds_char_rate_valid() be called in bridge_mode_valid(),
+> > > > >   community had patch in reviewing to implement the function.
+> > > > > - Remove warning message print when get unknown HPD cable status.
+> > > > > - Add more detail comments for HDP plugin and plugout interrupt.
+> > > > > - use dev_dbg to repleace DRM_INFO when cable HPD status changed.
+> > > > > - Remove t-b tag as above code change.
+> > > > >
+> > > > >  drivers/gpu/drm/bridge/cadence/Kconfig        |  16 +
+> > > > >  drivers/gpu/drm/bridge/cadence/Makefile       |   2 +
+> > > > >  .../drm/bridge/cadence/cdns-mhdp8501-core.c   | 379 +++++++++
+> > > > >  .../drm/bridge/cadence/cdns-mhdp8501-core.h   | 380 +++++++++
+> > > > >  .../gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c | 694
+> > > > ++++++++++++++++
+> > > > >  .../drm/bridge/cadence/cdns-mhdp8501-hdmi.c   | 745
+> > > > ++++++++++++++++++
+> > > > >  6 files changed, 2216 insertions(+)  create mode 100644
+> > > > drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c
+> > > > >  create mode 100644
+> > > > drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.h
+> > > > >  create mode 100644
+> > > > drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c
+> > > > >  create mode 100644
+> > > > drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig
+> > > > b/drivers/gpu/drm/bridge/cadence/Kconfig
+> > > > > index dbb06533ccab2..bd979f3e6df48 100644
+> > > > > --- a/drivers/gpu/drm/bridge/cadence/Kconfig
+> > > > > +++ b/drivers/gpu/drm/bridge/cadence/Kconfig
+> > > > > @@ -48,3 +48,19 @@ config DRM_CDNS_MHDP8546_J721E
+> > > > >         initializes the J721E Display Port and sets up the
+> > > > >         clock and data muxes.
+> > > > >  endif
+> > > > > +
+> > > > > +config DRM_CDNS_MHDP8501
+> > > > > +     tristate "Cadence MHDP8501 DP/HDMI bridge"
+> > > > > +     select DRM_KMS_HELPER
+> > > > > +     select DRM_PANEL_BRIDGE
+> > > > > +     select DRM_DISPLAY_DP_HELPER
+> > > > > +     select DRM_DISPLAY_HELPER
+> > > > > +     select DRM_CDNS_AUDIO
+> > > > > +     select CDNS_MHDP_HELPER
+> > > > > +     depends on OF
+> > > > > +     help
+> > > > > +       Support Cadence MHDP8501 DisplayPort/HDMI bridge.
+> > > > > +       Cadence MHDP8501 support one or more protocols,
+> > > > > +       including DisplayPort and HDMI.
+> > > > > +       To use the DP and HDMI drivers, their respective
+> > > > > +       specific firmware is required.
+> > > > > diff --git a/drivers/gpu/drm/bridge/cadence/Makefile
+> > > > b/drivers/gpu/drm/bridge/cadence/Makefile
+> > > > > index c95fd5b81d137..ea327287d1c14 100644
+> > > > > --- a/drivers/gpu/drm/bridge/cadence/Makefile
+> > > > > +++ b/drivers/gpu/drm/bridge/cadence/Makefile
+> > > > > @@ -5,3 +5,5 @@ cdns-dsi-$(CONFIG_DRM_CDNS_DSI_J721E) +=
+> > > > cdns-dsi-j721e.o
+> > > > >  obj-$(CONFIG_DRM_CDNS_MHDP8546) += cdns-mhdp8546.o
+> > > > > cdns-mhdp8546-y := cdns-mhdp8546-core.o cdns-mhdp8546-hdcp.o
+> > > > >  cdns-mhdp8546-$(CONFIG_DRM_CDNS_MHDP8546_J721E) +=
+> > > > cdns-mhdp8546-j721e.o
+> > > > > +obj-$(CONFIG_DRM_CDNS_MHDP8501) += cdns-mhdp8501.o
+> > > > > +cdns-mhdp8501-y := cdns-mhdp8501-core.o cdns-mhdp8501-dp.o
+> > > > cdns-mhdp8501-hdmi.o
+> > > > > diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c
+> > > > b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c
+> > > > > new file mode 100644
+> > > > > index 0000000000000..98116ef012fa3
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c
+> > > > > @@ -0,0 +1,379 @@
+> > > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > > +/*
+> > > > > + * Cadence Display Port Interface (DP) driver
+> > > > > + *
+> > > > > + * Copyright (C) 2023-2024 NXP Semiconductor, Inc.
+> > > > > + *
+> > > > > + */
+> > > > > +#include <drm/drm_of.h>
+> > > > > +#include <drm/drm_print.h>
+> > > > > +#include <linux/clk.h>
+> > > > > +#include <linux/irq.h>
+> > > > > +#include <linux/mutex.h>
+> > > > > +#include <linux/of_device.h>
+> > > > > +#include <linux/platform_device.h> #include <linux/phy/phy.h>
+> > > > > +
+> > > > > +#include "cdns-mhdp8501-core.h"
+> > > > > +
+> > > > > +static ssize_t firmware_version_show(struct device *dev,
+> > > > > +                                  struct device_attribute *attr,
+> > > > char *buf);
+> > > > > +static struct device_attribute firmware_version =
+> > > > __ATTR_RO(firmware_version);
+> > > > > +
+> > > > > +ssize_t firmware_version_show(struct device *dev,
+> > > > > +                           struct device_attribute *attr, char
+> > > > > +*buf) {
+> > > > > +     struct cdns_mhdp8501_device *mhdp = dev_get_drvdata(dev);
+> > > > > +
+> > > > > +     u32 version = readl(mhdp->base.regs + VER_L) |
+> > > > readl(mhdp->base.regs + VER_H) << 8;
+> > > > > +     u32 lib_version = readl(mhdp->base.regs + VER_LIB_L_ADDR) |
+> > > > > +                       readl(mhdp->base.regs +
+> > VER_LIB_H_ADDR)
+> > > > << 8;
+> > > > > +
+> > > > > +     return sprintf(buf, "FW version %d, Lib version %d\n",
+> > > > > + version,
+> > > > lib_version);
+> > > > > +}
+> > > > > +
+> > > > > +static void cdns_mhdp8501_create_device_files(struct
+> > > > cdns_mhdp8501_device *mhdp)
+> > > > > +{
+> > > > > +     if (device_create_file(mhdp->dev, &firmware_version)) {
+> > > > > +             DRM_ERROR("Unable to create firmware_version
+> > > > sysfs\n");
+> > > > > +             device_remove_file(mhdp->dev, &firmware_version);
+> > > > > +     }
+> > > > > +}
+> > > > > +
+> > > > > +static void cdns_mhdp8501_remove_device_files(struct
+> > > > cdns_mhdp8501_device *mhdp)
+> > > > > +{
+> > > > > +     device_remove_file(mhdp->dev, &firmware_version); }
+> > > > > +
+> > > > > +static int cdns_mhdp8501_read_hpd(struct cdns_mhdp8501_device
+> > > > *mhdp)
+> > > > > +{
+> > > > > +     u8 status;
+> > > > > +     int ret;
+> > > > > +
+> > > > > +     ret = cdns_mhdp_mailbox_send_recv(&mhdp->base,
+> > > > MB_MODULE_ID_GENERAL,
+> > > > > +
+> > > > GENERAL_GET_HPD_STATE,
+> > > > > +                                       0, NULL,
+> > sizeof(status),
+> > > > &status);
+> > > > > +     if (ret) {
+> > > > > +             dev_err(mhdp->dev, "read hpd failed: %d\n", ret);
+> > > > > +             return ret;
+> > > > > +     }
+> > > > > +
+> > > > > +     return status;
+> > > > > +}
+> > > > > +
+> > > > > +enum drm_connector_status cdns_mhdp8501_detect(struct
+> > drm_bridge
+> > > > *bridge)
+> > > > > +{
+> > > > > +     struct cdns_mhdp8501_device *mhdp = bridge->driver_private;
+> > > > > +
+> > > > > +     u8 hpd = 0xf;
+> > > > > +
+> > > > > +     hpd = cdns_mhdp8501_read_hpd(mhdp);
+> > > > > +     if (hpd == 1)
+> > > > > +             return connector_status_connected;
+> > > > > +     else if (hpd == 0)
+> > > > > +             return connector_status_disconnected;
+> > > > > +
+> > > > > +     return connector_status_unknown; }
+> > > > > +
+> > > > > +enum drm_mode_status
+> > > > > +cdns_mhdp8501_mode_valid(struct drm_bridge *bridge,
+> > > > > +                      const struct drm_display_info *info,
+> > > > > +                      const struct drm_display_mode *mode) {
+> > > > > +     /* We don't support double-clocked */
+> > > > > +     if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+> > > > > +             return MODE_BAD;
+> > > > > +
+> > > > > +     /* MAX support pixel clock rate 594MHz */
+> > > > > +     if (mode->clock > 594000)
+> > > > > +             return MODE_CLOCK_HIGH;
+> > > > > +
+> > > > > +     if (mode->hdisplay > 3840)
+> > > > > +             return MODE_BAD_HVALUE;
+> > > > > +
+> > > > > +     if (mode->vdisplay > 2160)
+> > > > > +             return MODE_BAD_VVALUE;
+> > > > > +
+> > > > > +     return MODE_OK;
+> > > > > +}
+> > > > > +
+> > > > > +static void hotplug_work_func(struct work_struct *work) {
+> > > > > +     struct cdns_mhdp8501_device *mhdp = container_of(work,
+> > > > > +                                                  struct
+> > > > cdns_mhdp8501_device,
+> > > > > +
+> > > > hotplug_work.work);
+> > > > > +     enum drm_connector_status status =
+> > > > cdns_mhdp8501_detect(&mhdp->bridge);
+> > > > > +
+> > > > > +     drm_bridge_hpd_notify(&mhdp->bridge, status);
+> > > > > +
+> > > > > +     /*
+> > > > > +      * iMX8MQ has two HPD interrupts: one for plugout and one
+> > > > > + for
+> > > > plugin.
+> > > > > +      * These interrupts cannot be masked and cleaned, so we must
+> > > > enable one
+> > > > > +      * and disable the other to avoid continuous interrupt
+> > generation.
+> > > > > +      */
+> > > > > +     if (status == connector_status_connected) {
+> > > > > +             /* Cable connected  */
+> > > > > +             dev_dbg(mhdp->dev, "HDMI/DP Cable Plug In\n");
+> > > > > +             enable_irq(mhdp->irq[IRQ_OUT]);
+> > > > > +
+> > > > > +             /* Reset HDMI/DP link with sink */
+> > > > > +             if (mhdp->connector_type ==
+> > > > DRM_MODE_CONNECTOR_HDMIA)
+> > > > > +                     cdns_hdmi_handle_hotplug(mhdp);
+> > > > > +             else
+> > > > > +                     cdns_dp_check_link_state(mhdp);
+> > > > > +
+> > > > > +     } else if (status == connector_status_disconnected) {
+> > > > > +             /* Cable Disconnected  */
+> > > > > +             dev_dbg(mhdp->dev, "HDMI/DP Cable Plug Out\n");
+> > > > > +             enable_irq(mhdp->irq[IRQ_IN]);
+> > > > > +     }
+> > > > > +}
+> > > > > +
+> > > > > +static irqreturn_t cdns_mhdp8501_irq_thread(int irq, void *data)
+> > > > > +{
+> > > > > +     struct cdns_mhdp8501_device *mhdp = data;
+> > > > > +
+> > > > > +     disable_irq_nosync(irq);
+> > > > > +
+> > > > > +     mod_delayed_work(system_wq, &mhdp->hotplug_work,
+> > > > > +
+> > msecs_to_jiffies(HOTPLUG_DEBOUNCE_MS));
+> > > > > +
+> > > > > +     return IRQ_HANDLED;
+> > > > > +}
+> > > > > +
+> > > > > +#define DATA_LANES_COUNT     4
+> > > > > +static int cdns_mhdp8501_dt_parse(struct cdns_mhdp8501_device
+> > > > *mhdp,
+> > > > > +                               struct platform_device *pdev) {
+> > > > > +     struct device *dev = &pdev->dev;
+> > > > > +     struct device_node *np = dev->of_node;
+> > > > > +     struct device_node *remote, *endpoint;
+> > > > > +     u32 data_lanes[DATA_LANES_COUNT];
+> > > > > +     u32 lane_value;
+> > > > > +     int ret, i;
+> > > > > +
+> > > > > +     remote = of_graph_get_remote_node(np, 1, 0);
+> > > > > +     if (!remote) {
+> > > > > +             dev_err(dev, "fail to get remote node\n");
+> > > > > +             of_node_put(remote);
+> > > > > +             return -EINVAL;
+> > > > > +     }
+> > > > > +
+> > > > > +     /* get connector type */
+> > > > > +     if (of_device_is_compatible(remote, "hdmi-connector")) {
+> > > > > +             mhdp->connector_type =
+> > > > DRM_MODE_CONNECTOR_HDMIA;
+> > > > > +
+> > > > > +     } else if (of_device_is_compatible(remote, "dp-connector")) {
+> > > > > +             mhdp->connector_type =
+> > > > DRM_MODE_CONNECTOR_DisplayPort;
+> > > >
+> > > > Interesting hack. What if somebody wraps DP signals with the USB-C
+> > > > controller in order to provide DP over USB-C?
+> > >
+> > > There is no such requirement now, and the supported types of
+> > display-connectors do not include Type-C DP connectors.
+> > > If type-C DP connectors is added in the future, I think it would be acceptable
+> > to modify the code here.
+> > 
+> > It would be acceptable, but it most likely will also require chaning the DT
+> > bindings as there is no longer an easy way to identify the next bridge. Also you
+> > might not have that now, but it is pretty common to have DP retimers on the
+> > board in order to improve the sinal integrity.
+> > Thus I think it is not a proper solution to check the next node's compatible. I
+> > think we need a way to specify HDMI vs DP firmware / mode in the device
+> > tree.
+> > 
 > 
-> I can also imagine future SoC not respecting existing interface and
-> switching to something new, duplicating the effort. All this is "driven
-> by downstream" approach... but sure, let's go with existing approach.
+> Since there already have the connector type for HDMI or DP.
+> adding another parameter to the DT bindings to specify the PHY type seems redundant.
+> 
+> If anyone add DP retimer to the board, the similar code as followed may add to the driver.
+>          last_remote = remote;
+>          while (of_graph_get_remote_node(last_remote, 1, 0))
+>                  last_remote = of_graph_get_remote_node(last_remote, 1, 0);
 
-Yeah I'd much rather have the firmware contain borderline-blob data,
-but I guess the sw architecture accounts for easier DVFS table
-replacement instead
+Definite NAK for such a code piece. It's not a host driver's business to
+traverse DT for other, independent devices. They might or might not
+follow the usb-switch.yaml
 
-Konrad
+> 
+> Before new requirements arise, I hope to keep the current implementation.
+
+I'd say, no. Please make it good from the beginning.
+
+-- 
+With best wishes
+Dmitry
 
