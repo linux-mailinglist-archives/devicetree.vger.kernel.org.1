@@ -1,463 +1,134 @@
-Return-Path: <devicetree+bounces-134748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B64C9FE6B3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:54:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC6B89FE6B6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:54:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8E6C162024
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 13:54:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C16B162066
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 13:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EBC51A8413;
-	Mon, 30 Dec 2024 13:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3C2D1A9B28;
+	Mon, 30 Dec 2024 13:54:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qRGFnvd3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GngGERgf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B372126BEE
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:54:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25DA21A7255
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:54:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735566846; cv=none; b=Lnt/B7vcKMkrtY4dWACOE20ceyF1JyL08Xj0UttiVNifRVyrgfjo3GZvJ08aFTgwKBPJs5u9L+jAFGVM+ySRusq+fq5oLx2+w64xh3RLMfc7V3MS7fZ6XWYQ2KFnl9v4Cyw5kfDRDWfn0IQ6VCOTWqYGJHd3EmyWCwQiEafqHa0=
+	t=1735566893; cv=none; b=TB5jSwhU2hvfobE8wNzmPRVJEGRs6C2G2i6m5A39Q0icwQNxpevd9jh1gzUzK5Cm/vfXYphvwP4zBDV7Xhf6I8YV4h6iF+AhR4rrjE0NDCJSXqdpAUc57qgrGxGEOciv2mZ4KhBzRJJotYr29UO43pr52yv3AF9CsLzv02/b4ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735566846; c=relaxed/simple;
-	bh=UpXd1k9FoRK6L54HkO0ToPsPCv86hT8khfIHlleNjrY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YXHcaWdKi+yJrBH9nl9kegMgbI7frzz8aQnfHdV2m5JygIgFBhSMCfzEuBxCJsjVmJDMsAG7gogCg95BQcCsIp0fH3J7+chJeagLv4vb19NuBlDToPGvTz3u9lwjL1ZgT8t6tsWFoqzGab+Q8vgUM9EEe0+fhVka09fzP4c0uos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qRGFnvd3; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5401b7f7141so8189314e87.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 05:54:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735566842; x=1736171642; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LZVM2zPN6L2gDpXgEClDD4y7loTVwnmztC78xHYfwSA=;
-        b=qRGFnvd30eEqQtzhHKQGKGqfr0oKaW1WTWSTXbElOOIdmWL3Khi1kRJNHq12Mg2Jji
-         Ab6DwL3WCWTavk5m6crzhPgqdCI99UbJRCu5+4Lu51JJkWcjicTJU5UbgMADaxqPO9+H
-         saSO2ZlfJLaNiG58iHe4FN23q6XgkNI0/yB2xyGremnAS0RBgeP/mhH5KyKz4YgDVBeP
-         iLd3/SgMPdcJAv4HJL2aChnGlgxeIW7HXKy1xgNLqsI7uIThZ5ug1Bqox7Kfl5e6ZdF+
-         kA/nGBsiKWNR564Xk5MpNHtQXLxdYsdcSqp9HS3PD9L2bmIuDLdjiL3727QKvk1wo4od
-         B3Kg==
+	s=arc-20240116; t=1735566893; c=relaxed/simple;
+	bh=+iHAttbLRN/6eXCEPybAf+3RrIyoVjP4/+q8BrEKzuI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P/nOnmTcPHHhxCUpLUDCkAyPrEMM83qouULaukRzQamC/mwPQjh91Ch8w9aPUfQBeuoTEdPBVfrJpxvStRMh9uW0VQUsP3SihBLAej0r1ESPvroD/niC9dpvBxHf6dBRDGVmHNs+elaCmmx9hUOzy3JLSUW5e9BMYtwab8+vgBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GngGERgf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU1X4EN028167
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:54:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Z7CVSRjgLfaKt5V5tnNqs5jqEoX/ptWeSmYIElKmPZo=; b=GngGERgfdqXPnwuG
+	T21UFI5A9HKhEuj7E6SMJv/rE5iYUV1UbLfQAJlyFt94Bjg+UbcxI4d/DYOFmxJ6
+	J3PNX62VDo8HxaBxILCP7WfMBkeS0WCaBujPdUkwZckfy3upnUYbhQTd19UQEZG5
+	ImSQPZfTiCnuGQ1GS2H/dT55N00GbD/5BLrGF/4yA1uM5jx0gA1T+JA6rySlVrmo
+	j2+RsQIS4UdVIKyqSTg3Gdx5LLEs2qds1mEbB6g0xhFHnvO1r0HTf13w8Kf3RzzU
+	iE/BxkNOaz0Xd/lbebVJULRHMo2H2RbqZ4Dr3wW9MtTeqhtBR9YKfDUk/EiDt21F
+	y1BFdQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43uhxvsas1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 13:54:50 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-467975f1b53so24918511cf.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 05:54:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735566842; x=1736171642;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LZVM2zPN6L2gDpXgEClDD4y7loTVwnmztC78xHYfwSA=;
-        b=slvy28YTb4EGHdPUhP5+eRJY3h1oyimet4ZKE74cEXNunw215mOLySzg8VuhPtWVwO
-         K2nJu9yA5aOsjz2Omc1My3yoR6XOh7PjCk1qBarlGBNfmWFLkia3AKhsBSCxzu6niCVL
-         UtmRAnYYoe6HOux3Gv2cSZwseyHgxpi/3BK2VC16B0cyC7Jx3feRJeotUcoYyVTXdQnC
-         gos7LPlmG8KsSJlGLOwXpjB+N7Fr5Nv3Uzxxp/MsyhEsi3moHhGMGTLABA1PRMxBeaey
-         cyRXiIkeEo+ke0jfR8dleDbb0n9UsbfJKjJCWsKzR6yMjq7pjn9M39J/tiMXOs+vEFpB
-         f86g==
-X-Forwarded-Encrypted: i=1; AJvYcCUlUMRm+e7HcfPOf2/rYHhExfebxKZCeVHI2JrmnpKlnEmZDa1Ls35Dzb5CgZ8qnoGJZRUfu9vfAd+K@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrpR/6HSXDHQ08jmwYOs7n6ifMfyrdzWQ2f2Kjjvi44GH+eDqG
-	WEGAR6r+bgDoZJXlBm0DB/AQbwV2htKHICVuaQy5NsfHEEapEjDWT4X3Rhi20+U=
-X-Gm-Gg: ASbGncvv9ZbjYKyOdB8KdE8+m+MpA/N/1ZNCyjz8hZQ++x0++6Pat1dS1lOWpbBWdQw
-	D0lf+PeB6Kdz/GUp3aWcEWcFsSG71+9FGQ8hHNEWO/j8k1EyzmVDd67TSAhSQpXI0uLVX3FZoD5
-	j9kUnhbMC/nWQKWYtFcZzacUsuJIls79YEcAXhjbTEUIltjtdVPezLQIXB1RkJ7yDrr1XjbwBS2
-	24igKiXzThbDeTMA04qtGqrdskn6Sn37aE3n7sg7+2kjRDOMCRyeO1gskpvgD2Mm0ttpKKMux1o
-	kHonXEtAXymSGg50L5DI+0ZzxIkeL9WAMJvd
-X-Google-Smtp-Source: AGHT+IGkoo0Vy3n2XSE61emNSga/H7UrJDmZxbosqVYNBSs3wJ7j24LD7CrYiFc4wcwMO4B5yUjSfA==
-X-Received: by 2002:a05:6512:1193:b0:540:1e17:10eb with SMTP id 2adb3069b0e04-5422957acaamr10481149e87.48.1735566841639;
-        Mon, 30 Dec 2024 05:54:01 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5422382161esm3024084e87.204.2024.12.30.05.53.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Dec 2024 05:54:00 -0800 (PST)
-Date: Mon, 30 Dec 2024 15:53:57 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sandor Yu <sandor.yu@nxp.com>
-Cc: "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, 
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	"jonas@kwiboo.se" <jonas@kwiboo.se>, "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, 
-	"airlied@gmail.com" <airlied@gmail.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>, 
-	"robh+dt@kernel.org" <robh+dt@kernel.org>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
-	"vkoul@kernel.org" <vkoul@kernel.org>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, "mripard@kernel.org" <mripard@kernel.org>, 
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, dl-linux-imx <linux-imx@nxp.com>, 
-	Oliver Brown <oliver.brown@nxp.com>, 
-	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>, "sam@ravnborg.org" <sam@ravnborg.org>
-Subject: Re: [PATCH v20 5/9] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
-Message-ID: <dpj333mzr5azqhrgw3cxd7x5kiwxms4iomwy74uqfhr2zu4ocr@36rkth27d2jc>
-References: <cover.1734340233.git.Sandor.yu@nxp.com>
- <fbd12029fab1f60e2ba4fad75ef650298a59cb15.1734340233.git.Sandor.yu@nxp.com>
- <3ivd4mdmcb56mrgg2yo3rszksiusfkyxr3eycuw5kspczqcqse@4nub63fnrsur>
- <DB9PR04MB94528AAF7B7B60C48710CDFEF40C2@DB9PR04MB9452.eurprd04.prod.outlook.com>
- <zrigjfyxzbc57ab3xm2m5gcjandsotcbmlgoc4ma7olz2iobqd@7cmsyinjw4xc>
- <PAXPR04MB9448D9906E03A8216081D315F4092@PAXPR04MB9448.eurprd04.prod.outlook.com>
+        d=1e100.net; s=20230601; t=1735566890; x=1736171690;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z7CVSRjgLfaKt5V5tnNqs5jqEoX/ptWeSmYIElKmPZo=;
+        b=BeTecRTRMEej/sAOQezU1SAsSdkgUyT4nQ+4BUBKx8AcyRc8ekzW9MQaN+tffy6dsK
+         ftleKc48RLFIy6CorfZ3SuTX9q/HcZKfN201JzTG705Rb9bFxT1jW6dLJw+mR1SKHvm9
+         kYs66I15/NSI3EjqbPOj8WvOGxwWBfwAuRhb4bQWKW3caJZ87+AIft3YLrsu01ATo/Ta
+         NtZbeFL6xxbuBe79YDB9aWIK6C1nGSpEE28UT0cgqIVILG0QpsLurRJwSKRR7iddh0HL
+         1QWRwmHp2IH0ELSPS9W/PwoyfVKW42OndqlFc0nkEid0RHkUwU/XZMUahqsLBTOaW8wn
+         xS4g==
+X-Forwarded-Encrypted: i=1; AJvYcCVFbYP1yDkn8io2qiTUZEE6Z44oq5b6s7PJS+RQlJc3/NpGHXt5um+jKpw6xS+RKQEf3eVBz4KCOHd1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1wzOeM99M7jIdituRJ3Eq7zCv15h40AHp4blI1wVJi3uMTUWK
+	V6gmmf4VTSwJ81AUZiWI9Y8tAE56Ob2Sx0i9i8eRRgXMhzh2fZ/aVpwc6WRQ7J2YpM99pYDzMHO
+	KFX7lJ7ImF1Ht9P4xS4tcTFfiqcQB/51zIRexJrpSuWJj6n4ehDMoUSodAcOq
+X-Gm-Gg: ASbGncsl99KmRft0Kdr+xccj2WRf+c0oXIRAl0jn8cTk78o6ZVPZSrTzyBNyRs7AF8X
+	Shr2vIB4LIL2SBRofhtu4aJWDooDOzBrigAx1a5JlKBTIGbVeKn3pO4ZDluYfBjVGk2yMOSvbwd
+	7d9MuQYnCYqaG+Vn/kmsAXlNex4Y9BSTxdD+Szqhi5Z278qX2obY+5Du9oktVJDrtarZaolnP7H
+	4Q16NCCeKd8gH5puw2F0PtFanOsYO2mzpjNP4pfKonN2KkusVDRScptXSw9PZQ88x+KvQzzrwPh
+	9OJd81CcH+7wxdPh/yt4UCHiQIMkdu8j5mY=
+X-Received: by 2002:a05:620a:454c:b0:7b1:4add:f234 with SMTP id af79cd13be357-7b9ba7232c6mr2316612685a.1.1735566890147;
+        Mon, 30 Dec 2024 05:54:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHZdkhj+BV1o4dgVVkLIoaoqu+7Y4A1qVLU9VX+qB0ht+A0G1NdzcFyr5Ff74WKLL3Pqf3bmg==
+X-Received: by 2002:a05:620a:454c:b0:7b1:4add:f234 with SMTP id af79cd13be357-7b9ba7232c6mr2316611085a.1.1735566889850;
+        Mon, 30 Dec 2024 05:54:49 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e82ede9sm1458554666b.2.2024.12.30.05.54.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Dec 2024 05:54:48 -0800 (PST)
+Message-ID: <d4875732-ec24-4e35-9a7b-af05c6ee7d4b@oss.qualcomm.com>
+Date: Mon, 30 Dec 2024 14:54:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PAXPR04MB9448D9906E03A8216081D315F4092@PAXPR04MB9448.eurprd04.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] Add SPI4 support for IPQ5424
+To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
+        Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
+        linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, konradybcio@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Cc: quic_varada@quicinc.com, quic_srichara@quicinc.com
+References: <20241227072446.2545148-1-quic_mmanikan@quicinc.com>
+ <e673dbdf-9b16-4c64-a3e0-cf5bb31e2b82@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <e673dbdf-9b16-4c64-a3e0-cf5bb31e2b82@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: 5cv-ZXIRB1sc3O3bY13CsBS6p0cV5wIo
+X-Proofpoint-GUID: 5cv-ZXIRB1sc3O3bY13CsBS6p0cV5wIo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ mlxlogscore=790 phishscore=0 clxscore=1015 bulkscore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0
+ mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412300120
 
-On Mon, Dec 30, 2024 at 08:05:33AM +0000, Sandor Yu wrote:
->  
-> > On Wed, Dec 25, 2024 at 07:57:01AM +0000, Sandor Yu wrote:
-> > > >
-> > > > On Tue, Dec 17, 2024 at 02:51:47PM +0800, Sandor Yu wrote:
-> > > > > Add a new DRM DisplayPort and HDMI bridge driver for Candence
-> > > > MHDP8501
-> > > > > used in i.MX8MQ SOC. MHDP8501 could support HDMI or DisplayPort
-> > > > > standards according embedded Firmware running in the uCPU.
-> > > > >
-> > > > > For iMX8MQ SOC, the DisplayPort/HDMI FW was loaded and activated
-> > > > > by SOC's ROM code. Bootload binary included respective specific
-> > > > > firmware is required.
-> > > > >
-> > > > > Driver will check display connector type and then load the
-> > > > > corresponding driver.
-> > > > >
-> > > > > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> > > > > ---
-> > > > > v19->v20:
-> > > > > - Dump mhdp FW version by debugfs
-> > > > > - Combine HDMI and DP cable detect functions into one function
-> > > > > - Combine HDMI and DP cable bridge_mode_valid() functions into one
-> > > > function
-> > > > > - Rename cdns_hdmi_reset_link() to cdns_hdmi_handle_hotplug()
-> > > > > - Add comments for EDID in cdns_hdmi_handle_hotplug() and
-> > > > cdns_dp_check_link_state()
-> > > > > - Add atomic_get_input_bus_fmts() and bridge_atomic_check() for DP
-> > > > > driver
-> > > > > - Remove bpc and color_fmt init in atomic_enable() function.
-> > > > > - More detail comments for DDC adapter only support
-> > > > SCDC_I2C_SLAVE_ADDRESS
-> > > > >   read and write in HDMI driver.
-> > > > >
-> > > > >
-> > > > > v18->v19:
-> > > > > - Get endpoint for data-lanes as it had move to endpoint of port@1
-> > > > > - Update clock management as devm_clk_get_enabled() introduced.
-> > > > > - Fix clear_infoframe() function is not work issue.
-> > > > > - Manage PHY power state via phy_power_on() and phy_power_off().
-> > > > >
-> > > > > v17->v18:
-> > > > > - MHDP8501 HDMI and DP commands that need access mailbox are
-> > > > rewrited
-> > > > >   with new API functions created in patch #1.
-> > > > > - replace lane-mapping with data-lanes, use the value from data-lanes
-> > > > >   to reorder HDMI and DP lane mapping.
-> > > > > - create I2C adapter for HDMI SCDC, remove cdns_hdmi_scdc_write()
-> > > > function.
-> > > > > - Rewrite cdns_hdmi_sink_config() function, use HDMI SCDC helper
-> > function
-> > > > >   drm_scdc_set_high_tmds_clock_ratio() and
-> > drm_scdc_set_scrambling()
-> > > > >   to config HDMI sink TMDS.
-> > > > > - Remove struct video_info from HDMI driver.
-> > > > > - Remove tmds_char_rate_valid() be called in bridge_mode_valid(),
-> > > > >   community had patch in reviewing to implement the function.
-> > > > > - Remove warning message print when get unknown HPD cable status.
-> > > > > - Add more detail comments for HDP plugin and plugout interrupt.
-> > > > > - use dev_dbg to repleace DRM_INFO when cable HPD status changed.
-> > > > > - Remove t-b tag as above code change.
-> > > > >
-> > > > >  drivers/gpu/drm/bridge/cadence/Kconfig        |  16 +
-> > > > >  drivers/gpu/drm/bridge/cadence/Makefile       |   2 +
-> > > > >  .../drm/bridge/cadence/cdns-mhdp8501-core.c   | 379 +++++++++
-> > > > >  .../drm/bridge/cadence/cdns-mhdp8501-core.h   | 380 +++++++++
-> > > > >  .../gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c | 694
-> > > > ++++++++++++++++
-> > > > >  .../drm/bridge/cadence/cdns-mhdp8501-hdmi.c   | 745
-> > > > ++++++++++++++++++
-> > > > >  6 files changed, 2216 insertions(+)  create mode 100644
-> > > > drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c
-> > > > >  create mode 100644
-> > > > drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.h
-> > > > >  create mode 100644
-> > > > drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c
-> > > > >  create mode 100644
-> > > > drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig
-> > > > b/drivers/gpu/drm/bridge/cadence/Kconfig
-> > > > > index dbb06533ccab2..bd979f3e6df48 100644
-> > > > > --- a/drivers/gpu/drm/bridge/cadence/Kconfig
-> > > > > +++ b/drivers/gpu/drm/bridge/cadence/Kconfig
-> > > > > @@ -48,3 +48,19 @@ config DRM_CDNS_MHDP8546_J721E
-> > > > >         initializes the J721E Display Port and sets up the
-> > > > >         clock and data muxes.
-> > > > >  endif
-> > > > > +
-> > > > > +config DRM_CDNS_MHDP8501
-> > > > > +     tristate "Cadence MHDP8501 DP/HDMI bridge"
-> > > > > +     select DRM_KMS_HELPER
-> > > > > +     select DRM_PANEL_BRIDGE
-> > > > > +     select DRM_DISPLAY_DP_HELPER
-> > > > > +     select DRM_DISPLAY_HELPER
-> > > > > +     select DRM_CDNS_AUDIO
-> > > > > +     select CDNS_MHDP_HELPER
-> > > > > +     depends on OF
-> > > > > +     help
-> > > > > +       Support Cadence MHDP8501 DisplayPort/HDMI bridge.
-> > > > > +       Cadence MHDP8501 support one or more protocols,
-> > > > > +       including DisplayPort and HDMI.
-> > > > > +       To use the DP and HDMI drivers, their respective
-> > > > > +       specific firmware is required.
-> > > > > diff --git a/drivers/gpu/drm/bridge/cadence/Makefile
-> > > > b/drivers/gpu/drm/bridge/cadence/Makefile
-> > > > > index c95fd5b81d137..ea327287d1c14 100644
-> > > > > --- a/drivers/gpu/drm/bridge/cadence/Makefile
-> > > > > +++ b/drivers/gpu/drm/bridge/cadence/Makefile
-> > > > > @@ -5,3 +5,5 @@ cdns-dsi-$(CONFIG_DRM_CDNS_DSI_J721E) +=
-> > > > cdns-dsi-j721e.o
-> > > > >  obj-$(CONFIG_DRM_CDNS_MHDP8546) += cdns-mhdp8546.o
-> > > > > cdns-mhdp8546-y := cdns-mhdp8546-core.o cdns-mhdp8546-hdcp.o
-> > > > >  cdns-mhdp8546-$(CONFIG_DRM_CDNS_MHDP8546_J721E) +=
-> > > > cdns-mhdp8546-j721e.o
-> > > > > +obj-$(CONFIG_DRM_CDNS_MHDP8501) += cdns-mhdp8501.o
-> > > > > +cdns-mhdp8501-y := cdns-mhdp8501-core.o cdns-mhdp8501-dp.o
-> > > > cdns-mhdp8501-hdmi.o
-> > > > > diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c
-> > > > b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c
-> > > > > new file mode 100644
-> > > > > index 0000000000000..98116ef012fa3
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-core.c
-> > > > > @@ -0,0 +1,379 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > > +/*
-> > > > > + * Cadence Display Port Interface (DP) driver
-> > > > > + *
-> > > > > + * Copyright (C) 2023-2024 NXP Semiconductor, Inc.
-> > > > > + *
-> > > > > + */
-> > > > > +#include <drm/drm_of.h>
-> > > > > +#include <drm/drm_print.h>
-> > > > > +#include <linux/clk.h>
-> > > > > +#include <linux/irq.h>
-> > > > > +#include <linux/mutex.h>
-> > > > > +#include <linux/of_device.h>
-> > > > > +#include <linux/platform_device.h> #include <linux/phy/phy.h>
-> > > > > +
-> > > > > +#include "cdns-mhdp8501-core.h"
-> > > > > +
-> > > > > +static ssize_t firmware_version_show(struct device *dev,
-> > > > > +                                  struct device_attribute *attr,
-> > > > char *buf);
-> > > > > +static struct device_attribute firmware_version =
-> > > > __ATTR_RO(firmware_version);
-> > > > > +
-> > > > > +ssize_t firmware_version_show(struct device *dev,
-> > > > > +                           struct device_attribute *attr, char
-> > > > > +*buf) {
-> > > > > +     struct cdns_mhdp8501_device *mhdp = dev_get_drvdata(dev);
-> > > > > +
-> > > > > +     u32 version = readl(mhdp->base.regs + VER_L) |
-> > > > readl(mhdp->base.regs + VER_H) << 8;
-> > > > > +     u32 lib_version = readl(mhdp->base.regs + VER_LIB_L_ADDR) |
-> > > > > +                       readl(mhdp->base.regs +
-> > VER_LIB_H_ADDR)
-> > > > << 8;
-> > > > > +
-> > > > > +     return sprintf(buf, "FW version %d, Lib version %d\n",
-> > > > > + version,
-> > > > lib_version);
-> > > > > +}
-> > > > > +
-> > > > > +static void cdns_mhdp8501_create_device_files(struct
-> > > > cdns_mhdp8501_device *mhdp)
-> > > > > +{
-> > > > > +     if (device_create_file(mhdp->dev, &firmware_version)) {
-> > > > > +             DRM_ERROR("Unable to create firmware_version
-> > > > sysfs\n");
-> > > > > +             device_remove_file(mhdp->dev, &firmware_version);
-> > > > > +     }
-> > > > > +}
-> > > > > +
-> > > > > +static void cdns_mhdp8501_remove_device_files(struct
-> > > > cdns_mhdp8501_device *mhdp)
-> > > > > +{
-> > > > > +     device_remove_file(mhdp->dev, &firmware_version); }
-> > > > > +
-> > > > > +static int cdns_mhdp8501_read_hpd(struct cdns_mhdp8501_device
-> > > > *mhdp)
-> > > > > +{
-> > > > > +     u8 status;
-> > > > > +     int ret;
-> > > > > +
-> > > > > +     ret = cdns_mhdp_mailbox_send_recv(&mhdp->base,
-> > > > MB_MODULE_ID_GENERAL,
-> > > > > +
-> > > > GENERAL_GET_HPD_STATE,
-> > > > > +                                       0, NULL,
-> > sizeof(status),
-> > > > &status);
-> > > > > +     if (ret) {
-> > > > > +             dev_err(mhdp->dev, "read hpd failed: %d\n", ret);
-> > > > > +             return ret;
-> > > > > +     }
-> > > > > +
-> > > > > +     return status;
-> > > > > +}
-> > > > > +
-> > > > > +enum drm_connector_status cdns_mhdp8501_detect(struct
-> > drm_bridge
-> > > > *bridge)
-> > > > > +{
-> > > > > +     struct cdns_mhdp8501_device *mhdp = bridge->driver_private;
-> > > > > +
-> > > > > +     u8 hpd = 0xf;
-> > > > > +
-> > > > > +     hpd = cdns_mhdp8501_read_hpd(mhdp);
-> > > > > +     if (hpd == 1)
-> > > > > +             return connector_status_connected;
-> > > > > +     else if (hpd == 0)
-> > > > > +             return connector_status_disconnected;
-> > > > > +
-> > > > > +     return connector_status_unknown; }
-> > > > > +
-> > > > > +enum drm_mode_status
-> > > > > +cdns_mhdp8501_mode_valid(struct drm_bridge *bridge,
-> > > > > +                      const struct drm_display_info *info,
-> > > > > +                      const struct drm_display_mode *mode) {
-> > > > > +     /* We don't support double-clocked */
-> > > > > +     if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-> > > > > +             return MODE_BAD;
-> > > > > +
-> > > > > +     /* MAX support pixel clock rate 594MHz */
-> > > > > +     if (mode->clock > 594000)
-> > > > > +             return MODE_CLOCK_HIGH;
-> > > > > +
-> > > > > +     if (mode->hdisplay > 3840)
-> > > > > +             return MODE_BAD_HVALUE;
-> > > > > +
-> > > > > +     if (mode->vdisplay > 2160)
-> > > > > +             return MODE_BAD_VVALUE;
-> > > > > +
-> > > > > +     return MODE_OK;
-> > > > > +}
-> > > > > +
-> > > > > +static void hotplug_work_func(struct work_struct *work) {
-> > > > > +     struct cdns_mhdp8501_device *mhdp = container_of(work,
-> > > > > +                                                  struct
-> > > > cdns_mhdp8501_device,
-> > > > > +
-> > > > hotplug_work.work);
-> > > > > +     enum drm_connector_status status =
-> > > > cdns_mhdp8501_detect(&mhdp->bridge);
-> > > > > +
-> > > > > +     drm_bridge_hpd_notify(&mhdp->bridge, status);
-> > > > > +
-> > > > > +     /*
-> > > > > +      * iMX8MQ has two HPD interrupts: one for plugout and one
-> > > > > + for
-> > > > plugin.
-> > > > > +      * These interrupts cannot be masked and cleaned, so we must
-> > > > enable one
-> > > > > +      * and disable the other to avoid continuous interrupt
-> > generation.
-> > > > > +      */
-> > > > > +     if (status == connector_status_connected) {
-> > > > > +             /* Cable connected  */
-> > > > > +             dev_dbg(mhdp->dev, "HDMI/DP Cable Plug In\n");
-> > > > > +             enable_irq(mhdp->irq[IRQ_OUT]);
-> > > > > +
-> > > > > +             /* Reset HDMI/DP link with sink */
-> > > > > +             if (mhdp->connector_type ==
-> > > > DRM_MODE_CONNECTOR_HDMIA)
-> > > > > +                     cdns_hdmi_handle_hotplug(mhdp);
-> > > > > +             else
-> > > > > +                     cdns_dp_check_link_state(mhdp);
-> > > > > +
-> > > > > +     } else if (status == connector_status_disconnected) {
-> > > > > +             /* Cable Disconnected  */
-> > > > > +             dev_dbg(mhdp->dev, "HDMI/DP Cable Plug Out\n");
-> > > > > +             enable_irq(mhdp->irq[IRQ_IN]);
-> > > > > +     }
-> > > > > +}
-> > > > > +
-> > > > > +static irqreturn_t cdns_mhdp8501_irq_thread(int irq, void *data)
-> > > > > +{
-> > > > > +     struct cdns_mhdp8501_device *mhdp = data;
-> > > > > +
-> > > > > +     disable_irq_nosync(irq);
-> > > > > +
-> > > > > +     mod_delayed_work(system_wq, &mhdp->hotplug_work,
-> > > > > +
-> > msecs_to_jiffies(HOTPLUG_DEBOUNCE_MS));
-> > > > > +
-> > > > > +     return IRQ_HANDLED;
-> > > > > +}
-> > > > > +
-> > > > > +#define DATA_LANES_COUNT     4
-> > > > > +static int cdns_mhdp8501_dt_parse(struct cdns_mhdp8501_device
-> > > > *mhdp,
-> > > > > +                               struct platform_device *pdev) {
-> > > > > +     struct device *dev = &pdev->dev;
-> > > > > +     struct device_node *np = dev->of_node;
-> > > > > +     struct device_node *remote, *endpoint;
-> > > > > +     u32 data_lanes[DATA_LANES_COUNT];
-> > > > > +     u32 lane_value;
-> > > > > +     int ret, i;
-> > > > > +
-> > > > > +     remote = of_graph_get_remote_node(np, 1, 0);
-> > > > > +     if (!remote) {
-> > > > > +             dev_err(dev, "fail to get remote node\n");
-> > > > > +             of_node_put(remote);
-> > > > > +             return -EINVAL;
-> > > > > +     }
-> > > > > +
-> > > > > +     /* get connector type */
-> > > > > +     if (of_device_is_compatible(remote, "hdmi-connector")) {
-> > > > > +             mhdp->connector_type =
-> > > > DRM_MODE_CONNECTOR_HDMIA;
-> > > > > +
-> > > > > +     } else if (of_device_is_compatible(remote, "dp-connector")) {
-> > > > > +             mhdp->connector_type =
-> > > > DRM_MODE_CONNECTOR_DisplayPort;
-> > > >
-> > > > Interesting hack. What if somebody wraps DP signals with the USB-C
-> > > > controller in order to provide DP over USB-C?
-> > >
-> > > There is no such requirement now, and the supported types of
-> > display-connectors do not include Type-C DP connectors.
-> > > If type-C DP connectors is added in the future, I think it would be acceptable
-> > to modify the code here.
-> > 
-> > It would be acceptable, but it most likely will also require chaning the DT
-> > bindings as there is no longer an easy way to identify the next bridge. Also you
-> > might not have that now, but it is pretty common to have DP retimers on the
-> > board in order to improve the sinal integrity.
-> > Thus I think it is not a proper solution to check the next node's compatible. I
-> > think we need a way to specify HDMI vs DP firmware / mode in the device
-> > tree.
-> > 
+On 30.12.2024 7:51 AM, Kathiravan Thirumoorthy wrote:
 > 
-> Since there already have the connector type for HDMI or DP.
-> adding another parameter to the DT bindings to specify the PHY type seems redundant.
 > 
-> If anyone add DP retimer to the board, the similar code as followed may add to the driver.
->          last_remote = remote;
->          while (of_graph_get_remote_node(last_remote, 1, 0))
->                  last_remote = of_graph_get_remote_node(last_remote, 1, 0);
-
-Definite NAK for such a code piece. It's not a host driver's business to
-traverse DT for other, independent devices. They might or might not
-follow the usb-switch.yaml
-
+> On 12/27/2024 12:54 PM, Manikanta Mylavarapu wrote:
+>> Add SPI4 node to the IPQ5424 device tree and update the relevant
+>> bindings, GPIO pin mappings accordingly.
+>>
+>> Changes in V3:
+>>     - Rename SPI0 to SPI4 because SPI protocol runs on serial engine 4
 > 
-> Before new requirements arise, I hope to keep the current implementation.
+> Do we really need to do this? If so, it will not align with the HW documentation and will lead to the confusion down the line. IMHO, we should stick with the convention followed in the HW documentation.
 
-I'd say, no. Please make it good from the beginning.
++1, the clocks are called SPI0/SPI1 internally
 
--- 
-With best wishes
-Dmitry
+Konrad
 
