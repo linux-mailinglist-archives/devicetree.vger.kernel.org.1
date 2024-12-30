@@ -1,142 +1,110 @@
-Return-Path: <devicetree+bounces-134668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 379829FE33D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:29:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBAFC9FE343
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:31:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 837983A1C0C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:29:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0DD93A191F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13F619F40B;
-	Mon, 30 Dec 2024 07:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1FE19F436;
+	Mon, 30 Dec 2024 07:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Zso6f6ON"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M2h87LU8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB1AC8F4A;
-	Mon, 30 Dec 2024 07:29:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB32F15B99E
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 07:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735543747; cv=none; b=WPEFfpocjH4xq51Xw3XmotMrtDsY2diWBj3ymqP2ZVWk5Xm+bLjWYpx/r3xJirMn5EmVb4k/aM8dx4EdWn+Q6GkwZ8xREx18cuOtu1pEZEmtEqRLPs9v59V+pi/eddMmV6dFH15uTMNOdy0skSLBX+jaXHKCRp8unpsOVjNj3eM=
+	t=1735543875; cv=none; b=sb2piu1rK/9XVKexlBWJWUEP0g7ptqdaBVUN6YmB0/1HvIL3Dmix8bFvrDNMW/lG+aDoAlpg1tD3a80HB3hXwMiRv9nr+uq3rWPQWKU0xZFVJvZlcGxiKx6qbfbILU2C0RoY6fmJJzvXoTz+4dUWMckt4xKzSXHM7WqfoPL+kXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735543747; c=relaxed/simple;
-	bh=ma0dPynFxLWsFo0VXTorvpeLC1XqPhHxqSt1B5Movi8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=oFDHui5auTZhVO5xCjc5xbgXFUPbk9HqEqAQANXPkwajbbWJJGpZ4A4NaYjff2494jCEACNesKt1ZZWznP4lPYje5t7APlwmV0aQwCb76YrEUybf2DnG4x7tRgwhq8/4o0ehI/EgKl+iWF5cBJ1TMHOP530RaKzdqpo6jmKbJT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Zso6f6ON; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU00MDR002620;
-	Mon, 30 Dec 2024 07:28:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3Q50vJAZpKCoqJT5Un0pZozhJ37/LQDZWrlzxdceSUE=; b=Zso6f6ONW2LUJUJi
-	IDrGaLuqa3vjdLsX6zqEQHQrwwyLWua2NuS9KNfzhm5waGxKAUW7e6ezdIAsxqwV
-	gLtEG86zewL/6AIxALTXRuAhFp6Vr0gf0tswb0PD4odjE2IfbMvo1uv57eh5Jymc
-	0xe7ND+gLmwJ1JTQ+Nv6JKmtRjApPTklhLQSMnhdUqEBopaqhJhsD4zIki3GJRnW
-	pSNfdgNJtln+c4INGFcx/pcZwHBuxFOnO87BsFxlTa1xJiwEPy/WIlBV0ykkdM1y
-	jjPOFwaBcfMjSrfvHbeMJJgWh/tzYl92cazGVq1e2xIIGc9xHgTGyJy8eNg281lJ
-	Vs96Mg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43u6u2hb5h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 07:28:50 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BU7SnDF009811
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 07:28:49 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Dec
- 2024 23:28:45 -0800
-Message-ID: <7fc6c727-d3c1-4c6d-a990-8caeb95c43c5@quicinc.com>
-Date: Mon, 30 Dec 2024 15:28:43 +0800
+	s=arc-20240116; t=1735543875; c=relaxed/simple;
+	bh=op1v6RqtKHEMd3jNo6wk+1t2w4Xy0XLVP+LzvrcYx0E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Fjt/uwb5dezZd/Ukfp+XP39p4JsIscTdb6cmzR4IJwQeTEH0cOcX28SngfCuAN2DvMhBaI1UnGTmqfRfso3sJLPjFSZF0PXCowCgxrQ7uNkjf+XB2GaHRKb6xHoIJWSbDU7MMIvejgmoU/GU7TQvEtbhsbP8v7g0X8Uonya0SHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M2h87LU8; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-385d851e7c3so507804f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 29 Dec 2024 23:31:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735543871; x=1736148671; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0cxUukmW/HtO3A5IzMy4WhojBdo49UTX8VOBptMlYK0=;
+        b=M2h87LU8KsWWuOlIEIFsvR/xgLdPL3LRt/SsJkCuoIPpc2SaLLo+aUFltSDg81M+/w
+         RjqI+anVE0yhmp3zqYXRZjI3OEdYvRP4THzV+f5i+Y6IFuy5Z/r1wwAE3Ds3i3M5hA84
+         NR2hxnIA1hO2YAK7bdyBXoqIUm1z5rtuaEOJ124guTMlimE2CHEgGSePTq20bXwIZNP6
+         EGaxbAKUqjR61GyOgVT3OkIXfefI5FYSUwykSsodvR1qDgl6NiVpm4KsO2sxaJpghNHK
+         IciVQrugQ1p1R021ptUPKNmmyITJI6FYtFYb3LzMT6RzWgNaZqHF1gjSdQ1RFbL3PWz+
+         3ZiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735543871; x=1736148671;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0cxUukmW/HtO3A5IzMy4WhojBdo49UTX8VOBptMlYK0=;
+        b=Dmj9tgT8ncLB+uEp4SACWFxXsOdybhQs5CezmHBqLhIjHQCDfBYlRjborPkMbjRusV
+         y/hUGpbVDQAy2yS69I7fEAQDP6pDQmHULim787IovA6VGu6fnWdOdMWEEI4ujoSt3l9z
+         R/uOXjCMu1JpzGXkLhsHzQYNtvn0t6YCFCxACFR8Jq3FsGHIwpuwmDOvwiGPTp5bVPfM
+         ETRnSQNqpt0BndRk7qnNnoBkrkLlb4UxWtzhtVB+4VrBSCMcpBYHSEMZ7b5fb0TM7TpC
+         LWPjArn7TpBSkKTzBDcaPb1n0LJEF8apoenrnlnJixRA+GKwfovXcK4qU3aAKsVz+OV8
+         bZNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWT8q0jd//S4GhIKGHVrPuVJPdn3zmiR0LmpYVuhsyAmAu/ydHG3t80pN599DveligCZsbkuKNchhG9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5HRI5R584xipUgkp2XO7kOdxlFEeJlP9gRxzZNP/aHNF6S1OJ
+	YMaIY3Esoz/lDQAv4Rnkkkl2Qw8OEaFJDsHfRqckZ+F4udPeQb3slrOXOuXu8S4=
+X-Gm-Gg: ASbGnctKljTE1fdhE0Y69qT2AvopJkrPLxTz9QAWZKzD4f4b+qpyb5NciPEKDKrPUWn
+	exGTXa2MprKR875DJJOOpKi+3UK1u6FWhxJL457zBT+Mq6qOq4gzEmcH22hsQWS4a43fAwelya6
+	DAWZtFQJn0iL7zz1O1ILYhtEokeXY+oGUlR4DbTpMMLnZaGjKU5oReB1gxi3tv6GcMTREPiiw0h
+	56mYaBq/s2ueaGy1WterquW44etngbnqBOnp74PCdu0dJmUMO84mcP2iE4jYzvA+gF8KDzO
+X-Google-Smtp-Source: AGHT+IEIbHfQQXjbtACZcOl/EYF1eksRr4G8aqfzGRbLMEkVZhWKVQt3Ase4890cxIGZ0+c7ItcJyw==
+X-Received: by 2002:a05:6000:4022:b0:385:e374:bd4 with SMTP id ffacd0b85a97d-38a221e1f74mr10283672f8f.3.1735543871026;
+        Sun, 29 Dec 2024 23:31:11 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c84705esm29439462f8f.44.2024.12.29.23.31.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Dec 2024 23:31:10 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20241221152803.1663820-1-ivo.ivanov.ivanov1@gmail.com>
+References: <20241221152803.1663820-1-ivo.ivanov.ivanov1@gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: exynos8895: Add camera hsi2c nodes
+Message-Id: <173554386976.7938.13644139958887004032.b4-ty@linaro.org>
+Date: Mon, 30 Dec 2024 08:31:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
-To: Pengyu Luo <mitltlatltl@gmail.com>, <krzk@kernel.org>
-CC: <andersson@kernel.org>, <bryan.odonoghue@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <dmitry.baryshkov@linaro.org>, <gregkh@linuxfoundation.org>,
-        <hdegoede@redhat.com>, <heikki.krogerus@linux.intel.com>,
-        <ilpo.jarvinen@linux.intel.com>, <konradybcio@kernel.org>,
-        <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <nikita@trvn.ru>,
-        <platform-driver-x86@vger.kernel.org>, <robh@kernel.org>,
-        <sre@kernel.org>
-References: <ff53d7f7-0103-4e52-ac0a-c05bf4521cd1@kernel.org>
- <20241229101244.59779-1-mitltlatltl@gmail.com>
-From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <20241229101244.59779-1-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4k_lzmMPo2W1ZvgZFZ_MGMCvV20xdCrv
-X-Proofpoint-ORIG-GUID: 4k_lzmMPo2W1ZvgZFZ_MGMCvV20xdCrv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- clxscore=1011 spamscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0
- mlxlogscore=999 suspectscore=0 phishscore=0 priorityscore=1501 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412300062
+X-Mailer: b4 0.14.2
 
-On 12/29/2024 6:12 PM, Pengyu Luo wrote:
-[...]
->>>>> +      - const: huawei,gaokun-ec
->>>>
->>>> How did you get the name?
->>>>
->>>
->>> From website of Huawei([1]), please search for 'gaokun' here, we can know
 
-Gaokun appears to be a code name from Huawei for the HUAWEI MateBook E
-Go devices.
-
-Could you please specify which EC functions are customized specifically
-for Gaokun and which EC functions are common features used in
-qcom,sc8180x and qcom,sc8280xp boards? For example, the upstreamed ones
-like sc8180x (Lenovo Flex 5G/Primus) and sc8280xp (CRD/Lenovo ThinkPad
-X13s/Microsoft Arcata).
-
->>
-[...]
->>
+On Sat, 21 Dec 2024 17:28:03 +0200, Ivaylo Ivanov wrote:
+> Add nodes for hsi2c1-4 (CAM0-3), which allows using them.
 > 
-> Check the motherboard, https://postimg.cc/V5r4KCgx (Credit to Tianyu Gao <gty0622@gmail.com>)
+> 
 
-The link is not accessible from my end. Could you please help follow the
-document tips referenced by [1] if this content is important for the
-overall naming design?
+Applied, thanks!
 
-Here are some snippets for reference:
-"for 'volatile' documents, please create an entry in the kernel
-bugzilla https://bugzilla.kernel.org and attach a copy of these documents
-to the bugzilla entry. Finally, provide the URL of the bugzilla entry in
-the changelog."
+[1/1] arm64: dts: exynos8895: Add camera hsi2c nodes
+      https://git.kernel.org/krzk/linux/c/f424523b1b516b3f0984feeb1d8218e904d17a97
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/maintainer-tip.rst
-[1]
-
+Best regards,
 -- 
-Thx and BRs,
-Aiqun(Maria) Yu
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
