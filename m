@@ -1,173 +1,159 @@
-Return-Path: <devicetree+bounces-134763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CC49FE757
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 15:55:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 124ED9FE759
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 15:58:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 823691882493
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:55:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD9C2161F7C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 14:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75D31A7265;
-	Mon, 30 Dec 2024 14:54:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D88F1A8414;
+	Mon, 30 Dec 2024 14:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KGaBd6aN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VKlvqfpC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49546194A60
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 14:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B561A7044;
+	Mon, 30 Dec 2024 14:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735570495; cv=none; b=OdXPo5Z5xLVfCgS96DxUvz4FcrBH92onxnG7vo0w84H0g/sYXuZiWWeTH3wfY8qDZA6f01Zrl6GSH5J7q/LjKK1YV9WlYopfzE1yWhQ6amCD+6nNvj3weYlywjW/BfDX/JCrzUFbgkBw+3VmVMVw7IDICGm7CpfxlmWTF6ZBLEk=
+	t=1735570714; cv=none; b=swqPGHl8/GVWrqqMyaJhEOMR+RPrcLJb7ALbKPuGmemazLqagMYbti1E0f2gR9vn4UYArq9CxNZ+fXEGgqUm1JV0aUO5MHNbf8KIboBz6fgRwIOL+8qxlzJkiKCUHwbEqtmjOBNZiQwUPoJZYaiygVunASSSP2NSsed+9f4jbJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735570495; c=relaxed/simple;
-	bh=piMWhPiVlAVjAiq+sZ+fIv6Xu5tl61re7xdN7AiPRoI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N0YUflFyPykAvt0uMGEaKNyrvyx1HRpTcAVu9ccFAzRmDI9Vczonvt6BOE4D3Bvf9UukMlkPuFzItp0yJHqjGRxes/yXxWW1navSF8QhqDrsxCNh/K5pV6TfMbbkhbU/Isc9WS337vwEHgAlrbpU3pAn9RhFk43QJCqv+tYTX7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KGaBd6aN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU5Rhxw004855
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 14:54:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3yQh3lm3ZPnFyqqh69QyrXtiw+/VFGVpbhOs9S/9Rbo=; b=KGaBd6aNftN+wT3b
-	m+1FabNQnJZuISx1J5jKUgFWComgmTB65YGtutxi0NJqu+lyHkjN2kiFshzNEDxr
-	3tp7lu5ezybHe+AaPKpCW92fv80coDuUjb7Uagtkup0T+CKC4KXWHsxx8VcKxovO
-	PuEk3SS9ruVDD4DvEWfEYY9/FbD9e2jkmFs1j9aLSWq+1qlBIZfLhfjzgNbc9xH/
-	cqrUN0kuALUoSa7XXyOwckxAlQ5E1oB9cTc7JxtfK0qx70z1PyhtIL5AOScPrUQy
-	I2ThkDA1+Bv4v1U7asWt07q4G95CTPuzByV6oP/5nbE97pwy6hgauEN/+NlIbxON
-	pUXXXw==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43und2s42v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 14:54:53 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-467bb3eeb04so24386321cf.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 06:54:53 -0800 (PST)
+	s=arc-20240116; t=1735570714; c=relaxed/simple;
+	bh=Py96Wx48lY3hRsIyqeH2EhpYqRG2BTz9NWChJmCaiTw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FAWDe4GAkcFoo0BHximLpA3YV8PTzPAnkFTJRst3VIQVnXmRS5USo7TwZAKPrnN4PJ2ka6g8XV5hUza/GU3+MCdAp8Dmdx6MQF5uOSUI/ROD3appEirQdMmLCMNVrR028ajeEUTEilU3jI7XgHh26+T2xzGvViJMP4auBCn1318=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VKlvqfpC; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30033e07ef3so61354041fa.0;
+        Mon, 30 Dec 2024 06:58:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735570710; x=1736175510; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GoaoLq361UaAebRj2ohl7Uye7+ll8RqNIDvB3jVhJOU=;
+        b=VKlvqfpCcaMp3094yytHf1/WxDF0MIR2ng9EGkCN0V2qCO3aPGJ8EKME92XgWWzr5u
+         7eO/lBZEutGXk7AyQJdqcwZT2ZmX2CrVcLdVpK3MNNntYuQwtupuGM5HD1rRRopMYtAH
+         s8i/GdY+IH2ncZ19x3AshIyzWSuRg1B1HFD7qmguGQNEHyFDU1zNcBViy7A6XKAuL919
+         x6qtbvF0RN9JOtVIk7wU4/ycP8SvfW6nLuDmcKvW2ka3qxWKGK2GIkU8sSNnC7JFDyXV
+         9xmR35KerZxkMK2MW8WjIcX1TELGUI1SKF9HJiJkvhQkehVtEAVdBegf4f66tq8jsxhr
+         ST7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735570492; x=1736175292;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3yQh3lm3ZPnFyqqh69QyrXtiw+/VFGVpbhOs9S/9Rbo=;
-        b=YO9k8egHSGOK6jIiS1g0ubrh0Ov6J5/y4Ti7AkMWmEO60XaJSvdsFR350tDcEkrR6a
-         GraQeyCjOgwaJljcSriNVjQD+h/9FHm6CX+vQtCvPBumIEufJ//16T7yG0jgPi9D158W
-         MZTqS9mk9TtbQ957+BFcc4Wjk+Gw3Lmd9TDdTixl9E/AQXgYCJ8/wLSWtyMXKT218xRu
-         tYpdKYu5qKae5ZQN1t74bshg0m3oX3DSlJlSt9q0l4LTMmQGKghWILmOHNcDQS+4JfE/
-         cQyOdDLyx1WTO6+rZiyIdtuIetAMZrsxbUGFbKdNLpR9kjaSB1vZCHnDvPCZ9DsdNjcG
-         juyA==
-X-Forwarded-Encrypted: i=1; AJvYcCXoWMvVsDQzsJUXJFmzC17jJpYpMgwrFfnnYj5RTeGb0idnSuSUXI40SvN1XwQ1gpUF01Z2wkUESEYb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyl3sJW4zWVKRYGxZaoyJGfGh1RQ/qsImid9gpJKXWLJq+zRhFf
-	CZEiHIVWmrY2uaXRQcKlLVIOLoDhh8pjSeFtLKC6zOP5zb/u6l/3TctZO5ImqTOJynlQR6y2do+
-	NeFo734T7JATxvEScBIwC2PQlk4nkqSRC88qqSuT9E3u8QqcZ7Uh5UKiTFGND
-X-Gm-Gg: ASbGncuTduTgevSxxknG0gcdZEmUiGMka92FGFpV/XLHUAjs0iukaQxsxR/78i9rVmi
-	/TgsSW9t76+tIot/N2DATYPgO1H8roi/2HZFQPkoIf9TL7XTP2qYds3bolD4kmgBIpgtcOQlaNA
-	V9S6Q3yA1kut3lC2BRb38Rht/kwpnhIR5O7dNDdANmo3a1P0sKyRl4Cv3Hw9p5N1VYMopifvQ8B
-	8ApWkDOegPcZyS6wBymoIXaDW5rTBTsN0+JpHUDqCGsk4i0VW720DdpibDuB+8G5L9+ahCf0buc
-	3ugiAbL2K1niWD1ADoNkWgEOmSvKMQdNxp0=
-X-Received: by 2002:ac8:5f93:0:b0:467:5eaf:7d22 with SMTP id d75a77b69052e-46a4a9785cdmr202269161cf.10.1735570492151;
-        Mon, 30 Dec 2024 06:54:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFxp+M80FgkyfPDCvRlt9KPdHqZ28lMUsgBTSj2vWFRpVEwuMQNUiC6qz6BVUou2zWUnxFaVA==
-X-Received: by 2002:ac8:5f93:0:b0:467:5eaf:7d22 with SMTP id d75a77b69052e-46a4a9785cdmr202268951cf.10.1735570491736;
-        Mon, 30 Dec 2024 06:54:51 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d806fedaebsm15279221a12.57.2024.12.30.06.54.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Dec 2024 06:54:51 -0800 (PST)
-Message-ID: <480eddca-97f1-4bc0-ab1f-22b14407e0d9@oss.qualcomm.com>
-Date: Mon, 30 Dec 2024 15:54:48 +0100
+        d=1e100.net; s=20230601; t=1735570710; x=1736175510;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GoaoLq361UaAebRj2ohl7Uye7+ll8RqNIDvB3jVhJOU=;
+        b=JAdHXenoSpr+sdadybsvKzl2h45pC6eoOoEluDak6RGAmMK0ZM4d4NFFXtvhbAm/4k
+         Pq8mpRNjr35Q184HybQh8ZCMLKwqKIqdB5LyhXiKvQTn/IZWRbfIp88DHMbz7XND33wa
+         u+USPCTIMVqDNdFlCdjRuk5tEIKiO8qNeLK79JXEbK6TaEkhqcNvcY64PE+cneqw7MyQ
+         MwKqBDrkiD2uSVuXFH035LvbaCz1kx4I308HMuuwAXGuBLYoPddTnj/L8+tzn85YBBSf
+         TKlYQmhmMtB9dmbgT9FvJHnd0lIUZHwu/ks4x0PjBIw1Tnf61AoeXJMEs97bUCr73QmD
+         4YhA==
+X-Forwarded-Encrypted: i=1; AJvYcCXmuA3WfSqIDKXpzsivGwLulWAAVVog5A/D+GabQsM3IUWpk7wax403QsUVsDkykocr3ACGwthUueLIAw0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJD/4fCNBj3i61E3V7FjOuBYuuQKXIdUcaD93klcfBtpQlmclE
+	xKx/+ASlEBfiNS2vejHoypDyRirF3JzhAb9/pL8RyGAJeXuH4l0=
+X-Gm-Gg: ASbGncu4YXCx9VhMe/OApo9P2QpG3bXvPC4m87xHetqzBkh8qxYRn+87nHkGd2zDOLY
+	lQwXHvLxaloeICV21KzHuvzstRzhuxH1PxE24gld/nLabVgC9VEZgbrY/jEnOtkTL8CsWKHTBWY
+	9Gs3UcRmB2gw0iwCXXJGqP2q81gayvxRuESA71XD0tSqs201gKUNSvwSo6zbWtqRZphTnEE5PGF
+	+rhmXtEJG+N53G/UT3mh0vFAj7xS7qlTVJLEScmxuq7m3FdBIXcKz638WY=
+X-Google-Smtp-Source: AGHT+IGisD41W8JWQL0CRagYb+y8h32KJubs/kv1Im6KAp/oPQgc5CVL6cwTewm1uromHqSrkCtayQ==
+X-Received: by 2002:a2e:a9aa:0:b0:300:3307:389f with SMTP id 38308e7fff4ca-3046992f1admr99464301fa.0.1735570709482;
+        Mon, 30 Dec 2024 06:58:29 -0800 (PST)
+Received: from JetTurbine.homenetwork ([2a0e:e6c0:20d3:2100::1d])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3045b096026sm34385111fa.118.2024.12.30.06.58.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Dec 2024 06:58:29 -0800 (PST)
+From: Ivan Sergeev <ivan8215145640@gmail.com>
+Subject: [PATCH v4 0/2] arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
+Date: Mon, 30 Dec 2024 17:58:17 +0300
+Message-Id: <20241230-bigtreetech-cb2-v4-0-26d2d30e07ce@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp: Add Huawei Matebook E
- Go (sc8280xp)
-To: Pengyu Luo <mitltlatltl@gmail.com>, konrad.dybcio@oss.qualcomm.com
-Cc: andersson@kernel.org, chenxuecong2009@outlook.com, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, gty0622@gmail.com, johan+linaro@kernel.org,
-        konradybcio@kernel.org, krzk+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org
-References: <d9c9cb80-0331-4cf0-9988-15f571d4cf7c@oss.qualcomm.com>
- <20241223130732.76968-1-mitltlatltl@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241223130732.76968-1-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: ewHom_mIBOlVoNafBhhKbF3yU2u2u85Z
-X-Proofpoint-ORIG-GUID: ewHom_mIBOlVoNafBhhKbF3yU2u2u85Z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- lowpriorityscore=0 suspectscore=0 adultscore=0 spamscore=0 bulkscore=0
- malwarescore=0 priorityscore=1501 clxscore=1015 impostorscore=0
- mlxlogscore=824 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412300129
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAm1cmcC/2WNywrCMBBFf6XM2kjzaDWu/A/pokkn6YB9kISgl
+ P67seDK5Tlwz90gYiCMcKs2CJgp0jIXUKcK7NjPHhkNhUHUQnEhFDPkU0BMaEdmjWD8qpUyUmn
+ NWyirNaCj11F8dIVHimkJ7+Mgy6/9tS5/rSxZzTS3TdP2g3UO737q6Xm2ywTdvu8fRpaJLK4AA
+ AA=
+X-Change-ID: 20241224-bigtreetech-cb2-18944b349916
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Ivan Sergeev <ivan8215145640@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2054;
+ i=ivan8215145640@gmail.com; h=from:subject:message-id;
+ bh=Py96Wx48lY3hRsIyqeH2EhpYqRG2BTz9NWChJmCaiTw=;
+ b=owEBbQKS/ZANAwAIAbzfXRlQM5b9AcsmYgBncrUUjViQ8YeoRGDVrpipb2cirggY3zHBYXfq1
+ F1YqXzgGB+JAjMEAAEIAB0WIQROCZtApKFz1fvvsOS8310ZUDOW/QUCZ3K1FAAKCRC8310ZUDOW
+ /Zh0EACqWeR9kBxbCloxRP0afh3Pza+g+dUcWrZ1L/EHmNo5XgPb1ZQT+04ziChglPu4vq4Jzuv
+ BjxfxJVerl9KLj7oMSFj+MJJIWHe0a59tGZG8D+uiIPkFO+OmaYeGVrEROEl+miwAyh6ndIKLhi
+ TMy/1f4cJEo3LnBcELpv/ixS3POM2rmEStqCruhTkmmTmpwjk/Ia5gvzGAQTHAJvH7FAAw3zm7H
+ cprsp1gj+K8QSB+0UBr+eo+Ui3hMvlJdLTTe+ZetIIFXfjda/ubZkd5TCnRPBJO1wXlzbZ2k6JB
+ 5mLe9PhLk6MWgc+ateTySzGxEp2BBb8p4y/OJMvXdG9BDFRbMHE9bt3fpNof0RulkFHWZ5EWzDK
+ 3W72ki7ugASlsHDNvGkRaxLtnFzjh9DVzHyBcKN4GV/jtWrLbFanviLGw/QU/pDpMKZWQb+8m6v
+ nQ8YozhPAsw0skXXUYkfvxtqCuf83aMGktYyDA4ieskviJ/8duJqklC/CllcGitUCRJ/el6d9ZS
+ /hVRvIrUHBEcm4i2oNveCftLIPB5+dE17BZREKAypEOKjdhLG/DwrAb20jRBfqAsAhTULAcOHra
+ 7GfqJQAuBK/4t3xfWn4e0EIe87aAHNZXsY3TVTglovzhpGcEhoJ3RFKUsUCWY5GTL0n0MUpF4Y9
+ 2E9WHi8t+wwnCkQ==
+X-Developer-Key: i=ivan8215145640@gmail.com; a=openpgp;
+ fpr=4E099B40A4A173D5FBEFB0E4BCDF5D19503396FD
 
-On 23.12.2024 2:07 PM, Pengyu Luo wrote:
-> On Mon, Dec 23, 2024 at 8:25 PM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
->> On 21.12.2024 8:57 AM, Pengyu Luo wrote:
->>> Messing up, reply again to fix thread.
->>>
->>> On Sat, Dec 21, 2024 at 5:14 AM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
->>>> On 20.12.2024 5:05 PM, Pengyu Luo wrote:
->>>>
->>>
->>> [...]
->>>
->>>>> +     chosen {
->>>>> +             #address-cells = <2>;
->>>>> +             #size-cells = <2>;
->>>>> +             ranges;
->>>>> +
->>>>> +             framebuffer0: framebuffer@c6200000 {
->>>>> +                     compatible = "simple-framebuffer";
->>>>> +                     reg = <0x0 0xc6200000 0x0 0x02400000>;
->>>>> +                     width = <1600>;
->>>>> +                     height = <2560>;
->>>>> +                     stride = <(1600 * 4)>;
->>>>> +                     format = "a8r8g8b8";
->>>>> +             };
->>>>> +     };
->>>>
->>>> I still don't understand why efifb doesn't work for you.
->>>>
->>>
->>> In v1, you asked me
->>
->> Ahh sorry, I churn through a lot of emails and sometimes forget things.
->>
->>>
->>>> Very very weird. Are you booting with clk_ignore_unused pd_ignore_unused
->>>> in kernel cmdline?
->>>
->>> I said yes, as Johan suggested in here (see [1]). I am adding Johan.
->>>
->>>> Could you share your .config file?
->>>
->>> Here please, https://pastebin.com/UKew61ZC
->>
->> All the things one would expect for efifb to show up seem to be there.
->>
->> Maybe try earlycon=efifb video=efifb?
-> 
-> Not work, whether or not adding clk_ignore_unused pd_ignore_unused.
+BigTreeTech CB2 and Pi2 are Rockchip RK3566 SoM and SBC boards made by
+BigTreeTech for the intent of using as a 3d printer control board.
+It is a successor to the Allwinner H616-based BigTreeTech CB1 and Pi, so
+the device trees for CB2 and Pi2 are also done in the same manner: the
+common nodes and properties are put into a dtsi file that the
+board-specific device trees include.
 
-I am utterly confused then, maybe it's one of those devices where calling
-exit boot services kills the display. 
+Changes in v4:
+- Removed invalid `i2c,ignore-nak` properties
+- Set `#address-cells` and `size-cells` on `sdmmc1`
+- Fixed `phy-supply` properties of usb host nodes
+- Link to v3: https://lore.kernel.org/r/20241227-bigtreetech-cb2-v3-0-91c556adcffe@gmail.com
 
-Either way, let's not worry about it anymore
+Changes in v3:
+- Proper formatting and patch series sending (using b4)
+- Converted spaces to tab indentation in the dtsi file
+- Fixed empty line where the license identifier should be
+- Link to v2 1/2: https://lore.kernel.org/linux-rockchip/20241224135751.350379-2-ivan8215145640@gmail.com/
+- Link to v2 2/2: https://lore.kernel.org/linux-rockchip/20241224140057.350667-2-ivan8215145640@gmail.com/
 
-Konrad
+Changes in v2:
+- Added bigtreetech cb2 and pi2 boards to the list of platforms
+- Split BigTreeTech CB2 and Pi2 into two device trees using common dtsi
+- Link to v1: https://lore.kernel.org/linux-rockchip/20241222203952.84217-2-ivan8215145640@gmail.com/
+
+Signed-off-by: Ivan Sergeev <ivan8215145640@gmail.com>
+---
+Ivan Sergeev (2):
+      dt-bindings: arm: rockchip: Add BigTreeTech CB2 and Pi2
+      arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
+
+ .../devicetree/bindings/arm/rockchip.yaml          |  11 +
+ arch/arm64/boot/dts/rockchip/Makefile              |   2 +
+ .../dts/rockchip/rk3566-bigtreetech-cb2-manta.dts  |  10 +
+ .../boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi  | 943 +++++++++++++++++++++
+ .../boot/dts/rockchip/rk3566-bigtreetech-pi2.dts   |  10 +
+ 5 files changed, 976 insertions(+)
+---
+base-commit: d6ef8b40d075c425f548002d2f35ae3f06e9cf96
+change-id: 20241224-bigtreetech-cb2-18944b349916
+
+Best regards,
+-- 
+Ivan Sergeev <ivan8215145640@gmail.com>
+
 
