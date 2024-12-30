@@ -1,162 +1,186 @@
-Return-Path: <devicetree+bounces-134677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D612A9FE37C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:54:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 887879FE381
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33B523A1AAC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:54:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF44B3A1C01
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338FA19FA93;
-	Mon, 30 Dec 2024 07:54:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914891A01BF;
+	Mon, 30 Dec 2024 07:55:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JvlVmJTP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HK+jzUdS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02EC4156C6F;
-	Mon, 30 Dec 2024 07:54:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC185156C6F;
+	Mon, 30 Dec 2024 07:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735545280; cv=none; b=pFKn9xZKfVZtSE8Rju1ryb5HqQ6nA+Sz2DA2l8ZJgk+FNqCXrqFqm/s3+w1ZaxB8PMP7BcsGfnnhuGmDbDcdSeuRzqN/cD3A/MRZfdEaUGL6LgGyxaD6Ctzvc0qcIBQ9QpFqHC9N4ikf6Z/Fw6QwHrpzMaqkwHnEJpp02C+FURA=
+	t=1735545345; cv=none; b=JpRD2sy/ITEM6Nxa/9JgRSU8wEDMsvQQVLtne42q0vzmVpmSwzzNxrFUPnT5LZeIMLHquGyZiG/lhzu4uglKNS8mDFNrDCnE/AaUfIHpgih/sKFWy+1jz37LvBK6kzE+VVeM96RaV9UZHsXRdBSMElRpg3nb7uAQqvDOEVcu4NI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735545280; c=relaxed/simple;
-	bh=183EA7MfCyWxhhzwpT8mT9bghaFpDjOqGIviGpm0Xd0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q+pUuwzKVRKaxTVZRrdQxpBtaQ/NpKL/Bf4xdix9N/0cHNj5wGC11q3jF21o8go6nfFVFnE8MZuG/FHVjpVVuL0qc8s/nCkDVquCy1t9STs2gsQOP+sjntpJ7NK3Nly9GJtnvg2Vq5hK8YgxLtC0cLx9zdcEmQEqtI5alCGvE+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JvlVmJTP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFAD2C4CED0;
-	Mon, 30 Dec 2024 07:54:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735545279;
-	bh=183EA7MfCyWxhhzwpT8mT9bghaFpDjOqGIviGpm0Xd0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JvlVmJTPsEilkeHz2NgEIfo56yDGjFOw+rqKFtEMD86H+dR/pquZbRjNMjMNwmywS
-	 K9yF5bxbhXPdF4q4tY0T7Lt6JQWpjiaw6Yp1tAbTrfOgdQjoLgnbRWe1RgFXk1pDm5
-	 hRx3n0d+bs6BTXkYSQ/eRZcfT50IbBnazT9lXA5XgqL7Y3QM03LIypZlTa4HA39glp
-	 e82iS08bcaoD35Jg5mnILgrJzD+knjtIecoJ3E3huzy/BE03zeou3jhBfFGpS4U+iE
-	 ZljgEhmXkp18UNHAvrFiF2h/fj9tSvzRFWu0bEY/Zn0vKaPrYpqZGV4U63YeoLnR1S
-	 lk3MYOa9OLJuQ==
-Date: Mon, 30 Dec 2024 08:54:36 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Xukai Wang <kingxukai@zohomail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Troy Mitchell <TroyMitchell988@gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: Add bindings for Canaan K230
- clock controller
-Message-ID: <zfjj33otyxiamsc7u2uwnvygcuhe7u2tfgiz6txp62emnddbw5@5iozmjg4eugn>
-References: <20241229-b4-k230-clk-v1-0-221a917e80ed@zohomail.com>
- <20241229-b4-k230-clk-v1-1-221a917e80ed@zohomail.com>
+	s=arc-20240116; t=1735545345; c=relaxed/simple;
+	bh=UznonsLB1/1VElz70YeWXmhy2SsBvdwmLQBT9pg45kc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=pqx0w9tZ6o+Wfb9RtLvbRdLyT1zuBanAGdCIpGBk+H6ZD0vnZVaqDxrbiKr5ah7GQvA1WvCn5aqXm3Ut0RJbzKj3fR42pTps8Vt4RuVHP0HN8hloWUWlK2RVKiXJ37POvb06X8Tb1+wl3nQ/SIhaWoM/va/W1F37GvSvs2WR8zY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HK+jzUdS; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43675b1155bso74064135e9.2;
+        Sun, 29 Dec 2024 23:55:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735545342; x=1736150142; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+jPQzETbuKo49mi8wQANfNeYO7kgQRt1+vSf7zU80tA=;
+        b=HK+jzUdSWKr0onCvOtB8IzyhIJ36n9rYK8qbNDufUPn4UsPy579lGLEXzE6mkhdAQ+
+         +ttM/6e64swcak5Aro/FiZfKBO8rxJAbOWZcnv+lLGussNiHanrCRcK6JfiZl/IpNJEf
+         euuKdWfrxvn5RCMeELehW7F8UOqlF8dvWj9bmKajgTCVFsNEmkZcSMw1+F04U4U0t95x
+         dNJTYRNeHbsxO9MOAFZZYUIRbZgP38gFgodXVAqWlQpw4ySnp5wh5clfqhzLvQSVXrzj
+         0NajeCqKABWUl1lGuRyA9TMnasPVDLQQZaGg+a3XxRCm2S7N7O4/mmsB1BxkWsRjz4Yk
+         GAZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735545342; x=1736150142;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+jPQzETbuKo49mi8wQANfNeYO7kgQRt1+vSf7zU80tA=;
+        b=wlWw97y8CLQt1hB4mwiDYalRORBGmBWTdCvwurB4TI1UhvuKgbDxlZll/kYsv/KLWI
+         AJ6J65j/zsY0SKvlosVO4dm4t0c+Jea8p8SxrXqDVGuZqffN9Iji7gIUZUtIk9BGxgUI
+         ATjbZIDxO597cWLj4SGixWKCn2PQYgSgonJ7wEsOgtr+jM9/Rt9C4RS6ntrlQIfdZjWf
+         d4Ee9NMNAF0Sg8UcNexirCDQKdtSNoZC+wRXMoGD2h/iRDaSsAfuNWZDUsFIUVaAIU3x
+         WywQHrpVOrFliURL/H9Qjq0LlIWf5isdoJR3b9j9/Ux6l2x841+wB6PyOROIwltAOoST
+         VYXg==
+X-Forwarded-Encrypted: i=1; AJvYcCWmhoDGVS10r3qXozuQ9sSG10pB7TcQm0wHvZDwva8d1GICVEzlSiBWhTczwkUI/ZtGEXUiYQTC7ZJqVRfz8iUL21Q=@vger.kernel.org, AJvYcCXX0hLMcPTgr1JQotsfsxE2/lXUCkzIRK1HoWJQQTOaNyroZAp7Z2EKtVEOruvtba5/Oj7EkuAGgfuqvaxS@vger.kernel.org, AJvYcCXmvyZjElfwbLlFZIfThw0nxPMqQTYWXUDPevMX3n+JLpeYN1QfEXc3YQuSXhTYm1/hjqVhrKtjvJJC@vger.kernel.org
+X-Gm-Message-State: AOJu0YynNB8wFILjDD6giUd1gk6ZheXP+Wij6XEETWsdzcAKfmhpI/FP
+	h9L5kyUEqEaar6adETKurs0YNvb4DAsMBZVsqZplgLMxrxewqVkArpBhHw==
+X-Gm-Gg: ASbGncvGnFiBO7yu6IKbWCqHuw15GT/ZEoxCyjaBaB7BEQPomDcaASfHA+zdgAvGKSn
+	HaxXNeupMI5dYG9nbCmCKe+Ck6JP/8uJL+jwLTX5iNg0yRnlMwUx0IEqAkhkOJpZqW9HHCrN10J
+	9oedDnAjzuBxGp/I6ldRGUTGHkRO5EtSKiKTU5tUvXvf1i3XWsJoWDjNy65VPKpIM4HguO2xfLO
+	na9H7uuu/rszaOFnF1Nwmk9VKXiQ0Z7djU/t1clKBZpwKvjZZjjx/dtfSJeK58R9aW4fho34A==
+X-Google-Smtp-Source: AGHT+IG2dh4UWHVSRIJXHl7OjSsaZff31+ehklabWaUsZJyeJBLzx13CbR+b1hLaxiOcwwHHm6XF2A==
+X-Received: by 2002:a5d:5e09:0:b0:385:e3c1:50d5 with SMTP id ffacd0b85a97d-38a223fc3d0mr34519211f8f.48.1735545342134;
+        Sun, 29 Dec 2024 23:55:42 -0800 (PST)
+Received: from [192.168.1.104] ([94.131.202.183])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8a8d3dsm29034261f8f.94.2024.12.29.23.55.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Dec 2024 23:55:41 -0800 (PST)
+Message-ID: <a9c25aa2-d61e-4f67-8e88-a214e2b8d628@gmail.com>
+Date: Mon, 30 Dec 2024 09:55:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241229-b4-k230-clk-v1-1-221a917e80ed@zohomail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: exynos8895: Rename PMU nodes to fixup sorting
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241222145257.31451-1-krzysztof.kozlowski@linaro.org>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20241222145257.31451-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Dec 29, 2024 at 09:21:08PM +0800, Xukai Wang wrote:
-> This patch adds the Device Tree binding for the clock controller
-> on Canaan k230. The binding defines the new clocks available and
-> the required properties to configure them correctly.
-> 
-> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
+On 12/22/24 16:52, Krzysztof Kozlowski wrote:
+> Nodes should be sorted by name but it is also nice to have same class of
+> devices together, so rename both PMU nodes (A53 and M2) to use "pmu"
+> prefix, instead of suffix.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
 > ---
->  .../devicetree/bindings/clock/canaan,k230-clk.yaml | 41 ++++++++++++++++++
->  include/dt-bindings/clock/k230-clk.h               | 49 ++++++++++++++++++++++
->  2 files changed, 90 insertions(+)
+>
+> I know we have everywhere else in pure-ARM designs nodes "arm-xxx-pmu",
+> but this is too trivial and unimportant to change.  I however want to
+> avoid copying unsorted-style code to new patches.
 
-Please run scripts/checkpatch.pl and fix reported warnings. After that,
-run also 'scripts/checkpatch.pl --strict' and (probably) fix more
-warnings. Some warnings can be ignored, especially from --strict run,
-but the code here looks like it needs a fix. Feel free to get in touch
-if the warning is not clear.
-
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..ffd4e0b052455bf3dcedd9355d93764119df3d68
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/canaan,k230-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Canaan Kendryte K230 Clock
-> +
-> +maintainers:
-> +  - Xukai Wang <kingxukai@zohomail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: canaan,k230-clk
-> +
-> +  clocks: 
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 2
-> +    minItems: 1
-
-List and describe the items instead.
-
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller@91102000 {
-> +        compatible = "canaan,k230-clk";
-> +        reg = <0x91102000 0x1000>, <0x91100000 0x1000>;
-> +        #clock-cells = <1>;
-> +        clocks = <&osc24m>;
-> +    };
-> diff --git a/include/dt-bindings/clock/k230-clk.h b/include/dt-bindings/clock/k230-clk.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..31d1f82fbcff654072ef1a8985a884377d801e72
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/k230-clk.h
-> @@ -0,0 +1,49 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Kendryte Canaan K230 Clock Drivers
-> + *
-> + * Author: Xukai Wang <kingxukai@zohomail.com>
-> + */
-> +
-> +#ifndef CLOCK_K230_CLK_H
-> +#define CLOCK_K230_CLK_H
-> +
-> +/* Kendryte K230 SoC clock identifiers (arbitrary values). */
-> +#define	K230_CPU0_SRC			0
-
-
-Drop the indentation after '#define'
+Looks good to me. I'll make sure to inform other people too, considering
+we should have at least 3 SoCs lined up for Q1 2025.
 
 Best regards,
-Krzysztof
+Ivo
+
+> ---
+>  arch/arm64/boot/dts/exynos/exynos8895.dtsi | 48 +++++++++++-----------
+>  1 file changed, 24 insertions(+), 24 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
+> index 90b318b2f08a..d31d74cc4580 100644
+> --- a/arch/arm64/boot/dts/exynos/exynos8895.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
+> @@ -26,30 +26,6 @@ aliases {
+>  		pinctrl7 = &pinctrl_peric1;
+>  	};
+>  
+> -	arm-a53-pmu {
+> -		compatible = "arm,cortex-a53-pmu";
+> -		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+> -		interrupt-affinity = <&cpu0>,
+> -				     <&cpu1>,
+> -				     <&cpu2>,
+> -				     <&cpu3>;
+> -	};
+> -
+> -	mongoose-m2-pmu {
+> -		compatible = "samsung,mongoose-pmu";
+> -		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> -		interrupt-affinity = <&cpu4>,
+> -				     <&cpu5>,
+> -				     <&cpu6>,
+> -				     <&cpu7>;
+> -	};
+> -
+>  	cpus {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> @@ -149,6 +125,30 @@ oscclk: osc-clock {
+>  		clock-output-names = "oscclk";
+>  	};
+>  
+> +	pmu-a53 {
+> +		compatible = "arm,cortex-a53-pmu";
+> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>,
+> +				     <&cpu1>,
+> +				     <&cpu2>,
+> +				     <&cpu3>;
+> +	};
+> +
+> +	pmu-mongoose-m2 {
+> +		compatible = "samsung,mongoose-pmu";
+> +		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu4>,
+> +				     <&cpu5>,
+> +				     <&cpu6>,
+> +				     <&cpu7>;
+> +	};
+> +
+>  	psci {
+>  		compatible = "arm,psci";
+>  		method = "smc";
 
 
