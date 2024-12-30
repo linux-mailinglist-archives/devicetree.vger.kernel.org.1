@@ -1,154 +1,140 @@
-Return-Path: <devicetree+bounces-134806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0868F9FEAFC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 22:13:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1B69FEB3B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 23:13:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA1CB188364F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 21:13:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3853D161AF4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 22:13:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD64119D8AC;
-	Mon, 30 Dec 2024 21:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C550A19CCEC;
+	Mon, 30 Dec 2024 22:13:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mw1sIOKi"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="l/cA2Eos"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5133219D8A8;
-	Mon, 30 Dec 2024 21:12:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B8718A6A9;
+	Mon, 30 Dec 2024 22:13:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735593131; cv=none; b=T/ZBKfGkMG8NSo8+tFsVFqUU7xbr33rui63nXdK6hZNnkC46j96UG4b7QuSoyWnFkiPndGTgOM7oieWfyWjiXsdmKDnADp5jQ8DadBS1sz6odtagkw/QuJ3AC84+fQhlNzrR5lz725SJIE8OTzqhCdS+zPSAAAk3emKXpVeMdG8=
+	t=1735596789; cv=none; b=hiJftrlGMduI0bb463R2BDrUuqTIe+cfkaF2cjbrhOLIzVDNmv2GjK8pI6PEN22t30c640k5vvQ7lO0kT3dVH2UpjOetmoYjWSoCXTTc8pUDmLrDS/rODKEW3ngcPUmUFclWCZ42pzsZmvzBn/pItE8PuW76PAZHdgA4aObAhEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735593131; c=relaxed/simple;
-	bh=sjQ6AQqTrV2rQKu5TT8e3XNqJKk8DNi/FMTskLJkUYg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=TcW3QtXNQ1oWpEnLE7IHeIhIRGMf9/bq605UvhDKTTuySbmGLKZJOLaXj0OWceZEbVdxHuuUZs1ildJHmeBcNaNiBiSmY9RG1nlHkpBHT1sk52XQNrYSmFs0y0lI1HGyvPLj0TAo1cGu1s1gg6bxY61EWlM3v3p+uGKpKMb/Azk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mw1sIOKi; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BUIrfq9019929;
-	Mon, 30 Dec 2024 21:12:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bgdK/mxKjEx2nxpeFifwgiDucKrI/TtfYPsCtwMew2I=; b=mw1sIOKiV/1dhq1s
-	d8OLfsExWtxLDg4qnOLuCoALKCdvMYPVE+U0emrm2tnxgXQ85twGAjPM1MODmmLB
-	GjacJln3Z0XpcsILZdBBqSUifgucT3J4N2FTVvtPaEKnVBHI3jOfi59o4CHGirec
-	Zvq8YzHU1AuA/x8Br/u5Hd/rCwvFocR17e2+NZNsah5MS+SD0yK3TEXgoRggumWs
-	Pp3rwUVu72oAxOomVcQ5kmJlzjWbaXN3VggRNdyF01cnFP+IaHlqt5fRu7tkKAwh
-	jwVoHpl0meX0GgG6xW/K6Zlr7tfp30XLvFOdDA2qSMpz6oCqJiZbGvM2AiBgTXsq
-	rhWBow==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43v16t86bp-1
+	s=arc-20240116; t=1735596789; c=relaxed/simple;
+	bh=ImqFqnAeyLa1KMzB+h1qlpbhFbskkaUEg4JAlpjCKT8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tzYwxxKcS9u1jKmYZN1h94IHZYZnYO5/NMKGzNYaKHEU14/gdKW1KB/KBzdDXR+7ZAiSfD7+jg71pz3b4+Knt7T5nftjk+2pwsPpXQp3/TjDlxKqEx9WWDwZThZaXxLTN+fOg5oqy4I7Szs/+myztcxOhmUURVDxVeIoWmM1fk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=l/cA2Eos; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BUM2jtq021623;
+	Mon, 30 Dec 2024 16:12:52 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=PODMain02222019; bh=VIsLp/AR6UosPP0g
+	+lq0c71dGWHpBDHQ7ASpPGtIpT8=; b=l/cA2Eosm6H2YyLGXx8SZzw++Lg+NFvz
+	tqM/xEynvNtAaoK7jSWLOS3yMEPmwX3eDMVTz1AsrOM5AINVfO3E+HTnlVFg1Hqn
+	dqUE3SYYXLRLZtSVTMj87Hq6/yqzLm/AIiM60zyEeeqhAjJcJQlnm8XrbvKN9RFl
+	BvueZVWBLdyQwzyj18PIAeiy/ZgO85MIoywBIeBUsLnxf+cL86x0PzYMydhQ/tev
+	rv9HA+M01BECn4c61srBVmIM3854d4z0FwcNcpKCWua3cxWxOdlHZwLQVl3ToDQs
+	X6eOv6bQQV0jTOzIimrmiLiaP8Ieo2UPI44PavfrxgyHRh8CGgrxFw==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 43temk26vp-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 21:12:00 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BULBxF7031433
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 21:11:59 GMT
-Received: from [10.213.111.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 30 Dec
- 2024 13:11:53 -0800
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Date: Tue, 31 Dec 2024 02:41:07 +0530
-Subject: [PATCH v3 6/6] arm64: dts: qcom: x1e80100: Add OPPs up to Turbo L3
- for GPU
+	Mon, 30 Dec 2024 16:12:52 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Mon, 30 Dec
+ 2024 22:12:50 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.13 via Frontend Transport; Mon, 30 Dec 2024 22:12:50 +0000
+Received: from paulha.crystal.cirrus.com (paulha.ad.cirrus.com [141.131.145.123])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 12FEC820247;
+	Mon, 30 Dec 2024 22:12:48 +0000 (UTC)
+From: Paul Handrigan <paulha@opensource.cirrus.com>
+To: <linux-clk@vger.kernel.org>, <sboyd@kernel.org>, <mturquette@baylibre.com>,
+        <devicetree@vger.kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <patches@opensource.cirrus.com>,
+        Paul Handrigan
+	<paulha@opensource.cirrus.com>
+Subject: [PATCH v4 0/2] Cirrus Logic CS2600 clock device
+Date: Mon, 30 Dec 2024 16:12:44 -0600
+Message-ID: <20241230221246.3927158-1-paulha@opensource.cirrus.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241231-gpu-acd-v3-6-3ba73660e9ca@quicinc.com>
-References: <20241231-gpu-acd-v3-0-3ba73660e9ca@quicinc.com>
-In-Reply-To: <20241231-gpu-acd-v3-0-3ba73660e9ca@quicinc.com>
-To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
-	<nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735593076; l=1193;
- i=quic_akhilpo@quicinc.com; s=20240726; h=from:subject:message-id;
- bh=sjQ6AQqTrV2rQKu5TT8e3XNqJKk8DNi/FMTskLJkUYg=;
- b=mGOky1KlbLhralFvRZhTtDzgvu+KsX7Vi+FhNj0iXv5OhBo/3qToKLWtzmHRmhoCYwTk9Y3BO
- Jy32XUR4CLKBbw5AfLzR0JetsbYm299qvYwfzbwng/JkebIiCRr9OT6
-X-Developer-Key: i=quic_akhilpo@quicinc.com; a=ed25519;
- pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ShJPF4g5Zqzw2P0eV6q1ytWJkLS0zthI
-X-Proofpoint-ORIG-GUID: ShJPF4g5Zqzw2P0eV6q1ytWJkLS0zthI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- mlxlogscore=860 impostorscore=0 bulkscore=0 lowpriorityscore=0
- adultscore=0 clxscore=1015 mlxscore=0 suspectscore=0 priorityscore=1501
- spamscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412300182
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: 5_P0wAWx1bzOGuQEPTWPJ530FcajKi4_
+X-Proofpoint-ORIG-GUID: 5_P0wAWx1bzOGuQEPTWPJ530FcajKi4_
+X-Proofpoint-Spam-Reason: safe
 
-Now that we have ACD support for GPU, add additional OPPs up to
-Turbo L3 which are supported across all existing SKUs.
+This patch set provides Common Clock Framework support for the latest
+Cirrus Logic clocking device, the CS2600.
 
-Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+This device has two input clocks and three output clocks.  One of the
+input clocks, the REFCLK, can be a constant reference clock input, a
+crystal reference input, or not available and use the internal clock.
+The second input is the CLK_IN digital clock input.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 2cf16f904aaa..2e03afb85822 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -3337,6 +3337,20 @@ zap-shader {
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2-adreno", "operating-points-v2";
- 
-+				opp-1250000000 {
-+					opp-hz = /bits/ 64 <1250000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L3>;
-+					opp-peak-kBps = <16500000>;
-+					qcom,opp-acd-level = <0xa82a5ffd>;
-+				};
-+
-+				opp-1175000000 {
-+					opp-hz = /bits/ 64 <1175000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L2>;
-+					opp-peak-kBps = <14398438>;
-+					qcom,opp-acd-level = <0xa82a5ffd>;
-+				};
-+
- 				opp-1100000000 {
- 					opp-hz = /bits/ 64 <1100000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
+The three clock outputs are CLK_OUT, BCLK_OUT, and FSYNC_OUT.
+
+v2 changes:
+- Remove | from after "discription" in DT binding.
+- Remove discription from "clocks" in DT binding.
+- Change ref_clk to xti
+- Clarify auxiliary clock pin
+- Change DT example to not have "reg" for the bus
+- Change DT example to change i2c@0 to i2c
+- Remove "OUTPUT" from the clock ouputs in the dt binding include file.
+- Remove AUX_OUT defines
+- Use do_div when dividing u64 by a u32
+- Include the dt bindings include file
+- Use the includes from the dt bindings include file aux output.
+- Move of_device_id and i2c_device_id tables next to i2c_driver struct.
+
+
+v3 changes:
+- Changed clock-names in device tree to an emum since the both clocks
+  are not always required.
+- Changed cirrus,aux-output-source to a string input.
+- Added cirrus,clock-mode as a string input.
+- Fixed ordering in DT example.
+- Removed dt-bindings .h file.
+- Add in_range to allow for acceptable ranges for clock rates.
+
+v4 changes:
+- Change DT discription to add more detial.
+- Move reg property to keep consistant with the required list.
+- Add enum to string DT inputs and change the input values to lower case.
+- Change unevauatedProperties to additionalProperties
+- Reove black line.
+
+Paul Handrigan (2):
+  dt-binding: clock: cs2600: Add support for the CS2600
+  clk: cs2600: Add Fractional-N clock driver
+
+ .../bindings/clock/cirrus,cs2600.yaml         |   89 ++
+ drivers/clk/Kconfig                           |    9 +
+ drivers/clk/Makefile                          |    2 +
+ drivers/clk/clk-cs2600.c                      | 1177 +++++++++++++++++
+ drivers/clk/clk-cs2600.h                      |  173 +++
+ 5 files changed, 1450 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
+ create mode 100644 drivers/clk/clk-cs2600.c
+ create mode 100644 drivers/clk/clk-cs2600.h
 
 -- 
-2.45.2
+2.34.1
 
 
