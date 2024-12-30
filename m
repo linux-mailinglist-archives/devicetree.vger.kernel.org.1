@@ -1,122 +1,172 @@
-Return-Path: <devicetree+bounces-134688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3ECC9FE46B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:10:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E8E9FE4BF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 10:16:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B38511623DD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 09:10:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 929661882745
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 09:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 203691A3BD8;
-	Mon, 30 Dec 2024 09:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485A61A23BE;
+	Mon, 30 Dec 2024 09:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b5UQ252R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o9I0MhAu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A0BD1A23A9;
-	Mon, 30 Dec 2024 09:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52CA81A2557
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 09:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735549833; cv=none; b=ODMhz8Oj/SS3LOwDoNxwcz1aWlvHbrojmCVquoHWo97LgjFYO2BQdboFcz4wEhLuoAcYjZfdiXVI9kiuEdzcpiRBox3lUZxWx++c9KMEq/RJZ51/XwvAMpPFGTSGpH55PLmgmiO24a9IKQ0jZ6uh0ZNV6R95FqRT2lJ6mdXziH8=
+	t=1735549832; cv=none; b=oZm/hFRtqaL0BRUDe6F4aF6J4DEGGN2mbaiEEa/B8mK7hIoodfDeSP4lmfkrfd3EPcm3edMAlyXeKgWBz3Jx4Kds+4n9D+KPV3kaBuCDHFrokFwIq/faB6lb4yjvjNIKOel7OvL4WaTEU13a+K+bzQT8t5Z1Zshs8ySy7eIfIYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735549833; c=relaxed/simple;
-	bh=LvuelUv/PKJnM81qkpumebOSSAWMNddGqZWVrM6Nvbs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=X5pIu7I7UTRapfCoRrQXonjcYbxjhZwqvPjUEeBS8v6JOFAxuBMqgS/+ZQxRv7u24xjD6pfElav9B1HYtMK3WPST3zktFdIGOj81N5/CjTHutDSoYOkpE2avF8pn6WpuKdP9RbiVqhmD0bMpzB0g3o1Td63I8XPDn1+GyRNFRx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b5UQ252R; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU2kV89027261;
-	Mon, 30 Dec 2024 09:10:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pOJNikt3Gho9pfSzSncZfTq62v3DSgp6Hu1UcM+O+1g=; b=b5UQ252RtH6jnP/S
-	c2Li3XgYOaDt4WS6OJy6EA7UpoOC9EWWIQmwr2sfwkar0k6cddfEyhjK98c/B8W4
-	khgH0MOOPlkjQwwwxMT2kkSUT/OFEANK3fbdz8RIRyh7XYpoO0MKUSZtZItTQjhH
-	D+A5/gpykUxgUkGt5bSlIWa713yUTXSudAHgDbqTT52o/R8WVbUfQvnr++3VphA2
-	mHjF0feL1+IeCYRlzsrbJUztjmBwKbdZ8Siw4x5AEbl1uyqAmOcPKNXB7jdjb3Um
-	CXZRLjdWsVeFEA4hRgwIMM1I+KlxLGmCf0wTd5aTSWyCdyqwpG40q3RQzLzsCd4D
-	nQNAYw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43uk120ng6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 09:10:21 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BU9AKKl000353
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Dec 2024 09:10:20 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 30 Dec
- 2024 01:10:16 -0800
-Message-ID: <8568e9d3-7209-42b8-91a2-cda8b98a5790@quicinc.com>
-Date: Mon, 30 Dec 2024 17:10:14 +0800
+	s=arc-20240116; t=1735549832; c=relaxed/simple;
+	bh=4oDYwfmWwrntu/5R7qEyL0UfVIX5O+dFzo5oPSRGiUQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VDaI4+Bc3BP4j1wfu7ceds7mDK5YuW1BluBAsng1FZkMrRRJkCb02Dgq4YvC59p68FO4QtWFY6IwHOkVvXgOo+ZQsyQq/kROB8hpGUQ2f4NMMX/QnMOAnuEewcFuro3WBkPYNI/+L4VmwT53UFhvbiQuK5AAMobBhHbL+zOtpM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o9I0MhAu; arc=none smtp.client-ip=209.85.161.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5f304ac59b9so3987669eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 01:10:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735549829; x=1736154629; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4oDYwfmWwrntu/5R7qEyL0UfVIX5O+dFzo5oPSRGiUQ=;
+        b=o9I0MhAu1U7HwgSAVdEGXKu1DVgFCXfidBySxXlhb+0b+lqLE2lrQ+eZ7RQXYZ0xuk
+         NJEF48ZquRtqY6pmjOVwq1ikPpBTZH50kOWzTwJDy0Bxb3CCwX4HyR9hRa0bMLiNA1vu
+         U7iVhw0vBP4AkyO+4mIaDf5mh6wV/X6D4Q+lnDm3j1ZUi+t+PKlnC7TedmwR1qb3EpVG
+         Kd0x39M5fxTTZpmmWYk07DW/hgn5PCmJcusEEP0mfLz+O5PX0+vSDqpbcPdMXOmCgHyB
+         Ah9AofQ9F9Op3+Ozy4i62icgaZ+BgAxPhoz4GwW/07w5TWLtTE5W+KgcYyM3QQ5biLTZ
+         9W5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735549829; x=1736154629;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4oDYwfmWwrntu/5R7qEyL0UfVIX5O+dFzo5oPSRGiUQ=;
+        b=seAjo0y+sxnE6BtPQUUYSHKTTk3UjEq6M0GZPDaXL5GPbSFnaE00H4v5rLk+xNUG0p
+         QU7ueQ9aDU6tK9x9Q90IoD7+YLV+7nCLSbEiQfjgP7UB2fsTSdfVBZRm96VcXfVaINgT
+         s+wU3io1MvjDfULQdW8q6FUNN2+wSYj0Iwt4AekWNH0dVqCCJ0P6JXGaIVcTpdvzldRb
+         SQk/Asfo5DFlZKyJojfc9cl2Fq+HW1XsPTu/nhcA4Y06R5YNMfYMLBYQ16x6lRJPC0a3
+         fk+m/UD8bjEIUVZH4N1ZuoY2oRn1NYnpEDbShPXpn+xDL2lbMvBrcaeRT6hEjIKORBvd
+         wPFw==
+X-Forwarded-Encrypted: i=1; AJvYcCX/XVuVTbVfxZbiy6MavbVFnyqSzMu0+XRSnYDkXq+ofyhqH+++jlnt7A/TSXj81TOyFFF2dRTIZZ+r@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcOoOyajrZz+mVEX60SRki0fCahIRbYuNlrOdzl02r+bHUpC4j
+	eNsPBWZ+I8Kmv3Mws5pIlgSgT6akuL2WrksEYU67fwCXEf02FM73uiej05A1k22suxDkrIp7oPO
+	zfPg6SexJTiQ0xJIiRQMNZUKcI48FgyjiWyuepQ==
+X-Gm-Gg: ASbGnct1ukvTjiybFL9lJB+J85jWh/eL6KU+viqA8RhKo5uh9rmFb0DysJ593mPTt6z
+	eELuB+100RhVwQtUzvnwy01+p6rYA+/VHyLSuUQ==
+X-Google-Smtp-Source: AGHT+IG00P+bZtTAkQqWziOeW79L1OrLv1yTEyciewwrT3FRO22FXOr3Xvn5NA3178HyMuWVeJiRoWS8XUOV0qbPyE8=
+X-Received: by 2002:a05:6820:1905:b0:5f6:aa5c:8cb9 with SMTP id
+ 006d021491bc7-5f6aa5c8d96mr3825959eaf.1.1735549829414; Mon, 30 Dec 2024
+ 01:10:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
-To: Krzysztof Kozlowski <krzk@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>
-CC: <andersson@kernel.org>, <bryan.odonoghue@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <dmitry.baryshkov@linaro.org>, <gregkh@linuxfoundation.org>,
-        <hdegoede@redhat.com>, <heikki.krogerus@linux.intel.com>,
-        <ilpo.jarvinen@linux.intel.com>, <konradybcio@kernel.org>,
-        <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <nikita@trvn.ru>,
-        <platform-driver-x86@vger.kernel.org>, <robh@kernel.org>,
-        <sre@kernel.org>
-References: <ff53d7f7-0103-4e52-ac0a-c05bf4521cd1@kernel.org>
- <20241229101244.59779-1-mitltlatltl@gmail.com>
- <7fc6c727-d3c1-4c6d-a990-8caeb95c43c5@quicinc.com>
- <5ce5c90b-3fb1-41eb-b5aa-e4e06c8cf7e8@kernel.org>
-From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <5ce5c90b-3fb1-41eb-b5aa-e4e06c8cf7e8@kernel.org>
+References: <20241213-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v1-0-c72978f63713@linaro.org>
+ <20241213-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v1-2-c72978f63713@linaro.org>
+ <1408dcd1-9a46-4cb9-8443-5aa51d61ed56@kernel.org>
+In-Reply-To: <1408dcd1-9a46-4cb9-8443-5aa51d61ed56@kernel.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 30 Dec 2024 09:10:18 +0000
+Message-ID: <CADrjBPre_zjh+i=_YKYiptiMWT74eWC6LDCveA=dJaQQVwkS0g@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: mfd: syscon: allow two reg regions for gs101-pmu
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, willmcvicker@google.com, 
+	kernel-team@android.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6cHNrEQ3sbqy59kutadFkvt4lCjBHAUa
-X-Proofpoint-GUID: 6cHNrEQ3sbqy59kutadFkvt4lCjBHAUa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- priorityscore=1501 phishscore=0 mlxscore=0 lowpriorityscore=0
- clxscore=1015 bulkscore=0 impostorscore=0 suspectscore=0 mlxlogscore=651
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412300078
 
-On 12/30/2024 3:35 PM, Krzysztof Kozlowski wrote:
-> On 30/12/2024 08:28, Aiqun(Maria) Yu wrote:
->>>>
->> [...]
->>>>
->>>
->>> Check the motherboard, https://postimg.cc/V5r4KCgx (Credit to Tianyu Gao <gty0622@gmail.com>)
->>
->> The link is not accessible from my end. Could you please help follow the
-> 
-> Link is accessible. Maybe you are using corporate network with some
-> firewalls/content filtering?
+Hi Krzysztof,
 
-It's highly likely that my corporate network has blocked this.
+Thanks for your review feedback, it is much appreciated!
 
--- 
-Thx and BRs,
-Aiqun(Maria) Yu
+On Sun, 22 Dec 2024 at 14:24, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 13/12/2024 17:44, Peter Griffin wrote:
+> > To avoid dtschema warnings allow google,gs101-pmu to have
+> > two reg regions.
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> > I don't really like this patch, but also didn't want to submit the series
+> > with a dtschema warning ;-)
+> >
+> > Possibly a better solution is when Robs patch
+> > `mfd: syscon: Allow syscon nodes without a "syscon" compatible` [1]
+>
+> PMU which spans over two blocks is not a simple syscon. These would be
+> two syscon devices.
+>
+> If you request regmap from such syscon, which regmap you get?
+
+That is a good point, if other drivers in the future need access to
+the pmu-intr-gen registers then it would be good if this was modelled
+as its own syscon device.
+
+Another point to note is that only the PMU registers need the custom
+regmap registered in exynos-pmu, the PMU_INTR_GEN register region
+works with normal syscon / mmio accesses, so it would be a different
+regmap.
+
+>
+> I am not sure whether the PMU is really split here. Usually the main PMU
+> was only one and additional blocks called PMU were somehow specialized
+> per each IP block.
+
+PMU_INTR_GEN has its own entry in the memory map, so in that respect
+it's a "device" (it has its own 65k SFR region).
+
+PMU: Base Address 0x1746_0000
+PMU_INTR_GEN: Base Address 0x1747_0000
+
+The documentation isn't particularly detailed on PMU_INTR_GEN. In one
+place it says "One PMU interrupt generator for handshaking between PMU
+through interrupts". In another, "PMU and PMU_INTR_GEN are for Power
+management." and then we have the register names where the description
+it really an expanded version of the register name
+
+e.g.
+Register: GRP#_INTR_BID_ENABLE
+Description: Interrupt Bid Enable
+Reset Value: 0x0
+
+Things might be a bit clearer if I had access to the firmware code on
+the other side of this PMU handshaking which I believe is the APM, but
+sadly I don't.
+
+>
+> Maybe you have here two devices, maybe only one. If it is only one, then
+> it is not a syscon anymore, IMO.
+
+I was going to suggest modelling PMU_INTR_GEN as its own sycon node,
+and then either: -
+
+1) Updating exynos-pmu driver to additionally take a phandle to
+pmu-intr-gen syscon, and register the hotplug callbacks.
+
+or
+
+2) Create a new driver named something like exynos-pm or exynos-cpupm
+which obtains the PMU regmap and also a phandle to PMU_INTR_GEN
+syscon, and register the call backs.
+
+Is there any preference from your side over approach 1 or 2, or maybe
+something else entirely?
+
+Thanks,
+
+Peter
 
