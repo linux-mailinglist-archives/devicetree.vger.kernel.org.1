@@ -1,87 +1,142 @@
-Return-Path: <devicetree+bounces-134667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A5C09FE32F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:22:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 379829FE33D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 08:29:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FCAC1881C1C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:22:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 837983A1C0C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 07:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEBD1974FE;
-	Mon, 30 Dec 2024 07:22:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13F619F40B;
+	Mon, 30 Dec 2024 07:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="NETHTdzZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Zso6f6ON"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 852738F4A
-	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 07:22:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB1AC8F4A;
+	Mon, 30 Dec 2024 07:29:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735543346; cv=none; b=dyJklfubRwdFY03XDt2DhbUhsCkRBoOOVyQmVdUH9V1xMGpXGKX3TXcGk6J2ZpzlvmAWawVoIdBLivbd+agUafUqc43Hz5NRpcrTObtRcgWp2L8LXExlXZRn7Uw6Z1tlTBxvZs4oP+Z999MNGGhDQ2XnlLm34GusVbvPG6/fRHU=
+	t=1735543747; cv=none; b=WPEFfpocjH4xq51Xw3XmotMrtDsY2diWBj3ymqP2ZVWk5Xm+bLjWYpx/r3xJirMn5EmVb4k/aM8dx4EdWn+Q6GkwZ8xREx18cuOtu1pEZEmtEqRLPs9v59V+pi/eddMmV6dFH15uTMNOdy0skSLBX+jaXHKCRp8unpsOVjNj3eM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735543346; c=relaxed/simple;
-	bh=ejiIhZBkr+pxFjMxIZuU5K9e7hu7uM+u54Tdq8/zmV8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V1/9TOWJ+dOYBE62psrxpcaVxuozuOkG+hBvT7vqkCMNefx2lKDkT5Z85ay9jF+vpbw3v7Ud1ElKk+nHheE5uU7hxo/5Yzn8zR7y7BLyQP88RYWqYsMFiEIFxa+NskKkfV0MGaB0z4BP2wA8perdBqCbUe7pgeWRQWpvoY0niIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=NETHTdzZ; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Ni0/JXBdNOrRusohFjRxi3utlOmJOryGodrzHL5Q1yM=;
-	b=NETHTdzZPxV/6p/IBSYZ+MiJK/VNwXVHn+DM2oh2TVefCARJrwhk7stAltdKs5
-	BK/4w7piqUwQxv8LUHufQYBjLoWI+vng4TvFJTPLLBsYEH4P+EHHN7hCdK/0HDJ1
-	kBLOqP/vjyzTWSv1D7pxGNC5Zmd8A32NL0ce5hSSGy66g=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAHbinJSXJnSekeBg--.61568S3;
-	Mon, 30 Dec 2024 15:20:42 +0800 (CST)
-Date: Mon, 30 Dec 2024 15:20:40 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx8mm-phg: Add LVDS compatible string
-Message-ID: <Z3JJyDsHSpH7jJuu@dragon>
-References: <20241210105705.116116-1-festevam@gmail.com>
- <20241210105705.116116-2-festevam@gmail.com>
+	s=arc-20240116; t=1735543747; c=relaxed/simple;
+	bh=ma0dPynFxLWsFo0VXTorvpeLC1XqPhHxqSt1B5Movi8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oFDHui5auTZhVO5xCjc5xbgXFUPbk9HqEqAQANXPkwajbbWJJGpZ4A4NaYjff2494jCEACNesKt1ZZWznP4lPYje5t7APlwmV0aQwCb76YrEUybf2DnG4x7tRgwhq8/4o0ehI/EgKl+iWF5cBJ1TMHOP530RaKzdqpo6jmKbJT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Zso6f6ON; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BU00MDR002620;
+	Mon, 30 Dec 2024 07:28:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3Q50vJAZpKCoqJT5Un0pZozhJ37/LQDZWrlzxdceSUE=; b=Zso6f6ONW2LUJUJi
+	IDrGaLuqa3vjdLsX6zqEQHQrwwyLWua2NuS9KNfzhm5waGxKAUW7e6ezdIAsxqwV
+	gLtEG86zewL/6AIxALTXRuAhFp6Vr0gf0tswb0PD4odjE2IfbMvo1uv57eh5Jymc
+	0xe7ND+gLmwJ1JTQ+Nv6JKmtRjApPTklhLQSMnhdUqEBopaqhJhsD4zIki3GJRnW
+	pSNfdgNJtln+c4INGFcx/pcZwHBuxFOnO87BsFxlTa1xJiwEPy/WIlBV0ykkdM1y
+	jjPOFwaBcfMjSrfvHbeMJJgWh/tzYl92cazGVq1e2xIIGc9xHgTGyJy8eNg281lJ
+	Vs96Mg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43u6u2hb5h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Dec 2024 07:28:50 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BU7SnDF009811
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Dec 2024 07:28:49 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Dec
+ 2024 23:28:45 -0800
+Message-ID: <7fc6c727-d3c1-4c6d-a990-8caeb95c43c5@quicinc.com>
+Date: Mon, 30 Dec 2024 15:28:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241210105705.116116-2-festevam@gmail.com>
-X-CM-TRANSID:Ms8vCgAHbinJSXJnSekeBg--.61568S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrKry8tw43Jr48KrW5uFWkCrg_yoWxCrgEkF
-	1FvF4xCw47ZF48JF15Can5JFWUua1DCay3Awn8J3yqgw1v9FyrWF15tryUJrW8ArZxCr97
-	tF45X3s5t39rGjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU08MaUUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEgXFZWdyDiXY5AAAs1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
+To: Pengyu Luo <mitltlatltl@gmail.com>, <krzk@kernel.org>
+CC: <andersson@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <gregkh@linuxfoundation.org>,
+        <hdegoede@redhat.com>, <heikki.krogerus@linux.intel.com>,
+        <ilpo.jarvinen@linux.intel.com>, <konradybcio@kernel.org>,
+        <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <nikita@trvn.ru>,
+        <platform-driver-x86@vger.kernel.org>, <robh@kernel.org>,
+        <sre@kernel.org>
+References: <ff53d7f7-0103-4e52-ac0a-c05bf4521cd1@kernel.org>
+ <20241229101244.59779-1-mitltlatltl@gmail.com>
+From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20241229101244.59779-1-mitltlatltl@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4k_lzmMPo2W1ZvgZFZ_MGMCvV20xdCrv
+X-Proofpoint-ORIG-GUID: 4k_lzmMPo2W1ZvgZFZ_MGMCvV20xdCrv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ clxscore=1011 spamscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0
+ mlxlogscore=999 suspectscore=0 phishscore=0 priorityscore=1501 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412300062
 
-On Tue, Dec 10, 2024 at 07:57:05AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> The imx8mm-phg board has an AUO G084SN05 V9 8.4" 800x600 LVDS panel.
-> 
-> Improve the devicetree description by passing the LVDS compatible
-> string to fix the following dt-schema warning:
-> 
-> imx8mm-phg.dtb: panel: compatible:0: 'panel-lvds' is not one of
-> ['admatec,9904379', 'auo,b101ew05', 'auo,g084sn05',
-> 'chunghwa,claa070wp03xg','edt,etml0700z9ndha', 'hannstar,hsd101pww2',
-> 'hydis,hv070wx2-1e0', 'jenson,bl-jt60050-01a', 'tbs,a711-panel']
-> ...
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+On 12/29/2024 6:12 PM, Pengyu Luo wrote:
+[...]
+>>>>> +      - const: huawei,gaokun-ec
+>>>>
+>>>> How did you get the name?
+>>>>
+>>>
+>>> From website of Huawei([1]), please search for 'gaokun' here, we can know
 
-Applied, thanks!
+Gaokun appears to be a code name from Huawei for the HUAWEI MateBook E
+Go devices.
 
+Could you please specify which EC functions are customized specifically
+for Gaokun and which EC functions are common features used in
+qcom,sc8180x and qcom,sc8280xp boards? For example, the upstreamed ones
+like sc8180x (Lenovo Flex 5G/Primus) and sc8280xp (CRD/Lenovo ThinkPad
+X13s/Microsoft Arcata).
+
+>>
+[...]
+>>
+> 
+> Check the motherboard, https://postimg.cc/V5r4KCgx (Credit to Tianyu Gao <gty0622@gmail.com>)
+
+The link is not accessible from my end. Could you please help follow the
+document tips referenced by [1] if this content is important for the
+overall naming design?
+
+Here are some snippets for reference:
+"for 'volatile' documents, please create an entry in the kernel
+bugzilla https://bugzilla.kernel.org and attach a copy of these documents
+to the bugzilla entry. Finally, provide the URL of the bugzilla entry in
+the changelog."
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/maintainer-tip.rst
+[1]
+
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
