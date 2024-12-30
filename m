@@ -1,140 +1,120 @@
-Return-Path: <devicetree+bounces-134811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D6A69FEB48
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 23:25:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 770AD9FEB6E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 23:34:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07C061883174
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 22:25:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B395A3A103A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2024 22:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4481A19CD0E;
-	Mon, 30 Dec 2024 22:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91C8419D089;
+	Mon, 30 Dec 2024 22:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ANOEQYIC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JQ6my9fM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0985033C9;
-	Mon, 30 Dec 2024 22:25:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7FE719ABB6
+	for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 22:34:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735597549; cv=none; b=jgP4lU0k2B4yrgo5vBktNgsR7TNWWGU3NgsXv13lKz7vNG+2HfmG/6o9TJcXX4cPwCqnF195z89tBd168sJYascVGjRlQidCJPIL0tHEy+EcM5LYLNBZn8grKjTJSjkgYQ/CzTCQh0AwrX/ex1yzgBjswWdFR7KhrdGv9XdW20Y=
+	t=1735598078; cv=none; b=LctTTt/Euu037SOxhgpkWYUYFJD2n2I6ASIPu3Uya+7zwOyWs/uRfUO7iijzqu2upz5MbDfqI8j5U7Yqe0xCF9OueRXEXJxRzDW9usVKKe1CLEZDo0hmMEB8yatcpA4laUO0WbQ9ljEvqTWsCMZAPM/uWEgPTYSZpgkkGU8UvWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735597549; c=relaxed/simple;
-	bh=seSfdDx4urL0UaGKOK2Me2hdCtSftuthkBmEb9T7lZQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=qWU2K+a5uPps/8jZEyiWsqEHjYzbQIRyqgD4K2hiK4YIqfkQ9jmgpFzblruSN50NCznXihlFt64q5yQSiwT4LpBuXqf/mxH/zciDF6pkZcvmGGKke2U/gbpkC3AC3Dz6g90QBPN4IntGPU/HphPIbr8dIMZ94/FuUnsgTDGAJ2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ANOEQYIC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74186C4CED0;
-	Mon, 30 Dec 2024 22:25:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735597548;
-	bh=seSfdDx4urL0UaGKOK2Me2hdCtSftuthkBmEb9T7lZQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ANOEQYICVHhXohQQekYt8/6lY9XvBPzzYfiSUkCf0hmSmqq9CoKFIpNGQPlsHXYGE
-	 dS+38Y8sTewF26Z+ysMuYKDkNN9haQ9NdGhrLzp4+2CaF9xLTgMIvNAvnwZyPvUDBu
-	 OD9IKo2CRbmoSkA8NzERg/naoSNh9MSrCldmtyHlrjY/xuLEVk+pAHSjc8ECeclHJm
-	 D1+/2vNat6s+9s0CLaZy+guUl0x8CMGeJq5nkT+U8stCB9tEXNllCIngFNNiKX2mQh
-	 +UUTmEvHARYVCLHJTF4ke8CQabO8AKbWV0oasIpGBIkosJ6l6JqlsZpubp4sFbchsl
-	 DZYalSK3Vb3cA==
-Date: Mon, 30 Dec 2024 16:25:47 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1735598078; c=relaxed/simple;
+	bh=LOO1Rh2481JcNYNndqVuMRmZHFmkQrOk9y9yQ01ttTE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kpRHRvb07Uf7cr/iVqIvmMUAqb8lC+KTArFPMGEzbJ/UPvsoCE8WeB6MDrwXxRtsCb/RGjS9CMqad8C3o0GzfpNN6mYIKfZoLhyHB85vuwG0P5aVPVzOucSbb8y3fZKNHxdD2WqeqTS++QG7Ar9DuxRtdzgKbd3uM/mfvibQXmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JQ6my9fM; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4361fe642ddso101453335e9.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 14:34:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735598075; x=1736202875; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qf+6YUKEAK6RmW0Zawgag6y0Zk8iAO/X5OAFkTK3r3s=;
+        b=JQ6my9fMV6X2iAKiGGq1e9qXhQMIRbn11BzoUst1O7bkFQvjYJbMjtGCtCFCVnFwCT
+         l/m8PyjDh50YbMickMpckrFpWf97vnZ8gPwzOPp0mT8mD/Dq0T6O4c7apfVqv7L2qyaz
+         bXmhWTXLwfnTDz8Prvo+ykF6yFbly3hW+zVROtgiBoUMjIFTlh1Bi7bJBluqcig8Vpio
+         9zOksAh01c2OGD0VAtP3mjnmA3Q9Q6Vn/VK8KUUvctsbTF2HpKdUKyBAFdiiAFDxOoEC
+         aLnQZHA9GhXvLr+y2p3y8aMSL/uU/X5nzLCLWwK1WcKNSi+swPEY87p9OTfpGOvKJ8pb
+         Axwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735598075; x=1736202875;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qf+6YUKEAK6RmW0Zawgag6y0Zk8iAO/X5OAFkTK3r3s=;
+        b=QBdQLIU4tFhFOozokLbnTbALsz9rZ6ynrHCst0SZ40CEOvdkeEoie+9xe8cRwjM60Z
+         oq5olz3qKuyLXpPOQe/08T1ON7ZUgIC4NxWkmJlKO+qaWNNWP1mpsmZyZHDzITAp1vxV
+         Lo0yaniIbwIBGlvlPsLTY99PtT57wT5femyZ/qNRZz8UnsmZv+bV1iBGafAyKkZGdvUw
+         0sbSaGsRXsaWWb0CqO0es/n/KQnffJnW7AC79JzN+wpERBMpiI1yGDq5pNOoiaIWyKuN
+         W2EVLxsaH/JQ5uOx+NF55VBtqeGthvTC9n0y5TcWd0eXO7Dal0lSNkr2qqgPUUVQEX0L
+         Ssaw==
+X-Forwarded-Encrypted: i=1; AJvYcCXx8GrFyCIgt5zVRTG462sPekBZpDIQpTAjSyx5pp0tBZK95V/d9hfzG4bOAdK28LSm7eJFN7CwsGiV@vger.kernel.org
+X-Gm-Message-State: AOJu0YyY0uSBrZSO9c5+ZuIuzpE2giT0CsF53IIHSYuNCJh9Fjj8W2/C
+	oFraocr64lLvuCUmd20Nh6gRtSRedndxXI0UuE83U+fr2v/p7COQP8J80KuYcZo=
+X-Gm-Gg: ASbGncvpPnUTgnEJvIeA8vfIuOl4Tg+9owa+kKX9p39/+wAksSTPx0SXs7At64a18nf
+	n80IsvYY3eny0sIfDvq7vfj4WcCY6Tusp5jmuMr2bKDnNKaUmAJnBW5+vQ+PNOLrkKHZPdKbcBa
+	pUldzigUX1tlt/2WAbxj+pB4ifYD4jc4CZk55NKqHO4/rex0nG0kQKb5A/m0jZs8chg4Y/7wPhz
+	kqJGC1XkZ7UngxImMLoYNRvazclJOmfXv3uI2+3aBWoin1oZSqXEQ5ryqjIq8on3GI6tA==
+X-Google-Smtp-Source: AGHT+IEkGNe23vunsFVznIzhni6Rd6kVfbzGRe+omgR6DEZtQKbekPwmqGHbmW4xitobE7MNowwCkQ==
+X-Received: by 2002:a05:600c:3b23:b0:436:4708:9fb6 with SMTP id 5b1f17b1804b1-43668b5e02dmr275300155e9.20.1735598075131;
+        Mon, 30 Dec 2024 14:34:35 -0800 (PST)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43665cd9c29sm349733625e9.14.2024.12.30.14.34.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Dec 2024 14:34:34 -0800 (PST)
+Message-ID: <c9d97c40-d3bf-486f-b348-91ffedeece5a@linaro.org>
+Date: Mon, 30 Dec 2024 22:34:33 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, devicetree@vger.kernel.org, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Simona Vetter <simona@ffwll.ch>, Sean Paul <sean@poorly.run>, 
- freedreno@lists.freedesktop.org, Bjorn Andersson <andersson@kernel.org>, 
- linux-pm@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Viresh Kumar <vireshk@kernel.org>, dri-devel@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>, 
- Rob Clark <robdclark@gmail.com>, linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>, David Airlie <airlied@gmail.com>
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <20241231-gpu-acd-v3-4-3ba73660e9ca@quicinc.com>
-References: <20241231-gpu-acd-v3-0-3ba73660e9ca@quicinc.com>
- <20241231-gpu-acd-v3-4-3ba73660e9ca@quicinc.com>
-Message-Id: <173559754709.2660868.7488137827927170444.robh@kernel.org>
-Subject: Re: [PATCH v3 4/6] dt-bindings: opp: Add v2-qcom-adreno vendor
- bindings
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: x1e80100: Add CAMCC block
+ definition
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20241227-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v2-0-06fdd5a7d5bb@linaro.org>
+ <20241227-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v2-4-06fdd5a7d5bb@linaro.org>
+ <aaead9e5-a978-4b3b-8635-bd8be647ae35@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <aaead9e5-a978-4b3b-8635-bd8be647ae35@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-On Tue, 31 Dec 2024 02:41:05 +0530, Akhil P Oommen wrote:
-> Add a new schema which extends opp-v2 to support a new vendor specific
-> property required for Adreno GPUs found in Qualcomm's SoCs. The new
-> property called "qcom,opp-acd-level" carries a u32 value recommended
-> for each opp needs to be shared to GMU during runtime.
+On 30/12/2024 19:45, Vladimir Zapolskiy wrote:
+>> +            status = "disabled";
 > 
-> Also, update MAINTAINERS file include the new opp-v2-qcom-adreno.yaml.
-> 
-> Cc: Rob Clark <robdclark@gmail.com>
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> ---
->  .../bindings/opp/opp-v2-qcom-adreno.yaml           | 97 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 98 insertions(+)
-> 
+> Please do not disable the clock controller, it was discussed in the 
+> past, that
+> all clock controllers should be enabled by default.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Looks true but, news to me.
 
-yamllint warnings/errors:
+Do you have a link to the discussion?
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml: ignoring, error parsing file
-Traceback (most recent call last):
-  File "/usr/bin/yamllint", line 33, in <module>
-    sys.exit(load_entry_point('yamllint==1.29.0', 'console_scripts', 'yamllint')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 228, in run
-    prob_level = show_problems(problems, file, args_format=args.format,
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 113, in show_problems
-    for problem in problems:
-  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 200, in _run
-    for problem in get_cosmetic_problems(buffer, conf, filepath):
-  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 137, in get_cosmetic_problems
-    for problem in rule.check(rule_conf,
-  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 583, in check
-    yield from _check(conf, token, prev, next, nextnext, context)
-  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 344, in _check
-    if expected < 0:
-       ^^^^^^^^^^^^
-TypeError: '<' not supported between instances of 'NoneType' and 'int'
-./Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml:97:1: did not find expected key
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.example.dts'
-Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml:97:1: did not find expected key
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241231-gpu-acd-v3-4-3ba73660e9ca@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+---
+bod
 
