@@ -1,260 +1,202 @@
-Return-Path: <devicetree+bounces-134821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FD09FECDB
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 05:48:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75ECE9FECE4
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 06:00:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBAD47A16EE
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 04:48:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CD3E162142
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 05:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90BE15A848;
-	Tue, 31 Dec 2024 04:47:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B6C715442D;
+	Tue, 31 Dec 2024 05:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YAUX3s7v"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ltmPATYy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0C2153800
-	for <devicetree@vger.kernel.org>; Tue, 31 Dec 2024 04:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462D213C809;
+	Tue, 31 Dec 2024 05:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735620478; cv=none; b=jnKqKMY/7ALB/mLeLYi5S8KUK28yh+JK8f6gxL39DafzXOyxztfGM0/NFzHcH5XVKwpXwaGuXY9+lvTfLfLq1XJZdxYfgIC8WdQ7WKSrZCgI56MsxQlnXw8MM0r66wkBdynDvFGIZZ1qWrUx43cIg0XRiSQ2UiO5UzQHB80osqo=
+	t=1735621224; cv=none; b=YNYK8+Bzzl4fx2G4eijhjezfBMTp/XfXY4rqlvalvjTiWputmbLc9EJ9DkzpuZTGEaktolvOLIxR+qRvb6c0ZGSstA22LZEUYqPXmPYLkArB4bEz9cegtc5rB9kJSKGGw2m5JfTzu8hwBnrnv2n1AWgtHOX6qXE+zC4ZKOGXHIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735620478; c=relaxed/simple;
-	bh=UpH7lfEEkfF8NKFKKgvKrQxfQlrAYZpimtTRVKfmnzs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N84m3341JEjHuwb7BG/fLHrlvvMibgabOmTml3CFCEl8yyrP/c/iLFU0ovHB6KxpidMykUqx/vYM1ho/13VVSrIwuUf6ISuPwW65BxoT3/p2KRAjZOxIUjaUBmzNTuqgi61LzY4YIjbom6QsW/Y7LbOCJ8Ey8OD0PMIxGXf3dUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YAUX3s7v; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BV0hDpA024359
-	for <devicetree@vger.kernel.org>; Tue, 31 Dec 2024 04:47:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	s=arc-20240116; t=1735621224; c=relaxed/simple;
+	bh=YzY3PbcvPveYA0Er+m9b94pGh/wJnWaCZp7qO5LwPNg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MSdIWmpyJVHlQ7bMmwjwIBzadzZKf/wGwwVZwTTNSifat48Yzj035Q1YUvFcR1KdMhtvmdaqO8r08vuLDBRc/OFK5kmpPOzb9UN3qeGt2hAJlRFZjvxqTTfYXpjg9nKtRO0U1bw6j1UgO/5xCClF5wXvYmQI8dw4hsbIiSJ/7Fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ltmPATYy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BUMViGw024008;
+	Tue, 31 Dec 2024 05:00:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZKqfrwjFddNEtBKNkH5xy3hzGi3JwSNPhz3E+7WNCHY=; b=YAUX3s7vU2NqdxH9
-	cdB4d87vWLTk/pQgj40W9kFbOwSYnXOPrB/XGOdHdQSIUU7WnU6G+zLZa7ihI4hr
-	Z/mLTB5pH0h3Wgq3OGIGkBpcr5JYrclVzSYBMHe3bvwcpAdhVNsIRW6EtQMr7wk5
-	GmL8EEDlaGcIe9yEhtIZR97ZtZG63/rxPVXGqVlNuheaSR2JUqFjNejcdpQyUAXW
-	rgF61zO2YA3INdsJGy28czhmUzxjanTnVl9667E9JhDXTizFLScQU7Jf1EhsK3Qy
-	EbzYvILSsLUKwwc9Y9Ae9OkzpH+TU+QYUoY2ezU99IZWGufHtlXKAQvQpWiyCc44
-	QsJEKg==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43v6af0cxf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 31 Dec 2024 04:47:55 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2163a2a1ec2so223452935ad.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Dec 2024 20:47:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735620474; x=1736225274;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKqfrwjFddNEtBKNkH5xy3hzGi3JwSNPhz3E+7WNCHY=;
-        b=pOti10Icfyi4cdGd9IwPnW3Z0Deybn1v+rEsEZhPs9XGDqQ5c2UBl2L2wPfMjkoPDD
-         ddAgVwrwW+m+wxDyykXl1VoYdyQ4dObzJAdF4pjAYzNpvjXPIg57Qv9+4Z86m2skJtAT
-         MB7TGpXaIAjgEZD1Er4Zcjid2SleB7cKkl0w6otADSkqJYtzv1wxhE9+jIMbvQ7zuosC
-         MLptEoHuVufPB8RS6IXqEqFBDAbn/fkmLJDrYSr2hwmze/sC9q5q7KY+kfwqM7ZhCNJZ
-         yrp0AcK8VoJDBFUExatuoawailKE0cp70qTxdAvFdWyn6ulq2YH2prCMaR5WClN+1vlc
-         qtwA==
-X-Forwarded-Encrypted: i=1; AJvYcCV8SdMMuIuue+AH0Hf/1Uyf65TwD5FUsYnh+9lOMo2sqZN3/IQsVtH0qBEUvcwldGuD6oCSJYVIyXp9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZxARmDZeShxk+sQGnByzJ3fm4HivjazSNbVFoq/VbDzqj8eWl
-	LWogkg+6xYRGhwx77qihwM2XvxKAakDHI5jJcCm9UEsSXsY5WdWa0VdBEtylv9SWhIEatUOiJvP
-	vkFv7phRSZNdmSb47i5nlhxnhWqKzevL0/0jGsSLOpYAkY090BdVGiWW8BQY4
-X-Gm-Gg: ASbGncs1/1ib2bwT7xS2csRuqCaBP9lZYiIiFe4NoOqxle3XxuT8KWvPNTq1+YRdUYH
-	KMS7h708HPTRSlEDjq+8Xk0bvGtyAifgqQtscanql40IRJ1d5TnjehcNn8gNHePj4sPiGHL/5dJ
-	Wd9EDd54q5SsJNO4LcryTYm7nYN6n/h/cMaAXL3HJFi9wqB1ZmVxcHIivcsZLvxYOY1paEZsVIu
-	WHeLiWhP8i2ASjVEHP2eVSy3XdWeOVuKp1gS61Jd0q0p+T9PSweOsgQCwyx4kn9y406nPA/2YkU
-	LBokiAW44mU=
-X-Received: by 2002:a17:902:c943:b0:216:2e5e:96ff with SMTP id d9443c01a7336-219e6cd7bc3mr637511885ad.0.1735620473911;
-        Mon, 30 Dec 2024 20:47:53 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEfnXVELaWhLUrVfPNUy3g+GH/Lxzp3x2ulb0cHgWBczGzXYRn3hC7nFJP3anYXCMh564ZqtA==
-X-Received: by 2002:a17:902:c943:b0:216:2e5e:96ff with SMTP id d9443c01a7336-219e6cd7bc3mr637511645ad.0.1735620473541;
-        Mon, 30 Dec 2024 20:47:53 -0800 (PST)
-Received: from [10.92.200.237] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9f6c17sm186615175ad.221.2024.12.30.20.47.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Dec 2024 20:47:53 -0800 (PST)
-Message-ID: <2684f4b3-b79d-14a2-c547-8b1f7000737c@oss.qualcomm.com>
-Date: Tue, 31 Dec 2024 10:17:46 +0530
+	t1Ywxb/8QeACUBS84I7kVKXn6HdMiacrafTLO8IBaVE=; b=ltmPATYy89tpm3Rk
+	/CWXqoT35jXXterUHv7yT15/21GTE1pDoYjpKVy/Km5alOSqFYSU7RcB4gGdB3N2
+	6dPxVYpO6XdM6iU9PNMYy5sp3lg6rLNul0E6M2pcfr6PYeKZgcIM1i9xSEIV4Su/
+	zVQ014WLr/2Qu0E5f2GB0a68sVAHI3ajIP+SzGZCAFgiCttSFBdVzeD1q59CSZgC
+	ctf9rghPCUGROtHvqoFguNCqULWxHmGwICAk7lwb0RLCx+DlZGZ0RSZZQY+4QxrE
+	1Jxe12Omd1hrewb4QP/cvU3bOx6oiP1uvR+Sg6LAlYKo0pcl7Y27YJZ+fxPyM8OD
+	z9TZ2Q==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43v35mrntg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Dec 2024 05:00:09 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BV508ve024076
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Dec 2024 05:00:08 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 30 Dec
+ 2024 21:00:04 -0800
+Message-ID: <1dff7a78-1693-45d7-8ee3-357b33848595@quicinc.com>
+Date: Tue, 31 Dec 2024 13:00:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 2/4] PCI: dwc: Add ECAM support with iATU configuration
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] platform: arm64: add Huawei Matebook E Go (sc8280xp)
+ EC driver
+To: Pengyu Luo <mitltlatltl@gmail.com>
+CC: <andersson@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <dmitry.baryshkov@linaro.org>, <gregkh@linuxfoundation.org>,
+        <hdegoede@redhat.com>, <heikki.krogerus@linux.intel.com>,
+        <ilpo.jarvinen@linux.intel.com>, <konradybcio@kernel.org>,
+        <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <nikita@trvn.ru>,
+        <platform-driver-x86@vger.kernel.org>, <robh@kernel.org>,
+        <sre@kernel.org>
+References: <564fcad7-59d5-44da-8ed7-78fade8e40a8@quicinc.com>
+ <20241230104404.184616-1-mitltlatltl@gmail.com>
+From: "Aiqun(Maria) Yu" <quic_aiquny@quicinc.com>
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        cros-qcom-dts-watchers@chromium.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_vpernami@quicinc.com,
-        quic_mrana@quicinc.com, mmareddy@quicinc.com,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>
-References: <20241224-enable_ecam-v2-0-43daef68a901@oss.qualcomm.com>
- <20241224-enable_ecam-v2-2-43daef68a901@oss.qualcomm.com>
- <12fb6164-fa53-46e7-9a22-bb9b373f9860@oss.qualcomm.com>
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <12fb6164-fa53-46e7-9a22-bb9b373f9860@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 6YIFwFw6EkRcObfWJNVXPQrQnXeQSr30
-X-Proofpoint-GUID: 6YIFwFw6EkRcObfWJNVXPQrQnXeQSr30
+In-Reply-To: <20241230104404.184616-1-mitltlatltl@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: L4K6RnS3fiL2G-z2UsHyP8fbKQI9Y2IG
+X-Proofpoint-GUID: L4K6RnS3fiL2G-z2UsHyP8fbKQI9Y2IG
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0 spamscore=0
- impostorscore=0 bulkscore=0 phishscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412310038
+ suspectscore=0 impostorscore=0 mlxscore=0 adultscore=0 bulkscore=0
+ malwarescore=0 phishscore=0 spamscore=0 mlxlogscore=999 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412310039
 
+On 12/30/2024 6:44 PM, Pengyu Luo wrote:
+> On Mon, Dec 30, 2024 at 5:04 PM Aiqun(Maria) Yu <quic_aiquny@quicinc.com> wrote:
+>> On 12/28/2024 1:13 AM, Pengyu Luo wrote:
+[...]
+>>> +     i2c_transfer(client->adapter, msgs, 2);
+>>
+>> ARRAY_SIZE(msgs) is suggested instead of pure 2.
+>>
+> 
+> Agree
+> 
+>>> +     usleep_range(2000, 2500);
+>>
+>> Why is a sleep needed here? Is this information specified in any datasheet?
+>>
+> 
+> Have a break between 2 transaction. This sleep happens in acpi code, also
+> inside a critical region. I rearranged it.
+> 
+> Local7 = Acquire (\_SB.IC16.MUEC, 0x03E8)
+> ...
+> write ops
+> ...
+> Sleep (0x02)
+> ...
+> read ops
+> ...
+> Release (\_SB.IC16.MUEC)
 
-On 12/30/2024 8:34 PM, Konrad Dybcio wrote:
-> On 24.12.2024 3:10 PM, Krishna Chaitanya Chundru wrote:
->> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>
->> The current implementation requires iATU for every configuration
->> space access which increases latency & cpu utilization.
->>
->> Designware databook 5.20a, section 3.10.10.3 says about CFG Shift Feature,
->> which shifts/maps the BDF (bits [31:16] of the third header DWORD, which
->> would be matched against the Base and Limit addresses) of the incoming
->> CfgRd0/CfgWr0 down to bits[27:12]of the translated address.
->>
->> Configuring iATU in config shift feature enables ECAM feature to access the
->> config space, which avoids iATU configuration for every config access.
->>
->> Add "ctrl2" into struct dw_pcie_ob_atu_cfg  to enable config shift feature.
->>
->> As DBI comes under config space, this avoids remapping of DBI space
->> separately. Instead, it uses the mapped config space address returned from
->> ECAM initialization. Change the order of dw_pcie_get_resources() execution
->> to achieve this.
->>
->> Enable the ECAM feature if the config space size is equal to size required
->> to represent number of buses in the bus range property, add a function
->> which checks this. The DWC glue drivers uses this function and decide to
->> enable ECAM mode or not.
->>
->> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
->> ---
->>   drivers/pci/controller/dwc/Kconfig                |   1 +
->>   drivers/pci/controller/dwc/pcie-designware-host.c | 136 +++++++++++++++++++---
->>   drivers/pci/controller/dwc/pcie-designware.c      |   2 +-
->>   drivers/pci/controller/dwc/pcie-designware.h      |  11 ++
->>   4 files changed, 130 insertions(+), 20 deletions(-)
->>
->> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
->> index b6d6778b0698..73c3aed6b60a 100644
->> --- a/drivers/pci/controller/dwc/Kconfig
->> +++ b/drivers/pci/controller/dwc/Kconfig
->> @@ -9,6 +9,7 @@ config PCIE_DW
->>   config PCIE_DW_HOST
->>   	bool
->>   	select PCIE_DW
->> +	select PCI_HOST_COMMON
->>   
->>   config PCIE_DW_EP
->>   	bool
->> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
->> index d2291c3ceb8b..4e07fefe12e1 100644
->> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
->> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
->> @@ -418,6 +418,61 @@ static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
->>   	}
->>   }
->>   
->> +static int dw_pcie_config_ecam_iatu(struct dw_pcie_rp *pp)
->> +{
->> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->> +	struct dw_pcie_ob_atu_cfg atu = {0};
->> +	struct resource_entry *bus;
->> +	int ret, bus_range_max;
-> resource_size_t for bus_range_max since you feed it the ouput of
-> resource_size()
->
->> +
->> +	bus = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS);
->> +
->> +	/*
->> +	 * Root bus under the root port doesn't require any iATU configuration
->> +	 * as DBI space will represent Root bus configuration space.
->> +	 * Immediate bus under Root Bus, needs type 0 iATU configuration and
->> +	 * remaining buses need type 1 iATU configuration.
->> +	 */
->> +	atu.index = 0;
->> +	atu.type = PCIE_ATU_TYPE_CFG0;
->> +	atu.cpu_addr = pp->cfg0_base + SZ_1M;
->> +	atu.size = SZ_1M;
->> +	atu.ctrl2 = PCIE_ATU_CFG_SHIFT_MODE_ENABLE;
->> +	ret = dw_pcie_prog_outbound_atu(pci, &atu);
->> +	if (ret)
->> +		return ret;
->> +
->> +	bus_range_max = resource_size(bus->res);
->> +
->> +	/* Configure remaining buses in type 1 iATU configuration */
->> +	atu.index = 1;
->> +	atu.type = PCIE_ATU_TYPE_CFG1;
->> +	atu.cpu_addr = pp->cfg0_base + SZ_2M;
->> +	atu.size = (SZ_1M * (bus_range_max - 2));
-> This explodes badly with:
->
-> bus-range = <0 0>;
+Could you please share the exact code snippet that is being referenced?
+I'm a bit confused because it doesn't seem to align with the current
+logic, which doesn't have read operations within the same mutex lock. I
+also want to understand the background and necessity of the sleep function.
 
-The bus range = <0 0> is not a valid configuration but with bus-range = 
-<0 1> it will
+> 
+>>> +
+>>> +     mutex_unlock(&ec->lock);
+>>> +
+>>> +     return *resp;
+>>> +}
+>>> +
+>>> +/* -------------------------------------------------------------------------- */
+>>> +/* Common API */
+[...]
+>>> +     int i, ret;
+>>> +     u8 _resp[RESP_HDR_SIZE + 1];
+>>> +     u8 req[REQ_HDR_SIZE + 1] = {0x02, EC_READ, 1, };
+>>
+>> Could it be made more readable by specifying the macro names for 0x02
+>> and 1? This would help in understanding the meaning of these numbers.
+>>
+> 
+> I really don't know the meaning of master command 0x02, 1 is the size for
+> the data_seq behind of it. There are many possible sizes. It is not a good
+> idea to define a macro name for everyone.
+> 
 
-be a issue I will update the logic next series, thanks for pointing it out.
+Perhaps you didn't get the "arg..." magic here. A single definition is
+sufficient for all sizes.
 
-- Krishna Chaitanya.
+>> Also, please ensure the actual size of the request buffer is handled
+>> properly. In gaokun_ec_request(), the req is passed down directly, and
+>> the i2c_msg.len is used dynamically with req[INPUT_SIZE_OFFSET] +
+>> REQ_HDR_SIZE. This requires the caller to carefully manage the contents
+>> to avoid memory over-read, making the code difficult to read.
+>>
+>> Creating a defined macro can help you avoid manually defining the size.
+>> For example:
+>> #define REQ(size, data_0, data_1, args...) \
+>> u8 req[REQ_HDR_SIZE + size] = {data_0, data_1, size, args};
+>>
+> 
+> I think wrapping like this is not recommended, see '5)' in [1]
+> 
+> Best wishes,
+> Pengyu
+> 
+> [1] https://www.kernel.org/doc/html/v4.10/process/coding-style.html#macros-enums-and-rtl
 
->
->> +	atu.ctrl2 = PCIE_ATU_CFG_SHIFT_MODE_ENABLE;
->> +	return dw_pcie_prog_outbound_atu(pci, &atu);
-> A newline before the return statement would make it prettier
->
-> [...]
->
->> +bool dw_pcie_ecam_supported(struct dw_pcie_rp *pp)
->> +{
->> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->> +	struct platform_device *pdev = to_platform_device(pci->dev);
->> +	struct resource *config_res, *bus_range;
->> +	u64 bus_config_space_count;
->> +
->> +	bus_range = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS)->res;
->> +	if (!bus_range)
->> +		return false;
->> +
->> +	config_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "config");
->> +	if (!config_res)
->> +		return false;
->> +
->> +	bus_config_space_count = resource_size(config_res) >> PCIE_ECAM_BUS_SHIFT;
->> +	if (resource_size(bus_range) > bus_config_space_count)
->> +		return false;
->> +
->> +	return true;
-> return bus_config_space_count <= resource_size(bus_range);
->
-> Konrad
+I believe that the consideration of namespace collisions is a valid concern.
+
+Some examples can be like have a naming pattern as well:
+/*To have a name pattern to reflect the size like reg0/reg1/reg2*/
+#define REQ(variable_name, size, data_0, data_1, args...) \
+u8 ##variable_name[REQ_HDR_SIZE + size] = {data_0, data_1, size, args};
+
+/*u8 req1[REQ_HDR_SIZE + 1] = {0x02, EC_READ, 1, };*/
+REQ(req, 1, 0x02, EC_READ);
+
+/*u8 req2[REQ_HDR_SIZE + 2] = {0x02, 0x68, 2, 3, 0x5a}; */
+REQ(req, 2, 0x02, 0x68, 3, 0x5a);
+
+Please note that this is just an example and a suggestion to avoid the
+current manual variable pattern setting. The final decision still
+requires the current maintainers' agreement.
+
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
