@@ -1,243 +1,485 @@
-Return-Path: <devicetree+bounces-134843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B104B9FED5F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 07:55:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B60129FED68
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:05:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E4CB1882C00
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 06:55:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF6373A27C5
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 07:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 651B8187849;
-	Tue, 31 Dec 2024 06:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8DA156C7B;
+	Tue, 31 Dec 2024 07:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="IjVDMLIz";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="YB+jpQMl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bFu71Sbm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C558A145A0B;
-	Tue, 31 Dec 2024 06:55:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735628129; cv=fail; b=nOMFR/347cB1hC9t+fvYypKEUAdoYu0a4Fz4MRCALd8t1hdmfFqDFvmVpefx9w9hVqYy5W1j6lK4VTl4K4DkvnNkmWPyDgbhWrghqKdB1zG7vLsvL+0UT6ra4x7TL+/IJ82oX7/73NOgmQNsazc4/ld62tXStAPOHM9Jo6UGEc0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735628129; c=relaxed/simple;
-	bh=rA4EpMWRxTZJZysPvY45KXEcLaYnOGKfbm/Z/G7R3SU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Jq6lpNsEB6cbAh/7nuCumHLEzNSRCNh9uRQj08BDkzkSmafoivpED+yDfRBUj4nrzg+I7NwqdaYuwn2ph2rpWOlmkkgGKQtAxysMTXBxmG/MnxvLUOIMaTAVB39x8PtfDyvyn1LMn3FMCm9GOviAncn1N5tS+ejwNAhjIu65f9A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=IjVDMLIz; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=YB+jpQMl; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 30c0ce7ac74411ef99858b75a2457dd9-20241231
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=rA4EpMWRxTZJZysPvY45KXEcLaYnOGKfbm/Z/G7R3SU=;
-	b=IjVDMLIzXg+fjsoakbfDclADpi3rQcC5IWhenYzvadr+biXHhxy23CKDVwyihyLXMVHXrHifwEZy2UmR7H3rVZa1TwYzLFxNRXvyoWxrulFcz7q4u1RMgdEkttsmNvCKlLC5+NrTjzUnl4OkSjUSGGQGdEbwYgIEvCZytrm7jN8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:022bf7ec-0230-44f8-97d8-c3041201fd07,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:ae7f2637-e11c-4c1a-89f7-e7a032832c40,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
-	EDM:-3,IP:nil,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_ULS,TF_CID_SPAM_SNR
-X-UUID: 30c0ce7ac74411ef99858b75a2457dd9-20241231
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 738812727; Tue, 31 Dec 2024 14:55:16 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 31 Dec 2024 14:55:15 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 31 Dec 2024 14:55:15 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kJ0HMpskIhpyhUZ3uMh3P4YJP89bQMahXKLsfzBKjM8XcijKmfY4vyFVGUUsSK8BiYagWpISJCFsvnLx7leigWUy17mPtKQMn2xu8k5Exs/FnyON9PiIF9GjLj4fMZtUctk5p4pGZwD8zOyymP50xyhoJZU7jDd6yEZQ6ZjtETZjz9HIPLzSB6s//ppntXxODP/bcHwMQ3j0eyxFDtPVULuWI1pUt5BzVTfsHg9nWLphCXCz5jqvIx6zT+igyOgtQyW5fkwhyXkhC0CED1eyemrsLatIMNMRmcNbzCAXGMidQD/nhWs1ZSkM8Nk3Cb1DvkAzVaRl5xVMvMk9MTjOaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rA4EpMWRxTZJZysPvY45KXEcLaYnOGKfbm/Z/G7R3SU=;
- b=cv6HqW5/HzJ9O8D135tYDAa8AwL5EShjw/9HQO7/hOCUFwvbchXJ9AErQ0S2ePmHqGpmuRJDXndLLaw8EwtKhY7WtIRAcFRDX21agJ4cDetWG4Yvap/G6o8TfSco0fol4W5C4ECYb1YF/VqPvs+MQ8hflJQh1bXSur2sKMDJfnlFIdTj7H+1HXcaMQQ72tvUqCOueB+4UxOZ4uLgLUAULbLYs/CZqRNTtg2CyHXICEahD4j9xoMNPMEFZydr0XUpf6+xe6blDpHFCr8u6r1GLi+QkzJytnB74qrfppxTGm2ozVyVrPF117VPh4s32LT5zEogUfhaPpESOAz8rQ36Xw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AEE129A9;
+	Tue, 31 Dec 2024 07:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735628724; cv=none; b=VQoWa9MNSjheUvAsuvPRYxck0h3Z9MkdguYnx94hM52G4Uq5XAHnotDBaxo6LcNWhO3SUx/zAcYpJwv8xbs28JnGExeTqdHTjfKDjiTXoMbBnzP6qv2QxKDkDOOzlAihzLKBUQGvi++Mtk2iNYACXzhHL24QlCNC9tVfKK6hyC4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735628724; c=relaxed/simple;
+	bh=2fCbc0qqqSi9AGW6Y901R6fnPlGmIbb+ceeI9s+hMYo=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=EC0H5J6v8LXWx9hZzv5dXLBWN3tqI808mvHXXJUTWjxImPJ0IiTFRdl5GFlvjY+oXkaNnpJDeN0w7wTaGDYegDqTlRZm23xpt3WtsVK1Z5L3gboVdsdDD6ApWXMeo/pOScwAtz0i/LfRL1iyjR3IWVn299QYCA7EYz1e/JJFAeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bFu71Sbm; arc=none smtp.client-ip=209.85.214.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-2166022c5caso113624675ad.2;
+        Mon, 30 Dec 2024 23:05:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rA4EpMWRxTZJZysPvY45KXEcLaYnOGKfbm/Z/G7R3SU=;
- b=YB+jpQMl37kbyB0qyt6DpLV0QjdlSqNv0Lvn6JiG3Y0i4jQVXrkmNbOF/sHu9++ywuEGlBuV4tuJHrKeFYLxIk0Gyej4nWk2bmNA/naIvkxqMYD22vUjo7dFx6mL55rwRUt3U1D+aQoJKx37grSuMvjXc8DfAGkASBph7VuqCBg=
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
- by TY0PR03MB6882.apcprd03.prod.outlook.com (2603:1096:400:265::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8293.18; Tue, 31 Dec
- 2024 06:55:13 +0000
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9ce6:1e85:c4a7:2a54]) by TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9ce6:1e85:c4a7:2a54%5]) with mapi id 15.20.8293.000; Tue, 31 Dec 2024
- 06:55:13 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: "robh@kernel.org" <robh@kernel.org>, "mchehab@kernel.org"
-	<mchehab@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	=?utf-8?B?Qm8gS29uZyAo5a2U5rOiKQ==?= <Bo.Kong@mediatek.com>
-CC: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "AngeloGioacchino Del
- Regno" <angelogioacchino.delregno@collabora.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>
-Subject: Re: [PATCH v3 4/4] uapi: linux: add MT8188 AIE
-Thread-Topic: [PATCH v3 4/4] uapi: linux: add MT8188 AIE
-Thread-Index: AQHbVqu3NoUY7tW7Y02VDtQ/iO6t3bL/9IgA
-Date: Tue, 31 Dec 2024 06:55:13 +0000
-Message-ID: <a3a6d723e7018fe0c2ace016aada4cd2ac62c578.camel@mediatek.com>
-References: <20241225090113.17027-1-bo.kong@mediatek.com>
-	 <20241225090113.17027-5-bo.kong@mediatek.com>
-In-Reply-To: <20241225090113.17027-5-bo.kong@mediatek.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Evolution 3.52.3-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|TY0PR03MB6882:EE_
-x-ms-office365-filtering-correlation-id: 10ce3f6e-fe7a-4337-6322-08dd29681323
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|7416014|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?cExsYi9hZ3JhRFJYRHVPbHRsdFJ3a2FKMmlLZDIyQnFNdllzdnEyR20xRTli?=
- =?utf-8?B?SWNTOXNvcUhRWlR4bWhzaGpLd01CN0ZIelphV2JibTI5NnE4NFJoTmhOcElL?=
- =?utf-8?B?L3NuY0ZjMThUTUVpT0NFbmtzOW1XSEdOVzRVODJQWlhHSnFrZXE1Zzd2V2k1?=
- =?utf-8?B?NElpM1g1c2pqOStnSVU4NlRhMzdZMFRiM1AvSnYrUGN3RllxL0RBbE5IT2Fm?=
- =?utf-8?B?REhXOHdneWpac24rWHk3VzFwT240Tm5DalFLendORDh6VjdNUHNiU1ZtSnha?=
- =?utf-8?B?ZUcvcmY3UHdUVDNFdmVOSWNQeUJBcE9FdTRSODJ4emRQZlg1VklFYkUxNWQy?=
- =?utf-8?B?VnZtdG9NeURJeEMrS2Zpek5mRlpkVjFJVy80NjZoR0l0Rmhqa3J0UHFrbmx4?=
- =?utf-8?B?QmtoTnJ3cDNvRGY2TE9KK2VXTEwwU08yTS9NTnJOcDM2SlJkTUNYRjF5S0N2?=
- =?utf-8?B?cGxDMm9NOTBua2RjS1hLeEVlMzk2dnR3dUs0NU4rRDAybzg1L25DQkZFTS9n?=
- =?utf-8?B?ZXFxQW02VXVlZEZzOUVWZnlDdmF3OXJydFpWdXp1UXZ2Y2lrclBucEVyUUlE?=
- =?utf-8?B?THlvMTlMTlp0UXpyTFNNSW1YNkpMYVlvdXlhQmxBSS9ERVNsWG1UYWIyb29P?=
- =?utf-8?B?alVkTHBuUVFxcWluNWRlTm9XNHNiZHN1TVdXOVdIN3BCU3YxMEw2RGMxblVW?=
- =?utf-8?B?Y3JrVTRMVExUT2NHeHdNRUg1ek8vUmZlZE5vNm5EL2RQT3kwTkwzb2taRWxR?=
- =?utf-8?B?VitMNXVTWlUxNHQ1R1BEYkFzeld2SkV5bjNGQm5hRFJnSEd5OUo4WWNtVkZa?=
- =?utf-8?B?cmtuOURMN3NqYXNyYkxwcW9vbU0zRUlwRW5jVmR2d2E3YjBDUmRkMWR0enhu?=
- =?utf-8?B?MFNMT3h5WlNZbElDUENSOTFscnlaOWtTYWtESTJrbFppUjBicTR0eVdpVW16?=
- =?utf-8?B?clE1bFRLYUx0cGxpUzRjMUp5WGlac29DY2k3dGUzTXBYZFBua3BqUUNqOEp4?=
- =?utf-8?B?aDg4QW1SeXpXajhkcUl3engvTUpUMkhqYllSbDQ0alBNUXRZMXgyV3lXT0g5?=
- =?utf-8?B?VkZtUEZWUS9UM1ZSamhvQ1JNS2w4ckFsQ2tUaitEaHRPckd3Q0FuTlVRVTFw?=
- =?utf-8?B?Vm5YZmxESi84Umpzc2ljcmRxVTZIRzUxNm51aWxCN3JVNDBDcW1IVTJyNVhU?=
- =?utf-8?B?OHN3ZklwTTZaRHJrUXFkWjZoNVBUazVVWjU4TTRURk4vc2xQR0NTZXJaSzg1?=
- =?utf-8?B?bmlSTkVwY2U2TG1KZFhhNFJxcjQ3STNoaGI1a2NpZXVjdHpsWWNYVUV4QXdC?=
- =?utf-8?B?MTltaDdxcllGTFZydS9sUjNQdEN3cWJ5RWhERkU2aGxmQVhTajhZSlVQZWxF?=
- =?utf-8?B?WVV1Q1p2R09FVDZWb1QxS1Y0c0RjS2hLZGhvdnVFNGttZG5qclpIMmEzdXN4?=
- =?utf-8?B?VFFtNVZmMnBuWloxd0NnQ2ozdGlXUHJRbENDbkZMQnJKSVhCa2s5STRlVmZi?=
- =?utf-8?B?RUJHRWZxcVNvYnl5Mkd2SjRNZnNZbFNXSk10a1JwcVZuTXFzcXJ5ODBFTHBv?=
- =?utf-8?B?T3ZCRS95ZkV6NmFRZkpVTzRyZ0VsQ2NxRGdKUmxFZ1lVSUZZSFVNNnBzRXNv?=
- =?utf-8?B?cVprUldDVG44Z1d5Zm1tQ0lITFZsSjJEN1JlaCtvSkE4RGJrVStGTnkvSTc5?=
- =?utf-8?B?R29LQmQwWFQxWk92dE9XSmRWZWEwbFpUTktOc3k0K2o0NHdlam5JcjFQdnJP?=
- =?utf-8?B?Vldyb0RtaFN6Rnp5WXI5TnYzeU03eDl0SVEyWW9jN3ZYOVRFK29uQXFQMXkw?=
- =?utf-8?B?U0V1S0xaZUxsT0F3d0xldVVUQWx3SnRDYjRCM1VMemV2SUh1T1YxVUhBOVN1?=
- =?utf-8?B?elNndS9kSmJXN3EzTHNJcHRDQU4yZVVBM2J4MEM1bFZEZE11dnY3VFFaNnpU?=
- =?utf-8?Q?+adOB9taXn3uIbqmGtLQpD4/Z8D8Z9Z7?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(1800799024)(376014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SFpiV2JuZ2YxeFFTNlp3Q0pnWCtVZWFGaWd4ZjJkOW1mWC9tbUEwNENmWkpn?=
- =?utf-8?B?NHVpdmRWQVVHNGdqOGUxR0hrbHlZc1FMSkdBZ2h3Qy9UN0sweWZaYjIvZTVE?=
- =?utf-8?B?NXA3WHNWcm82ZlRvSGI5Sm5SWXlCNXc5bzc4c1VVbnZ3WVUrWEtacHV2SGVN?=
- =?utf-8?B?dlFXUlloQlJQcnBLdGZVM3pWTkdoMjMrcVZQT2VheUx1dFR1TXhGV2VOcGZi?=
- =?utf-8?B?cHNhWGVUN09EMmlla0JKS2kzWXlKSUV4VFdBLzZqK1BQd2xZRDROMlpRSEcy?=
- =?utf-8?B?c01sZVk3OGFqZkdmdmwzUTRETHlLZzVXeXQ5L2t2S0dGUUlNeE82Ty9CdDFE?=
- =?utf-8?B?b1NMNWlSeUNPdFAzYmJ2NGFVdlB2SnU2VUdxN0hYajg2clBZOWZGMUlXd2NU?=
- =?utf-8?B?NjB6VWNpT3oyaHFYWk8xYmdjb0NxcTlpc1d0Z0w0bmhyVDZncmNKZHA0TTZG?=
- =?utf-8?B?Q2dESTB3MW5MVGp3eSs0MEVSQ0h4V24yZVdvNG4vYm5CRVhJUkc1SEV5L1JT?=
- =?utf-8?B?dGVGNFhiVU9ZN1MyVVJlSVlMMzM1S1U0SDdHcERzcGF6Umt1SXE0VDNaQXJV?=
- =?utf-8?B?NmljQm9zUVlOUW1zVWg0cDFhK2JrYkxsaGRBMURHem93N0M1OXZ4RVppRk5O?=
- =?utf-8?B?a1JtcnpBS3RtL0ZCVkY2eUNtSzBDdzRPdnVDQXFTaGJkRjFMVzJKWXZqaTFn?=
- =?utf-8?B?VFJKRzZpT1VESitVSmlxS3diOUlsZXdLaGRNYmxGTm1UL2duZ2RrRHhFWDV6?=
- =?utf-8?B?Qm1XMGVuL2Nzbm9mT3lySWYxY1M2dEtnU1hSdmpGaTN4MnZaNGtVRXptaXBO?=
- =?utf-8?B?d2kyL1FoRkJXUGpCK21zMEQyUnY1OTFWVlZlT1VYTWpJMWZtS21kaU1zT3dK?=
- =?utf-8?B?RFpqRUZZL3AwV1JuMGpmQjF4a3ZJczRLT3NXWTBUN2pYZ0l4SUN6bnd0a1FK?=
- =?utf-8?B?cXN6WVBpZ3ZsRTNLRFVMbnIyZU4yYjFHUnpOVmdRSmc5SVM0SVk2YWRtUmcy?=
- =?utf-8?B?ZWxEbjdHbHlTYVNjV205aXJMMHZVdkU0eG5tbUU1S2xoT3Y0L0ZBMjU0bHFE?=
- =?utf-8?B?bmZGOGZYNHhaUGViUmlGUW8wckZUelI4aW5pQlFsdjh0SmI2dHlTOGdnR0c1?=
- =?utf-8?B?MGRHOGVnMW5YVWozeHdwRi9jdHZOTnlGMXp6eERwZzl6em9jTEJCSVN3b20v?=
- =?utf-8?B?SFpnczkzbkI0UnltREEyUDJnamRMa1RGMENqUXd1REFidEo4a2FSYlBWNDZK?=
- =?utf-8?B?M3EvZ2t2NHJ1eForbVZCaTRCSzhNakd2NDFtc3VnUHZ3a1BEVktuSlArdGhh?=
- =?utf-8?B?eDRhaXZSUG9IWVU1TnJrZ3hOQ2xqclRCZ1J4WEpXZDdSUjJlOXVueEYvelNM?=
- =?utf-8?B?QW96N1FTTlU0aUQrd3FLWWl1WVlhV212NldHeWJEczU4a3NPdFBEOVR3VnZF?=
- =?utf-8?B?NW8xdGNIaUpqMkJPZHdIV2dSeGpBTk1paHpNTk9hL3lvME9qVE5GMnUvcFJy?=
- =?utf-8?B?WlhMSWRxR0s1c0dGYTI3K0N6YmljYW5jWVQ5dWhvbERMcm0rTnNMWmwxa0Z6?=
- =?utf-8?B?M0I4SnQxa2lKMDlieFE5MnY4OE9mZytad0VXa1JIR0xHWVRuM0szcFdKZEdS?=
- =?utf-8?B?RkErUnVXNEhscGF1K21ueERBbFd0UVFaNktsN1JqV25iMEtlS2NvZ1FHekVi?=
- =?utf-8?B?bEtSY2RCQmY4YjRieUNWRFNKcldGTEpnK1UxSE1vRWZCYWIxazBwbUY1cmIr?=
- =?utf-8?B?a3p0elRQUnRNOUJhTU5UR3Z0ZzJaelBFc2E2b2xaZTdhUVh3VWlDajk1TWto?=
- =?utf-8?B?WHJ2MlE1MEpkVFhQcHlmSGkyRHZsOG4rM0Yyd2N2Zzl2SG15cnp2VGJRS0VB?=
- =?utf-8?B?ZXFySWoxZjZ2Z1gwcDZoUGhiZUJuNjBHRVI1MnBDRkJqUXVNTndOam4xNnVP?=
- =?utf-8?B?N09MTmYzZVhvYitVWHZpZi9PWnhJZmlUV2M4TWphYW1lbmFtNDN2MXdCeU00?=
- =?utf-8?B?bGVQelFyQ1JwcGRhR25TcnFncGlsWG5Icmwzc0dmMTZscC93SFcrYlVCRFZh?=
- =?utf-8?B?RTYzYklRYzBBUnU0eXk2aEZYcVlCK0orbUtMYi8ra3RXRXBsenl4UE03djdi?=
- =?utf-8?Q?JFd+r+fgNnUHGXl+jol8Pvxzp?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B4792EFC006C6746B70F521461DCC24C@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20230601; t=1735628721; x=1736233521; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vxL96k524hPFwnuPAuPSwwG3eVkzjQYeq/r9y0dX6zU=;
+        b=bFu71Sbm45Q3fDaR5sHfMdP8rHhlbRXW9QfwfXvV9ocTR/eU01jIksgAGslCG4DqvV
+         23FLRhSOWhWK9euGkqnJqenqUP5i40Xj4MNYH+9VKBLGUXyw+i15WOjBbS4ah9Pa5BbX
+         mBt7om7KiaoXv2ZZFz7hjhX2DPbqg+TZH9Od489F5agjga5Jw8tCwfGMVSVABmgyEOpf
+         yXaQjM6j6C7lOMyE3L/faPBEjYwuhWQ7v9JbFQsDT9sRKw8VpgByonw9lU5mfGsgiMSd
+         2K0BuWU32apWgCKRkPa/EqTcQo6iBYWhbhOlZ9aTgnMjRZ9cQQamW19JW39W/FXpMQte
+         itKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735628721; x=1736233521;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vxL96k524hPFwnuPAuPSwwG3eVkzjQYeq/r9y0dX6zU=;
+        b=bWVyIkpry3VDKJpsLH28lcnVNwOS1MBZhDcJM9NccCF1vJBjeuQ23DakhenIIyEf9c
+         fQhd9+n1W3VTge384Y9KHgZgFf45pvxvo1ywQxKT9onfhrTU14+lcPPx6ArMU7RCKaPf
+         PdVIBgnoN+gkOfYijrTZNRW86nfH3d2ah8URB/buzMllKcCNXeaNCO/WU5p4b4/D7f/i
+         NYPJl0nuQ4kK3NuudE+gc6WnTuU2m1vZzQRswM7qjgyKomO2i6y1RAcibzficirMtVRI
+         wc17Xvxw6DdYgS5NiYh4x2rdvts5PfknNUI2/cuqFe3aOiSPBAq0MN2WiSQk9UZBQGFh
+         68Jg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIL0WKJBtdtNrISp+cnwCDxHW9W96uoLu9Fo1PunquoBt/ZXS46URPNQmcrnZU0TGgNweowiAPEZwCUrHy@vger.kernel.org, AJvYcCUsCYT4tWcoZi0SfAbQByqqnRwOBNr0TxX1Bn7EAru8EjL9hS2pGDiWn0GdnAINMAGu7wG/6Wgbw4q2@vger.kernel.org
+X-Gm-Message-State: AOJu0YweKjgAlCN/wqGebAKYeOwN6gcw4UpFYyB/R2O95SIR5IjUzlBJ
+	IrXGAeDoL+cHTlIFq5XHDG7l56wacYs5x0toGfp//X0gEyD3uxNZhBxjs9TVBFj8JVUI
+X-Gm-Gg: ASbGncvxM6edT76sdIklfczMvRZrvQLJIC/B2sBw+Ys3ONIaUKhynzKATZHgt37FT7B
+	hcBLdfURJETzp5dcc/VNoYQFP2kxxEpEgjUn99QPqIaS7cgTVTxBgB6K6Bg0WMHPBtZ/KaPSb0R
+	Y1GY3URx4ud8fDTW8bFv5KoqjWcMWpbUqTZHTGkmoFXjtljR8QCHl5JleTonHpT/6xqb/FKVlBl
+	ns7bziLUKZj7E2sAxVGHu8y963uszNR1cxSLwow
+X-Google-Smtp-Source: AGHT+IGI3SSlgQgFw/RV/cr2SlcZ1KIA1Ss5CzTRTC68uk6A2ue+tFzsPPgc9UOp7OnkIcMBFnpT2A==
+X-Received: by 2002:a05:6a00:c85:b0:728:e969:d4b7 with SMTP id d2e1a72fcca58-72abddbd4ecmr44679549b3a.12.1735628721389;
+        Mon, 30 Dec 2024 23:05:21 -0800 (PST)
+Received: from [127.0.0.1] ([2602:f919:106::1b8])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-842dd089089sm18601679a12.58.2024.12.30.23.05.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Dec 2024 23:05:20 -0800 (PST)
+Message-ID: <e817cccd-1470-4f57-8510-7817cf69d1f5@gmail.com>
+Date: Tue, 31 Dec 2024 15:05:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10ce3f6e-fe7a-4337-6322-08dd29681323
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Dec 2024 06:55:13.0592
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Wx0VJTZflqvUhx2qiXXesGBMg1/NyWrdk0Zo39nFuoUTWdPUgegrcaHwii6jTMwbDwPuwlR+xmw6ECTr+Hy+BQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB6882
+User-Agent: Mozilla Thunderbird
+Cc: troymitchell988@gmail.com, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] mfd: add new driver for P1 PMIC from SpacemiT
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20241230-k1-p1-v1-0-aa4e02b9f993@gmail.com>
+ <20241230-k1-p1-v1-2-aa4e02b9f993@gmail.com>
+ <c0714653-f7b0-4bd3-877e-55682847d619@kernel.org>
+Content-Language: en-US
+From: Troy Mitchell <troymitchell988@gmail.com>
+In-Reply-To: <c0714653-f7b0-4bd3-877e-55682847d619@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-SGksIEJvOg0KDQpPbiBXZWQsIDIwMjQtMTItMjUgYXQgMTc6MDAgKzA4MDAsIGJvLmtvbmcgd3Jv
-dGU6DQo+IEZyb206IEJvIEtvbmcgPEJvLktvbmdAbWVkaWF0ZWsuY29tPg0KPiANCj4gQWRkIEFJ
-RSBjb250cm9sIHJlbGF0ZWQgZGVmaW5pdGlvbnMuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBCbyBL
-b25nIDxCby5Lb25nQG1lZGlhdGVrLmNvbT4NCj4gLS0tDQoNCltzbmlwXQ0KDQo+IGRpZmYgLS1n
-aXQgYS9pbmNsdWRlL3VhcGkvbGludXgvdmlkZW9kZXYyLmggYi9pbmNsdWRlL3VhcGkvbGludXgv
-dmlkZW9kZXYyLmgNCj4gaW5kZXggZTdjNGRjZTM5MDA3Li5iMjNhOWU5OWM4MzUgMTAwNjQ0DQo+
-IC0tLSBhL2luY2x1ZGUvdWFwaS9saW51eC92aWRlb2RldjIuaA0KPiArKysgYi9pbmNsdWRlL3Vh
-cGkvbGludXgvdmlkZW9kZXYyLmgNCj4gQEAgLTg3Nyw2ICs4NzcsOSBAQCBzdHJ1Y3QgdjRsMl9w
-aXhfZm9ybWF0IHsNCj4gICNkZWZpbmUgVjRMMl9NRVRBX0ZNVF9HRU5FUklDX0NTSTJfMjQJdjRs
-Ml9mb3VyY2MoJ00nLCAnQycsICcxJywgJ08nKSAvKiAyNC1iaXQgQ1NJLTIgcGFja2VkIDgtYml0
-IG1ldGFkYXRhICovDQo+ICAjZW5kaWYNCj4gIA0KPiArLyogVmVuZG9yLXNwZWNpZmljIGRlZmlu
-aXRpb246IHVzZWQgZm9yIHRoZSBNZWRpYVRlayBjYW1lcmEgc3Vic3lzdGVtJ3MgZmFjZSBkZXRl
-Y3Rpb24gcmVzdWx0cyAqLw0KPiArI2RlZmluZSBWNEwyX01FVEFfRk1UX01URkRfUkVTVUxUIHY0
-bDJfZm91cmNjKCdNJywgJ1QnLCAnZicsICdkJykNCg0KQWRkIGRvY3VtZW50IHRvIGRlc2NyaWJl
-IHRoZSBkZXRhaWwgb2YgVjRMMl9NRVRBX0ZNVF9NVEZEX1JFU1VMVC4gWzFdIGlzIHRoZSBleGFt
-cGxlIGRvY3VtZW50IGZvciBWNEwyX01FVEFfRk1UX1JQSV9GRV9DRkcuDQpUaGVyZSBhcmUgbWFu
-eSBkb2N1bWVudCBpbiBEb2N1bWVudGF0aW9uL3VzZXJzcGFjZS1hcGkvbWVkaWEvdjRsLyBmb3Ig
-eW91ciByZWZlcmVuY2UuDQoNClsxXSBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2pl
-Y3QvbGludXgtbWVkaWEvcGF0Y2gvMjAyNDEwMDMtcnAxLWNmZS12Ni0xLWQ2NzYyZWRkOThhOEBp
-ZGVhc29uYm9hcmQuY29tLw0KDQpSZWdhcmRzLA0KQ0sNCg0KPiArDQo+ICAvKiBwcml2IGZpZWxk
-IHZhbHVlIHRvIGluZGljYXRlcyB0aGF0IHN1YnNlcXVlbnQgZmllbGRzIGFyZSB2YWxpZC4gKi8N
-Cj4gICNkZWZpbmUgVjRMMl9QSVhfRk1UX1BSSVZfTUFHSUMJCTB4ZmVlZGNhZmUNCj4gIA0KPiBA
-QCAtMTk2MSw2ICsxOTY0LDkgQEAgZW51bSB2NGwyX2N0cmxfdHlwZSB7DQo+ICAJVjRMMl9DVFJM
-X1RZUEVfQVYxX1RJTEVfR1JPVVBfRU5UUlkgPSAweDI4MSwNCj4gIAlWNEwyX0NUUkxfVFlQRV9B
-VjFfRlJBTUUJICAgID0gMHgyODIsDQo+ICAJVjRMMl9DVFJMX1RZUEVfQVYxX0ZJTE1fR1JBSU4J
-ICAgID0gMHgyODMsDQo+ICsNCj4gKwlWNEwyX0NUUkxfVFlQRV9BSUVfSU5JVAkJPSAweDAyOTAs
-DQo+ICsJVjRMMl9DVFJMX1RZUEVfQUlFX1BBUkFNCT0gMHgwMjkxLA0KPiAgfTsNCj4gIA0KPiAg
-LyogIFVzZWQgaW4gdGhlIFZJRElPQ19RVUVSWUNUUkwgaW9jdGwgZm9yIHF1ZXJ5aW5nIGNvbnRy
-b2xzICovDQoNCg==
+Hi, Krzysztof.
+Thanks for ur review!
+
+On 2024/12/30 19:33, Krzysztof Kozlowski wrote:
+> On 30/12/2024 11:02, Troy Mitchell wrote:
+>> Add the core MFD driver for P1 PMIC. I define four sub-devices
+> 
+> 
+> I do not see any definition of MFD subdevices.
+I define them in spacemit-p1.h.
+the macro is named `P1_MFD_CELL`
+> 
+>> for which the drivers will be added in subsequent patches.
+>>
+>> For this patch, It supports `reboot` and `shutdown`.
+>>
+>> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+>> ---
+>>  drivers/mfd/Kconfig                        |  14 +
+>>  drivers/mfd/Makefile                       |   1 +
+>>  drivers/mfd/spacemit-pmic.c                | 159 ++++++++++
+>>  include/linux/mfd/spacemit/spacemit-p1.h   | 491 +++++++++++++++++++++++++++++
+>>  include/linux/mfd/spacemit/spacemit-pmic.h |  39 +++
+>>  5 files changed, 704 insertions(+)
+>>
+>> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+>> index ae23b317a64e49f0cb529ae6bd1becbb90b7c282..c062bf6b11fd23d420a6d5f6ee51b3ec97f9fcbb 100644
+>> --- a/drivers/mfd/Kconfig
+>> +++ b/drivers/mfd/Kconfig
+>> @@ -1173,6 +1173,20 @@ config MFD_QCOM_RPM
+>>  	  Say M here if you want to include support for the Qualcomm RPM as a
+>>  	  module. This will build a module called "qcom_rpm".
+>>  
+>> +config MFD_SPACEMIT_PMIC
+>> +	tristate "SpacemiT PMIC"
+>> +	depends on ARCH_SPACEMIT || COMPILE_TEST
+>> +	depends on I2C && OF
+>> +	select MFD_CORE
+>> +	select REGMAP_I2C
+>> +	select REGMAP_IRQ
+>> +	help
+>> +	  If this option is turned on, the P1 chip produced by SpacemiT will
+>> +	  be supported.
+>> +
+>> +	  This driver can also be compiled as a module. If you choose to build
+>> +	  it as a module, the resulting kernel module will be named `spacemit-pmic`.
+>> +
+>>  config MFD_SPMI_PMIC
+>>  	tristate "Qualcomm SPMI PMICs"
+>>  	depends on ARCH_QCOM || COMPILE_TEST
+>> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+>> index e057d6d6faef5c1d639789e2560f336fa26cd872..284dbb8fe2ef83bdd994a598504fe315f2eabbdf 100644
+>> --- a/drivers/mfd/Makefile
+>> +++ b/drivers/mfd/Makefile
+>> @@ -266,6 +266,7 @@ obj-$(CONFIG_MFD_SUN4I_GPADC)	+= sun4i-gpadc.o
+>>  obj-$(CONFIG_MFD_STM32_LPTIMER)	+= stm32-lptimer.o
+>>  obj-$(CONFIG_MFD_STM32_TIMERS) 	+= stm32-timers.o
+>>  obj-$(CONFIG_MFD_MXS_LRADC)     += mxs-lradc.o
+>> +obj-$(CONFIG_MFD_SPACEMIT_PMIC)	+= spacemit-pmic.o
+>>  obj-$(CONFIG_MFD_SC27XX_PMIC)	+= sprd-sc27xx-spi.o
+>>  obj-$(CONFIG_RAVE_SP_CORE)	+= rave-sp.o
+>>  obj-$(CONFIG_MFD_ROHM_BD71828)	+= rohm-bd71828.o
+>> diff --git a/drivers/mfd/spacemit-pmic.c b/drivers/mfd/spacemit-pmic.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..d9f6785cecbd405821dead13cdf8d1f9fd64e508
+>> --- /dev/null
+>> +++ b/drivers/mfd/spacemit-pmic.c
+>> @@ -0,0 +1,159 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) 2024 Troy Mitchell <troymitchell988@gmail.com>
+>> + */
+>> +
+>> +#include <linux/i2c.h>
+>> +#include <linux/mfd/core.h>
+>> +#include <linux/mfd/spacemit/spacemit-pmic.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+> 
+> I don't see usage of this header. Include what is used directly.
+> 
+>> +#include <linux/pm_wakeirq.h>
+>> +#include <linux/reboot.h>
+>> +
+>> +P1_REGMAP_CONFIG;
+>> +P1_IRQS_DESC;
+>> +P1_IRQ_CHIP_DESC;
+>> +P1_POWER_KEY_RESOURCES_DESC;
+>> +P1_RTC_RESOURCES_DESC;
+>> +P1_MFD_CELL;
+>> +P1_MFD_MATCH_DATA;
+> 
+> Hm? Declarations and definitions go here, not to somewhere else.
+I will write them here directly in next version
+> 
+> 
+> 
+>> +
+>> +static int spacemit_pmic_probe(struct i2c_client *client)
+>> +{
+>> +	const struct spacemit_pmic_match_data *match_data;
+>> +	const struct mfd_cell *cells;
+>> +	struct spacemit_pmic *pmic;
+>> +	int nr_cells, ret;
+>> +
+>> +	if (!client->irq)
+>> +		return dev_err_probe(&client->dev, -ENXIO, "no interrupt supported");
+> 
+> And why is this fatal error? If interrupt is not supported by hardware,
+> why would you add "unsupported" interrupt?
+bcs the I2C driver is based on interrupt whatever I2C if use FIFO or dma.
+So I judge here whether the client successfully obtains the irq. If not, the I2C
+driver is unavailable.
+
+I think I need to delete this `if`? Because if the I2C driver fails to load, the
+I2C device driver will not be loaded
+> 
+>> +
+>> +	match_data = of_device_get_match_data(&client->dev);
+>> +	if (WARN_ON(!match_data))
+>> +		return -EINVAL;
+>> +
+>> +	pmic = devm_kzalloc(&client->dev, sizeof(*pmic), GFP_KERNEL);
+>> +	if (!pmic)
+>> +		return -ENOMEM;
+>> +
+>> +	cells = match_data->mfd_cells;
+>> +	nr_cells = match_data->nr_cells;
+>> +
+>> +	pmic->regmap_cfg = match_data->regmap_cfg;
+>> +	pmic->regmap_irq_chip = match_data->regmap_irq_chip;
+>> +	pmic->i2c = client;
+>> +	pmic->match_data = match_data;
+>> +	pmic->regmap = devm_regmap_init_i2c(client, pmic->regmap_cfg);
+>> +	if (IS_ERR(pmic->regmap))
+>> +		return dev_err_probe(&client->dev,
+>> +				     PTR_ERR(pmic->regmap),
+>> +				     "regmap initialization failed");
+>> +
+>> +	regcache_cache_bypass(pmic->regmap, true);
+>> +
+>> +	i2c_set_clientdata(client, pmic);
+>> +
+>> +	if (pmic->regmap_irq_chip) {
+> 
+> 
+> It's impossible to have it false. Test your driver.
+SpacemiT has another PMIC named P1S. I'm not sure if P1S has these features, and
+I don't have a P1S chip to test and verify.
+Therefore, I added a judgement here. But I will drop them in next version. I
+should add the check only after confirming that P1S really doesn't have these
+features
+> 
+>> +		ret = regmap_add_irq_chip(pmic->regmap, client->irq, IRQF_ONESHOT, -1,
+>> +						pmic->regmap_irq_chip, &pmic->irq_data);
+>> +		if (ret)
+>> +			return dev_err_probe(&client->dev, ret, "failed to add irqchip");
+>> +	}
+>> +
+>> +	dev_pm_set_wake_irq(&client->dev, client->irq);
+>> +	device_init_wakeup(&client->dev, true);
+>> +
+>> +	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_NONE,
+>> +				   cells, nr_cells, NULL, 0,
+>> +				   regmap_irq_get_domain(pmic->irq_data));
+>> +	if (ret)
+>> +		return dev_err_probe(&client->dev, ret, "failed to add MFD devices");
+>> +
+>> +	if (match_data->shutdown.reg) {
+> 
+> Also not possible, useless if.
+same
+> 
+>> +		ret = devm_register_sys_off_handler(&client->dev,
+>> +						    SYS_OFF_MODE_POWER_OFF_PREPARE,
+>> +						    SYS_OFF_PRIO_HIGH,
+>> +						    &spacemit_pmic_shutdown,
+>> +						    pmic);
+>> +		if (ret)
+>> +			return dev_err_probe(&client->dev,
+>> +					     ret,
+>> +					     "failed to register restart handler");
+>> +
+>> +	}
+>> +
+>> +	if (match_data->reboot.reg) {
+> 
+> Also not possible.
+same
+> 
+>> +		ret = devm_register_sys_off_handler(&client->dev,
+>> +						    SYS_OFF_MODE_RESTART,
+>> +						    SYS_OFF_PRIO_HIGH,
+>> +						    &spacemit_pmic_restart,
+>> +						    pmic);
+>> +		if (ret)
+>> +			return dev_err_probe(&client->dev,
+>> +					     ret,
+>> +					     "failed to register restart handler");
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id spacemit_pmic_of_match[] = {
+>> +	{ .compatible = "spacemit,p1", .data = &pmic_p1_match_data },
+>> +	{ /* sentinel */ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, spacemit_pmic_of_match);
+>> +
+>> +static struct i2c_driver spacemit_pmic_i2c_driver = {
+>> +	.driver = {
+>> +		.name = "spacemit-pmic",
+>> +		.of_match_table = spacemit_pmic_of_match,
+>> +	},
+>> +	.probe    = spacemit_pmic_probe,
+>> +};
+>> +
+>> +static int __init spacemit_pmic_init(void)
+>> +{
+>> +	return platform_driver_register(&spacemit_pmic_i2c_driver);
+>> +}
+>> +
+>> +static void __exit spacemit_pmic_exit(void)
+>> +{
+>> +	platform_driver_unregister(&spacemit_pmic_i2c_driver);
+>> +}
+>> +
+>> +module_init(spacemit_pmic_init);
+>> +module_exit(spacemit_pmic_exit);
+> 
+> Use proper wrapper for these above.
+ok
+> 
+>> +
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_DESCRIPTION("mfd core driver for the SpacemiT PMIC");
+> 
+> ...
+> 
+>> +
+>> +#define P1_MAX_REG			0xA8
+>> +
+>> +#define P1_BUCK_VSEL_MASK		0xff
+>> +#define P1_BUCK_EN_MASK			0x1
+>> +
+>> +#define P1_BUCK1_CTRL_REG		0x47
+>> +#define P1_BUCK2_CTRL_REG		0x4a
+> 
+> 
+> Either lowercase or uppercase hex, not both.
+ok
+> 
+>> +#define P1_BUCK3_CTRL_REG		0x4d
+>> +#define P1_BUCK4_CTRL_REG		0x50
+>> +#define P1_BUCK5_CTRL_REG		0x53
+>> +#define P1_BUCK6_CTRL_REG		0x56
+>> +
+>> +#define P1_BUCK1_VSEL_REG		0x48
+>> +#define P1_BUCK2_VSEL_REG		0x4b
+>> +#define P1_BUCK3_VSEL_REG		0x4e
+>> +#define P1_BUCK4_VSEL_REG		0x51
+>> +#define P1_BUCK5_VSEL_REG		0x54
+>> +#define P1_BUCK6_VSEL_REG		0x57
+>> +
+>> +#define P1_ALDO1_CTRL_REG		0x5b
+>> +#define P1_ALDO2_CTRL_REG		0x5e
+>> +#define P1_ALDO3_CTRL_REG		0x61
+>> +#define P1_ALDO4_CTRL_REG		0x64
+>> +
+>> +#define P1_ALDO1_VOLT_REG		0x5c
+>> +#define P1_ALDO2_VOLT_REG		0x5f
+>> +#define P1_ALDO3_VOLT_REG		0x62
+>> +#define P1_ALDO4_VOLT_REG		0x65
+>> +
+>> +#define P1_ALDO_EN_MASK			0x1
+>> +#define P1_ALDO_VSEL_MASK		0x7f
+>> +
+>> +#define P1_DLDO1_CTRL_REG		0x67
+>> +#define P1_DLDO2_CTRL_REG		0x6a
+>> +#define P1_DLDO3_CTRL_REG		0x6d
+>> +#define P1_DLDO4_CTRL_REG		0x70
+>> +#define P1_DLDO5_CTRL_REG		0x73
+>> +#define P1_DLDO6_CTRL_REG		0x76
+>> +#define P1_DLDO7_CTRL_REG		0x79
+>> +
+>> +#define P1_DLDO1_VOLT_REG		0x68
+>> +#define P1_DLDO2_VOLT_REG		0x6b
+>> +#define P1_DLDO3_VOLT_REG		0x6e
+>> +#define P1_DLDO4_VOLT_REG		0x71
+>> +#define P1_DLDO5_VOLT_REG		0x74
+>> +#define P1_DLDO6_VOLT_REG		0x77
+>> +#define P1_DLDO7_VOLT_REG		0x7a
+>> +
+>> +#define P1_DLDO_EN_MASK			0x1
+>> +#define P1_DLDO_VSEL_MASK		0x7f
+>> +
+>> +#define P1_SWITCH_CTRL_REG		0x59
+>> +#define P1_SWTICH_EN_MASK		0x1
+>> +
+>> +#define P1_PWR_CTRL2			0x7e
+>> +#define P1_SW_SHUTDOWN_BIT_MSK		0x4
+>> +#define P1_SW_RESET_BIT_MSK		0x2
+>> +
+>> +#define P1_E_GPI0_MSK			BIT(0)
+>> +#define P1_E_GPI1_MSK			BIT(1)
+>> +#define P1_E_GPI2_MSK			BIT(2)
+>> +#define P1_E_GPI3_MSK			BIT(3)
+>> +#define P1_E_GPI4_MSK			BIT(4)
+>> +#define P1_E_GPI5_MSK			BIT(5)
+>> +
+>> +#define P1_E_ADC_TEMP_MSK		BIT(0)
+>> +#define P1_E_ADC_EOC_MSK		BIT(1)
+>> +#define P1_E_ADC_EOS_MSK		BIT(2)
+>> +#define P1_E_WDT_TO_MSK			BIT(3)
+>> +#define P1_E_ALARM_MSK			BIT(4)
+>> +#define P1_E_TICK_MSK			BIT(5)
+>> +
+>> +#define P1_E_LDO_OV_MSK			BIT(0)
+>> +#define P1_E_LDO_UV_MSK			BIT(1)
+>> +#define P1_E_LDO_SC_MSK			BIT(2)
+>> +#define P1_E_SW_SC_MSK			BIT(3)
+>> +#define P1_E_TEMP_WARN_MSK		BIT(4)
+>> +#define P1_E_TEMP_SEVERE_MSK		BIT(5)
+>> +#define P1_E_TEMP_CRIT_MSK		BIT(6)
+>> +
+>> +#define P1_E_BUCK1_OV_MSK		BIT(0)
+>> +#define P1_E_BUCK2_OV_MSK		BIT(1)
+>> +#define P1_E_BUCK3_OV_MSK		BIT(2)
+>> +#define P1_E_BUCK4_OV_MSK		BIT(3)
+>> +#define P1_E_BUCK5_OV_MSK		BIT(4)
+>> +#define P1_E_BUCK6_OV_MSK		BIT(5)
+>> +
+>> +#define P1_E_BUCK1_UV_MSK		BIT(0)
+>> +#define P1_E_BUCK2_UV_MSK		BIT(1)
+>> +#define P1_E_BUCK3_UV_MSK		BIT(2)
+>> +#define P1_E_BUCK4_UV_MSK		BIT(3)
+>> +#define P1_E_BUCK5_UV_MSK		BIT(4)
+>> +#define P1_E_BUCK6_UV_MSK		BIT(5)
+>> +
+>> +#define P1_E_BUCK1_SC_MSK		BIT(0)
+>> +#define P1_E_BUCK2_SC_MSK		BIT(1)
+>> +#define P1_E_BUCK3_SC_MSK		BIT(2)
+>> +#define P1_E_BUCK4_SC_MSK		BIT(3)
+>> +#define P1_E_BUCK5_SC_MSK		BIT(4)
+>> +#define P1_E_BUCK6_SC_MSK		BIT(5)
+>> +
+>> +#define P1_E_PWRON_RINTR_MSK		BIT(0)
+>> +#define P1_E_PWRON_FINTR_MSK		BIT(1)
+>> +#define P1_E_PWRON_SINTR_MSK		BIT(2)
+>> +#define P1_E_PWRON_LINTR_MSK		BIT(3)
+>> +#define P1_E_PWRON_SDINTR_MSK		BIT(4)
+>> +#define P1_E_VSYS_OV_MSK		BIT(5)
+>> +
+>> +#define P1_E_STATUS_REG_BASE		0x91
+>> +#define P1_E_EN_REG_BASE		0x98
+>> +
+>> +#define P1_REGMAP_CONFIG	\
+>> +	static const struct regmap_config p1_regmap_config = {	\
+>> +		.reg_bits = 8,					\
+>> +		.val_bits = 8,					\
+>> +		.max_register = P1_MAX_REG,			\
+>> +		.cache_type = REGCACHE_RBTREE,			\
+>> +	}
+>> +
+>> +#define P1_IRQS_DESC					\
+>> +static const struct regmap_irq p1_irqs[] = {		\
+> 
+> 
+> No, all these defines are just not needed, not readable. Please follow
+> existing kernel style - just look at recent drivers in drivers/mfd/ to
+> see how they are designed and developed.
+ok thanks!
+> 
+>> +	[P1_E_GPI0] = {					\
+>> +		.mask = P1_E_GPI0_MSK,			\
+>> +		.reg_offset = 0,			\
+>> +	},						\
+>> +							\
+>> +	[P1_E_GPI1] = {					\
+>> +		.mask = P1_E_GPI1_MSK,			\
+> 
+> Best regards,
+> Krzysztof
+
+-- 
+Troy Mitchell
 
