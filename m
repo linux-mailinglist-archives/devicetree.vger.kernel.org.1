@@ -1,245 +1,143 @@
-Return-Path: <devicetree+bounces-134846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C5349FED82
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:46:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C9D99FED87
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:46:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6764418829A2
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 07:46:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B76073A2833
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 07:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731E3188704;
-	Tue, 31 Dec 2024 07:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E305D188920;
+	Tue, 31 Dec 2024 07:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gral3VnP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dw5PVEfr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C2A2A1D7;
-	Tue, 31 Dec 2024 07:45:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E0F2A1D7;
+	Tue, 31 Dec 2024 07:46:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735631158; cv=none; b=uAygSjvii8Ur+xA8iwuoAou9sPy1AnzMrOVb8/Ocwsn6q3CryvrdBgoICdv8wpXOooghXt9UjaIn5EaoiK4hvu41Fzc1lY14ib8IBEsD8uYIfPy0M5jPwHRGoviU9ArThdx0KccFZWQGOZZq14eDdoxi2FX0EN98atwZ7e5ocYo=
+	t=1735631165; cv=none; b=Rd113Lj8G6TzDfXYWU0QrU1pA3lQoFLScvxTgZgzX6tzcpUicOW1ww/9RwQ8rpTP5eQYlt/ukXaRAuXJn5qMjpfZN48ug2BeFVJR7gNeH964+h5eafl01zQVSxWpNxMP/MdygbtQhnD3ecpT8x+ynIzkOV4VLERZCx1Ygu/Ev0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735631158; c=relaxed/simple;
-	bh=ne8KKd1Ox77CuqbmX1HxrqiMYFGXITGbKeXrfPempyc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=m5AnYZttueqouBS/BVxlgLbzKhGo/v9DAsgQhHE2d5CR8Xc+9Zz497Wba2AXrrmS0myYXuLOyqJjz108xgYQFylyrP6YeCXuC8UwaOArGfbf3apqFdODCc0wPeCJmAeI8hA/JShadlitpRq8HuUZbPWYX6QF65hmGcrOa61AuVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gral3VnP; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21669fd5c7cso131898885ad.3;
-        Mon, 30 Dec 2024 23:45:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735631155; x=1736235955; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8pzS8juRQYh7y1FbB7XhfHYOtzhl/kNPmT3ZX9KxQL8=;
-        b=gral3VnPPS34tMpmNdUOQH+2s3ke4Ux1CJMKxER2ZLrbbSePx2OHTQGSvqxWiLSL/z
-         WkuxZO8fD2GeyDeoaj4n1+T39x+3LcmATNGn0dzDJ7mzzf88XOY0gqdImbZti3wB+jT6
-         7MzUCsKGG6gZzIGINJUf7J+saBTyTzFpyBX442HTxMjk+ntwhVdo5mf07JMuTZaDU8nz
-         reLPdtpiBNp76wqxj1BldKE7z2tYiM5JQnR3NSszS0/+GMxfiO3Y1BbS4nb35+v3uuPG
-         lZjB05+H3xsmCwNfTDumvGBZ5fKHFQC4pD0Md6BdAAwEOyj8ZSnfDz9p5gXw5OQoT/Rj
-         6Lvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735631155; x=1736235955;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8pzS8juRQYh7y1FbB7XhfHYOtzhl/kNPmT3ZX9KxQL8=;
-        b=lQ0Wv6xHIUVZ+NJcTCLP/BKSkdPjyXwV3QhZxtMWGRR2iw3n0vRb4pdIxrA856cUiv
-         Ht9aWBH1A4dyT/6sSYM6eYJJgXrcuhS9kr6T20xT8e6OeUHAMQhZHASVrppFU4QuLSRM
-         vYD4+qyCQdqyPwJgXCpf8HI/vcxSBog5jCUKsW1/ogUK2sHLl3UGLyA67n8KHki62F/+
-         Zl4d3r1G0DS1Apydf7ZvXtwbyHEARuCfycpFXFBPhsnkS6VUXjXYdnRjtiAymGC9311Z
-         SPxPt+2XxPEUQa4vF2TVLttGxDB7G7iUp2PDzyVHanyxGAHzmKN2vPVGUrPTQ9R4QDWM
-         TmeA==
-X-Forwarded-Encrypted: i=1; AJvYcCUe9tsR7fq6CIDThfBvTdiBkWi0FoGnla4hIeFLUcjDV/BR49FMbLuj2RULvmVB9MdPHr2KE1PJPGM0@vger.kernel.org, AJvYcCUePZ+LUQFz7xJ/fR2oc8CHR1fCrmE4rzumx4LgP+2OQPmXEkdKcALxbkmOHpraDGVcwKpYHnwWGRvd0FJJ@vger.kernel.org, AJvYcCUhFl7v+QuUm3PTocIomGm4fNBc4QsCnUnal6RHJwyP/Hei+HF1Xlbi92yLBPIRU0So3oEVU2MXhHgbX37zKg==@vger.kernel.org, AJvYcCWl4D/5XxZoyoonttBkGp3PNCIV3rYf84+C/samZUgynVul8o1a+5mt7R8ksa0ywx89wwTHBO4Clrt/@vger.kernel.org, AJvYcCWr62/DjbF0MIzwazW8PZHbOWofU6cQV36lFcK3OO8KaxmOAAysA3Bcw5tiLY35WOjcaw6wLUcG5oaKuSIXG2ykqpUfVQ==@vger.kernel.org, AJvYcCXzIEN2uu+sUrTJGGwBxSjswpURbigUEZMRZ6LjQmOPcLsFe32c63GNhM66p9H+kQUPoYQQY41yxN8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqwEGss9g0x8GxWMWeOof5zSv5QiQiL7fV6Rq9rpwwn6KLK2eJ
-	waSNWAyAhWk/7p9ClwR5W/8Umrhx9HjFWqHbUEsl6hyladaFXOCR
-X-Gm-Gg: ASbGncv1II6gjIe38hmhDvh9MnxnxmVNreQ3rrKIvvb4+AKZJiT5v6q3nZ0DFqy7qxA
-	ieditE0a29H0nc+kl+kMeu6M8IlW6mlbQkHwugnKgafUTJvlDFkxKql7wNMrYs0KeorGFwjApZT
-	8BqJZJZCUpGsGiC7A/IkiuGahRQsD2OQk8GAHTuzwhcOnaBYGkAvSvAs8ktpLEul/0S33sQHA/g
-	1bZz+fNtynIDZOjdLEXkoqnGgoJWOn9kcwvBr+z90k=
-X-Google-Smtp-Source: AGHT+IHgiEOvR/+eBYeESBUMbYmnH2cck7IbpwCPE5DLcxeC+vKdjNFF1+pfeKCXg/VxNRHos0A0Dw==
-X-Received: by 2002:a17:902:d588:b0:216:239e:f90f with SMTP id d9443c01a7336-219e6f2f01dmr635340735ad.37.1735631155425;
-        Mon, 30 Dec 2024 23:45:55 -0800 (PST)
-Received: from nuvole.. ([2a09:bac1:76a0:dd10::2e9:e5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dca02b27sm188270185ad.276.2024.12.30.23.45.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Dec 2024 23:45:54 -0800 (PST)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: quic_aiquny@quicinc.com
-Cc: andersson@kernel.org,
-	bryan.odonoghue@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dmitry.baryshkov@linaro.org,
-	gregkh@linuxfoundation.org,
-	hdegoede@redhat.com,
-	heikki.krogerus@linux.intel.com,
-	ilpo.jarvinen@linux.intel.com,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	mitltlatltl@gmail.com,
-	nikita@trvn.ru,
-	platform-driver-x86@vger.kernel.org,
-	robh@kernel.org,
-	sre@kernel.org
-Subject: Re: [PATCH 2/5] platform: arm64: add Huawei Matebook E Go (sc8280xp) EC driver
-Date: Tue, 31 Dec 2024 15:44:36 +0800
-Message-ID: <20241231074437.239979-1-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <1dff7a78-1693-45d7-8ee3-357b33848595@quicinc.com>
-References: <1dff7a78-1693-45d7-8ee3-357b33848595@quicinc.com>
+	s=arc-20240116; t=1735631165; c=relaxed/simple;
+	bh=SW9rpK37lEib3M03Jx173ZEf5QPoH/08B9TOrwbJm7w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=alASd3abAXv4+HbSyCFFtwLXBxhZ6ytsy/pMGJvBdRW6qfJ7nuds1XyUu50zb3h/bAk4UiGxIrYU3KFwgSciDxcA7RLXIdsSK/6zKKd7b/2m2VWijvr8C6yS5WW0IHEdy9PURneQNxCCePe4UxpqSPJSjnHn1BR+00jAcZHAhf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dw5PVEfr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6596CC4CECD;
+	Tue, 31 Dec 2024 07:46:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735631165;
+	bh=SW9rpK37lEib3M03Jx173ZEf5QPoH/08B9TOrwbJm7w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Dw5PVEfrXoHeAmxE8B/D+rbSsM2MoaQymdDnaqYMo+ayqTr5e4tRsikvSFlagMAws
+	 FjoNWm2k0l5Ulq/ZJFf+/qm0/7YdK/M1JHeoV/2b01BAnACBMWVJfD2uGW9Co1wlz+
+	 MxzNbIJ5cBSpi3dRHwYJGa2UJHcVUWmTK2SN2cO/x18fJ8SxnTZs2VdnW6CJrbX+fe
+	 Pu2QHK2wPpQjH/81F6w7xH48I6eqZ4G3bF2zZH9Q99ki6cYxY/tul+O+ebALbaP7SG
+	 khm70RwAAbp4JfFk0NlOPLmj2Kt0wwCs0SJY1iwsteC5v0Uc1s6Vc+GgBqq1Unzhjc
+	 yi3HL1jsTTV+w==
+Message-ID: <3c58790f-b1eb-4183-aafd-063dc5472b52@kernel.org>
+Date: Tue, 31 Dec 2024 08:45:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] media: mediatek: add MT8188 AIE driver
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>, "mchehab@kernel.org"
+ <mchehab@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ =?UTF-8?B?Qm8gS29uZyAo5a2U5rOiKQ==?= <Bo.Kong@mediatek.com>
+Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+References: <20241225090113.17027-1-bo.kong@mediatek.com>
+ <20241225090113.17027-4-bo.kong@mediatek.com>
+ <351287f9e8a118babd225fb0e484976bef3db6c0.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <351287f9e8a118babd225fb0e484976bef3db6c0.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 31, 2024 at 1:00 PM Aiqun(Maria) Yu <quic_aiquny@quicinc.com> wrote:
-> On 12/30/2024 6:44 PM, Pengyu Luo wrote:
-> > On Mon, Dec 30, 2024 at 5:04 PM Aiqun(Maria) Yu <quic_aiquny@quicinc.com> wrote:
-> >> On 12/28/2024 1:13 AM, Pengyu Luo wrote:
-> [...]
-> >>> +     i2c_transfer(client->adapter, msgs, 2);
-> >>
-> >> ARRAY_SIZE(msgs) is suggested instead of pure 2.
-> >>
-> >
-> > Agree
-> >
-> >>> +     usleep_range(2000, 2500);
-> >>
-> >> Why is a sleep needed here? Is this information specified in any datasheet?
-> >>
-> >
-> > Have a break between 2 transaction. This sleep happens in acpi code, also
-> > inside a critical region. I rearranged it.
-> >
-> > Local7 = Acquire (\_SB.IC16.MUEC, 0x03E8)
-> > ...
-> > write ops
-> > ...
-> > Sleep (0x02)
-> > ...
-> > read ops
-> > ...
-> > Release (\_SB.IC16.MUEC)
->
-> Could you please share the exact code snippet that is being referenced?
-> I'm a bit confused because it doesn't seem to align with the current
-> logic, which doesn't have read operations within the same mutex lock. I
-> also want to understand the background and necessity of the sleep function.
->
+On 27/12/2024 07:05, CK Hu (胡俊光) wrote:
+> On Wed, 2024-12-25 at 17:00 +0800, bo.kong wrote:
+>> From: Bo Kong <Bo.Kong@mediatek.com>
+>>
+>> Add a V4L2 sub-device driver for MT8188 AIE.
+>>
+>> Signed-off-by: Bo Kong <Bo.Kong@mediatek.com>
+>> ---
+> 
+> [snip]
+> 
+>> +static void aie_reset_output_buf(struct mtk_aie_dev *fd,
+>> +				 struct aie_enq_info *aie_cfg)
+>> +{
+> 
+> Why clear output buffer?
+> Could you point out which place in the output buffer that hardware does not write data into but software would read it?
+> 
+Please respond with one email doing review, not 10 per each comment.
 
-I mentioned I rearranged it to optimize it. In a EC transaction,
-write sleep read => write read sleep, in this way, we sleep once a
-transaction.
-
-Please search
-'device name + acpi table' on the internet, someone dumped it and uploaded
-it, in SSDT, check ECCD. I am not sure if huawei allows users to dump it.
-So I don't provide it here.
-
-> >
-> >>> +
-> >>> +     mutex_unlock(&ec->lock);
-> >>> +
-> >>> +     return *resp;
-> >>> +}
-> >>> +
-> >>> +/* -------------------------------------------------------------------------- */
-> >>> +/* Common API */
-> [...]
-> >>> +     int i, ret;
-> >>> +     u8 _resp[RESP_HDR_SIZE + 1];
-> >>> +     u8 req[REQ_HDR_SIZE + 1] = {0x02, EC_READ, 1, };
-> >>
-> >> Could it be made more readable by specifying the macro names for 0x02
-> >> and 1? This would help in understanding the meaning of these numbers.
-> >>
-> >
-> > I really don't know the meaning of master command 0x02, 1 is the size for
-> > the data_seq behind of it. There are many possible sizes. It is not a good
-> > idea to define a macro name for everyone.
-> >
->
-> Perhaps you didn't get the "arg..." magic here. A single definition is
-> sufficient for all sizes.
->
-
-You were talking using a macro to inline the varadic magic sequences, I was
-talking defining macro for every constant number. If so, I got you now.
-
-> >> Also, please ensure the actual size of the request buffer is handled
-> >> properly. In gaokun_ec_request(), the req is passed down directly, and
-> >> the i2c_msg.len is used dynamically with req[INPUT_SIZE_OFFSET] +
-> >> REQ_HDR_SIZE. This requires the caller to carefully manage the contents
-> >> to avoid memory over-read, making the code difficult to read.
-> >>
-> >> Creating a defined macro can help you avoid manually defining the size.
-> >> For example:
-> >> #define REQ(size, data_0, data_1, args...) \
-> >> u8 req[REQ_HDR_SIZE + size] = {data_0, data_1, size, args};
-> >>
-> >
-> > I think wrapping like this is not recommended, see '5)' in [1]
-> >
-> > Best wishes,
-> > Pengyu
-> >
-> > [1] https://www.kernel.org/doc/html/v4.10/process/coding-style.html#macros-enums-and-rtl
->
-> I believe that the consideration of namespace collisions is a valid concern.
->
-> Some examples can be like have a naming pattern as well:
-> /*To have a name pattern to reflect the size like reg0/reg1/reg2*/
-> #define REQ(variable_name, size, data_0, data_1, args...) \
-> u8 ##variable_name[REQ_HDR_SIZE + size] = {data_0, data_1, size, args};
->
-> /*u8 req1[REQ_HDR_SIZE + 1] = {0x02, EC_READ, 1, };*/
-> REQ(req, 1, 0x02, EC_READ);
->
-> /*u8 req2[REQ_HDR_SIZE + 2] = {0x02, 0x68, 2, 3, 0x5a}; */
-> REQ(req, 2, 0x02, 0x68, 3, 0x5a);
->
-> Please note that this is just an example and a suggestion to avoid the
-> current manual variable pattern setting. The final decision still
-> requires the current maintainers' agreement.
->
-
-The main point I am against is hiding the data type, in some functions,
-later we assign req[some_offset] = val; That makes things really weird.
-
-I prefer to define all magic sequences, like
-#define MAGIC_SEQ_1 {0x02, EC_READ, 1, 0} /* padding with 0 */
-#define MAGIC_SEQ_2 {0x02, 0x68, 2, 3, 0x5a}
-
-Gathering them makes things easy to manage, but I doubt if any source
-file in Linux kernel doing it like this.
-
-Another one alternative,
-#define INLINE(REG0, REG1, SIZE) \
-	{ REG0, REG1, SIZE, [3 ... 2 + SIZE] = 0} /* GCC extension */
-/* or just */
-	{ REG0, REG1, SIZE, [2 + SIZE] = 0}
-
-u8 req[] = INLINE(0x02, 0x68, 2); /* Creating it */
-/* not sure if we can make tricks to initial this in macro */
-initial(req, 3, 0x5a); /* initial it */
-
-Best wishes,
-Pengyu
+Best regards,
+Krzysztof
 
