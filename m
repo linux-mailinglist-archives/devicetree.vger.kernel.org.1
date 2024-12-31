@@ -1,203 +1,147 @@
-Return-Path: <devicetree+bounces-134875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8C2F9FEDE7
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:17:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5766D9FEDE9
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AC10161BAA
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:17:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AD881882DF6
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FEA189BAC;
-	Tue, 31 Dec 2024 08:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EED518A959;
+	Tue, 31 Dec 2024 08:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C8TjVJfH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ehvLhzXk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C95987346D;
-	Tue, 31 Dec 2024 08:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BFF97346D;
+	Tue, 31 Dec 2024 08:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735633049; cv=none; b=GCLqVMB+OUaOHpCGXzsd56QgGuCH/jSoBP0IHiH5Lup6hwFJRNhY6BdMaKgPdHBb9STQuAGMmoCFNHHRhQ4dHbufk1NAJeU+PODVO6Szeklf/iGHW0GBoQgbIuDI96TIHuJ/8nZOCPvDnkQbMykj5zzRD5MZODMY7JDPzwyq/qs=
+	t=1735633196; cv=none; b=C4TgaNhcgO58qRIGKQg5O2ej9n4IBERKNjqoHgrOmIzMKgQrf8isdHuRrJAXXFA+H9JsT7ybQHItDXyvlUwy7c45wYP0kbwXgvucUKp683e25q/VelmGj0EcPJuS3/BcnVRmTKq6G1nLQmhV/x1Pm8UWfBGa3YWpV7sHxx87SUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735633049; c=relaxed/simple;
-	bh=kbMTbTtbxHLpkGNlEYFpF04MyVp36hZw1CCgo9MGAjg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fCqeot7AJoA83aoEQWPQkfK+Gnm/t9P+DQTCKU7mJQ7W72ly2EBHaFwuMEDQ4zPgD0aAr3qp88gL2vz8qpXWiLZC7TCukPcgsTh0xI2qSkZWNBhDl/1BexaQJ1BnSXKt0gdjLBFIwECIF9uIk81NuXk1As/MEaEWaHxBv5SZUCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C8TjVJfH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1187AC4CED6;
-	Tue, 31 Dec 2024 08:17:23 +0000 (UTC)
+	s=arc-20240116; t=1735633196; c=relaxed/simple;
+	bh=6K1BMxyOBliBcOsmWorNVGeQWa7ND39bDJMSJZnkw7g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=stX6qRl/81SRdTluZ35AEPAxx3c5R0e1c7La0CZsMaSfG6NLPV8wShpxIITlMFuzNpG6j47RzYvRg3OoIjr5B+w5K6Pn2nYc6umg8IlVreReQsdkNyhs33P6V7frbW9WZTLKoTQSfZ3I7ssxZeE9JJUQC6Y0n8k72H8ejygzWcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ehvLhzXk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F234EC4CED6;
+	Tue, 31 Dec 2024 08:19:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735633047;
-	bh=kbMTbTtbxHLpkGNlEYFpF04MyVp36hZw1CCgo9MGAjg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C8TjVJfHTXWwoYFWmypZnLSa6eTGKnvE+bOxER5AfHqKg++0WF309n5ZdINPwfVi3
-	 5mKf+LXtYTym66EneicdH1UYo/WX671+V16zTnVV85j1svMSryDiQ2ybhnZTUc4UZ8
-	 2iS5YyO1kUaq7U70jWWT90ybbFMFoOpEmv8z6SFvieCNLAfyQvdzojwbGSanysI9AC
-	 4qycU9w+hFDK3IDKRXXsRlASydheL7p5B9TOdebxCDAyjo6XhFg3R0F0WAsrEREhpy
-	 Y7MRBONfBz6iS5Vn/TQnJWAiYZc2AsJIZdgPRPXlICA2aK5/GSQKYpEy4qN+VG1end
-	 wmvRm4DvllvMQ==
-Message-ID: <8f662cd8-19cf-4ae3-8cb6-668781eebb4b@kernel.org>
-Date: Tue, 31 Dec 2024 09:17:22 +0100
+	s=k20201202; t=1735633195;
+	bh=6K1BMxyOBliBcOsmWorNVGeQWa7ND39bDJMSJZnkw7g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ehvLhzXk3EX0HgJDM7aqT3k32ZyiiLKWL3O1CGbSGoX7JfrnTcLfIu23gtxd5PftJ
+	 LYkmxkxtRtG4TR/pYO13ZuwGtrYB2bRLKr9ULUaIGnQzzkVTELCqhhcmO/Um7Fg6JO
+	 1h0bjtptrgn9HO7B8jU/30tVbKwfnYb8E50mrZnL2bwV1Z73TN+PsLOSoA5aD62KpA
+	 vMqB/789Krc3o1YC4fOmRqc96ulxaDH9I1b5p393CONyxShEhtG7SrwR5oEy7TkY/B
+	 ffgIjRBS1YTBN0ZTZyAee4gPq194S8lNgQszi28N7hGPWIvJfWBA4IQ0Ym+bYKlmrT
+	 kThflFQBg/ZBA==
+Date: Tue, 31 Dec 2024 09:19:52 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Borislav Petkov <bp@alien8.de>, Tony Luck <tony.luck@intel.com>, 
+	James Morse <james.morse@arm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Robert Richter <rric@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-edac@vger.kernel.org, git@amd.com
+Subject: Re: [PATCH v3 4/5] dt-bindings: memory-controllers: Add support for
+ Versal NET EDAC
+Message-ID: <43dp3ifjol3zjei6zs55tgsdbfmdwnihnjwnuhak7sssrmztoz@3bna4b7hclcu>
+References: <20241231063434.26998-1-shubhrajyoti.datta@amd.com>
+ <20241231063434.26998-5-shubhrajyoti.datta@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-binding: clock: cs2600: Add support for the
- CS2600
-To: Paul Handrigan <paulha@opensource.cirrus.com>, linux-clk@vger.kernel.org,
- sboyd@kernel.org, mturquette@baylibre.com, devicetree@vger.kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org
-Cc: patches@opensource.cirrus.com
-References: <20241230221246.3927158-1-paulha@opensource.cirrus.com>
- <20241230221246.3927158-2-paulha@opensource.cirrus.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241230221246.3927158-2-paulha@opensource.cirrus.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241231063434.26998-5-shubhrajyoti.datta@amd.com>
 
-On 30/12/2024 23:12, Paul Handrigan wrote:
-> Add device tree support for the Cirrus Logic CS2600 clock
-> device.
+On Tue, Dec 31, 2024 at 12:04:33PM +0530, Shubhrajyoti Datta wrote:
+> Add device tree bindings for AMD Versal NET EDAC for DDR controller.
 > 
-> Signed-off-by: Paul Handrigan <paulha@opensource.cirrus.com>
-
-I was wondering why this is not picked up by my filters... now I now:
-wrong subject prefix. It's dt-bindings.
-
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 > ---
->  .../bindings/clock/cirrus,cs2600.yaml         | 99 +++++++++++++++++++
->  1 file changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml b/Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
+> (no changes since v2)
+> 
+> Changes in v2:
+> - rename EDAC to memory controller
+> - update the compatible name
+> - Add remote proc handle
+> - Read the data width from the registers
+> - Remove the dwidth, rank and channel number the same is read from the RpMsg.
+> 
+>  .../amd,versalnet-ddrmc.yaml                  | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/amd,versalnet-ddrmc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/amd,versalnet-ddrmc.yaml b/Documentation/devicetree/bindings/memory-controllers/amd,versalnet-ddrmc.yaml
 > new file mode 100644
-> index 000000000000..c6f216e45791
+> index 000000000000..b6fc3548017d
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/memory-controllers/amd,versalnet-ddrmc.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/cirrus,cs2600.yaml#
+> +$id: http://devicetree.org/schemas/memory-controllers/amd,versalnet-ddrmc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Cirrus Logic Fractional-N Clock Synthesizer & Clock Multiplier
+> +title: Xilinx Versal NET Memory Controller
 > +
 > +maintainers:
-> +  - Paul Handrigan <paulha@opensource.cirrus.com>
-> +  - patches@opensource.cirrus.com>
+> +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 > +
 > +description:
-> +  The CS2600 is a system-clocking device that enables frequency synthesis and
-> +  clock generation from a stable timing reference clock. The device can
-> +  generate low-jitter clocks from a noisy clock reference at frequencies
-> +  as low as 50 Hz. The device has two potental clock inputs (xti and clk_in)
-> +  where xti can either be a crystal or a constant refclk and the clk_in. The
-> +  device can have either xti, clk_in, or both as a clock input depending on
-> +  the usecase. It also has three possible outputs CLK_OUT, BCLK_OUT, and
-> +  FSYNC_OUT.
+> +  The integrated DDR Memory Controllers (DDRMCs) support both DDR4 and LPDDR4/
+> +  4X memory interfaces. Versal NET DDR memory controller has an optional ECC support
+> +  which correct single bit ECC errors and detect double bit ECC errors.
+> +  It also has support for reporting other errors like MMCM (Mixed-Mode Clock
+> +  Manager) errors and General software errors.
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - cirrus,cs2600
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
+> +    const: amd,versalnet-ddrmc
 
-This does not match clock-names. Missing minItems. I already commented
-on this last time. Implement all comments I asked for.
+Not much improved.
 
 > +
-> +  clock-names:
-> +    items:
-> +      enum:
-> +        - xti
-> +        - clk_in
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  vdd-supply:
-> +    description: Power Supply
-> +
-> +  clock-output-names:
-> +    maxItems: 3
-> +    description: Names for CLK_OUT, BCLK_OUT and FSYNC_OUT clocks.
-> +
-> +  cirrus,aux-output-source:
+> +  amd,rproc:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 > +    description:
-> +      Specifies the function of the auxiliary output pin with "phase_unlock"
-> +      to indicate the input and output clocks are not in phase, "freq_unlock"
-> +      to indicate the PLL is unlocked, and "no_clkin" to indicate the clock on
-> +      the clk_in pin is not present.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - phase_unock # Sets output pin to indicate PHASE_UNLOCK
-> +      - freq_unlock # Sets output pin to indicate FREQ_UNLOCK
-> +      - no_clkin # Sets output pin to indicate NO_CLKIN
+> +      phandle to the remoteproc_r5 rproc node using which APU interacts
+> +      with remote processor.
 
-Drop comments, you just repeated the value. If you want to add comment,
-say something different than the value is saying.
 
+So no description of memory? I am fine with it, but then note that
+bindings are supposed to be complete, so don't come later with missing
+pieces.
+
+> +
+> +required:
+> +  - compatible
+> +  - amd,rproc
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    memory-controller {
+> +       compatible = "amd,versalnet-ddrmc";
+> +       amd,rproc = <&remoteproc_r5>;
+> +     };
+
+Misaligned.
 
 Best regards,
 Krzysztof
+
 
