@@ -1,194 +1,155 @@
-Return-Path: <devicetree+bounces-134904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629219FEE60
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 10:34:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E63C9FEE68
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 10:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19A17161BD9
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:34:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE45B1882CB4
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:39:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8027919047A;
-	Tue, 31 Dec 2024 09:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D350A191F7A;
+	Tue, 31 Dec 2024 09:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="oqUlmEkS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UaxmvHHP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AUS01-SY4-obe.outbound.protection.outlook.com (mail-sy4aus01olkn2088.outbound.protection.outlook.com [40.92.62.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996A618B482;
-	Tue, 31 Dec 2024 09:34:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.62.88
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735637661; cv=fail; b=cwX3Uv7WYCJuyrhQtOyASHpNgxkvGLqqxxMOrByjhHKdBu/qNw4O27jZngZfHGHUoSdqk+uKphZpGrenOtZsiPurD1MdKJ/2ZHntN1i8YsiHHFGPyqFU3Yo8cuofjcQfQM8/Jl4e6f97f8igol1JljxyoHwUQFpnjp+gzD5sf5c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735637661; c=relaxed/simple;
-	bh=0LVhbMByucJjEjpGF3aCtEmB/Fyecv0tJlZpegXAD6w=;
-	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=uxCdmwgnfDk+At4mZnyDkzwgSKfg9pYOhDvH7AMhx3r1jz7V3Kv9vGN39H7lhtrLPOi3yrViCW3OIqwHq5HuZn8CbxMXK6My3ehZOSEv+p2qjMfbV/N2unJ6hS0yPUquQtSG1tKRpilzhEiqol7Vby3FWaKNDQ10gTG5kg49fok=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=oqUlmEkS; arc=fail smtp.client-ip=40.92.62.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EzCeY2+rnhn9qbcspt2RuuFNk7bGc3mvVtUTdKYC/It+cb5dbPfGXzZ1ViaW/l8H5GyQya+yglHaMCeOozE4JyRVN6NOG2ycarcuCGRHPcPgvkGG6qGc+h34I/lZCsqnMsH2SC0N3DdeK3Y9V+rOGMctZGpTOY7TA45fe4DGvcFTuliyy42KZ9Y6K7HoMgDV02MF3Q5UUpXRbURV5y152iW0+c+9e2d5MZ+25lQL5RD/zrAeBFpDH2leKAE6UhEAxqLoc8CGOh28I/hj88nTLfs76IwDyjNHFH6LY2SbD2dxV4GF1NsxjePbQpjNT2p/Nfb/RE05d6jTuZlM/yTgDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0LVhbMByucJjEjpGF3aCtEmB/Fyecv0tJlZpegXAD6w=;
- b=bvj3yuD5y0GLVEV0rIE/znJOYCCkq5xmDhdkT1nK5D6uN7//SMvsGWVGhbiaUF932+SZx3BfLcHe/pwawG+Ki+68k4WgGUPWBdYdz1pCO1WY/X9jafyECBdN8UUpT7gruKwfa9zRTMaUmDopURRkDmO7H6HzCZu1dWxBFh3YOpkl4QrMB2ZfyaaVt6AQnpjnsOFPSpipxiBXE4HRAMIWOes6o1E84Mh88qEbg/Dm3B0N6T8EokCwT1G1GaPOmlZQOr8DGaR8vU4XmGrgLkBlljo16RSET9NUgZIaSJuCSNtNqH375oVRhtqww+SBclfGY83Kuh9u1skgR6FKkxsN2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0LVhbMByucJjEjpGF3aCtEmB/Fyecv0tJlZpegXAD6w=;
- b=oqUlmEkSJpkw8oE+j/mqF5HfSmurntIpGi+QncMM9te3p5torKllzpECplKXafhBUD5QWWfQc0Z/q1IWSQ14UDrN43OeAR/4b2AYzvq3TqRI7XkfTcx0sgLEFHp1nytL/w8jcohsnJZIi4Rv6INWZAn2JvXhyS+hkpqqjztjqZyUfX1kZVFkmtHO1iLdWS8eB3n31QxxyTOHiOoMVB11gkUJghRDGiZGq1XV4GOLCjdIi0tRf1JTeQw558fjFtuoA7MyJ/npLSTYwPNdzeW/8TMRugP3rrxaROJsMJ+BiQyVplEmmPG0Is6K0RfY4IqgXS6CIlVS1K8cS/xdvccnKA==
-Received: from ME0P300MB0553.AUSP300.PROD.OUTLOOK.COM (2603:10c6:220:22a::15)
- by SY0P300MB0309.AUSP300.PROD.OUTLOOK.COM (2603:10c6:10:24b::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.17; Tue, 31 Dec
- 2024 09:34:13 +0000
-Received: from ME0P300MB0553.AUSP300.PROD.OUTLOOK.COM
- ([fe80::fee9:23d3:17b0:d2d3]) by ME0P300MB0553.AUSP300.PROD.OUTLOOK.COM
- ([fe80::fee9:23d3:17b0:d2d3%4]) with mapi id 15.20.8293.000; Tue, 31 Dec 2024
- 09:34:13 +0000
-Message-ID:
- <ME0P300MB055370E97AB98D221B2E0782A60A2@ME0P300MB0553.AUSP300.PROD.OUTLOOK.COM>
-Date: Tue, 31 Dec 2024 17:34:02 +0800
-User-Agent: Mozilla Thunderbird
-From: Junzhong Pan <panjunzhong@outlook.com>
-Subject: Re: [PATCH 1/3] usb: hub: add infrastructure to pass onboard_dev port
- features
-To: m.felsch@pengutronix.de
-Cc: broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- festevam@gmail.com, gregkh@linuxfoundation.org, kernel@pengutronix.de,
- krzk@kernel.org, lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, lkp@intel.com, matthias@kaehlcke.net,
- mka@chromium.org, oe-kbuild-all@lists.linux.dev, robh@kernel.org
-References: <20241028214956.gmefpvcvm3zrfout@pengutronix.de>
-Content-Language: en-US
-In-Reply-To: <20241028214956.gmefpvcvm3zrfout@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0105.namprd03.prod.outlook.com
- (2603:10b6:a03:333::20) To ME0P300MB0553.AUSP300.PROD.OUTLOOK.COM
- (2603:10c6:220:22a::15)
-X-Microsoft-Original-Message-ID:
- <4faf8cb4-5b6f-4fcd-a2e0-ae32056c5736@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9A61714AC;
+	Tue, 31 Dec 2024 09:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735637951; cv=none; b=aJRgIWV/XtuXJyeFOwyeakOooNnNtJA+mouilWdmK8vEdaSda4NCIqSGdEIspq9oX5q4GjCiG6ILjedzU7ENS6IEWtQX/CCS9Cx1SGInfUmMXf59HmQipEILFON7QqRXMHzk2X+wu83yUcoXKz44zlidUONyEoOWeQKZiGSc2bs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735637951; c=relaxed/simple;
+	bh=N8k4M1AA2Bi9OFkGcAwxb/3vDmUw7L+tHPcTRToZx/8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EGtQRFwPKTt30r5uenf5OnP/3mNaGhzni1z81rtqHaGN8BGm/oRNpn+1bevBT064TBhCQkjL4S9q4Sdu1ZvsUJx9LrAS1hDIvdDqxNVGO9LqQ3mPZTrkMuIZ7WI1iuJFFZSDHyq7J9DctHA8hhfzOg1FLSpcCc8brEL8TS7zSIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UaxmvHHP; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-aaeec07b705so862629766b.2;
+        Tue, 31 Dec 2024 01:39:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735637947; x=1736242747; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZVx0iAxczoYNQmuh8tjxytzVFHWiAqHa6/iluToV3MA=;
+        b=UaxmvHHPA0SgdpWRMnuo9IcZGfyTRHfi7S1zBGqdWXXo0ohCt4AB2YsGOFEmFpA7YU
+         AmtNvVlR3xkm8eawOuOzdISilDg9uo4A1+g0IwxlLdUXgSUYYWOijiGetPB8B2LcEc7c
+         DZmoToKLcVGo5FkWDLbzZf/4UCNfCkRXe1SGh6XKGDpDU2Z1zsb8DJOdEYqqXOZ3Gl83
+         nSEFatI4y96Y5JhhfEzJyiNYoMIxiRmEwRMRVMgmLU72J3fEazx3guWfxIQlniTyC6qK
+         aHkFGntkrinTkfDAarSjWv60Ms7b6K1COfPKnT2uPS8sCDsNmm2ZmsReYikwXbLG33r4
+         J6Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735637947; x=1736242747;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZVx0iAxczoYNQmuh8tjxytzVFHWiAqHa6/iluToV3MA=;
+        b=desqo9/e0X/V3kRRTLLIhjOaQqeSbvNbC9v4t2cCz6TeKth6WxoZTqCxmdhT6ShjmD
+         0CCNWBewVS0AtcLShPIenLr2YZqZWE7v9Um1E/JUrCJaWDnlx/CGwvjwmA3DHNMIamuQ
+         3K++c99oC0Z71PKcqqs6tzfTfJfJ0uE76CRHAfEJkj5NegRQBWF7LK3FpJMMjL2RD1YE
+         iGuOY9N4EbVGrgI27tTCtbpYhiMqMBisUx/Ds8Ofg+5S3NjGQwxEYvib/xF9HJUDKMpQ
+         aqX+Vd7dE14xRlGQ3BP5DhHTPyVDRWc6uvWqQqO1RAU27CCB1N/czbOb4VjqqDnTgG4Y
+         Cd5g==
+X-Forwarded-Encrypted: i=1; AJvYcCU8GYS4SFZ5NKdtIXol7MNzijia0b1ZAeksyiaA2OkG/mni4u4y/xUt6u4PBKdT49aRmTC+CA4wHHY=@vger.kernel.org, AJvYcCUNUpCN6NuGPEl/CYLhzr3tkfCi4izS/REYdgn7gaLW0jma7pK86JG8zkuRzdlHo+c0zibjurPicPnznuQL@vger.kernel.org, AJvYcCUfUU3sOKz21Djubu4DY7dCmR0irJNjFNZJceS6Yy0i2O6bFQXy84jc7WNoaeTfriZLzHXyF6cf8fMRuXQPOw==@vger.kernel.org, AJvYcCUiOUxtbEhbAw/VBDCSfQaQrYHdpWBTqi7qyTOqFckTKJUpVRu59fYUxHhLoPHrbzeAbmc1LUhcPhHU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzx9iYOUb1yAEx2pr6agcawGCCaiawHe8yGZXo96yiILVJ2fQg7
+	BAK6kT4fxZc71LT5w1230qMP1wlJKQQ2iKoNDPUJiQGZ6Sq8YgiQ
+X-Gm-Gg: ASbGncsExlUaXVBYWaTlxoCn53IcyS9n+dKoD5dXm3AcLQgSwPoB3fABSr88mgIGxhZ
+	KfOm/QZIwlZysBvnMw3EnBQpfsA4O4bc9bkkk4+aOvKuijFSHgsfPQarpPEH14N0gvUSQ+iQMSb
+	VwBOzbigXYdURU4PumXSCmJXi9S58aOtDvHEm/e9bogULoHdN7+2e5dvtkZFoGVf0TJQLtnKjwO
+	lmQGaXWJZGN0o+DetRGLh2FSUa8zu4J/9FHsK2tMyKYz5JNilJ6gikOntL/bUmRE/b6xenw/irx
+	EiSaRvtOY7E5U4FKxFUYdKo=
+X-Google-Smtp-Source: AGHT+IHGbNFRD+VBQZRBeNgOAkjlfuRj4Aqm80agk2I8s6fM/A6uCsM+IQL8Y9Wk5QEVzZaPQtaLGg==
+X-Received: by 2002:a17:907:9715:b0:aac:619:e914 with SMTP id a640c23a62f3a-aac2ad88fcfmr3819378766b.16.1735637946926;
+        Tue, 31 Dec 2024 01:39:06 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0eae4338sm1542679266b.86.2024.12.31.01.39.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Dec 2024 01:39:06 -0800 (PST)
+Message-ID: <a0fc7b6c-e68d-42a7-aff4-a11c88495f67@gmail.com>
+Date: Tue, 31 Dec 2024 10:39:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ME0P300MB0553:EE_|SY0P300MB0309:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0ed1b98e-828d-4e8c-7e18-08dd297e4920
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|7092599003|15080799006|19110799003|461199028|6090799003|8060799006|5072599009|440099028|3412199025;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?T3RVTXkxV3NxbUNTRmhKQ1FRQ0hzRHkrM0g1VWZyZGFoVU8vTXNBOExHTTkx?=
- =?utf-8?B?T1NBVTRQSVFuTWZOMzNpZi83bE5meDhoN2IycEN2T2ZVN1p3cnpxSzkzaFIr?=
- =?utf-8?B?Ynp0ZmVuSXVmWlcyeTZKNVh1cXR0U21pUzVuMjZpbldhVkR4bEgrbEhhS21s?=
- =?utf-8?B?NG5XQUd2UW5paVc4QXlhVDVzUUJjRVZzSzc0b0J5K0pQbTI0NG9iY0xxOEZH?=
- =?utf-8?B?d0ZQUHR0dld5SFBMMDJkQXJFYVFBNk9jMC9CWDl2ak1sKzZ4Y0lEcUFLa0Zq?=
- =?utf-8?B?T2cycVJZQ2ZwL2d2Y0NCZm1XcDBCS3hFalFXN1hwc3JSQ0ZqaXhJTUV0MHdK?=
- =?utf-8?B?bytPZ0oxVWJGL0R0bFZEOFRwM1pzR2FCWjlxOVRVeUhPWGZyMnRMeWE5WVVK?=
- =?utf-8?B?cnlhTUtlQ240ck8rQXh1T21HK2kwc1orMStMZXNlb2ZQZ2J1Q285dyszcHho?=
- =?utf-8?B?ajhHK3RLWGJydU16d0dpc2U5dENEWTB0SUxmbjFYQ1A3QXJvNmJFZkp0VUNx?=
- =?utf-8?B?aDAwQnpwRCtNMFYvdHpmbmhFQUwyeU5kWGppM2U5b0ExdFpXcWpjVmxHQzNs?=
- =?utf-8?B?eDNIZEphRlozazUvSzVnbjJDWTAwY1FKa0RrZHprbVNLWDdtVGpmQ1dQcUF4?=
- =?utf-8?B?M3RBbG82MFlnbWs2Ulp3NERlZllWdk5Dcldnbit0dVNwUlBWWTc3NXpVSnRj?=
- =?utf-8?B?SVFMMy8zUDhWempLNTdYci9tMDc0R2t3d29tcXZFQXV6NXNkSUpRb1RLRm1o?=
- =?utf-8?B?U2tGSDVOOS9wWmpWSzJhcnd0bUxGd21BbVAwTndCQjcwaHhOdXJ2MWJwNDg0?=
- =?utf-8?B?VU1LMkQyS1Q0N0dubzFhTEdxSDRTNklCU2NmNFVmdDE4VjM5SnRiSXVaZHRn?=
- =?utf-8?B?NnVHVTEyWjN6blg0cUlFY3Zic01NalFTVXk4bVhmOXIrWjNINkxFQ0d1Skxr?=
- =?utf-8?B?WTJwSkdEWHpJaUJITGNWeU8xNHBMbng0Rk9lb3diUHkwUDgzYnFQNUVGQTdN?=
- =?utf-8?B?VmE5SjA0ZkVNaGJIWEFjMEgvYWNkeXhRQlhnbFh4MlJsZGtjU1cxNldMVjFM?=
- =?utf-8?B?dHNZWEFCS0FSbUt4eDRIMndHcXBYaDRKcDJaN2VXcGNWT05HWUFkeEYyYW9s?=
- =?utf-8?B?ZVNnbjhYUHMzZlhOY25UZWdOeVZaSEE2SGJlblE0KzFCU2pXaVZycTJ5Znk0?=
- =?utf-8?B?bWRjV2NlSzZuZG9pTXAyanBoYWlKK0dQTlc1T0lzcHFKWGk4aTRkZzVOS0pS?=
- =?utf-8?B?MEdpSWp1dzk4UStvVlVKY3BUTmxnS2lhMk5NdnFSanY0clBEWjZpaWlQcTVJ?=
- =?utf-8?B?MEF1YmZFdjlyMHV2UWRsNlBBcWEzWkV6eDlzQTBwTHFSZ2tHdmFvUk03U3Zv?=
- =?utf-8?B?OG0ydEJBcjMvYngrY0w4VjU4NHJkOVFvWDF0WGwwRjdEb3BwdWFDZk5jNVRC?=
- =?utf-8?B?M1E1SDNhK0FqQkFkRlVKMk9sdWJqb2c5cE9SYnk1bVMvbWN4NkVkZ3AwMlBn?=
- =?utf-8?Q?dnx7I8=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VnNLME80RnIwSjNkbm9BL3RoN2tNajlORWJDL3paQlY0NGViejN2aEZGUkl4?=
- =?utf-8?B?TXZRL0pCekdJWHRWQ0VpOEY3NWJwYUhsYVJYSTJSRmwzRzV6LzJWeDZwQit1?=
- =?utf-8?B?OUNuWE9Jem55N0RkY1N5MzBiNXhaUUJkdS8xeXQwUWJFUUlGRGx5NDlyYk10?=
- =?utf-8?B?TTlQdkJ1bmZMc2ljNGFNNlAzVXg1STA5bnpYbkFwajMycWtwNm1jUll5KzJM?=
- =?utf-8?B?ZDNQSENHUWJmTVd6YURPSmM0alY0K2F0bWhna0VnaFYzV0V1TUZ0aVVCKzRH?=
- =?utf-8?B?b0x1cG1NS1g3aXBXWFg5Rjh1dFhtNTlRcjVkNk1iNnlRcXZSMHRYUU4vd0cx?=
- =?utf-8?B?OCs0NWJWM1VDcVhDdjhodngvZVFZb2dUSFZlb3lieEZUN0VtbWszTmdRYW5h?=
- =?utf-8?B?YVh1UTFUWCtaRjM0V0J6RFN6VDVoQ25oWG1ZaWlsUHZFNFI4TjJ2M2VHWGFO?=
- =?utf-8?B?U2c2N0lSS2d3NUZOY1lJQlllZ1FoMzBTRWRnbkdJMENXODNldFVIVXRlQ3E2?=
- =?utf-8?B?Wm5GazFjQmFnSzZDOEUybUQ4MDN4Mzl2M0hLV2ErR0xreXlSTWVhc3NBL2xR?=
- =?utf-8?B?QnRMd0RPUEVybk5VRlRrL0FwZjMrRXVDbkRCSWNiQVZIbVlrNGpibnIzYTc1?=
- =?utf-8?B?bXFUZy91WFBLS3k0VDJ0RWpBL0FaUlhGWjl3akxmUG9yT256NXFFclloZm12?=
- =?utf-8?B?aVpSZU1BejNKVDNKam9SZ1V5RkVVUGNZbXFrcDdXa0llajdQZUtwRlUrS3M2?=
- =?utf-8?B?NVEvUFliSHp5Qk9JbmdsTW1sMllLUDZhVlBMdmR0aVdrU1ptYzArcHNnZWY4?=
- =?utf-8?B?bTJwcjZ5aE1EYXdpZHVnSjlyaU9sejdyd1hqamxPVC9LMXRFMVljTERGZXpD?=
- =?utf-8?B?bEdJT285SkhEeGpIOW52WUVnczJLQWVFK3BwNS9WYnphL0loenBXYjZBbzVq?=
- =?utf-8?B?YSs0VVBuUjUvcnBMK1JEVnc5QitWc0ZLbGdsbHNTekVDSWhpRTJUcFdrQlRO?=
- =?utf-8?B?TVY2TnhvTmc1d01pRmlRcDkxb0pPOUhhV3VpT0tzd1BNdUxSaWZJUmJEa2lQ?=
- =?utf-8?B?bmk2YWlQTzI1eFFHQllpSzgvVEwyQjF4b21GK0d3cHJQUUtiMytUajREZm9u?=
- =?utf-8?B?Z1YvcmtkcEZuZUpxQkJCRnpLVWI0RHh6bHpsSWwzSkFLeFhoOWduQW1YRkdh?=
- =?utf-8?B?K05TcmVhMm9qR09yN29YVDB2T01tT1BLNStCWFF5ajN1akVrcTJJZXdhK2VL?=
- =?utf-8?B?NjFaZnBxc21MOFEvcXNiVW1zRlo3THJQa1crYXFoV1diVlkxbmFHSVJpRnVL?=
- =?utf-8?B?cmdabjZlSm9vUklSTm5XK0lXUVVZOG5aSTMwSWc3MEVyQ2l0WXRLQkgvOWlI?=
- =?utf-8?B?ZjV1UTRXOXRmcytqdFRzYndlQ0NjQ3VsWkgyNUNHUzFxMnBxV0FLOTdBVGdy?=
- =?utf-8?B?dDFaK2tSaUNoTjY5cFJOWEZyU3U4Y05PTlJyZWVMNjRrbXZobytPV09SQ0dX?=
- =?utf-8?B?bzJtek9qZ2FTN1FWeTNITUZaUXdTRWNscFdQZ2ZPSkVVUlduVlA1dW90VWUr?=
- =?utf-8?B?RTd0ZzA1ZzhsTGZOTlB2VzhITDlSaSsrMWJWMG5oVTNxS0Zoc1V6OE9Gc0xl?=
- =?utf-8?B?YmNRbHk5UUZJQmkwVVpyMzRWYUc5NUlxSUREemw5dnM3dlhsQkl0blVPTWtm?=
- =?utf-8?Q?OAshgpum0sxzsaPDUlJK?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ed1b98e-828d-4e8c-7e18-08dd297e4920
-X-MS-Exchange-CrossTenant-AuthSource: ME0P300MB0553.AUSP300.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Dec 2024 09:34:12.9056
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY0P300MB0309
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/6] dt-bindings: opp: Add v2-qcom-adreno vendor
+ bindings
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Conor Dooley <conor+dt@kernel.org>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, devicetree@vger.kernel.org,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Simona Vetter <simona@ffwll.ch>, Sean Paul <sean@poorly.run>,
+ freedreno@lists.freedesktop.org, Bjorn Andersson <andersson@kernel.org>,
+ linux-pm@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Viresh Kumar <vireshk@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+ Rob Clark <robdclark@gmail.com>, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konradybcio@kernel.org>, David Airlie <airlied@gmail.com>
+References: <20241231-gpu-acd-v3-0-3ba73660e9ca@quicinc.com>
+ <20241231-gpu-acd-v3-4-3ba73660e9ca@quicinc.com>
+ <173559754709.2660868.7488137827927170444.robh@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@gmail.com>
+In-Reply-To: <173559754709.2660868.7488137827927170444.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Marco,
+On 30.12.2024 11:25 PM, Rob Herring (Arm) wrote:
+> 
+> On Tue, 31 Dec 2024 02:41:05 +0530, Akhil P Oommen wrote:
+>> Add a new schema which extends opp-v2 to support a new vendor specific
+>> property required for Adreno GPUs found in Qualcomm's SoCs. The new
+>> property called "qcom,opp-acd-level" carries a u32 value recommended
+>> for each opp needs to be shared to GMU during runtime.
+>>
+>> Also, update MAINTAINERS file include the new opp-v2-qcom-adreno.yaml.
+>>
+>> Cc: Rob Clark <robdclark@gmail.com>
+>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>> ---
+>>  .../bindings/opp/opp-v2-qcom-adreno.yaml           | 97 ++++++++++++++++++++++
+>>  MAINTAINERS                                        |  1 +
+>>  2 files changed, 98 insertions(+)
+>>
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml: ignoring, error parsing file
+> Traceback (most recent call last):
+>   File "/usr/bin/yamllint", line 33, in <module>
+>     sys.exit(load_entry_point('yamllint==1.29.0', 'console_scripts', 'yamllint')())
+>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 228, in run
+>     prob_level = show_problems(problems, file, args_format=args.format,
 
-On Mon, 28 Oct 2024 22:49:56 +0100 Marco Felsch wrote:
-> I found two mistakes I made in my v1. I would send a v2 if this series
-> is interesting for upstream. The remaining open question is how the
-> driver dependencies should be handled (see idea-1,2,3).
+You need to shift the closing '}':
 
-How's everything going? I wish you all good!
-It's a very useful series for various hubs, gentle ping on it.
+diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+index b7874f43aaf6..46fbffaf0a61 100644
+--- a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
++++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+@@ -93,5 +93,4 @@ examples:
+             opp-peak-kBps = <2136719>;
+             /* Intentionally left out qcom,opp-acd-level property here */
+         };
+-
+-};
++    };
 
-On Mon, 28 Oct 2024 22:49:56 +0100 Marco Felsch wrote:
-> > > Idea-3:
-> > > -------
-> > >
-> > > Adding a function to the hub.c usbcore which can be used by the
-> > > usb-onboard-dev driver to register this function as hook. This removes> > > the dependency from the core and the usb-onboard-dev module is only
-> > > pulled if really required. Of course this require that the hub.c usbcore> > > driver allows custom hooks.
-> >
-> > This seems like the best approach IMO, if USB maintainers are onboard with> > it.
-Use the existing onboard_hub.h header to do the hooks looks fine.
 
-I recently encountered some kind of platforms using an existing onboard
-hub yet their HW don't utilize the USBPE port power control feature
-while the hub support it.
-Instead, we have another GPIO for controlling the vbus of those ports
-to cut the cost.
-
-Wonder any idea could use this driver considering the limitation of
-the usb compatible set the properties of onboard_dev_pdata hard coded?
-
-Best Regards,
-Pan
+Konrad
 
