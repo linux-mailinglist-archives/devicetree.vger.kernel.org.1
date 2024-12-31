@@ -1,105 +1,142 @@
-Return-Path: <devicetree+bounces-134817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B23E9FEC05
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 02:04:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 613689FEC5D
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 03:12:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 839C13A20F2
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 01:04:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CC4F3A28E9
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 02:12:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D56E4C76;
-	Tue, 31 Dec 2024 01:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E136126C1E;
+	Tue, 31 Dec 2024 02:12:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OAhZCtBL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a86EWqjw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0AE3DDBE;
-	Tue, 31 Dec 2024 01:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650E91EEE6;
+	Tue, 31 Dec 2024 02:12:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735607070; cv=none; b=rW0dZhtuJ02hKrR3AYcDxlN4/o7ENXn1/yDkLL+I3XfP1zzMqUXNXwr35S7QbJHvKSkZMiLiW+KLmFsnYdeTSXHvRhKleOIAYprJMLxVTpQqsIOgVm2XG3ObUshju9/LMwyOhkN9OLvhZWubKmDnZ7uHTV/a/UnKFZxP6diHMS8=
+	t=1735611141; cv=none; b=VNwBF7+D2xnV19kt83xr0awvJPip3j523zVLNdmmyTQLJM5Y+hxMVFDNXo8boVXne5ZKXZweYr0BhB8vA0xc6UlFcN+QldA2RwGi9HoJnCJ/4tEiRQ45EcxUgx7kRZMjoo3XU/fOWN8olPCpSkhykAmhHnuo/dcZ2vxpDBw2O8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735607070; c=relaxed/simple;
-	bh=RH7kiMlpAI/s9h2kVGwIXwlCQELmu+Tyxzib/pl8Jko=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EA0Gah1IlEES4FP3lFcVh/+2trDKynAJA1Ob6yQeF2eFWnjAv9xwwaiX0EJRs1GnJRc7OMxJPQ4AV9NAeT79LkALE+jqgOBDJVrquTDjNcPXH6NIpwZXGdGRlTOWxF8JWaHO4D59S5cFHSjDvKI8oufSCbpRk6CuYbAun4NhtZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OAhZCtBL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BF7CC4CED0;
-	Tue, 31 Dec 2024 01:04:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735607069;
-	bh=RH7kiMlpAI/s9h2kVGwIXwlCQELmu+Tyxzib/pl8Jko=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OAhZCtBLrHh3TXXoNx/BpQt+jcLzZqP3GygqEuviZj9mVkGsUQ0Aa2peOAkQXgWyK
-	 gxh46RJqW2OpgTi6O5GxrJ9ZfJq/w43873IXXBCvER7LN/4XQwabDpxhJywLktgLRc
-	 S1c2NK5Px3YRJtWmE8cNNJa5FCO6bDdOGfcW5B7QRHk1ilKmYrhWkYt5dL7fCJ42pG
-	 Pg+QJkbFnFplVX1mT/S54/eALZq4vJIi68bOZoAyzSFOVdfSKkNDMRVga2pz6xiLV/
-	 iWvGkxZPdSmAxqOCaF2LxhCRu8AzuroBZmrvJXqLlrmHGYj1ZpYxaAnoJwPw8TzQTZ
-	 cRlzjaCgvGbGg==
-Date: Mon, 30 Dec 2024 19:04:27 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Robert Foss <rfoss@kernel.org>, devicetree@vger.kernel.org,
-	kernel@pengutronix.de, Oleksij Rempel <o.rempel@pengutronix.de>,
-	"open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
-	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	David Airlie <airlied@gmail.com>, imx@lists.linux.dev,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH 05/10] dt-bindings: display/lvds-codec: add ti,sn65lvds822
-Message-ID: <173560706743.2857783.191576326455714393.robh@kernel.org>
-References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
- <20241219-skov-dt-updates-v1-5-38bf80dc22df@pengutronix.de>
+	s=arc-20240116; t=1735611141; c=relaxed/simple;
+	bh=5FEbKt6kSXBWOpnW1shqIeo2JvACa9nxNkoVndr0wnk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XfdBG30eyQy8VKQXPYsnIJ3I7v1ElQAOHO4Lh1dQMUKd7CX9TtrbqpLysgbH/uBM0uaK0K/w5nGdpF4gFY1OE0Teqe1C6eofMVjtfcCs7u8RHo0QpYNNTu0lEMS2OK+DBIJsLJmPgfdIUGlYL87w1hmHSYp1FmZkP9QCNVh5/Vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a86EWqjw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BUKqk2q022670;
+	Tue, 31 Dec 2024 02:12:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6qpD0UfSDu22yFJD580YmIT9lzTBVTxSgxhHadDfx38=; b=a86EWqjwmTgBUD2t
+	c29HqDoUMpIa9fMPW81YoPjtBUubosW23FR5Se5Kn2daRS4S5D2HY+tkf+tjZQ51
+	UrkfyXHtj8+gEUI3d4hu16GDR16WV2B4cMg215yTWLnY+v4C62qUGEF12cfTec/9
+	OunmVGTSUQyDcd5jAAxOrq2r7IeE6EhlwRhuiaVmYe5lpmBFyC+uv8ZgWuF6UPBM
+	p3oiHlIrwpvzf75rkJ1mY825EifwDmdKBnQ3o455CA56qJjnVD5aF5P/9ZhfWqLk
+	qNolQqvvete+DnEAW1NCR99O6NBZy4P2KSaREAdm9FV0eYJCMh0XVSZim+RCTObE
+	ODbSYg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43uvxxh7mr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Dec 2024 02:12:14 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BV2CDsS019400
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Dec 2024 02:12:13 GMT
+Received: from [10.253.8.45] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 30 Dec
+ 2024 18:12:08 -0800
+Message-ID: <325ac989-855d-4474-a02e-d378013a11cb@quicinc.com>
+Date: Tue, 31 Dec 2024 10:12:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241219-skov-dt-updates-v1-5-38bf80dc22df@pengutronix.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/4] media: venus: enable venus on qcs615
+To: Bjorn Andersson <andersson@kernel.org>
+CC: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Vikash Garodia
+	<quic_vgarodia@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+References: <20241219-add-venus-for-qcs615-v6-0-e9a74d3b003d@quicinc.com>
+ <xygyprx3e6iagoq55bw5y2ruvoqd3jy5defpp4jyeo5sqlomto@rxkp6eolrewp>
+Content-Language: en-US
+From: Renjiang Han <quic_renjiang@quicinc.com>
+In-Reply-To: <xygyprx3e6iagoq55bw5y2ruvoqd3jy5defpp4jyeo5sqlomto@rxkp6eolrewp>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: VsNAdcqG6uf0t8Z-DlBh-ZWcIqvODbhm
+X-Proofpoint-GUID: VsNAdcqG6uf0t8Z-DlBh-ZWcIqvODbhm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=886
+ malwarescore=0 phishscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ suspectscore=0 priorityscore=1501 adultscore=0 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412310016
 
 
-On Thu, 19 Dec 2024 08:25:29 +0100, Ahmad Fatoum wrote:
-> Add compatible strings for TI SN65LVDS822, a FlatLink LVDS receiver.
-> 
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> ---
-> To: Andrzej Hajda <andrzej.hajda@intel.com> (maintainer:DRM DRIVERS FOR BRIDGE CHIPS)
-> To: Neil Armstrong <neil.armstrong@linaro.org> (maintainer:DRM DRIVERS FOR BRIDGE CHIPS)
-> To: Robert Foss <rfoss@kernel.org> (maintainer:DRM DRIVERS FOR BRIDGE CHIPS)
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com> (reviewer:DRM DRIVERS FOR BRIDGE CHIPS,in file)
-> Cc: Jonas Karlman <jonas@kwiboo.se> (reviewer:DRM DRIVERS FOR BRIDGE CHIPS)
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com> (reviewer:DRM DRIVERS FOR BRIDGE CHIPS)
-> Cc: David Airlie <airlied@gmail.com> (maintainer:DRM DRIVERS)
-> Cc: Simona Vetter <simona@ffwll.ch> (maintainer:DRM DRIVERS)
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com> (maintainer:DRM DRIVERS AND MISC GPU PATCHES)
-> Cc: Maxime Ripard <mripard@kernel.org> (maintainer:DRM DRIVERS AND MISC GPU PATCHES)
-> Cc: Thomas Zimmermann <tzimmermann@suse.de> (maintainer:DRM DRIVERS AND MISC GPU PATCHES)
-> Cc: dri-devel@lists.freedesktop.org (open list:DRM DRIVERS)
-> ---
->  Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+On 12/27/2024 6:19 AM, Bjorn Andersson wrote:
+>> QCS615 uses the same video core as SC7180, so reuse the same resource
+>> data of SC7180 for QCS615 to enable video functionality.
+>>
+>> There are no resources for the video-decoder and video-encoder nodes
+>> in the device tree, so remove these two nodes from the device tree. In
+>> addition, to ensure that the video codec functions properly, use [3]
+>> to add encoder and decoder node entries in the venus driver.
+>>
+>> Validated this series on QCS615 and SC7180.
+>>
+>> depends on:
+>> [1]https://lore.kernel.org/all/20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com
+> This series has requests for changes and will as such never be merged.
+>
+> Rather than relying on the maintainer to coordinate your cross-team
+> dependencies, it would be preferable if you grouped your patches per
+> functional area (i.e. you include Taniya's patch to add videocc) in your
+> series.
+>
+>> [2]https://lore.kernel.org/all/20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com
+> Same goes for this.
+>
+> I'll drop the two two dts patches from my review queue as they have
+> unmet dependencies. Please resubmit them together with dependencies or
+> once the dependencies are available in linux-next.
+>
+> Regards,
+> Bjorn
+  Thanks for your comment, I will sync with Taniya and ask her to update
+  these two patch series. Then I will update dependency versions.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+-- 
+Best Regards,
+Renjiang
 
 
