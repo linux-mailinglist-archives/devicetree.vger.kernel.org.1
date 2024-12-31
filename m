@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-134876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5766D9FEDE9
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:20:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BBC79FEDEE
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:23:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AD881882DF6
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:20:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01848162359
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EED518A959;
-	Tue, 31 Dec 2024 08:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66E6E18B482;
+	Tue, 31 Dec 2024 08:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ehvLhzXk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aywhAM9C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BFF97346D;
-	Tue, 31 Dec 2024 08:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345FD18A6A6;
+	Tue, 31 Dec 2024 08:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735633196; cv=none; b=C4TgaNhcgO58qRIGKQg5O2ej9n4IBERKNjqoHgrOmIzMKgQrf8isdHuRrJAXXFA+H9JsT7ybQHItDXyvlUwy7c45wYP0kbwXgvucUKp683e25q/VelmGj0EcPJuS3/BcnVRmTKq6G1nLQmhV/x1Pm8UWfBGa3YWpV7sHxx87SUU=
+	t=1735633423; cv=none; b=mF+s0kHt0ID+1H9ftoUkOicxMGeBxaOwM/alCelJgrHcY2gRDsuK6dUmvals8qIGgTtg8uwbD4o3l210PdLYgQoNcJO8sE66uBUPyqXLH9sjMxJYkRnf8QyNW9V4sykHy/kIA1vDoxVxk6XOCAs5BTXz3iiAFlQ2K4dCDna3jpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735633196; c=relaxed/simple;
-	bh=6K1BMxyOBliBcOsmWorNVGeQWa7ND39bDJMSJZnkw7g=;
+	s=arc-20240116; t=1735633423; c=relaxed/simple;
+	bh=8k7A7pn5KKxr1hAtXg6k+QrsCY9z/C72vgdY+d0asXU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=stX6qRl/81SRdTluZ35AEPAxx3c5R0e1c7La0CZsMaSfG6NLPV8wShpxIITlMFuzNpG6j47RzYvRg3OoIjr5B+w5K6Pn2nYc6umg8IlVreReQsdkNyhs33P6V7frbW9WZTLKoTQSfZ3I7ssxZeE9JJUQC6Y0n8k72H8ejygzWcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ehvLhzXk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F234EC4CED6;
-	Tue, 31 Dec 2024 08:19:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=X5bjNpsHQWfhKWV/vzfBmFL8hQe+blPAUS1X7Ds/5Q1ljmwilM0IOW5eYrtfGKvlwfq+wXm7vUjUsZS2LvSlvDW+ygU3w3Qqxd7RKwczvNQDfjzDeUFLTHGvk0QY2vIICiYCrvSNYLijqeWb+Q6AMzjPMea+LzGlJ4v48wHb43E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aywhAM9C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF944C4CEDC;
+	Tue, 31 Dec 2024 08:23:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735633195;
-	bh=6K1BMxyOBliBcOsmWorNVGeQWa7ND39bDJMSJZnkw7g=;
+	s=k20201202; t=1735633422;
+	bh=8k7A7pn5KKxr1hAtXg6k+QrsCY9z/C72vgdY+d0asXU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ehvLhzXk3EX0HgJDM7aqT3k32ZyiiLKWL3O1CGbSGoX7JfrnTcLfIu23gtxd5PftJ
-	 LYkmxkxtRtG4TR/pYO13ZuwGtrYB2bRLKr9ULUaIGnQzzkVTELCqhhcmO/Um7Fg6JO
-	 1h0bjtptrgn9HO7B8jU/30tVbKwfnYb8E50mrZnL2bwV1Z73TN+PsLOSoA5aD62KpA
-	 vMqB/789Krc3o1YC4fOmRqc96ulxaDH9I1b5p393CONyxShEhtG7SrwR5oEy7TkY/B
-	 ffgIjRBS1YTBN0ZTZyAee4gPq194S8lNgQszi28N7hGPWIvJfWBA4IQ0Ym+bYKlmrT
-	 kThflFQBg/ZBA==
-Date: Tue, 31 Dec 2024 09:19:52 +0100
+	b=aywhAM9CB0qyWKi9qwSfMfwPQayyzhqdqeZOI+brEmTbnRfv8wGj59BYjIGtg0Y/x
+	 Ggiowx+uGTybxmDi9KF0rMUJnhFXkOtDV7Ng6XZB45Ah7/u/p5sgxCS5N6s9P0VYpn
+	 ekzAjtcvrTKiyadrSuV7Pxsl1xdqktIQNfP1zh9GPEiJVGCctIj/4D0+oDUlr8Apv/
+	 s5d3q6C0Tp9Z34xi5nMTirKOL6hwS9VYVl7TH5Ip1YVPYGFJs3czHcZn5i0SNq5pDH
+	 VlZs9UrLMkeZVnJt/ZQmKrn0YhagLrAfsYECognXKukpo0T6UbcX2wfv8vqA/OOLrM
+	 Iof2vBIg9nWew==
+Date: Tue, 31 Dec 2024 09:23:39 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Borislav Petkov <bp@alien8.de>, Tony Luck <tony.luck@intel.com>, 
-	James Morse <james.morse@arm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Robert Richter <rric@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-edac@vger.kernel.org, git@amd.com
-Subject: Re: [PATCH v3 4/5] dt-bindings: memory-controllers: Add support for
- Versal NET EDAC
-Message-ID: <43dp3ifjol3zjei6zs55tgsdbfmdwnihnjwnuhak7sssrmztoz@3bna4b7hclcu>
-References: <20241231063434.26998-1-shubhrajyoti.datta@amd.com>
- <20241231063434.26998-5-shubhrajyoti.datta@amd.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: robh@kernel.org, iommu@lists.linux.dev, heiko@sntech.de, 
+	devicetree@vger.kernel.org, joro@8bytes.org, hjc@rock-chips.com, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	vkoul@kernel.org, detlev.casanova@collabora.com, 
+	linux-arm-kernel@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>, 
+	linux-rockchip@lists.infradead.org, krzk+dt@kernel.org, cl@rock-chips.com
+Subject: Re: [PATCH v2 5/8] dt-bindings: display: vop2: Add rk3576 support
+Message-ID: <6pn3qjxotdtpzucpul24yro7ppddezwuizneovqvmgdwyv2j7p@ztg4mqyiqmjf>
+References: <20241228122155.646957-1-andyshrk@163.com>
+ <20241228122155.646957-6-andyshrk@163.com>
+ <ihvrdnntfuvvycnlhysnm43wylotovvnivu4wxcne3bwc6etpj@n2rq6n77lmma>
+ <4847f6b1.1c60.19412092a7a.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,84 +64,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241231063434.26998-5-shubhrajyoti.datta@amd.com>
+In-Reply-To: <4847f6b1.1c60.19412092a7a.Coremail.andyshrk@163.com>
 
-On Tue, Dec 31, 2024 at 12:04:33PM +0530, Shubhrajyoti Datta wrote:
-> Add device tree bindings for AMD Versal NET EDAC for DDR controller.
+On Sun, Dec 29, 2024 at 06:49:38PM +0800, Andy Yan wrote:
 > 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
 > 
-> (no changes since v2)
+> Hi Krzysztof,
 > 
-> Changes in v2:
-> - rename EDAC to memory controller
-> - update the compatible name
-> - Add remote proc handle
-> - Read the data width from the registers
-> - Remove the dwidth, rank and channel number the same is read from the RpMsg.
+> At 2024-12-29 18:13:39, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
+> >On Sat, Dec 28, 2024 at 08:21:48PM +0800, Andy Yan wrote:
+> >> From: Andy Yan <andy.yan@rock-chips.com>
+> >> 
+> >> Add vop found on rk3576, the main difference between rk3576 and the
+> >> previous vop is that each VP has its own interrupt line.
+> >> 
+> >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> >> 
+> >> ---
+> >> 
+> >> Changes in v2:
+> >> - describe constraint SOC by SOC, as interrupts of rk3576 is very
+> >>   different from others
+> >> - Drop Krzysztof's Reviewed-by, as this version changed a lot.
+> >> 
+> >> Changes in v1:
+> >> - ordered by soc name
+> >> - Add description for newly added interrupt
+> >> 
+> >>  .../display/rockchip/rockchip-vop2.yaml       | 70 +++++++++++++++----
+> >>  1 file changed, 56 insertions(+), 14 deletions(-)
+> >> 
+> >> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> >> index 2531726af306..f28cea4a6d82 100644
+> >> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> >> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> >> @@ -20,6 +20,7 @@ properties:
+> >>      enum:
+> >>        - rockchip,rk3566-vop
+> >>        - rockchip,rk3568-vop
+> >> +      - rockchip,rk3576-vop
+> >>        - rockchip,rk3588-vop
+> >>  
+> >>    reg:
+> >> @@ -37,10 +38,22 @@ properties:
+> >>        - const: gamma-lut
+> >>  
+> >>    interrupts:
+> >> -    maxItems: 1
+> >> -    description:
+> >> -      The VOP interrupt is shared by several interrupt sources, such as
+> >> -      frame start (VSYNC), line flag and other status interrupts.
+> >> +    minItems: 1
+> >> +    maxItems: 4
+> >> +    items:
+> >> +      - description:
+> >
+> >That's contradictory. min/max say 1-4, but here you list two interrupts.
 > 
->  .../amd,versalnet-ddrmc.yaml                  | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/amd,versalnet-ddrmc.yaml
+> There are 4 interrupts on rk3576, and the other SOC only have one.
+
+But you listed two interrupts, so where does the "two" come from?
+
+> I am sorry that I am not familiar with this schema language; I have read many
+> other YAML bindings these days and try to write it correctly.
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/amd,versalnet-ddrmc.yaml b/Documentation/devicetree/bindings/memory-controllers/amd,versalnet-ddrmc.yaml
-> new file mode 100644
-> index 000000000000..b6fc3548017d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/amd,versalnet-ddrmc.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/amd,versalnet-ddrmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx Versal NET Memory Controller
-> +
-> +maintainers:
-> +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> +
-> +description:
-> +  The integrated DDR Memory Controllers (DDRMCs) support both DDR4 and LPDDR4/
-> +  4X memory interfaces. Versal NET DDR memory controller has an optional ECC support
-> +  which correct single bit ECC errors and detect double bit ECC errors.
-> +  It also has support for reporting other errors like MMCM (Mixed-Mode Clock
-> +  Manager) errors and General software errors.
-> +
-> +properties:
-> +  compatible:
-> +    const: amd,versalnet-ddrmc
+> Maybe I should not list the interrupts-names here(then list the interrupt-name by soc at allOf:  part),
+>  like the clocks handles in samsung,usb3-drd-phy.yaml  ?
 
-Not much improved.
-
-> +
-> +  amd,rproc:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to the remoteproc_r5 rproc node using which APU interacts
-> +      with remote processor.
-
-
-So no description of memory? I am fine with it, but then note that
-bindings are supposed to be complete, so don't come later with missing
-pieces.
-
-> +
-> +required:
-> +  - compatible
-> +  - amd,rproc
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    memory-controller {
-> +       compatible = "amd,versalnet-ddrmc";
-> +       amd,rproc = <&remoteproc_r5>;
-> +     };
-
-Misaligned.
+xxx-names are supposed to be fully synced with xxx, so something needs
+to be fixed here. You can of course remove interrupt-names *completely*
+(but not partially, because all properties must be defined in top-level).
 
 Best regards,
 Krzysztof
