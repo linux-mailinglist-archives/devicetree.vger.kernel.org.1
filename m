@@ -1,246 +1,97 @@
-Return-Path: <devicetree+bounces-134912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DCAB9FEE7D
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 10:44:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D87919FEE8E
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 10:45:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFF22161F7A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:44:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1932E3A2EB3
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E606919A28D;
-	Tue, 31 Dec 2024 09:44:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6C519924E;
+	Tue, 31 Dec 2024 09:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o2DsjmP/"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="p6SMH6CR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F1F197552;
-	Tue, 31 Dec 2024 09:44:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 337BD194089;
+	Tue, 31 Dec 2024 09:45:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735638254; cv=none; b=DPthiYI3zzfULig04BxeV5qAHuCDwlzxW7PufYfnrVkEO909RIqrMQYl0nDJadwxD9WMxH8l5RyPGDkn/SYzV4qwMROeV3hJn1Qvsfd88Penv3FY53lGHYM2OuEx6DCy3zjYhp5qpZ1uqlnxaN3Q/SYBjwwf2cvrLh7u0oHPD74=
+	t=1735638305; cv=none; b=ay8MGdEgx2Mf2Y61PHumBdvrV9poIf28Dpm6CUl0gv4wRALR3n1Dt0mrVXfd3AK74JIA0YlEapbClgBtndiFiEUBoqNmYt16PbFXRnqEuIsqHNkX042+x8B+XrVlVDt7PlZthSYUBFZ7198VTqga8/GanSlzaSNbUm6IfrSGc9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735638254; c=relaxed/simple;
-	bh=AC4CmZODc6zttOyIPBfDblh9cJnGUWWU4vNPYxPmyso=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Sianb0/0KEDCa2lTkEplgcSvDY47rxtl6odYhtBrE0qx1mTJcsLmtv2mn8KlD/skQNQhRCcVLx2GyfiJ1Tp95xBg03SxISdLQutUv+8V7CUJs3amkhSApPVxONYFhRrJpQAjcIYABTjIopHAprLdvJsycdW/GxV45uZGJQz9lXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o2DsjmP/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 32677C4AF16;
-	Tue, 31 Dec 2024 09:44:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735638254;
-	bh=AC4CmZODc6zttOyIPBfDblh9cJnGUWWU4vNPYxPmyso=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=o2DsjmP/5yWrrBljpQzy1Id7cdaQXN+Qt01qw9sfb+V1lW+0IX6F8/yZe7rPl7YWg
-	 TnMEdLVWjv0bzCzIVXL/4GuNy6Y6mRAmWWyEuYqFqZZ4GNbSlAraR7YpqIOFfUiyq3
-	 lZXruJFihWhB/kK/JbSPAQ0gcgm4umkQht6+4XS0pHPLMC2idpr72O9ZLnctBXZVI5
-	 n4y8bC09ym4V1DjH1dlVlh0FOio/7EQc+VtcjpbaMaYoHHwy2/kE3nllMEWF1UMyvc
-	 Dj3+cSBkOYhrZXT2FKD0Hf2/tQR+5+UZZNBe6L9AGYkBSWjQVn3joLMJxXxZVSHCQ9
-	 Uwivw5Zg+t3DQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2555FE77198;
-	Tue, 31 Dec 2024 09:44:14 +0000 (UTC)
-From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>
-Date: Tue, 31 Dec 2024 15:13:47 +0530
-Subject: [PATCH v2 6/6] PCI/pwrctrl: Add pwrctrl driver for PCI Slots
+	s=arc-20240116; t=1735638305; c=relaxed/simple;
+	bh=V7DBcT2X1hkKFlr0PtGNIeSQwQl6ouvIDsV1dXm5+3o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=R5b4UXp4YOV4mpIHUQa+dAn7ztWHSIUlvYEANx0q7SjzHxIWLRdUw4GLXWq5XqfqEZh+TptOoQ0tKTcizKvvL30Rwf9gdHp2j8sq/ZbEKLpGAHkqC53ZMJXCZk0mwW9GXZ92q+nqwCk8tSfTLcKKGRlNDThsPOXUVrmOK6LfTnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=p6SMH6CR; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version:
+	Content-Type; bh=KgtALxJqBWoQB4v1+ibC8c5vtvvbQuSbp6eJ9TpCs4o=;
+	b=p6SMH6CRyG46D1iaJalUPdckQsBULJUgmM857QpPXRSGSKbX6bCwGcmzq+wk0O
+	5yLGIphuAfDHIkWFQa7dJqWoikY2BFlY1zbsFd68bTU2CYMYfsOtxdfaSm/167HM
+	3pwy6+h/jNUahP74w7a/MlyqGvVU/DmaCrxN6PX+5RszM=
+Received: from ProDesk.. (unknown [])
+	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wD3v8P6vHNnCZWrCw--.29543S2;
+	Tue, 31 Dec 2024 17:44:29 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: krzk+dt@kernel.org,
+	mripard@kernel.org,
+	robh@kernel.org,
+	hjc@rock-chips.com,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v2 0/3] Add HDMI support for rk3576
+Date: Tue, 31 Dec 2024 17:44:16 +0800
+Message-ID: <20241231094425.253398-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241231-pci-pwrctrl-slot-v2-6-6a15088ba541@linaro.org>
-References: <20241231-pci-pwrctrl-slot-v2-0-6a15088ba541@linaro.org>
-In-Reply-To: <20241231-pci-pwrctrl-slot-v2-0-6a15088ba541@linaro.org>
-To: Bjorn Helgaas <bhelgaas@google.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Qiang Yu <quic_qianyu@quicinc.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5046;
- i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
- bh=5dX65BdkoJK96uXxbW3egypDqFuEy1NtN49QNZGGNsE=;
- b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBnc7zr7I0vWAahaKk1DBFdKMQZ91pYlEUDFnSrL
- RAnljRPpcCJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZ3O86wAKCRBVnxHm/pHO
- 9cZWB/91OJ2SOc0tiIbMRhbFZqRG+z01zOJH0m32xtqf6742piljnQrylYQ0cLvKDgZm445jn1V
- 9lM71Iz+aCLBEZeF2hbBdtEEIh6CmRUBDB+YcpwOsb7P0HVnbmt8ECjXQsu7cEQabuuRyyVzFtf
- aORILbefzyiIoeOsyKrPYsslnxx4gQp8c9r3+97crDAgA5yK3odKXzPuNkJk63tGJAWgRSJ1+zx
- LOlHQktW5LyVKJOTT4BAMyuT7SnHlpFa7KJo1+po33EXCoJSl0lceV6j7SEWq5PVlPB1eJvMoab
- wZ9qu9kz1JIVcWWwSz4OKGmpmlrqOftdCZVwfks/eeqg3mN8
-X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
- fpr=C668AEC3C3188E4C611465E7488550E901166008
-X-Endpoint-Received: by B4 Relay for
- manivannan.sadhasivam@linaro.org/default with auth_id=185
-X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reply-To: manivannan.sadhasivam@linaro.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3v8P6vHNnCZWrCw--.29543S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7XFW3Kr4UZr1UWF4UKr13twb_yoW3Zrb_K3
+	4Sq3s8ur18uF1Yya47tw4xWa93tay2gFZ5GF48K3ZrJFWkJF48Xrn3JrWYqa4rZF1YkFnr
+	Gr4YqFy8CanIyjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUbySotUUUUU==
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqR7GXmdztQzPNgAAs7
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+From: Andy Yan <andy.yan@rock-chips.com>
 
-This driver is used to control the power state of the devices attached to
-the PCI slots. Currently, it controls the voltage rails of the PCI slots
-defined in the devicetree node of the root port.
 
-The voltage rails for PCI slots are documented in the dt-schema:
-https://github.com/devicetree-org/dt-schema/blob/v2024.11/dtschema/schemas/pci/pci-bus-common.yaml#L153
+RK3576 HDMI TX Controller is very similar to that of RK3588, but with
+some control bits for IO and interrupts status scattered across different
+GRF.
 
-Since this driver has to work with different kind of slots (x{1/4/8/16}
-PCIe, Mini PCIe, PCI etc...), the driver is using the
-of_regulator_bulk_get_all() API to obtain the voltage regulators defined
-in the DT node, instead of hardcoding them. The DT node of the root port
-should define the relevant supply properties corresponding to the voltage
-rails of the PCI slot.
+PATCH 1/3 is add platform ctrl callback for IO setting and interrupts
+status handing.
+PATCH 2/3 ~ 3/3 are add support for rk3576
 
-Tested-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/pci/pwrctrl/Kconfig  | 11 ++++++
- drivers/pci/pwrctrl/Makefile |  3 ++
- drivers/pci/pwrctrl/slot.c   | 93 ++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 107 insertions(+)
+Changes in v2:
+- Fix compilation warning: unused variable ‘val’ [-Wunused-variable]
 
-diff --git a/drivers/pci/pwrctrl/Kconfig b/drivers/pci/pwrctrl/Kconfig
-index 54589bb2403b..990cab67d413 100644
---- a/drivers/pci/pwrctrl/Kconfig
-+++ b/drivers/pci/pwrctrl/Kconfig
-@@ -10,3 +10,14 @@ config PCI_PWRCTL_PWRSEQ
- 	tristate
- 	select POWER_SEQUENCING
- 	select PCI_PWRCTL
-+
-+config PCI_PWRCTL_SLOT
-+	tristate "PCI Power Control driver for PCI slots"
-+	select PCI_PWRCTL
-+	help
-+	  Say Y here to enable the PCI Power Control driver to control the power
-+	  state of PCI slots.
-+
-+	  This is a generic driver that controls the power state of different
-+	  PCI slots. The voltage regulators powering the rails of the PCI slots
-+	  are expected to be defined in the devicetree node of the PCI bridge.
-diff --git a/drivers/pci/pwrctrl/Makefile b/drivers/pci/pwrctrl/Makefile
-index 75c7ce531c7e..ddfb12c5aadf 100644
---- a/drivers/pci/pwrctrl/Makefile
-+++ b/drivers/pci/pwrctrl/Makefile
-@@ -4,3 +4,6 @@ obj-$(CONFIG_PCI_PWRCTL)		+= pci-pwrctrl-core.o
- pci-pwrctrl-core-y			:= core.o
- 
- obj-$(CONFIG_PCI_PWRCTL_PWRSEQ)		+= pci-pwrctrl-pwrseq.o
-+
-+obj-$(CONFIG_PCI_PWRCTL_SLOT)		+= pci-pwrctl-slot.o
-+pci-pwrctl-slot-y			:= slot.o
-diff --git a/drivers/pci/pwrctrl/slot.c b/drivers/pci/pwrctrl/slot.c
-new file mode 100644
-index 000000000000..18becc144913
---- /dev/null
-+++ b/drivers/pci/pwrctrl/slot.c
-@@ -0,0 +1,93 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2024 Linaro Ltd.
-+ * Author: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/pci-pwrctrl.h>
-+#include <linux/platform_device.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/slab.h>
-+
-+struct pci_pwrctrl_slot_data {
-+	struct pci_pwrctrl ctx;
-+	struct regulator_bulk_data *supplies;
-+	int num_supplies;
-+};
-+
-+static void devm_pci_pwrctrl_slot_power_off(void *data)
-+{
-+	struct pci_pwrctrl_slot_data *slot = data;
-+
-+	regulator_bulk_disable(slot->num_supplies, slot->supplies);
-+	regulator_bulk_free(slot->num_supplies, slot->supplies);
-+}
-+
-+static int pci_pwrctrl_slot_probe(struct platform_device *pdev)
-+{
-+	struct pci_pwrctrl_slot_data *slot;
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	slot = devm_kzalloc(dev, sizeof(*slot), GFP_KERNEL);
-+	if (!slot)
-+		return -ENOMEM;
-+
-+	ret = of_regulator_bulk_get_all(dev, dev_of_node(dev),
-+					&slot->supplies);
-+	if (ret < 0) {
-+		dev_err_probe(dev, ret, "Failed to get slot regulators\n");
-+		return ret;
-+	}
-+
-+	slot->num_supplies = ret;
-+	ret = regulator_bulk_enable(slot->num_supplies, slot->supplies);
-+	if (ret < 0) {
-+		dev_err_probe(dev, ret, "Failed to enable slot regulators\n");
-+		goto err_regulator_free;
-+	}
-+
-+	ret = devm_add_action_or_reset(dev, devm_pci_pwrctrl_slot_power_off,
-+				       slot);
-+	if (ret)
-+		goto err_regulator_disable;
-+
-+	pci_pwrctrl_init(&slot->ctx, dev);
-+
-+	ret = devm_pci_pwrctrl_device_set_ready(dev, &slot->ctx);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register pwrctrl driver\n");
-+
-+	return 0;
-+
-+err_regulator_disable:
-+	regulator_bulk_disable(slot->num_supplies, slot->supplies);
-+err_regulator_free:
-+	regulator_bulk_free(slot->num_supplies, slot->supplies);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id pci_pwrctrl_slot_of_match[] = {
-+	{
-+		.compatible = "pciclass,0604",
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, pci_pwrctrl_slot_of_match);
-+
-+static struct platform_driver pci_pwrctrl_slot_driver = {
-+	.driver = {
-+		.name = "pci-pwrctrl-slot",
-+		.of_match_table = pci_pwrctrl_slot_of_match,
-+	},
-+	.probe = pci_pwrctrl_slot_probe,
-+};
-+module_platform_driver(pci_pwrctrl_slot_driver);
-+
-+MODULE_AUTHOR("Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>");
-+MODULE_DESCRIPTION("Generic PCI Power Control driver for PCI Slots");
-+MODULE_LICENSE("GPL");
+Andy Yan (3):
+  drm/rockchip: dw_hdmi_qp: Add platform ctrl callback
+  dt-bindings: display: rockchip: Add rk3576 hdmi controller
+  drm/rockchip: Add basic RK3576 HDMI output support
+
+ .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |   1 +
+ .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 225 +++++++++++++++---
+ 2 files changed, 196 insertions(+), 30 deletions(-)
 
 -- 
-2.25.1
-
+2.34.1
 
 
