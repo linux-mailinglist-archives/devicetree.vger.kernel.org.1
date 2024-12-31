@@ -1,178 +1,123 @@
-Return-Path: <devicetree+bounces-134935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32AD29FEF99
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 14:15:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 338B89FEFB5
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 14:25:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DBED3A2E71
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 13:15:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0DA3161D16
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 13:25:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E1F319DF4D;
-	Tue, 31 Dec 2024 13:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E16619C57C;
+	Tue, 31 Dec 2024 13:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RX7Ao25i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y/ICLdY4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5A4819D071;
-	Tue, 31 Dec 2024 13:15:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A39FC196D90;
+	Tue, 31 Dec 2024 13:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735650915; cv=none; b=Hvb5+AhpuOLo7m5XV3RSadVKBWsJwJU9Wf8hkmkcXYYTZbdAHioCb2vOxKTdwtxMp2AdoxgzhryXGS4OMaTI+2Xlj+z6WWzC2D0hRU3uNnu4kQxx8EKSOFSrykKVZNdAESgSFPaKknCrv3xKkYwkFnj0UpJfOQ7+RJ0QN2S8OOc=
+	t=1735651543; cv=none; b=TecK6vV5PglKTHGGc9cCLX+EhhFm5jJhrEE4+XHGV1Uj/SDBR0h0ktyKK8TEKJf+QSV5kBmJIx6vcpHXnvx/EO71zfjokAvzeYntqeoiyYgk53BDm4ayrXpvPRdoi5Bv5YbV+x/1qBP49FdqcsKSVVwYD1pyz2UCnDdIoe1SN5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735650915; c=relaxed/simple;
-	bh=nvsh9Hvz0RPwYbdby7Q7s9xJtS8h+MKFRF15jRDWILo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JX+utCDo/sMdcIZdn/cbMWT5W5ZFQ2pVkX09DvbSiyW8S58rl98ai97L9tk4qg7k7oJZSUJRz9vE5beOiHyVOdiQWZ7y1vcNY6XPDRh5xZmxYBaMuwTicPV7ruDM9EB5eL5ymnp5wPAyL79wK2MM+10r/6EPUqAJ/Ha0E5wSd8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RX7Ao25i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1147EC4CED2;
-	Tue, 31 Dec 2024 13:15:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735650914;
-	bh=nvsh9Hvz0RPwYbdby7Q7s9xJtS8h+MKFRF15jRDWILo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RX7Ao25i/Zdxjq3X/KZBLxYLx85vtFbipwhsDQ7mhWjFDk3q2buj+hBt0Q6Gwu+v9
-	 g3s+V1mFrIo1AS/fQIzHIjpKvXkhjQFs5pnpA6nwzvkhMpagfuXdCO1X5XtgyB8GDm
-	 g15BDyzzn55qpz6xywhLU+Btiml6oMPSps9ZkZ+0w0ll6E3BibGfgYI2wVDOnFckpg
-	 0Q2sehbWgpFjzsblZyMxswCv8W/TtLTHtFGtB5NMOXDHqzregcOttYmtNfRHmyq9Nd
-	 83pZqtwdCV7+Kgn/yOkC688PgYFdnXUcC9LiDeDEVMOJDoKm0sBr3OgsZG3ZaFkdN0
-	 AffSaO8hqgQ9Q==
-Date: Tue, 31 Dec 2024 07:15:12 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	John Cox <john.cox@raspberrypi.com>,
-	Dom Cobley <dom@raspberrypi.com>,
-	review list <kernel-list@raspberrypi.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	John Cox <jc@kynesim.co.uk>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/7] media: dt-bindings: media: Add binding for the
- Raspberry Pi HEVC decoder
-Message-ID: <20241231131512.GA45470-robh@kernel.org>
-References: <20241220-media-rpi-hevc-dec-v1-0-0ebcc04ed42e@raspberrypi.com>
- <20241220-media-rpi-hevc-dec-v1-4-0ebcc04ed42e@raspberrypi.com>
+	s=arc-20240116; t=1735651543; c=relaxed/simple;
+	bh=pA4P+kWaLB2hTvkWd5iXIVwhJd7Km3gvKoA4e+fqrIQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=JH/pr+CIl2iW6nmsEKnV+fcq/Vh4/Ql68VwTlA+od7FN4LMvzkEKzGoLKMZsne7TRuPxiy6SihpGPtnnZOEPM7pfm2wpZDHyG2E8bL+GUkuPAmbAoHy4mu6O5cMtVKB4Q+kmgs7i5i8N8ScgHoqs2ZK62nP/LfUnSreODTCaZa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y/ICLdY4; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5d3f28a4fccso15360129a12.2;
+        Tue, 31 Dec 2024 05:25:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735651540; x=1736256340; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4VqfX3ZNu7cE4naHQV4kCkKc4MhT07Sxz02F6k8JamE=;
+        b=Y/ICLdY4qZuVqd8gyA3xI0g3mCijdYQK/KS95KOSStLhUm3yzTtXVYmX3leA7QX5Ww
+         5RXGxOsSuwVK/W+7XaJ5l9RP5bPcSfq3vOLNvE2pw5M/oOipi6kS2/oUPJfYw3bPhSax
+         UmppBbe1rb496Rop3SrrFVA5FkuOXKlEK4TiHb74o2st5Ezm6vp0HTtLTC/ZgjmmHLkm
+         UC4kWuJQAqx1BFlc3MuKqaBtkWBcY/jk/kiwN7nkpUATpfad1YlIU9KPUG8VMbgBsXWV
+         SqLx5/dBJC1hg8mbMC+dJo4NbLmY8isNb/aqsye2Ts8L/k+AYcqbm81f65OMC8AKOn2+
+         wjYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735651540; x=1736256340;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4VqfX3ZNu7cE4naHQV4kCkKc4MhT07Sxz02F6k8JamE=;
+        b=bLADQi1q6EeobKG8vsuzL1h0Ihm2eAI7GgOLDZ948zT89DywCnCecd45ZRfK0T7Z/Q
+         M+s4zhV09eglzDuuwMoP/opVxgL6gtpeoZklavkIj82KJo+6LI44xTuxWF8UeSDf3kp2
+         rfuRLJne/XLOYv9BJDej4wnu5KSQvkCpBEZ857nLBMl8hm1tTfJLx73QtIWnO+LhJKJg
+         vcfrk3MooUA01E1fx9KrnjZRvJzudh5MGS7+uvzOY6xw5nE8rVLLxSyCsh8yhZNBw0IV
+         yvlNEvO6FAEzmD38mgVmbZQEJgkS526IDxymAvlUyzjwky01EBPOyFeLzLBtv8iWsXvb
+         5ZsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlCuLmAyUrWhMGT0+5W6udlLWMNN06IsQyzk2OAuaDM5i45V4Rx/3WJ9Qf81OIxoW4yudnEtvmuOninnyJ@vger.kernel.org, AJvYcCXQ3QW3lYgZu7//mvNh6S+pR0PhAO4KHlYlLC6mr7ln4V5w9J92WBf1B/cPItebJrtEKjx2fQsDBwM+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFd1HwqwoHwQiMAqN+Edhi0gjBX3NOcHL+cIo3mpaviQ1KrPcO
+	Q5iiggTK8ROh/DEHKomVttZxt4h+OOi5+/ROthFLusIO+tz8WzPtTIGVCmUoB+Y=
+X-Gm-Gg: ASbGncs0qxmNYJIIsvDaDoupG5m8iMEi3V1m98ZjWZA1THulbdaCUFLoO8moXjnSHtU
+	7BFofCXYz9S/ozz0VjRkOBc6JlBnFDiOSnLVougx79y4j5KUbm2OegPx+A2eoEfQJPY7uF3I3i3
+	Mb57Tz2WVMu2UpB/3Q6mx04N3W7j3X2IF8jy3YBSJ4m0lAT/pBT3OQht6w4hP3t6AFztAsmkbNy
+	cS6rBqEl+gGXFKQE0UNwNeKuftipEF26j71iZVLK1Ed9ZUS1jjG7ZubTs9dz00NTensZLsDsHE=
+X-Google-Smtp-Source: AGHT+IEkHl00nggOQGkGQ9ndQmvKX/Xt4MoQG4QCboqjD9VK8h+KD3UQX7I1rg8Xv/OJscybd0Qmfw==
+X-Received: by 2002:a17:907:1b86:b0:aaf:4008:5e2c with SMTP id a640c23a62f3a-aaf40085f90mr773523466b.2.1735651539599;
+        Tue, 31 Dec 2024 05:25:39 -0800 (PST)
+Received: from localhost.localdomain ([90.156.117.233])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0eae71desm1569345766b.89.2024.12.31.05.25.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Dec 2024 05:25:39 -0800 (PST)
+From: Antoni Pokusinski <apokusinski01@gmail.com>
+To: jic23@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	andrej.skvortzov@gmail.com,
+	neil.armstrong@linaro.org,
+	danila@jiaxyga.com,
+	icenowy@aosc.io,
+	javier.carrasco.cruz@gmail.com,
+	andy@kernel.org,
+	megi@xff.cz
+Cc: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Antoni Pokusinski <apokusinski01@gmail.com>
+Subject: [PATCH 0/2] iio: magnetometer: add support for Si7210
+Date: Tue, 31 Dec 2024 14:25:11 +0100
+Message-ID: <20241231132513.6944-1-apokusinski01@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241220-media-rpi-hevc-dec-v1-4-0ebcc04ed42e@raspberrypi.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 20, 2024 at 04:21:15PM +0000, Dave Stevenson wrote:
-> Adds a binding for the HEVC decoder found on the BCM2711 / Raspberry Pi 4,
-> and BCM2712 / Raspberry Pi 5.
-> 
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> ---
->  .../bindings/media/raspberrypi,hevc-dec.yaml       | 72 ++++++++++++++++++++++
->  1 file changed, 72 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/raspberrypi,hevc-dec.yaml b/Documentation/devicetree/bindings/media/raspberrypi,hevc-dec.yaml
-> new file mode 100644
-> index 000000000000..d9e804300297
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/raspberrypi,hevc-dec.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/raspberrypi,hevc-dec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Raspberry Pi HEVC Decoder
-> +
-> +maintainers:
-> +  - John Cox <john.cox@raspberrypi.com>
-> +  - Dom Cobley <dom@raspberrypi.com>
-> +  - Dave Stevenson <dave.stevenson@raspberrypi.com>
-> +  - Raspberry Pi internal review list <kernel-list@raspberrypi.com>
-> +
-> +description: |-
+This patch series adds support for the Si7210 Hall effect I2C sensor.
+The driver currently supports the basic functionalities (i.e. making
+temperature and magnetic field measurements and changing the
+measurements scale) but I plan to add support for some other features in
+the future as well (e.g. the digital output interrupt).
 
-Don't need '|-' if no formatting to preserve.
+Antoni Pokusinski (2):
+  dt-bindings: iio: magnetometer: add binding for Si7210
+  iio: magnetometer: si7210: add driver for Si7210
 
-> +  The Raspberry Pi HEVC decoder is a hardware video decode accelerator block
-> +  found in the BCM2711 and BCM2712 processors used on Raspberry Pi 4 and 5
-> +  boards respectively.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - raspberrypi,hevc-dec
-> +
-> +  reg:
-> +    items:
-> +      - description: The HEVC main register region
-> +      - description: The Interrupt control register region
-> +
-> +  reg-names:
-> +    items:
-> +      - const: intc
-> +      - const: hevc
+ .../iio/magnetometer/silabs,si7210.yaml       |  44 ++
+ drivers/iio/magnetometer/Kconfig              |  11 +
+ drivers/iio/magnetometer/Makefile             |   2 +
+ drivers/iio/magnetometer/si7210.c             | 412 ++++++++++++++++++
+ 4 files changed, 469 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml
+ create mode 100644 drivers/iio/magnetometer/si7210.c
 
-Doesn't match the description in reg.
+-- 
+2.45.2
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: The HEVC block clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: hevc
-
-Not really useful when there is only 1 possible entry and also when it 
-is optional.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    video-codec@7eb10000 {
-> +        compatible = "raspberrypi,hevc-dec";
-> +        reg = <0x7eb10000 0x1000>,	/* INTC */
-> +              <0x7eb00000 0x10000>; /* HEVC */
-> +        reg-names = "intc",
-> +                    "hevc";
-> +
-> +        interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +        clocks = <&clk 0>;
-> +        clock-names = "hevc";
-> +    };
-> +
-> +...
-> 
-> -- 
-> 2.34.1
-> 
 
