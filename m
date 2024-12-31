@@ -1,139 +1,164 @@
-Return-Path: <devicetree+bounces-134852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985469FED9E
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:08:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26CC29FEDA2
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:10:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FA95161703
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:08:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9BB61882C7E
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:10:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FE3189BB5;
-	Tue, 31 Dec 2024 08:08:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E772718A959;
+	Tue, 31 Dec 2024 08:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JbOYHKJH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KKGcSofq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A76C8156C7B;
-	Tue, 31 Dec 2024 08:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39325188CA9;
+	Tue, 31 Dec 2024 08:09:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735632485; cv=none; b=Mx1du7Z8GV5bYUrPrQWxvILoEtoBdY2J7TPskNOeU2akZJcfkBby7GeT+NETgfnfjS+dNmnc2dd2bjX3+d5bZxQhNriF3ZPSG9icQuTZuRT47HYBIFSXvm5VwFR6J+f/0GPxRRdy8Y3q91qJNKpIB2V07oLQUNtqJjdYUu9Bewg=
+	t=1735632595; cv=none; b=HOcips1EIzdkgJbVEvyXczAVSDH1Fagx5fdmwGJAVfspe3sIh7gbC74jz85EaXa2l1XqQbOfm6yvqbHGpyzExnzyOgEZTHU2PNQx82SVCPb0MPQfuvrRPVJIaAbFeqFE2SSVEXOMkQ8qetDUupfbrCZKirf47/mx7Kctn5M+Zso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735632485; c=relaxed/simple;
-	bh=/5ha3IHAVC4VddPKGCt/UyE0d1hXv1L2e6Mr+5+E3q0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KRrxTIiAJyLRELhjyUHfq5uBnNGFqjI8d40T86D2GEeZs/FG4Bs273NxAHoSU+HECE17xot5z7z5TSKRx7pRawV42ESbmFQOj3hpnYPKG8bwu7U2zQN3N6oK73YIasjEeGFUqQmTvwVcXwc1NtthJmIBTv3Xda0c6mFWiBdqIBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JbOYHKJH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C913C4CED6;
-	Tue, 31 Dec 2024 08:08:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735632485;
-	bh=/5ha3IHAVC4VddPKGCt/UyE0d1hXv1L2e6Mr+5+E3q0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JbOYHKJHK+pMSKuoZA7kZmY2S1C0V8wK02n6pcNmjiGHYMylT3actFAbqvfOqt9Ss
-	 1+X4MOnxvOPCWHv/h9yw+rflTBM4ww7Z+GdxakljP5jREbiSSkK5itwzOAScylIiDs
-	 Vz48a0LuungVrmpYLnT0wtAXBt3t32IydfJ0v1EZP0uosVgiq0zR2S2YPKYpsXhfv6
-	 oaYEIbwwzqAwEk5Wxbl3rC3qFWOrIdfxD1HH5HHx2K7ugP19IVQNllXejmgPf41jDR
-	 v/KY+A8JO+R06LaPypYlyWXqJdOxU3yumYmCb7ZaxU4yvvwuAEh5iPCoTfh7AY453r
-	 +yALkBMTKmOeQ==
-Message-ID: <02618fb5-1ed4-44b4-943f-fe0f859d9fb6@kernel.org>
-Date: Tue, 31 Dec 2024 09:07:58 +0100
+	s=arc-20240116; t=1735632595; c=relaxed/simple;
+	bh=f4FpQ3AYTRHQ3om7AGHgyd0QjXDCbvmmVjkL8/5wCwA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qixBuRCrpLqqnOaZAvFQwWBHIYbRVHSSPioMIP0vtZ9Of62cAAygzJM9qoLuKSresEnmOo/hVJHPsRZb+g7+gwxbD/WxNZXRxe62PKfqLylgOaEqmFxe5fbHrSEGEPAL9DkRo+AsWmuj7W0RxBqgLSwNb3G888DSwoQJ0DWRxNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KKGcSofq; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BV4qXEt019024;
+	Tue, 31 Dec 2024 08:09:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=JYC2gFfL9Ctijpe0COODuu
+	NI30zZ8sbIkqxmmz0/WEU=; b=KKGcSofqS7YwK9rg9TcY2bGUoXZ9kqhWhTHtpQ
+	n8XxsNP3ln6b0UvLA2JsTHcwhNVetlbyL/JqmchMEGoHJd8IQE4xON7aQEdNIrHn
+	PFERa9n47qecwyWD5LWGegAp2i+OjCXoA6opQm2x0K7+q28++3cAxJNqOVEgg3Jg
+	uHV2n+/9lHoH13KclJ/pPp0tQJchWBJXxFyZ2cVqmG8gSulOn/x1OGoXPyoqKoM2
+	wCO/kpm7LcT86e8l4H/2G6eX+MZtY56Bk6FwklIq7cGrNCMIqqq56PAKy4q6ipgi
+	cGlnePFOdJC6S455Yxkhbimi53++GvDsLfhvqpMzNnGmDlHg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43v9yk8cvr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Dec 2024 08:09:49 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BV89mfa029699
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Dec 2024 08:09:48 GMT
+Received: from hu-prashk-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 31 Dec 2024 00:09:44 -0800
+From: Prashanth K <quic_prashk@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Kurapati
+	<krishna.kurapati@oss.qualcomm.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <cros-qcom-dts-watchers@chromium.org>,
+        Prashanth K <quic_prashk@quicinc.com>
+Subject: [PATCH v4 0/2] Disable USB U1/U2 entry for QC ARM targets
+Date: Tue, 31 Dec 2024 13:39:30 +0530
+Message-ID: <20241231080932.3149448-1-quic_prashk@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] media: mediatek: add MT8188 AIE driver
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>, "mchehab@kernel.org"
- <mchehab@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- =?UTF-8?B?Qm8gS29uZyAo5a2U5rOiKQ==?= <Bo.Kong@mediatek.com>
-Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-References: <20241225090113.17027-1-bo.kong@mediatek.com>
- <20241225090113.17027-4-bo.kong@mediatek.com>
- <351287f9e8a118babd225fb0e484976bef3db6c0.camel@mediatek.com>
- <3c58790f-b1eb-4183-aafd-063dc5472b52@kernel.org>
- <b89b90b85e7c00889595bd8b8664d564ba8dc8ca.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <b89b90b85e7c00889595bd8b8664d564ba8dc8ca.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: kyA8n1x6q7Q2ZXkFArfTM4OLUYIAY4j_
+X-Proofpoint-GUID: kyA8n1x6q7Q2ZXkFArfTM4OLUYIAY4j_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=23 priorityscore=1501
+ suspectscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 spamscore=23
+ clxscore=1015 malwarescore=0 adultscore=0 mlxscore=23 mlxlogscore=52
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412310067
 
-On 31/12/2024 08:57, CK Hu (胡俊光) wrote:
->>>
->>> Why clear output buffer?
->>> Could you point out which place in the output buffer that hardware does not write data into but software would read it?
->>>
->> Please respond with one email doing review, not 10 per each comment.
-> 
-> Sorry to bother you.
-> I would try to respond in one email.
-> Even though I have new comment when second review, I would not respond so frequently.
+Enabling U1 and U2 power-saving states can lead to stability and
+performance issues, particularly for latency-sensitive or high-
+throughput applications. These low-power link states are intended
+to reduce power consumption by allowing the device to enter partial
+low-power modes during idle periods. However, they can sometimes
+result in unexpected behavior. Over the years, some of the issues
+seen are as follows:
 
+1. In device mode of operation, when UVC is active, enabling U1/U2
+is sometimes causing packets drops due to delay in entry/exit of
+intermittent low power states. These packet drops are often reflected
+as Missed Isochronous transfers as the controller was not able to
+send the packet in that microframe interval and hence glitches are
+seen on the final transmitted video output.
 
-Second review? You sent 11 emails, so 11 reviews?
+2. On QCS6490-Rb3Gen2 Vision kit, ADB connection is heavily unstable
+when U1/U2 is enabled. Often when link enters U2, there is a re-
+enumeration seen and device is unusable for many use cases.
 
-Best regards,
-Krzysztof
+3. On QCS8300/QCS9100, it is observed that when Link enters U2, when
+the cable is disconnected and reconnected to host PC in HS, there
+is no link status change interrupt seen and the plug-in in HS doesn't
+show up a bus reset and enumeration failure happens.
+
+4. On older targets like SM8150/SM8250/SM8350, there have been
+throughput issues seen during tethering use cases.
+
+5. On targets like SDX75, intermittent disconnects were observed
+with certain cables due to impedence variations.
+
+To avoid such issues, the USB team at Qualcomm added these quirks
+to all targets in the past 4-5 years and extensive testing was done.
+Although these are intermittent power states, disabling them didn't
+cause any major increase in power numbers.
+
+This series was earlier started by Krishna Kurapati where he disabled
+U1/U2 on some SM targets. I'm extending this to more devices including
+Auto, Compute and IOT platforms. On a side note, this quirk has been
+already included on some mobile targets like SM8550/8650.
+
+Changes in v4:
+- Updated prefix in the subject of all patches.
+- Split into 2 series for arm and arm64 targets.
+- Link to v3:
+https://lore.kernel.org/all/20241218102707.76272-1-quic_prashk@quicinc.com/
+
+Changes in v3:
+- Removed wrongly added quirks from tcsr_mutex node.
+- Link to v2:
+https://lore.kernel.org/all/20241213095237.1409174-1-quic_prashk@quicinc.com/
+
+Changes in v2:
+- RFC patch was split into series of per-file commits.
+- Added the quirks to more targets (Auto, IoT, Mobile, Compute).
+- Link to RFC:
+https://lore.kernel.org/all/20241107073650.13473-1-quic_kriskura@quicinc.com/#Z31arch:arm64:boot:dts:qcom:sm8250.dtsi
+
+Prashanth K (2):
+  ARM: dts: qcom: sdx65: Disable USB U1/U2 entry
+  ARM: dts: qcom: sdx55: Disable USB U1/U2 entry
+
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 2 ++
+ arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 2 ++
+ 2 files changed, 4 insertions(+)
+
+-- 
+2.25.1
+
 
