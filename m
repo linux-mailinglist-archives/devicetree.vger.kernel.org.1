@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-134881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 238019FEDFA
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:32:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02FA79FEDFD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 09:39:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15C491881F03
-	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:32:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFF99188200E
+	for <lists+devicetree@lfdr.de>; Tue, 31 Dec 2024 08:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 918A21779B8;
-	Tue, 31 Dec 2024 08:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D4C18A6BA;
+	Tue, 31 Dec 2024 08:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PsDYhYvX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VyTiQdVc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D6802D7BF;
-	Tue, 31 Dec 2024 08:32:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C727B2D7BF;
+	Tue, 31 Dec 2024 08:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735633948; cv=none; b=MFA80K35joiqP9lVeojHvODpZxbj5siV510PlQ0q2jcbzAewyDAQFQZ03QJWj5zV/nL5LlMzi5f8KcTokckvr/MLTLpfCCflHzsxiL7F1+OM1Pkx6iUdlfzwYXrgys6KSGaFT4DcbN/HGCPTS//tFRHeoEBy/S43ikeW9ObeyDQ=
+	t=1735634336; cv=none; b=NexiLjRXlVGFLZd+L3yRwTxeG22l0xyzusFKCWMU6O7q1HXLCeCW7IpZMh5F7U5xTGVCLREaXcPOvkGqf0fylv1CUFzXhpKbFJfF3g3DFQ2lQDv56QRxXTsxAlOo2wfCBMpkRkCuKJFqOS4l11klb1/nnAvaHTD5mU0wERfAfK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735633948; c=relaxed/simple;
-	bh=f8BYHSihW21/k8W6SrqH9PIwRTNiaOLgefXaPWjoJjI=;
+	s=arc-20240116; t=1735634336; c=relaxed/simple;
+	bh=aqW05DBS8WrJdANtSfJJQFskLdzShDN4M4ITycwgAZA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tUIOWnRN8kI24r+L4sTQ3wSObeIkWAGvTJ3xqqVrB1YWFduq+carsBMK5ZTI/+vAbZqQ8X/ef/VHbue/GvjmZoO5qDjklbbE1H0vWGsrS2TjO0jfbsY5XwimZ2b8uGgf/T9CMw8asxyiy/HyK8hfl0gtTUU1atn8SkiKjL+tI+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PsDYhYvX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB5FDC4CED6;
-	Tue, 31 Dec 2024 08:32:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ECoovanT8cN1v+65pPQmHTvY0Dzrem0TapTVKLIE6S6wyu7cO4JMbyzurBkValHHFtPgJXqtV7RJGmghBvJrquhVYmPjk8M3vQzs9R1ukl7nL5LsdvZxp3HUVmmkxHOYnFvlAQ2ZwN8A63Y2onsAsa4GUFywurg8yzK+yEokpMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VyTiQdVc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D627C4CED6;
+	Tue, 31 Dec 2024 08:38:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735633945;
-	bh=f8BYHSihW21/k8W6SrqH9PIwRTNiaOLgefXaPWjoJjI=;
+	s=k20201202; t=1735634336;
+	bh=aqW05DBS8WrJdANtSfJJQFskLdzShDN4M4ITycwgAZA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PsDYhYvX1/Ddo5WJLYYgSbj8vY+Oya58+Lgaz6+h7zUEUudAcx3znCDZV5mRbewF2
-	 mck7pOkUU/TY73/Z4Nlqn9nYiL9+fnaE/84ohIY3ziIRcAz369eGwomc4s+vzH/rng
-	 sgssMMJ7FweeNS6IPKZ3kXsYB9WwDSLF4FdgeP2l4ddwF5A39CUtxFe+dgdmrPBQ3O
-	 EPpJcZrlWoyegT9Ld6PISVVE1YpoBVSEDxT3D9prao80OHanVd3Vlo9BQeYoFVtTdO
-	 hl7FMVT5ew+GwQoEz8+C+O4BvQ+WkuZDhRKM/+a0sSnjNsvW+E3LhtyXOjfWZiHjKW
-	 UEqeZj90RQovg==
-Date: Tue, 31 Dec 2024 09:32:22 +0100
+	b=VyTiQdVc6Z4fBPUrJga7D0xt3/TAYt1UCc0pwFduSpuC00Zxh+8zuQ+v1xlvQVkkR
+	 ChcPZb2Xeo742HaPFki8wHXOr+FSJlSPNwd/myGsVxA/lRdWYO2sAIhmceHj0zvSSd
+	 2xpNXASgF2B8dPh0xVgt5kNncg/QIWWdTERBVglp9VfVefWRmVYuta65dm1gu6EGBx
+	 OSG4SMPHIO0i/+Zb3s2ofiPGJvUmD+JyER4E8heCr3xjou/+O9zcNzf4y4TLl5jjFC
+	 ANcwB37erFfXrhMUXp/e4Jkv5K/VuvdiusKm2xbQwDWykFcGSCJV527XFeYCZC3tLU
+	 3begL/CFYbDRw==
+Date: Tue, 31 Dec 2024 09:38:52 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sricharan R <quic_srichara@quicinc.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
-	manivannan.sadhasivam@linaro.org, dmitry.baryshkov@linaro.org
-Subject: Re: [PATCH V2 1/2] dt-bindings: mailbox: Document qcom,tmel-qmp
-Message-ID: <kwtzvcoyayml3tgicnp5a75r65hqpicm7hivtk25ohp6rt34qf@sgunxjxfe33r>
-References: <20241231054900.2144961-1-quic_srichara@quicinc.com>
- <20241231054900.2144961-2-quic_srichara@quicinc.com>
+To: Chuanhong Guo <gch981213@gmail.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Qingfang Deng <qingfang.deng@siflower.com.cn>
+Subject: Re: [PATCH 2/2] gpio: add support for GPIO controller on Siflower
+ SoCs
+Message-ID: <csu3mg7nurpwxkr6drpz6xsw3dqn5ttdotvmfkfvrwpo3geedf@jos6rqxovqr2>
+References: <20241225035851.420952-1-gch981213@gmail.com>
+ <20241225035851.420952-3-gch981213@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,133 +62,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241231054900.2144961-2-quic_srichara@quicinc.com>
+In-Reply-To: <20241225035851.420952-3-gch981213@gmail.com>
 
-On Tue, Dec 31, 2024 at 11:18:59AM +0530, Sricharan R wrote:
-> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+On Wed, Dec 25, 2024 at 11:58:51AM +0800, Chuanhong Guo wrote:
+> From: Qingfang Deng <qingfang.deng@siflower.com.cn>
 > 
-> TMEL SS provides different kinds of services like secureboot, remote image
-> authentication, key management, crypto, OEM provisioning etc. This patch adds
-> support for remote image authentication. Support for rest of the services can
-> be added.
+> Add a driver for the GPIO controller on Siflower SoCs.
+> This controller is found on all current Siflower MIPS and RISC-V
+> chips including SF19A2890, SF21A6826 and SF21H8898.
 > 
-> The QMP mailbox is the primary means of communication between TMEL SS and other
-> subsystem on the SoC. A dedicated pair of inbound and outbound mailboxes is
-> implemented for each subsystem/external execution environment which needs to
-> communicate with TMEL for security services. The inbound mailboxes are used to
-> send IPC requests to TMEL, which are then processed by TMEL firmware and
-> accordingly the responses are sent to the requestor via outbound mailboxes.
+> Signed-off-by: Qingfang Deng <qingfang.deng@siflower.com.cn>
+> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+> ---
+>  drivers/gpio/Kconfig         |   9 +
+>  drivers/gpio/Makefile        |   1 +
+>  drivers/gpio/gpio-siflower.c | 353 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 363 insertions(+)
+>  create mode 100644 drivers/gpio/gpio-siflower.c
 > 
-> It is an IPC transport protocol which is light weight and supports a subset of
-> API's. It handles link initialization, negotiation, establishment and
-> communication across client(APPSS/BTSS/AUDIOSS) and server(TMEL SS).
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index add5ad29a673..fdc9a89ffbf3 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -637,6 +637,15 @@ config GPIO_SIFIVE
+>  	help
+>  	  Say yes here to support the GPIO device on SiFive SoCs.
+>  
+> +config GPIO_SIFLOWER
+> +	tristate "SiFlower GPIO support"
+> +	depends on OF_GPIO
+> +	depends on MIPS || RISCV || COMPILE_TEST
 
+This is supposed to be dependency on ARCH, not instruction set. I don't
+se anything MIPS or RISCV here.
 
-You already got comment about wrapping, so implement it.
+> +	select GPIOLIB_IRQCHIP
+> +	help
+> +	  GPIO controller driver for SiFlower MIPS and RISC-V SoCs
+> +	  including SF19A2890, SF21A6826 and SF21H8898.
 
 ...
 
-
-> This binding describes the component responsible for communication between the
-> TMEL server based subsystems (Q6) and the TMEL client (APPSS/BTSS/AUDIOSS),
-
-APPSS? Applications Safe Software? Avoid using qcom terminology. Common
-name is "CPU" for example. Or explain qcom terminology...
-
-
-> used for security services like secure image authentication, enable/disable
-> efuses, crypto services. Each client in the   SoC has its own block of message
-
-No need for double space "  ".
-
-> RAM and IRQ for communication with the TMEL SS.
-> 
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> ---
->   [V2]  Added HW description as per comments.
->         Removed the fallback compatible.
->         Fixed naming convention to TME-L in all places.
->         Fixed indendation for example.
->         Removed the 'description' for some items.
-> 
->  .../bindings/mailbox/qcom,tmel-qmp.yaml       | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,tmel-qmp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,tmel-qmp.yaml b/Documentation/devicetree/bindings/mailbox/qcom,tmel-qmp.yaml
-> new file mode 100644
-> index 000000000000..a434359e0a2c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/qcom,tmel-qmp.yaml
-
-No, use compatible as filename.
-
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/qcom,tmel-qmp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +static void sf_gpio_remove(struct platform_device *pdev)
+> +{
+> +	struct sf_gpio_priv *priv = platform_get_drvdata(pdev);
 > +
-> +title: Qualcomm TMEL IPCC channel
+> +	reset_control_assert(priv->rstc);
+> +}
 > +
-> +maintainers:
-> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> +static const struct of_device_id sf_gpio_ids[] = {
+> +	{ .compatible = "siflower,sf19a2890-gpio" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, sf_gpio_ids);
 > +
-> +description:
-> +  TMEL SS provides different kinds of services like secureboot, remote image
-> +  authentication, key management, crypto, OEM provisioning etc. This patch adds
-> +  support for remote image authentication. Support for rest of the services can
-> +  be added.
-> +
-> +  The QMP mailbox is the primary means of communication between TMEL SS and
-> +  other subsystem on the SoC. A dedicated pair of inbound and outbound mailboxes
-> +  is implemented for each subsystem/external execution environment which needs to
-> +  communicate with TMEL for security services. The inbound mailboxes are used to
-> +  send IPC requests to TMEL, which are then processed by TMEL firmware and
-> +  accordingly the responses are sent to the requestor via outbound mailboxes.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,ipq5424-tmel-qmp
+> +static struct platform_driver sf_gpio_driver = {
+> +	.probe		= sf_gpio_probe,
+> +	.remove		= sf_gpio_remove,
+> +	.driver = {
+> +		.name		= "siflower_gpio",
+> +		.owner		= THIS_MODULE,
 
+You sent us some old code with old code style, so probably you sent us
+donwstream poor driver. Please clean it up before posting.
 
-Why qmp? Can TMEL on IPQ5424 be anything else? Can TMEL be SMEM or using
-any other remoteproc?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  mboxes:
-> +    maxItems: 1
-> +
-> +  "#mbox-cells":
-> +    const: 2
-> +    description:
-> +      The first cell is the client-id, and the second cell is the signal-id.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - mboxes
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    tmel_qmp: mailbox@32090000 {
-
-Drop unused label.
-
+Please run standard kernel tools for static analysis, like coccinelle,
+smatch and sparse, and fix reported warnings. Also please check for
+warnings when building with W=1. Most of these commands (checks or W=1
+build) can build specific targets, like some directory, to narrow the
+scope to only your code. The code here looks like it needs a fix. Feel
+free to get in touch if the warning is not clear.
 
 Best regards,
 Krzysztof
