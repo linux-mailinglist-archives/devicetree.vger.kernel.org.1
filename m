@@ -1,126 +1,117 @@
-Return-Path: <devicetree+bounces-134987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A80F89FF487
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 17:20:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB349FF494
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 17:39:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0EA3161DB6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 16:19:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AD3616173C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 16:39:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF0CD13D531;
-	Wed,  1 Jan 2025 16:19:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="eBA94zS0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFF5E1E22F0;
+	Wed,  1 Jan 2025 16:39:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24731854;
-	Wed,  1 Jan 2025 16:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735748390; cv=pass; b=VPaDienBHGTiuiCiO5HREegEabFkPl6oJN9K6UoOXLVb2GJJBqXAGLUq6yWjb2bvKiSgQuQDpgX0rfedFfRTZcUTOUnFlJNQfkYLCZYWjKqs8/4K2G4AiGMVTpOYs4noisbnx6W/8QoadpzJhOOKz73WdXL9FYPabMo7f6bNkW8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735748390; c=relaxed/simple;
-	bh=ric4iNSuqLxj4fjkqYY2hfWQ0QejJbop6rkw+2de9Ak=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H1gW/DhPxCsP91GfMU5whbemHnWxJ22umQmFHUnvBwYfDXLSNnFpIfk95xB7EcqEvupiVDky93/FJwNbp0BSJTkT7xuZwIR8G+5oFKnrkQV0t3Q6L51cVFeOwbW1EkJK7sWGUwkj1QDaZBxUDgb7beK8r4PxfucPQ13Gdoy/Tjk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=eBA94zS0; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1735748379; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=FQs1evtVE2sgkPSEfsulAqeIdssyVbyYayntPb80XfeoSaHEcHPnJRj7jDGx+EC5mmZhjbWz+t3atz4javZSal9Dl3MhHYzUtW/1wSlNwem4htrw/4OJrc6qhuMtjf3Z1lmlgKLK3jTE8Y5jHzIAqX7ZHGWW1smU6YqO/NOGSKI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1735748379; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ric4iNSuqLxj4fjkqYY2hfWQ0QejJbop6rkw+2de9Ak=; 
-	b=ZXQ+vPIusGUgKbBc6v55GrvU2wLrVkn99/VSDu2aWKFZupvcnajszicnp1xcEkGEcspgceCh6gm+GaGxffvA92f+fiVbhRjaKyRyvhEaa/IVl+0Tm2vRC1qG7FFBblbjxyZ9HxNdVzVXrfPHSkpgZMimc+Blcjc7BJ8WI1xpMo8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1735748379;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=ric4iNSuqLxj4fjkqYY2hfWQ0QejJbop6rkw+2de9Ak=;
-	b=eBA94zS0C62BzhJ4Il+QGtm49Ex4K2U/sSjBi8/9jeZvXiIVlQUhexLs4ywlaYqe
-	Zf5xD9OtAw4U0KN50tvxvPkUTvFWwHdGc9VoxYRiQJiGnwIZ5930KMnwhfeQSoLPRCT
-	GuvQTTmB8Ioj6Ns4R3FpLHVX0ASYVb2JDiQVEUZY=
-Received: by mx.zohomail.com with SMTPS id 1735748375571289.9748444958916;
-	Wed, 1 Jan 2025 08:19:35 -0800 (PST)
-Received: by mercury (Postfix, from userid 1000)
-	id 95126106034B; Wed, 01 Jan 2025 17:19:31 +0100 (CET)
-Date: Wed, 1 Jan 2025 17:19:31 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-Cc: Tarang Raval <tarang.raval@siliconsignals.io>, 
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v13 0/2] power: supply: Add STC3117 Fuel Gauge
-Message-ID: <vnv44opjdghvz7sa2tso3yk5vbbaepredfyf64ds5jkaeujmcp@eolkitmwg3jn>
-References: <20241220084958.32367-1-bhavin.sharma@siliconsignals.io>
- <173479644260.3359498.3393893755513748803.b4-ty@collabora.com>
- <PN2PPFF679F9759585FA8AC4AE446848843F20B2@PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM>
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D489163D;
+	Wed,  1 Jan 2025 16:39:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735749566; cv=none; b=QiCM4hTMSSXtJrB+9+DvL0mjZdhBxQKq4t/xK2EVDuI2vxak7/REJFClQXrJUTsgAh+YrL4NfeBV4V8vMFxlwb/+fe3XW74WXZCS2JyBxtjChUIxxPrbPbRJ13bJ4n0RZchz0M/s4mTvw0AtXZcdDZVNotw/tqNjuHFkJ9FxwUk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735749566; c=relaxed/simple;
+	bh=SZPWdvjzSR5Gjrhdof7jrAfgyq9F7GKZ3srx+60M37w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Tne4at+JcFZ9QwS9ZuqBdxWb/Vo6JL+CSGMSiNUJakB/AAZy0ODUFTFDuUI6rO05r5r9lT+vJmMxLRz7OiBepG3+PHM70MMBjzLwk12HPIADB1/JwdrSifrlv3jmiVFAz30OPVCA10jIr1NXffzM4G4tCqYabk5moRQbgLEChpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: aSrp/3oQRDyTPHdOSOeH+A==
+X-CSE-MsgGUID: 3ML1KrSJTuujTV76CI1fNA==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 02 Jan 2025 01:34:13 +0900
+Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.21])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id D94244026B15;
+	Thu,  2 Jan 2025 01:34:02 +0900 (JST)
+From: John Madieu <john.madieu.xa@bp.renesas.com>
+To: john.madieu.xa@bp.renesas.com
+Cc: biju.das.jz@bp.renesas.com,
+	claudiu.beznea.uj@bp.renesas.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	geert+renesas@glider.be,
+	john.madieu@gmail.com,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	magnus.damm@gmail.com,
+	robh@kernel.org
+Subject: [PATCH v2 0/4] soc: renesas: Add system controller support for RZ/G3E SoC
+Date: Wed,  1 Jan 2025 17:33:40 +0100
+Message-ID: <20250101163344.128139-1-john.madieu.xa@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com>
+References: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hpzfsp4lsryjwr5q"
-Content-Disposition: inline
-In-Reply-To: <PN2PPFF679F9759585FA8AC4AE446848843F20B2@PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/235.736.4
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
+This patch series adds support for the RZ/G3E system controller and extends
+the existing RZ/V2H(P) system controller to support syscon. The RZ/G3E
+system controller allows detecting various SoC features like core count,
+NPU availability, and CA55 PLL configuration.
 
---hpzfsp4lsryjwr5q
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v13 0/2] power: supply: Add STC3117 Fuel Gauge
-MIME-Version: 1.0
+Changes in v2:
+- Fixed code style issues in rz-sysc.c and r9a09g047-sysc.c
+- Fixed device tree documentation, getting rid of syscon compatible string
+- Handled non signal-aware readable/writeable regmap callback
+- Consolidated common code between RZ/V2H and RZ/G3E drivers
+- Moved SoC ID detection from the compatible string fix into a new patch
 
-Hi,
+Key features:
+- Syscon support for both RZ/V2H and RZ/G3E system controllers
+- Detection of quad/dual core configuration
+- Detection of Ethos-U55 NPU presence
+- Validation of CA55 PLL frequency setting
+- SoC-specific extended identification through callbacks
 
-On Wed, Jan 01, 2025 at 10:40:57AM +0000, Bhavin Sharma wrote:
-> The patch has not yet appeared in linux-next tree. Do I have to
-> provide something further?
+This patch series depends upon [1], [2], and [3].
 
-No new patches have appeared in linux-next since 2024-12-20, since
-Stephen Rothwell is on vacation until 2025-01-06:
+Tested:
+- Example of SoC detection:
+[    0.065608] renesas-rz-sysc 10430000.system-controller: Detected Renesas 
+Quad Core RZ/G3E r9a09g047 Rev 0  with Ethos-U55
 
-https://lore.kernel.org/linux-next/20241220162051.50a762e4@canb.auug.org.au/
+- Example of PLL misconfiguration warning:
+[    0.065616] renesas-rz-sysc 10430000.system-controller: CA55 PLL is not 
+set to 1.7GHz
 
-Greetings,
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=914097
+[2] https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=912455
+[3] https://lore.kernel.org/lkml/Z2HTAJmBeIUlWysh@google.com/T/
 
--- Sebastian
+John Madieu (4):
+  dt-bindings: soc: renesas: Add RZ/G3E variant SYS bindings
+  soc: renesas: rz-sysc: Fix SoC ID string extraction
+  soc: renesas: rz-sysc: Add support for RZ/G3E family
+  arm64: dts: renesas: r9a09g047: add sys node
 
---hpzfsp4lsryjwr5q
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../soc/renesas/renesas,r9a09g057-sys.yaml    |  5 +-
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  7 ++
+ drivers/soc/renesas/Kconfig                   |  6 ++
+ drivers/soc/renesas/Makefile                  |  1 +
+ drivers/soc/renesas/r9a09g047-sysc.c          | 73 +++++++++++++++++++
+ drivers/soc/renesas/rz-sysc.c                 | 24 +++++-
+ drivers/soc/renesas/rz-sysc.h                 |  6 ++
+ 7 files changed, 118 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/soc/renesas/r9a09g047-sysc.c
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.25.1
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmd1awcACgkQ2O7X88g7
-+prieA//SNjtqqq5T7TXBZKcx13x4EAPixEgMnd7sD0CD+LvwOk5UkeCJ4qGr+3s
-Fzck5ieI/N+ILkJ/YCPxPI9biAaK4tSUoak7CYDvp2wK0wPklYrySM45op6jB4rr
-PbnBdv59dVGi1MnfB/iN+McZLA4ZRJdt8KuEpei+6Glx9NiMmoL9f6ZFagQs5sX0
-o17NpmXxFdwCDfDBEkP8ebhQ1Ja9fwbzkz8mYi5Blhv7LiOZWA1kYwfqkqjX8ccb
-QT2cyifdI7BDyqCkE+6oxZ2RICuQzldeeXgtP6REt+z+tk+jANtPQHCf9YG78/j1
-IVLL6qO+yin0F33KNik1azM8HKUdfN1tzxqoWP8I2XRDLTME5EdQ1qDPM34M1S/g
-FlSWwDvcESdDL6EywySfi/Enrg8/0zN1CflGI/q3Cgdg/kzPtsBPypOLihoEowoP
-C0BZRh9zWYdtH3pMAbmz/nGefs8ymKrzmPjykegqaouGBaTneA6NrreQ5xQPl7vl
-ClKikzrgDu4Rs52+zs1jtj2jDidUVtXoNTJ9x2Ld3m/i0Vi0Q26/yxwL42dUpEgJ
-OBD0b9OXwGxrCixRstkYTST6p+Uk2yvty6irVU9dS9WOxaxOct1vTTUGc0HaORa4
-r92SSMPtFbink6JapLV05SYcKpyQpjROlyRE75xYIq4DZa2AVIc=
-=3Qo6
------END PGP SIGNATURE-----
-
---hpzfsp4lsryjwr5q--
 
