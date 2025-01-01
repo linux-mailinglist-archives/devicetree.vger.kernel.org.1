@@ -1,177 +1,126 @@
-Return-Path: <devicetree+bounces-134986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A2D9FF413
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 14:00:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A80F89FF487
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 17:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AF493A2AEE
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 13:00:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0EA3161DB6
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 16:19:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCECA1E231E;
-	Wed,  1 Jan 2025 13:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF0CD13D531;
+	Wed,  1 Jan 2025 16:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YpBSpP2S"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="eBA94zS0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2C51E22EF;
-	Wed,  1 Jan 2025 13:00:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735736417; cv=none; b=nvqqfSgngjAhMTHIlWWjzSWoNXgc7okbeUUWWu1rgE/IdIyExMuP28kzQfSWhoCUJebjT4akVDbBMBQxfbCZex8/8L2O9DpSU0wva7p5ffCYlh4386BkwESv9mdvs4RzO0WN/rngVYtB6YjFgVi4ePGbgFJSPAnKeH/WFa5575U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735736417; c=relaxed/simple;
-	bh=0uAAxCpg43REf7bIKZ/E2f8ilVfL8vhTcdzJgfyhlBI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BIlrLINAnxgScA2k+bz0o8cRrvub7b2IfOo8cOEv5etz6zp+HpV9Q+9OcbH32+Ag56YL3MRSRLHaqRXrED2ZAkvBffKptf/Q9CRujcBEQx/U8BBL2E16PgnBc0+rUD/UQkCEmwm0Mrp8+gxbmVyk+HaPVdkG6wkasWuoftxWKbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YpBSpP2S; arc=none smtp.client-ip=209.85.160.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-29fae583cc8so5556210fac.1;
-        Wed, 01 Jan 2025 05:00:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735736414; x=1736341214; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Us8i9XD6a6Xpl19PsypD5kc87khcrnEieosq8SfZKws=;
-        b=YpBSpP2SIwLqNKLDejd1uArRfARmjXfue/CSeacCqzsWhgR9iBfMjKt0akkW41XYFT
-         oVS7iOf9s3tj+vJNKTECjP3lVFjK6ns80AG4XY0Jl/T84nZO8Iayeg4O2FvaeZI8NvpM
-         BPH7DHEpexCaJQqNK6+2ZRwhbjlAXWm7dbHZ29LhwgO3nZ+iXtvl66DTlv4Ij/Hs8CZv
-         mflAVvihLl8Gc3cTOlndX3OuXHrxwPanjxXkTpxTiC3FV09jmTYuacteNUUACV8fBwS8
-         82sUe59g19tdxtTYDNM4LNBvIvzCbxiskAkZRFxNXvsr3AE8hYJeqWpI9OZmoEV4Q5yX
-         OI3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735736414; x=1736341214;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Us8i9XD6a6Xpl19PsypD5kc87khcrnEieosq8SfZKws=;
-        b=AVexQ6vf/9NJuHlgelfILePHKNTVi/g/ZI01F7sq1U1MuiKv0PuFDZt+l5+FKYRFj3
-         iQXfHnT1RTQuGEqj2RfnlK+Zpk683x0imm2d11UeQwCKzm7/8uGmECtIJeTMqIF6AM7O
-         m19AfVjIWM8GCiuBzGAL3pulmuci19aCL9QZvgqnDyR1Wc1VXOKOXp83a1zyaWpTyIX3
-         kIbmV9cwf4cuCn8ZhCT7VO9ya/tYBQaVcovpD4uutlKsKRvtYhAzejY8H5gxSHX7Sjwu
-         wMaS+txbkx1HK0Wc+ujdAoK9+v01ubsLRu0wgH6Hs7FSpLg//z8zty/Hhsz+X0GXu214
-         CzTw==
-X-Forwarded-Encrypted: i=1; AJvYcCVS6ICRX+1HHsLgvaYDnI9jSV8pJqf0EM2USfo0znRWdHqv/JT4RfmTQoRxG8aWdICKs1o9tcjtkv+u@vger.kernel.org, AJvYcCWMRVZyoRJCiq5xBf7r7Rs5n2djwqgjaL78OCnmdI0ouyELAxQ1OMNd7UZNM+Ts/pjTn5qqEneZ@vger.kernel.org, AJvYcCWUYedkPA1iZU4qsnrQkkR0Qq23wGb6aJX5LO61sRlS25f0riwyj7mjsDSWJsaQFezDhSMLdO8k6k4GZR9q@vger.kernel.org, AJvYcCWfS5BsmcspKz8OBesKeCUgt4b05AjTdZOrjEHOBJvlddAGryq9o45TSAjN8k2gZHZrp8aXiSXw1vyo@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHWU0yTlRkAQRz55alZ+qugvWitkjvLD7Wgcsws5+4C1DkJyO3
-	xmPwK7+3682q7RiFvD2kHpOmJJHuu2tzmv7iv8mLgt3BxwglVO9TIuu9rmtDyaooJMYksjjuLuF
-	bgetjx0FAdggYVOP+GedN9GoRabA=
-X-Gm-Gg: ASbGncuXFNMjc02ASopPVhKhW0DqfXlVQihaeutzfRh8GY3mhoXRfDHfcT/vuYiSU2E
-	G/amoKO834fSrYba9BjK60EYvXuyR6JYAnmd2
-X-Google-Smtp-Source: AGHT+IHB2p9zwQITExAMkGuoasknjjtf0eq0ZjWNrICxm1bkeWJVYYMRvMR0UNZMYJa8ihH8tKafnye9YbzIrp+A8eI=
-X-Received: by 2002:a05:6870:b48f:b0:2a0:1437:8d1b with SMTP id
- 586e51a60fabf-2a7d12a49d5mr20209177fac.11.1735736413697; Wed, 01 Jan 2025
- 05:00:13 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24731854;
+	Wed,  1 Jan 2025 16:19:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735748390; cv=pass; b=VPaDienBHGTiuiCiO5HREegEabFkPl6oJN9K6UoOXLVb2GJJBqXAGLUq6yWjb2bvKiSgQuQDpgX0rfedFfRTZcUTOUnFlJNQfkYLCZYWjKqs8/4K2G4AiGMVTpOYs4noisbnx6W/8QoadpzJhOOKz73WdXL9FYPabMo7f6bNkW8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735748390; c=relaxed/simple;
+	bh=ric4iNSuqLxj4fjkqYY2hfWQ0QejJbop6rkw+2de9Ak=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H1gW/DhPxCsP91GfMU5whbemHnWxJ22umQmFHUnvBwYfDXLSNnFpIfk95xB7EcqEvupiVDky93/FJwNbp0BSJTkT7xuZwIR8G+5oFKnrkQV0t3Q6L51cVFeOwbW1EkJK7sWGUwkj1QDaZBxUDgb7beK8r4PxfucPQ13Gdoy/Tjk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=eBA94zS0; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1735748379; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=FQs1evtVE2sgkPSEfsulAqeIdssyVbyYayntPb80XfeoSaHEcHPnJRj7jDGx+EC5mmZhjbWz+t3atz4javZSal9Dl3MhHYzUtW/1wSlNwem4htrw/4OJrc6qhuMtjf3Z1lmlgKLK3jTE8Y5jHzIAqX7ZHGWW1smU6YqO/NOGSKI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1735748379; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ric4iNSuqLxj4fjkqYY2hfWQ0QejJbop6rkw+2de9Ak=; 
+	b=ZXQ+vPIusGUgKbBc6v55GrvU2wLrVkn99/VSDu2aWKFZupvcnajszicnp1xcEkGEcspgceCh6gm+GaGxffvA92f+fiVbhRjaKyRyvhEaa/IVl+0Tm2vRC1qG7FFBblbjxyZ9HxNdVzVXrfPHSkpgZMimc+Blcjc7BJ8WI1xpMo8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1735748379;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=ric4iNSuqLxj4fjkqYY2hfWQ0QejJbop6rkw+2de9Ak=;
+	b=eBA94zS0C62BzhJ4Il+QGtm49Ex4K2U/sSjBi8/9jeZvXiIVlQUhexLs4ywlaYqe
+	Zf5xD9OtAw4U0KN50tvxvPkUTvFWwHdGc9VoxYRiQJiGnwIZ5930KMnwhfeQSoLPRCT
+	GuvQTTmB8Ioj6Ns4R3FpLHVX0ASYVb2JDiQVEUZY=
+Received: by mx.zohomail.com with SMTPS id 1735748375571289.9748444958916;
+	Wed, 1 Jan 2025 08:19:35 -0800 (PST)
+Received: by mercury (Postfix, from userid 1000)
+	id 95126106034B; Wed, 01 Jan 2025 17:19:31 +0100 (CET)
+Date: Wed, 1 Jan 2025 17:19:31 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+Cc: Tarang Raval <tarang.raval@siliconsignals.io>, 
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v13 0/2] power: supply: Add STC3117 Fuel Gauge
+Message-ID: <vnv44opjdghvz7sa2tso3yk5vbbaepredfyf64ds5jkaeujmcp@eolkitmwg3jn>
+References: <20241220084958.32367-1-bhavin.sharma@siliconsignals.io>
+ <173479644260.3359498.3393893755513748803.b4-ty@collabora.com>
+ <PN2PPFF679F9759585FA8AC4AE446848843F20B2@PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241222105239.2618-1-joswang1221@gmail.com> <20241222105239.2618-2-joswang1221@gmail.com>
- <exu4kkmysquqfygz4gk26kfzediyqmq3wsxvu5ro454mi4fgyp@gr44ymyyxmng>
-In-Reply-To: <exu4kkmysquqfygz4gk26kfzediyqmq3wsxvu5ro454mi4fgyp@gr44ymyyxmng>
-From: Jos Wang <joswang1221@gmail.com>
-Date: Wed, 1 Jan 2025 21:00:01 +0800
-Message-ID: <CAMtoTm0nCL7jL=Wno7Cv5upyPnF0wTOXbY+WNG+y1P94513Pgg@mail.gmail.com>
-Subject: Re: [PATCH v2, 2/2] usb: typec: tcpm: fix the sender response time issue
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: heikki.krogerus@linux.intel.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	rdbabiera@google.com, Jos Wang <joswang@lenovo.com>, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi, thanks for your help in reviewing the code, and happy new year to
-you and your family!
-
-For the first commit you mentioned (modification time is 27ms), I
-understand that just modify the include/linux/usb/pd.h file:
-diff --git a/include/linux/usb/pd.h b/include/linux/usb/pd.h
-index d50098fb16b5..cd2cc535d21d 100644
---- a/include/linux/usb/pd.h
-+++ b/include/linux/usb/pd.h
-@@ -457,7 +457,7 @@ static inline unsigned int rdo_max_power(u32 rdo)
- #define PD_T_NO_RESPONSE       5000    /* 4.5 - 5.5 seconds */
- #define PD_T_DB_DETECT         10000   /* 10 - 15 seconds */
- #define PD_T_SEND_SOURCE_CAP   150     /* 100 - 200 ms */
--#define PD_T_SENDER_RESPONSE   60      /* 24 - 30 ms, relaxed */
-+#define PD_T_SENDER_RESPONSE   27      /* 24 - 30 ms, relaxed */
- #define PD_T_RECEIVER_RESPONSE 15      /* 15ms max */
- #define PD_T_SOURCE_ACTIVITY   45
- #define PD_T_SINK_ACTIVITY     135
-
-Is my understanding correct?
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hpzfsp4lsryjwr5q"
+Content-Disposition: inline
+In-Reply-To: <PN2PPFF679F9759585FA8AC4AE446848843F20B2@PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.3.1/235.736.4
+X-ZohoMailClient: External
 
 
-Thanks
-Jos Wang
+--hpzfsp4lsryjwr5q
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v13 0/2] power: supply: Add STC3117 Fuel Gauge
+MIME-Version: 1.0
 
-On Sun, Dec 22, 2024 at 9:14=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Sun, Dec 22, 2024 at 06:52:39PM +0800, joswang wrote:
-> > From: Jos Wang <joswang@lenovo.com>
-> >
-> > According to the USB PD3 CTS specification
-> > (https://usb.org/document-library/
-> > usb-power-delivery-compliance-test-specification-0/
-> > USB_PD3_CTS_Q4_2024_OR.zip), the requirements for
-> > tSenderResponse are different in PD2 and PD3 modes, see
-> > Table 19 Timing Table & Calculations. For PD2 mode, the
-> > tSenderResponse min 24ms and max 30ms; for PD3 mode, the
-> > tSenderResponse min 27ms and max 33ms.
-> >
-> > For the "TEST.PD.PROT.SRC.2 Get_Source_Cap No Request" test
-> > item, after receiving the Source_Capabilities Message sent by
-> > the UUT, the tester deliberately does not send a Request Message
-> > in order to force the SenderResponse timer on the Source UUT to
-> > timeout. The Tester checks that a Hard Reset is detected between
-> > tSenderResponse min and max=EF=BC=8Cthe delay is between the last bit o=
-f
-> > the GoodCRC Message EOP has been sent and the first bit of Hard
-> > Reset SOP has been received. The current code does not distinguish
-> > between PD2 and PD3 modes, and tSenderResponse defaults to 60ms.
-> > This will cause this test item and the following tests to fail:
-> > TEST.PD.PROT.SRC3.2 SenderResponseTimer Timeout
-> > TEST.PD.PROT.SNK.6 SenderResponseTimer Timeout
-> >
-> > Considering factors such as SOC performance, i2c rate, and the speed
-> > of PD chip sending data, "pd2-sender-response-time-ms" and
-> > "pd3-sender-response-time-ms" DT time properties are added to allow
-> > users to define platform timing. For values that have not been
-> > explicitly defined in DT using this property, a default value of 27ms
-> > for PD2 tSenderResponse and 30ms for PD3 tSenderResponse is set.
->
-> You have several different changes squashed into the same commit:
-> - Change the timeout from 60 ms to 27-30 ms (I'd recommend using 27 ms
->   as it fits both 24-30 ms and 27-33 ms ranges,
-> - Make timeout depend on the PD version,
-> - Make timeouts configurable via DT.
->
-> Only the first item is a fix per se and only that change should be
-> considered for backporting. Please unsquash your changes into logical
-> commits.  Theoretically the second change can be thought about as a part
-> of the third change (making timeouts configurable) or of the fist change
-> (fix the timeout to follow the standard), but I'd suggest having three
-> separate commits.
->
-> >
-> > Fixes: 2eadc33f40d4 ("typec: tcpm: Add core support for sink side PPS")
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Jos Wang <joswang@lenovo.com>
-> > ---
-> > v1 -> v2:
-> > - modify the commit message
-> > - patch 1/2 and patch 2/2 are placed in the same thread
->
-> --
-> With best wishes
-> Dmitry
+Hi,
+
+On Wed, Jan 01, 2025 at 10:40:57AM +0000, Bhavin Sharma wrote:
+> The patch has not yet appeared in linux-next tree. Do I have to
+> provide something further?
+
+No new patches have appeared in linux-next since 2024-12-20, since
+Stephen Rothwell is on vacation until 2025-01-06:
+
+https://lore.kernel.org/linux-next/20241220162051.50a762e4@canb.auug.org.au/
+
+Greetings,
+
+-- Sebastian
+
+--hpzfsp4lsryjwr5q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmd1awcACgkQ2O7X88g7
++prieA//SNjtqqq5T7TXBZKcx13x4EAPixEgMnd7sD0CD+LvwOk5UkeCJ4qGr+3s
+Fzck5ieI/N+ILkJ/YCPxPI9biAaK4tSUoak7CYDvp2wK0wPklYrySM45op6jB4rr
+PbnBdv59dVGi1MnfB/iN+McZLA4ZRJdt8KuEpei+6Glx9NiMmoL9f6ZFagQs5sX0
+o17NpmXxFdwCDfDBEkP8ebhQ1Ja9fwbzkz8mYi5Blhv7LiOZWA1kYwfqkqjX8ccb
+QT2cyifdI7BDyqCkE+6oxZ2RICuQzldeeXgtP6REt+z+tk+jANtPQHCf9YG78/j1
+IVLL6qO+yin0F33KNik1azM8HKUdfN1tzxqoWP8I2XRDLTME5EdQ1qDPM34M1S/g
+FlSWwDvcESdDL6EywySfi/Enrg8/0zN1CflGI/q3Cgdg/kzPtsBPypOLihoEowoP
+C0BZRh9zWYdtH3pMAbmz/nGefs8ymKrzmPjykegqaouGBaTneA6NrreQ5xQPl7vl
+ClKikzrgDu4Rs52+zs1jtj2jDidUVtXoNTJ9x2Ld3m/i0Vi0Q26/yxwL42dUpEgJ
+OBD0b9OXwGxrCixRstkYTST6p+Uk2yvty6irVU9dS9WOxaxOct1vTTUGc0HaORa4
+r92SSMPtFbink6JapLV05SYcKpyQpjROlyRE75xYIq4DZa2AVIc=
+=3Qo6
+-----END PGP SIGNATURE-----
+
+--hpzfsp4lsryjwr5q--
 
