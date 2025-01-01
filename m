@@ -1,210 +1,135 @@
-Return-Path: <devicetree+bounces-134976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B9A69FF39F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 10:35:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F5F69FF3B0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 11:36:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44F2C3A2706
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 09:35:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BAC17A111B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 10:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0002C181;
-	Wed,  1 Jan 2025 09:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D898624B;
+	Wed,  1 Jan 2025 10:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZfIdvZFs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bJKz+Mzy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE22EDE;
-	Wed,  1 Jan 2025 09:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8844745003;
+	Wed,  1 Jan 2025 10:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735724132; cv=none; b=DSTOYA5gYOQ4FzagGX2fddcJl3HAAdv4azHAzL17ldRVBRs37HYyW1GujUIYSx1/HOtxrrmGdOElfo84H/bIljV1NqNZJFb5/jDMhG102aDMUGOaQrFB4+q2Rg8xm7RqDNxo9yIuZCi0qukYbWwT0wXMUli8bPXt8J0OdeWRG9c=
+	t=1735727753; cv=none; b=Sk+fz+ck7FBX9ml9u8wPdXXo6y+Ooy5GAf01wEMn8v9QfSzetRRC6oY1sU/ezXXUZotOQNrhbQKyQ2lPvJDAW6YrrQSBTTtbUHzvBecaNvA8nHmA+TJNG9HbnaZQYPPV5Tqr6Eh+RQaRr4/kXZYullZGzgUysWUbvLpHqCXdYn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735724132; c=relaxed/simple;
-	bh=72aRAhGShzHCSODJmk+qOiLHXiKulWpbOvEl+YcknxY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FsjLR6XKGfjISb/sA4bTxCe8WpbXXeoMfhJHIG2tPvpBLu5UxkphKE8F3TJnOC2pzjsur6GWRu+KfBY8r6c3SnkNhK57C3uzrMvV2/JdjXJwYoKe1/+Blgr4MZgDd8SpaDwkMDiYztH093CuNgmJ6dQrFFpDyey1eV8ZcwlDp4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZfIdvZFs; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1735724131; x=1767260131;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=72aRAhGShzHCSODJmk+qOiLHXiKulWpbOvEl+YcknxY=;
-  b=ZfIdvZFs3bZJsj1WPGtwFdTnBNjTvrDx6qz+qdjs6a++h7KjIiCDYR/8
-   lIcCqTXQ1REX/B8ULWW/NCLl625n4wXfBKldc5aSgoMeLDlFPUAdcGMhJ
-   0F3AzYYQNf4EOH88Taz7nhDb2hwSJovMBDJAX09K4ZS8W7fWhpsipJcqI
-   atGdST20m9zhMprbmeX7irnUxyVuzVQxc2hI6CPKUCSh5/cC/BnG08wfe
-   9q6UbbYKfWmhkrDycuJsvF2bQepugxzdARyJ80Caj37YAzUs5XykLR4mN
-   FYKQD+MzRw8WrfMvzO8rYrLJK6yhmfe9EtacZO3H1KDxRdZYgrZhFiWsl
-   A==;
-X-CSE-ConnectionGUID: IPc6k93HRp6rbmg7hCaAow==
-X-CSE-MsgGUID: yDiZPPxmSImNlDxU5OBVwg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="53532345"
-X-IronPort-AV: E=Sophos;i="6.12,281,1728975600"; 
-   d="scan'208";a="53532345"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jan 2025 01:35:30 -0800
-X-CSE-ConnectionGUID: rNEUVw5aSOWMXl4p8dOD3g==
-X-CSE-MsgGUID: VyaDlc8cQtqG8m80GonyPg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,281,1728975600"; 
-   d="scan'208";a="101404881"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 01 Jan 2025 01:35:26 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tSv8O-0007kd-22;
-	Wed, 01 Jan 2025 09:35:24 +0000
-Date: Wed, 1 Jan 2025 17:34:29 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sricharan R <quic_srichara@quicinc.com>, jassisinghbrar@gmail.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, andersson@kernel.org,
-	konradybcio@kernel.org, manivannan.sadhasivam@linaro.org,
-	dmitry.baryshkov@linaro.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH V2 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox
- driver
-Message-ID: <202501011724.6gr0JxBf-lkp@intel.com>
-References: <20241231054900.2144961-3-quic_srichara@quicinc.com>
+	s=arc-20240116; t=1735727753; c=relaxed/simple;
+	bh=dcToFOn6zMPYiG8fgtcE/L9OOYN6RM1jEdjmwyd1aNg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b/mftPPjk81hjLlzShPzwVLfCO39raG8zD6Sbr3h68bF6fsyZIaXMf/veeNs2TVcSb7SP4a58om/erP5M+S8oBsxDxQ6LJIqjLvkMrVoU6/NF+VQ23SMbq+xOk0djc8PNrrs0GihbWU/ZmNKvxhjCLOdHcwMgPopqLJrWf68noI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bJKz+Mzy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 257CDC4CED7;
+	Wed,  1 Jan 2025 10:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735727753;
+	bh=dcToFOn6zMPYiG8fgtcE/L9OOYN6RM1jEdjmwyd1aNg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=bJKz+MzyqMXVt3UwNPGGdsQL0AhldFLXY5APejrKnc9/zyTTal5f6fP6GfKWdxjiT
+	 h4zI2kU4rWbEC9vQrrMtV5j80yYL+2MDEjfULEVdPVUrWqYao5i9Tr/haPvvZblvam
+	 nkplhaFxtWJO8UT9+xQxb8kP5OJrA44N8N8gpbKCt9ibolgR2VTl/i/z6QZ6ggmhVz
+	 U7CoNLa2QtfYC2/lkyClOkRynwO3aPOMKnM7kiCJ65OKZAcEwD4Bf3bLffHhym5YKo
+	 8Dvtylt/Xn+O76L0I6lo18nNPPPHfWy4IRSokV3p+frblfwE7CY/yBR5AA1fucYURR
+	 N5U5tmsOC1v7A==
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-aaee2c5ee6eso1040247966b.1;
+        Wed, 01 Jan 2025 02:35:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUgE1HC8rzhFah8UiTqcrDWzNKcj1rfVLbUEmyZDeYGlCrG5npuuNqB9lCRmFCNgEvR7ZC4iVPkSknTP9Ak@vger.kernel.org, AJvYcCVdMnsylhV8j9NM0ayWzly3bbEAz5hPuzC4RTaGJsAw8EDwhoaPvFJYcip1dT0RIRPUc6gleWQEZHSH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRgNbhHigcT3VZMFWHIfNA9XS0TKP0FQWIFiX8UXxdNLDbBL1O
+	C8y2+BFtMDWDWy6lOkwR4B3/5VmrSf/oo7dQxaKVX1VouhR5LGJeETwN+1ZrJHo9uAqVJGZV7Cs
+	KsKlIG4wqAuY3lwm9Vhr8QaENPV8=
+X-Google-Smtp-Source: AGHT+IEo4ASs6IkoKoJI3LR4lA64FKwqkvMmHxIR0XQ/5e8ZxWKbm7Y4ToD5cR03Tvma6wtc27xhSPHctZ2kR0tWfic=
+X-Received: by 2002:a17:907:728c:b0:aab:9430:40e9 with SMTP id
+ a640c23a62f3a-aac2d420441mr3695676066b.32.1735727751712; Wed, 01 Jan 2025
+ 02:35:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241231054900.2144961-3-quic_srichara@quicinc.com>
+References: <20241222001230.2579074-1-masahiroy@kernel.org>
+In-Reply-To: <20241222001230.2579074-1-masahiroy@kernel.org>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Wed, 1 Jan 2025 18:35:31 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H599RsZqAXHZf8Ct84wh+t+pyPMk0=F6N1Z6opLkTkSmg@mail.gmail.com>
+Message-ID: <CAAhV-H599RsZqAXHZf8Ct84wh+t+pyPMk0=F6N1Z6opLkTkSmg@mail.gmail.com>
+Subject: Re: [PATCH] LoongArch: migrate to the generic rule for built-in DTB
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: WANG Xuerui <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Sricharan,
+Queued, thanks.
 
-kernel test robot noticed the following build warnings:
+Huacai
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.13-rc5 next-20241220]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Sricharan-R/dt-bindings-mailbox-Document-qcom-tmel-qmp/20241231-135219
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241231054900.2144961-3-quic_srichara%40quicinc.com
-patch subject: [PATCH V2 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox driver
-config: i386-randconfig-005-20250101 (https://download.01.org/0day-ci/archive/20250101/202501011724.6gr0JxBf-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250101/202501011724.6gr0JxBf-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501011724.6gr0JxBf-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/mailbox/qcom-tmel-qmp.c:10:
-   In file included from include/linux/dma-mapping.h:8:
-   In file included from include/linux/scatterlist.h:8:
-   In file included from include/linux/mm.h:2223:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/mailbox/qcom-tmel-qmp.c:312:55: warning: format specifies type 'unsigned long' but the argument has type 'size_t' (aka 'unsigned int') [-Wformat]
-     312 |                 dev_err(mdev->dev, "Unsupported packet size %lu\n", pkt->iov_len);
-         |                                                             ~~~     ^~~~~~~~~~~~
-         |                                                             %zu
-   include/linux/dev_printk.h:154:65: note: expanded from macro 'dev_err'
-     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                                ~~~     ^~~~~~~~~~~
-   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ~~~    ^~~~~~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c:710:10: warning: format specifies type 'unsigned long' but the argument has type 'size_t' (aka 'unsigned int') [-Wformat]
-     709 |                 pr_err("Invalid pkt.size received size: %lu, expected: %zu\n",
-         |                                                         ~~~
-         |                                                         %zu
-     710 |                        tdev->pkt.iov_len, sizeof(struct tmel_ipc_pkt));
-         |                        ^~~~~~~~~~~~~~~~~
-   include/linux/printk.h:544:33: note: expanded from macro 'pr_err'
-     544 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
-         |                                ~~~     ^~~~~~~~~~~
-   include/linux/printk.h:501:60: note: expanded from macro 'printk'
-     501 | #define printk(fmt, ...) printk_index_wrap(_printk, fmt, ##__VA_ARGS__)
-         |                                                     ~~~    ^~~~~~~~~~~
-   include/linux/printk.h:473:19: note: expanded from macro 'printk_index_wrap'
-     473 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
-         |                         ~~~~    ^~~~~~~~~~~
-   drivers/mailbox/qcom-tmel-qmp.c:834:6: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
-     834 |         int ret;
-         |             ^
-   4 warnings generated.
-
-
-vim +312 drivers/mailbox/qcom-tmel-qmp.c
-
-   290	
-   291	/**
-   292	 * qmp_send_data() - Copy the data to the channel's mailbox and notify
-   293	 *		     remote subsystem of new data. This function will
-   294	 *		     return an error if the previous message sent has
-   295	 *		     not been read. Cannot Sleep.
-   296	 * @chan:	mailbox channel that data is to be sent over.
-   297	 * @data:	Data to be sent to remote processor, should be in the format of
-   298	 *		a kvec.
-   299	 *
-   300	 * Return: 0 on succes or standard Linux error code.
-   301	 */
-   302	static int qmp_send_data(struct qmp_device *mdev, void *data)
-   303	{
-   304		struct kvec *pkt = (struct kvec *)data;
-   305		void __iomem *addr;
-   306		unsigned long flags;
-   307	
-   308		if (!mdev || !data || !completion_done(&mdev->ch_complete))
-   309			return -EINVAL;
-   310	
-   311		if (pkt->iov_len > QMP_MAX_PKT_SIZE) {
- > 312			dev_err(mdev->dev, "Unsupported packet size %lu\n", pkt->iov_len);
-   313			return -EINVAL;
-   314		}
-   315	
-   316		spin_lock_irqsave(&mdev->tx_lock, flags);
-   317		if (mdev->tx_sent) {
-   318			spin_unlock_irqrestore(&mdev->tx_lock, flags);
-   319			return -EAGAIN;
-   320		}
-   321	
-   322		dev_dbg(mdev->dev, "%s: mcore 0x%x ucore 0x%x", __func__,
-   323			mdev->mcore.val, mdev->ucore.val);
-   324	
-   325		addr = mdev->mcore_desc + QMP_CTRL_DATA_SIZE;
-   326		memcpy_toio(addr, pkt->iov_base, pkt->iov_len);
-   327	
-   328		mdev->mcore.bits.frag_size = pkt->iov_len;
-   329		mdev->mcore.bits.rem_frag_count = 0;
-   330	
-   331		dev_dbg(mdev->dev, "Copied buffer to mbox, sz: %d",
-   332			mdev->mcore.bits.frag_size);
-   333	
-   334		mdev->tx_sent = true;
-   335		QMP_MCORE_CH_VAR_TOGGLE(mdev, tx);
-   336		qmp_send_irq(mdev);
-   337		qmp_schedule_tx_timeout(mdev);
-   338		spin_unlock_irqrestore(&mdev->tx_lock, flags);
-   339	
-   340		return 0;
-   341	}
-   342	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+On Sun, Dec 22, 2024 at 8:13=E2=80=AFAM Masahiro Yamada <masahiroy@kernel.o=
+rg> wrote:
+>
+> Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
+> DTBs") introduced generic support for built-in DTBs.
+>
+> Select GENERIC_BUILTIN_DTB when built-in DTB support is enabled.
+>
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+>
+>  arch/loongarch/Kbuild            | 1 -
+>  arch/loongarch/Kconfig           | 1 +
+>  arch/loongarch/boot/dts/Makefile | 2 --
+>  3 files changed, 1 insertion(+), 3 deletions(-)
+>
+> diff --git a/arch/loongarch/Kbuild b/arch/loongarch/Kbuild
+> index bfa21465d83a..beb8499dd8ed 100644
+> --- a/arch/loongarch/Kbuild
+> +++ b/arch/loongarch/Kbuild
+> @@ -4,7 +4,6 @@ obj-y +=3D net/
+>  obj-y +=3D vdso/
+>
+>  obj-$(CONFIG_KVM) +=3D kvm/
+> -obj-$(CONFIG_BUILTIN_DTB) +=3D boot/dts/
+>
+>  # for cleaning
+>  subdir- +=3D boot
+> diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
+> index dae3a9104ca6..98e099be912d 100644
+> --- a/arch/loongarch/Kconfig
+> +++ b/arch/loongarch/Kconfig
+> @@ -396,6 +396,7 @@ endchoice
+>  config BUILTIN_DTB
+>         bool "Enable built-in dtb in kernel"
+>         depends on OF
+> +       select GENERIC_BUILTIN_DTB
+>         help
+>           Some existing systems do not provide a canonical device tree to
+>           the kernel at boot time. Let's provide a device tree table in t=
+he
+> diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/M=
+akefile
+> index 747d0c3f6389..15d5e14fe418 100644
+> --- a/arch/loongarch/boot/dts/Makefile
+> +++ b/arch/loongarch/boot/dts/Makefile
+> @@ -1,5 +1,3 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>
+>  dtb-y =3D loongson-2k0500-ref.dtb loongson-2k1000-ref.dtb loongson-2k200=
+0-ref.dtb
+> -
+> -obj-$(CONFIG_BUILTIN_DTB)      +=3D $(addsuffix .dtb.o, $(CONFIG_BUILTIN=
+_DTB_NAME))
+> --
+> 2.43.0
+>
 
