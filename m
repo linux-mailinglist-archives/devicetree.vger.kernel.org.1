@@ -1,294 +1,210 @@
-Return-Path: <devicetree+bounces-134975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37E929FF395
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 10:11:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B9A69FF39F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 10:35:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA8F8161C45
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 09:11:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44F2C3A2706
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 09:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF8EF3FBA7;
-	Wed,  1 Jan 2025 09:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0002C181;
+	Wed,  1 Jan 2025 09:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X4U+oYw0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZfIdvZFs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD2315E96;
-	Wed,  1 Jan 2025 09:11:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE22EDE;
+	Wed,  1 Jan 2025 09:35:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735722683; cv=none; b=P+yU4s6bhLpkBwEivVqvQqtxG31+xnEHy2BuKy5fzXkmGut2fx3F0RHBVzmghBWB+ll4oDNVEudso8K1rcQw2IsWAUAXiiAZUks9cpFJbUINXSUPB9sCJQu3Gat2WN6TTju5AOZKwVdAhNNpuPcV/zA6r5VGmTIm39NbpeMN3CA=
+	t=1735724132; cv=none; b=DSTOYA5gYOQ4FzagGX2fddcJl3HAAdv4azHAzL17ldRVBRs37HYyW1GujUIYSx1/HOtxrrmGdOElfo84H/bIljV1NqNZJFb5/jDMhG102aDMUGOaQrFB4+q2Rg8xm7RqDNxo9yIuZCi0qukYbWwT0wXMUli8bPXt8J0OdeWRG9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735722683; c=relaxed/simple;
-	bh=2oMs8//KW+/UsKKCMEJ3pfOq5EeKZb+VZinp+Bm3FXI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A+8kzXVMt1/BjBR2UXhYD02Bq0Hc/k6dbdJoshwozPxmqTJTFEvTmuw0Bdk9xDpdzn5Rp4BEWWM7VV2G1G6HA8eIAisuVnJIFBuXhvA8L26tDnaBjis45A5k0YThBouF2PzT+xZNoe2DVuNFmEeWGdES8bBYYrfKZfKCltDEsx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X4U+oYw0; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e53c9035003so10839881276.2;
-        Wed, 01 Jan 2025 01:11:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735722680; x=1736327480; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T6Ak1nndFpa2BYohYKIMDuJuK8Xdv+pbjTqPkvicZUs=;
-        b=X4U+oYw03xvRQBB4N4L7/aOnKTPOy55DP7wNYZKxOfLQI/UCeSDlT9UeNmhy10dqR3
-         +AodWT+vhluMHvd2tcQH+ZYiZ9QpckgcZpa7Wnhc2rXvnwQvO7M3MNhfVYF6DdpdqSc5
-         O4mCQysMwQ+56fhYsLMOSR34hg5zkq0693pQAaozylcVWDUhAmVJuwIjvK64kdS9rB6D
-         c2SWpKzjGlnGtoQmdNuHH4IkmfhuCp5cGhdFRyrjMEXawCAXY07TgJ7tNyTQEfO8Tpic
-         GMDVojqrtT7zKH7I1FGIs++MDG88+l+7jQkpdMYaTYQ+FjSLTexTpMa28LhW1UsXpti2
-         elqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735722680; x=1736327480;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=T6Ak1nndFpa2BYohYKIMDuJuK8Xdv+pbjTqPkvicZUs=;
-        b=ILPfi9kgSQWlZzqLLXMC2jvfDkpLZ9feIHs7DtsOoqcGmYSwPMChh3dC5qX3/ot3sp
-         Sef1vNbif4QIwO1cy7K1PuaORnV6UDrl/pY2Zt3wXlrkwFN0G2l7AJS6sEngvxtmOAnf
-         n1OR3xp8B8XQke9WRrzflC4rv5HA9Gyd2b0yaABZDlcwto8QIwiDw4GDlHvtZWk25Wy0
-         A6WXhS7PZccQ/5pOe3b9JPOejVWklBhVRTkFqq+lvY8g4ldBx7EPhCibI9dSbFWCc/L5
-         U89G7I2e39o4T5kqHdxKQXSnvMFfp2erSdpE6QdW4Hq2hPG2zc/jqVp7iKDZB/yk6DOa
-         SdCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUCJyugxRouPmj5YTPUQYVNcL+UAeb2WBjRLJQUtcJhbAMdWpuFp02J70bnbjVGkzuDCxFFIyogl+9C@vger.kernel.org, AJvYcCW3GYpT1Oszo3MbRQrTeuSOaV8PjsK4QbnfOQNAQw1j67JSuLI+zxCI6Ur60n0/XtW6YDJY5tS94+wnKG7n@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnPit8uYv4kirPaqXbTcevoALqZoJnIyT7CUZFRACDxRgUWVut
-	9rAabaJAiz6MkBberzf+qI+jCvPDQXJ9v9mH70YyHUhMqLZ4bd5XAyAXBR0QVbFHRtZ7fK2ncpN
-	GDlEOLA/KycRl2DubFOXyRsl9HTjXzn3UQWM=
-X-Gm-Gg: ASbGnctNcSAld9mxDFrasMoZ+kbfBTNKSZQ26GL3J6EKrKkklGmZREmvi/+c7foBO3e
-	/UMmHCve/qJfMYnYhZ55/AVVzjHbJLZYCZRentyUy221n6ei+fRndUFxcqHc03D6r/FlCaeI=
-X-Google-Smtp-Source: AGHT+IGKouYjjJN74Hg1lLFd842DKnin0bEhZ+VIkA7xUmSu7qec3sUYknV430V/04XS2PG9Tt6dxRJwAx6C+Sc1pIg=
-X-Received: by 2002:a05:690c:4881:b0:6ef:8c41:dee0 with SMTP id
- 00721157ae682-6f3f81357dfmr304023617b3.20.1735722679892; Wed, 01 Jan 2025
- 01:11:19 -0800 (PST)
+	s=arc-20240116; t=1735724132; c=relaxed/simple;
+	bh=72aRAhGShzHCSODJmk+qOiLHXiKulWpbOvEl+YcknxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FsjLR6XKGfjISb/sA4bTxCe8WpbXXeoMfhJHIG2tPvpBLu5UxkphKE8F3TJnOC2pzjsur6GWRu+KfBY8r6c3SnkNhK57C3uzrMvV2/JdjXJwYoKe1/+Blgr4MZgDd8SpaDwkMDiYztH093CuNgmJ6dQrFFpDyey1eV8ZcwlDp4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZfIdvZFs; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1735724131; x=1767260131;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=72aRAhGShzHCSODJmk+qOiLHXiKulWpbOvEl+YcknxY=;
+  b=ZfIdvZFs3bZJsj1WPGtwFdTnBNjTvrDx6qz+qdjs6a++h7KjIiCDYR/8
+   lIcCqTXQ1REX/B8ULWW/NCLl625n4wXfBKldc5aSgoMeLDlFPUAdcGMhJ
+   0F3AzYYQNf4EOH88Taz7nhDb2hwSJovMBDJAX09K4ZS8W7fWhpsipJcqI
+   atGdST20m9zhMprbmeX7irnUxyVuzVQxc2hI6CPKUCSh5/cC/BnG08wfe
+   9q6UbbYKfWmhkrDycuJsvF2bQepugxzdARyJ80Caj37YAzUs5XykLR4mN
+   FYKQD+MzRw8WrfMvzO8rYrLJK6yhmfe9EtacZO3H1KDxRdZYgrZhFiWsl
+   A==;
+X-CSE-ConnectionGUID: IPc6k93HRp6rbmg7hCaAow==
+X-CSE-MsgGUID: yDiZPPxmSImNlDxU5OBVwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="53532345"
+X-IronPort-AV: E=Sophos;i="6.12,281,1728975600"; 
+   d="scan'208";a="53532345"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jan 2025 01:35:30 -0800
+X-CSE-ConnectionGUID: rNEUVw5aSOWMXl4p8dOD3g==
+X-CSE-MsgGUID: VyaDlc8cQtqG8m80GonyPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,281,1728975600"; 
+   d="scan'208";a="101404881"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 01 Jan 2025 01:35:26 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tSv8O-0007kd-22;
+	Wed, 01 Jan 2025 09:35:24 +0000
+Date: Wed, 1 Jan 2025 17:34:29 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sricharan R <quic_srichara@quicinc.com>, jassisinghbrar@gmail.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, andersson@kernel.org,
+	konradybcio@kernel.org, manivannan.sadhasivam@linaro.org,
+	dmitry.baryshkov@linaro.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH V2 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox
+ driver
+Message-ID: <202501011724.6gr0JxBf-lkp@intel.com>
+References: <20241231054900.2144961-3-quic_srichara@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241225035851.420952-1-gch981213@gmail.com> <20241225035851.420952-3-gch981213@gmail.com>
- <csu3mg7nurpwxkr6drpz6xsw3dqn5ttdotvmfkfvrwpo3geedf@jos6rqxovqr2>
-In-Reply-To: <csu3mg7nurpwxkr6drpz6xsw3dqn5ttdotvmfkfvrwpo3geedf@jos6rqxovqr2>
-From: Chuanhong Guo <gch981213@gmail.com>
-Date: Wed, 1 Jan 2025 17:11:08 +0800
-Message-ID: <CAJsYDVJhPdPZY9OdCr9K27Q-2YPmi7TAC-fNB8Cn2vQpCzJBog@mail.gmail.com>
-Subject: Re: [PATCH 2/2] gpio: add support for GPIO controller on Siflower SoCs
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Qingfang Deng <qingfang.deng@siflower.com.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241231054900.2144961-3-quic_srichara@quicinc.com>
 
-Hello Krzysztof!
+Hi Sricharan,
 
-On Tue, Dec 31, 2024 at 4:38=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Wed, Dec 25, 2024 at 11:58:51AM +0800, Chuanhong Guo wrote:
-> > From: Qingfang Deng <qingfang.deng@siflower.com.cn>
-> >
-> > Add a driver for the GPIO controller on Siflower SoCs.
-> > This controller is found on all current Siflower MIPS and RISC-V
-> > chips including SF19A2890, SF21A6826 and SF21H8898.
-> >
-> > Signed-off-by: Qingfang Deng <qingfang.deng@siflower.com.cn>
-> > Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
-> > ---
-> >  drivers/gpio/Kconfig         |   9 +
-> >  drivers/gpio/Makefile        |   1 +
-> >  drivers/gpio/gpio-siflower.c | 353 +++++++++++++++++++++++++++++++++++
-> >  3 files changed, 363 insertions(+)
-> >  create mode 100644 drivers/gpio/gpio-siflower.c
-> >
-> > diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> > index add5ad29a673..fdc9a89ffbf3 100644
-> > --- a/drivers/gpio/Kconfig
-> > +++ b/drivers/gpio/Kconfig
-> > @@ -637,6 +637,15 @@ config GPIO_SIFIVE
-> >       help
-> >         Say yes here to support the GPIO device on SiFive SoCs.
-> >
-> > +config GPIO_SIFLOWER
-> > +     tristate "SiFlower GPIO support"
-> > +     depends on OF_GPIO
-> > +     depends on MIPS || RISCV || COMPILE_TEST
->
-> This is supposed to be dependency on ARCH, not instruction set. I don't
-> se anything MIPS or RISCV here.
+kernel test robot noticed the following build warnings:
 
-I haven't sent any arch patches yet. The SoCs basically work with
-MIPS/RISC-V generic kernel so I was planning to deal with it last with
-some device trees.
-Should I simply drop this dependency line for now, or should I add
-ARCH_xxx to arch/{mips,riscv}/Kconfig first?
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.13-rc5 next-20241220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
->
-> > +     select GPIOLIB_IRQCHIP
-> > +     help
-> > +       GPIO controller driver for SiFlower MIPS and RISC-V SoCs
-> > +       including SF19A2890, SF21A6826 and SF21H8898.
->
-> ...
->
-> > +static void sf_gpio_remove(struct platform_device *pdev)
-> > +{
-> > +     struct sf_gpio_priv *priv =3D platform_get_drvdata(pdev);
-> > +
-> > +     reset_control_assert(priv->rstc);
-> > +}
-> > +
-> > +static const struct of_device_id sf_gpio_ids[] =3D {
-> > +     { .compatible =3D "siflower,sf19a2890-gpio" },
-> > +     {},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, sf_gpio_ids);
-> > +
-> > +static struct platform_driver sf_gpio_driver =3D {
-> > +     .probe          =3D sf_gpio_probe,
-> > +     .remove         =3D sf_gpio_remove,
-> > +     .driver =3D {
-> > +             .name           =3D "siflower_gpio",
-> > +             .owner          =3D THIS_MODULE,
->
-> You sent us some old code with old code style, so probably you sent us
-> donwstream poor driver.
+url:    https://github.com/intel-lab-lkp/linux/commits/Sricharan-R/dt-bindings-mailbox-Document-qcom-tmel-qmp/20241231-135219
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241231054900.2144961-3-quic_srichara%40quicinc.com
+patch subject: [PATCH V2 2/2] mailbox: tmelite-qmp: Introduce TMEL QMP mailbox driver
+config: i386-randconfig-005-20250101 (https://download.01.org/0day-ci/archive/20250101/202501011724.6gr0JxBf-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250101/202501011724.6gr0JxBf-lkp@intel.com/reproduce)
 
-I'll drop this owner line.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501011724.6gr0JxBf-lkp@intel.com/
 
-> Please clean it up before posting.
+All warnings (new ones prefixed by >>):
 
-Do you have other specific review comments? I haven't found other
-stuff to clean up currently.
-
-> Please run standard kernel tools for static analysis, like coccinelle,
-
-coccinelle failed on something else:
-
-make ARCH=3Dmips CROSS_COMPILE=3Dmipsel-linux-gnu- C=3D2
-CHECK=3D"scripts/coccicheck" drivers/gpio/gpio-siflower.o
-
-[...]
-/usr/bin/spatch -D report --no-show-diff --very-quiet --cocci-file
-./scripts/coccinelle/misc/secs_to_jiffies.cocci -I ./arch/mips/include
--I ./arch/mips/include/generated -I ./include -I ./include -I
-./arch/mips/include/uapi -I ./arch/mips/include/generated/uapi -I
-./include/uapi -I ./include/generated/uapi --include
-./include/linux/compiler-version.h --include ./include/linux/kconfig.h
-scripts/mod/empty.c
-virtual rule report not supported
-coccicheck failed
-
-After removing ./scripts/coccinelle/misc/secs_to_jiffies.cocci, I got:
-
-[...]
-/usr/bin/spatch -D report --no-show-diff --very-quiet --cocci-file
-./scripts/coccinelle/api/stream
-_open.cocci -I ./arch/mips/include -I ./arch/mips/include/generated -I
-./include -I ./include -I .
-/arch/mips/include/uapi -I ./arch/mips/include/generated/uapi -I
-./include/uapi -I ./include/gener
-ated/uapi --include ./include/linux/compiler-version.h --include
-./include/linux/kconfig.h drivers
-/gpio/gpio-siflower.c
-warning: line 140: should noop_llseek be a metavariable?
-warning: line 222: should nonseekable_open be a metavariable?
-warning: line 289: should nonseekable_open be a metavariable?
-warning: line 337: should nonseekable_open be a metavariable?
-[...]
-
-These doesn't seem to be related to gpio-siflower.c. There's no
-noop_llseek or nonseekable_open in it.
-
-> smatch
-
-smatch give me nothing:
-
-make ARCH=3Dmips CROSS_COMPILE=3Dmipsel-linux-gnu- C=3D2 CHECK=3D"smatch
--p=3Dkernel" drivers/gpio/gpio-siflower.o
-[...]
-CC kernel/bounds.s
-CC arch/mips/kernel/asm-offsets.s
-CALL scripts/checksyscalls.sh
-CHKSHA1 include/linux/atomic/atomic-arch-fallback.h
-CHKSHA1 include/linux/atomic/atomic-instrumented.h
-CHKSHA1 include/linux/atomic/atomic-long.h
-CC drivers/gpio/gpio-siflower.o
-CHECK drivers/gpio/gpio-siflower.c
-
-> and sparse
-
-sparse doesn't seem to tell me anything about the driver itself either.
-
-make ARCH=3Dmips CROSS_COMPILE=3Dmipsel-linux-gnu- C=3D2 CHECK=3D"sparse"
-drivers/gpio/gpio-siflower.o
-  CHECK   scripts/mod/empty.c
-command-line: note: in included file:
-builtin:1:9: warning: preprocessor token __ATOMIC_ACQUIRE redefined
-builtin:0:0: this was the original definition
-builtin:1:9: warning: preprocessor token __ATOMIC_SEQ_CST redefined
-builtin:0:0: this was the original definition
-builtin:1:9: warning: preprocessor token __ATOMIC_ACQ_REL redefined
-builtin:0:0: this was the original definition
-builtin:1:9: warning: preprocessor token __ATOMIC_RELEASE redefined
-builtin:0:0: this was the original definition
-  CALL    scripts/checksyscalls.sh
-  CHECK   drivers/gpio/gpio-siflower.c
-command-line: note: in included file:
-builtin:1:9: warning: preprocessor token __ATOMIC_ACQUIRE redefined
-builtin:0:0: this was the original definition
-builtin:1:9: warning: preprocessor token __ATOMIC_SEQ_CST redefined
-builtin:0:0: this was the original definition
-builtin:1:9: warning: preprocessor token __ATOMIC_ACQ_REL redefined
-builtin:0:0: this was the original definition
-builtin:1:9: warning: preprocessor token __ATOMIC_RELEASE redefined
-builtin:0:0: this was the original definition
+   In file included from drivers/mailbox/qcom-tmel-qmp.c:10:
+   In file included from include/linux/dma-mapping.h:8:
+   In file included from include/linux/scatterlist.h:8:
+   In file included from include/linux/mm.h:2223:
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/mailbox/qcom-tmel-qmp.c:312:55: warning: format specifies type 'unsigned long' but the argument has type 'size_t' (aka 'unsigned int') [-Wformat]
+     312 |                 dev_err(mdev->dev, "Unsupported packet size %lu\n", pkt->iov_len);
+         |                                                             ~~~     ^~~~~~~~~~~~
+         |                                                             %zu
+   include/linux/dev_printk.h:154:65: note: expanded from macro 'dev_err'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                                ~~~     ^~~~~~~~~~~
+   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ~~~    ^~~~~~~~~~~
+   drivers/mailbox/qcom-tmel-qmp.c:710:10: warning: format specifies type 'unsigned long' but the argument has type 'size_t' (aka 'unsigned int') [-Wformat]
+     709 |                 pr_err("Invalid pkt.size received size: %lu, expected: %zu\n",
+         |                                                         ~~~
+         |                                                         %zu
+     710 |                        tdev->pkt.iov_len, sizeof(struct tmel_ipc_pkt));
+         |                        ^~~~~~~~~~~~~~~~~
+   include/linux/printk.h:544:33: note: expanded from macro 'pr_err'
+     544 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
+         |                                ~~~     ^~~~~~~~~~~
+   include/linux/printk.h:501:60: note: expanded from macro 'printk'
+     501 | #define printk(fmt, ...) printk_index_wrap(_printk, fmt, ##__VA_ARGS__)
+         |                                                     ~~~    ^~~~~~~~~~~
+   include/linux/printk.h:473:19: note: expanded from macro 'printk_index_wrap'
+     473 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+         |                         ~~~~    ^~~~~~~~~~~
+   drivers/mailbox/qcom-tmel-qmp.c:834:6: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+     834 |         int ret;
+         |             ^
+   4 warnings generated.
 
 
-> , and fix reported warnings. Also please check for
-> warnings when building with W=3D1.
+vim +312 drivers/mailbox/qcom-tmel-qmp.c
 
-I also got nothing from this one:
+   290	
+   291	/**
+   292	 * qmp_send_data() - Copy the data to the channel's mailbox and notify
+   293	 *		     remote subsystem of new data. This function will
+   294	 *		     return an error if the previous message sent has
+   295	 *		     not been read. Cannot Sleep.
+   296	 * @chan:	mailbox channel that data is to be sent over.
+   297	 * @data:	Data to be sent to remote processor, should be in the format of
+   298	 *		a kvec.
+   299	 *
+   300	 * Return: 0 on succes or standard Linux error code.
+   301	 */
+   302	static int qmp_send_data(struct qmp_device *mdev, void *data)
+   303	{
+   304		struct kvec *pkt = (struct kvec *)data;
+   305		void __iomem *addr;
+   306		unsigned long flags;
+   307	
+   308		if (!mdev || !data || !completion_done(&mdev->ch_complete))
+   309			return -EINVAL;
+   310	
+   311		if (pkt->iov_len > QMP_MAX_PKT_SIZE) {
+ > 312			dev_err(mdev->dev, "Unsupported packet size %lu\n", pkt->iov_len);
+   313			return -EINVAL;
+   314		}
+   315	
+   316		spin_lock_irqsave(&mdev->tx_lock, flags);
+   317		if (mdev->tx_sent) {
+   318			spin_unlock_irqrestore(&mdev->tx_lock, flags);
+   319			return -EAGAIN;
+   320		}
+   321	
+   322		dev_dbg(mdev->dev, "%s: mcore 0x%x ucore 0x%x", __func__,
+   323			mdev->mcore.val, mdev->ucore.val);
+   324	
+   325		addr = mdev->mcore_desc + QMP_CTRL_DATA_SIZE;
+   326		memcpy_toio(addr, pkt->iov_base, pkt->iov_len);
+   327	
+   328		mdev->mcore.bits.frag_size = pkt->iov_len;
+   329		mdev->mcore.bits.rem_frag_count = 0;
+   330	
+   331		dev_dbg(mdev->dev, "Copied buffer to mbox, sz: %d",
+   332			mdev->mcore.bits.frag_size);
+   333	
+   334		mdev->tx_sent = true;
+   335		QMP_MCORE_CH_VAR_TOGGLE(mdev, tx);
+   336		qmp_send_irq(mdev);
+   337		qmp_schedule_tx_timeout(mdev);
+   338		spin_unlock_irqrestore(&mdev->tx_lock, flags);
+   339	
+   340		return 0;
+   341	}
+   342	
 
-rm drivers/gpio/gpio-siflower.o && make ARCH=3Dmips
-CROSS_COMPILE=3Dmipsel-linux-gnu- W=3D1 drivers/gpio/gpio-siflower.o
-  CC      scripts/mod/empty.o
-  MKELF   scripts/mod/elfconfig.h
-  HOSTCC  scripts/mod/modpost.o
-  CC      scripts/mod/devicetable-offsets.s
-  HOSTCC  scripts/mod/file2alias.o
-  HOSTCC  scripts/mod/sumversion.o
-  HOSTCC  scripts/mod/symsearch.o
-  HOSTLD  scripts/mod/modpost
-  CC      kernel/bounds.s
-  CC      arch/mips/kernel/asm-offsets.s
-  CALL    scripts/checksyscalls.sh
-  CC      drivers/gpio/gpio-siflower.o
-
-> Most of these commands (checks or W=3D1
-> build) can build specific targets, like some directory, to narrow the
-> scope to only your code. The code here looks like it needs a fix.
-
-Would you mind sharing the warnings you found, and the command to
-reproduce those?
-
-> Feel
-> free to get in touch if the warning is not clear.
->
-> Best regards,
-> Krzysztof
->
-
---=20
-Regards,
-Chuanhong Guo
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
