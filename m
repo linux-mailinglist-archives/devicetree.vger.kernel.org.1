@@ -1,299 +1,177 @@
-Return-Path: <devicetree+bounces-134985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-134986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E7659FF404
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 13:30:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A2D9FF413
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 14:00:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2699416133E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 12:30:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AF493A2AEE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2025 13:00:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76A391E0E0B;
-	Wed,  1 Jan 2025 12:30:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCECA1E231E;
+	Wed,  1 Jan 2025 13:00:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="Vn6CotZ2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YpBSpP2S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2139.outbound.protection.outlook.com [40.107.247.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9908D8624B;
-	Wed,  1 Jan 2025 12:30:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.139
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735734632; cv=fail; b=p4CTpH7GKfneT0QlQvORomUARr7z3an2RH7Nfu3RPyRI0XgvgwylFp1byuLKLjbjlQ2A4+kgZKl+LeXrYLcqueq1Av6Alji5Cclry+AecMg8HZQ63yHv5UfUwhtXH1JRXLfaP+Dw6a0IKVUr6BgHji49l7YsKKpKuk+ggiS7pCY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735734632; c=relaxed/simple;
-	bh=WkAE1mIsnnr/zH+M77Wb6uxLgHb5XdJWfBz8R66hfUk=;
-	h=From:Date:Subject:Content-Type:Message-Id:To:Cc:MIME-Version; b=bv+BO7QijP7k0xCqEr/7WjFzwZ+ACI2sImXCgO2ZXNrFv1YRgZWqd+04Xp4ctjQsK62sIRgezjEozy9uUYyVfALaiiIEI8yXyerbdKuvTR2VDjytsJTubUqUAnz+WNbkXUCGb4sppH0/U/E0CyB0+VGvQnHDGeQJFT5Rw6sv4vU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=Vn6CotZ2; arc=fail smtp.client-ip=40.107.247.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mSUNUsIqhs+L1zIXhWFEAv86xcIMfjteO1tGQEdi8ePNBoSkrvF+WfrUkkminyMITINDeRWCRz1ylD99Jx/exSpERrNa/px2GEnCfU5myUc1GCxuHXoOTFruBJr/n60OWdwWhV3bUevN69yJRtLFvrQKiYmyEtkamnvNhr/0mgqvH8VK9gjvZqHqp3jgdpRHJVqV6aM8DFlUm/rmbGlUbMoDiICKgqjmpqA+YWXR/adluTjL55BucVcGGt5Yf3cVZ/WvvMheRuiiv9ct3WDBLCEiQCxT8h3B2/WjRBLlexyllssAFMDFc8uekh887FGgR8vIqyUJIPyvgEEavq2ckw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z5bu/h/0PeY3uQkr5QiAsGQ97rRYAZtIOtt33fBcomg=;
- b=AqAsiC3KHkLIxZPuUp4fehIDdJOxQlg4dtLYh7QJ3lP2wL0TfvbE6MwzzRqKw2oobE2V1SY891sP5M74f6NXu+Cz8r0ayIdgD3+teTs8jcVfeWXWzeq36P6Ab/iThlEGmUhOL/rFIZxok0CXoGbavtRw4ek3+Nh0gGkzsxAEaPOFUOQGVi0g3Ts1UQTT7iH9UHdkkLPFJrukZ+XoPuCvvfkXtF344hoDJD/rng1PNBwqn8dPVwAiyjvk1G+b8OZuc0MhUyMH8j38okoDpVWCfwQLQipvhPnfxstrNFJonwrtwWKww/LECVop7nv7Dma3FLJxSkoDognQZfLhy3fiwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2C51E22EF;
+	Wed,  1 Jan 2025 13:00:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735736417; cv=none; b=nvqqfSgngjAhMTHIlWWjzSWoNXgc7okbeUUWWu1rgE/IdIyExMuP28kzQfSWhoCUJebjT4akVDbBMBQxfbCZex8/8L2O9DpSU0wva7p5ffCYlh4386BkwESv9mdvs4RzO0WN/rngVYtB6YjFgVi4ePGbgFJSPAnKeH/WFa5575U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735736417; c=relaxed/simple;
+	bh=0uAAxCpg43REf7bIKZ/E2f8ilVfL8vhTcdzJgfyhlBI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BIlrLINAnxgScA2k+bz0o8cRrvub7b2IfOo8cOEv5etz6zp+HpV9Q+9OcbH32+Ag56YL3MRSRLHaqRXrED2ZAkvBffKptf/Q9CRujcBEQx/U8BBL2E16PgnBc0+rUD/UQkCEmwm0Mrp8+gxbmVyk+HaPVdkG6wkasWuoftxWKbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YpBSpP2S; arc=none smtp.client-ip=209.85.160.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-29fae583cc8so5556210fac.1;
+        Wed, 01 Jan 2025 05:00:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z5bu/h/0PeY3uQkr5QiAsGQ97rRYAZtIOtt33fBcomg=;
- b=Vn6CotZ2kOIAYtVlPcIGQE+3w1GnsRxXBBzlMmhmHgF73nYUTXp8gLZg7lZE97uYR3WsvgIjfdbYOWMLvbSHAwWe558PmhNtCuNp1rKPSR0yWeMo4MHThj4EFYWJCIMliPZZ3MBqV1Tw+MDz3OQTvHKQFDw09o5xtaHaYMBMVQ8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
- by DB9PR04MB9844.eurprd04.prod.outlook.com (2603:10a6:10:4c4::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.12; Wed, 1 Jan
- 2025 12:30:24 +0000
-Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
- ([fe80::c04e:8a97:516c:5529]) by AM9PR04MB7586.eurprd04.prod.outlook.com
- ([fe80::c04e:8a97:516c:5529%4]) with mapi id 15.20.8314.011; Wed, 1 Jan 2025
- 12:30:24 +0000
-From: Josua Mayer <josua@solid-run.com>
-Date: Wed, 01 Jan 2025 13:30:22 +0100
-Subject: [PATCH v2] arm64: dts: ti: k3-am642-hummingboard-t: convert
- overlay to board dts
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250101-am64-hb-fix-overlay-v2-1-78143f5da28c@solid-run.com>
-X-B4-Tracking: v=1; b=H4sIAF01dWcC/32NTQ6CMBCFr0Jm7ZhpLX+uvIdh0UKVSYCSVhsJ6
- d2tHMDl917e93YI1rMNcC128DZyYLdkkKcC+lEvT4s8ZAZJUglBAvVcKRwNPviDLlo/6Q3L/kK
- 1amtF1EBert7m+rDeu8wjh5fz23ESxS/974sCBVJDpm0MlbWpbsFNPKB/L+fezdCllL4IQXL9u
- gAAAA==
-X-Change-ID: 20241101-am64-hb-fix-overlay-5c3074974008
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, 
- Vignesh Raghavendra <vigneshr@ti.com>, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: FR0P281CA0248.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:af::7) To AM9PR04MB7586.eurprd04.prod.outlook.com
- (2603:10a6:20b:2d5::17)
+        d=gmail.com; s=20230601; t=1735736414; x=1736341214; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Us8i9XD6a6Xpl19PsypD5kc87khcrnEieosq8SfZKws=;
+        b=YpBSpP2SIwLqNKLDejd1uArRfARmjXfue/CSeacCqzsWhgR9iBfMjKt0akkW41XYFT
+         oVS7iOf9s3tj+vJNKTECjP3lVFjK6ns80AG4XY0Jl/T84nZO8Iayeg4O2FvaeZI8NvpM
+         BPH7DHEpexCaJQqNK6+2ZRwhbjlAXWm7dbHZ29LhwgO3nZ+iXtvl66DTlv4Ij/Hs8CZv
+         mflAVvihLl8Gc3cTOlndX3OuXHrxwPanjxXkTpxTiC3FV09jmTYuacteNUUACV8fBwS8
+         82sUe59g19tdxtTYDNM4LNBvIvzCbxiskAkZRFxNXvsr3AE8hYJeqWpI9OZmoEV4Q5yX
+         OI3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735736414; x=1736341214;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Us8i9XD6a6Xpl19PsypD5kc87khcrnEieosq8SfZKws=;
+        b=AVexQ6vf/9NJuHlgelfILePHKNTVi/g/ZI01F7sq1U1MuiKv0PuFDZt+l5+FKYRFj3
+         iQXfHnT1RTQuGEqj2RfnlK+Zpk683x0imm2d11UeQwCKzm7/8uGmECtIJeTMqIF6AM7O
+         m19AfVjIWM8GCiuBzGAL3pulmuci19aCL9QZvgqnDyR1Wc1VXOKOXp83a1zyaWpTyIX3
+         kIbmV9cwf4cuCn8ZhCT7VO9ya/tYBQaVcovpD4uutlKsKRvtYhAzejY8H5gxSHX7Sjwu
+         wMaS+txbkx1HK0Wc+ujdAoK9+v01ubsLRu0wgH6Hs7FSpLg//z8zty/Hhsz+X0GXu214
+         CzTw==
+X-Forwarded-Encrypted: i=1; AJvYcCVS6ICRX+1HHsLgvaYDnI9jSV8pJqf0EM2USfo0znRWdHqv/JT4RfmTQoRxG8aWdICKs1o9tcjtkv+u@vger.kernel.org, AJvYcCWMRVZyoRJCiq5xBf7r7Rs5n2djwqgjaL78OCnmdI0ouyELAxQ1OMNd7UZNM+Ts/pjTn5qqEneZ@vger.kernel.org, AJvYcCWUYedkPA1iZU4qsnrQkkR0Qq23wGb6aJX5LO61sRlS25f0riwyj7mjsDSWJsaQFezDhSMLdO8k6k4GZR9q@vger.kernel.org, AJvYcCWfS5BsmcspKz8OBesKeCUgt4b05AjTdZOrjEHOBJvlddAGryq9o45TSAjN8k2gZHZrp8aXiSXw1vyo@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHWU0yTlRkAQRz55alZ+qugvWitkjvLD7Wgcsws5+4C1DkJyO3
+	xmPwK7+3682q7RiFvD2kHpOmJJHuu2tzmv7iv8mLgt3BxwglVO9TIuu9rmtDyaooJMYksjjuLuF
+	bgetjx0FAdggYVOP+GedN9GoRabA=
+X-Gm-Gg: ASbGncuXFNMjc02ASopPVhKhW0DqfXlVQihaeutzfRh8GY3mhoXRfDHfcT/vuYiSU2E
+	G/amoKO834fSrYba9BjK60EYvXuyR6JYAnmd2
+X-Google-Smtp-Source: AGHT+IHB2p9zwQITExAMkGuoasknjjtf0eq0ZjWNrICxm1bkeWJVYYMRvMR0UNZMYJa8ihH8tKafnye9YbzIrp+A8eI=
+X-Received: by 2002:a05:6870:b48f:b0:2a0:1437:8d1b with SMTP id
+ 586e51a60fabf-2a7d12a49d5mr20209177fac.11.1735736413697; Wed, 01 Jan 2025
+ 05:00:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB7586:EE_|DB9PR04MB9844:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1eace0f3-e7ec-43b9-6b4c-08dd2a601082
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|1800799024|7416014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?WUpXVW5KaU8wVVFKZ2VybU5KNEhHaEY5dDBWZE0ySFNpYS9sV1JrSVJEa1Fy?=
- =?utf-8?B?TFRMWEREQS9ZSnlENDdMRVlCZFNEd1BHVkptZ2U0d245T1l0MHJKWjR5T1F3?=
- =?utf-8?B?akNCWVYrdjRWYm81Rk1PZmhxSkNkZ3dlTW01QkZLYk1FQVdhWmZES0VKTHZ2?=
- =?utf-8?B?dHBIY1J3aVhEZmpYTWxnRmVUUW5MYXJRODQ3Tm1kWWVlOC91VUFES2RncGV0?=
- =?utf-8?B?TU5ndGVxbTdzN1psa09LZFdUaktiK0dhS0xiU0dtdVlOOFFFdEozNEMyc2FE?=
- =?utf-8?B?TWdScCtyeDg0OWtjOXVibkg3Q3R0S3VZRmFFQjIxalVLWWQ3TGtOTjNHekc4?=
- =?utf-8?B?enNRVURGbWgzTnR4NThkWTRxUHVUYjNWcG56WFlJYzBHWnlZeklKNWllOFNn?=
- =?utf-8?B?SHlsN2dMTHE4WUtkUjlnNC9ZbE9tb3gybUtOWi9IN0ZJVDlOMHdqNUxJM0lx?=
- =?utf-8?B?M3k3eHljNVNBTUJGWG1tRlFZVlFrTmFXMWc1NUZRUENzdm5qZVp6MVRibGl6?=
- =?utf-8?B?N0VKZTRmTEFmRE1CZFJ3ejh5WktNYm11SDBoaElzd1lIY3lmelpRakdlMGZh?=
- =?utf-8?B?RmVITW1LdGNlN2FBUzRmZVA1NUljcHVMSkY4MDVpQlpDTXdRUHpMY05aR1Jm?=
- =?utf-8?B?c0dHNU9wK09RSzdxZm5yOHkwdDM1TnRNcE9YUFBFNysyK3ZRWEZHcDB1bnhz?=
- =?utf-8?B?c0ZaRW5oS05veXVlYVFETW5sR2w5TW5Oc1puNmZsYVd4cHRaeEZLblB3WkNH?=
- =?utf-8?B?d29XenczaHpZY3RhVVpUcEdQWWVFUDBUQ2RybGw1MWF3UGg3Q0FYTHpBTGVz?=
- =?utf-8?B?dVpEZmFXSk9nVUtOaG0xamJUaFU1R2h3R2FHaVlnT2ZUTW9NZkdkbEMxNnoy?=
- =?utf-8?B?QWdtNHhDRG5HVUxPMkJMOXIzaHVZNTZUd285bGJXbG5CekNLMWtDUWdwcmdt?=
- =?utf-8?B?RTdzaWsvZWw2b1l2S0VPV3hFSGlTUTNmaFhLOUFNMlJHRFFNdzM4bWxZZXl6?=
- =?utf-8?B?VDljdmtvRWhFa21NeFY5S29RUnBuUzNpV0M4YUFybkUrL0pXV2hNRlozdUNN?=
- =?utf-8?B?a2lTMndQdm1tOUtmZEtFVGJYdzFkazlDYmplUWcxRkJ5UkhvZk81WGR0Risx?=
- =?utf-8?B?emkvQW1Zd0UrblJ1TERxQTFucmRWMmJNaVBLTTlrUlQ4ekx4T0pHNWhUamtv?=
- =?utf-8?B?YzBWYnVCY3JBWVhQVytKaERmbnU1TEZITEx1WFQ4MThmV0Q4d2FuV3pYUmRB?=
- =?utf-8?B?VGZJbE1JK2p0RTIwRUtVa01pQ1NUTjcxM3BrVXVRK2s5MmI3MGZ2UFdSWnNu?=
- =?utf-8?B?cXZ1eEg3WFNueFNQd25VNWFnNWM4Z3J3ZjRVT3NjR1pFdTFUcW5pTnJVOGZJ?=
- =?utf-8?B?ZDhMQ25JTTluVkRYaHg0Z2llbVRXVmV2a2NaWkZvT2wrZ1l3NEV1WDdPR1RQ?=
- =?utf-8?B?Mm5HbGdpaU9CZlZHNEVGR3Z3enBJWnNTTHVlZ1J0S3FXUU1GQThMbzFMN05S?=
- =?utf-8?B?WTM5WEE0bjRDcmtzeFVPYnBCMTVsN21mY0lZTU1oeUFpZTVHWFh5UUZsRmZ0?=
- =?utf-8?B?cDlub2djTHNFYXBPNEVKSXE4bkN6WTQwa2lwRGpNVmlYYXJjRHJLcW41TDYy?=
- =?utf-8?B?VzNKcWxUK2RoWGtOT2FCWE1SQm9rem9PWUlrcWJjRitDK1lhdkU2UjFOUTJp?=
- =?utf-8?B?bWZyWDNpV3FteExQQUt5b1YzUTBhQ2pHRk5lN3dhdVoraFRwZjRkU1BUM0tQ?=
- =?utf-8?B?MXVjYnhpUExRWHpaRmtiaTNJVmk2UkU4bW02aWs1OVB6cUszbFRsTS9qVGJC?=
- =?utf-8?B?bEVOL2dGYXplT1VySVhoRTM4dVM1ak5aZTdkaEsrU29ZZnUwWElUa09CckNI?=
- =?utf-8?B?eURGYmFmS3QvRHg2WmZKUWQyQmZEdVU0bWJJWE1iYUVhbHd6YmY2OEFuQTJ1?=
- =?utf-8?Q?PVNmA1CsO/EYbFmQiDHUOLrTs2awhtID?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(1800799024)(7416014)(376014)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZFJpc1J0MjZrNjE3ZmZEOEtYUzNkZUNOSFZxbkFmeE9wZzBBSkpySzMyN3l3?=
- =?utf-8?B?SGpyWXdjMnVtM0RZV3ZIWEQxQ3VyNzQwdDFzWEpJcDVHOXdtTFd2VWhBeDk0?=
- =?utf-8?B?QjhTTy9qYzAreW01UHFQRDVHSnZnVWUxd2hSQThNQUp6RG45VXo0MjZBYksz?=
- =?utf-8?B?UzJsTTRTSy9xR0drbGpFYlpMdFhSTHEvbFNFSGdiU1JsK1FlMlhFY0VuZjFY?=
- =?utf-8?B?WkhXbnZjNkdaWDQycEJ3ZjFBVCsrcmdRdmxtRGZyL2RaKzRxcHJLM3ZDaExv?=
- =?utf-8?B?am55ejh6RFVPK1N3ekYweWdpaE5BcWVXK1VUVXpPVm92cHJ0UVo4VVlXdENL?=
- =?utf-8?B?cWNyU2xxQzFzY01OK2tVMUM0VnRPc05od1loMWttekt3U2dmWGZ6dkRPTlRj?=
- =?utf-8?B?L0ZuSk9PTmN4N3ZxV3RJNXcrZGxoRjNpbW1DQ052Slc3aE5TYXJoWjVPeWNZ?=
- =?utf-8?B?ajhqaWpCT3dmYllHcVJMVFJ2ZVNUR3R4VG1CcDBmSXFNWU91akpkdGxtU2Uw?=
- =?utf-8?B?ZHJpZ2VQalBwcnZVcnovbTVxcWl2UUJrK0I1RXZFV3hLUytWV0gvRHREcVZm?=
- =?utf-8?B?ZzhFUTNNTHplUXB0VjVSVUZaVVl0c0sxMU1GYTVSUGpxY3NEc0RIL1E3ZGZP?=
- =?utf-8?B?dzNUejNzU1ZDbDZGQUV1L2lpaWJSOHJpaGFyMlBtQ1I4dEo1WVZwUmhZNHJQ?=
- =?utf-8?B?eGZZVVFXNEVtdHFEemFhTlFOMlNtVG9Wek5HdStIekJjUzBZYXY5ejNYOC93?=
- =?utf-8?B?VDJGQjdxZ0JDMXpCM05FK0lWZ2pVVitNdEZwb2pCRU1mZHFkOUMzWnRzQVI4?=
- =?utf-8?B?RHNidEZ5QnNHbFh5U3hlTGlENi9SRnZBcHJtWm15bDB4aUZOVkVmb3Zrbm9J?=
- =?utf-8?B?QzJXeEhsOWVjM2krNlhKYWdqNXo1TE5mTVJxN1BRVWptQjdJbUVWdVhqVXlH?=
- =?utf-8?B?cnBQbDBuSFAyOWxMR05tUENhMFdxTlJYczdIRXJYSUtoODdpL1FBLy9MVU1h?=
- =?utf-8?B?NXUzbkpzTDlBK2V0WTBRNDdjeHVLV2RYNVlFNHVsMlJJUHZITkNPdVBLVjNn?=
- =?utf-8?B?NnJmT3ZsSHdWWWpwclBuNnROR1U0THVqOVlTUE05aFl6blVJWE1XZDJRd1lE?=
- =?utf-8?B?Yi9LQmh6cEx3UEp2Sy9ucHYvSzZ0REZ2ZlJnR1hLYTNNbktFR3ArcnQ1VHkv?=
- =?utf-8?B?ejRIUnBKeExsbzU3MWNlZW1zNTdCb3Z1MjhWa01MNkZxWVgxdVh5SUZTV242?=
- =?utf-8?B?TzRCZ1d0aDg0VVl0ODBFdkUwRU1rTStFOW85Ym5relhOQ0ZHVkVNdzQvYjVD?=
- =?utf-8?B?N3d0amJCWDZic1pnc1ZwQWZKaG5GUFFDOFhlUUNBS0d1RVdpVDFaMjNkUVdr?=
- =?utf-8?B?TVA3VG42V05SYUY5THF0V0t5VytIcHNoa3U4bURrTXdONGVUWGYweTVRVmlR?=
- =?utf-8?B?bkF5T0t5Sk1neHF0aktEUm1uTkMxcnFaODluN3RLTS9pWnQzRXp6NHMvbFU3?=
- =?utf-8?B?dGZzNVBISFk1L1pLN3UwVS9PUlVNR2l3cEZTQVdEL3BXUjlYZ3grSEJGakw0?=
- =?utf-8?B?QUhrdFVXVUt0VTVxOTRqZU54YlhEZHFaYUIxSWVadjVjam81MmxsL0xJalVl?=
- =?utf-8?B?OUhYQUsyUnpHUmNZM1YvSFprOTU0RWxoNlRsREZPZGlublNTa2JiWTNBd3RR?=
- =?utf-8?B?ODQyVlEzVGZoRXg2bVkzUWplMDY1MW5UK3Y2cnpNa0ZFV3J1UEpteCtta0hY?=
- =?utf-8?B?V1VHajhxTEtCZWNITFdrWllWOXJnVkxDeVE2bW9DYUFaZ2c4R09hUjE0WjNt?=
- =?utf-8?B?czVpNVIwL3dkVWFQUGhaYTBIek52UHBldnB2WHo5NU5ZWVJ2OTVvdFdjTUhZ?=
- =?utf-8?B?NHp6WHZBZm1ZaXV5TlY0TERjMFVJTEYyeUtFUVNTcy81U1lJeWN1R2RaUFk3?=
- =?utf-8?B?UDNkbnJhaGVkcTV0K09PZno2MkJyd2w3MFYwYXNoeDJhVkZEMGdEWWdBaG9y?=
- =?utf-8?B?OGhOVHFGVWRUdnpsZ3pSWU9TdXNmelNQZ0U2eGNhc2xxYnRCamRZVlEwQWpj?=
- =?utf-8?B?L0FWcUphcm5qNWM2MTBlWW9NTzBiYmJWRDRBZElLR080OEU2Lzh3bHEzMGow?=
- =?utf-8?Q?Wrb5tm1HYKImuVHMKEMTYEgmC?=
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1eace0f3-e7ec-43b9-6b4c-08dd2a601082
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jan 2025 12:30:23.9806
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5cVjk9uVnXNeAUPhMX6eBufvMG0FQqdzylvXj8H0KubB2P79L1Z+4R5W6Quj6OU6OM1mIXKG8Ko1LQfilIANgg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9844
+References: <20241222105239.2618-1-joswang1221@gmail.com> <20241222105239.2618-2-joswang1221@gmail.com>
+ <exu4kkmysquqfygz4gk26kfzediyqmq3wsxvu5ro454mi4fgyp@gr44ymyyxmng>
+In-Reply-To: <exu4kkmysquqfygz4gk26kfzediyqmq3wsxvu5ro454mi4fgyp@gr44ymyyxmng>
+From: Jos Wang <joswang1221@gmail.com>
+Date: Wed, 1 Jan 2025 21:00:01 +0800
+Message-ID: <CAMtoTm0nCL7jL=Wno7Cv5upyPnF0wTOXbY+WNG+y1P94513Pgg@mail.gmail.com>
+Subject: Re: [PATCH v2, 2/2] usb: typec: tcpm: fix the sender response time issue
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: heikki.krogerus@linux.intel.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	rdbabiera@google.com, Jos Wang <joswang@lenovo.com>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SolidRun HummingBoard-T has two options for M.2 connector, supporting
-either PCI-E or USB-3.1 Gen 1 - depending on configuration of a mux
-on the serdes lane.
-The required configurations in device-tree were modeled as overlays.
+Hi, thanks for your help in reviewing the code, and happy new year to
+you and your family!
 
-The USB-3.1 overlay uses /delete-property/ to unset a boolean property
-on the usb controller limiting it to USB-2.0 by default.
-Overlays can not delete a property from the base dtb, therefore this
-overlay is at this time useless.
+For the first commit you mentioned (modification time is 27ms), I
+understand that just modify the include/linux/usb/pd.h file:
+diff --git a/include/linux/usb/pd.h b/include/linux/usb/pd.h
+index d50098fb16b5..cd2cc535d21d 100644
+--- a/include/linux/usb/pd.h
++++ b/include/linux/usb/pd.h
+@@ -457,7 +457,7 @@ static inline unsigned int rdo_max_power(u32 rdo)
+ #define PD_T_NO_RESPONSE       5000    /* 4.5 - 5.5 seconds */
+ #define PD_T_DB_DETECT         10000   /* 10 - 15 seconds */
+ #define PD_T_SEND_SOURCE_CAP   150     /* 100 - 200 ms */
+-#define PD_T_SENDER_RESPONSE   60      /* 24 - 30 ms, relaxed */
++#define PD_T_SENDER_RESPONSE   27      /* 24 - 30 ms, relaxed */
+ #define PD_T_RECEIVER_RESPONSE 15      /* 15ms max */
+ #define PD_T_SOURCE_ACTIVITY   45
+ #define PD_T_SINK_ACTIVITY     135
 
-Convert both overlays into full dts by including the base board dts.
-While the pcie overlay was functional, both are converted for a
-consistent user experience when selecting between the two mutually
-exclusive configurations.
+Is my understanding correct?
 
-Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Closes: https://lore.kernel.org/linux-devicetree/CAMuHMdXTgpTnJ9U7egC2XjFXXNZ5uiY1O+WxNd6LPJW5Rs5KTw@mail.gmail.com
-Fixes: bbef42084cc1 ("arm64: dts: ti: hummingboard-t: add overlays for m.2 pci-e and usb-3")
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
-Changes in v2:
-- rebased on v6.13-rc1
-- Link to v1: https://lore.kernel.org/r/20241101-am64-hb-fix-overlay-v1-1-080b98b057b6@solid-run.com
----
- arch/arm64/boot/dts/ti/Makefile                            |  4 ----
- ...gboard-t-pcie.dtso => k3-am642-hummingboard-t-pcie.dts} | 14 ++++++++------
- ...gboard-t-usb3.dtso => k3-am642-hummingboard-t-usb3.dts} | 13 ++++++++-----
- 3 files changed, 16 insertions(+), 15 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index f71360f14f233cc8c60860c0e700d4791fb6f95c..3450f0751cab176a8f63c4faba4f736c53b62007 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -42,10 +42,6 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-csi2-imx219.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-hdmi-audio.dtbo
- 
- # Boards with AM64x SoC
--k3-am642-hummingboard-t-pcie-dtbs := \
--	k3-am642-hummingboard-t.dtb k3-am642-hummingboard-t-pcie.dtbo
--k3-am642-hummingboard-t-usb3-dtbs := \
--	k3-am642-hummingboard-t.dtb k3-am642-hummingboard-t-usb3.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac-mii.dtbo
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dtso b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dts
-similarity index 78%
-rename from arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dtso
-rename to arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dts
-index bd9a5caf20da5b7f11266575f69f0f5dcc1a47ae..023b2a6aaa56689f712a6c1ede6ba427d746fe34 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-pcie.dts
-@@ -2,17 +2,19 @@
- /*
-  * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
-  *
-- * Overlay for SolidRun AM642 HummingBoard-T to enable PCI-E.
-+ * DTS for SolidRun AM642 HummingBoard-T,
-+ * running on Cortex A53, with PCI-E.
-+ *
-  */
- 
--/dts-v1/;
--/plugin/;
--
--#include <dt-bindings/gpio/gpio.h>
--#include <dt-bindings/phy/phy.h>
-+#include "k3-am642-hummingboard-t.dts"
- 
- #include "k3-serdes.h"
- 
-+/ {
-+	model = "SolidRun AM642 HummingBoard-T with PCI-E";
-+};
-+
- &pcie0_rc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie0_default_pins>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dtso b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dts
-similarity index 74%
-rename from arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dtso
-rename to arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dts
-index ffcc3bd3c7bc5d47ce9926a95a13af3f61182a2b..ee9bd618f3701047be4ac7502cb70e7d3589ff5d 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t-usb3.dts
-@@ -2,16 +2,19 @@
- /*
-  * Copyright (C) 2023 Josua Mayer <josua@solid-run.com>
-  *
-- * Overlay for SolidRun AM642 HummingBoard-T to enable USB-3.1.
-+ * DTS for SolidRun AM642 HummingBoard-T,
-+ * running on Cortex A53, with USB-3.1 Gen 1.
-+ *
-  */
- 
--/dts-v1/;
--/plugin/;
--
--#include <dt-bindings/phy/phy.h>
-+#include "k3-am642-hummingboard-t.dts"
- 
- #include "k3-serdes.h"
- 
-+/ {
-+	model = "SolidRun AM642 HummingBoard-T with USB-3.1 Gen 1";
-+};
-+
- &serdes0 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
+Thanks
+Jos Wang
 
----
-base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
-change-id: 20241101-am64-hb-fix-overlay-5c3074974008
-
-Best regards,
--- 
-Josua Mayer <josua@solid-run.com>
-
+On Sun, Dec 22, 2024 at 9:14=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Sun, Dec 22, 2024 at 06:52:39PM +0800, joswang wrote:
+> > From: Jos Wang <joswang@lenovo.com>
+> >
+> > According to the USB PD3 CTS specification
+> > (https://usb.org/document-library/
+> > usb-power-delivery-compliance-test-specification-0/
+> > USB_PD3_CTS_Q4_2024_OR.zip), the requirements for
+> > tSenderResponse are different in PD2 and PD3 modes, see
+> > Table 19 Timing Table & Calculations. For PD2 mode, the
+> > tSenderResponse min 24ms and max 30ms; for PD3 mode, the
+> > tSenderResponse min 27ms and max 33ms.
+> >
+> > For the "TEST.PD.PROT.SRC.2 Get_Source_Cap No Request" test
+> > item, after receiving the Source_Capabilities Message sent by
+> > the UUT, the tester deliberately does not send a Request Message
+> > in order to force the SenderResponse timer on the Source UUT to
+> > timeout. The Tester checks that a Hard Reset is detected between
+> > tSenderResponse min and max=EF=BC=8Cthe delay is between the last bit o=
+f
+> > the GoodCRC Message EOP has been sent and the first bit of Hard
+> > Reset SOP has been received. The current code does not distinguish
+> > between PD2 and PD3 modes, and tSenderResponse defaults to 60ms.
+> > This will cause this test item and the following tests to fail:
+> > TEST.PD.PROT.SRC3.2 SenderResponseTimer Timeout
+> > TEST.PD.PROT.SNK.6 SenderResponseTimer Timeout
+> >
+> > Considering factors such as SOC performance, i2c rate, and the speed
+> > of PD chip sending data, "pd2-sender-response-time-ms" and
+> > "pd3-sender-response-time-ms" DT time properties are added to allow
+> > users to define platform timing. For values that have not been
+> > explicitly defined in DT using this property, a default value of 27ms
+> > for PD2 tSenderResponse and 30ms for PD3 tSenderResponse is set.
+>
+> You have several different changes squashed into the same commit:
+> - Change the timeout from 60 ms to 27-30 ms (I'd recommend using 27 ms
+>   as it fits both 24-30 ms and 27-33 ms ranges,
+> - Make timeout depend on the PD version,
+> - Make timeouts configurable via DT.
+>
+> Only the first item is a fix per se and only that change should be
+> considered for backporting. Please unsquash your changes into logical
+> commits.  Theoretically the second change can be thought about as a part
+> of the third change (making timeouts configurable) or of the fist change
+> (fix the timeout to follow the standard), but I'd suggest having three
+> separate commits.
+>
+> >
+> > Fixes: 2eadc33f40d4 ("typec: tcpm: Add core support for sink side PPS")
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Jos Wang <joswang@lenovo.com>
+> > ---
+> > v1 -> v2:
+> > - modify the commit message
+> > - patch 1/2 and patch 2/2 are placed in the same thread
+>
+> --
+> With best wishes
+> Dmitry
 
