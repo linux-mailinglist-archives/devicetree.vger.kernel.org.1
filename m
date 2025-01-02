@@ -1,115 +1,120 @@
-Return-Path: <devicetree+bounces-135133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE4839FFE05
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:23:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC7FD9FFE0A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:24:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94DB9160D4D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:23:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFED93A06C1
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD35719068E;
-	Thu,  2 Jan 2025 18:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452FA188596;
+	Thu,  2 Jan 2025 18:24:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b3wndOJu"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="hhA1uIPX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80D5315539D;
-	Thu,  2 Jan 2025 18:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE51185955;
+	Thu,  2 Jan 2025 18:24:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735842203; cv=none; b=n9OFQx6LfLVJdCsI+/59vpVxrM+WDt7I/C7oyQFLMaHkmIUF0AIjniuOKVmnAA6bGcMRsL4B/TD9XEQH6gUyTZWY5kBl7GgNzFti+bOm0gNPkbEBODOxOKIgbOhrorNJdMsSSd2E5vs9XfFSG726yyeVjKKxJBEnc22Vnz7XYEw=
+	t=1735842254; cv=none; b=UpVLEV3Dvzl7K/Cx7cNMIoJfLLb+s3m3JLEmseZCpQzptnxrhizS0or/dparIWzZM9DL5bT8pTfb3+eLTrG+EbTK52EgoSHtLrEVZ+9tngZsJdPgH5zGLQOiyNytF2E9ku0fNNsU9k5LcpmzdJ9uf1x4idnfI/vzclyGQCxUMRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735842203; c=relaxed/simple;
-	bh=70hV7KT0NdzyraKVXwtB6C/LT+wCto+7q8AHFbaR56c=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=npWHOuV1tpMY2c+R4+4rKQC9VyUZK5e15NXTabpcBNtuMnvcwktT5mZBh0xYD9gtr0sg0wQ9D8cOHd4ibZoOIQQkVxUJ4HkFRBAvWdDf1Hnzxx1SQhaHkwJbI3CJXQqUNW6MeFITbfobNhGs9AefcXyoxzDmPofXQhBn5PCftlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b3wndOJu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEFBDC4CED0;
-	Thu,  2 Jan 2025 18:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735842202;
-	bh=70hV7KT0NdzyraKVXwtB6C/LT+wCto+7q8AHFbaR56c=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=b3wndOJuzzy6v39Q1NcxMxCWyBKNt60QiDw5kkS2qIiJWtu7x3qvIdUOPxzWs0FAs
-	 ZpyL0hSB3DE+vjEa4AtQOxe61EHqtFpFSwD9vi/NBssJAScN0OuFwD4hcKNSrJKcnc
-	 RnlCryPiKbhSKjm4YMKmFgNJjU6CRtLM+zfm/7TcROcoep/oF2s9SwekitM+rCwtqA
-	 JvXNg2cmnObp6GvQlYnFn69T6BPTudsm8RoT43d3KDCA0szSIkuw57/viEpvXmaXWp
-	 9i2uw/bQdW5c04lqfGlzBIG6zsVrhmgSW+TR0W80qgwKi5rSOF33ZRGMD4XT/jtfEY
-	 2WSriiPNmGeZQ==
-Date: Thu, 02 Jan 2025 12:23:20 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1735842254; c=relaxed/simple;
+	bh=2JmbDnbQNc7V2pvknT5P22OhOlGaZCLcLwRdeBBrIqI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=HbxKLDvvZjOlZ1v1mFbz3SuxRQreDhm25C+I0hLJUceOqGDI8mI1mPTQHznrTk+MSGt6R3s7zK5fuLbPsht863d/2jeKD4ZH2aZhW692WIbE4WcrfgSlzTxEXBfr898wizHX1etY3GWsBMToboogeAs/LY05Z9kbzDBKta7MCSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=hhA1uIPX; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:References;
+	bh=8yQkjhBK4YJwWIryxdOEdCXtJYbtQ2mot2TfEcMj8YQ=;
+	b=hhA1uIPXzF1lKgkds3z+fKDgB3qABdkcGbYjmAMEGVn4ONnuTKjaNHjUCFGkApCg1/nqnVgSSg2l4OLzak0oyMSlyVug709QBJB+2mVqrGDz5w+4DRV0xwEQQIne4dRZY672Wi1bNjAohSEVFtKmrl39glYC18ifkQoY5VXJs1o=
+Received: from webmail.netcube.li (WIN-IJ7TS3MJ5LT [127.0.0.1])
+	by mail.netcube.li with ESMTPA
+	; Thu, 2 Jan 2025 19:24:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Tony Luck <tony.luck@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>, James Morse <james.morse@arm.com>, 
- linux-edac@vger.kernel.org, Robert Richter <rric@kernel.org>, git@amd.com, 
- Borislav Petkov <bp@alien8.de>, Conor Dooley <conor+dt@kernel.org>
-To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-In-Reply-To: <20250102174434.17677-5-shubhrajyoti.datta@amd.com>
-References: <20250102174434.17677-1-shubhrajyoti.datta@amd.com>
- <20250102174434.17677-5-shubhrajyoti.datta@amd.com>
-Message-Id: <173584220090.229516.17125117813581030159.robh@kernel.org>
-Subject: Re: [PATCH v4 4/5] dt-bindings: memory-controllers: Add support
- for Versal NET EDAC
+Date: Thu, 02 Jan 2025 19:24:04 +0100
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add NetCube Systems
+ Austria name
+In-Reply-To: <478a6364-0537-453a-881f-c460de2f67a8@kernel.org>
+References: <32b5c286-9457-4b93-a93f-c8aff356ec10@kernel.org>
+ <20250102175006.3675-1-lukas.schmid@netcube.li>
+ <20250102175006.3675-2-lukas.schmid@netcube.li>
+ <478a6364-0537-453a-881f-c460de2f67a8@kernel.org>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <c025818214942560a291f8c53108503a@netcube.li>
+X-Sender: lukas.schmid@netcube.li
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 02 Jan 2025 23:14:33 +0530, Shubhrajyoti Datta wrote:
-> Add device tree bindings for AMD Versal NET EDAC for DDR controller.
+Am 2025-01-02 18:57, schrieb Krzysztof Kozlowski:
+> On 02/01/2025 18:49, Lukas Schmid wrote:
+>> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+>> ---
+>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
 > 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
+> You did not read really the messages we gave you...
 > 
-> Changes in v4:
-> Update the compatible
-> align the example
-> Enhance the description for rproc
+> 1. Read what I wrote in my first reply for v1. I gave detailed
+> instruction to avoid the exact mistake you now did.
 > 
-> Changes in v2:
-> - rename EDAC to memory controller
-> - update the compatible name
-> - Add remote proc handle
-> - Read the data width from the registers
-> - Remove the dwidth, rank and channel number the same is read from the RpMsg.
+> 2. Read again Andre's reply.
 > 
->  .../amd,versal-net-ddrmc5-1.0.yaml            | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/amd,versal-net-ddrmc5-1.0.yaml
+> 3. Do not attach (thread) your patchsets to some other threads
+> (unrelated or older versions). This buries them deep in the mailbox and
+> might interfere with applying entire sets.
 > 
+> 4. Next version, with proper cover letter, is after 24h, so you have
+> some time to digest the feedback.
+> 
+> Best regards,
+> Krzysztof
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Hi,
 
-yamllint warnings/errors:
+Thank you for your feedback, and I sincerely apologize for the mistakes 
+in my submission process.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/memory-controllers/amd,versal-net-ddrmc5-1.0.example.dtb: /example-0/memory-controller: failed to match any schema with compatible: ['amd,versalnet-ddrmc']
+I did read Andre's reply and your feedback on v1, but unfortunately, I 
+had already sent the v2 series as a reply before fully understanding all 
+the recommendations. I realize now that this was a misstep and caused 
+confusion.
 
-doc reference errors (make refcheckdocs):
+I will wait until tomorrow, around 20:00, to send the v3 series. I will 
+make sure to include a proper cover letter and ensure that all the 
+feedback from v1 and v2 is addressed.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250102174434.17677-5-shubhrajyoti.datta@amd.com
+Regarding the v1 feedback, I thought I had incorporated all your 
+suggestions. However, after rereading it, I seem to have missed 
+something critical. Could you please point out what I might have 
+overlooked? I want to make sure I fully understand and correct it in the 
+next iteration.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Thank you for your patience and for helping me improve my submission 
+process.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Best regards,
+Lukas Schmid
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
