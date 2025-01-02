@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-135084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D15D39FFB5A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 17:09:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 348119FFB67
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 17:15:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DA5D7A11FB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:08:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E7127A02BC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:15:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FB71ADFE0;
-	Thu,  2 Jan 2025 16:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B1870814;
+	Thu,  2 Jan 2025 16:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hhIlHCQr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qBnTQf7r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4424E79E1;
-	Thu,  2 Jan 2025 16:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D666A81720;
+	Thu,  2 Jan 2025 16:15:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735834134; cv=none; b=r8xiIBAnQ2Do3vbtuo+Uxqm+oRWN1BB5mZOvG9vO4FaLXj/v2mI28fmBU/EI8rxeLEK+foz6GgoQS9pKnT3+NO5PjWud+kJNahF2tHGtzyFyv3wf7sJ99QrBcJYqNZ2as1JCg/KMoWCV+YJf6wpQqRP1fAS9eyG9NzRnpyJtuCQ=
+	t=1735834550; cv=none; b=vCSAVIV3nXmAZCY6IFitrsfvVkdTf/9cXA/OrCyafau578Qrz95WxJ11GjtQ4th4jeAUUcdFAtU+ooFPkCHhkErWR+CjCm6K5709gJN9KjXdlCDgpHY/Ln4p+brExb1Zjvrygau77Ex117aZSAwd3BVx/F6VbgJUmQMUDn6KUzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735834134; c=relaxed/simple;
-	bh=fPdVI1gKA98B9DL5GTPFJtMtQgy1EEcVi9fc75yKwz4=;
+	s=arc-20240116; t=1735834550; c=relaxed/simple;
+	bh=vtpyPVyNY0DOcPtGHrHjwqgeSbCkMC+oBE3qnCPhoVY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iJnhcjNdGuSvJLCQw48KO21vtQ8018d2GA68o+67A6nnt3AwsqQ/2Lgv3+SD+2GYxvgAoz4YHXZXz/ADsIa/9APxjmDJu9RP/9nmmcmSqdDIjk6q+PW+kUhnTo7pVH8sQCAtb1mNQFOExWRo1hhckOODjqoHW96HPBVQ6PiBUYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hhIlHCQr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C42B1C4CED0;
-	Thu,  2 Jan 2025 16:08:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SkcS50/Wjmxg7N6gREcP8WzxAf24jiFYRTw1vKqLA/z6OwURgvhBC9CF3cW6GkeukzJgpk7DD5z/z5OMEuS4gZc/C8vwFseIZ1R2CMNwh68kpt2HAVdJbGspuE1z8NVZVY3JJyd1jQQfmyeD6xFNS2r3ec1FAEdp8TNvNxJQuMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qBnTQf7r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77A59C4CED1;
+	Thu,  2 Jan 2025 16:15:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735834133;
-	bh=fPdVI1gKA98B9DL5GTPFJtMtQgy1EEcVi9fc75yKwz4=;
+	s=k20201202; t=1735834549;
+	bh=vtpyPVyNY0DOcPtGHrHjwqgeSbCkMC+oBE3qnCPhoVY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hhIlHCQrSiYwrEXQxFj2gTMQVRLu4JC6PEMVA7aVMV4mibvU0EIdNQhrSIU+YPS/1
-	 Uf5hsi6AAOakmYTmFubdf83bqVNWDAxo/wu7I3g414FVlG5z+MGN0/8PpRXbIGDt92
-	 TBJ5OMB6KNwoewdoVNW1PzNf8DHAba+MZpBorDRJxqj6DJOaks2z0zRpXXnrBJbglG
-	 MTCe+P4VOM/20/Q1JWtF5neoSeE7oY7JPRi4MwV6dx+5tObZ/P1xbiOEtc+GCbvHWU
-	 SSyQUopVKzgcxq6SmtIMa08kRMhUiuMf8GTgQqFx6qDMlremWkUP/gHJgZM+Vl0CLs
-	 ACutG4Puyyc/w==
-Message-ID: <cf75f897-1c00-4a37-bce3-f1eb9855a3cd@kernel.org>
-Date: Thu, 2 Jan 2025 17:08:46 +0100
+	b=qBnTQf7rOXNQnRpXrbxFWrusPCG965Zal16IFeOMe67Q1tF/xiicCxuiKFnGMtj1O
+	 FuZuxM5tdtNmD5yITsPxny8/392nUONXQCvKE+zlFmB3q5oLiOTo3sE2gtiBPh1Zs5
+	 bHByByNr6v1UqfpkLgJTCMN3L2tAdxHSr09mtJ9kwrmysfcZwECFyglboKPetp8wbF
+	 NEKLTwQ5ahb6CTAVN0pLzksqKfdVPB53FbcxMJds9P+KSYI6sRl6gYrkWTPxdsg9pj
+	 vj+zg/nODSKyJp7NoZlotold4ZqpIZjEa7IuWChdo9ls5xVAohq6mc3cE/G9rYPL/3
+	 PsrL2mk5UMfMw==
+Message-ID: <32b5c286-9457-4b93-a93f-c8aff356ec10@kernel.org>
+Date: Thu, 2 Jan 2025 17:15:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: power: supply: add max77759-fg flavor
-To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-References: <20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be>
- <20250102-b4-gs101_max77759_fg-v2-2-87959abeb7ff@uclouvain.be>
+Subject: Re: [PATCH 3/3] ARM: dts: sunxi: add support for NetCube Systems
+ Kumquat
+To: Lukas Schmid <lukas.schmid@netcube.li>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250102150508.3581-1-lukas.schmid@netcube.li>
+ <20250102150508.3581-3-lukas.schmid@netcube.li>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,79 +106,294 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250102-b4-gs101_max77759_fg-v2-2-87959abeb7ff@uclouvain.be>
+In-Reply-To: <20250102150508.3581-3-lukas.schmid@netcube.li>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/01/2025 12:15, Thomas Antoine via B4 Relay wrote:
-> From: Thomas Antoine <t.antoine@uclouvain.be>
+On 02/01/2025 16:05, Lukas Schmid wrote:
+> NetCube Systems Kumquat is a board based on the Allwinner V3s SoC,
+> including:
 > 
-> The max77759 is an IC used to manage the power supply of the battery and
-
-Still not the name I asked to use.
-
-> the USB-C. Based on drivers from google, it contains at least a PMIC, a
-> fuel gauge, a TCPCI and a charger.
+> - 64MB DDR2 included in SoC
+> - 10/100 Mbps Ethernet
+> - USB-C DRD
+> - Audio Codec
+> - Isolated CAN-FD
+> - ESP32 over SDIO
+> - 8MB SPI-NOR Flash for bootloader
+> - I2C EEPROM for MAC addresses
+> - SDIO Connector for eMMC or SD-Card
+> - 8x 12/24V IOs, 4x normally open relays
+> - DS3232 RTC
+> - QWIIC connectors for external I2C devices
 > 
-> Use max77759-fg compatible to avoid conflict with drivers for other
-> functions.
-> 
-> The max77759 has no non-volatile memory so it doesn't require an address
-> and instead requires a value for the current sensing resistor.
-> 
-> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
 > ---
->  .../bindings/power/supply/maxim,max17201.yaml      | 56 +++++++++++++++++-----
->  1 file changed, 43 insertions(+), 13 deletions(-)
+>  arch/arm/boot/dts/allwinner/Makefile          |   2 +
+>  .../allwinner/sun8i-v3s-netcube-kumquat.dts   | 237 ++++++++++++++++++
+>  arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi    |   6 +
+>  3 files changed, 245 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
 > 
-> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
-> index fe3dd9bd5585618e45220c51023391a5b21acfd2..7e95314508c27d0d90ea92f61bca6b4a2fe0e88e 100644
-> --- a/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
-> @@ -9,31 +9,61 @@ title: Maxim MAX17201 fuel gauge
->  maintainers:
->    - Dimitri Fedrau <dima.fedrau@gmail.com>
+> diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
+> index 48666f73e638..d799ad153b37 100644
+> --- a/arch/arm/boot/dts/allwinner/Makefile
+> +++ b/arch/arm/boot/dts/allwinner/Makefile
+> @@ -199,6 +199,7 @@ DTC_FLAGS_sun8i-h3-nanopi-r1 := -@
+>  DTC_FLAGS_sun8i-h3-orangepi-pc := -@
+>  DTC_FLAGS_sun8i-h3-bananapi-m2-plus-v1.2 := -@
+>  DTC_FLAGS_sun8i-h3-orangepi-pc-plus := -@
+> +DTC_FLAGS_sun8i-v3s-netcube-kumquat := -@
+>  dtb-$(CONFIG_MACH_SUN8I) += \
+>  	sun8i-a23-evb.dtb \
+>  	sun8i-a23-gt90h-v4.dtb \
+> @@ -261,6 +262,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+>  	sun8i-v3s-anbernic-rg-nano.dtb \
+>  	sun8i-v3s-licheepi-zero.dtb \
+>  	sun8i-v3s-licheepi-zero-dock.dtb \
+> +	sun8i-v3s-netcube-kumquat.dtb \
+>  	sun8i-v40-bananapi-m2-berry.dtb
+>  dtb-$(CONFIG_MACH_SUN9I) += \
+>  	sun9i-a80-optimus.dtb \
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
+> new file mode 100644
+> index 000000000000..7fe83d91adee
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
+> @@ -0,0 +1,237 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2025 Lukas Schmid <lukas.schmid@netcube.li>
+> + */
+> +
+> +/dts-v1/;
+> +#include "sun8i-v3s.dtsi"
+> +
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/{
+> +	model = "NetCube Systems Kumquat";
+> +	compatible = "netcube,kumquat", "allwinner,sun8i-v3s";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		ethernet0 = &emac;
+> +		rtc0 = &ds3232;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		heartbeat_led {
+
+Please follow DTS coding style.
+
+> +			gpios = <&pio 4 4 GPIO_ACTIVE_HIGH>; /* PE4 */
+> +			linux,default-trigger = "heartbeat";
+> +			function = LED_FUNCTION_HEARTBEAT;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +		};
+> +
+> +		mmc0_act_led {
+
+Ditto
+
+> +			gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>; /* PF6 */
+> +			linux,default-trigger = "mmc0";
+> +			function = LED_FUNCTION_DISK;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		autorepeat;
+> +
+> +		key-user {
+> +			label = "GPIO Key User";
+> +			linux,code = <KEY_PROG1>;
+> +			gpios = <&pio 1 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PB2 */
+> +		};
+> +	};
+> +
+> +	/* K7805-1000R3 Switching Regulator supplied from main 12/24V terminal block */
+> +	reg_vcc5v0: vcc5v0 {
+
+Please use name for all fixed regulators which matches current format
+recommendation: 'regulator-[0-9]v[0-9]'
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?h=v6.11-rc1#n46
+
+(or at least regulator prefix)
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +
+> +	/* EA3036C Switching 3 Channel Regulator - Channel 2 */
+> +	reg_vcc3v3: vcc3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&reg_vcc5v0>;
+> +	};
+> +
+> +	/* XC6206-3.0 Linear Regualtor */
+> +	reg_vcc3v0: vcc3v0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v0";
+> +		regulator-min-microvolt = <3000000>;
+> +		regulator-max-microvolt = <3000000>;
+> +		vin-supply = <&reg_vcc3v3>;
+> +	};
+> +
+> +	/* 40 MHz Crystal Oscillator on PCB */
+> +	can0_osc: can0_osc {
+
+DTS coding style.
+
+
+...
+
+> +
+> +	eeprom0: eeprom@50 {
+> +		compatible = "atmel,24c02";		/* actually it's a 24AA02E48 */
+> +		pagesize = <16>;
+> +		read-only;
+> +		reg = <0x50>;
+> +		vcc-supply = <&reg_vcc3v3>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +
+> +		eth0_macaddress: eth0_macaddress@FA {
+
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
+
+
+> +			reg = <0xFA 0x06>;
+
+Here and in multiple other places - it is always lowercase hex.
+
+Again: please follow DTS coding style.
+
+
+> +		};
+> +	};
+> +
+> +	tusb320: tusb320@60 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		compatible = "ti,tusb320";
+> +		reg = <0x60>;
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>;
+> +	};
+> +
+> +	ds3232: rtc@68 {
+> +		compatible = "dallas,ds3232";
+> +		reg = <0x68>;
+> +	};
+> +};
+> +
+> +&emac {
+> +	allwinner,leds-active-low;
+> +	nvmem-cells = <&eth0_macaddress>;		/* custom nvmem reference */
+> +	nvmem-cell-names = "mac-address";		/* see ethernet-controller.yaml */
+> +	status = "okay";
+> +};
+> +
+> +&spi0 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi0_pins>;
+> +	cs-gpios = <0>, <&pio 1 0 GPIO_ACTIVE_LOW>; /* PB0 */
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		reg = <0>;
+> +		compatible = "jedec,spi-nor";
+
+Odd ordering of properties.
+
+> +		label = "firmware";
+> +		spi-max-frequency = <40000000>;
+> +	};
+> +
+> +	can@1 {
+> +		compatible = "microchip,mcp2518fd";
+> +		reg = <1>;
+
+And here totally different. DTS coding style defines one (this is correct).
+
+> +		clocks = <&can0_osc>;
+> +		spi-max-frequency = <20000000>;
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <1 1 IRQ_TYPE_LEVEL_LOW>;  /* PB1 */
+> +		vdd-supply = <&reg_vcc3v3>;
+> +		xceiver-supply = <&reg_vcc3v3>;
+> +	};
+> +};
+> +
+> +&pio {
+> +	vcc-pb-supply = <&reg_vcc3v3>;
+> +	vcc-pc-supply = <&reg_vcc3v3>;
+> +	vcc-pe-supply = <&reg_vcc3v3>;
+> +	vcc-pf-supply = <&reg_vcc3v3>;
+> +	vcc-pg-supply = <&reg_vcc3v3>;
+> +
+> +	gpio-reserved-ranges = <0 32>, <42 22>, <68 28>, <96 32>, <153 7>, <167 25>, <198 26>;
+> +	gpio-line-names = "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", //PA
+> +						"CAN_nCS", "CAN_nINT", "USER_SW", "PB3", "USB_ID", "USBC_nINT", "I2C0_SCL", "I2C0_SDA", "UART0_TX", "UART0_RX", "", "", "", "", "", "", "", "", "", 
+
+Totally messed wrapping and alignment/indentation.
+
+...
+
 >  
-> -allOf:
-> -  - $ref: power-supply.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
->        - const: maxim,max17201
-> +      - const: maxim,max77759-fg
->        - items:
->            - enum:
->                - maxim,max17205
->            - const: maxim,max17201
->  
-> -  reg:
-> -    items:
-> -      - description: ModelGauge m5 registers
-> -      - description: Nonvolatile registers
+> +			/omit-if-no-ref/
+> +			uart1_pe_pins: uart1_pe_pins {
 
-Widest constraints always stay here.
+look here...
 
-See:
-https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L127
+> +				pins = "PE21", "PE22";
+> +				function = "uart1";
+> +			};
+> +
+>  			uart2_pins: uart2-pins {
 
-I did not say to remove it. I asked you to add allOf section restricting it.
+and here and the difference in style should trigger your review before
+submitting it. Align your code with upstream, not downstream coding style.
 
-> -
-> -  reg-names:
-> -    items:
-> -      - const: m5
-> -      - const: nvmem
-> -
->    interrupts:
->      maxItems: 1
->  
-> +allOf:
-
-This goes after required: block. See example-schema.
-
-> +  - $ref: power-supply.yaml#
-> +  - if:
 Best regards,
 Krzysztof
 
