@@ -1,126 +1,106 @@
-Return-Path: <devicetree+bounces-135069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604E89FF9F2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 14:49:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A79F39FF9F6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 14:53:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED42518839D0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 13:49:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA87318839F3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 13:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405071B3934;
-	Thu,  2 Jan 2025 13:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49CE19D898;
+	Thu,  2 Jan 2025 13:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="elAiaQiB"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uHTYlj/S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D40411B0431;
-	Thu,  2 Jan 2025 13:48:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DCF51EB2F;
+	Thu,  2 Jan 2025 13:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735825729; cv=none; b=MwN5AuoOsdWlJKHkS8h3ON/xORn52pEGKNt3T3adQeqGDuDfWfGS7oCt6ANabGSdBtFU9VWVXrdYE4NbTbLGJHfACZfKXzlaXjH815d3kcprXFB/7NqgN187xse1PYe7k7JNXA0iP9bWB0mpbQmPsqWm0rIecayd/L361XhcSkU=
+	t=1735826002; cv=none; b=G5Fl6ORILSS8rX8H+4MNlCCsjmfnnJVprc47cqvbG04QIGt2bCvcdllJ+LtP42dDEJCKIQgg7+tRjmdKOFW/1iw6/VzjSfMg2kOl484cBWWSpM78rEzawz1h/4MVuFI6xHa3TW22DefMApUAitbPdqlY1g6+nzMLwdwX8/ByuFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735825729; c=relaxed/simple;
-	bh=YtSzit6LoCB7tcSX2rplRffugEkLd1fkOc5/zoIy6sM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L4qMIpWRo8mjParXZAWZlZO5DjPnnrB7FTTe/Le5uGjoRiiLG+6VFjSgm0Uj5BgUBIMnkUhwaKOyPZW7kcWKgBqmDjJeCAN+f2iyIUTJFo2UFbs061eJcZylVpiP6ZBArsXC3IA9J5v0iMlb3Hl98WWNcnT8/PuDVJnIle+Xq24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=elAiaQiB; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id ED0DA10408F8C;
-	Thu,  2 Jan 2025 14:48:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1735825724;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=15t9ZhyD2EL60IMfJo8zc3aw4cpOSTR9eeiviG1C6FM=;
-	b=elAiaQiBbNVs1rHp3/n7UySU9eOa3ejxvBMQi9aK5SOranx5nJwBM00HYZjkihIXBpt9LS
-	wpWHaG6x/8ZS7nB+h17UOGZE72i3QtZbPOK89WBQAs/55hEnx2b2/90jM0SKs2o9xX3s+3
-	fE3epddAp1qHUobmLdZK8oBC018joYaT/RhwwkTlFd7lr2Jf8S2LObB3vqqLEnStD3do22
-	bcoug9PjG1X1MIRIORPskenKAhjd1JNDZzkajNknQtMxOPLR75vb0ZvqjcJJMwR4+pUQU1
-	/NenP4oI3pe7UVgB8cKxsS4D5vx0UIjQOMC4y6MBhV/1XcR/z/nNsj1KwQd8Lw==
-Message-ID: <72d4c42a-7ebf-484f-839b-631d61ac950f@denx.de>
-Date: Thu, 2 Jan 2025 14:34:29 +0100
+	s=arc-20240116; t=1735826002; c=relaxed/simple;
+	bh=W7p1kEiPOy9w+YUeYqpocxR17JMMLtlvJYFMkDEjRH0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CSQZMXyW6n9mkneCTz8ZcaljAfAb49sPPFblVdCcS/CZ8JrqjtuueWg4ad2jTmWw3fj3BGE7XLsGh9j20LMG4nrhbEm4avLP+166W2ZXPkWAFcxz2Zx+X5EVhV/jJOjT9aUjoilnpV8tLsX0fmgTdGveYxNOnKg94OGsmEkN49o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uHTYlj/S; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 502DrCpC063687;
+	Thu, 2 Jan 2025 07:53:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1735825992;
+	bh=NNwzpL+BPINQJWoCjLecjK+jDtGkY87rOoq7mOpqYBM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=uHTYlj/SkhF1u7t2MlRcZqC2Ai9ewWMC2xSvuBFLltQb8rTA/kXExsYaINMFXJgcF
+	 tkgPHyN8bWx+3+T2qJvdLV5jkyF5+qwXDA5puPu1CPawQtaMb+qjapUJ0J47kY+2SY
+	 fQzgl74t/KPd+4+PxxhP0o1HyR/P7KjicMSTSE4k=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 502DrCHL121728;
+	Thu, 2 Jan 2025 07:53:12 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 2
+ Jan 2025 07:53:12 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 2 Jan 2025 07:53:12 -0600
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.104])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 502DrB4c005294;
+	Thu, 2 Jan 2025 07:53:12 -0600
+Date: Thu, 2 Jan 2025 19:23:10 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Enric Balletbo i Serra <eballetb@redhat.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Dasnavis Sabiya <sabiya.d@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
+Message-ID: <c73edt6zrcg2qx6jxvlpszjlpb62pgq6ypytsur27ep4biq6tn@olk7mtnqk4s4>
+References: <20241204-am69sk-dt-usb-v2-1-d59b2ac45c6e@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] clk: fsl-sai: Add MCLK generation support
-To: Michael Walle <michael@walle.cc>, linux-clk@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Nicolin Chen <nicoleotsuka@gmail.com>, Rob Herring <robh@kernel.org>,
- Shengjiu Wang <shengjiu.wang@gmail.com>, Stephen Boyd <sboyd@kernel.org>,
- Takashi Iwai <tiwai@suse.com>, Xiubo Li <Xiubo.Lee@gmail.com>,
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20241226162234.40141-1-marex@denx.de>
- <20241226162234.40141-4-marex@denx.de> <D6OVE2W07NDX.2Q4AFF46TWCWJ@walle.cc>
- <36665ab9-16de-4f77-a55f-b7942dc0c1bf@denx.de>
- <D6RHZ8B051X5.3NA8EAPRI62XS@walle.cc>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <D6RHZ8B051X5.3NA8EAPRI62XS@walle.cc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20241204-am69sk-dt-usb-v2-1-d59b2ac45c6e@redhat.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 1/2/25 10:58 AM, Michael Walle wrote:
-> Hi,
-
-Hi,
-
->>> ..Which is the
->>> normal use case for this pin. This driver was created because the
->>> LS1028A doesn't have a MCLK pin, so we've "misused" the BCLK pin,
->>> with the restriction that only integer dividers are possible.
->>
->> I have a system that is wired a bit unfortunately, I need to source
->> codec clock, where the codec is the clock consumer and needs to be able
->> to control the clock (SGTL5000). SAI MCLK is the only way I can get them
->> out of the pin I need, hence this patch.
+On Wed, Dec 04, 2024 at 12:05:26PM +0100, Enric Balletbo i Serra wrote:
+> From: Dasnavis Sabiya <sabiya.d@ti.com>
 > 
-> Which is also the default case, no?
-
-Not quite, there is a difference.
-
-If SAI (audio driver) is used to control the MCLK enablement, then MCLK 
-clock is not always enabled, and it is not necessarily enabled when the 
-codec may need the clock to be enabled. There is also no way for the 
-codec node to specify phandle to clock provider in DT, because the SAI 
-(audio driver) is not clock provider.
-
-If SAI (clock driver) is used to control the MCLK enablement, then MCLK 
-clock is enabled when the codec needs the clock enabled, because the 
-codec is the clock consumer and the SAI (clock driver) is the clock 
-provider, and the codec driver can request the clock to be enabled when 
-needed. There is also the usual phandle to clock provider in DT, because 
-the SAI (clock driver) is clock provider.
-
->>> Also I'd expect that the imx
->>> SoCs already supports the MCLK for audio applications. Isn't that
->>> the case?
->>
->> That does not work if the MCLK has to be enabled/disabled by the MCLK
->> clock consumer .
+> AM69 SK board has two stacked USB3 connectors:
+>    1. USB3 (Stacked TypeA + TypeC)
+>    2. USB3 TypeA Hub interfaced through TUSB8041.
 > 
-> Why's that?
-> 
-> Don't get me wrong. I don't have anything against this patch, I'm
-> just confused, why that isn't already working with the current MCLK
-> driver as this seems to be the usual requirements.
-Which current MCLK driver, the SAI in audio driver role ?
+> The board uses SERDES0 Lane 3 for USB3 IP. So update the
+> SerDes lane info for PCIe and USB. Add the pin mux data
 
-Does the paragraph in the middle of this email possibly answer this 
-question ?
+nitpick: s/SerDes/SERDES to keep it consistent with the convention
+followed at all other places.
+
+> and enable USB 3.0 support with its respective SERDES settings.
+> 
+> Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
+> Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
+
+Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+
+Regards,
+Siddharth.
 
