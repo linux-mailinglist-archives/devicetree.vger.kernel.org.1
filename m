@@ -1,139 +1,145 @@
-Return-Path: <devicetree+bounces-135176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669699FFFB5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:55:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 249C89FFFE2
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:15:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CAD01624AC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:55:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50EE61883D11
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC5311B4F08;
-	Thu,  2 Jan 2025 19:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="h6oRgOk6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 741761B87D4;
+	Thu,  2 Jan 2025 20:15:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4E138DD3;
-	Thu,  2 Jan 2025 19:55:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E067F19E968;
+	Thu,  2 Jan 2025 20:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735847735; cv=none; b=hBIvoVk3AXPnTB2qqgHmhtP3HW3CysAIB658BwA59uM1C4BpFcxpzY11PLnacTktkizRGFxVcija7C6bCeDYytP6WZ+tToFmrahf3RKoFZSOtxPnDl6cP/JQzk7O4mXdxWrYXlc5sHA6FRks8nxlYVXqe+4SbO9f07Nu0X9T7V8=
+	t=1735848916; cv=none; b=Sok2gJVnnjrk64UHDkQGd0ZgAkSuVdfYNeotXSIi+Ig3bkxwDrQ/fSNZ6++39KTw6HITqD0+7g0EoIuZqR3DcEICQV39BT9iPrfxmfr9dbHf+X2ga1zn3SlHkLST2Ibi2jgp3UlcGWWOBm+IrOqXplL5Kt4THaKXkP4G4JRLb6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735847735; c=relaxed/simple;
-	bh=KcV3QFI2ZE9ECVzD528IkAqVHoxTiKTsGIDJy3xVsvM=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=Zdiw9qm8g65J7LwKI6DLrro6ISYwzyqaJRfhHN2P+AMfUzJn7PVcl/CjpQ4DW8XohLLyKitaHh6m8ETft1Mii8VqJ6YPhZ3zfizAKWVrDIoPSyNuG8Ztca9j9uQkJOH2A79qQABjQ4i5jCnBGrSAN71zwZsTbQTtA82MbM0dpEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=h6oRgOk6; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1735847712; x=1736452512; i=frank-w@public-files.de;
-	bh=KcV3QFI2ZE9ECVzD528IkAqVHoxTiKTsGIDJy3xVsvM=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
-	 References:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=h6oRgOk6ZNkYDhRNkoG2zeNZ2Lmgz3oWfomuONVuXw22Mr/zQNG+xUv8/spOn38J
-	 YSGTcjA1gom7pV0jlZMUyfVmEXUYylwXQuc3jlRWrsy0Au8Qo+w0gqL4Y7OFNs7go
-	 9dw64H9s6f+pNAucoxWaH/ekyU1COyTbY21fmqoDccTt6K7+c71eAeMA76CM+Gt1E
-	 eOv7D/9B3fICOF7OnMB6PKqnim++vgD9TG9qtdvpANcQcsuyk4jQY4TzWf8r/kmK3
-	 VRW/GEz/HRe5J+UYOYqpZ4OCCWiSIeoRRz0q7z6SIUJZ1kxCXJtgoOpr7tK7jNzao
-	 b5lXMQ9pp1XD9OZIng==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [127.0.0.1] ([217.61.146.33]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mq2nA-1tojPG2a4w-00ZFua; Thu, 02
- Jan 2025 20:55:12 +0100
-Date: Thu, 02 Jan 2025 20:55:11 +0100
-From: Frank Wunderlich <frank-w@public-files.de>
-To: Rob Herring <robh@kernel.org>
-CC: linux@fw-web.de, dlemoal@kernel.org, cassel@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
- sebastian.hesselbarth@gmail.com, linux@armlinux.org.uk, hdegoede@redhat.com,
- axboe@kernel.dk, linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_Aw=3A_Re=3A_=5BPATCH_v1_1/3=5D_arm64=3A_dts=3A?=
- =?US-ASCII?Q?_marvell=3A_Fix_anyOf_conditional_failed?=
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <CAL_Jsq+PEdH1b-aoN2nFJMRz--abXPqZ=sftPnhYKWpj0VjroQ@mail.gmail.com>
-References: <20241109094623.37518-1-linux@fw-web.de> <20241109094623.37518-2-linux@fw-web.de> <20241111203611.GB1887580-robh@kernel.org> <trinity-796b046d-1857-413e-bb82-78e700d6b5ac-1733138371404@msvc-mesg-gmx005> <trinity-a84b41b3-79c5-49b5-9786-eb89f85578cc-1735843472332@trinity-msg-rest-gmx-gmx-live-548599f845-gxsb9> <CAL_Jsq+PEdH1b-aoN2nFJMRz--abXPqZ=sftPnhYKWpj0VjroQ@mail.gmail.com>
-Message-ID: <F92E6B5E-CB0A-429E-821F-FC87C3C69C29@public-files.de>
+	s=arc-20240116; t=1735848916; c=relaxed/simple;
+	bh=L2aDDAnlAfvgkhCbd8d0CVPQcY0MfAyD7K4gow8FyD4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UXLLYQf+GRkPFW+tRfSiQ3q4dapXX5HkmQuno3Dm6IpxQ8MhJLppJg7GsOE0pY74BPeT6+porCBCZmUxhGaOkV94tpKv4Ub2UTA3rZNx7dKi/GVBefd4gHfUU7Wfq66sdei8XLZrzZBh8NeooBDEN9cvG15GWM7IPJbv2s7UvEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-51bb020339fso2156038e0c.0;
+        Thu, 02 Jan 2025 12:15:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735848911; x=1736453711;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FibJ37TPEM13bEVPYLkHLMORANI9Oug072BfmMn4Uj8=;
+        b=szLny9pYdnj7/V9OofR98xl1uX4twMFo6UawM8dRnibqPSPRCiohYxHfIjUwvWzP3R
+         mRzgB5oTqBZKbsXDXg0DlJ4r6kz1GpYwSRb2jcAWGJqrlE0OhkYJFlD1ADbzDbd9OjxG
+         7l2NskC3cixjch2B/N8Kb383CqwZwSTDq28B0lJ4pquAi2Rp1xQdWK/nJC+4FeQ/0rVc
+         wbuKBeCvIg295+SlmGMQVY7ORuOD/5u2Z/LleIfrWp5r+HCi1glWiaqduGxvHr3YjDgx
+         Z8c9jLILIXWWnM2+b447UBtYkv/lH7TlQoNIYLxp0ofOPUDqa7lUGoC7RFAIhkfzxDZs
+         zWnw==
+X-Forwarded-Encrypted: i=1; AJvYcCUAeewdN2LLRiMOA3QJZSRW/SIOjdqnC2LyzjVnNfSikjTSIMFv8hwntWj5qLrQ8XlHBBrc7vGFl/ZNfEfAgDc6uis=@vger.kernel.org, AJvYcCUMwZ0fe6YcrPnsWuTtyIRh799NAcdFuQADzyAEK2D20qbyXdOj6YV/ixNlcVm3d/GcsEd5GxDMRClK@vger.kernel.org, AJvYcCUTCXgFC9QLJO7QJLCmEq2XQtJVtPtiDT8yDLHbxjOEJ9vl2khp7uKeMWELBHMkofGkOvwK5TT0MnI+hL6S@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkJvpI7YrssEwqf1JGY62CaBXlz2hjAIu/orj3cw0THVtabYlH
+	Bxd3Yyn3isYoXq835JbZScPoMS/RWPYO/saz9lmY+bhRY1cJCaSHSBTOhift
+X-Gm-Gg: ASbGncvspdSWMfmokii2TDVycFg7pnxj8HqK+W/pG1R1VfoCUitkY/aBsVVFwfAnTk+
+	O5KnMHfnJgirYmwav3DvLYrC2ZdscekRxCJs6FydoutTq1wxeDJRjmug8iHyS5EJg7a1oF6ZCu8
+	Vj4ORUbwaznoaRO/JbG/cR8wThuVxZmr82PQx6spfULxigt1Kmg9xazpAtRnEn5hZBB6apgBei6
+	iyh+oSa8GUBg4e58Gk0vRiPAWOoGlQ5Wk5Kb5f4jGL2QEnqfxTHGwqJeZZYAdNvAmrfrDoQQqFG
+	I1jwA3A1om1wkRWhPxQ=
+X-Google-Smtp-Source: AGHT+IEUFjkCo56OFNscDGQ4qtvdEhf7I7S6XLsVtyz2J8RDp7XriOzT5Kgvbb9Yp92HRcJ5QVLr+A==
+X-Received: by 2002:a05:6122:4302:b0:518:a0ee:e8e7 with SMTP id 71dfb90a1353d-51b75abac1bmr32951058e0c.0.1735848911066;
+        Thu, 02 Jan 2025 12:15:11 -0800 (PST)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-51bd8792c91sm1472702e0c.5.2025.01.02.12.15.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jan 2025 12:15:10 -0800 (PST)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4b10dd44c8bso3277106137.3;
+        Thu, 02 Jan 2025 12:15:10 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUcXMbymprgRXTQ+LiIld+2M1hYK0qRqeJrfvwPG9qsAjW+36ucpyNQF38bN7oZRhLS9G5sjDATqtpr@vger.kernel.org, AJvYcCVGsHg0YnyLu4vOmr4DAS8dXQXaUXhVrVXigs3nv7h23RDdemorc/sDErQB+/R7F10UjCq3K1HeeDqxUn0WGWMssmY=@vger.kernel.org, AJvYcCWRE5n/GpSerXUoaprDnKN/uaodYp7ZTuHBhAY00AAvIkZX/20yPpX/ISb+GVuWc32dQK5d+3u5DkkoA4hj@vger.kernel.org
+X-Received: by 2002:a05:6102:c8f:b0:4b2:75a3:2267 with SMTP id
+ ada2fe7eead31-4b2cc35c112mr40496086137.10.1735848910207; Thu, 02 Jan 2025
+ 12:15:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+References: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com>
+ <20250101163344.128139-1-john.madieu.xa@bp.renesas.com> <20250101163344.128139-3-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250101163344.128139-3-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 2 Jan 2025 21:14:58 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVxxRXHCj35tbVTHVMn9NUVFmmHPzvP2Asd6GVuXmYJXQ@mail.gmail.com>
+Message-ID: <CAMuHMdVxxRXHCj35tbVTHVMn9NUVFmmHPzvP2Asd6GVuXmYJXQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] soc: renesas: rz-sysc: Fix SoC ID string extraction
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: biju.das.jz@bp.renesas.com, claudiu.beznea.uj@bp.renesas.com, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, geert+renesas@glider.be, 
+	john.madieu@gmail.com, krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, magnus.damm@gmail.com, robh@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:WaaUNduwprSo8Rw2SnSLhhl/4G//xG/JBxkJqQG5R9Yowcif2OF
- MkDtmqWs25NQE2Veorx1VPAni9E5ksLAwPtTAE5faFFVb1wBN5PLx2P43TXr0lCs7XFGLfC
- AsynmZgsxuLpHOGZg99SZJO0zTxoiOvXE7qQH7wZ1S9A8BmpeyzaYrwTrvgdRFYU9opIGcZ
- 9MXrlSGD+vTfo8FE+ju0g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:lig0t4PBHRA=;FoPrt7xYqPzS5KqeMUqAQD+3Dct
- GQsK3oPzFoo2Hq5JM/C9rWIqOR3ye2OxHK74lF7ZFvi8Xdwhz3wQfTqi/6mwJNwPrnMqK9v6q
- IIJTYUhjCOzE3Hs1QJDoZwiTwRskuf1Yzpz4zspl6hRxCavWVwfd5SQzUyT1ZoHuXDSuroUbW
- pqURl3nfNQTy9snvTHAsqg7uA2vu/RMnua33Qfz2xPsBnJS1WwZf3HUe9u1w+N1Qqv6myHMHa
- Ym1yY2GDMhoyAsg+Iy1Q+6J/feZUPHhQ+arnWExSsgwwDRFodnlDM6DXWG3gBQuWTQlALWmvS
- v01LDYZABcXDjmv2iRup8TYjNAm/gHjcvtCwAekUfcmvW8JsRL14HvMJLcTqwnZ+jxt0v6Ukn
- b6ess/UOH34Dyzi54lhKCfxNIF2fzuY7QVUxTkuqwRsoOts6bOqIyNJlb6qX6wbnoJa2HBJxJ
- zM5sAaLIGHqQT18rTsp3Ebc1tQQn4gmpuxfoO9NYhfLQuBBp5ZBM6F2WVfbajfcPvmXmypCLu
- r4Vo4mJb6S65S6t8Gnpp5YwbL9YSrWnxJn5iCd00GaN6jufZEmwY4rGsiq3r7VnDCwHx/oa+J
- Us86+hG0N4AmDZEOluO1V2vdsaBfEIYMzgW2dNI/NbGM7bl4tmGF9h0ZBRG3uBe1dUXeNroPY
- zxeIm7G9ew7SIVr0pyd58QP959Cci0RK/Pc1a8S1ikXYkHB7JJ1B6ftyItRCvxnMYuoeGNiON
- NeBGWr0vp1PIB+31PjZ6KG70RVw4dpcfNBwow79XmU/s3VigblwXk9fD47VViZNwiO+iofxwQ
- PxSEOM8DJTu84UyPpRddsrhAFWbA+sfuVYu3xs5i1MIGpS0lrNkU7x6i5N26ZywzJoP6p5yPv
- HuR1wbW32LjBpdDcfZAzHQ1H3QtcErQZlyQAJgpaVv4dqDh5c986jkiR5Yu1Fdp3N8vHlWztH
- t1iDBvB4WRC5B+P5V9m8z7trJ3mT0WX/f1VJZtBvQ/JLyzpQrJDE+PLDw7Nk3k6tzy+0cyfLN
- zM/Fc1N9GWLjWY5nCK3iay33mAhTl3xUAFzDWfYPnIcCBDLoXhcrsrLlQ22IwQ02yN8++qNFO
- THZfG8FsskEYg7JskHeHRkWqBvxLSv
 
-Am 2=2E Januar 2025 20:46:05 MEZ schrieb Rob Herring <robh@kernel=2Eorg>:
->On Thu, Jan 2, 2025 at 12:44=E2=80=AFPM Frank Wunderlich
-><frank-w@public-files=2Ede> wrote:
->>
->> is there any new state here? got no answer for my last 2 Messages
->>
->> https://patchwork=2Ekernel=2Eorg/project/linux-arm-kernel/patch/2024110=
-9094623=2E37518-2-linux@fw-web=2Ede/
->>
->> sorry for the html-entities=2E=2E=2Ethey came from my gmx webmailer, it=
- is reported multiple times, but i cannot do more here :(
+Hi John,
+
+On Wed, Jan 1, 2025 at 5:34=E2=80=AFPM John Madieu
+<john.madieu.xa@bp.renesas.com> wrote:
+> Fix string length calculation when extracting the SoC ID from the compati=
+ble
+> string. Add +1 to the size calculation to ensure proper string terminatio=
+n when
+> copying with strncpy().
 >
->As a maintainer, when I see any discussion or comments, I drop the
->patch from my queue=2E That may have happened here=2E It is best to resen=
-d
->if it's been more than 2 weeks=2E Though Marvell maintainer response
->times are often longer than that sadly=2E
+> This prevents potential string trunctation when processing the device tre=
+e
+> compatible string to identify the SoC.
 >
->You haven't addressed my comment either=2E The subject needs work=2E If
->you don't like my suggestion, then come up with your own=2E
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> ---
+> New patch introduced in v2, targetting specific fix.
 
-I have addressed your comment:
+Thanks for your patch!
 
->> Here and the subject, "fixing anyOf" isn't very specific and is just an
->> implementation detail of the schema=2E "Add missing required 'phys'
->> property" would be more exact=2E
-> imho it does not match what patch does=2E=2E=2Ei do not add required phy=
-s=2E=2E=2Ei just disable the nodes and enable them only where phys is set=
-=2E
+> --- a/drivers/soc/renesas/rz-sysc.c
+> +++ b/drivers/soc/renesas/rz-sysc.c
+> @@ -231,7 +231,7 @@ static int rz_sysc_soc_init(struct rz_sysc *sysc, con=
+st struct of_device_id *mat
+>
+>         soc_id_start =3D strchr(match->compatible, ',') + 1;
+>         soc_id_end =3D strchr(match->compatible, '-');
+> -       size =3D soc_id_end - soc_id_start;
+> +       size =3D soc_id_end - soc_id_start + 1;
+>         if (size > 32)
+>                 size =3D 32;
+>         strscpy(soc_id, soc_id_start, size);
 
-But maybe i can name it better=2E
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Maybe something like this:
+As the code fixed was introduced by a patch[1] that has not been
+accepted yet, this fix should be incorporated into the original patch
+(together with other fixes according to review comments).
 
-"Fix binding error caused by incomplete nodes=2E"
+[1] "[PATCH v2 04/15] soc: renesas: rz-sysc: Add SoC detection support"
+https://lore.kernel.org/linux-renesas-soc/20241126092050.1825607-5-claudiu.=
+beznea.uj@bp.renesas.com
 
->Rob
+Gr{oetje,eeting}s,
 
+                        Geert
 
-regards Frank
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
