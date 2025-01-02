@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-135137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D686B9FFE2A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:30:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC3C79FFE2C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:31:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA53D3A1C7D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:30:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB3233A2096
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:31:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E59B12DD95;
-	Thu,  2 Jan 2025 18:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59A6D1B0F22;
+	Thu,  2 Jan 2025 18:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kO3jR5Kl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nk5vlyWf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7981C1925A3;
-	Thu,  2 Jan 2025 18:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 261681B3954;
+	Thu,  2 Jan 2025 18:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735842646; cv=none; b=MgDawCVmlsXsMIyhvfqu7Vex4OIesiGe3wCEXtcSBEf3qWYS6plVB7UfFFYSnevz3HAlfq6ZLngNmPtI66cj+sHlSVAHByvBSeRpbgTKzrRbuAJZ8k1s07qXpxdWp0HF8twMCtpXDEV5zyRaduBuhuCgMRNWrzDUTrUJtvNzakg=
+	t=1735842696; cv=none; b=j5HCPz5VmmtDwl7PidOsHsUiBbQ3InDhxT+lq4wN8irq3YNF2JBWlvIWG0BoJ72e5opnm/u4uTzXZnOx0xYtSEkfx1rP5fNMYDOZZan4p7jvcNoNjPBLIJrT7un1ZX0K9uaXvP9rHsjhpfPAJR0j7ajbtqtQELQwbVbGE7fBf3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735842646; c=relaxed/simple;
-	bh=cp3PMTUYnzBdv7C8hL10E14bsJGknT0WwKJZRkzHLn4=;
+	s=arc-20240116; t=1735842696; c=relaxed/simple;
+	bh=/W7N3Sg+8L6n2xheQmCiZedtVwHwGz66GNVQbuYrHTA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Li8F0qFhYF87P089GC/UbNm12HkLYI4+SkpNpAIu1Mlf2Rw2t0/EBWQT3/eci+gfXCZQrMGrQg1ZUj/kR3UaHbDVpGCJfs2F5GenVZwf7b8KlEmaj8SlG1F5boCIHvW5oJnIRy9uZu2VTZNVgavhwg63zfetU14BGJhnAFkYOkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kO3jR5Kl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7717AC4CED0;
-	Thu,  2 Jan 2025 18:30:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bXO//DOwcfO3l7Oj9nLfrhBsU/n99VTKUh7gIJBTu0qc2iZI0qa4bh+cjisF0gbijUkYUS/uOf60Pa66iNXBiBdIUGQcnAedLi4+L8wwXalJ1niIHnTWToUjyrcOG7NTA/Le3FLN9gLVHD0MQAVK+MUYSDPr5W8CtGzLqxz11cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nk5vlyWf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26DBEC4CED0;
+	Thu,  2 Jan 2025 18:31:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735842645;
-	bh=cp3PMTUYnzBdv7C8hL10E14bsJGknT0WwKJZRkzHLn4=;
+	s=k20201202; t=1735842695;
+	bh=/W7N3Sg+8L6n2xheQmCiZedtVwHwGz66GNVQbuYrHTA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kO3jR5Kl7SSki7hVUcvBCDX7JVm2VHbXM+g29Q7HmP44TZ2NqRGmVxb4UYx8PfMTJ
-	 G+iZEzFGtJvcZdYucrcZMvRNVHLxLvZuinZYpuDemMj3nYfvgJf4qs1rerdkJ4hURy
-	 F21Gl6jZZ3eelTFHT4BSWGtS+N6RpQuFQ1/R2PjEn2GSDq7FOAGsYYBLG0ZAANujpb
-	 D4CZeObiIkB4HQ9O3IzGB/HacQ0zgVHvmROpcnWy7eWpT8ymd7lOevMjtcPzcL9cRK
-	 oLyKPTw5fHziUT79R2G/fvpKjVhA//ot5P2ar+JJfNMq8kz9sZEbpkShomDGo0khpI
-	 snHVwU9Eq6biA==
-Message-ID: <933eee94-d79e-4437-8874-d34988b97961@kernel.org>
-Date: Thu, 2 Jan 2025 19:30:39 +0100
+	b=Nk5vlyWfEEzissvsIY5H5I7yQYl6nLMNTVwW27deyy5e6SnSqKiXK6PLyEtwFTcjo
+	 RfwKf7y2vQh94cUnpDrNGfWHrx6wpsPDUAdhpp365onXjuPyARPliQqnPQed3nhqJF
+	 drG1eef6vPWj4qktmmSg3EZaqtUQq+thFspgTGzXLx/bphqDBekUPwuiS62MUxxK6I
+	 DWP/nt0ykhkzMi1nMLtNfZAeD0Gbfq213j+/26aT2l6y9EcX1lig939ePF7rnwWaEq
+	 vEFXWj/ZlxnTl4pKeWVXtKZ6ghtKByllPRZDfrifM+sPUoVm0+vri1GaTGnrb6d1B+
+	 QKaHCu5KqAJ7A==
+Message-ID: <7bcb73f5-26ae-4bdd-9bb4-afc1c5b9fc0d@kernel.org>
+Date: Thu, 2 Jan 2025 19:31:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: xilinx: move xlnx_vcu dt-binding
- to clock from soc
-To: Rohit Visavalia <rohit.visavalia@amd.com>, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Rohit Visavalia <rohit.visavalia@xilinx.com>
-References: <20250102163700.759712-1-rohit.visavalia@amd.com>
- <20250102163700.759712-2-rohit.visavalia@amd.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add NetCube Systems
+ Austria name
+To: Lukas Schmid <lukas.schmid@netcube.li>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <32b5c286-9457-4b93-a93f-c8aff356ec10@kernel.org>
+ <20250102175006.3675-1-lukas.schmid@netcube.li>
+ <20250102175006.3675-2-lukas.schmid@netcube.li>
+ <478a6364-0537-453a-881f-c460de2f67a8@kernel.org>
+ <c025818214942560a291f8c53108503a@netcube.li>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,18 +109,56 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250102163700.759712-2-rohit.visavalia@amd.com>
+In-Reply-To: <c025818214942560a291f8c53108503a@netcube.li>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/01/2025 17:36, Rohit Visavalia wrote:
-> From: Rohit Visavalia <rohit.visavalia@xilinx.com>
+On 02/01/2025 19:24, Lukas Schmid wrote:
+> Am 2025-01-02 18:57, schrieb Krzysztof Kozlowski:
+>> On 02/01/2025 18:49, Lukas Schmid wrote:
+>>> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+>>> ---
+>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>
+>> You did not read really the messages we gave you...
+>>
+>> 1. Read what I wrote in my first reply for v1. I gave detailed
+>> instruction to avoid the exact mistake you now did.
+>>
+>> 2. Read again Andre's reply.
+>>
+>> 3. Do not attach (thread) your patchsets to some other threads
+>> (unrelated or older versions). This buries them deep in the mailbox and
+>> might interfere with applying entire sets.
+>>
+>> 4. Next version, with proper cover letter, is after 24h, so you have
+>> some time to digest the feedback.
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> As per commit a2fe7baa27a4 ("clk: xilinx: move xlnx_vcu clock
-> driver from soc"), xlnx_vcu driver code is moved to clock from soc,
-> so moving the dt-binding.
+> Hi,
 > 
-Drop commit, does not make sense. Just move the file during conversion.
+> Thank you for your feedback, and I sincerely apologize for the mistakes 
+> in my submission process.
+> 
+> I did read Andre's reply and your feedback on v1, but unfortunately, I 
+> had already sent the v2 series as a reply before fully understanding all 
+> the recommendations. I realize now that this was a misstep and caused 
+> confusion.
+> 
+> I will wait until tomorrow, around 20:00, to send the v3 series. I will 
+> make sure to include a proper cover letter and ensure that all the 
+> feedback from v1 and v2 is addressed.
+> 
+> Regarding the v1 feedback, I thought I had incorporated all your 
+> suggestions. However, after rereading it, I seem to have missed 
+> something critical. Could you please point out what I might have 
+> overlooked? I want to make sure I fully understand and correct it in the 
+> next iteration.
+> 
+Please read my full reply for v1 of this patch. How did you implement
+that feedback - long instruction?
 
 Best regards,
 Krzysztof
