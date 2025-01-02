@@ -1,135 +1,186 @@
-Return-Path: <devicetree+bounces-135056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9209FF8DB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:34:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC509FF8FE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:52:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1C3E162576
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:34:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7159A3A24F0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:52:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F219B1AC458;
-	Thu,  2 Jan 2025 11:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B3F1ACEC2;
+	Thu,  2 Jan 2025 11:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="EM43osrj"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="19pNoYzq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C46194C77
-	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 11:34:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1AD31A8408;
+	Thu,  2 Jan 2025 11:52:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735817677; cv=none; b=ppXsuABtOdm4WVDLtsW3pln5DsGuDkGHqSkVNzgnNbM6uMoDIVZ/z+3M4Ufm3TRh3qoCS67L5E1UW1ed8AHQQmSKVnxgnRZ3/l5kitMn2iZEsXtHng36zWcDk1/PooQdYKT+f7DaHaNY4YAWmRl6DtpxPHOGYvo+NtFWLwetzNk=
+	t=1735818750; cv=none; b=uxS3itbWyabfKPnb3x2W95Nw7hovWn98HnIGsLa6EivpTEORKyE6FGN/7aNdX7ryDnkgfN+oGa6KdoAejrsX/sghUM9AI2O3eRP0UW/kuDyT5jAOiL37yA/XvVrtqwAa/wdDwA1/HCvJ2z0w4Z9YHPfxXIl3Pw8ulIjwCmU3FhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735817677; c=relaxed/simple;
-	bh=xZk5juEQTblPG6mT+mOtIaKkOYTA19ECmOyXXFnW3A4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SFtQWqWCzyTYhzKjZAqmVeHM4LBGgRsH2c6C+XBGForMZqLvNRc1UF7VI1uewt/b2TMv74Iqj5b/RtSmkbSdw5LGo2tMLa+vm+2c0jr7aXnUa+Az5beSA33LF+bcOWfV0fW1CbdTAi4rhKCheZ2yXndH/ehFEYDKUNqKJWUAYTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=EM43osrj; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aaec111762bso1648145466b.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 03:34:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1735817674; x=1736422474; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IJuTW2/wmv0Cni895FL84+N2QJ2H1fwMgsWcI7DGnW4=;
-        b=EM43osrjrSM15bPSCvRGvVR7Qmi1JctNay6HwZePyE0XwIjVEsfPuCmPRoykfMBIVe
-         EFejN/PzJGRW99/Zl+4S/u+k+wRbuaArdWcBNRmtNvwhsSepcY2aly2Ef/O8m0ewNfVL
-         SEMVZsV5Xrry2p7etoQBMXACAdPGCxGHSh6n8D2fim7yt4ttWzlyrWcYpYpiTjruGklM
-         MxqgaIRCBJSpPvG5wHKSVKoeoaTZqc6bd07MHoI/3p7WizITXFj1M/sp+T/esZ1fLI8C
-         WlKyll5dP+DAApSR6ScRLLXlC1jPCvJOLKbFnio75pcv1ZaahlvrvnrKU/770e6ZKOLR
-         Q1rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735817674; x=1736422474;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IJuTW2/wmv0Cni895FL84+N2QJ2H1fwMgsWcI7DGnW4=;
-        b=LzJC4oEIrgCT1V/F8Lm0QTe8MJ5W35RECT2U9N4MzxzEnA95n1gns+/Y9Qq60W4+dG
-         whU4FvkEBVGpEtd9ZqEeyRWUqksKCu/vus+mdN92x8SWWnx2VR+T+B3C1XD4NsLIaWcp
-         i3ncoQgPAwYO5A8wWAWlwmJPwdDR4XwXlcW4uT6QP0VA7g3E23mVd3ka0mIWbi7h2w3p
-         LLg8mLVGHHCAtJDyHpGI0JSxBjJrtqo+xW+baRrqr3z0LH/Jc5PWc+v7YAihjH8lR7cu
-         qcwsDkY3WNXSfL4wx54DeJm5NEvat3B6wBuqVBkhK+xK3kME+hnItzWjq+2WTLZ75D8U
-         OUJA==
-X-Forwarded-Encrypted: i=1; AJvYcCWVf2Z9wsfoAO58lVKDxzZhlESe6zPaNcWJfpa7zgv1ZaHVh3hAJqCMon8Ce8dDww9N7TA1xve7BrDk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwACE4/d7m7GVjetipgBtqNaQro4JR2t709PIyxG9yxNlGfC2rW
-	wl7izJqJ8qqoJGN0Dp+fBNMa3WLjoCZ8GMYbt2e79TFwF707J5e1dxi/jDloARY=
-X-Gm-Gg: ASbGncvNcQjM33RMti/RFas8dd3bYLfPo1MXNO8yDD+BTQz9hQ+p5w13ICwxzgVUghg
-	9NQxgdEBtM3R6uANIcw1NTIL0fq6Kc/RLf4dF1qv76CjFV63L+OwmUVk6Cwtd30M+gSGXaozGqD
-	tVMTAmUyTlLxuv40pTWVoeLirnOTAnxAmeaF+XBJmUJFAsz8h9PF/u9aWpB9KqC5lq1YIr9eyiL
-	g40YS+6jjJVYO8TjILqLZh7jHWmOFzlkiPGeHjy/uApDZmh1pkFLbqYEWZgcmno5g==
-X-Google-Smtp-Source: AGHT+IGIlULUY5OVKXjFZRKGpQ2k3iKZcvVspZWtEdWr47v7SWAFqOFAYEk9fc6/cC6JF/XKlQkXSw==
-X-Received: by 2002:a17:907:97c5:b0:aac:431:4ee7 with SMTP id a640c23a62f3a-aac2883fe8fmr4247597966b.5.1735817674243;
-        Thu, 02 Jan 2025 03:34:34 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.102])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e830daasm1761964966b.13.2025.01.02.03.34.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jan 2025 03:34:33 -0800 (PST)
-Message-ID: <9f2025e3-5ec6-4a7d-8a4f-d04b343da912@tuxon.dev>
-Date: Thu, 2 Jan 2025 13:34:31 +0200
+	s=arc-20240116; t=1735818750; c=relaxed/simple;
+	bh=5gThfw2b1seVSqDR+g8KzbPy0WLknyr2g/XToI05UDY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=o7LluupZWOeAfIgCwJZ39ePdVnGvZuxIn8JQIabKYygyxPBdL8Q+MkWiy8CcqOPKlv3sOZAVoOItiSv9EaZX6Eas9b2VyN7qh6d+RtrYAUsQWc/YGJAeRHFrZYO1Ne2vn9mMbgFaP134L9708R2Qsz2JViHut/XKnvq13bbrihc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=19pNoYzq; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=zAkXzjPt8X/XOE0CbwOaMJf4t29lQ3cTGBGCsqKltRU=; b=19pNoYzq8aMvqfvQhqk6BfloHt
+	FGPBL1odDg6I8xokNeEptw/nvH7VUF4Ny+Z2/wUaSHGd4nK2rRJ85bxIFsTd18VBE7OxAoY6kanDD
+	J6wWfBrx7VhniAVwUjKPR68Dm46azJCXSu7c131ek39CbZXHE5XkpCX7ZynR1utgd1Ez21HK9D0iN
+	deTngyouwkrlo+Lmq+3UXh30wY4FQW90Utg3v3q5qvqQEDd4cNT07wnQC/giq52dsSl8tFU4f/2kp
+	+Lmq6RQA2YOIm+3W16yCe+/kTePjBtMm8LgzSIazNu61tIV9xmsgWkDeoOn0T3yXFalFxKmllvnEe
+	4K3ofz1w==;
+Received: from i5e860d14.versanet.de ([94.134.13.20] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tTJk7-0007gM-LR; Thu, 02 Jan 2025 12:51:59 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: cristian.ciocaltea@collabora.com, krzk+dt@kernel.org, mripard@kernel.org,
+ hjc@rock-chips.com, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 1/3] drm/rockchip: dw_hdmi_qp: Add platform ctrl callback
+Date: Thu, 02 Jan 2025 12:51:58 +0100
+Message-ID: <2175680.OBFZWjSADL@diego>
+In-Reply-To: <20241225103741.364597-2-andyshrk@163.com>
+References:
+ <20241225103741.364597-1-andyshrk@163.com>
+ <20241225103741.364597-2-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/13] Add support for SAMA7D65
-To: Ryan.Wanner@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, mturquette@baylibre.com, sboyd@kernel.org,
- arnd@arndb.de
-Cc: dharma.b@microchip.com, mihai.sain@microchip.com,
- romain.sioen@microchip.com, varshini.rajendran@microchip.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-serial@vger.kernel.org
-References: <cover.1734723585.git.Ryan.Wanner@microchip.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <cover.1734723585.git.Ryan.Wanner@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Hi Andy,
+
+Am Mittwoch, 25. Dezember 2024, 11:37:29 CET schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> There are some control bits for IO and interrupts status scattered
+> across different GRF on differt SOC.
+> Add platform callback for this IO setting and interrupts status
+> handling.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
+> ---
+> 
+>  .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 81 ++++++++++++-------
+>  1 file changed, 54 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> index c36fc130b734..b21e868e7c16 100644
+> --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> @@ -62,6 +62,12 @@ struct rockchip_hdmi_qp {
+>  	int port_id;
+>  };
+>  
+> +struct rockchip_hdmi_qp_ctrl_ops {
+> +	void (*io_init)(struct rockchip_hdmi_qp *hdmi);
+> +	irqreturn_t (*irq_callback)(int irq, void *dev_id);
+> +	irqreturn_t (*hardirq_callback)(int irq, void *dev_id);
+> +};
+> +
+>  static struct rockchip_hdmi_qp *to_rockchip_hdmi_qp(struct drm_encoder *encoder)
+>  {
+>  	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
+> @@ -226,9 +232,47 @@ static irqreturn_t dw_hdmi_qp_rk3588_irq(int irq, void *dev_id)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static void dw_hdmi_qp_rk3588_io_init(struct rockchip_hdmi_qp *hdmi)
+> +{
+> +	u32 val;
+> +
+> +	val = HIWORD_UPDATE(RK3588_SCLIN_MASK, RK3588_SCLIN_MASK) |
+> +	      HIWORD_UPDATE(RK3588_SDAIN_MASK, RK3588_SDAIN_MASK) |
+> +	      HIWORD_UPDATE(RK3588_MODE_MASK, RK3588_MODE_MASK) |
+> +	      HIWORD_UPDATE(RK3588_I2S_SEL_MASK, RK3588_I2S_SEL_MASK);
+> +
+
+nit: below val = ... and regmap_write don't have a blank line between them
+which makes sense to show that they belong together. So the blank above
+can probably also go away.
+
+> +	regmap_write(hdmi->vo_regmap,
+> +		     hdmi->port_id ? RK3588_GRF_VO1_CON6 : RK3588_GRF_VO1_CON3,
+> +		     val);
+> +
+> +	val = HIWORD_UPDATE(RK3588_SET_HPD_PATH_MASK, RK3588_SET_HPD_PATH_MASK);
+> +	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON7, val);
+> +
+> +	if (hdmi->port_id)
+> +		val = HIWORD_UPDATE(RK3588_HDMI1_GRANT_SEL,
+> +				RK3588_HDMI1_GRANT_SEL);
+> +	else
+> +		val = HIWORD_UPDATE(RK3588_HDMI0_GRANT_SEL,
+> +				RK3588_HDMI0_GRANT_SEL);
+> +	regmap_write(hdmi->vo_regmap, RK3588_GRF_VO1_CON9, val);
+> +
+> +	if (hdmi->port_id)
+> +		val = HIWORD_UPDATE(RK3588_HDMI1_HPD_INT_MSK, RK3588_HDMI1_HPD_INT_MSK);
+> +	else
+> +		val = HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_MSK, RK3588_HDMI0_HPD_INT_MSK);
+> +	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
+> +}
+> +
+> +static const struct rockchip_hdmi_qp_ctrl_ops rk3588_hdmi_ctrl_ops = {
+> +	.io_init		= dw_hdmi_qp_rk3588_io_init,
+> +	.irq_callback	        = dw_hdmi_qp_rk3588_irq,
+> +	.hardirq_callback	= dw_hdmi_qp_rk3588_hardirq,
+> +};
+> +
+>  struct rockchip_hdmi_qp_cfg {
+>  	unsigned int num_ports;
+>  	unsigned int port_ids[MAX_HDMI_PORT_NUM];
+> +	const struct rockchip_hdmi_qp_ctrl_ops *ctrl_ops;
+>  	const struct dw_hdmi_qp_phy_ops *phy_ops;
+>  };
+>  
+> @@ -238,6 +282,7 @@ static const struct rockchip_hdmi_qp_cfg rk3588_hdmi_cfg = {
+>  		0xfde80000,
+>  		0xfdea0000,
+>  	},
+> +	.ctrl_ops = &rk3588_hdmi_ctrl_ops,
+>  	.phy_ops = &rk3588_hdmi_phy_ops,
+>  };
+>  
+> @@ -282,6 +327,12 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
+>  	if (!cfg)
+>  		return -ENODEV;
+>  
+> +	if (!cfg->ctrl_ops || !cfg->ctrl_ops->io_init ||
+> +	    !cfg->ctrl_ops->irq_callback || !cfg->ctrl_ops->irq_callback) {
+
+cfg->ctrl_ops->irq_callback is checked twice, I guess one of them
+should've been ctrl_ops->hardirq_callback?
+
+Patch looks good otherwise.
+
+Thanks
+Heiko
 
 
 
-On 20.12.2024 23:07, Ryan.Wanner@microchip.com wrote:
-
-[ ... ]
-
->   dt-bindings: atmel-sysreg: add sama7d65 RAM and PIT
-
-Was already applied from v3
-
->   dt-bindings: clocks: atmel,at91sam9x5-sckc: add sama7d65
->   dt-bindings: clock: Add SAMA7D65 PMC compatible string
-
-Was already applied from v3
-
->   dt-bindings: ARM: at91: Document Microchip SAMA7D65 Curiosity
-
-Was already applied from v3
-
->   clk: at91: sama7d65: add sama7d65 pmc driver
-
-Applied to clk-microchip
-
->   ARM: dts: at91: Add sama7d65 pinmux
-
-Was already applied from v3
-
->   ARM: configs: at91: sama7: add new SoC config
-
-Was apready applied from v3
-
->   ARM: at91: add new SoC sama7d65
-
-Applied to at91-soc, thanks!
 
