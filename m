@@ -1,138 +1,228 @@
-Return-Path: <devicetree+bounces-135014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2870C9FF752
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:14:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 703189FF763
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:29:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1DFEC7A1343
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:14:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33357162082
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:29:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87DE193407;
-	Thu,  2 Jan 2025 09:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C35A193407;
+	Thu,  2 Jan 2025 09:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HfYjGX0N"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="AS9RF9/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6963B43ABD;
-	Thu,  2 Jan 2025 09:13:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F46817996;
+	Thu,  2 Jan 2025 09:29:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735809240; cv=none; b=j2FHuS1Dml0N3g35v397vMrOWE8klknbpzLTCyz4w2p7uCj/EH1FdrqXxrQZtnirCT2WYnAOv1nfrTtiLdrz+vdtUEQ6oWXQAZrIa/BQm3TRHx6kDx4s8oTajApVeSR12DuYtc7Xy351u64swEBKmzNMC+5MKN7xowFSo7VWxAE=
+	t=1735810169; cv=none; b=lNBzTGb+5G3YX3YI5FRCRWvJt8rsIwoC8J3Qg7AALysk1IQOIE9QacgegiP06StiVdqBmlyyt2yKSTcqjnApY5+JF3RuzvUOKjjYM1seTeGJotD6d3pt9NKu+VdkCyl+n34JtkoS2jmSR+r7i8P9JwMKAIsGEYy19dG8cGtYaNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735809240; c=relaxed/simple;
-	bh=/eoHWC7p9tF0JvfllTAPK16uGpiLdj6bXIPOP7KC2vw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h7HRslxK6WUZ+/Rkj61KGKqYYJ7+WukderYK9yI3RzW21VlTojN0k/f2dOfpshhonUkfK9nonoJN04a4ReGv9yok73MVyW+kk3Y4T6VNzHdrmxfhy1Wt+tOtIAc/WdV3b/dZ/zvThLKz5NxlZdSKILKCVkqW6BuJG6zb+3BVrVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HfYjGX0N; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5024CmQU029756;
-	Thu, 2 Jan 2025 09:13:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=CtSiux7twO+O6V+hWuj33B+c
-	a1sVm14tk4cFOOEPCEg=; b=HfYjGX0NSdkLcfytfrdZh/VhegYGcIEMS6gunK9A
-	sk0yW1MCy4hL+lgXQHMI1JQDS2AWqHdWM1Gau3mWVq0kMd0LH8+HTn505gsbkwS3
-	Fp9FZbxbkv5a/vXfuIiN70uC39OjArZcEg+iSV2CW2A2WB3cPsZky2b0JncR7OJk
-	PzT4hWQbinChEJ1L/FTfuFBA7whAHTt7q3DCqY0ehe3soV2P4W9f0Us0r3THS3Xe
-	wz8NAfFzEftMdPJ9lcj5PFVF7ZsPPsteWzRIN9xyIupCu9yjxfwsLU7ubtsr7JG7
-	znMBpKT9e3Gc7H4I7JWeM+pr4VvKy5ho0uyKZTFdTQOozw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43wkjt8hhc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Jan 2025 09:13:52 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5029DqDo007627
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 2 Jan 2025 09:13:52 GMT
-Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 2 Jan 2025 01:13:44 -0800
-Date: Thu, 2 Jan 2025 14:43:40 +0530
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Andrew Lunn <andrew@lunn.ch>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
- Ride-r3
-Message-ID: <Z3ZYxDJyAtGK7pL0@hu-wasimn-hyd.qualcomm.com>
-References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
- <20241229152332.3068172-6-quic_wasimn@quicinc.com>
- <7de40e71-e2e5-49fd-93a3-245afdef8188@oss.qualcomm.com>
- <f44b98c2-a0b5-4aec-a84e-683d4576a70e@lunn.ch>
+	s=arc-20240116; t=1735810169; c=relaxed/simple;
+	bh=onqrZ9NPwzzCIC8p3BjmM6gfrgM7fWW/E8p+1b0xA1o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PbDTgV1NvWj5pMFSR2iQ21SRUzf0L53zDwRXPntJfU4P+bwup+9npKXtwRhAkBR5nUCxibx9Ob1A8/rwF1fv0cec2haTkJo7AQuHG5S1xH5pY9C2flJ18T7MvqRe9SQpXWOipVY0S+sikaUAu1G35ah5XR/QHyF4/Gq8qSGv8AI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=AS9RF9/H; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D246A75A;
+	Thu,  2 Jan 2025 10:28:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1735810117;
+	bh=onqrZ9NPwzzCIC8p3BjmM6gfrgM7fWW/E8p+1b0xA1o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AS9RF9/HaMlA5Tm0IJ0+t1rKXA8AV3vlNu4qb5Ox5C3VQ3Vzf2lL6J25vSESE9bbV
+	 qmORlUtuDDUS8ObgfdOj9eWbdu7McLMrxw6c5sf3uB98U7g/pYc7Fs5gSKQxS7//VU
+	 IyHEV/ffrtKK7gwa3C5K+OB+DvUVR/Zl7n/0mS2k=
+Date: Thu, 2 Jan 2025 11:29:25 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v12 1/8] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti MIPI CSI-2 Receiver
+Message-ID: <20250102092925.GC554@pendragon.ideasonboard.com>
+References: <20241125092146.1561901-1-yuji2.ishikawa@toshiba.co.jp>
+ <20241125092146.1561901-2-yuji2.ishikawa@toshiba.co.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <f44b98c2-a0b5-4aec-a84e-683d4576a70e@lunn.ch>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VJgmHXp1zDd8zTnSuKwA8wOzExpgkZZu
-X-Proofpoint-ORIG-GUID: VJgmHXp1zDd8zTnSuKwA8wOzExpgkZZu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- clxscore=1011 mlxscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=719
- impostorscore=0 adultscore=0 phishscore=0 spamscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501020078
+In-Reply-To: <20241125092146.1561901-2-yuji2.ishikawa@toshiba.co.jp>
 
-On Tue, Dec 31, 2024 at 06:10:15AM +0100, Andrew Lunn wrote:
-> > > +&ethernet0 {
-> > > +	phy-mode = "2500base-x";
-> > > +};
-> > > +
-> > > +&ethernet1 {
-> > > +	phy-mode = "2500base-x";
-> > > +};
-> > > +
-> > > +&mdio {
-> > > +	compatible = "snps,dwmac-mdio";
-> > > +	#address-cells = <1>;
-> > > +	#size-cells = <0>;
-> > > +
-> > > +	sgmii_phy0: phy@8 {
-> > > +		compatible = "ethernet-phy-id31c3.1c33";
-> > > +		reg = <0x8>;
-> > > +		device_type = "ethernet-phy";
-> > > +		interrupts-extended = <&tlmm 7 IRQ_TYPE_EDGE_FALLING>;
-> > > +		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
-> > > +		reset-assert-us = <11000>;
-> > > +		reset-deassert-us = <70000>;
-> > > +	};
-> > > +
-> > > +	sgmii_phy1: phy@0 {
+Hello Ishikawa-san,
+
+Thank you for the patch.
+
+On Mon, Nov 25, 2024 at 06:21:39PM +0900, Yuji Ishikawa wrote:
+> Adds the Device Tree binding documentation that allows to describe
+> the MIPI CSI-2 Receiver found in Toshiba Visconti SoCs.
 > 
-> SGMII is 10/100/1000. You have a phy-mode of 2500base-x, which is only
-> 2500. So calling this sgmii_phy is wrong. Just call it phy1: phy@0.
+> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> ---
 > 
+> Changelog v12:
+> - Newly add bindings for CSI2RX driver 
+> 
+>  .../media/toshiba,visconti5-csi2rx.yaml       | 104 ++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml b/Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml
+> new file mode 100644
+> index 000000000000..5488072bc82a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/toshiba,visconti5-csi2rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Toshiba Visconti5 SoC MIPI CSI-2 receiver
+> +
+> +maintainers:
+> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> +
+> +description: |-
 
-Thanks Konrad/Andrew will fix this in next patch.
+As Krzysztof mentioned, '|-' isn't needed. See
+https://yaml-multiline.info/ for more information. The literal block
+style indicator ('|') is only needed when line breaks need to be
+preserved, e.g. when the description contains ASCII art.
 
+> +  Toshiba Visconti5 SoC MIPI CSI-2 receiver device receives MIPI CSI-2 video
+> +  stream. Use with VIIF device. T.B.D
+
+T.B.D ?
+
+> +
+> +properties:
+> +  compatible:
+> +    const: toshiba,visconti5-csi2rx
+> +
+> +  reg:
+> +    items:
+> +      - description: Registers for CSI2 receiver control
+> +
+> +  interrupts:
+> +    items:
+> +      - description: CSI2 Receiver Interrupt
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port node, single endpoint describing the CSI-2 transmitter.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+
+Please use a full path for the ref:
+
+            $ref: /schemas/media/video-interfaces.yaml#
+
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                description: CSI2 receiver supports 1, 2, 3 or 4 data lanes
+
+You can drop the description. The video-interfaces.yaml schema has a
+more complete description, and the fact that the receiver supports
+between 1 and 4 lanes is conveyed by minItems and items below.
+
+> +                minItems: 1
+> +                items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +            required:
+> +              - data-lanes
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port node, single endpoint describing the Visconti VIIF.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        csi2rx@1c008000 {
+
+Node names should describe the function of the node, not the precise
+model of the device. "csi2" would be a more appropriate name.
+
+> +            compatible = "toshiba,visconti5-csi2rx";
+> +            reg = <0 0x1c008000 0 0x400>;
+> +            interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                port@0 {
+> +                    reg = <0>;
+> +                    csi2rx_in0: endpoint {
+> +                        data-lanes = <1 2>;
+> +                        remote-endpoint = <&imx219_out0>;
+> +                    };
+> +                };
+> +                port@1 {
+> +                    reg = <1>;
+> +                    csi2rx_out0: endpoint {
+> +                        remote-endpoint = <&csi_in0>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+
+-- 
 Regards,
-Wasim
+
+Laurent Pinchart
 
