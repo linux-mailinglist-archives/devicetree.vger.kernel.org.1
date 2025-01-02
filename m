@@ -1,236 +1,186 @@
-Return-Path: <devicetree+bounces-135083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 379DA9FFB45
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 17:00:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D15D39FFB5A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 17:09:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F27C18832CC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:00:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DA5D7A11FB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:08:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A121B0434;
-	Thu,  2 Jan 2025 15:59:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FB71ADFE0;
+	Thu,  2 Jan 2025 16:08:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g6FqLxVB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hhIlHCQr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA5624C9A;
-	Thu,  2 Jan 2025 15:59:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4424E79E1;
+	Thu,  2 Jan 2025 16:08:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735833597; cv=none; b=Zd7oGO4Wc+CVbAoOAxhY+pEYZCFHwwIiXt3eS2SRS4/SBa6jKD+Un1IE/WypqyA48oRhnFRZ1Yedt1Y8q5DwY7IvxwzfRaDM8S/0rOI/Ip5nC8bsDZpA7rPsYLo48azyym3Vy6ty6YD8vJXVkYulISdVByLsXgsayBuw6gb7jIs=
+	t=1735834134; cv=none; b=r8xiIBAnQ2Do3vbtuo+Uxqm+oRWN1BB5mZOvG9vO4FaLXj/v2mI28fmBU/EI8rxeLEK+foz6GgoQS9pKnT3+NO5PjWud+kJNahF2tHGtzyFyv3wf7sJ99QrBcJYqNZ2as1JCg/KMoWCV+YJf6wpQqRP1fAS9eyG9NzRnpyJtuCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735833597; c=relaxed/simple;
-	bh=BqOMtO8Bwl7/G6kuHHogfyiuNc7p+CqAVlm89FXFZLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gEXUL08zAq0XJCWmg4rjhHOkio+qCbaPeYIWrRh3H0g0qXwh6+20WwDq/PX/RzBbVv7/huLxZfhfKFycVNxBGk9qflkcV7IWK0jLj6l8IE2EP+Jgf+HVbSt7qeslWBLun0YkOxKLP1oORcaaeCQC8O0j54gNdc9nOFsTDjDtmFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g6FqLxVB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8F6FC4CED0;
-	Thu,  2 Jan 2025 15:59:50 +0000 (UTC)
+	s=arc-20240116; t=1735834134; c=relaxed/simple;
+	bh=fPdVI1gKA98B9DL5GTPFJtMtQgy1EEcVi9fc75yKwz4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iJnhcjNdGuSvJLCQw48KO21vtQ8018d2GA68o+67A6nnt3AwsqQ/2Lgv3+SD+2GYxvgAoz4YHXZXz/ADsIa/9APxjmDJu9RP/9nmmcmSqdDIjk6q+PW+kUhnTo7pVH8sQCAtb1mNQFOExWRo1hhckOODjqoHW96HPBVQ6PiBUYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hhIlHCQr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C42B1C4CED0;
+	Thu,  2 Jan 2025 16:08:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735833597;
-	bh=BqOMtO8Bwl7/G6kuHHogfyiuNc7p+CqAVlm89FXFZLQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g6FqLxVBpQJPvR8zNZsDQilPidtiWiXWFy/7bi5l68zxHIoJTei0VPskM/zu+BlwB
-	 VOkoOShHUNsQMJUwRQhrXD2rEyBbLmBCvqxQ0p/4QWRKN3cy+xIHapMk3eL7AKMrWc
-	 rLIe9WwpZEq6cpEdG6j8paXlpo1/pyoIp8ORbHGQ9Kejvg2bHQOcRt8x7GsvzmUePi
-	 BB3dmx0PS8nt+OUbrpwb6SD5JIBZtGsQUO6We5yv3Vee/3IVuM5Gyk0iQG+mUk1AlP
-	 rNNTXtIVNyoANL9aRsx5Ika+sKRe5Lh9AAiRbtXa+sGwoCWy7dosQni9H4zqrqmBKG
-	 6UkGc5xVcl2yw==
-Date: Thu, 2 Jan 2025 16:59:48 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Gary Guo <gary@garyguo.net>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
-	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com, paulmck@kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	rcu@vger.kernel.org
-Subject: Re: [PATCH v7 08/16] rust: add devres abstraction
-Message-ID: <Z3a39FM0oXHbitDz@cassiopeiae>
-References: <20241219170425.12036-1-dakr@kernel.org>
- <20241219170425.12036-9-dakr@kernel.org>
- <20241224215323.560f17a9.gary@garyguo.net>
- <Z3Zqq5qLht2j9Qqq@cassiopeiae>
+	s=k20201202; t=1735834133;
+	bh=fPdVI1gKA98B9DL5GTPFJtMtQgy1EEcVi9fc75yKwz4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hhIlHCQrSiYwrEXQxFj2gTMQVRLu4JC6PEMVA7aVMV4mibvU0EIdNQhrSIU+YPS/1
+	 Uf5hsi6AAOakmYTmFubdf83bqVNWDAxo/wu7I3g414FVlG5z+MGN0/8PpRXbIGDt92
+	 TBJ5OMB6KNwoewdoVNW1PzNf8DHAba+MZpBorDRJxqj6DJOaks2z0zRpXXnrBJbglG
+	 MTCe+P4VOM/20/Q1JWtF5neoSeE7oY7JPRi4MwV6dx+5tObZ/P1xbiOEtc+GCbvHWU
+	 SSyQUopVKzgcxq6SmtIMa08kRMhUiuMf8GTgQqFx6qDMlremWkUP/gHJgZM+Vl0CLs
+	 ACutG4Puyyc/w==
+Message-ID: <cf75f897-1c00-4a37-bce3-f1eb9855a3cd@kernel.org>
+Date: Thu, 2 Jan 2025 17:08:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z3Zqq5qLht2j9Qqq@cassiopeiae>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] dt-bindings: power: supply: add max77759-fg flavor
+To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be>
+ <20250102-b4-gs101_max77759_fg-v2-2-87959abeb7ff@uclouvain.be>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20250102-b4-gs101_max77759_fg-v2-2-87959abeb7ff@uclouvain.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 02, 2025 at 11:30:11AM +0100, Danilo Krummrich wrote:
-> On Tue, Dec 24, 2024 at 09:53:23PM +0000, Gary Guo wrote:
-> > On Thu, 19 Dec 2024 18:04:10 +0100
-> > Danilo Krummrich <dakr@kernel.org> wrote:
-> > 
-> > > Add a Rust abstraction for the kernel's devres (device resource
-> > > management) implementation.
-> > > 
-> > > The Devres type acts as a container to manage the lifetime and
-> > > accessibility of device bound resources. Therefore it registers a
-> > > devres callback and revokes access to the resource on invocation.
-> > > 
-> > > Users of the Devres abstraction can simply free the corresponding
-> > > resources in their Drop implementation, which is invoked when either the
-> > > Devres instance goes out of scope or the devres callback leads to the
-> > > resource being revoked, which implies a call to drop_in_place().
-> > > 
-> > > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> > > ---
-> > >  MAINTAINERS            |   1 +
-> > >  rust/helpers/device.c  |  10 +++
-> > >  rust/helpers/helpers.c |   1 +
-> > >  rust/kernel/devres.rs  | 178 +++++++++++++++++++++++++++++++++++++++++
-> > >  rust/kernel/lib.rs     |   1 +
-> > >  5 files changed, 191 insertions(+)
-> > >  create mode 100644 rust/helpers/device.c
-> > >  create mode 100644 rust/kernel/devres.rs
-> > > 
-> > > <snip>
-> > >
-> > > +pub struct Devres<T>(Arc<DevresInner<T>>);
-> > > +
-> > > +impl<T> DevresInner<T> {
-> > > +    fn new(dev: &Device, data: T, flags: Flags) -> Result<Arc<DevresInner<T>>> {
-> > > +        let inner = Arc::pin_init(
-> > > +            pin_init!( DevresInner {
-> > > +                data <- Revocable::new(data),
-> > > +            }),
-> > > +            flags,
-> > > +        )?;
-> > > +
-> > > +        // Convert `Arc<DevresInner>` into a raw pointer and make devres own this reference until
-> > > +        // `Self::devres_callback` is called.
-> > > +        let data = inner.clone().into_raw();
-> > > +
-> > > +        // SAFETY: `devm_add_action` guarantees to call `Self::devres_callback` once `dev` is
-> > > +        // detached.
-> > > +        let ret = unsafe {
-> > > +            bindings::devm_add_action(dev.as_raw(), Some(Self::devres_callback), data as _)
-> > > +        };
-> > > +
-> > > +        if ret != 0 {
-> > > +            // SAFETY: We just created another reference to `inner` in order to pass it to
-> > > +            // `bindings::devm_add_action`. If `bindings::devm_add_action` fails, we have to drop
-> > > +            // this reference accordingly.
-> > > +            let _ = unsafe { Arc::from_raw(data) };
-> > > +            return Err(Error::from_errno(ret));
-> > > +        }
-> > > +
-> > > +        Ok(inner)
-> > > +    }
-> > > +
-> > > +    #[allow(clippy::missing_safety_doc)]
-> > > +    unsafe extern "C" fn devres_callback(ptr: *mut kernel::ffi::c_void) {
-> > > +        let ptr = ptr as *mut DevresInner<T>;
-> > > +        // Devres owned this memory; now that we received the callback, drop the `Arc` and hence the
-> > > +        // reference.
-> > > +        // SAFETY: Safe, since we leaked an `Arc` reference to devm_add_action() in
-> > > +        //         `DevresInner::new`.
-> > > +        let inner = unsafe { Arc::from_raw(ptr) };
-> > > +
-> > > +        inner.data.revoke();
-> > > +    }
-> > > +}
-> > > +
-> > > +impl<T> Devres<T> {
-> > > +    /// Creates a new [`Devres`] instance of the given `data`. The `data` encapsulated within the
-> > > +    /// returned `Devres` instance' `data` will be revoked once the device is detached.
-> > > +    pub fn new(dev: &Device, data: T, flags: Flags) -> Result<Self> {
-> > > +        let inner = DevresInner::new(dev, data, flags)?;
-> > > +
-> > > +        Ok(Devres(inner))
-> > > +    }
-> > > +
-> > > +    /// Same as [`Devres::new`], but does not return a `Devres` instance. Instead the given `data`
-> > > +    /// is owned by devres and will be revoked / dropped, once the device is detached.
-> > > +    pub fn new_foreign_owned(dev: &Device, data: T, flags: Flags) -> Result {
-> > > +        let _ = DevresInner::new(dev, data, flags)?;
-> > > +
-> > > +        Ok(())
-> > > +    }
-> > > +}
-> > > +
-> > > +impl<T> Deref for Devres<T> {
-> > > +    type Target = Revocable<T>;
-> > > +
-> > > +    fn deref(&self) -> &Self::Target {
-> > > +        &self.0.data
-> > > +    }
-> > > +}
-> > > +
-> > > +impl<T> Drop for Devres<T> {
-> > > +    fn drop(&mut self) {
-> > > +        // Revoke the data, such that it gets dropped already and the actual resource is freed.
-> > > +        //
-> > > +        // `DevresInner` has to stay alive until the devres callback has been called. This is
-> > > +        // necessary since we don't know when `Devres` is dropped and calling
-> > > +        // `devm_remove_action()` instead could race with `devres_release_all()`.
-> > 
-> > IIUC, the outcome of that race is the `WARN` if
-> > devres_release_all takes the spinlock first and has already remvoed the
-> > action?
+On 02/01/2025 12:15, Thomas Antoine via B4 Relay wrote:
+> From: Thomas Antoine <t.antoine@uclouvain.be>
 > 
-> Yes, this was one issue. But I think there was another when you have a class
-> `Registration` that is owned by a `Devres`, which holds private data that is
-> encapsulated in a `Devres` too.
+> The max77759 is an IC used to manage the power supply of the battery and
+
+Still not the name I asked to use.
+
+> the USB-C. Based on drivers from google, it contains at least a PMIC, a
+> fuel gauge, a TCPCI and a charger.
 > 
-> I have this case in Nova where the DRM device' private data holds the PCI bar,
-> and the DRM device registration has a reference of the corresponding DRM device.
+> Use max77759-fg compatible to avoid conflict with drivers for other
+> functions.
 > 
-> But maybe this also was something else. I will double check and if I can confirm
-> that the WARN_ON() in devm_remove_action() is the only issue, we can certainly
-> change this.
-
-Ok, I double checked and this should indeed be the only issue.
-
-I can reproduce the race and can confirm that a devm_remove_action_nowarn()
-works, as long as we make it return the integer that indicates whether the
-action has been removed already, such that we can handle it from the Rust side
-accordingly.
-
-Generally, I don't think it's a big deal, drivers usually hold the resources
-they request anyways until remove(). But it's still an improvement, so I'll send
-a patch for that.
-
+> The max77759 has no non-volatile memory so it doesn't require an address
+> and instead requires a value for the current sensing resistor.
 > 
-> > 
-> > Could you do a custom devres_release here that mimick
-> > `devm_remove_action` but omit the `WARN`? This way it allows the memory
-> > behind DevresInner to be freed early without keeping it allocated until
-> > the end of device lifetime.
-> > 
-> > > +        //
-> > > +        // SAFETY: When `drop` runs, it's guaranteed that nobody is accessing the revocable data
-> > > +        // anymore, hence it is safe not to wait for the grace period to finish.
-> > > +        unsafe { self.revoke_nosync() };
-> > > +    }
-> > > +}
-> > > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> > > index 6c836ab73771..2b61bf99d1ee 100644
-> > > --- a/rust/kernel/lib.rs
-> > > +++ b/rust/kernel/lib.rs
-> > > @@ -41,6 +41,7 @@
-> > >  pub mod cred;
-> > >  pub mod device;
-> > >  pub mod device_id;
-> > > +pub mod devres;
-> > >  pub mod driver;
-> > >  pub mod error;
-> > >  #[cfg(CONFIG_RUST_FW_LOADER_ABSTRACTIONS)]
-> > 
+> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+> ---
+>  .../bindings/power/supply/maxim,max17201.yaml      | 56 +++++++++++++++++-----
+>  1 file changed, 43 insertions(+), 13 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
+> index fe3dd9bd5585618e45220c51023391a5b21acfd2..7e95314508c27d0d90ea92f61bca6b4a2fe0e88e 100644
+> --- a/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
+> @@ -9,31 +9,61 @@ title: Maxim MAX17201 fuel gauge
+>  maintainers:
+>    - Dimitri Fedrau <dima.fedrau@gmail.com>
+>  
+> -allOf:
+> -  - $ref: power-supply.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+>        - const: maxim,max17201
+> +      - const: maxim,max77759-fg
+>        - items:
+>            - enum:
+>                - maxim,max17205
+>            - const: maxim,max17201
+>  
+> -  reg:
+> -    items:
+> -      - description: ModelGauge m5 registers
+> -      - description: Nonvolatile registers
+
+Widest constraints always stay here.
+
+See:
+https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L127
+
+I did not say to remove it. I asked you to add allOf section restricting it.
+
+> -
+> -  reg-names:
+> -    items:
+> -      - const: m5
+> -      - const: nvmem
+> -
+>    interrupts:
+>      maxItems: 1
+>  
+> +allOf:
+
+This goes after required: block. See example-schema.
+
+> +  - $ref: power-supply.yaml#
+> +  - if:
+Best regards,
+Krzysztof
 
