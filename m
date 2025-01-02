@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-135090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 229E69FFB90
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 17:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F31B9FFB96
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 17:31:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4ADA11883911
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:30:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E0C818839B1
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:31:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DD5E145B03;
-	Thu,  2 Jan 2025 16:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44617142E67;
+	Thu,  2 Jan 2025 16:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nRMgclD7"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HG1SBr02"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34C7129A78;
-	Thu,  2 Jan 2025 16:30:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A57AC13FEE;
+	Thu,  2 Jan 2025 16:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735835407; cv=none; b=FW1pSJzWF9si0UQPNN6M//IAsdXtVqaGkBq+WMfM4DnnhIiJ7j32zd7+FL3J5vuxYD/YJiNkC9tfFLlVj2/z4rqKQ1XxSET5D/Kgq8I3xfDM7FRmGyyVP+oIrSc1s7uCrFe/3b3Wvpk3iON1LFNPD2Vvyy94XKbpE7k8WaGeqAw=
+	t=1735835467; cv=none; b=LeN6F93m8dC6pU0UVL62ROxtgxJ0XUYJde1t5+qdBek43507vtetXfNALumkh48JkwswF8Fwc/ILGXTBGroYGgD6ihL+vF3WSQH4rmrNwJIt3c+MPGnwcvREj/TCE12RQGbhOKWPwidLiowO3KEDZmDfoEREjIjTVr0DISOz2xI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735835407; c=relaxed/simple;
-	bh=QQa+NFb6nBrpmQFZwmPXdOwddQ6gwxQz5qVeHp1gD2k=;
+	s=arc-20240116; t=1735835467; c=relaxed/simple;
+	bh=XPHsdLggUbfhS/k06N9veMuXSexGNTCQIh7xPJrFtNU=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GPP1ZN3y5hYEHzkCh5bSMOTuayGxov4PLv8tO1x3yNCowof/rgm3HAKMrmZbTuFqkdBe9XndNE+S9afpkr9bHxXfMEpj5S5fvJH/iRxdgFo9Om1ubLpnEojNqDUyrw2omHJ9gGX9bO1O/bXhFSICsmh6Kkca37lQ4A/o16WvsAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nRMgclD7; arc=none smtp.client-ip=198.47.19.246
+	 MIME-Version:Content-Type; b=pXPLDRzep+dmO+nS3trwrWQDsFhOz2THyTmQibmUG4HVNSomKgYUW//bW0gMydEI3AxcuqLBI8AYfy8ONSbwaLhNDrViRq7R8U4zTz4+2djEY77FkdYvccKz3TqOmIP0iOqcL4nhf9A5v9H7OzbF2uB7UogAWB8eUrq3QXUWXuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HG1SBr02; arc=none smtp.client-ip=198.47.19.246
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 502GTlXK2198793
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 502GUvOT2199253
 	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 2 Jan 2025 10:29:47 -0600
+	Thu, 2 Jan 2025 10:30:58 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1735835387;
-	bh=+MFmIHhCk/rAx3hqXJ4Qkb9WRuDjk3r2C1qHxrU2TeY=;
+	s=ti-com-17Q1; t=1735835458;
+	bh=kagO0k/oqGBpNLaSabOH+1r0G13QU3LhaSmnXl3qhrA=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=nRMgclD7PBB+xyVgqdRY3ac9KIOTZML6G7orvdXDTrbI9/R0Nb6hpPYJWXlT4UQ4o
-	 QCZQXa7KoEYBgUD8BuOPUGgSbh/5KvcGt9Rb0TlfsOQAAp17ToAQjoj0Kv+Y/d+oCl
-	 P9mBVvRnX0cogDJNzhRsk1Web7ATnP3j6xaKAm48=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 502GTlMr021924
+	b=HG1SBr02p8m7F74CkIiV6lKQ+T/LXm4M12/JgHYLcp1Vju5zpGhXeAPKY+T/IOoCn
+	 1NIurZ6X4a2B88/cV1UVpRvGuc24x21VYjlEWmIyart879B5jqXKshv605nE3zufrB
+	 l5JBgDHcacbaF3cg0TF22kXDtrWMhSS7sMIVtGxs=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 502GUv1L023615
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 2 Jan 2025 10:29:47 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 2 Jan 2025 10:30:57 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 2
- Jan 2025 10:29:46 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2025 10:30:57 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 2 Jan 2025 10:29:47 -0600
+ Frontend Transport; Thu, 2 Jan 2025 10:30:57 -0600
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 502GTkgx055171;
-	Thu, 2 Jan 2025 10:29:46 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 502GUv9i075516;
+	Thu, 2 Jan 2025 10:30:57 -0600
 From: Nishanth Menon <nm@ti.com>
-To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Bhavya
- Kapoor <b-kapoor@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
-        <s-sinha@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j722s-evm: Enable support for mcu_i2c0
-Date: Thu, 2 Jan 2025 10:29:45 -0600
-Message-ID: <173583532350.267426.8424602830328689601.b4-ty@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am625-sk: Remove M4 mailbox node redefinition
+Date: Thu, 2 Jan 2025 10:30:56 -0600
+Message-ID: <173583539528.267639.11532686969673222752.b4-ty@ti.com>
 X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241105091224.23453-1-b-kapoor@ti.com>
-References: <20241105091224.23453-1-b-kapoor@ti.com>
+In-Reply-To: <20241203164031.20211-1-afd@ti.com>
+References: <20241203164031.20211-1-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,22 +81,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Bhavya Kapoor,
+Hi Andrew Davis,
 
-On Tue, 05 Nov 2024 14:42:24 +0530, Bhavya Kapoor wrote:
-> Enable support for mcu_i2c0 and add pinmux required to bring out the
-> mcu_i2c0 signals on 40-pin RPi expansion header on the J722S EVM.
+On Tue, 03 Dec 2024 10:40:31 -0600, Andrew Davis wrote:
+> This node is already defined in the included k3-am62x-sk-common.dtsi.
+> Remove this redefinition.
 > 
 > 
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-Side note: It would have been useful to state in the diff stat that
-gpio_ranges handles the standard GPIO configuration.
+I have assumed the fixup is trivial (since there is no functional diff in the
+final dtb) that "fixes" tag is not important to backport.
 
-[1/1] arm64: dts: ti: k3-j722s-evm: Enable support for mcu_i2c0
-      commit: 9442f963098f1eb9d1565fdd694e506d0c2c6f45
+[1/1] arm64: dts: ti: k3-am625-sk: Remove M4 mailbox node redefinition
+      commit: 17d0723c6cf841ebaf510eaf9bb1ebf4991d6e9d
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
