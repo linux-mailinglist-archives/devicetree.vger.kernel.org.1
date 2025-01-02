@@ -1,160 +1,153 @@
-Return-Path: <devicetree+bounces-135020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C69E9FF78D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:40:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 422FA9FF790
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:41:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 395903A2A85
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:40:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1667F161FD6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:41:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7DA19993D;
-	Thu,  2 Jan 2025 09:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B9119D086;
+	Thu,  2 Jan 2025 09:41:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gLUjKYXF"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="O3Es2wxp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FD3B192B9D
-	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 09:40:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 283D1192B9D;
+	Thu,  2 Jan 2025 09:41:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735810841; cv=none; b=CCl9mJWapMT2Xq13+4xAIF71PMA/Q9LUp4LtfNalXz+QwwauwwbBS8nP5j0uu0eFg/PcI4pfQy+mTC6H07iegIqgkE97PNDEVAXpwbPYdAjTuDk2eNPXcfbpKckGtFwju1VOo4kRRdtVhKdrXKUSnnzWSYUsOQdfRMWCzTGBb+I=
+	t=1735810868; cv=none; b=Fg0oI7/yKKaz0cjgi1QjjmQvYcNL5me1LTEgnExbp+SopVbyL7JKXHVkL0Q8KyclU/pDhRuWROT1E01XhCQexbEdaOV/Fr5q+v6Gh/9nvOA/sE+v6Z0p12iUxiR4MaGEIRqx25lzoU8DfloOtINdNl5ux69stA9A1vKAEV1IEHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735810841; c=relaxed/simple;
-	bh=c62rokAxa7lt3ak5B6yxvE6j4P7LwpjOFp0oIonMUxE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=glpAXd1TjtFbgsRyx64YJjjAYlp/lYLSyt0Kr2N+IfBkqRHDVftpjs1nPEplzanZtYdioz2Et1UiSbDXtyAAWGOQFNEBn2nEg7x17qls7Tlmeczbl1M0/boijs+tZ3WBXHTHFhRbqrlkx8ryAcBbr9aW8wShDJE/cWWsSApJ3oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gLUjKYXF; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-385df53e559so8772419f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 01:40:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735810838; x=1736415638; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vBrc7EuOMXY8yTx/TbXVRV+IK2Cs6RWnPvid7BqXfWc=;
-        b=gLUjKYXF9YCoWRHR4iC91wBlO4HP5ZpCOB4PH6B/KFWuzT2o5nK18YZ79DKlrrfYtA
-         EKGaQMVmi/siGZoNBqFkcCtptxSwkhMLPh3Iiy9mk/+L+vmI56uMNqVoar60du0JzxB7
-         1LMmZ0jc60ED4cmUDZkYogljmwqv66sCJumicBoCYCDTNJIlGEQKJBhBqA3cW+LV29az
-         iDsBEuKi0x0X9KgNT+PIfiHkFdctLwpY/0NHx9qC2EVALiHVNkVhl6XbhywwQgd+bppn
-         PuxhGLKaVJ0mKmSQLICWLRenddA5TWhYQWpfNpiH/FTLVFSQ/oZZH3rQBNoqmWDP0wHf
-         JtFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735810838; x=1736415638;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vBrc7EuOMXY8yTx/TbXVRV+IK2Cs6RWnPvid7BqXfWc=;
-        b=tmIZS3zWtsbygzMCBD8xZCttDv/e0sfwBW824H57+PVYj2O0F6U4MZc95SyjLjueVf
-         tnoQoKJNAE4npmxFa+rZYv7RgcRGF1pZZglPLGxee6i2BkWzVvIKV2OWrUaKpgs3XtMH
-         nVSbU2ZvWVpFrFr4Jit7Jl1+J4/ErGIM7I+P1reHa8VEt7GTE5uCNrEy2NZCswa8G/xp
-         6UW6MR+ncceRRh2Uj72nEL2kn7Cgy9d7S8MldXcp1JL967Y2Q0sAQokxfHrwsOb5k4rx
-         scUYI3Vjjv6O9Yo68ERGgOqTxk3ZLkW9HI8U4v4TwRGMTksIzBTDNv1w9VTh1xDjQDre
-         wR2w==
-X-Gm-Message-State: AOJu0YwWpwQAQRhj+XEnKpnsSQtiSbUdJTjFZ18ix99nIMBIwx0TxQGc
-	pnMLerLexkLW3UmTyS596Nh9RA+f3JlkYfTOmWgGvg2d967nNze9HEOyFkpNAI0=
-X-Gm-Gg: ASbGncu/gBgvgRO08qU8Thl/XWWqBLpXqXcELPjJFzDQd+eBJxlshQZpcP0WPFDOSAJ
-	AoKxJCtHua+avOeS5QRHHhpIU9FerifcqPFAgaenk+VuoGQDFsq9uhnaN0nOZBd+GTcGpMoqjLR
-	FzMCRF9N4+7K/RB9nSd0IyAIhhdlp9UpBKDP/lWrqSN1WIFvQClWblcUWx3lW40qaDHkoeXJbCZ
-	iPlrn5S12uM8mZK/Ueb4rBltKBXB23Vr+Zm6tdBwtqt+o011Si5gOivFiW+uczIA4yLvFHXcg/i
-	XfgAxi1mA1v7QyGNqa1Pbyg820FcftCCVw==
-X-Google-Smtp-Source: AGHT+IFyQxq7+SLmgC3lEOJrijlLY/blJUqn/3ChXyKJbxUPuO43SDrq1oyRFY0OkutfbUe85tJpHQ==
-X-Received: by 2002:a05:6000:2ae:b0:385:ed16:c97 with SMTP id ffacd0b85a97d-38a224088aemr34478674f8f.49.1735810837548;
-        Thu, 02 Jan 2025 01:40:37 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1cfa:329a:aa2e:f0be? ([2a01:e0a:982:cbb0:1cfa:329a:aa2e:f0be])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c828bd3sm37151921f8f.10.2025.01.02.01.40.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jan 2025 01:40:37 -0800 (PST)
-Message-ID: <f888d948-d79e-41a0-8844-b3a9659498c2@linaro.org>
-Date: Thu, 2 Jan 2025 10:40:36 +0100
+	s=arc-20240116; t=1735810868; c=relaxed/simple;
+	bh=fFwEobIvrp9LyWBkORtJ/uRW7oOSs64PJjo+Ffia/Po=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eank4N7vf03mnFLc0UYF2XPcbnFV8NjdTTe1lMDBHumL/W8YmNLNVg9IuRM5RqxY3pqGynf3AyJDghorOmcPWSqJaT4KmhCH9vEgXq9uuerywQa7sy/yB49y+yYV5Xq409TGduWQ9txvi4N5EPp1Gw0shc1jI/pFTgHYKElubZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=O3Es2wxp; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AC76275A;
+	Thu,  2 Jan 2025 10:40:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1735810816;
+	bh=fFwEobIvrp9LyWBkORtJ/uRW7oOSs64PJjo+Ffia/Po=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O3Es2wxpDcrkmTnCTZSFuVAHRGUvGh8Mi1f7KVhkFUiegmVT7Bqf+wqVsGTXV42zM
+	 Z6LtfFcI1sib2E92aLcnTFRrRjZ+6ER9cAZZp0oK63oUHfZJ3rmTL96nZDnm+/YdD1
+	 x6vNPytQPUNbAjINh8Iu58KZxp3CNaPlI1UwU1P8=
+Date: Thu, 2 Jan 2025 11:41:05 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: yuji2.ishikawa@toshiba.co.jp, mchehab@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+	nobuhiro1.iwamatsu@toshiba.co.jp, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v12 2/8] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface
+Message-ID: <20250102094105.GD554@pendragon.ideasonboard.com>
+References: <20241125092146.1561901-1-yuji2.ishikawa@toshiba.co.jp>
+ <20241125092146.1561901-3-yuji2.ishikawa@toshiba.co.jp>
+ <04a7ebf7-2924-4894-bc53-ba77e2f64fae@kernel.org>
+ <TY3PR01MB99822E6161ED319B4DE855B492042@TY3PR01MB9982.jpnprd01.prod.outlook.com>
+ <d5294015-4790-490e-8136-615039a5c733@kernel.org>
+ <20241217094508.GD11445@pendragon.ideasonboard.com>
+ <7e50e257-9e13-4d32-8de9-8deb53fd30e4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [RFC PATCH v1 0/2] iio: adc: meson: add MPLL clock workaround for
- GXLX
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-iio@vger.kernel.org
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lars@metafoo.de,
- robh@kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, gnstark@salutedevices.com,
- krzk+dt@kernel.org, jic23@kernel.org
-References: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7e50e257-9e13-4d32-8de9-8deb53fd30e4@kernel.org>
 
-On 31/12/2024 20:42, Martin Blumenstingl wrote:
-> Hello,
+On Tue, Dec 17, 2024 at 01:51:54PM +0100, Krzysztof Kozlowski wrote:
+> On 17/12/2024 10:45, Laurent Pinchart wrote:
+> > On Tue, Dec 17, 2024 at 06:43:22AM +0100, Krzysztof Kozlowski wrote:
+> >> On 17/12/2024 01:00, yuji2.ishikawa@toshiba.co.jp wrote:
+> >>> Hello Krzysztof
+> >>>
+> >>> Thank you for your review
+> >>>
+> >>>> -----Original Message-----
+> >>>> From: Krzysztof Kozlowski <krzk@kernel.org>
+> >>>> Sent: Monday, November 25, 2024 7:08 PM
+> >>>> To: ishikawa yuji(石川 悠司 ○ＲＤＣ□ＡＩＴＣ○ＥＡ開)
+> >>>> <yuji2.ishikawa@toshiba.co.jp>; Laurent Pinchart
+> >>>> <laurent.pinchart@ideasonboard.com>; Mauro Carvalho Chehab
+> >>>> <mchehab@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> >>>> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Sakari Ailus
+> >>>> <sakari.ailus@linux.intel.com>; Hans Verkuil <hverkuil-cisco@xs4all.nl>;
+> >>>> iwamatsu nobuhiro(岩松 信洋 ○ＤＩＴＣ□ＤＩＴ○ＯＳＴ)
+> >>>> <nobuhiro1.iwamatsu@toshiba.co.jp>
+> >>>> Cc: linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
+> >>>> linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org
+> >>>> Subject: Re: [PATCH v12 2/8] dt-bindings: media: platform: visconti: Add
+> >>>> Toshiba Visconti Video Input Interface
+> >>>>
+> >>>> On 25/11/2024 10:21, Yuji Ishikawa wrote:
+> >>>>> Adds the Device Tree binding documentation that allows to describe the
+> >>>>> Video Input Interface found in Toshiba Visconti SoCs.
+> >>>>>
+> >>>>> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> >>>>> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> >>>>
+> >>>> Why this tag stayed and other was removed? What was the reason of tag
+> >>>> removal?
+> >>>>
+> >>>
+> >>> The stayed tag is due to internal review.
+> >>
+> >> Did the internal review really happened? How is it that immediately new
+> >> version has internal review without any traces?
+> >>
+> >> I have doubts this review happened in the context of reviewer's
+> >> statement of oversight.
+> >>
+> >>> The removed tag is due to code's change (split of csi2rx part) after the last review.
+> >>> If the code is largely changed following the instruction of another reviewer
+> >>> after obtaining the tags, how should the tags be handled?
+> >>
+> >> Drop all reviews and perform reviews on the list.
+> >>
+> >> Such internal review appearing afterwards is rather a proof it you are
+> >> adding just the tags to satisfy your process. I have no way to even
+> >> verify whether that person performed any reasonable review or maybe just
+> >> acked your patch.
+> > 
+> > How do you verify that for public reviews ?
 > 
-> Amlogic GXLX SoCs seem to be mostly the same silicon as GXL. The only
-> known differences are:
-> - one less Mali-450 GPU core
-> - no VP9 codec
-> - and an odd one: the three MPLL clocks need a bit toggled in the SAR
->    ADC register space
+> By quality or amount of comments. Or timing. Or reviewing cover letter
+> without any feedback on individual patches.
 > 
-> This series attempt to fix audio output (which relies on the MPLL
-> clocks) on the GXLX boards. Unfortunately all we have is a downstream
-> commit [0] without any further explanation (or anyone who wants to
-> provide details on this). Since it's not clear if this is a gate, a
-> reset or some other hardware fix: the driver side includes a warning
-> for users to update their .dtb along with kernel images in case we
-> ever figure out what these bits do and how to model them properly.
-> 
-> 
-> [0] https://github.com/khadas/linux/commit/d1d98f2ed8c83eb42af8880ed8e206aa402dd70a#diff-c5aaf54323ef93777c5083de37f933058ea8d0af79a1941e0b5a0667dc0f89b3
-> 
-> 
-> Martin Blumenstingl (2):
->    dt-bindings: iio: adc: amlogic,meson-saradc: Add GXLX SoC compatible
->    iio: adc: meson: add support for the GXLX SoC
-> 
->   .../iio/adc/amlogic,meson-saradc.yaml         |  1 +
->   drivers/iio/adc/meson_saradc.c                | 34 +++++++++++++++++++
->   2 files changed, 35 insertions(+)
-> 
+> There are many, many ways. Considering how many companies were adding
+> fake manager-review-tags in the past (or fake SoBs), I am pretty picky
+> on that.
 
-LGTM
+On the other hand I've heard numerous complains about patches being sent
+by new developers from large companies to upstream lists without first
+being reviewed internally by more experienced developers. You can't ask
+people to review patches internally before submitting them upstream and
+at the same time complain about R-b tags coming from internal reviews.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+The value of a R-b tag, regardless of whether or not it comes from an
+internal review, ultimately depends on the trust you have on the
+reviewer. You can take that into account to decide when you consider a
+patch to be ready to be merged, or to skip reviewing it if enough
+reviewers you trust have looked at it first.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
