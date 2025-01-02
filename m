@@ -1,126 +1,115 @@
-Return-Path: <devicetree+bounces-135132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 822239FFE02
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:23:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE4839FFE05
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:23:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F0B2160F4C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:23:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94DB9160D4D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F5318C907;
-	Thu,  2 Jan 2025 18:23:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD35719068E;
+	Thu,  2 Jan 2025 18:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hlcgf0IK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b3wndOJu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54002185B4C;
-	Thu,  2 Jan 2025 18:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80D5315539D;
+	Thu,  2 Jan 2025 18:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735842184; cv=none; b=KNSR/xAUK00pPkr8IAZLKd4omwBJvk1uSbwiv54sxOw35g1wNgMzcioc/iKHPaVUCd7w/RoiMwgx5mPUbYedVrokd50iKPGYjWPRN9tmXZBMUZlWH6X61N2MnI5SSM3gtDNfiDKj1aKXVOsqEmUrqmdYDxZDPsY9pUgNUqAi3rg=
+	t=1735842203; cv=none; b=n9OFQx6LfLVJdCsI+/59vpVxrM+WDt7I/C7oyQFLMaHkmIUF0AIjniuOKVmnAA6bGcMRsL4B/TD9XEQH6gUyTZWY5kBl7GgNzFti+bOm0gNPkbEBODOxOKIgbOhrorNJdMsSSd2E5vs9XfFSG726yyeVjKKxJBEnc22Vnz7XYEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735842184; c=relaxed/simple;
-	bh=PGHgj1WD7O029baPi04CCEcxUJ4GNGd18nsTEv2jXr8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=apiRvk3e+d3k9XvSOkKk7GDehdU82HLVMKhas5c4/w53OKqKqegdrxn2fFc9cZzSEwRAvKZMiiM+n03L3j2GAoGs1HkxmLnLlqhU6c4s0+mJEs/uuLXPVFDdCcsBeG/HoAIPZe8uejDJyjqE8Yon0AsTUD30d+6s2ERthz4QpOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hlcgf0IK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A65CBC4CED0;
-	Thu,  2 Jan 2025 18:23:00 +0000 (UTC)
+	s=arc-20240116; t=1735842203; c=relaxed/simple;
+	bh=70hV7KT0NdzyraKVXwtB6C/LT+wCto+7q8AHFbaR56c=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=npWHOuV1tpMY2c+R4+4rKQC9VyUZK5e15NXTabpcBNtuMnvcwktT5mZBh0xYD9gtr0sg0wQ9D8cOHd4ibZoOIQQkVxUJ4HkFRBAvWdDf1Hnzxx1SQhaHkwJbI3CJXQqUNW6MeFITbfobNhGs9AefcXyoxzDmPofXQhBn5PCftlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b3wndOJu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEFBDC4CED0;
+	Thu,  2 Jan 2025 18:23:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735842183;
-	bh=PGHgj1WD7O029baPi04CCEcxUJ4GNGd18nsTEv2jXr8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hlcgf0IKnm12KoBNWWastofKEpgEcemGkJJILGjEIyokrusud/zTq7HSXanljkVRU
-	 Yv72W+SveK7e2rfODIDy5ZNh7DYZhsUY01DmPwSIZFxkgr28ZgctD0zU4+1L1FpOSN
-	 gz/f85EgjiwSF0wyQnWGPFvmalWuWx+wDODTO31G6nnovgNJdGlnQvKL/vncflsa5t
-	 YTl8nf1wQJ8Ba15Ae1cJk6gX9RxACn9kn+9hXuVy2gKUdDVtd6PnYUMpAqFZWuJx8H
-	 +rDYrZRJP20vcrJcbItN/Wb5eZdFIHioBVjOXelZpxddJ6h0wfEbstDa9uH9sZdjp8
-	 Nk+IYKOFNC9gA==
-Message-ID: <b3b8aa28-24d3-4952-a8d3-7019ad4c63de@kernel.org>
-Date: Thu, 2 Jan 2025 19:22:57 +0100
+	s=k20201202; t=1735842202;
+	bh=70hV7KT0NdzyraKVXwtB6C/LT+wCto+7q8AHFbaR56c=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=b3wndOJuzzy6v39Q1NcxMxCWyBKNt60QiDw5kkS2qIiJWtu7x3qvIdUOPxzWs0FAs
+	 ZpyL0hSB3DE+vjEa4AtQOxe61EHqtFpFSwD9vi/NBssJAScN0OuFwD4hcKNSrJKcnc
+	 RnlCryPiKbhSKjm4YMKmFgNJjU6CRtLM+zfm/7TcROcoep/oF2s9SwekitM+rCwtqA
+	 JvXNg2cmnObp6GvQlYnFn69T6BPTudsm8RoT43d3KDCA0szSIkuw57/viEpvXmaXWp
+	 9i2uw/bQdW5c04lqfGlzBIG6zsVrhmgSW+TR0W80qgwKi5rSOF33ZRGMD4XT/jtfEY
+	 2WSriiPNmGeZQ==
+Date: Thu, 02 Jan 2025 12:23:20 -0600
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
- property
-To: Peter Korsgaard <peter@korsgaard.com>, Guenter Roeck
- <linux@roeck-us.net>, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250102175041.822977-1-peter@korsgaard.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250102175041.822977-1-peter@korsgaard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Tony Luck <tony.luck@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, James Morse <james.morse@arm.com>, 
+ linux-edac@vger.kernel.org, Robert Richter <rric@kernel.org>, git@amd.com, 
+ Borislav Petkov <bp@alien8.de>, Conor Dooley <conor+dt@kernel.org>
+To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+In-Reply-To: <20250102174434.17677-5-shubhrajyoti.datta@amd.com>
+References: <20250102174434.17677-1-shubhrajyoti.datta@amd.com>
+ <20250102174434.17677-5-shubhrajyoti.datta@amd.com>
+Message-Id: <173584220090.229516.17125117813581030159.robh@kernel.org>
+Subject: Re: [PATCH v4 4/5] dt-bindings: memory-controllers: Add support
+ for Versal NET EDAC
 
-On 02/01/2025 18:50, Peter Korsgaard wrote:
-> The pwm-fan driver uses full PWM (255) duty cycle at startup, which may not
-> always be desirable because of noise or power consumption peaks, so add an
-> optional "default-pwm" property that can be used to specify a custom default
-> PWM duty cycle.
+
+On Thu, 02 Jan 2025 23:14:33 +0530, Shubhrajyoti Datta wrote:
+> Add device tree bindings for AMD Versal NET EDAC for DDR controller.
 > 
-> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
+> 
+> Changes in v4:
+> Update the compatible
+> align the example
+> Enhance the description for rproc
+> 
+> Changes in v2:
+> - rename EDAC to memory controller
+> - update the compatible name
+> - Add remote proc handle
+> - Read the data width from the registers
+> - Remove the dwidth, rank and channel number the same is read from the RpMsg.
+> 
+>  .../amd,versal-net-ddrmc5-1.0.yaml            | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/amd,versal-net-ddrmc5-1.0.yaml
+> 
 
-That's v3, not v1. Also mention here shortly how Rob's comment is addressed.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Please always handle reviewers' feedback, either by implementing it or
-by responding or by extending commit msg. All this is missing in all
-your versions you sent.
+yamllint warnings/errors:
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/memory-controllers/amd,versal-net-ddrmc5-1.0.example.dtb: /example-0/memory-controller: failed to match any schema with compatible: ['amd,versalnet-ddrmc']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250102174434.17677-5-shubhrajyoti.datta@amd.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
