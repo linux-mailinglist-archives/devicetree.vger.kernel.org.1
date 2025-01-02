@@ -1,111 +1,130 @@
-Return-Path: <devicetree+bounces-135188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D2FA00046
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:56:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7CC6A0004A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:59:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A293318841E6
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:56:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A74A73A3183
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:59:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAC8D1B6CF5;
-	Thu,  2 Jan 2025 20:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5ED1B87E5;
+	Thu,  2 Jan 2025 20:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="usUcKBxZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KEk/R7Ui"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE5F81991A4;
-	Thu,  2 Jan 2025 20:56:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF2A1C36;
+	Thu,  2 Jan 2025 20:59:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735851409; cv=none; b=LI0V7nK8dYDaaLHC+5RWlbYOsvGhNY1wvn0VPBt9AgpuXZaWTX6cPB4aDdtbdbEBcr0Xf0bBhrtP0WhxSRziJBIDsejNlDZjFXl+2Jn/cYPhbGLU5Q9PFUIMHgxBSgWNOidNPk9uLBm4FBgKrUnmTiMNQiHUAMq8WV1sddwLKYg=
+	t=1735851542; cv=none; b=RA9GAB8Gv4coBPp9yp8w9dgOGKtY+BlBiyeEfTkEHkes9s89PWDRCjK7jNk4J5/pH+t8HlsFHBXX6GW8a6++IlAivjo8gvPEgUh3CyNHxwa/WxVGgUm62zyFnXSxM5ZxiiwRYlg4ngalpNzitSe6SDyJFWZIkhVmrG/vQU64bzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735851409; c=relaxed/simple;
-	bh=ji3BhuMiKT5tbtN9s2wyOCpnJmotWM9qJXBuodpEYXM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f3/FLC1FLPT2mPoqleJh+7YXaeIiZ4EZkFWz1yYkpRQFw+u+DXtWMOdv1aVwVxte1gP3Ucv/vpIYKW79YMfD+ZqTQYkHIiM3WVxe749h6kJJSQjDGTrKZrPtTgpmdJB1hg9bhKKScSYq9t/6VE0SQKyAQogE6Xxg/+u+aMXJv8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=usUcKBxZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E4ABC4CED0;
-	Thu,  2 Jan 2025 20:56:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735851409;
-	bh=ji3BhuMiKT5tbtN9s2wyOCpnJmotWM9qJXBuodpEYXM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=usUcKBxZFO2Rb8mxXnav4tPdhDRfCS69CI9YcXFPbuRERXJATuwIfEf9Imqsm2J0r
-	 2dcUyEHkpeET5XMbTx3wFEdx0FLGtULkdPO+d9dkFgO0lwdW+RSOZ076Unkqu6ybHY
-	 k27z5gbOp/iTRc4B7p9O4BQc0gqLhnT26nVRtXiAewWkrQD9ZsaJ5HwvB8POR+oEcU
-	 q9F4/8BByBkg2Uyv6aAXAoNmCRNa5lUHA8JvjQzGHfWBXStpDe5TLze8O/vCnJU8L2
-	 PDdpW4rakxnhitKKE7dUnefvlgVQJpr68WH9L6VGJod344VHj7jSgVQiuUyv/P8uZQ
-	 5dRteHVfZfRxQ==
-Date: Thu, 2 Jan 2025 14:56:47 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc: bhelgaas@google.com, devicetree@vger.kernel.org,
-	bharat.kumar.gogada@amd.com, jingoohan1@gmail.com,
-	michal.simek@amd.com, conor+dt@kernel.org, krzk+dt@kernel.org,
-	linux-pci@vger.kernel.org, kw@linux.com, lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/3] dt-bindings: PCI: amd-mdb: Add AMD Versal2 MDB
- PCIe Root Port Bridge
-Message-ID: <173585140656.554296.13076997282582601219.robh@kernel.org>
-References: <20241226060043.18280-1-thippeswamy.havalige@amd.com>
- <20241226060043.18280-3-thippeswamy.havalige@amd.com>
+	s=arc-20240116; t=1735851542; c=relaxed/simple;
+	bh=+CgKeDYLj+HJKfNp7tUUpSjF2+oHQmSTpayCXyz9aLo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IcGM+GRu4JiiXSe+mtC9kxFVCjN+18eljA9LbOuWnkMyk12Yiy7soC9JtW65i+ALk1ZCtPm6iWlEUGff+yrNzg0H5Qonnwbfsq4BbMIfAdRXZ477sLyYot6YHT/jiBw0bg+Glsn7A7HHQt3m7XDYcZoy71Qgtu4Gl6kSf6Q2SSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KEk/R7Ui; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5d3dce16a3dso20440293a12.1;
+        Thu, 02 Jan 2025 12:59:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735851539; x=1736456339; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0kWXWi44B3HrD5CUe09lNd7VBLNzzP0xqVwo/jsaRdY=;
+        b=KEk/R7Ui18lsygQa1hAB7OBZtfyEMFSKRUmXQQhlaTO+xtd9TyNBtqHlPO6+ucY2Qy
+         Q3DXB13qjNTP/P7TSNRAP0lK9NnGZ8HvwwsZmLszeQIbEBoRqeUR9D3uhH8enJx0O51o
+         FvGWJEhWrmv7EiMWdUiKofGOumGAmdokARi142sEpFJWXLjCOCRvCcF/D4Uv41rJCQ56
+         wS8T6db0p8WrzSlM3XRay8p3WqyYUB7g7pIbm+B4R+aChOZODZQuR9+xqoHyBwIfCQmy
+         ygsw/i3Am6GYo/xjWerb4rRf/XL2s4aJBypvC8RUFxqX7uGbPitpW7+txXTbhoJKVH14
+         TCiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735851539; x=1736456339;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0kWXWi44B3HrD5CUe09lNd7VBLNzzP0xqVwo/jsaRdY=;
+        b=iNPapP8T5CUtcjhRdZB4/D+5b8VU9SCDpJKs8I/QdBKCz6Bxc8RL3WwrndhDe8hnjc
+         N/0IFAOzjlnsG+39Lp/f2M5TVXgVgqK0jW1DrJYqxoT9bvoGuDIVJmXN184xqDaB30V0
+         0mZaCpJBVn2Fy9cI8YgHZyMhtQwPIvO1p2HyLEHk6aG39gy9DmVZFyo5p2oUkSO5Psyg
+         AhrRJbkaFPvEarHuEAj6WaKXOp5FMa0H8HLXzimnCM11DEXRurReg6snMBobKhHFJbPI
+         NPPH0bo2HjBtuEpsmKcAonCFpa/YZI042l78Hq0dh2Y4gjMXDaW3wbe3vZZsUl7aI1Ep
+         0DAw==
+X-Forwarded-Encrypted: i=1; AJvYcCUeYEwE0vQFofyOWab0vbXKlrKxycfJNm3mL5x927SkpOiRjIdDDHteGnoYdNs+YjCMUBQALU+pzsig@vger.kernel.org, AJvYcCWQlS2PgjlPUCTL5p5j5wT6YuljKUuwWL6wI4stJFFM9Zu7gyca72CKzRpvN07hpp+G5HW4Ff3qF4DYXED/@vger.kernel.org, AJvYcCWzNUL4k+oQlr835cg5xsbTsMurTuB+BLNPLlb4FkSwYUWj+5zGVfMm8ZObOL/CqByTkpxJFQ0htnrQswYpx+a3R8w=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTVEohgGYp+xczNVJU31zCx1WJKzxsBDwZXgK20PXBjb3Wv/rz
+	H4e4ul84Ib50xlTgUTNP1FUFHeLuJz30xEmKCtKvnNYyH01VFfJ5
+X-Gm-Gg: ASbGncsSEUqmsVJF1hsxOs3IW/glm+ON12uupoKNxl0NdOrn4Y4grbuMQyCY6h+P8v1
+	2mRG98UW5UCDSlNtW0ThU1OILo1eKFGK/+cxl+tTuqXu89lirOSS9DrZNI7DR2hjtgMhuvDBB1U
+	Iy6F0YHqOqYEXSmwikb7Ne4yQnx2Rp4GnbqMKHvrajKtuxRB9mdE6TBLMF+wCcZUis+Tp1IACdT
+	bfZnmJNe5olxd469t02JMdok7Xf3U0MKuDGLkVx5dhkBVI+QZw9VmPJPN6IVMh60C0NB5Zkl482
+	fAvdCXjTdGQ=
+X-Google-Smtp-Source: AGHT+IH1piG7mdo0z8tlBALc36OjUwXqC1PidNSuEDYBGYwirYC4nN4TmpY6pCEYB6gUtkCJFaDu0g==
+X-Received: by 2002:a05:6402:4010:b0:5d3:f617:a003 with SMTP id 4fb4d7f45d1cf-5d802388f09mr47523330a12.4.1735851539030;
+        Thu, 02 Jan 2025 12:58:59 -0800 (PST)
+Received: from ivaylo-T580.. (85-118-76-61.mtel.net. [85.118.76.61])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80676f397sm19231026a12.22.2025.01.02.12.58.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jan 2025 12:58:58 -0800 (PST)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Jaehoon Chung <jh80.chung@samsung.com>
+Cc: linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/5] arm64: dts: exynos8895: define usi and mmc nodes
+Date: Thu,  2 Jan 2025 22:58:41 +0200
+Message-ID: <20250102205846.223955-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241226060043.18280-3-thippeswamy.havalige@amd.com>
+Content-Transfer-Encoding: 8bit
 
+Hey folks,
 
-On Thu, 26 Dec 2024 11:30:42 +0530, Thippeswamy Havalige wrote:
-> Add AMD Versal2 MDB (Multimedia DMA Bridge) PCIe Root Port Bridge.
-> 
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> ---
-> Changes in v2:
-> -------------
-> - Modify patch subject.
-> - Add pcie host bridge reference.
-> - Modify filename as per compatible string.
-> - Remove standard PCI properties.
-> - Modify interrupt controller description.
-> - Indentation
-> 
-> Changes in v3:
-> -------------
-> - Modified SLCR to lower case.
-> - Add dwc schemas.
-> - Remove common properties.
-> - Move additionalProperties below properties.
-> - Remove ranges property from required properties.
-> - Drop blank line.
-> - Modify pci@ to pcie@
-> 
-> Changes in v4:
-> -------------
-> - None.
-> 
-> Changes in v5:
-> -------------
-> - None.
-> Changes in v6:
-> --------------
-> - Reduce dbi size to 4k.
-> - update register name to slcr.
-> ---
->  .../bindings/pci/amd,versal2-mdb-host.yaml         | 121 +++++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
-> 
+This patch series adds the required syscons for controlling USI, as well
+as defines all USIv1 nodes for Exynos8895 and adds support for utilizing
+the external SD card storage in dreamlte. Due to PMIC not being supported
+yet, we'll assume that the regulators are pre-enabled by the previous
+bootloader for vqmmc. (in our case uniLoader).
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+The patchset relies on [1]. I also expect the exynos mmc binding
+maintainer to pick the specific-compat patch.
+
+Best regards,
+Ivaylo
+
+[1]: https://lore.kernel.org/all/20250102204015.222653-1-ivo.ivanov.ivanov1@gmail.com/
+
+Ivaylo Ivanov (5):
+  dt-bindings: mmc: samsung,exynos-dw-mshc: add specific compatible for
+    exynos8895
+  arm64: dts: exynos8895: add syscon nodes for peric0/1 and fsys0/1
+  arm64: dts: exynos8895: define all usi nodes
+  arm64: dts: exynos8895: add a node for mmc
+  arm64: dts: exynos: exynos8895-dreamlte: enable support for microSD
+    storage
+
+ .../bindings/mmc/samsung,exynos-dw-mshc.yaml  |   1 +
+ .../boot/dts/exynos/exynos8895-dreamlte.dts   |  39 +
+ arch/arm64/boot/dts/exynos/exynos8895.dtsi    | 906 ++++++++++++++++++
+ 3 files changed, 946 insertions(+)
+
+-- 
+2.43.0
 
 
