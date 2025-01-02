@@ -1,145 +1,146 @@
-Return-Path: <devicetree+bounces-135177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249C89FFFE2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:15:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC68BA00018
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:40:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50EE61883D11
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:15:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9188D1630DD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:40:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 741761B87D4;
-	Thu,  2 Jan 2025 20:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9381B7901;
+	Thu,  2 Jan 2025 20:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B9NEcoma"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E067F19E968;
-	Thu,  2 Jan 2025 20:15:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2812F192B75;
+	Thu,  2 Jan 2025 20:40:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735848916; cv=none; b=Sok2gJVnnjrk64UHDkQGd0ZgAkSuVdfYNeotXSIi+Ig3bkxwDrQ/fSNZ6++39KTw6HITqD0+7g0EoIuZqR3DcEICQV39BT9iPrfxmfr9dbHf+X2ga1zn3SlHkLST2Ibi2jgp3UlcGWWOBm+IrOqXplL5Kt4THaKXkP4G4JRLb6I=
+	t=1735850452; cv=none; b=P8f5+T6Mkv7GhDb+BHCO+rQAL9rceP9YwdaxhP+6DsfnrKHtNCElcLQbVa7/zL0f5LGQxJYF12bUYGXuwdnB7eWeMarJAWJcqC3WgjN2SktPt5rGNQLd8fj8+YmI4r+6p2RMn3syU2llTLLr+Svz3R2zEndkViksuPLgqP3ZMkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735848916; c=relaxed/simple;
-	bh=L2aDDAnlAfvgkhCbd8d0CVPQcY0MfAyD7K4gow8FyD4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UXLLYQf+GRkPFW+tRfSiQ3q4dapXX5HkmQuno3Dm6IpxQ8MhJLppJg7GsOE0pY74BPeT6+porCBCZmUxhGaOkV94tpKv4Ub2UTA3rZNx7dKi/GVBefd4gHfUU7Wfq66sdei8XLZrzZBh8NeooBDEN9cvG15GWM7IPJbv2s7UvEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1735850452; c=relaxed/simple;
+	bh=g5YzoiIUTd9o7sWkdnV3FSr8XDrUWCg37iWZYOBnGXI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oz9Xi+itmtqJH2x8FSnNPtnvzCz2VqlWa4XdJNWeTX4J5sAiNy1nFE+oKA198om/yg4tKh8B58dwIJwKScrT34e0hv51PoTCO510QvCv0CQcLBdr3QBvNMyuYDr9jjWuK+vkfNLTry82mgzs7t5qMJDwRblr2LKrosHhL92W9tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B9NEcoma; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-51bb020339fso2156038e0c.0;
-        Thu, 02 Jan 2025 12:15:13 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-aa6b4cc7270so1667370666b.0;
+        Thu, 02 Jan 2025 12:40:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735850448; x=1736455248; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B7aF1eq+bXcs38+fZolPr5Vr3auU0RoYJ0PNzi44nGA=;
+        b=B9NEcomaZMDTWsL5ynV9WrqHesffimugDMDlMdQrDg7oZOM4dyVd2TY4xits1LAQHD
+         ZugDl9aTxKHe8yoUsapG2uJX51tytFlqyZ25PbS1h3hyEKU5MmGVOQJrYdvI2RDH+xdO
+         qfRsnpL62yuz3VCVSbr9Xl7nXB3w7VKWrkXGMBF5WwXDfLjiaYJi6tGpG2t9Y+o+r12x
+         MB8PpIUH3etK0d/i/m6seWAXlGle23x2E0weyfY2yfk5BNtiClfyvUT6QllukPib4o66
+         iKBi4iruAXsDT7EAGw6AppGwLrkdX6Qtz4TLMb8EOyK4e7bm/Kf2xy75bz504LkpCNMs
+         +wEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735848911; x=1736453711;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FibJ37TPEM13bEVPYLkHLMORANI9Oug072BfmMn4Uj8=;
-        b=szLny9pYdnj7/V9OofR98xl1uX4twMFo6UawM8dRnibqPSPRCiohYxHfIjUwvWzP3R
-         mRzgB5oTqBZKbsXDXg0DlJ4r6kz1GpYwSRb2jcAWGJqrlE0OhkYJFlD1ADbzDbd9OjxG
-         7l2NskC3cixjch2B/N8Kb383CqwZwSTDq28B0lJ4pquAi2Rp1xQdWK/nJC+4FeQ/0rVc
-         wbuKBeCvIg295+SlmGMQVY7ORuOD/5u2Z/LleIfrWp5r+HCi1glWiaqduGxvHr3YjDgx
-         Z8c9jLILIXWWnM2+b447UBtYkv/lH7TlQoNIYLxp0ofOPUDqa7lUGoC7RFAIhkfzxDZs
-         zWnw==
-X-Forwarded-Encrypted: i=1; AJvYcCUAeewdN2LLRiMOA3QJZSRW/SIOjdqnC2LyzjVnNfSikjTSIMFv8hwntWj5qLrQ8XlHBBrc7vGFl/ZNfEfAgDc6uis=@vger.kernel.org, AJvYcCUMwZ0fe6YcrPnsWuTtyIRh799NAcdFuQADzyAEK2D20qbyXdOj6YV/ixNlcVm3d/GcsEd5GxDMRClK@vger.kernel.org, AJvYcCUTCXgFC9QLJO7QJLCmEq2XQtJVtPtiDT8yDLHbxjOEJ9vl2khp7uKeMWELBHMkofGkOvwK5TT0MnI+hL6S@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkJvpI7YrssEwqf1JGY62CaBXlz2hjAIu/orj3cw0THVtabYlH
-	Bxd3Yyn3isYoXq835JbZScPoMS/RWPYO/saz9lmY+bhRY1cJCaSHSBTOhift
-X-Gm-Gg: ASbGncvspdSWMfmokii2TDVycFg7pnxj8HqK+W/pG1R1VfoCUitkY/aBsVVFwfAnTk+
-	O5KnMHfnJgirYmwav3DvLYrC2ZdscekRxCJs6FydoutTq1wxeDJRjmug8iHyS5EJg7a1oF6ZCu8
-	Vj4ORUbwaznoaRO/JbG/cR8wThuVxZmr82PQx6spfULxigt1Kmg9xazpAtRnEn5hZBB6apgBei6
-	iyh+oSa8GUBg4e58Gk0vRiPAWOoGlQ5Wk5Kb5f4jGL2QEnqfxTHGwqJeZZYAdNvAmrfrDoQQqFG
-	I1jwA3A1om1wkRWhPxQ=
-X-Google-Smtp-Source: AGHT+IEUFjkCo56OFNscDGQ4qtvdEhf7I7S6XLsVtyz2J8RDp7XriOzT5Kgvbb9Yp92HRcJ5QVLr+A==
-X-Received: by 2002:a05:6122:4302:b0:518:a0ee:e8e7 with SMTP id 71dfb90a1353d-51b75abac1bmr32951058e0c.0.1735848911066;
-        Thu, 02 Jan 2025 12:15:11 -0800 (PST)
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-51bd8792c91sm1472702e0c.5.2025.01.02.12.15.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jan 2025 12:15:10 -0800 (PST)
-Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4b10dd44c8bso3277106137.3;
-        Thu, 02 Jan 2025 12:15:10 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUcXMbymprgRXTQ+LiIld+2M1hYK0qRqeJrfvwPG9qsAjW+36ucpyNQF38bN7oZRhLS9G5sjDATqtpr@vger.kernel.org, AJvYcCVGsHg0YnyLu4vOmr4DAS8dXQXaUXhVrVXigs3nv7h23RDdemorc/sDErQB+/R7F10UjCq3K1HeeDqxUn0WGWMssmY=@vger.kernel.org, AJvYcCWRE5n/GpSerXUoaprDnKN/uaodYp7ZTuHBhAY00AAvIkZX/20yPpX/ISb+GVuWc32dQK5d+3u5DkkoA4hj@vger.kernel.org
-X-Received: by 2002:a05:6102:c8f:b0:4b2:75a3:2267 with SMTP id
- ada2fe7eead31-4b2cc35c112mr40496086137.10.1735848910207; Thu, 02 Jan 2025
- 12:15:10 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735850448; x=1736455248;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B7aF1eq+bXcs38+fZolPr5Vr3auU0RoYJ0PNzi44nGA=;
+        b=VnwHZrLP8HfoX8TeuGsqf7KD+jBz+uXqR/YAhs1et43yzQDLVo2A2EywImG1b/T1+C
+         CLUlAsTIgVVz/xOIZrIpG2kefRbxHnqUbOq99WKigxUrzbIiP6nXvDsYYuOYjyNc6rOi
+         2T9NY9AAIks8BjKsGfJsn3opKNq8BWk2eIzmbpFI/SKCQ/swhEFh6xKGc/TrqxPjpvY0
+         +UObALSxArwFcMk/uYSLkMNtT7fxCmwqyCTbk73Cg17mMViWDfphNRml1J5HkaEn5oxJ
+         hfz2VppJv3l2Z16pu4cktHcSzHAZZB9kJ4u76iSuPTGyox4aeqh9LsTbqMsw1ulyi4cg
+         QJRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUSah27p5fPm2oYP3jW+BC2eJNrsQDiif7xOvni276RstsOyDfciWPupiMrJAP7ql+aOBFpJal+LEFDNq9zoaH7g6o=@vger.kernel.org, AJvYcCXUXigOasuqKImxU9uWfOH2yoZoNYL40SNlafXt7Gv02tbQEXH/V4sTLbf6NxSP1rTlZfuRpH54W3O4Sog=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQ6ciEpI+Sf2kpWwN2Ti3OKaVPXuctHecBP0QARNyhPO/E8jiF
+	24elRDWIC/5mUGL50oTUwxgy/QqDiysD9d1F6/B4dza5FXf4PbNjvR3r7A==
+X-Gm-Gg: ASbGncu/nZ1Zm8/3uE+oG2sqHwP05vNpiuqN5uR7oSV4RFuQBMR9TDwY/GjGAzj7PUX
+	/lADszkBdjKDjoU9Q+63HN697LvVWpPmIQhYArFB7MVKSBrz44WrwS3Z0K3Lkb3FOfHlOCELg9n
+	MjAm2Di3fbIsK2hItjE/CycgJm4HoC4PfIasUQr55tXyxuxBA5ANF5GbmKkM+y2M9eWFve2GDKU
+	B1q7wzZISVX0wmgV2J/xe1WuPHzHstGBhrFRUItnbTBtdLttT5bgtXceK4wrgPH6S1K1UbNHXmx
+	Z8x4Yg2paSU=
+X-Google-Smtp-Source: AGHT+IHPQtap3PTyufeAyVPFpllndA97AqbD6wvm55AJUubhHTVEkCnF9Y804Skp8NHZkaAiw2OgVQ==
+X-Received: by 2002:a05:6402:5245:b0:5d3:ba42:e9fa with SMTP id 4fb4d7f45d1cf-5d81ddc01a0mr114968130a12.16.1735850448200;
+        Thu, 02 Jan 2025 12:40:48 -0800 (PST)
+Received: from ivaylo-T580.. (85-118-76-61.mtel.net. [85.118.76.61])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0efe490asm1814251866b.98.2025.01.02.12.40.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jan 2025 12:40:47 -0800 (PST)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Sam Protsenko <semen.protsenko@linaro.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/3] soc: samsung: usi: implement support for USIv1
+Date: Thu,  2 Jan 2025 22:40:12 +0200
+Message-ID: <20250102204015.222653-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com>
- <20250101163344.128139-1-john.madieu.xa@bp.renesas.com> <20250101163344.128139-3-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250101163344.128139-3-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 2 Jan 2025 21:14:58 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVxxRXHCj35tbVTHVMn9NUVFmmHPzvP2Asd6GVuXmYJXQ@mail.gmail.com>
-Message-ID: <CAMuHMdVxxRXHCj35tbVTHVMn9NUVFmmHPzvP2Asd6GVuXmYJXQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] soc: renesas: rz-sysc: Fix SoC ID string extraction
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: biju.das.jz@bp.renesas.com, claudiu.beznea.uj@bp.renesas.com, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, geert+renesas@glider.be, 
-	john.madieu@gmail.com, krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, magnus.damm@gmail.com, robh@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi John,
+Hey folks,
 
-On Wed, Jan 1, 2025 at 5:34=E2=80=AFPM John Madieu
-<john.madieu.xa@bp.renesas.com> wrote:
-> Fix string length calculation when extracting the SoC ID from the compati=
-ble
-> string. Add +1 to the size calculation to ensure proper string terminatio=
-n when
-> copying with strncpy().
->
-> This prevents potential string trunctation when processing the device tre=
-e
-> compatible string to identify the SoC.
->
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
-> New patch introduced in v2, targetting specific fix.
+This patch series adds support for USIv1 in the existing exynos-usi driver,
+as well as dedicated sysreg compatibles for exynos8895.
 
-Thanks for your patch!
+The USIv1 IP-core is found on some ARM64 Exynos SoCs (like Exynos8895).
+It provides selectable serial protocols (one of: HSI2C0, HSI2C1, HSI2C0_1,
+SPI, UART, UART_HSI2C1). It's a bit different from USIv2 as it doesn't
+have any known MMIO register map and the serial protocols that it
+implements share the same register base, hence why the way of modelling it
+in device trees will be with ranges, like so:
 
-> --- a/drivers/soc/renesas/rz-sysc.c
-> +++ b/drivers/soc/renesas/rz-sysc.c
-> @@ -231,7 +231,7 @@ static int rz_sysc_soc_init(struct rz_sysc *sysc, con=
-st struct of_device_id *mat
->
->         soc_id_start =3D strchr(match->compatible, ',') + 1;
->         soc_id_end =3D strchr(match->compatible, '-');
-> -       size =3D soc_id_end - soc_id_start;
-> +       size =3D soc_id_end - soc_id_start + 1;
->         if (size > 32)
->                 size =3D 32;
->         strscpy(soc_id, soc_id_start, size);
+usi1: usi@10460000 {
+  compatible = "samsung,exynos8895-usi";
+  ranges = <0x0 0x10460000 0x11000>;
+  clocks = <1>, <2>;
+  clock-names = "pclk", "ipclk";
+  #address-cells = <1>;
+  #size-cells = <1>;
+  samsung,sysreg = <&syscon_peric0 0x1004>;
+  status = "disabled";
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+  hsi2c_5: i2c@0 {
+    compatible = "samsung,exynos8895-hsi2c";
+    reg = <0x0 0x1000>;
+    ...
+  };
+};
 
-As the code fixed was introduced by a patch[1] that has not been
-accepted yet, this fix should be incorporated into the original patch
-(together with other fixes according to review comments).
+This patchset also assumes that [1] has been merged before it.
 
-[1] "[PATCH v2 04/15] soc: renesas: rz-sysc: Add SoC detection support"
-https://lore.kernel.org/linux-renesas-soc/20241126092050.1825607-5-claudiu.=
-beznea.uj@bp.renesas.com
+Best regards,
+Ivaylo
 
-Gr{oetje,eeting}s,
+[1]: https://lore.kernel.org/all/20241222145257.31451-1-krzysztof.kozlowski@linaro.org/
 
-                        Geert
+Ivaylo Ivanov (3):
+  dt-bindings: soc: samsung: exynos-sysreg: add sysreg compatibles for
+    exynos8895
+  dt-bindings: soc: samsung: usi: add USIv1 and samsung,exynos8895-usi
+  soc: samsung: usi: implement support for USIv1
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+ .../bindings/soc/samsung/exynos-usi.yaml      | 22 +++++--
+ .../soc/samsung/samsung,exynos-sysreg.yaml    |  8 +++
+ drivers/soc/samsung/exynos-usi.c              | 58 +++++++++++++++++--
+ include/dt-bindings/soc/samsung,exynos-usi.h  |  8 +++
+ 4 files changed, 87 insertions(+), 9 deletions(-)
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+2.43.0
+
 
