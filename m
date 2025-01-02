@@ -1,176 +1,183 @@
-Return-Path: <devicetree+bounces-135194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAEDDA0005F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:00:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C320A00065
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:00:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96F8B3A3337
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:00:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D1D41884345
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:00:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C809E1BDAB9;
-	Thu,  2 Jan 2025 20:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADAA11BD9F2;
+	Thu,  2 Jan 2025 20:59:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ASl02YyT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N3Y1FERP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD681BD517;
-	Thu,  2 Jan 2025 20:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80EAD1BBBD4;
+	Thu,  2 Jan 2025 20:59:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735851551; cv=none; b=sxCX9iBuyBZUk+N3Qt8nCVVWc6OE7mCZW2TdifLYZzRrqYwKffntyT87St2YeuPUpqAf+4TEpoQnpHwg+9y5fN+i04xBIfqwScKK0GW9lTJcE4JnjEwe6YAZw+xYJ1tmeFOR/+ggShNsIuNbeLVDgvqMZ83iJhVi7I4YrckZTJM=
+	t=1735851568; cv=none; b=oMsNjFM9pVRezyR6RHKLp7NcOFNLfGU4iYchlyxMhgqQcQ+QZ82BVvb2XdckNFMvJMM4vpUyW96KfVWnb+SuLwB4GqtPxLooGoaHfaHxE3bSVxgjtfe/vhfTp+V1Heaf04mUb8tAAWAcYUPrqhndD/EOJkwlzlLF8O9g1Hk3r2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735851551; c=relaxed/simple;
-	bh=El6oZPYP9raNBx64p7bNSOLOYIgZnqdc+g0mtZU9hNI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O5md/Re3ibBJhQRzhIVbjF5giLLc1A2uNV8wxkZNfmkexok5rXWeOdEfiMlDKDKFWt8YDGCu1bEt8WA0YGFLw3PH576Lt6/xTSjxOfqDolbhFmKu20wouhnGjjEc64DA/S3aQLAb4BjsdBMPIwDn8DgHLKNrrN2QI0npd5SW3Gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ASl02YyT; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5d3d14336f0so502507a12.3;
-        Thu, 02 Jan 2025 12:59:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735851548; x=1736456348; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+y73nUcbBkfcVEEE7f2hhwMMuuJMYtvWJsQ+Bwiwlis=;
-        b=ASl02YyTR8r7Owxw5p8Ao5Bk2jV0FOktRThMBcKBWgk/qihlKxUum8nsYsff5twPul
-         eb47mEAA5lRfCVPj5QOlGkkiLx1aq84W1FUUKksqmqFM3hxIWQPZkpf49+WBNklp8Wwb
-         dZOb+5nqoLV063YwxCp2dssLRaBA+Jp4lDiu7PlbcuOL5AI+N7EgN9WcrDVydm0d+BOm
-         cCM9akxlW5jTg33uBKA58Dog8llTwQ/upzXw0Bfznx7N7UPt7cSA4JJ3khHO3UEeJ+0E
-         7kITtt461IJsa6ope4dBN4So1QCmB4nW+NLS6uwpENnhYTohfJCtBMogiQIVYLQ7l/EQ
-         H6fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735851548; x=1736456348;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+y73nUcbBkfcVEEE7f2hhwMMuuJMYtvWJsQ+Bwiwlis=;
-        b=MZ306jtyazVTdijdrJ0UrT/ZxTUKYxAkuHZPlO2AqvKCBORsEOiEEa3IyaZVno0QIb
-         RqoMLhxVLW0E94oLssnZtIVVMJwcvari64EJJdixbF8tRQDt6x30eXowP4JcKkqCBbv7
-         kuOcQidJ33reu12zlC0WYfan4qAXS2oDhvH2b8ipXGMIkhpCTWJu6oopaO9sVApAQo1D
-         kwtQ9d5NHI5h2ZpQOv/wpVc5r7Tx0khC+a5x5vrD/xaJ/sYQr7BvZaPXDXk2r3e4eUVf
-         MG7Qesyg2ZSUVWqGv5DYYaHkx5K4I/EOORAk3+MNYTeGf460qwfMCyO/slZ4XEbMS2tA
-         5yAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCURce6Kp9ZFDiYh3IsJlo9I2nvipd+SD/Er/mH6MSJSTa6r0PiexXswrtrVbyznvoc/sk2eXvdihO9e@vger.kernel.org, AJvYcCWFfrh/JcwgeUdcGsSwCFY0pIlpVqO66AuLLxB7wTpvNptrRIyMCucP4ZrE1nyVu2dgG1EJR7p4lJKm+JxC@vger.kernel.org, AJvYcCWk2HHaFFczj1jnMrgYikfAvolINQD7eRqFWWB166ishkF7u7QhlVOQg4/nCel3Yu0js0JKjfkBInSixy6qjAXRl5k=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhOPnQftt+cSJxG9Iuc4GC+fyAfeNTIkAL7EUgjBWk8aJdNt7h
-	lYL3aNNANz2B7ydA+R8YGa2P/Kh2CEcrKTfU9dhRFyFjLv+0hmUU
-X-Gm-Gg: ASbGnctlBZw3+Y+EF4Xy8wjeHlrm6Yqr+CumxyN0hQOFwlnulHrYHjmgcwpab1so6vr
-	2LR7ggn9k7tHzMUBoBag06QrRs7As/EhOMTs+GqmpCiV+an6xjSC70lDnfgBcqlduILqJsHAmBT
-	yeXhjClnnZcjuSvcyrzWcHYrblEMN93cEyRhAlqb8Fkb0DO2+Z59Tr/2DQ1Lp5FCVUEoAediWwK
-	sSShReA2+PKOirb0puNISAcSixRgNyfgN5e1pqBrkCuKOtL+5ABXjoUWX9d4oUwe5OG5aQGs80j
-	HGbFFejh7gQ=
-X-Google-Smtp-Source: AGHT+IEqlGR7cLKfiAb4iCKtSruswOwU1yNrvzRiMPDUKtmOOlw4jmo4JyXYCEib8UgWqzIe5UpKDQ==
-X-Received: by 2002:a05:6402:518f:b0:5d0:b51c:8478 with SMTP id 4fb4d7f45d1cf-5d81dd7f300mr40558577a12.12.1735851547982;
-        Thu, 02 Jan 2025 12:59:07 -0800 (PST)
-Received: from ivaylo-T580.. (85-118-76-61.mtel.net. [85.118.76.61])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80676f397sm19231026a12.22.2025.01.02.12.59.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jan 2025 12:59:07 -0800 (PST)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Jaehoon Chung <jh80.chung@samsung.com>
-Cc: linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 5/5] arm64: dts: exynos: exynos8895-dreamlte: enable support for microSD storage
-Date: Thu,  2 Jan 2025 22:58:46 +0200
-Message-ID: <20250102205846.223955-6-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250102205846.223955-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20250102205846.223955-1-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1735851568; c=relaxed/simple;
+	bh=x1wt2ruZc6TJ0Hf0LZHvtfDHq3OOUXDBkPjsYcgAWUE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YOJuPq47HcCWj95wNx6hFsXoLil9G5uX85VbD29auHn/BEg9uW3brqYjSm6tzYdxcayNoocIX10gLu9t+PyFVyeYCj4H3bKlU8bzqMJTRQWMEFi1Mnpo0BOW2A4N4fptYwm4UYJmHK2klV45mYiej3L+2DORjm5gZy+Anawq1wY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N3Y1FERP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8833C4CED0;
+	Thu,  2 Jan 2025 20:59:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735851565;
+	bh=x1wt2ruZc6TJ0Hf0LZHvtfDHq3OOUXDBkPjsYcgAWUE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=N3Y1FERPQtdFML7aRTmEnEOe9D5SvWbWyZ0BXr8xiiEpuCRlCnh7etYVo4I7MO6oD
+	 XVAmNJBcUidF1JmiastIUs7/RC9FHD1HC9FIGWsum4Mg8ZKq3PznQWnIdHz0XKl8XG
+	 AMMbeFvWqAPrj3K2Fm30zwptmXT+C1SAwsG1tAW3IUmeW/r3fpJfhpI50l4beWB3/r
+	 i0FzKQWJM0ZUZrH3N3vDEyTDvlpHcJ7Jgf4+fQYcVE6xfNOPoFRD801z5G8kaeDZoU
+	 KhYH8k9vgoYjHmKiPlFiZs0m4C8b7/6Inb3aPX+BMo3bI4zDDlYTX13+FrPo3a297k
+	 voLrlWXbDYTtA==
+Message-ID: <459cfaff-4f3b-46ac-9b4e-b794cb3968d4@kernel.org>
+Date: Thu, 2 Jan 2025 21:59:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add NetCube Systems
+ Austria name
+To: Lukas Schmid <lukas.schmid@netcube.li>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <32b5c286-9457-4b93-a93f-c8aff356ec10@kernel.org>
+ <20250102175006.3675-1-lukas.schmid@netcube.li>
+ <20250102175006.3675-2-lukas.schmid@netcube.li>
+ <478a6364-0537-453a-881f-c460de2f67a8@kernel.org>
+ <c025818214942560a291f8c53108503a@netcube.li>
+ <7bcb73f5-26ae-4bdd-9bb4-afc1c5b9fc0d@kernel.org>
+ <26cbf302f615bec3ed6496f04425edc7@netcube.li>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <26cbf302f615bec3ed6496f04425edc7@netcube.li>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enable MMC for the Samsung Galaxy S8, used as external microSD card
-storage. Since the main PMIC is currently not supported, assume the
-required regulators are enabled by the previous bootloader.
+On 02/01/2025 19:48, Lukas Schmid wrote:
+> Am 2025-01-02 19:31, schrieb Krzysztof Kozlowski:
+>> On 02/01/2025 19:24, Lukas Schmid wrote:
+>>> Am 2025-01-02 18:57, schrieb Krzysztof Kozlowski:
+>>>> On 02/01/2025 18:49, Lukas Schmid wrote:
+>>>>> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>>>
+>>>> You did not read really the messages we gave you...
+>>>>
+>>>> 1. Read what I wrote in my first reply for v1. I gave detailed
+>>>> instruction to avoid the exact mistake you now did.
+>>>>
+>>>> 2. Read again Andre's reply.
+>>>>
+>>>> 3. Do not attach (thread) your patchsets to some other threads
+>>>> (unrelated or older versions). This buries them deep in the mailbox 
+>>>> and
+>>>> might interfere with applying entire sets.
+>>>>
+>>>> 4. Next version, with proper cover letter, is after 24h, so you have
+>>>> some time to digest the feedback.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>> Hi,
+>>>
+>>> Thank you for your feedback, and I sincerely apologize for the 
+>>> mistakes
+>>> in my submission process.
+>>>
+>>> I did read Andre's reply and your feedback on v1, but unfortunately, I
+>>> had already sent the v2 series as a reply before fully understanding 
+>>> all
+>>> the recommendations. I realize now that this was a misstep and caused
+>>> confusion.
+>>>
+>>> I will wait until tomorrow, around 20:00, to send the v3 series. I 
+>>> will
+>>> make sure to include a proper cover letter and ensure that all the
+>>> feedback from v1 and v2 is addressed.
+>>>
+>>> Regarding the v1 feedback, I thought I had incorporated all your
+>>> suggestions. However, after rereading it, I seem to have missed
+>>> something critical. Could you please point out what I might have
+>>> overlooked? I want to make sure I fully understand and correct it in 
+>>> the
+>>> next iteration.
+>>>
+>> Please read my full reply for v1 of this patch. How did you implement
+>> that feedback - long instruction?
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> I assume by 'long instruction' you mean checking the devicetree using
+> 'make dtbs_check W=1'.
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- .../boot/dts/exynos/exynos8895-dreamlte.dts   | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
+There was nothing like that. Again, we talk about this patch, not other.
+You refer now to other patch.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-index 3a376ab2b..11aed89a3 100644
---- a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-@@ -16,6 +16,10 @@ / {
- 	compatible = "samsung,dreamlte", "samsung,exynos8895";
- 	chassis-type = "handset";
- 
-+	aliases {
-+		mmc0 = &mmc;
-+	};
-+
- 	chosen {
- 		#address-cells = <2>;
- 		#size-cells = <1>;
-@@ -89,12 +93,47 @@ wink-key {
- 			wakeup-source;
- 		};
- 	};
-+
-+	reg_sd_vmmc: regulator-1 {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpb1 1 GPIO_ACTIVE_HIGH>;
-+		regulator-name = "sdcard-vmmc";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+	};
- };
- 
- &oscclk {
- 	clock-frequency = <26000000>;
- };
- 
-+&mmc {
-+	assigned-clocks = <&cmu_top CLK_MOUT_CMU_FSYS1_MMC_CARD>;
-+	assigned-clock-parents = <&cmu_top CLK_FOUT_SHARED4_PLL>;
-+
-+	pinctrl-0 = <&sd2_clk &sd2_cmd &sd2_bus1 &sd2_bus4>;
-+	pinctrl-names = "default";
-+
-+	bus-width = <4>;
-+	card-detect-delay = <200>;
-+	cd-gpios = <&gpa1 5 GPIO_ACTIVE_LOW>;
-+	clock-frequency = <50000000>;
-+	disable-wp;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+
-+	/* TODO: Update once PMIC is implemented */
-+	vmmc-supply = <&reg_sd_vmmc>;
-+
-+	samsung,dw-mshc-ciu-div = <3>;
-+	samsung,dw-mshc-ddr-timing = <1 2>;
-+	samsung,dw-mshc-sdr-timing = <0 3>;
-+
-+	status = "okay";
-+};
-+
- &pinctrl_alive {
- 	key_power: key-power-pins {
- 		samsung,pins = "gpa2-4";
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
