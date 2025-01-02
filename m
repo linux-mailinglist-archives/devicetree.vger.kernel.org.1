@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-135030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB79D9FF808
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F899FF80B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:29:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 254D31881E05
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:29:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA7961882E4D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F9E31AC88B;
-	Thu,  2 Jan 2025 10:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442D91ABEC1;
+	Thu,  2 Jan 2025 10:29:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Mju+9lfl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lnDjH4e4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8827F18FC8F;
-	Thu,  2 Jan 2025 10:29:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642681A2C04;
+	Thu,  2 Jan 2025 10:29:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735813754; cv=none; b=AbX2WJ1mBWiuYL4sBOujVuxHXVdw0zMKARmDbqMYBBSv2dtZuyzg4iOSWahTNJxcufUX2XGatfymKxFSEOcGEAR74RwrOlDjVcxGPoP3oVZshP1U02uiWf9YxKk908ke/qr6uqxADQ+g9My+ANNCaxFmojT/XJj9KjUIixZlmU8=
+	t=1735813766; cv=none; b=IQ+CT5fZm2eLgRvk7CJ4WgN2iqENxbM69vOISlhacGI9Rd+YJmuZ+Z0kErDOzADM8e6VNWGt1SuqA9o3Eg4qOhPv6ZxmEyM2LY8RUWeTpGOroOP9SVZhnt9MmNdhHjANG1Kh0ZwHPGuL7o8zLOE+rGTWVu4MRd37Zvj4h4oh8oo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735813754; c=relaxed/simple;
-	bh=rV+GbHwNxDjBU9RFByTLjmhrzv4cFey4s9t6DSF5520=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=p7r4Osfg63xqO3vFuGh129Sax+xuyPaE7CuxnERQA8V7gI4TkgiLmmtsEKrnesD19q8ADVxdD+ZAI0jaotgpv0C7k/gALLWNh+xOKgh16JMGSvQZ+pm4cuf99Ic8GyipvzOpzBm15w52Q6vXZSPtOdr3S72Da3nRjklmBosapKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Mju+9lfl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5024D4Ge031425;
-	Thu, 2 Jan 2025 10:29:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	g4APIvTeZywppftz7Aj+X4HSlzNOXiTdcpFnY81F0w0=; b=Mju+9lflaDc7iX4v
-	67Ri0u/4r/BxPDWi6f1fH7YcKgsI5AKbQjYZImzoaCAS2T0dAOwf/WKvk5H6Jpt5
-	DVSyWI9gO8fA+DJAdryUEXhHdJyttsOJKZl1Pm9gXso5LnFEJWXUDBnpsyOXDK2V
-	SLvX0LICAzcKjJXKfZVBo/DTtDeL3EeoFEmkWEfp1XL5eXcj9pOe6z60IkeBVgZU
-	EFDY7R0sb/Yi/h/mVvOSnmrxXxRQGSWuejzyXwA+60JokYWaHxqdhM2IJfeWqjkd
-	Vc564uwyEkBip+PVtl/clHnsiLSDYVSI2g5ohamKVpBQPtYxzDr9+5ZBsbH9VvJM
-	mjTgBA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43wkjt8p2c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Jan 2025 10:29:00 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 502ASxH7015792
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 2 Jan 2025 10:28:59 GMT
-Received: from [10.216.23.18] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 2 Jan 2025
- 02:28:52 -0800
-Message-ID: <c16aeecd-8321-4df2-9db5-e9d5117200da@quicinc.com>
-Date: Thu, 2 Jan 2025 15:58:49 +0530
+	s=arc-20240116; t=1735813766; c=relaxed/simple;
+	bh=Ui5Ax6l8RhcBEr+KDx7Y4gphne3ZIzmcVAcKme4QbaQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XLNkGTrCx8jr498rvWh7dpwVwvA4LerlsI3lLI/MtCFS0LtedypelPilAVuJN+1gdtSFVQB7EYtuqrQ0YwLfTsxTs2FrpiqKF7nbk0LESgF+Y8PMjLiXqoRbP54PecylPIXJ8o5CtroEfBVfM5+EUxIFRYgenh6hyM4QtEY5i/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lnDjH4e4; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1735813762;
+	bh=Ui5Ax6l8RhcBEr+KDx7Y4gphne3ZIzmcVAcKme4QbaQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lnDjH4e49m8sL1pxJma4tV+WV36PeaCESERSgKFzZ3vdQMEN9zzML5rdbDRyg/eST
+	 9ct3oa0EUyVQDfdp/Q1IG7Q+gngQiatZsaNQAsMuFgoRUwXZzpmvVjEC6g4h0UJ7Mx
+	 hNlu7cbv9eNvpih8yHi1beLLwFKTpLdCcTx4sJ3j8zrqS0qnKvQxkk/B4CfGFf3dEA
+	 mft19HRNPjMgfjG/bx8NYctNzd9hv5poQEcZ10r1Hu3xBYcy9TaWhrDCwcBWzo1Jfr
+	 fIaiQqKA5HJn5O+FNi9pivNFs75XYXnB6kQBwAwhffXZvNNIjWcKioR0uMAtpdmLXS
+	 y+mBUYcmX+j5Q==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A4B8317E1554;
+	Thu,  2 Jan 2025 11:29:21 +0100 (CET)
+Message-ID: <5a4db8a5-82fa-4feb-bc2e-c78d9e1c88e2@collabora.com>
+Date: Thu, 2 Jan 2025 11:29:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,107 +57,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/6] dt-bindings: opp: Add v2-qcom-adreno vendor
- bindings
-To: Konrad Dybcio <konradybcio@gmail.com>,
-        "Rob Herring (Arm)"
-	<robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        <devicetree@vger.kernel.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Simona Vetter <simona@ffwll.ch>, Sean Paul
-	<sean@poorly.run>,
-        <freedreno@lists.freedesktop.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>, <linux-pm@vger.kernel.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linux-arm-msm@vger.kernel.org>, "Stephen
- Boyd" <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "David Airlie" <airlied@gmail.com>
-References: <20241231-gpu-acd-v3-0-3ba73660e9ca@quicinc.com>
- <20241231-gpu-acd-v3-4-3ba73660e9ca@quicinc.com>
- <173559754709.2660868.7488137827927170444.robh@kernel.org>
- <a0fc7b6c-e68d-42a7-aff4-a11c88495f67@gmail.com>
+Subject: Re: [PATCH 0/3] mt6779-keypad: fix compatibles and add to mt8516
+To: Val Packett <val@packett.cool>
+Cc: Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Fabien Parent <fparent@baylibre.com>,
+ Alexandre Mergnat <amergnat@baylibre.com>,
+ Amjad Ouled-Ameur <aouledameur@baylibre.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20241225192631.25017-1-val@packett.cool>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <a0fc7b6c-e68d-42a7-aff4-a11c88495f67@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20241225192631.25017-1-val@packett.cool>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hX9BJLSvBDufzPZs1YUPaperp425gr50
-X-Proofpoint-ORIG-GUID: hX9BJLSvBDufzPZs1YUPaperp425gr50
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- clxscore=1011 mlxscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=999
- impostorscore=0 adultscore=0 phishscore=0 spamscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501020090
 
-On 12/31/2024 3:09 PM, Konrad Dybcio wrote:
-> On 30.12.2024 11:25 PM, Rob Herring (Arm) wrote:
->>
->> On Tue, 31 Dec 2024 02:41:05 +0530, Akhil P Oommen wrote:
->>> Add a new schema which extends opp-v2 to support a new vendor specific
->>> property required for Adreno GPUs found in Qualcomm's SoCs. The new
->>> property called "qcom,opp-acd-level" carries a u32 value recommended
->>> for each opp needs to be shared to GMU during runtime.
->>>
->>> Also, update MAINTAINERS file include the new opp-v2-qcom-adreno.yaml.
->>>
->>> Cc: Rob Clark <robdclark@gmail.com>
->>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->>> ---
->>>  .../bindings/opp/opp-v2-qcom-adreno.yaml           | 97 ++++++++++++++++++++++
->>>  MAINTAINERS                                        |  1 +
->>>  2 files changed, 98 insertions(+)
->>>
->>
->> My bot found errors running 'make dt_binding_check' on your patch:
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml: ignoring, error parsing file
->> Traceback (most recent call last):
->>   File "/usr/bin/yamllint", line 33, in <module>
->>     sys.exit(load_entry_point('yamllint==1.29.0', 'console_scripts', 'yamllint')())
->>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
->>   File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 228, in run
->>     prob_level = show_problems(problems, file, args_format=args.format,
+Il 25/12/24 20:26, Val Packett ha scritto:
+> The mt8516 patch was previously sent in another series but rejected due
+> to not using an mt8516 specific compatible - which the other usages
+> of this driver (mt8183 and mt8365) weren't doing either.
 > 
-> You need to shift the closing '}':
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
-> index b7874f43aaf6..46fbffaf0a61 100644
-> --- a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
-> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
-> @@ -93,5 +93,4 @@ examples:
->              opp-peak-kBps = <2136719>;
->              /* Intentionally left out qcom,opp-acd-level property here */
->          };
-> -
-> -};
-> +    };
+> It's only fair to add the SoC-specific compatibles to all of them then :)
 > 
 
-Thanks. Will update.
+Nice!!
 
--Akhil
+Whole series is
 
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> Val Packett (3):
+>    dt-bindings: mediatek,mt6779-keypad: add more compatibles
+>    arm64: dts: mediatek: add per-SoC compatibles for keypad nodes
+>    arm64: dts: mediatek: mt8516: add keypad node
 > 
-> Konrad
+>   .../bindings/input/mediatek,mt6779-keypad.yaml        |  3 +++
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi              |  3 ++-
+>   arch/arm64/boot/dts/mediatek/mt8365.dtsi              |  3 ++-
+>   arch/arm64/boot/dts/mediatek/mt8516.dtsi              | 11 +++++++++++
+>   4 files changed, 18 insertions(+), 2 deletions(-)
+> 
 
 
