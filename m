@@ -1,109 +1,160 @@
-Return-Path: <devicetree+bounces-135019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16F929FF785
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:37:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C69E9FF78D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:40:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36D041882A66
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:37:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 395903A2A85
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:40:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3FE195F0D;
-	Thu,  2 Jan 2025 09:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7DA19993D;
+	Thu,  2 Jan 2025 09:40:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="eOTzSmPA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gLUjKYXF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A71191F89;
-	Thu,  2 Jan 2025 09:37:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FD3B192B9D
+	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 09:40:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735810672; cv=none; b=LJoHeSHJWFBL8DYoOVRAFB/r5Oxb2GD1ppUsJFd1eS83XWzTRqrDblxRGVi+ogu0IBbeRB3Q86sLQ9/vfz22DIEAOfDl3nt4TfXZ3hNoWwwE/e+FptBdsgwIAqiu2BaEkMvmKJlFokg4sKOSOmnkqAjGDP9iKp4cZjPB7Sx66vM=
+	t=1735810841; cv=none; b=CCl9mJWapMT2Xq13+4xAIF71PMA/Q9LUp4LtfNalXz+QwwauwwbBS8nP5j0uu0eFg/PcI4pfQy+mTC6H07iegIqgkE97PNDEVAXpwbPYdAjTuDk2eNPXcfbpKckGtFwju1VOo4kRRdtVhKdrXKUSnnzWSYUsOQdfRMWCzTGBb+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735810672; c=relaxed/simple;
-	bh=7QTF50COLjNP6hFB9EvURJ6Vz51KYnSnrE1zBDblM1s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C58W50xZA3NTWjb6p/U4oyNM+mqzNiSKGWX/w0bddHyYByF1PDnBiwRj1nR0QUUMWKBw5TDLrjFVHKkw24C5UkXO6+IrMEe/k4crEqDEsj+iVwEDEPVQi+DM8ph3Qx91fbPkVCYyG0+STGm2X3AzElDupbY4PEwbdCXWDWV+E4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=eOTzSmPA; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=xxKWJv+ffT1sOqGI0qRmYKwPB2g47K0/F/JQkScz9Nk=; b=eOTzSmPA27K32Oyd1t8ucPEezk
-	MI18xWYPmWjAYwVcawWZM1ujjWN7fE4QDiOYoYT0rWx4tljBYrL5F9jA9lak9uyGkDTT7JkZwvrti
-	uHynHpcIUQirSPR0U3awS3NSqZSaTOfycrT5GHEJT/kJtED4MH9w6dqxMbWnGvFi8fFxpLTWe4eHW
-	erPx0LA2xZbL+WhpCb8JLwR5N9GKcvl4ZCx7wfqpEUJrDmJgLRzBxeuoqfxpe23NjcyQZGo0Qbse3
-	jV8Ya4xDeklc1kQuKb7EpaNTSlAgcwBgyez76a9vdMxYz0qtTdI0uj88KW3kMLG8IPe7EczuNZR6l
-	BJRoRzqQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36588)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tTHe2-0001p5-2X;
-	Thu, 02 Jan 2025 09:37:34 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tTHdz-00009o-2T;
-	Thu, 02 Jan 2025 09:37:31 +0000
-Date: Thu, 2 Jan 2025 09:37:31 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	jacob.e.keller@intel.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, robert.marko@sartura.hr
-Subject: Re: [PATCH net-next v4 0/9] net: lan969x: add RGMII support
-Message-ID: <Z3ZeW_N5bZkRAQ_L@shell.armlinux.org.uk>
-References: <20241213-sparx5-lan969x-switch-driver-4-v4-0-d1a72c9c4714@microchip.com>
- <20241218143354.eh6iinemupxncblj@DEN-DL-M70577>
+	s=arc-20240116; t=1735810841; c=relaxed/simple;
+	bh=c62rokAxa7lt3ak5B6yxvE6j4P7LwpjOFp0oIonMUxE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=glpAXd1TjtFbgsRyx64YJjjAYlp/lYLSyt0Kr2N+IfBkqRHDVftpjs1nPEplzanZtYdioz2Et1UiSbDXtyAAWGOQFNEBn2nEg7x17qls7Tlmeczbl1M0/boijs+tZ3WBXHTHFhRbqrlkx8ryAcBbr9aW8wShDJE/cWWsSApJ3oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gLUjKYXF; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-385df53e559so8772419f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 01:40:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735810838; x=1736415638; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vBrc7EuOMXY8yTx/TbXVRV+IK2Cs6RWnPvid7BqXfWc=;
+        b=gLUjKYXF9YCoWRHR4iC91wBlO4HP5ZpCOB4PH6B/KFWuzT2o5nK18YZ79DKlrrfYtA
+         EKGaQMVmi/siGZoNBqFkcCtptxSwkhMLPh3Iiy9mk/+L+vmI56uMNqVoar60du0JzxB7
+         1LMmZ0jc60ED4cmUDZkYogljmwqv66sCJumicBoCYCDTNJIlGEQKJBhBqA3cW+LV29az
+         iDsBEuKi0x0X9KgNT+PIfiHkFdctLwpY/0NHx9qC2EVALiHVNkVhl6XbhywwQgd+bppn
+         PuxhGLKaVJ0mKmSQLICWLRenddA5TWhYQWpfNpiH/FTLVFSQ/oZZH3rQBNoqmWDP0wHf
+         JtFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735810838; x=1736415638;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vBrc7EuOMXY8yTx/TbXVRV+IK2Cs6RWnPvid7BqXfWc=;
+        b=tmIZS3zWtsbygzMCBD8xZCttDv/e0sfwBW824H57+PVYj2O0F6U4MZc95SyjLjueVf
+         tnoQoKJNAE4npmxFa+rZYv7RgcRGF1pZZglPLGxee6i2BkWzVvIKV2OWrUaKpgs3XtMH
+         nVSbU2ZvWVpFrFr4Jit7Jl1+J4/ErGIM7I+P1reHa8VEt7GTE5uCNrEy2NZCswa8G/xp
+         6UW6MR+ncceRRh2Uj72nEL2kn7Cgy9d7S8MldXcp1JL967Y2Q0sAQokxfHrwsOb5k4rx
+         scUYI3Vjjv6O9Yo68ERGgOqTxk3ZLkW9HI8U4v4TwRGMTksIzBTDNv1w9VTh1xDjQDre
+         wR2w==
+X-Gm-Message-State: AOJu0YwWpwQAQRhj+XEnKpnsSQtiSbUdJTjFZ18ix99nIMBIwx0TxQGc
+	pnMLerLexkLW3UmTyS596Nh9RA+f3JlkYfTOmWgGvg2d967nNze9HEOyFkpNAI0=
+X-Gm-Gg: ASbGncu/gBgvgRO08qU8Thl/XWWqBLpXqXcELPjJFzDQd+eBJxlshQZpcP0WPFDOSAJ
+	AoKxJCtHua+avOeS5QRHHhpIU9FerifcqPFAgaenk+VuoGQDFsq9uhnaN0nOZBd+GTcGpMoqjLR
+	FzMCRF9N4+7K/RB9nSd0IyAIhhdlp9UpBKDP/lWrqSN1WIFvQClWblcUWx3lW40qaDHkoeXJbCZ
+	iPlrn5S12uM8mZK/Ueb4rBltKBXB23Vr+Zm6tdBwtqt+o011Si5gOivFiW+uczIA4yLvFHXcg/i
+	XfgAxi1mA1v7QyGNqa1Pbyg820FcftCCVw==
+X-Google-Smtp-Source: AGHT+IFyQxq7+SLmgC3lEOJrijlLY/blJUqn/3ChXyKJbxUPuO43SDrq1oyRFY0OkutfbUe85tJpHQ==
+X-Received: by 2002:a05:6000:2ae:b0:385:ed16:c97 with SMTP id ffacd0b85a97d-38a224088aemr34478674f8f.49.1735810837548;
+        Thu, 02 Jan 2025 01:40:37 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1cfa:329a:aa2e:f0be? ([2a01:e0a:982:cbb0:1cfa:329a:aa2e:f0be])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c828bd3sm37151921f8f.10.2025.01.02.01.40.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jan 2025 01:40:37 -0800 (PST)
+Message-ID: <f888d948-d79e-41a0-8844-b3a9659498c2@linaro.org>
+Date: Thu, 2 Jan 2025 10:40:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241218143354.eh6iinemupxncblj@DEN-DL-M70577>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [RFC PATCH v1 0/2] iio: adc: meson: add MPLL clock workaround for
+ GXLX
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, lars@metafoo.de,
+ robh@kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, gnstark@salutedevices.com,
+ krzk+dt@kernel.org, jic23@kernel.org
+References: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Dec 18, 2024 at 02:33:54PM +0000, Daniel Machon wrote:
-> I would like to defer the pontential removal of sparx5_port_verify_speed()
-> function to a separate series (see comments on patch 6/9).  Any chance for a
-> maintainer to give the OK for that? I would like to give this series another
-> spin before net-next closes. No changes in next version - except adding TB and
-> RB tags.
+On 31/12/2024 20:42, Martin Blumenstingl wrote:
+> Hello,
+> 
+> Amlogic GXLX SoCs seem to be mostly the same silicon as GXL. The only
+> known differences are:
+> - one less Mali-450 GPU core
+> - no VP9 codec
+> - and an odd one: the three MPLL clocks need a bit toggled in the SAR
+>    ADC register space
+> 
+> This series attempt to fix audio output (which relies on the MPLL
+> clocks) on the GXLX boards. Unfortunately all we have is a downstream
+> commit [0] without any further explanation (or anyone who wants to
+> provide details on this). Since it's not clear if this is a gate, a
+> reset or some other hardware fix: the driver side includes a warning
+> for users to update their .dtb along with kernel images in case we
+> ever figure out what these bits do and how to model them properly.
+> 
+> 
+> [0] https://github.com/khadas/linux/commit/d1d98f2ed8c83eb42af8880ed8e206aa402dd70a#diff-c5aaf54323ef93777c5083de37f933058ea8d0af79a1941e0b5a0667dc0f89b3
+> 
+> 
+> Martin Blumenstingl (2):
+>    dt-bindings: iio: adc: amlogic,meson-saradc: Add GXLX SoC compatible
+>    iio: adc: meson: add support for the GXLX SoC
+> 
+>   .../iio/adc/amlogic,meson-saradc.yaml         |  1 +
+>   drivers/iio/adc/meson_saradc.c                | 34 +++++++++++++++++++
+>   2 files changed, 35 insertions(+)
+> 
 
-There's no need to respin just to pick up tags that have been given -
-patchwork will pick those up automatically.
+LGTM
 
-I'd rather not have the current patch 6 merged, because we've had cases
-in the past where stuff has been merged with "we'll fix it later" but
-later doesn't seem to happen. We especially take this approach with new
-kernel internal API functions - we don't merge them without a user,
-because we've had too many cases where the user never appears.
-
-We're currently at -rc5, which means -rc6 this Sunday 5th, -rc7 likely
-next Sunday 12th, and probably the merge window opening on the 19th.
-I think there's enough time for sparx5_port_verify_speed() to be
-dropped during that window.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
