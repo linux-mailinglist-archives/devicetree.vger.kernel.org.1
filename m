@@ -1,132 +1,98 @@
-Return-Path: <devicetree+bounces-135175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 992809FFFA3
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:47:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 103369FFF9F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:47:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AD7A3A3774
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:47:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46C411883A09
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 852901BD00A;
-	Thu,  2 Jan 2025 19:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848F81B982E;
+	Thu,  2 Jan 2025 19:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jASbJtqr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B5E91B6D10;
-	Thu,  2 Jan 2025 19:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9826735959;
+	Thu,  2 Jan 2025 19:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735847184; cv=none; b=Wn/hFQ/V9iSgYMCJXw8ks6TgOscgW/OSH+G2dU4ZtDTOHNAaGrZ+l0GNJPj03nRIx0QYTN8ulgGEuaw8rv5CT8N5SaMGuEwdqmph5QF9m5qbH8EkqjWUYhX0r6hrj+5yTC5KWNFYr2gi+6Ocjqdq5zY9CaEgGuymb/qBUdCoO+c=
+	t=1735847177; cv=none; b=PzWg30wIU7hCzSWFzQ4+BXgr5l2i2l8wAMA5LCS2JvaBbH44sC2zjGGGylh6Dael/Cr/p7kRhYhhX4OIWoqxd243LnEQMa/CyyczHktq8bb8JsOR6bngGfmz2GaKy+LmH+dMJNjjZg7aT/O++Jr/Zi/Ukw3thT/oUu8DBEKoEwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735847184; c=relaxed/simple;
-	bh=pOEOea82TopSf3dNQC9jbRfNoNLLR19d66P074GGvD4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GvV1BBH5Q/gjxZWhlRGM3/EJPLdq+xs6N9gknZ4VvewNq6E1dW5s2pV2tTz7h8HOedDZZxkyMyG/naHqXm4WH1nlmCbaHlwga9sd2WCgWZlJwZi8Hxq1vRxcAnOeDcvDvOnrv22XyCNtLLurSTE+K7DRthTgFFrVU4JhwY6S5m4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from hay.lan. (unknown [IPv6:2605:59c8:31de:bf00:6ecf:39ff:fe00:8375])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id CB3CFB4B32DD;
-	Thu,  2 Jan 2025 20:46:17 +0100 (CET)
-From: E Shattow <e@freeshell.de>
-To: Emil Renner Berthing <kernel@esmil.dk>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-kernel@vger.kernel.org,
-	E Shattow <e@freeshell.de>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v1 5/5] riscv: dts: starfive: jh7110-common: bootph-pre-ram hinting needed by boot loader
-Date: Thu,  2 Jan 2025 11:45:11 -0800
-Message-ID: <20250102194530.418127-6-e@freeshell.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250102194530.418127-1-e@freeshell.de>
-References: <20250102194530.418127-1-e@freeshell.de>
+	s=arc-20240116; t=1735847177; c=relaxed/simple;
+	bh=amp1CEFhaVmmxuo6v/x5I4IWHqW3oWzKuDQMVOnB5O8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sHMLO6A68N4/75qbeX3CWjo1CEkn82+rtFjGWL6b5MnqwaevN9DUZlHEMrVhRbr1ZlSYouRmGN8ED28eVQRbW75zjyncbCC6ml0Z1AYDiYsv7Ys63MTOR7DtgHokad76KKqOWhYU/M5ZN6HwHcLXpxJ5ur/nC2oWGG2z+vlu7E4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jASbJtqr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27D06C4AF09;
+	Thu,  2 Jan 2025 19:46:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735847177;
+	bh=amp1CEFhaVmmxuo6v/x5I4IWHqW3oWzKuDQMVOnB5O8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=jASbJtqrpq3wZ39VleyGGB7kavwD/fJMhO2UQBKowrcFBIS38Tj/5JiU9RIele05c
+	 d5mt1Rmz1tMKB2lZiF5jADE895m7Ql3uSGs02ql6T5Vuvcadkon9hOCOloIVpmkJ/u
+	 7VscVQSb0FEhNdSd75bzrxxvnErsPeycHQ2P02vEDGHBFAqt6uMzuzm2karMIqd5XJ
+	 suHxf4xdzQ9vIOedy9FzTHXm0bquKKs5h/ozgYH1XcPFW7ICqA3TKACaajBQRJJ9YN
+	 l6148IdBYsqUMU2dUOA0lZgR9r3t9fuau2LhPPKPNS2wiFrBNvXGLu589/6nCd4Ymq
+	 sxHHkKTzkW55g==
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e5447fae695so5302959276.2;
+        Thu, 02 Jan 2025 11:46:17 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW5QPjyct2odN39oy8d6z+0TqYzJScWi7ALx7szQPQxjXg7GCCDdZdPaVdQlq++/h7JR0XXYjPkbdv7@vger.kernel.org, AJvYcCWMKsmSo6KKyw7UKVasCo2GdeTkSgT72Y4pt5VjUnfIqKRCVTalLcn2Ewdf8tVdjmfpNn2BU6MUVC3pZ9Oq@vger.kernel.org, AJvYcCXWo2WAUfLZZFxO8FI3AuzW8Faj/NG8mYMFnTRtS2toY4UMbgU2hz8iGLqeMAACkfZh5rdtDDYXrcnv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAxaBwCtEqu3PZ2JYopTRfDHEgeTjRM3xvrN3JXRbuk9do6+Zn
+	QlFxd/gz25RwzTWsUPpF+FPVLDrgOTfiWCwZ5L8YvJYr0G92kDt3VjBNliyrgcekSbAZoQeb5BN
+	w+0FQK2EmPuOSdh/Z6EY/EMBoKw==
+X-Google-Smtp-Source: AGHT+IHJkV6/Tz0b+/BQUDZk6POaQoSuO0IHC+p3oeSsJZMQ51uLdt7IApHJfEWtHbNKSAJno7pQz5oonaXJyVTLq/M=
+X-Received: by 2002:a05:690c:d88:b0:6ef:5c57:931 with SMTP id
+ 00721157ae682-6f3f81029femr273206797b3.10.1735847176306; Thu, 02 Jan 2025
+ 11:46:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241109094623.37518-1-linux@fw-web.de> <20241109094623.37518-2-linux@fw-web.de>
+ <20241111203611.GB1887580-robh@kernel.org> <trinity-796b046d-1857-413e-bb82-78e700d6b5ac-1733138371404@msvc-mesg-gmx005>
+ <trinity-a84b41b3-79c5-49b5-9786-eb89f85578cc-1735843472332@trinity-msg-rest-gmx-gmx-live-548599f845-gxsb9>
+In-Reply-To: <trinity-a84b41b3-79c5-49b5-9786-eb89f85578cc-1735843472332@trinity-msg-rest-gmx-gmx-live-548599f845-gxsb9>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 2 Jan 2025 13:46:05 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+PEdH1b-aoN2nFJMRz--abXPqZ=sftPnhYKWpj0VjroQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+PEdH1b-aoN2nFJMRz--abXPqZ=sftPnhYKWpj0VjroQ@mail.gmail.com>
+Subject: Re: Aw: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf conditional failed
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: linux@fw-web.de, dlemoal@kernel.org, cassel@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, 
+	sebastian.hesselbarth@gmail.com, linux@armlinux.org.uk, hdegoede@redhat.com, 
+	axboe@kernel.dk, linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-  Add bootph-pre-ram hinting to jh7110-common.dtsi:
-  - i2c5_pins and i2c-pins subnode for connection to eeprom
-  - eeprom node
-  - qspi flash configuration subnode
-  - memory node
-  - uart0 for serial console
+On Thu, Jan 2, 2025 at 12:44=E2=80=AFPM Frank Wunderlich
+<frank-w@public-files.de> wrote:
+>
+> is there any new state here? got no answer for my last 2 Messages
+>
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/2024110909462=
+3.37518-2-linux@fw-web.de/
+>
+> sorry for the html-entities...they came from my gmx webmailer, it is repo=
+rted multiple times, but i cannot do more here :(
 
-  With this the U-Boot SPL secondary program loader may drop such
-  overrides when using dt-rebasing with JH7110 OF_UPSTREAM board targets.
+As a maintainer, when I see any discussion or comments, I drop the
+patch from my queue. That may have happened here. It is best to resend
+if it's been more than 2 weeks. Though Marvell maintainer response
+times are often longer than that sadly.
 
-Signed-off-by: E Shattow <e@freeshell.de>
----
- arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+You haven't addressed my comment either. The subject needs work. If
+you don't like my suggestion, then come up with your own.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index ad5cb85ebc59..99de0750d049 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-@@ -28,6 +28,7 @@ chosen {
- 	memory@40000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x40000000 0x1 0x0>;
-+		bootph-pre-ram;
- 	};
- 
- 	gpio-restart {
-@@ -247,6 +248,7 @@ emmc_vdd: aldo4 {
- 	};
- 
- 	eeprom: eeprom@50 {
-+		bootph-pre-ram;
- 		compatible = "atmel,24c04";
- 		reg = <0x50>;
- 		pagesize = <16>;
-@@ -323,6 +325,7 @@ &qspi {
- 	nor_flash: flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
-+		bootph-pre-ram;
- 		cdns,read-delay = <2>;
- 		spi-max-frequency = <100000000>;
- 		cdns,tshsl-ns = <1>;
-@@ -406,6 +409,7 @@ GPOEN_SYS_I2C2_DATA,
- 	};
- 
- 	i2c5_pins: i2c5-0 {
-+		bootph-pre-ram;
- 		i2c-pins {
- 			pinmux = <GPIOMUX(19, GPOUT_LOW,
- 					      GPOEN_SYS_I2C5_CLK,
-@@ -414,6 +418,7 @@ GPI_SYS_I2C5_CLK)>,
- 					      GPOEN_SYS_I2C5_DATA,
- 					      GPI_SYS_I2C5_DATA)>;
- 			bias-disable; /* external pull-up */
-+			bootph-pre-ram;
- 			input-enable;
- 			input-schmitt-enable;
- 		};
-@@ -642,6 +647,7 @@ GPOEN_DISABLE,
- };
- 
- &uart0 {
-+	bootph-pre-ram;
- 	clock-frequency = <24000000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pins>;
--- 
-2.45.2
-
+Rob
 
