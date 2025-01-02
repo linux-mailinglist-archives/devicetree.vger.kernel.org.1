@@ -1,109 +1,97 @@
-Return-Path: <devicetree+bounces-135169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1453E9FFF5D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:24:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 904F29FFF95
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:46:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FA6418835A9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:24:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C72DA1883AC3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:46:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504EE1B4153;
-	Thu,  2 Jan 2025 19:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BAukdNzS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70D81B4F08;
+	Thu,  2 Jan 2025 19:46:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08DD21B3949;
-	Thu,  2 Jan 2025 19:24:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB0F1B4141;
+	Thu,  2 Jan 2025 19:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735845869; cv=none; b=Tv4oIfbyBbNc8h/w4T/uX3bW2Z7OVXddG9Ee9Uhg9SHFwjb1FKSTEkCreM7bDFsa15BPAfgmgqxd1zN09+SUCsSKWn3t0XqEJGDKHkiq00A+78Vk/VV56smW2CvIfEv78KoywzaxyIY4Uh/pUmACGNPskqSz0FiiBh9NsfZFPAs=
+	t=1735847162; cv=none; b=hilNT+olo2kyEk2mVuHL1GqNuJNs0oNouNz/x8//p+cW1qTZbmgAupbFZM4rM0NuAtQMyIvs1vacrm2iucpkOwWyGGRTTPdqLPamE6IXu8zwO7ZGPH5LmAvAWB8d6NTswdAY2uTEVby9jgcVVBmZuXSCYZUhkTdt96RhxZBC9Xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735845869; c=relaxed/simple;
-	bh=Ez864lXQjB4pFQBnErnw1xElbeoHOIbIStMJ6TWIezw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=bYxCJ6dzGfrqLDQ7J9+2/BN4cJZWSSDb0X+iLnLjQDQiB7GnYiEZZAgj3iC3M5IPWyIc60I5RKSnFFB4Ii7yuUTZR6CYHzuIjmWUqjh6yKlReKLymccos2k4HJ984PEEDYTpwYe0hWzIqyJCW1+vP6D58La0Iw+blpNa7VlkQdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BAukdNzS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 397E4C4CED0;
-	Thu,  2 Jan 2025 19:24:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735845868;
-	bh=Ez864lXQjB4pFQBnErnw1xElbeoHOIbIStMJ6TWIezw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=BAukdNzSs+Ox1H0ftuIrawJ22DnQ6h0sIYQSouDT44tgoP3SHUcRDW2mVAqSGeiIl
-	 /l9rKpeIoyiA6kKRrtFFtxSj51tQsM1uHstLkJ5qu5lDz1WyVBB9uc4jLNxa2H7wxx
-	 sbGEWCtUeGkRGF9hjTTXxWxzHJSary2H8QPRaAgymorZgPoeW6zTjDTO89yBdw/DAU
-	 86g1tJZ719qDtljkt5uJU/LYydEw4g4jsk3bMK4G27ykcdo13qSLsohup4aY57PdBF
-	 OwyTs0+r5d+qtcfvafXK3tUL8ZunSn0f7lrOh+MAhZcLeFxs8EpnMZ523dGAo7Wd3D
-	 AsyvaE04cJ65Q==
-Date: Thu, 02 Jan 2025 13:24:26 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1735847162; c=relaxed/simple;
+	bh=k5zemtKb9cqTfoEwHPm3n/xJjZu9qtoiUaaLZMS5lXU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=mWryBCU5fhU5pq1ElzKOQmD+ba+9CnDvdRLWkHYPZ8ZGfRn5IWWPkvlljbPDB2166MuTzj5uUL2x2j6g1AtCqxmWElaKLEpV7yf8jJUDu1eLL8iTIiuDtnfSe0WloLGA7LMidey14XgdASp+2QkFMLo7OPoy1HQ0MzC1q1Ob7iM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from hay.lan. (unknown [IPv6:2605:59c8:31de:bf00:6ecf:39ff:fe00:8375])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id A104BB4B2B73;
+	Thu,  2 Jan 2025 20:45:54 +0100 (CET)
+From: E Shattow <e@freeshell.de>
+To: Emil Renner Berthing <kernel@esmil.dk>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-kernel@vger.kernel.org,
+	E Shattow <e@freeshell.de>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace syscrg clock assignments
+Date: Thu,  2 Jan 2025 11:45:07 -0800
+Message-ID: <20250102194530.418127-2-e@freeshell.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250102194530.418127-1-e@freeshell.de>
+References: <20250102194530.418127-1-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, 
- linux-kernel@vger.kernel.org
-To: Peter Korsgaard <peter@korsgaard.com>
-In-Reply-To: <20250102175041.822977-1-peter@korsgaard.com>
-References: <20250102175041.822977-1-peter@korsgaard.com>
-Message-Id: <173584586623.427850.4042944653628496064.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
- property
+Content-Transfer-Encoding: 8bit
 
+Replace syscrg assignments of clocks, clock parents, and rates, for
+compatibility with downstream boot loader SPL secondary program
+loader.
 
-On Thu, 02 Jan 2025 18:50:40 +0100, Peter Korsgaard wrote:
-> The pwm-fan driver uses full PWM (255) duty cycle at startup, which may not
-> always be desirable because of noise or power consumption peaks, so add an
-> optional "default-pwm" property that can be used to specify a custom default
-> PWM duty cycle.
-> 
-> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
-> ---
->  Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+Signed-off-by: E Shattow <e@freeshell.de>
+---
+ arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml: default-pwm: missing type definition
-Error: Documentation/devicetree/bindings/hwmon/pwm-fan.example.dts:75.25-27 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/hwmon/pwm-fan.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250102175041.822977-1-peter@korsgaard.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+index 48fb5091b817..55c6743100a7 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+@@ -359,9 +359,15 @@ spi_dev0: spi@0 {
+ };
+ 
+ &syscrg {
+-	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>,
+-			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+-	assigned-clock-rates = <500000000>, <1500000000>;
++	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
++			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
++			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
++			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
++	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
++				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
++				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
++				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
++	assigned-clock-rates = <0>, <0>, <0>, <0>;
+ };
+ 
+ &sysgpio {
+-- 
+2.45.2
 
 
