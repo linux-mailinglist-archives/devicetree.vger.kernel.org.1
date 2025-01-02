@@ -1,162 +1,113 @@
-Return-Path: <devicetree+bounces-135067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B4F9FF9B5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 14:16:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C11A89FF9D0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 14:26:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B3591883808
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 13:16:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FA947A10F9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 13:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058D11925AF;
-	Thu,  2 Jan 2025 13:16:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548931AC43A;
+	Thu,  2 Jan 2025 13:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="gRT8wAz8"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="vd8P5m5O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65AD64689;
-	Thu,  2 Jan 2025 13:16:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE767DA9C
+	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 13:25:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735823801; cv=none; b=VdqitmlqSYo4n69XtbzIdJJ4PMbnkbjg4GRSVCTQQNMATyO9K9nP+WAhjU+POOEss+hsVLyDMawH7+WmkwSWy+FOLa8aimJ0r2jcF8dq89Ij0Z9PYmRULkNdUaKn2yI9D+b9gkvT+m2YJt2HndVCWcypBavnfI3oHX5o6Quo9HM=
+	t=1735824354; cv=none; b=eREAI8xAqMwLFJ6h3cDpgCuxrA6d8g7mAz5P1ZTItQ0X+qY7+e6GeHXM62QHBRAEpAddXlyCPrjo/y5F9nTHRuxhSDUPwAkhgBlXP2kzvzGMSWa10gk4mPk4YSCHPmbYxb2CquQ5aDrCTW1scZXPe4OgaE2TvwvVJxDTUfewe+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735823801; c=relaxed/simple;
-	bh=GG6D7VW5sd8El2PazlyUfirAusWPoT+77452AHeQhAw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X9a26bRXEgwJPnOJxIX5HBdfBwg6hH4xiiWp1WSmlBcFmbxn9tONKqy+Ae5IxisatlRAdikvq7QuMojmhBDWk/SQ75YxIqL3TwoYUMdCn/bncJ47Rdlmuw8NdCkP0up8SHID4v73fJD4W1q49NziSjRotuXztN4OmfpgMRNcALE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=gRT8wAz8; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BF79B22F;
-	Thu,  2 Jan 2025 14:15:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1735823750;
-	bh=GG6D7VW5sd8El2PazlyUfirAusWPoT+77452AHeQhAw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gRT8wAz8TR7vl6piGX6CDCiUanlmik07VbRId2KXLVDNNg7RF0/Yh+jD/K+B6i6df
-	 IK9MHSiGNonYPiPiDkE8qOmXEv1KIOo2dBny4B9N2Q6Q9PzjYhCvTVFcbobBaCsX7m
-	 Y0x+B7kRNU/fdukewUli/ALDpTynPugNZW/whas0=
-Date: Thu, 2 Jan 2025 15:16:38 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v12 8/8] MAINTAINERS: Add entries for Toshiba Visconti
- Video Input Interface
-Message-ID: <20250102131638.GH554@pendragon.ideasonboard.com>
-References: <20241125092146.1561901-1-yuji2.ishikawa@toshiba.co.jp>
- <20241125092146.1561901-9-yuji2.ishikawa@toshiba.co.jp>
+	s=arc-20240116; t=1735824354; c=relaxed/simple;
+	bh=YEpe1q2tQm9tdQr6988TVf8LjlUO2ANQN2ZhrsNH/c4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VutYJY73u6JpBA2XcWv5Y8Mfks87fEzv2ZWbQOm1s3EB5qzogJGeq617Q7bXeXRAILGg+ibjC+pYVdlgrWo+HzcrvNdTP78BWMeJuAGgVq0Yq/P/IVjBQiZgGv5oggK4UnLphxeYlwIWgK/GGAklmt+PEgd9VzxBqq8ThJ16KPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=vd8P5m5O; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-3003c0c43c0so131682361fa.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 05:25:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1735824351; x=1736429151; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YEpe1q2tQm9tdQr6988TVf8LjlUO2ANQN2ZhrsNH/c4=;
+        b=vd8P5m5Onfo0nSFGKy6WqpKZiOFJMgbejTkXwKSiALAeJS1cPrF5rTE71jfVSkZlsN
+         g/G4xjIBALIUQr13bOS92QtU72Cfyg1hcAYqpqagcy8EIm9hy5hLK2kmAi4j18Jq7P2n
+         b1R6L5mq/uFlSdCjOX4tbBQhLaycKQMOL0E8qyWaP8MI6gUrZro9HziP9uuHyzHVzwUb
+         +Hz8ylN6e493mFuVu5ubLwxM+UTCdonLKNiKel7bvy922mSaoKbnRqJaDYBP3FY8SAN/
+         uHTwEMPHmGUr7Bc1vJr6+T3rUJYGdILbB9Yma0PRuO1/IeJYlqJVwR65Pw44dzGIky3N
+         +myQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735824351; x=1736429151;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YEpe1q2tQm9tdQr6988TVf8LjlUO2ANQN2ZhrsNH/c4=;
+        b=nQeIDV4cj8dQqWzB3vZgFdX6pe2OveSBxxhfrZBrVeUPqTT7E29MjBi/wWDFzEnyT2
+         W6hpjHrjSRpHkG+TthB7o0kWjZvhm3G3Lk3Z0I2qWX9pVNFz4yDPXh8pv50XIQ2yclM2
+         worxcG8O+m7LgDB4h5RjRSkCbiNxWzAhyUaQOLam94G0hzzUuAeoo0/8lBioJOSnbYk3
+         SJCdGm4Fnk1XPdncOLC3SrOHD8N8T+NYUrt5Rvupf3uRjqzzQT8DnRwvcXXJHtJZQdY/
+         9tANOHmi8nYQ/ALAGuPMz18T/IgA5B46igguAf12+4ZHOz4UBcxSjHarY4F8DZrSj6su
+         vUzw==
+X-Forwarded-Encrypted: i=1; AJvYcCX/eFe9fISt+cK68AfPAoYAnOLzSqr4+oJERvIsA05IU4p/fe72xVGEqx5xmjkHVS2jCgaG5F32slzA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwP3aQeC/dkxdoif/RmnY5jjK75SiQ9Sifp2QALslyjunLd1+lr
+	qXAhd3e811mmXft3wit4FVaNmaD03FwlRl83AMhBHKMg4hPWqhUXmBwzpG/lwvt8yU3i4eGvZLg
+	X6yde/RiyG5EblMOnBuCl7/m2uJKwDjdtsqREMw==
+X-Gm-Gg: ASbGncsPu42NlzbrcHzpX0y1ysp6sPtMZnH/lKi3JPTEO4dWfhhxjvQKebOwVhjHo78
+	hLJOTwCqa2K/DuBTJdi5X/TM02Xl751JIjDBromAjODAuIN9Mk0NcGHWG6eoGQ6N6bVflBg==
+X-Google-Smtp-Source: AGHT+IEysF2mY2XiXvDTkzxGwr3UJavqG3cYQlBv96BwKn6kKflLqP0T+eeoPY8qtl3yTEuaKujkiTjcnZZzA5W/bxw=
+X-Received: by 2002:a05:6512:b0f:b0:540:20a9:9ab5 with SMTP id
+ 2adb3069b0e04-5422956bcfamr11186552e87.50.1735824350864; Thu, 02 Jan 2025
+ 05:25:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241125092146.1561901-9-yuji2.ishikawa@toshiba.co.jp>
+References: <20241231-pci-pwrctrl-slot-v2-0-6a15088ba541@linaro.org> <20241231-pci-pwrctrl-slot-v2-1-6a15088ba541@linaro.org>
+In-Reply-To: <20241231-pci-pwrctrl-slot-v2-1-6a15088ba541@linaro.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 2 Jan 2025 14:25:40 +0100
+Message-ID: <CAMRc=Me+Wq1oOSjisVY+J4KaJaRsEdgTOMfznH5yruUREEhGoA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] regulator: Guard of_regulator_bulk_get_all() with CONFIG_OF
+To: manivannan.sadhasivam@linaro.org
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Qiang Yu <quic_qianyu@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, kernel test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ishikawa-san,
-
-Thank you for the patch.
-
-On Mon, Nov 25, 2024 at 06:21:46PM +0900, Yuji Ishikawa wrote:
-> Added entries for visconti Video Input Interface driver, including;
-
-Commit messages are written using the imperative mood, as if you were
-giving orders to someone:
-
-s/Added/Add/
-
-> * device tree bindings
-> * source files
-> * documentation files
-> 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-
-I would have added the MAINTAINERS entry in 1/8 with just the DT binding
-file, and added more files in corresponding patches. That would be
-easier to review and check if entries are missing. I don't mind much
-though, so if you prefer keeping it this way:
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
+On Tue, Dec 31, 2024 at 10:44=E2=80=AFAM Manivannan Sadhasivam via B4 Relay
+<devnull+manivannan.sadhasivam.linaro.org@kernel.org> wrote:
+>
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>
+> Since the definition is in drivers/regulator/of_regulator.c and compiled
+> only if CONFIG_OF is enabled, building the consumer driver without
+> CONFIG_OF and with CONFIG_REGULATOR will result in below build error:
+>
+> ERROR: modpost: "of_regulator_bulk_get_all" [drivers/pci/pwrctrl/pci-pwrc=
+tl-slot.ko] undefined!
+>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202412181640.12Iufkvd-lkp@i=
+ntel.com/
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
-> Changelog v2:
-> - no change
-> 
-> Changelog v3:
-> - added entry for driver API documentation
-> 
-> Changelog v4:
-> - added entry for header file
-> 
-> Changelog v5:
-> - no change
-> 
-> Changelog v6:
-> - update path to VIIF driver source files
-> 
-> Changelog v7:
-> - no change
-> 
-> Changelog v8:
-> - rename bindings description file
-> 
-> Changelog v9:
-> - no change
-> 
-> Changelog v10:
-> - add a separate entry of VIIF driver
-> 
-> Changelog v11:
-> - no change
-> 
-> Changelog v12:
-> - add a bindings description of CSI2RX driver
-> 
->  MAINTAINERS | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b878ddc99f94..b5c819e94e9b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23430,6 +23430,18 @@ F:	Documentation/devicetree/bindings/media/i2c/tc358743.txt
->  F:	drivers/media/i2c/tc358743*
->  F:	include/media/i2c/tc358743.h
->  
-> +TOSHIBA VISCONTI VIIF DRIVER
-> +M:	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> +M:	Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/admin-guide/media/visconti-viif.*
-> +F:	Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml
-> +F:	Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
-> +F:	Documentation/userspace-api/media/v4l/metafmt-visconti-viif.rst
-> +F:	drivers/media/platform/toshiba/visconti/
-> +F:	include/uapi/linux/visconti_viif.h
-> +
->  TOSHIBA WMI HOTKEYS DRIVER
->  M:	Azael Avalos <coproscefalo@gmail.com>
->  L:	platform-driver-x86@vger.kernel.org
 
--- 
-Regards,
-
-Laurent Pinchart
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
