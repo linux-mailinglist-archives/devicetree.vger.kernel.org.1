@@ -1,67 +1,76 @@
-Return-Path: <devicetree+bounces-135018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C13B69FF781
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:36:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16F929FF785
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:37:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94648160F9B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:36:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36D041882A66
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C41192B8F;
-	Thu,  2 Jan 2025 09:36:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3FE195F0D;
+	Thu,  2 Jan 2025 09:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Et+cmj6f"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="eOTzSmPA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C68191F89;
-	Thu,  2 Jan 2025 09:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A71191F89;
+	Thu,  2 Jan 2025 09:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735810596; cv=none; b=qgCwkfhWCQEsoKbx68dVHd3/Dk7s9X0IK8PPvPwJiUCaLRrlM7q73HlVzgJ1cQFkbL6Zr/4S44JDLoczqul0lEqqF+NxNyY0QFmvgnWaaFDXa/3tKOLpMBWxK0395BDy1iYI394DuEcD1sjpdRw/Cr0kAHJAC8OSYAjy//1O4vA=
+	t=1735810672; cv=none; b=LJoHeSHJWFBL8DYoOVRAFB/r5Oxb2GD1ppUsJFd1eS83XWzTRqrDblxRGVi+ogu0IBbeRB3Q86sLQ9/vfz22DIEAOfDl3nt4TfXZ3hNoWwwE/e+FptBdsgwIAqiu2BaEkMvmKJlFokg4sKOSOmnkqAjGDP9iKp4cZjPB7Sx66vM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735810596; c=relaxed/simple;
-	bh=m4HpPUCNfrmW1y5TFM5fRmU/JVwN1ECD7vuAH4bP3Hs=;
+	s=arc-20240116; t=1735810672; c=relaxed/simple;
+	bh=7QTF50COLjNP6hFB9EvURJ6Vz51KYnSnrE1zBDblM1s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TgpEKDPTac0iohMGbvs31VP/RzPkCrOoDP6HZJ9VCe9K4WdKIFVpg94qaB01jIQdlz1CUntKxCRNU8yhnzd8+MhyaNuYIurDCaCe0+XjVrNPBGODYO2YJVTfZHA2O0Ccrp9CxCrsdhnQYAR6SB9xe6e1g8OhaBKo1NAg1kwW5PU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Et+cmj6f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C871C4CED0;
-	Thu,  2 Jan 2025 09:36:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735810596;
-	bh=m4HpPUCNfrmW1y5TFM5fRmU/JVwN1ECD7vuAH4bP3Hs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Et+cmj6fgjZE3wJkcRpXGpKlmAbZMYErgLORbnn8UFbVMr3Ex9prJdT9YfoITx0if
-	 VbPGLSBVDiZId0LCbBw23hvq8vvtQilCfunH3W2ftNa0ph8BQ/Xcxwy3VnLIQrL2r7
-	 E6scUeUjudul+U59E1EPtgDtxipdRm4oS14wtVsqhb2A18JP+iU22IGaYGJYUYG6Lk
-	 tkRl6Er2Wwx0kKHKlhZVKhJPG7ejBO9csqeWv9VmkFKo7XuV/0kL4zyH4WtcbeYLla
-	 JDk1k8lFyNSJsXGDQryE3BeJvLV0JbjEHVSx0En8HvMcemI+xosgX3gaTFzikgtXWQ
-	 plJnGTIjEAR0A==
-Date: Thu, 2 Jan 2025 10:36:27 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Gary Guo <gary@garyguo.net>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
-	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com, paulmck@kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	rcu@vger.kernel.org, Wedson Almeida Filho <wedsonaf@gmail.com>
-Subject: Re: [PATCH v7 03/16] rust: implement `IdArray`, `IdTable` and
- `RawDeviceId`
-Message-ID: <Z3ZeG5NJRJEVGCYi@cassiopeiae>
-References: <20241219170425.12036-1-dakr@kernel.org>
- <20241219170425.12036-4-dakr@kernel.org>
- <20241224201002.6a69c77c.gary@garyguo.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=C58W50xZA3NTWjb6p/U4oyNM+mqzNiSKGWX/w0bddHyYByF1PDnBiwRj1nR0QUUMWKBw5TDLrjFVHKkw24C5UkXO6+IrMEe/k4crEqDEsj+iVwEDEPVQi+DM8ph3Qx91fbPkVCYyG0+STGm2X3AzElDupbY4PEwbdCXWDWV+E4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=eOTzSmPA; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=xxKWJv+ffT1sOqGI0qRmYKwPB2g47K0/F/JQkScz9Nk=; b=eOTzSmPA27K32Oyd1t8ucPEezk
+	MI18xWYPmWjAYwVcawWZM1ujjWN7fE4QDiOYoYT0rWx4tljBYrL5F9jA9lak9uyGkDTT7JkZwvrti
+	uHynHpcIUQirSPR0U3awS3NSqZSaTOfycrT5GHEJT/kJtED4MH9w6dqxMbWnGvFi8fFxpLTWe4eHW
+	erPx0LA2xZbL+WhpCb8JLwR5N9GKcvl4ZCx7wfqpEUJrDmJgLRzBxeuoqfxpe23NjcyQZGo0Qbse3
+	jV8Ya4xDeklc1kQuKb7EpaNTSlAgcwBgyez76a9vdMxYz0qtTdI0uj88KW3kMLG8IPe7EczuNZR6l
+	BJRoRzqQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36588)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tTHe2-0001p5-2X;
+	Thu, 02 Jan 2025 09:37:34 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tTHdz-00009o-2T;
+	Thu, 02 Jan 2025 09:37:31 +0000
+Date: Thu, 2 Jan 2025 09:37:31 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Daniel Machon <daniel.machon@microchip.com>
+Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	jacob.e.keller@intel.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, robert.marko@sartura.hr
+Subject: Re: [PATCH net-next v4 0/9] net: lan969x: add RGMII support
+Message-ID: <Z3ZeW_N5bZkRAQ_L@shell.armlinux.org.uk>
+References: <20241213-sparx5-lan969x-switch-driver-4-v4-0-d1a72c9c4714@microchip.com>
+ <20241218143354.eh6iinemupxncblj@DEN-DL-M70577>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,124 +79,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241224201002.6a69c77c.gary@garyguo.net>
+In-Reply-To: <20241218143354.eh6iinemupxncblj@DEN-DL-M70577>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Tue, Dec 24, 2024 at 08:10:02PM +0000, Gary Guo wrote:
-> On Thu, 19 Dec 2024 18:04:05 +0100
-> Danilo Krummrich <dakr@kernel.org> wrote:
-> 
-> > Most subsystems use some kind of ID to match devices and drivers. Hence,
-> > we have to provide Rust drivers an abstraction to register an ID table
-> > for the driver to match.
-> > 
-> > Generally, those IDs are subsystem specific and hence need to be
-> > implemented by the corresponding subsystem. However, the `IdArray`,
-> > `IdTable` and `RawDeviceId` types provide a generalized implementation
-> > that makes the life of subsystems easier to do so.
-> > 
-> > Co-developed-by: Wedson Almeida Filho <wedsonaf@gmail.com>
-> > Signed-off-by: Wedson Almeida Filho <wedsonaf@gmail.com>
-> > Co-developed-by: Gary Guo <gary@garyguo.net>
-> > Signed-off-by: Gary Guo <gary@garyguo.net>
-> > Co-developed-by: Fabien Parent <fabien.parent@linaro.org>
-> > Signed-off-by: Fabien Parent <fabien.parent@linaro.org>
-> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> 
-> Thank you for converting my prototype to a working patch. There's a nit below.
-> 
-> > ---
-> >  MAINTAINERS              |   1 +
-> >  rust/kernel/device_id.rs | 165 +++++++++++++++++++++++++++++++++++++++
-> >  rust/kernel/lib.rs       |   6 ++
-> >  3 files changed, 172 insertions(+)
-> >  create mode 100644 rust/kernel/device_id.rs
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 2ad58ed40079..3cfb68650347 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -7033,6 +7033,7 @@ F:	include/linux/kobj*
-> >  F:	include/linux/property.h
-> >  F:	lib/kobj*
-> >  F:	rust/kernel/device.rs
-> > +F:	rust/kernel/device_id.rs
-> >  F:	rust/kernel/driver.rs
-> >  
-> >  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
-> > diff --git a/rust/kernel/device_id.rs b/rust/kernel/device_id.rs
-> > new file mode 100644
-> > index 000000000000..e5859217a579
-> > --- /dev/null
-> > +++ b/rust/kernel/device_id.rs
-> > 
-> > <snip>
-> >
-> > +
-> > +impl<T: RawDeviceId, const N: usize> RawIdArray<T, N> {
-> > +    #[doc(hidden)]
-> > +    pub const fn size(&self) -> usize {
-> > +        core::mem::size_of::<Self>()
-> > +    }
-> > +}
-> > +
-> 
-> This is not necessary, see below.
-> 
-> > <snip>
-> >
-> > +
-> > +/// Create device table alias for modpost.
-> > +#[macro_export]
-> > +macro_rules! module_device_table {
-> > +    ($table_type: literal, $module_table_name:ident, $table_name:ident) => {
-> > +        #[rustfmt::skip]
-> > +        #[export_name =
-> > +            concat!("__mod_device_table__", $table_type,
-> > +                    "__", module_path!(),
-> > +                    "_", line!(),
-> > +                    "_", stringify!($table_name))
-> > +        ]
-> > +        static $module_table_name: [core::mem::MaybeUninit<u8>; $table_name.raw_ids().size()] =
-> > +            unsafe { core::mem::transmute_copy($table_name.raw_ids()) };
-> 
-> const_size_of_val will be stable in Rust 1.85, so we can start using the
-> feature and 
-> 
-> static $module_table_name: [core::mem::MaybeUninit<u8>; core::mem::size_of_val($table_name.raw_ids())] =
->     unsafe { core::mem::transmute_copy($table_name.raw_ids()) };
-> 
-> should work.
+On Wed, Dec 18, 2024 at 02:33:54PM +0000, Daniel Machon wrote:
+> I would like to defer the pontential removal of sparx5_port_verify_speed()
+> function to a separate series (see comments on patch 6/9).  Any chance for a
+> maintainer to give the OK for that? I would like to give this series another
+> spin before net-next closes. No changes in next version - except adding TB and
+> RB tags.
 
-Thanks for the note, this indeed saves a few lines.
+There's no need to respin just to pick up tags that have been given -
+patchwork will pick those up automatically.
 
-Since the series has been applied already, feel free to send a patch.
+I'd rather not have the current patch 6 merged, because we've had cases
+in the past where stuff has been merged with "we'll fix it later" but
+later doesn't seem to happen. We especially take this approach with new
+kernel internal API functions - we don't merge them without a user,
+because we've had too many cases where the user never appears.
 
-> 
-> > +    };
-> > +}
-> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> > index 7818407f9aac..66149ac5c0c9 100644
-> > --- a/rust/kernel/lib.rs
-> > +++ b/rust/kernel/lib.rs
-> > @@ -18,6 +18,11 @@
-> >  #![feature(inline_const)]
-> >  #![feature(lint_reasons)]
-> >  #![feature(unsize)]
-> > +// Stable in Rust 1.83
-> > +#![feature(const_maybe_uninit_as_mut_ptr)]
-> > +#![feature(const_mut_refs)]
-> > +#![feature(const_ptr_write)]
-> > +#![feature(const_refs_to_cell)]
-> >  
-> >  // Ensure conditional compilation based on the kernel configuration works;
-> >  // otherwise we may silently break things like initcall handling.
-> > @@ -35,6 +40,7 @@
-> >  mod build_assert;
-> >  pub mod cred;
-> >  pub mod device;
-> > +pub mod device_id;
-> >  pub mod driver;
-> >  pub mod error;
-> >  #[cfg(CONFIG_RUST_FW_LOADER_ABSTRACTIONS)]
-> 
+We're currently at -rc5, which means -rc6 this Sunday 5th, -rc7 likely
+next Sunday 12th, and probably the merge window opening on the 19th.
+I think there's enough time for sparx5_port_verify_speed() to be
+dropped during that window.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
