@@ -1,84 +1,174 @@
-Return-Path: <devicetree+bounces-135167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B26A9FFEF0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:58:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F32949FFF39
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 20:04:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42785162D13
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:58:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4BEE3A4FD8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF881531E8;
-	Thu,  2 Jan 2025 18:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A045A1BD01F;
+	Thu,  2 Jan 2025 19:02:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OvA5S9/2"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YHUA/gIl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3B67E782;
-	Thu,  2 Jan 2025 18:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877F11BD517;
+	Thu,  2 Jan 2025 19:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735844286; cv=none; b=Z4kBTDp0nKPu3KmbWhVW5LFyQgCMu2fLbmbEnAoqfi8jTgUMqO1lROI6QFzATSacKpqBTkr1JGox4Tip/IZPhfQTRifQq0iABH6mixg3fgjcmDiSHwmoO9ZOWW+e4enVJ1efeceq3kWMkomTlNTEckxrhR9Ur0/Hp+BKFi6uB7o=
+	t=1735844546; cv=none; b=Z81XsYeGuVSc5iBNp2bMXahIx84wGVossVkT4SyB78+5dP+dHIHy7VkiEUPdpAh2wud9mHUOO7Y9ldLoblR+V+mcg2ziH5fVte8Vghqpe9qQX0l58AhPLcmlkMhrg8qARqxULC3vFj0fOvL7MHzt/O5PgDDQq2ezba3TTBcZ0hM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735844286; c=relaxed/simple;
-	bh=ifr+rM2wbqLz1g6wpl7uHrjJhiMHA2Tg5ejsBvR2lkU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZxoPuNZPlDFdA3vvUCdOU9kjBro7PS53/xC4Gd3RfX+ZNgHc/sYeP3JW0Utco+iHua+d4l3e5thx8BFpWHpjMYK/JAaNMZtGtyMKcfGzJDHxow3xO021FEvThEfBdGuOSTsso40QuvIGwhburnclvN7n9YIhnzMKAdCaofR5At4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OvA5S9/2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B68B1C4CED0;
-	Thu,  2 Jan 2025 18:58:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735844285;
-	bh=ifr+rM2wbqLz1g6wpl7uHrjJhiMHA2Tg5ejsBvR2lkU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OvA5S9/2o4/RLnIQusHHRpuW1nkjDUTMAgZvElfXkh72p88VS6QbODz75WxXd+p9z
-	 fMiqbTg/hMZp+8ZvEToU7lI4/IPfayP8SgAMiX6qDraEVvZhZuxT24gHrAD4TzypDw
-	 2FqcJLeDL7bXYBNlkVePMdbFbpiNIxfrt3wfXrDoUChBUJks56NTcf/OtK9EezzGqT
-	 U4PrjrHgkJ+MuxDmNdJ1Gxjo0m8qULMKl9zUZHjR8qkXzk+RgzuiZN92CvRlUYKApj
-	 wSHUJas7Rq3TrG3vKWQSkQ+3PC+IIq6wXoNBLZwULki4HwKkwSnhtny8e0dpxpiiD1
-	 zA/cD0VOThXXg==
-Date: Thu, 2 Jan 2025 19:57:59 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Frank Wunderlich <frank-w@public-files.de>
-Cc: robh@kernel.org, linux@fw-web.de, dlemoal@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andrew@lunn.ch,
-	gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-	linux@armlinux.org.uk, hdegoede@redhat.com, axboe@kernel.dk,
-	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: Aw: Aw: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf
- conditional failed
-Message-ID: <Z3bht59DzN8yXjvX@ryzen>
-References: <20241109094623.37518-1-linux@fw-web.de>
- <20241109094623.37518-2-linux@fw-web.de>
- <20241111203611.GB1887580-robh@kernel.org>
- <trinity-796b046d-1857-413e-bb82-78e700d6b5ac-1733138371404@msvc-mesg-gmx005>
- <trinity-a84b41b3-79c5-49b5-9786-eb89f85578cc-1735843472332@trinity-msg-rest-gmx-gmx-live-548599f845-gxsb9>
+	s=arc-20240116; t=1735844546; c=relaxed/simple;
+	bh=OhEnDSSyulNqHZSxTrQD9y3jt1ZYhq8CMt4ERfa/Ae8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=L1MTTjkRY76ETA8YMK/MdQ72EaYHp/biquE+roK++GIiWii9/6hrw8RxwOu0Zrs09m/UZk3p680GKtL1GbMNEH4KFMd6HkMInpQU2/fp4OmrlTqC0CjupNWiwTBG0A5hQTlxyy2tTGQUdkw8xXGXcR7RL7eaV7CWALqJeRscBFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YHUA/gIl; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 502G1GPC031931;
+	Thu, 2 Jan 2025 19:02:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=hc0piVwEhcCNfNlkq3FV9s
+	hlR7KHn4qeQhdVtEg4ZEI=; b=YHUA/gIl7rvpzJL6mlsA15k6/AEkCpOomh8Dws
+	pJKOK9j1uY609ZLTUHknS2skfrNia6viPnNW3ID9fnOuRBBbYlZ94pEOV/UzO+3I
+	Ga4D0Vr5RkYleKPx+tC5lHIfXHjxQbCHKKyzUZdyDD3xT2CFwuzvV+bY4X4S8rrf
+	W5PqCkLzTny6f/yP44JjpOAjQHclTNdZ5CZNHDyAsOgWMtb2uk1HJdXJWXI1qtPe
+	90EdKMuHUMy+oZvNtQc2zwWPIy4TzR/YPeRAaj8kCumtxQvwpArFc6zH0wk5g1cO
+	iAanGnWoAJ4v+zyN7NN06NbcvqnFipiaAGtoHaFQjVAYIS7g==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43wpy2s9fw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 02 Jan 2025 19:02:21 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 502J2K1U007906
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 2 Jan 2025 19:02:20 GMT
+Received: from hu-nkumarsi-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 2 Jan 2025 11:02:14 -0800
+From: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+To: <kernel@quicinc.com>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_nkumarsi@quicinc.com>, <quic_akdwived@quicinc.com>
+CC: Sahil Chandna <quic_chandna@quicinc.com>
+Subject: [PATCH v2] arm64: dts: qcom: qcs6490-rb3gen2-industrial-mezzanine: Add industrial mezzanine
+Date: Fri, 3 Jan 2025 00:31:55 +0530
+Message-ID: <20250102190155.2593453-1-quic_nkumarsi@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <trinity-a84b41b3-79c5-49b5-9786-eb89f85578cc-1735843472332@trinity-msg-rest-gmx-gmx-live-548599f845-gxsb9>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: p54bFv6wOjep82816nuLdOfeB7Fi12CQ
+X-Proofpoint-GUID: p54bFv6wOjep82816nuLdOfeB7Fi12CQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
+ adultscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0 phishscore=0
+ suspectscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501020167
 
-On Thu, Jan 02, 2025 at 06:44:32PM +0000, Frank Wunderlich wrote:
-> is there any new state here? got no answer for my last 2 Messages
-> 
-> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20241109094623.37518-2-linux@fw-web.de/
-> 
-> sorry for the html-entities...they came from my gmx webmailer, it is reported multiple times, but i cannot do more here :(
-> 
+From: Sahil Chandna <quic_chandna@quicinc.com>
 
-Since this is a marvell change, I expect it to go via marvell / mvebu tree.
+Add DTS support for Qualcomm qcs6490-rb3gen2 industrial mezzanine
+board which uses QCS6490 SoC. This board enhances the capabilities of
+QCS6490 rb3gen2 core kit.
 
+Signed-off-by: Sahil Chandna <quic_chandna@quicinc.com>
+Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
 
-Kind regards,
-Niklas
+---
+Changes in V2:
+- Addressed comment by Konrad.
+- Validated dts bindings with dtb_checks suggested by Krzysztof.
+- Improved indentation/formatting.
+- Fixed bug encountered during testing.
+- Added dtb entry in makefile.
+- Link to V1: https://lore.kernel.org/all/20241206065156.2573-1-quic_chandna@quicinc.com/
+
+---
+---
+ arch/arm64/boot/dts/qcom/Makefile             |  5 +++
+ .../qcs6490-rb3gen2-industrial-mezzanine.dtso | 34 +++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 6ca8db4b8afe..7c61e9e330d7 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -111,6 +111,11 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
++
++qcs6490-rb3gen2-industrial-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
++
++dtb-$(CONFIG_ARCH_QCOM) += qcs6490-rb3gen2-industrial-mezzanine.dtb
++
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+new file mode 100644
+index 000000000000..7a067e8dc622
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+@@ -0,0 +1,34 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
++*/
++
++/dts-v1/;
++/plugin/;
++#include <dt-bindings/clock/qcom,gcc-sc7280.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
++
++/ {
++pm7250b-gpios {
++                pins = "gpio5";
++                function = "normal";
++                power-source = <1>;
++                output-high;
++                input-disable;
++                bias-pull-up;
++                qcom,drive-strength = <3>;
++        };
++};
++
++&spi11 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++        status = "okay";
++
++        st33htpm0: tpm@0 {
++		compatible = "st,st33htpm-spi","tcg,tpm_tis-spi";
++		reg = <0>;
++		spi-max-frequency = <20000000>;
++
++        };
++};
+-- 
+2.34.1
+
 
