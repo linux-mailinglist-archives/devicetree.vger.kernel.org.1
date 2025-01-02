@@ -1,228 +1,306 @@
-Return-Path: <devicetree+bounces-135015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 703189FF763
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:29:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 010B59FF778
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:34:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33357162082
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:29:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB878162277
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C35A193407;
-	Thu,  2 Jan 2025 09:29:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1A71991CD;
+	Thu,  2 Jan 2025 09:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="AS9RF9/H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Crig4Kem"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F46817996;
-	Thu,  2 Jan 2025 09:29:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2BC5190664;
+	Thu,  2 Jan 2025 09:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735810169; cv=none; b=lNBzTGb+5G3YX3YI5FRCRWvJt8rsIwoC8J3Qg7AALysk1IQOIE9QacgegiP06StiVdqBmlyyt2yKSTcqjnApY5+JF3RuzvUOKjjYM1seTeGJotD6d3pt9NKu+VdkCyl+n34JtkoS2jmSR+r7i8P9JwMKAIsGEYy19dG8cGtYaNE=
+	t=1735810487; cv=none; b=fl4k8JtfFJPaFgFEhgvXNKgIXguC7DH2RMc++Ny2ZUcjJZSQDoT4AUpVEAVlygcEO/HWwjNwkYcnvu0oW5bInzcUXdNKEmFoXsCJC1jGfORIaEsoa+gUr3a9FQCe5RKE4jQ7FTIXMAyoWelUVurtaOY8qP+k2Fkk91DctsadzL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735810169; c=relaxed/simple;
-	bh=onqrZ9NPwzzCIC8p3BjmM6gfrgM7fWW/E8p+1b0xA1o=;
+	s=arc-20240116; t=1735810487; c=relaxed/simple;
+	bh=OUDBQJThGstWw2l0mZV4B+XMNXyMUYV3+qOoyISK7Vk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PbDTgV1NvWj5pMFSR2iQ21SRUzf0L53zDwRXPntJfU4P+bwup+9npKXtwRhAkBR5nUCxibx9Ob1A8/rwF1fv0cec2haTkJo7AQuHG5S1xH5pY9C2flJ18T7MvqRe9SQpXWOipVY0S+sikaUAu1G35ah5XR/QHyF4/Gq8qSGv8AI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=AS9RF9/H; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D246A75A;
-	Thu,  2 Jan 2025 10:28:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1735810117;
-	bh=onqrZ9NPwzzCIC8p3BjmM6gfrgM7fWW/E8p+1b0xA1o=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=rEX2Z861XNVnZUCERAIiiWxnIsdXb/YvWQghcRxKZO1DRja9PohKuhR1tL+HUk/QIKxMMAdLb5ef8A+OEYHImfq59PSl3C+0HjOueWhr/Q72NallN0xxKwvaQbGfsmlelvrbPCJKNsWrw38lyDt4bfuuW56O066xL0nywYkprc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Crig4Kem; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 397E0C4CED0;
+	Thu,  2 Jan 2025 09:34:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735810486;
+	bh=OUDBQJThGstWw2l0mZV4B+XMNXyMUYV3+qOoyISK7Vk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AS9RF9/HaMlA5Tm0IJ0+t1rKXA8AV3vlNu4qb5Ox5C3VQ3Vzf2lL6J25vSESE9bbV
-	 qmORlUtuDDUS8ObgfdOj9eWbdu7McLMrxw6c5sf3uB98U7g/pYc7Fs5gSKQxS7//VU
-	 IyHEV/ffrtKK7gwa3C5K+OB+DvUVR/Zl7n/0mS2k=
-Date: Thu, 2 Jan 2025 11:29:25 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v12 1/8] dt-bindings: media: platform: visconti: Add
- Toshiba Visconti MIPI CSI-2 Receiver
-Message-ID: <20250102092925.GC554@pendragon.ideasonboard.com>
-References: <20241125092146.1561901-1-yuji2.ishikawa@toshiba.co.jp>
- <20241125092146.1561901-2-yuji2.ishikawa@toshiba.co.jp>
+	b=Crig4KemQXRV1w8TLVFsk2QTdTY7lAMSw5NQyFQMUb1IPCHUk5OGqeb9fGV7q3f6x
+	 zLtp6IeSL4GHC+M0BmJXM2ysEc1e6VAZ9FffcQDTEGFG7fF4GOug7abN/WQoE57RHz
+	 yTJA9hQ4CWQo0961A4ntC16Kx9aDy3JEqrDQSJiByr3l1zeN2RfdMJ3Heg4sZcU7p7
+	 JCFmHSI2p5sPaxfSQN88gTxeDLWpHjY4gTqd57+Bd39sTgRtnpKyk2FisLQRxgEV6K
+	 LKB04rrSZmXWmNgKEbI9EtvRPNiGZNR859TQh2tU90JFfwN7nkIB3jXbY/TdwdUmIy
+	 MPIjdcKmEoPVw==
+Date: Thu, 2 Jan 2025 10:34:37 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Gary Guo <gary@garyguo.net>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, paulmck@kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	rcu@vger.kernel.org, Wedson Almeida Filho <wedsonaf@gmail.com>
+Subject: Re: [PATCH v7 02/16] rust: implement generic driver registration
+Message-ID: <Z3ZdreeFVp_1KktC@cassiopeiae>
+References: <20241219170425.12036-1-dakr@kernel.org>
+ <20241219170425.12036-3-dakr@kernel.org>
+ <20241224195821.3b43302b.gary@garyguo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241125092146.1561901-2-yuji2.ishikawa@toshiba.co.jp>
+In-Reply-To: <20241224195821.3b43302b.gary@garyguo.net>
 
-Hello Ishikawa-san,
+Hi Gary,
 
-Thank you for the patch.
-
-On Mon, Nov 25, 2024 at 06:21:39PM +0900, Yuji Ishikawa wrote:
-> Adds the Device Tree binding documentation that allows to describe
-> the MIPI CSI-2 Receiver found in Toshiba Visconti SoCs.
+On Tue, Dec 24, 2024 at 07:58:21PM +0000, Gary Guo wrote:
+> On Thu, 19 Dec 2024 18:04:04 +0100
+> Danilo Krummrich <dakr@kernel.org> wrote:
 > 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> ---
+> > Implement the generic `Registration` type and the `RegistrationOps`
+> > trait.
+> > 
+> > The `Registration` structure is the common type that represents a driver
+> > registration and is typically bound to the lifetime of a module. However,
+> > it doesn't implement actual calls to the kernel's driver core to register
+> > drivers itself.
+> > 
+> > Instead the `RegistrationOps` trait is provided to subsystems, which have
+> > to implement `RegistrationOps::register` and
+> > `RegistrationOps::unregister`. Subsystems have to provide an
+> > implementation for both of those methods where the subsystem specific
+> > variants to register / unregister a driver have to implemented.
+> > 
+> > For instance, the PCI subsystem would call __pci_register_driver() from
+> > `RegistrationOps::register` and pci_unregister_driver() from
+> > `DrvierOps::unregister`.
+> > 
+> > Co-developed-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+> > Signed-off-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 > 
-> Changelog v12:
-> - Newly add bindings for CSI2RX driver 
+> Hi Danilo,
 > 
->  .../media/toshiba,visconti5-csi2rx.yaml       | 104 ++++++++++++++++++
->  1 file changed, 104 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml
+> I think there're soundness issues with this API, please see comments
+> inlined below.
+
+Just in case you did not note, this series has been applied to the driver-core
+tree already.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml b/Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml
-> new file mode 100644
-> index 000000000000..5488072bc82a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/toshiba,visconti5-csi2rx.yaml
-> @@ -0,0 +1,104 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/toshiba,visconti5-csi2rx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba Visconti5 SoC MIPI CSI-2 receiver
-> +
-> +maintainers:
-> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> +
-> +description: |-
+> Best,
+> Gary
+> 
+> > ---
+> >  MAINTAINERS           |   1 +
+> >  rust/kernel/driver.rs | 117 ++++++++++++++++++++++++++++++++++++++++++
+> >  rust/kernel/lib.rs    |   1 +
+> >  3 files changed, 119 insertions(+)
+> >  create mode 100644 rust/kernel/driver.rs
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index baf0eeb9a355..2ad58ed40079 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -7033,6 +7033,7 @@ F:	include/linux/kobj*
+> >  F:	include/linux/property.h
+> >  F:	lib/kobj*
+> >  F:	rust/kernel/device.rs
+> > +F:	rust/kernel/driver.rs
+> >  
+> >  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
+> >  M:	Nishanth Menon <nm@ti.com>
+> > diff --git a/rust/kernel/driver.rs b/rust/kernel/driver.rs
+> > new file mode 100644
+> > index 000000000000..c1957ee7bb7e
+> > --- /dev/null
+> > +++ b/rust/kernel/driver.rs
+> > @@ -0,0 +1,117 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +//! Generic support for drivers of different buses (e.g., PCI, Platform, Amba, etc.).
+> > +//!
+> > +//! Each bus / subsystem is expected to implement [`RegistrationOps`], which allows drivers to
+> > +//! register using the [`Registration`] class.
+> > +
+> > +use crate::error::{Error, Result};
+> > +use crate::{init::PinInit, str::CStr, try_pin_init, types::Opaque, ThisModule};
+> > +use core::pin::Pin;
+> > +use macros::{pin_data, pinned_drop};
+> > +
+> > +/// The [`RegistrationOps`] trait serves as generic interface for subsystems (e.g., PCI, Platform,
+> > +/// Amba, etc.) to provide the corresponding subsystem specific implementation to register /
+> > +/// unregister a driver of the particular type (`RegType`).
+> > +///
+> > +/// For instance, the PCI subsystem would set `RegType` to `bindings::pci_driver` and call
+> > +/// `bindings::__pci_register_driver` from `RegistrationOps::register` and
+> > +/// `bindings::pci_unregister_driver` from `RegistrationOps::unregister`.
+> > +pub trait RegistrationOps {
+> > +    /// The type that holds information about the registration. This is typically a struct defined
+> > +    /// by the C portion of the kernel.
+> > +    type RegType: Default;
+> > +
+> > +    /// Registers a driver.
+> > +    ///
+> > +    /// On success, `reg` must remain pinned and valid until the matching call to
+> > +    /// [`RegistrationOps::unregister`].
+> 
+> This looks like an obligation for the caller, so this function should
+> be unsafe?
+> 
+> > +    fn register(
+> > +        reg: &Opaque<Self::RegType>,
+> > +        name: &'static CStr,
+> > +        module: &'static ThisModule,
+> > +    ) -> Result;
+> > +
+> > +    /// Unregisters a driver previously registered with [`RegistrationOps::register`].
+> 
+> Similarly this is an obligation for the caller.
 
-As Krzysztof mentioned, '|-' isn't needed. See
-https://yaml-multiline.info/ for more information. The literal block
-style indicator ('|') is only needed when line breaks need to be
-preserved, e.g. when the description contains ASCII art.
+I think you're right. I didn't want this to be unsafe, and when I got rid of the
+raw pointer, and hence removed the unsafe, I did miss the fact you point out
+here. It's a bit unfortunate, especially, since `register` and `unregister` are
+only ever called from this file.
 
-> +  Toshiba Visconti5 SoC MIPI CSI-2 receiver device receives MIPI CSI-2 video
-> +  stream. Use with VIIF device. T.B.D
+I'll send a patch to fix it up, unless you want to send one yourself.
 
-T.B.D ?
+> 
+> > +    fn unregister(reg: &Opaque<Self::RegType>);
+> > +}
+> > +
+> > +/// A [`Registration`] is a generic type that represents the registration of some driver type (e.g.
+> > +/// `bindings::pci_driver`). Therefore a [`Registration`] must be initialized with a type that
+> > +/// implements the [`RegistrationOps`] trait, such that the generic `T::register` and
+> > +/// `T::unregister` calls result in the subsystem specific registration calls.
+> > +///
+> > +///Once the `Registration` structure is dropped, the driver is unregistered.
+> > +#[pin_data(PinnedDrop)]
+> > +pub struct Registration<T: RegistrationOps> {
+> > +    #[pin]
+> > +    reg: Opaque<T::RegType>,
+> > +}
+> > +
+> > +// SAFETY: `Registration` has no fields or methods accessible via `&Registration`, so it is safe to
+> > +// share references to it with multiple threads as nothing can be done.
+> > +unsafe impl<T: RegistrationOps> Sync for Registration<T> {}
+> > +
+> > +// SAFETY: Both registration and unregistration are implemented in C and safe to be performed from
+> > +// any thread, so `Registration` is `Send`.
+> > +unsafe impl<T: RegistrationOps> Send for Registration<T> {}
+> > +
+> > +impl<T: RegistrationOps> Registration<T> {
+> > +    /// Creates a new instance of the registration object.
+> > +    pub fn new(name: &'static CStr, module: &'static ThisModule) -> impl PinInit<Self, Error> {
+> > +        try_pin_init!(Self {
+> > +            reg <- Opaque::try_ffi_init(|ptr: *mut T::RegType| {
+> > +                // SAFETY: `try_ffi_init` guarantees that `ptr` is valid for write.
+> > +                unsafe { ptr.write(T::RegType::default()) };
+> 
+> Any reason that this is initialised with a default, and not be up to
+> `T::register` to initialise?
 
-> +
-> +properties:
-> +  compatible:
-> +    const: toshiba,visconti5-csi2rx
-> +
-> +  reg:
-> +    items:
-> +      - description: Registers for CSI2 receiver control
-> +
-> +  interrupts:
-> +    items:
-> +      - description: CSI2 Receiver Interrupt
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port node, single endpoint describing the CSI-2 transmitter.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
+`T::RegType` is always an FFI type, so this can be in the common code.
 
-Please use a full path for the ref:
+> 
+> > +
+> > +                // SAFETY: `try_ffi_init` guarantees that `ptr` is valid for write, and it has
+> > +                // just been initialised above, so it's also valid for read.
+> 
+> Opaque can hold uninitialised value so as long as `ptr` is not dangling
+> this is fine. There's no need to actually initialise.
 
-            $ref: /schemas/media/video-interfaces.yaml#
+I think the "initialized" part is from before it was an `Opaque`.
 
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                description: CSI2 receiver supports 1, 2, 3 or 4 data lanes
+> 
+> > +                let drv = unsafe { &*(ptr as *const Opaque<T::RegType>) };
+> > +
+> > +                T::register(drv, name, module)
+> > +            }),
+> > +        })
+> > +    }
+> > +}
+> > +
+> > +#[pinned_drop]
+> > +impl<T: RegistrationOps> PinnedDrop for Registration<T> {
+> > +    fn drop(self: Pin<&mut Self>) {
+> > +        T::unregister(&self.reg);
+> > +    }
+> > +}
+> > +
+> > +/// Declares a kernel module that exposes a single driver.
+> > +///
+> > +/// It is meant to be used as a helper by other subsystems so they can more easily expose their own
+> > +/// macros.
+> > +#[macro_export]
+> 
+> I think this is supposed to be used by other macros only? If so, please
+> add `#[doc(hidden)]`.
 
-You can drop the description. The video-interfaces.yaml schema has a
-more complete description, and the fact that the receiver supports
-between 1 and 4 lanes is conveyed by minItems and items below.
+Why? It's a public kernel API to be used by bus abstractions. I don't think
+documentation should be for drivers only.
 
-> +                minItems: 1
-> +                items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> +            required:
-> +              - data-lanes
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Output port node, single endpoint describing the Visconti VIIF.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        csi2rx@1c008000 {
-
-Node names should describe the function of the node, not the precise
-model of the device. "csi2" would be a more appropriate name.
-
-> +            compatible = "toshiba,visconti5-csi2rx";
-> +            reg = <0 0x1c008000 0 0x400>;
-> +            interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                port@0 {
-> +                    reg = <0>;
-> +                    csi2rx_in0: endpoint {
-> +                        data-lanes = <1 2>;
-> +                        remote-endpoint = <&imx219_out0>;
-> +                    };
-> +                };
-> +                port@1 {
-> +                    reg = <1>;
-> +                    csi2rx_out0: endpoint {
-> +                        remote-endpoint = <&csi_in0>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-
--- 
-Regards,
-
-Laurent Pinchart
+> 
+> > +macro_rules! module_driver {
+> > +    (<$gen_type:ident>, $driver_ops:ty, { type: $type:ty, $($f:tt)* }) => {
+> > +        type Ops<$gen_type> = $driver_ops;
+> > +
+> > +        #[$crate::prelude::pin_data]
+> > +        struct DriverModule {
+> > +            #[pin]
+> > +            _driver: $crate::driver::Registration<Ops<$type>>,
+> > +        }
+> > +
+> > +        impl $crate::InPlaceModule for DriverModule {
+> > +            fn init(
+> > +                module: &'static $crate::ThisModule
+> > +            ) -> impl $crate::init::PinInit<Self, $crate::error::Error> {
+> > +                $crate::try_pin_init!(Self {
+> > +                    _driver <- $crate::driver::Registration::new(
+> > +                        <Self as $crate::ModuleMetadata>::NAME,
+> > +                        module,
+> > +                    ),
+> > +                })
+> > +            }
+> > +        }
+> > +
+> > +        $crate::prelude::module! {
+> > +            type: DriverModule,
+> > +            $($f)*
+> > +        }
+> > +    }
+> > +}
+> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> > index 61b82b78b915..7818407f9aac 100644
+> > --- a/rust/kernel/lib.rs
+> > +++ b/rust/kernel/lib.rs
+> > @@ -35,6 +35,7 @@
+> >  mod build_assert;
+> >  pub mod cred;
+> >  pub mod device;
+> > +pub mod driver;
+> >  pub mod error;
+> >  #[cfg(CONFIG_RUST_FW_LOADER_ABSTRACTIONS)]
+> >  pub mod firmware;
+> 
 
