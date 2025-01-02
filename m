@@ -1,109 +1,113 @@
-Return-Path: <devicetree+bounces-135109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05E39FFC43
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 17:47:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE39D9FFC8B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:07:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7575416125B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:47:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0E4C3A23B8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 17:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634FA17CA17;
-	Thu,  2 Jan 2025 16:47:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9B613C8FF;
+	Thu,  2 Jan 2025 17:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+igYgTf"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="viMptFaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A241547F5;
-	Thu,  2 Jan 2025 16:47:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C761F5FD
+	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 17:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735836424; cv=none; b=oBW6CDwKnwnTcR3LhYZ0NSkBdqg56AOlcf2tKwfzbSU+L4OjuEu6SoRWQnwc4eR5fA9EVA90DG2FnSqFkNiBXbW14TaokMEYckvFxQ4+xZAjA0oNr6hh0jJB79iSE8f5eHAXU8stu/9heiQOFPNP9cb07Le92/g+Lhweqz3s4a4=
+	t=1735837656; cv=none; b=GzKDiGu2ZJhDUDxlzw0Nx9ihIRr8V0MDrDIDd5Ti+B4NPgmHlPhaljfTjsCvrE2dXnKSJqA10sBCvyKDvQN9gLDr0niBS1zB82y6QrG3AuIBeQpJ5Rvro/c32uF8O86w2nWhGD4/n6/4yx0Rqz7SiC7+8WM7POAQ8Uzxg2whvRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735836424; c=relaxed/simple;
-	bh=d172oorZKHQGiEs+GCMlFSyZb1uCTPvDWbk9rwOHFOg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aJUznmbsEzor5y4WM7gVAoJ6S54sBLN8/ci+j0h3OMaJV8lLez0qV6wYykJ37j4+FzSJkVjpCZfmDDgsBcAW0gvxTncfbo5uUCSc4w0xgSxAlL7x3v2NnWT0r8qbn7VBWA8yLEILdmqf7Q4MAzcjH/jwEIuW8bCRLmXA48M/GeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+igYgTf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 771E2C4CEDE;
-	Thu,  2 Jan 2025 16:47:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735836422;
-	bh=d172oorZKHQGiEs+GCMlFSyZb1uCTPvDWbk9rwOHFOg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=o+igYgTfMyNQiSuCZRB9GalOe1iwva4x4Vcfe/ZM4EhllfRvAVd3CILFWYDfgkt+O
-	 +xi8CsAZgoQ7DpJuGjQxuI0MUGZTMdxDJ0OudpRIYJsvL4GOsZEHHaLxuS+Jxt8vGa
-	 uWSWY7Nyg7VUyhD7UrSGf3+f5teJG1+iICmA66Ape2XmkKA3jAHOXSQyV3LTI680JG
-	 FJAOyv/zJmoV0ZGhtQTMZmQ/rlP8VadwVUaTW4A3OIA2qpFnl0E/oE+1BeiBLCXqOU
-	 McQea6NS/0Z84lu6a83G7OoeQm6vnkhiaWJbJV8b0Uj7/4iZEzst9Wxy63nRuDasSF
-	 4GfKjvQ92V1hg==
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e4419a47887so13757125276.0;
-        Thu, 02 Jan 2025 08:47:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVN5rKMT/5q7TbhgE+I4qV7XgL3o0qVKp3DCLWuI70Uohuw0W0kbVLMMxotkhfx7cEQPIM6V1eUVNI1UHVd@vger.kernel.org, AJvYcCXLiJY+aXjxFnBNLx+9X20KG0L16gEEWqvgO81Sn4YyhIBI5D8gTd7e9r6zReHcYytf5SJt39/4L02/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGLmBkHYEuCJZxSQP/WdAoGifNay+u9wnzDHpP2tyF0V8kX5Vy
-	nioFdXSn1B2Mb62/ocjDYwBPJoliEWtTDMroXL+I4+OsHWt6M+/tGuJFy5xusndiy2+OlRa5IRJ
-	AE0bu9bz3Eguvof3yb2OuvEUL7Q==
-X-Google-Smtp-Source: AGHT+IEE1OTpwUAgnIqESTpODb+JR3Jobd/qBBwtUOSG5F//KI0WU2LlpehqyiRqWBZZIpN2arXo7C/3+I2edJEoH3s=
-X-Received: by 2002:a05:690c:5301:b0:6f4:8207:c68d with SMTP id
- 00721157ae682-6f48207cbe0mr92594077b3.3.1735836421626; Thu, 02 Jan 2025
- 08:47:01 -0800 (PST)
+	s=arc-20240116; t=1735837656; c=relaxed/simple;
+	bh=A0kk0hRl9c2bhzB6DjZowALilC7mhbUnkx7pIz+/Og4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tg6UpX45k7lUDzCOED2taSTiydcDjOWfDCrJGvkLigyTEfjam2av1SvISrXocYw+waWDBJ9ej6wz0ldO+vgK0ityAFZUW3qDCNT5aUgkqUhqLzSeYjly0EGZQebJ+wTF7+i4Cet85/YTv1WtRo9RrPhbBGsLqJJgBhemLunfF5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=viMptFaQ; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1735837653;
+ bh=dRM7LIJF9jh6lqB+/i8HwabrDShaWCLC/iAJxa/ormM=;
+ b=viMptFaQviw3VC7E4rUgfCaA5t9OZncdzdGKuK7ydaUvLgR8zeJ5NG2esMy2ug48r2OT9qPQ4
+ zf+/AnvkGXZc2OG61OaSzIti15yFheusX1sqEiBEqddd12iP0cyTfl8kyqaxcMneI65bFF342Lb
+ rnqWKSf5HY+95rIRiKX7a+3Z7g3ZNVVYxaSkA1r3ey/cFz29egU2hZQOR1X9gY48XACAAvACTOB
+ mnllW0ngVWkgdBZ/zA35bLoNBGtikC1WBeB+93p3X9DuXI9/cmIXFX6CH750EIFMQmC+ETb4kM1
+ DEqQT4oOip6ML29ZiooM/FYkLqoA8CicbMEZ/PFOrxog==
+X-ForwardEmail-Version: 0.4.40
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Original-To: liujianfeng1994@gmail.com, vkoul@kernel.org,
+ amadeus@jmu.edu.cn, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ heiko@sntech.de, kishon@kernel.org, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, p.zabel@pengutronix.de,
+ robh@kernel.org, yifeng.zhao@rock-chips.com
+Received: from [192.168.2.234] ([78.69.151.207]
+ 78-69-151-207-no600.tbcn.telia.com) by smtp.forwardemail.net (Forward
+ Email) with ESMTPSA (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384); Thu,
+ 02 Jan 2025 16:57:19 +0000
+Message-ID: <688c8fb6-68f7-45f1-98fc-8b3252b3ecbf@kwiboo.se>
+Date: Thu, 2 Jan 2025 17:57:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241230120315.2490-1-gordoste@iinet.net.au>
-In-Reply-To: <20241230120315.2490-1-gordoste@iinet.net.au>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 2 Jan 2025 10:46:50 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+4XVq6-i1+96ov7ysuBhWBxvt=oLB8n7mdpAh09wvvwA@mail.gmail.com>
-Message-ID: <CAL_Jsq+4XVq6-i1+96ov7ysuBhWBxvt=oLB8n7mdpAh09wvvwA@mail.gmail.com>
-Subject: Re: [PATCH] of: dynamic: Avoid reversing sibling order
-To: Stephen Gordon <gordoste@iinet.net.au>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH 1/2] arm64: dts: rockchip: rk3568: add
+ reset-names for combphy
+To: Jianfeng Liu <liujianfeng1994@gmail.com>, vkoul@kernel.org
+Cc: amadeus@jmu.edu.cn, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ heiko@sntech.de, kishon@kernel.org, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, p.zabel@pengutronix.de, robh@kernel.org,
+ yifeng.zhao@rock-chips.com
+References: <173367712869.1031947.3262464465649332012.b4-ty@kernel.org>
+ <20250102151601.2615178-1-liujianfeng1994@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250102151601.2615178-1-liujianfeng1994@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 6776c574758981c18e6f13ec
 
-On Mon, Dec 30, 2024 at 6:03=E2=80=AFAM Stephen Gordon <gordoste@iinet.net.=
-au> wrote:
->
-> Current implementation inserts nodes at the head of the list, resulting
-> in sibling order being reversed from the .dts file. Some drivers care
-> about the order and do not work properly. These changes add nodes at the
-> end of the list instead, preversing sibling order.
+On 2025-01-02 16:16, Jianfeng Liu wrote:
+> Hi,
+> 
+> On Sun, 08 Dec 2024 22:28:48 +0530, Vinod Koul wrote:
+>> Applied, thanks!
+>>
+>> [2/2] phy: rockchip: naneng-combphy: fix phy reset
+>>      commit: fbcbffbac994aca1264e3c14da96ac9bfd90466e
+> 
+> The other patch in this series:
+> arm64: dts: rockchip: rk3568: add reset-names for combphy
+> is missing in v6.13-rc5, which will break pcie2 of rk3568 because the phy
+> driver has changed.
 
-s/preversing/preserving/
+Yes, the commit fbcbffbac994 ("phy: rockchip: naneng-combphy: fix phy
+reset") breaks backward compatibility with existing DTs and this commit
+should probably be reverted or driver need a fix that fall back to old
+behavior in case DT is missing reset-names.
 
->
-> Signed-off-by: Stephen Gordon <gordoste@iinet.net.au>
-> ---
->
-> I ran across this issue using the ASoC audio_graph_card2 driver. Prior
-> to the fix, I needed to reverse sibling order in the .dts to make things
-> work. After the fix, it all works as expected.
+Regards,
+Jonas
 
-The order should not be significant. What are the nodes where the order mat=
-ters?
+> 
+> Best regards,
+> Jianfeng
+> 
 
-If the order matters, we create yet another problem with overlays
-because if an overlay adds a child node where does it go WRT existing
-child nodes? There is no way for the overlay to express that.
-
-> Also, I noticed that drivers/of/fdt.c line 325-330 fix the same problem
-> for flattened device trees.
-
-Obviously some platforms cared at some point. Who knows if those still
-exist or not. I'd rather not create more unknown cases. Though it's
-probably not possible to enumerate the exceptions here. (I'm trying to
-reduce the number of unconditional work-arounds for bad DTs in the DT
-code and make them explicit so that we don't see new cases and can
-remove work-arounds if platforms are removed.)
-
-Rob
 
