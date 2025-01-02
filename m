@@ -1,106 +1,197 @@
-Return-Path: <devicetree+bounces-135207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92C4A000E8
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:53:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7826EA0010A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 23:07:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FEFE1883606
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:53:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CBCE3A391B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9538149E00;
-	Thu,  2 Jan 2025 21:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A2A1B87E4;
+	Thu,  2 Jan 2025 22:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ko9Xe3+c"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yij+67Hj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2CB98F7D
-	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 21:53:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F9F1AD3F6;
+	Thu,  2 Jan 2025 22:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735854791; cv=none; b=pt4XfkYUHG6C/9VJ37kRQtwD/u+wxGy0xAy8AFnGXorK3pQ9daWck/uI8dUEI4nx72ljHE0e2Cl4om2JvcUrtNZ/tuP3+NwbPRFiuX5sO8xrmLsW2K9xUOifCMQ9n20YoLQvIsXTPYDBW4WmAx4MX0IG5clwYL6RQ3Z0aNFd3i0=
+	t=1735855633; cv=none; b=gQQ8mA7z41tO+aZ0BsD6EJu2ibA8aLfabAyGfckqt4VjraBWg2RGqCCQWoq5Fq9WK6PIvrKvp7lHxUcJpoPPLxhpkfslF85vS5GbLeTbNBK07y4arEx9SxgjhtEjzdJVlBI0x3fYFtiuAT4sXdUdN+VzTAxafZB7YJQ8OiiI6NA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735854791; c=relaxed/simple;
-	bh=LKTc6/sATowwzTd72kbpfKRHreyAr4MLhR803zIVUD4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l9/cWP8sdQEbvJKnN/g59Mg7FeRjB5lALMPWz0IsHKa7+zxlRxOGSHBN15H4hqWkYKLyS41WoRsSGtfj7zSIbK1yR+tMRGWcf2vB3PCY4DrBesiEpxPYP9Fpu161vUNDYiQPzoISNwSoDxnup0L9S9cQ0fh1MMACxJzZwER0Gao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ko9Xe3+c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAFAEC4CED0;
-	Thu,  2 Jan 2025 21:53:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735854791;
-	bh=LKTc6/sATowwzTd72kbpfKRHreyAr4MLhR803zIVUD4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ko9Xe3+c2+oYnvo3KrLpFiKWwx5Teb2uSAo0DPzjtK6QNGW33BiFdLbWezqBGGAvq
-	 CODqugAzl6lZzIB7HtZxVRoNiGUvBEgIiMMJQzediAOM2OgdB6c4reLyl0tq8e2LSS
-	 MOdlZx6Djz2COKShZ8dHo4prMZCpgQkY2IrD+daSgE55S1U3pZ7gudZfW1oq3GjLoE
-	 9kt5cctJ4GHt1hUm4HEgTbF88Z8GPFs/D1AWJzlqh/EiWKpdZunhF26vD32l6egRLK
-	 cN1mkfZhvZWMvZ5kMSQfvQa1cziwtBsQVCbaxa84dZddTflz1cqtl3yK6ICFQ7wuE4
-	 8prn0mt2mUSGw==
-Date: Thu, 2 Jan 2025 15:53:08 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jimmy Hon <honyuenkwun@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Ondrej Jirman <megi@xff.cz>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [RFC 4/7] dt-bindings: arm: rockchip: Add Xunlong Orange Pi 5
- Ultra
-Message-ID: <20250102215308.GA636148-robh@kernel.org>
-References: <20241229184256.1870-2-honyuenkwun@gmail.com>
- <20241229184256.1870-8-honyuenkwun@gmail.com>
+	s=arc-20240116; t=1735855633; c=relaxed/simple;
+	bh=vR7iO8j+sakcg1XwY6nnyEy8WDfgUEprxmWOktDwld4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XeKdS54aK7YwvK7qPRuNQluu4Sfwg3pGq2v/kuCD7Z+Ymvk47OzfGuDud/lMwDpY8l/PiA069Z/4u/vfEO/XAOBHu7A/Ws+RqfR4wFxcmi4089wKK/7leL6rEIiI2N59jQkbTbVL8w74I474Q06IUVChN4Lofe1cKZBOdWtFDDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yij+67Hj; arc=none smtp.client-ip=209.85.222.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-85c529e72bcso2009271241.0;
+        Thu, 02 Jan 2025 14:07:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735855630; x=1736460430; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yQKr+57/EXDEkED/9ax46FJJGLL0jFomBZ6YGyVct+U=;
+        b=Yij+67HjDr0oVmgNpQWQZhs2aXRjic+WXVeEw/NWSfv10i9T1pF+T+gRJEnxdgcUsA
+         0fqs6Rd50do2vq8MncwRSExX9r4m5o2IEdOzo9nCZ0vuO8ioVXLoR7+l6KfMYHNpxbbj
+         wlBambva+rVb9vQWriNz25eSzUSyvx1uNomPfyZtdx+cq8/1xRhPJ3JqbufAVYbvUMuB
+         5O+mD4u4HdHsq7p7Za/qvQ2+vvhSAXdejMYRKZ8WZ3oLQzTuFCjpGNE4HCH4BDbuMU6V
+         ybrMTe3L/ui519KwfYpl7QmE5dgYeXXqTlCDs9HmuMtjPripXI1dEsEnPQdtonk3MdOS
+         t2/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735855630; x=1736460430;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yQKr+57/EXDEkED/9ax46FJJGLL0jFomBZ6YGyVct+U=;
+        b=PCmbZ5EFxQqdoxaeLT8dpfeFOlGtkCIH6+XxnVOI+ZXD2rJfmBdRO/ZsLUNdqunMt0
+         Zz+0xGAogEVTg/lmgrrn0aOaipFOAQ0u87hHqWxLB5ZdPB0Uj3ISdl8kvHz77qLMLe8Y
+         Mcy8LIXxS1ep06jhpuu2YawB7Y5Mm4Eqh7GUTIhtzro+azWjkBKvG+QyspKGWEm/IjdE
+         jV/DTFF9H/yZgE1BTryvtcAICw/68Y3UIBJB+fP2jfn+0835Nu9ld09D/QeZFYA7G12X
+         ZzoTSULSyQVszoRqdw8Bko08SPLUtWQHyyx7Rg3NgLGvKyk/zz5he9YrEiGxCbwUTYn5
+         MoJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUds5qNAYWgkBanhvHuWNbIQWbsWzdAinb3oY2I8olCCnJChjq16wO8LQ+1Ge2mdMWpRLjd72kj5By0IvDRR4M=@vger.kernel.org, AJvYcCV3s1c3s79i59vv9pl7+2UbVHmkfQz/1pODlhgohacdyPZ5yt0kIQhKvccly0Eg2GPFztRjlZjBCfLd@vger.kernel.org, AJvYcCWDJ9I3SGzJ/suM2/IlEjeP2zqOQ7D3YMZ91oUU++HcNJds7+WJwZQCXA5vYlX8+t/DDuCRv8bYWvcB@vger.kernel.org, AJvYcCWbH4Yq/jxjt/bfDGBf48drKCqkkFUbBEv0R1odmcMfL65zzEzEuPF6E57QXzyhshqpzcEDGWT0VV51xSQz@vger.kernel.org, AJvYcCWkXk8hQ4KNghtVKJkGyO0GnOH0paHi0cngR7GY0k7/clZU+SV3qc0nSHuOuczZMEU8geg+95HsnIVcsZzctpnt2aY=@vger.kernel.org
+X-Gm-Message-State: AOJu0YymAbi6xNNSkMJ1aWX7ZmKiqEqSuKwGoxiUXUDMyz3qxy3yPX2V
+	7sy/dRsBEvQrek3MW30EjkMSWJ+ZRJpZMjLIcEiVcsMcYtWFMCqltjTt2hoRF0brLGSjSBFXF+f
+	+AKSVDP0zgIbpktScVQoc32zndIk=
+X-Gm-Gg: ASbGnctej2TQBG+EmYTecsEU4Kqvy2MXg5NpB5l1/mCn2XkMzvwJKsjVcAg7otPzuzR
+	xe8en9RA/6k9nItSAiZw3RGWAZocpX9kr0k01kMh6D0/TKr/hDKmBrwO0bwMvuZEtVQFYFNo=
+X-Google-Smtp-Source: AGHT+IEo2ZPDD9910sqJ0mRac28/pBfINwS+8DceO8xHG/en79UnnbroDH7fZri31d+Llru8oyqJVvaP0PIKvdITLiE=
+X-Received: by 2002:a05:6122:8c5:b0:515:4b68:c37f with SMTP id
+ 71dfb90a1353d-51b75c73d5fmr33419281e0c.6.1735855630463; Thu, 02 Jan 2025
+ 14:07:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241229184256.1870-8-honyuenkwun@gmail.com>
+References: <20241227190210.69025-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20241227190210.69025-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250102214622.GB614405-robh@kernel.org>
+In-Reply-To: <20250102214622.GB614405-robh@kernel.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 2 Jan 2025 22:06:44 +0000
+Message-ID: <CA+V-a8vKa1huuYFhQ0dVpdpTsrh3dZVaaBxfNUF7JCUuZY4DWg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] dt-bindings: watchdog: renesas: Document
+ `renesas,syscon-cpg-error-rst` property
+To: Rob Herring <robh@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Dec 29, 2024 at 12:41:31PM -0600, Jimmy Hon wrote:
-> Add devicetree binding for the Xunlong Orange Pi 5 Ultra board.
+Hi Rob,
 
-Why RFC? Looks fine to me.
+Thank you for the review.
 
-However, you should have 'v4' on every patch in the series if this is 
-v4.
+On Thu, Jan 2, 2025 at 9:46=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Dec 27, 2024 at 07:02:08PM +0000, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > The RZ/V2H(P) CPG block includes Error Reset Registers (CPG_ERROR_RSTm)=
+.
+> > A system reset is triggered in response to error interrupt factors, and
+> > the corresponding bit is set in the CPG_ERROR_RSTm register. These
+> > registers can be utilized by various IP blocks as needed.
+> >
+> > In the event of a watchdog overflow or underflow, a system reset is iss=
+ued,
+> > and the CPG_ERROR_RST2[0/1/2/3] bits are set depending on the watchdog =
+in
+> > use: CM33 =3D 0, CA55 =3D 1, CR8_0 =3D 2, CR8_1 =3D 3. For the watchdog=
+ driver to
+> > determine and report the current boot status, it needs to read the
+> > CPG_ERROR_RST2[0/1/2/3]bits and provide this information to the user up=
+on
+> > request.
+> >
+> > To facilitate this operation, add `renesas,syscon-cpg-error-rst`
+> > property to the WDT node, which maps to the `syscon` CPG node, enabling
+> > retrieval of the necessary information.
+> >
+> > Additionally, the property is marked as required for the RZ/V2H(P) SoC =
+to
+> > ensure future compatibility (e.g., where the same IP block is present o=
+n
+> > the RZ/G3E SoC) and explicitly disallowed for other SoCs.
+>
+> This is the other half of the ABI change.
+>
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v1->v2
+> > - Renamed `renesas,r9a09g057-syscon-wdt-errorrst` to `renesas,syscon-cp=
+g-error-rst`
+> > - Updated commit message
+> > ---
+> >  .../bindings/watchdog/renesas,wdt.yaml          | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yam=
+l b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> > index 29ada89fdcdc..ca62ae8b1b0c 100644
+> > --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> > +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> > @@ -112,6 +112,19 @@ properties:
+> >
+> >    timeout-sec: true
+> >
+> > +  renesas,syscon-cpg-error-rst:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description:
+> > +      The first cell is a phandle to the SYSCON entry required to obta=
+in
+> > +      the current boot status. The second cell specifies the CPG_ERROR=
+_RSTm
+> > +      register offset within the SYSCON, and the third cell indicates =
+the
+> > +      bit within the CPG_ERROR_RSTm register.
+> > +    items:
+> > +      - items:
+> > +          - description: Phandle to the CPG node
+> > +          - description: The CPG_ERROR_RSTm register offset
+> > +          - description: The bit within CPG_ERROR_RSTm register of int=
+erest
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -182,7 +195,11 @@ allOf:
+> >        properties:
+> >          interrupts: false
+> >          interrupt-names: false
+> > +      required:
+> > +        - renesas,syscon-cpg-error-rst
+>
+> New required property =3D=3D ABI break
+>
+> Once the OS driver relies on this being present, then older DTs will
+> break.
+>
+In this case there is no ABI break, as the driver code [0] does not
+fail the probe when the property does not exist, it's just that it
+won't report the status of current boot.
 
-> 
-> The Orange Pi 5 Ultra is a single board computer powered by the Rockchip
-> RK3588 with similar board layout as the 5 Max but with the HDMI0 swapped
-> for HDMI IN.
-> 
-> Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 2a141d99c533..9dd424265826 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -1075,11 +1075,12 @@ properties:
->            - const: xunlong,orangepi-3b
->            - const: rockchip,rk3566
->  
-> -      - description: Xunlong Orange Pi 5 Max/Plus
-> +      - description: Xunlong Orange Pi 5 Max/Plus/Ultra
->          items:
->            - enum:
->                - xunlong,orangepi-5-max
->                - xunlong,orangepi-5-plus
-> +              - xunlong,orangepi-5-ultra
->            - const: rockchip,rk3588
->  
->        - description: Xunlong Orange Pi R1 Plus / LTS
-> -- 
-> 2.47.1
-> 
+[0] https://lore.kernel.org/all/20241227190210.69025-6-prabhakar.mahadev-la=
+d.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
 
