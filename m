@@ -1,122 +1,147 @@
-Return-Path: <devicetree+bounces-135163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669AB9FFEBE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:45:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA2F9FFECE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:49:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 353A5162C8C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:45:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DAD57A0385
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:49:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E861B412C;
-	Thu,  2 Jan 2025 18:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D70A12DD95;
+	Thu,  2 Jan 2025 18:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="czAnAfJv"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="qjLdJXEF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6AA187FE0;
-	Thu,  2 Jan 2025 18:44:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9A94431;
+	Thu,  2 Jan 2025 18:49:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735843495; cv=none; b=iW8x1OHWEPhmoVsIvh6Hcii3dKV8dwXVBWfs2G/7cW+5S6wXM3ePNvItl9fb+XbAc+SWOE+JNpjORaqLeVE+5FwyOpCnZuNKY57G8TxFLmV+QPSquSRPr5o8nx0dVf4+xd1QJGkzwyyEbz+TFY9Nft1+KQciP/xMUR7sk69mPOA=
+	t=1735843751; cv=none; b=AoKwjsWYm88/6hmJw35BciJMsvPMQTkYHQaEnKvc0CfFOxV1xaa/NBavKbsquhUdxyR+8QFkCy7xtyTLr8fO/eFOSfzl0bxT51HjZ9mUZa2qaxbiMURn16x5ATuHZwOu66IyuFAH1V2yTCdLKnKzREekOIQFfcrB+Dv6pKyDsUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735843495; c=relaxed/simple;
-	bh=hpqHInndrX0iGC8mDRVxX2kXaaLKhzvItMvT43SHJpY=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
-	 In-Reply-To:References:Date; b=X+IqII7klxlFIVtM4XC5/+MlZzDgInWcqi1kougRE2uh4/QkQKdDiAXgoDsG2i+eFyd6L1XyrG9LTXMRjok71/lK0rfZ8tkuPVIkkzJ0Lc5LEaHJUaFW/ghUNjjQLFQK8DOUj7I5K0vAz+9OPCCepuYAIHaYcSHBUTJSEOS1RPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=czAnAfJv; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1735843472; x=1736448272; i=frank-w@public-files.de;
-	bh=hpqHInndrX0iGC8mDRVxX2kXaaLKhzvItMvT43SHJpY=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:In-Reply-To:References:Date:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=czAnAfJvyfCPY7k+3SedOX+5j22KgAuZEKbaogkJxYEYfQA/xjJqscTgdVpSho5y
-	 yr8sFi26elQBD+v/y1QIZakF8LS5+2pKYpqfXCLPFTfontfOc6IhCF+0AIEcti08K
-	 wgqiEfWU5kf4QENHTAXMkRIfR7js1Hv2ey9UgSS9pLy28kTOkGt5f/pONkTY3TeS6
-	 N93hpSdS7o9Nn8/EMLXhYVLPzrGO9oYi4sw42saGpzYvUbFvPlSrToBnpmOgIZQWo
-	 pP6ps1EI01YgbsWjGbm2ZXe7I6htsBSNAifY9bpS6CRPGlBC806XD7tIuAyYDh2Fk
-	 UiXebI6pDnzfq8gfAw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.146.33] ([217.61.146.33]) by
- trinity-msg-rest-gmx-gmx-live-548599f845-gxsb9 (via HTTP); Thu, 2 Jan 2025
- 18:44:32 +0000
+	s=arc-20240116; t=1735843751; c=relaxed/simple;
+	bh=wK43bHCYhdsfnSPi9cwhsTw+nfFJbDJTvJjasGDFXTs=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=QU0IRy8Z4KgtcXIP0H7wFuqbktNsKrU9acBg58ErT+9utq0JA5VeA7h53krqeNWEfhnYQ2JjtFHlPP3w1DqE2o59SJkgp64Zh13FXJ7trHrp/+NK1EFjPFzkfrSWcmKJrNUsljEA0O5JvZgY8ASnmQaP/9vRG9bx7To9hsyTjPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=qjLdJXEF; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:References;
+	bh=s4M7R+Tz+IRiDFwmtcdkyDl08RKKGnTho1fua9apRJY=;
+	b=qjLdJXEFtdXPuCpEVdBni46xgreA4pfiys8bw5pi4xeQSvKMvLtlGg8tf/0W/wnOD7e/pSlCbymEgNeMQqSNjvs3g2lDmHiPKc8i7yXOjx0Awc5JCHcGAF70mQIl6ofNur+VvBzvmPhSe/QNP5pUnWcZdEGhb/laqr5iKGjWBPs=
+Received: from webmail.netcube.li (WIN-IJ7TS3MJ5LT [127.0.0.1])
+	by mail.netcube.li with ESMTPA
+	; Thu, 2 Jan 2025 19:48:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-a84b41b3-79c5-49b5-9786-eb89f85578cc-1735843472332@trinity-msg-rest-gmx-gmx-live-548599f845-gxsb9>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: frank-w@public-files.de, robh@kernel.org, linux@fw-web.de
-Cc: dlemoal@kernel.org, cassel@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
- sebastian.hesselbarth@gmail.com, linux@armlinux.org.uk,
- hdegoede@redhat.com, axboe@kernel.dk, linux-ide@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Aw: Aw: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf
- conditional failed
-Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <trinity-796b046d-1857-413e-bb82-78e700d6b5ac-1733138371404@msvc-mesg-gmx005>
-Importance: normal
-References: <20241109094623.37518-1-linux@fw-web.de>
- <20241109094623.37518-2-linux@fw-web.de>
- <20241111203611.GB1887580-robh@kernel.org>
- <trinity-796b046d-1857-413e-bb82-78e700d6b5ac-1733138371404@msvc-mesg-gmx005>
-Date: Thu, 2 Jan 2025 18:44:32 +0000
-Sensitivity: Normal
-X-Priority: 3
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:LKNy9zKfnIlsz7NUTXXOtEKLalixuZlk+xPaKuoJSdmQlGlsQx4AHf7aFI2bc2+IWYKZR
- dP6v5jF8yrLsEik2VIZBAoJI6iXtONPhog/afX5jes7stZx8sYst5CG4v8dE6nR909gcT81UTMGP
- muBoR2ei0nmBt/xWhWjMlcwn/HFd/0XygDl8os6f2mJ+U8hr+Uq3KK9yHgsbN9NoI1yGxbSw5kda
- sFn2HAuqTFnvNa2a5pUQHLSxJ6NRCPpOeen1zr4OWmz3aKe/c0d7w19hXa2MBLWS176NVRrAaMKd
- NZB9O25GEgJfAcmTlXF0JxZN/NaXL0DQzRsig9JsqPBe7JDIGVinhzRCzn+WZYFvas=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:NLFJFR0ukHI=;pAc3xJgcxNOAej0dcvwuoRTuUqw
- 1pXdfaPiyFRb177kwNNvFaXNQis5vPl70fEA1hQxWxxzxV3eMDgyTaiJT/zpPuW63KNfwHD/2
- 4vh4TZyQeQEfH9kYItPXqtshaHji+C8cCb26+rEpDQ4o/0SirJYUyiG8A2vdiq9ckmbjlWwYt
- o9KgKf3fLjLf9TaA23GtlUeAJRvg6DSVVE643BMiz+gULt+XbPBKcOFW9F+nPmOl6Ajy83LYY
- ocqQJhCGV8v5xPvqZ5nTTlAxFTZsUdmbMfPB9Jk4qVsd6Lg7GU4EAUea7ETU1i1J1u15jHMgk
- FiDFMWdQqvCMgAngn/kjzbBs0cCj33F28HpFkQbPPwfCs1kIJ9pbjUlRU1TSl9sWgeN2d1vMl
- nd1fK3Jp5zfux3kI3KVZBbwVkn/VWI7gqhTPv6F9mj0Yf3R88+NkyqViwJmNpTKgCPDqR3FLW
- KX1jxaAuYRsGNAUUesZCz8bCFeI7zXcTpZDlczZ8vuqa4wrBG2ds48eUNJvoyLTk3GgQeifK7
- l6rto32iHMAuSctbrivr7zbk/UXJ+kAKuFodVNdlLwmqPhZPOJV1/xw0JFlFcj5KrpXBgGX9G
- E3Uvxkwpv6FNkiizlFTUvv8ZIRy7LADHWT4Ik1j4jY79c+oocjQzQT9TuUPzW8C0qlJVUSE3M
- I2y5m7+CAB2gCldHije/vJwNeV39E2Ko6SrqpOgrFPC/sqagG2foKayKXlCkn4AZzCkBruwvt
- 1qRylPM+VIcKIEI0uamK38nYa+jvBgQC4EiuKuXh/cN8meNTjFyyvfos2brJNcCaTKHXfCn/q
- imFVU24Ihh1XUGykyxR/L4bcIqVcfustZTwqXOOKe3FHolpPvNZbrhb8fdFg+q8j6ZrmEkUGA
- e9mpJv9S85uXfH43HxZLA+U9KolV7hXelIiM=
-Content-Transfer-Encoding: quoted-printable
+Date: Thu, 02 Jan 2025 19:48:42 +0100
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add NetCube Systems
+ Austria name
+In-Reply-To: <7bcb73f5-26ae-4bdd-9bb4-afc1c5b9fc0d@kernel.org>
+References: <32b5c286-9457-4b93-a93f-c8aff356ec10@kernel.org>
+ <20250102175006.3675-1-lukas.schmid@netcube.li>
+ <20250102175006.3675-2-lukas.schmid@netcube.li>
+ <478a6364-0537-453a-881f-c460de2f67a8@kernel.org>
+ <c025818214942560a291f8c53108503a@netcube.li>
+ <7bcb73f5-26ae-4bdd-9bb4-afc1c5b9fc0d@kernel.org>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <26cbf302f615bec3ed6496f04425edc7@netcube.li>
+X-Sender: lukas.schmid@netcube.li
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-is there any new state here? got no answer for my last 2 Messages
+Am 2025-01-02 19:31, schrieb Krzysztof Kozlowski:
+> On 02/01/2025 19:24, Lukas Schmid wrote:
+>> Am 2025-01-02 18:57, schrieb Krzysztof Kozlowski:
+>>> On 02/01/2025 18:49, Lukas Schmid wrote:
+>>>> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>> 
+>>> You did not read really the messages we gave you...
+>>> 
+>>> 1. Read what I wrote in my first reply for v1. I gave detailed
+>>> instruction to avoid the exact mistake you now did.
+>>> 
+>>> 2. Read again Andre's reply.
+>>> 
+>>> 3. Do not attach (thread) your patchsets to some other threads
+>>> (unrelated or older versions). This buries them deep in the mailbox 
+>>> and
+>>> might interfere with applying entire sets.
+>>> 
+>>> 4. Next version, with proper cover letter, is after 24h, so you have
+>>> some time to digest the feedback.
+>>> 
+>>> Best regards,
+>>> Krzysztof
+>> 
+>> Hi,
+>> 
+>> Thank you for your feedback, and I sincerely apologize for the 
+>> mistakes
+>> in my submission process.
+>> 
+>> I did read Andre's reply and your feedback on v1, but unfortunately, I
+>> had already sent the v2 series as a reply before fully understanding 
+>> all
+>> the recommendations. I realize now that this was a misstep and caused
+>> confusion.
+>> 
+>> I will wait until tomorrow, around 20:00, to send the v3 series. I 
+>> will
+>> make sure to include a proper cover letter and ensure that all the
+>> feedback from v1 and v2 is addressed.
+>> 
+>> Regarding the v1 feedback, I thought I had incorporated all your
+>> suggestions. However, after rereading it, I seem to have missed
+>> something critical. Could you please point out what I might have
+>> overlooked? I want to make sure I fully understand and correct it in 
+>> the
+>> next iteration.
+>> 
+> Please read my full reply for v1 of this patch. How did you implement
+> that feedback - long instruction?
+> 
+> Best regards,
+> Krzysztof
 
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20241109094623=
-.37518-2-linux@fw-web.de/
+I assume by 'long instruction' you mean checking the devicetree using
+'make dtbs_check W=1'.
 
-sorry for the html-entities...they came from my gmx webmailer, it is repor=
-ted multiple times, but i cannot do more here :(
+I did run dtbs_check after already applying some of the changes you had
+recommended. I just had a look at it's output again, and see now that 
+there
+is one more issue about 'pinctrl@1c20800: 'gpio-reserved-ranges' does 
+not
+match any of the regexes'.
 
-regards Frank
+Is this what you mean?
 
+If thats the case I'd assume I should add another patch which adds the
+'gpio-reserved-ranges' property to the
+'devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml' file.
 
-> Gesendet: Montag, 2. Dezember 2024 um 12:19
-> Betreff: Aw: Re: [PATCH v1 1/3] arm64: dts: marvell: Fix anyOf condition=
-al failed
->
-> Hi,
->
-> just a gentle ping to have it finally merged
->
-> regards Frank
+Best regards,
+Lukas
+
 
