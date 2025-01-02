@@ -1,126 +1,98 @@
-Return-Path: <devicetree+bounces-135058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725969FF902
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:57:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F799FF974
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 13:46:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 671EF3A2945
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:57:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 202553A322E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6757F1A38E3;
-	Thu,  2 Jan 2025 11:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718DF1B043D;
+	Thu,  2 Jan 2025 12:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="YIeI3qCH"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ilhao3Ge"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF111191F94;
-	Thu,  2 Jan 2025 11:57:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A565E1B0F2F;
+	Thu,  2 Jan 2025 12:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735819025; cv=none; b=Cu5NLmbHdOAUQff1fsVMkhH6oZEVnCTJYnf2euY1ANo/pnS3J/yHcwjuvoHl6VC3lpXT5X2HPP7unVO/UrAOQQeAq78JNo+59RuZ0GIIiYBCbZAtBaQshL13LPAdjO7caXrRR0nBOTRMsI3mNQSJeIlgRO2utIjoxHf/gyIyRMg=
+	t=1735821992; cv=none; b=T156n3hX8EJVwfWbYnGOZAnW6+rOhA/todNHOUyK+RdDkjG+xik8z2fUGZTi92K4i+3VI/iSNOR+66pteuENRcuZg1LGiX+Jcae0yT0uAgOX9hBHqqD5HpYGdWQnDhZ5SmkLC+L0COFd9PdmqKGM8sNzvidQ4bL1DKNMlW7U01c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735819025; c=relaxed/simple;
-	bh=rdrukPNaQlmroAeSXFNhKckgh2maM/3AU1P2HvXmLuM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i1s5lp0HcEdDF7SnKbhkABFM7k2J/vglQQwJ/rZXHzEEgmsv6fWsrzJtfPBBWeIFc+6wkSlYRUs9f728iFWP61+Kp591ZkpvmrzhSHey5FReCko6+tvVoStbAv94CUMB9Cvm5F+jMrsI6/FAyCMF6vyHDJ+4P6gbQ1TTW+I+S20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=YIeI3qCH; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=j9BRYqtU1/upqh8/+Oi84LPuS1gHyWF/MWynsZDnmsI=; b=YIeI3qCH5MGj7bJGccxx3mZoYZ
-	tyrZ+UeWV1Yz1LAvt0YJLRqpxWMflvnA9fEWguGwPda7GTs4zUt+waTidGWxa1hYWmZnRyWvXbsmG
-	ybecqROk8igzdkLkShtoNPGwCnqjcZvIAOD2SMrND5QKmjFCXCxMQSYDXTt1vq5pumbeWbTWN9DjZ
-	A91+2EwTPjnT0meDoGRe0Gq6vMIPCoK6axxlSUXYOLtNXpbrQPK0ps029ffIW13hc5lSMUXnb+/6e
-	puxeAU7lbZ/kGCjrQLkFgJOEj4T7EbOyD4EsUQ0KZKcbzflN+eJ2s8G5M4PqgTf1OmZgTrumrY6rn
-	M5UQx5Kg==;
-Received: from i5e860d14.versanet.de ([94.134.13.20] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tTJou-0007jf-8O; Thu, 02 Jan 2025 12:56:56 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: cristian.ciocaltea@collabora.com, krzk+dt@kernel.org, mripard@kernel.org,
- hjc@rock-chips.com, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 3/3] drm/rockchip: Add basic RK3576 HDMI output support
-Date: Thu, 02 Jan 2025 12:56:55 +0100
-Message-ID: <15367137.tv2OnDr8pf@diego>
-In-Reply-To: <20241225103741.364597-4-andyshrk@163.com>
-References:
- <20241225103741.364597-1-andyshrk@163.com>
- <20241225103741.364597-4-andyshrk@163.com>
+	s=arc-20240116; t=1735821992; c=relaxed/simple;
+	bh=rPO//rEZigCKZoPA2paAhefsIjAROiOVo9/njcMMDyA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=PkPdzRjDmG97ccW4coor41kYvLBkmrjFYHmb8DYl2sNcxTE+WpP+I8lfGGgm9yUyipjhr9JXD8o7DxTF5qn8Qvoy7GOJ/zd0K65qyN3mswuam3axoU68dW8TEc/l93RETQiHSud559GyyuD11oHoAjSakWB24lz+OtdIiWm6Ag0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ilhao3Ge; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1735821987;
+	bh=rPO//rEZigCKZoPA2paAhefsIjAROiOVo9/njcMMDyA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Ilhao3Ge3nqqAM5e0osgKqmIa1ciLQWuDU01ki117UmipDGQLJIJi/UIPISWToIYs
+	 QKrDKIuEYwpF+OxbNlNaO0+KqyKqljNZdXlyqLZIeoyzoCT1k7yPBPJAqsCCd7xITU
+	 PBCnOie3otlpOTYOVFKDFo7uEm7fy7C7S+EZLURkqzAglbFsWzIiSlhycNi+fWGQBF
+	 S7miQjwpoLSukrroioioG7hMq4Ad1zMXbIH1nRQ91QqkCty47LQpck0PB4NQgUM1lt
+	 IPHu+Ll+FFELMGuFBheAu3QH68RuKskt73j7qLoBm2vNcdVoYV3q9bBnCkxDeFZcys
+	 Qq1bSM7LpsETA==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C7FA017E156D;
+	Thu,  2 Jan 2025 13:46:26 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, Sean Wang <sean.wang@kernel.org>, 
+ Frank Wunderlich <linux@fw-web.de>
+Cc: Frank Wunderlich <frank-w@public-files.de>, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20241217085435.9586-1-linux@fw-web.de>
+References: <20241217085435.9586-1-linux@fw-web.de>
+Subject: Re: (subset) [PATCH v7 0/5] Add pinctrl support for mt7988
+Message-Id: <173582198673.163596.6578000235046486411.b4-ty@collabora.com>
+Date: Thu, 02 Jan 2025 13:46:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Am Mittwoch, 25. Dezember 2024, 11:37:31 CET schrieb Andy Yan:
-> From: Andy Yan <andy.yan@rock-chips.com>
+On Tue, 17 Dec 2024 09:54:25 +0100, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> The HDMI on RK3576 shares the same IP block (PHY and Controller)
-> with rk3588.
-> However, there are some control bits scattered in different GRF.
+> This series adds pinctrl driver, dt-bindings and dts node for pinctrl
+> on mediatek mt7988 SoC.
 > 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> Tested-by: Detlev Casanova <detlev.casanova@collabora.com>
-
-The attribution is strange. Where does the Signed-off from Detlev come
-from?
-
-At that position it would mean that he's the sender, but that's obviously
-not the case.
-
-I guess it's either just the Tested-by ... or you need an additional
-Co-Developed-by if Detlev contributed to this patch.
-
-
-> ---
+> changes in v7:
+> - add const for pins and mtk_pin_soc as suggested by Christophe JAILLET in v5
+> - left angelos RB because of minor change (hope this is right)
 > 
->  .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 143 +++++++++++++++++-
->  1 file changed, 141 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-> index b21e868e7c16..bd9216e45e74 100644
-> --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-> +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-[...]
-> @@ -287,8 +422,12 @@ static const struct rockchip_hdmi_qp_cfg rk3588_hdmi_cfg = {
->  };
->  
->  static const struct of_device_id dw_hdmi_qp_rockchip_dt_ids[] = {
-> -	{ .compatible = "rockchip,rk3588-dw-hdmi-qp",
-> -	  .data = &rk3588_hdmi_cfg },
-> +	{ .compatible = "rockchip,rk3576-dw-hdmi-qp",
-> +	  .data = &rk3576_hdmi_cfg
-> +	}, {
-> +	  .compatible = "rockchip,rk3588-dw-hdmi-qp",
-> +	  .data = &rk3588_hdmi_cfg
-> +	},
+> [...]
 
-nit: please keep consistent styling between the listentries. Right now the
-rk3576 and changed rk3588 entries use different styles.
+Applied to v6.13-next/dts64, thanks!
 
+[4/5] arm64: dts: mediatek: mt7988: Add pinctrl support
+      commit: e2e02b57f5689b37640263b152edf1997f26b081
+[5/5] arm64: dts: mediatek: mt7988a-bpi-r4: Add pinctrl subnodes for bpi-r4
+      commit: 6aecde28d98b66c7d526caf4e8a3be046776b727
 
-Heiko
+Cheers,
+Angelo
 
 
 
