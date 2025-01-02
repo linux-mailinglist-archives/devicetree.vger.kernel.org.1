@@ -1,230 +1,268 @@
-Return-Path: <devicetree+bounces-135022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA929FF797
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:44:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD2419FF7B4
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:56:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 234F1161251
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:44:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92F25162426
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA79190051;
-	Thu,  2 Jan 2025 09:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6A031AA792;
+	Thu,  2 Jan 2025 09:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gR1z6jgF"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vN7C9aQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A6C189B9C;
-	Thu,  2 Jan 2025 09:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B72A1A8F94;
+	Thu,  2 Jan 2025 09:56:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735811070; cv=none; b=jp5V42ks9gt2x86bJkBtpCJLYeGrOB4IIFKgXeHyUFDCbP7vUh8++fzIZs7vpC5YyVxVHJZ/ysiMYrgNsiIMeB6pZPeVqhXqoAnMH7+vsuFn6dHfIb9DCF6KkPmzAEVR0PpNFXToS/4u7FpRxKaRCSxCW1wVMF3lQCTBATNU+d8=
+	t=1735811763; cv=none; b=jCgeJI87fpkahsaqPeQjkVjGJof6QnvegH+HklmqPMUYMPvpDz+6ZQLbERVIBrqAwaEe+ghAATyedeqGGKe65CPZmFasYvVQis3MNgM+CHfKBYLHN7UWsFHEZpzOP85tRFMdUe2TwpOw5bJeZ7isjxwXuyKQeh8gjLxaLIPPjjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735811070; c=relaxed/simple;
-	bh=hxWnEH8xQveHUbVj8BZY+CdgkxEOLd5OTlXgJppqR7Q=;
+	s=arc-20240116; t=1735811763; c=relaxed/simple;
+	bh=SwKcsYldoVTlPiegaDxvUarCv6o2PSToU5HzUy3D6TA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OYM44G7WD/j+bX7mjBi0hc1VEi2j6nhBSAL9N+fBep4OmQP3RPR2PPJdVk6hpuSFc4L0u2Q7s5oxfwAmIoxlfKkVQZymaGH25salf8dehlKup9bKAIKFqJGMkBO4oE2aQ/ALLItQ0Jh3Go6IQjOfT7JrtdmxrUq7LfBemkziTok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gR1z6jgF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CE6DC4CED0;
-	Thu,  2 Jan 2025 09:44:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735811069;
-	bh=hxWnEH8xQveHUbVj8BZY+CdgkxEOLd5OTlXgJppqR7Q=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=Is6CSakHkacZz5SE3ws+prY1RcJmtkDd3tUTZh1np3HNt3rjAt9UextnRyCXqfHA45yeLPoI9Al8BJM3bjcNTBp8o/SUAYaBGKvXsg39U7LLmuspVycyAv6WIs0adX6dstJ0fCu5ILEfiiz+PGT8NTKMfWRKFedWfl2LSGRxMvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vN7C9aQl; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DA94575A;
+	Thu,  2 Jan 2025 10:55:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1735811712;
+	bh=SwKcsYldoVTlPiegaDxvUarCv6o2PSToU5HzUy3D6TA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gR1z6jgFgINsIIYD7esGa3SE+na7oPd0HtMUE98YZoBB92vgXKi40zzlhSQFafsGg
-	 g3Rrav7XwkA+GHZpWH27U7SdcFyN2/gaSSv0aeMhoxmtnQwRPrTmpA0yvxD/q7eHxO
-	 14tlaMSxO1T+cpZGHc+wcaea3n9wb5BMN5z+5WDdGjSSDytY+2JMVA1BpcmpYdO9am
-	 Km5bgbINI2JIm/41AxTgb253oa6xWt2RTuxOnBPGqEs/PbrGY72XIn8LchtTEoTXTS
-	 fhixUtZhhPdECxp8GIeSPqqJnObAAbwOhIJu38IqfVkZahyfTC/x2T7hkO/OSa/F9x
-	 mp6wcwcZ2pD7Q==
-Date: Thu, 2 Jan 2025 10:44:20 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Gary Guo <gary@garyguo.net>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
-	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com, paulmck@kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	rcu@vger.kernel.org, Wedson Almeida Filho <wedsonaf@gmail.com>
-Subject: Re: [PATCH v7 04/16] rust: add rcu abstraction
-Message-ID: <Z3Zf9Dc1RT6Rc7HT@cassiopeiae>
-References: <20241219170425.12036-1-dakr@kernel.org>
- <20241219170425.12036-5-dakr@kernel.org>
- <20241224205450.20171869.gary@garyguo.net>
+	b=vN7C9aQlcBOVibGqhImQTW0YgjW3fNP6LtVD1Sp7FgEGQCE8vvIWTmq8TqO3AQPJu
+	 +w2EqvPVvUBaQ5Es3IZqOpQ4gPFfpAii6kRK+jXnuiOigSsnvIdNI8oDvC6wjjoL8p
+	 V6mFSjKwH30ky85452xP0lDSq+w3fQ1zD+0gis6E=
+Date: Thu, 2 Jan 2025 11:56:00 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v12 2/8] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface
+Message-ID: <20250102095600.GE554@pendragon.ideasonboard.com>
+References: <20241125092146.1561901-1-yuji2.ishikawa@toshiba.co.jp>
+ <20241125092146.1561901-3-yuji2.ishikawa@toshiba.co.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241224205450.20171869.gary@garyguo.net>
+In-Reply-To: <20241125092146.1561901-3-yuji2.ishikawa@toshiba.co.jp>
 
-On Tue, Dec 24, 2024 at 08:54:50PM +0000, Gary Guo wrote:
-> On Thu, 19 Dec 2024 18:04:06 +0100
-> Danilo Krummrich <dakr@kernel.org> wrote:
-> 
-> > From: Wedson Almeida Filho <wedsonaf@gmail.com>
-> > 
-> > Add a simple abstraction to guard critical code sections with an rcu
-> > read lock.
-> > 
-> > Reviewed-by: Boqun Feng <boqun.feng@gmail.com>
-> > Signed-off-by: Wedson Almeida Filho <wedsonaf@gmail.com>
-> > Co-developed-by: Danilo Krummrich <dakr@kernel.org>
-> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> > ---
-> >  MAINTAINERS             |  1 +
-> >  rust/helpers/helpers.c  |  1 +
-> >  rust/helpers/rcu.c      | 13 ++++++++++++
-> >  rust/kernel/sync.rs     |  1 +
-> >  rust/kernel/sync/rcu.rs | 47 +++++++++++++++++++++++++++++++++++++++++
-> >  5 files changed, 63 insertions(+)
-> >  create mode 100644 rust/helpers/rcu.c
-> >  create mode 100644 rust/kernel/sync/rcu.rs
-> 
-> [resend to the list]
-> 
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 3cfb68650347..0cc69e282889 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -19690,6 +19690,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu.git dev
-> >  F:	Documentation/RCU/
-> >  F:	include/linux/rcu*
-> >  F:	kernel/rcu/
-> > +F:	rust/kernel/sync/rcu.rs
-> >  X:	Documentation/RCU/torture.rst
-> >  X:	include/linux/srcu*.h
-> >  X:	kernel/rcu/srcu*.c
-> > diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> > index dcf827a61b52..060750af6524 100644
-> > --- a/rust/helpers/helpers.c
-> > +++ b/rust/helpers/helpers.c
-> > @@ -20,6 +20,7 @@
-> >  #include "page.c"
-> >  #include "pid_namespace.c"
-> >  #include "rbtree.c"
-> > +#include "rcu.c"
-> >  #include "refcount.c"
-> >  #include "security.c"
-> >  #include "signal.c"
-> > diff --git a/rust/helpers/rcu.c b/rust/helpers/rcu.c
-> > new file mode 100644
-> > index 000000000000..f1cec6583513
-> > --- /dev/null
-> > +++ b/rust/helpers/rcu.c
-> > @@ -0,0 +1,13 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +#include <linux/rcupdate.h>
-> > +
-> > +void rust_helper_rcu_read_lock(void)
-> > +{
-> > +	rcu_read_lock();
-> > +}
-> > +
-> > +void rust_helper_rcu_read_unlock(void)
-> > +{
-> > +	rcu_read_unlock();
-> > +}
-> > diff --git a/rust/kernel/sync.rs b/rust/kernel/sync.rs
-> > index 1eab7ebf25fd..0654008198b2 100644
-> > --- a/rust/kernel/sync.rs
-> > +++ b/rust/kernel/sync.rs
-> > @@ -12,6 +12,7 @@
-> >  pub mod lock;
-> >  mod locked_by;
-> >  pub mod poll;
-> > +pub mod rcu;
-> >  
-> >  pub use arc::{Arc, ArcBorrow, UniqueArc};
-> >  pub use condvar::{new_condvar, CondVar, CondVarTimeoutResult};
-> > diff --git a/rust/kernel/sync/rcu.rs b/rust/kernel/sync/rcu.rs
-> > new file mode 100644
-> > index 000000000000..b51d9150ffe2
-> > --- /dev/null
-> > +++ b/rust/kernel/sync/rcu.rs
-> > @@ -0,0 +1,47 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +//! RCU support.
-> > +//!
-> > +//! C header: [`include/linux/rcupdate.h`](srctree/include/linux/rcupdate.h)
-> > +
-> > +use crate::{bindings, types::NotThreadSafe};
-> > +
-> > +/// Evidence that the RCU read side lock is held on the current thread/CPU.
-> > +///
-> > +/// The type is explicitly not `Send` because this property is per-thread/CPU.
-> > +///
-> > +/// # Invariants
-> > +///
-> > +/// The RCU read side lock is actually held while instances of this guard exist.
-> > +pub struct Guard(NotThreadSafe);
-> > +
-> > +impl Guard {
-> > +    /// Acquires the RCU read side lock and returns a guard.
-> > +    pub fn new() -> Self {
-> > +        // SAFETY: An FFI call with no additional requirements.
-> > +        unsafe { bindings::rcu_read_lock() };
-> > +        // INVARIANT: The RCU read side lock was just acquired above.
-> > +        Self(NotThreadSafe)
-> > +    }
-> > +
-> > +    /// Explicitly releases the RCU read side lock.
-> > +    pub fn unlock(self) {}  
-> 
-> I don't think there's need for this, `drop(rcu_guard)` is equally
-> clear.
+Hi Ishikawa-san,
 
-I don't mind one or the other, feel free to send a patch to remove it. :)
+Thank you for the patch.
 
+On Mon, Nov 25, 2024 at 06:21:40PM +0900, Yuji Ishikawa wrote:
+> Adds the Device Tree binding documentation that allows to describe
+> the Video Input Interface found in Toshiba Visconti SoCs.
 > 
-> There was a debate in Rust community about explicit lock methods, but
-> the conclusion was to not have it,
-> see https://github.com/rust-lang/rust/issues/81872.
+> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> ---
+> Changelog v2:
+> - no change
 > 
-> > +}
-> > +
-> > +impl Default for Guard {
-> > +    fn default() -> Self {
-> > +        Self::new()
-> > +    }
-> > +}  
+> Changelog v3:
+> - no change
 > 
-> I don't think anyone would like to implicit acquire an RCU guard! I
-> believe you included this because clippy is yelling, but in this case
-> you shouldn't listen to clippy. Either suppress the warning or rename
-> `new` to `lock`.
+> Changelog v4:
+> - fix style problems at the v3 patch
+> - remove "index" member
+> - update example
+> 
+> Changelog v5:
+> - no change
+> 
+> Changelog v6:
+> - add register definition of BUS-IF and MPU
+> 
+> Changelog v7:
+> - remove trailing "bindings" from commit header message
+> - remove trailing "Device Tree Bindings" from title
+> - fix text wrapping of description
+> - change compatible to visconti5-viif
+> - explicitly define allowed properties for port::endpoint
+> 
+> Changelog v8:
+> - Suggestion from Krzysztof Kozlowski
+>   - rename bindings description file
+>   - use block style array instead of inline style
+>   - remove clock-lane (as it is fixed at position 0)
+>   - update sample node's name
+>   - use lowercase hex for literals
+> - Suggestion from Laurent Pinchart
+>   - update description message port::description
+>   - remove port::endpoint::bus-type as it is fixed to <4>
+>   - remove port::endpoint::clock-lanes from example
+>   - add port::endpoint::data-lanes to required parameters list
+>   - fix sequence of data-lanes: <1 2 3 4> because current driver does not support data reordering
+>   - update port::endpoint::data-lanes::description
+>   - remove redundant type definition for port::endpoint::data-lanes
+> 
+> Changelog v9:
+> - place "required" after "properties"
+> - dictionary ordering of properties
+> 
+> Changelog v10:
+> - no change
+> 
+> Changelog v11:
+> - no change
+> 
+> Changelog v12:
+> - remove property "clock-noncontinuous" as VIIF switches both modes automatically
+> - remove property "link-frequencies" as VIIF does not use the information
+> - remove reg[2] and interrupts[3] which are used for CSI2RX driver
+> - update example to refer csi2rx for remote-endpoint
+> 
+>  .../media/toshiba,visconti5-viif.yaml         | 95 +++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml b/Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
+> new file mode 100644
+> index 000000000000..ef0452a47e98
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/toshiba,visconti5-viif.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Toshiba Visconti5 SoC Video Input Interface
+> +
+> +maintainers:
+> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> +
+> +description: |-
+> +  Toshiba Visconti5 SoC Video Input Interface (VIIF) receives videostream
+> +  from MIPI CSI-2 receiver device, processes the stream with image signal
+> +  processors (L1ISP, L2ISP), then stores pictures to main memory.
+> +
+> +properties:
+> +  compatible:
+> +    const: toshiba,visconti5-viif
+> +
+> +  reg:
+> +    items:
+> +      - description: Registers for capture control
+> +      - description: Registers for bus interface unit control
+> +      - description: Registers for Memory Protection Unit
 
-I picked up this patch from Wedson, so I can't tell for sure. I don't see
-any other reason for this though, so we could remove it.
+I'm a bit surprised by the lack of clocks.
 
-> 
-> > +
-> > +impl Drop for Guard {
-> > +    fn drop(&mut self) {
-> > +        // SAFETY: By the type invariants, the RCU read side is locked, so it is ok to unlock it.
-> > +        unsafe { bindings::rcu_read_unlock() };
-> > +    }
-> > +}
-> > +
-> > +/// Acquires the RCU read side lock.
-> > +pub fn read_lock() -> Guard {
-> > +    Guard::new()
-> > +}  
-> 
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Sync Interrupt
+> +      - description: Status (Error) Interrupt
+> +      - description: L1ISP Interrupt
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    unevaluatedProperties: false
+> +    description: CSI-2 input port, with a single endpoint connected to the CSI-2 transmitter.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: video-interfaces.yaml#
+> +        additionalProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            description: VIIF supports 1, 2, 3 or 4 data lanes
+> +            minItems: 1
+> +            items:
+> +              - const: 1
+> +              - const: 2
+> +              - const: 3
+> +              - const: 4
+
+Now that the CSI-2 receiver is modeled as a separate DT node, I don't
+think data-lanes is applicable anymore. The interface between the CSI-2
+receiver and the VIIF isn't a CSI-2 bus.
+
+I think you can simplify the bindings by switching from port-base to
+port, as you don't need to specify additional properties for the
+endpoint:
+
+  port:
+    $ref: /schemas/graph.yaml#/$defs/port
+    description:
+      CSI-2 input port, with a single endpoint connected to the CSI-2
+      transmitter.
+
+Please test this though (by running the DT bindings checks).
+
+> +
+> +          remote-endpoint: true
+> +
+> +        required:
+> +          - data-lanes
+> +          - remote-endpoint
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        video@1c000000 {
+> +            compatible = "toshiba,visconti5-viif";
+> +            reg = <0 0x1c000000 0 0x6000>,
+> +                  <0 0x1c00e000 0 0x1000>,
+> +                  <0 0x2417a000 0 0x1000>;
+> +            interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +            port {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                csi_in0: endpoint {
+> +                    data-lanes = <1 2>;
+> +                    remote-endpoint = <&csi2rx_out0>;
+> +                };
+> +            };
+> +        };
+> +    };
+
+-- 
+Regards,
+
+Laurent Pinchart
 
