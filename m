@@ -1,147 +1,325 @@
-Return-Path: <devicetree+bounces-135164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA2F9FFECE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:49:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C789FFEDC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 19:51:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DAD57A0385
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:49:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1657618837E5
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 18:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D70A12DD95;
-	Thu,  2 Jan 2025 18:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3CF198A25;
+	Thu,  2 Jan 2025 18:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="qjLdJXEF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bhKBxDqs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9A94431;
-	Thu,  2 Jan 2025 18:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E704D17335C
+	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 18:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735843751; cv=none; b=AoKwjsWYm88/6hmJw35BciJMsvPMQTkYHQaEnKvc0CfFOxV1xaa/NBavKbsquhUdxyR+8QFkCy7xtyTLr8fO/eFOSfzl0bxT51HjZ9mUZa2qaxbiMURn16x5ATuHZwOu66IyuFAH1V2yTCdLKnKzREekOIQFfcrB+Dv6pKyDsUE=
+	t=1735843888; cv=none; b=tYcGsoR7Y9nm36ux1sc+z5nkng4ti5mUHeTEdPcUiTj2s6T9ONE+L2DmZQikkBhGQMM6S9sntxx+bfzrjdIh9kYxRRfSzmmXY8L6wWMTEnDwY9lCXsy1VcjvOGnb1HQUOppBehOl6c8q26RNpcfihS9hdj89ygYvU0j52XGZpzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735843751; c=relaxed/simple;
-	bh=wK43bHCYhdsfnSPi9cwhsTw+nfFJbDJTvJjasGDFXTs=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=QU0IRy8Z4KgtcXIP0H7wFuqbktNsKrU9acBg58ErT+9utq0JA5VeA7h53krqeNWEfhnYQ2JjtFHlPP3w1DqE2o59SJkgp64Zh13FXJ7trHrp/+NK1EFjPFzkfrSWcmKJrNUsljEA0O5JvZgY8ASnmQaP/9vRG9bx7To9hsyTjPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=qjLdJXEF; arc=none smtp.client-ip=173.249.15.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:References;
-	bh=s4M7R+Tz+IRiDFwmtcdkyDl08RKKGnTho1fua9apRJY=;
-	b=qjLdJXEFtdXPuCpEVdBni46xgreA4pfiys8bw5pi4xeQSvKMvLtlGg8tf/0W/wnOD7e/pSlCbymEgNeMQqSNjvs3g2lDmHiPKc8i7yXOjx0Awc5JCHcGAF70mQIl6ofNur+VvBzvmPhSe/QNP5pUnWcZdEGhb/laqr5iKGjWBPs=
-Received: from webmail.netcube.li (WIN-IJ7TS3MJ5LT [127.0.0.1])
-	by mail.netcube.li with ESMTPA
-	; Thu, 2 Jan 2025 19:48:44 +0100
+	s=arc-20240116; t=1735843888; c=relaxed/simple;
+	bh=3vtZEneD4YmI3fBVj12hcS/+xalvyFqzM1PYABWyW6g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UiF14EzIImK6XfSI41SohsV/xvmv5sFJpOuL8lmJiY6DXkhfXOKKIJrUj5mpqCJa5bFNVk2PTHYbBix6x7JLOGyk2UH4sLkpcgKHaLzSEqLglqHrTpqJkvYKLheBa5Xb9qykCJSZl22UguZUXPE8qRXdDR9WSn4mSsrsko6uIWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bhKBxDqs; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3862e570832so1328626f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 10:51:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735843884; x=1736448684; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6T3WBl7QnFzkgV2IQFMi/3j+j3esVt8efB4fRofS+jo=;
+        b=bhKBxDqsF88gPOIboc1H4uZVnQokUo5m7EWU62HJtODdz3Q/FprYVIcooI99XjsKj9
+         RqtGw0ZDogL/exVyNNLYHs9C1Yu1SiPsPdxKh2z7cl4jxYQyitQYdXrbtRXomrX4ly7q
+         C5fA0Ly/4VPsoLA+lTIl8yevPTZWFEUajmQv8DxKyFWVZC9y3uSnq1/vcgMLg8PdaRfM
+         cgWQumFfKcyGnULwwA5e7rKK2C2khJtXfBLgOqEyCtszSzAtT/rbtQ/89TdjMYIsH+jy
+         r9vjzZt8I2NA4fRBq5IrK+45J/qCOqWQ5WirHUSxo1u2NslhqNZ9xt/LM4aqb3IcpyNI
+         STzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735843884; x=1736448684;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6T3WBl7QnFzkgV2IQFMi/3j+j3esVt8efB4fRofS+jo=;
+        b=CvrERkO3GK4m9CfprChqZQyJqoPsLldrT9Y+52RML5at1/hssqosrU6cisB3KF0tZz
+         4ZmPazy0oqt7WimMw9/v8ScvnuLo8TnCHz7TuqhGYMpJyhCUTm62XZsPWTD2UEdZQWju
+         GQqk3jpubW3QK+oy+kP0ZV/uPe7oPCBxdWp5P6ygxJjjUORdw55R2k3BcRmvsAoiwl6W
+         +KP1e2Z+/PhxwZLRcEa4zKD5gqFu0r7OkntHYe+wQiM/6pfEb5L3xYOTdHhr3pl1wPUE
+         dBZdRX/AJ2gAihBIfgCIgRdvU2ZIjcUBl4bY/GKSTX47To1w768dPnRDDOxCjYN9S9Nl
+         efnw==
+X-Forwarded-Encrypted: i=1; AJvYcCV9o51qVX7j8ii6WFTyBlxHCFzVVljybJHrOyskGElHReiY8XLrh4PSlVij2AVF5xJZ7SAWcmez+9gj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXG6fzWSWbyhajfl6c02vBEdPrXLHbSqddwSj0RRva3h1ETyEK
+	odhc2YId9hqf4/asoJz5D3WvNLa1BwqkU1S0iN5DaCi6ildap8FviZMjyKfKPJI=
+X-Gm-Gg: ASbGncsL9UZ/2d9UKStqtwkFBJh/ASv9qQnRygLhAoDSwTAGpfBzwjntgDGjoD+WERW
+	oWCZFcLRGlZ5ScFH2mDJeFoS+GQWHhMZHkBBZaTIEbiu+kd8ojPf5al3rD3979G9Em8SdQgEaTf
+	FSSz4xzc9iLlpqoZ/0zxNX7G9N7zlKqZYYl2CxCMdzFlR6Gc8Udw/Sv3yrRMnW3xQxFD2Sxy+0C
+	tu2OIcb4kNCSDw8hunFt08zOvpBJS1tZqSaOx9EqPHHIrHlhG1xW3+rS3g88fmopS5zyUfd
+X-Google-Smtp-Source: AGHT+IFK5jTcY5BkHImuhFxNLmANSOh3LEZ9dsamKhwRZOkF6y2DSkxcL/ZYV+0+5WBmBXgCUwP1nw==
+X-Received: by 2002:a5d:584c:0:b0:385:f909:eb33 with SMTP id ffacd0b85a97d-38a223f745fmr16467016f8f.10.1735843884117;
+        Thu, 02 Jan 2025 10:51:24 -0800 (PST)
+Received: from [172.16.0.204] ([79.164.49.199])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c828cc8sm38715916f8f.17.2025.01.02.10.51.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jan 2025 10:51:23 -0800 (PST)
+Message-ID: <67e923f5-83e9-403a-9c13-3cef9d032304@linaro.org>
+Date: Thu, 2 Jan 2025 20:51:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Thu, 02 Jan 2025 19:48:42 +0100
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add NetCube Systems
- Austria name
-In-Reply-To: <7bcb73f5-26ae-4bdd-9bb4-afc1c5b9fc0d@kernel.org>
-References: <32b5c286-9457-4b93-a93f-c8aff356ec10@kernel.org>
- <20250102175006.3675-1-lukas.schmid@netcube.li>
- <20250102175006.3675-2-lukas.schmid@netcube.li>
- <478a6364-0537-453a-881f-c460de2f67a8@kernel.org>
- <c025818214942560a291f8c53108503a@netcube.li>
- <7bcb73f5-26ae-4bdd-9bb4-afc1c5b9fc0d@kernel.org>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <26cbf302f615bec3ed6496f04425edc7@netcube.li>
-X-Sender: lukas.schmid@netcube.li
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/6] arm64: dts: qcom: x1e80100: Add CAMSS block
+ definition
+Content-Language: ru-RU
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-clk@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250102-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v3-0-cb66d55d20cc@linaro.org>
+ <20250102-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v3-6-cb66d55d20cc@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250102-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v3-6-cb66d55d20cc@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Am 2025-01-02 19:31, schrieb Krzysztof Kozlowski:
-> On 02/01/2025 19:24, Lukas Schmid wrote:
->> Am 2025-01-02 18:57, schrieb Krzysztof Kozlowski:
->>> On 02/01/2025 18:49, Lukas Schmid wrote:
->>>> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
->>>> ---
->>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>> 
->>> You did not read really the messages we gave you...
->>> 
->>> 1. Read what I wrote in my first reply for v1. I gave detailed
->>> instruction to avoid the exact mistake you now did.
->>> 
->>> 2. Read again Andre's reply.
->>> 
->>> 3. Do not attach (thread) your patchsets to some other threads
->>> (unrelated or older versions). This buries them deep in the mailbox 
->>> and
->>> might interfere with applying entire sets.
->>> 
->>> 4. Next version, with proper cover letter, is after 24h, so you have
->>> some time to digest the feedback.
->>> 
->>> Best regards,
->>> Krzysztof
->> 
->> Hi,
->> 
->> Thank you for your feedback, and I sincerely apologize for the 
->> mistakes
->> in my submission process.
->> 
->> I did read Andre's reply and your feedback on v1, but unfortunately, I
->> had already sent the v2 series as a reply before fully understanding 
->> all
->> the recommendations. I realize now that this was a misstep and caused
->> confusion.
->> 
->> I will wait until tomorrow, around 20:00, to send the v3 series. I 
->> will
->> make sure to include a proper cover letter and ensure that all the
->> feedback from v1 and v2 is addressed.
->> 
->> Regarding the v1 feedback, I thought I had incorporated all your
->> suggestions. However, after rereading it, I seem to have missed
->> something critical. Could you please point out what I might have
->> overlooked? I want to make sure I fully understand and correct it in 
->> the
->> next iteration.
->> 
-> Please read my full reply for v1 of this patch. How did you implement
-> that feedback - long instruction?
+On 1/2/25 18:32, Bryan O'Donoghue wrote:
+> Add dtsi to describe the xe180100 CAMSS block
 > 
-> Best regards,
-> Krzysztof
+> 4 x CSIPHY
+> 2 x CSID
+> 2 x CSID Lite
+> 2 x IFE
+> 2 x IFE Lite
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 185 +++++++++++++++++++++++++++++++++
+>   1 file changed, 185 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index 97ebf5596dfc3caa920ef85722ca8afd49cd3c24..0b5b48d2c59e0b18816ea131e0f687b8bf84e1da 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -4726,6 +4726,191 @@ cci1_i2c1: i2c-bus@1 {
+>   			};
+>   		};
+>   
+> +		camss: isp@acb6000 {
+> +			compatible = "qcom,x1e80100-camss";
+> +
+> +			reg = <0 0x0acb6000 0 0x1000>,
+> +			      <0 0x0acb7000 0 0x2000>,
+> +			      <0 0x0acb9000 0 0x2000>,
+> +			      <0 0x0acbb000 0 0x2000>,
+> +			      <0 0x0acc6000 0 0x1000>,
+> +			      <0 0x0acca000 0 0x1000>,
+> +			      <0 0x0ace4000 0 0x2000>,
+> +			      <0 0x0ace6000 0 0x2000>,
+> +			      <0 0x0ace8000 0 0x2000>,
+> +			      <0 0x0acec000 0 0x2000>,
+> +			      <0 0x0acf6000 0 0x1000>,
+> +			      <0 0x0acf7000 0 0x1000>,
+> +			      <0 0x0acf8000 0 0x1000>,
+> +			      <0 0x0acc7000 0 0x2000>,
+> +			      <0 0x0accb000 0 0x2000>,
+> +			      <0 0x0ac62000 0 0x4000>,
+> +			      <0 0x0ac71000 0 0x4000>;
+> +			reg-names = "csid_wrapper",
+> +				    "csid0",
+> +				    "csid1",
+> +				    "csid2",
+> +				    "csid_lite0",
+> +				    "csid_lite1",
+> +				    "csiphy0",
+> +				    "csiphy1",
+> +				    "csiphy2",
+> +				    "csiphy4",
+> +				    "csitpg0",
+> +				    "csitpg1",
+> +				    "csitpg2",
+> +				    "vfe_lite0",
+> +				    "vfe_lite1",
+> +				    "vfe0",
+> +				    "vfe1";
+> +
+> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_RT_CLK>,
+> +				 <&camcc CAM_CC_CAMNOC_AXI_NRT_CLK>,
+> +				 <&camcc CAM_CC_CORE_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_CPHY_RX_CLK_SRC>,
+> +				 <&camcc CAM_CC_CSID_CLK>,
+> +				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY0_CLK>,
+> +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY1_CLK>,
+> +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY2_CLK>,
+> +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY4_CLK>,
+> +				 <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
+> +				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
+> +				 <&gcc GCC_CAMERA_SF_AXI_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
+> +			clock-names = "camnoc_rt_axi",
+> +				      "camnoc_nrt_axi",
+> +				      "core_ahb",
+> +				      "cpas_ahb",
+> +				      "cpas_fast_ahb",
+> +				      "cpas_vfe0",
+> +				      "cpas_vfe1",
+> +				      "cpas_vfe_lite",
+> +				      "cphy_rx_clk_src",
+> +				      "csid",
+> +				      "csid_csiphy_rx",
+> +				      "csiphy0",
+> +				      "csiphy0_timer",
+> +				      "csiphy1",
+> +				      "csiphy1_timer",
+> +				      "csiphy2",
+> +				      "csiphy2_timer",
+> +				      "csiphy4",
+> +				      "csiphy4_timer",
+> +				      "gcc_axi_hf",
+> +				      "gcc_axi_sf",
+> +				      "vfe0",
+> +				      "vfe0_fast_ahb",
+> +				      "vfe1",
+> +				      "vfe1_fast_ahb",
+> +				      "vfe_lite",
+> +				      "vfe_lite_ahb",
+> +				      "vfe_lite_cphy_rx",
+> +				      "vfe_lite_csid";
+> +
+> +			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 431 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 359 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 122 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 360 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "csid0",
+> +					  "csid1",
+> +					  "csid2",
+> +					  "csid_lite0",
+> +					  "csid_lite1",
+> +					  "csiphy0",
+> +					  "csiphy1",
+> +					  "csiphy2",
+> +					  "csiphy4",
+> +					  "vfe0",
+> +					  "vfe1",
+> +					  "vfe_lite0",
+> +					  "vfe_lite1";
+> +
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+> +					 &config_noc SLAVE_CAMERA_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
+> +					<&mmss_noc MASTER_CAMNOC_HF QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&mmss_noc MASTER_CAMNOC_ICP QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> +			interconnect-names = "cam_ahb",
+> +					     "cam_hf_mnoc",
+> +					     "cam_sf_mnoc",
+> +					     "cam_sf_icp_mnoc";
+> +
+> +			iommus = <&apps_smmu 0x800 0x60>,
+> +				 <&apps_smmu 0x860 0x60>,
+> +				 <&apps_smmu 0x1800 0x60>,
+> +				 <&apps_smmu 0x1860 0x60>,
+> +				 <&apps_smmu 0x18e0 0x00>,
+> +				 <&apps_smmu 0x1900 0x00>,
+> +				 <&apps_smmu 0x1980 0x20>,
+> +				 <&apps_smmu 0x19a0 0x20>;
+> +
+> +			power-domains = <&camcc CAM_CC_IFE_0_GDSC>,
+> +					<&camcc CAM_CC_IFE_1_GDSC>,
+> +					<&camcc CAM_CC_TITAN_TOP_GDSC>;
+> +			power-domain-names = "ife0",
+> +					     "ife1",
+> +					     "top";
+> +
+> +			status = "disabled";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +				};
+> +
+> +				port@3 {
+> +					reg = <3>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +				};
+> +			};
+> +		};
+> +
+>   		camcc: clock-controller@ade0000 {
+>   			compatible = "qcom,x1e80100-camcc";
+>   			reg = <0 0x0ade0000 0 0x20000>;
+> 
 
-I assume by 'long instruction' you mean checking the devicetree using
-'make dtbs_check W=1'.
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-I did run dtbs_check after already applying some of the changes you had
-recommended. I just had a look at it's output again, and see now that 
-there
-is one more issue about 'pinctrl@1c20800: 'gpio-reserved-ranges' does 
-not
-match any of the regexes'.
-
-Is this what you mean?
-
-If thats the case I'd assume I should add another patch which adds the
-'gpio-reserved-ranges' property to the
-'devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml' file.
-
-Best regards,
-Lukas
-
+--
+Best wishes,
+Vladimir
 
