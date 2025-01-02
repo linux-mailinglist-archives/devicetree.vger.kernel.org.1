@@ -1,119 +1,89 @@
-Return-Path: <devicetree+bounces-135072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 881229FFA28
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 15:07:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 354959FFACA
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:10:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 450E93A073B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 14:07:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5306918831CD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 15:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734351B4227;
-	Thu,  2 Jan 2025 14:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6057F1B4141;
+	Thu,  2 Jan 2025 15:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gycPVSUA"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="hwW1E8+l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87FB42A1AA;
-	Thu,  2 Jan 2025 14:05:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEEA1B393F;
+	Thu,  2 Jan 2025 15:09:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735826756; cv=none; b=PIVCa/Bg9kGICNCwVYCtg2f6G2d2pbHRi7u0HtuDzhgntgRY4UQFbbv01MDh6z86xTt/DNNFhyAzhZVqBMzSvfhKY/XlRTSxHcSXUWYfrqREHfOx0FbUFXDKtv2SAlppEyPWIHZqHz09mzwHjA/9hSq9Py6/oAh0Ak7b9YNouTA=
+	t=1735830593; cv=none; b=cgUYm1cnZQggjwiX4ecsvk4glY1LEdFjXhpdZIwWCMX8EhzdpkTPmc7cem/z1uvqvbhVIczi0p66bGf0QoSLT32Yxpc9ngiOS7v7+ev9L8qF0ekuh8OXNaDb0GvvbK4SvGZOWAoyVzyWE6vb06G7u65PZwX47Nm9G4tQARU3HxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735826756; c=relaxed/simple;
-	bh=nEq1t8HXsA6VAi+QsDN0eB0KmQLaKCcc/4o8hO6FX2c=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o7QSrlvFLUJ+SEHIA+oKcyve9rpEIl5f0DwuXF2Qxkgq5LUE7V7RQLhc+d+TuiYRnq1wMy1qmemuUS0qINy9rFM+h8Lia9Z6F2d1lIvPhFts5XNtI4qH0NE7u32tporM8/Qq66qBLj+BlsoZN3MqFgXsUIUytsvEQJk1eJkkhC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gycPVSUA; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 502E5kQc1895418
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 2 Jan 2025 08:05:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1735826746;
-	bh=cjQPRNYsvpfmiqPX7ydNdwdrzjsq5HRAclMslwO0+BU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=gycPVSUA1KV0/FA3lNCwfi/2uWd7+QD1KsQ2PWvDSbbLuyZx83IYGlr9Ue+7E/aTa
-	 FZKMyYfLT6oZuvEaRToUSHvdiFt7TtUEOIgzoC0Zp0ArFThrU01IJ1i2oJrRWURi+S
-	 ligvvbB4CmO/sNZikph/hT4qBzOBFIDipTLi5CZw=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 502E5ke1067338
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 2 Jan 2025 08:05:46 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 2
- Jan 2025 08:05:46 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 2 Jan 2025 08:05:46 -0600
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.104])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 502E5jDI038233;
-	Thu, 2 Jan 2025 08:05:46 -0600
-Date: Thu, 2 Jan 2025 19:35:44 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Enric Balletbo i Serra <eballetb@redhat.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
-Message-ID: <5ize7pereukviume62mu2knokpziso3c37gqpft56v6d7ppx5y@3lapih7ncs2f>
-References: <20241204-am69sk-dt-usb-v2-1-d59b2ac45c6e@redhat.com>
- <c73edt6zrcg2qx6jxvlpszjlpb62pgq6ypytsur27ep4biq6tn@olk7mtnqk4s4>
+	s=arc-20240116; t=1735830593; c=relaxed/simple;
+	bh=wLj7KuuwSpqhJ0zQ9yghHAu9ABEBocwsd07POedIe5E=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pRa4DA6Txvh9z5HyttcK1vLCECrRS6x/vj38/7/tHhMZK8fp7AFcyOPAChVWcAUigYcND48BfvQ1uqcKpRrckABDLpdtICPmN0xLLW8NSl4yvxpssgvOt+bLnI+WZvgCmnYbi9ggW7dnYCWApWYXu34LR8EDqgBLJPJPsp5TbIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=hwW1E8+l; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
+	bh=RUwdoc0lLn5AoPPCdb8j5G/idOiy5boW+qyIcksOXgM=;
+	b=hwW1E8+lFqHVnqjnfemYjYrpq3x5M8lY680n1/Dxkdzuo52yADyf01R1zgUBmR1opX3UlYEgL4DpRPVBcbDkQQBxQj7diDLiO9LPUOI/UD7kmaaZxRXmyvx49m6pUm5LEyrsDzUyFDEC3CQH5R4XSYdPpZGnKrg1QwMv6buwM1s=
+Received: from 854af3ed5e24.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
+	by mail.netcube.li with ESMTPA
+	; Thu, 2 Jan 2025 16:09:23 +0100
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>
+Cc: Lukas Schmid <lukas.schmid@netcube.li>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add NetCube Systems Austria name
+Date: Thu,  2 Jan 2025 15:05:04 +0000
+Message-Id: <20250102150508.3581-1-lukas.schmid@netcube.li>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <c73edt6zrcg2qx6jxvlpszjlpb62pgq6ypytsur27ep4biq6tn@olk7mtnqk4s4>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 02, 2025 at 07:23:10PM +0530, Siddharth Vadapalli wrote:
-> On Wed, Dec 04, 2024 at 12:05:26PM +0100, Enric Balletbo i Serra wrote:
-> > From: Dasnavis Sabiya <sabiya.d@ti.com>
-> > 
-> > AM69 SK board has two stacked USB3 connectors:
-> >    1. USB3 (Stacked TypeA + TypeC)
-> >    2. USB3 TypeA Hub interfaced through TUSB8041.
-> > 
-> > The board uses SERDES0 Lane 3 for USB3 IP. So update the
-> > SerDes lane info for PCIe and USB. Add the pin mux data
-> 
-> nitpick: s/SerDes/SERDES to keep it consistent with the convention
-> followed at all other places.
-> 
-> > and enable USB 3.0 support with its respective SERDES settings.
-> > 
-> > Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
-> > Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
-> 
-> Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+NetCube Systems Austria is a company that produces embedded systems
 
-I failed to notice it, but Roger's comment on the v1 patch at:
-https://lore.kernel.org/all/5af2e2fa-3f60-419e-be3e-74771a993de6@kernel.org/
-hasn't been addressed in this patch.
+Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-J784S4_IOPAD(0x0EC, PIN_OUTPUT, 6) /* (AN37) TIMER_IO1.USB0_DRVVBUS */
-should be
-J784S4_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AN37) TIMER_IO1.USB0_DRVVBUS */
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index da01616802c7..a30ed9547098 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1027,6 +1027,8 @@ patternProperties:
+     description: Neofidelity Inc.
+   "^neonode,.*":
+     description: Neonode Inc.
++  "^netcube,.*":
++    description: NetCube Systems Austria
+   "^netgear,.*":
+     description: NETGEAR
+   "^netlogic,.*":
+-- 
+2.47.1
 
-Please fix this.
 
-Regards,
-Siddharth.
 
