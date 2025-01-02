@@ -1,217 +1,135 @@
-Return-Path: <devicetree+bounces-135054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64A4D9FF8D0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:32:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD9209FF8DB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:34:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 051873A2FA7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:32:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1C3E162576
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE351B043E;
-	Thu,  2 Jan 2025 11:31:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F219B1AC458;
+	Thu,  2 Jan 2025 11:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DpisShAn"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="EM43osrj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA4F1B0F0B;
-	Thu,  2 Jan 2025 11:31:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C46194C77
+	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 11:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735817495; cv=none; b=hmLdTIthPt+EmNq98u5P/7ahgwl8Se9yHdfBCKGWjx5SpvxD3PVh6gKcihMvvP4HnBtpDNeaLnwVuLDQWg6f2qHxUAekTsaMYIt6xp51gwpCN3X2ML2xA9uGGJ1WvHH6XLfYyjP7lq2XHeZ29DoFeBa579doUtXiAd4/7LFpRVA=
+	t=1735817677; cv=none; b=ppXsuABtOdm4WVDLtsW3pln5DsGuDkGHqSkVNzgnNbM6uMoDIVZ/z+3M4Ufm3TRh3qoCS67L5E1UW1ed8AHQQmSKVnxgnRZ3/l5kitMn2iZEsXtHng36zWcDk1/PooQdYKT+f7DaHaNY4YAWmRl6DtpxPHOGYvo+NtFWLwetzNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735817495; c=relaxed/simple;
-	bh=HK0bcts3/EOI3z/YtbcXBJ51jSGmA7iuDWXhbO0n+lc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nNCbRlYVF/VSjQj7jRjtJOtkkgdm50q4R+DKdy/aiowTCwD5AcsWBTrv0qQuAj0uqjJihK3sdSmNfQOEOuXimKL627kWuZRAycaDye+G5Zixc8b6IYKduQFI7z/rGYMn7xvXrINMC8/ksLqsd4ZB6C4rcgjMKrObsHd+iB1+P4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DpisShAn; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50283V5p021055;
-	Thu, 2 Jan 2025 11:31:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	hhl8LhVLSIOFxcEP2RPodjO6sTk2njoaqUrh5OIEc1k=; b=DpisShAneyngaKTw
-	VjBPW5MTrI6n+iQSIVsYzxeAe4fRS0JPqWhBGtmpmO8nWt5SOzJTbykBJqCoFseo
-	WZyltZkz5iNHW8zU4zfca8VYbe9sjrP0YOuHTVlM7ef5zBGlKWhU9cd6Zga6FjDf
-	g08CEmDwvBuTobhyqF9tlHS2z4BTZZ3470G+gh66rk5fTUV31j97Dqd5vLkbBWX8
-	S7jEohNl72Uunt5Liy2l+VyWib3Wskutqn8W8tCYxcDBs/RnNsmelEz5ii4IIDav
-	wwOLXiXT21ceN4Akzu6w+rH8otqhYtJ40/RYJXsff2qVZnRXXMmtF4Km25giWG0y
-	m1RGlg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43wpy2rcs5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Jan 2025 11:31:18 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 502BVFRr021610
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 2 Jan 2025 11:31:15 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 2 Jan 2025 03:31:08 -0800
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <p.zabel@pengutronix.de>, <quic_nsekar@quicinc.com>,
-        <quic_varada@quicinc.com>, <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-CC: Praveenkumar I <quic_ipkumar@quicinc.com>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v5 5/5] arm64: dts: qcom: ipq5332-rdp441: Enable PCIe phys and controllers
-Date: Thu, 2 Jan 2025 17:00:19 +0530
-Message-ID: <20250102113019.1347068-6-quic_varada@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250102113019.1347068-1-quic_varada@quicinc.com>
-References: <20250102113019.1347068-1-quic_varada@quicinc.com>
+	s=arc-20240116; t=1735817677; c=relaxed/simple;
+	bh=xZk5juEQTblPG6mT+mOtIaKkOYTA19ECmOyXXFnW3A4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SFtQWqWCzyTYhzKjZAqmVeHM4LBGgRsH2c6C+XBGForMZqLvNRc1UF7VI1uewt/b2TMv74Iqj5b/RtSmkbSdw5LGo2tMLa+vm+2c0jr7aXnUa+Az5beSA33LF+bcOWfV0fW1CbdTAi4rhKCheZ2yXndH/ehFEYDKUNqKJWUAYTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=EM43osrj; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aaec111762bso1648145466b.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 03:34:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1735817674; x=1736422474; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IJuTW2/wmv0Cni895FL84+N2QJ2H1fwMgsWcI7DGnW4=;
+        b=EM43osrjrSM15bPSCvRGvVR7Qmi1JctNay6HwZePyE0XwIjVEsfPuCmPRoykfMBIVe
+         EFejN/PzJGRW99/Zl+4S/u+k+wRbuaArdWcBNRmtNvwhsSepcY2aly2Ef/O8m0ewNfVL
+         SEMVZsV5Xrry2p7etoQBMXACAdPGCxGHSh6n8D2fim7yt4ttWzlyrWcYpYpiTjruGklM
+         MxqgaIRCBJSpPvG5wHKSVKoeoaTZqc6bd07MHoI/3p7WizITXFj1M/sp+T/esZ1fLI8C
+         WlKyll5dP+DAApSR6ScRLLXlC1jPCvJOLKbFnio75pcv1ZaahlvrvnrKU/770e6ZKOLR
+         Q1rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735817674; x=1736422474;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IJuTW2/wmv0Cni895FL84+N2QJ2H1fwMgsWcI7DGnW4=;
+        b=LzJC4oEIrgCT1V/F8Lm0QTe8MJ5W35RECT2U9N4MzxzEnA95n1gns+/Y9Qq60W4+dG
+         whU4FvkEBVGpEtd9ZqEeyRWUqksKCu/vus+mdN92x8SWWnx2VR+T+B3C1XD4NsLIaWcp
+         i3ncoQgPAwYO5A8wWAWlwmJPwdDR4XwXlcW4uT6QP0VA7g3E23mVd3ka0mIWbi7h2w3p
+         LLg8mLVGHHCAtJDyHpGI0JSxBjJrtqo+xW+baRrqr3z0LH/Jc5PWc+v7YAihjH8lR7cu
+         qcwsDkY3WNXSfL4wx54DeJm5NEvat3B6wBuqVBkhK+xK3kME+hnItzWjq+2WTLZ75D8U
+         OUJA==
+X-Forwarded-Encrypted: i=1; AJvYcCWVf2Z9wsfoAO58lVKDxzZhlESe6zPaNcWJfpa7zgv1ZaHVh3hAJqCMon8Ce8dDww9N7TA1xve7BrDk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwACE4/d7m7GVjetipgBtqNaQro4JR2t709PIyxG9yxNlGfC2rW
+	wl7izJqJ8qqoJGN0Dp+fBNMa3WLjoCZ8GMYbt2e79TFwF707J5e1dxi/jDloARY=
+X-Gm-Gg: ASbGncvNcQjM33RMti/RFas8dd3bYLfPo1MXNO8yDD+BTQz9hQ+p5w13ICwxzgVUghg
+	9NQxgdEBtM3R6uANIcw1NTIL0fq6Kc/RLf4dF1qv76CjFV63L+OwmUVk6Cwtd30M+gSGXaozGqD
+	tVMTAmUyTlLxuv40pTWVoeLirnOTAnxAmeaF+XBJmUJFAsz8h9PF/u9aWpB9KqC5lq1YIr9eyiL
+	g40YS+6jjJVYO8TjILqLZh7jHWmOFzlkiPGeHjy/uApDZmh1pkFLbqYEWZgcmno5g==
+X-Google-Smtp-Source: AGHT+IGIlULUY5OVKXjFZRKGpQ2k3iKZcvVspZWtEdWr47v7SWAFqOFAYEk9fc6/cC6JF/XKlQkXSw==
+X-Received: by 2002:a17:907:97c5:b0:aac:431:4ee7 with SMTP id a640c23a62f3a-aac2883fe8fmr4247597966b.5.1735817674243;
+        Thu, 02 Jan 2025 03:34:34 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.102])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e830daasm1761964966b.13.2025.01.02.03.34.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jan 2025 03:34:33 -0800 (PST)
+Message-ID: <9f2025e3-5ec6-4a7d-8a4f-d04b343da912@tuxon.dev>
+Date: Thu, 2 Jan 2025 13:34:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4hYAdnYZhUJVfEoy1Rst72AreNP5IIqj
-X-Proofpoint-GUID: 4hYAdnYZhUJVfEoy1Rst72AreNP5IIqj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- adultscore=0 mlxlogscore=999 malwarescore=0 mlxscore=0 phishscore=0
- suspectscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501020100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/13] Add support for SAMA7D65
+To: Ryan.Wanner@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, mturquette@baylibre.com, sboyd@kernel.org,
+ arnd@arndb.de
+Cc: dharma.b@microchip.com, mihai.sain@microchip.com,
+ romain.sioen@microchip.com, varshini.rajendran@microchip.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-serial@vger.kernel.org
+References: <cover.1734723585.git.Ryan.Wanner@microchip.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <cover.1734723585.git.Ryan.Wanner@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Praveenkumar I <quic_ipkumar@quicinc.com>
 
-Enable the PCIe controller and PHY nodes for RDP 441.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
----
-v5: Add 'Reviewed-by: Konrad Dybcio'
+On 20.12.2024 23:07, Ryan.Wanner@microchip.com wrote:
 
-v4: Fix nodes sort order
-    Use property-n followed by property-names
+[ ... ]
 
-v3: Reorder nodes alphabetically
-    Fix commit subject
----
- arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts | 76 +++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+>   dt-bindings: atmel-sysreg: add sama7d65 RAM and PIT
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
-index 846413817e9a..79ec77cfe552 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
-@@ -32,6 +32,34 @@ &sdhc {
- 	status = "okay";
- };
- 
-+&pcie0 {
-+	pinctrl-0 = <&pcie0_default>;
-+	pinctrl-names = "default";
-+
-+	perst-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	pinctrl-0 = <&pcie1_default>;
-+	pinctrl-names = "default";
-+
-+	perst-gpios = <&tlmm 47 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 48 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+};
-+
-+&pcie1_phy {
-+	status = "okay";
-+};
-+
- &tlmm {
- 	i2c_1_pins: i2c-1-state {
- 		pins = "gpio29", "gpio30";
-@@ -40,6 +68,54 @@ i2c_1_pins: i2c-1-state {
- 		bias-pull-up;
- 	};
- 
-+	pcie0_default: pcie0-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio37";
-+			function = "pcie0_clk";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio38";
-+			function = "gpio";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+			output-low;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio39";
-+			function = "pcie0_wake";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	pcie1_default: pcie1-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio46";
-+			function = "pcie1_clk";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio47";
-+			function = "gpio";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+			output-low;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio48";
-+			function = "pcie1_wake";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	sdc_default_state: sdc-default-state {
- 		clk-pins {
- 			pins = "gpio13";
--- 
-2.34.1
+Was already applied from v3
 
+>   dt-bindings: clocks: atmel,at91sam9x5-sckc: add sama7d65
+>   dt-bindings: clock: Add SAMA7D65 PMC compatible string
+
+Was already applied from v3
+
+>   dt-bindings: ARM: at91: Document Microchip SAMA7D65 Curiosity
+
+Was already applied from v3
+
+>   clk: at91: sama7d65: add sama7d65 pmc driver
+
+Applied to clk-microchip
+
+>   ARM: dts: at91: Add sama7d65 pinmux
+
+Was already applied from v3
+
+>   ARM: configs: at91: sama7: add new SoC config
+
+Was apready applied from v3
+
+>   ARM: at91: add new SoC sama7d65
+
+Applied to at91-soc, thanks!
 
