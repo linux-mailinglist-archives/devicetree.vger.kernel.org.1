@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-135003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FD989FF6B3
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 08:59:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C79BA9FF6B9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:04:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCE2D7A1131
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 07:59:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE2D53A23FA
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 08:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF33190482;
-	Thu,  2 Jan 2025 07:59:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA12190664;
+	Thu,  2 Jan 2025 08:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FTMfkafw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qiR619ZT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFFC2179A3;
-	Thu,  2 Jan 2025 07:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2721518E35D;
+	Thu,  2 Jan 2025 08:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735804759; cv=none; b=nJhUF//3vYABdVZmJ/zoTmswlQzmsFl8jelPf1+9ITZ5eKR5P/QxJb24DzeqRty50MhkGD3USJ6XcUb38jGUzqoiM0oYUpUaMwq/96Cy6qZEVo4ItZp5y0upDB0pIYqBGmv++gjJHwfd9OZ09OVBsm97DrwX9QurorJAtJeD8+4=
+	t=1735805092; cv=none; b=WaKBVRb+b0F1XksdoE/Jvp8ihUuS/E+bRp8kqqTsZu0ZR8i4q/9W4JtKvNoZ3efDBnQQqeKLDNHaYrpHzRXbOBs//4ya6ukGTeTdQxi4ZCopcxtcsNLug24D87r8TpJRD70XYtz1k/CLvitaalNblJSrPfRDwugTQaRGaBWvS0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735804759; c=relaxed/simple;
-	bh=Wtds6vwJjBF4P/XZvYFiH00JqcJXxnLQHetnGMvlTUI=;
+	s=arc-20240116; t=1735805092; c=relaxed/simple;
+	bh=fqSPwiW9TD2aNHcdroIetu+qu+4AFiuYwOjG9zv2Ckk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WAQoe184yvBQ3X0Hgba0TV4iHAahqk0F54kzs837aYmi+qAJDPAgdgHP8EjaLW4DAPjQoH/LGkuXaEuV912SA+xKLGN6TTElqsdBAhdYPSDq1Rw65PfjE5keeaoM+iSKmY7waVbGad/nqoCsoY0aeIPW7uNiSbXIfLbLqfgEceo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FTMfkafw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B16BC4CED0;
-	Thu,  2 Jan 2025 07:59:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYFYlOZJRbK6T8eazan5vXd885vq3YzWlLjS+bMYqoDBaBjaCp/YRWTrd/EeqXNlb4w+g6ryEG5kpdLwwI51/nJTaCz8Lv2cu4bxsMYAd6zRMyu+xnPSDP9dGyADLqcmg1rV6PuHK8YC2/CrJ9C3RA3LGezHIknPyptyxJSrDNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qiR619ZT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FB99C4CEDD;
+	Thu,  2 Jan 2025 08:04:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735804758;
-	bh=Wtds6vwJjBF4P/XZvYFiH00JqcJXxnLQHetnGMvlTUI=;
+	s=k20201202; t=1735805091;
+	bh=fqSPwiW9TD2aNHcdroIetu+qu+4AFiuYwOjG9zv2Ckk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FTMfkafwdqE5Xtg30VWOi0HKrhX2KrG/HBucVTsuWPOgi/HepUzTyW6wm19DAJKgs
-	 KvzXYINs5yYtWlkd5lZmg+gUOoFKINYa+otZWQY2OG/qtfq+C42aojIzPOIQ2FAO9s
-	 Gien8iO5D+rNiFYkai3gJi0Ox+ISHOPVFD+081P+ZTo+j4tgiv5rQfa2OCdUfxMmVP
-	 5LeVe/BBXGr/l54RIoKXPYLKKdkEmPIn0hsvv/icOXIkqi3qWsE2628XStkprVP0Ot
-	 AwmfDm2eLuACKbLKiE1xvclC2yaroUHinrtBR63qQGA1bv572DAlRRztj0/4RYUcQl
-	 nAF9LHNEC4f+w==
-Date: Thu, 2 Jan 2025 08:59:15 +0100
+	b=qiR619ZTh/mk8vVWSQVEmrWfHJwDEsFYyQWgrQnBDaSIfExWM88sANFBMKVwZkHuw
+	 aysBPxaURggvv0+m59JsewxDISbbT3LWMelJYZcfml0jPEyBOFP6goJdPOXvAxNGV/
+	 h0kyOlZrBHn2qGCsRXY8pTFmdOoDsUN0iMssQ2P85DheoBraJUOBKP1sw82P2dNfU3
+	 ey7WQ8FCI/KAAs8heNt/UWAEaNSldKP8qinL2tin8oU9adCTo9Eixr4fAw9GBjsTxd
+	 Lk1Ki22IbJnPMw/sREbOWFMvQmcYR57+VxJ2QHNUxOrdvsHCvPxITTrH1ti5WJykgh
+	 6U7n4nKC+YgyQ==
+Date: Thu, 2 Jan 2025 09:04:48 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, gnstark@salutedevices.com, jic23@kernel.org, lars@metafoo.de, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	christianshewitt@gmail.com
-Subject: Re: [RFC PATCH v1 1/2] dt-bindings: iio: adc: amlogic,meson-saradc:
- Add GXLX SoC compatible
-Message-ID: <akqtrf3yklgplxutne63fq4iz2cxw4gkzinjgxldjdabbsvusd@rfuofb3bcqmx>
-References: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
- <20241231194207.2772750-2-martin.blumenstingl@googlemail.com>
+To: Paul Handrigan <paulha@opensource.cirrus.com>
+Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com, 
+	devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	patches@opensource.cirrus.com
+Subject: Re: [RESEND PATCH v5 1/2] dt-bindings: clock: cs2600: Add support
+ for the CS2600
+Message-ID: <o3v5xvn55r3candka76xtt7ixze6g7chs74xkqcrwlvdeqoygt@mduvhhj2o3xj>
+References: <20241231202018.3956166-1-paulha@opensource.cirrus.com>
+ <20241231202018.3956166-2-paulha@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +60,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241231194207.2772750-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20241231202018.3956166-2-paulha@opensource.cirrus.com>
 
-On Tue, Dec 31, 2024 at 08:42:06PM +0100, Martin Blumenstingl wrote:
-> Add a compatible string for the GXLX SoC. It's very similar to GXL but
-> has three additional bits in MESON_SAR_ADC_REG12 for the three MPLL
-> clocks.
+On Tue, Dec 31, 2024 at 02:20:17PM -0600, Paul Handrigan wrote:
+> Add device tree support for the Cirrus Logic CS2600 clock
+> device.
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml        | 1 +
->  1 file changed, 1 insertion(+)
+> Signed-off-by: Paul Handrigan <paulha@opensource.cirrus.com>
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
