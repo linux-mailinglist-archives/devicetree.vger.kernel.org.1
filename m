@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-135057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC509FF8FE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:52:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725969FF902
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:57:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7159A3A24F0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:52:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 671EF3A2945
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B3F1ACEC2;
-	Thu,  2 Jan 2025 11:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6757F1A38E3;
+	Thu,  2 Jan 2025 11:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="19pNoYzq"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="YIeI3qCH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1AD31A8408;
-	Thu,  2 Jan 2025 11:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF111191F94;
+	Thu,  2 Jan 2025 11:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735818750; cv=none; b=uxS3itbWyabfKPnb3x2W95Nw7hovWn98HnIGsLa6EivpTEORKyE6FGN/7aNdX7ryDnkgfN+oGa6KdoAejrsX/sghUM9AI2O3eRP0UW/kuDyT5jAOiL37yA/XvVrtqwAa/wdDwA1/HCvJ2z0w4Z9YHPfxXIl3Pw8ulIjwCmU3FhU=
+	t=1735819025; cv=none; b=Cu5NLmbHdOAUQff1fsVMkhH6oZEVnCTJYnf2euY1ANo/pnS3J/yHcwjuvoHl6VC3lpXT5X2HPP7unVO/UrAOQQeAq78JNo+59RuZ0GIIiYBCbZAtBaQshL13LPAdjO7caXrRR0nBOTRMsI3mNQSJeIlgRO2utIjoxHf/gyIyRMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735818750; c=relaxed/simple;
-	bh=5gThfw2b1seVSqDR+g8KzbPy0WLknyr2g/XToI05UDY=;
+	s=arc-20240116; t=1735819025; c=relaxed/simple;
+	bh=rdrukPNaQlmroAeSXFNhKckgh2maM/3AU1P2HvXmLuM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o7LluupZWOeAfIgCwJZ39ePdVnGvZuxIn8JQIabKYygyxPBdL8Q+MkWiy8CcqOPKlv3sOZAVoOItiSv9EaZX6Eas9b2VyN7qh6d+RtrYAUsQWc/YGJAeRHFrZYO1Ne2vn9mMbgFaP134L9708R2Qsz2JViHut/XKnvq13bbrihc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=19pNoYzq; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=i1s5lp0HcEdDF7SnKbhkABFM7k2J/vglQQwJ/rZXHzEEgmsv6fWsrzJtfPBBWeIFc+6wkSlYRUs9f728iFWP61+Kp591ZkpvmrzhSHey5FReCko6+tvVoStbAv94CUMB9Cvm5F+jMrsI6/FAyCMF6vyHDJ+4P6gbQ1TTW+I+S20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=YIeI3qCH; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,31 +37,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=zAkXzjPt8X/XOE0CbwOaMJf4t29lQ3cTGBGCsqKltRU=; b=19pNoYzq8aMvqfvQhqk6BfloHt
-	FGPBL1odDg6I8xokNeEptw/nvH7VUF4Ny+Z2/wUaSHGd4nK2rRJ85bxIFsTd18VBE7OxAoY6kanDD
-	J6wWfBrx7VhniAVwUjKPR68Dm46azJCXSu7c131ek39CbZXHE5XkpCX7ZynR1utgd1Ez21HK9D0iN
-	deTngyouwkrlo+Lmq+3UXh30wY4FQW90Utg3v3q5qvqQEDd4cNT07wnQC/giq52dsSl8tFU4f/2kp
-	+Lmq6RQA2YOIm+3W16yCe+/kTePjBtMm8LgzSIazNu61tIV9xmsgWkDeoOn0T3yXFalFxKmllvnEe
-	4K3ofz1w==;
+	bh=j9BRYqtU1/upqh8/+Oi84LPuS1gHyWF/MWynsZDnmsI=; b=YIeI3qCH5MGj7bJGccxx3mZoYZ
+	tyrZ+UeWV1Yz1LAvt0YJLRqpxWMflvnA9fEWguGwPda7GTs4zUt+waTidGWxa1hYWmZnRyWvXbsmG
+	ybecqROk8igzdkLkShtoNPGwCnqjcZvIAOD2SMrND5QKmjFCXCxMQSYDXTt1vq5pumbeWbTWN9DjZ
+	A91+2EwTPjnT0meDoGRe0Gq6vMIPCoK6axxlSUXYOLtNXpbrQPK0ps029ffIW13hc5lSMUXnb+/6e
+	puxeAU7lbZ/kGCjrQLkFgJOEj4T7EbOyD4EsUQ0KZKcbzflN+eJ2s8G5M4PqgTf1OmZgTrumrY6rn
+	M5UQx5Kg==;
 Received: from i5e860d14.versanet.de ([94.134.13.20] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tTJk7-0007gM-LR; Thu, 02 Jan 2025 12:51:59 +0100
+	id 1tTJou-0007jf-8O; Thu, 02 Jan 2025 12:56:56 +0100
 From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
+To: Andy Yan <andyshrk@163.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>
 Cc: cristian.ciocaltea@collabora.com, krzk+dt@kernel.org, mripard@kernel.org,
  hjc@rock-chips.com, devicetree@vger.kernel.org,
  dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
  Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 1/3] drm/rockchip: dw_hdmi_qp: Add platform ctrl callback
-Date: Thu, 02 Jan 2025 12:51:58 +0100
-Message-ID: <2175680.OBFZWjSADL@diego>
-In-Reply-To: <20241225103741.364597-2-andyshrk@163.com>
+Subject: Re: [PATCH 3/3] drm/rockchip: Add basic RK3576 HDMI output support
+Date: Thu, 02 Jan 2025 12:56:55 +0100
+Message-ID: <15367137.tv2OnDr8pf@diego>
+In-Reply-To: <20241225103741.364597-4-andyshrk@163.com>
 References:
  <20241225103741.364597-1-andyshrk@163.com>
- <20241225103741.364597-2-andyshrk@163.com>
+ <20241225103741.364597-4-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,116 +72,55 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Andy,
-
-Am Mittwoch, 25. Dezember 2024, 11:37:29 CET schrieb Andy Yan:
+Am Mittwoch, 25. Dezember 2024, 11:37:31 CET schrieb Andy Yan:
 > From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> There are some control bits for IO and interrupts status scattered
-> across different GRF on differt SOC.
-> Add platform callback for this IO setting and interrupts status
-> handling.
+> The HDMI on RK3576 shares the same IP block (PHY and Controller)
+> with rk3588.
+> However, there are some control bits scattered in different GRF.
 > 
 > Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> 
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> Tested-by: Detlev Casanova <detlev.casanova@collabora.com>
+
+The attribution is strange. Where does the Signed-off from Detlev come
+from?
+
+At that position it would mean that he's the sender, but that's obviously
+not the case.
+
+I guess it's either just the Tested-by ... or you need an additional
+Co-Developed-by if Detlev contributed to this patch.
+
+
 > ---
 > 
->  .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 81 ++++++++++++-------
->  1 file changed, 54 insertions(+), 27 deletions(-)
+>  .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 143 +++++++++++++++++-
+>  1 file changed, 141 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-> index c36fc130b734..b21e868e7c16 100644
+> index b21e868e7c16..bd9216e45e74 100644
 > --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
 > +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-> @@ -62,6 +62,12 @@ struct rockchip_hdmi_qp {
->  	int port_id;
+[...]
+> @@ -287,8 +422,12 @@ static const struct rockchip_hdmi_qp_cfg rk3588_hdmi_cfg = {
 >  };
 >  
-> +struct rockchip_hdmi_qp_ctrl_ops {
-> +	void (*io_init)(struct rockchip_hdmi_qp *hdmi);
-> +	irqreturn_t (*irq_callback)(int irq, void *dev_id);
-> +	irqreturn_t (*hardirq_callback)(int irq, void *dev_id);
-> +};
-> +
->  static struct rockchip_hdmi_qp *to_rockchip_hdmi_qp(struct drm_encoder *encoder)
->  {
->  	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-> @@ -226,9 +232,47 @@ static irqreturn_t dw_hdmi_qp_rk3588_irq(int irq, void *dev_id)
->  	return IRQ_HANDLED;
->  }
->  
-> +static void dw_hdmi_qp_rk3588_io_init(struct rockchip_hdmi_qp *hdmi)
-> +{
-> +	u32 val;
-> +
-> +	val = HIWORD_UPDATE(RK3588_SCLIN_MASK, RK3588_SCLIN_MASK) |
-> +	      HIWORD_UPDATE(RK3588_SDAIN_MASK, RK3588_SDAIN_MASK) |
-> +	      HIWORD_UPDATE(RK3588_MODE_MASK, RK3588_MODE_MASK) |
-> +	      HIWORD_UPDATE(RK3588_I2S_SEL_MASK, RK3588_I2S_SEL_MASK);
-> +
+>  static const struct of_device_id dw_hdmi_qp_rockchip_dt_ids[] = {
+> -	{ .compatible = "rockchip,rk3588-dw-hdmi-qp",
+> -	  .data = &rk3588_hdmi_cfg },
+> +	{ .compatible = "rockchip,rk3576-dw-hdmi-qp",
+> +	  .data = &rk3576_hdmi_cfg
+> +	}, {
+> +	  .compatible = "rockchip,rk3588-dw-hdmi-qp",
+> +	  .data = &rk3588_hdmi_cfg
+> +	},
 
-nit: below val = ... and regmap_write don't have a blank line between them
-which makes sense to show that they belong together. So the blank above
-can probably also go away.
+nit: please keep consistent styling between the listentries. Right now the
+rk3576 and changed rk3588 entries use different styles.
 
-> +	regmap_write(hdmi->vo_regmap,
-> +		     hdmi->port_id ? RK3588_GRF_VO1_CON6 : RK3588_GRF_VO1_CON3,
-> +		     val);
-> +
-> +	val = HIWORD_UPDATE(RK3588_SET_HPD_PATH_MASK, RK3588_SET_HPD_PATH_MASK);
-> +	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON7, val);
-> +
-> +	if (hdmi->port_id)
-> +		val = HIWORD_UPDATE(RK3588_HDMI1_GRANT_SEL,
-> +				RK3588_HDMI1_GRANT_SEL);
-> +	else
-> +		val = HIWORD_UPDATE(RK3588_HDMI0_GRANT_SEL,
-> +				RK3588_HDMI0_GRANT_SEL);
-> +	regmap_write(hdmi->vo_regmap, RK3588_GRF_VO1_CON9, val);
-> +
-> +	if (hdmi->port_id)
-> +		val = HIWORD_UPDATE(RK3588_HDMI1_HPD_INT_MSK, RK3588_HDMI1_HPD_INT_MSK);
-> +	else
-> +		val = HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_MSK, RK3588_HDMI0_HPD_INT_MSK);
-> +	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
-> +}
-> +
-> +static const struct rockchip_hdmi_qp_ctrl_ops rk3588_hdmi_ctrl_ops = {
-> +	.io_init		= dw_hdmi_qp_rk3588_io_init,
-> +	.irq_callback	        = dw_hdmi_qp_rk3588_irq,
-> +	.hardirq_callback	= dw_hdmi_qp_rk3588_hardirq,
-> +};
-> +
->  struct rockchip_hdmi_qp_cfg {
->  	unsigned int num_ports;
->  	unsigned int port_ids[MAX_HDMI_PORT_NUM];
-> +	const struct rockchip_hdmi_qp_ctrl_ops *ctrl_ops;
->  	const struct dw_hdmi_qp_phy_ops *phy_ops;
->  };
->  
-> @@ -238,6 +282,7 @@ static const struct rockchip_hdmi_qp_cfg rk3588_hdmi_cfg = {
->  		0xfde80000,
->  		0xfdea0000,
->  	},
-> +	.ctrl_ops = &rk3588_hdmi_ctrl_ops,
->  	.phy_ops = &rk3588_hdmi_phy_ops,
->  };
->  
-> @@ -282,6 +327,12 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
->  	if (!cfg)
->  		return -ENODEV;
->  
-> +	if (!cfg->ctrl_ops || !cfg->ctrl_ops->io_init ||
-> +	    !cfg->ctrl_ops->irq_callback || !cfg->ctrl_ops->irq_callback) {
 
-cfg->ctrl_ops->irq_callback is checked twice, I guess one of them
-should've been ctrl_ops->hardirq_callback?
-
-Patch looks good otherwise.
-
-Thanks
 Heiko
-
 
 
 
