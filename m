@@ -1,201 +1,204 @@
-Return-Path: <devicetree+bounces-135210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7874A00182
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 00:24:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67056A001D7
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 00:41:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C66AF1883C33
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 23:24:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 439123A3994
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 23:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 930AC1B423B;
-	Thu,  2 Jan 2025 23:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB1A71B87E5;
+	Thu,  2 Jan 2025 23:41:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uMTzbb4f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gollum.nazgul.ch (gollum.nazgul.ch [81.221.21.253])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B87EC13D;
-	Thu,  2 Jan 2025 23:24:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.221.21.253
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD12A1487E1;
+	Thu,  2 Jan 2025 23:41:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735860254; cv=none; b=XVRGExNphQt4d5oguvfhF4FsUFeOXVqYv7aHlotOiS7wOdorvcOzzB6glhK6kyYmyQgfZEj+7BQitnKdIksBfdVlenfwxD9v5tQY2zL86R5p7fvfDCHDSL+12FfUKDW7Ev+4KF546CTMBbcUeUGw6dOMNh36x7WS2gyYdS4VnRQ=
+	t=1735861294; cv=none; b=gDsf57eN8tfI0FvN4Z+yBPe32MgYAbcXAX2unJn5aycmQXOueWZLsK4NV8U/7OF0UDllIJcFmFAPulG1AUrKkl+oA/del+Ua5Vmm9lDnv8xKIU7YLjxoU8SWM1wBBfZY8WnXLJc+vJD3NCMwxG0Bx7zgh/5w/3s2Lwr2HkZxMU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735860254; c=relaxed/simple;
-	bh=avrt1v3y88rkmOw+rb92zRpftGeG6Cjs+XOu6XL5mi4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RkV0pzlXhUZJxEWikf27jIsCL6lyet4GV5TcpJWLuEWP667HFtcXxtDiT9nbYrcvV8uZYEqOoaEWWsXS2WkY03DzyFUpO+YHDoaEAf/c6OXpkG4gTn8kRpwfME9SB+IOCBrwnOI6z5eW0SxnWp6cQKJaQce+R/mONXuQlo++oB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nazgul.ch; spf=pass smtp.mailfrom=nazgul.ch; arc=none smtp.client-ip=81.221.21.253
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nazgul.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nazgul.ch
-Received: from localhost (gollum.nazgul.ch [local])
-	by gollum.nazgul.ch (OpenSMTPD) with ESMTPA id d13cec59;
-	Fri, 3 Jan 2025 00:17:28 +0100 (CET)
-Date: Fri, 3 Jan 2025 00:17:28 +0100
-From: Marcus Glocker <marcus@nazgul.ch>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Daniel Gomez <d@kruces.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
-	Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v5 4/6] arm64: dts: qcom: Add UFS node
-Message-ID: <srqwbf4teujrcvovxglsibvhtq6wpv2ojclf4joc6hwvszhbir@2gxtczxhqlc7>
-References: <p3mhtj2rp6y2ezuwpd2gu7dwx5cbckfu4s4pazcudi4j2wogtr@4yecb2bkeyms>
- <g5vlxrttgvfqkktlkhu4uzhtvnp3qtjcbr7l2uztapzqwhrsem@wg574xldh5ar>
- <cd9d5a7c-ec0b-4f0a-bac2-f747799bf295@kernel.org>
- <l5vwputpefdkweti56em37i5asrd3vb7pxhwlzir7webfuk3fl@afcqm3faq2gt>
- <D5I1G5K85QLC.FP6NF7M20KXQ@kruces.com>
- <f5676c71-9e15-4733-aacc-2d194e2567fd@quicinc.com>
+	s=arc-20240116; t=1735861294; c=relaxed/simple;
+	bh=ch0GkpFuPqrl9Q9IY1H3iJffMB/gcnW9L3RUPcdqXEM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KDRvvtK+QjD8U1AwFiJzEXdCUzum2ylf+7YMekasIvaInMdwmvtsLD5gP9RLhf5bvLeHwcjPjwpCY50QFmTafNmPtTUxLLRvlRDxx/LemDiDaotswHAMS9wwkGapqwdkmsoqtN9+uHTUfOO72ITL9y2m+rMScBR9PAkB9BcGBf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uMTzbb4f; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 502Nf7LB2008264
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 2 Jan 2025 17:41:07 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1735861267;
+	bh=hCSbunZevSYdHGiznkBbiqb3avWhTx/cn0/m1jHk4Hc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=uMTzbb4fwGnCjXYCixcxN69fOsmglgTTciTWMRknAiK6bp7ELNjmQ+RMV6IOJsjb/
+	 GovZox52Q1VPJ4qqHrS9VeI4TViJY9hHQdRlZepKgz1hv6vi08e81HEIcNGT/QQ+VP
+	 Zm6IO4Wn19XHDwN5kdQlbdnHSrv01if6Ai5nDDZs=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 502Nf7It003563
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 2 Jan 2025 17:41:07 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 2
+ Jan 2025 17:41:06 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 2 Jan 2025 17:41:06 -0600
+Received: from [128.247.29.228] (dmz007xyy.dhcp.ti.com [128.247.29.228])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 502Nf6rC095638;
+	Thu, 2 Jan 2025 17:41:06 -0600
+Message-ID: <2f32750e-18cb-4e68-8331-c0f8e0987c4b@ti.com>
+Date: Thu, 2 Jan 2025 17:41:06 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f5676c71-9e15-4733-aacc-2d194e2567fd@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 6/7] regulator: tps65215: Define probe() helper
+ functions
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+CC: <m-leonard@ti.com>, <praneeth@ti.com>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>, <andreas@kemnade.info>,
+        <khilman@baylibre.com>, <rogerq@kernel.org>, <tony@atomide.com>,
+        <jerome.neanne@baylibre.com>, <linux-omap@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20241226215412.395822-1-s-ramamoorthy@ti.com>
+ <20241226215412.395822-7-s-ramamoorthy@ti.com>
+ <01c571c5-b4c9-418c-9c14-5b7b16c88409@wanadoo.fr>
+Content-Language: en-US
+From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+Organization: PMIC
+In-Reply-To: <01c571c5-b4c9-418c-9c14-5b7b16c88409@wanadoo.fr>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Jan 02, 2025 at 01:38:10PM GMT, Wesley Cheng wrote:
+Hi,
 
-> 
-> On 11/9/2024 3:31 PM, Daniel Gomez wrote:
-> > On Fri Aug 30, 2024 at 7:25 PM CEST, Marcus Glocker wrote:
-> >> On Fri, Aug 30, 2024 at 02:05:48AM +0200, Konrad Dybcio wrote:
-> >>
-> >>> On 17.08.2024 10:38 PM, Marcus Glocker wrote:
-> >>>> Add the UFS Host Controller node.  This was basically copied from the
-> >>>> arch/arm64/boot/dts/qcom/sc7180.dtsi file.
-> >>>>
-> >>>> Signed-off-by: Marcus Glocker <marcus@nazgul.ch>
-> >>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>>> ---
-> >>>>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 72 ++++++++++++++++++++++++++
-> >>>>  1 file changed, 72 insertions(+)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi 
-> >>>> b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> >>>> index 7bca5fcd7d52..9f01b3ff3737 100644
-> >>>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> >>>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> >>>> @@ -2878,6 +2878,78 @@ mmss_noc: interconnect@1780000 {
-> >>>>  			#interconnect-cells = <2>;
-> >>>>  		};
-> >>>>
-> >>>> +		ufs_mem_hc: ufs@1d84000 {
-> >>>> +			compatible = "qcom,x1e80100-ufshc", "qcom,ufshc",
-> >>>> +				     "jedec,ufs-2.0";
-> >>>> +			reg = <0 0x01d84000 0 0x3000>;
-> >>>> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> >>>> +			phys = <&ufs_mem_phy>;
-> >>>> +			phy-names = "ufsphy";
-> >>>> +			lanes-per-direction = <1>;
-> >>>> +			#reset-cells = <1>;
-> >>>> +			resets = <&gcc GCC_UFS_PHY_BCR>;
-> >>>> +			reset-names = "rst";
-> >>>> +
-> >>>> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
-> >>>> +
-> >>>> +			iommus = <&apps_smmu 0xa0 0x0>;
-> >>> Looks like this should be 0x1a0 maybe
-> >>>> +
-> >>>> +			clock-names = "core_clk",
-> >>>> +				      "bus_aggr_clk",
-> >>>> +				      "iface_clk",
-> >>>> +				      "core_clk_unipro",
-> >>>> +				      "ref_clk",
-> >>>> +				      "tx_lane0_sync_clk",
-> >>>> +				      "rx_lane0_sync_clk";
-> >>>> +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
-> >>>> +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> >>>> +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
-> >>>> +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-> >>>> +				 <&rpmhcc RPMH_CXO_CLK>,
-> >>>> +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-> >>>> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>;
-> >>> You also want
-> >>>
-> >>> <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>
-> >>>
-> >>>> +			freq-table-hz = <50000000 200000000>,
-> >>> 25000000 300000000
-> >>>
-> >>>> +					<0 0>,
-> >>>> +					<0 0>,
-> >>>> +					<37500000 150000000>,
-> >>> 75000000 300000000
-> >>>
-> >>>> +					<0 0>,
-> >>>> +					<0 0>,
-> >>>> +					<0 0>;
-> >>>> +
-> >>>> +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
-> >>>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> >>>> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> >>>> +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
-> >>>> +			interconnect-names = "ufs-ddr", "cpu-ufs";
-> >>>> +
-> >>>> +			qcom,ice = <&ice>;
-> >>>> +
-> >>>> +			status = "disabled";
-> >>>> +		};
-> >>>> +
-> >>>> +		ufs_mem_phy: phy@1d87000 {
-> >>>> +			compatible = "qcom,x1e80100-qmp-ufs-phy";
-> >>>> +			reg = <0 0x01d87000 0 0x1000>;
-> >>> most definitely should be 0x01d80000 with a size of 0x2000
-> >>>
-> >>>> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> >>>> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-> >>>> +				 <&tcsr TCSR_UFS_PHY_CLKREF_EN>;
-> >>>> +			clock-names = "ref",
-> >>>> +				      "ref_aux",
-> >>>> +				      "qref";
-> >>>> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
-> >>>> +			resets = <&ufs_mem_hc 0>;
-> >>>> +			reset-names = "ufsphy";
-> >>>> +			#phy-cells = <0>;
-> >>>> +			status = "disabled";
-> >>>> +		};
-> >>>> +
-> >>>> +		ice: crypto@1d90000 {
-> >>>> +			compatible = "qcom,x1e80100-inline-crypto-engine",
-> >>>> +				     "qcom,inline-crypto-engine";
-> >>>> +			reg = <0 0x01d90000 0 0x8000>;
-> >>> 0x1d88000
-> >>>
-> >>>
-> >>> All this combined means you probably wrote your init sequence into some
-> >>> free(?) register space and the one left over from the bootloader was
-> >>> good enough :P
-> >>>
-> >>> Konrad
-> >> I have not done anything special in our sub-system to boot this DTB.
-> >> Changing the values as suggested by you also doesn't make any difference
-> >> to me.
-> >>
-> >> Anyway, I think I'll give up at this point, since this process is
-> >> getting too time consuming for me.  We'll go ahead with out downstream
-> >> patches, which works for us so far.
-> 
-> 
-> Hi Marcus,
-> 
-> 
-> Do you mind if I take over this series??? I started working on getting at least the UFS and USB portions of the DT file to work on my Samsung Galaxy book4 with your patches, along with some required modifications.?? If you're OK, I'll keep you as the author for the main DT file, and submit my changes on top.
-> 
-> 
-> Thanks
-> 
-> Wesley Cheng
+On 1/1/25 5:01 AM, Christophe JAILLET wrote:
+> Le 26/12/2024 à 22:54, Shree Ramamoorthy a écrit :
+>> Factor register_regulators() and request_irqs() out into smaller 
+>> functions.
+>> These 2 helper functions are used in the next restructure probe() 
+>> patch to
+>> go through the common (overlapping) regulators and irqs first, then the
+>> device-specific structs identifed in the chip_data struct.
+>>
+>> Signed-off-by: Shree Ramamoorthy 
+>> <s-ramamoorthy-l0cyMroinI0@public.gmane.org>
+>> ---
+>>   drivers/regulator/tps65219-regulator.c | 64 ++++++++++++++++++++++++++
+>>   1 file changed, 64 insertions(+)
+>>
+>> diff --git a/drivers/regulator/tps65219-regulator.c 
+>> b/drivers/regulator/tps65219-regulator.c
+>> index 13f0e68d8e85..8469ee89802c 100644
+>> --- a/drivers/regulator/tps65219-regulator.c
+>> +++ b/drivers/regulator/tps65219-regulator.c
+>> @@ -346,6 +346,70 @@ static struct chip_data chip_info_table[] = {
+>>       },
+>>   };
+>>   +static int tps65219_register_regulators(const struct 
+>> regulator_desc *regulators,
+>> +                    struct tps65219 *tps,
+>> +                    struct device *dev,
+>> +                    struct regulator_config config,
+>> +                    unsigned int arr_size)
+>> +{
+>> +    int i;
+>> +    struct regulator_dev *rdev;
+>> +
+>> +    config.driver_data = tps;
+>> +    config.dev = tps->dev;
+>> +    config.regmap = tps->regmap;
+>> +
+>> +    for (i = 0; i < arr_size; i++) {
+>> +        rdev = devm_regulator_register(dev, &regulators[i],
+>> +                        &config);
+>> +        if (IS_ERR(rdev)) {
+>> +            dev_err(tps->dev,
+>> +                "Failed to register %s regulator\n",
+>> +                regulators[i].name);
+>
+> This will be called from probe in 7/7.
+> So this could be return dev_err_probe()
+>
+I left these as dev_err(), since dev_err_probe() is used when there is a chance
+-EPROBE_DEFER is returned. For both functions using dev_err() here, -ENOMEM is returned.
+Should I still switch these 2 instances to dev_err_probe()?
 
-Hi Wesley,
+Thank you for your help!
 
-Perfectly fine for me.  I'm glad if there is progress.
+>> +
+>> +            return PTR_ERR(rdev);
+>> +        }
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static int tps65219_request_irqs(struct tps65219_regulator_irq_type 
+>> *irq_types,
+>> +                 struct tps65219 *tps, struct platform_device *pdev,
+>> +                 struct tps65219_regulator_irq_data *irq_data,
+>> +                 unsigned int arr_size)
+>> +{
+>> +    int i;
+>> +    int irq;
+>> +    int error;
+>> +    struct tps65219_regulator_irq_type *irq_type;
+>> +
+>> +    for (i = 0; i < arr_size; ++i) {
+>> +        irq_type = &irq_types[i];
+>> +
+>> +        irq = platform_get_irq_byname(pdev, irq_type->irq_name);
+>> +        if (irq < 0)
+>> +            return -EINVAL;
+>> +
+>> +        irq_data[i].dev = tps->dev;
+>> +        irq_data[i].type = irq_type;
+>> +
+>> +        error = devm_request_threaded_irq(tps->dev, irq, NULL,
+>> +                          tps65219_regulator_irq_handler,
+>> +                          IRQF_ONESHOT,
+>> +                          irq_type->irq_name,
+>> +                          &irq_data[i]);
+>> +        if (error) {
+>> +            dev_err(tps->dev,
+>> +                "Failed to request %s IRQ %d: %d\n",
+>> +                irq_type->irq_name, irq, error);
+>
+> This will be called from probe in 7/7.
+> So this could be return dev_err_probe()
+>
+>> +            return error;
+>> +        }
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+>>   static int tps65219_regulator_probe(struct platform_device *pdev)
+>>   {
+>>       struct tps65219 *tps = dev_get_drvdata(pdev->dev.parent);
+>
 
-Thanks and Regards,
-Marcus
+-- 
+Best,
+Shree Ramamoorthy
+PMIC Software Engineer
+
 
