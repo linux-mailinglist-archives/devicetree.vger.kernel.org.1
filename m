@@ -1,102 +1,193 @@
-Return-Path: <devicetree+bounces-135017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C9A9FF77C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:35:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C13B69FF781
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:36:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B95E162243
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:35:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94648160F9B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 09:36:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304A519DF9A;
-	Thu,  2 Jan 2025 09:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C41192B8F;
+	Thu,  2 Jan 2025 09:36:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TiiAF6VW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Et+cmj6f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A889119D086;
-	Thu,  2 Jan 2025 09:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C68191F89;
+	Thu,  2 Jan 2025 09:36:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735810497; cv=none; b=VCtCygLF2Ywu82xAlFegXzjt6hJrDinJ/rrl8Z+84IkNWvGJ4UOIwVDztOApK+dg3Et23UVCZ5KhPxPxWVLei9nunc9mfCkJgvcmB+pygTU0PxWV5+4lsm4x10gHdTXl8ZKhS7gw+FAVnjfKwzm7HDpUruoVHHFT1X3gxcyLXrs=
+	t=1735810596; cv=none; b=qgCwkfhWCQEsoKbx68dVHd3/Dk7s9X0IK8PPvPwJiUCaLRrlM7q73HlVzgJ1cQFkbL6Zr/4S44JDLoczqul0lEqqF+NxNyY0QFmvgnWaaFDXa/3tKOLpMBWxK0395BDy1iYI394DuEcD1sjpdRw/Cr0kAHJAC8OSYAjy//1O4vA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735810497; c=relaxed/simple;
-	bh=c9rKsDiha9fDzMuda3rAARdYRSPn+SADWPbuqHkSGHc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=Dv3/cB1ywrYXmGbzfBFSsFyY4vv1bKd1G+Voh3kWvjtJtsyQEjrdtguUC6FNSa+Of2XI1/M1Yc6z4t8bhYR3VoSIKXiaQxFUJPWSjQEYSoDARPs7P2BRkN/wY9QtxdmnT2hl3mnI9vOYPzZaP/C/fNrzcoxiQZA90fZm9Wkkm3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TiiAF6VW; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8E22420003;
-	Thu,  2 Jan 2025 09:34:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1735810486;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=c9rKsDiha9fDzMuda3rAARdYRSPn+SADWPbuqHkSGHc=;
-	b=TiiAF6VWtPQVkrPAtL9JJV9BDB/vJsfLqzPNQtIO+wziyhGWec66ocbGpw17yolmpeoSED
-	U+eRaNjQGVGJ3catMlDCBujqSGIrbyG9XX7Dq7MzE2Nw233fIbckgh9aJTKNKoZPJc7bDb
-	7zqeQqkJftEc86xlkQsjsAAb0vJ//pfb+Ftekn7SIDBDo7hK6G6BWrsoUcRHo1LyquEHOF
-	izQEXGfej+M52B1712QJGKk72JWsIqpcNowKwmtTcTPK3lwfJeWYt30U0SNc5Z/vI0+nzR
-	ZlW0SRnp2WjEAJ3KvO8dN8Am5cBcZahPVxeVBIa8p644pc0rqtqEguJqzBx2nw==
+	s=arc-20240116; t=1735810596; c=relaxed/simple;
+	bh=m4HpPUCNfrmW1y5TFM5fRmU/JVwN1ECD7vuAH4bP3Hs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TgpEKDPTac0iohMGbvs31VP/RzPkCrOoDP6HZJ9VCe9K4WdKIFVpg94qaB01jIQdlz1CUntKxCRNU8yhnzd8+MhyaNuYIurDCaCe0+XjVrNPBGODYO2YJVTfZHA2O0Ccrp9CxCrsdhnQYAR6SB9xe6e1g8OhaBKo1NAg1kwW5PU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Et+cmj6f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C871C4CED0;
+	Thu,  2 Jan 2025 09:36:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735810596;
+	bh=m4HpPUCNfrmW1y5TFM5fRmU/JVwN1ECD7vuAH4bP3Hs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Et+cmj6fgjZE3wJkcRpXGpKlmAbZMYErgLORbnn8UFbVMr3Ex9prJdT9YfoITx0if
+	 VbPGLSBVDiZId0LCbBw23hvq8vvtQilCfunH3W2ftNa0ph8BQ/Xcxwy3VnLIQrL2r7
+	 E6scUeUjudul+U59E1EPtgDtxipdRm4oS14wtVsqhb2A18JP+iU22IGaYGJYUYG6Lk
+	 tkRl6Er2Wwx0kKHKlhZVKhJPG7ejBO9csqeWv9VmkFKo7XuV/0kL4zyH4WtcbeYLla
+	 JDk1k8lFyNSJsXGDQryE3BeJvLV0JbjEHVSx0En8HvMcemI+xosgX3gaTFzikgtXWQ
+	 plJnGTIjEAR0A==
+Date: Thu, 2 Jan 2025 10:36:27 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Gary Guo <gary@garyguo.net>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, paulmck@kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	rcu@vger.kernel.org, Wedson Almeida Filho <wedsonaf@gmail.com>
+Subject: Re: [PATCH v7 03/16] rust: implement `IdArray`, `IdTable` and
+ `RawDeviceId`
+Message-ID: <Z3ZeG5NJRJEVGCYi@cassiopeiae>
+References: <20241219170425.12036-1-dakr@kernel.org>
+ <20241219170425.12036-4-dakr@kernel.org>
+ <20241224201002.6a69c77c.gary@garyguo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 02 Jan 2025 10:34:45 +0100
-Message-Id: <D6RHGOGA0PL5.147OW8IBT7NKY@bootlin.com>
-Subject: Re: [PATCH v2 6/7] input: misc: Add support for MAX7360 rotary
-Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Christophe JAILLET" <christophe.jaillet@wanadoo.fr>, "Lee Jones"
- <lee@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
- <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20241223-mdb-max7360-support-v2-0-37a8d22c36ed@bootlin.com>
- <20241223-mdb-max7360-support-v2-6-37a8d22c36ed@bootlin.com>
- <d3174dce-868c-4a42-9a5c-2b947ae88d18@wanadoo.fr>
-In-Reply-To: <d3174dce-868c-4a42-9a5c-2b947ae88d18@wanadoo.fr>
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241224201002.6a69c77c.gary@garyguo.net>
 
-On Tue Dec 31, 2024 at 6:49 PM CET, Christophe JAILLET wrote:
-> Le 23/12/2024 =C3=A0 17:42, Mathieu Dubois-Briand a =C3=A9crit=C2=A0:
-> > Add driver for Maxim Integrated MAX7360 rotary encoder controller,
-> > supporting a single rotary switch.
-> >=20
-> > Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com=
->
->
-> ...
->
->
-> CJ
+On Tue, Dec 24, 2024 at 08:10:02PM +0000, Gary Guo wrote:
+> On Thu, 19 Dec 2024 18:04:05 +0100
+> Danilo Krummrich <dakr@kernel.org> wrote:
+> 
+> > Most subsystems use some kind of ID to match devices and drivers. Hence,
+> > we have to provide Rust drivers an abstraction to register an ID table
+> > for the driver to match.
+> > 
+> > Generally, those IDs are subsystem specific and hence need to be
+> > implemented by the corresponding subsystem. However, the `IdArray`,
+> > `IdTable` and `RawDeviceId` types provide a generalized implementation
+> > that makes the life of subsystems easier to do so.
+> > 
+> > Co-developed-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+> > Signed-off-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+> > Co-developed-by: Gary Guo <gary@garyguo.net>
+> > Signed-off-by: Gary Guo <gary@garyguo.net>
+> > Co-developed-by: Fabien Parent <fabien.parent@linaro.org>
+> > Signed-off-by: Fabien Parent <fabien.parent@linaro.org>
+> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> 
+> Thank you for converting my prototype to a working patch. There's a nit below.
+> 
+> > ---
+> >  MAINTAINERS              |   1 +
+> >  rust/kernel/device_id.rs | 165 +++++++++++++++++++++++++++++++++++++++
+> >  rust/kernel/lib.rs       |   6 ++
+> >  3 files changed, 172 insertions(+)
+> >  create mode 100644 rust/kernel/device_id.rs
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 2ad58ed40079..3cfb68650347 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -7033,6 +7033,7 @@ F:	include/linux/kobj*
+> >  F:	include/linux/property.h
+> >  F:	lib/kobj*
+> >  F:	rust/kernel/device.rs
+> > +F:	rust/kernel/device_id.rs
+> >  F:	rust/kernel/driver.rs
+> >  
+> >  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
+> > diff --git a/rust/kernel/device_id.rs b/rust/kernel/device_id.rs
+> > new file mode 100644
+> > index 000000000000..e5859217a579
+> > --- /dev/null
+> > +++ b/rust/kernel/device_id.rs
+> > 
+> > <snip>
+> >
+> > +
+> > +impl<T: RawDeviceId, const N: usize> RawIdArray<T, N> {
+> > +    #[doc(hidden)]
+> > +    pub const fn size(&self) -> usize {
+> > +        core::mem::size_of::<Self>()
+> > +    }
+> > +}
+> > +
+> 
+> This is not necessary, see below.
+> 
+> > <snip>
+> >
+> > +
+> > +/// Create device table alias for modpost.
+> > +#[macro_export]
+> > +macro_rules! module_device_table {
+> > +    ($table_type: literal, $module_table_name:ident, $table_name:ident) => {
+> > +        #[rustfmt::skip]
+> > +        #[export_name =
+> > +            concat!("__mod_device_table__", $table_type,
+> > +                    "__", module_path!(),
+> > +                    "_", line!(),
+> > +                    "_", stringify!($table_name))
+> > +        ]
+> > +        static $module_table_name: [core::mem::MaybeUninit<u8>; $table_name.raw_ids().size()] =
+> > +            unsafe { core::mem::transmute_copy($table_name.raw_ids()) };
+> 
+> const_size_of_val will be stable in Rust 1.85, so we can start using the
+> feature and 
+> 
+> static $module_table_name: [core::mem::MaybeUninit<u8>; core::mem::size_of_val($table_name.raw_ids())] =
+>     unsafe { core::mem::transmute_copy($table_name.raw_ids()) };
+> 
+> should work.
 
-Hi Christophe,
+Thanks for the note, this indeed saves a few lines.
 
-Thanks a lot for all your comments. I've integrated fixes for all of
-them, to be shipped with the next version.
+Since the series has been applied already, feel free to send a patch.
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+> 
+> > +    };
+> > +}
+> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> > index 7818407f9aac..66149ac5c0c9 100644
+> > --- a/rust/kernel/lib.rs
+> > +++ b/rust/kernel/lib.rs
+> > @@ -18,6 +18,11 @@
+> >  #![feature(inline_const)]
+> >  #![feature(lint_reasons)]
+> >  #![feature(unsize)]
+> > +// Stable in Rust 1.83
+> > +#![feature(const_maybe_uninit_as_mut_ptr)]
+> > +#![feature(const_mut_refs)]
+> > +#![feature(const_ptr_write)]
+> > +#![feature(const_refs_to_cell)]
+> >  
+> >  // Ensure conditional compilation based on the kernel configuration works;
+> >  // otherwise we may silently break things like initcall handling.
+> > @@ -35,6 +40,7 @@
+> >  mod build_assert;
+> >  pub mod cred;
+> >  pub mod device;
+> > +pub mod device_id;
+> >  pub mod driver;
+> >  pub mod error;
+> >  #[cfg(CONFIG_RUST_FW_LOADER_ABSTRACTIONS)]
+> 
 
