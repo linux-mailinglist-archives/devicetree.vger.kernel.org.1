@@ -1,109 +1,135 @@
-Return-Path: <devicetree+bounces-135203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10F47A000C8
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:38:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DB5AA000DB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:42:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0052E3A342A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:38:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E37F77A051C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 566CE1B87FF;
-	Thu,  2 Jan 2025 21:38:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B44F81B6CEA;
+	Thu,  2 Jan 2025 21:42:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cJ0Cauj+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ltfpcrVU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B061B85C2
-	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 21:38:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B1543173;
+	Thu,  2 Jan 2025 21:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735853917; cv=none; b=WzdQ5JjC3daHcjzGzZuBvJIO+OV2mVIf7R5d1Umy8ayKynv6L0eP5emrVQjJswRy9UAb8Yvi+VvTD5zXp9sw/kE5PmjYIkS3XOGJCJNCFXL8B+h9xou06J4bcsiH4RM1dIwRjqcp+Kx4J5shBg3HuX0zaSubIYyDKMmOxEpI32k=
+	t=1735854161; cv=none; b=dgfXECHmWTcOrUqxHymNB2HGD4dsi34s23iEsobiSsBY7M/3OBtUr2LVMZ5/yqM4EW56SZz0eMKD9d6KIuO4KQrpZmgal15J7jGg0T1yKkg452o0E1Yx58/4zUgNdnivnVxmCq1zqjZVa7ilTX7kvDdVLurEkdIugxyN+U7WBYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735853917; c=relaxed/simple;
-	bh=/QAvkI6HxTL5269JiZxSPsPSVibxMR8kD9bdLWJznEE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c4/BX+Qq8l+VR/tSj5sHAWJFdrD2ewem+9OuacENg6v/vMpMAffnMIgEmF82XbVdM70LCMQiuWok796Jwg4S05Y1vd8rXTq3UOH+8kaEeMnaNGjD4IJqzySu4lE2eIlU6gG94IcJHlKcqekAEoCxdjuxf0DxJ1ODz+qNn2En5+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cJ0Cauj+; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53f22fd6887so11267579e87.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 13:38:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735853914; x=1736458714; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/QAvkI6HxTL5269JiZxSPsPSVibxMR8kD9bdLWJznEE=;
-        b=cJ0Cauj+jBQqQI2PQDa661APtWMmqRA8XIMiQ6nFRboYf4yY9iIf8scKnIdzcTalBo
-         elVkikJH08+jS1mkOlPN0J3rDAZshP2EvVZC5kSw0tMrznz4UGBkLwhvYZNaEPWIk9Bd
-         j15723jnh2/TTwomTA1PdQZS4WRA2b3h0S27OQuruy8VbSoElIDwGcfwAz1QApU2gWSS
-         b6PBehQ+Y7gx2OtGJ1mHG2XeTxKTwu6mQNWjo0NAn10l1Oo+j32jivcFZzIi5znzDxbG
-         tZSB0TnbUnyjduhPdgJOKpjP+qTv/+jNWRoAyQPoGMHq/og7FSTJLwrWiCOQtxtlyNuT
-         DxYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735853914; x=1736458714;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/QAvkI6HxTL5269JiZxSPsPSVibxMR8kD9bdLWJznEE=;
-        b=Ox0xKxjfGHQuzVoQrJggoQLfdIyK0zGz2XTmx+5CQkaYktnwrE/oGnKynIhluAltV6
-         hwyz4Uks34NB6kUHqjFspTiqieIdcbrqE2LMV4Jydmrsz0l8F9zFV8EYlTXSKwPtbwjP
-         dkUY1eP25oucIqCsd6cX26R9DVkuU190lJsZoKYExezsNTsb2QasqYwCgcc5Woq8eMZT
-         cTTGgr0HJ7PG5MLJsAFmb7z5dKbq+KoVbaSthgbZaZ8YePmyNkm7mhHJdHJ5G4HnmhwK
-         NuWwq0QW8sNSD+mqiSBxepceGqdBrWndLVnIZ2X0sMpa7Y4LW0l609wMdF29+GR6K8S8
-         Tx+A==
-X-Forwarded-Encrypted: i=1; AJvYcCWuvrhNFNeHQvT9t6JTQYTxdD9GW3QYKChSD9i8aIwW9kYTbjp1m4DoAxvXJYzWGhwEOH/BDxJolahX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzObbzeCTcmRUiBLjHNHT0WFdU37DR3QONTJUxznICBta/tFeq/
-	Pz7wnK2BYc9e3VR++DrV1E7Ir0lpWVXzz/Arhx4968zjA1wD5jqJEvyFnUx+C/m43xEg8eB+m7k
-	JuYJEWrSdaCf/e+3j54LGOp2jo+qU70wM3dzA+w==
-X-Gm-Gg: ASbGncs6inHBB2pYZfRyjOsVGRWNWChAKNvrdRzL4gh6m4FZeGp7kDULP9f0DUtBTRx
-	57wUb5O+X0S9g+/Cr9fenp74avo442oBMbZqe
-X-Google-Smtp-Source: AGHT+IGgIsXivWdreYxsNQCB/NDjR4aFqFJyr5ZVnW9Z9Bg0saPdaxlqhTNHFFgWt31bWtKnl3+Z4uC7x6U9BW4+fD8=
-X-Received: by 2002:a05:6512:b0d:b0:540:2576:d0d8 with SMTP id
- 2adb3069b0e04-54229561a90mr12900419e87.40.1735853913704; Thu, 02 Jan 2025
- 13:38:33 -0800 (PST)
+	s=arc-20240116; t=1735854161; c=relaxed/simple;
+	bh=uDMyXn3LiiyKF4pIUlHSNryFTjlmWZMhMoFJsaSUZTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KrhoA9hkGHRsYAFsGDyGhZrElo36lEyxGuvJrsZZbcgyV3Y1agljFdwg96nfR4eXwzy9sQWwIFdn7Q4V1NS2/SXl4zwuz+dvM7ZtCnVbHzAvZ2kqCv2zeGXVqa49gtPWG0rrJsjrRyeFrot8JAXr5R1qI+UDxD4s4eIH5yXR/fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ltfpcrVU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A438EC4CED0;
+	Thu,  2 Jan 2025 21:42:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735854160;
+	bh=uDMyXn3LiiyKF4pIUlHSNryFTjlmWZMhMoFJsaSUZTI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ltfpcrVUydeBWC3tP1Tkm1jkhtmpkl67oE3dyG7XvG/nmFt8D7ECg+gxTv0JzKJFC
+	 NeZsrCWq3+OxY8hF+YGH/q5UoXpu8wizxJU7RhAujTYuw2mDdGnOTfJxlwRM4eeN7d
+	 Cz6TCW7tvQW2P3mok4Xjg9GekmW06OClgUyIX4fQn6cJE2AWBcIBBKsKsguoDiNNQP
+	 cvkNPrc4R+4J2R4vPZteGKOQZGMk/wc/lHiulBkLP7LIveZXDPsXuJEmKbSvODjbf/
+	 rbVMRjgGUX6rPl7SWK83OPa0f6eS1OOU7YH3D2C08Mgsub3UyU5f6/Dca531J0saod
+	 ffB1evLEKS1kg==
+Date: Thu, 2 Jan 2025 15:42:38 -0600
+From: Rob Herring <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: rzv2h-cpg: Add syscon
+ compatible for CPG block
+Message-ID: <20250102214238.GA614405-robh@kernel.org>
+References: <20241227190210.69025-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20241227190210.69025-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net> <20250102-mpc83xx-v1-13-86f78ba2a7af@posteo.net>
-In-Reply-To: <20250102-mpc83xx-v1-13-86f78ba2a7af@posteo.net>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 2 Jan 2025 22:38:22 +0100
-Message-ID: <CACRpkdZVKC9HhUT8LqNnOU5NSE_S-ucuZRWACesEejDWwCyV5w@mail.gmail.com>
-Subject: Re: [PATCH 13/19] gpio: mpc8xxx: Add MPC8314 support
-To: j.ne@posteo.net
-Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
-	Christophe Leroy <christophe.leroy@csgroup.eu>, Naveen N Rao <naveen@kernel.org>, 
-	Madhavan Srinivasan <maddy@linux.ibm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>, linuxppc-dev@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241227190210.69025-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Thu, Jan 2, 2025 at 7:32=E2=80=AFPM J. Neusch=C3=A4fer via B4 Relay
-<devnull+j.ne.posteo.net@kernel.org> wrote:
+On Fri, Dec 27, 2024 at 07:02:05PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> The CPG block in the RZ/V2H(P) and RZ/G3E SoCs includes Error Reset
+> Registers (CPG_ERROR_RSTm). A system reset is triggered in response to
+> error interrupt factors, and the corresponding bit is set in the
+> CPG_ERROR_RSTm register. These registers can be utilized by various IP
+> blocks as needed.
+> 
+> For example, specific bits in these registers indicate resets caused by
+> events such as underflow or overflow of the watchdog timer. This
+> functionality allows the watchdog driver to determine whether the current
+> boot resulted from a `Power-on Reset` or a `Watchdog Reset`.
+> 
+> Add the syscon-compatible property to the RZ/V2H(P) and RZ/G3E CPG block,
+> allowing drivers to interact with the CPG_ERROR_RSTm registers as required.
 
-> From: "J. Neusch=C3=A4fer" <j.ne@posteo.net>
->
-> GPIO input, output, and interrupts have been tested on a MPC8314E board.
->
-> Signed-off-by: J. Neusch=C3=A4fer <j.ne@posteo.net>
+This is an ABI change. That's okay because...?
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Can Bartosz simply apply this and the binding patch and get these
-two patches off our tail?
-
-Yours,
-Linus Walleij
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> - No change
+> ---
+>  .../devicetree/bindings/clock/renesas,rzv2h-cpg.yaml   | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> index c3fe76abd549..f42d79e73e70 100644
+> --- a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> @@ -17,9 +17,11 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - renesas,r9a09g047-cpg # RZ/G3E
+> -      - renesas,r9a09g057-cpg # RZ/V2H
+> +    items:
+> +      - enum:
+> +          - renesas,r9a09g047-cpg # RZ/G3E
+> +          - renesas,r9a09g057-cpg # RZ/V2H
+> +      - const: syscon
+>  
+>    reg:
+>      maxItems: 1
+> @@ -73,7 +75,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      clock-controller@10420000 {
+> -        compatible = "renesas,r9a09g057-cpg";
+> +        compatible = "renesas,r9a09g057-cpg", "syscon";
+>          reg = <0x10420000 0x10000>;
+>          clocks = <&audio_extal_clk>, <&rtxin_clk>, <&qextal_clk>;
+>          clock-names = "audio_extal", "rtxin", "qextal";
+> -- 
+> 2.43.0
+> 
 
