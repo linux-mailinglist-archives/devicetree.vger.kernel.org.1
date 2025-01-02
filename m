@@ -1,124 +1,129 @@
-Return-Path: <devicetree+bounces-135041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0179B9FF86A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:52:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F979FF875
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:54:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BACDE160DD3
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:52:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC8337A0FCF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 10:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A931F1A8419;
-	Thu,  2 Jan 2025 10:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3463A192B89;
+	Thu,  2 Jan 2025 10:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="X1hbv+CW"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="QPcYWPj6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC6E4192B89
-	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 10:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894BF2CA9;
+	Thu,  2 Jan 2025 10:54:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735815142; cv=none; b=iRN+WkEaS74riDuEpoLg8N5Z8O16QoobH7T5egoHcwp0YIswJJ8cxO5rVO+5kRdblyXQMZND3+R9N+MIjvs4bKys35WrVmWF16J8RCgTDgzvD9k7ZZ5C6dzRmzlKVbsPGoLI+Dn8UdkdQWOe3V3YwN4GzRi6BN3GtJte8iEFdnk=
+	t=1735815264; cv=none; b=eSPJYkutA5mFreBQohU0smsAMs8/qrZBa6x4TExXVdghKMNzFaAYnatgLTABT3A0vdBs+/Aj3OvsRbCY0jFMLwcTIl1kmG2DcyaBDmXIDCRBAmn1481aPERc1B6gJ7OubP2Mhvl/vWsyjw+M4MZ+WKo+d69BnKPtOt1Ecem6uck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735815142; c=relaxed/simple;
-	bh=mMF/3PAWbT4cwYrfbRt7SNtYsxbQwYPfM12nGDJoqPQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EVPgrXJ4jhVo7BByNo9jAPI+LpxgjMuDJ67+gIDLl1wJJKT1VHlEbi6mVN4D5Y4Ca1MLkEAODTQXBHZKWE6PNcN2daSTnProMA7UvAK+fE+rpCAzLNqlz+VbyWFDMqgRjN8jJFYdVEUb1pchLXsAO+0LCz1d//mVzO/js8fJypA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=X1hbv+CW; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3862b40a6e0so6187883f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 02:52:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1735815139; x=1736419939; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ze9LqpjCGSWa0yPDrI54f/7UaaRjSHcJ6CR6aCivtOE=;
-        b=X1hbv+CW1mIXR5inMbIRSMeXu/iV+kika7xeuUAOOc8Pkj93e35QOzK2BTqlo9rkB2
-         RzdHFjnLfrc+iu2Fnh95De/rfhyxa+S2od0M4ya4jmKc+3yOnguowXtB7ze/BfM7isYa
-         1Pea5NJgMQSJfZs/yE/VahCSiqq1qRkPGZmaoaaEM3go+p0yh9aamPbIQDfpHJ2VN6lx
-         3qeHQowwLBkOlN/2rmEVHPOtblNIoI3zN3Y0obd8TjBN5F8adYUPZoxLBJGjbzkOlXRH
-         5eHJ6o8lkPYKCuK2NXcoXSm1ajMVv2XlO8+FxA7Hhd7eZKr+jGxO6f1drnVJWpW9+RKu
-         73eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735815139; x=1736419939;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ze9LqpjCGSWa0yPDrI54f/7UaaRjSHcJ6CR6aCivtOE=;
-        b=QyOlFFQ5pq1AIIAxuDr5AAcRDmO1xfJT7os5E2c6UE/ZI1HL97Qt/yqCH1kfjWSYKQ
-         ikT/OaiTuu64UcLkTiESZDl5Weq2mG73/KRDlIzr6P3PT4y2pH5ULJTTSFL6zykeX6+R
-         3d9Br5Y2PysAJI7a0IX40T6uumNY4Lb6Lcjhx7Hoy2SAJCKlzL92Ubrl3597mX6L/Kiu
-         TNICZ18tL9ybUbpk7HsTxhCc+VLl9hxYzTenWrieTb+UKjHPitYcvl6RRzzoQlnlcavT
-         De4kYxiUG9oB02jFO2ThG7uJazyRzgTLIztg+LPJAUckMErMwGZU6r7iPokBYspt5Xtc
-         gvcA==
-X-Forwarded-Encrypted: i=1; AJvYcCVXw3EUTdeaWH7QS0L3vcKbAC9gv5G7fnKlPHGB/oNeG+die4jYN7NwkHO5anUDR0kESblFiWj4PoF1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNATWXGypJkmRqLBF9PPxHEua1yaRkmOTrPETNJrJ06jjxRjv/
-	Z9kNErd3ds+60Wv7o+u+WnqV7aZEz0Zd7xR1CaPzMV2c4cwpvC1i0Cy1Oh+Xw1U=
-X-Gm-Gg: ASbGncvtfnnPadg8eWEOKoBz1dyRJ5xIctaZGKZDMj9dLcpf84t5XPKzsy1NlcEWQak
-	swrMKIKjkgBvF8UQ86ISTREbHws604bHchaOCHElMn/T2bOJBhjaXwouLU+wUamLlHkFZ931T3y
-	vMkXNSgB39KPiQXbiKlBW2qKwp4K1fvdOvrSUMTH7Q16SstV8n6/QF4xWl2KHyPFqe11rV+3e6C
-	SN0GWP4MnMyOnfXXvj0DGt7o8g7hXR2XGucD6Xlstcp7fEpccI7S0/3t5xnIdR+Sg==
-X-Google-Smtp-Source: AGHT+IEAXmh4Jm/fooPniPUd+cP6NsbK2SR6lviu3UydjCwVbdG5V5GA3GQCHI+v0JTIHRvlmZHUzQ==
-X-Received: by 2002:adf:ab0a:0:b0:38a:50fa:d582 with SMTP id ffacd0b85a97d-38a50faf3cemr11500112f8f.59.1735815139109;
-        Thu, 02 Jan 2025 02:52:19 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.102])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b3b295sm490098515e9.33.2025.01.02.02.52.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jan 2025 02:52:18 -0800 (PST)
-Message-ID: <70aab1bc-1427-44ed-b516-843429d0bdfa@tuxon.dev>
-Date: Thu, 2 Jan 2025 12:52:16 +0200
+	s=arc-20240116; t=1735815264; c=relaxed/simple;
+	bh=0Rpt7yMFe9eWHazP+kDrk6aUELB1oKw7sDcRPv+Owqg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I1wPxtI4vRG3ozcNQvn5Avac5llJAE8IbSCjQkMRHQcR87bC7k/Co/mW3C74mgZLQPQ51Yg5cbp0y8ADW2G8xPbiLjVLuIff0g7clyXL9jNW1ZW0VQ7g7IruzYBmV4KTNKN2rJydCwoS2LHxc7Igc5bYM+6rsQe7VVC8DFZM1h8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=QPcYWPj6; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=sY0n+f+Bbc7kIzhzPEFT5STJFSdVmTvk9y+TqH5KuEQ=; b=QPcYWPj6Fr/2Of9KbSlYgSc/XY
+	89JslaJOFR5f5ca9V4yEnjmbtNhDV6E9Za10jBHVA2H8n83tYPznXlJuTujhWADzRtxoXEB9cw7Jt
+	IoXWICqMNtXePEDt3G7zEX48ROL6urMrBU0rZ8q42rmlpi8u1bzMxCa8boZbQn/J3r7qyLg/YHiIr
+	1u8I/uTaRS1FzGcKiX8CPkvMr5+BIVnmMTaWJpbOrW89VnVc3jMPaVlyABdh/KhvIg9drdmwXDal0
+	8hsN6E8DxqE5U5zSr03bNUkkXqzBEdn9AxzPO+Kj50zETFFkq1upwziYoV4xwKeDyeLHos+ojaXii
+	5sxNNxOQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:41680)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tTIqC-0001uL-09;
+	Thu, 02 Jan 2025 10:54:12 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tTIq9-0000DL-11;
+	Thu, 02 Jan 2025 10:54:09 +0000
+Date: Thu, 2 Jan 2025 10:54:09 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Lei Wei <quic_leiwei@quicinc.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, quic_kkumarcs@quicinc.com,
+	quic_suruchia@quicinc.com, quic_pavir@quicinc.com,
+	quic_linchen@quicinc.com, quic_luoj@quicinc.com,
+	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+	vsmuthu@qti.qualcomm.com, john@phrozen.org
+Subject: Re: [PATCH net-next v3 3/5] net: pcs: qcom-ipq9574: Add PCS
+ instantiation and phylink operations
+Message-ID: <Z3ZwURgIErzpzpEr@shell.armlinux.org.uk>
+References: <20241216-ipq_pcs_6-13_rc1-v3-0-3abefda0fc48@quicinc.com>
+ <20241216-ipq_pcs_6-13_rc1-v3-3-3abefda0fc48@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/13] ARM: dts: microchip: add sama7d65 SoC DT
-To: Ryan.Wanner@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, mturquette@baylibre.com, sboyd@kernel.org,
- arnd@arndb.de
-Cc: dharma.b@microchip.com, mihai.sain@microchip.com,
- romain.sioen@microchip.com, varshini.rajendran@microchip.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-serial@vger.kernel.org
-References: <cover.1734723585.git.Ryan.Wanner@microchip.com>
- <3f63aebc4b31da1b631ce7e6d76aa0046deeda6a.1734723585.git.Ryan.Wanner@microchip.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <3f63aebc4b31da1b631ce7e6d76aa0046deeda6a.1734723585.git.Ryan.Wanner@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241216-ipq_pcs_6-13_rc1-v3-3-3abefda0fc48@quicinc.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi, Ryan,
+Hi,
 
-On 20.12.2024 23:07, Ryan.Wanner@microchip.com wrote:
-> +		pioa: pinctrl@e0014000 {
-> +			compatible = "microchip,sama7d65-pinctrl", "microchip,sama7g5-pinctrl";
-
-Please also update the documentation with the fallback.
-
-> +			reg = <0xe0014000 0x800>;
-> +			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&pmc PMC_TYPE_PERIPHERAL 10>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +		};
+On Mon, Dec 16, 2024 at 09:40:25PM +0800, Lei Wei wrote:
+> +static int ipq_pcs_config_sgmii(struct ipq_pcs *qpcs,
+> +				int index,
+> +				unsigned int neg_mode,
+> +				phy_interface_t interface)
+> +{
+> +	int ret;
 > +
+> +	/* Access to PCS registers such as PCS_MODE_CTRL which are
+> +	 * common to all MIIs, is lock protected and configured
+> +	 * only once.
+> +	 */
+> +	mutex_lock(&qpcs->config_lock);
+> +
+> +	if (qpcs->interface != interface) {
+> +		ret = ipq_pcs_config_mode(qpcs, interface);
+> +		if (ret) {
+> +			mutex_unlock(&qpcs->config_lock);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	mutex_unlock(&qpcs->config_lock);
 
+Phylink won't make two concurrent calls to this function (it's protected
+by phylink's state_lock). Since this looks to me like "qpcs" is per PCS,
+the lock does nothing that phylink doesn't already do.
+
+> +static const struct phylink_pcs_ops ipq_pcs_phylink_ops = {
+> +	.pcs_validate = ipq_pcs_validate,
+
+I would also like to see the recently added .pcs_inband_caps() method
+implemented too, so that phylink gets to know whether inband can be
+supported by the PCS.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
