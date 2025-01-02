@@ -1,126 +1,130 @@
-Return-Path: <devicetree+bounces-135063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E560C9FF988
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 13:53:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E1F9FF99D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 14:06:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2CEB3A31C4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:53:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72F703A3443
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 13:06:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AC9A1B0F04;
-	Thu,  2 Jan 2025 12:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C207B1AE876;
+	Thu,  2 Jan 2025 13:06:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DABCNyMQ"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="TqvMD0+V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10D51A9B32;
-	Thu,  2 Jan 2025 12:53:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B20651ADFE0
+	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 13:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735822382; cv=none; b=IFw8Kz0YGsHE2qD67HbDBuAS2VtCI4VVU8sCHxK+ODu8ikhiaqLrysu2NIO4qnmxiVwelB/BFqESCUzt6RA0IObhI8FMYzi1/xT5nRVMEVsU/ERnXeAkyDvWS5Y0n19CoCyHeAlx8MDpbGfw9GzkKSlimmkgyOKBcfUUph94CCU=
+	t=1735823205; cv=none; b=V9OxZoEkvyPesopG7t8XstxXDyKr1Hrf79JjC0GsCXxDmbSCILKLhNepcjNHc5/lT6KDtaLF8SGvYoINI/q20Ok0WsTk5mPhMfvGm7/hC0kQtT0FsxVz9262ePaSApNzFKcpk0FSLZDpDw0cLYolUcaTIWNtfv0kL4ttYvU4Q/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735822382; c=relaxed/simple;
-	bh=zm43TYi4z+GwQwZRB2Q+5ZdBGmn9Rmo1nucOK3h8gdE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IlwOft7Urjh2mbQkDbnf8ylpYIpdO4PSRjHu2A+GuCsk2qrCBHFDymyMI/j/Z7vfNIzZBmGWykNWHgN7JFBvUzv68LzQQu/DD2+EpuudxI0fcNMi+DEHS11cLgv4eORlgJUYnwJpsrpSzWPZT3DjQ6n8OvGJMXkNTniROzLDf6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DABCNyMQ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1735822378;
-	bh=zm43TYi4z+GwQwZRB2Q+5ZdBGmn9Rmo1nucOK3h8gdE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DABCNyMQZZNP5B5uxElY723LcC3CFpvBGbIFj3H/uzuKCKeMGL2ckKeDsks6NAKxK
-	 p4T0C5m89z9fhqOJGKp9qq0z/B1nfhSRAg4ghdjfjgHaJe8BaQeBi+aRKzgmJYMZ2m
-	 b1YB325qi2g430c4W5nycd+v47IEcVbeJyd1Iv8YNzkZKbMztDuKd9+OK+KZAbDf5Q
-	 voWTWoLaBRRCvh9DkGs8G2hLQZDKHqlrcNn51at5hAl079LZ3pTLiAnh+hCKVD+cVL
-	 a122Xf0hzI2okwxTVloWfV3lWMrUCYez+CnK451e+mtcOVLxBtVMm4K4RLPxcbZn2w
-	 HahNEz0kbb91A==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C3E3A17E156E;
-	Thu,  2 Jan 2025 13:52:57 +0100 (CET)
-Message-ID: <fa2033e4-0cb5-47cb-bbe7-cbcdb9318c54@collabora.com>
-Date: Thu, 2 Jan 2025 13:52:57 +0100
+	s=arc-20240116; t=1735823205; c=relaxed/simple;
+	bh=okPhzHKZwSnBnr+JyEP/BuCmjowStk3XeeC8NmwJhmE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gn/WJcH+Er/TEBo6Q0trpNMUvFYodVWPa95bYffZoicW0imYfhxqD8zR80LGt7ugnF/0aqZ4HawUQTSOaSMrHmzMC+hLksVx1VzJG7GLnZdvEPcReozc2MinBUfYE9FQw+ZbKW14eP7G/lN4IFWYvHl6FESq6Xdv+piqQ5j7R5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=TqvMD0+V; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4361815b96cso74581545e9.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 05:06:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1735823202; x=1736428002; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=QwWQjY7eg9shlfr3qhPfsf98UOxBUnEIZuJxINmilJo=;
+        b=TqvMD0+VUZVlFklR+7vnMQIIxjk2N9LX5nY2WgIu7XZRATJhSRv8JKzOz3nV4JN/45
+         VV6Bw0gI/fWOY4kiPUKu8RoTdpQRApn9/Z5DZ7/qJzlY8GBodjkwZ4yzefQURVgJU9kd
+         d05k1caPIff+n5oFD+2T5cJ01i+d2tTWJU9s8PWZnqumlGOrJwIf4JyBsHFLl7qvgcaA
+         wlfswBmA4zi6b8xxkTjrcJ34KeoXPc/w2DN+3FfOk5jhXYzvMVn67BuSPH3WxcWUwPIn
+         U7ui6zMgmpzLONL96mXC1lOhkU5XkdE7WdJKBUFHaGqE5KzM5KdSpA9uCX/cHvrawkWQ
+         YtgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735823202; x=1736428002;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QwWQjY7eg9shlfr3qhPfsf98UOxBUnEIZuJxINmilJo=;
+        b=uizETOwHmX+wnof7KIE57PdpI9S08kbknP63iz3lwyByke3HnORs3TesG3y3MNHum1
+         xw5uDnpRsY3gIoCzhcraE65cVJnkdfpJFd9/K/NuHKSJ62XO+xOyxWTvwH+rM+0YQ6H9
+         lB1DsRKo6Ic4/2xq8nZ3ojxtHM8rciafqIv+ENabKb6MXPrDfqpa7yhW7T7vFKBjasQE
+         WHfilK2ujlDJlluOZSa3WM6TCUuDo/Z1xccTCZiKc+GniaP7tiUO3BYf81kZdnSv3TVQ
+         QydchOdkKpLsh5c45mtif8so6MXzz5f1YaSnM21H3TFa1A/ND13DQDRSdPpFfAV3UdL+
+         sNtw==
+X-Forwarded-Encrypted: i=1; AJvYcCWAVbVapXW+R2lB2tYnAkvj/7k8JWwl8Zj7zDlyFHaYFLlQttk9fGsLG9TtPrm/Ji84KR9fDCmWlYSW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8wDb7/YwbG5/5Gl71+xh5TKoBWDji8CiUbWjkiOHtDJflE5P+
+	Hg5Ojcl2wx6etqMCy/8jN6f6YVUA4CTXsHFuyY41xYJ3x1gCLbAHZqNe+ZuCEnQ=
+X-Gm-Gg: ASbGncsOBhyUF/9D4SWLEXQ6nIP+g7L6snQdjrCeqvQoLSFQsmQQgnCS5Dt5v3QwqXd
+	SfTwX+UWA8I4vVUnTT7Nf59qgqtUl+NTbpyb8gsTuOUjIb5tVAaf8LWO2QOd6j8TSu/lHEnFyFL
+	c6Llsi4JDVA7mMqn6svrdITWPpPAcwtJH5gzVgfo+gX4fg8XvTxYRnNGp2g4rLrN8So0jvtH9Bp
+	RXSJvlRVWh7Vpr16rmb0d+YhMhE6OIso8QP5CnMpLh+6r0qtvrWSnisIA==
+X-Google-Smtp-Source: AGHT+IGbAPNnwVSa4laD20KJjG9xXhqX/JBOhxU0k/AK/PW0K07dro8G76+BCLcrFDNvyKXd3AGGyw==
+X-Received: by 2002:a05:600c:1f85:b0:434:f2f4:4c07 with SMTP id 5b1f17b1804b1-436686464d9mr422782235e9.15.1735823202011;
+        Thu, 02 Jan 2025 05:06:42 -0800 (PST)
+Received: from pathway.suse.cz ([176.114.240.50])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b3b295sm493767545e9.33.2025.01.02.05.06.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jan 2025 05:06:41 -0800 (PST)
+Date: Thu, 2 Jan 2025 14:06:39 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: Rob Herring <robh@kernel.org>
+Cc: John Ogness <john.ogness@linutronix.de>,
+	Linus Torvalds <torvalds@linux-foundation.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Saravana Kannan <saravanak@google.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Zijun Hu <quic_zijuhu@quicinc.com>, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: lock in vsprintf(): was: Re: [PATCH] of: Add printf '%pOFm' for
+ generating modalias
+Message-ID: <Z3aPSwnbUhqvp59v@pathway.suse.cz>
+References: <20241217183711.2525863-1-robh@kernel.org>
+ <Z2K_u6jK5aLDqaam@pathway.suse.cz>
+ <84wmfxm6em.fsf@jogness.linutronix.de>
+ <Z2Q2TcM6QPUIIyLC@pathway.suse.cz>
+ <84o7171o9y.fsf@jogness.linutronix.de>
+ <20241230202643.GA2488017-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: mediatek,mt6779-keypad: add more
- compatibles
-To: Krzysztof Kozlowski <krzk@kernel.org>, Val Packett <val@packett.cool>
-Cc: Mattijs Korpershoek <mkorpershoek@baylibre.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Fabien Parent <fparent@baylibre.com>,
- =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
- Alexandre Mergnat <amergnat@baylibre.com>,
- Amjad Ouled-Ameur <aouledameur@baylibre.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20241225192631.25017-1-val@packett.cool>
- <20241225192631.25017-2-val@packett.cool>
- <2cikysv5mwmc4utckjg7iaqx66ncwu3nsxd4kqipj3gw4mymbf@3gipwanf44ji>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <2cikysv5mwmc4utckjg7iaqx66ncwu3nsxd4kqipj3gw4mymbf@3gipwanf44ji>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241230202643.GA2488017-robh@kernel.org>
 
-Il 27/12/24 10:12, Krzysztof Kozlowski ha scritto:
-> On Wed, Dec 25, 2024 at 04:26:19PM -0300, Val Packett wrote:
->> Add compatibles for SoCs using this device (mt8183, mt8365, mt8516).
+On Mon 2024-12-30 14:26:43, Rob Herring wrote:
+> On Thu, Dec 19, 2024 at 08:17:21PM +0106, John Ogness wrote:
+> > On 2024-12-19, Petr Mladek <pmladek@suse.com> wrote:
+> > > I do not want to revert everything now just because of theoretical
+> > > problems.
+> > 
+> > What would you revert? This has always been an issue for printk().
+> > 
+> > > Well, it would be nice to document the lock dependency in
+> > > Documentation/core-api/printk-formats.rst
+> > 
+> > Yes. If any locking is involved at all, such specifiers should be
+> > documented as not safe in NMI context or within printk_cpu_sync
+> > blocks. 
 > 
-> This we see from the diff. Say what is less visible, e.g. are they fully
-> compatible with other variants? Partially?
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> For the folks that don't read documentation, should we bail out on 
+> in_nmi() for these as well?
 
-Yeah saying that they are fully compatible would be good here, but anyway
-the change is self-explanatory (just IMO - but I know MTK SoCs so stuff appears
-obvious to me from time to time, and might not be obvious for others).
+I like this idea.
 
-Anyway, input maintainers, please let me know if you want to take this (or the
-next version) through the input tree or if I should take it in the MediaTek tree
-along with the devicetree changes.
-
-Cheers,
-Angelo
-
-> ---
-> 
-> <form letter>
-> This is an automated instruction, just in case, because many review tags
-> are being ignored. If you know the process, you can skip it (please do
-> not feel offended by me posting it here - no bad intentions intended).
-> If you do not know the process, here is a short explanation:
-> 
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions of patchset, under or above your Signed-off-by tag, unless
-> patch changed significantly (e.g. new properties added to the DT
-> bindings). Tag is "received", when provided in a message replied to you
-> on the mailing list. Tools like b4 can help here. However, there's no
-> need to repost patches *only* to add the tags. The upstream maintainer
-> will do that for tags received on the version they apply.
-> 
-> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-> </form letter>
-> 
-> Best regards,
-> Krzysztof
-> 
-
+Best Regards,
+Petr
 
