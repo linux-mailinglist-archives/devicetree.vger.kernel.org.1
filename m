@@ -1,62 +1,96 @@
-Return-Path: <devicetree+bounces-135075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825C39FFACC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:10:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC279FFADD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 16:16:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8ECC1188322A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 15:10:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 449AE3A31E9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 15:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5B91B3F30;
-	Thu,  2 Jan 2025 15:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA091B4236;
+	Thu,  2 Jan 2025 15:16:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="nWSrsXi6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dhm6tefD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4451B4233;
-	Thu,  2 Jan 2025 15:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA211B4147
+	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 15:16:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735830597; cv=none; b=jCq3q1q4emaqxv/p96IxOIpPfPzMKzyu9NnRmBIKxHdsNeIhQT2hdjCB00z1EqLxxDKUusBJRk46IzXuer0GtMaGJQzuAUIQXCPaGDvfVH6BYlbZ0KeXeav398l7uOhWSBeNiZZ7UljELhLCIbMRZAppDBA2P5Kf9PAfoDZsZSA=
+	t=1735830971; cv=none; b=ViZXMQWJoJYlfWqYfyxk5txfMrVE0bfRzc9XzM2kzIxwskL+11t1hQGm25ma3kkJ8/MFpZB/HKafnJwCsRcpWnoejOffHEOC/sfE8X+Vy9dTAbqCoJENkqyPbREWA9CXdDkmz60wyPPZDiUe8bcIH3nD7tfuXhNZzNYTLRfNTcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735830597; c=relaxed/simple;
-	bh=aHlJuHU30xEo5JEp5n9yoarAg+04yRvX6nHOSZglJ5A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Yvvu4/qVYi1+CoPnCum0JlW1lxRkGUcn/c/DvFpfBdweLYOVF4cI4joG73dbt6C8X825v32wA7IhYlG7XgTFvh1uIzr8xFsmSrDXi2JgL9fGCYxspD7pw+7dAABk08DWzT4Mv/pHvEVafcZtcH05IwTLmsSRKQd5vFBGFbctdmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=nWSrsXi6; arc=none smtp.client-ip=173.249.15.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding:In-Reply-To:References;
-	bh=B4z0aNeL7B3IDW9F9DKA6MPIVVAB9dBwvCeoTc7OFV4=;
-	b=nWSrsXi6NpZIrByL9HnKetxEb0S6DDXKV2ezesd/qM/l6zhj+WiJcoRHf4Dhb32ql71ff++Ilwy9lixailkWko3zTRxK6MloFydSEQzMnBjsElFZwVy21uqrGexoFY0lHqF4ZCcE1MKvH7fASMJ8PxU4P6nsXkiR4NPhwdr0jwM=
-Received: from 854af3ed5e24.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
-	by mail.netcube.li with ESMTPA
-	; Thu, 2 Jan 2025 16:09:31 +0100
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: Lukas Schmid <lukas.schmid@netcube.li>,
+	s=arc-20240116; t=1735830971; c=relaxed/simple;
+	bh=tZGIFZlGbFMuabhoD1PH16qlCdOqDD9qVctfSH4QbGY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=SDRAPgiRBW7dvSb559i1ZJRkueP5QbS50RExAyK5+1As4OFG7eS/J96NItxt7BF7OG3Ieq78suTV6PsKO7xgCaTKLO5KNmAkmxUgyE1CHmi2AMCLfBTvDf0GREJgnkBCZ56asfwFOUv6lLhTxM/ishIgWartqNlLQwa0+bNeIeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dhm6tefD; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2161d4b820bso14979365ad.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 07:16:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735830969; x=1736435769; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZtcDWrQ73jqFojmLKyQfLZ0En+VUeMI1nsaGNeWKho4=;
+        b=Dhm6tefDtmxCSOtM31/4OiNuEY9cOVcNtVHy22g6vprnSLHyoARl9TINs8p3rC3fmJ
+         Uv0KChDIG8r2tE8Em2cNkOCvLiga9Deg5ler3l17Tz1wKVCQtMJ2HskN94tOh4Er2emW
+         VQMtUS4yxAfxCR3oqKQNha+nZnilL97nUx/Qu1JrEuqFxQS14pJeqRS3TFme46U1ysky
+         jE+7GmoI/4pZS7O2vXFM1uXzMsoG576YDM3GgvdGyzZEmYITFnCTCaxoi3hmrGieO/Zy
+         n7irbBjI4Xm9UD+Dwb6t10ExCd0iCXC4Ee2dGlhOUAC3EKC9GCScNy8QuYk7ZZpDeTt7
+         hmzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735830969; x=1736435769;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZtcDWrQ73jqFojmLKyQfLZ0En+VUeMI1nsaGNeWKho4=;
+        b=eWK/jk6kYbXOP6TUUn5avqrDsllW+1ctugm1T023bgAOoac1h65R3cdExWRjVx+9YD
+         1VPgtCbk5bnBiLigP+dQycwEhgAFEBFQtL8C4Q4Bgz3hiNx/7nvLUZlERDiDDjI6+F+m
+         UUgA8b34avXXeA9SAe9zcexu/BSyxlz6mR4ZkpU9n2n6CAjmcQbdcQdFtaeEoU1Ud1PN
+         P8dDHDabIYcUKiNqUQ0+EONbLh1F/PLL5EMPdYjc4nHX3SAeAq5sXy1rEzu264V5Quao
+         bDvtsiQHip60HuTZH00NItpgekij6DLKPLxsvO1dp3/4OhztKD9Zo8GtCJKEYNYpu0/1
+         DXhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWdY1qXHL+62B3C1Havg0+pYSxcE6L2m+PmH7TFrqkHWpQracmqmXkTRyv4zFJGz4TNzOXkGYS09mAo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwitSEAnT3yqqeTSiFxS2txfcJMl3PFue5e9dl7iQggj7FO0CZc
+	oSywah8iUSqbH1/XF2IZCoOMc1/fgLeItyDKHlua/s/eUjG7iD9c
+X-Gm-Gg: ASbGnct9HRdURlvfZrxI09dbsFWnSZM1dyK8aAgquF9SvhTm1iOcxNiBSr5ePnQM00T
+	nKS7mpE72Yd1mITM2joNB8NxAdXFgyHUKHjrPOgOPzvinCOIpvHiaXZ5XEWcnHodDoHJ1bWenmS
+	bR5EbpsCjmftqEmG7GBvutLco0N0QjwikYo0pWVTaHd0KO8HERXEvoYecirJeBkfDJEAD54wcvo
+	NOyoCtS25SGQL5pgoyHSR2gc9LdCYAHpELDMDKmKC4UelIIKEMxprAJ9kZbLQ==
+X-Google-Smtp-Source: AGHT+IHe+s25vVgZEo61TLbYoVVK5tzaLM84BfZLH2ZP8ydnTSroc2lABkTLtHU9g42UECtOP/2X8g==
+X-Received: by 2002:a17:902:db07:b0:215:2bfb:3cd7 with SMTP id d9443c01a7336-219e6f0982cmr236749285ad.10.1735830969185;
+        Thu, 02 Jan 2025 07:16:09 -0800 (PST)
+Received: from rock-5b.. ([221.220.131.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc972b29sm228998815ad.111.2025.01.02.07.16.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jan 2025 07:16:08 -0800 (PST)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: vkoul@kernel.org
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	kishon@kernel.org,
+	krzk+dt@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: sunxi: add support for NetCube Systems Kumquat
-Date: Thu,  2 Jan 2025 15:05:06 +0000
-Message-Id: <20250102150508.3581-3-lukas.schmid@netcube.li>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250102150508.3581-1-lukas.schmid@netcube.li>
-References: <20250102150508.3581-1-lukas.schmid@netcube.li>
+	linux-phy@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	p.zabel@pengutronix.de,
+	robh@kernel.org,
+	yifeng.zhao@rock-chips.com
+Subject: Re: (subset) [PATCH 1/2] arm64: dts: rockchip: rk3568: add reset-names for combphy
+Date: Thu,  2 Jan 2025 23:16:01 +0800
+Message-ID: <20250102151601.2615178-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <173367712869.1031947.3262464465649332012.b4-ty@kernel.org>
+References: <173367712869.1031947.3262464465649332012.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,312 +99,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-NetCube Systems Kumquat is a board based on the Allwinner V3s SoC,
-including:
+Hi,
 
-- 64MB DDR2 included in SoC
-- 10/100 Mbps Ethernet
-- USB-C DRD
-- Audio Codec
-- Isolated CAN-FD
-- ESP32 over SDIO
-- 8MB SPI-NOR Flash for bootloader
-- I2C EEPROM for MAC addresses
-- SDIO Connector for eMMC or SD-Card
-- 8x 12/24V IOs, 4x normally open relays
-- DS3232 RTC
-- QWIIC connectors for external I2C devices
+On Sun, 08 Dec 2024 22:28:48 +0530, Vinod Koul wrote:
+>Applied, thanks!
+>
+>[2/2] phy: rockchip: naneng-combphy: fix phy reset
+>      commit: fbcbffbac994aca1264e3c14da96ac9bfd90466e
 
-Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
----
- arch/arm/boot/dts/allwinner/Makefile          |   2 +
- .../allwinner/sun8i-v3s-netcube-kumquat.dts   | 237 ++++++++++++++++++
- arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi    |   6 +
- 3 files changed, 245 insertions(+)
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
+The other patch in this series:
+arm64: dts: rockchip: rk3568: add reset-names for combphy
+is missing in v6.13-rc5, which will break pcie2 of rk3568 because the phy
+driver has changed.
 
-diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-index 48666f73e638..d799ad153b37 100644
---- a/arch/arm/boot/dts/allwinner/Makefile
-+++ b/arch/arm/boot/dts/allwinner/Makefile
-@@ -199,6 +199,7 @@ DTC_FLAGS_sun8i-h3-nanopi-r1 := -@
- DTC_FLAGS_sun8i-h3-orangepi-pc := -@
- DTC_FLAGS_sun8i-h3-bananapi-m2-plus-v1.2 := -@
- DTC_FLAGS_sun8i-h3-orangepi-pc-plus := -@
-+DTC_FLAGS_sun8i-v3s-netcube-kumquat := -@
- dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-a23-evb.dtb \
- 	sun8i-a23-gt90h-v4.dtb \
-@@ -261,6 +262,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-v3s-anbernic-rg-nano.dtb \
- 	sun8i-v3s-licheepi-zero.dtb \
- 	sun8i-v3s-licheepi-zero-dock.dtb \
-+	sun8i-v3s-netcube-kumquat.dtb \
- 	sun8i-v40-bananapi-m2-berry.dtb
- dtb-$(CONFIG_MACH_SUN9I) += \
- 	sun9i-a80-optimus.dtb \
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
-new file mode 100644
-index 000000000000..7fe83d91adee
---- /dev/null
-+++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
-@@ -0,0 +1,237 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 Lukas Schmid <lukas.schmid@netcube.li>
-+ */
-+
-+/dts-v1/;
-+#include "sun8i-v3s.dtsi"
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/{
-+	model = "NetCube Systems Kumquat";
-+	compatible = "netcube,kumquat", "allwinner,sun8i-v3s";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &emac;
-+		rtc0 = &ds3232;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		heartbeat_led {
-+			gpios = <&pio 4 4 GPIO_ACTIVE_HIGH>; /* PE4 */
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		mmc0_act_led {
-+			gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>; /* PF6 */
-+			linux,default-trigger = "mmc0";
-+			function = LED_FUNCTION_DISK;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		autorepeat;
-+
-+		key-user {
-+			label = "GPIO Key User";
-+			linux,code = <KEY_PROG1>;
-+			gpios = <&pio 1 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PB2 */
-+		};
-+	};
-+
-+	/* K7805-1000R3 Switching Regulator supplied from main 12/24V terminal block */
-+	reg_vcc5v0: vcc5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	/* EA3036C Switching 3 Channel Regulator - Channel 2 */
-+	reg_vcc3v3: vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&reg_vcc5v0>;
-+	};
-+
-+	/* XC6206-3.0 Linear Regualtor */
-+	reg_vcc3v0: vcc3v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v0";
-+		regulator-min-microvolt = <3000000>;
-+		regulator-max-microvolt = <3000000>;
-+		vin-supply = <&reg_vcc3v3>;
-+	};
-+
-+	/* 40 MHz Crystal Oscillator on PCB */
-+	can0_osc: can0_osc {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency  = <40000000>;
-+	};
-+};
-+
-+&mmc0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc0_pins>;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	bus-width = <4>;
-+	broken-cd;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pins>;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	bus-width = <4>;
-+	broken-cd;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	extcon = <&tusb320 0>;
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 1 4 GPIO_ACTIVE_HIGH>; /* PB4 */
-+	status = "okay";
-+};
-+
-+&ehci {
-+	status = "okay";
-+};
-+
-+&ohci {
-+	status = "okay";
-+};
-+
-+&lradc {
-+	vref-supply = <&reg_vcc3v0>;
-+	status = "okay";
-+};
-+
-+&codec {
-+	allwinner,audio-routing =
-+		"Headphone", "HP",
-+		"Headphone", "HPCOM",
-+		"MIC1", "Mic",
-+		"Mic", "HBIAS";
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-0 = <&uart1_pe_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	pinctrl-0 = <&i2c0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	eeprom0: eeprom@50 {
-+		compatible = "atmel,24c02";		/* actually it's a 24AA02E48 */
-+		pagesize = <16>;
-+		read-only;
-+		reg = <0x50>;
-+		vcc-supply = <&reg_vcc3v3>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		eth0_macaddress: eth0_macaddress@FA {
-+			reg = <0xFA 0x06>;
-+		};
-+	};
-+
-+	tusb320: tusb320@60 {
-+		compatible = "ti,tusb320";
-+		reg = <0x60>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+
-+	ds3232: rtc@68 {
-+		compatible = "dallas,ds3232";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&emac {
-+	allwinner,leds-active-low;
-+	nvmem-cells = <&eth0_macaddress>;		/* custom nvmem reference */
-+	nvmem-cell-names = "mac-address";		/* see ethernet-controller.yaml */
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi0_pins>;
-+	cs-gpios = <0>, <&pio 1 0 GPIO_ACTIVE_LOW>; /* PB0 */
-+	status = "okay";
-+
-+	flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		reg = <0>;
-+		compatible = "jedec,spi-nor";
-+		label = "firmware";
-+		spi-max-frequency = <40000000>;
-+	};
-+
-+	can@1 {
-+		compatible = "microchip,mcp2518fd";
-+		reg = <1>;
-+		clocks = <&can0_osc>;
-+		spi-max-frequency = <20000000>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <1 1 IRQ_TYPE_LEVEL_LOW>;  /* PB1 */
-+		vdd-supply = <&reg_vcc3v3>;
-+		xceiver-supply = <&reg_vcc3v3>;
-+	};
-+};
-+
-+&pio {
-+	vcc-pb-supply = <&reg_vcc3v3>;
-+	vcc-pc-supply = <&reg_vcc3v3>;
-+	vcc-pe-supply = <&reg_vcc3v3>;
-+	vcc-pf-supply = <&reg_vcc3v3>;
-+	vcc-pg-supply = <&reg_vcc3v3>;
-+
-+	gpio-reserved-ranges = <0 32>, <42 22>, <68 28>, <96 32>, <153 7>, <167 25>, <198 26>;
-+	gpio-line-names = "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", //PA
-+						"CAN_nCS", "CAN_nINT", "USER_SW", "PB3", "USB_ID", "USBC_nINT", "I2C0_SCL", "I2C0_SDA", "UART0_TX", "UART0_RX", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", //PB
-+						"SPI_MISO", "SPI_SCK", "FLASH_nCS", "SPI_MOSI", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", //PC
-+						"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", //PD
-+						"Q12", "Q11", "Q10", "Q9", "LED_SYS0", "I1", "Q1", "Q2", "I2", "I3", "Q3", "Q4", "I4", "I5", "Q5", "Q6", "I6", "I7", "Q7", "Q8", "I8", "UART1_TXD", "UART1_RXD", "ESP_nRST", "ESP_nBOOT", "", "", "", "", "", "", "", //PE
-+						"SD_D1", "SD_D0", "SD_CLK", "SD_CMD", "SD_D3", "SD_D2", "LED_SYS1", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", //PF
-+						"ESP_CLK", "ESP_CMD", "ESP_D0", "ESP_D1", "ESP_D2", "ESP_D3", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""; //PG
-+};
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-index 9e13c2aa8911..c9689c0f65d7 100644
---- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-@@ -416,6 +416,12 @@ uart0_pb_pins: uart0-pb-pins {
- 				function = "uart0";
- 			};
- 
-+			/omit-if-no-ref/
-+			uart1_pe_pins: uart1_pe_pins {
-+				pins = "PE21", "PE22";
-+				function = "uart1";
-+			};
-+
- 			uart2_pins: uart2-pins {
- 				pins = "PB0", "PB1";
- 				function = "uart2";
--- 
-2.47.1
-
-
+Best regards,
+Jianfeng
 
