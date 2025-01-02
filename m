@@ -1,134 +1,100 @@
-Return-Path: <devicetree+bounces-135045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 415C39FF88A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:16:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFBF9FF8B6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 12:26:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 440A11882779
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:16:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2E507A15F4
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 11:26:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF451AF0BB;
-	Thu,  2 Jan 2025 11:16:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pC7/Iq/h"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913701917EE;
+	Thu,  2 Jan 2025 11:26:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F26E1ADFE2;
-	Thu,  2 Jan 2025 11:16:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E382722083;
+	Thu,  2 Jan 2025 11:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735816564; cv=none; b=UrL3pPC8zQzyQWmcuPxq9r+t0VGYEGOdf7IGQWRiiHstHfsXV8GERUObjt5k2lVLHRRuS6Pg0sYe6zpBMHtKaf74nJcdefnC8p+P0l3/izsR+CtmhFyRMj/641cGp/HqhrLpASBWhbjJ71W1KVQ2icbPt+C2D2/RGcKhJzs68f8=
+	t=1735817205; cv=none; b=IKxCeaYltqk6OGVCQF4aGhVUbxyY++ChL2+doD1+9Oy7GMsufj8669F1evJMRfXi25xaPx8CqIlviTxdUylUEPloTZxuj+eJGPMYglpLs3IvIKuEA5vnxySHoL4Fgn+uoxreEKw2BN0/mEdy+X7AOcg49SZKGEEZ7XZmoXo4Gys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735816564; c=relaxed/simple;
-	bh=cEnF3ovwUU25dT0wsQm5L10I978yEVeevFbc61/RQ9w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qLcJqTrQUDfiQ4W+g0rVYPohfZK9OBlO3t0UZVE7+fXh57G7cBJG2Pp4l63h8eFHSNZ8LmjPpQzp2IGDzmlW3mVjKYf0ndBwfqflDm9Du6yoFV/Lv6dLS+eeE50Tuntt+Ky7bKKD8VeD2B+h2TF8vhBkOq1wrJMzEXrv3973GlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pC7/Iq/h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EC3B4C4CEE4;
-	Thu,  2 Jan 2025 11:16:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735816564;
-	bh=cEnF3ovwUU25dT0wsQm5L10I978yEVeevFbc61/RQ9w=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=pC7/Iq/hYbOMU0dmtsCyG38BVc069b6zrNQ+D4jl5WSlJN1A3z7hpRDea6DtcMl3A
-	 h82NEKQ9VBXwbPH5sjh82PqtjKGzocubCEjlaojhVDzJT1F/7KBPVhbiAWMarGvE5G
-	 Buw/+qvSMLSbxmQngFePpvp7q0HVK7JEZnI4ZyQCgTQYPt550RP3nbLaN3QCqUmDqR
-	 2Hjdl3Qq2pq+M8q7vVOOyOfHAIS/8t+sWFqwsHBM20jW+LI/uz1TRZo76jOrjigCvM
-	 jCbfgIht/5UilrbzjAadxVFrDmNf+SJRxFLEJQlBnSMmdpsgFpBZgyr7GLx7TQ99Hl
-	 9SS197wW5uZ3w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E29EDE77194;
-	Thu,  2 Jan 2025 11:16:03 +0000 (UTC)
-From: Thomas Antoine via B4 Relay <devnull+t.antoine.uclouvain.be@kernel.org>
-Date: Thu, 02 Jan 2025 12:15:06 +0100
-Subject: [PATCH v2 4/4] arm64: dts: exynos: gs101-oriole: enable Maxim
- max77759 fuel gauge
+	s=arc-20240116; t=1735817205; c=relaxed/simple;
+	bh=HWPxYLw9taa0O9rbYJ2WYvXzx5alUFXBGWVWHMKi204=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	 In-Reply-To:Content-Type; b=XHWfUDlo/p8avvJ6u1TSFSDfp6WngcEsWDrrvVQvn5/3IOh3bdHIHr8C1EPrIVg3fkRdLVzfk0Taiup5QqyRO2ts7JOCajKhEBoHvVg6U6rVWiN9r3fMVDFLL9gX/yBKgRIwdfw/UgCp+5B0YD3pIW2XIyRUX7z9Sf2Uk7cCvbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.19.163.252])
+	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4YP4B014z9zrS7M;
+	Thu,  2 Jan 2025 19:24:56 +0800 (CST)
+Received: from kwepemd500014.china.huawei.com (unknown [7.221.188.63])
+	by mail.maildlp.com (Postfix) with ESMTPS id D73471800D1;
+	Thu,  2 Jan 2025 19:26:38 +0800 (CST)
+Received: from [10.67.121.2] (10.67.121.2) by kwepemd500014.china.huawei.com
+ (7.221.188.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.34; Thu, 2 Jan
+ 2025 19:26:38 +0800
+Message-ID: <677677ED.7060902@hisilicon.com>
+Date: Thu, 2 Jan 2025 19:26:37 +0800
+From: Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+To: "Rob Herring (Arm)" <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <xuwei5@hisilicon.com>
+Subject: Re: [PATCH] arm64: dts: hisilicon: Remove unused and undocumented
+ "enable-dma" property
+References: <20241115193454.3619297-1-robh@kernel.org>
+In-Reply-To: <20241115193454.3619297-1-robh@kernel.org>
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250102-b4-gs101_max77759_fg-v2-4-87959abeb7ff@uclouvain.be>
-References: <20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be>
-In-Reply-To: <20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, Thomas Antoine <t.antoine@uclouvain.be>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1735816515; l=1485;
- i=t.antoine@uclouvain.be; s=20241202; h=from:subject:message-id;
- bh=GN3EniKaEOYE0aMNRzhLT0R4oirK05MCY9w8a0rDXYc=;
- b=eMvTZq9F+2RWFQ1BgK4RRLys8hBQwJ8vxzR3brqK5tBh//epZY74AciI9nsB10bwtDs1X2cbA
- YbKhbU97pEDDbvI3SWyzXLCMXp5vg1Z6AoNRMAQDFPtFUDxrpzy1Z+z
-X-Developer-Key: i=t.antoine@uclouvain.be; a=ed25519;
- pk=sw7UYl31W1LTpgWRiX4xIF5x6ok7YWZ6XZnHqy/d3dY=
-X-Endpoint-Received: by B4 Relay for t.antoine@uclouvain.be/20241202 with
- auth_id=289
-X-Original-From: Thomas Antoine <t.antoine@uclouvain.be>
-Reply-To: t.antoine@uclouvain.be
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ kwepemd500014.china.huawei.com (7.221.188.63)
 
-From: Thomas Antoine <t.antoine@uclouvain.be>
+Hi Rob,
 
-Add the node for the max77759 fuel gauge as a slave of the i2c.
+On 2024/11/16 3:34, Rob Herring (Arm) wrote:
+> Remove "enable-dma" property which is both unused in the kernel and
+> undocumented. Most likely they are leftovers from downstream.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  arch/arm64/boot/dts/hisilicon/hi6220.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> index a589954c29e2..12f621cedf89 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> @@ -728,7 +728,6 @@ spi0: spi@f7106000 {
+>  			reg = <0x0 0xf7106000 0x0 0x1000>;
+>  			interrupts = <0 50 4>;
+>  			bus-id = <0>;
+> -			enable-dma = <0>;
+>  			clocks = <&sys_ctrl HI6220_SPI_CLK>, <&sys_ctrl HI6220_SPI_CLK>;
+>  			clock-names = "sspclk", "apb_pclk";
+>  			pinctrl-names = "default";
+> 
 
-The todo is still applicable given there are other slaves on the
-bus (pca9468, other max77759 functions and the max20339 OVP).
+Thanks!
+Since the "enable-dma" and "bus-id" both are not used by the pl022 driver,
+when applying this patch, I have removed the "bus-id" and changed the 
+commit message as well.
 
-The fuel gauge has been tested and seems to give coherent results.
-Manual activation of the charger via i2cset shows that the sign of
-the current does indicate charging/discharging status.
+The detail is as following:
+https://github.com/hisilicon/linux-hisi/commit/4a45f8c502a8b8a836c3c932a18d538856097ac7
 
-Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
----
- arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-index 387fb779bd29ea3812331a7951f03b181c5fe659..6c83ee6f8a6b0327c576573d03a8d2bcc93f9e16 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-@@ -10,6 +10,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include "gs101-pinctrl.h"
- #include "gs101.dtsi"
- 
-@@ -90,6 +91,15 @@ eeprom: eeprom@50 {
- &hsi2c_12 {
- 	status = "okay";
- 	/* TODO: add the devices once drivers exist */
-+
-+	fuel-gauge@36 {
-+		compatible = "maxim,max77759-fg";
-+		reg = <0x36>;
-+		reg-names = "m5";
-+		shunt-resistor-micro-ohms = <5000>;
-+		interrupt-parent = <&gpa9>;
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+	};
- };
- 
- &pinctrl_far_alive {
-
--- 
-2.47.1
-
-
+Best Regards,
+Wei
 
