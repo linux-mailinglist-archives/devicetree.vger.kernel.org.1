@@ -1,196 +1,159 @@
-Return-Path: <devicetree+bounces-135200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CCADA000A4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:30:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B2C4A000B7
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:34:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76EA83A1429
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:30:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AF283A3388
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 21:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B391BC073;
-	Thu,  2 Jan 2025 21:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1501B413B;
+	Thu,  2 Jan 2025 21:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YZp0D719"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dud4uyCw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36F901B6CF1;
-	Thu,  2 Jan 2025 21:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8F713AA2A;
+	Thu,  2 Jan 2025 21:34:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735853409; cv=none; b=d48B5fQiVe22Pom+raBH3uIjCMXwljPuPn4BrAPPXV7Lhh8qG1KkXPokYlCBpLlCZyyQpY4aSpuUIBY9XSZwv8wtAmCQrg+DYUZe3gqRxIlUxHi21MCy2hV0WjWqJtaSjRFrtS5fDpvk1cdF1/OP+UCcH6IqRtSHvYA9sqd/96Y=
+	t=1735853680; cv=none; b=Q059qZgDRkUrwnoBkqbr2rlFPz8Tfn0dgur0G7Oo5MAF4aMbMSXVz3SZ7Y4B8su6zEg45gM38yL6lfqxuEDTewBxQ/aXyIbfm2JeWVIfIhZIgvTsSnTaQmdRpQaXmLD4X9orFtsFAA2RN6TOVgjvn22sk64SoDJ6JkGABCD5F9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735853409; c=relaxed/simple;
-	bh=XrKOsSEH94NxKZ88WiyNe1DG8h/v1JT99t0dO3oFckU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aiE9njIz/9kV3GfppG3fMMvoToR3UJW30GqfQnvB3xASHlgDwRWJClI+I0V/ha0clOBR8GRz0aANzyRbBMGWdt+t3f+ngXvozCPzBvx/xoWH0jfgj1wpZBOdoRuo7I5qLIiqqIuUBRaIcv5i3IMMrEPtFQOz+jKdoyB8YUiFOxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YZp0D719; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-540215984f0so12433909e87.1;
-        Thu, 02 Jan 2025 13:30:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735853405; x=1736458205; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9zQ6BfG3c9Wlj7b/dVFQJvkgkqVpLbCApoy2Cv2VU4=;
-        b=YZp0D719YY6GgPUc7JKNLNEr1AP7TmpEHZRlQlJgJ7DkdntIHB0ppPEvMqc2aaO0fo
-         JQlnr0u7eM4l499zaicdcPL3g3idyeq8Oc+XG6YuJ1tLbHhZCDHfRUy5OuAyRD04vPfV
-         7lBBTAeb6czOd2hD1yMolGdk1qATfzP3zTtks8dLusBF32MQ/iqWqlXNk1wPIX8w4Aeb
-         1KJ/aTLGhizYXp61R/5i0qEvRcyvSR0a8SqeyfbpCB75TrD68mG/Q5JAUTuAcyThUg8J
-         5i1whHWX9mayNXhyZrXEFlRYi+jvBxgk/Mdw/sAimq4GlXjSFcoVoWDwO9sn+fX+6TrM
-         kBIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735853405; x=1736458205;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y9zQ6BfG3c9Wlj7b/dVFQJvkgkqVpLbCApoy2Cv2VU4=;
-        b=Abpea9BSl5ugkCCM7Dn4UCj8FJa/3vpVoQq6hpmqjFtogZaIbxvjI+TOA45njyg3qP
-         HfpOpFxESZKxZw1GNaF4SURfuXruZPBx2NXzuC3Rp2wIvOOKEf+Ls331e9ANTUpJytbR
-         unNSnDy02+SbRPlcr2MNP2iR6TNuYZ1JIgrk5hrIOd6aUs6kYU5oWYMhdkVQaGFB0Y8h
-         QMNzhx78bFLgLbbF+r1NezDDGDqx6RtI6dGNdriT21fS52GEdyHiQhjZG0aUuKoMZYDP
-         q5Bfuhz+jl2nH2XN7XXhgm8OjmkZi7V4nCw4oGFAfs55kP1LhsGa+G7ssxtH9qnbc1XO
-         Y/mw==
-X-Forwarded-Encrypted: i=1; AJvYcCUerAvVk61WDdkVMAHZYFC8LwDoRSu8EbY50knGVojrN+x37KjRAmENhJhuuQQRSymKZ7gTl4PVZG2o@vger.kernel.org, AJvYcCWwLdQnwIT/lfUIafEbAzdCHl5aTKAjJS7KuKpA2yteZ1TbKNF8xpIGR7xFbyFEdhjv7PbH3/nlYRMyDc/n@vger.kernel.org, AJvYcCXQNstHYL0H1hqiuhBVmwO8V5WG+9lHhJgV3/ypaUKijNK4sUlp0hDtSZGk7vey4YU0NZJMkAGnR0h6DfJvRXT3ZP4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOsVRG0q45tvww9+XqCjDOyGkBYCe/x0x1REqjIHO7wnCR4w4p
-	gASlasmHMXDjwLuOceQ1g6hmzH9wVZpolzINK/3PTyU1f4zNcxlR
-X-Gm-Gg: ASbGncsaS4JJYPhlYYjmkPmIc6TZZ02s07vqBzfg4v+Nl4D7OXXoDzrtLa20NNGJP1Z
-	De1TnaTyJZPh74d3Nl9CJ3XmHwZ0gXzGchP8hHAypfdOO7ka8eSqapljKOPJPAwSPyGDWYCFEj4
-	k3kuUE1siW0hXNiTwwDx4EAY9raZM4ndi/RJXh/YdnKChg/MHQ2/Ow0EHBqabz39itFfNwf2J6o
-	/pixzRpfLTRiG4O626r6oyu35sj9o+2F9ujYK4hjEkO8PHTkGR/9X2Hwak=
-X-Google-Smtp-Source: AGHT+IES1THUTYBi5UphHsm2PEf2/oPPiDWnuTb10lOxgKrUggS6Mf74jKiF5I5s+fQbGGOmg3NojA==
-X-Received: by 2002:a05:6512:1241:b0:53f:f074:801c with SMTP id 2adb3069b0e04-5422958eaaemr15433404e87.41.1735853404760;
-        Thu, 02 Jan 2025 13:30:04 -0800 (PST)
-Received: from [10.8.0.2] ([130.61.158.70])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542236001e1sm4007494e87.88.2025.01.02.13.30.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jan 2025 13:30:04 -0800 (PST)
-Message-ID: <1fcfc835-64aa-48d0-87db-8de14913f3a4@gmail.com>
-Date: Thu, 2 Jan 2025 23:30:01 +0200
+	s=arc-20240116; t=1735853680; c=relaxed/simple;
+	bh=3t49K6dc09HYQTbG/D+IZZo7V3U7nhGevTZen16XX7k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TKhEhk8B7KKGXOig19xfE+d/sJhLFiIFJz5TS1W6HMuN46CuM0bAD2NjPXb75ZzPmc/4OEZZtX/bX11w649B7t1pveZdlZO1YetTHsKPvII8BSlONt4800EusdMy9VnV+rTDJNOc7LUyAcxU40upGk38LnGiYhxhFrSX7YD2LvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dud4uyCw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02813C4CED0;
+	Thu,  2 Jan 2025 21:34:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735853678;
+	bh=3t49K6dc09HYQTbG/D+IZZo7V3U7nhGevTZen16XX7k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Dud4uyCwevuFwIG/33iSUErORQHcSuewU97OnuWHz2QDfS4Ph3GxJA4bE+gKW3Ls6
+	 sLXIz+UUam4QmeGYu9yEXoe709Rj0bdep3jPtmLQOGV8TLdwagStDeASoHmd2T/6DT
+	 G7Yo2pXu2Fsew8qPvk53OOMN5A183AODninDHrZ1scxYW0VqUfQ0acADwAZ9ywDVrP
+	 HOgQnWKjWNzjIJA5Lj0G5MOnkNUUEDuxJBtxYLAso7iuPbTOkeJko/BhJz/BrDI633
+	 R3SjJC7AHXODplB8HNJFrvnbHYr8LqtgV++wYEbQ/99bC3pMfSL4POS65uy2X9SoBR
+	 RotPPZk9Eb+dQ==
+Date: Thu, 2 Jan 2025 15:34:36 -0600
+From: Rob Herring <robh@kernel.org>
+To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Gedenryd <emil.gedenryd@axis.com>,
+	Andreas Dannenberg <dannenberg@ti.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: iio: light: opt3001: add compatible for
+ opt3004
+Message-ID: <20250102213436.GA602988-robh@kernel.org>
+References: <20241227131134.10810-1-hardevsinh.palaniya@siliconsignals.io>
+ <qgottqtq5lvp6fifi37xzq7supalvm7leue755yjatyun6k5um@pju4v3kqoizq>
+ <PN0P287MB2843E7005997F1728B0F9B2CFF0F2@PN0P287MB2843.INDP287.PROD.OUTLOOK.COM>
+ <20241228131929.49e4a90d@jic23-huawei>
+ <PN0P287MB284355F3DD7DCF6BFC6D071FFF092@PN0P287MB2843.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 5/5] arm64: dts: exynos: exynos8895-dreamlte: enable
- support for microSD storage
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Jaehoon Chung <jh80.chung@samsung.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250102205846.223955-1-ivo.ivanov.ivanov1@gmail.com>
- <20250102205846.223955-6-ivo.ivanov.ivanov1@gmail.com>
-Content-Language: en-US
-From: Markuss Broks <markuss.broks@gmail.com>
-In-Reply-To: <20250102205846.223955-6-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PN0P287MB284355F3DD7DCF6BFC6D071FFF092@PN0P287MB2843.INDP287.PROD.OUTLOOK.COM>
 
-Hi Ivaylo,
+On Mon, Dec 30, 2024 at 07:34:27AM +0000, Hardevsinh Palaniya wrote:
+> Hi Jonathan, Krzysztof
+>  
+> Thanks for your input.
+>  
+> > On Sat, 28 Dec 2024 10:54:33 +0000
+> > Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io> wrote:
+> > 
+> > > Hi Krzysztof,
+> > >
+> > > > On Fri, Dec 27, 2024 at 06:41:32PM +0530, Hardevsinh Palaniya wrote:
+> > > > > Add Support for OPT3004 Digital ambient light sensor (ALS) with
+> > > > > increased angular IR rejection.
+> > > > >
+> > > > > The OPT3004 sensor shares the same functionality and scale range as
+> > > > > the OPT3001. The compatible string is added with fallback support to
+> > > > > ensure compatibility.
+> > > > >
+> > > > > Datasheet: https://www.ti.com/lit/gpn/opt3004
+> > > > > Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+> > > > > ---
+> > > > >
+> > > > > v2 -> v3:
+> > > > >
+> > > > > - Reverse the order of compatible string
+> > > > >
+> > > > > v1 -> v2:
+> > > > >
+> > > > > - Use fallback mechanism for the OPT3004.
+> > > > > - Drop 2/2 patch from the patch series[1] as per feedback.
+> > > > >
+> > > > > Link[1]: https://lore.kernel.org/linux-iio/20241224061321.6048-1-hardevsinh.palaniya@siliconsignals.io/T/#t
+> > > > 
+> > > >
+> > > > And where is any user of this, the DTS? We don't take bindings just
+> > > > because there is such device out there.
+> > > >
+> > > > I looked and nothing:
+> > > > https://lore.kernel.org/all/?q=ti%2Copt3004
+> > > >
+> > > I added compatibility for the OPT3004 into the driver. However,
+> > > based on Andy's feedback, it seems there might not be a need
+> > > to include this directly in the driver.
+> > > (Refer to Link [1] from the changelog.)
+> > >
+> > > we could follow a similar approach to how we handled the ADXL346,
+> > > by just adding it to the bindings, since the ADXL346 is similar to the
+> > > ADXL345.
+> > >
+> > > If I misunderstood then please let me know.
+> >
+> > Perhaps give some more information on the device in which this is found?
+> > If that's a board that you plan to support upstream in the longer term
+> > then that would provide more justification for this patch.
+> > 
+> > The note on the opt3001 page does give a hint as to how the parts are different
+> > but saying the opt3004 has better IR rejection.  They also have a somewhat different
+> > sensitivity curves. However, those are details we don't expose in the ABI and the
+> > devices unhelpfully report the same ID register value, so it is not obvious that
+> > we need to treat them differently.
+>  
+> In our customer project, this sensor is utilized in the product. However, 
+> I acknowledge that, at present, there is no upstream user of this binding
+> in the mainline.
+>  
+> Additionally, it is unlikely that the custom board using this sensor will be 
+> upstreamed in the future. The primary motivation for this patch is the 
+> absence of existing support for the OPT3004 in the mainline kernel.
+>  
+> I fully understand your concerns regarding the addition of bindings without 
+> an immediate upstream use case. I leave the decision to you regarding whether
+> it would be appropriate to include this binding. I am open to your guidance and
+> will respect the outcome either way.
 
-On 1/2/25 10:58 PM, Ivaylo Ivanov wrote:
-> Enable MMC for the Samsung Galaxy S8, used as external microSD card
-> storage. Since the main PMIC is currently not supported, assume the
-> required regulators are enabled by the previous bootloader.
->
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->   .../boot/dts/exynos/exynos8895-dreamlte.dts   | 39 +++++++++++++++++++
->   1 file changed, 39 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-> index 3a376ab2b..11aed89a3 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-> @@ -16,6 +16,10 @@ / {
->   	compatible = "samsung,dreamlte", "samsung,exynos8895";
->   	chassis-type = "handset";
->   
-> +	aliases {
-> +		mmc0 = &mmc;
-> +	};
-> +
->   	chosen {
->   		#address-cells = <2>;
->   		#size-cells = <1>;
-> @@ -89,12 +93,47 @@ wink-key {
->   			wakeup-source;
->   		};
->   	};
-> +
-> +	reg_sd_vmmc: regulator-1 {
-> +		compatible = "regulator-fixed";
-> +		gpio = <&gpb1 1 GPIO_ACTIVE_HIGH>;
-> +		regulator-name = "sdcard-vmmc";
-> +		regulator-min-microvolt = <2800000>;
-> +		regulator-max-microvolt = <2800000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +	};
+I'm confused. Jonathan seems to say the OPT3004 needs different 
+handling. The binding says it doesn't at least for some subset of 
+functionality matching OPT3001.
 
-This regulator was described in downstream, but it doesn't look like it 
-exists on schematics. It could be different revisions having different 
-hardware, of course, but for me it looks like it's redundant. (on 
-schematics VMMC (Vdd for the card) is powered by S2MPS17 LDO29, and 
-VQMMC (logic level) is powered by S2MPS17 LDO2).
+If you need driver changes, then submit this with the driver changes. If 
+you don't, then make it clear the device works with the existing driver.
 
-I believe we should check if this hw exists by perhaps checking if 
-manually changing GPIO output value changes the card behavior, and if it 
-doesn't, it should be safe to drop it.
-
->   };
->   
->   &oscclk {
->   	clock-frequency = <26000000>;
->   };
->   
-> +&mmc {
-> +	assigned-clocks = <&cmu_top CLK_MOUT_CMU_FSYS1_MMC_CARD>;
-> +	assigned-clock-parents = <&cmu_top CLK_FOUT_SHARED4_PLL>;
-To clarify, as proven by testing, this exists because with default (on 
-reset) mux MOUT_CMU_FSYS1_MMC_CARD configuration, the card doesn't show 
-up, so the parent is manually set to SHARED4 PLL. With this in mind, 
-maybe it makes more sense to put this into SoC dtsi, since it can't 
-possibly be board-specific?
-> +
-> +	pinctrl-0 = <&sd2_clk &sd2_cmd &sd2_bus1 &sd2_bus4>;
-> +	pinctrl-names = "default";
-> +
-> +	bus-width = <4>;
-> +	card-detect-delay = <200>;
-> +	cd-gpios = <&gpa1 5 GPIO_ACTIVE_LOW>;
-Missing pinctrl for card detect pin?
-> +	clock-frequency = <50000000>;
-> +	disable-wp;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +
-> +	/* TODO: Update once PMIC is implemented */
-> +	vmmc-supply = <&reg_sd_vmmc>;
-> +
-> +	samsung,dw-mshc-ciu-div = <3>;
-> +	samsung,dw-mshc-ddr-timing = <1 2>;
-> +	samsung,dw-mshc-sdr-timing = <0 3>;
-> +
-> +	status = "okay";
-> +};
-> +
->   &pinctrl_alive {
->   	key_power: key-power-pins {
->   		samsung,pins = "gpa2-4";
-
-
-- Markuss
-
+Rob
 
