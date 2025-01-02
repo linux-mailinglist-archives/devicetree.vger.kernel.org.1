@@ -1,143 +1,81 @@
-Return-Path: <devicetree+bounces-135001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0FD79FF669
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 07:09:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 446E19FF6B0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 08:58:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BCB71881F54
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 06:09:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE33E7A1124
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 07:58:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B59191917F0;
-	Thu,  2 Jan 2025 06:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39AF18FDC5;
+	Thu,  2 Jan 2025 07:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O3OyWlkY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lL4vnxZ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7D4189BA2;
-	Thu,  2 Jan 2025 06:09:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E05179A3;
+	Thu,  2 Jan 2025 07:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735798144; cv=none; b=LmPMwlPe8qPByy1ANqHfX6asl+cp6rpR1zZT8wxP+tRkrx2eNVVdpPJr1I0yc1qS71DRbhiPPjoLquonxAThCMSepuxZTWjZu7UVU/3d0Yo8O7OkfieBbfp7FW1hAHfqFCgta/PVIqE4LK3/1O/+v3KV/uE+vk1DoPkMC/BA828=
+	t=1735804694; cv=none; b=sAtlZHynSVFGbN0YqxoPL6IhRrdqGjqd8iOXnUon1tpzBEeAlgQbeUysdBADCRFXdq6L/bYyfkpu289FBzXHq5bl83hbSGdTsjQcBDKTsrSlGTESF9WU+blbRfsWQj9CS/WN3rCVA32pv2TbdQUA+C6LbXQSvrV02DQFePkkVEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735798144; c=relaxed/simple;
-	bh=mT4z74w94ZR5vgN6iI5EW/RF4NnnYLfA5jnpXauOjIw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=j8jXg+LirDOE9dl5sgu7I3uilmeQDer5QMK2r0GiHva5BoITGKxrcSAL6Xx3FlRlQyNnmjZ31qwL+KqREKdiubpNd6lhipryoQeMGjiotB812lDUGB0oM/sdMHAHsSbyWCm+oaINennicLaPsCELEyDa87G/b0azye3WrGQRYas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O3OyWlkY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 501NR65x015762;
-	Thu, 2 Jan 2025 06:08:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	o4zSJ9D8YtpU9oWUMzOF0AsOSNX9YfvYK0GVDA0jsvE=; b=O3OyWlkY4v6hrlNI
-	sicesMactFTuyNyFo6hLf3iBya1HPvi5s1RpnwAtzqtlPfss+KExgLqjJ5/OxYtX
-	cpjyHNXCHMW5j+YcgnwACXbkM7eSsyNTyyCPpeERDchlrZsLgN4WE7HvEdXY7036
-	RcyVwN/p79bt4sUpHvLIgA36hMuQ2qL9GisVHz+TP0Iyy4COwUjKao7s5Anb4OYF
-	UA0ocHyqunh/yfLmG4iWJF2Lxv2k38uk+poyxyew8bodDg1YPp7QK/G4o2pTcyOB
-	6oaMhcBHgRtccbwabW3wRi3YERHL7f9NRNy7VkUnFzZ1bDSxhJlMrLhUjUgabgUW
-	S28z+w==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43w6xah3fv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Jan 2025 06:08:48 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50268lHT030800
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 2 Jan 2025 06:08:47 GMT
-Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 1 Jan 2025
- 22:08:42 -0800
-Message-ID: <daffc5bc-c430-4400-af4d-404cd5984c59@quicinc.com>
-Date: Thu, 2 Jan 2025 11:38:39 +0530
+	s=arc-20240116; t=1735804694; c=relaxed/simple;
+	bh=gnlg1iwRA44t0Q9m776Cc0idy3V/9d7L0QBK8wPFtfY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d5Znmxmkvb0evv2uohPtaTyRXRAalcbGK0evQ+GU23PntSK/TWAdCsyUSmwTyMHeW2Kb93g4arGX7JLPMssEyiWmAZ2UO6NObnHiGEPwt9cW2ZKc4/rA+A+QI3OxNkmev/6fUZP1AlNKiotXI540AgfxbXfyZ1kQn3xKNAag6fY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lL4vnxZ/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 588C4C4CED0;
+	Thu,  2 Jan 2025 07:58:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735804694;
+	bh=gnlg1iwRA44t0Q9m776Cc0idy3V/9d7L0QBK8wPFtfY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lL4vnxZ/baQURW31Bb0YBJziu0sFojruCSFEM/FqDDifOw8IHAvPPWs+Zs20M87uk
+	 /ECz7UP4LZd7TSLaqPLNc8yYG3QfJXFLOQTHSWimMC6rUsyklQRXW5KoWABMtVJl97
+	 tspPWDjaqE9peupnQdAPpIdMcScVEqx6R//8AMRPtF/qvk2U+1mf4u4w3vzVrQkYaC
+	 /pGclTGyDhwm8iqxMyNmLNxr5iLayZzwBAPtgLBShUyfuZY4XwLrtN+xB8XspUtv7M
+	 kEv96pw4/O3h9jo6Dd4GV+RLxRnhJph0y9Cu5XR6FP70l/uGx3ORHcsTzrplky5YI/
+	 Rve/tqri1/Xyg==
+Date: Thu, 2 Jan 2025 08:58:10 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, cristian.ciocaltea@collabora.com, krzk+dt@kernel.org, 
+	mripard@kernel.org, hjc@rock-chips.com, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 2/3] dt-bindings: display: rockchip: Add support for
+ RK3576 HDMI TX Controller
+Message-ID: <zz5exgmftibayrh7vjfoq6z32xf2bm3ibejb6rc5xpqslejaab@ex4tj5am4hhk>
+References: <20241225103741.364597-1-andyshrk@163.com>
+ <20241225103741.364597-3-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: ipq5424: Enable PCIe PHYs and
- controllers
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <bhelgaas@google.com>,
-        <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20241213134950.234946-1-quic_mmanikan@quicinc.com>
- <20241213134950.234946-5-quic_mmanikan@quicinc.com>
- <e28773ef-12a4-4089-9c7b-1be5e5cc7aa5@oss.qualcomm.com>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <e28773ef-12a4-4089-9c7b-1be5e5cc7aa5@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: lfQq-CHW-M3dcK6cu3U_ienmjoyz1sBb
-X-Proofpoint-ORIG-GUID: lfQq-CHW-M3dcK6cu3U_ienmjoyz1sBb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- impostorscore=0 mlxlogscore=837 mlxscore=0 spamscore=0 phishscore=0
- adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501020052
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241225103741.364597-3-andyshrk@163.com>
 
+On Wed, Dec 25, 2024 at 06:37:30PM +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> RK3576 HDMI TX Controller is very similar to that of RK3588, but with some
+> control bits for IO and interrupts status scattered across different GRF.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> ---
 
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-On 12/13/2024 8:37 PM, Konrad Dybcio wrote:
-> On 13.12.2024 2:49 PM, Manikanta Mylavarapu wrote:
->> Enable the PCIe controller and PHY nodes corresponding to RDP466.
->>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> ---
-> 
-> 
->>  arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 43 +++++++++++++++++++++
->>  1 file changed, 43 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->> index d4d31026a026..8857b64df1be 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->> +++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->> @@ -45,6 +45,26 @@ data-pins {
->>  			bias-pull-up;
->>  		};
->>  	};
->> +
->> +	pcie2_default_state: pcie2-default-state {
->> +		perst-n-pins {
->> +			pins = "gpio31";
->> +			function = "gpio";
->> +			drive-strength = <8>;
->> +			bias-pull-up;
->> +			output-low;
->> +		};
->> +	};
-> 
-> Drop the inner wrapper, in both definitions /\ \/
-> 
-> Konrad
-> 
+Best regards,
+Krzysztof
 
-Okay, sure.
-
-Thanks & Regards,
-Manikanta.
 
