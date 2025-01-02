@@ -1,197 +1,219 @@
-Return-Path: <devicetree+bounces-135208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7826EA0010A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 23:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58102A00122
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 23:18:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CBCE3A391B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:07:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FFF53A39D9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2025 22:18:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A2A1B87E4;
-	Thu,  2 Jan 2025 22:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED281BC9F6;
+	Thu,  2 Jan 2025 22:18:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yij+67Hj"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="MzGUIbPA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F9F1AD3F6;
-	Thu,  2 Jan 2025 22:07:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E451AB507
+	for <devicetree@vger.kernel.org>; Thu,  2 Jan 2025 22:18:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735855633; cv=none; b=gQQ8mA7z41tO+aZ0BsD6EJu2ibA8aLfabAyGfckqt4VjraBWg2RGqCCQWoq5Fq9WK6PIvrKvp7lHxUcJpoPPLxhpkfslF85vS5GbLeTbNBK07y4arEx9SxgjhtEjzdJVlBI0x3fYFtiuAT4sXdUdN+VzTAxafZB7YJQ8OiiI6NA=
+	t=1735856314; cv=none; b=RsB4VXwKZe683rn1m4fuQdFQBK27aNMi3KD30vXewQgVrhLDoQiQ+UV7eSTv/eu/Q1zMeE0orwlklIKc01Trbxo4ivmlKDjc8cJjW0PO2En+zX4nKXOKJOBq/qR0WDJn/bgnoEBBW3ot/0ggmQQ0zEnTIa+7bv0OGZGVjkabUxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735855633; c=relaxed/simple;
-	bh=vR7iO8j+sakcg1XwY6nnyEy8WDfgUEprxmWOktDwld4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XeKdS54aK7YwvK7qPRuNQluu4Sfwg3pGq2v/kuCD7Z+Ymvk47OzfGuDud/lMwDpY8l/PiA069Z/4u/vfEO/XAOBHu7A/Ws+RqfR4wFxcmi4089wKK/7leL6rEIiI2N59jQkbTbVL8w74I474Q06IUVChN4Lofe1cKZBOdWtFDDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yij+67Hj; arc=none smtp.client-ip=209.85.222.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-85c529e72bcso2009271241.0;
-        Thu, 02 Jan 2025 14:07:11 -0800 (PST)
+	s=arc-20240116; t=1735856314; c=relaxed/simple;
+	bh=qqpjOy5IlV+ONDfgYFPvMPGJh+Vt13QLfVkIS1rPCbc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bUbR4iyjGEJ8D8Zg3Pfift/OmGVduT9/Lf3uz/xGdx+/F1L8bjeKmI2chl6U7aruw+g9857bslIq5fGWo69dThK1Pthzwqgl/QKs7+MEhQE0H33MJVprnbt1QWvdBS5YGybX6QCWN/3L3ns0uTxo0oiru6kDOTvXUdNRxna+bTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=MzGUIbPA; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5d4e2aa7ea9so21483496a12.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 14:18:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735855630; x=1736460430; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yQKr+57/EXDEkED/9ax46FJJGLL0jFomBZ6YGyVct+U=;
-        b=Yij+67HjDr0oVmgNpQWQZhs2aXRjic+WXVeEw/NWSfv10i9T1pF+T+gRJEnxdgcUsA
-         0fqs6Rd50do2vq8MncwRSExX9r4m5o2IEdOzo9nCZ0vuO8ioVXLoR7+l6KfMYHNpxbbj
-         wlBambva+rVb9vQWriNz25eSzUSyvx1uNomPfyZtdx+cq8/1xRhPJ3JqbufAVYbvUMuB
-         5O+mD4u4HdHsq7p7Za/qvQ2+vvhSAXdejMYRKZ8WZ3oLQzTuFCjpGNE4HCH4BDbuMU6V
-         ybrMTe3L/ui519KwfYpl7QmE5dgYeXXqTlCDs9HmuMtjPripXI1dEsEnPQdtonk3MdOS
-         t2/A==
+        d=chromium.org; s=google; t=1735856310; x=1736461110; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZyuuNQiDU1JAc9HQJGLLBFhsg+fChTK/ttGF2lyYwdM=;
+        b=MzGUIbPAVFkh0cUq/7rQy73S6Jm1VMeeGnhiTJpNKIUSKwq3wwcg2yPmMX9Aiwv/sJ
+         9J+NryUMrEHBwLsEzvBjujBW5fLYKPKO6ZZBk6U7iZwUTnoHVmmiizSPNBASLZ/L/0x0
+         ywWT4PCdhxgtZDofXuUU1AyzKWUuhqoDzh8DA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735855630; x=1736460430;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yQKr+57/EXDEkED/9ax46FJJGLL0jFomBZ6YGyVct+U=;
-        b=PCmbZ5EFxQqdoxaeLT8dpfeFOlGtkCIH6+XxnVOI+ZXD2rJfmBdRO/ZsLUNdqunMt0
-         Zz+0xGAogEVTg/lmgrrn0aOaipFOAQ0u87hHqWxLB5ZdPB0Uj3ISdl8kvHz77qLMLe8Y
-         Mcy8LIXxS1ep06jhpuu2YawB7Y5Mm4Eqh7GUTIhtzro+azWjkBKvG+QyspKGWEm/IjdE
-         jV/DTFF9H/yZgE1BTryvtcAICw/68Y3UIBJB+fP2jfn+0835Nu9ld09D/QeZFYA7G12X
-         ZzoTSULSyQVszoRqdw8Bko08SPLUtWQHyyx7Rg3NgLGvKyk/zz5he9YrEiGxCbwUTYn5
-         MoJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUds5qNAYWgkBanhvHuWNbIQWbsWzdAinb3oY2I8olCCnJChjq16wO8LQ+1Ge2mdMWpRLjd72kj5By0IvDRR4M=@vger.kernel.org, AJvYcCV3s1c3s79i59vv9pl7+2UbVHmkfQz/1pODlhgohacdyPZ5yt0kIQhKvccly0Eg2GPFztRjlZjBCfLd@vger.kernel.org, AJvYcCWDJ9I3SGzJ/suM2/IlEjeP2zqOQ7D3YMZ91oUU++HcNJds7+WJwZQCXA5vYlX8+t/DDuCRv8bYWvcB@vger.kernel.org, AJvYcCWbH4Yq/jxjt/bfDGBf48drKCqkkFUbBEv0R1odmcMfL65zzEzEuPF6E57QXzyhshqpzcEDGWT0VV51xSQz@vger.kernel.org, AJvYcCWkXk8hQ4KNghtVKJkGyO0GnOH0paHi0cngR7GY0k7/clZU+SV3qc0nSHuOuczZMEU8geg+95HsnIVcsZzctpnt2aY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YymAbi6xNNSkMJ1aWX7ZmKiqEqSuKwGoxiUXUDMyz3qxy3yPX2V
-	7sy/dRsBEvQrek3MW30EjkMSWJ+ZRJpZMjLIcEiVcsMcYtWFMCqltjTt2hoRF0brLGSjSBFXF+f
-	+AKSVDP0zgIbpktScVQoc32zndIk=
-X-Gm-Gg: ASbGnctej2TQBG+EmYTecsEU4Kqvy2MXg5NpB5l1/mCn2XkMzvwJKsjVcAg7otPzuzR
-	xe8en9RA/6k9nItSAiZw3RGWAZocpX9kr0k01kMh6D0/TKr/hDKmBrwO0bwMvuZEtVQFYFNo=
-X-Google-Smtp-Source: AGHT+IEo2ZPDD9910sqJ0mRac28/pBfINwS+8DceO8xHG/en79UnnbroDH7fZri31d+Llru8oyqJVvaP0PIKvdITLiE=
-X-Received: by 2002:a05:6122:8c5:b0:515:4b68:c37f with SMTP id
- 71dfb90a1353d-51b75c73d5fmr33419281e0c.6.1735855630463; Thu, 02 Jan 2025
- 14:07:10 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735856310; x=1736461110;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZyuuNQiDU1JAc9HQJGLLBFhsg+fChTK/ttGF2lyYwdM=;
+        b=cc2PI//kXi4YFIZzOgGX/yUTnHeguq35fYs7O4mjG4GA3H6FExXGCUpBY7hRJgXmWG
+         /kCeg0GxElbkw8nj2zBCO9NY5yKKveiPwAhfNrduajSwaCCB96p95xYAn98LajRDQZLN
+         CvBDOMckDQyUbkUqOpJBfnL7Pab/UycqoEd5QQhmo+8ylNXeljkjeBDEQqUlB1ZFNCG5
+         nGL9nH+53woRzLg5yM5w8C2yraslVSqb4L4FY4tWzP0PLEJ0sKewu0PqkUZAQkjBYuxY
+         VDKIOQZ/dc8iEZEAqhrawbqdfoJ/3yWgSjF96hoIb8M9FMe+H5y67fZ2dL2Z1z/5smcL
+         GF7g==
+X-Forwarded-Encrypted: i=1; AJvYcCVGc63OM7cGXrd+VvTgbHPJdSp4BFDoscodk+xqn3Bs2JGHnOBx2bolf18GvSKxOEctXfKfPZRAGoiI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzF0AkvpHxbn0vFAGI5bLKxp50ZguiaxnwVW9npRXf+r6NpHSiO
+	CJ40VKZ/v5YoHtro+rri9cDGRi8EkmBDNfAeWTiV2xHy2HRLvXopyy4sqn9qDw==
+X-Gm-Gg: ASbGnct7Wxw8rUFlNLhaf8q5KJHBFenqno3lPj72Ga21i4nj3KkuONz+PfQFn22sKPe
+	ybwmMtVOEbOuFySNsP13YnVwjzRlDVa8J8pOmer2+ws4u3AYKlNB+3Jy+07UvcxrMGZpPmvImji
+	ZRQZOQZh5+2kon0GKSG83AVSQuBki38c0ZXCmUhjszyzn5de+Ibgyj/r8u8SaC0QR501674ZCDl
+	u7EFxsLkAiWIgZvLAx+UsLIhuJkhPkqsNNKVlvQbahWM5s9Pbk7MB72OyJc
+X-Google-Smtp-Source: AGHT+IE5McLh1bDH3Va6O0lbAcJme1AwO5iXDZ8C5qZ6fYggu95MkhA899fhudNPFXc1CvgJcxYf1w==
+X-Received: by 2002:a05:6402:270d:b0:5d0:bcdd:ffa8 with SMTP id 4fb4d7f45d1cf-5d81dd83b92mr40404762a12.1.1735856310104;
+        Thu, 02 Jan 2025 14:18:30 -0800 (PST)
+Received: from google.com ([2a02:a31b:20c3:6680:363b:3cb9:4804:c8cd])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80675a71fsm18692830a12.18.2025.01.02.14.18.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jan 2025 14:18:29 -0800 (PST)
+Date: Thu, 2 Jan 2025 23:18:23 +0100
+From: Dmytro Maluka <dmaluka@chromium.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT)" <x86@kernel.org>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Usama Arif <usamaarif642@gmail.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	"open list:X86 ARCHITECTURE (32-BIT AND 64-BIT)" <linux-kernel@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>,
+	=?utf-8?Q?Pierre-Cl=C3=A9ment?= Tosi <ptosi@google.com>,
+	Shikha Panwar <shikhapanwar@google.com>,
+	Will Deacon <will@kernel.org>, Keir Fraser <keirf@google.com>,
+	Michal Mazurek <mazurekm@google.com>,
+	=?utf-8?Q?Bart=C5=82omiej?= Grzesik <bgrzesik@google.com>,
+	Tomasz Nowicki <tnowicki@google.com>,
+	Grzegorz Jaszczyk <jaszczyk@google.com>
+Subject: Re: [PATCH] x86/of: Restore possibility to use both ACPI and FDT
+ from bootloader
+Message-ID: <Z3cQr0YW0IU8VPzy@google.com>
+References: <20241223181813.224446-1-dmaluka@chromium.org>
+ <20250102180807.GA73778-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241227190210.69025-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20241227190210.69025-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250102214622.GB614405-robh@kernel.org>
-In-Reply-To: <20250102214622.GB614405-robh@kernel.org>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 2 Jan 2025 22:06:44 +0000
-Message-ID: <CA+V-a8vKa1huuYFhQ0dVpdpTsrh3dZVaaBxfNUF7JCUuZY4DWg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] dt-bindings: watchdog: renesas: Document
- `renesas,syscon-cpg-error-rst` property
-To: Rob Herring <robh@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250102180807.GA73778-robh@kernel.org>
 
-Hi Rob,
+On Thu, Jan 02, 2025 at 12:08:07PM -0600, Rob Herring wrote:
+> On Mon, Dec 23, 2024 at 06:18:03PM +0000, Dmytro Maluka wrote:
+> > There are cases when the bootloader provides information to the kernel
+> > in both ACPI and DTB, not interchangeably. One such use case is virtual
+> > machines in Android. When running on x86, the Android Virtualization
+> > Framework (AVF) boots VMs with ACPI like it is usually done on x86 (i.e.
+> > the virtual LAPIC, IOAPIC, HPET, PCI MMCONFIG etc are described in ACPI)
+> > but also passes various AVF-specific boot parameters in DTB. This allows
+> > reusing the same implementations of various AVF components on both
+> > arm64 and x86.
+> 
+> Anyone booting Arm ACPI based systems with AVF?
 
-Thank you for the review.
+No, on Arm side AVF is DT only.
 
-On Thu, Jan 2, 2025 at 9:46=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Dec 27, 2024 at 07:02:08PM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > The RZ/V2H(P) CPG block includes Error Reset Registers (CPG_ERROR_RSTm)=
-.
-> > A system reset is triggered in response to error interrupt factors, and
-> > the corresponding bit is set in the CPG_ERROR_RSTm register. These
-> > registers can be utilized by various IP blocks as needed.
-> >
-> > In the event of a watchdog overflow or underflow, a system reset is iss=
-ued,
-> > and the CPG_ERROR_RST2[0/1/2/3] bits are set depending on the watchdog =
-in
-> > use: CM33 =3D 0, CA55 =3D 1, CR8_0 =3D 2, CR8_1 =3D 3. For the watchdog=
- driver to
-> > determine and report the current boot status, it needs to read the
-> > CPG_ERROR_RST2[0/1/2/3]bits and provide this information to the user up=
-on
-> > request.
-> >
-> > To facilitate this operation, add `renesas,syscon-cpg-error-rst`
-> > property to the WDT node, which maps to the `syscon` CPG node, enabling
-> > retrieval of the necessary information.
-> >
-> > Additionally, the property is marked as required for the RZ/V2H(P) SoC =
-to
-> > ensure future compatibility (e.g., where the same IP block is present o=
-n
-> > the RZ/G3E SoC) and explicitly disallowed for other SoCs.
->
-> This is the other half of the ABI change.
->
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Where's this AVF binding documented? 
+
+The strictly AVF-specific properties are described in [1]. When it comes
+to Linux guests, actually AFAIK currently all those properties are
+consumed by the guest userspace, not the guest kernel, so the role of
+the kernel is in fact just to pass them over to the userspace via sysfs.
+
+Besides that, one important DT binding used by AVF's Linux guest
+kernels, not userspace, is google,open-dice documented in
+Documentation/devicetree/bindings/reserved-memory/google,open-dice.yaml.
+[2] describes how it is used by the protected VM firmware (pvmfw) to
+securely boot protected VMs.
+
+Cc'ing some AVF folks to keep me honest.
+
+(AVF used to support protected VMs on arm64 only, but now we are trying
+to make them work on x86. So, taking google,open-dice as an example, we
+could add an ACPI binding to the open-dice driver, however bloating
+pvmfw with AML support is a no go, so we want to keep passing it via DT
+on x86 as well.)
+
+> > Commit 7b937cc243e5 ("of: Create of_root if no dtb provided by firmware")
+> > removed the possibility to do that, since among other things
+> > it introduced forcing emptying the bootloader-provided DTB if ACPI is
+> > enabled (probably assuming that if ACPI is available, a DTB can only be
+> > useful for applying overlays to it afterwards, for testing purposes).
+> > 
+> > So restore this possibility. At the same time, since the aforementioned
+> > recently introduced restriction is actually useful for preventing
+> > conflicts between ACPI and DT for LAPIC/IOAPIC/HPET setup, don't remove
+> > this restriction completely but relax it: unflatten the bootloader
+> > supplied DTB but don't try to use it for SMP setup (i.e. don't override
+> > the .parse_smp_cfg callback) if ACPI is enabled. Precisely, right now
+> > this prevents at least:
+> > 
+> > - incorrectly calling register_lapic_address(APIC_DEFAULT_PHYS_BASE)
+> >   after the LAPIC was already successfully enumerated via ACPI, causing
+> >   noisy kernel warnings and probably potential real issues as well
+> > 
+> > - failed IOAPIC setup in the case when IOAPIC is enumerated via mptable
+> >   instead of ACPI (e.g. with acpi=noirq), due to
+> >   mpparse_parse_smp_config() overridden by x86_dtb_parse_smp_config()
+> 
+> It would be better if we explicitly opt'ed into "things we want to get 
+> from DT" rather than allowing anything except what we check for. There's 
+> a strong desire at least for arm64 to prevent systems from using both 
+> at the same time. There are growing usecases for doing just that, but I 
+> think we need to have some control or restrictions in place to define 
+> what we support in the kernel.
+
+When it comes to arm64, AFAICS it already enforces this mutual
+exclusion (in setup_arch()):
+
+	if (acpi_disabled)
+		unflatten_device_tree();
+
+For Android use cases it is fine (Android doesn't use ACPI on Arm,
+not for VMs anyway), so this patch doesn't change it.
+
+> > Fixes: 7b937cc243e5 ("of: Create of_root if no dtb provided by firmware")
+> > Signed-off-by: Dmytro Maluka <dmaluka@chromium.org>
 > > ---
-> > v1->v2
-> > - Renamed `renesas,r9a09g057-syscon-wdt-errorrst` to `renesas,syscon-cp=
-g-error-rst`
-> > - Updated commit message
-> > ---
-> >  .../bindings/watchdog/renesas,wdt.yaml          | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yam=
-l b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> > index 29ada89fdcdc..ca62ae8b1b0c 100644
-> > --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> > +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> > @@ -112,6 +112,19 @@ properties:
-> >
-> >    timeout-sec: true
-> >
-> > +  renesas,syscon-cpg-error-rst:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description:
-> > +      The first cell is a phandle to the SYSCON entry required to obta=
-in
-> > +      the current boot status. The second cell specifies the CPG_ERROR=
-_RSTm
-> > +      register offset within the SYSCON, and the third cell indicates =
-the
-> > +      bit within the CPG_ERROR_RSTm register.
-> > +    items:
-> > +      - items:
-> > +          - description: Phandle to the CPG node
-> > +          - description: The CPG_ERROR_RSTm register offset
-> > +          - description: The bit within CPG_ERROR_RSTm register of int=
-erest
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -182,7 +195,11 @@ allOf:
-> >        properties:
-> >          interrupts: false
-> >          interrupt-names: false
-> > +      required:
-> > +        - renesas,syscon-cpg-error-rst
->
-> New required property =3D=3D ABI break
->
-> Once the OS driver relies on this being present, then older DTs will
-> break.
->
-In this case there is no ABI break, as the driver code [0] does not
-fail the probe when the property does not exist, it's just that it
-won't report the status of current boot.
+> >  arch/x86/kernel/devicetree.c |  3 ++-
+> >  drivers/of/fdt.c             | 10 +---------
+> >  2 files changed, 3 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/arch/x86/kernel/devicetree.c b/arch/x86/kernel/devicetree.c
+> > index 59d23cdf4ed0..dd8748c45529 100644
+> > --- a/arch/x86/kernel/devicetree.c
+> > +++ b/arch/x86/kernel/devicetree.c
+> > @@ -2,6 +2,7 @@
+> >  /*
+> >   * Architecture specific OF callbacks.
+> >   */
+> > +#include <linux/acpi.h>
+> >  #include <linux/export.h>
+> >  #include <linux/io.h>
+> >  #include <linux/interrupt.h>
+> > @@ -313,6 +314,6 @@ void __init x86_flattree_get_config(void)
+> >  	if (initial_dtb)
+> >  		early_memunmap(dt, map_len);
+> >  #endif
+> > -	if (of_have_populated_dt())
+> > +	if (acpi_disabled && of_have_populated_dt())
+> >  		x86_init.mpparse.parse_smp_cfg = x86_dtb_parse_smp_config;
+> 
+> I would make this a separate patch. Then it can be backported to kernel 
+> versions without 7b937cc243e5. And then Thomas can take it and I can 
+> take the DT part.
 
-[0] https://lore.kernel.org/all/20241227190210.69025-6-prabhakar.mahadev-la=
-d.rj@bp.renesas.com/
+Sure, I can do that.
 
-Cheers,
-Prabhakar
+> 
+> >  }
+
+[1] https://android.googlesource.com/platform/packages/modules/Virtualization/+/refs/heads/main/docs/device_trees.md#dt-for-guests
+[2] https://android.googlesource.com/platform/packages/modules/Virtualization/+/refs/heads/main/guest/pvmfw/#handover-abi
 
