@@ -1,136 +1,131 @@
-Return-Path: <devicetree+bounces-135380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BDE4A00C47
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 17:39:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C182A00C68
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 17:48:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BB9C164452
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 16:39:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D99F97A227C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 16:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D29D1FCF47;
-	Fri,  3 Jan 2025 16:38:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD1B1FBEA4;
+	Fri,  3 Jan 2025 16:48:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="dEQYtl93"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="SIjH7vjb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from smtp.smtpout.orange.fr (smtp-23.smtpout.orange.fr [80.12.242.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D1681FCCF6
-	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 16:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 057691F9419;
+	Fri,  3 Jan 2025 16:48:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735922324; cv=none; b=fEDAPUSEgYU0TGBU6oaZohJFALEn1tWUFE36z4K5eU8uHWC5SSPDGKf8387z3gNoFeUZGbob7XQKZQARHIIk1zGsW5eUBEAfs3quIIgx00kxdDKygVA9L7KQVqeND0yjPBGlcb4yPtFfd+iM92UqNjUfhaonCwbSxJICJGdbocA=
+	t=1735922885; cv=none; b=KynOs6aALZc61POqKPYZzBbiThJVCY1viGoHgcMrwYt7mgi39uWVXyyxR1EuzrCSgzwniYPS4C+uMub8Z0wr9IcdeQF/d1lU6I08B+77SPKadFQzUPOWyHjKOn1KD48H8D07pCwz0RjDd+ABHDtay7J184d5haDtvLxbliThRNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735922324; c=relaxed/simple;
-	bh=ElJIj15I7VDEmOYeFsm2GgBst4b8C7b3V/BjoymFWVI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gA5c/uHBEqKl1lLIbDTVXxl8ZsbYnXeMSaBkTIKvM63oxA7+mgq7qJZGawd55YY2kJlzjDRt74dMBSHlUbpmYRDx1LwLKQinfyRP6J6jcEes75E/jsrBlLEoEvwJGxOrYw6tq/jJ4weHQnK2GMbzc0vwjqGeinosTk54GhbnQeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=dEQYtl93; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-aaf900cc7fbso352795866b.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2025 08:38:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1735922320; x=1736527120; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8obrWVZsJoXmrid0pqmVf5t2hFsLjtOlv8BcTL5IH0U=;
-        b=dEQYtl93Df3LWWZvuu5qW2QRtK6fz0b649Scup7lS23/SuQ9/KQDOgPN7ppr1aenF4
-         q63qwk7oxnvuPpshdbbfQBsnOPWstop+STH848gnsTIChZgs7WPuo0zdLCkMA3uStnAS
-         Vbgr0oCnJlvnaWbGknRBenUL2jFQIYe9jkLMzq8XcmEQHpiBe9Wu0DHc/GalexKHJSrj
-         FAFPXpjVMUaRJXki7CvVVxhjHwob84XazPeQI2ly5Tqidrm8uljlEjLdxcIXw4vrFaKu
-         JkEjSFQtPYRZFdAA81pzamLW/j/7zFSXM5w812OzwOJ8MhCU8Fx3EgwepehiBHIyuZqt
-         6+cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735922320; x=1736527120;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8obrWVZsJoXmrid0pqmVf5t2hFsLjtOlv8BcTL5IH0U=;
-        b=GQL5f2u0KXtND8y2alTjebOo/zSwnDkLA2DqY1HtEwBIS2UAcq3ysYKx9xqC7Zgb/8
-         tYeiHVEuUNv7SQOsAuS9VTyc1kzzWa8AVF49AqXoQ8RTNvxA+4qZ9CwJxb2oJYHmzps7
-         q8o52CAGUQz5CfcHcVu5fPI39i7vVsEppI87uFdQH+IGn0jeWtu4tMFUVu2rtFRzYx+C
-         bMZhM96x2cb7Qml0rZE4sihDFjnRNAC73quUTEwi6TdTthU4NiTQqasYQh7pAKhZgiOx
-         mnqFnrQTnMy/9wRq1dqBRjlPlF024dFVlYPZHn8+3ZbEbNLm/4PtygS2MYq9uZ3A382v
-         97aQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUshsZhYIsX0g89VckbScesKou7diEAd5UnPeilqVXv6Ltv7QRJye7k7hNid+MdUEhX4jdt3LbbknJP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyROHUZAofXVmBX4aCulgxg77KPYZytZmCC5GFvNLSW9IclOXig
-	s2hKuHtGUzmmcN7HtYHM+nwwPHGO4mztpxiTVz47JRW43lHW1z8TgrGnPS75w8c=
-X-Gm-Gg: ASbGncvzVboxhIPlbsn02OGkIh7X8SZh/7f0Dnrs7gMXY/9j8jDy/S7kmg9cquGa/Hd
-	FFqNwWDeAagVsYPm3O+d76Iiy6Iht773hUxQSouCzBDrKaNn5QL5ngEMaD2KT4mou9hX0Ph8Fy2
-	OrHlW+KKpWdW2j9BodOtIovioy3zk+fiPkOe6etEqQqeDeI/ZbjWS+09uPX5sn8/OwdK97P1/jA
-	3bPbiK3zb3QZoK/dskZu8p1CNK7zxUeF19FZRw6SslcDDa1J3is4kaO9qZFrZyQ/b55scsCXsoo
-	H/9PnhhFMD8=
-X-Google-Smtp-Source: AGHT+IH+DUY6nprcntI+5aClJEE8pz4wAhTYG8dCJD+t8yU/xxOBpHwSJqf9myK1PfsCCnfBeBYRqg==
-X-Received: by 2002:a17:907:1b96:b0:aae:83c6:c67e with SMTP id a640c23a62f3a-aae83c6c8f5mr3028524366b.55.1735922320359;
-        Fri, 03 Jan 2025 08:38:40 -0800 (PST)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.102])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e8953b6sm1932984066b.65.2025.01.03.08.38.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jan 2025 08:38:39 -0800 (PST)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: rafael@kernel.org,
-	daniel.lezcano@linaro.org,
-	rui.zhang@intel.com,
-	lukasz.luba@arm.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	p.zabel@pengutronix.de,
-	ulf.hansson@linaro.org
-Cc: claudiu.beznea@tuxon.dev,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 6/6] arm64: defconfig: Enable RZ/G3S thermal
-Date: Fri,  3 Jan 2025 18:38:05 +0200
-Message-ID: <20250103163805.1775705-7-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1735922885; c=relaxed/simple;
+	bh=jxmr4GnD+hcZYvcqvzZ/R3egkOdYk4fRpyLFFOptZIA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ADYKfMFnwDPIHTu+ZQKA2qJXCXDmD0OPFKCEjI055bPALkQTwa696niIS58vxLfO8YwjmUhyBb6dTOYpRPw9YCFNeFsjGlQhRAbeLcQCLRh7XKpT7RQuNwnOOtgcGX4cU3fF72XYqEv5X70cqgrgeJjSha4axwWS6ruytM1O2uI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=SIjH7vjb; arc=none smtp.client-ip=80.12.242.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id Tkh7thvQlgiluTkhAtJugY; Fri, 03 Jan 2025 17:38:52 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1735922332;
+	bh=GImteROnqULHiFchXLQTzhpJttZLzgZN6ofwaQa8E98=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=SIjH7vjbbSJIaxUKmhBM3ov4wfqI0MWG9M5HncSgPDIZwGkA8cuMe9jaoJ9kCQJcN
+	 l6X1mLcu0p0afX4EQLWzCU1tk6JHQWsSoYCNxxRvqKDryVgbJoAa+NZ3FUVY5VDmBk
+	 fGsQSUs6nLeRW8VFjrtGtXikEuPUUg/+vmABh2SAFy4UdH+Bv7FAcUYRM5vo3gDaeT
+	 xnd4f8akpir9p8Gv1eJx7n0gUxch0qZdDB7LqeBcWT/+Sg8X4rvQIQa3/SxeBMjoDt
+	 KMaLhw3/Ym00PLFzdpfP8SK6jcCqcSXHwkHqVlBcg1raOiko71QEvISzZZgboc2Kek
+	 bmSEmk7QzeXQQ==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 03 Jan 2025 17:38:52 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <2736ccd3-680d-4f5d-a31a-156dec056f22@wanadoo.fr>
+Date: Fri, 3 Jan 2025 17:38:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v6 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
+ glue for Nuvoton MA35 family
+To: Joey Lu <a0987203069@gmail.com>, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mcoquelin.stm32@gmail.com, richardcochran@gmail.com
+Cc: alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
+ schung@nuvoton.com, yclu4@nuvoton.com, peppe.cavallaro@st.com,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20250103063241.2306312-1-a0987203069@gmail.com>
+ <20250103063241.2306312-4-a0987203069@gmail.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20250103063241.2306312-4-a0987203069@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Le 03/01/2025 à 07:32, Joey Lu a écrit :
+> Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac driver.
+> 
+> Signed-off-by: Joey Lu <a0987203069@gmail.com>
 
-Enable the CONFIG_RZG3S_THERMAL flag for the RZ/G3S SoC.
+...
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+> +	/* Nuvoton DWMAC configs */
+> +	plat_dat->has_gmac = 1;
+> +	plat_dat->tx_fifo_size = 2048;
+> +	plat_dat->rx_fifo_size = 4096;
+> +	plat_dat->multicast_filter_bins = 0;
+> +	plat_dat->unicast_filter_entries = 8;
+> +	plat_dat->flags &= ~STMMAC_FLAG_USE_PHY_WOL;
+> +
+> +	priv_data = nvt_gmac_setup(pdev, plat_dat);
+> +	if (IS_ERR(priv_data))
+> +		return PTR_ERR(priv_data);
+> +
+> +	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index dfa5c8d5b658..576a544b8c79 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -706,6 +706,7 @@ CONFIG_ROCKCHIP_THERMAL=m
- CONFIG_RCAR_THERMAL=y
- CONFIG_RCAR_GEN3_THERMAL=y
- CONFIG_RZG2L_THERMAL=y
-+CONFIG_RZG3S_THERMAL=m
- CONFIG_ARMADA_THERMAL=y
- CONFIG_MTK_THERMAL=m
- CONFIG_MTK_LVTS_THERMAL=m
--- 
-2.43.0
+stmmac_pltfr_remove() is called by the .remove function.
+Is it correct to call stmmac_dvr_probe() here, and not stmmac_pltfr_probe()?
 
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* The PMT flag is determined by the RWK property.
+> +	 * However, our hardware is configured to support only MGK.
+> +	 * This is an override on PMT to enable WoL capability.
+> +	 */
+> +	plat_dat->pmt = 1;
+> +	device_set_wakeup_capable(&pdev->dev, 1);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static struct platform_driver nvt_dwmac_driver = {
+> +	.probe  = nvt_gmac_probe,
+> +	.remove = stmmac_pltfr_remove,
+> +	.driver = {
+> +		.name           = "nuvoton-dwmac",
+> +		.pm		= &stmmac_pltfr_pm_ops,
+> +		.of_match_table = nvt_dwmac_match,
+> +	},
+> +};
+
+...
+
+CJ
 
