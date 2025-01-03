@@ -1,169 +1,114 @@
-Return-Path: <devicetree+bounces-135311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 142C6A007BF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 11:17:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BC9A007BA
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 11:17:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E37C41884CF2
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:17:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6A7C1884CDB
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:17:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5B61FA262;
-	Fri,  3 Jan 2025 10:15:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GMET017M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3130CA6F;
+	Fri,  3 Jan 2025 10:15:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ABCC1FA252;
-	Fri,  3 Jan 2025 10:15:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA0C1F9A8A;
+	Fri,  3 Jan 2025 10:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735899328; cv=none; b=A5oYRuPRB6HlzyMqq/72VLXb52Yo6BjDaySzpkG9n6Bf9+knFhw0GrC9hzaA4ad0GWHiIDcuzjwAIRc5S0nuW/Pscr+lXgeDc8O3igECYRh+SK+21nNGpHQFh0zy1mgHdRhh4ZBy+sT2jAtHxW9iTmugdCuv9PRX97ukh9mRfJM=
+	t=1735899308; cv=none; b=t2SwY67h46b7mSXutsFpv0DYm7ZJUY+r96wQYLsPrlR9Urk9A2qPK4nD3kO5bc7oKNcyVPIp49L72kvWFa5AaSPPKkaOhemJ3iVbzb1Oeh/RGg9IFrNc6bIb+AEsgaTZdqs+cRWkLFRblWolQzouz8wGz5XEn/p68ckXWSqVNEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735899328; c=relaxed/simple;
-	bh=qewynhvggyKpZEEOwryOvmC/VSQW0cKUrdGLeYaEiYQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=V6OK0pJxMkK3Ts9VLwfKSM5hfDbEJGJYjfNTCpvxusKUlzFR4S8iAcXiCoj1FBPaczaDJhjo3IE4S04HN9uqAYQU8kgVY5KMIex7xmlzb5dMT16P+ePblDUbcUetMuCCxrvt+Ex49lF6n3bP1rfPR0DQoPkN0/YW9HxrGxq1fEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GMET017M; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5038Kd8h010124;
-	Fri, 3 Jan 2025 10:15:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MHtkAHotMrwiNc+RHFugN+IFchPkfqLFuW8a7JP4sM4=; b=GMET017M5n3SVJ4B
-	fCOcHKJZSFTZ1u5gbC8WAg/Xen6w8TOzsQv3wKoi6CJPMA5ZRrcT70Bo5orAXKuS
-	Z63mtn5Sk5u8UbuT88hmpbhoNxjJkT64Ah7fnHTPb/P1DtQ9xqj1pEXr03r1UUYE
-	nZUkz0vyz85tshtdrD8C0Tb83QkKEdLdLKInywHwmcajD/cYxv3i6qtTFOGdIl03
-	0gYlxKiLUQIQMiDw335byj03eR8hMExrGn4GkAYLAvsn6kXIlxg24ss39xmMd65I
-	v8u3tKFHuTmg6AVd5Sb3GchjPhydatSOoejT9AGTfoHtbgLwg51MmCPT0rCZ4wvu
-	PqiShw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43xca508qy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 03 Jan 2025 10:15:06 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 503AF50f016477
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 3 Jan 2025 10:15:05 GMT
-Received: from [10.253.33.137] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 3 Jan 2025
- 02:14:59 -0800
-Message-ID: <7cac0b93-c1eb-4269-b397-794f43a8507a@quicinc.com>
-Date: Fri, 3 Jan 2025 18:14:36 +0800
+	s=arc-20240116; t=1735899308; c=relaxed/simple;
+	bh=qDqhKoebL+U3703j8ycPOl91l3bsf/dg4Y2ghOWLvz4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jDLJiVtsdCgDC0JBe/tPy0SvMeGkhZkBqKV9BN2TctT70meO0GEee8B5mjQeBkr6ny/hZT6eWq9m6tJ/fkwkhdS+BAQRrUt+3glkJweSxhfeGBvQdTV3icKgZ2iaPk+CfhPmnpJCzzC5jzMOp2+pz8vGbUHFIfuUU0mo3qS6/lE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com; spf=pass smtp.mailfrom=korsgaard.com; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=korsgaard.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2ADE51C0004;
+	Fri,  3 Jan 2025 10:15:00 +0000 (UTC)
+Received: from peko by dell.be.48ers.dk with local (Exim 4.96)
+	(envelope-from <peko@dell.be.48ers.dk>)
+	id 1tTehm-003jnd-3D;
+	Fri, 03 Jan 2025 11:14:59 +0100
+From: Peter Korsgaard <peter@korsgaard.com>
+To: Guenter Roeck <linux@roeck-us.net>,
+	devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Cc: Peter Korsgaard <peter@korsgaard.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm property
+Date: Fri,  3 Jan 2025 11:14:47 +0100
+Message-Id: <20250103101448.890946-1-peter@korsgaard.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 3/5] net: pcs: qcom-ipq9574: Add PCS
- instantiation and phylink operations
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit
-	<hkallweit1@gmail.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_kkumarcs@quicinc.com>,
-        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_luoj@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <vsmuthu@qti.qualcomm.com>, <john@phrozen.org>
-References: <20241216-ipq_pcs_6-13_rc1-v3-0-3abefda0fc48@quicinc.com>
- <20241216-ipq_pcs_6-13_rc1-v3-3-3abefda0fc48@quicinc.com>
- <Z3ZwURgIErzpzpEr@shell.armlinux.org.uk>
-Content-Language: en-US
-From: Lei Wei <quic_leiwei@quicinc.com>
-In-Reply-To: <Z3ZwURgIErzpzpEr@shell.armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: b0fTZqk6w3PAlsxUky5TFfeXft8C7umx
-X-Proofpoint-GUID: b0fTZqk6w3PAlsxUky5TFfeXft8C7umx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0
- mlxlogscore=999 spamscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1015 adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2501030087
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: peter@korsgaard.com
 
+The pwm-fan driver uses full PWM (255) duty cycle at startup, which may not
+always be desirable because of noise or power consumption peaks, so add an
+optional "default-pwm" property that can be used to specify a custom default
+PWM duty cycle (0..255).
 
+This is somewhat similar to target-rpm from fan-common.yaml, but that cannot
+be used here as target-rpm specifies the target fan speed, whereas this is
+the default pwm to set when the device is instantiated - And the resulting
+fan RPM resulting from a given PWM duty cycle is fan dependent.
 
-On 1/2/2025 6:54 PM, Russell King (Oracle) wrote:
-> Hi,
-> 
-> On Mon, Dec 16, 2024 at 09:40:25PM +0800, Lei Wei wrote:
->> +static int ipq_pcs_config_sgmii(struct ipq_pcs *qpcs,
->> +				int index,
->> +				unsigned int neg_mode,
->> +				phy_interface_t interface)
->> +{
->> +	int ret;
->> +
->> +	/* Access to PCS registers such as PCS_MODE_CTRL which are
->> +	 * common to all MIIs, is lock protected and configured
->> +	 * only once.
->> +	 */
->> +	mutex_lock(&qpcs->config_lock);
->> +
->> +	if (qpcs->interface != interface) {
->> +		ret = ipq_pcs_config_mode(qpcs, interface);
->> +		if (ret) {
->> +			mutex_unlock(&qpcs->config_lock);
->> +			return ret;
->> +		}
->> +	}
->> +
->> +	mutex_unlock(&qpcs->config_lock);
-> 
-> Phylink won't make two concurrent calls to this function (it's protected
-> by phylink's state_lock). Since this looks to me like "qpcs" is per PCS,
-> the lock does nothing that phylink doesn't already do.
-> 
+Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+---
+Changes since v3:
+ - Fix example syntax
+ - Extend description of why target-rpm cannot be used
 
-The per phylink pcs instance is "qpcs_mii" and not "qpcs". The 
-"config_lock" is to protect from concurrent configurations for each of 
-MII ports in case of QSGMII mode where there is common register access.
+Changes since v2:
+ - Recreated/resent
 
-However after taking a re-look in the case of QSGMII, I think it may be 
-OK to remove this lock from the driver. This is because the phylink pcs 
-config called by phylink_mac_initial_config() during phylink_start() is 
-protected by the rtnl_mutex, which ensures that each netdev starts/opens 
-sequentially. After that, for the QSGMII case, the interface mode will 
-never change when the phy's link is resolved again. So, I think this 
-lock can be removed.
+Changes since v1:
+ - Rename to default-pwm
 
->> +static const struct phylink_pcs_ops ipq_pcs_phylink_ops = {
->> +	.pcs_validate = ipq_pcs_validate,
-> 
-> I would also like to see the recently added .pcs_inband_caps() method
-> implemented too, so that phylink gets to know whether inband can be
-> supported by the PCS.
-> 
+ Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Sure, I will add this method in next update. I will rebase this update 
-on top of the latest net-next which has the .pcs_inband_caps() patch 
-included. Hope this is fine.
+diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+index 8b4ed5ee962f..873c4c32e608 100644
+--- a/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
++++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml
+@@ -20,6 +20,13 @@ properties:
+     items:
+       maximum: 255
+ 
++  default-pwm:
++    description: Default PWM duty cycle value to use at startup
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 255
++    default: 255
++
+   fan-supply:
+     description: Phandle to the regulator that provides power to the fan.
+ 
+@@ -100,6 +107,7 @@ examples:
+     pwm-fan {
+       compatible = "pwm-fan";
+       pwms = <&pwm 0 40000 0>;
++      default-pwm = <75>;
+       fan-supply = <&reg_fan>;
+       interrupt-parent = <&gpio5>;
+       interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+-- 
+2.39.5
+
 
