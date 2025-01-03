@@ -1,53 +1,58 @@
-Return-Path: <devicetree+bounces-135221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EAFA002EB
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 04:00:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A0AA00328
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 04:30:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12B31162D9E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 03:00:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE217188409E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 03:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A8C4199FBB;
-	Fri,  3 Jan 2025 03:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B8F1537C6;
+	Fri,  3 Jan 2025 03:30:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4FC1B07AE;
-	Fri,  3 Jan 2025 03:00:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908232E401
+	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 03:30:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735873226; cv=none; b=FeHNgX+pQnyknDJgOsb86eEmwfAbyIIunv7lXJL9ZCbwANAx0/4GpJQInyeUzvt92+Bkk/QCJw7pYgRNrj1pA45BNT1WCzakj+gqyE9ai1uY1z/7AGhcY3Df5hYSyEYizaqbcB59twgjBScECEyRdQHA9YZgopNFboTDkhITE6c=
+	t=1735875036; cv=none; b=J1bQ1abqAAsq8l5lJ27UO6EgVKYcss/VJiHS2Vf/+UDs+RUsrqik2mVhSj46YLXj87KO4RaxlTbuv4NpIMkQ2Y2eld1NSSnffnk1KSjvsoGPCtPIMIcYg4SUvZtlEz+J7+Ggq2cYBZSOyoD+ZV/lu8ys5UdShMe+Qa39Okg9nwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735873226; c=relaxed/simple;
-	bh=PC6f6IKpRPokW3Q1dNJ83lu4eSQ/USz8FsZK3789fjw=;
+	s=arc-20240116; t=1735875036; c=relaxed/simple;
+	bh=XA2rk13zNwqu9qb8XiY2lQeOb0nLvcdSFdsz5y/3xSU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=U+awasirNI9U4aTkm4HmpHhTo99CS/aroU2Hk4CIiZ4PbA3WRDCqHAJiSGd503CEENeDNSEWxigRuTwsEZGyyEc061A2UP3qiB87kflV8BK+K0ryP98Mp8+dFRdilYg6+Q1SaCIetdHOy48gAZqhIL0Q/lzGjibecEFojuu+FvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+	 MIME-Version; b=gh5wsIkGIuMIbTKXRtfOBEC5M4Q9yzuOdddSAx/9YFdGBf22Uo1hC7wpwS0y3kGWmyK8392bQvvc1J7b7yWDb/t/OSdLvmX2rS/xCiwa3g6HCxGw8a/eEQmkmuF1Y9y/z5PzYte+Spntt+paaGdBb8K69Lup+h1KlD2YuElV5FI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c00:6270::1])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 790bd879;
-	Fri, 3 Jan 2025 11:00:10 +0800 (GMT+08:00)
+Received: from amadeus-Vostro-3710.lan (unknown [119.122.213.157])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 791e1b01;
+	Fri, 3 Jan 2025 11:30:22 +0800 (GMT+08:00)
 From: Chukun Pan <amadeus@jmu.edu.cn>
-To: konrad.dybcio@oss.qualcomm.com
+To: jonas@kwiboo.se
 Cc: amadeus@jmu.edu.cn,
-	andersson@kernel.org,
 	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	konradybcio@kernel.org,
+	heiko@sntech.de,
+	kishon@kernel.org,
 	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] arm64: dts: qcom: ipq6018: add 1.2GHz CPU Frequency
-Date: Fri,  3 Jan 2025 11:00:05 +0800
-Message-Id: <20250103030005.30784-1-amadeus@jmu.edu.cn>
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	liujianfeng1994@gmail.com,
+	p.zabel@pengutronix.de,
+	robh@kernel.org,
+	vkoul@kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: rk3568: add reset-names for combphy
+Date: Fri,  3 Jan 2025 11:30:16 +0800
+Message-Id: <20250103033016.79544-1-amadeus@jmu.edu.cn>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cb90fd75-60de-4df7-bef1-e5c832601a75@oss.qualcomm.com>
-References: <cb90fd75-60de-4df7-bef1-e5c832601a75@oss.qualcomm.com>
+In-Reply-To: <688c8fb6-68f7-45f1-98fc-8b3252b3ecbf@kwiboo.se>
+References: <688c8fb6-68f7-45f1-98fc-8b3252b3ecbf@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,26 +61,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZQksZVkJCSUxJT0MZSUtKGlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtLQU1JTEtBQUpZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	5VSktLVUpCS0tZBg++
-X-HM-Tid: 0a942a1b271c03a2kunm790bd879
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCQ0sdVkxCGR1KSxhCGh5PQ1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSFVKTkxZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
+	tZBg++
+X-HM-Tid: 0a942a36cf0d03a2kunm791e1b01
 X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PRw6Aww6EjITFy03OTk3ITg3
-	PzkwCQ9VSlVKTEhOQ0xISUpLQ0JCVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0tBTUlMS0FBSllXWQgBWUFPQ0k3Bg++
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NAw6Ezo5HTISIS0VPy5ODTA9
+	KhVPFDVVSlVKTEhOQ0xOS0lIQ0hPVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpIVUpOTFlXWQgBWUFKS0tMNwY+
 
 Hi,
-> Could you try to boot the BSP software and read out the related
-> registers to determine the real CPU frequency?
->
-> Or perhaps, if there's a cpufreq driver (I don't know), check syfs
+> The other patch in this series:
+> arm64: dts: rockchip: rk3568: add reset-names for combphy
+> is missing in v6.13-rc5, which will break pcie2 of rk3568
+> because the phy driver has changed.
 
-1. The CPU frequency on OEM firmware is 1.2GHz.
-2. The CPU frequency on the BSP kernel is 1.2GHz.
+I don't know why the dts patch hasn't been merged into the mainline yet.
+Maybe the merge window is different. Can you test the following patch?
 
-Related commit on the BSP kernel:
-https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/commit/7336e62905941d8137176b911410d1cea25d6336
+```
+--- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
++++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+@@ -325,6 +325,10 @@ static int rockchip_combphy_parse_dt(struct device *dev, struct rockchip_combphy
+ 	priv->ext_refclk = device_property_present(dev, "rockchip,ext-refclk");
+ 
+ 	priv->phy_rst = devm_reset_control_get(dev, "phy");
++	/* fallback to old behaviour */
++	if (IS_ERR_OR_NULL(priv->phy_rst))
++		priv->phy_rst = devm_reset_control_array_get_exclusive(dev);
++
+ 	if (IS_ERR(priv->phy_rst))
+ 		return dev_err_probe(dev, PTR_ERR(priv->phy_rst), "failed to get phy reset\n");
+ 
+```
 
 Thanks,
 Chukun
