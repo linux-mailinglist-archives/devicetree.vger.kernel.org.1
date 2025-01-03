@@ -1,126 +1,366 @@
-Return-Path: <devicetree+bounces-135290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F39A00635
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:46:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11E8FA0063E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:49:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 086A016552C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 08:46:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21A8318811D4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 08:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43901CD213;
-	Fri,  3 Jan 2025 08:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018841C549F;
+	Fri,  3 Jan 2025 08:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B4RD6cMg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hPz95lna"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A913E1CD205
-	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 08:46:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248E34C62;
+	Fri,  3 Jan 2025 08:49:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735894000; cv=none; b=cNbJYKJX6M727132hg6aL4OmDKlIENL2Hx1GPw2sM9GsnD0aAsyrzXKENKQ+uWQwqDF/OA6ReUjRSYakMbSNkc41q50q/VyFfE0AxZJWfQ9Yy8do/KcY8SgKzfsRcqYCpdCyei4l2IwRXspTTTvJ3Ujr7obVOF7iJg+2B5InHok=
+	t=1735894149; cv=none; b=hiC28HTzqwtAZ0HfsRK6x0kFly7J9B1t4MJD43XIcnBNH0m+sdN5QhqwYoptgWbPmvMlTUN+SfscVvyLWZVPRcvugpqXJnmBHhps6fOuwSzhZDqx/OKZXaD1DrhhBqzbB995ilCIwJQS4NxuoXbBIYJim3oc5uxnIJLXeuWai8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735894000; c=relaxed/simple;
-	bh=O+EAGVQHC9pWEgyYom/lJW4JcUi14Rb7WDSu5s1H+wA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h3eExlDBxcZGpwSRhAns4ZOT7FZO8J/cV0gG2ukwdHkyhd+xXiWTRwRXsn9Kvp9tfY4zLQ7bMB9fPpYO+x28FygZTyNll4aUTSMgkB+cte+WKzqtl+C71hE5Ttk+FO1afM1dwaUcR5EdkV7UJ6JEpJRFXiKbtJaKpE16xex/Ow8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B4RD6cMg; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5d3f57582a2so22947278a12.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2025 00:46:38 -0800 (PST)
+	s=arc-20240116; t=1735894149; c=relaxed/simple;
+	bh=urxiKoKoza0Kl8wH9tmmKieOJ8djvOcj46qlWBs8+Nw=;
+	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=Jvf57q2EEn9HSKHzq2Y1msQNul3YmbwQcfeWMCWmZaG+l3+ymJ7bIYCqW876C1PHmFpwdS2Kd4qWfAOWde1LwixvxGz8frxGN36B2XzLRR77aSboctVPQEmCxUuhowtqofiCkhZ+8zpA8I5ZS2X04K5d2VeikFhb5T4djFFpCdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hPz95lna; arc=none smtp.client-ip=209.85.160.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-46785fbb949so112956301cf.3;
+        Fri, 03 Jan 2025 00:49:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735893997; x=1736498797; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4KLCC6CLZQeihBKxyImt/0LORJzTXRC0Daw+prTUMzI=;
-        b=B4RD6cMgsd2xMhA4EtaZuu2FuyHcpdvqneMO5zt8nUNWqXOjwDlnCWsLNGfP+WwKGP
-         1GH+iFS++4zjRl9Tj+WdDGXnsMQp00UsKI9oNHMnk7ntsjGkgZ3cmA3jkJH2Csj9F7GL
-         9P7I5NoPUTXHPzNmqVzU4HvY1X6f5fKmg7tW98XPZXe6RLgtiSpWGxPu4I9hEYFzhRGK
-         3ts36+H2TVzLZLOnYKIIxc/5eDgPwiiJA2YTvPutet+BhaIJOxcQg9OntFuPQVXYDR8C
-         1hJDgbxVBwN+ce8PqcC21vIh9w4ewsvWmN1rm5L5vLHGwZ0IyKeKdNlhol/7T5u4UaQK
-         zpvg==
+        d=gmail.com; s=20230601; t=1735894147; x=1736498947; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HLmGBIb1voGZYuClLJhDAY8hy6rIsGyArNIHQwMDhy8=;
+        b=hPz95lnarxFPexUkKSm7yz5+zpqNuUpJJUX4B0lVrIXZwbZXO7XJpa+Ab/tz2BUjUO
+         i1ueSlKkWytFrhA3GKud08K3XGORHroFBhHuQ5pEZJkWdfASRMmSaDKcIDxoJKgX49mJ
+         jgKcU/K+aGf6EW0DcMh8MJydnLK19qB6mt7kbMkAQMHhQ/APPoyJskmaKjQoLPlGJZYT
+         Dys+3Y9qh4yhwqyaSl/858aiZ3hURN+z/JlBDQQ169PYjZGOUAU7mLcD8nWBUj3HmYnt
+         ZvYGNu5Yh/yR52yY2VDLgK1zmH7WN1U/sJFyEIhO087Rl1UVKCVps09I6KPLEnaS0ogX
+         JFoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735893997; x=1736498797;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4KLCC6CLZQeihBKxyImt/0LORJzTXRC0Daw+prTUMzI=;
-        b=JMFPmWSkToDMNmEDRSEg+nGyXI/7mFyaBGcok6OyPJSolOHRzAsbkWr/pPzykyp+FF
-         gR7AhKycGOpcvfheTLBdG9C9BOucGqCq0Ogc0sx0+uQkoloL3aEyGZDkAjmkT3+QDPK2
-         K92HekqCqFnztdkAQLYvXioqNsB1E+QQntAGGm/bxEfYVrpC3h1vb+mEnnPfGmBoJ4Ye
-         swkiOiX56a5kL2Mssufuo6/Uynu33M2TSh7mvhzpjBJ4Msmm2T5aUOpcsexKMBK0P9Z1
-         OoQa5MBJcJSvMSaQOKf8CYhnXIgguTadHQWKDYInCuXbHasS2qc1FMX55Jj/9h6Mmc7T
-         qeOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ/fl/xlxNg+dEx4WoWdb4/4UJcQhLN18OLN+6HuFvx2zIAHDLvkUd/2EmPZjdVJXLnk7qGJBDTcVa@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywawtd/M+hQv+ccoykf+4WHa3dHpzh5B3rRF1vPwPPTVkJw8rhi
-	ngW9coJU3IdlVB3GKiss2OtC7r9w31IMVkysDv5u4c32TDP7FfgISlXZjk4c3fs=
-X-Gm-Gg: ASbGncvpTx1hCxGqsfxt3S/1aGGxmBSI3zHFwUQ/5dKDqb+gt9qVIf73ZGw3/8K0j+W
-	Dl4jjAroRu6jsN9eNE+e/V8xZm5sCTmhr3eIKmMYCXFeMTc9mXZ2U/Co05EmP2XbhtNill8qbne
-	sX4V/a+wIzmMn0YdDwblGN9goEsX+QX4OBbkirj3OqBnM97MU2nOKSKqQirWZR6Peublc28y04M
-	iSCOZIFc6Vb0H/7fcejUk9a3MtI++XjnZX5CH2A2h3mW5HAAhA3mAO6TtKw2E1G
-X-Google-Smtp-Source: AGHT+IEcs3R944zYh9ReswLIXPTV3wRvlLj0KFBEAD5OyqwmCdtx2diikm4O85f1161OsuoDmNRPMw==
-X-Received: by 2002:a05:6402:3510:b0:5d0:96a:aa90 with SMTP id 4fb4d7f45d1cf-5d81e8f3832mr38382049a12.17.1735893996986;
-        Fri, 03 Jan 2025 00:46:36 -0800 (PST)
-Received: from [192.168.0.14] ([188.26.61.92])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80701c8c2sm18984792a12.84.2025.01.03.00.46.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Jan 2025 00:46:36 -0800 (PST)
-Message-ID: <df9c9c22-b3f2-4665-800d-d6d085d580ef@linaro.org>
-Date: Fri, 3 Jan 2025 08:46:34 +0000
+        d=1e100.net; s=20230601; t=1735894147; x=1736498947;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HLmGBIb1voGZYuClLJhDAY8hy6rIsGyArNIHQwMDhy8=;
+        b=Hh2vbrIXDm5t3ZcWOhu/fJrIpNVajlRo812LjJNerIU3j1dvmyXVAAGVBa/B2rvMAU
+         b2zdsbBlVUi2I28ddMgSHnB4My9IxQXjp1gN4Vxu0zQSCoDx9uNZ3aW4areg2nw0SOac
+         lwyawV3XK/PeR6Z364HqhPxlZlxvv8fKOMd2CBfXDijsFuQV9ZWCVUAwioMKyFzDf2Qy
+         mdsQ2sX4KrSV2SUM/ZumJveSGPyoXkWkaoVkdqAiYD/VhRfWvc8Fhz7BLiBQe/6GcDfN
+         RdUjQ39KhKS9D0s1Ig+gb1XZ9SmdsWQrRfiRKHeVImBhxLvMNS7PRaJRmt/mJSLHXK8p
+         kTMg==
+X-Forwarded-Encrypted: i=1; AJvYcCXccTCsFkZrsLbWLa/dZiL1ccs0v6NK86JEsi4dTBOlobywjBO6UmwU/C5GIIbWy0p2c6hkDZ8KupHk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvIDcu0DuPmfTRHqRtn2YFa2T7ho4ekmB5e18gZYaWkKkHdTri
+	omHda8QFoV3FY4NW0SwAw43EUGlrKI8uT84Dg6zINwil5gVIY7QdxI859OGOiWoqIkUDV6PaU+7
+	Ra3maujxHQLwzgeQHGro0/7H8dObxFUwvwls=
+X-Gm-Gg: ASbGncv9wsAM6rgqX3Q3EGAm1S8UOPdZpcHy993qeRq5Ej4lK3zkopnqm5O6ozVyYVE
+	0tY9AikLss85vEMqOpgCODO8LiYx+DBYDI4Y=
+X-Google-Smtp-Source: AGHT+IG88OdSKvbixseMuYzQnEQtie3KG9hJek0Og0M9Mj+eCOQz1yZZ3tdOkem00u57R2ejywVt1INOuD/lRQAylig=
+X-Received: by 2002:a05:622a:1a8d:b0:461:3834:b632 with SMTP id
+ d75a77b69052e-46a4a8b2ae3mr799992991cf.1.1735894146968; Fri, 03 Jan 2025
+ 00:49:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: samsung: exynos-usi: Restrict possible
- samsung,mode values
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-References: <20250103082549.19419-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20250103082549.19419-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: qin shaoqing <qinshaoqing076@gmail.com>
+Date: Fri, 3 Jan 2025 16:48:56 +0800
+Message-ID: <CAMq-bRkwJzn-_rvwreWU646Q64ZP-X61sczA5EG2Nubo9GN0Lw@mail.gmail.com>
+Subject: [PATCH] riscv: dts: Add the device tree of the XiangShan platform's
+ nanhu soc
+To: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	wangran@bosc.ac.cn
+Content-Type: text/plain; charset="UTF-8"
 
+This patch adds the device tree support for the XiangShan platform's nanhu soc
 
+Signed-off-by: qinshaoqing <qinshaoqing@bosc.ac.cn>
+---
+arch/riscv/Kconfig.socs                     |   5 +
+arch/riscv/boot/dts/Makefile                |   1 +
+arch/riscv/boot/dts/xiangshan/Makefile      |   2 +
+arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts | 226 ++++++++++++++++++++
+4 files changed, 234 insertions(+)
+create mode 100644 arch/riscv/boot/dts/xiangshan/Makefile
+create mode 100644 arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
 
-On 1/3/25 8:25 AM, Krzysztof Kozlowski wrote:
-> "samsung,mode" property defines the desired mode of the serial engine
-> (e.g. I2C or SPI) and only few values are allowed/used by Linux driver.
-> 
-> Cc: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+index f51bb24bc84c..89c80fd493fb 100644
+--- a/arch/riscv/Kconfig.socs
++++ b/arch/riscv/Kconfig.socs
+@@ -80,4 +80,9 @@ config SOC_CANAAN_K210
+  help
+    This enables support for Canaan Kendryte K210 SoC platform hardware.
 
-Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
++config SOC_XIANGSHAN
++        bool "XiangShan SoCs"
++        help
++          This enables support for XiangShan SoC platform hardware
++
+endmenu # "SoC selection"
+diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
+index fdae05bbf556..43a79cc9dd7c 100644
+--- a/arch/riscv/boot/dts/Makefile
++++ b/arch/riscv/boot/dts/Makefile
+@@ -7,5 +7,6 @@ subdir-y += sifive
+subdir-y += sophgo
+subdir-y += starfive
+subdir-y += thead
++subdir-y += xiangshan
 
-> ---
->  Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> index f80fcbc3128b..5b046932fbc3 100644
-> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> @@ -64,6 +64,7 @@ properties:
->  
->    samsung,mode:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3]
->      description:
->        Selects USI function (which serial protocol to use). Refer to
->        <include/dt-bindings/soc/samsung,exynos-usi.h> for valid USI mode values.
+obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_SOURCE))
+diff --git a/arch/riscv/boot/dts/xiangshan/Makefile
+b/arch/riscv/boot/dts/xiangshan/Makefile
+new file mode 100644
+index 000000000000..41e585490a97
+--- /dev/null
++++ b/arch/riscv/boot/dts/xiangshan/Makefile
+@@ -0,0 +1,2 @@
++# SPDX-License-Identifier: GPL-2.0
++dtb-$(CONFIG_SOC_XIANGSHAN) += nanhu-v3a.dtb
+diff --git a/arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
+b/arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
+new file mode 100644
+index 000000000000..560de7c7f22e
+--- /dev/null
++++ b/arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
+@@ -0,0 +1,226 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/* Copyright (c) 2023-2024 BOSC */
++
++/dts-v1/;
++
++/ {
++ #address-cells = <2>;
++ #size-cells = <2>;
++ compatible = "bosc,nanhu-v3a";
++
++ cpus {
++  #address-cells = <1>;
++  #size-cells = <0>;
++  timebase-frequency = <24000000>;
++
++  cpu0: cpu@0 {
++   compatible = "bosc,nanhu-v3a", "riscv";
++   device_type = "cpu";
++   riscv,isa = "rv64imafdcv";
++   d-cache-block-size = <64>;
++   d-cache-sets = <64>;
++   d-cache-size = <16384>;
++   d-tlb-sets = <1>;
++   d-tlb-size = <32>;
++   i-cache-block-size = <64>;
++   i-cache-sets = <64>;
++   i-cache-size = <16384>;
++   i-tlb-sets = <1>;
++   i-tlb-size = <32>;
++   mmu-type = "riscv,sv39";
++   reg = <0x0>;
++
++   cpu0_intc: interrupt-controller {
++    #interrupt-cells = <1>;
++    compatible = "riscv,cpu-intc";
++    interrupt-controller;
++   };
++  };
++
++  cpu1: cpu@1 {
++   compatible = "bosc,nanhu-v3a", "riscv";
++   device_type = "cpu";
++   riscv,isa = "rv64imafdcv";
++   d-cache-block-size = <64>;
++   d-cache-sets = <64>;
++   d-cache-size = <16384>;
++   d-tlb-sets = <1>;
++   d-tlb-size = <32>;
++   i-cache-block-size = <64>;
++   i-cache-sets = <64>;
++   i-cache-size = <16384>;
++   i-tlb-sets = <1>;
++   i-tlb-size = <32>;
++   mmu-type = "riscv,sv39";
++   reg = <0x1>;
++
++   cpu1_intc: interrupt-controller {
++    #interrupt-cells = <1>;
++    compatible = "riscv,cpu-intc";
++    interrupt-controller;
++   };
++  };
++ };
++
++ clkc: misc_clk {
++  compatible = "fixed-clock";
++  #clock-cells = <0>;
++  clock-output-names = "clkc";
++  clock-frequency = <100000000>;
++ };
++
++ sdhci_clock: sdhci_clck {
++  compatible = "fixed-clock";
++  #clock-cells = <0>;
++  clock-output-names = "sdhci_clock";
++  clock-frequency = <25000000>;
++ };
++
++ i2c0_clock: i2c0_clck {
++  compatible = "fixed-clock";
++  #clock-cells = <0>;
++  clock-output-names = "i2c0_clock";
++  clock-frequency = <100000000>;
++ };
++
++ soc {
++  #address-cells = <2>;
++  #size-cells = <2>;
++  compatible = "bosc,nanhu-v3a-soc", "simple-bus";
++  ranges;
++
++  clint0: clint@38000000 {
++   compatible = "riscv,clint0";
++   interrupts-extended = <&cpu0_intc 3 &cpu0_intc 7 &cpu1_intc 3 &cpu1_intc 7>;
++   reg = <0x0 0x38000000 0x0 0x10000>;
++   reg-names = "control";
++   clock-frequency-mhz = <10>;
++  };
++
++  plic: interrupt-controller@3c000000 {
++   #interrupt-cells = <1>;
++   compatible = "riscv,plic0";
++   interrupt-controller;
++   interrupts-extended = <&cpu0_intc 0xb &cpu0_intc 0x9 &cpu1_intc
+0xb &cpu1_intc 0x9>;
++   reg = <0 0x3c000000 0 0x4000000>;
++   reg-names = "control";
++   riscv,max-priority = <7>;
++   riscv,ndev = <128>;
++  };
++
++  ethernet0: ethernet@190000 {
++   compatible = "st,stm32-dwmac", "snps,dwmac-3.50a";
++   reg = <0 0x190000 0 0x10000>;
++   reg-names = "stmmaceth";
++   interrupt-parent = <&plic>;
++   interrupts = <76 75 74>;
++   interrupt-names = "eth_lpi", "macirq", "eth_wake_irq";
++   clock-names = "stmmaceth";
++   clocks = <&clkc>;
++   snps,pbl = <2>;
++   snps,mixed-burst;
++   phy-mode = "rgmii";
++   phy-handle = <&phy0>;
++   mdio0: mdio {
++    #address-cells = <0x1>;
++    #size-cells = <0x0>;
++    compatible = "snps,dwmac-mdio";
++    phy0: phy@0 {
++     phyaddr = <0x0>;
++     compatible = "marvell,88E1510";
++     device_type = "ethernet-phy";
++     reg = <0x0>;
++    };
++    phy1: phy@1 {
++     phyaddr = <0x1>;
++     compatible = "marvell,88E1510";
++     device_type = "ethernet-phy";
++     reg = <0x1>;
++    };
++   };
++  };
++
++  ethernet1: ethernet@1a0000 {
++   compatible = "st,stm32-dwmac", "snps,dwmac-3.50a";
++   reg = <0 0x1a0000 0 0x10000>;
++   reg-names = "stmmaceth1";
++   interrupt-parent = <&plic>;
++   interrupts = <73 72 71>;
++   interrupt-names = "eth_lpi", "macirq", "eth_wake_irq";
++   clock-names = "stmmaceth";
++   clocks = <&clkc>;
++   snps,pbl = <2>;
++   snps,mixed-burst;
++   phy-mode = "rgmii";
++   fixed-link{
++    speed =  <1000>;
++    full-duplex;
++    pause;
++    asym-pause;
++   };
++  };
++
++  sdhci2: sdhci@1200000 {
++   compatible = "snps,dwcmshc-sdhci";
++   reg = <0 0x1200000 0 0x20000>;
++   interrupt-parent = <&plic>;
++   interrupts = <77 78>;
++   clocks = <&sdhci_clock>;
++   clock-names = "core";
++   no-1-8-v;
++   disable-wp;
++   bus-width = <4>;
++   max_req_size = <4096>;
++   status = "okay";
++  };
++
++  i2c@70000 {
++   compatible = "snps,designware-i2c";
++   #address-cells = <1>;
++   #size-cells = <0>;
++   reg = <0x0 0x70000 0x0 0x10000>;
++   interrupts = <66>;
++   interrupt-parent = <&plic>;
++   clock-frequency = <100000>;
++   clocks = <&i2c0_clock>;
++   status = "okay";
++  };
++
++  i2c@80000 {
++   compatible = "snps,designware-i2c";
++   #address-cells = <1>;
++   #size-cells = <0>;
++   reg = <0x0 0x80000 0x0 0x10000>;
++   interrupts = <65>;
++   interrupt-parent = <&plic>;
++   clock-frequency = <100000>;
++   clocks = <&i2c0_clock>;
++   status = "okay";
++  };
++
++  uart0: serial@50000 {
++   compatible = "ns16550a";
++   reg = <0x0 0x50000 0x0 0x10000>;
++   reg-shift = <0x02>;
++   reg-io-width = <0x04>;
++   interrupt-parent = <&plic>;
++   interrupts = <68>;
++   clock-frequency = <100000000>;
++   status = "okay";
++  };
++ };
++
++ memory: memory@100000000 {
++  device_type = "memory";
++  reg = <0x0 0x80000000 0x2 0x00000000>;
++ };
++
++ aliases {
++  serial0 = &uart0;
++ };
++
++ chosen {
++  bootargs = "console=ttyS0,115200 earlycon";
++  stdout-path = "serial0:115200n8";
++ };
++};
+--
+2.43.0
 
