@@ -1,183 +1,144 @@
-Return-Path: <devicetree+bounces-135227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48C7BA00392
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 06:33:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C61C0A00394
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 06:36:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB6723A3799
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 05:33:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FA14162C64
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 05:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B95E1547F5;
-	Fri,  3 Jan 2025 05:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83871B140D;
+	Fri,  3 Jan 2025 05:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SugzObVv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LZyIuBdn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339335674E
-	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 05:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A0A19F115;
+	Fri,  3 Jan 2025 05:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735882426; cv=none; b=Dzgf7dY9ouYwsYDehm8EFJzpmBOBnnfGw2/oUgCZpo25l773rOPpJqe1mW/sRSC+4rWIZHbePB2mP0z6aQVG6KMSpQFaC2eUgmMw+Sy2BwnwIQN1r/4c5X8ALEOShsCldC8VRGoIBmoX2HjN7Vt8V3M0i4ugt2lSLsCp3Ki0I8I=
+	t=1735882605; cv=none; b=l3M44i5DGyXbLRAbJNAIwGX2RGD7ltwMe4lNY/mLuJODKTmRXlvx15v19iXK2SboI4KzbixbU3QILMUiiLTngqKTRiWOuUWSrCtSvVU2L27L+iQiaLqPjVTEYEQFgRYovqCj4W8Sh4jnZfBbRcJrjPhp+KR8CXgk3TXbWY9BVlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735882426; c=relaxed/simple;
-	bh=5o+fZ5vS6zENX6ARZ8J1kYOLho4QnIT89p4IlB2FjgM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IxFc1Hf8QpeVwUfc6ZSMzP8QFSeV2Wqs00IyGK1s/bkdx33+0CXCg5ndLeEmS1BPyMUp78vN64DBk4Wn7FTTwPCQL6UYooUTr9UJDHVyDFpKr8na47AN7nMlLIZOztP7uzOFm2arRCqaV1UocxbEDdmxxofgNZcQ6P836Bk93ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SugzObVv; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53e399e3310so14551268e87.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 21:33:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735882422; x=1736487222; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HUrhr336s+60zt23QDWZqcGTF0DZKHiNks6mhysqyVM=;
-        b=SugzObVv47n9wd7cCaiDxI31ka9QtXBOGDm5yi56mA15a9q0TqYARW1TCQQTlWyAGl
-         2VKtwdu+aIva7ItoJHvT8Iqa6ZftLpcoZEkLm8fsO2T4smMBrWPK3VPkuhmppSe6qWFj
-         ebgyVJchDAOR+L1yCmgzFBKu7CpGxPaAefTM4/69TwVqzjj1B5F3XryJ5Ce36FjKKwAm
-         YcyJFsDws+GMelgMBvTEx+OYFrz1LVyWmHOqekx8fY601yyv9ryJWsQia8fiZwQs3r3Z
-         5W2gQO6AX/zseEac+7aTfL1SoMeRIlqRlOQ+XN2Ao3SLqnCxGizBM6h/P+kUEbjqiJcd
-         62og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735882422; x=1736487222;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HUrhr336s+60zt23QDWZqcGTF0DZKHiNks6mhysqyVM=;
-        b=PUdlaZz7jVVnyuJ8L/TgC1ql6UKQZpl1r9CtmuO9wvdgB6E5CZgiaPcCOMuM9BtGiX
-         PppJp2lBsxNpqgRMlXMyus8w/CcNdg2kMPi3sDXbkIKfpejgfdVVmggjma21s9cPw4Tk
-         ewg3Pj/A/f2vyx1ZFtfmS0aQj3U0uftHEpthEIOtmHLy/iZr/q9OdLTLwz/YFafPzdYn
-         q/kNxH43rQKaXBiM9OfuKHxwIrnVOzW3Bgm5MRSGIhYMWBTUUQptmOvqEde8XG2vM/5b
-         aTSq3SCbXX4LuLYia+Hy8tu94MXa6u4SECZfb7UsWtUpFopGg2XLpUSOyT48mfgUZ5Da
-         r8TA==
-X-Gm-Message-State: AOJu0Yx0OLVp5hUXLxDkQrWynGmH55V3TBH1mF1Jaxje7mqSmU7eIgpQ
-	dxxwWdb/FsRu8QqKUW/WZUOu2vCvQqr1iWn9btCNiapDQbJjBoUZUBL5brL3exQ=
-X-Gm-Gg: ASbGnct6rlMRLWnVGuIu1Ur/aNpsJZkb80QNZ7iAD6LGpTLIpQuMvTM8yVoEHaAqSEp
-	WhX6+PMQcC5RuTVx953xmvPlV6ehFPUYtEElxl9xwUyOc/EYR7y1nIIXru4vV7j9llo9fPV8lA1
-	Hdc+5efUoTJjSbZpyLFqmkPNdGijiPcYa12MNO4sv6n0dj+WTyDCXhPExAEnbu/SICr7YouGFLa
-	hwuEEJEjj1WLz/hD2fajJm7VsaSUhGuo2RpRsRre6NMMqUxbdhBjXAt7f8dmBCnESRYCpZGOei1
-	YXJYMCRLqqT0+mMtTiTOwXxwoh7JKOCUG3aU
-X-Google-Smtp-Source: AGHT+IEsLjhbu2jSaiZPN8bLQCUM6NVU655VzJ0kcFZvInsNgvUMyCwvCcQ0/H8BekM4Tf47nmpS8w==
-X-Received: by 2002:a05:6512:118e:b0:540:22e0:1f80 with SMTP id 2adb3069b0e04-54229530295mr13502516e87.20.1735882422120;
-        Thu, 02 Jan 2025 21:33:42 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223813595sm4103333e87.136.2025.01.02.21.33.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jan 2025 21:33:41 -0800 (PST)
-Date: Fri, 3 Jan 2025 07:33:38 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, Liu Ying <victor.liu@nxp.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Robert Foss <rfoss@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>, Stefan Agner <stefan@agner.ch>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] drm: bridge: dw_hdmi: Add flag to indicate output
- port is optional
-Message-ID: <zijtpn55edeeepzfqiv6d5xv3vyaircloeaa2pbauwlxow7h3a@a5v6p37o3ppq>
-References: <20241231192925.97614-1-marex@denx.de>
- <20241231203136.GD31768@pendragon.ideasonboard.com>
- <88778e2b-8c43-46a1-bb79-0d9c968a5233@denx.de>
- <20250101223620.GA7206@pendragon.ideasonboard.com>
- <ac4kkjv2nmziu6pd6vkuxbllhkqaueu32snfetpemtu2l5s6ud@cvystps3734o>
- <20250102083038.GB14307@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1735882605; c=relaxed/simple;
+	bh=ZptAS+5MfVYHwRbyK5bmvm62nwegy8I9wdDDR18v5n4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iH83a8Qnlz/GkDKTbAsfbkirAJ/N+MMLBKSsrNiJ1wxhO5Mc+pbtx6TstvsvBznlneN7aOxLWy72ponYFt0c5hy3YYfgSKgj6K+Aa0mhE6Em37E1b3vmzke/dOy/e1ohYlJrraMiAanhpAqB93zKgtj1n9LB7PpVZ95UNhCgBxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LZyIuBdn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 39D86C4CECE;
+	Fri,  3 Jan 2025 05:36:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735882605;
+	bh=ZptAS+5MfVYHwRbyK5bmvm62nwegy8I9wdDDR18v5n4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=LZyIuBdn/I5Te8li0s6qloz09dvUiA5Bq3l28vhNbhP4xdZtx4vbjPj4CjZGeW1Rz
+	 sJ4VJrpHovIpXYo7MueKpf02BZiG+ESLhLdUQdTqP4Gh7iYBbCdFw8MHm/AI9E4JE+
+	 ofwuxnI1Lt20hJDFDC3/uvukKqq+fraZ8pmeh3k+uFzlnJZyIYZI+uReVV3n7LLXN0
+	 C1mZmQlbnr4iSAuW2zfsHP2G6DO3XHYmyWmbj0y1COyqdw2WP66B5Dq7lCKrHmlJZ2
+	 MaE0ve/iMNDsykExAc50SL1KHtPmxShsfmIjUGS5zus2ksYf5TaZUaHQ0kc+pOumfi
+	 rs+MDt5AAObMw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26D85E77188;
+	Fri,  3 Jan 2025 05:36:45 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/5] Add A5 SoC PLLs and Peripheral clock
+Date: Fri, 03 Jan 2025 13:36:40 +0800
+Message-Id: <20250103-a5-clk-v3-0-a207ce83b9e9@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250102083038.GB14307@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGl3d2cC/1WMQQqDMBBFryJZNyUTo2hXvUfpIo5THaqmJCW0i
+ HdvFBS6fJ//3iwCeaYgLtksPEUO7KYE+SkT2NupI8ltYqGVNqoGkLaQODxlXqCpLTa5IRDp/PL
+ 04M8Wut0T9xzezn+3boR13RNmT0SQShZEGs0DGlXh1Y6D6xjP6EaxRqI+RACtDlEnMXFVaqC6h
+ PZfXJblB2doYz3XAAAA
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1735882602; l=2678;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=ZptAS+5MfVYHwRbyK5bmvm62nwegy8I9wdDDR18v5n4=;
+ b=zL9UkYY6YjfifjhPWGcgbd6WLqUytsG2stmsDAanVcuNKVg1DnIXfNZT0t6duvz7/uQ9UPdP0
+ y4UhupkQEgzB7VlGR/wfDoDm2CAkZuS9j8AKyGqYL1PGz+TLOvwUWW6
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-On Thu, Jan 02, 2025 at 10:30:38AM +0200, Laurent Pinchart wrote:
-> On Thu, Jan 02, 2025 at 05:26:50AM +0200, Dmitry Baryshkov wrote:
-> > On Thu, Jan 02, 2025 at 12:36:20AM +0200, Laurent Pinchart wrote:
-> > > On Tue, Dec 31, 2024 at 10:10:51PM +0100, Marek Vasut wrote:
-> > > > On 12/31/24 9:31 PM, Laurent Pinchart wrote:
-> > > > > Hi Marek,
-> > > > 
-> > > > Hi,
-> > > > 
-> > > > > Thank you for the patch.
-> > > > > 
-> > > > > On Tue, Dec 31, 2024 at 08:28:48PM +0100, Marek Vasut wrote:
-> > > > >> Add a flag meant purely to work around broken i.MX8MP DTs which enable
-> > > > >> HDMI but do not contain the HDMI connector node. This flag allows such
-> > > > >> DTs to work by creating the connector in the HDMI bridge driver. Do not
-> > > > >> use this flag, do not proliferate this flag, please fix your DTs.
-> > > > > 
-> > > > > What's the rationale for this, what prevents fixing DT instead of using
-> > > > > this flag ? Adding such a flag will most likely open the door to
-> > > > > proliferation.
-> > > > 
-> > > > See the V2 series discussion, there are a few in-tree DTs which do not 
-> > > > have the HDMI connector node. The rationale is there might be more and 
-> > > > they might come from vendors, so this flag is necessary to work around 
-> > > > those DTs.
-> > > >
-> > > > > If you can't fix the DT on particular boards, patching it could be an
-> > > > > option. We had a similar problem on Renesas boards, which we fixed with
-> > > > > a DT overlay, see commit 81c0e3dd82927064 ("drm: rcar-du: Fix legacy DT
-> > > > > to create LVDS encoder nodes"). This made the workaround self-contained,
-> > > > > and allowed dropping it several kernel versions later (in commit
-> > > > > 841281fe52a769fe, "drm: rcar-du: Drop LVDS device tree backward
-> > > > > compatibility").
-> > > >
-> > > > Frankly, I would much rather fix the few in-tree DTs and mandate the 
-> > > > HDMI connector node in DT, which would keep the code simple, rather than 
-> > > > maintain a backward compatibility workaround for problem which might not 
-> > > > even exist.
-> > > 
-> > > The in-tree device tree sources should be converted as part of the
-> > > series, I don't see a point trying to maintain backward compatibility
-> > > for in-tree DT sources.
-> > 
-> > DT is an ABI. We are supposed to keep backwards compatibility with
-> > existing device trees (at least for a while). I'm adding DT list and
-> > maintainers to be able to provide comments on this topic.
-> 
-> Backward compatibility is about supporting old DT binaries with a newer
-> kernel. There's no need to support old DT bindings in in-kernel DT
-> sources. By definition, if someone compiles a DT from a newer kernel and
-> installs it along with the newer kernel, there's no "backward"
-> direction.
+The patchset adds support for the peripheral and PLL clock controller
+found on the Amlogic A5 SoC family, such as A113X2.
 
-Hmm, nobody is asking to provide compatibility with old DT bindings.
-However supporting DTs with no extra "display-connector" bridge after
-the DW bridge is exactly "supporting old DT binaries" in my opinion.
+Some clocks are provided by security zones. These clock accessed
+througth SCMI driver in linux, inlcuding OSC, SYS_CLK, AXI_CLK,
+CPU_CLK, DSU_CLK, GP1_PLL, FIXED_PLL_DCO, FIXED_PLL, SYS_PLL_DIV16,
+ACLKM, CPU_CLK_DIV16, FCLK_50M_PREDIV, FCLK_50M_DIV, FCLK_50M, 
+FCLK_DIV2_DIV, FCLK_DIV2, FCLK_DIV2P5_DIV, FCLK_DIV2P5, FCLK_DIV3_DIV,
+FCLK_DIV3, FCLK_DIV4_DIV, FCLK_DIV4, FCLK_DIV5_DIV, FCLK_DIV5,
+FCLK_DIV7_DIV, FCLK_DIV7, CLKID_SYS_MMC_PCLK, CLKID_SYS_CPU_CTRL,
+CLKID_SYS_IRQ_CTRL, CLKID_SYS_GIC, CLKID_SYS_BIG_NIC, CLKID_AXI_SYS_NIC,
+and CLKID_AXI_CPU_DMC.
 
-> The backward compatibility requirements aim at ensuring no breakage when
-> upgrading the kernel without upgrading the device tree. As I mentioned,
-> there is no regression if nobody is affected in the first place. Proving
-> there is no affected DT in the wild is difficult though.
-> 
-> > > For out-of-tree sources it depends on how likely the problem is. There's
-> > > no regression if nobody is affected. I personally like restricting
-> > > backward compatibility to the strict minimum, to ensure that all new DTs
-> > > will use proper bindings. Making the backward compatibility code
-> > > self-contained helps there, and we could also print a loud warning
-> > > (WARN_ON() seems appropriate) and set a date for the removal of the
-> > > workaround.
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v3:
+- Rename xtal_24m to xtal, and modify some description of Kconfig.
+- Drop some comment of PLL source code.
+- Move definition of A5_CLK_GATE_FW frome common code into A5 peripheral source code.
+- Use hw instead of name to describe parent_data.
+- Making SCMI binding the first to submit. 
+- Link to v2: https://lore.kernel.org/r/20241120-a5-clk-v2-0-1208621e961d@amlogic.com
 
+Changes in v2:
+- Move some sys clock and axi clock from peripheral to scmi impletement.
+- Remove  ARM_SCMI_PROTOCOL in Kconfig and correct name A5 but not A4.
+- Add two optional clock inputs for the peripheral(ddr pll and clk-measure)
+- Make some changes and adjustments according to suggestions.
+- Link to v1: https://lore.kernel.org/r/20240914-a5-clk-v1-0-5ee2c4f1b08c@amlogic.com
+
+---
+Chuan Liu (5):
+      dt-bindings: clock: add Amlogic A5 SCMI clock controller support
+      dt-bindings: clock: add Amlogic A5 PLL clock controller
+      dt-bindings: clock: add Amlogic A5 peripherals clock controller
+      clk: meson: add support for the A5 SoC PLL clock
+      clk: meson: add A5 clock peripherals controller driver
+
+ .../clock/amlogic,a5-peripherals-clkc.yaml         |  132 ++
+ .../bindings/clock/amlogic,a5-pll-clkc.yaml        |   63 +
+ drivers/clk/meson/Kconfig                          |   27 +
+ drivers/clk/meson/Makefile                         |    2 +
+ drivers/clk/meson/a5-peripherals.c                 | 1408 ++++++++++++++++++++
+ drivers/clk/meson/a5-pll.c                         |  532 ++++++++
+ .../clock/amlogic,a5-peripherals-clkc.h            |  132 ++
+ include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |   24 +
+ include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |   44 +
+ 9 files changed, 2364 insertions(+)
+---
+base-commit: 961101258aa2da34b032ea21f32599a895448996
+change-id: 20240911-a5-clk-35c49acb34e1
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
