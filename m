@@ -1,83 +1,252 @@
-Return-Path: <devicetree+bounces-135283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D43A0059A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:16:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE01FA0059E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:18:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50ADC1881B5E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 08:16:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9E0F1882A88
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 08:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5AE11B21B5;
-	Fri,  3 Jan 2025 08:16:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3191AD3E5;
+	Fri,  3 Jan 2025 08:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVyE2FXe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nlYvctJ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D0214D2B7;
-	Fri,  3 Jan 2025 08:16:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A55834C62;
+	Fri,  3 Jan 2025 08:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735892212; cv=none; b=U0wuWUzk3XFk+43WP7VyiFpYcjg2x5EwqwlzJWMVPY1/2cecFynQOASSR4iSaR9pDaSKRMrAVLaeY8z7pUZ1Ha+yWYgnIr2a6jztDyeE2LEcPaBEv5oMr0r3DOE4ikL8Ti/bjKGfxE+YYGHakW3k8ypNxmTO9bMqOdXw/YOWrbw=
+	t=1735892322; cv=none; b=gBV/G96oF97WRByUzkFkYd/v4BgCisY7fNBDF/M+glOZG3FaxfdICDR7FhXv7I2OiwXnQ9JAbk/bzBSRUY3ZJg8oZwE2uw4dKtjBdjuk5S1jfNQ+XPspqjDx6veFxNmcxhxViT57sfsPLuTlIL2NT20ZuWo0ArcbDicGMniVwGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735892212; c=relaxed/simple;
-	bh=SFo7wVrTHmj2UT3fAXhWBAIUsSWCM90v+/nOeVIUeSw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UtBR3BufLyxE+XjOgpP5TqEML1rbCfKp3u8F/xCrn7heeos/yKkifFGP9B29zU9YkLsQVJwYgqdMMFe7zloodpIPfSjEqh8IKBGkbub55MXhhBVxoRVfoZkZHWz1WYBpIPhJCyyuEw9zCPzGZO+dqUJNuSgCf2odwhQCZOnfJ08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVyE2FXe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D78A8C4CECE;
-	Fri,  3 Jan 2025 08:16:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735892212;
-	bh=SFo7wVrTHmj2UT3fAXhWBAIUsSWCM90v+/nOeVIUeSw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qVyE2FXeKIqw0aVRh+ZKehBwyrJKwPmP02t6A6WWXOwkuyITLvqoC1k4NlpwfbjXE
-	 eVGNwwvhUDrBB80aj5wkl2Y9BTNFv6iGN4Sq/XTKxqsYX7S8l5Zuz8U96CxyqkvZI1
-	 WaJJ2bIEUe4B6g7EjxPDBoulDllr/zvsh2v3OQytxtr3vbX/V4GyKT2myn01nLg9pP
-	 d5lnzAB4PtZOMPLxojj424wfkzDrwbZAKpvRptd+CX1icrEZYN1rGpg5D572WfmJVJ
-	 EFpSPl3JqbyclIpvBU73MBlvkcjJXTiEoF5Dz/nbdl6YOdIzL8AP2rQSqeMPF5Zort
-	 j+p9RA8/vzAaQ==
-Date: Fri, 3 Jan 2025 09:16:47 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: soc: samsung: exynos-sysreg: add
- sysreg compatibles for exynos8895
-Message-ID: <r7yfnqeikyasfg3f7ivbjfq3fkgeingxffhxynbf5p2kyrcxx5@xl3brusctse3>
-References: <20250102204015.222653-1-ivo.ivanov.ivanov1@gmail.com>
- <20250102204015.222653-2-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1735892322; c=relaxed/simple;
+	bh=K3wJ0TvRCtSqRgKug8Sn25j3uJvP7LlhU6/zWB0eIFM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=fqRynFrvvAEXa3Qq85p7bnPuy5c8ULisMFAVegC/N4S5WtZm/ZxU3eOmEPHVt1vIkt1ynNhGbEoTYF5jDnpUDBBrcpWcTY/4PPaMNoMD3WmJh9yrcEBUepRAbZXyj1WAW8PLpeiYNzABWpjQ1Af6fYtWdoUMKxl0vUKpN0TQ/w4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nlYvctJ5; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4362f61757fso119543295e9.2;
+        Fri, 03 Jan 2025 00:18:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735892319; x=1736497119; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NR5TLumpUXqySQzU5N+KOwDryzVc0SnujL5LqMplskg=;
+        b=nlYvctJ5tvaC4Y+1Xg8AkqCWFotYLS+84as9NBBG09FleM09g44FUlXfP/3BRA5SpW
+         7dk3KbAk7yNTMtyvjmZXpXrGRqMBdVLUWJDF3F0yMQGmKFKxIMuHSr7mlPmBTtNa4q7Y
+         +QmE+mpyo7ISM5D9maFBPoCULtfafH6a8sNpZ4j3EvqcLa8DzQe2HhcaTKWfHEEArpAf
+         GCW/NSwC+EuXAGqZtYRQo/S3xJA/pTBQb2QptM0xGUjjPXulfPj3jHAiRdnvSpk326t2
+         1uNds+QgWs1Sx6/IYQGsvcD4L4oa1Vyhfctfvditc+3vVXhTmfZZIeezwk1rV/jyJFzE
+         zUxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735892319; x=1736497119;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NR5TLumpUXqySQzU5N+KOwDryzVc0SnujL5LqMplskg=;
+        b=OgLFOOgBSPm0uOsxPDsNawqVuDczCvmReQ868ILT2osSu3l7VCLfTEdskM2zurqCcH
+         mk7F6kI5SM7kHtOcw0Fv/qS1GtTQ1yjzij/bo4ZzvaY+BWWM4sUopywW8fdXtaoamh2A
+         1Zh2LYuB24Y24v2iK2kjAQYCsIpOA2D/qzZQgySRSp64+zzSMviYwfrMVS/Rt5lDJqBZ
+         KnB7TUTdIBgcfqb023/J7PgXLI68mbYTPXxiBcimLXXsXhVy5tEZDqnh+TEdR4giAv4V
+         hCsT7LNrraUfyrabKcOJ3ysNnubQPf5L71ZqSUJPOaoMzelyvbP3mYcCPKvCqfyu7mwU
+         00wA==
+X-Forwarded-Encrypted: i=1; AJvYcCUM1bH2N+DkFPoTkxe3U9m93u5XUzuTLXbi1ZAIooMqg3Q5RLCeQufpyAX/mRtHrNpkKnIj/bW4ThY=@vger.kernel.org, AJvYcCW1ne9A0N8rp55D+L6cDinmIGKuP1FyLdMDHLwZiJf7KA50duo3jzsYVkO9+osmg5zwC/Psi51NNRtwIDFB@vger.kernel.org, AJvYcCX9zSZxnQrZHg9UONtHhjfzFqC5XBW79+4WM2q4bEiZ57OriOoo5ht/TM3T+RHdqfwjSF4C8D12kL2W@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRRSwMHUu++WNB20LTKn3bFD7+dRDAYpRt9JltXUSiDpFKEza7
+	O+Cy0CaLmvtE6HGWE3j3ZISuaNnrsqpGPa9davwKVcjYP7c02VD0
+X-Gm-Gg: ASbGncv5ceY+txxtKocuPFj9sC+rYtKuCEskZw42BAoLUmggJ6IJ+xCOfipbpaBMSWu
+	ePLnsZBdD+F/duoVQOHv81jmkniy+PReJfq8pC5+Rk6XofF4xEROHF7FVXgPTkC4gvw0gk9IzZz
+	I+XAkeZ2GTB3I9i7EZIJSZHLXMhaxs51ZGWaUA3SUeAGc2AsShzFW0mGLp8QAjRtfiEG/RNCl4j
+	YLpO2wFZDlFUeitUR9UWpjxls9H49XA4ZVvwrLZNdQaSl9m5MbTUusZHAZu8NFPK/MoXUpoDcC8
+	mCbrvfWWuNmNCRIQlq7lOPNIVeEuEseL1kcJKtQMnU0HL3ysxpqFUu0=
+X-Google-Smtp-Source: AGHT+IEDWtjrfgBu2Lwgphy2XXzRXCiSCr1c1zSvfcnmhwlhX4YgIGVpjbOz4wnVROt2uySv+Blgtg==
+X-Received: by 2002:a05:600c:1c1a:b0:434:a746:9c82 with SMTP id 5b1f17b1804b1-4366854725cmr405100855e9.5.1735892318802;
+        Fri, 03 Jan 2025 00:18:38 -0800 (PST)
+Received: from stefan.beckhoff.com (dyndsl-082-149-177-181.ewe-ip-backbone.de. [82.149.177.181])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-43656b013e1sm504092085e9.12.2025.01.03.00.18.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jan 2025 00:18:38 -0800 (PST)
+From: Stefan Raufhake <raufhakestefan@gmail.com>
+To: krzk@kernel.org,
+	sebastian.reichel@collabora.com
+Cc: sre@kernel.org,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	s.raufhake@beckhoff.com,
+	s.dirkwinkel@beckhoff.com,
+	s.raufhake@beckhoff.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: Re: [PATCH v2 1/1] power: supply: gpio-charger: Support to disable charger
+Date: Fri,  3 Jan 2025 08:18:36 +0000
+Message-Id: <20250103081836.4499-1-raufhakestefan@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <a319101a-ab6a-40fd-9753-0593641b08f6@kernel.org>
+References: <a319101a-ab6a-40fd-9753-0593641b08f6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250102204015.222653-2-ivo.ivanov.ivanov1@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 02, 2025 at 10:40:13PM +0200, Ivaylo Ivanov wrote:
-> Exynos8895 has four different SYSREG controllers, add dedicated
-> compatibles for them to the documentation. They also require clocks.
-> 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->  .../bindings/soc/samsung/samsung,exynos-sysreg.yaml       | 8 ++++++++
->  1 file changed, 8 insertions(+)
+Hallo, 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> On 19/12/2024 01:58, Sebastian Reichel wrote:
+> > Hi,
+> >
+> > On Mon, Dec 16, 2024 at 08:30:45AM +0100, Krzysztof Kozlowski wrote:
+> >> On 13/12/2024 11:28, Stefan Raufhake wrote:
+> >>> Hallo Krzysztof,
+> >>>
+> >>>>
+> >>>> On Tue, Dec 10, 2024 at 09:23:43AM +0000, Stefan Raufhake wrote:
+> >>>>> From: Stefan Raufhake <s.raufhake@beckhoff.de>
+> >>>>>
+> >>>>> Some GPIO-controlled power supplies can be turned off (charging disabled).
+> >>>>> Support changing the charging state by setting charge_type to
+> >>>>> POWER_SUPPLY_CHARGE_TYPE_STANDARD and disabling charging by setting
+> >>>>> charge_type to POWER_SUPPLY_CHARGE_TYPE_NONE. One potential use case for
+> >>>>> this is disabling battery backup on a UPS.
+> >>>>>
+> >>>>> Signed-off-by: Stefan Raufhake <s.raufhake@beckhoff.de>
+> >>>>> ---
+> >>>>>  .../bindings/power/supply/gpio-charger.yaml   |  6 +++
+> >>>>>  drivers/power/supply/gpio-charger.c           | 43 +++++++++++++++++++
+> >>>>>  2 files changed, 49 insertions(+)
+> >>>>>
+> >>>>
+> >>>> <form letter>
+> >>>> This is a friendly reminder during the review process.
+> >>>>
+> >>>> It seems my or other reviewer's previous comments were not fully
+> >>>> addressed. Maybe the feedback got lost between the quotes, maybe you
+> >>>> just forgot to apply it. Please go back to the previous discussion and
+> >>>> either implement all requested changes or keep discussing them.
+> >>>>
+> >>>> Thank you.
+> >>>> </form letter>
+> >>>
+> >>> Sorry, it seems I made a mistake during the patch review process.
+> >>> Should I reply to your email about version 1 of the patch or only about
+> >>> version 2? I don't want to make another mistake and open two discussions
+> >>> at the same time.
+> >>> I hope to do better in the future.
+> >>>
+> >>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml b/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
+> >>>>> index 89f8e2bcb2d7..084520bfc040 100644
+> >>>>> --- a/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
+> >>>>> @@ -44,6 +44,10 @@ properties:
+> >>>>>      maxItems: 32
+> >>>>>      description: GPIOs used for current limiting
+> >>>>>
+> >>>>> +  enable-gpios:
+> >>>>> +    maxItems: 1
+> >>>>> +    description: GPIO is used to enable/disable the charger
+> >>>>> +
+> >>>>
+> >>>> You did not respond to my comments, nothing improved. Without
+> >>>> explanation based on hardware - which I asked - this is still a no.
+> >>>>
+> >>>> Implement and respond fully to previous feedback.
+> >>>>
+> >>>> Best regards,
+> >>>> Krzysztof
+> >>>>
+> >>>
+> >>>
+> >>> Sorry, I'm new to this and don't really know what exactly you want for the
+> >>> hardware description and how best to represent our hardware in dts.
+> >>> For the gpio power supply, it can basically be any circuit that implements
+> >>> a "fully charged" GPIO and a "disable ups" GPIO.
+> >>>
+> >>> We're using a circuit built around the LTC3350 (super capacitor ups chip):
+> >>> We use this pin to indicate that our UPS is fully charged (once the input
+> >>> is gone, it's not fully charged anymore):
+> >>> PFO (pin 38): Power-Fail Status Output. This open-drain output is pulled
+> >>> low when a power failure has occurred.
+> >>>
+> >>> For the "disable ups" GPIO, we have some external circuitry around the
+> >>> LTC3350. I can't share the schematic, but it boils down to "disable usage
+> >>> of ups" so that the device shuts down immediately when power is lost.
+> >>>
+> >>> We've implemented this in many of our devices, but first we're looking
+> >>> at [1] and [2], which we also want to upstream the device trees for.
+> >>> [1] https://www.beckhoff.com/en-en/products/ipc/embedded-pcs/cx9240-arm-r-cortex-r-a53/cx9240.html
+> >>> [2] https://www.beckhoff.com/en-en/products/ipc/embedded-pcs/cx8200-arm-r-cortex-r-a53/cx8200.html
+> >>>
+> >>> For the LTC3350, there is a separate driver posted to the Linux kernel
+> >>> mail list [3] by another devolper that we would like to use in the future,
+> >>> but without this gpio, our circuit won't work.
+> >>> [3] https://lore.kernel.org/all/?q=power%3A+supply%3A+ltc3350-charger
+> >>
+> >> This does not address my concerns at all. Read the previous comments -
+> >> you are duplicating existing property.
+> >
+> > I think there is some misunderstanding. IIUIC you (Krzysztof) are
+> > referencing the following existing gpios property without any
+> > prefix?
+> >
+> >>  gpios:
+> >>    maxItems: 1
+> >>    description: GPIO indicating the charger presence
+> >
+> > This informs the operating system, that the charger has been plugged
+> > in (so the GPIO is an input from operating system point of view).
+> >
+> > The work from Stefan is not about presence detection, but
+> > controlling if the charging should happen at all (so the GPIO is an
+> > output from operating system point of view). So that's two very
+> > different things.
+>
+> So the gpios and charging status are input GPIOs and this is an output?
+> If so this seems right, indeed.
+>
 
-I closed my tree for v6.14-rc1, so I will take the patches after merge
-window.
+Yes, Krzysztof, you see it right. Sebastian described the problem correctly from my point of view.
+
+> >
+> > Technically there is some overlap with another existing property:
+> > charge-current-limit-gpios. I suppose a charger device limited to
+> > 0 Microampere is effectively off. But I think its fair to have a
+> > dedicated GPIO for explicit disabling.
+> >
+> > If my analysis of the situation is correct, the documentation seems
+> > to be bad. Please suggest better wording :)
+
+Which part of the documentation is being referred to: the binding, the commit message, or another section? 
+Once clarified, I can suggest a better wording in this part of the documentation.
+
+> > P.S.: binding and driver should be send in separate patches.
+>
+
+In the next version, I will split the binding and driver into two separate patches.
+
+> Yeah, still all my comments should be addressed.
+>
+
+Krzysztof, in the bindings for 'gpio-charger.yaml' (Documentation/devicetree/bindings/power/supply/gpio-charger.yaml), 
+is the property name 'enable-gpios' suitable for you, or should I rename it? 
+If a rename is needed, which name makes the most sense to you for this function?
+
+>
+> Best regards,
+> Krzysztof
+
 
 Best regards,
-Krzysztof
 
+Stefan
 
