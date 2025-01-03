@@ -1,309 +1,128 @@
-Return-Path: <devicetree+bounces-135383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5736BA00C82
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:04:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7FC2A00C8D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:11:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6938418848A1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 17:04:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7038F3A3B84
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 17:11:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1FB1F9F74;
-	Fri,  3 Jan 2025 17:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B44461FA8F3;
+	Fri,  3 Jan 2025 17:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HsMI649l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fwDXgFnK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE4F31CEADF;
-	Fri,  3 Jan 2025 17:04:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427D11D61AC
+	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 17:11:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735923862; cv=none; b=TpDjX4m8sxPX1vTzPFINXBrvHSV8TN8v7VFjJNsGNVKRTLDgPEwsc8yjrLpMG26vTelnNcQfIcfaqehveFT2EZUzKVZS3UNaJI2t33BiPz4x3Fwxv8tjWMzGvkKDV1KJqN6JaBZlLCH24GC3C3XXtSQJrG+wd2KKk8nEo0mRx/w=
+	t=1735924277; cv=none; b=ZI4U8nVChAAFI6UIbptK3DmKYJnjuemiDr84MU/Ua7uXJO2W0fHItN3CwHQz+DvzlmLHcziFaOJd5IUanZALnYYl++vm3OlVrVePrG5upBgaPksBMU481k5Iq/fqbSRipoeiXcEM7bjv/h0H1uinj1cg762tsOaPEo431ON6ohI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735923862; c=relaxed/simple;
-	bh=SByc/N9How7/ZDztUDiEHkrbYTvlWlG9S5ZZuJl3oCs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ENIu9sbbIf9Kf33ZsQmepu0sJKb1476VFg81DEgZsAhATJ5JA2c7F7R33BSo06Sl5OmfFvWI+uRTwX9/AiLfBh4SfCwdChbnnbAgY7MFs8lHyynWIfzNwRGDuDhqA+nnll6QiwYh3MEW+6znlkigOgyIDhyT4DqICX9r1DUoL7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HsMI649l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78D73C4CECE;
-	Fri,  3 Jan 2025 17:04:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735923861;
-	bh=SByc/N9How7/ZDztUDiEHkrbYTvlWlG9S5ZZuJl3oCs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HsMI649l/0xtPdAR6zjaBtsHAX7rIhwaFNEqMZpEtH42TwOX/Y3ojO+JoKCoGMgAv
-	 5Y1coZRBAlCKngjTtuxVn/dTSYogZZAm34hPPUvuDrVczvhbRPU6wfhWffH2Wd5o7X
-	 XzleAc7/aSl323IUfTL+7TSFJ4mE+IgE5uUGmTxhbkE9rWjlTopjg6mNnn6VAZsEM5
-	 fbujuA3wD668iSYJEO5u1WgRum7FU80AV7GzT4rue5dKXYy/Y1y134UCVfkN/SZNz4
-	 dRMwIrzFeu+uW571YRlF7t7LMoXPurSYO6nPiLKM4foZXUhVYKPxiN4fIUxjXOFwNl
-	 J7AxscPdUOdAQ==
-Message-ID: <6adfa5fe-7b68-4f8e-919d-7b7607fe617c@kernel.org>
-Date: Fri, 3 Jan 2025 18:04:11 +0100
+	s=arc-20240116; t=1735924277; c=relaxed/simple;
+	bh=/MPl4niRw7ofd/tqJxlpedOrQ/4KqHEYPaQ8nncBpjM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=JsFr3/Z7yzvy35Y2EqK+NEPcMQEq17UvptLRSd/ojU29L4sMjDANlul5bgyyKIx2DDOokOFzd/hg/oZYH+bLOj2qE1EkxFi4QENnSTGAglZd0jo0fmOL5kpsjmw3vMTU5QYLktbPdAcaokiGKgGG/vR3TOx/URS1v21CjTktSSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fwDXgFnK; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-21634417587so18993755ad.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2025 09:11:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735924275; x=1736529075; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O3sGG96edDYBm065eZeyOamcNy6jLfsRwq/zrFHXSQ0=;
+        b=fwDXgFnK1j+1UbkZ8leeKXIqTKLs+Tnp+yV+S4sh3aRxhQHOxHrckhtBf2ZjH19IKM
+         NFHpeVsFIDHs3lYfslYx27PBD/DXzYJt8wMTm4rJJOY0VoAd0YmRCxCAe7p17nITfdhq
+         eo7ZIut3o5yC11H2wXM80RY0WoncM/5pCj24WPCnC6Z23YXrmNBk5rdGiT7av8UFtkzp
+         fOxjgbJY+tY8wbuUOjCR2GWeKwezNwZrOoLhrU6Y8kNOCqI9Vw+eMZpssF0UIDxB1IhX
+         a8OYmDuko5nhSyiSM2XlLMAQByd4E6m0BW3ZOhhIS/uFgUw6y8K/7fOX9uO44luSbZ+i
+         3jHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735924275; x=1736529075;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=O3sGG96edDYBm065eZeyOamcNy6jLfsRwq/zrFHXSQ0=;
+        b=A9KWSQffFeSkmCPM79SUfYAZpk0aYaOt0pVT9wFaZITRKDGMg4Lwjbe3piGUQ4QXIX
+         NOmE5g/4Ux8m5uZncA+Pr54ie7f26dhSnlmxE+7fPqXuNU+z1qPxtC+2WoFGkUcgMLO0
+         hicQwUd/3aPqMLPC+Hp7S12yWLp3m8E/HoraXhSLEFN53QPbPbPpbqDVWu11PNUOeKFs
+         yudilpsqTnBAwLvnqWFY1AVWlSUwKpoHvUR0h1X2Egx0zt8cNEmoygbYgpTCgnTMVhFf
+         vec3Jrh81TsqamHqn6Ll1zWeuB28S+Opww2jPZLTvY1n3zxidJT4Qjxgd9BjjM68FbxD
+         Cw4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWnrEi5lN40CtEnHJJBepEsJcf2r6gsqAmp/yB+kTyLi9+YD4cWW32LKGgnYDLHyjoEglNVTDmsk+gL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwT37/IrDpq3FHxTU/rHUwNnRY7Xk+vdd0z+ZXVVeT7HowrOKAL
+	RCduTSD6+srrCF9snBCESPzNdLB8vFGCaITiFkHoMM84adEmchev
+X-Gm-Gg: ASbGncuuBpdpnLhbDQH8AN35/B3FGoLBFvYvryMBr/UImAAgyQ7VsQlnvrlBfBk627i
+	phtcgCq9mSd3CUIQRLAVZ/DiPD767dVR7ecPYADd3/I1YtWSS9e+yBoVU/QwlDTbmFXi2hkbRTW
+	spegbP3OMROc3wK3UQsyAUIrdBAcalKxyScwUWP6xxq5C1X0N4Ntf6vyfGd3Xk/NYpy7oC7t/mF
+	YCwKFB/LnhvNouohCmVmXKH9CNtwATVcue8oRbfFvoTo+q4Hppic1suDtBxag==
+X-Google-Smtp-Source: AGHT+IHaGe/LjiNSdE/jVrq+uumD7Y1EPcnlnPCnn5kWuhTZJ0mjsAtVuPrcS+bRilEu9IblZCkZog==
+X-Received: by 2002:a17:902:d4c9:b0:215:8d29:af0b with SMTP id d9443c01a7336-219e6f2706fmr263642905ad.14.1735924275469;
+        Fri, 03 Jan 2025 09:11:15 -0800 (PST)
+Received: from rock-5b.. ([221.220.131.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9cde50sm245783305ad.154.2025.01.03.09.11.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jan 2025 09:11:14 -0800 (PST)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: amadeus@jmu.edu.cn
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	kishon@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	liujianfeng1994@gmail.com,
+	p.zabel@pengutronix.de,
+	robh@kernel.org,
+	vkoul@kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: rk3568: add reset-names for combphy
+Date: Sat,  4 Jan 2025 01:11:09 +0800
+Message-ID: <20250103171109.2726312-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250103033016.79544-1-amadeus@jmu.edu.cn>
+References: <20250103033016.79544-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] dt-bindings: mailbox: mediatek: Add MT8196 support
- for gce-mailbox
-To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-Cc: Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mchehab@kernel.org"
- <mchehab@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
- =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "airlied@gmail.com"
- <airlied@gmail.com>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
- =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>
-References: <20241219170800.2957-1-jason-jh.lin@mediatek.com>
- <20241219170800.2957-2-jason-jh.lin@mediatek.com>
- <yg7b2iaz53avd7gpvuewhi6b3myh6owls3dt2hzpqc26lnykjf@tpu2vxqqkipe>
- <11f168c11b4cea48cf51406c0afaf8f1f53ad90f.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <11f168c11b4cea48cf51406c0afaf8f1f53ad90f.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 30/12/2024 10:23, Jason-JH Lin (林睿祥) wrote:
-> Hi Krzysztof,
+Hi,
+
+On Fri,  3 Jan 2025 11:30:16 +0800, Chukun Pan wrote:
+>Maybe the merge window is different. Can you test the following patch?
+>
+>```
+>--- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>+++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>@@ -325,6 +325,10 @@ static int rockchip_combphy_parse_dt(struct device *dev, struct rockchip_combphy
+> 	priv->ext_refclk = device_property_present(dev, "rockchip,ext-refclk");
 > 
-> On Fri, 2024-12-27 at 09:13 +0100, Krzysztof Kozlowski wrote:
->>
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> On Fri, Dec 20, 2024 at 01:07:54AM +0800, Jason-JH.Lin wrote:
->>>    2) GCE Subsys ID:
->>>    - Defined in the header file: `#define SUBSYS_1c00XXXX 3`
->>>    - Used in the Device Tree:
->>>       `mediatek,gce-client-reg = <&gce SUBSYS_1c00XXXX 0x0000
->>> 0x1000>;`
->>>    - Parsed and used in the driver to configure subsys ID:
->>>      ```c
->>>      int cmdq_dev_get_client_reg(struct device *dev,
->>>                                struct cmdq_client_reg *client_reg,
->>>                                int idx)
->>>      {
->>>       client_reg->subsys = (u8)spec.args[0];
->>>       client_reg->offset = (u16)spec.args[1];
->>>      }
->>>      // GCE write the value to the register 0x1c000000 + 0x0000 +
->>> offset
->>>      cmdq_pkt_write(cmdq_handle, client_reg->subsys,
->>>                   client_reg->offset + offset, value);
->>
->> This is a proof that SUBSYS_1300XXXX is not a binding. Your driver
->> does
->> not use it.
->>
->> Drop all such things which are not used by drivers or explain why
->> they
->> are needed to be in the binding - what do they bind.
->>
->> I asked for this already, for exactly the same thing.
->>
->>
->> I did not check the rest, so next time I will choose any other random
->> define and if I do not find it explained nor used, I will question
->> it.
->> Because you tend to apply pieces of review instead of really change
->> your
->> code.
+> 	priv->phy_rst = devm_reset_control_get(dev, "phy");
+>+	/* fallback to old behaviour */
+>+	if (IS_ERR_OR_NULL(priv->phy_rst))
+>+		priv->phy_rst = devm_reset_control_array_get_exclusive(dev);
+>+
+> 	if (IS_ERR(priv->phy_rst))
+> 		return dev_err_probe(dev, PTR_ERR(priv->phy_rst), "failed to get phy reset\n");
 > 
-> Please forgive me for putting a lot of redundant message. I just want
-> to provide as much detail as possible to help you determine if they are
-> bindings. I appreciate your guidance and will make the necessary
-> adjustments.
-> 
-> 
-> I checked the clk header you accepted before:
-> https://lore.kernel.org/all/402ac5a2-334e-1843-0517-5ecf61f6a965@linaro.org/
+>```
 
-With arguments like "someone, somewhere acked this, so I am allowed as
-well to send it" you enter tricky grounds.
-
-> 
-> Please don't mind me to make a confirmation here because I can't find
-> the documentation of the definition for binding header.
-> Do you mean all the header defined in include/dt-bindings/* should be
-> used in a specific driver and the DTS in the same time?
-
-Yes, otherwise how is it abstraction?
-
-There are numerous exceptions of course when binding binds different
-pieces of software/firmware. Is that the case? Nothing in commit msg
-explained this.
-
-> 
-> Take the `#define CLK_TOP_AXI` and `#define CLK_TOP_VPP` in
-> mediatek,mt8188-clk.h for example:
-> 
-> `CLK_TOP_AXI` is used in the drivers/clk/mediatek/clk-mt8188-topckgen.c
-> but not in arch/arm64/boot/dts/mediatek/mt8188.dtsi:
-> ```
->   #include <dt-bindings/clock/mediatek,mt8188-clk.h>
-> 
->   ...
-> 
->   static const struct mtk_mux top_mtk_muxes[] = {
-> 	MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_AXI, "top_axi",
-> axi_parents,
-> 				   0x020, 0x024, 0x028, 0, 4, 7, 0x04,
->   ...
-> 	
-> 	MUX_GATE_CLR_SET_UPD(CLK_TOP_VPP, "top_vpp",
-> 			     vpp_parents, 0x02C, 0x030, 0x034, 0, 4,
-> 7, 
->   ...
-> ```
-> 
-> and `CLK_TOP_VPP` is used in the both clk-mt8188-topckgen.c and
-> mt8188.dtsi:
-> ```
->   power-domain@MT8188_POWER_DOMAIN_VPPSYS0 {
->   	reg = <MT8188_POWER_DOMAIN_VPPSYS0>;
-> 	clocks = <&topckgen CLK_TOP_VPP>,
-> 		 <&topckgen CLK_TOP_CAM>,
-> ...
-> ```
-> 
-> But it seems that both of `CLK_TOP_AXI` and `CLK_TOP_VPP` are regarded
-> as binding headers.
-
-I don't get the comparisons. Both constants represent abstraction, so
-they are correct.
-
-
-> 
-> 
-> From the previous description of the example you gave me:
-> Bindings are imaginary numbers starting from 0 or 1 which are used
-> between drivers and DTS, serving as abstraction layer (or abstraction
-> values) between these two.
-
-Exactly, what to say more?
-
-> 
-> As I understand, each clock definition corresponds to the clock CG
-> settings provided to different hardware, and each hardware driver can
-> control its own clock CG through the CCF to control their CG in clock
-> driver. So they can be an abstraction values between driver and DTS.
-> 
-> Similarly, the GCE subsys ID and GCE event ID correspond to symbols
-> used by GCE to control various hardware, and each hardware driver can
-> use these IDs to generate commands buffer for GCE through the API
-> provided by the GCE driver and achieve the desired control over their
-> hardware.
-
-So are they abstract or not? Then use some different values, really
-abstract.
-
-I brought you definition: abstract. You now cited it. But last paragraph
-entirely skips this point.
-
-
-> 
-> I guess the difference is that the clock driver has a platform-specific
-> clock table to store these binding headers, while the GCE driver does
-> not have a platform-specific thread priority table, subsys ID table,
-> and event ID table. Instead, the GCE client drivers can directly obtain
-> their respective hardware settings from the DTS.
-> 
-> On the other hand, definitions like CLK_TOP_MAINPLL_D3,
-> CLK_TOP_MAINPLL_D4, etc., correspond to different clock frequency
-> divider levels, and the CMDQ_THR_PRIO_X for GCE thread priority also
-> corresponds to different priority levels for GCE threads. Therefore, I
-> am not quite sure why GCE thread priority cannot be considered a
-> binding when it is also a symbol number for a hardware level setting.
-
-Well, maybe nothing here is a binding. I took one thing to inspect. I
-did not inspect the rest. How does it help your case?
-
-
-> 
-> 
-> If the condition for becoming a binding header is that it `must` be
-> used by a specific driver, such as a platform-specific table, then I
-
-No, "used by the driver" is indication that you use it as abstraction.
-
-> will remove the entire GCE dt-binding header. Because the current usage
-> of these definitions is that each GCE client drivers can directly store
-> these GCE definitions through the DTS, just like IRQ IDs, and without
-> the need for an additional table defined by the GCE driver.
-
-Do you store IRQ IDs as binding constants in binding headers? No. Why?
-
-Before proceeding with this header further, please answer to above - why
-interrupt numbers, MMIO addresses and some other values appearing in DTS
-are not used like "binding headers".
-
+Tested with rock-3a. This patch will fix dtb without reset-names property.
 
 Best regards,
-Krzysztof
+Jianfeng
 
