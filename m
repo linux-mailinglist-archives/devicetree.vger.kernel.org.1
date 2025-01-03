@@ -1,253 +1,165 @@
-Return-Path: <devicetree+bounces-135373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAAEDA00C19
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 17:34:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB46A00C2C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 17:38:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 848F21642BF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 16:34:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D44977A1E98
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 16:38:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F4E1F9EA4;
-	Fri,  3 Jan 2025 16:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1E01FBEBD;
+	Fri,  3 Jan 2025 16:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pEB0OThN"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="ZtVRxumZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89C3459B71;
-	Fri,  3 Jan 2025 16:34:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F651FBEA2
+	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 16:38:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735922091; cv=none; b=TC4a4Cs31UA742ULMCVIRpcfgEcfwrYtvE2+QT4ZHBTIO4lFgdyGJymSpsE/PUdv4TsdlEglajgJERPr7sHastwpHfq/DSSKnCHkgu78iVujOgOuS115EBdO/WP4hD4FkSTIpPugSKAivIaCuvnAK2EoshvELbDoRNn2fyCDkn0=
+	t=1735922313; cv=none; b=Jgy6btwuo0sadUJJ80WcgfImeV7i0cyHCMTGTB/naYm9JRvJPP7n7jTjqjGJdDrqYwv/pK/j9LhnlRDQFtQoMvkHwijnK0jdSYT35rT7DVYqzAH8SOEfyjF6Y3yVNE6Rd8D5dbupkp1135YMFFXdaq6CwrWGCD4SZTdkAExHSZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735922091; c=relaxed/simple;
-	bh=83DIF3mFLGw5ydl0IM2PKCB3azWLkypjNn+5xAAuKf0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hj9O0cXE+IVClRl4+kptdxnxC+7miAaYakZ6w9A2xhkQlRKFZW6x0TjwFs6bQB5eu8eAs7bfMU5Jx0LyMXrmr+WhQTI8eyRlm75xcWGPFrc43Iju5A3HdSy1i5rloubIqdTtZXGt3eUFcB1RWDzPtjHd7UZvEUlUk6WkupThkfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pEB0OThN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB947C4CECE;
-	Fri,  3 Jan 2025 16:34:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735922091;
-	bh=83DIF3mFLGw5ydl0IM2PKCB3azWLkypjNn+5xAAuKf0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pEB0OThNpNMl8LgLujdnkXrUmKE5Wb85k8l+FG7RzmbH3Ubi+tomlN4HOJ3oAbCpb
-	 8NNNougV5UcWMlVTsJZprC0S/f1eyedEj0eKguSag9pqfsxFzGQalgR5RUsZM95YHz
-	 2oHkaFSH0s5QbcO+tV5tDk2yAmpxedA7yzNISkqPiqDNFsWfIq8AWgV7VsPN01j9DJ
-	 gTQtLVStdEAtSLBzLwqf1bB+ca971cz0ocekt35XEnKNB305Px2OPchhGksj6xBCLv
-	 BeruJQPpAOvK7QQmuSKCMueJvkDj2mCrC7oEYbMXOJ7kJlq7Mh31BZEdmVl1LOT1Zx
-	 U0O1fBazmP2Bg==
-Date: Fri, 3 Jan 2025 10:34:49 -0600
-From: Rob Herring <robh@kernel.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, derek.foreman@collabora.com,
-	detlev.casanova@collabora.com, daniel@fooishbar.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v8 8/9] dt-bindings: display: vop2: Add rk3576 support
-Message-ID: <20250103163449.GA2382623-robh@kernel.org>
-References: <20241231090802.251787-1-andyshrk@163.com>
- <20241231090802.251787-9-andyshrk@163.com>
+	s=arc-20240116; t=1735922313; c=relaxed/simple;
+	bh=yivWCk87L5Kn1vLLCLSBD23i/m0z9LXbY0astKk0t14=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hugaZ9EOvNgM/wZSul01Mhh1IC0rkzCKMxiTvqkV6F1N5yIxlkpKMizV4kuKNjxdtiVnB5KtKLBNimsiCIZiPYGT2ei8b/dlQvxcocaNNgiFN4TI3q03Rfu3wxKHtfo2DZ999FerDm+7bJPTG7paJFhFdu0WoGkAWyA+oS2auOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=ZtVRxumZ; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aaf57c2e0beso697545766b.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2025 08:38:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1735922308; x=1736527108; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=z12n6pwBuO+Lp/RU6Y/RGTOaXGSjqsnsbDrc/bXr6NI=;
+        b=ZtVRxumZi6oAhVXSSG6Z9GCRYi7LXtt+pArtl/iylPnSZQtPviVxWoDbiUNgXEHAWj
+         BesXaS3E2LRXKY7r/lp+9inSCoN4ZdJi1IJb25/dUWYY9LJHEf6pYoumM3kplxK8zPQ7
+         98ccXllrKaXDCpelj8IRmDNg2cr9XcAE36Jn+mB0+7BVJa0BE+7GHo7fpedpx0mU9plh
+         j2nilDpNY/hOTaJh0d7G82Jmaf6T5FdOEw/NhmzvwJP9/vYXK8YIsGY/zLh5Y6+q8bql
+         YkQl8J+Y7zaBfna2NkQL5+2oVjoZFf+HlAKHDiqwMK2Xzw7bwYKrh4/Ks6VloIHwNwtn
+         2peQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735922308; x=1736527108;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z12n6pwBuO+Lp/RU6Y/RGTOaXGSjqsnsbDrc/bXr6NI=;
+        b=J9G5cm2stNOieKsO2fJ9/WSCUOCTmi0WoVv0S3n3V61uwNqEZWWREiUB9zvV3iRSrn
+         iQF11MTpQEqKxGeafFtbYCO+zORTulF3zgkR8mU7JHalc5revoKJTz5soDudaFyMN5I0
+         jjglov3QbFbiNEk2B+4U9PA3ZZ4YzTdhUr4G25tDg12y4Iw/lz6894pwN+WPdHkIF2Ls
+         iwA26WJBZpnbfIBsdEMHcCuKNPwowLmQSuAI+km/BMfi9uBprGaPLgOM8yAmXD8OGMEa
+         V2gZc9gZEM6tXllBU4e9bkASrj1XpEqDxRC+2wrPhXb89JuXLDF3pznUYyMLt9EhSm9K
+         ghnw==
+X-Forwarded-Encrypted: i=1; AJvYcCWQn6V4f5+DGJ+ERCyWF5FCJzQR6bkRGL+YF9QvnOMvfIoVTRwcAqVADucAOz1qRos8dANxuVXKpVJG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxpzuy86D+xvfEQAAXXkVkpTvDH2eBresGeFQXqGvWLXSNotZbk
+	zu7bhDX7qHfqmhEzWmP8/I1sqPOMkaBWvLqrKdSdvU8nXO/VAhT70zKdrKlWfIo=
+X-Gm-Gg: ASbGncudFIaPXahC/X+ZFyb51SMb7cBDfGI2eRpDJY4IRoCQlUJ8zLjXLgvlaZEM2Im
+	HDesL64mk0cTXV8OyEOoYAvSfSnb05ATdCkqR7XbhpZFXIvzQk6yzX7fnszjohacXB0GqzywHNB
+	L8gqdCAIjWNCAQYCUdST/Sf6IioM2QgOdj1wuKsrx0R8t7kz4bUcuogJOfdmcFRHh5DkXOrHf4/
+	8fj5+LzKYf1Frro+9LebqXF/d5AkZULw4JoEaCJrESAyUq/FvEFkhjex5rjkvUm2AbkS/zr7eHf
+	r460TxhAsw4=
+X-Google-Smtp-Source: AGHT+IHvB3jSYSwVEdM8kpizh++WgojhHChTKlXDXhzjvg/G2jGnSPtOR2X4YibeMuE1jT2+Wk3xTg==
+X-Received: by 2002:a17:907:7dab:b0:aa6:98c9:aadc with SMTP id a640c23a62f3a-aac2d45fb01mr4593376466b.31.1735922308221;
+        Fri, 03 Jan 2025 08:38:28 -0800 (PST)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.102])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e8953b6sm1932984066b.65.2025.01.03.08.38.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jan 2025 08:38:27 -0800 (PST)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: rafael@kernel.org,
+	daniel.lezcano@linaro.org,
+	rui.zhang@intel.com,
+	lukasz.luba@arm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	p.zabel@pengutronix.de,
+	ulf.hansson@linaro.org
+Cc: claudiu.beznea@tuxon.dev,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH 0/6] thermal: renesas: Add support for RZ/G3S
+Date: Fri,  3 Jan 2025 18:37:59 +0200
+Message-ID: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241231090802.251787-9-andyshrk@163.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 31, 2024 at 05:07:51PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> Add vop found on rk3576, the main difference between rk3576 and the
-> previous vop is that each VP has its own interrupt line.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> 
-> ---
-> 
-> Changes in v8:
-> - Fix dt_binding_check errors
-> - ordered by soc name
-> - Link to the previous version:
->   https://lore.kernel.org/linux-rockchip/6pn3qjxotdtpzucpul24yro7ppddezwuizneovqvmgdwyv2j7p@ztg4mqyiqmjf/T/#u
-> 
-> Changes in v4:
-> - describe constraint SOC by SOC, as interrupts of rk3576 is very
->   different from others
-> - Drop Krzysztof's Reviewed-by, as this version changed a lot.
-> 
-> Changes in v3:
-> - ordered by soc name
-> - Add description for newly added interrupt
-> 
-> Changes in v2:
-> - Add dt bindings
-> 
->  .../display/rockchip/rockchip-vop2.yaml       | 81 ++++++++++++++-----
->  1 file changed, 63 insertions(+), 18 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> index 2531726af306..4cdd9cced10c 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> @@ -20,6 +20,7 @@ properties:
->      enum:
->        - rockchip,rk3566-vop
->        - rockchip,rk3568-vop
-> +      - rockchip,rk3576-vop
->        - rockchip,rk3588-vop
->  
->    reg:
-> @@ -37,10 +38,21 @@ properties:
->        - const: gamma-lut
->  
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
->      description:
-> -      The VOP interrupt is shared by several interrupt sources, such as
-> -      frame start (VSYNC), line flag and other status interrupts.
-> +      For VOP version under rk3576, the interrupt is shared by several interrupt
-> +      sources, such as frame start (VSYNC), line flag and other interrupt status.
-> +      For VOP version from rk3576 there is a system interrupt for bus error, and
-> +      every video port has it's independent interrupts for vsync and other video
-> +      port related error interrupts.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: vop-sys
-> +      - const: vop-vp0
-> +      - const: vop-vp1
-> +      - const: vop-vp2
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Drop 'vop-' as it is redundant.
+Hi,
 
->  
->    # See compatible-specific constraints below.
->    clocks:
-> @@ -120,43 +132,76 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: rockchip,rk3588-vop
-> +            enum:
-> +              - rockchip,rk3566-vop
-> +              - rockchip,rk3568-vop
->      then:
->        properties:
->          clocks:
-> -          minItems: 7
-> +          minItems: 5
->          clock-names:
-> -          minItems: 7
-> -
+This series adds thermal support for the Renesas RZ/G3S SoC.
 
-Keep the blank line between DT properties
+Series is organized as follows:
+- patch 1/6:		adds clock, resets and power domain support for
+			the thermal sensor unit (TSU)
+- patch 2/6:		adds support for non-devres thermal zone
+			register/unregister 
+- patches 3-4/6:	add thermal support for RZ/G3S
+- patches 5-6/6:	add device tree support
 
-> +          minItems: 5
->          ports:
->            required:
->              - port@0
->              - port@1
->              - port@2
-> -            - port@3
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - rockchip,rk3576-vop
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 5
+Merge strategy, if any:
+- patch 1/6 can go through the Renesas tree
+- patches 2-4/6 can go through the thermal tree
+- patches 5-6/6 can go through the Renesas tree
 
-blank line
+Ulf,
 
-> +        clock-names:
-> +          minItems: 5
+I've added you to this thread as well due to patch 2/6 that has a similar
+root cause as [1].
 
-blank line, and so on.
+Thank you,
+Claudiu Beznea
 
-> +        ports:
-> +          required:
-> +            - port@0
-> +            - port@1
-> +            - port@2
-> +        interrupts:
-> +          items:
-> +            - description: vop system interrupt, such as axi bus error
-> +            - description: interrupts for video port0, such as vsync, dsp_hold.
-> +            - description: interrupts for video port1, such as vsync, dsp_hold.
-> +            - description: interrupts for video port2, such as vsync, dsp_hold.
+[1] https://lore.kernel.org/all/20250103140042.1619703-2-claudiu.beznea.uj@bp.renesas.com/
 
-These descriptions belong at the top level.
+Claudiu Beznea (6):
+  clk: renesas: r9a08g045: Add clocks, resets and power domain support
+    for the TSU IP
+  thermal: of: Export non-devres helper to register/unregister thermal
+    zone
+  dt-bindings: thermal: r9a08g045-tsu: Document the TSU unit
+  thermal: renesas: rzg3s: Add thermal driver for the Renesas RZ/G3S SoC
+  arm64: dts: renesas: r9a08g045: Add TSU node
+  arm64: defconfig: Enable RZ/G3S thermal
 
-> +        interrupt-names:
-> +          items:
-> +            - const: vop-sys
-> +            - const: vop-vp0
-> +            - const: vop-vp1
-> +            - const: vop-vp2
+ .../thermal/renesas,r9a08g045-tsu.yaml        |  93 ++++++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  43 ++-
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |   4 -
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/clk/renesas/r9a08g045-cpg.c           |   4 +
+ drivers/thermal/renesas/Kconfig               |   8 +
+ drivers/thermal/renesas/Makefile              |   1 +
+ drivers/thermal/renesas/rzg3s_thermal.c       | 301 ++++++++++++++++++
+ drivers/thermal/thermal_of.c                  |   8 +-
+ include/linux/thermal.h                       |  14 +
+ 11 files changed, 476 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/renesas,r9a08g045-tsu.yaml
+ create mode 100644 drivers/thermal/renesas/rzg3s_thermal.c
 
-Why are these names defined twice?
+-- 
+2.43.0
 
-You just need 'minItems: 4' in both of these.
-
->        required:
->          - rockchip,grf
-> -        - rockchip,vo1-grf
-> -        - rockchip,vop-grf
->          - rockchip,pmu
->  
-> -    else:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3588-vop
-> +    then:
->        properties:
-> -        rockchip,vo1-grf: false
-> -        rockchip,vop-grf: false
-> -        rockchip,pmu: false
-
-How is there no long a case without these properties?
-
-> -
->          clocks:
-> -          maxItems: 5
-> +          minItems: 7
->          clock-names:
-> -          maxItems: 5
-> -
-> +          minItems: 7
->          ports:
->            required:
->              - port@0
->              - port@1
->              - port@2
-> +            - port@3
-> +      required:
-> +        - rockchip,grf
-> +        - rockchip,vo1-grf
-> +        - rockchip,vop-grf
-> +        - rockchip,pmu
->  
->  additionalProperties: false
->  
-> -- 
-> 2.34.1
-> 
 
