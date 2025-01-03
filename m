@@ -1,280 +1,335 @@
-Return-Path: <devicetree+bounces-135410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8653EA00E1A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:55:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F30A00E21
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:59:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E03F1883895
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:55:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2BCC188470F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7872F1FC0E0;
-	Fri,  3 Jan 2025 18:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB051FA838;
+	Fri,  3 Jan 2025 18:59:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FD2Xt62S"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Bix3DSTf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49E8C1A8F80;
-	Fri,  3 Jan 2025 18:55:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC0C21B983E;
+	Fri,  3 Jan 2025 18:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735930537; cv=none; b=MYNL6yHAXZX9FsKd26W8Lz9RMpfnfWNEHxoHbElPj1pEBtqfE13iyVlXLBq9nInHlOyzUKi3HVCXZ3uzxYt8DRwEXmtIIPYVI9Ho2/ezck06TCxDi2zfc8TximfniBOBPKbjN90vTcumK/GWRhUD00A6YTBB5tUR1KVxFH9sVm8=
+	t=1735930771; cv=none; b=FLjMH/jWbHYTAkXJX130Lz32bbNuzdo04kiqcnrXj3B3EKqKNWRA+Kegnu9znBmnW69aH7uOzvXEKxcB1G4HT8LL/gKdYuwA8AL0bfiavzIA/FRUqTPwdZEr6N1rGpm7O2aimmQVmR2mV0FEgjiSHYfX4GVUz2Y5ccgJOc4sEtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735930537; c=relaxed/simple;
-	bh=XQxYutNgrITYpUa9i4dLX5UIo7Vh+etoJ94keWJktx0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TEZzLcv8QAM/alJj/DPjbh7WBlpOh9dFUzJ1D0e9Vm8NgDVeVcS9sZTC1TSc625VubvQ2ne/xjKfnIC6P3IkNXfF2572XWKRLqxWkcH9J8sHsG7vbqgUBF6JspIjsp+gSUxzlmhdtRyYC6+xVMnZwpsfaNPOKux70l9sh/Cfsxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FD2Xt62S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA394C4CED2;
-	Fri,  3 Jan 2025 18:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735930536;
-	bh=XQxYutNgrITYpUa9i4dLX5UIo7Vh+etoJ94keWJktx0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FD2Xt62SwcGD/iot4UTktOgDx0pupKu3+l2s1JX8e+wyFnyFG4eKajMWrLRfnGKEy
-	 SO7gh/SkLthepU5wfB2xqMDQdJwa8tyBZDN0jD8ynydKUf6qCTIAiII3ekKlUXOLU1
-	 6fQU8sTIowPnBEX8zRJGclu+0TKYkJVP0eKXPSYJjYYbtC8iBztPV2dF7y8yJu5yzz
-	 wTISr3FZMLFBcIO6N7M1JR4vnk9+kPhUe/D3A9uwaAGFzJ50UotZS5FVFjdb++5tAI
-	 CCmPQ8EemmpyQ5T8d/mGxpRV6bcBUw5eJUGFpv6bZ/pjbEGIs1tvJBFbvD8ocUL/Y5
-	 mkU+YKTSf1z0A==
-Date: Fri, 3 Jan 2025 12:55:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Chuan Liu <chuan.liu@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-clk <linux-clk@vger.kernel.org>,
-	linux-amlogic <linux-amlogic@lists.infradead.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/5] dt-bindings: clock: add Amlogic T7 PLL clock
- controller
-Message-ID: <20250103185535.GA2552898-robh@kernel.org>
-References: <20241231060047.2298871-1-jian.hu@amlogic.com>
- <20241231060047.2298871-2-jian.hu@amlogic.com>
+	s=arc-20240116; t=1735930771; c=relaxed/simple;
+	bh=hAng8NWuOWivqottZ7fXYtagj8wIGpUHK40EjCiOVns=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JB6QLuEd+7V4QcO9ahvKnIVp04/YL3bJqBXSqWtGGENvlB5L9MeVmUazpgmAlpVfK9sNvpSnIF4df/qk3xNFrxXj0sWF8BpE1QuKVkmH6Rk0x4lBdiIbATwir0n3/O4e9dtVRa9n0/hZW9xutnKI/bMgwSZiXZ8AOEXWzhYvW58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Bix3DSTf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 503C4Y4x022458;
+	Fri, 3 Jan 2025 18:59:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=rEowyQot/JNKoGQzdXBR0sON
+	mMFLbf04NYOADbA4TqI=; b=Bix3DSTfoOxBp7/Av9NFmagy/RmCXilCm2Ch9t8w
+	CrDXxgSqFsFfM0ggX20T/S48pujHbJeNnfhcm3sisxR0NGMorBQnn1VoZO7sgtey
+	tR0+rGmsB2PYjBQ3hfJSlX4SA5BJetBTjAuxCL8GZgOFuXhXmX/u3zDgAt1eS4Vq
+	wA51RSb8ypJeYxuKpB3HCEhjUyrR83TDN9RRNQGfDLezw2tyDDyVl8dRC8DK7Ucc
+	Ov2izhYKtPYOmrpxtry/FvKIDjzMGtr5Yp1Z/K5L8W5Bd4l8jvUEB1e0/4vIdmX0
+	eN0QDRoR9Ah63ubv97yYnPDNOEJf8fNh632kevYgh2gRwQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43xfk3gqw1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 03 Jan 2025 18:59:25 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 503IxOYG011239
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 3 Jan 2025 18:59:24 GMT
+Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 3 Jan 2025 10:59:16 -0800
+Date: Sat, 4 Jan 2025 00:29:07 +0530
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
+ Ride-r3
+Message-ID: <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
+References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
+ <20241229152332.3068172-6-quic_wasimn@quicinc.com>
+ <tjrg5zqggupjo36udpyv3vynsij76f4qlus6lkbqotuimusqgq@hosmksp77sif>
+ <Z3ZXWxoBtMNPJ9kk@hu-wasimn-hyd.qualcomm.com>
+ <4wmxjxcvt7un7wk5v43q3jpxqjs2jbc626mgah2fxbfuouu4q6@ptzibxe2apmx>
+ <Z3eMxl1Af8TOAQW/@hu-wasimn-hyd.qualcomm.com>
+ <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20241231060047.2298871-2-jian.hu@amlogic.com>
+In-Reply-To: <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -LH2_WA6MmDvF5OVkjKXD5bkNRZkf7XP
+X-Proofpoint-ORIG-GUID: -LH2_WA6MmDvF5OVkjKXD5bkNRZkf7XP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
+ adultscore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0
+ suspectscore=0 malwarescore=0 mlxscore=0 clxscore=1015 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501030167
 
-On Tue, Dec 31, 2024 at 02:00:43PM +0800, Jian Hu wrote:
-> Add DT bindings for the PLL clock controller of the Amlogic T7 SoC family.
+On Fri, Jan 03, 2025 at 12:31:55PM +0200, Dmitry Baryshkov wrote:
+> On Fri, Jan 03, 2025 at 12:37:50PM +0530, Wasim Nazir wrote:
+> > On Fri, Jan 03, 2025 at 07:50:43AM +0200, Dmitry Baryshkov wrote:
+> > > On Thu, Jan 02, 2025 at 02:37:39PM +0530, Wasim Nazir wrote:
+> > > > On Mon, Dec 30, 2024 at 05:45:39PM +0200, Dmitry Baryshkov wrote:
+> > > > > On Sun, Dec 29, 2024 at 08:53:31PM +0530, Wasim Nazir wrote:
+> > > > > > Add device tree support for QCS9075 Ride & Ride-r3 boards.
+> > > > > > 
+> > > > > > QCS9075 lacks the safety monitoring features of Safety-Island (SAIL)
+> > > > > > subsystem which is available in QCS9100, and it affects thermal
+> > > > > > management.
+> > > > > > 
+> > > > > > Also, between ride and ride-r3 ethernet phy is different.
+> > > > > > Ride uses 1G ethernet phy while ride-r3 uses 2.5G ethernet phy.
+> > > > > 
+> > > > > Your board files duplicate sa8775p-ride-r3.dts and sa8775p-ride.dts, but
+> > > > > include them. Existing qcs9100-ride-r3.dts and qcs9100-ride-r3.dts just
+> > > > > include corresponding SA8775P files.
+> > > > > 
+> > > > > This is not ideal for the following reasons:
+> > > > > - The approach is not uniform (between QCS9100 and QCS9075), which might
+> > > > >   lead to mistakes.
+> > > > > - The approach ends up duplicating DT code unnecessarily, which can lead
+> > > > >   to issues being patches in the one board file, but not in the other
+> > > > >   file.
+> > > > > 
+> > > > > If there are any reasons why you want to follow this approach, they must
+> > > > > be a part of the commit message.
+> > > > > 
+> > > > 
+> > > > Hi Dmitry,
+> > > > 
+> > > > Initially, we included the DTS [1] file to avoid duplication. However,
+> > > > based on Krzysztof's previous suggestion [2], we change to this format.
+> > > > 
+> > > > Please let us know how to proceed further on this.
+> > > 
+> > > Krzysztof asked you to include DTSI files instead of including DTS
+> > > files. Hope this helps.
+> > 
+> > Are you suggesting that we should also modify the 9100-ride files to
+> > include DTSI instead of DTS for consistency between QCS9100 and QCS9075?
+> > However, this would result in the duplication of Ethernet nodes in all
+> > the ride board files. Would that be acceptable?
 > 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  .../bindings/clock/amlogic,t7-pll-clkc.yaml   | 115 ++++++++++++++++++
->  .../dt-bindings/clock/amlogic,t7-pll-clkc.h   |  57 +++++++++
->  2 files changed, 172 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/amlogic,t7-pll-clkc.h
+> git mv foo.dts foo.dtsi
+> echo '#include "foo.dtsi"' > foo.dts
+> git add foo.dts
+> git commit
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
-> new file mode 100644
-> index 000000000000..f90e6021d298
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,t7-pll-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic T7 PLL Clock Control Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jian Hu <jian.hu@amlogic.com>
-> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,t7-pll-gp0
-> +      - amlogic,t7-pll-gp1
-> +      - amlogic,t7-pll-hifi
-> +      - amlogic,t7-pll-pcie
-> +      - amlogic,t7-mpll
-> +      - amlogic,t7-pll-hdmi
-> +      - amlogic,t7-pll-mclk
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - amlogic,t7-pll-gp0
-> +              - amlogic,t7-pll-gp1
-> +              - amlogic,t7-pll-hifi
-> +              - amlogic,t7-pll-pcie
-> +              - amlogic,t7-mpll
-> +              - amlogic,t7-pll-hdmi
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: pll input oscillator gate
-> +
-> +        clock-names:
-> +          items:
-> +            - const: input
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - amlogic,t7-pll-mclk
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: mclk pll input oscillator gate
-> +            - description: 24M oscillator input clock source for mclk_sel_0
-> +            - description: fix 50Mhz input clock source for mclk_sel_0
-> +
-> +        clock-names:
-> +          items:
-> +            - const: input
-> +            - const: mclk_in0
-> +            - const: mclk_in1
 
-Define the names and descriptions at the top level. Then here just say 
-'minItems: 3'
+We cannot convert sa8775p-ride-r3.dts and sa8775p-ride.dts to .dtsi as
+they represent different platforms. In patch [1], we included these DTS
+files to reuse the common hardware nodes.
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    apb {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        gp0:clock-controller@8080 {
+Could you please advise on how we should proceed with the following
+approaches?
 
-Drop unused labels.
+a) Previous approach [1]:
+Include sa8775p-ride-r3.dts and sa8775p-ride.dts in the qcs9075-ride
+platform DTS, similar to the qcs9100-ride platform DTS. This approach
+avoids duplicating Ethernet nodes and maintains uniformity. However, it
+involves including the DTS file directly.
 
-> +            compatible = "amlogic,t7-pll-gp0";
-> +            reg = <0 0x8080 0 0x20>;
-> +            clocks = <&scmi_clk 2>;
-> +            clock-names = "input";
-> +            #clock-cells = <1>;
-> +        };
-> +
-> +        mclk:clock-controller@8300 {
-> +            compatible = "amlogic,t7-pll-mclk";
-> +            reg = <0 0x8300 0 0x18>;
-> +            clocks = <&scmi_clk 2>,
-> +                     <&xtal>,
-> +                     <&scmi_clk 31>;
-> +            clock-names = "input", "mclk_in0", "mclk_in1";
-> +            #clock-cells = <1>;
-> +        };
-> +    };
-> diff --git a/include/dt-bindings/clock/amlogic,t7-pll-clkc.h b/include/dt-bindings/clock/amlogic,t7-pll-clkc.h
-> new file mode 100644
-> index 000000000000..e88c342028db
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/amlogic,t7-pll-clkc.h
-> @@ -0,0 +1,57 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + * Author: Jian Hu <jian.hu@amlogic.com>
-> + */
-> +
-> +#ifndef __T7_PLL_CLKC_H
-> +#define __T7_PLL_CLKC_H
-> +
-> +/* GP0 */
-> +#define CLKID_GP0_PLL_DCO	0
-> +#define CLKID_GP0_PLL		1
-> +
-> +/* GP1 */
-> +#define CLKID_GP1_PLL_DCO	0
-> +#define CLKID_GP1_PLL		1
-> +
-> +/* HIFI */
-> +#define CLKID_HIFI_PLL_DCO	0
-> +#define CLKID_HIFI_PLL		1
-> +
-> +/* PCIE */
-> +#define CLKID_PCIE_PLL_DCO	0
-> +#define CLKID_PCIE_PLL_DCO_DIV2	1
-> +#define CLKID_PCIE_PLL_OD	2
-> +#define CLKID_PCIE_PLL		3
-> +
-> +/* MPLL */
-> +#define CLKID_MPLL_PREDIV	0
-> +#define CLKID_MPLL0_DIV		1
-> +#define CLKID_MPLL0		2
-> +#define CLKID_MPLL1_DIV		3
-> +#define CLKID_MPLL1		4
-> +#define CLKID_MPLL2_DIV		5
-> +#define CLKID_MPLL2		6
-> +#define CLKID_MPLL3_DIV		7
-> +#define CLKID_MPLL3		8
-> +
-> +/* HDMI */
-> +#define CLKID_HDMI_PLL_DCO	0
-> +#define CLKID_HDMI_PLL_OD	1
-> +#define CLKID_HDMI_PLL		2
-> +
-> +/* MCLK */
-> +#define CLKID_MCLK_PLL_DCO	0
-> +#define CLKID_MCLK_PRE		1
-> +#define CLKID_MCLK_PLL		2
-> +#define CLKID_MCLK_0_SEL	3
-> +#define CLKID_MCLK_0_DIV2	4
-> +#define CLKID_MCLK_0_PRE	5
-> +#define CLKID_MCLK_0		6
-> +#define CLKID_MCLK_1_SEL	7
-> +#define CLKID_MCLK_1_DIV2	8
-> +#define CLKID_MCLK_1_PRE	9
-> +#define CLKID_MCLK_1		10
-> +
-> +#endif /* __T7_PLL_CLKC_H */
+b) Current suggestion:
+Include sa8775p-ride.dtsi in the qcs9075-ride platform DTS and also
+modify the qcs9100-ride platform DTS files to maintain uniformity. This
+approach results in duplicating Ethernet nodes.
+
+Please let us know your recommendation to finalize the DT structure.
+
+[1] https://lore.kernel.org/all/20241119174954.1219002-6-quic_wasimn@quicinc.com/
+
+> > 
+> > > 
+> > > > 
+> > > > [1] https://lore.kernel.org/all/20241119174954.1219002-6-quic_wasimn@quicinc.com/
+> > > > [2] https://lore.kernel.org/all/8cf9edc0-a0cb-4fd0-b10e-2138784dfba3@kernel.org/
+> > > > 
+> > > > > > 
+> > > > > > Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
+> > > > > > ---
+> > > > > >  arch/arm64/boot/dts/qcom/Makefile            |  2 +
+> > > > > >  arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts | 46 ++++++++++++++++++++
+> > > > > >  arch/arm64/boot/dts/qcom/qcs9075-ride.dts    | 46 ++++++++++++++++++++
+> > > > > >  3 files changed, 94 insertions(+)
+> > > > > >  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> > > > > >  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> > > > > > 
+> > > > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > > > > > index 78613a1bd34a..41cb2bbd3472 100644
+> > > > > > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > > > > @@ -118,6 +118,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-rb8.dtb
+> > > > > > +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-ride.dtb
+> > > > > > +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-ride-r3.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+> > > > > > diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..d9a8956d3a76
+> > > > > > --- /dev/null
+> > > > > > +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> > > > > > @@ -0,0 +1,46 @@
+> > > > > > +// SPDX-License-Identifier: BSD-3-Clause
+> > > > > > +/*
+> > > > > > + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> > > > > > + */
+> > > > > > +/dts-v1/;
+> > > > > > +
+> > > > > > +#include "sa8775p-ride.dtsi"
+> > > > > > +
+> > > > > > +/ {
+> > > > > > +	model = "Qualcomm Technologies, Inc. QCS9075 Ride Rev3";
+> > > > > > +	compatible = "qcom,qcs9075-ride-r3", "qcom,qcs9075", "qcom,sa8775p";
+> > > > > > +};
+> > > > > > +
+> > > > > > +&ethernet0 {
+> > > > > > +	phy-mode = "2500base-x";
+> > > > > > +};
+> > > > > > +
+> > > > > > +&ethernet1 {
+> > > > > > +	phy-mode = "2500base-x";
+> > > > > > +};
+> > > > > > +
+> > > > > > +&mdio {
+> > > > > > +	compatible = "snps,dwmac-mdio";
+> > > > > > +	#address-cells = <1>;
+> > > > > > +	#size-cells = <0>;
+> > > > > > +
+> > > > > > +	sgmii_phy0: phy@8 {
+> > > > > > +		compatible = "ethernet-phy-id31c3.1c33";
+> > > > > > +		reg = <0x8>;
+> > > > > > +		device_type = "ethernet-phy";
+> > > > > > +		interrupts-extended = <&tlmm 7 IRQ_TYPE_EDGE_FALLING>;
+> > > > > > +		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
+> > > > > > +		reset-assert-us = <11000>;
+> > > > > > +		reset-deassert-us = <70000>;
+> > > > > > +	};
+> > > > > > +
+> > > > > > +	sgmii_phy1: phy@0 {
+> > > > > > +		compatible = "ethernet-phy-id31c3.1c33";
+> > > > > > +		reg = <0x0>;
+> > > > > > +		device_type = "ethernet-phy";
+> > > > > > +		interrupts-extended = <&tlmm 26 IRQ_TYPE_EDGE_FALLING>;
+> > > > > > +		reset-gpios = <&pmm8654au_2_gpios 9 GPIO_ACTIVE_LOW>;
+> > > > > > +		reset-assert-us = <11000>;
+> > > > > > +		reset-deassert-us = <70000>;
+> > > > > > +	};
+> > > > > > +};
+> > > > > > diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..3b524359a72d
+> > > > > > --- /dev/null
+> > > > > > +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> > > > > > @@ -0,0 +1,46 @@
+> > > > > > +// SPDX-License-Identifier: BSD-3-Clause
+> > > > > > +/*
+> > > > > > + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> > > > > > + */
+> > > > > > +/dts-v1/;
+> > > > > > +
+> > > > > > +#include "sa8775p-ride.dtsi"
+> > > > > > +
+> > > > > > +/ {
+> > > > > > +	model = "Qualcomm Technologies, Inc. QCS9075 Ride";
+> > > > > > +	compatible = "qcom,qcs9075-ride", "qcom,qcs9075", "qcom,sa8775p";
+> > > > > > +};
+> > > > > > +
+> > > > > > +&ethernet0 {
+> > > > > > +	phy-mode = "sgmii";
+> > > > > > +};
+> > > > > > +
+> > > > > > +&ethernet1 {
+> > > > > > +	phy-mode = "sgmii";
+> > > > > > +};
+> > > > > > +
+> > > > > > +&mdio {
+> > > > > > +	compatible = "snps,dwmac-mdio";
+> > > > > > +	#address-cells = <1>;
+> > > > > > +	#size-cells = <0>;
+> > > > > > +
+> > > > > > +	sgmii_phy0: phy@8 {
+> > > > > > +		compatible = "ethernet-phy-id0141.0dd4";
+> > > > > > +		reg = <0x8>;
+> > > > > > +		device_type = "ethernet-phy";
+> > > > > > +		interrupts-extended = <&tlmm 7 IRQ_TYPE_EDGE_FALLING>;
+> > > > > > +		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
+> > > > > > +		reset-assert-us = <11000>;
+> > > > > > +		reset-deassert-us = <70000>;
+> > > > > > +	};
+> > > > > > +
+> > > > > > +	sgmii_phy1: phy@a {
+> > > > > > +		compatible = "ethernet-phy-id0141.0dd4";
+> > > > > > +		reg = <0xa>;
+> > > > > > +		device_type = "ethernet-phy";
+> > > > > > +		interrupts-extended = <&tlmm 26 IRQ_TYPE_EDGE_FALLING>;
+> > > > > > +		reset-gpios = <&pmm8654au_2_gpios 9 GPIO_ACTIVE_LOW>;
+> > > > > > +		reset-assert-us = <11000>;
+> > > > > > +		reset-deassert-us = <70000>;
+> > > > > > +	};
+> > > > > > +};
+> > > > > > --
+> > > > > > 2.47.0
+> > > > > > 
+> > > > > 
+> > > > > -- 
+> > > > > With best wishes
+> > > > > Dmitry
+> > > > 
+> > > > 
+> > > > Thanks & Regards,
+> > > > Wasim
+> > > 
+> > > -- 
+> > > With best wishes
+> > > Dmitry
+> > 
+> > 
+> > Thanks & Regards,
+> > Wasim
+> 
 > -- 
-> 2.47.1
-> 
+> With best wishes
+> Dmitry
+
+Thanks & Regards,
+Wasim
 
