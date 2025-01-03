@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-135293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F66A00662
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:02:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B914FA00678
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:09:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 249591621D3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:02:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AB29162AE4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:09:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59FDE1CB518;
-	Fri,  3 Jan 2025 09:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF2A41D2F50;
+	Fri,  3 Jan 2025 09:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h1Olvkmk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vPfD+f1M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E27617ADE8;
-	Fri,  3 Jan 2025 09:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61921C549F;
+	Fri,  3 Jan 2025 09:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735894917; cv=none; b=V5OkHJAkK8txGnsldwkjLeyo2Eas/fWzPt3DFNWSsmHeryGGx86Dzp31Z2AP+G5sD7XNby4JMC8I1XHITMugJW4Khjv2J081818ikDRS5ONKiYf7dRG9ytJsmQ8EbOMAhtv9RujJgMeXPaXUdHwGITAhVqZKM3YP6SAvefm1dFE=
+	t=1735895338; cv=none; b=gLQTl8jq8WaJJ4VH9DDBVneg69P/w9jxyOlsuHCAlq/c4dG8zEjBvAb+JoCXpJRrs+QdMf02sQ3YOQAO7PT9aFCwucoTNV91+Bo/kSX8CCYaMPS4sAVgrWUVK47XXRGRquZ7jI2kH9Ol00F1FwIt88Lx20siwAmWCHjx/a6MVJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735894917; c=relaxed/simple;
-	bh=dej1w3wznw4+pK32N/BNJMDp7X9Fr5FtibwJ15ru3vI=;
+	s=arc-20240116; t=1735895338; c=relaxed/simple;
+	bh=XJ8i45PFmGwndiFkHJj4Edgjn+YmbNzlSuOPm4p76Us=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hr2ycAuMWMl/v1EH7m+UsC1VMZC0vxm4NzIqyjb/YLZQZpseENoO8GYpmKN1DkqU8blU46Ai2Xu6c366LpLR1JS5LTO+TLd5so7F6QNBZ1YibC0+Ig6v8PWwMr+rc/cZRutZ1FYesDTSW81QQ4Ai0U8I7X/wRwzGg9j5VP3j2I8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h1Olvkmk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F1AEC4CECE;
-	Fri,  3 Jan 2025 09:01:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hLIMqJoytUiijG/E57lOdVZdQkzTbxReKtvhszXF+vWUcoEo8o9CAxME5wED35vsC34iFJO9ezD2lYSh9GDZyq+iLIY4ngbIIGxbye1q57N7pbURmh3oT+z1JDn6BF7b0NpEaDpTb15Ie/WJKYU1VanDPEcZd0xfZXc9H32P64s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vPfD+f1M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F022AC4CECE;
+	Fri,  3 Jan 2025 09:08:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735894916;
-	bh=dej1w3wznw4+pK32N/BNJMDp7X9Fr5FtibwJ15ru3vI=;
+	s=k20201202; t=1735895338;
+	bh=XJ8i45PFmGwndiFkHJj4Edgjn+YmbNzlSuOPm4p76Us=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h1OlvkmkCfyjWIgpfocxMY/pzcbc0zaxpVUREHxZKnzzdOnS0XJAC8ScHtVQ6/V0C
-	 2tk4K8fHCsMZEXE4u9Jm8kwmrx0E/MvwJd9sYYVHSKM4FbDeDboJhNSuJ7+31A23DC
-	 P4rMG4YYGLzFBBfzjglXM5DuOV8pjhKphe0DOR55yZFWP9qnpvDNLSL2mr/Hd296Q8
-	 lOmT7iUjN+hg/7CucAyqx9ElvtJJepQCeB+sh/isym0bCNktYBcvLg37f6BflpGnMw
-	 kHIKAV6fEuoZW5gjRG9fpnG9HQscrb8fkZU87OURG+FWMqXs7+NqnPt9AruNQuwWOa
-	 4O3f9oAb+qDOQ==
-Message-ID: <44f9ead7-16c7-4437-910d-94ad7e7728f0@kernel.org>
-Date: Fri, 3 Jan 2025 10:01:50 +0100
+	b=vPfD+f1MOZjg+D12XWmcIx2MYmnlgbMYBQCIx4wo6R74n7Czi7HPcLEEZzbjq3lXv
+	 A7EChny9TSKYx/DPiefLX+PiT7yTKxcYP8h5U3gYf7pHMPvX6ZBPeXYj6AmuRoz8Gd
+	 g1uN1XKLyXqsyY/6N6oA2cqlSzosh6G241c8ateJgh41CvbQ7yDvE5qEoik92okT2g
+	 icYZfOH7sDunc1GlPg8ALwhBeNIq1GdzbnavLfssZdcqNvvBjXeyvWbGUIzi7pVJWk
+	 scPCZkq3MmdlJ3Uc1teTR2B3+PB+5NTfZYn/RmkICRioFnKpz/sVtuxfRIXhZL5kcz
+	 NHgwRXGALaVSA==
+Message-ID: <dd4a1d34-4266-43de-9a41-4b7b247d3226@kernel.org>
+Date: Fri, 3 Jan 2025 10:08:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] riscv: dts: Add the device tree of the XiangShan
- platform's nanhu soc
-To: qin shaoqing <qinshaoqing076@gmail.com>, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, robh@kernel.org,
+Subject: Re: [PATCH v2 1/1] power: supply: gpio-charger: Support to disable
+ charger
+To: Stefan Raufhake <raufhakestefan@gmail.com>,
+ sebastian.reichel@collabora.com
+Cc: sre@kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, s.raufhake@beckhoff.com,
+ s.dirkwinkel@beckhoff.com, s.raufhake@beckhoff.de, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- wangran@bosc.ac.cn
-References: <CAMq-bRkwJzn-_rvwreWU646Q64ZP-X61sczA5EG2Nubo9GN0Lw@mail.gmail.com>
+References: <a319101a-ab6a-40fd-9753-0593641b08f6@kernel.org>
+ <20250103081836.4499-1-raufhakestefan@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,109 +105,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAMq-bRkwJzn-_rvwreWU646Q64ZP-X61sczA5EG2Nubo9GN0Lw@mail.gmail.com>
+In-Reply-To: <20250103081836.4499-1-raufhakestefan@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/01/2025 09:48, qin shaoqing wrote:
-> This patch adds the device tree support for the XiangShan platform's nanhu soc
-
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-
+On 03/01/2025 09:18, Stefan Raufhake wrote:
+>>> to be bad. Please suggest better wording :)
 > 
-> Signed-off-by: qinshaoqing <qinshaoqing@bosc.ac.cn>
-> ---
-> arch/riscv/Kconfig.socs                     |   5 +
-> arch/riscv/boot/dts/Makefile                |   1 +
-> arch/riscv/boot/dts/xiangshan/Makefile      |   2 +
-> arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts | 226 ++++++++++++++++++++
-> 4 files changed, 234 insertions(+)
-> create mode 100644 arch/riscv/boot/dts/xiangshan/Makefile
-> create mode 100644 arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
+> Which part of the documentation is being referred to: the binding, the commit message, or another section? 
+> Once clarified, I can suggest a better wording in this part of the documentation.
 > 
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index f51bb24bc84c..89c80fd493fb 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -80,4 +80,9 @@ config SOC_CANAAN_K210
->   help
->     This enables support for Canaan Kendryte K210 SoC platform hardware.
+>>> P.S.: binding and driver should be send in separate patches.
+>>
 > 
-> +config SOC_XIANGSHAN
-> +        bool "XiangShan SoCs"
-> +        help
-> +          This enables support for XiangShan SoC platform hardware
-> +
-> endmenu # "SoC selection"
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index fdae05bbf556..43a79cc9dd7c 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -7,5 +7,6 @@ subdir-y += sifive
-> subdir-y += sophgo
-> subdir-y += starfive
-> subdir-y += thead
-> +subdir-y += xiangshan
+> In the next version, I will split the binding and driver into two separate patches.
 > 
-> obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_SOURCE))
-> diff --git a/arch/riscv/boot/dts/xiangshan/Makefile
-> b/arch/riscv/boot/dts/xiangshan/Makefile
-> new file mode 100644
-> index 000000000000..41e585490a97
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/xiangshan/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_SOC_XIANGSHAN) += nanhu-v3a.dtb
-> diff --git a/arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
-> b/arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
-> new file mode 100644
-> index 000000000000..560de7c7f22e
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/xiangshan/nanhu-v3a.dts
-> @@ -0,0 +1,226 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/* Copyright (c) 2023-2024 BOSC */
-> +
-> +/dts-v1/;
-> +
-> +/ {
-> + #address-cells = <2>;
-> + #size-cells = <2>;
-> + compatible = "bosc,nanhu-v3a";
+>> Yeah, still all my comments should be addressed.
+>>
+> 
+> Krzysztof, in the bindings for 'gpio-charger.yaml' (Documentation/devicetree/bindings/power/supply/gpio-charger.yaml), 
+> is the property name 'enable-gpios' suitable for you, or should I rename it? 
+> If a rename is needed, which name makes the most sense to you for this function?
 
-Please run scripts/checkpatch.pl and fix reported warnings. After that,
-run also `scripts/checkpatch.pl --strict` and (probably) fix more
-warnings. Some warnings can be ignored, especially from --strict run,
-but the code here looks like it needs a fix. Feel free to get in touch
-if the warning is not clear.
+enable-gpios is correct, assuming these is a different GPIO than one
+used for "charge-current-limit-gpios" for value of 0, as pointed out by
+Sebastian.
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-Maybe you need to update your dtschema and yamllint. Don't rely on
-distro packages for dtschema and be sure you are using the latest
-released dtschema.
+Existing example DTS in the binding clearly defines A.11 as
+enable-gpios. Maybe that's just coincidence, but I wonder how it would
+work for three gpios?
 
-
-> +
-> + cpus {
-> +  #address-cells = <1>;
-> +  #size-cells = <0>;
-> +  timebase-frequency = <24000000>;
-
-Your patch is corrupted or code is just wrong style. Impossible to review.
-
-Please follow DTS and kernel coding style documents.
+Anyway the example should be then fixed to reflect real intention, e.g.
+add enable-gpios and change "<0 0x02>; // 0 mA => GPIO A.11 high" into
+some value like 300 mA.
 
 Best regards,
 Krzysztof
