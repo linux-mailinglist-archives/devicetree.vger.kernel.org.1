@@ -1,104 +1,170 @@
-Return-Path: <devicetree+bounces-135222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3A0AA00328
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 04:30:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BE56A00332
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 04:39:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE217188409E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 03:30:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 461B8162D12
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 03:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B8F1537C6;
-	Fri,  3 Jan 2025 03:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EABA17DE36;
+	Fri,  3 Jan 2025 03:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="joXG8yyo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908232E401
-	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 03:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D148A17FE;
+	Fri,  3 Jan 2025 03:39:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735875036; cv=none; b=J1bQ1abqAAsq8l5lJ27UO6EgVKYcss/VJiHS2Vf/+UDs+RUsrqik2mVhSj46YLXj87KO4RaxlTbuv4NpIMkQ2Y2eld1NSSnffnk1KSjvsoGPCtPIMIcYg4SUvZtlEz+J7+Ggq2cYBZSOyoD+ZV/lu8ys5UdShMe+Qa39Okg9nwA=
+	t=1735875558; cv=none; b=s9uJ5HVk6Ut0tLh7R+zHiOMP5dd5DlPBNPKbgkeCF8lep5Qj6MHyRYQ5yy1br9s8yKFSyek+H6ah9Tg+nu8nputgCdCCUkqIKv0cdEeNHTGwdq9+X0k8h3vC0lT1jM/4EMxIaqi6tsZZ/8BdutaAJiR4oUM/8WSk0K3iEZZjMS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735875036; c=relaxed/simple;
-	bh=XA2rk13zNwqu9qb8XiY2lQeOb0nLvcdSFdsz5y/3xSU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gh5wsIkGIuMIbTKXRtfOBEC5M4Q9yzuOdddSAx/9YFdGBf22Uo1hC7wpwS0y3kGWmyK8392bQvvc1J7b7yWDb/t/OSdLvmX2rS/xCiwa3g6HCxGw8a/eEQmkmuF1Y9y/z5PzYte+Spntt+paaGdBb8K69Lup+h1KlD2YuElV5FI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [119.122.213.157])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 791e1b01;
-	Fri, 3 Jan 2025 11:30:22 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	kishon@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-phy@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	liujianfeng1994@gmail.com,
-	p.zabel@pengutronix.de,
-	robh@kernel.org,
-	vkoul@kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: rk3568: add reset-names for combphy
-Date: Fri,  3 Jan 2025 11:30:16 +0800
-Message-Id: <20250103033016.79544-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <688c8fb6-68f7-45f1-98fc-8b3252b3ecbf@kwiboo.se>
-References: <688c8fb6-68f7-45f1-98fc-8b3252b3ecbf@kwiboo.se>
+	s=arc-20240116; t=1735875558; c=relaxed/simple;
+	bh=VHn62V7zetOSceH+i+m60C1sUxxhCIAFsdqDtKpzozI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ehY5CCX8mKCF6OFMwzd03vnxoJNQUxr1FXRWomM1/qkdohiV9nW6XpV+w33h9I9iVgUzXxxkgnkOMYEGZST422gFQrmgmout4RVZuVU0UEcMGHNEQ5RRfZNsonA2D3SwN6L9Z8nY0gHNv+f6WJXba6vJDmGBU/jbdBHtiM7RRQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=joXG8yyo; arc=none smtp.client-ip=209.85.160.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-29fe7ff65e6so4382760fac.0;
+        Thu, 02 Jan 2025 19:39:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1735875556; x=1736480356; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fWwXRg1VmAks2w4R97EeyIv6mOzZzD/tfl3wr1RNSkc=;
+        b=joXG8yyoX6Rmv0wi3WGqfbbYAt4pO28kWhQnewI95eqkJdC62lMXuXy8wOVWYRTFXG
+         HqpPxv+/Bfp0g1WUZkVKrh2PK8+D0VoYzUMZWmEWV8+Debhgd45qLZTZ0a1D707/9pSz
+         Sx218EA9hJRWK/2oiWXAzzPRGoUQUOss791/KKwoWGoXnzcLDA/Pl5oDvleIN2Zi8Ee6
+         8c1fjDCqJcMt9MoB2gzQu9m90OhIZNKVSfBXuPsTJeWKcHUxeFti1lhVxCzassP+yjBv
+         bcMSbVOKF0BtV3HUhZ1E7fvkJuSv1B+t8bGU/zSu8brNC1rOdhM7X57/Yim+cnxYqV7n
+         e8MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735875556; x=1736480356;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fWwXRg1VmAks2w4R97EeyIv6mOzZzD/tfl3wr1RNSkc=;
+        b=WdwRpeuBzUE23b834ZFtrd5vRt8Ndu756z5jP669WCQZ+CoIp3mvdXHthrPdpuBvn7
+         ppY0W7HK2gjzdquFucRqZN2Oi3yRHuHuC3CqOORfkffTON4uNQCHzb8ySTmiys0FWJoG
+         LJFA9kqWWieAW3xJMhtROnvdGkCVRNMRyX9K2QK/Bz1zaZACxUkfVfadEI2rU+ZVPBpl
+         X1h7nSyqYlXUtTdyMp7To1sib+4frGbXjoK5qpIQNQLf3Ox1cyPgopEIfx9HiG5XZviD
+         jp4l+gEoebp+QylXh2/xRQ9zs4AAasSSDESqT0vxPaJPrXDHda0c5E+3z8NVX8bMVxd9
+         Xgpg==
+X-Forwarded-Encrypted: i=1; AJvYcCUFWVqNnMsYtSHwEthxiowgTqeLZHZcokAzCwDy/Ku9FGx6QJBFmV/Mdt99ThmnXRIgXzVuIIY45v/ZrAmI@vger.kernel.org, AJvYcCUXd4MxeCB73/aSGqDma6HtQrR00f5nubwfnNYLAeKZDTdniydD9xM8iEEOle7Q5xHvmW0M0xcdx4wMwCB2fSHSS90=@vger.kernel.org, AJvYcCWmFFsJEntLyNrroyDuxN38NWcgpenaGC6aLyUQXQlbVICx5v+1nC4JDRMZLi+Ji3f13zmPNNHW7PFZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwP3cOZiQXSjK5xmIAJH+npZaXibmFPHRJI1ogHX9wQKZmTZATT
+	JGD/OqPufBkLd0wcrk3t1uKO3wieR0+RS0/wLMITPuCLlyySJPyMfAa9g4Rs17i5bfjztcDgpUG
+	HdX3TN/yCd9e3/gSAGXV/hMMs/NE=
+X-Gm-Gg: ASbGncsqxLC273ZLM/AP6uZIRGn1AZZGbKgOfXknaxYxAE27xYNWLMM272BwAPVmabu
+	BDr6n6zrHoIjHTPl7qbhhJ+aJvXKzf30GdVNZcgE=
+X-Google-Smtp-Source: AGHT+IHM1WCCKkxCeYI87hg9rwTax0tUBhbUiByr3hkQB9kRpKdWUFzlO6HSwMJZ0R/M6soUxC9LGmKn4xDFLQOUr50=
+X-Received: by 2002:a05:6871:522b:b0:29e:40f8:ad9b with SMTP id
+ 586e51a60fabf-2a7fb0bfc5emr24896900fac.14.1735875555689; Thu, 02 Jan 2025
+ 19:39:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCQ0sdVkxCGR1KSxhCGh5PQ1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSFVKTkxZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
-	tZBg++
-X-HM-Tid: 0a942a36cf0d03a2kunm791e1b01
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NAw6Ezo5HTISIS0VPy5ODTA9
-	KhVPFDVVSlVKTEhOQ0xOS0lIQ0hPVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	QlVKSUlVSUpIVUpOTFlXWQgBWUFKS0tMNwY+
+References: <20241217-acpm-v4-upstream-mbox-v5-0-cd1d3951fe84@linaro.org>
+ <20241217-acpm-v4-upstream-mbox-v5-1-cd1d3951fe84@linaro.org>
+ <ec3cdfd1-df7a-466c-8581-c9546ca6b089@linaro.org> <CABb+yY0rBzP8JPAik5aaXp6GivQKEf++sgiMM9fTPgd_5YXT1w@mail.gmail.com>
+ <eaab647a-f6f4-4562-89fa-e64daa80bdf4@linaro.org>
+In-Reply-To: <eaab647a-f6f4-4562-89fa-e64daa80bdf4@linaro.org>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Thu, 2 Jan 2025 21:39:04 -0600
+Message-ID: <CABb+yY0AkpqC_P-3cHeuWDu-gJzxCnarsNFNQWk45+tHKrDLmg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: mailbox: add google,gs101-mbox
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org, 
+	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
+	daniel.lezcano@linaro.org, vincent.guittot@linaro.org, ulf.hansson@linaro.org, 
+	arnd@arndb.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
-> The other patch in this series:
-> arm64: dts: rockchip: rk3568: add reset-names for combphy
-> is missing in v6.13-rc5, which will break pcie2 of rk3568
-> because the phy driver has changed.
+On Sat, Dec 21, 2024 at 12:45=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linar=
+o.org> wrote:
+>
+> Hi, Jassi,
+>
+> Thanks for the review!
+>
+> On 12/21/24 2:19 AM, Jassi Brar wrote:
+> > On Thu, Dec 19, 2024 at 4:51=E2=80=AFAM Tudor Ambarus <tudor.ambarus@li=
+naro.org> wrote:
+> >>
+> >> Hi, Krzysztof, Jassi,
+> >>
+> >> On 12/17/24 9:40 AM, Tudor Ambarus wrote:
+> >>
+> >>> diff --git a/Documentation/devicetree/bindings/mailbox/google,gs101-m=
+box.yaml b/Documentation/devicetree/bindings/mailbox/google,gs101-mbox.yaml
+> >>
+> >> cut
+> >>
+> >>> +
+> >>> +  '#mbox-cells':
+> >>> +    description: |
+> >>> +      <&phandle type channel>
+> >>> +      phandle : label name of controller.
+> >>> +      type    : channel type, doorbell or data-transfer.
+> >>> +      channel : channel number.
+> >>> +
+> >>> +      Here is how a client can reference them:
+> >>> +      mboxes =3D <&ap2apm_mailbox DOORBELL 2>;
+> >>> +      mboxes =3D <&ap2apm_mailbox DATA 3>;
+> >>> +    const: 2
+> >>> +
+> >>
+> >> Revisiting this, I think that for the ACPM interface mailbox client us=
+e
+> >> case, it would be better to introduce a mbox property where I referenc=
+e
+> >> just the phandle to the controller:
+> >>         mbox =3D <&ap2apm_mailbox>;
+> >>
+> >> The ACPM interface discovers the mailbox channel IDs at runtime by
+> >> parsing SRAM. And all ACPM's channels are of type DOORBELL, thus
+> >> specifying the type and channel in DT is redundant.
+> >>
+> >> It would require to extend a bit the mailbox core to provide a
+> >> mbox_request_channel_by_args() method. I already wrote a draft and
+> >> tested it.
+> >>
+> >> Do you find the idea fine?
+> >>
+> > Looking at v6, I prefer this version... maybe modify it a bit.
+>
+> Just to summarize for the readers, in the end I chose for the
+> controllers to allow #mbox-cells =3D <0>; and for the clients to still us=
+e
+> the mboxes property, but just to reference the phandle to the controller:
+>         mboxes =3D <&ap2apm_mailbox>;
+>
+This was already supported, see drivers/mailbox/bcm2835-mailbox.c for examp=
+le.
 
-I don't know why the dts patch hasn't been merged into the mainline yet.
-Maybe the merge window is different. Can you test the following patch?
+> Then I updated the mailbox core to allow clients to request channels by
+> passing some args containing channel identifiers to the controllers,
+> that the controllers xlate() using their own method.
+>
+This is unnecessary.
+If you don't pass the doorbell number from DT, each channel populated
+by the driver is just a s/w construct or a 'virtual' channel. Make use
+of 'void *data'  in send_data() to specify the doorbell.
 
-```
---- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-+++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-@@ -325,6 +325,10 @@ static int rockchip_combphy_parse_dt(struct device *dev, struct rockchip_combphy
- 	priv->ext_refclk = device_property_present(dev, "rockchip,ext-refclk");
- 
- 	priv->phy_rst = devm_reset_control_get(dev, "phy");
-+	/* fallback to old behaviour */
-+	if (IS_ERR_OR_NULL(priv->phy_rst))
-+		priv->phy_rst = devm_reset_control_array_get_exclusive(dev);
-+
- 	if (IS_ERR(priv->phy_rst))
- 		return dev_err_probe(dev, PTR_ERR(priv->phy_rst), "failed to get phy reset\n");
- 
-```
-
-Thanks,
-Chukun
-
--- 
-2.25.1
-
+Cheers.
+Jassi
 
