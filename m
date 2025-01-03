@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-135302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED575A00704
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:33:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B5BBA00710
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:35:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CBE57A15A4
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:33:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 473901635AD
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1895B1EC00B;
-	Fri,  3 Jan 2025 09:32:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CD701F8F1C;
+	Fri,  3 Jan 2025 09:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FF6W3Kpd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gz/xcJBr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2691E47C6;
-	Fri,  3 Jan 2025 09:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E6A1148832;
+	Fri,  3 Jan 2025 09:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735896778; cv=none; b=I9lSANUiVmZJy9FY40+f2Ic704/mMQ2oza654RPhkKJ8Bfe93rgP7PU5RaRHatgNl4GoaV8t5pe6pEbFVDQvVYDZ+ulDxBSCTq173Jt9ksfDmNesOsFSccxfzk7vNhcLfBe2FOdzbBdtYvBuaip6cMnjMlUww0HEwtFAs/lAR04=
+	t=1735896933; cv=none; b=SUnv2Ngpby8bkrxv0z6JXzP/H2Jq6RFhPTFZ920c9ZBVJmeEc8GO+Ah3m1ChRmLVWC/Lye8+Raee83zrgeIFfp7G3RewCtwJSxqkjw39jEEYkc1wwFkhdJBXaGEUqnByV5A+Wgrm8hXi28/ctJmTWDmZTanqBXvuoueuB/u3Pgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735896778; c=relaxed/simple;
-	bh=FY5E9cL/SAYzqzsgtK3mk9C8t7xTelHCQ0xwdrVefoM=;
+	s=arc-20240116; t=1735896933; c=relaxed/simple;
+	bh=3rgvfW4UrPtlO2HZdaDGzQDgLmBAGWc2QCBGhLMl06g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GT9hf6X3yRLVBdSBIzoWhr7o81AK8KEw+ELIZEQgFzeC3yHbHqNRoI1yeg8Cono0UqYzhCAQzpKC8KI5y2arTcOO1iM7lTAkP0vs0wKdn73ChFE6NrIbDTDDd+mwSfqUU1WYe6KHBTWs2lmPz+Y5w+guR7BFHK0roTzkuo0DBvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=FF6W3Kpd; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1735896774;
-	bh=FY5E9cL/SAYzqzsgtK3mk9C8t7xTelHCQ0xwdrVefoM=;
+	 In-Reply-To:Content-Type; b=Xde6cqVjIy4PCmPxVE/Wxbg1qb/fCu7M+50vA6QvO9+wc7EuEdn7a1j6BGi9hKYGm2tfBXIH1FBybqfbvVbO5ZAAYCWxp07vnGoWMMTQcMrpam2DCVHSvaGrFbLq74uIrQfmJtEs83YE6j8C7ffTd8cVkGYxuGhx1Iv5LwdS3cg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gz/xcJBr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7143AC4CED7;
+	Fri,  3 Jan 2025 09:35:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735896931;
+	bh=3rgvfW4UrPtlO2HZdaDGzQDgLmBAGWc2QCBGhLMl06g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FF6W3Kpd/m+c0lo7fg1PtLKOmpuzIDHPDkecVV3ai2ae1w8RwKwKWmKqIIPYlcQcu
-	 hrcb+R/1JfdOeU3/G42lI86QdDjJG3mIY2VMEftHoDAoD3fh76W13H4p+1KMmJm1mU
-	 8LeyzhYNy/rdLgCsvUfd9QSzpYfZuGrAuNBM9QUrJ7YtTJmKGJXO5XbwBTotVQB/8o
-	 oWlyHTrDdnClumMr7LuWaAWMo+aFsuUq5uxVMHeWgj+z8tbTZDLaghGrf7NUqbDASs
-	 CWDFWIxXZZYKmZcPZnabLBx7qEAe0vjbtEIdRZzbK22A3aQPveJlgBfTS/YA8Cy2h/
-	 /BNr+9WCLgKng==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5953F17E153F;
-	Fri,  3 Jan 2025 10:32:53 +0100 (CET)
-Message-ID: <e7d162b8-23c4-4a75-9675-9ba82564a4ff@collabora.com>
-Date: Fri, 3 Jan 2025 10:32:52 +0100
+	b=Gz/xcJBrG3JJg1FW2ErCOw0JHq73YntEmIuHt3ni34sVZ0wUclSwdLUDDtt4oDDkx
+	 DwgkrX7DvoMltzvKkH0Tund11QWoa+pEtBzF/bmx/VklnfFseaLZ4Scb12GsOFJAvU
+	 qlxwFYTFC4nOrE9MUcE2kH3fINLXOkogZRXi+Iusek8FvavE3vt9ZNwDx09ST57atY
+	 E9J+jqeD7+MOGiLgbcDYCQUpn7UOJWdNJJfeqRh+d6rOgOu8eS1nn/owm95GC+poTJ
+	 jsqbog0BGc0VSqZv0SMlLN2rSjKW+2Dm4u+5yWlzGDBKIF6y84LKdLemPBCEtvGW7C
+	 SWL7KJb7HMwrQ==
+Message-ID: <3803fad5-0dab-491c-b2bf-47ab888bb1a2@kernel.org>
+Date: Fri, 3 Jan 2025 10:35:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,64 +50,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: mediatek: Add MT8186 Skitty Chromebooks
-To: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- herbert1_wu@pegatron.corp-partner.google.com
-References: <20250103-b4-add_mt8186_skitty-v1-1-96ac770842d8@pegatron.corp-partner.google.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
+ property
+To: Peter Korsgaard <peter@korsgaard.com>, Guenter Roeck
+ <linux@roeck-us.net>, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250102175041.822977-1-peter@korsgaard.com>
+ <b3b8aa28-24d3-4952-a8d3-7019ad4c63de@kernel.org>
+ <348cda09-cc54-4d29-975c-ab28241d8372@korsgaard.com>
+ <e31c51dc-4e35-49fe-9838-207e2fb273ce@kernel.org>
+ <25a1b5bd-437c-4136-84d4-e1eab264d062@korsgaard.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20250103-b4-add_mt8186_skitty-v1-1-96ac770842d8@pegatron.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <25a1b5bd-437c-4136-84d4-e1eab264d062@korsgaard.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 03/01/25 10:23, Geoffrey Chien ha scritto:
-> Add an entry for the MT8186 based Skitty Chromebooks, also known as the
-> HP Chromebook G1m 11 inch. The device is a clamshell laptop with an
-> optional touchscreen or keyboard.
+On 03/01/2025 10:01, Peter Korsgaard wrote:
 > 
-
-Since it makes no sense to have this device in the binding without actual
-devicetrees, please send this one as the first patch in a series where you
-introduce those devices.
-
-Cheers,
-Angelo
-
-> Signed-off-by: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
-> ---
->   Documentation/devicetree/bindings/arm/mediatek.yaml | 8 ++++++++
->   1 file changed, 8 insertions(+)
+> Looking at lore, v1 used target-pwm which Gunter suggested I changed to 
+> default-rpm while explaining that it cannot be a generic property:
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index 1d4bb50fcd8d9aadb7b77e144a474b79da005056..b57e86946d7565720fdee31b2bbef288b0508769 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -263,6 +263,14 @@ properties:
->             - const: google,steelix-sku196608
->             - const: google,steelix
->             - const: mediatek,mt8186
-> +      - description: Google Skitty (HP Chromebook G1m 11 inch)
-> +        items:
-> +          - const: google,skitty-sku1
-> +          - const: google,skitty-sku2
-> +          - const: google,skitty-sku3
-> +          - const: google,skitty-sku4
-> +          - const: google,skitty
-> +          - const: mediatek,mt8186
->         - description: Google Steelix (Lenovo 300e Yoga Chromebook Gen 4)
->           items:
->             - enum:
+> https://lore.kernel.org/linux-devicetree/b717da30-1d4c-4e09-b98c-4aa41a235234@roeck-us.net/
 > 
-> ---
-> base-commit: 0bc21e701a6ffacfdde7f04f87d664d82e8a13bf
-> change-id: 20250103-b4-add_mt8186_skitty-fe04d863592f
+> Which I then did as a v2, that then didn't get any additional feedback:
 > 
-> Best regards,
+> https://lore.kernel.org/linux-devicetree/3aa21a01-c994-4b36-8893-181e55a60c5e@korsgaard.com/
+> 
+> So if we agree on default-pwm, then I can send an update (a v4!) with 
+> the typo in the example fixed, OK?
 
+Yes and we go back to my first comment about commit msg:
 
+"Also mention here shortly how Rob's comment is addressed."
+
+e.g. we cannot use default/target-rpm because of foo bar.
+
+Best regards,
+Krzysztof
 
