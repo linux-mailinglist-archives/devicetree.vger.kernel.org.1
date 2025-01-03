@@ -1,44 +1,55 @@
-Return-Path: <devicetree+bounces-135297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748A8A0069C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:16:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05165A006A0
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:17:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9DCA188428A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:16:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B8F8188428C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D5471C9DD7;
-	Fri,  3 Jan 2025 09:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 458E21CEEA4;
+	Fri,  3 Jan 2025 09:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="otvM7b/F"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Rq/Nee+j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFB031BEF93
-	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 09:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98C61BEF93;
+	Fri,  3 Jan 2025 09:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735895810; cv=none; b=YrHzPKkKOdJAI6Uwcsb8ruOLRCH0C4ranm6KnRR8/oEaCTZQ50CPV93lFxqNOeQHhJlRGjOIxxMJ5Ztw4cXABk6VZkdf5PpsWByaFz23vIJ/qjeOO+lstFwAkTGXzIrdKKJ4DmVZc99al18OHHP2DkLuQ3pbeZaWTP1shekiekM=
+	t=1735895823; cv=none; b=ItZ4X1mV+A292HQGi7sC3N0wgpc8wCiV/qTTWz5NhJ+jzdB+ClobjX9a46uKwwYD1EUp1AwNAJ8SomwdsHJT+rW9pZjXJ+htzFe3m7crBUmsuIHla46J9gEX/Fe4IPOHdADFytD9V5oZX8g79HoMkWx9OdDDmx3ooNj1cFNG+qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735895810; c=relaxed/simple;
-	bh=jll8r/u8sZ/0KgiwoGlKUd4V48/B4MTHO9pEurOPBRM=;
+	s=arc-20240116; t=1735895823; c=relaxed/simple;
+	bh=1CnyMTeJ8ysgXUP5VxJNbzr0U48clwMyqfioLg6cdpA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A+Y/bYJE7wNtOHtlpg5NmTgonVhFZOf75IXi9eBn6awYoFlNFJYLmCIp+n4ud77wzaXal1ZOnWVSPSzc17urxkvfwTDoESk9inGC2MPel4Xs45XBX5gVPI6n8LEaQ5DxqALDBnBpLlK4DuEysQuF1HMV5zNLzz1gdhdgn3Be8XI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com; spf=pass smtp.mailfrom=korsgaard.com; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=otvM7b/F; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=korsgaard.com
-DKIM-Signature: a=rsa-sha256; b=otvM7b/FO27Uw8b8YuK6SYC8HpswuhXYzM/QonTvKDeWRcyVUHHlI9tdOxCWwTftS+KOnMqkVDACF8HI0+9LQQCQ7qJ6BS/w0sDI3DgDs2M7IKA54penmdaypz9ru42HY4t1y5lzyzuWuRuK6kU2cYnjv8PKviJ+qRH9QHlwfd+OHJzEvefNK4Prw8gogmmogZH7bPmyC3zqrItEwWCzv2cEPmcJgPKFyHU47MNXvn71nOovM7dhAnY33vzxcp8tOKhNmfunIJdUweXx+ZJW9D6M2DTv39h8HW2k/f1sTz/EU4eesIRM2SFkurr6zsHW5bcO1azAAUsw9exc8OrFgg==; s=purelymail3; d=purelymail.com; v=1; bh=jll8r/u8sZ/0KgiwoGlKUd4V48/B4MTHO9pEurOPBRM=; h=Feedback-ID:Received:Date:Subject:To:From;
-Feedback-ID: 21632:4007:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -2144673025;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Fri, 03 Jan 2025 09:16:26 +0000 (UTC)
-Message-ID: <c14e5b92-5952-4c7f-a64c-38e579278fa2@korsgaard.com>
-Date: Fri, 3 Jan 2025 10:16:23 +0100
+	 In-Reply-To:Content-Type; b=dyg8KuaCKuXHMfDjfOYKh2XoHVcYxInqjNQql6ue2V6QEPdqAPfV6hmOEVRgHodWEpwKFVUGtuWlpylvD5+n+ZYlOIDdRp/QEaJG2rpgmobHRZUlW3xhAxbewZCwQvpeHN8JEvXRUgU8LikceMxZYQLnnbCBBmu+DuKe0Fckc/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Rq/Nee+j; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1735895818;
+	bh=1CnyMTeJ8ysgXUP5VxJNbzr0U48clwMyqfioLg6cdpA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Rq/Nee+jtD2JzgIstOTpzkS/hKkhH/BELuLz/reyl2Bas2hdhWhNTn2+WVSkJ2lLh
+	 ryty4opmx5b5fWCZaw5P/lzmb7MqAgzR4sXg3OzArCAN84oJ4vMPUpB3UI3VUC3RBa
+	 2bI6LEglW+hrdrHG3ShD+fF/yHNFc79hSPcd5lnqUp/xkOUipI4GMQcoPgjzh5Mmzh
+	 zEzV7kYa0we8dyup5CItvJhgouOxTD1tj3XXJddRgwJ9sUWjg6KD7nksY24eqRi4Vz
+	 7IEdDdjzn1dY9Idtawa+WIFMGiVgsCGzfkM7KU75Zdpcrqo5QeQhVGpHkwEOosnH/C
+	 sUlJfoSNgdL0w==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1554817E1542;
+	Fri,  3 Jan 2025 10:16:58 +0100 (CET)
+Message-ID: <b5ef9501-e07d-4150-9518-dd982518919e@collabora.com>
+Date: Fri, 3 Jan 2025 10:16:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,52 +57,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
- property
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
- linux-kernel@vger.kernel.org
-References: <20250102175041.822977-1-peter@korsgaard.com>
- <173584586623.427850.4042944653628496064.robh@kernel.org>
+Subject: Re: [PATCH 3/5] PCI: mediatek-gen3: Disable ASPM L0s
+To: Jianjun Wang <jianjun.wang@mediatek.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Ryder Lee <ryder.lee@mediatek.com>, linux-pci@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Xavier Chang <Xavier.Chang@mediatek.com>
+References: <20250103060035.30688-1-jianjun.wang@mediatek.com>
+ <20250103060035.30688-4-jianjun.wang@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Peter Korsgaard <peter@korsgaard.com>
-In-Reply-To: <173584586623.427850.4042944653628496064.robh@kernel.org>
+In-Reply-To: <20250103060035.30688-4-jianjun.wang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 1/2/25 20:24, Rob Herring (Arm) wrote:
+Il 03/01/25 07:00, Jianjun Wang ha scritto:
+> Disable ASPM L0s support because it does not significantly save power
+> but impacts performance.
 > 
-> On Thu, 02 Jan 2025 18:50:40 +0100, Peter Korsgaard wrote:
->> The pwm-fan driver uses full PWM (255) duty cycle at startup, which may not
->> always be desirable because of noise or power consumption peaks, so add an
->> optional "default-pwm" property that can be used to specify a custom default
->> PWM duty cycle.
->>
->> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
->> ---
->>   Documentation/devicetree/bindings/hwmon/pwm-fan.yaml | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml: default-pwm: missing type definition
-> Error: Documentation/devicetree/bindings/hwmon/pwm-fan.example.dts:75.25-27 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/hwmon/pwm-fan.example.dtb] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-> make: *** [Makefile:251: __sub-make] Error 2
 
-Ups, I added the entry to the example AFTER running make 
-dt_binding_check and missed the <>, will fix.
+That may be a good idea but, without numbers to support your statement, it's a bit
+difficult to say.
 
--- 
-Bye, Peter Korsgaard
+How much power does ASPM L0s save on MediaTek SoCs, in microwatts?
+How is the performance impacted, and on which specific device(s) on the PCIe bus?
+
+Cheers,
+Angelo
+
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> ---
+>   drivers/pci/controller/pcie-mediatek-gen3.c | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
+> index ed3c0614486c..4bd3b39eebe2 100644
+> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
+> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+> @@ -84,6 +84,9 @@
+>   #define PCIE_MSI_SET_ENABLE_REG		0x190
+>   #define PCIE_MSI_SET_ENABLE		GENMASK(PCIE_MSI_SET_NUM - 1, 0)
+>   
+> +#define PCIE_LOW_POWER_CTRL_REG		0x194
+> +#define PCIE_FORCE_DIS_L0S		BIT(8)
+> +
+>   #define PCIE_PIPE4_PIE8_REG		0x338
+>   #define PCIE_K_FINETUNE_MAX		GENMASK(5, 0)
+>   #define PCIE_K_FINETUNE_ERR		GENMASK(7, 6)
+> @@ -458,6 +461,14 @@ static int mtk_pcie_startup_port(struct mtk_gen3_pcie *pcie)
+>   	val &= ~PCIE_INTX_ENABLE;
+>   	writel_relaxed(val, pcie->base + PCIE_INT_ENABLE_REG);
+>   
+> +	/*
+> +	 * Disable L0s support because it does not significantly save power
+> +	 * but impacts performance.
+> +	 */
+> +	val = readl_relaxed(pcie->base + PCIE_LOW_POWER_CTRL_REG);
+> +	val |= PCIE_FORCE_DIS_L0S;
+> +	writel_relaxed(val, pcie->base + PCIE_LOW_POWER_CTRL_REG);
+> +
+>   	/* Disable DVFSRC voltage request */
+>   	val = readl_relaxed(pcie->base + PCIE_MISC_CTRL_REG);
+>   	val |= PCIE_DISABLE_DVFSRC_VLT_REQ;
+
+
 
