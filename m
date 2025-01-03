@@ -1,115 +1,280 @@
-Return-Path: <devicetree+bounces-135409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFD28A00E13
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:51:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8653EA00E1A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:55:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2533018850FB
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:52:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E03F1883895
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:55:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C003D1FBCB7;
-	Fri,  3 Jan 2025 18:51:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7872F1FC0E0;
+	Fri,  3 Jan 2025 18:55:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FD2Xt62S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A6EB1FAC49;
-	Fri,  3 Jan 2025 18:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49E8C1A8F80;
+	Fri,  3 Jan 2025 18:55:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735930313; cv=none; b=CGNh9gib/fBqn9wUH4Pu+PkI41+asADcWWbv6baF2J0oump6sCM9UbwXC97K3Yn3uURlkF5D6B7DAcycQ3LSYmHk3nHwfal8wScXbNXwS6HKDLLEiKK4/duNY7ap63vfOcj9ikYPIHwgpGp5P89+V1709878jdSbpVTeUVJ2NdQ=
+	t=1735930537; cv=none; b=MYNL6yHAXZX9FsKd26W8Lz9RMpfnfWNEHxoHbElPj1pEBtqfE13iyVlXLBq9nInHlOyzUKi3HVCXZ3uzxYt8DRwEXmtIIPYVI9Ho2/ezck06TCxDi2zfc8TximfniBOBPKbjN90vTcumK/GWRhUD00A6YTBB5tUR1KVxFH9sVm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735930313; c=relaxed/simple;
-	bh=i6AQPNm8kweBoFAB3WaCxDVdsRTW3lpzSrXmCL6h2f8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BAnZvv8cYhz/ROUFpPxPYVTqf9WW5as2zZlMMTQSaYvhfiYj+UNTdEu6tkrSbNeQmA44AfEr7oWJS2c9UhqpgJU++5GoKI7IE/A85YImlKqeLPeKNFJIG+dY8paw/tAKtuJZtWce2daC0J9mdAR24VT1BAawcGYrY2yRTLpgRRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-51640f7bbd3so3793123e0c.2;
-        Fri, 03 Jan 2025 10:51:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735930311; x=1736535111;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sZy0sbitpsA/U06Jvg9KjvfY+VLijKd/wneOC9eJIZE=;
-        b=ESL1Ae1YqhDc1ZOJtw2hfFh2xb1HdQlSJwg35+Iqaer7kfHm3dhB35DFYjUOmIAAYR
-         LiiP/D0efbKgtOJtlBFLMQnHvog4pzwXC0aNNsfZh43I61pJm6qaUaHQ3oDvXEtRKMEW
-         /Z1+IFWjHx5znV0MNhkVk5YAM9ZhLuLZE+REyf5UG/TeysWcoLIWYNdtWf+2w8vfCpfl
-         ckNiECTu0sXHc6zLQ4/97PXCaxiu1drkhmBji3+lb22/HnHSCF2L9ESBkHxGGYKe/lL+
-         y9H7OHJniYQhLACRVhCvF/epzmUP76aq4CPrtlzxC8mVlqJD61IYIQqe9/Eg7c1OQ/Eh
-         VFKA==
-X-Forwarded-Encrypted: i=1; AJvYcCVl/fPKZonhRgpQxDNq/oJwibbaVGGDh5Wsv37LutKf0LTqEhHk42lasJq+oF6s56aeGE40lcJyLvkB@vger.kernel.org, AJvYcCXP6UcIpjGbgm34zbCr3stU2x75ECiGwPtpoLCVgoKMD+bumjFQqRh2f2EBQpd4EZ2uUFWXkXXKtU8mrYFhUWGOUxI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUWY7zC5JQU5ZAgLi7EKM3EcUO3hYRCuQni/UrcpZOlIjXjEjl
-	ni4W6vZQ0+Tq5plmJQfNh4tG5sSce72b1Khd2fJjbIwX35RgcLdjW0UCmv9lFsA=
-X-Gm-Gg: ASbGncuKjNlLtUOJD7anGE/DnobcJjSFbWdJIUXIL8mAyK4B//QybPAfYmYqy8Ae3OY
-	FDKqnD9uBVYF6vX/curzclIuhIe4OwzscXxSdOumC89XbjN/+qK3mb16csQ8WbJW9kPTx52351i
-	/PmYjEpOGKSby/EW8tXu10L40WNLKk9nKKX27/WZWyUaj29Lv4yLO+B7u2JDJhqyVtPtbbmqlu0
-	aoNpUxhL3pWw+6QI48Ayvaw2F6jSrlhzNHL6lvNf8/a3bDcmG0msn5+OczQ951L9RhZwnxb/BJT
-	2GDNIDWppncUwDrDC/Q=
-X-Google-Smtp-Source: AGHT+IHReo00BXUxem2Safs+rLd2q2yR0tpnChV4i5G66tpfbljreTmv+JOzHtvEEeQ3zMDccB4SYw==
-X-Received: by 2002:a05:6122:4014:b0:515:4ff6:10c1 with SMTP id 71dfb90a1353d-51b75abb4b1mr35107736e0c.0.1735930310152;
-        Fri, 03 Jan 2025 10:51:50 -0800 (PST)
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-51b68bae028sm3343547e0c.17.2025.01.03.10.51.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Jan 2025 10:51:49 -0800 (PST)
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4afd56903b7so3159623137.1;
-        Fri, 03 Jan 2025 10:51:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUcy5qSk4IQBQ58cLDhokf3WichE82XwvyStoSLWsE9O6fd+DR9uIeSp94vCxQeHakcB/0OA091NezOzzwtL+x/SOQ=@vger.kernel.org, AJvYcCXynjzbuulZ2L0ujnAqnDAI7DHycPLB3SQWOTxAkTowRItHuP0epx6KwZGO3SogGQCM8h6Pffat7tdi@vger.kernel.org
-X-Received: by 2002:a05:6102:b04:b0:4af:be6e:f0aa with SMTP id
- ada2fe7eead31-4b2cc49d580mr29184306137.25.1735930309401; Fri, 03 Jan 2025
- 10:51:49 -0800 (PST)
+	s=arc-20240116; t=1735930537; c=relaxed/simple;
+	bh=XQxYutNgrITYpUa9i4dLX5UIo7Vh+etoJ94keWJktx0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TEZzLcv8QAM/alJj/DPjbh7WBlpOh9dFUzJ1D0e9Vm8NgDVeVcS9sZTC1TSc625VubvQ2ne/xjKfnIC6P3IkNXfF2572XWKRLqxWkcH9J8sHsG7vbqgUBF6JspIjsp+gSUxzlmhdtRyYC6+xVMnZwpsfaNPOKux70l9sh/Cfsxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FD2Xt62S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA394C4CED2;
+	Fri,  3 Jan 2025 18:55:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735930536;
+	bh=XQxYutNgrITYpUa9i4dLX5UIo7Vh+etoJ94keWJktx0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FD2Xt62SwcGD/iot4UTktOgDx0pupKu3+l2s1JX8e+wyFnyFG4eKajMWrLRfnGKEy
+	 SO7gh/SkLthepU5wfB2xqMDQdJwa8tyBZDN0jD8ynydKUf6qCTIAiII3ekKlUXOLU1
+	 6fQU8sTIowPnBEX8zRJGclu+0TKYkJVP0eKXPSYJjYYbtC8iBztPV2dF7y8yJu5yzz
+	 wTISr3FZMLFBcIO6N7M1JR4vnk9+kPhUe/D3A9uwaAGFzJ50UotZS5FVFjdb++5tAI
+	 CCmPQ8EemmpyQ5T8d/mGxpRV6bcBUw5eJUGFpv6bZ/pjbEGIs1tvJBFbvD8ocUL/Y5
+	 mkU+YKTSf1z0A==
+Date: Fri, 3 Jan 2025 12:55:35 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Chuan Liu <chuan.liu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+	devicetree <devicetree@vger.kernel.org>,
+	linux-clk <linux-clk@vger.kernel.org>,
+	linux-amlogic <linux-amlogic@lists.infradead.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>,
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: add Amlogic T7 PLL clock
+ controller
+Message-ID: <20250103185535.GA2552898-robh@kernel.org>
+References: <20241231060047.2298871-1-jian.hu@amlogic.com>
+ <20241231060047.2298871-2-jian.hu@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241216195325.164212-1-biju.das.jz@bp.renesas.com> <20241216195325.164212-8-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20241216195325.164212-8-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 3 Jan 2025 19:51:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVnvdtoR5Vh6gr6g1WYpz=Hrp5vPgeLDRoqsuV32oW1Pw@mail.gmail.com>
-X-Gm-Features: AbW1kvaytxgcyt0xnRlb0IXcqu1F5fMFoOwoi-dBPuH8P40MKYmon79rYHdpkj0
-Message-ID: <CAMuHMdVnvdtoR5Vh6gr6g1WYpz=Hrp5vPgeLDRoqsuV32oW1Pw@mail.gmail.com>
-Subject: Re: [PATCH v4 7/7] arm64: dts: renesas: r9a09g047: Add scif pincontrol
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241231060047.2298871-2-jian.hu@amlogic.com>
 
-On Mon, Dec 16, 2024 at 8:53=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Add device node for scif pincontrol.
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Tue, Dec 31, 2024 at 02:00:43PM +0800, Jian Hu wrote:
+> Add DT bindings for the PLL clock controller of the Amlogic T7 SoC family.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
-> v3->v4:
->  * Replaced rzg2l-pinctrl.h->renesas,r9a09g047-pinctrl.h header file.
->  * Retained Rb tag.
+>  .../bindings/clock/amlogic,t7-pll-clkc.yaml   | 115 ++++++++++++++++++
+>  .../dt-bindings/clock/amlogic,t7-pll-clkc.h   |  57 +++++++++
+>  2 files changed, 172 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,t7-pll-clkc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+> new file mode 100644
+> index 000000000000..f90e6021d298
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,t7-pll-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic T7 PLL Clock Control Controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@amlogic.com>
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,t7-pll-gp0
+> +      - amlogic,t7-pll-gp1
+> +      - amlogic,t7-pll-hifi
+> +      - amlogic,t7-pll-pcie
+> +      - amlogic,t7-mpll
+> +      - amlogic,t7-pll-hdmi
+> +      - amlogic,t7-pll-mclk
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,t7-pll-gp0
+> +              - amlogic,t7-pll-gp1
+> +              - amlogic,t7-pll-hifi
+> +              - amlogic,t7-pll-pcie
+> +              - amlogic,t7-mpll
+> +              - amlogic,t7-pll-hdmi
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: pll input oscillator gate
+> +
+> +        clock-names:
+> +          items:
+> +            - const: input
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,t7-pll-mclk
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: mclk pll input oscillator gate
+> +            - description: 24M oscillator input clock source for mclk_sel_0
+> +            - description: fix 50Mhz input clock source for mclk_sel_0
+> +
+> +        clock-names:
+> +          items:
+> +            - const: input
+> +            - const: mclk_in0
+> +            - const: mclk_in1
 
-Thanks, will queue in renesas-devel for v6.14.
+Define the names and descriptions at the top level. Then here just say 
+'minItems: 3'
 
-Gr{oetje,eeting}s,
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        gp0:clock-controller@8080 {
 
-                        Geert
+Drop unused labels.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +            compatible = "amlogic,t7-pll-gp0";
+> +            reg = <0 0x8080 0 0x20>;
+> +            clocks = <&scmi_clk 2>;
+> +            clock-names = "input";
+> +            #clock-cells = <1>;
+> +        };
+> +
+> +        mclk:clock-controller@8300 {
+> +            compatible = "amlogic,t7-pll-mclk";
+> +            reg = <0 0x8300 0 0x18>;
+> +            clocks = <&scmi_clk 2>,
+> +                     <&xtal>,
+> +                     <&scmi_clk 31>;
+> +            clock-names = "input", "mclk_in0", "mclk_in1";
+> +            #clock-cells = <1>;
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/clock/amlogic,t7-pll-clkc.h b/include/dt-bindings/clock/amlogic,t7-pll-clkc.h
+> new file mode 100644
+> index 000000000000..e88c342028db
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,t7-pll-clkc.h
+> @@ -0,0 +1,57 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + */
+> +
+> +#ifndef __T7_PLL_CLKC_H
+> +#define __T7_PLL_CLKC_H
+> +
+> +/* GP0 */
+> +#define CLKID_GP0_PLL_DCO	0
+> +#define CLKID_GP0_PLL		1
+> +
+> +/* GP1 */
+> +#define CLKID_GP1_PLL_DCO	0
+> +#define CLKID_GP1_PLL		1
+> +
+> +/* HIFI */
+> +#define CLKID_HIFI_PLL_DCO	0
+> +#define CLKID_HIFI_PLL		1
+> +
+> +/* PCIE */
+> +#define CLKID_PCIE_PLL_DCO	0
+> +#define CLKID_PCIE_PLL_DCO_DIV2	1
+> +#define CLKID_PCIE_PLL_OD	2
+> +#define CLKID_PCIE_PLL		3
+> +
+> +/* MPLL */
+> +#define CLKID_MPLL_PREDIV	0
+> +#define CLKID_MPLL0_DIV		1
+> +#define CLKID_MPLL0		2
+> +#define CLKID_MPLL1_DIV		3
+> +#define CLKID_MPLL1		4
+> +#define CLKID_MPLL2_DIV		5
+> +#define CLKID_MPLL2		6
+> +#define CLKID_MPLL3_DIV		7
+> +#define CLKID_MPLL3		8
+> +
+> +/* HDMI */
+> +#define CLKID_HDMI_PLL_DCO	0
+> +#define CLKID_HDMI_PLL_OD	1
+> +#define CLKID_HDMI_PLL		2
+> +
+> +/* MCLK */
+> +#define CLKID_MCLK_PLL_DCO	0
+> +#define CLKID_MCLK_PRE		1
+> +#define CLKID_MCLK_PLL		2
+> +#define CLKID_MCLK_0_SEL	3
+> +#define CLKID_MCLK_0_DIV2	4
+> +#define CLKID_MCLK_0_PRE	5
+> +#define CLKID_MCLK_0		6
+> +#define CLKID_MCLK_1_SEL	7
+> +#define CLKID_MCLK_1_DIV2	8
+> +#define CLKID_MCLK_1_PRE	9
+> +#define CLKID_MCLK_1		10
+> +
+> +#endif /* __T7_PLL_CLKC_H */
+> -- 
+> 2.47.1
+> 
 
