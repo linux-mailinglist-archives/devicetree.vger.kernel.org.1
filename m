@@ -1,145 +1,147 @@
-Return-Path: <devicetree+bounces-135405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 201BFA00DB9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:43:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5169FA00E01
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:46:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4464163B4F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:43:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 485C31884B88
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:46:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E8C1FC7D9;
-	Fri,  3 Jan 2025 18:43:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZUcGJFiK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2676A1FCCED;
+	Fri,  3 Jan 2025 18:46:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58F9C1F9F7D;
-	Fri,  3 Jan 2025 18:43:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4F911FC7EE;
+	Fri,  3 Jan 2025 18:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735929806; cv=none; b=JtG0MGjrR0l7QYZVGGhzu4rZL7+obJmT+7nGo+e+3b8iMBWWJH6iWGoVOfxqosWXvCdh+7rj5xjpSEkZAlQWLEKfgNIS47F9i3+bxWCpv+nRk6auYYmN43YdqpsiD2eICMJ4df23N30FdRVCIlE4YPc7479IpQNVcyCS/2oyu2w=
+	t=1735929962; cv=none; b=L4vk2xO6htLTdEmD4HlkBp/Le9Ki5wYcbHYrY4zcq4Qcc6EXOm9X4r2Gwqy+r+g523FA08Ocq3NZZSDdTkP1BHHam05dFG9VZ0a66gwo1VTIX7NFJvUd2hhoNnPBKQU8iizWTSC+eOlHfgP7a1fE4i4pzN+fTi6iY+1C6zj2ROw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735929806; c=relaxed/simple;
-	bh=8pOKdkbcvZRxJ8M7I+SOFXrJdPA2Dafv5X9jSrrDkEk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RxZakjxHlRt769RYIsVx8yjPuW7YXbajxKK6s4PZFoM+mtTrbFws2MXhIMKU4r9PpDYkXEQmzTHQ8Neea8WfnzcVXmFZFi1AGnCXIcHbY3XGI/YU1X6g3wVLplUvKaULiVNrVm0blErUjhUcVBLN3952fSqGefNv5hZnOIfNQlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZUcGJFiK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82ABCC4CED6;
-	Fri,  3 Jan 2025 18:43:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735929805;
-	bh=8pOKdkbcvZRxJ8M7I+SOFXrJdPA2Dafv5X9jSrrDkEk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZUcGJFiKlBKF6LjEBgdB1NGR4Uo/sPiahJZXmRbXxvGA2xsvBphnbzjO0WM9KWp3M
-	 NQgQXkLrUGVp1cAnrqPryrINnGobbCnBbMETZM+7BefQis2YlWka+/NAtkPvZnhbCJ
-	 CYo8bWW86rHI4e5xKYPftoxErHs4ZM7EhcSgZzIFRJxBUG4i1ll6RQ/oi93hjtWgRR
-	 oCARFTgqnSHc/n6Jna4MLJhvYu/NOOAXlAod8YW9CHmfnBusnFNZBvtDSoEopuJy0y
-	 deQwXwY9m3sAZu+VleS55xnNOzRb4mljQTd/IIeDC0O5wpdgQ4DIn9BF9asO6iTN9Y
-	 YBWrzODRxWmSg==
-Message-ID: <d78bc184-b035-41bb-b5eb-088a86c6b77d@kernel.org>
-Date: Fri, 3 Jan 2025 19:43:18 +0100
+	s=arc-20240116; t=1735929962; c=relaxed/simple;
+	bh=QTREeSNUnQ3XMULGYbjDTxpeKb1XKpvlg40sHJXvQIE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FYukSJXDyL3m/D434y9jEsUnYn4aofEFZckt+NYWY6tp+jv8WigDB1SWLtRL9jxS6s1wxfAs58rwTWkFIJqfC8YPQwDOGBrOaQWxRLx+oO5KpkT+aBvbwx/wzNJjHt+HYRtlX6+pv6s3pip2VJDNergXx8aH97i84Wph8dV3khE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-85bad9e0214so4421575241.3;
+        Fri, 03 Jan 2025 10:45:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1735929957; x=1736534757;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oK0sUAMyUOLQWg/19u1VasYjzcH1fakWM82TSP9Z6h0=;
+        b=qxFnR7V0r8dNTbgNzZS5CudYvrN8vz6QvLP9yZXEgKd54SXK6Fc39gdzI2piko3Dz0
+         og5XAG5iUUkSzu7re0p06S4Uyh3gcYm2aabr2CiRjToKYwLjxUAANh9++VDIWLcAbhw4
+         DlQtQVVeSIByhlcOtopeTNnNGtH6dGae7piG6l4SwsKcI+t7uEPRN+0QnFQJUZqefKw+
+         6c64IQ2INCUAuVmJAVCbUoo7+SzVmy5bTkJ1hIaKWwzA6mhqxgm/BGTHg+BTs315ZTEv
+         WZkzdcLO8u1hoDKZ5iuE1wC4TQ+ZsDRVv6UqBZeWAJqoexPKThkiAgMwCoiB/p9oCpp4
+         oA2A==
+X-Forwarded-Encrypted: i=1; AJvYcCVC8gocoiCrJ+yGHNOVHGc07IQ2rimqbR8fbaQRcQ0g29bHsDpnCK8M2E9LT+Vf1MWYwRpXwN1PVqdfBQ==@vger.kernel.org, AJvYcCW9+qeqRrZ61SAjTYrRreCujpy0GahvahmtvJ8tIE7kPgC4hQjwsO33UKF7jwXmiLj9BqLX84FPxQ2y@vger.kernel.org, AJvYcCWESEtV0PAe5r3eOlZ5PvDaqNCMqGbz7WmqjLbDOoAsDB/sVMyFRBX6s9pCSBqOsZ4vZhi5e36AVx3KrR2nXlvkkiw=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0UECymnRrVw5ss3o1Le9nABxn/usVkftsPjnymnlV5OxM1SL7
+	7h7JJA/vDCycUf6gMWLe67zFFrmVOw9vozgFhSXObx6MfWLFUzPPp+syXbPKgUw=
+X-Gm-Gg: ASbGncve8NUCZpZK+nKpk+LNZh04SjeiOtFJbijWuEE78Veci5Izk9Z9kyLyoQd5A+I
+	lSmh3mB4QGzTSSNS76Mkb4xMyaISmS7Ans/5yVSqsTBRkrfaJw2yK/oTHANLgHxHpP+8YLDGbhZ
+	9RDUUifsjP+ArVd8WfzD/nzf2STrxPH5caf9pFtF6WX1VDk9dQPlzxlZ7CARnB1Bcats73DHmla
+	lTf7viZbgsoFQnh02Jy9YhpIwtZWX7tsYaz7lc33+41F1PvgICJOGUoO9vzI4pWOMg7zdL1vBQW
+	Qadn4swwk3Ufs97RXxU=
+X-Google-Smtp-Source: AGHT+IFqraCrhnv2lu0kP1SrY54I37iQuIuSDupYKZ1cXyHaRosrMdrZwzi8LkPWsqtMTDvWujd3nw==
+X-Received: by 2002:a05:6102:c06:b0:4b2:ad82:133a with SMTP id ada2fe7eead31-4b2cc48a608mr40200355137.25.1735929957169;
+        Fri, 03 Jan 2025 10:45:57 -0800 (PST)
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8610ad3f34bsm5562160241.28.2025.01.03.10.45.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Jan 2025 10:45:55 -0800 (PST)
+Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-85bad9e0214so4421549241.3;
+        Fri, 03 Jan 2025 10:45:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUNMScGT5PpKojh4XH8FiI/h1cNfJobTL45ibqJt6BlNuT7s98bhPQuFrq1HLYinciYY+r1I+oucOEXg80NtSmNh8Y=@vger.kernel.org, AJvYcCWKa5Hjp4uJLZoJK6Mmb1sZkAB+SV3lTjCc6HnA5QZTtvJzL/c3ftybUz7NrEX8s1/Rt5gbYRjDkBvI5g==@vger.kernel.org, AJvYcCWM4HNyaq4cLGDMA4NV3E6WZCYsOfokj+1htHU+FoN9GyG7yE7dMBX1/bdgsdSO2Q7xwVCCQfL9Qdy9@vger.kernel.org
+X-Received: by 2002:a05:6102:3a0b:b0:4af:f8b9:bea3 with SMTP id
+ ada2fe7eead31-4b2cc38561bmr37052736137.15.1735929952450; Fri, 03 Jan 2025
+ 10:45:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/2] dt-bindings: mailbox: Document qcom,tmel-qmp
-To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- andersson@kernel.org, konradybcio@kernel.org,
- manivannan.sadhasivam@linaro.org, dmitry.baryshkov@linaro.org
-References: <20241231054900.2144961-1-quic_srichara@quicinc.com>
- <20241231054900.2144961-2-quic_srichara@quicinc.com>
- <kwtzvcoyayml3tgicnp5a75r65hqpicm7hivtk25ohp6rt34qf@sgunxjxfe33r>
- <ac15561f-b9e7-4434-af1a-04408172d46c@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ac15561f-b9e7-4434-af1a-04408172d46c@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241216195325.164212-1-biju.das.jz@bp.renesas.com> <20241216195325.164212-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20241216195325.164212-3-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 3 Jan 2025 19:45:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXBt_awS3p2GSd3eB9EGMm+L3iBSaNf+t7d-014w5aVjw@mail.gmail.com>
+X-Gm-Features: AbW1kvYFTYEMTIAiupPeFKJv2tSK5lUp81fHhItdkjkKYUhSpHmlrH62yy2EYiE
+Message-ID: <CAMuHMdXBt_awS3p2GSd3eB9EGMm+L3iBSaNf+t7d-014w5aVjw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/7] dt-bindings: pinctrl: renesas: Document RZ/G3E SoC
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Biju Das <biju.das.au@gmail.com>, Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/01/2025 19:34, Sricharan Ramabadhran wrote:
->>> +description:
->>> +  TMEL SS provides different kinds of services like secureboot, remote image
->>> +  authentication, key management, crypto, OEM provisioning etc. This patch adds
->>> +  support for remote image authentication. Support for rest of the services can
->>> +  be added.
->>> +
->>> +  The QMP mailbox is the primary means of communication between TMEL SS and
->>> +  other subsystem on the SoC. A dedicated pair of inbound and outbound mailboxes
->>> +  is implemented for each subsystem/external execution environment which needs to
->>> +  communicate with TMEL for security services. The inbound mailboxes are used to
->>> +  send IPC requests to TMEL, which are then processed by TMEL firmware and
->>> +  accordingly the responses are sent to the requestor via outbound mailboxes.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - qcom,ipq5424-tmel-qmp
->>
->>
->> Why qmp? Can TMEL on IPQ5424 be anything else? Can TMEL be SMEM or using
->> any other remoteproc?
->>
-> TMEL on IPQ5424 uses only QMP protocol for communication.
+Hi Biju,
 
+Thanks for the update!
 
-Then keep just "tmel". It completely defines this device.
+On Mon, Dec 16, 2024 at 8:53=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> Add documentation for the pin controller found on the Renesas RZ/G3E
+> (R9A09G047) SoC. The RZ/G3E PFC is similar to the RZ/V2H SoC but has more
+> pins(P00-PS3).
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v3->v4:
+>  * Dropped ack tag from Conor as there is separate file for RZG3E_P*
+>    definitions
 
-> 
-Best regards,
-Krzysztof
+You forgot to actually drop it?
+I guess it doesn't matter much...
+
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h
+> @@ -0,0 +1,41 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * This header provides constants for Renesas RZ/G3E family pinctrl bind=
+ings.
+> + *
+> + * Copyright (C) 2024 Renesas Electronics Corp.
+> + *
+> + */
+> +
+> +#ifndef __DT_BINDINGS_RZG3E_PINCTRL_H
+> +#define __DT_BINDINGS_RZG3E_PINCTRL_H
+
+> +#endif /* __DT_BINDINGS_RZG3E_PINCTRL_H */
+
+__DT_BINDINGS_PINCTRL_RENESAS_R9A09G047_PINCTRL_H__
+
+Will fix that while applying, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-pinctrl for v6.14.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
