@@ -1,129 +1,199 @@
-Return-Path: <devicetree+bounces-135251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 563B2A00420
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 07:13:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2474EA0045D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 07:33:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07C343A2B40
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 06:13:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CCF81883912
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 06:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A589155C97;
-	Fri,  3 Jan 2025 06:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A62E16F8F5;
+	Fri,  3 Jan 2025 06:33:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D6Jqo6D1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lqpwzUUD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C771084A5B;
-	Fri,  3 Jan 2025 06:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73CC725634;
+	Fri,  3 Jan 2025 06:33:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735884830; cv=none; b=MUFBH85Hd/e1Mjwogzr7m+Y3BieWGykEt4qtJlJ39YQ3Bu78gbWtM0ybxPezLrm/oJGFOTQEHkSqZx/e9VQmZof3POyQdktRgWX9uhL0Tg/uWe9PScteF9iUBw58jXl+Y5fwAtWB3LrGgTt9BhcvSVzz1BIQVpQr4z5NT9r30WA=
+	t=1735885990; cv=none; b=YorDbJY00NZbIaAlqJcz0DhrR0VvJRrlf6anSAd+S/KnFJTwPpQw6FmUMV1hRMlFsBYSNgm1o8laYlaToW3/ze8K8VWHWrTfCV5WXcmSgmnDs18isbCsW5sstr1Eu4lHkDArDFlRa1S5uPUweK12/1RYj8vSQGAZEDzWyN0KpZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735884830; c=relaxed/simple;
-	bh=SLl2mnq6N14xFhbVzzZj72tyk9n9URx2x/PSyxHQR/I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bExVlO4BDt62GjQUwH8ECIaRNKdhkC5wzBEXetlLHq+xBN6ZpaeFoc+1/hQP42Lux/wZvVBKw02h97wQBA8HCY9g5YYgXfqspZOlO4eZc7ytFh2+FHc0qa0/3jFjepZ877JADqyUflpMmefZAjyaZooIx/BnopjjHyEDC2n/2FQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D6Jqo6D1; arc=none smtp.client-ip=209.85.208.44
+	s=arc-20240116; t=1735885990; c=relaxed/simple;
+	bh=tSYR9DfEoka4Ii7B+4mvl+hYbS0m+gBKb1VYT+T3gM4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QnW1jQw52oV6RmmgWPHqBRx31VKH64HQA0f2rYUQO+d8GZQyXnqSNsSRkWY0BKRRFMT7DBMY4Bp67+5fsUxJGGLsQLvVTsGEOLzoN+VPcO4Yn0SnnD6Tynyg+LLNlP0u/zJxtRJEnWH3N2k7WeVHFNjYoGDq6+TSpEYe4KiOKak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lqpwzUUD; arc=none smtp.client-ip=209.85.216.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5d3e6f6cf69so20326968a12.1;
-        Thu, 02 Jan 2025 22:13:48 -0800 (PST)
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2ef6c56032eso12356452a91.2;
+        Thu, 02 Jan 2025 22:33:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1735884827; x=1736489627; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6u8oZEswI81GcCDh0LcR4az2c6T1UFbrIkFyXiVsqC4=;
-        b=D6Jqo6D1sW4ns63yzmYlu6J0SYkD+tqFz10abaLSSN1lstp9K4AGX2BZg/ysXH0eBq
-         UM2bVvcLSUErnHPPYZbDup0/RS9ymjKi7i5R6BVZM3f+jVRQxaXL4RhM12jO4de8mz7K
-         PhyqAQ2kRNWlD3WiPBfDxxbSjdCw400tc9qaNjfSeq4jf/4LOvLMDW/K9YQ9yq+d3nK3
-         Exsh4SYltjgf81gcM/f0BjJsv+381L7rF3mFIZ9FgrlNxyRjAmeMszrMobJtkB3JrLJm
-         I6B1vvFD4x6OxadMMfsjsvcVZY0fzBimgw7n4+MoUef9M6n5mKEjvWmPdoES29/OTrT1
-         FObA==
+        d=gmail.com; s=20230601; t=1735885988; x=1736490788; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9JYhGYLehzzVS4jEYnaJXjDH6Mz/6G3WSbJlmci9/3A=;
+        b=lqpwzUUDdoq0z+x4EILNigXO5aMDuDVhmUHCrtCipnVPK2wDVItgiaT8hFcQFAu4t7
+         VpfWSdp8p+06EyVM/pb3ubmRPfY6yTsdlQ4RuiR7GEBgma+tN6L+yY+B1jJgCs91j9GU
+         KmQxaIcBoA8EKfOpzife440d1DIBs1W1TdFcgbSrC09jcq72lFmBknz4otS6VTlRPJZa
+         li0jwyP8fRgQ/LYmHqNIa5G+B5c3AHuu88PXUVKU09U7mha50g7VB5kTd498L5h7k7Vv
+         NbWDpYwub0VSaTeUWwdHgKenQFCS8Aby+keWteZhDYXUBHNBz7bMN2MDHrD24cCbh16P
+         FxNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735884827; x=1736489627;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6u8oZEswI81GcCDh0LcR4az2c6T1UFbrIkFyXiVsqC4=;
-        b=M8PO0Yc0fkQLqN+oN+/WFdRQ5yCsSx1l+QRAY8e4v6x8+wwrjLs7oOwwDpL7D2R7ez
-         42j3evqRDRTVC+eB9P1L3a7VywbQgmHndK7IAGMnCuuLL/BF8dvPIwyv7M+2bX01z1NF
-         MpBjmCnjTJFDrHvaheEwTT13AfHK6tQpkuGjJ0zkViP5SA17R1GfVMYeTcFMmHox9gkM
-         eylbQCaZlp4OLDohj0BuvbWFg8PyHcSU9VrjY6XNbAkbSTUqr0VSto1u++Ue5yGXh/4w
-         zymfFCjfVfXAHZbAcDOKYRyCKbavDWmS4V0SNbyFBij+Lh7YP0ijOZdD22RjUAJxzfLH
-         C9Og==
-X-Forwarded-Encrypted: i=1; AJvYcCV+wXPjhXla1R155C+8k56+BaPb4j4vmHskncF+XEa1MRpE6+OT3dqZQD2D66prJTnlAZiwqOLpjPOR/Q==@vger.kernel.org, AJvYcCVbPxdYpQVrLsaDYVOIVxYy1zO19RbRjbmvXkzPlmgcUmUhwde41fdZN9aMx8E4AugO6w3qPck9SY2a7xqT@vger.kernel.org, AJvYcCWg8Wr4jIsG+biKiU7MfHT5khcu1DvqZQ7HrnSgEdWYuMzASI4RJDYqtOGo61/pjyxLeR6nhgz/76Uq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqIlKElfJ6DymIhK1K9+gMXCDwi6ypdchBYfHkzcVmn/1A1EI0
-	X9PJZbkbRnXJ0C36I0WTm3I9d6LCC29P0frbED/UuNo2BOvzT49Z5qVN8QS5OJWWFIZ43LogT7C
-	y9+QxWX3TlEeTAuwi8VHe7XaUiOE=
-X-Gm-Gg: ASbGncuv3nRMszCLekozCHdkAnDD/2/yjyBW3aqHRxLaiElmEUL/qlEDNML6XG/aeOA
-	39YSSJwpRdYTMUqbVFx/tO/2LYlpjaMgs/kFx3A==
-X-Google-Smtp-Source: AGHT+IGM4CmnuVybu3TQVoL4EX24ZT8Lf2rMNW4EKXcsvKn/Tmw6L/zoQjGQ2C0jhMSKha3lpw59cqtrWzt52YwsSeA=
-X-Received: by 2002:a05:6402:240f:b0:5d0:e826:f0da with SMTP id
- 4fb4d7f45d1cf-5d81dde858amr43801156a12.16.1735884826944; Thu, 02 Jan 2025
- 22:13:46 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735885988; x=1736490788;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9JYhGYLehzzVS4jEYnaJXjDH6Mz/6G3WSbJlmci9/3A=;
+        b=vaoefhzQpT49TXUgIPg+MRt0kZGBJel/pPRZYSrqkTS0Kh0b/k9Ih2mBW/+lNOHWEG
+         K8bVsTc0wzD2t5opgJGzetv69q0miP/XqBTWDAE8WrBup7p8KzoZVWvFBdd5Qz4+r24f
+         fviDhhH9yBpAqRtuPFg3XpbUZkUGbSJSlXEtqS9vDLyGWhWxvZbcdRpH8txXwtbZa8x5
+         oZZDtQrKWHepnahnFLE4MKUi66c3qM8NYqikfLjTWBPWlTR6WzPkY96awFJhFjFNFi4O
+         AqVq6xXM9fodP6J2AYl25T3G+bb0fO/I4shj+lvWGAtTtu86o/hYJF9g33JUYFB03h7c
+         RLlg==
+X-Forwarded-Encrypted: i=1; AJvYcCVU9ff+eTht8h//WAH0pUFGDEgHoPsG5snMdNQm9KaM19+RpoGC3N0mMwZuEqQKdf9y1mkc34lz@vger.kernel.org, AJvYcCW9cy1kgdoR4lIrdj842TrZdqstnHoweanOXQKTdnkRjMI00vKPLAcRcMVNMDgTpxXqJSC5Elo2Ru7kytGG@vger.kernel.org, AJvYcCX32AUY08bDNKo4o61i19UCzRVV0FxmefPJrCo6S5BhBnVa/pOLSEyNmb7qhgKM4JFKBzwz1HfaEu+a@vger.kernel.org
+X-Gm-Message-State: AOJu0YxY5sfMEFKMb0VmhI4ZAaliMqdzi6XOeMlcjrK16WCekDgyitge
+	tt/iQ95Wpe6QZhmMHzoyZZyng+9GpMlM5MMGqhZf4w7HDrT0wccG
+X-Gm-Gg: ASbGncuDdCGsTUZexJ4avvkl3yR0Ty2+WCcbIBVuIK0IZ3/2MzrJ18VuAH2PKLD8I25
+	jE6D4Xv2y8AEXdkU+gIvpKxCM/YFZymuNldJoflYgBITUhcAyhljjLB9LhzdPx6YamIAyBC4NVH
+	PiHTChqi0mKg4zXpQfu5vQ9c3Ut1sDii3kGXS0G4OKZyUW1x3OBoTr8hl4YXWNCeR5KgzKwvm2h
+	3m+FWKrRIXIL+SPDYYwLBPSgQGzRt9zMO/sMEaA23kdoORfiS4JUWIzvQ2YWthp8bWG5i0PrimF
+	7LbW5RLaLKVXYd5esxv0sw==
+X-Google-Smtp-Source: AGHT+IEg9FrZ5YUufYh0MJJtCtJUyPbNJMmGsbwn8DtZhoDwMHr36/JHl3HeB9+5mO4uV2/PACAAPA==
+X-Received: by 2002:a17:90b:2e10:b0:2ea:8fee:508d with SMTP id 98e67ed59e1d1-2f452ec2e82mr73280088a91.30.1735885987768;
+        Thu, 02 Jan 2025 22:33:07 -0800 (PST)
+Received: from yclu-ubuntu.. (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f2ee26d89asm29427805a91.46.2025.01.02.22.33.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jan 2025 22:33:07 -0800 (PST)
+From: Joey Lu <a0987203069@gmail.com>
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com,
+	richardcochran@gmail.com
+Cc: alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com,
+	ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	yclu4@nuvoton.com,
+	peppe.cavallaro@st.com,
+	linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Joey Lu <a0987203069@gmail.com>
+Subject: [PATCH net-next v6 0/3] Add support for Nuvoton MA35D1 GMAC
+Date: Fri,  3 Jan 2025 14:32:38 +0800
+Message-Id: <20250103063241.2306312-1-a0987203069@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250102174434.17677-1-shubhrajyoti.datta@amd.com>
- <20250102174434.17677-5-shubhrajyoti.datta@amd.com> <adca2723-611e-4b7a-9921-84af6596745d@kernel.org>
-In-Reply-To: <adca2723-611e-4b7a-9921-84af6596745d@kernel.org>
-From: Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
-Date: Fri, 3 Jan 2025 11:43:35 +0530
-Message-ID: <CAKfKVtFNRPa64vpJ0t-ttJrp-Wc8+F2jz+Qy02BP8sgZZixsjg@mail.gmail.com>
-Subject: Re: [PATCH v4 4/5] dt-bindings: memory-controllers: Add support for
- Versal NET EDAC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Borislav Petkov <bp@alien8.de>, Tony Luck <tony.luck@intel.com>, 
-	James Morse <james.morse@arm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Robert Richter <rric@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-edac@vger.kernel.org, git@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 2, 2025 at 11:31=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 02/01/2025 18:44, Shubhrajyoti Datta wrote:
-> > +
-> > +maintainers:
-> > +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> > +
-> > +description:
-> > +  The integrated DDR Memory Controllers (DDRMCs) support both DDR5 and=
- LPDDR5
-> > +  compact and extended  memory interfaces. Versal NET DDR memory contr=
-oller has an optional ECC support
->
-> Please wrap code according to coding style (checkpatch is not a coding
-> style description, but only a tool).
-Will fix .
+This patch series is submitted to add GMAC support for Nuvoton MA35D1
+SoC platform. This work involves implementing a GMAC driver glue layer
+based on Synopsys DWMAC driver framework to leverage MA35D1's dual GMAC
+interface capabilities.
 
->
->
-> > +  which correct single bit ECC errors and detect double bit ECC errors=
-.
-> > +  It also has support for reporting other errors like MMCM (Mixed-Mode=
- Clock
-> > +  Manager) errors and General software errors.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: amd,versal-net-ddrmc5-1.0
->
-> 1.0 looks redundant. Usually SoC does not change... Anyway, commit msg
-> should explain why 1.0 is needed (IOW, why exception is justified).
->
-> > +
-I will  change it to
- const: amd,versal-net-ddrmc5 instead.
+Overview:
+  1. Added a GMAC driver glue layer for MA35D1 SoC, providing support for
+  the platform's two GMAC interfaces.
+  2. Added device tree settings, with specific configurations for our
+  development boards:
+    a. SOM board: Configured for two RGMII interfaces.
+    b. IoT board: Configured with one RGMII and one RMII interface.
+  3. Added dt-bindings for the GMAC interfaces.
+
+v6:
+  - Update dwmac-nuvoton driver
+    - Use NVT as the previx for all functions, structs, and defines.
+    - Remove unnecessary comments.
+
+v5:
+  - Update yaml
+    - Remove the properties already defined in snps dwmac.
+  - Update dwmac-nuvoton driver
+    - Add a comment to explain the override of PMT flag.
+
+v4:
+  - Update yaml
+    - Remove unnecessary property 'select'.
+    - Remove unnecessary compatible entries and fix items.
+    - Specify number of entries for 'reg'.
+    - Remove already defined property 'phy-handle'.
+    - Update example.
+    - Modify the property internal path delay to match the driver.
+  - Update dtsi
+    - Move 'status' to be the last property.
+  - Update dwmac-nuvoton driver
+    - Use remove instead of remove_new.
+    - Use dev_err_probe instead.
+
+v3:
+  - Update yaml
+    - Fix for dt_binding_check warnings & errors.
+    - Add compatible in snps dwmac.
+  - Update dtsi
+    - Update dtsi to follow examples in yaml.
+  - Update dwmac-nuvoton driver
+    - Fix for auto build test warnings.
+    - Invalid path delay arguments will be returned.
+
+v2:
+  - Update yaml
+    - Rename file to align with the compatible property.
+    - Add an argument to syscon to replace mac-id,
+      with corresponding descriptions.
+    - Use tx-internal-delay-ps and rx-internal-delay-ps properties for
+      configurable path delay with corresponding descriptions,
+      allowing selection between GMAC internal and PHY.
+    - Add all supported phy-mode options.
+    - Remove unused properties.
+  - Update dtsi
+    - Modify syscon configuration to include an argument for
+      GMAC interface selection.
+  - Update dwmac-nuvoton driver
+    - Remove redundant device information print statements.
+    - Remove non-global parameters.
+    - Retrieve GMAC interface selection from the syscon argument.
+    - Parse Tx and Rx path delays by correct properties.
+    - Update configurations to support Wake-on-LAN.
+
+
+Joey Lu (3):
+  dt-bindings: net: nuvoton: Add schema for Nuvoton MA35 family GMAC
+  arm64: dts: nuvoton: Add Ethernet nodes
+  net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
+
+ .../bindings/net/nuvoton,ma35d1-dwmac.yaml    | 126 ++++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  12 ++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  10 +
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |  54 ++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 179 ++++++++++++++++++
+ 8 files changed, 394 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
+
+-- 
+2.34.1
+
 
