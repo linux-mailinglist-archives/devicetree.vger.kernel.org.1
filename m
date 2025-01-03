@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-135369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18FF4A00BC1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 16:58:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AED32A00BD0
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 17:02:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A98A1884B2B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 15:58:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C3B516454F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 16:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EA7D1FBC91;
-	Fri,  3 Jan 2025 15:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96CA1B140D;
+	Fri,  3 Jan 2025 16:02:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eBXx4Igk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A7aBJmMr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0558D1FBC8C;
-	Fri,  3 Jan 2025 15:58:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C102959B71;
+	Fri,  3 Jan 2025 16:02:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735919894; cv=none; b=OWUu9YGRkeZazNf/M6JwX3v3I+V4YJzkpaW8cXxT9wcNyuN2GVj279C1quEKREWJ6g0aZ7euAv//CYL5PpcprwnGDegJYF+fcnGHcGKtn+XDQc8LLizBs9z5qCpYX0V1P1lzxHJ1vFaBK7R1HO30Xc44j4e5OB/aOcag1rd4Kt4=
+	t=1735920161; cv=none; b=gTGDWNjuHDUdR32KLIph6dCTw9SsO+4WAm7SWePE/cD9l0uijBlEOTeKegxlgOX4WFqN6L21BVTTBdkTXbJ+KOmMmGle1MyvGAe3P47Ql6TttU/l5+Fss4LDErF7PwlDP5N6fOgkBgydBH1QHhE6lm9RPKzG5Y5xH3IbwewT4SA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735919894; c=relaxed/simple;
-	bh=3IrzjT6gl+FaklBooWlxoSBBE08JetmJ/xWsWjvZdcs=;
+	s=arc-20240116; t=1735920161; c=relaxed/simple;
+	bh=oOlndqDTpZfd3oYtGruqQmYoDbrgT5BLd6opKFCwjMw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cef67jZUwVV6CwZ9FUzOVBOqdt1AFe9VKNbd5B5XB2fwe93dIajFRkkqJDe8qnNJVPAd7dmJUwFlpo6lQQFEBGePiIeKgP3BLfpNVKJc1VkxvUCYQRWklQzWJxCRLcIuws4VcvwVQrr/GqEWL4hSIfR1yWyTR82+zG6Jcn0AVjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eBXx4Igk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84AA1C4CECE;
-	Fri,  3 Jan 2025 15:58:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JdE+ByX8YRI7DhqC09b8FYjtUAegbJnL86Ko9E1UismKTosp0l941RCXNJexB8j8VPqVY7u9I9GwAdgomQTtBTb0kL8mQvu3Wkru6ZSTZxoYtJXeKsgkx9UYGaX2FS0eqtehLSUtNRueXKHeXU/4ebQAO8zC153MbG5KDBgaKQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A7aBJmMr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63426C4CECE;
+	Fri,  3 Jan 2025 16:02:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735919893;
-	bh=3IrzjT6gl+FaklBooWlxoSBBE08JetmJ/xWsWjvZdcs=;
+	s=k20201202; t=1735920161;
+	bh=oOlndqDTpZfd3oYtGruqQmYoDbrgT5BLd6opKFCwjMw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eBXx4Igk/IJlguIVS/gVKj8Y4JnuLL/cOIQIFBJBrEN4jtag9uR6hfNHphj14nP9M
-	 5xrHGkif3DKCN0siUBKXX6sXZpK+0qYm4YIwW7uGrldZy2yVnd0JkxjjC9l5yZTaIf
-	 TkgQDQdZMgr7vPnifgQYnbhey8Y1zn8poKQ63Mlyspn8NR1OzO4dZxwXCTraPCHel0
-	 Dmu967JD2uLWNmv7sVNBRt+yCSncCXxqQDC6uCeHEAdbZwWCjp5EiYEhkNvALz/eXc
-	 zb9j0CON6IfuOyyVRnCUP3TWOCJcr92mXaOBvVVcvSiFoGKbLQ9Y3pNOYdB8twoGpW
-	 fjoO4nL4Yk9rQ==
-Message-ID: <5deaaba3-9acf-4715-85d1-6c1f62ccc604@kernel.org>
-Date: Fri, 3 Jan 2025 16:58:07 +0100
+	b=A7aBJmMrp+BBwhLVxJOKxLuO8SOC4J4kPt/BL5xwoLXe6KAYHJz04F3bi/KlSMRPe
+	 tqzwdYXFiUdhslbnJjQ55A/OR3QXm3Q5Ps9OKvrlDDoTkFs3zgMELw+8YYtx6NdK5J
+	 Mb90blxOnMqzTPkBmwvZv3MoZE2VyhAGPTItInVy20d9XDXd7yVbiOb4J9tm4O7wHf
+	 0Z06W7SpXIBt8vq5htwpaFoxhP2G+FNhX/F5Pc1TtPXM3JpmRh6zO4Q84WodiBf3rH
+	 ZOHp6YlznIYRaBcZk90PaRCrkgtdJLlYQM/OuLwKT822diN1FdrCRkLx+Rx+TPQC9d
+	 wnxkBL9aAaHMQ==
+Message-ID: <e0a1f9f2-cd3d-401d-97b8-edb8f5d7ed5f@kernel.org>
+Date: Fri, 3 Jan 2025 17:02:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] arm64: dts: morello: Add support for common
- functionalities
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 4/4] MAINTAINERS: Add Vincenzo Frascino as Arm Morello
+ Maintainer
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
  Sudeep Holla <sudeep.holla@arm.com>,
  Lorenzo Pieralisi <lpieralisi@kernel.org>,
  Russell King <linux@armlinux.org.uk>
 References: <20250102155416.13159-1-vincenzo.frascino@arm.com>
- <20250102155416.13159-3-vincenzo.frascino@arm.com>
- <b6grcxwvic33ojj3o46sjjvlyc2xwcy247n7ls4lyzkwhd73gs@pxi533kjm3yx>
- <9f430795-03c4-4ff4-ad71-92273877459a@arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <20250102155416.13159-5-vincenzo.frascino@arm.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -110,106 +108,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <9f430795-03c4-4ff4-ad71-92273877459a@arm.com>
+In-Reply-To: <20250102155416.13159-5-vincenzo.frascino@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/01/2025 16:32, Vincenzo Frascino wrote:
+On 02/01/2025 16:54, Vincenzo Frascino wrote:
+> Add Vincenzo Frascino <vincenzo.frascino@arm.com> as Arm Morello Software
+> Development Platform Maintainer.
 > 
-> 
-> On 03/01/2025 07:53, Krzysztof Kozlowski wrote:
->> On Thu, Jan 02, 2025 at 03:54:14PM +0000, Vincenzo Frascino wrote:
->>> The Morello architecture is an experimental extension to Armv8.2-A,
->>> which extends the AArch64 state with the principles proposed in
->>> version 7 of the Capability Hardware Enhanced RISC Instructions
->>> (CHERI) ISA.
->>>
->>> The Morello Platform (soc) and the Fixed Virtual Platfom (fvp) share
->>> some functionalities that have conveniently been included in
->>> morello.dtsi to avoid duplication.
->>>
->>> Introduce morello.dtsi.
->>>
->>> Note: Morello fvp will be introduced with a future patch series.
->>>
->>> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
->>> ---
->>>  arch/arm64/boot/dts/arm/morello.dtsi | 341 +++++++++++++++++++++++++++
->>>  1 file changed, 341 insertions(+)
->>>  create mode 100644 arch/arm64/boot/dts/arm/morello.dtsi
->>>
->>> diff --git a/arch/arm64/boot/dts/arm/morello.dtsi b/arch/arm64/boot/dts/arm/morello.dtsi
->>> new file mode 100644
->>> index 000000000000..67bc960f4596
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/arm/morello.dtsi
->>> @@ -0,0 +1,341 @@
->>> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
->>> +/*
->>> + * Copyright (c) 2020-2024, Arm Limited. All rights reserved.
->>> + */
->>> +
->>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +
->>> +/ {
->>> +	interrupt-parent = <&gic>;
->>> +
->>> +	#address-cells = <2>;
->>> +	#size-cells = <2>;
->>> +
->>> +	chosen { };
->>
->> Drop
-> 
-> Fine, I will do it in the next iteration. The file you asked me to see
-> (sm8650.dtsi) has the same expression. 
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 
-
-Because it did exactly the same as you here - copied it.
-
-> Why this is incorrect? What's the rationale?
-
-
-Redundant, makes this code unnecessary bigger and raises question: what
-if something relies on it but the actual dependency is not
-expressed/documented?
-
-...
-
-> 
->>> +			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
->>> +			clocks = <&dpu_aclk>;
->>> +
->>> +			hdmi_tx: hdmi-transmitter@70 {
->>> +				compatible = "nxp,tda998x";
->>> +				reg = <0x70>;
->>> +				video-ports = <0x234501>;
->>> +				port {
->>> +					tda998x_0_input: endpoint {
->>> +						remote-endpoint = <&dp_pl0_out0>;
->>> +					};
->>> +				};
->>> +			};
->>> +		};
->>> +
->>> +		gic: interrupt-controller@2c010000 {
->>> +			compatible = "arm,gic-v3";
->>> +			#address-cells = <2>;
->>> +			#interrupt-cells = <3>;
->>> +			#size-cells = <2>;
->>> +			ranges;
->>
->>
->> Missing reg.... and why do you have ranges here? No children.
->>
-> 
-> I will remove it in the next iteration.
-> 
-
-
-Next patch brought some answers here. I just don't get why entire GIC is
-not part of the DTSI.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
