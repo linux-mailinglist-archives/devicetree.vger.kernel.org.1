@@ -1,129 +1,128 @@
-Return-Path: <devicetree+bounces-135317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18B09A00829
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 11:58:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4613A00849
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 12:12:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9845E7A1D6A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:58:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D776E164210
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 11:12:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F1041F9A8A;
-	Fri,  3 Jan 2025 10:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC2FBE4F;
+	Fri,  3 Jan 2025 11:12:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oBoVCeD4"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="3nNmUaqa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E518A1A4F2F
-	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 10:58:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4A221F8F10
+	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 11:12:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735901926; cv=none; b=DPDAMftNQe9sLkJOYkR9yoLKE3XKR4W29Vqbe53VkUeSc6JSVQbD9y1GzBwFFTl/JihtnyUDc1n6cb3LXhOMzx02QchIFVMDLkCH1HpzzxULEu0U/iFuQNX3wqFRxiw73SmpkXAKO7mVQiQOPToOaSJluQK44ykHxZSALUwfGS0=
+	t=1735902725; cv=none; b=gcnIX3+LhJv1NBpVjg94UWfnIETGG+6F/mUYLlic+i89mW2pJUJzL504Z2uKueaHdGdR32UFKNreKCjmrSiRw3f6wHhbDexoNLMK64aXFPsBes4syeP2dlkpjMjNJ6EPEoCsImCJpkg5C9KLkwFFOPTYmKuu6n4nBGsQSwcOdNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735901926; c=relaxed/simple;
-	bh=S2Y3f2kQVH/tjvDflF9nMzRgoypoP7J8xfTe80ikY08=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ZdfVdLnqub1FL12N//Wg8JGpkdWsy5NfMfaOWPNP6zyMiZ5HXOPaHYoGt390r2Fo3HJ5IqyCHstSp3CKTwx/SPEEYxlJ9AUWHfskr0CquEEViaMugsn32NImUzD+amWxgD0vKM2MmiT5BxJPhEKNPV2TSAr14CF0D9GNaj4xVNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oBoVCeD4; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3862df95f92so5291812f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2025 02:58:43 -0800 (PST)
+	s=arc-20240116; t=1735902725; c=relaxed/simple;
+	bh=3Kao8cuA27nNtqtZ7ArvGjMkQrWXYdTWNUrhnNqarb0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=foPiVjAe2v8sNkn6GgKyXFj8Bpcg83QNg9jlhHhHNqi3V6qjeEzWq0uEewf23HLDmUn0W1V67dFsydIAmJFUISeFA0R13DWJzX468ceQWTdt9gZLD+V3GDvzQdl2tr4Hap8DCzEfCYdSHYPVzfYy3Z3oPe/8Usr7Jf39989JrcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=3nNmUaqa; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aa6c0d1833eso2509980366b.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2025 03:12:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1735901922; x=1736506722; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=h3u4oGWBQKjEPREELrdTT/cBTk6tLIvMbyFiElHLVLk=;
-        b=oBoVCeD4JOoMFNmnlhSXu9xavcF7ldgvT8AfIQSPQ1ke3TsXCEzilwIrPdvrPOsoiA
-         ijkCSZp8fGQe5f7AYgF3UcBpUBajH5XyaFycaPPgLCwuhihASc0nc7N4cyu2KE/Wnbea
-         lDIjRetN6pTM8EDuL7vgdrb5BsmLf+Fy2qR+j4eGszS8KhXTBDkbp6ynBqKl/P4XdSKM
-         FbID9AsS/rW+zJPTUNuVfNJBEVNiF0ggy/mPS/RCMwqJb2yNEwOAp6rAjCWzxhoZgCik
-         2aoZPNmc5JhJA97fY2tLFuD6uW1E7C/LL3MhtSgme5TWMgn9Nrw3WjhmhsgRPL4FLBEr
-         O1GA==
+        d=fairphone.com; s=fair; t=1735902720; x=1736507520; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MlPl5jV33f2/R0ateITHqdG4xJP9TuWZHuBX474wyNM=;
+        b=3nNmUaqa7oLBOY0uGgbd8yGnWsWqZt8L0lt4yT42jMg5VDKxsSRfpTIIHNdtaT0mMe
+         g0BIRfnUXcaP4dUiQ7n+l4P8Y2hlnScKBm/FPxpFkzlMStwgxitezYFicQ6xas2XpQNn
+         X22O6HMYDJldY6erH88eMyeKvwORqC0P7/U5hJylO/9IN7/ygXAbEb45yBr1/eFVANSb
+         vb9dv63nlYOV4clepG+Y7vSeyEuxHVUTfqHpnJnAml1LXdYdf0UtaCyCNBQdyR0w6tYh
+         bmImYNLXwGR5tsM14FrVMIA0OJAql+UI2CSEa1jOSq1PPR9AZFEqqk+aQOZ9ATJyOqBc
+         nWWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735901922; x=1736506722;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h3u4oGWBQKjEPREELrdTT/cBTk6tLIvMbyFiElHLVLk=;
-        b=uBeEaJvgP3oMd7/oN3Y4K7RgQJbV9BtiLFtoTKsIY1QyBv1PJSZfwF+isQC682AkN/
-         kxcx+S6Tidl2pvkXVzrFIKvxI7GUD2h4ZN1tttsAqwR5nNRQT1G2TA0ffvf0Vpzzovrv
-         7Gakpcdz4QRBIti+6S1CrFnKlO4cpM/HYzGcwVIiQlDYRa0y94s2rgLpduCPh3ZIJ1DX
-         k4W2EELLNV6q4Vby39T4YBw5wEA8uRLcqhEA8LbWZdqhVbkReMAPIU/3qgMp2uMKowhq
-         1U8XFMBGXnluuQROU9aq/tUZDwazM5t0bcwOnK+eDhI/SLK4YCHjdpFFaByWc876ISxE
-         U8Jg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjS2yOp9828PR/RTFoBBdQ1qDZ+luxIuV083nyvIXLwtV3Mev6AFEpXUyD4BUPP94deAux5wK+w/Uz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYm+9cDDlsS1RXz5uG/ViOAOmIIM9l/T0lZa+0ZNVjHoB56k50
-	mbhsfTYmKRn4ZyxioCqOWC4Pz4zeHnE5f5r0mdfoslJ35Q7zMZwM0361CJf5aPA=
-X-Gm-Gg: ASbGncuvGo4eDSqZVMknHz1GlrK/7FJvOgtOnl8+KEbx6H6zbV88oYUagjh6LnREXIS
-	vkrawXLL+OZr6v8uyGk/IngMuB5QEms865eHDWq3LcCt7ckMBuixG+caUscQLuy9K7jouz/CbBb
-	jSiEuGcoy0wcplfvlFscZ1h2D3cvg7e/uRf3moSfFOEmd4fGPbebA3X439mlmm9Sf/+tTX/lBrf
-	s2IUZYV776ADxkd/VCIZY+NfvRyAfnOCjhl2ontAFhPNG/DWWXpNnfqjWBRgtQpNA==
-X-Google-Smtp-Source: AGHT+IFjtv32f9kYfRVKeyGYT0IEP5Qw+m/gGOhzKk2Cr8BmmZ9Jl41YENFOU1sjQfF0nAEj/HJdsw==
-X-Received: by 2002:a05:6000:4703:b0:38a:69a9:af91 with SMTP id ffacd0b85a97d-38a69a9b0a9mr1730131f8f.13.1735901920712;
-        Fri, 03 Jan 2025 02:58:40 -0800 (PST)
-Received: from localhost ([2a01:cb19:95ba:5000:d6dd:417f:52ac:335b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a28f17315sm35078406f8f.108.2025.01.03.02.58.40
+        d=1e100.net; s=20230601; t=1735902720; x=1736507520;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MlPl5jV33f2/R0ateITHqdG4xJP9TuWZHuBX474wyNM=;
+        b=ksxhn4cMCIjKic9dWkas7CJEMh5RYHL5Zvuw7/TX5eNzydCNDSiwiNFB14UlyPWaLk
+         aQLfkZtd9XId4uxphARvzRi/Cm95Q2LQ6LzHoyLyQrz3nb4fRwpgJvDfljpzf4BcfaXB
+         IAO8W76ONJLu28+nv1gfTtx1K/btuhdokr/X11TWsQYWTYI8Q7v46pE1ttTJ1tB8+30U
+         Lyw3ts2RshzIyOwR+lWxdeMtuWrWuQmf1CUp7oTvRS5Dh2IrqqLSUpX5EFmiMstXyrQ2
+         xfi7NT7u40UPKZtaHGFROJKN0DIqfIpdAjn2Ygn+9UnJyL3RqhaTj56ufquS22TYoveN
+         pgpw==
+X-Forwarded-Encrypted: i=1; AJvYcCVUsXjQVV5YOSA5Ta9VRqbPuBjDmgZJGx+KDZYigItgByMf2go813bEpJSPS9yd5eJ83fTnB85Kn7d0@vger.kernel.org
+X-Gm-Message-State: AOJu0YygFlgKRBWMfE5P2Z5IvlX3tb1sgdhEeWgGWa+iKdEM11ZXJ1bB
+	9RFby/Ek14Si+lsVHnC5+VYj6u5xEHrOXj0YC4Bc1n3F7CfyAlTEmizVUR9sp/67edr7qxIHLk4
+	s
+X-Gm-Gg: ASbGnctyVRKiP/hS8XsqhO7pUcYxAciQz5MK6/8ElnFnytFBPK+rnMGrstXnwy3sxod
+	YfFq52uQtB3n1YFaJnDijogKQmY6UwePsuWNWZ2lg4yY+uKhQjpRuu4H1h94P0UO7YgECo7fIwe
+	QLqvD3FlIpB757Zwl36aoZPKxjqf6knBZR9rpxYBzp2eEvfl1IHK3BKRnSUkHtO+T7CNcOfK8qh
+	J7SQO4N41ao76p4eBqkkHTjsAG0llKRCTMGeudT95MAU10uPlNdQAWQLRH2c+Yn3v+baLMrwP0r
+	tkN86iDsiDmc92/NvyNnc19Ajw==
+X-Google-Smtp-Source: AGHT+IHX9Gt1bpVbl5dPmi5oxB7HnAT6IzsM3NBq24bJtVCEfLNeIiPaDzcNkqDPYVwl8Jq7uV93+A==
+X-Received: by 2002:a17:907:9804:b0:aaf:123a:f303 with SMTP id a640c23a62f3a-aaf123af418mr2914122566b.55.1735902720107;
+        Fri, 03 Jan 2025 03:12:00 -0800 (PST)
+Received: from [192.168.178.188] (31-151-138-250.dynamic.upc.nl. [31.151.138.250])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f066130sm1894101366b.183.2025.01.03.03.11.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jan 2025 02:58:40 -0800 (PST)
-From: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To: Val Packett <val@packett.cool>
-Cc: Val Packett <val@packett.cool>, Dmitry Torokhov
- <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Fabien Parent
- <fparent@baylibre.com>, Alexandre Mergnat <amergnat@baylibre.com>, Amjad
- Ouled-Ameur <aouledameur@baylibre.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 0/3] mt6779-keypad: fix compatibles and add to mt8516
-In-Reply-To: <20241225192631.25017-1-val@packett.cool>
-References: <20241225192631.25017-1-val@packett.cool>
-Date: Fri, 03 Jan 2025 11:58:39 +0100
-Message-ID: <87jzbcnoyo.fsf@baylibre.com>
+        Fri, 03 Jan 2025 03:11:59 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/5] Add EEPROMs found in the camera sensors on Fairphone 5
+Date: Fri, 03 Jan 2025 12:11:56 +0100
+Message-Id: <20250103-fp5-cam-eeprom-v1-0-88dee1b36f8e@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPzFd2cC/x3MQQqAIBBA0avErBuwTMiuEi1Ex5qFJgoRiHdPW
+ r7F/xUKZaYC21Ah08OF79gxjQPYy8STkF03zGJWYhISfVJoTUCilO+AWiuS1lm3LhJ6lDJ5fv/
+ hfrT2Ab1uLK5gAAAA
+X-Change-ID: 20250103-fp5-cam-eeprom-995e3cdcd843
+To: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.2
 
-Hi Val,
+While out-of-tree already two of the three camera sensors are working on
+this smartphone, getting those upstream-ready will still take a while.
 
-Thank you for the patches.
+Until then already enable the EEPROMs found on those camera sensors
+which doesn't have a dependency to the sensor drivers and gets those out
+of the way.
 
-On mer., d=C3=A9c. 25, 2024 at 16:26, Val Packett <val@packett.cool> wrote:
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Luca Weiss (5):
+      dt-bindings: eeprom: at24: Add compatible for Giantec GT24P128F
+      dt-bindings: vendor-prefixes: Add Puya Semiconductor (Shanghai) Co., Ltd.
+      dt-bindings: eeprom: at24: Add compatible for Puya P24C256C
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Prefix regulator-fixed label
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Enable camera EEPROMs
 
-> The mt8516 patch was previously sent in another series but rejected due
-> to not using an mt8516 specific compatible - which the other usages
-> of this driver (mt8183 and mt8365) weren't doing either.
->
-> It's only fair to add the SoC-specific compatibles to all of them then :)
->
-> Val Packett (3):
->   dt-bindings: mediatek,mt6779-keypad: add more compatibles
->   arm64: dts: mediatek: add per-SoC compatibles for keypad nodes
->   arm64: dts: mediatek: mt8516: add keypad node
+ Documentation/devicetree/bindings/eeprom/at24.yaml |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 101 +++++++++++++++------
+ 3 files changed, 78 insertions(+), 30 deletions(-)
+---
+base-commit: 9ad93a473f97ce94bd3229e5dbbc4f1b2d48127b
+change-id: 20250103-fp5-cam-eeprom-995e3cdcd843
 
-For the series,
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-
->
->  .../bindings/input/mediatek,mt6779-keypad.yaml        |  3 +++
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi              |  3 ++-
->  arch/arm64/boot/dts/mediatek/mt8365.dtsi              |  3 ++-
->  arch/arm64/boot/dts/mediatek/mt8516.dtsi              | 11 +++++++++++
->  4 files changed, 18 insertions(+), 2 deletions(-)
->
-> --=20
-> 2.47.1
 
