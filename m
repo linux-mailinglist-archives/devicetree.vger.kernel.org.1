@@ -1,105 +1,82 @@
-Return-Path: <devicetree+bounces-135305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D4A9A0072E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:41:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD5C1A00733
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 10:43:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB69A3A060B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:40:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A789E3A0562
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 09:43:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B161D3576;
-	Fri,  3 Jan 2025 09:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED771D3576;
+	Fri,  3 Jan 2025 09:43:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GL+kYDBx"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="aaxnmOyV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5735638DC0;
-	Fri,  3 Jan 2025 09:40:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5FF38DC0
+	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 09:43:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735897258; cv=none; b=LOcaZDVfLSTBrAtYdJ5n6VSLv5GDEGyzLND/j3CE2p6zO0HVgnP4nLAQmvSlbfPccBUiOtSvLOqIeINHt0obpZlfPS47654KY72PmOMNsH5mwAZbVMjS7MA6dlEkUbdzQ82xO8S1M2rxh93xZK9KMX5/w5BksmBYOos35fH4ago=
+	t=1735897388; cv=none; b=RMD6bjTTk2OALZGB0tqteZ+W7MaTGlWbjCXz9JqloAk9NRRXPgxMD31DsDluxEzCKDXSC2TRRWAgfkaeyptQ5bC+r8iab3Tgp4YWEO0cgUZdAhPpKyRzDCYZPqTICB3IQRLcpBAIw2xzkYt6/BzSweRoxbfr0azPyV/JHWEmIpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735897258; c=relaxed/simple;
-	bh=5vztbglS15xfKUbDC0vnLnilTZgDf+eQTTloOlJ6PzY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=jPvxVVsU5e7hknsKGQp71LZdcsdC+weKQrfmzU9gdKjImtTa8VASPcpSFr8J9q20ZRSSPUeeTM7pGZwPCZuj6K4aRjrHuIFWthIn/GCiFvrEpgKT5fjEzQSLEEmguxfjD73BNGmvEKQRu1byUB7qY0Re6r3+MdcaTuZ8xA+PNZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GL+kYDBx; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1735897254;
-	bh=5vztbglS15xfKUbDC0vnLnilTZgDf+eQTTloOlJ6PzY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=GL+kYDBxGaj2JbhB31ScE3ZtMIvO1L52hieMQmb4KxB+BjlshE5t4oUSGDjoEGglY
-	 3p+zpaULxfHftzj2Zx+N8v6ZjqDkbLX2Vs35/02d6kPK0q+xLJ3g9NV5WUqCl0Qwla
-	 Rr0GAaSKGs0FMigIsaNc1Lx++qE8aQzMzldn0+Wu+3hUO9zM3JWXhl5iLrFgRzUkRR
-	 CDdMWBdCGENkraKEFyBK8kkum7w1Le3ZnNlIZieV7KFBJIdB6zfqpV/qu8XNAhmopj
-	 lomCwAamuJoNIP/qAQAvA0++VB0yGzGeIzRQV0azedbx3jwk7RXNsLXmy5zH1W3LpE
-	 o+p8kVDiHYvxQ==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9EB1E17E1541;
-	Fri,  3 Jan 2025 10:40:53 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
- Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, 
- Shawn Sung <shawn.sung@mediatek.com>, dri-devel@lists.freedesktop.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- Fei Shao <fshao@chromium.org>, Pin-yen Lin <treapking@chromium.org>
-In-Reply-To: <20241219181531.4282-1-jason-jh.lin@mediatek.com>
-References: <20241219181531.4282-1-jason-jh.lin@mediatek.com>
-Subject: Re: [PATCH v3 0/4] Update MT8188 OVL compatible from MT8183 to
- MT8195
-Message-Id: <173589725358.61653.1284687133545128429.b4-ty@collabora.com>
-Date: Fri, 03 Jan 2025 10:40:53 +0100
+	s=arc-20240116; t=1735897388; c=relaxed/simple;
+	bh=IN9uo6WPQ8ThpIm3/TiKdnZ5CchrOkb0f3soHYSzdHw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lugE+6bGSqkcCpkIBWRTAKMUzNuyfsOxIyKeWRRpVuEfLAahzyIDjsil4STvZ7tW3zihcaCWwq5hdokqVt0KYrMS0yh5TwAHeLxdbcD4Y/kkcHKc6p8cXvfJuLF1R/Lwfp+fLYVLZhPK0/Y3El+6wkSsJIfDCGTwcc6PZtYHJ7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com; spf=pass smtp.mailfrom=korsgaard.com; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=aaxnmOyV; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=korsgaard.com
+DKIM-Signature: a=rsa-sha256; b=aaxnmOyV6tIbtOPHu5KPGsZ3FhvWRd9YRQ2PyHcmA1BG7spdsLdoUwRrWpRAgNUPagF+lS6Rg0f7CmUMLi/DBrj2ouTx8mr1SIr8XEg9ud0pRkWlBVw1tygi50TlU3IPcX0UgArPs5wbJrVJ50gpn/wILhaRypXvCrCkpTfS9uMMr5LT8fS38X54F1VO+Q4o/w4A0fYIxapqXfAQ9h7giQ19O8xlF3ouieuI0KWgFjxUfbIFEI4zsOi8jPML6Z4sRB0Y8FHbAqSm3hJ2WBaDXG87BEY/SrtCgP2nUTYYVWmzGQXmMi35vaVwEV8TXHjFUwZ8ReA5nEbTfSyLv6B/KQ==; s=purelymail3; d=purelymail.com; v=1; bh=IN9uo6WPQ8ThpIm3/TiKdnZ5CchrOkb0f3soHYSzdHw=; h=Feedback-ID:Received:Date:Subject:To:From;
+Feedback-ID: 21632:4007:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -2008162100;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Fri, 03 Jan 2025 09:42:46 +0000 (UTC)
+Message-ID: <638f0623-87a8-4d96-baf2-f567325929d5@korsgaard.com>
+Date: Fri, 3 Jan 2025 10:42:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
+ property
+To: Krzysztof Kozlowski <krzk@kernel.org>, Guenter Roeck
+ <linux@roeck-us.net>, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250102175041.822977-1-peter@korsgaard.com>
+ <b3b8aa28-24d3-4952-a8d3-7019ad4c63de@kernel.org>
+ <348cda09-cc54-4d29-975c-ab28241d8372@korsgaard.com>
+ <e31c51dc-4e35-49fe-9838-207e2fb273ce@kernel.org>
+ <25a1b5bd-437c-4136-84d4-e1eab264d062@korsgaard.com>
+ <3803fad5-0dab-491c-b2bf-47ab888bb1a2@kernel.org>
+Content-Language: en-US
+From: Peter Korsgaard <peter@korsgaard.com>
+In-Reply-To: <3803fad5-0dab-491c-b2bf-47ab888bb1a2@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
 
-On Fri, 20 Dec 2024 02:15:27 +0800, Jason-JH.Lin wrote:
-> This patch series updates the compatible strings for the MediaTek OVL
-> in the MT8188 dts and the corresponding dt-binding.
-> The changes ensure that the MT8188 OVL device is correctly identified
-> and managed by the appropriate drivers.
+On 1/3/25 10:35, Krzysztof Kozlowski wrote:
+>> So if we agree on default-pwm, then I can send an update (a v4!) with
+>> the typo in the example fixed, OK?
 > 
-> The first patch is adding the MT8188 compatible strings, refer to:
-> - https://lore.kernel.org/all/20241218105320.38980-2-angelogioacchino.delregno@collabora.com/
+> Yes and we go back to my first comment about commit msg:
 > 
-> [...]
+> "Also mention here shortly how Rob's comment is addressed."
+> 
+> e.g. we cannot use default/target-rpm because of foo bar.
 
-Applied to v6.13-next/dts64, thanks!
+OK, I'll extend the commit message and send a v4.
 
-[1/4] dt-bindings: display: mediatek: ovl: Add compatible strings for MT8188 MDP3
-      commit: eb27e8d75b83c0781eb330f356d4442177674e74
-[2/4] dt-bindings: display: mediatek: ovl: Modify rules for MT8195/MT8188
-      commit: 5ecd1e700b67b33fac1a48d86fea124b6c19d052
-[3/4] dts: arm64: mediatek: mt8188: Update OVL compatible from MT8183 to MT8195
-      commit: 7c791dc2cb62f8ec523872108c8a8c718512c218
-[4/4] dts: arm64: mediatek: mt8195: Remove MT8183 compatible for OVL
-      commit: f72561bf756baba4ab300bfc728fefd85c67913e
-
-Cheers,
-Angelo
-
-
+-- 
+Bye, Peter Korsgaard
 
