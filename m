@@ -1,142 +1,145 @@
-Return-Path: <devicetree+bounces-135404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4966A00DB7
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:43:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 201BFA00DB9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:43:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DED73A4271
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:43:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4464163B4F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 18:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D4181FBC92;
-	Fri,  3 Jan 2025 18:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E8C1FC7D9;
+	Fri,  3 Jan 2025 18:43:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZUcGJFiK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825681F9F7D;
-	Fri,  3 Jan 2025 18:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58F9C1F9F7D;
+	Fri,  3 Jan 2025 18:43:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735929803; cv=none; b=LtrE+NosGqSl0FpXvOcOUeIXIuNWFFqwcJ9/LODwkH5uqM3LnyGRf4ws6g+2lBgWJQe2jeJQjTPymdR6MYdzEryix1NN7oDu2wFg7oA1MRCXFja88Lgii//FwEvaj5LZBDG4NnWqkM9sjHs9MH3e2BacL+9yqFhO4IpDVdzBwXc=
+	t=1735929806; cv=none; b=JtG0MGjrR0l7QYZVGGhzu4rZL7+obJmT+7nGo+e+3b8iMBWWJH6iWGoVOfxqosWXvCdh+7rj5xjpSEkZAlQWLEKfgNIS47F9i3+bxWCpv+nRk6auYYmN43YdqpsiD2eICMJ4df23N30FdRVCIlE4YPc7479IpQNVcyCS/2oyu2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735929803; c=relaxed/simple;
-	bh=BFS79rOqYTtyIkovNYxwwMGMMxycI2OnDra/Q8Ghw1Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Pxyk1mefKKdHw1Qu0X8yldgEHk0ptFu5a6Iu62Fx5x5OCpodWxdTTt0vw3cxaCkktA/5jngOL/v984Fn2vNhESiS1ri4d1b6ZTdezT/Qjj+A74n7T7m9gs5oO2NnBhEYmSOkhFmXYhcdBGgiBDDKnvzBvCbvaESrb2DMp+Ik+04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4afe2a1849bso7238849137.3;
-        Fri, 03 Jan 2025 10:43:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735929799; x=1736534599;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HAHPf999xM3p/2tqOu01A4JQAAGkSfIwg0+gefbg2Hg=;
-        b=EFX+zXIy1NrmKTqSWVVrnc3mlQryUgG/35l5ByoXN4WPKP9vWSNc65m5iiKR1QJgO5
-         ei2LoTxRKkJ8NgwM83bmjTxIK60Fj3IPvCmUdS1IMzodPZSe7XIiQNONETlMCi7aiUxU
-         ZtV8RvdxTIHS/ly1yhf1TZ+zWgppJ9yZ7gV9FABWCd7pRYqfiIZeEDuVgWYcXwdp5kcR
-         W8G8O0g09NOjA1jrdAf0GKy6MVhRdh/5aBAHzdUv7dpe8HLx5iyy+QzA09v/fDIj4Y7M
-         dPeaBcL6hkSL0VcR8+Ywqa9bymldb74zuqXF3CbwxOHel01/t28+7usIMRG2fHKLU0BJ
-         a3ug==
-X-Forwarded-Encrypted: i=1; AJvYcCVNRzfJNstRPcJLu9oPwzXJyVR1WBDaePeldpeT46Ja7Z1aW9jHCpQ92Mgrq45x631LLHgokSGFtciz@vger.kernel.org, AJvYcCWkGqRnxpjwYuAgnH3NK4UzjXuzhpvxBgiaR+wvjeO87qJemgxmnGcGgD8Dx/RN35+XXzO8CSgxUUC7sIX1YeeQF2c=@vger.kernel.org, AJvYcCXuQ6mrMAG/QdzBMMyb8AhaFkAc1ABEQvwsVSd1dy7fyNG+HLtpMsTTiXHIs18imMNxc9axyT+dJzWX4w==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5C89VmDeAqGAKV2etcgaVhmtD4iKpHuaTvnAB3YMg1Mvgqz6g
-	A7QTgX4v93p863K/EMXMFkVnB9kU/VjJmg5YtuDD+iUWPmakZae8c8e3Zh87ql0=
-X-Gm-Gg: ASbGncuZotfNKHiAdayX9CNiRXXlxYctRj0I/KzblZ3/fNXStFhwZXrnKtvDRPcBjpr
-	Tyh8Dk4tvgX5cDjZ8QOwSwQD4Q1D5tJLhw4l4HiPH7QT38kd5Ak4xc5feoWRpwQduBwv0cclgZI
-	uSEcRjd/KZCjwyaH4d7Lk4yQ5QzZ7QwomJs3CQOp/I8ryvnokyzudZqaPc0omSck0kfCKFPCjwz
-	jVvsK6YVkcge62B8GhSYYFub9HaCh56eN+KKtAQyz3s1kH0q9bmF/4oN8H6RlG86LBRjM6PSGNJ
-	fQNXvkbKDwuaPsTZ6sY=
-X-Google-Smtp-Source: AGHT+IH2JNGs9tf9MpRnVpbTrxV+x96laWMSnyqHS/gk05n6miK+fenGbZo0csL3D/lABhvCuZsuNw==
-X-Received: by 2002:a05:6102:548d:b0:4b1:1b67:6a5c with SMTP id ada2fe7eead31-4b2cc44935emr35651654137.18.1735929799201;
-        Fri, 03 Jan 2025 10:43:19 -0800 (PST)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8610ad582cdsm5665205241.32.2025.01.03.10.43.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Jan 2025 10:43:18 -0800 (PST)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4b2c0a7ef74so7030987137.2;
-        Fri, 03 Jan 2025 10:43:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW1bf3QARecVOTqsgvrp+Qq0i3pnPXNx+NoICxzKbrcvemf+Svb6REFYa2CTRSLBmA4RfQpaxK7xfaVdw==@vger.kernel.org, AJvYcCX/EscSXzCX+f/+VU9O9GODPHik+gTm5werlo3AjibH5gcbDx4OfueNKQl1JO0rDw6pEI/CCwwaT/BHhdmHnRZUuGA=@vger.kernel.org, AJvYcCX5aQV3Rwzl4IY+85mkK3M7v9kvst/JvnfvhTLoWN6nO97NqCz7MGNm75eNqllhKN8Cmu9+n9Xe0WKb@vger.kernel.org
-X-Received: by 2002:a05:6102:440b:b0:4b2:49ff:e470 with SMTP id
- ada2fe7eead31-4b2cc449353mr33420135137.21.1735929798416; Fri, 03 Jan 2025
- 10:43:18 -0800 (PST)
+	s=arc-20240116; t=1735929806; c=relaxed/simple;
+	bh=8pOKdkbcvZRxJ8M7I+SOFXrJdPA2Dafv5X9jSrrDkEk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RxZakjxHlRt769RYIsVx8yjPuW7YXbajxKK6s4PZFoM+mtTrbFws2MXhIMKU4r9PpDYkXEQmzTHQ8Neea8WfnzcVXmFZFi1AGnCXIcHbY3XGI/YU1X6g3wVLplUvKaULiVNrVm0blErUjhUcVBLN3952fSqGefNv5hZnOIfNQlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZUcGJFiK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82ABCC4CED6;
+	Fri,  3 Jan 2025 18:43:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735929805;
+	bh=8pOKdkbcvZRxJ8M7I+SOFXrJdPA2Dafv5X9jSrrDkEk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZUcGJFiKlBKF6LjEBgdB1NGR4Uo/sPiahJZXmRbXxvGA2xsvBphnbzjO0WM9KWp3M
+	 NQgQXkLrUGVp1cAnrqPryrINnGobbCnBbMETZM+7BefQis2YlWka+/NAtkPvZnhbCJ
+	 CYo8bWW86rHI4e5xKYPftoxErHs4ZM7EhcSgZzIFRJxBUG4i1ll6RQ/oi93hjtWgRR
+	 oCARFTgqnSHc/n6Jna4MLJhvYu/NOOAXlAod8YW9CHmfnBusnFNZBvtDSoEopuJy0y
+	 deQwXwY9m3sAZu+VleS55xnNOzRb4mljQTd/IIeDC0O5wpdgQ4DIn9BF9asO6iTN9Y
+	 YBWrzODRxWmSg==
+Message-ID: <d78bc184-b035-41bb-b5eb-088a86c6b77d@kernel.org>
+Date: Fri, 3 Jan 2025 19:43:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241216195325.164212-1-biju.das.jz@bp.renesas.com> <20241216195325.164212-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20241216195325.164212-2-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 3 Jan 2025 19:43:06 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVcDc1YK70WT9YF+tTR5Qxk8Wq1v+moPG9xK5EgnYyhag@mail.gmail.com>
-X-Gm-Features: AbW1kvbkX6QiVHTCjHm6HXFL-TymisvIFgX9yu4DL_ZA-Im4za9PZ-vtQNtQNXY
-Message-ID: <CAMuHMdVcDc1YK70WT9YF+tTR5Qxk8Wq1v+moPG9xK5EgnYyhag@mail.gmail.com>
-Subject: Re: [PATCH v4 1/7] dt-bindings: pinctrl: renesas: Add alpha-numerical
- port support for RZ/V2H
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 1/2] dt-bindings: mailbox: Document qcom,tmel-qmp
+To: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org,
+ manivannan.sadhasivam@linaro.org, dmitry.baryshkov@linaro.org
+References: <20241231054900.2144961-1-quic_srichara@quicinc.com>
+ <20241231054900.2144961-2-quic_srichara@quicinc.com>
+ <kwtzvcoyayml3tgicnp5a75r65hqpicm7hivtk25ohp6rt34qf@sgunxjxfe33r>
+ <ac15561f-b9e7-4434-af1a-04408172d46c@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ac15561f-b9e7-4434-af1a-04408172d46c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Biju,
+On 03/01/2025 19:34, Sricharan Ramabadhran wrote:
+>>> +description:
+>>> +  TMEL SS provides different kinds of services like secureboot, remote image
+>>> +  authentication, key management, crypto, OEM provisioning etc. This patch adds
+>>> +  support for remote image authentication. Support for rest of the services can
+>>> +  be added.
+>>> +
+>>> +  The QMP mailbox is the primary means of communication between TMEL SS and
+>>> +  other subsystem on the SoC. A dedicated pair of inbound and outbound mailboxes
+>>> +  is implemented for each subsystem/external execution environment which needs to
+>>> +  communicate with TMEL for security services. The inbound mailboxes are used to
+>>> +  send IPC requests to TMEL, which are then processed by TMEL firmware and
+>>> +  accordingly the responses are sent to the requestor via outbound mailboxes.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - qcom,ipq5424-tmel-qmp
+>>
+>>
+>> Why qmp? Can TMEL on IPQ5424 be anything else? Can TMEL be SMEM or using
+>> any other remoteproc?
+>>
+> TMEL on IPQ5424 uses only QMP protocol for communication.
 
-On Mon, Dec 16, 2024 at 8:53=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> RZ/V2H has ports P0-P9 and PA-PB. Add support for defining alpha-numerica=
-l
-> ports in DT using RZV2H_* macros.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3->v4:
->  * Added new header file with separate RZV2H_P* definitions.
 
-Thanks for the update!
+Then keep just "tmel". It completely defines this device.
 
-> --- /dev/null
-> +++ b/include/dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h
-> @@ -0,0 +1,31 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * This header provides constants for Renesas RZ/V2H family pinctrl bind=
-ings.
-> + *
-> + * Copyright (C) 2024 Renesas Electronics Corp.
-> + *
-> + */
-> +
-> +#ifndef __DT_BINDINGS_RZV2H_PINCTRL_H
-> +#define __DT_BINDINGS_RZV2H_PINCTRL_H
-
-> +#endif /* __DT_BINDINGS_RZV2H_PINCTRL_H */
-
-__DT_BINDINGS_PINCTRL_RENESAS_R9A09G057_PINCTRL_H__
-
-Will fix that while applying, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-pinctrl for v6.14.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> 
+Best regards,
+Krzysztof
 
