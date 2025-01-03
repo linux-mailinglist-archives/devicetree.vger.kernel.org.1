@@ -1,280 +1,488 @@
-Return-Path: <devicetree+bounces-135238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D1CA003C7
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 06:50:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 810D2A003C9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 06:51:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5561C7A0667
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 05:50:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44CB9162D7D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 05:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155DB1482E1;
-	Fri,  3 Jan 2025 05:50:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8EA017B402;
+	Fri,  3 Jan 2025 05:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jxLp3ukB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o4yc2tuw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB4D632
-	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 05:50:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C45157A67
+	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 05:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735883451; cv=none; b=h7uYbuvm1a1q/5KlSaed+4fH0f4KuJQ5a41AUKCk4GwL4199p8EVpuHVGojmIC/x/zM3Nb7GibY3pEpaRLPpo73MoVjia5fCBAEuKz7cy/sEh9IdIAhi509JhjAmu15KRT8JaCJ7YrSnebbPnof4tpOrSfrNaw/Jp0sNIfMQ3Yc=
+	t=1735883492; cv=none; b=GViDETnr0k8mM/FV4n5+HUNHN0tfucH3rCw2m6q3MkHG5kX5TuZqOlt8M6wJOplG7vCkcK82APJCCJ1HJLp/kYWRin8+HpXDVcxN2bs3M97V8G3ek0QUuXkIVciKlPmcQhvpoWN2g2LbqwoUtI+snppoob3ozxikIB6AIC6UCxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735883451; c=relaxed/simple;
-	bh=fXowmKMW5FJGzLXztYyhAeU3RH0a5EXsRUBWBx6n5pg=;
+	s=arc-20240116; t=1735883492; c=relaxed/simple;
+	bh=at/YcOCsLb1g46WS4lByyjsiSkiP0EJhskoPqtjy21o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gtZ0unWA77g8ES6LhP0figlihVo+MyX7uSMMCVR2P1VIFyz4snqaynQw3vXcYhp6Q4kqTSeHzgI6Eu4wBR8YHp1xbgqm0TEm0YrKUz5TH7jrlST8/F86Vbx+kr5wkiGIVyoKGjXaihT7zgXxwmsRPSZE4d0cmzIY/9eRyBn/pOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jxLp3ukB; arc=none smtp.client-ip=209.85.167.50
+	 Content-Type:Content-Disposition:In-Reply-To; b=kjF/DJEsLKx2usGtnw3PrJXqL13PXg/Y9WWDHq9hy8cul0flZB8Gyhb7NQRwI+/WfjsT+/vWx9MqWv5si44tvH2+RBN6J53e0nc0rK9/9XHOs0cETSUB330MMzvu8YcGbQZDwwBqYe4hRE8TBQoyK+HDSbW83p7IgV9z7j+TRG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o4yc2tuw; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5401c52000fso12252837e87.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 21:50:48 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5401be44b58so12855865e87.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2025 21:51:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735883447; x=1736488247; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FEkYdYcmtixMITLyh3+SG+VW63Pt/UrSIJ1+EOVVUrk=;
-        b=jxLp3ukBZxxv9GalHysDVFDp+rW2K7WRADHQK1G/0EH6zsx/zok1VtZP7vfroBuKhH
-         yXgS9q/Z2J1OL/TijRQ01w4lzj0QPCuRIlQwwyqoK6R6EZQ/akoTpRnUrYh6B6GepBJZ
-         9/rEeqUPvGZVg6tkdYQCFY8bgKtMg5kGkvV5RomUGNFHrA+3whcLJUYlR/jRj39HRQW5
-         w33VFSu95HaeUl2uk4d4xKV+dJGyQgY0thN1zOgl1Fz0OLgfuRxq9f4YG6gO1NOXveT6
-         GixsbSlKnSbu4AQvgU4Y04+Lp+qFGjAIAo/iBgSsMHQceEt3HU2f0uFjggdtsdTP64Q5
-         9f0w==
+        d=linaro.org; s=google; t=1735883489; x=1736488289; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=m1hfCNaSvFCDhBAHKWIR7F+Dr2jFd4o4sO+o85oU4+g=;
+        b=o4yc2tuwUnzBSX+S+68W9Wwm7TZD7CqX40DHhtJZH14os9foyRsHfXkAcdIoDz/dam
+         +7IYCg1uZNWkiVP4qvfYaMwx55zFVghEYxLxfqjupQRwrlKtOaPP5SlRSub+SWLQGJhh
+         iyeVfpUOsFiH44iMTXfjob8k76/x9iWr03Bt8nhBNdIYHhRjCClSHAZtxGhOJU1lSOmY
+         ZFzp/9fdnfnpug0C8TCL8a0pqnPijffYALqcdrVkoLsnSVWypUUESbRInqCt1uXtFnJr
+         Ml2kvWvghBMJu4R8bmrneNAuv+FlNEUrtzxGA0CXh2/TwCY2lQodUheyvio9mibG/fjs
+         t50g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735883447; x=1736488247;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FEkYdYcmtixMITLyh3+SG+VW63Pt/UrSIJ1+EOVVUrk=;
-        b=PmbwSi/MmzaomqaG7DIA4ZTsg5YrXQU5A7sQUmjx4J+PGCzt2fk8+KoPbT6Pl/0mt7
-         jS76hl2ppeygF+iWpYjbs6T4qIDkOWv/upTJPQGZRPdtHfiUWSI22prK/BnF6lNSWtrb
-         is6Fgv362LKBR5lBkbMzaYYO5UGdfQm14PbBQKPCZyA+InENWG6gkeZYqdzocUmtO7BN
-         j1WMIkxoMJ/ss0dBObnQ1S6va9x5FWl0WZVcEKrLUBWfNkhRkr0tf9QtKSMhujIXUpt/
-         eCJPmrWfpCbF71WMCLMi0KIjTnzVlWmXJ+xAB/+bPDUvyxzasUZiAkkWuUxYn4ynk+c9
-         O+Iw==
-X-Forwarded-Encrypted: i=1; AJvYcCWz5CcvBfiLinYr09SSGJrm8uvoirJq8VGL/zO9yMdFOcsIS94Uaj4KLNrBZ5EgqtItQh/6XJBDMQvg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx55cmfxzI7oIjz7PrYDS4/m/VTfh3ThffL1ycXcKslSFZAzuqC
-	FqYW5QecOV0bDWL9OPw0w7dGf29xjdowHXhezpw+Qy4+5l924O19B89hd3JEZz0=
-X-Gm-Gg: ASbGncvihtpUzak6X9vaqfAp1gZkPlcXhe9EdRjGJmVnfcIvVKP1cUynYE5Fc2dLWO1
-	Q+k5f487m3i4RYlY6/blFKGI8V1sdOXeftvP+Pktl/xwvHmew4KJUb/uHF79aOKO6GlNmUzMjwK
-	b8NrT3GlgaqxqB9D0qy/TSEraBpoY9e1OhL4iNuJot19rZ3XdE7X5Q0nDQx37j7eScK8TUr4c+3
-	8fDQEFh8vmAgy319l7uIZgGVX8Hk5MDhH/K+yK8EtA0MDQyrhnbWAinoSjzm6c61UzZyTwpe4zw
-	AkTk42NBQ16qxEZALJWFGmWM/Y6/08exohjr
-X-Google-Smtp-Source: AGHT+IFHYtpTHlT3k8Ra3JiNFgtC3CZwd5xUPxcQTLH76XONxYDGP3ZLhk4BoKGO51IbGEpw6tJ1ng==
-X-Received: by 2002:a05:6512:3e15:b0:53e:1c3e:34 with SMTP id 2adb3069b0e04-542295911b0mr16429269e87.38.1735883447287;
-        Thu, 02 Jan 2025 21:50:47 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735883489; x=1736488289;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=m1hfCNaSvFCDhBAHKWIR7F+Dr2jFd4o4sO+o85oU4+g=;
+        b=bk0fyHYiJod6lZPSqSDYzP+vCiA4tToSUaUdRuNcL7OyYVLt5ZnZvdjrk3Gtg7fSvK
+         mYLp1fNlguiyy44voyBGx5a3Y7yiUlveYdMPX8RNi8uG0H7DbEzIt+0KpO+5NYyQHchz
+         VBf00BLflS4div7KBb8Q1/n8FhCJIj7FXyY393DPeyZ2uYAd7Bi6cBXokUEjnixYEDmA
+         Ibw1xG/yordGFNf9XmqlOgIhHqKJuc1xCcjq0csBn7NuSegyNmeckXzdvnHiETBPI6f8
+         Jn5tK2t3wg7MqI9hhuaeGcz1zZ25H7t5yzDdO/O92VVL1mzNre4RxIaPQcr6vwhs3Nx/
+         OJCA==
+X-Forwarded-Encrypted: i=1; AJvYcCW0jfD/A0K7H9OnZaXZoaO5f3pM2RGq41WP3WACVU4ue8ttyr5KoSX/UIeONzj7gPRrBKOvaQuIx09h@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzc3oQhXOoiHLJXh6qIhbr+aRi2SdwZ8WrLTzRAshR+zEnQ8/g7
+	mb+CnyhsqhQ1xj56hDSNamYeA4WXjO8PzPsPXbtE3du2FNmH0Ze/NStIIEKWQwU=
+X-Gm-Gg: ASbGncspmlwsvSqqhvRBQI2RyL+t8rr42oR05kQuTztL8184oZc3fORFMUJZRPF4Ko7
+	4IeCtJGRaEvFEZ3D8cx92Bh+K1ccE44xMjnGv1Cs+2S9qVsT7tKKVv3OmqsYW2+F1bCyrU42ivx
+	LcWDgWPcgEFKuAy7wwhV9bboRHzdZEm4HG82mUqFokhd3u2cczDv8clxzLZCgqGKF+VRYVJJruG
+	kALKOZF72OKKiejUydfWHRajsG4qQZ6N2v6WepeOLQXEhA8+44r4WfrVlPXAV4X5LCJyESI7aok
+	WqAzY8Om6u1k+dZPYdOA7+FeIh8wBykq4stA
+X-Google-Smtp-Source: AGHT+IHJDXW1Mfr007wgFjUluJ0e5hHgU9FRhIlqr4pWUUbVOvSfBeZ9WdF1YSyq6ifZoaAj5CmfLw==
+X-Received: by 2002:a05:6512:6cf:b0:540:2022:e3c6 with SMTP id 2adb3069b0e04-542295619f7mr15701372e87.35.1735883488635;
+        Thu, 02 Jan 2025 21:51:28 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5422382faa1sm3987436e87.238.2025.01.02.21.50.44
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542238138e4sm4012638e87.141.2025.01.02.21.51.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jan 2025 21:50:46 -0800 (PST)
-Date: Fri, 3 Jan 2025 07:50:43 +0200
+        Thu, 02 Jan 2025 21:51:27 -0800 (PST)
+Date: Fri, 3 Jan 2025 07:51:24 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	kernel@quicinc.com
-Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
- Ride-r3
-Message-ID: <4wmxjxcvt7un7wk5v43q3jpxqjs2jbc626mgah2fxbfuouu4q6@ptzibxe2apmx>
+To: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
+Cc: Wasim Nazir <quic_wasimn@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [PATCH v5 6/6] arm64: dts: qcom: Enable cpu cooling devices for
+ QCS9075 platforms
+Message-ID: <ubasbsyspn5euygihgphyw3xg4ckveytvgnjpwdiyg4pv7degr@6y44ya4gvaqj>
 References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
- <20241229152332.3068172-6-quic_wasimn@quicinc.com>
- <tjrg5zqggupjo36udpyv3vynsij76f4qlus6lkbqotuimusqgq@hosmksp77sif>
- <Z3ZXWxoBtMNPJ9kk@hu-wasimn-hyd.qualcomm.com>
+ <20241229152332.3068172-7-quic_wasimn@quicinc.com>
+ <zn4uf3mmlmt3who474hwkr44poycfqtjtidshybbg55a3hr63y@zxefqbhiwkbg>
+ <d54c6706-3c6b-211c-6acb-fa3984c30c67@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <Z3ZXWxoBtMNPJ9kk@hu-wasimn-hyd.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d54c6706-3c6b-211c-6acb-fa3984c30c67@quicinc.com>
 
-On Thu, Jan 02, 2025 at 02:37:39PM +0530, Wasim Nazir wrote:
-> On Mon, Dec 30, 2024 at 05:45:39PM +0200, Dmitry Baryshkov wrote:
-> > On Sun, Dec 29, 2024 at 08:53:31PM +0530, Wasim Nazir wrote:
-> > > Add device tree support for QCS9075 Ride & Ride-r3 boards.
-> > > 
-> > > QCS9075 lacks the safety monitoring features of Safety-Island (SAIL)
-> > > subsystem which is available in QCS9100, and it affects thermal
-> > > management.
-> > > 
-> > > Also, between ride and ride-r3 ethernet phy is different.
-> > > Ride uses 1G ethernet phy while ride-r3 uses 2.5G ethernet phy.
-> > 
-> > Your board files duplicate sa8775p-ride-r3.dts and sa8775p-ride.dts, but
-> > include them. Existing qcs9100-ride-r3.dts and qcs9100-ride-r3.dts just
-> > include corresponding SA8775P files.
-> > 
-> > This is not ideal for the following reasons:
-> > - The approach is not uniform (between QCS9100 and QCS9075), which might
-> >   lead to mistakes.
-> > - The approach ends up duplicating DT code unnecessarily, which can lead
-> >   to issues being patches in the one board file, but not in the other
-> >   file.
-> > 
-> > If there are any reasons why you want to follow this approach, they must
-> > be a part of the commit message.
-> > 
+On Tue, Dec 31, 2024 at 05:31:41PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
 > 
 > Hi Dmitry,
 > 
-> Initially, we included the DTS [1] file to avoid duplication. However,
-> based on Krzysztof's previous suggestion [2], we change to this format.
-> 
-> Please let us know how to proceed further on this.
-
-Krzysztof asked you to include DTSI files instead of including DTS
-files. Hope this helps.
-
-> 
-> [1] https://lore.kernel.org/all/20241119174954.1219002-6-quic_wasimn@quicinc.com/
-> [2] https://lore.kernel.org/all/8cf9edc0-a0cb-4fd0-b10e-2138784dfba3@kernel.org/
-> 
+> On 12/30/2024 9:10 PM, Dmitry Baryshkov wrote:
+> > On Sun, Dec 29, 2024 at 08:53:32PM +0530, Wasim Nazir wrote:
+> > > From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
 > > > 
-> > > Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
+> > > In QCS9100 SoC, the safety subsystem monitors all thermal sensors and
+> > > does corrective action for each subsystem based on sensor violation
+> > > to comply safety standards. But as QCS9075 is non-safe SoC it
+> > > requires conventional thermal mitigation to control thermal for
+> > > different subsystems.
+> > > 
+> > > The cpu frequency throttling for different cpu tsens is enabled in
+> > > hardware as first defense for cpu thermal control. But QCS9075 SoC
+> > > has higher ambient specification. During high ambient condition, even
+> > > lowest frequency with multi cores can slowly build heat over the time
+> > > and it can lead to thermal run-away situations. This patch restrict
+> > > cpu cores during this scenario helps further thermal control and
+> > > avoids thermal critical violation.
+> > > 
+> > > Add cpu idle injection cooling bindings for cpu tsens thermal zones
+> > > as a mitigation for cpu subsystem prior to thermal shutdown.
+> > > 
+> > > Add cpu frequency cooling devices that will be used by userspace
+> > > thermal governor to mitigate skin thermal management.
+> > Does anything prevent us from having this config as a part of the basic
+> > sa8775p.dtsi setup? If HW is present in the base version but it is not
+> > accessible for whatever reason, please move it the base device config
+> > and use status "disabled" or "reserved" to the respective board files.
+> 
+> Sure,  I will move idle injection node for each cpu to sa8775p.dtsi and keep
+> it disabled state. #cooling cells property for CPU, still wanted to keep it
+> in board files as we don't want to enable any cooling device in base DT.
+
+"we don't want" is not a proper justification. So, no.
+
+> 
+> Best Regards,
+> 
+> Manaf
+> 
+> > 
+> > > Signed-off-by: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
 > > > ---
-> > >  arch/arm64/boot/dts/qcom/Makefile            |  2 +
-> > >  arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts | 46 ++++++++++++++++++++
-> > >  arch/arm64/boot/dts/qcom/qcs9075-ride.dts    | 46 ++++++++++++++++++++
-> > >  3 files changed, 94 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
-> > >  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> > >   arch/arm64/boot/dts/qcom/qcs9075-rb8.dts      |   1 +
+> > >   arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts  |   1 +
+> > >   arch/arm64/boot/dts/qcom/qcs9075-ride.dts     |   1 +
+> > >   arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi | 287 ++++++++++++++++++
+> > >   4 files changed, 290 insertions(+)
+> > >   create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi
 > > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > > index 78613a1bd34a..41cb2bbd3472 100644
-> > > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > @@ -118,6 +118,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-rb8.dtb
-> > > +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-ride.dtb
-> > > +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-ride-r3.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+> > > diff --git a/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts b/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
+> > > index ecaa383b6508..3ab6deeaacf1 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
+> > > @@ -9,6 +9,7 @@
+> > > 
+> > >   #include "sa8775p.dtsi"
+> > >   #include "sa8775p-pmics.dtsi"
+> > > +#include "qcs9075-thermal.dtsi"
+> > > 
+> > >   / {
+> > >   	model = "Qualcomm Technologies, Inc. Robotics RB8";
 > > > diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
-> > > new file mode 100644
-> > > index 000000000000..d9a8956d3a76
-> > > --- /dev/null
+> > > index d9a8956d3a76..5f2d9f416617 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
 > > > +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
-> > > @@ -0,0 +1,46 @@
-> > > +// SPDX-License-Identifier: BSD-3-Clause
-> > > +/*
-> > > + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> > > + */
-> > > +/dts-v1/;
-> > > +
-> > > +#include "sa8775p-ride.dtsi"
-> > > +
-> > > +/ {
-> > > +	model = "Qualcomm Technologies, Inc. QCS9075 Ride Rev3";
-> > > +	compatible = "qcom,qcs9075-ride-r3", "qcom,qcs9075", "qcom,sa8775p";
-> > > +};
-> > > +
-> > > +&ethernet0 {
-> > > +	phy-mode = "2500base-x";
-> > > +};
-> > > +
-> > > +&ethernet1 {
-> > > +	phy-mode = "2500base-x";
-> > > +};
-> > > +
-> > > +&mdio {
-> > > +	compatible = "snps,dwmac-mdio";
-> > > +	#address-cells = <1>;
-> > > +	#size-cells = <0>;
-> > > +
-> > > +	sgmii_phy0: phy@8 {
-> > > +		compatible = "ethernet-phy-id31c3.1c33";
-> > > +		reg = <0x8>;
-> > > +		device_type = "ethernet-phy";
-> > > +		interrupts-extended = <&tlmm 7 IRQ_TYPE_EDGE_FALLING>;
-> > > +		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
-> > > +		reset-assert-us = <11000>;
-> > > +		reset-deassert-us = <70000>;
-> > > +	};
-> > > +
-> > > +	sgmii_phy1: phy@0 {
-> > > +		compatible = "ethernet-phy-id31c3.1c33";
-> > > +		reg = <0x0>;
-> > > +		device_type = "ethernet-phy";
-> > > +		interrupts-extended = <&tlmm 26 IRQ_TYPE_EDGE_FALLING>;
-> > > +		reset-gpios = <&pmm8654au_2_gpios 9 GPIO_ACTIVE_LOW>;
-> > > +		reset-assert-us = <11000>;
-> > > +		reset-deassert-us = <70000>;
-> > > +	};
-> > > +};
+> > > @@ -5,6 +5,7 @@
+> > >   /dts-v1/;
+> > > 
+> > >   #include "sa8775p-ride.dtsi"
+> > > +#include "qcs9075-thermal.dtsi"
+> > > 
+> > >   / {
+> > >   	model = "Qualcomm Technologies, Inc. QCS9075 Ride Rev3";
 > > > diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
-> > > new file mode 100644
-> > > index 000000000000..3b524359a72d
-> > > --- /dev/null
+> > > index 3b524359a72d..10ce48e7ba2f 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
 > > > +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
-> > > @@ -0,0 +1,46 @@
+> > > @@ -5,6 +5,7 @@
+> > >   /dts-v1/;
+> > > 
+> > >   #include "sa8775p-ride.dtsi"
+> > > +#include "qcs9075-thermal.dtsi"
+> > > 
+> > >   / {
+> > >   	model = "Qualcomm Technologies, Inc. QCS9075 Ride";
+> > > diff --git a/arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi b/arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi
+> > > new file mode 100644
+> > > index 000000000000..40544c8582c4
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi
+> > > @@ -0,0 +1,287 @@
 > > > +// SPDX-License-Identifier: BSD-3-Clause
 > > > +/*
-> > > + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> > > + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
 > > > + */
-> > > +/dts-v1/;
 > > > +
-> > > +#include "sa8775p-ride.dtsi"
+> > > +#include <dt-bindings/thermal/thermal.h>
+> > > +
+> > > +&cpu0 {
+> > > +	#cooling-cells = <2>;
+> > > +};
+> > > +
+> > > +&cpu1 {
+> > > +	#cooling-cells = <2>;
+> > > +	cpu1_idle: thermal-idle {
+> > > +		#cooling-cells = <2>;
+> > > +		duration-us = <800000>;
+> > > +		exit-latency-us = <10000>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&cpu2 {
+> > > +	#cooling-cells = <2>;
+> > > +	cpu2_idle: thermal-idle {
+> > > +		#cooling-cells = <2>;
+> > > +		duration-us = <800000>;
+> > > +		exit-latency-us = <10000>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&cpu3 {
+> > > +	#cooling-cells = <2>;
+> > > +	cpu3_idle: thermal-idle {
+> > > +		#cooling-cells = <2>;
+> > > +		duration-us = <800000>;
+> > > +		exit-latency-us = <10000>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&cpu4 {
+> > > +	#cooling-cells = <2>;
+> > > +	cpu4_idle: thermal-idle {
+> > > +		#cooling-cells = <2>;
+> > > +		duration-us = <800000>;
+> > > +		exit-latency-us = <10000>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&cpu5 {
+> > > +	#cooling-cells = <2>;
+> > > +	cpu5_idle: thermal-idle {
+> > > +		#cooling-cells = <2>;
+> > > +		duration-us = <800000>;
+> > > +		exit-latency-us = <10000>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&cpu6 {
+> > > +	#cooling-cells = <2>;
+> > > +	cpu6_idle: thermal-idle {
+> > > +		#cooling-cells = <2>;
+> > > +		duration-us = <800000>;
+> > > +		exit-latency-us = <10000>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&cpu7 {
+> > > +	#cooling-cells = <2>;
+> > > +	cpu7_idle: thermal-idle {
+> > > +		#cooling-cells = <2>;
+> > > +		duration-us = <800000>;
+> > > +		exit-latency-us = <10000>;
+> > > +	};
+> > > +};
 > > > +
 > > > +/ {
-> > > +	model = "Qualcomm Technologies, Inc. QCS9075 Ride";
-> > > +	compatible = "qcom,qcs9075-ride", "qcom,qcs9075", "qcom,sa8775p";
-> > > +};
+> > > +	thermal-zones {
+> > > +		cpu-0-1-0-thermal {
+> > > +			trips {
+> > > +				cpu_0_1_0_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
 > > > +
-> > > +&ethernet0 {
-> > > +	phy-mode = "sgmii";
-> > > +};
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_0_1_0_passive>;
+> > > +					cooling-device = <&cpu1_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
 > > > +
-> > > +&ethernet1 {
-> > > +	phy-mode = "sgmii";
-> > > +};
+> > > +		cpu-0-2-0-thermal {
+> > > +			trips {
+> > > +				cpu_0_2_0_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
 > > > +
-> > > +&mdio {
-> > > +	compatible = "snps,dwmac-mdio";
-> > > +	#address-cells = <1>;
-> > > +	#size-cells = <0>;
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_0_2_0_passive>;
+> > > +					cooling-device = <&cpu2_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
 > > > +
-> > > +	sgmii_phy0: phy@8 {
-> > > +		compatible = "ethernet-phy-id0141.0dd4";
-> > > +		reg = <0x8>;
-> > > +		device_type = "ethernet-phy";
-> > > +		interrupts-extended = <&tlmm 7 IRQ_TYPE_EDGE_FALLING>;
-> > > +		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
-> > > +		reset-assert-us = <11000>;
-> > > +		reset-deassert-us = <70000>;
-> > > +	};
+> > > +		cpu-0-3-0-thermal {
+> > > +			trips {
+> > > +				cpu_0_3_0_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
 > > > +
-> > > +	sgmii_phy1: phy@a {
-> > > +		compatible = "ethernet-phy-id0141.0dd4";
-> > > +		reg = <0xa>;
-> > > +		device_type = "ethernet-phy";
-> > > +		interrupts-extended = <&tlmm 26 IRQ_TYPE_EDGE_FALLING>;
-> > > +		reset-gpios = <&pmm8654au_2_gpios 9 GPIO_ACTIVE_LOW>;
-> > > +		reset-assert-us = <11000>;
-> > > +		reset-deassert-us = <70000>;
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_0_3_0_passive>;
+> > > +					cooling-device = <&cpu3_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-0-1-1-thermal {
+> > > +			trips {
+> > > +				cpu_0_1_1_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_0_1_1_passive>;
+> > > +					cooling-device = <&cpu1_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-0-2-1-thermal {
+> > > +			trips {
+> > > +				cpu_0_2_1_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_0_2_1_passive>;
+> > > +					cooling-device = <&cpu2_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-0-3-1-thermal {
+> > > +			trips {
+> > > +				cpu_0_3_1_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_0_3_1_passive>;
+> > > +					cooling-device = <&cpu3_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-1-0-0-thermal {
+> > > +			trips {
+> > > +				cpu_1_0_0_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_1_0_0_passive>;
+> > > +					cooling-device = <&cpu4_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-1-1-0-thermal {
+> > > +			trips {
+> > > +				cpu_1_1_0_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_1_1_0_passive>;
+> > > +					cooling-device = <&cpu5_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-1-2-0-thermal {
+> > > +			trips {
+> > > +				cpu_1_2_0_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_1_2_0_passive>;
+> > > +					cooling-device = <&cpu6_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-1-3-0-thermal {
+> > > +			trips {
+> > > +				cpu_1_3_0_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_1_3_0_passive>;
+> > > +					cooling-device = <&cpu7_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-1-0-1-thermal {
+> > > +			trips {
+> > > +				cpu_1_0_1_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_1_0_1_passive>;
+> > > +					cooling-device = <&cpu4_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-1-1-1-thermal {
+> > > +			trips {
+> > > +				cpu_1_1_1_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_1_1_1_passive>;
+> > > +					cooling-device = <&cpu5_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-1-2-1-thermal {
+> > > +			trips {
+> > > +				cpu_1_2_1_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_1_2_1_passive>;
+> > > +					cooling-device = <&cpu6_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		cpu-1-3-1-thermal {
+> > > +			trips {
+> > > +				cpu_1_3_1_passive: trip-point1 {
+> > > +					temperature = <116000>;
+> > > +				};
+> > > +			};
+> > > +
+> > > +			cooling-maps {
+> > > +				map0 {
+> > > +					trip = <&cpu_1_3_1_passive>;
+> > > +					cooling-device = <&cpu7_idle 100 100>;
+> > > +				};
+> > > +			};
+> > > +		};
 > > > +	};
 > > > +};
 > > > --
 > > > 2.47.0
 > > > 
-> > 
-> > -- 
-> > With best wishes
-> > Dmitry
-> 
-> 
-> Thanks & Regards,
-> Wasim
 
 -- 
 With best wishes
