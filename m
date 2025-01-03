@@ -1,282 +1,108 @@
-Return-Path: <devicetree+bounces-135354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12B34A00A99
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 15:35:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2FCA00A81
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 15:26:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5CC63A3E0A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 14:35:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F040188059D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 14:26:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8714D1FA243;
-	Fri,  3 Jan 2025 14:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911611D131E;
+	Fri,  3 Jan 2025 14:26:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="hlgEMVwi"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0h2nufZO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-66.smtpout.orange.fr [80.12.242.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E751FA158;
-	Fri,  3 Jan 2025 14:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038B71494A7
+	for <devicetree@vger.kernel.org>; Fri,  3 Jan 2025 14:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735914911; cv=none; b=r9PytzyXHyJW8qYA4WjtZyKa9q6Lx/Bx9PeMacZIG82Cznle6a4St6iGH7jEdDvBnOOpiWUgDjI55nfzN4Igi7ezvgu3bG0dkiBMPj4dlnf2cyu198t7XDsZJ1Im2yut029OobKDVfo0MPZGRY+LT9spd6xye/r/LW/39e89N1Y=
+	t=1735914392; cv=none; b=od6UAMuqyfK6wslb1A0sdx4Nhb1vFK994vfZCcpUlLOoQtDCcQANymd2wi8WLR4gmDaZ6WIZToDpt/wgWKuN6jZXKRnZ59m9XXm/MwBklpK0YM4yAbVrTRBfelbsNAEWsj3W2+JLxO2TsslokHblvDGEl/PFTo4xDlUiLblnAkE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735914911; c=relaxed/simple;
-	bh=NrPS5+FtamGuYn+uwcxvi9iSPS1POnP61oNR53NMXss=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S4/rCLxx0WpW9GIuskv3Q57vOUTeHj2phk4gf1SUcDP9Ddt6bAY7OZFl0tmNJ+Mvuy9momLFys5NBKnKAQV1bW4uLY7AFteKzh0Zx7BgJcb+CkcxO0aTxG8JnD3oZloUT2/gPCmn6SkdxIxSjvbozXtRhzF1eqYDANEQS4hYmCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=hlgEMVwi; arc=none smtp.client-ip=80.12.242.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id TicetCWUzPdSSTichtMCAh; Fri, 03 Jan 2025 15:26:01 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1735914361;
-	bh=tZtU8maB6BLfc0Bn8pHnrr8nYDshAGCv9k1LjGqaMHQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=hlgEMVwi2xgraaR7k16n3u8aCir2DY5XjzOuAyTysEnvGLfa7Jjidf/NoYST84HL8
-	 h3KNIGl7yM0u30LfZnHYbD2zv+vPKp5RC2QPTQS8tmFWoTtjypf3Ebp+82i+gJHRQK
-	 qsxMwNPaTtaknl0MVYOYG/VpX6l9WXlUHN201eXe+RoDI8LTQnnS7KC9WsnVrPI7Nq
-	 jhB1xSO8nzHllj5+hyKiKv8olLedn8eemMB3JCIO5mktPBcGdaVVZnZgdZSVfJ5J7l
-	 W1CjZiVJtmQG2xoSrDhp+VcgZpyUz1JYb4KjwD1mw+im01O4prlFA5lsbK81lWjd21
-	 itJeQZ3sCWNog==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Fri, 03 Jan 2025 15:26:01 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <c13ed6b7-fd44-45ce-9429-30ff1f1f15a2@wanadoo.fr>
-Date: Fri, 3 Jan 2025 15:25:56 +0100
+	s=arc-20240116; t=1735914392; c=relaxed/simple;
+	bh=FVwPDkAJVqItJqjpW/x6kxFlv3XPqg9BdyYKQz06wr4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=an1ZtGVGMoAnP23O+091lc+p3IinIh0gAYTLWh95DFbUsRg7FtofeiklB78CESeFQUgRxLrJSf4n6bMQ62YrewJywbZv9xOXlckZ61RCpYFpSEDazEJahsTLUJob30PwQ7vjcZxil87BjZ4QIu8/H0GxZqpeK0V+bBmZYFJ0NKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0h2nufZO; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=30x72Lym8zuhQtPKTodnKBOIEUAKdFm4/6H/cCa+dEk=; b=0h2nufZOd+AZ7pLIqEufrR8TND
+	Sl42gtR7yretBB8M42k/IFkk/brnNm86uvif8cEMCrejaS6ke+OmZqPSK8q3nC+h1keEws4y1EEOv
+	FlkPXaknzsZOPv41IxtbXzBJ2clINNDtrd/Xr10L6Yl7wYUH3N7cSMbihWlcy337GbQnYBgLm4cA1
+	FlPSPWzh/nSyzHV3QLpDjm6H4u2rKvBJYSdbU0C12MUFm/ZYd+fBTCNEaCZ/30LApvLA/yLtK7FQK
+	eGNrtoizleojWsPzUBza9HPTKWjM19UgK5/eovsOqJ0XDd8P+zwIeIorjzwMoP+1enyHsxqG/1rk2
+	ZCtAvwBg==;
+Received: from i53875aad.versanet.de ([83.135.90.173] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tTid1-00078E-Fx; Fri, 03 Jan 2025 15:26:19 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Damien Le Moal <dlemoal@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: rk3588: add msi-parent for pcie3x4_ep
+Date: Fri, 03 Jan 2025 15:26:18 +0100
+Message-ID: <13674524.dW097sEU6C@diego>
+In-Reply-To: <Z2Uk2A7-YwkSfAOh@ryzen>
+References:
+ <20241120171048.2839621-2-cassel@kernel.org>
+ <173318214613.1403925.10026428339576666444.b4-ty@sntech.de>
+ <Z2Uk2A7-YwkSfAOh@ryzen>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] rtc:max31335: Add driver support for max31331
-To: pavithra.u@analog.com, Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-References: <20250103-add_support_max31331_fix-v1-0-8ff3c7a81734@analog.com>
- <20250103-add_support_max31331_fix-v1-2-8ff3c7a81734@analog.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20250103-add_support_max31331_fix-v1-2-8ff3c7a81734@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Le 03/01/2025 à 08:04, PavithraUdayakumar-adi via B4 Relay a écrit :
-> From: PavithraUdayakumar-adi <pavithra.u@analog.com>
-> 
-> Add driver support for max31331 RTC chip.
-> 
-> Signed-off-by: PavithraUdayakumar-adi <pavithra.u@analog.com>
-> ---
->   drivers/rtc/rtc-max31335.c | 182 ++++++++++++++++++++++++++++++++-------------
->   1 file changed, 131 insertions(+), 51 deletions(-)
-> 
-> diff --git a/drivers/rtc/rtc-max31335.c b/drivers/rtc/rtc-max31335.c
-> index 3fbcf5f6b92ffd4581e9c4dbc87ec848867522dc..f2c094686b5a89aee8041f3f563bb2cf9fc6275b 100644
-> --- a/drivers/rtc/rtc-max31335.c
-> +++ b/drivers/rtc/rtc-max31335.c
-> @@ -34,7 +34,7 @@
->   #define MAX31335_RTC_CONFIG2			0x06
->   #define MAX31335_TIMESTAMP_CONFIG		0x07
->   #define MAX31335_TIMER_CONFIG			0x08
-> -#define MAX31335_SECONDS_1_128			0x09
-> +#define MAX31335_SECONDS_1_128		0x09
+Hey Niklas,
 
-No need to remove 1 tab here.
-Things now look un'aligned.
+Am Freitag, 20. Dezember 2024, 09:03:36 CET schrieb Niklas Cassel:
+> On Tue, Dec 03, 2024 at 12:29:16AM +0100, Heiko Stuebner wrote:
+> > 
+> > On Wed, 20 Nov 2024 18:10:49 +0100, Niklas Cassel wrote:
+> > > Add msi-parent for the pcie3x4_ep PCI endpoint node.
+> > > 
+> > > The pcie3x4_ep node should use the same msi-parent as the pcie3x4 node
+> > > (which represents the PCIe controller running in Root Complex mode).
+> > > 
+> > > The GIC ITS can be used to trigger an IRQ on the endpoint when any of
+> > > the endpoint's PCI BARs are written to by the host[1].
+> > > 
+> > > [...]
+> > 
+> > Applied, thanks!
+> > 
+> > [1/1] arm64: dts: rockchip: rk3588: add msi-parent for pcie3x4_ep
+> >       commit: b6f09f497b07008aa65c31341138cecafa78222c
+> > 
 
->   #define MAX31335_SECONDS			0x0A
->   #define MAX31335_MINUTES			0x0B
->   #define MAX31335_HOURS				0x0C
-> @@ -45,7 +45,7 @@
->   #define MAX31335_ALM1_SEC			0x11
->   #define MAX31335_ALM1_MIN			0x12
->   #define MAX31335_ALM1_HRS			0x13
-> -#define MAX31335_ALM1_DAY_DATE			0x14
-> +#define MAX31335_ALM1_DAY_DATE		0x14
+> Could you please drop this patch from your v6.14-armsoc/dts64 branch?
 
-No need to remove 1 tab here.
-Things now look un'aligned.
+happy new year :-) .
 
->   #define MAX31335_ALM1_MON			0x15
->   #define MAX31335_ALM1_YEAR			0x16
->   #define MAX31335_ALM2_MIN			0x17
+I've now dropped the patch from my queue
 
-...
 
->   static bool max31335_volatile_reg(struct device *dev, unsigned int reg)
->   {
-> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
-> +	const struct chip_desc *chip = max31335->chip;
-> +
->   	/* time keeping registers */
-> -	if (reg >= MAX31335_SECONDS &&
-> -	    reg < MAX31335_SECONDS + MAX31335_TIME_SIZE)
-> +	if (reg >= chip->sec_reg && reg < chip->sec_reg + MAX31335_TIME_SIZE)
->   		return true;
->   
->   	/* interrupt status register */
-> -	if (reg == MAX31335_STATUS1)
-> +	if (reg == chip->int_status_reg)
->   		return true;
->   
-> -	/* temperature registers */
-> -	if (reg == MAX31335_TEMP_DATA_MSB || reg == MAX31335_TEMP_DATA_LSB)
-> +	/* temperature registers if valid*/
+Heiko
 
-Missing space before */
 
-> +	if (chip->temp_reg && (reg == chip->temp_reg || reg == chip->temp_reg + 1))
->   		return true;
->   
->   	return false;
-
-...
-
-> @@ -444,28 +511,31 @@ static int max31335_clkout_set_rate(struct clk_hw *hw, unsigned long rate,
->   	struct max31335_data *max31335 = clk_hw_to_max31335(hw);
->   	unsigned int freq_mask;
->   	int index;
-> +	int ret;
->   
->   	index = find_closest(rate, max31335_clkout_freq,
->   			     ARRAY_SIZE(max31335_clkout_freq));
->   	freq_mask = __roundup_pow_of_two(ARRAY_SIZE(max31335_clkout_freq)) - 1;
->   
-> -	return regmap_update_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
-> -				  freq_mask, index);
-> +	ret = regmap_update_bits(max31335->regmap, max31335->chip->clkout_reg,
-> +				 freq_mask, index);
-> +
-> +	return ret;
-
-You could keep a direct return here, instead of using a new 'ret'.
-
->   }
->   
->   static int max31335_clkout_enable(struct clk_hw *hw)
->   {
->   	struct max31335_data *max31335 = clk_hw_to_max31335(hw);
->   
-> -	return regmap_set_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
-> -			       MAX31335_RTC_CONFIG2_ENCLKO);
-> +	return regmap_set_bits(max31335->regmap, max31335->chip->clkout_reg,
-> +			      MAX31335_RTC_CONFIG2_ENCLKO);
-
-...
-
-> @@ -576,9 +646,10 @@ static int max31335_clkout_register(struct device *dev)
->   	struct max31335_data *max31335 = dev_get_drvdata(dev);
->   	int ret;
->   
-> -	if (!device_property_present(dev, "#clock-cells"))
-> -		return regmap_clear_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
-> -					 MAX31335_RTC_CONFIG2_ENCLKO);
-> +	if (!device_property_present(dev, "#clock-cells")) {
-> +		regmap_clear_bits(max31335->regmap, max31335->chip->clkout_reg,
-> +				  MAX31335_RTC_CONFIG2_ENCLKO);
-> +	}
-
-No need to add new { }.
-
-Is it safe to change the behavior here?
-
-If it is a fix, waybe it should be done in another patch before this one.
-
->   
->   	max31335->clkout.init = &max31335_clk_init;
->   
-> @@ -599,12 +670,14 @@ static int max31335_clkout_register(struct device *dev)
->   	return 0;
->   }
->   
-> +/* 6.1 probe() function still uses the second struct i2c_device_id argument */
-
-Is this comment really needed?
-Is this patch expected to be backported in 6.1?
-
->   static int max31335_probe(struct i2c_client *client)
->   {
->   	struct max31335_data *max31335;
->   #if IS_REACHABLE(HWMON)
->   	struct device *hwmon;
->   #endif
-
-...
-
-> @@ -648,19 +727,17 @@ static int max31335_probe(struct i2c_client *client)
->   	max31335_nvmem_cfg.priv = max31335;
->   	ret = devm_rtc_nvmem_register(max31335->rtc, &max31335_nvmem_cfg);
->   	if (ret)
-> -		return dev_err_probe(&client->dev, ret,
-> -				     "cannot register rtc nvmem\n");
-> +		return dev_err_probe(&client->dev, ret, "cannot register rtc nvmem\n");
-
-Unneeded clean-up.
-
->   
->   #if IS_REACHABLE(HWMON)
-> -	hwmon = devm_hwmon_device_register_with_info(&client->dev, client->name,
-> -						     max31335,
-> -						     &max31335_chip_info,
-> -						     NULL);
-> -	if (IS_ERR(hwmon))
-> -		return dev_err_probe(&client->dev, PTR_ERR(hwmon),
-> -				     "cannot register hwmon device\n");
-> +	if (max31335->chip->temp_reg) {
-> +		hwmon = devm_hwmon_device_register_with_info(&client->dev, client->name, max31335,
-> +							     &max31335_chip_info, NULL);
-> +		if (IS_ERR(hwmon))
-> +			return dev_err_probe(&client->dev, PTR_ERR(hwmon),
-> +					     "cannot register hwmon device\n");
-> +	}
->   #endif
-> -
->   	ret = max31335_trickle_charger_setup(&client->dev, max31335);
->   	if (ret)
->   		return ret;
-> @@ -669,15 +746,17 @@ static int max31335_probe(struct i2c_client *client)
->   }
->   
->   static const struct i2c_device_id max31335_id[] = {
-> -	{ "max31335" },
-> -	{ }
-> +	{ "max31331", (kernel_ulong_t)&chip[ID_MAX31331] },
-> +	{ "max31335", (kernel_ulong_t)&chip[ID_MAX31335] },
-> +	{}
-
-No need to remove 1 space here.
-
->   };
->   
->   MODULE_DEVICE_TABLE(i2c, max31335_id);
->   
->   static const struct of_device_id max31335_of_match[] = {
-> -	{ .compatible = "adi,max31335" },
-> -	{ }
-> +	{ .compatible = "adi,max31331", .data = &chip[ID_MAX31331] },
-> +	{ .compatible = "adi,max31335", .data = &chip[ID_MAX31335] },
-> +	{}
-
-No need to remove 1 space here.
-
->   };
->   
->   MODULE_DEVICE_TABLE(of, max31335_of_match);
-
-...
-
-CJ
 
