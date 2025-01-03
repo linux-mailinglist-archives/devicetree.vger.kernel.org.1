@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-135417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07DA2A00E44
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 20:06:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6845A00E4A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 20:08:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9E1516439D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:06:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A54163A131F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 19:08:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB3D1F9F7D;
-	Fri,  3 Jan 2025 19:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 375501FBEAF;
+	Fri,  3 Jan 2025 19:08:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G8nficac"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WYpYrA82"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B9771F9F58;
-	Fri,  3 Jan 2025 19:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A5871F9F58;
+	Fri,  3 Jan 2025 19:08:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735931178; cv=none; b=KTJUyXevIWA8+Ygu8u+ItBds8zsIYuTurHmhpgejpibP5aDhP6APPbMfmZBwDKND/uEuJ/mZ8uRG2bmUKiAdgt71VaNYuHhu8jf5PSt6AGZ8ABonvYgO7X89KWluyFINS/pN0WQWb0TOOcB2tC7XOGLO+ZlGKxNI7tpKkWo+wq0=
+	t=1735931333; cv=none; b=RzfbuV59R5AC0/DLZEZCuAnICfx4kuEAYFId8OgT28HNQzb+fEWn/h1paVuIx75JPOhX9I0afu5Sa3NBOffkTRUrjeJQC+exaGAoOThe5EbN5Tdk32GI+JtYCmhbyxzL/CxRB83+UsRdtUWH5eRjAHS/4+L7gKyRQZDTPMqyqKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735931178; c=relaxed/simple;
-	bh=hQ24nSrSoeMEbwiAoTRpkrbPmhF13tHCnomM0aWSxjE=;
+	s=arc-20240116; t=1735931333; c=relaxed/simple;
+	bh=v5wF+YQohzZ0mdJx4XQP5J0oRgHYezO5srl/b5e8OME=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ONw9pafLKNsQ+Wy9qkA6W7nKDy9EXQPh9YWRmtxCik8PYhnjeDgvNaygN3Uvdp3EQJvpu1sUWMYq6/3ddWL3DBYW1dHfWAbzKrpK0aTvKZvTz4pH14B83MPSyjUlOa8Mbc7uZXzpbjXnuuoyQ87rkUTxdjC23WkpSUreAZxHS+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G8nficac; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8431EC4CECE;
-	Fri,  3 Jan 2025 19:06:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kjuiWL3jVOED0+ARSdG4Wza76yPl3/Y8WfLRI/27JcZpiF6ce345PS14skuAuDY83+1vlbx5TqUqtsmGJ6084lluj79x5bs1SVeE2jYFFER+WGSui2omnBD0/Fm4Lt7fFqlzyYFLraBHkZcie9uIa0nDOhw9a/s1ojZskQnAaWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WYpYrA82; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D2A3C4CED2;
+	Fri,  3 Jan 2025 19:08:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735931177;
-	bh=hQ24nSrSoeMEbwiAoTRpkrbPmhF13tHCnomM0aWSxjE=;
+	s=k20201202; t=1735931332;
+	bh=v5wF+YQohzZ0mdJx4XQP5J0oRgHYezO5srl/b5e8OME=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G8nficac6xeQKGhPlcaqdJd8F9ahUHmOmOM+QRsu7w0uJLlQs1BJ35+p7tEH+wI+c
-	 Vk8cedUfcmflfXGKlGtWxaVUjsbO0Y/deJ6k1+cQKk10L6AewCOjZrxrk+s50jWStE
-	 fiJ0Iith+ND5PuUx4bN8iXv2YpN8yWGJaLxz/xSyRrx57TuRO7WW4AIoBHGxBHU/w4
-	 XQrwPbV5HrSp64AUVd2+q9qKKwYYmt17fZp8/gv7qLzYa0Y6sdA2hiErKNKSz5Zx7Z
-	 sgEBWiYD6BSPZFxeChaS9TimwxjgPj6kFPmoSJH/CXqqdZrw1zT7QSMJbA1UeuO6Ys
-	 mtlFx8aPy5IJg==
-Date: Fri, 3 Jan 2025 13:06:15 -0600
+	b=WYpYrA82uwU6Y8B/cQeF7Y5cZEwRwY0Rbw4uhWQQvihYQ1pAlLDe9f9ZNfqCm2uxe
+	 6iiM1kn5EORrc4E/Ef6cvSWgw4WncDBNiPPEGe36jEFWnK8dKS7GDDKTmYGt7BfO4h
+	 myx8EEElrri/EC+u3Tm41q0rbDxKoosy2G/0BNQGow0tkvDKH57p3KR+nyEVden4WK
+	 fy8YCz0IWVgS2/RqWz2EXBwpHlPVFjbEKIkblX37Mh26yo+yRzjo49PLRtDOKW2Wvo
+	 bUI76+a4aJxIycdU4II6L+0mUMuLYDO6BTB1ns/MmORKfWIp2vFJPLVD0hywaf1pNk
+	 mojrMIy/RiWSA==
+Date: Fri, 3 Jan 2025 13:08:50 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
-	magnus.damm@gmail.com, john.madieu@gmail.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, claudiu.beznea.uj@bp.renesas.com,
-	biju.das.jz@bp.renesas.com
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: renesas: Add RZ/G3E variant SYS
- bindings
-Message-ID: <173593117523.2593499.9941727288995689867.robh@kernel.org>
-References: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com>
- <20250101163344.128139-1-john.madieu.xa@bp.renesas.com>
- <20250101163344.128139-2-john.madieu.xa@bp.renesas.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Sam Protsenko <semen.protsenko@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Subject: Re: [PATCH] dt-bindings: samsung: exynos-usi: Restrict possible
+ samsung,mode values
+Message-ID: <173593132982.2620574.29762646865027511.robh@kernel.org>
+References: <20250103082549.19419-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,27 +64,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250101163344.128139-2-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250103082549.19419-1-krzysztof.kozlowski@linaro.org>
 
 
-On Wed, 01 Jan 2025 17:33:41 +0100, John Madieu wrote:
-> Add RZ/G3E (R9A09G047) variant to the existing RZ/V2H System
-> Controller (SYS) binding as both IPs are compatible.
+On Fri, 03 Jan 2025 09:25:49 +0100, Krzysztof Kozlowski wrote:
+> "samsung,mode" property defines the desired mode of the serial engine
+> (e.g. I2C or SPI) and only few values are allowed/used by Linux driver.
 > 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> Cc: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> Changes:
->  - v1 -> v2: Do not rely on syscon compatible string anymore
-> 
-> Notes:
->     v1: Acked-by: Rob Herring (Arm) <robh@kernel.org>
->     v1: Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->     v2: Tags dropped due to small changes in compatible property structure.
-> 
->  .../bindings/soc/renesas/renesas,r9a09g057-sys.yaml          | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
