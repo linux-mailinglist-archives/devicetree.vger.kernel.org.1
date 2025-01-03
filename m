@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-135277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5667CA00566
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 08:55:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDD80A0056D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 08:59:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AB23188401F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 07:55:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D71DA18837AE
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2025 07:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7D01C5799;
-	Fri,  3 Jan 2025 07:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 479F51C5F09;
+	Fri,  3 Jan 2025 07:59:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sXtlddqV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XLgEhdPY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346441B21B2;
-	Fri,  3 Jan 2025 07:55:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162F61B2186;
+	Fri,  3 Jan 2025 07:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735890903; cv=none; b=r5HmmFAt+QO8eSp9YKUY/+0Bj8SIzkb26ahP9zQb8jnyCpHiI9dV7CxnhWm17ZervkLAaOU+xzHXRQN19NXNfbFa5xLeod+CoJGX05tGx+zJBL0GFq5cz/7rHKXZ1uKPIFSfYC9FqFOtz3InSaCRzMf+FhyDyYDk8SbVpEm01ro=
+	t=1735891145; cv=none; b=Zy3nakT4bwDfFXlr0fRLCGsP09oZPKN3myKIEIaCYODC34e7/FM9TFklzDuYxwd4FBiZPaFqwlcbyRaOcYh/y5+xmDDpGsPwige/VcowJs0gY6XyodFLcKrj9xbxV/JG5gKNszGa2cKPm0Un8UHctapXGxAVvcfyHLVjTU+iqVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735890903; c=relaxed/simple;
-	bh=NpIXwBPwb7jLEDHahiTfDLx71UgAQTQ6tNt8p6O4N90=;
+	s=arc-20240116; t=1735891145; c=relaxed/simple;
+	bh=I2cmDVquhs9nMWkQOh5/1Q3KWbWOXMCh36jemenquL8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=unmvyhFeRRU+OSSOrqxVHnCL/inak14OLDVihFzi4ZlypTURXI39d0H+nzm0GngXfUEx8T9UJqALfjRw4OPgCiP88qhnKbRACPFduGtLCdqTki9H4xKfNQn7ZEMpuwkKw5UInZ25aJqm4O67kYFsxIHtlbjGmU0p4Roa2AoK12A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sXtlddqV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA8E1C4CECE;
-	Fri,  3 Jan 2025 07:55:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=I2I8SDkM9okxvRnzmKz+EnYU5Odh7jGvZRnT+absRFK/GGyfZE9aF9xA0GE34SZ8yr6CkvO97bqzkQ88psLsTEN43FZFKwkJYPv2/0xqIpe4CpMzBcjliDjUWkL0xR3k/gB/I4Sh30U5Uv90MCphkURnUcbBciN11VIAPNgvvs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XLgEhdPY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B84AAC4CECE;
+	Fri,  3 Jan 2025 07:59:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735890902;
-	bh=NpIXwBPwb7jLEDHahiTfDLx71UgAQTQ6tNt8p6O4N90=;
+	s=k20201202; t=1735891144;
+	bh=I2cmDVquhs9nMWkQOh5/1Q3KWbWOXMCh36jemenquL8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sXtlddqV04A8wbpFyqMt4deIAwjERAkhFOtaaWQScBvLpMUi9P1wofOj3YALdXBay
-	 ouIiN0gYu65vlY2S1YHIJbCJsx0fsW+LjRC9l8bLIScZwz7HWlP150TsMWvgPLqcLk
-	 O1RSfstE8ufNczxt8jeBQygp5qm5AWS1QCBBl8x/vh+N/xiHmlBFj8aey3w/lPHqZu
-	 0lLoCa5ePzp7/p+FgNVfxgWBtj3DRPj7X8EjP2UPXI+pB0/i0xikGBeVqxRIRcVhVW
-	 R+Fhcyp/14TwPgSKRdyo+atKBbl5Sfw/AnsWsDVtP5pg9/sZiHgvTtai3f9tximEeI
-	 9QgB/XG/HscwQ==
-Date: Fri, 3 Jan 2025 08:54:59 +0100
+	b=XLgEhdPYqm32nuAZAKwxNQGMImR/f4c2382ijC3eXbMSo6Fxx7l0gbTM7IdKC6gV1
+	 DS9lxgbdc9ASiJmhx57FowaAhxG99AsWj1ybGn/jQ3SzgYqVmlz1QJuR1VEr3mTHYe
+	 xdVCSshulAuQ1Ekh6xi8C9LubUertqjyfyJNKUa12DBypkQZISJkepxiZDxiiEOLJ0
+	 dVYG2cQQarlspx6b/dXMo1iA0PsVOn1jMsMF9jtN4h3p13cbnPthu/LSoVZXtq1YCI
+	 wI0W01DlWeB8TuJGWrDVoQvmCoN8yzOuntE8xhTnHbdBTzgxaPq1Oionlq+QbCSSX2
+	 5ZWqyCcA8cE+g==
+Date: Fri, 3 Jan 2025 08:59:01 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH v3 3/4] arm64: dts: morello: Add support for soc dts
-Message-ID: <syspr5f42jceogrnwngwndfuc25uqhxxxlzpfxs7c4k4jactnz@ipwrsxsxrwha>
-References: <20250102155416.13159-1-vincenzo.frascino@arm.com>
- <20250102155416.13159-4-vincenzo.frascino@arm.com>
+To: PavithraUdayakumar-adi <pavithra.u@analog.com>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dtbindings:rtc:max31335:Add max31331 support
+Message-ID: <k6jhp3ivrqiylt6hqnmz2pjukkmb2x466lfwsouzjgbk3l6ehl@zh3em24rajms>
+References: <20250103-add_support_max31331_fix-v1-0-8ff3c7a81734@analog.com>
+ <20250103-add_support_max31331_fix-v1-1-8ff3c7a81734@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,67 +61,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250102155416.13159-4-vincenzo.frascino@arm.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250103-add_support_max31331_fix-v1-1-8ff3c7a81734@analog.com>
 
-On Thu, Jan 02, 2025 at 03:54:15PM +0000, Vincenzo Frascino wrote:
-> The Morello architecture is an experimental extension to Armv8.2-A,
-> which extends the AArch64 state with the principles proposed in
-> version 7 of the Capability Hardware Enhanced RISC Instructions
-> (CHERI) ISA.
-> 
-> Introduce Morello SoC dts.
-> 
-> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+On Fri, Jan 03, 2025 at 12:34:19PM +0530, PavithraUdayakumar-adi wrote:
+> Add support to max31331 RTC chip in adi,max31335.yaml
+
+This we see from the diff. What we do not see is why these are not
+compatible, for example.
+
+>=20
+> Signed-off-by: PavithraUdayakumar-adi <pavithra.u@analog.com>
+
+Subject - missing spaces. Use 'git log' to learn how subject is supposed
+to look like.
+
 > ---
->  arch/arm64/boot/dts/arm/Makefile        |  1 +
->  arch/arm64/boot/dts/arm/morello-sdp.dts | 55 +++++++++++++++++++++++++
->  2 files changed, 56 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/arm/morello-sdp.dts
-> 
-> diff --git a/arch/arm64/boot/dts/arm/Makefile b/arch/arm64/boot/dts/arm/Makefile
-> index d908e96d7ddc..869667bef7c0 100644
-> --- a/arch/arm64/boot/dts/arm/Makefile
-> +++ b/arch/arm64/boot/dts/arm/Makefile
-> @@ -7,3 +7,4 @@ dtb-$(CONFIG_ARCH_VEXPRESS) += rtsm_ve-aemv8a.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += vexpress-v2f-1xv7-ca53x2.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += fvp-base-revc.dtb
->  dtb-$(CONFIG_ARCH_VEXPRESS) += corstone1000-fvp.dtb corstone1000-mps3.dtb
-> +dtb-$(CONFIG_ARCH_VEXPRESS) += morello-sdp.dtb
-> diff --git a/arch/arm64/boot/dts/arm/morello-sdp.dts b/arch/arm64/boot/dts/arm/morello-sdp.dts
-> new file mode 100644
-> index 000000000000..68926f511362
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/arm/morello-sdp.dts
-> @@ -0,0 +1,55 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
-> +/*
-> + * Copyright (c) 2021-2024, Arm Limited. All rights reserved.
-> +
-> + */
-> +
-> +/dts-v1/;
-> +#include "morello.dtsi"
-> +
-> +/ {
-> +	model = "Arm Morello System Development Platform";
-> +	compatible = "arm,morello-sdp", "arm,morello";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&gic {
-> +	reg = <0x0 0x30000000 0 0x10000>,	/* GICD */
-> +	      <0x0 0x300c0000 0 0x80000>;	/* GICR */
+>  .../devicetree/bindings/rtc/adi,max31335.yaml      | 32 ++++++++++++++++=
+++----
+>  1 file changed, 26 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml b/Do=
+cumentation/devicetree/bindings/rtc/adi,max31335.yaml
+> index 0125cf6727cc3d9eb3e0253299904ee363ec40ca..6953553d98afd42ed9b79bac4=
+76657ffc8ec9210 100644
+> --- a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+> @@ -13,15 +13,15 @@ description:
+>    Analog Devices MAX31335 I2C RTC =C2=B12ppm Automotive Real-Time Clock =
+with
+>    Integrated MEMS Resonator.
+> =20
+> -allOf:
+> -  - $ref: rtc.yaml#
+> -
+>  properties:
+>    compatible:
+> -    const: adi,max31335
+> +    enum:
+> +      - adi,max31331
+> +      - adi,max31335
 
-This coding choice is very confusing, really the first code like this in
-the kernel.  Deserves comments explaining why this is different than
-everything else (or just fix it).
+Devices are not compatible?
+
+> =20
+>    reg:
+> -    maxItems: 1
+> +    items:
+> +      - enum: [0x68, 0x69]
+> =20
+>    interrupts:
+>      maxItems: 1
+> @@ -50,6 +50,26 @@ required:
+> =20
+>  unevaluatedProperties: false
+> =20
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,max31335
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            - const: 0x69
+> +    else:
+> +      properties:
+> +        reg:
+> +          items:
+> +            - const: 0x68
+
+Just drop it, really no benefits. Why complicating the binding for
+checking address?
+
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> @@ -58,7 +78,7 @@ examples:
+>          #size-cells =3D <0>;
+> =20
+>          rtc@68 {
+> -            compatible =3D "adi,max31335";
+> +            compatible =3D "adi,max31331";
+
+Why? Commit msg is silent about this.
 
 Best regards,
 Krzysztof
