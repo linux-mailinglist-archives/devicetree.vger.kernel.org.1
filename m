@@ -1,122 +1,128 @@
-Return-Path: <devicetree+bounces-135581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37A62A01651
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 19:28:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4BEA01659
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 19:33:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B8E4162F7D
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 18:28:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A9913A373A
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 18:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A001D47BC;
-	Sat,  4 Jan 2025 18:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5851C5F25;
+	Sat,  4 Jan 2025 18:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YhfKJAeY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dS9jhJE3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51FA1D0E36;
-	Sat,  4 Jan 2025 18:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A6E146A9B;
+	Sat,  4 Jan 2025 18:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736015307; cv=none; b=EUX1w/5dCDjHXNSGRw+zHb9SrdbwahCOcXEBYFage36rseCvyuRtzEv1HLiMCsh2e0h1HMH3MZVlyX9espp7EiPmrbk/UI1IkpPYTGBgwe4UxobEHaWO8mdzMH8IlkGVZhaggHPJubsDrJn65kn7ZhDmdswM0quDgJG0qm/QoBg=
+	t=1736015619; cv=none; b=A97bBBlxvep1jE/G5aTNnrMHZYCgOlUdMs4PZSSXXBG2UtN6xMVHCDLOTQeVLBwe/PXVTTHo38wHWYajCY7ewEu769xZrQ17Oxzb8QWUd246+gqxq7DBefDUAmUsmdE5MCASGejYIl2sU7/0ZXD3e6PF7D7xdCT1otfJyZLAwco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736015307; c=relaxed/simple;
-	bh=bnQtjgjcXihxa9NPB+PZW+R6Wg31Ew/O3Xdqpjs8GfY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iP4kE84RFV18bhZEctZS+36JzNwoXYnAOZjx/FmobXWAiVQISwPOuFfO/x6i60FeiMN3pcyOcd0a9imImU2J+5hFLgyJGvlpTXnSOMjCMqeSVjX5LbFWdL2gLad4X9cAnJBgV0lQL3ofAKQLDuEMe1ELUr6KJVnlJSL4rUzACg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YhfKJAeY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F861C4CED1;
-	Sat,  4 Jan 2025 18:28:22 +0000 (UTC)
+	s=arc-20240116; t=1736015619; c=relaxed/simple;
+	bh=bbGVCiebfDC2v8ZrjzXFysT9S4V23mFCJgUmWbhnAB8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BuN3Gdk5xlZocjmo029ZyVE0XH31uTISywcfhP83M7QgCi5vHe7HPakAgIiHagIFy50xPMPqAW4o1ZgbZqj9blbpH1zcpd8XVsm6O+VlSpQxzVngVRzCIzoFTEuYvdVL8ue7Lx3PPM19CqkkIwKulQF6VHW3GLIzqLgORQmJCE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dS9jhJE3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C32CC4CED1;
+	Sat,  4 Jan 2025 18:33:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736015306;
-	bh=bnQtjgjcXihxa9NPB+PZW+R6Wg31Ew/O3Xdqpjs8GfY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YhfKJAeYrRNoyMQMN9hw1pjH1qW0QHuTFtfHY6CpcqEEiPDXJhS3fdy3hw+B8Aqsa
-	 mpPjCj8nXL97EGUDr6JWmJoyn9aIu7+QBXj4hi1ODCau609KDi29vmCm3gHWpEuErc
-	 LD1oRCfxUIESX6ksDcjIZkFS+lk3fn7TMvM4ihBzOrzD2d0E3/u2lPzwSSgubzNoK9
-	 lBWsbBYe1wo7BHkvF2iatMj+u8JRqhkP/McVlH5FRYeyJnCduFmU1qZ6M0ZQUwC10T
-	 TIhRmdYStCzO531pj93CRxwRigua+QF8IHdMV9XpOQ5RKF0wwlgwBFFgfhqUn8MGQK
-	 3PPlaxwgh3dWA==
-Message-ID: <918d3b67-9bb3-4da2-a779-69ae9e9c4f6b@kernel.org>
-Date: Sat, 4 Jan 2025 20:28:19 +0200
+	s=k20201202; t=1736015619;
+	bh=bbGVCiebfDC2v8ZrjzXFysT9S4V23mFCJgUmWbhnAB8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dS9jhJE3fxzDyDlfMtIS55DjSwucd1le+RtfivhNsJpsOEGZuPxOeDj4OO5ZzgfMj
+	 ekuzhAPdQQNZ34lYJhHt4Y2Fd2A8/K4N080hN3NIMNq1ftxSyHtV+I7srKxt8I4y6f
+	 Zm/U7tRP7Rg/toi9hSt55TxLOxHPQDiavQBJmsBHB64GnA54MMjbh3PNUbF4hniH5W
+	 IW91QCc1jaHBCm/LNXWbu0qq8fVjGkOl+pM/xBz5ui0hjq0abCvx1PWIWIFX1Obzda
+	 WKbAur3l7pv4LaQYc8uKOzAInrs0K0q6sMV95T3Cr89EEMhffoMAAQRsFg8ak2wEp+
+	 H5lwD84y0HVWw==
+Date: Sat, 4 Jan 2025 18:33:34 +0000
+From: Conor Dooley <conor@kernel.org>
+To: E Shattow <e@freeshell.de>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
+ syscrg clock assignments
+Message-ID: <20250104-mutilated-unpaved-008eebdb200a@spud>
+References: <20250102194530.418127-1-e@freeshell.de>
+ <20250102194530.418127-2-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/7] regulator: dt-bindings: Add TI TPS65215 PMIC
- bindings
-To: Shree Ramamoorthy <s-ramamoorthy@ti.com>, lgirdwood@gmail.com,
- broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, aaro.koskinen@iki.fi, andreas@kemnade.info,
- khilman@baylibre.com, tony@atomide.com, jerome.neanne@baylibre.com,
- linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: m-leonard@ti.com, praneeth@ti.com
-References: <20241226215412.395822-1-s-ramamoorthy@ti.com>
- <20241226215412.395822-2-s-ramamoorthy@ti.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20241226215412.395822-2-s-ramamoorthy@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="X/IiaMylgfGE4uV1"
+Content-Disposition: inline
+In-Reply-To: <20250102194530.418127-2-e@freeshell.de>
 
 
+--X/IiaMylgfGE4uV1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 26/12/2024 23:54, Shree Ramamoorthy wrote:
-> TPS65215 is a Power Management IC with 3 Buck regulators and 2 LDOs.
-> 
-> TPS65215 has 2 LDOS and 1 GPO, whereas TPS65219 has 4 LDOs and 2 GPOs. The
-> remaining features for both devices are the same.
-> 
-> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+On Thu, Jan 02, 2025 at 11:45:07AM -0800, E Shattow wrote:
+> Replace syscrg assignments of clocks, clock parents, and rates, for
+> compatibility with downstream boot loader SPL secondary program
+> loader.
+>=20
+> Signed-off-by: E Shattow <e@freeshell.de>
 > ---
->  .../devicetree/bindings/regulator/ti,tps65219.yaml       | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-> index 78e64521d401..ba5f6fcf5219 100644
-> --- a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/regulator/ti,tps65219.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: TI tps65219 Power Management Integrated Circuit regulators
-> +title: TI TPS65215/TPS65219 Power Management Integrated Circuit
->  
->  maintainers:
->    - Jerome Neanne <jerome.neanne@baylibre.com>
-> @@ -12,10 +12,17 @@ maintainers:
->  description: |
->    Regulator nodes should be named to buck<number> and ldo<number>.
->  
-> +  TI TPS65219 is a Power Management IC with 3 Buck regulators, 4 Low
-> +  Drop-out Regulators (LDOs), 1 GPIO, 2 GPOs, and power-button.
-> +
-> +  TI TPS65215 is a derivative of TPS65219 with 3 Buck regulators, 2 Low
-> +  Drop-out Regulators (LDOs), 1 GPIO, 1 GPO, and power-button.
-> +
->  properties:
->    compatible:
->      enum:
->        - ti,tps65219
-> +      - ti,tps65215
+>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv=
+/boot/dts/starfive/jh7110-common.dtsi
+> index 48fb5091b817..55c6743100a7 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> @@ -359,9 +359,15 @@ spi_dev0: spi@0 {
+>  };
+> =20
+>  &syscrg {
+> -	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_CORE>,
+> -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+> -	assigned-clock-rates =3D <500000000>, <1500000000>;
+> +	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_ROOT>,
+> +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
+> +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
+> +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
+> +	assigned-clock-parents =3D <&pllclk JH7110_PLLCLK_PLL0_OUT>,
+> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+> +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
+> +	assigned-clock-rates =3D <0>, <0>, <0>, <0>;
 
-Could be sorted alphanumerically.
+Why is assigned rates here 0s, rather than the property just removed?
 
->  
->    reg:
->      maxItems: 1
+>  };
+> =20
+>  &sysgpio {
+> --=20
+> 2.45.2
+>=20
 
--- 
-cheers,
--roger
+--X/IiaMylgfGE4uV1
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ3l+/gAKCRB4tDGHoIJi
+0tJ3AP4y1JgKxVuFtAfj2/e072mhmKgwjpCJdSfFu0f8h9kxNgEA/OuSW1oF+y2v
+pCRVRiOegBMIH80dCitQajbHkophhQA=
+=Z2jI
+-----END PGP SIGNATURE-----
+
+--X/IiaMylgfGE4uV1--
 
