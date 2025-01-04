@@ -1,133 +1,160 @@
-Return-Path: <devicetree+bounces-135561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9BB4A01557
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 15:43:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0034BA01561
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 15:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADCA91634C2
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 14:43:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B020C3A0550
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 14:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7341C5F06;
-	Sat,  4 Jan 2025 14:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87561C1F31;
+	Sat,  4 Jan 2025 14:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fxFbc8FX"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="dDe3Onzq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB3E1C5F08;
-	Sat,  4 Jan 2025 14:43:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1654119922A
+	for <devicetree@vger.kernel.org>; Sat,  4 Jan 2025 14:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736001825; cv=none; b=IGDLcbVWoAeBIkighmU3eDvbuHSTorZ3mOsZHB0I6vmorfc5sU54svTGgXWd0FjeKV9KtqxgqFczibGm5HhPC6SEt2tYH4Os/2W5wYAC33GZSBtE9AK1FINiLX0BwMs40dHfIqHWHHlQsorHrbNePm4yhoM88Pj4wx+NMfvIn5Q=
+	t=1736002223; cv=none; b=mAeF6RcIB1X3waS/0NmIOE/3jVSaTIRvMIRERV68ve3REl6w8XU4aYvLLdCABKffEbZvupkFDYW8NOsZXFVUR966lVLm7e+5/pUb2t90Yg5Qq+mpVNDZxtoIMgxnPD5KmUft+54iP/0LQVpxWWQwHdBCm76Wbi2WxPAP8nAkqhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736001825; c=relaxed/simple;
-	bh=9vyKJIp5A3trkwUj/vySmv5/pKr00XO/j9e32R7kQ2w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ojhzfC4md7Nwl07EOfB26GPmC0Tttc/JG0Pzb5ERgZxbunK41qS/rW+KiArG+tqaDMP1fhrrZw7oopwz7/B5oI5Vc3AP93QV1fzkWduTiSicqG2eOuGSWDapG79vL1zTdj6Eg7SKghByoya/mREOpGHuSi8nAC5qAj+obqR+XjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fxFbc8FX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 926E6C4CED1;
-	Sat,  4 Jan 2025 14:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736001824;
-	bh=9vyKJIp5A3trkwUj/vySmv5/pKr00XO/j9e32R7kQ2w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fxFbc8FXRiCbagh6o8hc81EhzYHHXyptgub/vLjAfxP7Zg4ZmMoymjMmLMcSRAo4L
-	 bef//jE97Cgj1y5x6Wu2HV/k+QreLJWZTVS2IoiJrn2NKA2q/gSL2O6V9Q7Wk0Xqek
-	 JGY8ujPWfG5tEQHy1xQVu3tFYULhzCPjZsMaLo/S/KD3W16HfTZ+9/Wd/n8j8i7RV8
-	 +O4ufftYIvXkgoj2JPVOIeE3bbn61/HHq9DYkZLwE83fKjV7EsRteYGmCtecqk/xwq
-	 uDU6lxrTLOX79jQpNjJJ1UEPyXD+TTyJUztq0i0ko0kken09W8nG7dIh3oQl3NV3uX
-	 IobOGq5WYDw5A==
-Message-ID: <4666f8e9-d19e-45bd-be9c-a7f111168d66@kernel.org>
-Date: Sat, 4 Jan 2025 15:43:37 +0100
+	s=arc-20240116; t=1736002223; c=relaxed/simple;
+	bh=4bf4pavVpF+pyI0is+w3RLenY4A2F6NwCECyY2dkxh4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CX8ufocgyiN2e+YCV2enHKjCelh/LlxWnZ1jd8rdtQia6mXor4kWc401DvKvGjt3c1Aunu5qKuJejlb+PCUZoE9NCzlTkvrQCpxrf1YIMqZDOmv3GnTBBmFUYoWJ0BhgowM6POeBf83tamZwzY3l7HO3fo4pF6JVW58474rALKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=dDe3Onzq; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 5999D240028
+	for <devicetree@vger.kernel.org>; Sat,  4 Jan 2025 15:50:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1736002220; bh=4bf4pavVpF+pyI0is+w3RLenY4A2F6NwCECyY2dkxh4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=dDe3OnzqTTueKGDMPE2BtSNuXMEgWS439/KUkggBc1vNsiQ+XueyT53Eiu4wKRA3W
+	 WYB+Sg+2HjSTXkNsfQ/Hc/l348OZqCdcI/jAV99NDs4BpYG7u2wl3283aLB0+FdRgr
+	 Wad64+Wv4Bu9c0rvAPdH5eFXiOElRboLbIJqvJwkajfl1OaLHm7GTSTNHGWaGJv2FR
+	 BhJlDQfQTHMlTHg8cfeoZ5VK9q6B6i66no0L9Td9E4Y6RUSegX8fuHfPgSOEp6Mq2c
+	 lOZczDEeH2fVuBbmDqlcoWOzGRcFTSpPB4EVxtF44+D5IiHgubIM+FA6A8g9IYvO6E
+	 848VJaaVjrkgA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YQNf04cSFz6twh;
+	Sat,  4 Jan 2025 15:50:16 +0100 (CET)
+Date: Sat,  4 Jan 2025 14:50:16 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Rob Herring <robh@kernel.org>
+Cc: j.ne@posteo.net, Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>,
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 14/19] powerpc: mpc83xx: Switch to of_platform_populate
+Message-ID: <Z3lKqLXphxeI1Gvo@probook>
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-14-86f78ba2a7af@posteo.net>
+ <CAL_JsqKU0AQ+ym_iDZSN5hNUTMF0bgjqu-aAVtG792Mw_eZTbg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Update i.MX95 compatible
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Peng Fan <peng.fan@nxp.com>
-References: <20250104-imx9-machine-v1-0-18a78e41456b@nxp.com>
- <20250104-imx9-machine-v1-1-18a78e41456b@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250104-imx9-machine-v1-1-18a78e41456b@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKU0AQ+ym_iDZSN5hNUTMF0bgjqu-aAVtG792Mw_eZTbg@mail.gmail.com>
 
-On 04/01/2025 13:13, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Thu, Jan 02, 2025 at 12:51:47PM -0600, Rob Herring wrote:
+> On Thu, Jan 2, 2025 at 12:32 PM J. Neuschäfer via B4 Relay
+> <devnull+j.ne.posteo.net@kernel.org> wrote:
+> >
+> > From: "J. Neuschäfer" <j.ne@posteo.net>
+> >
+> > Quoting from drivers/of/platform.c:
+> >
+> > > of_platform_populate() - [...]
+> > > Similar to of_platform_bus_probe(), this function walks the device
+> > > tree and creates devices from nodes.  It differs in that it follows
+> > > the modern convention of requiring all device nodes to have a
+> > > 'compatible' property, and it is suitable for creating devices which
+> > > are children of the root node (of_platform_bus_probe will only create
+> > > children of the root which are selected by the @matches argument).
+> >
+> > This is useful for new board ports because it means that the C code does
+> > not have to anticipate every node that is placed directly under the root.
+> >
+> > As a consequence, the of_bus_ids list can be much shorter, and I've
+> > trimmed it to the necessary parts:
+> >
+> >  - device-type = "soc" and compatible = "simple-bus" for the SoC bus
+> >  - compatible = "gianfar" for the Ethernet controller (TSEC), which
+> >    may contain an MDIO bus, which needs to be probed, as a subnode
+> >
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > ---
+> >  arch/powerpc/platforms/83xx/misc.c | 6 +-----
+> >  1 file changed, 1 insertion(+), 5 deletions(-)
+> >
+> > diff --git a/arch/powerpc/platforms/83xx/misc.c b/arch/powerpc/platforms/83xx/misc.c
+> > index 1135c1ab923cc120f377a0d98767fef686cad1fe..bf522ee007bbb1429233355f668fc8563d8ca4e2 100644
+> > --- a/arch/powerpc/platforms/83xx/misc.c
+> > +++ b/arch/powerpc/platforms/83xx/misc.c
+> > @@ -94,18 +94,14 @@ void __init mpc83xx_ipic_init_IRQ(void)
+> >
+> >  static const struct of_device_id of_bus_ids[] __initconst = {
+> >         { .type = "soc", },
 > 
-> i.MX95 features a System Controller and SCMI Spec 3.2 compatible
-> firmware System Manager(SM) runs on the controller.
-> Add "fsl,imx-sm" compatible string as fallback for "fsl,imx95" to
-> indicate it is compatible with i.MX System Manager.
+> of_platform_populate() won't work on this match unless there's a
+> compatible in the node, too. Can we use compatible instead or are
+> there a bunch of them?
 
-I see little value in generic compatible like that. All these are
-aarch64 so why not adding that compatible?
+In arch/powerpc/boot/dts, I can find the following cases of device_type
+= "soc" without compatible = "simple-bus":
 
-How this generic compatible would be used?
+- arch/powerpc/boot/dts/tqm8xx.dts           (MPC8xx)
+- arch/powerpc/boot/dts/mpc885ads.dts        (MPC8xx)
+- arch/powerpc/boot/dts/mpc866ads.dts        (MPC8xx)
+- arch/powerpc/boot/dts/ep88xc.dts           (MPC8xx)
+- arch/powerpc/boot/dts/kuroboxHG.dts        (MPC82xx)
+- arch/powerpc/boot/dts/kuroboxHD.dts        (MPC82xx)
+- arch/powerpc/boot/dts/storcenter.dts       (MPC82xx)
+- arch/powerpc/boot/dts/asp834x-redboot.dts  (MPC83xx!)
+- arch/powerpc/boot/dts/ksi8560.dts          (MPC85xx)
 
-And by what exactly?
+i.e. there is one affected devicetree. I can simply patch that one in
+the next iteration.
 
-All this must be explained in the commit msg.
+> 
+> > -       { .compatible = "soc", },
+> >         { .compatible = "simple-bus" },
+> >         { .compatible = "gianfar" },
+> > -       { .compatible = "gpio-leds", },
+> > -       { .type = "qe", },
+> > -       { .compatible = "fsl,qe", },
+> 
+> Better still would be if we could move the remaining ones to the
+> default table and just call of_platform_default_populate().
+
+of_platform_default_populate does sound preferable.
+
+I'll investigate why exactly the "gianfar" match is necessary and how to
+fix it in the corresponding driver (I don't think it's general enough to
+warrant being listed in of_default_bus_match_table).
+
 
 Best regards,
-Krzysztof
+ jn
 
