@@ -1,144 +1,201 @@
-Return-Path: <devicetree+bounces-135527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1BF8A013C2
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:53:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED821A013C6
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:53:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A699163592
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 09:53:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B47D61638E6
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 09:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A468D1586CF;
-	Sat,  4 Jan 2025 09:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E6E18E764;
+	Sat,  4 Jan 2025 09:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CtV2lszV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lqhZ94fg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 545591494DC;
-	Sat,  4 Jan 2025 09:52:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09435189B84;
+	Sat,  4 Jan 2025 09:53:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735984379; cv=none; b=d5sUwluCsKdS5GMuhGj0ruzkF/V2nUtlteOu+jowVBirGiE+v/ocBR82Of+KBfs0ZvdPrGhfI1qbw99YFNlVZ/M8S2QxassFXAwtXLyhHBSv/jhUTK3xn17At8A1EqsS6mTjuhRVxke0U2UPvIOVz6iunMZ7EcbHSU0CB2KaL6A=
+	t=1735984410; cv=none; b=mKSL8ayfBFCaX0TYn/nyT+HKlhDEbrQOhxevsNahyRbH45JcuQMR2JKUe2kOdE0y7G1VToGScvVbZHQx09LgoR6QH4xy3DsPUolz4qeJbJPl4sgMshowq1YwHmeFssEzVTb3lPXn8ujdZmd+ZXVdxX60u4QZZRv/FpT5y1/u7iU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735984379; c=relaxed/simple;
-	bh=QfJzHXidRnc8n8tGLP7uLoN3qg3Mje7Wh8IqxUGfnkw=;
+	s=arc-20240116; t=1735984410; c=relaxed/simple;
+	bh=b5NdL24kxs9OzB9ynQRuWiuoyZsaL2pQwHwCs/fqGh0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VrkK1O0oyLf5F1r/Dc6SNW90J3wCddqN+noeN1rIr2O4ntxpA13W+jiJfzwUJrpU1yZVFWkpM81P1zzFuWwEU/FoQHiTHTELbbOUtRg/aAS6cQeJK4Vcv7FWPZz86jLIHJ/2vdPpSJX2ZOJ00aAvYIp3sKdV/e3gfulv5XhtuRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtV2lszV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDCB3C4CED1;
-	Sat,  4 Jan 2025 09:52:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735984378;
-	bh=QfJzHXidRnc8n8tGLP7uLoN3qg3Mje7Wh8IqxUGfnkw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CtV2lszVE8q9tWAsv1su8HrlHzuuTxBFVBGDEuRyqSM2h+psvziC9LZkXPOjBbbqj
-	 ZdQvnmwbebgkpRmZbVfap5XymcTGTUkB5EAYDORXoFYn0UlCb4bbExQ4OqLsHQRp2s
-	 rzca9mKQtuIC8Xw/9d/yQy/TOIfR4lyNHtxApJO6kO7rUEcL8FmDzFqYodEDEE5FRq
-	 0Nkqd/ofM4TYeD1r8LfWrPBiGDHZuTu3mnpKrW8fVeXM2c7UgLbajAQZKqVqOGdil2
-	 tABRCpTu++6gbOJuPDycS3ImfI34hAVzBfXiLFTDZo3L3GO4M/2KZeV6nE71YcHfL7
-	 8Z+cmh731C80w==
-Date: Sat, 4 Jan 2025 10:52:55 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Kyle Swenson <kyle.swenson@est.tech>, Dent Project <dentproject@linuxfoundation.org>, 
-	kernel@pengutronix.de, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 25/27] dt-bindings: net: pse-pd:
- microchip,pd692x0: Add manager regulator supply
-Message-ID: <rva5vyuksnw64j7hbgdjp2n4qw22a7niw4oc66dyaz5ndaa7ja@u6z4mavekjsw>
-References: <20250103-feature_poe_port_prio-v4-0-dc91a3c0c187@bootlin.com>
- <20250103-feature_poe_port_prio-v4-25-dc91a3c0c187@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yr0Fh6ejsr8Z+t4Q4ccUFS+8Sj2HMppnhvqSaju/sC0AXDackUunM7qBkl8+ZanZYiH3iWz22hZbXG85h5xhhBMEA1Hgz6TsLrNh9lc2CfqDTF0KhOJAuT0AYjrrlxwGdEELMWpCRqhDjOE9hj0IEoaoj3L45Tf9nxln15oZefo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lqhZ94fg; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1735984409; x=1767520409;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=b5NdL24kxs9OzB9ynQRuWiuoyZsaL2pQwHwCs/fqGh0=;
+  b=lqhZ94fg452hw/wrBA5DzrEPN8+/6ufPfMxvwn8h1NO4fm2YWbp+T2eT
+   U97Ajows/qxQOqDcQJj3m4N9ha7y2CLiljbSbAy2aAnU6hxmqJ3+jPKTF
+   1o6sn4Uh+jIytlB+U9oOhMNLdt13YZ78tWdt1qR2TyjgoRwGb5rGzK393
+   rtnALqDThuiP1WWrs1jWx6VM+F5AajcP0SZ7h9iSKJ9Y5qU2ONyGX6fl8
+   qWihwob8jMBA1Nw70RByNgQ4dCtdyPnEgbf6NZe1vZRigVQae6L6QiABW
+   5o7gDSEQL2lWz20GLlli2VXLop51O0qIKGakmbSZycsFBqHqCkwqmp+hI
+   g==;
+X-CSE-ConnectionGUID: 94DJPf/QQDGKFkz5XxKxjQ==
+X-CSE-MsgGUID: L19lZDMqTGC8/HE3uZPbug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11304"; a="35910080"
+X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; 
+   d="scan'208";a="35910080"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2025 01:53:28 -0800
+X-CSE-ConnectionGUID: YU/bp2OdTU2XRo0D1PMinQ==
+X-CSE-MsgGUID: 6rXyuzj0T8yrqP+9otizMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="106028907"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 04 Jan 2025 01:53:24 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tU0qP-000Anr-2i;
+	Sat, 04 Jan 2025 09:53:21 +0000
+Date: Sat, 4 Jan 2025 17:53:09 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shree Ramamoorthy <s-ramamoorthy@ti.com>, lgirdwood@gmail.com,
+	broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, aaro.koskinen@iki.fi, andreas@kemnade.info,
+	khilman@baylibre.com, rogerq@kernel.org, tony@atomide.com,
+	jerome.neanne@baylibre.com, linux-omap@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, m-leonard@ti.com, praneeth@ti.com,
+	christophe.jaillet@wanadoo.fr
+Subject: Re: [PATCH v2 4/7] regulator: tps65215: Add chip_data struct for
+ multi-PMIC support
+Message-ID: <202501041724.qQwuHm5z-lkp@intel.com>
+References: <20250103230446.197597-5-s-ramamoorthy@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250103-feature_poe_port_prio-v4-25-dc91a3c0c187@bootlin.com>
+In-Reply-To: <20250103230446.197597-5-s-ramamoorthy@ti.com>
 
-On Fri, Jan 03, 2025 at 10:13:14PM +0100, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> 
-> This patch adds the regulator supply parameter of the managers.
+Hi Shree,
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+kernel test robot noticed the following build errors:
 
-> It updates also the example as the regulator supply of the PSE PIs
-> should be the managers itself and not an external regulator.
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-> 
-> Changes in v3:
-> - New patch
-> ---
->  .../devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml    | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
-> index fd4244fceced..0dc0da32576b 100644
-> --- a/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
-> +++ b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
-> @@ -68,6 +68,9 @@ properties:
->            "#size-cells":
->              const: 0
->  
-> +          vmain-supply:
-> +            description: Regulator power supply for the PD69208X manager.
+[auto build test ERROR on broonie-regulator/for-next]
+[also build test ERROR on next-20241220]
+[cannot apply to robh/for-next tmlind-omap/for-next linus/master v6.13-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-s/Regulator//
-Keep it simple, no need to state obvious. What is not obvious here is
-why there are no main device supplies (VDD, VDDA).
+url:    https://github.com/intel-lab-lkp/linux/commits/Shree-Ramamoorthy/regulator-dt-bindings-Add-TI-TPS65215-PMIC-bindings/20250104-070914
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+patch link:    https://lore.kernel.org/r/20250103230446.197597-5-s-ramamoorthy%40ti.com
+patch subject: [PATCH v2 4/7] regulator: tps65215: Add chip_data struct for multi-PMIC support
+config: i386-buildonly-randconfig-004-20250104 (https://download.01.org/0day-ci/archive/20250104/202501041724.qQwuHm5z-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250104/202501041724.qQwuHm5z-lkp@intel.com/reproduce)
 
-And what about VAUX5 and VAUX3P3? So basically the description is not
-only redundant but actually incorrect because it suggests it is entire
-supply, while there are others.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501041724.qQwuHm5z-lkp@intel.com/
 
-> +
->          patternProperties:
->            '^port@[0-7]$':
->              type: object
-> @@ -106,10 +109,11 @@ examples:
->            #address-cells = <1>;
->            #size-cells = <0>;
->  
-> -          manager@0 {
-> +          manager0: manager@0 {
->              reg = <0>;
->              #address-cells = <1>;
->              #size-cells = <0>;
-> +            vmain-supply = <&pse1_supply>;
->  
->              phys0: port@0 {
->                reg = <0>;
-> @@ -128,7 +132,7 @@ examples:
->              };
->            };
->  
-> -          manager@1 {
-> +          manager1: manager@1 {
+All errors (new ones prefixed by >>):
 
-Not used.
+   drivers/regulator/tps65219-regulator.c:266:44: error: 'TPS65215_LDO_2' undeclared here (not in a function); did you mean 'TPS65219_LDO_2'?
+     266 |         TPS65219_REGULATOR("LDO2", "ldo2", TPS65215_LDO_2,
+         |                                            ^~~~~~~~~~~~~~
+   drivers/regulator/tps65219-regulator.c:104:43: note: in definition of macro 'TPS65219_REGULATOR'
+     104 |                 .id                     = _id,                          \
+         |                                           ^~~
+   drivers/regulator/tps65219-regulator.c:268:28: error: 'TPS65215_REG_LDO2_VOUT' undeclared here (not in a function); did you mean 'TPS65219_REG_LDO2_VOUT'?
+     268 |                            TPS65215_REG_LDO2_VOUT,
+         |                            ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/tps65219-regulator.c:109:43: note: in definition of macro 'TPS65219_REGULATOR'
+     109 |                 .vsel_reg               = _vr,                          \
+         |                                           ^~~
+   drivers/regulator/tps65219-regulator.c:271:28: error: 'TPS65215_ENABLE_LDO2_EN_MASK' undeclared here (not in a function); did you mean 'TPS65219_ENABLE_LDO2_EN_MASK'?
+     271 |                            TPS65215_ENABLE_LDO2_EN_MASK, 0, 0, tps65215_ldo_2_range,
+         |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/tps65219-regulator.c:116:43: note: in definition of macro 'TPS65219_REGULATOR'
+     116 |                 .enable_mask            = _em,                          \
+         |                                           ^~~
+>> drivers/regulator/tps65219-regulator.c:330:10: error: 'TPS65215' undeclared here (not in a function); did you mean 'TPS65219'?
+     330 |         [TPS65215] = {
+         |          ^~~~~~~~
+         |          TPS65219
+>> drivers/regulator/tps65219-regulator.c:330:10: error: array index in initializer not of integer type
+   drivers/regulator/tps65219-regulator.c:330:10: note: (near initialization for 'chip_info_table')
+   In file included from include/linux/kernel.h:16,
+                    from drivers/regulator/tps65219-regulator.c:13:
+   drivers/regulator/tps65219-regulator.c: In function 'tps65219_regulator_probe':
+   drivers/regulator/tps65219-regulator.c:365:36: error: 'regulators' undeclared (first use in this function); did you mean 'regulator'?
+     365 |         for (i = 0; i < ARRAY_SIZE(regulators); i++) {
+         |                                    ^~~~~~~~~~
+   include/linux/array_size.h:11:33: note: in definition of macro 'ARRAY_SIZE'
+      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                 ^~~
+   drivers/regulator/tps65219-regulator.c:365:36: note: each undeclared identifier is reported only once for each function it appears in
+     365 |         for (i = 0; i < ARRAY_SIZE(regulators); i++) {
+         |                                    ^~~~~~~~~~
+   include/linux/array_size.h:11:33: note: in definition of macro 'ARRAY_SIZE'
+      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                 ^~~
+   In file included from include/linux/array_size.h:5:
+   include/linux/compiler.h:245:77: error: expression in static assertion is not an integer
+     245 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg) ((int)sizeof(struct {_Static_assert(!(e), msg);}))
+         |                                                                             ^
+   include/linux/compiler.h:249:33: note: in expansion of macro '__BUILD_BUG_ON_ZERO_MSG'
+     249 | #define __must_be_array(a)      __BUILD_BUG_ON_ZERO_MSG(__same_type((a), &(a)[0]), "must be array")
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/array_size.h:11:59: note: in expansion of macro '__must_be_array'
+      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                                           ^~~~~~~~~~~~~~~
+   drivers/regulator/tps65219-regulator.c:365:25: note: in expansion of macro 'ARRAY_SIZE'
+     365 |         for (i = 0; i < ARRAY_SIZE(regulators); i++) {
+         |                         ^~~~~~~~~~
+   drivers/regulator/tps65219-regulator.c: At top level:
+   drivers/regulator/tps65219-regulator.c:329:34: warning: 'chip_info_table' defined but not used [-Wunused-variable]
+     329 | static struct tps65219_chip_data chip_info_table[] = {
+         |                                  ^~~~~~~~~~~~~~~
 
-Best regards,
-Krzysztof
 
+vim +330 drivers/regulator/tps65219-regulator.c
+
+   328	
+   329	static struct tps65219_chip_data chip_info_table[] = {
+ > 330		[TPS65215] = {
+   331			.rdesc = tps65215_regs,
+   332			.rdesc_size = ARRAY_SIZE(tps65215_regs),
+   333			.common_rdesc = common_regs,
+   334			.common_rdesc_size = ARRAY_SIZE(common_regs),
+   335			.common_irq_types = common_regulator_irq_types,
+   336			.common_irq_size = ARRAY_SIZE(common_regulator_irq_types),
+   337		},
+   338		[TPS65219] = {
+   339			.rdesc = tps65219_regs,
+   340			.rdesc_size = ARRAY_SIZE(tps65219_regs),
+   341			.common_rdesc = common_regs,
+   342			.common_rdesc_size = ARRAY_SIZE(common_regs),
+   343			.common_irq_types = common_regulator_irq_types,
+   344			.common_irq_size = ARRAY_SIZE(common_regulator_irq_types),
+   345			.irq_types = tps65219_regulator_irq_types,
+   346			.dev_irq_size = ARRAY_SIZE(tps65219_regulator_irq_types),
+   347		},
+   348	};
+   349	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
