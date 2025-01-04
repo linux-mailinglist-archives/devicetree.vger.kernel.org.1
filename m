@@ -1,111 +1,102 @@
-Return-Path: <devicetree+bounces-135592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92571A016CB
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 21:48:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57CC3A016D4
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 21:54:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D5283A28E1
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 20:48:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 297AC162BB7
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 20:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23D914A629;
-	Sat,  4 Jan 2025 20:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FE21D5AD3;
+	Sat,  4 Jan 2025 20:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HIatiwSD"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="2kDknmXQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20DB91B7F4;
-	Sat,  4 Jan 2025 20:48:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443E31D5150
+	for <devicetree@vger.kernel.org>; Sat,  4 Jan 2025 20:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736023685; cv=none; b=EL4i/X8SbUtjrlUsyX7i2ugFC/+iM5jbupGSH0b5cSbRbo7zRghXIY52uu/iiFgH4Tlq90aC6pUAF03Q/FvfnJmMnFGEWwYZXYJgscwKgr+pbd9X/RPflDdsbKOZRWBde/5hbdPe8lSxj9yyWPQbfYxMkwzaoGLNF4+IEGbg+nc=
+	t=1736024081; cv=none; b=o8ITpAIOCDCEgm7SqxfSNdyVylYlCMB20BPvgePRCaa4Opq/f2VRG++vmLcNbvgqJn24ffd3CYEjCqUTOx91D9OUyPAhcSUSY5GKuBYO8R2I3nWoQrOWv7wUToRVoX6+QJmh8K5whAWyg6WrFJekbgZ3joMsrHJ7FE1RF/J++wI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736023685; c=relaxed/simple;
-	bh=7qOGU9lSGU7clY77Ut7Cvj8lEKcDAuiG7L+BWvjj5ig=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h1tv3o8J42utPkes2sV1eSAnAC8nS1fOFCDOcDlXQv5AoP+XoVoyvpdaLn1rgesd3QPupQ1ast4dxB3HXp4a7m5RfghCPPgHIWbhhFjpSaM58F2WjGux4PiL+neV4spmM5vYPHzCOsnTKHfOWHHIqpevymAzr7Om5AQt3uEhZPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HIatiwSD; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-29e91e58584so9059742fac.2;
-        Sat, 04 Jan 2025 12:48:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736023683; x=1736628483; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7qOGU9lSGU7clY77Ut7Cvj8lEKcDAuiG7L+BWvjj5ig=;
-        b=HIatiwSDYtWt8QMLXgEKm/a6m+2IsA5JY5i8syMv50QnSa3VysWoMIEhKytwdH2zBO
-         dzW0B8S5UuLBj8hZCAc8APx0phIbhuavjbG1IWwqAsmz4p1B2KChUwY0UzIP9xmBHHfh
-         Zg3Ced9ZL6KAEIO8VUcFmimJgz7KQ2Y/8YzCW+RTY7c41IgxDzjX6mdanZaGeijSunhb
-         Gi4xD2S9mF8/O64S3q0H+q1ffnWjfAK9rpc+UYlxTFTmJJGeiguxHG+TIdcF/snkJAAe
-         cy6hr8fot4Mg83WD9Uk8IBLuOlpBwgZ0dLdkO+wHOgdtASr0hRwsDMBeIokl2aPBqkjY
-         4AEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736023683; x=1736628483;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7qOGU9lSGU7clY77Ut7Cvj8lEKcDAuiG7L+BWvjj5ig=;
-        b=HVZi0oMf0EDoabmobJA7HVw4z574vSoOjii+/9xWqIvggTwLhLzwyTk5SHUK1om+Ad
-         Pmm0WcggRMPn1vnNOtZ0RbOlhpTJ4IagDAaeYUKjOtpa9+b7cFF3H/AfGLldIz/VYcJ+
-         T7ZBcR3YonNLreSrStp+R3j6Ez2mTqKaUAL0gWnHI9jRn2zgfrDY8gNRkcWDM6ohC6cp
-         up0kA3a44+sO0u/xUY/0Se6Z1B10wH5BpiLWMC12/2sn2T7lWNDm6SAYACgaG+ITkmx8
-         Mn9PnoLgDJJTCEYxrP8eaBiInjTGdjCQ6Q+OhdcPnuK1j85qBs9ext0wgJULxqD8LHVH
-         CMPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUJqXjRTjNPfspJS0APNvM/mc1S2VFP8NS/Oo6JGzgsmN0VTQQRf2zaRVZYyF6LAlsPPcVzZHdoLgOd@vger.kernel.org, AJvYcCWM8mq/FhWOdLAjMccaumbQnp/6XItpasXN8Ugw+RCjmQnSueWm+mHzO6m5r/lpFjDdCTrMp68q53tQ@vger.kernel.org, AJvYcCXISUo/MusWIlWRqmPJtCNjxLMf4aM7jVOfDCc8yLShAF52gdDegemMa3aocNXQURvU7gWnoUJkzfywgEsT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpIZ3RxZAIuOYu4Y1NyC9NVcDryisRsrRyRiqE1+yjmzcVYdcC
-	SnmR9mz0K1j4BhUxlwBweSp9h3SUjaVulIasafYg26NvsQCskncIzX01uvWUI1wkTs3L6dt/O/D
-	FiACWoNov2DzZgDzrlZjs09viIOY=
-X-Gm-Gg: ASbGncvMQS2SQC0dVygQEz+RRIdITfKETfccTUlBF6c7ccFJGkhPSkS896JNJEZobfR
-	pZtoWwn7HJNCjJtVkykhb2hcrqzPbwZnw+eYbFyQRg3DTNdM5kjTg
-X-Google-Smtp-Source: AGHT+IFqdpx5RJdOsRI9uR/s22I3j6REd5BbLNXwPDGQxQawZM2Yl0ffyE3R+tpVxSAwvtmyO4+f1b43CRGilnVUCkA=
-X-Received: by 2002:a05:6870:2f09:b0:29e:3d0b:834 with SMTP id
- 586e51a60fabf-2a7fb00b511mr31315329fac.5.1736023683128; Sat, 04 Jan 2025
- 12:48:03 -0800 (PST)
+	s=arc-20240116; t=1736024081; c=relaxed/simple;
+	bh=mGxD6iwFtmjZyF9cnW1NHIRS1yBMvIhooC1Hp1N/A2I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NZsgl5+AWcMbsjBfLL9PKHqHoCuqlmvvNKsZ0w33fWijvpysTGxlY7zBW4ergmHraAxOSpf7SGIN1GBPsz/6FlFCfbD/4S73I7+WaxwaJAkSSmTfv5hDl+Xa4I+wSCH/cbVR4ftlwsxLgPCHeXmzWWbpwgc9Ekvy6x2BKr+7lwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=2kDknmXQ; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256; b=2kDknmXQOVXsYODL14SC1+Rd7+fXsrD+Vao+W0vQxxUUW8aCIIe+kpvS2Qs313iqeXY5poIkNyvm0inALrK/7Z1P0Ibey4MP2Mz4Jo5Z3Nnb4wHT/dY/EG95CqKr8/CuqZiqNG2U5ORJ6W7cvku2sSg/JsN264MzzaO0XER5BWplKdtZp5PIMcQQt15/N7sAs+rwiqng0NVz6asEO6IaMzzwdBQJ5yymQlh0Gj0z3bln547KS8awdg/ULvbeTAiA+ktjiabDVVaxhlZ7VbIdkbGY0fTDXH694Y1LE1o2GD5bCPOMfCVc28rOzDzN70SKI3+rcMwOh/9XOFQ5ECQoDw==; s=purelymail3; d=purelymail.com; v=1; bh=mGxD6iwFtmjZyF9cnW1NHIRS1yBMvIhooC1Hp1N/A2I=; h=Feedback-ID:Received:From:Subject:Date:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 166263896;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Sat, 04 Jan 2025 20:54:28 +0000 (UTC)
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Subject: [PATCH 0/2] Enable CMU_PERIS and MCT for Exynos990
+Date: Sat, 04 Jan 2025 21:54:15 +0100
+Message-Id: <20250104-cmu-nodes-v1-0-ae8af253bc25@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250104074035.1611136-1-anarsoul@gmail.com> <20250104074035.1611136-2-anarsoul@gmail.com>
- <CAGb2v66W9q-uQkepYgrD9QKnOwmpUdDakRoKjmsT_4=Adyj09Q@mail.gmail.com>
- <ca0cad16-7c39-4635-8f09-f9f3c95c9fef@kernel.org> <20250104120256.65511a28@minigeek.lan>
- <CAGb2v66h1k9Wm5Xr1NMYsOgV--2oaHrTfyVFmUisdKmsG1HBCw@mail.gmail.com>
-In-Reply-To: <CAGb2v66h1k9Wm5Xr1NMYsOgV--2oaHrTfyVFmUisdKmsG1HBCw@mail.gmail.com>
-From: Vasily Khoruzhick <anarsoul@gmail.com>
-Date: Sat, 4 Jan 2025 12:47:37 -0800
-Message-ID: <CA+E=qVdm5gf2+TL6ThaTdBy_3jPTSYdU6hj9Om9jPS=iyv8wMA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and PLL_MIPI
-To: wens@csie.org
-Cc: Andre Przywara <andre.przywara@arm.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, Roman Beranek <me@crly.cz>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Dragan Simic <dsimic@manjaro.org>, Frank Oltmanns <frank@oltmanns.dev>, 
-	Stuart Gathman <stuart@gathman.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPefeWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDQwMT3eTcUt28/JTUYl3T5LSkFPNkS9M0QyMloPqCotS0zAqwWdGxtbU
+ ACd3DA1sAAAA=
+X-Change-ID: 20250104-cmu-nodes-5cfbd7c95f12
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, 
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736024066; l=944;
+ i=igor.belwon@mentallysanemainliners.org; s=20241206;
+ h=from:subject:message-id; bh=mGxD6iwFtmjZyF9cnW1NHIRS1yBMvIhooC1Hp1N/A2I=;
+ b=LN5tCyllQr3iJxSVRPhsL675StndfBt+aJFQf4pOgfuMeV6WzfdYJPn6cXJKE9W9aT7IpnHMm
+ ROR/6QbhmqkCz4FMJ5YYr2BFTLED1tEjdCfCaEw0KksNBU8XiYbiqGO
+X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
+ pk=qKAuSTWKTaGQM0vwBxV0p6hPKMN4vh0CwZ+bozrG5lY=
 
-On Sat, Jan 4, 2025 at 4:14=E2=80=AFAM Chen-Yu Tsai <wens@csie.org> wrote:
+Hi all!
 
-> > Yes, IIRC the C standard allows repeated definitions with the same
-> > value. And I definitely tested this before (and hence recommended this
-> > approach to Vasily) and it compiled without any warnings here.
->
-> Hmm. Didn't know that. Good to know, and I just tried it on my end.
+This series enables a new clock block and the MCT for the Exynos990 SoC.
+The MCT design is reused from previous SoCs. It generates 12 timer
+interrupts.
 
-Yeah, I don't like it either. It's an artefact of pretending that the
-device tree directory(ies) is a separate tree.
+Compile-time and run-time dependency:
+[CMU_PERI] https://lore.kernel.org/linux-samsung-soc/20250104-exynos990-cmu-v1-0-9f54d69286d6@mentallysanemainliners.org/
 
-> Thanks
-> ChenYu
+Best regards
+Igor
+
+Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+---
+Igor Belwon (2):
+      dt-bindings: timer: exynos4210-mct: Add samsung,exynos990-mct compatible
+      arm64: dts: exynos990: Add CMU_PERIS and MCT nodes
+
+ .../bindings/timer/samsung,exynos4210-mct.yaml     |  2 ++
+ arch/arm64/boot/dts/exynos/exynos990.dtsi          | 30 ++++++++++++++++++++++
+ 2 files changed, 32 insertions(+)
+---
+base-commit: 77c5a1c131c3e0c955965b94365e0e7727b37dc5
+change-id: 20250104-cmu-nodes-5cfbd7c95f12
+
+Best regards,
+-- 
+Igor Belwon <igor.belwon@mentallysanemainliners.org>
+
 
