@@ -1,153 +1,153 @@
-Return-Path: <devicetree+bounces-135566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E32CBA015BD
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 17:26:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B6EA015C5
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 17:29:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD6ED163481
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 16:26:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0E1318838E6
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 16:29:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05CB513DDB9;
-	Sat,  4 Jan 2025 16:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0531D1BB6BA;
+	Sat,  4 Jan 2025 16:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MrZP4R5P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="izjuhrJT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED7A211C;
-	Sat,  4 Jan 2025 16:26:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CBBF211C;
+	Sat,  4 Jan 2025 16:29:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736007999; cv=none; b=Xn6RtFD+9MNmNE5oJqmdTOYwPoN0rAl3ZXLJTyy8PT2QNWNiFoGjxWnsTwPY4lOMq0UF7W02+cF4z9W/FEHY6cSgpAwcBohPhUVhKq6mCdfTP7tU5TiIWkx/rOey6bNmLZiYiMLO+j5USoQz1tgSq0wQhlAQaWlJFcIIzB/A2HY=
+	t=1736008161; cv=none; b=pYmB4dKja088XAYH08UQHzE7puydi9Esq+Aqdl6G8g85UVRuQbV8ZBI26fpqpmg0iJ2yE0scjmY6csFusedWWbVEbRLZpoiI8TrdcH0z6L6p1InkzBSOFZM++vulVw7SDIWdSk/IvWEeiv2GRqYkhdbXXbyrZ9SUddi6PzYwFxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736007999; c=relaxed/simple;
-	bh=+2hu2HBFZ3z098bnGj2w0wakHLQJ1X+CDDzNKkFvSo4=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Am0ZgM3GTCoXuMw6e4NULvFpKlDlIYuUGe4skoVrwZTgcxwywzmnBdOKKdzhC2tVAtj/CYjqlVzDM/3jru0227WqwVoJJogzXy8dkA+I7TUMPKZcEKr4ug15BnSgdTZf+6bYcxMxogcnraIe3pj1pSd3Q8uWOXXoNglIuIdMimg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MrZP4R5P; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1736008161; c=relaxed/simple;
+	bh=+0JVdIjKEhi5DNkCWXGGcrjQYlDZCm0cxCKqgJB2Ee8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ouxu+tHUAnYYDJzQhiwAFkoKpbvo2Vkii8TqI4IdxFP42sUbOMROtrllsJ1eZzoZBu2eabHWLMNmuZWjjVjrP6uN05dv7OIesDXu2ouO8T6pH+ad64I4b/LL81tSXHN3i4tJxV5aVMVDNjYbpUcBSOeo5E0FM+X2K+/iN/mFdm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=izjuhrJT; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-436345cc17bso94927185e9.0;
-        Sat, 04 Jan 2025 08:26:37 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43621d27adeso90733055e9.2;
+        Sat, 04 Jan 2025 08:29:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736007996; x=1736612796; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nTlW5tpHNJbidyn2Hd1CGByd7XKtmPkVfZjZnPxhfiU=;
-        b=MrZP4R5PiDR2VD4LVtyzTyOapw0kz8tvjuY7HeG8Lkgu4wU7/huV8G6gTQmk7Y1gV8
-         /NX5+Nq/9W/TREPQDyKCqjDCfoVsepjgHxYWYaCihkKaw7R6WP+G35XeiQY1m+3hlbPg
-         ECGms9p8jhG1R6pIO5GELtbsV6yyxbCVfidBIUFoH/wIReqXmf7LSuTqxbV04zLudwuA
-         b+/hBz7vQY52+6qOKcDsPbnbNqnqsL6RRZZ+pT4Fuw3BA0YanG6yPW3wybswvKvUdNuk
-         xZvO6NUOIzbSKnAbvFQ/Ove6fJhnY/NKmQ4uRuIyaQ3HtRZyi189EqoHh6etAvr16aAb
-         3pHQ==
+        d=gmail.com; s=20230601; t=1736008158; x=1736612958; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=75kKbb31JP2zVHFIDZ/o0cPWp6patqfUDNdVfPTRa8g=;
+        b=izjuhrJT9EyNDXo1oOW3VsC5OXeM6ZkLvCamAigxZTEceF/5Jtf6DkBmhkJbgPvlOU
+         X9Or/wlzu8rcn/HlWmYlDLPGYskh6shckFp5PY0fGL/8b1tnPnHhp9bw77Oa9XVVpqky
+         XcSl/7dpybM8dSWoSqxrPpCZF8MESOlyZKWWaWTe7QHaAdzk/Iv0oWCs/r9B360jqBSi
+         ufnl/3N63NOno1iWYx0xf2S94/3/wcTRzoRpvCnTNJPNyB+kCoFyXiFh8yCOf5ULjj/S
+         bV+YeG1I8Kk4OjjJ8I7qUmDPkLUqb961R4RSUL5yMx2yonLvFRsZ5PXQvNQNURI8c3Af
+         O6Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736007996; x=1736612796;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nTlW5tpHNJbidyn2Hd1CGByd7XKtmPkVfZjZnPxhfiU=;
-        b=XWpL6hsp8iSq8Miwjw/tEcxtzRhQlCVG6zMIHd88RV9+e+v24/4HywTFOPgoF2Znt+
-         /E3fxIvHxZ3mT0uiPe3zSFsmgGYp7PoeUO0053xXd4eTJkLDvugyJml+AHMq2rZt1fi5
-         lmPLdnOSIwLlI+9PzCiOFpeOe9P5bnWZVHTx90yWwTDaDABr+UW7c6aA+TOGet8aTaDu
-         96FEaexzK51pXzBAcPLU/HlOLLE/OXMr9iCxThPcF4/ndxoJro5uu7WgLjsv9NrJgE3C
-         3G5Le7JoIuvq9lYzIuClWDd0KhC8mWYCNKmyK8TxnNBYDqcYIIFKg6A5aFtpbuNFKMeV
-         3uIg==
-X-Forwarded-Encrypted: i=1; AJvYcCUmsRy30dg0mQjFdalaI2uwOGO3RjHRx+raS4vbnwJF7b814GOcy1SA1ZmpvBv3ZjIFRK437PDUq8t7@vger.kernel.org, AJvYcCVBbY2ij3HV+sB6soYmEuSbyp5d0GttBxfZcFbgFHPGxErCspXbZ3e7YphgUC+mPaEtmbkQ/XtgyraWQrt0@vger.kernel.org, AJvYcCXLxQHaNZFl4QeJwYalzQ6lCFIodta1EP0YK3xWqTf2f9cgf7RANoSU86S5r8xJ78UH0GI9emWja4rp+kzQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywdmo9eiTfEhQPOLUYMaz4mtCpimcbRAgOS7Ce6SCMiunoZ89iE
-	U9MPMQ/hK6g6r5QOtW2PfwnxfpH9fYFyK9iKG/b9UboZnUyMORmp
-X-Gm-Gg: ASbGncuR55nNCsAftkif/l7ugm0pWJJBIFNX2tzKXpLSfeZ5CkrGDj+Ph5rPJ0d4og9
-	Zg6UAVqHDXMRPh88Si6wcyc02tIo0hIF1zzze/YlgsUE7gv6wCYeUIunvVeC1cKVl+1hsbo6RLc
-	noSKIZH7ub6GLgKsFikE1nSwW6bth65TmN93Q1pB7Jis1nfaIToSlWEd/kLqChdvyvvHLKPvzrW
-	k5gJwxdWMGVrXey/uleFwMaJU/Q/hKneYqnYyweifl0I7Q4DRlnR7E2YaObRzJKXGeRG1yQGpZS
-	LF6n3XY9z1SwjuFuXdM0Klto5kkx
-X-Google-Smtp-Source: AGHT+IEYyWCHbe8Xmh/2fe8JTYwqsP1+JeqaC3d0GDdR+GXkSctHI+hIK/4TMHem5BXiKUDqAK4wFA==
-X-Received: by 2002:a05:600c:470a:b0:434:f767:68ea with SMTP id 5b1f17b1804b1-43668548337mr441848705e9.5.1736007995848;
-        Sat, 04 Jan 2025 08:26:35 -0800 (PST)
-Received: from Ansuel-XPS. (host-95-246-253-26.retail.telecomitalia.it. [95.246.253.26])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4366127c488sm515449015e9.27.2025.01.04.08.26.32
+        d=1e100.net; s=20230601; t=1736008158; x=1736612958;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=75kKbb31JP2zVHFIDZ/o0cPWp6patqfUDNdVfPTRa8g=;
+        b=HIg0cz8TmCbBgD32K8JZxO3xD6kzxu9hf27tTOsVnvL3fQtkRRkiSUoDkLB8C2+6Ki
+         CMtUeYCM/Pc3T65cACfusCeQQ5HQjB+5oTccU2fsLLsVyrILBIIB5EoS5usHHNUYo3yC
+         4n7B4QJa+igzPK6XWa7zGSJp1dhM/VJjhdTIkZ1U364avYZy06w239DoBaQZgBllecG0
+         mIuQXLE7CI+kduCZ0YnR16ELmboap2sWMsLN2LnUBkptFxH4X4FQ0vdXoeqBWkD9rPsb
+         VTO2/T7lQhcAUt4TuCqyCxsZ+/7BEbY80yYn/8HtKOAwHL7t6zvo3hxiher7I6n6DXIP
+         I8dQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVAUlusUzgHb0yRbYC+q0K73e7zDDttOOpXMNEM6jgo8dxyLsFe19GuaO5BKfzoc2FaJ5FNnJaEJDZIL+A=@vger.kernel.org, AJvYcCXml7UcyN+L0tMfxY8KizE1wF9okKsai9wy7hU8KMScmGJ17Gc0b383CHjiwKuUjIAV8bczRist5dula8pTentz68A=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3pFXfFGH1JOwqlt+4uKyP/vuYOtytJLtS+m4oGOWGd1peFI58
+	SvwUjvXAIPl7ZqunpBBgIMr7IVvFJmmykOGYpnAxdZCHPFCWhO9HDhYe7A==
+X-Gm-Gg: ASbGnctqTbX9cnYTGQqyQ6Q4HifVLbGZQGDv9pGk7PpCeaGfx9Q878aON9OIJqS3D/F
+	DTRKmfz3VOVYUTkrBtr5WyXBNLmPOc11zasDLseC8IDWX2e0TPNW46uXql4zi0HCsazigK9YcHw
+	DesW7esxnPYB2ezFWHAgiKZmSE3kfODkJu5mZAAUGbDjkUNV5y3c8Z16xu7VQU+feRTxKoAPmnP
+	rGUK+mbjqNYVWe2We/UfUY/d5c5HVFfZWk6YmfemveIlboDMhDJZ+il7vmw8K99u/8j+vg=
+X-Google-Smtp-Source: AGHT+IEwXbvJYKrDP+G3pOKdVCJMWC5VrzP8JtzhdZgCM4Ja2ck79MkUoLJzlgAPiaoTuEpTbft98Q==
+X-Received: by 2002:a05:600c:154c:b0:434:9f81:76d5 with SMTP id 5b1f17b1804b1-43668b49a47mr423056215e9.22.1736008158197;
+        Sat, 04 Jan 2025 08:29:18 -0800 (PST)
+Received: from ivaylo-T580.. ([94.131.202.183])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4366127c4fcsm522807895e9.29.2025.01.04.08.29.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jan 2025 08:26:34 -0800 (PST)
-Message-ID: <6779613a.050a0220.184c1c.c90e@mx.google.com>
-X-Google-Original-Message-ID: <Z3lhNNTbHX6We7M8@Ansuel-XPS.>
-Date: Sat, 4 Jan 2025 17:26:28 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Sat, 04 Jan 2025 08:29:17 -0800 (PST)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com,
-	Richard van Schagen <vschagen@icloud.com>
-Subject: Re: [PATCH v9 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
- engine support
-References: <20241214132808.19449-1-ansuelsmth@gmail.com>
- <20241214132808.19449-4-ansuelsmth@gmail.com>
- <Z2aqHmrVAm3adVG6@gondor.apana.org.au>
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Sam Protsenko <semen.protsenko@linaro.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] soc: samsung: usi: implement support for USIv1
+Date: Sat,  4 Jan 2025 18:29:12 +0200
+Message-ID: <20250104162915.332005-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z2aqHmrVAm3adVG6@gondor.apana.org.au>
+Content-Transfer-Encoding: 8bit
 
-On Sat, Dec 21, 2024 at 07:44:30PM +0800, Herbert Xu wrote:
-> On Sat, Dec 14, 2024 at 02:27:54PM +0100, Christian Marangi wrote:
-> >
-> > +	ahash_tfm = crypto_alloc_ahash(alg_name, 0, 0);
-> > +	if (IS_ERR(ahash_tfm))
-> > +		return PTR_ERR(ahash_tfm);
-> > +
-> > +	req = ahash_request_alloc(ahash_tfm, GFP_ATOMIC);
-> > +	if (!req) {
-> > +		ret = -ENOMEM;
-> > +		goto err_ahash;
-> > +	}
-> > +
-> > +	rctx = ahash_request_ctx_dma(req);
-> > +	crypto_init_wait(&wait);
-> > +	ahash_request_set_callback(req, CRYPTO_TFM_REQ_MAY_BACKLOG,
-> > +				   crypto_req_done, &wait);
-> > +
-> > +	/* Hash the key if > SHA256_BLOCK_SIZE */
-> > +	if (keylen > SHA256_BLOCK_SIZE) {
-> > +		sg_init_one(&sg[0], key, keylen);
-> > +
-> > +		ahash_request_set_crypt(req, sg, ipad, keylen);
-> > +		ret = crypto_wait_req(crypto_ahash_digest(req), &wait);
-> 
-> Sleeping in setkey is no longer allowed.  I don't think it's
-> fatal yet because the main user driving this currently uses
-> sync ahashes only.  But we should avoid this in all new driver
-> code.
-> 
-> Easiest fix would be to allocate a sync ahash:
-> 
-> 	ahash_tfm = crypto_alloc_ahash(alg_name, 0, CRYPTO_ALG_SYNC);
->
+Hey folks,
 
-Hi Herbert,
+This patch series adds support for USIv1 in the existing exynos-usi driver,
+as well as dedicated sysreg compatibles for exynos8895.
 
-I'm a bit confused by this... I can't find any reference of
-CRYPTO_ALG_SYNC, is this something new? Any hint on where to look for
-it? Can't find it in include/linux/crypto.h
+The USIv1 IP-core is found on some ARM64 Exynos SoCs (like Exynos8895).
+It provides selectable serial protocols (one of: HSI2C0, HSI2C1, HSI2C0_1,
+SPI, UART, UART_HSI2C1). It's a bit different from USIv2 as it doesn't
+have any known MMIO register map and the serial protocols that it
+implements share the same register base, hence why the way of modelling it
+in device trees will be with ranges, like so:
 
-Following the codeflow of crypto_alloc_ahash is a bit problematic.
+usi1: usi@10460000 {
+  compatible = "samsung,exynos8895-usi";
+  ranges = <0x0 0x10460000 0x11000>;
+  clocks = <1>, <2>;
+  clock-names = "pclk", "ipclk";
+  #address-cells = <1>;
+  #size-cells = <1>;
+  samsung,sysreg = <&syscon_peric0 0x1004>;
+  status = "disabled";
+
+  hsi2c_5: i2c@0 {
+    compatible = "samsung,exynos8895-hsi2c";
+    reg = <0x0 0x1000>;
+    ...
+  };
+};
+
+This patchset also assumes that [1] and [2] have been merged before it.
+
+Best regards,
+Ivaylo
+
+[1]: https://lore.kernel.org/all/20241222145257.31451-1-krzysztof.kozlowski@linaro.org/
+[2]: https://lore.kernel.org/all/20250103082549.19419-1-krzysztof.kozlowski@linaro.org/
+
+Changes in v2:
+  - add r-b from Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+  - restrict the possible ids of samsung,mode with an allOf:if:then
+  - set the properties samsung,clkreq-on and reg to false for non-usiv2
+  - only make use of exynos_usi_modes
+  - make sure pclk and ipclk are enabled
+
+Ivaylo Ivanov (3):
+  dt-bindings: soc: samsung: exynos-sysreg: add sysreg compatibles for
+    exynos8895
+  dt-bindings: soc: samsung: usi: add USIv1 and samsung,exynos8895-usi
+  soc: samsung: usi: implement support for USIv1
+
+ .../bindings/soc/samsung/exynos-usi.yaml      | 55 +++++++++++++++----
+ .../soc/samsung/samsung,exynos-sysreg.yaml    |  8 +++
+ drivers/soc/samsung/exynos-usi.c              | 42 +++++++++++++-
+ include/dt-bindings/soc/samsung,exynos-usi.h  |  7 +++
+ 4 files changed, 97 insertions(+), 15 deletions(-)
 
 -- 
-	Ansuel
+2.43.0
+
 
