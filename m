@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-135537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599C3A013F8
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 11:33:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D2AA013FA
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 11:35:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A9A1163CBA
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:33:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC195163BF9
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:35:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A39189B8F;
-	Sat,  4 Jan 2025 10:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1C2188915;
+	Sat,  4 Jan 2025 10:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UTbNQA/M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gp+kizqs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE90C15B543;
-	Sat,  4 Jan 2025 10:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ADAD17BA3;
+	Sat,  4 Jan 2025 10:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735986812; cv=none; b=X4r0YEZ0RINencSaC/pHfdYTjQ+KQkH3gIxph0KRZQkIWFcZWf3jTJ2LTfQ77Jsn/V7rASb9YTgXbHrAZU/QsiK4UfUwOLdfbhrJM7k84STGQtbYrP/1qtLxflZGv2MBfz+1THdbMgRDpRFAhz0KOLhIAI6xIBe4AsnHRQhe4qk=
+	t=1735986919; cv=none; b=HDIPJtECPqoC+xmNYfwHYL66HzhSmzfeO78cxK723MinXqGExkqFTXdvtWq9yUp2p1b35meF+b5xvD/PKf9qPmIDx5MYFZtkyEDHJbAIE05FY3Q2LtyFzfSFWd9PMmDmqIPsloNvoBvtWmcb4DwmiK2qKcouZ52AFqUJN2oIy98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735986812; c=relaxed/simple;
-	bh=EeeUc8JY5rw4GCXEMrTKwh+2jxEK2DZWl0XVNh0AGBQ=;
+	s=arc-20240116; t=1735986919; c=relaxed/simple;
+	bh=u8PgWpIxhBQRlIRCAX6DFP0DJwUIE9MJahcZspn9zR8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sxipBD43kv5Tp+hKc+pPPoRy11lqF7UFciHl49kl1cPE4nMDRpQn55I9goBteXvpKohYniFnYY98JzFNueA/2mmDE/+cjD0QSbhhL+NWMWxgmo2mpl/sqM7BdYrHRv6u91GKKtHcUYq4GLs9lUj/poUhm9/zFCx8JEU71/xip8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UTbNQA/M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 255E3C4CED1;
-	Sat,  4 Jan 2025 10:33:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AZd9MK9+FaoQ1YI9wnu3inZ+JEmR4SSKcag8WKU6UG9b+JgCHu8FY0mUsCFnjnMDuZdWoOVuwTgCBq1K5udWz8DQeJQ9G+T7tu66GXq2CEodR7v25gvP1Qj5RdcDKP+qbIqAik/+oTXcZhRS0QIeUMl6N5sw8zrPfAe+RRlz8G0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gp+kizqs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98815C4CED1;
+	Sat,  4 Jan 2025 10:35:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735986812;
-	bh=EeeUc8JY5rw4GCXEMrTKwh+2jxEK2DZWl0XVNh0AGBQ=;
+	s=k20201202; t=1735986918;
+	bh=u8PgWpIxhBQRlIRCAX6DFP0DJwUIE9MJahcZspn9zR8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UTbNQA/MVgto5rA0fXMcodzAGa1vh3ZH+nI48VSa7eBTfxxdjhwPfoJyWfsuRPk6L
-	 LSYPOtmMMAWLRRdHaoaLwe0Qy4Ry89mkqTdkgJ179XBOoAp898VHqwaEFrMlpF//Aj
-	 /JcboBfi3+n8KwqKzKypUsJOkYG6itYZYXCsZAZnVtJDGdJZILsKMTMfFNE75Cuv4a
-	 G8PWU6M64ZlWkGXzP5zCXiJSov3l1K+H6MGntYscZth6UnnmSXCO3/QVQtLTyil8b+
-	 DdajjEsQ47R0Q193gDWmJ9bzs+or/4s1Ig9fZ+Q2DR5KjVGWy3swGBLbXNE1d3xKsk
-	 IRyESYogacFjg==
-Message-ID: <ca0cad16-7c39-4635-8f09-f9f3c95c9fef@kernel.org>
-Date: Sat, 4 Jan 2025 11:33:23 +0100
+	b=Gp+kizqsF35DVFx+IN9i0dkY3FnPJwpgS3Cd1XPZFCzLy/4LAsA5Dd85QRbXhu66V
+	 bHZwb8GmB346iirVNjRxCUwxjfiCTYbx1A/lqC51EYeDZuAAZBCJQEOxIoJf5zI2Uz
+	 xEjASF3l8WHvuztEQPFaoIlxENWenZLoMAHcF/356vaUypwz6CPR9WUnWgmz8M8u1z
+	 ckBdGQhluz4gCXZPnuuV7mv3hktN5UAPZZ5GvLD4dHcun118mm8R6Ab9YR/Gd/GOje
+	 Ym3GN0eo+jtWWzgTXx+iwEbGLk1clQMRoVvzKoaFcT6B+bXa8yO4H1Q3dxVUb1a6gS
+	 MgOFMnJkO+VNQ==
+Message-ID: <fc357064-b385-428a-8206-0f994a76e1ad@kernel.org>
+Date: Sat, 4 Jan 2025 11:35:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and
- PLL_MIPI
-To: wens@csie.org, Vasily Khoruzhick <anarsoul@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Roman Beranek <me@crly.cz>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- Dragan Simic <dsimic@manjaro.org>, Frank Oltmanns <frank@oltmanns.dev>,
- Stuart Gathman <stuart@gathman.org>
-References: <20250104074035.1611136-1-anarsoul@gmail.com>
- <20250104074035.1611136-2-anarsoul@gmail.com>
- <CAGb2v66W9q-uQkepYgrD9QKnOwmpUdDakRoKjmsT_4=Adyj09Q@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] soc: samsung: usi: implement support for USIv1
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250102204015.222653-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250102204015.222653-4-ivo.ivanov.ivanov1@gmail.com>
+ <utew7byz6kulmet76ayuc4obwavm5g5q2m5gk4metqulcgi4as@eml3cfd3vfaq>
+ <9510ba3c-1879-4c42-ae17-36d8b32fc799@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,52 +106,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAGb2v66W9q-uQkepYgrD9QKnOwmpUdDakRoKjmsT_4=Adyj09Q@mail.gmail.com>
+In-Reply-To: <9510ba3c-1879-4c42-ae17-36d8b32fc799@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 04/01/2025 11:23, Chen-Yu Tsai wrote:
-> On Sat, Jan 4, 2025 at 3:40 PM Vasily Khoruzhick <anarsoul@gmail.com> wrote:
->>
->> Export PLL_VIDEO_2X and PLL_MIPI, these will be used to explicitly
->> select TCON0 clock parent in dts
->>
->> Fixes: ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in TCON0 mux")
->> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
->> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
->> Tested-by: Frank Oltmanns <frank@oltmanns.dev> # on PinePhone
->> Tested-by: Stuart Gathman <stuart@gathman.org> # on OG Pinebook
->> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
->> ---
->>  include/dt-bindings/clock/sun50i-a64-ccu.h | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/include/dt-bindings/clock/sun50i-a64-ccu.h b/include/dt-bindings/clock/sun50i-a64-ccu.h
->> index 175892189e9d..4f220ea7a23c 100644
->> --- a/include/dt-bindings/clock/sun50i-a64-ccu.h
->> +++ b/include/dt-bindings/clock/sun50i-a64-ccu.h
->> @@ -44,7 +44,9 @@
->>  #define _DT_BINDINGS_CLK_SUN50I_A64_H_
->>
->>  #define CLK_PLL_VIDEO0         7
->> +#define CLK_PLL_VIDEO0_2X      8
->>  #define CLK_PLL_PERIPH0                11
->> +#define CLK_PLL_MIPI           17
+On 04/01/2025 10:36, Ivaylo Ivanov wrote:
+>>>  struct exynos_usi_variant {
+>>> @@ -66,6 +79,16 @@ struct exynos_usi_mode {
+>>>  	unsigned int val;		/* mode register value */
+>>>  };
+>>>  
+>>> +static const struct exynos_usi_mode exynos_usi_v1_modes[] = {
+>>> +	[USI_V1_NONE]		= { .name = "none", .val = USI_V1_SW_CONF_NONE },
+>>> +	[USI_V1_I2C0]		= { .name = "i2c0", .val = USI_V1_SW_CONF_I2C0 },
+>>> +	[USI_V1_I2C1]		= { .name = "i2c1", .val = USI_V1_SW_CONF_I2C1 },
+>>> +	[USI_V1_I2C0_1]		= { .name = "i2c0_1", .val = USI_V1_SW_CONF_I2C0_1 },
+>>> +	[USI_V1_SPI]		= { .name = "spi", .val = USI_V1_SW_CONF_SPI },
+>>> +	[USI_V1_UART]		= { .name = "uart", .val = USI_V1_SW_CONF_UART },
+>>> +	[USI_V1_UART_I2C1]	= { .name = "uart_i2c1", .val = USI_V1_SW_CONF_UART_I2C1 },
+>> Now I see why you duplicated the IDs... With my approach your code here
+>> is even simpler. Allows to drop USI_VER1 as well.
 > 
-> You can't really split code movement into two patches.
-> 
-> With this patch applied the clk driver will fail to build because
-> the macros are now redefined in both header files.
+> We can't really drop USI_VER1, as we'll fall into USIV2-specific code, like so:
+> if (usi->data->ver == USI_VER2) return exynos_usi_enable(usi);
 
-Are you sure? The values seem the same to me... I don't see how this
-could fail.
-
-> 
-> Barring recombining the patches, please add a patch before this
-> adding #ifndef's around the two macros that are moved.
-> 
-
-No, not necessary, just churn,
+Yeah, indeed. You still would have just one exynos_usi_mode table.
 
 
 Best regards,
