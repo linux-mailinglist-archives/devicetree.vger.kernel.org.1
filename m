@@ -1,138 +1,122 @@
-Return-Path: <devicetree+bounces-135505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C13FA012B9
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 07:20:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB5FA012E7
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 08:24:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E49A1643D0
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 06:20:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D83F163BB9
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 07:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD0D117B50F;
-	Sat,  4 Jan 2025 06:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D59E146D53;
+	Sat,  4 Jan 2025 07:24:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tEmPytfG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hXmAbOP8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8C315D5B6
-	for <devicetree@vger.kernel.org>; Sat,  4 Jan 2025 06:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6876B17C69
+	for <devicetree@vger.kernel.org>; Sat,  4 Jan 2025 07:24:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735971571; cv=none; b=sov3mSN5epbSqqIvFy0NwC19pVNpgn0ktbBUlQfuu5YbGTqbRhOzlJQ8s3N4aHbBbvnkGoPTPzx4KvmjlW+8OBWI0GfhoDQRXD4RFfuWM4YylJ32l76hTvM98pt15bZcXdIWnkU7AquPwwj2ezW1gnoNMaVkkyiDCfr67NJUq/E=
+	t=1735975457; cv=none; b=PnPVaSyl3w/QZ0XRYLJGik2pfVgBr0Drm4JKIBTAXgb7CzAH5vgMD9F8s1QpShTtCXH0TCmt0sqkufDrGgLTovY5xFOW5emzOiMCNiW9QeI9r2TL/XHUUaLpqlQ2oWjpwG6v8hkvlPdEkyl575n4EaWPvlqf+qpQ50Aj8p42D14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735971571; c=relaxed/simple;
-	bh=bFoUxd13xqGzTL8i0Uke1VWxv8nz0uckVKpDL5fYKp4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ROggaALu+Fn0/UMawsEa0vIbUfkqP6J8fZ46cc+Ofl7UJD6Wbk137CpDlZMDxPNrSdHgefdfcW+qs0XzTr89l4WCwRBB2kagArBGvoHQxV79l56kQLBIEXGv3G4ok+Kl9DBW5KJQPKzty0/on74sJwy6TBn6FxbS11RbqRghOJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tEmPytfG; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-3003c82c95cso108525511fa.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2025 22:19:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1735971568; x=1736576368; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tBnHSa/ei6D2pomsNrU1v/8n3usXWfC08yobzI09Jro=;
-        b=tEmPytfGwPblgfFsAxMgCekrqnZ2Nfxt0RUikjxEXKJiimePGJaPHMSDTQCR0G7KSL
-         PfgYhWMZeyExLv6vmfEYsv/6yDvPr9Vqw7Y7kQxt+azHFqOdmo8VsyaPChh1w9kpAlfH
-         LL8SAOTVdDDvZZZNRPbNl6JvnisQr814nsShetzZ0sxPYqUWbfUvk6+0unJGBEY/JNJJ
-         DNqPAhGV3sI6FcvkqR41S7wX0QvZV8TfKQC2WkDxiNIA9X7yrkE94TDNFQeHgKSCALMl
-         Xr3lK1Up/czTBl+QfjzQwZcDC5b06iIG0x2WbLMb1Gw8c2zPAfHdAEf7Ur/FOiFmO2ej
-         mbkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735971568; x=1736576368;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tBnHSa/ei6D2pomsNrU1v/8n3usXWfC08yobzI09Jro=;
-        b=IioXqc8hZ0luUesbo03KvLIBvk+U/dBS1HvtHmOCLfHD+UP1uhvaiMdGxME1ID3Hli
-         7FEYnhWXYJaUD6oU/6b4HV/+Euffe90yGczWsYXdFmSpJLXdg0x1FbsB5OXk+R5DwnB9
-         yWdfHzuylV0SLL48C6j9tNnJ+Wo0fFj03TrqvYRKy2As/mMFnkUP+6IDUZVzM9Gk4VPN
-         YFVjIRwRX8WpBNNZOeposkMJPmzmHr0f1AW3AqNH92flzb16Zzafa/vhrA0lyxr9wLl0
-         BF6wKFpbjAHp8yYB29jPjse9M0GUpSejkxW4bQLQS+nzr5cdLxJNksY2YBd6pP470Ss5
-         RhQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVegMuiKrIAkC+kl6SCVRszIhg4cjL5LFuZ1L+XWHUV2QUGpgiyPAvSy5xZwIGXL54znbJ03mgIbBsb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzl833dz5gZRcvRsoKRKKDVhKwRi1nHSyw/S9GP3jLIbVtJPcpI
-	x0ghI5IlbJIJgntx9kh1LrpeyMzCA0f455inrrhEiFg3mD8I5xPBJ72GncQLtJA=
-X-Gm-Gg: ASbGncsbqjlIcpj/oioON2TTYuQQXLrzc26N2HJYMVQ2fB6AgoDF/Mg0K+ASEoe2DD5
-	YHQ6aBUqZtmiqizqSC2HxEJINSnOit308VVfFjPRrzBI1NsdtpnK8j4Wr6yQv3h1YuWTfdzmrHp
-	YRzT+tCBwoJOawL99E9T1kFbWOJF2KAbLWjkpcDK0t1UaXxjqgvpYUyQh5916uXhvgFXqb7VLzL
-	9TCUnsnVHr47GAVtvXMgl2wanthg1UzD8R4DACVK10TTGrISi3UgpVLEAx8bdTYEx5+ohJfupU8
-	4NvFfaPzRzBYzVP9cz7a9liZ
-X-Google-Smtp-Source: AGHT+IHG6D8rXjBCZV1R04Mi/cfBbzZz4AP9LW1gDrG7eocadcNWBOJlbxNnDyUiEI4vQ3lyhjs1NA==
-X-Received: by 2002:a05:6512:318e:b0:540:1fb5:3f9f with SMTP id 2adb3069b0e04-54229597f4dmr14710329e87.47.1735971567889;
-        Fri, 03 Jan 2025 22:19:27 -0800 (PST)
-Received: from [127.0.1.1] (2001-14ba-a0c3-3a00--782.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::782])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223832c1bsm4261655e87.280.2025.01.03.22.19.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jan 2025 22:19:26 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 04 Jan 2025 08:19:16 +0200
-Subject: [PATCH v3 5/5] dt-bindings: nvmem: qcom,qfprom: Add SAR2130P
- compatible
+	s=arc-20240116; t=1735975457; c=relaxed/simple;
+	bh=hApevf4s8W35qlEae1IzG8ICVMdOQ9BpJ7wqh1gKCt8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nLRHPfTL5MQGpeu+ZGPTza+bjig++lwVmob3ywhjrCmDxkfWDVED1Hwen5QT36TcUceUq0A7MxonrAJZtcZzqCmvd0t0XzY7b0m6HYsU9XTLgnDAtMCTj4mc+JFBb3fGyN9PgUJwZOd+4+wnQ+MthODHhqBDWoFwmwwZn575+7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hXmAbOP8; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1735975455; x=1767511455;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hApevf4s8W35qlEae1IzG8ICVMdOQ9BpJ7wqh1gKCt8=;
+  b=hXmAbOP8Sdp4Kohd8RC8CIOmQDCjlYGXZvXd+BDLP/JI4FnF/uWzpRuu
+   j7v1SIMqExQXmfnLVXR1JHf4gIjkBYoqLIcsnK9UbAC6/BwaFcjhQOTeS
+   WDDQRvLu/sgA3ttTBZ683vsTERBbhEE4/MdOOSh/3dVloLo8tgduoUFE5
+   AU3Ib+/+vz30D8SaILfo0m9t+8A1QpLOHrTstsRDrlSTRHXI7XalOjV2/
+   SnngsO4tcnkhvllimHGoohF9VywLK4sJC7G6U0oRtoGvTU1I3IU9pUAw9
+   u3LewmaHl4Blngu9Je7Zt9RQp7TzV45vOUbp3eBvxpiDROslPIppKZ0Xw
+   g==;
+X-CSE-ConnectionGUID: JK9KjoDwTd6tO63OwC21mw==
+X-CSE-MsgGUID: QdWFY6uoQiCbIs1Kkw6wzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11304"; a="39030202"
+X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; 
+   d="scan'208";a="39030202"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2025 23:24:14 -0800
+X-CSE-ConnectionGUID: /lzjVEECRMO8wtInbqsUSg==
+X-CSE-MsgGUID: 3kwcATRGRHuLQHDtEimq8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="102466773"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 03 Jan 2025 23:24:12 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tTyW1-000Ajd-2s;
+	Sat, 04 Jan 2025 07:24:09 +0000
+Date: Sat, 4 Jan 2025 15:23:48 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jimmy Hon <honyuenkwun@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: oe-kbuild-all@lists.linux.dev, Ondrej Jirman <megi@xff.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Jimmy Hon <honyuenkwun@gmail.com>
+Subject: Re: [PATCH 6/7] arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Max
+Message-ID: <202501041500.EeQw8gzk-lkp@intel.com>
+References: <20241229184256.1870-11-honyuenkwun@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250104-sar2130p-nvmem-v3-5-a94e0b7de2fa@linaro.org>
-References: <20250104-sar2130p-nvmem-v3-0-a94e0b7de2fa@linaro.org>
-In-Reply-To: <20250104-sar2130p-nvmem-v3-0-a94e0b7de2fa@linaro.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=866;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=bFoUxd13xqGzTL8i0Uke1VWxv8nz0uckVKpDL5fYKp4=;
- b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBneNLi6C4BN5w07vW1+FlSRUwGypwxOyvceoOsm
- wD8QJUyaAqJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZ3jS4gAKCRAU23LtvoBl
- uG7LD/9Y+ossUhXg316WNkGflavyebf51WMudywcI05PSIjNbdoupaXq4xN/qroZXsnUOxLr/se
- b1PQeBMen7GSiUInRXZ0Qs1fWqEM5CkK6IWJjCpsdx44eWjgcpx98SSxNyFPN0B8u8o5wb53H5c
- NtPUFZUmWmq+okJC1QeLuDmaCdSOQGH9dbuqCpNelnxBl38jrbKCl7eHHGcksRzkK7RfMQjG46L
- tOYjDcnwgtXsw2Z+PA4isr87lpsn75hq+iOzbtyffNZciJxroXUhzkXxf8ZhaAOUkuzjR+6iP3w
- 2mziN5r9jEwdlHZtD7bEKiytNrvYhxtijdiO9/m//sRdYfB26pdM/XfdTa9MIwBh45rrvQmZg7R
- lk3lzaCAYzyAWd3OzbGE7+xAodFP7K6bqEe+kHZEtPxrGbNm9BQ4WP2xMOGCrUA+olUmjKiMbBA
- s+rvyX7W0MdDnkGH/ZK5/qbWdrm6N8D46VrFQtMraJ1EymzgxBx1kIHzAR2n7Qw3yAq1KfCvU6B
- D6S/9+ZpBYug9JNrkGWUpA3gLNrUXUzA+peOBuFW1qnGy/n7r3jr+Q+/+SX1wSUhdtqnQoiX7Ey
- hc2AJfnwgSC1a/ZAEY2L22HLuz4umZZXYsavbsekqeqM2hF13/P+YRng88DcUHxVKPr82lYdF46
- ua8cgAAIcdKPNuQ==
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241229184256.1870-11-honyuenkwun@gmail.com>
 
-Document compatible for the QFPROM on SAR2130P platform.
+Hi Jimmy,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-index 80845c722ae46611c722effeaaf014a0caf76e4a..9755b31946bf9d4c1055a993145d06c274b61a37 100644
---- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-@@ -32,6 +32,7 @@ properties:
-           - qcom,msm8998-qfprom
-           - qcom,qcm2290-qfprom
-           - qcom,qcs404-qfprom
-+          - qcom,sar2130p-qfprom
-           - qcom,sc7180-qfprom
-           - qcom,sc7280-qfprom
-           - qcom,sc8280xp-qfprom
+[auto build test ERROR on rockchip/for-next]
+[also build test ERROR on robh/for-next linus/master v6.13-rc5 next-20241220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jimmy-Hon/arm64-dts-rockchip-refactor-common-rk3588-orangepi-5-dtsi/20241230-064740
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20241229184256.1870-11-honyuenkwun%40gmail.com
+patch subject: [PATCH 6/7] arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Max
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20250104/202501041500.EeQw8gzk-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250104/202501041500.EeQw8gzk-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501041500.EeQw8gzk-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts:53.1-7 Label or path hdmi1 not found
+>> Error: arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts:60.1-10 Label or path hdmi1_in not found
+>> Error: arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts:66.1-11 Label or path hdmi1_out not found
+>> Error: arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts:76.1-11 Label or path hdptxphy1 not found
+>> FATAL ERROR: Syntax error parsing input tree
 
 -- 
-2.39.5
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
