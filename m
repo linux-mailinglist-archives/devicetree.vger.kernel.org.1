@@ -1,48 +1,58 @@
-Return-Path: <devicetree+bounces-135514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0DFA0138E
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:23:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F257FA01395
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:24:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5DD3161FF5
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 09:23:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22BA7188452C
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 09:24:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F57E15B0F2;
-	Sat,  4 Jan 2025 09:23:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245E91684B4;
+	Sat,  4 Jan 2025 09:24:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MLpCZw4S"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="BvyrZwoG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECC6AF9D9;
-	Sat,  4 Jan 2025 09:23:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735982635; cv=none; b=PQy6ldFGF8YpMpGmpHWHOX9UbPAW2Aaa7mGxYcrG/BC6krT0fq9XDyEKsiEIxzv4+nMthOsMF6whwVT4kThxI3JORTJqkEiXGFSGuPsjYO1t9G+zqbqi7Lu6f3bMQFx24G4vpEvqZ63bhq8JTm5GoGzYvJPXB8T8eHnUJ1l5vpo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735982635; c=relaxed/simple;
-	bh=2fizrOeFdxzxEs3HnJpNgKdl4YmsAb+Ih8fW5Ysihvw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OsgAuoyEeaxaRqxqmmQKKz+Dx0Lc6fPPUhi3OmtrSGAkXAXfa9dS5hcsA/TLSUKSgZbdPVrt1dO04MvuT/NRoyhYNRpj/2ZNn2qr0o/0imdqgm8V8L88OxlWCM8u1BpXLcDlXw+w/+Zyhm2ZaiW0Ko4MakPsV9LdUJ9w0aQnEfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MLpCZw4S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD35CC4CED1;
-	Sat,  4 Jan 2025 09:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735982634;
-	bh=2fizrOeFdxzxEs3HnJpNgKdl4YmsAb+Ih8fW5Ysihvw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MLpCZw4Sc/O/jeOcI0lO9U8bnMNAkz359e7b9+//cZqBIe5yNu37G2l7502uVhKnH
-	 T59wsEMuxh7qKciiBwSD6CmtW5grCFFCeiCBEqKQ78nSSVLiMvj3QaKp1qm4fAwncu
-	 /vq+NqnlAgaTPB+22GqGWt18g9sldU+2/t4lthlOanrP1CC8JftjxvVfzcIVJsLHIv
-	 xZDYWGMDsyqL33+1fJepMwfZ00mKgRduK/q4FxymWSFp5BnYSl2RDLi3Ycz3u2dQDC
-	 r2U7FixD1S5T1LaG/vOMNKJowhZqmY8c9A1MsajXymFIvy8J8D7JWBmdt1MN+futP5
-	 7hD3Q8+hj8lnA==
-Message-ID: <9c881612-d80a-4656-aac2-f6134c274167@kernel.org>
-Date: Sat, 4 Jan 2025 10:23:46 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A87F9D9;
+	Sat,  4 Jan 2025 09:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1735982671; cv=pass; b=NxtRLRwCDyCb4KxAwDx7OVSqVM0Jb9Q2I9NoZUeMyk7TTdLmQr8Htjei+jSI3arTXO72lHkgdLT3G7zGJZBMJM9WoQ27BrBqmHiHKsfMQoDo9EXtQQQwt5A+QcdasVpuFnRuIa7XkQPU1nXBfcYCQC9B9ruosvbJbfEnSc293c8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1735982671; c=relaxed/simple;
+	bh=NzH3XpzyOPdlEz1liBhSqEuWIzRapWSV6hAgOGau/e8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=P8+DhuvVs7vhkUJuTDhTJZSQjEbBkxm5X5Ep+BjEgdaCuv24jluNAGTEuB4UEs4v8ClJVHZ9SY8IECCCoAYm7MWkqTHeMZ867B4YxLD/fDRCDAttthd4+eExl7c3zsqOAb+yUlUFXnjL1ywzk1+PFHrfQ8orYbeUkD5jfU4y3CQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=BvyrZwoG; arc=pass smtp.client-ip=136.143.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1735982657; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=LYzSUnTJa4+qoqXwETQswTmLOFuX6In09090bCG1gD2Sk9LGFv/V8C3+HQPArzFcI3w/aW7JFHLaloHc9l0sH3mbHhb8Zd12fYouQe8SSO9ZNKZqqWadU8jyiMNgZ/1+KbuQfQcnIyFDjzOKivQpkDfJnN7ackmus2ktZElb0Oo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1735982657; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=qvEpx9tQfQXItdvKztc15oCP5fKt3Y58w8GW9qtlxlc=; 
+	b=LxEVbyYg6TRMuoWTgQJHODAn3EtzKr2hJrINi/Cdk/FRo/vJCFTbav98k4Q0Z/2fAqLYOUubDrdosLyX0GXndVVRbRJfFMPhhVwv0qA3+qXjpYB1MdbYbGp39tuQEVDwhDergr/x+LWtVnar4E4gmLcLdLWchvsq0vMLLBNoMIM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1735982657;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=Message-ID:Date:Date:MIME-Version:From:From:Subject:Subject:To:To:Cc:Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
+	bh=qvEpx9tQfQXItdvKztc15oCP5fKt3Y58w8GW9qtlxlc=;
+	b=BvyrZwoGiBVKgBl3FFntZi2FyBxA990DWQnHxO04kqKDrv7zpz8Y1RAwd57rMFYT
+	Sp4IeQV3pl34bp4UevHIHFhMFR/n0BwNxBk6OQxIdGfjjsCeNer9jDcYcwCY8AX7oll
+	8igGyH7i9/NwMHU3qnRr3en9PbRQ0hRcvBnsKVX8=
+Received: by mx.zohomail.com with SMTPS id 1735982655010619.9969737293264;
+	Sat, 4 Jan 2025 01:24:15 -0800 (PST)
+Message-ID: <39e6bf64-2ce6-45bb-b622-4b413efc185f@zohomail.com>
+Date: Sat, 4 Jan 2025 17:23:58 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,94 +60,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: power: supply: add max77759-fg flavor
-To: Thomas Antoine <t.antoine@uclouvain.be>,
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+From: Xukai Wang <kingxukai@zohomail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: Add bindings for Canaan K230
+ clock controller
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-References: <20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be>
- <20250102-b4-gs101_max77759_fg-v2-2-87959abeb7ff@uclouvain.be>
- <cf75f897-1c00-4a37-bce3-f1eb9855a3cd@kernel.org>
- <2eb1f056-4102-4536-90d1-9d5df1fd2cb5@uclouvain.be>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Troy Mitchell <TroyMitchell988@gmail.com>
+References: <20241229-b4-k230-clk-v1-0-221a917e80ed@zohomail.com>
+ <20241229-b4-k230-clk-v1-1-221a917e80ed@zohomail.com>
+ <zfjj33otyxiamsc7u2uwnvygcuhe7u2tfgiz6txp62emnddbw5@5iozmjg4eugn>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <2eb1f056-4102-4536-90d1-9d5df1fd2cb5@uclouvain.be>
+In-Reply-To: <zfjj33otyxiamsc7u2uwnvygcuhe7u2tfgiz6txp62emnddbw5@5iozmjg4eugn>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Feedback-ID: rr080112272919e6c0e1bd9cc03451a21400002fc0fb7a66b46d3058dff1e6030177366b5109484033fe1596:zu08011227921ab4ada6d5e1004a09b7cc0000070a5e76a6dd1681f716aa7fc6946386851f01117160353fc6:rf0801122c68307cbe1cf14e96e53fd7310000da8c39da26132efe406c58157136b906c4764e447eb07a30ab9ff330fafa:ZohoMail
+X-ZohoMailClient: External
 
-On 03/01/2025 17:16, Thomas Antoine wrote:
->>> -  reg:
->>> -    items:
->>> -      - description: ModelGauge m5 registers
->>> -      - description: Nonvolatile registers
+
+On 2024/12/30 15:54, Krzysztof Kozlowski wrote:
+> On Sun, Dec 29, 2024 at 09:21:08PM +0800, Xukai Wang wrote:
+>> This patch adds the Device Tree binding for the clock controller
+>> on Canaan k230. The binding defines the new clocks available and
+>> the required properties to configure them correctly.
 >>
->> Widest constraints always stay here.
->>
->> See:
->> https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L127
->>
->> I did not say to remove it. I asked you to add allOf section restricting it.
-> 
-> Thanks for the example. I think I understand now. I will put the reg section
-> back and use min/maxItems in the allOf:if: to set the number of reg/reg-names
-> to 1 for the MAX77759.
-> 
-> Do I keep shunt-resistor-micro-ohms as I did it here? I could move it in
+>> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
+>> ---
+>>  .../devicetree/bindings/clock/canaan,k230-clk.yaml | 41 ++++++++++++++++++
+>>  include/dt-bindings/clock/k230-clk.h               | 49 ++++++++++++++++++++++
+>>  2 files changed, 90 insertions(+)
+> Please run scripts/checkpatch.pl and fix reported warnings. After that,
+> run also 'scripts/checkpatch.pl --strict' and (probably) fix more
+> warnings. Some warnings can be ignored, especially from --strict run,
+> but the code here looks like it needs a fix. Feel free to get in touch
+> if the warning is not clear.
+Apologies for forgetting to use `--strict` with `checkpatch.pl`. I will
+run it and address the warnings accordingly before next submission.
+>> diff --git a/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..ffd4e0b052455bf3dcedd9355d93764119df3d68
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
+>> @@ -0,0 +1,41 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/canaan,k230-clk.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Canaan Kendryte K230 Clock
+>> +
+>> +maintainers:
+>> +  - Xukai Wang <kingxukai@zohomail.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: canaan,k230-clk
+>> +
+>> +  clocks: 
+>> +    const: 1
+>> +
+>> +  reg:
+>> +    maxItems: 2
+>> +    minItems: 1
+> List and describe the items instead.
 
+OK, thank you for the suggestion. I've addressed the feedback and listed
+the items under reg with detailed descriptions.
 
-Depends, where does it come from? What does the other referenced schema say?
+Here's the update version:
 
+reg:
+  description: |
+    The `reg` property specifies the base address and size of the
+device's registers.
+    - The first address corresponds to the base address of the PLL
+control registers.
+    - The second address corresponds to the base address of the sysclk
+control registers.
+  minItems: 1
+  items:
+    - description: Base address and size of the PLL control registers.
+    - description: Base address and size of the sysclk control registers.
 
-Best regards,
-Krzysztof
+Does this content look appropriate?
+
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - '#clock-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    clock-controller@91102000 {
+>> +        compatible = "canaan,k230-clk";
+>> +        reg = <0x91102000 0x1000>, <0x91100000 0x1000>;
+>> +        #clock-cells = <1>;
+>> +        clocks = <&osc24m>;
+>> +    };
+>> diff --git a/include/dt-bindings/clock/k230-clk.h b/include/dt-bindings/clock/k230-clk.h
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..31d1f82fbcff654072ef1a8985a884377d801e72
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/k230-clk.h
+>> @@ -0,0 +1,49 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+>> +/*
+>> + * Kendryte Canaan K230 Clock Drivers
+>> + *
+>> + * Author: Xukai Wang <kingxukai@zohomail.com>
+>> + */
+>> +
+>> +#ifndef CLOCK_K230_CLK_H
+>> +#define CLOCK_K230_CLK_H
+>> +
+>> +/* Kendryte K230 SoC clock identifiers (arbitrary values). */
+>> +#define	K230_CPU0_SRC			0
+> Drop the indentation after '#define'
+Thank you for your feedback. I have removed the indentation after #define.
+> Best regards,
+> Krzysztof
+>
 
