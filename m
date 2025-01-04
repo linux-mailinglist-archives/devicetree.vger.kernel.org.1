@@ -1,241 +1,141 @@
-Return-Path: <devicetree+bounces-135549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C0DDA01446
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 13:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E8FA01451
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 13:34:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CEA31884525
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 12:18:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F6CE18837D6
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 12:34:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FDCE14C5B3;
-	Sat,  4 Jan 2025 12:18:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DD0165F1D;
+	Sat,  4 Jan 2025 12:34:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="uCE6/0Jx";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="gFYmsnnZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JXjO01IP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b5-smtp.messagingengine.com (fhigh-b5-smtp.messagingengine.com [202.12.124.156])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E1B72AF1C;
-	Sat,  4 Jan 2025 12:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A6D1C01;
+	Sat,  4 Jan 2025 12:34:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735993081; cv=none; b=U/oJv8pFHR/SVO9taEqIE3/I3Yea2T+E84Gn/lTy000JbikHJVWCCpbHiSVyAj67K+6EmoMjtZNagPN22WMKw5jZIoLUDxmleHWOPXLfcc5M5sBgj7eQmqa9AW+znbJiYJgxvfF4DAAJlV1EbjmjZMbngGWs4Gw98Xq2fcmD1JQ=
+	t=1735994041; cv=none; b=cnIK2E6OT1ZbfLKPNeeFy478X80ElwAXtwbQHaOvrf1KCFQp3MjQaqMQ6c9sqKtylgRYE93ILaKZ2gWMEFK90WWVrawxPV36AcML1PuWHZY6AeJG1RWSNyaT7jS0ebsDVHBxsWBcFcCnaxVerPuDJ2XAFJoohc0ZzY4V/+cuGcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735993081; c=relaxed/simple;
-	bh=3/zp+xbAnh/GW5BHVr2/xuQ3/eRzbj/fuY/yqs0+xkc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n4wSsuqMFHWW2OZznhocKiTZSFi2fiKIpBycFQtMXLNnz/eKGRtsMhKmy3C6TqZOQi2K6Ue0tOmWou8wvok5Hgb25EyWHJ+YcxuBuRfCsdHP4aGAFvWaNkhv8mf0P/8rAB//Q9POA0Mala6c2Q/2uur9knrbviWkf0ySdo1khG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=uCE6/0Jx; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=gFYmsnnZ; arc=none smtp.client-ip=202.12.124.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-03.internal (phl-compute-03.phl.internal [10.202.2.43])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id E15FC2540112;
-	Sat,  4 Jan 2025 07:17:58 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-03.internal (MEProxy); Sat, 04 Jan 2025 07:17:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1735993078;
-	 x=1736079478; bh=nYNf1Wpr/jWWdGiF/YzURuwYGM1YwK5EdczkNpcg6Qg=; b=
-	uCE6/0JxxuapKWqFfJO22MnNkVElVn2kV2JJnct0iP7bS+6DKylK1ZQpZUviK4yY
-	uz9LcupdoeCtNYeOEeebJ7bP+KrerKMVuJPmp6Q3oIE0c5CZdO8Cjac3G5yGeWTH
-	IHbSCy0nkJ8FjPvTLll1tYBz+j27OOopCl62KQGWPsWZXe1WQMpvX6j11j5fRiBj
-	Kn4wv9PGgt/bXymjHsJMcodt8AS2vwe/LQQx1q9F6MgFQy3wQv8e1Cw58ryd2Zoy
-	lY3elrNa/ynNym0mPi7X6vpeWPoFukr1K8jJNIp62L4UgAYoKWSZE3UStvwNmH95
-	m7nYn7LWyie4FKhg+RmJaQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1735993078; x=
-	1736079478; bh=nYNf1Wpr/jWWdGiF/YzURuwYGM1YwK5EdczkNpcg6Qg=; b=g
-	FYmsnnZqBcMS6IeHjk5Rq/cqAFtlwwF+YkEsUHN1ohslXChr6/MtddAHTE9/UqRo
-	CneHIDu7B/kqR1Ek3xJePL1QtOmbUujF+xH0djPlMPYu6/hA8VyPVSSVrm/F1toW
-	QoilDjxNUvEz8QnoDfqiHBeK28xecpcH74e0D/fkc/I27CBeUB5p5gyyi5k0rDHi
-	SP9aqBt0YGsyl5zgbFNwS/3JSVd93/NpQyj9QOIFBqooIEamPP5m7bjyUhzwERHy
-	/PYjb/ilbFijsxCHxoYHm4Q/U7jgMZxNEB0sP1NwV868FpW0MP6Qff+FOjWYeH/J
-	qZFawvLWDWIziaL2/UIeQ==
-X-ME-Sender: <xms:9iZ5Zyb6zSb9T7ACZ-97wuYc01JY_H1j7hhf4H1TcsUB8zZQnuSi1w>
-    <xme:9iZ5Z1bCb2svzncJvYY7StnCb0ozRAAkuRkIvJZVcjGdp3t5EGn2kL6IGqc0dxRwB
-    duoF518ZPenGZnWTwU>
-X-ME-Received: <xmr:9iZ5Z89a19kwd7PFaXfbIG1v7dLNy5ffAUw3WLAVb8HOBKVIj-T9fZ8PI2TO3S85W1pg7mtzdEP_DtfvNE4SIRzY1pt3N85S8g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudefiedgfeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
-    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
-    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
-    thgvrhhnpeefhfellefhffejgfefudfggeejlefhveehieekhfeulefgtdefueehffdtvd
-    elieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehn
-    ihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrsh
-    gvpdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohep
-    ghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpthhtohepshgrkhgrrhhird
-    grihhluhhssehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhgthhgvhhgr
-    sgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-    dprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegt
-    ohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnh
-    gvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopehlrghurhgvnhhtrdhpihhntghh
-    rghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtoheplhhinhhugidqmh
-    gvughirgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:9iZ5Z0oQ_7mdyiBS5d1Ka79Pc3y7UdMGHv_plBZo02joasfXQgvqrQ>
-    <xmx:9iZ5Z9ovuMabvZYk448T7Yz5AjMaKHxe_mhhttA5k-Qof0vuh0BCkA>
-    <xmx:9iZ5ZyTYSMHBWmhwXqtm482pP6R_Oizs5Rdm4rQn9VAd-i4hzysuPw>
-    <xmx:9iZ5Z9rwAap4Af03GoUznIxCr-oRrjH2XLrtvbjCWrw5r0pvFotwkg>
-    <xmx:9iZ5Z-Q7FVQ9_yTI1Z-nzy5LhrodV2uo4QxT2WEf8qOQq7wse-8UP_RC>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 4 Jan 2025 07:17:57 -0500 (EST)
-Date: Sat, 4 Jan 2025 13:17:56 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] media: v4l: fwnode: Parse MiPI DisCo for C-PHY
- line-orders
-Message-ID: <20250104121756.GG808684@ragnatech.se>
-References: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
- <20241121134108.2029925-3-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdXwqb7vhUeoMKDDJO5dp-V3LmnURZLSC1_ko=YL=cNyUA@mail.gmail.com>
+	s=arc-20240116; t=1735994041; c=relaxed/simple;
+	bh=olMPNy4+lzOMsVZgsB6du4RYLJvBTUgStsbjsnCyciM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XSKJ8qtVRjAe1AGKwCU2+saPBjtDlhatzTtVPckoRLGWEUt8Q8x34EsTj3v0n3Lh4eedOAQPJXTb3BRjhtq10+Fy3RrUYlSiYa025/PLOX9Mwj1ptu/DWWMDP4fDIkroq44aQ4nQ3T8mrocydVw3MtmLhW2EFbLLNDpRFpeCQ/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JXjO01IP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7406BC4CED1;
+	Sat,  4 Jan 2025 12:33:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735994040;
+	bh=olMPNy4+lzOMsVZgsB6du4RYLJvBTUgStsbjsnCyciM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JXjO01IP5TYGY0RsckB6T+9dvw0mNs8Sq0N9g+4I3qXtIdHuWSegqiNlRj7ryyg4p
+	 MMGUjI6pc15QyDmI3PWdJhUFPe9Ic6GX66JK5H82Dpo+RxCz8tkx5JIIlcU7kXz+vo
+	 SuAcD0BPmV4ZbXESziNqpKSH0Znx60KKM/ufqVm6fORSW7NiONHNG00gv4W3zUXI0n
+	 ViX7kAlCXkQueGCnRsIG+y0p5JzMFZUVDnSXZVxsAwg33KU+T6DWSrYbqFL236sD4+
+	 /iBegrwE91BpKs3qAW8+jnLwK6A/tRf2vw7zIszowmEM7POcBY1VxYO3mPfoU5fss1
+	 leJ1rH7FxLRdg==
+Message-ID: <5f112a20-f1ce-45d1-a554-5f86846bcc25@kernel.org>
+Date: Sat, 4 Jan 2025 13:33:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: clock: Add bindings for Canaan K230
+ clock controller
+To: Xukai Wang <kingxukai@zohomail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Troy Mitchell <TroyMitchell988@gmail.com>
+References: <20241229-b4-k230-clk-v1-0-221a917e80ed@zohomail.com>
+ <20241229-b4-k230-clk-v1-1-221a917e80ed@zohomail.com>
+ <zfjj33otyxiamsc7u2uwnvygcuhe7u2tfgiz6txp62emnddbw5@5iozmjg4eugn>
+ <39e6bf64-2ce6-45bb-b622-4b413efc185f@zohomail.com>
+ <a097980a-c2b7-440c-8eff-b540acfd4027@kernel.org>
+ <68de77d0-b289-4137-85f3-050a1a10eb63@zohomail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <68de77d0-b289-4137-85f3-050a1a10eb63@zohomail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdXwqb7vhUeoMKDDJO5dp-V3LmnURZLSC1_ko=YL=cNyUA@mail.gmail.com>
 
-Hi Geert,
+On 04/01/2025 13:09, Xukai Wang wrote:
+>> Why?
+>>
+>>>   items:
+>>>     - description: Base address and size of the PLL control registers.
+>>>     - description: Base address and size of the sysclk control registers.
+>> Drop redundant "Base address and size of the". This cannot be anything
+>> else in this context.
+> 
+> Thank you for point these out, I’ve removed the redundant descriptions,
+> and here's the updated version:
+> 
+> reg:
+>   items:
+>     - description: PLL control registers.
+>     - description: Sysclk control registers.
+> 
+> Does this content look appropriate?
+Yes, thank you.
 
-Thanks for your review.
-
-On 2024-12-27 14:31:11 +0100, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Thu, Nov 21, 2024 at 2:41 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > Extend the fwnode parsing to validate and fill in the CSI-2 C-PHY
-> > line-orders order properties as defined in MIPI Discovery and
-> > Configuration (DisCo) Specification for Imaging.
-> >
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > ---
-> > * Changes since v1
-> > - Use array instead of switch to get printable line order string for
-> >   debug output.
-> > - Wrap lines harder for 80 chars instead of 100, but keep string formats
-> >   on same line even if they break the 80 chars.
-> 
-> Thanks for your patch, which is now commit 573b4adddbd22baf
-> ("media: v4l: fwnode: Parse MiPI DisCo for C-PHY line-orders") in
-> media/master.
-> 
-> > --- a/drivers/media/v4l2-core/v4l2-fwnode.c
-> > +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
-> > @@ -250,6 +261,36 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
-> >                 } else {
-> >                         pr_debug("no lane polarities defined, assuming not inverted\n");
-> >                 }
-> > +
-> > +               if (have_line_orders) {
-> > +                       fwnode_property_read_u32_array(fwnode,
-> > +                                                      "line-orders", array,
-> > +                                                      num_data_lanes);
-> > +
-> > +                       for (i = 0; i < num_data_lanes; i++) {
-> > +                               static const char * const orders[] = {
-> > +                                       "ABC", "ACB", "BAC", "BCA", "CAB", "CBA"
-> > +                               };
-> > +
-> > +                               if (array[i] > 5) {
-> > +                                       pr_warn("lane %u invalid line-order assuming ABC (got %u)\n",
-> > +                                               i, array[i]);
-> > +                                       bus->line_orders[i] =
-> > +                                               V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC;
-> > +                                       continue;
-> > +                               }
-> > +
-> > +                               bus->line_orders[i] = array[i];
-> 
-> This does not do any translation (unlike v4l2_fwnode_bus_type_to_mbus()
-> to translate from MEDIA_BUS_TYPE_* to V4L2_MBUS_* definitions) ...
-> 
-> > +                               pr_debug("lane %u line order %s", i,
-> > +                                        orders[array[i]]);
-> > +                       }
-> > +               } else {
-> > +                       for (i = 0; i < num_data_lanes; i++)
-> > +                               bus->line_orders[i] =
-> > +                                       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC;
-> > +
-> > +                       pr_debug("no line orders defined, assuming ABC\n");
-> > +               }
-> >         }
-> >
-> >         return 0;
-> > diff --git a/include/media/v4l2-mediabus.h b/include/media/v4l2-mediabus.h
-> > index 5bce6e423e94..e7f019f68c8d 100644
-> > --- a/include/media/v4l2-mediabus.h
-> > +++ b/include/media/v4l2-mediabus.h
-> > @@ -73,6 +73,24 @@
-> >
-> >  #define V4L2_MBUS_CSI2_MAX_DATA_LANES          8
-> >
-> > +/**
-> > + * enum v4l2_mbus_csi2_cphy_line_orders_type - CSI-2 C-PHY line order
-> > + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC: C-PHY line order ABC (default)
-> > + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ACB: C-PHY line order ACB
-> > + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BAC: C-PHY line order BAC
-> > + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BCA: C-PHY line order BCA
-> > + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CAB: C-PHY line order CAB
-> > + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CBA: C-PHY line order CBA
-> > + */
-> > +enum v4l2_mbus_csi2_cphy_line_orders_type {
-> > +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC,
-> > +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ACB,
-> > +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BAC,
-> > +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BCA,
-> > +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CAB,
-> > +       V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CBA,
-> > +};
-> 
-> ... hence these values must be identical to the corresponding
-> MEDIA_BUS_CSI2_CPHY_LINE_ORDER_* in
-> include/dt-bindings/media/video-interfaces.h.
-> So please provide a safe-guard to make sure they do not become out
-> of sync.
-
-This is a good point, I will create a follow up patch to address this.  
-Thanks for spotting it!
-
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-
--- 
-Kind Regards,
-Niklas Söderlund
+Best regards,
+Krzysztof
 
