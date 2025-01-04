@@ -1,117 +1,122 @@
-Return-Path: <devicetree+bounces-135580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DB5EA01643
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 19:20:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A62A01651
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 19:28:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3CF6188410B
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 18:20:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B8E4162F7D
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 18:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62CF1CDFD4;
-	Sat,  4 Jan 2025 18:20:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A001D47BC;
+	Sat,  4 Jan 2025 18:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="5HvuRxFs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YhfKJAeY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF321E507;
-	Sat,  4 Jan 2025 18:20:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51FA1D0E36;
+	Sat,  4 Jan 2025 18:28:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736014830; cv=none; b=K3+ZTbU6HOUs+lsuPTjzfxS6ncdwV1hxNFqi+08dXx+byDc9EtmpwbufWQUnnwZwyAOBMb7KNP5LMUPJ8OHN6M4LgR9L6EYn/0KWCMhIu9Op77UY042Mmp4kAn1AaceV7Vyvcli4azHRdEQ3oXDlRfdU07xoVYJLBR1zBEUGc5g=
+	t=1736015307; cv=none; b=EUX1w/5dCDjHXNSGRw+zHb9SrdbwahCOcXEBYFage36rseCvyuRtzEv1HLiMCsh2e0h1HMH3MZVlyX9espp7EiPmrbk/UI1IkpPYTGBgwe4UxobEHaWO8mdzMH8IlkGVZhaggHPJubsDrJn65kn7ZhDmdswM0quDgJG0qm/QoBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736014830; c=relaxed/simple;
-	bh=MuAfWqxG9yST7ohqHtpTdQy8qyEZ1NJLdZB5N8FRWMk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TpjOUDVhw2KuxYKMmI63fuWrsmDEtJpCS2D4EOrbV5X0I9P1ZTV7c2wtl3K1nvLdvzxETI+no0CnaxzYwDyCJTXN6fhDJ6LNO4poxoHPOVhMWSV4OYxVR++5iIJ6/QwV8Z+V7okQfXqdCslRTUvgwN1hLWQ2luQW9UeZrL661tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=5HvuRxFs; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Q/KrZ6AFUTQT3QtE5lR+wWeof3/i19a4RobeBZWia6o=; b=5HvuRxFsw5rRk6Ospb4hd7MG0Y
-	9/itHi2b1n7gtQAo9f5JldCiIg+woITVjcLc6tKLLxGSzhnxG9Q0b8S8gJ+HS2385xyNVnASToxJm
-	Hc/p0/6z1ZYWDaEwvFOF52j6Vv3rabrcN0d/A5wWal9evm5GB/nOJv7cbBrsNVFHdxn2XE6cNPTSI
-	d49VTKoRG16bjdlrgVXjtxSjiNgIo9Nwka9wwbgS0loVoF/EwAe8K1K+m00Amn7dAzhlYfEzTnLK0
-	x4KYdt+vBV3uwrOwx4kxG/fvCjNXGWaCpGLNZkKVI3O03oVbVRGjA4gduuqLPiRCWfCAdUjR2gnTK
-	wqiYv7aQ==;
-Date: Sat, 4 Jan 2025 19:20:15 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Roger Quadros <rogerq@kernel.org>
-Cc: tony@atomide.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- khilman@baylibre.com, aaro.koskinen@iki.fi
-Subject: Re: [PATCH] ARM: dts: ti/omap: omap4-serial: fix interrupts syntax
-Message-ID: <20250104192015.0a7a4f47@akair>
-In-Reply-To: <3bde5a34-4bb8-42a3-ad5c-eeb495c6aa6d@kernel.org>
-References: <20241230195556.112118-1-andreas@kemnade.info>
-	<3bde5a34-4bb8-42a3-ad5c-eeb495c6aa6d@kernel.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1736015307; c=relaxed/simple;
+	bh=bnQtjgjcXihxa9NPB+PZW+R6Wg31Ew/O3Xdqpjs8GfY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iP4kE84RFV18bhZEctZS+36JzNwoXYnAOZjx/FmobXWAiVQISwPOuFfO/x6i60FeiMN3pcyOcd0a9imImU2J+5hFLgyJGvlpTXnSOMjCMqeSVjX5LbFWdL2gLad4X9cAnJBgV0lQL3ofAKQLDuEMe1ELUr6KJVnlJSL4rUzACg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YhfKJAeY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F861C4CED1;
+	Sat,  4 Jan 2025 18:28:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736015306;
+	bh=bnQtjgjcXihxa9NPB+PZW+R6Wg31Ew/O3Xdqpjs8GfY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YhfKJAeYrRNoyMQMN9hw1pjH1qW0QHuTFtfHY6CpcqEEiPDXJhS3fdy3hw+B8Aqsa
+	 mpPjCj8nXL97EGUDr6JWmJoyn9aIu7+QBXj4hi1ODCau609KDi29vmCm3gHWpEuErc
+	 LD1oRCfxUIESX6ksDcjIZkFS+lk3fn7TMvM4ihBzOrzD2d0E3/u2lPzwSSgubzNoK9
+	 lBWsbBYe1wo7BHkvF2iatMj+u8JRqhkP/McVlH5FRYeyJnCduFmU1qZ6M0ZQUwC10T
+	 TIhRmdYStCzO531pj93CRxwRigua+QF8IHdMV9XpOQ5RKF0wwlgwBFFgfhqUn8MGQK
+	 3PPlaxwgh3dWA==
+Message-ID: <918d3b67-9bb3-4da2-a779-69ae9e9c4f6b@kernel.org>
+Date: Sat, 4 Jan 2025 20:28:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/7] regulator: dt-bindings: Add TI TPS65215 PMIC
+ bindings
+To: Shree Ramamoorthy <s-ramamoorthy@ti.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, aaro.koskinen@iki.fi, andreas@kemnade.info,
+ khilman@baylibre.com, tony@atomide.com, jerome.neanne@baylibre.com,
+ linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: m-leonard@ti.com, praneeth@ti.com
+References: <20241226215412.395822-1-s-ramamoorthy@ti.com>
+ <20241226215412.395822-2-s-ramamoorthy@ti.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20241226215412.395822-2-s-ramamoorthy@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Am Sat, 4 Jan 2025 19:45:35 +0200
-schrieb Roger Quadros <rogerq@kernel.org>:
 
-> Hi Andreas,
-> 
-> On 30/12/2024 21:55, Andreas Kemnade wrote:
-> > Usually interrupts are overwritten in the board file to specify a
-> > mux-dependent dedicated wakeup irq, so there is interrupts and
-> > interrupts-extended property which is not allowed. That has generated a
-> > lot of noise during dts changes if just a phandle involved has randomly
-> > changed.
-> > 
-> > Avoid that mess by specifying interrupts-extended in the dtsi file.
-> > 
-> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > Reported-by: Rob Herring <robh@kernel.org>
-> > Closes: https://lore.kernel.org/linux-omap/173558214240.2262575.18233884215338168789.robh@kernel.org/
-> > Closes: https://lore.kernel.org/linux-omap/172784021601.525825.18405282128990798038.robh@kernel.org/
-> > ---
-> >  arch/arm/boot/dts/ti/omap/omap4-l4.dtsi | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi b/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
-> > index 3fcef3080eae..150dd84c9e0f 100644
-> > --- a/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
-> > +++ b/arch/arm/boot/dts/ti/omap/omap4-l4.dtsi
-> > @@ -1414,7 +1414,7 @@ SYSC_OMAP2_SOFTRESET |
-> >  			uart3: serial@0 {
-> >  				compatible = "ti,omap4-uart";
-> >  				reg = <0x0 0x100>;
-> > -				interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
-> > +				interrupts-extended = <&wakeupgen GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;  
-> 
-> At this point interrupts-extended is not applicable.
-> 
-we have it this way also in omap3. I do not understand what is the
-problem with it. Do you have a pointer where it is forbidden?
-At least
-Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-says nothing againt using it in such cases.
 
-> We could use
-> 	/delete-property/ interrupts
-> in the board files that needs multiple interrupt parents?
+On 26/12/2024 23:54, Shree Ramamoorthy wrote:
+> TPS65215 is a Power Management IC with 3 Buck regulators and 2 LDOs.
 > 
-What is the advantage of using that more complex solution? I would then
-prefer to have the same with omap3 and omap4. If we do anything about
-interrupts in board file here, they will have multiple parents.
+> TPS65215 has 2 LDOS and 1 GPO, whereas TPS65219 has 4 LDOs and 2 GPOs. The
+> remaining features for both devices are the same.
+> 
+> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+> ---
+>  .../devicetree/bindings/regulator/ti,tps65219.yaml       | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+> index 78e64521d401..ba5f6fcf5219 100644
+> --- a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/regulator/ti,tps65219.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: TI tps65219 Power Management Integrated Circuit regulators
+> +title: TI TPS65215/TPS65219 Power Management Integrated Circuit
+>  
+>  maintainers:
+>    - Jerome Neanne <jerome.neanne@baylibre.com>
+> @@ -12,10 +12,17 @@ maintainers:
+>  description: |
+>    Regulator nodes should be named to buck<number> and ldo<number>.
+>  
+> +  TI TPS65219 is a Power Management IC with 3 Buck regulators, 4 Low
+> +  Drop-out Regulators (LDOs), 1 GPIO, 2 GPOs, and power-button.
+> +
+> +  TI TPS65215 is a derivative of TPS65219 with 3 Buck regulators, 2 Low
+> +  Drop-out Regulators (LDOs), 1 GPIO, 1 GPO, and power-button.
+> +
+>  properties:
+>    compatible:
+>      enum:
+>        - ti,tps65219
+> +      - ti,tps65215
 
-Regards,
-Andreas
+Could be sorted alphanumerically.
+
+>  
+>    reg:
+>      maxItems: 1
+
+-- 
+cheers,
+-roger
+
 
