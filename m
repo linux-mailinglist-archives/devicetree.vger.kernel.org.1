@@ -1,173 +1,266 @@
-Return-Path: <devicetree+bounces-135540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465D0A01403
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 11:40:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E1AA01427
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 12:38:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15201162B14
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:40:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D9153A2C66
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 11:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308B018A6AE;
-	Sat,  4 Jan 2025 10:40:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KSG+deyt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0516193432;
+	Sat,  4 Jan 2025 11:38:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDE9C13DBB6;
-	Sat,  4 Jan 2025 10:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B131214D2BD
+	for <devicetree@vger.kernel.org>; Sat,  4 Jan 2025 11:38:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735987239; cv=none; b=XpA0hHS0fSG2DddSxxsVk5imOwxmm3m3byw7DyK+RoipaNbvUhtluwQONDeYKJn4jbs273MeDDL4Ibcnuhk+YunVGQjJMNd2VnFPn8A03GvGy72q21KYEf6AdbIWENhti454ADaDryhtcVMKcNthIeLqKsFOzbsM62bLTfJD6+A=
+	t=1735990692; cv=none; b=fAEDzK5kQ5JDRge1rchELU9VR/SI69idxhUvHTOcq7Tq06H390yCuM6B/ot970oA8oeklb5+1GuSMMb7ifvyaioyh12ztvddGHcrM6eLo5GsqzCtWEmn6jTGJyMJHQNJ7rpgh9OWE7ulwAMMCRyrYmXTYRgx6YmNgV2QbRdX3/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735987239; c=relaxed/simple;
-	bh=rJCDnChyzIajUi/vfRibykdeWobpL0pE0FaiKMSKOzE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M6bhJ01tWdnXLOTZvX/QEfF67bn+W/m2iKWXZ85zbHxW1ZRHPjbygvwN5xRzDIeJfgo8c51PZUsWKVV2owTrwdwn38aMFtbXWneeeuWfyVWRRC/vu48PBn7cHuaq3VL14HM6pflOdiWUYQuDSG3dx0uICLk/qmirbOK5Zywj9W8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KSG+deyt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13A2AC4CED1;
-	Sat,  4 Jan 2025 10:40:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735987238;
-	bh=rJCDnChyzIajUi/vfRibykdeWobpL0pE0FaiKMSKOzE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KSG+deytS6JpXB+RL7OYm6ObAxolg9IF/3fwI39+su4VZV73qKWtF7Ni3tNXI7ffJ
-	 YX+lfdzxktRllL9YXBn9OjbKlrhMTML65d1SkrPc3rngOLJX6Q0IVtZI0Gq8j/kLKl
-	 WtkHtf8jAp3V/7YPzpQ76GHzM23jtjOlSPHcAQmlVA7E+bZyoUtT4JiB+yxDhFkZFF
-	 mMqX2n954tDQfptoQccZvppY24/k6u4mdFwAUmlY+K8Ujq+t54rDnw4l1dv3F1F+54
-	 hQ4OsyqkA3P2h6qs7cD5iaKjKU5HafdrqEhO2H2IjPqk/ilfJ0Erw1KxGvNwz+FqRI
-	 wonwsTqA5NoLQ==
-Message-ID: <a097980a-c2b7-440c-8eff-b540acfd4027@kernel.org>
-Date: Sat, 4 Jan 2025 11:40:31 +0100
+	s=arc-20240116; t=1735990692; c=relaxed/simple;
+	bh=hTfBgmtas93Tnli5iqk31hrfU/i+fFrxcy5u7ARi5CM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B6RPPPVGLeAic2QCeAZlwxBTYzTcATgDbmmbEOK3RDxwJuGbY2G/Vue6QS34Z6O8bzB62DyEJc2b9pZXs0Ys1cyriKwZSXHAaNd5Jg4E8VG0j7uKppuMHEfJOPmJesDUyvXL9ua8AHqui7O/W9IGt5irOPLemkZcUDhE+lIDrRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tU2Sm-0003tQ-95; Sat, 04 Jan 2025 12:37:04 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tU2Si-006pEi-0V;
+	Sat, 04 Jan 2025 12:37:00 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tU2Si-003pVb-2a;
+	Sat, 04 Jan 2025 12:37:00 +0100
+Date: Sat, 4 Jan 2025 12:37:00 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	kernel@pengutronix.de,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org,
+	Kalesh AP <kalesh-anakkur.purayil@broadcom.com>
+Subject: Re: [PATCH net-next v4 00/27] Add support for PSE budget evaluation
+ strategy
+Message-ID: <Z3kdXIbKDLF1nP3f@pengutronix.de>
+References: <20250103-feature_poe_port_prio-v4-0-dc91a3c0c187@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: Add bindings for Canaan K230
- clock controller
-To: Xukai Wang <kingxukai@zohomail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Troy Mitchell <TroyMitchell988@gmail.com>
-References: <20241229-b4-k230-clk-v1-0-221a917e80ed@zohomail.com>
- <20241229-b4-k230-clk-v1-1-221a917e80ed@zohomail.com>
- <zfjj33otyxiamsc7u2uwnvygcuhe7u2tfgiz6txp62emnddbw5@5iozmjg4eugn>
- <39e6bf64-2ce6-45bb-b622-4b413efc185f@zohomail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <39e6bf64-2ce6-45bb-b622-4b413efc185f@zohomail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250103-feature_poe_port_prio-v4-0-dc91a3c0c187@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 04/01/2025 10:23, Xukai Wang wrote:
+Hi Kory,
+
+please, split this patch set. Some of them can be already taken. The
+upper limit for the patch set is 15 patches.
+
+Regards,
+Oleksij
+
+On Fri, Jan 03, 2025 at 10:12:49PM +0100, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 > 
-> Here's the update version:
+> This series brings support for budget evaluation strategy in the PSE
+> subsystem. PSE controllers can set priorities to decide which ports should
+> be turned off in case of special events like over-current.
 > 
-> reg:
->   description: |
->     The `reg` property specifies the base address and size of the
-> device's registers.
->     - The first address corresponds to the base address of the PLL
-> control registers.
->     - The second address corresponds to the base address of the sysclk
-> control registers.
-
-No, drop all these. You duplicate schema.
-
->   minItems: 1
-
-Why?
-
->   items:
->     - description: Base address and size of the PLL control registers.
->     - description: Base address and size of the sysclk control registers.
-
-Drop redundant "Base address and size of the". This cannot be anything
-else in this context.
-
+> I have added regulator maintainers to have their opinion on adding power
+> budget regulator constraint see patches 17 and 18.
+> There are also a core regulator change along the way patch 16.
+> I suppose I will need to merge them through the regulator tree.
+> Will it be possible to create an immutable tag to have this PSE series
+> based on them?
 > 
-> Does this content look appropriate?
+> This patch series adds support for two budget evaluation strategy.
+> 1. Static Method:
 > 
->>> +
->>> +  '#clock-cells':
->>> +    const: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - clocks
->>> +  - '#clock-cells'
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    clock-controller@91102000 {
->>> +        compatible = "canaan,k230-clk";
->>> +        reg = <0x91102000 0x1000>, <0x91100000 0x1000>;
->>> +        #clock-cells = <1>;
->>> +        clocks = <&osc24m>;
->>> +    };
->>> diff --git a/include/dt-bindings/clock/k230-clk.h b/include/dt-bindings/clock/k230-clk.h
+>    This method involves distributing power based on PD classification.
+>    It’s straightforward and stable, the PSE core keeping track of the
+>    budget and subtracting the power requested by each PD’s class.
+> 
+>    Advantages: Every PD gets its promised power at any time, which
+>    guarantees reliability.
+> 
+>    Disadvantages: PD classification steps are large, meaning devices
+>    request much more power than they actually need. As a result, the power
+>    supply may only operate at, say, 50% capacity, which is inefficient and
+>    wastes money.
+> 
+> 2. Dynamic Method:
+> 
+>    To address the inefficiencies of the static method, vendors like
+>    Microchip have introduced dynamic power budgeting, as seen in the
+>    PD692x0 firmware. This method monitors the current consumption per port
+>    and subtracts it from the available power budget. When the budget is
+>    exceeded, lower-priority ports are shut down.
+> 
+>    Advantages: This method optimizes resource utilization, saving costs.
+> 
+>    Disadvantages: Low-priority devices may experience instability.
+> 
+> The UAPI allows adding support for software port priority mode managed from
+> userspace later if needed.
+> 
+> The patch series is based on this fix merged in net:
+> https://lore.kernel.org/netdev/20241220170400.291705-1-kory.maincent@bootlin.com/
+> 
+> Several Reviewed-by have been removed due to the changes.
+> 
+> Thanks Oleksij for your pointers.
+> 
+> Patches 1-9: Cosmetics.
+> Patch 10: Adds support for last supported features in the TPS23881 drivers.
+> Patches 11,12: Add support for PSE index in PSE core and ethtool.
+> Patches 12-14: Add support for interrupt event report in PSE core, ethtool
+> 	     and ethtool specs.
+> Patch 15: Adds support for interrupt and event report in TPS23881 driver.
+> Patch 16: Fix regulator resolve supply
+> Patches 17,18: Add support for power budget in regulator framework.
+> Patch 19: Cosmetic.
+> Patches 20,21: Add support for PSE power domain in PSE core and ethtool.
+> Patches 22,23: Add support for port priority in PSE core, ethtool and
+> 	       ethtool specs.
+> Patches 24,25: Add support for port priority in PD692x0 drivers.
+> Patches 26,27: Add support for port priority in TPS23881 drivers.
+> 
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+> Changes in v4:
+> - Remove disconnection policy.
+> - Rename port priority mode to budget evaluation strategy.
+> - Add cosmetic changes in PSE core.
+> - Add support for port priority in PD692x0 driver.
+> - Link to v3: https://lore.kernel.org/r/20241121-feature_poe_port_prio-v3-0-83299fa6967c@bootlin.com
+> 
+> Changes in v3:
+> - Move power budget to regulator core.
+> - Add disconnection policies with PIs using the same priority.
+> - Several fixes on the TPS23881 drivers.
+> - Several new cosmetic patches.
+> - Link to v2: https://lore.kernel.org/r/20241030-feature_poe_port_prio-v2-0-9559622ee47a@bootlin.com
+> 
+> Changes in v2:
+> - Rethink the port priority management.
+> - Add PSE id.
+> - Add support for PSE power domains.
+> - Add get power budget regulator constraint.
+> - Link to v1: https://lore.kernel.org/r/20241002-feature_poe_port_prio-v1-0-787054f74ed5@bootlin.com
+> 
+> ---
+> Kory Maincent (27):
+>       net: pse-pd: Remove unused pse_ethtool_get_pw_limit function declaration
+>       net: pse-pd: Avoid setting max_uA in regulator constraints
+>       net: pse-pd: Add power limit check
+>       net: pse-pd: tps23881: Simplify function returns by removing redundant checks
+>       net: pse-pd: tps23881: Use helpers to calculate bit offset for a channel
+>       net: pse-pd: tps23881: Add missing configuration register after disable
+>       net: pse-pd: Use power limit at driver side instead of current limit
+>       net: pse-pd: Split ethtool_get_status into multiple callbacks
+>       net: pse-pd: Remove is_enabled callback from drivers
+>       net: pse-pd: tps23881: Add support for power limit and measurement features
+>       net: pse-pd: Add support for PSE device index
+>       net: ethtool: Add support for new PSE device index description
+>       net: ethtool: Add support for ethnl_info_init_ntf helper function
+>       net: pse-pd: Add support for reporting events
+>       net: pse-pd: tps23881: Add support for PSE events and interrupts
+>       regulator: core: Resolve supply using of_node from regulator_config
+>       regulator: Add support for power budget description
+>       regulator: dt-bindings: Add regulator-power-budget property
+>       net: pse-pd: Fix missing PI of_node description
+>       net: pse-pd: Add support for PSE power domains
+>       net: ethtool: Add support for new power domains index description
+>       net: pse-pd: Add support for getting budget evaluation strategies
+>       net: ethtool: Add PSE new budget evaluation strategy support feature
+>       net: pse-pd: pd692x0: Add support for PSE PI priority feature
+>       dt-bindings: net: pse-pd: microchip,pd692x0: Add manager regulator supply
+>       net: pse-pd: tps23881: Add support for static port priority feature
+>       dt-bindings: net: pse-pd: ti,tps23881: Add interrupt description
+> 
+>  .../bindings/net/pse-pd/microchip,pd692x0.yaml     |   12 +-
+>  .../bindings/net/pse-pd/ti,tps23881.yaml           |    6 +
+>  .../devicetree/bindings/regulator/regulator.yaml   |    5 +
+>  Documentation/netlink/specs/ethtool.yaml           |   52 +
+>  Documentation/networking/ethtool-netlink.rst       |   94 ++
+>  drivers/net/mdio/fwnode_mdio.c                     |   26 +-
+>  drivers/net/pse-pd/pd692x0.c                       |  423 ++++++--
+>  drivers/net/pse-pd/pse_core.c                      | 1029 ++++++++++++++++++--
+>  drivers/net/pse-pd/pse_regulator.c                 |   23 +-
+>  drivers/net/pse-pd/tps23881.c                      |  799 +++++++++++++--
+>  drivers/regulator/core.c                           |  128 ++-
+>  drivers/regulator/of_regulator.c                   |    3 +
+>  include/linux/ethtool.h                            |   47 +
+>  include/linux/ethtool_netlink.h                    |    9 +
+>  include/linux/pse-pd/pse.h                         |  171 +++-
+>  include/linux/regulator/consumer.h                 |   21 +
+>  include/linux/regulator/driver.h                   |    2 +
+>  include/linux/regulator/machine.h                  |    2 +
+>  include/uapi/linux/ethtool.h                       |   54 +
+>  include/uapi/linux/ethtool_netlink.h               |    1 -
+>  include/uapi/linux/ethtool_netlink_generated.h     |   15 +
+>  net/ethtool/common.c                               |   12 +
+>  net/ethtool/common.h                               |    2 +
+>  net/ethtool/netlink.c                              |    7 +-
+>  net/ethtool/netlink.h                              |    2 +
+>  net/ethtool/pse-pd.c                               |   98 +-
+>  net/ethtool/strset.c                               |    5 +
+>  27 files changed, 2698 insertions(+), 350 deletions(-)
+> ---
+> base-commit: 2e22297376fe1aa562799c774c3baac9b6db238b
+> change-id: 20240913-feature_poe_port_prio-a51aed7332ec
+> 
+> Best regards,
+> -- 
+> Köry Maincent, Bootlin
+> Embedded Linux and kernel engineering
+> https://bootlin.com
+> 
+> 
 
-I missed one thing - filename is supposed to be the same as binding
-filename.
-
-Best regards,
-Krzysztof
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
