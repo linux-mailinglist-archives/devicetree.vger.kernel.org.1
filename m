@@ -1,128 +1,271 @@
-Return-Path: <devicetree+bounces-135582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4BEA01659
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 19:33:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 025B6A0165C
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 19:35:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A9913A373A
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 18:33:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3AA3A328D
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 18:35:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5851C5F25;
-	Sat,  4 Jan 2025 18:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273351C3BF1;
+	Sat,  4 Jan 2025 18:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dS9jhJE3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UA6LqtMi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A6E146A9B;
-	Sat,  4 Jan 2025 18:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC2E23CB;
+	Sat,  4 Jan 2025 18:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736015619; cv=none; b=A97bBBlxvep1jE/G5aTNnrMHZYCgOlUdMs4PZSSXXBG2UtN6xMVHCDLOTQeVLBwe/PXVTTHo38wHWYajCY7ewEu769xZrQ17Oxzb8QWUd246+gqxq7DBefDUAmUsmdE5MCASGejYIl2sU7/0ZXD3e6PF7D7xdCT1otfJyZLAwco=
+	t=1736015725; cv=none; b=FvRihTfYeoQEcrlHrOA1i7ryj5wP7KPHNnMcMqCxjKer15cWFQ7MzhAZm2DNmL2d7kx5QwlF+joSVUCQZqDk3MHLLFg+NMLeaQra/0kS1TuqCSH0HhA0VBWOVz4WVtLM1UjfAl6euANlD/v7h7Jen4IRzPoqlSl7Weyw8qFNaGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736015619; c=relaxed/simple;
-	bh=bbGVCiebfDC2v8ZrjzXFysT9S4V23mFCJgUmWbhnAB8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BuN3Gdk5xlZocjmo029ZyVE0XH31uTISywcfhP83M7QgCi5vHe7HPakAgIiHagIFy50xPMPqAW4o1ZgbZqj9blbpH1zcpd8XVsm6O+VlSpQxzVngVRzCIzoFTEuYvdVL8ue7Lx3PPM19CqkkIwKulQF6VHW3GLIzqLgORQmJCE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dS9jhJE3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C32CC4CED1;
-	Sat,  4 Jan 2025 18:33:36 +0000 (UTC)
+	s=arc-20240116; t=1736015725; c=relaxed/simple;
+	bh=G2NnpuOfL80tkAdpKPJLb6KOns3yN+ZhPx4khycTzWk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rAMr8wpyyoYcoTghZF1jLVmVfHIZuUS3Dp464lyDHsMHkZtCHFCs3XBDcsqYi6v4NmYJNpvIu02KpK0jpVqnBYbAZisRWJ06OhuD1UG6dHlGsYN4UQTTjUitcYJJOx2shM+bSopweYc6EEuMd82ukW68BFsEOn7QZDiheJcWOLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UA6LqtMi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E06BAC4CED1;
+	Sat,  4 Jan 2025 18:35:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736015619;
-	bh=bbGVCiebfDC2v8ZrjzXFysT9S4V23mFCJgUmWbhnAB8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dS9jhJE3fxzDyDlfMtIS55DjSwucd1le+RtfivhNsJpsOEGZuPxOeDj4OO5ZzgfMj
-	 ekuzhAPdQQNZ34lYJhHt4Y2Fd2A8/K4N080hN3NIMNq1ftxSyHtV+I7srKxt8I4y6f
-	 Zm/U7tRP7Rg/toi9hSt55TxLOxHPQDiavQBJmsBHB64GnA54MMjbh3PNUbF4hniH5W
-	 IW91QCc1jaHBCm/LNXWbu0qq8fVjGkOl+pM/xBz5ui0hjq0abCvx1PWIWIFX1Obzda
-	 WKbAur3l7pv4LaQYc8uKOzAInrs0K0q6sMV95T3Cr89EEMhffoMAAQRsFg8ak2wEp+
-	 H5lwD84y0HVWw==
-Date: Sat, 4 Jan 2025 18:33:34 +0000
-From: Conor Dooley <conor@kernel.org>
-To: E Shattow <e@freeshell.de>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
- syscrg clock assignments
-Message-ID: <20250104-mutilated-unpaved-008eebdb200a@spud>
-References: <20250102194530.418127-1-e@freeshell.de>
- <20250102194530.418127-2-e@freeshell.de>
+	s=k20201202; t=1736015724;
+	bh=G2NnpuOfL80tkAdpKPJLb6KOns3yN+ZhPx4khycTzWk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UA6LqtMii9VFGZY5gxUM1ylUpCMiUINcFhqz3xc8qRc4DnYrKG3iAFKYbs3vzXAHO
+	 JvzRmTS/ToWU5WjlkEnaaSe/NKpxLWJ+74anUXzUWr4uhZUO/IGXP94yO+B0qmnf3h
+	 uW9JykhTQhUF1827yEhCSsZQAyiN8XXRE0j2vLOZyUL9EvEONDkg8i54sDJaZbbgBK
+	 aDMHLh+lH/BP12+IjwNDIKuSx1snjFb4q8h9iSqtQSkyRHiG40WGOZutrq9kxv72IK
+	 hMSILhMIlVl81gBNJRRGqsqN+LbrsNwG/fZs0iklOT0gXDTP3iQHMAB4po1zrgKQVW
+	 78gzcW4TCfEBw==
+Message-ID: <62b0955c-2213-409f-9899-82be05cf7f58@kernel.org>
+Date: Sat, 4 Jan 2025 20:35:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="X/IiaMylgfGE4uV1"
-Content-Disposition: inline
-In-Reply-To: <20250102194530.418127-2-e@freeshell.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/7] regulator: tps65215: Update function & struct
+ names
+To: Shree Ramamoorthy <s-ramamoorthy@ti.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, aaro.koskinen@iki.fi, andreas@kemnade.info,
+ khilman@baylibre.com, tony@atomide.com, jerome.neanne@baylibre.com,
+ linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: m-leonard@ti.com, praneeth@ti.com
+References: <20241226215412.395822-1-s-ramamoorthy@ti.com>
+ <20241226215412.395822-4-s-ramamoorthy@ti.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20241226215412.395822-4-s-ramamoorthy@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
---X/IiaMylgfGE4uV1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 02, 2025 at 11:45:07AM -0800, E Shattow wrote:
-> Replace syscrg assignments of clocks, clock parents, and rates, for
-> compatibility with downstream boot loader SPL secondary program
-> loader.
->=20
-> Signed-off-by: E Shattow <e@freeshell.de>
+On 26/12/2024 23:54, Shree Ramamoorthy wrote:
+> Update struct and function names to indicate if it supports TPS65219 and/or
+> TPS65215. The 'common' prefix is added to indicate the resource applies
+> to both PMICs.
+> 
+> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
 > ---
->  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv=
-/boot/dts/starfive/jh7110-common.dtsi
-> index 48fb5091b817..55c6743100a7 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> @@ -359,9 +359,15 @@ spi_dev0: spi@0 {
+>  drivers/regulator/Kconfig              |  7 +--
+>  drivers/regulator/tps65219-regulator.c | 65 +++++++++++++++++---------
+>  2 files changed, 48 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index 39297f7d8177..6cd87443f9bb 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -1579,10 +1579,11 @@ config REGULATOR_TPS65219
+>  	tristate "TI TPS65219 Power regulators"
+>  	depends on MFD_TPS65219 && OF
+>  	help
+> -	  This driver supports TPS65219 voltage regulator chips.
+> +	  This driver supports TPS65219 series and TPS65215 voltage regulator chips.
+>  	  TPS65219 series of PMICs have 3 single phase BUCKs & 4 LDOs
+> -	  voltage regulators. It supports software based voltage control
+> -	  for different voltage domains.
+> +	  voltage regulators.
+> +	  TPS65215 PMIC has 3 single phase BUCKs & 2 LDOs.
+> +	  Both PMICs support software based voltage control for different voltage domains.
+>  
+>  config REGULATOR_TPS6594
+>  	tristate "TI TPS6594 Power regulators"
+> diff --git a/drivers/regulator/tps65219-regulator.c b/drivers/regulator/tps65219-regulator.c
+> index b8a178ae6b42..188a988e3bbe 100644
+> --- a/drivers/regulator/tps65219-regulator.c
+> +++ b/drivers/regulator/tps65219-regulator.c
+> @@ -1,10 +1,9 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  //
+> -// tps65219-regulator.c
+> -//
+> -// Regulator driver for TPS65219 PMIC
+> +// Regulator driver for TPS65215/TPS65219 PMIC
+>  //
+>  // Copyright (C) 2022 BayLibre Incorporated - https://www.baylibre.com/
+> +// Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
+>  //
+>  // This implementation derived from tps65218 authored by
+>  // "J Keerthy <j-keerthy@ti.com>"
+> @@ -125,12 +124,22 @@ static const struct linear_range bucks_ranges[] = {
+>  	REGULATOR_LINEAR_RANGE(3400000, 0x34, 0x3f, 0),
 >  };
-> =20
->  &syscrg {
-> -	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_CORE>,
-> -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
-> -	assigned-clock-rates =3D <500000000>, <1500000000>;
-> +	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_ROOT>,
-> +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
-> +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
-> +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
-> +	assigned-clock-parents =3D <&pllclk JH7110_PLLCLK_PLL0_OUT>,
-> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-> +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
-> +	assigned-clock-rates =3D <0>, <0>, <0>, <0>;
-
-Why is assigned rates here 0s, rather than the property just removed?
-
+>  
+> -static const struct linear_range ldos_1_2_ranges[] = {
+> +static const struct linear_range ldo_1_range[] = {
+> +	REGULATOR_LINEAR_RANGE(600000, 0x0, 0x37, 50000),
+> +	REGULATOR_LINEAR_RANGE(3400000, 0x38, 0x3f, 0),
+> +};
+> +
+> +static const struct linear_range tps65215_ldo_2_range[] = {
+> +	REGULATOR_LINEAR_RANGE(1200000, 0x0, 0xC, 50000),
+> +	REGULATOR_LINEAR_RANGE(3300000, 0x36, 0x3F, 0),
+> +};
+> +
+> +static const struct linear_range tps65219_ldo_2_range[] = {
+>  	REGULATOR_LINEAR_RANGE(600000, 0x0, 0x37, 50000),
+>  	REGULATOR_LINEAR_RANGE(3400000, 0x38, 0x3f, 0),
 >  };
-> =20
->  &sysgpio {
-> --=20
-> 2.45.2
->=20
+>  
+> -static const struct linear_range ldos_3_4_ranges[] = {
+> +static const struct linear_range tps65219_ldos_3_4_range[] = {
+>  	REGULATOR_LINEAR_RANGE(1200000, 0x0, 0xC, 0),
+>  	REGULATOR_LINEAR_RANGE(1250000, 0xD, 0x35, 50000),
+>  	REGULATOR_LINEAR_RANGE(3300000, 0x36, 0x3F, 0),
+> @@ -174,7 +183,7 @@ static unsigned int tps65219_get_mode(struct regulator_dev *dev)
+>  }
+>  
+>  /* Operations permitted on BUCK1/2/3 */
+> -static const struct regulator_ops tps65219_bucks_ops = {
+> +static const struct regulator_ops bucks_ops = {
+>  	.is_enabled		= regulator_is_enabled_regmap,
+>  	.enable			= regulator_enable_regmap,
+>  	.disable		= regulator_disable_regmap,
+> @@ -189,7 +198,7 @@ static const struct regulator_ops tps65219_bucks_ops = {
+>  };
+>  
+>  /* Operations permitted on LDO1/2 */
+> -static const struct regulator_ops tps65219_ldos_1_2_ops = {
+> +static const struct regulator_ops ldos_1_2_ops = {
+>  	.is_enabled		= regulator_is_enabled_regmap,
+>  	.enable			= regulator_enable_regmap,
+>  	.disable		= regulator_disable_regmap,
+> @@ -204,7 +213,7 @@ static const struct regulator_ops tps65219_ldos_1_2_ops = {
+>  };
+>  
+>  /* Operations permitted on LDO3/4 */
+> -static const struct regulator_ops tps65219_ldos_3_4_ops = {
+> +static const struct regulator_ops ldos_3_4_ops = {
+>  	.is_enabled		= regulator_is_enabled_regmap,
+>  	.enable			= regulator_enable_regmap,
+>  	.disable		= regulator_disable_regmap,
+> @@ -216,55 +225,69 @@ static const struct regulator_ops tps65219_ldos_3_4_ops = {
+>  	.map_voltage		= regulator_map_voltage_linear_range,
+>  };
+>  
+> -static const struct regulator_desc regulators[] = {
+> +static const struct regulator_desc common_regs[] = {
+>  	TPS65219_REGULATOR("BUCK1", "buck1", TPS65219_BUCK_1,
+> -			   REGULATOR_VOLTAGE, tps65219_bucks_ops, 64,
+> +			   REGULATOR_VOLTAGE, bucks_ops, 64,
+>  			   TPS65219_REG_BUCK1_VOUT,
+>  			   TPS65219_BUCKS_LDOS_VOUT_VSET_MASK,
+>  			   TPS65219_REG_ENABLE_CTRL,
+>  			   TPS65219_ENABLE_BUCK1_EN_MASK, 0, 0, bucks_ranges,
+>  			   3, 4000, 0, NULL, 0, 0),
+>  	TPS65219_REGULATOR("BUCK2", "buck2", TPS65219_BUCK_2,
+> -			   REGULATOR_VOLTAGE, tps65219_bucks_ops, 64,
+> +			   REGULATOR_VOLTAGE, bucks_ops, 64,
+>  			   TPS65219_REG_BUCK2_VOUT,
+>  			   TPS65219_BUCKS_LDOS_VOUT_VSET_MASK,
+>  			   TPS65219_REG_ENABLE_CTRL,
+>  			   TPS65219_ENABLE_BUCK2_EN_MASK, 0, 0, bucks_ranges,
+>  			   3, 4000, 0, NULL, 0, 0),
+>  	TPS65219_REGULATOR("BUCK3", "buck3", TPS65219_BUCK_3,
+> -			   REGULATOR_VOLTAGE, tps65219_bucks_ops, 64,
+> +			   REGULATOR_VOLTAGE, bucks_ops, 64,
+>  			   TPS65219_REG_BUCK3_VOUT,
+>  			   TPS65219_BUCKS_LDOS_VOUT_VSET_MASK,
+>  			   TPS65219_REG_ENABLE_CTRL,
+>  			   TPS65219_ENABLE_BUCK3_EN_MASK, 0, 0, bucks_ranges,
+>  			   3, 0, 0, NULL, 0, 0),
+>  	TPS65219_REGULATOR("LDO1", "ldo1", TPS65219_LDO_1,
 
---X/IiaMylgfGE4uV1
-Content-Type: application/pgp-signature; name="signature.asc"
+Could we update macro TPS65219_REGULATOR to TPS6521X_REGULATOR?
 
------BEGIN PGP SIGNATURE-----
+> -			   REGULATOR_VOLTAGE, tps65219_ldos_1_2_ops, 64,
+> +			   REGULATOR_VOLTAGE, ldos_1_2_ops, 64,
+>  			   TPS65219_REG_LDO1_VOUT,
+>  			   TPS65219_BUCKS_LDOS_VOUT_VSET_MASK,
+>  			   TPS65219_REG_ENABLE_CTRL,
+> -			   TPS65219_ENABLE_LDO1_EN_MASK, 0, 0, ldos_1_2_ranges,
+> +			   TPS65219_ENABLE_LDO1_EN_MASK, 0, 0, ldo_1_range,
+>  			   2, 0, 0, NULL, 0, TPS65219_LDOS_BYP_CONFIG_MASK),
+> +};
+> +
+> +static const struct regulator_desc tps65215_regs[] = {
+> +	// TPS65215's LDO2 is the same as TPS65219's LDO3
+> +	TPS65219_REGULATOR("LDO2", "ldo2", TPS65215_LDO_2,
+> +			   REGULATOR_VOLTAGE, ldos_3_4_ops, 64,
+> +			   TPS65215_REG_LDO2_VOUT,
+> +			   TPS65219_BUCKS_LDOS_VOUT_VSET_MASK,
+> +			   TPS65219_REG_ENABLE_CTRL,
+> +			   TPS65215_ENABLE_LDO2_EN_MASK, 0, 0, tps65215_ldo_2_range,
+> +			   3, 0, 0, NULL, 0, 0),
+> +};
+> +
+> +static const struct regulator_desc tps65219_regs[] = {
+>  	TPS65219_REGULATOR("LDO2", "ldo2", TPS65219_LDO_2,
+> -			   REGULATOR_VOLTAGE, tps65219_ldos_1_2_ops, 64,
+> +			   REGULATOR_VOLTAGE, ldos_1_2_ops, 64,
+>  			   TPS65219_REG_LDO2_VOUT,
+>  			   TPS65219_BUCKS_LDOS_VOUT_VSET_MASK,
+>  			   TPS65219_REG_ENABLE_CTRL,
+> -			   TPS65219_ENABLE_LDO2_EN_MASK, 0, 0, ldos_1_2_ranges,
+> +			   TPS65219_ENABLE_LDO2_EN_MASK, 0, 0, tps65219_ldo_2_range,
+>  			   2, 0, 0, NULL, 0, TPS65219_LDOS_BYP_CONFIG_MASK),
+>  	TPS65219_REGULATOR("LDO3", "ldo3", TPS65219_LDO_3,
+> -			   REGULATOR_VOLTAGE, tps65219_ldos_3_4_ops, 64,
+> +			   REGULATOR_VOLTAGE, ldos_3_4_ops, 64,
+>  			   TPS65219_REG_LDO3_VOUT,
+>  			   TPS65219_BUCKS_LDOS_VOUT_VSET_MASK,
+>  			   TPS65219_REG_ENABLE_CTRL,
+> -			   TPS65219_ENABLE_LDO3_EN_MASK, 0, 0, ldos_3_4_ranges,
+> +			   TPS65219_ENABLE_LDO3_EN_MASK, 0, 0, tps65219_ldos_3_4_range,
+>  			   3, 0, 0, NULL, 0, 0),
+>  	TPS65219_REGULATOR("LDO4", "ldo4", TPS65219_LDO_4,
+> -			   REGULATOR_VOLTAGE, tps65219_ldos_3_4_ops, 64,
+> +			   REGULATOR_VOLTAGE, ldos_3_4_ops, 64,
+>  			   TPS65219_REG_LDO4_VOUT,
+>  			   TPS65219_BUCKS_LDOS_VOUT_VSET_MASK,
+>  			   TPS65219_REG_ENABLE_CTRL,
+> -			   TPS65219_ENABLE_LDO4_EN_MASK, 0, 0, ldos_3_4_ranges,
+> +			   TPS65219_ENABLE_LDO4_EN_MASK, 0, 0, tps65219_ldos_3_4_range,
+>  			   3, 0, 0, NULL, 0, 0),
+>  };
+>  
+> @@ -362,5 +385,5 @@ static struct platform_driver tps65219_regulator_driver = {
+>  module_platform_driver(tps65219_regulator_driver);
+>  
+>  MODULE_AUTHOR("Jerome Neanne <j-neanne@baylibre.com>");
+> -MODULE_DESCRIPTION("TPS65219 voltage regulator driver");
+> +MODULE_DESCRIPTION("TPS65215/TPS65219 voltage regulator driver");
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ3l+/gAKCRB4tDGHoIJi
-0tJ3AP4y1JgKxVuFtAfj2/e072mhmKgwjpCJdSfFu0f8h9kxNgEA/OuSW1oF+y2v
-pCRVRiOegBMIH80dCitQajbHkophhQA=
-=Z2jI
------END PGP SIGNATURE-----
+"TPS65215X Voltage Regulator Driver"
 
---X/IiaMylgfGE4uV1--
+>  MODULE_LICENSE("GPL");
+
+-- 
+cheers,
+-roger
+
 
