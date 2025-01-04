@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-135532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB03DA013E0
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 11:15:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0608AA013E3
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 11:16:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9808F1883E2C
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:15:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB5F53A42D4
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D638B19004A;
-	Sat,  4 Jan 2025 10:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B37AC19B5B8;
+	Sat,  4 Jan 2025 10:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rYeCA75V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lowWq/CE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8EC7185B62;
-	Sat,  4 Jan 2025 10:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815C4199938;
+	Sat,  4 Jan 2025 10:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735985701; cv=none; b=JQLQNfJWQgDcFjKSzOntG6dX3dPAbIaxC82MtDTagtp7nUHokaH0dPi5mkrdjX4PgYCiSnXZEDy0TyQB12QeGJP1AqMgPi/TuJv6cxb6EtE6TWDSk3JzgwfUxTNr8M07S7sXE8qtWYEVcVx+L0MtbHBGKF65stpJXVgorz1ggbA=
+	t=1735985805; cv=none; b=QuE1en8+cWLb6jZNGs8PMJ6cekyB70cDU9EbEHd/X0Y9qSYGZPUijaHlFMBs6Dbo9yPe9BVeez7guSL0em5PpsCppXwXmZwX/ov0bc/xJyUG7D9tiSqPIv82yVR91L/c491tFArneCtHdS+0u1AYjn+RTL0mcCV6ws6MjfNpci8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735985701; c=relaxed/simple;
-	bh=VJSfvgFZ+78VmxD+MOIgIsz+3FZN6F5TgCICTOVmBi4=;
+	s=arc-20240116; t=1735985805; c=relaxed/simple;
+	bh=2T3ciO6m0fCtPynwh9nbyV7VVGdi6rid7fRO8GjcpBM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tDQIvIV1K6zTmVIhh9F5qmZgTkwes08XQmU6sdJOHBLpL9oONKWcBAtOFHYrwLHBR4ZRm7tmrdSzNRRGOeSWEV6IltSsCPmgCmrKFeMFbRiXLdlTs3T3z+opKc41i5zsS0H+Suewqi3TZ8AnHr5KAJcMvnuRHosVohfE6yfniWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rYeCA75V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E240C4CED1;
-	Sat,  4 Jan 2025 10:15:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EAGmQAbefbd037N9kcJHs+Qxf6vS6qVWlCRxz5TRyOMjEPKFMxmdCGt++HlDqFppkdYyuwH3cHNdpcti2REXnt2ZgMKFiGPNAaiWyOJctLo2yAjX3DSdJkijI9OUJVVHtQP1cB5lRtYRfEHtc13ymppgWrqEQHzhdzRSD/+sJlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lowWq/CE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 551F2C4CED1;
+	Sat,  4 Jan 2025 10:16:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1735985701;
-	bh=VJSfvgFZ+78VmxD+MOIgIsz+3FZN6F5TgCICTOVmBi4=;
+	s=k20201202; t=1735985805;
+	bh=2T3ciO6m0fCtPynwh9nbyV7VVGdi6rid7fRO8GjcpBM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rYeCA75ViPFUIM7AfKSJYRuXfrpa1n3ezGNsu8j3DpUvVzwC2ivSTLeD68RcRjJk+
-	 ID5ssMHtFBL4iW8VRstzDCla5SJP+f9D/toczroICatgp3LPKocHrQybpzVBLFd6Ht
-	 w28nXJNuYQm85ngCtpWfLeAd2QIgHGpWUxnBqFpECeyqnx+bHaYc3f8P+T/xLzoocH
-	 757lnGqDrp3etv8zJOPoECzJPlKE5cSOszBQ+gtbOSzALXaLZQ3Bo5iUgMOZUlm6H3
-	 4fFyz9tw8pS/MN7UGjgwxHj+VeTQ7Om5WPfkZnNTH5R3v/4ZtGXb6m6J8m9X5l3FDn
-	 1i1JgMP4C+tlQ==
-Date: Sat, 4 Jan 2025 11:14:58 +0100
+	b=lowWq/CE7cZBlIwEINO9y5sbUhfF1EDr8EmDShKB3l5+8YdWIwMFM0tliVJO5Kw5R
+	 ShhUSiOKMHWO99aY8bE6Y3KQhrMgZALSmmNiGtj2vtIK5+o37tczA3QqxZyYRZpKQs
+	 laJiCm7XlP2bB6L8I8Hmkc9YD2TIvcwWAlJXEXXYtspOjEhTg/etPocPmrj/R34Isq
+	 3Kj1E1iaiKhOYz42+VrGyo4DfByznGMx7ZBoUSmOsnL2PYJRfSxoKGRtaJs/6yaO1V
+	 nQrDA2PkYdWKaECuKcaVaD/n7q0EKPEBdQYBuXNIArYDgzVThDZmcB0zVgwYXdphZ5
+	 VjnYbfjQ5cZ2Q==
+Date: Sat, 4 Jan 2025 11:16:41 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, aaro.koskinen@iki.fi, andreas@kemnade.info, 
-	khilman@baylibre.com, rogerq@kernel.org, tony@atomide.com, jerome.neanne@baylibre.com, 
-	linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	m-leonard@ti.com, praneeth@ti.com, christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v2 5/7] regulator: tps65215: Update platform_device_id
- table
-Message-ID: <rnqlswgkn2gl4yprxu4h4a3fp3ajelf2ksinjjq72f73bqzxsl@icxg7v5ujzbs>
-References: <20250103230446.197597-1-s-ramamoorthy@ti.com>
- <20250103230446.197597-6-s-ramamoorthy@ti.com>
+To: Vasily Khoruzhick <anarsoul@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Maxime Ripard <mripard@kernel.org>, Roman Beranek <me@crly.cz>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Dragan Simic <dsimic@manjaro.org>, 
+	Frank Oltmanns <frank@oltmanns.dev>, Stuart Gathman <stuart@gathman.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X
+ and PLL_MIPI
+Message-ID: <pc7en2jjvce6et6s22sdfooixxxos4u5bitcfhylt7ms65o7wt@bxdvnyeus7b3>
+References: <20250104074035.1611136-1-anarsoul@gmail.com>
+ <20250104074035.1611136-2-anarsoul@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +65,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250103230446.197597-6-s-ramamoorthy@ti.com>
+In-Reply-To: <20250104074035.1611136-2-anarsoul@gmail.com>
 
-On Fri, Jan 03, 2025 at 05:04:44PM -0600, Shree Ramamoorthy wrote:
-> Add TI TPS65215 PMIC to the existing platform_device_id struct, so the
-> regulator probe() can match which PMIC chip_data information.
+On Fri, Jan 03, 2025 at 11:36:57PM -0800, Vasily Khoruzhick wrote:
+> Export PLL_VIDEO_2X and PLL_MIPI, these will be used to explicitly
+> select TCON0 clock parent in dts
+> 
+> Fixes: ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in TCON0 mux")
+> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
-Why is this a separate commit? Adding new device support is one commit -
-so the tables, regulator definition and the quirks/ID table.
+Where did this happen?
 
-The next commit will be adding new entry to of_device_id?
+> Tested-by: Frank Oltmanns <frank@oltmanns.dev> # on PinePhone
+> Tested-by: Stuart Gathman <stuart@gathman.org> # on OG Pinebook
+
+And these? I cannot find traces on the list.
 
 Best regards,
 Krzysztof
