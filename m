@@ -1,191 +1,143 @@
-Return-Path: <devicetree+bounces-135513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADB15A0134E
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 09:39:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0DFA0138E
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:23:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2E99164123
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 08:39:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5DD3161FF5
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 09:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669AE165F1A;
-	Sat,  4 Jan 2025 08:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F57E15B0F2;
+	Sat,  4 Jan 2025 09:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SAFRsc/3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MLpCZw4S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD75156F2B;
-	Sat,  4 Jan 2025 08:39:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECC6AF9D9;
+	Sat,  4 Jan 2025 09:23:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735979965; cv=none; b=Co+B21eh+kCWwLVSSOcHpCplQCTBoITfZ8SlZy554YnkYdQjNk6AXzp6WSpIM0KXzxeqTaBLb6/FAEO5wrVON6Wha25lKOQNsoGCycCNkb3QzqZktBGGDOnVE0JB+jb2wGw6h5nFRd44gMtfoZXSi+nvtzqJZnJZHiOnlYFQWuk=
+	t=1735982635; cv=none; b=PQy6ldFGF8YpMpGmpHWHOX9UbPAW2Aaa7mGxYcrG/BC6krT0fq9XDyEKsiEIxzv4+nMthOsMF6whwVT4kThxI3JORTJqkEiXGFSGuPsjYO1t9G+zqbqi7Lu6f3bMQFx24G4vpEvqZ63bhq8JTm5GoGzYvJPXB8T8eHnUJ1l5vpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735979965; c=relaxed/simple;
-	bh=rFBnzSQ4rK5w/x0CPH/EAzDZ6VubNpuVUGmGvhtpRtg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eytq8QMFSTgzFHrj5JM67ME7qkU4PsktGXNvpilHykCLUaqhMK7PFHzuW/uofoKVi8HDRiFvbnqs9b8+S7kDNNEsvA64R8ZmjzlDq8vxUw6w7xmqx5gBevJ/HYJUo2VtU5ZKyi+4QOsapjQaii/H4aNK9NvEMqdFd31Lu389iXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SAFRsc/3; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1735979963; x=1767515963;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rFBnzSQ4rK5w/x0CPH/EAzDZ6VubNpuVUGmGvhtpRtg=;
-  b=SAFRsc/3nPmfkIxK5ij2QTitWlHSHRutVawZun3hdE/4V0YtnC3PoDOy
-   l4sgqeLqqrDh3LAG9yAF/ttiDV5f6Aen7N9sill3vEVm1Ct7KgfgtI/7N
-   nND5zhSMZT1MXkM12Qop76QJuNx+WTK8JzVD0O1FZIGabvxuwTbX0uc9g
-   nfJOanc+cGJvQF8XX3wfcG+XfpBCISFLjNPbMe+Kur3b0QVuV4Oqp+YR2
-   1ji0isL1qt4nQgVinJd9fCeARqYY+ovJ4/uQDX5vfcxsdD77EaI4ZGLZE
-   V9EN53zXzN0NANw+vkQjT98syKxHDVsbsEjfA3Om0/NYxTHuu13wCx+gm
-   A==;
-X-CSE-ConnectionGUID: 2EepHB9AQsOApIdogaN4Uw==
-X-CSE-MsgGUID: XO+eU/1+RvCwXYZUITOnlw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11304"; a="36109713"
-X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; 
-   d="scan'208";a="36109713"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2025 00:39:22 -0800
-X-CSE-ConnectionGUID: Tnk0+16tTl2lpglMqFg4xA==
-X-CSE-MsgGUID: FMDfiChcSbSzsT9k1Mcndw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,288,1728975600"; 
-   d="scan'208";a="102491781"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 04 Jan 2025 00:39:18 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tTzgi-000Alz-0m;
-	Sat, 04 Jan 2025 08:39:16 +0000
-Date: Sat, 4 Jan 2025 16:38:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Shree Ramamoorthy <s-ramamoorthy@ti.com>, lgirdwood@gmail.com,
-	broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, aaro.koskinen@iki.fi, andreas@kemnade.info,
-	khilman@baylibre.com, rogerq@kernel.org, tony@atomide.com,
-	jerome.neanne@baylibre.com, linux-omap@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, m-leonard@ti.com, praneeth@ti.com,
-	christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v2 2/7] regulator: tps65215: Update function & struct
- names
-Message-ID: <202501041639.sIGy7REE-lkp@intel.com>
-References: <20250103230446.197597-3-s-ramamoorthy@ti.com>
+	s=arc-20240116; t=1735982635; c=relaxed/simple;
+	bh=2fizrOeFdxzxEs3HnJpNgKdl4YmsAb+Ih8fW5Ysihvw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OsgAuoyEeaxaRqxqmmQKKz+Dx0Lc6fPPUhi3OmtrSGAkXAXfa9dS5hcsA/TLSUKSgZbdPVrt1dO04MvuT/NRoyhYNRpj/2ZNn2qr0o/0imdqgm8V8L88OxlWCM8u1BpXLcDlXw+w/+Zyhm2ZaiW0Ko4MakPsV9LdUJ9w0aQnEfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MLpCZw4S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD35CC4CED1;
+	Sat,  4 Jan 2025 09:23:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1735982634;
+	bh=2fizrOeFdxzxEs3HnJpNgKdl4YmsAb+Ih8fW5Ysihvw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MLpCZw4Sc/O/jeOcI0lO9U8bnMNAkz359e7b9+//cZqBIe5yNu37G2l7502uVhKnH
+	 T59wsEMuxh7qKciiBwSD6CmtW5grCFFCeiCBEqKQ78nSSVLiMvj3QaKp1qm4fAwncu
+	 /vq+NqnlAgaTPB+22GqGWt18g9sldU+2/t4lthlOanrP1CC8JftjxvVfzcIVJsLHIv
+	 xZDYWGMDsyqL33+1fJepMwfZ00mKgRduK/q4FxymWSFp5BnYSl2RDLi3Ycz3u2dQDC
+	 r2U7FixD1S5T1LaG/vOMNKJowhZqmY8c9A1MsajXymFIvy8J8D7JWBmdt1MN+futP5
+	 7hD3Q8+hj8lnA==
+Message-ID: <9c881612-d80a-4656-aac2-f6134c274167@kernel.org>
+Date: Sat, 4 Jan 2025 10:23:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250103230446.197597-3-s-ramamoorthy@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] dt-bindings: power: supply: add max77759-fg flavor
+To: Thomas Antoine <t.antoine@uclouvain.be>,
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be>
+ <20250102-b4-gs101_max77759_fg-v2-2-87959abeb7ff@uclouvain.be>
+ <cf75f897-1c00-4a37-bce3-f1eb9855a3cd@kernel.org>
+ <2eb1f056-4102-4536-90d1-9d5df1fd2cb5@uclouvain.be>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <2eb1f056-4102-4536-90d1-9d5df1fd2cb5@uclouvain.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Shree,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on broonie-regulator/for-next]
-[also build test ERROR on next-20241220]
-[cannot apply to robh/for-next tmlind-omap/for-next linus/master v6.13-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Shree-Ramamoorthy/regulator-dt-bindings-Add-TI-TPS65215-PMIC-bindings/20250104-070914
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-patch link:    https://lore.kernel.org/r/20250103230446.197597-3-s-ramamoorthy%40ti.com
-patch subject: [PATCH v2 2/7] regulator: tps65215: Update function & struct names
-config: i386-buildonly-randconfig-004-20250104 (https://download.01.org/0day-ci/archive/20250104/202501041639.sIGy7REE-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250104/202501041639.sIGy7REE-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501041639.sIGy7REE-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/regulator/tps65219-regulator.c:261:44: error: 'TPS65215_LDO_2' undeclared here (not in a function); did you mean 'TPS65219_LDO_2'?
-     261 |         TPS65219_REGULATOR("LDO2", "ldo2", TPS65215_LDO_2,
-         |                                            ^~~~~~~~~~~~~~
-   drivers/regulator/tps65219-regulator.c:99:43: note: in definition of macro 'TPS65219_REGULATOR'
-      99 |                 .id                     = _id,                          \
-         |                                           ^~~
->> drivers/regulator/tps65219-regulator.c:263:28: error: 'TPS65215_REG_LDO2_VOUT' undeclared here (not in a function); did you mean 'TPS65219_REG_LDO2_VOUT'?
-     263 |                            TPS65215_REG_LDO2_VOUT,
-         |                            ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/regulator/tps65219-regulator.c:104:43: note: in definition of macro 'TPS65219_REGULATOR'
-     104 |                 .vsel_reg               = _vr,                          \
-         |                                           ^~~
->> drivers/regulator/tps65219-regulator.c:266:28: error: 'TPS65215_ENABLE_LDO2_EN_MASK' undeclared here (not in a function); did you mean 'TPS65219_ENABLE_LDO2_EN_MASK'?
-     266 |                            TPS65215_ENABLE_LDO2_EN_MASK, 0, 0, tps65215_ldo_2_range,
-         |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/regulator/tps65219-regulator.c:111:43: note: in definition of macro 'TPS65219_REGULATOR'
-     111 |                 .enable_mask            = _em,                          \
-         |                                           ^~~
-   In file included from include/linux/kernel.h:16,
-                    from drivers/regulator/tps65219-regulator.c:12:
-   drivers/regulator/tps65219-regulator.c: In function 'tps65219_regulator_probe':
-   drivers/regulator/tps65219-regulator.c:328:36: error: 'regulators' undeclared (first use in this function); did you mean 'regulator'?
-     328 |         for (i = 0; i < ARRAY_SIZE(regulators); i++) {
-         |                                    ^~~~~~~~~~
-   include/linux/array_size.h:11:33: note: in definition of macro 'ARRAY_SIZE'
-      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
-         |                                 ^~~
-   drivers/regulator/tps65219-regulator.c:328:36: note: each undeclared identifier is reported only once for each function it appears in
-     328 |         for (i = 0; i < ARRAY_SIZE(regulators); i++) {
-         |                                    ^~~~~~~~~~
-   include/linux/array_size.h:11:33: note: in definition of macro 'ARRAY_SIZE'
-      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
-         |                                 ^~~
-   In file included from include/linux/array_size.h:5:
-   include/linux/compiler.h:245:77: error: expression in static assertion is not an integer
-     245 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg) ((int)sizeof(struct {_Static_assert(!(e), msg);}))
-         |                                                                             ^
-   include/linux/compiler.h:249:33: note: in expansion of macro '__BUILD_BUG_ON_ZERO_MSG'
-     249 | #define __must_be_array(a)      __BUILD_BUG_ON_ZERO_MSG(__same_type((a), &(a)[0]), "must be array")
-         |                                 ^~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/array_size.h:11:59: note: in expansion of macro '__must_be_array'
-      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
-         |                                                           ^~~~~~~~~~~~~~~
-   drivers/regulator/tps65219-regulator.c:328:25: note: in expansion of macro 'ARRAY_SIZE'
-     328 |         for (i = 0; i < ARRAY_SIZE(regulators); i++) {
-         |                         ^~~~~~~~~~
-   drivers/regulator/tps65219-regulator.c: At top level:
-   drivers/regulator/tps65219-regulator.c:270:36: warning: 'tps65219_regs' defined but not used [-Wunused-const-variable=]
-     270 | static const struct regulator_desc tps65219_regs[] = {
-         |                                    ^~~~~~~~~~~~~
-   drivers/regulator/tps65219-regulator.c:259:36: warning: 'tps65215_regs' defined but not used [-Wunused-const-variable=]
-     259 | static const struct regulator_desc tps65215_regs[] = {
-         |                                    ^~~~~~~~~~~~~
-   drivers/regulator/tps65219-regulator.c:228:36: warning: 'common_regs' defined but not used [-Wunused-const-variable=]
-     228 | static const struct regulator_desc common_regs[] = {
-         |                                    ^~~~~~~~~~~
+On 03/01/2025 17:16, Thomas Antoine wrote:
+>>> -  reg:
+>>> -    items:
+>>> -      - description: ModelGauge m5 registers
+>>> -      - description: Nonvolatile registers
+>>
+>> Widest constraints always stay here.
+>>
+>> See:
+>> https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L127
+>>
+>> I did not say to remove it. I asked you to add allOf section restricting it.
+> 
+> Thanks for the example. I think I understand now. I will put the reg section
+> back and use min/maxItems in the allOf:if: to set the number of reg/reg-names
+> to 1 for the MAX77759.
+> 
+> Do I keep shunt-resistor-micro-ohms as I did it here? I could move it in
 
 
-vim +261 drivers/regulator/tps65219-regulator.c
+Depends, where does it come from? What does the other referenced schema say?
 
-   258	
-   259	static const struct regulator_desc tps65215_regs[] = {
-   260		// TPS65215's LDO2 is the same as TPS65219's LDO3
- > 261		TPS65219_REGULATOR("LDO2", "ldo2", TPS65215_LDO_2,
-   262				   REGULATOR_VOLTAGE, ldos_3_4_ops, 64,
- > 263				   TPS65215_REG_LDO2_VOUT,
-   264				   TPS65219_BUCKS_LDOS_VOUT_VSET_MASK,
-   265				   TPS65219_REG_ENABLE_CTRL,
- > 266				   TPS65215_ENABLE_LDO2_EN_MASK, 0, 0, tps65215_ldo_2_range,
-   267				   3, 0, 0, NULL, 0, 0),
-   268	};
-   269	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Krzysztof
 
