@@ -1,139 +1,192 @@
-Return-Path: <devicetree+bounces-135536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A96A013ED
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 11:23:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A95A013EA
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 11:23:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FB913A4305
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:23:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26AC17A1D21
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 10:23:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED921B2186;
-	Sat,  4 Jan 2025 10:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83478185B62;
+	Sat,  4 Jan 2025 10:23:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pyFIwVN8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6D614E2E2;
-	Sat,  4 Jan 2025 10:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27FD84E1C
+	for <devicetree@vger.kernel.org>; Sat,  4 Jan 2025 10:23:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1735986218; cv=none; b=ann1DpuP1o7qZyfKp+FAZvKuaJMIfqJtyQT6D0neIyDszJFs+TCRWuyJpsLOpIlj1sOfPaXmrEyW4VeIJeGdGHpcFq8/VFSUmqzHWck2LlBBMWnHpw+7/8QCRN10g+e1w4PlBPCB3Rqh3y0pEMBWNRsznUlbIYEiS2k1rtMrd5M=
+	t=1735986215; cv=none; b=UhtZGl9gVP7Q2vXTrrtFyFhq86e7FuTTzpKxVhF2gC0YnRpbstgUb8J+sEHXlOl7C5951eW4f+4csgD+bt/DjayrTFk1LHlD/kymdrQjHyrx57DoLqme2jw4LVBeBV9l4A13e2Lx2eZBDmytkcoO5PAAJ7JgAk7wJoTFtsE7t2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1735986218; c=relaxed/simple;
-	bh=qbr+GcXOv2DoG0CYyHwRoeofsAPEe/QqE00NDXmp92E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FdkHLt/vmypEsGJGte7zznKwhxPhLZzP83Dzz0mTi/Cbhp9qSmTVTB7mOf5EPGvOScOjo9+XYg9jGpf2LWTysVYKoDDZQ7h1Coq4JuMwe/YxXgOdchm+Fpx1R5fFPm3qG1xFFSq7QdBWCTX/rzZRgdMZv5+JZk7OS4pH4x/IIu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-54024aa9febso14214457e87.1;
-        Sat, 04 Jan 2025 02:23:36 -0800 (PST)
+	s=arc-20240116; t=1735986215; c=relaxed/simple;
+	bh=Fdf1rjpjA6sxjXaV2e0oeC/d7EbPbdaM3pY/SSgVVFI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WwOsukl0DGjV9WmNjXoAUPjyGxOvWFKWvKfNnPFbKsOOHablzgqMQrmuEbMdFs/Ny/SiHD4+rNQDzRwPHy3dG/t4rzy5VcAC9hxjxZUwrHAKfsBGhoXR4jNrvUWaN4ThCq4eGbWH/5/SbkDTeR8NsHBweC+w9fF/DP/nu/tg+kE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pyFIwVN8; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-21636268e43so101683765ad.2
+        for <devicetree@vger.kernel.org>; Sat, 04 Jan 2025 02:23:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1735986213; x=1736591013; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=d7WWzM81eH7w8ivFPUo0nbOJxsERMoQeN/4oy/OiqOM=;
+        b=pyFIwVN8oIktyB1u2mXkK8eqFTOVEVbOBNfwfu/5YQxjWP5WqoaT382hBoA5WfLbQ7
+         ESO3fy9qaAYRfA23Jz+NZIRyg+tKFP7FDyNeuJ699rDmwRM7IhZc6VSmTOC2DTWMoTV2
+         J4kgRECsPU+oPoOOw5n2DMkvAU5QCW6Ne13kl/MMUvsiEZisk5KrGb89hCp4rbt2JqSZ
+         mQoGlcA8zZRwfWQw7BiLT9lTJ3mFX1PeyiI5hme4IGUO9sURDSy4mcIYR9WcHuUGWfBN
+         7lv+ybG4BvxV1KjQRUkuPvRg3BWStwQks0dsp/S5cg0nkLHAiqfuzYMGQZ33Wj8GwVm7
+         +0AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1735986212; x=1736591012;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5oEoAKKEizk1AGrodmNZICCaBPTxNB6DvcRBoDziYoQ=;
-        b=uB2udBMI6+9T+1FTGWeuN/mUv+HDSIqbx9P4kZV9QUCG+S2fzJEzj254M2q+kcFkY9
-         C2r27JSktiut0cJuMWWSGu89OUlNsrsiwjQUix+PtLXRFxpvGjBqaWfapZNTH6hmWOD1
-         +m8UUgMJBQuGai6mSdhphouPIAntTPneKknm9egB9hiCdtAc0dVwCuJpuhfkqYEtxayt
-         I+oWHBE3rJhg4VNdeWRZcW6XqiqNyYWp3CfBO2wzYqK++fFYQhdZJqsqcSwYBwC18gs5
-         Rx+U0hbhyLR45j/oEBDYZWylBs+EBXQIheC7STyuWjRW4iWdzvVD2mjmU0kK7QLtW8NW
-         Wbug==
-X-Forwarded-Encrypted: i=1; AJvYcCV5G+LPjGwd0yrRDe02OOnmMx9SeZbWSf2PofNb1CPq6MpZEVhSVxPSzYdAeXwTOD1wqsW4f9S2Z8HO/wPV@vger.kernel.org, AJvYcCVi3UyM61pU20ZUBSr0qn9P76rKEBzQ75dUCMHvwmQe1AoZpR9hdfpupLJLoYze3dlIJFn/Wb0fc7iy@vger.kernel.org, AJvYcCWpVqoM6ycor6qnoWrEHHx8hspj2zubrTMntFN+fkAUNWzjBLhFCtmxt+/qV59LN+No7I4u0UWcbYRZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIMMLIj2WZphYL5/NjzjXOhaKx5XrE5BTdjaNoN7RY5HC/GG48
-	j/lq4Bd37YFHb8I3rv/quLbS/c8DOg3YGP/upuObaaw4o6JBg+917FJuXQs4
-X-Gm-Gg: ASbGncvMeauk8UICz9ST+YUtKqtxCTrDm5K7NSfs3lMnG47XXUaGBu1kADj0JNjUcxy
-	pq45q8gwNuHIMh0K/DkUfu2nySLmFmYfNNef05UxAp4O8/8+RKatw/6cCPT4xfcGNbYUlnfpnDo
-	Dr6l1XJDoxOiaj7Izee7Q2ezmWxYit+6EhRWVTLfHORbNHIaevc+DXW7Blz5IB7431upIM9vXwI
-	Zd0MJQ3mXayCB3Jr3vmu/zuwhikkO+/MQx8GxbNyg7dKBaBSRO5H3jnxX66WsF6ciIWYQlICZC2
-	PrE7sV2J0w==
-X-Google-Smtp-Source: AGHT+IFACAZBvpUL79CLLZ+uB/3EsilVf26Uuk2IFOkbkDoMKNSuQQ+jGQ5SquuM4Qc9d90lFyhDsA==
-X-Received: by 2002:a05:6512:6d3:b0:542:1137:611a with SMTP id 2adb3069b0e04-54229533db1mr18665396e87.17.1735986211920;
-        Sat, 04 Jan 2025 02:23:31 -0800 (PST)
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com. [209.85.167.53])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54262e9a279sm874328e87.15.2025.01.04.02.23.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Jan 2025 02:23:31 -0800 (PST)
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-54024aa9febso14214430e87.1;
-        Sat, 04 Jan 2025 02:23:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU8Xjvvk1Qoktei8lb8/7FszaaHH55fAv4QdoIlx8eoMujowYKe5+UkTjeUfoGsUGnuMpqA1prKXn7ffrYR@vger.kernel.org, AJvYcCVSZl1t3gz0qneVij4NksBNkTlj2s6CNJuCQVDgJt7xWCWezgGiPYlRYvIh8q2Q8Sl1ahi6BOf7p8Y+@vger.kernel.org, AJvYcCWKAiMQv6T+IaaTTGeef/N+3iirzf6e8wiquyaGejsvp5MuVWcPeGcgoKYEbHLhgjxOi+LYQ+LU89CF@vger.kernel.org
-X-Received: by 2002:a05:6512:2399:b0:53e:362e:ed3 with SMTP id
- 2adb3069b0e04-542295253cdmr14007249e87.1.1735986209772; Sat, 04 Jan 2025
- 02:23:29 -0800 (PST)
+        d=1e100.net; s=20230601; t=1735986213; x=1736591013;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d7WWzM81eH7w8ivFPUo0nbOJxsERMoQeN/4oy/OiqOM=;
+        b=TyluYBYFFiso/3O+XHYo0UsYiXRSlIyublvakKEaBzKUMcM62+L+GEXt6eTItZ3g8P
+         GyAMwx6pHmKsssMZNepaE0HZypjCmYHXZOCapQmJrEHu/MhDw+KnBbSx/tnSnHV2M1Fi
+         Sn5PJOB3T1i8XLu1MshXZNoMFyuTCJ0KNi/aJyvgN9tYJ+iMl16OUwHoJgS6vhDB8BAf
+         9gUU6Gp8eAuAdKmwp5rmIpkMCOvhbCMh31F5a5ZUgtGYmxjyDLcX2VKtPTNwqBVNHXwl
+         Z+5ODd7NVo0J1dhzm1vMKc6YkV5kKSKLs6sf9PyPgvvpmQlWz/qwhhLL9dNEfu6p4TY7
+         zSsA==
+X-Forwarded-Encrypted: i=1; AJvYcCVYk6I/ZPgjtcozTjFaCLzL1VSlFrZvTd0elBVCFUcjTQX7hdRtFcWyJfO65qLkwVH+T4F+HEaKc4e3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8meda4HOaI72LOmbUXKIc7xw8yLOydLOFNnzaSxNNWbf/u/OP
+	M6WapN7Wx1JPlg1cTfLgWRhHh4GP7tgOr41YB1znMyUp63k11ZInnXrIT1XiaA==
+X-Gm-Gg: ASbGncsuKtrs+l42FbMkMXGnaBuTA/OOqH+mlHvw6opJ1WMqwbBfErDdqXlOFWpyqlj
+	fWsmh4VBlUoB4fyMxNNaAHp3pJEWy57UedA3hkYOHPFiTAthIH2KtPN5suTX1zf5iQi77LMJh4z
+	AeH/sMtQhmJttYzfBoJcVNMkUmgap6sEb4CCL/V5FoGlSlFSpnCh9qk4KdTXKS3wCW2UU4Mh7/k
+	rYE843NI3GzmdkaXG4wDX+kcgcupymzXr74mR6mhEWPnRmm+VmI0AogJcFGLnYNywo=
+X-Google-Smtp-Source: AGHT+IGcYitKOORgbvygOZzt0NgzHQbBY9dbcSLI15yYAQJ/pt0tykyK+M3h+WkGeOApZbx9WoujYg==
+X-Received: by 2002:a17:903:320a:b0:216:6901:d599 with SMTP id d9443c01a7336-219e6e9e86emr788176895ad.13.1735986213063;
+        Sat, 04 Jan 2025 02:23:33 -0800 (PST)
+Received: from thinkpad ([36.255.17.199])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc962bfasm258736595ad.2.2025.01.04.02.23.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Jan 2025 02:23:32 -0800 (PST)
+Date: Sat, 4 Jan 2025 15:53:27 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: kernel test robot <lkp@intel.com>
+Cc: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, oe-kbuild-all@lists.linux.dev,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Qiang Yu <quic_qianyu@quicinc.com>
+Subject: Re: [PATCH v2 6/6] PCI/pwrctrl: Add pwrctrl driver for PCI Slots
+Message-ID: <20250104102327.fxswvs3dvsixbsh3@thinkpad>
+References: <20241231-pci-pwrctrl-slot-v2-6-6a15088ba541@linaro.org>
+ <202501020407.HmQQQKa0-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250104074035.1611136-1-anarsoul@gmail.com> <20250104074035.1611136-2-anarsoul@gmail.com>
-In-Reply-To: <20250104074035.1611136-2-anarsoul@gmail.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Sat, 4 Jan 2025 18:23:17 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66W9q-uQkepYgrD9QKnOwmpUdDakRoKjmsT_4=Adyj09Q@mail.gmail.com>
-Message-ID: <CAGb2v66W9q-uQkepYgrD9QKnOwmpUdDakRoKjmsT_4=Adyj09Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and PLL_MIPI
-To: Vasily Khoruzhick <anarsoul@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Maxime Ripard <mripard@kernel.org>, Roman Beranek <me@crly.cz>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Dragan Simic <dsimic@manjaro.org>, 
-	Frank Oltmanns <frank@oltmanns.dev>, Stuart Gathman <stuart@gathman.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <202501020407.HmQQQKa0-lkp@intel.com>
 
-On Sat, Jan 4, 2025 at 3:40=E2=80=AFPM Vasily Khoruzhick <anarsoul@gmail.co=
-m> wrote:
->
-> Export PLL_VIDEO_2X and PLL_MIPI, these will be used to explicitly
-> select TCON0 clock parent in dts
->
-> Fixes: ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in TCON0 =
-mux")
-> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
-> Tested-by: Frank Oltmanns <frank@oltmanns.dev> # on PinePhone
-> Tested-by: Stuart Gathman <stuart@gathman.org> # on OG Pinebook
-> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-> ---
->  include/dt-bindings/clock/sun50i-a64-ccu.h | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/include/dt-bindings/clock/sun50i-a64-ccu.h b/include/dt-bind=
-ings/clock/sun50i-a64-ccu.h
-> index 175892189e9d..4f220ea7a23c 100644
-> --- a/include/dt-bindings/clock/sun50i-a64-ccu.h
-> +++ b/include/dt-bindings/clock/sun50i-a64-ccu.h
-> @@ -44,7 +44,9 @@
->  #define _DT_BINDINGS_CLK_SUN50I_A64_H_
->
->  #define CLK_PLL_VIDEO0         7
-> +#define CLK_PLL_VIDEO0_2X      8
->  #define CLK_PLL_PERIPH0                11
-> +#define CLK_PLL_MIPI           17
+On Thu, Jan 02, 2025 at 04:56:44AM +0800, kernel test robot wrote:
+> Hi Manivannan,
+> 
+> kernel test robot noticed the following build errors:
+> 
+> [auto build test ERROR on 40384c840ea1944d7c5a392e8975ed088ecf0b37]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam-via-B4-Relay/regulator-Guard-of_regulator_bulk_get_all-with-CONFIG_OF/20241231-174751
+> base:   40384c840ea1944d7c5a392e8975ed088ecf0b37
+> patch link:    https://lore.kernel.org/r/20241231-pci-pwrctrl-slot-v2-6-6a15088ba541%40linaro.org
+> patch subject: [PATCH v2 6/6] PCI/pwrctrl: Add pwrctrl driver for PCI Slots
+> config: x86_64-randconfig-074-20250102 (https://download.01.org/0day-ci/archive/20250102/202501020407.HmQQQKa0-lkp@intel.com/config)
+> compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250102/202501020407.HmQQQKa0-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202501020407.HmQQQKa0-lkp@intel.com/
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    drivers/pci/pwrctrl/slot.c: In function 'pci_pwrctrl_slot_probe':
+> >> drivers/pci/pwrctrl/slot.c:39:15: error: implicit declaration of function 'of_regulator_bulk_get_all'; did you mean 'regulator_bulk_get'? [-Werror=implicit-function-declaration]
+>       39 |         ret = of_regulator_bulk_get_all(dev, dev_of_node(dev),
+>          |               ^~~~~~~~~~~~~~~~~~~~~~~~~
+>          |               regulator_bulk_get
 
-You can't really split code movement into two patches.
+Sigh! The driver was built with !CONFIG_REGULATOR. This requires fixing
+'include/linux/regulator/consumer.h'. Will add it in next iteration.
 
-With this patch applied the clk driver will fail to build because
-the macros are now redefined in both header files.
+- Mani
 
-Barring recombining the patches, please add a patch before this
-adding #ifndef's around the two macros that are moved.
+>    cc1: some warnings being treated as errors
+> 
+> 
+> vim +39 drivers/pci/pwrctrl/slot.c
+> 
+>     28	
+>     29	static int pci_pwrctrl_slot_probe(struct platform_device *pdev)
+>     30	{
+>     31		struct pci_pwrctrl_slot_data *slot;
+>     32		struct device *dev = &pdev->dev;
+>     33		int ret;
+>     34	
+>     35		slot = devm_kzalloc(dev, sizeof(*slot), GFP_KERNEL);
+>     36		if (!slot)
+>     37			return -ENOMEM;
+>     38	
+>   > 39		ret = of_regulator_bulk_get_all(dev, dev_of_node(dev),
+>     40						&slot->supplies);
+>     41		if (ret < 0) {
+>     42			dev_err_probe(dev, ret, "Failed to get slot regulators\n");
+>     43			return ret;
+>     44		}
+>     45	
+>     46		slot->num_supplies = ret;
+>     47		ret = regulator_bulk_enable(slot->num_supplies, slot->supplies);
+>     48		if (ret < 0) {
+>     49			dev_err_probe(dev, ret, "Failed to enable slot regulators\n");
+>     50			goto err_regulator_free;
+>     51		}
+>     52	
+>     53		ret = devm_add_action_or_reset(dev, devm_pci_pwrctrl_slot_power_off,
+>     54					       slot);
+>     55		if (ret)
+>     56			goto err_regulator_disable;
+>     57	
+>     58		pci_pwrctrl_init(&slot->ctx, dev);
+>     59	
+>     60		ret = devm_pci_pwrctrl_device_set_ready(dev, &slot->ctx);
+>     61		if (ret)
+>     62			return dev_err_probe(dev, ret, "Failed to register pwrctrl driver\n");
+>     63	
+>     64		return 0;
+>     65	
+>     66	err_regulator_disable:
+>     67		regulator_bulk_disable(slot->num_supplies, slot->supplies);
+>     68	err_regulator_free:
+>     69		regulator_bulk_free(slot->num_supplies, slot->supplies);
+>     70	
+>     71		return ret;
+>     72	}
+>     73	
+> 
+> -- 
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
 
-ChenYu
-
-
->  #define CLK_CPUX               21
->  #define CLK_BUS_MIPI_DSI       28
-> --
-> 2.47.1
->
+-- 
+மணிவண்ணன் சதாசிவம்
 
