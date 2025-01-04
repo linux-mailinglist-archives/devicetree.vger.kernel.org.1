@@ -1,176 +1,208 @@
-Return-Path: <devicetree+bounces-135577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43EDBA015F4
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 17:44:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98CC0A0161B
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 18:29:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F198C3A3F3F
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 16:44:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0288D1883553
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2025 17:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F04F1D514F;
-	Sat,  4 Jan 2025 16:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 749611C242C;
+	Sat,  4 Jan 2025 17:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A/FjKBRY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z7O7E18T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3B61D45EF;
-	Sat,  4 Jan 2025 16:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3462236C;
+	Sat,  4 Jan 2025 17:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736009017; cv=none; b=Jf2VsqY4H5yt233GrljzgqKL6A/XNspRJqU/0nTejI75b//ZmxafUopdLibQvModQDMTYDcKXfoaQMvudIl3rWvrQ80NXeeReGWQfxy53by5TcBPgb+hUM+wxAPGYeZVd2f53kvoK0Tav6CCcwaPRhlr6j9wK5+jyejkn9Xn+U4=
+	t=1736011790; cv=none; b=p51LgSdLCMjJXyWUYS1owLo6SXZqNFrYSraOiSVQyaWrXnXFkVZ1oKLF0pYJzaEfMcB1SgSm1LfvstNtJaFqG8jyJWWpqLni2PKaolNgb9b8d+lSSz5fQzbko16H1bOjO5PUkXtL0oQLM4wUY/1OnpLnU9QowEnBHZuUD3yRLnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736009017; c=relaxed/simple;
-	bh=MoG1sMK59thFnpAoDfcxIXy37Vob3WnUripHg04FWmQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PwYryHRNPO0CLf+76IBkk6YwkD76WwRtZyP7Ma1QjKHg1TPR32SuDSA9uegfCsKYwSLhHryqFNiU/7K41WY/NNr2SIM3s5BCyG4Bzqn1SSrKurT2lm50qJlh0Tf5CnGwNpZoLV7dqNnL+Qt4X828kdlo0Uod5VWClS1Ek2CHrxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A/FjKBRY; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-386329da1d9so6007232f8f.1;
-        Sat, 04 Jan 2025 08:43:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736009014; x=1736613814; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h+Mh3aTaCcP+5QY8RX9wcAwubgCOuVuuCWZcKrT8SyY=;
-        b=A/FjKBRYeJP0kqV0CzN5VVaWDl4dBulMvBixrpe/oVMM6RY9tLeUOAz+BSqU1jIBR0
-         1h7lzxyuznhncIrWmYba9zwkB6cXr6Gu4QuIGF1bCN4mqjoyPnwASv3t0eZ5Yz8I2/xW
-         TMvbjQaOGlKTu49WF8eKtEk9CMgP1Fv5RfcdSgnFuy1RD+pSE9PL1FzTza+iUgAHlilr
-         PFm7n6D/Yrm0dgEZ+2nUFfi+l5V+9OKJPSY2kJvXJ9vXaemQ0Em9bgFR7CC4niJO3Nyw
-         4rInk4Dj0LvwB4GGfpa5nCFLvyqTkX/ST2x2wWmKHrwb0KA7I3KwXJNrXYFE2lR2w2u7
-         5IAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736009014; x=1736613814;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h+Mh3aTaCcP+5QY8RX9wcAwubgCOuVuuCWZcKrT8SyY=;
-        b=lhPhiYwfSc3a5hnv4oCtWrys+F4UZX2+muj3ufbXVwoajUFksL5L3xJBxUkLmsMkN7
-         PBPzyUqUdXezJYz+Q5WJcaK2I5RzdISpjgojV519x4tD0sO9yZneSqjbLpqF81UhxbK3
-         oBLNemmdi4LjfFKziF1SuN4vVw+qr37Z4Ikv4QwaHUD/JiMVjWB3u0TAeXflDX0fDttU
-         cJVbT/RCKb4OejJZrcTWhFle9Abl73c1QN88hOH3gRCkaEKVuwzGIV7VqCZRsdoF2YOE
-         T/QJKuPpr/JB5EMiU0KC98TSEBwkoQkC4TQfFFbxhzDMBworW+sdAGBTHRSwi9DiCXQT
-         Zsow==
-X-Forwarded-Encrypted: i=1; AJvYcCUHUFado5mmK5ZU6PUY3xEI88cVQhzEAx9eRv3CLxPh/SPAnXZHjbWMmN0hqWSWnaCKzUxJRtmGIeLnfIKA@vger.kernel.org, AJvYcCW14mmchu7mqBClLMSzWEwqvTbKMvp5XpTKXCR8d4uSJceOG/dGm7y4+p3QMq9P4Bc+ycdy2sWEUVj2Gq3nY0EZoHs=@vger.kernel.org, AJvYcCXBIVtodLJqFmkRSf1v0K/ljMVBYFMWjB3TbDKvL+6C+I9pdJeG/CnpJxGxlbYaSZ+bXkInTBlUaZQj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlKQQeQQNxaBq10/HWqx1E7gVA8fG4Z6ZJfcAROnodDFWKNFgP
-	HJ9bcuqtnyVgcdmDIQxHPD9xAaCihQydfSdWEFetk14dw8buYufI
-X-Gm-Gg: ASbGncuKMpFEvf6kDBTWPrZhmgLdauLTqgO6Z7JyOnReB5kOlhO4HpkCSj0KU4CjBnA
-	J/M4ABcii/4NXlkWUM7Tf9lIeIG97jzBrHDogNNg/qmIbHMXjtuIZkD1pQ8ht9Wybz3tPIUNxjq
-	VOboZiY7f9laF6Z7Kcn065KMY4sJRz9GwDXvq9IkwPDJwO03vzMh00w07/gZ/u3Db8x3QdiR8a2
-	PQyS8M3ajRlN/km0ZHhXSZJD8oHWPCBQKR7ac7GM5vNBJ3IbEFcWsWQ6MhGgZcaSlO4Khs=
-X-Google-Smtp-Source: AGHT+IGVyo1OKwPQhJDAQ+1vJHH1lkygpP9pytkfgJ0oMMtcQZBmktlNJMzxUHttbVIZzvBivDCxnw==
-X-Received: by 2002:a5d:5f88:0:b0:385:f69a:7e5f with SMTP id ffacd0b85a97d-38a223ff3cbmr39539122f8f.38.1736009013886;
-        Sat, 04 Jan 2025 08:43:33 -0800 (PST)
-Received: from ivaylo-T580.. ([94.131.202.183])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43661219a7csm513321455e9.24.2025.01.04.08.43.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jan 2025 08:43:33 -0800 (PST)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Jaehoon Chung <jh80.chung@samsung.com>
-Cc: linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/6] arm64: dts: exynos: exynos8895-dreamlte: enable support for the touchscreen
-Date: Sat,  4 Jan 2025 18:43:21 +0200
-Message-ID: <20250104164321.333669-7-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250104164321.333669-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20250104164321.333669-1-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1736011790; c=relaxed/simple;
+	bh=2LQp/E4jBX/LFz6Xj6POQuDcTwz4Ws1x6LtC6rZ8Tqo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Br4p/QScuQRXmof+WHxGxmmr+GJMFMf8OAVa2n0MbbUBSpsxkrFz79M3xay+ivxZz4dafE29A7ussbuxetnWJNMnM0zDDjNgyIwVUavF9yI49XrYU4Tg2aQUHUsQxvsiv2HtZs0EEpIgALc+LOTT9hkV/nIfduQvimEn+4EKNF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z7O7E18T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63F72C4CED1;
+	Sat,  4 Jan 2025 17:29:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736011789;
+	bh=2LQp/E4jBX/LFz6Xj6POQuDcTwz4Ws1x6LtC6rZ8Tqo=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Z7O7E18T53GJFk1ai1NdXe9PiudmH/pTEF/eURAh+Xs99+23iX7AXuH6MXubykJdT
+	 mfrdfrkNz3Mpdo0zdcshPk8c2pngkFBCL5rlR1IlrMdcVq0FdUU5PTUMN3epJqKJlW
+	 k9jvhMkyXtjPuwhfhVYNTkT0xs5YR/GPhmL/YHNiz1sb24jERRlaEkjZ6PIMl63nhf
+	 6/Tsv9js7NF3j26tP8Mc0lbyZz97W0K2YqL7vkDXTftkN7kWus+hNpBvllAO0LwcA8
+	 +3gah6TH33SF7V5Ph1gAbVLNlHh6AZOTYAkzd/bXK9FjyT5/cJ3Gsb0xpF5P6rO/VX
+	 3ekRoDmUHkYtg==
+Message-ID: <64d14e8f-a1d5-4e04-afa7-c129cee29dc2@kernel.org>
+Date: Sat, 4 Jan 2025 19:29:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ARM: dts: omap4: panda: cleanup bluetooth
+To: Andreas Kemnade <andreas@kemnade.info>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Tony Lindgren <tony@atomide.com>
+References: <20241229230125.85787-1-andreas@kemnade.info>
+ <20241229230125.85787-3-andreas@kemnade.info>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20241229230125.85787-3-andreas@kemnade.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The Samsung Galaxy S8 uses a Samsung s6sy761 touchscreen over hsi2c23.
-Add a node for it in order to allow using the touchscreen as long as
-the previous bootloader has enabled the required regulators because
-there's no support for PMIC yet.
+Hello Andreas,
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- .../boot/dts/exynos/exynos8895-dreamlte.dts   | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
+On 30/12/2024 01:01, Andreas Kemnade wrote:
+> Bluetooth is available on the other Panda board versions, too, so move
+> stuff to common and specify the needed clock properly.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  .../boot/dts/ti/omap/omap4-panda-common.dtsi  | 30 +++++++++++++++--
+>  arch/arm/boot/dts/ti/omap/omap4-panda-es.dts  | 32 -------------------
+>  2 files changed, 28 insertions(+), 34 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi b/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi
+> index c860b590142a..c048ab9af053 100644
+> --- a/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/omap4-panda-common.dtsi
+> @@ -368,9 +368,7 @@ OMAP4_IOPAD(0x130, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c4_sda */
+>  	wl12xx_gpio: wl12xx-gpio-pins {
+>  		pinctrl-single,pins = <
+>  			OMAP4_IOPAD(0x066, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a19.gpio_43 */
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-index 6c4f8d4a9..d9b51d884 100644
---- a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-@@ -10,6 +10,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/soc/samsung,exynos-usi.h>
- 
- / {
- 	model = "Samsung Galaxy S8 (SM-G950F)";
-@@ -93,6 +94,33 @@ wink-key {
- 			wakeup-source;
- 		};
- 	};
-+
-+	/* TODO: Remove once PMIC is implemented  */
-+	reg_placeholder: regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "reg-placeholder";
-+	};
-+};
-+
-+&hsi2c_23 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	touchscreen@48 {
-+		compatible = "samsung,s6sy761";
-+		reg = <0x48>;
-+
-+		/* TODO: Update once PMIC is implemented */
-+		avdd-supply = <&reg_placeholder>;
-+		vdd-supply = <&reg_placeholder>;
-+
-+		interrupt-parent = <&gpa1>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&ts_int>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &oscclk {
-@@ -155,4 +183,16 @@ sd2_cd: sd2-cd-pins {
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
- 		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV4>;
- 	};
-+
-+	ts_int: ts-int-pins {
-+		samsung,pins = "gpa1-0";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
-+	};
-+};
-+
-+&usi9 {
-+	samsung,mode = <USI_V1_I2C0_1>;
-+	status = "okay";
- };
+We could add function name in comment? e.g. /* gpmc_a19.gpio_43 - WLAN_EN */
+
+> -			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a22.gpio_46 */
+>  			OMAP4_IOPAD(0x070, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a24.gpio_48 */
+
+This one is FM_EN and has nothing to do with WLAN.
+
+> -			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a25.gpio_49 */
+>  		>;
+>  	};
+>  
+> @@ -393,6 +391,22 @@ button_pins: button-pins {
+>  			OMAP4_IOPAD(0x114, PIN_INPUT_PULLUP | MUX_MODE3)	/* gpio_121 */
+>  		>;
+>  	};
+> +
+> +	bt_pins: bt-pins {
+> +		pinctrl-single,pins = <
+> +			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)	  /* BTEN */
+> +			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3) /* BTWAKEUP */
+
+Could we please use comment style <pin name>.<pinmux name> - Function
+			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a22.gpio_46 - BTEN */
+			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a25.gpio_49 - BTWAKEUP */
+
+> +		>;
+> +	};
+> +
+> +	uart2_pins: uart2-pins {
+> +		pinctrl-single,pins = <
+> +			OMAP4_IOPAD(0x118, PIN_INPUT_PULLUP | MUX_MODE0)  /* uart2_cts - HCI */
+> +			OMAP4_IOPAD(0x11a, PIN_OUTPUT | MUX_MODE0)	  /* uart2_rts */
+> +			OMAP4_IOPAD(0x11c, PIN_INPUT_PULLUP | MUX_MODE0)  /* uart2_rx */
+> +			OMAP4_IOPAD(0x11e, PIN_OUTPUT | MUX_MODE0)	  /* uart2_tx */
+
+Need to fix comment style to <pin name>.<pinmux name> - Function
+
+> +		>;
+> +	};
+>  };
+>  
+>  &omap4_pmx_wkup {
+> @@ -531,8 +545,20 @@ &twl_usb_comparator {
+>  };
+>  
+>  &uart2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart2_pins>;
+> +
+
+Unnecessary new line.
+>  	interrupts-extended = <&wakeupgen GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH
+>  			       &omap4_pmx_core OMAP4_UART2_RX>;
+> +
+
+Here too?
+
+> +	bluetooth {
+> +		compatible = "ti,wl1271-st";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_pins>;
+> +		enable-gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>;	/* GPIO_46 */
+> +		clocks = <&twl 0>;
+> +		clock-names = "ext_clock";
+> +	};
+>  };
+>  
+>  &uart3 {
+> diff --git a/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts b/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts
+> index fe7b156d10ed..a933fe560834 100644
+> --- a/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts
+> +++ b/arch/arm/boot/dts/ti/omap/omap4-panda-es.dts
+> @@ -49,22 +49,6 @@ button_pins: button-pins {
+>  			OMAP4_IOPAD(0x0fc, PIN_INPUT_PULLUP | MUX_MODE3) /* gpio_113 */
+>  		>;
+>  	};
+> -
+> -	bt_pins: bt-pins {
+> -		pinctrl-single,pins = <
+> -			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a22.gpio_46 - BTEN */
+> -			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a25.gpio_49 - BTWAKEUP */
+> -		>;
+> -	};
+> -
+> -	uart2_pins: uart2-pins {
+> -		pinctrl-single,pins = <
+> -			OMAP4_IOPAD(0x118, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart2_cts.uart2_cts - HCI */
+> -			OMAP4_IOPAD(0x11a, PIN_OUTPUT | MUX_MODE0)		/* uart2_rts.uart2_rts */
+> -			OMAP4_IOPAD(0x11c, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart2_rx.uart2_rx */
+> -			OMAP4_IOPAD(0x11e, PIN_OUTPUT | MUX_MODE0)		/* uart2_tx.uart2_tx */
+> -		>;
+> -	};
+>  };
+>  
+>  &led_wkgpio_pins {
+> @@ -96,19 +80,3 @@ buttonS2 {
+>  &gpio1_target {
+>  	 ti,no-reset-on-init;
+>  };
+> -
+> -&wl12xx_gpio {
+> -	pinctrl-single,pins = <
+> -		OMAP4_IOPAD(0x066, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a19.gpio_43 */
+> -		OMAP4_IOPAD(0x070, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a24.gpio_48 */
+> -	>;
+> -};
+> -
+> -&uart2 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&uart2_pins &bt_pins>;
+> -	bluetooth: tiwi {
+> -		compatible = "ti,wl1271-st";
+> -		enable-gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>;	/* GPIO_46 */
+> -	};
+> -};
+
 -- 
-2.43.0
+cheers,
+-roger
 
 
