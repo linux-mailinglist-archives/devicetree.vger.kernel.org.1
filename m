@@ -1,72 +1,74 @@
-Return-Path: <devicetree+bounces-135673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE48A01ACB
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:17:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A887DA01ACD
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:17:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD8B93A2FB8
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:17:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0037618833E4
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:18:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B68156257;
-	Sun,  5 Jan 2025 17:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5739156887;
+	Sun,  5 Jan 2025 17:17:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fvRCFaMm"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Ga6m5Bvr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2171015250F
-	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 17:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C08155359
+	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 17:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736097463; cv=none; b=HVvHgajoMLfyQde5h2h9RLJayKo58ARGEqLoM6wwzilQq/tNEj03FqNZ8yo8/2xpfVzuSSqdJAWnHBgcQUxBMFeShzBMwLcDE88HtCPtPueFXv/SxxiVx1190DW2EiCHxS8vRquc1+yJBLsNeZ0Y4NWnch0XRV3sOgxeg3v1sYA=
+	t=1736097469; cv=none; b=NAe+Bv0oWyLwcsIaOmWynWsq2co16JJkOyKd2vMCcQAXcZLOlTrVfg0wtg6OJMkRDEcv7irbeWEE+2IsRl3GbfP1cjWL7/RCFHaNG+XfdbotMiJ73uZJNyebVkvhAhPZ/TXheUecNYm+diWfAONX8kMHuYzj10exDKCSej6/XhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736097463; c=relaxed/simple;
-	bh=5k8ycTRaWzR61UJvHO40HQsKr26i4RCmw6iVaBJ1p5w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=k+4heqoJEuE0foDrt5qXqoUZ2z7WKzSycLTAPTbrjEuD55MnbXc8EXzqTgJxe1Jsx9ZlY48N0J9lP4dKhm01i57SERnEpqVw3k7OqF/nSCDCCg2/euQ9UUgrcsVIUv9pNtKccKoGuXzctNTfSs5P2RJrBSlAD/N6G/rgLibE2c8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fvRCFaMm; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1736097469; c=relaxed/simple;
+	bh=ugPkk0xuE0DOxXifT7SkqrrxnsW/tCcCapkBSno8/CM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=HCSIvcPPvdSieEPS4/LYA5jnhmJhFI6y2Wz7dHCbet4PPA2TN8Oi6g/21bz+aWKQCvX4YgqiewNnxLIOurKNetsR2ejFKpTsG6qr7OzE7MrcfprsZyeb9DC+ohru54KM253UG6DWkXDuVmdrBIHb9OEJnVjxzlsgnMdTgMmX6nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Ga6m5Bvr; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-436281c8a38so97652535e9.3
-        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 09:17:40 -0800 (PST)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-385f06d0c8eso6963092f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 09:17:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1736097459; x=1736702259; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=28ukOJT+BC5Hb4IDeNu8OIpCDoYlDgcQuEEIPI9KYoI=;
-        b=fvRCFaMm3iSp6k3o6ah86JkBAa7qoaqeJ8kI0dUvpBoOoqDNDa28kiY7tiusIcw7ek
-         XgCQppccELMRdVWo7Aqedqhg154+1l++LwjH7bqOcB7q1yPobMPX0gE31bW0RiOSn/Y8
-         W/w51YXg4lkYZRvC8UY4W0tKdOTKY92LrYKH8=
+        d=chromium.org; s=google; t=1736097466; x=1736702266; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J0GjmDNgFtYMS4CNHIpakXuXjn5IlFWM6hL+vU1HdSU=;
+        b=Ga6m5BvrEKb28exxJk19qSdosVcDzbLh14fLb7PyFGglhMGrKbeJcVLzkgqLeJakWm
+         1GV9BxvuZ7Nl1lRJj+1Wh3wXsZwlQpF12uQhxR9nRs9zvT180GNalr2VAw7ErLwOb846
+         M9l1UYuxHAsQEmmzaJkv/dkgwGtDe5Icx09jk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736097459; x=1736702259;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=28ukOJT+BC5Hb4IDeNu8OIpCDoYlDgcQuEEIPI9KYoI=;
-        b=Oe5nMb9hARj0msIN7e8lrgK0uW/9QrxQFRou0qpgPyiXKiC3dTEkxst+vk2yyTin4k
-         r7EUhhFKhTMne+1iOZdAex+YC22Mk5vL5Vf6Ot6pi+m0A2if+7n3Qqne2ExZcCcLPgxp
-         3qddmWYllXQKWwns7lY1Rh4Uj9/qOvQwfZQA6D8Omx/Ax6uEpydnXt+ujVFoool/RpH0
-         Aa1B5hUTNQ5sAqgUEjvuSGNk+jG9EWWS5NhlwLVcp3bvbz08KuNWHN55dU2UNBYn2yMK
-         LaMeXqKPiI8CzPIBa3nAjHvnTkuV6CMbgyWXdNOBzU9LsytPgNNFUA2YAwQq3XwaQ4EX
-         g/3A==
-X-Forwarded-Encrypted: i=1; AJvYcCXrXkWRN4zRNRhs6Y7W+G4OeohU2FLwM/cYAyk/qdD+t4iik05N5ncUe2/UVYCwT/DH/bLeK6Z0Jd/Y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyy6iPLYhdn/fwwyau9wG5ZSCK+FESlV7bsd4oljaSkyNucUp8b
-	GXT7Z98TOsGhjjylKYnCykuVxL82wmIs5ehe3Byqe2wp/NNb5iXSzDkniz3VWQ==
-X-Gm-Gg: ASbGncs2lFRr/noOH3mikUm93CH3Qz/NeU9chCAZIx7dNaAn9qRH1u45CFUI0gj3HVa
-	3ZutiU7o41A56gOqXUu1QwqkTZJguARsHpSJYK9HvihGMcByIMOViJpmyPvFWr6RMzLflDkhse0
-	0g4Pa6XWrEpjBTRPCatmPkBX6KyHvd43p58rMajgN4ttgnKC99xCLP6NRAFAwOe1Z+aH3tpt6F0
-	f53SJVJvUWddjyvHcpZKAjZXU/uIrHG+dUrhWvQPG1Y3fGibb3acSKNIfP14LNOUSj9Hxh7SGGF
-	04nfzgZsUiNpc11ZR9pImNee1L+jcPrh/Zm5
-X-Google-Smtp-Source: AGHT+IFuJF16gyCsGs4Et67YtR7rCbdYRxOtCkpAuEKYuEZF3nGCOZgmij9h5QndKxy+u1vp6J6uFQ==
-X-Received: by 2002:a05:600c:4688:b0:435:b064:7dce with SMTP id 5b1f17b1804b1-4366864618emr504125065e9.18.1736097459372;
-        Sun, 05 Jan 2025 09:17:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736097466; x=1736702266;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J0GjmDNgFtYMS4CNHIpakXuXjn5IlFWM6hL+vU1HdSU=;
+        b=CFC591nnuwh6WkonRqDyEShyNQUPD6PRMoLg3pOfNyCi58heRkeC+4DE9CJlh0qPhl
+         qQrAeoq1GemhIERnwNZw51cfyjpMZM8xq+OGpQBRu6FbIf2d86lecfD0RFAeNH1uFYc+
+         JQnIWgqJAsQloJVDx0eTSaImsgZXJwCX9J9rf0Bjlz7ZJuFDZFutNGuObeo17zNp5cDf
+         gxghpKnA6XescHjZy2To7GZB1lmoNpsECRJvdTQYkeY6wT18iykYO1KSv2NpqEPdGqCq
+         a5FAhsbLPdEBsXTXKEKd58n8Ix2HwYrMmfwFIZbdgJXH0rQ3bF5yEeopQ1mv3d7xqaz3
+         dGDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVKaYYYn/MLSflSfUuorQ1OZ9lhtM8q7CfLbe9KVDQ6rk0dHud476WtwGcwAGtW18UxoSKxlowjNtKX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyY2obD9TInTF6XScRINE6XqFFG7Lupd2TgsYKkquluV5Cx25lQ
+	ymxG+Em7sVvINUVk4vCi1kQFHx0E1pe7hOgtiPhFimBLMeRsAZGFTbdA6jaMCQ==
+X-Gm-Gg: ASbGncvFqr2Z1hm9SofSjCVc1tXRPzpZaavkqnIGZySRYK7xcUBxR+ptowk5LUgH22t
+	5RjlVru3WQCj/ijXkapvj+oIDxVRGbJ5VWmdUMWOkzjg3822ninJgmu2Xi5U02tB5PYCmdvsY2p
+	C2LMLrt+POtPpDX8r7PYjUwnItWqkf5W0AuObm419bScRu8fUsC4fXPKn7U/MrAaqXp6p95GRXo
+	ASKYfO6Ed5ngT8lNQkdOWqCQVYIw7XbBy9r8TELl5xXMwiSy3YWOiuv//rpHAUvkxI2X6+czOXz
+	qgDZGQd0EV/DMuqj2FoxW3XkasDcyIivfDI4
+X-Google-Smtp-Source: AGHT+IEcXFCNnO/fDAJP7+xy9vBl4+PVAh17+298KO0qXQqMn4ReiFb8r6IoYitgvJxcYVbT9bnTOw==
+X-Received: by 2002:a5d:5e09:0:b0:385:e38f:8cc with SMTP id ffacd0b85a97d-38a223ffa1emr45639718f8f.38.1736097466136;
+        Sun, 05 Jan 2025 09:17:46 -0800 (PST)
 Received: from dmaluka.c.googlers.com.com (19.50.76.34.bc.googleusercontent.com. [34.76.50.19])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436604e9c2csm543987345e9.43.2025.01.05.09.17.38
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436604e9c2csm543987345e9.43.2025.01.05.09.17.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2025 09:17:38 -0800 (PST)
+        Sun, 05 Jan 2025 09:17:45 -0800 (PST)
 From: Dmytro Maluka <dmaluka@chromium.org>
 To: Thomas Gleixner <tglx@linutronix.de>,
 	Rob Herring <robh@kernel.org>
@@ -91,10 +93,12 @@ Cc: Ingo Molnar <mingo@redhat.com>,
 	Tomasz Nowicki <tnowicki@google.com>,
 	Grzegorz Jaszczyk <jaszczyk@google.com>,
 	Dmytro Maluka <dmaluka@chromium.org>
-Subject: [PATCH 0/2] of, x86: Restore possibility to use both ACPI and FDT from bootloader
-Date: Sun,  5 Jan 2025 17:16:41 +0000
-Message-ID: <20250105171643.3473702-1-dmaluka@chromium.org>
+Subject: [PATCH 1/2] x86/of: Don't use DTB for SMP setup if ACPI is enabled
+Date: Sun,  5 Jan 2025 17:16:42 +0000
+Message-ID: <20250105171643.3473702-2-dmaluka@chromium.org>
 X-Mailer: git-send-email 2.47.1.613.gc27f4b7a9f-goog
+In-Reply-To: <20250105171643.3473702-1-dmaluka@chromium.org>
+References: <20250105171643.3473702-1-dmaluka@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,41 +107,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-There are cases when the bootloader provides information to the kernel
-in both ACPI and DTB, not interchangeably. One such use case is virtual
-machines in Android. When running on x86, the Android Virtualization
-Framework (AVF) boots VMs with ACPI like it is usually done on x86 (i.e.
-the virtual LAPIC, IOAPIC, HPET, PCI MMCONFIG etc are described in ACPI)
-but also passes various AVF-specific boot parameters in DTB. This allows
-reusing the same implementations of various AVF components on both
-arm64 and x86. (Note that on arm64 AVF uses DT only, no ACPI.)
+There are cases when it is useful to use both ACPI and DTB provided by
+the bootloader, however in such cases we should make sure to prevent
+conflicts between the two. Namely, don't try to use DTB for SMP setup
+if ACPI is enabled.
 
-Commit 7b937cc243e5 ("of: Create of_root if no dtb provided by firmware")
-removed the possibility to do that, since among other things
-it introduced forcing emptying the bootloader-provided DTB if ACPI is
-enabled (probably assuming that if ACPI is available, a DTB can only be
-useful for applying overlays to it afterwards, for testing purposes).
+Precisely, this prevents at least:
 
-So restore this possibility. At the same time, since on x86 the
-aforementioned recently introduced restriction is actually useful for
-preventing conflicts between ACPI and DT for LAPIC/IOAPIC/HPET setup,
-don't remove this restriction completely but relax it: unflatten the
-bootloader supplied DTB but don't try to use it for SMP setup.
+- incorrectly calling register_lapic_address(APIC_DEFAULT_PHYS_BASE)
+  after the LAPIC was already successfully enumerated via ACPI, causing
+  noisy kernel warnings and probably potential real issues as well
 
-Note that on arm64 currently ACPI and DT are not used together in any
-case (setup_arch() enforces that), and this series doesn't change that.
+- failed IOAPIC setup in the case when IOAPIC is enumerated via mptable
+  instead of ACPI (e.g. with acpi=noirq), due to
+  mpparse_parse_smp_config() overridden by x86_dtb_parse_smp_config()
 
-v1 -> v2:
-Split the patch into two, to separate the x86 part from the common part.
+Signed-off-by: Dmytro Maluka <dmaluka@chromium.org>
+---
+ arch/x86/kernel/devicetree.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Dmytro Maluka (2):
-  x86/of: Don't use DTB for SMP setup if ACPI is enabled
-  of/fdt: Restore possibility to use both ACPI and FDT from bootloader
-
- arch/x86/kernel/devicetree.c |  3 ++-
- drivers/of/fdt.c             | 10 +---------
- 2 files changed, 3 insertions(+), 10 deletions(-)
-
+diff --git a/arch/x86/kernel/devicetree.c b/arch/x86/kernel/devicetree.c
+index 59d23cdf4ed0..dd8748c45529 100644
+--- a/arch/x86/kernel/devicetree.c
++++ b/arch/x86/kernel/devicetree.c
+@@ -2,6 +2,7 @@
+ /*
+  * Architecture specific OF callbacks.
+  */
++#include <linux/acpi.h>
+ #include <linux/export.h>
+ #include <linux/io.h>
+ #include <linux/interrupt.h>
+@@ -313,6 +314,6 @@ void __init x86_flattree_get_config(void)
+ 	if (initial_dtb)
+ 		early_memunmap(dt, map_len);
+ #endif
+-	if (of_have_populated_dt())
++	if (acpi_disabled && of_have_populated_dt())
+ 		x86_init.mpparse.parse_smp_cfg = x86_dtb_parse_smp_config;
+ }
 -- 
 2.47.1.613.gc27f4b7a9f-goog
 
