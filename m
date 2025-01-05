@@ -1,446 +1,99 @@
-Return-Path: <devicetree+bounces-135659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14D89A01A3B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:04:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 468BDA01A3F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:07:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B05D53A2B9C
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 16:04:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 257011620CC
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 16:07:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B68601B2194;
-	Sun,  5 Jan 2025 16:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A291369AE;
+	Sun,  5 Jan 2025 16:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fh8GCLgk"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="gjpX5IrU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9548118D63C;
-	Sun,  5 Jan 2025 16:03:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C24514B946;
+	Sun,  5 Jan 2025 16:07:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736093039; cv=none; b=fPpYKgw1HKzDTTyuWT/+g8EaYVHf3PD9Aw8myvQhwzGzC4CW4CbEZ0oEqF87/VtlXB4Q+h2NDGOuAHXo/UyLmZMR23+v22K3slkVB1yGeE7eEx8ARRRtshgWUfAyR2P/jJ5d2TjADxBPmUx2QUpbmFBHg05L6BExsqB8RNuiHc8=
+	t=1736093232; cv=none; b=gGxGOni6inkaK3UPtYQBUwZCgmtlAMMB3Rad8I0iiyF9s8PgBEHUbuvvXA/k/zM/1uAlzprykSw42IWBMpHVAHmWcdUkZaORLJj2LiKmGVv1/gWF8kXuE4SvX7JPJIfNisBq4yRRSV6SzIr2O2vEDXLmxoVQnoZwFep6R0VA+8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736093039; c=relaxed/simple;
-	bh=747rBV4CrB3ncxxx0etCDFXxKa/DqQKjOWmnHOvE8Ac=;
+	s=arc-20240116; t=1736093232; c=relaxed/simple;
+	bh=nwIhi2ctuw1hxj5muea7JzFNnUeOzdgPVtvy7Y+V5wc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BWfKVEkKi2BTf5g5x+Ew9JZExTDGiirgk7KstldzG1kmny/jugkdUDDAyOn8Z2jcXHrCsrwM0EowqpW8B+gIQJ/RzycSM+iMt3RGbbEPea32rz6kdvUCDJ1DtFp8culebL8O4eYvv4TL6r1YVtOaUCivi/SznzakLPktedJhcXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fh8GCLgk; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-436341f575fso141016755e9.1;
-        Sun, 05 Jan 2025 08:03:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736093036; x=1736697836; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZBre3tfK9eNw0D6ztWoJ2B8wDlLW7jzGaVQPJWiVrhc=;
-        b=fh8GCLgkMCzw2WlQkXQOyR/PS0bpzuFCTk5FES6WR9zneQpQN72W9T63WrMo7Wmy2V
-         LkcFRrfrFcrpVaH5kDucBWosAVPeT34KqXmtVKvgVRJbIDl6mETUwlwnjDBvr+sWUWb3
-         AG3T4vwglJh5xugE6wyk1P9VIiQ0mYEATWnN3VJWsOebe5CoRIqz6Mb1VvpG1u4AqYd3
-         XldN7D0QSurPhKOZTvbXsFdYU6nR8+rRpSNd3m/uD+TBK99ByJQyBiG5wd+662TRpIp/
-         D8A+6OlxZh27sSsYLnXx1MYTThKwp/8o1FPZubl/K+H5BPkSLfvReVTMdTb994zWAdGC
-         4E4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736093036; x=1736697836;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZBre3tfK9eNw0D6ztWoJ2B8wDlLW7jzGaVQPJWiVrhc=;
-        b=wdfBBk35SDwHKv2q7nY5EFGIn/KaahiN02HM/Xm1rQK33qZCvYijjJCUAYdxeYS/wK
-         uwz8ZFpmHP2zsrMw8dhOp7tHwtb5ZD7AGymR5pjEllA4YjnBhRiIR/ZBA07uoQjcOvUO
-         rqWz8PuWoSLQ/ToaYzsz88JHTC0jUa7Zl2nv/hWlUU/kl951e9xK5EutlbScVKRkHLrZ
-         GMZvr5sjstnJ4kLJl9gWPCHkQZxq+zvUhNw6Q2XCJzqqn0jH8d+95peAOD5VH5QqrRZ7
-         MR9v3uk2QpO8FCHkQc8H6Y4CnUBybUogsVnYrNW1UtEMCIJx1sZu3HA+TAn3E4Sa4ZeC
-         YWWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXRSh5UA9ApdAbURyUj7X4fqPP2qqNLvv3pqP97AvQ4HFzA3ukIqcJ7skrnWF7p+Syn1dV24tTp4bYNi8o=@vger.kernel.org, AJvYcCXY9sFlq8YS9luCH+zIMx/7v8hPSUY3BHM1D2BtrG+2P5zFX9jFnvEnCuvnSTi9okBLym9+VT5yfzukQN68vKslmz8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIp87Wk+dG0ynBOC3itr7Mn+e8iNOJOut0bx8VQmsHdqjchpyJ
-	qPcqLBdwzm1enpcSAJrnoaqLwXktmWpZeU1nC1RBDdPqHmLDtdQo
-X-Gm-Gg: ASbGncv937m2Mm3MglVSFG8p2oAnA1LhE3hKSdmJ21Rk+19kZs519y6ihyst/YPx65Q
-	Uy1x4NurWlLC97W2cHvSSQiR1cnKZ9QtS/+KVImP1YRnowiWZaQncdczjpNoD0d2vfXsOBc6ub+
-	T3mj6PanhAQI95AV2Vfnh1BGl0hiNUUo1k/BjSSEg47iNVdvSqhA/SPF8UDHt+5/cDHsJkdWuZ7
-	ZOVKNGmoTdXnkATeVk08ad8hsu40dQ051kNP8z24MzJ+Y47YLQEcMBIaY34dAIgVl8VJqQ=
-X-Google-Smtp-Source: AGHT+IGJ5yPjEyBY093kqwSSzrdR6Xl6nRHSpFI4J32YiyqdHeZBu6ptxJHCEtmUCp6QJovXur/C9g==
-X-Received: by 2002:a05:600c:35cb:b0:436:1baa:de1c with SMTP id 5b1f17b1804b1-4366854c186mr466960695e9.13.1736093035592;
-        Sun, 05 Jan 2025 08:03:55 -0800 (PST)
-Received: from ivaylo-T580.. ([94.131.202.183])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c84705esm46031925f8f.44.2025.01.05.08.03.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2025 08:03:55 -0800 (PST)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	Peter Griffin <peter.griffin@linaro.org>
-Cc: devicetree@vger.kernel.org,
+	 MIME-Version:Content-Type; b=gO2VeBS3OTw/+anHhohSjALErK7gA1wUUMKPP34E5lkaFV8bmznESr2KgAXbpRPd/NPF8KTIT4tyM8Kdtk1ntjvrp1QqnxQsDROCcxKToVprE5IgC/3rpdJDvHSjUzdksTyigAuA5YiU+R3HkaIBmVgiP9dxPIkxbevAXgrpa+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=gjpX5IrU; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=X+OeFSCd7YH38tPZ53li4XDnnHkIKso75p2alieFcW0=; b=gjpX5IrUdI3qTyw3bc1uw8tTQX
+	35xwcckj7conxnuHM+jSiR4TyEjidGD8vQTaj0961SN7gCpPeTsfh8XxapbjsBR1y0rGVv/epKXeH
+	Jf7JVWe8FyMyPEY1LPM4ztxMTtwIvF30P7Fd2AplVQXUu5bwI04RV+nCalblCn48IxFqxmUoCSgKF
+	rusenmfHALE3wkl7jqliw+/zOxarMoi1Tm6rWUb4y3Ta4p+fLH2pZngm9xIqgok9e097SYKuTYQ76
+	TLrMNBS5eUPBzNh4kjRUiRfPaYVp9CLPnC0WQV9RYwQ0Xhd90vAgDuHR8rJf4b4FT6QHs8bk7fF1K
+	vNkAYlAQ==;
+Received: from i53875aad.versanet.de ([83.135.90.173] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tUT9X-0006uS-DQ; Sun, 05 Jan 2025 17:06:59 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	hjc@rock-chips.com,
+	krzk+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] arm64: dts: exynos: update all samsung,mode constants
-Date: Sun,  5 Jan 2025 18:03:46 +0200
-Message-ID: <20250105160346.418829-5-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250105160346.418829-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20250105160346.418829-1-ivo.ivanov.ivanov1@gmail.com>
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	derek.foreman@collabora.com,
+	detlev.casanova@collabora.com,
+	daniel@fooishbar.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: (subset) [PATCH v8 0/9] VOP Support for rk3576
+Date: Sun,  5 Jan 2025 17:06:48 +0100
+Message-ID: <173609319909.2437943.5709822695475196700.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241231090802.251787-1-andyshrk@163.com>
+References: <20241231090802.251787-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-Update all samsung,mode property values to account for renaming USI_V2
-constants to USI_MODE in the bindings.
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- arch/arm64/boot/dts/exynos/exynos850.dtsi     | 14 +++---
- arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 48 +++++++++----------
- .../arm64/boot/dts/exynos/exynosautov920.dtsi |  2 +-
- .../boot/dts/exynos/google/gs101-oriole.dts   |  4 +-
- arch/arm64/boot/dts/exynos/google/gs101.dtsi  |  2 +-
- 5 files changed, 35 insertions(+), 35 deletions(-)
+On Tue, 31 Dec 2024 17:07:43 +0800, Andy Yan wrote:
+> Here is the V8
+> 
+> Patches that have already been merged in V6 are dropped.
+> 
+> PATCH 1~7 are preparations for rk3576 support
+> PATCH 8~9 are real support for rk376
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-index f1c8b4613..cb55015c8 100644
---- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-@@ -651,7 +651,7 @@ usi_uart: usi@138200c0 {
- 			compatible = "samsung,exynos850-usi";
- 			reg = <0x138200c0 0x20>;
- 			samsung,sysreg = <&sysreg_peri 0x1010>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -677,7 +677,7 @@ usi_hsi2c_0: usi@138a00c0 {
- 			compatible = "samsung,exynos850-usi";
- 			reg = <0x138a00c0 0x20>;
- 			samsung,sysreg = <&sysreg_peri 0x1020>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -706,7 +706,7 @@ usi_hsi2c_1: usi@138b00c0 {
- 			compatible = "samsung,exynos850-usi";
- 			reg = <0x138b00c0 0x20>;
- 			samsung,sysreg = <&sysreg_peri 0x1030>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -735,7 +735,7 @@ usi_hsi2c_2: usi@138c00c0 {
- 			compatible = "samsung,exynos850-usi";
- 			reg = <0x138c00c0 0x20>;
- 			samsung,sysreg = <&sysreg_peri 0x1040>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -764,7 +764,7 @@ usi_spi_0: usi@139400c0 {
- 			compatible = "samsung,exynos850-usi";
- 			reg = <0x139400c0 0x20>;
- 			samsung,sysreg = <&sysreg_peri 0x1050>;
--			samsung,mode = <USI_V2_SPI>;
-+			samsung,mode = <USI_MODE_SPI>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -796,7 +796,7 @@ usi_cmgp0: usi@11d000c0 {
- 			compatible = "samsung,exynos850-usi";
- 			reg = <0x11d000c0 0x20>;
- 			samsung,sysreg = <&sysreg_cmgp 0x2000>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -855,7 +855,7 @@ usi_cmgp1: usi@11d200c0 {
- 			compatible = "samsung,exynos850-usi";
- 			reg = <0x11d200c0 0x20>;
- 			samsung,sysreg = <&sysreg_cmgp 0x2010>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-index b36292a7d..66628cb32 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-@@ -442,7 +442,7 @@ usi_0: usi@103000c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103000c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1000>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -505,7 +505,7 @@ usi_i2c_0: usi@103100c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103100c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1004>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -534,7 +534,7 @@ usi_1: usi@103200c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103200c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1008>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -597,7 +597,7 @@ usi_i2c_1: usi@103300c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103300c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x100c>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -626,7 +626,7 @@ usi_2: usi@103400c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103400c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1010>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -689,7 +689,7 @@ usi_i2c_2: usi@103500c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103500c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1014>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -718,7 +718,7 @@ usi_3: usi@103600c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103600c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1018>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -781,7 +781,7 @@ usi_i2c_3: usi@103700c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103700c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x101c>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -810,7 +810,7 @@ usi_4: usi@103800c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103800c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1020>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -873,7 +873,7 @@ usi_i2c_4: usi@103900c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103900c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1024>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -902,7 +902,7 @@ usi_5: usi@103a00c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103a00c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1028>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -965,7 +965,7 @@ usi_i2c_5: usi@103b00c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x103b00c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x102c>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -994,7 +994,7 @@ usi_6: usi@109000c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109000c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x1000>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1057,7 +1057,7 @@ usi_i2c_6: usi@109100c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109100c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x1004>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1086,7 +1086,7 @@ usi_7: usi@109200c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109200c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x1008>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1149,7 +1149,7 @@ usi_i2c_7: usi@109300c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109300c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x100c>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1178,7 +1178,7 @@ usi_8: usi@109400c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109400c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x1010>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1241,7 +1241,7 @@ usi_i2c_8: usi@109500c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109500c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x1014>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1270,7 +1270,7 @@ usi_9: usi@109600c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109600c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x1018>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1333,7 +1333,7 @@ usi_i2c_9: usi@109700c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109700c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x101c>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1362,7 +1362,7 @@ usi_10: usi@109800c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109800c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x1020>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1425,7 +1425,7 @@ usi_i2c_10: usi@109900c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109900c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x1024>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1454,7 +1454,7 @@ usi_11: usi@109a00c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109a00c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x1028>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-@@ -1515,7 +1515,7 @@ usi_i2c_11: usi@109b00c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x109b00c0 0x20>;
- 			samsung,sysreg = <&syscon_peric1 0x102c>;
--			samsung,mode = <USI_V2_I2C>;
-+			samsung,mode = <USI_MODE_I2C>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index c759134c9..6e9007518 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -223,7 +223,7 @@ usi_0: usi@108800c0 {
- 				     "samsung,exynos850-usi";
- 			reg = <0x108800c0 0x20>;
- 			samsung,sysreg = <&syscon_peric0 0x1000>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-index 387fb779b..b73c152c7 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-@@ -161,12 +161,12 @@ &usi_uart {
- };
- 
- &usi8 {
--	samsung,mode = <USI_V2_I2C>;
-+	samsung,mode = <USI_MODE_I2C>;
- 	status = "okay";
- };
- 
- &usi12 {
--	samsung,mode = <USI_V2_I2C>;
-+	samsung,mode = <USI_MODE_I2C>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 302c5beb2..473db46aa 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -825,7 +825,7 @@ usi_uart: usi@10a000c0 {
- 				 <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_0>;
- 			clock-names = "pclk", "ipclk";
- 			samsung,sysreg = <&sysreg_peric0 0x1020>;
--			samsung,mode = <USI_V2_UART>;
-+			samsung,mode = <USI_MODE_UART>;
- 			status = "disabled";
- 
- 			serial_0: serial@10a00000 {
+Applied, thanks!
+
+[1/9] drm/rockchip: vop2: Support 32x8 superblock afbc
+      commit: 938fbb16aba8f7b88e0fdcf56f315a5bbad41aad
+
+Best regards,
 -- 
-2.43.0
-
+Heiko Stuebner <heiko@sntech.de>
 
