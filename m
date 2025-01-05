@@ -1,112 +1,214 @@
-Return-Path: <devicetree+bounces-135680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00D05A01AF7
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:31:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8563A01B04
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:44:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 959DA3A2E15
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:31:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A81C1883710
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:44:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35CE1B3955;
-	Sun,  5 Jan 2025 17:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DAF1150980;
+	Sun,  5 Jan 2025 17:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IE9PJi0u"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mR1wOEsw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C0E1607B4
-	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 17:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA935336D;
+	Sun,  5 Jan 2025 17:43:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736098305; cv=none; b=B8nQuPW9BC2nG4hvAxEi1X97aAIJd4wdzekPLO7bGhQwHiUJL0uoG3j58KeyYJkA4/KDpiipooo9PGNM50Antt/ntSHF7SGONW5CrGHeqL0py0bEKPhzayTixoM8v37ZpW4ZRkb+AC5+PpZVNrVuwHkr3vp15jTep2tf5Y68fCI=
+	t=1736099037; cv=none; b=IcpMkiYT3ALCaXOeb6egoeoykU7Cv3ao7+5pmrXzpRQPZK+vHVgmT7Oi0Nuh/pxmrgZ41oCrBABXTSbu3ENZidM6ZIJDnqb+NwZsRAbbYVXiQHbD+1wIY4z0DCuwX+2DC7lDR5H6dZMc7K9VEOumI2WLWaPNB9JTx7Rg1VhBfOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736098305; c=relaxed/simple;
-	bh=YNinCBvhUmlp9xIHTUWJRrOehKs8hIgd/w14wFLskxk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mTWmX2V1pSTsaqpgoJg5vVT44oLZlmR5oBFWpQVYXAohOeRIqNUqt72r9Egwfe2v1nidtU+2no5aSDvDdHn49UUrTo9Nfze88FsjJtxji0LTWBPsvWWRgLo6pACf6Qm24IhkZjSK33W4dul/QQEEPTOqz0F+wHs0jrhqmsAbUrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=IE9PJi0u; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3022484d4e4so168479981fa.1
-        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 09:31:43 -0800 (PST)
+	s=arc-20240116; t=1736099037; c=relaxed/simple;
+	bh=q332Fj6F/uI2gskbdG5KgphF6RiCneYdURLVc6gzVH0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fMSmo6PGUITwaXSDIImjPy3A2QFaoeElnf7ALYYG3vwUUbn7TrdQvfVhuum+705aKOPGwnRQb29L2aronUWMQKoWKhh1QKpIhEvE1t6oGurg6f+zA4NL57//t5lCC+2J2Ej3m8WrnuAeV6n1VJe972oC3C36JPgiJuRwKr7Td+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mR1wOEsw; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-21670dce0a7so7162905ad.1;
+        Sun, 05 Jan 2025 09:43:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1736098302; x=1736703102; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YNinCBvhUmlp9xIHTUWJRrOehKs8hIgd/w14wFLskxk=;
-        b=IE9PJi0uKr6EDcnQ8JlLeUrmrUGxakYJ1PyjmKiX/T5nGptmxpWnPW3Jf14yEY5vyt
-         5gbfhs47ojPnm926McmKYgiJCk7gZjXUduEDivEKSqTIkmaRlaDSh+LYoH0f/e2IwDbM
-         pyO6zONmTwyW2/EBmAUhzz7r0YDkLYHuRG8MM=
+        d=gmail.com; s=20230601; t=1736099035; x=1736703835; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=36LFfwDYtsfgnNd7joNqjlhSXArKAKlv+UrCSX7GMt4=;
+        b=mR1wOEswuAS29UvI1BPhBTcb8XuexdPrf/6RVKtzPH2akMp3wsQpswzrA1yrSCt/bL
+         jYBsLxpaVyoKfN7QNlw5UznMNS2Ks+DFwaiOFdJACyvBJHvApF3nQgW0v3NwVZDEG5J1
+         Vot8sZy4VVx/aS0KGE/JhZM7NpX7mxiao9cdjCmHsHIduge2deC63PZngANxNd4IEk0Y
+         krBQyq18YEavzcNTomFIkBxT44sqrkjYjtIamvF0BEhTc96VFkhtzyQfLyBzjAbGCpX8
+         aPAKsPyubPF/M+XXswAm4b07UKeBj0L2xW2vQKCUz0YLKOkhYHo16mSLLmWKxW54uMq8
+         O7DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736098302; x=1736703102;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YNinCBvhUmlp9xIHTUWJRrOehKs8hIgd/w14wFLskxk=;
-        b=qbUr7sb/elJ5ae2xkI88RvmaoOrr4unsqWj+ObNTY0tpUS9ZVE2M9j0+RH7EWHUPgB
-         w8KvDrSljRGkW9jQ3q+Tde10eixLjSVMDsgglWN1XZm+9ui9gq0xZRP5uAYMxxCMOcsm
-         ob+JZbrcsbmKANMI6i1V731x4gvCHaE7CpJkIib2h/ajysj1GvIj/U1EhxJtA1QxztmJ
-         lA0W+Oy7rqPpwX7yDHUeaXALQZDX0DcNvUdg7ctXOxl0X1sRDvbHmhjkfCOmbqG9RpYu
-         YSFlk0svCzOx4OAbE7+6V2D39YtVsmNdq/TeK2/HtOuevo0aLdXNEX397Tsu3oEOOTIQ
-         h+6w==
-X-Forwarded-Encrypted: i=1; AJvYcCVQRVSTDV/Rd8Mkh+oQ+MqD09GKVKEXr9k+rD3F7q0urARE9GCNYfdaR+4gEdAORhncDO7Fmn5i1R8v@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAgLZGUv9QC4eOH4XrE+qkjqYES1+2WJvDDhovPZdrZFSKw3Yz
-	h14Pu6C/ukbdqAC0WqTLWPzURtbOZZVtVRYZpL+Wj/PM9ht1z71xHEX7QiCnkQ==
-X-Gm-Gg: ASbGnctAreFI8FYRWglRo6kVKzy+C2+4k2QwMTH8skEHUA1sC0Ud8qPrrhPWWzbkz0D
-	n/gnwORula9LoOAIynEvdsU2op46Nk4UmqTkWh4kwFXKrfKgAjiViGQ7amnj0QMlAMGwcwaCre1
-	iJgnu9W8YpbI5DFbOmM7n+Q9PB8OAwnjOGb6TxwiCSbXMu5yn41SZaBAN0bE0q7c+FR9OwFrZnP
-	sSIQZPYEXqaAC2rplDCjGOJ1q7rZloRtbMuieXA7vnWW9nfoyNCJT7YEMG3
-X-Google-Smtp-Source: AGHT+IHNk2lt3oRc6CXLXoL/mH4KoxoA24brJmbIX3sJ2LgJMB4NxdfOCxnIhU/jjlTj6yqG5IAFBA==
-X-Received: by 2002:a2e:be25:0:b0:300:3a15:8f0d with SMTP id 38308e7fff4ca-3046861cc90mr211101481fa.34.1736098302121;
-        Sun, 05 Jan 2025 09:31:42 -0800 (PST)
-Received: from google.com ([2a02:a31b:20c3:6680:b949:2c7c:cf97:8f28])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3045b06a474sm52913761fa.70.2025.01.05.09.31.40
+        d=1e100.net; s=20230601; t=1736099035; x=1736703835;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=36LFfwDYtsfgnNd7joNqjlhSXArKAKlv+UrCSX7GMt4=;
+        b=l7Da1eV+Eo7o67CQv5L/9YNFoALLuRPAW+fjCG4eYntpCXNuutrBl1xyGVOKSx3ghB
+         tlv7dwYDemk4mmMdvFDTwOT5f0ipm5rSNHLvyaN0rUJODtQlHkIMeHNWw5bZiC+Aflq9
+         EZlGvGcv1CqLJN6Gm4wmT5QMPV/xJTsJu676w19G44ptp5dByUwUHVBSVwoV1G8mcg5F
+         rt+NFWJtub0EfpAxGbu8Uqjqv5WdClFi0nrvyN1QaF7d9+x5reRfh1W2eZp9hcHZpZd6
+         NTAad193DOL7sXrLtlJknN4PmoFIhNo6dlvP+Bc6l+6BKY83RgQTd1daMq6e87IvQlGS
+         o4xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUAxuP7Vd9YAZUHpsC+2kia4BnO+oPecbX5KO9W7aZ8KfgBXnbUOdCcLvzwZs7V6Q1tF7/ZLpQy2Z0=@vger.kernel.org, AJvYcCUduS5Odx256o88wMHN/bWK/8ciRjx43ywopHysU+k6z1fySLk2vgDQDr8jPMSeAfk9N9epqGP9VdJzRvAd@vger.kernel.org, AJvYcCUnTKMLbB3QQ/sU4c+wXacaTPaNUhVCrj2AoIMPnjIzaizzOjuqcHgPBIBVAp3CYSVfW2BSop1ypQ+SfCur+fSRD/ufkA==@vger.kernel.org, AJvYcCVx4YOwNArUtlspQ6IMrIKZyyXEQjH3dDitJ/JcEdeBjj9VKQiWkjL48c2upbBgzgjJzwh27JwqPUFFUWk=@vger.kernel.org, AJvYcCXBq8bHBkhUEX0TMzlqFdD1SkWBxH2UydHzbeTJGvZuvvFQ08T8z++H2MRmAwfK3NJqcI6XRoSCxluz@vger.kernel.org, AJvYcCXtmEsjEglJqmtYqqVhl7+ZJ6I1oaauHU1INiOX8ByvLVK8XY8MCMBAneyAjb+I03U38pUjcCDE4uprYVFF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzA9XtKCHnSfIzuecdD1nmUutN+izQcQfDsfjQWpSpUdystLyQe
+	4NSE1y4xeddBBP1g/CvfQNfrXU2SKFKEGeSwqb9cFcYNg5XctbdX
+X-Gm-Gg: ASbGnctYv4QQ1h8hKbEHexJ6YFAbN9MXfjU3W+7J9pO5HGIroEX5HPUJ69EabNjKG7n
+	SSgRhFS0BjLoUVKy0FFQUyWvY84Eta8LJQnkauwWed8IrZ+p5AWPwtWg3k8XPKWjzKd7h1vwGJ0
+	1bAwQu10hP/mstkjhBdrdPOW+0Kq4XDLDA5YEHmiSxLZMLalbMtNnPreLazMKz2I/uwZTc195qh
+	3ylarQphLqJsRffOVamwIc6SesofEPS+QrdGK/pZymJsJuvYiZJGOo=
+X-Google-Smtp-Source: AGHT+IFFIIZvCFbxqtvKBP3spQLi9bhSufpsm15oW78Ou90z34ay3OOR5Oc2VH3/ltiab4y8E7wUkw==
+X-Received: by 2002:a05:6a21:9017:b0:1e1:a434:2964 with SMTP id adf61e73a8af0-1e5e0459369mr81799396637.2.1736099034839;
+        Sun, 05 Jan 2025 09:43:54 -0800 (PST)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-842abd5927fsm27375046a12.10.2025.01.05.09.43.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2025 09:31:41 -0800 (PST)
-Date: Sun, 5 Jan 2025 18:31:38 +0100
-From: Dmytro Maluka <dmaluka@chromium.org>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>
-Cc: Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT)" <x86@kernel.org>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Usama Arif <usamaarif642@gmail.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	"open list:X86 ARCHITECTURE (32-BIT AND 64-BIT)" <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>,
-	=?utf-8?Q?Pierre-Cl=C3=A9ment?= Tosi <ptosi@google.com>,
-	Shikha Panwar <shikhapanwar@google.com>,
-	Will Deacon <will@kernel.org>, Keir Fraser <keirf@google.com>,
-	Michal Mazurek <mazurekm@google.com>,
-	=?utf-8?Q?Bart=C5=82omiej?= Grzesik <bgrzesik@google.com>,
-	Tomasz Nowicki <tnowicki@google.com>,
-	Grzegorz Jaszczyk <jaszczyk@google.com>
-Subject: Re: [PATCH 0/2] of, x86: Restore possibility to use both ACPI and
- FDT from bootloader
-Message-ID: <Z3rB-t5ZqVu0F3OE@google.com>
-References: <20250105171643.3473702-1-dmaluka@chromium.org>
+        Sun, 05 Jan 2025 09:43:54 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Pengyu Luo <mitltlatltl@gmail.com>
+Subject: [PATCH v2 0/5] platform: arm64: Huawei Matebook E Go embedded controller
+Date: Mon,  6 Jan 2025 01:41:54 +0800
+Message-ID: <20250105174159.227831-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250105171643.3473702-1-dmaluka@chromium.org>
+Content-Transfer-Encoding: 8bit
 
-Apologies, forgot to add v2 to the subjects. Just resent as [1] so
-please disregard this one.
+This adds binding, drivers and the DT support for the Huawei Matebook E Go
+(sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
+E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform tests,
+so this series enable support for sc8280xp variant only, this series provides
+the following features:
 
-v1 is in [2].
+- battery and charger information report
+- charging thresholds control
+- FN lock (An alternative method)
+- LID switch detection
+- Temperature sensors
+- USB Type-C altmode
+- USB Type-C PD(high power)
 
-[1] https://lore.kernel.org/all/20250105172741.3476758-1-dmaluka@chromium.org/
-[2] https://lore.kernel.org/all/20241223181813.224446-1-dmaluka@chromium.org/
+Thanks to the work of Bjorn and Dmitry([1]), the work of Nikita([2]), writing a
+EC driver won't be suffering. This work refers a lot to their work, also, many
+other works. I mentioned them in the source file.
+
+Depends: https://lore.kernel.org/linux-arm-msm/20241220160530.444864-1-mitltlatltl@gmail.com
+
+[1] https://lore.kernel.org/all/20240614-yoga-ec-driver-v7-0-9f0b9b40ae76@linaro.org/
+[2] https://lore.kernel.org/all/20240315-aspire1-ec-v5-0-f93381deff39@trvn.ru/
+
+Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+---
+Changes in v2:
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20241227171353.404432-1-mitltlatltl@gmail.com
+
+global:
+- drop qcom's products(i.e. sc8180x, sx8280xp) everywhere, use 'product'-based instead(Krzysztof, Bryan)
+- drop Cc Nikita Travkin, we had discussed the device in PM.
+- add myself to MAINTAINERS
+
+dt-binding:
+- fix building (Rob Herring (Arm))
+- remove unnecessary code (Krzysztof)
+- add bugzilla documentation, insights of gaokun(see [1] or patch[1/5]) (Krzysztof, Aiqun(Maria))
+- explain the difference between PMIC GLink and gaokun EC (Aiqun(Maria))
+
+ec:
+- use Linux style comments (Krzysztof)
+- add a comment for mutex lock (Krzysztof)
+- add more kerneldoc for exported functions (Krzysztof)
+- eliminate unnecessary conditions (Bryan)
+- add a macro for check thresholds (Bryan)
+- improve English (Bryan)
+- use existing sysfs interface(hwmon, psy) whenever possible (Krzysztof)
+- use __le16 and related endianess conversion function for temp data (Ilpo)
+- drop alias for packet headers (Ilpo)
+- avoid hardcoding i2c msgs size (Aiqun(Maria))
+- add a comment for the sleep in critial region (Bryan, Aiqun(Maria))
+- use macro to construct packet (Bryan, Aiqun(Maria))
+
+wmi:
+- dropped
+
+ucsi:
+- reorder headers (Bryan)
+- a comment for the orientation map macro (Bryan)
+- make mux mode map more explicit(minus six is very clear now) (Bryan, Dmitry)
+- handle port update exceptions return (Bryan)
+- a comment for the UCSI quirks (Dmitry)
+- use the inline hint for the short register function (Dmitry)
+- use the API with delay to handle register instead of a direct sleep (Bryan)
+- handle unfinished initialization early
+
+psy:
+- add charging related sysfs to here (Krzysztof, Dmitry)
+- document ABI for power_supply sysfs (Krzysztof)
+- drop charging threshold, use smart charging instead
+
+dts:
+- correct indentation, properties' order. (Konrad)
+
+---
+Pengyu Luo (5):
+  dt-bindings: platform: Add Huawei Matebook E Go EC
+  platform: arm64: add Huawei Matebook E Go EC driver
+  usb: typec: ucsi: add Huawei Matebook E Go ucsi driver
+  power: supply: add Huawei Matebook E Go psy driver
+  arm64: dts: qcom: gaokun3: Add Embedded Controller node
+
+ .../ABI/testing/sysfs-class-power-gaokun      |  47 ++
+ .../bindings/platform/huawei,gaokun-ec.yaml   | 127 +++
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts | 139 ++++
+ drivers/platform/arm64/Kconfig                |  21 +
+ drivers/platform/arm64/Makefile               |   1 +
+ drivers/platform/arm64/huawei-gaokun-ec.c     | 767 ++++++++++++++++++
+ drivers/power/supply/Kconfig                  |  10 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/huawei-gaokun-battery.c  | 548 +++++++++++++
+ drivers/usb/typec/ucsi/Kconfig                |  10 +
+ drivers/usb/typec/ucsi/Makefile               |   1 +
+ drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c   | 524 ++++++++++++
+ .../linux/platform_data/huawei-gaokun-ec.h    |  79 ++
+ 14 files changed, 2284 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-power-gaokun
+ create mode 100644 Documentation/devicetree/bindings/platform/huawei,gaokun-ec.yaml
+ create mode 100644 drivers/platform/arm64/huawei-gaokun-ec.c
+ create mode 100644 drivers/power/supply/huawei-gaokun-battery.c
+ create mode 100644 drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
+ create mode 100644 include/linux/platform_data/huawei-gaokun-ec.h
+
+-- 
+2.47.1
+
 
