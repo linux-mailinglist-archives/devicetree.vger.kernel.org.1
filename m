@@ -1,153 +1,142 @@
-Return-Path: <devicetree+bounces-135620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E369A018FA
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 11:16:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4286DA01900
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 11:27:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 334E93A2C93
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:16:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D91DF3A295C
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:27:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB42314A4C1;
-	Sun,  5 Jan 2025 10:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D04C054918;
+	Sun,  5 Jan 2025 10:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aBRmIwQ4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E0Kh8NAs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A7E9148FF6
-	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 10:16:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75DE36C;
+	Sun,  5 Jan 2025 10:27:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736072183; cv=none; b=X4UhvswkNM9mIcu3/vBe9g2oEMmjsD/I+gbpL5hyQashQoJmudXW25ptnJDdhRkIrB3RHtl8o52lB0/+KWcfVgG48YJ3dbdfnItlvRqU9lEegs+G0gDX0wzpbj0mZgPn9UoaVxmHfDFhEsDoBQibUON9mvGYqQe2XbjSD2iijnQ=
+	t=1736072849; cv=none; b=ZuygID+HjhhRSWS8oaPxCyyK/RATK5wexyTLYqztDKrsLujc3ABNZU0vDd9QINMuxJMx/D8mA2AGTJzOZhlUq2VpGtyMPISTF/E9upvY7CGPkhqtqlof9OSjueYn/xVzErGR6oFohD+nEX8tXCQbaqBdXNi2qgqT2Jrz2JYFf7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736072183; c=relaxed/simple;
-	bh=QX3GlHCiOeKhbnkNGa0YgvMYTOFxdII/ADUW993HeNo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WpwrjGT1qxNFNNee58ap0nIpLhnK60vdNOA5NFynGs4i56VLmM8peg03knT5gvdL2NXi9kO6B5yaCqgDrej//X/1o5L2IDq7pkloA0SXcmLM1g3OPvaYc/Dkajpk0M8jwBS0j9j3tEXObOq+KBsXxNBq+LTuL4Yj7lP0D/gUDVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aBRmIwQ4; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-218c8aca5f1so242448595ad.0
-        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 02:16:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736072181; x=1736676981; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zrE5Aplqu1OAUwGuNQrs3gcEgzpFuCPF0j018+KBT2Q=;
-        b=aBRmIwQ4aLUY8cPBMFLx978dD88hEUlM2B7AhQM72T7OEB0XnH77dVw/baf/txE7DK
-         tIQzyyCyH4UAhbgDFCBiJuuO+6LgWXFQ7301wJA/5LDql5BiO7SGzobol1q0v9gEOQjQ
-         kVnDZxZAuB29nKeenRpqJe5DKg+nnnphdWwWjWGPh7QVNo+UT6Ms01bCfXFo903AXGf1
-         gyVFJP8tZl2PfT9vrHpY2nVDIykSvYFzlb85h5LDUGlVi9744X18NRipXNWhp1MmSFb+
-         9q3Xw0wgOy7KT/Xlf5ehbuThI6l8GLGW6WkSia0xtZUBv2owAy6W9Z1i2YBBR95fH+JP
-         11HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736072181; x=1736676981;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zrE5Aplqu1OAUwGuNQrs3gcEgzpFuCPF0j018+KBT2Q=;
-        b=pOaWmYVjF4qYOORRDFv/tKBGTHk40rgAx60T+J/kPkwYpMt7eA2E6fYX86dZApGf6B
-         HuMg/n6fDxUwpvmPEw8NgjU4OIxT1HL0LJLfxXaFTA9+DYs83IKdhrqX2xai75GQpko1
-         RvX3Yl44osbxj9SK7mRpttWSqn13gOX9uOUMBgLjKyVs0o2p/WkmR6dOTcmiuyMO54bm
-         KdAjuvYftc7Zy84ww6A+LAzaB6T0tn7fDDh+AjYtEQJNRklldXwWGKyBzwGnEVkcxVtn
-         e3Ym2BdpdBKkggt+M/X7omowXfGS9DTTIYDwfaqDM3X9a1MnwGHE9S1JdADd9xzCrBp5
-         JE6w==
-X-Forwarded-Encrypted: i=1; AJvYcCVSb+pMlcZ6u4SGwItbr/4s0Ty6hfQRA612vcRU4FKXgGmiqB/v6WIhILXUyRt5aC0GTgLkulVSJ57Q@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyqb/tByfita/G5/Qx3Qm5QDSl86zy//chaIXpj6kaa0I+saPFs
-	YmTf2ph6cYj+sW4ZWR3zaCKCYCFSspskDaYgT8831Q7SzHtYpy/k9RT5KPU8Fg==
-X-Gm-Gg: ASbGncv0c6ZZojrDYidHdO+n0e4DB7AW8C3xC0RviYSgrCyiaJNa0BEC0ywPL0Ry5Cj
-	oU3eajzzL6qqUdUvsfNNbgs75yui27qxBE+idIoGvJD1IthEP4WKNqXH8MHbqTw5ETY+GAZrjtS
-	TFDlQfYC6tJpEaHmhjI9yfU7j+uOIWnxCunxv3icxY8WH9KVhxWtYKhbpMcs6EcNpwxzz1d6w11
-	nYYoR7Q/vILzAvqTVb8A1PYehSOntNKv0f4zTSiMNQuU2muKXk1hWH/C1SBSrnx9Omv1g==
-X-Google-Smtp-Source: AGHT+IH+M/FEAkpNMBwsDuc0tHC+2vhsJNCB0rHqv9S6uNwcV9QU3CRejLf5RORAk65H3gSk0WGJJw==
-X-Received: by 2002:a05:6a20:6a20:b0:1e0:d99f:7ad3 with SMTP id adf61e73a8af0-1e5e084b3f5mr84746860637.44.1736072180793;
-        Sun, 05 Jan 2025 02:16:20 -0800 (PST)
-Received: from thinkpad ([117.193.213.165])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-91b56cb2e5dsm8762347a12.13.2025.01.05.02.16.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2025 02:16:20 -0800 (PST)
-Date: Sun, 5 Jan 2025 15:46:12 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 01/21] arm64: dts: qcom: sm8250: Add PCIe bridge node
-Message-ID: <20250105101612.t6c4pw5uxhb5rdde@thinkpad>
-References: <20240321-pcie-qcom-bridge-dts-v2-1-1eb790c53e43@linaro.org>
- <20250103210531.GA3252@bhelgaas>
+	s=arc-20240116; t=1736072849; c=relaxed/simple;
+	bh=tHTcQMlu1ldG9Fm23fFsHew7DGslhyM1LyujHBhMkdw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sosYmx92NI2SxBtkPF1vWNzKttDL4sre4f1TGnQVWoIUYL9DpD1EP88yn5bQUHWca0hSeSMNdAuyw92sEHuOnNTGp4QO+8F4k+tzY+44EaIv0zBFoMURPfk4zHayNJgt8UoY5+6kkEcX4QBPwVF6PdgNkZJQU6NLChDw3GcoHq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E0Kh8NAs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5CFEC4CED0;
+	Sun,  5 Jan 2025 10:27:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736072849;
+	bh=tHTcQMlu1ldG9Fm23fFsHew7DGslhyM1LyujHBhMkdw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=E0Kh8NAst38oULVW4Tog4Z96HHx3OQAUW7tEtVejDnRpoVUz7qQ69dmQNdo6+8LQo
+	 xhxCJ1Yw+5zuxGfOQ7qXw6MFZPEt54TgBQS6RZdbIXdksIlssj8GrJOr6krYEKcnsb
+	 0zSvIxJKeZMbZQuHoBs5k5vIum8k5ZXjcih6xjVBVBTv6PnEDGo5WdmGl0/VntC24w
+	 qb+e39C2qh0ZFjKJt/hcc9+AaUTMJLf5A7s02UhNzsB7k0lvm1b/3hNKeCCmyqQi4g
+	 riVpsjjnBVZg0Ce7k3wVfaR7ScokZqxnccQHAR+PJ2g5Y8elZKaOpHZoI7Zi5xgh3Q
+	 BVHzEsHnOZ4og==
+Message-ID: <a184e97e-4537-4379-b78f-e651dd66a2d8@kernel.org>
+Date: Sun, 5 Jan 2025 11:27:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250103210531.GA3252@bhelgaas>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
+To: Ivan Sergeev <ivan8215145640@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250105-bigtreetech-cb2-v5-0-923f911b10c0@gmail.com>
+ <20250105-bigtreetech-cb2-v5-2-923f911b10c0@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250105-bigtreetech-cb2-v5-2-923f911b10c0@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Bjorn,
+On 05/01/2025 11:01, Ivan Sergeev wrote:
+> +
+> +&spi3 {
+> +	pinctrl-0 = <&spi3m1_cs0 &spi3m1_pins>;
+> +};
+> +
+> +&pcie2x1 {
+> +	reset-gpios = <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie_reset_h>;
+> +	vpcie3v3-supply = <&vcc3v3_pcie>;
+> +	status = "okay";
+> +};
+> +
+> +&pinctrl {
+> +	sd {
+> +		sdmmc0_pwr_h: sdmmc0-pwr-h {
+> +			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	pmic {
+> +		pmic_int: pmic_int {
 
-On Fri, Jan 03, 2025 at 03:05:31PM -0600, Bjorn Helgaas wrote:
-> On Thu, Mar 21, 2024 at 04:46:21PM +0530, Manivannan Sadhasivam wrote:
-> > On Qcom SoCs, the PCIe host bridge is connected to a single PCIe bridge
-> > for each controller instance. Hence, add a node to represent the bridge.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 30 ++++++++++++++++++++++++++++++
-> >  1 file changed, 30 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > index 39bd8f0eba1e..fe5485256b22 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > @@ -2203,6 +2203,16 @@ pcie0: pcie@1c00000 {
-> >  			dma-coherent;
-> >  
-> >  			status = "disabled";
-> > +
-> > +			pcie@0 {
-> > +				device_type = "pci";
-> > +				reg = <0x0 0x0 0x0 0x0 0x0>;
-> > +				bus-range = <0x01 0xff>;
+Not fixed here and in multiple other places. Please fix the same issue
+everywhere, not in one place I commented under.
+
 > 
-> Hi Mani, most or all of the patches in this series add this
-> "bus-range" property.  IIUC, these are all Root Ports and hence the
-> secondary/subordinate bus numbers should be programmable.
-> 
 
-Right. It is not a functional dependency.
 
-> If that's the case, I don't think we need to include "bus-range" in DT
-> for them, do we?
-> 
-
-We mostly include it to silence the below bindings check for the endpoint device
-node:
-
-Warning (pci_device_bus_num): /soc@0/pcie@1c00000/pcie@0/wifi@0: PCI bus number 1 out of range, expected (0 - 0)
-
-DTC check is happy if the 'bus-range' property is absent in the bridge node. But
-while validating the endpoint node (if defined), it currently relies on the
-parent 'bus-range' property to verify the bus number provided in the endpoint
-'reg' property.
-
-I don't know else the check can verify the correctness of the endpoint bus
-number. So deferring to Rob here.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Best regards,
+Krzysztof
 
