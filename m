@@ -1,78 +1,80 @@
-Return-Path: <devicetree+bounces-135617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D63EA018F1
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 11:01:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD31A018F3
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 11:01:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E53A17A19FE
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:01:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEFEE3A3412
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0689146D57;
-	Sun,  5 Jan 2025 10:01:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74AF61482E8;
+	Sun,  5 Jan 2025 10:01:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rp08BMih"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LfrPcun7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25681465B3;
-	Sun,  5 Jan 2025 10:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA9A1448E3;
+	Sun,  5 Jan 2025 10:01:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736071297; cv=none; b=u66aGXvU7aDNYXXhU9CGZdMAez5SYyhwZqAw1qgRxx9Nce5Bu/kCao3WJtpcJIgvJRRjevKpjupGAYxqkkCVddxU6HVhdpQdquRc+ccp5hmsGA58djeSWdNW5tI4osS7ZoCLKPyl4usQ0fh2DcjdwGlKPGSDq/Pe+1WtYJwbuu8=
+	t=1736071298; cv=none; b=tem1MPtppjfwLUa+HDt9BpF9LrYXkR4vOsF28MHj2AqRtnW4Od//XUKKzzqz0RRCWNV0Dzz99PUE+YV48p5Ttia/K5Wl+Bh57BSSEk62vAa4ZFlINCIhq8rejyaVg4b5KiLJDzpt5xBKpwHDIf2yyymn78iFfZkLEdiiSV6yx2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736071297; c=relaxed/simple;
-	bh=Ve6DAyAdX75MBAsvdAMcYRB0imSwGJB9zDUZrNYiJ9Y=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZFcxHZtXn9IlOe05zQObejgA78L5ZxEjtYMeBqJat7SPIPibu8lW0IMobqUxyl4vvjMZnukT7iOLaB3SEkA1k4hbejPncXIfu49dDkK2c+vhXOPbYF0hqSqDVVJiR5furSZyGc5gvi1BCjPwbebwosEEyc3fJJZ63l9+D2hKGsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rp08BMih; arc=none smtp.client-ip=209.85.208.176
+	s=arc-20240116; t=1736071298; c=relaxed/simple;
+	bh=p5DkTJDu5QlNVWl35gjaVUthknkZBv6iZeP84hntyqE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=HnnHhA8F0MGgLg9GziC798W6Vl5RsJyFV98+vV8YXfMqQTBRlhxpLDTOrKeHnEsZh6s1e9lEcDpXpzcgekohrVrSWckkiRa0HML7mBWrgluFXlLI5tNJCGjZ1jUdgPmBlh1ofwGdgQkKeBwweFAjKopDvCRTZCVsY2HGArN5qG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LfrPcun7; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-3022484d4e4so165906641fa.1;
-        Sun, 05 Jan 2025 02:01:35 -0800 (PST)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53f757134cdso14417932e87.2;
+        Sun, 05 Jan 2025 02:01:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736071294; x=1736676094; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ioXaEb8AhEb9ppd2CiarkcVgpik13EQZ3YX/6ej2zCA=;
-        b=Rp08BMihkVF9uQBVocXFC7LLf+3ZZyxNphk0tAqs/jLRD22EKRH5LSOFjeuNyWnfx7
-         pLRYVQSgthPt/2HlQnaK7ExuChnMrM/kAAcGzJ2Mu8lErP5e7EINodMpst8t5FXuE0Qs
-         2v2rcNprqe7AexdiZgjkWJe0F6qghuUAE0hcegBbDAdrFgKwBGax6uTzyPiMtAoCGG8w
-         apWqYDdy/swv4zXccRfRUUQAnOuu7VMhk7+JOoOF4s/USyd8nYKYURMkXnvlft/05dmE
-         dAAkfYo9TF5nJk3fZ10ZsO1poAikhwZIJSpACC8qBzW0aJIavze2MnZYo0N8hykeKVRz
-         NxQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736071294; x=1736676094;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1736071295; x=1736676095; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ioXaEb8AhEb9ppd2CiarkcVgpik13EQZ3YX/6ej2zCA=;
-        b=CmlRMFO/QiZTMIjyV0+GAyCjU6jTMbOyqs7qaayzFPAWXOtbukuDD57X2phBTb645P
-         +qw6hnV0kUA9jDV9bPmhpYsaaIDAtfsOg+52DGxGbtuAANsXwXKZD5Iu18sQDSMFRmRH
-         uL8Zxz5yJnTH6LXSI32SgvM7ZcsrGmxuyWmH/PKICzaUSQMZ5QfFGBmqp+ogZOIsGGaZ
-         bfDz+1/khvdYCZmDrhnxQ7rNynpjP4EBeCm755kd1eFqcbHGVl4ezCG8JYy/haakPeq5
-         Qdlvvh2ULIs1eOWVVpqV0gIgy/0K9sJhovK22PzF51yWR3ChslPQof/3C4yVaaDaW+6s
-         D7HQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVR7uFG2LKtAyZ1jxtw0U5/5GETbdRirPcy/PnYZME34rXNU5ndnm45dvuq0gg/8vSkNnB9SGHuqt32+6E=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvLCMyf/pHGezagmcQINpJj6A6uffwtRU8ABGb+1CAd9ElguZp
-	E55jxOExZUugEbK+tPcHYf6fJKyO1Cx6nAaMyljbyscrWVk3sMk=
-X-Gm-Gg: ASbGncsTxfBQt4BK50FLqzCsRek1ioYanG7f30KY+gAzLWzZ831iDJfSlCoroRKO7ZK
-	nJ1blwN8DaX5YqfFdGj1845IgU2Wsux2fwf/YCSbtiCPg8phhsXqreODH0JBAoVtZKiyeAhpYWm
-	gqbi3RgxUBHnm72wz8tK6jo7MmLPvJEBa/m1QYzwUJ3i888iAQN7Jhz9yHWTedbUwA7khgv/PYS
-	tm9/vqW3VrXCbwLlkn3lUc5rrzWOrgWHHXcctNlM0vHOghq9UZaieF5r5A=
-X-Google-Smtp-Source: AGHT+IGYOoAYruqEmrXXpBPQrWSQF4Z4pQ+Zw4ZngvJDeKbJyND9eGnpgNG9zhGuRrVEioq1mNzSPg==
-X-Received: by 2002:a05:6512:33cd:b0:540:358d:d9b7 with SMTP id 2adb3069b0e04-5422957ac6cmr15595789e87.52.1736071293641;
-        Sun, 05 Jan 2025 02:01:33 -0800 (PST)
+        bh=CcUs5V3NaAvho7+pyHks8hnj2f07Xk/qrLoafEl76mI=;
+        b=LfrPcun79ayhs2Qa3i6MmkcfbkfQouHikM6iIPY0EiqxyPCoUvMxkgGhQd3sXyoPND
+         F1JWTBc3V+KY/mQ95ZXLlYke3DRrnvDwhP/mSk3YBP9Pin2X7FZL0wN/3ZNG1d60USeb
+         nwI3iRNHcPBuBd3lgwvd1GCBUyXHBhcNkMS6ExkUVkEWazkUfaINHMZpkgcME17s47EY
+         Ovg6rB9OgC859ryQBEFv6eKUsGr+vLun5Ur/qM+UwESkUztAzoFsr3B7ilmBbkoNvHwm
+         6RdvKIISYOfiCUWBWedKwsmvXBb50wxG1EnRU6MM7N06qLGNttFtBV92+glzRj7xHCN9
+         fmPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736071295; x=1736676095;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CcUs5V3NaAvho7+pyHks8hnj2f07Xk/qrLoafEl76mI=;
+        b=lqOn9AQXK7uISE/wGEtzUp9/dccZBzTGydhReIFrMGFees24CkTzsf6g1zPQI5QzEs
+         d4iV1tEZBC8KYUZoimh+aU73qxjCfirsgekJD+yES/lSu+UKsS17t5kqnaSKafrMXAYJ
+         kznRvFPvbZLfYzdKugt3SyGSWV0SNUBNLI2YuXIjNXA4EjWCdh/7f5cn7kZftzzIJ1e8
+         IRAoakN9uzelAvkwEf/r1v0dtSmtbQt+XE5LHu35bPaQWfGJuid77CSPFkWtQn761iTh
+         4Y50YEn7DlK0PV5G+K1IIFzDLp8XsZmKOph9zbnIgvcnmoqjoF3SDA2cbSFJCPAMHaVm
+         baHg==
+X-Forwarded-Encrypted: i=1; AJvYcCX5eQqLKikBXlIpmiagXH3uu9gI1Keik34qb4zbdKJEFqf8EBXXcE1Oc8oSjnmsgiE3CZ7VO0hvuYjJZt4=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJkI0ElpKarzydjGnBSDaWbE9rRJu9U3zz4bs08Pl2KGnR55W7
+	4MWKC3rOGlb62/5gh1DJQCFB4s5mjHe4Dz03o1c3XB/1zkUb38U=
+X-Gm-Gg: ASbGncvq81DMIOipxc0mWIS+c2PVq62AqAPRyq52Pv/i0ygOBcQMfcthiB/Buki7M4+
+	Bgo5LdlW+DmF8HlkPwLFqdBKOdK/bgeTwdqLMIxWJzzLcFkJAkm6p5RL4qtQMm8lui4ycJudAFE
+	NLRCBfBe59XlN4gUa/zl0PaJoIqSGvSU+vvMgi0oRh+phr0Y2Kjw8EOKYxwF7oGW0ftW1SJJpih
+	WIxlsID1vJzk9I04zkxh+UWIpUqAc/OepN4063SY1Pt7EqETRJcRYpk2aU=
+X-Google-Smtp-Source: AGHT+IFcnNvf44eZ0+9ujLatEO7qgcKAmJzYq4XwToWXna9MMrgtLSQTxpEmZMuy9qZ2buHQgJmctQ==
+X-Received: by 2002:a05:6512:b22:b0:53d:e3a6:ae8b with SMTP id 2adb3069b0e04-5422953fdf0mr14556118e87.26.1736071294373;
+        Sun, 05 Jan 2025 02:01:34 -0800 (PST)
 Received: from JetTurbine.homenetwork ([2a0e:e6c0:20d3:2100::1d])
         by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223813806sm4580828e87.114.2025.01.05.02.01.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2025 02:01:33 -0800 (PST)
+        Sun, 05 Jan 2025 02:01:34 -0800 (PST)
 From: Ivan Sergeev <ivan8215145640@gmail.com>
-Subject: [PATCH v5 0/2] arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
-Date: Sun, 05 Jan 2025 13:01:27 +0300
-Message-Id: <20250105-bigtreetech-cb2-v5-0-923f911b10c0@gmail.com>
+Date: Sun, 05 Jan 2025 13:01:28 +0300
+Subject: [PATCH v5 1/2] dt-bindings: arm: rockchip: Add BigTreeTech CB2 and
+ Pi2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,11 +83,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHdYemcC/2WNywqDMBBFf0WybkpeatNV/6N0oZNRB+qDREKL+
- O+NQqHF5blwzl1YQE8Y2DVbmMdIgcYhQX7KGHTV0CInl5gpoYxUyvCa2tkjzggdh1pxebHG1Np
- YKwuWrMljQ6+9eH8k7ijMo3/vB1Fv67dVHlpRc8GthDwvKgdNg7e2r+h5hrFnWyuaH1+Lo2+Sr
- wqnnBYoSvjz13X9AFnh0MTuAAAA
-X-Change-ID: 20241224-bigtreetech-cb2-18944b349916
+Message-Id: <20250105-bigtreetech-cb2-v5-1-923f911b10c0@gmail.com>
+References: <20250105-bigtreetech-cb2-v5-0-923f911b10c0@gmail.com>
+In-Reply-To: <20250105-bigtreetech-cb2-v5-0-923f911b10c0@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
@@ -93,74 +93,56 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Ivan Sergeev <ivan8215145640@gmail.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2326;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1174;
  i=ivan8215145640@gmail.com; h=from:subject:message-id;
- bh=Ve6DAyAdX75MBAsvdAMcYRB0imSwGJB9zDUZrNYiJ9Y=;
- b=owEBbQKS/ZANAwAIAbzfXRlQM5b9AcsmYgBnelh8s8U3cjvCpHPRrs2T/+ajFNPVuuPWhJFqo
- l6XqLavdomJAjMEAAEIAB0WIQROCZtApKFz1fvvsOS8310ZUDOW/QUCZ3pYfAAKCRC8310ZUDOW
- /QRbEADX9HM1YyxNIQB/J0YA+nNDhvdWyPZOY6j/rx4I0XtLRB6SoHVugL1pxAzauWVYNJjZb/T
- gB4lu0d/7Ze44LTzww4hPFuF1Fl/wKdLXdVkJqooNzZvdbF3neGaLzK7neXSDozZiQV3nF1a0HQ
- FQBvNp+Wrbelt+vJS3veBiJjJsw+QRrcitDwrUJY5UET82gZ14+Skbe3e/L/sCFKBIT7EgHnkjf
- JUSq/Znv9+s/rp7rQTG0Yn3+MXd5BNfpGSg5+lFdfgU0GLRVfuv6kfBLrARmtzYjLWeBWpwzFF5
- pupDOWhWrh6bYFKMGRoYHldXayd9mhtqQI2vHReKwrp5zb/bGmgGS4uHGmEhEjmTqb6at6IpitC
- QM1fc3Hjjg22Q1cXmy+z67licL5d7CaVXB/iNqybMbqT8Umqt09Px1de45vYDJ5otNtKpwzHskL
- 463PwUJV2V+8rKAs4LGtAbWL3bmkvbucHw9IuvmbQOP2htgNc6wkYSkqyq9mcL53Nls8iZuNNHM
- lRN9tEYVoILP/SljACWRlRHdQnlh0qqOYL/WfE3OGBE/ZTNfLw9+bMzu2ozPNkB4/ym01M3WDV0
- 7Sm9/c/xUGIldrKU/3NVUr4eb78wNKmfpvPiRDWqQhkFY/h2L4uQOslH6Cc+RULRzfxEmj4aBcA
- DE+JDMkFDcpF/RQ==
+ bh=p5DkTJDu5QlNVWl35gjaVUthknkZBv6iZeP84hntyqE=;
+ b=owEBbQKS/ZANAwAIAbzfXRlQM5b9AcsmYgBnelh8wbKwjV0jSnORnKj5gri6tWjV1nKWx9W3i
+ G5KSaDFdBiJAjMEAAEIAB0WIQROCZtApKFz1fvvsOS8310ZUDOW/QUCZ3pYfAAKCRC8310ZUDOW
+ /VAFEADFqODzeMLOEs3mBaz1dwUu5ZF5X1/KDWLNtr77NscD0wHI0qzttXH04B59w11+Iz0vDHT
+ 9QOB2jXHT6we52Vwlic38wD6K8e7vRYjuyY/XVjMAwG/vBVhAE//TNRlngowg2Qv1F7s9KFlIBI
+ BMTLSugnG+t0MDgxOBbmMqLoBU64p8kVCFeav+7KSgilDEJGmjoo4e5DY7lypHbJIK3/5DY89A1
+ Dy60cV0GQT9lvj89AcXi6Pg4qUaWJPQscREDN5qzA8RmSUXy06y0SItzB7g4sSq6nBS+JJGIJ2E
+ OCEvKGSchJenHCT73iEWKSQQ3N7sS3woilffxgHkb3JeUg5q+un4Ci2IL36KypjDo/TIrR2MYmp
+ q50GR+NM4aMOIgOIX9IEAfhVqHD9pNHK1W5m09Gt1rDlO+oEN7+wBR4fdKTVJYnedZQNhsEyNYR
+ 5H8A4YHGrprOQLWsTTs6XAWVuQNFg5W8lJ/tAV4Mr3xOS3zhfiNOB0oIGmTbk1tM06JYNwfaC7H
+ SbVdssc7BJftFz5hgqHxc7wvtDEgDVA6FuWnSKJLZXeLFe15KhFAjp5WOebWFjBm1Voyd744YAn
+ NDTk1KBnvEUp5QHrHgxwKIef5I+UmBAc3KvavlzhCm1Dtx7hWqBji8zANxDqk+As192n18zhD6H
+ IMDVC2E08q6+W+w==
 X-Developer-Key: i=ivan8215145640@gmail.com; a=openpgp;
  fpr=4E099B40A4A173D5FBEFB0E4BCDF5D19503396FD
 
-BigTreeTech CB2 and Pi2 are Rockchip RK3566 SoM and SBC boards made by
-BigTreeTech for the intent of using as a 3d printer control board.
-It is a successor to the Allwinner H616-based BigTreeTech CB1 and Pi, so
-the device trees for CB2 and Pi2 are also done in the same manner: the
-common nodes and properties are put into a dtsi file that the
-board-specific device trees include.
+BigTreeTech CB2 and Pi2 are Rockchip RK3566 based boards
 
-Changes in v5:
-- Applied requested changes
-- Fixed usb `phy-supply` format
-- Removed improperly named pinctrl nodes that were unused.
-- Fixed names of other pinctrl nodes
-- Link to v4: https://lore.kernel.org/r/20241230-bigtreetech-cb2-v4-0-26d2d30e07ce@gmail.com
-
-Changes in v4:
-- Removed invalid `i2c,ignore-nak` properties
-- Set `#address-cells` and `size-cells` on `sdmmc1`
-- Fixed `phy-supply` properties of usb host nodes
-- Link to v3: https://lore.kernel.org/r/20241227-bigtreetech-cb2-v3-0-91c556adcffe@gmail.com
-
-Changes in v3:
-- Proper formatting and patch series sending (using b4)
-- Converted spaces to tab indentation in the dtsi file
-- Fixed empty line where the license identifier should be
-- Link to v2 1/2: https://lore.kernel.org/linux-rockchip/20241224135751.350379-2-ivan8215145640@gmail.com/
-- Link to v2 2/2: https://lore.kernel.org/linux-rockchip/20241224140057.350667-2-ivan8215145640@gmail.com/
-
-Changes in v2:
-- Added bigtreetech cb2 and pi2 boards to the list of platforms
-- Split BigTreeTech CB2 and Pi2 into two device trees using common dtsi
-- Link to v1: https://lore.kernel.org/linux-rockchip/20241222203952.84217-2-ivan8215145640@gmail.com/
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Ivan Sergeev <ivan8215145640@gmail.com>
 ---
-Ivan Sergeev (2):
-      dt-bindings: arm: rockchip: Add BigTreeTech CB2 and Pi2
-      arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
- .../devicetree/bindings/arm/rockchip.yaml          |  11 +
- arch/arm64/boot/dts/rockchip/Makefile              |   2 +
- .../dts/rockchip/rk3566-bigtreetech-cb2-manta.dts  |  10 +
- .../boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi  | 919 +++++++++++++++++++++
- .../boot/dts/rockchip/rk3566-bigtreetech-pi2.dts   |  10 +
- 5 files changed, 952 insertions(+)
----
-base-commit: 63676eefb7a026d04b51dcb7aaf54f358517a2ec
-change-id: 20241224-bigtreetech-cb2-18944b349916
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 753199a12923fadaa48c407a8e55e7854db7203e..349453b1676bfac45abf5cd49d6bd9f847281213 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -81,6 +81,17 @@ properties:
+           - const: azw,beelink-a1
+           - const: rockchip,rk3328
+ 
++      - description: BigTreeTech CB2 Manta M4/8P
++        items:
++          - const: bigtreetech,cb2-manta
++          - const: bigtreetech,cb2
++          - const: rockchip,rk3566
++
++      - description: BigTreeTech Pi 2
++        items:
++          - const: bigtreetech,pi2
++          - const: rockchip,rk3566
++
+       - description: bq Curie 2 tablet
+         items:
+           - const: mundoreader,bq-curie2
 
-Best regards,
 -- 
-Ivan Sergeev <ivan8215145640@gmail.com>
+2.45.2
 
 
