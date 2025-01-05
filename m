@@ -1,188 +1,183 @@
-Return-Path: <devicetree+bounces-135635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F8E6A0198C
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 14:03:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96B43A01992
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 14:12:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7A683A31C3
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 13:03:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B56D3A316B
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 13:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE6D1494DC;
-	Sun,  5 Jan 2025 13:03:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2634E14A4FB;
+	Sun,  5 Jan 2025 13:12:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cNV/4SRL"
+	dkim=pass (1024-bit key) header.d=genexis.eu header.i=@genexis.eu header.b="LNpBFAph"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2125.outbound.protection.outlook.com [40.107.21.125])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 390BE45016;
-	Sun,  5 Jan 2025 13:03:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736082230; cv=none; b=QcImhh8BN1E5CnmRqyif3o8DUSAO3uZI9boyoD5tbGqYSdHoVc5sDz3OaVrVgNUjuCirRJIK7W53pl2jRM2bMEzItWFeeSCfp/BU8YbXKB+lcOnIDfWfhLC/WPc9u+87gwWmTfepSPRsDm6jboxKMcWS06GgYlXZCrCEIL8pRzw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736082230; c=relaxed/simple;
-	bh=AY+1tKbnrfI6E4poLa8QEeEzrU4F5+8SGRyceE6BCnc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kkjWERZQraWecW5rvH7jQ3xVVXB0wuJdsVHoB+VunlPu6n8sDHKw7C+JMmva1c2N/lFTK9wXwByNzoKwNO/dOL3KYy8VrLc4E9lKP7YbtUBKWvMHxFYlE0PNeIM0fByM8QGaEe92Ne0pPSy6SrpaB6+6Bw5+lV8tECXmRM1w/WI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cNV/4SRL; arc=none smtp.client-ip=209.85.160.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-2a3a40c69e3so7070428fac.0;
-        Sun, 05 Jan 2025 05:03:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736082228; x=1736687028; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8bgS2xiXlPGb/DOmFFIJWprMm8LdeXUrPJ+fJFbUBnw=;
-        b=cNV/4SRLdAIWxVJD9clAHTC1zXNFnj7xgOcxn5VK+x+IhPdUAEgkrZSADMmpaILdfF
-         inFZxYoIwLdo/xkdmSPOXbfsc1uZ0cDKYaPi2vV+RIwFq68IaP/ecZMBonM6YlcPhWcP
-         2glOU86huOYV3MUd6CoctRH/kA19Z7hXf6oX2eUfIYBmbtr5IgJEcJHlaG1snD2DDKmM
-         eJBStiu2GZuCtHo/3qxqYqH89yB0pVxlWAIywr0OaoG/xqWGZPut1cTz5lbAAAxpY+Yo
-         NGZUmLdUmgLCsCaLwHLplSvNVbKw5/P/9lCjdtqQ1y0VVwGK41lD1kVaw17kDMNaBExj
-         w33Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736082228; x=1736687028;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8bgS2xiXlPGb/DOmFFIJWprMm8LdeXUrPJ+fJFbUBnw=;
-        b=Ld8MnpeEqKT+ENx8eTXFGhaLDJuQN/UaaM+552VEYBEvWeckniIZYuZDz1N5ouTDFC
-         vtuHuuFJlIX7ulDHWHEinIaBMyHACl52zR3hE9f121bvpS87FXbsbtnbwKPrNoEKZgbh
-         A/FeKc/xRtBK59875MV4Ssp3IknLvo7GV61niQ4NwKHXchrwAgsK/NzDLIQfHpWt9LJ1
-         bDrAr6SfotsPmkKVx6P8Rz2RU4YVW8ijFh4YAbN5Uf4NakWSxC6H4Fa7Pbvh/+EOVVxP
-         Hif6EKdgn/lFY+fjJcztVbq6CwqqYKn7VOnmPG+Cp2d/pg9ZGkOZKF9l4zt26RfGAmob
-         nQCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUafV2QJjXx+0yiUYKx31KYq6rVEHk+0X0oHjesPDSB6BcE2ASLPMDFLzLpQxkfpb3kteIYPLcN@vger.kernel.org, AJvYcCWMpVccRjYa55TO2CLJrlu8C1Iu5ADDBLlHlOlwOkq/Dy1OnJ89JB4nm//muB+ZefbRat90lDxJN/Vk2GM6@vger.kernel.org, AJvYcCXhAr3APUwrWa827NNHss0KTqd1UDBVRd0MRGfbievFV8GDmd6h0eq43P8dhtGkEqYjLB+P3P54IK3X@vger.kernel.org, AJvYcCXs6P4FkddjP02ZD1TCrUHyjrox8jz4rmd+fEAzXQjGTbFvb/tXsOd3G0r+Bl8EIy7eYw9KZL5QdnDc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkBrD+5m7a7L9eeS3Y4g+Ye1qZ4jvoc+D4PgN6hSpY9KZbxRxm
-	G29t1fDoFlttRpgVG4OezQLzMzT0+rlEE5aTy31xo6knHF4jbF/753FoaZg6k4NQTeI4HdB1sOk
-	KFhSSrb2v1LNTbVPwStjwEcus2ic=
-X-Gm-Gg: ASbGnctyJX94lLteB4m6VmmmY76VM+xIGT2d5egNZ81Q6omDxKqrSOZ40Z1+669f/BE
-	50akku3Q7CUDqYObBPv4I4wVX1ET0DTAJzqMtv5Y=
-X-Google-Smtp-Source: AGHT+IFWXdfAIip5BChhHhwpWirJ6i4ckF1yZK0KtDpXVEqpUZG1CWu2CJaU3AKDs9Yc60itdV84EDzEnx/0bUoKPLQ=
-X-Received: by 2002:a05:6871:a40b:b0:29e:4d0e:a2b6 with SMTP id
- 586e51a60fabf-2a7fb056010mr28900394fac.10.1736082228165; Sun, 05 Jan 2025
- 05:03:48 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97636F4F1;
+	Sun,  5 Jan 2025 13:12:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.125
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736082744; cv=fail; b=Au02n04r+CnzcuCgcTYVDPCw1Q+IHsu/VXJWDN0UUIxcGGr0aMoWZ3q4w37OOyfkz7cUp7txEpRTK0jP8D2SoWogqZ/Be8PewOUYcxGvIFKMcPIzR3rri5lFKCtTRCRDDwaZZeEOQF+LsQSHW22dW50VkFjDy2jFvNjOwImhD1k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736082744; c=relaxed/simple;
+	bh=4juP688yPrVi5A3pPj358BIyOnyKhk5/lVjejl0Kp7g=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=s0KK2Z/hUvm4PPR08+bcyHWLrS8k7uRuhba3zwuJnw/0RFAaXWoKkMnAHUmmBJqWGwYIkXHewieCZixd06lX4QohLfr80xIdYLrukuJODMnj0MCec+DxYR+p8apZGOyaHcF882QGbydL1tFgZeSgbShD2nYj2E+mZYen0RvK0EE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=genexis.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (1024-bit key) header.d=genexis.eu header.i=@genexis.eu header.b=LNpBFAph; arc=fail smtp.client-ip=40.107.21.125
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=genexis.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kOo03DBaHqkARbpVBdZxTLjKCDxwxs/6APN6Y5VLgV6HLHzTtzVOwKn3gK1OJOBXB/zq537/MNutw6C5eFGLQcRVCjP4BN4m4LIvtdrBbT1urvJk7HgZfYwktTY3w2ZzDLp336Jf3rZ5H7j/EctQfzQQ+99yBgJGCbUufmgUSrBecJ9099XCK5k05xvFWxfdVO5wx7Bs2vfazWdPmnfvstJLfuE3bD4fEuYcjI5euBRQCDO1Qu/UsNaKpDhqBdlStMT3HFp94H76Q37ilHMrs6OIJI1TSV1QtnvbUxGwPvjlWcYuwnPtvwngW88XPoDG5QPlviBxUCB6j+XC1jHejA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z4wWMnVT2mtBWxvk4vIez5S3/5Dt5Q9nogb6qEele7E=;
+ b=f+hrcJeM7xoAsMbLi9WXTFUZ36pP9IiBVtEii1OcAZfP8bfPRTTI5aCJrS4j1aqVBzyvb5ovsTcF7lLKUUXU8zNdMTI2brGRqufuLEm2mPVleB850RRU5UcSt3+31p4UUtcnwzNA41Mzr1c45yHLLqqY595HYcKo9dyWisJ5T7EJRKrmgCJTjV7sE7As/EeY8DK5Uviu5TPDBXlLcicmm4GLiv4Heca7hYGKJgme1vNHtkl6APhzbP0VeFmYdVLFpUSEHW5jKIqInbi1qFc2VYvm2XnSRz1Vk0ZyYh1+q8ozh+6O1w0f5jyq2+3gsRT+cST+4spZXwewrlLEZS74Yg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=genexis.eu;
+ dkim=pass header.d=genexis.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=genexis.eu;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z4wWMnVT2mtBWxvk4vIez5S3/5Dt5Q9nogb6qEele7E=;
+ b=LNpBFAphrBCaV+1CgzbYvDUmYrkrfVbEJTXVC9lBVuHLRWmLBZhN3QF0d80nEQLcRRV9o3nZbrlgUsfVrtFvMYZVV/iApr9vk0KCJvmiDJjbb24eOGuVLTleTVTlg7rDoUiWXbZ5C3tHz4I1ww2G/3jNWtyHtxiOtxgYx2Q8pbw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=genexis.eu;
+Received: from AM6PR08MB4215.eurprd08.prod.outlook.com (2603:10a6:20b:90::16)
+ by PAWPR08MB9613.eurprd08.prod.outlook.com (2603:10a6:102:2e4::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.16; Sun, 5 Jan
+ 2025 13:12:12 +0000
+Received: from AM6PR08MB4215.eurprd08.prod.outlook.com
+ ([fe80::f8bd:a866:322f:7b42]) by AM6PR08MB4215.eurprd08.prod.outlook.com
+ ([fe80::f8bd:a866:322f:7b42%7]) with mapi id 15.20.8314.015; Sun, 5 Jan 2025
+ 13:12:11 +0000
+From: Benjamin Larsson <benjamin.larsson@genexis.eu>
+To: linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: ansuelsmth@gmail.com,
+	lorenzo@kernel.org,
+	Benjamin Larsson <benjamin.larsson@genexis.eu>
+Subject: [PATCH 0/2] Airoha UART support
+Date: Sun,  5 Jan 2025 14:11:45 +0100
+Message-Id: <20250105131147.2290237-1-benjamin.larsson@genexis.eu>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: GV3PEPF00002BAE.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:144:1:0:6:0:8) To AM6PR08MB4215.eurprd08.prod.outlook.com
+ (2603:10a6:20b:90::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241222105239.2618-1-joswang1221@gmail.com> <20241222105239.2618-2-joswang1221@gmail.com>
- <exu4kkmysquqfygz4gk26kfzediyqmq3wsxvu5ro454mi4fgyp@gr44ymyyxmng>
- <CAMtoTm2X+aQRpSbNPjw+b+TsYfYT3h6yx2ycXYwfQbcinrwyPQ@mail.gmail.com> <CAA8EJpp06-r9ODvk1dDoH2LwT32BW_uhnkDU9SEeaC35V8Wx1A@mail.gmail.com>
-In-Reply-To: <CAA8EJpp06-r9ODvk1dDoH2LwT32BW_uhnkDU9SEeaC35V8Wx1A@mail.gmail.com>
-From: Jos Wang <joswang1221@gmail.com>
-Date: Sun, 5 Jan 2025 21:03:40 +0800
-Message-ID: <CAMtoTm023qnLLErUOUher3-UPr-FoqanDM+4B8XP=9z0rho_Xw@mail.gmail.com>
-Subject: Re: [PATCH v2, 2/2] usb: typec: tcpm: fix the sender response time issue
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: heikki.krogerus@linux.intel.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	rdbabiera@google.com, Jos Wang <joswang@lenovo.com>, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR08MB4215:EE_|PAWPR08MB9613:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24a1a0be-6aae-40da-9831-08dd2d8a90d5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|10070799003;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?dwOOpZ4DBaWMNruBQopR4IqMsU2cvtPJl/64f/f+LFQjv+9D+XwB+VQo3mbN?=
+ =?us-ascii?Q?jibpdA7Mt6oNThhMhRTGIPL1v9KBa2BbHgjYyoKvRhTiTaX+8QnT4T+1XAPV?=
+ =?us-ascii?Q?JmXO6E6OXdR0ff2eEaxok1X+iaPeHNloucXCULX0i7qAwcyM73iIZYNPquMw?=
+ =?us-ascii?Q?Helq+d9BZlNxVPx6pH0808sMGSAUZHx1HEGRdENfCd+5pyKa6dhhIqShjqo8?=
+ =?us-ascii?Q?+jP7SCKB04TpL5KUU92ltdaeUHFDRaxMbHogbnjMEx5wsITbKglAtha93Bc0?=
+ =?us-ascii?Q?P70XKzNMrb+aQr1dRUsvJ9j8uJ9kcU6Gi80ZSH6uQgS6hFYNlZQYwZRqS6jS?=
+ =?us-ascii?Q?22hnoEpyGtZSfZ2TccyDFNpzZjpZQJ4QqZhfGgyAtbMm2Ol3tA5M1WWo/d1d?=
+ =?us-ascii?Q?MtFiw1BJ6ypB5uuFN1TabLUNXbBH1XTweHNIUSDgdM6Pl24nhE7HDR3VfvdL?=
+ =?us-ascii?Q?5sqaTtaSwesbr+ffe5JO3Nfwu/5e5wlKs2NwuTnaID0rZshr6PkJ23bT3lEi?=
+ =?us-ascii?Q?Z5B2hMoTxZ9OINpJYoptRmspzeapLeHZuqHLbuqw38+yUsjb/ZIglE6AdEVt?=
+ =?us-ascii?Q?eCoJyj2VTdFR4MWc/YJFhsKYU57migV53Z7+OO3h90vAsD0MnUt48Xy9OxWK?=
+ =?us-ascii?Q?5IPjBaXnZopHnRmZ2B7s0ryfPGE8JOi7Q9SPcyncDn5NIuTmUcdNH6ltyKL8?=
+ =?us-ascii?Q?akEx25g/LESGChUWDKqioh2mfDibXztlGaeSSu60SdCneSlfmwl4W1GWJxTj?=
+ =?us-ascii?Q?86pMoZgL+GKtzrQ752Q91w4RAPVYFCsepWGCiZhWJJWPritqC6//p8wZMXj1?=
+ =?us-ascii?Q?k9wGH3f45883gXQ7dJWiMJagz6pUrNq/NG7m50GRvBAT4IBvxMSayX89N2tE?=
+ =?us-ascii?Q?ivIIqcf2QOscl/1eL4R6unbgiwrjIHHWbqHwLxK0oXzpYmrmR79VVVyK6NA0?=
+ =?us-ascii?Q?4V00pIbZIhTmxTxzeNmzI62Ld6zH6XdhH7udhiaHNS5+KFBfoJ5lREjyN74T?=
+ =?us-ascii?Q?7lX0Vz9nleIXTcRaN0+j1/gbs54FbVYYIjduxNOV3cJZAtXH4o6MyJFXRhkg?=
+ =?us-ascii?Q?k2rStmRDjsvTBMck84feQQc/q4EWoa5TgGkk8wB6CjV91jkrPEb6TP2F2DyU?=
+ =?us-ascii?Q?WQnRqdRs2ZDm7Vb5JPDJQJr+uvBzcGikmCu7IzWarxCLCo+uETwIeALaz5Yb?=
+ =?us-ascii?Q?Wzyd6ao8gcCY5PKfGT7V0WrpcX86aLkALPMlizdKSpbsQpXBsLlebrymW32U?=
+ =?us-ascii?Q?N+hFkzxkqFYYD1EaAqiuY5VeURsVgapYY5l8vSvv6PyoY0+x2lr8q46OnPZn?=
+ =?us-ascii?Q?uImh36zifL8eYmuaO6C0A4WIZptSaAtcSxySP21yk/X7S32l327lGmlaMrhx?=
+ =?us-ascii?Q?N7a9vOWB6U7a/UCRnKuCdW6zIcyJ?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR08MB4215.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(10070799003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ReXfoMldqCVTlyG3lPaL86X4od92iLuaC+jVI5tS64WtS1NqFXbqJfiTOZQ3?=
+ =?us-ascii?Q?l+I41s0VSm5gzcl7zgL3Hcla8JOoyCIXo6jJBUpEjegUyvLsldEjGMTJ62HY?=
+ =?us-ascii?Q?JnVZFrG698985ljA5S7KF+h3sgEb3VTHPFVH46LPPx4BwF+GSPmhRtNx7lD+?=
+ =?us-ascii?Q?QXe4F6NWl5gtXVO1wf5THXxiwYfg6chTMCRTkTW825M4W8WK+nud9LJNK1AL?=
+ =?us-ascii?Q?zX4NrEUBwCbvfTZhxAO/B1hdu7/rnOEZc6mWc4CxnPGe+EYMos6h9/3vN6ed?=
+ =?us-ascii?Q?dVXxh1dLlkCHVWmS/qGwNuAZxUtTm6j6liaT6vT1AJufZO7D6ILUdOMnX8jX?=
+ =?us-ascii?Q?K74qTUk31WtdiXGzPs7dKuR2jd4EBJ95rSyT2jzpC2Bw8RZkjMF8dp93lXT5?=
+ =?us-ascii?Q?CdRy73/3ArrAMq5M+TVeGam9MrChY2E3v+PTHwaPi2cjXeU6okGaC9TQD4p5?=
+ =?us-ascii?Q?vv39qfKFAXcGw62G2b/rtX8+TVIl9DI7r2FV6xWR5aeaTgFIxKczQ4mOuPtm?=
+ =?us-ascii?Q?T4b8/U0dnb224C6yHWk0VpFZdJYg4BqQLZ3THFt1PVnw0QXs3OWWcZV4C3T1?=
+ =?us-ascii?Q?QIYAniU/Vk38Jvfddao5yNKKlgyKyNjh3/dQ3Ryxi2XRJgDcq/5TDWRaINWp?=
+ =?us-ascii?Q?xNMDjHSPyXhUumT3G6se6sRLqv7rxTir+q9+xDIQJcCmEO3sz1FqTWrURtxP?=
+ =?us-ascii?Q?RjAXdPeRvxSgBDMOD/5joSNgD7fUDUbR+LMQgp66MwNj2N9QuAbmOd71wN6a?=
+ =?us-ascii?Q?h6R1fafYuB24N5C2tRi90Ggoh+Uj4xV/6YxrxjTXLl/xGzFXdmbsmzCB3hJq?=
+ =?us-ascii?Q?mLYDfQYY6cPZSVmBFjMel+MKkPSbqhNTr33VQvDolrreA9dqmZKlMPdDoP2T?=
+ =?us-ascii?Q?/rmtnpzn8Ifq6jkVMS/U5wjQedwzJ9ShbBZaM7shRrEsr2Eix+zRsXFxeAFW?=
+ =?us-ascii?Q?B8fte+BRoZovBO+rPAKmnFSWTH0gpq3KSakXw8Mq6wz4CUTEK3RaKxBGFEcE?=
+ =?us-ascii?Q?lVhbEcg84kl3r14d8sekN4KE4GKyIfxmAZfMyIcPzyeRRMeR9eB07JRNrzx5?=
+ =?us-ascii?Q?ByuqakZtojx/iKNXXbiBmA4AQV+x/oc6AdYWug3IOJeiAWiCrzN1gE+SfpHo?=
+ =?us-ascii?Q?O3hOKlQbCknxS6bYqUZb8QHAGFMZUtfiRNhMWIMErz/rHCIkUpb2kfOiWwGo?=
+ =?us-ascii?Q?NPThDciWkeQpS0ThlLisUfwKWr/EQvz4aZJgei+HelKw+GNWrxK3vJmHUjGy?=
+ =?us-ascii?Q?pRYcHBh0yfcDw1Zns5vGCSVAgBhenaYvkT/yx7NQmJAiu+hXMkI9WVd35loT?=
+ =?us-ascii?Q?1Ui7FeQgvKAKwIolNE9FXzx3hXGCULmcrFb9mqSnECCoMJVoKaZkIE94PqgX?=
+ =?us-ascii?Q?w/9POH7hLew2dS7EcuZPl10N5Esin4+h+9H1wV5MuNI34mbFZkwPUPIQYsaU?=
+ =?us-ascii?Q?xl5kHqlEDvE+JiBShb3Jw0n8gqoF9aVIbSD5y+4MAMg92B3+6lx43t77BQ2a?=
+ =?us-ascii?Q?BkHhMt5DatifexCds6THgXbQY88BxmcCND/I9qrRTNe+Xz/y7An1pFcj/Zn5?=
+ =?us-ascii?Q?mlPRCDehefFGTA8IeVzlQJrJbxK1QkDyvb6t+4KPAlhjb4u19lB6kIi0R713?=
+ =?us-ascii?Q?Igr/NOSZTYtdUkzF5sB6OMOGt5h1ub+4fb8Kml/usPJvBiKYKx0+wAmmA1Dt?=
+ =?us-ascii?Q?hhCWEw=3D=3D?=
+X-OriginatorOrg: genexis.eu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24a1a0be-6aae-40da-9831-08dd2d8a90d5
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR08MB4215.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jan 2025 13:12:11.8297
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zu6R47OUr7XkTqQloSnS2PFdPBIC6k3hkkbKblJ/MpJqQMeGZada6n0j4TXAKUCh/RQIqAN4u1UpFQZOVGz6DLe2z9cqTDJu46hqAiwtFS4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR08MB9613
 
-On Sun, Jan 5, 2025 at 2:32=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Sun, 5 Jan 2025 at 04:51, Jos Wang <joswang1221@gmail.com> wrote:
-> >
-> > On Sun, Dec 22, 2024 at 9:14=E2=80=AFPM Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> > >
-> > > On Sun, Dec 22, 2024 at 06:52:39PM +0800, joswang wrote:
-> > > > From: Jos Wang <joswang@lenovo.com>
-> > > >
-> > > > According to the USB PD3 CTS specification
-> > > > (https://usb.org/document-library/
-> > > > usb-power-delivery-compliance-test-specification-0/
-> > > > USB_PD3_CTS_Q4_2024_OR.zip), the requirements for
-> > > > tSenderResponse are different in PD2 and PD3 modes, see
-> > > > Table 19 Timing Table & Calculations. For PD2 mode, the
-> > > > tSenderResponse min 24ms and max 30ms; for PD3 mode, the
-> > > > tSenderResponse min 27ms and max 33ms.
-> > > >
-> > > > For the "TEST.PD.PROT.SRC.2 Get_Source_Cap No Request" test
-> > > > item, after receiving the Source_Capabilities Message sent by
-> > > > the UUT, the tester deliberately does not send a Request Message
-> > > > in order to force the SenderResponse timer on the Source UUT to
-> > > > timeout. The Tester checks that a Hard Reset is detected between
-> > > > tSenderResponse min and max=EF=BC=8Cthe delay is between the last b=
-it of
-> > > > the GoodCRC Message EOP has been sent and the first bit of Hard
-> > > > Reset SOP has been received. The current code does not distinguish
-> > > > between PD2 and PD3 modes, and tSenderResponse defaults to 60ms.
-> > > > This will cause this test item and the following tests to fail:
-> > > > TEST.PD.PROT.SRC3.2 SenderResponseTimer Timeout
-> > > > TEST.PD.PROT.SNK.6 SenderResponseTimer Timeout
-> > > >
-> > > > Considering factors such as SOC performance, i2c rate, and the spee=
-d
-> > > > of PD chip sending data, "pd2-sender-response-time-ms" and
-> > > > "pd3-sender-response-time-ms" DT time properties are added to allow
-> > > > users to define platform timing. For values that have not been
-> > > > explicitly defined in DT using this property, a default value of 27=
-ms
-> > > > for PD2 tSenderResponse and 30ms for PD3 tSenderResponse is set.
-> > >
-> > > You have several different changes squashed into the same commit:
-> > > - Change the timeout from 60 ms to 27-30 ms (I'd recommend using 27 m=
-s
-> > >   as it fits both 24-30 ms and 27-33 ms ranges,
-> > > - Make timeout depend on the PD version,
-> > > - Make timeouts configurable via DT.
-> > >
-> > > Only the first item is a fix per se and only that change should be
-> > > considered for backporting. Please unsquash your changes into logical
-> > > commits.  Theoretically the second change can be thought about as a p=
-art
-> > > of the third change (making timeouts configurable) or of the fist cha=
-nge
-> > > (fix the timeout to follow the standard), but I'd suggest having thre=
-e
-> > > separate commits.
-> > >
-> > The patch is divided into patch1 (fix the timeout to follow the
-> > standard), patch2 (Make timeout depend on the PD version)
-> > and patch3 (Make timeouts configurable via DT). Do you suggest that
-> > these three patches should be submitted as
-> > V3 version, or patch1 and patch2 should be submitted separately?
-> > Please help to confirm, thank you.
->
-> Single series should be fine.
->
-OK=EF=BC=8COne by one, after the first patch (fix the timeout to follow the
-standard) is merged, submit the second patch (Make timeout depend on
-the PD version).
-The first patch can be found at:
-https://patchwork.kernel.org/project/linux-usb/patch/20250105125251.5190-1-=
-joswang1221@gmail.com/
+The Airoha familty of SoCs have a UART hardware that is 16550-compatible
+with the exception of the baud rate settings.
 
-> >
-> > > >
-> > > > Fixes: 2eadc33f40d4 ("typec: tcpm: Add core support for sink side P=
-PS")
-> > > > Cc: stable@vger.kernel.org
-> > > > Signed-off-by: Jos Wang <joswang@lenovo.com>
-> > > > ---
-> > > > v1 -> v2:
-> > > > - modify the commit message
-> > > > - patch 1/2 and patch 2/2 are placed in the same thread
-> > >
-> > > --
-> > > With best wishes
-> > > Dmitry
->
->
->
-> --
-> With best wishes
-> Dmitry
+This patch implements code for calculating the baud rate for the Airoha
+UART and HSUART.
+
+Benjamin Larsson (2):
+  dt-bindings: serial: 8250: Add Airoha compatibles
+  serial: Airoha SoC UART and HSUART support
+
+ devicetree/bindings/serial/8250.yaml          |  2 +
+ drivers/tty/serial/8250/8250_airoha.c         | 85 +++++++++++++++++++
+ drivers/tty/serial/8250/8250_of.c             |  2 +
+ drivers/tty/serial/8250/8250_port.c           | 26 ++++++
+ drivers/tty/serial/8250/Kconfig               | 10 +++
+ drivers/tty/serial/8250/Makefile              |  1 +
+ include/linux/serial_8250.h                   |  1 +
+ include/uapi/linux/serial_core.h              |  6 ++
+ include/uapi/linux/serial_reg.h               |  9 ++
+ 9 files changed, 142 insertions(+)
+ create mode 100644 drivers/tty/serial/8250/8250_airoha.c
+
+
+Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
+-- 
+2.34.1
+
 
