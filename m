@@ -1,123 +1,159 @@
-Return-Path: <devicetree+bounces-135602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E3B9A01781
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 01:28:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6E6A017DB
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 03:52:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 552041883998
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 00:28:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E3763A3759
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 02:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845AA647;
-	Sun,  5 Jan 2025 00:28:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BF21F931;
+	Sun,  5 Jan 2025 02:51:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EedeoDGS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b7kvbRUJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 497A1184F;
-	Sun,  5 Jan 2025 00:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E2FA36B;
+	Sun,  5 Jan 2025 02:51:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736036927; cv=none; b=rQmIPMu10omZ8uEQOcpxvlZgUsI50mXILWoWMGu3rl67xKuVsWSOfStcF2A6C8Tv+cjwBIjijoLueOgJYqBaJJ4XNoW1RR/JNyYqx4ey+vTOw14ss11ePgZitvE7zqPt+L3++5F3nf8eCr2lCR35FQQPgYbkWHKYIrp0+Zo8L2M=
+	t=1736045514; cv=none; b=WWRPq6eIP+9sMAzpUo1cdKV+54KxHqu9yfBAD4O5bnMnnYj4kTZuHYio7OgiqowG4t3XuKoaZqb2/xEqdUV3MEJC6iR9liLPYhJePfQMhIon9X9G14z21TedXPCwBu2TDuY8NmU9NKM6lVi3AHJsSKOyJxhDiQuo0YiXXOPHzYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736036927; c=relaxed/simple;
-	bh=ha0luu9hiAK5+1mfWX1KsAJ1kNx3anO7Gu4A8rsUsNo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sWaXHoPxIGOnrEWO68aizakCSFq8p5D5B1dNzLIbQjUuDMqrzuIFAurLmzlAu1EuDsqjwWRL1M4nOc+EBeAr0bJrtYS+C/iYck2n+Xa+5a5JpSue71DFgiCXFtSIO9o6VXhYPXD8HMZy3RjED0NAPAZPP0u7JfCvzjmHrKCUCus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EedeoDGS; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736036926; x=1767572926;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ha0luu9hiAK5+1mfWX1KsAJ1kNx3anO7Gu4A8rsUsNo=;
-  b=EedeoDGSPj+2Ad/6ty057yE6SKFxRVK4MYl92ROYtfVWBURDVDEyNU7c
-   AgWTriWatsJnBTchAUsWKQ7S6FOI4wG5t3fefOBgijQAq9/R+jjh65WZj
-   l3HNqxgdTsUk0YbCqwv/ZhCB9n3et7VYHG0aPps7qNbXO460IUcJW9kF8
-   pan3Va48PxJEA3QlAImAF9Fu4UdC+XCu8b5T0eCS3sAb9tP8Hiv5TaNwZ
-   S8zeWhIhHdulO3Fo1K2w10w4Q5a4dlEKTFMvHIvj+251deAlf+YfEIJJW
-   vAgvJKUylKVKoLT3Jh4LbxgTQNFtQoIKitWFyq/sWuUa58DboBPS1tzFr
-   g==;
-X-CSE-ConnectionGUID: ADid6mniSUW8aIqKY4MDsw==
-X-CSE-MsgGUID: A/0MRvOASFekNO6pO42TXQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11305"; a="35531000"
-X-IronPort-AV: E=Sophos;i="6.12,289,1728975600"; 
-   d="scan'208";a="35531000"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2025 16:28:45 -0800
-X-CSE-ConnectionGUID: 5YZTBN2JRYGsUB+DQR1fwA==
-X-CSE-MsgGUID: t5VFkvDQTMyR1CKV4A4zyA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="133019800"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 04 Jan 2025 16:28:40 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tUEVS-000BKp-1D;
-	Sun, 05 Jan 2025 00:28:38 +0000
-Date: Sun, 5 Jan 2025 08:27:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Jaehoon Chung <jh80.chung@samsung.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] arm64: dts: exynos: exynos8895-dreamlte: enable
- support for the touchscreen
-Message-ID: <202501050840.JpoautB7-lkp@intel.com>
-References: <20250104164321.333669-7-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1736045514; c=relaxed/simple;
+	bh=nyMeHaPYpNCyW6Rp8R3yTB/6GcmDyGW53GbzL4CA/BU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NfejFntrTEP/sbJEPhwkWNeIOGfammWlZd9e2OJRhii33fQJHWMcfTdU/zcORRb+IqwKRqfVo7kvtbf47w8aIZlANYDocqbiJo9csOObtbzscwThP7ZYi4XfZHgaywzVDm0knjVTqDsR0+fUndOe4LYrqK1cROnLz16o3N5Ig7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b7kvbRUJ; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-2a3bf796cccso5935672fac.1;
+        Sat, 04 Jan 2025 18:51:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736045511; x=1736650311; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cg1rQ6/pZioByqQHGs1fGmHXEcQ58r83VoOaNc6DbIc=;
+        b=b7kvbRUJqUM45971sWEuv0RCNBHglO9ekMMoRZKB6/OS5QlK/y5eRAiP0SgPaUG2U0
+         KWTBN8abvtGwLcpOJjGM7zG2MMj1U0SxpboUq32JmuwzBzvqtPJA+iuAMvA5sQ/0FVOS
+         LojA9UeZsfVZAvQQdxB2ffwGRYbm7Cb2GoR3qxayenf5U5JLWfXYXCF6Whe2Sk4gnrTZ
+         x+7dYpvDd1SzPoAtYDsFlp/RiCJhB0dGsNalvj5uRXjmPHFHFPxvxVbtsw68j4yOthaW
+         9LDbBiF7tvj2vChOuXHngEq8Xl7ra/Haf7ZdLNEN9rhbMNiuestr23xvAcf3v9rbyuxa
+         xF4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736045511; x=1736650311;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cg1rQ6/pZioByqQHGs1fGmHXEcQ58r83VoOaNc6DbIc=;
+        b=IvQTOOQHwVrsKijhpTjsRqOghCeoTZ+I2y20tms4bdegDJ1HIPPLnjMmUiFZChHJH+
+         pZFWct8TmYVKpw6b7TVga7qYEsaUyA6B4CSq5sNwWzdPEGNt2nsv/Yyh8CSVCB1HnIOE
+         0iuhLDRFwnNqwjQ0qBBIEmx2R/JWOxv+xSBN79dByTyupQAD9K5Tu8lo2TVuSqs4DPu6
+         aAGts9hZrgxvpIFcwMZJqGhEjqBE+06W3FHwj5JcXQ12B7KMb0Wl4zzZ3GY8SMPdzEBo
+         CeVdf+Y2GbWDu/2IX9w+vay+si5M6riJR32b9/nPyla+0/YYqP5fAkDOEQwlwN22Rpto
+         4xww==
+X-Forwarded-Encrypted: i=1; AJvYcCUVhX/0XPQTq0uIFzzTgxh9N+Py+4qyonl1NErvC/0awxbGOnPPFIi9akW7XJ3EJKBGanlNfby6@vger.kernel.org, AJvYcCVplJ0ro/FZWEq+V4NNZAscLOFTmK6btNiYNOwSSzODxDm20Kt+voZWZU+OTWGQOff9ZeLH/EhdDWZz@vger.kernel.org, AJvYcCX3ymRIaOGy426xW9WGTRCTMyEi/yoM1UoIiCuHYRprTJiOpx5WL1zysRw3moXieLx13mRQ8LQ2lAZKEThm@vger.kernel.org, AJvYcCXtR+Mcm1Cv4zQ1ES/ylh5cvYolr+TrMtzc17ca0I3ZGw6YuSdP4a3GUXVEJufzJROot4hqYoqssOP9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXso/yOToUf6dpfVNRoL2ZI5bP7ReVcT2FGeHTy94n47iFzSEh
+	K1nzAMxB4B/QcSNHq5OnPNAkQKjV6ov80SVXOmTASIlFhnYwop3lYKVlqDZAlErDLKa82SB4wU2
+	ETde6PNc0K7XdcwMyCBz51VGsT2QGPLAn
+X-Gm-Gg: ASbGncs37j3TsTmZJidBEiWXN31Varlg42f2pEQB1ym6ChrxI5fAyqew1kGU59iJwp2
+	aNtYhaw9xhlX5GhS4ECyD/BNJBHwGoKr9/i0wgPQ=
+X-Google-Smtp-Source: AGHT+IHfYnfEqKmuHhFrMYj1wSIh57uRQx+cE6q35RGY/y7/V0nIF2tAfR90LOz/sV3YyvNXpFJoGCobSvrU7k10LIA=
+X-Received: by 2002:a05:6870:a496:b0:2a3:c59f:4cba with SMTP id
+ 586e51a60fabf-2a7fb0cf188mr24894561fac.17.1736045511414; Sat, 04 Jan 2025
+ 18:51:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250104164321.333669-7-ivo.ivanov.ivanov1@gmail.com>
+References: <20241222105239.2618-1-joswang1221@gmail.com> <20241222105239.2618-2-joswang1221@gmail.com>
+ <exu4kkmysquqfygz4gk26kfzediyqmq3wsxvu5ro454mi4fgyp@gr44ymyyxmng>
+In-Reply-To: <exu4kkmysquqfygz4gk26kfzediyqmq3wsxvu5ro454mi4fgyp@gr44ymyyxmng>
+From: Jos Wang <joswang1221@gmail.com>
+Date: Sun, 5 Jan 2025 10:51:43 +0800
+Message-ID: <CAMtoTm2X+aQRpSbNPjw+b+TsYfYT3h6yx2ycXYwfQbcinrwyPQ@mail.gmail.com>
+Subject: Re: [PATCH v2, 2/2] usb: typec: tcpm: fix the sender response time issue
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: heikki.krogerus@linux.intel.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	rdbabiera@google.com, Jos Wang <joswang@lenovo.com>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ivaylo,
+On Sun, Dec 22, 2024 at 9:14=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Sun, Dec 22, 2024 at 06:52:39PM +0800, joswang wrote:
+> > From: Jos Wang <joswang@lenovo.com>
+> >
+> > According to the USB PD3 CTS specification
+> > (https://usb.org/document-library/
+> > usb-power-delivery-compliance-test-specification-0/
+> > USB_PD3_CTS_Q4_2024_OR.zip), the requirements for
+> > tSenderResponse are different in PD2 and PD3 modes, see
+> > Table 19 Timing Table & Calculations. For PD2 mode, the
+> > tSenderResponse min 24ms and max 30ms; for PD3 mode, the
+> > tSenderResponse min 27ms and max 33ms.
+> >
+> > For the "TEST.PD.PROT.SRC.2 Get_Source_Cap No Request" test
+> > item, after receiving the Source_Capabilities Message sent by
+> > the UUT, the tester deliberately does not send a Request Message
+> > in order to force the SenderResponse timer on the Source UUT to
+> > timeout. The Tester checks that a Hard Reset is detected between
+> > tSenderResponse min and max=EF=BC=8Cthe delay is between the last bit o=
+f
+> > the GoodCRC Message EOP has been sent and the first bit of Hard
+> > Reset SOP has been received. The current code does not distinguish
+> > between PD2 and PD3 modes, and tSenderResponse defaults to 60ms.
+> > This will cause this test item and the following tests to fail:
+> > TEST.PD.PROT.SRC3.2 SenderResponseTimer Timeout
+> > TEST.PD.PROT.SNK.6 SenderResponseTimer Timeout
+> >
+> > Considering factors such as SOC performance, i2c rate, and the speed
+> > of PD chip sending data, "pd2-sender-response-time-ms" and
+> > "pd3-sender-response-time-ms" DT time properties are added to allow
+> > users to define platform timing. For values that have not been
+> > explicitly defined in DT using this property, a default value of 27ms
+> > for PD2 tSenderResponse and 30ms for PD3 tSenderResponse is set.
+>
+> You have several different changes squashed into the same commit:
+> - Change the timeout from 60 ms to 27-30 ms (I'd recommend using 27 ms
+>   as it fits both 24-30 ms and 27-33 ms ranges,
+> - Make timeout depend on the PD version,
+> - Make timeouts configurable via DT.
+>
+> Only the first item is a fix per se and only that change should be
+> considered for backporting. Please unsquash your changes into logical
+> commits.  Theoretically the second change can be thought about as a part
+> of the third change (making timeouts configurable) or of the fist change
+> (fix the timeout to follow the standard), but I'd suggest having three
+> separate commits.
+>
+The patch is divided into patch1 (fix the timeout to follow the
+standard), patch2 (Make timeout depend on the PD version)
+and patch3 (Make timeouts configurable via DT). Do you suggest that
+these three patches should be submitted as
+V3 version, or patch1 and patch2 should be submitted separately?
+Please help to confirm, thank you.
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on krzk/for-next]
-[also build test ERROR on next-20241220]
-[cannot apply to robh/for-next ulf-hansson-mmc-mirror/next linus/master v6.13-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ivaylo-Ivanov/dt-bindings-mmc-samsung-exynos-dw-mshc-add-specific-compatible-for-exynos8895/20250105-004605
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250104164321.333669-7-ivo.ivanov.ivanov1%40gmail.com
-patch subject: [PATCH v2 6/6] arm64: dts: exynos: exynos8895-dreamlte: enable support for the touchscreen
-config: arm64-randconfig-003-20250105 (https://download.01.org/0day-ci/archive/20250105/202501050840.JpoautB7-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 096551537b2a747a3387726ca618ceeb3950e9bc)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250105/202501050840.JpoautB7-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501050840.JpoautB7-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts:196.18-19 syntax error
-   FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> >
+> > Fixes: 2eadc33f40d4 ("typec: tcpm: Add core support for sink side PPS")
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Jos Wang <joswang@lenovo.com>
+> > ---
+> > v1 -> v2:
+> > - modify the commit message
+> > - patch 1/2 and patch 2/2 are placed in the same thread
+>
+> --
+> With best wishes
+> Dmitry
 
