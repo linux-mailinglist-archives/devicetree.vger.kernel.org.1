@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-135607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A66FA018C2
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:06:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30D79A018C7
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:11:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CED33A2944
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 09:06:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1585C160E1A
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 09:11:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E5113C807;
-	Sun,  5 Jan 2025 09:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B26C513BAD5;
+	Sun,  5 Jan 2025 09:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kKXsY95T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gfFWBCQv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF1B3D3B3;
-	Sun,  5 Jan 2025 09:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B33F79C4;
+	Sun,  5 Jan 2025 09:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736067997; cv=none; b=VbKrGJn7KCeNukkiB1SqAKRimQICA61QuoHFHJZs1I97dO6pHSV+1Xu7mFUxq15y5qPG+zPqhdyIsUFUJTpMuMoRzS1QU5HG1bXS1izZSCt98xd7nQqk4r1XBfbIodofqrEjQ2wOkVfti3HRkIvgH96jzHhzlrKk1G2Tonq3TnU=
+	t=1736068278; cv=none; b=bOwmGieYjFuLX5rV12ofgWf/YtSC68YWq4L5E12kXtjP6R6T1cXhb/LKcVgbkqZbhfzlL2XpwvmVptKFkr+VOxIDlEqqvbM/A+izifkCtHTxLK4u//T7O9MaDrKCRyWK8JuarX5OaBQY3XVJnOLxPpCHSQ/g7ED0Sjy3zvlgB/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736067997; c=relaxed/simple;
-	bh=QHEtrtWehZrXxi4O0ZwprOmoYuiHhgDbbAm2XllazSk=;
+	s=arc-20240116; t=1736068278; c=relaxed/simple;
+	bh=2TOeTUy5HipEdyS8UWEvHtoIyKp0xd70nYPrccBQwQ8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CsP4n5WWhf9bkYZ4sU8F2b4KlhKpNyxyLTqQxgsndkNuuJzalGDYKb0k98maFWePMexLGRlth/9Pw9uYU2s9po43LaZbpH0ZxWRmZD5RavDlZwWtkj9wGCib5Iuwuzrl7e5tx426Ebl9IQPHxl65fDTWPMoAtlrBmD3/10UxwbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kKXsY95T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FAC3C4CED0;
-	Sun,  5 Jan 2025 09:06:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gDnad8mFyOfS0KfQF86MowLS+yBK92Sqoh/GSeAHaQHba3ladc7zRXi2B8HDsC9StvDr7XLE/1ncJRmzotZgLNe+UsYwG1erldINhCzCuXDMT+gRGOSrPtZYCUarDQKdPae7VJIhsNniZcjr3RNrbkLBmIyI1aAm+KzbE9m5Plc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gfFWBCQv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9055BC4CED0;
+	Sun,  5 Jan 2025 09:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736067997;
-	bh=QHEtrtWehZrXxi4O0ZwprOmoYuiHhgDbbAm2XllazSk=;
+	s=k20201202; t=1736068276;
+	bh=2TOeTUy5HipEdyS8UWEvHtoIyKp0xd70nYPrccBQwQ8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kKXsY95TEAsopYp9HoWUdjVZqubBr7zrSF+kpXGL7zI8b5ssakBN7djodVKlbPig2
-	 2RkASTA5et5vqACsHk82s6DVx7LnO/1MzTJkFs0NIdgM6GiqXLinpjCSm6OmkQMAg9
-	 YtlZEHBGW++cK574MNiZqqNZgd6J9No/Apb4aW+accN73KRFUhpGCflcOSZCDbVsOn
-	 pRFDvvms7MiUmtGSQH6NdEaN+BvpflWsa1UPDYa8YRc0Uv2J6ZdBSpiJ7LklRRJ7P5
-	 lCqreYhSM4wQAqWVT/b/OL0NVeSbxFbu8JhiwtvqdiB1207/71ncIjrOmvFXT3ieed
-	 UXSSuICpJBArw==
-Message-ID: <c47cdecb-a618-4e7b-8334-5892170f012b@kernel.org>
-Date: Sun, 5 Jan 2025 10:06:27 +0100
+	b=gfFWBCQvRHLCk1eItbPwxZrXibjLbfTawgID+ySzdqKJqVPznELNvBd7vLG8nXwX1
+	 XxWDEehSXOLhycgmEiaUvT5/aW/4t2JqYpzKpIbDoWqfAj5U1Nz4LgTLfXQ3y2iB2c
+	 VEm4tPYs2AtE47hMIY2GyMEJaXJYABaxGUwfIwkZMtaXkVFelOwcOcRV4Cct10HTWo
+	 Cqr4E+DgUUVq5OtXAXWmFmg6un0OV4WHKE5bdes+RUETWi/zTGBFT5U/g1Xzpzmuhw
+	 ErNhcGlaVbHC6gS7Hmjhj3clN/S0mOyLuDFP4CEmSE9aX8b020CShyPzg/HpgvimFj
+	 /RJqpTF+BVXrA==
+Message-ID: <ed1b2cc2-5d9e-4e95-a5b0-733174299773@kernel.org>
+Date: Sun, 5 Jan 2025 10:11:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 18/27] regulator: dt-bindings: Add
- regulator-power-budget property
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>,
- Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>,
- Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de,
- Maxime Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org
-References: <20250103-feature_poe_port_prio-v4-0-dc91a3c0c187@bootlin.com>
- <20250103-feature_poe_port_prio-v4-18-dc91a3c0c187@bootlin.com>
- <mjtwntmupclvy2dvc66zxxob3py47lew47vq37hfi6v6pmbpne@nr62lnuilzya>
- <20250104165056.749da353@kmaincent-XPS-13-7390>
+Subject: Re: [PATCH] dt-bindings: memory-controller: qca,ath79-ddr-controller:
+ Drop consumer from example
+To: "Rob Herring (Arm)" <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250103212448.2852884-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,60 +100,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250104165056.749da353@kmaincent-XPS-13-7390>
+In-Reply-To: <20250103212448.2852884-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/01/2025 16:50, Kory Maincent wrote:
-> On Sat, 4 Jan 2025 10:42:32 +0100
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 03/01/2025 22:24, Rob Herring (Arm) wrote:
+> Normal practice is examples only show what the binding document defines
+> and doesn't include consumers in a provider example (or vice-versa). The
+> "qca,ddr-wb-channel-interrupts" and "qca,ddr-wb-channels" properties are
+> also not yet documented by a schema, so avoid (not yet enabled) warnings
+> on them by dropping the interrupt-controller node from the example.
 > 
->> On Fri, Jan 03, 2025 at 10:13:07PM +0100, Kory Maincent wrote:
->>> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
->>>
->>> Introduce a new property to describe the power budget of the regulator.
->>> This property will allow power management support for regulator consumers
->>> like PSE controllers, enabling them to make decisions based on the
->>> available power capacity.
->>>
->>> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
->>> ---
->>>
->>> Changes in v3:
->>> - Add type.
->>> - Add unit in the name.
->>>
->>> Changes in v2:
->>> - new patch.
->>> ---
->>>  Documentation/devicetree/bindings/regulator/regulator.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/regulator/regulator.yaml
->>> b/Documentation/devicetree/bindings/regulator/regulator.yaml index
->>> 1ef380d1515e..c5a6b24ebe7b 100644 ---
->>> a/Documentation/devicetree/bindings/regulator/regulator.yaml +++
->>> b/Documentation/devicetree/bindings/regulator/regulator.yaml @@ -34,6
->>> +34,11 @@ properties: regulator-input-current-limit-microamp:
->>>      description: maximum input current regulator allows
->>>  
->>> +  regulator-power-budget-miniwatt:  
->>
->> What sort of quantity prefix is a "mini"? How much is a mini?
-> 
-> Oops, that is a brain fart sorry for this. Of course it is milliwatt.
-> 
->>
->>> +    description: power budget of the regulator
->>> +    $ref: /schemas/types.yaml#/definitions/uint32  
->>
->> This should not be needed. Use proper unit from dtschema.
-> 
-> Ok, I was mistaken. There are bindings with this ref in this file, so I thought
-> it was needed. I will remove it.
-If the unit is not in the property-units of dtschema, you will have a
-warning, but then please send a pull request (patch could work as well
-probably) to dtschema adding it... but I am sure that milliwatt is there.
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../memory-controllers/qca,ath79-ddr-controller.yaml       | 7 -------
+>  1 file changed, 7 deletions(-)
+
+It is too late in the cycle for me to pick it up. I will take it after
+the merge window... or alternatively you can take it via DT for upcoming
+merge window:
+
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
