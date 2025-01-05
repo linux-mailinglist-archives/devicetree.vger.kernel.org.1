@@ -1,127 +1,185 @@
-Return-Path: <devicetree+bounces-135608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D79A018C7
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:11:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 675D4A018CC
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:18:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1585C160E1A
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 09:11:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1CEB7A16A6
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 09:18:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B26C513BAD5;
-	Sun,  5 Jan 2025 09:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 447D5136671;
+	Sun,  5 Jan 2025 09:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gfFWBCQv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZdqrsbdC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B33F79C4;
-	Sun,  5 Jan 2025 09:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1526D1D6AA;
+	Sun,  5 Jan 2025 09:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736068278; cv=none; b=bOwmGieYjFuLX5rV12ofgWf/YtSC68YWq4L5E12kXtjP6R6T1cXhb/LKcVgbkqZbhfzlL2XpwvmVptKFkr+VOxIDlEqqvbM/A+izifkCtHTxLK4u//T7O9MaDrKCRyWK8JuarX5OaBQY3XVJnOLxPpCHSQ/g7ED0Sjy3zvlgB/8=
+	t=1736068730; cv=none; b=Iv+kRowc1GqitCXQ7b+rOJpDHxUjOjD6A7XjOcEIOID59PFs8IqGVG3yyePNHhExOn8vsbQLrano5DA6IWf84tXtvEyGqX5Tuevvtx0cIM1Qhp4Ao19tADoarH06rnH3UjmcVkzFxIC+vNtvgCiKVli2g8kEQzoem6vOQSQ6jEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736068278; c=relaxed/simple;
-	bh=2TOeTUy5HipEdyS8UWEvHtoIyKp0xd70nYPrccBQwQ8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gDnad8mFyOfS0KfQF86MowLS+yBK92Sqoh/GSeAHaQHba3ladc7zRXi2B8HDsC9StvDr7XLE/1ncJRmzotZgLNe+UsYwG1erldINhCzCuXDMT+gRGOSrPtZYCUarDQKdPae7VJIhsNniZcjr3RNrbkLBmIyI1aAm+KzbE9m5Plc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gfFWBCQv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9055BC4CED0;
-	Sun,  5 Jan 2025 09:11:14 +0000 (UTC)
+	s=arc-20240116; t=1736068730; c=relaxed/simple;
+	bh=TdK3l02Mvjr7icEQxVdmSFVx/esDQGcdPzwQMMKF92s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tZyM5l/ngFXn6nIT3okDjwr1P3s7A4GGG0ppVHxo4WwMOUYLzPW9LHH234ksRyEaT97fvfx4OgQWsHZRT4TXDK59FLQBnCbG39p0QG42CWYU+q1vKuT4MoFhIRuU9OXIhxEbqi6jPLuSt3zxdZzQ+L8qoxPcA/DN+k8M4Q9PAg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZdqrsbdC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 974DBC4CED0;
+	Sun,  5 Jan 2025 09:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736068276;
-	bh=2TOeTUy5HipEdyS8UWEvHtoIyKp0xd70nYPrccBQwQ8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gfFWBCQvRHLCk1eItbPwxZrXibjLbfTawgID+ySzdqKJqVPznELNvBd7vLG8nXwX1
-	 XxWDEehSXOLhycgmEiaUvT5/aW/4t2JqYpzKpIbDoWqfAj5U1Nz4LgTLfXQ3y2iB2c
-	 VEm4tPYs2AtE47hMIY2GyMEJaXJYABaxGUwfIwkZMtaXkVFelOwcOcRV4Cct10HTWo
-	 Cqr4E+DgUUVq5OtXAXWmFmg6un0OV4WHKE5bdes+RUETWi/zTGBFT5U/g1Xzpzmuhw
-	 ErNhcGlaVbHC6gS7Hmjhj3clN/S0mOyLuDFP4CEmSE9aX8b020CShyPzg/HpgvimFj
-	 /RJqpTF+BVXrA==
-Message-ID: <ed1b2cc2-5d9e-4e95-a5b0-733174299773@kernel.org>
-Date: Sun, 5 Jan 2025 10:11:12 +0100
+	s=k20201202; t=1736068729;
+	bh=TdK3l02Mvjr7icEQxVdmSFVx/esDQGcdPzwQMMKF92s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZdqrsbdCuBt4PpJLGpaR7sak3pbZVAI6sMXUvzR7TrGeH6fymOz2KgZBqS35eOhfj
+	 fbv/Z5Z5UzeSM7I8KU6pn2tq7FNXNdQE/kiSmE4VUwXouM155IbUomDi287qVf7kh/
+	 6erXeZ+8NnrIWdqC3CVQvo7TkWNAsQTvQw9HLomFFykYNNhKz6QqYjo9ZYd7PQE4Lh
+	 VHUlwvzeJ4M+Ch9PAPnuIX5wpWGIett2FLz5vcWMxcjdG9sofSThbTvtxe1eUC7bIu
+	 boImhCVACu6v/XLEsE2wSwMhLm3PiZNfOfJrtD3O60QXTfepe3MskBj/D4Hy9uXyXp
+	 R48I2CPpNXoww==
+Date: Sun, 5 Jan 2025 10:18:45 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: soc: samsung: usi: add USIv1 and
+ samsung,exynos8895-usi
+Message-ID: <nk7rifc5mcsdlmgpncrpoumerajrpdekxpvqwwe2hz4b63rgci@flowtxwchm7y>
+References: <20250104162915.332005-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250104162915.332005-3-ivo.ivanov.ivanov1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: memory-controller: qca,ath79-ddr-controller:
- Drop consumer from example
-To: "Rob Herring (Arm)" <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250103212448.2852884-1-robh@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250103212448.2852884-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250104162915.332005-3-ivo.ivanov.ivanov1@gmail.com>
 
-On 03/01/2025 22:24, Rob Herring (Arm) wrote:
-> Normal practice is examples only show what the binding document defines
-> and doesn't include consumers in a provider example (or vice-versa). The
-> "qca,ddr-wb-channel-interrupts" and "qca,ddr-wb-channels" properties are
-> also not yet documented by a schema, so avoid (not yet enabled) warnings
-> on them by dropping the interrupt-controller node from the example.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../memory-controllers/qca,ath79-ddr-controller.yaml       | 7 -------
->  1 file changed, 7 deletions(-)
+On Sat, Jan 04, 2025 at 06:29:14PM +0200, Ivaylo Ivanov wrote:
+>  
+>    reg:
+>      maxItems: 1
+> @@ -64,7 +75,6 @@ properties:
+>  
+>    samsung,mode:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> -    enum: [0, 1, 2, 3]
 
-It is too late in the cycle for me to pick it up. I will take it after
-the merge window... or alternatively you can take it via DT for upcoming
-merge window:
+Widest constraints stay here, so minimum/maximum.
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+>      description:
+>        Selects USI function (which serial protocol to use). Refer to
+>        <include/dt-bindings/soc/samsung,exynos-usi.h> for valid USI mode values.
+> @@ -101,18 +111,42 @@ required:
+>    - samsung,sysreg
+>    - samsung,mode
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - samsung,exynos850-usi
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +
+> +        samsung,mode:
+> +          enum: [0, 1, 2, 3]
+> +
+> +      required:
+> +        - reg
+> +
+> +    else:
+> +      properties:
+> +        reg: false
+> +        samsung,clkreq-on: false
+> +
+> +        samsung,mode:
+> +          enum: [4, 5, 6, 7, 8, 9, 10]
+
+Is it really true? Previously for example GS101 had values 0-3, now you
+claim has values 4-10, so an ABI change without explanation.
+
+> +
+>  if:
+
+Missing allOf:
+
+>    properties:
+>      compatible:
+>        contains:
+>          enum:
+>            - samsung,exynos850-usi
+> +          - samsung,exynos8895-usi
+
+Effect is not readable and not correct. You have two if:then:else.
+Usually it is easier to just have separate if: for each group of
+variants and define/constrain complete for such group within its if:.
+
+>  
+>  then:
+>    properties:
+> -    reg:
+> -      maxItems: 1
+> -
+>      clocks:
+>        items:
+>          - description: Bus (APB) clock
+> @@ -122,16 +156,13 @@ then:
+>        maxItems: 2
+>  
+>    required:
+> -    - reg
+>      - clocks
+>      - clock-names
+>  
+>  else:
+>    properties:
+> -    reg: false
+>      clocks: false
+>      clock-names: false
+> -    samsung,clkreq-on: false
+>  
+>  additionalProperties: false
+>  
+> diff --git a/include/dt-bindings/soc/samsung,exynos-usi.h b/include/dt-bindings/soc/samsung,exynos-usi.h
+> index a01af169d..4c077c9a8 100644
+> --- a/include/dt-bindings/soc/samsung,exynos-usi.h
+> +++ b/include/dt-bindings/soc/samsung,exynos-usi.h
+> @@ -13,5 +13,12 @@
+>  #define USI_V2_UART		1
+>  #define USI_V2_SPI		2
+>  #define USI_V2_I2C		3
+> +#define USI_V1_NONE		4
+
+Drop, it is already there.
+
+> +#define USI_V1_I2C0		5
+> +#define USI_V1_I2C1		6
+> +#define USI_V1_I2C0_1		7
+> +#define USI_V1_SPI		8
+
+Drop
+
+> +#define USI_V1_UART		9
+
+Drop
+
+> +#define USI_V1_UART_I2C1	10
+
 
 Best regards,
 Krzysztof
+
 
