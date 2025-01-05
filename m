@@ -1,166 +1,175 @@
-Return-Path: <devicetree+bounces-135692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48624A01B57
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 19:16:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9344CA01BCA
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 21:28:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2C733A29B2
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:16:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71AAF162613
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 20:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB6E1D5179;
-	Sun,  5 Jan 2025 18:15:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54AFB35950;
+	Sun,  5 Jan 2025 20:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="HTBW8RLZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rkHDMHKQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC89F1D0F62
-	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 18:15:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2609236B;
+	Sun,  5 Jan 2025 20:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736100943; cv=none; b=Gn0tWHr7OWLrCFoC4O10FLM129VxtzS71oLuD52t+bvsNd5Cs3oWeygEyIwbJWFZtCexg6VUWRbySw4FSRVPmRoxzzA3Cr6F5U4EnaSvSfC6jflIiiXYEUGT/ldx3yUNKwbvi4VqmvAy98SZDJuZbILV6jouDrDHYkqdJA4VQAw=
+	t=1736108930; cv=none; b=ne8MeUudddys1m7uOZ43+0Q+i3IcIfHxRofQRPxmmNJtVbz+j3g8gPVGptn4qlv1q+kpIi4qmctn7z/EJWhrQ+rU4Pr1/UfP2PLi6qLmsBI0RAeVj+kWxbdQUU+bw/0CrSQ83JOuUh8FwX0iyj99cIuFrLbS0WE7yHt2APGF7es=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736100943; c=relaxed/simple;
-	bh=yOiVkGwEdMZydm8mezT59eqr13KDSeir4uRipppy1Y8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hqihujdYi2YxCtVFgxdiO1F7DYbPc00DcE9uhsZATai/X68evYmw5zEraNmc/yP9fyv+AIgqWyT7BWkm54BCRTqC/lnCAP5oNLbzZ3tQ+AK2Ow+EJwgRiSLZdTjDNWUhmd7k/JPwwKgDdGm6b8ELPUyl0SmT43CMqHQRNpaVLXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=HTBW8RLZ; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5d88c355e0dso5338313a12.0
-        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 10:15:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1736100939; x=1736705739; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DBSWyldngVnQclvBLd3GqHALlVJ1Kxh3yvgFvrg0xjA=;
-        b=HTBW8RLZzDaJtfRzAnBA0x6LLLOMzPddLL6YT5kTESOSAWpjhrP35VmttHyFkYXKdF
-         4dbTchOaiI5U7g6gXI9wriDQauoxdlBeQm6VHf9SBcb+7PErTf6Dixta89E3KcU2ccvY
-         WaGKuK53HNicptqa8R7VkPU6JebsnFy30M284=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736100939; x=1736705739;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DBSWyldngVnQclvBLd3GqHALlVJ1Kxh3yvgFvrg0xjA=;
-        b=SSpMpqpc9MMu8xCo3CO55wUc0Nku9bewoM537k/8nnBgtD3bWmwYXiGG1xTinivnN6
-         NmRy/chY89LtmqWg6XPxkJEx/Pe9wSkFZSw1trZrZBhwP4D4409umqQAnB4i6CKmdh0n
-         8r6ZZocRPWxfpBGiWPTIkI3XFYFEvXL7+5ThftRahH3OjUPHPIGFbrk+BkwjZs1FeKBQ
-         VnQ4bZUJVdKw8CCDT6uKye/X5QeYNjtRPdWbqmlrrQLm/0zFTmpvUJ7av5ISXidRlDUp
-         BZrM6uzDEKLK6Sys6wAU6CF3VysmLoqIahHeET+RSxn1BbzQw6t6jT+lB60W2Aq3Q8+s
-         mrYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUzu57Dd9+YBMIOupR1XAPrcc3SA4uM3FlH7D9tm9f0QN3C6sXBGd0pPlTSUnI2mM6SvdumPiPuHZDa@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaKg48QNOpx29ITFdbuLjBhfmq6bnNiZ9NKXPP7WH7x+C9alxG
-	0Azf352iscVuXUGLapsdPjZAvJtcauCLN9cQ7HQ5yXOrqEwQbIl4nulSIdp8wx8=
-X-Gm-Gg: ASbGnctJB/y0qwR8yaJzCzowc4nh+nK38KWB/XyUr3/+avXsv7w2X2Hgnc3EQOydO+p
-	l4llp2aP5pwmoHFMqchvTJvMLKe4GyA8kQDLFBBEvswma0kWNNOC6KguHYN6zaqdsHnKEC3DUoZ
-	lV9bXrGdqujd5IlZZ9dfqDdJlEewEEvBGxxHzCnk3EgOk6cx8n7QNDrt/ng1Fzi/IytaZ/Tfs1N
-	0tjtAh/vqWA5Pf/PV5JIe10AHp82WVso7l3wkXN5oGH4hraA7zrqjvYyUExJH9tv2AM7OxiHW/X
-	Tuv/UnqgxXOS6s9HfQr7hGdsT02+Pc82GnDmlwbwL9ukePMUT61lT9yo9eXaGAU/c0MhxqwUFG1
-	nF2VVT3EzHm/8cwbQ2Q==
-X-Google-Smtp-Source: AGHT+IEouP5DBWHZTHTQqFEZUf+3uEYRS8Zu6JvRBqEkbBu3GJtaa/Q5Qj6PinpQXdyRMCSrqc9f7w==
-X-Received: by 2002:a17:907:3e90:b0:aa6:abb2:be12 with SMTP id a640c23a62f3a-aac3354ff4dmr3925314866b.37.1736100938804;
-        Sun, 05 Jan 2025 10:15:38 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-41-6-15.retail.telecomitalia.it. [79.41.6.15])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e82f178sm2138185066b.38.2025.01.05.10.15.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2025 10:15:38 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 4/6] dt-bindings: clock: st,stm32-rcc: support spread spectrum clocking
-Date: Sun,  5 Jan 2025 19:14:16 +0100
-Message-ID: <20250105181525.1370822-5-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250105181525.1370822-1-dario.binacchi@amarulasolutions.com>
-References: <20250105181525.1370822-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1736108930; c=relaxed/simple;
+	bh=AyEhIAXKetLWnEXX/8mvNQbxYa7DyuIGHQQAVbJ5pBo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uHj836eksgjpHFM+9zkOixXDtzqyiZVHpyahjfX79WUZuUwx7EYKkBy4Kd10oy0Fn/bqGPGjz+utfFf+ozpuEBz0TNVKiKb9Y6zs/JPQ/juq/sF5aqhKYGl8HfbbdeDrQHNdI31QU43EbThnhDJyD9aS0JEkUvHF5H1J8xx94Gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rkHDMHKQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EE9C4CEE1;
+	Sun,  5 Jan 2025 20:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736108929;
+	bh=AyEhIAXKetLWnEXX/8mvNQbxYa7DyuIGHQQAVbJ5pBo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=rkHDMHKQs8avFTDQn6kZMcopJVxc0CUXlHaTpy53fRSAr0NKTp0idara2sEFc1FLy
+	 ry172TGrYUS0XwbbD+GaVwbe6QpGglrxPNTjajcyZjQcv7tq+fEXDOObQlPvy811sS
+	 KB7H9c25peR20wntVGxT0JWiSjrgFHveSzF8Wbgn+6zq6WYgEiNGum0yUM+U19tOSU
+	 YQJnBTlePR7Pfj+IcOnKpgSVCT7g2kXlMbzKuPZpOFq8TXz7mnsLI8/ZhvuxTlFR37
+	 gk+z9Jx8D+4ViiYZ0mgGQcEy9C+N2n2V7Xd4sg6vb3yednYCIxlp+ubwZ3d4jCw0Bo
+	 zv594E5Kq3GFw==
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e3a26de697fso17804970276.3;
+        Sun, 05 Jan 2025 12:28:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV3uJyGghVlE3Vo3mSeJHMOiIwp55dg544weDv3Kbs7yUVtxZ+8VV5p2IBhLbxIXfrovVD0fycxWKFq@vger.kernel.org, AJvYcCWY6Y5i3FXwwddfFv9ZsdV/FWIB6Ks+VqqghKVyWrEU9LHQSOV0zZBj+p5MQKUXLqjtWhVrZWt3vgzwXJGQ@vger.kernel.org, AJvYcCXmDzBgS/6I77abAVuPKnJNT6t4UWQVfSZjZ943+4vy0tRgMpr+IcNmlcG0RRUwCFf57fLiX/7G+21dwA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOOpRip+x/+LsSaYMUay0Ms4IJVf3SYKH5Yu7mxifLQlE9ec8X
+	7qFPxYF1OkxsQebRfIIaGVcCZWkOqADziIP7t1mAZEckzS7+iLvcjpAzjb9xSNEEtAwGeWD9exs
+	OtY1DOQRSh02PsSPOnIN5wjXeRA==
+X-Google-Smtp-Source: AGHT+IHqZvyalRFjy7jMGbHDLu2PENMBR7A5IENWEEuKVcLGqVEncnQ1jHvJ4PvkM8+ugn+0jS7p2xnDU/30KNqFwCc=
+X-Received: by 2002:a05:690c:6208:b0:6ef:4b3f:3bc3 with SMTP id
+ 00721157ae682-6f3f811507amr410644137b3.16.1736108928776; Sun, 05 Jan 2025
+ 12:28:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-14-86f78ba2a7af@posteo.net> <CAL_JsqKU0AQ+ym_iDZSN5hNUTMF0bgjqu-aAVtG792Mw_eZTbg@mail.gmail.com>
+ <Z3lKqLXphxeI1Gvo@probook>
+In-Reply-To: <Z3lKqLXphxeI1Gvo@probook>
+From: Rob Herring <robh@kernel.org>
+Date: Sun, 5 Jan 2025 14:28:37 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+HrXpqi-mDJF+vyg5zL5mTD5FsCTSq_39U8DffKW+XYQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+HrXpqi-mDJF+vyg5zL5mTD5FsCTSq_39U8DffKW+XYQ@mail.gmail.com>
+Subject: Re: [PATCH 14/19] powerpc: mpc83xx: Switch to of_platform_populate
+To: =?UTF-8?B?Si4gTmV1c2Now6RmZXI=?= <j.ne@posteo.net>
+Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+	Christophe Leroy <christophe.leroy@csgroup.eu>, Naveen N Rao <naveen@kernel.org>, 
+	Madhavan Srinivasan <maddy@linux.ibm.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>, linuxppc-dev@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The addition of DT bindings for enabling and tuning spread spectrum
-clocking generation is available only for the main PLL.
+On Sat, Jan 4, 2025 at 8:50=E2=80=AFAM J. Neusch=C3=A4fer <j.ne@posteo.net>=
+ wrote:
+>
+> On Thu, Jan 02, 2025 at 12:51:47PM -0600, Rob Herring wrote:
+> > On Thu, Jan 2, 2025 at 12:32=E2=80=AFPM J. Neusch=C3=A4fer via B4 Relay
+> > <devnull+j.ne.posteo.net@kernel.org> wrote:
+> > >
+> > > From: "J. Neusch=C3=A4fer" <j.ne@posteo.net>
+> > >
+> > > Quoting from drivers/of/platform.c:
+> > >
+> > > > of_platform_populate() - [...]
+> > > > Similar to of_platform_bus_probe(), this function walks the device
+> > > > tree and creates devices from nodes.  It differs in that it follows
+> > > > the modern convention of requiring all device nodes to have a
+> > > > 'compatible' property, and it is suitable for creating devices whic=
+h
+> > > > are children of the root node (of_platform_bus_probe will only crea=
+te
+> > > > children of the root which are selected by the @matches argument).
+> > >
+> > > This is useful for new board ports because it means that the C code d=
+oes
+> > > not have to anticipate every node that is placed directly under the r=
+oot.
+> > >
+> > > As a consequence, the of_bus_ids list can be much shorter, and I've
+> > > trimmed it to the necessary parts:
+> > >
+> > >  - device-type =3D "soc" and compatible =3D "simple-bus" for the SoC =
+bus
+> > >  - compatible =3D "gianfar" for the Ethernet controller (TSEC), which
+> > >    may contain an MDIO bus, which needs to be probed, as a subnode
+> > >
+> > > Signed-off-by: J. Neusch=C3=A4fer <j.ne@posteo.net>
+> > > ---
+> > >  arch/powerpc/platforms/83xx/misc.c | 6 +-----
+> > >  1 file changed, 1 insertion(+), 5 deletions(-)
+> > >
+> > > diff --git a/arch/powerpc/platforms/83xx/misc.c b/arch/powerpc/platfo=
+rms/83xx/misc.c
+> > > index 1135c1ab923cc120f377a0d98767fef686cad1fe..bf522ee007bbb14292333=
+55f668fc8563d8ca4e2 100644
+> > > --- a/arch/powerpc/platforms/83xx/misc.c
+> > > +++ b/arch/powerpc/platforms/83xx/misc.c
+> > > @@ -94,18 +94,14 @@ void __init mpc83xx_ipic_init_IRQ(void)
+> > >
+> > >  static const struct of_device_id of_bus_ids[] __initconst =3D {
+> > >         { .type =3D "soc", },
+> >
+> > of_platform_populate() won't work on this match unless there's a
+> > compatible in the node, too. Can we use compatible instead or are
+> > there a bunch of them?
+>
+> In arch/powerpc/boot/dts, I can find the following cases of device_type
+> =3D "soc" without compatible =3D "simple-bus":
+>
+> - arch/powerpc/boot/dts/tqm8xx.dts           (MPC8xx)
+> - arch/powerpc/boot/dts/mpc885ads.dts        (MPC8xx)
+> - arch/powerpc/boot/dts/mpc866ads.dts        (MPC8xx)
+> - arch/powerpc/boot/dts/ep88xc.dts           (MPC8xx)
+> - arch/powerpc/boot/dts/kuroboxHG.dts        (MPC82xx)
+> - arch/powerpc/boot/dts/kuroboxHD.dts        (MPC82xx)
+> - arch/powerpc/boot/dts/storcenter.dts       (MPC82xx)
+> - arch/powerpc/boot/dts/asp834x-redboot.dts  (MPC83xx!)
+> - arch/powerpc/boot/dts/ksi8560.dts          (MPC85xx)
+>
+> i.e. there is one affected devicetree. I can simply patch that one in
+> the next iteration.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
+You can, but that doesn't fix existing DTBs with your kernel change.
 
- .../bindings/clock/st,stm32-rcc.yaml          | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+We either have to determine no one cares about that platform or the
+ABI or add a fixup to add the compatible property.
 
-diff --git a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-index ae9e5b26d876..c345d3ff3fc4 100644
---- a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-@@ -77,6 +77,26 @@ properties:
-       Phandle to system configuration controller. It can be used to control the
-       power domain circuitry.
- 
-+  st,ssc-modfreq-hz:
-+    description:
-+      The modulation frequency for main PLL (in Hz)
-+
-+  st,ssc-moddepth-permyriad:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The modulation rate for main PLL (in permyriad, i.e. 0.01%)
-+    minimum: 25
-+    maximum: 200
-+
-+  st,ssc-modmethod:
-+    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-+    description:
-+      The modulation techniques for main PLL.
-+    items:
-+      enum:
-+        - center-spread
-+        - down-spread
-+
- required:
-   - compatible
-   - reg
-@@ -97,6 +117,10 @@ allOf:
-           const: 1
-           description: |
-             The clock index for the specified type.
-+        st,ssc-modfreq-hz: false
-+        st,ssc-moddepth-permyriad: false
-+        st,ssc-modmethod: false
-+
-     else:
-       properties:
-         '#clock-cells':
-@@ -118,6 +142,9 @@ examples:
-         reg = <0x40023800 0x400>;
-         clocks = <&clk_hse>, <&clk_i2s_ckin>;
-         st,syscfg = <&pwrcfg>;
-+        st,ssc-modfreq-hz = <10000>;
-+        st,ssc-moddepth-permyriad = <200>;
-+        st,ssc-modmethod = "center-spread";
-     };
- 
-   - |
--- 
-2.43.0
+> >
+> > > -       { .compatible =3D "soc", },
+> > >         { .compatible =3D "simple-bus" },
+> > >         { .compatible =3D "gianfar" },
+> > > -       { .compatible =3D "gpio-leds", },
+> > > -       { .type =3D "qe", },
+> > > -       { .compatible =3D "fsl,qe", },
+> >
+> > Better still would be if we could move the remaining ones to the
+> > default table and just call of_platform_default_populate().
+>
+> of_platform_default_populate does sound preferable.
+>
+> I'll investigate why exactly the "gianfar" match is necessary and how to
+> fix it in the corresponding driver (I don't think it's general enough to
+> warrant being listed in of_default_bus_match_table).
 
+That may work too.
+
+Rob
 
