@@ -1,228 +1,157 @@
-Return-Path: <devicetree+bounces-135700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81673A01C11
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 22:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A079CA01C1F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 23:26:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 485391625F7
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 21:50:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3B071622A1
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 22:26:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D77FA3597E;
-	Sun,  5 Jan 2025 21:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3971CDFCC;
+	Sun,  5 Jan 2025 22:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="mXrKcV8o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OsKTylFv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D1A3224;
-	Sun,  5 Jan 2025 21:50:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E11F36B
+	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 22:26:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736113844; cv=none; b=o2or716n8l8y/9H44rILyDqVZlpFlTqPeM7ITsFSOxmWWLZmomLwgwVK5KCk1NdBBZoyGPmOUUCOC75eqLwpqIsML1C9UuRCC7EBeOPck6DXJP1/KZ8Tavi1MWcsYiLoM/lgL7lM1JGHFlDcI5Q7C8FALoIvxdmEAnuGXbqdwac=
+	t=1736116010; cv=none; b=FAQdjPCF5AAewFKpHJIpbrLqKcIgyAdnZawozxdhmQL3NCg+GZ8tO8RT/+5fN9FC8u939nxmikKFsI28tyzm6gAajkf0jzXCXKpVjQREW43NDJQxGclaDEQOUZZUgOxhqtY0cyfdTBxq8UbqbBGqZJNEP9z3ZbeVsow14O8reFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736113844; c=relaxed/simple;
-	bh=HOCa4EKI37lwi3Anhv6NSxXZVxtwXVnQphcaV4ssnRE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UaVeWI/kT7/sHxWYX9OJOGnfntg/GhNS/LeXs8etG93Xyrdu+7xJ7YI7lzIlN+PCet61U2Esm7pHfX+f+l1JJwrLhKwwQDX+yaesjBUp7sOGL7GRSlDRViXYClPvd/1jTA+6O8DkRFOype/Jum5HFkkwxEsqLvDWaPOpOOCruQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=mXrKcV8o; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=YkgO0Dr/gEnE1tJuIVv4smNd7nOA51NAoW/XISsoUGw=; b=mXrKcV8owCiOtvFBiI4pPz2Nh1
-	/eM5ykWCKZmGI8dy+UlMz5TMhsRpbSBSlkBUxbCyY4rOwUKEhGaz3g+TGNnQlhuG9UADtZRvKONnU
-	xpWTVV44elCH/8lLHCHw93ukS6sev/rbBEDIExlDMHju9+Kz5t8/kZTLOKckKCe3LyZviU9r3PH6c
-	32Z2XZpPKJyqlhVR1W/QyJQkEV+lA/r1B7reEXxrhckCTYqBoiBdjrFckMGoKxu0fxGrNhyqOUFlk
-	jMXA09loWL8C3VevO031p4m0jWV7MMrYooNxdWsTYk2ZdEFyGEH8mWjPtNiw9bUaE1Zg2OkCIanJW
-	h1DOYhrQ==;
-Received: from i53875aad.versanet.de ([83.135.90.173] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tUYVz-0002Fg-Pz; Sun, 05 Jan 2025 22:50:31 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: hjc@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- derek.foreman@collabora.com, detlev.casanova@collabora.com,
- daniel@fooishbar.org, Andy Yan <andy.yan@rock-chips.com>,
- Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v8 2/9] drm/rockchip: vop2: Add platform specific callback
-Date: Sun, 05 Jan 2025 22:50:30 +0100
-Message-ID: <17026630.geO5KgaWL5@diego>
-In-Reply-To: <20241231090802.251787-3-andyshrk@163.com>
-References:
- <20241231090802.251787-1-andyshrk@163.com>
- <20241231090802.251787-3-andyshrk@163.com>
+	s=arc-20240116; t=1736116010; c=relaxed/simple;
+	bh=Pl5pwXA7S1lKBUBmgTGj4If8U6xlVrJjgXDf+ElTAEY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZqiyDxPA81i2P7HaTZenwohBUSlNunmzqsuMnESzAKvSQnp3S/cNwmPsV/FhAeQqgYLTwnPfZxvKTT/jGFKKvxpmRU/VTtRjSMCkgofwLdGClYDrOGKJUA+aLZu1UL02QjmFw1MsFv+JEawledhm4wOOBJIkYKXJcTwcRkqRPRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OsKTylFv; arc=none smtp.client-ip=209.85.167.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3ebbe804913so4081876b6e.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 14:26:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736116008; x=1736720808; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yVwTqtMBmufKy+4+Qd4AnDnVsi8YGYtimBuBuOfsG0Q=;
+        b=OsKTylFvrLq5OEvLCZoP+8e58nijQmKjT05c/A8Emgh/vUsQHD/dl64OVj44kIb04A
+         T8rmlARafxQXHniumQovCYzhHGuYmraXOC1l2YI/dEOjMCaMSR9QMHt1uZRB/jH06TIi
+         L2IfWlmX8Z1l8gyzcbezunxlv6Ka2XQ4KB2xWnNsd1sLGS3UzQRTTwD1/HzJjzHdBEln
+         u4RF9lEJPi4phxYM7atS01qvmecpGfs7AnbtwhsTQPbGdYlBnfutFLbzebnssjr8troQ
+         14RnZSZ32MKBsFrZ3KEHzh0VE1KIlbzMEYvgGf9shnoIMphQscsFofP6nsJfB4lYgyfS
+         iQOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736116008; x=1736720808;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yVwTqtMBmufKy+4+Qd4AnDnVsi8YGYtimBuBuOfsG0Q=;
+        b=L3LVI+Qbj2LZfiHImYbq2TMPEpQFoeHw09TeNMCi73d9t4ZKzvdCMm7eQ3KWFVPat1
+         bt/2Sw+FtUcyBMl3PhLyOyE/LFDYn0aFAc/LoboewdBHTagM8wk5s1r+83nZUiex+pET
+         qzQwjmf2RSNCkpYNvTiIzKI65PHEejeQ8zabz08NDOiurvJTN2kLwY/JEBQiod1QXfyS
+         XahMlgm0TYGQWQeGIMuU8jolQS0h5vwGw8r1WAfQJvzWeC4g8MExGK+3FX+2xx1iM0On
+         9mhNaT+60wuGPBCg9VmtIeTQ3+7eIgB6ZRuZSdEjFKU6yXvRzVR3+tvxOWLujVjMLslT
+         45pg==
+X-Forwarded-Encrypted: i=1; AJvYcCVPe4hJX1sMTWQyVg2yPGkqyBZKjA0cXeHNtMlCL3vxMiV7rJC5JWNY6uA61Ge+5OHLjaBzB88+D9gF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3QxsxRUyLe+F8LL6VyVLJOeHDUvsImQrzCj63XDONi8uZ4K+g
+	L+9ueVbXpBxag2UkSfwxfK/5WyaGvyBcGayljxVhzUlBccJKnzOo
+X-Gm-Gg: ASbGncvo/gRtU/gU8icBEuaNIo79fM0Sx/sP55M5z1Y/Gny+8NtZnBJ3dhXZz/bfA/3
+	nqQmxGY/P78tqCPvL66K25V/1b31naGw3F+0HnFFWuRKSjG1OjgAkxoXnE9lzurEP+yDu9GdOIH
+	mXeecEhVtZUGCDvTKGzlsX87gK7OwKjmudoDgKYe1N8CuFA9sfqWT1YOwx2FPN+1Xl44DcuUG56
+	a9R7XWHQNuFQD/nzjeFRCF5PdtyLM9x3sCCoO09RefBsLPvKoMj//9C4lHC2hsFSA==
+X-Google-Smtp-Source: AGHT+IHbBRJ9nMbE34acFF8TAd1PhbaT6XoSzAtuwlbwM0Aqvg9qf+IuJ+CehsLkJusQr87XsmRxqA==
+X-Received: by 2002:a05:6830:6d8d:b0:71d:5117:c07f with SMTP id 46e09a7af769-720ff4a6899mr40495188a34.0.1736116008135;
+        Sun, 05 Jan 2025 14:26:48 -0800 (PST)
+Received: from tower.cjhon.com ([2603:8081:ad00:4a:b377:72ce:54b5:bddf])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71fc980a9e8sm9555227a34.43.2025.01.05.14.26.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jan 2025 14:26:46 -0800 (PST)
+From: Jimmy Hon <honyuenkwun@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Ondrej Jirman <megi@xff.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Jimmy Hon <honyuenkwun@gmail.com>
+Subject: [PATCH v7 0/4] Orange Pi 5 Max
+Date: Sun,  5 Jan 2025 16:26:09 -0600
+Message-ID: <20250105222614.2359-1-honyuenkwun@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Hi Andy,
+Add device-tree for Orange Pi 5 Max
 
-Am Dienstag, 31. Dezember 2024, 10:07:45 CET schrieb Andy Yan:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> The VOP interface mux, overlay, background delay cycle configuration
-> of different SOC are much different. Add platform specific callback
-> ops to let the core driver look cleaner and more refined.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> Tested-by: Michael Riesch <michael.riesch@wolfvision.net> # on RK3568
-> Tested-by: Detlev Casanova <detlev.casanova@collabora.com>
+Orange Pi now has 3 SBCs using the RK3588 SOC. Refactor the common parts
+of the 5 Plus DTS so it can be shared with the 5 Max and the 5 Ultra.
+The 5 Max and 5 Ultra have a similar credit-card sized board layout and
+will also share a DTSI between them.
 
->  static int vop2_cluster_init(struct vop2_win *win)
->  {
->  	struct vop2 *vop2 = win->vop2;
->  	struct reg_field *cluster_regs;
->  	int ret, i;
->  
-> -	cluster_regs = kmemdup(vop2_cluster_regs, sizeof(vop2_cluster_regs),
-> +	cluster_regs = kmemdup(vop2->data->cluster_reg,
-> +			       sizeof(struct reg_field) * vop2->data->nr_cluster_regs,
->  			       GFP_KERNEL);
->  	if (!cluster_regs)
->  		return -ENOMEM;
->  
-> -	for (i = 0; i < ARRAY_SIZE(vop2_cluster_regs); i++)
-> +	for (i = 0; i < vop2->data->nr_cluster_regs; i++)
->  		if (cluster_regs[i].reg != 0xffffffff)
->  			cluster_regs[i].reg += win->offset;
->  
->  	ret = devm_regmap_field_bulk_alloc(vop2->dev, vop2->map, win->reg,
->  					   cluster_regs,
-> -					   ARRAY_SIZE(vop2_cluster_regs));
-> -
-> +					   vop2->data->nr_cluster_regs);
->  	kfree(cluster_regs);
->  
->  	return ret;
->  };
+5 Plus: HDMI0, HDMI1, HDMI RX, M.2 E-key, USB-C
+5 Max: HDMI0, HDMI1, WiFi/BT using SDIO/UART
+5 Ultra: HDMI1, HDMI RX, WiFi/BT using SDIO/UART
 
-Even the original code, makes checkpatch really unhappy nowadays :-( .
+Changes in v7:
+- Add signed-off to first patch
+- Expand first patch description 
 
-As per
-https://lore.kernel.org/all/20240706-regmap-const-structs-v1-1-d08c776da787@weissschuh.net/
-reg_field should be considered const, so copying the original struct and
-then modifying it causes checkpatch warnings now.
+Changes in v6:
+- Remove clock-names from incorrect merge conflict
 
-I've tried to adapt the function as in the patch below. This should
-contain the same functionality as before, just with keeping the reg_field
-const.
+Changes in v5:
+- Include Orange Pi 5 Plus USB 3.0 change in baseline before refactor
+- Defer Orange Pi 5 Ultra to a later series
+- Defer Orange Pi 5 Plus HDMI1 to a later series
 
-As it's the weekend, I didn't have time to test that change, so it's more
-meant as an idea on how to proceed.
+Changes in v4:
+- Orange Pi 5 Ultra was released and does not use VP0 to HDMI0
+- Move HDMI0 from common to the board level
+- Make DTSI to be shared by the credit card sized 5 Max and 5 Ultra
+- Updates for the newly submitted HDMI1 support
+- Add Ack for dt-binding
 
+Changes in v3:
+- Refactor to share common include with Orange Pi 5 Plus
 
-> +	/* afbc regs */
-> +	[VOP2_WIN_AFBC_FORMAT] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 2, 6),
-> +	[VOP2_WIN_AFBC_RB_SWAP] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 9, 9),
-> +	[VOP2_WIN_AFBC_UV_SWAP] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 10, 10),
-> +	[VOP2_WIN_AFBC_AUTO_GATING_EN] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_OUTPUT_CTRL, 4, 4),
-> +	[VOP2_WIN_AFBC_HALF_BLOCK_EN] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 7, 7),
-> +	[VOP2_WIN_AFBC_BLOCK_SPLIT_EN] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 8, 8),
-> +	[VOP2_WIN_AFBC_HDR_PTR] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_HDR_PTR, 0, 31),
-> +	[VOP2_WIN_AFBC_PIC_SIZE] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_PIC_SIZE, 0, 31),
-> +	[VOP2_WIN_AFBC_PIC_VIR_WIDTH] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_VIR_WIDTH, 0, 15),
-> +	[VOP2_WIN_AFBC_TILE_NUM] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_VIR_WIDTH, 16, 31),
-> +	[VOP2_WIN_AFBC_PIC_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_PIC_OFFSET, 0, 31),
-> +	[VOP2_WIN_AFBC_DSP_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_DSP_OFFSET, 0, 31),
-> +	[VOP2_WIN_AFBC_TRANSFORM_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_TRANSFORM_OFFSET, 0, 31),
+Changes in v2:
+- squashed commits together for initial board file
 
-exceeds the 100 char line length, so I think we should have a line break
-after RK3568_CLUSTER_WIN_AFBCD_TRANSFORM_OFFSET
+Link to v1: https://lore.kernel.org/linux-rockchip/20241026100310.52679-1-honyuenkwun@gmail.com/
+
+Jimmy Hon (4):
+  arm64: dts: rockchip: refactor common rk3588-orangepi-5.dtsi
+  dt-bindings: arm: rockchip: Add Xunlong Orange Pi 5 Max
+  arm64: dts: rockchip: Add Orange Pi 5 Max board
+  arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Max
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../rockchip/rk3588-orangepi-5-compact.dtsi   | 151 ++++
+ .../dts/rockchip/rk3588-orangepi-5-max.dts    | 101 +++
+ .../dts/rockchip/rk3588-orangepi-5-plus.dts   | 855 ++----------------
+ .../boot/dts/rockchip/rk3588-orangepi-5.dtsi  | 805 +++++++++++++++++
+ 6 files changed, 1127 insertions(+), 792 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
 
 
-Thanks
-Heiko
-
----------------- 8< ---------------
-From: Heiko Stuebner <heiko@sntech.de>
-Date: Sun, 5 Jan 2025 17:38:31 +0100
-Subject: [PATCH] drm/rockchip: vop2: use devm_regmap_field_alloc for cluster-regs
-
-Right now vop2_cluster_init() copies the base vop2_cluster_regs and adapts
-the reg value with the current window's offset before adding the fields to
-the regmap.
-
-This conflicts with the notion of reg_fields being const, see
-https://lore.kernel.org/all/20240706-regmap-const-structs-v1-1-d08c776da787@weissschuh.net/
-for reference, which now causes checkpatch to actually warn about that.
-
-So instead of creating one big copy and changing it afterwards, add the
-reg_fields individually using devm_regmap_field_alloc().
-
-Functional it is the same, just that the reg_field we're handling
-can stay const.
-
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 30 +++++++++-----------
- 1 file changed, 14 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 17a98845fd31..c8da1ebb6013 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -3443,25 +3443,23 @@ static struct reg_field vop2_cluster_regs[VOP2_WIN_MAX_REG] = {
- static int vop2_cluster_init(struct vop2_win *win)
- {
- 	struct vop2 *vop2 = win->vop2;
--	struct reg_field *cluster_regs;
--	int ret, i;
--
--	cluster_regs = kmemdup(vop2_cluster_regs, sizeof(vop2_cluster_regs),
--			       GFP_KERNEL);
--	if (!cluster_regs)
--		return -ENOMEM;
-+	int i;
- 
--	for (i = 0; i < ARRAY_SIZE(vop2_cluster_regs); i++)
--		if (cluster_regs[i].reg != 0xffffffff)
--			cluster_regs[i].reg += win->offset;
-+	for (i = 0; i < ARRAY_SIZE(vop2_cluster_regs); i++) {
-+		const struct reg_field field = {
-+			.reg = (vop2_cluster_regs[i].reg != 0xffffffff) ?
-+					vop2_cluster_regs[i].reg + win->offset :
-+					vop2_cluster_regs[i].reg,
-+			.lsb = vop2_cluster_regs[i].lsb,
-+			.msb = vop2_cluster_regs[i].msb
-+		};
- 
--	ret = devm_regmap_field_bulk_alloc(vop2->dev, vop2->map, win->reg,
--					   cluster_regs,
--					   ARRAY_SIZE(vop2_cluster_regs));
--
--	kfree(cluster_regs);
-+		win->reg[i] = devm_regmap_field_alloc(vop2->dev, vop2->map, field);
-+		if (IS_ERR(win->reg[i]))
-+			return PTR_ERR(win->reg[i]);
-+	}
- 
--	return ret;
-+	return 0;
- };
- 
- static struct reg_field vop2_esmart_regs[VOP2_WIN_MAX_REG] = {
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+prerequisite-patch-id: 6346d482f91509dec24bfe5d4f0ca0d345b90deb
+prerequisite-patch-id: 4672b745f4308a7be527749279edb71625d120e6
+prerequisite-patch-id: 2743fb64eba2a29eaf993ebc8a5d6ee445b69dfa
 -- 
-2.45.2
-
-
-
-
+2.47.1
 
 
