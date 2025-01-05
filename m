@@ -1,65 +1,100 @@
-Return-Path: <devicetree+bounces-135671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3715A01AC0
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:09:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FE48A01ACB
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:17:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75DB31618B2
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:09:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD8B93A2FB8
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3C9159209;
-	Sun,  5 Jan 2025 17:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B68156257;
+	Sun,  5 Jan 2025 17:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="t8ftkCCW"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fvRCFaMm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B735336D;
-	Sun,  5 Jan 2025 17:09:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2171015250F
+	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 17:17:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736096948; cv=none; b=uriULr4dq/nwQPg9NfJVnbfH/l9t6RFEZuNvRcdldJenCfBaJJOXkvJ1DvlS78SNvdft/quyKH4w+zr5IrTPeDHbjkBI8H3OSpuxK5HZjN4lHAjBWWhfWv7ZxP3qg31Lxzv4QgXFbqFelMLqqgiUxUFYryYGDCco4Qguje96488=
+	t=1736097463; cv=none; b=HVvHgajoMLfyQde5h2h9RLJayKo58ARGEqLoM6wwzilQq/tNEj03FqNZ8yo8/2xpfVzuSSqdJAWnHBgcQUxBMFeShzBMwLcDE88HtCPtPueFXv/SxxiVx1190DW2EiCHxS8vRquc1+yJBLsNeZ0Y4NWnch0XRV3sOgxeg3v1sYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736096948; c=relaxed/simple;
-	bh=GyXX1xgwxDQnJTtFfSH0NCj6dbOlZdD+P4lPF1azVGw=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=by2umiIbuOBXm68QuDUiBDdrydCKndOWfc1OC6EM/O4RFYFUG74TiuojI3YUjN7htkWtlWhEjL8PLETiohHSzXQokS7NcbT7p/bAarnIXZ1wB7Y39A5WYAUmRoyfaPPGUhpZGBCc4K2IEahkyfzSMs6ZD0w5zQArfRdXDyBA+fk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=t8ftkCCW; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:From:Sender:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=f5CUdA3v1pvk6RnXG4q/EtVFObfrYNfr/RDS/iTtu6s=; b=t8ftkCCWdPH6VYdx5QDz+lGzWR
-	cWmp8/82tu5IceUUjFroayZXy26WCQF5Ei/n7fL/3MDMsHSN2TAPWfTAgzC8p8xVOFlTAOuC4ULrK
-	AQa+RHWj+qVYo0U02RCh4+Yw2Y6ofGHAcmIzrSkFPuITIMqUWHtKUXfxt3y67cDQuCIDQyO2egkYx
-	lZvOgm1NZrLyvzNE1+lqB6dXjxn9vB1MaxtdnxEuXWuo+49eHbqy2KBye6S735GE1MqYWLFh6qiGt
-	Epq5IjIqP4B1Qx+wQgOW2jzOdpBKvb9e8wfRjYG77rFGusiXlFZ80w7cdwQwSqBB0FCn1oVBC4WyG
-	byeu4gQA==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Stephen Boyd <sboyd@kernel.org>,
-	linux-clk@vger.kernel.org,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Tony Lindgren <tony@atomide.com>,
-	Tero Kristo <kristo@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-omap@vger.kernel.org,
+	s=arc-20240116; t=1736097463; c=relaxed/simple;
+	bh=5k8ycTRaWzR61UJvHO40HQsKr26i4RCmw6iVaBJ1p5w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=k+4heqoJEuE0foDrt5qXqoUZ2z7WKzSycLTAPTbrjEuD55MnbXc8EXzqTgJxe1Jsx9ZlY48N0J9lP4dKhm01i57SERnEpqVw3k7OqF/nSCDCCg2/euQ9UUgrcsVIUv9pNtKccKoGuXzctNTfSs5P2RJrBSlAD/N6G/rgLibE2c8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fvRCFaMm; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-436281c8a38so97652535e9.3
+        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 09:17:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1736097459; x=1736702259; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=28ukOJT+BC5Hb4IDeNu8OIpCDoYlDgcQuEEIPI9KYoI=;
+        b=fvRCFaMm3iSp6k3o6ah86JkBAa7qoaqeJ8kI0dUvpBoOoqDNDa28kiY7tiusIcw7ek
+         XgCQppccELMRdVWo7Aqedqhg154+1l++LwjH7bqOcB7q1yPobMPX0gE31bW0RiOSn/Y8
+         W/w51YXg4lkYZRvC8UY4W0tKdOTKY92LrYKH8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736097459; x=1736702259;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=28ukOJT+BC5Hb4IDeNu8OIpCDoYlDgcQuEEIPI9KYoI=;
+        b=Oe5nMb9hARj0msIN7e8lrgK0uW/9QrxQFRou0qpgPyiXKiC3dTEkxst+vk2yyTin4k
+         r7EUhhFKhTMne+1iOZdAex+YC22Mk5vL5Vf6Ot6pi+m0A2if+7n3Qqne2ExZcCcLPgxp
+         3qddmWYllXQKWwns7lY1Rh4Uj9/qOvQwfZQA6D8Omx/Ax6uEpydnXt+ujVFoool/RpH0
+         Aa1B5hUTNQ5sAqgUEjvuSGNk+jG9EWWS5NhlwLVcp3bvbz08KuNWHN55dU2UNBYn2yMK
+         LaMeXqKPiI8CzPIBa3nAjHvnTkuV6CMbgyWXdNOBzU9LsytPgNNFUA2YAwQq3XwaQ4EX
+         g/3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXrXkWRN4zRNRhs6Y7W+G4OeohU2FLwM/cYAyk/qdD+t4iik05N5ncUe2/UVYCwT/DH/bLeK6Z0Jd/Y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyy6iPLYhdn/fwwyau9wG5ZSCK+FESlV7bsd4oljaSkyNucUp8b
+	GXT7Z98TOsGhjjylKYnCykuVxL82wmIs5ehe3Byqe2wp/NNb5iXSzDkniz3VWQ==
+X-Gm-Gg: ASbGncs2lFRr/noOH3mikUm93CH3Qz/NeU9chCAZIx7dNaAn9qRH1u45CFUI0gj3HVa
+	3ZutiU7o41A56gOqXUu1QwqkTZJguARsHpSJYK9HvihGMcByIMOViJpmyPvFWr6RMzLflDkhse0
+	0g4Pa6XWrEpjBTRPCatmPkBX6KyHvd43p58rMajgN4ttgnKC99xCLP6NRAFAwOe1Z+aH3tpt6F0
+	f53SJVJvUWddjyvHcpZKAjZXU/uIrHG+dUrhWvQPG1Y3fGibb3acSKNIfP14LNOUSj9Hxh7SGGF
+	04nfzgZsUiNpc11ZR9pImNee1L+jcPrh/Zm5
+X-Google-Smtp-Source: AGHT+IFuJF16gyCsGs4Et67YtR7rCbdYRxOtCkpAuEKYuEZF3nGCOZgmij9h5QndKxy+u1vp6J6uFQ==
+X-Received: by 2002:a05:600c:4688:b0:435:b064:7dce with SMTP id 5b1f17b1804b1-4366864618emr504125065e9.18.1736097459372;
+        Sun, 05 Jan 2025 09:17:39 -0800 (PST)
+Received: from dmaluka.c.googlers.com.com (19.50.76.34.bc.googleusercontent.com. [34.76.50.19])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436604e9c2csm543987345e9.43.2025.01.05.09.17.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jan 2025 09:17:38 -0800 (PST)
+From: Dmytro Maluka <dmaluka@chromium.org>
+To: Thomas Gleixner <tglx@linutronix.de>,
 	Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 2/2] dt-bindings: clock: ti: Convert composite.txt to json-schema
-Date: Sun,  5 Jan 2025 18:08:54 +0100
-Message-Id: <20250105170854.408875-3-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250105170854.408875-1-andreas@kemnade.info>
-References: <20250105170854.408875-1-andreas@kemnade.info>
+Cc: Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	x86@kernel.org (maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT)),
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Usama Arif <usamaarif642@gmail.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	linux-kernel@vger.kernel.org (open list:X86 ARCHITECTURE (32-BIT AND 64-BIT)),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE),
+	=?UTF-8?q?Pierre-Cl=C3=A9ment=20Tosi?= <ptosi@google.com>,
+	Shikha Panwar <shikhapanwar@google.com>,
+	Will Deacon <will@kernel.org>,
+	Keir Fraser <keirf@google.com>,
+	Michal Mazurek <mazurekm@google.com>,
+	=?UTF-8?q?Bart=C5=82omiej=20Grzesik?= <bgrzesik@google.com>,
+	Tomasz Nowicki <tnowicki@google.com>,
+	Grzegorz Jaszczyk <jaszczyk@google.com>,
+	Dmytro Maluka <dmaluka@chromium.org>
+Subject: [PATCH 0/2] of, x86: Restore possibility to use both ACPI and FDT from bootloader
+Date: Sun,  5 Jan 2025 17:16:41 +0000
+Message-ID: <20250105171643.3473702-1-dmaluka@chromium.org>
+X-Mailer: git-send-email 2.47.1.613.gc27f4b7a9f-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,168 +103,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the OMAP gate clock device tree binding to json-schema.
-Specify the creator of the original binding as a maintainer.
-Choose GPL-only license because original binding was also GPL.
+There are cases when the bootloader provides information to the kernel
+in both ACPI and DTB, not interchangeably. One such use case is virtual
+machines in Android. When running on x86, the Android Virtualization
+Framework (AVF) boots VMs with ACPI like it is usually done on x86 (i.e.
+the virtual LAPIC, IOAPIC, HPET, PCI MMCONFIG etc are described in ACPI)
+but also passes various AVF-specific boot parameters in DTB. This allows
+reusing the same implementations of various AVF components on both
+arm64 and x86. (Note that on arm64 AVF uses DT only, no ACPI.)
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- .../bindings/clock/ti/composite.txt           | 55 -------------
- .../bindings/clock/ti/ti,composite-clock.yaml | 82 +++++++++++++++++++
- 2 files changed, 82 insertions(+), 55 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/ti/composite.txt
- create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,composite-clock.yaml
+Commit 7b937cc243e5 ("of: Create of_root if no dtb provided by firmware")
+removed the possibility to do that, since among other things
+it introduced forcing emptying the bootloader-provided DTB if ACPI is
+enabled (probably assuming that if ACPI is available, a DTB can only be
+useful for applying overlays to it afterwards, for testing purposes).
 
-diff --git a/Documentation/devicetree/bindings/clock/ti/composite.txt b/Documentation/devicetree/bindings/clock/ti/composite.txt
-deleted file mode 100644
-index 238e6f7d74f8..000000000000
---- a/Documentation/devicetree/bindings/clock/ti/composite.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--Binding for TI composite clock.
--
--This binding uses the common clock binding[1]. It assumes a
--register-mapped composite clock with multiple different sub-types;
--
--a multiplexer clock with multiple input clock signals or parents, one
--of which can be selected as output, this behaves exactly as [2]
--
--an adjustable clock rate divider, this behaves exactly as [3]
--
--a gating function which can be used to enable and disable the output
--clock, this behaves exactly as [4]
--
--The binding must provide a list of the component clocks that shall be
--merged to this clock. The component clocks shall be of one of the
--"ti,*composite*-clock" types.
--
--[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
--[2] Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
--[3] Documentation/devicetree/bindings/clock/ti/ti,divider-clock.yaml
--[4] Documentation/devicetree/bindings/clock/ti/gate.txt
--
--Required properties:
--- compatible : shall be: "ti,composite-clock"
--- clocks : link phandles of component clocks
--- #clock-cells : from common clock binding; shall be set to 0.
--
--Optional properties:
--- clock-output-names : from common clock binding.
--
--Examples:
--
--usb_l4_gate_ick: usb_l4_gate_ick {
--	#clock-cells = <0>;
--	compatible = "ti,composite-interface-clock";
--	clocks = <&l4_ick>;
--	ti,bit-shift = <5>;
--	reg = <0x0a10>;
--};
--
--usb_l4_div_ick: usb_l4_div_ick {
--	#clock-cells = <0>;
--	compatible = "ti,composite-divider-clock";
--	clocks = <&l4_ick>;
--	ti,bit-shift = <4>;
--	ti,max-div = <1>;
--	reg = <0x0a40>;
--	ti,index-starts-at-one;
--};
--
--usb_l4_ick: usb_l4_ick {
--	#clock-cells = <0>;
--	compatible = "ti,composite-clock";
--	clocks = <&usb_l4_gate_ick>, <&usb_l4_div_ick>;
--};
-diff --git a/Documentation/devicetree/bindings/clock/ti/ti,composite-clock.yaml b/Documentation/devicetree/bindings/clock/ti/ti,composite-clock.yaml
-new file mode 100644
-index 000000000000..2ab64dd129fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/ti/ti,composite-clock.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/ti/ti,composite-clock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments composite clock
-+
-+maintainers:
-+  - Tero Kristo <kristo@kernel.org>
-+
-+description: |
-+  *Depcrecated design pattern: one node per clock*
-+
-+  This binding assumes a register-mapped composite clock with multiple
-+  different sub-types:
-+
-+    a multiplexer clock with multiple input clock signals or parents, one
-+    of which can be selected as output, this behaves exactly as [1].
-+
-+    an adjustable clock rate divider, this behaves exactly as [2].
-+
-+    a gating function which can be used to enable and disable the output
-+    clock, this behaves exactly as [3].
-+
-+  The binding must provide a list of the component clocks that shall be
-+  merged to this clock. The component clocks shall be of one of the
-+  "ti,*composite*-clock" types.
-+
-+  [1] Documentation/devicetree/bindings/clock/ti/ti,mux-clock.yaml
-+  [2] Documentation/devicetree/bindings/clock/ti/ti,divider-clock.yaml
-+  [3] Documentation/devicetree/bindings/clock/ti/ti,gate-clock.yaml
-+
-+properties:
-+  compatible:
-+    const: ti,composite-clock
-+
-+  "#clock-cells":
-+    const: 0
-+
-+  clocks: true
-+
-+  clock-output-names:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - "#clock-cells"
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      usb_l4_gate_ick: clock-controller@a10 {
-+        #clock-cells = <0>;
-+        compatible = "ti,composite-gate-clock";
-+        clocks = <&l4_ick>;
-+        ti,bit-shift = <5>;
-+        reg = <0x0a10>;
-+      };
-+
-+      usb_l4_div_ick: clock-controller@a40 {
-+        #clock-cells = <0>;
-+        compatible = "ti,composite-divider-clock";
-+        clocks = <&l4_ick>;
-+        ti,bit-shift = <4>;
-+        ti,max-div = <1>;
-+        reg = <0x0a40>;
-+        ti,index-starts-at-one;
-+      };
-+    };
-+
-+    clock-controller {
-+      #clock-cells = <0>;
-+      compatible = "ti,composite-clock";
-+      clocks = <&usb_l4_gate_ick>, <&usb_l4_div_ick>;
-+    };
+So restore this possibility. At the same time, since on x86 the
+aforementioned recently introduced restriction is actually useful for
+preventing conflicts between ACPI and DT for LAPIC/IOAPIC/HPET setup,
+don't remove this restriction completely but relax it: unflatten the
+bootloader supplied DTB but don't try to use it for SMP setup.
+
+Note that on arm64 currently ACPI and DT are not used together in any
+case (setup_arch() enforces that), and this series doesn't change that.
+
+v1 -> v2:
+Split the patch into two, to separate the x86 part from the common part.
+
+Dmytro Maluka (2):
+  x86/of: Don't use DTB for SMP setup if ACPI is enabled
+  of/fdt: Restore possibility to use both ACPI and FDT from bootloader
+
+ arch/x86/kernel/devicetree.c |  3 ++-
+ drivers/of/fdt.c             | 10 +---------
+ 2 files changed, 3 insertions(+), 10 deletions(-)
+
 -- 
-2.39.5
+2.47.1.613.gc27f4b7a9f-goog
 
 
