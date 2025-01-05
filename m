@@ -1,94 +1,92 @@
-Return-Path: <devicetree+bounces-135648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90066A019D9
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 15:43:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D4CEA019E6
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 16:04:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52FFE7A186D
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 14:43:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE4643A2481
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 15:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208D415A868;
-	Sun,  5 Jan 2025 14:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B27442A93;
+	Sun,  5 Jan 2025 15:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q6luk0g1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DWPFrcqZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E3715625A;
-	Sun,  5 Jan 2025 14:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1FC91C6B4;
+	Sun,  5 Jan 2025 15:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736088177; cv=none; b=fHgItpz/mEgGAp89HWwpLq1xGP8ep9GeS1zk0aabFx242ddIeCIAb0FKwedjchmT7AEEVY7pCM8zVE2uzEQccr7vvFFAIpLEk4+bWkz1ObAy6xGnHKCu2j0k6wBwJGWVnW2BwehSCWxlMMI2HTJs0OY44i9mVU8A/6Q8E11H1+s=
+	t=1736089443; cv=none; b=QLFpp2W+wCdtBkjPgtDTDPMbE5Vj+dEUiAWPoLG/9RG1hvAobDJ10L7fA3NJYG322zLPbekFCmG5V2jFJwL0BqQ2g6SpELSxlQp15+iwCp6kM57eFCAd0J6/1FpvYpOgjeMM3kYxjqkSyR4TOubExSRaQpE/Mt03spBDW4eQgws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736088177; c=relaxed/simple;
-	bh=aXYHEyhcGDnwQtSXky3nGDQSSqSNdvxMLGJcZmOBs/k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pTmymDgpjv98S6UtQxysuUOkY66LvCOjbtLDpg+P8NwjigA8nyAQhGHK51M3T+E4xh+hYQ2/mX8KOoserem+6gGlDadn8/Mb4UCrlws7UnAhLJdFAZ7OfPygm7U8mgqUO2NrgNdxr5iSMehMBbHJM+ZHIb/bEtmFtbgnmxsWPx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q6luk0g1; arc=none smtp.client-ip=209.85.128.44
+	s=arc-20240116; t=1736089443; c=relaxed/simple;
+	bh=11Qo7Xr/r2SdH62lSmOgUDrwY4Kp55cvBL1Nwb0Ehes=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=jmM0v5eugzk6NeWRsZDokDdp4PWdu0fG+3COFQz8jpu5S0Ec6SpebNYLrrmsXcD6prsraiCUenwjhFu0tOB3J8wJ1oOshS+kwbouQDcin5/oGglDVfYaSOdGo8IEIKYkRKINWMWkk/BMDv88Rlbxflwvcan3N3594rKC16+OLrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DWPFrcqZ; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso92795515e9.3;
-        Sun, 05 Jan 2025 06:42:55 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43618283d48so98201655e9.1;
+        Sun, 05 Jan 2025 07:04:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736088173; x=1736692973; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Jd0ivsCOxo6eepP3Mt6WIBgGEYTd25op3kx8K4XoTrc=;
-        b=Q6luk0g1ByDhDMAULCi1aYYiptJHs0kAcXAoLbwFxIYYOXR1vYmwDtRwkMoS9QYftc
-         r+UjUort9CVwyQxenocnOvuj1rs2vPMh3TvYYbb2ONl4Y8JG+/YYEdbAeUcYtMdjOLjl
-         2WYp8fMGJ2Bapv6BWxlmu32MNsaI9RV7RL+VyJV49eDLvD418lpoPuYT/0sYkBuWc2eT
-         Gyc5xoy8sTX115DFk5ojzmhmC3k8K+4GbQ1VRTcBRNrd8IR6I2HPxrxXQ/lfUK/IVpid
-         YZt9dZz7RuoVajemJ/foEvk2DJ+0g1UhMKM+dWX2i7NF46Zw0/z0Axpys+Mk1W2LSaaf
-         ptjQ==
+        d=gmail.com; s=20230601; t=1736089440; x=1736694240; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SZYwc4vBlldLtmS7t8q5HbKKN19HNEjLlzpxgjKSx50=;
+        b=DWPFrcqZa6A7CSlcqSfjVJFE+xJzQ3OuFva8u60F1oUT591TAcXsdh/CEA/gcP0vA6
+         mw05WzeyfTX6FQhuoOt2ssaeqwHUUZIJFqZWNebwARlJ4ItX+Wpmh9ULaNMq3CYHtwQY
+         ycMQaumM73aTdx3/jZyOj9M8nYJIIAhGzZDM0RUkykCyUISZLd30b7j3uVcQSwksmKGJ
+         qFV718w1TgveK2hYXB9KzyAin/4kFvvZgdGEselmjQ9VP+hOXqvhn3yuVdY1kEL58wMf
+         b9JdCEgzwoylQFX4nkiqgMkF6bgrsVEhFBbqtdPFBcY4bcbZVs5KCnDSOF7CFWQ7pw7K
+         c/Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736088173; x=1736692973;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Jd0ivsCOxo6eepP3Mt6WIBgGEYTd25op3kx8K4XoTrc=;
-        b=PA9GA8mwUa2m4KmOcPwofjNopxE5LJxr2yN1jDLZ7SikDiazCISNiT/L4ZrxWkKGLm
-         XHkKCYVjqzcChPg7yRGLLG4K5ulBWQ1XJqjUiDef5+xOAsfBsMZoyZALA5yc2oClekjr
-         6GFuJ8K0A8k9mB1laWZKh5f+DYSUqlX+xahyRIdd8YeEdr6hEuiSXA0zND51nulsCQuc
-         R5Q8qxrLJ6/G9ysfrf3+JM/7r2Wp+icBl4J3IhPMwrFIA47A+hHOr2a4QqYFSBg0tJ9s
-         E3mR7TU/Q71OxgNkMwzKcDEU4hLWBfbfcupxXmyllIFhK4BNI/qxK/z0Zi0Tly3ll7By
-         7Kyg==
-X-Forwarded-Encrypted: i=1; AJvYcCWGuZ8d8d9xEXo/uK+U6BjCf+wr6Dg/QT47XhpzWIgLT7Tp05c007hW8RgktXh5e4pmOO3j1Yf/uyOhLnIE@vger.kernel.org, AJvYcCWbXzDJVcnrdtcZ3ZBSU4jO0v8tXO2qCEGROIdsLtb6xuXlrXb/BkKw9jnaUi7LzEx2zTiiyR30g3pB@vger.kernel.org, AJvYcCXbednUfRREAkHCNlmbWA9phgbCVcJiOVRaoZBcqqWia67ohnv2u2bWjnlv0Z18QcWoRIRiSHpZ4+vK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhPGHJCzGpfGRcCaElplMHsluvQ2H93gWZh/7I2nmmImD75s19
-	edYNfRz3KQdvuThKfqvV0D8YrfgQcPsL5d2GiyTvMR92z4buSAzi
-X-Gm-Gg: ASbGncvLdBStq+pWQk0//8EiUMBo86JegHtTwB3y6nYvBm1aaBSXNbuziW6MDrWQ1lB
-	f05Uf9WCreBS4nJBvHx0r83SO+DoqE5M8VdgXzq3JCvFhEjfJvp5v+WnZNIXArD+HuzJKV8eo53
-	U+vf1H5uTl/BkNxYoFI3sIxlWsDxTGtEkO3CcB6a1puMLF92aAMFyd/FajCabzXwjU3XgIt4sJH
-	1OkcVenaOg64P44szGSu/jQo5Q8rdSgvx9IzXBY0pdJ2CyYmVWhtAHgu/gYeW861T2WMst/jq6z
-	I9qpj2P4d/RJeX6ezNZlXvf16wRCa1cLqd/eVqxtMA==
-X-Google-Smtp-Source: AGHT+IGG/tO2Lt1RR3RwIADrDoxZJHJyg2667n9OATP8E6fkLp+FqDm6xbKIJUkTGitScnbjrZs9tg==
-X-Received: by 2002:adf:a342:0:b0:38a:624b:e37b with SMTP id ffacd0b85a97d-38a624be4e4mr11369844f8f.53.1736088173542;
-        Sun, 05 Jan 2025 06:42:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736089440; x=1736694240;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SZYwc4vBlldLtmS7t8q5HbKKN19HNEjLlzpxgjKSx50=;
+        b=elHhwUGtg4xBVLiJNLD4oZiByau13k3jUO5vJT4mL4cFVuiRr9PWYPLN58FrNXZs9q
+         ozZP6uQ6sQqlJAqG42GiMsoLcTmPbwse8/GVOa2D1Y8Ro22Et8Jk8lgRmlEqM7tpQl/J
+         e8Lb/2elfyyIBQVsQ2dBj9YwcbW0zHjtwG67RSP6N8mi6gZdU4VXJ5W9SDLTGzRxtwi0
+         4fPfByixQwAL0WsMEOqRwgreWf43dVDwnqTy04ut6OgcfRqnOQ5xp9R4Hk+zuNVauPvS
+         ZOWjkkgys/1fye41cBd9DR2ilmBbpsxk9EQ3yteHuygKpFH2aPe8y/j7gcYcGoGNCmpp
+         6nzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVV/UnAulAysNQUw+JC8QVekYNDFvlDPLkY5pVsPblh/Hrwh0ZSYJZr2Lb+S1fC1VR4uEqhvgT/qjxY@vger.kernel.org, AJvYcCWZ63AsSpPxulJYI5iiYDX9B8aOSlQ9KMQJxxFALSgtNA1lildiLeRaFbMaIdnVR5lQJUG/ebmO6F99YLRS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzH9UTcXDKU0rZ7qX62vm34CGqqMSDQRKgsmbk1C/6nd/bSJYeq
+	xVCbUqvSZbFh41qE8ufxbUNbfGBQDIPYxytlbrMnkZb5chuxm67R2OGxrw==
+X-Gm-Gg: ASbGnctHOe6EVMe54/8FjyghsBy+C6IDwMUmcAUILT6jJ9jt75n0kqeQTSyYDBNIxeJ
+	VJ1Pa/Ya9i1QpZme2kTCUAMAgPDZxaZCbbDayX7ADQZDROJSByEJKEAceKk9Qs1gLsvPUvUxcgB
+	2Zp0WvTIoKIgOD4fZkdsrs3eW6oX1fpo8bCj+2s2xMrfIa9lomEuboqgi9OB7Tpjbflk+eoZMAM
+	vRF9M6I2wVuJ1G+HOXoXUbobUkL2zoHjkr7aR6AcgBXbJwLlRsja7FU1idbwORRWBrvpAi1AnvF
+	A3+dsUpuAqXpZsMf7JkjdWN3mS9OPbN1QUzewj3/Tw==
+X-Google-Smtp-Source: AGHT+IHebaAAInYSXzL9iYrnBo2kfWHp3RSAI5cBP+sHWmXA2QcdnbuRh4mwWoMTcHs0UGfwg1l6cQ==
+X-Received: by 2002:a7b:cd95:0:b0:436:30e4:4590 with SMTP id 5b1f17b1804b1-43668b7a1d0mr407669125e9.32.1736089439765;
+        Sun, 05 Jan 2025 07:03:59 -0800 (PST)
 Received: from localhost.localdomain (host-95-246-253-26.retail.telecomitalia.it. [95.246.253.26])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436611fc161sm537419415e9.10.2025.01.05.06.42.52
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4366128a62asm536258685e9.44.2025.01.05.07.03.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2025 06:42:53 -0800 (PST)
+        Sun, 05 Jan 2025 07:03:58 -0800 (PST)
 From: Christian Marangi <ansuelsmth@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Daniel Danzberger <dd@embedd.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
 	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	upstream@airoha.com
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v4 4/4] clk: en7523: Add clock for eMMC for EN7581
-Date: Sun,  5 Jan 2025 15:42:01 +0100
-Message-ID: <20250105144219.22663-4-ansuelsmth@gmail.com>
+Subject: [PATCH 1/3] arm64: dts: airoha: en7581: Add Clock Controller node
+Date: Sun,  5 Jan 2025 16:03:02 +0100
+Message-ID: <20250105150328.15172-1-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250105144219.22663-1-ansuelsmth@gmail.com>
-References: <20250105144219.22663-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,47 +95,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add clock for eMMC for EN7581. This is used to give info of the current
-eMMC source clock and to switch it from 200MHz or 150MHz.
+Add Clock Controller node for EN7581 SoC to correctly expose supported
+clock for any user in the SoC.
 
 Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 ---
-Changes v4:
-- Move to patch 4
-Changes v2:
-- Rename emmc_base to emmc7581_base to make it more clear
+ arch/arm64/boot/dts/airoha/en7581.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
- drivers/clk/clk-en7523.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-index 596847446b14..b36445359b5a 100644
---- a/drivers/clk/clk-en7523.c
-+++ b/drivers/clk/clk-en7523.c
-@@ -91,6 +91,7 @@ static const u32 emi7581_base[] = { 540000000, 480000000, 400000000, 300000000 }
- static const u32 bus7581_base[] = { 600000000, 540000000 };
- static const u32 npu7581_base[] = { 800000000, 750000000, 720000000, 600000000 };
- static const u32 crypto_base[] = { 540000000, 480000000 };
-+static const u32 emmc7581_base[] = { 200000000, 150000000 };
+diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
+index 55eb1762fb11..f584409e72cd 100644
+--- a/arch/arm64/boot/dts/airoha/en7581.dtsi
++++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
+@@ -2,6 +2,7 @@
  
- static const struct en_clk_desc en7523_base_clks[] = {
- 	{
-@@ -281,6 +282,15 @@ static const struct en_clk_desc en7581_base_clks[] = {
- 		.base_shift = 0,
- 		.base_values = crypto_base,
- 		.n_base_values = ARRAY_SIZE(crypto_base),
-+	}, {
-+		.id = EN7581_CLK_EMMC,
-+		.name = "emmc",
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/clock/en7523-clk.h>
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -142,6 +143,13 @@ gic: interrupt-controller@9000000 {
+ 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 
++		scuclk: clock-controller@1fa20000 {
++			compatible = "airoha,en7581-scu";
++			reg = <0x0 0x1fb00000 0x0 0x970>;
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++		};
 +
-+		.base_reg = REG_CRYPTO_CLKSRC2,
-+		.base_bits = 1,
-+		.base_shift = 12,
-+		.base_values = emmc7581_base,
-+		.n_base_values = ARRAY_SIZE(emmc7581_base),
- 	}
- };
- 
+ 		uart1: serial@1fbf0000 {
+ 			compatible = "ns16550";
+ 			reg = <0x0 0x1fbf0000 0x0 0x30>;
 -- 
 2.45.2
 
