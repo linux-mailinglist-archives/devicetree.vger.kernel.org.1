@@ -1,176 +1,210 @@
-Return-Path: <devicetree+bounces-135668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C805FA01A5C
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:15:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4973AA01AAA
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:42:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 695353A2F8B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 16:15:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D94E03A2534
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 16:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E66817BB0D;
-	Sun,  5 Jan 2025 16:14:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E08A15539A;
+	Sun,  5 Jan 2025 16:42:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="azHeSu9Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U8E8edWs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2515165F13;
-	Sun,  5 Jan 2025 16:14:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 884361547F2;
+	Sun,  5 Jan 2025 16:42:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736093655; cv=none; b=pJS2KMZvbuf6L3/P7ssIpVnnJk7Dctp7Etr6izZ4nMPNLNmXpZxMplpKGigG1fFT9sHPCAq9F4Wlgsq8rBg+0OtovqFtYCu6ZX38emPlj2Al46FfNzJuSLNEgl8ApFbwa1MlzcHemqqdNmwDZzBmwFbq2rq45mymu049D/FR55g=
+	t=1736095331; cv=none; b=fxzcVV9XZay2+HwS1fbXoiacVTCIHyFA+LfKexc7kGe35eph/jnGESxM4TsPem7AZ8bXsZRINfTRzEkh3JQwkDzFgPbNQl3LggSIUS5/KghGuZkHFrp7aHWp4p/vS5WATfuqnrKNofkVaf15bQqqkX48EMHmLec+iGhOQzklIK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736093655; c=relaxed/simple;
-	bh=Fy1C5rmX7BtaHWAWlfbpoCLIKCiNrHUVoyd8rzcg+/M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JJQ8bG/KMuCTZ/1AHjYQjA4MX3oh00Pr2dEyqJsAIzvYooiEG9gB6BNXab1uGHl8csq0AsdL5Hfx8fhGNn12KZyLpAmS7bCHJcpVodTB6+cT1sYKGTn1MmRjaCFJr4u4P2lYb/PUtc7KQmAwamk+CNCtRRXe/yY5kXG5wCa4sjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=azHeSu9Q; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1736095331; c=relaxed/simple;
+	bh=bKBx7aitlIazaqZNctOn1VJbBNa3kahRJ/wVkoik0ec=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n+fUJH2hAzVVVbb6+3YA3/7MGMG3mtCL9yKdfc86K8BjJGMKzXoLgJUAx4hYHbnb3YQRbwl/vjbV94fNSzBQ5KN1k7Wbq1v5TWgh7skWA4t8GjvnWqVm8ElKn3gQ4xJMwFriW8qJ/TwogHBl+okUKU5sAtNqmTnPxuF1jmtG7RA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U8E8edWs; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-436ce2ab251so11852685e9.1;
-        Sun, 05 Jan 2025 08:14:13 -0800 (PST)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2165448243fso230858245ad.1;
+        Sun, 05 Jan 2025 08:42:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736093652; x=1736698452; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uOSez2kZNKPIr6/43vKUa8IfzgzZcFJWYi+Gr+NykBo=;
-        b=azHeSu9QUv0JGPbWUK5ypGQZMWSBqetdtoFemz56M79mF1EaNeaEbwaCOwcQ2a6yuW
-         SvP5HxLBnaj9ARjDlbobCWYU0rOcF/EIQo2xspCtH9UOUv6Jaf4GwcNs0KyMG7e0w7vY
-         bXYgwhWVBhHaxxnE+5AQWVJGvnj48mmPDNFxwt8aH+gKsQRQXAIDo/fsLgVmdu3ZNzVo
-         xYey2tEWBrTaSb92uVahFqmImq3eMGuJxyNQgHsAzs42KuMZl/wuvamGmmdofo4GdlUe
-         d2cLkjiobQqPHB6G3HnOFHWNGjDLk5kc6yee5KR43BZ+8/cPcu10SQpxtoRrvSpvh98Z
-         VMgA==
+        d=gmail.com; s=20230601; t=1736095329; x=1736700129; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=2sB/zlKcQkKZFXBCL4/xaZRFw1Nwl9vG4ydVqMtfyLo=;
+        b=U8E8edWsS3nSaDQY0ZJiviZrvE2bWkerRvzon3wXixXatHaPvIvSDbHz1KmM/F0GcR
+         wMr7bt+VTC4jvmyh1CCaZWkEuAlolDrO6S44mwcoqgCLXIdjaTYLQw54h91+5/bBZ9TL
+         gR+CZhkyHSkx8YrBEKoMQSYuO4SJUIhL7CiNdwjy34xXXNv00ucQYG9wZhkH5qn3N4Tn
+         C+yMp3gTRerEDJFRQ8yPdKOGomxrquiE+ga3YgdXRyq1JElq9/k2MipxcLiDQexN8q/g
+         IbDeCstdlfsueoZdJkVskIACJxQeWqQbOgpvir9unM08h+5VCuvWfaEQ+GneJ8CF3Cbn
+         rzCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736093652; x=1736698452;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uOSez2kZNKPIr6/43vKUa8IfzgzZcFJWYi+Gr+NykBo=;
-        b=vgp3G81wdRnEn4QEr9jQg6LL0kwvw2aq5qfsLQ9fTvSya31S1md7eIrYfYEggNCSLR
-         ysJqt/XEm3dlc/yaHlTNSGe3qHvfbZPETMAx/IkkwU8Jaeeo0iBOdsGmddkxcj9v2R8q
-         mbNAAr8AZrNrMytGvXAc2jogM6THTTJKAbDoGm6+j7oRRHkiWyZBkUSYPizaGKecISr+
-         Zi6gqj8M0+T76lvbiyTOaUND+ZHu4qgbuDAHPXBBsL0xEOqEbH7DThb/8fXl7hMeRBOx
-         PV+4DYkOWfvKOAlioW3p3Rv6utO68kxSMEey2oMNgmJHqjjZr5O7mpego/affcJj6gaQ
-         V+4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU1gsVEqefeS/5zEQcCWuPNtD3dlOcUhxBlDZ+XSyy5fEY9+USiA2EI4EbQz0W/8jhryDXLXExN+lNTAHC2@vger.kernel.org, AJvYcCU9T76eVjQ2bP2dcHMAxWVr16Wf5SysLY3LQ4E/ZIha59VlTZ069WDQJ04CjiaZTkbK4gwtyPZXp0ZZ85G8rXjBvAA=@vger.kernel.org, AJvYcCW7GIEQ8nx6m6JXUJyM7BdpH45a0oXnFRHKPLO/8nHr3ApcpHZ0Y+2L6FU9T8aDSGOKjWG3nXrIg1EI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxy31ghSICCaDxEOX5iM4b0oW0K1BIuSBOO/hvmWqc/ltzMGVCy
-	9WpXnNoG71jtX47hIFiasxZ8fjG+jU1dwIo6pMnmMpo2AsO+jX0WuvSLgA==
-X-Gm-Gg: ASbGncvfSPrqcPzihI067FR+HMewB+Wu4WrTlqbj2l7I5Yoo3o7DqBFhS5eeNh1iKgx
-	+ewI3SgLRslE5XzSLqNFVeOl35KhJAYOSo8jm2dzCtrzIOLlNaXRoQ/Cy6RsBJsNZeuDtZJAtnE
-	4xmv8Q8bn4pRPDOnFsABuVEREvqXeXCjmtXte0NCOc45w77y/FTuKuDo3KQB3P79gyy7l217zEt
-	2qImmDFaEstLTGWMLD/bP7B7v5V9mz2RB4Cd4HmmbK4hqEa6rkXnOL6y4zrWpuWWu8Jx2M=
-X-Google-Smtp-Source: AGHT+IGGn0UJF9DyGx4oUCveH4zyPEgOigjYmBULy/W6t7z/jQh21cbV2kifxL+XEIbanKLa1PZEkw==
-X-Received: by 2002:a05:600c:3b23:b0:431:60ec:7a96 with SMTP id 5b1f17b1804b1-43668b49950mr412180845e9.25.1736093652049;
-        Sun, 05 Jan 2025 08:14:12 -0800 (PST)
-Received: from ivaylo-T580.. ([94.131.202.183])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b4274csm578250565e9.38.2025.01.05.08.14.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2025 08:14:11 -0800 (PST)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Jaehoon Chung <jh80.chung@samsung.com>
-Cc: linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/6] arm64: dts: exynos: exynos8895-dreamlte: enable support for the touchscreen
-Date: Sun,  5 Jan 2025 18:13:44 +0200
-Message-ID: <20250105161344.420749-7-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250105161344.420749-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20250105161344.420749-1-ivo.ivanov.ivanov1@gmail.com>
+        d=1e100.net; s=20230601; t=1736095329; x=1736700129;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2sB/zlKcQkKZFXBCL4/xaZRFw1Nwl9vG4ydVqMtfyLo=;
+        b=I8pHfjW4S4uSm0LQDDvebb2qjyTuOfdWZxrvbQsRdnz5aJdr6wq/a3HMar4C1No88s
+         F1RAoItCqlpq8zVwNurPwaIzgLfwLXteWak/1OIF55/Z0HfMpT3JnFNdaBQpOiE4egev
+         iu0Sf5anwgdBVQrFg/TeWkO0WjAe5oHp7AH0LFyQkqQuASlM+OSYL8xAnhU3Mor111AB
+         nvS8Df6RDTulzEkX7Zxzk3EcNKEsyHgc96HHnkcs/QbCsPeHHWPBWVvG0sPzV4+KbOaJ
+         H59bvksRK8KMzkrr5T+Fn9ZdEQIstHITMeJfRi2dKIqjTOIJatNc7kBtxUPmlE5zpanE
+         SqkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0Yn5IO8SyQrwbwFGYK45/3iuGOeue3ZVjdSympXZj2zz7/ekzY7aA1exh9R2BR7veOlR2ou1DMjxQHiJl@vger.kernel.org, AJvYcCVflFubI8KR3rPq00Zx9P8e90bVToqN8k4/3OITlj3+/YErCutvLofYkPWvOZYEL8UofsGFGIMzu27deA==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8/4ObzdF+5nx3KGkTBLlScAZ1uYqT0lP9M4ReV5VSDdf2u79l
+	rsAlidK+7EyscuQI2tIWo/ocELq9pfG6h6fb0bhNrfb+vrdkQfhzgVtjXQ==
+X-Gm-Gg: ASbGnctumJraNRw67DRR5QNzaeYLjIdG+P/ITCS6lgiDVO+PZMlhXecsxoh0FYladm6
+	d42FQpJwQso/oeU7dhLqcvd0f5Y5uGmF3VFfAQBkXZQMIeJYv0dRT0/IgDK4elyv9+tYZe2ExM+
+	0Y/L0mEqLt+oH9u5tpTvA1RyQZToAwNNCAo7dqxWdY5FSX3Ca79BLu+/WOzMwbWv/N/zj0fb/sL
+	hrDbmE+o6gjJP4571KMl7hFGlTd0H86moh+MaUSvD9hVeTbVtKCFkZ2V1aESs2aKpiyZxxfXt1I
+	1HOx2InC0rd8ppy1VPc5dx3fRs5KwQ==
+X-Google-Smtp-Source: AGHT+IFnvnWyBTlD6IdGIAww0zD0t4sJ2UMMMDn6ANsHJ58TeSm/o3SsxFx5zzLHxSRyqU6x3B7rzA==
+X-Received: by 2002:a05:6a21:3997:b0:1e0:c9a9:a950 with SMTP id adf61e73a8af0-1e5e081cb96mr88420439637.39.1736095328676;
+        Sun, 05 Jan 2025 08:42:08 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad81582asm29766187b3a.9.2025.01.05.08.42.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Jan 2025 08:42:07 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d1ae914a-26be-437d-ba0b-60aa327c2218@roeck-us.net>
+Date: Sun, 5 Jan 2025 08:42:05 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
+ property
+To: Rob Herring <robh@kernel.org>, Peter Korsgaard <peter@korsgaard.com>
+Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ Jean Delvare <jdelvare@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250103101448.890946-1-peter@korsgaard.com>
+ <20250103195810.GA2624225-robh@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20250103195810.GA2624225-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The Samsung Galaxy S8 uses a Samsung s6sy761 touchscreen over hsi2c23.
-Add a node for it in order to allow using the touchscreen as long as
-the previous bootloader has enabled the required regulators because
-there's no support for PMIC yet.
+On 1/3/25 11:58, Rob Herring wrote:
+> On Fri, Jan 03, 2025 at 11:14:47AM +0100, Peter Korsgaard wrote:
+>> The pwm-fan driver uses full PWM (255) duty cycle at startup, which may not
+>> always be desirable because of noise or power consumption peaks, so add an
+>> optional "default-pwm" property that can be used to specify a custom default
+>> PWM duty cycle (0..255).
+>>
+>> This is somewhat similar to target-rpm from fan-common.yaml, but that cannot
+>> be used here as target-rpm specifies the target fan speed, whereas this is
+>> the default pwm to set when the device is instantiated - And the resulting
+>> fan RPM resulting from a given PWM duty cycle is fan dependent.
+> 
+> I still don't agree. Quoting Guenter:
+> 
+>> The two values are also orthogonal. The fan rpm is fan dependent.
+>> Each fan will require a different pwm value to reach the target speed.
+>> Trying to use target-rpm to set a default pwm value would really
+>> not make much if any sense.
+> 
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- .../boot/dts/exynos/exynos8895-dreamlte.dts   | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
+That is a mis-quote, really. I was talking about target-rpm. The property
+to be added here is default-pwm, which is completely different.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-index 6c4f8d4a9..61e064af3 100644
---- a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
-@@ -10,6 +10,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/soc/samsung,exynos-usi.h>
- 
- / {
- 	model = "Samsung Galaxy S8 (SM-G950F)";
-@@ -93,6 +94,33 @@ wink-key {
- 			wakeup-source;
- 		};
- 	};
-+
-+	/* TODO: Remove once PMIC is implemented  */
-+	reg_placeholder: regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "reg-placeholder";
-+	};
-+};
-+
-+&hsi2c_23 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	touchscreen@48 {
-+		compatible = "samsung,s6sy761";
-+		reg = <0x48>;
-+
-+		/* TODO: Update once PMIC is implemented */
-+		avdd-supply = <&reg_placeholder>;
-+		vdd-supply = <&reg_placeholder>;
-+
-+		interrupt-parent = <&gpa1>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&ts_int>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &oscclk {
-@@ -155,4 +183,16 @@ sd2_cd: sd2-cd-pins {
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
- 		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV4>;
- 	};
-+
-+	ts_int: ts-int-pins {
-+		samsung,pins = "gpa1-0";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
-+	};
-+};
-+
-+&usi9 {
-+	samsung,mode = <USI_MODE_I2C0_1>;
-+	status = "okay";
- };
--- 
-2.43.0
+> But RPM is ultimately what you care about and is the fan parameter
+> that's universal yet independent of the underlying control. RPM is what
+> determines noise and power consumption.
+> 
+> There's 2 cases to consider: you have a tach signal and know the fan RPM
+> or you don't know the RPM. If you have a tach signal, we probably
+> wouldn't be discussing this because target-rpm would be enough. So I'm
+> assuming this is the case and you have no idea what RPM the fan runs at.
+> The fan-common.yaml binding is a bit incomplete for this. What you need
+> is some map of fan speed to PWM duty cycle as most likely it is not
+> linear response. I think there are 2 options here:
+> 
+> Use the 'cooling-levels' property. Fan "speed" is the index of the
+> array. So you just need a 'default-cooling-level' property that's the
+> default index.
+> 
+> The other option is define an array of (fan RPM, PWM duty cycle) tuples.
+> Then target-rpm can be used to select the entry. We already have
+> something like this with 'gpio-fan,speed-map'.
+> 
+
+That won't work. Literally each individual fan (even the same model)
+runs at a different rpm for a given pwm value, and I am sure the rpm
+for a given pwm input changes depending on fan age and temperature.
+
+Quoting from the NCT6796D-S datasheet, for an example:
+
+"The default duty cycle is 7Fh, or 50% for SYSFANOUT, CPUFANOUT, AUXFANOUT0, AUXFANOUT1,
+  AUXFANOUT2, AUXFANOUT3 and AUXFANOUT4.
+  Note.The default speed of fan output is specified in registers CR[E0h] ~ CR[E4h] and CR[E7h] of Logical Device B,
+  and the AUXFANOUT4 default speed of fan output is specified in register CR[E3h] of Logical Device D.
+"
+
+Note that the term "default speed" as used in the datasheet refers to pwm.
+Again, from the datasheet:
+
+CR E3h. AUXFAN4 Duty Cycle Register
+                 ^^^^^^^^^^^^^^^^^^^
+
+Setting the default value for such a register is what we are talking about here.
+No rpm involved, just default pwm values. This is completely independent of rpm.
+
+Guenter
 
 
