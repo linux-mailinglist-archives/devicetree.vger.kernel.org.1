@@ -1,132 +1,134 @@
-Return-Path: <devicetree+bounces-135652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF66A01A22
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 16:35:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 726F7A01A26
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 16:50:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5A1E160FCD
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 15:35:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEB333A2109
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 15:50:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E72126F1E;
-	Sun,  5 Jan 2025 15:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DA121369BB;
+	Sun,  5 Jan 2025 15:50:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="fLjMkOSi"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="BtC9USIq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E03E1E48A
-	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 15:35:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9C3F9C1;
+	Sun,  5 Jan 2025 15:50:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736091353; cv=none; b=cL9h5OxMTy1WlervUOWObYWtGtzkqPDvZbAB5qOekc1zKMsuA3vJkgyq8L52IK8iSmGvotnFLi48ugdd1CXLsBqRgORz5lHnhxc5dPfo8opJHhupJFAx3ukqr+Lu+TQ6qU7d8e5/hQiDT8kcPAzuul9BVzQ1dEuyRVsj6kY6x9g=
+	t=1736092202; cv=none; b=YnQq2WWpi0Pokz/KtOgjbaWrHiLEs1ncPwItq8MmHtpzY5tCBrMNsdql+RIMtTkzSiTd1FBdvdo3nMS9FiksuzMMHK4AF7b6LZNqRtq0Zo2sqX0nAnIuB6FO/8QIUn9/fiWzuG6x7dZSgLbMhU/1/k2NzvDJfvUAXt9cXCEJEPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736091353; c=relaxed/simple;
-	bh=dFS9Bx5lFJDZFrkAiMEQ0mTDAkcLDKV9ZCP7o+YLQKY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=NlOU/XcnEa3xGWh/pWtckW3htQLP7AKhhJsL53OCKIofVLVyLW1CkY5ajq08U048RANG38OEYah27HO8+816fy8M5HQb2FuCq89qikFhDAbOydcmA+wNILe5YRmrgXmcDIwDshI3UKdjJgqY6QNChSJkO0o7md3tZkDxGQgHTtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=fLjMkOSi; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1736092202; c=relaxed/simple;
+	bh=RM5s8U32OtCMbASk0leCuR/9r2hIRgbjXYDeee/6GXo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oR19AyHopn57UzEJvzDLPy/Y2T3ES9P5+04ZJJefMGc5faGDHBghl+4vFTqpcaSMsj/huy6e9AIeVGSed0KDfCAbp8XOtGIvKnze896/8cv5Ibs0pRBtZYDrUFyG2od+lF7eB9WTpBQQc3CF6f25cOg0bjqOyG4V0yioab+5V/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=BtC9USIq; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2161eb95317so198417595ad.1;
+        Sun, 05 Jan 2025 07:50:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1736092200; x=1736697000; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YywA5lTEdJWoFMmlp4DfxD/jE6edYt47y3+JzLz1vMk=;
+        b=BtC9USIqGHutKlQSvsbSTHuykR6RHTEW78OQ5zdHx1fygPrM11Cjm1iomUVasw+ZpZ
+         kLxowF9aGYzu0zHexLLUZPt3K41XzEQq8ZXvTo45Y/FY+BiXGg9ZELFZbAv9TL80QFnF
+         TnWMeDvi8B/SpCKzsBQ0oN17VF2Li5XzfMx03J5BUBk/OMsUP0d04X5oPenfI7NEXRxY
+         TX/wlCnS3zExIxLJERmZn4t0vOqqZTkSXdfQzVbCzhetojTBWthhLni8tHidkohJcZCB
+         IrQPIY3FPvwVdCrwcP5N/BYeLTSYEYkHk9Ip5DnwmCZUMC0TsD4dWBjJIRnXcbMC0Mwj
+         UPpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736092200; x=1736697000;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YywA5lTEdJWoFMmlp4DfxD/jE6edYt47y3+JzLz1vMk=;
+        b=oBXL1lIIe+mq57y2dSExeP+CQUOm6ovr3Xrf+BIXN4rkEwOsCsyuSNJaEkhT7NY7d5
+         xAPbG7YdvU9w4t/JyeWPskE4/+XwH567J05JwZVoN8lTaMdjIIPW5qhaOoAY2bcbFVhS
+         IzfWAAIgfv5kbR0QByIWYCAPjmRA3CRZlwUsvKXNEkP95lihyjEQHNM9E8pf6G+CyU1m
+         e8T046+QoHBQKJJN2CnXnpbK5I2RBoa0a7tJDblhC2q8gQu67wzThPaDfjK5Aa2Nfcug
+         9Oa5F8B/VhqFIIF0gizS8moITTMHoDa/FVbU4Llp9MwmAN78Os4Jiq6sysJaOS/c+Fyf
+         OqXw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVEfB1f3LTA/DiQphq5tYfwrzL9IP7h/JYOw4Sn2ZPUt1e/ToVfkn0hJN2pdOZRMHuAtXIUUp0vNuo@vger.kernel.org, AJvYcCUwkUJ9xSeHiFJzbf1XcBH2jG6LiKc+jKFUIgSQvvyC43VojVS/kLA5hIYdjeG4qt6iK9nxvQW/9APNKryc@vger.kernel.org, AJvYcCXkpBCatZ2x0AM6punXnYxutmw+cGX4TfamQj0z/iB3izJK6395GNvGdZCoMIrVEWKHqRnDRT9admxp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBGtoiDovQvQMNrNBBOn5jnaGtg8Yp8rBMGKqHVdKar186+K3h
+	a5Pw6LiSXNlO5Jdjfo7V7+WEXus5gbOmUC9Vkz3RP0Yvn9R41JT7ZV9BGiY34Qdw/TnkUQ4hjWA
+	5U1rg0dBhxKBzWkggsfUyasguOMo=
+X-Gm-Gg: ASbGncuX+SS2TiQNVFjCZbn+weo6zWYoe2CaodTk/ol03W99ILUFJNgPP1atXZwyFWe
+	2dvBDdGnJof91MjVm5PueJR0KhQUxgiJWKecRCHvboaei1gz0nZHU
+X-Google-Smtp-Source: AGHT+IHBq4Bpn7IMCuiOvWpCDfq6WSEWbk+kF8P/My012EE2LHfMCwEfjsvbXgI3Q5S8UqpawhTxxnoNTWpu5as8yyE=
+X-Received: by 2002:a17:902:d4c4:b0:216:7cbf:951f with SMTP id
+ d9443c01a7336-219e6ea195cmr764170955ad.21.1736092200275; Sun, 05 Jan 2025
+ 07:50:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1736091343;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=u1MCmjilWTgBhn7D2vqKDiQLyu7tF+DDIvHY3jHHcXQ=;
-	b=fLjMkOSik2u/ae8t9/y8LTitp1tnMi01FEDhrivWlzyf6Rz1QXFZ3hmSFdtuY8xPN96mxU
-	UM7/93o9r3ohbNzc4u0eMj4rYEAKifnUmRbYKCQ49vFlBZgqdbif0KLb2hoGs5QVpEhw7k
-	BSCEQK8O8GTOrHpJM3RY5SmTUe9HWqO85HN0Wi5qTM1AKPFYHCP40Nu13NJFigJJOqzkw4
-	PsSkFOEzBjAy2l+4PfGNiJEqQGqvVVSZocDUQCORsEoHx3+RDxM9hwB547I5NHeYelPgqC
-	1Fvr7ZyPFk5adkYKGQUBDsaEzrqEXv7OJiUxIsxi6WTn5/BONNK3GL3ONanMyw==
-Date: Sun, 05 Jan 2025 16:35:39 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Kever Yang <kever.yang@rock-chips.com>, FUKAUMI Naoki <naoki@radxa.com>,
- robh@kernel.org, conor+dt@kernel.org, liujianfeng1994@gmail.com,
- jonas@kwiboo.se, cfsworks@gmail.com, dmt.yashin@gmail.com,
- jbx6244@gmail.com, sebastian.reichel@collabora.com, tim@feathertop.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- marcin.juszkiewicz@linaro.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, michael.riesch@wolfvision.net,
- macromorgan@hotmail.com, krzk+dt@kernel.org, jing@jing.rocks
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: rockchip: Add Radxa E52C
-In-Reply-To: <6900956.G0QQBjFxQf@phil>
-References: <20241226024630.13702-1-naoki@radxa.com>
- <20241226024630.13702-2-naoki@radxa.com>
- <E280EE989942CA2A+4252fa87-049d-4b73-ac28-537f29c09660@radxa.com>
- <6900956.G0QQBjFxQf@phil>
-Message-ID: <965d7330ece716c991e89d6d2dfe02df@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20241231194207.2772750-1-martin.blumenstingl@googlemail.com>
+ <20241231194207.2772750-3-martin.blumenstingl@googlemail.com> <20250104135912.390ec87c@jic23-huawei>
+In-Reply-To: <20250104135912.390ec87c@jic23-huawei>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 5 Jan 2025 16:49:49 +0100
+Message-ID: <CAFBinCBxaVet9HxW98uCSDnv1XVXV6r4V9Z3BRmZJypTcxDZ0Q@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 2/2] iio: adc: meson: add support for the GXLX SoC
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, gnstark@salutedevices.com, lars@metafoo.de, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	christianshewitt@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Heiko,
+Hi Jonathan,
 
-On 2025-01-05 14:29, Heiko Stuebner wrote:
-> Am Freitag, 3. Januar 2025, 07:45:58 CET schrieb FUKAUMI Naoki:
->> What do you think about the introduction of the "rockchip,rk3582"
->> compatibility string?
-> 
-> I'm not Kever, but I do like the way you did this :-) .
-> 
-> I.e. the rk3582 _is_ a rk3588 with those cores disabled.
-> 
-> So going the way you did allows us to not introduce too much
-> overhead while still already having the rk3582 naming in there
-> if it becomes necessary later on.
+On Sat, Jan 4, 2025 at 2:59=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
+wrote:
+>
+> On Tue, 31 Dec 2024 20:42:07 +0100
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+>
+> > The SARADC IP on the GXLX SoC itself is identical to the one found on
+> > GXL SoCs. However, GXLX SoCs require poking the first three bits in the
+> > MESON_SAR_ADC_REG12 register to get the three MPLL clocks (used as cloc=
+k
+> > generators for the audio frequencies) to work.
+> >
+> > The reason why there are MPLL clock bits in the ADC register space is
+> > entirely unknown and it seems that nobody is able to comment on this.
+> > So clearly mark this as a workaround and add a warning so users are
+> > notified that this workaround can change (once we know what these bits
+> > actually do).
+>
+> So IIUC this is to make some non ADC component work.
+That's correct
 
-I'm glad that you like it, so it hasn't turned out it was me
-providing some kind of bad guidance, so to speak. :) [*]
+> How are you handling dependencies?  The ADC driver might not be loaded or
+> is there some reason it definitely is at the point where the audio driver
+> loads?
+Unfortunately there are no dependencies at the moment.
+To me it's not even 100% clear if those bits are a dependency for the
+audio IP or if they are instead linked with the clock controller (more
+background info: some of the MPLL clocks are - at least in theory, in
+practice we don't use that - are also used as input for the Mali GPU
+and video subsystem. The only practical usage that I'm aware of is the
+audio controller).
 
-[*] 
-https://lore.kernel.org/linux-rockchip/c6ba70f1681bb635190e9452ecb22d59@manjaro.org/
+Christian and I have both tried with all of our contacts at Amlogic
+but did not get any answers.
+If I knew the purpose of these bits I'd model them as whatever they
+are (resets, clock gates, ...) and provide proper dt-bindings.
 
->> On 12/26/24 11:46, FUKAUMI Naoki wrote:
->> > Add devicetree binding for the Radxa E52C.
->> >
->> > Radxa E52C is a compact network computer based on the Rockchip RK3582
->> > SoC.
->> >
->> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> > Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->> > ---
->> > Changes in v3:
->> > - Collect A-b tag
->> > Changes in v2:
->> > - Add "rockchip,rk3588s"
->> > ---
->> >   Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
->> >   1 file changed, 6 insertions(+)
->> >
->> > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> > index 753199a12923..2152d170524a 100644
->> > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->> > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> > @@ -812,6 +812,12 @@ properties:
->> >             - const: radxa,e20c
->> >             - const: rockchip,rk3528
->> >
->> > +      - description: Radxa E52C
->> > +        items:
->> > +          - const: radxa,e52c
->> > +          - const: rockchip,rk3582
->> > +          - const: rockchip,rk3588s
->> > +
->> >         - description: Radxa Rock
->> >           items:
->> >             - const: radxa,rock
+
+Best regards,
+Martin
 
