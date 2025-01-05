@@ -1,138 +1,145 @@
-Return-Path: <devicetree+bounces-135661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF9A0A01A41
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:11:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1584A01A44
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E4027A1696
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 16:11:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A0EB3A2730
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 16:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018DB14B946;
-	Sun,  5 Jan 2025 16:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F383015573D;
+	Sun,  5 Jan 2025 16:13:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="Z31mJT4R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VhOnwqZQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 389231292CE
-	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 16:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D50C1292CE;
+	Sun,  5 Jan 2025 16:13:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736093478; cv=none; b=Sru6BIc1Q4uP5vFMbsXVnx8iRh0XXsX9/bU7AouIcseEdrN01HtbzZv/VlsCSXc8ab3iDBwGnm/F9YWVVbJ6WiYsiJp4CvBgAAOhpQeL9KEDTvchYPNogwfZVHOMX1Zl4EBg9FsRL5SDGUXagca+cFq6vcWzgP6VvYQvAPmkuCE=
+	t=1736093631; cv=none; b=g6OVbNyigB128MQlZvSJX7zlFP0wS7SvculEKurWoavlMgiDp6s6+JtFeGhOg5OaLC6fX52DdX+I6AkiyJLilFkxROtS1g2nLUf5yvqMf8wgvzzQAkonspP8g24FIwUQk13EQrHeG7uLFpvKG1AHfkAPhMk6DADay856Ltd/1NI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736093478; c=relaxed/simple;
-	bh=uuT0h2ot2kFkbKpeUUiai5f5E+OKMZVTq8EPMLhiVn0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=diO51lPy9vMPiyNrG4ovOEbTaCkhb35CC+QjYnIk6kecWwZjBuye/IyOqc8lrkAJhy7Tnpj36DgvHINl49kK/nWLZBacGVx1KhoUnsXN7H006AvZmY9bWC9Iv9arG2RIyEd9yHMM4rTjueFAmmtKzGk27MFpyIqeqe2OKaOmWDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com; spf=pass smtp.mailfrom=korsgaard.com; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=Z31mJT4R; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=korsgaard.com
-DKIM-Signature: a=rsa-sha256; b=Z31mJT4ReeLaIii/8UrnFcxUKXLKkHyVMjgtBrVEni6RsAeJfGJ+1yd+ffZp6vNMJrNAGahepfE/3/seB+jwmu8pC8d0ObT0mxiCTIhLAnTeu1wxrfdl55rNDx3/8dhFEnK6C6YuVCT2JiZZ0O0VyTxmdmwFzUpaYNra8ufrNTuXSsypK1fvd+Qd6EHlayDOdMUuE+rNI35jmmJevOmQoHKNCMekLv+hSEIYf7RiMIYU4LdthEqnHyRt+Uyh0OMU4Sk44NpIQDFlf5CSp1OSXPq5GekYTWDS6cskbsb0FJKhTz8xDQJEuh0dWSRbp21dzHsRozIXIeWRe68RW8Szzw==; s=purelymail3; d=purelymail.com; v=1; bh=uuT0h2ot2kFkbKpeUUiai5f5E+OKMZVTq8EPMLhiVn0=; h=Feedback-ID:Received:Date:Subject:To:From;
-Feedback-ID: 21632:4007:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1502571710;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Sun, 05 Jan 2025 16:10:45 +0000 (UTC)
-Message-ID: <dbf7cdd3-c5ab-4801-be85-163124b8a898@korsgaard.com>
-Date: Sun, 5 Jan 2025 17:10:42 +0100
+	s=arc-20240116; t=1736093631; c=relaxed/simple;
+	bh=ir7eCNa0pUFT0PWxNzIJEnp2AeMywMR3paXMTK+TSbE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=o9KyOFf/HW83oXWmOfCQ/DN4PI9qd//XQ8SlZKjdviaZkH3i4mkHi6dWxC03KbJUpWD+uQsUHYDNjbVG3g2r8bnPI9xKFjI1CE1ugD6RWD74ohiYSuqHw9zmEjd04w5eENjqlaByAZ6oP5joyAbxLhzCk5RyhggsrS7cxfBiay8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VhOnwqZQ; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-436326dcb1cso90214145e9.0;
+        Sun, 05 Jan 2025 08:13:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736093628; x=1736698428; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1lchnjuFpSdhQx9L/rOYviPRo396F7o6vIvEXCybU6U=;
+        b=VhOnwqZQIIg/AG0yRBqtisdY4jUD3n4j+COJVMx2qHLETbBR9jG3FUBWp7noOfP/Fi
+         d2HZwLYtiGpqZOnOpa055og6ZeA37pVHYaVCIgeDyQRu54CA+We5o2puCgImlXrV9QBp
+         GPuCMHe7KMpCKBOKWpecLOFiYA3PMHT18nfrghX68DxgZ5/TEBoAGqqHLDQ02koW0/Ts
+         F3+d7vaV9K5Rlie20qlMaWrXI73Hn5HnMbR3rjk8zcD47xD/4/xElgl1GtrPEGqA0Hpb
+         rTAvaZiTMlDrkEo6VPfnf6PpTxQOvQFIuP2dSTbmWFktnVjNPyhXp+/MtBMpxy8ol+5n
+         GTsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736093628; x=1736698428;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1lchnjuFpSdhQx9L/rOYviPRo396F7o6vIvEXCybU6U=;
+        b=GLi2gtOTd5ea7UjzCxk3J8t9SL10IzFpyd7ofbZ/nB09WLwdJuJXLV39iQ187gJnLI
+         UIG3vlJbnqf3mJNVs5z8Eby7StW2mCD1Jit9TP5L5QEPHdjWkan7v0aFVBSWAlWhxFqa
+         1XO828sAYY/CS+tzzsG1MjyjmxsZUz5Nmi5BhvujA9UE2jaULQm5XzZkbmgVOnDFLBLk
+         l/u/ZR0kpcBRCT6w7QFDB7d0VLElefZSvy53hCt005aOR22FB80X3NlARc1V1cmvxoz1
+         UvRA+mpj7SOTS9PyqZpEJiro/CPyiCFLtNjc0/Aifzlrl0yjAGx/7cQ3rjVZyOSup4W4
+         Od5g==
+X-Forwarded-Encrypted: i=1; AJvYcCUHlXl2JaxZLw9AEkLNMvpDx+TF5bJzlFnUpVdfdUmfgHOMw5lGp0mOQvG+uc2iFc8Qlr8IiEJ8cPJDk1QL@vger.kernel.org, AJvYcCWT42XxZv+7uyINjY4O5Uk08OkjJGrCv1WTV7k4bJUIWx+4N4PtY+yP78uNIFKePlFWGyWJ7YE6ykQCc4aiq1MempE=@vger.kernel.org, AJvYcCXYbDqlnbNb3GhkeYvibkXMDLD62bOUT+GjWTZMD/ypZYNpgdpWYMrqfGbFmf3bFkHA7td/4qPWHvq4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSdfIBmxqjTPC/YlbmR/pPAFB5v3rj7KLb6f7fv4mNaKvp6Pl0
+	m33a6DJG5Qvnfl0QoOsu/erp2dIf4ELDVrLBtW4WOXG6JUiCUVYI
+X-Gm-Gg: ASbGncsH5i8gfAdwqy5z2oCX0CANigAyg2QfowLcH9mRMyg1HMlgO0adkU20FRNRQuW
+	PVazXSQUE/koMPrRknv90qXCGtA4JERkyWK2RH4mxJ1deGf8oKKmNk1M6uBkYi4sWy3Xqhd5Weq
+	+NdbTzoZx5DjdjvqcAtjAYDu3nBT3mTll/iI23sb8Y9C7GMBs0UbJOawKt0GRcR1P9NLmETQQoh
+	HgouObdpCeEhbX2rnmzAzazLxS+cSQJ6ggVQeLyk2yMAvmEjbrIyhd7UvcCIcD8GnPFL7Y=
+X-Google-Smtp-Source: AGHT+IGw2sZkN+3zUikmgjWtTwI/TC0FpreoFdTU9b17v9+gno+YL3QK9BsYjEcviI4Uu8upAU04EA==
+X-Received: by 2002:a05:600c:68d7:b0:434:f270:a513 with SMTP id 5b1f17b1804b1-4366d357401mr442740625e9.29.1736093628312;
+        Sun, 05 Jan 2025 08:13:48 -0800 (PST)
+Received: from ivaylo-T580.. ([94.131.202.183])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b4274csm578250565e9.38.2025.01.05.08.13.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jan 2025 08:13:47 -0800 (PST)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Jaehoon Chung <jh80.chung@samsung.com>
+Cc: linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/6] arm64: dts: exynos8895: define usi and mmc nodes
+Date: Sun,  5 Jan 2025 18:13:38 +0200
+Message-ID: <20250105161344.420749-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
- property
-To: Rob Herring <robh@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250103101448.890946-1-peter@korsgaard.com>
- <20250103195810.GA2624225-robh@kernel.org>
-Content-Language: en-US
-From: Peter Korsgaard <peter@korsgaard.com>
-In-Reply-To: <20250103195810.GA2624225-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 1/3/25 20:58, Rob Herring wrote:
+Hey folks,
 
-> I still don't agree. Quoting Guenter:
-> 
->> The two values are also orthogonal. The fan rpm is fan dependent.
->> Each fan will require a different pwm value to reach the target speed.
->> Trying to use target-rpm to set a default pwm value would really
->> not make much if any sense.
+This patch series adds the required syscons for controlling USI, as well
+as defines all USIv1 nodes for Exynos8895 and adds support for utilizing
+the external SD card storage in dreamlte as well as touchscreen. Due to
+PMIC not being supported yet, we'll assume that the regulators are
+pre-enabled by the previous bootloader for vqmmc, ts_vdd/avdd
+(in our case uniLoader).
 
-> But RPM is ultimately what you care about and is the fan parameter
-> that's universal yet independent of the underlying control. RPM is what
-> determines noise and power consumption.
-> 
-> There's 2 cases to consider: you have a tach signal and know the fan RPM
-> or you don't know the RPM. If you have a tach signal, we probably
-> wouldn't be discussing this because target-rpm would be enough. So I'm
-> assuming this is the case and you have no idea what RPM the fan runs at.
+The patchset relies on [1]. I also expect the exynos mmc binding
+maintainer to pick the specific-compat patch.
 
-Correct, no tacho.
+Best regards,
+Ivaylo
 
+[1]: https://lore.kernel.org/all/20250105160346.418829-1-ivo.ivanov.ivanov1@gmail.com/
 
-> The fan-common.yaml binding is a bit incomplete for this. What you need
-> is some map of fan speed to PWM duty cycle as most likely it is not
-> linear response. I think there are 2 options here:
-> 
-> Use the 'cooling-levels' property. Fan "speed" is the index of the
-> array. So you just need a 'default-cooling-level' property that's the
-> default index.
+Changes since v3:
+  - change USI_V2 constant to USI_MODE in the touchscreen support patch
+ 
+Changes since v2:
+  - add r-b from Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+  - drop hsi2c_pclk clock-name where it was left accidentally
+  - utilize _I_PCLK instead of _I_SCLK_USI for all usi hsi2c nodes
+  - move assigned-clocks properties to dtsi
+  - set mmc's clock-frequency to 800mhz as per vendor's dt
+  - add a pinctrl node describing cd-gpios
+  - drop the fixed gpio regulator
+  - add a new patch to the series for enabling s6sy761
 
-I am not sure I what you mean with the RPM reference here? The 
-cooling-levels support in the fan-pwm.c driver is a mapping between 
-cooling levels and PWM values, NOT RPM value.
+Ivaylo Ivanov (6):
+  dt-bindings: mmc: samsung,exynos-dw-mshc: add specific compatible for
+    exynos8895
+  arm64: dts: exynos8895: add syscon nodes for peric0/1 and fsys0/1
+  arm64: dts: exynos8895: define all usi nodes
+  arm64: dts: exynos8895: add a node for mmc
+  arm64: dts: exynos: exynos8895-dreamlte: enable support for microSD
+    storage
+  arm64: dts: exynos: exynos8895-dreamlte: enable support for the
+    touchscreen
 
-
-> The other option is define an array of (fan RPM, PWM duty cycle) tuples.
-> Then target-rpm can be used to select the entry. We already have
-> something like this with 'gpio-fan,speed-map'.
-
-Where should these "invented" RPM values come from when there is no 
-tacho signal? That sounds backwards / complicated for the very trivial 
-"what should the default PWM value be at driver probe time" use case.
-
-
-> There's also no definition of the minimum RPM or duty cycle in the
-> pwm-fan binding. We have min-rpm in fan-common, but that doesn't work
-> without a tach. A map would help here as well
-
-The minimum PWM is presumably 0, E.G. signal always low?
-
-
-> This problem to me is similar to LEDs. Ultimately it's brightness that
-> you care about, not the current or PWM duty cycle to get there.
-
-The use case (as described in the commit message) is to drive the fan 
-less hard to limit noise and/or power consumption. The input to the fan 
-drive control is a PWM setting, so it IMHO makes sense to specify that, 
-as that is the interface provided by the fan-pwm driver - E.G. you boot 
-up and tweak the pwm1 property in sysfs until you have a value that 
-suits the noise/power consumption requirements and stick that value in 
-the dts.
-
-
-> Finally, whatever we end up with, it should go in fan-common.yaml. That
-> supports PWMs too, so whatever we end up with is applicable to any PWM
-> controlled fan.
-
-What makes this "default-pwm" (or whatever it will be called) more 
-generic than E.G. the recently added "fan-stop-to-start-percent" / 
-"fan-stop-to-start-usec" properties added to pwm-fan.yaml by commit 
-80bc64201e78 ("dt-bindings: hwmon: pwm-fan: Document start from stopped 
-state properties")?
+ .../bindings/mmc/samsung,exynos-dw-mshc.yaml  |   1 +
+ .../boot/dts/exynos/exynos8895-dreamlte.dts   |  72 ++
+ arch/arm64/boot/dts/exynos/exynos8895.dtsi    | 908 ++++++++++++++++++
+ 3 files changed, 981 insertions(+)
 
 -- 
-Bye, Peter Korsgaard
+2.43.0
+
 
