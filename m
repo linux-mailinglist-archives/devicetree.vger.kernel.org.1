@@ -1,192 +1,201 @@
-Return-Path: <devicetree+bounces-135629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBCAA0193C
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 12:30:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4611EA01943
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 12:39:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE9AA3A36E0
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 11:30:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C45103A327C
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 11:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495A414AD38;
-	Sun,  5 Jan 2025 11:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848AD149C4D;
+	Sun,  5 Jan 2025 11:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="giHzQki8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UKI8KNDy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9596C148FF6;
-	Sun,  5 Jan 2025 11:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA92313C67E;
+	Sun,  5 Jan 2025 11:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736076618; cv=none; b=YV6aF8jq/ZVJ+QMjajh0bOYzdThT0i5NygdQhWUDHexC6wJjo9rmm10iEoAq69sVNvxO7E8hWf4zoqEZkO12AnuIUZevDmYnl356xqv9S3JGi5TS5Fzc5Ij1XG6OMbX+cJ0flh5OWJyMbnjjdLJldg3ybil6m2YtiHtBVis3tFc=
+	t=1736077150; cv=none; b=PjxoqjtZOU/RCnk8+4rY9COhBzc85gRUCGDTduhLnAXDDwKp6pcROWRSjnKfuzsTs9NrQYko2Q3c7JfSWbafXa2ywc+n8OcD6vRXfozoLSVbSnm4Y1RKMrlFZevQvLM4dEV/wETuPCn0vArJ8YmmLgozAh6fkHUKuDT6CxKmBW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736076618; c=relaxed/simple;
-	bh=yLbbSxJ8rOCZV34Ppdmdr/BcVBls3TYQ0BnZjPUlHaQ=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:
-	 In-Reply-To:References:Date; b=ozbw4tcOJHGIHnga3TB2byYMPlY4uLp+oy6tsGRzCSNYNGO8F5pPsbrUtl47p/bc9oS8hI2ndOeCKFdtQTlVerRs6D2CiFbFrCZ5pXrhpjyP/VaYtMbMc/KeB0R6+/kjb6hdx5lHe5R/CEwOczhz4qAXnAdspz5PjEEep39yxcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=giHzQki8; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1736076580; x=1736681380; i=frank-w@public-files.de;
-	bh=yLbbSxJ8rOCZV34Ppdmdr/BcVBls3TYQ0BnZjPUlHaQ=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:In-Reply-To:References:Date:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=giHzQki8mwpHL1X1Upv9XAD2p7y7qccymTqilRNIKRYCF2r7HH/RgxDfKQH0GtvP
-	 Z5Cl1CIPWQoRf5+ahJGDl+GgsBg4BlcTQvnaeiQPkbnF10CTF5clv13vCJpsW46WF
-	 +gRxRKAn+eNRuJTDt6R7axU1NQVqBXJL8j3J6ql7BcBDJJ96cAALj4RCoef2HdCGj
-	 BwL3kcwfhItF2Fa8y5NU8bdI6NDLH+guPDGuqvomGCC0s1CjKamtWQY7KhYKbVgNr
-	 IRWwtzhHKUEHTk80WLjsMCpOJw7wZEjeuLib9zOqQZi5/cOG1C9Cvt776I4r0+Ke/
-	 mrE1r81U/K9b+GJKNg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [80.245.79.38] ([80.245.79.38]) by
- trinity-msg-rest-gmx-gmx-live-548599f845-nqxpf (via HTTP); Sun, 5 Jan 2025
- 11:29:40 +0000
+	s=arc-20240116; t=1736077150; c=relaxed/simple;
+	bh=GbVq4iz1zT4RrXLpGqzBbjuTP7qF+LgILOueB4D24Qo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uLTlkPa4ja74y9qCoM/4Vxy7oFH2hX7nGdHVvMTTuBo2dkeJVWl1a7pR6kqSrYT+Yro5DqbCb1r2aoMwipRE5WQPb6B/jYD8W1Ol7pKWI8jZJ42g45Y0r1jncHtfEQ5kogAL3O6ZuRfP2MUCD8tUiBywaMX2Q6MdE0tJvSgInn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UKI8KNDy; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5d3d479b1e6so19257177a12.2;
+        Sun, 05 Jan 2025 03:39:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736077147; x=1736681947; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qxu//ISNcCtNY3FBtAgva/sWf04S+B9CxZogSVZoMPI=;
+        b=UKI8KNDyJcrYgQf//uFtpXsG5UJ708soRiTHY5ulN+13VwkhxmIVFba+vsNOY4eSNH
+         F9ZlfBBJcG1qvE8BabbkkO2drEr2pZ6MxFbMYRXF8Pgv9c+PBP7IslrB9/dBRGVBXl+k
+         K+JrXACAeQIKe4TWhGYtBRYzje9hhPvAKNYLtqHiBPuKmspZcVp8yAiIptCambS7mUk/
+         g9X8LEe6cgb/TAtvrDW53AzMG5bkorayWuwKEq/jgkVnVL9HgS3WksumpFyVCsXXnmOE
+         WSgtTQRxeeQUPhV+wmUTCEP+r+asYDfD7MKrnsDwkF/aW27qz8ju0FjksHEd9uqIQK7o
+         HNZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736077147; x=1736681947;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qxu//ISNcCtNY3FBtAgva/sWf04S+B9CxZogSVZoMPI=;
+        b=c6FlYjADa/x+yZshAPo0ME/VniUT2STx78EJjA51Ma8WgvjBnSFZ19kcjlfCGi/0Y3
+         vbvEyyaki1x28z876a3ZEhtEnmzQc/Qdv83fIKeI7liuErNhVuLLbpSNJLZmZvkNxVz8
+         af0Ci5djwsLXLdnttM3NnYWHD/BSD3thSCaFZyJHqykIDcILyHpjWT4o33rsJZ9DKnqm
+         7m0R5LWBCGA0cDC2UKRMTPx+eT1NDkNyh6N+LvfT1S1cK3ZjNpdfpzDqz2jPe1LU9hQi
+         UXpRlJXQvLI9936Z//siTcKB/vDeSb0NPjoZ2i8c/ChiJRZR4i8mT9TB4jafkKTZE9vT
+         Za3w==
+X-Forwarded-Encrypted: i=1; AJvYcCWRnnRCECriFmbQ40sUn5f+pS/qx68DvWVcHs+1oF4g6JqQsJMWFtFaxy2RFKz4F5+lBIHdRkIQywAO98S1x3p6k1M=@vger.kernel.org, AJvYcCX3SAQjrKn6vWsDzvPoY+KyJOdeRqfTHEMr5YKK/VgWSK2E+097Bj/bHHPFjTVXI6JOVm7EXKRXEsOGw1I=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQV3uv7Q4780uOu5t54zjXGD8BwJR+KeasfOsHeDMSdHq0MiMl
+	fX5e+dX1E3Dbp/sKfxok76oN1bvwqVK4rbdsSWaCbEiZmEIDZO3j
+X-Gm-Gg: ASbGncs04mAIuXO9OmsnVrSmgifpaRX0wskVakqlZZd7wxwseUq3E6D9udaBlK8/FEh
+	IIdNuu+PeZ6cUW1KQuto541jAAgPxKNVNds8Ry1EbjWmw3gCsjcmlgadqfz5Dmv/Xs7UGsQxirv
+	eqkgcdac5nk8P6GXWeuMOI44ofYxSRnCJfyFJLLCh8LHQm2N1/ux1+VZW0b87GBcdvHl3EtZU0O
+	BnEBIDn1CekHOPSkxvAyP4AgbO5lmpYIoFZbix7mjchmMnKPL0wLTq33FHZ61uPXnfg
+X-Google-Smtp-Source: AGHT+IF0csgd6RKoTCBp6b3WBaRUbNGsIKif1YMuHokZ78M4uOjQYYixcVOoJBLzM102/1S2/+WOYQ==
+X-Received: by 2002:a05:6402:5189:b0:5d0:81f5:a398 with SMTP id 4fb4d7f45d1cf-5d81dd846ecmr123155836a12.1.1736077146868;
+        Sun, 05 Jan 2025 03:39:06 -0800 (PST)
+Received: from [192.168.0.3] ([151.251.251.3])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80679f1aasm21754982a12.50.2025.01.05.03.39.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Jan 2025 03:39:06 -0800 (PST)
+Message-ID: <bb1e89a5-a83e-4e68-9568-073f9c4a8af9@gmail.com>
+Date: Sun, 5 Jan 2025 13:39:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-80459cab-e571-4699-b3f0-d73a00fe0858-1736076576826@trinity-msg-rest-gmx-gmx-live-548599f845-nqxpf>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: linux@armlinux.org.uk
-Cc: angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, chunfeng.yun@mediatek.com, vkoul@kernel.org,
- kishon@kernel.org, nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
- Mark-MC.Lee@mediatek.com, lorenzo@kernel.org, andrew@lunn.ch,
- hkallweit1@gmail.com, lynxis@fe80.eu, dqfext@gmail.com,
- SkyLake.Huang@mediatek.com, p.zabel@pengutronix.de, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org, daniel@makrotopia.org
-Subject: Aw: Re: Aw: Re: [RFC PATCH net-next v3 3/8] net: pcs:
- pcs-mtk-lynxi: add platform driver for MT7988
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: exynos990: Rename and sort PMU nodes
+Content-Language: en-US
+To: Igor Belwon <igor.belwon@mentallysanemainliners.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250105-pmu-sorting-v1-1-b55519eaff2e@mentallysanemainliners.org>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250105-pmu-sorting-v1-1-b55519eaff2e@mentallysanemainliners.org>
 Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <Zv_9HuaHqtgIA4Et@shell.armlinux.org.uk>
-Importance: normal
-References: <cover.1702352117.git.daniel@makrotopia.org>
- <8aa905080bdb6760875d62cb3b2b41258837f80e.1702352117.git.daniel@makrotopia.org>
- <ZXnV/Pk1PYxAm/jS@shell.armlinux.org.uk> <ZcLc7vJ4fPmRyuxn@makrotopia.org>
- <ZiaPHWXU-82QMrMt@makrotopia.org>
- <89bd21ac-78f3-4ee4-9899-83f03169e647@public-files.de>
- <trinity-af6fdd0b-b72c-42a9-bbae-af45c02f539f-1728051457848@3c-app-gmx-bs32>
- <Zv_9HuaHqtgIA4Et@shell.armlinux.org.uk>
-Date: Sun, 5 Jan 2025 11:29:40 +0000
-Sensitivity: Normal
-X-Priority: 3
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:cPQBleyjsF3yVX6DIROFzgJoSZ9+njddCvA1Zg7Q0R7NQ3dqksbmDt8KviNuosx6RZ3R7
- ZmKOd3Nxj7ouB2aML4I7GDumerwX9UpoEH2jmlzOqRGe6hH7yHOlD6OHk8Q/+wvf7PqpwaBjkm0/
- OTvI4KebYTP3IfIxkFVmiFzwAJ724X8J5wmwp7wVttDfaSCIw+Vuhe0R2CxsJQlmmBI+LfzU4VUF
- GTp2GZLQnn3BRGh+pJbUurUUP92izBY7teDFQ5DvC/Ux8hYb2dqx18+y2FAhkWy90nIJb/pjRfgN
- ntMvlyZUag83U3fB2L+QStyIoMPNMzrNgKN3Kd3FB4zuHwHAx2gBK1Zn0WwVtXb7mE=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:i8+cRb5wjRU=;tWzo9G7VqNUGJNBYvFdykWxunF4
- qcUYRTAgNtkuNzjEZbxWZYdTk2FXK+/bm8WeM+rQ4PvNgb2xROin0VDwLRqA3IcdsdQ6WHqk5
- quD0Bzg1/xxsmCzgQ4V5usPTXEudYQhbZbjofMbHikFi2u5Dn2eunjeeP7OPGX5drWKFHRhQ/
- V0I5egqb/CFj1a3N2iPBcycKJ2S2y8+CRY32m+IAQODjhyJAaEO8eu+3OWoXBllehnQUmYN2A
- WBb+LHQ4OJrAwOxbbXvBy1o8KKo1V9auiPHii+38kOQnZRaNIdOoVaG9ts3aZmR9CRhVQ2FTr
- sHCGuXBtlgter6DQIMYC3mJTCSGuYQQLbbwaobvivJPnV6bk27Sxm7Kwt1IwJjIFIxXTI/CkI
- Z1SGjkIzfN3uYXT9mOgyw6sqJZCECObxtBmnYSxzw6eCqqildFPm0i/PVVjRZQH6nw/ckKBOr
- 7w/f4GujwrLbAmLmTP8TFjk+bjLbeH1bCeIdqfwxDfRLsiZBQsyqeC/NlqtdEa7RqRhYBqU9y
- DwEPyFI0y62+Ljqc1nJJtgG8sjBGbKWaRRmu9Gfku0ZRKKGFGbb9SDbM6SqqbvGjjsrbI6xaD
- DoJePLR5fiLfEvncocIrtEnCqi2U08eikELOBwpAbHrtRn+mmPlL5vK9e63hhX/TVhfjU/kXa
- ZgQrAQta2XzbdY62Uj5EowS8zRVwTLnj2cetG5VbHrCjfhSC8J5Jj1Slq/BFqa/vhjPhhgpZP
- ll/EPQm6/XNinwPcLaer24ocz5rC/A8X82hQGmqniM0q63BF0+m2Thws2vLOIb8SvR3R2ID3K
- RMUQevL0/fJOjuKBno0bmq8d4vqygfL7EzRErAZZDI3dDLydUO5ihSX0urwfxH3zYQcrsybTG
- AJheBTIfNPDoMCBhPkB+GWMa4/G05mQgCws8=
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-Hi Russel,
+On 1/5/25 13:16, Igor Belwon wrote:
+> These nodes were sorted by name, but it's nice to have the same class of
+> devices together. As such, drop the pmu suffix and add "pmu" as a prefix.
+> This keeps consistency between other Exynos SoCs too.
 
-> Gesendet: Freitag, 4. Oktober 2024 um 16:35
-> Von: "Russell King (Oracle)" <linux@armlinux.org.uk>
-> Betreff: Re: Aw: Re: [RFC PATCH net-next v3 3/8] net: pcs: pcs-mtk-lynxi=
-: add platform driver for MT7988
+Well, most SoC device trees still have it as a suffix. Perhaps it'd be better to
+apply this change for all exynos device trees instead of waiting for other
+people to apply it separately?
+
+Best regards,
+Ivaylo
+
 >
-> Hi Frank,
+> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+> ---
+>  arch/arm64/boot/dts/exynos/exynos990.dtsi | 62 +++++++++++++++----------------
+>  1 file changed, 31 insertions(+), 31 deletions(-)
 >
-> Sorry, but I've not been able to look at this, and I've completely lost
-> all context now. I was diverted onto a high priority work issue for a
-> while (was it from April to end of June) so didn't have much time
-> available for mainline work. I then had a much needed holiday (three
-> weeks) in July. I then had a clear week where I did look at mainline.
-> Since then, I've had two cataract operations that have made being on the
-> computer somewhat difficult, and it is only recently that I'm
-> effectively "back" after what is approximately six months of not having
-> a lot of bandwidth. I've seen the cataract consultant this morning, and
-> just found out that my optometrist appointment for Tuesday is too soon
-> after the cataract operation, and needs to be moved two weeks. The
-> optometrist doesn't have availability then, so it's going to be another
-> four weeks. FFS... I wish I'd known, then I could've made an
-> arrangement with the optometrist months ago for the correct date.
-
-How are you? I hope you're feeling better now....
-I see you were more active on the Mailinglist in last time :)
-
-> Now, XPCS has introduced a hack in a similar way to what you're trying
-> to do, but I wasn't able to review it, so it went in. We're heading
-> towards the situation where every PCS driver is going to have its own
-> way to look up a PCS registered as a device. This is not going to scale.
+> diff --git a/arch/arm64/boot/dts/exynos/exynos990.dtsi b/arch/arm64/boot/dts/exynos/exynos990.dtsi
+> index 9d017dbed9523e874891f13258d331c3e829ca03..fc2c5049d764c3f50be7337bc777bb9561f88790 100644
+> --- a/arch/arm64/boot/dts/exynos/exynos990.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynos990.dtsi
+> @@ -25,37 +25,6 @@ aliases {
+>  		pinctrl6 = &pinctrl_vts;
+>  	};
+>  
+> -	arm-a55-pmu {
+> -		compatible = "arm,cortex-a55-pmu";
+> -		interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
+> -
+> -		interrupt-affinity = <&cpu0>,
+> -				     <&cpu1>,
+> -				     <&cpu2>,
+> -				     <&cpu3>;
+> -	};
+> -
+> -	arm-a76-pmu {
+> -		compatible = "arm,cortex-a76-pmu";
+> -		interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
+> -
+> -		interrupt-affinity = <&cpu4>,
+> -				     <&cpu5>;
+> -	};
+> -
+> -	mongoose-m5-pmu {
+> -		compatible = "samsung,mongoose-pmu";
+> -		interrupts = <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>,
+> -			     <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>;
+> -
+> -		interrupt-affinity = <&cpu6>,
+> -				     <&cpu7>;
+> -	};
+> -
+>  	cpus {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> @@ -163,6 +132,37 @@ oscclk: clock-osc {
+>  		clock-output-names = "oscclk";
+>  	};
+>  
+> +	pmu-a55 {
+> +		compatible = "arm,cortex-a55-pmu";
+> +		interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		interrupt-affinity = <&cpu0>,
+> +				     <&cpu1>,
+> +				     <&cpu2>,
+> +				     <&cpu3>;
+> +	};
+> +
+> +	pmu-a76 {
+> +		compatible = "arm,cortex-a76-pmu";
+> +		interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		interrupt-affinity = <&cpu4>,
+> +				     <&cpu5>;
+> +	};
+> +
+> +	pmu-mongoose-m5 {
+> +		compatible = "samsung,mongoose-pmu";
+> +		interrupts = <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		interrupt-affinity = <&cpu6>,
+> +				     <&cpu7>;
+> +	};
+> +
+>  	psci {
+>  		compatible = "arm,psci-0.2";
+>  		method = "hvc";
 >
-> We need something better than this - and at the moment that's all I can
-> say because I haven't given it any more thought beyond that so far.
+> ---
+> base-commit: 7c19e0e190aebd1c879a3913f1a8855a88d73a2a
+> change-id: 20250105-pmu-sorting-ec6954b6b659
+>
+> Best regards,
 
-Have you found some time (and were you able) to look a bit into this ([1])=
-?
-
-How would be the right way here? Daniel posted generic infrastructure for =
-standalone
-pcs drivers [2] similar to phy to have a generic base which all drivers ca=
-n use and
-which can be extended if needed.
-
-There was some discussion about how pcs should handle if the underlaying d=
-evice is removed...
-unlikely on SoC, but possible on external bus devices like mdio or pcie. I=
-mho this could be
-a callback in common code handled by vendor driver (query information from=
- mac driver or for
-SoC simply return fixed value).
-
-How should the subsystems talk with each other (callbacks, shared memory, =
-...)?
-
-DT maintainers want to avoid syscon compatibles which are widely used for =
-nodes representing only
-a register range that is used from different subsystems. As we are current=
-ly upstreaming mt7988
-(e.g. ethernet), there are some of these "devices" which currently have no=
- own driver and only
-handled by syscon driver to get the regmap. Should we really write differe=
-nt drivers with additional
-compatibles (duplicate code!) only to handle exchange of the regmap betwee=
-n subsystems? For mt7988
-which can have up to 7 syscon devices it is maybe better to have substruct=
-ures like phy, pcs and so on
-packed into an own driver to have a better overview in devicetree. But for=
- some functional blocks
-imho it makes not much sense (when really only a regmap has to be exchange=
-d between different devices).
-
-Daniel needs an answer to his questions in [1] (and [2]) on how to proceed=
-. So please help to get the
-pcs-part into the right shape.
-
-regards Frank
-
-[1] https://patchwork.kernel.org/project/netdevbpf/patch/8aa905080bdb67608=
-75d62cb3b2b41258837f80e.1702352117.git.daniel@makrotopia.org/
-[2] https://patchwork.kernel.org/project/netdevbpf/patch/ba4e359584a6b3bc4=
-b3470822c42186d5b0856f9.1721910728.git.daniel@makrotopia.org/
 
