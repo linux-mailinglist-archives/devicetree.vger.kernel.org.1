@@ -1,159 +1,144 @@
-Return-Path: <devicetree+bounces-135676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 410E6A01AD2
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:22:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 338EAA01AF1
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:27:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18EF2161D7A
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:22:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAB5F3A2E2B
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F91A155359;
-	Sun,  5 Jan 2025 17:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C79D19066D;
+	Sun,  5 Jan 2025 17:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DrPtQ2+1"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eE5F6SzL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC9F8F6C;
-	Sun,  5 Jan 2025 17:22:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB5518A6AE
+	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 17:27:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736097730; cv=none; b=myLbvva3nv0woSJYYQFKPZ6auB7sVmwkG+JpRDvcN3pctQQ+vbViCKtEhaAxM/piwXBjCIpQJECW8Gw45HukpK5+4fqWqGgM0kmGdUdhaFDkzhjwjvbQLZuWQeK0zCysGFXbdOFp7BbsXTlhlY/UXBm7l/z24oRw6j8ym1qRqlQ=
+	t=1736098068; cv=none; b=CEGnA4pgGJRYFEk8lOzHykM9kUKcJheOiHtMiQFn8+3VU6nQAu9qnWKcFsvv6j7l4ciaABCrOc70VDcUvuMTmQn87jJzUa8SsKJSkhECu2b6xnOu43IoFhyhNLfNfBL1828kgdA07/m3v+9m6glUH/OMbLypQ9sZW/GfTy4RfyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736097730; c=relaxed/simple;
-	bh=Isar8jIYus/lnAoOMqXxmVLuC8ln7ovpczQEfXrYjCU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=THsGU0EqVRpfliOi2XUyS/pJ4L61brwDKM8U6tM9yrU5A6UgWlGyy+tsm7g740D/z7DA6qAuDIVrf5hAcnK6EPa6/lJ27hqQcNUg/QzM/JZb9IxNiW2W97yzq2I4YmJGpTOeQH13XXif1BhdMPDH1rJusYQH9P6ci9fklueSzkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DrPtQ2+1; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-216728b1836so174209855ad.0;
-        Sun, 05 Jan 2025 09:22:08 -0800 (PST)
+	s=arc-20240116; t=1736098068; c=relaxed/simple;
+	bh=5k8ycTRaWzR61UJvHO40HQsKr26i4RCmw6iVaBJ1p5w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ESUmFf0jczUQXH4OylPcz+4UtrnScDmSP3FNz6KpNF6vycK0/L5cXe5sNW9yrjevse73wpLZuH2Lf44BNlYtAV3GY33KFU5zCVyeJheBJ/t9msrOpPqGqsWhb6yGNQHz7qr7k3Z/YjltbmxXRlHn1d+1gPUJZPd/zr/M0P3VmjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=eE5F6SzL; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-436281c8a38so97703915e9.3
+        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 09:27:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736097728; x=1736702528; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=fkBaVhbl8Tp2G7vJC2FaLbfO6Tr53TGsw0ECXvvmc8E=;
-        b=DrPtQ2+1Sj70zvHuAc6cy4lmt2B4m0MDyp4YwdGQdmuLDHOM71UgSJ0JDofjcek7cu
-         z5DRVeU07vWq8fT2X6xpFi5imj03J0lFVKrxGn/C3l7ThRTrdHIB1xT3OTj2QDo5p0t+
-         Q0U8ug37m4Hs84fhbyYoJ5GQ/ntMe3s8PG2qYOtWJGeYmyGj90ucRzkE79T82MosyAp9
-         jK3Nn55d8UnXdjERGmGBPei+2ciKWrHwKYsn+vUpQhWrky6J/9zAm0OhbDPZZyAJSJnV
-         B8t53+wxfl7euGrC26XYrA8ly2lFBA+t7MoMMOjF0hHJb4aERuTvp5vVaBxjhQH88sFB
-         zsQQ==
+        d=chromium.org; s=google; t=1736098065; x=1736702865; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=28ukOJT+BC5Hb4IDeNu8OIpCDoYlDgcQuEEIPI9KYoI=;
+        b=eE5F6SzLtgqVLlw/nAbXNFq8VTFCOGjBCmUxLClO3TJx0ZvDx7dudSzP5DxuXt2H9z
+         +h5uApJRLOqS/02IFR14OdKcPsiC+AuERflBeAyZooSY1z+l4Wgq3VtVHlJBW/T6wjkO
+         6Tpqy/2awSA66jhcPnrBn9V76azKfSHmBsWxY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736097728; x=1736702528;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fkBaVhbl8Tp2G7vJC2FaLbfO6Tr53TGsw0ECXvvmc8E=;
-        b=WFw9xxj6CARAUxeiBvvg4V37tpgfTe29EByqgl1AwE9gG3MAx32dkBe+WDgbuJh9pj
-         QVawNcBdBVpt4jawOhjNAFLRez+X4fg46IbZ9OGsHgUtOVaYbTLZ0do5S0BD0oivOP5Z
-         N7BBuou1EaTo+dy0mbfATxadpy0C1Rnboe939JYuQgzfi98BFjkR+EnHmAU7qdEbXJgf
-         TybUUSmazAdQIPRIW8k00IZUrCBkQRnFODXXlxgGgWuFQ36YvUA4qxSzlL1W+avvoB6F
-         +1j/WZqSTDjl3ik8V9LnUBN3AXhasVqKfgmwTtNuL9ZRBf4Gr79Rmt8LIoFWkRRPUUw8
-         9tKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUTT0Dt3VPX1cgYM2y/nH6hpe31rivqLQCwwro12bzQqCISoe2Sn+kD+OCMBA0E2I6IpW+OI9cSS1bzgQ==@vger.kernel.org, AJvYcCWKcPNUXgA1V5CI3sIMXpjXPzUveH9dB6afp56W7/2E9NCU+cNpQfp8PABBBNDBQb9ndbLtsSa/+/QhwTdl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzcgc8DiFbNAcyr1i8SDCnLCjjCSj7K8G1DPCQiCA/zYEQdHOyf
-	SxHlqmC/gwoJPzncUg5fL6S3R/EEc9VJlXd4x0uRv5YLubtrfq+1uBQ5hw==
-X-Gm-Gg: ASbGncudy7X0p6Id6hDElcIZP/X5RvhrI6OuGO2ffv+VxpB7DeBRIBN6FVrBfYC6dfU
-	mc9kAIeykZJbna8LKmb+B/lvwwPKYDg2w0mG2YskBRFN7bm9Nxy//5cjzhE6QAUd5GyOPiLHrOq
-	nWQm8OkDKGdz6dbp8Z2GPSgi1ZH2/ZC1qrjgI+XgxqgS83c3cuFeM41OjiEJZ1OHlDEbp0MAVtq
-	RBEEyLt8KjAyvkBoibt86z/LAuDP3YlMhEtkSjQnniQr8omLUoN4k12MFwC8fHggpXz7AiNSJom
-	ClWTWuo16kybGT98hkFx5+RSIAAHpw==
-X-Google-Smtp-Source: AGHT+IEfS/lBIF2r0xQ0kLcu4DbHsDjFzVNDLH7uO7w/IILn+n7YqlrJStFusZQRdINRr3DN3LrKPg==
-X-Received: by 2002:a05:6a21:3989:b0:1dc:e8d:c8f0 with SMTP id adf61e73a8af0-1e5e07f884cmr83387054637.29.1736097728022;
-        Sun, 05 Jan 2025 09:22:08 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-842e36caf84sm27368157a12.74.2025.01.05.09.22.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jan 2025 09:22:07 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <59991eb8-4052-47e3-b379-a49264093a9e@roeck-us.net>
-Date: Sun, 5 Jan 2025 09:22:05 -0800
+        d=1e100.net; s=20230601; t=1736098065; x=1736702865;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=28ukOJT+BC5Hb4IDeNu8OIpCDoYlDgcQuEEIPI9KYoI=;
+        b=XQF6taHkdeZhvOcozUxNgdrni5tavsZPYNOua2KMv/aJPouRS1GC7B2gKQPO9TPma4
+         pM4LRSx47pvf0Sng8xwYY3Nde2vWPwWvgglubmAW2KVJdExkvepsHjVkoZq3mS8fNXTk
+         rekOWxEvWNcCi86eXVFcxEcdKdV0BsUsL3zK0PXDnE4h69CD37S34qOf4qa9TDVhaTBC
+         7Urs6usG04sYAb8KxZHprr2k/qaCvF3sXq9zIWlsXE7xZgx5KnT4KVV5fT8Gvb9L8uz1
+         nZPwqZoPfqj3+NFLM2gXDXgh3neDzPM7jP7x6IiimWEzM2h2BaTka81ca+aUiPMF0vTF
+         7wFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUCQAZrm4kRwGm41TzKOjGhk850U41japIZZ4UwhX7n6qOYlypPdIwbTVQrvYq/Hdt1OWN/oSTJOkq/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yys0eBbO4K0gfJnCSQNoZ0sDUm44B8IPjLxHFAI7di0+M59AOQZ
+	a62ZhAIdG9TC2+UvACmVgZFBpMuF+7OQSnHEbPs26OcjXfMxmKWC+wygd6btww==
+X-Gm-Gg: ASbGncswKeap2iPWnKeppH5ahOUIi33c9BiEuKtW0+7FywbisdRmlJ0whfL2AYXjmT6
+	vqOKR4ljIEwT+8LTv6aL/ziYz5iD5Vp37qZMU4gsdDG6ktvX95Xl9Zgj6NtSc/YwWW42PE2Q/Fl
+	sXojeR8ZK1YB3I8A78wWXaApCGTWlhyHGptsiPmUdOYlNrTT3lDvRIs0nzdC4Dch1eKwleauSek
+	X+VcuIW2zyg5Vlk97CtPJYRXXwZ8M0Y2PRtjGpADAdSU8pmDTCcHA8YpdfCWj2Co/xHd0KCkk9I
+	MObWtgdhbl3qMMs5sOuM/bhI1Z08vBJYLapt
+X-Google-Smtp-Source: AGHT+IE2Snny2BbJ0hWBP6FRV67+Foy2zoPv+MLjpp2sSg7XDv8+3JPlrLROcWxkyrM0+1ac5Rs/hw==
+X-Received: by 2002:a05:600c:470b:b0:434:f609:1afa with SMTP id 5b1f17b1804b1-43668547314mr464650825e9.4.1736098064939;
+        Sun, 05 Jan 2025 09:27:44 -0800 (PST)
+Received: from dmaluka.c.googlers.com.com (19.50.76.34.bc.googleusercontent.com. [34.76.50.19])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b3b207sm575631395e9.32.2025.01.05.09.27.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jan 2025 09:27:44 -0800 (PST)
+From: Dmytro Maluka <dmaluka@chromium.org>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>
+Cc: Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	x86@kernel.org (maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT)),
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Usama Arif <usamaarif642@gmail.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	linux-kernel@vger.kernel.org (open list:X86 ARCHITECTURE (32-BIT AND 64-BIT)),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE),
+	=?UTF-8?q?Pierre-Cl=C3=A9ment=20Tosi?= <ptosi@google.com>,
+	Shikha Panwar <shikhapanwar@google.com>,
+	Will Deacon <will@kernel.org>,
+	Keir Fraser <keirf@google.com>,
+	Michal Mazurek <mazurekm@google.com>,
+	=?UTF-8?q?Bart=C5=82omiej=20Grzesik?= <bgrzesik@google.com>,
+	Tomasz Nowicki <tnowicki@google.com>,
+	Grzegorz Jaszczyk <jaszczyk@google.com>,
+	Dmytro Maluka <dmaluka@chromium.org>
+Subject: [PATCH v2 0/2] of, x86: Restore possibility to use both ACPI and FDT from bootloader
+Date: Sun,  5 Jan 2025 17:27:39 +0000
+Message-ID: <20250105172741.3476758-1-dmaluka@chromium.org>
+X-Mailer: git-send-email 2.47.1.613.gc27f4b7a9f-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
- property
-To: Rob Herring <robh@kernel.org>, Peter Korsgaard <peter@korsgaard.com>
-Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
- Jean Delvare <jdelvare@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250103101448.890946-1-peter@korsgaard.com>
- <20250103195810.GA2624225-robh@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20250103195810.GA2624225-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 1/3/25 11:58, Rob Herring wrote:
+There are cases when the bootloader provides information to the kernel
+in both ACPI and DTB, not interchangeably. One such use case is virtual
+machines in Android. When running on x86, the Android Virtualization
+Framework (AVF) boots VMs with ACPI like it is usually done on x86 (i.e.
+the virtual LAPIC, IOAPIC, HPET, PCI MMCONFIG etc are described in ACPI)
+but also passes various AVF-specific boot parameters in DTB. This allows
+reusing the same implementations of various AVF components on both
+arm64 and x86. (Note that on arm64 AVF uses DT only, no ACPI.)
 
-> 
-> But RPM is ultimately what you care about and is the fan parameter
-> that's universal yet independent of the underlying control. RPM is what
-> determines noise and power consumption.
-> 
+Commit 7b937cc243e5 ("of: Create of_root if no dtb provided by firmware")
+removed the possibility to do that, since among other things
+it introduced forcing emptying the bootloader-provided DTB if ACPI is
+enabled (probably assuming that if ACPI is available, a DTB can only be
+useful for applying overlays to it afterwards, for testing purposes).
 
-I forgot to add: I would argue that airflow restrictions play a substantial
-role for both power consumption and noise, especially when trying to achieve
-a specific fan speed. For power consumption, I don't even see how rpm would
-play a substantial role in the first place since power consumption depends
-on pwm, not on the resulting rpm (or airflow).
+So restore this possibility. At the same time, since on x86 the
+aforementioned recently introduced restriction is actually useful for
+preventing conflicts between ACPI and DT for LAPIC/IOAPIC/HPET setup,
+don't remove this restriction completely but relax it: unflatten the
+bootloader supplied DTB but don't try to use it for SMP setup.
 
-Guenter
+Note that on arm64 currently ACPI and DT are not used together in any
+case (setup_arch() enforces that), and this series doesn't change that.
+
+v1 -> v2:
+Split the patch into two, to separate the x86 part from the common part.
+
+Dmytro Maluka (2):
+  x86/of: Don't use DTB for SMP setup if ACPI is enabled
+  of/fdt: Restore possibility to use both ACPI and FDT from bootloader
+
+ arch/x86/kernel/devicetree.c |  3 ++-
+ drivers/of/fdt.c             | 10 +---------
+ 2 files changed, 3 insertions(+), 10 deletions(-)
+
+-- 
+2.47.1.613.gc27f4b7a9f-goog
 
 
