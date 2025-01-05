@@ -1,246 +1,166 @@
-Return-Path: <devicetree+bounces-135616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77F3BA018ED
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:51:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D63EA018F1
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 11:01:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6420188408A
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 09:51:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E53A17A19FE
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 10:01:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460A813C9D9;
-	Sun,  5 Jan 2025 09:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0689146D57;
+	Sun,  5 Jan 2025 10:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a0MXst6W"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rp08BMih"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A7E1F5F6;
-	Sun,  5 Jan 2025 09:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25681465B3;
+	Sun,  5 Jan 2025 10:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736070673; cv=none; b=FWsi1tyJOwT42uFktwTPshC8GZ+OxFeGdqtn7q8b2RzKZVyn80twm8W+mwciKEYs+dJ7aanZZ0YqGfQKIi6uWOSGyJi+vXc5Dxe/PY7Hs8JxJ1X06CU46tYklwMT/JGewvQ/N5FzCQIK6vO3cYh9xxJ74OtDMBHMQWa5lg8EF38=
+	t=1736071297; cv=none; b=u66aGXvU7aDNYXXhU9CGZdMAez5SYyhwZqAw1qgRxx9Nce5Bu/kCao3WJtpcJIgvJRRjevKpjupGAYxqkkCVddxU6HVhdpQdquRc+ccp5hmsGA58djeSWdNW5tI4osS7ZoCLKPyl4usQ0fh2DcjdwGlKPGSDq/Pe+1WtYJwbuu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736070673; c=relaxed/simple;
-	bh=tJVoPdgO+OYtib/SMle36MPOiDCVLeBFOviDnWNfk9E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pXU0pM2pAKAdUi9DAbYypDTiJ51qkz64Lu0yLhclJdmeTrOr+pXUNyt5kEhjAsKoC0UG4hu3DHHkpBMODCKFMaIjGa3c7K0y4EQ0vp+HU9W3LI2qh2qfr1QQe68CI1wRhdOgJlojSjNWqapdGKaFDqjUAUmAj3Zb/P3LVPEoO4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a0MXst6W; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1736071297; c=relaxed/simple;
+	bh=Ve6DAyAdX75MBAsvdAMcYRB0imSwGJB9zDUZrNYiJ9Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZFcxHZtXn9IlOe05zQObejgA78L5ZxEjtYMeBqJat7SPIPibu8lW0IMobqUxyl4vvjMZnukT7iOLaB3SEkA1k4hbejPncXIfu49dDkK2c+vhXOPbYF0hqSqDVVJiR5furSZyGc5gvi1BCjPwbebwosEEyc3fJJZ63l9+D2hKGsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rp08BMih; arc=none smtp.client-ip=209.85.208.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4361815b96cso88996235e9.1;
-        Sun, 05 Jan 2025 01:51:11 -0800 (PST)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-3022484d4e4so165906641fa.1;
+        Sun, 05 Jan 2025 02:01:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736070670; x=1736675470; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yqHrB3RWMU7bV3iPucH88p5mwqp5ashiPx6Mz9MBKQI=;
-        b=a0MXst6WOjgWXbi1FOE/CVc2SScTAWziNrdw/J3PEEWAIJxA2cVYqQ86bRBqlIgSFp
-         owIPL7xnQUo2KnfvLXz/fyqg3kV+WvmOsFi7d8lrLYUQLZbweL/TwEPPw3++jFvyjCGi
-         o13lUSnTKg7YLe42XwJtg7dQA32MYRFa6tto5mHTXiStg/gpqrM2SIgKuguY484aHsjo
-         K37rzqJ82OYYg2f44/E9r8XrGW8pj1gRZt1NFT+xIuIZpXZ3W45uvw/9We5o2bwO8kAI
-         lkTMO+SvC8/vnOvVAw3+xx8JN96V7qNOgMpXo6x5uux/TuZfj2qdn3K1D+yC+0HvI/v5
-         ozrA==
+        d=gmail.com; s=20230601; t=1736071294; x=1736676094; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ioXaEb8AhEb9ppd2CiarkcVgpik13EQZ3YX/6ej2zCA=;
+        b=Rp08BMihkVF9uQBVocXFC7LLf+3ZZyxNphk0tAqs/jLRD22EKRH5LSOFjeuNyWnfx7
+         pLRYVQSgthPt/2HlQnaK7ExuChnMrM/kAAcGzJ2Mu8lErP5e7EINodMpst8t5FXuE0Qs
+         2v2rcNprqe7AexdiZgjkWJe0F6qghuUAE0hcegBbDAdrFgKwBGax6uTzyPiMtAoCGG8w
+         apWqYDdy/swv4zXccRfRUUQAnOuu7VMhk7+JOoOF4s/USyd8nYKYURMkXnvlft/05dmE
+         dAAkfYo9TF5nJk3fZ10ZsO1poAikhwZIJSpACC8qBzW0aJIavze2MnZYo0N8hykeKVRz
+         NxQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736070670; x=1736675470;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yqHrB3RWMU7bV3iPucH88p5mwqp5ashiPx6Mz9MBKQI=;
-        b=Q0NJunGLxZrHIs4SwF2WQKPBEu53qzKN0IIDsEB1EFMUW9nk+SICElR/vzw/z3PyTm
-         lmQAA8rYTv1NMcAprH9pZV6HDBJ93U/WNdD2OkJFVYzZKDJRSuq4IMWI3t11vwnsAVTw
-         FdeC1GtI+nI/amFooc60X8+5//KxBT1Y/ZBbF51WpmZl+7ysGMxnfTw3y0RjL8sNnqES
-         7DxvQEjAmBBcFa+aytItnTEZo+hn0sy+D6i3ZULe9RCpWCNCXcIj54km6/ZYx5exPHRK
-         CRp6eojDmz4HD34avMDjOH91ZX22kUR8fuTLo5FEVulBtxnvV25fLTCv/meHvk5nlh79
-         WHyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPPqQH5vZWgPXbPR+VxSTXW3HJEZhtD98tQ7VNT2k7lm/w4x5yMVNnSMRTCYdrPyVIaLot8YBe3r+L@vger.kernel.org, AJvYcCWk1fHXA38cXZo9ljfVVl1ctH64sSLTYnRulI/Sd11Lkh5MtDRAgFLt/APe8waxhkVCDI7Y7bBdslydYfqe6wvM/U4=@vger.kernel.org, AJvYcCX9yQl6NzlpAFkoub3GeqUvCeOxprM8IkyF2N1evAex95J1ywqy9sE7wY72nQt51iu0ZR0zdtP2C9td8zUr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx66F/zghVvagA8tDOo2faYi9cwwLhxPYpHk9SbtPbAtg4AbFUO
-	BKw9dcegrgaZEDugmuxY2842JkqQjZv4py3mpAaVYHhsTOzAedzIGt/fHQ==
-X-Gm-Gg: ASbGnctlxGDCUiH6cgsT+904WWMi/9OcFvH90s3EST8cwzlgoZf/2hdkl7GeZ4Lj+vk
-	Nqvaba63agaeZ4qssCEPQGgFG8KvcaqAcka3ZFZziWk68C0294GT9jYaLjnATtbC88V2a/tJ12c
-	nz8aglvXg32KG+YoiOT778fbn8ituUTONTI9yeZnJSvUBHUF7FM7wcDAsYYlvxMK07QOXNlPKEj
-	zjBrlCEil9Swz2YYrebT9UPdgHkU4nLTubFNVSHBEL/KpzW/LhnUlqZBvc4ILbGLr4MsMGbTQ==
-X-Google-Smtp-Source: AGHT+IEEOPTfa4PfwVJhOwl8VnrMncxkZRkoL6bxSd5lLCXDE55/NQGvIzZQ0Xj/lbGgqwlw0qxl5w==
-X-Received: by 2002:a05:600c:470a:b0:434:e9ee:c1e with SMTP id 5b1f17b1804b1-43668b7a33dmr503151075e9.31.1736070669467;
-        Sun, 05 Jan 2025 01:51:09 -0800 (PST)
-Received: from [192.168.1.104] ([94.131.202.183])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656af6c42sm568801905e9.9.2025.01.05.01.51.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jan 2025 01:51:08 -0800 (PST)
-Message-ID: <e7444f6c-f280-404a-8172-ae4869e3d492@gmail.com>
-Date: Sun, 5 Jan 2025 11:51:08 +0200
+        d=1e100.net; s=20230601; t=1736071294; x=1736676094;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ioXaEb8AhEb9ppd2CiarkcVgpik13EQZ3YX/6ej2zCA=;
+        b=CmlRMFO/QiZTMIjyV0+GAyCjU6jTMbOyqs7qaayzFPAWXOtbukuDD57X2phBTb645P
+         +qw6hnV0kUA9jDV9bPmhpYsaaIDAtfsOg+52DGxGbtuAANsXwXKZD5Iu18sQDSMFRmRH
+         uL8Zxz5yJnTH6LXSI32SgvM7ZcsrGmxuyWmH/PKICzaUSQMZ5QfFGBmqp+ogZOIsGGaZ
+         bfDz+1/khvdYCZmDrhnxQ7rNynpjP4EBeCm755kd1eFqcbHGVl4ezCG8JYy/haakPeq5
+         Qdlvvh2ULIs1eOWVVpqV0gIgy/0K9sJhovK22PzF51yWR3ChslPQof/3C4yVaaDaW+6s
+         D7HQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVR7uFG2LKtAyZ1jxtw0U5/5GETbdRirPcy/PnYZME34rXNU5ndnm45dvuq0gg/8vSkNnB9SGHuqt32+6E=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvLCMyf/pHGezagmcQINpJj6A6uffwtRU8ABGb+1CAd9ElguZp
+	E55jxOExZUugEbK+tPcHYf6fJKyO1Cx6nAaMyljbyscrWVk3sMk=
+X-Gm-Gg: ASbGncsTxfBQt4BK50FLqzCsRek1ioYanG7f30KY+gAzLWzZ831iDJfSlCoroRKO7ZK
+	nJ1blwN8DaX5YqfFdGj1845IgU2Wsux2fwf/YCSbtiCPg8phhsXqreODH0JBAoVtZKiyeAhpYWm
+	gqbi3RgxUBHnm72wz8tK6jo7MmLPvJEBa/m1QYzwUJ3i888iAQN7Jhz9yHWTedbUwA7khgv/PYS
+	tm9/vqW3VrXCbwLlkn3lUc5rrzWOrgWHHXcctNlM0vHOghq9UZaieF5r5A=
+X-Google-Smtp-Source: AGHT+IGYOoAYruqEmrXXpBPQrWSQF4Z4pQ+Zw4ZngvJDeKbJyND9eGnpgNG9zhGuRrVEioq1mNzSPg==
+X-Received: by 2002:a05:6512:33cd:b0:540:358d:d9b7 with SMTP id 2adb3069b0e04-5422957ac6cmr15595789e87.52.1736071293641;
+        Sun, 05 Jan 2025 02:01:33 -0800 (PST)
+Received: from JetTurbine.homenetwork ([2a0e:e6c0:20d3:2100::1d])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223813806sm4580828e87.114.2025.01.05.02.01.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jan 2025 02:01:33 -0800 (PST)
+From: Ivan Sergeev <ivan8215145640@gmail.com>
+Subject: [PATCH v5 0/2] arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
+Date: Sun, 05 Jan 2025 13:01:27 +0300
+Message-Id: <20250105-bigtreetech-cb2-v5-0-923f911b10c0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: soc: samsung: usi: add USIv1 and
- samsung,exynos8895-usi
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250104162915.332005-1-ivo.ivanov.ivanov1@gmail.com>
- <20250104162915.332005-3-ivo.ivanov.ivanov1@gmail.com>
- <nk7rifc5mcsdlmgpncrpoumerajrpdekxpvqwwe2hz4b63rgci@flowtxwchm7y>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <nk7rifc5mcsdlmgpncrpoumerajrpdekxpvqwwe2hz4b63rgci@flowtxwchm7y>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHdYemcC/2WNywqDMBBFf0WybkpeatNV/6N0oZNRB+qDREKL+
+ O+NQqHF5blwzl1YQE8Y2DVbmMdIgcYhQX7KGHTV0CInl5gpoYxUyvCa2tkjzggdh1pxebHG1Np
+ YKwuWrMljQ6+9eH8k7ijMo3/vB1Fv67dVHlpRc8GthDwvKgdNg7e2r+h5hrFnWyuaH1+Lo2+Sr
+ wqnnBYoSvjz13X9AFnh0MTuAAAA
+X-Change-ID: 20241224-bigtreetech-cb2-18944b349916
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Ivan Sergeev <ivan8215145640@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2326;
+ i=ivan8215145640@gmail.com; h=from:subject:message-id;
+ bh=Ve6DAyAdX75MBAsvdAMcYRB0imSwGJB9zDUZrNYiJ9Y=;
+ b=owEBbQKS/ZANAwAIAbzfXRlQM5b9AcsmYgBnelh8s8U3cjvCpHPRrs2T/+ajFNPVuuPWhJFqo
+ l6XqLavdomJAjMEAAEIAB0WIQROCZtApKFz1fvvsOS8310ZUDOW/QUCZ3pYfAAKCRC8310ZUDOW
+ /QRbEADX9HM1YyxNIQB/J0YA+nNDhvdWyPZOY6j/rx4I0XtLRB6SoHVugL1pxAzauWVYNJjZb/T
+ gB4lu0d/7Ze44LTzww4hPFuF1Fl/wKdLXdVkJqooNzZvdbF3neGaLzK7neXSDozZiQV3nF1a0HQ
+ FQBvNp+Wrbelt+vJS3veBiJjJsw+QRrcitDwrUJY5UET82gZ14+Skbe3e/L/sCFKBIT7EgHnkjf
+ JUSq/Znv9+s/rp7rQTG0Yn3+MXd5BNfpGSg5+lFdfgU0GLRVfuv6kfBLrARmtzYjLWeBWpwzFF5
+ pupDOWhWrh6bYFKMGRoYHldXayd9mhtqQI2vHReKwrp5zb/bGmgGS4uHGmEhEjmTqb6at6IpitC
+ QM1fc3Hjjg22Q1cXmy+z67licL5d7CaVXB/iNqybMbqT8Umqt09Px1de45vYDJ5otNtKpwzHskL
+ 463PwUJV2V+8rKAs4LGtAbWL3bmkvbucHw9IuvmbQOP2htgNc6wkYSkqyq9mcL53Nls8iZuNNHM
+ lRN9tEYVoILP/SljACWRlRHdQnlh0qqOYL/WfE3OGBE/ZTNfLw9+bMzu2ozPNkB4/ym01M3WDV0
+ 7Sm9/c/xUGIldrKU/3NVUr4eb78wNKmfpvPiRDWqQhkFY/h2L4uQOslH6Cc+RULRzfxEmj4aBcA
+ DE+JDMkFDcpF/RQ==
+X-Developer-Key: i=ivan8215145640@gmail.com; a=openpgp;
+ fpr=4E099B40A4A173D5FBEFB0E4BCDF5D19503396FD
 
-On 1/5/25 11:18, Krzysztof Kozlowski wrote:
-> On Sat, Jan 04, 2025 at 06:29:14PM +0200, Ivaylo Ivanov wrote:
->>  
->>    reg:
->>      maxItems: 1
->> @@ -64,7 +75,6 @@ properties:
->>  
->>    samsung,mode:
->>      $ref: /schemas/types.yaml#/definitions/uint32
->> -    enum: [0, 1, 2, 3]
-> Widest constraints stay here, so minimum/maximum.
+BigTreeTech CB2 and Pi2 are Rockchip RK3566 SoM and SBC boards made by
+BigTreeTech for the intent of using as a 3d printer control board.
+It is a successor to the Allwinner H616-based BigTreeTech CB1 and Pi, so
+the device trees for CB2 and Pi2 are also done in the same manner: the
+common nodes and properties are put into a dtsi file that the
+board-specific device trees include.
 
-Why? If we are going to add new enum values specific for each USI version,
-isn't it better to selectively constrain them in the binding?
+Changes in v5:
+- Applied requested changes
+- Fixed usb `phy-supply` format
+- Removed improperly named pinctrl nodes that were unused.
+- Fixed names of other pinctrl nodes
+- Link to v4: https://lore.kernel.org/r/20241230-bigtreetech-cb2-v4-0-26d2d30e07ce@gmail.com
 
->
->>      description:
->>        Selects USI function (which serial protocol to use). Refer to
->>        <include/dt-bindings/soc/samsung,exynos-usi.h> for valid USI mode values.
->> @@ -101,18 +111,42 @@ required:
->>    - samsung,sysreg
->>    - samsung,mode
->>  
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - samsung,exynos850-usi
->> +    then:
->> +      properties:
->> +        reg:
->> +          maxItems: 1
->> +
->> +        samsung,mode:
->> +          enum: [0, 1, 2, 3]
->> +
->> +      required:
->> +        - reg
->> +
->> +    else:
->> +      properties:
->> +        reg: false
->> +        samsung,clkreq-on: false
->> +
->> +        samsung,mode:
->> +          enum: [4, 5, 6, 7, 8, 9, 10]
-> Is it really true? Previously for example GS101 had values 0-3, now you
-> claim has values 4-10, so an ABI change without explanation.
+Changes in v4:
+- Removed invalid `i2c,ignore-nak` properties
+- Set `#address-cells` and `size-cells` on `sdmmc1`
+- Fixed `phy-supply` properties of usb host nodes
+- Link to v3: https://lore.kernel.org/r/20241227-bigtreetech-cb2-v3-0-91c556adcffe@gmail.com
 
-How is it unexplained? Citing the commit message:
-"Add constants for choosing USIv1 configuration mode in device tree.
-Those are further used in the USI driver to figure out which value to
-write into SW_CONF register."
+Changes in v3:
+- Proper formatting and patch series sending (using b4)
+- Converted spaces to tab indentation in the dtsi file
+- Fixed empty line where the license identifier should be
+- Link to v2 1/2: https://lore.kernel.org/linux-rockchip/20241224135751.350379-2-ivan8215145640@gmail.com/
+- Link to v2 2/2: https://lore.kernel.org/linux-rockchip/20241224140057.350667-2-ivan8215145640@gmail.com/
 
-USIv1 and v2 write different values to the SW_CONF register. For example:
+Changes in v2:
+- Added bigtreetech cb2 and pi2 boards to the list of platforms
+- Split BigTreeTech CB2 and Pi2 into two device trees using common dtsi
+- Link to v1: https://lore.kernel.org/linux-rockchip/20241222203952.84217-2-ivan8215145640@gmail.com/
 
-#define USI_V1_SW_CONF_UART        0x8
-#define USI_V2_SW_CONF_UART    BIT(0)
+Signed-off-by: Ivan Sergeev <ivan8215145640@gmail.com>
+---
+Ivan Sergeev (2):
+      dt-bindings: arm: rockchip: Add BigTreeTech CB2 and Pi2
+      arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2
 
-..
- [USI_V2_UART] =    { .name = "uart", .val = USI_V2_SW_CONF_UART },
- [USI_V1_UART] =    { .name = "uart", .val = USI_V1_SW_CONF_UART },
-..
-
-Hence the decision to have separate constants for different USI versions,
-which in my opinion is cleaner than meshing the enums together and
-choosing what to use with IFs in the driver code.
-
->
->> +
->>  if:
-> Missing allOf:
->
->>    properties:
->>      compatible:
->>        contains:
->>          enum:
->>            - samsung,exynos850-usi
->> +          - samsung,exynos8895-usi
-> Effect is not readable and not correct. You have two if:then:else.
-> Usually it is easier to just have separate if: for each group of
-> variants and define/constrain complete for such group within its if:.
->
->>  
->>  then:
->>    properties:
->> -    reg:
->> -      maxItems: 1
->> -
->>      clocks:
->>        items:
->>          - description: Bus (APB) clock
->> @@ -122,16 +156,13 @@ then:
->>        maxItems: 2
->>  
->>    required:
->> -    - reg
->>      - clocks
->>      - clock-names
->>  
->>  else:
->>    properties:
->> -    reg: false
->>      clocks: false
->>      clock-names: false
->> -    samsung,clkreq-on: false
->>  
->>  additionalProperties: false
->>  
->> diff --git a/include/dt-bindings/soc/samsung,exynos-usi.h b/include/dt-bindings/soc/samsung,exynos-usi.h
->> index a01af169d..4c077c9a8 100644
->> --- a/include/dt-bindings/soc/samsung,exynos-usi.h
->> +++ b/include/dt-bindings/soc/samsung,exynos-usi.h
->> @@ -13,5 +13,12 @@
->>  #define USI_V2_UART		1
->>  #define USI_V2_SPI		2
->>  #define USI_V2_I2C		3
->> +#define USI_V1_NONE		4
-> Drop, it is already there.
->
->> +#define USI_V1_I2C0		5
->> +#define USI_V1_I2C1		6
->> +#define USI_V1_I2C0_1		7
->> +#define USI_V1_SPI		8
-> Drop
->
->> +#define USI_V1_UART		9
-> Drop
-
-How so? These bring different configuration values. Could you specify how
-exactly you want me to implement these in the driver?
-
-Thanks for the feedback!
+ .../devicetree/bindings/arm/rockchip.yaml          |  11 +
+ arch/arm64/boot/dts/rockchip/Makefile              |   2 +
+ .../dts/rockchip/rk3566-bigtreetech-cb2-manta.dts  |  10 +
+ .../boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi  | 919 +++++++++++++++++++++
+ .../boot/dts/rockchip/rk3566-bigtreetech-pi2.dts   |  10 +
+ 5 files changed, 952 insertions(+)
+---
+base-commit: 63676eefb7a026d04b51dcb7aaf54f358517a2ec
+change-id: 20241224-bigtreetech-cb2-18944b349916
 
 Best regards,
-Ivaylo
-
->
->> +#define USI_V1_UART_I2C1	10
->
-> Best regards,
-> Krzysztof
->
+-- 
+Ivan Sergeev <ivan8215145640@gmail.com>
 
 
