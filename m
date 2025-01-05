@@ -1,166 +1,159 @@
-Return-Path: <devicetree+bounces-135675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48906A01ACF
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:18:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 410E6A01AD2
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 18:22:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A6D01883455
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:18:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18EF2161D7A
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2025 17:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E631946CC;
-	Sun,  5 Jan 2025 17:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F91A155359;
+	Sun,  5 Jan 2025 17:22:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="lq2YNxLE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DrPtQ2+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18AB157485
-	for <devicetree@vger.kernel.org>; Sun,  5 Jan 2025 17:17:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC9F8F6C;
+	Sun,  5 Jan 2025 17:22:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736097471; cv=none; b=RrvG4jYkbJtGrG2584gO8mODcv+mnNVCX1Ldf7s8qWxGmCbxq8i7S4TGmwQL/dN/pI9SBLdWXQ0Ug1pYZHNdV3KpifKUvZy7g8hbijTAes96YSg24LsNA/hOU2X2kuVpeIwKUTn2QI9pWpHTYkumtYvfI20/7BkNy5hIqPjsKCM=
+	t=1736097730; cv=none; b=myLbvva3nv0woSJYYQFKPZ6auB7sVmwkG+JpRDvcN3pctQQ+vbViCKtEhaAxM/piwXBjCIpQJECW8Gw45HukpK5+4fqWqGgM0kmGdUdhaFDkzhjwjvbQLZuWQeK0zCysGFXbdOFp7BbsXTlhlY/UXBm7l/z24oRw6j8ym1qRqlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736097471; c=relaxed/simple;
-	bh=cQimmwB3iNQGTyLREuAKfsmql7piInL4jdzSszYRtYs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MrJZA6CSIjC2g/nPKACSI9orXnktYiQ397MtD5WQ+0qQlh78nSbaI+z7rLfiBIM1bJ962TH49Y0zALZCqUZ6nbXLNKpIdeHt5oFaSUA/LiVL+7niTgKVTuUU/RNQA7/Ct1uP9QUialEDwNM2j8bzjTsxak24svXNpNkUT2hRvqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=lq2YNxLE; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-436202dd730so97663145e9.2
-        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 09:17:49 -0800 (PST)
+	s=arc-20240116; t=1736097730; c=relaxed/simple;
+	bh=Isar8jIYus/lnAoOMqXxmVLuC8ln7ovpczQEfXrYjCU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=THsGU0EqVRpfliOi2XUyS/pJ4L61brwDKM8U6tM9yrU5A6UgWlGyy+tsm7g740D/z7DA6qAuDIVrf5hAcnK6EPa6/lJ27hqQcNUg/QzM/JZb9IxNiW2W97yzq2I4YmJGpTOeQH13XXif1BhdMPDH1rJusYQH9P6ci9fklueSzkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DrPtQ2+1; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-216728b1836so174209855ad.0;
+        Sun, 05 Jan 2025 09:22:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1736097468; x=1736702268; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=waaXYIjfvBCsra9ANlbbeFiP++cQQ67tbxpqxfXM0M8=;
-        b=lq2YNxLEkAdCaNEX8yh8eUA6/Yj1p0J/4mZUxrhwALwEL1UL+rSnspjEvK52zoW8pX
-         BCVRDPCmmL6abhDGYbSF23ePm63ZdZcWhhsaIvtvFcKJqvbSEWIG7W81ecNqX6nPRtgh
-         cN6uTF6AbbdW+SRsR1f7xZCWx0Cvw/NoBmtXg=
+        d=gmail.com; s=20230601; t=1736097728; x=1736702528; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=fkBaVhbl8Tp2G7vJC2FaLbfO6Tr53TGsw0ECXvvmc8E=;
+        b=DrPtQ2+1Sj70zvHuAc6cy4lmt2B4m0MDyp4YwdGQdmuLDHOM71UgSJ0JDofjcek7cu
+         z5DRVeU07vWq8fT2X6xpFi5imj03J0lFVKrxGn/C3l7ThRTrdHIB1xT3OTj2QDo5p0t+
+         Q0U8ug37m4Hs84fhbyYoJ5GQ/ntMe3s8PG2qYOtWJGeYmyGj90ucRzkE79T82MosyAp9
+         jK3Nn55d8UnXdjERGmGBPei+2ciKWrHwKYsn+vUpQhWrky6J/9zAm0OhbDPZZyAJSJnV
+         B8t53+wxfl7euGrC26XYrA8ly2lFBA+t7MoMMOjF0hHJb4aERuTvp5vVaBxjhQH88sFB
+         zsQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736097468; x=1736702268;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=waaXYIjfvBCsra9ANlbbeFiP++cQQ67tbxpqxfXM0M8=;
-        b=frCj3p6bd4OjO9cyrhgikJSU/I+6NyG3uAFOC8SybpKdxihub89Kttdl5pwX7QnImT
-         hT9oDM6xnkcMUq2SLZcljZWFQ2AvgiTt+ZyYoeI85HixlRTBzVUvyAp8X2QmaGMmiqv4
-         kPqmIaGZ8rPMdQ3XfcFIToey69OMCv9tmJw9WX0g751ILyKuX1GnrOqMboUjKBghGcHa
-         PjHet4Jh75Fvo24Mmmzmw7HkOjoYoSYi1lia1Bw7j0p9n6+hse2SVSL50k1/7lSCGep0
-         ql5BJs5wT+NRBVK3onHp/a+1ozxVuqDbXP5kEilNdx0SgW2X1PI1HpWsrnLnEbFviIrB
-         WQKg==
-X-Forwarded-Encrypted: i=1; AJvYcCWK+xTRwArCDUZqmmziXOCUj7i+1O1shSSfgWSymA4esOqr5yPUKSXM0Q6PmDNBHWIH4mFXNORVr+7v@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywm43kLeyi5EincvRC8XZGzq2KJlNsp9jd6uWiqEkqQB5M6wj5a
-	iy2ByvWA1bfc3e+ukPW4U0/4G5rm8++clffuhnMo4mjxFZ6m8JO5/UZUIePl/g==
-X-Gm-Gg: ASbGncsI50SFhER4/ueTHIDlMVjwYbIyFRIF32xeG9Z/ubFOBguhV6yW1axOktNDXqe
-	fBK9RmOfj8cMebdRXEoCBRL+eMy7qZLcoEx3EXVLwLjJjgUgOM6y/kbADKXruQ3C2DtIutKe1fB
-	Ov/TXK9D1r08LXmrNYZ54wnEC/VjZcVhfEzWDvTIOE3IOO61hKdF7eYB1qOyPER/h/jbK43rYoc
-	PauQlxB3FFkO0Z9fFuUrUvOt+VFxsBDpNWD/gEA0UKZvziPfqnsh/GNDkDyU25PajtecaePC/7w
-	flUHuRPWSCIduGVl0j4LQIUB7IIb1maapujb
-X-Google-Smtp-Source: AGHT+IFjcKrCEMvuHlallteEPNM9uk2psdNLjspH7AZMYWR56bzbdDPjejh5DZKCGH0JiZAnpORCrA==
-X-Received: by 2002:a05:600c:1c87:b0:434:ffe3:bc7d with SMTP id 5b1f17b1804b1-4366864646fmr484161975e9.16.1736097468068;
-        Sun, 05 Jan 2025 09:17:48 -0800 (PST)
-Received: from dmaluka.c.googlers.com.com (19.50.76.34.bc.googleusercontent.com. [34.76.50.19])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436604e9c2csm543987345e9.43.2025.01.05.09.17.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2025 09:17:47 -0800 (PST)
-From: Dmytro Maluka <dmaluka@chromium.org>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>
-Cc: Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	x86@kernel.org (maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT)),
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Usama Arif <usamaarif642@gmail.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	linux-kernel@vger.kernel.org (open list:X86 ARCHITECTURE (32-BIT AND 64-BIT)),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE),
-	=?UTF-8?q?Pierre-Cl=C3=A9ment=20Tosi?= <ptosi@google.com>,
-	Shikha Panwar <shikhapanwar@google.com>,
-	Will Deacon <will@kernel.org>,
-	Keir Fraser <keirf@google.com>,
-	Michal Mazurek <mazurekm@google.com>,
-	=?UTF-8?q?Bart=C5=82omiej=20Grzesik?= <bgrzesik@google.com>,
-	Tomasz Nowicki <tnowicki@google.com>,
-	Grzegorz Jaszczyk <jaszczyk@google.com>,
-	Dmytro Maluka <dmaluka@chromium.org>
-Subject: [PATCH 2/2] of/fdt: Restore possibility to use both ACPI and FDT from bootloader
-Date: Sun,  5 Jan 2025 17:16:43 +0000
-Message-ID: <20250105171643.3473702-3-dmaluka@chromium.org>
-X-Mailer: git-send-email 2.47.1.613.gc27f4b7a9f-goog
-In-Reply-To: <20250105171643.3473702-1-dmaluka@chromium.org>
-References: <20250105171643.3473702-1-dmaluka@chromium.org>
+        d=1e100.net; s=20230601; t=1736097728; x=1736702528;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fkBaVhbl8Tp2G7vJC2FaLbfO6Tr53TGsw0ECXvvmc8E=;
+        b=WFw9xxj6CARAUxeiBvvg4V37tpgfTe29EByqgl1AwE9gG3MAx32dkBe+WDgbuJh9pj
+         QVawNcBdBVpt4jawOhjNAFLRez+X4fg46IbZ9OGsHgUtOVaYbTLZ0do5S0BD0oivOP5Z
+         N7BBuou1EaTo+dy0mbfATxadpy0C1Rnboe939JYuQgzfi98BFjkR+EnHmAU7qdEbXJgf
+         TybUUSmazAdQIPRIW8k00IZUrCBkQRnFODXXlxgGgWuFQ36YvUA4qxSzlL1W+avvoB6F
+         +1j/WZqSTDjl3ik8V9LnUBN3AXhasVqKfgmwTtNuL9ZRBf4Gr79Rmt8LIoFWkRRPUUw8
+         9tKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUTT0Dt3VPX1cgYM2y/nH6hpe31rivqLQCwwro12bzQqCISoe2Sn+kD+OCMBA0E2I6IpW+OI9cSS1bzgQ==@vger.kernel.org, AJvYcCWKcPNUXgA1V5CI3sIMXpjXPzUveH9dB6afp56W7/2E9NCU+cNpQfp8PABBBNDBQb9ndbLtsSa/+/QhwTdl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzcgc8DiFbNAcyr1i8SDCnLCjjCSj7K8G1DPCQiCA/zYEQdHOyf
+	SxHlqmC/gwoJPzncUg5fL6S3R/EEc9VJlXd4x0uRv5YLubtrfq+1uBQ5hw==
+X-Gm-Gg: ASbGncudy7X0p6Id6hDElcIZP/X5RvhrI6OuGO2ffv+VxpB7DeBRIBN6FVrBfYC6dfU
+	mc9kAIeykZJbna8LKmb+B/lvwwPKYDg2w0mG2YskBRFN7bm9Nxy//5cjzhE6QAUd5GyOPiLHrOq
+	nWQm8OkDKGdz6dbp8Z2GPSgi1ZH2/ZC1qrjgI+XgxqgS83c3cuFeM41OjiEJZ1OHlDEbp0MAVtq
+	RBEEyLt8KjAyvkBoibt86z/LAuDP3YlMhEtkSjQnniQr8omLUoN4k12MFwC8fHggpXz7AiNSJom
+	ClWTWuo16kybGT98hkFx5+RSIAAHpw==
+X-Google-Smtp-Source: AGHT+IEfS/lBIF2r0xQ0kLcu4DbHsDjFzVNDLH7uO7w/IILn+n7YqlrJStFusZQRdINRr3DN3LrKPg==
+X-Received: by 2002:a05:6a21:3989:b0:1dc:e8d:c8f0 with SMTP id adf61e73a8af0-1e5e07f884cmr83387054637.29.1736097728022;
+        Sun, 05 Jan 2025 09:22:08 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-842e36caf84sm27368157a12.74.2025.01.05.09.22.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Jan 2025 09:22:07 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <59991eb8-4052-47e3-b379-a49264093a9e@roeck-us.net>
+Date: Sun, 5 Jan 2025 09:22:05 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
+ property
+To: Rob Herring <robh@kernel.org>, Peter Korsgaard <peter@korsgaard.com>
+Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ Jean Delvare <jdelvare@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250103101448.890946-1-peter@korsgaard.com>
+ <20250103195810.GA2624225-robh@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20250103195810.GA2624225-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-There are cases when the bootloader provides information to the kernel
-in both ACPI and DTB, not interchangeably. One such use case is virtual
-machines in Android. When running on x86, the Android Virtualization
-Framework (AVF) boots VMs with ACPI like it is usually done on x86 (i.e.
-the virtual LAPIC, IOAPIC, HPET, PCI MMCONFIG etc are described in ACPI)
-but also passes various AVF-specific boot parameters in DTB. This allows
-reusing the same implementations of various AVF components on both
-arm64 and x86.
+On 1/3/25 11:58, Rob Herring wrote:
 
-Commit 7b937cc243e5 ("of: Create of_root if no dtb provided by firmware")
-removed the possibility to do that, since among other things
-it introduced forcing emptying the bootloader-provided DTB if ACPI is
-enabled (probably assuming that if ACPI is available, a DTB can only be
-useful for applying overlays to it afterwards, for testing purposes).
+> 
+> But RPM is ultimately what you care about and is the fan parameter
+> that's universal yet independent of the underlying control. RPM is what
+> determines noise and power consumption.
+> 
 
-So restore this possibility. Instead of completely preventing using ACPI
-and DT together, rely on arch-specific setup code to prevent using both
-to set up the same things (see various acpi_disabled checks under arch/).
+I forgot to add: I would argue that airflow restrictions play a substantial
+role for both power consumption and noise, especially when trying to achieve
+a specific fan speed. For power consumption, I don't even see how rpm would
+play a substantial role in the first place since power consumption depends
+on pwm, not on the resulting rpm (or airflow).
 
-Fixes: 7b937cc243e5 ("of: Create of_root if no dtb provided by firmware")
-Signed-off-by: Dmytro Maluka <dmaluka@chromium.org>
----
- drivers/of/fdt.c | 10 +---------
- 1 file changed, 1 insertion(+), 9 deletions(-)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 0121100372b4..3b29a5c50e2e 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -8,7 +8,6 @@
- 
- #define pr_fmt(fmt)	"OF: fdt: " fmt
- 
--#include <linux/acpi.h>
- #include <linux/crash_dump.h>
- #include <linux/crc32.h>
- #include <linux/kernel.h>
-@@ -1215,14 +1214,7 @@ void __init unflatten_device_tree(void)
- 	/* Save the statically-placed regions in the reserved_mem array */
- 	fdt_scan_reserved_mem_reg_nodes();
- 
--	/* Don't use the bootloader provided DTB if ACPI is enabled */
--	if (!acpi_disabled)
--		fdt = NULL;
--
--	/*
--	 * Populate an empty root node when ACPI is enabled or bootloader
--	 * doesn't provide one.
--	 */
-+	/* Populate an empty root node when bootloader doesn't provide one */
- 	if (!fdt) {
- 		fdt = (void *) __dtb_empty_root_begin;
- 		/* fdt_totalsize() will be used for copy size */
--- 
-2.47.1.613.gc27f4b7a9f-goog
+Guenter
 
 
