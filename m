@@ -1,223 +1,236 @@
-Return-Path: <devicetree+bounces-135825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8DF3A02599
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:35:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE50A0259D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:36:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41A763A0638
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:35:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E865F161422
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:36:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEA63595D;
-	Mon,  6 Jan 2025 12:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06D5D1D6DBF;
+	Mon,  6 Jan 2025 12:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=genexis.eu header.i=@genexis.eu header.b="mczQbR98"
+	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="fYVvsIAy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2139.outbound.protection.outlook.com [40.107.20.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E9F1184F;
-	Mon,  6 Jan 2025 12:35:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.139
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736166923; cv=fail; b=e3aWa2JayHVNpzQRhw309/+WHAlH8Izrtb4hYEb9yKweAmLN8258Uc3HcxKnWNlN4GOIhNLGBPEjCoRDZZzI6ZO3VqSB3K/YoM/yZxQfXKZtfgzQ7yxm5DYme5yjnp1HeHvOCxSrEPA7vZ7mfoUAPj5FJOsSC4OQ9cIB0Mcppi0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736166923; c=relaxed/simple;
-	bh=SHx5Uq38vRGV1wDUijxzTiadpOPayWo7xYmGeRBYFL4=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=pDsUwEKu9OnVR2944lHk0Af5RzX0K+V5jJtw3be54QtTSwRrl4Mk7dXqAes2Sk1nbOnASNbdCaNKYoXX6+SR4NEZMrKfE9CO2Q31I7k6ZQSZiWNzu2mQT5e41tQw1yPPsQJd+vEMM3Zol+DGGcGX3o5821CrEig56x3am1i9i48=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=genexis.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (1024-bit key) header.d=genexis.eu header.i=@genexis.eu header.b=mczQbR98; arc=fail smtp.client-ip=40.107.20.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=genexis.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=t2ZlYANNpEQGNAVlP/3vKe1si//j2HfuZoVjz3yJnciSJ8LbO0UWydLRP9OTB8fjTd1ZG0n9jZmpLTLMkp6yneVU4Ds4SShAFVBfVHhTESu9jWK2brj4rmAWdj+YZy1Vh7UphYcp/39YS3T57R7GKK09SlW9uh9alM0KW0BCTPb5BNZjPAoDFH4Mw1lzgwfx6+vvBlJqOKSB6IJt8CS7XmH2rSwc1Tt2R8R1b0trm4dKaXMptoUWsfqIxPYmUII8jixlZL9F787IjIOQ9FpzjNoKEBCcmYCGUnA0uxFR0DMEzr51ImO8sN6EmA7dT40zGBJHGEh0aWCw3OGirL86KQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lwsQkMylG8w63B3pVK0LO7JKUkyAXCOe8NVFHEnD9yM=;
- b=UfJkWT9+br386OfaX9bDnsy76yhYccMvoY+3d+ytDkIQrxp3yuMEcA5v7DWYRf5u692vctUjJFFYnmonXgeAUEfi5K50+XDD9bRk7OQ8QzXuIYtuhKc9pInPuslKdRrC2ZAe89BOn7cjT4qSUENShSpxBZw9YE/0FjtkOFEwzRotvem9x9s0CaqabOrJJTu4Uz21vwiDKGPngrTjRFAQVU0kdSOHTh9N9aa+jsP7rbWLB8+kf7jphQ97i3OglLsMFXXxmQ7xcJ55G5TJty3x4+MfbmzqnqyLSqKOn5qwNjj1KFFYGYuM/8RwRgKrmmHZ0rrNgLazBy97YaeZto0+YA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=genexis.eu;
- dkim=pass header.d=genexis.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=genexis.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lwsQkMylG8w63B3pVK0LO7JKUkyAXCOe8NVFHEnD9yM=;
- b=mczQbR98uX4a4SSaVQWL83Y1JvzPP59x+uf9DJffyuPL1i1vLsobjRfwCXIzC5oRsOZLFfNizH2EHWzQgciT+f1sWQ6ZnT4hPgLRlhoG31p4TPfZZE+CZJbBS01uGODtPDt42FqXPeObMZKxkMd/xzl4aLM5Fhji9PjE//I5zPs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=genexis.eu;
-Received: from AM6PR08MB4215.eurprd08.prod.outlook.com (2603:10a6:20b:90::16)
- by DU2PR08MB10302.eurprd08.prod.outlook.com (2603:10a6:10:46e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.18; Mon, 6 Jan
- 2025 12:35:12 +0000
-Received: from AM6PR08MB4215.eurprd08.prod.outlook.com
- ([fe80::f8bd:a866:322f:7b42]) by AM6PR08MB4215.eurprd08.prod.outlook.com
- ([fe80::f8bd:a866:322f:7b42%7]) with mapi id 15.20.8314.015; Mon, 6 Jan 2025
- 12:35:11 +0000
-Message-ID: <49278805-b667-40cf-9217-1c51eb80882a@genexis.eu>
-Date: Mon, 6 Jan 2025 13:35:10 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] serial: Airoha SoC UART and HSUART support
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- ansuelsmth@gmail.com, lorenzo@kernel.org
-References: <20250105131147.2290237-1-benjamin.larsson@genexis.eu>
- <20250105131147.2290237-3-benjamin.larsson@genexis.eu>
- <2025010500-subscript-expectant-144a@gregkh>
- <45f22ec5-76da-4a1d-bdf5-22246dc8f692@genexis.eu>
- <2025010646-nacho-grinning-cd35@gregkh>
-Content-Language: en-US
-From: Benjamin Larsson <benjamin.larsson@genexis.eu>
-In-Reply-To: <2025010646-nacho-grinning-cd35@gregkh>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GVX0EPF00011B59.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:144:1:0:8:0:e) To AM6PR08MB4215.eurprd08.prod.outlook.com
- (2603:10a6:20b:90::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2290D1598EE;
+	Mon,  6 Jan 2025 12:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736166981; cv=none; b=jrckw4BNRD0yezuIa6BlBiFHBkypU69hpC5ZYWDEYcs3eavhCjkacof91iSiBddP1E8Z3AlpArn0tf1GopJgswpTlxxgolOE5IJ2+w5xOojfsYjBGyTTmjBWcDm32Shx0CqK4L6C/WgEWaC/2Y3elF6mAFrl8NWUqTWAnLjyB8k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736166981; c=relaxed/simple;
+	bh=3+2UE4A78WBYby8MiY6zpEHBFD6l8nYLZY+vBVkQwOc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eRQT+U3E0W9ctg0RQetCGUOHJpjqVij10teduMbt153qiP0i44jLX9gci8vUilePoGy0M5QMpDpf+BgIsc6RhD6+gS6s41qr4NB2nMuCD7PMxKnJJccpVvPQ5jesGxZa6Kb8n+3SQMln3FD1oZ3z/xPSyinNkIQjO2jeoLnpXrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jms.id.au; spf=pass smtp.mailfrom=gmail.com; dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b=fYVvsIAy; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jms.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-aa67ac42819so2057064766b.0;
+        Mon, 06 Jan 2025 04:36:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google; t=1736166976; x=1736771776; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dKIXxLhttbFcVYR/bgQGxM4UC+Urto6wknS8G3Bmh8Y=;
+        b=fYVvsIAyZOvJcmDN3zAXPCiuyNmhVB2zfQ6L8AdyddgQRf9wJmLXu/dyZli7aRUKix
+         BP3d5dPwaRy6U5sdeVWggfh/Pvoaa3uiThMJSSjqs+i1hRcQ2xn4bmMMTxQ131m7yHyd
+         1JsLvJWvmW1zdwKy7gGY5EPVyIcZNrMeIeRME=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736166976; x=1736771776;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dKIXxLhttbFcVYR/bgQGxM4UC+Urto6wknS8G3Bmh8Y=;
+        b=JgZHwBh/xQXxDRgPZkCMcmzIf5saAEQjAIFRh/kb/YdmAVNekvc4TWrmAN70lGMVmb
+         paIxP3ztkejrVv88k46G+zYYnWjtYDmUuJ2a/ygZhCOGN+zhznAiihcP3EZWSSXaSsXS
+         ZQ/VYBOSn6GLFRQf986mReaOpl9LXFvlQP9EtYrIp47Ed65Hb1z7oE5Y/Rvu4X3N347r
+         0iOgfYF9ftm6ibwYEnqHk43kvEkphqyC3srFxG01MmdRMj+yft/X3h+AWXoy1cFm6HtT
+         Fhqaj8eOFkdmHu6lJnt5qkd2sEEetr7uT130asnT1Gpqzmed6xPTOYgDVqnuQTJEQ0eb
+         WloQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVRbSGuQHHG7HM88Y8ZsGozy6pW+/nboiqOlSzRZMSRMesM/8MXamPPtrPcUJSQl/hlRnupYVCTKdWM@vger.kernel.org, AJvYcCVq9vijsQ/aiNvyRVqWRj7rlnFWrBQ3IxFQ1L1orl8V6i2PrcKQwrVAzMVFKK4SEd5gAEDG7ENKv8k+HDoFGQ==@vger.kernel.org, AJvYcCWfUQn0ADpyULPfSUnJetF/ammn5uw9avP74OB+SvN2XM0hCBzrSXbPgwuxzIDxOgE5nv53RBdmcacNsobK@vger.kernel.org, AJvYcCXn9VWDdhdBMLQNgA4F6f8dpvuKS08xM++j0eUe3y/pKslkfGDMm1t/GlaxQ9o6yXJ1AdVcgixa3IItqRY=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKn8ljw9r3O6ukUVBdEG6uimA4owc7LKrcdLwM+sk1Doptnetg
+	x0AbaX5JxHIoFo6n3FTvi+71rAorrTquJ9EIL/TSGnIbl7AA1a09LfsFh/MYYoXfIuvfe3e6YmK
+	frQ3onD7wvcgrYwM5VA4SWL8p7WU=
+X-Gm-Gg: ASbGncuZ4iunBSf1Y6NTAQMeZQrHo3xZuh3ajAZZI2WEKSHOMyZCTbif4dSFSoEoF/T
+	QHZoTHQELsdMDcljZyfcAwwfsflc6In979XjsOA==
+X-Google-Smtp-Source: AGHT+IGwGcVs1m2atwIpdSUGW8iawaESVde18+/ZLAH7jwPmVxZpzN3LOf4WKbD6GStENEJkJ9TFSrLvno21ev/aCyc=
+X-Received: by 2002:a17:907:7e81:b0:aaf:74b3:80db with SMTP id
+ a640c23a62f3a-aaf74b380e2mr1797693966b.3.1736166976070; Mon, 06 Jan 2025
+ 04:36:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR08MB4215:EE_|DU2PR08MB10302:EE_
-X-MS-Office365-Filtering-Correlation-Id: e48bbb1f-3335-4a2d-1109-08dd2e4e9022
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?M0NHTkNPanAvUXVseEtpbGJFQW5OK0V0RUtnakJWMjRGN1dheE0vQTFBUjRN?=
- =?utf-8?B?SFN0d3NQMXNLK0FPVWo2MXpvZ3Z5b1N2STVGTnJPbmg2eWlpK0ROYWRBT0FD?=
- =?utf-8?B?RS8xRGpMR3FXcWdQSk5wZTNhUmlHN01GWWpjL1E2TnVkNnRPaXk2eUl5NDZM?=
- =?utf-8?B?UmpqcTh5RFhsMS9XNGhYWS9mSURmQktvYUY5MnFBRDY5U2JNVVpjVFcyQ2Vz?=
- =?utf-8?B?cVp5OEVEaHlGc0VGcDBuRlZMdVFsMjQ4VDlDeXl4dzRzemNUUk9RVXJKNkx4?=
- =?utf-8?B?ZXAvNnczVFdyalR1NWwvSzlLN2hBYm5JN01YTHNoL0xZTnBac2ZFenUyZm01?=
- =?utf-8?B?U2dmRXBOMUpLMEpXWnZlVndSRTJjTUFoT2M4SnNMN3QwVEErKzUveWRCbm82?=
- =?utf-8?B?a3ZLSUpLYjlnMVZ1K1kxT3VITVlkUEt4ejZicVBOWnRFeW5YYTNhZXEyWEdY?=
- =?utf-8?B?YzRHTmI5WFUwQmhiS29ncXMxVG02ODN6dkdFUFI1bWhCbmdIeGZ5UU1jU2Z2?=
- =?utf-8?B?OWNjcDdmdTBaS0dDSEZLZDR1bC9mc1BsR0Fyc1o4UFRIdjFRWHViSjlvMzJv?=
- =?utf-8?B?K0dNNXltcXRUWS9xLzVBMnEzK1JQcDBwdXhOcXQ4TU9jWjFBMGkrSXUwWVFr?=
- =?utf-8?B?UWpDQS96cDZYNTdpNFA3M3Q4cERFQ2RxMUpXRWpJY0hGd0FIYzNUQkdLRlJO?=
- =?utf-8?B?cEpFVE9abEd1c21WcWVpcGhOMWtub2VVTHZhYXc3U0cwQ3I2dy9tTEVMUFcy?=
- =?utf-8?B?clFUa2h2d1lTV3RGdHFqSFVOWmRuZzFMamo0NDl4bXJia25Ga21KYllvTEZ4?=
- =?utf-8?B?SllOc2c0ZzZEb0NSTDhCZmNLa0FUQWt0U0dhR0dlcGd4T0FieGN3cXd6ejZD?=
- =?utf-8?B?dk1HUUM5TlZKbHROSm5ONHhRczVKbzhZdzNGU2l3bXhDQ3Z0WWh4eHJSRFBK?=
- =?utf-8?B?dnJUQ1AzL3RPUi85dk5ZYXhPN25zMWE4dWwrdVc1MkwyVCtCelpmTVNnYkJw?=
- =?utf-8?B?VTcrVXR3YXl6N0d0NSt1MUl1UWRMUDUwUVNvZjJreWpQQmFOSDNtc2ttZitW?=
- =?utf-8?B?RzV6RFVrNXAvUy9KTWlKVHlaUk1vWDZLc0daak5tSlVIUFlPbmxjTjVjaEpa?=
- =?utf-8?B?MStDaGN2N1VmSk1rNUxFTkpwVW5pR3RZTGFvczJsdVlnNkNRUnIvVEVqdGpN?=
- =?utf-8?B?NzIxUk1YQWtDcGJLSHV6MTB3bDRYN01wejlQZ1FRYmVsaWo0M2l0cTlTZmlQ?=
- =?utf-8?B?aVFDcEI3L0JCbkxWSVdyZmZWdVdmMStmOFNHSHVGKzJuWTJEWUY0bHhrMmNJ?=
- =?utf-8?B?Y1ZtTklwblJTd2x4NzFQWXM0TldQZWxWcVdSbS9KSXc1Y24vN1JpY3hscGhz?=
- =?utf-8?B?aCtHYldiV3ZsV3pMWFRaa1FyZG51dVlWK3ZNdkN1d3BsZXBLNTJSUUt6NzVw?=
- =?utf-8?B?WlFZVUJzQUVURTc1TDA3ZE01VmtjRWVLQm9lQ2grTHhXcTZINGI3OXlLaXVD?=
- =?utf-8?B?WUxXd0t4MVc3RkkwTktWSVh2ZzEwbldReG5aVVhiRUNrMDczYXdhNWxvOHA4?=
- =?utf-8?B?M2xxWUREREVMWVhXMXpoaEtBcm43RXNVaWVYTnRQbTZrZ0EvUldoOTNiUmRl?=
- =?utf-8?B?b3pYUkZ0ZzNHNzdCcWJ3SEl0dnIzV2FYNWNkbFAxRTJWby9Ld3FQTVErWFp2?=
- =?utf-8?B?ODcrcUtlWERFZCtpMi9JVlplNi9SczltbTN3Z0pLSFUra2tKMkE4R29xaWh5?=
- =?utf-8?B?SmZkMGxmcFkycEo4Z3lUZ3FJaXNaWE4rbWswQmFXeCttNUZxK3VVUG53YnBZ?=
- =?utf-8?B?RFpMdXptN3FrMUExNUppdlUrOFdwbDM4cFlvYmZxcnVNVFg3aHZYd3pwWnVL?=
- =?utf-8?Q?Bzkx3hRMX4tOg?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR08MB4215.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SUsyZzNFcEp2NjkrQWpRWUhMMXFzdi9xemJKTTErbWppZ2orZlY0SjBMVjA3?=
- =?utf-8?B?bW1XT2FrNDJWejRRKzB2bS83VnY2T1dBc24rMmNBclVJZlR1akFXTXE4L0JX?=
- =?utf-8?B?a3JEU3BZZ09CeTRScFRIalQ0Qys2YmJqWFVkNFJ3dHZWUHZSYTVaU1B1S2Qz?=
- =?utf-8?B?eVFaWWdxeFgrOGowUm1SQlpnZmVUQlRyUmdhdTdpcDk3dmk3ejEvMGdURHZw?=
- =?utf-8?B?VU5OZ0tTVGFWTGV3dDZxWnFuRWJ3R0kyOTdudGxxcm51QlA4V0tReUlxL0Nl?=
- =?utf-8?B?UGZlRXlEUkN0NS9DMElzMDA4dU45SXFCMDZHdlhKYkppVStCcjNBVXU4RFpx?=
- =?utf-8?B?WTY0dmxKdElEZUNzeDYzb3BwRVdPNkliRitmSU11cTFwM3JtdnU1Zi9LRTFs?=
- =?utf-8?B?Wk16M1U3ZlFHY1JxeWdxWXovaXQyTjZFc3BCV05vNjBYelhVeU9CV0FadEs1?=
- =?utf-8?B?VVlseHhEOHZ3djB5aUpaSVQ5V1ZuSkxCV3B5Yys1V1ZRRnN2ay9sSi9UVkJx?=
- =?utf-8?B?MW9aemdwNmhycXhGUHRhT2tNekVKaHJmeU1OTnFEMkhZcTJSTjRJVXcvVVFq?=
- =?utf-8?B?TGJrUDdqR281QzEyL2w4YlBYWFdHMmFzL1ltK0IycWdkUzFuOUpETnpMaVov?=
- =?utf-8?B?d0prendzQW9scnZONjIrVzRNWGtTYXdEb0dVQUgxbTRkUFNpQ0hKcE1NREg1?=
- =?utf-8?B?T0VmNUFnMTQ2TFlKa2lDME9NZWxReEZLak10cnpPaHZKVWM2NmpJcmxXSUdJ?=
- =?utf-8?B?dXpPRklzaU1HZWJXZHFXaVcvZ0plbDlPWmF0SmFjZlFmSmI4MVhwUTlRaEd4?=
- =?utf-8?B?OUVXRUpDamZ3cC95amN4eVZVTk1PWThTZ3lLTE16dGc4TTRMQzlFeEQ4cU1Z?=
- =?utf-8?B?TWw2RTRreTk5NHdWUGZKT25XbnUwMUw0WE8zWkxPejdrQmtBcUI4MGgyejlk?=
- =?utf-8?B?K2NMMkpqYk5aWVJqUFJNVDZ1dFU5YnZiNElva0VhZE9sZzdzVks4NnY5a2wz?=
- =?utf-8?B?VHhuZFFDbXdlTEs4TGpkY1c0ZUhDaTU2SDIyMjJjbHp1VGplMmlHSFFPM3h4?=
- =?utf-8?B?UzVsNWZFbFdpTHY2YnlRTlQwTXY2TVptTkpDaFJWZGtOVkpxRzRNZTNHazR5?=
- =?utf-8?B?aWdzRVNoazh0RVQrcGtaWFFUMDgrdmlIRkhOTjF4MlpmL1Y2NnVQWHdtQkVG?=
- =?utf-8?B?Y3kxd1U5b3huaDNSM0gxd2F3eWNkQXBmN3NYeWs1bWRTSHlDcnpXVnBCUWNk?=
- =?utf-8?B?SUNScU1hL1F1elRkSk9tTWxsRDk5NUhvaE1tcjJabUxDb2hYZUNONU40Y1dE?=
- =?utf-8?B?QmVhWmsvYTZGcWdBU0trMkt2SnRuTlB3VElsaWtDb1Z2cnorVkdVcVZEQkM2?=
- =?utf-8?B?Ly9MOGFUOUh2U25TaHVxNkdWTE5XTUlhMW9PU0p0SU9QQ3cyU2R6a3pOYVZ2?=
- =?utf-8?B?alREWnpQWXEvakdmRDBuenBHQkM4R2RSRkpKUjJDM0Q4SFNrR2t6TzVBdHYw?=
- =?utf-8?B?YXc4S29FcW5qTm9PTjgwVUVHbUJqWFVjZExXSCtJWW9ZSkJpU09CSmZBVDVp?=
- =?utf-8?B?cUh6Umg5OHpwV1hHYmlOdUdhUmthcm5hNWZJcVNZaERYcDQvT25TQkt5U0oy?=
- =?utf-8?B?WmNUMDhTOWRqMmRBdjhKcmRUeHBZMWZoeFF3WHU5MHNOTVIySVc2WXRaNWN2?=
- =?utf-8?B?WjRVWnhqL3VHTDBWVnpmaEs0OGpsbk0vT29GQjRjTE1iWnJ2RjZud2NsYlY5?=
- =?utf-8?B?Y0RDUTZrck9kb0MzZHA5WGRNcUZrc1pJTGEvVHh3bTdRUURMdjd1VVc5VjZP?=
- =?utf-8?B?NDM5UklBY1pYbGR4ejhaMVQvM0VEQS9ScGg1UHpyc1l3Ulp1cFd5WjlEYmV1?=
- =?utf-8?B?YmRTL3pCQ1ZTdVhTKzdhY1pHaWY2SU1melZ5WnpLRmpmdmhhVWdyVCttK0cz?=
- =?utf-8?B?ZW13bG5vUTc4a28rUkZ5dFV6elMwSjVBSzM2aVFPRkNVZ3JuamVKUVBHSytI?=
- =?utf-8?B?QzlCSUlpenBEd0d4TkxjVkZBSmhzVzFTdFNlTGRYVWlBUEVjY00ybG1acTha?=
- =?utf-8?B?QTJ4UGhUQUZCS3lWQm1CNEU0UE5aSUZQSnBnenJCY21QK2pPWkNmWURLU1Ru?=
- =?utf-8?B?VlVKallEZHFPWEdBNnNSMFRKWmM4NXdmSVpkTnc3T2VtamdCclQzTGUzQWlt?=
- =?utf-8?B?UEE9PQ==?=
-X-OriginatorOrg: genexis.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: e48bbb1f-3335-4a2d-1109-08dd2e4e9022
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR08MB4215.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2025 12:35:11.8449
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: htPKtah63vubX/2X6HaPx3zRKWwZN13yKVgiWIb8+h44YzrgSaYzv5OJg7vgcs3lwdogO3kTtdL+WY6ZzRRpX3Pqe2ol88gvnkkXLs6ZAVU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR08MB10302
+References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
+In-Reply-To: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
+From: Joel Stanley <joel@jms.id.au>
+Date: Mon, 6 Jan 2025 23:06:03 +1030
+X-Gm-Features: AbW1kvbTwfL57vv40IS5aQIuxGW2DHEqbK40Wr060WqVI88XDY3rd3xwWUsD5yA
+Message-ID: <CACPK8XeFbx_8mrvT4xi-WfQF+zHJYj1=EkH2tmnnxs1WThJ8ZQ@mail.gmail.com>
+Subject: Re: [PATCH v9 00/28] Qualcomm iris video decoder driver
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Jianhua Lu <lujianhua000@gmail.com>, Stefan Schmidt <stefan.schmidt@linaro.org>, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Vedang Nagar <quic_vnagar@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi.
+On Thu, 12 Dec 2024 at 22:23, Dikshita Agarwal
+<quic_dikshita@quicinc.com> wrote:
+>
+> Introduce support for Qualcomm new video acceleration hardware i.e.
+> iris, used for video stream decoding.
+>
+> Iris is a multi pipe based hardware that offloads video stream decoding
+> from the application processor (AP). It supports H.264 decoding. The AP
+> communicates with hardware through a well defined protocol, called as
+> host firmware interface (HFI), which provides fine-grained and
+> asynchronous control over individual hardware features.
+>
+> This driver implements upgraded HFI gen2 to communicate with firmware.
+> It supports SM8550 which is based out of HFI gen 2. It also supports
+> SM8250 which is based out of HFI gen1.
 
->>>> diff --git a/include/uapi/linux/serial_core.h b/include/uapi/linux/serial_core.h
->>>> index 9c007a106330..c71fb338accb 100644
->>>> --- a/include/uapi/linux/serial_core.h
->>>> +++ b/include/uapi/linux/serial_core.h
->>>> @@ -231,6 +231,12 @@
->>>>    /* Sunplus UART */
->>>>    #define PORT_SUNPLUS 123
->>>>
->>>> +/* Airoha UART */
->>>> +#define PORT_AIROHA  124
->>>> +
->>>> +/* Airoha HSUART */
->>>> +#define PORT_AIROHA_HS       125
->>>
->>> Do you REALLY need these port definitions in userspace?  If so, what is
->>> going to use them there?
->>>
->>
->> Testing another PORT define gives this result:
->>
->> grep -ri PORT_MTK_BTIF *
->>
->> drivers/tty/serial/8250/8250_of.c:            .data = (void *)PORT_MTK_BTIF, },
->> drivers/tty/serial/8250/8250_port.c:  [PORT_MTK_BTIF] = {
->> include/uapi/linux/serial_core.h:#define PORT_MTK_BTIF        117
->>
->> Per my understanding this is how the current code is designed to work.
-> 
-> That's a very old pattern, I'm asking you if you need this new number in
-> userspace, which is what you are doing here.  I'd prefer not to add new
-> values here as they are a pain to manage and we can never change them if
-> added.
-> 
+I tested this on an x1e based machine, a Surface Laptop 7. I had some
+errors with loading the firmware which triggered some warnings when
+trying to tear down the driver. I've pasted the WARNs at the end of
+this mail.
 
-I dont need it in userspace. I need it in serial8250_config 
-uart_config[] that uses this header.
+I was using the firmware from linux-firmware, as packaged by distros:
 
-I need to pass something from 8250_of.c so that 8250_port.c can pick up 
-that an airoha uart is selected via dts. Any solution that is acceptable 
-is fine by me. I just reused the current implemented method in 8250_of.c.
+4d2dae9a8187b728939e9c79fa68012b  qcom/vpu/vpu30_p4.mbn
 
-MvH
-Benjamin Larsson
+It appears to be signed by a test key, which I assume was the cause of
+the failure. Replacing it with a properly signed version worked, and I
+was able successfully decode a test video with ffplay:
+
+$ ffplay -codec:v h264_v4l2m2m test.mp4
+...
+[h264_v4l2m2m @ 0xffff500054b0] Using device /dev/video0
+[h264_v4l2m2m @ 0xffff500054b0] driver 'iris_driver' on card
+'iris_decoder' in mplane mode
+[h264_v4l2m2m @ 0xffff500054b0] requesting formats: output=H264/none
+capture=NV12/yuv420p
+
+Cheers,
+
+Joel
+---
+[    2.587909] qcom-iris aa00000.video-codec: error -22 initializing
+firmware qcom/vpu/vpu30_p4.mbn
+[    2.588095] qcom-iris aa00000.video-codec: firmware download failed
+[    2.588250] ------------[ cut here ]------------
+[    2.588251] Unmap of a partial large IOPTE is not allowed
+[    2.588256] WARNING: CPU: 4 PID: 659 at
+drivers/iommu/io-pgtable-arm.c:649 __arm_lpae_unmap+0x3cc/0x468
+[    2.588335] CPU: 4 UID: 0 PID: 659 Comm: v4l_id Tainted: G        W
+         6.13.0-rc4-00092-g1bbe1a937cf6 #21
+[    2.588338] Tainted: [W]=WARN
+[    2.588339] Hardware name: Microsoft Corporation Microsoft Surface
+Laptop, 7th Edition/Microsoft Surface Laptop, 7th Edition, BIOS
+160.2.235 08/05/2024
+[    2.588340] pstate: 61400005 (nZCv daif +PAN -UAO -TCO +DIT -SSBS BTYPE=--)
+[    2.588342] pc : __arm_lpae_unmap+0x3cc/0x468
+[    2.588344] lr : __arm_lpae_unmap+0x3cc/0x468
+[    2.588345] sp : ffff80008259b690
+[    2.588346] x29: ffff80008259b690 x28: ffff80008259bc30 x27: ffff80008259b8f8
+[    2.588349] x26: ffffb973346978d0 x25: ffff68590225e7f0 x24: ffff80008259b8f8
+[    2.588351] x23: 00000000dfc00000 x22: 0000000000001000 x21: ffff68590396ce80
+[    2.588354] x20: ffff6859068fa4f8 x19: ffff6859068fa480 x18: fffffffffffef6a8
+[    2.588356] x17: ffff685900b8c040 x16: 0000000000000000 x15: ffff80008259b248
+[    2.588359] x14: ffffb9733457e768 x13: 6465776f6c6c6120 x12: 746f6e2073692045
+[    2.588362] x11: ffffb9733457e768 x10: 000000000000030c x9 : ffffb973345d6768
+[    2.588364] x8 : 0000000000017fe8 x7 : 00000000fffff30b x6 : ffffb973345d6768
+[    2.588367] x5 : ffff685c75f4b848 x4 : 40000000fffff30b x3 : ffffaee941a6a000
+[    2.588369] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff68590bc25640
+[    2.588372] Call trace:
+[    2.588373]  __arm_lpae_unmap+0x3cc/0x468 (P)
+[    2.588376]  __arm_lpae_unmap+0xf4/0x468
+[    2.588379]  __arm_lpae_unmap+0xf4/0x468
+[    2.588381]  arm_lpae_unmap_pages+0x70/0x84
+[    2.588383]  arm_smmu_unmap_pages+0x48/0x10c
+[    2.588385]  __iommu_unmap+0xf0/0x1c0
+[    2.588387]  iommu_unmap_fast+0x10/0x20
+[    2.588389]  __iommu_dma_unmap+0xb8/0x2c0
+[    2.588391]  iommu_dma_free+0x2c/0x54
+[    2.588392]  dma_free_attrs+0x9c/0xc0
+[    2.588395]  iris_hfi_queues_deinit+0x70/0xa0 [iris]
+[    2.588399]  iris_core_init+0xd8/0x138 [iris]
+[    2.588401]  iris_open+0x3c/0x318 [iris]
+[    2.588403]  v4l2_open+0xa8/0x124 [videodev]
+[    2.588406]  chrdev_open+0xb0/0x21c
+[    2.588409]  do_dentry_open+0x138/0x4c4
+[    2.588412]  vfs_open+0x2c/0xe4
+[    2.588413]  path_openat+0x6fc/0x10a0
+[    2.588415]  do_filp_open+0xa8/0x170
+[    2.588417]  do_sys_openat2+0xc8/0xfc
+[    2.588418]  __arm64_sys_openat+0x64/0xc0
+[    2.588420]  invoke_syscall+0x48/0x104
+[    2.588423]  el0_svc_common.constprop.0+0xc0/0xe0
+[    2.588426]  do_el0_svc+0x1c/0x28
+[    2.588428]  el0_svc+0x30/0xcc
+[    2.588431]  el0t_64_sync_handler+0x10c/0x138
+[    2.588433]  el0t_64_sync+0x198/0x19c
+[    2.588435] ---[ end trace 0000000000000000 ]---
+[    2.588438] ------------[ cut here ]------------
+[    2.588439] WARNING: CPU: 4 PID: 659 at
+drivers/iommu/dma-iommu.c:841 __iommu_dma_unmap+0x290/0x2c0
+[    2.588497] CPU: 4 UID: 0 PID: 659 Comm: v4l_id Tainted: G        W
+         6.13.0-rc4-00092-g1bbe1a937cf6 #21
+[    2.588499] Tainted: [W]=WARN
+[    2.588500] Hardware name: Microsoft Corporation Microsoft Surface
+Laptop, 7th Edition/Microsoft Surface Laptop, 7th Edition, BIOS
+160.2.235 08/05/2024
+[    2.588501] pstate: 81400005 (Nzcv daif +PAN -UAO -TCO +DIT -SSBS BTYPE=--)
+[    2.588502] pc : __iommu_dma_unmap+0x290/0x2c0
+[    2.588503] lr : __iommu_dma_unmap+0xb8/0x2c0
+[    2.588505] sp : ffff80008259b8f0
+[    2.588505] x29: ffff80008259b930 x28: ffff80008259bc30 x27: 0000000000020100
+[    2.588508] x26: 0000000000020100 x25: ffff68590bf76a08 x24: ffff80008259b910
+[    2.588511] x23: ffff80008259b8f8 x22: ffff6859113cd260 x21: ffff68590bf76a00
+[    2.588513] x20: 00000000dfc00000 x19: 0000000000001000 x18: fffffffffffef6a8
+[    2.588516] x17: ffff685900b8c040 x16: 0000000000000000 x15: ffff80008259b248
+[    2.588518] x14: ffffb9733457e768 x13: 6465776f6c6c6120 x12: 746f6e2073692045
+[    2.588521] x11: ffffb9733457e768 x10: 000000000000030c x9 : ffffb973345d6768
+[    2.588523] x8 : 0000000000017fe8 x7 : 00000000fffff30b x6 : ffffb973345d6768
+[    2.588525] x5 : ffff685c75f4b848 x4 : 40000000fffff30b x3 : ffffaee941a6a000
+[    2.588528] x2 : 0000000000000000 x1 : 0000000000000000 x0 : 0000000000000000
+[    2.588530] Call trace:
+[    2.588531]  __iommu_dma_unmap+0x290/0x2c0 (P)
+[    2.588532]  iommu_dma_free+0x2c/0x54
+[    2.588534]  dma_free_attrs+0x9c/0xc0
+[    2.588535]  iris_hfi_queues_deinit+0x70/0xa0 [iris]
+[    2.588537]  iris_core_init+0xd8/0x138 [iris]
+[    2.588539]  iris_open+0x3c/0x318 [iris]
+[    2.588541]  v4l2_open+0xa8/0x124 [videodev]
+[    2.588543]  chrdev_open+0xb0/0x21c
+[    2.588545]  do_dentry_open+0x138/0x4c4
+[    2.588547]  vfs_open+0x2c/0xe4
+[    2.588549]  path_openat+0x6fc/0x10a0
+[    2.588550]  do_filp_open+0xa8/0x170
+[    2.588551]  do_sys_openat2+0xc8/0xfc
+[    2.588553]  __arm64_sys_openat+0x64/0xc0
+[    2.588555]  invoke_syscall+0x48/0x104
+[    2.588557]  el0_svc_common.constprop.0+0xc0/0xe0
+[    2.588560]  do_el0_svc+0x1c/0x28
+[    2.588562]  el0_svc+0x30/0xcc
+[    2.588564]  el0t_64_sync_handler+0x10c/0x138
+[    2.588566]  el0t_64_sync+0x198/0x19c
+[
 
