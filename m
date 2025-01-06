@@ -1,101 +1,89 @@
-Return-Path: <devicetree+bounces-135877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAFD9A02C82
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 16:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5723A02BE0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 16:47:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93D323A923F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:53:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9A403A43C4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:46:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E818145A03;
-	Mon,  6 Jan 2025 15:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="L3ynFVIo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDA301DE889;
+	Mon,  6 Jan 2025 15:46:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE4913AD20;
-	Mon,  6 Jan 2025 15:52:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3671DA631;
+	Mon,  6 Jan 2025 15:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736178782; cv=none; b=lhqKWB8qUHO4eb8xG+rEjSXrwuR5GIfj5ShGQcEcnEx28xHld7jGfNlDu0KnbuldKL7yj037YmxT9XjvYtwP0HOPDuueH86xCe1D8bEnK6QkrLjXf5GrEgtAjxZtsk94faw8PIl8cXGqnv5NLmOd3gWcSqjPtSPwwbuHPPOo9Vc=
+	t=1736178378; cv=none; b=Ti7AjUGD2we1GEgx26VNmm0ja4s/Q5Y2+c48yn5OnoqnVoq+tH9rXHu+DZeLOIMsuFK6/ykav/jIXb9h/YWW+KihKz6dPWTyrW8dBf/uc9POp930jwZwtoCFnUHBOPgI/Ey0jwWEgLfmCkhXZbbmMhHD1hdcbTxjq72xX/a52eI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736178782; c=relaxed/simple;
-	bh=27zSPfsDIasiQLrztxpd6KsLCVSNZmztVN6Xdb041vg=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=Ovg9XhbbBZkzI0ciTdF7PlIZMBs1NbFLBjyV0jQpQMjRTMJnL4rUoHkziUMQJAltGHfdGVWTZUGYNTs6+KBdw5599crRZkZ3N6Mabf1Y/vAN4/NM+Yo7iZ4daEI91uWpjz48puS9vRgBIFMbo2fmz18ApyfuPah124s/hnwW52U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=L3ynFVIo; arc=none smtp.client-ip=134.0.28.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
-	by mxout4.routing.net (Postfix) with ESMTP id 714D010092F;
-	Mon,  6 Jan 2025 15:45:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1736178346;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=27zSPfsDIasiQLrztxpd6KsLCVSNZmztVN6Xdb041vg=;
-	b=L3ynFVIoB5wGNLo4IbBxboWIntP5qzxtwKEvdDJ7T/QuH7PvKQcGmnTVOktde6ZkhFTPDt
-	6c+abdE4Vb3HNZH3NG9gq3dfW+vMEP7Wzs+yQ6+1NZZaD9bqCOkKi28MpFKwC9YJAqJ/Sx
-	cNpUqqpsrhHLxyW3JRxS7CFiAdtLuwQ=
-Received: from [127.0.0.1] (fttx-pool-80.245.79.38.bambit.de [80.245.79.38])
-	by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 4C9E480155;
-	Mon,  6 Jan 2025 15:45:45 +0000 (UTC)
-Date: Mon, 06 Jan 2025 16:45:45 +0100
-From: Frank Wunderlich <linux@fw-web.de>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>,
- Frank Wunderlich <frank-w@public-files.de>, frank-w@public-files.de,
- robh@kernel.org
-CC: dlemoal@kernel.org, cassel@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
- linux@armlinux.org.uk, hdegoede@redhat.com, axboe@kernel.dk,
- linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_Aw=3A_Aw=3A_Re=3A_=5BPATCH_v1_1/3=5D_arm64=3A_dt?=
- =?US-ASCII?Q?s=3A_marvell=3A_Fix_anyOf_conditional_failed?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <87wmf8x8p2.fsf@BLaptop.bootlin.com>
-References: <20241109094623.37518-1-linux@fw-web.de> <20241109094623.37518-2-linux@fw-web.de> <20241111203611.GB1887580-robh@kernel.org> <trinity-796b046d-1857-413e-bb82-78e700d6b5ac-1733138371404@msvc-mesg-gmx005> <trinity-a84b41b3-79c5-49b5-9786-eb89f85578cc-1735843472332@trinity-msg-rest-gmx-gmx-live-548599f845-gxsb9> <87wmf8x8p2.fsf@BLaptop.bootlin.com>
-Message-ID: <B9E245AC-1487-41B5-A30D-41F03FAA0A2C@fw-web.de>
+	s=arc-20240116; t=1736178378; c=relaxed/simple;
+	bh=TiylIWGYX8F6qOxnmLngPqSgf2VkNgOfXPXnFnKBok0=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=BCy9HwxkxnQxj+mAapwtUHxnX0EvF+u2MumElrpWMizGkHo7hZKZnIaEO62gBL4llVUdJzpsAv+shFuh1F7xt3qGZgcyEb2VACBLzjlslsQmNHqIaadBB3gwF9HinjrG8fwqarp+79kNbkznEVbItv9U7TfLsZajTFcWtKWPsRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CB13C4CED6;
+	Mon,  6 Jan 2025 15:46:18 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id 5D88C5F814;
+	Mon,  6 Jan 2025 23:46:14 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
+ Roman Beranek <me@crly.cz>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ Vasily Khoruzhick <anarsoul@gmail.com>
+In-Reply-To: <20250104074035.1611136-1-anarsoul@gmail.com>
+References: <20250104074035.1611136-1-anarsoul@gmail.com>
+Subject: Re: [PATCH v2 0/4] arm64: allwinner: a64: fix video output on
+ Pinebook
+Message-Id: <173617837421.3282465.589306007023383641.b4-ty@csie.org>
+Date: Mon, 06 Jan 2025 23:46:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mail-ID: 8e3ec3fd-240f-4d2b-8e17-bdd50b875e02
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Am 6=2E Januar 2025 16:28:57 MEZ schrieb Gregory CLEMENT <gregory=2Eclement=
-@bootlin=2Ecom>:
->Hello Frank,
->
->> is there any new state here? got no answer for my last 2 Messages
->
->Actually I waited for a new version following the review and I didn't
->saw it=2E Maybe I missed it=2E
+On Fri, 03 Jan 2025 23:36:56 -0800, Vasily Khoruzhick wrote:
+> Since commit ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI
+> in TCON0 mux"), TCON0 clock parent is always set to PLL_MIPI, but
+> unfortunately it breaks video output on Pinebook.
+> 
+> I did an experiment: I manually configured PLL_MIPI and PLL_VIDEO0_2X
+> to the same clock rate and flipped the switch with devmem. Experiment
+> clearly showed that whenever PLL_MIPI is selected as TCON0 clock
+> parent, the video output stops working.
+> 
+> [...]
 
-No,sent v2 last days as the suggestion from rob was imho not matching what=
- the patch does (i do not add phys property)=2E So i wrote back, but there =
-it hangs=2E
+Applied to sunxi/for-next in sunxi/linux.git, thanks!
 
-I hope new title is better=2E
+[1/4] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and PLL_MIPI
+      https://git.kernel.org/sunxi/linux/c/9897831de614
+[2/4] clk: sunxi-ng: a64: drop redundant CLK_PLL_VIDEO0_2X and CLK_PLL_MIPI
+      https://git.kernel.org/sunxi/linux/c/0f368cb7ef10
+[3/4] arm64: dts: allwinner: a64: explicitly assign clock parent for TCON0
+      https://git.kernel.org/sunxi/linux/c/8715c91a8365
+[4/4] clk: sunxi-ng: a64: stop force-selecting PLL-MIPI as TCON0 parent
+      https://git.kernel.org/sunxi/linux/c/383ca7bee8a9
 
-<https://patchwork=2Ekernel=2Eorg/project/linux-arm-kernel/patch/202501031=
-03724=2E6223-2-linux@fw-web=2Ede/>
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
 
-Anyone with marvell boards have tested it?
-
->Gr=C3=A9gory
-
-
-regards Frank
 
