@@ -1,79 +1,54 @@
-Return-Path: <devicetree+bounces-135835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CE5CA0270F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:48:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D89A9A027B6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:20:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B48D33A16EB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:48:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00DF61648FA
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:20:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C69C1DE3A7;
-	Mon,  6 Jan 2025 13:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bax+vtnb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8B81DED4A;
+	Mon,  6 Jan 2025 14:20:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A5914884F
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 13:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B2E01C69D;
+	Mon,  6 Jan 2025 14:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736171302; cv=none; b=UwJmCwD2VOs2kVXijfhqulh6mLlnkrtdpk5ebz/3a34si/NdvQtjFlqP5g9lKxLeMNeYnjsCSJCdb4b8cnhXi3pbfqeRJxo2U+wbalxYl6+VjTIaeD6z7+4Yw0hStnvFNvzBMKjXGI6Rs7SEvbtC7w7AY5VVtwQhhYOiwpzTP2A=
+	t=1736173211; cv=none; b=Z2XyJV8msoctxjGLvVzXtwWPVW1iSOjewdBr8Fva0WpZry/0SzIb8bTAByn/3VnQPJz4YthwEnAL5iUDybSub0fK7EwIaD8iDAAp3pSextQ9z+T7S8ibvrOzZ9WLvpiD8cdxOx7ARQK7VwPf/I5RRLyo+852TPynJQT5nIinda8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736171302; c=relaxed/simple;
-	bh=oEzBzkm5zhFocTIP5mCTw6jiJphJwfUoVnx1yBXuQXM=;
+	s=arc-20240116; t=1736173211; c=relaxed/simple;
+	bh=wn3wFUB9KZfEHhSMsj5RdEQEhDDDg7va4RAbjdECAWk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XCJmQJjgtw2pHPiby8uh4FqfT2U1RWNByfzHK+nTEHecJgMqFvjToahPt7mQDOnJPh5QSJXVa38AKOrRvUv91nBKwgZOmwISv2NPkD7p9jNL4tMPJZRH1syiidXseg2nXEuFrUVUVNontBtPC0onTssiqaeXy+pP4U8HJwpKumM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bax+vtnb; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-436246b1f9bso22987885e9.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 05:48:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736171298; x=1736776098; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lVoIv9uJgulHknZBzyMzt1MlYwAlZneVytRZEWgC69M=;
-        b=bax+vtnb51fxJgi9MbQUr68B/1mNxfEC8PZcKGtjW9t0mHBcJ+qXdIrYq4Xm+lATvg
-         nCqKZfNaCpbt8Ekx6rEULTWwKf3y+OD6QmpmSapwEu8+9N9xjVURfzDbx5WFM1dtW6sM
-         xTMo8d2ZF3oviSnQrTCNXkpRSmYPl1v3ljgDHj1bCj+32a8S1WRjNJz7KPdX+fx+MQCx
-         kVTM7tFPL+JKnCZdHJ3Q/RiQcY6CHBJW9h2gbVdtDXUTmknrUsfgWQqTp/Sa+H6QOiIi
-         01z0uLjnsQSmcVT/vj5cKjutCQ12XuOiSW9omFDzq8EV6in5U94wQK8hSBiyqmWSTn1G
-         sj7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736171298; x=1736776098;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lVoIv9uJgulHknZBzyMzt1MlYwAlZneVytRZEWgC69M=;
-        b=ok8nfyjdTkDggEOTNR3sZGYlOnukVFOGFmMmFAQS6E1ytyJUdFi5++LBR97r3PIVlQ
-         A29KUThCCyRNt5fACYNkOWFDtK8tLlSZCkB6UX/fvHu5O9rfoJuLGUnoFvhRsNqjNala
-         zmwZPdyUE5qsU2hVGLouB2ocsWZq9BNXcoQYwcdLNTQhIii5cxMNhJmpcrMw/Qhseyve
-         atGmQnqVeoDmaavM5PCNpz5K8nDP4/mVjL/BFkxARMPmI1SYFI1Pg7iJSfP6WCSZF9t/
-         DOxDjUcTcbKq20QhflFd4z0nx72atzrNskWnwiBZBVw7Me39qdbzbPVmzXcx9mCyvXvb
-         r1vw==
-X-Forwarded-Encrypted: i=1; AJvYcCVCI0BXycmenWYIo7uBePlHqxkN+FWt+76Yrr1D8qsc2eAQ2KPkhYuv3J7Uxt/Xsy0BqjDkygbvuybi@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxDfwwZhqwfHOq35vhtGQ/9fxdgoHqC3/Sv3v+8TO2tDjApGN9
-	CVHPc3ET+B62aL36EVERM3WxiTswkUzmDOHUkEEOn4n3V9v5tWzzvkIj5GDHTpg=
-X-Gm-Gg: ASbGncsTu66JMV4o+Pf3M9Vv3mPWO4b/QLfCH8j27Uvxasrgm3wwzHeWD/71pyJbk1H
-	4aMbEDmDCFTOfgI45PQGDyATBRmUGMOYOSYVlXKGhpOJ06LWuTS9po3pSvLta5FZabhLoz1JKnu
-	pbsp6av4tzZWOSKJkZYOHv6rhk8/WAyS3B6rLMAKdnv1710nfg3r9XflZoyMbOeN2MZlbtv9B29
-	j9zUPVsy5E5qKW8xqHTFvEKc8CQeWivpvseilmroNqpV2kGeAf0+jiEsXKB6zWMNlxEYYMgF5Om
-X-Google-Smtp-Source: AGHT+IG7hAEYat3gPEaE/ildT3vstQ/kEewJl1HuOcaMTZh31jxeqAKyZ98nglE+Ld3sAZwU0bgrGA==
-X-Received: by 2002:a05:600c:1c2a:b0:42c:bfd6:9d2f with SMTP id 5b1f17b1804b1-436685483aamr206641275e9.1.1736171297739;
-        Mon, 06 Jan 2025 05:48:17 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b013e1sm596638065e9.12.2025.01.06.05.48.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jan 2025 05:48:17 -0800 (PST)
-Message-ID: <09b52f25-12ce-4864-94b8-947ef134b09b@linaro.org>
-Date: Mon, 6 Jan 2025 14:48:14 +0100
+	 In-Reply-To:Content-Type; b=GIDjdoNXo71q247EbNPzOdPYTLbNKf7u27KnO2cUXkHfHw3wMkzTdxrRpndpDKoiTRaNVu9f310P0OOq8uHFenW5u199wBxgBw51L9DWkUCusXWDJ4n+h9PH+/DEL//ImVPvN+Q6Vju/3lFEckW9VfuMs66m9UsantgYve9Gt7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
+Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
+	by localhost (Postfix) with ESMTP id 4YRbD92xxVz9sRy;
+	Mon,  6 Jan 2025 14:50:33 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 6wW4lpObGddX; Mon,  6 Jan 2025 14:50:33 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4YRbD83B5lz9sPd;
+	Mon,  6 Jan 2025 14:50:32 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 5CAB38B76D;
+	Mon,  6 Jan 2025 14:50:32 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+	with ESMTP id Z_B1MFLFwVVN; Mon,  6 Jan 2025 14:50:32 +0100 (CET)
+Received: from [192.168.235.99] (unknown [192.168.235.99])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 9FC648B763;
+	Mon,  6 Jan 2025 14:50:31 +0100 (CET)
+Message-ID: <0b66e94d-7116-4916-b897-06b1199752b4@csgroup.eu>
+Date: Mon, 6 Jan 2025 14:50:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,83 +56,207 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] clk: qcom: sm8750: Add sm8750-dispcc clock
- controller
-To: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 01/19] powerpc: Generalize MPC831x platform support
+To: j.ne@posteo.net, Michael Ellerman <mpe@ellerman.id.au>,
+ Nicholas Piggin <npiggin@gmail.com>, Naveen N Rao <naveen@kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20250106-sm8750-dispcc-v2-0-6f42beda6317@linaro.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20250106-sm8750-dispcc-v2-0-6f42beda6317@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>
+Cc: linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-1-86f78ba2a7af@posteo.net>
+Content-Language: fr-FR
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+In-Reply-To: <20250102-mpc83xx-v1-1-86f78ba2a7af@posteo.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 06/01/2025 14:44, Krzysztof Kozlowski wrote:
-> Add Display clock controller for SM8750.
-> 
-> Changes in v2:
-> - Implement feedback from Stephen - see individual patches changelog.
-> - Few cleanups found during testing/review - see individual patches changelog.
-> - Use clk_rcg2_shared_ops, where applicable.
-> - Link to v1: https://lore.kernel.org/r/20241128-sm8750-dispcc-v1-0-120705a4015c@linaro.org
-> 
-> Dependency:
-> 1. Taycan PLL and rest of clocks: "clks: qcom: Introduce clks for
->    SM8750"
->    https://lore.kernel.org/r/20241112002807.2804021-4-quic_molvera@quicinc.com
-Stale link. Newer dependency is here:
-https://lore.kernel.org/all/20241204-sm8750_master_clks-v3-0-1a8f31a53a86@quicinc.com/
 
-Best regards,
-Krzysztof
+
+Le 02/01/2025 à 19:31, J. Neuschäfer via B4 Relay a écrit :
+> [Vous ne recevez pas souvent de courriers de devnull+j.ne.posteo.net@kernel.org. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> From: "J. Neuschäfer" <j.ne@posteo.net>
+> 
+> The Reference Design Boards (RDB) don't have the same relevance they had
+> then the MPC831x platform was new; if any work is done today, then
+> likely based on used production boards, which are more readily available
+> than NXP's discontinued devboards.
+> 
+> To further reduce the focus on RDBs, add DT compatible strings for all
+> four MPC8314/5 variants.
+
+Seems like this patch does more than adding DT compatible strings.
+
+> 
+> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> ---
+>   arch/powerpc/configs/83xx/mpc8313_rdb_defconfig     |  2 +-
+>   arch/powerpc/configs/83xx/mpc8315_rdb_defconfig     |  2 +-
+>   arch/powerpc/configs/mpc83xx_defconfig              |  2 +-
+>   arch/powerpc/configs/ppc6xx_defconfig               |  2 +-
+>   arch/powerpc/platforms/83xx/Kconfig                 |  6 +++---
+>   arch/powerpc/platforms/83xx/Makefile                |  2 +-
+>   .../platforms/83xx/{mpc831x_rdb.c => mpc831x.c}     | 21 ++++++++++++++-------
+>   7 files changed, 22 insertions(+), 15 deletions(-)
+> 
+> diff --git a/arch/powerpc/configs/83xx/mpc8313_rdb_defconfig b/arch/powerpc/configs/83xx/mpc8313_rdb_defconfig
+> index 16a42e2267fbe092ea2344f50548101bc1e344ce..38a4d1ceff6a9ea75d9d8a313adbd2e5e5c9ac67 100644
+> --- a/arch/powerpc/configs/83xx/mpc8313_rdb_defconfig
+> +++ b/arch/powerpc/configs/83xx/mpc8313_rdb_defconfig
+> @@ -12,7 +12,7 @@ CONFIG_PARTITION_ADVANCED=y
+>   # CONFIG_PPC_CHRP is not set
+>   # CONFIG_PPC_PMAC is not set
+>   CONFIG_PPC_83xx=y
+> -CONFIG_MPC831x_RDB=y
+> +CONFIG_MPC831x=y
+>   CONFIG_PCI=y
+>   CONFIG_NET=y
+>   CONFIG_PACKET=y
+> diff --git a/arch/powerpc/configs/83xx/mpc8315_rdb_defconfig b/arch/powerpc/configs/83xx/mpc8315_rdb_defconfig
+> index 80d40ae668eb6f1ae10bc0c1100d904946496112..788189a182458c92a62235c10fb3d21a87f4296b 100644
+> --- a/arch/powerpc/configs/83xx/mpc8315_rdb_defconfig
+> +++ b/arch/powerpc/configs/83xx/mpc8315_rdb_defconfig
+> @@ -12,7 +12,7 @@ CONFIG_PARTITION_ADVANCED=y
+>   # CONFIG_PPC_CHRP is not set
+>   # CONFIG_PPC_PMAC is not set
+>   CONFIG_PPC_83xx=y
+> -CONFIG_MPC831x_RDB=y
+> +CONFIG_MPC831x=y
+>   CONFIG_PCI=y
+>   CONFIG_NET=y
+>   CONFIG_PACKET=y
+> diff --git a/arch/powerpc/configs/mpc83xx_defconfig b/arch/powerpc/configs/mpc83xx_defconfig
+> index 83c4710017e949c358f3ba8b73f5c1873cfd10f8..4af5e3e8c5a7f44f5e97b8fb4cdf691686f8967b 100644
+> --- a/arch/powerpc/configs/mpc83xx_defconfig
+> +++ b/arch/powerpc/configs/mpc83xx_defconfig
+> @@ -9,7 +9,7 @@ CONFIG_PARTITION_ADVANCED=y
+>   # CONFIG_PPC_CHRP is not set
+>   # CONFIG_PPC_PMAC is not set
+>   CONFIG_PPC_83xx=y
+> -CONFIG_MPC831x_RDB=y
+> +CONFIG_MPC831x=y
+>   CONFIG_MPC832x_RDB=y
+>   CONFIG_MPC834x_ITX=y
+>   CONFIG_MPC836x_RDK=y
+> diff --git a/arch/powerpc/configs/ppc6xx_defconfig b/arch/powerpc/configs/ppc6xx_defconfig
+> index ca0c90e9583790cbca15ba956b371b8b0cb63c47..7e56dc497a48289614c8d01cc51be6d1edad7846 100644
+> --- a/arch/powerpc/configs/ppc6xx_defconfig
+> +++ b/arch/powerpc/configs/ppc6xx_defconfig
+> @@ -40,7 +40,7 @@ CONFIG_PPC_82xx=y
+>   CONFIG_EP8248E=y
+>   CONFIG_MGCOGE=y
+>   CONFIG_PPC_83xx=y
+> -CONFIG_MPC831x_RDB=y
+> +CONFIG_MPC831x=y
+>   CONFIG_MPC832x_RDB=y
+>   CONFIG_MPC834x_ITX=y
+>   CONFIG_MPC836x_RDK=y
+> diff --git a/arch/powerpc/platforms/83xx/Kconfig b/arch/powerpc/platforms/83xx/Kconfig
+> index d355ad40995fdc0fc3b4355126c65c761c21c296..944ec44a1fa6044b03ac71c295e891cd411ce444 100644
+> --- a/arch/powerpc/platforms/83xx/Kconfig
+> +++ b/arch/powerpc/platforms/83xx/Kconfig
+> @@ -18,12 +18,12 @@ config MPC830x_RDB
+>          help
+>            This option enables support for the MPC8308 RDB and MPC8308 P1M boards.
+> 
+> -config MPC831x_RDB
+> -       bool "Freescale MPC831x RDB"
+> +config MPC831x
+
+That looks confusing. We already have CONFIG_PPC_MPC831x
+
+
+> +       bool "Freescale MPC831x boards"
+>          select DEFAULT_UIMAGE
+>          select PPC_MPC831x
+>          help
+> -         This option enables support for the MPC8313 RDB and MPC8315 RDB boards.
+> +         This option enables support for all MPC831x-based boards.
+> 
+>   config MPC832x_RDB
+>          bool "Freescale MPC832x RDB"
+> diff --git a/arch/powerpc/platforms/83xx/Makefile b/arch/powerpc/platforms/83xx/Makefile
+> index 6fc3dba943dade4f63da090b520b0c35bb46a091..92fb0b34913e1113d3e6eac49acbb1c32fb06ab7 100644
+> --- a/arch/powerpc/platforms/83xx/Makefile
+> +++ b/arch/powerpc/platforms/83xx/Makefile
+> @@ -6,7 +6,7 @@ obj-y                           := misc.o
+>   obj-$(CONFIG_SUSPEND)          += suspend.o suspend-asm.o
+>   obj-$(CONFIG_MCU_MPC8349EMITX) += mcu_mpc8349emitx.o
+>   obj-$(CONFIG_MPC830x_RDB)      += mpc830x_rdb.o
+> -obj-$(CONFIG_MPC831x_RDB)      += mpc831x_rdb.o
+> +obj-$(CONFIG_MPC831x)          += mpc831x.o
+>   obj-$(CONFIG_MPC832x_RDB)      += mpc832x_rdb.o
+>   obj-$(CONFIG_MPC834x_ITX)      += mpc834x_itx.o
+>   obj-$(CONFIG_MPC836x_RDK)      += mpc836x_rdk.o
+> diff --git a/arch/powerpc/platforms/83xx/mpc831x_rdb.c b/arch/powerpc/platforms/83xx/mpc831x.c
+> similarity index 65%
+> rename from arch/powerpc/platforms/83xx/mpc831x_rdb.c
+> rename to arch/powerpc/platforms/83xx/mpc831x.c
+> index 5c39966762e4264d2ef91b2c4ef75fdf2c2c5d65..7250fc11c7ee80b266f39d0b3aebb0deb777c129 100644
+> --- a/arch/powerpc/platforms/83xx/mpc831x_rdb.c
+> +++ b/arch/powerpc/platforms/83xx/mpc831x.c
+> @@ -1,8 +1,8 @@
+>   // SPDX-License-Identifier: GPL-2.0-or-later
+>   /*
+> - * arch/powerpc/platforms/83xx/mpc831x_rdb.c
+> + * arch/powerpc/platforms/83xx/mpc831x.c
+
+Please remove the file name from the file.
+
+>    *
+> - * Description: MPC831x RDB board specific routines.
+> + * Description: MPC831x board specific routines.
+
+s/board/boards ?
+
+>    * This file is based on mpc834x_sys.c
+>    * Author: Lo Wlison <r43300@freescale.com>
+>    *
+> @@ -22,24 +22,31 @@
+>   /*
+>    * Setup the architecture
+>    */
+> -static void __init mpc831x_rdb_setup_arch(void)
+> +static void __init mpc831x_setup_arch(void)
+>   {
+>          mpc83xx_setup_arch();
+>          mpc831x_usb_cfg();
+>   }
+> 
+>   static const char *board[] __initdata = {
+> +       /* Reference design boards */
+>          "MPC8313ERDB",
+>          "fsl,mpc8315erdb",
+> +
+> +       /* Generic chip compatibles */
+> +       "fsl,mpc8315e",
+> +       "fsl,mpc8315",
+> +       "fsl,mpc8314e",
+> +       "fsl,mpc8314",
+>          NULL
+>   };
+> 
+> -machine_device_initcall(mpc831x_rdb, mpc83xx_declare_of_platform_devices);
+> +machine_device_initcall(mpc831x, mpc83xx_declare_of_platform_devices);
+> 
+> -define_machine(mpc831x_rdb) {
+> -       .name                   = "MPC831x RDB",
+> +define_machine(mpc831x) {
+> +       .name                   = "MPC831x",
+>          .compatibles            = board,
+> -       .setup_arch             = mpc831x_rdb_setup_arch,
+> +       .setup_arch             = mpc831x_setup_arch,
+>          .discover_phbs          = mpc83xx_setup_pci,
+>          .init_IRQ               = mpc83xx_ipic_init_IRQ,
+>          .get_irq                = ipic_get_irq,
+> 
+> --
+> 2.45.2
+> 
+> 
+
+
 
