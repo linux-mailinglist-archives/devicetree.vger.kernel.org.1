@@ -1,97 +1,100 @@
-Return-Path: <devicetree+bounces-135943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE40AA0314E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 21:21:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D52A03150
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 21:23:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA5AA3A5427
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:21:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E82C18869A8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149801E009C;
-	Mon,  6 Jan 2025 20:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6178D1DEFE7;
+	Mon,  6 Jan 2025 20:23:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VEPPO9yO"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="cy507WVq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB901E0086
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 20:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEFFA1CEADF
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 20:23:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736194893; cv=none; b=AQToHcr1ZCgfP+rwmp44Fmy+FIRl3ebUkEWM8SAU3gdHgl4bsjR8EZhpXFIidB6W0t3iRAG5h1FzkaYlOktViWF1totnMMfghrB/mYSpX/zmlSrTFLV87sGrQNBQqKNta2UVMkgpEc2ui196Q2m6mVcLSSE03Qwzlct6FojN+nU=
+	t=1736195017; cv=none; b=CVcuWpMOCKI1+Lzdli3b9QTcBYSPgjJges+cXCeI0SHvp7lmtAwlMv3BkEvdRkvhB4ZRU0tETxCo2Lzu+wzloEyGpcOirNN9EO6xbrn2MUF3z50ETs071CKR9gdbfqsRu3H7ZhrOVDou09BIXO+DJCpz9RXqaaRQzHByyjulCoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736194893; c=relaxed/simple;
-	bh=bMAr4DQGzlza/TutyhbPaI1HQ2tcZJbHpg/SajkA+Do=;
+	s=arc-20240116; t=1736195017; c=relaxed/simple;
+	bh=oloSoCpL+vTs6hRSB6u1qL5TlfX3tfKLCkUfIBOyPNQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RSory7ws7DnQNuvvwm9P4jtT7i0i4+dg3ERIQMxfSkXhyx35/xTcoxaVeZVvr2gmWLS+3tXuehfSFGer5EoasX4YFP4P7VuXbWetLHplthpiPLtPBPcu/VDfoydI+u+tEMT2q20ZXdmVzHnx2l1zQm2umUjZGCEanuXobMckxGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=VEPPO9yO; arc=none smtp.client-ip=209.85.221.50
+	 MIME-Version:Content-Type; b=LhHp8NY2NglWyrY79/Jphw09a/45ct4wO9ZEQoDrR9f+ngR1H3IO9YhJk/W4ZcZN2UFmPA/grRlmgre9F4ixidlE8WCJKlYhEsTbyjCPRjOIdtq1ebIC+xnfSArgYEBjbTiHHth761EYyqVpgPAKIjIYLhYkWwovTgawSfcF2e4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=cy507WVq; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-385eed29d17so7027094f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 12:21:31 -0800 (PST)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-436202dd730so106113045e9.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 12:23:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1736194890; x=1736799690; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1736195014; x=1736799814; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=N08679NMA6u8B70kqY81dtpRf5QTarA7SLWj7Tm0mBQ=;
-        b=VEPPO9yOrtM7AwJMvO5TUaTzpzfEKod72PJMFGjyDP7+5P0lQWsYVi2JeOqanGduid
-         2imuFl2sqEl4UhQP5U7hYZCBQ0SyqAMkkzDXMsy+bl8Z0AIPWnx3Wte7L+hEEkWMNeui
-         kpjZjNpsaOjNAtENgJfM51DJThb7St8cs/V42J0k99XTnt8JCbkuF9F+BI6o0mT6pQHF
-         KeAiA2eIH886FQyrcSVdywQGgTY6J94MW+wm4h/qww1j4Wu+EnyuFV0/4bliu8ZPFC1+
-         8Z/DwMtSXAiiwjdYHq6ojamHyds5Zp40YTUFMy70KTkpIFD9k5Sn3qPQqG34XYHn5vRC
-         QSOw==
+        bh=nh6giEYIA/meByuU7DxkCeD78i3wvwoOcPOobfQbLGE=;
+        b=cy507WVqyEKOsFmXneyCRgh6hOceo/ee7d+W6LotcWfENy+ixMUBkMdpJdCTuJgTJ9
+         GhF/h9PWsWouCtVh7Ut5UZRLnbF9knYF6q32B3oYgnAkcG96rp2kgu6qa6gqICRF8nAq
+         VTkciP+GJuECBRDzv+QidErPsOpo/cId7/sTFitQxL6qAvwGM5y/WqfksE/6UYIqlglv
+         itgWl30P1IOLnr0AIVeSkYsBjSJ1R5QfYs0GogXS0ME2QyPy5mXL34Xj5JOcE6FL3x7N
+         jicEN/M/1bZJB9eEDJMb+EVGetR2foHrJj1HnifZxqv2eBOHhyNYxuyPnmtK0KgGB/e6
+         vyew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736194890; x=1736799690;
+        d=1e100.net; s=20230601; t=1736195014; x=1736799814;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=N08679NMA6u8B70kqY81dtpRf5QTarA7SLWj7Tm0mBQ=;
-        b=qjqfeIRdbO4pnjsUwaWQIhgoCNGGYFz6NmJXs9jGkkJZX0zKmMNgp0nqoK8O6Q74ba
-         asv0G/su8dZhuLN75tRsSyCuyO9Wi1Yka6dUmVIyC1JxtWTpF5WpfBukkFzhDEpuofEg
-         ArnRWgHQn3R7278jInXUPlWB/Jf7awgmSchiBlCXthfHP0KiE+RY+C+1Jpld6UQlQriP
-         V+Ijq9CWsFrPZlFHx3Eayij3Ff3bsDgzLqoYgx7MPUsfpOp0fwixs+djVZZCSeEYGWpy
-         UQNXvqY0iIUqRYLLhjolDPXM5fNe5dEWjdpuvCoAqO+1Yemv5CLSUP7et/VjgQTriWlW
-         ezOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXiZRbrurUeeO0E9TgCE+XKVOGyVSSR/kxiM19NMYNyjAs+fkB5YBGB4s4T9j71EyzxWyr9dPZZjHyj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXFpNCx6AIGgOXlNV/nwHMGRQ23Pi+MX+p2EcNKE9S9zJv2Ugw
-	qB1BDaQfQEhNhdoGHJ/CVIwoIargroxYZK+5CJjUWkjlstTIYhWtJ1ovmdn3bcw=
-X-Gm-Gg: ASbGnctwRolU8FOmD+XJgUH75LSte2dbk/p8AUFlA5b3dgjXBcjQNOESEsq1aRThNre
-	Y6gva1Npj6mSfgjsXqWWL1pPUbZXhT6ruzW5xZbp95z97LyM0JRU21WFHHFX7xZCRrN/Z2Vn163
-	Q6DOiE6Ge1Z5Ra9pqZC/cAjipDB1UoMtFywCVgE0clwmqgthKSFfE2G7wm+8AwchFjLr39iwOSG
-	QKSDsbgRjWB7A50kg+Wl1vw2gGOrQwx3TgBB2Ivs2HHJqJr1EJKbA==
-X-Google-Smtp-Source: AGHT+IGcUgKVgqgZbOiKeAaKRBuyaX/xWL0sgO52tcYB5Zp3oWkT56O/vF9ag2QUJgqxEUh+Octj7w==
-X-Received: by 2002:a5d:64c8:0:b0:388:c75c:e839 with SMTP id ffacd0b85a97d-38a223f7167mr46626721f8f.42.1736194888096;
-        Mon, 06 Jan 2025 12:21:28 -0800 (PST)
+        bh=nh6giEYIA/meByuU7DxkCeD78i3wvwoOcPOobfQbLGE=;
+        b=lfyRopCsHarmA7mDeokjFToDY5TxPjQ6MZSB5MuUUBosZs5TV9JA6VaC4UfHxYlV23
+         UnP8N1NYtKw4jTFf7sDWSw+IqSoKWxaYO2x1hstr7qQbSSdebqwOAnv6w6lBu9dD2jj4
+         UeVNaTL4QnmwAfNaOw9Ht2QbyQAaLBvnAji+3ZGUcUdp02n8obB5d6XDDTTcyXLjTjZv
+         4fNXi32bSecQQkehDGO9iYPEe4moWHtK21i9FUnuw+OH3OqpRz4/WSudc9t9zUDh6H2/
+         2k26aEe7FuhMPieheWdHJ3iNZIHkYHS+tMOk1wNUlMyDU0hqj8KCvRNyCp80SKrGFn0x
+         iV5A==
+X-Forwarded-Encrypted: i=1; AJvYcCWoSZqevi4n8384mR/DTbjt4xLxnnCNgMMGceDCsO1/hdd25r65hBF7zCZyo9USD2HWyd4degG9E36F@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFLSoVc70OPRsSqoh4y5iqqSw/7hOT5rFDuu1WrJ3ife18kBzB
+	EPucpiAqRhsLIH/FyeV2ExqfPlwB4kJJ/vjdKvSb8RLRPaGiW0KNbozsTm1z7KA=
+X-Gm-Gg: ASbGncsexZigrVP9kiz/wdPj1KEEsHbIOykd4D1Vb7ZoEmNgNYnhBbnobZQ77ODZ1OM
+	v56F1kJvGClOBpDGwmeRadmUoWZHF+NjHq0qPA9XwjyYIHF6U32FE1nPGI1ZPN2MlXCxtnptvLA
+	ZanKJlNAG+fdAwjS7gHS5hY9cMLno+Xj5GUkdABvDggGcVT8lHcPBvdRdl33/l4Zpq07tD3U9sX
+	4oVr8P7uUzSRGYpPEOkHiyYxV6TT3Dki3+zGcKH5blfrQBWpu8mIQ==
+X-Google-Smtp-Source: AGHT+IG5MF7x6loZ2YU8l7YFeeisPs11ZQvCeOUqElgSEpjCa2qSR+5vvj/MXT5V88O23KvWA1y/Iw==
+X-Received: by 2002:a7b:cd98:0:b0:42c:de2f:da27 with SMTP id 5b1f17b1804b1-4366b2f9323mr450859345e9.2.1736195014045;
+        Mon, 06 Jan 2025 12:23:34 -0800 (PST)
 Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:6d7c:e1c5:e9:58a5])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b4471bsm611364335e9.44.2025.01.06.12.21.27
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b11495sm609463555e9.19.2025.01.06.12.23.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 12:21:27 -0800 (PST)
+        Mon, 06 Jan 2025 12:23:33 -0800 (PST)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Bartosz Golaszewski <brgl@bgdev.pl>,
+To: Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Luca Weiss <luca.weiss@fairphone.com>
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Frank Li <Frank.Li@nxp.com>,
+	=?UTF-8?q?J=2E=20Neusch=C3=A4fer?= <j.ne@posteo.net>
 Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/5] Add EEPROMs found in the camera sensors on Fairphone 5
-Date: Mon,  6 Jan 2025 21:21:26 +0100
-Message-ID: <173619488358.255016.2244642661299426243.b4-ty@linaro.org>
+	devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: (subset) [PATCH 00/19] powerpc: MPC83xx cleanup and LANCOM NWAPP2 board
+Date: Mon,  6 Jan 2025 21:23:32 +0100
+Message-ID: <173619500923.255677.11065404025961122002.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250103-fp5-cam-eeprom-v1-0-88dee1b36f8e@fairphone.com>
-References: <20250103-fp5-cam-eeprom-v1-0-88dee1b36f8e@fairphone.com>
+In-Reply-To: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,24 +107,22 @@ Content-Transfer-Encoding: 8bit
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
 
-On Fri, 03 Jan 2025 12:11:56 +0100, Luca Weiss wrote:
-> While out-of-tree already two of the three camera sensors are working on
-> this smartphone, getting those upstream-ready will still take a while.
+On Thu, 02 Jan 2025 19:31:41 +0100, J. Neuschäfer wrote:
+> This patchset adds a devicetree for the LANCOM NWAPP2 board based on the
+> MPC8314E platform, and slightly modernizes the MPC83xx platform support
+> in the process.
 > 
-> Until then already enable the EEPROMs found on those camera sensors
-> which doesn't have a dependency to the sensor drivers and gets those out
-> of the way.
+> This board is nominally end-of-life, but available to hobbyists.
+> A U-Boot port is also in the making.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/5] dt-bindings: eeprom: at24: Add compatible for Giantec GT24P128F
-      commit: 56d4ef115cc51b1fe7de1e695923126923c9f9bf
-[2/5] dt-bindings: vendor-prefixes: Add Puya Semiconductor (Shanghai) Co., Ltd.
-      commit: eace9d83c831c44b4f63beec18774fe4a46d12cc
-[3/5] dt-bindings: eeprom: at24: Add compatible for Puya P24C256C
-      commit: 36036a164fac96727ed724a388dae38d2f5f21c1
+[11/19] dt-bindings: gpio: fsl,qoriq-gpio: Add compatible string fsl,mpc8314-gpio
+        commit: e083b304bb0c2c8c9fc1c2adb63eed6233babfe8
+[13/19] gpio: mpc8xxx: Add MPC8314 support
+        commit: 401239e1ec9757bf508240e49f5d5da9ea75e5f7
 
 Best regards,
 -- 
