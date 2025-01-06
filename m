@@ -1,140 +1,106 @@
-Return-Path: <devicetree+bounces-135821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449D6A0258A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:31:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C74B4A0258E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:31:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48A201882A43
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:31:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9A013A1442
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844371DE3C7;
-	Mon,  6 Jan 2025 12:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53AB71DE2A4;
+	Mon,  6 Jan 2025 12:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a9LQR9JG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uBMO0/aG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239EF1DDA36;
-	Mon,  6 Jan 2025 12:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFEC11DDC3A;
+	Mon,  6 Jan 2025 12:31:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736166607; cv=none; b=aDCuLy+STRxXz8cmHlZDlWYRR8CGMaymqO3h+4KygWeiURIeD35WRfDXIDFbbUzIGkanWCq9YNGuvcBhDZ5UgOz0+yAHRYs990U7mh4efYA1pypCqiLgk3Ky8r0OBOruhoGpCJI0bv9Q5pBcOmpxo/nkl45HpnMMZ5YjdTVXUfY=
+	t=1736166705; cv=none; b=DyZYMqBLM3AsJNYMafaL3ik/zWSve0T7l1KkC4hnr1UhUQ0hbnzrKevXPxymnSj2Wj6qq9B3A9hYlwOBvT0v1U4LOY8puEzERSYJp2xdBY1nsPe1sJd1TQI6J9GCS1bLCbNWcNC/LGmm10dm74eMox6NlW/jRi4vWSCQ7nhh+lM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736166607; c=relaxed/simple;
-	bh=dt9uunZPfoDIamCzQdNIaGK4eUqsz1QnKbTU0kwbDmY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GHhfp3/eKZkqDm3sfcSQalyzO5pAY4Lxi3PkTjD0ODpXC6ROGT6HjHezBou6ZaQhkarze+bTDWLdNR6T8EUNE85jr1H86h0CKFbkVks3SI2RkwsX9CBi+AgruzaaYDDh0gadajjMKOVytH34a4IhtVh8idMIkC30N/R117WuXEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a9LQR9JG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF4FC4CED2;
-	Mon,  6 Jan 2025 12:29:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736166606;
-	bh=dt9uunZPfoDIamCzQdNIaGK4eUqsz1QnKbTU0kwbDmY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=a9LQR9JGvR0xDzmmLzR5+XiZyNQkMMSzf8c1Gv73vWyzd8Q4iG15fZOWnWayXC50c
-	 0tJTFwh9hsvkZb+pipXUybbF6cvhVm9uycseeNmVAXjwQAUDWVeW1Osqr9dKcc7tOX
-	 TowLQZAdYm5ZjJLM7mOUJ7AVqQiTYWZ2AX6qzD//Q31W4vNBWwOqfiw7pQ/43Trfi1
-	 SavnRtZPCt+sRJZJ4+7V8ksKnIbRq2cVBTPNwYzKsD2rbq7ysZHuglAmFxg21mX60A
-	 lOv6rQXmXY+XPhQ/hc/XX2ipjv9lVQjaegFcLmoRP72x7KXjgoH5y/tcOUaYb4OsSF
-	 FO5tT8UKd6Fag==
-Message-ID: <12636552-b644-429b-8be0-44334fae6130@kernel.org>
-Date: Mon, 6 Jan 2025 13:29:57 +0100
+	s=arc-20240116; t=1736166705; c=relaxed/simple;
+	bh=ocIjMMX86l5aXvO9kfRYj4EEZMd8kMyX3Oe415Mvz9w=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hjtrXUdMGHcB0Yzhk77udMk37gwGYlE+VsIOq3PULt80rwXUNp66vUgZsrtrMmw4PiL0N+Ve94nNzDa/KZuchLMzyu3NUXZAwG1CNpdtA1nwnZ8/Ag+ysSiUICWY+nP9zOA0wIIfS4VdXzu9I6e0wN5aqTJYsHkfRTG5KXd0Eo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uBMO0/aG; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 506CVR2p2789486
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 6 Jan 2025 06:31:27 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736166687;
+	bh=HvgttcVET7LS9gnu9cFNnv8pyvgfsHqqp2dm/tHr+NY=;
+	h=From:To:CC:Subject:Date;
+	b=uBMO0/aG35GCL2yQs0NC6YGIxh7izv1jZ42eZSrULxzBVHBIVp8FRxr3oBkv+HarX
+	 mBtZWcuxI7+QL3TkgzC4hNpigBRFhzcv3p6NUo1O6J/VbiJf8Szc8JiAfVf4NwOPrk
+	 eNAMqjUN8C+yFmRUCEN2oQqi5ohJh321QjK0JtiQ=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 506CVRes006557
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 6 Jan 2025 06:31:27 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 6
+ Jan 2025 06:31:26 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 6 Jan 2025 06:31:26 -0600
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 506CVQEN094247;
+	Mon, 6 Jan 2025 06:31:26 -0600
+From: Chintan Vankar <c-vankar@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Tero Kristo
+	<kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
+	<nm@ti.com>
+CC: <srk@ti.com>, <s-vadapalli@ti.com>, <danishanwar@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Chintan Vankar <c-vankar@ti.com>
+Subject: [PATCH 0/2] Add bootph-all property to necessary nodes to enable ethernet boot for AM68-SK, J722s and AM62p-SK
+Date: Mon, 6 Jan 2025 18:01:20 +0530
+Message-ID: <20250106123122.3531845-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
-To: Pengyu Luo <mitltlatltl@gmail.com>
-Cc: andersson@kernel.org, bryan.odonoghue@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org,
- gregkh@linuxfoundation.org, hdegoede@redhat.com,
- heikki.krogerus@linux.intel.com, ilpo.jarvinen@linux.intel.com,
- jdelvare@suse.com, konradybcio@kernel.org, krzk+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-usb@vger.kernel.org, linux@roeck-us.net,
- platform-driver-x86@vger.kernel.org, robh@kernel.org, sre@kernel.org
-References: <md45rp2dmv7aibez2sxwzyjayfi4wbujshlc46hxi6v4jzlhfr@tpbtqv46hrlh>
- <20250106080657.240974-1-mitltlatltl@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250106080657.240974-1-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 06/01/2025 09:06, Pengyu Luo wrote:
->>> +      - const: huawei,gaokun-ec
->>
->> There is no support for gaokun2 here, so I assume you checked and you
->> know these are compatible. What's more, you claim there is a generic
->> piece of hardware called gaokun-ec and everything in this family will be
->> compatible with it. Well, that's my standard disclaimer and disapproval
->> of using generic compatibles.
->>
->> So in general what you want here is *only one* compatible called
->> huawei,gaokun3-ec
->>
-> 
-> I agree with you. If there is a generic rule to follow, I am not familiar
-> with this. I have seen some bindings, using like this, so I followed it
-> recently.
+This series adds bootph-all property to necessary nodes to enable
+ethernet boot support for AM68-SK, J722s and AM62p-SK.
 
-Generic rule is: wildcards and family names are not allowed. Now what
-"generic" means, is different for different devices. If unsure, always
-use only device-specific compatibles.
+This series is based on linux-next tagged next-20250106.
 
+Chintan Vankar (2):
+  arm64: dts: ti: k3-am68-sk*: Add bootph-all property to necessary
+    nodes to enable Ethernet boot
+  arm64: dts: ti: k3-am62p5*/k3-j722s: Add bootph-all property to
+    necessary nodes to enable Ethernet boot
 
+ arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 +++
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts                | 2 ++
+ arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts       | 5 +++++
+ arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi       | 2 ++
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts                | 3 +++
+ 5 files changed, 15 insertions(+)
 
-Best regards,
-Krzysztof
+-- 
+2.34.1
+
 
