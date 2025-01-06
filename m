@@ -1,173 +1,122 @@
-Return-Path: <devicetree+bounces-135836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0C7EA0275D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:01:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E2BA02769
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:03:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D612718858AB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:01:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A92601881A1D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4972F1DE8BD;
-	Mon,  6 Jan 2025 14:00:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426F839FCE;
+	Mon,  6 Jan 2025 14:03:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S4SYLq5E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF95B1DE3A7;
-	Mon,  6 Jan 2025 14:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B2C524F
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 14:03:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736172057; cv=none; b=F9nbj8YQjyhiaNvTJYm3dcueH4Xkn2bQ2mCWz/ZNTt4dkopKpj3+Pj51sePWXH1Lm6ECUzP4+aEheSBnl3OI6gW5+L3pR2LWgFiluhG9evyG3I3Izp1NXAqoQXzgBo9rzU8GTfLxCLRdEvm5XZA8k15Pz81lGj1pfxVs9HK4a/0=
+	t=1736172223; cv=none; b=ogoXkP1EmV6OH45l6UeNXP3bD4OmcMvEzpJaZWCm1/6EebkckEVi08N7kSa/hPkZGD7h8K7RSjX5TnMesV8aPQEZTLmIeDjKk4NsRVLYrFbtTqtpnxr/szb4uLzO4qBvVFidBwXqkI2qTN5npDnBgnomO8k4sbFMivbk1Y2lqb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736172057; c=relaxed/simple;
-	bh=bsPan0OGGtm+jfbyZTDT7w5z6WPw+KoNLVdD+s9Yak0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l5QYpte+4G9SNlvpvEHTmTlfElMQbL8wN+6bswaGD+OGPbaPn9vAQMOYke4DObqL2JtW/Dq7eHJwW7ULy9Zfu07BCj/qZF+RD2GXN1p1Ek0tWEDCQzXwQYEYELu/DY+V6wfvGJtD/GcHtArEXpc5y+PIZso3Th/YbLaPR1FTdn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C67B3C4CED2;
-	Mon,  6 Jan 2025 14:00:53 +0000 (UTC)
-Message-ID: <a0eafc67-2ebf-4d2a-8213-c30c3c317a1a@xs4all.nl>
-Date: Mon, 6 Jan 2025 15:00:52 +0100
+	s=arc-20240116; t=1736172223; c=relaxed/simple;
+	bh=x2eksJKSdXVDVuebuHcjHpwghOa96OpVmrVhc9fVacA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=S3oIJ33+jWGAXafzfk2NVhSMm6vuZII5BQOPftkc+B9s7XW1TfRd4EODQ8mpqIlDXw0d/ennpx+FYlP/3K0sqpT4fXzY5ZyDBhUlVxxDojYwyvTm5OHNxORj6BPGOKGuuuAr/u4SD8DmugmvK+IdkqsbJHVCrNaPNAUJsTY0QrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S4SYLq5E; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-216634dd574so136538885ad.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 06:03:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736172221; x=1736777021; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kYuzMHGnD8E6XhCjcca6YSJC8fqqzUa5TU6pyjVh+N8=;
+        b=S4SYLq5EnZO4PwehPOf0RHKoy215wyjdrrbSgiD4cO5VLjVuWFIxwx9Uk0PDZX/aPf
+         oTOlp4klYNSTf7KXnlhL+AtskFCMED4JOvTIzbRplooumh4LjewrAr/2bQvtQMSMRGYe
+         wBn58m2DZm8bfWCKQBHCq7d2EAaBwX38YFKshm33md9nSDON0EuT3Yu7T/V96JLpNZBO
+         R3ngM7ZBGfK52mE/er/78zHxH7BJaS45/XvyZVesbzCyQwjkbu/Zt11azP2xALUhuMQs
+         3XoFlL+yQxENO12anfHjRJmBISlZXwdT/Rjr4ATbGwIeeeIc8Q1/MY0LMdlM8XHYKVrU
+         GOXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736172221; x=1736777021;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kYuzMHGnD8E6XhCjcca6YSJC8fqqzUa5TU6pyjVh+N8=;
+        b=IQrEElHwkGhrR3glXf0ACfHsPaJYm4pQxoySy19n/OxPGOARe4HpJrDenn2KvS7REu
+         RLAGlIY4Sk8j4XrCksmWekCZF8phDzHVkuuCV/yhSOj332hqT/vxmtQ3Ud8FL83eQ8Fo
+         Lj1GxETe6DmTKLTCZsPrEuDZ+vUzn17oDIamS0CpfhBqrBH/86GF9SKYtBAlZraPeEq4
+         Jczw4SFRt1CHiCYpvq6ktAlkEL122AH5WqUK4zxDCHrHh9j4YVd+kayCDLWaa3A1Kw02
+         AwAWNcUxSLrwnwf/Y4jQGvIZYGQ+0tdlOcBSQV3aQrS3fYwoeVr/dj66bTtDT12Jb0Lc
+         aNiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX5RHv6wPeHbedPSHE4oH60X5Wb0DH5ArsrLhJCNrZ0400K7CU+1IF5tclNxxTrXeiS47kmNjzozkU3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYpKxKyyhU7rEnVXiQmhLtBzi5ViTHro+emo65yHL1TztCN8g9
+	8MdmGRx12kw8zAGS85zoS9cHoWWu6cw49Uduo4Amvo4aqPjrgFb8
+X-Gm-Gg: ASbGncvQp4JOkRWi8p0yuYuaRmyUiMkuXVLMGHtV4goitqFBb80D7cTQV6nomM9tr65
+	YB/Pr4Yq2/VnwxR0pO/9Tt2EDCAGkotQDukUnNtIrJohkDSiY+sg6ZUd1uuGmo27aRZl4ndPSsD
+	ClmfNkjOHKSppAhkexg5OCxPAmupE5o3bBoTKTUXmLcjQ0FMVdCp+4HZSCJJD0rWSBvjuVQY7zo
+	Dbxt+yP8poGdMaA3kmqjNkzxG3qCkAisURHB0+PLxMoyclLNQPg2gDJ+5SwXyAFK9Qz9WU=
+X-Google-Smtp-Source: AGHT+IGv/ZTw3KxrI0XtgNz3OOfnts53BzVuzKLJVbFuKl97oG5Jb1fBASVM2CQGYpUiyDEUaj9W0w==
+X-Received: by 2002:a05:6a00:35c3:b0:725:ea30:aafc with SMTP id d2e1a72fcca58-72abdd3bf6fmr89544004b3a.5.1736172220757;
+        Mon, 06 Jan 2025 06:03:40 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:d4cb:2a53:2696:85ea])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad8f90b9sm31341054b3a.131.2025.01.06.06.03.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 06:03:40 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH RESEND] arm64: dts: imx8mn-bsh-smm-s2pro: Remove invalid audio codec clock
+Date: Mon,  6 Jan 2025 11:03:30 -0300
+Message-Id: <20250106140330.2071858-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/16] dt-bindings: media: camss: Add qcom,sm8550-camss
- binding
-To: Depeng Shao <quic_depengs@quicinc.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: rfoss@kernel.org, todor.too@gmail.com, bryan.odonoghue@linaro.org,
- mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, vladimir.zapolskiy@linaro.org,
- quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Yongsheng Li <quic_yon@quicinc.com>
-References: <20241225133523.4034820-1-quic_depengs@quicinc.com>
- <20241225133523.4034820-13-quic_depengs@quicinc.com>
- <ql3sufugcdpoxqgvs2f4clmbnx75t4jh6ts2ryneu2u5oeuwzn@yizcouuzfj2s>
- <eedaa77a-8070-41c8-a05b-b124d37ac093@quicinc.com>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <eedaa77a-8070-41c8-a05b-b124d37ac093@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04/01/2025 14:40, Depeng Shao wrote:
-> Hi Krzysztof,
-> 
-> On 12/27/2024 5:10 PM, Krzysztof Kozlowski wrote:
->> On Wed, Dec 25, 2024 at 07:05:19PM +0530, Depeng Shao wrote:
->>> Add bindings for qcom,sm8550-camss in order to support the camera
->>> subsystem for sm8550.
->>>
->>> Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
->>> Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
->>> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
->>> ---
->>
->> Is this v7 or v1? Same issue was all the time in the past, so why can't
->> you finally fix it?
->>
->> Look:
->>
->> $ b4 diff 20241225133523.4034820-13-quic_depengs@quicinc.com
->> Breaking thread to remove parents of 20241225133523.4034820-1-quic_depengs@quicinc.com
->> Checking for older revisions
->> Grabbing search results from lore.kernel.org
->>    Added from v6: 1 patches
->> ---
->> Analyzing 217 messages in the thread
->> Could not find lower series to compare against.
->>
->> I am not going to perform review, maybe other maintaners have spare
->> time to deal with this submission process.
-> 
-> Really sorry, I made a foolish mistake. I didn't realize that the patch 
-> subject was missing the version number, which might be why the b4 diff 
-> couldn't detect the old series. Thank you for pointing out this error. 
-> Could you please advise whether I should resend v7 or fix it in next 
-> version series?
+From: Fabio Estevam <festevam@denx.de>
 
-I marked this series as 'Changes Requested' in our media patchwork because
-of this issue.
+According to ti,tlv320dac3100.yaml, 'clocks' is not a valid
+property.
 
-So resend it as v8 with the proper [PATCH v8 ...] subject.
+Remove it to fix the following dt-schema warning:
 
-It's a nightmare for maintainers/reviewers if it isn't clear if a patch series
-supersedes a previous series, so it is important that you do this right.
+Unevaluated properties are not allowed ('clocks' was unexpected)
 
-Regards,
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-	Hans
-
-> 
-> I have also found a workaround to replace "b4 diff". Last time, you 
-> helped by giving a RB tag on the version 4 dt-binding. You can check the 
-> differences[1] between version 4 and version 7 on the Patchew website. 
-> If possible, could you please help review the diff provided by Patchew 
-> once again? Sorry for wasting your time.
-> 
-> Visit below website[1], then search "dt-bindings: media: camss: Add 
-> qcom,sm8550-camss binding", then we can get the difference between 
-> version4 and version7.
-> 
-> 
-> [1] 
-> https://patchew.org/linux/20240812144131.369378-1-quic._5Fdepengs@quicinc.com/diff/20241225133523.4034820-1-quic._5Fdepengs@quicinc.com/
-> 
-> 
-> Thanks,
-> Depeng
-> 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
+index c6ad65becc97..475cbf9e0d1e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
+@@ -64,7 +64,6 @@ tlv320dac3101: audio-codec@18 {
+ 		DVDD-supply = <&buck5_reg>;
+ 		reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+ 		ai31xx-micbias-vg = <MICBIAS_AVDDV>;
+-		clocks = <&clk IMX8MN_CLK_SAI3_ROOT>;
+ 	};
+ };
+ 
+-- 
+2.34.1
 
 
