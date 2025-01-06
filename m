@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-135908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C267DA02FC7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:32:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE392A02FDD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:41:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 447403A4634
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 18:32:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 436D53A4921
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 18:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C12E19E7ED;
-	Mon,  6 Jan 2025 18:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F105D1DED5A;
+	Mon,  6 Jan 2025 18:41:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="li+MYRPi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O5tbBScz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FF8113775E;
-	Mon,  6 Jan 2025 18:32:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A4D78F4F;
+	Mon,  6 Jan 2025 18:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736188353; cv=none; b=mIhpXTOSF3AumTEVr06GQLiYFpyXsIHbtcls0ZJ/1AMXY/HsNcUE0sM2lHKApupBby/DiRmxTheCCXZlFq7s/8pBzdrQHvwwbNXbscEeIKigF6hyMPr+L12gQ4ur5qpiNgL49lXYx+LRsudPJ6tbk1rqQ+3bXqnhiRg5gnJrzHc=
+	t=1736188886; cv=none; b=KEf3gGaIPmgccsBv9t4HeAzCDShd3nq454hHMkeMqsvZHJxExn1mrRE8c7hK1WT3S6gx0++4ONoLWiqpt4+JlIDFu4a0SQwZprOPcM38yIPQiguGL7wMHOWY/s5xEF+S+aXCX+mICOxzqcS6CeqW1e1cCQnFvAO6I4qi/eor8/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736188353; c=relaxed/simple;
-	bh=MPaEmQxlMbnsxGkNgsEDlM/VlhFoSQ56sTz3vhDcrIo=;
+	s=arc-20240116; t=1736188886; c=relaxed/simple;
+	bh=ykEeuugA/mvLC/eWWzra4YSLyhJ2m5A4P+Cbpa8SHe4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CyDH0A44BFPklVJK8jYIa2g2Fmgr2AZsfar+8BHHFzHZD5YWiCEmEsUKhsaj4pTEjx0WsvyaOZo26XTHbyUoNWLtfhdTwwAvNmBbO/gyzU6Vj6p/xUgzw3Yfqb3Gvv+TMtHorWrw+ykYpNjpl0BRWDOGkCVpAz7sOFHU5BdP+/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=li+MYRPi; arc=none smtp.client-ip=209.85.216.53
+	 In-Reply-To:Content-Type; b=CnVPbGb3+sHdGKkz6bcc7jSyerIanp2fqG5rYJJ4EADRl/CO7Oj8JHtz9N+yN+qnI/w8VHAC/eJV3wBMDwNgBA3irC56GR+iyLsHvqK0RU4gBdXy0xk/6fTWhZkjlzeCoz54OcoR3HmKb1fmqkQNQPzPivsjCrRtwPmdyT5BHFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O5tbBScz; arc=none smtp.client-ip=209.85.214.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2ee8e8e29f6so17205622a91.0;
-        Mon, 06 Jan 2025 10:32:31 -0800 (PST)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2164b1f05caso207911185ad.3;
+        Mon, 06 Jan 2025 10:41:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736188351; x=1736793151; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1736188885; x=1736793685; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=tzJA7ByF1jLwJx9SkIhHdw4+pCFFSdU0XZrjk+Te0Ps=;
-        b=li+MYRPiCnpBYrxDd5+5Qt1rfgDDURsQIOQsYL4VV/KZsZHEvNIGMtcUDlCR6jZfd6
-         Cxc3Lj+1UyNqpV729Q5D7auL5OJ5K6uyU8YF1Qt+rNmFENeI4BVbZrNeM+g2dMiO9UOa
-         QNCnoRuBXg1AgohXseLr31KceAPuR9DIknyurGT/KszxbpEaZUMQimAqJpAffAUFHfob
-         xwj7vF0lNsGmPvKpMFyGlhabsq0rerjOMw3R/yCQNRundka2Cj+ckOOPozsLSDcpDPFw
-         r4zdttPRAkykE9x1ry4yZrBpk3Q/gMDaIHJKFDf2EUTe6KC2B/W7WAU2TSQBWtz9D7c1
-         kU1Q==
+        bh=lZb9K+uC//Eu4IdaXK4oLhOwVIJasugKstQC038B3Io=;
+        b=O5tbBSczlxIzgUsJ8JMMqUtRnIS4zOX6QYYi+DUhnASisMq7Sj3uHfyUtYkQjIPpli
+         E4fSWRRc8o0uYijV781Xx7LRFmlmmHmB6QnfYwgCZhehraf5QhDn/MgNmjsrlGgGIDnW
+         dQPsP4C6EmpSzj4rgmISlW7OdNZCF5CR/QwvIYjNQAN8jl3/prfw38mcfvv51M6zDWn+
+         my5lIlSOIXkgTmdVpzsYDJoN4WJ6mK+OkHCnNkNsIO5cISWrBNJg8ZO50hfkv6iT9O/H
+         8l6BOxfwx9jGX+J5WlXrnlmikDpTB/lf2fzzmnkCNd7tVv1UVH5u2lHCQxYKs2mkC5lK
+         e7Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736188351; x=1736793151;
+        d=1e100.net; s=20230601; t=1736188885; x=1736793685;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tzJA7ByF1jLwJx9SkIhHdw4+pCFFSdU0XZrjk+Te0Ps=;
-        b=NFqlSSGjhp4owSFJ7U67Jwylv6TYufpgx1no3u9zwu3+gZ211R48Fk3rfnUP/dqGvr
-         +lpJL3vQ/qsm/FkPmUGk5hthpPc8fv/cMQ6da3j7R6cXSr0TBgymHUhzEWLrqvOpHTjh
-         hongSbqlr5wfP10/gjNOZVMS+YZq9fQoZACesjq3sKcuYGcbShBh12JeRjC6w5g7ra71
-         ieAA1PH6NrcQrR/NdFXmLqbHEXEccn9SRW5WGyOCxy+eF0ZdhuU8B+Pd/hlqftS1R4bU
-         kOBGElPs/S/INBZVWigmqekwtGg2kRfv1ftYDxk+zSzhGJ0XhK8dzXPN0kikhmD77zVw
-         dQUg==
-X-Forwarded-Encrypted: i=1; AJvYcCVlk6PmfrAxFs1bPOYAaJNuEZ1zpbnrNeZ99ovDBxHUrk1YUzawklBQSFDPo6MxtL6ZxJpgmxEOgslBjw==@vger.kernel.org, AJvYcCWjjlexh/lEczuAN3TZde/cEbG13xXfSbr1XZ+a681WiyvAgDNq6DVMrDIB8gvFx55Zrg0UZMmAlgOPyPFj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzzdH7JMNnGqXMrkelXD0L/LrfV0F/dcNg7xqSAGcWdgjQFDLy
-	RhSdTlGVPHwmoI6FthLsiOfCIwpC9ma8ma1DGN8zaPSXFXRRWrrX
-X-Gm-Gg: ASbGncuaIVRzWYoe+01KLiY9XusbvL/BgNt4EMVpgg7yPyrcwTrnrHZZ4OiAba15blJ
-	KFWulIOiRUqD+je8PpObq/SXhGpVgwGPXnyDqNzJsAh1v2m/bBzP1bMfAL7Wb1x8UpARp9CzGxS
-	GIBieL5jdSt8fwmq9siRBpnPPo21Fs0o1qz5uysHSizbmO7xoXVlOLaroRO+M6Zvs+1SCu0IrZA
-	AS5HjZPm7gffU9DCYTYWxYXNZbwvsvFWKNLt4vb+oM/9CAkYAPGdxq2BdupsHlf4Rq2vjTB4WvY
-	nF0tUSqfXz28lubLYqpdVjhvJviiPw==
-X-Google-Smtp-Source: AGHT+IHqS92EBkZGkgGcJ4xEmbbVTikXQKtyVcvYpnLa3By+Oeh7d8Y2ax6LJm8/GTIAwYb7sQWuug==
-X-Received: by 2002:a17:90b:5443:b0:2ee:f80c:687c with SMTP id 98e67ed59e1d1-2f4e7cc07e9mr21152260a91.31.1736188350631;
-        Mon, 06 Jan 2025 10:32:30 -0800 (PST)
+        bh=lZb9K+uC//Eu4IdaXK4oLhOwVIJasugKstQC038B3Io=;
+        b=DtQwpwTgqycf6f+eVOOQq96X6Gpua19VVgsxAqFeVN14KzooSlsC3KeoYYbZ+B5via
+         iLNElCCov1lxIoieTuJHGDfpLT6JxL6LQF6fSlBALaLjl+a92MEa9pd+DDuXJGR0HmrA
+         SD/3R3iaO6SCIM5KwqiyP8EV85x1wGfLSr2ISW12t5MF0xQgKlG50AYy9o+/Y99igOi+
+         lFPAbVfCcEPHOQY/I0CjCt73n/7VCyTelgqjAi0lxviqFmDPo/glSFZABhEycPSkNLlH
+         p3YIRKICdwsGEeqDf/aTjr9rjcIJlbqdBw729tkiGdMb4/cccY5ttXKV9mDXuAXZpRD0
+         uNog==
+X-Forwarded-Encrypted: i=1; AJvYcCUI+7gLQfFCsLB0C5kWx9FzVf2O7nvoA9WLISbC1aiJix7hLxKBkYB2h1iTjSvT9rqTI7avc/ut/3Cv@vger.kernel.org, AJvYcCVNoyIHGFGXc5sOl83KjIeaDxCOk79kx7OIPhVl20B9KaJ1hniI/YYKX97W1QsUlkwioH43q2KDHm/GCBDV@vger.kernel.org, AJvYcCVQ+/2w9Gyr450zUzbKfDpQ128EdoOBi7+xTyp2cR1pxYMUY9xV1q4tJvdADH/OK8OFjynGbNU47A/GmAaaKDM=@vger.kernel.org, AJvYcCVaTJYDTCuhPIUivXhlFvKU2PxDxW0UpxGc8u8bbRTfqtZOcMYvJVyMwirEzOimc6phS8FkaFSKQjMqvX1wrg==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqYDZg+ubmfBmG5mRjgCMR7lyK9K99WpbAASEqadHzkONJz7pG
+	1JgeNpbrMHtFtYoLxc5FA14pcyHUM1Gx2Zp59iLv+vsjCLstFuws5yb23w==
+X-Gm-Gg: ASbGncvg6mFjo+Udzj4s/c93+tTVAuw8nwR0i5hGEvdy4FQanzbR2VoRw9ub/Pa16Dk
+	ByAX2ruqGhPSnRxgrjvp5RyVHBdFWqZIqGdTI3pLQ0nX4gnjMWJnnQaWiM+9m4smHtyXVNGIATJ
+	u8Jqf0WJQw9EFunW7OE+ZNs/NOl0lF3o6VNuN13ysCP7BFL8Ws5xIHxbpEl/w1Pim+Ff8HRWgUc
+	s2PD86T8BqEzXun9fxlfyBwRD2sToHXjGril3G8qcSXxl4aESO3oivc6k104w5dz8sPuo8xRl1Y
+	p7283lGaiAgUvdfBlUKUpctoLQBcxw==
+X-Google-Smtp-Source: AGHT+IFq8tXUwcfAZ7Wkf0z8wjDvMwS4nNu9wA0vZQdPn9mxzbiLmpaJQX07ZflraaX7GQ8Wv7U90Q==
+X-Received: by 2002:a17:902:ef09:b0:215:a028:4ed with SMTP id d9443c01a7336-219e6ea26d4mr822171945ad.20.1736188884675;
+        Mon, 06 Jan 2025 10:41:24 -0800 (PST)
 Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc962c80sm296414575ad.30.2025.01.06.10.32.29
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-842b1ce01b8sm24823826a12.20.2025.01.06.10.41.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jan 2025 10:32:29 -0800 (PST)
+        Mon, 06 Jan 2025 10:41:23 -0800 (PST)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <6059a0f8-bd53-47da-8fe9-dab115c40b52@roeck-us.net>
-Date: Mon, 6 Jan 2025 10:32:28 -0800
+Message-ID: <0adb4a57-fa6b-4b2d-bcb1-a8804554f753@roeck-us.net>
+Date: Mon, 6 Jan 2025 10:41:21 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,16 +83,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
- property
-To: Rob Herring <robh@kernel.org>, Peter Korsgaard <peter@korsgaard.com>
-Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
- Jean Delvare <jdelvare@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250103101448.890946-1-peter@korsgaard.com>
- <20250103195810.GA2624225-robh@kernel.org>
- <dbf7cdd3-c5ab-4801-be85-163124b8a898@korsgaard.com>
- <20250106173805.GA501301-robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Document Qualcomm IPQ5424
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, wim@linux-watchdog.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, quic_rjendra@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
+References: <20241120055248.657813-1-quic_mmanikan@quicinc.com>
+ <20241120055248.657813-2-quic_mmanikan@quicinc.com>
 Content-Language: en-US
 From: Guenter Roeck <linux@roeck-us.net>
 Autocrypt: addr=linux@roeck-us.net; keydata=
@@ -138,31 +137,32 @@ Autocrypt: addr=linux@roeck-us.net; keydata=
  WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
  HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
  mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20250106173805.GA501301-robh@kernel.org>
+In-Reply-To: <20241120055248.657813-2-quic_mmanikan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 1/6/25 09:38, Rob Herring wrote:
-
->> The minimum PWM is presumably 0, E.G. signal always low?
+On 11/19/24 21:52, Manikanta Mylavarapu wrote:
+> Add devicetree binding for watchdog present on Qualcomm IPQ5424 SoC.
 > 
-> I'm talking about the duty cycle needed to start the fan spinning and to
-> keep it spinning. I'm sure that value is not 1 for any fan except one in
-> a physics textbook (the only place friction does not exist).
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+
+> ---
+>   Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> Maybe the minimum is index 0 of cooling-levels?
-> 
-
-Fan controllers often have a separate value for the lowest cooling level
-and for the PWM necessary to start a fan. The pwm associated with the lowest
-cooling level may be lower than the pwm necessary to start a fan.
-
-The fan controller would start a fan by applying the "start fan" pwm value
-for a period of time, then reduce the pwm to the desired pwm value for
-the running fan.
-
-I'll be happy to dig up datasheet references if needed.
-
-Guenter
+> diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> index 34896a39fa91..49e2b807db0b 100644
+> --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> @@ -20,6 +20,7 @@ properties:
+>                 - qcom,kpss-wdt-ipq4019
+>                 - qcom,apss-wdt-ipq5018
+>                 - qcom,apss-wdt-ipq5332
+> +              - qcom,apss-wdt-ipq5424
+>                 - qcom,apss-wdt-ipq9574
+>                 - qcom,apss-wdt-msm8226
+>                 - qcom,apss-wdt-msm8974
 
 
