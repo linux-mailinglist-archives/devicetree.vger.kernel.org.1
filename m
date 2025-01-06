@@ -1,73 +1,101 @@
-Return-Path: <devicetree+bounces-135875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D814A02B88
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 16:44:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAFD9A02C82
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 16:55:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC2491660F4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:43:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93D323A923F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:53:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF3AF165F1F;
-	Mon,  6 Jan 2025 15:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E818145A03;
+	Mon,  6 Jan 2025 15:53:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e+RxhfXT"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="L3ynFVIo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FB4142E77;
-	Mon,  6 Jan 2025 15:43:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE4913AD20;
+	Mon,  6 Jan 2025 15:52:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736178208; cv=none; b=hhaN+u6wqxnxeEbBFJ+VmjNM3xDjUDFTA1vu/TazEO5j7i5MU7FLKs9mMIgDm0uAVcxGq7NJmgCr9G0rVQyXwmtNq0K10LVnkJZB+8ODxmTnXnr4VHOTklIiLVBwisWX3Wn9pQk3NdlYzaHCfUvMn9tVOf8RN/xCvxiVJV8JKvE=
+	t=1736178782; cv=none; b=lhqKWB8qUHO4eb8xG+rEjSXrwuR5GIfj5ShGQcEcnEx28xHld7jGfNlDu0KnbuldKL7yj037YmxT9XjvYtwP0HOPDuueH86xCe1D8bEnK6QkrLjXf5GrEgtAjxZtsk94faw8PIl8cXGqnv5NLmOd3gWcSqjPtSPwwbuHPPOo9Vc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736178208; c=relaxed/simple;
-	bh=ssWmrKg7U81ziEXjNyLEoomZAtl0l1yLKPpNvRiBfoM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dem8kJetx1TeRq9p3zez4QGQ0X+Zqpvx8NL259g0MkS+bL0d6We++r/OnxsyZxjB/5lXSldzDkL+v1UJkteMQ2M21smUglhYYkdDOO2YpxOVX7d7WpteqnAMYfnTJ4xFUCCRXUGXZYtY8+ViguE1doLru5QburbXXjAa1niPERM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e+RxhfXT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A75F6C4CEDF;
-	Mon,  6 Jan 2025 15:43:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736178208;
-	bh=ssWmrKg7U81ziEXjNyLEoomZAtl0l1yLKPpNvRiBfoM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e+RxhfXT3UwlMOvSCoqyAEmP9ykd3zmatgNn3g260TsYKHY3ehsj9Jv9yNWQIK69t
-	 gvDUmiI9ca7hv6TB5aRkkMl7/uFE7W/D7P7GkLc2/tAf8UGa+80x2V0+0T/t39i4OH
-	 16q5YDO4sO8nPJSskmKq9tCV8E9nzpfHoUH98NE4vrhZwj+yxtCdi2u3wiS9G+kUvX
-	 zorEhgl/+fUWNFypZhk5MiefCXVQnTpvvuMYy5CebmhI+ypVkAMDkJjORTVSR2edom
-	 OW0ThwtW/Q5ueNR6Zc4cvPeoQeVBBSHNM5eqSv2S+f0bcIHTtk6eXQ/XjhcSIJdtUt
-	 oOVCfGDldFptw==
-Date: Mon, 6 Jan 2025 15:43:23 +0000
-From: Lee Jones <lee@kernel.org>
-To: Jure Repinc <jlp@holodeck1.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Troy Mitchell <troymitchell988@gmail.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] mfd: add new driver for P1 PMIC from SpacemiT
-Message-ID: <20250106154323.GA6763@google.com>
-References: <20241230-k1-p1-v1-0-aa4e02b9f993@gmail.com>
- <20241230-k1-p1-v1-2-aa4e02b9f993@gmail.com>
- <3082943.DJkKcVGEfx@excalibur>
+	s=arc-20240116; t=1736178782; c=relaxed/simple;
+	bh=27zSPfsDIasiQLrztxpd6KsLCVSNZmztVN6Xdb041vg=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=Ovg9XhbbBZkzI0ciTdF7PlIZMBs1NbFLBjyV0jQpQMjRTMJnL4rUoHkziUMQJAltGHfdGVWTZUGYNTs6+KBdw5599crRZkZ3N6Mabf1Y/vAN4/NM+Yo7iZ4daEI91uWpjz48puS9vRgBIFMbo2fmz18ApyfuPah124s/hnwW52U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=L3ynFVIo; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
+	by mxout4.routing.net (Postfix) with ESMTP id 714D010092F;
+	Mon,  6 Jan 2025 15:45:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1736178346;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=27zSPfsDIasiQLrztxpd6KsLCVSNZmztVN6Xdb041vg=;
+	b=L3ynFVIoB5wGNLo4IbBxboWIntP5qzxtwKEvdDJ7T/QuH7PvKQcGmnTVOktde6ZkhFTPDt
+	6c+abdE4Vb3HNZH3NG9gq3dfW+vMEP7Wzs+yQ6+1NZZaD9bqCOkKi28MpFKwC9YJAqJ/Sx
+	cNpUqqpsrhHLxyW3JRxS7CFiAdtLuwQ=
+Received: from [127.0.0.1] (fttx-pool-80.245.79.38.bambit.de [80.245.79.38])
+	by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 4C9E480155;
+	Mon,  6 Jan 2025 15:45:45 +0000 (UTC)
+Date: Mon, 06 Jan 2025 16:45:45 +0100
+From: Frank Wunderlich <linux@fw-web.de>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Frank Wunderlich <frank-w@public-files.de>, frank-w@public-files.de,
+ robh@kernel.org
+CC: dlemoal@kernel.org, cassel@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
+ linux@armlinux.org.uk, hdegoede@redhat.com, axboe@kernel.dk,
+ linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: =?US-ASCII?Q?Re=3A_Aw=3A_Aw=3A_Re=3A_=5BPATCH_v1_1/3=5D_arm64=3A_dt?=
+ =?US-ASCII?Q?s=3A_marvell=3A_Fix_anyOf_conditional_failed?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <87wmf8x8p2.fsf@BLaptop.bootlin.com>
+References: <20241109094623.37518-1-linux@fw-web.de> <20241109094623.37518-2-linux@fw-web.de> <20241111203611.GB1887580-robh@kernel.org> <trinity-796b046d-1857-413e-bb82-78e700d6b5ac-1733138371404@msvc-mesg-gmx005> <trinity-a84b41b3-79c5-49b5-9786-eb89f85578cc-1735843472332@trinity-msg-rest-gmx-gmx-live-548599f845-gxsb9> <87wmf8x8p2.fsf@BLaptop.bootlin.com>
+Message-ID: <B9E245AC-1487-41B5-A30D-41F03FAA0A2C@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3082943.DJkKcVGEfx@excalibur>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mail-ID: 8e3ec3fd-240f-4d2b-8e17-bdd50b875e02
 
-Deleted pointless signed mail without looking at it, since it slows down
-mail traversal too much.
+Am 6=2E Januar 2025 16:28:57 MEZ schrieb Gregory CLEMENT <gregory=2Eclement=
+@bootlin=2Ecom>:
+>Hello Frank,
+>
+>> is there any new state here? got no answer for my last 2 Messages
+>
+>Actually I waited for a new version following the review and I didn't
+>saw it=2E Maybe I missed it=2E
 
--- 
-Lee Jones [李琼斯]
+No,sent v2 last days as the suggestion from rob was imho not matching what=
+ the patch does (i do not add phys property)=2E So i wrote back, but there =
+it hangs=2E
+
+I hope new title is better=2E
+
+<https://patchwork=2Ekernel=2Eorg/project/linux-arm-kernel/patch/202501031=
+03724=2E6223-2-linux@fw-web=2Ede/>
+
+Anyone with marvell boards have tested it?
+
+>Gr=C3=A9gory
+
+
+regards Frank
 
