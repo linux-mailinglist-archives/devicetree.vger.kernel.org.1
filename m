@@ -1,136 +1,120 @@
-Return-Path: <devicetree+bounces-135758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E4BA02127
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:50:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A36A02140
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:57:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68C6F1638AF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:50:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95CFA163880
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:57:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C6A817E0;
-	Mon,  6 Jan 2025 08:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85E381D63C1;
+	Mon,  6 Jan 2025 08:57:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qZ1CqEkc"
+	dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b="MXlfztgE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.systec-electronic.com (mail.systec-electronic.com [77.220.239.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C9979CD;
-	Mon,  6 Jan 2025 08:50:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34710152E0C;
+	Mon,  6 Jan 2025 08:56:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.220.239.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736153447; cv=none; b=UhbuxqevIFvrUlydIWbGzbsJ6ARhub8XYU7+i1NtjnAba/ujRdtgVD5G8W8Ua6IF1ch3yOweYuqWYv7t5E1/5nUOM9CtjGwSboRUvIpAEb1Yg9BrLTj5OOC/NA4MtUd1vd/9KSZQ9mHdZpWpRJUAsUr9QnWSpLMtdHVEjzC51SI=
+	t=1736153821; cv=none; b=d0GSpqs7LDvpEZzg6SMEKVgaoaoRb0kLPYnJABcIXN6FxppfsoYMbAn+1p2R3UPA0FtWvIBZevMGRmKNt5wiXauZhSmpKX74ObnVBBuOmSoTZ5d0TCIsxUz/iFL0NfFXVM6Vcpa3UUEkIdi8PxWTt7vtZXl/omM3DOZN/mu/880=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736153447; c=relaxed/simple;
-	bh=Vm7Pm0lC/yhBdqvH/eDmNy17XhJIxxx7Z4NkaNgWL0g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RzZQZWTA9arYw4lugGqtidbVdPMFLqi924aTyGgaHEIPzv7Xo6s4w2svK2AY3/758NT7gtVsKH1em5i/swoN2mt/HxubJRMlhdwg6xgs//WZKWuNICNCW8jIIycBf5YHoBEA+4wre6EtO9KdxiHA3RzCBkfUeyXAFzXE/tybsFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qZ1CqEkc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3BF2C4CEDF;
-	Mon,  6 Jan 2025 08:50:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736153446;
-	bh=Vm7Pm0lC/yhBdqvH/eDmNy17XhJIxxx7Z4NkaNgWL0g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qZ1CqEkcpjC+2hWsCuPLhbot8uflSmktOD+VT6Gs0J45Jim/2xU375FzOdoLMfesP
-	 zlcEXxlmD9qe1aza/gXEoIJeXsp5jPSo22+JJJQCmGpEeq5o4L5LmAhusmfWIdXmYT
-	 DLM+hP2aNGtS2M8xk1fFRUI+BmY1rxqfzr/qW181rpqj1ytDBcwKeCHLTvE5bux0Ln
-	 xR7Cfj2RA03S7Xxqqa8c4rVFnpqLwWfPZk9PRnBGuMQAeiKrQ7PsI4dvrJzhzz2sfA
-	 F7QL0AyhHkZCsZkICP6Wx0PgRCDxzA/IvjjAACE8Ytno77cBYOWdq0teYx2WpkDhzh
-	 vmh+6634Eh3PQ==
-Message-ID: <56e13a29-c087-4fe3-abf5-ebbad28ddfdb@kernel.org>
-Date: Mon, 6 Jan 2025 09:50:40 +0100
+	s=arc-20240116; t=1736153821; c=relaxed/simple;
+	bh=hx2+nbJRzM19kfojTzn1IuSLLeDyUAnDr3cLJ9vp5nU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fR+5+F4hfgmkwXAAEIQ21OCZaJiy4CFrf9AT+IlaD4oKmlTHgf6BBIh5bxaSQtFXk3wXc5UXPPwHTz3vP3uFEn5nyZ3ibfpu9uwMIXLzAvI9nbpoRrdGHAGky1oLV9Jdpx5Xb3990IOAYyRtF1r1JXrMCRw4jVPnGsBVWqmQsNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com; spf=pass smtp.mailfrom=systec-electronic.com; dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b=MXlfztgE; arc=none smtp.client-ip=77.220.239.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=systec-electronic.com
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.systec-electronic.com (Postfix) with ESMTP id 363FE9400109;
+	Mon,  6 Jan 2025 09:50:56 +0100 (CET)
+Received: from mail.systec-electronic.com ([127.0.0.1])
+ by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id ei5MdnGbRtFx; Mon,  6 Jan 2025 09:50:56 +0100 (CET)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.systec-electronic.com (Postfix) with ESMTP id 0F0C694016B0;
+	Mon,  6 Jan 2025 09:50:56 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.systec-electronic.com 0F0C694016B0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=systec-electronic.com; s=B34D3B04-5DC7-11EE-83E3-4D8CAB78E8CD;
+	t=1736153456; bh=25KwakSebYSmtbmZYv7/gDHXkMpWo098Y7aWGhDHAL8=;
+	h=From:To:Date:Message-ID:MIME-Version;
+	b=MXlfztgEwunXK3gAbXusZS9mQk1flSZocIOJ6KPeb8RfERMxeZMhi4o89p+/4ig+f
+	 z5FKR4u/ip7NcocUeVhQicOd9Y0oqTxYouieoHwd0P+gFk4YsjvbTkv7llkUYbsN0Q
+	 USV9Vk97WWvdbvEdUByB4WIxypDNIoTd4osOPnDZfOJS2efiErZ7LEXwaSkJjD7Jw4
+	 BSsUWRq1AMSll7hDJiuslalCeCS6C9fjXmopwfO0FrMmA2JC2qAImy5s7HPblotyvr
+	 QaI8p8qCrHz5y19NZb7OMPgKNB0gi7deXckU82ic+u3sEi4K+Uz146gP48cHgIXmEy
+	 R/fO48DcrtoiA==
+X-Virus-Scanned: amavis at systec-electronic.com
+Received: from mail.systec-electronic.com ([127.0.0.1])
+ by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id BV0GZiXX_lkt; Mon,  6 Jan 2025 09:50:55 +0100 (CET)
+Received: from ws565760.. (unknown [212.185.67.148])
+	by mail.systec-electronic.com (Postfix) with ESMTPSA id A800B9400109;
+	Mon,  6 Jan 2025 09:50:55 +0100 (CET)
+From: Andre Werner <andre.werner@systec-electronic.com>
+To: gregkh@linuxfoundation.org,
+	jirislaby@kernel.org,
+	hvilleneuve@dimonoff.com,
+	andy@kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	lech.perczak@camlingroup.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	robh@kernel.org,
+	Andre Werner <andre.werner@systec-electronic.com>
+Subject: [PATCH v2 1/2] dt-bindings: serial: sc16is7xx: Add description for polling mode
+Date: Mon,  6 Jan 2025 09:50:50 +0100
+Message-ID: <20250106085051.50861-1-andre.werner@systec-electronic.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: soc: samsung: usi: replace USI_V2 in
- constants with USI_MODE
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250105160346.418829-1-ivo.ivanov.ivanov1@gmail.com>
- <20250105160346.418829-2-ivo.ivanov.ivanov1@gmail.com>
- <f0702bdb-846e-4817-a76c-5ce17dea38c8@linaro.org>
- <a7686593-ab07-4e18-912d-745576c6a450@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <a7686593-ab07-4e18-912d-745576c6a450@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 06/01/2025 08:41, Ivaylo Ivanov wrote:
-> On 1/6/25 09:36, Tudor Ambarus wrote:
->> Hiya,
->>
->> On 1/5/25 4:03 PM, Ivaylo Ivanov wrote:
->>> +#define USI_MODE_NONE		0
->>> +#define USI_MODE_UART		1
->>> +#define USI_MODE_SPI		2
->>> +#define USI_MODE_I2C		3
->> USI_CONFIG register refers to the protocol selection with USI_I2C,
->> USI_SPI, USI_UART. How about getting rid of the MODE from the name?
-> 
-> I thought about that too but I believe that mentioning that these constants
-> are for mode selection in their name is generally a good practice. Let me know
-> if dropping _MODE is really needed.
+Polling mode is enabled if the "interrupts" property is missing.
+Thus, this commit deletes "interrupts" entry from "required" section
+and adds a description for the fallback to polling mode at the
+"interrupts" entry.
 
-I am fine with both, MODE feels a bit more descriptive indicating how
-the USI should be configured.
+Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+---
+ Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml =
+b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+index 88871480018e..ab39b95dae40 100644
+--- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
++++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.yaml
+@@ -23,6 +23,8 @@ properties:
+     maxItems: 1
+=20
+   interrupts:
++    description:
++      When missing, device driver uses polling instead.
+     maxItems: 1
+=20
+   clocks:
+@@ -76,7 +78,6 @@ properties:
+ required:
+   - compatible
+   - reg
+-  - interrupts
+=20
+ allOf:
+   - $ref: /schemas/spi/spi-peripheral-props.yaml#
+--=20
+2.47.1
+
 
