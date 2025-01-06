@@ -1,150 +1,182 @@
-Return-Path: <devicetree+bounces-135934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3601AA030E8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:51:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F9AA030EA
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:51:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B97C7A16A7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:51:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62BEF16524B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202361A3AA8;
-	Mon,  6 Jan 2025 19:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9CD1DFE22;
+	Mon,  6 Jan 2025 19:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FnkXz9kf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TweFXc0I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5958B1DED58;
-	Mon,  6 Jan 2025 19:50:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C7E1DFE06;
+	Mon,  6 Jan 2025 19:51:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736193062; cv=none; b=eWRaBGkRaMCtyUSGmX8QMQ4p8+gFOO58E6Urs3ondLCLKEYkZLLIBXW/xjj4g9Wb/prOgkahZbXMFnYz3Z7GQfzEUHzIBX6tdnKYVMdUy3FxJBO89amA8iqeqpUDpymhdP7U4lxhOY8RBpVCnGDuiP5UA97s6Oe/Hpbu4Y/XYrA=
+	t=1736193067; cv=none; b=hUgOpLz+khT9DO6vovghwcAJLeGCeuoEB+WDC4PbIPL1B0cnjZl/RF4Ma+OrckZYPddMXBPkmEwLqHRYnl7WHKFp+LXJ/p0za/yh70Acd/UO6XcH/dtQYtpOqZVmFpKCI7zAEpsMsBGBJtmLkuVeEneQ/uJDxvteO2O86fWL74A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736193062; c=relaxed/simple;
-	bh=GoAdSlQ53RsfhU1nVMs7hQ56NBJFi+aeYKbM9eWk0js=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C8kbBxVYpAZtOI5SEjCjqk9RUarwiAyLAllF1pNbVAB+Tdjw0tAigULkhZz/Hq6LhtJVjJb9i+9YnKRgJv2Jlg9TpTgdhVB0kHeklE98f6WOq1iNb5Ja8qnJVgmrUAlNH1Fb5CGJCollbJX60lK21uYPB0ugkWAL87L2Z+Hn9wM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FnkXz9kf; arc=none smtp.client-ip=209.85.167.45
+	s=arc-20240116; t=1736193067; c=relaxed/simple;
+	bh=Xchqv6yuyxaT2ZAuRHcutI+wkXjxGEbzhrSub0J0K34=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lRH+XDt0ddJbyAMyBVaGmdV5njkEUgs+2BuFaZD7NhII37wOM9wnlFNOToe4hKn1HIpybOMZEGQqBbDW4msoZaSOwocCWxDCeqbAyk+SORZC6ZTsQd0GmnYJvGbJNz8N4ohP0ukbdbin239YG6qtueXjzpxb3O8RBS35Ifso2SY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TweFXc0I; arc=none smtp.client-ip=209.85.222.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5401d3ea5a1so14818072e87.3;
-        Mon, 06 Jan 2025 11:50:50 -0800 (PST)
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7b702c3c021so1296094285a.3;
+        Mon, 06 Jan 2025 11:51:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736193048; x=1736797848; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:mail-followup-to:message-id:subject:cc:to
-         :from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qGMHgXg4FhW7JGenz3T6xLfvKVPDR9iVCkZIU7+YIF8=;
-        b=FnkXz9kfddj64gAiIVRsDhjZxj/AjDoitxICA5IO4m87gazKzyY5fQbGKCWshvpxwL
-         FzyKE56PsGMAq0YHIU89RzNfOeIG0kRwtf3Z0fKK6dw0VOBAt2BTxzNp0DN1E8D+2C5I
-         sO0I1g9TjdMeyE4Wx0OCpLTPzaMEVLKboAfvZdW0bRKu/j5TunLMnlRuF7zlBKMNj8TZ
-         RMSGmTonPDLu1PyhCnozNwt6PhmB8kKQObt4ixUJfBO4yRW2L46byTLudCNPCpgWkEdH
-         QMWg88YcYolNrXheqNG9pkKHEOsLf3BnXns2HoND3oiFrDF9T2DVfJfy6jEXsLHJU6kS
-         jfZw==
+        d=gmail.com; s=20230601; t=1736193063; x=1736797863; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AVD38ry6XjUWoVgJ+oJLF45j3WXHuey6ua4rBWQhTj0=;
+        b=TweFXc0IetJAb0JrbTIuJuTJl6TgMEDyNJIYJkRuSvkZDVxQ6QCjjZsGmhV7c6Afv6
+         iMo+8q/IWb62uVPZxNfxVKuowmzfy/wEtr/Rm3+iqI2pLp9WLWy8wjrUVkr0vh5fHhCK
+         7WFyCUPCO8UoiyvoYOjsAtxZZJL7+o7YChl55l80noSLu+BRyqRbWDvSMk0JmhfX/hNl
+         54vuZBtHShfNT1C45TXYQMv5PFF+qu0UPMbk7zYMxPFAwFmnTHuqC848lXoPRwZyfXSG
+         X2QFzmuZx8GjrxfE/uLzyt3Phjw1Jir1CdKn3f2Oc332KLk0eOH2E7hi/VrDc25Z7too
+         +ZVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736193048; x=1736797848;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:mail-followup-to:message-id:subject:cc:to
-         :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qGMHgXg4FhW7JGenz3T6xLfvKVPDR9iVCkZIU7+YIF8=;
-        b=m9P1s7AMPD/Xz1RZlTIPitB+DR9TJ+nkt/C3xUlpPrfREoxJcNAZ49QS4KlN3NDNBf
-         GzvuE09SOobStey+/iEByujoB59+XqsK5Prw+9IJJjKXeZYSk4F7f93dPh8+w5BcodQ7
-         vONTRyQ6soRNquDFoNTviilzAUCgvXfz7deWtZVeG5Nd2whHju45Anfv/BAbhstec8BH
-         GLSS1SaUinZBAGPEYHWDOGJwMuqob6lMmPg+YrLmblTIpmUF79eViimbx4nRMg6+qwtQ
-         fyhWJYeHd+gP6i99k95MyrfgkNQvPxwRf4t9dP4VJoq7R+iKBCPk2vtUZJzSlCVLHsUB
-         w29Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU1t3tQsOFKE/IwcHO3tjByRyBNXjzEDB1wPj+TclWqtMZ7XdwpGapt+dxQuHHQ4eZSwmujJzgrqCVxCfYf@vger.kernel.org, AJvYcCUFo4OAEV35HS5I+8Zo7k++FbfziXFB9nIIo4gdko7JuHZ9jxCb4fjS8bewD7EMi72Yy5cYih40XRP1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxzbc+nJk3ozMBUCDQ+lt+biXoTxSS5tK5PZB/IildNGJoLax/N
-	XkXQtmzK0hUX2S6pslIRNvUiYQUCzSdi58LgtWAyroupXVoab+gYvK479jAJ
-X-Gm-Gg: ASbGncsEajRDW4lbWuzwLF4cGO2RE6CsoVjiVBiM4UZYWV2V6zct8hhWvLjbZiGAwFE
-	4wKNkQ5kUQmmfznRfhkt9Rzc0Eb+aft8WHzmcihRwtQ/B0Ebkue6XLvcFwCDsb6LVsipLjnplUD
-	hLQyyIrILOgSkCEpJAPmEb5Z8Cuie40/0rypumAdRKWDSlPVNxBMG+jlV1j7LCpQDLchq+40zMv
-	OnMKkR5PSm4zVE6DozPr2arqA8RlSTqoC/vzTRWZEEF+SHmIwYFb272DNYWUbVzanA=
-X-Google-Smtp-Source: AGHT+IHZqnO4VP7PrpLiYbkIXyeiZ8I28sisp22+YN53akKHQ23zEpc9KpH45aTzGIXW+qUh3UQM1Q==
-X-Received: by 2002:a05:6512:6d3:b0:542:28b4:23ad with SMTP id 2adb3069b0e04-54229530096mr19882871e87.16.1736193048213;
-        Mon, 06 Jan 2025 11:50:48 -0800 (PST)
-Received: from localhost ([2a05:3580:f312:6c00:1b49:dfce:283c:7307])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5422383203asm4984082e87.258.2025.01.06.11.50.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 11:50:47 -0800 (PST)
-Date: Mon, 6 Jan 2025 22:50:46 +0300
-From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-To: Vasily Khoruzhick <anarsoul@gmail.com>
-Cc: Chris Morgan <macroalpha82@gmail.com>,
-	Andre Przywara <andre.przywara@arm.com>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Martin Botka <martin.botka@somainline.org>,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v2 3/5] mfd: axp20x: Allow multiple regulators
-Message-ID: <Z3w0FngmguvM8u8P@skv.local>
-Mail-Followup-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>,
-	Vasily Khoruzhick <anarsoul@gmail.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Andre Przywara <andre.przywara@arm.com>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Martin Botka <martin.botka@somainline.org>,
-	Chris Morgan <macromorgan@hotmail.com>
-References: <20241007001408.27249-1-andre.przywara@arm.com>
- <20241007001408.27249-4-andre.przywara@arm.com>
- <675489c1.050a0220.8d73f.6e90@mx.google.com>
- <CA+E=qVf8_9gn0y=mcdKXvj2PFoHT2eF+JN=CmtTNdRGaSnpgKg@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1736193063; x=1736797863;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AVD38ry6XjUWoVgJ+oJLF45j3WXHuey6ua4rBWQhTj0=;
+        b=nVtQ5Yx0X2QLJ+dhgSW/bqeO9lxKqYvZcxEb9ERsm+bCODmNArZAM/b2y192VCUGG7
+         NFsJPSFqGbMJbWj0i2E/WDkwODB5NcIcsbGbsLZudBsRoDD8u90/oEYg8xmX0T7WF8SZ
+         vFe7Ejous83weGXf6wU20UWrpTeYO7V36tjvXeklSVLUO4tU39JrpvMBMWlxDevmxJrG
+         llFYkyZv7qZRcSAm2C4r09mYcnGuhzUZz3MBQwkSM1C3JWA77v62ytI0TCsZUsvjJoMn
+         XbmDoysP06Cs8xZfT64ArG3DcgW1IndwX45C5QpjcTHws2HaT1w56jk93aVwLi0Wq8ET
+         m3eQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUS36QVP2y+c82Y9A30pkcbmS/hHu/cvpxw5d/7CdE4Ai0PNzH3vq/XPUSwWlwXDYPpBEl1eEymI15UjWs=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNGR0URPYkk5zm+cZetMkmZ/59kD3yjc6VU/NZ0gdwMhkvJMEe
+	Sxcx0yqDFBr/fHij5WaB1drYwao593vgQPsyEjR/sudKDyOQBX4AUICP6kV4EysS0GpayBmcHU5
+	jrdVX+jfRN7JJkNjWGMzAseZlXFqDDWnJdK1kn1oG
+X-Gm-Gg: ASbGncuXE9b8CoB/FktN7MG6skTW48mT/IyswT0HwkkueivEkb31PJZVq/mc503V9eH
+	FtUUFgnMuIvNJLCRlb1UQ9HSn12ZHny6l1MYtowqJc01cN5q6zg==
+X-Google-Smtp-Source: AGHT+IFFhXRZczwYX7+y4k2AHyUXGH6DMbUubnu6jmb6A/f/+7SoRgMGuMBQkStFKpYVSokMXldT0Z3yBk0oZOPbm+w=
+X-Received: by 2002:a05:620a:1790:b0:7b6:cb4c:10e8 with SMTP id
+ af79cd13be357-7b9ba716c09mr9322005585a.11.1736193063281; Mon, 06 Jan 2025
+ 11:51:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+E=qVf8_9gn0y=mcdKXvj2PFoHT2eF+JN=CmtTNdRGaSnpgKg@mail.gmail.com>
+References: <20250106-rk3588-h96-max-v58-v1-0-d25255f851fc@gmail.com> <173619154694.838812.1604486663887944578.robh@kernel.org>
+In-Reply-To: <173619154694.838812.1604486663887944578.robh@kernel.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Mon, 6 Jan 2025 23:50:51 +0400
+Message-ID: <CABjd4YxP4jXZbRV0X-E8JntV+hzSo-4Jiq3yaequWuiWkqoUJg@mail.gmail.com>
+Subject: Re: [PATCH 0/2] arm64: dts: rockchip: Add H96 Max V58 (RK3588 based
+ TV box)
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-rockchip@lists.infradead.org, 
+	Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Mon, Jan 6, 2025 at 11:28=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+>
+> On Mon, 06 Jan 2025 01:07:16 +0400, Alexey Charkov wrote:
+> > H96 Max V58 is a compact TV box based on Rockchip RK3588 SoC [1]
+> > that ships with Android by default. Add support for it.
+> >
+> > Note that there is no publicly available hardware documentation,
+> > nor vendor sources to be used as a reference, so this implementation
+> > is best effort based on poking around my board and staring at the
+> > decompiled stock DTB. It works for me, but improvement suggestions
+> > are very much welcome.
+> >
+> > HDMI output is not tested, but expected to work.
+> >
+> > SPDIF output is not enabled (base RK3588 .dtsi needs amendment)
+> >
+> > Auxiliary LED display is not enabled (no mainline driver available).
+> > The controller used is FD6551 connected to GPIO3 RK_PC7 (clk) and
+> > GPIO3 RK_PD0 (data), which happen to be the right pins for
+> > i2c5m0_xfer pinctrl config, and thus might potentially be used with
+> > the hardware I2C5 controller (to be verified). Out of tree userspace
+> > driver is available at [2].
+> >
+> > [1] https://www.h96tvbox.com/product/h96max-v58/
+> > [2] https://github.com/arthur-liberman/linux_openvfd/blob/master/driver=
+/controllers/fd650.c
+> >
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> > Alexey Charkov (2):
+> >       dt-bindings: arm: rockchip: Add H96 Max V58 TV box
+> >       arm64: dts: rockchip: Add H96 Max V58 TV Box based on RK3588 SoC
+> >
+> >  .../devicetree/bindings/arm/rockchip.yaml          |   5 +
+> >  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+> >  .../arm64/boot/dts/rockchip/rk3588-h96-max-v58.dts | 785 +++++++++++++=
+++++++++
+> >  3 files changed, 791 insertions(+)
+> > ---
+> > base-commit: af349ca4d3f8659d84abc667125c826fda155109
+> > change-id: 20240618-rk3588-h96-max-v58-c2c1bf8e6996
+> >
+> > Best regards,
+> > --
+> > Alexey Charkov <alchark@gmail.com>
+> >
+> >
+> >
+>
+>
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>
+>   pip3 install dtschema --upgrade
+>
+>
+> New warnings running 'make CHECK_DTBS=3Dy rockchip/rk3588-h96-max-v58.dtb=
+' for 20250106-rk3588-h96-max-v58-v1-0-d25255f851fc@gmail.com:
+>
+> arch/arm64/boot/dts/rockchip/rk3588-h96-max-v58.dtb: syscon@fd5d0000: usb=
+2phy@0:otg-port: 'vbus-supply' does not match any of the regexes: 'pinctrl-=
+[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.y=
+aml#
+> arch/arm64/boot/dts/rockchip/rk3588-h96-max-v58.dtb: usb2phy@0: otg-port:=
+ 'vbus-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/phy/rockchip,inno-=
+usb2phy.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-h96-max-v58.dtb: regulator-3v3-pcie: =
+gpios: [[267, 1, 0], [187, 20, 0]] is too long
+>         from schema $id: http://devicetree.org/schemas/regulator/fixed-re=
+gulator.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-h96-max-v58.dtb: regulator-3v3-pcie: =
+Unevaluated properties are not allowed ('gpios' was unexpected)
+>         from schema $id: http://devicetree.org/schemas/regulator/fixed-re=
+gulator.yaml#
 
-On 24-12-27 14:34, Vasily Khoruzhick wrote:
-> On Sat, Dec 7, 2024 at 9:45 AM Chris Morgan <macroalpha82@gmail.com> wrote:
-> 
-> > Using git bisect, I found that this patch breaks the CONFIG_AXP20X_ADC
-> > option which is used by some of the battery and charger drivers for the
-> > axp20x PMIC series. My current assumption is that the
-> > devm_iio_channel_get() call made by these drivers worked correctly
-> > previously when the PLATFORM_DEVID_NONE, but now it's not working
-> > anymore. I'm still testing possible solutions for that problem.
-> 
-> I confirm that this patch breaks the battery driver on Pinebook (and
-> likely Pinephone). Reverting it fixes the issue for me.
-> 
+Indeed. Will fix it in v2, sorry for the noise.
 
-git bisect pointed me to this commit, when I've investigated why
-battery power supply stopped working on PinePhone.
-
-The problem is that devm_iio_channel_get() can't get channel by name,
-since consumer's name has changed (from "axp20x-battery-power-supply" to
-"axp20x-battery-power-supply.4.auto") and axp20x_adc has hardcoded
-consumer dev names [1].
-
-For other readers of this thread there is related discussion here. [2]
-Chris, do you work on another solution of this problem?
-
-1. https://elixir.bootlin.com/linux/v6.12.4/source/drivers/iio/adc/axp20x_adc.c#L176
-2. https://lore.kernel.org/all/20241210224859.58917-1-macroalpha82@gmail.com/#t
-
--- 
-Best regards,
-Andrey Skvortsov
+Best,
+Alexey
 
