@@ -1,80 +1,146 @@
-Return-Path: <devicetree+bounces-135924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004B2A0307E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:24:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F4B6A03087
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:26:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E2FD7A1172
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:24:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 071431884EE0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:26:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF85F14A098;
-	Mon,  6 Jan 2025 19:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KdOElWwt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A721CEADF;
+	Mon,  6 Jan 2025 19:26:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5D0171D2;
-	Mon,  6 Jan 2025 19:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE4F1DE3BF
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 19:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736191469; cv=none; b=Kb7eGsranKWF4XZs1ctzVfa8oT5GkvBT5CQ9KMHlwRg3a6jtYQjiuOTrpyv1R4q36ae0PtVxfCvUdbyfuozRL+xeYCJZeOelAxaiVvJj2SzrDnTNN0J9J+XffnuRYqlnAZVLlBlgAcIV5hFfpmK243tv8/tHr6qKSWgE9zqrTho=
+	t=1736191561; cv=none; b=toEITlkPCbABi1+tQO0g8LqQBkUj/aWYtW2cc/rjw+OCS4JFhNMDuKwn833WqvvYn1uqvk7/rnMPaXpZ7d4twkG5e8ZHcHtLVG+/RqABSHpeZ208K5g6DOGDRu51jz9J/QZIQjiPer9NIffnAOYsrT7vexF+z8SOiECEq2Vi+hM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736191469; c=relaxed/simple;
-	bh=GcouBHEnO0wTqP5GPp1mlQybUrfCiP4EjWCG0+l0IBY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PDVoKqwCpJdkgHXbPXUrpYlLwgcKmlrdRng42lqtMtSnyt224yepu0qk59kztLl93HMlpr2nxBeVzK/6+U+0Lju3p9PTT8a5XBA6EuKhYWPIYpEjnWJQDh7nlDkhYWn7VJNVIvCicG05EqIy6oYEHLOqI2X9QabN5bnHRkgx7ZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KdOElWwt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49439C4CED6;
-	Mon,  6 Jan 2025 19:24:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736191469;
-	bh=GcouBHEnO0wTqP5GPp1mlQybUrfCiP4EjWCG0+l0IBY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KdOElWwtCfqlBry7uTRNaBvt6Z2vh+PisYp+FcX71GNa6nNw4YkVNYDqD49tDY+YG
-	 H6U5HlDc7QSWoidd4CrJpJgbu49gqSVQF8B4pg25cxvOyWwNJgjYHbCIlex2tzCHDh
-	 UI1skaTUyGdzfzWspD+kO3tG9ACM5B08ET0KI+pn8cc7xM+ShgeSVGfGw3ms7za2aw
-	 cvVESDUxQwtqD+wpoQtawpuZTo8rjCH/5zo3IUViU7UWyN55l605feytt3TC7+y09L
-	 BgpWaVw5CNi3c7EhlhJkL/U6UoZAD8H14RhY+iftxqcbOlPPlh3IrtowNZBml2XaAS
-	 921U/TJ+a397A==
-Date: Mon, 6 Jan 2025 13:24:28 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-Cc: linux-watchdog@vger.kernel.org, quic_srichara@quicinc.com,
-	linux@roeck-us.net, devicetree@vger.kernel.org,
-	andersson@kernel.org, quic_rjendra@quicinc.com,
-	wim@linux-watchdog.org, linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org, konradybcio@kernel.org,
-	linux-arm-msm@vger.kernel.org, quic_varada@quicinc.com,
-	krzk+dt@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Document Qualcomm IPQ5424
-Message-ID: <173619144480.836740.2156533062837713983.robh@kernel.org>
-References: <20241120055248.657813-1-quic_mmanikan@quicinc.com>
- <20241120055248.657813-2-quic_mmanikan@quicinc.com>
+	s=arc-20240116; t=1736191561; c=relaxed/simple;
+	bh=TFmeMvkYOP/445bLGDSd6K8D5moj8hk/gbsHYCQfrBI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u2sedAb3ASi0TObRACK/RRVYNK6cMzj88TQ3QPRVtjicGXltbbHNXMvGNPaRX3UZiqhHnUuRePjHIKk8kCchnqSaM4TD3F9qJgDC3d472P9jXiFQgkyJDeCpDTQOnQ3ib9qQVf6UeqWh3VWkjhCy5shrwbvU9gBEvx8WnyBuUJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tUsjL-0001KR-8T; Mon, 06 Jan 2025 20:25:39 +0100
+Message-ID: <957ad153-17f3-4cb8-8878-73093a9a2724@pengutronix.de>
+Date: Mon, 6 Jan 2025 20:25:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241120055248.657813-2-quic_mmanikan@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: imx8m: document
+ nominal/overdrive properties
+To: Frank Li <Frank.li@nxp.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abel.vesa@linaro.org>,
+ Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+References: <20250106-imx8m-clk-v2-0-6aaeadac65fe@pengutronix.de>
+ <20250106-imx8m-clk-v2-1-6aaeadac65fe@pengutronix.de>
+ <Z3wHp6eLQuV9GGvh@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <Z3wHp6eLQuV9GGvh@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hello Frank,
 
-On Wed, 20 Nov 2024 11:22:47 +0530, Manikanta Mylavarapu wrote:
-> Add devicetree binding for watchdog present on Qualcomm IPQ5424 SoC.
+On 06.01.25 17:41, Frank Li wrote:
+> On Mon, Jan 06, 2025 at 03:21:42PM +0100, Ahmad Fatoum wrote:
+
+[snip]
+
+>> Allowing for absence of both properties is
+>> needed, because there is no default suitable for all boards:
+>>
+>> For i.MX8M Mini and Nano, the kernel SoC DTSIs has assigned-clock-rates
+>> that are all achievable in nominal mode. For i.MX8MP, there are some
+>> rates only validated for overdrive mode.
+>>
+>> But even for the i.MX8M Mini/Nano boards, we don't know what rates they
+>> may configure at runtime, so it has not been possible so far to infer from
+>> just the device tree what the mode is.
+
+[snip]
+
+>> +  fsl,nominal-mode:
+>> +    description: Set if SoC is operated in nominal mode
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +
+>> +  fsl,overdrive-mode:
+>> +    description: Set if SoC is operated in overdrive mode
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +
 > 
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> why need two flags? suppose "not set fsl,overdrive-mode" is equal to
+> fsl,nominal-mode
+
+Conor had the same question on v1[1] and I have addressed this in the commit
+message of v2, see above.
+
+In short, there is unfortunately no universally applicable default.
+
+[1]: https://lore.kernel.org/all/4e2250b3-5170-4e88-aa0a-dd796b81e78b@pengutronix.de/
+
+Thanks,
+Ahmad
+
+
+> 
+> Frank
+> 
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -95,6 +103,12 @@ allOf:
+>>              - const: clk_ext2
+>>              - const: clk_ext3
+>>              - const: clk_ext4
+>> +  - if:
+>> +      required:
+>> +        - fsl,overdrive-mode
+>> +    then:
+>> +      properties:
+>> +        fsl,nominal-mode: false
+>>
+>>  additionalProperties: false
+>>
+>>
+>> --
+>> 2.39.5
+>>
 > 
 
-Applied, thanks!
 
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
