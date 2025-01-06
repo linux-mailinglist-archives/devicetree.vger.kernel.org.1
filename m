@@ -1,138 +1,153 @@
-Return-Path: <devicetree+bounces-135939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D522CA03120
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 21:06:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC5D4A03126
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 21:08:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 557043A1E4C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:06:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FCB018862D0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:08:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCFBF1DEFE7;
-	Mon,  6 Jan 2025 20:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5DA1DFE3F;
+	Mon,  6 Jan 2025 20:08:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NwZnOmFA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qZAmycN7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2471D5CF4;
-	Mon,  6 Jan 2025 20:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501491DFE34;
+	Mon,  6 Jan 2025 20:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736194001; cv=none; b=uvwTKeiiwhan6qnD/GgtfkvZX10KLPrFN23eBjGrmp153qTUozdOCwxuQpse5RXO5FGN+V/2BBsVv6vQSeoTcrADqEuxHEMJiWr0ktHgbyLoZpvx9qa0vmds6V8i9uOWN0zXTOfPuBYg/C7a71uSZwqWEK6k5dg2Ad+6ZvEMJoo=
+	t=1736194096; cv=none; b=S3FzOGx/EP3ViS72T6vto6CrLPsgROn5H6qhS1gSASKL73Y/GZk3BkY9Dujvkn4ehbG9X3satxJffmVOzBInFQrOCuUhxJ19aeGngyd6UQ9xwitWiVEj1j09mKQRYZj7r87SqJZzRfyQU5Kyzytracoqnpi4kQBfHqZX9kgf6kY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736194001; c=relaxed/simple;
-	bh=ZskdcjSZHDk+YnBFKSSXMOTUIwwh1x/l4PXqRhHaIpo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=US1D4ktqT1gDsqRgT9Ys3zWO/S/a77qB8+c74uGCLMAaQwaCGWPoLJW3kQswxw2Z51PwYrlvcGtw/bPTpHXmEbuIU9CnYeGUZK0QRkfEqJSW2MT7ZqEKN27DReneUChiZlq182GdokSBiLLuyvmkCreeYuVFfpDHzWIyJK1TzuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NwZnOmFA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 506HwUdG005564;
-	Mon, 6 Jan 2025 20:06:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Q7fqXg026ZAnMZXN1MXFj57rk/uuZQXlz7QDDo9fMcI=; b=NwZnOmFAOz6Cputz
-	4hbte5VN4Uie2H/E5ZpDAZmW8BymOO5tsE2odCfRoy/nC6GRcFNWhyQucKakihE6
-	G31uPNjRQ7oUrR/L4Z+i0F+zK44RuCanmV3GmsmwYuRVXLhhYxbRpSRkRzSVr3QP
-	M1QwhK5crGmrctRPeUkjVIf5eutVu2NkLeM+S+be1jZ0e/42X143ifw3YPigX/Qb
-	3ZKlMIpp9I8yLNrMR6IqNcs6AV59MRpKxuvXJGgdVHB7aDlEBvSD0p/Wb/O0MJjs
-	fzWWp2JMRC1yAWLWft8Rtipi1Noc1/nf5df0wXN9n05iRXLfqywqjfr8HJYmMuNc
-	Sw4y4g==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 440m20r87h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 06 Jan 2025 20:06:30 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 506K6TaK016447
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 6 Jan 2025 20:06:29 GMT
-Received: from [10.216.24.147] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 Jan 2025
- 12:06:22 -0800
-Message-ID: <7380a14d-4d96-42b7-97e0-9916717d62a0@quicinc.com>
-Date: Tue, 7 Jan 2025 01:36:19 +0530
+	s=arc-20240116; t=1736194096; c=relaxed/simple;
+	bh=NRvcTToc1p4yengV/ghwPWZPCAkf/SQCKLQ2gGwbYKY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QzJt1VLa3efCt1On31KavXEZTCI2ZoaoQXFWpYvMbSl+jSFlmBhJn+Kcql0PlmyOlaWiK4zb26itRQKAjtqCm0hpZNfnhM/a6XTTTzPkalWz2XPBtuVTnOnRF8Xd3PN1Q7QPtEfqUk1AV/hRagf9k4kc8uVxJQY1RyJRuoWctiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qZAmycN7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F0D3C4CED6;
+	Mon,  6 Jan 2025 20:08:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736194095;
+	bh=NRvcTToc1p4yengV/ghwPWZPCAkf/SQCKLQ2gGwbYKY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qZAmycN72/Iq0R0hlYUh1WnNiRyMtPLZYkTdeYf0YJ5vAknT/fQ6apnZLHyeodlu/
+	 MLv2X15tTYa0Ow94CWJfPHuuVfUs+AnoLkY4JhGoPaj0/ybU+jgnR3Qkg7Ehxcz1TN
+	 rycAFm40zOxettK79oCNZzY9PUa9HONV6acEHkLeO2ewffFHMjlRMfzEfP5O0IvOVF
+	 8gMY9b3TIaib7mcNkiXb8wWnVBq9dpeiOFGP/GeXMy/QkwPbrfyCf5PJbgqPXL5dxe
+	 Khd14AAZrK0mHG3qVgQ2qXVnzkOhW3dlPzOtEY4RPBUc+If0B0UJ85VkvisqVxdg7S
+	 QroQR67nQ7udA==
+Date: Mon, 6 Jan 2025 20:08:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: E Shattow <e@freeshell.de>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Hal Feng <hal.feng@starfivetech.com>
+Subject: Re: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
+ syscrg clock assignments
+Message-ID: <20250106-suggest-waltz-47d7f7760069@spud>
+References: <20250102194530.418127-1-e@freeshell.de>
+ <20250102194530.418127-2-e@freeshell.de>
+ <20250104-mutilated-unpaved-008eebdb200a@spud>
+ <56c372c3-bb8b-4150-9b34-a6cca906d740@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/6] drm/msm/adreno: Add module param to disable ACD
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Clark
-	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Dmitry
- Baryshkov" <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
-	<nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20241231-gpu-acd-v3-0-3ba73660e9ca@quicinc.com>
- <20241231-gpu-acd-v3-3-3ba73660e9ca@quicinc.com>
- <3f33a94e-3fb2-4df2-91f5-59a92f5094f0@oss.qualcomm.com>
-Content-Language: en-US
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <3f33a94e-3fb2-4df2-91f5-59a92f5094f0@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -Q0R83qpC8B5CHgb51nLn0-BYHpE2k4J
-X-Proofpoint-GUID: -Q0R83qpC8B5CHgb51nLn0-BYHpE2k4J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- adultscore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 malwarescore=0
- impostorscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2501060175
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/Nn58aHnpboDlL35"
+Content-Disposition: inline
+In-Reply-To: <56c372c3-bb8b-4150-9b34-a6cca906d740@freeshell.de>
 
-On 12/31/2024 4:02 PM, Konrad Dybcio wrote:
-> On 30.12.2024 10:11 PM, Akhil P Oommen wrote:
->> Add a module param to disable ACD which will help to quickly rule it
->> out for any GPU issues.
->>
->> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->> ---
-> 
-> Is that something useful during internal development, or do we
-> see ACD causing issues in the wild?
-> 
-> If the latter, would that be caused by e.g. outdated firmware?
 
-It is rare to see ACD issues in production because there is pretty
-stringent testing done during development. Still, disabling ACD is one
-of the first thing we try because debugging HW spec violation is a
-nightmare.
+--/Nn58aHnpboDlL35
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regarding firmware, yeah, it is possible but rare in production.
+On Sat, Jan 04, 2025 at 01:04:30PM -0800, E Shattow wrote:
+> Hi, Conor  (added CC: Minda Chen, Hal Feng)
+>=20
+> On 1/4/25 10:33, Conor Dooley wrote:
+> > On Thu, Jan 02, 2025 at 11:45:07AM -0800, E Shattow wrote:
+> > > Replace syscrg assignments of clocks, clock parents, and rates, for
+> > > compatibility with downstream boot loader SPL secondary program
+> > > loader.
+> > >=20
+> > > Signed-off-by: E Shattow <e@freeshell.de>
+> > > ---
+> > >   arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 +++++++++---
+> > >   1 file changed, 9 insertions(+), 3 deletions(-)
+> > >=20
+> > > diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/r=
+iscv/boot/dts/starfive/jh7110-common.dtsi
+> > > index 48fb5091b817..55c6743100a7 100644
+> > > --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > > +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > > @@ -359,9 +359,15 @@ spi_dev0: spi@0 {
+> > >   };
+> > >   &syscrg {
+> > > -	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_CORE>,
+> > > -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+> > > -	assigned-clock-rates =3D <500000000>, <1500000000>;
+> > > +	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_ROOT>,
+> > > +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
+> > > +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
+> > > +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
+> > > +	assigned-clock-parents =3D <&pllclk JH7110_PLLCLK_PLL0_OUT>,
+> > > +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+> > > +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+> > > +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
+> > > +	assigned-clock-rates =3D <0>, <0>, <0>, <0>;
+> >=20
+> > Why is assigned rates here 0s, rather than the property just removed?
+> >=20
+> > >   };
+> > >   &sysgpio {
+> > > --=20
+> > > 2.45.2
+> > >=20
+>=20
+> Assigned rates all zeroes is how it is in U-Boot. Removing the
+> assigned-clock-rates property as suggested does work in U-Boot and Linux
+> both.
+>=20
+> For context, U-Boot fails when replacing assigned-clocks to
+> JH7110_SYSCLK_CPU_CORE (500MHz) and JH7110_PLLCLK_PLL0_OUT (1500MHz) from
+> Linux. So I tried to merge all properties together and in testing then
+> U-Boot failed (or I did it wrong). However replacing the Linux properties
+> with the U-Boot configuration (above) on Linux does work for both.
+>=20
+> I do not know if this is correct but I can test any suggestions and report
+> if they are working.
+>=20
+> Do these changes make sense? Are there other variations I should test?
 
--Akhil.
+I'd like the commit message to at least explain why these clocks need to
+be set to zero (I assume that means disabled?). Maybe the StarFive folks
+know why it is required?
 
-> 
-> Konrad
+--/Nn58aHnpboDlL35
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ3w4KgAKCRB4tDGHoIJi
+0q6ZAQCjyh1rshl3u2uUsHiXi6RIJflNxe8iLN0VR1ebRmfi7gEAnxi30CSpTzYt
+T3mTDWwJQaewB8Jn+NOtieX6BCBa8gg=
+=x1MF
+-----END PGP SIGNATURE-----
+
+--/Nn58aHnpboDlL35--
 
