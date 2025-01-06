@@ -1,80 +1,112 @@
-Return-Path: <devicetree+bounces-135804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8201A02463
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:36:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB265A0251A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:17:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7C5716470C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:36:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC72B7A39D0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3687078F20;
-	Mon,  6 Jan 2025 11:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C14E71DE2D2;
+	Mon,  6 Jan 2025 12:12:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b="O+eZgIxO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="guOseR4U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.8bytes.org (mail.8bytes.org [85.214.250.239])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C7012E4A;
-	Mon,  6 Jan 2025 11:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.250.239
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736163411; cv=none; b=mktBovl+dy1v0wTwgV7VKAowa0DbYZkKzfx97yGMtXmJjVdTvAq6ml8pfKXlnAKtt0iXs03mEgAAKDrE0j6s4cfVZOUcnFq9UDV/zfmYoT2LiSRApxTepIT5Efii2ruLHWeYFi4aUhYoYu5GgHioraWNMEnGHSXRj6ZYAuXC8RU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736163411; c=relaxed/simple;
-	bh=YN58tjVz70PHm/pGFOJ+/GEdu/r7pxe7tJRI2ZBFXmU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mZljMPZWVC4akJQ8UNfH2EjH3udcgdBqact3DVwru21a3D9G2MyLg6cmZGX6X4EXzrE4NxmpJcHQVqEJFGJx4se/KY1XdR/ZI/F3/i/jUnZbh3lUj/OG/uwiEvWivzfbeDHAmWU7aw1THmsXSiugQ01XrKc871jXWglidmmLAzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org; spf=pass smtp.mailfrom=8bytes.org; dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b=O+eZgIxO; arc=none smtp.client-ip=85.214.250.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=8bytes.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8bytes.org
-Received: from 8bytes.org (p200300f6af348600d06e0009f19b6c7e.dip0.t-ipconnect.de [IPv6:2003:f6:af34:8600:d06e:9:f19b:6c7e])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.8bytes.org (Postfix) with ESMTPSA id BE4222E0016;
-	Mon,  6 Jan 2025 12:36:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
-	s=default; t=1736163406;
-	bh=YN58tjVz70PHm/pGFOJ+/GEdu/r7pxe7tJRI2ZBFXmU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892641DDA0C;
+	Mon,  6 Jan 2025 12:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736165574; cv=none; b=U+6icLLFaFklzdZk3x/hbPBDz9nP4aG/QCjPXO4kFYL/pgDUokaiwUCt7kKy5i1UMnwTJ8DR9sUuuPjFQ790Jw1v7A8lAVLyeuJXEj52qMpJvuHAXj76qKhwjbX8oGg9dURzTKJyCs3R3FkGfwXUXfsN6oiQnuyoqaJd7jOPs1Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736165574; c=relaxed/simple;
+	bh=oGYg4VihaN9XekRqQm/v8gi29KzPEeuneKq4SGL6rdA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zru95F1ZFWS9FjF+M8FebUqkudybHwGY9zvuVyj7uitblvO4iZlsOv5PGMRLjX4mpAweYSyQ97zGOu9LSLA3Qzyg5cMvUETWTAX8W0ElTr3N7Qv30tlggD+x4CfsdPMl5ovDcetvmhpUIHBfG8O9fdhSuK2g2soYgNkdEClL4Ig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=guOseR4U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E73A5C4CED2;
+	Mon,  6 Jan 2025 12:12:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736165574;
+	bh=oGYg4VihaN9XekRqQm/v8gi29KzPEeuneKq4SGL6rdA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O+eZgIxO/FoAd8/RTShOPk8F+f5IpkpVxsuPx4+tZ/b33HJTWqYVLLffeHEUgKAVp
-	 +QEWB32R5ziD8qV4vLWUSPxDPMg+qQ/S/9AzF2qFvf1QrCbkNHUYLVr33dTgPQc07N
-	 sOLK2KQtkDPiOv/ftv290QVXDlkRuo1Yg5rfNjFs6piSWshM5UNgx9GHc472Usn06f
-	 ZVBYORJ/SCcnS0xhJAyLXsQxLfwZwT2GeoQD9ba8uLNhOIvKMhGHmf6V4RBqfK07X7
-	 4T4uaZ7osSNna3/vMPLs9C1OJTyPZhZX/giQJbTdP578ibDMzyCKSt8DlFS1NRt23t
-	 BMrVvluk5MxBQ==
-Date: Mon, 6 Jan 2025 12:36:45 +0100
-From: Joerg Roedel <joro@8bytes.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, krzk+dt@kernel.org, robh@kernel.org,
-	devicetree@vger.kernel.org, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [RESEND PATCH] dt-bindings: iommu: rockchip: Add Rockchip RK3576
-Message-ID: <Z3vATdi6q83QAcU1@8bytes.org>
-References: <20241231093154.252595-1-andyshrk@163.com>
+	b=guOseR4UG0uXGKRR23FZgdM6BoLTyaxbU1wGbXA/2JTs6envVsy11jvxhXZE/xRhm
+	 q+RTP46onPVsM5lZHKRVE5j9SNAT2b7QgxZIhJMIYOMzx2Lp8cFrgXw3GZiZW+hghR
+	 ZWdSuZWF8GSQ7t4uIdMptKgtOCbUWggS0kUhON1qsnOVA9cMX0+m30ZbcFDU6BtFOJ
+	 3A2KWtJiK+LnUcETVr7ZfeoKTob9ZCbHnm0Rjcj9j4GJlmTv0UZtrYQjdbe9qLBKwn
+	 anGb12ucv9UmTbo3XAaCH5daqLX8F3a3IpzWguOba9vNJEuO4r+t6xyZWZ7UqWtxiw
+	 FzCxZ8Ue+9P7w==
+Date: Mon, 6 Jan 2025 12:12:45 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Val Packett <val@packett.cool>
+Cc: Fabien Parent <parent.f@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Sen Chu <sen.chu@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Eddie Huang <eddie.huang@mediatek.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Yassine Oudjana <y.oudjana@protonmail.com>,
+	Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH 6/9] regulator: mt6392: Add support for MT6392 regulator
+Message-ID: <70a3dc99-4e2e-44f0-ab9d-7770d2df94c0@sirena.org.uk>
+References: <20241226050205.30241-1-val@packett.cool>
+ <20241226050205.30241-7-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/vYbwmcb+QbC4fzk"
+Content-Disposition: inline
+In-Reply-To: <20241226050205.30241-7-val@packett.cool>
+X-Cookie: Do not pick the flowers.
+
+
+--/vYbwmcb+QbC4fzk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241231093154.252595-1-andyshrk@163.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 31, 2024 at 05:31:50PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> Just like RK3588, RK3576 is compatible to the existing rk3568
-> binding.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+On Thu, Dec 26, 2024 at 01:58:06AM -0300, Val Packett wrote:
+> From: Fabien Parent <parent.f@gmail.com>
+>=20
+> The MT6392 is a regulator found on boards based on the MediaTek
+> MT8167, MT8516, and probably other SoCs. It is a so called PMIC and
+> connects as a slave to a SoC using SPI, wrapped inside PWRAP.
 
-Applied, thanks.
+Acked-by: Mark Brown <broonie@kernel.org>
+
+--/vYbwmcb+QbC4fzk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmd7yL0ACgkQJNaLcl1U
+h9AoUgf9E5E6xhnmqTj1rf9LLDmAhOGp/lZ9yE5VY7gE1bCykncwvblk6l9QuC9X
+fPYWdX6juy9GMMTcMVRyPojqI87AQ0/8/wNo4gPirl/B5Dd9Co7iExwWDmOLxPw5
+a7ddRO2vZtowXdwfnKa3kMl/BY/GVSl1BveULOCiqQphB19siW68OROHgPQyDVEn
+K1NowlyYiJkKqievI1RDhyHiOqwrniY+QIjDS2Umoka/PW+/dykRF2mvrGbkST1E
+tDs2HQKZUwjffJxMKPKbyP37yM1v8XgmSTq8dy8WU3BQub+eGQS/SO+jINwv2kKx
+v7DXLjDwH51s1Oxx01Rc14JvWpTRYQ==
+=HUz0
+-----END PGP SIGNATURE-----
+
+--/vYbwmcb+QbC4fzk--
 
