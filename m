@@ -1,118 +1,112 @@
-Return-Path: <devicetree+bounces-135745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9488A01FF1
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:34:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01CD8A01FF9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:36:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 296E018848E7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 07:34:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DD8D18848B8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 07:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B252FC52;
-	Mon,  6 Jan 2025 07:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2A61D61A1;
+	Mon,  6 Jan 2025 07:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IICE27q7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h1OeZB2b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5494184F;
-	Mon,  6 Jan 2025 07:34:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B811922F9
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 07:36:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736148871; cv=none; b=pAjDpdwDw5jaDaQOGFI0/b9P/gyOibaIXg5N+s88q85xIZvndrUTt4s5rAmXUbLL28kteIynjIJbQ7PebN+SJN1Q+YGhe41i5CaNat+M0gZIO1P6jQDEd5s0AYA6CjSJaXrAZfbctP8IpFrJekbE4feX+AFpWNDKJVRfr7Qv2Qg=
+	t=1736149001; cv=none; b=odap+NMadc9bm9VaSDaEl1Dx/vrjX0vBpg04XF1xC3I3eCRgT85aDVvt51eOS+NZgQylQKp7HaPtgo336E47LgjBuCpBb5XzOjDP3Y06NND4u6YaIwcSD6gDZvjycwTodCQt2PIiavPB+GoC9EjQa6dKRfr223gYE9aMR4cqKik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736148871; c=relaxed/simple;
-	bh=oNAfYWZHFhfq9gPblM5T/IQkg/S7CkyveCZjO12PMik=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version; b=CENxrpeuL8pvMXKuYIJWMwFKvp/D/VyhtB19oC4X7rUb40XaIlO3151hKS/Nmw9GmBTtLBT2pVxhRg310yrSYn7CPNTtDhEuuemIAHtCZvbXvnSapPs8Ps82GBEpWA1ZcoAv+pS2ZDUqvtqpkoYY0wXifrFGp9YTEgtCSQzQwPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IICE27q7; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736148870; x=1767684870;
-  h=from:to:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=oNAfYWZHFhfq9gPblM5T/IQkg/S7CkyveCZjO12PMik=;
-  b=IICE27q7ilflyB6dfwXhSQLf6Jc/rgsAQ/JxZawVkSoWBrx6IhIpBTpU
-   roBJXW6r7mxXY0K6Hrv2VBrswv6JiyF9GjJ6aG1P2gJkM4D1cdqBXhcne
-   dgHdU0Ab2MfcB3iDv0A1bgSO+6qNrYCMCfpGSPTpWjm+QJxUwMgB2Jnlg
-   kMHALTattexxlkH13oEz4DN2uJp/iePGl20YOfGbbAKhoLe4dXrcT5tE6
-   XFv0lfjuuZLgky3H3pdUUDqvlotNuAhTmeNhKEvkuHEM8Zz3ZU5H0rpLT
-   u4K65u+v6pmEkQGdwI6eKqTaBHFD+H1kDGKvMYTeHwXDqmCt+5dfLa3If
-   w==;
-X-CSE-ConnectionGUID: FxZwzw88QVyrftmHZ5nbCw==
-X-CSE-MsgGUID: JEouuj9TRcCNUPqq+kHbkA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="47275568"
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; 
-   d="scan'208";a="47275568"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2025 23:34:29 -0800
-X-CSE-ConnectionGUID: xMA/V/MUSquiMoRJMzfGlw==
-X-CSE-MsgGUID: BfXJZZGBTnmrze7F+7GMQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; 
-   d="scan'208";a="102556729"
-Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
-  by fmviesa008.fm.intel.com with ESMTP; 05 Jan 2025 23:34:27 -0800
-From: niravkumar.l.rabara@intel.com
-To: Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	niravkumar.l.rabara@intel.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: socfpga: agilex: Add dma channel id for spi
-Date: Mon,  6 Jan 2025 15:31:10 +0800
-Message-Id: <20250106073110.2460870-1-niravkumar.l.rabara@intel.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1736149001; c=relaxed/simple;
+	bh=GJJnKeyq0AyCBYfSfuuFWtq4NCpFzu0b937iGTQC/yk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kNOO5LbaSTKXdcAQY8ojM44PQ94GBNsZTlint7Q4bck0bcR36O6+KCv1sxwlYOSPH+vPAWsvkeN9P/qBs081sinRb3sD6psCr/Rf3BuEj1VXd/um8W0bViaSJv/uQVkOPG9WyuVcYtOQ9kUPnTIjp+cBmLrH9yiMV5WiuhTNGgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h1OeZB2b; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-436202dd730so100284795e9.2
+        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 23:36:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736148998; x=1736753798; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XuH/NxHgypHXTjjjbglqsSTpq7IdJAHxtTHnjuWbs8w=;
+        b=h1OeZB2b3rnPJobtwXyvNNBIE/G+skB9YVld3FJd980fgaVqm+mfdyeuH0xwggRxxf
+         /mYC81x4XyiHLZ8CugEOlc34YoHedrOGnlgMuHtHSLEJ5qaz4gaU+1xzxIZ8VwszFxtt
+         5f0vLqX3LnM2kPMFBNDU6S37vSBj8RCJnjFNoy1igzPD6x8aDqIp97kt4R3cer9GWwAS
+         yPRF9CPmaSwkNJm5+8yo5gGa2EaQk0Ex68tx93PxQKGsGA5FI2Ny5zqfs4qP+vLqaSwF
+         9wq/3yTV0FcyEiX/lXDF2pAwUIN3acTNmEfXwm3PnhiYvTV/XU7Y3N0ytD5vRHlONqTI
+         lHdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736148998; x=1736753798;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XuH/NxHgypHXTjjjbglqsSTpq7IdJAHxtTHnjuWbs8w=;
+        b=Rx8Cztcivv3OaHa36mQ5voo9YhZuuNwvupMC6IhyvBaFLzs65alsWyGMSV4XQhhrsT
+         9SrbfchdH9jLlOQRdQuzVS3L89NvVBJDgQ3L0VtpLAsF/FGk0ntfIYsLu8h4fvIZxpCH
+         Rp1wIiyRd2vUY/oEQzYD35u/CFXkwOpH7JCYS8lB5fyQa7trYO6zdEwOt6VL9bza9OOG
+         J6jbMCRMCjfFDdjsK8bpGgpw7GmgjyhwdhCg0vhTrr0mJkGLE7lJtJOzI2T/L3rFrVN3
+         FVErPGjmWqGGSFHt5reh3F8ClMhczWUz+TcMI8sN8V28Icou84TqFLuXFymafQtZ2UnK
+         K/YQ==
+X-Gm-Message-State: AOJu0Yz9VCwmpC1p58doglvitjf9idd2DkGT/0Ay9pFj6AMWmMznL7CO
+	bw3Xj8k0sX05IpaO5T39sB/M0FotxDSw8MJs8h2PoJgOZOfNp0SMx28jxfkFEMc=
+X-Gm-Gg: ASbGncsvq9UZcs8W27Zur3mGgq1eEHLIxQBc8SuZVUiy+QsQe3jHs/wpmG05K8z1Koq
+	bVku5IgnidIKR7BGof3YjFZ+fMk9AI9J+0UVG13GJ5m1/UPC8qCBUKqxUsPN5CKswBE0eENECvu
+	/MhGmhS4v0fcUAG2bvXL+e1mKBsz3me+hOcBL2FWAyOolYbZMZX9fPJZEOPURmE5a1LopSPoNBi
+	W6zX1w9JSEVhv+fTi6j4paZ7s+hn6V/hnpqsurJc2i9k02lhL5UVXgEQqM0UNx4
+X-Google-Smtp-Source: AGHT+IFQI0rLosE0iSZMKHi92uLdrnY3vwPRxWC4Uk5UIaHJ/DUMhfH+TpjawDUP/rxJQinNEwLVnw==
+X-Received: by 2002:a05:600c:1549:b0:436:1c0c:bfb6 with SMTP id 5b1f17b1804b1-43668b78cd4mr451383175e9.27.1736148998319;
+        Sun, 05 Jan 2025 23:36:38 -0800 (PST)
+Received: from [192.168.0.14] ([188.26.61.92])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436612899f0sm560190565e9.38.2025.01.05.23.36.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Jan 2025 23:36:37 -0800 (PST)
+Message-ID: <f0702bdb-846e-4817-a76c-5ce17dea38c8@linaro.org>
+Date: Mon, 6 Jan 2025 07:36:36 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] dt-bindings: soc: samsung: usi: replace USI_V2 in
+ constants with USI_MODE
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>,
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250105160346.418829-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250105160346.418829-2-ivo.ivanov.ivanov1@gmail.com>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20250105160346.418829-2-ivo.ivanov.ivanov1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+Hiya,
 
-Add DMA channel ids for spi0 and spi1 nodes in device tree.
+On 1/5/25 4:03 PM, Ivaylo Ivanov wrote:
+> +#define USI_MODE_NONE		0
+> +#define USI_MODE_UART		1
+> +#define USI_MODE_SPI		2
+> +#define USI_MODE_I2C		3
 
-Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
----
+USI_CONFIG register refers to the protocol selection with USI_I2C,
+USI_SPI, USI_UART. How about getting rid of the MODE from the name?
 
-changes in v2:
-- Include missing space.
-
- arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-index 1235ba5a9865..616259447c6f 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-@@ -457,6 +457,8 @@ spi0: spi@ffda4000 {
- 			reg-io-width = <4>;
- 			num-cs = <4>;
- 			clocks = <&clkmgr AGILEX_L4_MAIN_CLK>;
-+			dmas = <&pdma 16>, <&pdma 17>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
-@@ -471,6 +473,8 @@ spi1: spi@ffda5000 {
- 			reg-io-width = <4>;
- 			num-cs = <4>;
- 			clocks = <&clkmgr AGILEX_L4_MAIN_CLK>;
-+			dmas = <&pdma 20>, <&pdma 21>;
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
--- 
-2.25.1
-
+Cheers,
+ta
 
