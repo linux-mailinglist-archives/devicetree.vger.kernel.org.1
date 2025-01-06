@@ -1,162 +1,91 @@
-Return-Path: <devicetree+bounces-135973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E92A03329
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 00:07:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 338DDA0332B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 00:07:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCAED163813
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 23:07:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B55F91885341
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 23:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A9111DFD96;
-	Mon,  6 Jan 2025 23:07:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ed9AvVRl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018FD1E0DC0;
+	Mon,  6 Jan 2025 23:07:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE25B1DA614;
-	Mon,  6 Jan 2025 23:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD7C1DF73A
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 23:07:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736204828; cv=none; b=YD6sz2GxMfiwc7qtP2nn/S50A/oqeq9WF3mAsr+T/Q2RPRUPKr2jsQMWpPAc3jrNiU/32Q9KrlZYXnk+6JeXMFfCNq35/DwFnhF8dDLZInOYBCn139VZTe/SmMiCXTUMBuL2JCl9avY8U6GDPm2aGIz5OiuDYUtpPQzEsjYVvuc=
+	t=1736204872; cv=none; b=c22wMTKx/ac/MN32WoIkp6+OZedrWmAjN0Scr75IKb822u02GcNVUKrgOz+x3WtjBv6rkYERnpAENJuX1xAtJ94AcqXrgu/QlfvST+ECKWHweTJArzXSBvoQHN6VZrZgY/f0/lxTdMYr2eGjj+bKieLcz2oJjKKGosJfLBzJARA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736204828; c=relaxed/simple;
-	bh=hqi9o03baLfK6/OiEtJweD7rltsfckOcB8sqd2412yQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=b52UQ4ACJriGXpOCIylvDuP+NTIs6QKMD9cbUFzvJhR8UNNGAMU251puZUofC7MaAoYBHD9IMkyP064hlmXOE6+1HfpnbljewFE8hwVtW6/NbiXFtIAipYPNFbNpZu6NOtzdRxaolMAuJ8K1HN/LedqxYzI1jZ9hee8a/ceRS5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ed9AvVRl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46DC2C4CEDD;
-	Mon,  6 Jan 2025 23:07:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736204827;
-	bh=hqi9o03baLfK6/OiEtJweD7rltsfckOcB8sqd2412yQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ed9AvVRlbXLkbmMdTAk14dey89WEA/0jocOB8APWJ8glD8Zg4kdBZd1x8EHd7muqg
-	 1Es6Oc3KbTHu+HvhcHQZONEgrlSXf/W9rFqTe3socUbAWBr2aYKTKjT/r5+lLkpCTt
-	 jJLFZrZDvCfmsdmjkwSIH470zxE5VyieMcNoZ/1HXOznYOGTp4ljtOZ80pHYsvVx5g
-	 xXB8HbyaOy6KeGgWLVEDI7Ws1yeKs+UmBmW6338Bso63ql8QmmjPHo8L1fbytHCwAf
-	 lLwgyDXpfS+PBXxJErFbWb61hDq86aA90WFxne/kH8etfNaRh5nYF1Dnma9se3PCXK
-	 zP7fNi8Y6GK1g==
-Date: Mon, 6 Jan 2025 17:07:05 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-Subject: Re: [PATCH v2 01/21] arm64: dts: qcom: sm8250: Add PCIe bridge node
-Message-ID: <20250106230705.GA132316@bhelgaas>
+	s=arc-20240116; t=1736204872; c=relaxed/simple;
+	bh=QPKVwuyC154yrpGKNKQiqD7N3ttReF7lRwttSQAv1NU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=tlS8cR3oQzXMsAEvfi/epyvgi4QlOteZoOGFSRbOjBYZpzoABo/E+cZJdD7oDXBrHlxYbADVkaj8oAtuAsZBYCmmZlwa8HIHZbT/RCj3wBoaX+g8/GvH3uHMfBEOTHOQT3QJBVo7MxD4lk45lzXa2gFOrHRQLRTRDXJyGPW9wnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=baylibre.com; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2eec9b3a1bbso17065016a91.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 15:07:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736204871; x=1736809671;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QPKVwuyC154yrpGKNKQiqD7N3ttReF7lRwttSQAv1NU=;
+        b=D7MPI8bQoTlEJkejkniaUJlHzSMTGv07IwThJAguFeH/oVhqBHCf6Y24nn2VIBqFLb
+         XX42VJbC1/OpMzcEuHmNNDdv+82Rd0SYfxhZQhS0v3vUmPR9VXjwX+Rr9vYS7moO4vum
+         16UlSX3xF8XIhWzjCikw0hrltNKsjEXWlY4cdZm/uQpyI2kg8LbkpFp0lKSXfAOubWBa
+         N/aikTQnTLzz/8WLjqXB6+Yy2C07H9PBihNTEgWm04eZYdMR3vJwgzVDfInYVeNDLhq/
+         0jBMOqYV1OHOnli0wRYxH0XQcvDNKjrfWVxUM3/d9USQAq+IgJyLvk28hx76QhCacXsC
+         Meuw==
+X-Forwarded-Encrypted: i=1; AJvYcCWsIUehMex6BY5HW3teGGsVwbWtrHFq8g0Ezl8wf1WAOa/0xhQhOChCOwYcE6aJ9g60ThNwj7QqCtDc@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywu/XpCcWrxZgVt1l/iyTbTGp/sqIQ0XksYeHQ/yKfQlwROyBpC
+	4a0wd5avxAiaTWE0E4CKEsQFyUC52XJm5kYgAeZxxAxIcJiiNbrH5XwO7v4wiS0=
+X-Gm-Gg: ASbGnct/0NSeNrceT83XGwZDDxXlS5MI88e5TobaYDwuF2y58Q64kpcf8+dP1NT15Ic
+	BVrCZfK9EGJrtXFlbXePZjn1WnIQOHqSD1smu+mjCe4IWYa7Yeai4i0sCJQpj/c0AG7d2d/K+Yr
+	FdWsYIW5MRRL+Fgu44wEYarY3u22E+vDLqrnfpnjyymbt9RJNJg4cpTShvtS75ofxIngjpedrcN
+	EmFWHWYubt4aSu8GUvsLkcdRvI4tl57LaiwSo93uvZdn63z1VeDq+Y=
+X-Google-Smtp-Source: AGHT+IH6hRaGsYu1THr8tojXrvILWNkdfCnHtGTAK43r47Oj1S9W+uktWYkoDYwwa5z/K2tskk/kYA==
+X-Received: by 2002:a05:6a00:8085:b0:724:d758:f35 with SMTP id d2e1a72fcca58-72abdd3bf92mr89596823b3a.2.1736204870809;
+        Mon, 06 Jan 2025 15:07:50 -0800 (PST)
+Received: from localhost ([97.126.182.119])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad8dbb4esm32945990b3a.124.2025.01.06.15.07.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 15:07:49 -0800 (PST)
+From: Kevin Hilman <khilman@kernel.org>
+To: Judith Mendez <jm@ti.com>, Tony Lindgren <tony@atomide.com>, Kevin
+ Hilman <khilman@ti.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Sukrut Bellary
+ <sbellary@baylibre.com>, Bin Liu <b-liu@ti.com>
+Subject: Re: [PATCH] ARM: dts: ti: am437x-l4: remove autoidle for UART
+In-Reply-To: <20241220223523.2125278-1-jm@ti.com>
+References: <20241220223523.2125278-1-jm@ti.com>
+Date: Mon, 06 Jan 2025 15:07:49 -0800
+Message-ID: <7httabbkxm.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250105101612.t6c4pw5uxhb5rdde@thinkpad>
+Content-Type: text/plain
 
-[+cc Nícolas]
+Judith Mendez <jm@ti.com> writes:
 
-On Sun, Jan 05, 2025 at 03:46:12PM +0530, Manivannan Sadhasivam wrote:
-> On Fri, Jan 03, 2025 at 03:05:31PM -0600, Bjorn Helgaas wrote:
-> > On Thu, Mar 21, 2024 at 04:46:21PM +0530, Manivannan Sadhasivam wrote:
-> > > On Qcom SoCs, the PCIe host bridge is connected to a single PCIe bridge
-> > > for each controller instance. Hence, add a node to represent the bridge.
-> > > 
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 30 ++++++++++++++++++++++++++++++
-> > >  1 file changed, 30 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > index 39bd8f0eba1e..fe5485256b22 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > @@ -2203,6 +2203,16 @@ pcie0: pcie@1c00000 {
-> > >  			dma-coherent;
-> > >  
-> > >  			status = "disabled";
-> > > +
-> > > +			pcie@0 {
-> > > +				device_type = "pci";
-> > > +				reg = <0x0 0x0 0x0 0x0 0x0>;
-> > > +				bus-range = <0x01 0xff>;
-> > 
-> > Hi Mani, most or all of the patches in this series add this
-> > "bus-range" property.  IIUC, these are all Root Ports and hence the
-> > secondary/subordinate bus numbers should be programmable.
-> 
-> Right. It is not a functional dependency.
-> 
-> > If that's the case, I don't think we need to include "bus-range" in DT
-> > for them, do we?
-> 
-> We mostly include it to silence the below bindings check for the
-> endpoint device node:
-> 
-> Warning (pci_device_bus_num): /soc@0/pcie@1c00000/pcie@0/wifi@0: PCI bus number 1 out of range, expected (0 - 0)
-> 
-> DTC check is happy if the 'bus-range' property is absent in the
-> bridge node. But while validating the endpoint node (if defined), it
-> currently relies on the parent 'bus-range' property to verify the
-> bus number provided in the endpoint 'reg' property.
-> 
-> I don't know else the check can verify the correctness of the
-> endpoint bus number. So deferring to Rob here.
+> According to the TRM [0] in 21.5.1.42 UART_SYSC Register,
+> the autoidle bit should not be set for UART, so remove the
+> appropriate SYSC_OMAP2_AUTOIDLE flag.
+>
+> [0] https://www.ti.com/lit/ug/spruhl7i/spruhl7i.pdf
+> Signed-off-by: Judith Mendez <jm@ti.com>
 
-I should know more about how this works in DT, but I don't.
+Just curious, does this fix any particular usecase for you?
 
-I guess https://git.kernel.org/linus/83d2a0a1e2b9 ("arm64: dts: qcom:
-sm8250: Add PCIe bridge node") added this (subsequently renamed to
-"pcieport0"):
-
-  +			pcie@0 {
-  +				device_type = "pci";
-  +				reg = <0x0 0x0 0x0 0x0 0x0>;
-  +				bus-range = <0x01 0xff>;
-
-which is used at places like
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts?id=v6.12#n788:
-
-  &pcieport0 {
-	  wifi@0 {
-		  compatible = "pci17cb,1101";
-		  reg = <0x10000 0x0 0x0 0x0 0x0>;
-
-Based on
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/pci.txt?id=v6.12#n46
-(which is written for Root Ports and Switch Ports, but presumably
-applies to endpoints like wifi as well), "reg" contains the device's
-bus/device/function:
-
-  - reg:
-     Identifies the PCI-PCI bridge. As defined in the IEEE Std 1275-1994
-     document, it is a five-cell address encoded as (phys.hi phys.mid
-     phys.lo size.hi size.lo). phys.hi should contain the device's BDF as
-     0b00000000 bbbbbbbb dddddfff 00000000. The other cells should be zero.
-
-So 0x10000 would decode to 01:00.0, which matches the <1 1> bus-range.
-
-I don't know the reason for requiring the BDF there, but the venerable
-https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf, sec
-4.1.1, says "reg" is mandatory for PCI Child Nodes, and the first
-entry must be the config space address (bus/device/function).
-
-I suppose maybe the BDF is needed to associate the properties with the
-correct device, and if the OS were to reprogram the bridge secondary
-bus number, it would have to remember the original value to preserve
-this association.  I don't think Linux *does* remember that, but it
-also generally leaves the bridge bus numbers alone.
-
-Bjorn
+Kevin
 
