@@ -1,173 +1,221 @@
-Return-Path: <devicetree+bounces-135807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BB1FA0253B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:23:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27804A0256E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:28:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DF711885E08
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:23:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 848781885FD6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:28:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24481DB37A;
-	Mon,  6 Jan 2025 12:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 250481DDA36;
+	Mon,  6 Jan 2025 12:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dcw7NksA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J3BkVDcd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F5740BE0;
-	Mon,  6 Jan 2025 12:23:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3171D86E8;
+	Mon,  6 Jan 2025 12:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736166185; cv=none; b=ro6XTHWpbTHE2zgLfLvBzPFLV3QzwQIx4rejAOPeP+fyW4pbbL8a+uFWD9rKZaTn7gRmo3dP/x/V4ogUpzkgRLB4vBGfSTU0t034kOGfGQlrUjxgklLmoxVHmgk1qixHfyJsHkUaYnzvWe9KkEu5ye5twCrsafszthYzsZsJHN8=
+	t=1736166505; cv=none; b=WXolRZXUQ1+4V8lH91yRdDDAZatTfFDajk08hjgDVmHm4Y53R8CsIdS3C1TIj48DUWCCxFLpghEOq5LWtfM79cfafIfj+h1teLO6DmdL8+ABX3lvmDDcXZCTgye3dWYWAbQkWSzFNZdiKYI8tQm+a4jMoDVUflJ0upbtWLpySxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736166185; c=relaxed/simple;
-	bh=ZMGRX3Mra3v5ZOYRBNXo3pn0KTEaqRJHAxd0GJ/5/Ac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GyJUWO5cpnaj6Y39l0LaGuzXlnbjDxzeHAzrujFVJwNhoDN2CThNrqBGG3vzxdpKc0duvJ6APvy83+bUveofdR6Epe9Hjc9qT9KuQYYGEJSAxvQE9b4S/Mp4k4C/Zfkg4cCHY+OTOahiYKjCtMf6AcqdOUjGJO9J+OWILuUEKuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dcw7NksA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5063XbvR016390;
-	Mon, 6 Jan 2025 12:22:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vLInfvpbumgb5v3yKdH+TY3r7nz3E7Tsp5cZJ3q7Se0=; b=dcw7NksAuFeoohDX
-	AZ9LaZ3aX7TbWxImJk2Bct6mgu7OpMs75h8qJBQetUQj74cMnjywZvQGPqKqAmU6
-	C/ris7zlVphxV0NjUG+nWZPG9JVBGHvDaMWvpSDd2NkP2Psezsln8d+Y0ySyay3D
-	5hkwjg0RIUqXwrKxSo8mc3QPotBvoeEvhfHTS2F1Nwi5WQicY0tjdsqSuCI2WyxF
-	FzXECL+cV2JWi0+R0T/nuaH2yYIu4MYlQLChdyVvqgaWHY6NTtkSS8VmoqqPLsQW
-	5tGiFLAOkc0gAVXIGPen3wzyoDSurknM8VvIbfcHclkau9zfcirdgJgZV7wDDVr7
-	1Wmczw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4407ck11fa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 06 Jan 2025 12:22:57 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 506CMuDL028025
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 6 Jan 2025 12:22:56 GMT
-Received: from [10.190.163.187] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 Jan 2025
- 04:22:51 -0800
-Message-ID: <f504b325-e4a8-c297-a09f-6a2158fa1a1b@quicinc.com>
-Date: Mon, 6 Jan 2025 17:52:48 +0530
+	s=arc-20240116; t=1736166505; c=relaxed/simple;
+	bh=KGvWSWl9uk2ed0ekxB7H3nn7K1sUUMXaQXVtDpYPick=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HryjsvOcXd5g6DfwOuWSGktce36ODkCDXjFPbAvi18fqarRWxoMyurqbsOaOCMdHpl90PLp/g3kiG4lEzHSddmJfcK71t/08J3C4ItBlEh9Qri5JQsH6CYtK58o5aBSVVyP6Pd+zT6OTriyFQKo9S6KaV6lPWlnyqLKQDVpd60U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J3BkVDcd; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-219f8263ae0so157605975ad.0;
+        Mon, 06 Jan 2025 04:28:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736166503; x=1736771303; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FaE6jA7/9ttNgKRSpfqIqxN/gQu26rH/PYdcqquPoas=;
+        b=J3BkVDcdyUYiY0ARSi3PSLAvFQWnasULdMKgbvAipKzayWRiG/Te2mpsh97jQA5yDr
+         AmtExDyV9Cknu0De7b2RD6sae/f2iEGNEiwVV1aUUCDLkYYDzrZ0Cfnt36hKwpLtFcqa
+         +mP4weTDNbwF3Qx6Nwb+G2/8WDrdeArwvoSaR1FhqkZIjPDeInNE0xBIdgWKRu46Y096
+         +sooxcBCDIq2lgc53Xn5TdTWRR90oZ9T9QYShd9KA4hVeov8NTUILCFKOJ/lDP4eln7/
+         j+AcTvUMUL+sfJD4YryuBhZ5gEbhV88baUebwVAiiJGpbrnFr/9vvN8nHXDS4bVvB/ac
+         g1tA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736166503; x=1736771303;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FaE6jA7/9ttNgKRSpfqIqxN/gQu26rH/PYdcqquPoas=;
+        b=jBSm5u9xKerFgw/W1L770ESMrafaau5aCekzbPj44NvoGcPU+RKTM/rx7X5X4H7Q8R
+         gJBW2HfqUauZvSdUQ5xuosXs8vsAOlmmZ9KeF+7Z3eTQimFtoynmJR9Tz2xi1fu6yWCU
+         uX7Of80Dh/BFIfOJUFxK6x2QNo7NaHNIoNeHsoIyau4ilfqt0Sote3ukJdPHL6cJznrK
+         qo64gaa09Mxsu2rif0yJa8rAmsJf2P1Q17bAwDaNh8ScZdp6PjgFWq/1ER+bIo5rAe4O
+         SB3w/KO1CpHRc9nqwdR+OoP+5eHjqhGfvyyvgPajn2Fmq7uIjgG0R0aqKfWd86jH1JvP
+         hW6g==
+X-Forwarded-Encrypted: i=1; AJvYcCWQ8eXp917FDDbPo8KUiYVgjKOUNw4MkMcqQ+0HzbDlsbK3z6YBEImn9yykVlL7SB5EKHmItUfVEMn4fJd8@vger.kernel.org, AJvYcCXCt244c+YhF5g4d+y/ho7lOAZhdSFfWnH3ggVHe7rq961G/Y/Popwj8vhwuc6zu0s03jNop8napx29@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsAqAKmkFa4VptSgM4J17BQL+eadd6/2IYuqCmkPTj5Az2d7wQ
+	ZVSIDYjec8TDhSAj8ER84UTSoiywkWCgmM7Dp8W2D2pRV44En+gw
+X-Gm-Gg: ASbGncvMhLnWTFU9TbUK4SyJA0SkDrcOxFjIF2BTZ+2aznJTQOBb8zSsjpRdCdIFuJl
+	1EMpjmb6iib4MktHHtERhPqQxMQawY+sG85T7aT6KNO0akzwAOw43ohPc97PE3HgdBCWDh77gXU
+	wxn86A+TwHWWOZFzUIsVWsTNYnRk9ttRYgshBZLWgyDuOVDKKCvs21u6g2T2nO+wWf8gMWjrFn9
+	X+6V1BoFcOH8N/l5QuIIXi1iDRkQfKo7Ea9bMMjglDAy3E6TggXczNi2Q==
+X-Google-Smtp-Source: AGHT+IEtmv/rpXen4PxhtrgIHjNBw796XJqJRJF2YmhT/CZwKLvKOi2KzJX4cOgtxTYNo+/18MSJDw==
+X-Received: by 2002:a17:903:2345:b0:216:4e8d:4803 with SMTP id d9443c01a7336-219e70bf2e8mr696777205ad.42.1736166502616;
+        Mon, 06 Jan 2025 04:28:22 -0800 (PST)
+Received: from nick-mbp.. ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-219dc9650bcsm292678655ad.39.2025.01.06.04.28.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 04:28:22 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH v7 00/11] Add PMGR nodes for Apple A7-A11, T2 SoCs
+Date: Mon,  6 Jan 2025 20:26:17 +0800
+Message-ID: <20250106122805.31688-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V7 0/2] qcom: x1e80100: Enable CPUFreq
-Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-CC: Marc Zyngier <maz@kernel.org>, <sudeep.holla@arm.com>,
-        <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <dmitry.baryshkov@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
-        <quic_nkela@quicinc.com>, <quic_psodagud@quicinc.com>,
-        <abel.vesa@linaro.org>
-References: <20241030130840.2890904-1-quic_sibis@quicinc.com>
- <ZyTQ9QD1tEkhQ9eu@hovoldconsulting.com> <86plnf11yf.wl-maz@kernel.org>
- <ZyTjiiGc2ApoID9Y@hovoldconsulting.com> <86o72z10b6.wl-maz@kernel.org>
- <ZypOY-NCDN9fdMAR@hovoldconsulting.com> <86ed3p1rdq.wl-maz@kernel.org>
- <0fd14fb1-736d-cf7f-128f-658bda0de583@quicinc.com>
- <Z1HK4qIF9dT3x1OY@hovoldconsulting.com>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <Z1HK4qIF9dT3x1OY@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Uvx12WxCEOZnet5YOCg9AnPxi5v7WDl1
-X-Proofpoint-ORIG-GUID: Uvx12WxCEOZnet5YOCg9AnPxi5v7WDl1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- adultscore=0 malwarescore=0 spamscore=0 mlxlogscore=984 lowpriorityscore=0
- impostorscore=0 priorityscore=1501 suspectscore=0 mlxscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501060109
+Content-Transfer-Encoding: 8bit
+
+This series adds the PMGR nodes and all known power state subnodes for
+Apple A7-A11 SoCs, along with the associated dt-bindings.
+
+Dependencies:
+- Split s8000/s8003 SoC DTS files
+https://lore.kernel.org/asahi/20241222172735.145764-1-towinchenmi@gmail.com/T
+
+- Device Tree for Apple T2 (T8012) devices.
+https://lore.kernel.org/asahi/20241222173240.147675-2-towinchenmi@gmail.com/T
+
+Changes since v6:
+- Now arch/arm64/boot/dts/apple/s800-0-3.dtsi builds, somehow this went
+under the radar this whole time... a bad merge after the bad rebase
+made this not noticed earlier.
+
+Link to v6: https://lore.kernel.org/asahi/20241222173750.148071-2-towinchenmi@gmail.com/T
+
+Changes since v5:
+- Rebase the series such that splitting s8000/s8003 device trees is the
+first patch to be applied. Now this series depends on Apple A9 device
+tree being split, and the T2 SoC PMGR nodes are added in this series.
+
+Link to v5: https://lore.kernel.org/asahi/20241203050640.109378-1-towinchenmi@gmail.com/T
+
+Changes since v4:
+- Use imperative mood in commit messages.
+
+Link to v4: https://lore.kernel.org/asahi/20241201161942.36027-1-towinchenmi@gmail.com/T
+
+Changes since v3:
+- Add "apple,always-on" property to "ps_spmi" in t8015 power domains.
+This is required for cpufreq to function correctly which will be added
+in a later series.
+
+Link to v3: https://lore.kernel.org/asahi/20241122095136.35046-1-towinchenmi@gmail.com/T
+
+Changes since v2:
+- Removed "apple,always-on" property from "ps_pmp" from s8001, t8011,
+t8015 power domains. It is not on at boot. (Mixed up with ps_pms which
+is required to be on)
+- Add asahi-soc/dt back into the subject prefix, missing from v2.
+
+Link to v2: https://lore.kernel.org/asahi/20241102011004.59339-1-towinchenmi@gmail.com/T
+
+Changes since v1:
+- Removed "framebuffer0" dt aliases. It is not standard and not needed.
+
+Link to v1: https://lore.kernel.org/asahi/20241029010526.42052-1-towinchenmi@gmail.com/T
+
+Nick Chan
+---
+
+Nick Chan (11):
+  dt-bindings: arm: apple: apple,pmgr: Add A7-A11, T2 compatibles
+  dt-bindings: arm: apple: apple,pmgr-pwrstate: Add A7-A11, T2
+    compatibles
+  arm64: dts: apple: s5l8960x: Add PMGR node
+  arm64: dts: apple: t7000: Add PMGR node
+  arm64: dts: apple: t7001: Add PMGR node
+  arm64: dts: apple: s800-0-3: Add PMGR nodes
+  arm64: dts: apple: s8001: Add PMGR nodes
+  arm64: dts: apple: t8010: Add PMGR nodes
+  arm64: dts: apple: t8011: Add PMGR nodes
+  arm64: dts: apple: t8012: Add PMGR nodes
+  arm64: dts: apple: t8015: Add PMGR nodes
+
+ .../bindings/arm/apple/apple,pmgr.yaml        |   5 +
+ .../bindings/power/apple,pmgr-pwrstate.yaml   |   5 +
+ arch/arm64/boot/dts/apple/s5l8960x-5s.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-air1.dtsi  |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-mini2.dtsi |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi  | 610 ++++++++++++
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi       |  13 +
+ arch/arm64/boot/dts/apple/s800-0-3-pmgr.dtsi  | 757 ++++++++++++++
+ arch/arm64/boot/dts/apple/s800-0-3.dtsi       |  22 +
+ arch/arm64/boot/dts/apple/s8001-common.dtsi   |   1 +
+ .../arm64/boot/dts/apple/s8001-j98a-j99a.dtsi |  26 +
+ arch/arm64/boot/dts/apple/s8001-j98a.dts      |   1 +
+ arch/arm64/boot/dts/apple/s8001-j99a.dts      |   1 +
+ arch/arm64/boot/dts/apple/s8001-pmgr.dtsi     | 822 ++++++++++++++++
+ arch/arm64/boot/dts/apple/s8001.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/s800x-6s.dtsi       |   4 +
+ arch/arm64/boot/dts/apple/s800x-ipad5.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/s800x-se.dtsi       |   4 +
+ arch/arm64/boot/dts/apple/t7000-6.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t7000-j42d.dts      |   1 +
+ arch/arm64/boot/dts/apple/t7000-mini4.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t7000-n102.dts      |   4 +
+ arch/arm64/boot/dts/apple/t7000-pmgr.dtsi     | 641 ++++++++++++
+ arch/arm64/boot/dts/apple/t7000.dtsi          |  14 +
+ arch/arm64/boot/dts/apple/t7001-air2.dtsi     |   1 +
+ arch/arm64/boot/dts/apple/t7001-pmgr.dtsi     | 650 ++++++++++++
+ arch/arm64/boot/dts/apple/t7001.dtsi          |  13 +
+ arch/arm64/boot/dts/apple/t8010-7.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t8010-ipad6.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t8010-n112.dts      |   4 +
+ arch/arm64/boot/dts/apple/t8010-pmgr.dtsi     | 772 +++++++++++++++
+ arch/arm64/boot/dts/apple/t8010.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/t8011-common.dtsi   |   1 +
+ arch/arm64/boot/dts/apple/t8011-pmgr.dtsi     | 806 +++++++++++++++
+ arch/arm64/boot/dts/apple/t8011-pro2.dtsi     |   8 +
+ arch/arm64/boot/dts/apple/t8011.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/t8012-pmgr.dtsi     | 837 ++++++++++++++++
+ arch/arm64/boot/dts/apple/t8012-touchbar.dtsi |   1 +
+ arch/arm64/boot/dts/apple/t8012.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/t8015-common.dtsi   |   1 +
+ arch/arm64/boot/dts/apple/t8015-pmgr.dtsi     | 931 ++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8015.dtsi          |  21 +
+ 42 files changed, 7097 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s800-0-3-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8001-j98a-j99a.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8001-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t7000-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t7001-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8010-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8011-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8012-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8015-pmgr.dtsi
 
 
+base-commit: 657dda2ef61e9b9e7107b672a0c49d2c594508c9
+-- 
+2.47.1
 
-On 12/5/24 21:16, Johan Hovold wrote:
-> On Thu, Dec 05, 2024 at 04:53:05PM +0530, Sibi Sankar wrote:
->> On 11/5/24 23:42, Marc Zyngier wrote:
->>> On Tue, 05 Nov 2024 16:57:07 +0000,
->>> Johan Hovold <johan@kernel.org> wrote:
->>>> On Fri, Nov 01, 2024 at 02:43:57PM +0000, Marc Zyngier wrote:
-> 
->>>>> I wonder whether the same sort of reset happen on more "commercial"
->>>>> systems (such as some of the laptops). You expect that people look at
->>>>> the cpufreq stuff closely, and don't see things exploding like we are.
->>>>
->>>> I finally got around to getting my Lenovo ThinkPad T14s to boot (it
->>>> refuses to start the kernel when using GRUB, and it's not due to the
->>>> known 64 GB memory issue as it only has 32 GB)
->>>
->>> <cry>
->>> I know the feeling. My devkit can't use GRUB either, so I added a
->>> hook to the GRUB config to generate EFI scripts that directly execute
->>> the kernel with initrd, dtb, and command line.
->>>
->>> This is probably the worse firmware I've seen in a very long while.
->>
->> The PERF_LEVEL_GET implementation in the SCP firmware side
->> is the reason for the crash :|, currently there is a bug
->> in the kernel that picks up index that we set with LEVEL_SET
->> with fast channel and that masks the crash. I was told the
->> crash happens when idle states are enabled and a regular
->> LEVEL_GET message is triggered from the kernel. This was
->> fixed a while back but it will take a while to flow back
->> to all the devices. It should already be out CRD's.
->>
->> Johan,
->> Now that you are aware of the the limitations can we make
->> a call on how to deal with this and land cpufreq?
-> 
-> As Marc said, it seems you need to come up with a way to detect and work
-> around the broken firmware.
-
-The perf protocol version won't have any changes so detecting
-it isn't possible :(
-
-> 
-> We want to get the fast channel issue fixed, but when we merge that fix
-> it will trigger these crashes if we also merge cpufreq support for x1e.
-> 
-> Can you expand the on the PERF_LEVEL_GET issue? Is it possible to
-> implement some workaround for the buggy firmware? Like returning a dummy
-> value? How exactly are things working today? Can't that be used a basis
-> for a quirk?
-
-The main problem is the X1E firmware supports fast channel level get
-but when queried it says it doesn't support it :|. The PERF_LEVEL_GET
-regular messaging which gets used as a fallback has a bug which causes
-the device to crash. So we either enable cpufreq only on platforms
-that has the fix in place or live with the warning that certain messages
-don't support fast channel which I don't think will fly. I've also been
-told the crash wouldn't show up if we have all sleep states disabled.
-
-> 
->>> </cry>
->>>
->>>> and can confirm that it
->>>> hard resets when accessing the cpufreq sysfs attributes as well.
-> 
-> Johan
 
