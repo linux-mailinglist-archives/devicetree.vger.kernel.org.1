@@ -1,183 +1,141 @@
-Return-Path: <devicetree+bounces-135856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3CECA02812
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:32:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70889A0280B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:31:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86BE116116F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:32:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 004FE7A2355
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1985342A9B;
-	Mon,  6 Jan 2025 14:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367D71DED51;
+	Mon,  6 Jan 2025 14:31:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UWM31ldU"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="TeXyAI28"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12B71DE4C5
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 14:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3379A1DE8BD;
+	Mon,  6 Jan 2025 14:31:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736173962; cv=none; b=O7J7PNlHyiRl8BYIYe0ML8SLZbuGoyOTG55m9gZeRSABNApTexU03s7Vc70l0DO/N/ItVpwpyDMzpLKJdoFGmG/biRC4k6u00yVD0wVEZsQORKp1acM6YG5dNHWmyNfhqkgz0dgRBTOYm8UljVW/tq3a+V/h3EzhpafqQgpiIIU=
+	t=1736173904; cv=none; b=Lz8jzJeuZleHNBVH8oSa4XmQh+vlVCg9ckgAWa+Ikq59hD4q7nt4O8QWpQUb3i8mwkmgxgH75yhVAvVeE+htMrrSdwH6aPIlIZ/NCML2ynQO3lRFe1b+YP+oE/mx4ApOBs0ZdaLjz/4ngQsQBnHBSsbw81T8Ymnrw7izLTvKnhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736173962; c=relaxed/simple;
-	bh=OgIdAy9ogkyyYhvDYj37F63RA/Xw1WasXt0F//d23wo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X55Vlm6WuNx3okO/e3r7T/J3LWZjxXawxoxcS3NNnD+RDLFDwf08nYK/Seiz0anr3z3XhKh8BqJnBB3F7nNgX2GUejcN5RRVSTIuhSfOycdbR3U3xtFUOsCwVwcKnecXOI+96PkT/paU2sdDDOzcjVhtpORsHaytxz7Jk8sjGSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UWM31ldU; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e46ebe19489so18293427276.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 06:32:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736173959; x=1736778759; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fJSZIXJSkHeJBkdcb6ya9oMRq6rzriaUtPDL7vlAVQw=;
-        b=UWM31ldUkg2/0JHSrcvXMtchL8rqgOTTSAPQnlAcB1/ScnxpPYfmlx0pcfEMusie4a
-         J+I4a8ne87KqQ/vrNJDxfPzfNB8lG/ZnTg6UG4CU9jQHZCsFocrclMnF0KcvWC5kRF4n
-         65vvIuVI3sMfp5JQVcfSPod6DsuzzLXVPj7xwMIZte3t2/zSpDIo4jHh7cHb8BVmSOxG
-         tx2q588wsH7V1VwMmxurzraPmg35tjtYbKx59KmZTglqDcH0n1LkkaabyEIF45qSBVYp
-         BQL98bA10D7QCkeFMz3YB+4O0ApS4NXs5dY53oS8AOUUV7APewJjomOebGjY4L1vsioT
-         dF6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736173959; x=1736778759;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fJSZIXJSkHeJBkdcb6ya9oMRq6rzriaUtPDL7vlAVQw=;
-        b=aZGhZIvPKi1+7kXVakLpWhqWuQ0DKOLTvHNb2ylMOKDAyZcAWQtt37ppgQ8Ll2LUMs
-         s9vEWtS9fu85K5YYY/SfgYdEKpdhrn0lXMwSP3AQ6r5YorNmfIleS8GLYGrJYS/R5NlJ
-         sOe6gCzKyKFKqykSqfZkJ+/UKgmYX32CELTdJw+KcN1im+s3N+C3o7Y6lz/3eaEQigne
-         munHs+cnvGipK5rlVZYqqO5mqLTFOI3nuHFmpApFco3frT30Vazj8n237Y8B8kN+11/t
-         BUuu/Ez+U08IReyfblgs/6fmkd0aALshfNHppilmaMzurFSSN/oSvUgI7VLP9oPpLrwO
-         vxwA==
-X-Forwarded-Encrypted: i=1; AJvYcCWc8KJm9/BoF8E4OnZvx71edQetflQ8hRIuGLavXdxWhD9+wHXdqQ1/Rnl+JVZ0l1qy6QyPc6ypebsz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7X7tgx1lyMre+mieG7NKariLGjU8ZhiZ/SwFd17E44LD/Pty5
-	ohe+LA8xx7FjCAGz9qv3bMc/Q4ajzYsQ0EzDhpOUinGYTd0zVuDtjvngVMzhEOLgxVU8D9vETzx
-	QVqc/R5GrOZj0B0hsXZudPKZcHSeGMVu+HETchQ==
-X-Gm-Gg: ASbGncu1YFIbI7wLtTHCH4zFrkBhiOoyBHe/iKUYr1O3LR7jddBflMFv1PdpPv4tYt6
-	RrynWDlgaPPnrOp3k6wwOhinC9F+LrtNrT/2hfe3hyDl2qzHPv8XeW2BR4TQXS4OBsnPNwg==
-X-Google-Smtp-Source: AGHT+IHmvXuwvGSdBr59QFJmGXR85prnYmkeJd5ryoQXMvTWEemEChNFf5E52WxYsQ1l+y7kBas5ggRo21B4VIcMRB4=
-X-Received: by 2002:a05:690c:7106:b0:6ef:7640:e18a with SMTP id
- 00721157ae682-6f3f820f277mr479003527b3.31.1736173959645; Mon, 06 Jan 2025
- 06:32:39 -0800 (PST)
+	s=arc-20240116; t=1736173904; c=relaxed/simple;
+	bh=cGopoQ3gUhrwm/x+IJqHHj7+VFcZg0+zW57GRnMnK+U=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BU4wpr97MutQSiBlYqastV5qTkgALJwIeiJ+UH/G+gJjKZJA+V4iqE5U6RTx4rKigmT0VUz61NfDB8FJA6DcJKmjnD5pA6RfphEmKe1QwRdW1ah9oLBSpmmLMevfHjXfA/gHJ84GzWWUeTi8Q9ZrVfQjKnpyVvCrMAMysaHkkm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=TeXyAI28; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5068Y8bD005948;
+	Mon, 6 Jan 2025 08:18:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=kt7Iz
+	I7J20UqIdknLawLtG52wUhrMclt9jb9IooJjBM=; b=TeXyAI28fjeJwfyXt6HZC
+	gtPYlnZwJ/6MDnwhXCT3k3ha0R/GxndITcouQrSufcAeMhf6KmWCDx4jZPj0roqS
+	W2/GD4tu4GNZZ9lkK+4gZMV9A3/SfshXVhyjv/ooOl8N9/emc6JO52Lv7+B3QTBQ
+	a33h3j7OyU/njneKDtR7DsftLAsgdD+6zpiVZHGI/DG7tcO/6R+82NEW1r7E0TQe
+	lIT23mFNFMM4oKmRd7zx5E6keUd1RyNjFfgtiBA27wmgKf/d/nXTcauY5S7Sujct
+	kfrufqK/gen5zIcWTrli1LwDXZrCAS0qsnDKXx0QGvsiXf1p82CHthpVPiggwQNG
+	w==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 440bsf8vvs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 Jan 2025 08:18:10 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 506DI8kr036669
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 6 Jan 2025 08:18:08 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 6 Jan 2025 08:18:08 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 6 Jan 2025 08:18:08 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 6 Jan 2025 08:18:08 -0500
+Received: from JGERONI2-L01.ad.analog.com (JGERONI2-L01.ad.analog.com [10.117.223.41])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 506DHlGR001854;
+	Mon, 6 Jan 2025 08:18:00 -0500
+From: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
+To: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>
+CC: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "Delphine CC
+ Chiu" <Delphine_CC_Chiu@Wiwynn.com>,
+        Wolfram Sang
+	<wsa+renesas@sang-engineering.com>
+Subject: [PATCH 1/2] dt-bindings: hwmon: adm1275: add adm1273
+Date: Mon, 6 Jan 2025 21:17:39 +0800
+Message-ID: <20250106131740.305988-2-johnerasmusmari.geronimo@analog.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250106131740.305988-1-johnerasmusmari.geronimo@analog.com>
+References: <20250106131740.305988-1-johnerasmusmari.geronimo@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241226063313.3267515-1-damon.ding@rock-chips.com>
- <20241226063313.3267515-14-damon.ding@rock-chips.com> <e52pbjnusvuoqiyoorjr5msrfmgeqs2jt5sk6zcesvzy7cszzk@fzrtpsjoklgu>
- <e2a18f8c-dc38-4b12-968e-dd369cb34cb4@rock-chips.com>
-In-Reply-To: <e2a18f8c-dc38-4b12-968e-dd369cb34cb4@rock-chips.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 6 Jan 2025 14:09:34 +0200
-Message-ID: <CAA8EJpo5aE4itm8MTeCpqns5eLuWj0TaZW5qwrw02_Zc73NNiw@mail.gmail.com>
-Subject: Re: [PATCH v4 13/17] drm/bridge: analogix_dp: Convert
- &analogix_dp_device.aux into a pointer
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com, 
-	cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
-	andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com, 
-	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: rBmado6AC_qDo0hmpaGeCJ66qc6FrUiQ
+X-Proofpoint-GUID: rBmado6AC_qDo0hmpaGeCJ66qc6FrUiQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 priorityscore=1501 malwarescore=0 clxscore=1011
+ mlxscore=0 spamscore=0 adultscore=0 phishscore=0 suspectscore=0
+ bulkscore=0 mlxlogscore=989 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2501060118
 
-On Mon, 6 Jan 2025 at 13:04, Damon Ding <damon.ding@rock-chips.com> wrote:
->
-> Hi Dmitry,
->
-> On 2024/12/30 21:35, Dmitry Baryshkov wrote:
-> > On Thu, Dec 26, 2024 at 02:33:09PM +0800, Damon Ding wrote:
-> >> With the previous patch related to the support of getting panel from
-> >> the DP AUX bus, the &analogix_dp_device.aux can be obtained from the
-> >> &analogix_dp_plat_data.aux.
-> >>
-> >> Furthermore, the assignment of &analogix_dp_plat_data.connector is
-> >> intended to obtain the pointer of struct analogix_dp_device within the
-> >> analogix_dpaux_transfer() function.
-> >>
-> >> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> >> ---
-> >>   .../drm/bridge/analogix/analogix_dp_core.c    | 92 ++++++++++---------
-> >>   .../drm/bridge/analogix/analogix_dp_core.h    |  2 +-
-> >>   .../gpu/drm/bridge/analogix/analogix_dp_reg.c |  2 +-
-> >>   3 files changed, 50 insertions(+), 46 deletions(-)
-> >>
-> >
-> > [...]
-> >
-> >> @@ -1127,6 +1128,7 @@ static int analogix_dp_bridge_attach(struct drm_bridge *bridge,
-> >>
-> >>      if (!dp->plat_data->skip_connector) {
-> >>              connector = &dp->connector;
-> >> +            dp->plat_data->connector = &dp->connector;
-> >>              connector->polled = DRM_CONNECTOR_POLL_HPD;
-> >>
-> >>              ret = drm_connector_init(dp->drm_dev, connector,
-> >> @@ -1535,7 +1537,9 @@ static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
-> >>   static ssize_t analogix_dpaux_transfer(struct drm_dp_aux *aux,
-> >>                                     struct drm_dp_aux_msg *msg)
-> >>   {
-> >> -    struct analogix_dp_device *dp = to_dp(aux);
-> >> +    struct analogix_dp_plat_data *plat_data = to_pdata(aux);
-> >> +    struct drm_connector *connector = plat_data->connector;
-> >> +    struct analogix_dp_device *dp = to_dp(connector);
-> >
-> > I see that Analogix DP driver doesn't support
-> > DRM_BRIDGE_ATTACH_NO_CONNECTOR, but at the same time I don't think this
-> > is the step in the right direction. Instead please keep the AUX bus on
-> > the Analogix side and add an API to go from struct drm_dp_aux to struct
-> > analogix_dp_plat_data. Then your done_probing() callback can use that
-> > function.
-> >
->
-> It is truly a more concise way.
->
-> In the next version, I will add the following functions on the Analogix
-> side in order to get the pointers of struct analogix_dp_plat_data and
-> struct drm_dp_aux on the Rockchip side. And the way has already been
-> verified.
+Add support for the adm1273 Hot-Swap Controller and Digital Power
+and Energy Monitor
 
-LGTM, thank you.
+Signed-off-by: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
+---
+ Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
->
-> struct analogix_dp_plat_data *analogix_dp_aux_to_plat_data(struct
-> drm_dp_aux *aux)
-> {
->         struct analogix_dp_device *dp = to_dp(aux);
->
->         return dp->plat_data;
-> }
-> EXPORT_SYMBOL_GPL(analogix_dp_aux_to_plat_data);
->
-> struct drm_dp_aux *analogix_dp_get_aux(struct analogix_dp_device *dp)
-> {
->         return &dp->aux;
-> }
-> EXPORT_SYMBOL_GPL(analogix_dp_get_aux);
->
-> >>      int ret;
-> >>
-> >>      pm_runtime_get_sync(dp->dev);
-> >>
-> >
->
-> Best regards
-> Damon
->
-
-
+diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+index 5b076d677..fd79bf2e0 100644
+--- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
++++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+@@ -24,6 +24,7 @@ properties:
+     enum:
+       - adi,adm1075
+       - adi,adm1272
++      - adi,adm1273
+       - adi,adm1275
+       - adi,adm1276
+       - adi,adm1278
+@@ -79,6 +80,7 @@ allOf:
+           contains:
+             enum:
+               - adi,adm1272
++              - adi,adm1273
+     then:
+       properties:
+         adi,volt-curr-sample-average:
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
