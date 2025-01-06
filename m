@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-135795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B261A0237C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:52:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB56EA023A9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:59:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E82701885476
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:53:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C59C07A2052
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC92F1DC1AF;
-	Mon,  6 Jan 2025 10:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B81F1DC985;
+	Mon,  6 Jan 2025 10:59:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MvMpPbiE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EqoUdcns"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8081DC05D;
-	Mon,  6 Jan 2025 10:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7E61DACBE;
+	Mon,  6 Jan 2025 10:59:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736160772; cv=none; b=fh3MqKG/iHW8Ixjyw4Dd9TDkzPcrYJF1ZZPJaQmbG/k27InLVGqgEClCbHpWwmZgl13viADPCTl/jAkLvGPe9TkqbYAQcQ1U+DJ8GW800ubMzPlFX2TtwBeVLVWerewzTOwJ3brcO3bXuXsGrw3MuHjN0mmgAXkZw6ZC1nDH7JY=
+	t=1736161147; cv=none; b=eG/QmisK/WtmsT6z78R1SF8IfM4bXn895SQhkt55NGQSoVNWc3H/FBUcF+t5QA4gRleyYZ+PyARIRpNfW7IE2PStfjK3Mla11uNy4Hn4wcHzldDe3vYkKev3041yc/aAV/RNn0rorQU/wKIbPNmYBobCuswVUP/7EGtvN++JS0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736160772; c=relaxed/simple;
-	bh=Q8Z1waplB19mCn1cuTl3dkKfZTG3BnJJmWsNjQ4Qku8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=kMxC5GCZiOJrfUTP///o/wNe0YJA+8mmSZjqXNcQ5txW/CYxoUrPwhbrozudphChphW7nGQjThO2LjiPwf/2xOAluAnaG+8VCSGg2+H+MJcKICcTFoXN5ys+tffURmQ6piy2Z0LNus/237QDuE0Rcba4DR7D+Ws9JbjN3RkydV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MvMpPbiE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A54DAC4CED2;
-	Mon,  6 Jan 2025 10:52:48 +0000 (UTC)
+	s=arc-20240116; t=1736161147; c=relaxed/simple;
+	bh=sPnK4NincK9ONjdqEGtqrcdtTHIRO612NkOB1/BvDOM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HpkxD8ebE8ZWymdntsij7hgXibNdWEoVcw+MtNB1GdhL8y4Ohf1Tw3MPCs3/qxL3a5bhQ1oj1Q6ejPL6bBvlhh5rgJbXzJVPZZghOlkHq4f2ag9FtP58Ko1daufN6mRE51kilzlLU5D1bcl396NTg7YJuG1MAvXbkoF49uKHesI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EqoUdcns; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC94BC4CEDD;
+	Mon,  6 Jan 2025 10:58:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736160772;
-	bh=Q8Z1waplB19mCn1cuTl3dkKfZTG3BnJJmWsNjQ4Qku8=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=MvMpPbiEX1tOXJPOqR9fjx0yh2R3COKzsAXfkGiaQKxQ/Cz2f4ZIUz2mY/3HihlaO
-	 3ACKmGd2m8xFpMtQYOi5VOj7v24JEZfiutBIb8JNFRT8shN7cCcqDiw4lCSy1TWS7X
-	 zSyuf8XJqL2beOF4vvnCPmYWiRQo0VWXt1ypePmLNJMP4buYyxUfi5GGEwBICvQtq/
-	 wvrz33GsgMbLcmlOszHJlvOEY+a00M5Ub1/NETStEGDa10OeLG7BV06SjIF9XEU6i5
-	 pm4JGeKweag3RDEnfmwPE5kTcqckxKFoePZHFu4DKHGVgvMps+MDW6Pz8uzLGN2/mt
-	 BoZFUSQPhnGiQ==
-Message-ID: <428c034c-79a2-4753-9af8-4dc5af7d310f@kernel.org>
-Date: Mon, 6 Jan 2025 11:52:46 +0100
+	s=k20201202; t=1736161146;
+	bh=sPnK4NincK9ONjdqEGtqrcdtTHIRO612NkOB1/BvDOM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EqoUdcnsg+VIh+OkW0itMm9HUHRBuiX251fwQ8fEl0m9x5iNaWZuW0UGnwkniy3wr
+	 5/oi/UbCIXtHUJ5Ih4YtuU9mWo92dvnApo0grsjfYPnGMNuBvFkRzhKH6N/i9lZzPp
+	 0oUlwiWN21LKuYDQGkEt2qEEoGeI/FR/mjSfrxl+q4v3NqotfbqgonMsA4lwznQbI3
+	 BF4Y04Qr7GGkrj2s8oE4YPqqA/bMpX/8KMwLUH1GeOfMySj6ZA8A4oyPGWs/r4Wt6n
+	 S+fBA0BDMoCoylextHETj8UX4qt3P7fyGeF9Ote0BVdt4ugZlaGcvf5XiIiANucLjF
+	 ZcURZ/V6r15Zw==
+Message-ID: <ef13cebd-6772-4d03-8677-a6a2d4884d77@kernel.org>
+Date: Mon, 6 Jan 2025 11:58:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon: Add driver for TI INA233 Current and Power
- Monitor
-To: Leo Yang <leo.yang.sy0@gmail.com>, jdelvare@suse.com, linux@roeck-us.net,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- Leo-Yang@quantatw.com, corbet@lwn.net, Delphine_CC_Chiu@Wiwynn.com,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250106071337.3017926-1-Leo-Yang@quantatw.com>
- <20250106071337.3017926-3-Leo-Yang@quantatw.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: Add binding for Nuvoton
+ NCT720x ADCs
+To: Yu-Hsian Yang <j2anfernee@gmail.com>
+Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
+ javier.carrasco.cruz@gmail.com, andriy.shevchenko@linux.intel.com,
+ marcelo.schmitt@analog.com, olivier.moysan@foss.st.com,
+ mitrutzceclan@gmail.com, tgamblin@baylibre.com, matteomartelli3@gmail.com,
+ alisadariana@gmail.com, gstols@baylibre.com, thomas.bonnefille@bootlin.com,
+ herve.codina@bootlin.com, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
+ yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241226055313.2841977-1-j2anfernee@gmail.com>
+ <20241226055313.2841977-2-j2anfernee@gmail.com>
+ <lfthwnvwodqogsk446r5nzpmjunfnpdv33xmaookedwjgpdu4n@llvla6siyl5f>
+ <CA+4VgcK_9_YD0d7LUKbxU6yd3Qo9RT4yNbi90mMN=kK0LHXwow@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,92 +113,64 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250106071337.3017926-3-Leo-Yang@quantatw.com>
+In-Reply-To: <CA+4VgcK_9_YD0d7LUKbxU6yd3Qo9RT4yNbi90mMN=kK0LHXwow@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/01/2025 08:13, Leo Yang wrote:
-> Support ina233 driver for Meta Yosemite V4.
+On 06/01/2025 08:22, Yu-Hsian Yang wrote:
+>>> ---
+>>>  .../bindings/iio/adc/nuvoton,nct7201.yaml     | 49 +++++++++++++++++++
+>>>  MAINTAINERS                                   |  1 +
+>>>  2 files changed, 50 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+>>> new file mode 100644
+>>> index 000000000000..08b52258e4af
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
+>>> @@ -0,0 +1,49 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nct7201.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Nuvoton nct7201 and similar ADCs
+>>> +
+>>> +maintainers:
+>>> +  - Eason Yang <j2anfernee@gmail.com>
+>>> +
+>>> +description: |
+>>> +   Family of ADCs with i2c interface.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - nuvoton,nct7201
+>>> +      - nuvoton,nct7202
+>>
+>> Devices aren't compatible? Explain in the commit msg why they aren't or
+>> use proper compatibility (oneOf, see numerous other bindings or example-schema).
+>>
+>>
 > 
-> Driver for Texas Instruments INA233 Current and Power Monitor
-> With I2C-, SMBus-, and PMBus-Compatible Interface
-> 
-> According to the mail
-> https://lore.kernel.org/all/
-> 20230920054739.1561080-1-Delphine_CC_Chiu@wiwynn.com
-
-Don't break the URLs. It makes them difficult to use.
-
-
-> maintainer's suggested rewrite driver
-> 
+> +  compatible:
+> -    enum:
+> -      - nuvoton,nct7201
+> -      - nuvoton,nct7202
+> +    oneOf:
+> +      - const: nuvoton,nct7201
+> +      - const: nuvoton,nct7202
 
 
+Nothing improved. I referenced 'oneOf' for the case of compatibility.
+Don't use it to code enum in different way.
 
-> +INA233 HARDWARE MONITOR DRIVER
-> +M:	Leo Yang <Leo-Yang@quantatw.com>
-> +M:	Leo Yang <leo.yang.sy0@gmail.com>
-> +L:	linux-hwmon@vger.kernel.org
-> +S:	Odd Fixes
-> +F:	Documentation/devicetree/bindings/hwmon/ina233.txt
+Address the comment and questions. You did not respond to several
+comments, so I assume you are going to implement/fix all of pointed out
+things.
 
-There is no such file.
-
-
-...
-
-> +
-> +struct pmbus_driver_info ina233_info = {
-
-Why this cannot be const and static?
-
-> +	.pages = 1,
-> +	.format[PSC_VOLTAGE_IN] = direct,
-> +	.format[PSC_VOLTAGE_OUT] = direct,
-> +	.format[PSC_CURRENT_OUT] = direct,
-> +	.format[PSC_POWER] = direct,
-> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_INPUT
-> +		| PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
-> +		| PMBUS_HAVE_POUT
-> +		| PMBUS_HAVE_VMON | PMBUS_HAVE_STATUS_VMON,
-> +	.m[PSC_VOLTAGE_IN] = 8,
-> +	.R[PSC_VOLTAGE_IN] = 2,
-> +	.m[PSC_VOLTAGE_OUT] = 8,
-> +	.R[PSC_VOLTAGE_OUT] = 2,
-> +	.read_word_data = ina233_read_word_data,
-> +};
-> +
-> +static int ina233_probe(struct i2c_client *client)
-> +{
-> +	int ret, m, R;
-> +	u32 rshunt;
-> +	u16 current_lsb;
-> +	u16 calibration;
-> +
-> +	/* If INA233 skips current/power, shunt-resistor and current-lsb aren't needed.	*/
-> +
-> +	/* read rshunt value (uOhm) */
-> +	ret = of_property_read_u32(client->dev.of_node, "shunt-resistor", &rshunt);
-> +	if (ret < 0 || !rshunt) {
-> +		dev_err(&client->dev, "Unable to read shunt-resistor or value is 0, default value %d uOhm is used.\n",
-> +			INA233_RSHUNT_DEFAULT);
-
-Your binding said this is optional, so how this can be an error?
-
-> +		rshunt = INA233_RSHUNT_DEFAULT;
-> +	}
-> +
-> +	/* read current_lsb value (uA/bit) */
-> +	ret = of_property_read_u16(client->dev.of_node, "current-lsb", &current_lsb);
-> +	if (ret < 0 || !current_lsb) {
-> +		dev_err(&client->dev, "Unable to read current_lsb or value is 0, default value %d uA/bit is used.\n",
-> +			INA233_CURRENT_LSB_DEFAULT);
-
-Same problem
-
-> +		current_lsb = INA233_CURRENT_LSB_DEFAULT;
-> +	}
-> +
 Best regards,
 Krzysztof
 
