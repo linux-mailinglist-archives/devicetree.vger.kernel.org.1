@@ -1,89 +1,106 @@
-Return-Path: <devicetree+bounces-135801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD70A02410
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:16:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44315A0243A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:23:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF56F3A4948
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:16:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C47DE3A1166
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:23:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC61B1DC9BF;
-	Mon,  6 Jan 2025 11:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D30681D86E8;
+	Mon,  6 Jan 2025 11:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="1s0ScdPa"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="YGe46b57"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24035192B74;
-	Mon,  6 Jan 2025 11:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736162187; cv=none; b=LU+ggPh3um6u4hzTCV8n2KA9cFf8K2eGCnsvrlI9IJEYaDbDGWZE9qdLOA8UWfOLhR3VckHeMffQXTIXpPynFWtNO8bFv/TPJGDGvwI8hLAM3p1/hIBV7Z9fBopydEVuPblfMYPBF0L+N2+OBvDcXmCH4nlagMtsgE4dfpgCf9k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736162187; c=relaxed/simple;
-	bh=O7+PrnBJ4OTlDDXAoBnl2CJ0wpU0GlLm3yH07U/HGkw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mFErmyHREkMvIJWUgOJr/ZzUQWwao8I/k7x7GEN20KY/zU7pGizRKP3VKEfjqStqiHa4fWeuybVDLv29M/DMOBLsQIrBABrYzIHnXCUKNdZ9mMYfaphdjXYZ/h7oD2P7cWtJajBFIkOquqYSZuGFwNX33ooN/GHwLRzu+NFbBzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=1s0ScdPa; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=O7+PrnBJ4OTlDDXAoBnl2CJ0wpU0GlLm3yH07U/HGkw=; b=1s0ScdPaFqKNX3UmzacVtOlbop
-	VA7F+JD0XrtU3NH0xlWGyGGyqiqZ/shsEtOmURatNGkCGlN/LWnGLA+t2rKGuALuD3mvEG0HFb357
-	1lu7+s4KjJnUaSCOM3ZTleG/QMduNbKGqboho6R2UTwEpREzrd3ORlfha8MLFs3YL6d0UguzkeBMe
-	KfdX6KFdi4pkpTWFA62w+omANkAYuSGwzq/cXuQVT/eFb7ZEriDzCJXZCYVdf0H1RkLEAzI+TAL5F
-	ZAMgqtFwoC/q9rfc8DmsaXUKYYO/i+b0r4gpBS+PZEGA7kKDyfpPsgwx8lS1mrF4s1+aCs+ZzHS3s
-	E+JDwhlw==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.98 #2 (Red Hat Linux))
-	id 1tUl5j-000000010dO-2m8K;
-	Mon, 06 Jan 2025 11:16:15 +0000
-Date: Mon, 6 Jan 2025 03:16:15 -0800
-From: Christoph Hellwig <hch@infradead.org>
-To: Dmytro Maluka <dmaluka@chromium.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"maintainer:X86 ARCHITECTURE (32-BIT AND 64-BIT)" <x86@kernel.org>,
-	"H. Peter Anvin" <hpa@zytor.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Usama Arif <usamaarif642@gmail.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	"open list:X86 ARCHITECTURE (32-BIT AND 64-BIT)" <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] x86/of: Restore possibility to use both ACPI and FDT
- from bootloader
-Message-ID: <Z3u7f4goH5Hq545b@infradead.org>
-References: <20241223181813.224446-1-dmaluka@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3639CA936;
+	Mon,  6 Jan 2025 11:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736162591; cv=pass; b=RtzqADSTFk+eK5inU30DhX3Lm7fKHtXGhlh/NE4FGtaJX/8kbMA/n4VWGmIKWDQF27TC2ZefZpHplexfiHpXLp6DHPIZz0oH6gghurTY5F+CxZBgMfQnizJ7CZIRexQyq8BP5kykKgLBgAlymjt9CC5YT4SJyRh1yn6FniJKJFw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736162591; c=relaxed/simple;
+	bh=x1aKJnC5PD7h2dvz0lvkNeHlbBDfj+iet+OLx8Dl8Kw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZNhXp2FeJoOPpKpXhQxPO/S79419E0z+0JIdEhFbfdfXoWrm+3XJevpIBaIx90ieby3AJ9qnBKA0FJ0O0yTDNECJ7efRWORgOIqzTZwxac0VaBwBB75T9IoS0f8tlO5KIzmXfWneAFIgDqBn4UVAxCfA5yswX/r/dIAaFFdUnPU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=YGe46b57; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1736162538; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Fd4GPL7WAp5LG34Vk++s+97YODkquIiSHLE8seNW2x5mg9HCDyEpxYvkBWWKVUtzHftMbUaMbUpYDkQTyGftpE///5AjmVCjAyKNZb69ayywWf783VnZKvhU8EBNprey2Idgqz//f1lOec9M4Rs32NP3B5qbfxX/VkJhjlBmjYM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1736162538; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=tmyr51wBaWMVsQf9Gd5l3648NBOuHaUG4V2slFrV+uY=; 
+	b=XoI4KlcZlFWaeYBZIN21DJfdtZTf58mh+VqV+aDjjfknaU0CBJAT3YYBz/KFUaKZ2Bw7E5BN9swbGR7nlPJWpV0iMrMLTv1U/q23AziYYc8b+bXJzKJs3KyuWYNEb5KvUjW/8QIUzvQbOfsjdKvCk/eblkwiwMtgyZcMfHjEKMs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1736162538;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=tmyr51wBaWMVsQf9Gd5l3648NBOuHaUG4V2slFrV+uY=;
+	b=YGe46b57Y9XwcTg4kGMv9YEn4OWqmTlaA/ibgGfzK88oHWDHviao6wuX+jwHo0vr
+	SaId5uLmSrnVIyWk447c8hmxAgnSuY/dUuztJIKk2x6/JJZfyev07jJII/xyhTWnI2m
+	3BsV3pRwaj7QjL59CIdWlJGI0woiCNn9QqLRW7W8=
+Received: by mx.zohomail.com with SMTPS id 1736162536761759.2420010727011;
+	Mon, 6 Jan 2025 03:22:16 -0800 (PST)
+Message-ID: <925d7571-48e4-437d-b55c-3f7bbad8af1d@collabora.com>
+Date: Mon, 6 Jan 2025 14:22:09 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241223181813.224446-1-dmaluka@chromium.org>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND PATCH v5 0/4] Add Synopsys DesignWare HDMI RX Controller
+To: Tim Surber <me@timsurber.de>, Shreeya Patel
+ <shreeya.patel@collabora.com>, heiko@sntech.de, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20241210193904.883225-1-shreeya.patel@collabora.com>
+ <acb91a34-c0f8-4f03-8945-755b4e42dcf3@timsurber.de>
+Content-Language: en-US
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <acb91a34-c0f8-4f03-8945-755b4e42dcf3@timsurber.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Mon, Dec 23, 2024 at 06:18:03PM +0000, Dmytro Maluka wrote:
-> There are cases when the bootloader provides information to the kernel
-> in both ACPI and DTB, not interchangeably. One such use case is virtual
-> machines in Android. When running on x86, the Android Virtualization
-> Framework (AVF) boots VMs with ACPI like it is usually done on x86 (i.e.
-> the virtual LAPIC, IOAPIC, HPET, PCI MMCONFIG etc are described in ACPI)
-> but also passes various AVF-specific boot parameters in DTB. This allows
-> reusing the same implementations of various AVF components on both
-> arm64 and x86.
+Hi,
 
-What are these "AVF-specific boot parameters"?
+On 1/6/25 03:16, Tim Surber wrote:
+> I applied your patch to rockchip/next on an FriendlyElec CM3588 device with arm- 
+> trusted-firmware 2.12. This is the same hardware/cable/sources I used previously
+> Sadly I could not get it to work at all.
+> 
+> After connection to a HDMI source I get the following error with all devices and 
+> resolutions I tested
+> # dmesg
+> snps_hdmirx fdee0000.hdmi_receiver: hdmirx_controller_init wait timer base lock 
+> failed
+> snps_hdmirx fdee0000.hdmi_receiver: hdmirx_phy_register_write wait cr write done 
+> failed (repeating multiple times)
 
+Sounds like interrupt may be not working for you. Interrupt won't work
+using downstream version of AT-F, though I assume you're using vanilla
+version of the AT-F. Could you please show output of `cat
+/proc/interrupts | grep rk_hdmirx` after plugging the HDMI cable.
+
+-- 
+Best regards,
+Dmitry
 
