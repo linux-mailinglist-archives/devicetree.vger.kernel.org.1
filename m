@@ -1,84 +1,105 @@
-Return-Path: <devicetree+bounces-135913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84F8A03027
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:08:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57DABA03036
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:10:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D59C1884386
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:08:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D51EC1882EA6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1FC41DE89E;
-	Mon,  6 Jan 2025 19:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666781DF993;
+	Mon,  6 Jan 2025 19:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d1Wt0gKv"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="k6kyKbkz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BFB4503C;
-	Mon,  6 Jan 2025 19:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55CAA1DF97A;
+	Mon,  6 Jan 2025 19:10:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736190517; cv=none; b=qXJWLCXJLgJRM1mvLHITE0zdFVEOKaJSk/NrvsAwZD34glmJYntYNXGrrE+zLE8UBYVGm7fhBDpU8XD0IQPQjoBLkDmVBEEQh2LJY+fyjB8cElNgJXEBwUCklGZ9iG5QfEDVJMZtXwlzHyJNq6mmQZk+S74KmfnG3CA21B9terk=
+	t=1736190641; cv=none; b=lXzrw4ly6G91JOf6yxVastYqHO2YQkxET/d+T0aEurdgG67hmCrzDjFeloBWnz/4KMV0P/CBXgjenN14Yf8DX8/3rpo8b+NDbEs9zUfts6i8i6hNmiBycM9HCdmGL0OM0qoMGdi6ljQIVzwaBac/RxxI5Olck4tuWzIXCpibN34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736190517; c=relaxed/simple;
-	bh=GMiVkgRZiI4cNUutUHzf6uG8V8/evE8TT4ulcbSK9n8=;
+	s=arc-20240116; t=1736190641; c=relaxed/simple;
+	bh=WzcDAuGLKvkvy9b11Mfq8Pz2IlzT9+yewUe37tBQURw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lSgU4CDK9ZZDUO+3aSI6lxj6em3JCJOrhaWhgoQ0V6az1LF0rUADgD0Uq6SA9IwzvPgKE+9riOwJpMjdginChhFgiNTE5rI6wKuLF3gPIhC4ulbgy34xPsceKsnyDIKtHy7DSz+bC/CUe/ryNV8IujSKD3qgcSC4ORRCmMOhoA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d1Wt0gKv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03F9CC4CED2;
-	Mon,  6 Jan 2025 19:08:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736190517;
-	bh=GMiVkgRZiI4cNUutUHzf6uG8V8/evE8TT4ulcbSK9n8=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wm4kjyVwdbvnYQzwqYQFkj7Cz4EmhFoIhscr2C20fKOm9zZ/TEv492zLlJ8cukGioCbWEDfnj3ILUO8uV1j2AiKsd5WmaBLcDtpqwXJTLplI04yFXEsl9/Mr4L9c212yltHEq63pnM4SqsYUUUdBzfRBICspIf9zZE4jjDOuGc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=k6kyKbkz; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1736190637;
+	bh=WzcDAuGLKvkvy9b11Mfq8Pz2IlzT9+yewUe37tBQURw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d1Wt0gKvoXFTr+LSpKxpeOyHfgv2J+Hz8A++IGlD1TRvQ4sxqqHB8zfzVVCu8/6fJ
-	 hbkbNpbFR8HlBVlKqAmZ2VYzh4dn9AQS3zB5lDvvndXs5lo2oDbXIN2T8ZzmvjTQ7e
-	 nvN22YRAVAiBsKn5NDFYufZIwLdbFEetKr40ngwGGcs5I9WPP0n7cyodRo7V1DltIt
-	 hh0/7Pm4fr7o0GqWTeSiKAxsaiKCtAY/WPuNEvOVGTPp4fvEduhB0XQhUBDL9eLo8J
-	 /UQD2mPBTC8NVhzYLi7FhWia7Z1nK29YSS2tpA6g46mHSRzDKDcXG062CRWbkWBRw4
-	 5WC1TP+ksdduw==
-Date: Mon, 6 Jan 2025 13:08:36 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Robert Marko <robimarko@gmail.com>, quic_tengfan@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_tingweiz@quicinc.com,
-	quic_aiquny@quicinc.com
-Subject: Re: [PATCH v2 1/4] dt-bindings: qcom,pdc: document QCS8300 Power
- Domain Controller
-Message-ID: <20250106190836.GA818287-robh@kernel.org>
-References: <20240911-qcs8300_binding-v2-0-de8641b3eaa1@quicinc.com>
- <20240911-qcs8300_binding-v2-1-de8641b3eaa1@quicinc.com>
+	b=k6kyKbkzVWAmpOi0nGnfGoY8Fmq2ZxNtXl6lIWh6eZNArJnBOUJLiXpaGSxBNwel7
+	 phgTVXN2bIBCJ5nZkPUXZPITMyvmrYpdHj74wyCJU9aZeEwTq/tcthI1tY9N5DAxO8
+	 CWvIMTSgoIy+vxbd0QOeIgLNX6Es+j1qfh4+C6rh6UnNVsPZwZVdHKwNwWdz3ia619
+	 0xWqvL16DA+8mmEoSHf1g8vNMdt9Kt7YPmcN9XPk8u8g2e2mP6o+uWKo8vP4eZosK9
+	 aXRJgPSZoQF9wpADmqVIibZjRHCZlqid4rrExzGjf6GFnXLMdysAkqbgO1RkV9jb9O
+	 K6drKuYQL4/ww==
+Received: from notapiano (unknown [IPv6:2804:14c:1a9:53ee::1001])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8F2B317E15D2;
+	Mon,  6 Jan 2025 20:10:34 +0100 (CET)
+Date: Mon, 6 Jan 2025 16:10:32 -0300
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	kernel@collabora.com, Chen-Yu Tsai <wenst@chromium.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 14/19] arm64: dts: mediatek: asurada: Enable PCIe and
+ add WiFi
+Message-ID: <a58d5fa4-0d00-4ca1-941b-3ad69e65de80@notapiano>
+References: <20220629155956.1138955-15-nfraprado@collabora.com>
+ <20250103211446.GA4063@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240911-qcs8300_binding-v2-1-de8641b3eaa1@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250103211446.GA4063@bhelgaas>
 
-On Wed, Sep 11, 2024 at 04:03:15PM +0800, Jingyi Wang wrote:
-> Document Power Domain Controller for Qualcomm QCS8300. PDC is included
-> in QCS8300 SoC. This controller acts as an interrupt controller, enabling
-> the detection of interrupts when the GIC is non-operational.
+On Fri, Jan 03, 2025 at 03:14:46PM -0600, Bjorn Helgaas wrote:
+> On Wed, Jun 29, 2022 at 11:59:51AM -0400, Nícolas F. R. A. Prado wrote:
+> > Enable MT8192's PCIe controller and add support for the MT7921e WiFi
+> > card that is present on that bus for the Asurada platform.
 > 
-> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> > +&pcie {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pcie_pins>;
+> > +
+> > +	pcie0: pcie@0,0 {
+> > +		device_type = "pci";
+> > +		reg = <0x0000 0 0 0 0>;
+> > +		num-lanes = <1>;
+> > +		bus-range = <0x1 0x1>;
+> 
+> Hi Nícolas, what's the purpose of this bus-range?  IIUC this describes
+> a Root Port, where we can read and configure the secondary/subordinate
+> bus numbers from the RP config space, so it seems like we don't need
+> to describe them here.
 
-Applied, thanks.
+Hi Bjorn,
 
-Rob
+that was carried over from the downstream sources. I just tried removing it and
+indeed I don't see any difference in the PCI log messages, or the bus number,
+and the wifi works just fine. I can send a follow up patch removing it.
+
+Thanks,
+Nícolas
 
