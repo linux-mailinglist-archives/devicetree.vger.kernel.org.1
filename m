@@ -1,276 +1,548 @@
-Return-Path: <devicetree+bounces-135777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E0DFA021E1
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:31:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 917AEA021E4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:32:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FEB1161466
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:31:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 207733A2104
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90AA1D9A47;
-	Mon,  6 Jan 2025 09:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07BB21D5CD9;
+	Mon,  6 Jan 2025 09:32:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="rknfRNUz";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="XGBWJKgk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lw6AWsiN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C341DA0ED;
-	Mon,  6 Jan 2025 09:31:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736155911; cv=fail; b=ULKXigiEv20s8MqjIm7eq4rD4smz8qyAXEySZ371JEJ1DcnoUz9QV7nMKm3mbjMwdfqfx/x6uAtnRvNsx+bSbHMVHVV7mV6viSodZf7RucrIouiCacI0UHIM/ErTDKgquoadBXa1N+VqbtD5oeI6JRE5o2BeW22Z8Y405nWNKBw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736155911; c=relaxed/simple;
-	bh=QOMOlutyVvt+a/WEQFGjtWWkxrrzE9YrzyfWQSka2dw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=kmXtYkjGH9NUz5IQoNnEegRvlcqqMDLQltbL1kVsp8WGdOx81ciZ/WBGglU7YQtsiqgVYSx1kC+oQGCw9Mt4kIal2nb6dcIjujYGRw5hZ/rldpUJL5QCBeyiFW6GZxM8qKcPf4tOJzh8fFkO5lM6T5w/NJXID+BkDWALSllOU7g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=rknfRNUz; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=XGBWJKgk; arc=fail smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 0a7e8488cc1111efbd192953cf12861f-20250106
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=QOMOlutyVvt+a/WEQFGjtWWkxrrzE9YrzyfWQSka2dw=;
-	b=rknfRNUzSp/O8tC0yDMogZjXu9/MTDs1LtdL5Iptveu0igMlOszwQPYM/KJJxEoiesMQSALGU8v+1jFv+pJV4TG05cTSAduM4Q1d8pNNGzm/FIOpu8s4sAIwY+AMQJYvc1lyZtgC9hK5Ocq2TO1tViPcNI80gg0dFvgerHUadAw=;
-X-CID-CACHE: Type:Local,Time:202501061728+08,HitQuantity:2
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:9c0571d2-b8dc-469a-be70-ad78384602a2,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:6ab96e37-e11c-4c1a-89f7-e7a032832c40,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
-	EDM:-3,IP:nil,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
-	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 0a7e8488cc1111efbd192953cf12861f-20250106
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-	(envelope-from <jianjun.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 677063497; Mon, 06 Jan 2025 17:31:43 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 6 Jan 2025 17:31:42 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 6 Jan 2025 17:31:42 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xIbA7OxbonBsg8U1poPBr4SrWh1uXG7RLVIW2XTyD/IK5De569+WOFfif0X3tGGQy7VJjrB5DCw8o3kZstl2iW7iwxUVjZH9PhHg6wL+KgvaRVszJlURHmXPF+41x9/I+clmHdyonu3Ed8CvUkpc1wphhqbp//pjglyg30MJ0IZtApSHCo1RpMdojOZ7juFKCIQk4QlGZD56wZcpkuaDjs8N/FzGcYOpqqI2ANwKN8X35LJ115rpd6eM5st70nROhaQyGOFf1F3l6Vhwt/skuQWqs95PG3sfPIsnZ+EmibnA3ZHjwOGMDdpZisxrwrNsejMSkoXvZGzhhJ3/ln5V5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QOMOlutyVvt+a/WEQFGjtWWkxrrzE9YrzyfWQSka2dw=;
- b=b9h86tDKrLG48YEtiG3GBbh8CNyOs4xGOtMDYd5b3254pqISS2wub85A9NF1BX+hevnDDUS5JgqlKIMc4vLuvsMAoG8b5eU8SVdkFR7rXV8LdNo91EW0JALkwX6d/vcKYnS62U6ksy1Ewu47jjHj0ASDRW/qoGgxH4fPq2WAWuDiTkA8H9pW5kVAORAutGapByG0fYwEO53/zhslZv2hNCMTs4kUlSvKbwIslfuXjQXzz5+bX8NW13FmdG1ypDbQci4zFLuJ0vh2VTVM6WXFA3a6YFnv9pI/ZoZSNMhN8vTPye0R9XsFxlKpi0eeuVckISwPV2myvpUiUvVSLUt48A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF370A932;
+	Mon,  6 Jan 2025 09:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736155951; cv=none; b=XQqm5BZZpTn3Yh2ufAWiqnUrGSNwskgFoNfIGzQjboQMOAiufC6JFXRrLa2LfpHdRyuJBAda/0U8N6x7aSnFb9u4wx4YOTiyC6iWry48YsxL1CfcHVdZTYZrB2JWxNpVjrgdNs6ch/Z+4U7eNBefFYYmS0UJO+QdhtgTJxpkZdM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736155951; c=relaxed/simple;
+	bh=UUwac4nbsybsXpAaeTY4ColDHidUWA+D7BTu2w+ltaM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ck7D+N3S/5o+HS2KnT1M1jQfsLWY0JtjwS95LoiTsOGHTC6lZbufJF6CUZxW6jmUDVeQvhg0z6PfBWXwKKI0t2QG5KhgPF+11x7EGbuEwjT1PNyOlugPxmwmgkCjnTecp0556nmlAouq7XsT0sNWn9Otl5XMMzFkhbYYSMJBUxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lw6AWsiN; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aaf0f1adef8so1383553066b.3;
+        Mon, 06 Jan 2025 01:32:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QOMOlutyVvt+a/WEQFGjtWWkxrrzE9YrzyfWQSka2dw=;
- b=XGBWJKgkAfpqrdcmsQM452SJApwmQ5c5+S5z+rkHFtUl8chnkSAma7a7BJxdqNGgU0Uz4Jhe+1LWzF6vL+79X4gSDJXhqz+wcPHfAiYwfvrrCkA6VxXoWKKmj+qdf9Nwfmq5/52r0vrGE4INXncwlrUVY2hpJvX55thFqDEgyOI=
-Received: from PSAPR03MB5365.apcprd03.prod.outlook.com (2603:1096:301:17::5)
- by SEZPR03MB7169.apcprd03.prod.outlook.com (2603:1096:101:e5::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.16; Mon, 6 Jan
- 2025 09:31:40 +0000
-Received: from PSAPR03MB5365.apcprd03.prod.outlook.com
- ([fe80::1c6e:6591:5151:27e6]) by PSAPR03MB5365.apcprd03.prod.outlook.com
- ([fe80::1c6e:6591:5151:27e6%3]) with mapi id 15.20.8314.015; Mon, 6 Jan 2025
- 09:31:40 +0000
-From: =?utf-8?B?Smlhbmp1biBXYW5nICjnjovlu7rlhpsp?= <Jianjun.Wang@mediatek.com>
-To: "helgaas@kernel.org" <helgaas@kernel.org>
-CC: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	=?utf-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
-	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "bhelgaas@google.com" <bhelgaas@google.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Ryder Lee <Ryder.Lee@mediatek.com>
-Subject: Re: [PATCH 4/5] PCI: mediatek-gen3: Don't reply AXI slave error
-Thread-Topic: [PATCH 4/5] PCI: mediatek-gen3: Don't reply AXI slave error
-Thread-Index: AQHbXaTudx8xtE3Nc0iENJOHrgCzn7MFbZ4AgAQSswA=
-Date: Mon, 6 Jan 2025 09:31:40 +0000
-Message-ID: <ad4ecda30ac5ad59edfbe95b5c09edc6ccf11db0.camel@mediatek.com>
-References: <20250103191948.GA4190995@bhelgaas>
-In-Reply-To: <20250103191948.GA4190995@bhelgaas>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PSAPR03MB5365:EE_|SEZPR03MB7169:EE_
-x-ms-office365-filtering-correlation-id: 0bfaa58f-581c-4605-2890-08dd2e34ecb7
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016|7055299003|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?ajdVL3R3K0FQK0JvbUo2RmRvalp2dHFTVjBLaGp3REQ3WGVvYWN0bzRJME1T?=
- =?utf-8?B?NndoL3VDZWQ1U29UUWNRaUJ6VFh4NXBCQ3FYWDgyZDRSK3J0TDVQdTZTTklj?=
- =?utf-8?B?VjlxdVQrQ2xRRVlWcjhiWTNmbEIvRjRnRm05VGlaVnV0bi9NQjRxVXAwNmF3?=
- =?utf-8?B?ak0zajNQQXBBdGZhb042MVRQMnhOc29VWjR0WWd2WlBldVBSODF4NGw4dWlt?=
- =?utf-8?B?dXBIWjZJNFpzam55U2FGaDZFUjl6QmFwMzJHYm5aZHcyNnpuVWxJUTFqMyta?=
- =?utf-8?B?YWZKUEJHL3dGSHBhUmdRWFIyOE12NGRxWEFMWC8wQUwrT0YveXpMSk92dGlv?=
- =?utf-8?B?a2dicGFVam1odUoxeW85aVd6SmFvdDFKbVBnODdUSHpFdlNSbUtGT0JpYzBG?=
- =?utf-8?B?Rkc1VWQwMTdJaWlDOVVjRUF3bzE3M29zbkdRblhvTXBScng2QTNIcFNCUUxJ?=
- =?utf-8?B?c2ZnZHVpbTdSTjRCbkhUZ2NsK3JhMEtnYnBvZytpZ29uQkk5TFVHSmhIM21E?=
- =?utf-8?B?a3orNmJsTWxUcU1iY2lVWk1GcjdEMFJpRU5BdTVXWGZnaE5PekFEUVU0MU9D?=
- =?utf-8?B?TW9WamFZS25CUThDM2NPMm9qellQZnNaMHluakJENHc4ZEZmZTJQQ1d5TGhF?=
- =?utf-8?B?bVJCcUtOcFVmLzV1VEwzTExvMHpzUEZja0ZoYXVBNGEvMmNndzdkWU12cGRD?=
- =?utf-8?B?M2l0aVY3UTk4VzFjdGd0aW1wVFZYbWM0YzNYeFh3U0FaSy9YN3ljK3RMT1NG?=
- =?utf-8?B?QURLbFdONVoxcGJYZnNkN3NnUFdKQmkwbE1vckFWc1pQRnJGb0dpenFqMWRQ?=
- =?utf-8?B?ZVRLaHYraGpUVzZNMnVPZDlDY2p2WFc0cE9oNFdxdGJqVHR0RlgzWGxSTXN2?=
- =?utf-8?B?T1FQL1ZxMlZxcHNQZDYwMkhYVVpEWjlXWjNmNVY1Y1pOQXlzcUtJM2RMWGZx?=
- =?utf-8?B?a0ZyRGJIYitvY2hkL0dpRTBqZ0t3a1ZKanFrdm51OERzTHZMZ1o3NXBPSEZR?=
- =?utf-8?B?dHUwZk5IWXNUWUNpSjJ0Vm5NM1Y0RUl2UVBwVWhValpsZHNha2VZVzBZOGhD?=
- =?utf-8?B?YmhJKy9HYStCL1FWYXkvcUpUc3hjbHJyVGtRZ3FpRk0wTTVwak8rb2JITVFz?=
- =?utf-8?B?MFI5RDlJcVUya3FEZGk2blFoek5uVlB4d2FqSS9uMUdnVy9EWnZUeGxDb2Zo?=
- =?utf-8?B?WHpJVDdRK29lNC96NjUwMmJrYUswOFdhZlF0Yzl4WXdaQ2tzY0N6TklOdGEv?=
- =?utf-8?B?MEdOcE1lTC9wTnFHSjlQUGdwdEhTRW5qWHZ2UVVYZG5icWsvT000ZmFmMXk3?=
- =?utf-8?B?RUpsemZYNEZiRXRaSEpqK3RtWjgwMCtJYjVwNmNkZ0JHZndRNFJwTVJ4QmJi?=
- =?utf-8?B?MDQrZnZOelNmVjBzeUNZY0ZBMmlvSDFTeDBrWWxCR09KdU0xMDh1dHhGNStn?=
- =?utf-8?B?Uk9hN0NGREh2ZWlmNUw1RGhtZVlJaVk3dXZRSWt4YmtRQXFRbExYUEs0Yzhl?=
- =?utf-8?B?NmVPQUUrWDZxWitzb2ZTeXJvWEhwN0NoRzhFYklrMllPWHEwOGVyd1QzTXg5?=
- =?utf-8?B?OE1HbkgrZFRGSHZKREVHMS9UODhMSVBZeGZCbHQ0b2ZWYVE5UU5VNTIyU0RW?=
- =?utf-8?B?cnc2V1FDL3VhTzBIWWZmekJ5S0pHSW1uUGJhVVZCQlJockdmT2hJN3BmQWtL?=
- =?utf-8?B?R3RPcFU1T3N6SnNsejhVeURTeDl4VDlTcWxMMzhUMlNYRXFrbE15WHFibWNw?=
- =?utf-8?B?K3EwTWEyWjlBRk9jOTV1SXFEbXJ1QWFHWStsOC9TOFArVS9nODlDTG4rK3Rt?=
- =?utf-8?B?Zk1nOXhtenVFVEtjUjY4NkZhWFhmeGl4bkxiWXZTZjQvclJ6UGZJN0hmZE9x?=
- =?utf-8?B?aDNrKzg2eXBRUlNaWitkMzY3NE5OS2VqNWdSK3NSN25hUmk3Ky9Kb2F1ZWs1?=
- =?utf-8?B?ZFB1dy8ySXRRenRLbW0vWmpiOHViTzJMNm1DTHRtVGh1L2dsR0pYSkptNHB0?=
- =?utf-8?B?VGpDWGV2VTFRPT0=?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PSAPR03MB5365.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(7055299003)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?K09ZY2F1YmhFc0RBVEJWeTdnUnAyMHk4OTVPbzdKcUE4MHFZR0pzdnQxSk5W?=
- =?utf-8?B?UkplVGowR0hwNWJMTUZndXl4b3FnRWdWYmp1TU1CT2lmMVVhSU9lOGlTQ2Nt?=
- =?utf-8?B?SFZkbHNaK0djMXhlMk8zTytOaEJSWjdmSWlEaFplMVVKaE4rOE9HanpNT0pC?=
- =?utf-8?B?SmtmQ3pYa20wQWw2b1BzZTZndWVOZFRIOTVXOTNyNGdLQjRvVnlZOWtweWhL?=
- =?utf-8?B?ZmMzTGZwWEdJeDFWNllVWC9MeHJaMXpiMDNCOWE3UE9BbFdYeUVhUng5R1JX?=
- =?utf-8?B?SDd1SzNsOHh0QkZGazQ4RlVMM2ZHWmZYdjE2UWgyLzRxYUpMNmlRRlc5S3kw?=
- =?utf-8?B?aXEweS9YUlgxbmJtVjdaTFJPVXpaZHkzY2h1VTl1dVpQWStrMDZQbHloZE0r?=
- =?utf-8?B?dTVkMzZ3Y0hHTVFnalNqOHRwTC8yMHoyWkc5cDdveUhWT1BINDZNTHNXRk5M?=
- =?utf-8?B?OUFkM0FxWTNIUFkyY2xncDJZT3lhSFJVVUQvR1RwYzVINTVHcW5hd25HeE5F?=
- =?utf-8?B?eG4vUHlPSW1NUXU3MUZlU2pXL2RkakdLQkg3c1dROFZZZVdUWlBWWFduaXVY?=
- =?utf-8?B?bVN4bG5UbHQzcU05YVhDUC9wZVRsa21DUDNPMUhFK25iQ1J3WEdmaTNXc3Aw?=
- =?utf-8?B?QVRHdVVrRllmV0xJd0w2SFBKcUdGekxrK0dFWktZaERQaThlZTVISGhWNm5E?=
- =?utf-8?B?YWYzRFhQbzROalByUEplTkluLzJXNGxEY095YXZWS2tjWXJCT1pSWE5xQlBa?=
- =?utf-8?B?YzZld0NUcCs1cUR2aEJ1dGNrczJJdll6YWV2Y1JLd3BaWS9odGlxUXZ4ZzJu?=
- =?utf-8?B?bmdrcWdrSEpZYUtybENhWUdEeG9GVEU4U1ZEVGgvUGxWK3JwMzdtTzMwSk9O?=
- =?utf-8?B?V0VZQTVCcUYxK3oxVTNLa3IxZm55Y2t4N0JuUXZFNGlrVmZaS2ZtZXdGMUE5?=
- =?utf-8?B?azhIblU4dmYrR0RDZGtlNDdCSDNXZ2tjaTJldVAwQzA5aGJZeDNIY1VZbzVL?=
- =?utf-8?B?Z2lva3FWV1o5eEN5ejdWRE5ORURTZ2FObm93ZEdpYmZ4aERJU0IzM3Uvd0V0?=
- =?utf-8?B?LzZVOEkzdTh2WDhGV2crd3cvZ1R3aTQ1bFBoSDY4ZXF4MHZEYjZlUXc2UmdJ?=
- =?utf-8?B?NGFKTkp3b0JCcjFwbHFkbzRNQWczRDlJdFN5SkhtN2MvVDV2RXJnNFEzUjZw?=
- =?utf-8?B?dkMzR0QwOWFjaXJ2Rk5PYXNhbzQ5V3Y5SkkzVlUrbzBMT2RXKzh3anFObE1P?=
- =?utf-8?B?dXpUYTJRclFac2d0Z3RQSFhDMkVwRGVsaHMzcGFjTjVUS29kUVNzTXk2WDRv?=
- =?utf-8?B?U0xtd3Z0am83OExGNk5MMmhMTTBZS0o3VWJLM203UUVxYTIycEFhRXpYM1l5?=
- =?utf-8?B?S3FPbW9tRVBOR2RmaGVmUWQ0YzU3eGRoako3OWJyekR4VDliejRqMXNUREQ3?=
- =?utf-8?B?TkpENVp0cG1EUGgyTWZ2TEJzdEU3VXpYNEVHK0t6TnZUcE92dVN6dDU0Zy9w?=
- =?utf-8?B?RGpUU09lZ2JGZWsxbVRGTlJYcXBxdzhsRk5iQ1YzZWNFNnZmVWpTeWFuazFP?=
- =?utf-8?B?ak8yY0N6Uk9FWXVIcXZ0LzNCL2hrWWlya0J5RVQ4Q2t3cndPY3Y2QnUxSmg2?=
- =?utf-8?B?TWdHMXd4SnhqMy9ycEZXeDZ1Z1VMaFAvQks5eUVWcXRySGd6KzcyNno4Qk5v?=
- =?utf-8?B?ckVRMTN2VUdtblBaMXNqOXhrOWxjU1d0M2N4MjRPV3ZZV3poUHVZb1d2L01Z?=
- =?utf-8?B?RWcvVTY4d1lsTndvSzIrUURSaDk4QitVR2NsUVdHVUdMRkczMkF5VkJZMU8v?=
- =?utf-8?B?M05mc0FiQUZCSWR1bnhMcUtlQlFVS1N4U0swUWJ3VXJaUjYza0xpeTdaS050?=
- =?utf-8?B?VWtGQ25XQ0NrU2pxd3FydlFjd2NReFVjZTBDZ3RyNXVGRkdXMmxsb1c1RmIz?=
- =?utf-8?B?T1N4WnZYRUlqU2pyZjZmOEI4VjZBQVlRRXowMzZDdnFpcWo5cGR4SVdrTjNK?=
- =?utf-8?B?c1pKaFF5c2ZyRVZwQVJrYm5NeS9XMzUwZjl2SlJPc2plU0N4VzBSMld1ODBn?=
- =?utf-8?B?UFlESTBNWnpCT2RVbkZ0QWorZ1dkY3AvUk91NVRhWkZoZDVidFNDb0FOSEZF?=
- =?utf-8?B?RjhHaWJacTZRRVd0cyt1TUN4R2Y3Ky96dVFINk9IQVo3UDRMemduZWJRVTBF?=
- =?utf-8?B?Rnc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B9E2D2D3CEC76D42B9745F7605F92ABC@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20230601; t=1736155948; x=1736760748; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FkorgIae98MH0Wo98cczURHUjhN8UFbBKY6DYTGXSzI=;
+        b=lw6AWsiN6QwXkpAHgAKDQ7VOa7d/c7GuIk6Vj+7/6dGaieZ6loVU52Uuws8hGPwknO
+         zcLdyUhZSz+6XDvuVq6lrdlC3CqvEvi9jvhzMMENlWZY0fp6Gsftpk3mhHtkMku1SBWX
+         SEoZUDvdx6sWbKT8SdMNcZVVgz2ziKdmnrm8uX4RAMDkEjehyYSL0lR79Ex1xoFesqed
+         sBn9jEpihkxyGKlbuLblO3LqR5BVLgVsV9Hf29R0rgEi+pqqyEbydlDB9lUXwpfmcPcD
+         87+5JMIr5aje990wL8P05D5SW7PDda8j6dpHTi/MO9l4RD8JEwxKqWyG2BLCAuYUjuC1
+         pVQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736155948; x=1736760748;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FkorgIae98MH0Wo98cczURHUjhN8UFbBKY6DYTGXSzI=;
+        b=hbTe3KuqNRIoVtRiGYvahQQVdBLcKOSD1agy1a3cUEeWzdtvj5X6tBlaaEQk1AP6Ro
+         sT7SQ2B1l95Cn6GbgW/tljMRYPOMGPvB4p0iH4vVKs6gAKWXJ6ihdB60aZOfn9n6B2E3
+         k3+bkcDToVvEu/2WbH1p284FJjjqUhi1mDzOcGk0mlTyzukp2Fk1IZEWd0zOWx2jv+dC
+         WW55GxVCD6mbJALHgv+kEl3rRqbqGhhJu8fhvZD8Bzi8R9e15PtD2hjzpXvW0Yp2mk5s
+         B992vjQE+ThKjGOj0Dz4mrhWUDk18beTHpt+t5oJzRGSSJxfuJ7QxnVW2usELFas3+Pp
+         91wg==
+X-Forwarded-Encrypted: i=1; AJvYcCWJO35aJbBUwDJ7hX81jgAWPrJmQps7b7/3GczGpJJDDMrRbvc+8+1G50obsEDLWkQZ1Mzcs16Lay8/@vger.kernel.org, AJvYcCXUtWxCnLGKFh827KifZurqsw38W5FtqZyrYUmvTJZj6WZcI69VdRURhg5lzseuPWCEfDaA6K/d5WHAsm7B@vger.kernel.org, AJvYcCXw8kZ2hKXLBdBMfeeoQmd4cGiWi88u03co6htYSGpBX1znGEpHrn3ZRiVDXnS3/UCXaHQ4qgMPzldk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkPAtOT6Oyn5p9nTK1MOnZhe03Y+LR/v/k3unrioeX+j0SQCqN
+	pBVqXUZxTe8tYZxm4lwtcUojeSQzsvK4p6MQBY0bQUC3lTJIUZrWG0UD/bsf4oV+WNJLUF0+MOF
+	/ClcL3/51R/ToQS+ddPQ7vw6G1LE=
+X-Gm-Gg: ASbGncuxueJHYqSEauyHIcGr8jYa7eupuyrioxbgZQgqPNDG/uSQxUQKgkGsE9TC4nL
+	nHDlDI9I2DyjTSn2XPWdNV0e4uX4m+7/EqHPU3Q==
+X-Google-Smtp-Source: AGHT+IFKHaCFlgCTzsFEnXDYUxW3e5R2VJeWtbbfDQMA1+PaVK9c4I08Ptv3RDKI3dtiiFiL8wXNhGLb54xNaKTIhhQ=
+X-Received: by 2002:a17:907:c27:b0:aaf:ab71:67b6 with SMTP id
+ a640c23a62f3a-aafab716801mr960090566b.31.1736155947710; Mon, 06 Jan 2025
+ 01:32:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PSAPR03MB5365.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0bfaa58f-581c-4605-2890-08dd2e34ecb7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jan 2025 09:31:40.0541
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: I+ns/rALH4hwaujIrtlIVN2IWAj3Y2y7bm9CdPMcOokqcJ2+O5B15eRISQ4d3rCg7WTk1wk8al8Ja54deAdgJyfPlL65wrx69iugWHP4+JI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7169
+References: <20241226055313.2841977-1-j2anfernee@gmail.com>
+ <20241226055313.2841977-3-j2anfernee@gmail.com> <20241228133531.5e98357e@jic23-huawei>
+In-Reply-To: <20241228133531.5e98357e@jic23-huawei>
+From: Yu-Hsian Yang <j2anfernee@gmail.com>
+Date: Mon, 6 Jan 2025 17:31:51 +0800
+Message-ID: <CA+4VgcKK1Hfz08paYjDCV=YL-C4bsWCNCRdH1Q8=4=hjEuYC9w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: adc: add Nuvoton NCT7201 ADC driver
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: marcelo.schmitt@analog.com, olivier.moysan@foss.st.com, 
+	avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com, 
+	andriy.shevchenko@linux.intel.com, mitrutzceclan@gmail.com, 
+	tgamblin@baylibre.com, matteomartelli3@gmail.com, alisadariana@gmail.com, 
+	gstols@baylibre.com, thomas.bonnefille@bootlin.com, herve.codina@bootlin.com, 
+	chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com, 
+	openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-T24gRnJpLCAyMDI1LTAxLTAzIGF0IDEzOjE5IC0wNjAwLCBCam9ybiBIZWxnYWFzIHdyb3RlOg0K
-PiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRh
-Y2htZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRoZSBjb250
-ZW50Lg0KPiANCj4gDQo+IE9uIEZyaSwgSmFuIDAzLCAyMDI1IGF0IDAyOjAwOjE0UE0gKzA4MDAs
-IEppYW5qdW4gV2FuZyB3cm90ZToNCj4gPiBUaGVyZSBhcmUgc29tZSBjaXJjdW1zdGFuY2VzIHdo
-ZXJlIHRoZSBFUCBkZXZpY2Ugd2lsbCBub3QgcmVzcG9uZA0KPiA+IHRvDQo+ID4gbm9uLXBvc3Rl
-ZCBhY2Nlc3MgZnJvbSB0aGUgcm9vdCBwb3J0IChlLmcuLCBNTUlPIHJlYWQpLiBJbiBzdWNoDQo+
-ID4gY2FzZXMsDQo+ID4gdGhlIHJvb3QgcG9ydCB3aWxsIHJlcGx5IHdpdGggYW4gQVhJIHNsYXZl
-IGVycm9yLCB3aGljaCB3aWxsIGJlDQo+ID4gdHJlYXRlZA0KPiA+IGFzIGEgU3lzdGVtIEVycm9y
-IChTRXJyb3IpLCBjYXVzaW5nIGEga2VybmVsIHBhbmljIGFuZCBwcmV2ZW50aW5nDQo+ID4gdXMN
-Cj4gPiBmcm9tIG9idGFpbmluZyBhbnkgdXNlZnVsIGluZm9ybWF0aW9uIGZvciBmdXJ0aGVyIGRl
-YnVnZ2luZy4NCj4gPiANCj4gPiBXZSBoYXZlIGFkZGVkIGEgbmV3IGJpdCBpbiB0aGUgUENJRV9B
-WElfSUZfQ1RSTF9SRUcgcmVnaXN0ZXIgdG8NCj4gPiBwcmV2ZW50DQo+ID4gUENJZSBBWEkwIGZy
-b20gcmVwbHlpbmcgd2l0aCBhIHNsYXZlIGVycm9yLiBTZXR0aW5nIHRoaXMgYml0IG9uIGFuDQo+
-ID4gb2xkZXINCj4gPiBwbGF0Zm9ybSB0aGF0IGRvZXMgbm90IHN1cHBvcnQgdGhpcyBmZWF0dXJl
-IHdpbGwgaGF2ZSBubyBlZmZlY3QuDQo+ID4gDQo+ID4gQnkgcHJldmVudGluZyBBWEkwIGZyb20g
-cmVwbHlpbmcgd2l0aCBhIHNsYXZlIGVycm9yLCB3ZSBjYW4ga2VlcA0KPiA+IHRoZQ0KPiA+IGtl
-cm5lbCBhbGl2ZSBhbmQgZGVidWcgdXNpbmcgdGhlIGluZm9ybWF0aW9uIGZyb20gQUVSLg0KPiA+
-IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEppYW5qdW4gV2FuZyA8amlhbmp1bi53YW5nQG1lZGlhdGVr
-LmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVr
-LWdlbjMuYyB8IDEyICsrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTIgaW5zZXJ0
-aW9ucygrKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL3Bj
-aWUtbWVkaWF0ZWstZ2VuMy5jDQo+ID4gYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUtbWVk
-aWF0ZWstZ2VuMy5jDQo+ID4gaW5kZXggNGJkM2IzOWVlYmUyLi40OGY4M2MyZDkxZjcgMTAwNjQ0
-DQo+ID4gLS0tIGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVrLWdlbjMuYw0K
-PiA+ICsrKyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tZWRpYXRlay1nZW4zLmMNCj4g
-PiBAQCAtODcsNiArODcsOSBAQA0KPiA+ICAjZGVmaW5lIFBDSUVfTE9XX1BPV0VSX0NUUkxfUkVH
-ICAgICAgICAgICAgICAweDE5NA0KPiA+ICAjZGVmaW5lIFBDSUVfRk9SQ0VfRElTX0wwUyAgICAg
-ICAgICAgQklUKDgpDQo+ID4gDQo+ID4gKyNkZWZpbmUgUENJRV9BWElfSUZfQ1RSTF9SRUcgICAg
-ICAgICAweDFhOA0KPiA+ICsjZGVmaW5lIFBDSUVfQVhJMF9TTFZfUkVTUF9NQVNLICAgICAgICAg
-ICAgICBCSVQoMTIpDQo+ID4gKw0KPiA+ICAjZGVmaW5lIFBDSUVfUElQRTRfUElFOF9SRUcgICAg
-ICAgICAgMHgzMzgNCj4gPiAgI2RlZmluZSBQQ0lFX0tfRklORVRVTkVfTUFYICAgICAgICAgIEdF
-Tk1BU0soNSwgMCkNCj4gPiAgI2RlZmluZSBQQ0lFX0tfRklORVRVTkVfRVJSICAgICAgICAgIEdF
-Tk1BU0soNywgNikNCj4gPiBAQCAtNDY5LDYgKzQ3MiwxNSBAQCBzdGF0aWMgaW50IG10a19wY2ll
-X3N0YXJ0dXBfcG9ydChzdHJ1Y3QNCj4gPiBtdGtfZ2VuM19wY2llICpwY2llKQ0KPiA+ICAgICAg
-IHZhbCB8PSBQQ0lFX0ZPUkNFX0RJU19MMFM7DQo+ID4gICAgICAgd3JpdGVsX3JlbGF4ZWQodmFs
-LCBwY2llLT5iYXNlICsgUENJRV9MT1dfUE9XRVJfQ1RSTF9SRUcpOw0KPiA+IA0KPiA+ICsgICAg
-IC8qDQo+ID4gKyAgICAgICogUHJldmVudCBQQ0llIEFYSTAgZnJvbSByZXBseWluZyBhIHNsYXZl
-IGVycm9yLCBhcyBpdCB3aWxsDQo+ID4gY2F1c2Uga2VybmVsIHBhbmljDQo+ID4gKyAgICAgICog
-YW5kIHByZXZlbnQgdXMgZnJvbSBnZXR0aW5nIHVzZWZ1bCBpbmZvcm1hdGlvbi4NCj4gPiArICAg
-ICAgKiBLZWVwIHRoZSBrZXJuZWwgYWxpdmUgYW5kIGRlYnVnIHVzaW5nIHRoZSBpbmZvcm1hdGlv
-biBmcm9tDQo+ID4gQUVSLg0KPiANCj4gV3JhcCB0byBmaXQgaW4gODAgY29sdW1ucyBsaWtlIHRo
-ZSByZXN0IG9mIHRoZSBmaWxlDQo+IA0KPiBBZGQgYmxhbmsgbGluZXMgYmV0d2VlbiBwYXJhZ3Jh
-cGhzLg0KPiANCj4gQUVSIGlzIGFuIGFzeW5jaHJvbm91cyBtZWNoYW5pc20sIHNvIGlmIHlvdSBk
-aXNhYmxlIHRoZSBTRXJyb3IsDQo+IHdob2V2ZXIgaXNzdWVkIHRoZSBNTUlPIHJlYWQgdG8gdGhl
-IFBDSWUgZGV2aWNlIHdpbGwgcmVjZWl2ZSBzb21lDQo+IGtpbmQNCj4gb2YgZGF0YS4NCj4gDQo+
-IEkgaG9wZS9hc3N1bWUgdGhhdCBkYXRhIGlzIH4wIGFzIG9uIG90aGVyIHBsYXRmb3Jtcz8gIElm
-IHNvLCBwbGVhc2UNCj4gY29uZmlybSB0aGlzIGluIHRoZSBjb21tZW50IGFuZCBjb21taXQgbG9n
-LiAgT3RoZXJ3aXNlLCB0aGUgY2FsbGVyDQo+IHdpbGwgcmVjZWl2ZWQgY29ycnVwdGVkIGRhdGEg
-d2l0aCBubyB3YXkgdG8ga25vdyB0aGF0IGl0J3MgY29ycnVwdGVkLg0KDQpZZXMsIHdpdGggdGhp
-cyBiaXQgc2V0LCB0aGUgY2FsbGVyIHdpbGwgcmVjZWl2ZSB+MCBkYXRhIGlmIHRoZSBFUCBkb2Vz
-DQpub3QgcmVzcG9uZC4gSSdsbCBhZGQgdGhpcyB0byB0aGUgY29tbWVudCBhbmQgY29tbWl0IGxv
-Zy4NCg0KVGhhbmtzLg0KDQo+IA0KPiA+ICsgICAgICAqLw0KPiA+ICsgICAgIHZhbCA9IHJlYWRs
-X3JlbGF4ZWQocGNpZS0+YmFzZSArIFBDSUVfQVhJX0lGX0NUUkxfUkVHKTsNCj4gPiArICAgICB2
-YWwgfD0gUENJRV9BWEkwX1NMVl9SRVNQX01BU0s7DQo+ID4gKyAgICAgd3JpdGVsX3JlbGF4ZWQo
-dmFsLCBwY2llLT5iYXNlICsgUENJRV9BWElfSUZfQ1RSTF9SRUcpOw0KPiA+ICsNCj4gPiAgICAg
-ICAvKiBEaXNhYmxlIERWRlNSQyB2b2x0YWdlIHJlcXVlc3QgKi8NCj4gPiAgICAgICB2YWwgPSBy
-ZWFkbF9yZWxheGVkKHBjaWUtPmJhc2UgKyBQQ0lFX01JU0NfQ1RSTF9SRUcpOw0KPiA+ICAgICAg
-IHZhbCB8PSBQQ0lFX0RJU0FCTEVfRFZGU1JDX1ZMVF9SRVE7DQo+ID4gLS0NCj4gPiAyLjQ2LjAN
-Cj4gPiANCg==
+Dear Jonathan,
+
+Thanks for your comments.
+
+Some questions are replied in Andy's comments.
+
+We use FIELD_GET and FIELD_PREP to handle bit shift operations.
+
+About regmap_write case, we remove print an error message according to
+David Lechner mentioned.
+If check for errors are needed, we would recovery it.
+
+Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2024=E5=B9=B412=E6=9C=8828=E6=
+=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=889:35=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Thu, 26 Dec 2024 13:53:13 +0800
+> Eason Yang <j2anfernee@gmail.com> wrote:
+>
+> > Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
+> >
+> > NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up =
+to
+> > 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins fo=
+r
+> > independent alarm signals, and the all threshold values could be set fo=
+r
+> > system protection without any timing delay. It also supports reset inpu=
+t
+> > RSTIN# to recover system from a fault condition.
+> >
+> > Currently, only single-edge mode conversion and threshold events suppor=
+t.
+> >
+> > Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+> Hi Eason,
+>
+> Various minor comments in addition to what Andy has
+> posted already.
+>
+> Jonathan
+>
+> > diff --git a/drivers/iio/adc/nct7201.c b/drivers/iio/adc/nct7201.c
+> > new file mode 100644
+> > index 000000000000..9ad4d2919461
+> > --- /dev/null
+> > +++ b/drivers/iio/adc/nct7201.c
+> > @@ -0,0 +1,449 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * Driver for Nuvoton nct7201 and nct7202 power monitor chips.
+> > + *
+> > + * Copyright (c) 2024 Nuvoton Inc.
+> > + */
+> > +
+> > +#include <linux/array_size.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/cleanup.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/device.h>
+> > +#include <linux/err.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/init.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/types.h>
+> > +#include <linux/unaligned.h>
+> > +
+> > +#include <linux/iio/events.h>
+> > +#include <linux/iio/iio.h>
+> > +
+> > +#define NCT7201_VIN_MAX                                      12      /=
+* Counted from 1 */
+> > +#define NCT7201_IN_SCALING                           4995
+> > +#define NCT7201_IN_SCALING_FACTOR                    10000
+> > +
+> > +#define NCT7201_REG_INTERRUPT_STATUS_1                       0x0C
+> > +#define NCT7201_REG_INTERRUPT_STATUS_2                       0x0D
+> > +#define NCT7201_REG_VOLT_LOW_BYTE                    0x0F
+> > +#define NCT7201_REG_CONFIGURATION                    0x10
+> > +#define  NCT7201_BIT_CONFIGURATION_START             BIT(0)
+> > +#define  NCT7201_BIT_CONFIGURATION_ALERT_MSK         BIT(1)
+> > +#define  NCT7201_BIT_CONFIGURATION_CONV_RATE         BIT(2)
+> > +#define  NCT7201_BIT_CONFIGURATION_RESET             BIT(7)
+> > +
+> > +#define NCT7201_REG_ADVANCED_CONFIGURATION           0x11
+> > +#define  NCT7201_BIT_ADVANCED_CONF_MOD_ALERT         BIT(0)
+> > +#define  NCT7201_BIT_ADVANCED_CONF_MOD_STS           BIT(1)
+> > +#define  NCT7201_BIT_ADVANCED_CONF_FAULT_QUEUE               BIT(2)
+> > +#define  NCT7201_BIT_ADVANCED_CONF_EN_DEEP_SHUTDOWN  BIT(4)
+> > +#define  NCT7201_BIT_ADVANCED_CONF_EN_SMB_TIMEOUT    BIT(5)
+> > +#define  NCT7201_BIT_ADVANCED_CONF_MOD_RSTIN         BIT(7)
+> > +
+> > +#define NCT7201_REG_CHANNEL_INPUT_MODE                       0x12
+> > +#define NCT7201_REG_CHANNEL_ENABLE_1                 0x13
+> > +#define  NCT7201_REG_CHANNEL_ENABLE_1_MASK           GENMASK(7, 0)
+> > +#define NCT7201_REG_CHANNEL_ENABLE_2                 0x14
+> > +#define  NCT7201_REG_CHANNEL_ENABLE_2_MASK           GENMASK(3, 0)
+>
+> As below. I'd treat these two registers as one larger register.
+>
+> > +static int nct7201_read_raw(struct iio_dev *indio_dev,
+> > +                         struct iio_chan_spec const *chan,
+> > +                         int *val, int *val2, long mask)
+> > +{
+> > +     u16 volt;
+> > +     unsigned int value;
+> > +     int err;
+> > +     struct nct7201_chip_info *chip =3D iio_priv(indio_dev);
+> > +
+> > +     if (chan->type !=3D IIO_VOLTAGE)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     guard(mutex)(&chip->access_lock);
+> > +     switch (mask) {
+> > +     case IIO_CHAN_INFO_RAW:
+> > +             err =3D regmap_read(chip->regmap16, NCT7201_REG_VIN(chan-=
+>address), &value);
+> > +             if (err < 0)
+> > +                     return err;
+> > +             volt =3D value;
+> > +             *val =3D volt >> 3;
+>
+> As below, likely a FIELD_GET() is appropriate here.
+>
+> > +             return IIO_VAL_INT;
+> > +     case IIO_CHAN_INFO_SCALE:
+> > +             /* From the datasheet, we have to multiply by 0.0004995 *=
+/
+> > +             *val =3D 0;
+> > +             *val2 =3D 499500;
+> > +             return IIO_VAL_INT_PLUS_NANO;
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +}
+> > +
+> > +static int nct7201_read_event_value(struct iio_dev *indio_dev,
+> > +                                 const struct iio_chan_spec *chan,
+> > +                                 enum iio_event_type type,
+> > +                                 enum iio_event_direction dir,
+> > +                                 enum iio_event_info info,
+> > +                                 int *val, int *val2)
+> > +{
+> > +     struct nct7201_chip_info *chip =3D iio_priv(indio_dev);
+> > +     u16 volt;
+> > +     unsigned int value;
+> > +     int err;
+> > +
+> > +     if (chan->type !=3D IIO_VOLTAGE)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     if (info !=3D IIO_EV_INFO_VALUE)
+> > +             return -EINVAL;
+> > +
+> > +     if (dir =3D=3D IIO_EV_DIR_FALLING) {
+> > +             err =3D regmap_read(chip->regmap16, NCT7201_REG_VIN_LOW_L=
+IMIT(chan->address), &value);
+> > +             if (err < 0)
+> > +                     return err;
+> > +             volt =3D value;
+> > +     } else {
+> > +             err =3D regmap_read(chip->regmap16, NCT7201_REG_VIN_HIGH_=
+LIMIT(chan->address), &value);
+> > +             if (err < 0)
+> > +                     return err;
+> > +             volt =3D value;
+> > +     }
+> > +
+> > +     *val =3D volt >> 3;
+> As Andy pointed out, likely a FIELD_GET() makes sense here.
+>
+> > +
+> > +     return IIO_VAL_INT;
+> > +}
+> > +
+> > +static int nct7201_write_event_value(struct iio_dev *indio_dev,
+> > +                                  const struct iio_chan_spec *chan,
+> > +                                  enum iio_event_type type,
+> > +                                  enum iio_event_direction dir,
+> > +                                  enum iio_event_info info,
+> > +                                  int val, int val2)
+> > +{
+> > +     struct nct7201_chip_info *chip =3D iio_priv(indio_dev);
+> > +     long v1, v2;
+> > +
+> > +     v1 =3D val >> 5;
+> > +     v2 =3D FIELD_PREP(NCT7201_REG_VIN_LIMIT_LSB_MASK, val) << 3;
+> > +
+> > +     if (chan->type !=3D IIO_VOLTAGE)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     if (info =3D=3D IIO_EV_INFO_VALUE) {
+> I'd flip this to
+>         if (info !=3D IIO_EV_INFO_VALUE)
+>                 return -EOPNOTSUPP;
+>
+>         guard().
+>
+> > +             guard(mutex)(&chip->access_lock);
+> > +             if (dir =3D=3D IIO_EV_DIR_FALLING) {
+> > +                     regmap_write(chip->regmap, NCT7201_REG_VIN_LOW_LI=
+MIT(chan->address), v1);
+> > +                     regmap_write(chip->regmap, NCT7201_REG_VIN_LOW_LI=
+MIT_LSB(chan->address), v2);
+>
+> Check for errors.
+>
+> > +             } else {
+> > +                     regmap_write(chip->regmap, NCT7201_REG_VIN_HIGH_L=
+IMIT(chan->address), v1);
+> > +                     regmap_write(chip->regmap, NCT7201_REG_VIN_HIGH_L=
+IMIT_LSB(chan->address), v2);
+> > +             }
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+>
+> > +
+> > +static int nct7201_write_event_config(struct iio_dev *indio_dev,
+> > +                                   const struct iio_chan_spec *chan,
+> > +                                   enum iio_event_type type,
+> > +                                   enum iio_event_direction dir,
+> > +                                   bool state)
+> > +{
+> > +     struct nct7201_chip_info *chip =3D iio_priv(indio_dev);
+> > +     unsigned int mask;
+> > +
+> > +     if (chan->type !=3D IIO_VOLTAGE)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     mask =3D BIT(chan->address);
+> > +
+> > +     if (!state && (chip->vin_mask & mask))
+> > +             chip->vin_mask &=3D ~mask;
+> > +     else if (state && !(chip->vin_mask & mask))
+> > +             chip->vin_mask |=3D mask;
+> > +
+> > +     guard(mutex)(&chip->access_lock);
+> > +     regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
+> > +                  chip->vin_mask & NCT7201_REG_CHANNEL_ENABLE_1_MASK);
+> > +     if (chip->num_vin_channels =3D=3D 12)
+> > +             regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2,
+> > +                          chip->vin_mask & NCT7201_REG_CHANNEL_ENABLE_=
+2_MASK);
+>
+> This feels odd.  Don't you need to shift that vin_mask to get rid of chan=
+nels
+> that are enabled via ENABLE_1?
+>
+
+We need to right shift 8 bit chip->vin_mask and write into ENABLE_2.
+> > +     if (chip->num_vin_channels =3D=3D 12)
+> > +             regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2,
+-                          chip->vin_mask & NCT7201_REG_CHANNEL_ENABLE_2_MA=
+SK);
++                         FIELD_GET(GENMASK(15, 8), chip->vin_mask) &
+NCT7201_REG_CHANNEL_ENABLE_2_MASK);
+
+> > +
+> > +     return 0;
+> > +}
+>
+> > +static int nct7201_init_chip(struct nct7201_chip_info *chip)
+> > +{
+> > +     u8 data[2];
+> > +     unsigned int value;
+> > +     int err;
+> > +
+> > +     regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION,
+> > +                  NCT7201_BIT_CONFIGURATION_RESET);
+>
+> Add a comment on why you don't check return value (or do check it if appr=
+opriate).
+>
+> > +
+> > +     /*
+> > +      * After about 25 msecs, the device should be ready and then
+> > +      * the Power Up bit will be set to 1. If not, wait for it.
+> > +      */
+> > +     mdelay(25);
+> > +     err =3D regmap_read(chip->regmap, NCT7201_REG_BUSY_STATUS, &value=
+);
+> > +     if (err < 0)
+> > +             return err;
+> > +     if (!(value & NCT7201_BIT_PWR_UP))
+> > +             return dev_err_probe(&chip->client->dev, -EIO, "failed to=
+ power up after reset\n");
+> > +
+> > +     /* Enable Channel */
+> > +     guard(mutex)(&chip->access_lock);
+> > +     regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
+> > +                  NCT7201_REG_CHANNEL_ENABLE_1_MASK);
+>
+> Check return value.  This is over an I2C bus, not the most reliable of
+> transports!
+>
+> Consider doing this differently and using a bulk write for the larger
+> case.
+>
+>         if (chip->num_vin_channels <=3D 8)
+>                 ret =3D regmap_write();
+>         else
+>                 ret =3D regmap_bulk_write();
+>
+> However as you read ENABLE_2 unconditionally below, can you instead just
+> always use a bulk write here?
+>
+
+We can't use regmap_bulk_write() due to the chip's limit.
+regmap_bulk_write(chip->regmap, ..., ..., 2) ,
+the first byte is well written, but the second byte don't changed.
+
+
+> > +     if (chip->num_vin_channels =3D=3D 12)
+> > +             regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2,
+> > +                          NCT7201_REG_CHANNEL_ENABLE_2_MASK);
+> > +
+> > +     err =3D regmap_read(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1, &=
+value);
+> > +     if (err < 0)
+> > +             return err;
+> > +     data[0] =3D value;
+> > +
+> > +     err =3D regmap_read(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2, &=
+value);
+> > +     if (err < 0)
+> > +             return err;
+> > +     data[1] =3D value;
+>
+> Why does reading these back make sense?  Is there a reason the write
+> above might not work if the I2C transfer is Acked?
+>
+> If this is part of discovery protocol for how many channels are there, th=
+en
+> add comments.
+>
+
+We remove read back enable registers, just assign data value after
+regmap_write() successfully.
+Like,
+    err =3D regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
+             NCT7201_REG_CHANNEL_ENABLE_1_MASK);
+    if (err) {
+        dev_err(&chip->client->dev, "Failed to write REG_CHANNEL_ENABLE_1\n=
+");
+        return err;
+    }
+    data[0] =3D NCT7201_REG_CHANNEL_ENABLE_1_MASK;
+
+> > +
+> > +     value =3D get_unaligned_le16(data);
+> > +     chip->vin_mask =3D value;
+> > +
+> > +     /* Start monitoring if needed */
+> > +     err =3D regmap_read(chip->regmap, NCT7201_REG_CONFIGURATION, &val=
+ue);
+> > +     if (err < 0) {
+> > +             dev_err_probe(&chip->client->dev, -EIO, "Failed to read R=
+EG_CONFIGURATION\n");
+> > +             return value;
+>
+> Why return value if an error occurred?
+>                 retuen dev_err_probe();
+>
+> > +     }
+> > +
+> > +     value |=3D NCT7201_BIT_CONFIGURATION_START;
+> > +     regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION, value);
+>
+> regmap_set_bits()
+>
+
+-     value |=3D NCT7201_BIT_CONFIGURATION_START;
+-     regmap_write(chip->regmap, NCT7201_REG_CONFIGURATION, value);
++     regmap_set_bits(chip->regmap, NCT7201_REG_CONFIGURATION,
+NCT7201_BIT_CONFIGURATION_START);
+
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct regmap_config nct7201_regmap8_config =3D {
+> > +     .name =3D "vin-data-read-byte",
+> > +     .reg_bits =3D 8,
+> > +     .val_bits =3D 8,
+> > +     .max_register =3D 0xff,
+> > +};
+> > +
+> > +static const struct regmap_config nct7201_regmap16_config =3D {
+> > +     .name =3D "vin-data-read-word",
+> > +     .reg_bits =3D 8,
+> > +     .val_bits =3D 16,
+> > +     .max_register =3D 0xff,
+> > +};
+> > +
+> > +static int nct7201_probe(struct i2c_client *client)
+> > +{
+> > +     const struct nct7201_adc_model_data *model_data;
+> > +     struct nct7201_chip_info *chip;
+> > +     struct iio_dev *indio_dev;
+> > +     int ret;
+> > +
+> > +     model_data =3D i2c_get_match_data(client);
+> > +     if (!model_data)
+> > +             return -EINVAL;
+> > +
+> > +     indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(*chip));
+> > +     if (!indio_dev)
+> > +             return -ENOMEM;
+> > +     chip =3D iio_priv(indio_dev);
+> > +
+> > +     chip->regmap =3D devm_regmap_init_i2c(client, &nct7201_regmap8_co=
+nfig);
+> > +     if (IS_ERR(chip->regmap))
+> > +             return dev_err_probe(&client->dev, PTR_ERR(chip->regmap),
+> > +                     "Failed to init regmap\n");
+> > +
+> > +     chip->regmap16 =3D devm_regmap_init_i2c(client, &nct7201_regmap16=
+_config);
+> > +     if (IS_ERR(chip->regmap16))
+> > +             return dev_err_probe(&client->dev, PTR_ERR(chip->regmap16=
+),
+> > +                     "Failed to init regmap16\n");
+> > +
+> > +     chip->num_vin_channels =3D model_data->num_vin_channels;
+> > +
+> > +     ret =3D devm_mutex_init(&client->dev, &chip->access_lock);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     chip->client =3D client;
+> > +
+> > +     ret =3D nct7201_init_chip(chip);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     indio_dev->name =3D model_data->model_name;
+> > +     indio_dev->channels =3D model_data->channels;
+> > +     indio_dev->num_channels =3D model_data->num_channels;
+> > +     if (client->irq)
+> > +             indio_dev->info =3D &nct7201_info;
+> > +     else
+> > +             indio_dev->info =3D &nct7201_info_no_irq;
+> > +     indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > +
+> > +     return devm_iio_device_register(&client->dev, indio_dev);
+> > +}
 
