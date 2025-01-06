@@ -1,123 +1,207 @@
-Return-Path: <devicetree+bounces-135747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4F99A02008
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:41:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86C45A02060
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:10:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C85B3A4234
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 07:41:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDA751646F3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:09:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DFCE1D6DA3;
-	Mon,  6 Jan 2025 07:41:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FCC1D86F7;
+	Mon,  6 Jan 2025 08:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A+Cb3guZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ViMH81LL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA2C1E511;
-	Mon,  6 Jan 2025 07:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72F81D6DB1;
+	Mon,  6 Jan 2025 08:08:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736149280; cv=none; b=QS7ASFgPfDb9hx7lt9GtShZF76hywqsTz442ukt0jR7BivVK0wtJCdDCZ2Bax7T5vS9wI4XcJ+07R7+eXrqYOEgL4L/uwvK/nkIri7mRgFzEtD2S9OvInVJFgdYLIVICTUukBs8ohLtMwVcQ588rGcrxtvJqjkohr4RpXQSbPyw=
+	t=1736150915; cv=none; b=bTvvppr6Qxs/N/avigLqyBG+01UYIfX6PH8d/CgGzBhiBtnuTVK8xtUYbWhrufX/pE7ckiiJWbuOpnhPVdEy4pvsf0LNyHdYprvbuXGSIxpAH6azqehnnsHA8oRIhVUIAeW2WewXM6y5jcvyF0USG1EjY1JtR1NM3mWbQrousOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736149280; c=relaxed/simple;
-	bh=lqwJYDcuZuFuxeaLPzIQfQjfDbt5N/rNQ5VywSay5ME=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f20IF0QXIMCVWo3kDx8LFAuPtI9G6cOYF8s+OJx1gk8mHOt7x3crgoFodkLwcoHHmwnqzJ/ybNbmIi/XYNGzUsY5N2eBjUYpjwn8AhCrbEEtNM71bZOvy4Evlxoh9qv+9xectGm1ZHHIyKZtyIPVveSASgisUNidSjGtxApgid8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A+Cb3guZ; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1736150915; c=relaxed/simple;
+	bh=wHGu/oSSwQUbQ328emg5bZckBobIHSpMg0a2PmUbvwY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LkXZzDIoTpRANBffRoRox4EXRBygbkKX6judNWOafbLw6JKyf59twMCl4PjsbgiME7ZOaQ9laXCa/H6Zk9dmwkqOmjaw1b6nFTuuMWgJpsqPIeqQvWMGcSqcJ6xu+ap6Fhx81mF1bRLtLd9WNiUywZrV6hmDPW/5FC3ONBqRuI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ViMH81LL; arc=none smtp.client-ip=209.85.216.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aaef00ab172so1524961666b.3;
-        Sun, 05 Jan 2025 23:41:18 -0800 (PST)
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ee86a1a92dso16165867a91.1;
+        Mon, 06 Jan 2025 00:08:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736149277; x=1736754077; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=H7jyHK1qzo2RBuW8p7OwjlLlsp6SzR2X66LUKW3zBn4=;
-        b=A+Cb3guZJ1lpn1Hiw+rn580NAThCS58SAmJkfOS6WO6BC/1LhadomOQhfJEdGHB1cC
-         6KmvIWL3pt7sXhgr2hkJsiILSrDiSLmRZzjvQjgixUSbnH4AN/n2LP4uQLmHvKPGi70s
-         LzOkA3xF/0o0VdptOyUXeHX8wW5mCcL6GaZDFO7T5WSm6b1P49LPC92Gp7pQ7g6cAoDa
-         1vdeYdtqjND22b9oIIDI0A55oyGmR2B+UjQ4gZoIWMh2vdF9oiJJbU9gEK4VDH5KJvIp
-         8XlHrIZ+EQkDZK0fcPAZGKegA1xqoJlWE+fmAeNlBX+PkIbCWzx/8m+UZtfZIuQXGVaR
-         Gn+w==
+        d=gmail.com; s=20230601; t=1736150909; x=1736755709; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=miofxZI6eA3394zdcfXv5+YqJvoJUfGSz5V6LgQvf58=;
+        b=ViMH81LLGD3HHJYUMeVONlG1cf/a0FxNl9KiT+WkyBNtScMj1vUwRwhaRPTxNh/c1A
+         IMQ3LwKaVW25ZozeGa0sENsn+Nitl4fqGJe51oQHd3FIf57zS41KGEG7HdtEkpu2cu+m
+         2mkPSprjaU8QbcGBWpyQgcUD7yoyV1QobA8ypXSKEC71dUREuIndo1lBcbSDoYzc8ZWk
+         57wUkiaQ462k5VPT9rpWjLwGS6uTMlgItyTqADSIEptG/VM0FmPqSvQspDNzeTxyQiBK
+         NlV90tcb1I7BDTpaA0Yd1tGsy+wT8BzFGXEb9ujcd7RAQRUdLw381man/FOGvGfF7YWH
+         Efxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736149277; x=1736754077;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H7jyHK1qzo2RBuW8p7OwjlLlsp6SzR2X66LUKW3zBn4=;
-        b=Hii4MQ/hk/r4iT+Dhmgrovu/gww0LI4V55y7mrQpc6C7dwuzNB+nXu/Lt97eEN9aWJ
-         n1wnRc0mVHX8H5jxIMoRxfRA4CekcxsatyoBxzmnQX6YTSy/UyJ2zyCCJmnbPpMD4yXE
-         MVv7lA5Ft2EXV6srYZQad4Ql1FAjGvCWf8PpdcxI+c/Pure4whs/psU37SPbhytF1fM3
-         PEdW3wPY3XRdnCOgkgwS6qP/ipVa9aAqLAjrOZeDate3mlYO7ihnVD69n5aWReR0xBZH
-         utmtWAz4QtwrYl1aQm9dulyEGUJq6d0oUlzYBJMKZaJR2o36CefnrMUYTP5NPiLzjB5g
-         L3dQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPlhdj31gO4i5A8wsN2hPJf4M1i89yW4ReTYjGKQoIqJr9acd78bN3H+qjNbIKvNibOlwKB+SuP0M6Qgk=@vger.kernel.org, AJvYcCVVSFD+v6cSPdfJJcmCaKDs6ymk8CaLZlKvuD5voaJFDlKyTRO5GIpbSgUGg5NokHduO7uSbOoC1Q8d7ov12dtEkL4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGXqI3gBXhNFFznvU6Vl7cjncfjNXB8QlIcZ/3B2tXl/fBV332
-	PIzyIJhhtpLiG/AFcbt0VN4LnWOJM2Q8xZ4fh639Gnb5tifiSvZ3oqxJMQ==
-X-Gm-Gg: ASbGncuSz2mRvjONAFiQdYqYngseXldY8QEEfeLx5H1S3VrPWsAXBlFbUkl/bPM+YlM
-	JnfHyHqdPs2+bvo4zd88Ir3+i8q58fFBV2J7SSqMa13PW11uQLWSt3yFcDJ/gFY8R6s8NtuS6Uy
-	1IXjoKsv4b9nR4ONd5cBphWIL6J9RwAv76YBvHOS3jJCcLyAN4AFZxbu4oKVeO9Wv1jED0B2ai4
-	T/+o9YETuVaT+NMnYc72YYYMwWgoJXo9SCD1zZQ/dGssu1EdQULkaYrDnpcO+rEHK+8TL4=
-X-Google-Smtp-Source: AGHT+IGUK/KAzsavO8RxgoMoX/fDzaMo3/KjbM9ldtNHhtumpl9cdoVvZA3QKNbl7UwUnBmIsW12Fw==
-X-Received: by 2002:a05:6402:1588:b0:5d3:ba42:e9e3 with SMTP id 4fb4d7f45d1cf-5d81dd9ce81mr141034940a12.13.1736149276384;
-        Sun, 05 Jan 2025 23:41:16 -0800 (PST)
-Received: from [192.168.43.21] ([77.85.230.22])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e8954bfsm2246158566b.60.2025.01.05.23.41.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jan 2025 23:41:16 -0800 (PST)
-Message-ID: <a7686593-ab07-4e18-912d-745576c6a450@gmail.com>
-Date: Mon, 6 Jan 2025 09:41:13 +0200
+        d=1e100.net; s=20230601; t=1736150909; x=1736755709;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=miofxZI6eA3394zdcfXv5+YqJvoJUfGSz5V6LgQvf58=;
+        b=M9JRmBV0axYBDBentYAZM/8bhDkvFw4Xv8dvJnDm+iWuSvI0A5BbAB4KXqMjkoa0Jd
+         23DBenR+XZu69G5SH6DttTFOZOhDM/mvMkB/xO8+UV3JDet+YWIGFU5w1gw0VFhy/m8N
+         kAwirGZutUxhdSRCWHD83wnBgsqM4ya8DUZMhTWiiQCFUX/OLMssDgijN0doZmZXAc7C
+         jG4OcxmQLc3MD27hnEctzPoohSogvFXJdN6Io1IE7sSkEvvmW5+5sj2reEoN69oWTqVy
+         2Uz9vsiOfJyEcCOYDoZLDW2gIAELQ3Vfrz7iZcna/qviDfwVp9O70pGT2iEpR2+5RZU7
+         HJ4w==
+X-Forwarded-Encrypted: i=1; AJvYcCVBArqLorEi5SKER+3e4BeUAZqzj0AjrlrqTHwFvP8xYhBvKWL8az/uec6w8oImw28Yp0fUjCIldFw=@vger.kernel.org, AJvYcCVb+pASWhmj+ExFvzEo52OgbIcVXrdtWdKe0V7K71igOvPdDwpe673KandRh9T131x4mFksRIyf0lR6@vger.kernel.org, AJvYcCW6sgn/c0paROiQbxxSBYpo4aelnPPB+sohbMh7EOh0BxIRYXESsaMYiRFX2QwRBx5/nGRaF6w4vDwX++s=@vger.kernel.org, AJvYcCWDctfJlbZTZ8Zmi3A/xNuxqT9sjkQVsrCZsNubakA+LVcnbkZOk3NYT46wX6dlOxxVPldjv2ZM7EHRxFdYwg==@vger.kernel.org, AJvYcCWMbWrnGHrrMtgVJG/33QA0mnGXemeC/ywOqtMMEI4nRiy0bODm6STqwoxa2o0habjDEkQjr5ZK9wKYj6XvDM5LNpOafg==@vger.kernel.org, AJvYcCXYXcdyBDmFEKD5HSbfeTr6SOPH5Ufxmf3EID6oYtxOKW0yrD+cuiB1f0OQr3pnrvpRs+504/g2b3Yf@vger.kernel.org, AJvYcCXzLk7yjHUkJcB4fjp+ECmqhuQIg4ZsEMYAeBKamNSFfdVgOT1GXqPS1aAd0L4QdrPs4x1hgJ7vCS2gGXzk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwbPDH2sZtTSph9a7GdiF3aQgZXdov4KXiXTmA+ocG42ZXtXHs
+	HcHOP1FOs6wlk5j4xxSyK6+/V4djrKVX3cCsXVoYBJ01Csj0G4xt
+X-Gm-Gg: ASbGncuxreFZPvoUozfhyASodh9aXYi8EnnwwiE+p64BMv32kvVYa43tGUG6V+OCuJR
+	r3GHbgg9ldVQABg+tla9UvhZPDT2ekpqNdAb2MfWIr0ZqDEkxzYKe1Pk+4Qlwidt5jOb3621IVh
+	pyFZZvDkW7zhCEmIkGrNw+ySZ7AOIcBFQxRdUeFPYvt+uXO/Jphb7Jx/At+GxsGZswrYE4BADKw
+	O/7zgWU11OTw+BbR92+BM6r4wqrwx6ImRWMPMjrgWmh5I8AbxN7P9g=
+X-Google-Smtp-Source: AGHT+IGAiCuLKBYIm5kxkrIB5POZheZeFzEP+YXQx/K+Y9+0ooTv3Jv3BCORj3F89XQMRfCWUOpLwg==
+X-Received: by 2002:a17:90b:134b:b0:2ef:316b:53fe with SMTP id 98e67ed59e1d1-2f452e4d0e5mr73686828a91.22.1736150908695;
+        Mon, 06 Jan 2025 00:08:28 -0800 (PST)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f4477ec330sm36530772a91.24.2025.01.06.00.08.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 00:08:27 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: krzk@kernel.org
+Cc: andersson@kernel.org,
+	bryan.odonoghue@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dmitry.baryshkov@linaro.org,
+	gregkh@linuxfoundation.org,
+	hdegoede@redhat.com,
+	heikki.krogerus@linux.intel.com,
+	ilpo.jarvinen@linux.intel.com,
+	jdelvare@suse.com,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	linux@roeck-us.net,
+	mitltlatltl@gmail.com,
+	platform-driver-x86@vger.kernel.org,
+	robh@kernel.org,
+	sre@kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
+Date: Mon,  6 Jan 2025 16:06:56 +0800
+Message-ID: <20250106080657.240974-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <md45rp2dmv7aibez2sxwzyjayfi4wbujshlc46hxi6v4jzlhfr@tpbtqv46hrlh>
+References: <md45rp2dmv7aibez2sxwzyjayfi4wbujshlc46hxi6v4jzlhfr@tpbtqv46hrlh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: soc: samsung: usi: replace USI_V2 in
- constants with USI_MODE
-Content-Language: en-US
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250105160346.418829-1-ivo.ivanov.ivanov1@gmail.com>
- <20250105160346.418829-2-ivo.ivanov.ivanov1@gmail.com>
- <f0702bdb-846e-4817-a76c-5ce17dea38c8@linaro.org>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <f0702bdb-846e-4817-a76c-5ce17dea38c8@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 1/6/25 09:36, Tudor Ambarus wrote:
-> Hiya,
+On Mon, Jan 6, 2025 at 3:11 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> On Mon, Jan 06, 2025 at 01:41:55AM +0800, Pengyu Luo wrote:
+> > +maintainers:
+> > +  - Pengyu Luo <mitltlatltl@gmail.com>
+> > +
+> > +description:
+> > +  Different from other Qualcomm Snapdragon sc8180x and sc8280xp-based
+> > +  machines, the Huawei Matebook E Go tablets use embedded controllers
+> > +  while others use a system called PMIC GLink which handles battery,
+> > +  UCSI, USB Type-C DP Alt Mode. In addition, Huawei's implementation
+> > +  also handles additional features, such as charging thresholds, FN
+> > +  lock, smart charging, tablet lid status, thermal sensors, and more.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - huawei,gaokun2
+> > +          - huawei,gaokun3
 >
-> On 1/5/25 4:03 PM, Ivaylo Ivanov wrote:
->> +#define USI_MODE_NONE		0
->> +#define USI_MODE_UART		1
->> +#define USI_MODE_SPI		2
->> +#define USI_MODE_I2C		3
-> USI_CONFIG register refers to the protocol selection with USI_I2C,
-> USI_SPI, USI_UART. How about getting rid of the MODE from the name?
-
-I thought about that too but I believe that mentioning that these constants
-are for mode selection in their name is generally a good practice. Let me know
-if dropping _MODE is really needed.
-
-Best regards,
-Ivaylo
-
+> Missing "-ec", because gaokun2/3 is the name of the board, apparently. You cannot
+> duplicate compatibles with different meanings and if you tested this you
+> would see errors.
 >
-> Cheers,
-> ta
+> I think I might mislead you during last talk, where I questioned what is
+> "gen2" etc.
+>
 
+Agree
+
+> > +      - const: huawei,gaokun-ec
+>
+> There is no support for gaokun2 here, so I assume you checked and you
+> know these are compatible. What's more, you claim there is a generic
+> piece of hardware called gaokun-ec and everything in this family will be
+> compatible with it. Well, that's my standard disclaimer and disapproval
+> of using generic compatibles.
+>
+> So in general what you want here is *only one* compatible called
+> huawei,gaokun3-ec
+>
+
+I agree with you. If there is a generic rule to follow, I am not familiar
+with this. I have seen some bindings, using like this, so I followed it
+recently.
+
+properties:
+  compatible:
+    items:
+      - enum:
+          - vendor0,device0
+          - vendor1,device1
+      - const: generic-device
+
+
+> > +
+> > +  reg:
+> > +    const: 0x38
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +patternProperties:
+> > +  '^connector@[01]$':
+> > +    $ref: /schemas/connector/usb-connector.yaml#
+> > +
+> > +    properties:
+> > +      reg:
+> > +        maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |+
+>
+> Drop +
+>
+
+Agree
+
+
+Best Wishes,
+Pengyu
 
