@@ -1,94 +1,115 @@
-Return-Path: <devicetree+bounces-135912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA875A02FFF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:56:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F81A03039
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:11:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 814421885386
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 18:56:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E97C3A5049
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75DFB1DF24D;
-	Mon,  6 Jan 2025 18:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D411DFD97;
+	Mon,  6 Jan 2025 19:10:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vMctdXIM"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="kkU/hlAN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 440101DE8A6;
-	Mon,  6 Jan 2025 18:56:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453811DF73C;
+	Mon,  6 Jan 2025 19:10:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736189787; cv=none; b=nfqHYOC6EZUuBDYceIrdAfojAZEg2UbRCCU04elDRXB6sXmANwGpli5IIURuvXEdGInD3WRzPZpW6V1MQrYlDf/FHb3OgW+005jhc9nIRO7N6aQojfB9Yx1MV9S/IO8bx7Vp5t4FYr/QodDIiCd0hpHfjcecah0J17EHcgMFGGc=
+	t=1736190647; cv=none; b=HoYYlZzP4KApSNfueKofmGzPuHr6k6ftCZl6jxy7tiObjAIK4Fhz+9Bt7BSxjF4EyQoHVN6D87Qq7X8U3zIQND7NPokl4O7oaN+fuUEmx23C7r0YKSuRRJQK43IYjgmFcoqChSg+NTodA11iqCL+s+Jn/CvE+KyBqDlKMiKxZ80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736189787; c=relaxed/simple;
-	bh=Pox58ccZasjXxgjpaGIl/eerDHad2dRa00TG832moAM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dBIEvilXKfRgKbyJ4e1hBUGNwtyv7tAjDWUDG5hribR22P4shRKmo0gkRqP8A8ECBG67EZP9UC4ROzO6CegqOq46tFjbw2mQzd2rpG5SzsoagYGqHAc/KqDJ0tTW4Pp/dTcIyldQU0KqS1PasC6zf+UTvaTtMOLirFY0ZdATz3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vMctdXIM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5E86C4CED2;
-	Mon,  6 Jan 2025 18:56:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736189786;
-	bh=Pox58ccZasjXxgjpaGIl/eerDHad2dRa00TG832moAM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vMctdXIM/e7MBwI9lsEA3ApFR9xcUbF1P6p+Nt4EtsJB6LyxpwDSIRvY+PvzcO1Ee
-	 ZTbGX4Dstm4XTaxXaCOs+CVF2MaerzZdCpCoRUUCmf7BYAoj8E0y0OJgjjnBWQFVU+
-	 OdUmQrFYMfADS9v4zutobFOmndVtNeJtzm92nA6rg3sweDxbNrbrSt8szDVgo+rxF7
-	 oY4YXM5xUpJaDPSHfGvmSKG6Nv0h95cGtcBEio1iawVKTaSpoKyuXstQQ3xkKnQ3Ty
-	 bpYYBgv/X6e01CZ6Jh82aYxQMs16c4xYiFqrYis7FPMWVWrOUQEP8V57juJ1OuW8o0
-	 Rw9QwB2d9xbuQ==
-Date: Mon, 6 Jan 2025 12:56:25 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	s=arc-20240116; t=1736190647; c=relaxed/simple;
+	bh=0SWppjpf6D0kxnuwttlk3xr3Q2c4hj77FGII9+ACHJY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bIZ/4ZppeaQNUJaqRVC5KuOAahEEuEWmZY/Qng6OzZTMYaSkbAyXu/SkoUS6yJPQLFllayTbz7RcORGT9sP9LcvsCe6axkAFQRZBvQS0DY824YwZK8UDzaL6NV6xZrGd/96w92/MDnFvcFPTx2JLFnhBW3HDlc5vSfsM2sOuJbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=kkU/hlAN; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
+	bh=YSkLyUYKziFoIt8lcWOLavbsAazQhzv+llx46ShI1ao=;
+	b=kkU/hlANA7ttOB4OyZM9OWlqVkEyjTNhkIQIzFIPSLV9IFGXpL3chLtg0JcNMFSeUkUoCHHhkYfCIvzDK0N3b+B6SjckS7qyMhOQPQRpz3CSqZgEm627ZRBzkI601yQwXvRw1Hd3x74MeYv8CqzXNWKovYqwhhFtRP5p3JDQdzY=
+Received: from 854af3ed5e24.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
+	by mail.netcube.li with ESMTPA
+	; Mon, 6 Jan 2025 20:10:35 +0100
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	quic_tengfan@quicinc.com, linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Xin Liu <quic_liuxin@quicinc.com>
-Subject: Re: [PATCH v3] dt-bindings: remoteproc: qcom,sa8775p-pas: Document
- QCS8300 remoteproc
-Message-ID: <20250106185625.GA711119-robh@kernel.org>
-References: <20240925-qcs8300_remoteproc_binding-v3-1-21b0c52b142b@quicinc.com>
- <1b405496-bba9-4fc9-833f-6d2f662068ba@quicinc.com>
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>
+Cc: Lukas Schmid <lukas.schmid@netcube.li>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/4] Add support for NetCube Systems Kumquat
+Date: Mon,  6 Jan 2025 19:06:58 +0000
+Message-Id: <20250106190703.4015-1-lukas.schmid@netcube.li>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1b405496-bba9-4fc9-833f-6d2f662068ba@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 14, 2024 at 05:23:25PM +0800, Jingyi Wang wrote:
-> 
-> Hi Maintainers,
-> 
-> On 9/25/2024 3:21 PM, Jingyi Wang wrote:
-> > Document the components used to boot the ADSP, CDSP and GPDSP on the
-> > Qualcomm QCS8300 SoC. Use fallback to indicate the compatibility of the
-> > remoteproc on the QCS8300 with that on the SA8775P.
-> > 
-> > Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
-> > Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
-> > Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
-> > ---
-> <...>
-> > 
-> > Best regards,
-> 
-> Gentle ping for the patch apply.
+This series adds dt-bindings and dt's for the NetCube Systems Kumquat
+board.
 
-I've applied it, but Bjorn should have. If there's been any discussion 
-and more than 2 weeks pass, you should resend the patch with tags added. 
-A discussion means "expect another version" to maintainers.
+Changes in v2:
+  Fix the devicetrees according to the 
+    "dt-schema" and "make dtbs_check W=1"
+  Fix the License of the devicetree as requested
+  Create a cover letter for the patch series
 
-Rob
+Changes in v3:
+  Disable rtc inside the SoC again, as the rtc does not work on the
+    board
+  Add the gpio-reserved-ranges property to the pinctrl bindings
+  Reorder the nodes in the devicetree to match the order of the nodes 
+    in the sun8i-v3s.dtsi file
+
+Changes in v4:
+  Moved the dtsi change into a sperate patch
+  Update commit messages to include better descriptions
+  Add descriptions to the uarts and mmc nodes in the dts file
+  Add missing newline at the end of the dts file
+  Removed the gpio-reserved-ranges property from the dts and
+    from the pinctrl bindings
+  Remove the rtc status property from the dts file
+
+Changes in v5:
+  Remove the unused lradc node and it's regualtor, as they
+    are not used on the board
+  Add another alias for the SoC's rtc as 'rtc1'
+
+Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+---
+Lukas Schmid (4):
+  dt-bindings: vendor-prefixes: Add NetCube Systems Austria name
+  dt-bindings: arm: sunxi: Add NetCube Systems Kumquat board
+  ARM: dts: sunxi: add uart1_pe pinctrl for sun8i-v3s
+  ARM: dts: sunxi: add support for NetCube Systems Kumquat
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/allwinner/Makefile          |   2 +
+ .../allwinner/sun8i-v3s-netcube-kumquat.dts   | 274 ++++++++++++++++++
+ arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi    |   6 +
+ 5 files changed, 289 insertions(+)
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
+
+-- 
+2.47.1
+
+
 
