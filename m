@@ -1,191 +1,358 @@
-Return-Path: <devicetree+bounces-135762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EF6A0214D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:00:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66ED4A0215E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:02:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 491B87A1416
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:00:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E97613A1F81
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:02:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A011E1D90A2;
-	Mon,  6 Jan 2025 09:00:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AA5D14B959;
+	Mon,  6 Jan 2025 09:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="Sg9h7Mkj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K6qXxuzI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683921D89E9
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 09:00:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89621CCEC8
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 09:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736154048; cv=none; b=ugMVQBlJabSSJQrZG53rrP19ZDtBrnRkDsbvG0kYCbF3slIn14xa/4YYgIi2CHkzZk7mgwa7yWnxdHBumT1eYZpNJMTi99zzefk86G/zprNBA/xT/McXzoDMgTe+VIrCK1HzkoQehwiv5rRrWVZH9TXYFX44KyjMbHCQZHj6PJg=
+	t=1736154157; cv=none; b=N7TOwbw4hLx6ML0TAFXW62H1lp5fxTJ88CjoDz9BpeFNQSifyEyRnayXb4ghEFsjNOrdZS3VsIv0uVKYeX4Glg4E82ZhBRNH0N9kGLDP7EpsZ5FMxkPFRt8jd0fs5G01XHvsj9oewecuCYkNZ8SNVgAP05HzhnuoEweAR1nINQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736154048; c=relaxed/simple;
-	bh=jYHqjhGgrgod3hvoUgAQYREZkyt42xAO1UJ6qmllf4s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QUgc29ZmOGTMCSGIlLzI3MfnlYMOL5hkcr/uCjf7hguDWp8n15ZS1z4syBKu4rSt/U3wM7/jjbJ3oLkHzDy/Qzxf7tvdHGHd7OuDN5do7kLMnx7AcWF+/a9WOaGXCtCdvpKjHZnVzTEDWmrWt2CbGiy+lf1bX3SciLtzF83GcmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=Sg9h7Mkj; arc=none smtp.client-ip=209.85.217.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4aff78a39e1so4057730137.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 01:00:45 -0800 (PST)
+	s=arc-20240116; t=1736154157; c=relaxed/simple;
+	bh=zN6cNtbN9aJCKQpwWmtwKrh6lox+xMy9t4TSIEnywJo=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=oR3Z91Oz5ALEni7MNdIoYFA2wkQx+GaJ8f51bVu7k+Dq/QzPPCf25XRxJuAzagN3/8CFMcluTAAMa6gCQj4CkXO1aafe/aEHO8YPfRgpeTS3+z6LGJ7RAFlBRYNmonWugeSae4h4kYqut88Rnpat08KRjKWIjl1ZaDEJWJ/DkI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K6qXxuzI; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4361815b96cso93487675e9.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 01:02:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1736154044; x=1736758844; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WqWDvGHWrGvSzvZ+8ugo2KRnlDSxD8xXB96mXOU0lg4=;
-        b=Sg9h7MkjrifGwOEbei6dnxio/0yhSy7AaJlXT4MDZW3lm97t2rB9SF2p4S03CYDv+5
-         jYdxSKwrPXSYmELrInLXFnv0uyhEAoIoHua7Ly72xJIcGm553oYDY6leYbYdKnvpgLzD
-         +r+M1ObMLEX7BZ/QikcGAzYgS1Ap2zX/FBDyGoSLSTZsoQ5SbMBY+UvJd+V0TGJvq2fU
-         2OCfIjPy29nT36xgbRMlO/qGjICArbtoUoVVz3Ww4E5/AdtQzinZ3N3feJQgKwP6zX8M
-         Ecml0gpoZMh3V9tGoyKtvT6EB8FUW42ZlDeuMVxiREK2q0LCI8/nSlcgne5SU9IGcgIX
-         a30w==
+        d=linaro.org; s=google; t=1736154153; x=1736758953; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1X/ZDkNCWW8X3sCK4HrBNWtfckvGJZik2rALRxWU+F0=;
+        b=K6qXxuzII8FuFJK3c28IxkWGYAJ9/Lc+r0bFtt6Q77siw5VodE3JNY606isjBMsUMd
+         b5P2Zkcxdf+WoSwEj8eYfJn1a9uMTrahOaKBcKddg6N6JZMxb3XuNpHFj0yvykfXJvzN
+         PINI89wddoCKURCcGagy0ivFau0ph22wxTX4rRI1M9m9L4X+hbRJGPPmofAMRbw/gaQO
+         rU9gMyhf8b1OGSoJEiYsJMzBNbo08l5IvKye2wBWa3NSwB1cG30V7/lK+1O1m4lu0vow
+         2invE50BavUpnL8oDnttL1IDxVbt7QBCWj0ZZYFYjM8aud+E+z/0DDEhELpqxX+n0H/9
+         8usg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736154044; x=1736758844;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WqWDvGHWrGvSzvZ+8ugo2KRnlDSxD8xXB96mXOU0lg4=;
-        b=O2YhX3atBrO8SFKbVhpoUPuXB8rZ9ZMCyCfMPybvR3NqjupiPQLtr1r+CWrJgnnx7l
-         YtqPb+XJN5tVUMWdq64ViZZOii7f29dsStKI2leRbVsHFiPmW6wok5LY64RcUGP0MXsX
-         9igocLVXnq7sFAnS1oVsswGCirADBrkUWykXkGZkI4C3W3vSCjG+U7F90C0cZ8tZ6ren
-         6j5VkfJWJy4Ez5Yl1pU6o8H2kfuF65E7Cf9FjYmimkTQtHuKXkyPr0PBhDhqbZTQEgtF
-         TNoxBmL6yPzqig8RN3UZek8aqbo4v+th2o0LzBAxMojPWiv6inQVlSbAgMVXM5P7dHvK
-         Tecg==
-X-Forwarded-Encrypted: i=1; AJvYcCUWYfRCZEpfl/lo/yNQCs9xjn23Pt/74dnmWFeIbxaEkWVXT6BAgAXCM8cmPoNfiaPhUmC8hvIZxWNK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtQMzaJs3ZgZQ4ZyMpKJ1PuLEgU2E45EcTM6TMAldD0UBzk3Xo
-	Yl/sys9PTLZgiXiNXElooMoMWBRX+IiRKmKepcD3NvLOfzbj8ibmPaoiInYDgdpEG0CkL5t6drz
-	xbwa6d0yu6SSo+BPCO4pO0iR7cWoQKJX1vefNXw==
-X-Gm-Gg: ASbGncu6525iUGxfdvGrsK5GSqLtMWtGDZvmDqoSlcH0qSwg4bQErc5cHsjnZwN9cYf
-	p3PEkqaCL+lEMg72ZyPVnbZfsjdL6HapHDFGAjOWz
-X-Google-Smtp-Source: AGHT+IEi3ZBafEZiHUD7dXioBMaLkm1e2JoCKXblv3XIfUY1bATE2OhPY0NnTbQT5snAk04oeSJgkfFVx4e/nsM3hb0=
-X-Received: by 2002:a05:6102:2914:b0:4b2:cbe4:5999 with SMTP id
- ada2fe7eead31-4b2cc493769mr42332843137.23.1736154044154; Mon, 06 Jan 2025
- 01:00:44 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736154153; x=1736758953;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=1X/ZDkNCWW8X3sCK4HrBNWtfckvGJZik2rALRxWU+F0=;
+        b=nZFPut/JWqvTTH5ALLvYo+hEWZXgVOkK3uqgL3ID0FFrSsOKXGZVnZ0D6JtuSSNtHF
+         KsdZfulfDZTkEKHeR1mSVIzFR+W22Ch8C+6ZLKrhN7+cbZaCTdHLmncQLOSsoCqllAZQ
+         XICRUO1KOeYyuOIEWNq+rkCn3HsGj5NU9UutQwSpzPiYf610HaLxa5o6s5mX1A8CuRzh
+         CeVoQ9GbuCWiMbYL4Sh0h6Y+MTCGSAqhi8y8NVu8HPZpFH9Ud1n+AervLIa967uufCRk
+         5out1hEVfB5HCv22/hOEYM2PvfV9E24fZZdS+tGOQm6Qq5xWUv+pURHGidDZfvaYEIdq
+         0OBw==
+X-Forwarded-Encrypted: i=1; AJvYcCVQ8D6qicGtBTwBvkG+VFnqLUXqZ+IRv/y2uLCHhRzOoR7UUv+q/ZGWal5xaO1AGcQgmD7e7yO3E7vi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9QtPjcUG67VpscSFhN5TiMoWz5qSMLAkDLGohcZot5j/60QzN
+	GOqUfugPi1c1Q1tdM7blAnrW/G1MdsWImPgKL7+8Ta4KBpmOGzcquT9l1RRJJQFizzZVL6gh5ig
+	q
+X-Gm-Gg: ASbGncvpTn5hM/H15a0BikujaD4G5Yc9QIn2DBMnZAK5mgdA6iiQPB/TbzzoSdrDjsk
+	BUsm3aDAeZgY+REhhOAPfoo36DGXXRc4U9lNg6HJ5DoNaSUWUu/vbwpbYpJh2xhlqFLA41L0Sth
+	lGU26dDOkRNV/gJyHmOsPVumDutPOlKbTzoDyBMdSoAManOrLNm9J3vw7CknDgSOMiIpO0dyLnP
+	C+LwzhD/sJfFwcqRMsRGlSbLj2l5OGAkHr1wrMXwCsG3NTIFMQ20jI6bNKh38PSXNOGXtA0R6Fu
+	di1u8mm8Qe/qWOLoA5YcBMweHASJ
+X-Google-Smtp-Source: AGHT+IGVLNi4KxAR5zn3TLctoTzfFbKjgf2tASfSCZQgcBpDQBVMgKeI8WUrv/7QV21NMsnfImtXDQ==
+X-Received: by 2002:a05:600c:3b24:b0:436:2923:d23a with SMTP id 5b1f17b1804b1-43668b7a683mr386777485e9.33.1736154153034;
+        Mon, 06 Jan 2025 01:02:33 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:95:e905:1421:811c? ([2a01:e0a:982:cbb0:95:e905:1421:811c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43661219a7csm558552025e9.24.2025.01.06.01.02.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jan 2025 01:02:32 -0800 (PST)
+Message-ID: <a7c8e50c-0884-4315-ae00-9c5d35c2b258@linaro.org>
+Date: Mon, 6 Jan 2025 10:02:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240222081231.213406-1-nylon.chen@sifive.com>
- <20240222081231.213406-4-nylon.chen@sifive.com> <jvwgsszvs4jtcytcphsdjulzgqfqzdp4sisu236ddwsqgmvriw@ngi4ljgh5b74>
- <CAHh=Yk92=hp+kaTJWL13_jwJ5gzAAi8gbRF=Ns9=yq2trRUQEg@mail.gmail.com>
- <xf6ympnaljfjztptb5w5qdpuluckptozdz5a7gtuycsev32ngr@x2ovibqv6evr>
- <CAGKtFavQAZOof5QSTFCEaRJEPETm5aBqzkV4g24n3ioiBAOgDA@mail.gmail.com> <p6rqpx3yrn2ib4ulmby7tbnpbg4bjyt4dt6snrmhuyw6hx6izl@lywssban54et>
-In-Reply-To: <p6rqpx3yrn2ib4ulmby7tbnpbg4bjyt4dt6snrmhuyw6hx6izl@lywssban54et>
-From: Nylon Chen <nylon.chen@sifive.com>
-Date: Mon, 6 Jan 2025 17:00:32 +0800
-Message-ID: <CAHh=Yk-iFGULUQc-U-PNjx-st7d5KER3J+t54SNERVaNr++qoQ@mail.gmail.com>
-Subject: Re: [PATCH v9 3/3] pwm: sifive: Fix the error in the idempotent test
- within the pwm_apply_state_debug function
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Nylon Chen <nylon7717@gmail.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, conor@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, 
-	paul.walmsley@sifive.com, aou@eecs.berkeley.edu, thierry.reding@gmail.com, 
-	vincent.chen@sifive.com, zong.li@sifive.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650: setup gpu thermal with
+ higher temperatures
+To: Rob Clark <robdclark@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250103-topic-sm8650-thermal-cpu-idle-v1-0-faa1f011ecd9@linaro.org>
+ <20250103-topic-sm8650-thermal-cpu-idle-v1-2-faa1f011ecd9@linaro.org>
+ <CAF6AEGtVFo8BBUeg=UQDTCP=LLRHLc-V1roa=wHECpLm=Mh_gg@mail.gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CAF6AEGtVFo8BBUeg=UQDTCP=LLRHLc-V1roa=wHECpLm=Mh_gg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> =E6=96=BC 2024=E5=B9=
-=B412=E6=9C=8827=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8811:39=E5=AF=
-=AB=E9=81=93=EF=BC=9A
->
-> On Tue, Dec 24, 2024 at 04:34:53PM +0800, Nylon Chen wrote:
-> > Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2024=
-=E5=B9=B44=E6=9C=8812=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=883:05=E5=
-=AF=AB=E9=81=93=EF=BC=9A
-> > >
-> > > On Tue, Apr 02, 2024 at 10:01:39AM +0800, Nylon Chen wrote:
-> > > > Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 20=
-24=E5=B9=B43=E6=9C=8819=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:17=
-=E5=AF=AB=E9=81=93=EF=BC=9A
-> > > > >
-> > > > > Hello,
-> > > > >
-> > > > > On Thu, Feb 22, 2024 at 04:12:31PM +0800, Nylon Chen wrote:
-> > > > > > Round the result to the nearest whole number. This ensures that
-> > > > > > real_period is always a reasonable integer that is not lower th=
-an the
-> > > > > > actual value.
-> > > > > >
-> > > > > > e.g.
-> > > > > > $ echo 110 > /sys/devices/platform/led-controller-1/leds/d12/br=
-ightness
-> > > > > > $ .apply is not idempotent (ena=3D1 pol=3D0 1739692/4032985) ->=
- (ena=3D1 pol=3D0 1739630/4032985)
-> > > > > >
-> > > > > > Co-developed-by: Zong Li <zong.li@sifive.com>
-> > > > > > Signed-off-by: Zong Li <zong.li@sifive.com>
-> > > > > > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> > > > > > ---
-> > > > > >  drivers/pwm/pwm-sifive.c | 2 +-
-> > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > >
-> > > > > > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.=
-c
-> > > > > > index a586cfe4191b..bebcbebacccd 100644
-> > > > > > --- a/drivers/pwm/pwm-sifive.c
-> > > > > > +++ b/drivers/pwm/pwm-sifive.c
-> > > > > > @@ -101,7 +101,7 @@ static void pwm_sifive_update_clock(struct =
-pwm_sifive_ddata *ddata,
-> > > > > >
-> > > > > >       /* As scale <=3D 15 the shift operation cannot overflow. =
-*/
-> > > > > >       num =3D (unsigned long long)NSEC_PER_SEC << (PWM_SIFIVE_C=
-MPWIDTH + scale);
-> > > > > > -     ddata->real_period =3D div64_ul(num, rate);
-> > > > > > +     ddata->real_period =3D DIV_ROUND_UP_ULL(num, rate);
-> > > > > >       dev_dbg(ddata->chip.dev,
-> > > > > >               "New real_period =3D %u ns\n", ddata->real_period=
-);
-> > > > > >  }
-> > > > Hi Uwe
-> > > > >
-> > > > > pwm_sifive_apply has a DIV64_U64_ROUND_CLOSEST(). I wonder if tha=
-t needs
-> > > > > adaption, too?!
-> > > > According to my experiments, no adjustment is necessary.
-> > >
-> > > Did you enable PWM_DEBUG and tested with something like:
-> > >
-> > >         seq 5000 100000 | while read p; do echo p > /sys/class/pwm/pw=
-mchipX/pwmY/period; done
-> > >
-> > Hi Uwe,
-> > I apologize for the significant delay in responding to your query,
-> > I've now completed a thorough verification of the PWM_DEBUG
-> > functionality.
-> >
-> > The Period Testing:
-> > seq 5000 5000 100000 | while read p; do echo $p >
-> > /sys/class/pwm/pwmchip0/pwm0/period echo "Testing period: $p" done
-> >
-> > The Duty Cycle Testing:
-> > for percent in 0 25 50 75 100; do duty=3D$((100000 * percent / 100))
-> > echo $duty > /sys/class/pwm/pwmchip0/pwm0/duty_cycle done
->
-> This is unlikely to find the issues that I have in mind. If doing ~100k
-> assignments is too much, please keep the +1 step but restrict the
-> interval.
-Hi Uwe, I have made the following adjustments based on your
-requirements. Does this align with what you had in mind?
-- period
-seq 5000 1 15000 | while read p; do echo $p >
-/sys/class/pwm/pwmchip0/pwm0/period echo "Testing period: $p" done
+On 03/01/2025 21:00, Rob Clark wrote:
+> On Fri, Jan 3, 2025 at 6:38 AM Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>
+>> On the SM8650, the dynamic clock and voltage scaling (DCVS) for the GPU
+>> is done in an hardware controlled loop by the GPU Management Unit (GMU).
+>>
+>> Since the GMU does a better job at maintaining the GPUs temperature in an
+>> acceptable range by taking in account more parameters like the die
+>> characteristics or other internal sensors, it makes no sense to try
+>> and reproduce a similar set of constraints with the Linux devfreq thermal
+>> core.
+>>
+>> Instead, set higher temperatures in the GPU trip points corresponding to
+>> the temperatures provided by Qualcomm in the dowstream source, which will
+>> trigger the devfreq thermal core if the GMU cannot handle the temperature
+>> surge, and try our best to avoid reaching the critical temperature trip
+>> point which should trigger an inevitable thermal shutdown.
+> 
+> to we need something like this on other recent SoCs, like x1e?
 
-- duty cycle
-for duty in $(seq 0 1 10000); do echo $duty >
-/sys/class/pwm/pwmchip0/pwm0/duty_cycle echo "Testing duty cycle:
-$duty" done
->
-> Best regards
-> Uwe
+Probably yes, but I don't have physical access to the platorm..
+
+Neil
+
+> 
+> BR,
+> -R
+> 
+>> Fixes: 497624ed5506 ("arm64: dts: qcom: sm8650: Throttle the GPU when overheating")
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 48 ++++++++++++++++++------------------
+>>   1 file changed, 24 insertions(+), 24 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> index 448374a32e07151e35727d92fab77356769aea8a..ddcb57886eb5eac2a70d28e6ad68fc6820b5dcf1 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> @@ -6507,19 +6507,19 @@ map0 {
+>>
+>>                          trips {
+>>                                  gpu0_alert0: trip-point0 {
+>> -                                       temperature = <85000>;
+>> +                                       temperature = <95000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "passive";
+>>                                  };
+>>
+>>                                  trip-point1 {
+>> -                                       temperature = <90000>;
+>> +                                       temperature = <115000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "hot";
+>>                                  };
+>>
+>>                                  trip-point2 {
+>> -                                       temperature = <110000>;
+>> +                                       temperature = <125000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "critical";
+>>                                  };
+>> @@ -6540,19 +6540,19 @@ map0 {
+>>
+>>                          trips {
+>>                                  gpu1_alert0: trip-point0 {
+>> -                                       temperature = <85000>;
+>> +                                       temperature = <95000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "passive";
+>>                                  };
+>>
+>>                                  trip-point1 {
+>> -                                       temperature = <90000>;
+>> +                                       temperature = <115000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "hot";
+>>                                  };
+>>
+>>                                  trip-point2 {
+>> -                                       temperature = <110000>;
+>> +                                       temperature = <125000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "critical";
+>>                                  };
+>> @@ -6573,19 +6573,19 @@ map0 {
+>>
+>>                          trips {
+>>                                  gpu2_alert0: trip-point0 {
+>> -                                       temperature = <85000>;
+>> +                                       temperature = <95000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "passive";
+>>                                  };
+>>
+>>                                  trip-point1 {
+>> -                                       temperature = <90000>;
+>> +                                       temperature = <115000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "hot";
+>>                                  };
+>>
+>>                                  trip-point2 {
+>> -                                       temperature = <110000>;
+>> +                                       temperature = <125000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "critical";
+>>                                  };
+>> @@ -6606,19 +6606,19 @@ map0 {
+>>
+>>                          trips {
+>>                                  gpu3_alert0: trip-point0 {
+>> -                                       temperature = <85000>;
+>> +                                       temperature = <95000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "passive";
+>>                                  };
+>>
+>>                                  trip-point1 {
+>> -                                       temperature = <90000>;
+>> +                                       temperature = <115000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "hot";
+>>                                  };
+>>
+>>                                  trip-point2 {
+>> -                                       temperature = <110000>;
+>> +                                       temperature = <125000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "critical";
+>>                                  };
+>> @@ -6639,19 +6639,19 @@ map0 {
+>>
+>>                          trips {
+>>                                  gpu4_alert0: trip-point0 {
+>> -                                       temperature = <85000>;
+>> +                                       temperature = <95000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "passive";
+>>                                  };
+>>
+>>                                  trip-point1 {
+>> -                                       temperature = <90000>;
+>> +                                       temperature = <115000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "hot";
+>>                                  };
+>>
+>>                                  trip-point2 {
+>> -                                       temperature = <110000>;
+>> +                                       temperature = <125000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "critical";
+>>                                  };
+>> @@ -6672,19 +6672,19 @@ map0 {
+>>
+>>                          trips {
+>>                                  gpu5_alert0: trip-point0 {
+>> -                                       temperature = <85000>;
+>> +                                       temperature = <95000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "passive";
+>>                                  };
+>>
+>>                                  trip-point1 {
+>> -                                       temperature = <90000>;
+>> +                                       temperature = <115000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "hot";
+>>                                  };
+>>
+>>                                  trip-point2 {
+>> -                                       temperature = <110000>;
+>> +                                       temperature = <125000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "critical";
+>>                                  };
+>> @@ -6705,19 +6705,19 @@ map0 {
+>>
+>>                          trips {
+>>                                  gpu6_alert0: trip-point0 {
+>> -                                       temperature = <85000>;
+>> +                                       temperature = <95000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "passive";
+>>                                  };
+>>
+>>                                  trip-point1 {
+>> -                                       temperature = <90000>;
+>> +                                       temperature = <115000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "hot";
+>>                                  };
+>>
+>>                                  trip-point2 {
+>> -                                       temperature = <110000>;
+>> +                                       temperature = <125000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "critical";
+>>                                  };
+>> @@ -6738,19 +6738,19 @@ map0 {
+>>
+>>                          trips {
+>>                                  gpu7_alert0: trip-point0 {
+>> -                                       temperature = <85000>;
+>> +                                       temperature = <95000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "passive";
+>>                                  };
+>>
+>>                                  trip-point1 {
+>> -                                       temperature = <90000>;
+>> +                                       temperature = <115000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "hot";
+>>                                  };
+>>
+>>                                  trip-point2 {
+>> -                                       temperature = <110000>;
+>> +                                       temperature = <125000>;
+>>                                          hysteresis = <1000>;
+>>                                          type = "critical";
+>>                                  };
+>>
+>> --
+>> 2.34.1
+>>
+>>
+
 
