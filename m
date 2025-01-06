@@ -1,57 +1,61 @@
-Return-Path: <devicetree+bounces-135922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D17A0304D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:14:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0DA0A0307A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:22:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE97B1882B61
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:14:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 404093A1798
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:22:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF151DF73C;
-	Mon,  6 Jan 2025 19:14:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E247C1DF25A;
+	Mon,  6 Jan 2025 19:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sMqq95Wd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MkxeFNxj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58841DF75E;
-	Mon,  6 Jan 2025 19:14:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72F618CBFC;
+	Mon,  6 Jan 2025 19:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736190873; cv=none; b=kNGbSQ4a8O0z4YAqzADTVsMEfzq8x2GllfHsCtqVpIvqfi2SARh560Q1xPokGbniOjUB7StRYplMg/gIdMDV9E2AxmWDB2N+7mgL6pubm0Vvp0eshH5CLhJT95JXXMu5zOfsT10yRmYnrpPlNY4qyQLIFMgRItm7VWJHVNx3f1o=
+	t=1736191338; cv=none; b=NnsFOJ1CUK3CTOGkuo9I05hai5RGqI+gNZTpfRXfDLGgX5AkNj2qDszkMNEj8wdVzzr3544el9s5eORH6XZLyhT64FMwxscRskpOxIMDf3AQNblzOsmMaz3gc5i24ccwmQGK6yw7uePvAFOEEUH3CprgMYSUB0kD6OWoRHYwVTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736190873; c=relaxed/simple;
-	bh=KQb70EbRxCMaVJKTkhRU/La3b/JAaB9BUuxhn6kQ+H8=;
+	s=arc-20240116; t=1736191338; c=relaxed/simple;
+	bh=9C1N0/vZNBneiNS/vhrs2GkVaFXnyxA9KNwev5FnjA4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YJN6sRKB+gKaZH9gU6SzA7KXGkxWB3+yZCgD823Zmx4TgmEnG93pfA93jUagI3HFNSLVk805fkMFwWXsznfl2HCXkHPjlRtSqF6XzNsulSQEjcVnqNMBRqKVvicf5InxM8XkWiNSjaFQ7mrrup7CyGMXYrYUNs8pCFQKW0cf+O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sMqq95Wd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24274C4CED6;
-	Mon,  6 Jan 2025 19:14:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZKFxZDPGeb8uGlxpxizSR3/QzO4lZSIo8LSOdy7m88XNPxxUgr2lLoR3J/NLkQ1lCPP6Px3i+oEsxlMcYHSmWv5bAIXFNFZWbNF62jsXvBzqR+99EeLDbQ0aR4ybqllHLAwogg5cNoR9ZDLX+RWdParWEqgy0OpGddQAI0xjMQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MkxeFNxj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B321C4CED2;
+	Mon,  6 Jan 2025 19:22:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736190873;
-	bh=KQb70EbRxCMaVJKTkhRU/La3b/JAaB9BUuxhn6kQ+H8=;
+	s=k20201202; t=1736191338;
+	bh=9C1N0/vZNBneiNS/vhrs2GkVaFXnyxA9KNwev5FnjA4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sMqq95WdNGcCmOMogW6UXiYUl2yJQzVfIIwdXKfanIcXoFCTy9UEWt02GfncFLgq1
-	 +5/tz3kq+qjm2yppQwIQ4wAaGEv5DMXWp/j2OW374SGlYgH3s3kRagd3ObZz5zX7k9
-	 SunYCoQbaht0Ii/wL7u5PPhDFz7R2R+sercbgd2Ms5Kxd3EakHc/8xDQqp+YYLB/bi
-	 aMtjCo3YZd8cnq3ocH13zD2O76INxw8I6xfHGx0CJmamu81wVGtrUnsQ04Y3pkr6mq
-	 Lopi70O2jEuxQ9zycnE+MtIw8Z/qr8OSyhEZXe4nTFuRlgeJWtlxjL20V1o4DLZh2S
-	 QceeuQSC20vBQ==
-Date: Mon, 6 Jan 2025 13:14:32 -0600
+	b=MkxeFNxjXIHuJhH04tsOBSXYD6cluwZVcrOoe9nWDYa0p9f0FUY5aKD9J3ul40upb
+	 H1KLWXY+XzQcpR5mnuN2qf9jbHmatCvbz41X/aBibRMy3fiAHDhSk7KLFWPBAjEXQV
+	 27HGBl5GPpu97sZJFae4SUFV8+y4ZGtkkWG0SxUw8BXHy7EXDkqyH7KhS8zBb47cYk
+	 k2hRJMZuo7k5C7nOM9K2HKf5Zhrm7aj6vkA5oJOP3UcFpu406fI/PSPlCSuZ0iuA2K
+	 onwl4cPKBjvwJ7nLvyYjugB43lYA9uXl0Gx92WYa2kMW5k7HCYHhHeJR9eXda5Mvdh
+	 XatJNm9dLb8eA==
+Date: Mon, 6 Jan 2025 13:22:17 -0600
 From: Rob Herring <robh@kernel.org>
-To: Lijuan Gao <quic_lijuang@quicinc.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@quicinc.com,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: nvmem: qfprom: Add compatible for QCS615
-Message-ID: <20250106191432.GA825987-robh@kernel.org>
-References: <20240912-add_qfprom_compatible_for_qcs615-v1-1-9ef2e26c14ee@quicinc.com>
+To: Kyle Deng <quic_chunkaid@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
+	quic_sudeepgo@quicinc.com, quic_taozhan@quicinc.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: mailbox: qcom,apcs-kpss-global:
+ Document the qcs615 APSS
+Message-ID: <20250106192217.GA830750-robh@kernel.org>
+References: <20241018073417.2338864-1-quic_chunkaid@quicinc.com>
+ <20241018073417.2338864-2-quic_chunkaid@quicinc.com>
+ <38c8d6b4-8c0a-4317-afaf-7aacdb2bdb31@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,19 +64,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240912-add_qfprom_compatible_for_qcs615-v1-1-9ef2e26c14ee@quicinc.com>
+In-Reply-To: <38c8d6b4-8c0a-4317-afaf-7aacdb2bdb31@quicinc.com>
 
-On Thu, Sep 12, 2024 at 10:54:41AM +0800, Lijuan Gao wrote:
-> Document compatible for QFPROM used on QCS615. It's compatible
-> with generic QFPROM fallback.
-> 
-> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
-> ---
-> Document QFPROM compatible for Qualcomm QCS615. It provides access
-> functions for QFPROM data to rest of the drivers via nvmem interface.
-> ---
->  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+On Mon, Jan 06, 2025 at 04:24:05PM +0800, Kyle Deng wrote:
+> Gentle ping.
+> There are a total of three patches in this series, and the other two have been applied, but this seems to have been overlooked. Thanks!
 
-Applied, thanks.
+That would be because it's expected that the mailbox maintainer would 
+take this patch, but they weren't Cc'ed. Use get_maintainers.pl or b4 
+for series which will call it.
+
+Or Bjorn should pick up these trivial new compatible string only patches 
+with the rest of the series.
+
+Anyways, I've just applied it.
+
+Rob
 
