@@ -1,375 +1,145 @@
-Return-Path: <devicetree+bounces-135770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70F5AA021AE
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:24:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 373BFA021B7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:24:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48AF5160561
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:23:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B70B11882B49
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53D4F1D7E57;
-	Mon,  6 Jan 2025 09:23:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27BC1D8A0B;
+	Mon,  6 Jan 2025 09:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T3HrRguh"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="C6PgRuat"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C7DEEB2;
-	Mon,  6 Jan 2025 09:23:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9046EEEB2;
+	Mon,  6 Jan 2025 09:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736155436; cv=none; b=eGnVEdQtzDM/Y8dtqROpVVXJbYFzL00eHgSbJzmyLnWsH2nCFPdS6uYdpXp2awUup8+pnnUeBf+cP6QYtgByZRvPzHKNkFxUIy0Hmeu0NU+dcMx+45Iolf3aNXnzLNiGp/nGHPWeqaoOWPywrOExT/e/vnu59zBOTmNDdl/ON9k=
+	t=1736155452; cv=none; b=PcZrhYnzUG60gEtdh8d/PLtkFHUI0uhAhqo+tEvj6gSZTwmCVW8MjR6EzI5JNq5SGIlckL27+dB1yvdJdtrn92DMlvL8ncP0MpYSF/zXkMdX4UHoY8jblI24Wl9kZatJqPNWnlMiICwvlvbNuqFjCbPBYX+r/Z+RurNM8UQeKBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736155436; c=relaxed/simple;
-	bh=y9leoPXPqutzk6SaXbsCxPmtWiljSdQJ8JUFmkkxQpI=;
+	s=arc-20240116; t=1736155452; c=relaxed/simple;
+	bh=aDxHH3ASoGMh7C8EHUOvTBlo5wFKqv4+y7MRh0HKO70=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qFc+KcKafNecqVIWssB2hWovd9m7wpU42P2SDz/ChjzhV9l1siwhMbfoQNcRhj2+I0xNfNd6awEAqFxrezpKCT0y1ZKgsA4kkNAAA4BOXOJMMOXiSR0fUpuWe2FOJz4rvYTcpy3maVRwViloBkdEJUP6qaO0+26pyQ1rbTP1o2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T3HrRguh; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-216401de828so189265655ad.3;
-        Mon, 06 Jan 2025 01:23:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736155434; x=1736760234; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3mFlOOesLzWV9jHl0CvWryDo9a7928bRA/ndvzi3U34=;
-        b=T3HrRguhtRfsbE8+bEp0ESDkbXV2tZfizy8ubI5ux9gIlHQDkTqUmYbbI58T6z/Rx8
-         m5P5+104iXjSzvX6DATp73keda6jEfsiH10zrYFS+culVAeBHlbkLvzfUG1JoOAoERmZ
-         y+ZtWGROaUcmqkLBb6k1+euFs4htlv3qWwRRtz2HFItjxPOcYqufJOwhu+vZkI2fBtut
-         pKS9vfWcto6CTRNCuqcjv+p/tvpNrKaFXH37EkcGCSyjIFDtqmFV1TR9zNrbvyJZB2pt
-         Hq+N6SVvcwfVYMEh4ehB3pceTuh6ZBbL9ouSmd+4Omq6H1Re7xtdZZS6mF0cHtwstSfh
-         Yl+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736155434; x=1736760234;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3mFlOOesLzWV9jHl0CvWryDo9a7928bRA/ndvzi3U34=;
-        b=XBuV5mrsDIF/QcHpLmROI3Fi48BekUUMojHi2qF+/ll+b3x7NRKZrm8etfhNySi4+5
-         PHWipgCagnrQnV9p2Mj9Bc8KXUYQ7/wWZKdi6sMsDDOEsZzAOIYnPRoVq5fSym3TGcTy
-         LEopVHoKTdI5///zb/j6uxQjIyMnsWbxM3sJa5IlG1C6qzPL0dYwFvf5Hx2iJtsz0FwI
-         B3qZmvnn4PABIy+bkiKEvZHn3DAW8vZ2NRJahgY7rGN41nJtBIn4lrA1zkjOu0yZX2oy
-         pdqeKWj4dKsXGX/dV5jUO+seVP7+4pGZZyubEeHkYpEtf7cYvLQ5iOAuFwvuAtMB626/
-         F7sQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUBLqVwMjoKaPAlavx9t+H0kxk1bzh6hijTo1kTDQYas1YOLao+hWbod0b0Kk4g3rM0jYW1aukHB7Ut@vger.kernel.org, AJvYcCVBlhw9jpbz3KLviHuzgJ4F+ZEpkCn6yIbGGjmSNMIcgxTrC3IXVn/M4dZd8ucRymoqsAAUsGby0fud@vger.kernel.org, AJvYcCVboQnyMoewVtJqLnvWdCSUP+gkyTSChUHc12o4wqRBBUNo7U/GPRLzLD8obZruTT3abp9QWno65MReyO37mg==@vger.kernel.org, AJvYcCWdXCibUrXdqMDLEx9pvNiIzLCOumfX5G0c3ZCaigGqPYEONUkLARv6UCX4Zm+IDLc05MXrmdXqCwSlouQr0SSi4oL4+Q==@vger.kernel.org, AJvYcCX/bTp4EN24fR/ZfhhljjYoTj+5WJNJbZ+eNcJzpslFcXJrOYbCqw/9cUg380uriuf06kMUANgh69AnvZQp@vger.kernel.org, AJvYcCXw3zbhA/je6EQvJQMavkhJ5bBQVnNvphL2KHisqpWqS4OMq+P4ea1IJDVYZoAE3RzA7SShNE6aRHc=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx27sp6nj2vfMp69FfpCgxcXGV0PDD0eEb9hkcqFXOJOedgKrp+
-	RZ7s4JgZ14BmtEFMYfrl8CxAEpi8filodRgs5+iK6s+sjUMpUqF3
-X-Gm-Gg: ASbGncv7ygCH0B2bITkVvb6mYuERCMuyDdzxPqWlnhoI9L9gtFnoaW/JurOFAlLQoIv
-	Rfu+YxfF5Y4KKfro2r5Ig5TOSLJkMC8mZQEd2mzNlyOdlkDPDkCt2brcUwi9YQ7jAscTcXrK24C
-	G8TTQvRqP9eYIbfd2oKLzza0mfK3AjLv19CzerBhom4o0ab4sRwVtjxYq/x7f5gYF4hDcW23/ow
-	CWS9TlZDYdlvGI8Ccuv1CLOLGpdLy6N+mpew2jDCC9RkXQdF/Wkq4g=
-X-Google-Smtp-Source: AGHT+IFNWgvknEaxxE/ZqSDN24QXJsDgOgSDSuKyBvBC/wiI20eX0ttoGoBq9myC9hh4RE2mGnAZNg==
-X-Received: by 2002:a17:902:ce86:b0:216:2f7f:ff69 with SMTP id d9443c01a7336-219e6e894c8mr693163105ad.5.1736155433560;
-        Mon, 06 Jan 2025 01:23:53 -0800 (PST)
-Received: from nuvole.. ([144.202.86.13])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc964a67sm287766465ad.27.2025.01.06.01.23.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 01:23:53 -0800 (PST)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: dmitry.baryshkov@linaro.org
-Cc: andersson@kernel.org,
-	bryan.odonoghue@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org,
-	hdegoede@redhat.com,
-	heikki.krogerus@linux.intel.com,
-	ilpo.jarvinen@linux.intel.com,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	mitltlatltl@gmail.com,
-	nikita@trvn.ru,
-	platform-driver-x86@vger.kernel.org,
-	robh@kernel.org,
-	sre@kernel.org
-Subject: Re: [PATCH 3/5] usb: typec: ucsi: add Huawei Matebook E Go (sc8280xp) ucsi driver
-Date: Mon,  6 Jan 2025 17:22:17 +0800
-Message-ID: <20250106092224.251115-1-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <h4icxzxk5fzgkdhhk6disrervqmb4dqe3xlc432k7pgyzsk77u@pyfrrtyjslpo>
-References: <h4icxzxk5fzgkdhhk6disrervqmb4dqe3xlc432k7pgyzsk77u@pyfrrtyjslpo>
+	 MIME-Version:Content-Type; b=QunmW2NML5KMhRdaW50cZttTd92St6QxXjhs1hMng5kH4MAYLeti2ATM4nXLkp/YI9qcAocgTwo+WrWGBn9o7A5neYYmXvD380lpgtM9G2K38YsAXSqFqR0h77OF3vUHOTdZ8Rp4GjeiqbNaFG7hadLPhRcti6oFyAgFxMGpzAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=C6PgRuat; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=VBnkfPPwd/0z0UzRp7pSBtfbNp5mlwbhbYUinjn7t6s=; b=C6PgRuatqaL/JCQeSBgq90fYbR
+	cgS9RBnuNFoNmBPp82CGyMEIE98ptU4gncieb/wDBgYHeNrMAgDiOfjWNR4H1pvLRbqz16DhI6ziZ
+	lVH+IdsGn+z4Q0WMmKaGPekvYreupbWXQl3ZVKd70kqq+j6yRCSOu0o9zU40Oc/HSOgVMHzTOf0Hn
+	j1gcFw88ylpQUZAEAwnUNLm0S5dc4OhH03UcUE97EJ7B0azFCG7qamRBaX/M0HyBrGZS86vcR/5bS
+	WSpJP1Vs8zHOkuB3WK1+/UXhMv16JmpmJYBexATgN45dORXy7Yb/Dm1c+t0O7Vj/kmKo1umLIM82a
+	MoPAvHJA==;
+Received: from i53875aad.versanet.de ([83.135.90.173] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tUjKx-0003r1-RV; Mon, 06 Jan 2025 10:23:51 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: cristian.ciocaltea@collabora.com, krzk+dt@kernel.org, mripard@kernel.org,
+ hjc@rock-chips.com, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 1/3] drm/rockchip: dw_hdmi_qp: Add platform ctrl callback
+Date: Mon, 06 Jan 2025 10:23:50 +0100
+Message-ID: <2263586.72vocr9iq0@diego>
+In-Reply-To: <2f23fa41.82d9.1943ac12d62.Coremail.andyshrk@163.com>
+References:
+ <20241225103741.364597-1-andyshrk@163.com> <2175680.OBFZWjSADL@diego>
+ <2f23fa41.82d9.1943ac12d62.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Please ignore the last email, I sent the wrong archive.
-
-On Mon, Jan 6, 2025 at 11:33 AM Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> On Sun, Dec 29, 2024 at 05:05:47PM +0800, Pengyu Luo wrote:
-> > On Sun, Dec 29, 2024 at 12:40 PM Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
-> > > On Sat, Dec 28, 2024 at 01:13:51AM +0800, Pengyu Luo wrote:
-> > > > The Huawei Matebook E Go (sc8280xp) tablet provides implements UCSI
-> > > > interface in the onboard EC. Add the glue driver to interface the
-> > > > platform's UCSI implementation.
-> > > >
-> > > > Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> > > > ---
-> > > >  drivers/usb/typec/ucsi/Kconfig              |   9 +
-> > > >  drivers/usb/typec/ucsi/Makefile             |   1 +
-> > > >  drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c | 481 ++++++++++++++++++++
-> > > >  3 files changed, 491 insertions(+)
-> > > >  create mode 100644 drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-> > > >
-> > > > diff --git a/drivers/usb/typec/ucsi/Kconfig b/drivers/usb/typec/ucsi/Kconfig
-> > > > index 680e1b87b..0d0f07488 100644
-> > > > --- a/drivers/usb/typec/ucsi/Kconfig
-> > > > +++ b/drivers/usb/typec/ucsi/Kconfig
-> > > > @@ -78,4 +78,13 @@ config UCSI_LENOVO_YOGA_C630
-> > > >         To compile the driver as a module, choose M here: the module will be
-> > > >         called ucsi_yoga_c630.
-
-[...]
-
-> > > > +
-> > > > +     spin_lock_irqsave(&port->lock, flags);
-> > > > +
-> > > > +     port->ccx = FIELD_GET(GAOKUN_CCX_MASK, dcc);
-> > > > +     port->mux = FIELD_GET(GAOKUN_MUX_MASK, dcc);
-> > > > +     port->mode = FIELD_GET(GAOKUN_DPAM_MASK, ddi);
-> > > > +     port->hpd_state = FIELD_GET(GAOKUN_HPD_STATE_MASK, ddi);
-> > > > +     port->hpd_irq = FIELD_GET(GAOKUN_HPD_IRQ_MASK, ddi);
-> > > > +
-> > > > +     switch (port->mux) {
-> > > > +     case USBC_MUX_NONE:
-> > > > +             port->svid = 0;
-> > > > +             break;
-> > > > +     case USBC_MUX_USB_2L:
-> > > > +             port->svid = USB_SID_PD;
-> > > > +             break;
-> > > > +     case USBC_MUX_DP_4L:
-> > > > +     case USBC_MUX_USB_DP:
-> > > > +             port->svid = USB_SID_DISPLAYPORT;
-> > > > +             if (port->ccx == USBC_CCX_REVERSE)
-> > > > +                     port->mode -= 6;
-> > >
-> > > I'd prefer it this were more explicit about what is happening.
-> > >
+Am Montag, 6. Januar 2025, 09:35:26 CET schrieb Andy Yan:
+>=20
+> Hi Heiko,
+>=20
+> At 2025-01-02 19:51:58, "Heiko St=FCbner" <heiko@sntech.de> wrote:
+> >Hi Andy,
 > >
-> > If orientation is reverse, then we should minus 6, EC's logic.
-> > I will add a comment for it. Actually, this field is unused, I don't
-> > find the mux yet, so I cannot set it with this field. But I don't want
-> > to make things imcomplete, so keep it.
->
-> Which values are you expecting / getting there? The -6 is a pure magic.
-> Please replace this with a switch-case or something more obvious.
->
-
-In v2, I have deduced their meaning, with a switch to map them.
-
-> > Let me go off the topic, on my device, I can just use drm_aux_hpd_bridge_notify
-> > to enable altmode, usb functions well after I pluged out, I don't need set mode
-> > switch(orientation switch is required if orientation is reverse), which is quiet
-> > similar to Acer aspire 1. Is mux controlled also by QMP combo phy(see [1])?
+> >Am Mittwoch, 25. Dezember 2024, 11:37:29 CET schrieb Andy Yan:
+> >> From: Andy Yan <andy.yan@rock-chips.com>
+> >>=20
+> >> There are some control bits for IO and interrupts status scattered
+> >> across different GRF on differt SOC.
+> >> Add platform callback for this IO setting and interrupts status
+> >> handling.
+> >>=20
+> >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> >>=20
+> >> ---
+> >>=20
+> >>  .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 81 ++++++++++++-------
+> >>  1 file changed, 54 insertions(+), 27 deletions(-)
+> >>=20
+> >> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/=
+gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> >> index c36fc130b734..b21e868e7c16 100644
+> >> --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> >> +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> >> @@ -62,6 +62,12 @@ struct rockchip_hdmi_qp {
+> >>  	int port_id;
+> >>  };
+> >> =20
+> >> +struct rockchip_hdmi_qp_ctrl_ops {
+> >> +	void (*io_init)(struct rockchip_hdmi_qp *hdmi);
+> >> +	irqreturn_t (*irq_callback)(int irq, void *dev_id);
+> >> +	irqreturn_t (*hardirq_callback)(int irq, void *dev_id);
+> >> +};
+> >> +
+> >>  static struct rockchip_hdmi_qp *to_rockchip_hdmi_qp(struct drm_encode=
+r *encoder)
+> >>  {
+> >>  	struct rockchip_encoder *rkencoder =3D to_rockchip_encoder(encoder);
+> >> @@ -226,9 +232,47 @@ static irqreturn_t dw_hdmi_qp_rk3588_irq(int irq,=
+ void *dev_id)
+> >>  	return IRQ_HANDLED;
+> >>  }
+> >> =20
+> >> +static void dw_hdmi_qp_rk3588_io_init(struct rockchip_hdmi_qp *hdmi)
+> >> +{
+> >> +	u32 val;
+> >> +
+> >> +	val =3D HIWORD_UPDATE(RK3588_SCLIN_MASK, RK3588_SCLIN_MASK) |
+> >> +	      HIWORD_UPDATE(RK3588_SDAIN_MASK, RK3588_SDAIN_MASK) |
+> >> +	      HIWORD_UPDATE(RK3588_MODE_MASK, RK3588_MODE_MASK) |
+> >> +	      HIWORD_UPDATE(RK3588_I2S_SEL_MASK, RK3588_I2S_SEL_MASK);
+> >> +
 > >
-> > > > +             break;
-> > > > +     default:
-> > > > +             break;
-> > > > +     }
-> > > > +
-> > > > +     spin_unlock_irqrestore(&port->lock, flags);
-> > > > +}
-> > > > +
-> > > > +static int gaokun_ucsi_refresh(struct gaokun_ucsi *uec)
-> > > > +{
-> > > > +     struct gaokun_ucsi_reg ureg;
-> > > > +     int ret, idx;
-> > > > +
-> > > > +     ret = gaokun_ec_ucsi_get_reg(uec->ec, (u8 *)&ureg);
-> > > > +     if (ret)
-> > > > +             return -EIO;
-> > > > +
-> > > > +     uec->port_num = ureg.port_num;
-> > > > +     idx = GET_IDX(ureg.port_updt);
-> > > > +
-> > > > +     if (idx >= 0 && idx < ureg.port_num)
-> > > > +             gaokun_ucsi_port_update(&uec->ports[idx], ureg.port_data);
-> > > > +
-> > > > +     return idx;
-> > > > +}
-> > > > +
-> > > > +static void gaokun_ucsi_handle_altmode(struct gaokun_ucsi_port *port)
-> > > > +{
-> > > > +     struct gaokun_ucsi *uec = port->ucsi;
-> > > > +     int idx = port->idx;
-> > > > +
-> > > > +     if (idx >= uec->ucsi->cap.num_connectors || !uec->ucsi->connector) {
-> > > > +             dev_warn(uec->ucsi->dev, "altmode port out of range: %d\n", idx);
-> > > > +             return;
-> > > > +     }
-> > > > +
-> > > > +     /* UCSI callback .connector_status() have set orientation */
-> > > > +     if (port->bridge)
-> > > > +             drm_aux_hpd_bridge_notify(&port->bridge->dev,
-> > > > +                                       port->hpd_state ?
-> > > > +                                       connector_status_connected :
-> > > > +                                       connector_status_disconnected);
-> > >
-> > > Does your platform report any altmodes? What do you see in
-> > > /sys/class/typec/port0/port0.*/ ?
-> > >
-> >
-> > /sys/class/typec/port0/port0.0:
-> > active  mode  mode1  power  svid  uevent  vdo
-> >
-> > /sys/class/typec/port0/port0.1:
-> > active  mode  mode1  power  svid  uevent  vdo
-> >
-> > /sys/class/typec/port0/port0.2:
-> > active  mode  mode1  power  svid  uevent  vdo
-> >
-> > /sys/class/typec/port0/port0.3:
-> > active  mode  mode2  power  svid  uevent  vdo
-> >
-> > /sys/class/typec/port0/port0.4:
-> > active  mode  mode3  power  svid  uevent  vdo
->
-> please:
->
-> cat /sys/class/typec/port0/port0*/svid
-> cat /sys/class/typec/port0/port0*/vdo
->
+> >nit: below val =3D ... and regmap_write don't have a blank line between =
+them
+> >which makes sense to show that they belong together. So the blank above
+> >can probably also go away.
+>=20
+> Okay, it will be removed in V2.
 
-svid:
-8087
-ff01
-12d1
-12d1
-12d1
+just realized that I commented on the "wrong" version :-)
 
-vdo:
-0xff000001
-0xff1c1c46
-0xff000001
-0xff000002
-0xff000003
+https://lore.kernel.org/r/20241231094425.253398-1-andyshrk@163.com
+seems to be the most recent one.
 
-> If DP is reported as one the altmodes, then it should be using the
-> DisplayPort AltMode driver, as suggested by Heikki.
->
-
-But this paltform cannot access to the partner device, related API
-requires a partner.
-
-BTW, it is unnecessary that implementing/call a DP Altmode driver for
-this platform. Currently, we can enter altmode with a HPD event notify.
-This point is quiet similar to Acer aspire 1. I mentioned this when we
-last talked about minus 6.
-
-> > > > +
-> > > > +     gaokun_ec_ucsi_pan_ack(uec->ec, port->idx);
-> > > > +}
-> > > > +
-> > > > +static void gaokun_ucsi_altmode_notify_ind(struct gaokun_ucsi *uec)
-> > > > +{
-> > > > +     int idx;
-> > > > +
-> > > > +     idx = gaokun_ucsi_refresh(uec);
-> > > > +     if (idx < 0)
-> > > > +             gaokun_ec_ucsi_pan_ack(uec->ec, idx);
-> > > > +     else
-> > > > +             gaokun_ucsi_handle_altmode(&uec->ports[idx]);
-> > > > +}
-> > > > +
-> > > > +/*
-> > > > + * USB event is necessary for enabling altmode, the event should follow
-> > > > + * UCSI event, if not after timeout(this notify may be disabled somehow),
-> > > > + * then force to enable altmode.
-> > > > + */
-> > > > +static void gaokun_ucsi_handle_no_usb_event(struct gaokun_ucsi *uec, int idx)
-> > > > +{
-> > > > +     struct gaokun_ucsi_port *port;
-> > > > +
-> > > > +     port = &uec->ports[idx];
-> > > > +     if (!wait_for_completion_timeout(&port->usb_ack, 2 * HZ)) {
-> > > > +             dev_warn(uec->dev, "No USB EVENT, triggered by UCSI EVENT");
-> > > > +             gaokun_ucsi_altmode_notify_ind(uec);
-> > > > +     }
-> > > > +}
-> > > > +
-
-[...]
-
-> > > > +
-> > > > +static void gaokun_ucsi_register_worker(struct work_struct *work)
-> > > > +{
-> > > > +     struct gaokun_ucsi *uec;
-> > > > +     struct ucsi *ucsi;
-> > > > +     int ret;
-> > > > +
-> > > > +     uec = container_of(work, struct gaokun_ucsi, work);
-> > > > +     ucsi = uec->ucsi;
-> > > > +
-> > > > +     ucsi->quirks = UCSI_NO_PARTNER_PDOS | UCSI_DELAY_DEVICE_PDOS;
-> > >
-> > > Does it crash in the same way as GLINK crashes (as you've set
-> > > UCSI_NO_PARTNER_PDOS)?
-> > >
-> >
-> > Yes, no partner can be detected, I checked. I think it is also handled by
-> > the firmware As you said in [2]
-> > > In some obscure cases (Qualcomm PMIC Glink) altmode is completely
-> > > handled by the firmware. Linux does not get proper partner altmode info.
->
-> This is a separate topic. Those two flags were added for a very
-> particular reason:
->
-> - To workaround firmware crash on requesting PDOs for a partner
-> - To delay requeting PDOs for the device because in the unconnected
->   state the GET_PDOS returns incorrect information
->
-> Are you sure that those two flags are necessary for your platform?
->
-
-Alright, I think I got things mixed up. Actually PDO requires UCSI only,
-not a partner device.
-
-I think I will remove it in v3 if it works well during the time. Rencetly,
-this platform works well without it. Thanks for pointing out.
-
-> >
-> > > > +
-> > > > +     ssleep(3); /* EC can't handle UCSI properly in the early stage */
-> > > > +
-> > > > +     ret = gaokun_ec_register_notify(uec->ec, &uec->nb);
-> > > > +     if (ret) {
-> > > > +             dev_err_probe(ucsi->dev, ret, "notifier register failed\n");
-> > > > +             return;
-> > > > +     }
-> > > > +
-> > > > +     ret = ucsi_register(ucsi);
-> > > > +     if (ret)
-> > > > +             dev_err_probe(ucsi->dev, ret, "ucsi register failed\n");
-> > > > +}
-> > > > +
-> > > > +static int gaokun_ucsi_register(struct gaokun_ucsi *uec)
-> > >
-> > > Please inline
-> > >
-> >
-> > I see.
-> >
-> > Best wishes
-> > Pengyu
-> >
-> > [1] https://elixir.bootlin.com/linux/v6.12.5/source/drivers/phy/qualcomm/phy-qcom-qmp-combo.c#L2679
-> > [2] https://lore.kernel.org/lkml/20240416-ucsi-glink-altmode-v1-0-890db00877ac@linaro.org
+Heiko
 
 
-Best Wishes,
-Pengyu
 
