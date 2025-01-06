@@ -1,77 +1,78 @@
-Return-Path: <devicetree+bounces-135746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01CD8A01FF9
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:36:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F99A02008
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:41:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DD8D18848B8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 07:36:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C85B3A4234
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 07:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2A61D61A1;
-	Mon,  6 Jan 2025 07:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DFCE1D6DA3;
+	Mon,  6 Jan 2025 07:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h1OeZB2b"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A+Cb3guZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B811922F9
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 07:36:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA2C1E511;
+	Mon,  6 Jan 2025 07:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736149001; cv=none; b=odap+NMadc9bm9VaSDaEl1Dx/vrjX0vBpg04XF1xC3I3eCRgT85aDVvt51eOS+NZgQylQKp7HaPtgo336E47LgjBuCpBb5XzOjDP3Y06NND4u6YaIwcSD6gDZvjycwTodCQt2PIiavPB+GoC9EjQa6dKRfr223gYE9aMR4cqKik=
+	t=1736149280; cv=none; b=QS7ASFgPfDb9hx7lt9GtShZF76hywqsTz442ukt0jR7BivVK0wtJCdDCZ2Bax7T5vS9wI4XcJ+07R7+eXrqYOEgL4L/uwvK/nkIri7mRgFzEtD2S9OvInVJFgdYLIVICTUukBs8ohLtMwVcQ588rGcrxtvJqjkohr4RpXQSbPyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736149001; c=relaxed/simple;
-	bh=GJJnKeyq0AyCBYfSfuuFWtq4NCpFzu0b937iGTQC/yk=;
+	s=arc-20240116; t=1736149280; c=relaxed/simple;
+	bh=lqwJYDcuZuFuxeaLPzIQfQjfDbt5N/rNQ5VywSay5ME=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kNOO5LbaSTKXdcAQY8ojM44PQ94GBNsZTlint7Q4bck0bcR36O6+KCv1sxwlYOSPH+vPAWsvkeN9P/qBs081sinRb3sD6psCr/Rf3BuEj1VXd/um8W0bViaSJv/uQVkOPG9WyuVcYtOQ9kUPnTIjp+cBmLrH9yiMV5WiuhTNGgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h1OeZB2b; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-436202dd730so100284795e9.2
-        for <devicetree@vger.kernel.org>; Sun, 05 Jan 2025 23:36:39 -0800 (PST)
+	 In-Reply-To:Content-Type; b=f20IF0QXIMCVWo3kDx8LFAuPtI9G6cOYF8s+OJx1gk8mHOt7x3crgoFodkLwcoHHmwnqzJ/ybNbmIi/XYNGzUsY5N2eBjUYpjwn8AhCrbEEtNM71bZOvy4Evlxoh9qv+9xectGm1ZHHIyKZtyIPVveSASgisUNidSjGtxApgid8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A+Cb3guZ; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aaef00ab172so1524961666b.3;
+        Sun, 05 Jan 2025 23:41:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736148998; x=1736753798; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20230601; t=1736149277; x=1736754077; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XuH/NxHgypHXTjjjbglqsSTpq7IdJAHxtTHnjuWbs8w=;
-        b=h1OeZB2b3rnPJobtwXyvNNBIE/G+skB9YVld3FJd980fgaVqm+mfdyeuH0xwggRxxf
-         /mYC81x4XyiHLZ8CugEOlc34YoHedrOGnlgMuHtHSLEJ5qaz4gaU+1xzxIZ8VwszFxtt
-         5f0vLqX3LnM2kPMFBNDU6S37vSBj8RCJnjFNoy1igzPD6x8aDqIp97kt4R3cer9GWwAS
-         yPRF9CPmaSwkNJm5+8yo5gGa2EaQk0Ex68tx93PxQKGsGA5FI2Ny5zqfs4qP+vLqaSwF
-         9wq/3yTV0FcyEiX/lXDF2pAwUIN3acTNmEfXwm3PnhiYvTV/XU7Y3N0ytD5vRHlONqTI
-         lHdA==
+        bh=H7jyHK1qzo2RBuW8p7OwjlLlsp6SzR2X66LUKW3zBn4=;
+        b=A+Cb3guZJ1lpn1Hiw+rn580NAThCS58SAmJkfOS6WO6BC/1LhadomOQhfJEdGHB1cC
+         6KmvIWL3pt7sXhgr2hkJsiILSrDiSLmRZzjvQjgixUSbnH4AN/n2LP4uQLmHvKPGi70s
+         LzOkA3xF/0o0VdptOyUXeHX8wW5mCcL6GaZDFO7T5WSm6b1P49LPC92Gp7pQ7g6cAoDa
+         1vdeYdtqjND22b9oIIDI0A55oyGmR2B+UjQ4gZoIWMh2vdF9oiJJbU9gEK4VDH5KJvIp
+         8XlHrIZ+EQkDZK0fcPAZGKegA1xqoJlWE+fmAeNlBX+PkIbCWzx/8m+UZtfZIuQXGVaR
+         Gn+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736148998; x=1736753798;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1736149277; x=1736754077;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XuH/NxHgypHXTjjjbglqsSTpq7IdJAHxtTHnjuWbs8w=;
-        b=Rx8Cztcivv3OaHa36mQ5voo9YhZuuNwvupMC6IhyvBaFLzs65alsWyGMSV4XQhhrsT
-         9SrbfchdH9jLlOQRdQuzVS3L89NvVBJDgQ3L0VtpLAsF/FGk0ntfIYsLu8h4fvIZxpCH
-         Rp1wIiyRd2vUY/oEQzYD35u/CFXkwOpH7JCYS8lB5fyQa7trYO6zdEwOt6VL9bza9OOG
-         J6jbMCRMCjfFDdjsK8bpGgpw7GmgjyhwdhCg0vhTrr0mJkGLE7lJtJOzI2T/L3rFrVN3
-         FVErPGjmWqGGSFHt5reh3F8ClMhczWUz+TcMI8sN8V28Icou84TqFLuXFymafQtZ2UnK
-         K/YQ==
-X-Gm-Message-State: AOJu0Yz9VCwmpC1p58doglvitjf9idd2DkGT/0Ay9pFj6AMWmMznL7CO
-	bw3Xj8k0sX05IpaO5T39sB/M0FotxDSw8MJs8h2PoJgOZOfNp0SMx28jxfkFEMc=
-X-Gm-Gg: ASbGncsvq9UZcs8W27Zur3mGgq1eEHLIxQBc8SuZVUiy+QsQe3jHs/wpmG05K8z1Koq
-	bVku5IgnidIKR7BGof3YjFZ+fMk9AI9J+0UVG13GJ5m1/UPC8qCBUKqxUsPN5CKswBE0eENECvu
-	/MhGmhS4v0fcUAG2bvXL+e1mKBsz3me+hOcBL2FWAyOolYbZMZX9fPJZEOPURmE5a1LopSPoNBi
-	W6zX1w9JSEVhv+fTi6j4paZ7s+hn6V/hnpqsurJc2i9k02lhL5UVXgEQqM0UNx4
-X-Google-Smtp-Source: AGHT+IFQI0rLosE0iSZMKHi92uLdrnY3vwPRxWC4Uk5UIaHJ/DUMhfH+TpjawDUP/rxJQinNEwLVnw==
-X-Received: by 2002:a05:600c:1549:b0:436:1c0c:bfb6 with SMTP id 5b1f17b1804b1-43668b78cd4mr451383175e9.27.1736148998319;
-        Sun, 05 Jan 2025 23:36:38 -0800 (PST)
-Received: from [192.168.0.14] ([188.26.61.92])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436612899f0sm560190565e9.38.2025.01.05.23.36.36
+        bh=H7jyHK1qzo2RBuW8p7OwjlLlsp6SzR2X66LUKW3zBn4=;
+        b=Hii4MQ/hk/r4iT+Dhmgrovu/gww0LI4V55y7mrQpc6C7dwuzNB+nXu/Lt97eEN9aWJ
+         n1wnRc0mVHX8H5jxIMoRxfRA4CekcxsatyoBxzmnQX6YTSy/UyJ2zyCCJmnbPpMD4yXE
+         MVv7lA5Ft2EXV6srYZQad4Ql1FAjGvCWf8PpdcxI+c/Pure4whs/psU37SPbhytF1fM3
+         PEdW3wPY3XRdnCOgkgwS6qP/ipVa9aAqLAjrOZeDate3mlYO7ihnVD69n5aWReR0xBZH
+         utmtWAz4QtwrYl1aQm9dulyEGUJq6d0oUlzYBJMKZaJR2o36CefnrMUYTP5NPiLzjB5g
+         L3dQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUPlhdj31gO4i5A8wsN2hPJf4M1i89yW4ReTYjGKQoIqJr9acd78bN3H+qjNbIKvNibOlwKB+SuP0M6Qgk=@vger.kernel.org, AJvYcCVVSFD+v6cSPdfJJcmCaKDs6ymk8CaLZlKvuD5voaJFDlKyTRO5GIpbSgUGg5NokHduO7uSbOoC1Q8d7ov12dtEkL4=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGXqI3gBXhNFFznvU6Vl7cjncfjNXB8QlIcZ/3B2tXl/fBV332
+	PIzyIJhhtpLiG/AFcbt0VN4LnWOJM2Q8xZ4fh639Gnb5tifiSvZ3oqxJMQ==
+X-Gm-Gg: ASbGncuSz2mRvjONAFiQdYqYngseXldY8QEEfeLx5H1S3VrPWsAXBlFbUkl/bPM+YlM
+	JnfHyHqdPs2+bvo4zd88Ir3+i8q58fFBV2J7SSqMa13PW11uQLWSt3yFcDJ/gFY8R6s8NtuS6Uy
+	1IXjoKsv4b9nR4ONd5cBphWIL6J9RwAv76YBvHOS3jJCcLyAN4AFZxbu4oKVeO9Wv1jED0B2ai4
+	T/+o9YETuVaT+NMnYc72YYYMwWgoJXo9SCD1zZQ/dGssu1EdQULkaYrDnpcO+rEHK+8TL4=
+X-Google-Smtp-Source: AGHT+IGUK/KAzsavO8RxgoMoX/fDzaMo3/KjbM9ldtNHhtumpl9cdoVvZA3QKNbl7UwUnBmIsW12Fw==
+X-Received: by 2002:a05:6402:1588:b0:5d3:ba42:e9e3 with SMTP id 4fb4d7f45d1cf-5d81dd9ce81mr141034940a12.13.1736149276384;
+        Sun, 05 Jan 2025 23:41:16 -0800 (PST)
+Received: from [192.168.43.21] ([77.85.230.22])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e8954bfsm2246158566b.60.2025.01.05.23.41.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jan 2025 23:36:37 -0800 (PST)
-Message-ID: <f0702bdb-846e-4817-a76c-5ce17dea38c8@linaro.org>
-Date: Mon, 6 Jan 2025 07:36:36 +0000
+        Sun, 05 Jan 2025 23:41:16 -0800 (PST)
+Message-ID: <a7686593-ab07-4e18-912d-745576c6a450@gmail.com>
+Date: Mon, 6 Jan 2025 09:41:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,32 +82,42 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 1/4] dt-bindings: soc: samsung: usi: replace USI_V2 in
  constants with USI_MODE
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+Content-Language: en-US
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
  Sam Protsenko <semen.protsenko@linaro.org>,
  Peter Griffin <peter.griffin@linaro.org>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20250105160346.418829-1-ivo.ivanov.ivanov1@gmail.com>
  <20250105160346.418829-2-ivo.ivanov.ivanov1@gmail.com>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20250105160346.418829-2-ivo.ivanov.ivanov1@gmail.com>
+ <f0702bdb-846e-4817-a76c-5ce17dea38c8@linaro.org>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <f0702bdb-846e-4817-a76c-5ce17dea38c8@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hiya,
+On 1/6/25 09:36, Tudor Ambarus wrote:
+> Hiya,
+>
+> On 1/5/25 4:03 PM, Ivaylo Ivanov wrote:
+>> +#define USI_MODE_NONE		0
+>> +#define USI_MODE_UART		1
+>> +#define USI_MODE_SPI		2
+>> +#define USI_MODE_I2C		3
+> USI_CONFIG register refers to the protocol selection with USI_I2C,
+> USI_SPI, USI_UART. How about getting rid of the MODE from the name?
 
-On 1/5/25 4:03 PM, Ivaylo Ivanov wrote:
-> +#define USI_MODE_NONE		0
-> +#define USI_MODE_UART		1
-> +#define USI_MODE_SPI		2
-> +#define USI_MODE_I2C		3
+I thought about that too but I believe that mentioning that these constants
+are for mode selection in their name is generally a good practice. Let me know
+if dropping _MODE is really needed.
 
-USI_CONFIG register refers to the protocol selection with USI_I2C,
-USI_SPI, USI_UART. How about getting rid of the MODE from the name?
+Best regards,
+Ivaylo
 
-Cheers,
-ta
+>
+> Cheers,
+> ta
+
 
