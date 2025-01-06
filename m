@@ -1,136 +1,137 @@
-Return-Path: <devicetree+bounces-135842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE886A027BF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:21:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 045B4A027C8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:22:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E3157A1489
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:21:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D669188618D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:22:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04EF1DED6F;
-	Mon,  6 Jan 2025 14:21:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="htyQbFHR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83FF91DF25A;
+	Mon,  6 Jan 2025 14:21:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6B01DED55
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 14:21:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5F91DED5E
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 14:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736173272; cv=none; b=W9ekRgMN9SUmv6IR0xPmCLl8FI1X1nzNA8RwqR2+BAJldOQQI/7dMVSAw15SX+SKGqc7PA6j1ryTiik7233SDHtaX0/DCMMboOsLeVYd4FLMlWQtGDrjN0cCZK5QBrBT5LiCBs4eUf/ojWcxu1v46i3mEd9AUCaqORCdxJuSHHM=
+	t=1736173315; cv=none; b=PGYZyNpOR5p+YWUfjBdom/Ivp5YOapb3XVwBvgEbs1yezTdITHoo8h4ogfAY4z5PAbJTvW+muZqxw9iftbiDV/wT8jTbsAiLLqjtsGWeXKueURDkh7bdpqq1Gbolsr1Uu7Ldls4hKTzrQhALX8Cb44quqp+DZ34JKIR1PHz05r0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736173272; c=relaxed/simple;
-	bh=gkocBbD/9MpvN7JKLxtV833Am9tKamxaXDw5KYVVQuI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=sls1GrnxLzVz64rlHugXodx18kMHeM9BIS4hkkFXLIZwHJFQbsJUMchmI8BLUiBsUuxetaMxajyNda7YJkPTappv0EDwND0+6VLOLilXb7oLMpkymyXd+Lv32kdtxqH5N5oOhx/z7JIcrKBi2/Ydm/qDlZQkoVB+llDpF8wmWLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=htyQbFHR; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43622267b2eso151447205e9.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 06:21:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736173269; x=1736778069; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=evV3vfqPSZenjkxuiuVbkt4Uo538mTCtLcz2OWZzZEw=;
-        b=htyQbFHRJ2XNBhNuiNfSYTNqWcfACobYB0ZTyiQaO8yoUt2ma+CBsMp1VAp4SSvn7Y
-         B0B3V2MIMUXJiIZn8rFwfpKvdQBmNAZ1RDbjCMPKk0wT2UKlNkkqxICfsCgr+FvD5N9C
-         r0yGc4rg4oNpCMBTfdQqDIoBcYO+aGVpA4xsN8A70LdDu1/JQvQF7vaoXOVs/jk8HHz1
-         6RNsLym6Z41bZYnlRjVy5KSxaLTMthuupcQpsScuLxlqIGyOeYTeNilbD/T81OChzDJ4
-         IEDWZwkx4JAU2LNzBtghGLgvFMBPKMkudGNlFJsJ6Qkbwte0drv1usRjnjB+1vVYgUke
-         nR1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736173269; x=1736778069;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=evV3vfqPSZenjkxuiuVbkt4Uo538mTCtLcz2OWZzZEw=;
-        b=H+mztAq7JPOkgGxb9TyiAgswDO2Di7rATvNiJu9vk1pGVKnIV7CYUUQRgpHO39OhW0
-         z6phlNKrAdRWHc6Vg7dcF46DvC62dzMjWipxvtjAc6DpWJjjUUTFR8tWxIAJoj/Kd4YL
-         eFLXHAxFDqh7EnSopIDXWlFs6AD3nNvxoYDf/P4Xt22YUrVuwSnkCuA+GAcn49ONdkb+
-         J/mihnqYnfvJKDDNu+eLPImi74W++ozPJmVaSk4RwzaP4UEoQX8pO8c8gmI60zZbr2+I
-         IgA2pSqBnQQFRM+Nq88f1bpmwcbr1iwZ/EA509HH/4DRJMhmS/qb9n4U2qFVZTHIAKpr
-         g54A==
-X-Forwarded-Encrypted: i=1; AJvYcCUWT6BIlIW+ZYIamcGBJccP2+w064bb1YGodaWeb/pDdz9WYi0Oyxo2VhGL9JcXEEt9eTjbBPv6ntDv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBMZNO3tfGa9mKmfi1i9CnsBSNQrfVBPT0f6SB93WU/PYb7c3r
-	FPG65AWGa640Zxi+9spzmlfhq+GJN9y1MGkOMznj9yIF0TIzDJgtwOtHx6/F0g0=
-X-Gm-Gg: ASbGncujPPjMIGnKOXV57JllQmZS/nyXEqkfWavL0p193YURJkM0NE6J18FF7OqNva5
-	eHaPoUOaYCGcT/FFRKp2i/6iUSpW/Fdqfi70hiKrl3rJvJ8t3eijQGVv66/uj9veCdXdGddwJPQ
-	DYbNDgYIkp0Ho1zuOZ7eXyyNb7Z639miBUjL7Zr3uyVdcmGDQjSTIQZTWTPYAMVQ3y0qw8BN7SN
-	BVe8cziuptpgiQHxHiTVkCw08T2vM61lVDJK4mDr4QXtX9TXO6SdSL7EwybOA==
-X-Google-Smtp-Source: AGHT+IGaidTwju8f4iTgTdz1EKQVrkbPeOyWSscY7DkQ0gKgcAzgpgkJvVTjzuCMb4bNihTY/QOv0Q==
-X-Received: by 2002:a05:600c:35c1:b0:434:a94f:f8a9 with SMTP id 5b1f17b1804b1-43668b7873emr393116775e9.28.1736173269113;
-        Mon, 06 Jan 2025 06:21:09 -0800 (PST)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b3b1f6sm609901075e9.31.2025.01.06.06.21.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 06:21:08 -0800 (PST)
-Message-ID: <8563b573d3d545bbe11298774202fcbfa4dcb13b.camel@linaro.org>
-Subject: Re: [PATCH v2 4/5] arm64: dts: exynos: gs101-oriole: enable Maxim
- max77759 TCPCi
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Peter Griffin
- <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim
- Akhtar <alim.akhtar@samsung.com>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Sam Protsenko
- <semen.protsenko@linaro.org>, Will McVicker <willmcvicker@google.com>, Roy
- Luo <royluo@google.com>, kernel-team@android.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Date: Mon, 06 Jan 2025 14:21:07 +0000
-In-Reply-To: <8f75da5d-ef9f-4324-9b8e-bcb1e8741a8f@kernel.org>
-References: 
-	<20241203-gs101-phy-lanes-orientation-dts-v2-0-1412783a6b01@linaro.org>
-	 <20241203-gs101-phy-lanes-orientation-dts-v2-4-1412783a6b01@linaro.org>
-	 <8f75da5d-ef9f-4324-9b8e-bcb1e8741a8f@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1-4 
+	s=arc-20240116; t=1736173315; c=relaxed/simple;
+	bh=xcOlt17kbS/hooga72EcRdOwoFWUICJQLQUKjRdnAsE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ddR2EEplESlbJCjM4MfPJh4303kQ/C1Ct7tSjBAESQDDPCK3fo28WqIqK1Y8SnXqaWgFuDCycayISIqwcmuhWNN9Cj6rf65xEDW1xp1HTjlT8kX2O6R+2XfzKTNKtFEowh4e8r2jt5MmZgGnhDqKQYglt/8FmX9Kspiq+24UyyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tUnzF-0003vQ-E1; Mon, 06 Jan 2025 15:21:45 +0100
+Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tUnzE-007BQz-0G;
+	Mon, 06 Jan 2025 15:21:44 +0100
+Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
+	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tUnzE-008rLw-2V;
+	Mon, 06 Jan 2025 15:21:44 +0100
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: [PATCH v2 0/6] arm64: dts: freescale: imx8mp-skov: switch to
+ nominal drive mode
+Date: Mon, 06 Jan 2025 15:21:41 +0100
+Message-Id: <20250106-imx8m-clk-v2-0-6aaeadac65fe@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPXme2cC/03M0QqDIBTG8VeJcz1HulDb1d5jdCF6rMOWhTZpR
+ O8+Fwx2+f/4+G2QMBImuFYbRMyUaAolxKkCO5jQIyNXGkQtGi64YjSuemT2+WBtI5WSF+et01D
+ +c0RP62Hdu9IDpWWK74PO/Lv+lPZPyZzVzHrjvam1ckbeZgz9a4lToPXsELp93z+udY/cpwAAA
+ A==
+X-Change-ID: 20241217-imx8m-clk-9467763dfcd8
+To: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abel.vesa@linaro.org>, 
+ Marek Vasut <marex@denx.de>
+Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ Ahmad Fatoum <a.fatoum@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Unlike the i.MX8MM and i.MX8MN SoCs added earlier, the imx8mp.dtsi
+configures some clocks at frequencies that are only validated for
+overdrive mode, i.e., when VDD_SOC is 950 mV.
 
-On Mon, 2025-01-06 at 14:33 +0100, Krzysztof Kozlowski wrote:
-> On 03/12/2024 13:40, Andr=C3=A9 Draszik wrote:
-> > =C2=A0
-> > =C2=A0&pinctrl_gpio_alive {
-> > @@ -142,9 +228,16 @@ &usbdrd31_dwc3 {
-> > =C2=A0	role-switch-default-mode =3D "peripheral";
-> > =C2=A0	maximum-speed =3D "super-speed-plus";
-> > =C2=A0	status =3D "okay";
-> > +
-> > +	port {
-> > +		usbdrd31_dwc3_role_switch: endpoint {
-> > +			remote-endpoint =3D <&usbc0_role_sw>;
-> > +		};
-> > +	};
-> > =C2=A0};
-> > =C2=A0
-> > =C2=A0&usbdrd31_phy {
-> > +	orientation-switch;
-> This shows now warnings on linux-next.
->=20
-> Is this because of unapplied
-> https://lore.kernel.org/all/20241206-gs101-phy-lanes-orientation-phy-v4-2=
--f5961268b149@linaro.org/
-> ?
+For the Skov i.MX8MP board, we want to run the SoC at the lower voltage of
+850 mV though to reduce heat generation and power usage. For this to work,
+clock rates need to adhere to the limits of the nominal drive mode.
 
-Yes, that's the reason
+This is done by this series: A new imx8mp-nominal.dtsi reconfigures
+the imx8mp.dtsi clock tree to be compatible with nominal mode, an adaptation
+to the Linux clock driver makes it sanity check the actual clock rates against
+the SoC operating mode's constraints and finally the Skov DT makes use
+of it.
 
-Cheers,
-Andre'
+Actual configuration of the VDD_SOC rail continues to happen prior to Linux
+as well as PLL configuration that needs to happen earlier than the kernel
+running. See the corresponding barebox patch series[1] for details.
+Note that the barebox series didn't yet include VDD_SOC reconfiguration
+to 850mV, that would follow once the kernel changes have been merged.
+
+[1]: https://lore.kernel.org/barebox/20240503103717.1370636-1-a.fatoum@pengutronix.de/
+
+---
+Changes in v2:
+- Explain in Patch 1/6 why two properties are added instead of one
+  (Conor)
+- Collect Conor's Acked-by
+- Collect Peng's Reviewed-by
+- Link to v1: https://lore.kernel.org/r/20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de
+
+---
+Ahmad Fatoum (6):
+      dt-bindings: clock: imx8m: document nominal/overdrive properties
+      arm64: dts: imx8mp: Add optional nominal drive mode DTSI
+      arm64: dts: imx8mp: add fsl,nominal-mode property into nominal.dtsi
+      arm64: dts: freescale: imx8mp-skov: fix LDB clock rate configuration
+      arm64: dts: freescale: imx8mp-skov: operate SoC in nominal mode
+      clk: imx8mp: inform CCF of maximum frequency of clocks
+
+ .../devicetree/bindings/clock/imx8m-clock.yaml     |  14 ++
+ arch/arm64/boot/dts/freescale/imx8mp-nominal.dtsi  |  64 +++++++++
+ .../arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi |   5 +-
+ .../freescale/imx8mp-skov-revb-mi1010ait-1cp1.dts  |  19 +--
+ drivers/clk/imx/clk-imx8mp.c                       | 147 +++++++++++++++++++++
+ 5 files changed, 233 insertions(+), 16 deletions(-)
+---
+base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+change-id: 20241217-imx8m-clk-9467763dfcd8
+
+Best regards,
+-- 
+Ahmad Fatoum <a.fatoum@pengutronix.de>
 
 
