@@ -1,181 +1,156 @@
-Return-Path: <devicetree+bounces-135829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA1DCA026EC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:43:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28327A026F4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:45:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE9287A29AB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:42:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DED11649FF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB45C1DE4F3;
-	Mon,  6 Jan 2025 13:41:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11001DE3CE;
+	Mon,  6 Jan 2025 13:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bJKTDZqG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nLEsiTv0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C616E1DE3CF
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 13:41:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C304E1DDC20
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 13:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736170883; cv=none; b=Fhj3m3o69kJlV5699LpYjzT6WFkcG6/7i2J+ND8IK6f0Qjh6LuHVjBuwWzIV5zQVZwY6yd7JxswhYICMojZCB/pe6CvvdIqPxv0LlXMVCgw8A9YR0/1KNvsqBqMK0zSzspeK2ATREuW28o9+FVSzfVs87f7xT82PQHUaMT0yopA=
+	t=1736171084; cv=none; b=kltRgYhu5Bq18GCJ3KazvfHor7E9YdCxwFVWGuenulMZZH1q0jwIjJvJw0ptWdZSCL+Ft4E7XjxWfLUMN/hPQxpiErE17M1UOtQ2EPXC20j0Fi/mlNKUPY4u9+1EF4VtDaUWEy/4X+vTMS67PZx3IdQGBQPdz0ceJJ25LjStO2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736170883; c=relaxed/simple;
-	bh=vnrymAa/mjGJwijHsxfBgXeucmKCT/GD6DSYdMDGmO4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=I3+CFGEz+fWJtAVaMDe0Kt3zcmvrOIDD8paCbxcg0bivtsBcQvQRhNmQUHpWoEdC5xtCjEvctQnPHGVa31bMejmUkZnaEzQ9fqotLTJFgIEUvzIxoVyf2XCqioIhw3y705cscuuBUV6VKocZAcJfB37Cp1Y9GWhk3Bc8JUvTZSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bJKTDZqG; arc=none smtp.client-ip=209.85.167.173
+	s=arc-20240116; t=1736171084; c=relaxed/simple;
+	bh=IzLjyqiZQYj0HolvNDwEGq9bzWMpH1csfdZOubbN4CY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SYwByEyD/fpY8yWzAtxvW1pAFRYjHURwN/knAWjcJmMmdEq8DmV7TSD3vc+GEgRkcqkPARL4zMR38IqomrQQomaWz5BAHzOild7iF9yR/gCY9zaWihiCKKYkq3VVdfwNtRjN+473/XUytM7Lkwb94Vk/LVS97oV2UDtbciSnryY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nLEsiTv0; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3eb7ecc3c54so7260808b6e.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 05:41:21 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4361aa6e517so22435415e9.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 05:44:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736170881; x=1736775681; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vnrymAa/mjGJwijHsxfBgXeucmKCT/GD6DSYdMDGmO4=;
-        b=bJKTDZqGbUKg0C+CARcwypPIjZqUhpbf4gkvJ5ZLRh2qyHSuk8/7cRFv0nR0zXoWDn
-         iqghSrPvCGsK8zg7yL4hKEM1jgtUh2wVtOyPHGLJLW/cCfIkd+NaZ910O70i/Js+sc64
-         7TVyHPIkq5pJljaIzuLG20Di3V2HU2nL57iuuoc6oOA3w67y9lcCbKhEG3ZVXSrN2FVR
-         coIZcgAt0ucjdA4VM0xHjhUwYX9IuFXmIzKQzhGEcnUdHm/tzEH2nTZZ++281j+esJGB
-         MIEOMbJ6EjBtLdXH6nku2QAYxIBIqs+3r4BPo3GjFBaUfiN/lptdIC0MksH/wXoA/Irq
-         s6Fg==
+        d=linaro.org; s=google; t=1736171081; x=1736775881; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EMnwIoklKmOQ9k3BBN3w1reDAPPc+Np1bkPck8HODv8=;
+        b=nLEsiTv0iLxLdXZwuRW/PRC2sIJ0D8DCgYgsAMD+C8bRVf94qhP9Z8iMduflxdGO5r
+         fP+jJYSmkhNgexV5pR4yQcYsYPdNmTcv9O8HIuRCmOzyp5LtBFunUR3ii+7Stusgzbi0
+         YMfluSbz1wYKtOh+GW/jbw/O11ZJwD4/oxtkya9jIQe+83YCkTCJNxdnifzoIXQAZVLd
+         S2XiDAvD0o7R+GbosTbNhNx3CG6TLQ9txIfI5AgYr0O7fQmwP9dVWa2/3ulmaE2oMGrq
+         GAwhk25nQjnfpThPV+8I8IhplYALs+G1hC3qrg46uam0f7y4C4CVJOVhtViHtXjRsSTC
+         gIzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736170881; x=1736775681;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1736171081; x=1736775881;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vnrymAa/mjGJwijHsxfBgXeucmKCT/GD6DSYdMDGmO4=;
-        b=IK/MkDx94S8mdM8xT6KhD663BxjpXVDGUGqgRhkWxSRHtlTIUFBinrLuWXWHO4yW7P
-         H5DC3yooUx8Y8Fu1aLZArXJtzUSX6e2pGKrBThFbIlkkhnXcUGnqGpNd3igpYqh1z/uM
-         bINbnubNI/t4vhyna5E75KL9nvw8g1oOy7lxK/4+5+KqtUdp9eovXXDeoVPQ+6RSzWs0
-         xoJEJFyiyzrjSUlMTDm/2703dlwlenqSl948//sgJVyLp9WoQ8hrbsp99ZI458MAzynB
-         g9k/hrvzPm3jBRrP89PNRe14fRkp+jk372FiYQkXmxnhiB94PJVPJmjwpORN5wneFOeK
-         LO9A==
-X-Forwarded-Encrypted: i=1; AJvYcCXdYuOHGaHqRUYsP5fAHCfmtC/6X+24B6/2sMocyrlgRRaMroNA2W9MqVGRa9HXz7T2RVQC5Dc48DG6@vger.kernel.org
-X-Gm-Message-State: AOJu0YybEokyOuTrSWVA38OLi77Bwb1jxnNV8N5o029Qm1bnTF9fifkA
-	01WcGhndF3u5Y2YAaQHJQ6smTFVTFjICDOnqFsbxJf8BijG9dEvt9Zpw5SEyVf/bj03d0n+OZ4l
-	sgtY6Srxxz5lWu5TyAgqqBFTf3wCe0K4uhpXR4Q==
-X-Gm-Gg: ASbGncu1KNN42bWsjFcajBbCCaLvNEHIqLguigc7ZfQ+44yJss3yzZSl3L0JNH9zIW0
-	J5Is7IOwuYaRbMsexRbQD+br+IOKD6Q29i9yOqEU=
-X-Google-Smtp-Source: AGHT+IGHKiwrocjYAkZ/iOzeatUlUn2r26VhWPamSSinhyvoES0t4wnDgtP29xdNAxPt8Q+yAhE3L15ITeBiE/jrEBs=
-X-Received: by 2002:a05:6808:3012:b0:3eb:5f1a:d083 with SMTP id
- 5614622812f47-3ed88fe34f0mr33261669b6e.20.1736170880716; Mon, 06 Jan 2025
- 05:41:20 -0800 (PST)
+        bh=EMnwIoklKmOQ9k3BBN3w1reDAPPc+Np1bkPck8HODv8=;
+        b=StJtLqBS8mnNO2VfJg3AchbVR4rtltZyvWqrviXGHSj46shRAwP+jM/rbeNBpVnJMf
+         Xs4Y+IcA17Jg7WITdE66H8tF5spHTW9C5bPd0//5oyy4Am+KQN/BHuLkUS9clB9sh/aq
+         1waH8tBSL5P24drDyrWxjjBnkAkW6fCf2oi/3d4G8++Bi3o4nIOU20QZprzgoFnA3ibQ
+         IrnstCJd53as65dIcpCK+r/s5JrKD+f+V2pDr9W9yBowReyo4uwH5XXEBunfzhBcrms5
+         KXcFR4pycYV0oHxzX6mlEa5tLJjmOwwa+9YyR6z2u0BvWM2IMOTMJsDebgHd8vgoY0Vk
+         zZbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOSmL57slGq+t2GA9o8csaQeRfbnBHz0LBv0btKUqJefKg/EiOrLEGkj/Ac3oAhE3NIO6DYqvIHr5k@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHRQvaS8pJf1WCX7pIBSne54aXe3YaoOX6NvqIEGYvJGNbckeA
+	WnPlGTTZ6My08SbX5uRnvNXAyGtuLL1QFoK2W0o3Q6o+enhBvdumcL8JXjVXpB0=
+X-Gm-Gg: ASbGncv1N7Cg/h/gXWY0Uta/fPQaT1gANHjQREkgr9yP5VvM493/hAuzIXA6sTHsyY5
+	RUpp+KdMFlyJyq/bJYdGWOgMuhpzMGwJPW7CDZBV+1LF5KIhmDnPHRYYDPu8wL3PZ8nAk1MwBOu
+	PycQpVyfMevMvhsG0JMNIx6G7ijPOppDslyOYMnUKO2tPF0y2Ile6mcyquxEJa7UEd0t1ryJQeA
+	1Tbz/+rs5PlemlUFhx1Tx5YiyD9vQtnUZiC3NiZK6STmdd0rmXsa85NE/03N+sXPMXQfIcd
+X-Google-Smtp-Source: AGHT+IEXQzyXvJh87C4qYu7Ax5vz3+jmqOb6lMmmEshKHmHAav4FLPK3omE//aDu+k4UsNcOasv61g==
+X-Received: by 2002:adf:9b83:0:b0:38a:4184:1239 with SMTP id ffacd0b85a97d-38a418412d5mr11223749f8f.10.1736171081048;
+        Mon, 06 Jan 2025 05:44:41 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8acc02sm47383151f8f.104.2025.01.06.05.44.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 05:44:40 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 0/3] clk: qcom: sm8750: Add sm8750-dispcc clock
+ controller
+Date: Mon, 06 Jan 2025 14:44:28 +0100
+Message-Id: <20250106-sm8750-dispcc-v2-0-6f42beda6317@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241213-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v1-0-c72978f63713@linaro.org>
- <20241213-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v1-2-c72978f63713@linaro.org>
- <1408dcd1-9a46-4cb9-8443-5aa51d61ed56@kernel.org> <CADrjBPre_zjh+i=_YKYiptiMWT74eWC6LDCveA=dJaQQVwkS0g@mail.gmail.com>
- <ce9408aa-96a4-498d-8603-01534d9632a2@kernel.org>
-In-Reply-To: <ce9408aa-96a4-498d-8603-01534d9632a2@kernel.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 6 Jan 2025 13:41:09 +0000
-Message-ID: <CADrjBPoLhc9Fy1FYr4w33n7bJH0XkddAyQL8zgHhj+7ONngu5Q@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: mfd: syscon: allow two reg regions for gs101-pmu
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, willmcvicker@google.com, 
-	kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADzee2cC/13MzQoCIRSG4VsZzjrjKJpDq+4jZmH+zBwoHTSkG
+ Lz3bKBNy/eD79mg+Ey+wHnYIPtKhVLsIQ4D2MXE2TNyvUGgkJwLxcpj1AqZo7JaywIGo28nGYx
+ 10D9r9oFeu3edei9Unim/d77y7/qTxj+pcoaMC9SojESu7OVO0eR0THmGqbX2ARN568KrAAAA
+X-Change-ID: 20241125-sm8750-dispcc-f0fa7b64facd
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1462;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=IzLjyqiZQYj0HolvNDwEGq9bzWMpH1csfdZOubbN4CY=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBne95BbwhkZoUPTZwRDH6P8tjnEWzo4z7vS6O7r
+ +AIEX/2BTiJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ3veQQAKCRDBN2bmhouD
+ 1xd8D/98vuMER27s5/cr0rdd39XTxPqh2YSlg9Ybvb8cXrFN+jeQV/TvgF4ve0t52SKauCaT5Sc
+ 51gjdcMyNtcT5XPnfY9krIgClBvPl3BAXJuHwM2txKngbPe6L3Kz0A7s3ETUNwUIGvPlMbXUDnQ
+ jnyYwRuxEUz6GAQ+aubhgWmJRotodmPzoGdGd9PPyc65CyPWdYpDkBv4e8RAMbM82rdiz0YfIR5
+ tuudFNp//IgliJUaNSdm1e1CJEbXSyeVHH9rfRdnyK7p3sK+QPSAU/k1v7aMmypZqOlMhDjM6Es
+ FdEh0p98uLW5GUZmNxITGloM6DAbY4GnIUrTM0Nj5rGhx2cGdJwUvJkDjkWEuAme83Qd+q0fV+q
+ yZPXvDjMJ/cDvkALAF13UJRxWtGUB5qKYGPHyzCnQGXxt8jEj2eQ16L4w0VYwcEFN7HXaKAtDwa
+ QHn2K6i2SORte35KSBhTfctNd8kU7jYgQqBh3LN1xOC/+Kch6UUFVoxA2Cm1pQJZzfT2QPknKnI
+ HHcqSi4QQWopKNdJQetO+iySKhSBoD48FIXqz0RPQtAZdn8Bb9zqHTog8+jpt37twzXtgjwC673
+ r3VSrA8McuCy9DkM3bBVc5NxBaTQx3DEF6cHlI+WnyAy3J1hIs+HU2VW/MSyOm5I8Kjmu9e3Zpy
+ sMDhtoLYFZjo/fQ==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Hi Krzysztof,
+Add Display clock controller for SM8750.
 
-Thanks for your feedback!
+Changes in v2:
+- Implement feedback from Stephen - see individual patches changelog.
+- Few cleanups found during testing/review - see individual patches changelog.
+- Use clk_rcg2_shared_ops, where applicable.
+- Link to v1: https://lore.kernel.org/r/20241128-sm8750-dispcc-v1-0-120705a4015c@linaro.org
 
-On Fri, 3 Jan 2025 at 17:14, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 30/12/2024 10:10, Peter Griffin wrote:
-> >
-> >>
-> >> Maybe you have here two devices, maybe only one. If it is only one, then
-> >> it is not a syscon anymore, IMO.
-> >
-> > I was going to suggest modelling PMU_INTR_GEN as its own sycon node,
-> > and then either: -
-> >
-> > 1) Updating exynos-pmu driver to additionally take a phandle to
-> > pmu-intr-gen syscon, and register the hotplug callbacks.
-> >
-> > or
-> >
-> > 2) Create a new driver named something like exynos-pm or exynos-cpupm
-> > which obtains the PMU regmap and also a phandle to PMU_INTR_GEN
-> > syscon, and register the call backs.
-> >
-> > Is there any preference from your side over approach 1 or 2, or maybe
-> > something else entirely?
->
-> No preference, choose whatever results in simpler or more readable code.
->
-> Option 1 assumes that exynos-pmu on GS101 will drop the "syscon"
-> compatible, although it still might expose syscon through drivers. Just
-> the standard binding syscon does not feel fit here.
+Dependency:
+1. Taycan PLL and rest of clocks: "clks: qcom: Introduce clks for
+   SM8750"
+   https://lore.kernel.org/r/20241112002807.2804021-4-quic_molvera@quicinc.com
 
-I agree we should drop syscon compatible for gs101 as it requires a
-"special" regmap. However other Exynos based SoCs will likely want to
-re-use this pmu_intr_gen CPU pm code and they will likely have syscon
-compatible in their exynos-pmu node (as protecting PMU registers from
-Linux AFAIK was a Google hardening measure).
+Best regards,
+Krzysztof
 
-So just to clarify, dropping syscon compatible on option 1 is because
-it's gs101 "special" regmap, or because exynos-pmu node now references
-additional pmu_intr_gen syscon?
+---
+Krzysztof Kozlowski (3):
+      dt-bindings: clock: qcom,sm8550-dispcc: Add SM8750 DISPCC
+      clk: qcom: clk-alpha-pll: Add Pongo PLL
+      clk: qcom: dispcc-sm8750: Add SM8750 Display clock controller
 
->
-> I don't have the hardware/user manual, so I don't know what PMU_INTR_GEN
-> really is.
+ .../bindings/clock/qcom,sm8550-dispcc.yaml         |    4 +-
+ drivers/clk/qcom/Kconfig                           |   11 +
+ drivers/clk/qcom/Makefile                          |    1 +
+ drivers/clk/qcom/clk-alpha-pll.c                   |  165 +-
+ drivers/clk/qcom/clk-alpha-pll.h                   |    6 +
+ drivers/clk/qcom/dispcc-sm8750.c                   | 1963 ++++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8750-dispcc.h     |  112 ++
+ 7 files changed, 2260 insertions(+), 2 deletions(-)
+---
+base-commit: 3dc591aad724ed3578548c211cc3c368f6dc5947
+change-id: 20241125-sm8750-dispcc-f0fa7b64facd
 
-There isn't much description in the manual, but AIUI pmu_intr_gen is
-just a way for the OS to trigger an interrupt so that the APM programs
-the PMU registers instead of the OS programming PMU registers
-directly. It looks like the system could also be configured to not use
-APM (it would need different firmware), in which case the OS would
-just program PMU registers directly.
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I only see these GRP(x)_INTR_BID_ENABLE / GRP(x)_INTR_BID_CLEAR
-registers mentioned in downstream code in the context of
-flexpmu_cal_system_gs101.h (which is basically lists of registers to
-program for different power/sleep modes - which looks like what
-exynos-pmu is currently doing for older chipsets) and
-flexpmu_cal_cpu_gs101.h (which is used for cpu on/off) related things.
-
-So even if I split the CPU pm parts into a separate driver, it looks
-like programming pmu-intr-gen regs would still be required to
-enter/exit sleep modes.
-
-With that in mind I think it seems more natural to grow the exynos-pmu
-node & driver.
-
-> GS downstream code has something like PMUCAL, which looks
-> like separate device.
-
-PMUCAL is just the PMU registers with a whole bunch of layering. I
-believe CAL just stands for Cpu Abstraction Layer and seems to be used
-in downstream Samsung driver code when they have a bunch of "generic"
-driver code and then what appears to be a lot of automatically
-generated header files for a particular SoC for reading/writing all
-the SFRs.
-
-The CAL suffix is used for PMU and also for clocks (CMU). Most of the
-PMUCAL code is just accessing PMU and pmu-intr-gen registers (if APM
-is configured). There are some places like flexpmu_cal_system_gs101.h
-where it seems to be used as a convenient place to read/write
-registers all over the SoC memory map (CMU, SYSREG* etc). So unpicking
-that into all the various subsystems will be interesting.
-
-Thanks,
-
-Peter
 
