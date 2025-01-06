@@ -1,105 +1,132 @@
-Return-Path: <devicetree+bounces-135952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A522A031A9
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 21:56:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB464A031AC
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 21:56:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDC673A3A93
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:56:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D38797A2AA2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C1901E009A;
-	Mon,  6 Jan 2025 20:56:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B341B1E00B3;
+	Mon,  6 Jan 2025 20:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NrWxyX9H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W+BynPLX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81371E0086;
-	Mon,  6 Jan 2025 20:56:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0261DF996;
+	Mon,  6 Jan 2025 20:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736196970; cv=none; b=kTHKCXTltDqLrICN3UaivPQAxT+PZ7IJpH1+cf8cjOBPO1tCLCKmU7uud/tMaU5uMr2iIBDGZO/jvADdbf0HHV6c4tXzBRzXk49xOXUs56cHt7n6DMmDY8Z41Pv7g3Ql6CXQsMK9PtUJcLUsLulrKTR+/kEnQtPxKFLdK05xwrc=
+	t=1736196999; cv=none; b=OZcZLDJ0re0ChKeHXFziakBoA67eejCRhYkehkjn8XqWtEQONz1ouEo75Q0D3jY8hIO4cDF+sxzhMkVj5i37rv/cB1ervtf75GdouGtnWeNGY7X4Ffq1sa6j2q0TLSQBT922uFAbT9ajhB1psNFdxlPEKf+y46Zo4LkKiwOdak0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736196970; c=relaxed/simple;
-	bh=Bp0AmOc4jyy9KcD833oCqGI0Rcpq9xAyFWoXkihM1xA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=bnLI2zIbBp8HsTVc+494inSK6PasXAWeh39WD/nuI4lJriFTND0SkXimeJlnnT7Uv86tJ9vmSypufzdMNvmCfSTrChVxo+KTBCcvYUIieErnJctGDDV5BcK23q8whh9OYQzK2cFFBRkDLniEFOTO3ZvaQFolaIKpdGND0YFLkRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NrWxyX9H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 489EAC4CED6;
-	Mon,  6 Jan 2025 20:56:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736196969;
-	bh=Bp0AmOc4jyy9KcD833oCqGI0Rcpq9xAyFWoXkihM1xA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=NrWxyX9HMrCCGr6Vuia3ueWRnwtyQJsj8CMkRfV2Ji9LxVDD+yI8GnHV3d/aoAwmt
-	 u/zh0T5RZ4cI2DXubYgAPPVYnwCKSil06bTNXgSV/OxMAuRGB5+zdqG0n9vDQLdEU9
-	 E9S78gaqRcmBuknnW8VP3BB5Gjo0lAStbDoVqlIAwphadEVY468PDIb51fwmONRbUv
-	 ufK6G/kP0HUZNRC0TaZlJR82e8dNbbpYWFSFHC45LB95U5MDUrwVo6KM17Sh+EAAel
-	 p7qet0Vq04PlnXqlhrZ/a9m7qMDIKWR2U5nyIqMWRjdALNIEpxNBioU5uuOREZKoyl
-	 aGQPlKQ+MnpGw==
-Date: Mon, 6 Jan 2025 14:56:07 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	kernel@collabora.com, Chen-Yu Tsai <wenst@chromium.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v4 14/19] arm64: dts: mediatek: asurada: Enable PCIe and
- add WiFi
-Message-ID: <20250106205607.GA132098@bhelgaas>
+	s=arc-20240116; t=1736196999; c=relaxed/simple;
+	bh=4rLbWRGoKQ+aM7FERYu/s+1ZI6uxnvmrikDM9wfXWwQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=k+zgV2guYPHguKfdgI4r9sqvSJZENHfe9VNQHs/BFzEZehh1zoedJWxIIJGkdGXvhd1IUOlqOeqsVQjLM6ib0vdIA3qm6rHfVEg9wdSdCxNq+44D9qoekjZ8LeFXn3ChXPD/FDUPyqDtMi8rQKdcwusZk1RlswlXYv68EBD9wKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W+BynPLX; arc=none smtp.client-ip=209.85.222.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7b6f53c12adso1183165485a.1;
+        Mon, 06 Jan 2025 12:56:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736196997; x=1736801797; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QGYXaVM0zRhN5LB2AqsM+NfqTKsJxQEiTbVn2J1DL3k=;
+        b=W+BynPLXiA6F9cz+yKcONbrWl1/ZJFvDERCEpyQaI8lg7HJOcK17w2A3FaTOfeS24n
+         Zkj1a0zhRFKdctTIr1c4JvNd1akd+axtV5E3u9/YpJKJZl5v3VjnMyS4T2etc1KPowOv
+         EiF+CgKNBGnRpaVdbLTE0mn+aFMfJSLVfq0JBPbZWnQ060HWVeOy5cLHQ9Mk7VawUXHa
+         bghKjQnyxKG8ZP3d7SY6L2+igE+FeJ8rcJ5TJ3S6k/eBjJr3gPe1gcrJH+3bN1PolcvJ
+         U5kuNkzRqqFYg/SWWJ/g0X34BA9WONUs3syRNH255dndAyO+RAZcMM1H6ezgcu/+x2A+
+         wFVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736196997; x=1736801797;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QGYXaVM0zRhN5LB2AqsM+NfqTKsJxQEiTbVn2J1DL3k=;
+        b=cJPa9VQP2jSujpnJcqd3KBLlIO54szpY4RWijKVxJt+WpXRIZUeW3PCU8m4GhI1wbL
+         9sYxvE7iqNG3R+ZbxqxDCu8a24zSw5tNvki+2FIOI+btv0QqKlnSRJCacMjgc/dJ3+RX
+         SqegS1cp+OnZvpN4ug/FHlgZmJ+QSKJQKkpkBl83BHSYnF6EHBLVjh3tcjJsmLEyabkq
+         bBuz30u8LjirvIZ5p8XDrexs85o4F48a42tZkqrYs264laRVXAwxYKT41c5JZ2Qt6CMg
+         jw8zlvasGw1jy6VmYKAVqGwv3vwCkwJwPf5h8gZAXeNBVj8R2I8PuKTnyc+xoJ8sl63a
+         NrKg==
+X-Forwarded-Encrypted: i=1; AJvYcCWnc6fkSkEeEgKWQhCNf29LP7j7//dbY2lgZ12piUISH7JDymIl9WS5d715wHIRzwW6ylX/LyvOROzdFuo=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw37CUlyIzFqmAI7FMChEYPIhcfc2D67yZP/qI9szzvjl8ZZpju
+	XGPLy59533rRFoJtBcK52RwIujEvZg3VsWxqEMUs33IL9FKJ9iTgiImlyA==
+X-Gm-Gg: ASbGncu08oajBIsrQEUZ1lhTOHIcTivX/P3fPZHm48e8d3Aarq8CJbFSbiu2cNUDhsI
+	pDdzNWbJT2poKLZ979jRb2MNeRzafLIntasy53XU3wYfpdS6Wp6phT/Rpl/IuKTcSTA+rCXDxrS
+	TIgAWqunEnutoPPnDgY6pycDrmcIsQ2b2FgxQfEkgDhhASe14k6Ruof64SWbEWuFcsg5Fe3hxhY
+	jBAwUwzjtHAPFyQ1cf7+OvlI4G6lN4ynMRYwi3qm/BwFyjoK44sCjsArJ+esmS16p8rWtGXf1aV
+	Famj3sU1ZOVuCgEqoCg4ZEyzZnUBurOQh9opzQ==
+X-Google-Smtp-Source: AGHT+IELbgusOdDCViGqWCWb+1+z8xDfNVcf5K0XK1922cW3ojCmzZQ/KiW+9YniO+lVhx6xnwHvaw==
+X-Received: by 2002:a05:620a:318c:b0:7b6:de65:9ee7 with SMTP id af79cd13be357-7b9ba7ee78dmr10289860685a.43.1736196996749;
+        Mon, 06 Jan 2025 12:56:36 -0800 (PST)
+Received: from jesse-desktop.. (pool-108-26-179-17.bstnma.fios.verizon.net. [108.26.179.17])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b9ac2d15a4sm1538745785a.35.2025.01.06.12.56.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 12:56:36 -0800 (PST)
+From: Jesse Taube <mr.bossman075@gmail.com>
+X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	linus.walleij@linaro.org,
+	arnd@arndb.de,
+	--cc=imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jesse Taube <Mr.Bossman075@gmail.com>
+Subject: [RESEND PATCH v2] ARM: dts: imxrt1050: Fix clocks for mmc
+Date: Mon,  6 Jan 2025 15:56:35 -0500
+Message-ID: <20250106205635.2177321-1-Mr.Bossman075@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a58d5fa4-0d00-4ca1-941b-3ad69e65de80@notapiano>
 
-[+cc Mani]
+One of the usdhc1 controller's clocks should be IMXRT1050_CLK_AHB_PODF not
+IMXRT1050_CLK_OSC.
 
-On Mon, Jan 06, 2025 at 04:10:32PM -0300, Nícolas F. R. A. Prado wrote:
-> On Fri, Jan 03, 2025 at 03:14:46PM -0600, Bjorn Helgaas wrote:
-> > On Wed, Jun 29, 2022 at 11:59:51AM -0400, Nícolas F. R. A. Prado wrote:
-> > > Enable MT8192's PCIe controller and add support for the MT7921e WiFi
-> > > card that is present on that bus for the Asurada platform.
-> > 
-> > > +&pcie {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&pcie_pins>;
-> > > +
-> > > +	pcie0: pcie@0,0 {
-> > > +		device_type = "pci";
-> > > +		reg = <0x0000 0 0 0 0>;
-> > > +		num-lanes = <1>;
-> > > +		bus-range = <0x1 0x1>;
-> > 
-> > Hi Nícolas, what's the purpose of this bus-range?  IIUC this describes
-> > a Root Port, where we can read and configure the secondary/subordinate
-> > bus numbers from the RP config space, so it seems like we don't need
-> > to describe them here.
-> 
-> Hi Bjorn,
-> 
-> that was carried over from the downstream sources. I just tried
-> removing it and indeed I don't see any difference in the PCI log
-> messages, or the bus number, and the wifi works just fine. I can
-> send a follow up patch removing it.
+Fixes: 1c4f01be3490 ("ARM: dts: imx: Add i.MXRT1050-EVK support")
+Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+---
+V1 -> V2:
+ - Add Fixes tag
+ - Fix line wrap
+V2 -> RESEND V2:
+ - Add change log
+---
+ arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-There might be a DTC check issue if we remove the bus-range:
-https://lore.kernel.org/r/20250105101612.t6c4pw5uxhb5rdde@thinkpad
+diff --git a/arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi b/arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi
+index dd714d235d5f..b0bad0d1ba36 100644
+--- a/arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi
+@@ -87,7 +87,7 @@ usdhc1: mmc@402c0000 {
+ 			reg = <0x402c0000 0x4000>;
+ 			interrupts = <110>;
+ 			clocks = <&clks IMXRT1050_CLK_IPG_PDOF>,
+-				<&clks IMXRT1050_CLK_OSC>,
++				<&clks IMXRT1050_CLK_AHB_PODF>,
+ 				<&clks IMXRT1050_CLK_USDHC1>;
+ 			clock-names = "ipg", "ahb", "per";
+ 			bus-width = <4>;
+-- 
+2.45.2
 
-We might need to figure out how to resolve that first.
-
-Bjorn
 
