@@ -1,394 +1,127 @@
-Return-Path: <devicetree+bounces-135789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F12DEA022FF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:32:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71BBCA0234B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:42:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C667916042F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:32:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95EFE18854A9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBE01D514E;
-	Mon,  6 Jan 2025 10:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24491DBB19;
+	Mon,  6 Jan 2025 10:42:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="6sTyJMOL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89F4A2BAEC
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 10:32:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54AD1DA602;
+	Mon,  6 Jan 2025 10:42:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736159559; cv=none; b=kQpBfU8UX3uXlqmGC/XPrQs/2+hw/4OgqPN4QgRyPGX3bqTcvvMQ2DHdnqjXkBSIKxD3gUNCTnI3COpYwHYFLrn4X0gNTLjPcWPK3XDJx7cm1b/75QeoFm1cIAU0cOV4Xt5urU6/Q3ZvsxST4bJUwWhiIPJZQxCnH3S6q6RyoP4=
+	t=1736160137; cv=none; b=WMncfq15oye5UgVF9WbV4XBfR3IgUndRkWuB4KmDCoUfT5wIt2dBSg9SHVSeYI1IS3vAus4o/Dn01PEHVBKurd3iRkTHOQ+yTt2aQP5HTJyppgcGenKzNlb5DQz3MiStn8/OjkTICYBY8sjtUNY4xtZtIQFZe5Lnw9wC3Ks2v9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736159559; c=relaxed/simple;
-	bh=lYTZq2bMqMlctyxARaclRj0U75z5r/HBAXfV4eGRaMY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TDrKr3wjR8nuesZtKNi6GQLnVhruETYjMIQVk1VFfaveY413PkRGRfMnqf/ARBmb7Uy0tmGHyGBN9CMj8S7lRtcKb3VAfy/PG1Ly8r+82N6c4dlRK1ZpgmF3zR2H8nqKuICz8zAl66F7pl37HXZ+YSnHaOnQnuk6CVdYWZ5IOvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1tUkPG-0006cA-5y; Mon, 06 Jan 2025 11:32:22 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1tUkPF-0079Mx-05;
-	Mon, 06 Jan 2025 11:32:21 +0100
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1tUkPF-007Zgy-2D;
-	Mon, 06 Jan 2025 11:32:21 +0100
-Date: Mon, 6 Jan 2025 11:32:21 +0100
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v4 2/2] nvmem: imx-ocotp-ele: Support accessing
- controller for i.MX9
-Message-ID: <Z3uxNZLM6-HHnRZM@pengutronix.de>
-References: <20241223-imx-ocotp-v4-0-f504c1420640@nxp.com>
- <20241223-imx-ocotp-v4-2-f504c1420640@nxp.com>
+	s=arc-20240116; t=1736160137; c=relaxed/simple;
+	bh=Y7f2QTKSnvFF6fZU15uOPGm/i7xgrs4ICM5ClLVpP88=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TsmoU+YVhcdZRCY8gpegJpgqBoeYn1t124W8Xi8cUOMBKemcY05+tinZ1vuC662F7m/W8nTi/xSEKB3MUjOF0WkEDxeQV7qdoQpVgdIsGZHFDsbKwQ9tBoMB/XCv3BxQyDGwhohBuJSbdhvzPoJnzwunc0UKVB11BqmWLvpB5sY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=6sTyJMOL; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5063qaLB004709;
+	Mon, 6 Jan 2025 11:41:55 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	btkar9lW2qWD6xfk+/i4bskJnPD0JOAOTKhPpwxrwKA=; b=6sTyJMOLsqffMKWj
+	v9GGlvavKkwZos3+6Q3ybRgCTg4rB4Ewp3o2BOQ5SRkQAr2iBv9dscAIDfmclvZa
+	x0RhjGqFX6Vam8dZYEojWFM0MSsMWYyq2tt9Ipd8sFiFrReDNStuJPLBaRCJPKCy
+	O0ZOAI4G5Tg+jPPGBaj8/EugKwPHe0CjwXI6f41wzhlNYY7ehfsgzpfzN7gIz6Qn
+	+Jl2NotBapAilT2/d1WYyLZWcaVkRygaavfNrOMy2lCw8BZKDCb+OPkBIYHHf55t
+	RxDDZgMFmp2AWmzI4CaPYI3WcFpXRLiC6VmVNYFwVyp0mMDeblwGJANmIODmkZOj
+	EZmtEA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4407n9hajf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 Jan 2025 11:41:55 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B36FA40048;
+	Mon,  6 Jan 2025 11:40:30 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C51E126E736;
+	Mon,  6 Jan 2025 11:39:34 +0100 (CET)
+Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 6 Jan
+ 2025 11:39:33 +0100
+Message-ID: <9c6a316b-10bd-4ed0-b925-babf84b125e5@foss.st.com>
+Date: Mon, 6 Jan 2025 11:39:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241223-imx-ocotp-v4-2-f504c1420640@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] ARM: dts: st: enable the MALI gpu on the
+ stih410-b2260
+To: Alain Volmat <avolmat@me.com>, David Airlie <airlied@gmail.com>,
+        Daniel
+ Vetter <daniel@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20241006-sti-gpu-v2-0-c6bb408d6903@me.com>
+ <20241006-sti-gpu-v2-3-c6bb408d6903@me.com>
+Content-Language: en-US
+From: Patrice CHOTARD <patrice.chotard@foss.st.com>
+In-Reply-To: <20241006-sti-gpu-v2-3-c6bb408d6903@me.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Mon, Dec 23, 2024 at 08:46:14AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+
+
+On 10/6/24 22:42, Alain Volmat wrote:
+> Enable the GPU on the stih410-b2260 board.
 > 
-> i.MX9 OCOTP supports a specific peripheral or function being fused
-> which means disabled, so
->  - Introduce ocotp_access_gates to be container of efuse gate info
->  - Iterate all nodes to check accessing permission. If not
->    allowed to be accessed, detach the node
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Alain Volmat <avolmat@me.com>
 > ---
->  drivers/nvmem/imx-ocotp-ele.c | 184 +++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 183 insertions(+), 1 deletion(-)
+>  arch/arm/boot/dts/st/stih410-b2260.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/nvmem/imx-ocotp-ele.c b/drivers/nvmem/imx-ocotp-ele.c
-> index ca6dd71d8a2e29888c6e556aaea116c1a967cb5f..5a07d8b780ecfc13874cff338d6926d0e2a87c8a 100644
-> --- a/drivers/nvmem/imx-ocotp-ele.c
-> +++ b/drivers/nvmem/imx-ocotp-ele.c
-> @@ -5,6 +5,8 @@
->   * Copyright 2023 NXP
->   */
->  
-> +#include <dt-bindings/nvmem/fsl,imx93-ocotp.h>
-> +#include <dt-bindings/nvmem/fsl,imx95-ocotp.h>
->  #include <linux/device.h>
->  #include <linux/io.h>
->  #include <linux/module.h>
-> @@ -27,6 +29,7 @@ struct ocotp_map_entry {
+> diff --git a/arch/arm/boot/dts/st/stih410-b2260.dts b/arch/arm/boot/dts/st/stih410-b2260.dts
+> index 240b62040000b8c0357d39504d3475186958bf31..736b1e059b0a8f122d1b824e1f4e5db0a668ec2c 100644
+> --- a/arch/arm/boot/dts/st/stih410-b2260.dts
+> +++ b/arch/arm/boot/dts/st/stih410-b2260.dts
+> @@ -206,5 +206,9 @@ hdmiddc: i2c@9541000 {
+>  		sata1: sata@9b28000 {
+>  			status = "okay";
+>  		};
+> +
+> +		gpu: gpu@9f00000 {
+> +			status = "okay";
+> +		};
+>  	};
 >  };
->  
->  struct ocotp_devtype_data {
-> +	const struct ocotp_access_gates *access_gates;
->  	u32 reg_off;
->  	char *name;
->  	u32 size;
-> @@ -36,11 +39,26 @@ struct ocotp_devtype_data {
->  	struct ocotp_map_entry entry[];
->  };
->  
-> +#define OCOTP_MAX_NUM_GATE_WORDS 4
-> +#define IMX93_OCOTP_NUM_GATES 17
-> +#define IMX95_OCOTP_NUM_GATES 36
-> +
-> +struct ocotp_access_gates {
-> +	u32 num_words;
-> +	u32 words[OCOTP_MAX_NUM_GATE_WORDS];
-> +	u32 num_gates;
-> +	struct access_gate {
-> +		u32 word;
-> +		u32 mask;
-> +	} gates[];
-> +};
-
-Make gates[] a pointer so you can use ARRAY_SIZE() for determining the
-number of gates rather than having to define num_gates manually.
-
-> +
->  struct imx_ocotp_priv {
->  	struct device *dev;
->  	void __iomem *base;
->  	struct nvmem_config config;
->  	struct mutex lock;
-> +	u32 value[OCOTP_MAX_NUM_GATE_WORDS];
-
-'value' is a poor naming choice. Is storing the register values in the
-private data necessary at all? You could read the values when you need
-them.
-
->  	const struct ocotp_devtype_data *data;
->  };
->  
-> @@ -131,6 +149,97 @@ static void imx_ocotp_fixup_dt_cell_info(struct nvmem_device *nvmem,
->  	cell->read_post_process = imx_ocotp_cell_pp;
->  }
->  
-> +static int imx_ele_ocotp_check_access(struct platform_device *pdev, u32 id)
-> +{
-> +	struct imx_ocotp_priv *priv = platform_get_drvdata(pdev);
-> +	const struct ocotp_access_gates *access_gates = priv->data->access_gates;
-> +	u32 word, mask;
-> +
-> +	if (id >= access_gates->num_gates) {
-> +		dev_err(&pdev->dev, "Index %d too large\n", id);
-> +		return -EACCES;
-> +	}
-> +
-> +	word = access_gates->gates[id].word;
-> +	mask = access_gates->gates[id].mask;
-> +
-> +	dev_dbg(&pdev->dev, "id:%d word:%d mask:0x%08x\n", id, word, mask);
-> +	/* true means not allow access */
-> +	if (priv->value[word] & mask)
-> +		return -EACCES;
-
-priv->value[] is an array with 4 entries whereas 'word' is some value
-between 17 and 21.
-
-As said above, just read needed register value here instead of storing
-all register values upfront in an array.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_ele_ocotp_grant_access(struct platform_device *pdev, struct device_node *parent)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +
-> +	for_each_available_child_of_node_scoped(parent, child) {
-> +		struct of_phandle_iterator it;
-> +		int err;
-> +		u32 id;
-> +
-> +		of_for_each_phandle(&it, err, child, "access-controllers",
-> +				    "#access-controller-cells", 0) {
-> +			struct of_phandle_args provider_args;
-> +			struct device_node *provider = it.node;
-> +
-> +			if (err) {
-> +				dev_err(dev, "Unable to get access-controllers property for node %s\n, err: %d",
-> +					child->full_name, err);
-
-You can print device nodes with %pOF
-
-> +				of_node_put(provider);
-
-On error it.node will be NULL. No of_node_put() necessary here.
-
-> +				return err;
-> +			}
-
-You don't check if the provider actually matches the fsl,imx9x-ocotp
-node, otherwise it breaks when multiple access providers are in the
-system, i.e. do a
-
-			if (provider != dev->of_node)
-				continue;
-
-> +
-> +			/* Only support one cell */
-> +			if (of_phandle_iterator_args(&it, provider_args.args, 1) != 1) {
-> +				dev_err(dev, "wrong args count\n");
-> +				of_node_put(provider);
-> +				return -EINVAL;
-> +			}
-
-When there's a node that has he wrong number of arguments in the
-access-controllers property then there's no need to fail the others.
-Just continue instead of returning an error.
-
-> +
-> +			id = provider_args.args[0];
-> +
-> +			dev_dbg(dev, "Checking node: %s gate: %d\n", child->full_name, id);
-> +
-> +			if (imx_ele_ocotp_check_access(pdev, id)) {
-> +				of_detach_node(child);
-> +				dev_err(dev, "%s: Not granted, device driver will not be probed\n",
-> +					child->full_name);
-
-It's not an error when a specific unit is not present on a particular
-SoC. This should be dev_info at maximum.
-
-> +			}
-> +		}
-> +
-> +		imx_ele_ocotp_grant_access(pdev, child);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_ele_ocotp_access_control(struct platform_device *pdev)
-> +{
-
-Use imx_ocotp_priv *priv as context pointer to this function and to
-imx_ele_ocotp_grant_access().
-
-Sascha
-
-> +	struct imx_ocotp_priv *priv = platform_get_drvdata(pdev);
-> +	struct device_node *root __free(device_node) = of_find_node_by_path("/");
-> +	const struct ocotp_access_gates *access_gates = priv->data->access_gates;
-> +	void __iomem *reg = priv->base + priv->data->reg_off;
-> +	u32 off;
-> +	int i;
-> +
-> +	if (!priv->data->access_gates)
-> +		return 0;
-> +
-> +	/* This should never happen */
-> +	WARN_ON(!root);
-> +
-> +	for (i = 0; i < access_gates->num_words; i++) {
-> +		off = access_gates->words[i] << 2;
-> +		priv->value[i] = readl(reg + off);
-> +		dev_dbg(&pdev->dev, "word:%d 0x%08x\n", access_gates->words[i], priv->value[i]);
-> +	}
-> +
-> +	return imx_ele_ocotp_grant_access(pdev, root);
-> +}
-> +
->  static int imx_ele_ocotp_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -161,14 +270,43 @@ static int imx_ele_ocotp_probe(struct platform_device *pdev)
->  	priv->config.fixup_dt_cell_info = imx_ocotp_fixup_dt_cell_info;
->  	mutex_init(&priv->lock);
->  
-> +	platform_set_drvdata(pdev, priv);
-> +
->  	nvmem = devm_nvmem_register(dev, &priv->config);
->  	if (IS_ERR(nvmem))
->  		return PTR_ERR(nvmem);
->  
-> -	return 0;
-> +
-> +	return imx_ele_ocotp_access_control(pdev);
->  }
->  
-> +static const struct ocotp_access_gates imx93_access_gates = {
-> +	.num_words = 3,
-> +	.words = {19, 20, 21},
-> +	.num_gates = IMX93_OCOTP_NUM_GATES,
-> +	.gates = {
-> +		[IMX93_OCOTP_NPU_GATE]		= { .word = 19, .mask = BIT(13) },
-> +		[IMX93_OCOTP_A550_GATE]		= { .word = 19, .mask = BIT(14) },
-> +		[IMX93_OCOTP_A551_GATE]		= { .word = 19, .mask = BIT(15) },
-> +		[IMX93_OCOTP_M33_GATE]		= { .word = 19, .mask = BIT(24) },
-> +		[IMX93_OCOTP_CAN1_FD_GATE]	= { .word = 19, .mask = BIT(28) },
-> +		[IMX93_OCOTP_CAN2_FD_GATE]	= { .word = 19, .mask = BIT(29) },
-> +		[IMX93_OCOTP_CAN1_GATE]		= { .word = 19, .mask = BIT(30) },
-> +		[IMX93_OCOTP_CAN2_GATE]		= { .word = 19, .mask = BIT(31) },
-> +		[IMX93_OCOTP_USB1_GATE]		= { .word = 20, .mask = BIT(3) },
-> +		[IMX93_OCOTP_USB2_GATE]		= { .word = 20, .mask = BIT(4) },
-> +		[IMX93_OCOTP_ENET1_GATE]	= { .word = 20, .mask = BIT(5) },
-> +		[IMX93_OCOTP_ENET2_GATE]	= { .word = 20, .mask = BIT(6) },
-> +		[IMX93_OCOTP_PXP_GATE]		= { .word = 20, .mask = BIT(10) },
-> +		[IMX93_OCOTP_MIPI_CSI1_GATE]	= { .word = 20, .mask = BIT(17) },
-> +		[IMX93_OCOTP_MIPI_DSI1_GATE]	= { .word = 20, .mask = BIT(19) },
-> +		[IMX93_OCOTP_LVDS1_GATE]	= { .word = 20, .mask = BIT(24) },
-> +		[IMX93_OCOTP_ADC1_GATE]		= { .word = 21, .mask = BIT(7) },
-> +	},
-> +};
-> +
->  static const struct ocotp_devtype_data imx93_ocotp_data = {
-> +	.access_gates = &imx93_access_gates,
->  	.reg_off = 0x8000,
->  	.reg_read = imx_ocotp_reg_read,
->  	.size = 2048,
-> @@ -183,7 +321,51 @@ static const struct ocotp_devtype_data imx93_ocotp_data = {
->  	},
->  };
->  
-> +static const struct ocotp_access_gates imx95_access_gates = {
-> +	.num_words = 3,
-> +	.words = {17, 18, 19},
-> +	.num_gates = IMX95_OCOTP_NUM_GATES,
-> +	.gates = {
-> +		[IMX95_OCOTP_CANFD1_GATE]	= { .word = 17, .mask = BIT(20) },
-> +		[IMX95_OCOTP_CANFD2_GATE]	= { .word = 17, .mask = BIT(21) },
-> +		[IMX95_OCOTP_CANFD3_GATE]	= { .word = 17, .mask = BIT(22) },
-> +		[IMX95_OCOTP_CANFD4_GATE]	= { .word = 17, .mask = BIT(23) },
-> +		[IMX95_OCOTP_CANFD5_GATE]	= { .word = 17, .mask = BIT(24) },
-> +		[IMX95_OCOTP_CAN1_GATE]		= { .word = 17, .mask = BIT(25) },
-> +		[IMX95_OCOTP_CAN2_GATE]		= { .word = 17, .mask = BIT(26) },
-> +		[IMX95_OCOTP_CAN3_GATE]		= { .word = 17, .mask = BIT(27) },
-> +		[IMX95_OCOTP_CAN4_GATE]		= { .word = 17, .mask = BIT(28) },
-> +		[IMX95_OCOTP_CAN5_GATE]		= { .word = 17, .mask = BIT(29) },
-> +		[IMX95_OCOTP_NPU_GATE]		= { .word = 18, .mask = BIT(0) },
-> +		[IMX95_OCOTP_A550_GATE]		= { .word = 18, .mask = BIT(1) },
-> +		[IMX95_OCOTP_A551_GATE]		= { .word = 18, .mask = BIT(2) },
-> +		[IMX95_OCOTP_A552_GATE]		= { .word = 18, .mask = BIT(3) },
-> +		[IMX95_OCOTP_A553_GATE]		= { .word = 18, .mask = BIT(4) },
-> +		[IMX95_OCOTP_A554_GATE]		= { .word = 18, .mask = BIT(5) },
-> +		[IMX95_OCOTP_A555_GATE]		= { .word = 18, .mask = BIT(6) },
-> +		[IMX95_OCOTP_M7_GATE]		= { .word = 18, .mask = BIT(9) },
-> +		[IMX95_OCOTP_DCSS_GATE]		= { .word = 18, .mask = BIT(22) },
-> +		[IMX95_OCOTP_LVDS1_GATE]	= { .word = 18, .mask = BIT(27) },
-> +		[IMX95_OCOTP_ISP_GATE]		= { .word = 18, .mask = BIT(29) },
-> +		[IMX95_OCOTP_USB1_GATE]		= { .word = 19, .mask = BIT(2) },
-> +		[IMX95_OCOTP_USB2_GATE]		= { .word = 19, .mask = BIT(3) },
-> +		[IMX95_OCOTP_NETC_GATE]		= { .word = 19, .mask = BIT(4) },
-> +		[IMX95_OCOTP_PCIE1_GATE]	= { .word = 19, .mask = BIT(6) },
-> +		[IMX95_OCOTP_PCIE2_GATE]	= { .word = 19, .mask = BIT(7) },
-> +		[IMX95_OCOTP_ADC1_GATE]		= { .word = 19, .mask = BIT(8) },
-> +		[IMX95_OCOTP_EARC_RX_GATE]	= { .word = 19, .mask = BIT(11) },
-> +		[IMX95_OCOTP_GPU3D_GATE]	= { .word = 19, .mask = BIT(16) },
-> +		[IMX95_OCOTP_VPU_GATE]		= { .word = 19, .mask = BIT(17) },
-> +		[IMX95_OCOTP_JPEG_ENC_GATE]	= { .word = 19, .mask = BIT(18) },
-> +		[IMX95_OCOTP_JPEG_DEC_GATE]	= { .word = 19, .mask = BIT(19) },
-> +		[IMX95_OCOTP_MIPI_CSI1_GATE]	= { .word = 19, .mask = BIT(21) },
-> +		[IMX95_OCOTP_MIPI_CSI2_GATE]	= { .word = 19, .mask = BIT(22) },
-> +		[IMX95_OCOTP_MIPI_DSI1_GATE]	= { .word = 19, .mask = BIT(23) },
-> +	}
-> +};
-> +
->  static const struct ocotp_devtype_data imx95_ocotp_data = {
-> +	.access_gates = &imx95_access_gates,
->  	.reg_off = 0x8000,
->  	.reg_read = imx_ocotp_reg_read,
->  	.size = 2048,
-> 
-> -- 
-> 2.37.1
-> 
 > 
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Hi Alain
+
+Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+
+Thanks
 
