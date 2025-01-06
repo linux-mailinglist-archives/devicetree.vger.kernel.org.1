@@ -1,78 +1,48 @@
-Return-Path: <devicetree+bounces-135780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E15A021F0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:33:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15266A021F1
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:34:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 104ED1882EB0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:33:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DB4818819B0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:34:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0487E1DA60B;
-	Mon,  6 Jan 2025 09:33:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6364F1D935C;
+	Mon,  6 Jan 2025 09:34:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QdObt22v"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="K3fDUiln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234881DA0FC
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 09:33:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCF9B159596;
+	Mon,  6 Jan 2025 09:34:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736156019; cv=none; b=idDudakdZ0BjSgMrofwjUa2/gCm7OKJM0EygGu1P2Z8zuHTW82r7NQmGp4LmJlPKEyW9VtNRKAl/amtNHAfk3HOkXJgrKnZdnTE9fak1VxzymBCjPhI2wjf58F/kklHG3BWytV3Yih3LJ4dLmlDhwRoNwxTfdXA3ylSl+BZacm8=
+	t=1736156059; cv=none; b=fDiSBbOLyixS+5wnmz4QwegTLt3y/zaqNPWOupUjknrgzzsu4RZ3BGLn0Lit0U/BR5xK5UyIZS9pyQ3i8Klru7iYEQ+S3BE3LIwknyffJ6qHuM0XQOhFo3iZ5vHzzn/Muc5NquXO83s6DrpoRJz/wBdC3IQdf/3Xp9OI5qD5RkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736156019; c=relaxed/simple;
-	bh=1VZM7GWiea2SQcW4YHU9Oj5lR4cp2HgEavww/VYd1ts=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Y68LINwqP9+/eqNYW1R6Wf92KreJ3fW4rwwdzjS/0YVC6cJYEEUvrim9LQGn3crHHeBZ8AfZC/ukHOmAxE63w8WIEz/ccVrw5Q4aCrSfGIYsttxQXHhrOuTJDSWQqYVepMU1kzxxmP6BLmlo7vd5gsgMU6kSu2LJ7WoSLdcCvww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QdObt22v; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4364a37a1d7so148472675e9.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 01:33:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736156016; x=1736760816; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=meQf3tOwA9v3KvEUX4FJM9sq2n/e26PkRGC26HXFjcs=;
-        b=QdObt22vh6W/PClnHiVMjiSlOSGhLeEqNsjtXvlXDZNlE2wLOojOxHaeSZtFTD/zGB
-         MgXUp/5EnvNWUEVotD/YWMdXIrxhvF2gvFR8uPZ2EpzIzgbNaUT8lzYZ4mz7vynQ+scR
-         b0zSsfbTre1wMnNpd1JtVdl350kWy73vpLPaNmT3ytQ1zWQdvxbds6Ka0+W7YaVyy1ic
-         DuYb8dlZD2MBN234/K6SuYBABQ/XVfu2JDKUzglw8wGJM+l30DsuGeZJ/+iW8f0rFkeE
-         BCUyF8RyT3Ky64SO8O2U1iCu2plx/u2MDSNVSoBzuw4VkX3Zv+UAfdmr/XUVqSWhR4aT
-         ACtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736156016; x=1736760816;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=meQf3tOwA9v3KvEUX4FJM9sq2n/e26PkRGC26HXFjcs=;
-        b=oLspLURgtJxnwhWL2kK3vAIkUEMNttDRA6a1QuP7ubETa4ax5DG8WQv6rGulS4wx3/
-         c0ZWIqg/m0/sGSr0z6Vhe3ZPCA3oGxBuNdCl/SB2JoRnqHNOWoAVEtRrbfRKT6i1bE8S
-         V+kWuC49lcqVI7quOTeSL936ExVtVY2H0GneGHF81B1dIfJih33r6xCPWt9XaPkeIVCb
-         UYS0NdSXuC0VeBM4FlVG7S4wrSK4McSjO+AJ3AG6T1kqf2dg7cagFYYu71saaeoodnPA
-         OfN24fUBoFy7IG2phZ3l5qLbZknvCBpNFjzBroq+q92tx20fyj+guaMpBh8Q3gVQzIPi
-         lseg==
-X-Forwarded-Encrypted: i=1; AJvYcCValgRk5QKlBZNr81jLWSZ5jDzIFfwl6csmhw9Dux5s9Ojwj90ExtT8nVRHEMldtYAHwzbN+KeYftjW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxh1k0ioP3uP6oNRyWDGsmOmSbWqcTzTtNygaIwxsJ5GIAd9Zfr
-	FzE4MRm7xqwszNaW8qp1iekHsyuLNJeru4aGTtHmbK/O//t7r6rEd4/ow3p8x58=
-X-Gm-Gg: ASbGnctMZb2vFsh8xBOtbTBGS0AVQgeiLnx5HdMQA5UxfPUIO7QgLwk4sYYKKVWRUzt
-	7pYZFVzPFIWsGvaSBHq8x7voZvU5RfDn0AgKxt5O1s5qlZ6HHXMAZj2d0JzUbz12AwQ/hxXrVo1
-	+dNT1v4REvX3EyDyq85vggF1zQg6EcORBpfzZ6ovS3ElTh2/ZEn7rZDlIW7+zL68YLEmbl8P/q+
-	j0cOqA3y8GEQP/aIg7bTBddxXylWZsRg3q15oGdOhIcNYeHVOTFXJBQVFyWap7m
-X-Google-Smtp-Source: AGHT+IEICTKjwcxXOZH5s08dwKlYhgIvVtZ84xC4XqDe0J96RAHSiziM8JeT7xKen2US0pmWaX6DzQ==
-X-Received: by 2002:a05:600c:458f:b0:431:5632:448b with SMTP id 5b1f17b1804b1-43668b5e0c3mr428467285e9.25.1736156016496;
-        Mon, 06 Jan 2025 01:33:36 -0800 (PST)
-Received: from [192.168.0.14] ([188.26.61.92])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4366121955fsm570962605e9.21.2025.01.06.01.33.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jan 2025 01:33:35 -0800 (PST)
-Message-ID: <24963d4d-9d53-4d07-a756-3eb1fc50c3dc@linaro.org>
-Date: Mon, 6 Jan 2025 09:33:34 +0000
+	s=arc-20240116; t=1736156059; c=relaxed/simple;
+	bh=Hx6Q1XxpCrlM9HFYF18nbTRLQ3CRo6WtQWwUgFBECE4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TZluiUTu2HPNSoQ7ia7hpDstx9vQLhN1Z0LFaF+Dy5ltCPpmVciRFbmYLeheld/EH2OFhSWfgE3cmFz1fb7Fbf+9YEsaUm8GFXvpSQUnRUWm2/xH8d1enjRYYGAbjZCL2z5ERwQ4R0HRgtEoXZPg2Oz7FCP5Un+lxOIhTzxXr7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=K3fDUiln; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 43D3F2A5;
+	Mon,  6 Jan 2025 10:33:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1736156003;
+	bh=Hx6Q1XxpCrlM9HFYF18nbTRLQ3CRo6WtQWwUgFBECE4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=K3fDUilnaOfN/nS+FAqsPaKsO5stPX9sLpLRJ9ncxDOmZbIUoW5i83VgFNSLFTnEd
+	 403ZSjcIZlK80nxPHyHHN/ocDpLn4uNevL6h/9ibN6v5Mrh20cZHbAKRTHsyIiASgj
+	 X3kfj+2Hqw5vtJF56vRMkISUSUIgI2W99Xhy1hDs=
+Message-ID: <7a6fd045-3513-4979-9210-8e30361022e3@ideasonboard.com>
+Date: Mon, 6 Jan 2025 11:34:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,108 +50,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] firmware: add Exynos ACPM protocol driver
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 2/9] media: i2c: ds90ub960: Replace aliased clients
+ list with address list
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Andi Shyti
+ <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Jassi Brar <jassisinghbrar@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
- peter.griffin@linaro.org, daniel.lezcano@linaro.org,
- vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
-References: <20241220-gs101-acpm-v5-0-4f26b7fb3f5f@linaro.org>
- <20241220-gs101-acpm-v5-2-4f26b7fb3f5f@linaro.org>
- <8e6bade0-5184-4bf7-b1f0-103a77d0f98b@kernel.org>
- <060c7a96-c1ed-4c97-8a3f-f510102466f9@linaro.org>
+ <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20241230-fpc202-v4-0-761b297dc697@bootlin.com>
+ <20241230-fpc202-v4-2-761b297dc697@bootlin.com>
 Content-Language: en-US
-In-Reply-To: <060c7a96-c1ed-4c97-8a3f-f510102466f9@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20241230-fpc202-v4-2-761b297dc697@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi, Krzysztof,
+Hi,
 
-On 12/31/24 2:32 PM, Tudor Ambarus wrote:
->>> diff --git a/drivers/firmware/samsung/Kconfig b/drivers/firmware/samsung/Kconfig
->>> new file mode 100644
->>> index 000000000000..750b41342174
->>> --- /dev/null
->>> +++ b/drivers/firmware/samsung/Kconfig
->>> @@ -0,0 +1,14 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +
->>> +config EXYNOS_ACPM_PROTOCOL
->>> +	tristate "Exynos Alive Clock and Power Manager (ACPM) Message Protocol"
->>> +	depends on ARCH_EXYNOS || COMPILE_TEST
->>> +	depends on EXYNOS_MBOX
->>
->> Is it build time dependency? No || COMPILE_TEST?
+On 30/12/2024 15:22, Romain Gantois wrote:
+> The ds90ub960 driver currently uses a list of i2c_client structs to keep
+> track of used I2C address translator (ATR) alias slots for each RX port.
 > 
-> There's no build time dependency, I'll drop this line.
->>
->> Is it fine when EXYNOS_MBOX is a module?
+> Keeping these i2c_client structs in the alias slot list isn't actually
+> needed, the driver only needs to know the client address for each slot.
 > 
-> Yes. When the EXYNOS_MBOX module is not loaded, and one tries to load
-> EXYNOS_ACPM_PROTOCOL module, the later will defer probe when requesting
-> the mailbox channels, but that's fine.
+> Convert the aliased_clients list to a list of aliased client addresses.
+> This will allow removing the "client" parameter from the i2c-atr callbacks
+> in a future patch.
 > 
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+> ---
+>   drivers/media/i2c/ds90ub960.c | 18 +++++++++---------
+>   1 file changed, 9 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/ds90ub960.c b/drivers/media/i2c/ds90ub960.c
+> index 33f362a008757578e4c96e6ea7bed2e590776d8d..7534ddf2079fef466d3a114f0be98599427639fa 100644
+> --- a/drivers/media/i2c/ds90ub960.c
+> +++ b/drivers/media/i2c/ds90ub960.c
+> @@ -467,7 +467,7 @@ struct ub960_rxport {
+>   		};
+>   	} eq;
+>   
+> -	const struct i2c_client *aliased_clients[UB960_MAX_PORT_ALIASES];
+> +	u16 aliased_addrs[UB960_MAX_PORT_ALIASES];
+>   };
+>   
+>   struct ub960_asd {
+> @@ -1031,17 +1031,17 @@ static int ub960_atr_attach_client(struct i2c_atr *atr, u32 chan_id,
+>   	struct device *dev = &priv->client->dev;
+>   	unsigned int reg_idx;
+>   
+> -	for (reg_idx = 0; reg_idx < ARRAY_SIZE(rxport->aliased_clients); reg_idx++) {
+> -		if (!rxport->aliased_clients[reg_idx])
+> +	for (reg_idx = 0; reg_idx < UB960_MAX_PORT_ALIASES; reg_idx++) {
 
-I'll need to select EXYNOS_MBOX, I explain why below.
+Any reason to drop the use of ARRAY_SIZE()? Usually when dealing with 
+fixed size arrays, it's nicer to use ARRAY_SIZE().
 
-cut
+  Tomi
 
->>> + */
->>> +static const struct acpm_handle *acpm_get_by_phandle(struct device_node *np,
->>> +						     const char *property)
->>> +{
->>> +	struct acpm_handle *handle = NULL;
->>> +	struct device_node *acpm_np;
->>> +	struct acpm_info *info;
->>> +
->>> +	if (!np) {
->>> +		pr_err("I need a device pointer\n");
->>> +		return ERR_PTR(-EINVAL);
->>> +	}
->>> +
->>> +	acpm_np = of_parse_phandle(np, property, 0);
->>> +	if (!acpm_np)
->>> +		return ERR_PTR(-ENODEV);
->>> +
->>> +	mutex_lock(&acpm_list_mutex);
->>> +	list_for_each_entry(info, &acpm_list, node) {
->>> +		if (acpm_np == info->dev->of_node) {
->>> +			handle = &info->handle;
->>> +			info->users++;
->>> +			break;
->>> +		}
->>> +	}
->>> +	mutex_unlock(&acpm_list_mutex);
->>> +	of_node_put(acpm_np);
->>> +
->>
->> You also need device links and probably try_module_get. See clk.c
-
-I find these necessary too, will add them. try_module_get() must be
-called when the module exists and is alive, otherwise I get a NULL ptr
-dereference. I need a module dependency between acpm-protocol.ko and
-exynos-mailbox.ko.
-	select EXYNOS_MBOX and
-	MODULE_SOFTDEP("pre: exynos-mailbox");
-shall do the trick I think.
-
->> clk_hw_create_clk() or of_qcom_ice_get(). Interestingly, none of them
->> perform both operations, which I think is necessary.
->>
->> I think you could also avoid entire list and mutex by using
->> platform_get_drvdata(), see of_qcom_ice_get().
-
-Using platform_get_drvdata() will simplify the code, thanks. It still
-assumes the platform driver exists and is alive, otherwise we get a NULL
-ptr dereference when getting the drvdata. But we'll be safe if I add the
-module dependency.
-
-Thanks,
-ta
+> +		if (!rxport->aliased_addrs[reg_idx])
+>   			break;
+>   	}
+>   
+> -	if (reg_idx == ARRAY_SIZE(rxport->aliased_clients)) {
+> +	if (reg_idx == UB960_MAX_PORT_ALIASES) {
+>   		dev_err(dev, "rx%u: alias pool exhausted\n", rxport->nport);
+>   		return -EADDRNOTAVAIL;
+>   	}
+>   
+> -	rxport->aliased_clients[reg_idx] = client;
+> +	rxport->aliased_addrs[reg_idx] = client->addr;
+>   
+>   	ub960_rxport_write(priv, chan_id, UB960_RR_SLAVE_ID(reg_idx),
+>   			   client->addr << 1);
+> @@ -1062,18 +1062,18 @@ static void ub960_atr_detach_client(struct i2c_atr *atr, u32 chan_id,
+>   	struct device *dev = &priv->client->dev;
+>   	unsigned int reg_idx;
+>   
+> -	for (reg_idx = 0; reg_idx < ARRAY_SIZE(rxport->aliased_clients); reg_idx++) {
+> -		if (rxport->aliased_clients[reg_idx] == client)
+> +	for (reg_idx = 0; reg_idx < UB960_MAX_PORT_ALIASES; reg_idx++) {
+> +		if (rxport->aliased_addrs[reg_idx] == client->addr)
+>   			break;
+>   	}
+>   
+> -	if (reg_idx == ARRAY_SIZE(rxport->aliased_clients)) {
+> +	if (reg_idx == UB960_MAX_PORT_ALIASES) {
+>   		dev_err(dev, "rx%u: client 0x%02x is not mapped!\n",
+>   			rxport->nport, client->addr);
+>   		return;
+>   	}
+>   
+> -	rxport->aliased_clients[reg_idx] = NULL;
+> +	rxport->aliased_addrs[reg_idx] = 0;
+>   
+>   	ub960_rxport_write(priv, chan_id, UB960_RR_SLAVE_ALIAS(reg_idx), 0);
+>   
+> 
 
 
