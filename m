@@ -1,199 +1,152 @@
-Return-Path: <devicetree+bounces-135961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A7CEA0326D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 23:02:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFEBA032A5
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 23:23:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 773593A3FDB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 22:02:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10241164985
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 22:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF751D89F8;
-	Mon,  6 Jan 2025 22:02:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC2D71E0DC0;
+	Mon,  6 Jan 2025 22:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WQd2Ulvj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDK0zxfi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8DF2BA34;
-	Mon,  6 Jan 2025 22:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96691DF99C;
+	Mon,  6 Jan 2025 22:23:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736200958; cv=none; b=ps2kBmaE80xTnaBGXNxu9ohz916A1SRd8BmDVMeweeNQPHXj9BLD+BaOrP/XVlrGrHzLoklm1aE/sPVVdRI4oqL7TfQQU3mwHFPu31uD1PVZN5yfG+39N216v5xseXtY2cRGC88sibwVe9sVZ6f/8HtfbPdZY3Ja0YD7uqCjGno=
+	t=1736202207; cv=none; b=DrgSVmTihZyBgN0cSQPSKHD9OfvHWDS0DX4Trrth7A3N6Aja65Hywd79KHxlZg+qEVmA9uKTHMA+OLOqRTy8jvYXY8fd2gSLxOYqYxVKs6lvtEVq1K08GJc7nBz7s533uULfbQcY6/xYxpuU+4dhOTykAZeFz1+ybxoDoB77w1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736200958; c=relaxed/simple;
-	bh=22Vikau63qITV3i/zaUeXVBt37cMgj6qndFRb2tuu/I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Nd2KUCLc6huky1c6W3FPFIgnlKw5/T2HLDqKm9J3mqncuhlgN1NMd0+sA77oV4YAKzs6anXnZZPDmsGXisWTeJezzetMdT6jO/LXYUkbk8iZffZTQUjATlZATXo9bkjOIXTypY6fEcFOI0Bx5+2Gja+E1KRnrSKSpdD0j4u+p5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WQd2Ulvj; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 506M2HIk2851323
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 6 Jan 2025 16:02:17 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736200937;
-	bh=K14ZTKiQ85CKaTHc1/h1SQrcM279XDUaAMkgl7ulPNY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=WQd2UlvjO///md9L+sbmsbxlCm47lkLvOM559L01vlaggAWY6zKc7e7Sxax16JwNa
-	 9F0AP4l2zVDX5Pa0HfDLK8/PRcCfc7In/iUCUw/QFqTdjJHNZcWXDkNqHCjBugg4O5
-	 XN+LM0tm/gXbG+BDjnEdkg/mYf1RdDuo+1uL2ZKY=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 506M2H8b007532
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 6 Jan 2025 16:02:17 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 6
- Jan 2025 16:02:16 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 6 Jan 2025 16:02:16 -0600
-Received: from [10.250.35.198] ([10.250.35.198])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 506M2Gvi049973;
-	Mon, 6 Jan 2025 16:02:16 -0600
-Message-ID: <e8637049-ecb5-4e5e-b31d-d096bd517043@ti.com>
-Date: Mon, 6 Jan 2025 16:02:16 -0600
+	s=arc-20240116; t=1736202207; c=relaxed/simple;
+	bh=EjF1YdbqpBPh4sTCXyvUJoXES+N65/VkVyh/WyOKlAU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gN+1x43yjosqO//dQN6Y/UQ87YCKdpp/2mS1UQTH4xNL+/V0imxIFdDcaJNCfe/SrQWp2u7sVREn26TmZtKTZflZ9peFI8E+9xfH91aHH1laR5odxmMEBnDZnO7/xLO71Zlmkmti305nDRyZ1fUgh78vy10z1DfP3WTzh/LCSJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDK0zxfi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2908EC4CEDD;
+	Mon,  6 Jan 2025 22:23:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736202207;
+	bh=EjF1YdbqpBPh4sTCXyvUJoXES+N65/VkVyh/WyOKlAU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=WDK0zxfibQNqposUpofYKNMUr6THqGQzFguvcF3JIiqTlvPnk8CLLWbu8cn3XHG/b
+	 G5cbc1p2HKj4gkeIgpNYvquCwEHlGXnP/gWchgvLYluiP8aO6dTsPhZAVJ1v22yFaD
+	 ZyGuEUwuLwcK+RDTKWswd0bGcR5kzldEj8SXDD3mvenfCqtMrz5pkdEaCj9NvLupxL
+	 X6Fqhkl5QnvtL86+O8l1pmk3+9xkG1mVA25xip2wbmWxO3y/10zpYDXWyO2y78jqD/
+	 Fe0E5YLYwDYIYoMLvyKV8Ab10iGMestVsCXRcJoTX2iD/V0b1NHriDYwewqTe3BQEi
+	 p+4eDpzgEFAxQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 14E80E77198;
+	Mon,  6 Jan 2025 22:23:27 +0000 (UTC)
+From: Mikael Gonella-Bolduc via B4 Relay <devnull+mgonellabolduc.dimonoff.com@kernel.org>
+Subject: [PATCH v4 0/2] Add support for Avago/Broadcom APDS9160
+Date: Mon, 06 Jan 2025 17:23:00 -0500
+Message-Id: <20250106-apds9160-driver-v4-0-f88d9fc45d84@dimonoff.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 6/7] regulator: tps65215: Define probe() helper
- functions
-To: Roger Quadros <rogerq@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>, <andreas@kemnade.info>,
-        <khilman@baylibre.com>, <tony@atomide.com>,
-        <jerome.neanne@baylibre.com>, <linux-omap@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <m-leonard@ti.com>, <praneeth@ti.com>
-References: <20241226215412.395822-1-s-ramamoorthy@ti.com>
- <20241226215412.395822-7-s-ramamoorthy@ti.com>
- <5ea0f7f1-caee-487d-bbda-e2f2361efb41@kernel.org>
-Content-Language: en-US
-From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-In-Reply-To: <5ea0f7f1-caee-487d-bbda-e2f2361efb41@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-B4-Tracking: v=1; b=H4sIAMRXfGcC/3XNQQ7CIBCF4as0rMUApbR15T2MiwIzlkVLA4Zom
+ t5d2o1G6/J/yXwzkwjBQSSnYiYBkovOjznkoSCm78YbUGdzE8GE5Jy3tJtsbLli1AaXINBGGay
+ gURbKiuSrKQC6xyZerrl7F+8+PLcHia/rfytxyih2jKm60hI6ebZu8KNHPBo/kJVL4k0Ipn4Jk
+ QkNwuhaADa4R5QfBN8hykwY0aIyqmba6i9iWZYXLawuwzcBAAA=
+X-Change-ID: 20241119-apds9160-driver-86cf5e86de35
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+ Nick Desaulniers <ndesaulniers@google.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>
+Cc: Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev, 
+ Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>, 
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, 
+ Matti Vaittinen <mazziesaccount@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736202206; l=2816;
+ i=mgonellabolduc@dimonoff.com; s=20241119; h=from:subject:message-id;
+ bh=EjF1YdbqpBPh4sTCXyvUJoXES+N65/VkVyh/WyOKlAU=;
+ b=rhCRyhxP9R3tc9V/gi0aiwV282xjQ9OJwJLz2cHufK0FKqqFUgY5ktAOarD0PLvyxf7PrEqtn
+ DsccZt0pflhAWKV4ghbjfcH781Xp7vsxe5m4d1aBMS/vivzLzCWJyEh
+X-Developer-Key: i=mgonellabolduc@dimonoff.com; a=ed25519;
+ pk=p4tvPfGPfXRyChsgHc6s7HwB6YBl2JqqcP3BXtoDitE=
+X-Endpoint-Received: by B4 Relay for mgonellabolduc@dimonoff.com/20241119
+ with auth_id=279
+X-Original-From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+Reply-To: mgonellabolduc@dimonoff.com
 
-Hi,
+APDS9160 is an ALS and proximity sensor.
+https://www.broadcom.com/products/optical-sensors/integrated-ambient-light-and-proximity-sensors/apds-9160-003
 
-On 1/4/2025 12:45 PM, Roger Quadros wrote:
->
-> On 26/12/2024 23:54, Shree Ramamoorthy wrote:
->> Factor register_regulators() and request_irqs() out into smaller functions.
->> These 2 helper functions are used in the next restructure probe() patch to
->> go through the common (overlapping) regulators and irqs first, then the
->> device-specific structs identifed in the chip_data struct.
->>
->> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
->> ---
->>  drivers/regulator/tps65219-regulator.c | 64 ++++++++++++++++++++++++++
->>  1 file changed, 64 insertions(+)
->>
->> diff --git a/drivers/regulator/tps65219-regulator.c b/drivers/regulator/tps65219-regulator.c
->> index 13f0e68d8e85..8469ee89802c 100644
->> --- a/drivers/regulator/tps65219-regulator.c
->> +++ b/drivers/regulator/tps65219-regulator.c
->> @@ -346,6 +346,70 @@ static struct chip_data chip_info_table[] = {
->>  	},
->>  };
->>  
->> +static int tps65219_register_regulators(const struct regulator_desc *regulators,
->> +					struct tps65219 *tps,
->> +					struct device *dev,
->> +					struct regulator_config config,
->> +					unsigned int arr_size)
->> +{
->> +	int i;
->> +	struct regulator_dev *rdev;
-> reverse xmas tree?
+Signed-off-by: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+---
+Changes in v4:
+- dt-bindings: Add additional analog cancellation properties
+- driver: Using analog cancellation properties from device tree
+- driver: Changed proximity channel type calibscale to calibbias
+- driver: Fixed some comments format
+- Link to v3: https://lore.kernel.org/r/20241216-apds9160-driver-v3-0-c29f6c670bdb@dimonoff.com
 
-Applied reverse xmas tree style to this file & will review other files as well for this.
+Changes in v3:
+- Updated maintainers file email and vendor
+- Corrected documentation file reference
+- dt-bindings: Changed commit message
+- driver: Added event and channel table when irq is not used
+- driver: Using int time instead of sampling freq for proximity channel
+- driver: Using scale instead of hardwaregain for proximity channel
+- driver: Dropped unused static variables
+- driver: Fixed switch fall-through
+- driver: Dropped explicit void pointer cast
+- driver: Dropped some less relevant comments
+- driver: Various code style related fix
+- Link to v2: https://lore.kernel.org/r/20241206-apds9160-driver-v2-0-be2cb72ef8f4@dimonoff.com
 
->> +
->> +	config.driver_data = tps;
->> +	config.dev = tps->dev;
->> +	config.regmap = tps->regmap;
->> +
->> +	for (i = 0; i < arr_size; i++) {
->> +		rdev = devm_regulator_register(dev, &regulators[i],
->> +						&config);
->> +		if (IS_ERR(rdev)) {
->> +			dev_err(tps->dev,
->> +				"Failed to register %s regulator\n",
->> +				regulators[i].name);
->> +
->> +			return PTR_ERR(rdev);
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int tps65219_request_irqs(struct tps65219_regulator_irq_type *irq_types,
->> +				 struct tps65219 *tps, struct platform_device *pdev,
->> +				 struct tps65219_regulator_irq_data *irq_data,
->> +				 unsigned int arr_size)
->> +{
->> +	int i;
->> +	int irq;
->> +	int error;
->> +	struct tps65219_regulator_irq_type *irq_type;
-> here too.
->
->> +
->> +	for (i = 0; i < arr_size; ++i) {
->> +		irq_type = &irq_types[i];
->> +
-> unnecessary new line.
->
->> +		irq = platform_get_irq_byname(pdev, irq_type->irq_name);
->> +		if (irq < 0)
->> +			return -EINVAL;
->> +
->> +		irq_data[i].dev = tps->dev;
->> +		irq_data[i].type = irq_type;
->> +
-> here too
+Changes in v2:
+- Rebased on linux-iio 20fd1383
+- dt-bindings: Dropped the old Avago name and use the brcm vendor prefix
+- dt-bindings: Updated example node name with a generic name
+- dt-bindings: Updated example indentation to 4 spaces
+- dt-bindings: Fixed element ordering
+- KConfig: Dropped unsure sentences
+- KConfig: Dropped unused Kfifo buffer selection
+- driver: Use a more recent iio light driver as template
+- driver: Remove buffer declaration
+- driver: Use avail functions instead of custom iio attributes
+- driver: Use scale instead of hardware gain
+- driver: Removed unused members and unreachable statements
+- driver: Removed unnecessary info and debug prints
+- driver: Fix some coding style and line wrapping issues
+- driver: Reordering of functions
+- Link to v1: https://lore.kernel.org/r/20241119-apds9160-driver-v1-0-fa00675b4ea4@dimonoff.com
 
-Removed both new lines.
+---
+Mikael Gonella-Bolduc (2):
+      dt-bindings: iio: light: Add APDS9160 binding
+      iio: light: Add APDS9160 ALS & Proximity sensor driver
 
->> +		error = devm_request_threaded_irq(tps->dev, irq, NULL,
->> +						  tps65219_regulator_irq_handler,
->> +						  IRQF_ONESHOT,
->> +						  irq_type->irq_name,
->> +						  &irq_data[i]);
->> +		if (error) {
->> +			dev_err(tps->dev,
->> +				"Failed to request %s IRQ %d: %d\n",
->> +				irq_type->irq_name, irq, error);
->> +			return error;
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>  static int tps65219_regulator_probe(struct platform_device *pdev)
->>  {
->>  	struct tps65219 *tps = dev_get_drvdata(pdev->dev.parent);
-> This patch by itself will complain during build as there are no users for
-> these functions.
-> Could you please squash patches 6 and 7?
+ .../bindings/iio/light/brcm,apds9160.yaml          |   86 ++
+ MAINTAINERS                                        |    7 +
+ drivers/iio/light/Kconfig                          |   11 +
+ drivers/iio/light/Makefile                         |    1 +
+ drivers/iio/light/apds9160.c                       | 1586 ++++++++++++++++++++
+ 5 files changed, 1691 insertions(+)
+---
+base-commit: 5de07b8a24cf44cdb78adeab790704bf577c2c1d
+change-id: 20241119-apds9160-driver-86cf5e86de35
 
-I kept patch 6 and 7 separate as the diff was hard to read & 
-the git diff options did not resolve this. Is there a way to keep these 2 patches 
-separate for user readability and avoid the build error? Or just squash them to 
-prevent build errors knowing the diff will be hard to read? Thank you for your help!
+Best regards,
+-- 
+Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+
 
 
