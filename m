@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-135808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46AC8A02564
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:27:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 449D6A0258A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:31:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEB9D1885F23
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:27:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48A201882A43
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 12:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BC971DD0D5;
-	Mon,  6 Jan 2025 12:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844371DE3C7;
+	Mon,  6 Jan 2025 12:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZpA0W1Dn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a9LQR9JG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E002E1DACA1;
-	Mon,  6 Jan 2025 12:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239EF1DDA36;
+	Mon,  6 Jan 2025 12:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736166473; cv=none; b=fUzflA7bL64bVrDiSIBNyDz4Ht3rdAh3LYXklxwlR9xb/C7v15WsednZQ+xPm0aPSwRZaZXuMdk9zS0diwFJtoLzTuXNzcabS7CH3RcRcGegVuiDMIW6yc37Ir2q7TPc2VqnW21erkPEOKYMcXLs1kNZM2tkloMLQ5EcwW1p8Lc=
+	t=1736166607; cv=none; b=aDCuLy+STRxXz8cmHlZDlWYRR8CGMaymqO3h+4KygWeiURIeD35WRfDXIDFbbUzIGkanWCq9YNGuvcBhDZ5UgOz0+yAHRYs990U7mh4efYA1pypCqiLgk3Ky8r0OBOruhoGpCJI0bv9Q5pBcOmpxo/nkl45HpnMMZ5YjdTVXUfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736166473; c=relaxed/simple;
-	bh=h+O24JtZ3TfRLhv7+XOof/7y2A0nsspfqjh9AFtWnQU=;
+	s=arc-20240116; t=1736166607; c=relaxed/simple;
+	bh=dt9uunZPfoDIamCzQdNIaGK4eUqsz1QnKbTU0kwbDmY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZPYdHz/p+YkdrhtOCNEWE2XOKVOemo9kMrlruZFdibFPfOfPCL6o8oi5zve9m0SP7UDanrPcvs1xgYS6JyfbU4KeZk++hIAXxUoMaiitqbj5+lBDWI0Ub2fGs8fF+QFbAnkt456mKoLG0/5QN+3ImKNmqu0r3oamgp/Og8u4kfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZpA0W1Dn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E66EC4CED2;
-	Mon,  6 Jan 2025 12:27:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GHhfp3/eKZkqDm3sfcSQalyzO5pAY4Lxi3PkTjD0ODpXC6ROGT6HjHezBou6ZaQhkarze+bTDWLdNR6T8EUNE85jr1H86h0CKFbkVks3SI2RkwsX9CBi+AgruzaaYDDh0gadajjMKOVytH34a4IhtVh8idMIkC30N/R117WuXEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a9LQR9JG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF4FC4CED2;
+	Mon,  6 Jan 2025 12:29:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736166472;
-	bh=h+O24JtZ3TfRLhv7+XOof/7y2A0nsspfqjh9AFtWnQU=;
+	s=k20201202; t=1736166606;
+	bh=dt9uunZPfoDIamCzQdNIaGK4eUqsz1QnKbTU0kwbDmY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZpA0W1Dn0adQffp0rRzYA3Cnng24NfJuxeNCBxMBx0o4r9bfN5HFNK1W3N1FCuxbB
-	 yJnMK2cL8DjRYh/KY/6g22xs60MFwAsMb9Kv7tDb50cjwX5rDy0ZNiI7bOYP3nwee2
-	 xNM488r+G9r7bJly/D3PXD01SIkAo1d4IhRLyoF+X4WX8b0hgL+MIohIESjUm2Mhil
-	 DBIiXRzUvlLPZmr6wtsMjIXbV9mozcTKqalJjVsAdKpiHef32ve58LVXtGeXItm3yy
-	 49mgeQv5b/AnVpe8dNYHMGbMJQG/I0vgfsF/RZlk4te2fVaUVr/4rkVdyI09EYUuKf
-	 lej8aPDdnH2wg==
-Message-ID: <eb2088d3-81f6-4cb8-a4d7-6ef985aedbda@kernel.org>
-Date: Mon, 6 Jan 2025 13:27:43 +0100
+	b=a9LQR9JGvR0xDzmmLzR5+XiZyNQkMMSzf8c1Gv73vWyzd8Q4iG15fZOWnWayXC50c
+	 0tJTFwh9hsvkZb+pipXUybbF6cvhVm9uycseeNmVAXjwQAUDWVeW1Osqr9dKcc7tOX
+	 TowLQZAdYm5ZjJLM7mOUJ7AVqQiTYWZ2AX6qzD//Q31W4vNBWwOqfiw7pQ/43Trfi1
+	 SavnRtZPCt+sRJZJ4+7V8ksKnIbRq2cVBTPNwYzKsD2rbq7ysZHuglAmFxg21mX60A
+	 lOv6rQXmXY+XPhQ/hc/XX2ipjv9lVQjaegFcLmoRP72x7KXjgoH5y/tcOUaYb4OsSF
+	 FO5tT8UKd6Fag==
+Message-ID: <12636552-b644-429b-8be0-44334fae6130@kernel.org>
+Date: Mon, 6 Jan 2025 13:29:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,29 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: PCI: mediatek-gen3: Add MT8196 support
-To: =?UTF-8?B?Smlhbmp1biBXYW5nICjnjovlu7rlhpsp?= <Jianjun.Wang@mediatek.com>
-Cc: "linux-mediatek@lists.infradead.org"
- <linux-mediatek@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- =?UTF-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
- "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Ryder Lee <Ryder.Lee@mediatek.com>
-References: <20250103060035.30688-1-jianjun.wang@mediatek.com>
- <20250103060035.30688-2-jianjun.wang@mediatek.com>
- <ndj6j2mmylipr7mxg42f3lcwgx55cvcjnuuofmlk6n6t5uz5pr@bxugolyfublc>
- <04ae2a07e2c2d3c03e82596034b1b7711450a0ae.camel@mediatek.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: platform: Add Huawei Matebook E Go EC
+To: Pengyu Luo <mitltlatltl@gmail.com>
+Cc: andersson@kernel.org, bryan.odonoghue@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org,
+ gregkh@linuxfoundation.org, hdegoede@redhat.com,
+ heikki.krogerus@linux.intel.com, ilpo.jarvinen@linux.intel.com,
+ jdelvare@suse.com, konradybcio@kernel.org, krzk+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux@roeck-us.net,
+ platform-driver-x86@vger.kernel.org, robh@kernel.org, sre@kernel.org
+References: <md45rp2dmv7aibez2sxwzyjayfi4wbujshlc46hxi6v4jzlhfr@tpbtqv46hrlh>
+ <20250106080657.240974-1-mitltlatltl@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,48 +108,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <04ae2a07e2c2d3c03e82596034b1b7711450a0ae.camel@mediatek.com>
+In-Reply-To: <20250106080657.240974-1-mitltlatltl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 06/01/2025 10:26, Jianjun Wang (王建军) wrote:
-> On Fri, 2025-01-03 at 10:10 +0100, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
+On 06/01/2025 09:06, Pengyu Luo wrote:
+>>> +      - const: huawei,gaokun-ec
 >>
+>> There is no support for gaokun2 here, so I assume you checked and you
+>> know these are compatible. What's more, you claim there is a generic
+>> piece of hardware called gaokun-ec and everything in this family will be
+>> compatible with it. Well, that's my standard disclaimer and disapproval
+>> of using generic compatibles.
 >>
->> On Fri, Jan 03, 2025 at 02:00:11PM +0800, Jianjun Wang wrote:
->>> +        clock-names:
->>> +          items:
->>> +            - const: pl_250m
->>> +            - const: tl_26m
->>> +            - const: peri_26m
->>> +            - const: peri_mem
->>> +            - const: ahb_apb
->>> +            - const: low_power
->>> +
->>> +        resets:
->>> +          minItems: 1
->>> +          maxItems: 2
->>> +
->>> +        reset-names:
->>> +          minItems: 1
->>> +          maxItems: 2
+>> So in general what you want here is *only one* compatible called
+>> huawei,gaokun3-ec
 >>
->> Why resets are flexible?
 > 
-> There are two resets, one for MAC and another for PHY, some platforms
-> may only use one of them.
+> I agree with you. If there is a generic rule to follow, I am not familiar
+> with this. I have seen some bindings, using like this, so I followed it
+> recently.
 
-Even more questions. What does it mean use? Is it there or is it not?
-Platform like SoC? But this is one specific SoC, it cannot be used on
-different SoC.
+Generic rule is: wildcards and family names are not allowed. Now what
+"generic" means, is different for different devices. If unsure, always
+use only device-specific compatibles.
 
-> 
-> Would you prefer to set the number of resets to a fixed value for
-> specific platforms?
-
-Everything should be constrained to match hardware.
 
 
 Best regards,
