@@ -1,166 +1,187 @@
-Return-Path: <devicetree+bounces-135779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC501A021EB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:33:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E15A021F0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:33:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD2B8160FE5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:33:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 104ED1882EB0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:33:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C861D90A7;
-	Mon,  6 Jan 2025 09:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0487E1DA60B;
+	Mon,  6 Jan 2025 09:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IJpz3M34"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QdObt22v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F391D89FD
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 09:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234881DA0FC
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 09:33:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736156015; cv=none; b=T3pRnvQxyARjQG91dVDNsfM3mG4PLsRg8NkopXsP5Ipy7BcwZOkAAEG8jKyL2FFmCSwkrQd9OkUXzWinqI/cMzBSI2AQoxmYG2GXwbMu8T/ISNtGWa6x0TEOzThSFBWndfD9z5eYudTUPIfTBxf1AKezVF/BPhz7HGDKhLY3TpU=
+	t=1736156019; cv=none; b=idDudakdZ0BjSgMrofwjUa2/gCm7OKJM0EygGu1P2Z8zuHTW82r7NQmGp4LmJlPKEyW9VtNRKAl/amtNHAfk3HOkXJgrKnZdnTE9fak1VxzymBCjPhI2wjf58F/kklHG3BWytV3Yih3LJ4dLmlDhwRoNwxTfdXA3ylSl+BZacm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736156015; c=relaxed/simple;
-	bh=u6ITWZK6Pnui8R/rp+fW3eZGVRboaltac30M06+tTJY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=YM93gRTyfH5IULZ4/q/dtO4+dfhSCGVLh41QgFmTnwFApFWbT6T5Mcc8XCnqu4V/5LZSU74hZsuuZikNTECrvFkp5SX7pCPAwJHJq/GEMmX1+2UQfBSlmMUSQ92RZp3lRowHrVHyJsVIXYK/9tAOpGCxIylTcbMUabmGjV9pcFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IJpz3M34; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5068gapq017242
-	for <devicetree@vger.kernel.org>; Mon, 6 Jan 2025 09:33:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=Ooc8CaBX+hRHDY5DeK/hHvsWjudmqQEAdI9
-	cWCPXiSU=; b=IJpz3M34yCiwp5zx/LTp3uU6muWxlExxrA73fpDOmFtdnnfKxZH
-	ujwFw4wA7tbbuN/HcU9KO/j0Bian2erDSOh7uHcqa/FexMvDzTcnfPWQmwVj1YQG
-	egmpeGb2kwhuhUdt0t12tQzxh1CGJPOl4qwfhLK9DPq2wxyYaNTY5lVUCGmpP2h2
-	DekO4nXZrtWXQWYkWzu+DDOa5IIgf/X8MPPQ+04D8UFbCiwGBcL0j+hpBiDWgMED
-	FJYlGTluvt+/4Sa9LIfuZ4wN4WgGX8rvIoLE/C9OHlnmNZOdK5BnQZ6A/tSFdvGV
-	ppcEFvhwCeci6TkfD7z1qDy4SE+nzI6paWQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 440bwc83nx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 09:33:33 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2163dc0f5dbso177142305ad.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 01:33:33 -0800 (PST)
+	s=arc-20240116; t=1736156019; c=relaxed/simple;
+	bh=1VZM7GWiea2SQcW4YHU9Oj5lR4cp2HgEavww/VYd1ts=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Y68LINwqP9+/eqNYW1R6Wf92KreJ3fW4rwwdzjS/0YVC6cJYEEUvrim9LQGn3crHHeBZ8AfZC/ukHOmAxE63w8WIEz/ccVrw5Q4aCrSfGIYsttxQXHhrOuTJDSWQqYVepMU1kzxxmP6BLmlo7vd5gsgMU6kSu2LJ7WoSLdcCvww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QdObt22v; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4364a37a1d7so148472675e9.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 01:33:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736156016; x=1736760816; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=meQf3tOwA9v3KvEUX4FJM9sq2n/e26PkRGC26HXFjcs=;
+        b=QdObt22vh6W/PClnHiVMjiSlOSGhLeEqNsjtXvlXDZNlE2wLOojOxHaeSZtFTD/zGB
+         MgXUp/5EnvNWUEVotD/YWMdXIrxhvF2gvFR8uPZ2EpzIzgbNaUT8lzYZ4mz7vynQ+scR
+         b0zSsfbTre1wMnNpd1JtVdl350kWy73vpLPaNmT3ytQ1zWQdvxbds6Ka0+W7YaVyy1ic
+         DuYb8dlZD2MBN234/K6SuYBABQ/XVfu2JDKUzglw8wGJM+l30DsuGeZJ/+iW8f0rFkeE
+         BCUyF8RyT3Ky64SO8O2U1iCu2plx/u2MDSNVSoBzuw4VkX3Zv+UAfdmr/XUVqSWhR4aT
+         ACtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736156012; x=1736760812;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ooc8CaBX+hRHDY5DeK/hHvsWjudmqQEAdI9cWCPXiSU=;
-        b=sb+CQsQTOrklF7n01NgQqcxFlS3hFru7h94cZv1phRYyVUe/x5eSWWLQVDl2QcGcd2
-         4sCJ062jex8Z0EFxx8AUx8IKvARDtd+eWJ7c93TJ1VxvsH8c+qL5GmCEj79wWotcCJhj
-         NxL/ha4KNPXXwvaeGruqGXd8SM7OEG6bBaihFjW0T65WVOghpQTdVvhSiC+okEapVrmS
-         y4rQF5WOUZE8P0Iz7VL4HH5Zw/kbIOwyIY8EVVOIGeg6xSWBmp8Yp4k6CbjMBdgKiEAR
-         0sONcGPwYcpK3OpiR0FdNqcG6gqGlnlgcVoiHH7YyXBVLUwZW2q7sx8AEiW2Q0i2aFET
-         Oz6g==
-X-Forwarded-Encrypted: i=1; AJvYcCVmx/Z16kvsK/v654BZHiK4WZ1VU+FJSQZTA6o1sd4lI3W+qXS1WTQQDAguFApe66ue7k4okv3v/CaM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOZnhJVk1qor+rusFq2kUffqjP1fW6nan7LF8XJYV+bqW0DHCu
-	xKWFhQBxE5o7SwQKNwUSWDCD/KBZGtvVDetqGdzuxIOIbA2jdddc/CeSwdvFZ5yFrpWhM4x/RIc
-	KaB/JTOs8iZ1k4G4SFb46Y3n/GYLPOcc0/amz+iQi3sCgPh2bj4SCId7O1X7S
-X-Gm-Gg: ASbGnctDg2q1s48dJAOeGQWw2eFaHxqjdJCFeUFoB8gz8clR/SXovYf6jK8lIsXw0ba
-	gZuXw8Ge/Ja9ka3fFcNVGkhrYexG30ytONOe0tvc+46y8Qt/jAbzqFuneQZyikRWS1MuWwnANOg
-	75RK92W6qSg7N1lW1pbpEvg1DujE7FIpUVr29qhkl+001sCiTI0BjaJj10Z2aa6nl0jFYMB06ks
-	5Uk/+KM486zA7Ch5S6z8Fv39lqX1UupAml/RyPUu2pIx3+vyK9en8aO23/6VSs1uz9NZ4l2wlX7
-	h7iqer1ZTOmU40Qf
-X-Received: by 2002:a17:902:f685:b0:219:e4b0:4286 with SMTP id d9443c01a7336-219e6ebcabdmr705471535ad.29.1736156012420;
-        Mon, 06 Jan 2025 01:33:32 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFgBkTe3UZfkvpcZzMY3x0JbZEG0gq0kNqGGbjEBJ5gyLmgAR+ikmyKbTEvWQACPEWxprKFPw==
-X-Received: by 2002:a17:902:f685:b0:219:e4b0:4286 with SMTP id d9443c01a7336-219e6ebcabdmr705471305ad.29.1736156012068;
-        Mon, 06 Jan 2025 01:33:32 -0800 (PST)
-Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9f625csm281079085ad.208.2025.01.06.01.33.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 01:33:31 -0800 (PST)
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-To: andersson@kernel.org, robh@kernel.org, dmitry.baryshkov@linaro.org,
-        manivannan.sadhasivam@linaro.org, krzk@kernel.org, helgaas@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com,
-        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Subject: [PATCH V1] schemas: pci: bridge: Document PCI L0s & L1 entry delay and nfts
-Date: Mon,  6 Jan 2025 15:03:04 +0530
-Message-Id: <20250106093304.604829-1-krishna.chundru@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1736156016; x=1736760816;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=meQf3tOwA9v3KvEUX4FJM9sq2n/e26PkRGC26HXFjcs=;
+        b=oLspLURgtJxnwhWL2kK3vAIkUEMNttDRA6a1QuP7ubETa4ax5DG8WQv6rGulS4wx3/
+         c0ZWIqg/m0/sGSr0z6Vhe3ZPCA3oGxBuNdCl/SB2JoRnqHNOWoAVEtRrbfRKT6i1bE8S
+         V+kWuC49lcqVI7quOTeSL936ExVtVY2H0GneGHF81B1dIfJih33r6xCPWt9XaPkeIVCb
+         UYS0NdSXuC0VeBM4FlVG7S4wrSK4McSjO+AJ3AG6T1kqf2dg7cagFYYu71saaeoodnPA
+         OfN24fUBoFy7IG2phZ3l5qLbZknvCBpNFjzBroq+q92tx20fyj+guaMpBh8Q3gVQzIPi
+         lseg==
+X-Forwarded-Encrypted: i=1; AJvYcCValgRk5QKlBZNr81jLWSZ5jDzIFfwl6csmhw9Dux5s9Ojwj90ExtT8nVRHEMldtYAHwzbN+KeYftjW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxh1k0ioP3uP6oNRyWDGsmOmSbWqcTzTtNygaIwxsJ5GIAd9Zfr
+	FzE4MRm7xqwszNaW8qp1iekHsyuLNJeru4aGTtHmbK/O//t7r6rEd4/ow3p8x58=
+X-Gm-Gg: ASbGnctMZb2vFsh8xBOtbTBGS0AVQgeiLnx5HdMQA5UxfPUIO7QgLwk4sYYKKVWRUzt
+	7pYZFVzPFIWsGvaSBHq8x7voZvU5RfDn0AgKxt5O1s5qlZ6HHXMAZj2d0JzUbz12AwQ/hxXrVo1
+	+dNT1v4REvX3EyDyq85vggF1zQg6EcORBpfzZ6ovS3ElTh2/ZEn7rZDlIW7+zL68YLEmbl8P/q+
+	j0cOqA3y8GEQP/aIg7bTBddxXylWZsRg3q15oGdOhIcNYeHVOTFXJBQVFyWap7m
+X-Google-Smtp-Source: AGHT+IEICTKjwcxXOZH5s08dwKlYhgIvVtZ84xC4XqDe0J96RAHSiziM8JeT7xKen2US0pmWaX6DzQ==
+X-Received: by 2002:a05:600c:458f:b0:431:5632:448b with SMTP id 5b1f17b1804b1-43668b5e0c3mr428467285e9.25.1736156016496;
+        Mon, 06 Jan 2025 01:33:36 -0800 (PST)
+Received: from [192.168.0.14] ([188.26.61.92])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4366121955fsm570962605e9.21.2025.01.06.01.33.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jan 2025 01:33:35 -0800 (PST)
+Message-ID: <24963d4d-9d53-4d07-a756-3eb1fc50c3dc@linaro.org>
+Date: Mon, 6 Jan 2025 09:33:34 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: G3ubrPNDW9bqr72BOhBI_NY2xOXooE9X
-X-Proofpoint-ORIG-GUID: G3ubrPNDW9bqr72BOhBI_NY2xOXooE9X
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 phishscore=0 lowpriorityscore=0 clxscore=1015 mlxscore=0
- spamscore=0 impostorscore=0 mlxlogscore=999 adultscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501060084
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] firmware: add Exynos ACPM protocol driver
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
+ peter.griffin@linaro.org, daniel.lezcano@linaro.org,
+ vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
+References: <20241220-gs101-acpm-v5-0-4f26b7fb3f5f@linaro.org>
+ <20241220-gs101-acpm-v5-2-4f26b7fb3f5f@linaro.org>
+ <8e6bade0-5184-4bf7-b1f0-103a77d0f98b@kernel.org>
+ <060c7a96-c1ed-4c97-8a3f-f510102466f9@linaro.org>
+Content-Language: en-US
+In-Reply-To: <060c7a96-c1ed-4c97-8a3f-f510102466f9@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Some controllers and endpoints provide provision to program the entry
-delays of L0s & L1 which will allow the link to enter L0s & L1 more
-aggressively to save power.
+Hi, Krzysztof,
 
-As per PCIe spec 6 sec 4.2.5.6, the number of Fast Training Sequence (FTS)
-can be programmed by the controllers or endpoints that is used for bit and
-Symbol lock when transitioning from L0s to L0 based upon the PCIe data rate
-FTS value can vary. So define a array for each data rate for nfts.
+On 12/31/24 2:32 PM, Tudor Ambarus wrote:
+>>> diff --git a/drivers/firmware/samsung/Kconfig b/drivers/firmware/samsung/Kconfig
+>>> new file mode 100644
+>>> index 000000000000..750b41342174
+>>> --- /dev/null
+>>> +++ b/drivers/firmware/samsung/Kconfig
+>>> @@ -0,0 +1,14 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only
+>>> +
+>>> +config EXYNOS_ACPM_PROTOCOL
+>>> +	tristate "Exynos Alive Clock and Power Manager (ACPM) Message Protocol"
+>>> +	depends on ARCH_EXYNOS || COMPILE_TEST
+>>> +	depends on EXYNOS_MBOX
+>>
+>> Is it build time dependency? No || COMPILE_TEST?
+> 
+> There's no build time dependency, I'll drop this line.
+>>
+>> Is it fine when EXYNOS_MBOX is a module?
+> 
+> Yes. When the EXYNOS_MBOX module is not loaded, and one tries to load
+> EXYNOS_ACPM_PROTOCOL module, the later will defer probe when requesting
+> the mailbox channels, but that's fine.
+> 
 
-These values needs to be programmed before link training.
+I'll need to select EXYNOS_MBOX, I explain why below.
 
-Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
----
-- This change was suggested in this patch: https://lore.kernel.org/all/20241211060000.3vn3iumouggjcbva@thinkpad/
----
- dtschema/schemas/pci/pci-bus-common.yaml | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+cut
 
-diff --git a/dtschema/schemas/pci/pci-bus-common.yaml b/dtschema/schemas/pci/pci-bus-common.yaml
-index 94b648f..f0655ba 100644
---- a/dtschema/schemas/pci/pci-bus-common.yaml
-+++ b/dtschema/schemas/pci/pci-bus-common.yaml
-@@ -128,6 +128,16 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     enum: [ 1, 2, 4, 8, 16, 32 ]
- 
-+  nfts:
-+    description:
-+      Number of Fast Training Sequence (FTS) used during L0s to L0 exit for bit
-+      and Symbol lock.
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    maxItems: 5
-+    items:
-+      maximum: 255
-+
-   reset-gpios:
-     description: GPIO controlled connection to PERST# signal
-     maxItems: 1
-@@ -150,6 +160,12 @@ properties:
-     description: Disables ASPM L0s capability
-     type: boolean
- 
-+  aspm-l0s-entry-delay-ns:
-+    description: Aspm l0s entry delay.
-+
-+  aspm-l1-entry-delay-ns:
-+    description: Aspm l1 entry delay.
-+
-   vpcie12v-supply:
-     description: 12v regulator phandle for the slot
- 
--- 
-2.34.1
+>>> + */
+>>> +static const struct acpm_handle *acpm_get_by_phandle(struct device_node *np,
+>>> +						     const char *property)
+>>> +{
+>>> +	struct acpm_handle *handle = NULL;
+>>> +	struct device_node *acpm_np;
+>>> +	struct acpm_info *info;
+>>> +
+>>> +	if (!np) {
+>>> +		pr_err("I need a device pointer\n");
+>>> +		return ERR_PTR(-EINVAL);
+>>> +	}
+>>> +
+>>> +	acpm_np = of_parse_phandle(np, property, 0);
+>>> +	if (!acpm_np)
+>>> +		return ERR_PTR(-ENODEV);
+>>> +
+>>> +	mutex_lock(&acpm_list_mutex);
+>>> +	list_for_each_entry(info, &acpm_list, node) {
+>>> +		if (acpm_np == info->dev->of_node) {
+>>> +			handle = &info->handle;
+>>> +			info->users++;
+>>> +			break;
+>>> +		}
+>>> +	}
+>>> +	mutex_unlock(&acpm_list_mutex);
+>>> +	of_node_put(acpm_np);
+>>> +
+>>
+>> You also need device links and probably try_module_get. See clk.c
+
+I find these necessary too, will add them. try_module_get() must be
+called when the module exists and is alive, otherwise I get a NULL ptr
+dereference. I need a module dependency between acpm-protocol.ko and
+exynos-mailbox.ko.
+	select EXYNOS_MBOX and
+	MODULE_SOFTDEP("pre: exynos-mailbox");
+shall do the trick I think.
+
+>> clk_hw_create_clk() or of_qcom_ice_get(). Interestingly, none of them
+>> perform both operations, which I think is necessary.
+>>
+>> I think you could also avoid entire list and mutex by using
+>> platform_get_drvdata(), see of_qcom_ice_get().
+
+Using platform_get_drvdata() will simplify the code, thanks. It still
+assumes the platform driver exists and is alive, otherwise we get a NULL
+ptr dereference when getting the drvdata. But we'll be safe if I add the
+module dependency.
+
+Thanks,
+ta
 
 
