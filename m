@@ -1,85 +1,199 @@
-Return-Path: <devicetree+bounces-135960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFAAA031F2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 22:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A7CEA0326D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 23:02:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C96FD3A066A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 21:17:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 773593A3FDB
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 22:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152D11E0B70;
-	Mon,  6 Jan 2025 21:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF751D89F8;
+	Mon,  6 Jan 2025 22:02:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XafOvofD"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WQd2Ulvj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D67F7EEB3;
-	Mon,  6 Jan 2025 21:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8DF2BA34;
+	Mon,  6 Jan 2025 22:02:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736198238; cv=none; b=ZM+dRA2JDhJkOsttoCR4c4qFOW0Q1U9wXTNvFXDaFRdFLEwSXB3N8for00xQ3a8+loZnKxAkmDXpETT1v2ILTBPpWTeAbEiEQXjWCpBLOxf/XxIaPKkMJS/cMRDJHCmxI9/wvLbjuz5O5CI1iZwG/8VtARTCv4s/HnSe5ScoENc=
+	t=1736200958; cv=none; b=ps2kBmaE80xTnaBGXNxu9ohz916A1SRd8BmDVMeweeNQPHXj9BLD+BaOrP/XVlrGrHzLoklm1aE/sPVVdRI4oqL7TfQQU3mwHFPu31uD1PVZN5yfG+39N216v5xseXtY2cRGC88sibwVe9sVZ6f/8HtfbPdZY3Ja0YD7uqCjGno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736198238; c=relaxed/simple;
-	bh=AvuoJl6Pcuz67z2j20A+BOC6wlJWFLfnQZdcgAbwp74=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cwmIeEG8xCYXHsxL9uOepo1ZYpZmDvNbnIJnZ5GYKQEx+H0j6pU5rAzyzN9s8RwuVjpSDx6t5orB9LkLY/SttNJkz9kClp2tjvFobM7a83O0R6YvszB2heBk/YUby5GUeHj7+jRqE2nUUYIkSPepEeSSdjxgANmLsYmbyJJTXlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XafOvofD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D018C4CED2;
-	Mon,  6 Jan 2025 21:17:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736198237;
-	bh=AvuoJl6Pcuz67z2j20A+BOC6wlJWFLfnQZdcgAbwp74=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XafOvofDqX41PyOtvTD1lc1nYHuMIdW7ty4q4uRlMEA5125ruOTF6u0qtDFMo+u2A
-	 SK6BdjNHXu2j9RRlwcPMUYt9hF7C/2VPdmQyRKCohy2bs21AUszMQn6FAp6A0JziFF
-	 QBadmgTIGjCEWPUGaPebddXHSlche3lm4YyNQNOKaEcZoU/6zX/X7TnxDz8AtgmUix
-	 BsnwcZZAcABLn4uwB+4t5kNB1Tkjjtu/sau9EI8/LwZ6TbiczZK/H26tnqPLxqvJwR
-	 UeVPlbpHw1TCB+h2HrJ0gYyL9nF7A8hP1LAB8M+CFgWm23flODixGOS0t5BVEvXNX9
-	 KmkzMxRV3X4fg==
-Date: Mon, 6 Jan 2025 15:17:16 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Michael Turquette <mturquette@baylibre.com>, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
-	linux-clk@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Tero Kristo <kristo@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	linux-omap@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: clock: ti: Convert composite.txt to
- json-schema
-Message-ID: <173619823550.1023974.12706750930453116268.robh@kernel.org>
-References: <20250105170854.408875-1-andreas@kemnade.info>
- <20250105170854.408875-3-andreas@kemnade.info>
+	s=arc-20240116; t=1736200958; c=relaxed/simple;
+	bh=22Vikau63qITV3i/zaUeXVBt37cMgj6qndFRb2tuu/I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Nd2KUCLc6huky1c6W3FPFIgnlKw5/T2HLDqKm9J3mqncuhlgN1NMd0+sA77oV4YAKzs6anXnZZPDmsGXisWTeJezzetMdT6jO/LXYUkbk8iZffZTQUjATlZATXo9bkjOIXTypY6fEcFOI0Bx5+2Gja+E1KRnrSKSpdD0j4u+p5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WQd2Ulvj; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 506M2HIk2851323
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 6 Jan 2025 16:02:17 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736200937;
+	bh=K14ZTKiQ85CKaTHc1/h1SQrcM279XDUaAMkgl7ulPNY=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=WQd2UlvjO///md9L+sbmsbxlCm47lkLvOM559L01vlaggAWY6zKc7e7Sxax16JwNa
+	 9F0AP4l2zVDX5Pa0HfDLK8/PRcCfc7In/iUCUw/QFqTdjJHNZcWXDkNqHCjBugg4O5
+	 XN+LM0tm/gXbG+BDjnEdkg/mYf1RdDuo+1uL2ZKY=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 506M2H8b007532
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 6 Jan 2025 16:02:17 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 6
+ Jan 2025 16:02:16 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 6 Jan 2025 16:02:16 -0600
+Received: from [10.250.35.198] ([10.250.35.198])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 506M2Gvi049973;
+	Mon, 6 Jan 2025 16:02:16 -0600
+Message-ID: <e8637049-ecb5-4e5e-b31d-d096bd517043@ti.com>
+Date: Mon, 6 Jan 2025 16:02:16 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250105170854.408875-3-andreas@kemnade.info>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 6/7] regulator: tps65215: Define probe() helper
+ functions
+To: Roger Quadros <rogerq@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>, <andreas@kemnade.info>,
+        <khilman@baylibre.com>, <tony@atomide.com>,
+        <jerome.neanne@baylibre.com>, <linux-omap@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <m-leonard@ti.com>, <praneeth@ti.com>
+References: <20241226215412.395822-1-s-ramamoorthy@ti.com>
+ <20241226215412.395822-7-s-ramamoorthy@ti.com>
+ <5ea0f7f1-caee-487d-bbda-e2f2361efb41@kernel.org>
+Content-Language: en-US
+From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+In-Reply-To: <5ea0f7f1-caee-487d-bbda-e2f2361efb41@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi,
 
-On Sun, 05 Jan 2025 18:08:54 +0100, Andreas Kemnade wrote:
-> Convert the OMAP gate clock device tree binding to json-schema.
-> Specify the creator of the original binding as a maintainer.
-> Choose GPL-only license because original binding was also GPL.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
->  .../bindings/clock/ti/composite.txt           | 55 -------------
->  .../bindings/clock/ti/ti,composite-clock.yaml | 82 +++++++++++++++++++
->  2 files changed, 82 insertions(+), 55 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/ti/composite.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,composite-clock.yaml
-> 
+On 1/4/2025 12:45 PM, Roger Quadros wrote:
+>
+> On 26/12/2024 23:54, Shree Ramamoorthy wrote:
+>> Factor register_regulators() and request_irqs() out into smaller functions.
+>> These 2 helper functions are used in the next restructure probe() patch to
+>> go through the common (overlapping) regulators and irqs first, then the
+>> device-specific structs identifed in the chip_data struct.
+>>
+>> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+>> ---
+>>  drivers/regulator/tps65219-regulator.c | 64 ++++++++++++++++++++++++++
+>>  1 file changed, 64 insertions(+)
+>>
+>> diff --git a/drivers/regulator/tps65219-regulator.c b/drivers/regulator/tps65219-regulator.c
+>> index 13f0e68d8e85..8469ee89802c 100644
+>> --- a/drivers/regulator/tps65219-regulator.c
+>> +++ b/drivers/regulator/tps65219-regulator.c
+>> @@ -346,6 +346,70 @@ static struct chip_data chip_info_table[] = {
+>>  	},
+>>  };
+>>  
+>> +static int tps65219_register_regulators(const struct regulator_desc *regulators,
+>> +					struct tps65219 *tps,
+>> +					struct device *dev,
+>> +					struct regulator_config config,
+>> +					unsigned int arr_size)
+>> +{
+>> +	int i;
+>> +	struct regulator_dev *rdev;
+> reverse xmas tree?
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied reverse xmas tree style to this file & will review other files as well for this.
+
+>> +
+>> +	config.driver_data = tps;
+>> +	config.dev = tps->dev;
+>> +	config.regmap = tps->regmap;
+>> +
+>> +	for (i = 0; i < arr_size; i++) {
+>> +		rdev = devm_regulator_register(dev, &regulators[i],
+>> +						&config);
+>> +		if (IS_ERR(rdev)) {
+>> +			dev_err(tps->dev,
+>> +				"Failed to register %s regulator\n",
+>> +				regulators[i].name);
+>> +
+>> +			return PTR_ERR(rdev);
+>> +		}
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int tps65219_request_irqs(struct tps65219_regulator_irq_type *irq_types,
+>> +				 struct tps65219 *tps, struct platform_device *pdev,
+>> +				 struct tps65219_regulator_irq_data *irq_data,
+>> +				 unsigned int arr_size)
+>> +{
+>> +	int i;
+>> +	int irq;
+>> +	int error;
+>> +	struct tps65219_regulator_irq_type *irq_type;
+> here too.
+>
+>> +
+>> +	for (i = 0; i < arr_size; ++i) {
+>> +		irq_type = &irq_types[i];
+>> +
+> unnecessary new line.
+>
+>> +		irq = platform_get_irq_byname(pdev, irq_type->irq_name);
+>> +		if (irq < 0)
+>> +			return -EINVAL;
+>> +
+>> +		irq_data[i].dev = tps->dev;
+>> +		irq_data[i].type = irq_type;
+>> +
+> here too
+
+Removed both new lines.
+
+>> +		error = devm_request_threaded_irq(tps->dev, irq, NULL,
+>> +						  tps65219_regulator_irq_handler,
+>> +						  IRQF_ONESHOT,
+>> +						  irq_type->irq_name,
+>> +						  &irq_data[i]);
+>> +		if (error) {
+>> +			dev_err(tps->dev,
+>> +				"Failed to request %s IRQ %d: %d\n",
+>> +				irq_type->irq_name, irq, error);
+>> +			return error;
+>> +		}
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>  static int tps65219_regulator_probe(struct platform_device *pdev)
+>>  {
+>>  	struct tps65219 *tps = dev_get_drvdata(pdev->dev.parent);
+> This patch by itself will complain during build as there are no users for
+> these functions.
+> Could you please squash patches 6 and 7?
+
+I kept patch 6 and 7 separate as the diff was hard to read & 
+the git diff options did not resolve this. Is there a way to keep these 2 patches 
+separate for user readability and avoid the build error? Or just squash them to 
+prevent build errors knowing the diff will be hard to read? Thank you for your help!
 
 
