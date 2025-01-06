@@ -1,108 +1,179 @@
-Return-Path: <devicetree+bounces-135863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90EA0A0289F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:56:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3BDA028A4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:57:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 056421885980
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:56:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B4E618827A6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFACE1448F2;
-	Mon,  6 Jan 2025 14:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00DE778F23;
+	Mon,  6 Jan 2025 14:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ALGKh/18"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hcwnCG1x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DFDA13D893;
-	Mon,  6 Jan 2025 14:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79F34A0C;
+	Mon,  6 Jan 2025 14:57:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736175392; cv=none; b=PNpI0TLuGGDP98n32EDsvazPJOHkPpJLKA7UsTizw1zwx6l/adPy3EW0LhndafeUa40372rw3D9pmSeAnFLyP3SnUhpVV9/fqvaDDr5P7ENbknmZCWCFJMlwDK7mUMdzKUgWxs/NbBVPjQ80k0nqi85cwLtlAUV3dx7eZrz6mpc=
+	t=1736175453; cv=none; b=fWJT9RWQ7O1/YW71jikTMlsEffP5jN0OMXRuh+MO7RLFULxdaS/RogoI81Yt3ILfTH80YE5hBuHjnZDivPVjb40ow7ECfS9d/Dvj0poq+QncvtwrYQsGnZ5NLuVXduzIv2/GQp7tjK1URvsz0wMzmxNy1kPa02joJu+WivMQ8ac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736175392; c=relaxed/simple;
-	bh=Di6LmjJ9gF4qTqhZHjx/v4Wweb6edJ/P+X63RD48/Y8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=I97TXFmWg1/5RRu9QzwJoI8VItTI3JQeV82YjgGZ0gGVYNWER6li7U534jfreMvGEpZOtxn1ypZZeTEUngvnt0HoaDCen7h8yPjEXnZcR5n0qG10KuGefHcP+iXh5p6eO6m/UYhTXiVh99C63ka2Fu2hmYILAkKtjCk6pSMKGDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ALGKh/18; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD107C4CED2;
-	Mon,  6 Jan 2025 14:56:31 +0000 (UTC)
+	s=arc-20240116; t=1736175453; c=relaxed/simple;
+	bh=OH6QCFJFnQueFS8FvFwjI38w2sHTXla5+8K0Yq1gBak=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qTj78IV5eOeI/5muPMKhfEvrp/KJXgAM96MjlvZHYpLD1ZpzCEX4zH/bRWxHyMyFrF9+6X2/QlABNk39EIw4AHID3uRysoP/7/T3up9k8xaxHHoNDQ2G05nQoEuo5yBF8IL7ImDhx5lTchsgJ6S8Dq9ejM4Y7TbgGeJrVAKJkYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hcwnCG1x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32FCCC4CED6;
+	Mon,  6 Jan 2025 14:57:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736175392;
-	bh=Di6LmjJ9gF4qTqhZHjx/v4Wweb6edJ/P+X63RD48/Y8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ALGKh/18X2i9Q3c5JybYrCBw+dTCHFsLv+Ppzx9XLmb+SVXiWcDV7W65iCc9AqAcL
-	 n+pR1ODa7wERwef7yp95ZYdTRjdL0eivnUSCy6MyxHyhghXMpGz1O/T+jVaLqJH+R5
-	 mtw6pU91x+Yq4BzLgpw7I3QCjcmONETSmup6K10QlKgjIg/gPZwM3AVHvrkbJDeASK
-	 MzCSqOI0Sfxe4vfj81q53E3ZuFJRjdPfx2DjjfjpsM137q04sJGil7tlmOb9F2SltE
-	 heSNlckn6m9FHWTX1L9sK+aT7pcaUYzq0Ij5/V6ijylld4IdjwoNXu9SXHadQvf9ts
-	 9dy8cVaT/i4iw==
-Date: Mon, 06 Jan 2025 08:56:30 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1736175453;
+	bh=OH6QCFJFnQueFS8FvFwjI38w2sHTXla5+8K0Yq1gBak=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hcwnCG1xXqBj3hdwVVk+8ofrSTw4FM8hqPb63ExoyqqKI/IjzAfdjdpx8k47PP/7Q
+	 vhpi79rHogDo4DFvAsYIyRxfz6sZhSpmPcREKyNsXsoj3heqv81E+JLVMhVkCpta3V
+	 1DcB45xeMplnmc7IQXyzvNZq4FcEUFVD06xZRBKMVPLuw2SPzpGZxZmqijspI5JmXr
+	 x9v4pKfUx9pPTCvhscGYkLvxWbcb9xbuAAm4WtAv9ahYcjnxR5/BB7bgzW42YTexot
+	 VcFP80YHTyqNIwm5YShMi7Aj4jaQYOikPyWJVHoZ9OrOsbocYDwtZNvRDIL5yiJrxE
+	 V9vTqJReiVbIg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1tUoXr-009SKl-1D;
+	Mon, 06 Jan 2025 14:57:31 +0000
+Date: Mon, 06 Jan 2025 14:57:29 +0000
+Message-ID: <864j2couqu.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: Johan Hovold <johan@kernel.org>,
+	<sudeep.holla@arm.com>,
+	<cristian.marussi@arm.com>,
+	<andersson@kernel.org>,
+	<konrad.dybcio@linaro.org>,
+	<robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>,
+	<dmitry.baryshkov@linaro.org>,
+	<linux-kernel@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<quic_rgottimu@quicinc.com>,
+	<quic_kshivnan@quicinc.com>,
+	<conor+dt@kernel.org>,
+	<quic_nkela@quicinc.com>,
+	<quic_psodagud@quicinc.com>,
+	<abel.vesa@linaro.org>
+Subject: Re: [PATCH V7 0/2] qcom: x1e80100: Enable CPUFreq
+In-Reply-To: <f504b325-e4a8-c297-a09f-6a2158fa1a1b@quicinc.com>
+References: <20241030130840.2890904-1-quic_sibis@quicinc.com>
+	<ZyTQ9QD1tEkhQ9eu@hovoldconsulting.com>
+	<86plnf11yf.wl-maz@kernel.org>
+	<ZyTjiiGc2ApoID9Y@hovoldconsulting.com>
+	<86o72z10b6.wl-maz@kernel.org>
+	<ZypOY-NCDN9fdMAR@hovoldconsulting.com>
+	<86ed3p1rdq.wl-maz@kernel.org>
+	<0fd14fb1-736d-cf7f-128f-658bda0de583@quicinc.com>
+	<Z1HK4qIF9dT3x1OY@hovoldconsulting.com>
+	<f504b325-e4a8-c297-a09f-6a2158fa1a1b@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Delphine_CC_Chiu@Wiwynn.com, jdelvare@suse.com, corbet@lwn.net, 
- linux-kernel@vger.kernel.org, Leo-Yang@quantatw.com, 
- linux-hwmon@vger.kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org, conor+dt@kernel.org, linux@roeck-us.net
-To: Leo Yang <leo.yang.sy0@gmail.com>
-In-Reply-To: <20250106071337.3017926-2-Leo-Yang@quantatw.com>
-References: <20250106071337.3017926-1-Leo-Yang@quantatw.com>
- <20250106071337.3017926-2-Leo-Yang@quantatw.com>
-Message-Id: <173617539096.200230.9323212327548655095.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: Add INA233 device
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: quic_sibis@quicinc.com, johan@kernel.org, sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, quic_nkela@quicinc.com, quic_psodagud@quicinc.com, abel.vesa@linaro.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-
-On Mon, 06 Jan 2025 15:13:36 +0800, Leo Yang wrote:
-> Add TI INA233 Current and Power Monitor bindings.
+On Mon, 06 Jan 2025 12:22:48 +0000,
+Sibi Sankar <quic_sibis@quicinc.com> wrote:
 > 
-> Signed-off-by: Leo Yang <Leo-Yang@quantatw.com>
-> ---
->  .../bindings/hwmon/pmbus/ti,ina233.yaml       | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.yaml
 > 
+> 
+> On 12/5/24 21:16, Johan Hovold wrote:
+> > On Thu, Dec 05, 2024 at 04:53:05PM +0530, Sibi Sankar wrote:
+> >> On 11/5/24 23:42, Marc Zyngier wrote:
+> >>> On Tue, 05 Nov 2024 16:57:07 +0000,
+> >>> Johan Hovold <johan@kernel.org> wrote:
+> >>>> On Fri, Nov 01, 2024 at 02:43:57PM +0000, Marc Zyngier wrote:
+> > 
+> >>>>> I wonder whether the same sort of reset happen on more "commercial"
+> >>>>> systems (such as some of the laptops). You expect that people look at
+> >>>>> the cpufreq stuff closely, and don't see things exploding like we are.
+> >>>> 
+> >>>> I finally got around to getting my Lenovo ThinkPad T14s to boot (it
+> >>>> refuses to start the kernel when using GRUB, and it's not due to the
+> >>>> known 64 GB memory issue as it only has 32 GB)
+> >>> 
+> >>> <cry>
+> >>> I know the feeling. My devkit can't use GRUB either, so I added a
+> >>> hook to the GRUB config to generate EFI scripts that directly execute
+> >>> the kernel with initrd, dtb, and command line.
+> >>> 
+> >>> This is probably the worse firmware I've seen in a very long while.
+> >> 
+> >> The PERF_LEVEL_GET implementation in the SCP firmware side
+> >> is the reason for the crash :|, currently there is a bug
+> >> in the kernel that picks up index that we set with LEVEL_SET
+> >> with fast channel and that masks the crash. I was told the
+> >> crash happens when idle states are enabled and a regular
+> >> LEVEL_GET message is triggered from the kernel. This was
+> >> fixed a while back but it will take a while to flow back
+> >> to all the devices. It should already be out CRD's.
+> >> 
+> >> Johan,
+> >> Now that you are aware of the the limitations can we make
+> >> a call on how to deal with this and land cpufreq?
+> > 
+> > As Marc said, it seems you need to come up with a way to detect and work
+> > around the broken firmware.
+> 
+> The perf protocol version won't have any changes so detecting
+> it isn't possible :(
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This is just... baffling. Can this be checked against one of the
+strings contained in the DMI tables?
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.yaml:35:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+> 
+> > 
+> > We want to get the fast channel issue fixed, but when we merge that fix
+> > it will trigger these crashes if we also merge cpufreq support for x1e.
+> > 
+> > Can you expand the on the PERF_LEVEL_GET issue? Is it possible to
+> > implement some workaround for the buggy firmware? Like returning a dummy
+> > value? How exactly are things working today? Can't that be used a basis
+> > for a quirk?
+> 
+> The main problem is the X1E firmware supports fast channel level get
+> but when queried it says it doesn't support it :|. The PERF_LEVEL_GET
+> regular messaging which gets used as a fallback has a bug which causes
+> the device to crash. So we either enable cpufreq only on platforms
+> that has the fix in place
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.yaml: ignoring, error parsing file
-./Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.yaml:35:1: found character that cannot start any token
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.example.dts'
-Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.yaml:35:1: found character that cannot start any token
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
+Again: how do we detect this?
 
-doc reference errors (make refcheckdocs):
+> or live with the warning that certain messages
+> don't support fast channel which I don't think will fly. I've also been
+> told the crash wouldn't show up if we have all sleep states
+> disabled.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250106071337.3017926-2-Leo-Yang@quantatw.com
+So we have the choice between crashing quickly, or sucking power like
+mad?
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Thanks,
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+	M.
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Without deviation from the norm, progress is not possible.
 
