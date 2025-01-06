@@ -1,179 +1,160 @@
-Return-Path: <devicetree+bounces-135864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF3BDA028A4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:57:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CC5CA028A9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:58:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B4E618827A6
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:57:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19CAD1885A55
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:58:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00DE778F23;
-	Mon,  6 Jan 2025 14:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A29130E27;
+	Mon,  6 Jan 2025 14:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hcwnCG1x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PCrcpDV1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79F34A0C;
-	Mon,  6 Jan 2025 14:57:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2757D86320
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 14:58:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736175453; cv=none; b=fWJT9RWQ7O1/YW71jikTMlsEffP5jN0OMXRuh+MO7RLFULxdaS/RogoI81Yt3ILfTH80YE5hBuHjnZDivPVjb40ow7ECfS9d/Dvj0poq+QncvtwrYQsGnZ5NLuVXduzIv2/GQp7tjK1URvsz0wMzmxNy1kPa02joJu+WivMQ8ac=
+	t=1736175494; cv=none; b=m6lbm8pNt1Bc886Q4T5dsw3gUlOzsioXrqlRiwxnRjpc+zn8RF9RV1uLX5Fx8+iVUI1VVzG5dJ+lIcbmvtuq55/wwmGbNLI6s4QMWaWwx/wZeHV70YU2FSlBt4HjirJsX0aM2++7dvUzC5uBCf+xfS2/44oM7+jsIb3/QRF1yPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736175453; c=relaxed/simple;
-	bh=OH6QCFJFnQueFS8FvFwjI38w2sHTXla5+8K0Yq1gBak=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qTj78IV5eOeI/5muPMKhfEvrp/KJXgAM96MjlvZHYpLD1ZpzCEX4zH/bRWxHyMyFrF9+6X2/QlABNk39EIw4AHID3uRysoP/7/T3up9k8xaxHHoNDQ2G05nQoEuo5yBF8IL7ImDhx5lTchsgJ6S8Dq9ejM4Y7TbgGeJrVAKJkYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hcwnCG1x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32FCCC4CED6;
-	Mon,  6 Jan 2025 14:57:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736175453;
-	bh=OH6QCFJFnQueFS8FvFwjI38w2sHTXla5+8K0Yq1gBak=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=hcwnCG1xXqBj3hdwVVk+8ofrSTw4FM8hqPb63ExoyqqKI/IjzAfdjdpx8k47PP/7Q
-	 vhpi79rHogDo4DFvAsYIyRxfz6sZhSpmPcREKyNsXsoj3heqv81E+JLVMhVkCpta3V
-	 1DcB45xeMplnmc7IQXyzvNZq4FcEUFVD06xZRBKMVPLuw2SPzpGZxZmqijspI5JmXr
-	 x9v4pKfUx9pPTCvhscGYkLvxWbcb9xbuAAm4WtAv9ahYcjnxR5/BB7bgzW42YTexot
-	 VcFP80YHTyqNIwm5YShMi7Aj4jaQYOikPyWJVHoZ9OrOsbocYDwtZNvRDIL5yiJrxE
-	 V9vTqJReiVbIg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1tUoXr-009SKl-1D;
-	Mon, 06 Jan 2025 14:57:31 +0000
-Date: Mon, 06 Jan 2025 14:57:29 +0000
-Message-ID: <864j2couqu.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Johan Hovold <johan@kernel.org>,
-	<sudeep.holla@arm.com>,
-	<cristian.marussi@arm.com>,
-	<andersson@kernel.org>,
-	<konrad.dybcio@linaro.org>,
-	<robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>,
-	<dmitry.baryshkov@linaro.org>,
-	<linux-kernel@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<quic_rgottimu@quicinc.com>,
-	<quic_kshivnan@quicinc.com>,
-	<conor+dt@kernel.org>,
-	<quic_nkela@quicinc.com>,
-	<quic_psodagud@quicinc.com>,
-	<abel.vesa@linaro.org>
-Subject: Re: [PATCH V7 0/2] qcom: x1e80100: Enable CPUFreq
-In-Reply-To: <f504b325-e4a8-c297-a09f-6a2158fa1a1b@quicinc.com>
-References: <20241030130840.2890904-1-quic_sibis@quicinc.com>
-	<ZyTQ9QD1tEkhQ9eu@hovoldconsulting.com>
-	<86plnf11yf.wl-maz@kernel.org>
-	<ZyTjiiGc2ApoID9Y@hovoldconsulting.com>
-	<86o72z10b6.wl-maz@kernel.org>
-	<ZypOY-NCDN9fdMAR@hovoldconsulting.com>
-	<86ed3p1rdq.wl-maz@kernel.org>
-	<0fd14fb1-736d-cf7f-128f-658bda0de583@quicinc.com>
-	<Z1HK4qIF9dT3x1OY@hovoldconsulting.com>
-	<f504b325-e4a8-c297-a09f-6a2158fa1a1b@quicinc.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1736175494; c=relaxed/simple;
+	bh=iTH+glL8K3yAvVrgROMwFpjc482sAa3ddUjNd79KEUY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=oAPpyrQyVJGHrvxHioQK9V8wWZfJopT5jNAu90dL32oPu/052e+MwjbTrLjpZKdSQU41Xl2lJqIBgSUpH8pfZ1RqrxTjklrhoPjGX6NloJscKoSw8J1jkakk379jSOIrUu6vBkQuzy3xP2kecaT/SC0UhYiwyvbycKWmR3nz5z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PCrcpDV1; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aae81f4fdc4so2418299466b.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 06:58:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736175490; x=1736780290; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E6sD4irUn6sza7KpMORXxjiIv2gb1G9wQAnmFA2ALjk=;
+        b=PCrcpDV1QzG77OuUpg4Z5CM6iVNDPrb3oactl0MVXHoearTlBX7HXdjPFfaZO/P4Nu
+         Y4c/5hEpW1G5fZJe0ylVn+ltnv6ZVgw6Cx462r5n0OEWSXhO2sVO0cQZQNhvf/tvwFJc
+         kUhtZLP7lBSv6wK+/ZePeLwaPZ+FSvSU4btl+XeZT/kxUt32F1ME3dGkq7Y/pWd9fJHm
+         ISvwrVo8da+FJSCrg7tqCLW1KOIeiRrL4P2kjVmpxNKyg24GqTPwHzkvXpgCbgjbvO+q
+         3Zsp408w8DVgh8iqx9313v7XAS6NEjXSsFmy1QEWUB5twEkyqmQ+RWbYBeosnNq4ooGg
+         zcCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736175490; x=1736780290;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E6sD4irUn6sza7KpMORXxjiIv2gb1G9wQAnmFA2ALjk=;
+        b=dNpJIWPtZYWoktDObQqt8pHwRgO5OW/suQxgTDW+auECyjFfedSsH+EFE3ixUFzjNS
+         69IPWSBuf+r+9nAoK5d1CxHyj3wFIxeKR5UlDjMt6XtkcGiMLXJeMSUZbEfVwUcktS0O
+         8mcqiyuBioOSjw/VCkPFTHBIJA5+mlpwCufJ4LZfPCw5ZglpmP5OBdfoAiw76Up4rSPT
+         LsiVHqpRUt8VXGAtsbfJd2XZ8nQj2vDknOXNbbsEscgbGCpz5J5Ddc5XPjnfLOvDVPcH
+         sjjfWY/SB1BNfTRzRn7rrypnw8PPFXB1JbmczKr9EBswgkwL+6f7KutTOtJA4blFF42r
+         p9cw==
+X-Forwarded-Encrypted: i=1; AJvYcCUfI3IUSO00LjZYFZhJmnFTuXDKNcxGSUF+RydH3kz0Dbvgs5F1BeVYbmUpUoU787C4xvdV6bto+pn2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZ2s/arEkYzqzM7wkUmhHaQyS9SI14sEdjk3LcOCW8/SydeC4P
+	ezffP9g60Xbbc4PfoDaT6nfMjvL44XxwyrCUPPNPltqp72xOIkRJW6nrbKcRGDE=
+X-Gm-Gg: ASbGnctDnqFNcgrs/9synKX1dlBZsB6dyC7pLff1tQzKL9Ct2NJSXqQAHeYx5LlXClB
+	j8+uDN5zpSIJX0LHebEzQw+UFVVvQpJyLrdZQMULXnjhCXz+RWICjF+wzs4gQ9//B+gNSFSi8xH
+	nxJPrT4BLDdWXmmrF/+Z8gV+FfqQqx416JD9LAGaBLIHuYmod6QGhFbx6RNPxQwMV+jeCkKgILA
+	f3DLyDw/mTkJA+9AuU8gqSy3LhYpsHzIFZW1OdIebms60XZKeU/GvP2nmH6/mAQMa7N/VwI/Ap8
+	PUhUFVohnoQ=
+X-Google-Smtp-Source: AGHT+IFRjFd1+Nt8YGyLxt1NzKlQHb+mqjSKJiXkaCf2qGD/U15D7dEyH+i1RGInpgWlzwlThJF29Q==
+X-Received: by 2002:a17:907:3f1f:b0:aa6:6885:e2fa with SMTP id a640c23a62f3a-aac2adc43demr5147987666b.14.1736175490453;
+        Mon, 06 Jan 2025 06:58:10 -0800 (PST)
+Received: from gpeter-l.roam.corp.google.com ([145.224.65.101])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f06542fsm2244307766b.176.2025.01.06.06.58.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 06:58:10 -0800 (PST)
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 06 Jan 2025 14:57:46 +0000
+Subject: [PATCH] arm64: dts: exynos: gs101: disable pinctrl_gsacore node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: quic_sibis@quicinc.com, johan@kernel.org, sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, quic_nkela@quicinc.com, quic_psodagud@quicinc.com, abel.vesa@linaro.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250106-contrib-pg-pinctrl_gsacore_disable-v1-1-d3fc88a48aed@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAGnve2cC/x3N0QrCMAxA0V8ZeTawdhXRXxEZbZbVwGhLMkQY+
+ 3eLj+fl3gOMVdjgMRyg/BGTWjrcZQB6x5IZZekGP/rgvJuQatlVEraMTQrtus3ZIlXleRGLaWO
+ cwvVG9+DTuDL0UFNe5fufPF/n+QNep9VudAAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ tudor.ambarus@linaro.org, andre.draszik@linaro.org, kernel-team@android.com, 
+ willmcvicker@google.com, Peter Griffin <peter.griffin@linaro.org>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1581;
+ i=peter.griffin@linaro.org; h=from:subject:message-id;
+ bh=iTH+glL8K3yAvVrgROMwFpjc482sAa3ddUjNd79KEUY=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBne++Ayfv+DgCfSMMhGTSVWQwjtT9Z5GStmctK2
+ QFOzFqRLUGJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCZ3vvgAAKCRDO6LjWAjRy
+ umC6D/9x2/8qLa7E6Cz5xYryQFkBzBayGVFkwIiFZSMO1+c94kaw0HYoXUTGlZ1RDNCgYeoP1g5
+ eHbZG6eP8MUDJwFo79Q6Tq3yAnhjCbGaJO0jYleXBd8+pmASLeG+hgegtGkpRcF0SYPvDvQLykN
+ IRBmAN0i2Ym13U68AcvRPXXcm/DOJxrnBhe14xC7qCztd+34dsVhcBvtsaNcVY/CEFAJo/fD7/P
+ PNL92kmpmJ/g4LXwiCCLBrOq7HfDA4cfAtF1SG7ltI5X0mwRniCThqYh4Emeq44TBZtQSahxc6Z
+ wOP2k3P+r1y9tCMjsIt5y81bPmm+yd6ZmFqAucraNRLLuA42tIzOKiHKu06FQ8TSmkxKr1ZkhE9
+ Y16fGKXFep/gAnccy1j+u7dgXkARiIZavBNEqMhKNdMlkDiSwGjpZK1Ygx9DTEPY9GUnI19OuGZ
+ /XxqndN0geGf6dqUKQeHIw4keC/MX/LjXu2SIEIn7PZDq/RjAdBgGXXQR1DrUx4e2VLCOPK0MV1
+ r+Wi+GarJFRFAevKM0ydYpgQdaypuRBMxbQKhQi4+KVo4CJXHhJSIj8/p9kizqMO42R1TpvnHb6
+ nvu5vxbT9fGGM0jI6P7msEN+PgW8TxupxkmTUiL/mTxvUMBy35cqybgVziwhmja41u10geT+fJY
+ tPCcQxdhgVc4MhQ==
+X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
+ fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-On Mon, 06 Jan 2025 12:22:48 +0000,
-Sibi Sankar <quic_sibis@quicinc.com> wrote:
-> 
-> 
-> 
-> On 12/5/24 21:16, Johan Hovold wrote:
-> > On Thu, Dec 05, 2024 at 04:53:05PM +0530, Sibi Sankar wrote:
-> >> On 11/5/24 23:42, Marc Zyngier wrote:
-> >>> On Tue, 05 Nov 2024 16:57:07 +0000,
-> >>> Johan Hovold <johan@kernel.org> wrote:
-> >>>> On Fri, Nov 01, 2024 at 02:43:57PM +0000, Marc Zyngier wrote:
-> > 
-> >>>>> I wonder whether the same sort of reset happen on more "commercial"
-> >>>>> systems (such as some of the laptops). You expect that people look at
-> >>>>> the cpufreq stuff closely, and don't see things exploding like we are.
-> >>>> 
-> >>>> I finally got around to getting my Lenovo ThinkPad T14s to boot (it
-> >>>> refuses to start the kernel when using GRUB, and it's not due to the
-> >>>> known 64 GB memory issue as it only has 32 GB)
-> >>> 
-> >>> <cry>
-> >>> I know the feeling. My devkit can't use GRUB either, so I added a
-> >>> hook to the GRUB config to generate EFI scripts that directly execute
-> >>> the kernel with initrd, dtb, and command line.
-> >>> 
-> >>> This is probably the worse firmware I've seen in a very long while.
-> >> 
-> >> The PERF_LEVEL_GET implementation in the SCP firmware side
-> >> is the reason for the crash :|, currently there is a bug
-> >> in the kernel that picks up index that we set with LEVEL_SET
-> >> with fast channel and that masks the crash. I was told the
-> >> crash happens when idle states are enabled and a regular
-> >> LEVEL_GET message is triggered from the kernel. This was
-> >> fixed a while back but it will take a while to flow back
-> >> to all the devices. It should already be out CRD's.
-> >> 
-> >> Johan,
-> >> Now that you are aware of the the limitations can we make
-> >> a call on how to deal with this and land cpufreq?
-> > 
-> > As Marc said, it seems you need to come up with a way to detect and work
-> > around the broken firmware.
-> 
-> The perf protocol version won't have any changes so detecting
-> it isn't possible :(
+gsacore registers are not accessible from normal world.
 
-This is just... baffling. Can this be checked against one of the
-strings contained in the DMI tables?
+Disable this node, so that the suspend/resume callbacks
+in the pinctrl driver don't cause a Serror attempting to
+access the registers.
 
-> 
-> > 
-> > We want to get the fast channel issue fixed, but when we merge that fix
-> > it will trigger these crashes if we also merge cpufreq support for x1e.
-> > 
-> > Can you expand the on the PERF_LEVEL_GET issue? Is it possible to
-> > implement some workaround for the buggy firmware? Like returning a dummy
-> > value? How exactly are things working today? Can't that be used a basis
-> > for a quirk?
-> 
-> The main problem is the X1E firmware supports fast channel level get
-> but when queried it says it doesn't support it :|. The PERF_LEVEL_GET
-> regular messaging which gets used as a fallback has a bug which causes
-> the device to crash. So we either enable cpufreq only on platforms
-> that has the fix in place
+Fixes: ea89fdf24fd9 ("arm64: dts: exynos: google: Add initial Google gs101 SoC support")
+Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: tudor.ambarus@linaro.org
+Cc: andre.draszik@linaro.org
+Cc: kernel-team@android.com
+Cc: willmcvicker@google.com
+Cc: stable@vger.kernel.org
+---
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Again: how do we detect this?
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index 302c5beb224a..b8f8255f840b 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -1451,6 +1451,7 @@ pinctrl_gsacore: pinctrl@17a80000 {
+ 			/* TODO: update once support for this CMU exists */
+ 			clocks = <0>;
+ 			clock-names = "pclk";
++			status = "disabled";
+ 		};
+ 
+ 		cmu_top: clock-controller@1e080000 {
 
-> or live with the warning that certain messages
-> don't support fast channel which I don't think will fly. I've also been
-> told the crash wouldn't show up if we have all sleep states
-> disabled.
+---
+base-commit: ed9a4ad6e5bd3a443e81446476718abebee47e82
+change-id: 20241213-contrib-pg-pinctrl_gsacore_disable-3457c942b0fe
 
-So we have the choice between crashing quickly, or sucking power like
-mad?
-
-Thanks,
-
-	M.
-
+Best regards,
 -- 
-Without deviation from the norm, progress is not possible.
+Peter Griffin <peter.griffin@linaro.org>
+
 
