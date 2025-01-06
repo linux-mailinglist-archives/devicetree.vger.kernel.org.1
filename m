@@ -1,249 +1,129 @@
-Return-Path: <devicetree+bounces-135879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C41C4A02D1D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 17:01:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97401A02D65
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 17:08:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0093D3A4EAE
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 15:59:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFC703A6C3D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 16:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D57B14F9F3;
-	Mon,  6 Jan 2025 15:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A031DF251;
+	Mon,  6 Jan 2025 16:07:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53112BA34
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 15:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 465701DF276
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 16:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736179170; cv=none; b=o0Aijb1uxZ7S1KcDa8HGxCYDlvfSGQeFlmxgO7Xm86uKCnKrUpF3BIZ5d/lQTQE/OrGYyMupo7FX+jat56U8lz7mPOYWXBLFtMRH9nEF/J6AD6JQb5/pIY+QDLth2hml/ePM6z7E3IkHVVoyKB3gSQuOB2DkrlhuZw/QX8Yxx1s=
+	t=1736179639; cv=none; b=YeedNRsMclFiUVhXnh9yPHoK8/KZ8TAzMs1f7bsG90aDl/A3zbsaphvBJBmJy+R/bCFHB7p9zYFPBpiCRY1YWf06aluzoeirD+HlviqL3Iuxq4ju7vh02jGaocHtAMunL05KuWG+8I5n38mf/T8E5GwWMUmsi7boUhkrKMdallU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736179170; c=relaxed/simple;
-	bh=vc5fwysGsc7IQXwKYL681hzADIFiyvULNF50pd19/Rk=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=s13n0yfodxMKBh3jpOPAlv0WUb1KnjoAibcbxtnd4tFG1l0w9DxOcfGS8M8iErMtMP4Y7hL15LMOFtG0rxFefXX048XxYynkQKG/3eTxdsVmH2VOyYufbcT3oaWUc2YdXBbj2db4EhjaUEEF28j9iPgqB7nigIAoGVATt2p8i34=
+	s=arc-20240116; t=1736179639; c=relaxed/simple;
+	bh=JgElm34N/sOv5K2+5R3NLC6BTokNVeI0oM1Tqw+fuSU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PNkFzL+zFJ9agVHmRM/8spmHGMbTOFF789LWfv0+p9PJjZMXWJs7sgfUqbycOjHAB+c4OuNqJsL5OMZnBGMThf83WHPqViiQGZqWgNOk40uL5NOMjLMoYqx8rgDScw+cndd8KuKMfG6vhIs5CZtP/yQA1SF4Hl79myGxkRjJnzo=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tUpVe-0007Hv-59; Mon, 06 Jan 2025 16:59:18 +0100
-Message-ID: <cccf92df-4a20-4bed-9122-6b7d89bdf28d@pengutronix.de>
-Date: Mon, 6 Jan 2025 16:59:17 +0100
+	id 1tUpcy-0000C7-Gl; Mon, 06 Jan 2025 17:06:52 +0100
+Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tUpcw-007C9l-0z;
+	Mon, 06 Jan 2025 17:06:51 +0100
+Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
+	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tUpcw-009dVc-31;
+	Mon, 06 Jan 2025 17:06:50 +0100
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: [PATCH v2 00/10] arm64: dts: imx8mp-skov: flesh out device trees
+Date: Mon, 06 Jan 2025 17:06:35 +0100
+Message-Id: <20250106-skov-dt-updates-v2-0-4504d3f00ecb@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH 10/10] arm64: dts: imx8mp-skov: increase I2C clock
- frequency for RTC
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Oleksij Rempel
- <o.rempel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
- <20241219-skov-dt-updates-v1-10-38bf80dc22df@pengutronix.de>
- <Z2RcJCaYC2FW3Ks6@lizhi-Precision-Tower-5810>
- <30dbe486-7e36-426d-8fa4-3ecd83193a10@pengutronix.de>
- <Z2Rw8qnn9hULyh8l@lizhi-Precision-Tower-5810>
- <2ae085fa-6f13-4eb7-88c1-e625309fc35e@pengutronix.de>
- <Z2WPbB9cV0hcP2UB@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-In-Reply-To: <Z2WPbB9cV0hcP2UB@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIv/e2cC/2WNQQqDMBBFryKz7hQTSxu76j2KC3VGHQqJJDFYx
+ Ls3Fbrq8j34728Q2AsHuBcbeE4SxNkM+lRAP7V2ZBTKDLrUF6WVwfByCSniMlMbOSB3prtV/bW
+ uSEFezZ4HWY/is8k8SYjOv4+DpL7216r/WklhiZXpBlNSrzUNj5ntuETvrKxnYmj2ff8AGDVim
+ LMAAAA=
+X-Change-ID: 20241218-skov-dt-updates-eb8b73c693d1
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ Frank Li <Frank.li@nxp.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de, 
+ Ahmad Fatoum <a.fatoum@pengutronix.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
 X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hello Frank,
+When the Skov device trees were added a year ago, there were no
+upstream bindings yet for many parts of the display pipeline.
 
-On 20.12.24 16:38, Frank Li wrote:
-> On Fri, Dec 20, 2024 at 10:12:49AM +0100, Ahmad Fatoum wrote:
->> On 19.12.24 20:16, Frank Li wrote:
->>> On Thu, Dec 19, 2024 at 06:51:35PM +0100, Ahmad Fatoum wrote:
->>>> On 19.12.24 18:47, Frank Li wrote:
->>>>> On Thu, Dec 19, 2024 at 08:25:34AM +0100, Ahmad Fatoum wrote:
->>>>>> From: Oleksij Rempel <o.rempel@pengutronix.de>
->>> According to
->>> https://docs.kernel.org/process/submitting-patches.html
->>>
->>> Describe your changes in imperative mood, e.g. “make xyzzy do frotz”
->>> instead of “[This patch] makes xyzzy do frotz” or
->>> “[I] changed xyzzy to do frotz”, as if you are giving orders to the
->>> codebase to change its behaviour.
->>
->> I have to disagree with your interpretation. The imperative mood is primarily
->> expected for commit message titles, but if you take a look at normal commit
->> message _bodies_ that make it into the kernel, you'll find that a whole lot
->> of them start off like I do: Describe the situation and then what's done about
->> it.
-> 
-> I was got many similar feedback from difference maintainer to be required
-> change my commit message _bodies_ in past years.
-> 
-> https://lore.kernel.org/imx/3c9fe85a-5f86-4df6-92fb-e4ceb033f161@kernel.org/
+This has changed now, so this series fleshes the display pipeline parts
+out and adds some more fixes/enhancements that have accrued in the
+meantime.
 
-Surely, you can see a difference between marketing fluff and the commit
-messages in my series?
+---
+Changes in v2:
+- Add Rob's Acked-by
+- Reword some commit messages. See individual patches for details
+- Link to v1: https://lore.kernel.org/r/20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de
 
-> https://lore.kernel.org/imx/117dd6f3-8829-4000-a05b-6cb421ca7de6@kernel.org/
+---
+Ahmad Fatoum (5):
+      arm64: dts: imx8mp-skov: correct PMIC board limits
+      arm64: dts: imx8mp-skov: operate CPU at 850 mV by default
+      arm64: dts: imx8mp-skov: use I2C5 for DDC
+      dt-bindings: display/lvds-codec: add ti,sn65lvds822
+      arm64: dts: imx8mp-skov: configure uart1 for RS485
 
-Agreed, I don't see where I talked about my patches in the third person though?
+Oleksij Rempel (5):
+      arm64: dts: imx8mp-skov: describe HDMI display pipeline
+      arm64: dts: imx8mp-skov: describe LVDS display pipeline
+      arm64: dts: imx8mp-skov: describe mains fail detection
+      arm64: dts: imx8mp-skov: fix phy-mode
+      arm64: dts: imx8mp-skov: increase I2C clock frequency for RTC
 
-> https://lore.kernel.org/linux-pci/20240807025423.GF3412@thinkpad/
+ .../bindings/display/bridge/lvds-codec.yaml        |  1 +
+ .../arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi | 63 ++++++++++++++++------
+ .../boot/dts/freescale/imx8mp-skov-revb-hdmi.dts   | 45 +++++++++++++++-
+ .../boot/dts/freescale/imx8mp-skov-revb-lt6.dts    | 60 +++++++++++++++++++++
+ 4 files changed, 152 insertions(+), 17 deletions(-)
+---
+base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+change-id: 20241218-skov-dt-updates-eb8b73c693d1
 
-Did you check out how the final version of that commit log looked
-like? Here it is:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=64706ba771f5e8f
-
-You may notice that the maintainer has edited it for readability instead
-of just having a few imperatives follow each other. :-)
-
-> https://lore.kernel.org/linux-pci/YnvyrSTAxJmGxful@lpieralisi/
-> 
-> At beginning, I can't understand this. But after follow these expertor
-> suggestion, I found some beanfit.
-
-This commit message is indeed very vague. I agree that patch 09/10 in my
-series is vague too, so this will be fixed for v2. I don't see this applicable
-to other patches though.
-
-> - sentense will be shorter and easy to capture most important part. for
-> example:
-> 
->   "The NXP PCF85063TP RTC we use is capable of up to 400 kHz of SCL clock
->   frequency, so let's make use of this instead of the 100 kHz bus frequency
->   we are currently using."
-> 
->   34 words
-> 
->   "Increase I2C frequency to 400khz from 100kHz because NXP PCF85063TP RTC
->    support it"
-> 
->   13 words
-
-The commit message will be shortened a bit for v2.
-
->   Linux is big community, even reduce 1 minutes to read it, multi by
-> totall reviewer/reader will be very big numbers.
-> 
-> - empahse the important change first to help understand whole patch
-> quickly.
-> 
-> You can choose what you want if maintainer don't reject it. Generally I
-> just send such kind comments for v1 patch, because it is less possible to
-> be accepted by by maintainer to accept (except some critial fixes).> 
->>
->> I personally find that this is often easier to follow than just having two
->> imperatives back-to-back.
-> 
-> Basic principle is clear, simple, and straightforward.
-
-I still believe you are misunderstanding the guidelines in submitting-patches.rst
-and that asking for all commit message bodies to be rewritten in imperative mood
-doesn't help anyone.
-
-I would have liked for both my patches against submitting-patches.rst to be accepted
-to clarify this, but you can check out Jon's answer and compare with commit messages
-not authored by you and perhaps see that one needn't golf the commit messages
-at the expense of readability.
-
-Thanks,
-Ahmad
-
-> 
-> Frank
-> 
->>
->> I have just Cc'd you on an RFC patch to amend the documentation you linked
->> to reflect this. I am happy to continue the discussion over there:
->>
->> https://lore.kernel.org/workflows/20241220-submitting-patches-imperative-v1-0-ee874c1859b3@pengutronix.de/T/#t
->>
->> Thanks,
->> Ahmad
->>
->>>
->>> Generally, avoid use
->>>
->>> "this patch ..."
->>> "let's ...."
->>> "we do ... for ... "
->>>
->>> Just simple said
->>>
->>> Do ... to ...
->>> Do ... because ...
->>>
->>> Frank
->>>
->>>>
->>>> Thanks,
->>>> Ahmad
->>>>
->>>>
->>>>>
->>>>> Frank
->>>>>
->>>>>>
->>>>>> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
->>>>>> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
->>>>>> ---
->>>>>>  arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi | 2 +-
->>>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
->>>>>> index a683f46fcbab..ec7857db7bf0 100644
->>>>>> --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
->>>>>> @@ -333,7 +333,7 @@ reg_nvcc_sd2: LDO5 {
->>>>>>  };
->>>>>>
->>>>>>  &i2c3 {
->>>>>> -	clock-frequency = <100000>;
->>>>>> +	clock-frequency = <400000>;
->>>>>>  	pinctrl-names = "default";
->>>>>>  	pinctrl-0 = <&pinctrl_i2c3>;
->>>>>>  	status = "okay";
->>>>>>
->>>>>> --
->>>>>> 2.39.5
->>>>>>
->>>>>
->>>>
->>>>
->>>> --
->>>> Pengutronix e.K.                           |                             |
->>>> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
->>>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
->>>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
->>>
->>
->>
->> --
->> Pengutronix e.K.                           |                             |
->> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
->> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
->> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
+Best regards,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Ahmad Fatoum <a.fatoum@pengutronix.de>
+
 
