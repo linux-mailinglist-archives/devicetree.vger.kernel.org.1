@@ -1,226 +1,104 @@
-Return-Path: <devicetree+bounces-135760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82EF6A02142
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:57:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B92E0A02145
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 09:57:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03A0E18846E5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:57:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4600A188485E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7D6E1D7989;
-	Mon,  6 Jan 2025 08:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB8471C4A1C;
+	Mon,  6 Jan 2025 08:57:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b="PfMH/atc"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TJgx4xSz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.systec-electronic.com (mail.systec-electronic.com [77.220.239.22])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346C31BF58;
-	Mon,  6 Jan 2025 08:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.220.239.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB431BF58;
+	Mon,  6 Jan 2025 08:57:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736153821; cv=none; b=fKI0Jq0C1mX5yL1t2eNW9Ak/jglwsFo2bMADYMrX/+mueEtbVn6s4vqPSg0v8UoZ2Co24iVYqeUg7xJxzjDJ69Jto+7GPzgp8hta6xthwhwL2ECnwnfc70/+e026kkP88VDdK/B3wcQEtwH1XQYrtghdks5U/YFpz433pe2I5Ug=
+	t=1736153868; cv=none; b=Qw/r4NCEwmgnJ/s/UQ+xHdYqrVrNguj7SdugoFDDHm9UfYVu7k8a6o0Tz2dF8w9VBHH+FtVqYgnTkSCXn2HScF6bGlvL9jIaFPUalXvKhsE2RpM6JeUhOBOIwpYwFv6TPKfAEhavoSZqQuayB86X1/Ui34v5TGRUDjxwzC4hmvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736153821; c=relaxed/simple;
-	bh=cKpf2ORv0kQoV99YNhzpYcKqV/wDBcgo9lNHipTmM7s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RzshpRDYJ8Vgh7P7vVMxZe+9Wf/LJgjK8A3eLqMqLWvDJCsE1aJ8naJEpvCh9Qy+yu1M9piPlWNeMuhWFu8ZmxlgKRAYs86c3gr8ckjRA46CYTh/N9m49QEpjrvs8+oosHc15AqNoSW+YUcTTccjFmfykhnlNW1WZgofSd8TICo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com; spf=pass smtp.mailfrom=systec-electronic.com; dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b=PfMH/atc; arc=none smtp.client-ip=77.220.239.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=systec-electronic.com
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id 7BDA894016AD;
-	Mon,  6 Jan 2025 09:50:56 +0100 (CET)
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id hKUDc7pI4xjm; Mon,  6 Jan 2025 09:50:56 +0100 (CET)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id 56D1A94016B0;
-	Mon,  6 Jan 2025 09:50:56 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.systec-electronic.com 56D1A94016B0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=systec-electronic.com; s=B34D3B04-5DC7-11EE-83E3-4D8CAB78E8CD;
-	t=1736153456; bh=vxb1rVCeUTokfbEKi9yjK8p2m0L76IHGFq60aPy8PmI=;
-	h=From:To:Date:Message-ID:MIME-Version;
-	b=PfMH/atcqdict55GGLq8WrpeSpgDMmEMQ2pvKjaxbCmBg5VFPPKKX/FmqRUTh9qXm
-	 AqZME7YGMUDcozmcYwOiRDwTLpFt630sREUTgivYZ+XSkM1JDs7m8xFjnm054Tc66X
-	 bjmyyDsv9DdwF7WodL1mKk2P9udonrWTDgx5NiSxIvaK6K3ElvXt8odKaDzWrN2Gcu
-	 DySHh2zHzHw1QhIUvV2K0LE4DY+eEVtXKUpHkuPsuM8S+j6AuRfYznlY2/z1G1fLBs
-	 Qc0xkwd3ohMzTWw3IjZ4HCo4KlwS6fQmtp6ESwRV8TFIDNu0VSZekIMIlo6mV3r+As
-	 yRKYUXLskn8cA==
-X-Virus-Scanned: amavis at systec-electronic.com
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id TIY-CqYYayOm; Mon,  6 Jan 2025 09:50:56 +0100 (CET)
-Received: from ws565760.. (unknown [212.185.67.148])
-	by mail.systec-electronic.com (Postfix) with ESMTPSA id 0513294016AD;
-	Mon,  6 Jan 2025 09:50:56 +0100 (CET)
-From: Andre Werner <andre.werner@systec-electronic.com>
-To: gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	hvilleneuve@dimonoff.com,
-	andy@kernel.org,
-	devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	lech.perczak@camlingroup.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robh@kernel.org,
-	Andre Werner <andre.werner@systec-electronic.com>
-Subject: [PATCH v2 2/2] serial: sc16is7xx: Add polling feature if no IRQ usage possible
-Date: Mon,  6 Jan 2025 09:50:51 +0100
-Message-ID: <20250106085051.50861-2-andre.werner@systec-electronic.com>
+	s=arc-20240116; t=1736153868; c=relaxed/simple;
+	bh=LqO93PKZFzajhO0Q5bvrw7jf6gFJfNjdg6AaXE7AJoQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oZP1Odqjy4RnuHQ87ewV794QBtzDxsNC1DwYEbneSsiKRbk2kd5IVfyAGbcRL81y47ph2pPni6n5v/fQlVaFoJWhPUvA1dp2HDd1ycBsBWgSqP1Oyzi97cTcyQvHjIbuiZHTHio30Rtz4YcbG10DJ5ls7hah67k7PboqbhEB7OA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TJgx4xSz; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1736153859;
+	bh=LqO93PKZFzajhO0Q5bvrw7jf6gFJfNjdg6AaXE7AJoQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=TJgx4xSzwvwUD5scxZT27VfTMcSeR7TjO3x6u0jHgvGATyKB2oYj8kDuRoxsYdaPi
+	 s6iZf/YVW7wHyzFM/ttp0+yuJFEOYX2MWgcb42+yrSNYkM3qH41OSeneaGuNhzU7XT
+	 50rk6TlplXymLwgrM5oyHlD7yezotol3Ume7ZNUQRy9hCHmfZ2+/vr/VfJJaM9+bHL
+	 fzOzl1vGoeQqcy1Q5pE6b3RVT3iw1WnusEMPKgyO+kiReiavjHu0legHOPiejcMRX7
+	 NNn26hcGmfl5MyRTNaiqL52PWRjxQUde8kS1NG2JCH0VadOwSQqDCK8P3JWTo55NJT
+	 BFnooA5GYDaQQ==
+Received: from beast.luon.net (unknown [IPv6:2a10:3781:2531::8])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sjoerd)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5CCDB17E1534;
+	Mon,  6 Jan 2025 09:57:39 +0100 (CET)
+Received: by beast.luon.net (Postfix, from userid 1000)
+	id 084D4D979399; Mon, 06 Jan 2025 09:57:38 +0100 (CET)
+From: Sjoerd Simons <sjoerd@collabora.com>
+To: linux-mediatek@lists.infradead.org
+Cc: kernel@collabora.com,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: mediatek: mt8365-evk: Set ethernet alias
+Date: Mon,  6 Jan 2025 09:57:31 +0100
+Message-ID: <20250106085737.227622-1-sjoerd@collabora.com>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250106085051.50861-1-andre.werner@systec-electronic.com>
-References: <20250106085051.50861-1-andre.werner@systec-electronic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Fall back to polling mode if no interrupt is configured because not
-possible. If "interrupts" property is missing in devicetree the driver
-uses a delayed worker to pull state of interrupt status registers.
+Configure an the ethernet alias to match the ethernet controller (even
+if it's off by default). This allows e.g. u-boot to configure the mac
+address on boot properly
 
-Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
-V2:
-- Change warning for polling mode to debug log entry
-- Correct typo: Resuse -> Reuse
-- Format define with missing tabs for SC16IS7XX_POLL_PERIOD
-- Format struct declaration sc16is7xx_one_config with missing tabs for po=
-lling and shutdown
-- Adapt dtbinding with new polling feature
----
----
- drivers/tty/serial/sc16is7xx.c | 40 ++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
 
-diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7x=
-x.c
-index a3093e09309f..cfe63fe8a729 100644
---- a/drivers/tty/serial/sc16is7xx.c
-+++ b/drivers/tty/serial/sc16is7xx.c
-@@ -314,6 +314,7 @@
- #define SC16IS7XX_FIFO_SIZE		(64)
- #define SC16IS7XX_GPIOS_PER_BANK	4
-=20
-+#define SC16IS7XX_POLL_PERIOD		10 /*ms*/
- #define SC16IS7XX_RECONF_MD		BIT(0)
- #define SC16IS7XX_RECONF_IER		BIT(1)
- #define SC16IS7XX_RECONF_RS485		BIT(2)
-@@ -348,6 +349,9 @@ struct sc16is7xx_port {
- 	u8				mctrl_mask;
- 	struct kthread_worker		kworker;
- 	struct task_struct		*kworker_task;
-+	struct kthread_delayed_work	poll_work;
-+	bool				polling;
-+	bool				shutdown;
- 	struct sc16is7xx_one		p[];
- };
-=20
-@@ -861,6 +865,19 @@ static irqreturn_t sc16is7xx_irq(int irq, void *dev_=
-id)
- 	return IRQ_HANDLED;
- }
-=20
-+static void sc16is7xx_transmission_poll(struct kthread_work *work)
-+{
-+	struct sc16is7xx_port *s =3D container_of(work, struct sc16is7xx_port, =
-poll_work.work);
-+
-+	/* Reuse standard IRQ handler. Interrupt ID is unused in this context. =
-*/
-+	sc16is7xx_irq(0, s);
-+
-+	/* setup delay based on SC16IS7XX_POLL_PERIOD */
-+	if (!s->shutdown)
-+		kthread_queue_delayed_work(&s->kworker, &s->poll_work,
-+					   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD));
-+}
-+
- static void sc16is7xx_tx_proc(struct kthread_work *ws)
- {
- 	struct uart_port *port =3D &(to_sc16is7xx_one(ws, tx_work)->port);
-@@ -1149,6 +1166,7 @@ static int sc16is7xx_config_rs485(struct uart_port =
-*port, struct ktermios *termi
- static int sc16is7xx_startup(struct uart_port *port)
- {
- 	struct sc16is7xx_one *one =3D to_sc16is7xx_one(port, port);
-+	struct sc16is7xx_port *s =3D dev_get_drvdata(port->dev);
- 	unsigned int val;
- 	unsigned long flags;
-=20
-@@ -1210,6 +1228,11 @@ static int sc16is7xx_startup(struct uart_port *por=
-t)
- 	uart_port_lock_irqsave(port, &flags);
- 	sc16is7xx_enable_ms(port);
- 	uart_port_unlock_irqrestore(port, flags);
-+	if (s->polling) {
-+		s->shutdown =3D false;
-+		kthread_queue_delayed_work(&s->kworker, &s->poll_work,
-+					   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD));
-+	}
-=20
- 	return 0;
- }
-@@ -1232,6 +1255,10 @@ static void sc16is7xx_shutdown(struct uart_port *p=
-ort)
-=20
- 	sc16is7xx_power(port, 0);
-=20
-+	if (s->polling) {
-+		s->shutdown =3D true;
-+		kthread_cancel_delayed_work_sync(&s->poll_work);
-+	}
- 	kthread_flush_worker(&s->kworker);
- }
-=20
-@@ -1537,7 +1564,13 @@ int sc16is7xx_probe(struct device *dev, const stru=
-ct sc16is7xx_devtype *devtype,
-=20
- 	/* Always ask for fixed clock rate from a property. */
- 	device_property_read_u32(dev, "clock-frequency", &uartclk);
-+	s->polling =3D !device_property_present(dev, "interrupts");
-=20
-+	if (s->polling) {
-+		dev_dbg(dev,
-+			"No interrupt definition found. Falling back to polling mode.\n");
-+		irq =3D 0;
-+	}
- 	s->clk =3D devm_clk_get_optional(dev, NULL);
- 	if (IS_ERR(s->clk))
- 		return PTR_ERR(s->clk);
-@@ -1664,6 +1697,11 @@ int sc16is7xx_probe(struct device *dev, const stru=
-ct sc16is7xx_devtype *devtype,
- 	if (ret)
- 		goto out_ports;
- #endif
-+	if (s->polling) {
-+		/* Initialize Kernel timer for polling */
-+		kthread_init_delayed_work(&s->poll_work, sc16is7xx_transmission_poll);
-+		return 0;
-+	}
-=20
- 	/*
- 	 * Setup interrupt. We first try to acquire the IRQ line as level IRQ.
-@@ -1724,6 +1762,8 @@ void sc16is7xx_remove(struct device *dev)
- 		sc16is7xx_power(&s->p[i].port, 0);
- 	}
-=20
-+	if (s->polling)
-+		kthread_cancel_delayed_work_sync(&s->poll_work);
- 	kthread_flush_worker(&s->kworker);
- 	kthread_stop(s->kworker_task);
-=20
---=20
+Changes in v2:
+- Update commit subject
+
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+index 7d90112a7e27..44c61094c4d5 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+@@ -21,6 +21,7 @@ / {
+ 
+ 	aliases {
+ 		serial0 = &uart0;
++		ethernet = &ethernet;
+ 	};
+ 
+ 	chosen {
+-- 
 2.47.1
 
 
