@@ -1,215 +1,194 @@
-Return-Path: <devicetree+bounces-135786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E33BEA0226A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:02:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89F81A022CE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:21:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72D753A45EA
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:02:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 013BD7A1FBE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:20:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787571DAC80;
-	Mon,  6 Jan 2025 10:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 188071DB37C;
+	Mon,  6 Jan 2025 10:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="HhBjymCD";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Ru4rw7PA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GJDN6rZr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b1-smtp.messagingengine.com (fhigh-b1-smtp.messagingengine.com [202.12.124.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 621B61D934D;
-	Mon,  6 Jan 2025 10:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2F261D7986
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 10:20:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736157762; cv=none; b=nEiPmuFYxKF5QXYVyVInYksNUzfps5DCtrUuzth54K45yv+2oGbcT6F2KkYTrztRbHc0mM2BD4BxTK9Oi6rnTD79bv1FghdHMGee/eFoR9RXQbpiSYCwBjQc/shvUoDFMxTMJZ7JsdMr5SBGxg7L94yyJqfPvn7glejKC+if/68=
+	t=1736158846; cv=none; b=jxNsoDpLxi9T6ic/JuF4aOmzA4EcIQNIkE967rwIqQ8+IZ3RGNvUBgfkZTkrm19wfcjkhTh8WKZ51PFZYHA8xN8U2dkoyBJyoyVCApUZYlZSb4q3I3miJhEPSwTEXHOQN/gKO4JWhOkeXi9eazwXDh4EPRbyWsJWTt+hQPv1biI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736157762; c=relaxed/simple;
-	bh=UeotYQxbXGtaRMDr5CfbUhkqtpbvfnqNMQwNf5ywoi4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hOXNYbbFy9P1b69AcaMEO1qOXuW2VuNHfE+R2DFbmzNxws8xzv2h+5aOrQ59d5vl4baGUQzV05aqETvL5JRlScz33hK/kloOWu5OdSSnmb1gSDbTMjNRNyICzSiLwoz83/S1QDbOrb09TiY5E99dDbbR/gbgNsd7jaw8vEqyRKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=HhBjymCD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Ru4rw7PA; arc=none smtp.client-ip=202.12.124.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-06.internal (phl-compute-06.phl.internal [10.202.2.46])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 4A7662540158;
-	Mon,  6 Jan 2025 05:02:36 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-06.internal (MEProxy); Mon, 06 Jan 2025 05:02:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1736157756;
-	 x=1736244156; bh=o4NZIf3WxppxFXzutKt4JwQ1jjjFXtzx03iU1/8Gzq4=; b=
-	HhBjymCDeV8Os295yCwrt4Hr3/PHCvGuAqlhWKdB9rMm7OITcEf24nEx+7rzk49J
-	XQoiGkNrzBFSYIi5lDpnX8A+qZZsQCV+3aRjFjRbKbXctPoKsKaAF69hZ7pjpgtu
-	A/XruuVv6X9hFNoy34+lgVRWJ9GQAJIQguRjO07Ib+bSYVP55ULW1HrlLIB/Lh4W
-	+qcXPrWOLmKoOqpLiO8OKc08I+MAuzB+qG3ApNTuoAwj8Oq8fMTBNWhFqEPbsMjR
-	1HkCUbvnQHXMC3K6UUX6FbER4AJkr0G+8RsiWq43thYEADx8RtukWLwuQN2VG2KO
-	kbwrm9O5/CXSTpifQY5WNg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1736157756; x=
-	1736244156; bh=o4NZIf3WxppxFXzutKt4JwQ1jjjFXtzx03iU1/8Gzq4=; b=R
-	u4rw7PAE0clthsMU1si1SK2apyKrjO2cqU0An0rF6wn9CJQqeFPatAHxVFHpl6N8
-	YI/QypJk6rYtcRn39AbAsbSZLRzfMfRMyZh73sWZdMVewCF72gGQf0IgvEJt9gF4
-	qCVZBmSPPIHx4dUL0E+iQ5K/OYqYJ2px5AdFyCbjs6+wpR5NWExtUxc+/axNsKWG
-	LcBBj1ZAkZbyvyy/GQxH6UkzSH1HAGqILY5m7efnq6q0+DjgarG8ZkT9pfsvhIuo
-	/hsYvRX0TAlSiYA8nu0sXvlKHGAQM/1MrJ5fajmbkQsgUNKyC9JwJ944e16RTaqS
-	qo2d9IEVFeaKofr3Tv1ug==
-X-ME-Sender: <xms:O6p7Z9s8nd0xScaaH92IhlCADeQPBR0EtfY9T5m-GEih1PJiplprig>
-    <xme:O6p7Z2fHeexK7cluKrQU20GOXnxHnwJIoHqP8wnclxEZLNCh8CXQkjxCrStHIEDVr
-    TQbv9WK3xnLSoCbDKY>
-X-ME-Received: <xmr:O6p7ZwzJVDX9SDo0WssC2MAY3y1q-zr6rFUrImfmldvHsXkNHO9ViNZIKQyB9fLbaDXFXuzpeiS1yWII24P0zo1V9AwV_VJaPA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudegtddguddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
-    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
-    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
-    thgvrhhnpeefhfellefhffejgfefudfggeejlefhveehieekhfeulefgtdefueehffdtvd
-    elieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehn
-    ihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrsh
-    gvpdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohep
-    ghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpthhtohepshgrkhgrrhhird
-    grihhluhhssehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhgthhgvhhgr
-    sgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-    dprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegt
-    ohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnh
-    gvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopehlrghurhgvnhhtrdhpihhntghh
-    rghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtoheplhhinhhugidqmh
-    gvughirgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:O6p7Z0POreU7lLL35y5lfRP8HzOZWVDECqJHb-3B-00mlbEoGKjq2w>
-    <xmx:O6p7Z9_IWG5JxAPN2hKpt3Vgog7RHSxqwdSedT4bUSzBhUx2ui6BlQ>
-    <xmx:O6p7Z0V9wNDx9i82qfOxaFDdGHgH40tKp_GzUAHi1pqr5i3sr5Z_dw>
-    <xmx:O6p7Z-flupZdgIuVtWjbfUlgReOL1OrHV9F9nHhA7h4aUCirWZ8dAg>
-    <xmx:PKp7Z0VrtGMiBLk2uDIBVZqTFKM09u_dbq43fjiYmPp7tTRoP384Ebbp>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 6 Jan 2025 05:02:34 -0500 (EST)
-Date: Mon, 6 Jan 2025 11:02:32 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] arm64: dts: renesas: white-hawk-csi-dsi: Define
- CSI-2 data line orders
-Message-ID: <20250106100232.GA2766897@ragnatech.se>
-References: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
- <20241121134108.2029925-4-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdWqS=zURzutDsCqChSGia35JZpVuDY=njrCBEKP-6=eXw@mail.gmail.com>
- <20250104121700.GF808684@ragnatech.se>
- <CAMuHMdWxmMXe7dhFNGmr90AkRovW-Pov_0DA8-=RgDa9j_FWiQ@mail.gmail.com>
+	s=arc-20240116; t=1736158846; c=relaxed/simple;
+	bh=ZkoORgT34UgE2Vs3eAVs1SE45lE0SteieEH87tYlTzc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Hnqmpp9HXloCZzZRBxzixJtiKNxoqHVppBsBfC4hfJA0GPQG+HHf9xt8WeHcJ2lZeVd9vOiyDbJ+3+EuwV6kc0saphiys3gLeo/n8nPv4lusPVLU8QswnVfKs4OmryYVJyn8S59+ZDRDkQVWaNM3JGI5H101d9UwJjCtajPhZCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GJDN6rZr; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3863494591bso7296759f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 02:20:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736158843; x=1736763643; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8X068z0NbW+UCr4NJbVvlYn7QHVQGnW6I19hKbAd32M=;
+        b=GJDN6rZr8MBhwRbN4niBLDjIOsmuBWmoDLnkE2eblvZfRjXPMV6juBUNUwQk1x1nlJ
+         iWhUFWMKtytFYUoJ7mzrbNhJz7gqA35+a8dKhw/FXekf7YVwAEEy/WXFRwLqehjEPPmq
+         P6hDozgweqHrKcIjlQD7oI+I4MRSz8F1giY27eWmQ1M+VRdfBij+DBYfOeCgnaD5iz8n
+         75arxcMtPIaK06dhT0BxKCnxeQGlJx9JiUjw41Gau5eAsacFFMWHkNj8MhKaT41ltFHh
+         udq4Cu1ABq4SC8vJ9GVRVL5GAdJ+i5b2fzKPAyLUh/e6w7RxaU3pYzEtmTyATXQ3M3Re
+         OVWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736158843; x=1736763643;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8X068z0NbW+UCr4NJbVvlYn7QHVQGnW6I19hKbAd32M=;
+        b=ABPMaPhmLXH/0mAW6ABKIqb/WgbOfSdswA2jDPrW5OKvzG5L8drZcNr1Yzsj0t8cnD
+         FLeptiNatAhy6utxc1G4TeLv4eXRD8P0jMlnKj7avgUcnsm4MFhlFkd3cyjj1qoUZSkT
+         We5C5Xf5BRIEIo0rXqPdjlq62tTffuXhI7urCnfykCUF8j3GEXHd71/OMTYD64BCEZZG
+         6Wwc+tkiIRwdtXtFRrmktp9MGFKXvcoVIut2dQCIJWNQad+nWJV6qFbmCcldiRLJreJx
+         V6Wt39OVnsyVY+L/6jMBXJYwg1x1esi1HkB00sssoPlaOn80AGirDtSzrdNcIhT1FILN
+         BSyg==
+X-Forwarded-Encrypted: i=1; AJvYcCX/zCZvuJwTTHICTVjfDSCp1RC8EMXJyY/pY33I++T+y1tL7zwuQU2jujkhugkx3J4snBDvgOgdRmG1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyE0T5UxQloXdeUF4jh0qJXOG1/pK9yndnilcdbWS1xlFLdj+TD
+	CV5ZCuWW64o2rF8/Bxnx7DWdcyiIybMCLO0MzQsVHoyTgJDsaDBeDkSsJx4e0J4=
+X-Gm-Gg: ASbGncuMGsbY+YrMmCWB2Y6xPJpPtOULQzCydunBllpI/uBJph3/gdHLXkBX3Zo/n9t
+	/wcKj7UqWE62JwRL11LDFdncla3xCJTmYWU3YX0zMUEjDi6cxBof2iwabMB7/EkjtpbLc68YFeW
+	j907N5W7j3I5Ih/nETzUj19j1wJ/LeWyc7ZXzcZC2J6b1gXDJU1kbvo9GnBfVFj2ZSk8JqRm8Wh
+	ELCtkNG32pmIKKlsgWiD/D+K1rKMT/wn6PnbufIDzQg8ZZOlxYLJ5rih/nWCn2z
+X-Google-Smtp-Source: AGHT+IGIQDLi1xgJhO8rn+2nlOJ0KwWuo5zVeFcnrcbdiIPBRkk+WzLUuK03bXiGURyPSGYNm5Z3Sw==
+X-Received: by 2002:a5d:5848:0:b0:386:4a16:dad7 with SMTP id ffacd0b85a97d-38a221f2f00mr54847241f8f.10.1736158843338;
+        Mon, 06 Jan 2025 02:20:43 -0800 (PST)
+Received: from [192.168.0.14] ([188.26.61.92])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a2311b3c8sm44640950f8f.25.2025.01.06.02.20.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jan 2025 02:20:42 -0800 (PST)
+Message-ID: <d41fd615-2e6a-4cfb-90c9-fc0122ea992f@linaro.org>
+Date: Mon, 6 Jan 2025 10:20:40 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdWxmMXe7dhFNGmr90AkRovW-Pov_0DA8-=RgDa9j_FWiQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] firmware: add Exynos ACPM protocol driver
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
+ peter.griffin@linaro.org, daniel.lezcano@linaro.org,
+ vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
+References: <20241220-gs101-acpm-v5-0-4f26b7fb3f5f@linaro.org>
+ <20241220-gs101-acpm-v5-2-4f26b7fb3f5f@linaro.org>
+ <8e6bade0-5184-4bf7-b1f0-103a77d0f98b@kernel.org>
+ <060c7a96-c1ed-4c97-8a3f-f510102466f9@linaro.org>
+ <24963d4d-9d53-4d07-a756-3eb1fc50c3dc@linaro.org>
+Content-Language: en-US
+In-Reply-To: <24963d4d-9d53-4d07-a756-3eb1fc50c3dc@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Geert,
 
-On 2025-01-06 10:45:51 +0100, Geert Uytterhoeven wrote:
-> Hi Niklas,
+
+On 1/6/25 9:33 AM, Tudor Ambarus wrote:
+> Hi, Krzysztof,
 > 
-> On Sat, Jan 4, 2025 at 1:17 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > On 2024-12-27 14:22:31 +0100, Geert Uytterhoeven wrote:
-> > > On Thu, Nov 21, 2024 at 2:41 PM Niklas Söderlund
-> > > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > > The second CSI-2 C-PHY data-lane have a different line order (BCA) then
-> > > > the two other data-lanes (ABC) for both connected CSI-2 receivers,
-> > > > describe this in the device tree.
-> > > >
-> > > > This have worked in the past as the R-Car CSI-2 driver did not have
-> > >
-> > > has
-> > >
-> > > > documentation for the line order configuration and a magic value was
-> > > > written to the register for this specific setup. Now the registers
-> > > > involved are documented and the hardware description as well as the
-> > > > driver needs to be corrected.
-> > > >
-> > > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > >
-> > > > --- a/arch/arm64/boot/dts/renesas/white-hawk-csi-dsi.dtsi
-> > > > +++ b/arch/arm64/boot/dts/renesas/white-hawk-csi-dsi.dtsi
-> > > > @@ -21,6 +21,9 @@ csi40_in: endpoint {
-> > > >                                 bus-type = <MEDIA_BUS_TYPE_CSI2_CPHY>;
-> > > >                                 clock-lanes = <0>;
-> > > >                                 data-lanes = <1 2 3>;
-> > > > +                               line-orders = <MEDIA_BUS_CSI2_CPHY_LINE_ORDER_ABC
-> > > > +                                              MEDIA_BUS_CSI2_CPHY_LINE_ORDER_BCA
-> > > > +                                              MEDIA_BUS_CSI2_CPHY_LINE_ORDER_ABC>;
-> > > >                                 remote-endpoint = <&max96712_out0>;
-> > > >                         };
-> > > >                 };
-> > > > @@ -41,6 +44,9 @@ csi41_in: endpoint {
-> > > >                                 bus-type = <MEDIA_BUS_TYPE_CSI2_CPHY>;
-> > > >                                 clock-lanes = <0>;
-> > > >                                 data-lanes = <1 2 3>;
-> > > > +                               line-orders = <MEDIA_BUS_CSI2_CPHY_LINE_ORDER_ABC
-> > > > +                                              MEDIA_BUS_CSI2_CPHY_LINE_ORDER_BCA
-> > > > +                                              MEDIA_BUS_CSI2_CPHY_LINE_ORDER_ABC>;
-> > > >                                 remote-endpoint = <&max96712_out1>;
-> > > >                         };
-> > > >                 };
-> > >
-> > > Using the MEDIA_BUS_CSI2_CPHY_LINE_ORDER_* definitions has a hard
-> > > dependency on commit 91a7088096a49eb4 ("media: dt-bindings: Add property
-> > > to describe CSI-2 C-PHY line orders") in media/master, hence I cannot
-> > > take this patch in renesas-devel until that dependency is resolved.
-> > >
-> > > However, according to the cover letter, commit 573b4adddbd22baf ("media:
-> > > v4l: fwnode: Parse MiPI DisCo for C-PHY line-orders") in media/master
-> > > causes a regression in the absence of the line-orders properties
-> > > (which I had missed before, unfortunately).
-> > > So I think it is best if this patch goes in through the media tree,
-> > > which already has the prerequisites and the regression:
-> > > Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > >
-> > > Alternatively, I can:
-> > >   1. Cherry-pick commit 91a7088096a49eb4 first,
-> > >   2. Replace the MEDIA_BUS_CSI2_CPHY_LINE_ORDER_* definitions by
-> > >      their numerical values.
-> > >
-> > > Please let me know if you prefer option 1 or 2.
-> > > Thanks!
-> >
-> > My preference would be for this patch to go thru the media tree with
-> > your tags to create the least churn, if Sakari is OK with that ofc.
-> >
-> > If not I leave it up to Sakari which option is most preferable to him,
-> > I'm OK with both alternatives.
+> On 12/31/24 2:32 PM, Tudor Ambarus wrote:
+>>>> diff --git a/drivers/firmware/samsung/Kconfig b/drivers/firmware/samsung/Kconfig
+>>>> new file mode 100644
+>>>> index 000000000000..750b41342174
+>>>> --- /dev/null
+>>>> +++ b/drivers/firmware/samsung/Kconfig
+>>>> @@ -0,0 +1,14 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0-only
+>>>> +
+>>>> +config EXYNOS_ACPM_PROTOCOL
+>>>> +	tristate "Exynos Alive Clock and Power Manager (ACPM) Message Protocol"
+>>>> +	depends on ARCH_EXYNOS || COMPILE_TEST
+>>>> +	depends on EXYNOS_MBOX
+>>>
+>>> Is it build time dependency? No || COMPILE_TEST?
+>>
+>> There's no build time dependency, I'll drop this line.
+>>>
+>>> Is it fine when EXYNOS_MBOX is a module?
+>>
+>> Yes. When the EXYNOS_MBOX module is not loaded, and one tries to load
+>> EXYNOS_ACPM_PROTOCOL module, the later will defer probe when requesting
+>> the mailbox channels, but that's fine.
+>>
 > 
-> Note that it's getting a bit late for the alternatives, as I plan to send
-> my PRs for soc today, or tomorrow the latest.
+> I'll need to select EXYNOS_MBOX, I explain why below.
+> 
+> cut
+> 
+>>>> + */
+>>>> +static const struct acpm_handle *acpm_get_by_phandle(struct device_node *np,
+>>>> +						     const char *property)
+>>>> +{
+>>>> +	struct acpm_handle *handle = NULL;
+>>>> +	struct device_node *acpm_np;
+>>>> +	struct acpm_info *info;
+>>>> +
+>>>> +	if (!np) {
+>>>> +		pr_err("I need a device pointer\n");
+>>>> +		return ERR_PTR(-EINVAL);
+>>>> +	}
+>>>> +
+>>>> +	acpm_np = of_parse_phandle(np, property, 0);
+>>>> +	if (!acpm_np)
+>>>> +		return ERR_PTR(-ENODEV);
+>>>> +
+>>>> +	mutex_lock(&acpm_list_mutex);
+>>>> +	list_for_each_entry(info, &acpm_list, node) {
+>>>> +		if (acpm_np == info->dev->of_node) {
+>>>> +			handle = &info->handle;
+>>>> +			info->users++;
+>>>> +			break;
+>>>> +		}
+>>>> +	}
+>>>> +	mutex_unlock(&acpm_list_mutex);
+>>>> +	of_node_put(acpm_np);
+>>>> +
+>>>
+>>> You also need device links and probably try_module_get. See clk.c
+> 
+> I find these necessary too, will add them. try_module_get() must be
+> called when the module exists and is alive, otherwise I get a NULL ptr
+> dereference. I need a module dependency between acpm-protocol.ko and
+> exynos-mailbox.ko.
+> 	select EXYNOS_MBOX and
+> 	MODULE_SOFTDEP("pre: exynos-mailbox");
+> shall do the trick I think.
+> 
+>>> clk_hw_create_clk() or of_qcom_ice_get(). Interestingly, none of them
+>>> perform both operations, which I think is necessary.
+>>>
+>>> I think you could also avoid entire list and mutex by using
+>>> platform_get_drvdata(), see of_qcom_ice_get().
+> 
+> Using platform_get_drvdata() will simplify the code, thanks. It still
+> assumes the platform driver exists and is alive, otherwise we get a NULL
+> ptr dereference when getting the drvdata. But we'll be safe if I add the
+> module dependency.
 
-Thanks for letting us know. As we all are slowly wakening from the 
-holiday season maybe the best alternative is to go with option 2, 
-numerical values to avoid the issue? Then in next cycle follow up with 
-using the defines?
-
--- 
-Kind Regards,
-Niklas Söderlund
+Ah, MODULE_SOFTDEP is a soft dependency, so I can't use
+platform_get_drvdata(), because if someone removes the exynos-mailbox.ko
+from the file system for example, the acpm protocol will defer and its
+clients still get a NULL ptr dereference when trying to get the handle
+(where try_module_get() and platform_get_drvdata() are called). I'm
+better off with the list and mutex.
 
