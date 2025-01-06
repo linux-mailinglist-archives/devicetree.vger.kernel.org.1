@@ -1,173 +1,242 @@
-Return-Path: <devicetree+bounces-135892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC65A02DB2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 17:24:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B11E2A02DED
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 17:41:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 970147A37E8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 16:24:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12D9D1886418
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 16:41:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0B319D899;
-	Mon,  6 Jan 2025 16:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3013E1922F6;
+	Mon,  6 Jan 2025 16:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EIbu+giF"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="e39KPEyt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2065.outbound.protection.outlook.com [40.107.249.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B0F44EB48
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 16:24:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736180648; cv=none; b=hZLLbljSY1kiNvc5GK6MCbqU05kLwuCVirD7XTcxHtMYDETG5L/bJW61vo5MYodHCXn6A3LXDOJ9yVXg82X/q04eVeg5Oy0r9aVou/6cT3qr6yVSxD3/hdAg+fxRQUpHFUr+0gD4zSNbTRucMwxVOsNXRYhqimJGpvXhdzk9jCk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736180648; c=relaxed/simple;
-	bh=ELpWKSlR1Z2yTr8KWlNskjTjjdW9g2IMY35PT7jUlBQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qYwRXPU4/HLEEwTM5TOnWlOXHJcDNxUSAwKkORI91Y70rSPbuAF8JEk99cE5cs9L3tow6IXWngivB5uPFtVmO2b8d4kO/wGpa9IebAdo9/JAAKXSosuVfPjFQ9xM85+NTsE5swWk9UjMJwqEPlHlVbHcNw+Sj06UUwG+oM2lt40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EIbu+giF; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2166f1e589cso254883855ad.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 08:24:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736180645; x=1736785445; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=1kJILhgpSDQv2eNsTh8ePWX95k+BIGrrFxfbsyCNVHQ=;
-        b=EIbu+giFNPd6yI+nJE/4q5Qibu7o7fYZarzoapZjwbna/U526ceW/37RaJgUBm/wgT
-         Y9cKSylGYqnHvOY/vFL/Av3I8KjkxFh7ExCvhkhaA3RbwKUIZyGZCmhtEP0PEOU4xed0
-         2rMTdIQaBsvJMVnWjmnmYAp7N5V3bK9priH6d2OtUSi56Zx3PWlO874+vImi5Nf32+Dz
-         NMk94ZbjSb6NMwv8Fgvx9slGbUxshp6rlYxMvPYIRVHzW3fdQ+iIuvjMTdaYFsHElBQq
-         uHsQAAWyQM2hOF7au5Lcww63POt2VWhnUU0dAimV12NsJYF/sip2WCVqVJt9uXqAdlAL
-         dIFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736180645; x=1736785445;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1kJILhgpSDQv2eNsTh8ePWX95k+BIGrrFxfbsyCNVHQ=;
-        b=CCxpsfytFzy8YR38eHKwevlTr7MhP2ROqyA7UldXGwQtyzXmzuaoVPdOf5RdtGaSQu
-         Co6aHqZHsTZvypntrhrrgxp09eqmrA2Xh+rwnxxDn4/vjtfLbDT4sNhiFNAR3hzEP908
-         6KlSdt/ud/nFj4gnVlpF9SjVvfPZKfvlnHHg8jY33b4/kQ/pqAStxdt1J0fIzx04MobZ
-         SP7wS5sdfiMakAuP2/HtL9i8PnpqOqRhz/UAKxcCtaPsd3ln4FLOdkXWBPpkMEJOq5AL
-         eW9TPbQKNXS8pvVKbjR3ohI/tf+PejQWF8TUpMWmUkE+ym3Oe9OeDiXtpv8uniYOwL3u
-         Q5OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWMUMp9RL1fr0y4980NuVm2TwVswlD7kHLxKRMggvtROnIGJQiXGNz+Py0Kj5UZYE7gFqiAr7z7k8PM@vger.kernel.org
-X-Gm-Message-State: AOJu0YytiaV57LPdLiQqpkK0TA8S21JWrLv3ZwSu984c1TF8t0SZXmaX
-	RHWTixMwTB/R64oGsLKJQftPBTnI8dCeLyXSH3dnUJssnloliTx3+bKjlD3twA==
-X-Gm-Gg: ASbGncvV4BUPOCJeEj/232Hy5ikIZu+8U9pM1ORGWegihgWE0T4GADzP8jXL9UM1bt+
-	QQNovjBBV5YKx5tZYy7pKv042+jzKMXxV1ALD84VFYVRTMCunxZ9+KsbIRWk+YRgFrwez99Y9El
-	jZuIrIjeWkSMaCiRf7dYLzGthM2shp28efxDcdkVW2UDrk2VPZSUDtT7k9c6v+4FRJCpbk+i7yz
-	Stg4TfLcq2Wo7W1fDPWi1OcSmr+RE9w8hIp/QTzMQLmVBmWncqHXaowCkLivQ6n6Lg=
-X-Google-Smtp-Source: AGHT+IFdRHlYP1im5zetO+/SjNKJaY5KNYN5HfbqNmxIWZ26dMrClumWmmikkawZQrxTttP5oKteOA==
-X-Received: by 2002:a05:6a00:1706:b0:726:f7c9:7b36 with SMTP id d2e1a72fcca58-72abdd7bacdmr98645349b3a.8.1736180645400;
-        Mon, 06 Jan 2025 08:24:05 -0800 (PST)
-Received: from thinkpad ([120.60.61.126])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad8dba83sm31660071b3a.116.2025.01.06.08.24.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 08:24:04 -0800 (PST)
-Date: Mon, 6 Jan 2025 21:53:52 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Jianjun Wang <jianjun.wang@mediatek.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA51216F8E9;
+	Mon,  6 Jan 2025 16:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736181690; cv=fail; b=Xq/uIPVGdgFprHZntGBLE7BqPpou+xmceYTNP7WYxdoeM+WBA7l45AYTsGJP9ZQG0+aSaTyiVlSKdhBErklPG1YiUDGn4VwfpAQpUpDXJVAgA8NwgM5Pi+4d0NYlwNL5/ebG+EmwwkCV1ojFRyzRCoLQ7/5hBhusv1cGED9rW1Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736181690; c=relaxed/simple;
+	bh=e7tLUNWfj9cQ0RyfkA/TwKyDA7hN4niRdlTFMtZPuv0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=snPVzNUysfxQdz/yktm6oTEqTcI6v9pZw4F8qoKZO6nMf71lqbKFo8pBzm+KFKwLqMLTmx5DJ9SY0rc9Z0c6UnzO4bWXioQA2Q0E5QT8dthjuMO12BbBaqKbgeOsdNRe4In/WwhxZTMcz4nmH6ocNgL4llxILvmxrKpzh7h//FA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=e39KPEyt; arc=fail smtp.client-ip=40.107.249.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CWWf7odixQII/7wvedLULj7iXaab46Pdm7m5HcE6YKYBQYHcg10v8gN8tXR3S2bmaIkYcf9bLmBQCocOY+RP3PmSFLweEgmC4i/BfefMyeAkuAvwcwQ0NsOAGNUiaC5Bw2fCBp0kVcOxWD+0RhbJn347sKXXtsXQG7U4Gd1loc59vxBws+6qH/t2pOw4pahZiAkTNlNJ56+dKnUJMILja6eBVcSFi8pJozRip2BHI1TJ92TcbTUUIVIHSCvJftkGoVQnLtNKy/gOIhMtCQe+IZOGeY/fi+b8E+dO+n8Mf3VTvYBDGazUzGDm+Xdsaa5qNjrEprxZrd/Els4LfOMW8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kLtaA30x46OOm+qM0sXZm9uumesTb8ZvPVaSoItN0AE=;
+ b=Cn4nR8unLHIVE49wCyhmLRG7l4pgI8FGFvrZ9S1W+4gi05EKQCmo6wrYuXRTaz+Zcqf2IiR52+OKqczTHDSoDtLSyroyzstyokHhx0YIvlQ7AZQMqFIRejTWphS90ixbOWUVZDd/7aGeuzTNqO37y1Kf8XW0Rd7i9a2pl8jwplDGX1OTUhxCk2tohE6Qf4XKoMiZJYjDjgWMTNYssevdZwGud6PbIGuEjPbFg+DCkJ8xi1qQ8uFZDfUDRUKsFUkzem01BupfXXsTo9OMyqVlytzRYaJavoqccgzFqfCd5RbUvq3In9oGAlIky7Z5zZDFsrasg0necTQhTVtqfrLdMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kLtaA30x46OOm+qM0sXZm9uumesTb8ZvPVaSoItN0AE=;
+ b=e39KPEytvH7EfNFsVsdFB3p90132xv2LUmxF1jNx40Xebpu7b3Pu7YyoHjSqbR1ZYrEr/uv4eghe2lu3IYMNRprbRmxw+AF8DK2t3ZNs67bhNJkieSsRzHECrcQhDDU7rkIPYdnQbRN0EyvP1rXVcr2By333XdvrzdKAfc+XLeuskJvrg+MimaJ6q0YFKUJupWn2iA4AffdO+zpJdj+mUMtd5mJXn7hZo3DbmoebKtfY5HkjPpd2WpNgDpVzRimshn17PCv1BHNC5r2pzut4JDG9IDTPFWFSceLv4qZnH3BpAAivahriteEO4xFo5RhcUDg2pCs/GdBwBBtM9kHYDQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB8125.eurprd04.prod.outlook.com (2603:10a6:102:1cc::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Mon, 6 Jan
+ 2025 16:41:20 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8314.015; Mon, 6 Jan 2025
+ 16:41:20 +0000
+Date: Mon, 6 Jan 2025 11:41:11 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Ryder Lee <ryder.lee@mediatek.com>, linux-pci@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Xavier Chang <Xavier.Chang@mediatek.com>
-Subject: Re: [PATCH 5/5] PCI: mediatek-gen3: Keep PCIe power and clocks if
- suspend-to-idle
-Message-ID: <20250106162352.neo5pkunbdakizar@thinkpad>
-References: <20250103060035.30688-1-jianjun.wang@mediatek.com>
- <20250103060035.30688-6-jianjun.wang@mediatek.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Abel Vesa <abel.vesa@linaro.org>, Marek Vasut <marex@denx.de>,
+	linux-clk@vger.kernel.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: imx8m: document
+ nominal/overdrive properties
+Message-ID: <Z3wHp6eLQuV9GGvh@lizhi-Precision-Tower-5810>
+References: <20250106-imx8m-clk-v2-0-6aaeadac65fe@pengutronix.de>
+ <20250106-imx8m-clk-v2-1-6aaeadac65fe@pengutronix.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250106-imx8m-clk-v2-1-6aaeadac65fe@pengutronix.de>
+X-ClientProxiedBy: SJ0PR13CA0117.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::32) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250103060035.30688-6-jianjun.wang@mediatek.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8125:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5dcb2b4f-92a5-4663-62f3-08dd2e70f2ca
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|1800799024|366016|376014|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?RecqRILwGSZsbJBHWMjqtIG6C5IIxZyT85Gb+ZPJaqTmH7xML4bBJtANtonF?=
+ =?us-ascii?Q?ft/x8QnL5iJ0Sm/nnA+kt3ISJ7HuATSLylcOscu4zPqSljx2WRpSjTGw4Y3/?=
+ =?us-ascii?Q?ODdpcstA2TuP8/0I6vkW2Nmq4uOD1+WRcjpci9fz9d0ReGjlENP7AJzJOKET?=
+ =?us-ascii?Q?IDwCxk9Z2He3EpRD8o5CDav648PNCoiM9uYMPvxjE9i8gTbXUJMZnCx+IgbU?=
+ =?us-ascii?Q?a0dpQ5wnmQIgVTc0wcXhsRyGDkco3Ng9VyoJu7cHZZLvsat3RzO/UGy97MFk?=
+ =?us-ascii?Q?bKkue66+9B/f+5eRGKTkEsG/SJ/qNv1GRvvX+nyQEEW3F7BSFd9kKmVQk7SO?=
+ =?us-ascii?Q?aA0nbIQKq2tkWY/MtbzZL1RwOdRVmi7YRzoDtGPLD9jIe+YBZSd773dvrru5?=
+ =?us-ascii?Q?teQXf4bQwS/dsmkRDTAjsTYWELBCJWLrCHi/0OqpPMI121GIVnAe2lWTU5AO?=
+ =?us-ascii?Q?eXYFnq/4BYpOuzVQCRShV29zOXJdOgFBdpfJ3qmkELI+IcVlFUXLZnr8xT5q?=
+ =?us-ascii?Q?73UriSLd7wWmzp2v+pYUVMY85cNE++hislvY6Bv1MeVp29sKdbEHylgBN/tt?=
+ =?us-ascii?Q?09ewBSFdfVto5TfZTrZBwaB4vpKqAeBjGJwLYiQN6pjV7UIojRAmxNwEKrHt?=
+ =?us-ascii?Q?rG/WpKwIacTGCVeHGJtMl/FozowbH9k6G9Vcb9qWkT015auiv9pzWMZhiWqM?=
+ =?us-ascii?Q?QiCpHGcK0r4mgrlczOp9PJNvliXD6Vsa3domhYl61ncHu2mdt11OFI45dVde?=
+ =?us-ascii?Q?fCnWScQn+ta1odEkUVInNsGsVyl1sx8FKz/+QB9+dEB0TDnJ1Tqd9L79TxXf?=
+ =?us-ascii?Q?ExkoVLAfGDQk2oRsrmkLkW7jzpm0Ov5VX+Yw1gypYz0HWECaqxY12ymTzYa/?=
+ =?us-ascii?Q?WD1og3pTlK13OANEjJY889nCMnUHKfwV1MMXvDoxwVL5MTVrHbFH2N/5EaLi?=
+ =?us-ascii?Q?IqufXTKrporXQBTg97Q8BXgwvdPH7MIgkgBXP/HVbV1ioLz/skFWGTMtSh88?=
+ =?us-ascii?Q?UiJ5oZ0dRm88sSuddBif74OPuyWj6Vw6LNCvAcwsUV3o4M/KNcxGYnHyv9+c?=
+ =?us-ascii?Q?HqNB0EDvWuRKg8P/88xyYRGf1IAZReq3jvlsBq1VcILuy0ydS7kWBawcjFVe?=
+ =?us-ascii?Q?3oPqJe2teWcSVnnDKF+3PdgOXWnj5luURD36yQMPH1OFD7xmVx+rqC0sK/bF?=
+ =?us-ascii?Q?FRDLamjQI3CXvsHjv6A9lClCiqMjKwM5sF/pqcNR5GYaBDn1wTldDBsry0ft?=
+ =?us-ascii?Q?6M9udmS+Ob7KkvzMByEhnEzY+PZ3GdqxyG3FG9v2OBsuE51GmYy5cFAEV+n3?=
+ =?us-ascii?Q?/H3z6/VyYmgB9WujVZWEnd2jHiQ+yQvpIQN4ohAKPW8lT2j5Y4ryn/7+AM+p?=
+ =?us-ascii?Q?z8m3Vt3MYWBj3FDQXcL9lvzTTNfZEesYFyLE7ernvDVaLbmsYz3g8zLniKOs?=
+ =?us-ascii?Q?ECfY0kyeR7aBGlrRqon7VW6TC0vql30x?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(1800799024)(366016)(376014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?vKC0+xzaPLtyLQHquwpBD24Df3fKC9eIOKyfo1Qk8Kxk6SeTBkGFDh8DnT9O?=
+ =?us-ascii?Q?w7kHtNlkqNBTxwqVE9Zg1ADubt6pt57NGUXXQCCYcfyjqn2uWIRa64TQB0zN?=
+ =?us-ascii?Q?6t4vD0gYudZAreDrEj3ZS8gRqc+QqK6us5nEFZUzm0eVv20EvkQp8ly0kkKX?=
+ =?us-ascii?Q?JLGEmFI2T5oE0qYS36ayZEANahrRUr+jvZcZqPR5I0zAdpAby4UNVfsXZiZf?=
+ =?us-ascii?Q?V0c3rXzyE7X17o7HRpYFKt3hHhm18uIk9ToZQfJnkhEj8m9Po6IiR/rd0hcB?=
+ =?us-ascii?Q?b3QoeYZL4YHzHLGZ7e6uhHrk5HaDJXwzx2+jo88h8ZerCDDAU/M9geHUaQPC?=
+ =?us-ascii?Q?zq8OFgVlOqBpUAJGJefC19F+QPuoVJEJ5By2ilk24/1xsueC83bJYTVhakxc?=
+ =?us-ascii?Q?1SaI6ZebNIFmB+/35QsSPthJhju3nMhjd+YutcHRD6zOHOXfxqOdT7lm5UwA?=
+ =?us-ascii?Q?oJgSy+4kEWp475QeOn5Xs/E5p21lx6/Wkyi8LaLL3jzahXGnmpuGZZ3c4pAA?=
+ =?us-ascii?Q?uqmQOCQquaexs19AC/tdgWQVqVchnGvTrOsM8FDx4l7PeK6c6cQfESWQihff?=
+ =?us-ascii?Q?1Fwk3zWiav7sVm+CKoPbqJRK4vc8u/LnGq3gff1u7ueramJwwUcYqKsiylYB?=
+ =?us-ascii?Q?A+3JHYjJ2/mdatKMYyq5ijvM51bS1Lezo+RYvC2cRp8U527uK4u4VyZV6o1k?=
+ =?us-ascii?Q?uvdHUx4Z4KfMPaK0v+nnPQ6K/pQaWoAIO3wwRju0bEKDDBvmymc+uV2m/uqC?=
+ =?us-ascii?Q?qjvc/A14wPK8/e4pEO04uKG/GLzUJnZBP83JVyn2oH3TfvQnznb2fTca52yq?=
+ =?us-ascii?Q?sFxcenmISTgyN6ObNq3Bnshj/OHwGMyumkaEbY4TAhhHFWPcFDXlPaKtHJT7?=
+ =?us-ascii?Q?mOSx83ozGQhfY+tTooDase4viq8Mq7N5hU2F+dVT7PGS/UongfeGgBnq5UwA?=
+ =?us-ascii?Q?BnqqmDNy+LpAoX90RKNlHJFAZHT+TpVt/tph2EZtdfP7GCaGFnB2/GhTLGS4?=
+ =?us-ascii?Q?03IdamOJpFKIOwdTOzYihoJEGImxx5Q8bHboLDbg0HjquVFr64w3mZvSNYNm?=
+ =?us-ascii?Q?m5ivoG7MSykreDia3LDVtTkOKT0JRNckzHs9qwhpjx+m8MLRw4o4vpN3ZDQw?=
+ =?us-ascii?Q?qWqwSICdrjfGpnafB+OtuuG95dSM1gALZtRgrRuwjAnPH88ShymcfZcWHs1Z?=
+ =?us-ascii?Q?zV6N68aCP1a9mBxWDA0hG95Qrhcl5gmzCtTtGOTaX4RU/hWCRhlR4V47kY6U?=
+ =?us-ascii?Q?9PFKr3CifutQd/o/kqlflI+gLlApWKt6032F7sfkTHKXoVKXjaz2nNvfsbz5?=
+ =?us-ascii?Q?cqmDUB0RJRNJqgru6kbjVJkVDSnlfeAhNnDJPzn7il0ehInTMTJzYu7GfOHz?=
+ =?us-ascii?Q?T8kQgd6VE7DORvZpTpBK+DuiqiQ2ft6hG08hrrr9R+/0g6IQFSMG7zcQ6noW?=
+ =?us-ascii?Q?20mz2uMsOlsM1VD8fTewapXhZN2Cx2gOODX4OyhVpkPMA+cdFtz5crB6I7qs?=
+ =?us-ascii?Q?srngLVU+5aUkssb2B8FaUfJIitBrIEtwVSqZajgUU9RUPdxxSlo7kP6T5JaC?=
+ =?us-ascii?Q?hZwZEYOXKOK45R/23UA=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5dcb2b4f-92a5-4663-62f3-08dd2e70f2ca
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2025 16:41:20.2072
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CnXU0iGZsV/4do9eyNsH6/52rEkCfIsTMYqUH1Y9x25nzuDdCS0OU6m1FwmVwejFdUMd6f4IT4GKnlytPzmamw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8125
 
-On Fri, Jan 03, 2025 at 02:00:15PM +0800, Jianjun Wang wrote:
-> If the target system sleep state is suspend-to-idle, the bridge is
-> supposed to stay in D0, and the framework will not help to restore its
-> configuration space, so keep its power and clocks during suspend.
-> 
-> It's recommended to enable L1ss support, so the link can be changed to
-> L1.2 state during suspend.
-> 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+On Mon, Jan 06, 2025 at 03:21:42PM +0100, Ahmad Fatoum wrote:
+> The imx8m-clock.yaml binding covers the clock controller inside all
+> of the i.MX8M Q/M/N/P SoCs. All of them have in common that they
+> support two operating modes: nominal and overdrive mode.
+>
+> While the overdrive mode allows for higher frequencies for many IPs,
+> the nominal mode needs a lower SoC voltage, thereby reducing
+> heat generation and power usage.
+>
+> As increasing clock rates beyond the maximum permitted by the supplied
+> SoC voltage can lead to difficult to debug issues, device tree consumers
+> would benefit from knowing what mode is active to enforce the clock rate
+> limits that come with it.
+>
+> To facilitate this, extend the clock controller bindings with two mutually
+> exclusive optional properties. Allowing for absence of both properties is
+> needed, because there is no default suitable for all boards:
+>
+> For i.MX8M Mini and Nano, the kernel SoC DTSIs has assigned-clock-rates
+> that are all achievable in nominal mode. For i.MX8MP, there are some
+> rates only validated for overdrive mode.
+>
+> But even for the i.MX8M Mini/Nano boards, we don't know what rates they
+> may configure at runtime, so it has not been possible so far to infer from
+> just the device tree what the mode is.
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 > ---
->  drivers/pci/controller/pcie-mediatek-gen3.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-> index 48f83c2d91f7..11da68910502 100644
-> --- a/drivers/pci/controller/pcie-mediatek-gen3.c
-> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-> @@ -1291,6 +1291,19 @@ static int mtk_pcie_suspend_noirq(struct device *dev)
->  	int err;
->  	u32 val;
->  
-> +	/*
-> +	 * If the target system sleep state is suspend-to-idle, the bridge is supposed to stay in
-> +	 * D0, and the framework will not help to restore its configuration space, so keep it's
-> +	 * power and clocks during suspend.
-> +	 *
-> +	 * It's recommended to enable L1ss support, so the link can be changed to L1.2 state during
-> +	 * suspend.
-> +	 */
-> +	if (pm_suspend_default_s2idle()) {
-
-I think you need:
-
-	if (pm_suspend_target_state == PM_SUSPEND_TO_IDLE) 
-
-here and below.
-
-> +		dev_info(dev, "System enter s2idle state, keep PCIe power and clocks\n");
-
-There is absolutely no reason to print this message every time system suspend
-happens. Even dev_dbg() seems unnecessary to me.
-
-- Mani
-
-> +		return 0;
-> +	}
+>  Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> index c643d4a814786a1fc7e559140fe58911990f71bb..a6ae5257ef531f3fa8506d515d202f5b7842c4fa 100644
+> --- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> @@ -43,6 +43,14 @@ properties:
+>        ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-clock.h
+>        for the full list of i.MX8M clock IDs.
+>
+> +  fsl,nominal-mode:
+> +    description: Set if SoC is operated in nominal mode
+> +    $ref: /schemas/types.yaml#/definitions/flag
 > +
->  	/* Trigger link to L2 state */
->  	err = mtk_pcie_turn_off_link(pcie);
->  	if (err) {
-> @@ -1316,6 +1329,11 @@ static int mtk_pcie_resume_noirq(struct device *dev)
->  	struct mtk_gen3_pcie *pcie = dev_get_drvdata(dev);
->  	int err;
->  
-> +	if (pm_suspend_default_s2idle()) {
-> +		dev_info(dev, "System enter s2idle state, no need to reinitialization\n");
-> +		return 0;
-> +	}
+> +  fsl,overdrive-mode:
+> +    description: Set if SoC is operated in overdrive mode
+> +    $ref: /schemas/types.yaml#/definitions/flag
 > +
->  	err = pcie->soc->power_up(pcie);
->  	if (err)
->  		return err;
-> -- 
-> 2.46.0
-> 
 
--- 
-மணிவண்ணன் சதாசிவம்
+why need two flags? suppose "not set fsl,overdrive-mode" is equal to
+fsl,nominal-mode
+
+Frank
+
+>  required:
+>    - compatible
+>    - reg
+> @@ -95,6 +103,12 @@ allOf:
+>              - const: clk_ext2
+>              - const: clk_ext3
+>              - const: clk_ext4
+> +  - if:
+> +      required:
+> +        - fsl,overdrive-mode
+> +    then:
+> +      properties:
+> +        fsl,nominal-mode: false
+>
+>  additionalProperties: false
+>
+>
+> --
+> 2.39.5
+>
 
