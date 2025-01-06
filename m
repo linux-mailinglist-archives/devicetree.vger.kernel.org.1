@@ -1,219 +1,132 @@
-Return-Path: <devicetree+bounces-135741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 478E9A01FD5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:23:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4638EA01FDD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 08:27:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 945541884BFB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 07:23:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5CFC1881690
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 07:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF4A1D5CD6;
-	Mon,  6 Jan 2025 07:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2A019343B;
+	Mon,  6 Jan 2025 07:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CpKcxQga"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JGPqQD8b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5E62D600;
-	Mon,  6 Jan 2025 07:23:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4490515884A;
+	Mon,  6 Jan 2025 07:27:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736148214; cv=none; b=qdx/ULwj8wBH5XQOwjFC4Uw8IeXZD3gUFl3d0XljeIYx8dEhOQSCIw6def7OcIOcbHquEKuAoFtgDZpR0QBGfYclfCPVTfuayu77HGAYMjkpVaMfhOtEDPkSPXXJmwXFJj0XBB989k0FbOhwW9RH6fXiZ9Fgp1+Vf453tcwzN+E=
+	t=1736148421; cv=none; b=fL6KI4ALAuLYVZziRjbdVaTbHzrAgNIW2Y3k0J9r5Gl6c3ae5KBotlgYYAufjpOC3034UhHQolq0OLztM+sqPeRQmeMQg9f9hOJAzAajoLBpz6mUYgek1vOmoMxL2ocYC2EVglKGyOOpxFfVbwgiTnk6setkB5mTAs4E5snfRn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736148214; c=relaxed/simple;
-	bh=zAxgWUko2m6cuGd5MQunSh/LZr15LsDHR69MlWNLRas=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ofHwBrtqYEvH4lCSKQ/XLXbOm8h5ehvkslyEhB/7ZzJ/qo2zSlVWcxsk8HHkJi7VKDUSf3vKXuHozgmf7qkk+4a1I5RwJS+9lCElq8vN+HGasiQ4shZfe11V7WmGFdoS8hAfjdLQvmKz4qWHOFwQU+NFiueM7/QuZCz0qKfnESA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CpKcxQga; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aa67ac42819so2019317866b.0;
-        Sun, 05 Jan 2025 23:23:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736148211; x=1736753011; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oUBrFahDDtLxpUl8e1hAAHHnLLP81rttueCp4XvEwcA=;
-        b=CpKcxQgaHQvj3YZR2TJNoJPedhj922Bzr4iKLW0i1Mp6nrsp7A1P1fGIS309aWUGLN
-         lW1n6zhxEV3QvUwciC8WBZ6uEQ1f0gaoBc48OiazGIk4bhoIegMPPKNIV/NM/CrbPxF0
-         7B752a6ozfrqk/rHrLZMtgK7Wjua+ZUu2uhgJkfWkES2nnKlyqDXTiDqkStQMrxoZiYp
-         K7v1TCnIP7ZZxY+uQInHxSRHYT97QhcI5KivUpYLNB/A0ZSqi8zdopQzBM2t5RzWHdxZ
-         M67kTPLmdE9G4xkqPkzgYHRM1HdtdVJWTdTJMa6yYtxYiuzJpNgu2je4oWHvXmGPcx5p
-         g7cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736148211; x=1736753011;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oUBrFahDDtLxpUl8e1hAAHHnLLP81rttueCp4XvEwcA=;
-        b=N31FniMWJRbt79kPIpI5eDke+QT53IM+5SVw6vp5HdJ51Yz9eYIRQNusePpXzMV3mG
-         mT5miTpYiQx78GOYEYa1EorjjLMyAKtGWg9PbI5+fQQ0NEr9iuQBg1KTdtVJZpsDEANH
-         pqcI9BikpCN3LwE7ILzgii0bWBoTx8KHInOgfPqvYzmdekO7IAPc7fjLNNbNlDL4dCAP
-         JPbO+uE23CFH39/4CCRzAxb1ZactnDBv50UAyZ1mnH8EBp4UyW31Tcz8DJf0NUb6atH3
-         vjXTW73SJhoIHn+iLBzYzluz5nuD7iUwx/a2xlTGUVaVduPOrAD3DU1ExWuiRK6oCuzA
-         RyTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV7Amz8Yy5hNp0e6TWY63N8D+hW7DZm5WTLV5rOTjtGr7HvTCLsVJd3n2NWTzQaojEhUeF43Yyet+FI+/ka@vger.kernel.org, AJvYcCVPZvyQb59b4MiD3XBQkCphVi9M4wuPJhrhzwO+TSu0MS34TIL0aYsEOV+gNicplz1fOxvUTE3+630q@vger.kernel.org, AJvYcCWKdY7QM8YO1EYWvez92k4zPXgOyPSQbOPVpyx26B+Sz/cbLkj0Bb+jtPAk/ASfx1ydR+/DQz0U1fRT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSVJVYwynVD8r+GHcnebamEqJvGDQUANfKx4HZYV1tLAVHJfKZ
-	URHZz0D3HSIGPR9wH5thceIw7qA9o7ys3RbAX/pYrurNUmspXSgDjHES5EOGfoYopXYxOPKS0kq
-	lBV//5POO+u8QOfcQE92JVfGKr58=
-X-Gm-Gg: ASbGncsgQSwcrycGJLGpF8tyPMxRR5h1yH7NW0Y4PbJKoQApQJPUdRi+6Qni4yffg6E
-	A0kao+vO0tDSgWEDFfP+0UckPC8enHMsnsKptvA==
-X-Google-Smtp-Source: AGHT+IF/O4a2DxY72awTlyBOBHzOP/Q9qJqdDB4BtBgc/Mr6bjjnNFpEVb5oAVJarwl+pT6rzbfygouRCm69jRrsPV0=
-X-Received: by 2002:a17:907:9405:b0:aa6:93c4:c685 with SMTP id
- a640c23a62f3a-aac2b946474mr4497373466b.23.1736148210495; Sun, 05 Jan 2025
- 23:23:30 -0800 (PST)
+	s=arc-20240116; t=1736148421; c=relaxed/simple;
+	bh=ja91YBqu0Yfv5cKF3N85gDLA/u3fTxXH4GbigjVO/B0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=HwZ+7IjP+Bi2+UoCChUxf7Y0do/xj0u1PM2hsGtlCZhTo+e9N1FZiCto7q3n4aTUJbRIXEGOsY5MK7l7Q6fLzyJSCJbgKiD/uD9EsV9//Mzno6OFwHL3kzdimUp4xfLCZIRlQWy/gBTkAyd7uHMmqOuGWJQA2BEKArdCAAApruc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JGPqQD8b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D77BC4CED2;
+	Mon,  6 Jan 2025 07:26:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736148420;
+	bh=ja91YBqu0Yfv5cKF3N85gDLA/u3fTxXH4GbigjVO/B0=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=JGPqQD8bumnugkpeKXsOlHx0ccrH3yS8rN8v3BjCY6NP9Y6siPBTNlevs3IZvlZZf
+	 auT0ofM8svdWAGNX4ItJF+0i5Ov2W0M+czWSWf3Op1vQUV18ykODBjAAsHKJ4WqNMM
+	 a2KkTSiNrMEE0FgXND1Mm1a3O3bj48e8AgKzIlq6laxRSxdg7yciKRFqlF3fgjUFTR
+	 8RY/DR1TDXBkSsLHvlJ6s1xZlEce9bAVdWSl78ZjdybminkyAMRTHNz2afB4KBF3I9
+	 5JV1ff9+pjhvZKInT9+Se4SBkUi/T55kerjxjpCxJ08wKJfPXr+iYbEQbjzDecl2fe
+	 RjB8LoKmGAY4Q==
+Message-ID: <34ee2448-27e2-449f-bd83-f6df1f3c6c8e@kernel.org>
+Date: Mon, 6 Jan 2025 08:26:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241226055313.2841977-1-j2anfernee@gmail.com>
- <20241226055313.2841977-2-j2anfernee@gmail.com> <lfthwnvwodqogsk446r5nzpmjunfnpdv33xmaookedwjgpdu4n@llvla6siyl5f>
-In-Reply-To: <lfthwnvwodqogsk446r5nzpmjunfnpdv33xmaookedwjgpdu4n@llvla6siyl5f>
-From: Yu-Hsian Yang <j2anfernee@gmail.com>
-Date: Mon, 6 Jan 2025 15:22:53 +0800
-Message-ID: <CA+4VgcK_9_YD0d7LUKbxU6yd3Qo9RT4yNbi90mMN=kK0LHXwow@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: Add binding for Nuvoton
- NCT720x ADCs
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com, 
-	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com, 
-	javier.carrasco.cruz@gmail.com, andriy.shevchenko@linux.intel.com, 
-	marcelo.schmitt@analog.com, olivier.moysan@foss.st.com, 
-	mitrutzceclan@gmail.com, tgamblin@baylibre.com, matteomartelli3@gmail.com, 
-	alisadariana@gmail.com, gstols@baylibre.com, thomas.bonnefille@bootlin.com, 
-	herve.codina@bootlin.com, chanh@os.amperecomputing.com, KWLIU@nuvoton.com, 
-	yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: socfpga: agilex: Add dma channel id for spi
+To: niravkumar.l.rabara@intel.com, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250106042525.2365520-1-niravkumar.l.rabara@intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20250106042525.2365520-1-niravkumar.l.rabara@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Dear Krzysztof,
+On 06/01/2025 05:25, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> 
+> Add DMA channel ids for spi0 and spi1 nodes in device tree.
+> 
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> ---
+>  arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+> index 1235ba5a9865..925b01f5c017 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+> @@ -457,6 +457,8 @@ spi0: spi@ffda4000 {
+>  			reg-io-width = <4>;
+>  			num-cs = <4>;
+>  			clocks = <&clkmgr AGILEX_L4_MAIN_CLK>;
+> +			dmas = <&pdma 16>, <&pdma 17>;
+> +			dma-names ="tx", "rx";
+Missing space.
 
-Thanks for your comments.
-
-Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2024=E5=B9=B412=E6=9C=8827=
-=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:17=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> On Thu, Dec 26, 2024 at 01:53:12PM +0800, Eason Yang wrote:
-> > Adds a binding specification for the Nuvoton NCT7201/NCT7202
->
->
-> I gave you link to exact line with exact text to use. Read it again and
-> use it, instead inventing your own wording. The documentation does not
-> say "Adds" but explicitly asks you to say "Add". Why using different?
->
-> Subject: nothing improved.
->
-> >
-> > Signed-off-by: Eason Yang <j2anfernee@gmail.com>
-> > ---
-> >  .../bindings/iio/adc/nuvoton,nct7201.yaml     | 49 +++++++++++++++++++
-> >  MAINTAINERS                                   |  1 +
-> >  2 files changed, 50 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,n=
-ct7201.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.=
-yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
-> > new file mode 100644
-> > index 000000000000..08b52258e4af
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct7201.yaml
-> > @@ -0,0 +1,49 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nct7201.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Nuvoton nct7201 and similar ADCs
-> > +
-> > +maintainers:
-> > +  - Eason Yang <j2anfernee@gmail.com>
-> > +
-> > +description: |
-> > +   Family of ADCs with i2c interface.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - nuvoton,nct7201
-> > +      - nuvoton,nct7202
->
-> Devices aren't compatible? Explain in the commit msg why they aren't or
-> use proper compatibility (oneOf, see numerous other bindings or example-s=
-chema).
->
->
-
-+  compatible:
--    enum:
--      - nuvoton,nct7201
--      - nuvoton,nct7202
-+    oneOf:
-+      - const: nuvoton,nct7201
-+      - const: nuvoton,nct7202
-
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    description:
-> > +      Reset pin for the device.
->
-> Drop description, obvious.
->
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        adc@1d {
-> > +            compatible =3D "nuvoton,nct7202";
-> > +            reg =3D <0x1d>;
->
->
-> Make the example complete: add interrupts and reset-gpios.
->
-
-Add interrupts and reset-gpios example,
-+ #include <dt-bindings/gpio/gpio.h>
-
-    i2c {
-        #address-cells =3D <1>;
-        #size-cells =3D <0>;
-       adc@1d {
-            compatible =3D "nuvoton,nct7202";
-            reg =3D <0x1d>;
-+            interrupt-parent =3D <&gpio3>;
-+            interrupts =3D <30 IRQ_TYPE_LEVEL_LOW>;
-+            reset-gpios =3D <&gpio3 28 GPIO_ACTIVE_LOW>;
-        };
-
-> Best regards,
-> Krzysztof
->
+Best regards,
+Krzysztof
 
