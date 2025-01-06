@@ -1,121 +1,103 @@
-Return-Path: <devicetree+bounces-135726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98FB0A01F65
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 07:52:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F01A01F73
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 07:59:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18BD11881CEE
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 06:52:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DBF21881584
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 06:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E34F0166F0C;
-	Mon,  6 Jan 2025 06:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CC8E5CB8;
+	Mon,  6 Jan 2025 06:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eIz16R8C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22773C47B
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 06:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00C1B676;
+	Mon,  6 Jan 2025 06:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736146339; cv=none; b=r6o1+2T6nY4rQkH5GFpoaDzq2ICjv47CIhzEzbQNMv3uMYIpI4gVi3BpbBGquJL/DwD/By2cneBY2liNL96LFhYFAtAMOdIuSFm3WENsKc2RL8UN8oQzZBVQf7rw+kro9lpkkrdy7P1CRTeo1TVyyH8LtNSpGbUn7GsfzTLOpao=
+	t=1736146752; cv=none; b=fGoh9JtZaKMpqDWVundTVDpgUoy5wW2DUil8I2aJLfSD8KG4xUzkVSEMSnt09q77VVHHFc1/2zAvI2wYuMODq/vDY6XAq3g5ZydT8AfQ55VTmafcxTlZrb+Wl5jGI1o3FuvJtrGxAwKXA1mwbH6fX5HNDh4VthiICf/WKdInLKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736146339; c=relaxed/simple;
-	bh=9AVPFQ/rsiNebcAThPOSZ8clEX/2ufHxvE3r01U9TeQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F44PUxA3OoUjXA+bN8QK3fIygaptXTEecT9ejj6oYbHjmA/G9N6VU27/zSBC9O93uSjTvJdt46zhpgJpHSklw0wNcNSR+Wq9E8I+KK+ZYNBOaqsNNX5mjKnkyx7tCSeRG5XOLX/vMN83tU0x77KjO4VRFsEsuP02W7vQbp/Ggp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tUgy4-0006nP-5r; Mon, 06 Jan 2025 07:52:04 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tUgy2-0077V8-05;
-	Mon, 06 Jan 2025 07:52:02 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tUgy2-007Ujf-2D;
-	Mon, 06 Jan 2025 07:52:02 +0100
-Date: Mon, 6 Jan 2025 07:52:02 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Junzhong Pan <panjunzhong@outlook.com>
-Cc: broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	festevam@gmail.com, gregkh@linuxfoundation.org,
-	kernel@pengutronix.de, krzk@kernel.org, lgirdwood@gmail.com,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	lkp@intel.com, matthias@kaehlcke.net, mka@chromium.org,
-	oe-kbuild-all@lists.linux.dev, robh@kernel.org
-Subject: Re: [PATCH 1/3] usb: hub: add infrastructure to pass onboard_dev
- port features
-Message-ID: <20250106065202.d2qdd7zmwk4h645h@pengutronix.de>
-References: <20241028214956.gmefpvcvm3zrfout@pengutronix.de>
- <ME0P300MB055370E97AB98D221B2E0782A60A2@ME0P300MB0553.AUSP300.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1736146752; c=relaxed/simple;
+	bh=6pT7+dXsklLh1NRZnGillSRXOyCQqbrayjVnpgsbliM=;
+	h=Message-ID:Date:MIME-Version:To:CC:References:Subject:From:
+	 In-Reply-To:Content-Type; b=uvro3oCeOFlw0fK/zgKOh+3UbHeB61AAgqdXMJc5ZXXZ2zBTVFknpKGMiiX8tk3QUkI3VV9s8c6x9xJwoJVWt83y6boOk0ZbB+aqfbnq5g8cyVwfdWMSXXFsy+1pMwHeX9ahhxCoLD+ZgGgj/usA6qxdYRTGtgzr156Ld69C3UQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eIz16R8C; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5063XaRU032557;
+	Mon, 6 Jan 2025 06:59:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yVOD3v3Y0g5LF/Im4pbOfEYj3LcSGcmxUrJET2J/F/4=; b=eIz16R8Ci1sZgnie
+	7++jy4oRps4ZltSJBE58EbwWLdo1608+C4urv8useyHqTAjcjLN105gGvmIHzAFj
+	L5KXD4dqxqCurX90LpPOLU7jX2WwOE+JUi8f5bWHU6g5u46kbEDe9lkIYVVcXfjG
+	s4GsCqHjO4IiE1FvgkGlg7kn0o4GG5vrYB3uCyR3WPjmVczDXQ94iQt3Bp6FhLN7
+	86Fqcu0FCIQJObxP/GNBshJfGiIWDZxsgoDMqrFjLfJ246ksjmRAjfv5gbDoaLsb
+	0JtBlOrPexo25YOTk2hftFGrpLxa8CIoiw+lzqQ7nBbd1Ix9LogeRFNcRRNpw+Zw
+	YAsmkw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4407ck8cgh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 Jan 2025 06:59:07 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5066x70L024048
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 6 Jan 2025 06:59:07 GMT
+Received: from [10.219.57.57] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 5 Jan 2025
+ 22:59:04 -0800
+Message-ID: <84e7258f-72aa-4afd-961e-7b82091873b5@quicinc.com>
+Date: Mon, 6 Jan 2025 12:27:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ME0P300MB055370E97AB98D221B2E0782A60A2@ME0P300MB0553.AUSP300.PROD.OUTLOOK.COM>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+To: <quic_pbrahma@quicinc.com>
+CC: <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <konradybcio@kernel.org>,
+        <krzk+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh@kernel.org>
+References: <20241217092636.17482-1-quic_pbrahma@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: qcom: qcs8300: Update memory map
+Content-Language: en-US
+From: Pratyush Brahma <quic_pbrahma@quicinc.com>
+In-Reply-To: <20241217092636.17482-1-quic_pbrahma@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BxNPpxG2TVgPAGVpfJLuP5qWnlmIT35e
+X-Proofpoint-ORIG-GUID: BxNPpxG2TVgPAGVpfJLuP5qWnlmIT35e
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ impostorscore=0 mlxlogscore=534 malwarescore=0 phishscore=0 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 bulkscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501060060
 
-Hi,
+Hi
 
-On 24-12-31, Junzhong Pan wrote:
-> Hi Marco,
-> 
-> On Mon, 28 Oct 2024 22:49:56 +0100 Marco Felsch wrote:
-> > I found two mistakes I made in my v1. I would send a v2 if this series
-> > is interesting for upstream. The remaining open question is how the
-> > driver dependencies should be handled (see idea-1,2,3).
-> 
-> How's everything going? I wish you all good!
+Can someone kindly review this patch?
 
-I'm fine, thanks for asking.
+-- 
+Thanks and Regards
+Pratyush Brahma
 
-> It's a very useful series for various hubs, gentle ping on it.
-
-Nice to hear that others find this series useful too :) I prepared a v2
-but wanted to get some feedback from the maintainers first mainly
-regarding the dependency handling.
-
-> On Mon, 28 Oct 2024 22:49:56 +0100 Marco Felsch wrote:
-> > > > Idea-3:
-> > > > -------
-> > > >
-> > > > Adding a function to the hub.c usbcore which can be used by the
-> > > > usb-onboard-dev driver to register this function as hook. This removes> > > the dependency from the core and the usb-onboard-dev module is only
-> > > > pulled if really required. Of course this require that the hub.c usbcore> > > driver allows custom hooks.
-> > >
-> > > This seems like the best approach IMO, if USB maintainers are onboard with> > it.
-> Use the existing onboard_hub.h header to do the hooks looks fine.
-> 
-> I recently encountered some kind of platforms using an existing onboard
-> hub yet their HW don't utilize the USBPE port power control feature
-> while the hub support it.
-> Instead, we have another GPIO for controlling the vbus of those ports
-> to cut the cost.
-
-That's exactly our use-case too.
-
-> Wonder any idea could use this driver considering the limitation of
-> the usb compatible set the properties of onboard_dev_pdata hard coded?
-
-Sorry but I don't get this.
-
-Regards,
-  Marco
 
