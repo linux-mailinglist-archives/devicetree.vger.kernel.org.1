@@ -1,242 +1,162 @@
-Return-Path: <devicetree+bounces-135972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A42A03326
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 00:06:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E92A03329
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 00:07:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDF021634CC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 23:06:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCAED163813
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 23:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6A21DFD84;
-	Mon,  6 Jan 2025 23:06:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A9111DFD96;
+	Mon,  6 Jan 2025 23:07:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rH8dAlj0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ed9AvVRl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE741DA614;
-	Mon,  6 Jan 2025 23:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE25B1DA614;
+	Mon,  6 Jan 2025 23:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736204792; cv=none; b=YefTparzhiNH+FvIykmnlOwipCf+yrx9fZ7P2QcYG8MD6Divxe5HtZbVld2TaesCe6rVai9GVvOllPCmtI7gdCBogtBgSQxZoOa1+YZYMZvZ0F1LQqXxOfyvFKbCmQOoxbHdb6c2E14B5bF2GW09bsPDtCicgkoP049IT7EknuQ=
+	t=1736204828; cv=none; b=YD6sz2GxMfiwc7qtP2nn/S50A/oqeq9WF3mAsr+T/Q2RPRUPKr2jsQMWpPAc3jrNiU/32Q9KrlZYXnk+6JeXMFfCNq35/DwFnhF8dDLZInOYBCn139VZTe/SmMiCXTUMBuL2JCl9avY8U6GDPm2aGIz5OiuDYUtpPQzEsjYVvuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736204792; c=relaxed/simple;
-	bh=L8NoW+GWrw6LkXXrWhcopZuOZE6yMFONkdHwl1YdEPw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d/t19C+MoAyKmqA80ESyFEXaDjVN5poWYMPyfBRrxYrDLVOoPmArltbR442Ge6MheNtKXNz14FOegaef0pB0Rutf25Tl3wWIOjqf/YS2S2nH/lt+ScmFEMque0I0zOvtA/JBLMqvWUhxvpLfl4WMgXFVkf83I/W0kujSFkCA9Os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rH8dAlj0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24AB6C4CEDD;
-	Mon,  6 Jan 2025 23:06:32 +0000 (UTC)
+	s=arc-20240116; t=1736204828; c=relaxed/simple;
+	bh=hqi9o03baLfK6/OiEtJweD7rltsfckOcB8sqd2412yQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=b52UQ4ACJriGXpOCIylvDuP+NTIs6QKMD9cbUFzvJhR8UNNGAMU251puZUofC7MaAoYBHD9IMkyP064hlmXOE6+1HfpnbljewFE8hwVtW6/NbiXFtIAipYPNFbNpZu6NOtzdRxaolMAuJ8K1HN/LedqxYzI1jZ9hee8a/ceRS5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ed9AvVRl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46DC2C4CEDD;
+	Mon,  6 Jan 2025 23:07:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736204792;
-	bh=L8NoW+GWrw6LkXXrWhcopZuOZE6yMFONkdHwl1YdEPw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rH8dAlj0wtUy7xFErwehEOX1KyySG6mvDaTZkoAK+Iu+BFNQBU272riKgcMKBopha
-	 jq936IQKtT/s5znsFkcm9TnOSRVyrrCOu5gTlA7XzwvIzilUHbkLIqWzB/dGcgffas
-	 wfbuEPcExSKcgS166KigyzOThbXW3ZqbZeXUc6mFylNnxq2riEKSqBmPz/5co/KmD3
-	 De84AKZf7hXRaJjfOzWr+r0pyOBkKClVKmHqksy6JgdUVUjcxXtkN2hmKSB8MKpxTB
-	 lor3UVkfdR1H6XiA29mBCqvzSQ1moyeiXO0IPnf9GpMiBg8fvEX/I7kROmM/bp7oDO
-	 EzZvtKb5W4Mkg==
-Date: Mon, 6 Jan 2025 17:06:31 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	"open list:LED SUBSYSTEM" <linux-leds@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: leds: Convert leds-tlc591xx.txt to yaml
- format
-Message-ID: <20250106230631.GA1287822-robh@kernel.org>
-References: <20250106210621.526224-1-Frank.Li@nxp.com>
+	s=k20201202; t=1736204827;
+	bh=hqi9o03baLfK6/OiEtJweD7rltsfckOcB8sqd2412yQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=ed9AvVRlbXLkbmMdTAk14dey89WEA/0jocOB8APWJ8glD8Zg4kdBZd1x8EHd7muqg
+	 1Es6Oc3KbTHu+HvhcHQZONEgrlSXf/W9rFqTe3socUbAWBr2aYKTKjT/r5+lLkpCTt
+	 jJLFZrZDvCfmsdmjkwSIH470zxE5VyieMcNoZ/1HXOznYOGTp4ljtOZ80pHYsvVx5g
+	 xXB8HbyaOy6KeGgWLVEDI7Ws1yeKs+UmBmW6338Bso63ql8QmmjPHo8L1fbytHCwAf
+	 lLwgyDXpfS+PBXxJErFbWb61hDq86aA90WFxne/kH8etfNaRh5nYF1Dnma9se3PCXK
+	 zP7fNi8Y6GK1g==
+Date: Mon, 6 Jan 2025 17:07:05 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+Subject: Re: [PATCH v2 01/21] arm64: dts: qcom: sm8250: Add PCIe bridge node
+Message-ID: <20250106230705.GA132316@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250106210621.526224-1-Frank.Li@nxp.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250105101612.t6c4pw5uxhb5rdde@thinkpad>
 
-On Mon, Jan 06, 2025 at 04:06:20PM -0500, Frank Li wrote:
-> Convert binding doc leds-tlc591xx.txt to yaml format to fix below DTB_CHECK
-> warning.
-> 
-> arch/arm64/boot/dts/freescale/imx8mp-aristainetos3-proton2s.dtb:
->   /soc@0/bus@30800000/i2c@30a30000/tlc59108@40: failed to match any schema with compatible: ['ti,tlc59108']
-> 
-> Additional change:
-> - ref to common.yaml for child nodes.
-> - limit child's reg to 0 - 7 for ti,tlc59108.
-> - fix typo 'linux,default_trigger' in example.
-> - change child node name's prefix to led-.
-> - change nodename to led-controller.
-> - fix properties order in example.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../bindings/leds/leds-tlc591xx.txt           | 40 --------
->  .../devicetree/bindings/leds/ti,tlc59116.yaml | 91 +++++++++++++++++++
->  2 files changed, 91 insertions(+), 40 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/leds/leds-tlc591xx.txt
->  create mode 100644 Documentation/devicetree/bindings/leds/ti,tlc59116.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-tlc591xx.txt b/Documentation/devicetree/bindings/leds/leds-tlc591xx.txt
-> deleted file mode 100644
-> index 3bbbf70244119..0000000000000
-> --- a/Documentation/devicetree/bindings/leds/leds-tlc591xx.txt
-> +++ /dev/null
-> @@ -1,40 +0,0 @@
-> -LEDs connected to tlc59116 or tlc59108
-> -
-> -Required properties
-> -- compatible: should be "ti,tlc59116" or "ti,tlc59108"
-> -- #address-cells: must be 1
-> -- #size-cells: must be 0
-> -- reg: typically 0x68
-> -
-> -Each led is represented as a sub-node of the ti,tlc59116.
-> -See Documentation/devicetree/bindings/leds/common.txt
-> -
-> -LED sub-node properties:
-> -- reg: number of LED line, 0 to 15 or 0 to 7
-> -- label: (optional) name of LED
-> -- linux,default-trigger : (optional)
-> -
-> -Examples:
-> -
-> -tlc59116@68 {
-> -	#address-cells = <1>;
-> -	#size-cells = <0>;
-> -	compatible = "ti,tlc59116";
-> -	reg = <0x68>;
-> -
-> -	wan@0 {
-> -		label = "wrt1900ac:amber:wan";
-> -		reg = <0x0>;
-> -	};
-> -
-> -	2g@2 {
-> -		label = "wrt1900ac:white:2g";
-> -		reg = <0x2>;
-> -	};
-> -
-> -	alive@9 {
-> -		label = "wrt1900ac:green:alive";
-> -		reg = <0x9>;
-> -		linux,default_trigger = "heartbeat";
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/leds/ti,tlc59116.yaml b/Documentation/devicetree/bindings/leds/ti,tlc59116.yaml
-> new file mode 100644
-> index 0000000000000..cbf1a79b9cf6c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/ti,tlc59116.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/ti,tlc59116.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LEDs connected to tlc59116 or tlc59108
-> +
-> +maintainers:
-> +  - Andrew Lunn <andrew@lunn.ch>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,tlc59108
-> +      - ti,tlc59116
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "(^led-[0-9a-f]$|led)":
+[+cc Nícolas]
 
-You have reg, so this should always have a unit-address: "^led@[0-9a-f]$"
-
-> +    type: object
-> +    $ref: common.yaml#
-> +    properties:
-> +      reg:
-> +        items:
-> +          minimum: 0
-> +          maximum: 15
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: ti,tlc59108
-> +    then:
-> +      patternProperties:
-> +        "(^led-[0-9a-f]$|led)":
-> +          properties:
-> +            reg:
-> +              items:
-> +                minimum: 0
-
-0 is already the min.
-
-> +                maximum: 7
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        led-controller@68 {
-> +            compatible = "ti,tlc59116";
-> +            reg = <0x68>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            led-wan@0 {
-> +                reg = <0x0>;
-> +                label = "wrt1900ac:amber:wan";
-> +            };
-> +
-> +            led-2g@2 {
-> +                reg = <0x2>;
-> +                label = "wrt1900ac:white:2g";
-> +            };
-> +
-> +            led-alive@9 {
-> +                reg = <0x9>;
-> +                label = "wrt1900ac:green:alive";
-> +                linux,default-trigger = "heartbeat";
-> +            };
-> +        };
-> +    };
-> +
-> -- 
-> 2.34.1
+On Sun, Jan 05, 2025 at 03:46:12PM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Jan 03, 2025 at 03:05:31PM -0600, Bjorn Helgaas wrote:
+> > On Thu, Mar 21, 2024 at 04:46:21PM +0530, Manivannan Sadhasivam wrote:
+> > > On Qcom SoCs, the PCIe host bridge is connected to a single PCIe bridge
+> > > for each controller instance. Hence, add a node to represent the bridge.
+> > > 
+> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 30 ++++++++++++++++++++++++++++++
+> > >  1 file changed, 30 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > index 39bd8f0eba1e..fe5485256b22 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > @@ -2203,6 +2203,16 @@ pcie0: pcie@1c00000 {
+> > >  			dma-coherent;
+> > >  
+> > >  			status = "disabled";
+> > > +
+> > > +			pcie@0 {
+> > > +				device_type = "pci";
+> > > +				reg = <0x0 0x0 0x0 0x0 0x0>;
+> > > +				bus-range = <0x01 0xff>;
+> > 
+> > Hi Mani, most or all of the patches in this series add this
+> > "bus-range" property.  IIUC, these are all Root Ports and hence the
+> > secondary/subordinate bus numbers should be programmable.
 > 
+> Right. It is not a functional dependency.
+> 
+> > If that's the case, I don't think we need to include "bus-range" in DT
+> > for them, do we?
+> 
+> We mostly include it to silence the below bindings check for the
+> endpoint device node:
+> 
+> Warning (pci_device_bus_num): /soc@0/pcie@1c00000/pcie@0/wifi@0: PCI bus number 1 out of range, expected (0 - 0)
+> 
+> DTC check is happy if the 'bus-range' property is absent in the
+> bridge node. But while validating the endpoint node (if defined), it
+> currently relies on the parent 'bus-range' property to verify the
+> bus number provided in the endpoint 'reg' property.
+> 
+> I don't know else the check can verify the correctness of the
+> endpoint bus number. So deferring to Rob here.
+
+I should know more about how this works in DT, but I don't.
+
+I guess https://git.kernel.org/linus/83d2a0a1e2b9 ("arm64: dts: qcom:
+sm8250: Add PCIe bridge node") added this (subsequently renamed to
+"pcieport0"):
+
+  +			pcie@0 {
+  +				device_type = "pci";
+  +				reg = <0x0 0x0 0x0 0x0 0x0>;
+  +				bus-range = <0x01 0xff>;
+
+which is used at places like
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts?id=v6.12#n788:
+
+  &pcieport0 {
+	  wifi@0 {
+		  compatible = "pci17cb,1101";
+		  reg = <0x10000 0x0 0x0 0x0 0x0>;
+
+Based on
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/pci.txt?id=v6.12#n46
+(which is written for Root Ports and Switch Ports, but presumably
+applies to endpoints like wifi as well), "reg" contains the device's
+bus/device/function:
+
+  - reg:
+     Identifies the PCI-PCI bridge. As defined in the IEEE Std 1275-1994
+     document, it is a five-cell address encoded as (phys.hi phys.mid
+     phys.lo size.hi size.lo). phys.hi should contain the device's BDF as
+     0b00000000 bbbbbbbb dddddfff 00000000. The other cells should be zero.
+
+So 0x10000 would decode to 01:00.0, which matches the <1 1> bus-range.
+
+I don't know the reason for requiring the BDF there, but the venerable
+https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf, sec
+4.1.1, says "reg" is mandatory for PCI Child Nodes, and the first
+entry must be the config space address (bus/device/function).
+
+I suppose maybe the BDF is needed to associate the properties with the
+correct device, and if the OS were to reprogram the bridge secondary
+bus number, it would have to remember the original value to preserve
+this association.  I don't think Linux *does* remember that, but it
+also generally leaves the bridge bus numbers alone.
+
+Bjorn
 
