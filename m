@@ -1,143 +1,212 @@
-Return-Path: <devicetree+bounces-135792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79852A02360
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:47:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C31A2A02372
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 11:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DDCB1884F17
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:47:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E82A2163B19
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 10:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644E91DB551;
-	Mon,  6 Jan 2025 10:47:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D631DC720;
+	Mon,  6 Jan 2025 10:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="fhkELyKD";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="aKR9J02t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gaXX1mj6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b1-smtp.messagingengine.com (fout-b1-smtp.messagingengine.com [202.12.124.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 695CA1DBB2E;
-	Mon,  6 Jan 2025 10:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589061DC05D;
+	Mon,  6 Jan 2025 10:50:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736160457; cv=none; b=ByXP3G0ekUyDbKkw96qDrkwF+gk9QyNl2ufF7QuPYChQxqnjvhnksE8FPREIneMTr/YodOr+iPjYWLQxTZDJnVEevP/enFJNMXYrnRYIIXOyEA4cPJYi9NxMexJEHubRlFzym5ME+j3t+bqH7WuG/UxFV+8lNNuxuiRWcZSVHIw=
+	t=1736160615; cv=none; b=bF2zGCNsOU3pGoQyPodtx7+LmRYzwlQ3AN82jETRmjJRCUDk++zi8TOikO9lHpoDOoIW+0/B/3jyUAAIn4UZF3qWr7cig/4GPHIslVCgixaEX2sErfdv06QqOdvTQU/A6195wPpwYwfNj4NEO1TKfNBRXw4lI9IPWr06/eeq928=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736160457; c=relaxed/simple;
-	bh=pauVwHkPUDWnLFjApC3jO5pFmZAY2Zy/EjWaIyymjwk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BrcwoSAnYY16TXHV8BuF1qNOH+Gv1MaZwLtZr+bbcuOaav52cAl8KPtxoJ5M/PyA/4aLbW/0CIAzk2MSc4yOA1kImh/2THzuoLtETqBzCNE5WVYVB6NK+ZDArfSJX16O555pboDcCBwRgt5X2NdEw3+O1nPQ4CGtbLi7VNwXPtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=fhkELyKD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=aKR9J02t; arc=none smtp.client-ip=202.12.124.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfout.stl.internal (Postfix) with ESMTP id 07DE5114011B;
-	Mon,  6 Jan 2025 05:47:34 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Mon, 06 Jan 2025 05:47:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1736160453;
-	 x=1736246853; bh=MZlsCOgaBICMMHEAiSMnPwaYurf7rVQAJWKgp5mkatI=; b=
-	fhkELyKD0SVkTrUj9UI/nJHEHR3EoAFfTrw3uGCgnfFaE+hnqodoVyHvJUH+TLY/
-	j7Off7H4aYkx5vXYO2TuA/haSxZc6tKtwg+91C1ERD3+NDNxrBpmvaTaKsDjDLuw
-	m/yKiPPUsG9jcSYYrb2oWO+pUA8kFoDdAn9sQy98JXpmlzkDtU0aLaPsHLG6LBh7
-	G1NZUKsY6ine60eHfaH7ORQpQV5tYlVVif/C+i43VY1DXAPzZH16yvCVo7TOwAxm
-	UeYUYY/SnFI63SoMj5e/tPCaMdt5tRP0A+bVw/A8wLlFpOCMefIqAEjWYVw+kjtd
-	WDNlayJ1bICNN7UPdvZW9w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1736160453; x=
-	1736246853; bh=MZlsCOgaBICMMHEAiSMnPwaYurf7rVQAJWKgp5mkatI=; b=a
-	KR9J02tjdEU0xE4OK4ampotH7mUwvD3FD6Q7Dw9DrwwWiz2XB1u1HstIFB/l5Aki
-	qX+nDZJR8xLJj04fIXglFNZznE7sQKh6zqoyc0ObOdNL2s2ivFwk1L1oxcGcQHv7
-	dvXH9WQELyvFCA6ixE9dBEYNMaeIHKsDvzc1VPgY5zkBtgWxdb0lFtJCLM1hmzfs
-	QrZNvyrjKqB5ewwFLeX/iLMX4Ft9u6YRvGVV+a2csS+0kJPniCMcTyHPv/W0DZw7
-	0PpNn+bJjq/rvwdPBk/sBR2qnNMTOT4064oEveB9i3RFKFrfaDKDJr59CMZckGax
-	Pnios/7eb/Xn25SA/nVPQ==
-X-ME-Sender: <xms:xLR7Z8xjm60QxQI_0CflB50tlM_5uBLwq6qiyQhvIfg2DkLo3cJn_Q>
-    <xme:xLR7ZwTi2LZX41aUDGqOj3FOXbYwkBuAOpr9EXcZwrSnCKyVc5W8z9L9ONDUE1RwF
-    IfGEu4gOMLGi7-Luzs>
-X-ME-Received: <xmr:xLR7Z-UreICVBpqiP8LIHpbP7JIOcuM24Gq7R5fGXr4JLtTqMiMjb4LSEocX2iQGMeGTZkTw-3KE1qylmujbp2R-1YPyXy-SqA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudegtddgudelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
-    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
-    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
-    thgvrhhnpeefhfellefhffejgfefudfggeejlefhveehieekhfeulefgtdefueehffdtvd
-    elieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehn
-    ihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrsh
-    gvpdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohep
-    ghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpthhtohepshgrkhgrrhhird
-    grihhluhhssehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhgthhgvhhgr
-    sgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
-    dprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegt
-    ohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnh
-    gvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopehlrghurhgvnhhtrdhpihhntghh
-    rghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtoheplhhinhhugidqmh
-    gvughirgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:xLR7Z6jamfx4ZlcNpBz9vMRlKSFB55pnxjkGjTkcwyLuMCGZQPpetw>
-    <xmx:xLR7Z-DNGEcO3JFFIv2UV9XeyIerHN5glNyy7HSpB8JnpUg0Y9GmeQ>
-    <xmx:xLR7Z7KE7Rl_17667gQf8n_j-3xXldB3Jyx1ZYCIxwPmztiarkOF7A>
-    <xmx:xLR7Z1D9DpL7XsWkVh0d-57o73_wfpBZEp1GS47nzkuzD5_38bS6hA>
-    <xmx:xbR7Z_Inlo8K5QAiDcJq0cMdPo-tpd8yDVlAsdJ_tyHXas7B3SyFmOSp>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 6 Jan 2025 05:47:32 -0500 (EST)
-Date: Mon, 6 Jan 2025 11:47:30 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] arm64: dts: renesas: white-hawk-csi-dsi: Define
- CSI-2 data line orders
-Message-ID: <20250106104730.GB2766897@ragnatech.se>
-References: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
- <20241121134108.2029925-4-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdWqS=zURzutDsCqChSGia35JZpVuDY=njrCBEKP-6=eXw@mail.gmail.com>
- <20250104121700.GF808684@ragnatech.se>
- <CAMuHMdWxmMXe7dhFNGmr90AkRovW-Pov_0DA8-=RgDa9j_FWiQ@mail.gmail.com>
- <20250106100232.GA2766897@ragnatech.se>
+	s=arc-20240116; t=1736160615; c=relaxed/simple;
+	bh=7Q3i8xJswYWcNOJxpGbRWAwokUg1oDkILbkbZFce7nk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=VgaiikEOQyqGz/ShyaVNa1U6onoomT+foJzq00nx7tTnEFaG37NmtG0plvnXx5e0QEZ02+UsvwOSoKvEc4Whqvf/PAA/grRpiI1WaKCVbTz0SCxrmKsxhP1V6I0XaRsU6mVgJoP1b84vLy2xalb5Q5ZfqFNsyps36WDs1nN/uzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gaXX1mj6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC75BC4CEDD;
+	Mon,  6 Jan 2025 10:50:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736160614;
+	bh=7Q3i8xJswYWcNOJxpGbRWAwokUg1oDkILbkbZFce7nk=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=gaXX1mj6Ul4iLs37rgiTGzxwmDdM1V1fN3T3je9d906IUqpHrXiump8LPgMa8EsMG
+	 Yh92zlozAnfTjUMw0GEDFwxjl3UJ9c1IBrbvuaUEm57Cy/2xjoKREMLvZAA3iEB8n7
+	 5+nzaSnXbN9+3WwnjmUvooTu/3ImU3LCIUQHqdCqhb18ySVQ5AsftTSmUN2lgKmd9h
+	 78grX0XTrfeasCksiFp1EzoeYD078ia+AjCs73Chk6qlZxo28hyuW754uD6pZ0ej/t
+	 7brrIrt6FTV7binif/V02sWaU11BOQpJMIgZ/VtZ8uNcqgAj17ZHKdAgG8ygQwwioz
+	 t1JQqPinG3Ofw==
+Message-ID: <abdd156e-0c9b-477f-877c-0309c84c9d5b@kernel.org>
+Date: Mon, 6 Jan 2025 11:50:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250106100232.GA2766897@ragnatech.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: Add INA233 device
+To: Leo Yang <leo.yang.sy0@gmail.com>, jdelvare@suse.com, linux@roeck-us.net,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ Leo-Yang@quantatw.com, corbet@lwn.net, Delphine_CC_Chiu@Wiwynn.com,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20250106071337.3017926-1-Leo-Yang@quantatw.com>
+ <20250106071337.3017926-2-Leo-Yang@quantatw.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20250106071337.3017926-2-Leo-Yang@quantatw.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 2025-01-06 11:02:36 +0100, Niklas Söderlund wrote:
-> > Note that it's getting a bit late for the alternatives, as I plan to 
-> > send
-> > my PRs for soc today, or tomorrow the latest.
+On 06/01/2025 08:13, Leo Yang wrote:
+> Add TI INA233 Current and Power Monitor bindings.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
 > 
-> Thanks for letting us know. As we all are slowly wakening from the 
-> holiday season maybe the best alternative is to go with option 2, 
-> numerical values to avoid the issue? Then in next cycle follow up with 
-> using the defines?
+> Signed-off-by: Leo Yang <Leo-Yang@quantatw.com>
+> ---
+>  .../bindings/hwmon/pmbus/ti,ina233.yaml       | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.yaml
+> new file mode 100644
+> index 000000000000..2677c98dadd1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/ti,ina233.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
 
-I have now sent a patch for option 2 and I will send a follow up patch 
-once -rc1 is out to use the defines instead of numericals. Thanks for 
-your help!
+Drop blank line
 
--- 
-Kind Regards,
-Niklas Söderlund
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/ti,ina233.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments INA233 of power/voltage/current monitors
+> +
+> +maintainers:
+> +  - Leo Yang <Leo-Yang@quantatw.com>
+> +
+> +description: |
+> +  INA233 High-Side or Low-Side Measurement, Bidirectional Current
+> +  and Power Monitor With I2C-, SMBus-, and PMBus-Compatible Interface.
+> +
+> +  Datasheet: https://www.ti.com/lit/ds/symlink/ina233.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,ina233
+
+This does not fit existing ti,ina bindings?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  shunt-resistor:
+> +    description:
+> +      Shunt resistor value in micro-Ohms, Please refer to the actual circuit
+> +      resistor used.
+> +    default: 2000
+
+Which schema brings the $ref for this property?
+
+> +
+> +  current-lsb:
+> +    description:
+> +	    Calculate the Maximum Expected Current(A) / 2^15 in micro ampere (uA/bit).
+> +	    e.g. 30A / 2^15 = 915 uA/bit
+> +    default: 1000
+
+Missing ref, missing vendor prefix and missing actual explanation what
+it is for. I don't understand the description at all.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        power-sensor@40 {
+> +            compatible = "ti,ina233";
+> +            reg = <0x40>;
+> +            shunt-resistor = /bits/ 32 <5000>;
+
+Drop unusual syntax. Please take a look how all other bindings and DTS
+is doing this.
+
+> +            current-lsb = /bits/ 16 <1000>;
+> +        };
+> +    };
+> \ No newline at end of file
+
+You have patch errors.
+
+Best regards,
+Krzysztof
 
