@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-135830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28327A026F4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:45:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8CFA026F6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 14:45:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DED11649FF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:44:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 102671885F7F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 13:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11001DE3CE;
-	Mon,  6 Jan 2025 13:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4B11DE4CE;
+	Mon,  6 Jan 2025 13:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nLEsiTv0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tn3DlaKd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C304E1DDC20
-	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 13:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583421DDC2C
+	for <devicetree@vger.kernel.org>; Mon,  6 Jan 2025 13:44:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736171084; cv=none; b=kltRgYhu5Bq18GCJ3KazvfHor7E9YdCxwFVWGuenulMZZH1q0jwIjJvJw0ptWdZSCL+Ft4E7XjxWfLUMN/hPQxpiErE17M1UOtQ2EPXC20j0Fi/mlNKUPY4u9+1EF4VtDaUWEy/4X+vTMS67PZx3IdQGBQPdz0ceJJ25LjStO2g=
+	t=1736171086; cv=none; b=aLuhYoe7Ka2ngrAyxvJxOBaqQc1Jcq1ecfvimNIKc5xtizl8POi4vBwVvPpmYqV1qUerNjp5nkUc9nafjqyNXlGQncmZeUpMzo+UcErnyWR6Xd9Q6eSEyP3p8rNwXGGUMGhjfklJFr+AMcLAwazVpIor4i4c6C84YX6oRmHBECM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736171084; c=relaxed/simple;
-	bh=IzLjyqiZQYj0HolvNDwEGq9bzWMpH1csfdZOubbN4CY=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SYwByEyD/fpY8yWzAtxvW1pAFRYjHURwN/knAWjcJmMmdEq8DmV7TSD3vc+GEgRkcqkPARL4zMR38IqomrQQomaWz5BAHzOild7iF9yR/gCY9zaWihiCKKYkq3VVdfwNtRjN+473/XUytM7Lkwb94Vk/LVS97oV2UDtbciSnryY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nLEsiTv0; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1736171086; c=relaxed/simple;
+	bh=ey4i06XsJ6chSmPblLF8uJUW8RLOYZRQKUh/x6yaUhM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=HlZIxcF56Q53a7mF6ZsEMNW33BNAxBxFrI/OyAR8SbKsbEUk+ZbVCMxnGCRI7xMUAA3vWRNfjROltTzU6LlSscWaVe1R+XQMTSGxKkYYPtMC/+7zeCYcVzjYAEQJ/Ji0FrLgU2SOUqLmhYazXZPgOV9TBgX4SrKaoCAHx233N8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tn3DlaKd; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4361aa6e517so22435415e9.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 05:44:42 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-436246b1f9bso22982255e9.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 05:44:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736171081; x=1736775881; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EMnwIoklKmOQ9k3BBN3w1reDAPPc+Np1bkPck8HODv8=;
-        b=nLEsiTv0iLxLdXZwuRW/PRC2sIJ0D8DCgYgsAMD+C8bRVf94qhP9Z8iMduflxdGO5r
-         fP+jJYSmkhNgexV5pR4yQcYsYPdNmTcv9O8HIuRCmOzyp5LtBFunUR3ii+7Stusgzbi0
-         YMfluSbz1wYKtOh+GW/jbw/O11ZJwD4/oxtkya9jIQe+83YCkTCJNxdnifzoIXQAZVLd
-         S2XiDAvD0o7R+GbosTbNhNx3CG6TLQ9txIfI5AgYr0O7fQmwP9dVWa2/3ulmaE2oMGrq
-         GAwhk25nQjnfpThPV+8I8IhplYALs+G1hC3qrg46uam0f7y4C4CVJOVhtViHtXjRsSTC
-         gIzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736171081; x=1736775881;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1736171083; x=1736775883; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=EMnwIoklKmOQ9k3BBN3w1reDAPPc+Np1bkPck8HODv8=;
-        b=StJtLqBS8mnNO2VfJg3AchbVR4rtltZyvWqrviXGHSj46shRAwP+jM/rbeNBpVnJMf
-         Xs4Y+IcA17Jg7WITdE66H8tF5spHTW9C5bPd0//5oyy4Am+KQN/BHuLkUS9clB9sh/aq
-         1waH8tBSL5P24drDyrWxjjBnkAkW6fCf2oi/3d4G8++Bi3o4nIOU20QZprzgoFnA3ibQ
-         IrnstCJd53as65dIcpCK+r/s5JrKD+f+V2pDr9W9yBowReyo4uwH5XXEBunfzhBcrms5
-         KXcFR4pycYV0oHxzX6mlEa5tLJjmOwwa+9YyR6z2u0BvWM2IMOTMJsDebgHd8vgoY0Vk
-         zZbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUOSmL57slGq+t2GA9o8csaQeRfbnBHz0LBv0btKUqJefKg/EiOrLEGkj/Ac3oAhE3NIO6DYqvIHr5k@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHRQvaS8pJf1WCX7pIBSne54aXe3YaoOX6NvqIEGYvJGNbckeA
-	WnPlGTTZ6My08SbX5uRnvNXAyGtuLL1QFoK2W0o3Q6o+enhBvdumcL8JXjVXpB0=
-X-Gm-Gg: ASbGncv1N7Cg/h/gXWY0Uta/fPQaT1gANHjQREkgr9yP5VvM493/hAuzIXA6sTHsyY5
-	RUpp+KdMFlyJyq/bJYdGWOgMuhpzMGwJPW7CDZBV+1LF5KIhmDnPHRYYDPu8wL3PZ8nAk1MwBOu
-	PycQpVyfMevMvhsG0JMNIx6G7ijPOppDslyOYMnUKO2tPF0y2Ile6mcyquxEJa7UEd0t1ryJQeA
-	1Tbz/+rs5PlemlUFhx1Tx5YiyD9vQtnUZiC3NiZK6STmdd0rmXsa85NE/03N+sXPMXQfIcd
-X-Google-Smtp-Source: AGHT+IEXQzyXvJh87C4qYu7Ax5vz3+jmqOb6lMmmEshKHmHAav4FLPK3omE//aDu+k4UsNcOasv61g==
-X-Received: by 2002:adf:9b83:0:b0:38a:4184:1239 with SMTP id ffacd0b85a97d-38a418412d5mr11223749f8f.10.1736171081048;
-        Mon, 06 Jan 2025 05:44:41 -0800 (PST)
+        bh=MCeVkTO7HVSj79SPR3UYJj7dWwSIuDyfyGRyxF3nOZk=;
+        b=tn3DlaKdH6i7sxZfrrMfnIHvo3mg94KRjEF1KMOEWrL2oMYFjF3kBLa1OWHFuABN5h
+         a9pWBv6vUIua5w5MFbZRHOocInujYseLhAAZSX4/K71oLRtjQUJFuYyatYDGlBn68sbD
+         GMlhoFVwGJtkvh/Qbwj+a89EBRci8ZSvkPMB5bAui1ds9HRnO+/TMQfZ1R0mhRBunO/Q
+         3zINnwRrV0yjyXKWEzkUFal8218R9P+Bum9NO5aNYcesFYhCCsV2aQABcAT3sqnNnlyN
+         JmpnkNVE7AwDCifAklk0EaZOQ1bgnPzAd71G1RIiFxynwjIF5RDtWg6sYSjTVcaGEIKT
+         PK7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736171083; x=1736775883;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MCeVkTO7HVSj79SPR3UYJj7dWwSIuDyfyGRyxF3nOZk=;
+        b=CUyk+Pl+E6FOyApNMb7Fhnk3iiOZb1YN5aUFLRh8GGGabpjC+VGDPLihLgfgUwtnBC
+         DnCeAm59lAsiYy/AWyjpMnqQpDBy8/s5OENI5edPrYNVQOw6lSgXitNQpuuW3bH0H5YX
+         sdQgvKdNp8rsBcazCbkTofv9MhTYy6+a/zqYd4trQYS2NUrsaYPfz4RMefmNpn5ELGTM
+         WPBLDRyQ92rkzaRmeni4ADqvCb6513sKptShqfW/R369T+JdKS1AepMOjfnkkQ5dqTqu
+         cCJUvbb0/IsgsoYt9z5bJ4cVmgv7Kk6Qfk5EulaQ5Eq+m3o7mG0o0oW2aj0QSgVIMxQi
+         FupQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVw9NVTCh6feN4iza+MpoamxQYZzGF6wTB2S2Izj1d0aWbQ3s7HBADYRdL0Zh06M+MxA2E3LfbCtxRL@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVBGCFFQpQaLN46R6YYSQqA+60SA/Ygsf6ILU5Q1ydbesbO4YG
+	zUtV8Ki14dJOG/tOThV4cBSXDvjfPCeHB887CU8tIQyEz22T9AzYSodEWfOXpN8=
+X-Gm-Gg: ASbGncvC8OPWl7HddjaZyKiwe1cHZp2gcZDdVr+pNbe49EJfk0AFMPCie7Y0DmrstcI
+	o2aGgTAY004e2HrGWBx/k9gXQwcvYdRwk+2YKg9/n8hzEb75XRUO4z5XHthG7cU6gnhYIe/r/vx
+	0azX1FS5/8LbmxASfm2zBpzC6OJ21K/qP34PtL5fu2pZw7ZG10W3G+Szl2uCjGamSsU0c6v6vuh
+	Rs0x6PjURXuSN2c4+KDHokhtr+oWMnXW0/czGMqyi4TMnjMFUeewvsbro763jDGwUCzRACX
+X-Google-Smtp-Source: AGHT+IFfng3FS+Or2CimhenZtv8taGgmbGVi9p7J736A+0Jnu5KPVn9KPItLt6Po7n7LMv6qVYjGMw==
+X-Received: by 2002:a05:600c:3ba9:b0:434:f586:7535 with SMTP id 5b1f17b1804b1-4366790dcdbmr209866755e9.0.1736171082571;
+        Mon, 06 Jan 2025 05:44:42 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8acc02sm47383151f8f.104.2025.01.06.05.44.39
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8acc02sm47383151f8f.104.2025.01.06.05.44.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 05:44:40 -0800 (PST)
+        Mon, 06 Jan 2025 05:44:42 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 0/3] clk: qcom: sm8750: Add sm8750-dispcc clock
- controller
-Date: Mon, 06 Jan 2025 14:44:28 +0100
-Message-Id: <20250106-sm8750-dispcc-v2-0-6f42beda6317@linaro.org>
+Date: Mon, 06 Jan 2025 14:44:29 +0100
+Subject: [PATCH v2 1/3] dt-bindings: clock: qcom,sm8550-dispcc: Add SM8750
+ DISPCC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,10 +83,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIADzee2cC/13MzQoCIRSG4VsZzjrjKJpDq+4jZmH+zBwoHTSkG
- Lz3bKBNy/eD79mg+Ey+wHnYIPtKhVLsIQ4D2MXE2TNyvUGgkJwLxcpj1AqZo7JaywIGo28nGYx
- 10D9r9oFeu3edei9Unim/d77y7/qTxj+pcoaMC9SojESu7OVO0eR0THmGqbX2ARN568KrAAAA
-X-Change-ID: 20241125-sm8750-dispcc-f0fa7b64facd
+Message-Id: <20250106-sm8750-dispcc-v2-1-6f42beda6317@linaro.org>
+References: <20250106-sm8750-dispcc-v2-0-6f42beda6317@linaro.org>
+In-Reply-To: <20250106-sm8750-dispcc-v2-0-6f42beda6317@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -97,60 +97,190 @@ Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  Conor Dooley <conor.dooley@microchip.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1462;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6599;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=IzLjyqiZQYj0HolvNDwEGq9bzWMpH1csfdZOubbN4CY=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBne95BbwhkZoUPTZwRDH6P8tjnEWzo4z7vS6O7r
- +AIEX/2BTiJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ3veQQAKCRDBN2bmhouD
- 1xd8D/98vuMER27s5/cr0rdd39XTxPqh2YSlg9Ybvb8cXrFN+jeQV/TvgF4ve0t52SKauCaT5Sc
- 51gjdcMyNtcT5XPnfY9krIgClBvPl3BAXJuHwM2txKngbPe6L3Kz0A7s3ETUNwUIGvPlMbXUDnQ
- jnyYwRuxEUz6GAQ+aubhgWmJRotodmPzoGdGd9PPyc65CyPWdYpDkBv4e8RAMbM82rdiz0YfIR5
- tuudFNp//IgliJUaNSdm1e1CJEbXSyeVHH9rfRdnyK7p3sK+QPSAU/k1v7aMmypZqOlMhDjM6Es
- FdEh0p98uLW5GUZmNxITGloM6DAbY4GnIUrTM0Nj5rGhx2cGdJwUvJkDjkWEuAme83Qd+q0fV+q
- yZPXvDjMJ/cDvkALAF13UJRxWtGUB5qKYGPHyzCnQGXxt8jEj2eQ16L4w0VYwcEFN7HXaKAtDwa
- QHn2K6i2SORte35KSBhTfctNd8kU7jYgQqBh3LN1xOC/+Kch6UUFVoxA2Cm1pQJZzfT2QPknKnI
- HHcqSi4QQWopKNdJQetO+iySKhSBoD48FIXqz0RPQtAZdn8Bb9zqHTog8+jpt37twzXtgjwC673
- r3VSrA8McuCy9DkM3bBVc5NxBaTQx3DEF6cHlI+WnyAy3J1hIs+HU2VW/MSyOm5I8Kjmu9e3Zpy
- sMDhtoLYFZjo/fQ==
+ bh=ey4i06XsJ6chSmPblLF8uJUW8RLOYZRQKUh/x6yaUhM=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBne95EB0GfXzRYpVv0ZNlD3g27bV3HYG4gMBpip
+ 9sv+kIDQEaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ3veRAAKCRDBN2bmhouD
+ 1x7TEACUyVjSCdFbUkd3jMz+yeRH/K1Sm8yK12Meo8ZYLY02BkoU/CTYnu5LyVEK9t3OVuC/PnL
+ IjgWxEPMbDcO6jK+fEs46I9jL1cYdcph3RIxt179VdRK7BgkiaK1ABnuTG3nwpt2Q5Rac9lhk7L
+ kjsYTbcecHbDidtpBwLbb0okBfJ3q9vW6EldxUABLZUA3barh0pLr/1fJMw1TwqNoZReSdvUoxh
+ mX3jrJEhUp4SxbnaVxVo6LvCX0VDoTzT3pxeEabqQRTLJ4dRGPDkM7ZY7pnJoUms+vfOKVkaeMQ
+ j9acsrQ125sBjIFMdD4ZZ4V5VB4b00HyLdIgX8wS7aA3BeUwaAtHRSdHEGAffP3y2ABlBOXiRIv
+ JbMKaseQGJkESeMV5SAmLAeoq6xtg1DwnQF88gMZUeeRfsp7Sbv25i3ejqL2XkCdg/o/qHkg3dQ
+ h12KtW2KcPLCKeTeJrXyCh0Nv477afBNjQLiPeTlfnci5C2xIeJ9qZepc9qAjoGJ2D/bKXe80uk
+ CkJWTdBAa3Ieq55n7MGQLRSSVyVk8PnEu25sxOJvsoHYamXc2HAMlkTxdBmWs1g0Y3xUFNfnLgb
+ K1JrWuZ89nrcxADTlIgqZw/1nXnTiY+2sOJrMuLFd4QpY+a8tXnH6/jOtRhhflFyaKPKHpj7tI0
+ KfJCHyFbqCmpu9w==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Add Display clock controller for SM8750.
+Add bindings for the Qualcomm SM8750 Display Clock Controller (DISPCC).
+Bindings are similar to existing SM8550 and SM8650 (same clock inputs),
+but the clock hierarchy is quite different and these are not compatible
+devices.
 
-Changes in v2:
-- Implement feedback from Stephen - see individual patches changelog.
-- Few cleanups found during testing/review - see individual patches changelog.
-- Use clk_rcg2_shared_ops, where applicable.
-- Link to v1: https://lore.kernel.org/r/20241128-sm8750-dispcc-v1-0-120705a4015c@linaro.org
+The binding header was copied from downstream sources, so I retained
+original copyrights.
 
-Dependency:
-1. Taycan PLL and rest of clocks: "clks: qcom: Introduce clks for
-   SM8750"
-   https://lore.kernel.org/r/20241112002807.2804021-4-quic_molvera@quicinc.com
-
-Best regards,
-Krzysztof
-
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Krzysztof Kozlowski (3):
-      dt-bindings: clock: qcom,sm8550-dispcc: Add SM8750 DISPCC
-      clk: qcom: clk-alpha-pll: Add Pongo PLL
-      clk: qcom: dispcc-sm8750: Add SM8750 Display clock controller
 
- .../bindings/clock/qcom,sm8550-dispcc.yaml         |    4 +-
- drivers/clk/qcom/Kconfig                           |   11 +
- drivers/clk/qcom/Makefile                          |    1 +
- drivers/clk/qcom/clk-alpha-pll.c                   |  165 +-
- drivers/clk/qcom/clk-alpha-pll.h                   |    6 +
- drivers/clk/qcom/dispcc-sm8750.c                   | 1963 ++++++++++++++++++++
- include/dt-bindings/clock/qcom,sm8750-dispcc.h     |  112 ++
- 7 files changed, 2260 insertions(+), 2 deletions(-)
+v2:
+- Add Ack
+- No changes
 ---
-base-commit: 3dc591aad724ed3578548c211cc3c368f6dc5947
-change-id: 20241125-sm8750-dispcc-f0fa7b64facd
+ .../bindings/clock/qcom,sm8550-dispcc.yaml         |   4 +-
+ include/dt-bindings/clock/qcom,sm8750-dispcc.h     | 112 +++++++++++++++++++++
+ 2 files changed, 115 insertions(+), 1 deletion(-)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml
+index c57d55a9293c214c4c101902cdd9603074e2243d..30e4b46315752b93754ab2f946c684e13b06ab93 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml
+@@ -12,11 +12,12 @@ maintainers:
+ 
+ description: |
+   Qualcomm display clock control module provides the clocks, resets and power
+-  domains on SM8550.
++  domains on SM8550, SM8650, SM8750 and few other platforms.
+ 
+   See also:
+   - include/dt-bindings/clock/qcom,sm8550-dispcc.h
+   - include/dt-bindings/clock/qcom,sm8650-dispcc.h
++  - include/dt-bindings/clock/qcom,sm8750-dispcc.h
+   - include/dt-bindings/clock/qcom,x1e80100-dispcc.h
+ 
+ properties:
+@@ -25,6 +26,7 @@ properties:
+       - qcom,sar2130p-dispcc
+       - qcom,sm8550-dispcc
+       - qcom,sm8650-dispcc
++      - qcom,sm8750-dispcc
+       - qcom,x1e80100-dispcc
+ 
+   clocks:
+diff --git a/include/dt-bindings/clock/qcom,sm8750-dispcc.h b/include/dt-bindings/clock/qcom,sm8750-dispcc.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..dafb5069c96a0c3f83c15f3c61978e138baa886c
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,sm8750-dispcc.h
+@@ -0,0 +1,112 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2022, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
++ * Copyright (c) 2024, Linaro Ltd.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_SM8750_DISP_CC_H
++#define _DT_BINDINGS_CLK_QCOM_SM8750_DISP_CC_H
++
++/* DISP_CC clocks */
++#define DISP_CC_ESYNC0_CLK					0
++#define DISP_CC_ESYNC0_CLK_SRC					1
++#define DISP_CC_ESYNC1_CLK					2
++#define DISP_CC_ESYNC1_CLK_SRC					3
++#define DISP_CC_MDSS_ACCU_SHIFT_CLK				4
++#define DISP_CC_MDSS_AHB1_CLK					5
++#define DISP_CC_MDSS_AHB_CLK					6
++#define DISP_CC_MDSS_AHB_CLK_SRC				7
++#define DISP_CC_MDSS_BYTE0_CLK					8
++#define DISP_CC_MDSS_BYTE0_CLK_SRC				9
++#define DISP_CC_MDSS_BYTE0_DIV_CLK_SRC				10
++#define DISP_CC_MDSS_BYTE0_INTF_CLK				11
++#define DISP_CC_MDSS_BYTE1_CLK					12
++#define DISP_CC_MDSS_BYTE1_CLK_SRC				13
++#define DISP_CC_MDSS_BYTE1_DIV_CLK_SRC				14
++#define DISP_CC_MDSS_BYTE1_INTF_CLK				15
++#define DISP_CC_MDSS_DPTX0_AUX_CLK				16
++#define DISP_CC_MDSS_DPTX0_AUX_CLK_SRC				17
++#define DISP_CC_MDSS_DPTX0_CRYPTO_CLK				18
++#define DISP_CC_MDSS_DPTX0_LINK_CLK				19
++#define DISP_CC_MDSS_DPTX0_LINK_CLK_SRC				20
++#define DISP_CC_MDSS_DPTX0_LINK_DIV_CLK_SRC			21
++#define DISP_CC_MDSS_DPTX0_LINK_INTF_CLK			22
++#define DISP_CC_MDSS_DPTX0_PIXEL0_CLK				23
++#define DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC			24
++#define DISP_CC_MDSS_DPTX0_PIXEL1_CLK				25
++#define DISP_CC_MDSS_DPTX0_PIXEL1_CLK_SRC			26
++#define DISP_CC_MDSS_DPTX0_USB_ROUTER_LINK_INTF_CLK		27
++#define DISP_CC_MDSS_DPTX1_AUX_CLK				28
++#define DISP_CC_MDSS_DPTX1_AUX_CLK_SRC				29
++#define DISP_CC_MDSS_DPTX1_CRYPTO_CLK				30
++#define DISP_CC_MDSS_DPTX1_LINK_CLK				31
++#define DISP_CC_MDSS_DPTX1_LINK_CLK_SRC				32
++#define DISP_CC_MDSS_DPTX1_LINK_DIV_CLK_SRC			33
++#define DISP_CC_MDSS_DPTX1_LINK_INTF_CLK			34
++#define DISP_CC_MDSS_DPTX1_PIXEL0_CLK				35
++#define DISP_CC_MDSS_DPTX1_PIXEL0_CLK_SRC			36
++#define DISP_CC_MDSS_DPTX1_PIXEL1_CLK				37
++#define DISP_CC_MDSS_DPTX1_PIXEL1_CLK_SRC			38
++#define DISP_CC_MDSS_DPTX1_USB_ROUTER_LINK_INTF_CLK		39
++#define DISP_CC_MDSS_DPTX2_AUX_CLK				40
++#define DISP_CC_MDSS_DPTX2_AUX_CLK_SRC				41
++#define DISP_CC_MDSS_DPTX2_CRYPTO_CLK				42
++#define DISP_CC_MDSS_DPTX2_LINK_CLK				43
++#define DISP_CC_MDSS_DPTX2_LINK_CLK_SRC				44
++#define DISP_CC_MDSS_DPTX2_LINK_DIV_CLK_SRC			45
++#define DISP_CC_MDSS_DPTX2_LINK_INTF_CLK			46
++#define DISP_CC_MDSS_DPTX2_PIXEL0_CLK				47
++#define DISP_CC_MDSS_DPTX2_PIXEL0_CLK_SRC			48
++#define DISP_CC_MDSS_DPTX2_PIXEL1_CLK				49
++#define DISP_CC_MDSS_DPTX2_PIXEL1_CLK_SRC			50
++#define DISP_CC_MDSS_DPTX3_AUX_CLK				51
++#define DISP_CC_MDSS_DPTX3_AUX_CLK_SRC				52
++#define DISP_CC_MDSS_DPTX3_CRYPTO_CLK				53
++#define DISP_CC_MDSS_DPTX3_LINK_CLK				54
++#define DISP_CC_MDSS_DPTX3_LINK_CLK_SRC				55
++#define DISP_CC_MDSS_DPTX3_LINK_DIV_CLK_SRC			56
++#define DISP_CC_MDSS_DPTX3_LINK_INTF_CLK			57
++#define DISP_CC_MDSS_DPTX3_PIXEL0_CLK				58
++#define DISP_CC_MDSS_DPTX3_PIXEL0_CLK_SRC			59
++#define DISP_CC_MDSS_ESC0_CLK					60
++#define DISP_CC_MDSS_ESC0_CLK_SRC				61
++#define DISP_CC_MDSS_ESC1_CLK					62
++#define DISP_CC_MDSS_ESC1_CLK_SRC				63
++#define DISP_CC_MDSS_MDP1_CLK					64
++#define DISP_CC_MDSS_MDP_CLK					65
++#define DISP_CC_MDSS_MDP_CLK_SRC				66
++#define DISP_CC_MDSS_MDP_LUT1_CLK				67
++#define DISP_CC_MDSS_MDP_LUT_CLK				68
++#define DISP_CC_MDSS_NON_GDSC_AHB_CLK				69
++#define DISP_CC_MDSS_PCLK0_CLK					70
++#define DISP_CC_MDSS_PCLK0_CLK_SRC				71
++#define DISP_CC_MDSS_PCLK1_CLK					72
++#define DISP_CC_MDSS_PCLK1_CLK_SRC				73
++#define DISP_CC_MDSS_PCLK2_CLK					74
++#define DISP_CC_MDSS_PCLK2_CLK_SRC				75
++#define DISP_CC_MDSS_RSCC_AHB_CLK				76
++#define DISP_CC_MDSS_RSCC_VSYNC_CLK				77
++#define DISP_CC_MDSS_VSYNC1_CLK					78
++#define DISP_CC_MDSS_VSYNC_CLK					79
++#define DISP_CC_MDSS_VSYNC_CLK_SRC				80
++#define DISP_CC_OSC_CLK						81
++#define DISP_CC_OSC_CLK_SRC					82
++#define DISP_CC_PLL0						83
++#define DISP_CC_PLL1						84
++#define DISP_CC_PLL2						85
++#define DISP_CC_SLEEP_CLK					86
++#define DISP_CC_SLEEP_CLK_SRC					87
++#define DISP_CC_XO_CLK						88
++#define DISP_CC_XO_CLK_SRC					89
++
++/* DISP_CC resets */
++#define DISP_CC_MDSS_CORE_BCR					0
++#define DISP_CC_MDSS_CORE_INT2_BCR				1
++#define DISP_CC_MDSS_RSCC_BCR					2
++
++/* DISP_CC GDSCR */
++#define MDSS_GDSC						0
++#define MDSS_INT2_GDSC						1
++
++#endif
+
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.43.0
 
 
