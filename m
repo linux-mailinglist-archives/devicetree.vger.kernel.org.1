@@ -1,144 +1,150 @@
-Return-Path: <devicetree+bounces-135933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5887A030E5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:50:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3601AA030E8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 20:51:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F6F73A3C21
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:50:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B97C7A16A7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2025 19:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED96148850;
-	Mon,  6 Jan 2025 19:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202361A3AA8;
+	Mon,  6 Jan 2025 19:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="T07Ep/6w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FnkXz9kf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF56F360;
-	Mon,  6 Jan 2025 19:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5958B1DED58;
+	Mon,  6 Jan 2025 19:50:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736193049; cv=none; b=N0wQh7O/LUNvHKAIvTm2vnXBAaad6lITdGGurowBnmP9BlqrCSZTqG8IP0ASGRjeX0J6v5xpJXY/k4oZuTxEkCpzOELH81g29ENSQShCD+v+frYWAO3Y2+UpmK2Ul+0641I0HXjO/9kHyYmweeN5GdKuvyN9/One0xAhKbGr/gA=
+	t=1736193062; cv=none; b=eWRaBGkRaMCtyUSGmX8QMQ4p8+gFOO58E6Urs3ondLCLKEYkZLLIBXW/xjj4g9Wb/prOgkahZbXMFnYz3Z7GQfzEUHzIBX6tdnKYVMdUy3FxJBO89amA8iqeqpUDpymhdP7U4lxhOY8RBpVCnGDuiP5UA97s6Oe/Hpbu4Y/XYrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736193049; c=relaxed/simple;
-	bh=EgC/Z7k7Grc9e4Ks/Ril7tMe8+6QxsHGPDbnzNI0utA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UT3PHlCNZzRLgHj9A2+eg9noAX19lS8ROEZF6E8i0y+UeV6kyXHjsUnNSHmRusjwLKQEx0pfo2iDwXDfnGX3HNL4SHX44G4Lwb88fx1seSTkxmX6vkeJjb3B6J7QGeeQi6FN8tOFIL4+cPO8wkfOeJAjXOExlHlQmfviOcowE2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=T07Ep/6w; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 506JoN592837882
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 6 Jan 2025 13:50:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736193023;
-	bh=9Kt8ScPVLK6tYBQ0wEeE9yjWjm7iORURj74R0zFPyj0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=T07Ep/6wX/tSN7qwakv/ttD/uyYYraPQv/eK/oqGQNhJ4Yll8jB/Gl8BzBMMIJE4s
-	 GdCzyIA2n+lFWG89/s4JbPvOVcjPOlPLDagPmcUtJLVtrPFUHXWm3j4r3H8VevCvZC
-	 qZI/oIMHLadJ4R9+CW1fON2CEEwdnz/UvEWJculA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 506JoNBp028795
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 6 Jan 2025 13:50:23 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 6
- Jan 2025 13:50:22 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 6 Jan 2025 13:50:22 -0600
-Received: from [10.250.35.198] ([10.250.35.198])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 506JoMKV069843;
-	Mon, 6 Jan 2025 13:50:22 -0600
-Message-ID: <bb27a9d5-af4c-440b-972c-a50582333d0b@ti.com>
-Date: Mon, 6 Jan 2025 13:50:22 -0600
+	s=arc-20240116; t=1736193062; c=relaxed/simple;
+	bh=GoAdSlQ53RsfhU1nVMs7hQ56NBJFi+aeYKbM9eWk0js=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C8kbBxVYpAZtOI5SEjCjqk9RUarwiAyLAllF1pNbVAB+Tdjw0tAigULkhZz/Hq6LhtJVjJb9i+9YnKRgJv2Jlg9TpTgdhVB0kHeklE98f6WOq1iNb5Ja8qnJVgmrUAlNH1Fb5CGJCollbJX60lK21uYPB0ugkWAL87L2Z+Hn9wM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FnkXz9kf; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5401d3ea5a1so14818072e87.3;
+        Mon, 06 Jan 2025 11:50:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736193048; x=1736797848; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qGMHgXg4FhW7JGenz3T6xLfvKVPDR9iVCkZIU7+YIF8=;
+        b=FnkXz9kfddj64gAiIVRsDhjZxj/AjDoitxICA5IO4m87gazKzyY5fQbGKCWshvpxwL
+         FzyKE56PsGMAq0YHIU89RzNfOeIG0kRwtf3Z0fKK6dw0VOBAt2BTxzNp0DN1E8D+2C5I
+         sO0I1g9TjdMeyE4Wx0OCpLTPzaMEVLKboAfvZdW0bRKu/j5TunLMnlRuF7zlBKMNj8TZ
+         RMSGmTonPDLu1PyhCnozNwt6PhmB8kKQObt4ixUJfBO4yRW2L46byTLudCNPCpgWkEdH
+         QMWg88YcYolNrXheqNG9pkKHEOsLf3BnXns2HoND3oiFrDF9T2DVfJfy6jEXsLHJU6kS
+         jfZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736193048; x=1736797848;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qGMHgXg4FhW7JGenz3T6xLfvKVPDR9iVCkZIU7+YIF8=;
+        b=m9P1s7AMPD/Xz1RZlTIPitB+DR9TJ+nkt/C3xUlpPrfREoxJcNAZ49QS4KlN3NDNBf
+         GzvuE09SOobStey+/iEByujoB59+XqsK5Prw+9IJJjKXeZYSk4F7f93dPh8+w5BcodQ7
+         vONTRyQ6soRNquDFoNTviilzAUCgvXfz7deWtZVeG5Nd2whHju45Anfv/BAbhstec8BH
+         GLSS1SaUinZBAGPEYHWDOGJwMuqob6lMmPg+YrLmblTIpmUF79eViimbx4nRMg6+qwtQ
+         fyhWJYeHd+gP6i99k95MyrfgkNQvPxwRf4t9dP4VJoq7R+iKBCPk2vtUZJzSlCVLHsUB
+         w29Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU1t3tQsOFKE/IwcHO3tjByRyBNXjzEDB1wPj+TclWqtMZ7XdwpGapt+dxQuHHQ4eZSwmujJzgrqCVxCfYf@vger.kernel.org, AJvYcCUFo4OAEV35HS5I+8Zo7k++FbfziXFB9nIIo4gdko7JuHZ9jxCb4fjS8bewD7EMi72Yy5cYih40XRP1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxzbc+nJk3ozMBUCDQ+lt+biXoTxSS5tK5PZB/IildNGJoLax/N
+	XkXQtmzK0hUX2S6pslIRNvUiYQUCzSdi58LgtWAyroupXVoab+gYvK479jAJ
+X-Gm-Gg: ASbGncsEajRDW4lbWuzwLF4cGO2RE6CsoVjiVBiM4UZYWV2V6zct8hhWvLjbZiGAwFE
+	4wKNkQ5kUQmmfznRfhkt9Rzc0Eb+aft8WHzmcihRwtQ/B0Ebkue6XLvcFwCDsb6LVsipLjnplUD
+	hLQyyIrILOgSkCEpJAPmEb5Z8Cuie40/0rypumAdRKWDSlPVNxBMG+jlV1j7LCpQDLchq+40zMv
+	OnMKkR5PSm4zVE6DozPr2arqA8RlSTqoC/vzTRWZEEF+SHmIwYFb272DNYWUbVzanA=
+X-Google-Smtp-Source: AGHT+IHZqnO4VP7PrpLiYbkIXyeiZ8I28sisp22+YN53akKHQ23zEpc9KpH45aTzGIXW+qUh3UQM1Q==
+X-Received: by 2002:a05:6512:6d3:b0:542:28b4:23ad with SMTP id 2adb3069b0e04-54229530096mr19882871e87.16.1736193048213;
+        Mon, 06 Jan 2025 11:50:48 -0800 (PST)
+Received: from localhost ([2a05:3580:f312:6c00:1b49:dfce:283c:7307])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5422383203asm4984082e87.258.2025.01.06.11.50.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 11:50:47 -0800 (PST)
+Date: Mon, 6 Jan 2025 22:50:46 +0300
+From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+To: Vasily Khoruzhick <anarsoul@gmail.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>,
+	Andre Przywara <andre.przywara@arm.com>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Martin Botka <martin.botka@somainline.org>,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v2 3/5] mfd: axp20x: Allow multiple regulators
+Message-ID: <Z3w0FngmguvM8u8P@skv.local>
+Mail-Followup-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>,
+	Vasily Khoruzhick <anarsoul@gmail.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Andre Przywara <andre.przywara@arm.com>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Martin Botka <martin.botka@somainline.org>,
+	Chris Morgan <macromorgan@hotmail.com>
+References: <20241007001408.27249-1-andre.przywara@arm.com>
+ <20241007001408.27249-4-andre.przywara@arm.com>
+ <675489c1.050a0220.8d73f.6e90@mx.google.com>
+ <CA+E=qVf8_9gn0y=mcdKXvj2PFoHT2eF+JN=CmtTNdRGaSnpgKg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] regulator: dt-bindings: Add TI TPS65215 PMIC
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>,
-        <andreas@kemnade.info>, <khilman@baylibre.com>, <rogerq@kernel.org>,
-        <tony@atomide.com>, <jerome.neanne@baylibre.com>,
-        <linux-omap@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <m-leonard@ti.com>, <praneeth@ti.com>,
-        <christophe.jaillet@wanadoo.fr>
-References: <20250103230446.197597-1-s-ramamoorthy@ti.com>
- <20250103230446.197597-2-s-ramamoorthy@ti.com>
- <f7wlc35b3tdonu3k34v64evnh3zypfpb42t7ixumkwjminw53r@odkwfpuru6e6>
-Content-Language: en-US
-From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-In-Reply-To: <f7wlc35b3tdonu3k34v64evnh3zypfpb42t7ixumkwjminw53r@odkwfpuru6e6>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+E=qVf8_9gn0y=mcdKXvj2PFoHT2eF+JN=CmtTNdRGaSnpgKg@mail.gmail.com>
 
 Hi,
 
-On 1/4/2025 4:13 AM, Krzysztof Kozlowski wrote:
-> On Fri, Jan 03, 2025 at 05:04:40PM -0600, Shree Ramamoorthy wrote:
->> TPS65215 is a Power Management IC with 3 Buck regulators and 2 LDOs.
->>
->> TPS65215 has 2 LDOS and 1 GPO, whereas TPS65219 has 4 LDOs and 2 GPOs. The
->> remaining features for both devices are the same.
->>
->> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->>  .../devicetree/bindings/regulator/ti,tps65219.yaml       | 9 ++++++++-
->>  1 file changed, 8 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
->> index 78e64521d401..ba5f6fcf5219 100644
->> --- a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
->> +++ b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
->> @@ -4,7 +4,7 @@
->>  $id: http://devicetree.org/schemas/regulator/ti,tps65219.yaml#
->>  $schema: http://devicetree.org/meta-schemas/core.yaml#
->>  
->> -title: TI tps65219 Power Management Integrated Circuit regulators
->> +title: TI TPS65215/TPS65219 Power Management Integrated Circuit
->>  
->>  maintainers:
->>    - Jerome Neanne <jerome.neanne@baylibre.com>
->> @@ -12,10 +12,17 @@ maintainers:
->>  description: |
->>    Regulator nodes should be named to buck<number> and ldo<number>.
->>  
->> +  TI TPS65219 is a Power Management IC with 3 Buck regulators, 4 Low
->> +  Drop-out Regulators (LDOs), 1 GPIO, 2 GPOs, and power-button.
->> +
->> +  TI TPS65215 is a derivative of TPS65219 with 3 Buck regulators, 2 Low
->> +  Drop-out Regulators (LDOs), 1 GPIO, 1 GPO, and power-button.
-> Then you need allOf:if:then: which will disallow :false two LDOs and
-> their supplies.
+On 24-12-27 14:34, Vasily Khoruzhick wrote:
+> On Sat, Dec 7, 2024 at 9:45 AM Chris Morgan <macroalpha82@gmail.com> wrote:
+> 
+> > Using git bisect, I found that this patch breaks the CONFIG_AXP20X_ADC
+> > option which is used by some of the battery and charger drivers for the
+> > axp20x PMIC series. My current assumption is that the
+> > devm_iio_channel_get() call made by these drivers worked correctly
+> > previously when the PLATFORM_DEVID_NONE, but now it's not working
+> > anymore. I'm still testing possible solutions for that problem.
+> 
+> I confirm that this patch breaks the battery driver on Pinebook (and
+> likely Pinephone). Reverting it fixes the issue for me.
+> 
 
-Thank you for your feedback! I did not know about this & will add it in.
+git bisect pointed me to this commit, when I've investigated why
+battery power supply stopped working on PinePhone.
 
->> +
->>  properties:
->>    compatible:
->>      enum:
->>        - ti,tps65219
->> +      - ti,tps65215
-> Keep things ordered, don't add whatever you add to the end of the lists.
->
-> Best regards,
-> Krzysztof
+The problem is that devm_iio_channel_get() can't get channel by name,
+since consumer's name has changed (from "axp20x-battery-power-supply" to
+"axp20x-battery-power-supply.4.auto") and axp20x_adc has hardcoded
+consumer dev names [1].
 
-Noted, will make this change for the next version. Thanks!
+For other readers of this thread there is related discussion here. [2]
+Chris, do you work on another solution of this problem?
 
+1. https://elixir.bootlin.com/linux/v6.12.4/source/drivers/iio/adc/axp20x_adc.c#L176
+2. https://lore.kernel.org/all/20241210224859.58917-1-macroalpha82@gmail.com/#t
+
+-- 
+Best regards,
+Andrey Skvortsov
 
