@@ -1,191 +1,254 @@
-Return-Path: <devicetree+bounces-136139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F08A0404D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:04:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95F02A040E0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:32:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8EFA7A01EC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:04:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F047E3A0856
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:32:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4162F191F66;
-	Tue,  7 Jan 2025 13:04:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 453531EBFED;
+	Tue,  7 Jan 2025 13:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EBq9vu3U"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="EP9w8k7x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail-m49239.qiye.163.com (mail-m49239.qiye.163.com [45.254.49.239])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4EA1DE2A0;
-	Tue,  7 Jan 2025 13:04:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB6F1EF0B5;
+	Tue,  7 Jan 2025 13:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736255077; cv=none; b=HO4A3WAzLe/u7JfOdfjhsR344PbDreZbYAEHeUjh/e2YUlWfdKfQNy/Mj1gdqdjooN5KXnftwN57EIJ2ufoIJFT5KnnxgA5Mi1StKVbQjnQfS3Q492Qzyzev3hK7PYM0C3w8oa/8vYToqrTqmwU1IKGRI2yQ7RuSMZsq9718E+c=
+	t=1736256740; cv=none; b=m/pcOQwaSonYxvvDqQpwdw0qUC8IIaWTJ7d7UgUFwQ9Qsg247eKoUTFENn1pMdbcLLJK4VHKipf2TUiWvLhdIqgc4SEOhEYYZVUKO4JNMaaKZ2p8hjj41bOrXC06ZMRNMqlvU4rKeJsYeK8wPMJZEoOhwBA8ehAnq/oUNMIo0I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736255077; c=relaxed/simple;
-	bh=hrjBwILl03AMkuILxv5+UdH95HodZymkjLogKmN18wU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CYSHWEvcPTqDHlfKz28/5yXjrNIn3xl4znEVZ1Z6OxeB3ibQaeF1R9RXWedEg9/gYncgy9lDsBH2hiWVJsVUNaNZ5hvRkYTKoJiVxxUn26Ko9aue6oPOSOcet7n0JCbmwTC9PmKRA/G6zY450PuDuYdWqggfK+7HSgWrhCJ56+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EBq9vu3U; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736255072;
-	bh=hrjBwILl03AMkuILxv5+UdH95HodZymkjLogKmN18wU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EBq9vu3U2s/KXM8+fmdhQS19ZZHkZCHSg9o8Y0Vn+zh4LodJlHCBBH18k28zi+oxO
-	 v8+xrNdrb+I8J/XG6IUxDDU7hBE6HKuGwUzHEjeATlcIwa+ijCgqZtiHZ9j82P2lv9
-	 ecioGCWeNvi5BdjaXIP2nyS/GBMa5tD4BE2kYuV5bOYlAoHgiS+j4LFEBJBT1Q9dCr
-	 S5U0qu+H7k3j/9l6jjC4a48LbfoNS2oXTUNUZE06JDAvPJ6JMpyzEZtAprFN6oD47X
-	 KU1oh/XbQU1CcjSPfcihPTJagNa4D9jk+rIzJATH0N9JVtmzgg7674/8kK7LYnuhx7
-	 QH3Epgb8e39gg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5F26B17E154C;
-	Tue,  7 Jan 2025 14:04:31 +0100 (CET)
-Message-ID: <660e3bbb-4b16-49ad-82d1-a2c3e3ef76bb@collabora.com>
-Date: Tue, 7 Jan 2025 14:04:30 +0100
+	s=arc-20240116; t=1736256740; c=relaxed/simple;
+	bh=Nk1YL8gMJ4htzY7Kg2D0YJZLN+lat5BbUfEfF8VAgwo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Vgg1o10gohzhqG/JYt8YEd/f0KBPE2kt10T2W9D9dp408ovg6ZQxvH2Sc28Lwdo5pCWZwxXkaUuxZ+E1OvzRU3BwZGuMnDeo/em1JmiQGCkMHjsKQ35LOZkzc4BSCKo3Rnvc/5ISQIbF9rbcDdirqUOYIuzXrWTO6yWd8kQJP5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EP9w8k7x; arc=none smtp.client-ip=45.254.49.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 7f3b5a8c;
+	Tue, 7 Jan 2025 15:49:19 +0800 (GMT+08:00)
+From: Kever Yang <kever.yang@rock-chips.com>
+To: heiko@sntech.de
+Cc: linux-rockchip@lists.infradead.org,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	Rob Herring <robh@kernel.org>,
+	Liang Chen <cl@rock-chips.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 4/7] arm64: dts: rockchip: add usb related nodes for rk3576
+Date: Tue,  7 Jan 2025 15:49:08 +0800
+Message-Id: <20250107074911.550057-5-kever.yang@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250107074911.550057-1-kever.yang@rock-chips.com>
+References: <20250107074911.550057-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: PCI: mediatek-gen3: Add MT8196 support
-To: =?UTF-8?B?Smlhbmp1biBXYW5nICjnjovlu7rlhpsp?= <Jianjun.Wang@mediatek.com>,
- "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Ryder Lee <Ryder.Lee@mediatek.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- =?UTF-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>
-References: <20250103060035.30688-1-jianjun.wang@mediatek.com>
- <20250103060035.30688-2-jianjun.wang@mediatek.com>
- <0555fb64-312d-4490-9b03-89fca580c602@collabora.com>
- <8269f5fb280d0847ceba288a83a64c99bbf92cb7.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <8269f5fb280d0847ceba288a83a64c99bbf92cb7.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGklDGVZPHR8ZGE4fSUJMSkJWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a943fbd53af03afkunm7f3b5a8c
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mxg6ARw5PzIRTBNLSSgZSFEf
+	HjkwCzdVSlVKTEhNSUhNSk1KSEtJVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFOTENPNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=EP9w8k7x7u+ZZ7FvCoIG2SBRWd6tGh08CcLq1zbeJngl10HlphTo96rDMC1Snn2/2S5vE6t6TwQibUiBNm537InwzHEaGS3+DbQ6UfAcJnyEZ9LnfoR2JZKLFKS9Lkdh2lAd7ypIsPLzpBHU8Z9CZM7fQfkodFlNU85OcsEYgXU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=UjWRwJmepX1/tP10Gtcn2jZFD8Z/yI8Z/tGocsPqklA=;
+	h=date:mime-version:subject:message-id:from;
 
-Il 06/01/25 10:19, Jianjun Wang (王建军) ha scritto:
-> On Fri, 2025-01-03 at 10:26 +0100, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> Il 03/01/25 07:00, Jianjun Wang ha scritto:
->>> Add compatible string and clock definition for MT8196. It has 6
->>> clocks like
->>> the MT8195, but 2 of them are different.
->>>
->>> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
->>> ---
->>>    .../bindings/pci/mediatek-pcie-gen3.yaml      | 29
->>> +++++++++++++++++++
->>>    1 file changed, 29 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-
->>> gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-
->>> gen3.yaml
->>> index f05aab2b1add..b4158a666fb6 100644
->>> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
->>> @@ -51,6 +51,7 @@ properties:
->>>                  - mediatek,mt7986-pcie
->>>                  - mediatek,mt8188-pcie
->>>                  - mediatek,mt8195-pcie
->>> +              - mediatek,mt8196-pcie
->>>              - const: mediatek,mt8192-pcie
->>>          - const: mediatek,mt8192-pcie
->>>          - const: airoha,en7581-pcie
->>> @@ -197,6 +198,34 @@ allOf:
->>>              minItems: 1
->>>              maxItems: 2
->>>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - mediatek,mt8196-pcie
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          minItems: 6
->>> +
->>> +        clock-names:
->>> +          items:
->>> +            - const: pl_250m
->>> +            - const: tl_26m
->>> +            - const: peri_26m
->>> +            - const: peri_mem
->>> +            - const: ahb_apb
->>
->> ahb_apb is a bus clock, so you can set it as
->>
->> - const: bus
-> 
-> Agree, I'll change it to "bus" in the next version, thanks.
-> 
->>
->>
->>> +            - const: low_power
->>
->> Can you please clarify what the LP clock is for?
-> 
-> This is a power-saving clock. Its clock source consumes less power than
-> a regular clock, we need to keep this clock on if when entering L1.2
-> during suspend.
-> 
+From: Frank Wang <frank.wang@rock-chips.com>
 
-In the driver, you are keeping all clocks ON instead.
+This adds USB and USB-PHY related nodes for RK3576 SoC.
 
-Is this clock required to be ON when the full power ones are enabled and
-the SoC is not in suspend state?
+Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+---
 
-Can you please add handling for this "special" clock so that we can save power
-during suspend?
+Changes in v4: None
+Changes in v3: None
+Changes in v2: None
 
-Cheers,
-Angelo
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 133 +++++++++++++++++++++++
+ 1 file changed, 133 insertions(+)
 
-> Thanks.
-> 
->>
->> Thanks,
->> Angelo
->>
->>> +
->>> +        resets:
->>> +          minItems: 1
->>> +          maxItems: 2
->>> +
->>> +        reset-names:
->>> +          minItems: 1
->>> +          maxItems: 2
->>> +
->>>      - if:
->>>          properties:
->>>            compatible:
->>
->>
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index 0486525fe596..b4f396421686 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -445,6 +445,58 @@ soc {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		usb_drd0_dwc3: usb@23000000 {
++			compatible = "rockchip,rk3576-dwc3", "snps,dwc3";
++			reg = <0x0 0x23000000 0x0 0x400000>;
++			clocks = <&cru CLK_REF_USB3OTG0>,
++				 <&cru CLK_SUSPEND_USB3OTG0>,
++				 <&cru ACLK_USB3OTG0>;
++			clock-names = "ref_clk", "suspend_clk", "bus_clk";
++			interrupts = <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&power RK3576_PD_USB>;
++			resets = <&cru SRST_A_USB3OTG0>;
++			dr_mode = "otg";
++			phys = <&u2phy0_otg>, <&usbdp_phy PHY_TYPE_USB3>;
++			phy-names = "usb2-phy", "usb3-phy";
++			phy_type = "utmi_wide";
++			snps,dis_enblslpm_quirk;
++			snps,dis-u1-entry-quirk;
++			snps,dis-u2-entry-quirk;
++			snps,dis-u2-freeclk-exists-quirk;
++			snps,dis-del-phy-power-chg-quirk;
++			snps,dis-tx-ipgap-linecheck-quirk;
++			snps,parkmode-disable-hs-quirk;
++			snps,parkmode-disable-ss-quirk;
++			status = "disabled";
++		};
++
++		usb_drd1_dwc3: usb@23400000 {
++			compatible = "rockchip,rk3576-dwc3", "snps,dwc3";
++			reg = <0x0 0x23400000 0x0 0x400000>;
++			clocks = <&cru CLK_REF_USB3OTG1>,
++				 <&cru CLK_SUSPEND_USB3OTG1>,
++				 <&cru ACLK_USB3OTG1>;
++			clock-names = "ref_clk", "suspend_clk", "bus_clk";
++			interrupts = <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&power RK3576_PD_PHP>;
++			resets = <&cru SRST_A_USB3OTG1>;
++			dr_mode = "otg";
++			phys = <&u2phy1_otg>, <&combphy1_psu PHY_TYPE_USB3>;
++			phy-names = "usb2-phy", "usb3-phy";
++			phy_type = "utmi_wide";
++			snps,dis_enblslpm_quirk;
++			snps,dis-u1-entry-quirk;
++			snps,dis-u2-entry-quirk;
++			snps,dis-u2-freeclk-exists-quirk;
++			snps,dis-del-phy-power-chg-quirk;
++			snps,dis-tx-ipgap-linecheck-quirk;
++			snps,dis_rxdet_inp3_quirk;
++			snps,parkmode-disable-hs-quirk;
++			snps,parkmode-disable-ss-quirk;
++			dma-coherent;
++			status = "disabled";
++		};
++
+ 		sys_grf: syscon@2600a000 {
+ 			compatible = "rockchip,rk3576-sys-grf", "syscon";
+ 			reg = <0x0 0x2600a000 0x0 0x2000>;
+@@ -515,6 +567,65 @@ usbdpphy_grf: syscon@2602c000 {
+ 			reg = <0x0 0x2602c000 0x0 0x2000>;
+ 		};
+ 
++		usb2phy_grf: syscon@2602e000 {
++			compatible = "rockchip,rk3576-usb2phy-grf", "syscon", "simple-mfd";
++			reg = <0x0 0x2602e000 0x0 0x4000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			u2phy0: usb2-phy@0 {
++				compatible = "rockchip,rk3576-usb2phy";
++				reg = <0x0 0x10>;
++				resets = <&cru SRST_OTGPHY_0>, <&cru SRST_P_USBPHY_GRF_0>;
++				reset-names = "phy", "apb";
++				clocks = <&cru CLK_PHY_REF_SRC>,
++					 <&cru ACLK_MMU2>,
++					 <&cru ACLK_SLV_MMU2>;
++				clock-names = "phyclk", "aclk", "aclk_slv";
++				clock-output-names = "usb480m_phy0";
++				#clock-cells = <0>;
++				status = "disabled";
++
++				u2phy0_otg: otg-port {
++					#phy-cells = <0>;
++					interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
++						     <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH>,
++						     <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
++					interrupt-names = "otg-bvalid", "otg-id", "linestate";
++					status = "disabled";
++				};
++			};
++
++			u2phy1: usb2-phy@2000 {
++				compatible = "rockchip,rk3576-usb2phy";
++				reg = <0x2000 0x10>;
++				resets = <&cru SRST_OTGPHY_1>, <&cru SRST_P_USBPHY_GRF_1>;
++				reset-names = "phy", "apb";
++				clocks = <&cru CLK_PHY_REF_SRC>,
++					 <&cru ACLK_MMU1>,
++					 <&cru ACLK_SLV_MMU1>;
++				clock-names = "phyclk", "aclk", "aclk_slv";
++				clock-output-names = "usb480m_phy1";
++				#clock-cells = <0>;
++				status = "disabled";
++
++				u2phy1_otg: otg-port {
++					#phy-cells = <0>;
++					interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>,
++						     <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>,
++						     <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
++					interrupt-names = "otg-bvalid", "otg-id", "linestate";
++					status = "disabled";
++				};
++			};
++		};
++
++		vo1_grf: syscon@26036000 {
++			compatible = "rockchip,rk3576-vo1-grf", "syscon";
++			reg = <0x0 0x26036000 0x0 0x100>;
++			clocks = <&cru PCLK_VO1_ROOT>;
++		};
++
+ 		sdgmac_grf: syscon@26038000 {
+ 			compatible = "rockchip,rk3576-sdgmac-grf", "syscon";
+ 			reg = <0x0 0x26038000 0x0 0x1000>;
+@@ -1732,6 +1843,28 @@ combphy1_psu: phy@2b060000 {
+ 			status = "disabled";
+ 		};
+ 
++		usbdp_phy: phy@2b010000 {
++			compatible = "rockchip,rk3576-usbdp-phy";
++			reg = <0x0 0x2b010000 0x0 0x10000>;
++			#phy-cells = <1>;
++			clocks = <&cru CLK_PHY_REF_SRC >,
++				 <&cru CLK_USBDP_COMBO_PHY_IMMORTAL>,
++				 <&cru PCLK_USBDPPHY>,
++				 <&u2phy0>;
++			clock-names = "refclk", "immortal", "pclk", "utmi";
++			resets = <&cru SRST_USBDP_COMBO_PHY_INIT>,
++				 <&cru SRST_USBDP_COMBO_PHY_CMN>,
++				 <&cru SRST_USBDP_COMBO_PHY_LANE>,
++				 <&cru SRST_USBDP_COMBO_PHY_PCS>,
++				 <&cru SRST_P_USBDPPHY>;
++			reset-names = "init", "cmn", "lane", "pcs_apb", "pma_apb";
++			rockchip,u2phy-grf = <&usb2phy_grf>;
++			rockchip,usb-grf = <&usb_grf>;
++			rockchip,usbdpphy-grf = <&usbdpphy_grf>;
++			rockchip,vo-grf = <&vo1_grf>;
++			status = "disabled";
++		};
++
+ 		sram: sram@3ff88000 {
+ 			compatible = "mmio-sram";
+ 			reg = <0x0 0x3ff88000 0x0 0x78000>;
+-- 
+2.25.1
 
 
