@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-136287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1B2CA04822
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 18:26:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6105BA04829
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 18:27:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B00F165441
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 17:26:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FBB97A2CF9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 17:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 139A51F4735;
-	Tue,  7 Jan 2025 17:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04C91F4E44;
+	Tue,  7 Jan 2025 17:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Ff6NadFu"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="HQtwcsli"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 612C51F2C35
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 17:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5621E15C13A
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 17:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736270779; cv=none; b=NQaDrdRY/urPnJEtUSFCzt82BtKl9yXA+l6coEbrmfH0IK8tNSSbwU0c0TdnSzEzZqmqdqliM/nqUDCnchv6uiFEPnytM066aCjkCTqVJm3skeHmKNklkZi+CfNXSSpCBxgypCem/qPo1W68OWY+nfXXOcVR0TYjrQ0IGADvlGM=
+	t=1736270814; cv=none; b=Ttfkf/88g9Snu1unwxYJ82ubkA/iKqpV3omNwGg9YHq7/qOKytwfwsVUhcfZhS28kHiJuurclyqEfD42IiuQ2Jl64O91eeKA3ecW5IAi7t4fn/uPQtmKQm8ihhIleYacw8YytFg94nP17yizPaDz6L8VxBoRyTSc0Gd0ppKTcaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736270779; c=relaxed/simple;
-	bh=Zt4TBGCxBxlNsn64qjo4ZDFH4I7vbh601R/MnrLSgcs=;
+	s=arc-20240116; t=1736270814; c=relaxed/simple;
+	bh=xaI1MzU8YqkwNIXSUK+vtpERhBgaIIyYpkmxq2xzGL8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=XZyVd6fvEbF/bGswYKBypn+mIzHySMI3prtB7jezTZg34KZ4c52/07QVuAQ6dHdjlWUq+peq9xeI91D8bLgm3oCHbF7yqKmfhep88yQYg65UB/4uErqSoN4u4SgOIX5zGTevyMjyXFUAHhLVCQLF22l58I9lihqJeudAk1WwVwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Ff6NadFu; arc=none smtp.client-ip=209.85.214.169
+	 In-Reply-To:Content-Type; b=evmj0pS62kBKTMEng/WoJYGZfwgWkvciUwR5g9Gn82oWnn42MPQON3Z1r9TY/4NTG7mKU4k9hLg+TQuoSV8pQnaQ11sQUqaWcECbHLWPFWONZmTK8Nkna0AL7dN+ZjZhi6lVHt8uro+GTja4O8sEmkH7R520HWw6mTJTeNa/PXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=HQtwcsli; arc=none smtp.client-ip=209.85.214.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21636268e43so54965945ad.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 09:26:15 -0800 (PST)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21636268e43so54979005ad.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 09:26:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1736270775; x=1736875575; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1736270811; x=1736875611; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=a2x6Czl6GO65kHVW9zAO9v64ouXW8ETVJWZJ2hxoejQ=;
-        b=Ff6NadFupAbTIMFEvKRWqzVU7pmntgqaWJCsm6oZ4W3UHeKGBzT5LEEOgivcBLtsHv
-         2jk8klLCMePt63KF1IDSMfGMjtgC6rQa/+5MBepUypFlKoXloPQtvkltQ16ffEtSFAUe
-         gGMkaVyA/qOCYTlxGQc6knhgaOXB+vxLZ0CFE=
+        bh=AnFDI1orT78UbMz4dvewuX8lguog+6111daL66A0sXs=;
+        b=HQtwcslilz7PxsY/C5UXbZhUXVXjlGP/rf6ND2R1lP3uJOGBxO65qbNN5OP+MCttzi
+         AgR7US5LG+0R4W5hhblCHeRlDg6FgzrW+d6RpTOHAMuoA6P9kFG57WMmqPICIUZe7UiO
+         ov/+ZiaZe4xsArAf4r+dkpTK2oP8ZTYHi1tY0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736270775; x=1736875575;
+        d=1e100.net; s=20230601; t=1736270811; x=1736875611;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a2x6Czl6GO65kHVW9zAO9v64ouXW8ETVJWZJ2hxoejQ=;
-        b=qMLmVdvDNg4DIhU+uEEERxhzbstiyUp5P85FrwBvxXLuZdyIUNOj91TJEpRmEcQGcN
-         Fn9xwP98HSv+Cc8KtYiRv12V5ciJBCEQywbxJRQeAM+7xOAegzB/y6YwRaLhIkies5VX
-         6Dl4NOLjR38i54T2FouJUN57FBZJjApzlXTvuhQlOpnAXMt+XIhadCNVLbBq2oAPfSRZ
-         DXaIy1kBqOS6ggQ9op0G8cKrWVhVYg2GBkpe/oKB/MfIRgPmyBMBnFpJUHvg6TXDpJ8t
-         X7MLmxROz+7c3Roi9Fsjl6NenDYcF0bRqQGFSn9Qqk5bXUFvAnfJB5TDQJYjrUX/2Z9v
-         7BpA==
-X-Forwarded-Encrypted: i=1; AJvYcCVRvU8KNXDcfthWMoTbarDts8QU1QDY92bsestFH0NhtjqyYqdawBPclMIeZ8eBsIncjGOZE9S/fRA+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6vOatkbo2x1c5zngTNaypUC2YS7zCdLpwUZ57LMFByJ/VnOGD
-	u/y7ruWS10gNGwb6L/5NxIwOF6IRGSujT4fMNKWCnW2DrwjUhWavbSjRo6rE/A==
-X-Gm-Gg: ASbGncszW8cGdxfZKdaVUU2gZUjXvuAisv9ik0cPwBiL8BArpVjNYntnsnupDTIJrAZ
-	uda4fHhWkw/6nztpNTb0mUtyEZjcJKQAG7spvj2riohyp9Z6oTqdgl7tD/f1HXCh/YqcGybejqI
-	xsF5B7+BMPHFeibYf3Zjiw347TzMVy+Wj5Vq4DWQTpCjeGRM4VvEo6a7O5IIG+CinT4ah8XYUfX
-	mvQpkkem0oSr9Z0PBGPg06o2Af0F1P/pDTwKZFea0NuRHAJCfQptYxhz6q4XXhsszM8foi/6pGZ
-	Rw+kyRFnU2FCK//V99pO
-X-Google-Smtp-Source: AGHT+IFzu1VIJT9VJiC2aXWDy+NgNyxkD0g/GqwTMrp+Om0AwR+ht03XX6NjXXazKeHe7i80AzxoTg==
-X-Received: by 2002:a17:902:e886:b0:216:5e6e:68cb with SMTP id d9443c01a7336-219e6e9fd95mr929686065ad.16.1736270774736;
-        Tue, 07 Jan 2025 09:26:14 -0800 (PST)
+        bh=AnFDI1orT78UbMz4dvewuX8lguog+6111daL66A0sXs=;
+        b=HFk9n8/DDp1NlTFUXWIg16iKXE32tS1ecM9e1Kh+sidecIaRUjmIu071OhP6OEGm3m
+         BcI1q0LTrxAeZRUlYEdvUhCJLC0dZTULOES32wHPtc2riFjBLUJGAZR3qei1zkJRHVDF
+         fAejtiQA9w0GXd5BnAoLR+S1yY38XeHIKH5UfzHagO7HO2NJu7yZi2lSGWuTDsEe9i7S
+         kpetabBQJkKJzrgO7sixTE7gtNC4Zr8oehcPL5zotKQpC4aevh94xKXI7cdZoDhDU100
+         KUELBS/fAwiscx7TVYhHyhco43Bw9FzXTYHoAMvFcLeGp9Y+BUoT2pciuimIzWCqHX12
+         0Vcg==
+X-Forwarded-Encrypted: i=1; AJvYcCUC6uZx5BO0dJ/GStZJfInsCYzeyGnGBBGJzUvIt2C/H/v5iWOchMwlHou/YAfjC7MZ5eLgp1FXMakd@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywvxp45N8WfvV4hK0DSbGeRSBdFSiARGPZDYkd4Jre0JzyjaBqO
+	/lAMrE3AZuehEMnrT8H4JCDoHyEOQNrMT7HnlD+Ft1sZ4sEEKSbmtGHnPR+u6A==
+X-Gm-Gg: ASbGncv6P2GcGC0a1f41J1qmbGkz9lPbASSsQ4/HxTNkGOmREwC4c+6V03QHKp/F76/
+	oyHDn/W34I8W8NAHbPNtSJTAi/+m26Mm2pZbYgt8ofyv+Ed8iZG9tbpWHClBYhH0nSw8s+/LRfq
+	Jowd/vKAZsjqGXhuF2b2U8ehQZp2RLgQ1R5kURl/K9vgBr3OaOxUZMS0d14BGogxUCrp2h3nB88
+	qwXekKsKjGOup1xYr60w1+9iGJ3u5eCcuTcNqnXbU+/XPKgCgj4QAKADgTgAtvnL2raZSZxxRPg
+	+EBrn88mtiFZCzl+FA8I
+X-Google-Smtp-Source: AGHT+IEPaGgB9Qa+1DpEpRgPYql8+QmamIMyRh5C1Rx/DzqtHoRCh+8H9eqIioceJgqABRLUqu9iOw==
+X-Received: by 2002:a17:902:c408:b0:216:4d1f:5c83 with SMTP id d9443c01a7336-219e6f26814mr803886345ad.47.1736270810779;
+        Tue, 07 Jan 2025 09:26:50 -0800 (PST)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9716b3sm314412505ad.90.2025.01.07.09.26.11
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc9cdeccsm314093865ad.144.2025.01.07.09.26.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jan 2025 09:26:14 -0800 (PST)
-Message-ID: <901992c2-4c48-4534-bbfb-7b6b70d15d48@broadcom.com>
-Date: Tue, 7 Jan 2025 09:26:10 -0800
+        Tue, 07 Jan 2025 09:26:49 -0800 (PST)
+Message-ID: <e2d33d2f-6b30-495e-a089-b1185b22130f@broadcom.com>
+Date: Tue, 7 Jan 2025 09:26:46 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,35 +79,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next] dt-bindings: net: Correct indentation and style
- in DTS example
+Subject: Re: [PATCH] dt-bindings: usb: Correct indentation and style in DTS
+ example
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Doug Berger <opendmb@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Justin Chen <justin.chen@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
  Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>, Marc Kleine-Budde
- <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Kalle Valo <kvalo@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>,
- Dario Binacchi <dariobin@libero.it>,
- Christophe Roullier <christophe.roullier@foss.st.com>,
- Grygorii Strashko <grygorii.strashko@ti.com>,
- Siddharth Vadapalli <s-vadapalli@ti.com>, Roger Quadros <rogerq@kernel.org>,
- Brian Norris <briannorris@chromium.org>, Frank Li <Frank.Li@nxp.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-wireless@vger.kernel.org
-References: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Benjamin Bara <benjamin.bara@skidata.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+ Del Regno <angelogioacchino.delregno@collabora.com>,
+ Tianping Fang <tianping.fang@mediatek.com>,
+ Jassi Brar <jaswinder.singh@linaro.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Macpaul Lin <macpaul.lin@mediatek.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20250107131015.246461-1-krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
@@ -142,11 +145,11 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250107131015.246461-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 1/7/25 04:56, Krzysztof Kozlowski wrote:
+On 1/7/25 05:10, Krzysztof Kozlowski wrote:
 > DTS example in the bindings should be indented with 2- or 4-spaces and
 > aligned with opening '- |', so correct any differences like 3-spaces or
 > mixtures 2- and 4-spaces in one binding.
@@ -156,12 +159,10 @@ On 1/7/25 04:56, Krzysztof Kozlowski wrote:
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   .../bindings/net/amlogic,meson-dwmac.yaml     | 14 +--
->   .../devicetree/bindings/net/asix,ax88178.yaml |  4 +-
->   .../bindings/net/brcm,bcmgenet.yaml           | 32 +++----
->   .../bindings/net/brcm,mdio-mux-iproc.yaml     | 46 ++++-----
+>   .../bindings/usb/aspeed,usb-vhub.yaml         | 40 +++++++++----------
+>   .../devicetree/bindings/usb/brcm,bdc.yaml     | 14 +++----
 
-Acked-by: Florian Fainelli <florian.fainelli@broadcom.com> # net/brcm,*
+Acked-by: Florian Fainelli <florian.fainelli@broadcom.com> # brcm,bdc.yaml
 -- 
 Florian
 
