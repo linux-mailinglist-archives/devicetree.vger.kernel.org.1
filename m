@@ -1,67 +1,70 @@
-Return-Path: <devicetree+bounces-136116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F35D7A03EC6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:10:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B304DA03EDB
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:12:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 695B63A1FA1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:10:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67DE13A4D19
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:12:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1561EE7D3;
-	Tue,  7 Jan 2025 12:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CBB91EBFEB;
+	Tue,  7 Jan 2025 12:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="c/7/NjPz"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TqXS3RsS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2FC11F0E36;
-	Tue,  7 Jan 2025 12:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3949B1EE00C;
+	Tue,  7 Jan 2025 12:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736251816; cv=none; b=aDCyFF4QS32QhjUS54RQLEslsHwZi2yBNCoqAJJEE03uOi5sn5pxHmd59l2EAD+S/4WaGLq6i4M6rujgMtyfiMEzGEwWVIq44YPR9getoD4Lp9OOJHMd+utY6sO/TtWRw0mKjFjDnAc73pGMDUStQyFC2ZvoPZyGekTTb37VsNI=
+	t=1736251928; cv=none; b=PzMkQYR+jUu24thAUy1FwIuWXuf50S1Oh61Ec8mOVFbNZSCPVVqdzPnnG+4IFZFugA87QMIy8mMEc6M9CC8FC5+wE9RVUGeg2iHJBqy0kZWiSL/rlIHEhl4RWqqO7bV/epOZrT4s2TtAwAqZT+Va0NlzkAkdqatK66VIdEhlLjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736251816; c=relaxed/simple;
-	bh=rxEU0EmD30MR/FIV1bxTNYLADb5PwBd/rv+n0VlZH2I=;
+	s=arc-20240116; t=1736251928; c=relaxed/simple;
+	bh=HVZqv3iMD3u/yLNSo6b7LYCx1bSeTRxSx/Qpuv+cJHk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=hPu75RnPTAkot6Mb6MAYidvHPerdJbYeCcSMuHyNp+SX3xx2kVKEpO5oGXofPK22H3/ltKpSJD8khMOoUjqQNIaVU7tbu/L/4+gsgAR5jYuV+AmrraksgBk8IKT1EVD+vfolmR4qNX6d7fPCWb1MRjo43cU2ao53SYsDd0ABF0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=c/7/NjPz; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version:Content-Type; b=WvMdwEW3w6kPee00IW7OZPKGWpr7iLcwx9Nz8+cpwzTY1k4xL5qt0zacxxou/dV19jQlmsO/NieGEct9FNFqzp24UJqwxl5t/aSuvgdvzOGhCqNZnFVn+y/Tq+Fp/8cReg6iXr5etX2Z0waPYfISVlQ7zDw03UqfS93YfG4Hs0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TqXS3RsS; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736251783;
-	bh=rxEU0EmD30MR/FIV1bxTNYLADb5PwBd/rv+n0VlZH2I=;
+	s=mail; t=1736251924;
+	bh=HVZqv3iMD3u/yLNSo6b7LYCx1bSeTRxSx/Qpuv+cJHk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=c/7/NjPzBAMHqGPBtHgBQDCWaWuO1s0uhJ9QMx28kWIHbtWb4c7Ij+IWfyaPN82vo
-	 B5TWvGSPEmI6athSe4aF5/w9VkPj04+c0YK9ieNZ1KOa4Ae1nhj2rq5S23cRtZJcSN
-	 h5bg0Lhs0c1XyYtcKNPUDvjFWCRMv6FdF2nf8Hx5dUWplcPhYijfuG7F3FycbXRcac
-	 tw1tn75aQKHwCKrK/3G9a3eHtkkieO3ScxIEGJ+gZp4q/K4q1jT2Oa5SLPCuyGzIlk
-	 yRtfLClN2QkySk4/3Qdj1uBUvpNVIm8Gr3/T+joc+gR6WPj/XHbX8uu1Fxgoms1zxX
-	 uzlp+cuI+/AGg==
+	b=TqXS3RsSldw/NUimwX1+CTL0hMA5ARGNP+nxLNA/mTBkSWFC99KATsm3zNR6e4P+m
+	 NQ/1iMTIHQMnQPalj5D9KMo5Pyz3TjUZydEq1TGQ5sToZ8R0yUja7q1ohLH32lwIUD
+	 jKD6qJjnvZBLdQYcWW0SWxnplUeIgf6+nuMz/uxLsi0vC+8vyQGiwDzWGQ/thXBGmN
+	 xuajTcgmWdw7NNfUroAYOtktkN2WDQwHg1/VoTp3JjzHdPuLIXesXICIXuiNolp7A1
+	 oafZ89/BCPRMSUsJIuJE1LPzDHcfr3vMn5hkdUl7/7ZTzJfq13ESdd8BETa/BDL+dm
+	 Ij3cf9Yv/wySA==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9603217E1567;
-	Tue,  7 Jan 2025 13:09:42 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6A18B17E152A;
+	Tue,  7 Jan 2025 13:12:03 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-mediatek@lists.infradead.org, 
- Sjoerd Simons <sjoerd@collabora.com>
-Cc: kernel@collabora.com, Conor Dooley <conor+dt@kernel.org>, 
+To: Val Packett <val@packett.cool>
+Cc: Mattijs Korpershoek <mkorpershoek@baylibre.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250106085737.227622-1-sjoerd@collabora.com>
-References: <20250106085737.227622-1-sjoerd@collabora.com>
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8365-evk: Set ethernet
- alias
-Message-Id: <173625178253.57526.8389123974774174107.b4-ty@collabora.com>
-Date: Tue, 07 Jan 2025 13:09:42 +0100
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Fabien Parent <fparent@baylibre.com>, 
+ Alexandre Mergnat <amergnat@baylibre.com>, 
+ Amjad Ouled-Ameur <aouledameur@baylibre.com>, linux-input@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20241225192631.25017-1-val@packett.cool>
+References: <20241225192631.25017-1-val@packett.cool>
+Subject: Re: [PATCH 0/3] mt6779-keypad: fix compatibles and add to mt8516
+Message-Id: <173625192333.58193.14854384840814849260.b4-ty@collabora.com>
+Date: Tue, 07 Jan 2025 13:12:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,17 +75,28 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
-On Mon, 06 Jan 2025 09:57:31 +0100, Sjoerd Simons wrote:
-> Configure an the ethernet alias to match the ethernet controller (even
-> if it's off by default). This allows e.g. u-boot to configure the mac
-> address on boot properly
+On Wed, 25 Dec 2024 16:26:18 -0300, Val Packett wrote:
+> The mt8516 patch was previously sent in another series but rejected due
+> to not using an mt8516 specific compatible - which the other usages
+> of this driver (mt8183 and mt8365) weren't doing either.
 > 
+> It's only fair to add the SoC-specific compatibles to all of them then :)
 > 
+> Val Packett (3):
+>   dt-bindings: mediatek,mt6779-keypad: add more compatibles
+>   arm64: dts: mediatek: add per-SoC compatibles for keypad nodes
+>   arm64: dts: mediatek: mt8516: add keypad node
+> 
+> [...]
 
 Applied to v6.13-next/dts64, thanks!
 
-[1/1] arm64: dts: mediatek: mt8365-evk: Set ethernet alias
-      commit: 70584fa8db2ea4cd402ac9093fbb4f6cb4f2a2c2
+[1/3] dt-bindings: mediatek,mt6779-keypad: add more compatibles
+      commit: 3b19239ad4201123a2bc05af5859f5d75a30a49e
+[2/3] arm64: dts: mediatek: add per-SoC compatibles for keypad nodes
+      commit: 6139d9e9e397dc9711cf10f8f548a8f9da3b5323
+[3/3] arm64: dts: mediatek: mt8516: add keypad node
+      commit: 0fb0d360218129f00b76f13e30b86321b64e36f6
 
 Cheers,
 Angelo
