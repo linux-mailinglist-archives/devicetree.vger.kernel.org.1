@@ -1,132 +1,197 @@
-Return-Path: <devicetree+bounces-136325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20DA2A04C9F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 23:47:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66955A04CAA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 23:54:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF551188589D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 22:47:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51AAB162397
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 22:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE2F19D093;
-	Tue,  7 Jan 2025 22:47:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA631DF27C;
+	Tue,  7 Jan 2025 22:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kObDAehc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tbKyO1Q4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394F686330
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 22:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB1986330;
+	Tue,  7 Jan 2025 22:54:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736290022; cv=none; b=O72lnFoUrjiK1FrwinlsCyiWLpz7LV/Q0uaZNFq6AJVkbcY9QUnnfe/EigLKBpzrbj47bQngq1auVWoFQHYVdhwXYqjccvIpgZwNeiaL/UBoJwx/ylCO0hUWbcbuquVJfNXKKZK4oEAQj/J7+NDm9Ws+lAiWngif03Ux5dmN9Cs=
+	t=1736290473; cv=none; b=t7GcfOymDd8eXm8CenzXHW5jAjTMXiUEEEGVjX/FCaLqogOYO6ZCRGhX4opUMGX8cxNWt2vNNQ8L1GPFxERYgCIhfjBM+j1WxPfHIDrjwOi/jE2SYeqxZGHIFMZzvHLAxCi4+GVogBQSzJzmJM6c9g7o/MWreTamYTVCn2t4L0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736290022; c=relaxed/simple;
-	bh=HiKSV+qYlrcxWm34gNMXj+pXauBB7CRb/Gor0TsVzh0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=KmQmXI54CvET6IpLF1GskwaCW7HWNiVcbacZG1oqzHDbPmQ+wn2KHmqiTruq9NRS0nkLqPQOLU3qbooyFkOmOGxmzVS7JNfe1iD5V0nzbvpgZNBIFEisacjUCgJ5/M452/HjvVEy9qYDSaoTk6l+bPy6jvOSJ5oOnVQDzHHF95I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kObDAehc; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2ee8aa26415so23628050a91.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 14:46:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736290019; x=1736894819; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=VhhOsxIrAZXRQSyguOLlB0hClyT00aHuDw3Nc1/4jp8=;
-        b=kObDAehc8KBDx4nAhuC0Q0fTT+xNiXN/zOjSqARo2lOIJat14ZdMT6zyIOFPXeThdd
-         v+KfUb3/UtoNe9f93lyihak0+HrVB+Om6nE/7xj7PfE9wPOZ04Wn5cbKKrcLNbyk3RL9
-         7zqAm2i/iNvtwapci9L1DcdyGM2dy/9FJJ8yHbpR1ZSSb9YULoLT0QBvvTIoN8iaE6+K
-         +KiCWtq5sI3AoFsPtMzP3hwC/Y808tOqofz5E0TESUatbbqoQ+spQTirHvYnK1EUJA0y
-         W7cJK+7mQ+vuufnJOlvQuiPy9P9E9ruFAGQgudtOmYkTrax6fvLwGPUmclldrFwuQ0mV
-         jdFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736290019; x=1736894819;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VhhOsxIrAZXRQSyguOLlB0hClyT00aHuDw3Nc1/4jp8=;
-        b=A9KdJpkoR0DLJ2goKmcT211EwdwQyRvHFSwNoW9LBYN+xCDq0a9zsV68uUh5nGV6aN
-         kXHO9zVpP9K1EKy0OLJu/adWxOOLeMtJGmO387w/r9U6/BwGjIhn7sKm+nc3HCgDMKGm
-         /CnaJ8KfEQwHFTs4PFe3T1ml84eJQPg2X/MApMVvRqv1dyiLuTlIu0qOBY+dob7yx2zq
-         IT4j3VAxT5jtZuSI2ptd7jRqCszGRADxZTxMh825Dx83wQsPpK1/IGfwRdkXHED9GahG
-         ZbbGOjHCX9wG3Tfthsw2QV08IEHj1M0RiFSDRaOVB/qFBGz+nsv5v+A0GnYh8UxPf7p2
-         P1nA==
-X-Gm-Message-State: AOJu0YzjNO9Y06MSOJcP49fK3ZACiDO1AQ5Iwz6WUoBmtCHtT/4z54eu
-	Y6m2z21z9VnubeRi/L+QyP2+OnB9mZaJXHGVLgzeNadq06GS/id77+ImKCnWc9GheA5KLk8sRZf
-	n
-X-Gm-Gg: ASbGncu4dSe4sAGBhFTx3os5LOpVEHpWcRTOxEXWKeQluzE/5nvrqVNasjoj2iizVtb
-	N4oe4g3mdxuNp48gH527mA5DXd83pxZVtOFynoVtx0pt0WNqLURX2wgTJSB/bbg1v7qWHgWmnx+
-	tMCHMmnsFHxVHPd+wlriBszv7rfQF7N2wDiTlLayz9iUZg7pZYe/v5hdcm3UqsUpGjKg81RRQrp
-	+yNnAA1NCsau7cgWYYWl0GRrNW6mMAAmkW3Ddv1q4h6i0gev47FVYU=
-X-Google-Smtp-Source: AGHT+IEWLZ0aAO0tFLvsOPBDQKKeuyqMuH4W0nT1NxPlNJruhvsUZ/Ykoi06+2HvkLi5ZyYOcU4+/g==
-X-Received: by 2002:a17:90b:4c8d:b0:2ee:5edc:489 with SMTP id 98e67ed59e1d1-2f548f5ed6cmr824480a91.26.1736290019527;
-        Tue, 07 Jan 2025 14:46:59 -0800 (PST)
-Received: from localhost ([97.126.182.119])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f54a2df0b3sm49805a91.42.2025.01.07.14.46.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2025 14:46:59 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Nishanth Menon <nm@ti.com>
-Cc: devicetree@vger.kernel.org, Romain Naour <romain.naour@smile.fr>,
- linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- kristo@kernel.org, vigneshr@ti.com, Romain Naour <romain.naour@skf.com>,
- afd@ti.com, s-vadapalli@ti.com
-Subject: Re: [PATCHv3 1/2] dt-bindings: mfd: syscon: Add
- ti,j721e-acspcie-proxy-ctrl compatible
-In-Reply-To: <20250103212528.enq4ur5afxhwzh7n@outdoors>
-References: <20241202143331.126800-1-romain.naour@smile.fr>
- <173344002250.407600.8303166891165540615.b4-ty@baylibre.com>
- <20250103212528.enq4ur5afxhwzh7n@outdoors>
-Date: Tue, 07 Jan 2025 14:46:58 -0800
-Message-ID: <7hr05eb5st.fsf@baylibre.com>
+	s=arc-20240116; t=1736290473; c=relaxed/simple;
+	bh=O9TJbmQGiBS3wg5CEtqr6UcvZN/r2lDkUlDh/A83J7o=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=lkwYaFWhZGSSHVzX446iD4GTs0w96pWpCZWsxuTVkGZtP13H1bzdAIkxuMtOqVPrshPrejZpZi5hFx0ENzz6BnCB0DfxzKGSggQ8zcKD7n+CROekxGtCh3nrvU+p+ClxlQn+8D0CCBiVWFJTxWT05pNo66WBvSEyLS8StxrxkK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tbKyO1Q4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D78DC4CED6;
+	Tue,  7 Jan 2025 22:54:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736290472;
+	bh=O9TJbmQGiBS3wg5CEtqr6UcvZN/r2lDkUlDh/A83J7o=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=tbKyO1Q4VjERyhut+hU/vQIG+F7w69M3Vy6s9YBLMnD+LqHjuhmQedWM/wnD6PByi
+	 LNZpwHWbRs468sWPfU8ffysRsKa8+zR0VikgXG4yS/LhRB2h6OjX4lKq7AFdLY7hVh
+	 39oas5HW1nkTZa5EKBRDAztXXu9WUarhIoFYmVBVFpOuqDeb9gpZCdK+e4972sSnze
+	 NrYdVputvAgP4M/t5seLAR79ujHFWj5lgm2WFLex4HqJ2pG914plcnYx3+1YoRHqoB
+	 fi4EAwybIl7102DOFK/Xb6e9iSKpPJYbhp3IQKLvsMEWY1kU1FQooOZGlD+VwbHrvR
+	 0WLqcioHhz/Kg==
+Date: Tue, 07 Jan 2025 16:54:31 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-clk@vger.kernel.org, dharma.b@microchip.com, 
+ alexandre.belloni@bootlin.com, nicolas.ferre@microchip.com, 
+ mturquette@baylibre.com, linux-serial@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, conor+dt@kernel.org, mihai.sain@microchip.com, 
+ linux-kernel@vger.kernel.org, krzk+dt@kernel.org, 
+ varshini.rajendran@microchip.com, claudiu.beznea@tuxon.dev, 
+ romain.sioen@microchip.com, linux-spi@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, arnd@arndb.de, sboyd@kernel.org
+To: Ryan.Wanner@microchip.com
+In-Reply-To: <20250107160850.120537-1-Ryan.Wanner@microchip.com>
+References: <20250107160850.120537-1-Ryan.Wanner@microchip.com>
+Message-Id: <173629037004.1994496.1652835527993929123.robh@kernel.org>
+Subject: Re: [PATCH v5 0/5] Add support for SAMA7D65
 
-Nishanth Menon <nm@ti.com> writes:
 
-> On 15:07-20241205, Kevin Hilman wrote:
->> 
->> On Mon, 02 Dec 2024 15:33:30 +0100, Romain Naour wrote:
->> > The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
->> > SoC are used to drive the reference clock to the PCIe Endpoint device via
->> > the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
->> > obtain the regmap for the ACSPCIE_CTRL register within the System
->> > Controller device-tree node in order to enable the PAD IO Buffers.
->> > 
->> > The Technical Reference Manual for J721e SoC with details of the
->> > ASCPCIE_CTRL registers is available at:
->> > https://www.ti.com/lit/zip/spruil1
->> > 
->> > [...]
->> 
->> Applied, thanks!
->> 
->> [1/2] dt-bindings: mfd: syscon: Add ti,j721e-acspcie-proxy-ctrl compatible
->>       commit: d8efc0b428856137608ffcbb6994da6041c9fe2a
->> [2/2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE output for PCIe1
->>       commit: 1d5e14a20dc60b440c60bec8489acfd45cdf7508
->> 
->> Best regards,
->> -- 
->> Kevin Hilman <khilman@baylibre.com>
->> 
-> This will need a bit of fixup - See along the lines of the following.
-> Additionally, we should be a bit careful about the dependency of dts
-> mix up from two trees.
+On Tue, 07 Jan 2025 09:07:22 -0700, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+> 
+> This series adds support for the SAMA7D65 SoC.
+> 
+> V2 of this series [1].
+> V3 of this series [2].
+> V4 of this series [4].
+> 
+> For the pinctrl and pit64 timers those will have DTB warnings due to
+> those bindings not being in the .yaml format.
+> 
+> Changes v1->v2:
+> - V1 set was sent incorrectly as multiple seprate patches v2 took all
+>   those patches and put them in 1 thread.
+> 
+> Changes v2->v3:
+> - Correct the patch order to follow correct practice.
+> - Correct flexcom dt-binding commit messge to reflect the changes in the
+>   coding style.
+> - Add missing SoB tags to patches.
+> - Moved export clocks to DT patch to be included with the clock binding
+>   patch.
+> - Separate Kconfig changes and defconfig changes into different patches
+>   and removed unused Kconfig params.
+> - Correct confusing SoB and Co-developed chain.
+> - Removed unsued nodes in DTSI file and sorted includes
+>   alphanumerically.
+> - Fix incorrect dts formatting.
+> - Separate dts and pinmux changes into two patches.
+> - Combine PLL and MCK changes into core clock driver patch.
+> - Correct formatting in main clock driver.
+> - MMC dt-binding changes are applied for next so have been removed from
+>   the set [3].
+> 
+> Changes v3->v4:
+> - Collect all tags from maintainers.
+> - Correct compile error on 11/13 and correct location of vendor specific
+>   properties.
+> - Add USB and UTMI selections to 12/13 to prevent compile errors due to
+>   functions in the clock driver that use the USB clock system.
+> - Add "microchip,sama7g5-pinctrl" compatible string as a fall back in
+>   9/13.
+> - Add missing kfree() to 8/13 to correctly handle error case.
+> - Replace bad spacing with correct tab formatting on 7/13.
+> 
+> Changes from v4->v5:
+> - Remove patches that have been applied [5].
+> - Update pinctrl dt-binding to use fallback formatting.
+> 
+> Note:
+> - For the SDHCI DTB error that patch has been removed do to it being
+> applied see [3].
+> - There are DTB errors on microchip,sama7d65-pit64b and
+>   microchip,sama7d65-pinctrl, this is due to those bindings being .txt
+>   files.
+> 
+> 1) https://lore.kernel.org/linux-arm-kernel/cover.1732030972.git.Ryan.Wanner@microchip.com/T/#m9691b4d58b62f36f6cbac1d06883c985766c2c0d
+> 2) https://lore.kernel.org/linux-arm-kernel/cover.1733505542.git.Ryan.Wanner@microchip.com/T/#m3b52978236907198f727424e69ef21c8898e95c8
+> 3) https://lore.kernel.org/linux-arm-kernel/cover.1732030972.git.Ryan.Wanner@microchip.com/T/#mccf6521c07e74e1c7dc61b09ae0ebdbbdde73a28
+> 4) https://lore.kernel.org/linux-arm-kernel/70d429086fd8e858d79ca2824ad8cc4a09e3fe5d.1734723585.git.Ryan.Wanner@microchip.com/T/#m918b8db23c8d30981263846a02dafc085e17de14
+> 5) https://lore.kernel.org/linux-arm-kernel/70d429086fd8e858d79ca2824ad8cc4a09e3fe5d.1734723585.git.Ryan.Wanner@microchip.com/T/#m69b8f11536e3b0ca3d69d125d0670c90412d4317
+> 
+> 
+> 
+> Dharma Balasubiramani (2):
+>   dt-bindings: serial: atmel,at91-usart: add microchip,sama7d65-usart
+>   dt-bindings: pinctrl: at91-pio4: add microchip,sama7d65-pinctrl
+> 
+> Romain Sioen (2):
+>   dt-bindings: ARM: at91: Document Microchip SAMA7D65 Curiosity
+>   ARM: dts: microchip: add support for sama7d65_curiosity board
+> 
+> Ryan Wanner (1):
+>   ARM: dts: microchip: add sama7d65 SoC DT
+> 
+>  .../devicetree/bindings/arm/atmel-at91.yaml   |   7 +
+>  .../pinctrl/atmel,at91-pio4-pinctrl.txt       |   3 +-
+>  .../bindings/serial/atmel,at91-usart.yaml     |   1 +
+>  arch/arm/boot/dts/microchip/Makefile          |   3 +
+>  .../dts/microchip/at91-sama7d65_curiosity.dts |  89 +++++++++++
+>  arch/arm/boot/dts/microchip/sama7d65.dtsi     | 145 ++++++++++++++++++
+>  6 files changed, 247 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+>  create mode 100644 arch/arm/boot/dts/microchip/sama7d65.dtsi
+> 
+> --
+> 2.43.0
+> 
+> 
+> 
 
-sorry, these should be going through your tree in the first place.  They
-are now dropped from my tree, please go ahead and take them along with
-Andrews fixup.  Sorry for complicating things.
 
-Kevin
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y microchip/at91-sama7d65_curiosity.dtb' for 20250107160850.120537-1-Ryan.Wanner@microchip.com:
+
+arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: /soc/pinctrl@e0014000: failed to match any schema with compatible: ['microchip,sama7d65-pinctrl', 'microchip,sama7g5-pinctrl']
+arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: /soc/pinctrl@e0014000: failed to match any schema with compatible: ['microchip,sama7d65-pinctrl', 'microchip,sama7g5-pinctrl']
+arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: /soc/timer@e1800000: failed to match any schema with compatible: ['microchip,sama7d65-pit64b', 'microchip,sam9x60-pit64b']
+arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: /soc/timer@e1800000: failed to match any schema with compatible: ['microchip,sama7d65-pit64b', 'microchip,sam9x60-pit64b']
+arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: /soc/timer@e1804000: failed to match any schema with compatible: ['microchip,sama7d65-pit64b', 'microchip,sam9x60-pit64b']
+arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: /soc/timer@e1804000: failed to match any schema with compatible: ['microchip,sama7d65-pit64b', 'microchip,sam9x60-pit64b']
+arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: flexcom@e2020000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['microchip,sama7d65-flexcom', 'atmel,sama5d2-flexcom'] is too long
+	'atmel,sama5d2-flexcom' was expected
+	'microchip,sam9x7-flexcom' was expected
+	'microchip,sama7g5-flexcom' was expected
+	from schema $id: http://devicetree.org/schemas/mfd/atmel,sama5d2-flexcom.yaml#
+arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dtb: /soc/flexcom@e2020000: failed to match any schema with compatible: ['microchip,sama7d65-flexcom', 'atmel,sama5d2-flexcom']
+
+
+
+
+
 
