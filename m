@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-136033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA2FBA038EB
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:39:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 471D0A038F0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:41:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46AF21880757
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:39:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B76B53A2754
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95F3154C15;
-	Tue,  7 Jan 2025 07:39:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B315F1990D8;
+	Tue,  7 Jan 2025 07:41:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tWqIeLmq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gh7BvEhy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4C3154BE2;
-	Tue,  7 Jan 2025 07:39:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8880C192598;
+	Tue,  7 Jan 2025 07:41:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736235578; cv=none; b=QnOqCZK9nDSx3wVGp6nMhgePmRIHpE9idBfIu9xtWAps2lXAuk1qKAgcgJ5DNstBhf/Xs53B3aPFRNLvlciox1nynRroHkexvfQV+j7FVVdZ4+6f5bsQmODqv4rUCdwha5jmpN26JfxPuw/DKR91jK1lOO0fD3f8p6ttfVNSQfM=
+	t=1736235665; cv=none; b=ggWdTjY889WFdWW2emYnZGrc3Icos5cEdAaXWCfju3wtlGpzsTiraE+h5piP3EJgeBBhEyTZ9dH8v73NkdNfUw+0xL/UyIl1UuqLJ1mPmUPrRVJ15usuI00hgj54sYI97khLzVG06z9BJnwxeCt9on4WtoCAuWdJRgTFSLJXFDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736235578; c=relaxed/simple;
-	bh=pdOg6pQVabUnWRXDjf2S2sinPTFgzNzHGzdPbLsARCw=;
+	s=arc-20240116; t=1736235665; c=relaxed/simple;
+	bh=tUaXyGh7w/zZQrfTLkNv6fbcAHQHZF2j7Xync9j4wys=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t+v7+nNAgNIGxiwv2vKJGYP6DYug6CoNZDvOPMelVwguNwKKoudi9dTof3A/JNvpVm0OX5UUhoB9gP9ji664+BParN3dRAS7UHtUGBVAbTWB1wxyMFH02/vVCi0Q2nlPVT5PlwDFBrukSZNMgmWhF/EQnDpQVcghMMKlGK+84pQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tWqIeLmq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B432EC4CED6;
-	Tue,  7 Jan 2025 07:39:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Gvr1UuUxd/U1YKe8p7/nxgqbmaZIiUxm1QKJq0ManzEsifEdpuK7gdt5mfClE51KuwfYynFisGnUHhTEcU73ySnqIuiWyu+KRNGEIszSoQ7JLrbshuxXjX+ibeIngR8iFxoIrFtInIHoPdWjLGfmDdm3qCJgj77NTDrJgYLRbyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gh7BvEhy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42AD4C4CED6;
+	Tue,  7 Jan 2025 07:40:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736235578;
-	bh=pdOg6pQVabUnWRXDjf2S2sinPTFgzNzHGzdPbLsARCw=;
+	s=k20201202; t=1736235665;
+	bh=tUaXyGh7w/zZQrfTLkNv6fbcAHQHZF2j7Xync9j4wys=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tWqIeLmq/schcCGXmWU4ONMqdYjUejHaF8jEEoNsVIWw7YBVLp3+UO/A+1pDd+gmh
-	 fRiba10lS31nsNxlvoQ87Svxa2CzLLgysiU1geiTvo7XjrknUO5S06LLQ02jqx/wB1
-	 bZCpY78h2ksQLV4WivqoHWtKSWOdKBkKJkfEqbJfK5pjCE+Ohn0jBHvPtmXpD7djDn
-	 QyEg8IXqKv1ZPop7r7f1aYGV/hfZHMnU+46oLgc+fLluY+2daPyregTSVC3JCEtO9b
-	 9FBNyIZ3VSxDsyhG9Ij/PNNQku1qSskshx7X9UgPploM8wES/jOR49Zi4XsgA1/3DT
-	 N/b+cQh8spXOw==
-Message-ID: <336b4eff-9d77-47ac-be26-2f73e30a5766@kernel.org>
-Date: Tue, 7 Jan 2025 08:39:30 +0100
+	b=gh7BvEhyaLexj1ILHFi51xUTeFa2992Dd9tkDmJkvMXYniDoOIc8YDKaa+Rkqea6H
+	 7/RZFiK115RYJ+T5oCTwpwqhRicjU2uDXFOW9JTT8pZ41DEoBtvZ5vhQFBBgatuoO0
+	 TThC8DPtFGUxtKI01DHIcRHj48TnPqfMM8MrgGD4WxTeqc9K4Azhrb2HgqQqD22wrv
+	 Q7zMkibp6Z4dRCQUCpDwG7krEZvr5PNTeZe2DoFYv+OUn8mvXea6kxYU4qY2MxqCnL
+	 gd2icHAzmvf3aonIxCVMTQAgomXcFd+YXUcgYCgYX1ROyc96TzzPmljdpk9pu3qF++
+	 3GoFPtxVB69GA==
+Message-ID: <30ed7cea-75b3-4c54-b143-906e9429a4df@kernel.org>
+Date: Tue, 7 Jan 2025 08:40:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] dt-bindings: PCI: dw: rockchip: Add rk3576 support
-To: Kever Yang <kever.yang@rock-chips.com>,
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, heiko@sntech.de,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Simon Xue <xxm@rock-chips.com>,
- linux-rockchip@lists.infradead.org,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Shawn Lin <shawn.lin@rock-chips.com>
+Subject: Re: [PATCH v3 5/7] dt-bindings: arm: rockchip: Sort for boards not in
+ correct order
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Chris Morgan <macromorgan@hotmail.com>, Rob Herring <robh@kernel.org>,
+ Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
+ linux-kernel@vger.kernel.org, Tim Lunn <tim@feathertop.org>,
+ linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Andy Yan <andyshrk@163.com>
 References: <20241223110637.3697974-1-kever.yang@rock-chips.com>
- <20241223110637.3697974-3-kever.yang@rock-chips.com>
- <173495701750.480868.16123444058526675248.robh@kernel.org>
- <7d94ec48-5dfb-4daf-b32b-504271afb374@rock-chips.com>
+ <20241223110637.3697974-6-kever.yang@rock-chips.com>
+ <dzrmlapgca6vwqpfxi7sub37z4taerinslfthqwqi7jltb4xxh@wtry22ybpd2r>
+ <df8983a4-5e0f-4eae-b163-05788b2bc7cd@rock-chips.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,72 +109,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <7d94ec48-5dfb-4daf-b32b-504271afb374@rock-chips.com>
+In-Reply-To: <df8983a4-5e0f-4eae-b163-05788b2bc7cd@rock-chips.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/01/2025 08:24, Kever Yang wrote:
-> Hi Rob,
+On 07/01/2025 08:28, Kever Yang wrote:
+> Hi Krzysztof
 > 
-> On 2024/12/23 20:30, Rob Herring (Arm) wrote:
->> On Mon, 23 Dec 2024 19:06:32 +0800, Kever Yang wrote:
->>> rk3576 is using dwc controller, with msi interrupt directly to gic instead
->>> of to gic its, so
->>> - no its suport is required and the 'msi-map' is not need anymore,
->>> - a new 'msi' interrupt is needed.
->>>
->>> Signed-off-by: Kever Yang<kever.yang@rock-chips.com>
->>> ---
->>>
->>> Changes in v3:
->>> - Fix dtb check broken on rk3588
->>> - Update commit message
->>>
->>> Changes in v2:
->>> - remove required 'msi-map'
->>> - add interrupt name 'msi'
->>>
->>>   .../devicetree/bindings/pci/rockchip-dw-pcie-common.yaml      | 4 +++-
->>>   Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml   | 4 +---
->>>   2 files changed, 4 insertions(+), 4 deletions(-)
->>>
->> My bot found errors running 'make dt_binding_check' on your patch:
->>
->> yamllint warnings/errors:
->> ./Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml:85:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> On 2024/12/23 22:58, Krzysztof Kozlowski wrote:
+>> On Mon, Dec 23, 2024 at 07:06:35PM +0800, Kever Yang wrote:
+>>> The board entries should be sort in correct order.
+>> And what is the sorting rule for this file? Board name? SoC compatible?
 > 
-> Sorry, I'm not so good at the yaml grammar, I will fix it in next version.
+> This is sort by the description msg, which should be easy to find out if 
+> look at
 > 
-> But when I run the make dt_binding_check, I can't find this warning in 
-> my side, maybe the tool has version required?
+> the content in the file instead of the patch.
 
-
-Read the full instruction (it is there on purpose, to avoid trivial
-questions):
-
-> 
-> 
-> Thanks,
-> - Kever
->>
->> dtschema/dtc warnings/errors:
->>
->> doc reference errors (make refcheckdocs):
->>
->> Seehttps://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241223110637.3697974-3-kever.yang@rock-chips.com
->>
->> The base for the series is generally the latest rc1. A different dependency
->> should be noted in *this* patch.
->>
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->>
->> pip3 install dtschema --upgrade
-
-
-Down to here. All above is fine on your side?
-
+Content of the patch does not show me *EXISTING* sorting. I want to know
+that you understand existing sorting, before introducing "sort the
+boards" change.
 
 
 Best regards,
