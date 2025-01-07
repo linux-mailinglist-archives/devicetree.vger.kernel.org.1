@@ -1,194 +1,437 @@
-Return-Path: <devicetree+bounces-136112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9BCEA03E29
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:46:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DBBAA03E77
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:02:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B2C47A300A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 11:46:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 460FB1608AA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:02:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC051EB9EB;
-	Tue,  7 Jan 2025 11:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HtgkNi01"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E750C1E47A5;
+	Tue,  7 Jan 2025 12:02:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461231DFE3D;
-	Tue,  7 Jan 2025 11:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A4E1E1044;
+	Tue,  7 Jan 2025 12:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736250388; cv=none; b=pQSvXJ8HA81ms8fJD9rC5l5r3sG693VpBZ/lsQqPZpMOajhTLDWTTNfrD2Vi1OItMpJAxwSeo8Bv2+izPNZHqet5HzNrqCp36W2gl39VIsHGzSnFAGv7HnJDsNQZgA60EtxyrwEpNL73kPS/RAd0qHOC0cBElkswpNPi6Dg4sVQ=
+	t=1736251358; cv=none; b=apU5QlyqXf08rvQRb8x2+UurjSIdAUw4PA7W8V358WZFpQVlzUOiH9gwdDQzRfdv7qiO5lMUOg4Xv5LA3BRKeGWj7WxPkWArHbYYvvs/UKqCrpd2aZD4yAr3tas2sIzNyiX51VR4hrjmh9YoV6TamXhfQtTuUQHGvvjHkIBvztg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736250388; c=relaxed/simple;
-	bh=df0LOEnngCjfFj2PvwptpBWdY3nEK+O/wLcKL6OCdMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DBf97wj+pwpMne4yvD180HeqzhBUjqRcqBcJoMJ3wI6pPgcmA2nkQv7aYZppKADduIY/2eqn7CUIX7U0TFR9tGe3w5KcEy67k1QwoCY7aK4eUI+NLuL6DBe/uJSKUUF4bJ671uYSsG4teO++WAK7/Sos7gYBDered6cSz/7wiI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HtgkNi01; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736250380;
-	bh=df0LOEnngCjfFj2PvwptpBWdY3nEK+O/wLcKL6OCdMQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HtgkNi01/LC2j6dqsG6SUSw9HHQbXsj7H/SdfXh0AocYFpR8qrA/CxTlluiY9Kec0
-	 zEgIPvTMfcZOdAWf9o2x1VYypg/Dx9sUDiifzz524qqVYzsgHW2GMuJ3wCHwksN2zo
-	 QBn6/BM/TKk2f7PRM8r3E8UkHtt1zkLajqNOiZrYHnFRcaSgIzObHNlBloafdeROly
-	 SwwrqtW5nIVH2zyZJMhDMhO5xViOJhqGfkMHj5/bkSwCCM2huPfst5n+EIUbxWmugs
-	 mk46A4oVQaQwJHVN/KKBmJmHqbIa6LCFY6I8DD+C2dpT92bwLgka5Cz9xHjAnSsmiW
-	 k1Fa6eCcSp9IA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BDB2A17E1562;
-	Tue,  7 Jan 2025 12:46:19 +0100 (CET)
-Message-ID: <b23d4240-f520-4840-844f-adf712ca2aff@collabora.com>
-Date: Tue, 7 Jan 2025 12:46:19 +0100
+	s=arc-20240116; t=1736251358; c=relaxed/simple;
+	bh=dWtmv2k3lfF882wUS1JGTbSEt7rTz0aFneP2uBkCZq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tP+1NJY9so/xg9XvEWo4LQMNcJO1ptYFFvpvXCuF2yyxk1XxNVSS1oULG8ReeH3yA7JH89BmwMPWiY0QQPQYVFApxbn60G5c2b0V05T0MADjEgVQtPx9y/slZ8FkMBjkt6VZ9KshjSLsBGITIm+CJfFYJJ1ZTWfHckxZNiF2nCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EE211143D;
+	Tue,  7 Jan 2025 04:03:01 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D0C0C3F673;
+	Tue,  7 Jan 2025 04:02:31 -0800 (PST)
+Date: Tue, 7 Jan 2025 12:02:28 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Lukas Schmid <lukas.schmid@netcube.li>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] ARM: dts: sunxi: add support for NetCube Systems
+ Kumquat
+Message-ID: <20250107120228.503e0918@donnerap.manchester.arm.com>
+In-Reply-To: <20250106190703.4015-5-lukas.schmid@netcube.li>
+References: <20250106190703.4015-1-lukas.schmid@netcube.li>
+	<20250106190703.4015-5-lukas.schmid@netcube.li>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] usb: mtk-xhci: add support remote wakeup of mt8196
-To: Chen-Yu Tsai <wenst@chromium.org>,
- =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "mathias.nyman@intel.com" <mathias.nyman@intel.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-References: <20241126025507.29605-1-chunfeng.yun@mediatek.com>
- <20241126025507.29605-2-chunfeng.yun@mediatek.com>
- <207f9e96-3165-440d-8576-545bf2bc9dee@collabora.com>
- <0820cf224ae9022fc34fb31d97d4c6f8f6e2eec1.camel@mediatek.com>
- <CAGXv+5FUuqDbVRQdkkdM9SRV6N3H8Gx_rMpx6rw-hNu45SKVNA@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAGXv+5FUuqDbVRQdkkdM9SRV6N3H8Gx_rMpx6rw-hNu45SKVNA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Il 07/01/25 06:07, Chen-Yu Tsai ha scritto:
-> On Mon, Jan 6, 2025 at 10:58 PM Chunfeng Yun (云春峰)
-> <Chunfeng.Yun@mediatek.com> wrote:
->>
->> On Tue, 2024-11-26 at 09:50 +0100, AngeloGioacchino Del Regno wrote:
->>> External email : Please do not click links or open attachments until
->>> you have verified the sender or the content.
->>>
->>>
->>> Il 26/11/24 03:55, Chunfeng Yun ha scritto:
->>>> There are 2 USB controllers on mt8196, each controller's wakeup
->>>> control is
->>>> different, add some specific versions for them.
->>>>
->>>
->>> Is there any MTU3 controller in MT8196, like all other MediaTek SoCs?
->> Yes.
->>>
->>> If so, then please just add the wakeup control to the MTU3 driver,
->>> otherwise
->>> we are going to duplicate this for yet another SoC, like we've done
->>> for MT8192,
->>> MT8195, MT8188 and MT8186 already...
->> Even I add it in MTU3 driver, I still need add it in xhci-mtk driver,
->> some projects only use host mode;
->>
->> I can also add it in MTU3 driver and send out new patches.
->>
->> But it's not a good idea to duplicate it into MTU3 driver directly for
->> some SoC which has limitation on dual-role switch when using upstream
->> driver.
+On Mon,  6 Jan 2025 19:07:02 +0000
+Lukas Schmid <lukas.schmid@netcube.li> wrote:
+
+Hi,
+
+> NetCube Systems Kumquat is a board based on the Allwinner V3s SoC,
+> including:
 > 
-> I think the idea behind Angelo's point is that MTU3 should be used for
-> all projects, regardless whether they are host mode only or not.
-> The hardware is there. Don't hide it.
+> - 64MB DDR2 included in SoC
+> - 10/100 Mbps Ethernet
+> - USB-C DRD
+> - Audio Codec
+> - Isolated CAN-FD
+> - ESP32 over SDIO
+> - 8MB SPI-NOR Flash for bootloader
+> - I2C EEPROM for MAC addresses
+> - SDIO Connector for eMMC or SD-Card
+> - 8x 12/24V IOs, 4x normally open relays
+> - DS3232 RTC
+> - QWIIC connectors for external I2C devices
 > 
-
-Yes, I confirm that's exactly my point.
-
-Thanks for clarifying, Chen-Yu.
-
-Cheers!
-
-> ChenYu
+> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+> ---
+>  arch/arm/boot/dts/allwinner/Makefile          |   2 +
+>  .../allwinner/sun8i-v3s-netcube-kumquat.dts   | 274 ++++++++++++++++++
+>  2 files changed, 276 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
 > 
->> Thanks
->>
->>>
->>> Cheers,
->>> Angelo
->>>
->>>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
->>>> ---
->>>>    drivers/usb/host/xhci-mtk.c | 18 ++++++++++++++++++
->>>>    1 file changed, 18 insertions(+)
->>>>
->>>> diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-
->>>> mtk.c
->>>> index 3252e3d2d79c..31223912b0b4 100644
->>>> --- a/drivers/usb/host/xhci-mtk.c
->>>> +++ b/drivers/usb/host/xhci-mtk.c
->>>> @@ -113,6 +113,12 @@
->>>>    #define WC1_IS_P_95         BIT(12)
->>>>    #define WC1_IS_EN_P0_95             BIT(6)
->>>>
->>>> +/* mt8196 */
->>>> +#define PERI_WK_CTRL0_8196   0x08
->>>> +#define UWK_V1_7_CTRL2_MASK  0x5
->>>> +
->>>> +#define WCP1_IS_EN           BIT(7) /* port1 en bit */
->>>> +
->>>>    /* mt2712 etc */
->>>>    #define PERI_SSUSB_SPM_CTRL 0x0
->>>>    #define SSC_IP_SLEEP_EN     BIT(4)
->>>> @@ -129,6 +135,8 @@ enum ssusb_uwk_vers {
->>>>        SSUSB_UWK_V1_4,         /* mt8195 IP1 */
->>>>        SSUSB_UWK_V1_5,         /* mt8195 IP2 */
->>>>        SSUSB_UWK_V1_6,         /* mt8195 IP3 */
->>>> +     SSUSB_UWK_V1_7,         /* mt8196 IP0 */
->>>> +     SSUSB_UWK_V1_8,         /* mt8196 IP1 */
->>>>    };
->>>>
->>>>    /*
->>>> @@ -381,6 +389,16 @@ static void usb_wakeup_ip_sleep_set(struct
->>>> xhci_hcd_mtk *mtk, bool enable)
->>>>                msk = WC0_IS_EN_P3_95 | WC0_IS_C_95(0x7) |
->>>> WC0_IS_P_95;
->>>>                val = enable ? (WC0_IS_EN_P3_95 | WC0_IS_C_95(0x1)) :
->>>> 0;
->>>>                break;
->>>> +     case SSUSB_UWK_V1_7:
->>>> +             reg = mtk->uwk_reg_base + PERI_WK_CTRL0_8196;
->>>> +             msk = UWK_V1_7_CTRL2_MASK;
->>>> +             val = enable ? msk : 0;
->>>> +             break;
->>>> +     case SSUSB_UWK_V1_8:
->>>> +             reg = mtk->uwk_reg_base + PERI_WK_CTRL0_8196;
->>>> +             msk = WCP1_IS_EN;
->>>> +             val = enable ? msk : 0;
->>>> +             break;
->>>>        case SSUSB_UWK_V2:
->>>>                reg = mtk->uwk_reg_base + PERI_SSUSB_SPM_CTRL;
->>>>                msk = SSC_IP_SLEEP_EN | SSC_SPM_INT_EN;
->>>
->>>
->>>
+> diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
+> index 48666f73e638..d799ad153b37 100644
+> --- a/arch/arm/boot/dts/allwinner/Makefile
+> +++ b/arch/arm/boot/dts/allwinner/Makefile
+> @@ -199,6 +199,7 @@ DTC_FLAGS_sun8i-h3-nanopi-r1 := -@
+>  DTC_FLAGS_sun8i-h3-orangepi-pc := -@
+>  DTC_FLAGS_sun8i-h3-bananapi-m2-plus-v1.2 := -@
+>  DTC_FLAGS_sun8i-h3-orangepi-pc-plus := -@
+> +DTC_FLAGS_sun8i-v3s-netcube-kumquat := -@
+>  dtb-$(CONFIG_MACH_SUN8I) += \
+>  	sun8i-a23-evb.dtb \
+>  	sun8i-a23-gt90h-v4.dtb \
+> @@ -261,6 +262,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+>  	sun8i-v3s-anbernic-rg-nano.dtb \
+>  	sun8i-v3s-licheepi-zero.dtb \
+>  	sun8i-v3s-licheepi-zero-dock.dtb \
+> +	sun8i-v3s-netcube-kumquat.dtb \
+>  	sun8i-v40-bananapi-m2-berry.dtb
+>  dtb-$(CONFIG_MACH_SUN9I) += \
+>  	sun9i-a80-optimus.dtb \
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
+> new file mode 100644
+> index 000000000000..b778bfa8e830
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
+> @@ -0,0 +1,274 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2025 Lukas Schmid <lukas.schmid@netcube.li>
+> + */
+> +
+> +/dts-v1/;
+> +#include "sun8i-v3s.dtsi"
+> +
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/{
+> +	model = "NetCube Systems Kumquat";
+> +	compatible = "netcube,kumquat", "allwinner,sun8i-v3s";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		ethernet0 = &emac;
+> +		rtc0 = &ds3232;
+> +		rtc1 = &rtc;
 
+Please add a brief comment as to why you de-prioritise the internal RTC,
+something like "not battery backed" or so.
+
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	/* 40 MHz Crystal Oscillator on PCB */
+> +	clk_can0: clock-can0 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency  = <40000000>;
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		autorepeat;
+> +
+> +		key-user {
+> +			label = "GPIO Key User";
+> +			linux,code = <KEY_PROG1>;
+> +			gpios = <&pio 1 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PB2 */
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led-heartbeat {
+> +			gpios = <&pio 4 4 GPIO_ACTIVE_HIGH>; /* PE4 */
+> +			linux,default-trigger = "heartbeat";
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_HEARTBEAT;
+> +		};
+> +
+> +		led-mmc0-act {
+> +			gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>; /* PF6 */
+> +			linux,default-trigger = "mmc0";
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_DISK;
+> +		};
+> +	};
+> +
+> +	/* EA3036C Switching 3 Channel Regulator - Channel 2 */
+> +	reg_vcc3v3: regulator-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&reg_vcc5v0>;
+> +	};
+> +
+> +	/* K7805-1000R3 Switching Regulator supplied from main 12/24V terminal block */
+> +	reg_vcc5v0: regulator-5v0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +};
+> +
+> +/* Exposed as the Flash/SD Header on the board */
+> +&mmc0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mmc0_pins>;
+
+The pinctrl properties are already in the .dtsi file, because there is only
+one set of pins connected to this MMC controller. So please remove those
+two lines here, as they are redundant.
+
+> +	vmmc-supply = <&reg_vcc3v3>;
+> +	bus-width = <4>;
+> +	broken-cd;
+> +	status = "okay";
+> +};
+> +
+> +/* Connected to the on-board ESP32 */
+> +&mmc1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mmc1_pins>;
+
+Same here, only one set of pins, so they are in the .dtsi already.
+
+> +	vmmc-supply = <&reg_vcc3v3>;
+> +	bus-width = <4>;
+> +	broken-cd;
+> +	status = "okay";
+> +};
+> +
+> +&usb_otg {
+
+Please keep the nodes ordered by their node name alias, as this is what
+the other .dts files do (ignoring some single node outliers).
+The DTS coding style indeed says:
+=================
+3. When extending nodes in the board DTS via &label, the entries shall be
+   ordered either alpha-numerically or by keeping the order from DTSI, ...
+=================
+but it continues:
+=================
+   ... where the choice depends on the subarchitecture.
+=================
+
+So in this case sunxi decided to order .dts label references by the label
+name, because that's the only thing visible in this file.
+
+> +	extcon = <&tusb320 0>;
+> +	dr_mode = "otg";
+> +	status = "okay";
+> +};
+> +
+> +&usbphy {
+> +	usb0_id_det-gpios = <&pio 1 4 GPIO_ACTIVE_HIGH>; /* PB4 */
+> +	status = "okay";
+> +};
+> +
+> +&ehci {
+> +	status = "okay";
+> +};
+> +
+> +&ohci {
+> +	status = "okay";
+> +};
+> +
+> +&pio {
+> +	vcc-pb-supply = <&reg_vcc3v3>;
+> +	vcc-pc-supply = <&reg_vcc3v3>;
+> +	vcc-pe-supply = <&reg_vcc3v3>;
+> +	vcc-pf-supply = <&reg_vcc3v3>;
+> +	vcc-pg-supply = <&reg_vcc3v3>;
+> +
+> +	gpio-line-names = "", "", "", "", // PA
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "CAN_nCS", "CAN_nINT", "USER_SW", "PB3", // PB
+> +			  "USB_ID", "USBC_nINT", "I2C0_SCL", "I2C0_SDA",
+> +			  "UART0_TX", "UART0_RX", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "SPI_MISO", "SPI_SCK", "FLASH_nCS", "SPI_MOSI", // PC
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "", // PD
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "Q12", "Q11", "Q10", "Q9", // PE
+> +			  "LED_SYS0", "I1", "Q1", "Q2",
+> +			  "I2", "I3", "Q3", "Q4",
+> +			  "I4", "I5", "Q5", "Q6",
+> +			  "I6", "I7", "Q7", "Q8",
+> +			  "I8", "UART1_TXD", "UART1_RXD", "ESP_nRST",
+> +			  "ESP_nBOOT", "", "", "",
+> +			  "", "", "", "",
+> +			  "SD_D1", "SD_D0", "SD_CLK", "SD_CMD", // PF
+> +			  "SD_D3", "SD_D2", "LED_SYS1", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "ESP_CLK", "ESP_CMD", "ESP_D0", "ESP_D1", // PG
+> +			  "ESP_D2", "ESP_D3", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "",
+> +			  "", "", "", "";
+> +};
+> +
+> +&codec {
+> +	allwinner,audio-routing =
+> +		"Headphone", "HP",
+> +		"Headphone", "HPCOM",
+> +		"MIC1", "Mic",
+> +		"Mic", "HBIAS";
+> +	status = "okay";
+> +};
+> +
+> +/* Exposed as a USB-C connector with USB-Serial converter */
+> +&uart0 {
+> +	pinctrl-0 = <&uart0_pb_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+> +/* Connected to the Bootloader/Console of the ESP32 */
+> +&uart1 {
+> +	pinctrl-0 = <&uart1_pe_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	pinctrl-0 = <&i2c0_pins>;
+> +	pinctrl-names = "default";
+
+Those two properties are redundant, since the .dtsi already defines them.
+
+> +	status = "okay";
+> +
+> +	ds3232: rtc@68 {
+> +		compatible = "dallas,ds3232";
+> +		reg = <0x68>;
+> +	};
+> +
+> +	eeprom0: eeprom@50 {
+> +		compatible = "atmel,24c02";		/* actually it's a 24AA02E48 */
+> +		pagesize = <16>;
+> +		read-only;
+> +		reg = <0x50>;
+
+Please move "reg" up, to appear after "compatible", to comply with the DTS
+coding style. It makes it easier to read the DT and see the most important
+infos first.
+
+> +		vcc-supply = <&reg_vcc3v3>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +
+> +		eth0_macaddress: macaddress@fa {
+> +			reg = <0xfa 0x06>;
+> +		};
+> +	};
+> +
+> +	tusb320: typec@60 {
+> +		compatible = "ti,tusb320";
+> +		reg = <0x60>;
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>;
+> +	};
+> +};
+> +
+> +&emac {
+> +	allwinner,leds-active-low;
+> +	nvmem-cells = <&eth0_macaddress>;		/* custom nvmem reference */
+> +	nvmem-cell-names = "mac-address";		/* see ethernet-controller.yaml */
+
+I don't think you need those comments.
+
+> +	status = "okay";
+> +};
+> +
+> +&spi0 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	cs-gpios = <0>, <&pio 1 0 GPIO_ACTIVE_LOW>; /* PB0 */
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+
+The DTS coding style says that compatible and reg should come first, then
+common properties. So please move #address-cells and #size-cells down here.
+
+Cheers,
+Andre
+
+> +		label = "firmware";
+> +		spi-max-frequency = <40000000>;
+> +	};
+> +
+> +	can@1 {
+> +		compatible = "microchip,mcp2518fd";
+> +		reg = <1>;
+> +		clocks = <&clk_can0>;
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <1 1 IRQ_TYPE_LEVEL_LOW>;  /* PB1 */
+> +		spi-max-frequency = <20000000>;
+> +		vdd-supply = <&reg_vcc3v3>;
+> +		xceiver-supply = <&reg_vcc3v3>;
+> +	};
+> +};
 
 
