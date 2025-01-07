@@ -1,149 +1,195 @@
-Return-Path: <devicetree+bounces-136010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27FEDA03725
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 05:53:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A59BA03735
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 06:07:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 012BE163C0B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 04:53:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75F513A509D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 05:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B2C71917F1;
-	Tue,  7 Jan 2025 04:53:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B18199938;
+	Tue,  7 Jan 2025 05:07:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XSWwX5A/"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ffJEh4El"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 405921662F1
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 04:52:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5173117996
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 05:07:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736225581; cv=none; b=lwdnlJ+CgTeK425E16eRzAWW4Jb/YatUsxgIOikhvc0j8DYyilXKiPHzFH+tr6bInlwVZFSDhMxAcv2Z4sOPAibvKHzaaRZ3PyrmcpvEri4f5ggiizhV/+0nVlkuDuq3asHAx1JCtFybYDffIxh7wqOwRqNVRX6lvzGVdlqhjkE=
+	t=1736226451; cv=none; b=sBN/ePlN3JS45/t6y5rhKMiUKyebKhU+V2ZAXG49xyrShzXZT6zJ5NHmM9JPcCWMcx/EfJ27PO/5IVhZhe6lchtjPpMoQbFio6lUaXh4rKUHZwnZOW0tvc8eYF42wUq8N8M+hheegKdet9P6HdbJhuJWhYAWIetD7bdSfqDkMkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736225581; c=relaxed/simple;
-	bh=60IKh1YALIpE5luozTsZiDL++m1KjCGPj6msSEt8t+U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BbYG5gNegw426EzQSwB3hm9/KcLq4hjs9NX6leErsHonf/81X4AMup97tE0a2ojYWhAjjFILs/MaE+9mCVhsplcHP/Afyl4lkaqlr5OFOErUz6K03yfZ1uUb+1QTfLIq4MQJlRWXHi3YM4d2xq61qkZC/rweumbjNnQpbqWMfjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XSWwX5A/; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d3e9f60bf4so27069624a12.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 20:52:59 -0800 (PST)
+	s=arc-20240116; t=1736226451; c=relaxed/simple;
+	bh=5CP7AYBFYldUTPv0nXYC7fTAHe3Txi/4IWin675cIyE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KX6gRHznV0ZottujsodzSPMb8X9UiodBrffRWqjWDaXDUWiUTP0FcVX5oVZ5GUD3DdfqktP3wpVftdJJZdPJ96QSe2GhXOKnYJjtQ81U7meEIdppUd6+BVpzMDwazT9rCO/PZ5PvanHuwQGMpx6dEeKipfTaDk4S8cS98fKx53w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ffJEh4El; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30227c56b11so171921571fa.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 21:07:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736225577; x=1736830377; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=60IKh1YALIpE5luozTsZiDL++m1KjCGPj6msSEt8t+U=;
-        b=XSWwX5A/dCTAeCQIE5gbiCSJ7KPOjNyvC6YC2yuJlExkvaRl1ZWLE+VJUYrYkzH7sa
-         CPFBBi/KWxU9oJ/WdYl0C2c4Im+2fNeMB9mHvh2C2XjHyI0u77xN1mPKU+a6LrmAqqsO
-         uzz0QYlSoW4Pxd6x6u2BCAAAqonCTxxDeMu5lgImh9i38oTfWIuPqiR9Dmc6plIOf6Jh
-         /FMqXCUQFDoE/vNKdXLXO1Fyd0buQG08vS0/gAWnKc4VAufZO6YmW7baLF4HaAko4e5G
-         ULV25h/2WihbjEzZCJhaPAPmrHuyzWjNRbdeUlK6IQxJOYRr881GzGfNvemb0lEmndpJ
-         cAYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736225577; x=1736830377;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1736226444; x=1736831244; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=60IKh1YALIpE5luozTsZiDL++m1KjCGPj6msSEt8t+U=;
-        b=J01FYWx46ULGn1c/i6WBqKE2fzS0d98XdiA0OEOMTpv9GEOCjwIyWMaut8LNljGCXY
-         OI2m9O6Sn90yxq1DLxtVVcmfN1v6dc17jk4qT5UPheL0COibg8GIxjJih5nY8iKRfm0C
-         olpaDKglq903Xd/+rPZALDDoGA1NjfrjpKCtMVs0gYj9CahHnHmWxwBWW5hFzfdr7yHf
-         3VwDIxlCJ2mISjo2GlltghbntlwPlcpJeyaKEWOc3yiH5iC2W78yU9/ab1hQSd4XC0fE
-         eNl3euZSJz8YdDUSIO4wIqCzdqerXBD13mossy+sd2mt9vayyn27QKWI9o9aoly53bkm
-         6Xgg==
-X-Forwarded-Encrypted: i=1; AJvYcCVbMqQ4N5gPcHUUXnTJQ1xnmrnSKiT/PSAm+RMllBHKCUBKGWKgF0AKCtvSydBlL4LLvuVQ3Niiw6Fr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLRDNqKeM8kVe+qCDPrl0Z9md8BbS9P4GNl5kdRRslpuecb0uJ
-	aqJeu3R3qvvDoCBGQ65/35SeZo/79/1cf5YaCZ70ra/371efrcJlSGyiib7udQ8=
-X-Gm-Gg: ASbGncvdeD+ElfeGAomm7Vm0JDNeqpjN7Momb15EiGe0lLncIv7nN+uumcaDyOopDDs
-	y8HwDob3n+Gwu/ULLG2tPTFQdva3YQPthLoF18IHvXxO+yus0snlshOfTastOQxGt/5ApP+PAMG
-	qPEs5FjB2swieUT94SqMWt2MELCa9qEC0wqOkvIfd7fBIaigSKfv+qyGJ70iYV1Qo6qx/LpXxsI
-	1lbsNMICX+ZARR4mnQGGftW6K/B9nPkjGl4t4cukSHWPToqf5PaneoomxjqWw==
-X-Google-Smtp-Source: AGHT+IExtBcC1TdRfmrYbsdlfJ/xTSCHU6F9T+AcyPoKwaobnGSIRxLtGmMNUARkLtwmvOeIpjrxLQ==
-X-Received: by 2002:a17:906:f59d:b0:aa6:9372:cac7 with SMTP id a640c23a62f3a-aac334c1628mr5915566066b.31.1736225577578;
-        Mon, 06 Jan 2025 20:52:57 -0800 (PST)
-Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f015b53sm2324711666b.163.2025.01.06.20.52.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jan 2025 20:52:56 -0800 (PST)
-Date: Tue, 7 Jan 2025 05:52:54 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Nylon Chen <nylon.chen@sifive.com>
-Cc: Nylon Chen <nylon7717@gmail.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	conor@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	palmer@dabbelt.com, paul.walmsley@sifive.com, aou@eecs.berkeley.edu, 
-	thierry.reding@gmail.com, vincent.chen@sifive.com, zong.li@sifive.com
-Subject: Re: [PATCH v9 3/3] pwm: sifive: Fix the error in the idempotent test
- within the pwm_apply_state_debug function
-Message-ID: <c5zjujxi7wsuabdpttojkrwnvkwna56gz3gnapxskg7tdzmo2f@frvbwzguizdt>
-References: <20240222081231.213406-1-nylon.chen@sifive.com>
- <20240222081231.213406-4-nylon.chen@sifive.com>
- <jvwgsszvs4jtcytcphsdjulzgqfqzdp4sisu236ddwsqgmvriw@ngi4ljgh5b74>
- <CAHh=Yk92=hp+kaTJWL13_jwJ5gzAAi8gbRF=Ns9=yq2trRUQEg@mail.gmail.com>
- <xf6ympnaljfjztptb5w5qdpuluckptozdz5a7gtuycsev32ngr@x2ovibqv6evr>
- <CAGKtFavQAZOof5QSTFCEaRJEPETm5aBqzkV4g24n3ioiBAOgDA@mail.gmail.com>
- <p6rqpx3yrn2ib4ulmby7tbnpbg4bjyt4dt6snrmhuyw6hx6izl@lywssban54et>
- <CAHh=Yk-iFGULUQc-U-PNjx-st7d5KER3J+t54SNERVaNr++qoQ@mail.gmail.com>
+        bh=7wg678tNAXdRZkkapitg96TNog1Ghit92yl5gbeQUJs=;
+        b=ffJEh4ElIt02mwYUg7ALqCcbKoyQYxCqDZqEzf8jjXAa7LujHEFOgoT5ycl3xp82TD
+         H32sLn8NHkbXkKf0l3K5Bn9Ylcizms5g4781oFzyiOACr4EtsNO5owZhtx3v3xzVMQAc
+         KfAX9QCYXt2IpGLwvC1PQsWu3XRbqqGTxzxMg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736226444; x=1736831244;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7wg678tNAXdRZkkapitg96TNog1Ghit92yl5gbeQUJs=;
+        b=YlgcB/pIfuEl73H59ttwGTOlYD6lnGvtZKMb7LK4CaQeSDMj3mDURUBNFrg+d4O6Fs
+         ucJZGCsT0++cWF9/Wj4gDlx7j+NA0wOMp4NM8LbwotGQTTNZLSHAugscecfTMgljeu+P
+         e+PBFQkwsdhbflUOPOtx2fPkhxgUUzS7Lx79fiyEwVrK9RD5Lqx8vS2Fs6l5KJZL378m
+         hqPLX6ClYoTFDSQzRCQ+qjRJVTwOouuRKse3vt4e+5HZJhXyZgV7wY3aLHoHT6LPVcus
+         kVFNqESZUWf8Lr8j9Yh9LL0W51IxhCASucEdPJqEgNclRoH2OJktV/tznJJKpWfeasWh
+         9sqw==
+X-Forwarded-Encrypted: i=1; AJvYcCUozJ/eUkfx/eygzj7TeHZ/IqkotgfkmuHQYjIcqw5U6DvfagOACjO6tGhlfgcdaGACUGj7APZ40fNf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoeQdheMFGs4jO/kP+2iGSXqySn8fSXUCf5GOULx+KFnu76BOX
+	v7fw0GpuMKfjKo5PSpOBIwXhYMfqdnnFwC6XTO7sk+8fMwbROA9S/M3Bzt+VIECDavCQSzUeYQ8
+	+LlCHV54Di05t4I5m1tII8iP2ArK3VCq5g2BV
+X-Gm-Gg: ASbGnctOCcFRu3Jis7sCBpm9vS042a3881LrMkrlpwK8mZ7HTBTOtFyVCzGl5m2ik2t
+	Jy13U+NytRLRLnOWl7eV8mnjWf9gCWugU+xXkiiy8KuiPu1/yY6rfq20ztwpWfjeH
+X-Google-Smtp-Source: AGHT+IFLiMjxu40TM+UVieh0Bd7i1lzubM2AaOkks8cek/BeR7xzlhz5A3bDMGs9Q7HwEqfELllu4ST8mmu2IBdFiYQ=
+X-Received: by 2002:a05:6512:b0f:b0:540:17ac:b379 with SMTP id
+ 2adb3069b0e04-5422953c451mr13347762e87.25.1736226444371; Mon, 06 Jan 2025
+ 21:07:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3m47uht7xkb3ljzb"
-Content-Disposition: inline
-In-Reply-To: <CAHh=Yk-iFGULUQc-U-PNjx-st7d5KER3J+t54SNERVaNr++qoQ@mail.gmail.com>
-
-
---3m47uht7xkb3ljzb
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+References: <20241126025507.29605-1-chunfeng.yun@mediatek.com>
+ <20241126025507.29605-2-chunfeng.yun@mediatek.com> <207f9e96-3165-440d-8576-545bf2bc9dee@collabora.com>
+ <0820cf224ae9022fc34fb31d97d4c6f8f6e2eec1.camel@mediatek.com>
+In-Reply-To: <0820cf224ae9022fc34fb31d97d4c6f8f6e2eec1.camel@mediatek.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 7 Jan 2025 13:07:13 +0800
+X-Gm-Features: AbW1kvYyYtMKXXkgB8owp0uoo9z3s18dWodz3XR3LaPnMpcD1THVU7CSsiHgTFU
+Message-ID: <CAGXv+5FUuqDbVRQdkkdM9SRV6N3H8Gx_rMpx6rw-hNu45SKVNA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] usb: mtk-xhci: add support remote wakeup of mt8196
+To: =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>
+Cc: "robh@kernel.org" <robh@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"mathias.nyman@intel.com" <mathias.nyman@intel.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v9 3/3] pwm: sifive: Fix the error in the idempotent test
- within the pwm_apply_state_debug function
-MIME-Version: 1.0
 
-Hello Nylon,
+On Mon, Jan 6, 2025 at 10:58=E2=80=AFPM Chunfeng Yun (=E4=BA=91=E6=98=A5=E5=
+=B3=B0)
+<Chunfeng.Yun@mediatek.com> wrote:
+>
+> On Tue, 2024-11-26 at 09:50 +0100, AngeloGioacchino Del Regno wrote:
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >
+> >
+> > Il 26/11/24 03:55, Chunfeng Yun ha scritto:
+> > > There are 2 USB controllers on mt8196, each controller's wakeup
+> > > control is
+> > > different, add some specific versions for them.
+> > >
+> >
+> > Is there any MTU3 controller in MT8196, like all other MediaTek SoCs?
+> Yes.
+> >
+> > If so, then please just add the wakeup control to the MTU3 driver,
+> > otherwise
+> > we are going to duplicate this for yet another SoC, like we've done
+> > for MT8192,
+> > MT8195, MT8188 and MT8186 already...
+> Even I add it in MTU3 driver, I still need add it in xhci-mtk driver,
+> some projects only use host mode;
+>
+> I can also add it in MTU3 driver and send out new patches.
+>
+> But it's not a good idea to duplicate it into MTU3 driver directly for
+> some SoC which has limitation on dual-role switch when using upstream
+> driver.
 
-On Mon, Jan 06, 2025 at 05:00:32PM +0800, Nylon Chen wrote:
-> Hi Uwe, I have made the following adjustments based on your
-> requirements. Does this align with what you had in mind?
-> - period
-> seq 5000 1 15000 | while read p; do echo $p >
-> /sys/class/pwm/pwmchip0/pwm0/period echo "Testing period: $p" done
->=20
-> - duty cycle
-> for duty in $(seq 0 1 10000); do echo $duty >
-> /sys/class/pwm/pwmchip0/pwm0/duty_cycle echo "Testing duty cycle:
-> $duty" done
+I think the idea behind Angelo's point is that MTU3 should be used for
+all projects, regardless whether they are host mode only or not.
+The hardware is there. Don't hide it.
 
-That + doing the same test backwards (i.e. using seq 15000 -1 5000 for
-the period test and seq 10000 -1 0 for duty_cycle) should catch most
-rounding bugs.
+ChenYu
 
-Best regards
-Uwe
-
---3m47uht7xkb3ljzb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmd8syMACgkQj4D7WH0S
-/k4USQgAu73hQyBwf5XFDneH+1QmqAmiN2wEaeF4n94f4vD0QtTqb1SQ+kIDIV2y
-h331G9V73C2jt7PVtH2a+pF367sblfDWrYufCtuTXj4akJGtPEcme1PuxmMdwip5
-+OtHKLGC2Zb7N9r5VQkwok4Ijci6vUF3unjz+sQipFReZcygL+XeJ3Wd+DWMu//t
-IfbmsYkXK826rUqBBoHVJigEZsQugsR69+EHYnXu4sT2W2gkIr+SXbZOFQx1lo2r
-TVtmwJtKF7qflQS5STsyZyp1xKoAk33XPB83D3h4yz1IDIbzhKJbqqjadvgdvouK
-myVcdVQFatxC2GuFs+5M73nHcQkhGg==
-=OoYH
------END PGP SIGNATURE-----
-
---3m47uht7xkb3ljzb--
+> Thanks
+>
+> >
+> > Cheers,
+> > Angelo
+> >
+> > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > > ---
+> > >   drivers/usb/host/xhci-mtk.c | 18 ++++++++++++++++++
+> > >   1 file changed, 18 insertions(+)
+> > >
+> > > diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-
+> > > mtk.c
+> > > index 3252e3d2d79c..31223912b0b4 100644
+> > > --- a/drivers/usb/host/xhci-mtk.c
+> > > +++ b/drivers/usb/host/xhci-mtk.c
+> > > @@ -113,6 +113,12 @@
+> > >   #define WC1_IS_P_95         BIT(12)
+> > >   #define WC1_IS_EN_P0_95             BIT(6)
+> > >
+> > > +/* mt8196 */
+> > > +#define PERI_WK_CTRL0_8196   0x08
+> > > +#define UWK_V1_7_CTRL2_MASK  0x5
+> > > +
+> > > +#define WCP1_IS_EN           BIT(7) /* port1 en bit */
+> > > +
+> > >   /* mt2712 etc */
+> > >   #define PERI_SSUSB_SPM_CTRL 0x0
+> > >   #define SSC_IP_SLEEP_EN     BIT(4)
+> > > @@ -129,6 +135,8 @@ enum ssusb_uwk_vers {
+> > >       SSUSB_UWK_V1_4,         /* mt8195 IP1 */
+> > >       SSUSB_UWK_V1_5,         /* mt8195 IP2 */
+> > >       SSUSB_UWK_V1_6,         /* mt8195 IP3 */
+> > > +     SSUSB_UWK_V1_7,         /* mt8196 IP0 */
+> > > +     SSUSB_UWK_V1_8,         /* mt8196 IP1 */
+> > >   };
+> > >
+> > >   /*
+> > > @@ -381,6 +389,16 @@ static void usb_wakeup_ip_sleep_set(struct
+> > > xhci_hcd_mtk *mtk, bool enable)
+> > >               msk =3D WC0_IS_EN_P3_95 | WC0_IS_C_95(0x7) |
+> > > WC0_IS_P_95;
+> > >               val =3D enable ? (WC0_IS_EN_P3_95 | WC0_IS_C_95(0x1)) :
+> > > 0;
+> > >               break;
+> > > +     case SSUSB_UWK_V1_7:
+> > > +             reg =3D mtk->uwk_reg_base + PERI_WK_CTRL0_8196;
+> > > +             msk =3D UWK_V1_7_CTRL2_MASK;
+> > > +             val =3D enable ? msk : 0;
+> > > +             break;
+> > > +     case SSUSB_UWK_V1_8:
+> > > +             reg =3D mtk->uwk_reg_base + PERI_WK_CTRL0_8196;
+> > > +             msk =3D WCP1_IS_EN;
+> > > +             val =3D enable ? msk : 0;
+> > > +             break;
+> > >       case SSUSB_UWK_V2:
+> > >               reg =3D mtk->uwk_reg_base + PERI_SSUSB_SPM_CTRL;
+> > >               msk =3D SSC_IP_SLEEP_EN | SSC_SPM_INT_EN;
+> >
+> >
+> >
 
