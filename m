@@ -1,106 +1,114 @@
-Return-Path: <devicetree+bounces-136017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1573DA037D9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:27:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 811E6A03804
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:36:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A78B164445
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 06:27:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68E9E3A4F35
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 06:36:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816CF17BEC6;
-	Tue,  7 Jan 2025 06:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E83A1DE3D9;
+	Tue,  7 Jan 2025 06:36:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lHuoo+CM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mBpS4SAI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 532E72594B2;
-	Tue,  7 Jan 2025 06:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B10F818B46C;
+	Tue,  7 Jan 2025 06:36:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736231235; cv=none; b=NDU1evg/IUd4Wj4j2PTTXIMnXt6BwvCIkcIuCbZtFrLnNNVsNL09UAt/3OrF1TT3N67rRxPB1Dqmxfa9FS6mDevaxRMzqTAfher5tM8U2Ks+VleGFJwtXVdAjdSbuKPj999Zo1+wxBKGNwz1DezhqInxg6YvaqL5idzZCIZPNC0=
+	t=1736231788; cv=none; b=fI6wJyl97RirBd4J4hA7f9jhkf9ZyeBDlGLypspJwb8PKDk9d/Mdh4tSszuSJme4IjYDUCqn6SqXq3CbKklTEIFJyKm0BpNaFCs9ObpNAa7kNNj/5j4gevvhwyoAmmawFAB6o9qDjMUXGwAP/2e39XMON6f5SJIc7vX8dotiDLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736231235; c=relaxed/simple;
-	bh=UVQgtjQxvgRicW5E5yKP/ya2Ld4413TGyATLXPsQGas=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RX5FCYuKQvCzXnvRIW6G5agxAS3Qzfd1pXt9lxObvL3yAeF7MGwmKell9fKlKzQAjMVQ/qoHFUeYGnq+1R5bh6ajVC32tCyx0BOQFCx9DvY7rOiBbVvEU4BMaJiRUXuWBkT9LRvW+SIqGXSXwbOxAoEUA1DrYgVfgqpQrJ5F3t0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHuoo+CM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C94C4CED6;
-	Tue,  7 Jan 2025 06:27:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736231233;
-	bh=UVQgtjQxvgRicW5E5yKP/ya2Ld4413TGyATLXPsQGas=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lHuoo+CMNc33N5APJY1RsuszW++HdcenKZBmVb9V84LEyXVoi32Q7sxzUbfIrBhzh
-	 6TDzxly+5AaM1nC/8LWgsOvRKWDOw89ru2CAAUD20zeKl+L1+bVXJQl+BgHYOroYBM
-	 vbHm0RZgQzbBerzFmHsr9IHkafuKnb+txjdGJYkD4giiCSgqcdMY2Zw4Ci22JQRVM3
-	 PqrGgWxnPYOOSHV4pYZJtHxDfx8MPsTWpnsAIX0k/wnl7TND6UryACPbLmNLhDAw4H
-	 2J6uts79haPNDQEJENOH5AcO8HmZW/lg6WS6Sw1oW1ygAmdaDX0MzNHToak33JB7g1
-	 +KOA5Yv8k0Kgg==
-Date: Tue, 7 Jan 2025 07:27:10 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lukas Schmid <lukas.schmid@netcube.li>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: vendor-prefixes: Add NetCube Systems
- Austria name
-Message-ID: <lkbvp57zvhd6dzti3pikoshywyvcpo3br7mry6sduimduebtla@ui3dge5j6cak>
-References: <20250106190703.4015-1-lukas.schmid@netcube.li>
- <20250106190703.4015-2-lukas.schmid@netcube.li>
+	s=arc-20240116; t=1736231788; c=relaxed/simple;
+	bh=Kng/mpbUzhaJx0h/7Fasw6w2qS0oY3rIDnnEx7pNUzQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gR1We0cgNE//WqSWxYr9krufhC9trQeEllJeNjvVUuYmunNo5pARMg/MTJJ/uYn2UWkxWESXdehFIAdWkr9P+9+YhX4NYsQgbQBHty4oDVCiNWvh8NYVSUJUTUPEvVasZaMg+2Z6jEAzxal+Bp4IYA/96f1FYhSYARjI5gMRGnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mBpS4SAI; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-21619108a6bso205274805ad.3;
+        Mon, 06 Jan 2025 22:36:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736231786; x=1736836586; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Kng/mpbUzhaJx0h/7Fasw6w2qS0oY3rIDnnEx7pNUzQ=;
+        b=mBpS4SAI3qyiuJ+XyXF9U8RNOKg/aNGWO8iFx6OvqWtHDqVF+2nwQoVF5DX2k7OJYn
+         b1jqtCjLY3EJdMFNViVeqM1TZIG7Cd2cdKZXrbwFQGeZR3vHb9oprMC2FfK6ZWMKh1Iu
+         DplY9h8og9KJNlGnOnYSas49ElkJ0EGq0pSScDbXsR3yFE5bJCLFaNPMc9YWRXSWzMX5
+         oov5emxwPUwe9LxtL/uyy8tn+fm8yZPelFEhXTRbVym4+W7BzCL8An43ZOORXD9DooDA
+         tt9r9CNDZpWtVR4UIzIUW/ecjdqMSF+WmbStXDO2REsnrq2t3isOeA6EkgJ7cpxV+ZIA
+         CAsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736231786; x=1736836586;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kng/mpbUzhaJx0h/7Fasw6w2qS0oY3rIDnnEx7pNUzQ=;
+        b=Oev4DdbCE7my05vl4rvYv1L+ZcYsk3drTGD/XIfix3QiYpuntM0tW22l0hrpAX/AD/
+         VzgKS0hMzfFnfvq168WY7XOe5j6kbpb1o8RzWItsN7thkgNxBfjjwUXsq+K2KZkgmVHc
+         +cxdSP/5+nQDGez/6epiRqzkRm4goMAa0VuI/ySnDShNBt2ROSoXLoLujP8puqXjSdmg
+         7QiAyes3ephZW16ATsFG0hnv4mZrrUubmjTs4c+k2vcdZwVcqKKOOCHWgDb1MKeAJRrS
+         rOoYyEpWB5VRIu7AXTXSyRYQb9uQFIgy2zfiq3oi4zQk3Dwr/GgOqZw0Ch1/fZ7hFbjX
+         0eFg==
+X-Forwarded-Encrypted: i=1; AJvYcCUuOa8VnnliEoZi4cSVPsuI1xAi8NK9Gz+l+3h2qwjbNJkS8BFR8fqLWqdEfGqjohyganOwu6TPm6jI@vger.kernel.org, AJvYcCV2iaZPVa7tZC87ISc0uucdsgC1yoseE7TEXG0YWXqEdZEEjS+rLcwm/iDSr8eMPm+jKSpdjqLd@vger.kernel.org, AJvYcCXUsCu3ldjfGq1/D8QpNLeTC8RQHSPrSq2QtzhT1aG03ss0AZwo9vrUvBGau4G3RjI03S9JayknTcNHzofg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDmmuzoxb07LsWLRZJpIDSafDdgExYP3cKaYkN/hMwJCyAHL9U
+	/3KS0td8+FZbhuIizkCVL+19lUywS/cmK2xv7kulf67oQsayaJQd
+X-Gm-Gg: ASbGncskwHmRChoU45N9kI4xb1rHwD8Xdrzni0+RZ2k+OSngsFeY63W2tvc3ZlLSBwU
+	Bpznj2JpVIY5GQM8S9BkAVaTyB36NkYnQUgmiiMPHTZUvv9+KQz01D8LZuIYiyQZwgHlmvPqJHK
+	EcM91m3GRS4DaPEQ8sW/dTBxJKl5kULWUcXKUmbzil+9tbrMtGi0L65irQSfZF2nQ/herL8yj/t
+	/eJTkHIq6Xn83bG2BOqe7UJoFVYlFHc4+tjBp3n+04f9jbUt+34tEYLy3LFGc2svSfYvvkgGXop
+	+P/m/v2Shfahm6ABvuGcEe9gCDcqcMjmTEU=
+X-Google-Smtp-Source: AGHT+IFB3swUN2iLMUEOpHvMus0FiubXQryQDXtAgLSPcX+ECwaEuxj3DZQ/Bf/+X66C3yI9GBLI7g==
+X-Received: by 2002:a17:903:94e:b0:212:68e2:6c81 with SMTP id d9443c01a7336-219e6ea0223mr977864255ad.24.1736231785959;
+        Mon, 06 Jan 2025 22:36:25 -0800 (PST)
+Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a739b423fsm23758445ad.198.2025.01.06.22.36.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jan 2025 22:36:25 -0800 (PST)
+Message-ID: <83c11616-ac3a-48b8-a513-ca000ff9d48e@gmail.com>
+Date: Tue, 7 Jan 2025 14:36:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250106190703.4015-2-lukas.schmid@netcube.li>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v6 1/3] dt-bindings: net: nuvoton: Add schema for
+ Nuvoton MA35 family GMAC
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: edumazet@google.com, peppe.cavallaro@st.com, andrew+netdev@lunn.ch,
+ joabreu@synopsys.com, netdev@vger.kernel.org, schung@nuvoton.com,
+ linux-stm32@st-md-mailman.stormreply.com, kuba@kernel.org,
+ openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+ mcoquelin.stm32@gmail.com, linux-arm-kernel@lists.infradead.org,
+ richardcochran@gmail.com, ychuang3@nuvoton.com, krzk+dt@kernel.org,
+ pabeni@redhat.com, linux-kernel@vger.kernel.org, yclu4@nuvoton.com,
+ conor+dt@kernel.org, alexandre.torgue@foss.st.com, davem@davemloft.net
+References: <20250103063241.2306312-1-a0987203069@gmail.com>
+ <20250103063241.2306312-2-a0987203069@gmail.com>
+ <173592330334.2414402.4730979254460270593.robh@kernel.org>
+Content-Language: en-US
+From: Joey Lu <a0987203069@gmail.com>
+In-Reply-To: <173592330334.2414402.4730979254460270593.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 06, 2025 at 07:06:59PM +0000, Lukas Schmid wrote:
-> NetCube Systems Austria builds Embedded Systems for use in IoT, IIoT,
-> or Smart Home scenarios.
-> 
-> Website is still WIP, but the Links on it are active:
-> https://netcubesystems.at/
-> 
-> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
 
-Last time:
+Rob Herring (Arm) 於 1/4/2025 12:55 AM 寫道:
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches*only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Got it. Thank you for the reminder.🙂
 
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here. However, there's no
-need to repost patches *only* to add the tags. The upstream maintainer
-will do that for tags received on the version they apply.
-
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
-
-Best regards,
-Krzysztof
+Joey
 
 
