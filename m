@@ -1,91 +1,91 @@
-Return-Path: <devicetree+bounces-136133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2B9A0401E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:59:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81BA1A0402D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:00:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B5C518882D1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:59:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FC123A88E0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:59:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ABB21F0E5A;
-	Tue,  7 Jan 2025 12:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DED51F1905;
+	Tue,  7 Jan 2025 12:58:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vI7nhjo2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q3gQLIvz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C791F0E24
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:58:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A722C1E0DE6
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736254731; cv=none; b=IIvRLRVUzPFezAcOGIy7moDh6ffrr6GZzQVuw7uimBuBhdlyCrVlwG9F2N9L2PosCec+ZrntEYCJCg4Z2hdIJtNyay4LSK0nJsGq3+f1qOGpSqUdpMyB1lAJFkTNT3gWQxtZDnBeX37jrLXj/1AdSquke6RaNBKmDG6dnSecjU4=
+	t=1736254736; cv=none; b=TDYROz+z9DQK9LkLP4Yl/BvJUAOfA+tGm0DAs5Lm2EDfiQtmkJ8yUG061UXuW5YPej6F1a+9BtdNZAmUTI6sjgMvwi/4kyI2IcwxOzPdxQZwPosvYxdg/PQqFUOvw2SANC0Y/8VwiqeJOa5XaQmbTPJRfYf9HkUnLM2CtvFkz9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736254731; c=relaxed/simple;
-	bh=wlaO3AJ9OYX0Qw7UHvKhMLm6zO8rWmjR4OwCAC6whc8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qRN5hu9kpTxpnRhfQCsEqq8or9a9xqLxPr3oDtZst/5Zo6lDWJbihv+xI7UXlGLDCULP3bx0W00atnowgFX2pssO38Tln4Ox7Wzn0DMZ5cn9OAfp0lEm2TrA05fuQ8Z/kE5JYSZDQ81JxOYLqpU4mkKZa/m129dL3MvUtddHB6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vI7nhjo2; arc=none smtp.client-ip=209.85.221.41
+	s=arc-20240116; t=1736254736; c=relaxed/simple;
+	bh=t4rRBQmo5PbKUK/M1fQaSIj1hFg+1lZQQrb46lNPPHc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LV4hYfu4r1Ya4Y/BYlIKfLDlVK0jW2oEkBothCG8vSyAozecM6p3DPf1oaauB+9VQlReCfwGmmsPxxmm6LqKHH8Hm1mQ/ohVW5JJqQSILOWC2qwvtA1jEy+SLFYn5xT4K7tmkwiwYKAIJuD60TW0vEwspWbTH/q8GzPw75DpC9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q3gQLIvz; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-385e0d47720so983510f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:58:48 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4363298fff2so22088345e9.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:58:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736254727; x=1736859527; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1736254731; x=1736859531; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5C/sFNAXY8klp3trjE/Y4l07v3FNmgHaHglxAlB5FO4=;
-        b=vI7nhjo2ultK/+6l4WypuSY6FwPnaOFAlLlCopH3I03YGE31gHbH/oJmjvLOqhkeuU
-         u/4Sj+DBsmoNBriBPEoE9xpHjle41qV9kjAvCh4WtVhLjWJi5Kg2vsUAs4hP38pEaw+Q
-         tkhP4kL1WpwV0WnpHMJFdmtM5ZjSLwCBxOGw/kWVdSy61qZnzbx5RNv7U1KMuwifif3n
-         WiAodCktCH+IGKNwdc2/vMVWRMA2nemPLTfaXphLykfSe5dSS3nGdS0Xcm22Qbi3NTn6
-         dsFutTDKXsdW2s/J/Fi6i7styn0e/zlKT5HNO2EMqbK/YiUk905CgTAC0vjNGVP7DOLv
-         4vFg==
+        bh=j2sxL0kyOnJtbxiCpqFSPJaxyhbxDHZZxCjJuwsLyyM=;
+        b=q3gQLIvzqKpsU+ebJNrK0cXH4fHM3ljbfxNpxJ+4XFa4hrP7eq1Z3unZT2J4OspZoQ
+         ZIGushmnZSHCs+OvF81FeuMV5fdPdSsAAf9anZiUjDuUzrw1nAGkGrewg+tym+Fdwlk3
+         k42LtBtcqG7p3KGOhMiiCZhHS40f+rfArAhYT6fGG3iZv9w24YfLr4Pj9PkAuTjI9y/g
+         XlFd/jL45mFh9U3MYLIi7ACphpJFLlVvFlGL2JLNa8sMNhESoYcXY6/zxw8y4xDBUH+x
+         DAv2s+cdodOeRpYIeT1in2aU7NkzmhSHpWcKdtWWKP8wxVk+iKDM5LJrnNQYsB0ib2Fs
+         w+dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736254727; x=1736859527;
+        d=1e100.net; s=20230601; t=1736254731; x=1736859531;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5C/sFNAXY8klp3trjE/Y4l07v3FNmgHaHglxAlB5FO4=;
-        b=rDDevDkxl2b+40yns9ESb5lem3rV2KnvXoZHjpv4x7ER0HG/3o3psG36/+0zne5rnX
-         065SL7b9CYuvVP4vj2D73HjiWsdjzBRtZq2JWoch/7KmbE4MdYMQE1TQ1OdoWP47TY5Z
-         DK6qImQ4RPqYJ18VHDkDelMyMsSbZ7BPTsWETcw3xRG3jxEJwukNNZ1g0JfkOqmoOKkQ
-         En8agD2ZGPgUrLxX2/7Hdtw/borPmvxtqxm/87/qt/vnCebjWzhrQRLfC7dEnERng9He
-         /HcZX9tbSfN1+9Ww5PFDNV6lkp/G/W9wExM2JFy3me+XwqT2MXz/dQscQb1pJszl6Ypa
-         tISQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUD7YF6cuHRFr+c+lFAfjVf5pbamZHccbJ3/Cm+EW+SKVxcVsdr+46faLhyitwZ5VwKxLGX9/TL4MtZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZ38lmUBDeghc1s4/Z0HF3WNQgZWoAZGR2xA+ZayR+mcj5Kk93
-	Hc37Tqr+hnD12O7jvIHVLlN5rM/xN5oPjwdGuSgNy7RyGijV9F0Ukry/lF6suo8=
-X-Gm-Gg: ASbGnctDS8Z2HONXoWNKQLHuXQ1E1RjZhrviS3lMUmLhYwbSRRM7Vw/vG1Fj4GtbDkK
-	2tRtZ1DJB/Y40cpL3rr66qWr6DgnUkKT/c4DhIzx3TJ+j+WYcpdikbGXHNssupFUJXYFr5aFIjz
-	Ij9gigIubZutq4ABzPCCprBWzVZMd+N4znf1W2t+Sc80ZetKFnE10HEg055JOSXHmMsgHraGeHx
-	3biito0A5sI0PxYUEQ7I3c/UwDqB7g/VYaTG5wSQpfusIgCWPendWa9G52+XZDDMV2K/cQ=
-X-Google-Smtp-Source: AGHT+IESBLWYlSIfi7wxN2DEKQk+daQDclS6+lJaW/+8/BxClMnBziT40HZf7Tg1VR2FDiFfnUZ+3g==
-X-Received: by 2002:a5d:5f8f:0:b0:385:dd10:213f with SMTP id ffacd0b85a97d-38a223f5cb1mr22351728f8f.9.1736254726977;
-        Tue, 07 Jan 2025 04:58:46 -0800 (PST)
+        bh=j2sxL0kyOnJtbxiCpqFSPJaxyhbxDHZZxCjJuwsLyyM=;
+        b=NK0C04mp4iXgIncdyjhiS4Euc+Jmc6yB6VR5xiiKSe0m6+C6kp0Ys8i18R+6E1730G
+         +e2g0lUihkP6yDVOPr3flsOpmO0uOBHhBuDGxi/ewppMGE94v65892o2msN8VMk+xwzy
+         yhuSMjJecnUtYzxH03iiMcVpgr6R2cf0G0gEyt6OiVF4wuvuhLqhf6+nXKWhIUnLNKoM
+         ayk4K+ktM0kk8jarwTK+JVRML3UNHCqv0VmWcJOwZS8/y/qmbq6vko98tySTwGX6OMkP
+         KO068/sc67QwWjDAPoj33qnNAeE6uZ2eaS+qqh8cIgMUoiv5XF+Lj5fvseoq8ltNwrSM
+         K7WA==
+X-Forwarded-Encrypted: i=1; AJvYcCUW/qayR0ISPSNxOHutCw/pxUhdo4l2KnBozWC9+ip+hg9KH3WPf88EZPH2qvM9QkrB6vhSOWZtk97T@vger.kernel.org
+X-Gm-Message-State: AOJu0YwibRV4XfrJpGwse/h+/xrHve/yT+o8fDHoELgywMvbCM+S7GRr
+	AeNA37bXcaUKPIexm+r9P4kmpepXAUWFvsfVFhn+Z1mwRuiTAwmUv3V7/f5X4ig=
+X-Gm-Gg: ASbGncuHhaaJnln5BYevF+Vn3AnQEaRDVZEYajNbjeiT5Fv1LuYCvQgdL0YpyV1u3yk
+	VqyPcEqe3qw5xUOUaioDkVfJ5SxaZj2Gf65lr5aQJA5TTmH+RFRmlyotnZWUHFUQqQrhGtuE0xw
+	mZauwLlkzBOzSzH4oQDcN3MyuK1TxUlnsaK8MLCS8SbWh5sbIhH7ULWvEOZGdv/Ch89yj1FhDyu
+	Asl+NWM9gZPGsP2y/wsOZd6y8ctboK9qptsFzz+D8SR/GhMgh8Dziv3ntdmBJbH1PKYmNU=
+X-Google-Smtp-Source: AGHT+IEzXNziYvB8cMSs56bRM+d+7RHATIssfR61yGfXU8wPeStQWQQ6p2QHKq5/TPazJN7kZIGr2Q==
+X-Received: by 2002:a5d:47a1:0:b0:388:c61d:4401 with SMTP id ffacd0b85a97d-38a221fa14emr20278640f8f.7.1736254730828;
+        Tue, 07 Jan 2025 04:58:50 -0800 (PST)
 Received: from krzk-bin.. ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b11aecsm629480935e9.23.2025.01.07.04.58.45
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c832a90sm49786756f8f.28.2025.01.07.04.58.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2025 04:58:46 -0800 (PST)
+        Tue, 07 Jan 2025 04:58:50 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+To: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Marek Vasut <marex@denx.de>,
-	linux-arm-msm@vger.kernel.org,
-	linux-input@vger.kernel.org,
+	Puranjay Mohan <puranjay@kernel.org>,
+	Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>,
+	Sankar Velliangiri <navin@linumiz.com>,
+	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: input: Correct indentation and style in DTS example
-Date: Tue,  7 Jan 2025 13:58:43 +0100
-Message-ID: <20250107125844.226466-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: iio: Correct indentation and style in DTS example
+Date: Tue,  7 Jan 2025 13:58:47 +0100
+Message-ID: <20250107125848.226899-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -104,153 +104,112 @@ new patches built on existing code.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/input/qcom,pm8921-keypad.yaml    | 46 +++++++++----------
- .../bindings/input/qcom,pm8921-pwrkey.yaml    | 36 +++++++--------
- .../input/touchscreen/ti,ads7843.yaml         | 30 ++++++------
- 3 files changed, 56 insertions(+), 56 deletions(-)
+ .../bindings/iio/dac/adi,ad5380.yaml           | 18 +++++++++---------
+ .../iio/humidity/sciosense,ens210.yaml         | 12 ++++++------
+ .../iio/temperature/maxim,max31865.yaml        | 18 +++++++++---------
+ .../bindings/iio/temperature/ti,tmp117.yaml    |  6 +++---
+ 4 files changed, 27 insertions(+), 27 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml b/Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
-index 88764adcd696..e03611eef93d 100644
---- a/Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
-+++ b/Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
-@@ -62,28 +62,28 @@ unevaluatedProperties: false
- 
- examples:
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5380.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5380.yaml
+index 9eb9928500e2..3e323f1a5458 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad5380.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5380.yaml
+@@ -55,18 +55,18 @@ examples:
+         #address-cells = <1>;
+         #size-cells = <0>;
+         dac@0 {
+-           reg = <0>;
+-           compatible = "adi,ad5390-5";
+-           vref-supply = <&dacvref>;
++            reg = <0>;
++            compatible = "adi,ad5390-5";
++            vref-supply = <&dacvref>;
+         };
+     };
    - |
--   #include <dt-bindings/input/input.h>
--   #include <dt-bindings/interrupt-controller/irq.h>
--   pmic {
+     i2c {
 -       #address-cells = <1>;
 -       #size-cells = <0>;
-+    #include <dt-bindings/input/input.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    pmic {
+-       dac@42 {
+-          reg = <0x42>;
+-          compatible = "adi,ad5380-3";
+-       };
++        #address-cells = <1>;
++        #size-cells = <0>;
++        dac@42 {
++            reg = <0x42>;
++            compatible = "adi,ad5380-3";
++        };
+     };
+ ...
+diff --git a/Documentation/devicetree/bindings/iio/humidity/sciosense,ens210.yaml b/Documentation/devicetree/bindings/iio/humidity/sciosense,ens210.yaml
+index ed0ea938f7f8..1e25cf781cf1 100644
+--- a/Documentation/devicetree/bindings/iio/humidity/sciosense,ens210.yaml
++++ b/Documentation/devicetree/bindings/iio/humidity/sciosense,ens210.yaml
+@@ -43,13 +43,13 @@ additionalProperties: false
+ examples:
+   - |
+     i2c {
+-       #address-cells = <1>;
+-       #size-cells = <0>;
 +        #address-cells = <1>;
 +        #size-cells = <0>;
  
--       keypad@148 {
--           compatible = "qcom,pm8921-keypad";
--           reg = <0x148>;
--           interrupt-parent = <&pmicintc>;
--           interrupts = <74 IRQ_TYPE_EDGE_RISING>, <75 IRQ_TYPE_EDGE_RISING>;
--           linux,keymap = <
--               MATRIX_KEY(0, 0, KEY_VOLUMEUP)
--               MATRIX_KEY(0, 1, KEY_VOLUMEDOWN)
--               MATRIX_KEY(0, 2, KEY_CAMERA_FOCUS)
--               MATRIX_KEY(0, 3, KEY_CAMERA)
--           >;
--           keypad,num-rows = <1>;
--           keypad,num-columns = <5>;
--           debounce = <15>;
--           scan-delay = <32>;
--           row-hold = <91500>;
+-       temperature-sensor@43 {
+-           compatible = "sciosense,ens210";
+-           reg = <0x43>;
 -       };
--   };
-+        keypad@148 {
-+            compatible = "qcom,pm8921-keypad";
-+            reg = <0x148>;
-+            interrupt-parent = <&pmicintc>;
-+            interrupts = <74 IRQ_TYPE_EDGE_RISING>, <75 IRQ_TYPE_EDGE_RISING>;
-+            linux,keymap = <
-+                MATRIX_KEY(0, 0, KEY_VOLUMEUP)
-+                MATRIX_KEY(0, 1, KEY_VOLUMEDOWN)
-+                MATRIX_KEY(0, 2, KEY_CAMERA_FOCUS)
-+                MATRIX_KEY(0, 3, KEY_CAMERA)
-+            >;
-+            keypad,num-rows = <1>;
-+            keypad,num-columns = <5>;
-+            debounce = <15>;
-+            scan-delay = <32>;
-+            row-hold = <91500>;
++        temperature-sensor@43 {
++            compatible = "sciosense,ens210";
++            reg = <0x43>;
 +        };
-+    };
+     };
  ...
-diff --git a/Documentation/devicetree/bindings/input/qcom,pm8921-pwrkey.yaml b/Documentation/devicetree/bindings/input/qcom,pm8921-pwrkey.yaml
-index 12c74c083258..64590894857a 100644
---- a/Documentation/devicetree/bindings/input/qcom,pm8921-pwrkey.yaml
-+++ b/Documentation/devicetree/bindings/input/qcom,pm8921-pwrkey.yaml
-@@ -52,24 +52,24 @@ unevaluatedProperties: false
  
+diff --git a/Documentation/devicetree/bindings/iio/temperature/maxim,max31865.yaml b/Documentation/devicetree/bindings/iio/temperature/maxim,max31865.yaml
+index 7cc365e0ebc8..7c0c6ab6fc69 100644
+--- a/Documentation/devicetree/bindings/iio/temperature/maxim,max31865.yaml
++++ b/Documentation/devicetree/bindings/iio/temperature/maxim,max31865.yaml
+@@ -40,15 +40,15 @@ unevaluatedProperties: false
  examples:
    - |
--   #include <dt-bindings/interrupt-controller/irq.h>
--   ssbi {
--     #address-cells = <1>;
--     #size-cells = <0>;
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    ssbi {
+     spi {
+-       #address-cells = <1>;
+-       #size-cells = <0>;
 +        #address-cells = <1>;
 +        #size-cells = <0>;
  
--     pmic@0 {
--       reg = <0x0>;
--       #address-cells = <1>;
--       #size-cells = <0>;
-+        pmic@0 {
-+            reg = <0x0>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
- 
--       pwrkey@1c {
--         compatible = "qcom,pm8921-pwrkey";
--         reg = <0x1c>;
--         interrupt-parent = <&pmicint>;
--         interrupts = <50 IRQ_TYPE_EDGE_RISING>, <51 IRQ_TYPE_EDGE_RISING>;
--         debounce = <15625>;
--         pull-up;
+-       temperature-sensor@0 {
+-           compatible = "maxim,max31865";
+-           reg = <0>;
+-           spi-max-frequency = <400000>;
+-           spi-cpha;
+-           maxim,3-wire;
 -       };
--     };
--   };
-+            pwrkey@1c {
-+                compatible = "qcom,pm8921-pwrkey";
-+                reg = <0x1c>;
-+                interrupt-parent = <&pmicint>;
-+                interrupts = <50 IRQ_TYPE_EDGE_RISING>, <51 IRQ_TYPE_EDGE_RISING>;
-+                debounce = <15625>;
-+                pull-up;
-+            };
++        temperature-sensor@0 {
++            compatible = "maxim,max31865";
++            reg = <0>;
++            spi-max-frequency = <400000>;
++            spi-cpha;
++            maxim,3-wire;
 +        };
-+    };
+     };
  ...
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
-index 604921733d2c..8f6335d7da1c 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
-@@ -164,20 +164,20 @@ examples:
+diff --git a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+index 58aa1542776b..fbba5e934861 100644
+--- a/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
++++ b/Documentation/devicetree/bindings/iio/temperature/ti,tmp117.yaml
+@@ -44,8 +44,8 @@ examples:
          #size-cells = <0>;
  
-         touchscreen@0 {
--           compatible = "ti,tsc2046";
--           reg = <0>;	/* CS0 */
--           interrupt-parent = <&gpio1>;
--           interrupts = <8 0>;	/* BOOT6 / GPIO 8 */
--           pendown-gpio = <&gpio1 8 0>;
--           spi-max-frequency = <1000000>;
--           vcc-supply = <&reg_vcc3>;
--           wakeup-source;
-+            compatible = "ti,tsc2046";
-+            reg = <0>;	/* CS0 */
-+            interrupt-parent = <&gpio1>;
-+            interrupts = <8 0>;	/* BOOT6 / GPIO 8 */
-+            pendown-gpio = <&gpio1 8 0>;
-+            spi-max-frequency = <1000000>;
-+            vcc-supply = <&reg_vcc3>;
-+            wakeup-source;
- 
--           ti,pressure-max = /bits/ 16 <255>;
--           ti,x-max = /bits/ 16 <8000>;
--           ti,x-min = /bits/ 16 <0>;
--           ti,x-plate-ohms = /bits/ 16 <40>;
--           ti,y-max = /bits/ 16 <4800>;
--           ti,y-min = /bits/ 16 <0>;
--       };
-+            ti,pressure-max = /bits/ 16 <255>;
-+            ti,x-max = /bits/ 16 <8000>;
-+            ti,x-min = /bits/ 16 <0>;
-+            ti,x-plate-ohms = /bits/ 16 <40>;
-+            ti,y-max = /bits/ 16 <4800>;
-+            ti,y-min = /bits/ 16 <0>;
-+        };
+         tmp117@48 {
+-             compatible = "ti,tmp117";
+-             reg = <0x48>;
+-             vcc-supply = <&pmic_reg_3v3>;
++            compatible = "ti,tmp117";
++            reg = <0x48>;
++            vcc-supply = <&pmic_reg_3v3>;
+         };
      };
 -- 
 2.43.0
