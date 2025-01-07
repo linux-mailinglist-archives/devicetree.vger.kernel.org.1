@@ -1,207 +1,190 @@
-Return-Path: <devicetree+bounces-136317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E6A3A04B6A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 22:12:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9ABA04BD2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 22:34:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 895D33A3319
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 21:12:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C60D7A1C7A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 21:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD9001F754C;
-	Tue,  7 Jan 2025 21:12:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 693FE1F869E;
+	Tue,  7 Jan 2025 21:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QT2jTy5v"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="Exzc//Ap";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="f0pcpNIJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from fout-a3-smtp.messagingengine.com (fout-a3-smtp.messagingengine.com [103.168.172.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED911D8DFE;
-	Tue,  7 Jan 2025 21:12:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295DA1F76C4;
+	Tue,  7 Jan 2025 21:33:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736284371; cv=none; b=oaEcvkF05HVx9pWs8Lc/xTmAejYknJiBUKmHClt+hUySiaR8T7Yt/Y4QgkysJ0ecdxiREgEheNBTznZScQ84jvQTdpbNcqe0mlgTQo3I11opP6W2TjU92RICqWymE0mispSQPnKdteZHHrWI9SlP/9SDAr6Jupq4CANVFC7hvbU=
+	t=1736285613; cv=none; b=lM/MfKXh3Hzi1xNMHi2tgJRCtxnP7z8rCHRmWwcAzhvzH+sZvGmQc8oYW3gSXWhPF1ltRdsOR2UVl6UV2MgEHEW9SxKObYMk0BXMwRQez2E5+9mr5AvxAgmlUvCJghnK2j7hvNr+e4jPtlBV50Xj4xVwdOmmpI7RNzsrMB/NnfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736284371; c=relaxed/simple;
-	bh=11DnUfXo1GiMnsUoY4Z3vMUl0EK6pTlOji23wcyt3cI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=f9uNBASNJIh+5s+yWkIOeh0KpCK2sxJCra0syJNgk0oYt1iit+eKflzYpO8oNK2dxKIIDH4Cvk9nM+iLcEjoaASAVZRusZdfVEn8qY/uvJem6xNarZCUPG+/k5XX5ibFDJ33kXjMZMxyHS19flSEA20zGAGhkYEZdfP2dh5WA9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QT2jTy5v; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 507LCS472700007
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 7 Jan 2025 15:12:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736284348;
-	bh=bG8rCTndkk8SaD7TkPICKm6KaY+8OuohlzV/rv/Xx2c=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=QT2jTy5vvGBt2cykEmyj3mksOoG8jsI+OPWJF9UFvraHv3McFhg7FfrpMy9PqzqZM
-	 KB8u+wEQ/FSWziCzL1yqiHfONTkLYzN6i4CGTNXpQySAsy8piPUsFF0munwWrTHPYN
-	 KpKk9V4BkB7CptdL4sr4MIqi/XwrAUgzdecsj0qA=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 507LCS3b017666
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 7 Jan 2025 15:12:28 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
- Jan 2025 15:12:27 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 7 Jan 2025 15:12:27 -0600
-Received: from [128.247.29.228] (dmz007xyy.dhcp.ti.com [128.247.29.228])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 507LCRFo031098;
-	Tue, 7 Jan 2025 15:12:27 -0600
-Message-ID: <a76dc55a-5de7-4936-b1f0-af301da0344e@ti.com>
-Date: Tue, 7 Jan 2025 15:12:27 -0600
+	s=arc-20240116; t=1736285613; c=relaxed/simple;
+	bh=lVcbgRIjckxRhNznYZDIwzjfYyq6KPmJCVPdHnYeeuk=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=hMRt34ZQQnsv56/tOBnS3TWk6vzDU3tBBn4SNURUIgY6iYPYkmQUkPd6GTfpSeXHZDE6VbrqrcULDId/4xvwieWS3M02mFA19+umFAsJMjAN3OF4tp38UdtupdntoGAtrkx5fsnroiXAHcbRoyutj93pcL+jkXBbjXmmnDFNO4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=Exzc//Ap; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=f0pcpNIJ; arc=none smtp.client-ip=103.168.172.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
+	by mailfout.phl.internal (Postfix) with ESMTP id 21A7C1380231;
+	Tue,  7 Jan 2025 16:33:30 -0500 (EST)
+Received: from phl-imap-07 ([10.202.2.97])
+  by phl-compute-04.internal (MEProxy); Tue, 07 Jan 2025 16:33:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1736285610; x=1736372010; bh=g6ya314sxovkhWFQqUN3Lszhjpeui25J
+	0XtZ38dBwj0=; b=Exzc//ApsdyM4zlHLFXoh4XrYrxEJsK9gtyJXwbIGDHwO8EJ
+	yNhJ4qHXXxFfEXyET+Ydvi+/9b5ONKzA+nRhIN9QzYCLOhxmx8+NLgTO0smmtLz+
+	iQ3H+Dj6HmYxg55kXdPSaYo0H1wzClx6yWUHAgRbgMAk0Fw90gve1K3sGdMQP1Ai
+	eLJ7wNmILgjLG8yMs9FwYGq3/yekurcgOPPw6xp7gSAnujhdmmTVmiWKv9ruXj3e
+	+t0JfUj2I911MQO9W/eYjv9ZDh7luJDd4Lf6mKy9qO/3XSOk/qcYx6BWnJmn39mt
+	KbnLBGmP09nNGXc0xvJgoapY9Hu8nHguWS9/GA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1736285610; x=
+	1736372010; bh=g6ya314sxovkhWFQqUN3Lszhjpeui25J0XtZ38dBwj0=; b=f
+	0pcpNIJuZA5XkE8jOoelmg48wq/4fAlKDwAaxq91KX2RzdEnrhCglsOnBKz/oQNj
+	QU6li75sqXqbcyG+Y1tjt3+iL+i38WMRWdTGjUGT1HwvI59W/PkNT28XK9eX6P21
+	ERs+S+gQQYDKyfFykwhNllkk+AJLwTaFvpe/eyV7J8iKxoyHFQGBkCUMqyNtoN+m
+	8h0/tqbkc8j4+EGKnNN7HTBPe1ChvjE9CNnjyMvCMec5PuHxheeGoqjGAXfMYsYC
+	Bxwn3YcG5v5I7ZJmnl0Ojw7m1+2LUB4sz6UV06Wi4b4RhxnEtaxFdLTux9ldpYQq
+	lhmkMN1IsQ/683PFnvOUQ==
+X-ME-Sender: <xms:qJ19Z4hNC8ujXE3Fkrj6P19E5d1Ykp4AtCRHK-Wx7Z-pxXXGxPWXiA>
+    <xme:qJ19ZxBPzkwLufaC0evox0xv0gk2M7gQ17VRjqGCtwDm-r96-0-8FvGqekKSI-Agm
+    ZEYCN6Mnv1CxLz5Fw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudegvddgudehtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthhqredtredt
+    jeenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
+    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeeghffgkedtueeiudeukedvveevhfdu
+    uefhhedviefgffduheeuieeihefhfefgveenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
+    pghrtghpthhtohepuddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeifvghnsh
+    estghsihgvrdhorhhgpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgr
+    ihhlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprh
+    gtphhtthhopehmrggtrhhomhhorhhgrghnsehhohhtmhgrihhlrdgtohhmpdhrtghpthht
+    ohepsghrohhonhhivgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrg
+    hrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthht
+    oheplhhinhhugidqshhunhigiheslhhishhtshdrlhhinhhugidruggvvhdprhgtphhtth
+    hopehpvghrvgigsehpvghrvgigrdgtiidprhgtphhtthhopehsrghmuhgvlhesshhhohhl
+    lhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:qZ19ZwFiAMkkNG82OEvAfw3ngKKVsjEk6bxbReGfWef4uubn7hoahw>
+    <xmx:qZ19Z5QMBmmvGJR9zAMEUZHe3g0V34cfmNcI_WXp5H1Zep_vf-4vWQ>
+    <xmx:qZ19Z1wXlFNVdLGcjIuPS62K_6zS7FlYibGKUrNAZd8yfHqq_UmwvA>
+    <xmx:qZ19Z342wXR-85w0iXqK54eLT4lR5-T6d72G0yu3wl9aLQvHgUm1EA>
+    <xmx:qp19Z77kKVdhitixBBCPtzkd33VN6IPu1oKwIZqCFnVPM-6cN4Ir2KX0>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id E2681BA0072; Tue,  7 Jan 2025 16:33:28 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 7/7] regulator: tps65215: Restructure probe() for
- multi-PMIC support
-To: Roger Quadros <rogerq@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>, <andreas@kemnade.info>,
-        <khilman@baylibre.com>, <tony@atomide.com>,
-        <jerome.neanne@baylibre.com>, <linux-omap@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <m-leonard@ti.com>, <praneeth@ti.com>
-References: <20241226215412.395822-1-s-ramamoorthy@ti.com>
- <20241226215412.395822-8-s-ramamoorthy@ti.com>
- <b3a49df1-372c-46c3-869b-205ddfd18cad@kernel.org>
-Content-Language: en-US
-From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-Organization: PMIC
-In-Reply-To: <b3a49df1-372c-46c3-869b-205ddfd18cad@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Date: Wed, 08 Jan 2025 10:33:08 +1300
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Chen-Yu Tsai" <wens@csie.org>
+Cc: "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
+ "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Samuel Holland" <samuel@sholland.org>, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, "Chris Morgan" <macromorgan@hotmail.com>
+Message-Id: <ddf34135-13b0-4a1a-801e-c2c454196ee3@app.fastmail.com>
+In-Reply-To: 
+ <CAGb2v661eZPh8+ScJNUTXwm_y_RtrL7yo7EE4i_zg-=LrBhBhg@mail.gmail.com>
+References: <20241221094122.27325-1-ryan@testtoast.com>
+ <20241221094122.27325-3-ryan@testtoast.com>
+ <CAGb2v64qf0jNv72uHUK+aSj0Xt-bf+DW0NCnsZmLf-6xHZF_ew@mail.gmail.com>
+ <982a7d32-ab58-434e-a125-4f7143928caf@app.fastmail.com>
+ <CAGb2v661eZPh8+ScJNUTXwm_y_RtrL7yo7EE4i_zg-=LrBhBhg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] ASoC: sun4i-codec: support hp-det-gpios property
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Wed, 1 Jan 2025, at 9:56 PM, Chen-Yu Tsai wrote:
+> On Mon, Dec 23, 2024 at 5:20=E2=80=AFAM Ryan Walklin <ryan@testtoast.c=
+om> wrote:
 
-On 1/4/25 12:47 PM, Roger Quadros wrote:
->
-> On 26/12/2024 23:54, Shree Ramamoorthy wrote:
->> The probe() function will now utilize the register_regulators() and
->> request_irqs() helper functions defined in the previous patch. Probe() will
->> cycle through common (overlapping) regulators and irqs first, and then
->> handle device-specific resources identified using the chip_data struct.
+>> >> @@ -1635,10 +1681,11 @@ static const struct snd_soc_component_driv=
+er sun50i_h616_codec_codec =3D {
+>> >>  };
+>> >>
+>> >>  static const struct snd_kcontrol_new sun50i_h616_card_controls[] =
+=3D {
+>> >> -       SOC_DAPM_PIN_SWITCH("LINEOUT"),
+>> >> +       SOC_DAPM_PIN_SWITCH("Speaker"),
+>> >
+>> > Why?
 >>
->> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
->> ---
->>   drivers/regulator/tps65219-regulator.c | 66 +++++++++++---------------
->>   1 file changed, 27 insertions(+), 39 deletions(-)
+>> The speaker amp is controlled by a GPIO, this needs a specific card c=
+ontrol to toggle on and off, discrete from the line-out volume. Muting t=
+he output entirely is not what is required, hence the separate control. =
+I also understand (although it is IMO not well documented on the user-sp=
+ace side) that "Speaker" has a specific meaning to the user-space routin=
+g. Can add this to the merge message.
+>
+> It should be documented, and probably a separate patch. This patch is
+> for the headphone. Also, "Speaker" is a DAPM widget name and that widg=
+et
+> is what toggles the GPIO. So it's actually the kernel side routing.
+
+Thanks, happy to add a separate patch, but think it is appropriate inclu=
+ded in this series as it only makes sense to power off the amplifier if =
+there is no sound output or if we plug in headphones.
+
+> And also, you can't remove the "LINEOUT" pin because it is referenced =
+from
+> existing device trees.
+
+I am not entirely sure and not an expert here, but I think the LINEOUT r=
+eference in the existing trees is for the output route, not a DAPM switc=
+h? This was added to the prior H616 enablement patch largely because it =
+was in the vendor code, but given the H616 only has a single audio route=
+ also called "LINEOUT in the manual) this is somewhat redundant, as the =
+analog and digital parts of the codec already have DAPM widgets, and my =
+understanding was that ALSA would then correctly enable and disable comp=
+onents based on the routing, not that the routing had to refer to specif=
+ic DAPM controls/widgets.
+
+>> >> @@ -1684,7 +1731,7 @@ static struct snd_soc_card *sun50i_h616_code=
+c_create_card(struct device *dev)
+>> >>
+>> >>         card->dev               =3D dev;
+>> >>         card->owner             =3D THIS_MODULE;
+>> >> -       card->name              =3D "H616 Audio Codec";
+>> >> +       card->name              =3D "h616-audio-codec";
+>> >
+>> > Why?
 >>
->> diff --git a/drivers/regulator/tps65219-regulator.c b/drivers/regulator/tps65219-regulator.c
->> index 8469ee89802c..b27888fd1fa8 100644
->> --- a/drivers/regulator/tps65219-regulator.c
->> +++ b/drivers/regulator/tps65219-regulator.c
->> @@ -413,54 +413,42 @@ static int tps65219_request_irqs(struct tps65219_regulator_irq_type *irq_types,
->>   static int tps65219_regulator_probe(struct platform_device *pdev)
->>   {
->>   	struct tps65219 *tps = dev_get_drvdata(pdev->dev.parent);
->> -	struct regulator_dev *rdev;
->>   	struct regulator_config config = { };
->> -	int i;
->>   	int error;
->> -	int irq;
->>   	struct tps65219_regulator_irq_data *irq_data;
->> -	struct tps65219_regulator_irq_type *irq_type;
->> +	struct chip_data *pmic;
-> reverse xmas tree.
+>> As mentioned in the cover letter, ALSA UCM in user space uses the car=
+d name to detect and apply the relevant configuration, by loading /usr/s=
+hare/alsa/ucm2/conf.d/<driver_name>/<card_name>.conf. Spaces are therefo=
+re removed in the card name to make this easier to manage. Happy to add =
+this to the commit message too, and this could be changed to card->long_=
+name if it is desired to maintain a human-readable card->name.
 >
->>   
->> -	config.dev = tps->dev;
->> -	config.driver_data = tps;
->> -	config.regmap = tps->regmap;
->>   
->> -	for (i = 0; i < ARRAY_SIZE(regulators); i++) {
->> -		rdev = devm_regulator_register(&pdev->dev, &regulators[i],
->> -					       &config);
->> -		if (IS_ERR(rdev))
->> -			return dev_err_probe(tps->dev, PTR_ERR(rdev),
->> -					"Failed to register %s regulator\n",
->> -					regulators[i].name);
->> -	}
->> -
->> -	irq_data = devm_kmalloc(tps->dev,
->> -				ARRAY_SIZE(tps65219_regulator_irq_types) *
->> -				sizeof(struct tps65219_regulator_irq_data),
->> -				GFP_KERNEL);
->> -	if (!irq_data)
->> -		return -ENOMEM;
->> -
->> -	for (i = 0; i < ARRAY_SIZE(tps65219_regulator_irq_types); ++i) {
->> -		irq_type = &tps65219_regulator_irq_types[i];
->> +	enum pmic_id chip = platform_get_device_id(pdev)->driver_data;
->>   
->> -		irq = platform_get_irq_byname(pdev, irq_type->irq_name);
->> -		if (irq < 0)
->> -			return -EINVAL;
-> need a new line after declarations.
->
->> +	pmic = &chip_info_table[chip];
->>   
->> -		irq_data[i].dev = tps->dev;
->> -		irq_data[i].type = irq_type;
->> +	config.dev = tps->dev;
->> +	config.driver_data = tps;
->> +	config.regmap = tps->regmap;
->>   
->> -		error = devm_request_threaded_irq(tps->dev, irq, NULL,
->> -						  tps65219_regulator_irq_handler,
->> -						  IRQF_ONESHOT,
->> -						  irq_type->irq_name,
->> -						  &irq_data[i]);
->> -		if (error) {
->> -			dev_err(tps->dev, "failed to request %s IRQ %d: %d\n",
->> -				irq_type->irq_name, irq, error);
->> +	error = tps65219_register_regulators(pmic->common_rdesc, tps,
->> +						&pdev->dev, config, pmic->common_rdesc_size);
->> +	if (error)
-> maybe you could use goto and do any cleanup
-> and in the end use dev_err_probe().
+> This should also be a separate patch. And yes please add `long_name` to
+> keep the human friendly name.
 
-Looking through all of the feedback/ideas, I am planning to have the helper functions return the error,
-use goto to check and return dev_err_probe if an error is detected. This should hopefully minimize the
-amount of repeated error checks in this probe function. Thank you for the feedback!
+Thanks, will do.
 
->> +		return error;
->> +
->> +	error = tps65219_register_regulators(pmic->rdesc, tps, &pdev->dev,
->> +						config, pmic->rdesc_size);
->> +	if (error)
->> +		return error;
->> +
->> +	irq_data = devm_kmalloc(tps->dev, pmic->common_irq_size, GFP_KERNEL);
->> +	error = tps65219_request_irqs(pmic->common_irq_types, tps, pdev,
->> +					irq_data, pmic->common_irq_size);
->> +	if (error)
->> +		return error;
->> +
->> +	if (chip == TPS65219) {
->> +		irq_data = devm_kmalloc(tps->dev, pmic->dev_irq_size, GFP_KERNEL);
->> +		error = tps65219_request_irqs(pmic->irq_types, tps, pdev,
->> +						irq_data, pmic->dev_irq_size);
->> +		if (error)
->>   			return error;
->> -		}
->>   	}
->>   
->>   	return 0;
+Regards,
 
--- 
-Best,
-Shree Ramamoorthy
-PMIC Software Engineer
-
+Ryan
 
