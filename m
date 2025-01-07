@@ -1,321 +1,202 @@
-Return-Path: <devicetree+bounces-136048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A750A03A2D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:50:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F99A03A3D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:51:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84A671886BA1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:50:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAEC5165606
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACC21E282D;
-	Tue,  7 Jan 2025 08:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66951E0B73;
+	Tue,  7 Jan 2025 08:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JGN20aPi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YvZSAc1k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0425481C4;
-	Tue,  7 Jan 2025 08:49:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C051DF276;
+	Tue,  7 Jan 2025 08:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736239751; cv=none; b=Tn+BuvJsDN9mAJLszAw6ZloGlIvRq3MsxCDzTL6MOyQmGIlsfpS30cwxFzJ6nYs55kqNuy6h2OhlPLmp/xdmImuHMYvmv9CGx7m2rdSlIsEzz5itRhQGzfbays2bT98UjvRjfvBDk8TwKQjVJRhxU3MHUo9OG1dZr2rYTqAzhjs=
+	t=1736239910; cv=none; b=LmimpQUN3bF4ZyxdaDxIIrzOMpyRWMVIGfgD4f6W8yRbZpl5NP3g7pKgbxhQXz+MXqEh205ts6u3Nu2qcz1PWB0bdbxKLuUdr4CKlagI42ZHadi3o7l/JUvCCgpjm6U0VQnlfUqi5EQ6pio0i027BXpQdG4VSeu8bAAsryZVTqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736239751; c=relaxed/simple;
-	bh=R6UIKGBtUQlx/3/LJQ1ajW3n/ng0uVZ2C8EM28vjFWU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=jCfkAWEmg22y2560qPwdo2F2XuYyMDt/KHg/BOSZusu2i86mBUsWxOgQYlkveAQxODTBuvoWbD8p3slMPMpOIikqRhDBrOFpvSOpiYDr1DVp8VyV2HQUOfvMHu2VuKTvVWRLystGf5Bo/xRlAK+aG6rYcbPaIMmzO0xANO2wF6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JGN20aPi; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5074eV3h014425;
-	Tue, 7 Jan 2025 08:48:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=B1hMH6jvjoHwXDZti8JhNi
-	dBmVeFxvzJLNc/eVz7MdY=; b=JGN20aPi9gDss1fs0WxFIhFDEG4OrGFkFDLP+k
-	3k73PYwpllfzGr1+OLNi2Vu4j+aP6lHMI/KSpx5biH/xiDOtIh47ZDfT2zfkSb91
-	qRqqnaR32rPVdvJFJi3uamuDHmgX5UflTfE5pTs3oSAyNbN1xXvW2zZj7pFzPHPv
-	CTJhbL/r01R2qgzVd7O2z+kBzR64n2ATdC1bKj2Afn7IJPQWy3a9HvkJu4BF7Yri
-	EzQEC/WcObZJSi5Wp704JPTMntT78lPI7RxBmPJfZ4Ca7entrxhMM5sdHCbSek1d
-	5VnDIselXVxwFAOkpyLxUvqk1EpQRvyquEuPrINvgjMLpb+A==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 440wex0gu8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Jan 2025 08:48:57 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5078mvRB016467
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 Jan 2025 08:48:57 GMT
-Received: from yuanfang4-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 7 Jan 2025 00:48:50 -0800
-From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-Date: Tue, 7 Jan 2025 16:48:26 +0800
-Subject: [PATCH v4] arm64: dts: qcom: Add coresight node for SM8650
+	s=arc-20240116; t=1736239910; c=relaxed/simple;
+	bh=LmWkDL317gY3U+dXFRVXKAmtC6HGYAsxYCnveneGcFA=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=AogXJrCOF8/GODIV2h3nd4A0ESJRvSWgw71dF8nIdiN4EV3Ic1Xmr67Kt6/nOVsRLrJNAj1pTNaolnWj/4L+NMkcs6GqLtkluZPH2rP02laXCNZtjcKvL68VP/zPCQQ4MAsfdd0L4X7zfeUnXAgAJlPY/I40dxR38YnFopO65fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YvZSAc1k; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736239907; x=1767775907;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=LmWkDL317gY3U+dXFRVXKAmtC6HGYAsxYCnveneGcFA=;
+  b=YvZSAc1km+y+H3jPZfcZ/mMaS36Lj5e0CYt4kDTjj/MRi+uR9JY7of25
+   ArYz8fOCc0zINiwyrT6gwrfrFaAYKUNpALDzyBZMlRsOl0imlNEVrjM8+
+   7uu5YctjHBj5QNwBtFL0lfCDphI0wTOvydQXOzYHZdP9OF4sLuTx21/HZ
+   aNw9bb94V3tEkpWFB8t5j0tsVNRtF5bG5gwJgIE/bB+OQQAAM+9mBuPhW
+   Rh6F9ZeRj7d1EohKKgEKjaQF3a5RSOpMrSCtRnF2LskrklR+2EWT7aDAI
+   +jAc9UbvD3PbjKLrhomle48VMkkvrnba9E65p3wp20hZkVTOUvMpWCTk9
+   A==;
+X-CSE-ConnectionGUID: 53vNzLJGQ2Kw0zo1bKZ0Yw==
+X-CSE-MsgGUID: bOqMNv9sQJ24ntHuQeXrig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="53949340"
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; 
+   d="scan'208";a="53949340"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2025 00:51:46 -0800
+X-CSE-ConnectionGUID: DMRxU9oOS26DPmSMyaKREw==
+X-CSE-MsgGUID: 9gC4xSyQQuWabMbKB8+3qA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; 
+   d="scan'208";a="102508916"
+Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
+  by fmviesa006.fm.intel.com with ESMTP; 07 Jan 2025 00:51:44 -0800
+From: niravkumar.l.rabara@intel.com
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	niravkumar.l.rabara@intel.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: socfpga: agilex5: add NAND board file
+Date: Tue,  7 Jan 2025 16:48:30 +0800
+Message-Id: <20250107084831.2750035-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAFnqfGcC/33MvQ7CIBiF4VtpmMXwb3HyPowDfoBlaKtQiabpv
- UsbHaqJ4znJ844ouRhcQvtqRNHlkELflSE2FYLGdBeHgy0bMcIEZUTj1NZKEgwJ2wEbq4S24I1
- 0NSrkGp0PjyV3PJXdhDT08bnUM53fd4iSdShTTDFTWmkuJJW1ONzuAUIHW+hbNKcy+8dZ4eCZA
- AX6bC38cv7hklDCvzgvfCe14V4ZDlCv+TRNLyDCVMkoAQAA
-X-Change-ID: 20241209-sm8650-cs-dt-ad649dcfa5e8
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Yuanfang Zhang
-	<quic_yuanfang@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736239730; l=4866;
- i=quic_yuanfang@quicinc.com; s=20241209; h=from:subject:message-id;
- bh=R6UIKGBtUQlx/3/LJQ1ajW3n/ng0uVZ2C8EM28vjFWU=;
- b=fkL3WYjGR5qpJltPG1n6OBDHGc97vWvaTulnjHZMD8r0NMRk365YH5hau8i/30/DkZtFX4qG2
- IklTCVk8OjRAA6p1QiiywwCpJMJZe3ksDCrJ+zQzO5DhuCnOWhzIWBO
-X-Developer-Key: i=quic_yuanfang@quicinc.com; a=ed25519;
- pk=ZrIjRVq9LN8/zCQGbDEwrZK/sfnVjwQ2elyEZAOaV1Q=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4EmgQLeC6aoTr4UUxmV7wWe-itYpDAhj
-X-Proofpoint-ORIG-GUID: 4EmgQLeC6aoTr4UUxmV7wWe-itYpDAhj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=1
- clxscore=1015 mlxlogscore=946 mlxscore=0 phishscore=0 malwarescore=0
- suspectscore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501070073
+Content-Transfer-Encoding: 8bit
 
-Add coresight components: Funnel, ETE and ETF for SM8650.
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+The Agilex5 devkit supports a separate NAND daughter card.
+The NAND daughter card replaces the SDMMC slot that is on the default
+daughter card thus requires a separate board dts file.
+
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 ---
-Changes in v4:
-- Re-sort these nodes by address.
-- Link to v3: https://lore.kernel.org/r/20250103-sm8650-cs-dt-v3-1-759a3f6a3cc8@quicinc.com
+ arch/arm64/boot/dts/intel/Makefile            |  1 +
+ .../dts/intel/socfpga_agilex5_socdk_nand.dts  | 89 +++++++++++++++++++
+ 2 files changed, 90 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
 
-Changes in v3:
-- Move ete0 and funnel-ete to /.
-- Update coding style.
-- Link to v2: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v2-1-cf24c6c9bddc@quicinc.com
-
-Changes in v2:
-- Update compatible for funnel and etf.
-- remove unnecessary property: reg-names and arm,primecell-periphid.
-- Link to v1: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v1-1-269693451584@quicinc.com
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 166 +++++++++++++++++++++++++++++++++++
- 1 file changed, 166 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 25e47505adcb790d09f1d2726386438487255824..49d6567fbd2e68b66b517d8d9180c7443f8bf611 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -365,6 +365,40 @@ cluster_sleep_1: cluster-sleep-1 {
- 		};
- 	};
- 
-+	ete0 {
-+		compatible = "arm,embedded-trace-extension";
+diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+index d39cfb723f5b..33f6d01266b1 100644
+--- a/arch/arm64/boot/dts/intel/Makefile
++++ b/arch/arm64/boot/dts/intel/Makefile
+@@ -3,5 +3,6 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
+ 				socfpga_agilex_socdk.dtb \
+ 				socfpga_agilex_socdk_nand.dtb \
+ 				socfpga_agilex5_socdk.dtb \
++				socfpga_agilex5_socdk_nand.dtb \
+ 				socfpga_n5x_socdk.dtb
+ dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+new file mode 100644
+index 000000000000..3eeae5c4e24a
+--- /dev/null
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+@@ -0,0 +1,89 @@
++// SPDX-License-Identifier:     GPL-2.0
++/*
++ * Copyright (C) 2025, Altera Corporation
++ */
++#include "socfpga_agilex5.dtsi"
 +
-+		cpu = <&cpu0>;
++/ {
++	model = "SoCFPGA Agilex5 SoCDK";
++	compatible = "intel,socfpga-agilex5-socdk", "intel,socfpga-agilex5";
 +
-+		out-ports {
-+			port {
-+				ete0_out_funnel_ete: endpoint {
-+					remote-endpoint = <&funnel_ete_in_ete0>;
-+				};
-+			};
++	aliases {
++		serial0 = &uart0;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		led0 {
++			label = "hps_led0";
++			gpios = <&porta 6 GPIO_ACTIVE_HIGH>;
++		};
++
++		led1 {
++			label = "hps_led1";
++			gpios = <&porta 7 GPIO_ACTIVE_HIGH>;
 +		};
 +	};
 +
-+	funnel-ete {
-+		compatible = "arm,coresight-static-funnel";
++	memory@80000000 {
++		device_type = "memory";
++		/* We expect the bootloader to fill in the reg */
++		reg = <0x0 0x80000000 0x0 0x0>;
++	};
++};
 +
-+		in-ports {
-+			port {
-+				funnel_ete_in_ete0: endpoint {
-+					remote-endpoint = <&ete0_out_funnel_ete>;
-+				};
-+			};
++&gpio0 {
++	status = "okay";
++};
++
++&gpio1 {
++	status = "okay";
++};
++
++&i2c0 {
++	status = "okay";
++};
++
++&i3c0 {
++	status = "okay";
++};
++
++&i3c1 {
++	status = "okay";
++};
++
++&osc1 {
++	clock-frequency = <25000000>;
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&watchdog0 {
++	status = "okay";
++};
++
++&nand {
++	status = "okay";
++
++	flash@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		reg = <0>;
++		nand-bus-width = <8>;
++
++		partition@0 {
++			label = "u-boot";
++			reg = <0 0x200000>;
 +		};
-+
-+		out-ports {
-+			port {
-+				funnel_ete_out_funnel_apss: endpoint {
-+					remote-endpoint = <&funnel_apss_in_funnel_ete>;
-+				};
-+			};
++		partition@200000 {
++			label = "root";
++			reg = <0x200000 0xffe00000>;
 +		};
 +	};
-+
- 	firmware {
- 		scm: scm {
- 			compatible = "qcom,scm-sm8650", "qcom,scm";
-@@ -4854,6 +4888,138 @@ data-pins {
- 			};
- 		};
- 
-+		funnel@10042000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0x0 0x10042000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@4 {
-+					reg = <4>;
-+
-+					funnel_in1_in_funnel_apss: endpoint {
-+						remote-endpoint = <&funnel_apss_out_funnel_in1>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_in1_out_funnel_qdss: endpoint {
-+						remote-endpoint = <&funnel_qdss_in_funnel_in1>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@10045000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0x0 0x10045000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					funnel_qdss_in_funnel_in1: endpoint {
-+						remote-endpoint = <&funnel_in1_out_funnel_qdss>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_qdss_out_funnel_aoss: endpoint {
-+						remote-endpoint = <&funnel_aoss_in_funnel_qdss>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@10b04000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0x0 0x10b04000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@7 {
-+					reg = <7>;
-+
-+					funnel_aoss_in_funnel_qdss: endpoint {
-+						remote-endpoint = <&funnel_qdss_out_funnel_aoss>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_aoss_out_tmc_etf: endpoint {
-+						remote-endpoint = <&tmc_etf_in_funnel_aoss>;
-+					};
-+				};
-+			};
-+		};
-+
-+		tmc@10b05000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+
-+			reg = <0x0 0x10b05000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					tmc_etf_in_funnel_aoss: endpoint {
-+						remote-endpoint = <&funnel_aoss_out_tmc_etf>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@13810000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0x0 0x13810000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					funnel_apss_in_funnel_ete: endpoint {
-+						remote-endpoint = <&funnel_ete_out_funnel_apss>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_apss_out_funnel_in1: endpoint {
-+						remote-endpoint = <&funnel_in1_in_funnel_apss>;
-+					};
-+				};
-+			};
-+		};
-+
- 		apps_smmu: iommu@15000000 {
- 			compatible = "qcom,sm8650-smmu-500", "qcom,smmu-500", "arm,mmu-500";
- 			reg = <0 0x15000000 0 0x100000>;
-
----
-base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
-change-id: 20241209-sm8650-cs-dt-ad649dcfa5e8
-
-Best regards,
++};
 -- 
-Yuanfang Zhang <quic_yuanfang@quicinc.com>
+2.25.1
 
 
