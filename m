@@ -1,254 +1,121 @@
-Return-Path: <devicetree+bounces-136298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6377DA049ED
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 20:09:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D51A04A15
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 20:23:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D76BF161F3B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 19:09:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 447C87A3199
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 19:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C3B1F4720;
-	Tue,  7 Jan 2025 19:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7FE1F3D5D;
+	Tue,  7 Jan 2025 19:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h+qp9v0q"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="o0WjyORe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA2451E9B11;
-	Tue,  7 Jan 2025 19:09:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067031F4E50;
+	Tue,  7 Jan 2025 19:22:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736276976; cv=none; b=m+TTrLX/9XH4gPJyqZXS5UhijG4jsItxgwwKwHobFEVotjG0NNWZ0LOqs/cjyptI0XK0DJj+6rHcx8HQcdA5nCePhkiYTgxBv9FgGgnKQlWaNNrccdFYZWmqwT76sOlU4ihfTiQyiJ1BvDF9IZD7MP/2dJ+843evAc+XaOFNCrI=
+	t=1736277771; cv=none; b=iaTzLuaCVTDjne0DPQmjq83j56IqpjGZgrZId/p1D09u1xSSGKnRRRG93MzhQjCr/bWxHp72z+ODxrQyingdCQY6+rE5smFS2g5AOLvSyNUH9Sn43p61Ll6urCwscBF8pzrOagUSDZl9cMZdl+JBHdVz0vjRUGJ4Bn0WmX91LEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736276976; c=relaxed/simple;
-	bh=1tBC7cJN7ZXqKDzDsNUCY9EcGMZKGNY1yIrIa5BgrK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p6u82jR7U3V4u3FQspivlFmV9Q7f8mt/jInCv/ZwQCQIV4mP42/trnQmaBWU9zBqW2k8dmaYwZ2Ozp6QNsGxbbhJHSjNA5K60mZClGoLSATTLct6pFSSPndCa0KO3OeuAMSC7YEmNTl04D+iirq8znY0qnD885fSC1YekOL+LVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h+qp9v0q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69323C4CED6;
-	Tue,  7 Jan 2025 19:09:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736276975;
-	bh=1tBC7cJN7ZXqKDzDsNUCY9EcGMZKGNY1yIrIa5BgrK0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h+qp9v0qG6uMCzlcsc7WluJu6xVJ9mT4U/UQYUk+PF3sHZu5NPGLZzYvjVGV4m17p
-	 m/uTWPkEHv4C2B9radDqVI3Sh2tt9+sJF3xwlZNB1zLpdjRIUK5EDYNV3MdyEdocBm
-	 BWtSRVzH+XTOC4JCo9Nku7V9Bqc3zagJkZpJgi4l9GyFbTKsCpqii5D1+sPxDS3/PX
-	 XPvqz3xBgykT/awJ9idowf+vVr/uAsGf1Y2sCW6arUxjc+Oc6p0i5EotaYyYmDfab+
-	 VGyfLEwM71W6GFkUxawsHIK6/BQbBXAIw0R+EA8paYuCG94H+b6lVyYtmLOvIkyJrE
-	 7oTxZhakAMa3A==
-Date: Tue, 7 Jan 2025 13:09:34 -0600
-From: Rob Herring <robh@kernel.org>
-To: Markus Burri <markus.burri@mt.com>
-Cc: linux-kernel@vger.kernel.org,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	s=arc-20240116; t=1736277771; c=relaxed/simple;
+	bh=GQrNIs4lEXa5uxcuLuEiidbhziGDgSMzqtuOC6RmbJ8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BptAqT5g0Qxsd3BvO44Q1+sbM6sRZLoS51d1cyGxPQ4V7zmVbH2Tvc9/f8NQ6VOj4dA3LGiUnPYpOppPTbyQEK36vQxWHFf8CKv24B8AuvogsaIk2wcflWNfJx6X1deJUuBGZZJMzf+fmUNx4PFrP40KUh/mWwg6lL4odAqrUH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=o0WjyORe; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
+	bh=ZOjzwL4gnlE+sZAmf17LjcUdaPDgmh9qOPz72urkf+Q=;
+	b=o0WjyOReDNlIYxkNxmyEXHhXR86QFICWdKqUXzxBUl4Dyfv4V6p3BANQjmGXxW3fCO98ZXAtJ3PV1MRRlm19w1hI+sJzal6HNATjVjBiWog4bXxfE5rYk3ifvh6at4JSCq5ex8VmO5ehpmSKxs2rN3pRnRlZOUqJppPeR+kkMF4=
+Received: from 854af3ed5e24.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
+	by mail.netcube.li with ESMTPA
+	; Tue, 7 Jan 2025 20:22:11 +0100
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/7] dt-bindings: input: matrix_keypad - convert to
- YAML
-Message-ID: <20250107190934.GA1320081-robh@kernel.org>
-References: <20250107135659.185293-1-markus.burri@mt.com>
- <20250107135659.185293-4-markus.burri@mt.com>
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>
+Cc: Lukas Schmid <lukas.schmid@netcube.li>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/4] Add support for NetCube Systems Kumquat
+Date: Tue,  7 Jan 2025 19:18:38 +0000
+Message-Id: <20250107191844.4151-1-lukas.schmid@netcube.li>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250107135659.185293-4-markus.burri@mt.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 07, 2025 at 02:56:55PM +0100, Markus Burri wrote:
-> Convert the gpio-matrix-keypad bindings from text to DT schema.
-> 
-> Signed-off-by: Markus Burri <markus.burri@mt.com>
-> 
-> ---
->  .../bindings/input/gpio-matrix-keypad.txt     | 49 -----------
->  .../bindings/input/gpio-matrix-keypad.yaml    | 86 +++++++++++++++++++
->  .../bindings/power/wakeup-source.txt          |  2 +-
->  3 files changed, 87 insertions(+), 50 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
->  create mode 100644 Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
-> deleted file mode 100644
-> index 570dc10..0000000
-> --- a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
-> +++ /dev/null
-> @@ -1,49 +0,0 @@
-> -* GPIO driven matrix keypad device tree bindings
-> -
-> -GPIO driven matrix keypad is used to interface a SoC with a matrix keypad.
-> -The matrix keypad supports multiple row and column lines, a key can be
-> -placed at each intersection of a unique row and a unique column. The matrix
-> -keypad can sense a key-press and key-release by means of GPIO lines and
-> -report the event using GPIO interrupts to the cpu.
-> -
-> -Required Properties:
-> -- compatible:		Should be "gpio-matrix-keypad"
-> -- row-gpios:		List of gpios used as row lines. The gpio specifier
-> -			for this property depends on the gpio controller to
-> -			which these row lines are connected.
-> -- col-gpios:		List of gpios used as column lines. The gpio specifier
-> -			for this property depends on the gpio controller to
-> -			which these column lines are connected.
-> -- linux,keymap:		The definition can be found at
-> -			bindings/input/matrix-keymap.txt
-> -
-> -Optional Properties:
-> -- linux,no-autorepeat:	do no enable autorepeat feature.
-> -- wakeup-source:	use any event on keypad as wakeup event.
-> -			(Legacy property supported: "linux,wakeup")
-> -- debounce-delay-ms:	debounce interval in milliseconds
-> -- col-scan-delay-us:	delay, measured in microseconds, that is needed
-> -			before we can scan keypad after activating column gpio
-> -- drive-inactive-cols:	drive inactive columns during scan,
-> -			default is to turn inactive columns into inputs.
-> -
-> -Example:
-> -	matrix-keypad {
-> -		compatible = "gpio-matrix-keypad";
-> -		debounce-delay-ms = <5>;
-> -		col-scan-delay-us = <2>;
-> -
-> -		row-gpios = <&gpio2 25 0
-> -			     &gpio2 26 0
-> -			     &gpio2 27 0>;
-> -
-> -		col-gpios = <&gpio2 21 0
-> -			     &gpio2 22 0>;
-> -
-> -		linux,keymap = <0x0000008B
-> -				0x0100009E
-> -				0x02000069
-> -				0x0001006A
-> -				0x0101001C
-> -				0x0201006C>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-> new file mode 100644
-> index 0000000..75975a1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/input/gpio-matrix-keypad.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO matrix keypad
-> +
-> +maintainers:
-> +  - Marek Vasut <marek.vasut@gmail.com>
-> +
-> +description:
-> +  GPIO driven matrix keypad is used to interface a SoC with a matrix keypad.
-> +  The matrix keypad supports multiple row and column lines, a key can be
-> +  placed at each intersection of a unique row and a unique column. The matrix
-> +  keypad can sense a key-press and key-release by means of GPIO lines and
-> +  report the event using GPIO interrupts to the cpu.
-> +
-> +properties:
-> +  compatible:
-> +    const: gpio-matrix-keypad
-> +
-> +  row-gpios:
-> +    description:
-> +      List of GPIOs used as row lines. The gpio specifier for this property
-> +      depends on the gpio controller to which these row lines are connected.
-> +
-> +  col-gpios:
-> +    description:
-> +      List of GPIOs used as column lines. The gpio specifier for this property
-> +      depends on the gpio controller to which these column lines are connected.
-> +
-> +  linux,keymap:
-> +    $ref: /schemas/input/matrix-keymap.yaml#/properties/linux,keymap
+This series adds dt-bindings and dt's for the NetCube Systems Kumquat
+board.
 
-We generally don't reference individual properties. Instead, at the 
-top-level you need:
+Changes in v2:
+  Fix the devicetrees according to the 
+    "dt-schema" and "make dtbs_check W=1"
+  Fix the License of the devicetree as requested
+  Create a cover letter for the patch series
 
-allOf:
-  - $ref: matrix-keymap.yaml#
+Changes in v3:
+  Disable rtc inside the SoC again, as the rtc does not work on the
+    board
+  Add the gpio-reserved-ranges property to the pinctrl bindings
+  Reorder the nodes in the devicetree to match the order of the nodes 
+    in the sun8i-v3s.dtsi file
 
-And then here just: "linux,keymap: true"
+Changes in v4:
+  Moved the dtsi change into a sperate patch
+  Update commit messages to include better descriptions
+  Add descriptions to the uarts and mmc nodes in the dts file
+  Add missing newline at the end of the dts file
+  Removed the gpio-reserved-ranges property from the dts and
+    from the pinctrl bindings
+  Remove the rtc status property from the dts file
+
+Changes in v5:
+  Remove the unused lradc node and it's regualtor, as they
+    are not used on the board
+  Add another alias for the SoC's rtc as 'rtc1'
+
+Changes in v6:
+  Add reason why DS3232+ is preferred over internal rtc
+  Remove redundant pinctrls from mmc0, mmc1 and i2c0
+  Reordered eeprom0 and spi0/flash@0 properties
+  Reordered nodes by their node name alias
+
+Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+---
+Lukas Schmid (4):
+  dt-bindings: vendor-prefixes: Add NetCube Systems Austria name
+  dt-bindings: arm: sunxi: Add NetCube Systems Kumquat board
+  ARM: dts: sunxi: add uart1_pe pinctrl for sun8i-v3s
+  ARM: dts: sunxi: add support for NetCube Systems Kumquat
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/allwinner/Makefile          |   2 +
+ .../allwinner/sun8i-v3s-netcube-kumquat.dts   | 268 ++++++++++++++++++
+ arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi    |   6 +
+ 5 files changed, 283 insertions(+)
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
+
+-- 
+2.47.1
 
 
-> +
-> +  linux,no-autorepeat:
-> +    type: boolean
-> +    description: Do not enable autorepeat feature.
-> +
-> +
-> +  debounce-delay-ms:
-> +    description: Debounce interval in milliseconds.
-> +    default: 0
-> +
-> +  col-scan-delay-us:
-> +    description:
-> +      Delay, measured in microseconds, that is needed
-> +      before we can scan keypad after activating column gpio.
-> +    default: 0
-> +
-> +  drive-inactive-cols:
-> +    type: boolean
-> +    description:
-> +      Drive inactive columns during scan,
-> +      default is to turn inactive columns into inputs.
-> +
-> +required:
-> +  - compatible
-> +  - row-gpios
-> +  - col-gpios
-> +  - linux,keymap
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    matrix-keypad {
-> +        compatible = "gpio-matrix-keypad";
-> +        debounce-delay-ms = <5>;
-> +        col-scan-delay-us = <2>;
-> +
-> +        row-gpios = <&gpio2 25 0
-> +                     &gpio2 26 0
-> +                     &gpio2 27 0>;
-> +
-> +        col-gpios = <&gpio2 21 0
-> +                     &gpio2 22 0>;
-> +
-> +        linux,keymap = <0x0000008B
-> +                        0x0100009E
-> +                        0x02000069
-> +                        0x0001006A
-> +                        0x0101001C
-> +                        0x0201006C>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/power/wakeup-source.txt b/Documentation/devicetree/bindings/power/wakeup-source.txt
-> index 27f1797..66bb016 100644
-> --- a/Documentation/devicetree/bindings/power/wakeup-source.txt
-> +++ b/Documentation/devicetree/bindings/power/wakeup-source.txt
-> @@ -23,7 +23,7 @@ List of legacy properties and respective binding document
->  
->  1. "gpio-key,wakeup"		Documentation/devicetree/bindings/input/gpio-keys{,-polled}.txt
->  2. "has-tpo"			Documentation/devicetree/bindings/rtc/rtc-opal.txt
-> -3. "linux,wakeup"		Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
-> +3. "linux,wakeup"		Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
->  				Documentation/devicetree/bindings/mfd/tc3589x.txt
->  				Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
->  4. "linux,keypad-wakeup"	Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
-> -- 
-> 2.39.5
-> 
 
