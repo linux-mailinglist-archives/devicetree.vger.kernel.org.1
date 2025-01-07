@@ -1,170 +1,129 @@
-Return-Path: <devicetree+bounces-136312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D45A04B05
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 21:35:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 298ADA04B0B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 21:36:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40F8A3A1CF2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 20:35:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD70A1887AD8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 20:36:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3C51F4E47;
-	Tue,  7 Jan 2025 20:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A174F1F63F1;
+	Tue,  7 Jan 2025 20:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="j8b7Vqr+"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="gOoPXZIt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CAFB1D958E;
-	Tue,  7 Jan 2025 20:35:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB0B1D958E;
+	Tue,  7 Jan 2025 20:36:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736282106; cv=none; b=jV4IrNNZxowQrUK977drLsJpX4U1eKpV2qM0HK1pwvYNK0Jem8+AC+0ipuMJ18n9NYmokLsbtZkbLAExYM5yjNpdZfwpkzJQhexuZphSBzgEFJtRSA3pYQHF0lzxIzXi3jibuQOEQFsyZcnws9PFAqLySdTInWbK/xaq2QOlsTk=
+	t=1736282193; cv=none; b=s7oqHzvBMGrNMjZmNiNWc9wWZtqEBckrB2Z9LPNau+a4oPOWfke6CQzVQ6zEId4VXJU3VCLJV8lFMJBxj4N3n02F5A0SkI2au8PlmfAA2KZqjo69UJOrBzL0QlvoPso7F4afYLWwevAeDFnvrlMhuRko3/w2F/ksEWp7HcXZ2xY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736282106; c=relaxed/simple;
-	bh=FRBM7+mDu+ylauN2r0r4955aBjeGn3yo+c66RyPt0Ag=;
+	s=arc-20240116; t=1736282193; c=relaxed/simple;
+	bh=qYQ7E76CkhHf7z8mHbaeAvsIbpxTsY/ZInvAEaM94Hs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CnGB4GP/EJARcx5rBHa0+ZDXihUHyz8PQ6XwEEIm9zjFJEIXkzUj4j65pqUwnDLOg9fD6Wn+8l1yIoskz7XHRw70fzZ8yJd5I8emv7XOsme6nTAmQ1PZzegCYdtZg7Vvxo8aL/rn8ls16O9aoUmp4cvYdgpEe0nSF3QbIgyOx5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=j8b7Vqr+; arc=none smtp.client-ip=209.85.214.169
+	 To:Cc:Content-Type; b=FwLreq1Wq7Hb3B4t1nra8pZgNYTQqCXfPMPvaPNGl+5rWULld90XGfoA7wy8YrRiPL4e/gQBkG94THH0/hFX02zmpC0VK5VUIzoo3KfpKh0HDpVsMB4HLWOnfm8mvQrzrAoYa6bmjEdDoqjBPrO4lslGJSe68nlxim/wcQQZu68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=gOoPXZIt; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-216728b1836so216226615ad.0;
-        Tue, 07 Jan 2025 12:35:04 -0800 (PST)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-219f8263ae0so187687045ad.0;
+        Tue, 07 Jan 2025 12:36:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1736282104; x=1736886904; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dRVB3EQAdfG27QmfkAvFcAO8XBrqAJULsCwLs00LZPA=;
-        b=j8b7Vqr+gsghzXtKRE8aSfOHJu7y286dd6zQmMxnuDtgYN46EsB4y2McX9416TrVZZ
-         KtEyM+EylHqSZ2vQaysRV9NkVCUGuhGh5aaPHsnRxttixxdck6N+DW04drWUAz23lH3w
-         QHlUW0TrHzD+Tx/LlidRUkLZsjS1tCqz1I8DhULkUMewutvRNzSua6dnDPjpWEtFQDQe
-         1FkeKTdRdSYBj1+TCcC6WVLux/ogoGF6wDOO6uz7D1QEMTzhJByhjpEdWIxC0tEv5fJx
-         xPuJpLyBEuX8JAI0F58hZtQ9z2mMf45w4XQFueyxYbTCZpJfW4ZrJdB6ISGugRfTSFec
-         AUaw==
+        d=googlemail.com; s=20230601; t=1736282191; x=1736886991; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k5J+gh+iXgRwyFdRk/bfAnhtBt/J24ElglqD+pzBrcM=;
+        b=gOoPXZItkNmvG+cOTN9duR16l4hSV1Wg/Wz6ZVjNDEb2+naIpk3+zmHfkV7F+wirnj
+         K0i6u06apIU/nPL5nHFojuFBX0n3gxSUyrnVIm3XhjOvtT9RqGGu1Qn10qJqocSM4dqw
+         boz0fXVTXlGEW5VnHhW3I0e/GHyuO+MGky1LV6n3mlmQUdu+xzdyIUHh/qx/p/C8Gh+m
+         b04EzFJuOBX4Ekn+z0bW7NYSM1YIH8ePUbUAYtgp4CC8xZyb2fsXa8HKAf6zBNuO9qkk
+         SjSc9XsxmZDrgR19+n6SqmlnK5S01pF5mlwSHfd/En8rlN8CvZcG/5mjh4N0jVld+9Uu
+         zOFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736282104; x=1736886904;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dRVB3EQAdfG27QmfkAvFcAO8XBrqAJULsCwLs00LZPA=;
-        b=NSdNSFRytEq1Zn5PDSHnBmaeX0ngAs3GEQwNuaySlgi6RK618Y6lV/FcTfZcskNnQj
-         RzIvENqmK4VNng738Ua86pWsJlY4Pl5Yb8ALeYlDHsNRXZ+yRM07NZGb04VMMm4C4lck
-         3h8ssDoYsnVF1BOp6vhcVPnzhsSD4jGk9dcSnGL9BQ9BZNOtJAmkL2q3CQNLnwFmfl28
-         eLZ3jQvtezD17A2yTKd5AAcX4X/J1vWLs9UeJWNDy7kJwz87uFZZNoLcFC/PB+jMoTJl
-         Ph1hCRuUrb5V2DHDzEM63jrQR7xP8C5j4JOgikSRr55/9QqdG5PmExgslXbPu4hoGkZH
-         pVCw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYO6Wshy41I/b2OfbPdSkfpEFtfZzU3GZvuOtVWg4BfNY1tI7R71wvx0qfSe2YeTWA32l0og+OStn4@vger.kernel.org, AJvYcCUkEodTdSNad42Qa89hUxiN/1Yv0DuOEkq3KeVwHzVNZNJ6mKsfJyVb/XacaFynrZtl2YjMtxjkucsS@vger.kernel.org, AJvYcCV5KyAbmptGvuHt7GA5H9o2JQJrC2JRROj/Z1roGlvwrCj+c0sXIByQQg2H9P8BKm2KgYdJufU03TRxhdlf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3kav6DEuCD4bnEAzgnC6/Y/b3wiO213OGmAIDu0zL+LHZWA9Y
-	hARfCdj+5qn7flAEZiXdLLvAU7ba88leSmmZfxRAxgy4coIaao/PE3PjNDqQSeT1svcLlnhG8c9
-	YwXHAlRp0Y/2cdGWUZB0TWYz+hrk=
-X-Gm-Gg: ASbGncvZwl7mwIMFh18joEIRegcvyCstyWcvUnNzug8z/a2js7S210W9Nz9S9/SENUS
-	qJ7oyyhz+RA+kmwSZsxirFCRSy2FB5B1dQ5BEKyfFM750wZcb/E0W
-X-Google-Smtp-Source: AGHT+IEWXQpDosg5fBG9oEhfRRnfn4Ki8gx5OzGLJWxwUbX8THg3BLPGAJ7UBdXDRFLc1aDS+WnzGa2ZkElhUYtCfxw=
-X-Received: by 2002:a17:903:22c1:b0:216:554a:2127 with SMTP id
- d9443c01a7336-21a83fde33fmr5223815ad.41.1736282104261; Tue, 07 Jan 2025
- 12:35:04 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736282191; x=1736886991;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k5J+gh+iXgRwyFdRk/bfAnhtBt/J24ElglqD+pzBrcM=;
+        b=EBZ+wACUMf7I1aoksf+GWi0jrT8R/GIdsqP/pFCpCDrC3gYy2/4v+188gdGm2s6bsW
+         0ZoOxZEjT3rJ4T7MsScDBwf52PBf0QIuYVulBh5pgF3sTOapw6iAmTacD8IKTZ1Qe5wp
+         GcdsKvgiB50fkTXy9ZiXL3wPelCX4W+G5UQyzN33PEJBy1G21VOGYo2g08D6g6PnX+GK
+         9DwYQWyt97J/3LuTb1eKx/5dAFaD578zyg/2lvE6rvFaeZIDp0yqF6+7LQ4Zd5SedXM1
+         m3Lv56F4aFUXEzAZIZnDItHscvD4t+bQJ3XMcmCgbRIAFX71Cre6gSz50Egi7ewsmhga
+         fQfg==
+X-Forwarded-Encrypted: i=1; AJvYcCU3BWUnNzt+4JTJ+iqenqwqOVgNki/QjJJqc7VyIqNo3GuHtdd3Xj/e2M0xlZPeh5Mv7i4sRCgyoWGPBR6rExYuQxM=@vger.kernel.org, AJvYcCUt7WdZLiCtH3QIaJE8JTgbo8hDH2oZU2EkEYdU9sL7cJS5VWBPbrltjUc4NEGnd5Zf18rYHcgvtUIc@vger.kernel.org, AJvYcCVDFTYzARPkf3VBodit4y/AYEHt0bERZXkgvdAM9dnppKzAbLl+o3QiQShw32hpSGSVPEdTAlu+2YY3IiHi@vger.kernel.org, AJvYcCXckck7LPJzUG4SIMxlDEXoLygWV8J6JtCPE8CXScja8CMKk8GDdYU+6xk3/CXEEvLtKLjmn+twbjlOz0X7BA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMRkVX2wt4ML6fG40CwrZomDlbKoOMjok0V1wIeTQzy7If9X6j
+	XotZdcfSKfbqSiq13PeRIQtv/gVYKvM/4iBDF0UcY+07r1rWxS4+NdRGebUcBe1ToJvrSHDruMM
+	cWuaAW4Bg+6MIDIG/cdahH4TIG48=
+X-Gm-Gg: ASbGnctohPRNzGda0zQ1FFx2pg740mWONcJsH676WoMa7kLzgrmNxLbgkyhgGBt5ql4
+	ERp/awS6rng5+XLjYKkTlDrCxc136WxKWFCItMnWaxaq2irGdGJMn
+X-Google-Smtp-Source: AGHT+IHgiQDN0G5/PdDd430gJpVrEIqkV02owORB8V1V6tlHZDq0VmXjlHDjVTSTRjC3ezsidQtyveZkFyttC72Msfc=
+X-Received: by 2002:a17:902:f70a:b0:216:8319:2949 with SMTP id
+ d9443c01a7336-21a84000ae2mr5997805ad.56.1736282191527; Tue, 07 Jan 2025
+ 12:36:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241219-mmc-slot-v1-1-dfc747a3d3fb@microchip.com>
- <20241219-scenic-revision-17da9231d61a@spud> <91dfdd42-6ddb-490f-acda-41ce55782959@microchip.com>
-In-Reply-To: <91dfdd42-6ddb-490f-acda-41ce55782959@microchip.com>
+References: <20250107125854.227233-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250107125854.227233-1-krzysztof.kozlowski@linaro.org>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 7 Jan 2025 21:34:52 +0100
-X-Gm-Features: AbW1kvZQsZremWvONR__RIVII7Gmwg3ACXgayGcRUA1UfxoArUjpvPFmSVjBTV4
-Message-ID: <CAFBinCCxZjuXL0duy3ePPDtL1oJS_GZiX3=djXpHR+-6gLkN_w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: move compatible property to its
- specific binding
-To: Dharma.B@microchip.com
-Cc: conor@kernel.org, ulf.hansson@linaro.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org, 
-	khilman@baylibre.com, jbrunet@baylibre.com, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: multipart/mixed; boundary="0000000000000e2074062b23aefc"
-
---0000000000000e2074062b23aefc
+Date: Tue, 7 Jan 2025 21:36:20 +0100
+X-Gm-Features: AbW1kvat2n17hvPwDrGQUj8U_8QFAMpbYP8hJMpXB_xRYGmIfR0aXMkOm1WMYyw
+Message-ID: <CAFBinCCqekcg75YPnck5NEiLftpiDR5KhX7Ngc2xuRKpbMik+A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: Correct indentation and style in
+ DTS example
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Inki Dae <inki.dae@samsung.com>, 
+	Jagan Teki <jagan@amarulasolutions.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Lucas Stach <l.stach@pengutronix.de>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
+	Jonathan Marek <jonathan@marek.ca>, Mahadevan <quic_mahap@quicinc.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Jacopo Mondi <jacopo+renesas@jmondi.org>, dri-devel@lists.freedesktop.org, 
+	linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, linux-mediatek@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
+	linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Dharma,
-
-On Tue, Jan 7, 2025 at 4:34=E2=80=AFAM <Dharma.B@microchip.com> wrote:
+On Tue, Jan 7, 2025 at 1:58=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 20/12/24 1:41 am, Conor Dooley wrote:
-> > On Thu, Dec 19, 2024 at 09:40:41AM +0530, Dharma Balasubiramani wrote:
-> >> Move the `compatible` property into its specific binding to make the M=
-MC
-> >> slot more generic and modular.
-> > This makes no sense, as presented. What's the real reason for this
-> > change? You want to ref mmc-slot.yaml but the compatible is causing a
-> > driver to probe?
+> DTS example in the bindings should be indented with 2- or 4-spaces and
+> aligned with opening '- |', so correct any differences like 3-spaces or
+> mixtures 2- and 4-spaces in one binding.
 >
-> We don=E2=80=99t have the configuration for that driver enabled. Wouldn=
-=E2=80=99t
-> including the compatible in the DTS files without the actual driver be
-> redundant?
+> No functional changes here, but saves some comments during reviews of
+> new patches built on existing code.
 >
-> Is it the correct approach to add the compatible just to fix the dt
-> binding errors?
-Let me try to summarize what I understand so far:
-- your are trying to convert the dt-binding of atmel-hsmci from .txt to .ya=
-ml
-- while doing so Rob asked to reference the mmc-slot schema
-- after referencing the mmc-slot schema you now get warnings in when
-validating the .dts because your .dts doesn't specify compatible =3D
-"mmc-slot"
-
-Is that correct?
-
-There aren't many MMC controllers with multiple slot support out there.
-When I wrote the dt-bindings for amlogic,meson-mx-sdio I *think* (it's
-been some years) Ulf pointed out another dt-binding
-(Documentation/devicetree/bindings/mmc/cavium-mmc.txt) and driver
-(drivers/mmc/host/cavium-thunderx.c) that already used the mmc-slot
-compatible string.
-
-> related discussion:
-> https://lore.kernel.org/lkml/63473475-f29e-4a65-a0aa-1f1e4112b57d@microch=
-ip.com/
-Rob has suggested two approaches in that thread:
-- don't mark the "compatible" property as required (in
-Documentation/devicetree/bindings/mmc/mmc-slot.yaml)
-- add the compatible string where needed (I attached a diff with an
-example where I picked one random Atmel board and added the compatible
-string)
-
-Your patch is different from these suggestions as it forbids the
-compatible property in the generic mmc-slot binding.
-What's the problem with Rob's suggestions? If they cannot be
-implemented then please document why that is.
-
-
-Best regards,
-Martin
-
---0000000000000e2074062b23aefc
-Content-Type: text/x-patch; charset="US-ASCII"; name="add-compatible-string-example.diff"
-Content-Disposition: attachment; 
-	filename="add-compatible-string-example.diff"
-Content-Transfer-Encoding: base64
-Content-ID: <f_m5mxaprh0>
-X-Attachment-Id: f_m5mxaprh0
-
-ZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL21pY3JvY2hpcC9hdDkxc2FtOW4xMmVrLmR0
-cyBiL2FyY2gvYXJtL2Jvb3QvZHRzL21pY3JvY2hpcC9hdDkxc2FtOW4xMmVrLmR0cwppbmRleCA2
-NDNjM2IyYWI5N2UuLmEyN2ZjZWYyOGRmNSAxMDA2NDQKLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMv
-bWljcm9jaGlwL2F0OTFzYW05bjEyZWsuZHRzCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL21pY3Jv
-Y2hpcC9hdDkxc2FtOW4xMmVrLmR0cwpAQCAtODAsNiArODAsNyBAQCAmcGluY3RybF9tbWMwX3Ns
-b3QwX2Nsa19jbWRfZGF0MAogCQkJCQkmcGluY3RybF9tbWMwX3Nsb3QwX2RhdDFfMz47CiAJCQkJ
-c3RhdHVzID0gIm9rYXkiOwogCQkJCXNsb3RAMCB7CisJCQkJCWNvbXBhdGlibGUgPSAibW1jLXNs
-b3QiOwogCQkJCQlyZWcgPSA8MD47CiAJCQkJCWJ1cy13aWR0aCA9IDw0PjsKIAkJCQkJY2QtZ3Bp
-b3MgPSA8JnBpb0EgNyBHUElPX0FDVElWRV9ISUdIPjsK
---0000000000000e2074062b23aefc--
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../display/amlogic,meson-dw-hdmi.yaml        |  8 +-
+For amlogic,meson-dw-hdmi.yaml:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
