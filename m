@@ -1,165 +1,168 @@
-Return-Path: <devicetree+bounces-136252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B0B9A0460C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 17:26:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 463CFA04609
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 17:25:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42B0A1886BBB
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 16:26:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CBF37A2CC8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 16:25:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E471F6694;
-	Tue,  7 Jan 2025 16:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E491F63F0;
+	Tue,  7 Jan 2025 16:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="DHS0ZXaM"
+	dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b="M9ouyZU7";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ITI393vw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43C81F63E3;
-	Tue,  7 Jan 2025 16:24:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0044F1F4705;
+	Tue,  7 Jan 2025 16:24:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736267085; cv=none; b=g8ljZYZvMGgtqYh0BybDaTSSoJShwAVg1TfilVIE5aKvkYmqQb6SBThrNs09SPQlwMdpEKl6M6Obm+tuUVTA1FEGTSNB/Nktpao25VD+mxpFA/6zDZa1U/rZ5mwRTlNi5jeyKISwnnXJfG2pgjUiJcX1+MBKRYLYPjvPq5iaYXE=
+	t=1736267083; cv=none; b=Z/6oz5hk6gQhXsH/8YS9o7skywytczn+cRlMWsmc9hx0SU6PswFYiwI8TPuXTRptwswQFOOA0d82ZFdZuWzAzVSH+SsRede+MalF7Kdg4x7ozDE04dROEzAxpZ02pZbUg8Ghjv1m39Yh4UAFdYoUG+tGzcknVXtTfQCPAfPIBqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736267085; c=relaxed/simple;
-	bh=zrrXf1/+/AsdMfF2w4VE1lDkpo67FOY3TtYB6kckC54=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gobx8acwc+7vnDmSb2vAXHuiSUbGowddmjADm7cqfLNMenxSYR03M/59rACY5ZhMpQTlnJ5nQbPAd4TSKqGJuZhc6Ie39sExPZX4JzdSFXyv+D8a6pD7JQw4q6Ep7PqAxL3AWMop+qqN77dtiLWPhhJ7sw1FfGVIN+lUVw5mk2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=DHS0ZXaM; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 507BeSmJ024138;
-	Tue, 7 Jan 2025 16:23:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
-	content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=pp1; bh=RcjMR6T0F5V8FrkZk
-	OrBCGGtxm5jEP5QJdi2MaC+njg=; b=DHS0ZXaMOBcvpR50nghOMeOK9rIsMNWjE
-	Tu5/NeSeeIxvg5BJwQTXR8D/5ApopvDM3kJwzP1G8jSgGTrNpuV8iSzRDYLgEl+d
-	vnYE4xmZkhKSv1Z2aJ7n5OidTlTbZla7taXY1G2iJNdIM5Gk1ZgsHZPmpZAAk8bw
-	YJaxGpJQrSI2nyqRZDR7mZFcih/JOlZz6dAe/pkZ8dy3BAOi7ijnxCdwXmTz9iq8
-	zQA227W95fSp8Pvkkx11P9K/iML+GYfFziDFvjEBDuwziwsGJGTIUalsd/50QcyC
-	cdITXl680HZySn/8jF167SsY2+eMkDqvJnhdCBaaMUhTSwx6qINgw==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 440sahm0tn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Jan 2025 16:23:57 +0000 (GMT)
-Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 507GEhim015079;
-	Tue, 7 Jan 2025 16:23:57 GMT
-Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 440sahm0th-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Jan 2025 16:23:57 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 507DsPDU027929;
-	Tue, 7 Jan 2025 16:23:56 GMT
-Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
-	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 43yhhk34nv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Jan 2025 16:23:56 +0000
-Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
-	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 507GNtcu29164224
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 7 Jan 2025 16:23:55 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3568058058;
-	Tue,  7 Jan 2025 16:23:55 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id EDFAF58061;
-	Tue,  7 Jan 2025 16:23:54 +0000 (GMT)
-Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
-	by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Tue,  7 Jan 2025 16:23:54 +0000 (GMT)
-From: Ninad Palsule <ninad@linux.ibm.com>
-To: minyard@acm.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, ninad@linux.ibm.com,
-        ratbert@faraday-tech.com, openipmi-developer@lists.sourceforge.net,
-        netdev@vger.kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-        devicetree@vger.kernel.org, eajames@linux.ibm.com,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 10/10] ARM: dts: aspeed: system1: Disable gpio pull down
-Date: Tue,  7 Jan 2025 10:23:47 -0600
-Message-ID: <20250107162350.1281165-11-ninad@linux.ibm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250107162350.1281165-1-ninad@linux.ibm.com>
-References: <20250107162350.1281165-1-ninad@linux.ibm.com>
+	s=arc-20240116; t=1736267083; c=relaxed/simple;
+	bh=lQbewE7pXPMzh05I2tta2ykuH5tjSFe60UQhYH1+Ysw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RLR7vWuFU63/wmhGqr5U5ghSHX32itBKY/E4Hmxb+2FD+XDpd2X9bhxmqgIH75iFW5hZ+TkTpA1/p8uUFLYT8g9vMfnp50KXt+cNHY/mNtvAx0UJ3eETgR1PzC8GTlAFs/P0ssrT1HKGeo+Ke8aGvO6KH2Ui0KWhXHO+ubVBK2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz; spf=pass smtp.mailfrom=stwcx.xyz; dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b=M9ouyZU7; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ITI393vw; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stwcx.xyz
+Received: from phl-compute-08.internal (phl-compute-08.phl.internal [10.202.2.48])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id E0C281140096;
+	Tue,  7 Jan 2025 11:24:39 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-08.internal (MEProxy); Tue, 07 Jan 2025 11:24:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm1; t=1736267079; x=1736353479; bh=3+/XHKlm0u
+	DWaGNf90vFoVIJ7tDwFWEFaxqH+12MDaI=; b=M9ouyZU7OxAYdpAtYZDUCD9BPU
+	fkATgBp7F+ak/a/vC19pFscf/A5FKmkZ7yLvTb2NKz1FSetCPAlW4D6yV+BHNmCU
+	F9/2bag+l7hUS8tOFZYv9Lzzsv2xVXugyM8eXTD7SOuz4VEaIuwYJst4hwtsYx+J
+	2EBBbNNq70LhQ+JZO22HZ/5SKEND/jLcmnzuimerYe056sp0XxrJf6g5wa94pko3
+	8UB0vsRSiCEQXgKSJxJs9ZNg3DW8SzWIJmzl8OP0QkntMj6msX+9m/ordQV58OTZ
+	KBLje+4tYforzbtYVBhep32iTcuQsN3NUMYNIhyBZOfffXyS6r1/jKmvlnNQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+	1736267079; x=1736353479; bh=3+/XHKlm0uDWaGNf90vFoVIJ7tDwFWEFaxq
+	H+12MDaI=; b=ITI393vwW+TCUpi3M/bOvD56LCvDfpnRjuKb//ChvuTYV0WGLOB
+	5YuO8E/UPW0NTF7NEAkcTP2jj5LlzU8lMBYahuwSrd7j9DdOS05lUuIniegWsyUv
+	vaJwf4RS51bJ02sFBb70r84CcLX4UqQ2Hp2rD2G6HYwuCb81yPiAjBNYHAC0Voyz
+	CpJ+J7kC+5UK8syPswP1YaDqpojfeHIKz0UAVfvaSMWbKqW49mgMDzVKZb5OALLO
+	zocXCBRwCycIoIFL2WVBoCoNu0kj9CPPqmAV+wIQSMtG9IldrEbnzU5dYVSY+ncX
+	cIWdiqnp6dJxcgSKk6atDcD3GzF8a3oIkVw==
+X-ME-Sender: <xms:RlV9Z9SJYKjh6p5FdooEkexQpJ-UaY4KCxTinCCXQcS0t-nV8qTTCg>
+    <xme:RlV9Z2xDVZwHUVbqCk76FvffJqFE-HWzYIC0oxQC_45ZjHkfsNeZzX4k_P188AVEe
+    0A_h8lhleyE8dhVJt4>
+X-ME-Received: <xmr:RlV9Zy0V0fHkJpDBnfWkESqpVkabgs_U2RgLySVB0mUdXff5bAC0uBQaIg4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudegvddgkeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnegfrhhlucfvnfffucdlfeehmdenucfjughrpeffhffvvefukfhf
+    gggtuggjsehgtderredttddunecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmsh
+    cuoehprghtrhhitghksehsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpefgkefg
+    vdevgeeukedvgeegtddvjeevgedtffdvfeeiudfhteelvdfgvdduudffjeenucffohhmrg
+    hinhepghhithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghm
+    pehmrghilhhfrhhomhepphgrthhrihgtkhesshhtfigtgidrgiihiidpnhgspghrtghpth
+    htohepledpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprghnughrvgifsegtohgu
+    vggtohhnshhtrhhutghtrdgtohhmrdgruhdprhgtphhtthhopeguvghvihgtvghtrhgvvg
+    esvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhk
+    vghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlih
+    hnuhigqdgrshhpvggvugeslhhishhtshdrohiilhgrsghsrdhorhhgpdhrtghpthhtohep
+    lhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
+    eprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghr
+    nhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtohepjhhovghlsehjmhhsrdhiugdrrghu
+X-ME-Proxy: <xmx:RlV9Z1Dea5_OSCTwNOJegcT-Z_vLR8l8RdK9CPdJhoLJqBCVyjSFAg>
+    <xmx:RlV9Z2hMrViWT7lcy3j733YtpkOOuTnZDkjM7oLF626LnPPngbvUIA>
+    <xmx:RlV9Z5qUNZX4Dq7JQiY3ALEDtQuw5mB06Ccqs-LHH_sWmVf0PXMzBQ>
+    <xmx:RlV9Zxgz6Kc0utIRFErPCP6RuC_bEZlTNh1mDGyh8FgSllnibUs1vQ>
+    <xmx:R1V9ZxMzdSuo3mUY3FpoR03yjUr-RLfJGpb8vl1jiFv9-b-_QoNWwA-I>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 7 Jan 2025 11:24:38 -0500 (EST)
+Date: Tue, 7 Jan 2025 11:24:37 -0500
+From: Patrick Williams <patrick@stwcx.xyz>
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Subject: Re: [PATCH] ARM: dts: aspeed: yosemite4: adjust secondary flash name
+Message-ID: <Z31VRZg2LTd36S4n@heinlein>
+References: <20241218212458.3050775-1-patrick@stwcx.xyz>
+ <e3279e0c41259f165a0cde0195b196f416ac566a.camel@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: D4vXWk0vi_GwOICiYmsf9G8LclvOso-d
-X-Proofpoint-ORIG-GUID: 7ANfbzWciaknOUsP1UAgJFshdmw0FeHZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
- adultscore=0 mlxlogscore=885 impostorscore=0 priorityscore=1501
- clxscore=1015 lowpriorityscore=0 spamscore=0 suspectscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501070133
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="PAVj/NgUE1LkrRTU"
+Content-Disposition: inline
+In-Reply-To: <e3279e0c41259f165a0cde0195b196f416ac566a.camel@codeconstruct.com.au>
 
-Disable internal pull down for the following GPIO lines.
-- GPIOL4 - Reset PCH registers in the rtc.
-- GPIOL5 - Reset portition of Intel ME
-- GPIOL6 - FM smi active
-- GPIOL7 - psu all dc power good.
 
-Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
----
- .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+--PAVj/NgUE1LkrRTU
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-index 8026c67ecaee..cf511d0a9421 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-@@ -355,7 +355,35 @@ &uhci {
- 	status = "okay";
- };
- 
-+&pinctrl {
-+	pinctrl_gpiol4_unbiased: gpiol4 {
-+		pins = "C15";
-+		bias-disable;
-+	};
-+
-+	pinctrl_gpiol5_unbiased: gpiol5 {
-+		pins = "F15";
-+		bias-disable;
-+	};
-+
-+	pinctrl_gpiol6_unbiased: gpiol6 {
-+		pins = "B14";
-+		bias-disable;
-+	};
-+
-+	pinctrl_gpiol7_unbiased: gpiol7 {
-+		pins = "C14";
-+		bias-disable;
-+	};
-+};
-+
- &gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpiol4_unbiased
-+		&pinctrl_gpiol5_unbiased
-+		&pinctrl_gpiol6_unbiased
-+		&pinctrl_gpiol7_unbiased>;
-+
- 	gpio-line-names =
- 	/*A0-A7*/	"","","","","","","","",
- 	/*B0-B7*/	"","","","","bmc-tpm-reset","","","",
--- 
-2.43.0
+On Tue, Jan 07, 2025 at 03:44:04PM +1030, Andrew Jeffery wrote:
+>=20
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0status =3D "okay";
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0m25p,fast-read;
+> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0label =3D "bmc2";
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0label =3D "alt-bmc";
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0spi-rx-bus-width =3D <4=
+>;
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0spi-max-frequency =3D <=
+50000000>;
+> > =A0=A0=A0=A0=A0=A0=A0=A0};
+>=20
+> I'm hitting conflicts (?) when I apply this on top of[1]. Do you mind
+> rebasing it?
+>=20
+> [1]: https://github.com/amboar/linux/tree/for/bmc/aspeed/dt
 
+Sure.  It looks like someone elsewhere changed the spi-rx-bus-width
+which is causing the conflict.  I'll resent a rebase.
+
+I'd like this backported to the openbmc tree also.  Not sure which
+version is best for that tree right now.
+
+--=20
+Patrick Williams
+
+--PAVj/NgUE1LkrRTU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmd9VUQACgkQqwNHzC0A
+wRnm6Q/9HIRQVMEheGRvQkFPPiZna4IbkT/Z2CMi7dI/wcwY2Pq3IMVZEBpuUGha
+XE1lgC0wJUgeNRMZtR/FlrTOz5PMMhPyfZ6HuqmnZtxp9Gn6ABnIJA8VeTIVx1Px
+immzzeMOgIFBX5Fa882qv3Dt/gdES6OK0Atz/iNTml/wBpXgEkfJRglGfzoKvZQU
+L4RSg/97uRmMFjfuwExu9uqRcx6Dm9KRaCyLxnPphyeMYJh3ZDMD8O6FzEuq7IWA
+20x0LwtNkLcRXeFCh35qtUpHeXUsAKrieTqCv4B2MvLH3ULHUoOYQEiyjsNl4/nV
+rip++J+YuLli3l4ASsO3Q7nO5LDN8aFZWcN75KGhfADizDLx/mABSvVIgi4TVKC4
+oaMiGylQJPtNeylH0Q1M3c7Bxiu6ZkzQrZwxyo9vhrxpSLYdXWLj3lLAlxkr1kJE
+JJelTjLSaq6hrYElLRS52h1/uGa/PlRIil2LJ+y8kHRaAkD4XAj2+tyhNiFUaOww
+A7XQCQhzkbxpdt3Sx9BkK1O9jUo+B9xQNxU4jVutVK89gz9o3vFgCRG7D+LTxxZP
+6+2oNprwRqivfZxpO4fX1CtlXc1oP2AZax0kvwyX9mHlWiIpKQz+fzfoQRz8Nx6W
+ZVbOW7hAH2n18B0fmCyuqcuMGAk/bDiSJAWcPON42gfXteuRHHc=
+=KDov
+-----END PGP SIGNATURE-----
+
+--PAVj/NgUE1LkrRTU--
 
