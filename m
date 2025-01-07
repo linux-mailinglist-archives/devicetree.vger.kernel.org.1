@@ -1,128 +1,125 @@
-Return-Path: <devicetree+bounces-136192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A942A042A7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:34:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15E78A042B9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:38:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A78E1881733
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:34:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 292787A129E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:38:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBA7B1EE7CB;
-	Tue,  7 Jan 2025 14:34:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D60D1E5738;
+	Tue,  7 Jan 2025 14:38:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jhbVWt/P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA13E1E9B00;
-	Tue,  7 Jan 2025 14:34:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E591D958E
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 14:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736260485; cv=none; b=VSgkjGSR16fX9xA3XCBTX9jJf+1Lmg4UWpQd8D0Nw4e1oyqlidRNFGk7yh8ICIVWk/5F0AmukuCSjPmSaxAMhANe8+LIqFFK87nyvEsh6a/KyvMLuebAK8riVKyMSUu3/rkojexI3LeXBOv8lAEQ4D409WT0ODFCiWUWedurVBw=
+	t=1736260715; cv=none; b=LcHWE8GqexKEMgVQ4+K7gVOj98GFtKlVgT7M08t6mF5bbrG1f9QBxN5ZbHoMgLAnj1ODOW0/h08qXDMZaNrhR9+2+1PMO/wBS4owQ02HOg/1HfP/5Usf7xP53mNjLJsxAWEZEjZRx/gevZmzwMOx5kShLzfhpKLB4QpjIbmv5sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736260485; c=relaxed/simple;
-	bh=NnEuU732Q2GHB9/XmZ0w1TBbyujLhtEnhhQNwBl2Ylk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pQBLUQRATZjIPvzo6HVs1b3AtTftM8mW+35sjTn/9tGlHlqvz8DYscUpgc4X1RHvwThjLS12CpFzeFOgTjQr0jH3eXrOLBHQbs5mzqe7dCPe8F0+/wA3f4HgRUvFM01JwbZ7b+ntm9j0Thyx8pHeHAQqOCrcAocKRCxetVDOd4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 520CC1424;
-	Tue,  7 Jan 2025 06:35:10 -0800 (PST)
-Received: from [10.57.4.77] (unknown [10.57.4.77])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 40AF73F59E;
-	Tue,  7 Jan 2025 06:34:40 -0800 (PST)
-Message-ID: <bb0c95b6-760d-4de1-bc28-8f82e2fc5dd5@arm.com>
-Date: Tue, 7 Jan 2025 14:34:38 +0000
+	s=arc-20240116; t=1736260715; c=relaxed/simple;
+	bh=EAOJ9Cy4whUatGc01tErXLm3u1bA9IGZtdlzgfVjk20=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lPZGqX35QyEWDfYKOolhL/4HczeeWrMGajBhUJFJ7EFq5dcaIpiCwleQeDJn9KpBSt8qtRxDH+YzuDlQZJWfl3ClTdbWT7MqhNtilSbwOhtIOewLtzckYMKUjO0vEdvTQO+5oojLJLvVNiFZHiNVmg6jAAaExrZpNzCZWVk/IdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jhbVWt/P; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-436a03197b2so59433865e9.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 06:38:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736260710; x=1736865510; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qo9P0YtQuqJXCqr05Qb0Bv72irxJaHvuePVGR1s+GJw=;
+        b=jhbVWt/PCJUaK4jCxtfVQcf/BqyhKHT1mcv/XIzkoA+pKCBd+kbyD2timM2jWDmKmt
+         h32X3FdDoyFb/IpWQV3BY+zV8QJ3Fv2PECWFtSnueoyDe/xtsm1JZzTtASshXUkXRdqX
+         uxuQZnHcs8va5viV5jlcO0NF9ZAoCTs39ZYAuT7pqPx54TBFc5eClGCdPLeOW8YYOtBy
+         1FiSvzhj3aPmGWRWkvdtosm0UM9XE606VmP8myXSC5N2e9UeeEzPNeMcjOudu+Q6Cm95
+         VU9q4NqZ4od6BacY9QNS9JLAri5TGpstkHHaWIYm4Ufx3YQJqqEZ0dWXpiW40SRQN/sb
+         u+Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736260710; x=1736865510;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Qo9P0YtQuqJXCqr05Qb0Bv72irxJaHvuePVGR1s+GJw=;
+        b=EF6XO3Li59jcwcvvzFCSisYyaw7hf8p0zXCDqzNzkmK2+h7GZ42Zn4+Ot4FA3NYX6p
+         GGHF9Ive3uzuLnFlr8UYDYpFM6JcBRUmmyESYmO3swQgf7YDunvnW6ILy7rsobTZOkbU
+         QZzaRbEkR5G3EmXNBeLaFV2bZCjhXHepdYit+yNWsvwi9OJszpcN2kraok0Pjc6lD3Ut
+         +HIKmsjhxkRzqIZVpxwaYd9qke/r5cW5svPI0JIR8nGRRktvomTzw/+tp8xZYqTnNfEz
+         zkaceMeOokEp64lmh+q2RcS9lsSnI9eQZus3ismjtZAAjQhYLotjcs0keQUmGTPlWTcS
+         FZXA==
+X-Forwarded-Encrypted: i=1; AJvYcCXqqOeWni6iNa9EZCHe7zvDDwOpmzOJdOLrs8xMpZUteBOWB+kFT77pLvlfdxhijHjDHK8LvilQUN5/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSf3Sqr4rFHYExRvYH68R5OWWAzCyY5Ypjf4vAii+AyBp4zcpZ
+	3aADbtXe6UOJXkIhRq4XfNU7/sLu8oqgKtNgbU5NFa6xI8Ct4rFAF9hvoywARoE=
+X-Gm-Gg: ASbGncuWMwWFJ8In9tLbjHwPT4ieWkR2k+mh/kYQP6EWhSor74S4013ENv1vhSuvmPd
+	yrdeKKXhrzjgKlxxOenIVLyyvJ6ctiABhv5SYKe+xryYP8lDSaT4/s+3vwzcOVW27HVcL7E829R
+	5mjkVq+gGE0OhkJJDMv5olkHWb8fifYSE2EL/oX4lyb2fKJGGyMWRl6xrYnciD8DhBG6gz7Zykf
+	AD/8YrMWasydpA4KVMhz0gGyqva5qP0j3Nz+5RQaT6uyAqGpSrBr5s=
+X-Google-Smtp-Source: AGHT+IFIF4I4xKP46VS5zqZ0+vproNT/iu73lhD9pH8Af1WZX6MRdbruwQE3ujvVRC8CO0SgR54++A==
+X-Received: by 2002:a05:600c:68d7:b0:434:f270:a513 with SMTP id 5b1f17b1804b1-4366d357401mr499304255e9.29.1736260710425;
+        Tue, 07 Jan 2025 06:38:30 -0800 (PST)
+Received: from linaro.org ([86.121.162.10])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8acadcsm50023052f8f.105.2025.01.07.06.38.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jan 2025 06:38:29 -0800 (PST)
+Date: Tue, 7 Jan 2025 16:38:28 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e78100-t14s: Enable fingerprint
+ reader
+Message-ID: <Z308ZCrnsaLReaIX@linaro.org>
+References: <20250107-x1e80100-t14-enable-fingerprint-sensor-v1-1-8fd911d39ad1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] arm64: dts: morello: Add support for common
- functionalities
-Content-Language: en-GB
-To: Jessica Clarke <jrtc27@jrtc27.com>, Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Linus Walleij <linus.walleij@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Russell King <linux@armlinux.org.uk>
-References: <20250103181623.1980433-1-vincenzo.frascino@arm.com>
- <20250103181623.1980433-3-vincenzo.frascino@arm.com>
- <CAL_JsqLYu_z6yNA-MgKgoA=nC5ftzOEH5UNkswA_=xTJiOB0+g@mail.gmail.com>
- <Z30kbmA-3h-Rhg7l@Jessicas-MacBook-Pro>
-From: Vincenzo Frascino <vincenzo.frascino@arm.com>
-In-Reply-To: <Z30kbmA-3h-Rhg7l@Jessicas-MacBook-Pro>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250107-x1e80100-t14-enable-fingerprint-sensor-v1-1-8fd911d39ad1@linaro.org>
 
-Hi Jessica,
-
-Thank you for your review.
-
-On 07/01/2025 12:56, Jessica Clarke wrote:
-> On Fri, Jan 03, 2025 at 04:14:31PM -0600, Rob Herring wrote:
->> On Fri, Jan 3, 2025 at 12:16 PM Vincenzo Frascino
->> <vincenzo.frascino@arm.com> wrote:
->>> +       cpus {
->>> +               #address-cells = <2>;
->>> +               #size-cells = <0>;
->>> +
->>> +               cpu0: cpu@0 {
->>> +                       compatible = "arm,neoverse-n1";
->>
->> I'm pretty sure the N1 doesn't support CHERI/morello. Perhaps
->> "arm,neoverse-n1-morello" if we want to capture what it is derived
->> from and since "arm,morello" is taken already.
+On 25-01-07 15:35:07, Abel Vesa wrote:
+> On Lenovo ThinkPad T14s, the fingerprint reader placed in the power
+> button is connected via the usb_2 controller. The controller has only
+> a USB 2.0 PHY which is then connected via a NXP PTN3222 eUSB2 repeater,
+> which in turn is connected to the Goodix fingerprint reader.
 > 
-> Rainier is the codename of the core itself, and Morello LLVM recognises
-> -mcpu=rainier not -mcpu=morello (there's -march=morello instead), so
-> perhaps it should really be "arm,rainier". Though SMBIOS reports it as
-> Morello-R0P1 so it may be best to use "arm,morello" here.
+> So enable all the usb_2 controller and PHY nodes, set dual-role mode to
+> host and describe the eUSB2 repeater in order to get the fingerprint
+> reader discovered.
 > 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-We agree on the concept. It should either be "arm,rainier" or "arm,morello-r0p1"
-if we want to capture the information of SMBIOS. When we reach consensus I will
-update the patches accordingly (Please have a look at my reply to Rob).
+Turns out that on resume a couple of things are broken w.r.t. to the usb_2 controller:
 
-> The real problem is that the board compatible has changed to include a
-> generic "arm,morello" node, with the argument that a v2 board could
-> appear. So why not instead change *that* to be something like:
-> 
->   compatible = "arm,morello-sdp-v1", "arm,morello-sdp";
-> 
-> Then you can use "arm,morello" here for the cores.>
+[   41.104913] arm-smmu 15000000.iommu: Unhandled context fault: fsr=0x402, iova=0xe2010600, fsynr=0x110001, cbfrsynra=0x14e0, cb
+[   41.104936] arm-smmu 15000000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x14e0
+[   41.104950] arm-smmu 15000000.iommu: FSYNR0 = 00110001 [S1CBNDX=17 PLVL=1]
+[   51.420689] xhci-hcd xhci-hcd.6.auto: xHCI host not responding to stop endpoint command
+[   51.420702] xhci-hcd xhci-hcd.6.auto: xHCI host controller not responding, assume dead
+[   51.420720] xhci-hcd xhci-hcd.6.auto: HC died; cleaning up
+[   51.420836] usb 5-1: PM: dpm_run_callback(): usb_dev_resume returns -22
+[   51.420864] usb 5-1: PM: failed to resume async: error -22
 
-The name morello on its own is too overloaded of meaning if we do not specify to
-what we are referring to.
+So do not apply this yet.
 
-> Though some of this may depend on what the FVP's DTS looks like; is it
-> going to claim to be a Morello SDP, or does there need to be a common
-> denominator compatible beneath that it can use?
-> 
-
-I still did not start bringing up to speed the DTS for FVP but I think that we
-should distinguish in between SDP and FVP since not everything is the same,
-hence it should have something similar to:
-
-	compatible = "arm,morello-fvp", "arm,morello";
-
-> Please CC me on future versions of this series.
-> 
-
-Will do.
-
-> Jess
-
--- 
-Regards,
-Vincenzo
+Sorry for not testing this properly before sending.
 
 
