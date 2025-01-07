@@ -1,139 +1,162 @@
-Return-Path: <devicetree+bounces-136155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F770A04108
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:42:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D4EA04121
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46D59164B6E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:42:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77B183A47B2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8181F0E2E;
-	Tue,  7 Jan 2025 13:42:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E45E1F03C9;
+	Tue,  7 Jan 2025 13:47:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="e1o7maD7"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="CAuHcqGN";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Gp8ECD2a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6266F1F03EC;
-	Tue,  7 Jan 2025 13:42:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A1B1E0DED;
+	Tue,  7 Jan 2025 13:47:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736257352; cv=none; b=ZDnQHZpVZebHXcDdUD92/me1eh6CMTPZzxOkEZUCn3Al6d6qyX+siv6EjMOC+m1wYnU2wVYGNnmpVPfCAXaJi5iqFvgLLI3oBWObwpjz/2H79or6j5UYa/KlBAJOxT0gQ7UaN8Ie2JYNgFkj9LeJCy2UOwbJZDrn9mzErXmvEoA=
+	t=1736257671; cv=none; b=Hdw33S3QojFMSjDhizcpdYp9C+tRYViMS2yPzzCSJaxe2VQxeusOy1atSzsszcqGZzHotO/VUi9GDfITF1+5jBVTYm6ecf6Tqm2lXNccXz1Vmum8CJgoXz6146Ukbq94BmsMbqBI+7n7hvqj3CJytgdxgFfE5ZSM/0y2yMUfaeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736257352; c=relaxed/simple;
-	bh=DxBCBG3KHLbNWZya8dTZl+4N8KLDj6TlqP3KG2ooCWA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Mg4aizTDJxXoAYMcP7Q7cvfgzl/Q/jEmsvMkY3A1PZ8YVyHkMimIgqhc//pqthBnBE/bGplvISJqjw64yhi66nMkrpSaRmq77/axhdCzGs0RFuMMKltfOzI5MQmzNx41/VX/avsOfqkB/ARgT1Rj1wLdk9dzlT3Xrux4Nfa1kds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=e1o7maD7; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 507Ah80c028463;
-	Tue, 7 Jan 2025 13:42:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QaeC6FcQb3CQQaHW/YVddDakWjrKK8InYEjT/kI0u+g=; b=e1o7maD7IQXOVwAt
-	BOjpMZKw+MkA6k4C5KVC+Bt0sSOQpo0Kmv7AE6BPl75eu9RHsxym5E89LQggfmP7
-	0Sz5vgWzRoayuMYub0DYarOauxryqTbByC0Gl45KAu2MzVE4xOzVeNnyktjz3Tbj
-	LSlmoShvQhPIrBqBlbF4qlGsW3AvVWeodUVAYOuR50SnOHtkKQPpNhIanBKXeUTn
-	0P2LDOgXPNY96iIKX5G5aFggZ444wZNCNzOL2ZJ4k4ogv5fDtOxAQlqdQhomAPm9
-	Q6fUVyAYN77aP7ghiNaitrolqGfrzF3Nd1NgZ8KbhzOJA51PTUGh5KVnUTj46kjp
-	NhEvqg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4412r78dw9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Jan 2025 13:42:22 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 507DgLHU025013
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 Jan 2025 13:42:21 GMT
-Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 7 Jan 2025 05:42:17 -0800
-From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-To: Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz
-	<luiz.dentz@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Balakrishna
- Godavarthi" <quic_bgodavar@quicinc.com>,
-        Rocky Liao <quic_rjliao@quicinc.com>
-CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
-        <quic_anubhavg@quicinc.com>, <linux-bluetooth@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v7 1/1] dt-bindings: bluetooth: Utilize PMU abstraction for WCN6750
-Date: Tue, 7 Jan 2025 19:11:57 +0530
-Message-ID: <20250107134157.211702-2-quic_janathot@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250107134157.211702-1-quic_janathot@quicinc.com>
-References: <20250107134157.211702-1-quic_janathot@quicinc.com>
+	s=arc-20240116; t=1736257671; c=relaxed/simple;
+	bh=bCMttcWQirNicytx6ykU0QZpRRftXACwB5o3zdvB5x8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UGD10H9o5Yp66T8Eoe/5tjQvEdKwoWi/h5UHsxXBZ5Sp0qNMCoq7bR+qVxNZ/eR7aceq9/eavPGr28tmu9WTenN3sFctucJXsnZcuC+3zRlFNxChPKmUGKxOTt3VYzxkF5D4J5l1Bj4kVGf03GJ5WCm8b+bDowSCAGdqforo5U0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=CAuHcqGN; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Gp8ECD2a reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1736257666; x=1767793666;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=H2JiFyCh/Tl5YOwhVHC+9/o2zm1iU1FIoUS3LVDCVQM=;
+  b=CAuHcqGNaufqPWJp7fGS5bsTGqRC6pb794W+/8MZkaL4uQn4ahO/wePn
+   01mgAosms7/ZUOmDZc/ERincOyBSOjdWKUkOxj5LnogmDG1mUVk+3B1XX
+   BYtZr2E1Ab19/sZnGhznkJczMBek3d5bqAi4nmxgCyWPusMbPpEPxRu3h
+   koDUZg0L1EQKMdiA8un2Z9BMpE79iq45Av0wRaYuNEuShC+yDH3HBrBtY
+   WKvJ+5+H6PIyjzJPHDwckFPUbGZzJ1hJh8NihF87savy7co0jdrYx6L2Y
+   1BBe9RC4nz3+yaZel5x/ha4mjhXNucttajc4sQIVuNJTOh81aHr2FTNsv
+   A==;
+X-CSE-ConnectionGUID: OVZasUpRQum1PZsDd73xFw==
+X-CSE-MsgGUID: mYpmTubRRzSDooSbu505XQ==
+X-IronPort-AV: E=Sophos;i="6.12,295,1728943200"; 
+   d="scan'208";a="40895891"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 07 Jan 2025 14:47:43 +0100
+X-CheckPoint: {677D307F-16-3C670366-E45AD810}
+X-MAIL-CPID: D9326B8D606E51C9C554D2FC41D37A2A_4
+X-Control-Analysis: str=0001.0A682F28.677D307F.00A7,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 12BB0164990;
+	Tue,  7 Jan 2025 14:47:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1736257658;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=H2JiFyCh/Tl5YOwhVHC+9/o2zm1iU1FIoUS3LVDCVQM=;
+	b=Gp8ECD2aEaJ2EoPlQW15Ikeq6rQoBFt/xYZHffSmoaiTRcEt3DyE1007ghx7QUsh6rWleF
+	lVKVhAGrvYWx+CEhDIzb+u3GFfHUIrNePQeY7nizrT961wk3aoCy86jbq9k1WGCr1X2RnA
+	ooMJ7bMSMZAzRbH4f4WwI+NhT3Gr9T1Q7ZZihIWPpiYe4ojX3SOqQh+a2FQ3vSheOrwhcX
+	F5L14kcteB5aHapjOda7uYt6BTq6MW8VaLetOMmY5he1vQAsX4D0qjLcLXWBDFl5WpEvRR
+	JInTk5xg/jzac1LcmHiQQC7oyqGly+SMY4vt8KxMP12YKK3wIRlQbd7PMldfJg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Justin Chen <justin.chen@broadcom.com>, Al Cooper <alcooperx@gmail.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Florian Fainelli <f.fainelli@gmail.com>, Benjamin Bara <benjamin.bara@skidata.com>, Bjorn Andersson <andersson@kernel.org>, Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>, Del Regno <angelogioacchino.delregno@collabora.com>, Tianping Fang <tianping.fang@mediatek.com>, Jassi Brar <jaswinder.singh@linaro.org>, Biju Das <biju.das.jz@bp.renesas.com>, Yoshihiro Shimoda <yoshihiro.shimod
+ a.uh@renesas.com>, Francesco Dolcini <francesco.dolcini@toradex.com>, Macpaul Lin <macpaul.lin@mediatek.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: usb: Correct indentation and style in DTS example
+Date: Tue, 07 Jan 2025 14:47:27 +0100
+Message-ID: <10618962.nUPlyArG6x@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250107131015.246461-1-krzysztof.kozlowski@linaro.org>
+References: <20250107131015.246461-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gOwSANQoEyrXjoMXLUv0QlWhAttSYLtk
-X-Proofpoint-ORIG-GUID: gOwSANQoEyrXjoMXLUv0QlWhAttSYLtk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=862 malwarescore=0 mlxscore=0 clxscore=1015 spamscore=0
- suspectscore=0 phishscore=0 adultscore=0 impostorscore=0
- priorityscore=1501 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2501070115
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-We are now using the on-chip PMU node for power sequencing to manage the
-enable/disable functionality of Bluetooth. Consequently, the inputs
-previously marked as required under the Bluetooth node can be removed.
+Am Dienstag, 7. Januar 2025, 14:10:13 CET schrieb Krzysztof Kozlowski:
 
-For instance, the enable GPIO is now managed by the PMU node with the
-property bt-enable-gpios.
+> DTS example in the bindings should be indented with 2- or 4-spaces and
+> aligned with opening '- |', so correct any differences like 3-spaces or
+> mixtures 2- and 4-spaces in one binding.
+>=20
+> No functional changes here, but saves some comments during reviews of
+> new patches built on existing code.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/usb/aspeed,usb-vhub.yaml         | 40 +++++++++----------
+>  .../devicetree/bindings/usb/brcm,bdc.yaml     | 14 +++----
+>  .../devicetree/bindings/usb/cypress,hx3.yaml  | 24 +++++------
+>  .../devicetree/bindings/usb/dwc2.yaml         |  4 +-
+>  .../devicetree/bindings/usb/fcs,fsa4480.yaml  | 20 +++++-----
+>  .../bindings/usb/intel,keembay-dwc3.yaml      | 30 +++++++-------
+>  .../devicetree/bindings/usb/ite,it5205.yaml   | 18 ++++-----
+>  .../bindings/usb/maxim,max3420-udc.yaml       | 28 ++++++-------
+>  .../bindings/usb/nvidia,tegra210-xusb.yaml    |  4 +-
+>  .../bindings/usb/renesas,rzv2m-usb3drd.yaml   | 36 ++++++++---------
+>  .../bindings/usb/renesas,usb3-peri.yaml       | 24 +++++------
+>  .../devicetree/bindings/usb/ti,hd3ss3220.yaml | 38 +++++++++---------
+>  .../bindings/usb/ti,tusb73x0-pci.yaml         |  6 +--
+>  .../devicetree/bindings/usb/ti,usb8020b.yaml  | 20 +++++-----
+>  .../devicetree/bindings/usb/ti,usb8041.yaml   | 16 ++++----
+>  15 files changed, 161 insertions(+), 161 deletions(-)
+>=20
+> [snip]
+> diff --git a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml b/Docu=
+mentation/devicetree/bindings/usb/ti,usb8041.yaml
+> index c2e29bd61e11..bce730a5e237 100644
+> --- a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+> @@ -51,17 +51,17 @@ examples:
+> =20
+>          /* 2.0 hub on port 1 */
+>          hub_2_0: hub@1 {
+> -          compatible =3D "usb451,8142";
+> -          reg =3D <1>;
+> -          peer-hub =3D <&hub_3_0>;
+> -          reset-gpios =3D <&gpio1 11 GPIO_ACTIVE_LOW>;
+> +            compatible =3D "usb451,8142";
+> +            reg =3D <1>;
+> +            peer-hub =3D <&hub_3_0>;
+> +            reset-gpios =3D <&gpio1 11 GPIO_ACTIVE_LOW>;
+>          };
+> =20
+>          /* 3.0 hub on port 2 */
+>          hub_3_0: hub@2 {
+> -          compatible =3D "usb451,8140";
+> -          reg =3D <2>;
+> -          peer-hub =3D <&hub_2_0>;
+> -          reset-gpios =3D <&gpio1 11 GPIO_ACTIVE_LOW>;
+> +            compatible =3D "usb451,8140";
+> +            reg =3D <2>;
+> +            peer-hub =3D <&hub_2_0>;
+> +            reset-gpios =3D <&gpio1 11 GPIO_ACTIVE_LOW>;
+>          };
+>      };
+>=20
 
-Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
----
- .../bindings/net/bluetooth/qualcomm-bluetooth.yaml           | 5 -----
- 1 file changed, 5 deletions(-)
+=46or ti,usb8041.yaml:
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-index 7bb68311c609..6906e1742d6c 100644
---- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-+++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-@@ -154,16 +154,11 @@ allOf:
-               - qcom,wcn6750-bt
-     then:
-       required:
--        - enable-gpios
--        - swctrl-gpios
--        - vddio-supply
-         - vddaon-supply
--        - vddbtcxmx-supply
-         - vddrfacmn-supply
-         - vddrfa0p8-supply
-         - vddrfa1p7-supply
-         - vddrfa1p2-supply
--        - vddasd-supply
-   - if:
-       properties:
-         compatible:
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
 
 
