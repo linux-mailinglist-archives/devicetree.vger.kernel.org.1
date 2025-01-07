@@ -1,88 +1,87 @@
-Return-Path: <devicetree+bounces-136121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CDDAA03F05
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:24:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F6CA03F09
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:25:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC0677A261D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:24:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E0B83A434D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACBF1E25FE;
-	Tue,  7 Jan 2025 12:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C2C1EE008;
+	Tue,  7 Jan 2025 12:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RFhuSr//"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HwR6yB3t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2ADD14B087
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:24:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D75F1E0DD1;
+	Tue,  7 Jan 2025 12:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736252654; cv=none; b=rZW6up64ey/OHwLxzgDZeRSD1NUf+LxbB1ci2EmKihpc/gN2wSGHEiBDsWiFpiF8BcWbdU7WNAu/9/uhOMaDQtKAY2QWAnHojOZa7Vznjd3BirawbrfWx2hn2P5oEqNohqSqf9GXrnigdtRuhpxiR9y5U+MCCO4bfCS2cT7oct8=
+	t=1736252714; cv=none; b=Om0sK8+fR8U6b9E076ZtlSg0pPopbtPjn0U1wWFFP8ClWlGCgOr3XnpqN/JM98/Zz9p/044t6XRc0TqTVW2oRSmHi0d+dmUfrN5LLcaH85AzBDW8k0bQgXVqYrBS9jdIdfLMNw+Qxbjhq6xZA3uuPJj561ViXxhE88zGRXB/BBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736252654; c=relaxed/simple;
-	bh=Ved/w3Cr0aHwMmUTUkkgr8gzvnQZRWZmvxRkeCXncjs=;
+	s=arc-20240116; t=1736252714; c=relaxed/simple;
+	bh=uKpuN0WZd9vVEiVj4SEyuarv69NHmOZ8lL7reHm2oTY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kHZm3ySh4oGpZjEEBKTPd84J7KYPVum/eMy+KIQQZREgF7qG+rIIPtI8C/RUYfaTBQTZ3orVWrztBjQLYpA/I99h2sWH5VEXqhmTaopOEqxwLJp9N7WgXGi/1WJXBVf4U6W78Hlg/+HbKfW1QqevbCxicbI1P9D5rq3lcZbVedA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RFhuSr//; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3047818ac17so136859061fa.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:24:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736252649; x=1736857449; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CcK4pPUzky+xJBm/oJEKASVPPcaYHKT+Z8OSXvJ3HBM=;
-        b=RFhuSr//nSpCWlVNGeLmIQUZSrDHTBenVELmtWVReXcyyEm4+DMK9BQPP5o9u1EeeI
-         YTRs6JpAX8c8Z3f+Jfwykxfp6TBMazhC/EpvVXIgsESqO/WcXPmHa15cokzKHdj6WcpM
-         +c9oR3bVOiWo1vE7V/0qZr4wSRMax+iSbCeVpv+9sZa/JdsNZ3qIumUW0Y0Sf+68KLTu
-         GHLWABGSklUK/Qm3ssKJHZYqB882edwXkvzpzYRtJKvdDQlUb8v2yABfrK99noWhdY+U
-         PFsAFwwVmlEhFEXUC/liNVtxuam48UBWraIHsDERE4YYNd0h7CVVHMVkv/UUv6Raw2IY
-         pYUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736252649; x=1736857449;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CcK4pPUzky+xJBm/oJEKASVPPcaYHKT+Z8OSXvJ3HBM=;
-        b=AsWILT/hyGl9+JagV9e/eDxEyTXL4t9O7yrtJ+ep7I4nKAFx6rsiWwL5quZGI8jrll
-         uWDJ0Pau5L6pfcRlomb2hJ0HPBhvYrLqFxJbd3yp3CLfMTFCpKQC2aik+uPjD6ryeGi+
-         uEA3UlHR7PhNCkyoTZDVxjDeitbvRuEyzeb8pVknqoqxJg5GvlsrBuofMGlM/+OxFXZN
-         AoR/tdVxIJzsIvAnhKSLNq43UMA0OeXMA0P82MwQNHGYty/FWxBL9vGpvbjXwErcB5EW
-         EzEMm9QFKi/H5CXShY+9nykOynBeg/eu8eKBaihs7gnQ/k0GBf95kSOMfGLCiuPSaSZ6
-         19Ig==
-X-Forwarded-Encrypted: i=1; AJvYcCUCUMN9Kx5HPG5v2bveBlACIGHP6teorVn9vowVVo2yefivZ57QHQxlj2yb6EUFlBDlL+CUI2oM0qjQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyZRpKYD8qx3zRWX8SVY0XIXidtb/UA/XkcjdDqvyTFhJc47JV
-	b85OVQTpJaK1Sspvtik/ZyMYjEMlb5GQmgpQedUPRP7prZ/BiQsZHed4IlLWOcI=
-X-Gm-Gg: ASbGnct7Phta1WzL+TOCFmZwppTfJ34Gs9/9orckj/gcxIgXI3onbT12dTFs47DhNFh
-	De0H4BBCZvV6tx2G7AMPaS+cs7s0SgMBDCFJJwSVWmHsCBp0hlOmy+c5IjqCAwrEBhSygGFR4g4
-	+8dVZj6lzJppX9I8aSfpYNuqtQqkY/ytG6/jbqnFW6279+pDRTWLeArOKUXpuDGgqjAO+Z5GF23
-	MenXPL9OkSCV8bUuEW7lrzXp4aBj6p8QQp0JltbT9EWsiVgAgADMpYLXsB2GGZOh843fdBW5SJD
-	277SBexL9EU6PbIw4kGK79s6SHZiQF5yyY/p
-X-Google-Smtp-Source: AGHT+IEV5bUCaH/tirUXBo3Gg3ZrZZ9xhb9hq+JFjW19TixgsnKJ/bjfZlwlXb/bpuvcxI0EZhd4xw==
-X-Received: by 2002:a05:651c:150b:b0:302:1c90:58f5 with SMTP id 38308e7fff4ca-3046851fa66mr181197271fa.1.1736252649075;
-        Tue, 07 Jan 2025 04:24:09 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3045ad6c632sm59101751fa.21.2025.01.07.04.24.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2025 04:24:08 -0800 (PST)
-Date: Tue, 7 Jan 2025 14:24:06 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, andersson@kernel.org, mathieu.poirier@linaro.org, 
-	konradybcio@kernel.org, quic_mmanikan@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	quic_viswanat@quicinc.com, quic_srichara@quicinc.com
-Subject: Re: [PATCH V3 6/8] arm64: dts: qcom: ipq5332: add nodes to bringup q6
-Message-ID: <devb6nhgkshbrtiosrc34zwojvamhy75pb3n7poml4qkj2sq5l@wh4dx5uai2pk>
-References: <20250107101647.2087358-1-quic_gokulsri@quicinc.com>
- <20250107101647.2087358-7-quic_gokulsri@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kq9EdqKnELP7KEloxS0f/tSwlcnLAe97uh62tpDA+qSD7MHAER2TwSK4cjf2Rlns6JRPEtXT0+A+lUHYCPcpclVm4W6gNFCdqA9e9tRKbaXjVH9OvqC3k8l47zlHnzCSy5PH6PMJARDTidLsnfSplk9a1M4Z2pUJwXZ8X/6THc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HwR6yB3t; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736252712; x=1767788712;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=uKpuN0WZd9vVEiVj4SEyuarv69NHmOZ8lL7reHm2oTY=;
+  b=HwR6yB3tga+ve/HVD6XO53mayDz/owyTh84N3LnALMMbxevNq9i8Vnhp
+   OqrN401bTSgH6cW8HGW7u1wk+cD47XFyHIS86jBPkgkVeEypjjdu/e6Kz
+   /FdWaKexbe+yu4a/MB1XIQCXSPxxcJiglwcJhczT1Wx7zW6UYcUToi062
+   hsUjpZN7oDzMlgou262qF7mafyX+NNYGpz5HPBKZdgaRu3+1Y3ShAJ4Yj
+   L4PHU9/Y5xHyiHVUJN4DL3ZSt3eDg5zyvzoEkrlHFDfiCKr5LSXPf/ooM
+   8ZHp+1Ds7IkYShhLCTPa43k42HZaG4HbWK79VMjGoMrpiIBzx5XxJxVOR
+   w==;
+X-CSE-ConnectionGUID: MFX+1PnaS2W5RQtAXPTCkA==
+X-CSE-MsgGUID: pnF3xunoQYSR6HwQJgbCbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="40378866"
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; 
+   d="scan'208";a="40378866"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2025 04:25:11 -0800
+X-CSE-ConnectionGUID: +hXV3ZX9RpuUg18GG0ZvkQ==
+X-CSE-MsgGUID: oVObbeAYRLGujom+byUEaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="133645683"
+Received: from kuha.fi.intel.com ([10.237.72.152])
+  by fmviesa001.fm.intel.com with SMTP; 07 Jan 2025 04:25:06 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 07 Jan 2025 14:25:05 +0200
+Date: Tue, 7 Jan 2025 14:25:05 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Pengyu Luo <mitltlatltl@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 2/5] platform: arm64: add Huawei Matebook E Go EC
+ driver
+Message-ID: <Z30dIRA4MdtCp63q@kuha.fi.intel.com>
+References: <20250105174159.227831-1-mitltlatltl@gmail.com>
+ <20250105174159.227831-3-mitltlatltl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,68 +90,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250107101647.2087358-7-quic_gokulsri@quicinc.com>
+In-Reply-To: <20250105174159.227831-3-mitltlatltl@gmail.com>
 
-On Tue, Jan 07, 2025 at 03:46:45PM +0530, Gokul Sriram Palanisamy wrote:
-> From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> 
-> Enable nodes required for q6 remoteproc bring up.
-> 
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 64 ++++++++++++++++++++++++++-
->  1 file changed, 63 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> index d3c3e215a15c..85e10b20342a 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> @@ -2,7 +2,7 @@
->  /*
->   * IPQ5332 device tree source
->   *
-> - * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2022-2025 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->  
->  #include <dt-bindings/clock/qcom,apss-ipq.h>
-> @@ -146,6 +146,11 @@ smem@4a800000 {
->  
->  			hwlocks = <&tcsr_mutex 3>;
->  		};
+Hi,
+
+> +/* -------------------------------------------------------------------------- */
+> +/* API For UCSI */
 > +
-> +		q6_region: wcss@4a900000 {
-> +			reg = <0x0 0x4a900000 0x0 0x2b00000>;
-> +			no-map;
-> +		};
->  	};
->  
->  	soc@0 {
-> @@ -479,6 +484,39 @@ frame@b128000 {
->  				status = "disabled";
->  			};
->  		};
+> +int gaokun_ec_ucsi_read(struct gaokun_ec *ec,
+> +			u8 resp[GAOKUN_UCSI_READ_SIZE])
+> +{
+> +	u8 req[] = MKREQ(0x03, 0xD5, 0);
+> +	u8 _resp[] = MKRESP(GAOKUN_UCSI_READ_SIZE);
+> +	int ret;
 > +
-> +		q6v5_wcss: remoteproc@d100000 {
-> +			compatible = "qcom,ipq5332-wcss-sec-pil";
-> +			reg = <0xd100000 0x4040>;
-> +			firmware-name = "ath12k/IPQ5332/hw1.0/q6_fw0.mdt";
+> +	ret = gaokun_ec_read(ec, req, sizeof(_resp), _resp);
+> +	if (ret)
+> +		return ret;
+> +
+> +	extr_resp(resp, _resp, GAOKUN_UCSI_READ_SIZE);
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(gaokun_ec_ucsi_read);
+> +
+> +int gaokun_ec_ucsi_write(struct gaokun_ec *ec,
+> +			 const u8 req[GAOKUN_UCSI_WRITE_SIZE])
+> +{
+> +	u8 _req[] = MKREQ(0x03, 0xD4, GAOKUN_UCSI_WRITE_SIZE);
+> +
+> +
+> +	refill_req(_req, req, GAOKUN_UCSI_WRITE_SIZE);
+> +
+> +	return gaokun_ec_write(ec, _req);
+> +}
+> +EXPORT_SYMBOL_GPL(gaokun_ec_ucsi_write);
+> +
+> +int gaokun_ec_ucsi_get_reg(struct gaokun_ec *ec, u8 *ureg)
+> +{
+> +	u8 req[] = MKREQ(0x03, 0xD3, 0);
+> +	u8 _resp[] = MKRESP(UCSI_REG_SIZE);
+> +	int ret;
+> +
+> +	ret = gaokun_ec_read(ec, req, sizeof(_resp), _resp);
+> +	if (ret)
+> +		return ret;
+> +
+> +	extr_resp(ureg, _resp, UCSI_REG_SIZE);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(gaokun_ec_ucsi_get_reg);
 
-If the device is fused to use vendor keys, will the same firmware image
-work? If not, the remoteproc should be disabled by default and the
-firmware-name should go to the board file.
+Why not just take struct gaokun_ucsi_reg as parameter? I did not see
+this (or any of these) being used anywhere else except in your UCSI
+glue driver. So the prototype would be:
 
-And anyway, please use .mbn
+        int gaokun_ec_ucsi_get_reg(struct gaokun_ec *ec,
+                                   struct gaokun_ucsi_reg *reg);
 
-> +			interrupts-extended = <&intc GIC_SPI 421 IRQ_TYPE_EDGE_RISING>,
-> +					      <&wcss_smp2p_in 0 IRQ_TYPE_NONE>,
-> +					      <&wcss_smp2p_in 1 IRQ_TYPE_NONE>,
-> +					      <&wcss_smp2p_in 2 IRQ_TYPE_NONE>,
-> +					      <&wcss_smp2p_in 3 IRQ_TYPE_NONE>;
-> 
+> +int gaokun_ec_ucsi_pan_ack(struct gaokun_ec *ec, int port_id)
+> +{
+> +	u8 req[] = MKREQ(0x03, 0xD2, 1);
+> +	u8 data = 1 << port_id;
+> +
+> +	if (port_id == GAOKUN_UCSI_NO_PORT_UPDATE)
+> +		data = 0;
+> +
+> +	refill_req(req, &data, 1);
+> +
+> +	return gaokun_ec_write(ec, req);
+> +}
+> +EXPORT_SYMBOL_GPL(gaokun_ec_ucsi_pan_ack);
+
+I think you should add proper kernel doc comments to these exported
+functions.
+
+thanks,
 
 -- 
-With best wishes
-Dmitry
+heikki
 
