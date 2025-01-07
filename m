@@ -1,340 +1,244 @@
-Return-Path: <devicetree+bounces-135989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38A85A033D4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 01:15:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1805DA033D8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 01:15:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAB843A43D7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 00:15:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F7D31884E16
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 00:15:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08C418EAB;
-	Tue,  7 Jan 2025 00:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A5DBEEB2;
+	Tue,  7 Jan 2025 00:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pCYCCVm3"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="jW8NySyk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011030.outbound.protection.outlook.com [52.103.67.30])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB55360;
-	Tue,  7 Jan 2025 00:15:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736208913; cv=none; b=Sf7wl3EcIvoOnrKAa4tM4VNPt1h/+ir3UNgMCmjKVOGqQ9V+4XNwksWenrMvykWFBqN3ZlSeoxeJGs/5Bo9fWffiZLNI1DPWCR04hV56Fk66zC3ZnYSL/VC8lNuonhynIg25yAYzLLeK4FND2qS/mloSAS7lt9Q2BVEXh1T9uoE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736208913; c=relaxed/simple;
-	bh=75HxLXxulzWYGod70hg44JNSAjnoy/nx4xa2ykfMsNY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jj2MYN6DpsJ7Bcq83kAu2FHajIkfeKCsyDgTs8LEqjYmGCih5aWDPi3pjF3WYHFVYEPd83MmWo29XQXb7jx8cL3v3+q9NVxLzf0NvfaybZbfnqznjRb+P8nX2zx9yM4V7TsRJmoD06f2YcGBbP44IBXvUURpx23Z7WU2/iod9Lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pCYCCVm3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77CF2C4CED2;
-	Tue,  7 Jan 2025 00:15:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736208913;
-	bh=75HxLXxulzWYGod70hg44JNSAjnoy/nx4xa2ykfMsNY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pCYCCVm3VM61tkgAUjtSUeGqPWqFtTDV7MGs1hqFaQB8OlpY4QDw7OIeIq7Oj6dsN
-	 DAVAjG0BSuNuo6NGBsNxhgxA97wdVpaKharPzKCL/ioR7y0qmeNGjz1pHpvD/NXzoP
-	 C6TiRvormG7evZeE9BcYIkGDD6rvIG5RPut7WwpU5ummII4PLxJ129Ag8IVwkpoJMo
-	 h2M8RhlbISR3gIH2lA8Czd3rX+OA1cIRfD8vo4FW20Utk++8lwgepKufU1IwiHjltP
-	 mxkv6Bjwth2GU7qnFuxLU+x1mOvUsod2H7+5LOos87WAq2PJo9lKMJL/y4UqPPGyr/
-	 UsLUCFfqln7+g==
-Date: Mon, 6 Jan 2025 18:15:10 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Pratyush Brahma <quic_pbrahma@quicinc.com>
-Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qcs8300: Update memory map
-Message-ID: <hhwc5euwxjpg5r4nfoh77do2g5sm26r7vfs6ibboqw3x4qkwze@zld5mnznijvu>
-References: <20241217092636.17482-1-quic_pbrahma@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D9A3111A8;
+	Tue,  7 Jan 2025 00:15:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.30
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736208937; cv=fail; b=LyzuviV9qz3df0Kxl+P/5kEVksY+jtSYe3tSojUERGoGFp3klInzMUO6wfUWDtaJvdsRvAQoI76WNrrgMEtSNl/xHTYfD8y6Z9eOg0g6ENzCXM8a67NFMC+tJQLtsxH4i+9lDxgaBs8qdpWQ2m05TmlbcihLiuXnvAb6coXOT8E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736208937; c=relaxed/simple;
+	bh=RedYUL6gRPj5h2IGA7dB41v06sO7nNDbqq9KiogFyHo=;
+	h=Message-ID:Date:Subject:To:References:Cc:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=WEF4q6yfvXJI1DNdDaoFMa1HsGh+yj+vAlT/F+m/DAjsFbLp29AyjawlhOcQobO58SGhufL75RoRLNITE8FvVqxJTU0F7KVNnlZnVC4pC71XjF8Fe65D1VhP/t/OWfTlMawlbWmjBDzn1Epc2hpfb2GifD8KsBLyq4YA5pTKEh0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=jW8NySyk; arc=fail smtp.client-ip=52.103.67.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jsg1X5J46FVTjDpdI3f5reE/O6o+JHVAkm9INstiVn5Tez6VAIyupYNq2z+s+of5STVPidjnI1lpFQS+xAaXWSHIPjdnwrcUWd2pZEyRyCEblDJlRld1TZLlrixaCbVRkHv/35iPLZSmtNhrx5oJj04Rz5796GaaVwLY+CF9fDIK7zaKxjUvlsfb/164M21o4pB5oEivtQAkGfmcpSUR6WI30aiJxr00TR58BwGc1ltfRGreGFSyPxfZGmfZPsmop3NLCugH0asz6gZEE/wxu5a+5NG/2AVBKR2VIgWZoT9ikgu8nxSbQEsdiIIV49sv0SS1ZCU2yOBBaEKo33aLtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SyoiJ2Em53H5SdSwJPqvA39NqXRLTRXJcTSMGqHOQEA=;
+ b=mOAakf6k+VHincDWXjmpPgGZyqFfxiYBvo1RjcNNXRKhHTscuh8PhPKjghVMXHlgtRrIhbUDByn10UO4rra+GHu3P8peN1sRwDa2rRLgkumgkP+BpnWi2PCJwEb5VBNPIFs7K++Xru3PUHM3Xrw0onOVBriplf9y3DPMsZ+ucmd9BmmGwwW9pPcEC34Iii1/REn8nWPtsBoTcUs0574sPImwWHLMBuurG2/sjN0v9GuNLTtc3ijsdMqwKoa58sVCNgR7uwHo0mauIZLNnD6id0MZPZxppCBbw5gMmjcgzwAEPLS1OcN8Ro9BC5y+kw3/7HzVZUTSuPsJOKQsRG4JOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SyoiJ2Em53H5SdSwJPqvA39NqXRLTRXJcTSMGqHOQEA=;
+ b=jW8NySykch6lyNdVld5vt5v+3zj9wfoURh5/S7MYf0HAqTpslpBc008ueTsh5dEc7fi0QRhhqVlRRWypMF5S2Uusram8DyyBnUGSYkeanhwpC+pDLlP8w/BkpwbIIftwW0IThfYaVqwxytYdJ970Oe8N20lCOBCq2GxnEfIIlZjnMdPnhuLCGYO9Kt3t85O7BErGVrxByHznzGL58tTMQCKnfiQmcl2V2lvufuZwQsYY/P5eGQHrXddj9hdJSyibfwwavVQBp0crooYbPN9jjpHdYZZvtdZIY1d/z9XJwioP2aPqPBtq5BrEUqx10RsKrasBhI5v5RFslPvePdJeaw==
+Received: from PN2PR01MB9523.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:fb::11)
+ by MA0PR01MB6108.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:7d::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.18; Tue, 7 Jan
+ 2025 00:15:26 +0000
+Received: from PN2PR01MB9523.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::fc57:de35:cc59:cc4f]) by PN2PR01MB9523.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::fc57:de35:cc59:cc4f%4]) with mapi id 15.20.8314.015; Tue, 7 Jan 2025
+ 00:15:26 +0000
+Message-ID:
+ <PN2PR01MB95232C384994345CBAA68913FE112@PN2PR01MB9523.INDPRD01.PROD.OUTLOOK.COM>
+Date: Tue, 7 Jan 2025 08:15:21 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/3] pwm: Add pwm driver for Sophgo SG2042
+To: ukleinek@kernel.org
+References: <cover.1733281657.git.unicorn_wang@outlook.com>
+Cc: Chen Wang <unicornxw@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, inochiama@outlook.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
+ haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, chunzhi.lin@sophgo.com
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <cover.1733281657.git.unicorn_wang@outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SG2PR04CA0166.apcprd04.prod.outlook.com (2603:1096:4::28)
+ To PN2PR01MB9523.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:fb::11)
+X-Microsoft-Original-Message-ID:
+ <b3615bb3-2f42-471c-aa37-c888fb959d1a@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241217092636.17482-1-quic_pbrahma@quicinc.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN2PR01MB9523:EE_|MA0PR01MB6108:EE_
+X-MS-Office365-Filtering-Correlation-Id: a8058952-a6c2-4dfd-ebb2-08dd2eb0627b
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199028|19110799003|7092599003|15080799006|8060799006|5072599009|6090799003|10035399004|440099028|3412199025|4302099013|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?dXYwTUNpK2JlTnAvYUViVEdXSlkvU0RlY2FQbjgydGRYN0NicmlRNlBsdHZI?=
+ =?utf-8?B?OGR1T0o1TWJzRzViNlpoSFViYVJaS0dtMHpmcENwakNkL2p2TnAxV090cUxE?=
+ =?utf-8?B?b09Nb1kzVHZKbTVtaGNXeHg0MnpyOGN1WkhFOHBFekxXWU1tRDEvbkt2WU9r?=
+ =?utf-8?B?V1BNS3cyRXlFT2VUd0pnOFBiQ283d0I1UlJIYTdzWkdWVTJjZGdNbzU5MzZ0?=
+ =?utf-8?B?aG5Ec21QL2dqNlJaWXUzcHBndU1YQVNYUHZQWWdFbzRqd0ZqZ0J1YlNWUmJs?=
+ =?utf-8?B?aXZNWjB5ZmY3Sk1nZmpYbnJSNXZuVUxsd2w2ekRaVHVuTVZxOStGWFMxVk00?=
+ =?utf-8?B?TlF3Q293NUx3cU9qYkxyUmxqRnlvUG42Q0xZZU8rbnVISEJOejB1aE5GVUta?=
+ =?utf-8?B?ajRMNnJtQTV6a2JBYjVtdmdqMFcwcFllT2FMeTBMTWx2Y3NIMEFHdCtWZUVj?=
+ =?utf-8?B?K1ltSjMxWXVFZ01udEVCUlZGZ2tKZEswOC9KUGRNM1Bac0FrejYvMmJPYmk5?=
+ =?utf-8?B?ZlcwU2JDMU5TbTc4cDNTb1ZCd3V5d2E2N011ZFU2MCtpK3FXSnBKMVRnQ0Ez?=
+ =?utf-8?B?WFBPclFXWFFDQ3dyM0NvU3dnRXpIcVdtYkpMYkwwdHdNK3JNeG00NTYvS01F?=
+ =?utf-8?B?SVpOVGcrNHlUYlhZeTdPNnd1dkpjTjV0cVdCNmRqeGFFTEEwazVSS0FtQU53?=
+ =?utf-8?B?UUVYUDhLeVpOOURPMzhaMEF5N2RnQWZvSGZmMGdubFpnYXVIbEVva3VHam55?=
+ =?utf-8?B?THBmWjZCU1V5UVlxdS9jK3VOOWZyYjdMa3ZBQms1OHVoVjQyNXc2bGljZk1V?=
+ =?utf-8?B?Zk42dEY1ZzJmUWQxRzhLOCtaZWNESnlxNmdwTUdaMlpFdjNWaTI4UEpURS9y?=
+ =?utf-8?B?VkdyZlBrMU03UzJBcWlxN0dwSlNQelIrL3hGaEN4VDlTZklIWHVWb0hmU2Rr?=
+ =?utf-8?B?eDY2RXBOd29nRjhldUVjejVtcVkyMWM0WFpySFZ5OHZaWUMzRHFtZSsrWTRv?=
+ =?utf-8?B?ODhjR0o3aGkwM2UyQk9sR1FCa090STlLYTFyYlh5UXYvR1FVdW15a043Z2Nm?=
+ =?utf-8?B?WjJCOW00ZkQrcExweU1ibHlRSjNWUHNTYXduM2VQSEtsazJHYlBCZTkzMC8v?=
+ =?utf-8?B?c1U0NzFndVl4T3pxc2plbDVSc3RPa3BhSGV2amxyMGlIUkduU1A1SitxLzVO?=
+ =?utf-8?B?UXV4T29PQ0RPNDB6Um4wdVNkTHpwakN2UnVBRTNyZS9zTVBOMFU1dnpSaVN0?=
+ =?utf-8?B?bUVUaFdtOHZUQ2pTM01Ubzh1clVSaVdqUzZIWlBDK2U0dEl2eEo0a2M5S0pY?=
+ =?utf-8?B?N3BkTytSaEhQMVVqbXZ4UTVML0Fqd3AvalZBQTUvYXhQU3BTSWs3Q1crbkZF?=
+ =?utf-8?B?OUdLaXpBejRaWUU3QVMycER5bnZ2QVh5bHRqRjZJUnk1OWJvS3NvNTNJdDUx?=
+ =?utf-8?B?cGR3eVJTZWtSTzNaakpBWThHa3VTNzlEREVvSHFwMXVkeGdleVNhVFRSL2Yv?=
+ =?utf-8?B?eFdEZTV6Q1UvWmIrVlB6dzAvVVlpM2VzNUl4Yi9TRlczd0U1R25QUkNabmg3?=
+ =?utf-8?B?bkhVQXFld0gyVHhmWTc5ckZ2WXFGTi9jMGVHRGVvYzFiRzFKdFRBb014MXVM?=
+ =?utf-8?B?NzYyZkRyczNCbi9kTVhxYmVLbUVGU0ZiRkhMMzhqdnlmVWptS0FHaFBvVkhi?=
+ =?utf-8?B?KzJIWjVySGxEajlHMTcrRUhQWGMzZ2VlYmVCOXB5WC9kYmF2V3daVnBBPT0=?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?T29ESkNoanl6MTJpbThhcDRFTjZpVXI2NExweWtBcGZNMXFIL1FyOHVoQVcr?=
+ =?utf-8?B?bVdlV0E1NWt5QzROcWpSRzZGa2ZZNjFoZDEzdmZEbUhWaEdOQXg2ME5hc3FH?=
+ =?utf-8?B?QStJalpTMnFTZmo0dUpBNkJFclJIbFFDeUwxZVBUNkRIWDVjbVM2S2RiMFND?=
+ =?utf-8?B?ajE1SmxwcjRaVTFqejNPZXI4NktKVlJPSUEvWjJaQTZ4UWhmcFpER1hTK05M?=
+ =?utf-8?B?eHVZSG5Fby94RUwwcENWSWhNOVdzNmt6RHpVWGNtOXFORU9vaUI1K0ZkZ0RW?=
+ =?utf-8?B?UG5QZWhnT3B4N1k1M2RBMld5YXU0NmlzTHcrWGY5MHluVk82V28xL2xoK0pW?=
+ =?utf-8?B?RDhPRXVWczk1N0NrTFQyQnowTEU0YXdZR2svY1FTYmNkREpNdkFmeVhpOU5w?=
+ =?utf-8?B?Ym9nYS9XSmNxU0hHRDJqNWdhOVNDT0lrREVSK3dDZG5XZ01XRE9wUGJKYXYx?=
+ =?utf-8?B?QjRqZks5TEEycUxLSWdmTExpUzMyWDcxSnpKL1hDOW5WU0FoMVpobGxDSmJT?=
+ =?utf-8?B?eDZmZWpoVm5VaVhoc3duQlB1SWtubkc2c05KaWpqYUZLbVBVMmRndTZGQ3Rq?=
+ =?utf-8?B?WmErR2xKUDU0MXhwazlocHhmZkhCc3UyVFlsS3gwTVFrczNiWEhyd21pWWxJ?=
+ =?utf-8?B?ajZiR1pnQ1FyTnFmcHYxTjF5Q3h3VVdrMmFyOUx2RmMvN3ZQTkQ4N1V5S2V4?=
+ =?utf-8?B?QlJobXB6RHhXUUxOWGp2V1pUbnZrVWdXY2FCK3hGTWZ2WFlIT1hqcUdYbHU1?=
+ =?utf-8?B?aWEzckxUT0lBejFGVTExYThQaFZac3NYd1Uxc3g1RDFXY2dMaHZmQ1VHc2ZJ?=
+ =?utf-8?B?Qzc3OW9kTEs5dnJ6Z2w4SDAySUNhTGFqeEhWODVqYzVuQkR5NitVNXNScVBM?=
+ =?utf-8?B?S2VsTjJYeVltNndqSTRmemhyNDlVV3NZa3Bwc2orM0JPVTFkMXVnZ0U0ZWl6?=
+ =?utf-8?B?aHdKc0RmWVcwbXNKZTgwS2VOcThYUFp6bTF1UkxqR1Q4WDlQNWdPUDRmN0pI?=
+ =?utf-8?B?K01pMU1PbmVWZ0tUaFBsSTZTSkJ5UlczMVBEdk9BQU5nQjdnYzFVWnorSDlN?=
+ =?utf-8?B?QmRsVFNMbmJoUXpFVTNvcWlwZzh1UDFFc2xDbUhkSnVnOFRvcWM5cjBYaFVZ?=
+ =?utf-8?B?c2NoSjd5dWVsdC9scmRwVnVqWnlvSDhVbThpMHFYb3dWSFNWTnBQdk9iR1Zx?=
+ =?utf-8?B?QWhLeXh5Yk9DcjkyZzlwaU40MFovQ3JOR1Z2YU1lQWxIclVjU3F0dHpIdEJm?=
+ =?utf-8?B?TWhuWGpkcFljWlVqdENSNituQkFaSVIvaG5mb3BwWFcwbmdiQTU1OFBRaG1m?=
+ =?utf-8?B?OGg2NDFaVG1KSFRjYjNwTW13VS9SQ0Zmcm9UZDBsQnZJNTI3VU8yMW1UTkxF?=
+ =?utf-8?B?QWJWOU5vNkFIV0NnTFNIVUR4YWFhTjJXa0FxN0VTcCt0eVVqWG5tYlJxd2FR?=
+ =?utf-8?B?NllTbUo2dC9BUGVObVBPTG1BVlVRaTNsMFZyeGw0MHFuaDMrTGp0MmpoaXZS?=
+ =?utf-8?B?dVlMMUo2WVIyUTgyNlBZNnN6dWNuMituNFdrTzlNTVY4VFcyMmZUMGtsUkZB?=
+ =?utf-8?B?ZHErMVdvLzk5ZVNOK3lDZ0NsU0x1QkoycStJT0Z2QjZFYlBNRC8zTUFMUG96?=
+ =?utf-8?B?ZHRxenBsak9Cd3BWb3Zrb0YvM25LN1NSZTIyZHBrcGhlVUp5L2JZbXlKQWtx?=
+ =?utf-8?B?NklQOTFoYThVTmpqMHFkcEVvdmZscnBKMkxFZkRsa09rY0ZkNEZPc2FFU09J?=
+ =?utf-8?Q?msO9n0m2FjFRUhi0dumMwzhWpnxHVL7AvwI8zMq?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a8058952-a6c2-4dfd-ebb2-08dd2eb0627b
+X-MS-Exchange-CrossTenant-AuthSource: PN2PR01MB9523.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 00:15:25.9844
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0PR01MB6108
 
-On Tue, Dec 17, 2024 at 02:56:36PM +0530, Pratyush Brahma wrote:
-> This is based on Jingyi Wang's patches [1] to introduce the
-> initial dtsi for QCS8300 SOC.
-> 
-> New updates to the memory map of qcs8300 have brought in some
-> new carveouts (viz. sail_ss, firmware memory, tz memory, etc.) and
-> also the base addresses of some of the pil carveouts (q6_cdsp_dtb_mem 
-> and cdsp_mem) have changed.
-> 
-> Incorporate these changes in the new memory map for qcs8300. Also
-> modify the labels of some of the carveouts to indicate pil carveouts.
-> 
-> [1] https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-3-494c40fa2a42@quicinc.com/
+Hello & Happy new year, Uwe,
 
-Does QCS8300 not boot using the efi-stub and get a memory map with most
-of these regions removed already?
+Just ping and want to know if this will be picked by pwm/for-next for 
+targeting 6.14?
 
-The excessive representation of reserved-memory regions should only be
-required for targets using ABL. (And the regions that the OS is expected
-to actually interact with, such as smem and PIL regions).
+Thanks,
 
-Regards,
-Bjorn
+Chen
 
-> 
-> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+On 2024/12/4 11:15, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+>
+> Add driver for pwm controller of Sophgo SG2042 SoC.
+>
+> Thanks,
+> Chen
+>
 > ---
->  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 180 ++++++++++++++++++++++++--
->  1 file changed, 170 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> index 2c35f96c3f28..e16d11c05515 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> @@ -377,6 +377,21 @@
->  		#size-cells = <2>;
->  		ranges;
->  
-> +		sail_ss_mem: sail-ss-region@80000000 {
-> +			reg = <0x0 0x80000000 0x0 0x10000000>;
-> +			no-map;
-> +		};
-> +
-> +		hyp_mem: hyp-region@90000000 {
-> +			reg = <0x0 0x90000000 0x0 0x600000>;
-> +			no-map;
-> +		};
-> +
-> +		xbl_boot_mem: xbl-boot-region@90600000 {
-> +			reg = <0x0 0x90600000 0x0 0x200000>;
-> +			no-map;
-> +		};
-> +
->  		aop_image_mem: aop-image-region@90800000 {
->  			reg = <0x0 0x90800000 0x0 0x60000>;
->  			no-map;
-> @@ -388,6 +403,26 @@
->  			no-map;
->  		};
->  
-> +		uefi_logs_mem: uefi-logs-region@908b0000 {
-> +			reg = <0x0 0x908b0000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		ddr_training_checksum_data_mem: ddr-training-checksum-data-region@908c0000 {
-> +			reg = <0x0 0x908c0000 0x0 0x1000>;
-> +			no-map;
-> +		};
-> +
-> +		reserved_mem: reserved-region@908f0000 {
-> +			reg = <0x0 0x908f0000 0x0 0xe000>;
-> +			no-map;
-> +		};
-> +
-> +		secdata_apps_mem: secdata-apps-region@908fe000 {
-> +			reg = <0x0 0x908fe000 0x0 0x2000>;
-> +			no-map;
-> +		};
-> +
->  		smem_mem: smem@90900000 {
->  			compatible = "qcom,smem";
->  			reg = <0x0 0x90900000 0x0 0x200000>;
-> @@ -395,6 +430,61 @@
->  			hwlocks = <&tcsr_mutex 3>;
->  		};
->  
-> +		tz_sail_mailbox_mem: tz-sail-mailbox-region@90c00000 {
-> +			reg = <0x0 0x90c00000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		sail_mailbox_mem: sail-mailbox-region@90d00000 {
-> +			reg = <0x0 0x90d00000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		sail_ota_mem: sail-ota-region@90e00000 {
-> +			reg = <0x0 0x90e00000 0x0 0x300000>;
-> +			no-map;
-> +		};
-> +
-> +		xbl_dtlog_mem: xbl-dtlog-region@91a40000 {
-> +			reg = <0x0 0x91a40000 0x0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		gunyah_md_mem: gunyah-md-region@91a80000 {
-> +			reg = <0x0 0x91a80000 0x0 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		aoss_backup_mem: aoss-backup-region@91b00000 {
-> +			reg = <0x0 0x91b00000 0x0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		cpucp_backup_mem: cpucp-backup-region@91b40000 {
-> +			reg = <0x0 0x91b40000 0x0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		tz_config_backup_mem: tz-config-backup-region@91b80000 {
-> +			reg = <0x0 0x91b80000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		ddr_training_data_mem: ddr-training-data-region@91b90000 {
-> +			reg = <0x0 0x91b90000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		cdt_data_backup_mem: cdt-data-backup-region@91ba0000 {
-> +			reg = <0x0 0x91ba0000 0x0 0x1000>;
-> +			no-map;
-> +		};
-> +
-> +		tzffi_mem: tzffi-region@91c00000 {
-> +			reg = <0x0 0x91c00000 0x0 0x1400000>;
-> +			no-map;
-> +		};
-> +
->  		lpass_machine_learning_mem: lpass-machine-learning-region@93b00000 {
->  			reg = <0x0 0x93b00000 0x0 0xf00000>;
->  			no-map;
-> @@ -405,12 +495,12 @@
->  			no-map;
->  		};
->  
-> -		camera_mem: camera-region@95200000 {
-> +		camera_mem: pil-camera-region@95200000 {
->  			reg = <0x0 0x95200000 0x0 0x500000>;
->  			no-map;
->  		};
->  
-> -		adsp_mem: adsp-region@95c00000 {
-> +		adsp_mem: pil-adsp-region@95c00000 {
->  			no-map;
->  			reg = <0x0 0x95c00000 0x0 0x1e00000>;
->  		};
-> @@ -425,35 +515,105 @@
->  			no-map;
->  		};
->  
-> -		gpdsp_mem: gpdsp-region@97b00000 {
-> +		gpdsp_mem: pil-gpdsp-region@97b00000 {
->  			reg = <0x0 0x97b00000 0x0 0x1e00000>;
->  			no-map;
->  		};
->  
-> -		q6_cdsp_dtb_mem: q6-cdsp-dtb-region@99900000 {
-> -			reg = <0x0 0x99900000 0x0 0x80000>;
-> +		q6_cdsp_dtb_mem: q6-cdsp-dtb-region@9b700000 {
-> +			reg = <0x0 0x9b700000 0x0 0x80000>;
->  			no-map;
->  		};
->  
-> -		cdsp_mem: cdsp-region@99980000 {
-> -			reg = <0x0 0x99980000 0x0 0x1e00000>;
-> +		cdsp_mem: pil-cdsp-region@99900000 {
-> +			reg = <0x0 0x99900000 0x0 0x1e00000>;
->  			no-map;
->  		};
->  
-> -		gpu_microcode_mem: gpu-microcode-region@9b780000 {
-> +		gpu_microcode_mem: pil-gpu-region@9b780000 {
->  			reg = <0x0 0x9b780000 0x0 0x2000>;
->  			no-map;
->  		};
->  
-> -		cvp_mem: cvp-region@9b782000 {
-> +		cvp_mem: pil-cvp-region@9b782000 {
->  			reg = <0x0 0x9b782000 0x0 0x700000>;
->  			no-map;
->  		};
->  
-> -		video_mem: video-region@9be82000 {
-> +		video_mem: pil-video-region@9be82000 {
->  			reg = <0x0 0x9be82000 0x0 0x700000>;
->  			no-map;
->  		};
-> +
-> +		audio_mdf_mem: audio-mdf-region@ae000000 {
-> +			reg = <0x0 0xae000000 0x0 0x1000000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_mem: firmware-region@b0000000 {
-> +			reg = <0x0 0xb0000000 0x0 0x800000>;
-> +			no-map;
-> +		};
-> +
-> +		hyptz_reserved_mem: hyptz-reserved@beb00000 {
-> +			reg = <0x0 0xbeb00000 0x0 0x11500000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_scmi_mem: scmi-region@d0000000 {
-> +			reg = <0x0 0xd0000000 0x0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_logs_mem: firmware-logs-region@d0040000 {
-> +			reg = <0x0 0xd0040000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_audio_mem: firmware-audio-region@d0050000 {
-> +			reg = <0x0 0xd0050000 0x0 0x4000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_reserved_mem: firmware-reserved-region@d0054000 {
-> +			reg = <0x0 0xd0054000 0x0 0x9c000>;
-> +			no-map;
-> +		};
-> +
-> +		firmwarequantum_test_mem: firmwarequantum-test-region@d00f0000 {
-> +			reg = <0x0 0xd00f0000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		tags_mem: tags-region@d0100000 {
-> +			reg = <0x0 0xd0100000 0x0 0x800000>;
-> +			no-map;
-> +		};
-> +
-> +		qtee_mem: qtee-region@d1300000 {
-> +			reg = <0x0 0xd1300000 0x0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		deep_sleep_back_up_mem: deep-sleep-back-up-region@d1800000 {
-> +			reg = <0x0 0xd1800000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		trusted_apps_mem: trusted-apps-region@d1900000 {
-> +			reg = <0x0 0xd1900000 0x0 0x1900000>;
-> +			no-map;
-> +		};
-> +
-> +		tz_stat_mem: tz-stat-region@db100000 {
-> +			reg = <0x0 0xdb100000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		cpucp_fw_mem: cpucp-fw-region@db200000 {
-> +			reg = <0x0 0xdb200000 0x0 0x100000>;
-> +			no-map;
-> +		};
->  	};
->  
->  	smp2p-adsp {
-> -- 
-> 2.17.1
-> 
+>
+> Changes in v6:
+>    Nothing major changes just rebased onto v6.13-rc1 and retested.
+>
+> Changes in v5:
+>    The patch series is based on v6.12-rc1. You can simply review or test
+>    the patches at the link [5].
+>
+>    Updated driver to add resets property for pwm controller node as per
+>    suggestion from Inochi.
+>
+> Changes in v4:
+>    The patch series is based on v6.12-rc1. You can simply review or test
+>    the patches at the link [4].
+>
+>    Updated driver to set property atomic of pwm_chip to true as per suggestion
+>    from Sean.
+>
+> Changes in v3:
+>    The patch series is catched up with v6.12-rc1. You can simply review or test
+>    the patches at the link [3].
+>
+>    Add patch #3 for dts part change.
+>
+> Changes in v2:
+>    The patch series is based on v6.11-rc6. You can simply review or test the
+>    patches at the link [2].
+>
+>    Fixed following issues as per comments from Yixun Lan, Krzysztof Kozlowski
+>    and Uwe Kleine-König, thanks.
+>
+>    - Some minor issues in dt-bindings.
+>    - driver issues, use macros with name prefix for registers access; add
+>      limitations comments; fixed potential calculation overflow problem;
+>      add .get_state() callback and other miscellaneous code improvements.
+>
+> Changes in v1:
+>    The patch series is based on v6.11-rc6. You can simply review or test the
+>    patches at the link [1].
+>
+> Link: https://lore.kernel.org/linux-riscv/cover.1725536870.git.unicorn_wang@outlook.com/ [1]
+> Link: https://lore.kernel.org/linux-riscv/cover.1725931796.git.unicorn_wang@outlook.com/ [2]
+> Link: https://lore.kernel.org/linux-riscv/cover.1728355974.git.unicorn_wang@outlook.com/ [3]
+> Link: https://lore.kernel.org/linux-riscv/cover.1729037302.git.unicorn_wang@outlook.com/ [4]
+> Link: https://lore.kernel.org/linux-riscv/cover.1729843087.git.unicorn_wang@outlook.com/ [5]
+> ---
+>
+> Chen Wang (3):
+>    dt-bindings: pwm: sophgo: add PWM controller for SG2042
+>    pwm: sophgo: add driver for Sophgo SG2042 PWM
+>    riscv: sophgo: dts: add pwm controller for SG2042 SoC
+>
+>   .../bindings/pwm/sophgo,sg2042-pwm.yaml       |  58 ++++++
+>   arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   9 +
+>   drivers/pwm/Kconfig                           |  10 +
+>   drivers/pwm/Makefile                          |   1 +
+>   drivers/pwm/pwm-sophgo-sg2042.c               | 194 ++++++++++++++++++
+>   5 files changed, 272 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
+>   create mode 100644 drivers/pwm/pwm-sophgo-sg2042.c
+>
+>
+> base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
 
