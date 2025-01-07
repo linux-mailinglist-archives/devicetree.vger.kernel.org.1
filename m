@@ -1,88 +1,95 @@
-Return-Path: <devicetree+bounces-136125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B627AA03F5F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:37:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B00FA03F98
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:46:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 322BD1886FD5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:37:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C5F13A1CAA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E8A1EF09A;
-	Tue,  7 Jan 2025 12:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E073D1F03C8;
+	Tue,  7 Jan 2025 12:45:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OIFVmpaT"
+	dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b="phU4v61U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B7A4C9D
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38471F0E45
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:45:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736253417; cv=none; b=XEbqS6qCZ8u5IjTX68ZT2G4T4GteOEy0/Zbju8GugH9Wr75rcLu1ajob58lTWD1uGMf3ye0B66jhROscQTvnuwbeB2GSTzux4QdXVAXiafBB8UfTMDhpAPGB85xl6vTBG9hUIFn5pyd0TVQGAs9ffOyhHcZvjH53oE24fKle+N4=
+	t=1736253907; cv=none; b=jeyO3105wL0/9x1+kKyHu31fZlpwRLSPsnacvcf5zggDU9lOVxeCmn2m15P55duS6fYLi2TyeLb1IeSndxFmAsoHXwFHVAI6h4guc26ZoLuyo5heUUirIaHfi+FcdK+EvfG8Du3U2TwLEpNzynlePW4TbA69nvrhfF185KzQ63w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736253417; c=relaxed/simple;
-	bh=6mrw4fSn7qi9tJ9B32OnUA5Ho5ERm0pRHovMgS+21dU=;
+	s=arc-20240116; t=1736253907; c=relaxed/simple;
+	bh=edPqHMnayJBbsLU0Uv9SUvrunVcLH0Q1V5Cd1c7z8jg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CTxcRpvxrYSWcAGjbn4qltHDXTohae0LcsdPvGmOnUv9m97IOO9CNFUd6ytSwVFJvriVpnNq/8I0O8uJIMGfddoJ9YMJf8mAwAH3gag9NUbLiMWGpfhjSPkKDR08zKBCvy2l2Spx2HPBe7YQ07OjLkkueypAZBujOo72OrSdx0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OIFVmpaT; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5401fb9fa03so14391819e87.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:36:53 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=G7X/eMufGE35C5NAtlCk0fPMVusC09ArewOJOIEb4LyeKRj5rc3+FOu3yzmrGYYEFB12YawRzzHF3SzRCbHfrKP+S6fHcOgn9kn8Z6AOvkT+rh2wLoQme5g/KE7NRI4FNA7jkC7CBS4yn4VdhiC0V4eKXI7aIWmogV5GICLcKTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com; spf=pass smtp.mailfrom=jrtc27.com; dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b=phU4v61U; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jrtc27.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4361f796586so159433705e9.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:45:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736253412; x=1736858212; darn=vger.kernel.org;
+        d=jrtc27.com; s=gmail.jrtc27.user; t=1736253901; x=1736858701; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5iNvZalbLYQ8Bg0nS+hkF7lJIYaC+1upZ95vfPfhmX0=;
-        b=OIFVmpaTZzHDH6yNC0vgojC9j/oQ/RbUYDABeh2jHKEpggO/oYzbFIv0s6PjmeFJaj
-         tpfcE6lZNm2vW0kHQZFyhQsbLpXRK/e496ZeYbZhG7hyYlAoR0SvmU+NbqdHTto4dzoN
-         Jme4j4HXwSpAfc3vLv98912H0CEHuo3yu+WHYPUSVc6pRw7Rw6Ka0SuPw/o1FipERU63
-         f1bB2/MEILKm4HW9cm+l6zoyq/iliLsNQjFDP5BdzaQAgev/NLhOx3Yk/c8wafQ5Qc2g
-         l1xIZRdjx1boIcbc8Y5Ti5lq//KTzBUsNf6OGi+9iQWlJLvzsoH/AyCds44BwPOEu2QA
-         TNkw==
+        bh=c3LrOk6qo91rafb6+/CO9ESt0s5VAorqbYZYMCcT99w=;
+        b=phU4v61UH1U8oYBZpLW2aM7A4nm6hADQycTuUe2324oIyPpRW1S4E47OarFlIdQLIF
+         milpws68Ny1DnTxVIn3TxJrzfUCCK/9E4vcaK7lbqeFBNw2OAQbXpgS22Zr3TG19MXK9
+         99AhA2a9LhaLbAp9c5wmdPyDJWuO6uBab66blWL2rFPLB0c0Yi6ZGBUqd2Upnao8eJYY
+         D2l2+cJn0J4JEHGZ/IWa/pc+vSJ1YsD3Nyb/AJ1baVFIgv7ouc6MwUNaPQuC8d6VzySR
+         WFpCzvz4emTMlwH2n1IjnHBsD7IZ2mODmKxHJqZwcctZAakyVKgLZ4alBd3DtuoU766F
+         s3eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736253412; x=1736858212;
+        d=1e100.net; s=20230601; t=1736253901; x=1736858701;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=5iNvZalbLYQ8Bg0nS+hkF7lJIYaC+1upZ95vfPfhmX0=;
-        b=mzOGGJ2x9outWiLb9Pv8/JnaehJ6c2t/VfkcqtfSYIUSzf90mhziEBn+X8+gyhUdzE
-         PCnxb4zzmUb/yvMeR1sZGBDSqEHnA8yquXegJZBUSWktlSaQwwr564shWUw0HBiudRLl
-         gs9Rq52eTAes8n9wucP2reajDC5KTK+dir0l1lCM+t8e74U9k8Ft58tjGjFn34eCpM5A
-         Q3l1bHYcQ10oWopX1QOhGPOH9hHe7cNVKQC/7a89gIKYQhpi8K5bS8SRlRGRKUAftO1r
-         IOAw4hrb4qy0D9fj6XGLbaEn7dlEQeO5LHaAtyyFmWiYL4WB4a2M0T9QuCeClqKf7kOW
-         AcXw==
-X-Forwarded-Encrypted: i=1; AJvYcCUm7qNxIXjoz/DtmzySs0Pl5J4XG7uySbjRLKZRMGKoG8x+A3a4mF0ywudtSlOgI7C3Fyy5v19ovyCu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxxjc/kqQZbI5hcjc/B+6pJknQcjg3SjytJ2rzUdDaaFsAyOSYz
-	47rUwzcHhYw5szFZh7ADTfSNsVVMrSPIDjyUBT5SDnpnl38XwbNyX90uc7vy+2M=
-X-Gm-Gg: ASbGncv+oZ61m/H65odvqkO7RsjXVutgYUKfIX1l5fuqOnB7M6cEfpsc3iGCE0UljBh
-	ZnpycPx/n9S5sgpTkdqop9mXMQrE3y6RJAZ63xK01T3hOHdM/RYmmGERO0Z3B44yW2RKu5K4u6n
-	SF2nIIbSAY1lvbJlpsNkobqoirEV6vyxdbf//sBZ9sjVMKDXB0IaFKeMLdLUr1GM7sYn5fzFRrU
-	Sf68UUgUVw7Bi1LH3iljIa6kIGnoBg8w0bRlxTKUDk392f/7K+LjyyFkLBqxkEAEcL2V7183PF9
-	eadp3UZPSX2SPhjLeOctDe7Pp2uGPFglc/+h
-X-Google-Smtp-Source: AGHT+IFwk0vfiDcXRC31OJIVLjshvIF9bF/YLOZzdPmOjhYIp+YNNm+1djecvNteWO6LKr/mRpAdEg==
-X-Received: by 2002:a05:6512:3503:b0:542:2e05:313b with SMTP id 2adb3069b0e04-5427e988ff7mr916026e87.21.1736253411670;
-        Tue, 07 Jan 2025 04:36:51 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5422382156dsm5126401e87.186.2025.01.07.04.36.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2025 04:36:50 -0800 (PST)
-Date: Tue, 7 Jan 2025 14:36:48 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] clk: qcom: clk-alpha-pll: Add Pongo PLL
-Message-ID: <nasilduqcbrdtfnx7ef5rzp4blyvbwhyypjpkzlmv4o6oohj4e@gz2a6kffkf7p>
-References: <20250106-sm8750-dispcc-v2-0-6f42beda6317@linaro.org>
- <20250106-sm8750-dispcc-v2-2-6f42beda6317@linaro.org>
+        bh=c3LrOk6qo91rafb6+/CO9ESt0s5VAorqbYZYMCcT99w=;
+        b=ROFk1fiuyeLdbs/0fJbpv7G022A2q8Eq+JGpwcu8J+jziakvH0Rpl5dzrG3oyFz3eZ
+         Y4coYH2Cy/cmIVlEYKTbqDOdwSPQ2o2QfRFRV2QWK0MwGyWKrM3hkep2h7/OgN88L8OB
+         Ehf8XaiFVlpF5HYVbT9uf9Nw3RQJ7YfW/yLWXyjL2reyRCTEFTYY4M9p6j3jCoRvsPz0
+         ZSdWdYSg+zJ9S5mB1V7kez4lZOYrrRMF+qjRgQUBq2AmtkaS5in7VkxY5HQtJvPDpLjb
+         fv/VCC70HSAOn+L8Qxhvtdla/oL1JWldl9eCY+rybVq02RAoQsusErGjDwpdBXJi7Mz9
+         NB5w==
+X-Gm-Message-State: AOJu0YyiK1T++d1QYXWVExsfoeoLkQzuITLoPnwJdzX6FXmDXrK9vu1+
+	rMrrBF3pytBy1exzcBRsPGbpCEp0XLXIZ18fqCO4hYX/2OXC1CgzqDE+uEL8OfQ=
+X-Gm-Gg: ASbGnctAErPRYL4Jz9loPOd2XNIxGk187Kzu5nEVCSn/mtG9S31V+uFKi08ICMQBHtc
+	12Q+nCQIynd8kW4FxW6dhzi1O/oI417ArRlR9vwKHUxNS3JJQzkOV4rXy/LvAHMXnm4H3siMvfD
+	guQP8gvBPdpcpZk4tkqDndvd3Rx+9gXooV3edSNdrmYUwDoO4YUleQfg7Soapf1xO6UOxi+2wyd
+	LPNsW8XaI6+SvUowo4+WLSw180v7NSQQWcfphXsqx094igY5yFj2AbCzdQ6m7iuFp2+Mi+VkOwb
+	7CtJLwx/XkWjdEY=
+X-Google-Smtp-Source: AGHT+IHZjNr6wN1CLnlIkgb4k+SwHQIv3FuuIKcFhhoRcQa1qzg2+v7fOpJLPuyuSraeTPSYtP99Ew==
+X-Received: by 2002:a05:600c:4586:b0:431:5c3d:1700 with SMTP id 5b1f17b1804b1-43668a3a3c4mr477363735e9.21.1736253900644;
+        Tue, 07 Jan 2025 04:45:00 -0800 (PST)
+Received: from Jessicas-MacBook-Pro.localdomain ([131.111.5.201])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656af6aeesm633713345e9.6.2025.01.07.04.45.00
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Tue, 07 Jan 2025 04:45:00 -0800 (PST)
+Received: by Jessicas-MacBook-Pro.localdomain (Postfix, from userid 501)
+	id 928D7CDDD8C9; Tue,  7 Jan 2025 12:44:58 +0000 (GMT)
+Date: Tue, 7 Jan 2025 12:44:58 +0000
+From: Jessica Clarke <jrtc27@jrtc27.com>
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Russell King <linux@armlinux.org.uk>
+Subject: Re: [PATCH v4 2/4] arm64: dts: morello: Add support for common
+ functionalities
+Message-ID: <Z30hypjCMmSsf81L@Jessicas-MacBook-Pro>
+References: <20250103181623.1980433-1-vincenzo.frascino@arm.com>
+ <20250103181623.1980433-3-vincenzo.frascino@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,294 +98,515 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250106-sm8750-dispcc-v2-2-6f42beda6317@linaro.org>
+In-Reply-To: <20250103181623.1980433-3-vincenzo.frascino@arm.com>
 
-On Mon, Jan 06, 2025 at 02:44:30PM +0100, Krzysztof Kozlowski wrote:
-> Add support for Pongo type of PLL clocks, used in Qualcomm SM8750 SoC.
-> Notable difference comparing to other PLLs is the need for calibration
-> for internally generated clock followed by wait_for_pll().  This is done
-> in configure call and at this time clocks are not yet registered, thus
-> wait_for_pll() cannot use clk_hw_get_name.
-
-Is this still correct?
-
-> Locking during this
-> calibration requires much more time, thus increase the timeout in
-> wait_for_pll().
+On Fri, Jan 03, 2025 at 06:16:21PM +0000, Vincenzo Frascino wrote:
+> The Morello architecture is an experimental extension to Armv8.2-A,
+> which extends the AArch64 state with the principles proposed in
+> version 7 of the Capability Hardware Enhanced RISC Instructions
+> (CHERI) ISA.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The Morello Platform (soc) and the Fixed Virtual Platfom (fvp) share
+> some functionalities that have conveniently been included in
+> morello.dtsi to avoid duplication.
 > 
+> Introduce morello.dtsi.
+> 
+> Note: Morello fvp will be introduced with a future patch series.
+> 
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 > ---
+>  arch/arm64/boot/dts/arm/morello.dtsi | 467 +++++++++++++++++++++++++++
+>  1 file changed, 467 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/arm/morello.dtsi
 > 
-> v2:
->  - EXPORT_SYMBOL_GPL
->  - Move the PLL calibration and wait_for_pll_enable_lock() call to
->    prepare callback.
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 165 ++++++++++++++++++++++++++++++++++++++-
->  drivers/clk/qcom/clk-alpha-pll.h |   6 ++
->  2 files changed, 170 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> index 00d3659ea2124e26dd50c1b4e88ba71c1411442e..df609f7e394de2dc73e60df01b1ad71714c0719d 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -58,6 +58,7 @@
->  #define PLL_TEST_CTL_U(p)	((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U])
->  #define PLL_TEST_CTL_U1(p)     ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U1])
->  #define PLL_TEST_CTL_U2(p)     ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U2])
-> +#define PLL_TEST_CTL_U3(p)     ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U3])
->  #define PLL_STATUS(p)		((p)->offset + (p)->regs[PLL_OFF_STATUS])
->  #define PLL_OPMODE(p)		((p)->offset + (p)->regs[PLL_OFF_OPMODE])
->  #define PLL_FRAC(p)		((p)->offset + (p)->regs[PLL_OFF_FRAC])
-> @@ -197,6 +198,23 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
->  		[PLL_OFF_TEST_CTL_U1] = 0x34,
->  		[PLL_OFF_TEST_CTL_U2] = 0x38,
->  	},
-> +	[CLK_ALPHA_PLL_TYPE_PONGO_ELU] = {
-> +		[PLL_OFF_OPMODE] = 0x04,
-> +		[PLL_OFF_STATE] = 0x08,
-> +		[PLL_OFF_STATUS] = 0x0c,
-> +		[PLL_OFF_L_VAL] = 0x10,
-> +		[PLL_OFF_USER_CTL] = 0x14,
-> +		[PLL_OFF_USER_CTL_U] = 0x18,
-> +		[PLL_OFF_CONFIG_CTL] = 0x1c,
-> +		[PLL_OFF_CONFIG_CTL_U] = 0x20,
-> +		[PLL_OFF_CONFIG_CTL_U1] = 0x24,
-> +		[PLL_OFF_CONFIG_CTL_U2] = 0x28,
-> +		[PLL_OFF_TEST_CTL] = 0x2c,
-> +		[PLL_OFF_TEST_CTL_U] = 0x30,
-> +		[PLL_OFF_TEST_CTL_U1] = 0x34,
-> +		[PLL_OFF_TEST_CTL_U2] = 0x38,
-> +		[PLL_OFF_TEST_CTL_U3] = 0x3c,
-> +	},
->  	[CLK_ALPHA_PLL_TYPE_TAYCAN_ELU] = {
->  		[PLL_OFF_OPMODE] = 0x04,
->  		[PLL_OFF_STATE] = 0x08,
-> @@ -337,6 +355,12 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
->  #define LUCID_EVO_PLL_CAL_L_VAL_SHIFT	16
->  #define LUCID_OLE_PLL_RINGOSC_CAL_L_VAL_SHIFT	24
->  
-> +/* PONGO ELU PLL specific setting and offsets */
-> +#define PONGO_PLL_OUT_MASK		GENMASK(1, 0)
-> +#define PONGO_PLL_L_VAL_MASK		GENMASK(11, 0)
+> diff --git a/arch/arm64/boot/dts/arm/morello.dtsi b/arch/arm64/boot/dts/arm/morello.dtsi
+> new file mode 100644
+> index 000000000000..0089b4f2eca7
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/arm/morello.dtsi
+> @@ -0,0 +1,467 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) 2020-2024, Arm Limited. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +	interrupt-parent = <&gic>;
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	clocks {
+> +		soc_refclk50mhz: clock-50000000 {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <50000000>;
+> +			clock-output-names = "apb_pclk";
+> +		};
+> +
+> +		soc_uartclk: clock-50000000-uart {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <50000000>;
+> +			clock-output-names = "uartclk";
+> +		};
+> +
+> +		soc_refclk85mhz: clock-85000000 {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <85000000>;
+> +			clock-output-names = "iofpga:aclk";
 
-Does it really support such a high L value, or are there any additional
-flags / data entries? PLL2 uses 0x493, which should end up with 22 GHz
-clock, if my calculations are correct.
+If this is ACLK for the IOFPGA outside the SoC, why is it called soc_refclk85mhz?
 
-> +#define PONGO_XO_PRESENT		BIT(10)
-> +#define PONGO_CLOCK_SELECT		BIT(12)
+Not that it seems to be used in this patch series.
+
+> +		};
 > +
->  /* ZONDA PLL specific */
->  #define ZONDA_PLL_OUT_MASK	0xf
->  #define ZONDA_STAY_IN_CFA	BIT(16)
-> @@ -366,7 +390,8 @@ static int wait_for_pll(struct clk_alpha_pll *pll, u32 mask, bool inverse,
->  	if (ret)
->  		return ret;
->  
-> -	for (count = 200; count > 0; count--) {
-> +	/* Pongo PLLs using a 32KHz reference can take upwards of 1500us to lock. */
-> +	for (count = 1500; count > 0; count--) {
->  		ret = regmap_read(pll->clkr.regmap, PLL_MODE(pll), &val);
->  		if (ret)
->  			return ret;
-> @@ -2527,6 +2552,144 @@ const struct clk_ops clk_alpha_pll_reset_lucid_evo_ops = {
->  };
->  EXPORT_SYMBOL_GPL(clk_alpha_pll_reset_lucid_evo_ops);
->  
-> +static int alpha_pll_pongo_elu_prepare(struct clk_hw *hw)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	int ret;
+> +		dpu_aclk: clock-350000000 {
+> +			/* 77.1 MHz derived from 24 MHz reference clock */
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <350000000>;
+> +			clock-output-names = "aclk";
+> +		};
 > +
-> +	/* Enable PLL intially to one-time calibrate against XO. */
-> +	regmap_write(regmap, PLL_OPMODE(pll), PLL_RUN);
-> +	regmap_update_bits(regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
-> +	regmap_update_bits(regmap, PLL_MODE(pll), PONGO_XO_PRESENT, PONGO_XO_PRESENT);
+> +		dpu_pixel_clk: clock-148500000 {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <148500000>;
+> +			clock-output-names = "pxclk";
+> +		};
+> +	};
 > +
-> +	/* Set regmap for wait_for_pll() */
-> +	pll->clkr.regmap = regmap;
-> +	ret = wait_for_pll_enable_lock(pll);
-> +	if (ret) {
-> +		/* Reverse calibration - disable PLL output */
-> +		regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
-> +		return ret;
-> +	}
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
 > +
-> +	/* Disable PLL after one-time calibration. */
-> +	regmap_write(regmap, PLL_OPMODE(pll), PLL_STANDBY);
+> +		cpu0: cpu@0 {
+> +			compatible = "arm,neoverse-n1";
+> +			reg = <0x0 0x0>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			/* 4 ways set associative */
+> +			i-cache-size = <0x10000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <512>;
+> +			d-cache-size = <0x10000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <512>;
+> +			next-level-cache = <&l2_0>;
+> +			clocks = <&scmi_dvfs 0>;
 > +
-> +	/* Select internally generated clock. */
-> +	regmap_update_bits(regmap, PLL_MODE(pll), PONGO_CLOCK_SELECT,
-> +			   PONGO_CLOCK_SELECT);
+> +			l2_0: l2-cache-0 {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				/* 8 ways set associative */
+> +				cache-size = <0x100000>;
+> +				cache-line-size = <64>;
+> +				cache-sets = <2048>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_0>;
 > +
-> +	return 0;
-> +}
+> +				l3_0: l3-cache {
+> +					compatible = "cache";
+> +					cache-level = <3>;
+> +					cache-size = <0x100000>;
+> +					cache-unified;
+> +				};
+> +			};
+> +		};
 > +
-> +static int alpha_pll_pongo_elu_enable(struct clk_hw *hw)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	int ret;
+> +		cpu1: cpu@100 {
+> +			compatible = "arm,neoverse-n1";
+> +			reg = <0x0 0x100>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			/* 4 ways set associative */
+> +			i-cache-size = <0x10000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <512>;
+> +			d-cache-size = <0x10000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <512>;
+> +			next-level-cache = <&l2_1>;
+> +			clocks = <&scmi_dvfs 0>;
 > +
-> +	/* Check if PLL is already enabled */
-> +	if (trion_pll_is_enabled(pll, regmap))
-> +		return 0;
+> +			l2_1: l2-cache-1 {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				/* 8 ways set associative */
+> +				cache-size = <0x100000>;
+> +				cache-line-size = <64>;
+> +				cache-sets = <2048>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_0>;
+> +			};
+> +		};
 > +
-> +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
-> +	if (ret)
-> +		return ret;
+> +		cpu2: cpu@10000 {
+> +			compatible = "arm,neoverse-n1";
+> +			reg = <0x0 0x10000>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			/* 4 ways set associative */
+> +			i-cache-size = <0x10000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <512>;
+> +			d-cache-size = <0x10000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <512>;
+> +			next-level-cache = <&l2_2>;
+> +			clocks = <&scmi_dvfs 1>;
 > +
-> +	/* Set operation mode to RUN */
-> +	regmap_write(regmap, PLL_OPMODE(pll), PLL_RUN);
+> +			l2_2: l2-cache-2 {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				/* 8 ways set associative */
+> +				cache-size = <0x100000>;
+> +				cache-line-size = <64>;
+> +				cache-sets = <2048>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_0>;
+> +			};
+> +		};
 > +
-> +	ret = wait_for_pll_enable_lock(pll);
-> +	if (ret)
-> +		return ret;
+> +		cpu3: cpu@10100 {
+> +			compatible = "arm,neoverse-n1";
+> +			reg = <0x0 0x10100>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			/* 4 ways set associative */
+> +			i-cache-size = <0x10000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <512>;
+> +			d-cache-size = <0x10000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <512>;
+> +			next-level-cache = <&l2_3>;
+> +			clocks = <&scmi_dvfs 1>;
 > +
-> +	/* Enable the global PLL outputs */
-> +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
-> +	if (ret)
-> +		return ret;
+> +			l2_3: l2-cache-3 {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				/* 8 ways set associative */
+> +				cache-size = <0x100000>;
+> +				cache-line-size = <64>;
+> +				cache-sets = <2048>;
+> +				cache-unified;
+> +				next-level-cache = <&l3_0>;
+> +			};
+> +		};
+> +	};
 > +
-> +	/* Ensure that the write above goes through before returning. */
-> +	mb();
+> +	firmware {
+> +		interrupt-parent = <&gic>;
 > +
-> +	return ret;
-> +}
+> +		scmi {
+> +			compatible = "arm,scmi";
+> +			mbox-names = "tx", "rx";
+> +			mboxes = <&mailbox 1 0>, <&mailbox 1 1>;
+> +			shmem = <&cpu_scp_hpri0>, <&cpu_scp_hpri1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 > +
-> +static void alpha_pll_pongo_elu_disable(struct clk_hw *hw)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	int ret;
+> +			scmi_dvfs: protocol@13 {
+> +				reg = <0x13>;
+> +				#clock-cells = <1>;
+> +			};
 > +
-> +	/* Disable the global PLL output */
-> +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
-> +	if (ret)
-> +		return;
+> +			scmi_clk: protocol@14 {
+> +				reg = <0x14>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +	};
 > +
-> +	/* Place the PLL mode in STANDBY */
-> +	regmap_write(regmap, PLL_OPMODE(pll), PLL_STANDBY);
-> +}
+> +	/* The first bank of memory, memory map is actually provided by UEFI. */
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		/* [0x80000000-0xffffffff] */
+> +		reg = <0x00000000 0x80000000 0x0 0x7f000000>;
+> +	};
 > +
-> +static unsigned long alpha_pll_pongo_elu_recalc_rate(struct clk_hw *hw,
-> +						     unsigned long parent_rate)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	u32 l;
+> +	memory@8080000000 {
+> +		device_type = "memory";
+> +		/* [0x8080000000-0x83f7ffffff] */
+> +		reg = <0x00000080 0x80000000 0x3 0x78000000>;
+> +	};
 > +
-> +	if (regmap_read(regmap, PLL_L_VAL(pll), &l))
-> +		return 0;
+> +	pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
 > +
-> +	l &= PONGO_PLL_L_VAL_MASK;
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+> +		method = "smc";
+> +	};
 > +
-> +	return alpha_pll_calc_rate(parent_rate, l, 0, pll_alpha_width(pll));
-> +}
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
 > +
-> +const struct clk_ops clk_alpha_pll_pongo_elu_ops = {
-> +	.prepare = alpha_pll_pongo_elu_prepare,
-> +	.enable = alpha_pll_pongo_elu_enable,
-> +	.disable = alpha_pll_pongo_elu_disable,
-> +	.recalc_rate = alpha_pll_pongo_elu_recalc_rate,
+> +		secure-firmware@ff000000 {
+> +			reg = <0x0 0xff000000 0x0 0x01000000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	spe-pmu {
+> +		compatible = "arm,statistical-profiling-extension-v1";
+> +		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	soc: soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		interrupt-parent = <&gic>;
+> +		ranges;
+> +
+> +		dp0: display@2cc00000 {
+> +			compatible = "arm,mali-d32", "arm,mali-d71";
+> +			reg = <0x0 0x2cc00000 0x0 0x20000>;
+> +			interrupts = <0 69 4>;
+> +			clocks = <&dpu_aclk>;
+> +			clock-names = "aclk";
+> +			iommus = <&smmu_dp 0>, <&smmu_dp 1>, <&smmu_dp 2>, <&smmu_dp 3>,
+> +				 <&smmu_dp 8>;
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			pl0: pipeline@0 {
+> +				reg = <0>;
+> +				clocks = <&dpu_pixel_clk>;
+> +				clock-names = "pxclk";
+> +				port {
+> +					dp_pl0_out0: endpoint {
+> +						remote-endpoint = <&tda998x_0_input>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		i2c0: i2c@1c0f0000 {
+
+The I2C controller lives in the IOFGPA on the board, not the SoC.
+
+> +			compatible = "cdns,i2c-r1p14";
+> +			reg = <0x0 0x1c0f0000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&dpu_aclk>;
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			status = "disabled";
+> +
+> +			hdmi_tx: hdmi-transmitter@70 {
+
+The transmitter is a discrete chip on the board, not the SoC.
+
+Jess
+
+> +				compatible = "nxp,tda998x";
+> +				reg = <0x70>;
+> +				video-ports = <0x234501>;
+> +				port {
+> +					tda998x_0_input: endpoint {
+> +						remote-endpoint = <&dp_pl0_out0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		gic: interrupt-controller@2c010000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0x0 0x30000000 0x0 0x10000>,	/* GICD */
+> +			      <0x0 0x300c0000 0x0 0x80000>;	/* GICR */
+> +
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			its1: msi-controller@30040000 {
+> +				compatible = "arm,gic-v3-its";
+> +				reg = <0x0 0x30040000 0x0 0x20000>;
+> +
+> +				msi-controller;
+> +				#msi-cells = <1>;
+> +			};
+> +
+> +			its2: msi-controller@30060000 {
+> +				compatible = "arm,gic-v3-its";
+> +				reg = <0x0 0x30060000 0x0 0x20000>;
+> +
+> +				msi-controller;
+> +				#msi-cells = <1>;
+> +			};
+> +
+> +			its_ccix: msi-controller@30080000 {
+> +				compatible = "arm,gic-v3-its";
+> +				reg = <0x0 0x30080000 0x0 0x20000>;
+> +
+> +				msi-controller;
+> +				#msi-cells = <1>;
+> +			};
+> +
+> +			its_pcie: msi-controller@300a0000 {
+> +				compatible = "arm,gic-v3-its";
+> +				reg = <0x0 0x300a0000 0x0 0x20000>;
+> +
+> +				msi-controller;
+> +				#msi-cells = <1>;
+> +			};
+> +		};
+> +
+> +		smmu_dp: iommu@2ce00000 {
+> +			compatible = "arm,smmu-v3";
+> +			reg = <0x0 0x2ce00000 0x0 0x40000>;
+> +
+> +			interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 80 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "eventq", "gerror", "cmdq-sync";
+> +			#iommu-cells = <1>;
+> +		};
+> +
+> +		smmu_ccix: iommu@4f000000 {
+> +			compatible = "arm,smmu-v3";
+> +			reg = <0x0 0x4f000000 0x0 0x40000>;
+> +
+> +			interrupts = <GIC_SPI 228 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 230 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 41 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 229 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
+> +			msi-parent = <&its1 0>;
+> +			#iommu-cells = <1>;
+> +			dma-coherent;
+> +		};
+> +
+> +		smmu_pcie: iommu@4f400000 {
+> +			compatible = "arm,smmu-v3";
+> +			reg = <0x0 0x4f400000 0x0 0x40000>;
+> +
+> +			interrupts = <GIC_SPI 235 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 237 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 40 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 236 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
+> +			msi-parent = <&its2 0>;
+> +			#iommu-cells = <1>;
+> +			dma-coherent;
+> +		};
+> +
+> +		mailbox: mhu@45000000 {
+> +			compatible = "arm,mhu-doorbell", "arm,primecell";
+> +			reg = <0x0 0x45000000 0x0 0x1000>;
+> +
+> +			interrupts = <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
+> +			#mbox-cells = <2>;
+> +			clocks = <&soc_refclk50mhz>;
+> +			clock-names = "apb_pclk";
+> +		};
+> +
+> +		pcie_ctlr: pcie@28c0000000 {
+> +			device_type = "pci";
+> +			compatible = "pci-host-ecam-generic";
+> +			reg = <0x28 0xC0000000 0 0x10000000>;
+> +			ranges = <0x01000000 0x00 0x00000000 0x00 0x6f000000 0x00 0x00800000>,
+> +				 <0x02000000 0x00 0x60000000 0x00 0x60000000 0x00 0x0f000000>,
+> +				 <0x42000000 0x09 0x00000000 0x09 0x00000000 0x1f 0xc0000000>;
+> +			bus-range = <0 255>;
+> +			linux,pci-domain = <0>;
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			dma-coherent;
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 7>;
+> +			interrupt-map = <0 0 0 1 &gic 0 0 0 169 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 2 &gic 0 0 0 170 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 3 &gic 0 0 0 171 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 4 &gic 0 0 0 172 IRQ_TYPE_LEVEL_HIGH>;
+> +			msi-map = <0 &its_pcie 0 0x10000>;
+> +			iommu-map = <0 &smmu_pcie 0 0x10000>;
+> +		};
+> +
+> +		ccix_pcie_ctlr: pcie@4fc0000000 {
+> +			device_type = "pci";
+> +			compatible = "pci-host-ecam-generic";
+> +			reg = <0x4f 0xC0000000 0 0x10000000>;
+> +			ranges = <0x01000000 0x00 0x00000000 0x00 0x7f000000 0x00 0x00800000>,
+> +				 <0x02000000 0x00 0x70000000 0x00 0x70000000 0x00 0x0f000000>,
+> +				 <0x42000000 0x30 0x00000000 0x30 0x00000000 0x1f 0xc0000000>;
+> +			bus-range = <0 255>;
+> +			linux,pci-domain = <1>;
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			dma-coherent;
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 7>;
+> +			interrupt-map = <0 0 0 1 &gic 0 0 0 201 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 2 &gic 0 0 0 202 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 3 &gic 0 0 0 203 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 4 &gic 0 0 0 204 IRQ_TYPE_LEVEL_HIGH>;
+> +			msi-map = <0 &its_ccix 0 0x10000>;
+> +			iommu-map = <0 &smmu_ccix 0 0x10000>;
+> +		};
+> +
+> +		uart0: serial@2a400000 {
+> +			compatible = "arm,pl011", "arm,primecell";
+> +			reg = <0x0 0x2a400000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&soc_uartclk>, <&soc_refclk50mhz>;
+> +			clock-names = "uartclk", "apb_pclk";
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		sram: sram@45200000 {
+> +			compatible = "mmio-sram";
+> +			reg = <0x0 0x06000000 0x0 0x8000>;
+> +			ranges = <0 0x0 0x06000000 0x8000>;
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			cpu_scp_hpri0: scp-sram@0 {
+> +				compatible = "arm,scmi-shmem";
+> +				reg = <0x0 0x80>;
+> +			};
+> +
+> +			cpu_scp_hpri1: scp-sram@80 {
+> +				compatible = "arm,scmi-shmem";
+> +				reg = <0x80 0x80>;
+> +			};
+> +		};
+> +
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+> +	};
 > +};
-> +EXPORT_SYMBOL_GPL(clk_alpha_pll_pongo_elu_ops);
-> +
-> +void clk_pongo_elu_pll_configure(struct clk_alpha_pll *pll,
-> +				 struct regmap *regmap,
-> +				 const struct alpha_pll_config *config)
-> +{
-> +	u32 val;
-> +
-> +	regmap_update_bits(regmap, PLL_USER_CTL(pll), PONGO_PLL_OUT_MASK,
-> +			   PONGO_PLL_OUT_MASK);
-> +
-> +	if (trion_pll_is_enabled(pll, regmap))
-> +		return;
-> +
-> +	if (regmap_read(regmap, PLL_L_VAL(pll), &val))
-> +		return;
-> +	val &= PONGO_PLL_L_VAL_MASK;
-> +	if (val)
-> +		return;
-> +
-> +	clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), config->l);
-> +	clk_alpha_pll_write_config(regmap, PLL_ALPHA_VAL(pll), config->alpha);
-> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL(pll), config->config_ctl_val);
-> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U(pll), config->config_ctl_hi_val);
-> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U1(pll), config->config_ctl_hi1_val);
-> +	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U2(pll), config->config_ctl_hi2_val);
-> +	clk_alpha_pll_write_config(regmap, PLL_USER_CTL(pll),
-> +				   config->user_ctl_val | PONGO_PLL_OUT_MASK);
-> +	clk_alpha_pll_write_config(regmap, PLL_USER_CTL_U(pll), config->user_ctl_hi_val);
-> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), config->test_ctl_val);
-> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), config->test_ctl_hi_val);
-> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), config->test_ctl_hi1_val);
-> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U2(pll), config->test_ctl_hi2_val);
-> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U3(pll), config->test_ctl_hi3_val);
-> +
-> +	/* Disable PLL output */
-> +	regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
-> +}
-> +EXPORT_SYMBOL_GPL(clk_pongo_elu_pll_configure);
-> +
->  void clk_rivian_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
->  				  const struct alpha_pll_config *config)
->  {
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
-> index 87bd469d9c2c2ec4e0758c97231527b92fe6afe5..79aca8525262211ae5295245427d4540abf1e09a 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.h
-> +++ b/drivers/clk/qcom/clk-alpha-pll.h
-> @@ -27,6 +27,7 @@ enum {
->  	CLK_ALPHA_PLL_TYPE_ZONDA_OLE,
->  	CLK_ALPHA_PLL_TYPE_LUCID_EVO,
->  	CLK_ALPHA_PLL_TYPE_LUCID_OLE,
-> +	CLK_ALPHA_PLL_TYPE_PONGO_ELU,
->  	CLK_ALPHA_PLL_TYPE_TAYCAN_ELU,
->  	CLK_ALPHA_PLL_TYPE_RIVIAN_EVO,
->  	CLK_ALPHA_PLL_TYPE_DEFAULT_EVO,
-> @@ -53,6 +54,7 @@ enum {
->  	PLL_OFF_TEST_CTL_U,
->  	PLL_OFF_TEST_CTL_U1,
->  	PLL_OFF_TEST_CTL_U2,
-> +	PLL_OFF_TEST_CTL_U3,
->  	PLL_OFF_STATE,
->  	PLL_OFF_STATUS,
->  	PLL_OFF_OPMODE,
-> @@ -138,6 +140,7 @@ struct alpha_pll_config {
->  	u32 test_ctl_hi_mask;
->  	u32 test_ctl_hi1_val;
->  	u32 test_ctl_hi2_val;
-> +	u32 test_ctl_hi3_val;
->  	u32 main_output_mask;
->  	u32 aux_output_mask;
->  	u32 aux2_output_mask;
-> @@ -196,6 +199,7 @@ extern const struct clk_ops clk_alpha_pll_postdiv_lucid_evo_ops;
->  #define clk_alpha_pll_postdiv_lucid_ole_ops clk_alpha_pll_postdiv_lucid_evo_ops
->  #define clk_alpha_pll_postdiv_taycan_elu_ops clk_alpha_pll_postdiv_lucid_evo_ops
->  
-> +extern const struct clk_ops clk_alpha_pll_pongo_elu_ops;
->  extern const struct clk_ops clk_alpha_pll_rivian_evo_ops;
->  #define clk_alpha_pll_postdiv_rivian_evo_ops clk_alpha_pll_postdiv_fabia_ops
->  
-> @@ -222,6 +226,8 @@ void clk_lucid_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regma
->  				 const struct alpha_pll_config *config);
->  void clk_lucid_ole_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
->  				 const struct alpha_pll_config *config);
-> +void clk_pongo_elu_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
-> +				 const struct alpha_pll_config *config);
->  #define clk_taycan_elu_pll_configure(pll, regmap, config) \
->  	clk_lucid_evo_pll_configure(pll, regmap, config)
->  
-> 
 > -- 
 > 2.43.0
 > 
-
--- 
-With best wishes
-Dmitry
 
