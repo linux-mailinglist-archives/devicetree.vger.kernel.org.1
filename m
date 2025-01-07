@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-136026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23F71A03868
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:08:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB97EA03899
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:11:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C4027A22F6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:08:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0A34162450
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:11:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1081DE3C3;
-	Tue,  7 Jan 2025 07:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86F31AAA10;
+	Tue,  7 Jan 2025 07:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5OVSucK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kCMyI1Wb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E8019E806;
-	Tue,  7 Jan 2025 07:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE1B19644B;
+	Tue,  7 Jan 2025 07:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736233701; cv=none; b=QbEUrUkuLPVo53v44/kiKJOcQMytEnwYkcxQaLSYOjcV3YvxqOJ5Y3r4LO9aOnvXU/ciIeVQOKhODsEUUlgMRVzCz2lrWhvNWhATRHYtFYL44LS/k0xgmTknqU/DMCzpmCuyXGSMomt2w6s7MoxOxA9JYGkNxQPLXxVayHwN8sg=
+	t=1736233876; cv=none; b=IAIeMK4X/7AP9dU4mx/uDeA5H1KXrEM/4XRxOQLVgM/8gIUipQxDGvKOqF9rc3xYDrZnCUc/KotmDXuju/+DLTGdD0kWmQG7bGYc0YLDYjY4H0dtGPlwLMw2MR6Xf6mA2OZIA0vgwyExUxXhpv291c5KNYq3jXl+MeB/x3eY8DY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736233701; c=relaxed/simple;
-	bh=R8h9eLfpu3xvbqL1BO+eFKtQtfe7sm2Zwb1q9DoGnrI=;
+	s=arc-20240116; t=1736233876; c=relaxed/simple;
+	bh=oVzbTsDLgefB50txfb216cLON17wOYvCaNrqmAHQkP4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OkyiGa2w7cBXwYqXDfNZ2+JVYyCkYR2SH2saOEKdHujArNmewVPywYwCVE194O+d9WoGl/PsyVJy75vXZ8twin16TJgs+JCXfCNm8SUL2N2M4I4ctSiiMWXmsaLafTd+yEqIAarSSPkhIFUF6FOljmiXq/yq26KVSHF8FZfTFZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5OVSucK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC357C4CED6;
-	Tue,  7 Jan 2025 07:08:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TJ+Yjoda6dz3+YE35GiYUGoggn2qiTh2IpjAI6+MUUQ7ySeuhYv2MYcXDmGDkNUf8kQ/1RzIc1O9CB7YjRo1gicTWBK8S4Rux0C2TKh4V4KR7WkCAxoaeR/2OeG577FkOojdkXPkDwbaemogC6xkP6oi8mPdf8HK/uE857D/Suw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kCMyI1Wb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DC1CC4CED6;
+	Tue,  7 Jan 2025 07:11:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736233699;
-	bh=R8h9eLfpu3xvbqL1BO+eFKtQtfe7sm2Zwb1q9DoGnrI=;
+	s=k20201202; t=1736233876;
+	bh=oVzbTsDLgefB50txfb216cLON17wOYvCaNrqmAHQkP4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U5OVSucKvFdrOhO+k/lAkfQjEvBEBrt/yTbAsyIHLY8P9NzbulizOX2EbuDdm2XbB
-	 w8X00HgngAr3UEqsK404FmI4/JpdStdRUVQe2H5HUKuRn0x1ojRR9nB3quLpMVkbqE
-	 rXDW+Hl0Ip52LjfbqqHT2VvajsaaLDmViY7KQUiXTYUa+3gPZRJ0VLGetZ+7kf2t1a
-	 GChhTxJOZ/+FyE+TMNTaabUJ21a0ZsDSkqxEvE1YGLZ9TbFg7gJfRgFvpQY9xi/3jQ
-	 fRzAlLJJf7wuMQR/XysRaeOd4FneWv3hwm7US1lub/XOUXtJIrtlxynrF4P81wnn6+
-	 nS2a3/U/HsJ5A==
-Date: Tue, 7 Jan 2025 08:08:16 +0100
+	b=kCMyI1Wb+iprQ+nkKWGTKrkpcuAHe0ZlZ1oVveWfi0D+5ctNTc7W/E+fDz3Q+eyCw
+	 zjCen/nSb7ssXXANkY0pVndKU6LMW/HuNj1HSuQ8zsjp2bUQLJhCuSzUGtGMKqOZmp
+	 4qetV3tZ7aN6l3ykpfIUugddWgkjehyyDkX6BDagapdCH2uGj+U5nKjfdraegFmm45
+	 VfJDYzxImL5uB6c1OAARqGXlA8KTDc1mLnLA7+1RfrhGtRaHalCBT4GaVwvhJS1b2n
+	 kwe6KiZiJwLcV0pHmgVY3wBgg3ftCjkEfDtU+SfwQFffdjRSlUDk7TaXM5+IGEcxKs
+	 WNNXKnwsZoyZw==
+Date: Tue, 7 Jan 2025 08:11:12 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 1/6] dt-bindings: clock: convert stm32 rcc bindings to
- json-schema
-Message-ID: <tedqfrtcnx66j5tlkgmiv4wr6towpwwso4pjzraxm76cjejory@3cktakntjbab>
-References: <20250105181525.1370822-1-dario.binacchi@amarulasolutions.com>
- <20250105181525.1370822-2-dario.binacchi@amarulasolutions.com>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add H96 Max V58 TV box
+Message-ID: <n4p5ixqoqm6innjzqk5wlcugok737f6yv2zto2sdgpm4ew2bhq@3bhqk3mkott5>
+References: <20250106-rk3588-h96-max-v58-v1-0-d25255f851fc@gmail.com>
+ <20250106-rk3588-h96-max-v58-v1-1-d25255f851fc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,187 +60,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250105181525.1370822-2-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20250106-rk3588-h96-max-v58-v1-1-d25255f851fc@gmail.com>
 
-On Sun, Jan 05, 2025 at 07:14:13PM +0100, Dario Binacchi wrote:
-> diff --git a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-> new file mode 100644
-> index 000000000000..ae9e5b26d876
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-> @@ -0,0 +1,143 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/st,stm32-rcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32 Reset Clock Controller
-> +
-> +maintainers:
-> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> +
-> +description: |
-> +  The RCC IP is both a reset and a clock controller.
-> +
-> +  This binding uses common clock and reset bindings
-> +  Documentation/devicetree/bindings/clock/clock-bindings.txt
-> +  Documentation/devicetree/bindings/reset/reset.txt
-
-Drop paragraph.
-
-> +
-> +  Specifying softreset control of devices
-> +  =======================================
-> +
-> +  Device nodes should specify the reset channel required in their "resets"
-> +  property, containing a phandle to the reset device node and an index specifying
-> +  which channel to use.
-
-Drop paragraph and rephrase it that reset phandle argument is "... the bit
-number within the RCC...."
-
-> +  The index is the bit number within the RCC registers bank, starting from RCC
-> +  base address.
-> +  It is calculated as: index = register_offset / 4 * 32 + bit_offset.
-> +  Where bit_offset is the bit offset within the register.
-> +
-> +  For example, for CRC reset:
-> +  crc = AHB1RSTR_offset / 4 * 32 + CRCRST_bit_offset = 0x10 / 4 * 32 + 12 = 140
-> +
-> +  The list of valid indices is available in:
-> +  - include/dt-bindings/mfd/stm32f4-rcc.h for STM32F4 series
-> +  - include/dt-bindings/mfd/stm32f7-rcc.h for STM32F7 series
-> +  - include/dt-bindings/mfd/stm32h7-rcc.h for STM32H7 series
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: st,stm32f42xx-rcc
-> +          - const: st,stm32-rcc
-> +      - items:
-> +          - enum:
-> +              - st,stm32f469-rcc
-> +          - const: st,stm32f42xx-rcc
-> +          - const: st,stm32-rcc
-> +      - items:
-> +          - const: st,stm32f746-rcc
-> +          - const: st,stm32-rcc
-> +      - items:
-> +          - enum:
-> +              - st,stm32f769-rcc
-> +          - const: st,stm32f746-rcc
-> +          - const: st,stm32-rcc
-> +      - items:
-> +          - const: st,stm32h743-rcc
-> +          - const: st,stm32-rcc
-
-Old binding did not mention any fallbacks, so you need to explain this
-in commit msg. You only said "st,stm32h743-rcc"
-
-> + 
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  '#clock-cells':
-> +    enum: [1, 2]
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 3
-
-You need to list the items with description. Narrow the clock numbers
-per varian in allOf:if:then and explain this in commit msg (old binding
-did not say three clocks, so that's another change).
-
-> +
-> +  st,syscfg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to system configuration controller. It can be used to control the
-> +      power domain circuitry.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#reset-cells'
-> +  - '#clock-cells'
-> +  - clocks
-> +  - st,syscfg
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: st,stm32h743-rcc
-> +    then:
-> +      properties:
-> +        '#clock-cells':
-> +          const: 1
-> +          description: |
-> +            The clock index for the specified type.
-> +    else:
-> +      properties:
-> +        '#clock-cells':
-> +          const: 2
-> +          description: |
-> +            - The first cell is the clock type, possible values are 0 for
-> +              gated clocks and 1 otherwise.
-> +            - The second cell is the clock index for the specified type.
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Reset and Clock Control Module node:
-> +  - |
-> +    rcc@40023800 {
-> +        #reset-cells = <1>;
-> +        #clock-cells = <2>;
-> +        compatible = "st,stm32f42xx-rcc", "st,stm32-rcc";
-> +        reg = <0x40023800 0x400>;
-
-compatible and reg are alwys the first.
-
-> +        clocks = <&clk_hse>, <&clk_i2s_ckin>;
-> +        st,syscfg = <&pwrcfg>;
-
-Only one example.
-
-> +    };
-> +
-> +  - |
-> +    rcc@40023800 {
-> +        #reset-cells = <1>;
-> +        #clock-cells = <2>;
-> +        compatible = "st,stm32f746-rcc", "st,stm32-rcc";
-> +        reg = <0x40023800 0x400>;
-> +        clocks = <&clk_hse>, <&clk_i2s_ckin>;
-> +        st,syscfg = <&pwrcfg>;
-> +    };
-> +
-> +  - |
-> +    rcc@58024400 {
-
-clock-controller@58024400
-
-> +        compatible = "st,stm32h743-rcc", "st,stm32-rcc";
-> +        reg = <0x58024400 0x400>;
-> +        #clock-cells = <1>;
-> +        #reset-cells = <1>;
-> +        clocks = <&clk_hse>, <&clk_lse>, <&clk_i2s>;
-> +        st,syscfg = <&pwrcfg>;
-
-So maybe just keep this example only.
-
-> +    };
-> +
-> +...
-> -- 
-> 2.43.0
+On Mon, Jan 06, 2025 at 01:07:17AM +0400, Alexey Charkov wrote:
+> H96 Max V58 is a compact Rockchip RK3588 based device that ships
+> with Android and is meant for use as a TV connected media box.
 > 
+> Add device tree binding for it.
+
+BTW, this can be written shorter and clearer:
+Add Devicetree binding for H96 Max V58: a compact Rockchip RK3588 based
+device that ships with Android and is meant for use as a TV connected
+media box.
+
+Regardless:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
