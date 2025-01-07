@@ -1,191 +1,149 @@
-Return-Path: <devicetree+bounces-136009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370D6A03719
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 05:41:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27FEDA03725
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 05:53:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FC527A1DD7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 04:41:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 012BE163C0B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 04:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E173194A7C;
-	Tue,  7 Jan 2025 04:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B2C71917F1;
+	Tue,  7 Jan 2025 04:53:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="AS74y9qY"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XSWwX5A/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2052.outbound.protection.outlook.com [40.107.100.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D53FB1D95A3;
-	Tue,  7 Jan 2025 04:41:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.100.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736224863; cv=fail; b=dLtA4QAK8vq2l7ccixOGO2Q1dIu9/8HIUsw9Wslt/9cSrvdKq9Q6fbBeQaSWNiM+Y5c42521QvxI21qSQpyiFjeldRjc8zcejGFf3+CXPyjb2bwVDU/dQ+lUmgkXtywaQgnyNxbcQdbZqEidODjvGva76X9PV5uAOrIZQRmCz/Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736224863; c=relaxed/simple;
-	bh=35/06i2OJBNJ8CzrE5/JyBabxdKagxfE5Y/oejv9V8M=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aKuFDnaPu+mO3/HW8BNHvGEnSX2yGck7FWbqly3MCMrgGatAX9OwpMMktX3npjKHmxH4hAde2TqDTegLHskdiAOyKj3k97XUfhDn+DYvU8xxllN9A45ZBonmkDOPDu9ewRPw7Y68lBXtDPXF4VaPfnVuFt8K+FqGUEUgQ8pSZIo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=AS74y9qY; arc=fail smtp.client-ip=40.107.100.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dMs+hY+IlMIBPyiv9H3oW6LIkIdZQZb8W5//l8W3GawfwHZytOjxPKP2DwVCk7zqS7+R3x0Mo1gt8vgcjjivFe8Gw82aRVXXa4UPwE/kBzNmcicPITz8JAl9HfshkYy5DU+6dn0UOPNC+eXaIV6kbY/Ivb28BUidhEXNd79RPyyxbsZq3Iu23hRUXN4Y+7ogZGovcC7Zf3DyFb5tanRi6c3tmZjLMzVXlz6dsN7Jp/6uytbnC6h1/A8UGHHxX85G8CvH4HtgJ2rYjfgSiWLGdZf6ektYBhJkbpponfmOCjtsdxPXHc+PMa9T0H81ZsbJf2hbsahi9jdAdy0F7jnZew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jAXNVXjCOkIy6BMZSN9T4HRgc7A/XStKTCNkkElS3pk=;
- b=IPP3l1uP6+a8U/XJFiEC3Ou871c50TBTjCyQkQtUHDqGk7oOtK8faKJGtT3jQhtS+WArZiaTgQ7g4ixvsng9wFkxKtSmTnxN2rySYJaGYxThx3xqhtV1hDRP1Yu/zq+8L6BJFw6gM0slBfJrZaXuV7vFh+4xMIoOqhba/lliC8jmmHFoR95NWjzHoNz+z8tI+UXOxazl6il5QBLbUxuWVBqfouzf0BlYL0N5nDbXsyIxqK+DKCo8lNUMTNpkvnVIvN61bBgtqzlf0QsRMxZhoNxUkPS5NVf5oKU9pUVae/r9k/hkAkfbhc1EmtwUf/ul/vDHkcIAcU3q1jYKh5d03w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=baylibre.com smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jAXNVXjCOkIy6BMZSN9T4HRgc7A/XStKTCNkkElS3pk=;
- b=AS74y9qYhH0Cr376zBPHuFrLkUDf4oBvuOYa18lLZ00zGVCKTiJC3TjrnYsH/MCksUmbDMV8WQHNtf+DEC0W+MljLg3RGkq6OSkKAtpegU9FETIaHP8ndjI/JYDVQYc7Z9DQo2So5MbQWbzvG+Nkpjp/QBrpkoHcqTH4fu4BHPE=
-Received: from BL0PR1501CA0011.namprd15.prod.outlook.com
- (2603:10b6:207:17::24) by CY8PR12MB7561.namprd12.prod.outlook.com
- (2603:10b6:930:94::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Tue, 7 Jan
- 2025 04:40:53 +0000
-Received: from BL6PEPF0001AB78.namprd02.prod.outlook.com
- (2603:10b6:207:17:cafe::4c) by BL0PR1501CA0011.outlook.office365.com
- (2603:10b6:207:17::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8314.16 via Frontend Transport; Tue,
- 7 Jan 2025 04:40:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BL6PEPF0001AB78.mail.protection.outlook.com (10.167.242.171) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8335.7 via Frontend Transport; Tue, 7 Jan 2025 04:40:46 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 6 Jan
- 2025 22:40:46 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 6 Jan
- 2025 22:40:46 -0600
-Received: from xsjssw-mmedia4.xilinx.com (10.180.168.240) by
- SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39
- via Frontend Transport; Mon, 6 Jan 2025 22:40:45 -0600
-From: Rohit Visavalia <rohit.visavalia@amd.com>
-To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vishal.sagar@amd.com>,
-	<michal.simek@amd.com>
-CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Rohit Visavalia <rohit.visavalia@amd.com>
-Subject: [PATCH v2 2/2] dt-bindings: clock: xilinx: Add reset GPIO for VCU
-Date: Mon, 6 Jan 2025 20:40:38 -0800
-Message-ID: <20250107044038.100945-3-rohit.visavalia@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250107044038.100945-1-rohit.visavalia@amd.com>
-References: <20250107044038.100945-1-rohit.visavalia@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 405921662F1
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 04:52:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736225581; cv=none; b=lwdnlJ+CgTeK425E16eRzAWW4Jb/YatUsxgIOikhvc0j8DYyilXKiPHzFH+tr6bInlwVZFSDhMxAcv2Z4sOPAibvKHzaaRZ3PyrmcpvEri4f5ggiizhV/+0nVlkuDuq3asHAx1JCtFybYDffIxh7wqOwRqNVRX6lvzGVdlqhjkE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736225581; c=relaxed/simple;
+	bh=60IKh1YALIpE5luozTsZiDL++m1KjCGPj6msSEt8t+U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BbYG5gNegw426EzQSwB3hm9/KcLq4hjs9NX6leErsHonf/81X4AMup97tE0a2ojYWhAjjFILs/MaE+9mCVhsplcHP/Afyl4lkaqlr5OFOErUz6K03yfZ1uUb+1QTfLIq4MQJlRWXHi3YM4d2xq61qkZC/rweumbjNnQpbqWMfjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XSWwX5A/; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d3e9f60bf4so27069624a12.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 20:52:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736225577; x=1736830377; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=60IKh1YALIpE5luozTsZiDL++m1KjCGPj6msSEt8t+U=;
+        b=XSWwX5A/dCTAeCQIE5gbiCSJ7KPOjNyvC6YC2yuJlExkvaRl1ZWLE+VJUYrYkzH7sa
+         CPFBBi/KWxU9oJ/WdYl0C2c4Im+2fNeMB9mHvh2C2XjHyI0u77xN1mPKU+a6LrmAqqsO
+         uzz0QYlSoW4Pxd6x6u2BCAAAqonCTxxDeMu5lgImh9i38oTfWIuPqiR9Dmc6plIOf6Jh
+         /FMqXCUQFDoE/vNKdXLXO1Fyd0buQG08vS0/gAWnKc4VAufZO6YmW7baLF4HaAko4e5G
+         ULV25h/2WihbjEzZCJhaPAPmrHuyzWjNRbdeUlK6IQxJOYRr881GzGfNvemb0lEmndpJ
+         cAYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736225577; x=1736830377;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=60IKh1YALIpE5luozTsZiDL++m1KjCGPj6msSEt8t+U=;
+        b=J01FYWx46ULGn1c/i6WBqKE2fzS0d98XdiA0OEOMTpv9GEOCjwIyWMaut8LNljGCXY
+         OI2m9O6Sn90yxq1DLxtVVcmfN1v6dc17jk4qT5UPheL0COibg8GIxjJih5nY8iKRfm0C
+         olpaDKglq903Xd/+rPZALDDoGA1NjfrjpKCtMVs0gYj9CahHnHmWxwBWW5hFzfdr7yHf
+         3VwDIxlCJ2mISjo2GlltghbntlwPlcpJeyaKEWOc3yiH5iC2W78yU9/ab1hQSd4XC0fE
+         eNl3euZSJz8YdDUSIO4wIqCzdqerXBD13mossy+sd2mt9vayyn27QKWI9o9aoly53bkm
+         6Xgg==
+X-Forwarded-Encrypted: i=1; AJvYcCVbMqQ4N5gPcHUUXnTJQ1xnmrnSKiT/PSAm+RMllBHKCUBKGWKgF0AKCtvSydBlL4LLvuVQ3Niiw6Fr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLRDNqKeM8kVe+qCDPrl0Z9md8BbS9P4GNl5kdRRslpuecb0uJ
+	aqJeu3R3qvvDoCBGQ65/35SeZo/79/1cf5YaCZ70ra/371efrcJlSGyiib7udQ8=
+X-Gm-Gg: ASbGncvdeD+ElfeGAomm7Vm0JDNeqpjN7Momb15EiGe0lLncIv7nN+uumcaDyOopDDs
+	y8HwDob3n+Gwu/ULLG2tPTFQdva3YQPthLoF18IHvXxO+yus0snlshOfTastOQxGt/5ApP+PAMG
+	qPEs5FjB2swieUT94SqMWt2MELCa9qEC0wqOkvIfd7fBIaigSKfv+qyGJ70iYV1Qo6qx/LpXxsI
+	1lbsNMICX+ZARR4mnQGGftW6K/B9nPkjGl4t4cukSHWPToqf5PaneoomxjqWw==
+X-Google-Smtp-Source: AGHT+IExtBcC1TdRfmrYbsdlfJ/xTSCHU6F9T+AcyPoKwaobnGSIRxLtGmMNUARkLtwmvOeIpjrxLQ==
+X-Received: by 2002:a17:906:f59d:b0:aa6:9372:cac7 with SMTP id a640c23a62f3a-aac334c1628mr5915566066b.31.1736225577578;
+        Mon, 06 Jan 2025 20:52:57 -0800 (PST)
+Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f015b53sm2324711666b.163.2025.01.06.20.52.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2025 20:52:56 -0800 (PST)
+Date: Tue, 7 Jan 2025 05:52:54 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Nylon Chen <nylon.chen@sifive.com>
+Cc: Nylon Chen <nylon7717@gmail.com>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	conor@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	palmer@dabbelt.com, paul.walmsley@sifive.com, aou@eecs.berkeley.edu, 
+	thierry.reding@gmail.com, vincent.chen@sifive.com, zong.li@sifive.com
+Subject: Re: [PATCH v9 3/3] pwm: sifive: Fix the error in the idempotent test
+ within the pwm_apply_state_debug function
+Message-ID: <c5zjujxi7wsuabdpttojkrwnvkwna56gz3gnapxskg7tdzmo2f@frvbwzguizdt>
+References: <20240222081231.213406-1-nylon.chen@sifive.com>
+ <20240222081231.213406-4-nylon.chen@sifive.com>
+ <jvwgsszvs4jtcytcphsdjulzgqfqzdp4sisu236ddwsqgmvriw@ngi4ljgh5b74>
+ <CAHh=Yk92=hp+kaTJWL13_jwJ5gzAAi8gbRF=Ns9=yq2trRUQEg@mail.gmail.com>
+ <xf6ympnaljfjztptb5w5qdpuluckptozdz5a7gtuycsev32ngr@x2ovibqv6evr>
+ <CAGKtFavQAZOof5QSTFCEaRJEPETm5aBqzkV4g24n3ioiBAOgDA@mail.gmail.com>
+ <p6rqpx3yrn2ib4ulmby7tbnpbg4bjyt4dt6snrmhuyw6hx6izl@lywssban54et>
+ <CAHh=Yk-iFGULUQc-U-PNjx-st7d5KER3J+t54SNERVaNr++qoQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: rohit.visavalia@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB78:EE_|CY8PR12MB7561:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5166a443-3731-41fd-3613-08dd2ed57440
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?gtyknjfbYlKlhzLYXEDp5qdHTNT/q7rUALrLiRQhoQordWPoA/1ud983JoDS?=
- =?us-ascii?Q?0/Ku6XIjgKz1b2LQRcc9EnAumvvxSDpzCgca+YlACWnJVEPDPUKU+je6VDoJ?=
- =?us-ascii?Q?jLb9cmQF3DzPNpO1GTM5RUn++a3I8WJaCZsq0v8/1W4/0yvdYBUh7j5Ysmgf?=
- =?us-ascii?Q?t+Gd/Ccfv6HvFkV/9cCIP3b3kribltdc5zZwuvJpKVOwDGjtYC9PY9wg2rcE?=
- =?us-ascii?Q?emB4/65XJbyAasN/1NxpYq4bCxA2dF67Y+Ta22gEjFSSg4RLQgqhWt5FSx1s?=
- =?us-ascii?Q?HdPPdJlRsJoT+9zyfVmPpx1SPppLl/+ns41QL4bYMJ/QTRmDqCm+xSLLcbTY?=
- =?us-ascii?Q?yDMCmjh7nEVzkRF5KPCmzyLcnNqirddmBMYRhlpfcfzeFHLDIyyH3oMpXRKb?=
- =?us-ascii?Q?EzAngVECkkSWG5KgyASvG/Y+lFQQFg7DKMMLaUTkaJfY5dhtFDJ1EMIzG2SP?=
- =?us-ascii?Q?e7Act+pacOtV19xzo9EqeB3UdqMqc4hWDfY8aBREbm9F5V81/pQNw374ynDG?=
- =?us-ascii?Q?2su+FQ8EWzYqeQNqFTqBWAc7UJEuLnXmRDQVAsPCGVfutsP98MyV/dqr6Xxn?=
- =?us-ascii?Q?w5N4BYz9qsaph7s1Gh0zONM29yj+k3nEiKvTS2DDpPNiFVamhSu9eTWWFXfr?=
- =?us-ascii?Q?jqkOsrb6O9f9VOD/vxXuJ/L6Cdu1Jjs+b/hFdfPCbqLfJLrUhGQon8ezo66G?=
- =?us-ascii?Q?vD8LBvxMVWunGXjNbKr8wN0RS9LTcKr1pAG2UeGwFG4f4kZPDVuHkDH30whm?=
- =?us-ascii?Q?BJO5el+hq8GOwYsLfkssy17SyVxYfQNtxii6kbHvBcR8MI3Uq8aWBAHYQsq1?=
- =?us-ascii?Q?j0/39rgWzJcc6XuAU5VUDNCOjIA9vMlkrPomXOsM1DJgK9sBT6MWIcSwOII4?=
- =?us-ascii?Q?/QefVRRZ+eqdsbUoB5nLrY0LkkJs6JaKabOfjFNXzUSsrEf8Z8mVi/CfnRgr?=
- =?us-ascii?Q?9QlasTlYSxazCDnhk0WAtGcomBen3Dh73CR8S2Zp42L61Ah/gZsbTaRSfCr2?=
- =?us-ascii?Q?Sii4zh1Rh5Iw1gaebEtxfAA53OExKh8QmLYc78Ts6XTY7kg7irvnqQI4ZlCb?=
- =?us-ascii?Q?e5KZ48SPJ7LH3jwWUKzmNenqhMC2i6ThZLETZ2Sr/kS6r5N7Vsq2gxp84Hr3?=
- =?us-ascii?Q?vu9P1hzS8aYYLgN66yRcPqgbY5Af1VxPwIj1Er4wdRuCWBIM0JfJ9oaLQ9J5?=
- =?us-ascii?Q?WAyDI6eCc/eo+6PkX0VRsRgvO/cqepMm+EXGOHYOP7K+v4f7JlMHkYt9mapV?=
- =?us-ascii?Q?hTe1XJ3csgAhD1dTz/HRxGGcbfDoSaTqPG8c109PDHJq2TMdhS6IQYbEGSGF?=
- =?us-ascii?Q?kxVKJjQHP1T/dc/NWo1j0++9UfXAXN5XILUWZ3Vn6OPhmpnw9F2SsPRv9kaI?=
- =?us-ascii?Q?NoVHH24DBXQTIXAvKLdvvMb3OCvfoih4Q0jVO3nkc8HuBO/GOoXa1z7VTjPO?=
- =?us-ascii?Q?T++dDWDb1kvmffAoP31u4B4Tl6WW5NxXrBfCPLlcWzbA5p07iAy+jVtE3LoM?=
- =?us-ascii?Q?bIYDX1vDPHl2WF8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 04:40:46.8974
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5166a443-3731-41fd-3613-08dd2ed57440
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF0001AB78.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7561
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3m47uht7xkb3ljzb"
+Content-Disposition: inline
+In-Reply-To: <CAHh=Yk-iFGULUQc-U-PNjx-st7d5KER3J+t54SNERVaNr++qoQ@mail.gmail.com>
 
-It is marked as optional as some of the ZynqMP designs are having vcu_reset
-(reset pin of VCU IP) driven by proc_sys_reset, proc_sys_reset is another
-PL IP driven by the PS pl_reset. So, here the VCU reset is not driven by
-axi_gpio or PS GPIO so there will be no GPIO entry.
 
-Signed-off-by: Rohit Visavalia <rohit.visavalia@amd.com>
----
-Changes in v2:
-  - dropped description GPIO property
-  - used decimal number for GPIO
+--3m47uht7xkb3ljzb
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v9 3/3] pwm: sifive: Fix the error in the idempotent test
+ within the pwm_apply_state_debug function
+MIME-Version: 1.0
 
----
- Documentation/devicetree/bindings/clock/xlnx,vcu.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+Hello Nylon,
 
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,vcu.yaml b/Documentation/devicetree/bindings/clock/xlnx,vcu.yaml
-index 02d27d11a452..19dc923e2ee9 100644
---- a/Documentation/devicetree/bindings/clock/xlnx,vcu.yaml
-+++ b/Documentation/devicetree/bindings/clock/xlnx,vcu.yaml
-@@ -33,6 +33,9 @@ properties:
-       - const: pll_ref
-       - const: aclk
- 
-+  reset-gpios:
-+    maxItems: 1
-+
- required:
-   - reg
-   - clocks
-@@ -49,6 +52,7 @@ examples:
-         xlnx_vcu: vcu@a0040000 {
-             compatible = "xlnx,vcu-logicoreip-1.0";
-             reg = <0x0 0xa0040000 0x0 0x1000>;
-+            reset-gpios = <&gpio 78 GPIO_ACTIVE_HIGH>;
-             clocks = <&si570_1>, <&clkc 71>;
-             clock-names = "pll_ref", "aclk";
-         };
--- 
-2.25.1
+On Mon, Jan 06, 2025 at 05:00:32PM +0800, Nylon Chen wrote:
+> Hi Uwe, I have made the following adjustments based on your
+> requirements. Does this align with what you had in mind?
+> - period
+> seq 5000 1 15000 | while read p; do echo $p >
+> /sys/class/pwm/pwmchip0/pwm0/period echo "Testing period: $p" done
+>=20
+> - duty cycle
+> for duty in $(seq 0 1 10000); do echo $duty >
+> /sys/class/pwm/pwmchip0/pwm0/duty_cycle echo "Testing duty cycle:
+> $duty" done
 
+That + doing the same test backwards (i.e. using seq 15000 -1 5000 for
+the period test and seq 10000 -1 0 for duty_cycle) should catch most
+rounding bugs.
+
+Best regards
+Uwe
+
+--3m47uht7xkb3ljzb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmd8syMACgkQj4D7WH0S
+/k4USQgAu73hQyBwf5XFDneH+1QmqAmiN2wEaeF4n94f4vD0QtTqb1SQ+kIDIV2y
+h331G9V73C2jt7PVtH2a+pF367sblfDWrYufCtuTXj4akJGtPEcme1PuxmMdwip5
++OtHKLGC2Zb7N9r5VQkwok4Ijci6vUF3unjz+sQipFReZcygL+XeJ3Wd+DWMu//t
+IfbmsYkXK826rUqBBoHVJigEZsQugsR69+EHYnXu4sT2W2gkIr+SXbZOFQx1lo2r
+TVtmwJtKF7qflQS5STsyZyp1xKoAk33XPB83D3h4yz1IDIbzhKJbqqjadvgdvouK
+myVcdVQFatxC2GuFs+5M73nHcQkhGg==
+=OoYH
+-----END PGP SIGNATURE-----
+
+--3m47uht7xkb3ljzb--
 
