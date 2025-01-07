@@ -1,71 +1,66 @@
-Return-Path: <devicetree+bounces-136328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B79AA04CE4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 00:01:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B474EA04D26
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 00:06:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 616FF3A562F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 23:01:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC13F1673E0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 23:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F901A83E1;
-	Tue,  7 Jan 2025 23:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1EA1E4106;
+	Tue,  7 Jan 2025 23:06:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="mbWNCIVd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cOXT9/e9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90D1199920
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 23:01:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41E01DE4CA;
+	Tue,  7 Jan 2025 23:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736290865; cv=none; b=c9/AZLVpnNaaFAWv9QBafPINHbfWzs0/OOhpFyuvLppWPnXdvPA2cMfJ7VlOFiY5wyPo0yOM1o2tZpVVJwMfkOIdeFBFZuq3OggX0kXqT5RyGdAElCNCa65B8WxpQongezhcCSpz6hdr7MVM+4Ruisre7tt9zDqWNgQ3iCp2syM=
+	t=1736291187; cv=none; b=RzCASB4muGVw/4wm+i7TWDLnZtyOdBCaeSkjeDWQywM8OomXrpwqM+Ss3WSQ9vcdLlnqJ2YkriLLFJIvuUZDz/RxObTLuDKg1XWv4nywP9459pyRcUl7rUDyIvsAptuSyF16aiBki951cidaD90+ROgUr5zXo2hUuZu1TIBpL60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736290865; c=relaxed/simple;
-	bh=ql/VMdwMNYI4OeumrsAV90Qo71dCO+1E5E929QhrV7k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rhw83330VgtbfvvVu2RFUsMyCte0A1rJoyYR2/imo/7ODPchZOr4TY1KCueOK+4/sZ3R11q9CyG66BxSCb7Z3lFPy3RJhFsTfhhJ6ZF6bxyjiORa/bAYcyrthkmG9EbFgGivhzTJpxnMbF3zM2IjZqt7lGzcD5Orq2jvm53ceFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=mbWNCIVd; arc=none smtp.client-ip=185.67.36.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 1505C24002B
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 00:01:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1736290862; bh=ql/VMdwMNYI4OeumrsAV90Qo71dCO+1E5E929QhrV7k=;
+	s=arc-20240116; t=1736291187; c=relaxed/simple;
+	bh=VfAnBfuX08F+R34YGFjPDdCZbCRXPGtckNSQu09Cp8k=;
 	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=mbWNCIVdf7W+//FaBBJw39+KdLxo8Ymi1tmmHyuWehn4vslPFgfne7mpg1whR72PD
-	 llWhC6BbH/deWJdqfA6e+SG4aDXmdcZJkzlwpphJTQTwvyeeOXl8wbrvLU1HkJyNN/
-	 8EueOmBSdQo80mgCftPBtHHT/RhmTuBEZanwkkUuslRwoTsA2VlwFNqkBIcQ5SUzis
-	 y1RZgrOp486x8oa3jO4y8By5oaUanR/z00O0Vvgm3dSiPwrCiFB2BxRfhJK6sy1d9O
-	 OYNZgW3SMFXsXF7OaNQQwgMH6YLiUCZ1YZXPMZnDEAWSEUZkxuSBP9JsQkY8OAO10i
-	 2gHisC6RFjO8g==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4YSRNp409yz9rxP;
-	Wed,  8 Jan 2025 00:00:58 +0100 (CET)
-Date: Tue,  7 Jan 2025 23:00:58 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc: j.ne@posteo.net, Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Naveen N Rao <naveen@kernel.org>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>,
-	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 08/19] powerpc: boot: Enable FIT image generation
-Message-ID: <Z32yKoW2ozZs2oA_@probook>
-References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
- <20250102-mpc83xx-v1-8-86f78ba2a7af@posteo.net>
- <f4552e33-87d9-4b71-be21-f6884e4b5fa1@csgroup.eu>
+	 Content-Disposition:In-Reply-To; b=X62tLZzg8AVmN7wxDX4LzblRvqmRBrDuGie5xfTQJlZKxSjbzfGgPnpXBkIYla7Pu8Rlba+DBZV+cebkM/+pW83ZGJRIsPtQmbVknHvTWoD5+8vFpgxIk/C719zx9V31asddeobR4TsvWO7umg84tIesRExyILwdKXmUilYkhfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cOXT9/e9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46902C4CEDF;
+	Tue,  7 Jan 2025 23:06:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736291185;
+	bh=VfAnBfuX08F+R34YGFjPDdCZbCRXPGtckNSQu09Cp8k=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=cOXT9/e9xxyBFaU6ZRyl43N5yOhkdSW3pm+L4KFDvPaD4x4bhaPDx6vsx/+XK15JB
+	 ufQhgPuoW8HeB5VsOY57a1OQnNFYyGITDl/MGXWbZcc8V+rKTVX7tK4/fNWSL5cRJT
+	 YtgV0laPpn4XfecnAbcURnxone1ng/4plt6Eiae1K14ASLBiDClGM0r/kZMxZNAJx8
+	 B8rJG874PHgtYWGEiEBgv8D2hwmFL2CI3yGqY+uirRMi1sBDWdPxXwGN9CofAI4udG
+	 MkB8aA5vkzdhC9sPCpCx7WjD3gUDWyW00nopCYQjAS9Xqe7QR07g3Aplq0O/3ma3Yw
+	 VlpA8jCaUFgFQ==
+Date: Tue, 7 Jan 2025 17:06:23 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Jianjun Wang =?utf-8?B?KOeOi+W7uuWGmyk=?= <Jianjun.Wang@mediatek.com>
+Cc: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Xavier Chang =?utf-8?B?KOW8teeNu+aWhyk=?= <Xavier.Chang@mediatek.com>,
+	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Ryder Lee <Ryder.Lee@mediatek.com>
+Subject: Re: [PATCH 3/5] PCI: mediatek-gen3: Disable ASPM L0s
+Message-ID: <20250107230623.GA189234@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,41 +70,46 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f4552e33-87d9-4b71-be21-f6884e4b5fa1@csgroup.eu>
+In-Reply-To: <8b7b0d1bca5088bda46a651481b9a42f3be1a75d.camel@mediatek.com>
 
-On Mon, Jan 06, 2025 at 02:52:59PM +0100, Christophe Leroy wrote:
-> 
-> 
-> Le 02/01/2025 à 19:31, J. Neuschäfer via B4 Relay a écrit :
-> > [Vous ne recevez pas souvent de courriers de devnull+j.ne.posteo.net@kernel.org. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
+On Tue, Jan 07, 2025 at 02:44:37AM +0000, Jianjun Wang (王建军) wrote:
+> On Fri, 2025-01-03 at 13:15 -0600, Bjorn Helgaas wrote:
+> > On Fri, Jan 03, 2025 at 02:00:13PM +0800, Jianjun Wang wrote:
+> > > Disable ASPM L0s support because it does not significantly save
+> > > power but impacts performance.
 > > 
-> > From: "J. Neuschäfer" <j.ne@posteo.net>
+> > This seems like a user/administrator decision, not a driver
+> > decision.
 > > 
-> > The Flat Image Tree (FIT) format combines a kernel, a set of
-> > devicetrees, and optionally additional resources into a single file that
-> > can be loaded by a bootloader such as U-Boot. Generating a FIT image as
-> > part of the kernel build reduces the need for additional build scripts,
-> > and produces a single boot image without falling back to one of the
-> > many legacy methods implemented in arch/powerpc/boot/Makefile, which
-> > would require additional changes for arch/powerpc/boot for each board.
+> > L0s reduces power at the cost of performance for *all* PCIe
+> > devices, although the actual numbers may vary.
 > 
-> Will that allow compressed vmlinux ?
+> We have encountered some compatibility issues when connected with
+> some PCIe EPs, these issues are probabilistic and disabling the L0s
+> can fix them.
 
-Yes, the make_fit.py script can compress included data (kernel, dtb),
-and the logic in scripts/Makefile.lib makes use of this feature.
-By default, gzip is used:
+This sounds like either a software problem in ASPM or a hardware
+problem in one of the devices.  If it's a Linux ASPM issue, obviously
+we should find and fix that.  If it's an endpoint hardware issue, we
+should fix the driver or quirk it to avoid L0s on all platforms, not
+just this one.
 
-# Use this to override the compression algorithm
-FIT_COMPRESSION ?= gzip
+If it's a mediatek-gen3 hardware issue, we should disable L0s as you
+do here.  But if the reason is to work around a hardware erratum, we
+should describe it as such.
 
-quiet_cmd_fit = FIT     $@
-      cmd_fit = $(MAKE_FIT) -o $@ --arch $(UIMAGE_ARCH) --os linux \
-		--name '$(UIMAGE_NAME)' \
-		$(if $(findstring 1,$(KBUILD_VERBOSE)),-v) \
-		$(if $(FIT_DECOMPOSE_DTBS),--decompose-dtbs) \
-		--compress $(FIT_COMPRESSION) -k $< @$(word 2,$^)
+Justifying it as "L0s really doesn't save much power, so disable it"
+is an invitation for somebody to come back and ask why L0s doesn't
+work when the lspci output claims it *should* work.
 
+> Users may not be aware of these issues, so I think disabling L0s
+> through the driver might be the better way, since it does not
+> significantly save power and we usually use L1ss for power-saving
+> when the link is idle.
 
-Best regards,
-J. Neuschäfer
+Users should not need to be aware of probabilistic behavior problems
+related to ASPM.  It's *our* problem to make sure users never see
+issues like that :)
+
+Bjorn
 
