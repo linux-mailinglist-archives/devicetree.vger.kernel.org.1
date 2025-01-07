@@ -1,360 +1,187 @@
-Return-Path: <devicetree+bounces-136157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C80B3A0413D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:52:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 584D9A041B2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:09:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B135F3A4F52
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:51:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ED031882F82
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:07:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A08FD1F0E53;
-	Tue,  7 Jan 2025 13:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F13D1F8920;
+	Tue,  7 Jan 2025 14:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="eXwKXoxw";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="GsY70qUr"
+	dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b="QB6Xcgxh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2057.outbound.protection.outlook.com [40.107.104.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A531E50B;
-	Tue,  7 Jan 2025 13:51:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736257903; cv=none; b=BUtGY6+LwxTnbAF1/DAn5UsbJ/a5euSTsdlZArZFkT5/qcm94BQBqsE90G32aW6zxuPNRUkLrdqWg1jVtK2hn47WDJlcEinKGivIdpi8Y03BkoxNGozQDtQzcXTLGTHkdAHVKwmJgpfRZBFx7xnts+3w0uK0Ix3gvgkvMeiV2KM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736257903; c=relaxed/simple;
-	bh=tKkfdneQLTx/3A5l7eOgYN0lWqtk8zVO31FA/YCAl+4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qRHDJWz2srdxlG1toWQOCWjw6sk7DZOOUj2Mwx10U6th8d2CQAIQK2Dd106UWt4IUgOI13vP3tqF0RvYWrcn3P9kPf8s4PrcOQiZJ/ZATSD9a3sK4ElL6MJFWjXGQ0lFvRratIsHDOLo24ZhMJqgqovg3egiAyb+o4vpKMKHTE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=eXwKXoxw; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=GsY70qUr; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-11.internal (phl-compute-11.phl.internal [10.202.2.51])
-	by mailfout.phl.internal (Postfix) with ESMTP id 0910113800C3;
-	Tue,  7 Jan 2025 08:51:38 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-11.internal (MEProxy); Tue, 07 Jan 2025 08:51:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1736257898;
-	 x=1736344298; bh=mJ3gsu/+Nz0H/GR7MsuvkCswY4cSY5Uv50se5eJ30HE=; b=
-	eXwKXoxw1efnvQuiHMe9BGJeNRaZzvMWmanR5rhdTomqoUpH+W7tXaqIE1/OQDNX
-	TXzv2r763Y5MQ0oezeiZUSBFbixOHnJIEFTLxUYacn/YDj/LAjGUSxRN+AGoJj6+
-	p9X4ACV2LuDuHywV6qvqjICqukWvYPLGtlt/H7hMRQUOClQ3QUMjhvAinyWmtYL+
-	bobSHj6gFlqBI5GJFeJF9PL9HnE4k5YjROMZxnJJOfX4OULhE1T/+BL0GFDCVk/L
-	ogBcPFkSGwo/2TQayrPJkQFrV84Zv1hhwli5rQaiNyCpnUdUSyksnwC7m9Nkr8ag
-	it0bdiSQ0h5IWqhGhCn42g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1736257898; x=
-	1736344298; bh=mJ3gsu/+Nz0H/GR7MsuvkCswY4cSY5Uv50se5eJ30HE=; b=G
-	sY70qUrEP1gl1JmqNzVK6Mx/8c28BJ78vUcJO7JNM8lh3w89azzet2NIx1atdgh6
-	6tBRFn/253U21TJl7yHSP5M/HrS/VlKJ1DH4lmkzXEP5PTlJ0+9KfA7hzFykjdSP
-	uco1O/NCvQ3yvmhxgK7ELeZSFpxpdKWaK5bWgIMxw3ptwN+k8+1DWa1JLWgOtJUt
-	76OvMJlHqqr/wc3llkI7OC0+NI4u8XOWGtAVekAR43qKHsETu6mCHFg054HAOJRd
-	zCX+XouxB3rMt6Mg/F15ChHNUSaTYnXYwyor6PaSRnSbjyTSekLfx8rAfkIuMse3
-	8+TTyTfkPrZ7xTWfzYdSg==
-X-ME-Sender: <xms:aDF9Z3pV41Z8ilSxpuZ6kZwq1soEpbhUJmxiYaggnn3WSIgN3xVh_A>
-    <xme:aDF9ZxodBR77iuH6RTcFq32Z35Tz46y4z6EWn-Mpwce-RfDyz3bd81AckneW_6Qo9
-    A7IvVhlnPPmdhWiz1Q>
-X-ME-Received: <xmr:aDF9Z0MYq7euBag4bww9oThV2Lxc8ly3ollEx864zINLN2DoVtD_7oEvR5VGk8Z7NyFijjGGDgGCA5OD4zJ9LRvqT1kUHV6OnQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudegvddgheehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
-    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
-    gvrhhluhhnugesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeevteeg
-    tddvvdfhtdekgefhfeefheetheekkeegfeejudeiudeuleegtdehkeekteenucevlhhush
-    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshho
-    uggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhopedvfedpmh
-    houggvpehsmhhtphhouhhtpdhrtghpthhtohepkhhriiihshiithhofhdrkhhoiihlohif
-    shhkiheslhhinhgrrhhordhorhhgpdhrtghpthhtohepuggrnhhivghlrdhlvgiitggrnh
-    hosehlihhnrghrohdrohhrghdprhgtphhtthhopehtghhlgieslhhinhhuthhrohhnihig
-    rdguvgdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkh
-    hriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehk
-    vghrnhgvlhdrohhrghdprhgtphhtthhopehmtghoqhhuvghlihhnrdhsthhmfedvsehgmh
-    grihhlrdgtohhmpdhrtghpthhtoheprghlvgigrghnughrvgdrthhorhhguhgvsehfohhs
-    shdrshhtrdgtohhmpdhrtghpthhtohepphgruhhlrdifrghlmhhslhgvhiesshhifhhivh
-    gvrdgtohhm
-X-ME-Proxy: <xmx:aDF9Z67yTKirpIXhr7uOAnUFRHp29z-QED0WIUbsrTWDoHQwn46erw>
-    <xmx:aDF9Z25sd6O7ooA9V9pC0JGVHYZoM0pVMgN7_K0p-x3LVp09locyaA>
-    <xmx:aDF9Zyibkr81z35nI-9gUnSq7HyHIl1ixbleLn2TH9p5Nz05Xdu-jg>
-    <xmx:aDF9Z46RT3TQJMg8X0ITjlQIq-BEw3jgaz1VKShuv7wY1i_1OQWOkQ>
-    <xmx:ajF9ZxKisACKEQRyKzxYwIjSDnzb92ZSmhtFGzptkKUq9ZkjNYrOmHLR>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 7 Jan 2025 08:51:36 -0500 (EST)
-Date: Tue, 7 Jan 2025 14:51:33 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 956FD1F8911;
+	Tue,  7 Jan 2025 14:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736258551; cv=fail; b=IY+mlPAtMn8piG59XNRiNJdjpxMW6Mv3U9/70exFqOIAFamp05hIPUDLQS77Q8MNBPLqIWYdyOqOorGT8Wk7lpDLCaCUCThpCbowvO5OC3jhkCcB1IF0O1NxFCSHnT3VISI+HfAIDD83mHvDbU376tXRnwQwf3HjzTpnntmZx8E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736258551; c=relaxed/simple;
+	bh=bpGyT5QE2pudSYX4/47SZnhGAxke48Ga373MHnOqXmA=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=MXCMdQXzBYx65sVzXRvNYqfiXZxwWKhHNg1WU9Oypq1WEiRMZNnEIFNpSYXEWtgo5l/PQYx5uvJRDpZ68SSWqLwtYXjHl3t4tBIbZTwlZW2zJldsg/7Un4rzVQDOTxSAtA8yexAEnoSmCfsOJbDhu9+oPyVN6NE4a6AaIMQlkQk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com; spf=pass smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=QB6Xcgxh; arc=fail smtp.client-ip=40.107.104.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mt.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dLJkESeua8UHDmA3grWUzhfaBkgupAo9TYdY3oniRF08Hw3gbkSV/7c3V5eBBxRWtv6A0SXYeqZqHvQvUagGFeGEdWVgyzUtZVb9LJ6H7YimF9UOQtrW+Wa8kiMBRYq/rKBEGc6FSfzBcLLekZKXIDuANd+4ZBn1zsRHQY9WPGRJJsK55Avj+Xm0efKD90WooGH3ktl6Cga0d9RrGjyxuY4f/GexfLDQRxJ5B141tECnXRGgbohQ3PO+/294vr2vRcvFAwr6AWzM29fvTNvT4PhDo41cKagKmYIVvxA6cHduAO3IXYj0AV7jCnrt6bMfQLFgS7G8qvuCkuwyOf+JQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rpMlfF90AAIMw3k8n417SLD7fslUiiVC/CZ2CcBuQ1s=;
+ b=A/ZxbE5NAFpe9b6v5CYRCkHRhP2zs9h1HcMUvCiVttlmFqV6iC5kud1f9UIYyQSc4PyNsOLBw+e0Nrd3+G32xv7ePmWbGj+R7Dle3m+qp5Yn3+DO9BKQnzgZFV0j/yrfMhmWXcuPzMeAetCCvM8h+PTOnrHCScEmlaTpb21AgxiFdLv/1b8UFHo79OARI6BsIcvUTAqp1TcbF0QhgeQ2NrTyNPecQh9hZHZ3sP1XykgRsYSGHvOyM1g8n8A9OE5Fn0MBfJIjCM7GtQpIGkcxpXPzfY6oER521ZnZtUZ0o66SCG9s8dbItkBDwSqsmpufBlE4PQCH9OU5c4q5l7a4jg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
+ header.d=mt.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rpMlfF90AAIMw3k8n417SLD7fslUiiVC/CZ2CcBuQ1s=;
+ b=QB6XcgxhpsbDpnaDoniJWTeVDWfS87Enu7LCK75llfY++KarT9FoX/BhfN5bOxrD0J3pVshKbgonHFUxLaxijDmM1oVIjWJDBizebHhBZfTSZIZ4KM29nnJUVYLLXZaL/jG6eRXGAHZ1iq2kWkBN26CQrUzKVxWqY7l4uLvVH3eRHSbk13YiaIPhvtUBYYl4+wMy0x83C4ZPsmBO1Nk0E4yxTHSRDWzXSqI2rJ/d2LdfyRxVwN09IXL4I3Xctb2O5EnEk8yu/jUe4oxcM3x5kliBXkJ5VdFbNXvIc7UUI2Q9JQ10QO958KYjBqR1+9rP7jD2rxCFfbnRWaqIN5CCsA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mt.com;
+Received: from DBBPR03MB5399.eurprd03.prod.outlook.com (2603:10a6:10:f5::22)
+ by AM9PR03MB7852.eurprd03.prod.outlook.com (2603:10a6:20b:433::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.18; Tue, 7 Jan
+ 2025 14:02:22 +0000
+Received: from DBBPR03MB5399.eurprd03.prod.outlook.com
+ ([fe80::2fec:64f5:1893:f53a]) by DBBPR03MB5399.eurprd03.prod.outlook.com
+ ([fe80::2fec:64f5:1893:f53a%3]) with mapi id 15.20.8314.018; Tue, 7 Jan 2025
+ 14:02:21 +0000
+From: Markus Burri <markus.burri@mt.com>
+To: linux-kernel@vger.kernel.org
+Cc: Markus Burri <markus.burri@mt.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Chris Brandt <chris.brandt@renesas.com>,
-	Yoshinori Sato <ysato@users.sourceforge.jp>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org,
+	Marek Vasut <marek.vasut@gmail.com>,
+	linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: Correct indentation and style in DTS
- example
-Message-ID: <20250107135133.GA3765919@ragnatech.se>
-References: <20250107131024.246561-1-krzysztof.kozlowski@linaro.org>
+	Manuel Traut <manuel.traut@mt.com>
+Subject: [PATCH v3 0/7] Input: matrix-keypad: Various performance improvements
+Date: Tue,  7 Jan 2025 14:56:52 +0100
+Message-Id: <20250107135659.185293-1-markus.burri@mt.com>
+X-Mailer: git-send-email 2.39.5
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZR0P278CA0066.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:21::17) To DBBPR03MB5399.eurprd03.prod.outlook.com
+ (2603:10a6:10:f5::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250107131024.246561-1-krzysztof.kozlowski@linaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DBBPR03MB5399:EE_|AM9PR03MB7852:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2242724e-59e8-446c-b09c-08dd2f23e7c5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|52116014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?X2GmmgRobJ5Yairb13rPzEa10VQJ7wRXZL1BYyo3NL9MsD43pLtit6Ptd8Nz?=
+ =?us-ascii?Q?kYra7XAxn104iv0EPleSKZDLkEHIz9w0cZU5OEU5tcSGBVziT5FIke7hRa12?=
+ =?us-ascii?Q?Jy8dU0zq/PpppGXViTbvFDmrx6zs6XpSC6qj/XzQpMNzcxXxZmKu0kwLM8Xo?=
+ =?us-ascii?Q?qnqu9I3aIqzeJwG6OVmSgFqUY7soxVd8WrmnpsoAu3XIXXp9Whym7PbPcBb7?=
+ =?us-ascii?Q?BEcZw4jOzzCn9yN2cjcnIjzt34BWz7Ecq95DQzgXRChbyOPBSYQGnQFJ0/jm?=
+ =?us-ascii?Q?yl/pRGCUl+9ZDVzv9A9S1E5iyrYJtKeF1y4T+FutPpIgQiRe5bdv79hmPvm7?=
+ =?us-ascii?Q?fev3cYuTZ55EAF628Xy+QgSqaj2LrPR52tSsMN1fR+4E1jsuSMBXOo9WyYiz?=
+ =?us-ascii?Q?GvwQvFSqAAainCMwuJ1z2Oyb2vH7c1ngH2U26+LFzyOx5es4V1diHC7zp0ZE?=
+ =?us-ascii?Q?XgkTGO3rbCjBznHWWuNO6ARfENIdCF9la4+9k1P36a+Q87SDC84dh3ctuKqk?=
+ =?us-ascii?Q?QRBqHGd7NtDrmr1waQc2bMywn093NVeTC+v4W91ivK4uzESYLA6jOW2tlg2Y?=
+ =?us-ascii?Q?IIxpdQpPWQM4hysq8kqke/10bn7sK07F9v0VGJPdBCXlJz+gET8PR9isTsul?=
+ =?us-ascii?Q?+13qj5qoWFJhQW/lQe8ymPanbrcNKLjzvdowLRBA6+gl+HRB4ARcOnyXhSXL?=
+ =?us-ascii?Q?5oEyd7Hu+U+L2gBalVHLUzDuz6M6G/MoiKMwkjq30PZWnEcCJmAFpgHKPVz1?=
+ =?us-ascii?Q?+QgvqCx/NHENGxTAAsr8v0pGYp1i0A+S/fF5OcZk/OMlltkYRlpFqI8nsiwd?=
+ =?us-ascii?Q?vhY9COmnb50TS7DS59iwLMoBgjhzgYIPCXiUjHzw4dF+4CBwjpz2McepgZEB?=
+ =?us-ascii?Q?VDxIIRLop5oQJ3Cksyvuhuxh4QlF+LiLZDKuj1zr4VpgE/hx65cbQI1MOtk0?=
+ =?us-ascii?Q?diI/i0M3hQeUF/tFpcO8/jxwlj0ltznVputt6PuG3g6vz2uwoTUmbMlX7f92?=
+ =?us-ascii?Q?kXzHnT0V01JG46QwVxeDkI1XZTsrhM1RDkByiGHtjuZNvFvmwW833ls6fg1L?=
+ =?us-ascii?Q?fN24wP19fGSNlnCrfl8RJOSu7GTc3rC5vkwFjcoZVqTOfyrxXsGpdOM4rHTf?=
+ =?us-ascii?Q?oY0GSv/GWujBeR7eSj7nyPV2BTHxABPiJU+PuFG0cTZxunhi57/QLUKQ8/RO?=
+ =?us-ascii?Q?f8F2KMCjCoeS3OoOqnq8sl0xQYHyzlpMePnKLGRXzBq8yjDDkd4X3qL/HF/3?=
+ =?us-ascii?Q?QRqpNCsrfmTqVLU2epakaaGrpAi+20sLuLFM44C24WdInHYKbqPzxYnYmyjM?=
+ =?us-ascii?Q?RHMwbRWXw6sQ2ix6qepzzIdmTMyufo6LVZdntCv4gM+WGqCwTY0cqm2scgT1?=
+ =?us-ascii?Q?I8Wx7zHkGgs/hLW1TG2AP3xFwYxSnsb3RNR5KRLbuUYq7WhO3r43fIA5NgtR?=
+ =?us-ascii?Q?c0YQFaM1YITcCxtzm6nKXjz58rEGCOYm?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR03MB5399.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?1II3lk/mHHkbTZYFtQmPcH7feBwWzLHvisL2zVR917RwAw59oqTaR4FNLBS/?=
+ =?us-ascii?Q?kU4eH3MEDbxP7TlPwEW9ZKkpsr/ztlRf31KqJmwJhMIO+1oFI3VjOqBpZn/2?=
+ =?us-ascii?Q?NWF8GcQN34UHi/HOvtqqwWdnFEYOoapweqVXBe0pzsSDEW46oxLZpQ3mo0PH?=
+ =?us-ascii?Q?OEJiUUATGSRLrTAOj5L5KIKZeNWVnloRLBgFs3xUoNruxF8WzZG1ShMhAqht?=
+ =?us-ascii?Q?4/+8IEZoCQGu4wYLskWwVyeozqmBA1oQBFWGFWpO8QwlO5VAorMD0kVkhjoJ?=
+ =?us-ascii?Q?vECidc2QZYufN9f4CN4nbe9yt4BIaT6QrlOGuoxtxjzt0awZfmkSptDa0HZ/?=
+ =?us-ascii?Q?QbM0kzlcDE/giwOOjeBuEYe2w1sZcslw/6Fv4RirSTvYfIHJF+Geud+nfmgN?=
+ =?us-ascii?Q?d2q86V7rNEA+dV/73I5/2WEz4HMOCLcvkW4j5qtGCve0RUiHVvri2EFDGijS?=
+ =?us-ascii?Q?Yjr+2TnPgb9KqUzZpkAGLSr/lUYNy2QRX/C2ivjMboOYBV0J4WgNi9bDws4a?=
+ =?us-ascii?Q?HxQ+K5HbYBYhsdG8HXsLYg1Yd1iXYLWv7QIxUM0te3Ea70JyFJlWJIJ09Ik6?=
+ =?us-ascii?Q?yAFehf2w+YVz+2AvaiCfc+nf0xHihhporglMqrD9pRe9dMLYumkRaL0Nife9?=
+ =?us-ascii?Q?0iHgQp1YztmFPPdfUSUIBtQDwuFCBJjw1exI0vC03aH8t8Yznhe76I8eNvye?=
+ =?us-ascii?Q?/ExVXutDuoJJ+dulLstn2fRbNA+8IB1+PqXQwV/K80GmU9D07uisJgsIKCWO?=
+ =?us-ascii?Q?yu+NsUVV06qyorx9E79YQ1snPiNY/73fEBGx35B+USInUtgYYGyh6P19sbd9?=
+ =?us-ascii?Q?57RP0Dn7I9QeJzoGL7HNfwHNHl4uc6pbOwXBWexEVFm+2FSJEZCCX/8vyJWv?=
+ =?us-ascii?Q?NN4JvncQYG3qShs+FNCyqKzwHXtsyalrC3kcWh7b/xfvbnN9Q37Xc6J/hF+X?=
+ =?us-ascii?Q?f9tiLXmcj2Ca0j3peWFkl0+mGc7ktN70nJhpMSr7W5BfjLsI+A2uZO5SSdOI?=
+ =?us-ascii?Q?2vcowFliATbZecKKWZYYTdcvyJ39jeKWwh/BvuXvMdzM3yiR7pPQ6OElcbzV?=
+ =?us-ascii?Q?gQB+8tbOB0ejX4GZf/wMA4n28cynez7j3HAZxtJFoSNWMpkKwWcJgHIsjReR?=
+ =?us-ascii?Q?G6zd1c5q+9c4UGsXyG8jRJyLfHyOzpT2iabKSGTRLXvN97qBQm+sPuQip3lA?=
+ =?us-ascii?Q?GaizEgrB6zbK/7xKX2EPyqBsawqQAxO5ypS7Cxy6D9A3EjJ65EQxUfLixwWl?=
+ =?us-ascii?Q?N5s34IaQOUpI3s6bauwZ2QE0N8hh+5t+oWkrpvSRpVURvgUcHyqVR/vx2/cN?=
+ =?us-ascii?Q?7Z7+44TTtXCrjkO3knJg7UAa+AfPGyrJigaWJF8fs4CWDSq0M7EVhLELkPJ+?=
+ =?us-ascii?Q?ePENuYXpJoFten1EyHIkkS4LYvMwW2a5ZduteXSgY9M/Zpu5DuQFuzMj36Cx?=
+ =?us-ascii?Q?ud2drzuvrEWUUUn58JPiYJaiXft84sibYi0C0OTpckSJ53/dwhlgztItBzKe?=
+ =?us-ascii?Q?IOWimcRjWwWxN50y2DqOa66O/dx5jnosOZg8JJkqB9LODC+wCBtR1nyFjY4V?=
+ =?us-ascii?Q?T+gQpq3L18FJIwCQ8Ixp/ceVnQ4BjcFGkKeR9tOw?=
+X-OriginatorOrg: mt.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2242724e-59e8-446c-b09c-08dd2f23e7c5
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR03MB5399.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 14:02:21.6814
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mFaYaS65woSiVH1OsDBYKXo0SkNLxgvLnUWJkiUFsErASZgI1QWPMytfXWzdMW8I1TeVGz1cix2xjPtdVPUXvw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR03MB7852
 
-Hello Krzysztof,
+This series is needed to avoid key-loss if the GPIOs are connected via a
+I2C GPIO MUX that introduces additional latencies between key change and
+matrix scan.
 
-Thanks for your work.
+This series applies on 6.13-rc6
 
-On 2025-01-07 14:10:22 +0100, Krzysztof Kozlowski wrote:
-> DTS example in the bindings should be indented with 2- or 4-spaces and
-> aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.
-> 
-> No functional changes here, but saves some comments during reviews of
-> new patches built on existing code.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes in V3:
+* fix 'references a file that doesn't exist' in wakeup-source.txt
+* remove copied and depricated properties from gpio-matrix-keypad.yaml
+* extend patch description to clarify the changes
+* rebase to 6.13-rc6
 
-For renesas,*
+Changes in V2:
+* added patch to convert dt-bindings to YAML
+* added missing dt-bindings properties description
+* removed [PATCH 1/6] Input: matrix_keypad - move gpio-row init to the init
+  it would revert 01c84b03d80aab9f04c4e3e1f9085f4202ff7c29
+* removed internally given Tested-by and Reviewed-by tags
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+V1: https://lore.kernel.org/lkml/20241031063004.69956-1-markus.burri@mt.com/ 
+V2: https://lore.kernel.org/lkml/20241105130322.213623-1-markus.burri@mt.com/
 
-> ---
->  .../bindings/timer/arm,twd-timer.yaml         |  6 +--
->  .../bindings/timer/renesas,cmt.yaml           | 44 +++++++++----------
->  .../bindings/timer/renesas,em-sti.yaml        | 10 ++---
->  .../bindings/timer/renesas,mtu2.yaml          | 14 +++---
->  .../bindings/timer/renesas,ostm.yaml          | 10 ++---
->  .../bindings/timer/renesas,tmu.yaml           | 22 +++++-----
->  .../bindings/timer/renesas,tpu.yaml           |  8 ++--
->  .../bindings/timer/sifive,clint.yaml          |  2 +-
->  8 files changed, 58 insertions(+), 58 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/arm,twd-timer.yaml b/Documentation/devicetree/bindings/timer/arm,twd-timer.yaml
-> index 5684df6448ef..eb1127352c7b 100644
-> --- a/Documentation/devicetree/bindings/timer/arm,twd-timer.yaml
-> +++ b/Documentation/devicetree/bindings/timer/arm,twd-timer.yaml
-> @@ -50,7 +50,7 @@ examples:
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->  
->      timer@2c000600 {
-> -            compatible = "arm,arm11mp-twd-timer";
-> -            reg = <0x2c000600 0x20>;
-> -            interrupts = <GIC_PPI 13 0xf01>;
-> +        compatible = "arm,arm11mp-twd-timer";
-> +        reg = <0x2c000600 0x20>;
-> +        interrupts = <GIC_PPI 13 0xf01>;
->      };
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-> index 5e09c04da30e..260b05f213e6 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,cmt.yaml
-> @@ -178,29 +178,29 @@ examples:
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/power/r8a7790-sysc.h>
->      cmt0: timer@ffca0000 {
-> -            compatible = "renesas,r8a7790-cmt0", "renesas,rcar-gen2-cmt0";
-> -            reg = <0xffca0000 0x1004>;
-> -            interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
-> -            clocks = <&cpg CPG_MOD 124>;
-> -            clock-names = "fck";
-> -            power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-> -            resets = <&cpg 124>;
-> +        compatible = "renesas,r8a7790-cmt0", "renesas,rcar-gen2-cmt0";
-> +        reg = <0xffca0000 0x1004>;
-> +        interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&cpg CPG_MOD 124>;
-> +        clock-names = "fck";
-> +        power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-> +        resets = <&cpg 124>;
->      };
->  
->      cmt1: timer@e6130000 {
-> -            compatible = "renesas,r8a7790-cmt1", "renesas,rcar-gen2-cmt1";
-> -            reg = <0xe6130000 0x1004>;
-> -            interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-> -            clocks = <&cpg CPG_MOD 329>;
-> -            clock-names = "fck";
-> -            power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-> -            resets = <&cpg 329>;
-> +        compatible = "renesas,r8a7790-cmt1", "renesas,rcar-gen2-cmt1";
-> +        reg = <0xe6130000 0x1004>;
-> +        interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&cpg CPG_MOD 329>;
-> +        clock-names = "fck";
-> +        power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-> +        resets = <&cpg 329>;
->      };
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,em-sti.yaml b/Documentation/devicetree/bindings/timer/renesas,em-sti.yaml
-> index 233d74d5402c..a7385d865bca 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,em-sti.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,em-sti.yaml
-> @@ -38,9 +38,9 @@ examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      timer@e0180000 {
-> -            compatible = "renesas,em-sti";
-> -            reg = <0xe0180000 0x54>;
-> -            interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-> -            clocks = <&sti_sclk>;
-> -            clock-names = "sclk";
-> +        compatible = "renesas,em-sti";
-> +        reg = <0xe0180000 0x54>;
-> +        interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&sti_sclk>;
-> +        clock-names = "sclk";
->      };
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,mtu2.yaml b/Documentation/devicetree/bindings/timer/renesas,mtu2.yaml
-> index 15d8dddf4ae9..e56c12f03f72 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,mtu2.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,mtu2.yaml
-> @@ -66,11 +66,11 @@ examples:
->      #include <dt-bindings/clock/r7s72100-clock.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      mtu2: timer@fcff0000 {
-> -            compatible = "renesas,mtu2-r7s72100", "renesas,mtu2";
-> -            reg = <0xfcff0000 0x400>;
-> -            interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-> -            interrupt-names = "tgi0a";
-> -            clocks = <&mstp3_clks R7S72100_CLK_MTU2>;
-> -            clock-names = "fck";
-> -            power-domains = <&cpg_clocks>;
-> +        compatible = "renesas,mtu2-r7s72100", "renesas,mtu2";
-> +        reg = <0xfcff0000 0x400>;
-> +        interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "tgi0a";
-> +        clocks = <&mstp3_clks R7S72100_CLK_MTU2>;
-> +        clock-names = "fck";
-> +        power-domains = <&cpg_clocks>;
->      };
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> index e8c642166462..9ba858f094ab 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> @@ -71,9 +71,9 @@ examples:
->      #include <dt-bindings/clock/r7s72100-clock.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      ostm0: timer@fcfec000 {
-> -            compatible = "renesas,r7s72100-ostm", "renesas,ostm";
-> -            reg = <0xfcfec000 0x30>;
-> -            interrupts = <GIC_SPI 102 IRQ_TYPE_EDGE_RISING>;
-> -            clocks = <&mstp5_clks R7S72100_CLK_OSTM0>;
-> -            power-domains = <&cpg_clocks>;
-> +        compatible = "renesas,r7s72100-ostm", "renesas,ostm";
-> +        reg = <0xfcfec000 0x30>;
-> +        interrupts = <GIC_SPI 102 IRQ_TYPE_EDGE_RISING>;
-> +        clocks = <&mstp5_clks R7S72100_CLK_OSTM0>;
-> +        power-domains = <&cpg_clocks>;
->      };
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> index 75b0e7c70b62..b1229595acfb 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> @@ -122,15 +122,15 @@ examples:
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/power/r8a7779-sysc.h>
->      tmu0: timer@ffd80000 {
-> -            compatible = "renesas,tmu-r8a7779", "renesas,tmu";
-> -            reg = <0xffd80000 0x30>;
-> -            interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
-> -                         <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-> -            interrupt-names = "tuni0", "tuni1", "tuni2", "ticpi2";
-> -            clocks = <&mstp0_clks R8A7779_CLK_TMU0>;
-> -            clock-names = "fck";
-> -            power-domains = <&sysc R8A7779_PD_ALWAYS_ON>;
-> -            #renesas,channels = <3>;
-> +        compatible = "renesas,tmu-r8a7779", "renesas,tmu";
-> +        reg = <0xffd80000 0x30>;
-> +        interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "tuni0", "tuni1", "tuni2", "ticpi2";
-> +        clocks = <&mstp0_clks R8A7779_CLK_TMU0>;
-> +        clock-names = "fck";
-> +        power-domains = <&sysc R8A7779_PD_ALWAYS_ON>;
-> +        #renesas,channels = <3>;
->      };
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,tpu.yaml b/Documentation/devicetree/bindings/timer/renesas,tpu.yaml
-> index 01554dff23d8..7a473b302775 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,tpu.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,tpu.yaml
-> @@ -49,8 +49,8 @@ additionalProperties: false
->  examples:
->    - |
->      tpu: tpu@ffffe0 {
-> -            compatible = "renesas,tpu";
-> -            reg = <0xffffe0 16>, <0xfffff0 12>;
-> -            clocks = <&pclk>;
-> -            clock-names = "fck";
-> +        compatible = "renesas,tpu";
-> +        reg = <0xffffe0 16>, <0xfffff0 12>;
-> +        clocks = <&pclk>;
-> +        clock-names = "fck";
->      };
-> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> index b42d43d2de48..d6a73be66765 100644
-> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> @@ -76,6 +76,6 @@ examples:
->                              <&cpu2intc 3>, <&cpu2intc 7>,
->                              <&cpu3intc 3>, <&cpu3intc 7>,
->                              <&cpu4intc 3>, <&cpu4intc 7>;
-> -       reg = <0x2000000 0x10000>;
-> +      reg = <0x2000000 0x10000>;
->      };
->  ...
-> -- 
-> 2.43.0
-> 
-> 
 
 -- 
-Kind Regards,
-Niklas Söderlund
+2.39.5
+
 
