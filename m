@@ -1,110 +1,76 @@
-Return-Path: <devicetree+bounces-136308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A947A04A6D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 20:46:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F955A04A78
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 20:48:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 640403A6A1A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 19:45:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D0CE3A40F8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 19:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BCE1F7084;
-	Tue,  7 Jan 2025 19:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB9C1F5438;
+	Tue,  7 Jan 2025 19:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C0T0Fg9r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZJJLIrOF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E671F63D4;
-	Tue,  7 Jan 2025 19:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32BA18BC2F;
+	Tue,  7 Jan 2025 19:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736279149; cv=none; b=VluDjMKB6zjIYxz80bwttUBq9koGCeOuS/t7eAhoYwRL8E1gQXxC+HC7EreNPNuVaaGL0Zc75lzM02/UZN+gXQfNoL/DESXCpAG1E1bWD0h6hUc8FQxkAJbsUqDgm/L07Fdpult+WXJVSqpJZSftjbHy6Agy50PAdhO3NW5nZKI=
+	t=1736279326; cv=none; b=AGc999dpQTN3vq1aPmzN1SUT6L3Qvfhta9ptwmOgH7E4qWTrQGBowpBeXLyOFP/9l8LWWCu1Et1+0KCD94+wXpRqrnBtBOKqvr3QIh74pKlkmc+RMgpy2cDY10/A3emfsxq+lstNM+7OnTfLFFbvhsKzHaFwPE0Ain8aztvMVXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736279149; c=relaxed/simple;
-	bh=VSUXRdNHoPtoJnEXPsuMTGCZh3pyBCS2HaUrTJu82zs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=MF1ftd6SczAJlph0p+iB4/2tg4CYvlapqARTkUSsHdDi9PNuh5Af5DSSV9K8V2C6/EPTLY4IFNMIW+KQzYaSVQIqFfQg2PA0P+cjHM03YI+CekgSxGr153VGorhBE0LmEgnOjtMQ2DwUEooU8xz4Q/zM5OlrV5YsCNwl44FhA9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C0T0Fg9r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7574C4CEDD;
-	Tue,  7 Jan 2025 19:45:44 +0000 (UTC)
+	s=arc-20240116; t=1736279326; c=relaxed/simple;
+	bh=BE3Kvlm4SYj9bK8LbiFE4KUXI/o+MNEkZx3XTGkEcYM=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=B+NqVSK0CVD08IAiw0dP7dy5KoXm0IG0Jf1wHE8NEU1zSTKQARZacksZ3Do03TGD+CVos5htCFshMsYFBYxfbftj4wwJ+8ype1GbcHwpjf8j91ZdXQjb2YIlQUyEvCQSJk4wORPE0/lRy+WDGB1quUEeMlHMFMDDbQHqb5AdQC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZJJLIrOF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C06DC4CED6;
+	Tue,  7 Jan 2025 19:48:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736279148;
-	bh=VSUXRdNHoPtoJnEXPsuMTGCZh3pyBCS2HaUrTJu82zs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=C0T0Fg9rwVDnVk7b56UHpA792BfTm/pW7T3WUIif017JQz3bnfXlVtmQ0CdjjcBw6
-	 m2JYGGThaXxWI+pJ2KOU0jcYSdHTUPIFEY+B9HrrtyXKBTkUe3AXrmvU+JpXYYJM2b
-	 Wafjq9aWogxzIYoViL1MaPYRVFKWN/MtRCRwK6W3DRJyPBOhTSbAAPI4DtZG2GPyoT
-	 2Wk15N5l6QcotTnB2PkGi6EJ2esEGR8HyXhJmHDgkYGCxTbHnG7Uia/wwJ9UBHzaNw
-	 HT2frFcWHPcQRAsH2CelHRwq/SjANOPd2Zm3yqEGN+hRvMLfiv+ub6RU/s6d3QiKNd
-	 Yn8tkXeAJq24g==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, jack.yu@realtek.com, 
- rf@opensource.cirrus.com, neil.armstrong@linaro.org, 
- ivprusov@salutedevices.com, luca.ceresoli@bootlin.com, 
- zhoubinbin@loongson.cn, quic_pkumpatl@quicinc.com, herve.codina@bootlin.com, 
- masahiroy@kernel.org, nuno.sa@analog.com, yesanishhere@gmail.com, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, wangweidong.a@awinic.com
-Cc: yijiangtao@awinic.com
-In-Reply-To: <20241231125610.465614-1-wangweidong.a@awinic.com>
-References: <20241231125610.465614-1-wangweidong.a@awinic.com>
-Subject: Re: [PATCH V4 0/2] ASoC: codecs: Add aw88083 amplifier driver
-Message-Id: <173627914448.519339.12595534699937651368.b4-ty@kernel.org>
-Date: Tue, 07 Jan 2025 19:45:44 +0000
+	s=k20201202; t=1736279326;
+	bh=BE3Kvlm4SYj9bK8LbiFE4KUXI/o+MNEkZx3XTGkEcYM=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=ZJJLIrOF+YIe2HYHOMHHzV1ZUD5ZvQUJsWh22UsRfCTB9jTKRK5hTXUQDhjmU9KPM
+	 /8TOTWDumBsqOO1RaN/ZM0P+lj0zOKztPwV/WJUE7k2jfNPdnjek48IIp6mM+tj55k
+	 En9kKg8XDpqWRc9QxDkYtCNxdirBWhfc40aWSmtUoll6gmu3NoB+QPfbCY+7vzvGJj
+	 S4dK050VyqJttIWPIJt8mERDnGdckGDvr1fAhqGouJ8hz9ppLF5qR79v3/G2lPWhAn
+	 0KkWxR6LO/WBlurjzEjviDTlDAp2/PY4rSgTkj7ELOWDwFKKdxyo7QQSf11Gmk8Sbu
+	 RqWFaRam/CnxQ==
+Message-ID: <ad5423103bdc2cfdc2f99a41e3660e8e.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-1b0d6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250107044038.100945-2-rohit.visavalia@amd.com>
+References: <20250107044038.100945-1-rohit.visavalia@amd.com> <20250107044038.100945-2-rohit.visavalia@amd.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: xilinx: Convert VCU bindings to dtschema
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Rohit Visavalia <rohit.visavalia@xilinx.com>
+To: Rohit Visavalia <rohit.visavalia@amd.com>, conor+dt@kernel.org, krzk+dt@kernel.org, michal.simek@amd.com, mturquette@baylibre.com, robh@kernel.org, vishal.sagar@amd.com
+Date: Tue, 07 Jan 2025 11:48:43 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-On Tue, 31 Dec 2024 20:56:08 +0800, wangweidong.a@awinic.com wrote:
-> Add the awinic,aw88083 property to support the aw88083 chip.
-> 
-> The driver is for amplifiers aw88083 of Awinic Technology
-> Corporation. The AW88083 is an intelligent digital audio
-> amplifier with low noise.
-> 
-> v3 -> v4: Modify the commit message
-> 
-> [...]
+Quoting Rohit Visavalia (2025-01-06 20:40:37)
+> From: Rohit Visavalia <rohit.visavalia@xilinx.com>
+>=20
+> Convert AMD (Xilinx) VCU bindings to yaml format.
+> Additional changes:
+>    - move xlnx_vcu DT binding to clock from soc following commit
+>      a2fe7baa27a4 ("clk: xilinx: move xlnx_vcu clock driver from soc")
+>    - corrected clock sequence as per xilinx device-tree generator
+>=20
+> Signed-off-by: Rohit Visavalia <rohit.visavalia@xilinx.com>
+>=20
+> ---
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/2] ASoC: dt-bindings: Add schema for "awinic,aw88083"
-      commit: e7b73981380cefc9ed6261e3b53c37c327cab189
-[2/2] ASoC: codecs: Add aw88083 amplifier driver
-      commit: c51187903fe4523fd7f521662c1ae1f1f3174036
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Applied to clk-next
 
