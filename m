@@ -1,185 +1,176 @@
-Return-Path: <devicetree+bounces-136323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E17D5A04C88
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 23:42:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6DBA04C99
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 23:46:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB8571667A6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 22:42:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE03A18845BB
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 22:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669341AAA1D;
-	Tue,  7 Jan 2025 22:42:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2866F1E0DE6;
+	Tue,  7 Jan 2025 22:45:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IEo1YU1M"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="NED0+7Ze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E399190664;
-	Tue,  7 Jan 2025 22:42:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F1C16DEB1
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 22:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736289767; cv=none; b=JbSV2JIa3o6MYgBRbaPSH3rO1BaZ335uJ8s1Np7T1QuSdXGIY4iPFECQ8LNMjKiAKNjMIIEYZtP6hI4M46IE1F84+/lvimJn+dn1/tlzXD2xZcPeUGI7jM2WrPC/Qwd6SLtiKZq3jzN9/5wyfgSVy8qAq5Y6Qg8x2pNnhIGab3g=
+	t=1736289953; cv=none; b=IlDmGbSSJYEto0L8lauFAGkV7itiqcX8V/dbzbIQnq3KR3JWrt/03JmzHaK6rperjjLE/nRJQY3tkLDQgE36LXzyAPCvZC7qEcRrTUQbzBp7F3v/n+yzIigONIIpwoVOak6C7JfAM+At+WmmYyM2YCql6bsVm8H+vQ0aQKB4x10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736289767; c=relaxed/simple;
-	bh=OAaF3t+3+AbOpQgAHh9T97TjVE9os6Ew4Mn69K/1Wxc=;
+	s=arc-20240116; t=1736289953; c=relaxed/simple;
+	bh=0p7I6CjwprjKUPF85iarFF3/An5PH4d3rFnUVpXCKjo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jmxTL3GzyxA0v9LVbj/ysqJM5q6lyryzpxdIZy+R0j9jS/dWCHF4sNSRYFji2v+eqxiKtSA6oa+0t++cek0xZAbCSr62wvzzq6UQTiMjfQfAfCgPyJBW+feaYtYr6DCLzHGO2rFTRIsuQC9pTdO+xiNsd3dXHzNXjWdmDPUUROI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=NED0+7Ze; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 2D6D8240103
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 23:45:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1736289942; bh=0p7I6CjwprjKUPF85iarFF3/An5PH4d3rFnUVpXCKjo=;
 	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=EKAo5xJm0Ir/5wQRScI788CEK6bC8Dkecl6Qcz5c2K5AiRcsnvw3k7aaa2FdXMiCRj16mpyt2PNIhccph97YK9zn0ZRrW23BauYArA/JCkbbPtCkBtez0F4GY0VQM40Y3e2tkdkoIirTjGOR/7NxUzIiK/ZEruXWw+ZF6y54FJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IEo1YU1M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8608DC4CEDE;
-	Tue,  7 Jan 2025 22:42:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736289766;
-	bh=OAaF3t+3+AbOpQgAHh9T97TjVE9os6Ew4Mn69K/1Wxc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=IEo1YU1M6xcnjl2DhgYfSrhtO4jyG4gPs0FmBg4oabm8aCweQjs0JpOWg3QG8UOBd
-	 o5CLi09ZiuuXu5rZhxJJNJdasqeD6S4SFNw9L6QqhL1BKhbdxTWPIhl0dhM4rRTeo7
-	 LKEidAtlfzpayBqCBnPe4NOaEWNH3erm2H15dCgTdEko9y8w39tGOV6jG+LZl44ImR
-	 uK31BIQjQCg1J2OKpvGXWf+ZwtkKFizGDdNeJafSl2ZbjiUeBh0k3lysC7fZNZQTO0
-	 oH7AL8vwAwk+s26jniRZtaCQWD0kn5UV3xlFEprX/f63esJVtu9jlmBQxfSfEUTUup
-	 xv2FfsGBLTSlA==
-Date: Tue, 7 Jan 2025 16:42:44 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	andersson@kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=NED0+7Zef0TlyRwcDOcxyomiAje/XlK64U5Isxg5aOeL8X9Liz8niSLE6ZnPkXXXt
+	 y+rkSZgKeB59X49tFTC8BwOpFWgDJpcgEl8VOn19kTfSrlqmJLz8Hl05foLpILl5Gp
+	 oCFXU53bh2eh5mug3HfK35IOrV4Q27i5qEEXnim1YkXzQtCjwWhM2noQXAI2Bgqr5w
+	 KsFh39G/+TsFiBc6dtKKLhWzzF0MKCC/dVtRl90eoN+S4p9Q2fx8r2C9SQ1pk7vQJz
+	 IkSbdZ0LscoGj4sVWTrCtx0ueYR9OKzw9ucpzYOVErxqrfVBwxHGjywToOVpxDNtLi
+	 1fIjeHFpUFAjg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YSR374WRgz6tvZ;
+	Tue,  7 Jan 2025 23:45:39 +0100 (CET)
+Date: Tue,  7 Jan 2025 22:45:39 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: j.ne@posteo.net, Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Naveen N Rao <naveen@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: PCI: Add binding for qps615
-Message-ID: <20250107224244.GA187680@bhelgaas>
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>,
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 01/19] powerpc: Generalize MPC831x platform support
+Message-ID: <Z32uk8VJqhlogY50@probook>
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-1-86f78ba2a7af@posteo.net>
+ <0b66e94d-7116-4916-b897-06b1199752b4@csgroup.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <eysqoiiizunkjxqyvfaxbx4szwnz4osv42j7xr247irnthifwu@nhxytsl4brvu>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0b66e94d-7116-4916-b897-06b1199752b4@csgroup.eu>
 
-On Tue, Dec 24, 2024 at 11:49:42AM +0200, Dmitry Baryshkov wrote:
-> On Tue, Dec 24, 2024 at 02:41:10PM +0530, Krishna Chaitanya Chundru wrote:
-> > On 12/5/2024 2:55 AM, Bjorn Helgaas wrote:
-> > > On Tue, Nov 12, 2024 at 08:31:33PM +0530, Krishna chaitanya chundru wrote:
-> > > > Add binding describing the Qualcomm PCIe switch, QPS615,
-> > > > which provides Ethernet MAC integrated to the 3rd downstream port
-> > > > and two downstream PCIe ports.
-
-> > > > +    pcie {
-> > > > +        #address-cells = <3>;
-> > > > +        #size-cells = <2>;
-> > > > +
-> > > > +        pcie@0 {
-> > > > +            device_type = "pci";
-> > > > +            reg = <0x0 0x0 0x0 0x0 0x0>;
-> > > > +
-> > > > +            #address-cells = <3>;
-> > > > +            #size-cells = <2>;
-> > > > +            ranges;
-> > > > +            bus-range = <0x01 0xff>;
-> > > > +
-> > > > +            pcie@0,0 {
-> > > > +                compatible = "pci1179,0623";
-> > > > +                reg = <0x10000 0x0 0x0 0x0 0x0>;
-> > > > +                device_type = "pci";
-> > > > +                #address-cells = <3>;
-> > > > +                #size-cells = <2>;
-> > > > +                ranges;
-> > > > +                bus-range = <0x02 0xff>;
-> > > 
-> > > This binding describes a switch.  I don't think bus-range should
-> > > appear here at all because it is not a feature of the hardware (unless
-> > > the switch ports are broken and their Secondary/Subordinate Bus
-> > > Numbers are hard-wired).
-> > > 
-> > > The Primary/Secondary/Subordinate Bus Numbers of all switch ports
-> > > should be writable and the PCI core knows how to manage them.
-> > 
-> > The dt binding check is throwing an error if we don't keep bus-range
-> > property for that reason we added it, from dt binding perspective i think it
-> > is mandatory to add this property.
+On Mon, Jan 06, 2025 at 02:50:31PM +0100, Christophe Leroy wrote:
 > 
-> Could you please provide an error message? I don't see any of the PCIe
-> bindingins declaring bus-range as mandatory. I might be missing it
-> though.
+> 
+> Le 02/01/2025 à 19:31, J. Neuschäfer via B4 Relay a écrit :
+> > [Vous ne recevez pas souvent de courriers de devnull+j.ne.posteo.net@kernel.org. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
+> > 
+> > From: "J. Neuschäfer" <j.ne@posteo.net>
+> > 
+> > The Reference Design Boards (RDB) don't have the same relevance they had
+> > then the MPC831x platform was new; if any work is done today, then
+> > likely based on used production boards, which are more readily available
+> > than NXP's discontinued devboards.
+> > 
+> > To further reduce the focus on RDBs, add DT compatible strings for all
+> > four MPC8314/5 variants.
+> 
+> Seems like this patch does more than adding DT compatible strings.
 
-I think the warning message is like this:
+I'll move the addition of DT compatibles to a new patch.
 
-  Warning (pci_device_bus_num): /soc@0/pcie@1c00000/pcie@0/wifi@0: PCI bus number 1 out of range, expected (0 - 0)
+> 
+> > 
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > ---
+[...]
+> > diff --git a/arch/powerpc/platforms/83xx/Kconfig b/arch/powerpc/platforms/83xx/Kconfig
+> > index d355ad40995fdc0fc3b4355126c65c761c21c296..944ec44a1fa6044b03ac71c295e891cd411ce444 100644
+> > --- a/arch/powerpc/platforms/83xx/Kconfig
+> > +++ b/arch/powerpc/platforms/83xx/Kconfig
+> > @@ -18,12 +18,12 @@ config MPC830x_RDB
+> >          help
+> >            This option enables support for the MPC8308 RDB and MPC8308 P1M boards.
+> > 
+> > -config MPC831x_RDB
+> > -       bool "Freescale MPC831x RDB"
+> > +config MPC831x
+> 
+> That looks confusing. We already have CONFIG_PPC_MPC831x
 
-and only happens if there's a device below a Root Port or a Switch.
-In that case the device "reg" property apparently has to include the
-bus/device/function.
+Fair enough. How about CONFIG_MPC831x_BOARDS?
 
-IIUC, in this case, we're describing a Switch with an integrated
-Ethernet MAC:
+> 
+> > +       bool "Freescale MPC831x boards"
+> >          select DEFAULT_UIMAGE
+> >          select PPC_MPC831x
+> >          help
+> > -         This option enables support for the MPC8313 RDB and MPC8315 RDB boards.
+> > +         This option enables support for all MPC831x-based boards.
+> > 
+> >   config MPC832x_RDB
+> >          bool "Freescale MPC832x RDB"
+> > diff --git a/arch/powerpc/platforms/83xx/Makefile b/arch/powerpc/platforms/83xx/Makefile
+> > index 6fc3dba943dade4f63da090b520b0c35bb46a091..92fb0b34913e1113d3e6eac49acbb1c32fb06ab7 100644
+> > --- a/arch/powerpc/platforms/83xx/Makefile
+> > +++ b/arch/powerpc/platforms/83xx/Makefile
+> > @@ -6,7 +6,7 @@ obj-y                           := misc.o
+> >   obj-$(CONFIG_SUSPEND)          += suspend.o suspend-asm.o
+> >   obj-$(CONFIG_MCU_MPC8349EMITX) += mcu_mpc8349emitx.o
+> >   obj-$(CONFIG_MPC830x_RDB)      += mpc830x_rdb.o
+> > -obj-$(CONFIG_MPC831x_RDB)      += mpc831x_rdb.o
+> > +obj-$(CONFIG_MPC831x)          += mpc831x.o
+> >   obj-$(CONFIG_MPC832x_RDB)      += mpc832x_rdb.o
+> >   obj-$(CONFIG_MPC834x_ITX)      += mpc834x_itx.o
+> >   obj-$(CONFIG_MPC836x_RDK)      += mpc836x_rdk.o
+> > diff --git a/arch/powerpc/platforms/83xx/mpc831x_rdb.c b/arch/powerpc/platforms/83xx/mpc831x.c
+> > similarity index 65%
+> > rename from arch/powerpc/platforms/83xx/mpc831x_rdb.c
+> > rename to arch/powerpc/platforms/83xx/mpc831x.c
+> > index 5c39966762e4264d2ef91b2c4ef75fdf2c2c5d65..7250fc11c7ee80b266f39d0b3aebb0deb777c129 100644
+> > --- a/arch/powerpc/platforms/83xx/mpc831x_rdb.c
+> > +++ b/arch/powerpc/platforms/83xx/mpc831x.c
+> > @@ -1,8 +1,8 @@
+> >   // SPDX-License-Identifier: GPL-2.0-or-later
+> >   /*
+> > - * arch/powerpc/platforms/83xx/mpc831x_rdb.c
+> > + * arch/powerpc/platforms/83xx/mpc831x.c
+> 
+> Please remove the file name from the file.
 
-  pcie@0 {
-    device_type = "pci";
-    reg = <0x0 0x0 0x0 0x0 0x0>;           # 00:00.0 RP to [bus 01-ff]
-    bus-range = <0x01 0xff>;
+Will do.
 
-    pcie@0,0 {
-      compatible = "pci1179,0623";
-      reg = <0x10000 0x0 0x0 0x0 0x0>;     # 01:00.0 Switch USP to [bus 02-ff]
-      device_type = "pci";
-      bus-range = <0x02 0xff>;
+> >    *
+> > - * Description: MPC831x RDB board specific routines.
+> > + * Description: MPC831x board specific routines.
+> 
+> s/board/boards ?
 
-      pcie@1,0 {
-        reg = <0x20800 0x0 0x0 0x0 0x0>;   # 02:01.0 Switch DSP to [bus 03-ff]
-        device_type = "pci";
-        bus-range = <0x03 0xff>;
-        qcom,no-dfe-support;
-      };
+No, the "board" in "board specific" doesn't get pluralized when there
+are multiple boards. How about the following?
 
-      pcie@2,0 {
-        reg = <0x21000 0x0 0x0 0x0 0x0>;   # 02:02.0 Switch DSP to [bus 04-ff]
-        device_type = "pci";
-        bus-range = <0x04 0xff>;
-        qcom,nfts = <10>;
-      };
+      * Description: MPC831x specific routines.
 
-      pcie@3,0 {
-        reg = <0x21800 0x0 0x0 0x0 0x0>;   # 02:02.1 Switch DSP to [bus 05-ff]
-        device_type = "pci";
-        bus-range = <0x05 0xff>;
-        qcom,tx-amplitude-millivolt = <10>;
 
-        pcie@0,0 {
-          reg = <0x50000 0x0 0x0 0x0 0x0>; # 05:00.0 Ethernet MAC, I guess?
-          device_type = "pci";
-          qcom,l1-entry-delay-ns = <10>;
-        };
 
-        ...
-      };
-    };
-  };
-
-So I think the bus-range properties are needed to match the reg
-properties of the downstream devices.
-
-I do think the bus-ranges of the Switch Downstream Ports look bogus
-because they all extend to bus ff, so they overlap.  The Switch
-wouldn't know how to route config transactions to the correct DSP.
-I suppose the PCI core would fix these overlaps at boot time, but 
-it seems wrong to describe them this way here.
-
-There's an example "reg" decoding and a couple URLs here:
-https://lore.kernel.org/r/20250106230705.GA132316@bhelgaas
-
-Bjorn
+Best regards,
+J. Neuschäfer
 
