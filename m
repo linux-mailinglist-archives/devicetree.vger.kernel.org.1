@@ -1,105 +1,133 @@
-Return-Path: <devicetree+bounces-136040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99117A03939
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:04:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B15EA038C9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:30:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F59B7A1AE3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:04:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74AA47A2402
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54FF1459F6;
-	Tue,  7 Jan 2025 08:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D211DFE0A;
+	Tue,  7 Jan 2025 07:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="fFCSiGMi"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="NUL/i43t";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="kUQqq3eF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m127206.xmail.ntesmail.com (mail-m127206.xmail.ntesmail.com [115.236.127.206])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B21561862;
-	Tue,  7 Jan 2025 08:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.206
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987F2157493;
+	Tue,  7 Jan 2025 07:29:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736237052; cv=none; b=MaCdX5NfacyYPXfUtUXSHqnlCAkn9619iKnkGi30+zg/ugU86MfwUyLC9YtKPXCwJ+V3PALobrDZxWZQ4L+bpNtwUplMHcKM6FUZ11qNXZ8O2IzxzcTQat66+bUJCtqztIe1jBkRbTza2KsuDTqRC9JEpIqlxfryl8u2BMC9q6k=
+	t=1736235000; cv=none; b=UG2xSRBGyC1fZOW8DelN0EWa22+hUw1NfIhT6ExwoHJEa9+p/uF1szvQh4q0gSQrv9fB8MQmOK7tYndyEOYyHnhoHwYy/1HwB+KzVs965rUODuK6J+tJsHRIYzL1YZtzQA+yqzMf1qnBvt2/YS6+RF26H1QdURwAbP/DEyGDmvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736237052; c=relaxed/simple;
-	bh=y99pSpOVIHq6vRYvbS8Aaoq5kTd2f/zbgWDDa9Ky06U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W6SEy6ZyPalUzKJ9oMcw++JOvAsFQnCR94YY90HzvkcvFBGdO+HtTLsqfroWf4/jlKxnoLMPoE6FZqXRogHFdhyjKtZTXijCYA7m+zPh3N8Qulo4FqjnFaSs9eRNgC9I1dOLzlJPtbDCYNvKrR2q94GlWy4HzDHkFrw+ZoYenYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=fFCSiGMi; arc=none smtp.client-ip=115.236.127.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.67] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 7f2e6f8d;
-	Tue, 7 Jan 2025 15:28:41 +0800 (GMT+08:00)
-Message-ID: <df8983a4-5e0f-4eae-b163-05788b2bc7cd@rock-chips.com>
-Date: Tue, 7 Jan 2025 15:28:41 +0800
+	s=arc-20240116; t=1736235000; c=relaxed/simple;
+	bh=WqzIYBsdxEOABD+4XiKNPlnghNXS6gXFvv/Anibv4yA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ceO7aFfncy0PX/d8a/TPSiHB0g6ZWMlymwl5eJ+e2dKW6kJTemibJLZZHXTYuNKFCSls0X+TDRYQ5pSM5ZR7WzK0xBsZYUId/BiA1Tlie8Ctc2dPA+NlK4tSxegV9E7vh6aFS/M1cBFVRcOi5O3vbFSNn9bpKObv7EV8UVhkjXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=NUL/i43t; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=kUQqq3eF reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1736234996; x=1767770996;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=nP3a904pW+4NeZpIzj2rL1y4z2Ox21R2Xnv72pkxwco=;
+  b=NUL/i43tBgyvfUrY9ZQZGns6MzD/1iwZAIeGFjPDt5dcp3JIXABSJAfq
+   Nmr2Uc1rB0foAvbBUbzeCajRIVFw7rjq7MaRUTtCI7cROaxf7nhcnIGjA
+   PYXw3Zj+R/RYfMk7b2+NmNadafg9MVZmSy/+V8ZPX4Cmv5RS/gLwzGou8
+   AJr6/u6h2gkpMPHnUA3eEsCylzgvEL6PqTnJor/0f8HPUj8DO7HshDri1
+   KC9zhekdMcOkZMs8aPEG0oYmuqII432aUqe+7vVTOpTKelQV+bFhuXhAG
+   +UJSbeYebqztGWTxzlXlJQa0jv5cAWi2fgPyJQSxkIti2Qk/wen/iJfuJ
+   A==;
+X-CSE-ConnectionGUID: Izfo4A+rSCy3NyDPZAJESA==
+X-CSE-MsgGUID: xzEX+6reTZOhb7p1aXK/6Q==
+X-IronPort-AV: E=Sophos;i="6.12,294,1728943200"; 
+   d="scan'208";a="40884099"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 07 Jan 2025 08:29:46 +0100
+X-CheckPoint: {677CD7EA-9-1647E5E1-CA16D1A6}
+X-MAIL-CPID: 1AEEC7B410713E20B959F122062910D3_2
+X-Control-Analysis: str=0001.0A682F28.677CD7EA.00B1,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 11EEF16127F;
+	Tue,  7 Jan 2025 08:29:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1736234981;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nP3a904pW+4NeZpIzj2rL1y4z2Ox21R2Xnv72pkxwco=;
+	b=kUQqq3eFKQVewMaUchSw5EAUYGP9HHxGRg6hRebVznMHtHICrD6XdTKTAfwJWtI0GoTpcs
+	ImBdTuEMqD8JIzytM1HTt//DoWwt+Ci/ReXj6QXX/RS4A6rrQCKNyOrnZe9dUG8qMZrHnW
+	VygnZzh72HPDs8KMeLlV3U6HG3BiPFJO/QuqnFcti7RLBBG2t8UvwZqoXZLKzXBdS05ohy
+	8vXM3XG6VH8PWNBlNxaB5L5HFIWUgLX4NG3cnkPTlMnHI6/br9uYw39Vgl58GQvgy74fEj
+	Mq7udal6QZYZOLG+gGpfEKVaWTCuEFNS0fgAVNYIRD8CUcd8DuKhxuh1z+I52g==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: dmitry.baryshkov@linaro.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, mripard@kernel.org, Sandor Yu <Sandor.yu@nxp.com>
+Cc: kernel@pengutronix.de, linux-imx@nxp.com, Sandor.yu@nxp.com, oliver.brown@nxp.com, sam@ravnborg.org
+Subject: Re: [PATCH v20 0/8] Initial support Cadence MHDP8501(HDMI/DP) for i.MX8MQ
+Date: Tue, 07 Jan 2025 08:29:36 +0100
+Message-ID: <2381464.ElGaqSPkdT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <cover.1734340233.git.Sandor.yu@nxp.com>
+References: <cover.1734340233.git.Sandor.yu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/7] dt-bindings: arm: rockchip: Sort for boards not in
- correct order
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Chris Morgan <macromorgan@hotmail.com>, Rob Herring <robh@kernel.org>,
- Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
- linux-kernel@vger.kernel.org, Tim Lunn <tim@feathertop.org>,
- linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Andy Yan <andyshrk@163.com>
-References: <20241223110637.3697974-1-kever.yang@rock-chips.com>
- <20241223110637.3697974-6-kever.yang@rock-chips.com>
- <dzrmlapgca6vwqpfxi7sub37z4taerinslfthqwqi7jltb4xxh@wtry22ybpd2r>
-Content-Language: en-US
-From: Kever Yang <kever.yang@rock-chips.com>
-In-Reply-To: <dzrmlapgca6vwqpfxi7sub37z4taerinslfthqwqi7jltb4xxh@wtry22ybpd2r>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkJMSlZJHxlMGUpLSxlLQk9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	JVSktLVUpCS0tZBg++
-X-HM-Tid: 0a943faa6dca03afkunm7f2e6f8d
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NhA6Cgw6NjIQExMCSxMuMU4K
-	DQMKFCxVSlVKTEhNSUhPQklJTUhKVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFMTE03Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=fFCSiGMiQG14SsmasmUq9Z2NiXJPBN9ENW4gZ8eVH++l8WiemtuurIUtbnrKpS3ut+xS0hrKcV43Nx+AEi4OB5U288HibqvS/M4t+NDtFwF4Pbu7Yl1DhD+uxpeWTnz3qiN4+j8ouxQc82bp3JfkRyuAHnGSjLJ6vH9HnbKbAgU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=W7Waz4qoMm7Thy7CdWwhTSGFNbjxkVcZlwArb6siD10=;
-	h=date:mime-version:subject:message-id:from;
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Krzysztof
+Hi Sandor,
 
-On 2024/12/23 22:58, Krzysztof Kozlowski wrote:
-> On Mon, Dec 23, 2024 at 07:06:35PM +0800, Kever Yang wrote:
->> The board entries should be sort in correct order.
-> And what is the sorting rule for this file? Board name? SoC compatible?
+thanks for the updates.
 
-This is sort by the description msg, which should be easy to find out if 
-look at
+Am Dienstag, 17. Dezember 2024, 07:51:42 CET schrieb Sandor Yu:
+> The patch set initial support Cadence MHDP8501(HDMI/DP) DRM bridge
+> driver and Cadence HDP-TX PHY(HDMI/DP) driver for Freescale i.MX8MQ.
+>=20
+> The patch set compose of DRM bridge drivers and PHY driver.
+>=20
+> Both of them need by patch #1 and #3 to pass build.
+>=20
+> DRM bridges driver patches:
+>   #1: soc: cadence: Create helper functions for Cadence MHDP
+>   #2: drm: bridge: cadence: Update mhdp8546 mailbox access functions
+>   #3: phy: Add HDMI configuration options
+>   #4: dt-bindings: display: bridge: Add Cadence MHDP8501
+>   #5: drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+>=20
+> PHY driver patches:
+>   #1: soc: cadence: Create helper functions for Cadence MHDP
+>   #3: phy: Add HDMI configuration options
+>   #6: dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+>   #7: phy: freescale: Add DisplayPort/HDMI Combo-PHY driver for i.MX8MQ
+>=20
+> i.MX8M/TQMa8Mx DT patches:
+>   #8: Add DT nodes for DCSS/HDMI pipeline
+>   #9: Enable HDMI for TQMa8Mx/MBa8Mx
+>=20
 
-the content in the file instead of the patch.
+I gave this version a new try but unfortunately the display stays black.
+Although the display pipeline is intialized and even wayland starts.
+Do you have any idea where to start looking?
 
-Will update the commit msg.
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-> Explain this in commit msg... and please test your patches before
-> posting. Public infrastructure is not replacement of your tests (see
-> failiure reported by Rob).
-I do run the test in my side, but the tool does not show this warning,
-not sure if because of my tool not up to date.
 
-Thanks,
-- Kever
->
-> Best regards,
-> Krzysztof
->
->
 
