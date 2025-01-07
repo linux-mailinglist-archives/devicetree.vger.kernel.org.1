@@ -1,133 +1,263 @@
-Return-Path: <devicetree+bounces-136031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B15EA038C9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:30:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40044A038CD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:32:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74AA47A2402
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:29:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F2F17A23F3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D211DFE0A;
-	Tue,  7 Jan 2025 07:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DFAF154BE2;
+	Tue,  7 Jan 2025 07:32:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="NUL/i43t";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="kUQqq3eF"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="EI5zPjId"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987F2157493;
-	Tue,  7 Jan 2025 07:29:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBC231862A
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 07:32:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736235000; cv=none; b=UG2xSRBGyC1fZOW8DelN0EWa22+hUw1NfIhT6ExwoHJEa9+p/uF1szvQh4q0gSQrv9fB8MQmOK7tYndyEOYyHnhoHwYy/1HwB+KzVs965rUODuK6J+tJsHRIYzL1YZtzQA+yqzMf1qnBvt2/YS6+RF26H1QdURwAbP/DEyGDmvg=
+	t=1736235148; cv=none; b=YG0IXkpbDTIMmciKB9fj2b9YovXwB8TJ4Ku7/bR670mU3Yxcs+rfH8xVJxRO0ZXEYS97zlHtKEAX8ST9oiNb8iIz4YPY2MnrDTWo3B+9nop/hsGqNGeFiGOxhfuRUgWn1WrhqPck95kXVx+p8D8dsj12xg/yFEQ96/+XSfzHjhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736235000; c=relaxed/simple;
-	bh=WqzIYBsdxEOABD+4XiKNPlnghNXS6gXFvv/Anibv4yA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ceO7aFfncy0PX/d8a/TPSiHB0g6ZWMlymwl5eJ+e2dKW6kJTemibJLZZHXTYuNKFCSls0X+TDRYQ5pSM5ZR7WzK0xBsZYUId/BiA1Tlie8Ctc2dPA+NlK4tSxegV9E7vh6aFS/M1cBFVRcOi5O3vbFSNn9bpKObv7EV8UVhkjXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=NUL/i43t; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=kUQqq3eF reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1736235148; c=relaxed/simple;
+	bh=FZEtNKaj3JCG65ps3dFA2ZvHQeOB2XoV5OgwrT933a4=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=h0kDN1T91Hz5O0h2AW+s+1DyU9Wf5JdkS6RNSqyA2xtAmUVUK6sDzU8762LRBNvREWKMib8yRycY2NvEvAdTgs9lvnePF4MDPZT+bpULsJT46jck1F5u0zRyC/7PXiwug2KezKIp+oG9E8KAdLJXVXCyp2pcLmd2RZ419cZV480=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=EI5zPjId; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5d3d14336f0so7322293a12.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2025 23:32:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1736234996; x=1767770996;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nP3a904pW+4NeZpIzj2rL1y4z2Ox21R2Xnv72pkxwco=;
-  b=NUL/i43tBgyvfUrY9ZQZGns6MzD/1iwZAIeGFjPDt5dcp3JIXABSJAfq
-   Nmr2Uc1rB0foAvbBUbzeCajRIVFw7rjq7MaRUTtCI7cROaxf7nhcnIGjA
-   PYXw3Zj+R/RYfMk7b2+NmNadafg9MVZmSy/+V8ZPX4Cmv5RS/gLwzGou8
-   AJr6/u6h2gkpMPHnUA3eEsCylzgvEL6PqTnJor/0f8HPUj8DO7HshDri1
-   KC9zhekdMcOkZMs8aPEG0oYmuqII432aUqe+7vVTOpTKelQV+bFhuXhAG
-   +UJSbeYebqztGWTxzlXlJQa0jv5cAWi2fgPyJQSxkIti2Qk/wen/iJfuJ
-   A==;
-X-CSE-ConnectionGUID: Izfo4A+rSCy3NyDPZAJESA==
-X-CSE-MsgGUID: xzEX+6reTZOhb7p1aXK/6Q==
-X-IronPort-AV: E=Sophos;i="6.12,294,1728943200"; 
-   d="scan'208";a="40884099"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Jan 2025 08:29:46 +0100
-X-CheckPoint: {677CD7EA-9-1647E5E1-CA16D1A6}
-X-MAIL-CPID: 1AEEC7B410713E20B959F122062910D3_2
-X-Control-Analysis: str=0001.0A682F28.677CD7EA.00B1,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 11EEF16127F;
-	Tue,  7 Jan 2025 08:29:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1736234981;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nP3a904pW+4NeZpIzj2rL1y4z2Ox21R2Xnv72pkxwco=;
-	b=kUQqq3eFKQVewMaUchSw5EAUYGP9HHxGRg6hRebVznMHtHICrD6XdTKTAfwJWtI0GoTpcs
-	ImBdTuEMqD8JIzytM1HTt//DoWwt+Ci/ReXj6QXX/RS4A6rrQCKNyOrnZe9dUG8qMZrHnW
-	VygnZzh72HPDs8KMeLlV3U6HG3BiPFJO/QuqnFcti7RLBBG2t8UvwZqoXZLKzXBdS05ohy
-	8vXM3XG6VH8PWNBlNxaB5L5HFIWUgLX4NG3cnkPTlMnHI6/br9uYw39Vgl58GQvgy74fEj
-	Mq7udal6QZYZOLG+gGpfEKVaWTCuEFNS0fgAVNYIRD8CUcd8DuKhxuh1z+I52g==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: dmitry.baryshkov@linaro.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, mripard@kernel.org, Sandor Yu <Sandor.yu@nxp.com>
-Cc: kernel@pengutronix.de, linux-imx@nxp.com, Sandor.yu@nxp.com, oliver.brown@nxp.com, sam@ravnborg.org
-Subject: Re: [PATCH v20 0/8] Initial support Cadence MHDP8501(HDMI/DP) for i.MX8MQ
-Date: Tue, 07 Jan 2025 08:29:36 +0100
-Message-ID: <2381464.ElGaqSPkdT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <cover.1734340233.git.Sandor.yu@nxp.com>
-References: <cover.1734340233.git.Sandor.yu@nxp.com>
+        d=fairphone.com; s=fair; t=1736235143; x=1736839943; darn=vger.kernel.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QxsnqoaRjn1U+mzus62drupM2eeFUcVoVsGFZxoMwW4=;
+        b=EI5zPjIdaqo/X6wk1NxQv+SadySQN/dkdNwMU/BqN5e+pexLJKv9wikPAROaTVRyNd
+         /616Ime7Ey+7vjccBeSj3/4OUVuQGO/OoMYajH28nxF5N8DWcnbuc6hnFr3O/xGozJWE
+         DcXe0FnmCfXh3ENqksFigG2EkdkXJLOuwKrzXRb0TPpCs4Ux2muqd1Lwp8+1A9MJelxW
+         bCBTS7HKOPoahyij6Eh+SgRQ4X1Y6K9B53DWQ/DG+mU5IF7RVXk/DL9oI2OQCG09tq4b
+         kBj/p+CAksc5M2evU9haoNCwimxSPCuKin+B5V7DwqCYrozN3Ygh/Md3VMaswEMES695
+         i7Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736235143; x=1736839943;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QxsnqoaRjn1U+mzus62drupM2eeFUcVoVsGFZxoMwW4=;
+        b=DVW/quhiEU4Hv1zvPMd/CRGXlry98D/rm2k+sAGbs61UXpHFB+ZGo69oMKgjeK4GtD
+         ICXBWtfJVmPcI0REU0EQ6EdEWb5bJBZ5ws45bh/ybgqbuA1s34/KJ8mR13PpUn3JHEGq
+         8MpgNypbOnW4TrGTnEia5xhgkpoEYknJ/4p/HiXS6wRhjRKMu6ogVLxUr4LeLsyd9UVI
+         EzyxrAZW882DsAHDy6fKqJ7Ejfdzg3spUB5IAi4JTGv1ewQ2JNTMf11lxVVmH1FlXCTV
+         Fwb1ZgduK0EM/9Rti2ToxSRBNo64MJQETfheorzcJsRHJhxrPhRV18eSdPHU5JxKdGFA
+         mAJg==
+X-Forwarded-Encrypted: i=1; AJvYcCWF0MUDRfvZDWfAKXGbwV90cebSIwzwpvjFyNWZ2MPXx8LNclgLcSVee0cYsUAUU138lTCEkftbQSgE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzC0W2nRGbwhafHoLddLjlbELgBSosFBdkN8lNTS4afqhHyJNic
+	QwWExtvV2oCCvpRoSXq3HmC10oJMi7e7kzQ2sHexFgjNrneEl/dfm3AL8OnOiJPSlw+a/Ep6Wuu
+	x
+X-Gm-Gg: ASbGncu7a6/gUySx2weo+sgqKMGHN1VW8LqsYhC1NJ5GbN47YJBAp8FMzWmL+ilqaTd
+	Q9ztr+UL/AjxAyrbIJbgy6YoN/LJ1uAgZ/h3EbHIzd+Fo8X2w9s1lygtVr89+4B2KRnwa1w2PnR
+	xyWpW7XojLE10S6i43dwZc8NaZy09ThPawxyYyfo0mUrql4QKuuzx7ZBQj9gPbr0vywtKndm85m
+	UxE6Lm1sdbvoes/c03ymD9XR7nrJQdnYRjKNHhTXAvgvekRVqosTJ3KQCbZLJw5k0OSPmfAtm3a
+	xsumP/ktAgokNP4=
+X-Google-Smtp-Source: AGHT+IHju/xJ5UhqcC+t1vi02NyMGzJzQ3AJeci3xy21v8rmZhpPHEDpgKZLgRB805M7NykexlqqDw==
+X-Received: by 2002:a05:6402:5256:b0:5d0:bdc1:75df with SMTP id 4fb4d7f45d1cf-5d81ddf7fa6mr55537562a12.24.1736235143078;
+        Mon, 06 Jan 2025 23:32:23 -0800 (PST)
+Received: from localhost (31-151-138-250.dynamic.upc.nl. [31.151.138.250])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d8baa29afasm13368880a12.59.2025.01.06.23.32.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jan 2025 23:32:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 07 Jan 2025 08:32:22 +0100
+Message-Id: <D6VNZP10UQQM.1OZECZ6TZPY3P@fairphone.com>
+To: "Vedang Nagar" <quic_vnagar@quicinc.com>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@linaro.org>
+Cc: <cros-qcom-dts-watchers@chromium.org>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Vikash
+ Garodia (QUIC)" <quic_vgarodia@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: enable venus node
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20241004-venus_sc7280-v1-1-4d7d8fd7e95b@quicinc.com>
+ <kezh3lmysij56g2tjwwuas5r26ro5i777yxxitsdcjeg7zp67v@oknrdbkzison>
+ <78e6ff6b-efe1-496c-a1fb-c9a0a4aba2d2@quicinc.com>
+ <CAA8EJpqqZL7xybcbJMsbTQB+ht5-A+ocNs+Sq30j=v1zM3JL9g@mail.gmail.com>
+ <fbba794a-ba04-4790-b5e9-b4df3cba35b2@quicinc.com>
+ <D5KAUZHYJHFS.1NXF5SVWYL03G@fairphone.com>
+ <39206687-6fb3-434f-b2ba-a028cf6f8ed3@quicinc.com>
+ <D5KW7A8BZG6K.2L7FEV6SWRZ2D@fairphone.com>
+ <26b3aee7-5729-447b-983a-cfa5951595ba@quicinc.com>
+In-Reply-To: <26b3aee7-5729-447b-983a-cfa5951595ba@quicinc.com>
 
-Hi Sandor,
+Hi Vedang,
 
-thanks for the updates.
+On Tue Jan 7, 2025 at 5:11 AM CET, Vedang Nagar wrote:
+> Hi Luca,
+>
+> On 11/13/2024 1:33 PM, Luca Weiss wrote:
+> > Hi Vedang,
+> >=20
+> > On Wed Nov 13, 2024 at 8:01 AM CET, Vedang Nagar wrote:
+> >> Hi Luca,
+> >> On 11/12/2024 8:49 PM, Luca Weiss wrote:
+> >>> Hi Vedang,
+> >>>
+> >>> On Tue Nov 12, 2024 at 3:39 PM CET, Vedang Nagar wrote:
+> >>>>
+> >>>>
+> >>>> On 11/12/2024 6:43 PM, Dmitry Baryshkov wrote:
+> >>>>> On Tue, 12 Nov 2024 at 08:17, Vedang Nagar <quic_vnagar@quicinc.com=
+> wrote:
+> >>>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>> On 10/7/2024 1:20 AM, Dmitry Baryshkov wrote:
+> >>>>>>> On Fri, Oct 04, 2024 at 04:22:31PM GMT, Vedang Nagar wrote:
+> >>>>>>>> Enable the venus node on Qualcomm sc7280. It was made disabled
+> >>>>>>>> earlier to avoid bootup crash, which is fixed now with [1].
+> >>>>>>>
+> >>>>>>> NAK, there might be other reasons to keep venus disabled, like th=
+e lack
+> >>>>>>> of the vendor-signed firmware for the particular device.
+> >>>>>> Can you pls elaborate more on this? Any device with sc7280 SOC can=
+ use
+> >>>>>> venus.mbn which is already present in linux-firmware git.
+> >>>>>
+> >>>>> Can it though if the device is fused to use vendor keys and to chec=
+k
+> >>>>> the trust chain?
+> >>>> Yes, infact the existing ones are signed and works with trustzone au=
+thentication.
+> >>>
+> >>> No, the venus firmware from linux-firmware does not work on a device
+> >>> with secure boot on, like the (QCM6490) Fairphone 5 smartphone.
+> >> Are you saying even after applying this [1] you are seeing the same ?
+> >>
+> >> [1]
+> >> https://patchwork.kernel.org/project/linux-media/patch/20231201-sc7280=
+-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
+> >=20
+> > That patch has been in mainline since v6.9 and my tree is newer, so yes=
+.
+> >=20
+> > See e.g. Qualcomm doc KBA-161204232438 for some details.
+> >=20
+> > Regards
+> > Luca
+> >=20
+> >>>
+> >>> $ rm /lib/firmware/qcom/qcm6490/fairphone5/venus.mbn
+> >>> $ cp /lib/firmware/qcom/vpu-2.0/venus.mbn.zst /lib/firmware/qcom/qcm6=
+490/fairphone5/venus.mbn.zst
+> >>>
+> >>> leads to
+> >>>
+> >>> [   10.848191] qcom-venus aa00000.video-codec: Adding to iommu group =
+13
+> >>> [   10.863062] qcom-venus aa00000.video-codec: non legacy binding
+> >>> [   10.909555] qcom-venus aa00000.video-codec: error -22 initializing=
+ firmware qcom/qcm6490/fairphone5/venus.mbn
+> >>> [   10.910099] qcom-venus aa00000.video-codec: fail to load video fir=
+mware
+> >>> [   10.910849] qcom-venus aa00000.video-codec: probe with driver qcom=
+-venus failed with error -22
+> >>>
+> We have seen similar issue with older firmware present in
+> linux-firmware git due to a bug in singing of the firmware image.
+>
+> This issue seems to be resolved with below change:
+> aeede7afb7a186b62f9e1f959c33fd5f2dea0f7a: qcom: update venus firmware fil=
+e for SC7280
+>
+> Can you pls give a try with latest firmware if you still see the same iss=
+ue?
+> We tried internally and do not see any such failure now.
 
-Am Dienstag, 17. Dezember 2024, 07:51:42 CET schrieb Sandor Yu:
-> The patch set initial support Cadence MHDP8501(HDMI/DP) DRM bridge
-> driver and Cadence HDP-TX PHY(HDMI/DP) driver for Freescale i.MX8MQ.
->=20
-> The patch set compose of DRM bridge drivers and PHY driver.
->=20
-> Both of them need by patch #1 and #3 to pass build.
->=20
-> DRM bridges driver patches:
->   #1: soc: cadence: Create helper functions for Cadence MHDP
->   #2: drm: bridge: cadence: Update mhdp8546 mailbox access functions
->   #3: phy: Add HDMI configuration options
->   #4: dt-bindings: display: bridge: Add Cadence MHDP8501
->   #5: drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
->=20
-> PHY driver patches:
->   #1: soc: cadence: Create helper functions for Cadence MHDP
->   #3: phy: Add HDMI configuration options
->   #6: dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
->   #7: phy: freescale: Add DisplayPort/HDMI Combo-PHY driver for i.MX8MQ
->=20
-> i.MX8M/TQMa8Mx DT patches:
->   #8: Add DT nodes for DCSS/HDMI pipeline
->   #9: Enable HDMI for TQMa8Mx/MBa8Mx
->=20
+Still same issue after
 
-I gave this version a new try but unfortunately the display stays black.
-Although the display pipeline is intialized and even wayland starts.
-Do you have any idea where to start looking?
+$ sudo rm /lib/firmware/qcom/qcm6490/fairphone5/venus.mbn
+$ sudo cp ~/linux-firmware-aeede7afb7a186b62f9e1f959c33fd5f2dea0f7a/qcom/vp=
+u/vpu20_p1.mbn /lib/firmware/qcom/qcm6490/fairphone5/venus.mbn
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+[   10.260044] qcom-venus aa00000.video-codec: Adding to iommu group 13
+[   10.260681] qcom-venus aa00000.video-codec: non legacy binding
+[   10.406306] qcom-venus aa00000.video-codec: error -22 initializing firmw=
+are qcom/qcm6490/fairphone5/venus.mbn
+[   10.406681] qcom-venus aa00000.video-codec: fail to load video firmware
+[   10.420897] qcom-venus aa00000.video-codec: probe with driver qcom-venus=
+ failed with error -22
 
+Did you try internally on a board with secure boot on or off? I can
+imagine this image working fine on SB-off, but not on SB-on, as
+mentioned before.
+
+Because when I take that image from linux-firmware and run it through
+sectools with the signing config for this device, that firmware
+initializes fine.
+
+./sectools/sectools.py secimage --sign --validate \
+  --image_file=3Dvpu20_p1.mbn --sign_id=3Dvenus --chipset=3Dkodiak \
+  --output_dir=3Dout-signed --cfg_selected_cert_config=3Dmy_sign_config
+
+[   10.624885] qcom-venus aa00000.video-codec: Adding to iommu group 13
+[   10.632036] qcom-venus aa00000.video-codec: non legacy binding
+
+$ cat /sys/kernel/debug/qcom_socinfo/video/name
+14:video-firmware.1.0-ed457c183307eff1737608763ca0f23656c95b53
+$ cat /sys/kernel/debug/qcom_socinfo/video/oem
+:hw-skotecha-hyd
+$ cat /sys/kernel/debug/qcom_socinfo/video/variant
+PROD
+
+Regards
+Luca
+
+>
+> Regards,
+> Vedang Nagar
+>
+> >>> It's the same with e.g. adsp firmware, modem firmware, etc.
+> >>>
+> >>> With secure boot off, yes, the hardware will load any firmware
+> >>> regardless of the signature.
+> >>>
+> >>> Regards
+> >>> Luca
+> >>>
+> >>>>>
+> >>>>>>
+> >>>>>> Regards,
+> >>>>>> Vedang Nagar
+> >>>>>>>
+> >>>>>>>>
+> >>>>>>>> [1]
+> >>>>>>>> https://lore.kernel.org/linux-media/20231201-sc7280-venus-pas-v3=
+-2-bc132dc5fc30@fairphone.com/
+> >>>>>>>>
+> >>>>>>>> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
+> >>>>>>>> ---
+> >>>>>>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
+> >>>>>>>>  1 file changed, 2 deletions(-)
+> >>>>>>>
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>
 
 
