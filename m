@@ -1,179 +1,604 @@
-Return-Path: <devicetree+bounces-136127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B270A03FA8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:48:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA864A0400A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:56:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CFB11886A39
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:48:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E568B167036
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 185661EF0B8;
-	Tue,  7 Jan 2025 12:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10FD11F03E7;
+	Tue,  7 Jan 2025 12:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O6NdowBr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xPWsWKaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00DF01EF08D;
-	Tue,  7 Jan 2025 12:47:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 376811F03EE
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736254072; cv=none; b=Bu2Hf2TTr2hQjW2LidpGiWnWl4PM8KWOLGA9LjnX+hjJRPTQKOkZDCjq/5DIgd7Cq4XsR6Fy29JnB6JHXzRtxYTxuSQcPb1fOXBSuImINGpc97DeIc/uy1qb7XqdC9BkVVZqW7A//yACk17huSsex0iIHqJPZUE9BnG4ZAff1Lk=
+	t=1736254585; cv=none; b=KBzkuXHQQC5o6IvCpDRZuRuV+4k1ot7FbIsZQNsZ8kU5arVL4LK70pNf6lBKZP02yZ0MsxkXm1KHWRwi1e89Eas6wxW8/xrXYvvah35fkNWI2amngt0yDQpyV444wr2r5JwgWBQw8RY9a+e76BVj2LhbKiVCKfwn8C26xNRGRtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736254072; c=relaxed/simple;
-	bh=LQ+Vdd7Z5kAgBsQhJ5rMrLrEbbavYFLs9RzON+vTKTs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bpNGuVlc5jJoecpqJ01pl1Sg8OmtJkdBM6ndjOjr62x15ayDqAYyYIE5eEYPW7mTzlqK/H7THOa8gVv6x12mh4VTjHI1rDKpSF1ocJkfEz2SzzFK9xLM+Fxihy377iqj57O9bBm58JI2rCyWp0qX1odqEf0/sTrtGmyOODZlGzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O6NdowBr; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5078bsnS011346;
-	Tue, 7 Jan 2025 12:47:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	R/udDLdHhcyCxkm6qe0P6CKQap5rHWoBYBtIhAwJEA4=; b=O6NdowBra/SNYVcv
-	Mp7f/XA0CVX4zWiGJ8QPjg7ybzMtKmwpQIP2AfNisedK7BWSNv2zrl6a5UaNxmrc
-	ezqLlqcg8bpIojkSH6MIosQ9gLbxI8PBmyhp0YZtXLoFydVzedAvNMC2qhevnbDx
-	nVMMX4WKRMVOiznQ+TyeoO61YBfOFCWqB0QVtK7xjpeV2hBlIGjZPyz8CkafBj1W
-	4ygowiRZ9KdyXJH2kYYd9xUEqGuZzOEux/zv54ip0lgxG+7i1YQQNu+btWxvl7nH
-	omi9AEPupRwJJOWE9A09ZDoDNAag6AsLUVY5sKI6xxOBLE1njV4nQPixuiKT/nE3
-	HTx2JQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4410x2rkqa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Jan 2025 12:47:41 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 507Clecg013456
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 Jan 2025 12:47:40 GMT
-Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 Jan 2025
- 04:47:34 -0800
-Message-ID: <fd61c298-f271-4e21-b1e1-dee1029e978d@quicinc.com>
-Date: Tue, 7 Jan 2025 20:47:31 +0800
+	s=arc-20240116; t=1736254585; c=relaxed/simple;
+	bh=gpScx0BWvs2kzof7nhbX3G8y/7tcGnMeE8NgEC6P4xM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fC+Pg713yeugxrfrDdZ4zeXM7ShAOVHGwyH2r8BzBz0zhn8rw4jF+41NuGB7qawYomOQCWMVsMOXrUbBpBQMcC06mt6zqFxW8vKJvG8Z61ldO+YuYBUxOUDNT6U1MDLLgpiudR6mW1CDzlxrTon9ye2rADpGL+RK4ZoKU4YMyzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xPWsWKaQ; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3862de51d38so781451f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:56:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736254578; x=1736859378; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SSJv9cd7B+Ts5chgbSK94dYazJRqIDFOFvz1Ru/QShk=;
+        b=xPWsWKaQEC0OzdXImpped62pArFpBkLC1/4PHFgrMDsbE/MGXp0b/v0OZZOV9+IJYz
+         DQP9vlpklb6lX87nYYjrd09zQUFEHnxUiGJLqEr3JNUYn3dkNa73RvoL+movbtBwtSHh
+         6qOoG9H3T+fckWmWYRjO/ruMKo/nGEddRuBU7fP9VY8wJsWQ//5NwM5WyIjOUiBosOSr
+         nlJH5VyDyerrJpQOzHsdCqOaZPiPxol6MpBRERrAKts0oFWocaC/HxotABI//ElPjoGk
+         WE6gZhEbJcqmJd14WbSYKhYRWRmlDX0du1T4A26NQWUthKvaJIs4za0CFI0yH+hehSU7
+         6IkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736254578; x=1736859378;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SSJv9cd7B+Ts5chgbSK94dYazJRqIDFOFvz1Ru/QShk=;
+        b=c+UErisCkV7RsnLtGcwWg+V+xsS9c0ygPp1sWEhAGk8RiQTuDlSaYsvBUullQQwNS6
+         7pfD+pZu1LtgRMQWaetQRJXhHp6Xp+aCzooPJp5SrWlOZmsyt38ysQHALEDHRAakhJOm
+         Bu7Hd+H1nrjuPuXFvOzSS3FdVu4ttdoeIyA8JruZREiyiHhwaXkzjdsxrFB+3EerFfNN
+         pSWDg064DTEavY6U39GkI7HvShcR9eXgNh8olfPdgIadk7brZVk0RDq7dORaVL4zD6bi
+         UbS5rCeAHoB+fpIyPaQkFOmmYIhxD7TFZk2rC8FgpGMHBYFyOUlS0YXsD1SFZ690ty87
+         a9pQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWXVp/Qs/traZquugODvSXzbiQIWmhgJHzUrHib1QOOPYpl029Y/nWS8amhAgENPdQ4XhhU4N6kp7JQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8tjsc5yLwSfwodYJcbUZN5l1v4wB7aQeQNpHu09eIuI0AZXmp
+	Vrjn+9Z2KA4OkIUCVCJQ5CaIPYzJi++iWC/lC/I9brLPV3w2NUBQD96rVOpEpXQ=
+X-Gm-Gg: ASbGncs/mhIc62NVEBkThMaWSwvV5GMt9OOd+Xk7F0gWtwg3ifbLPiB9I5wJJ98rc6r
+	LMaimGp9Euib/GDq+BH97dcFVHnGmT8DtMUGOamxkfL1QOkPguInWyfmEkcg+BrBBmJBZW0hTZN
+	P9f/F3909HfzZMOFfRunvGtVy48nRBqFzS/7IW4XvjKgdal8i+NhuJ+jXJrtNrMf7I+nfoIH35V
+	2kP5T9Z04WZYpGZ7/jyO9Lq2DsU45zDA1ZR+wL5sXYtTB5AoKN9EiJzPT8PG7gD9cG6sOI=
+X-Google-Smtp-Source: AGHT+IGFEJdX3s3JzkTAxu1HuQQv34HUHDN0bVD1EDnfGo+xIctyAQDkT+Ihr//lYJ/3ypgD4WRiww==
+X-Received: by 2002:a05:6000:1a8f:b0:382:41ad:d8e1 with SMTP id ffacd0b85a97d-38a223f9c1dmr20778414f8f.14.1736254578226;
+        Tue, 07 Jan 2025 04:56:18 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c847263sm50118575f8f.50.2025.01.07.04.56.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jan 2025 04:56:17 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Doug Berger <opendmb@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Kalle Valo <kvalo@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Dario Binacchi <dariobin@libero.it>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Grygorii Strashko <grygorii.strashko@ti.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Brian Norris <briannorris@chromium.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-can@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-wireless@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH net-next] dt-bindings: net: Correct indentation and style in DTS example
+Date: Tue,  7 Jan 2025 13:56:13 +0100
+Message-ID: <20250107125613.211478-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/16] dt-bindings: media: camss: Add qcom,sm8550-camss
- binding
-To: Hans Verkuil <hverkuil@xs4all.nl>, Krzysztof Kozlowski <krzk@kernel.org>
-CC: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vladimir.zapolskiy@linaro.org>,
-        <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        Yongsheng Li
-	<quic_yon@quicinc.com>
-References: <20241225133523.4034820-1-quic_depengs@quicinc.com>
- <20241225133523.4034820-13-quic_depengs@quicinc.com>
- <ql3sufugcdpoxqgvs2f4clmbnx75t4jh6ts2ryneu2u5oeuwzn@yizcouuzfj2s>
- <eedaa77a-8070-41c8-a05b-b124d37ac093@quicinc.com>
- <a0eafc67-2ebf-4d2a-8213-c30c3c317a1a@xs4all.nl>
-Content-Language: en-US
-From: Depeng Shao <quic_depengs@quicinc.com>
-In-Reply-To: <a0eafc67-2ebf-4d2a-8213-c30c3c317a1a@xs4all.nl>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: POuA7D1iMZFwM96Hr_44AveRt_5hMS8K
-X-Proofpoint-ORIG-GUID: POuA7D1iMZFwM96Hr_44AveRt_5hMS8K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 malwarescore=0 clxscore=1011
- phishscore=0 adultscore=0 mlxlogscore=999 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501070106
+Content-Transfer-Encoding: 8bit
 
-Hi Hans,
+DTS example in the bindings should be indented with 2- or 4-spaces and
+aligned with opening '- |', so correct any differences like 3-spaces or
+mixtures 2- and 4-spaces in one binding.
 
-On 1/6/2025 10:00 PM, Hans Verkuil wrote:
-> On 04/01/2025 14:40, Depeng Shao wrote:
->> Hi Krzysztof,
->>
->> On 12/27/2024 5:10 PM, Krzysztof Kozlowski wrote:
->>> On Wed, Dec 25, 2024 at 07:05:19PM +0530, Depeng Shao wrote:
->>>> Add bindings for qcom,sm8550-camss in order to support the camera
->>>> subsystem for sm8550.
->>>>
->>>> Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
->>>> Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
->>>> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
->>>> ---
->>>
->>> Is this v7 or v1? Same issue was all the time in the past, so why can't
->>> you finally fix it?
->>>
->>> Look:
->>>
->>> $ b4 diff 20241225133523.4034820-13-quic_depengs@quicinc.com
->>> Breaking thread to remove parents of 20241225133523.4034820-1-quic_depengs@quicinc.com
->>> Checking for older revisions
->>> Grabbing search results from lore.kernel.org
->>>     Added from v6: 1 patches
->>> ---
->>> Analyzing 217 messages in the thread
->>> Could not find lower series to compare against.
->>>
->>> I am not going to perform review, maybe other maintaners have spare
->>> time to deal with this submission process.
->>
->> Really sorry, I made a foolish mistake. I didn't realize that the patch
->> subject was missing the version number, which might be why the b4 diff
->> couldn't detect the old series. Thank you for pointing out this error.
->> Could you please advise whether I should resend v7 or fix it in next
->> version series?
-> 
-> I marked this series as 'Changes Requested' in our media patchwork because
-> of this issue.
-> 
-> So resend it as v8 with the proper [PATCH v8 ...] subject.
-> 
+No functional changes here, but saves some comments during reviews of
+new patches built on existing code.
 
-Thanks for the comments, I will follow your guidance to resend it.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/net/amlogic,meson-dwmac.yaml     | 14 +--
+ .../devicetree/bindings/net/asix,ax88178.yaml |  4 +-
+ .../bindings/net/brcm,bcmgenet.yaml           | 32 +++----
+ .../bindings/net/brcm,mdio-mux-iproc.yaml     | 46 ++++-----
+ .../bindings/net/can/bosch,c_can.yaml         | 10 +-
+ .../bindings/net/can/microchip,mcp2510.yaml   | 18 ++--
+ .../devicetree/bindings/net/stm32-dwmac.yaml  | 94 +++++++++----------
+ .../bindings/net/ti,davinci-mdio.yaml         | 10 +-
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 20 ++--
+ .../bindings/net/ti,k3-am654-cpts.yaml        | 36 +++----
+ .../bindings/net/wireless/marvell,sd8787.yaml | 17 ++--
+ 11 files changed, 150 insertions(+), 151 deletions(-)
 
-> It's a nightmare for maintainers/reviewers if it isn't clear if a patch series
-> supersedes a previous series, so it is important that you do this right.
-> 
-> Regards,
-> 
-> 	Hans
-> 
->>
->> I have also found a workaround to replace "b4 diff". Last time, you
->> helped by giving a RB tag on the version 4 dt-binding. You can check the
->> differences[1] between version 4 and version 7 on the Patchew website.
->> If possible, could you please help review the diff provided by Patchew
->> once again? Sorry for wasting your time.
->>
->> Visit below website[1], then search "dt-bindings: media: camss: Add
->> qcom,sm8550-camss binding", then we can get the difference between
->> version4 and version7.
->>
->>
->> [1]
->> https://patchew.org/linux/20240812144131.369378-1-quic._5Fdepengs@quicinc.com/diff/20241225133523.4034820-1-quic._5Fdepengs@quicinc.com/
->>
->>
-
-
-Thanks,
-Depeng
+diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+index d1e2bca3c503..798a4c19f18c 100644
+--- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+@@ -166,11 +166,11 @@ unevaluatedProperties: false
+ examples:
+   - |
+     ethmac: ethernet@c9410000 {
+-         compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
+-         reg = <0xc9410000 0x10000>, <0xc8834540 0x8>;
+-         interrupts = <8>;
+-         interrupt-names = "macirq";
+-         clocks = <&clk_eth>, <&clk_fclk_div2>, <&clk_mpll2>, <&clk_fclk_div2>;
+-         clock-names = "stmmaceth", "clkin0", "clkin1", "timing-adjustment";
+-         phy-mode = "rgmii";
++        compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
++        reg = <0xc9410000 0x10000>, <0xc8834540 0x8>;
++        interrupts = <8>;
++        interrupt-names = "macirq";
++        clocks = <&clk_eth>, <&clk_fclk_div2>, <&clk_mpll2>, <&clk_fclk_div2>;
++        clock-names = "stmmaceth", "clkin0", "clkin1", "timing-adjustment";
++        phy-mode = "rgmii";
+     };
+diff --git a/Documentation/devicetree/bindings/net/asix,ax88178.yaml b/Documentation/devicetree/bindings/net/asix,ax88178.yaml
+index 768504ccbf74..03341b7438d5 100644
+--- a/Documentation/devicetree/bindings/net/asix,ax88178.yaml
++++ b/Documentation/devicetree/bindings/net/asix,ax88178.yaml
+@@ -63,8 +63,8 @@ examples:
+             #size-cells = <0>;
+ 
+             ethernet@1 {
+-               compatible = "usbb95,772b";
+-               reg = <1>;
++                compatible = "usbb95,772b";
++                reg = <1>;
+             };
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml b/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
+index 7c90a4390531..0e3fb4e42e3f 100644
+--- a/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
++++ b/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
+@@ -85,16 +85,16 @@ examples:
+         #size-cells = <1>;
+ 
+         mdio0: mdio@e14 {
+-           compatible = "brcm,genet-mdio-v4";
+-           #address-cells = <1>;
+-           #size-cells = <0>;
+-           reg = <0xe14 0x8>;
++            compatible = "brcm,genet-mdio-v4";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0xe14 0x8>;
+ 
+-           phy1: ethernet-phy@1 {
++            phy1: ethernet-phy@1 {
+                 max-speed = <1000>;
+                 reg = <1>;
+                 compatible = "ethernet-phy-ieee802.3-c22";
+-           };
++            };
+         };
+     };
+ 
+@@ -110,10 +110,10 @@ examples:
+         interrupts = <0x0 0x16 0x0>, <0x0 0x17 0x0>;
+ 
+         mdio1: mdio@e14 {
+-           compatible = "brcm,genet-mdio-v4";
+-           #address-cells = <1>;
+-           #size-cells = <0>;
+-           reg = <0xe14 0x8>;
++            compatible = "brcm,genet-mdio-v4";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0xe14 0x8>;
+         };
+     };
+ 
+@@ -129,15 +129,15 @@ examples:
+         interrupts = <0x0 0x18 0x0>, <0x0 0x19 0x0>;
+ 
+         mdio2: mdio@e14 {
+-           compatible = "brcm,genet-mdio-v4";
+-           #address-cells = <1>;
+-           #size-cells = <0>;
+-           reg = <0xe14 0x8>;
++            compatible = "brcm,genet-mdio-v4";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0xe14 0x8>;
+ 
+-           phy0: ethernet-phy@0 {
++            phy0: ethernet-phy@0 {
+                 max-speed = <1000>;
+                 reg = <0>;
+                 compatible = "ethernet-phy-ieee802.3-c22";
+-           };
++            };
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
+index af96b4fd89d5..3f27746d9a56 100644
+--- a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
++++ b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
+@@ -38,43 +38,43 @@ unevaluatedProperties: false
+ 
+ examples:
+   - |
+-    mdio_mux_iproc: mdio-mux@66020000 {
++    mdio-mux@66020000 {
+         compatible = "brcm,mdio-mux-iproc";
+         reg = <0x66020000 0x250>;
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+         mdio@0 {
+-           reg = <0x0>;
+-           #address-cells = <1>;
+-           #size-cells = <0>;
++            reg = <0x0>;
++            #address-cells = <1>;
++            #size-cells = <0>;
+ 
+-           pci_phy0: pci-phy@0 {
+-              compatible = "brcm,ns2-pcie-phy";
+-              reg = <0x0>;
+-              #phy-cells = <0>;
+-           };
++            pci-phy@0 {
++                compatible = "brcm,ns2-pcie-phy";
++                reg = <0x0>;
++                #phy-cells = <0>;
++            };
+         };
+ 
+         mdio@7 {
+-           reg = <0x7>;
+-           #address-cells = <1>;
+-           #size-cells = <0>;
++            reg = <0x7>;
++            #address-cells = <1>;
++            #size-cells = <0>;
+ 
+-           pci_phy1: pci-phy@0 {
+-              compatible = "brcm,ns2-pcie-phy";
+-              reg = <0x0>;
+-              #phy-cells = <0>;
+-           };
++            pci-phy@0 {
++                compatible = "brcm,ns2-pcie-phy";
++                reg = <0x0>;
++                #phy-cells = <0>;
++            };
+         };
+ 
+         mdio@10 {
+-           reg = <0x10>;
+-           #address-cells = <1>;
+-           #size-cells = <0>;
++            reg = <0x10>;
++            #address-cells = <1>;
++            #size-cells = <0>;
+ 
+-           gphy0: eth-phy@10 {
+-              reg = <0x10>;
+-           };
++            eth-phy@10 {
++                reg = <0x10>;
++            };
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml b/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
+index 4d7d67ee175a..ff1b59a0294e 100644
+--- a/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
++++ b/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
+@@ -99,11 +99,11 @@ examples:
+     #include <dt-bindings/reset/altr,rst-mgr.h>
+ 
+     can@ffc00000 {
+-       compatible = "bosch,d_can";
+-       reg = <0xffc00000 0x1000>;
+-       interrupts = <0 131 4>, <0 132 4>, <0 133 4>, <0 134 4>;
+-       clocks = <&can0_clk>;
+-       resets = <&rst CAN0_RESET>;
++        compatible = "bosch,d_can";
++        reg = <0xffc00000 0x1000>;
++        interrupts = <0 131 4>, <0 132 4>, <0 133 4>, <0 134 4>;
++        clocks = <&can0_clk>;
++        resets = <&rst CAN0_RESET>;
+     };
+   - |
+     can@0 {
+diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
+index db446dde6842..e0ec53bc10c6 100644
+--- a/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
++++ b/Documentation/devicetree/bindings/net/can/microchip,mcp2510.yaml
+@@ -56,15 +56,15 @@ examples:
+         #size-cells = <0>;
+ 
+         can@1 {
+-             compatible = "microchip,mcp2515";
+-             reg = <1>;
+-             clocks = <&clk24m>;
+-             interrupt-parent = <&gpio4>;
+-             interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
+-             vdd-supply = <&reg5v0>;
+-             xceiver-supply = <&reg5v0>;
+-             gpio-controller;
+-             #gpio-cells = <2>;
++            compatible = "microchip,mcp2515";
++            reg = <1>;
++            clocks = <&clk24m>;
++            interrupt-parent = <&gpio4>;
++            interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
++            vdd-supply = <&reg5v0>;
++            xceiver-supply = <&reg5v0>;
++            gpio-controller;
++            #gpio-cells = <2>;
+         };
+     };
+ 
+diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+index bf23838fe6e8..85cea9966a27 100644
+--- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+@@ -154,56 +154,56 @@ examples:
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/clock/stm32mp1-clks.h>
+     //Example 1
+-     ethernet0: ethernet@5800a000 {
+-           compatible = "st,stm32mp1-dwmac", "snps,dwmac-4.20a";
+-           reg = <0x5800a000 0x2000>;
+-           reg-names = "stmmaceth";
+-           interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+-           interrupt-names = "macirq";
+-           clock-names = "stmmaceth",
+-                     "mac-clk-tx",
+-                     "mac-clk-rx",
+-                     "ethstp",
+-                     "eth-ck";
+-           clocks = <&rcc ETHMAC>,
+-                <&rcc ETHTX>,
+-                <&rcc ETHRX>,
+-                <&rcc ETHSTP>,
+-                <&rcc ETHCK_K>;
+-           st,syscon = <&syscfg 0x4>;
+-           snps,pbl = <2>;
+-           snps,axi-config = <&stmmac_axi_config_0>;
+-           snps,tso;
+-           phy-mode = "rgmii";
+-       };
++    ethernet0: ethernet@5800a000 {
++        compatible = "st,stm32mp1-dwmac", "snps,dwmac-4.20a";
++        reg = <0x5800a000 0x2000>;
++        reg-names = "stmmaceth";
++        interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "macirq";
++        clock-names = "stmmaceth",
++                      "mac-clk-tx",
++                      "mac-clk-rx",
++                      "ethstp",
++                      "eth-ck";
++        clocks = <&rcc ETHMAC>,
++                 <&rcc ETHTX>,
++                 <&rcc ETHRX>,
++                 <&rcc ETHSTP>,
++                 <&rcc ETHCK_K>;
++        st,syscon = <&syscfg 0x4>;
++        snps,pbl = <2>;
++        snps,axi-config = <&stmmac_axi_config_0>;
++        snps,tso;
++        phy-mode = "rgmii";
++    };
+ 
+   - |
+     //Example 2 (MCU example)
+-     ethernet1: ethernet@40028000 {
+-           compatible = "st,stm32-dwmac", "snps,dwmac-3.50a";
+-           reg = <0x40028000 0x8000>;
+-           reg-names = "stmmaceth";
+-           interrupts = <0 61 0>, <0 62 0>;
+-           interrupt-names = "macirq", "eth_wake_irq";
+-           clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
+-           clocks = <&rcc 0 25>, <&rcc 0 26>, <&rcc 0 27>;
+-           st,syscon = <&syscfg 0x4>;
+-           snps,pbl = <8>;
+-           snps,mixed-burst;
+-           phy-mode = "mii";
+-       };
++    ethernet1: ethernet@40028000 {
++        compatible = "st,stm32-dwmac", "snps,dwmac-3.50a";
++        reg = <0x40028000 0x8000>;
++        reg-names = "stmmaceth";
++        interrupts = <0 61 0>, <0 62 0>;
++        interrupt-names = "macirq", "eth_wake_irq";
++        clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
++        clocks = <&rcc 0 25>, <&rcc 0 26>, <&rcc 0 27>;
++        st,syscon = <&syscfg 0x4>;
++        snps,pbl = <8>;
++        snps,mixed-burst;
++        phy-mode = "mii";
++    };
+ 
+   - |
+     //Example 3
+-     ethernet2: ethernet@40027000 {
+-           compatible = "st,stm32-dwmac", "snps,dwmac-4.10a";
+-           reg = <0x40028000 0x8000>;
+-           reg-names = "stmmaceth";
+-           interrupts = <61>;
+-           interrupt-names = "macirq";
+-           clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
+-           clocks = <&rcc 62>, <&rcc 61>, <&rcc 60>;
+-           st,syscon = <&syscfg 0x4>;
+-           snps,pbl = <8>;
+-           phy-mode = "mii";
+-       };
++    ethernet2: ethernet@40027000 {
++        compatible = "st,stm32-dwmac", "snps,dwmac-4.10a";
++        reg = <0x40028000 0x8000>;
++        reg-names = "stmmaceth";
++        interrupts = <61>;
++        interrupt-names = "macirq";
++        clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
++        clocks = <&rcc 62>, <&rcc 61>, <&rcc 60>;
++        st,syscon = <&syscfg 0x4>;
++        snps,pbl = <8>;
++        phy-mode = "mii";
++    };
+diff --git a/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml b/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml
+index 53604fab0b73..08119b6880ee 100644
+--- a/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml
++++ b/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml
+@@ -72,9 +72,9 @@ unevaluatedProperties: false
+ examples:
+   - |
+     davinci_mdio: mdio@4a101000 {
+-         compatible = "ti,davinci_mdio";
+-         #address-cells = <1>;
+-         #size-cells = <0>;
+-         reg = <0x4a101000 0x1000>;
+-         bus_freq = <1000000>;
++        compatible = "ti,davinci_mdio";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0x4a101000 0x1000>;
++        bus_freq = <1000000>;
+     };
+diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+index 02b6d32003cc..b11894fbaec4 100644
+--- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
++++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+@@ -302,16 +302,16 @@ examples:
+                     ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+                 };
+             };
+-        };
+ 
+-        cpts@3d000 {
+-             compatible = "ti,am65-cpts";
+-             reg = <0x0 0x3d000 0x0 0x400>;
+-             clocks = <&k3_clks 18 2>;
+-             clock-names = "cpts";
+-             interrupts-extended = <&gic500 GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>;
+-             interrupt-names = "cpts";
+-             ti,cpts-ext-ts-inputs = <4>;
+-             ti,cpts-periodic-outputs = <2>;
++            cpts@3d000 {
++                compatible = "ti,am65-cpts";
++                reg = <0x0 0x3d000 0x0 0x400>;
++                clocks = <&k3_clks 18 2>;
++                clock-names = "cpts";
++                interrupts-extended = <&gic500 GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>;
++                interrupt-names = "cpts";
++                ti,cpts-ext-ts-inputs = <4>;
++                ti,cpts-periodic-outputs = <2>;
++            };
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml
+index 3888692275ad..3572749147fb 100644
+--- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml
++++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml
+@@ -131,23 +131,23 @@ examples:
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     cpts@310d0000 {
+-         compatible = "ti,am65-cpts";
+-         reg = <0x310d0000 0x400>;
+-         reg-names = "cpts";
+-         clocks = <&main_cpts_mux>;
+-         clock-names = "cpts";
+-         interrupts-extended = <&k3_irq 163 0 IRQ_TYPE_LEVEL_HIGH>;
+-         interrupt-names = "cpts";
+-         ti,cpts-periodic-outputs = <6>;
+-         ti,cpts-ext-ts-inputs = <8>;
++        compatible = "ti,am65-cpts";
++        reg = <0x310d0000 0x400>;
++        reg-names = "cpts";
++        clocks = <&main_cpts_mux>;
++        clock-names = "cpts";
++        interrupts-extended = <&k3_irq 163 0 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "cpts";
++        ti,cpts-periodic-outputs = <6>;
++        ti,cpts-ext-ts-inputs = <8>;
+ 
+-         main_cpts_mux: refclk-mux {
+-               #clock-cells = <0>;
+-               clocks = <&k3_clks 118 5>, <&k3_clks 118 11>,
+-                        <&k3_clks 157 91>, <&k3_clks 157 77>,
+-                        <&k3_clks 157 102>, <&k3_clks 157 80>,
+-                        <&k3_clks 120 3>, <&k3_clks 121 3>;
+-               assigned-clocks = <&main_cpts_mux>;
+-               assigned-clock-parents = <&k3_clks 118 11>;
+-         };
++        main_cpts_mux: refclk-mux {
++            #clock-cells = <0>;
++            clocks = <&k3_clks 118 5>, <&k3_clks 118 11>,
++                     <&k3_clks 157 91>, <&k3_clks 157 77>,
++                     <&k3_clks 157 102>, <&k3_clks 157 80>,
++                     <&k3_clks 120 3>, <&k3_clks 121 3>;
++            assigned-clocks = <&main_cpts_mux>;
++            assigned-clock-parents = <&k3_clks 118 11>;
++        };
+     };
+diff --git a/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml b/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
+index 1715b22e0dcf..930b700b73d0 100644
+--- a/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
+@@ -79,15 +79,14 @@ examples:
+     #include <dt-bindings/interrupt-controller/irq.h>
+ 
+     mmc {
+-         #address-cells = <1>;
+-         #size-cells = <0>;
++        #address-cells = <1>;
++        #size-cells = <0>;
+ 
+-         wifi@1 {
+-             compatible = "marvell,sd8897";
+-             reg = <1>;
+-             interrupt-parent = <&pio>;
+-             interrupts = <38 IRQ_TYPE_LEVEL_LOW>;
+-             marvell,wakeup-pin = <3>;
++        wifi@1 {
++            compatible = "marvell,sd8897";
++            reg = <1>;
++            interrupt-parent = <&pio>;
++            interrupts = <38 IRQ_TYPE_LEVEL_LOW>;
++            marvell,wakeup-pin = <3>;
+         };
+     };
+-
+-- 
+2.43.0
 
 
