@@ -1,128 +1,243 @@
-Return-Path: <devicetree+bounces-136194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2ECAA042F0
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:44:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFDEFA042F3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:45:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B58081885651
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:44:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8954A1885C48
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:44:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377231F37D0;
-	Tue,  7 Jan 2025 14:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D874F1F2C29;
+	Tue,  7 Jan 2025 14:43:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KNNmTEPJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76741F190E;
-	Tue,  7 Jan 2025 14:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736260922; cv=none; b=iV0Pvst9wUtO7v8HoPbX40M4isOiGDZSrWKq6o47MJAHjMd7PLEYvuj83eyzBY20MnMoVLqfDX5nwR67Jdjhkd8liAW/PGUl6MVmUzjxIBjJEYm9A53gN7YWXdFi7WWzmuSJt6lg7IcoxvjGlwAytm8zwOJHlYS1z4EJMqwm2Pg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736260922; c=relaxed/simple;
-	bh=wpYSL1UHSPpFPfk45/F7Zcc59XGpWsYpJkJdimXDfgA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ex9jyyzcVtTM9L9zgQaY5+BFibG/b9vf33DbIsMUHUszzCmoyjst/YXEzb18CO35zw0sluaiE/EBuFeS1Pb3wW+mRMkR7Frih7jZPXfN7FfR+UMle/FuNf8yZRAxS4m+noCgquDNgnM07429DpAgbus7CaL12l/aTaKdcdq5Z2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6E5FA1424;
-	Tue,  7 Jan 2025 06:42:26 -0800 (PST)
-Received: from [10.57.4.77] (unknown [10.57.4.77])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BDF0E3F59E;
-	Tue,  7 Jan 2025 06:41:56 -0800 (PST)
-Message-ID: <881c5084-3487-4ae2-9140-8d393e934652@arm.com>
-Date: Tue, 7 Jan 2025 14:41:55 +0000
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2071.outbound.protection.outlook.com [40.107.22.71])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2F21EE7CD;
+	Tue,  7 Jan 2025 14:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736260982; cv=fail; b=StA8kH3noQXggKbxGLk01qMORXQAoLdW/HpaoBO4b+DO52mDy4poVTR1zpTMTwLxf5luxgB67sViWw+J8nRU32kLtMQjG18S9+iVOxTqdItQnmXFT7wePeIn/Rad6uVGXfxLVcpmsW1xhdoNEcudxauJ8awSYte0TgS+gwrRtww=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736260982; c=relaxed/simple;
+	bh=gswgQ3fNrOihkjL82dW9jyjaJHQpKt/O1GxDHCG11Gk=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=QfANOc/5dbJfh3lgzmgMeMbpHs2OOaztpnslPQO37yoHD6LMdvkusNHfYIHwpH//SjDkXBZZKsSbQmdl1Ye8jOfj+Aja1dA/Rlp1LEgaFQrDb5Ty9+pflHmHK0u9jUv7d8Yjx5W7iMWbg3Z4TVOeiGPCM2xEm0v2bswf7VfY6C0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KNNmTEPJ; arc=fail smtp.client-ip=40.107.22.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=n6KmiMWMe0PnRDk6u0fT9VG5Ia6bkpBjH/pJpm869jqVULlg0RuMjVRBfBiMnCkP4p8kPiSYyguqugEe+KtWsmyFuuzqMWXeh5yiU2pHacTNc4WqXp8FTOZO5ZSmmGP0veD1aB+2NjDefSY1FEKUU3nRf9lktezMsIZrvaoZhWrtg3q/v23q4gxK4UvUQSFwt8FKCakvHEtlJDvzETL/+PqJ8O1wr800udrU4v4MqMBKSsWc59ty5ggIj9nW6RWx0dYVfn4PZgINPl5PEufuGEpA9nxXWOI0JEPJsg/aLLX3wqEropRcHJYMRU+5KKaZuRraOr0AHqZD75ZeFjdLeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GWZBalUbL5FQUMfhe76loyd44YXEqrndkxbvkp2pHf0=;
+ b=t584VbLBeoqtXBQRVh+F+36chd8SVvBGi/Brhu7cwpXh4MIYKgSq920fd8f5+8N/GRuIuFFxSKkNF2rT4oU30U2GLjPf+1y5OM7oYMJiml26mSEidNgHSletiic36YOcrTczuz37r53B2CtvfhlmmshbP3Utm/mdAAbDhXSQ91IuT1IuiBPDcjoLl+CGl9WH9Bqe+iLGqoD7IgBKkLWhRMhqLyRXYV4njWpO7+kQjrM7ID5HNVWKmgU6zCJ5Z6v1gvEDp4i9jBZE0ChkHwI+JsJg4rtFKZbgyuc/PM0Z+kQXPbyibpiywbWWOsnZw0+3koz8cyCcC4OBmX7RoJpRSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GWZBalUbL5FQUMfhe76loyd44YXEqrndkxbvkp2pHf0=;
+ b=KNNmTEPJut4pYcl5b6A/leCf3X4jDcU3Jjabvy9JoY5nhrBylZNukAJy22x9dKiHxMhtwznXI5Nmo7sCqPRiYqUpMDOIRg3zS+aKI/DK/Mx1OIJgxpSHufXWwG8h56r4NGsKkWFMqMEt9FEW4ln/w2OsvJij2xBGnUdDvk0eQGCAhhcAhyUVqqUUW6i12nC6mBaTfULw/fpZ8XBH16aXYdq0Pokqq6EK+5XiKmF25PWG39qdOOkTdqu6psnueHBSj7qgf1jebi6LECYO2UQ/e7fWbK+ziP3awGVIQLFOnv0XaWkIhKXeBq9IH/M6sIvF8EMOx7uY/J5pwteVPJWMjA==
+Received: from PAXPR04MB9448.eurprd04.prod.outlook.com (2603:10a6:102:2b1::21)
+ by DB8PR04MB6986.eurprd04.prod.outlook.com (2603:10a6:10:116::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Tue, 7 Jan
+ 2025 14:42:57 +0000
+Received: from PAXPR04MB9448.eurprd04.prod.outlook.com
+ ([fe80::51ae:5f12:9744:1abc]) by PAXPR04MB9448.eurprd04.prod.outlook.com
+ ([fe80::51ae:5f12:9744:1abc%3]) with mapi id 15.20.8314.015; Tue, 7 Jan 2025
+ 14:42:57 +0000
+From: Sandor Yu <sandor.yu@nxp.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	"dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>,
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, "airlied@gmail.com"
+	<airlied@gmail.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
+	<s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
+	"vkoul@kernel.org" <vkoul@kernel.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-phy@lists.infradead.org"
+	<linux-phy@lists.infradead.org>, "mripard@kernel.org" <mripard@kernel.org>
+CC: "kernel@pengutronix.de" <kernel@pengutronix.de>, dl-linux-imx
+	<linux-imx@nxp.com>, Oliver Brown <oliver.brown@nxp.com>, "sam@ravnborg.org"
+	<sam@ravnborg.org>
+Subject: RE: [EXT] Re: [PATCH v20 0/8] Initial support Cadence
+ MHDP8501(HDMI/DP) for i.MX8MQ
+Thread-Topic: [EXT] Re: [PATCH v20 0/8] Initial support Cadence
+ MHDP8501(HDMI/DP) for i.MX8MQ
+Thread-Index: AQHbUFBYEMByPt5N/EC0iD35ugqWV7MLCy0AgAAAWlA=
+Date: Tue, 7 Jan 2025 14:42:56 +0000
+Message-ID:
+ <PAXPR04MB94483B3704FB62E12A009390F4112@PAXPR04MB9448.eurprd04.prod.outlook.com>
+References: <cover.1734340233.git.Sandor.yu@nxp.com>
+ <2381464.ElGaqSPkdT@steina-w>
+In-Reply-To: <2381464.ElGaqSPkdT@steina-w>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB9448:EE_|DB8PR04MB6986:EE_
+x-ms-office365-filtering-correlation-id: 53e0ec4b-0ff0-4829-fcf3-08dd2f299365
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|921020|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?fGGxleUj0BDlzkG81YDZGTOF3UPjqp/+R8UvLXFHTvDyf5Q2DhpF2/Z8vB?=
+ =?iso-8859-1?Q?LKpxnT2EZTCsdRhL9BIewD4c278OA1yeZPcIucEPIDUzMBCtYvU+qpGnI3?=
+ =?iso-8859-1?Q?PFhmUCO1Vpw9FFnhbOlMQ6bqw2+ej8pWwuWsaY+CNaLdapb/xGqxxZO2ux?=
+ =?iso-8859-1?Q?VMMD7xkNs1mn7kcoEqJmG2TfD0dRECGlrvsL2LLmMFPUk4OVoK/UCKXnXD?=
+ =?iso-8859-1?Q?qg2hr/zsu0KyQgR0dAZmJQ6lzu2uE1/O6HK5CqG2FmDeFiK6qx/by5fBv6?=
+ =?iso-8859-1?Q?jde+mpoQ2eFH5gKyLGy5XGB+75p5gKSJ8rNDYbrWGC5wlK0NYRqfpbLpPD?=
+ =?iso-8859-1?Q?bswrYDjp6o8FfhiNlOPM7QqfwciESy3BO9R2SFANZAmIys4ewMjtIlE7S8?=
+ =?iso-8859-1?Q?aL5zTf8/marXS+uXDNnc0AZxyDzHwDK5+qexblAAopm7uA+kpfzRC1DwoW?=
+ =?iso-8859-1?Q?z7cfBVrrbIkWuHKEovwHb7+olUxZ6hJtA6QoQycHz0Q7ShuX1VXKD+qWJs?=
+ =?iso-8859-1?Q?h/o3QLyvUQj6DeM3kd3ZqaXz3XTqAoly9sPYo2/Wt7B8Zd2MbgE7yApJ2+?=
+ =?iso-8859-1?Q?bpqadnJ9SmDSkE+eseo+17tigQ1bXX1ra4KnX+hfFzg6D3+cnlA0SiyHde?=
+ =?iso-8859-1?Q?nYEy6KhLapZHyTcPNMREmH8pEgcLcRWfQ+AMaBEwoQhsREpHkEHWqqbseY?=
+ =?iso-8859-1?Q?M9SLFHnIT52HaByg3pqVRS6Wm33Gn28FmuIHZeKTvDNx9Qf0MXY4n4IbYJ?=
+ =?iso-8859-1?Q?Y2Y03HWKhAK9uOM9fYJ0XQTTfj5HMYqn9itY/GdXaySOXrxj6qn+KIcptM?=
+ =?iso-8859-1?Q?3tHQkc3BTMWQHkb3Gf7MV2H0I6y+24LlSuV3EH8HQoXivtg585C5/opITW?=
+ =?iso-8859-1?Q?Q8JZLdRL52s6eqdl5Ge5q/S8sP0REJi0UvEx5V9PNhhK8rSoh3rkNn0GV/?=
+ =?iso-8859-1?Q?DZewKFWjVqOjoEakNHAGlsaSc4h5Zezsdk6bdLsY0LR5mjHTjHUaPYW+8Z?=
+ =?iso-8859-1?Q?P6b5si5upZ1nO1jXAmEV0ThEdMoGy8Q0Zj4EK0OOFrsJQYCvNB3t4STGYS?=
+ =?iso-8859-1?Q?Qi4IPTeiZV6OnVNxRxY+0k5TObIVtdp1SOQpp7xxOIFDJyTAu6xbW9ahqM?=
+ =?iso-8859-1?Q?bTXNQBtPakVPLcOIKGpfMC1dDOZaebuEXYdlLduoOhgARCa/QEF0BVOc31?=
+ =?iso-8859-1?Q?Q9mKYl+GARGqVwdslqJskR2IzHOKX9pyv+/yo4O7km90BXbzyDKBcY6wo3?=
+ =?iso-8859-1?Q?m6TBQvioLHtNsr8Kem3C5h9T3RiiaQhG64rNI60yz7vYXYqXA657qw2nkC?=
+ =?iso-8859-1?Q?iX8lylkvF8HGxUWM6ASUpdVQtiw//4Y2mNpkROeEg2mLsrk9qEyKVqrvyC?=
+ =?iso-8859-1?Q?ALptbdoR2nVfTXN9F93erRuq6Qo7g57fitdNh4h8GCg3IkuXrH3mBjzDhE?=
+ =?iso-8859-1?Q?EfVZ3tOJ9IGhMU2t6xiXCpGEexAVcIWSfY49aw=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9448.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(921020)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?g352m904vjqJQdG1H5DAmBJ4fSYV7P8RMePP/F9qfZ9+QXnmMVoDXsQN6b?=
+ =?iso-8859-1?Q?fZ5YLCMnrTIUvYXpJ82BpB/0Kra5sFXyrUdA2BqSmBWeHi4cr8cm1qMDjF?=
+ =?iso-8859-1?Q?pxzHSiyAqBe4DbkVToTgdEIJL5oAfdx/h2DZOUPg3k0PlKOIErLibox/eA?=
+ =?iso-8859-1?Q?F/Wu174rE8wS9IfrVtyNHv/fJHVxXR4TYkoqbceQy+Iw/rSOtyDZk5LNt+?=
+ =?iso-8859-1?Q?60D07raCqACgqWkvHUvTxNXxTKq/tu+cc8PZrwin3tVkofzMigJQ8Z7sJD?=
+ =?iso-8859-1?Q?zpDXbJRI8JpF4oPA5JcusioAP7mHgi3DoHILuadGG+uJVOwlFsTzTx3tnL?=
+ =?iso-8859-1?Q?LnS8W/HFS55H/2GYJoeW0tdpMxGytak75NJFpp/tPf0cckHG1PTqo/jdjS?=
+ =?iso-8859-1?Q?s6hejVMZmzJyd251+pJXKZV1Smpzk+NYYtdEHX6dQd3xgqFZVDOX3UcOXO?=
+ =?iso-8859-1?Q?Jncobcjff+OO7N22UgEmptXTbXlqpAlDCIk/oyGdtGf8ltKIzTt6s5w2Gu?=
+ =?iso-8859-1?Q?Bs6pAb3+0ZCu7VXijh2/OpM6VSi6O81+gJiqjv14807sFl5Bo8MXGF3j1n?=
+ =?iso-8859-1?Q?esVfHyhaWXR74N1ZdCjWYcsdRGzhgfJ1PtraIbEckY6PCGwOm/1lsZ6pYj?=
+ =?iso-8859-1?Q?zem+wOyVuRvy4W2Z5uRPZe/cL8L9NJjvI/bDJaoceazr2k2xMzjsXOTe/6?=
+ =?iso-8859-1?Q?cEOwNjJUFKwPvRnZ7hOX1z1kkqgBz8Yt+FLRbACu//Dmk5BmOsM/QVdmsc?=
+ =?iso-8859-1?Q?idHUKTAQhJApZfzL6Cn2zdMUvPIVbpQR6nEv0qvGxorMuX04m4kq43ZdD7?=
+ =?iso-8859-1?Q?da5VcWn/B9MsLjujKXfTqbP/lMqQFUgMVzFqlAvTvkuwri77Su7RlJTvo9?=
+ =?iso-8859-1?Q?/4TW2rsjSLp7Hj1RIwdzo246ejGhxqvU4phua+L7smEVpAapBsh7ZBVFIT?=
+ =?iso-8859-1?Q?y2JuOQP6g/hDCp9t+yF6soBa1sw/dYBtYvCfANJ5wUjZIa4eeyays6djSU?=
+ =?iso-8859-1?Q?OWEkpF6xk0gspWQtXRX3+p4XZFXDAlFMieJI96BGzb+UJ/k6g4FY+NAQDA?=
+ =?iso-8859-1?Q?gAEM5u+i3/pR1rHGXz31BO5pzo/5kmiFmxw0NAOmDPG3J1M5PDGEu73ma6?=
+ =?iso-8859-1?Q?D8pj3xQkC7G8njYW2nuKmGMtnqaaPO70T+rEbCiFvh8FPXxxC+KhCPpguB?=
+ =?iso-8859-1?Q?oZ2PbiyFsM0oo4PMdHphpcZt0Du/nmoA7APvqmUdX9qUjYbzfpcc7bcLuQ?=
+ =?iso-8859-1?Q?Bzmt7ptRhlgMO36ODXLUhoT0Hh8yHg8enUcBaT3ooml4YYGB/6BoO3ahAw?=
+ =?iso-8859-1?Q?2qIQZ2RtDhFe6/QQpWM8lLsVsMXm+fc5nNLHo6xHEi9gWu15nudMXhse1J?=
+ =?iso-8859-1?Q?MehvCkQv3/3y+TAoK+uNUojgmEImhnVbPWJHMakjlrYFSrOmI5ecMDFwFx?=
+ =?iso-8859-1?Q?R/RkX2HQ2/1wg7tgdToUaAPIdfqts/QmF+0JWuwQy5+ENzG6QFF24fCZ5p?=
+ =?iso-8859-1?Q?D9pe8MPHOWCktWRS0nRzw3j3fYvJQG34SCiOWclwH4cg6/SpnOWtGFkSWU?=
+ =?iso-8859-1?Q?FCspIH/9rzRfmcHK4NH5F5DHkFfMGX/YqpjijHWC8nJIIeOKwfQH+yXGO4?=
+ =?iso-8859-1?Q?qoJ3zkzqy0Cmk=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] arm64: dts: morello: Add support for common
- functionalities
-Content-Language: en-GB
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Linus Walleij <linus.walleij@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Sudeep Holla <sudeep.holla@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Russell King <linux@armlinux.org.uk>
-References: <20250103181623.1980433-1-vincenzo.frascino@arm.com>
- <20250103181623.1980433-3-vincenzo.frascino@arm.com>
- <CAL_JsqJ9y92aHUYhD9_YX8GKvZC-GioWbMr+gjcQiMA_XQ0RaQ@mail.gmail.com>
-From: Vincenzo Frascino <vincenzo.frascino@arm.com>
-In-Reply-To: <CAL_JsqJ9y92aHUYhD9_YX8GKvZC-GioWbMr+gjcQiMA_XQ0RaQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9448.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53e0ec4b-0ff0-4829-fcf3-08dd2f299365
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jan 2025 14:42:56.9493
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yY+1hSe4QYpYETnY8SpyLXcl1ohFDOOg6QV17reem5c56GWZbnfMG428DCanB5Yn26mX7mqB0kI2cVzgVDSh6A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6986
 
+Hi Alexander
 
+It may cause by the first preferred mode in EDID is not supported by driver=
+.
+Please use modetest or other user application to change the video mode to C=
+TA standard modes.
+Such as148.5MHz 1080p60 or 594MHz 3840x2160p60.
 
-On 03/01/2025 22:26, Rob Herring wrote:
-> On Fri, Jan 3, 2025 at 12:16 PM Vincenzo Frascino
-> <vincenzo.frascino@arm.com> wrote:
->>
->> The Morello architecture is an experimental extension to Armv8.2-A,
->> which extends the AArch64 state with the principles proposed in
->> version 7 of the Capability Hardware Enhanced RISC Instructions
->> (CHERI) ISA.
->>
->> The Morello Platform (soc) and the Fixed Virtual Platfom (fvp) share
->> some functionalities that have conveniently been included in
->> morello.dtsi to avoid duplication.
-> 
-> One more thing...
-> 
->> +               i2c0: i2c@1c0f0000 {
->> +                       compatible = "cdns,i2c-r1p14";
->> +                       reg = <0x0 0x1c0f0000 0x0 0x1000>;
->> +                       interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
->> +                       clocks = <&dpu_aclk>;
->> +
->> +                       #address-cells = <1>;
->> +                       #size-cells = <0>;
->> +
->> +                       status = "disabled";
->> +
->> +                       hdmi_tx: hdmi-transmitter@70 {
->> +                               compatible = "nxp,tda998x";
-> 
-> It is odd that you add this node here, but don't enable i2c. If this
-> is shared with fvp, then enable i2c here. If it isn't, then move this
-> to the soc/sdb .dts.
->
-
-This node should be on the dts file. I had it there in v2 and I can't recall the
-rationale for which I moved it here. It is clearly wrong. I will move it back in
-v5.
-
-> I'd rather see the FVP dts now rather than later so we can review how
-> you split things. It's a little odd not being soc.dtsi and board.dts,
-> but that's fine I think.
-
-I do not have a complete DTS for FVP yet (I was planning to work on after this
-series is merged). Is it OK if I post it with a future series and we move things
-around at that stage if there is a need?
+B.R
+Sandor
 
 >
->> +                               reg = <0x70>;
->> +                               video-ports = <0x234501>;
->> +                               port {
->> +                                       tda998x_0_input: endpoint {
->> +                                               remote-endpoint = <&dp_pl0_out0>;
->> +                                       };
->> +                               };
->> +                       };
->> +               };
-
--- 
-Regards,
-Vincenzo
+> Hi Sandor,
+>
+> thanks for the updates.
+>
+> Am Dienstag, 17. Dezember 2024, 07:51:42 CET schrieb Sandor Yu:
+> > The patch set initial support Cadence MHDP8501(HDMI/DP) DRM bridge
+> > driver and Cadence HDP-TX PHY(HDMI/DP) driver for Freescale i.MX8MQ.
+> >
+> > The patch set compose of DRM bridge drivers and PHY driver.
+> >
+> > Both of them need by patch #1 and #3 to pass build.
+> >
+> > DRM bridges driver patches:
+> >   #1: soc: cadence: Create helper functions for Cadence MHDP
+> >   #2: drm: bridge: cadence: Update mhdp8546 mailbox access functions
+> >   #3: phy: Add HDMI configuration options
+> >   #4: dt-bindings: display: bridge: Add Cadence MHDP8501
+> >   #5: drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+> >
+> > PHY driver patches:
+> >   #1: soc: cadence: Create helper functions for Cadence MHDP
+> >   #3: phy: Add HDMI configuration options
+> >   #6: dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+> >   #7: phy: freescale: Add DisplayPort/HDMI Combo-PHY driver for
+> > i.MX8MQ
+> >
+> > i.MX8M/TQMa8Mx DT patches:
+> >   #8: Add DT nodes for DCSS/HDMI pipeline
+> >   #9: Enable HDMI for TQMa8Mx/MBa8Mx
+> >
+>
+> I gave this version a new try but unfortunately the display stays black.
+> Although the display pipeline is intialized and even wayland starts.
+> Do you have any idea where to start looking?
+>
+> Best regards,
+> Alexander
+> --
+> TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+> Amtsgericht M=FCnchen, HRB 105018
+> Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+> http://www.tq/
+> -group.com%2F&data=3D05%7C02%7CSandor.yu%40nxp.com%7C734ea27ba98
+> 140b7483e08dd2eed1276%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%
+> 7C0%7C638718317967624410%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU
+> 1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIs
+> IldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3D1HdQdbye9p5AHoT7JCF3Md%
+> 2FB9k9tyN%2FW25YKCEngvWM%3D&reserved=3D0
+>
 
 
