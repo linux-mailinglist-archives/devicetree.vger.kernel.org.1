@@ -1,97 +1,110 @@
-Return-Path: <devicetree+bounces-136307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F24DDA04A4C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 20:34:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A947A04A6D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 20:46:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB7A1163271
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 19:34:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 640403A6A1A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 19:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFB01F4E33;
-	Tue,  7 Jan 2025 19:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BCE1F7084;
+	Tue,  7 Jan 2025 19:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="BYzbNVOu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C0T0Fg9r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC4711F428A;
-	Tue,  7 Jan 2025 19:34:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E671F63D4;
+	Tue,  7 Jan 2025 19:45:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736278444; cv=none; b=fL9HMkfTkJnFkcn9xFnRJ7oJ7uOStNc+PsgyAUewZsE7xWRnGWyL8HeOiiO191pbdW1m3wrW99sT23jOPWUJYp/KGTrpT2YseeUMElqTBwC0sz08/mZTWxpYenL8YS2v9TP7nLx/1fq8uXnx9D8JEBt7+3c/H6cdf9RAfDFVSTE=
+	t=1736279149; cv=none; b=VluDjMKB6zjIYxz80bwttUBq9koGCeOuS/t7eAhoYwRL8E1gQXxC+HC7EreNPNuVaaGL0Zc75lzM02/UZN+gXQfNoL/DESXCpAG1E1bWD0h6hUc8FQxkAJbsUqDgm/L07Fdpult+WXJVSqpJZSftjbHy6Agy50PAdhO3NW5nZKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736278444; c=relaxed/simple;
-	bh=LxKeuBsfyyzbg5g4kpQlahz5eSSkf2OfnyIXZh1hnEw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MOqUp8kfcBG1T3/4LdF38CcHWl+k85ndTT5hYikz00al3fmYMw7UcvM8v56JmihhAFNt+MogFXOHqCIkUKJT6bMv6jCoVcKIyTOjGhGZA8eoA6R1Ia+LHTecNiPK3+ywMvnVv4p0Bz9uSjpRJ4y3DGE2ps/M8pRRFy04Bzr0EtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de; spf=pass smtp.mailfrom=t-8ch.de; dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b=BYzbNVOu; arc=none smtp.client-ip=159.69.126.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-8ch.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
-	t=1736278437; bh=LxKeuBsfyyzbg5g4kpQlahz5eSSkf2OfnyIXZh1hnEw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BYzbNVOukj0lyR2szwvrHDjPWocm0crnpMQUbhyaKtu4qKbQpLtmQ/rfMWh6eIuF1
-	 URtUqGgPssnpXM6Si+OCJfuXff72LkTSlcdsA0gCUmKF7WP0Mbk3NjSno4i3QTFCTV
-	 WLcj29SsPgf6oV1ExMmXvvhuRpQcAMsWRf6z//dI=
-Date: Tue, 7 Jan 2025 20:33:56 +0100
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
-To: Markus Burri <markus.burri@mt.com>
-Cc: linux-kernel@vger.kernel.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	Manuel Traut <manuel.traut@mt.com>
-Subject: Re: [PATCH v3 1/7] Input: matrix_keypad - use fsleep for variable
- delay duration
-Message-ID: <3134353b-1bbe-4049-8041-7043cd97ff8d@t-8ch.de>
-References: <20250107135659.185293-1-markus.burri@mt.com>
- <20250107135659.185293-2-markus.burri@mt.com>
+	s=arc-20240116; t=1736279149; c=relaxed/simple;
+	bh=VSUXRdNHoPtoJnEXPsuMTGCZh3pyBCS2HaUrTJu82zs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=MF1ftd6SczAJlph0p+iB4/2tg4CYvlapqARTkUSsHdDi9PNuh5Af5DSSV9K8V2C6/EPTLY4IFNMIW+KQzYaSVQIqFfQg2PA0P+cjHM03YI+CekgSxGr153VGorhBE0LmEgnOjtMQ2DwUEooU8xz4Q/zM5OlrV5YsCNwl44FhA9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C0T0Fg9r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7574C4CEDD;
+	Tue,  7 Jan 2025 19:45:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736279148;
+	bh=VSUXRdNHoPtoJnEXPsuMTGCZh3pyBCS2HaUrTJu82zs=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=C0T0Fg9rwVDnVk7b56UHpA792BfTm/pW7T3WUIif017JQz3bnfXlVtmQ0CdjjcBw6
+	 m2JYGGThaXxWI+pJ2KOU0jcYSdHTUPIFEY+B9HrrtyXKBTkUe3AXrmvU+JpXYYJM2b
+	 Wafjq9aWogxzIYoViL1MaPYRVFKWN/MtRCRwK6W3DRJyPBOhTSbAAPI4DtZG2GPyoT
+	 2Wk15N5l6QcotTnB2PkGi6EJ2esEGR8HyXhJmHDgkYGCxTbHnG7Uia/wwJ9UBHzaNw
+	 HT2frFcWHPcQRAsH2CelHRwq/SjANOPd2Zm3yqEGN+hRvMLfiv+ub6RU/s6d3QiKNd
+	 Yn8tkXeAJq24g==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, jack.yu@realtek.com, 
+ rf@opensource.cirrus.com, neil.armstrong@linaro.org, 
+ ivprusov@salutedevices.com, luca.ceresoli@bootlin.com, 
+ zhoubinbin@loongson.cn, quic_pkumpatl@quicinc.com, herve.codina@bootlin.com, 
+ masahiroy@kernel.org, nuno.sa@analog.com, yesanishhere@gmail.com, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, wangweidong.a@awinic.com
+Cc: yijiangtao@awinic.com
+In-Reply-To: <20241231125610.465614-1-wangweidong.a@awinic.com>
+References: <20241231125610.465614-1-wangweidong.a@awinic.com>
+Subject: Re: [PATCH V4 0/2] ASoC: codecs: Add aw88083 amplifier driver
+Message-Id: <173627914448.519339.12595534699937651368.b4-ty@kernel.org>
+Date: Tue, 07 Jan 2025 19:45:44 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250107135659.185293-2-markus.burri@mt.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-1b0d6
 
-On 2025-01-07 14:56:53+0100, Markus Burri wrote:
-> The delay is retrieved from a device-tree property, so the duration is
-> variable. fsleep guesses the best delay function based on duration.
+On Tue, 31 Dec 2024 20:56:08 +0800, wangweidong.a@awinic.com wrote:
+> Add the awinic,aw88083 property to support the aw88083 chip.
 > 
-> Link: https://www.kernel.org/doc/html/latest/timers/timers-howto.html
+> The driver is for amplifiers aw88083 of Awinic Technology
+> Corporation. The AW88083 is an intelligent digital audio
+> amplifier with low noise.
+> 
+> v3 -> v4: Modify the commit message
+> 
+> [...]
 
-timers-howto.rst was removed in commit 1f455f601e20
-("timers/Documentation: Cleanup delay/sleep documentation").
+Applied to
 
-Also inside the kernel tree refer to documentation files by their location
-inside the tree instead of the website.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> Signed-off-by: Markus Burri <markus.burri@mt.com>
-> 
-> ---
->  drivers/input/keyboard/matrix_keypad.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/input/keyboard/matrix_keypad.c b/drivers/input/keyboard/matrix_keypad.c
-> index 2a3b3bf..5571d2e 100644
-> --- a/drivers/input/keyboard/matrix_keypad.c
-> +++ b/drivers/input/keyboard/matrix_keypad.c
-> @@ -68,7 +68,7 @@ static void activate_col(struct matrix_keypad *keypad, int col, bool on)
->  	__activate_col(keypad, col, on);
->  
->  	if (on && keypad->col_scan_delay_us)
-> -		udelay(keypad->col_scan_delay_us);
-> +		fsleep(keypad->col_scan_delay_us);
->  }
->  
->  static void activate_all_cols(struct matrix_keypad *keypad, bool on)
-> -- 
-> 2.39.5
-> 
+Thanks!
+
+[1/2] ASoC: dt-bindings: Add schema for "awinic,aw88083"
+      commit: e7b73981380cefc9ed6261e3b53c37c327cab189
+[2/2] ASoC: codecs: Add aw88083 amplifier driver
+      commit: c51187903fe4523fd7f521662c1ae1f1f3174036
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
