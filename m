@@ -1,209 +1,169 @@
-Return-Path: <devicetree+bounces-136006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA39AA036DB
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 05:12:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57760A0370E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 05:41:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF9911622E2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 04:12:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9ED8A18851CC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 04:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBE51547E9;
-	Tue,  7 Jan 2025 04:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845DF17C9E8;
+	Tue,  7 Jan 2025 04:40:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="M6ZFGZli"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="2qXO++HZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2041.outbound.protection.outlook.com [40.107.94.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F1E1419A9;
-	Tue,  7 Jan 2025 04:12:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736223133; cv=none; b=HJAYnBppAfWrRkvhTrQLWbmlom/KMKOp8+ZYaoKmLw8eSaFwfdkhTV1Rv/S30uvfNQIq7mg3yI+jpb3q65Tq3lCCJlRC+nGEy24bRQFulfcIcTEPmmjYdaIVkDVU5JnyjuBcSe/kGYtsI14T3tmH3XgBC91ULdJRK97UZm82E5A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736223133; c=relaxed/simple;
-	bh=WQb+Lg7oHUTCY7usnLhhZDRG4ybHokIAYO+8a0Ja+9A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SOZ43gt/XOmaQRup9Csm4pETnQlu8v0L07g7hBbohvx0v5bK/EeaVOIbIyem/3M6AHUOSAdkThu3d+9i5R1MMDvsyNk5tS8cux9jrQBcjiR/QMBwVAnk1m2VtZTXA2qb8HIeZYPE/h3hdVQJoXXdmacGReggJXZZcxvKej0Pex4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=M6ZFGZli; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 507402i2013939;
-	Tue, 7 Jan 2025 04:12:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TEd9I9VSSshyxPbm36jCCoa1Sdl8qgvAkFMjILNPRVQ=; b=M6ZFGZli1u6Ljat7
-	O8DAM8sl+/7iTJ1Ms2gff4TgVsW3XCYCjNtI1F2wQtd+iPPbQJ4kuWuM8orN+Jf+
-	73hgUZV+JLm0hENDnbJMaP+Bw3viSD/gDdoZydTphsxIRHmtyik+cRJXY6zKLmAh
-	r0wXF2XT81xo7VR/kXHVrttfXGi3C3Pvi54/bLEqUJucrf+e0zo3aQhOuSzr00qf
-	YoS9PlVW/n7QzlPgbTIT3kv/n1YxUjk6h48G4LiFtDbfzq5Z7/9FoZ9R1UzglDij
-	hw8cZ7Qls4qM82G3FiLa0FKPLZ7Kwy4QA8j52FwamZ4ZyUVxDJUxjKIOpXmqiQaP
-	fKDAow==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 440vutg0nc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Jan 2025 04:12:04 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5074C3G0030197
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 Jan 2025 04:12:03 GMT
-Received: from [10.206.111.70] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 Jan 2025
- 20:11:59 -0800
-Message-ID: <26b3aee7-5729-447b-983a-cfa5951595ba@quicinc.com>
-Date: Tue, 7 Jan 2025 09:41:56 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7ADE2AD13;
+	Tue,  7 Jan 2025 04:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736224854; cv=fail; b=clBD98QzrpEpQyeWM86d+39buSEfTquh/XcvWUk4Hh17PjL08fQl7GohBsY7yDbCU+kCVZLaOCcne4eoDUcXsEFCMZVOxa8/pMQ4z7lPfh15gocg3zI2ikjqeFfOMPjYmizSk/Qqgu6poWqAXdWFWa/F+jYikpIVfmH+Xl7ZFAg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736224854; c=relaxed/simple;
+	bh=CzZISi+xyOX4OZ/vuXuT8yoKtpP0aHYoHpq3Pv/AFA4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nrpi4/Q0SVzNLJ0YmKlTEYEN/COjyP8LovxtBHUmoVcfUtNmm2FMKM40yZG/GOvSvesUtZ7ATM8UM8TzzcQxvzS8aIw/2ndkDqtWrfIQhsY7gNdVnnrvyKsjZ1+QZ1NfXe38vCD90aSFdoyaT5jzuQYdEl4+gjve3JHPsB2wXXQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=2qXO++HZ; arc=fail smtp.client-ip=40.107.94.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=X6SWOhMxC457/+IhyGYw00YR/vYxqk/D+gAC9WA8uAltAeBI5MrkjriVXvTWNRLMp92E3b72aswtU6fEnT8jbs1xFLIVcnsEOrH3oYVHCLQU9SrlQMcizApGVPYtCIh281KuP7HDSl87cPrDezid8RHZ3bUbKW2O+kB9Vd1+VuYqIfN7JX1I4DDLKVyt1HeDZ1x9mGl6sYQryd3mIY27bGTJORuRI65y3/HkiuRYfbu6ZwQelVnuCFsQx6v2U9qBl/pqOSuCG6CNgSirtHytmID03SJnTfyD7NnHMURm8g/fi329AsvHrU7RcNQX+82VBNxF2zDzUpaQkCVayCD+PA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=X8cU2gZ+8rBhCU6o0WmeqB717k3CttLY9/tYupwkgPc=;
+ b=jaJHRU24VW1Pu0ALlX3JF5bAnlIj54sZd2TJ3E7uNsggsx3d5sBE8+LmDueRJKdegaCqpvIQw/gjjCrHU8cy6U7b5Mub6g669MnO4WkQa8CvlPhxBF2V6gfSyUl9Udh/aDpLh1lh1PcEa9s/gCZnNV2uP6qN/OlgqOAGO+/H5amPHpwinKjVNHaBsf9d7apSst2wd6Rl7CkUlr/yDR+sCb+LAz35ZF7WS6a69JagTA7BQKUerVKmNiG1HQ+I2AI4pCYZv8d8s5gM7w053mcol3CpbbqE/V7oADnP6q8kmOuL1nfLa6GANrMPDNKA9Tjx+BFVrG3xsM/w01rQmdUCAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=baylibre.com smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=X8cU2gZ+8rBhCU6o0WmeqB717k3CttLY9/tYupwkgPc=;
+ b=2qXO++HZbT5PHpOhaheMCCBKAdiDWNfK7gfCwjlC8j7lcZd1shetABY9kobotL2D6fFWMM0U/UheLJDhi/45Iriv1NNQ/18AyKX652whHKxGE82R1HdSo5UvN8AP2bkMNWpZfPuMcwjr/MEchPwRanfBj144FGWhnVJplCkZ06A=
+Received: from MW4PR03CA0296.namprd03.prod.outlook.com (2603:10b6:303:b5::31)
+ by PH7PR12MB9204.namprd12.prod.outlook.com (2603:10b6:510:2e7::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Tue, 7 Jan
+ 2025 04:40:45 +0000
+Received: from MWH0EPF000971E5.namprd02.prod.outlook.com
+ (2603:10b6:303:b5:cafe::88) by MW4PR03CA0296.outlook.office365.com
+ (2603:10b6:303:b5::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8314.18 via Frontend Transport; Tue,
+ 7 Jan 2025 04:40:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MWH0EPF000971E5.mail.protection.outlook.com (10.167.243.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8335.7 via Frontend Transport; Tue, 7 Jan 2025 04:40:45 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 6 Jan
+ 2025 22:40:44 -0600
+Received: from xsjssw-mmedia4.xilinx.com (10.180.168.240) by
+ SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39
+ via Frontend Transport; Mon, 6 Jan 2025 22:40:43 -0600
+From: Rohit Visavalia <rohit.visavalia@amd.com>
+To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vishal.sagar@amd.com>,
+	<michal.simek@amd.com>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Rohit Visavalia <rohit.visavalia@amd.com>
+Subject: [PATCH v2 0/2] dt-bindings: clock: xilinx: Update VCU bindings
+Date: Mon, 6 Jan 2025 20:40:36 -0800
+Message-ID: <20250107044038.100945-1-rohit.visavalia@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: enable venus node
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: <cros-qcom-dts-watchers@chromium.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Vikash Garodia
- (QUIC)" <quic_vgarodia@quicinc.com>
-References: <20241004-venus_sc7280-v1-1-4d7d8fd7e95b@quicinc.com>
- <kezh3lmysij56g2tjwwuas5r26ro5i777yxxitsdcjeg7zp67v@oknrdbkzison>
- <78e6ff6b-efe1-496c-a1fb-c9a0a4aba2d2@quicinc.com>
- <CAA8EJpqqZL7xybcbJMsbTQB+ht5-A+ocNs+Sq30j=v1zM3JL9g@mail.gmail.com>
- <fbba794a-ba04-4790-b5e9-b4df3cba35b2@quicinc.com>
- <D5KAUZHYJHFS.1NXF5SVWYL03G@fairphone.com>
- <39206687-6fb3-434f-b2ba-a028cf6f8ed3@quicinc.com>
- <D5KW7A8BZG6K.2L7FEV6SWRZ2D@fairphone.com>
-Content-Language: en-US
-From: Vedang Nagar <quic_vnagar@quicinc.com>
-In-Reply-To: <D5KW7A8BZG6K.2L7FEV6SWRZ2D@fairphone.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Znx-Bi8r9-yHM2DrBI7uVvAB1FNqSazo
-X-Proofpoint-ORIG-GUID: Znx-Bi8r9-yHM2DrBI7uVvAB1FNqSazo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
- adultscore=0 malwarescore=0 mlxlogscore=571 phishscore=0
- lowpriorityscore=0 impostorscore=0 bulkscore=0 priorityscore=1501
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501070030
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: rohit.visavalia@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000971E5:EE_|PH7PR12MB9204:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1e4d6e0-d56a-45ac-79a5-08dd2ed57338
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?VjHCPBz6kcWIN7tZjBo2Dij/qdkyAbQF9EK9WjVB7/MR8Fdllu7y20F8jdGm?=
+ =?us-ascii?Q?5y8C/DKZGDCnR7fmwKZGsBAvjLEJkaU2LA5ByI1xDCBNAREb5mSV1hCCoy6f?=
+ =?us-ascii?Q?YzyDFaeh1LEEN3YQ4uN2f2A2elwwCuxLkq4VsLhj/cJqlYC/mgWWfUTaqaSC?=
+ =?us-ascii?Q?rh1luzcq3Mfhv61Gaw70629VMjOwkxv1b1zjjXl9Kq8COtkL2mZCjH21Y+sf?=
+ =?us-ascii?Q?ENzGvLIiokroWBhnzcbZ1iMtUmaql7oROJd0feoekP3Mbcg+mJjK715qHYE9?=
+ =?us-ascii?Q?Vy/OD55J2jHM5gsG1W6LawfS+0rcegIfk6Kv9Z0YWBsXM9yu18BTB/kfguhe?=
+ =?us-ascii?Q?OYEr7Tc1+WGBt7LEo7w6XnPXA1jVRvU1vOZ8d4d3arG51bXZn2Hf29NX3+bM?=
+ =?us-ascii?Q?O05sxnc64/zmuwleVO/QCBILuNb4EOPnLs2d5q7+walhzNwizko4Ri6l5/mm?=
+ =?us-ascii?Q?2Am2um2FYvOjiEvvb3B/4YdtoKPvbEfuziIaq+o//QvNq7ynfSy7Zf+g3Vhb?=
+ =?us-ascii?Q?1Zhy9/wJJZN0Hw8kIW4il6r+8GyDeXWJd86uktBc+0Sr5CPaNxelIQDrbkUf?=
+ =?us-ascii?Q?ZxgSAA0MB9zdc7+0OmCC3i67gDgxMUOHW1FmfPM0bkaxpYrPAtMn2UZFbrqN?=
+ =?us-ascii?Q?QS+yhLdgeUMI5oqmdtDS+wN+XOxPdEE0rqT6IzK5mKiESviFXJSmmCri3xI/?=
+ =?us-ascii?Q?kCxoS7V9DAYms64Dk06HP/0jaMsxtOYg4HCKvM4ZOx4kmW1qeDINKFPCKQOO?=
+ =?us-ascii?Q?qj2NNmLxK+6Qg+5zFFEydfbjcRE+kRA5O4NrvXCGhwE/mG68zZvXxCKiG5Ew?=
+ =?us-ascii?Q?T6JPeVF1PnOuSjPB2d9Uv6VFkE5rB4UvKnGF2WjcFgd65xVfch43GYKv8Au8?=
+ =?us-ascii?Q?sWfKPWBgTrH/lFZVuLaCXkhJN7Fm8cIYuQhSO/qP+SeD/xT3v5/OnrAcCEBU?=
+ =?us-ascii?Q?fq0Z4ME5VIbvbbpFNBjaf6FC6SAFxIS3cKHSMFam4Daz9TX4Vv4FgWwZl81O?=
+ =?us-ascii?Q?vg6urZZq8c2sdYrFrezi0nEqK17WwuTHw9nr95qhhvtWSk1w8zUP7cNwViac?=
+ =?us-ascii?Q?LoMRAJ7tORutIue7rwHRdSEZWQUr4hEQ0GcfQYaVEFUGnAYB+N6sx/GNknM8?=
+ =?us-ascii?Q?fXj2Rul2onRQL0h/7RmbKy9aWqVJwdtHyw5ATy3Idp5RGxX0siqJU8uVb1Fi?=
+ =?us-ascii?Q?+7s70AaA/OUO4/oTcIBCKOATmjBvsFtVY5xaAPGZM71i3dwVvkgqgDj0DhWb?=
+ =?us-ascii?Q?HrK3j3mlyXjgWrOA3T7v1kvzMQ83klv7ixtSaYsZKzrrEMjGBuaqZQGSoven?=
+ =?us-ascii?Q?RFHAamzUxOuFQA6Pj8XJHf7VYkuc8s0UA/Gx+ZvALY1bIJ7oZXOxmbz5JOq/?=
+ =?us-ascii?Q?/+xsw4xO5iM4uKSA+aa91pH8c4LVD72AVpyDdysFazr5eECXwkY+FrraEGGJ?=
+ =?us-ascii?Q?Ahr1+1rhkbCds4lbecjTpW3+YAKF0re2xktKmrZyAxl2OElMXwq5KeXNPT+9?=
+ =?us-ascii?Q?uuAkBoNa0pTx3f8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 04:40:45.0752
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1e4d6e0-d56a-45ac-79a5-08dd2ed57338
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MWH0EPF000971E5.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9204
 
-Hi Luca,
+This patch series converts dt-binding to dtschema and adds reset GPIO
+as optional property. 
 
-On 11/13/2024 1:33 PM, Luca Weiss wrote:
-> Hi Vedang,
-> 
-> On Wed Nov 13, 2024 at 8:01 AM CET, Vedang Nagar wrote:
->> Hi Luca,
->> On 11/12/2024 8:49 PM, Luca Weiss wrote:
->>> Hi Vedang,
->>>
->>> On Tue Nov 12, 2024 at 3:39 PM CET, Vedang Nagar wrote:
->>>>
->>>>
->>>> On 11/12/2024 6:43 PM, Dmitry Baryshkov wrote:
->>>>> On Tue, 12 Nov 2024 at 08:17, Vedang Nagar <quic_vnagar@quicinc.com> wrote:
->>>>>>
->>>>>>
->>>>>>
->>>>>> On 10/7/2024 1:20 AM, Dmitry Baryshkov wrote:
->>>>>>> On Fri, Oct 04, 2024 at 04:22:31PM GMT, Vedang Nagar wrote:
->>>>>>>> Enable the venus node on Qualcomm sc7280. It was made disabled
->>>>>>>> earlier to avoid bootup crash, which is fixed now with [1].
->>>>>>>
->>>>>>> NAK, there might be other reasons to keep venus disabled, like the lack
->>>>>>> of the vendor-signed firmware for the particular device.
->>>>>> Can you pls elaborate more on this? Any device with sc7280 SOC can use
->>>>>> venus.mbn which is already present in linux-firmware git.
->>>>>
->>>>> Can it though if the device is fused to use vendor keys and to check
->>>>> the trust chain?
->>>> Yes, infact the existing ones are signed and works with trustzone authentication.
->>>
->>> No, the venus firmware from linux-firmware does not work on a device
->>> with secure boot on, like the (QCM6490) Fairphone 5 smartphone.
->> Are you saying even after applying this [1] you are seeing the same ?
->>
->> [1]
->> https://patchwork.kernel.org/project/linux-media/patch/20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
-> 
-> That patch has been in mainline since v6.9 and my tree is newer, so yes.
-> 
-> See e.g. Qualcomm doc KBA-161204232438 for some details.
-> 
-> Regards
-> Luca
-> 
->>>
->>> $ rm /lib/firmware/qcom/qcm6490/fairphone5/venus.mbn
->>> $ cp /lib/firmware/qcom/vpu-2.0/venus.mbn.zst /lib/firmware/qcom/qcm6490/fairphone5/venus.mbn.zst
->>>
->>> leads to
->>>
->>> [   10.848191] qcom-venus aa00000.video-codec: Adding to iommu group 13
->>> [   10.863062] qcom-venus aa00000.video-codec: non legacy binding
->>> [   10.909555] qcom-venus aa00000.video-codec: error -22 initializing firmware qcom/qcm6490/fairphone5/venus.mbn
->>> [   10.910099] qcom-venus aa00000.video-codec: fail to load video firmware
->>> [   10.910849] qcom-venus aa00000.video-codec: probe with driver qcom-venus failed with error -22
->>>
-We have seen similar issue with older firmware present in
-linux-firmware git due to a bug in singing of the firmware image.
+---
+Changes in v2:
+  - dropped patch 1 and move the file during conversion
+  - dropped description in schema
+  - updated commit msg for change in clock ordering
+  - used decimal number for GPIO
 
-This issue seems to be resolved with below change:
-aeede7afb7a186b62f9e1f959c33fd5f2dea0f7a: qcom: update venus firmware file for SC7280
+Link to v1: https://lore.kernel.org/linux-clk/20250102163700.759712-1-rohit.visavalia@amd.com/
 
-Can you pls give a try with latest firmware if you still see the same issue?
-We tried internally and do not see any such failure now.
+Rohit Visavalia (2):
+  dt-bindings: clock: xilinx: Convert VCU bindings to dtschema
+  dt-bindings: clock: xilinx: Add reset GPIO for VCU
 
-Regards,
-Vedang Nagar
+ .../devicetree/bindings/clock/xlnx,vcu.yaml   | 59 +++++++++++++++++++
+ .../bindings/soc/xilinx/xlnx,vcu.txt          | 26 --------
+ 2 files changed, 59 insertions(+), 26 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/xlnx,vcu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/xilinx/xlnx,vcu.txt
 
->>> It's the same with e.g. adsp firmware, modem firmware, etc.
->>>
->>> With secure boot off, yes, the hardware will load any firmware
->>> regardless of the signature.
->>>
->>> Regards
->>> Luca
->>>
->>>>>
->>>>>>
->>>>>> Regards,
->>>>>> Vedang Nagar
->>>>>>>
->>>>>>>>
->>>>>>>> [1]
->>>>>>>> https://lore.kernel.org/linux-media/20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
->>>>>>>>
->>>>>>>> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
->>>>>>>> ---
->>>>>>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
->>>>>>>>  1 file changed, 2 deletions(-)
->>>>>>>
->>>>>
->>>>>
->>>>>
->>>
+-- 
+2.25.1
 
 
