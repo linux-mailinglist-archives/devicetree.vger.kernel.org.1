@@ -1,123 +1,170 @@
-Return-Path: <devicetree+bounces-136114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C27A03E83
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:05:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50582A03E8C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:06:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D1221884C81
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:05:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 415DF162FAE
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 526341EC004;
-	Tue,  7 Jan 2025 12:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qMqWO5jg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FF11E1044;
+	Tue,  7 Jan 2025 12:06:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B97F1E0DD1;
-	Tue,  7 Jan 2025 12:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997981E3784
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:06:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736251494; cv=none; b=MAqlPMWp8CxMYsYvVcADPZkdEWlJcjz/5cuSGWCNwHSWKFMu/ennUBd1WHKRaD5EUhhiHgCDrBCFJ4BolM9KTuhkrfy2XDMKtrOVr2uymVDl22FN8oHX7DxeTXN8Wu5p0Mh2t86McTLph0HNlTvmQJpfC/qcGyb/zvoDueSYegY=
+	t=1736251566; cv=none; b=E7sgjF2SNOys4eHGTRN/I2RgSkP7p9W13KsX0tJ+R7rzWNygh8MICMizDX28Zphuei8HtgyrIizlbEixTQJvS/Rik3t7pb4MYKHKbzSZAif53hmQwCmF/xXxGtT79267Sv258OAhXQxUXFO39ShbIT2LKO8LTXzO4moo5nl2cO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736251494; c=relaxed/simple;
-	bh=tQFTVQklOFJuS0fnyGbP+5Y5K99avOFLQwUn/VZ/qmI=;
+	s=arc-20240116; t=1736251566; c=relaxed/simple;
+	bh=ITCSuZQwfw2vyxBOUCB4rmYaafYP+KIRaF4bg549Umw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SYTm1t1P2Ef2szoqanZgydrPQeOgnmGsdovtMRBYo0hMNcLSTDfXK4XCDpaZr5iS7dlmL6BpuvFwf6CVbnxAAc63lESKIM/kwv4YD3NHOMPcPi7ma2+I4zrlyHiML3bWUv/68fhE3G8BVUXlhhWCVsFMfFmwvpnyLSLFisggtFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qMqWO5jg; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736251490;
-	bh=tQFTVQklOFJuS0fnyGbP+5Y5K99avOFLQwUn/VZ/qmI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qMqWO5jgf/B8kNJP7HOObfAsnWQXwBl9msxJiVk6IJYdDwv6KtOjIPi4GZuS1lueo
-	 9g0tjA+/9PItLTU6T8+/YRhm2Azput50yR11gGBBx292LaP2piShJ8XI+QidL2cRYe
-	 XINgqnge7Rt96Jqnnp3XKF4zK82eXFeLkI8+IE9g6LRaQ0bhHMA5KVa3xbpSh8jbbZ
-	 SH4U54hhfBdyMkxVTlKNKZGvoXZh1VewWV/WFFl8H07b8LUE636Itot7Iex3zbQl7V
-	 pewff/vMkoxHElvAa71VzUMmD23llvcqT1KxZIKwa3QqFfKyG9Xwqs6pw0t5c5Cwjb
-	 W+LZNEPHT8AyA==
-Received: from notapiano (unknown [IPv6:2804:14c:1a9:53ee::1000])
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ev+P3wZU0VJCGWOngNtO9uRV8n8TYHYwCSL58sYnykXJuQMTzmEWfaItXas0JXOXrTjQ0s5H+b+UCsoiQdfnKwvO/iYa/cahLStl8t1z3d3XWZhNxPyo0WTOJuLvOrjU/mK25x98wBzmZ1iiWD0YNsis07znA/dxyHnQfPtFUGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tV8Ku-0000EA-8n; Tue, 07 Jan 2025 13:05:28 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tV8Kq-007L5X-2G;
+	Tue, 07 Jan 2025 13:05:25 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9CD1117E1567;
-	Tue,  7 Jan 2025 13:04:47 +0100 (CET)
-Date: Tue, 7 Jan 2025 09:04:45 -0300
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	kernel@collabora.com, Chen-Yu Tsai <wenst@chromium.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v4 14/19] arm64: dts: mediatek: asurada: Enable PCIe and
- add WiFi
-Message-ID: <042ee88b-61b4-436b-8d34-a5cfd5fd953e@notapiano>
-References: <a58d5fa4-0d00-4ca1-941b-3ad69e65de80@notapiano>
- <20250106205607.GA132098@bhelgaas>
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 02F0E3A07D8;
+	Tue, 07 Jan 2025 12:05:25 +0000 (UTC)
+Date: Tue, 7 Jan 2025 13:05:24 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
+	Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
+	Simon Horman <horms@kernel.org>
+Subject: Re: [PATCH v6 1/7] dt-bindings: can: m_can: Add wakeup properties
+Message-ID: <20250107-liberal-unique-uakari-0ddc2c-mkl@pengutronix.de>
+References: <20241219-topic-mcan-wakeup-source-v6-12-v6-0-1356c7f7cfda@baylibre.com>
+ <20241219-topic-mcan-wakeup-source-v6-12-v6-1-1356c7f7cfda@baylibre.com>
+ <20241225-singing-passionate-antelope-88e154-mkl@pengutronix.de>
+ <d6hukfwjqgtwqjgvo65icmpzbm32ob6n7ehrzlywwomjbdn5lg@2wm53244pszz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="irxivooeuvii5qqy"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250106205607.GA132098@bhelgaas>
+In-Reply-To: <d6hukfwjqgtwqjgvo65icmpzbm32ob6n7ehrzlywwomjbdn5lg@2wm53244pszz>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, Jan 06, 2025 at 02:56:07PM -0600, Bjorn Helgaas wrote:
-> [+cc Mani]
-> 
-> On Mon, Jan 06, 2025 at 04:10:32PM -0300, Nícolas F. R. A. Prado wrote:
-> > On Fri, Jan 03, 2025 at 03:14:46PM -0600, Bjorn Helgaas wrote:
-> > > On Wed, Jun 29, 2022 at 11:59:51AM -0400, Nícolas F. R. A. Prado wrote:
-> > > > Enable MT8192's PCIe controller and add support for the MT7921e WiFi
-> > > > card that is present on that bus for the Asurada platform.
-> > > 
-> > > > +&pcie {
-> > > > +	pinctrl-names = "default";
-> > > > +	pinctrl-0 = <&pcie_pins>;
-> > > > +
-> > > > +	pcie0: pcie@0,0 {
-> > > > +		device_type = "pci";
-> > > > +		reg = <0x0000 0 0 0 0>;
-> > > > +		num-lanes = <1>;
-> > > > +		bus-range = <0x1 0x1>;
-> > > 
-> > > Hi Nícolas, what's the purpose of this bus-range?  IIUC this describes
-> > > a Root Port, where we can read and configure the secondary/subordinate
-> > > bus numbers from the RP config space, so it seems like we don't need
-> > > to describe them here.
-> > 
-> > Hi Bjorn,
-> > 
-> > that was carried over from the downstream sources. I just tried
-> > removing it and indeed I don't see any difference in the PCI log
-> > messages, or the bus number, and the wifi works just fine. I can
-> > send a follow up patch removing it.
-> 
-> There might be a DTC check issue if we remove the bus-range:
-> https://lore.kernel.org/r/20250105101612.t6c4pw5uxhb5rdde@thinkpad
 
-Ah yes, indeed there is:
+--irxivooeuvii5qqy
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 1/7] dt-bindings: can: m_can: Add wakeup properties
+MIME-Version: 1.0
 
-arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi:643.18-647.5: Warning (pci_device_bus_num): /soc/pcie@11230000/pcie@0,0/wifi@0,0: PCI bus number 1 out of range, expected (0 - 0)
+On 07.01.2025 10:53:26, Markus Schneider-Pargmann wrote:
+> On Wed, Dec 25, 2024 at 08:50:17PM +0100, Marc Kleine-Budde wrote:
+> > On 19.12.2024 20:57:52, Markus Schneider-Pargmann wrote:
+> > > m_can can be a wakeup source on some devices. Especially on some of t=
+he
+> > > am62* SoCs pins, connected to m_can in the mcu, can be used to wakeup
+> > > the SoC.
+> > >=20
+> > > The wakeup-source property defines on which devices m_can can be used
+> > > for wakeup and in which power states.
+> > >=20
+> > > The pins associated with m_can have to have a special configuration to
+> > > be able to wakeup the SoC. This configuration is described in the wak=
+eup
+> > > pinctrl state while the default state describes the default
+> > > configuration.
+> > >=20
+> > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> >=20
+> > The DTBS check fails:
+> >=20
+> > | $ make CHECK_DTBS=3Dy ti/k3-am625-beagleplay.dtb
+> > |   DTC [C] arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb
+> > | arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: can@4e08000: wakeup-s=
+ource: 'oneOf' conditional failed, one must be fixed:
+> > |         ['suspend', 'poweroff'] is not of type 'boolean'
+> > |         ['suspend', 'poweroff'] is too long
+> > |         from schema $id: http://devicetree.org/schemas/net/can/bosch,=
+m_can.yaml#
+> > | arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: can@4e08000: wakeup-s=
+ource: ['suspend', 'poweroff'] is not of type 'boolean'
+> > |         from schema $id: http://devicetree.org/schemas/wakeup-source.=
+yaml#
+> > | arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: can@4e18000: wakeup-s=
+ource: 'oneOf' conditional failed, one must be fixed:
+> > |         ['suspend', 'poweroff'] is not of type 'boolean'
+> > |         ['suspend', 'poweroff'] is too long
+> > |         from schema $id: http://devicetree.org/schemas/net/can/bosch,=
+m_can.yaml#
+> > | arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: can@4e18000: wakeup-s=
+ource: ['suspend', 'poweroff'] is not of type 'boolean'
+> > |         from schema $id: http://devicetree.org/schemas/wakeup-source.=
+yaml#
+>=20
+> Thanks, the bot also notified me about this issue. I wasn't able to
+> solve it without updating the dt-schema, so I submitted a pull request
+> there:
+>=20
+> https://github.com/devicetree-org/dt-schema/pull/150
+
+I see, please add to the patch description that it depends on the that
+PR and re-post once it is accepted.
 
 Thanks,
-Nícolas
+Marc
 
-> 
-> We might need to figure out how to resolve that first.
-> 
-> Bjorn
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--irxivooeuvii5qqy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmd9GIEACgkQKDiiPnot
+vG+zTQgAihSGsmCQN7GOCUVL0pLqGfQ+AHZnIQy8rwBO01Z59sh6sqoE9gXb798d
+gHsC/et9Mcrq7CetVsitQgE0+4+1byxSBFQsfBmAY6IAlwoOwmMSMPNYldCs4y13
+XtQJnDDPc1zNgj5JGzoTbTs2ysu+qUK+N1lZDAkXd3k78OR9Lh2080q99UxeVFsX
+OF2/+FBp5tuxIbKwjpCY61XgW7zZKBQ3/weFrZUeGbeqeV33NOvUr+mvYXJmNG8O
+9IlOGY3my6JDMiYg4H6aGUwV2YmeBO3HgaUCJyJ+La+/J2odyAyxTWEUIacvgfDd
+p+TND+ZVqXJIXALf8Jk+iKfyB/c9mQ==
+=usZs
+-----END PGP SIGNATURE-----
+
+--irxivooeuvii5qqy--
 
