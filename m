@@ -1,206 +1,97 @@
-Return-Path: <devicetree+bounces-136093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 308F7A03C97
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 11:37:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0B7A03CB7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 11:43:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DDD21885C9D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 10:37:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E98301884FD3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 10:43:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FA01E0DD1;
-	Tue,  7 Jan 2025 10:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IE+zz3GL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05A81E5726;
+	Tue,  7 Jan 2025 10:43:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 403A91E0E16
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 10:37:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355DA19CC2E;
+	Tue,  7 Jan 2025 10:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736246258; cv=none; b=nkRvEIRKUPtAoMotAF/p5Gx+JmjfE59QZmiW+rksn0rycwonHxSXO7ejKKychnPY8Td3AIz6By6LmwHF6ylgTx9NKnTXWLFno6PXO7I/4xkrhAwg3w3BysO3Lb3ZSw+EEagX0oD2sQoekCErXOnG13DbfToEllNxiSF0Qva7jik=
+	t=1736246611; cv=none; b=R8EiC77m/W9/KAGAov1vn7lMWjJa9MoJS2UlSe/oE2NBqY8qCWKvHSdARgVr5CdgjurujMKUej9gX2xZU8mHdRC1zx+cLaiUBllW6zYp4Zj7fAfQpBZYLcOOiZTkrbJBs0p2I8Vjz//nNd7LeGUyI+Rk9JOt6yd8y0h2kcKJ4zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736246258; c=relaxed/simple;
-	bh=Lh+/n9HnEBEdAUCCTHJ4xwiF31BrECarqzPMxOH/DsQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iJLBVeoH5h8w83SIM+uHZggVvsmL1amSPu7y16lS3ftbgXX5AkEFtxTF7UzONUTemkKqq+33kqjoGu24wSPdLVKZD5Z2Dn9woXbiUcMq8HIJIpQQ89iKHIgONsvF/MO5wtgyFgIjPujA4wUbaImKSLVNWf4arKIyIOUT63OAOMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=IE+zz3GL; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-3035046d4bfso140265451fa.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 02:37:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1736246252; x=1736851052; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o1O4mtrUA8xb3bKiTsY1DsUybpMpm9vxH06xb7zcVj8=;
-        b=IE+zz3GL2NzDqZgq9DgDqeDn3aU/lpDAF3sohEn2AcCq27yLH+MQeuNbdREdXfeiJY
-         x7j5F7IZNK7gtdRRHXTV7Sn1RrZDPNEKm4JrqlMRKvdm+HHHqHIYZbdfkeitZ/nbuvSB
-         /gXua24gENpmq2FnCsTrzy0DwUuEANUVOeAhc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736246252; x=1736851052;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o1O4mtrUA8xb3bKiTsY1DsUybpMpm9vxH06xb7zcVj8=;
-        b=Uej6SJGMeNoXFoj1aem9wEVxcQP4EdOP/0ayqPBiSAfdx5bQ+am2qTsiMoXKoBf0zP
-         bLoBxX+mGLHAX60Brvy4t/sx3eapWrs4W4kkmsSi/i4wcoSUd3wwJSSPgurED3fUQjiT
-         IvYfNDb6Nr0hcAO/A4tZL8KyXOr2XSy1PRMdQ7sDnQQSCla+lo8Y9W2h+99k0A4JwtRa
-         M696QyJmyWWNnz4fU1Iu8bZ3TZ6pVhwjfKiWYwOHPStxJ5a2I9vr0p/VzuL4CMgQaBYC
-         +eWPQ2UL036yX+9lQXbI8dm7RCA59cz1+TFHzMskuu+nURyU6sG72ahXlCWuXhT2GF5K
-         BQAw==
-X-Forwarded-Encrypted: i=1; AJvYcCUV6a0uKx2LrE0M34FixZ50AFkPhr3ZGqZaF7VGqc4rLmXouPAE0mSZa555O8FiF6sTtw242/WF0MYb@vger.kernel.org
-X-Gm-Message-State: AOJu0YwU8mkygiFBHhZhGbCWbKORxCEIXs3vLtzEXas/isQRQJjz+9lS
-	WDREjMvFiiJaWWFDJ+OQhlK3iajxDRXdPW++vHqxYC2Y9v3FAYBzDzvjVSbhCefz0xr+crYbua7
-	X1Q==
-X-Gm-Gg: ASbGncuoEayWk99y1Pw6pWqOz1cWLekILQOg/T5Sp6tF9rLYvAkCBTWduTUwbQ0LODW
-	fYyTzfkqijoibm4I5V0YCWo36B1uBWZ3ZTWyCRXupGhpgj1DIdw1FcIujmgUtuDLF4IJZLh8/KX
-	aptOQZH8JYBhjDpoAoAEH2R+RiQE3XFwkrOYzyx6BIv2apW0+29iEWdTNbqxofItlijPRXBWyBD
-	2N++ul+KmIumK4EDHHGfYHln2KiKBc8sPzkqYapK3StoPGn43QWL0bQNKYSrNp4bId15EU4H9KQ
-	plrfD3oyuTRyF0lhhlc=
-X-Google-Smtp-Source: AGHT+IFgMqQx0AZiIXC/9suQX7Ig3yrcnshEpgD40uMUumpxcwwnRPSqXEiTfcO6VSKjv2QHYhXW7g==
-X-Received: by 2002:a2e:be94:0:b0:2ff:c242:29c8 with SMTP id 38308e7fff4ca-304685e6139mr181430781fa.35.1736246252365;
-        Tue, 07 Jan 2025 02:37:32 -0800 (PST)
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3045adac821sm59939501fa.59.2025.01.07.02.37.31
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jan 2025 02:37:31 -0800 (PST)
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-54252789365so8871835e87.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 02:37:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX6ZwDq94cpspx2P/fhsexgoayx87SvqNOJIWwUM81KpyCBFYjvg5Lb7ARYmhUscejoD5njlFELLD35@vger.kernel.org
-X-Received: by 2002:ac2:4c47:0:b0:542:22a0:9b35 with SMTP id
- 2adb3069b0e04-5422959cf96mr17743735e87.53.1736246250788; Tue, 07 Jan 2025
- 02:37:30 -0800 (PST)
+	s=arc-20240116; t=1736246611; c=relaxed/simple;
+	bh=woFjHUJHrUSh1o/JoUcqPJHyy/iOnpRiHswrKFqLbVo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kpdXI4fEy8xR876f9IIrL5t+MpGzvdqmVcNzZ6ueuktmkNReGePa/tW6fd0h0PXQY/+bIVRUNCAWHOq8JE3HKAnOssHpWoZrJQfJFLVXWDFgxVFZX5DVG+S70lDq4CUdTb/9aWm0ze79f5boc03LRv4JXAgf1VzNIsvplDLRQpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 90A2C143D;
+	Tue,  7 Jan 2025 02:43:55 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 715F43F673;
+	Tue,  7 Jan 2025 02:43:25 -0800 (PST)
+Date: Tue, 7 Jan 2025 10:43:20 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Lukas Schmid <lukas.schmid@netcube.li>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/4] ARM: dts: sunxi: add uart1_pe pinctrl for
+ sun8i-v3s
+Message-ID: <20250107104320.4e74a87c@donnerap.manchester.arm.com>
+In-Reply-To: <20250106190703.4015-4-lukas.schmid@netcube.li>
+References: <20250106190703.4015-1-lukas.schmid@netcube.li>
+	<20250106190703.4015-4-lukas.schmid@netcube.li>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241212-usb-orientation-v1-1-0b69adf05f37@chromium.org>
- <20241217145612.GA1652259-robh@kernel.org> <CANiDSCu_mFQQVkDb_gSyXeb1_Tu+DxSeHYvGsGp6XVDuOdPyjQ@mail.gmail.com>
- <20241219122453.GA4008177-robh@kernel.org> <CANiDSCt+LAE-LzCDZgrWP_V-Jc-ywTF1-PuQtyDJMfV9v_ZzGA@mail.gmail.com>
- <CAL_JsqLON5xKoYtowKdk49s-YHbk9bq9akZSH1kHdQ_9vxKSQQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqLON5xKoYtowKdk49s-YHbk9bq9akZSH1kHdQ_9vxKSQQ@mail.gmail.com>
-From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Tue, 7 Jan 2025 11:37:18 +0100
-X-Gmail-Original-Message-ID: <CANiDSCvRfZiMafeJ6==oyduZCzJsv74pg9LbswnjoXFS2nTm=g@mail.gmail.com>
-X-Gm-Features: AbW1kvaLMLtXTjaById0Tmpn7DhVioJNoXfnhWB6MVdCLMx7bGwuyZWBT_mX3CM
-Message-ID: <CANiDSCvRfZiMafeJ6==oyduZCzJsv74pg9LbswnjoXFS2nTm=g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: usb-device: Add panel-location
-To: Rob Herring <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, 20 Dec 2024 at 23:00, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Dec 19, 2024 at 6:42=E2=80=AFAM Ricardo Ribalda <ribalda@chromium=
-.org> wrote:
-> >
-> > On Thu, 19 Dec 2024 at 13:24, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Tue, Dec 17, 2024 at 04:24:27PM +0100, Ricardo Ribalda wrote:
-> > > > Hi Rob
-> > > >
-> > > > On Tue, 17 Dec 2024 at 16:02, Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Thu, Dec 12, 2024 at 09:44:37PM +0000, Ricardo Ribalda wrote:
-> > > > > > For some devices like cameras the system needs to know where th=
-ey are
-> > > > > > mounted.
-> > > > >
-> > > > > Why do you need this and why only this property and not the dozen=
-s
-> > > > > others ACPI has?
-> > > >
-> > > > Userspace needs that information to correctly show it in the UI. Eg=
-;
-> > > >
-> > > > - User facing camera needs to be mirrored during preview.
-> > > > - The user facing camera is selected by default during videoconfere=
-nces
-> > > > - The world facing camera is selected by default when taking a phot=
-o
-> > > > - User facing camera have different parameter defaults than world f=
-acing.
-> > >
-> > > We already have "orientation" defined for this purpose.
-> >
-> > Do you mean orientation from
-> > bindings/media/video-interface-devices.yaml ?
-> >
-> > I see a couple of issues:
-> > - Orientation has a very specific meaning for USB typeC. I'd prefer if
-> > we could avoid using that word.
->
-> Yes, but this is tied to the class of the device, not the bus. I find
-> defining the position for USB devices confusing.
->
-> > - For other applications different than cameras it might be useful to
-> > know the positions top, bottom, left, right, which are not available
-> > in video-interface-devices
->
-> Other devices may need some of the 20 other properties in the ACPI
-> table as well.
->
-> > - The value "external" does not makes too much sense for listed usb dev=
-ices
->
-> Then don't use it.
->
-> > - It makes our lives easier if dt and acpi have the same meaning (less
-> > conversion)
->
-> We have little to no input into what ACPI does. If we're just going to
-> copy ACPI, then just use ACPI instead.
->
-> > All that said, for my specific usecase, reusing orientation from
-> > bindings/media/video-interface-devices.yaml works... So if that is
-> > what you all prefer I can send a v2 with that.
-> > Let me know what you think
->
-> We already have something for cameras. Use it.
+On Mon,  6 Jan 2025 19:07:01 +0000
+Lukas Schmid <lukas.schmid@netcube.li> wrote:
 
-So you are proposing a change like this?
+> Added the uart1_pe_pins pinctrl for use by the NetCube
+> Systems Kumquat board
+> 
+> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
 
-diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml
-b/Documentation/devicetree/bindings/usb/usb-device.yaml
-index da890ee60ce6..5322772a4470 100644
---- a/Documentation/devicetree/bindings/usb/usb-device.yaml
-+++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
-@@ -37,6 +37,10 @@ properties:
-       but a device adhering to this binding may leave out all except
-       for "usbVID,PID".
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-+  orientation:
-+    description: If present, specifies the orientation of the usb device.
-+    $ref: /schemas/media/video-interface-devices.yaml#/properties/orientat=
-ion
-+
+Cheers,
+Andre
 
+> ---
+>  arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> index 9e13c2aa8911..f909b1d4dbca 100644
+> --- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> @@ -416,6 +416,12 @@ uart0_pb_pins: uart0-pb-pins {
+>  				function = "uart0";
+>  			};
+>  
+> +			/omit-if-no-ref/
+> +			uart1_pe_pins: uart1-pe-pins {
+> +				pins = "PE21", "PE22";
+> +				function = "uart1";
+> +			};
+> +
+>  			uart2_pins: uart2-pins {
+>  				pins = "PB0", "PB1";
+>  				function = "uart2";
 
-   reg:
-     description: the number of the USB hub port or the USB host-controller
-       port to which this device is attached. The range is 1-255.
-
-
-
->
-> Rob
-
-
-
---=20
-Ricardo Ribalda
 
