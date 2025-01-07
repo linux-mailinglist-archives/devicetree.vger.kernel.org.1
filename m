@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-136073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185B0A03B84
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 10:50:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 454DEA03B86
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 10:50:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FEAB7A27CD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:50:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB1257A2724
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FAB01E47A5;
-	Tue,  7 Jan 2025 09:50:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7A61E3DF7;
+	Tue,  7 Jan 2025 09:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="hJXGoe1g";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Wi47E+Rc"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="LxKLmY7W";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Z5smUcNp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930B01E32D6;
-	Tue,  7 Jan 2025 09:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72001E47A6;
+	Tue,  7 Jan 2025 09:50:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736243417; cv=none; b=UmeVQ7lO8ZIr+HjF9Hxlak+686LliaKrKHYTqHos7bNZxOoG4M+gojG28S5WuC8n7xgP8f1YaAyu/H179rkbuBRHIfYB5jcniRlCtSKFhzfioID/81C2wPQU9lE3n631Ft6BYMDa0UMCHSeYMlEaLekYPT15mbpoG/oNryZDJkI=
+	t=1736243422; cv=none; b=UvhsQguaf+2T0TtPLpFYBHanaAF+hMoUT90m8IppFaYhUGeF9V779/OzCJ5CNmHP49Jo/KwvNP5PpjgWtQZB5t4p/ldKpQwnr+wSYJT0r5jPwC7T9ZbiSk+LPVgnY7fk2pe5lwmxeylvngDhXe/coNZsyZbfrjQiG4y9TytwJko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736243417; c=relaxed/simple;
-	bh=CyTo8cE97O/dT7balp0WJ3hLWJur45QTLweHtNPLjc0=;
+	s=arc-20240116; t=1736243422; c=relaxed/simple;
+	bh=z8bjPKsOwW01zmWSLOle1qUmNaf3478HQau+chSZ2VA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gB5ksD/WBEjPnDMt3SkS2y0dnl0xqCnOUaj9k6L9ZKO0Y1ERbSyARj0O3WaapKIUAw4Y9zlDm+sRq0dD9YCWm3iiF9Jv9T4PFCZiIwGToalg0BAkGaGSjBJvRJL19/TsUG6N/eJcMzKn9rYI9QqVGoGMY6dZ/oNR4JPVNCsRj3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=hJXGoe1g; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Wi47E+Rc reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+	 MIME-Version; b=X0Oep2wwSdQXfjKChbQfNXUD2e7QV48rfL3d03/RYLzxImuJC4ikZupBb5vb74wixcHR54W8mES9WckYDY2Oj6wM83moR5wt0JnU6pVoJYoqDe1PqiFEhjqeNS189L/bQ7cD0wV/t0H4ZXXUmoGJnq0KxIWtmONNZE3AviPI4xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=LxKLmY7W; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Z5smUcNp reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1736243412; x=1767779412;
+  t=1736243418; x=1767779418;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=KpOa8HoprryX6l0PB2oieZlmFjQEb/tFrwNnpfDxsbo=;
-  b=hJXGoe1gwJHk/SFA5Ug4V+IuQLB/0esdZx67x6AQCz4g3SO8H0vQhdSm
-   TO/k1tSmFyee/AemGPHrH36Ed2f1MYBUE8WQ2PsEnB43z9+OAWN7EvjOq
-   Luzz7jVSqlYnzU3Ri8eHoUZOJd4cPpJzRXdEZ1nl1LDlvpUK7wQBEaBug
-   4z8WkQwALcChEXjl/1dWrW+HMwuiVIisgziKXW1NedDOpyL/GwGPo8Dnx
-   rfE/eto+fSOb7I6qaZR4ID3SIa/dWhu7OC3L5ppcRg68G0IMg/EG4VbPS
-   HNBkJDsgZQ5XL6SDhtyU82TYKKq0GOZWZQwcCeb2hzOkoKRHk1Pd0VxGG
-   A==;
-X-CSE-ConnectionGUID: W/xrAnC8RkSNziKHLuX1cA==
-X-CSE-MsgGUID: vaqF99PvRTWyofVWk/MsKQ==
+  bh=QzP2L75tY0s4FayK+dDFBr6ag0IirIKPS04LmEz6Ta8=;
+  b=LxKLmY7Wf3k4MIk5c98KStITxDOU4g2Ty3WxxmY38nbpYwlgHyxnDDMh
+   9a2kv0SbuDzZ++xt+5hhkZJ6kJIooROHdbNcPafvQmDxQItOuBRpO6KO/
+   GmmlntdJ45nY4JSOkeDOVuLTNCsx+d0bGoSalWDUKSgjC61pdTy1e98mZ
+   RLu1D4UgKEz2fKHtg78axj3tJfcA32P8siV//6/x+Y7rIOOQgVbIg9zIf
+   0wxZh+ye0rvFkG+hSEQRdW01nLPEdUVFjMnIyJQt5E36IlrszgXttZQck
+   8YsALl+OHclxiOFZjk2qU8n5fi1WF1rIHf+aDFVKXRHCOYN58DRRU2RgJ
+   g==;
+X-CSE-ConnectionGUID: Kew2XeO4QOOMJUerIB5xZA==
+X-CSE-MsgGUID: G9WjVQx0RXG03kFOLwwcrA==
 X-IronPort-AV: E=Sophos;i="6.12,295,1728943200"; 
-   d="scan'208";a="40889019"
+   d="scan'208";a="40889027"
 Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Jan 2025 10:50:10 +0100
-X-CheckPoint: {677CF8D2-34-301A2255-F8907925}
-X-MAIL-CPID: 4EBEBB08F58DDC3AE9E882BAB25DBD24_3
-X-Control-Analysis: str=0001.0A682F26.677CF8D3.0031,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 47717163CCE;
-	Tue,  7 Jan 2025 10:50:05 +0100 (CET)
+  by mx1.tq-group.com with ESMTP; 07 Jan 2025 10:50:17 +0100
+X-CheckPoint: {677CF8D9-8-DDBC2A76-F469E51C}
+X-MAIL-CPID: 0A25C61B0BAAEF839FD7A44E474FE128_0
+X-Control-Analysis: str=0001.0A682F26.677CF8D9.007F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 50C2F163CCE;
+	Tue,  7 Jan 2025 10:50:11 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1736243406;
+	s=dkim; t=1736243412;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=KpOa8HoprryX6l0PB2oieZlmFjQEb/tFrwNnpfDxsbo=;
-	b=Wi47E+Rc9PTZCxjwj/rCLJqFXyDN5NtYNeDYY5biKfe0oJzJCkQeIQa7PD4JKriBAh/oP9
-	z35fR7ZDJkeVj7MhODE4YN1FoPGspbM48OA8EsHQ0tcLtW7gF3g0h5kyimAgF8Men8lL8+
-	grBB67wugEMwPY/lJFTW/2pLVtxOEESmkeLH41piBuGAYFClZureKEWxAmtwrS+0MlmikD
-	lVF/OJvQd7tgehTzAW1UBZYTMQ2tgZIIt/De6zJgyYAZP6hZW0/bM68PkikLuCoq4ypNWh
-	vgQzeJ/qH8pxDux3+kYPEczkhyIfgWGRO0K6o2ho2EoQN8M6GRYV1nSPfr51Tg==
+	bh=QzP2L75tY0s4FayK+dDFBr6ag0IirIKPS04LmEz6Ta8=;
+	b=Z5smUcNpRQkb2oKHkcLoUQXNeYAtAEovHnKQNFM1HxqwL5Uw2iJvL+tBjPS2tQZ/tJpCn6
+	DyIYhmaOKTo33GTAj8GacS1ig3QgACh8TcMf1uVQRWueIn3M5gCEiEUCUsTOIpGyqDqLXA
+	dT1p+vO3Oz25GBoG8d/Yjb4JfEzG0tUaT71FoUYliRRdaUVkGPD3OAv+l1c4ui2LUMZaGL
+	VqC1S1abM3VqDQGoDAXCFCNZ58yy9DVvtJ6QPmemR/CWJ2MeDm+YEsJ4NN5IP2094gc18b
+	xb0U4tp/TDIGqCahr0gRDQ5aPKk60MdooTdkiZp6K05q0Ju2SZ/kmgbx5/ml4A==
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Inki Dae <inki.dae@samsung.com>,
 	Jagan Teki <jagan@amarulasolutions.com>,
@@ -96,9 +96,9 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/2] ARM: dts: imx7s: Move csi-mux to below root
-Date: Tue,  7 Jan 2025 10:49:41 +0100
-Message-Id: <20250107094943.518474-2-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 2/2] dt-bindings: samsung,mipi-dsim: Add imx7d specific compatible
+Date: Tue,  7 Jan 2025 10:49:42 +0100
+Message-Id: <20250107094943.518474-3-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250107094943.518474-1-alexander.stein@ew.tq-group.com>
 References: <20250107094943.518474-1-alexander.stein@ew.tq-group.com>
@@ -111,91 +111,31 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-fsl,imx-iomuxc-gpr.yaml only contains the mux-controller but the actual
-video-mux is not part of it. So move it below root node.
-Fixes the dtbs_check warning:
-arch/arm/boot/dts/nxp/imx/imx7s-mba7.dtb: iomuxc-gpr@30340000: 'csi-mux' does not match any of the regexes: 'pinctrl-[0-9]+'
-  from schema $id: http://devicetree.org/schemas/soc/imx/fsl,imx-iomuxc-gpr.yaml#
+This add a imx7(d) specific compatible which is compatible to imx8mm.
+This silences the dtbs_check warning:
+arch/arm/boot/dts/nxp/imx/imx7s-mba7.dtb: dsi@30760000: compatible: 'oneOf' conditional failed, one must be fixed:
+ ['fsl,imx7d-mipi-dsim', 'fsl,imx8mm-mipi-dsim'] is too long
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm/boot/dts/nxp/imx/imx7s.dtsi | 56 ++++++++++++++--------------
- 1 file changed, 28 insertions(+), 28 deletions(-)
+ .../devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-index 22dd72499ef27..2629968001a74 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
-@@ -176,6 +176,34 @@ timer {
- 			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
- 	};
+diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+index 4ed7a799ba26b..e43fec5609417 100644
+--- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+@@ -27,7 +27,9 @@ properties:
+           - fsl,imx8mm-mipi-dsim
+           - fsl,imx8mp-mipi-dsim
+       - items:
+-          - const: fsl,imx8mn-mipi-dsim
++          - enum:
++              - fsl,imx7d-mipi-dsim
++              - fsl,imx8mn-mipi-dsim
+           - const: fsl,imx8mm-mipi-dsim
  
-+	video_mux: csi-mux {
-+		compatible = "video-mux";
-+		mux-controls = <&mux 0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		port@0 {
-+			reg = <0>;
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			csi_mux_from_mipi_vc0: endpoint {
-+				remote-endpoint = <&mipi_vc0_to_csi_mux>;
-+			};
-+		};
-+
-+		port@2 {
-+			reg = <2>;
-+
-+			csi_mux_to_csi: endpoint {
-+				remote-endpoint = <&csi_from_csi_mux>;
-+			};
-+		};
-+	};
-+
- 	soc: soc {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -529,34 +557,6 @@ mux: mux-controller {
- 					#mux-control-cells = <1>;
- 					mux-reg-masks = <0x14 0x00000010>;
- 				};
--
--				video_mux: csi-mux {
--					compatible = "video-mux";
--					mux-controls = <&mux 0>;
--					#address-cells = <1>;
--					#size-cells = <0>;
--					status = "disabled";
--
--					port@0 {
--						reg = <0>;
--					};
--
--					port@1 {
--						reg = <1>;
--
--						csi_mux_from_mipi_vc0: endpoint {
--							remote-endpoint = <&mipi_vc0_to_csi_mux>;
--						};
--					};
--
--					port@2 {
--						reg = <2>;
--
--						csi_mux_to_csi: endpoint {
--							remote-endpoint = <&csi_from_csi_mux>;
--						};
--					};
--				};
- 			};
- 
- 			ocotp: efuse@30350000 {
+   reg:
 -- 
 2.34.1
 
