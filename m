@@ -1,141 +1,170 @@
-Return-Path: <devicetree+bounces-136128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56978A04004
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:56:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44251A04014
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:58:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AB501888BEB
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:56:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24B1B1617BC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3591F03FB;
-	Tue,  7 Jan 2025 12:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B811EF080;
+	Tue,  7 Jan 2025 12:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b="c+d/tLH3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K+2rgvDw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71B891E3DE8
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:56:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0EA1EE7A8
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736254580; cv=none; b=irNKbDS/Ux3cGeAJ3muzFIOfBnyADaXEn77nXKtZhHlk2RZlRJXsy9Eg+IqnBC4/+g7jT0KZ9NGyYwZafEkAUuCPxSb2eF9FbmdKbErA1OgPia9hXiKAKOEw4exkSCb0dKTXvxmTKlzIn+czXuci85fTsV8MXBajhkfNb5sBuVg=
+	t=1736254720; cv=none; b=nKBolAZaIo1M8HTjOj3wuV7qu+Ey/KecqOQf74hVxj3ICb8UkNhXACZjzCTXS0BytrdQy9M6Nu2ouRg8OVYKYsedphXF9/1ryH20UKhfqVmT7+c8CLimqYNmqdRH+7N8mSfR3kWtfGIB4jh+nQlzLoz1MxfSfsLB8Lu1PqzVuxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736254580; c=relaxed/simple;
-	bh=oQroOboIDmNBq/mNFGYnVxRSXnsy6Wj4xFYfAC74pmk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZlbJoDhV/xQs9JXdZGShLw0MdNYcA1eNWXSkSCCpYuOIZNYnflpTjhrNLs+vnDowFsLPbYxwnJRDEfFILzNjDXHjXE1P54NZALysBK5GxQEWMCx5HwczbgE49pWpMkL60kNm405T6MahnvlqMVRKGnQ7LztkJY1xYv14nd5QV/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com; spf=pass smtp.mailfrom=jrtc27.com; dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b=c+d/tLH3; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jrtc27.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4362f61757fso153882995e9.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:56:17 -0800 (PST)
+	s=arc-20240116; t=1736254720; c=relaxed/simple;
+	bh=OFxtIq84pjYYuzu4hf2cp7nadzLvsWbywncZgksHCVc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Vf3Kb49qRb75qRqb8yUzQFTqyiuaMBpdAsRq/0gGdhDF69kYPxQP2O1vv2GQWqT8qXjF6TkwlRAm3uHgt/AV6muFOG5rKD0ubsQ41shyl7Fp3s1a7IqpT/FIPonsdiGIgujYj6Z9l524NNrl+/ZyTUlT2bXmf/kK+qqAbSLvVGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K+2rgvDw; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3862e570832so1756270f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:58:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user; t=1736254576; x=1736859376; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yBSfrxpuC6OsYhjKIDRJ9B4wUIGyoKbNlTGgOlRrFlA=;
-        b=c+d/tLH33tf4GS8YUbjoBdEeNL/r2NR8DcHZbRS91fQFWZOLxEYHeqHShk0XGfEzaW
-         eLyGDti7oriuFVkj1cn9JV6M47hcPBU9s3x9z9LNyqzWzN/IZ2vqSvuoUP5tx5I03tTh
-         Te/4iX6e4Ugy4/UrBjQ9BxXGqrAd8KaO9mNiYiDRoutzhHcpPi610Mi1PoFQDISdE6PK
-         FtNn4HN6MlCJST4+bpXy7SXcWfkUYzOTE3NDVH7/98vcPG5xFV29yJNZ+OwCal9bb0MP
-         RduPjhZ+Y9e/6zvseVrjXwZUx7u5HwV94fRZNXYvddqmkMjzAufpkPyHl+48iegwIiSB
-         ev8w==
+        d=linaro.org; s=google; t=1736254714; x=1736859514; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iVaSFtlZM3/VWeZtMCCVy8JYGseLcw26+eMrw9jztfQ=;
+        b=K+2rgvDwaqTHMtpEBVR3OyFqqK3Z1i9/WqrXSyNPto7n3OZtLI9cnFy2lK/agLOW+H
+         EuDCg983NkRPI1t5Tx/1CAEgzlKV4VH2HSb3a2qM0BLgoYvCBGOQVDWOCDlw5ceddmcK
+         nGUxJSf1PJ6wWlCy/lva9tKKgGxrqUubBpCvW3OCodEys8rc0EKvXqBlW85QrSXVrUKw
+         jhjr7nSpjW90qpnXrH4bG0+Hlfpl4++xAgF8dvUFwBhHC7LTh3xBkNhj41FQnzHmh5Ip
+         yGHZNkmg+as9EXvPZfiLydMuk/O51Kj8MeGZJpnsJ7e69gQeoFWQrqw8+Pzje1q0yT7S
+         JHjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736254576; x=1736859376;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yBSfrxpuC6OsYhjKIDRJ9B4wUIGyoKbNlTGgOlRrFlA=;
-        b=gilneThOETy2D4VsEsruR6yW4/joRqKL1KW8ErMZfxuif9g8kC4KGWFMzWThX2ifNh
-         xHF43MR+nsRXLclp3f9j3iR3NhXECbnplvI0eL2n7hnRJc1dts3jBRZngz5cDgRD5YB/
-         5W/TGAHZaW/JJUu7C4ptTdDBMFGMWNrRlIEVPXBaIuhbP+4qZEaTOBQjBf4XGSBluPb3
-         oJwHHwxYmgqzk0CF0W88r/A4CNMe1M083F8UxH2e8fGUlgK2SDSGQl1PjycqpZSjgNtj
-         8Kwb5g0eLSjPGIFEkhbEWB8US2D+eiLo/vi56ZsUagUS+P2IAvfLikdXo9qUBNCDPzKQ
-         NBsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX6OxMkvBvXpANo6EIU0oPCXMa3ivCwkgF+Vwz20WhNqSj2ZqtUM5SUfCjL2z9/L93LkJQ9kaseziia@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzzxxLnF6g/oFC2Lv0I1KrRXm6TQrTzRxfKupxT9SYkeTmTtMC
-	fzjpazPbwCBAzTIMW05IiicSLMQoUxfwPf9EmCbLH1nEDJKaxe2gxBH4HYiiY6o=
-X-Gm-Gg: ASbGncu2ai/LEh60rs1hnMz262UjA0nqkU0KI7XqIzoFwSGgmjAPRFr8MDMsB2QNrJf
-	zXJQzUjljZP2EvkGJWClaBTYNAYZP6Fit5aMqZ0oRhbrCbalsM9Y7H0ODrvwrhyw/fbKZbrnM9x
-	7lgT7CqqZn6NGh8J3cD9cfczCyMshBFx2Ezj29dWkmqoYJQI6pG8BN8SZTWMiwGL2xqjxxMgbo/
-	uAZuD9Rgrwr+h5MFaQ5IFoVPVc9govrd2grAwOs62r82ksoaKcJvUGw8Z/xAdqpdkAa+oG25n6L
-	SSquiswA/4nsK8A=
-X-Google-Smtp-Source: AGHT+IEmps/wVpiEbRTPlIfFaxVLghtVlcbTA9GHt1AXFR4/nEGjdiruq//V5iuCyK9uhhdBpld1xQ==
-X-Received: by 2002:a05:600c:2312:b0:436:8a6f:b6db with SMTP id 5b1f17b1804b1-4368a6fb89fmr383424155e9.22.1736254575701;
-        Tue, 07 Jan 2025 04:56:15 -0800 (PST)
-Received: from Jessicas-MacBook-Pro.localdomain ([131.111.5.201])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436611ea487sm593720325e9.8.2025.01.07.04.56.15
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Tue, 07 Jan 2025 04:56:15 -0800 (PST)
-Received: by Jessicas-MacBook-Pro.localdomain (Postfix, from userid 501)
-	id B3086CDDDC3E; Tue,  7 Jan 2025 12:56:14 +0000 (GMT)
-Date: Tue, 7 Jan 2025 12:56:14 +0000
-From: Jessica Clarke <jrtc27@jrtc27.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
+        d=1e100.net; s=20230601; t=1736254714; x=1736859514;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iVaSFtlZM3/VWeZtMCCVy8JYGseLcw26+eMrw9jztfQ=;
+        b=v2pgO10HI1zs/itHuHCYbF1miF7nDAG+3S7Rtf3HaLfb/sZkjQifMtdTOjcab9fzgc
+         l8yrD8TI4C1dAeF1ta4w/e1gdW5RJR/MJrdCvrvZE9ojnzjatIoXMminr8izyZAydcC2
+         oYyIguoBnUvl7UPEI3yTkPlI4+T/UDRf65wGHuRZxsHsfo6c4ftB5tJqElzIj5AhoxGI
+         wNA4pr8MAOv2SlsoiAO0Sbh4Qq4H6XlM0UWaKXM1yBhDVHkd9E5pMYy98OSvZLEpJa46
+         T4gp7M61KMlxzNl1uTZIhyb4/4KOvM/2INGyZduESF7zRopnoTBOTxOA3F5KZj7RXdIW
+         GTpA==
+X-Forwarded-Encrypted: i=1; AJvYcCXlYmz/lrwArVKzO6KrwKYdrx6XBgA1v0WZo112XaV/LZfiiVQ2FV7bqOgNBXu1C0P0DB3RynLrb8qp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbuTZ5EXiJastcf+kSbZUHuLJFYEENz+Frdg1nBqM3C77aiKPu
+	JTo3dhlL9LKx77UKpDWodBa3ynr0AZQ3y8tCtquViQpcgQAGhVx9GWWr7Rb4jWM=
+X-Gm-Gg: ASbGncu1LdxcQhlcv0dBvmQ0jvRgOFpqsGe8c8Xh2wReo5898v4hfl5UTEAxs4K7tap
+	ZgGLsZ66laumlG6Vr+IVJttr1GcFqlzje/FcXfmMLGVTkNRSGoNJgZmSXRmah7UPQYGVVbdrzA2
+	7LUcoJvrYjl0EPhqfkh3R26AZ36ZtRgZYv6RfS+3pXAI/0s9x9h3Xy7fnSETutDHfZEtRDZuThB
+	iFqzaLozKkraAh5GGGYl9Sk1R8sh2GZ+toBQ9fCYQk6Azv7qUtW27K2rr4c1Tm/pOw7TQQ=
+X-Google-Smtp-Source: AGHT+IFPBeJaMEFcgs9P5ku/eO7a9THMpLvlhXfK01aXSRTSwOvnAsWvnf3VluFuAxi1Ku/w/nWpEA==
+X-Received: by 2002:a5d:5e09:0:b0:385:f479:ef46 with SMTP id ffacd0b85a97d-38a223fedbemr21216203f8f.13.1736254713733;
+        Tue, 07 Jan 2025 04:58:33 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8474c2sm49738610f8f.55.2025.01.07.04.58.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jan 2025 04:58:33 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Michael Hennerich <michael.hennerich@analog.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH v4 2/4] arm64: dts: morello: Add support for common
- functionalities
-Message-ID: <Z30kbmA-3h-Rhg7l@Jessicas-MacBook-Pro>
-References: <20250103181623.1980433-1-vincenzo.frascino@arm.com>
- <20250103181623.1980433-3-vincenzo.frascino@arm.com>
- <CAL_JsqLYu_z6yNA-MgKgoA=nC5ftzOEH5UNkswA_=xTJiOB0+g@mail.gmail.com>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: pwm: Correct indentation and style in DTS example
+Date: Tue,  7 Jan 2025 13:58:30 +0100
+Message-ID: <20250107125831.225068-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqLYu_z6yNA-MgKgoA=nC5ftzOEH5UNkswA_=xTJiOB0+g@mail.gmail.com>
 
-On Fri, Jan 03, 2025 at 04:14:31PM -0600, Rob Herring wrote:
-> On Fri, Jan 3, 2025 at 12:16 PM Vincenzo Frascino
-> <vincenzo.frascino@arm.com> wrote:
-> > +       cpus {
-> > +               #address-cells = <2>;
-> > +               #size-cells = <0>;
-> > +
-> > +               cpu0: cpu@0 {
-> > +                       compatible = "arm,neoverse-n1";
-> 
-> I'm pretty sure the N1 doesn't support CHERI/morello. Perhaps
-> "arm,neoverse-n1-morello" if we want to capture what it is derived
-> from and since "arm,morello" is taken already.
+DTS example in the bindings should be indented with 2- or 4-spaces and
+aligned with opening '- |', so correct any differences like 3-spaces or
+mixtures 2- and 4-spaces in one binding.
 
-Rainier is the codename of the core itself, and Morello LLVM recognises
--mcpu=rainier not -mcpu=morello (there's -march=morello instead), so
-perhaps it should really be "arm,rainier". Though SMBIOS reports it as
-Morello-R0P1 so it may be best to use "arm,morello" here.
+No functional changes here, but saves some comments during reviews of
+new patches built on existing code.
 
-The real problem is that the board compatible has changed to include a
-generic "arm,morello" node, with the argument that a v2 board could
-appear. So why not instead change *that* to be something like:
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml | 8 ++++----
+ .../devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml         | 8 ++++----
+ Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml  | 8 ++++----
+ 3 files changed, 12 insertions(+), 12 deletions(-)
 
-  compatible = "arm,morello-sdp-v1", "arm,morello-sdp";
+diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+index aa35209f74cf..45e112d0efb4 100644
+--- a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
++++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+@@ -41,8 +41,8 @@ unevaluatedProperties: false
+ examples:
+   - |
+     pwm@44b00000 {
+-       compatible = "adi,axi-pwmgen-2.00.a";
+-       reg = <0x44b00000 0x1000>;
+-       clocks = <&spi_clk>;
+-       #pwm-cells = <3>;
++        compatible = "adi,axi-pwmgen-2.00.a";
++        reg = <0x44b00000 0x1000>;
++        clocks = <&spi_clk>;
++        #pwm-cells = <3>;
+     };
+diff --git a/Documentation/devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml b/Documentation/devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml
+index 119de3d7f9dd..44548a9da158 100644
+--- a/Documentation/devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml
+@@ -35,8 +35,8 @@ additionalProperties: false
+ examples:
+   - |
+     pwm: pwm@f0408000 {
+-       compatible = "brcm,bcm7038-pwm";
+-       reg = <0xf0408000 0x28>;
+-       #pwm-cells = <2>;
+-       clocks = <&upg_fixed>;
++        compatible = "brcm,bcm7038-pwm";
++        reg = <0xf0408000 0x28>;
++        #pwm-cells = <2>;
++        clocks = <&upg_fixed>;
+     };
+diff --git a/Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml b/Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml
+index e86c8053b366..fd785da5d3d7 100644
+--- a/Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml
+@@ -43,9 +43,9 @@ examples:
+     #include <dt-bindings/clock/bcm281xx.h>
+ 
+     pwm@3e01a000 {
+-       compatible = "brcm,bcm11351-pwm", "brcm,kona-pwm";
+-       reg = <0x3e01a000 0xcc>;
+-       clocks = <&slave_ccu BCM281XX_SLAVE_CCU_PWM>;
+-       #pwm-cells = <3>;
++        compatible = "brcm,bcm11351-pwm", "brcm,kona-pwm";
++        reg = <0x3e01a000 0xcc>;
++        clocks = <&slave_ccu BCM281XX_SLAVE_CCU_PWM>;
++        #pwm-cells = <3>;
+     };
+ ...
+-- 
+2.43.0
 
-Then you can use "arm,morello" here for the cores.
-
-Though some of this may depend on what the FVP's DTS looks like; is it
-going to claim to be a Morello SDP, or does there need to be a common
-denominator compatible beneath that it can use?
-
-Please CC me on future versions of this series.
-
-Jess
 
