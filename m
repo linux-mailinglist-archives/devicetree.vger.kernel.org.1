@@ -1,243 +1,190 @@
-Return-Path: <devicetree+bounces-136195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFDEFA042F3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:45:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B27C0A04307
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:47:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8954A1885C48
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:44:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E585162FB2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:47:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D874F1F2C29;
-	Tue,  7 Jan 2025 14:43:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18AD91F131F;
+	Tue,  7 Jan 2025 14:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KNNmTEPJ"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="e+K3y++t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2071.outbound.protection.outlook.com [40.107.22.71])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2F21EE7CD;
-	Tue,  7 Jan 2025 14:42:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736260982; cv=fail; b=StA8kH3noQXggKbxGLk01qMORXQAoLdW/HpaoBO4b+DO52mDy4poVTR1zpTMTwLxf5luxgB67sViWw+J8nRU32kLtMQjG18S9+iVOxTqdItQnmXFT7wePeIn/Rad6uVGXfxLVcpmsW1xhdoNEcudxauJ8awSYte0TgS+gwrRtww=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736260982; c=relaxed/simple;
-	bh=gswgQ3fNrOihkjL82dW9jyjaJHQpKt/O1GxDHCG11Gk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=QfANOc/5dbJfh3lgzmgMeMbpHs2OOaztpnslPQO37yoHD6LMdvkusNHfYIHwpH//SjDkXBZZKsSbQmdl1Ye8jOfj+Aja1dA/Rlp1LEgaFQrDb5Ty9+pflHmHK0u9jUv7d8Yjx5W7iMWbg3Z4TVOeiGPCM2xEm0v2bswf7VfY6C0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KNNmTEPJ; arc=fail smtp.client-ip=40.107.22.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n6KmiMWMe0PnRDk6u0fT9VG5Ia6bkpBjH/pJpm869jqVULlg0RuMjVRBfBiMnCkP4p8kPiSYyguqugEe+KtWsmyFuuzqMWXeh5yiU2pHacTNc4WqXp8FTOZO5ZSmmGP0veD1aB+2NjDefSY1FEKUU3nRf9lktezMsIZrvaoZhWrtg3q/v23q4gxK4UvUQSFwt8FKCakvHEtlJDvzETL/+PqJ8O1wr800udrU4v4MqMBKSsWc59ty5ggIj9nW6RWx0dYVfn4PZgINPl5PEufuGEpA9nxXWOI0JEPJsg/aLLX3wqEropRcHJYMRU+5KKaZuRraOr0AHqZD75ZeFjdLeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GWZBalUbL5FQUMfhe76loyd44YXEqrndkxbvkp2pHf0=;
- b=t584VbLBeoqtXBQRVh+F+36chd8SVvBGi/Brhu7cwpXh4MIYKgSq920fd8f5+8N/GRuIuFFxSKkNF2rT4oU30U2GLjPf+1y5OM7oYMJiml26mSEidNgHSletiic36YOcrTczuz37r53B2CtvfhlmmshbP3Utm/mdAAbDhXSQ91IuT1IuiBPDcjoLl+CGl9WH9Bqe+iLGqoD7IgBKkLWhRMhqLyRXYV4njWpO7+kQjrM7ID5HNVWKmgU6zCJ5Z6v1gvEDp4i9jBZE0ChkHwI+JsJg4rtFKZbgyuc/PM0Z+kQXPbyibpiywbWWOsnZw0+3koz8cyCcC4OBmX7RoJpRSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GWZBalUbL5FQUMfhe76loyd44YXEqrndkxbvkp2pHf0=;
- b=KNNmTEPJut4pYcl5b6A/leCf3X4jDcU3Jjabvy9JoY5nhrBylZNukAJy22x9dKiHxMhtwznXI5Nmo7sCqPRiYqUpMDOIRg3zS+aKI/DK/Mx1OIJgxpSHufXWwG8h56r4NGsKkWFMqMEt9FEW4ln/w2OsvJij2xBGnUdDvk0eQGCAhhcAhyUVqqUUW6i12nC6mBaTfULw/fpZ8XBH16aXYdq0Pokqq6EK+5XiKmF25PWG39qdOOkTdqu6psnueHBSj7qgf1jebi6LECYO2UQ/e7fWbK+ziP3awGVIQLFOnv0XaWkIhKXeBq9IH/M6sIvF8EMOx7uY/J5pwteVPJWMjA==
-Received: from PAXPR04MB9448.eurprd04.prod.outlook.com (2603:10a6:102:2b1::21)
- by DB8PR04MB6986.eurprd04.prod.outlook.com (2603:10a6:10:116::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Tue, 7 Jan
- 2025 14:42:57 +0000
-Received: from PAXPR04MB9448.eurprd04.prod.outlook.com
- ([fe80::51ae:5f12:9744:1abc]) by PAXPR04MB9448.eurprd04.prod.outlook.com
- ([fe80::51ae:5f12:9744:1abc%3]) with mapi id 15.20.8314.015; Tue, 7 Jan 2025
- 14:42:57 +0000
-From: Sandor Yu <sandor.yu@nxp.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	"dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>,
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, "airlied@gmail.com"
-	<airlied@gmail.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
-	<s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
-	"vkoul@kernel.org" <vkoul@kernel.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-phy@lists.infradead.org"
-	<linux-phy@lists.infradead.org>, "mripard@kernel.org" <mripard@kernel.org>
-CC: "kernel@pengutronix.de" <kernel@pengutronix.de>, dl-linux-imx
-	<linux-imx@nxp.com>, Oliver Brown <oliver.brown@nxp.com>, "sam@ravnborg.org"
-	<sam@ravnborg.org>
-Subject: RE: [EXT] Re: [PATCH v20 0/8] Initial support Cadence
- MHDP8501(HDMI/DP) for i.MX8MQ
-Thread-Topic: [EXT] Re: [PATCH v20 0/8] Initial support Cadence
- MHDP8501(HDMI/DP) for i.MX8MQ
-Thread-Index: AQHbUFBYEMByPt5N/EC0iD35ugqWV7MLCy0AgAAAWlA=
-Date: Tue, 7 Jan 2025 14:42:56 +0000
-Message-ID:
- <PAXPR04MB94483B3704FB62E12A009390F4112@PAXPR04MB9448.eurprd04.prod.outlook.com>
-References: <cover.1734340233.git.Sandor.yu@nxp.com>
- <2381464.ElGaqSPkdT@steina-w>
-In-Reply-To: <2381464.ElGaqSPkdT@steina-w>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB9448:EE_|DB8PR04MB6986:EE_
-x-ms-office365-filtering-correlation-id: 53e0ec4b-0ff0-4829-fcf3-08dd2f299365
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|7416014|376014|921020|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?fGGxleUj0BDlzkG81YDZGTOF3UPjqp/+R8UvLXFHTvDyf5Q2DhpF2/Z8vB?=
- =?iso-8859-1?Q?LKpxnT2EZTCsdRhL9BIewD4c278OA1yeZPcIucEPIDUzMBCtYvU+qpGnI3?=
- =?iso-8859-1?Q?PFhmUCO1Vpw9FFnhbOlMQ6bqw2+ej8pWwuWsaY+CNaLdapb/xGqxxZO2ux?=
- =?iso-8859-1?Q?VMMD7xkNs1mn7kcoEqJmG2TfD0dRECGlrvsL2LLmMFPUk4OVoK/UCKXnXD?=
- =?iso-8859-1?Q?qg2hr/zsu0KyQgR0dAZmJQ6lzu2uE1/O6HK5CqG2FmDeFiK6qx/by5fBv6?=
- =?iso-8859-1?Q?jde+mpoQ2eFH5gKyLGy5XGB+75p5gKSJ8rNDYbrWGC5wlK0NYRqfpbLpPD?=
- =?iso-8859-1?Q?bswrYDjp6o8FfhiNlOPM7QqfwciESy3BO9R2SFANZAmIys4ewMjtIlE7S8?=
- =?iso-8859-1?Q?aL5zTf8/marXS+uXDNnc0AZxyDzHwDK5+qexblAAopm7uA+kpfzRC1DwoW?=
- =?iso-8859-1?Q?z7cfBVrrbIkWuHKEovwHb7+olUxZ6hJtA6QoQycHz0Q7ShuX1VXKD+qWJs?=
- =?iso-8859-1?Q?h/o3QLyvUQj6DeM3kd3ZqaXz3XTqAoly9sPYo2/Wt7B8Zd2MbgE7yApJ2+?=
- =?iso-8859-1?Q?bpqadnJ9SmDSkE+eseo+17tigQ1bXX1ra4KnX+hfFzg6D3+cnlA0SiyHde?=
- =?iso-8859-1?Q?nYEy6KhLapZHyTcPNMREmH8pEgcLcRWfQ+AMaBEwoQhsREpHkEHWqqbseY?=
- =?iso-8859-1?Q?M9SLFHnIT52HaByg3pqVRS6Wm33Gn28FmuIHZeKTvDNx9Qf0MXY4n4IbYJ?=
- =?iso-8859-1?Q?Y2Y03HWKhAK9uOM9fYJ0XQTTfj5HMYqn9itY/GdXaySOXrxj6qn+KIcptM?=
- =?iso-8859-1?Q?3tHQkc3BTMWQHkb3Gf7MV2H0I6y+24LlSuV3EH8HQoXivtg585C5/opITW?=
- =?iso-8859-1?Q?Q8JZLdRL52s6eqdl5Ge5q/S8sP0REJi0UvEx5V9PNhhK8rSoh3rkNn0GV/?=
- =?iso-8859-1?Q?DZewKFWjVqOjoEakNHAGlsaSc4h5Zezsdk6bdLsY0LR5mjHTjHUaPYW+8Z?=
- =?iso-8859-1?Q?P6b5si5upZ1nO1jXAmEV0ThEdMoGy8Q0Zj4EK0OOFrsJQYCvNB3t4STGYS?=
- =?iso-8859-1?Q?Qi4IPTeiZV6OnVNxRxY+0k5TObIVtdp1SOQpp7xxOIFDJyTAu6xbW9ahqM?=
- =?iso-8859-1?Q?bTXNQBtPakVPLcOIKGpfMC1dDOZaebuEXYdlLduoOhgARCa/QEF0BVOc31?=
- =?iso-8859-1?Q?Q9mKYl+GARGqVwdslqJskR2IzHOKX9pyv+/yo4O7km90BXbzyDKBcY6wo3?=
- =?iso-8859-1?Q?m6TBQvioLHtNsr8Kem3C5h9T3RiiaQhG64rNI60yz7vYXYqXA657qw2nkC?=
- =?iso-8859-1?Q?iX8lylkvF8HGxUWM6ASUpdVQtiw//4Y2mNpkROeEg2mLsrk9qEyKVqrvyC?=
- =?iso-8859-1?Q?ALptbdoR2nVfTXN9F93erRuq6Qo7g57fitdNh4h8GCg3IkuXrH3mBjzDhE?=
- =?iso-8859-1?Q?EfVZ3tOJ9IGhMU2t6xiXCpGEexAVcIWSfY49aw=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9448.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(921020)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?g352m904vjqJQdG1H5DAmBJ4fSYV7P8RMePP/F9qfZ9+QXnmMVoDXsQN6b?=
- =?iso-8859-1?Q?fZ5YLCMnrTIUvYXpJ82BpB/0Kra5sFXyrUdA2BqSmBWeHi4cr8cm1qMDjF?=
- =?iso-8859-1?Q?pxzHSiyAqBe4DbkVToTgdEIJL5oAfdx/h2DZOUPg3k0PlKOIErLibox/eA?=
- =?iso-8859-1?Q?F/Wu174rE8wS9IfrVtyNHv/fJHVxXR4TYkoqbceQy+Iw/rSOtyDZk5LNt+?=
- =?iso-8859-1?Q?60D07raCqACgqWkvHUvTxNXxTKq/tu+cc8PZrwin3tVkofzMigJQ8Z7sJD?=
- =?iso-8859-1?Q?zpDXbJRI8JpF4oPA5JcusioAP7mHgi3DoHILuadGG+uJVOwlFsTzTx3tnL?=
- =?iso-8859-1?Q?LnS8W/HFS55H/2GYJoeW0tdpMxGytak75NJFpp/tPf0cckHG1PTqo/jdjS?=
- =?iso-8859-1?Q?s6hejVMZmzJyd251+pJXKZV1Smpzk+NYYtdEHX6dQd3xgqFZVDOX3UcOXO?=
- =?iso-8859-1?Q?Jncobcjff+OO7N22UgEmptXTbXlqpAlDCIk/oyGdtGf8ltKIzTt6s5w2Gu?=
- =?iso-8859-1?Q?Bs6pAb3+0ZCu7VXijh2/OpM6VSi6O81+gJiqjv14807sFl5Bo8MXGF3j1n?=
- =?iso-8859-1?Q?esVfHyhaWXR74N1ZdCjWYcsdRGzhgfJ1PtraIbEckY6PCGwOm/1lsZ6pYj?=
- =?iso-8859-1?Q?zem+wOyVuRvy4W2Z5uRPZe/cL8L9NJjvI/bDJaoceazr2k2xMzjsXOTe/6?=
- =?iso-8859-1?Q?cEOwNjJUFKwPvRnZ7hOX1z1kkqgBz8Yt+FLRbACu//Dmk5BmOsM/QVdmsc?=
- =?iso-8859-1?Q?idHUKTAQhJApZfzL6Cn2zdMUvPIVbpQR6nEv0qvGxorMuX04m4kq43ZdD7?=
- =?iso-8859-1?Q?da5VcWn/B9MsLjujKXfTqbP/lMqQFUgMVzFqlAvTvkuwri77Su7RlJTvo9?=
- =?iso-8859-1?Q?/4TW2rsjSLp7Hj1RIwdzo246ejGhxqvU4phua+L7smEVpAapBsh7ZBVFIT?=
- =?iso-8859-1?Q?y2JuOQP6g/hDCp9t+yF6soBa1sw/dYBtYvCfANJ5wUjZIa4eeyays6djSU?=
- =?iso-8859-1?Q?OWEkpF6xk0gspWQtXRX3+p4XZFXDAlFMieJI96BGzb+UJ/k6g4FY+NAQDA?=
- =?iso-8859-1?Q?gAEM5u+i3/pR1rHGXz31BO5pzo/5kmiFmxw0NAOmDPG3J1M5PDGEu73ma6?=
- =?iso-8859-1?Q?D8pj3xQkC7G8njYW2nuKmGMtnqaaPO70T+rEbCiFvh8FPXxxC+KhCPpguB?=
- =?iso-8859-1?Q?oZ2PbiyFsM0oo4PMdHphpcZt0Du/nmoA7APvqmUdX9qUjYbzfpcc7bcLuQ?=
- =?iso-8859-1?Q?Bzmt7ptRhlgMO36ODXLUhoT0Hh8yHg8enUcBaT3ooml4YYGB/6BoO3ahAw?=
- =?iso-8859-1?Q?2qIQZ2RtDhFe6/QQpWM8lLsVsMXm+fc5nNLHo6xHEi9gWu15nudMXhse1J?=
- =?iso-8859-1?Q?MehvCkQv3/3y+TAoK+uNUojgmEImhnVbPWJHMakjlrYFSrOmI5ecMDFwFx?=
- =?iso-8859-1?Q?R/RkX2HQ2/1wg7tgdToUaAPIdfqts/QmF+0JWuwQy5+ENzG6QFF24fCZ5p?=
- =?iso-8859-1?Q?D9pe8MPHOWCktWRS0nRzw3j3fYvJQG34SCiOWclwH4cg6/SpnOWtGFkSWU?=
- =?iso-8859-1?Q?FCspIH/9rzRfmcHK4NH5F5DHkFfMGX/YqpjijHWC8nJIIeOKwfQH+yXGO4?=
- =?iso-8859-1?Q?qoJ3zkzqy0Cmk=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40F431F190F;
+	Tue,  7 Jan 2025 14:46:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736261213; cv=none; b=iK0SxuVXCTD0zR567cJ7mlFTyPHPZBxXI+7RDVlS73b2u5T5FmKdwUYkG/7fbgeOYLOwFqRuvCj+Nm1T0nzkg3D2P7voyfxXnOD87IRkekN4xFf9mc0sNNRylJgihf/whoLzAq9EoJuHl4+N+iCouXhrPGCslv5ek2GZb5ugoBE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736261213; c=relaxed/simple;
+	bh=shUtQmgSAsr0UyAl3kef/rDp4R/6XlRBRzRVUxOxLgY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rV53gAcpv6TqT71q+nsztGd8zSQHK6N7MH5Ua3Wk/oTLj4Wg2xpoK0yHKE2Lh59lYJt3V+prsQJAP43OX4YzgyehuA1qkqAFqP/zbIowYQAi8NfNBo1owPuY0kILgtKqn13iITFKvPnLaAWzXRDLfvzm8yyNSJ+hLyDxoLDPENI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=e+K3y++t; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 507CSl8Y022183;
+	Tue, 7 Jan 2025 14:46:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=cxPAWL
+	+xin5vhaohLcuT2Ap42giFDWZcynaNDWdW+q8=; b=e+K3y++tUnqNiNA9nBLNVW
+	gx6CXe7emtQEL0KdWn8Iwyyk0FFaBKLpgeNkcq+pKe5scB5C2RKeH6yMgKa4DWot
+	kx7e9aoutEAYKzwZLajtW/8QSmH4sY/dOwiYSo6Tx8otiGxLW70dhBRW69cT113F
+	9w16nnuYWCAPMLZZ42NuMgz9hKHmKbVB3L9CeVhTBtAjJbp7QuBX1r/amhy7hQrd
+	aoGEAFpKoEr8oh1LPyygeb3fpybsUxbaJIy4TEkMr+4B4cPVN9clOh+KOOYoEjT4
+	bZ+U0Wsx4Pe9DLNVP5bDDtUH+aQ+NgGBcMQLwRKVvRsA01X5M1b3ufYso0RNpjjw
+	==
+Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 440sahkg16-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Jan 2025 14:46:16 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 507CmmI5008866;
+	Tue, 7 Jan 2025 14:46:15 GMT
+Received: from smtprelay07.wdc07v.mail.ibm.com ([172.16.1.74])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 43yfpyu1yq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Jan 2025 14:46:15 +0000
+Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
+	by smtprelay07.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 507EkF8M24052330
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 7 Jan 2025 14:46:15 GMT
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id EC95858062;
+	Tue,  7 Jan 2025 14:46:14 +0000 (GMT)
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 66C755805E;
+	Tue,  7 Jan 2025 14:46:14 +0000 (GMT)
+Received: from [9.24.12.86] (unknown [9.24.12.86])
+	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Tue,  7 Jan 2025 14:46:14 +0000 (GMT)
+Message-ID: <3ffe898a-6146-4001-9d7a-53b45fbc8945@linux.ibm.com>
+Date: Tue, 7 Jan 2025 08:46:14 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9448.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53e0ec4b-0ff0-4829-fcf3-08dd2f299365
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jan 2025 14:42:56.9493
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yY+1hSe4QYpYETnY8SpyLXcl1ohFDOOg6QV17reem5c56GWZbnfMG428DCanB5Yn26mX7mqB0kI2cVzgVDSh6A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6986
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/8] DTS updates for system1 BMC
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: andrew@codeconstruct.com.au, linux-arm-kernel@lists.infradead.org,
+        krzk+dt@kernel.org, eajames@linux.ibm.com, joel@jms.id.au,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, conor+dt@kernel.org
+References: <20241213145037.3784931-1-ninad@linux.ibm.com>
+ <173436597537.264948.12611164276777551472.robh@kernel.org>
+Content-Language: en-US
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <173436597537.264948.12611164276777551472.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: OWui3oiuVa11k1Zs0pdqjBoTK3NqWjdc
+X-Proofpoint-ORIG-GUID: OWui3oiuVa11k1Zs0pdqjBoTK3NqWjdc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ adultscore=0 mlxlogscore=948 impostorscore=0 priorityscore=1501
+ clxscore=1015 lowpriorityscore=0 spamscore=0 suspectscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501070122
 
-Hi Alexander
+Hello Rob,
 
-It may cause by the first preferred mode in EDID is not supported by driver=
-.
-Please use modetest or other user application to change the video mode to C=
-TA standard modes.
-Such as148.5MHz 1080p60 or 594MHz 3840x2160p60.
+Thanks for the review. Sorry for the late reply due to vacation.
 
-B.R
-Sandor
+On 12/16/24 10:29, Rob Herring (Arm) wrote:
+> On Fri, 13 Dec 2024 08:50:26 -0600, Ninad Palsule wrote:
+>> Hello
+>>
+>> Please review the patch set. It has various device tree changes for
+>> system1 BMC after hardware testing.
+>>
+>> NINAD PALSULE (7):
+>>    ARM: dts: aspeed: system1: Add IPMB device
+>>    ARM: dts: aspeed: system1: Add GPIO line name
+>>    ARM: dts: aspeed: system1: Add RGMII support
+>>    ARM: dts: aspeed: system1: Reduce sgpio speed
+>>    ARM: dts: aspeed: system1: Update LED gpio name
+>>    ARM: dts: aspeed: system1: Remove VRs max8952
+>>    ARM: dts: aspeed: system1: Mark GPIO line high/low
+>>
+>> Ninad Palsule (1):
+>>    ARM: dts: aspeed: system1: Disable gpio pull down
+>>
+>>   .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 178 ++++++++++++------
+>>   1 file changed, 119 insertions(+), 59 deletions(-)
+>>
+>> --
+>> 2.43.0
+>>
+>>
+>>
+>
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>
+>    pip3 install dtschema --upgrade
+>
+>
+> New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-ibm-system1.dtb' for 20241213145037.3784931-1-ninad@linux.ibm.com:
+>
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: ethernet@1e660000: phy-mode:0: 'rgmii-rxid' is not one of ['rgmii', 'rmii']
+> 	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
+Added rgmii-rxid mode in the yaml file.
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: gpio@1e780000: 'fan_controller_reset', 'isolate_errs_cpu1', 'rtc_reset', 'srtc_reset' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
+
+I am still not sure about this error.
+
+/home/ninad/dev/sbp1/linux/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: 
+gpio@1e780000: 'hog-0', 'hog-1', 'hog-2', 'hog-3' do not match any of 
+the regexes: 'pinctrl-[0-9]+'
+     from schema $id: 
+http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
+
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: rtc_reset: $nodename:0: 'rtc_reset' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-hog.yaml#
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: srtc_reset: $nodename:0: 'srtc_reset' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-hog.yaml#
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: fan_controller_reset: $nodename:0: 'fan_controller_reset' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-hog.yaml#
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: isolate_errs_cpu1: $nodename:0: 'isolate_errs_cpu1' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+> 	from schema $id: http://devicetree.org/schemas/gpio/gpio-hog.yaml#
+Changed to generic name hog-0...3
+> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb@1e780000/bus@1e78a000/i2c@280/bmc_slave@10: failed to match any schema with compatible: ['ipmb-dev']
+
+Documented IPMB device interface.
+
+Regards,
+
+Ninad
 
 >
-> Hi Sandor,
 >
-> thanks for the updates.
 >
-> Am Dienstag, 17. Dezember 2024, 07:51:42 CET schrieb Sandor Yu:
-> > The patch set initial support Cadence MHDP8501(HDMI/DP) DRM bridge
-> > driver and Cadence HDP-TX PHY(HDMI/DP) driver for Freescale i.MX8MQ.
-> >
-> > The patch set compose of DRM bridge drivers and PHY driver.
-> >
-> > Both of them need by patch #1 and #3 to pass build.
-> >
-> > DRM bridges driver patches:
-> >   #1: soc: cadence: Create helper functions for Cadence MHDP
-> >   #2: drm: bridge: cadence: Update mhdp8546 mailbox access functions
-> >   #3: phy: Add HDMI configuration options
-> >   #4: dt-bindings: display: bridge: Add Cadence MHDP8501
-> >   #5: drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
-> >
-> > PHY driver patches:
-> >   #1: soc: cadence: Create helper functions for Cadence MHDP
-> >   #3: phy: Add HDMI configuration options
-> >   #6: dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
-> >   #7: phy: freescale: Add DisplayPort/HDMI Combo-PHY driver for
-> > i.MX8MQ
-> >
-> > i.MX8M/TQMa8Mx DT patches:
-> >   #8: Add DT nodes for DCSS/HDMI pipeline
-> >   #9: Enable HDMI for TQMa8Mx/MBa8Mx
-> >
 >
-> I gave this version a new try but unfortunately the display stays black.
-> Although the display pipeline is intialized and even wayland starts.
-> Do you have any idea where to start looking?
 >
-> Best regards,
-> Alexander
-> --
-> TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-> Amtsgericht M=FCnchen, HRB 105018
-> Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-> http://www.tq/
-> -group.com%2F&data=3D05%7C02%7CSandor.yu%40nxp.com%7C734ea27ba98
-> 140b7483e08dd2eed1276%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%
-> 7C0%7C638718317967624410%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU
-> 1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIs
-> IldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3D1HdQdbye9p5AHoT7JCF3Md%
-> 2FB9k9tyN%2FW25YKCEngvWM%3D&reserved=3D0
 >
-
 
