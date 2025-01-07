@@ -1,85 +1,125 @@
-Return-Path: <devicetree+bounces-136160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5943BA0415E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:59:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8173FA0419D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:07:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4783E165A6A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:59:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F02B1888B4B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD64A1EE03B;
-	Tue,  7 Jan 2025 13:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493EA1F669F;
+	Tue,  7 Jan 2025 14:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bn+4CxlD"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="N2zWC/+K";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="KO5rrJF5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2718156F3F;
-	Tue,  7 Jan 2025 13:59:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C5F1F2376;
+	Tue,  7 Jan 2025 14:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736258395; cv=none; b=pBBFZolbY7EeGVaJlFebE6egzDSdW4NIBYEWCmzTipWd6+K/+MxYujIHhL4J0x3bNuKxX4AylDWC3yxzUPt3UeZkryk3NxokerpaPVH5a7DZs2Z1EicLvOttn0XJDS8Zg9IDEA4z28ajIob41QA2N0XFRl20pAIJdsy7gpP62RQ=
+	t=1736258488; cv=none; b=q4Gfr8JLw7PpfxWO+0ydQ0fnLfCQkQQGNUE10phRYsQeQGVn/EwXXbloX6BXUrwl6pOEiOnk/Qef/F1VXkwXdGve0dvRbk24Jya95j6HijZRxN23fXCy5QhCIZp7Y0W+Y+86WsFK+wIwzRW/p2xgKi+2cTdWIo3rU0T3hHaO1x8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736258395; c=relaxed/simple;
-	bh=L7eQrOeAfRkfMKCFDTnOc1QtRjDr4z/HI+RTxASHF2s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XrcQkkgplgLFh7DZB0wrcubV6RO6iufQODDkiqrIZNFXCvkCgvVmmA8/DZvFsiKoHWALnw6HtddX/Fq9RO4uJTsj05PNvWEZcP+5Mu/ws8aHhAce0JhhvINCignVvO8wfbOzAI5sZFt6MKyLEAFifurRUrzibXxRHEq4nukiR98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bn+4CxlD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89F39C4CED6;
-	Tue,  7 Jan 2025 13:59:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736258395;
-	bh=L7eQrOeAfRkfMKCFDTnOc1QtRjDr4z/HI+RTxASHF2s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Bn+4CxlDXtdfH7ozLweXfLH2CElYBUI2pac4tlNZTDhBRa/Ab+u05JKkZAKvhsuLV
-	 sHswtkIXBeI/C1U7qmfbVJsTmX2MKJCJ9n81BOklrWiv8NnUIa50nwpXRbAHRhv0LK
-	 /m6fxDkI1F097O/b3+Rt2rqGQs9ZCnaG9jNwbxcUjZ+yZkCynyeZpIpdbo9VKHfTG2
-	 xGxhfMAzQtjBAc3J3toFfFnNeu5gqcpSRvaZH0z+imTQfNC6w1UcIVvxjUi38WsqQZ
-	 4VRZTtVCKQvcoflSvZVfT61phhrRysliNmNEdRoOZyNx1KlOMlnwW2gI7LlKfpQn82
-	 snRyLJTkM2rWQ==
-Message-ID: <00bea5d9-4a53-417a-911a-10ceead88b3d@kernel.org>
-Date: Tue, 7 Jan 2025 15:59:50 +0200
+	s=arc-20240116; t=1736258488; c=relaxed/simple;
+	bh=mOv6IoOD6IS+Yf4DEqWJY/5DaJc84Guis08xKw4FqMA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XF1dQc33/jF93RcbSwQTR8N41fkZVKRnjZQCvcKS9NaeAr6TtdeGPHNTM7oLeWHlsL2zK/RKbRQ8l0ERjwSnJcM4YsGoIVKmfpl8pZz5rAg/GW1E3tWLdGQgypwA3eALS/0DxuI+CYo83xXLqx04NNri31SpQ2JXlo/JXq/D6jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=N2zWC/+K; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=KO5rrJF5 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1736258483; x=1767794483;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=5dWVUsjgYCfyghVbl/aVOvjNHhBfWKNBo9KEyUYVOsQ=;
+  b=N2zWC/+Kc7MYIX34KMZDgjlC2iNN69+LMClE1gkQmobNwe+21oqGOysf
+   x6MvXXyGfvAcyUwCXsInKjfer2ybogBHx0GBm0R0b0mKHu1n3Yl0tP+Ed
+   gluLFKZtKMY2eV7p9f18AvlDY89UPTOchsc+IHPM/tMGm0S0gBibKHa7+
+   E2UOwf0IpZwoFbScLsZVfLIeptRXRATtDTnuKCbsmqTwm409Re8CanGAr
+   bZTODFfXNum2Hi5pxS5qRO+OS/C6Fy7yidDBCSu5valo0LRjmgqG32wor
+   7RY9ZF6b1nuklFYHDOl+FFyzALNhWEt0lU2NXAU4sHMCQwbBWrTXSOZsy
+   g==;
+X-CSE-ConnectionGUID: K0rj5RPgSYezIE56GMO7qw==
+X-CSE-MsgGUID: nS7yo3ndQ/eDyIYEfEslOQ==
+X-IronPort-AV: E=Sophos;i="6.12,295,1728943200"; 
+   d="scan'208";a="40896215"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 07 Jan 2025 15:01:20 +0100
+X-CheckPoint: {677D33B0-43-1D00F64B-E6C57517}
+X-MAIL-CPID: 4747FB3F406B0D7ACCA7EA030A363758_3
+X-Control-Analysis: str=0001.0A682F17.677D33B0.00C5,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5A175160B22;
+	Tue,  7 Jan 2025 15:01:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1736258476;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=5dWVUsjgYCfyghVbl/aVOvjNHhBfWKNBo9KEyUYVOsQ=;
+	b=KO5rrJF5ND2e3Vm/STvtn6q9zoYW4P/7BzrdeT/Qd+0L1Q7ZXHYujXmtek1qVz4PjQ7N2x
+	/f+vlBucbloVM0GZAEuwtkTwjDsQv9qHUGt6JzCDbgFM9ucWDSlZkmogPX0UpduXDq+mzX
+	8/iG9NMYTRYGIEG2H1qxnsTJln23WfBa7NSzAV+hmR4GhEtSeIkqY4owP3lBcMysCND+i6
+	cqnLhGpoWha0UitJUOs5XR5omKAYClplKo3EOP0voavmW1YP35lurZG8zC3PPbaXVlxKtb
+	NjFSu7zqDt8nnzc5PDLnMwyY26Ei/z7QqTgKLmpUaASNoByk/8L71O5icKhYLw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com
+Subject: [PATCH 0/5] TQMa8Xx update
+Date: Tue,  7 Jan 2025 15:01:05 +0100
+Message-Id: <20250107140110.982215-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am68-sk*: Add bootph-all property
- to necessary nodes to enable Ethernet boot
-To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
- Nishanth Menon <nm@ti.com>
-Cc: srk@ti.com, s-vadapalli@ti.com, danishanwar@ti.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250106123122.3531845-1-c-vankar@ti.com>
- <20250106123122.3531845-2-c-vankar@ti.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20250106123122.3531845-2-c-vankar@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hi,
 
+this small series updates the TQMa8Xx support:
+* Add vcc-supply for spi-nor
+* Enable JPEG decoder/encoder
+* Remove obsolete TODO
+* Add PCIe support on Mini-PCIe slot
 
-On 06/01/2025 14:31, Chintan Vankar wrote:
-> Ethernet boot requires CPSW nodes to be present starting from R5 SPL
-> stage. Add bootph-all property to necessary nodes for CPSW to enable those
-> nodes during SPL stage along with later boot stages for AM68-SK.
-> 
-> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+The first patch is not necessary for PCIe support, but fixes the warning
+> imx6q-pcie 5f010000.pcie: Invalid eDMA IRQs found
 
-Reviewed-by: Roger Quadros <rogerq@@kernel.org>
+Best regards,
+Alexander
+
+Alexander Stein (5):
+  arm64: dts: imx8-ss-hsio: Wire up DMA IRQ for PCIe
+  arm64: dts: tqma8xx: Add vcc-supply for spi-nor
+  arm64: dts: tqma8xx: enable jpeg encode and decode
+  arm64: dts: tqma8xx: Remove GPU TODO
+  arm64: dts: mba8xx: Add PCIe support
+
+ .../boot/dts/freescale/imx8-ss-hsio.dtsi      |  5 +--
+ arch/arm64/boot/dts/freescale/mba8xx.dtsi     | 32 ++++++++++++++++---
+ arch/arm64/boot/dts/freescale/tqma8xx.dtsi    | 12 +++++--
+ 3 files changed, 40 insertions(+), 9 deletions(-)
 
 -- 
-cheers,
--roger
+2.34.1
 
 
