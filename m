@@ -1,612 +1,179 @@
-Return-Path: <devicetree+bounces-136126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B00FA03F98
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:46:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B270A03FA8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:48:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C5F13A1CAA
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:45:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CFB11886A39
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E073D1F03C8;
-	Tue,  7 Jan 2025 12:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 185661EF0B8;
+	Tue,  7 Jan 2025 12:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b="phU4v61U"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O6NdowBr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38471F0E45
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00DF01EF08D;
+	Tue,  7 Jan 2025 12:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736253907; cv=none; b=jeyO3105wL0/9x1+kKyHu31fZlpwRLSPsnacvcf5zggDU9lOVxeCmn2m15P55duS6fYLi2TyeLb1IeSndxFmAsoHXwFHVAI6h4guc26ZoLuyo5heUUirIaHfi+FcdK+EvfG8Du3U2TwLEpNzynlePW4TbA69nvrhfF185KzQ63w=
+	t=1736254072; cv=none; b=Bu2Hf2TTr2hQjW2LidpGiWnWl4PM8KWOLGA9LjnX+hjJRPTQKOkZDCjq/5DIgd7Cq4XsR6Fy29JnB6JHXzRtxYTxuSQcPb1fOXBSuImINGpc97DeIc/uy1qb7XqdC9BkVVZqW7A//yACk17huSsex0iIHqJPZUE9BnG4ZAff1Lk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736253907; c=relaxed/simple;
-	bh=edPqHMnayJBbsLU0Uv9SUvrunVcLH0Q1V5Cd1c7z8jg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G7X/eMufGE35C5NAtlCk0fPMVusC09ArewOJOIEb4LyeKRj5rc3+FOu3yzmrGYYEFB12YawRzzHF3SzRCbHfrKP+S6fHcOgn9kn8Z6AOvkT+rh2wLoQme5g/KE7NRI4FNA7jkC7CBS4yn4VdhiC0V4eKXI7aIWmogV5GICLcKTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com; spf=pass smtp.mailfrom=jrtc27.com; dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b=phU4v61U; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jrtc27.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4361f796586so159433705e9.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:45:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user; t=1736253901; x=1736858701; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=c3LrOk6qo91rafb6+/CO9ESt0s5VAorqbYZYMCcT99w=;
-        b=phU4v61UH1U8oYBZpLW2aM7A4nm6hADQycTuUe2324oIyPpRW1S4E47OarFlIdQLIF
-         milpws68Ny1DnTxVIn3TxJrzfUCCK/9E4vcaK7lbqeFBNw2OAQbXpgS22Zr3TG19MXK9
-         99AhA2a9LhaLbAp9c5wmdPyDJWuO6uBab66blWL2rFPLB0c0Yi6ZGBUqd2Upnao8eJYY
-         D2l2+cJn0J4JEHGZ/IWa/pc+vSJ1YsD3Nyb/AJ1baVFIgv7ouc6MwUNaPQuC8d6VzySR
-         WFpCzvz4emTMlwH2n1IjnHBsD7IZ2mODmKxHJqZwcctZAakyVKgLZ4alBd3DtuoU766F
-         s3eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736253901; x=1736858701;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c3LrOk6qo91rafb6+/CO9ESt0s5VAorqbYZYMCcT99w=;
-        b=ROFk1fiuyeLdbs/0fJbpv7G022A2q8Eq+JGpwcu8J+jziakvH0Rpl5dzrG3oyFz3eZ
-         Y4coYH2Cy/cmIVlEYKTbqDOdwSPQ2o2QfRFRV2QWK0MwGyWKrM3hkep2h7/OgN88L8OB
-         Ehf8XaiFVlpF5HYVbT9uf9Nw3RQJ7YfW/yLWXyjL2reyRCTEFTYY4M9p6j3jCoRvsPz0
-         ZSdWdYSg+zJ9S5mB1V7kez4lZOYrrRMF+qjRgQUBq2AmtkaS5in7VkxY5HQtJvPDpLjb
-         fv/VCC70HSAOn+L8Qxhvtdla/oL1JWldl9eCY+rybVq02RAoQsusErGjDwpdBXJi7Mz9
-         NB5w==
-X-Gm-Message-State: AOJu0YyiK1T++d1QYXWVExsfoeoLkQzuITLoPnwJdzX6FXmDXrK9vu1+
-	rMrrBF3pytBy1exzcBRsPGbpCEp0XLXIZ18fqCO4hYX/2OXC1CgzqDE+uEL8OfQ=
-X-Gm-Gg: ASbGnctAErPRYL4Jz9loPOd2XNIxGk187Kzu5nEVCSn/mtG9S31V+uFKi08ICMQBHtc
-	12Q+nCQIynd8kW4FxW6dhzi1O/oI417ArRlR9vwKHUxNS3JJQzkOV4rXy/LvAHMXnm4H3siMvfD
-	guQP8gvBPdpcpZk4tkqDndvd3Rx+9gXooV3edSNdrmYUwDoO4YUleQfg7Soapf1xO6UOxi+2wyd
-	LPNsW8XaI6+SvUowo4+WLSw180v7NSQQWcfphXsqx094igY5yFj2AbCzdQ6m7iuFp2+Mi+VkOwb
-	7CtJLwx/XkWjdEY=
-X-Google-Smtp-Source: AGHT+IHZjNr6wN1CLnlIkgb4k+SwHQIv3FuuIKcFhhoRcQa1qzg2+v7fOpJLPuyuSraeTPSYtP99Ew==
-X-Received: by 2002:a05:600c:4586:b0:431:5c3d:1700 with SMTP id 5b1f17b1804b1-43668a3a3c4mr477363735e9.21.1736253900644;
-        Tue, 07 Jan 2025 04:45:00 -0800 (PST)
-Received: from Jessicas-MacBook-Pro.localdomain ([131.111.5.201])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656af6aeesm633713345e9.6.2025.01.07.04.45.00
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Tue, 07 Jan 2025 04:45:00 -0800 (PST)
-Received: by Jessicas-MacBook-Pro.localdomain (Postfix, from userid 501)
-	id 928D7CDDD8C9; Tue,  7 Jan 2025 12:44:58 +0000 (GMT)
-Date: Tue, 7 Jan 2025 12:44:58 +0000
-From: Jessica Clarke <jrtc27@jrtc27.com>
-To: Vincenzo Frascino <vincenzo.frascino@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH v4 2/4] arm64: dts: morello: Add support for common
- functionalities
-Message-ID: <Z30hypjCMmSsf81L@Jessicas-MacBook-Pro>
-References: <20250103181623.1980433-1-vincenzo.frascino@arm.com>
- <20250103181623.1980433-3-vincenzo.frascino@arm.com>
+	s=arc-20240116; t=1736254072; c=relaxed/simple;
+	bh=LQ+Vdd7Z5kAgBsQhJ5rMrLrEbbavYFLs9RzON+vTKTs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bpNGuVlc5jJoecpqJ01pl1Sg8OmtJkdBM6ndjOjr62x15ayDqAYyYIE5eEYPW7mTzlqK/H7THOa8gVv6x12mh4VTjHI1rDKpSF1ocJkfEz2SzzFK9xLM+Fxihy377iqj57O9bBm58JI2rCyWp0qX1odqEf0/sTrtGmyOODZlGzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O6NdowBr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5078bsnS011346;
+	Tue, 7 Jan 2025 12:47:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	R/udDLdHhcyCxkm6qe0P6CKQap5rHWoBYBtIhAwJEA4=; b=O6NdowBra/SNYVcv
+	Mp7f/XA0CVX4zWiGJ8QPjg7ybzMtKmwpQIP2AfNisedK7BWSNv2zrl6a5UaNxmrc
+	ezqLlqcg8bpIojkSH6MIosQ9gLbxI8PBmyhp0YZtXLoFydVzedAvNMC2qhevnbDx
+	nVMMX4WKRMVOiznQ+TyeoO61YBfOFCWqB0QVtK7xjpeV2hBlIGjZPyz8CkafBj1W
+	4ygowiRZ9KdyXJH2kYYd9xUEqGuZzOEux/zv54ip0lgxG+7i1YQQNu+btWxvl7nH
+	omi9AEPupRwJJOWE9A09ZDoDNAag6AsLUVY5sKI6xxOBLE1njV4nQPixuiKT/nE3
+	HTx2JQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4410x2rkqa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Jan 2025 12:47:41 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 507Clecg013456
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 Jan 2025 12:47:40 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 Jan 2025
+ 04:47:34 -0800
+Message-ID: <fd61c298-f271-4e21-b1e1-dee1029e978d@quicinc.com>
+Date: Tue, 7 Jan 2025 20:47:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250103181623.1980433-3-vincenzo.frascino@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/16] dt-bindings: media: camss: Add qcom,sm8550-camss
+ binding
+To: Hans Verkuil <hverkuil@xs4all.nl>, Krzysztof Kozlowski <krzk@kernel.org>
+CC: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vladimir.zapolskiy@linaro.org>,
+        <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Yongsheng Li
+	<quic_yon@quicinc.com>
+References: <20241225133523.4034820-1-quic_depengs@quicinc.com>
+ <20241225133523.4034820-13-quic_depengs@quicinc.com>
+ <ql3sufugcdpoxqgvs2f4clmbnx75t4jh6ts2ryneu2u5oeuwzn@yizcouuzfj2s>
+ <eedaa77a-8070-41c8-a05b-b124d37ac093@quicinc.com>
+ <a0eafc67-2ebf-4d2a-8213-c30c3c317a1a@xs4all.nl>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <a0eafc67-2ebf-4d2a-8213-c30c3c317a1a@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: POuA7D1iMZFwM96Hr_44AveRt_5hMS8K
+X-Proofpoint-ORIG-GUID: POuA7D1iMZFwM96Hr_44AveRt_5hMS8K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ lowpriorityscore=0 bulkscore=0 mlxscore=0 malwarescore=0 clxscore=1011
+ phishscore=0 adultscore=0 mlxlogscore=999 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501070106
 
-On Fri, Jan 03, 2025 at 06:16:21PM +0000, Vincenzo Frascino wrote:
-> The Morello architecture is an experimental extension to Armv8.2-A,
-> which extends the AArch64 state with the principles proposed in
-> version 7 of the Capability Hardware Enhanced RISC Instructions
-> (CHERI) ISA.
+Hi Hans,
+
+On 1/6/2025 10:00 PM, Hans Verkuil wrote:
+> On 04/01/2025 14:40, Depeng Shao wrote:
+>> Hi Krzysztof,
+>>
+>> On 12/27/2024 5:10 PM, Krzysztof Kozlowski wrote:
+>>> On Wed, Dec 25, 2024 at 07:05:19PM +0530, Depeng Shao wrote:
+>>>> Add bindings for qcom,sm8550-camss in order to support the camera
+>>>> subsystem for sm8550.
+>>>>
+>>>> Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
+>>>> Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
+>>>> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
+>>>> ---
+>>>
+>>> Is this v7 or v1? Same issue was all the time in the past, so why can't
+>>> you finally fix it?
+>>>
+>>> Look:
+>>>
+>>> $ b4 diff 20241225133523.4034820-13-quic_depengs@quicinc.com
+>>> Breaking thread to remove parents of 20241225133523.4034820-1-quic_depengs@quicinc.com
+>>> Checking for older revisions
+>>> Grabbing search results from lore.kernel.org
+>>>     Added from v6: 1 patches
+>>> ---
+>>> Analyzing 217 messages in the thread
+>>> Could not find lower series to compare against.
+>>>
+>>> I am not going to perform review, maybe other maintaners have spare
+>>> time to deal with this submission process.
+>>
+>> Really sorry, I made a foolish mistake. I didn't realize that the patch
+>> subject was missing the version number, which might be why the b4 diff
+>> couldn't detect the old series. Thank you for pointing out this error.
+>> Could you please advise whether I should resend v7 or fix it in next
+>> version series?
 > 
-> The Morello Platform (soc) and the Fixed Virtual Platfom (fvp) share
-> some functionalities that have conveniently been included in
-> morello.dtsi to avoid duplication.
+> I marked this series as 'Changes Requested' in our media patchwork because
+> of this issue.
 > 
-> Introduce morello.dtsi.
+> So resend it as v8 with the proper [PATCH v8 ...] subject.
 > 
-> Note: Morello fvp will be introduced with a future patch series.
+
+Thanks for the comments, I will follow your guidance to resend it.
+
+> It's a nightmare for maintainers/reviewers if it isn't clear if a patch series
+> supersedes a previous series, so it is important that you do this right.
 > 
-> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
-> ---
->  arch/arm64/boot/dts/arm/morello.dtsi | 467 +++++++++++++++++++++++++++
->  1 file changed, 467 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/arm/morello.dtsi
+> Regards,
 > 
-> diff --git a/arch/arm64/boot/dts/arm/morello.dtsi b/arch/arm64/boot/dts/arm/morello.dtsi
-> new file mode 100644
-> index 000000000000..0089b4f2eca7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/arm/morello.dtsi
-> @@ -0,0 +1,467 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
-> +/*
-> + * Copyright (c) 2020-2024, Arm Limited. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	interrupt-parent = <&gic>;
-> +
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	clocks {
-> +		soc_refclk50mhz: clock-50000000 {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <50000000>;
-> +			clock-output-names = "apb_pclk";
-> +		};
-> +
-> +		soc_uartclk: clock-50000000-uart {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <50000000>;
-> +			clock-output-names = "uartclk";
-> +		};
-> +
-> +		soc_refclk85mhz: clock-85000000 {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <85000000>;
-> +			clock-output-names = "iofpga:aclk";
-
-If this is ACLK for the IOFPGA outside the SoC, why is it called soc_refclk85mhz?
-
-Not that it seems to be used in this patch series.
-
-> +		};
-> +
-> +		dpu_aclk: clock-350000000 {
-> +			/* 77.1 MHz derived from 24 MHz reference clock */
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <350000000>;
-> +			clock-output-names = "aclk";
-> +		};
-> +
-> +		dpu_pixel_clk: clock-148500000 {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <148500000>;
-> +			clock-output-names = "pxclk";
-> +		};
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			compatible = "arm,neoverse-n1";
-> +			reg = <0x0 0x0>;
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			/* 4 ways set associative */
-> +			i-cache-size = <0x10000>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <512>;
-> +			d-cache-size = <0x10000>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <512>;
-> +			next-level-cache = <&l2_0>;
-> +			clocks = <&scmi_dvfs 0>;
-> +
-> +			l2_0: l2-cache-0 {
-> +				compatible = "cache";
-> +				cache-level = <2>;
-> +				/* 8 ways set associative */
-> +				cache-size = <0x100000>;
-> +				cache-line-size = <64>;
-> +				cache-sets = <2048>;
-> +				cache-unified;
-> +				next-level-cache = <&l3_0>;
-> +
-> +				l3_0: l3-cache {
-> +					compatible = "cache";
-> +					cache-level = <3>;
-> +					cache-size = <0x100000>;
-> +					cache-unified;
-> +				};
-> +			};
-> +		};
-> +
-> +		cpu1: cpu@100 {
-> +			compatible = "arm,neoverse-n1";
-> +			reg = <0x0 0x100>;
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			/* 4 ways set associative */
-> +			i-cache-size = <0x10000>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <512>;
-> +			d-cache-size = <0x10000>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <512>;
-> +			next-level-cache = <&l2_1>;
-> +			clocks = <&scmi_dvfs 0>;
-> +
-> +			l2_1: l2-cache-1 {
-> +				compatible = "cache";
-> +				cache-level = <2>;
-> +				/* 8 ways set associative */
-> +				cache-size = <0x100000>;
-> +				cache-line-size = <64>;
-> +				cache-sets = <2048>;
-> +				cache-unified;
-> +				next-level-cache = <&l3_0>;
-> +			};
-> +		};
-> +
-> +		cpu2: cpu@10000 {
-> +			compatible = "arm,neoverse-n1";
-> +			reg = <0x0 0x10000>;
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			/* 4 ways set associative */
-> +			i-cache-size = <0x10000>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <512>;
-> +			d-cache-size = <0x10000>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <512>;
-> +			next-level-cache = <&l2_2>;
-> +			clocks = <&scmi_dvfs 1>;
-> +
-> +			l2_2: l2-cache-2 {
-> +				compatible = "cache";
-> +				cache-level = <2>;
-> +				/* 8 ways set associative */
-> +				cache-size = <0x100000>;
-> +				cache-line-size = <64>;
-> +				cache-sets = <2048>;
-> +				cache-unified;
-> +				next-level-cache = <&l3_0>;
-> +			};
-> +		};
-> +
-> +		cpu3: cpu@10100 {
-> +			compatible = "arm,neoverse-n1";
-> +			reg = <0x0 0x10100>;
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			/* 4 ways set associative */
-> +			i-cache-size = <0x10000>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <512>;
-> +			d-cache-size = <0x10000>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <512>;
-> +			next-level-cache = <&l2_3>;
-> +			clocks = <&scmi_dvfs 1>;
-> +
-> +			l2_3: l2-cache-3 {
-> +				compatible = "cache";
-> +				cache-level = <2>;
-> +				/* 8 ways set associative */
-> +				cache-size = <0x100000>;
-> +				cache-line-size = <64>;
-> +				cache-sets = <2048>;
-> +				cache-unified;
-> +				next-level-cache = <&l3_0>;
-> +			};
-> +		};
-> +	};
-> +
-> +	firmware {
-> +		interrupt-parent = <&gic>;
-> +
-> +		scmi {
-> +			compatible = "arm,scmi";
-> +			mbox-names = "tx", "rx";
-> +			mboxes = <&mailbox 1 0>, <&mailbox 1 1>;
-> +			shmem = <&cpu_scp_hpri0>, <&cpu_scp_hpri1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			scmi_dvfs: protocol@13 {
-> +				reg = <0x13>;
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			scmi_clk: protocol@14 {
-> +				reg = <0x14>;
-> +				#clock-cells = <1>;
-> +			};
-> +		};
-> +	};
-> +
-> +	/* The first bank of memory, memory map is actually provided by UEFI. */
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* [0x80000000-0xffffffff] */
-> +		reg = <0x00000000 0x80000000 0x0 0x7f000000>;
-> +	};
-> +
-> +	memory@8080000000 {
-> +		device_type = "memory";
-> +		/* [0x8080000000-0x83f7ffffff] */
-> +		reg = <0x00000080 0x80000000 0x3 0x78000000>;
-> +	};
-> +
-> +	pmu {
-> +		compatible = "arm,armv8-pmuv3";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-0.2";
-> +		method = "smc";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		secure-firmware@ff000000 {
-> +			reg = <0x0 0xff000000 0x0 0x01000000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	spe-pmu {
-> +		compatible = "arm,statistical-profiling-extension-v1";
-> +		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	soc: soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		interrupt-parent = <&gic>;
-> +		ranges;
-> +
-> +		dp0: display@2cc00000 {
-> +			compatible = "arm,mali-d32", "arm,mali-d71";
-> +			reg = <0x0 0x2cc00000 0x0 0x20000>;
-> +			interrupts = <0 69 4>;
-> +			clocks = <&dpu_aclk>;
-> +			clock-names = "aclk";
-> +			iommus = <&smmu_dp 0>, <&smmu_dp 1>, <&smmu_dp 2>, <&smmu_dp 3>,
-> +				 <&smmu_dp 8>;
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			pl0: pipeline@0 {
-> +				reg = <0>;
-> +				clocks = <&dpu_pixel_clk>;
-> +				clock-names = "pxclk";
-> +				port {
-> +					dp_pl0_out0: endpoint {
-> +						remote-endpoint = <&tda998x_0_input>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		i2c0: i2c@1c0f0000 {
-
-The I2C controller lives in the IOFGPA on the board, not the SoC.
-
-> +			compatible = "cdns,i2c-r1p14";
-> +			reg = <0x0 0x1c0f0000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&dpu_aclk>;
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			status = "disabled";
-> +
-> +			hdmi_tx: hdmi-transmitter@70 {
-
-The transmitter is a discrete chip on the board, not the SoC.
-
-Jess
-
-> +				compatible = "nxp,tda998x";
-> +				reg = <0x70>;
-> +				video-ports = <0x234501>;
-> +				port {
-> +					tda998x_0_input: endpoint {
-> +						remote-endpoint = <&dp_pl0_out0>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		gic: interrupt-controller@2c010000 {
-> +			compatible = "arm,gic-v3";
-> +			reg = <0x0 0x30000000 0x0 0x10000>,	/* GICD */
-> +			      <0x0 0x300c0000 0x0 0x80000>;	/* GICR */
-> +
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			#interrupt-cells = <3>;
-> +			interrupt-controller;
-> +
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
-> +			its1: msi-controller@30040000 {
-> +				compatible = "arm,gic-v3-its";
-> +				reg = <0x0 0x30040000 0x0 0x20000>;
-> +
-> +				msi-controller;
-> +				#msi-cells = <1>;
-> +			};
-> +
-> +			its2: msi-controller@30060000 {
-> +				compatible = "arm,gic-v3-its";
-> +				reg = <0x0 0x30060000 0x0 0x20000>;
-> +
-> +				msi-controller;
-> +				#msi-cells = <1>;
-> +			};
-> +
-> +			its_ccix: msi-controller@30080000 {
-> +				compatible = "arm,gic-v3-its";
-> +				reg = <0x0 0x30080000 0x0 0x20000>;
-> +
-> +				msi-controller;
-> +				#msi-cells = <1>;
-> +			};
-> +
-> +			its_pcie: msi-controller@300a0000 {
-> +				compatible = "arm,gic-v3-its";
-> +				reg = <0x0 0x300a0000 0x0 0x20000>;
-> +
-> +				msi-controller;
-> +				#msi-cells = <1>;
-> +			};
-> +		};
-> +
-> +		smmu_dp: iommu@2ce00000 {
-> +			compatible = "arm,smmu-v3";
-> +			reg = <0x0 0x2ce00000 0x0 0x40000>;
-> +
-> +			interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 80 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "eventq", "gerror", "cmdq-sync";
-> +			#iommu-cells = <1>;
-> +		};
-> +
-> +		smmu_ccix: iommu@4f000000 {
-> +			compatible = "arm,smmu-v3";
-> +			reg = <0x0 0x4f000000 0x0 0x40000>;
-> +
-> +			interrupts = <GIC_SPI 228 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 230 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 41 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 229 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
-> +			msi-parent = <&its1 0>;
-> +			#iommu-cells = <1>;
-> +			dma-coherent;
-> +		};
-> +
-> +		smmu_pcie: iommu@4f400000 {
-> +			compatible = "arm,smmu-v3";
-> +			reg = <0x0 0x4f400000 0x0 0x40000>;
-> +
-> +			interrupts = <GIC_SPI 235 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 237 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 40 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 236 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
-> +			msi-parent = <&its2 0>;
-> +			#iommu-cells = <1>;
-> +			dma-coherent;
-> +		};
-> +
-> +		mailbox: mhu@45000000 {
-> +			compatible = "arm,mhu-doorbell", "arm,primecell";
-> +			reg = <0x0 0x45000000 0x0 0x1000>;
-> +
-> +			interrupts = <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
-> +			#mbox-cells = <2>;
-> +			clocks = <&soc_refclk50mhz>;
-> +			clock-names = "apb_pclk";
-> +		};
-> +
-> +		pcie_ctlr: pcie@28c0000000 {
-> +			device_type = "pci";
-> +			compatible = "pci-host-ecam-generic";
-> +			reg = <0x28 0xC0000000 0 0x10000000>;
-> +			ranges = <0x01000000 0x00 0x00000000 0x00 0x6f000000 0x00 0x00800000>,
-> +				 <0x02000000 0x00 0x60000000 0x00 0x60000000 0x00 0x0f000000>,
-> +				 <0x42000000 0x09 0x00000000 0x09 0x00000000 0x1f 0xc0000000>;
-> +			bus-range = <0 255>;
-> +			linux,pci-domain = <0>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			dma-coherent;
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 7>;
-> +			interrupt-map = <0 0 0 1 &gic 0 0 0 169 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 2 &gic 0 0 0 170 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 3 &gic 0 0 0 171 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 4 &gic 0 0 0 172 IRQ_TYPE_LEVEL_HIGH>;
-> +			msi-map = <0 &its_pcie 0 0x10000>;
-> +			iommu-map = <0 &smmu_pcie 0 0x10000>;
-> +		};
-> +
-> +		ccix_pcie_ctlr: pcie@4fc0000000 {
-> +			device_type = "pci";
-> +			compatible = "pci-host-ecam-generic";
-> +			reg = <0x4f 0xC0000000 0 0x10000000>;
-> +			ranges = <0x01000000 0x00 0x00000000 0x00 0x7f000000 0x00 0x00800000>,
-> +				 <0x02000000 0x00 0x70000000 0x00 0x70000000 0x00 0x0f000000>,
-> +				 <0x42000000 0x30 0x00000000 0x30 0x00000000 0x1f 0xc0000000>;
-> +			bus-range = <0 255>;
-> +			linux,pci-domain = <1>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			dma-coherent;
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 7>;
-> +			interrupt-map = <0 0 0 1 &gic 0 0 0 201 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 2 &gic 0 0 0 202 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 3 &gic 0 0 0 203 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 4 &gic 0 0 0 204 IRQ_TYPE_LEVEL_HIGH>;
-> +			msi-map = <0 &its_ccix 0 0x10000>;
-> +			iommu-map = <0 &smmu_ccix 0 0x10000>;
-> +		};
-> +
-> +		uart0: serial@2a400000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0x0 0x2a400000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&soc_uartclk>, <&soc_refclk50mhz>;
-> +			clock-names = "uartclk", "apb_pclk";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		sram: sram@45200000 {
-> +			compatible = "mmio-sram";
-> +			reg = <0x0 0x06000000 0x0 0x8000>;
-> +			ranges = <0 0x0 0x06000000 0x8000>;
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			cpu_scp_hpri0: scp-sram@0 {
-> +				compatible = "arm,scmi-shmem";
-> +				reg = <0x0 0x80>;
-> +			};
-> +
-> +			cpu_scp_hpri1: scp-sram@80 {
-> +				compatible = "arm,scmi-shmem";
-> +				reg = <0x80 0x80>;
-> +			};
-> +		};
-> +
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> -- 
-> 2.43.0
+> 	Hans
 > 
+>>
+>> I have also found a workaround to replace "b4 diff". Last time, you
+>> helped by giving a RB tag on the version 4 dt-binding. You can check the
+>> differences[1] between version 4 and version 7 on the Patchew website.
+>> If possible, could you please help review the diff provided by Patchew
+>> once again? Sorry for wasting your time.
+>>
+>> Visit below website[1], then search "dt-bindings: media: camss: Add
+>> qcom,sm8550-camss binding", then we can get the difference between
+>> version4 and version7.
+>>
+>>
+>> [1]
+>> https://patchew.org/linux/20240812144131.369378-1-quic._5Fdepengs@quicinc.com/diff/20241225133523.4034820-1-quic._5Fdepengs@quicinc.com/
+>>
+>>
+
+
+Thanks,
+Depeng
+
 
