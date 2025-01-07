@@ -1,163 +1,149 @@
-Return-Path: <devicetree+bounces-136099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2116EA03D16
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 11:56:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 398D6A03D27
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:00:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 189161651D3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 10:56:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 277BD1886348
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 11:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 335D01EBFEB;
-	Tue,  7 Jan 2025 10:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5ACB1E9B39;
+	Tue,  7 Jan 2025 11:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VGz6cQgY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xRbHwSUK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2C41E284B
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 10:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA78A1E9B12
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 11:00:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736247313; cv=none; b=GSq+O0kWK+grd4x08PYZDuWLJw3oamZoZHupAtpYpgKnjGBXVDp+x6h0NBz74Z2B/rzGfjjYu8PUuq/0p7EXiiyBeF9XUNoAYc33fgSSP5fLobbe0wNmgx9wm6PpLvBpDQRiIHju2NrBiY/ft+a53zRTlWc+U/RTuBoQrffNOk4=
+	t=1736247623; cv=none; b=UfHnN6Xw/mbZGMgWsyVnXP/jCNTmfZFTSBziqJtOdELtLBLmRRPg+kRm97xK19ogyt0VGvkB/4G+oC7NBN6FHa9s3BK6eVLK3ZNsEL3cB8/DdfanjSMifdnIi2yhM9dSDanzVceRzxCscTzICZw4cHfpU06QQ40QEhSNUaiK9oI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736247313; c=relaxed/simple;
-	bh=miAR7kVdfE4JEaJup30RJs9gwsyUwkCbLU9qZeboezo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gWTk5ewUpIkszXJG8sjZXEOAhOVQphuizDvT/rryZ8/R/0qfFX+Mml3WTZYWUlajv41oc1FjNvn1wENrCf7jaX41GLrplJGy3YCpJvN22gg/wlUYRnHxb1//zONZ2GPRytZiEpE9huxDPlZRQP4zXvVLqco2qTO6LGSDj0VH3Gk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VGz6cQgY; arc=none smtp.client-ip=209.85.167.43
+	s=arc-20240116; t=1736247623; c=relaxed/simple;
+	bh=h3VqLLJkYSL/Yzsi2h/Imjy/edDJq9YgtMjCyL5BxQA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=LQn36YfUUrKLT36LbGPwJwHhu6lRcuDeM4YDPxO6TiS79hbLcX5mPDjXfO8Gl+XXhuU8q3B9o+ilV+rtaM+6dPoqUaWW9sAa7d66ksfTrrZJdpIAZUFOR+CwVeuycy4ffVI13eQ7mpMXQNbGYL5L/au5eYeWop+s99LEz2TfJZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xRbHwSUK; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5401d3ea5a1so15386617e87.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 02:55:08 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4361f65ca01so152706495e9.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 03:00:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736247307; x=1736852107; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8JZJoaJUaNREKAXmerLK4Rd1hRsVn/PObGVachLq/qE=;
-        b=VGz6cQgY+JYVdHvb+T2vgeH6lVk/q2HlsTIT5d2NrmLN28MSYk+/vA7kEy08HRVEqS
-         N+rJaeUF04CYJ1aOzrXdSO9gAsdCuTWxyDl+n10gUugow9h0BqZgynNmTJOO4dLjkMPA
-         UW9HtVMDXLtwdMUskWXWl1cSW+QUFliYLYINyMGFNnkWGHA6MiT+qiNS2MEmQ4F9jvXY
-         k+7euO7TlDpcCXENcQEMN7VR0H9LsLEc/NkCTLARcLsMHc2SBY0iWZ4z+ZhaBT4rJng+
-         /dtuH1gElJJLND4m61KfcpyuMV2SfwQbOxzg5P8SemWY4p1JbYkqVUa6r8BkG4DeAXtR
-         3ang==
+        d=linaro.org; s=google; t=1736247618; x=1736852418; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=GgermC1KnnvFeBi+HFB4kuvSBtuR8pO8/HIDUgPUHKg=;
+        b=xRbHwSUKHEHi4z/VmtwsoqSfzgQ4PMCJ6PwRwJ2c6V+n+tzbPKouW85zkIhGQBmFjQ
+         n951oxUWVBn6R5wKXdiVOziud3Tx6EECDmTnzc3yX5IdTjC/V12YeWfuhrdbvq6d1wju
+         SGmLmwktar4mmE4MU4NHpFWzAlAovf+0VM4V7Fa0PbgtrY3KDFUq4LtNDuT2TYc6ABHN
+         hWfsVLzd+1l5Gb7G7pjHFOFMyaE6F0At7RNjqIGZEd4HZIUSFr04ooydJX4Crc/XP2jy
+         YeP3wt5VL7T72ZRyBZjaS9/a+pkagVyA9vNUy9bMgEGvLyMWX9CufvXqh5xR5ttGD06F
+         LljA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736247307; x=1736852107;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8JZJoaJUaNREKAXmerLK4Rd1hRsVn/PObGVachLq/qE=;
-        b=cSg3WEwzwQVO8sXrDPcabAaSQerDM3ug3KeVpoxHQ9SPKDjOH9JVM0A9pSeT62Sri7
-         MD/oZBMbniPhQU/aMJBZA3Nuo4Fy9LHq0wOycYqvOaC8baBjJNeflA2eaEnZqHzIMmNV
-         7PudCuwzC0N8MRojHNZZ1I4+/DoKk0lX/hps0RHQRzg1Ntl3fP2X0chYLTeI5OKVK1b7
-         YBq2FjyiPybOJ2MAMIrGUZ+Ghr06KzBltoE6LM/x+Bxdhbt+FwuCSfgDSUysTQid5jCb
-         e920CnyMg7UTYRA+mqy4KFE6Qqj8wYt7ogeH2cyevK7vy4qt/VCwgry9QTsr7IgYO+Qq
-         LeQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWt2+X0VkU+muTX2r8Y0UP9fPNUp0nYe07TdItkG8HlYZf1ijkT2eRQ7ZYqBY9Vy2btohQlVLBcEmD9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxWO0oXrT1F8evGY+xjH7Lb5nYVYeaYAbpOn/ZejPs7S8IpbU+
-	7/SFPoBMKEmaYX3cDjBodDFt1jMW6LB94C9Ne8xGBobNAMPNM8YcN04pewhwyVI=
-X-Gm-Gg: ASbGncsrWhVFpi3JssOmEUA62ddPRXaIqdAPFhWp2HdX6vFr06squ4FYgB1IBSgYEKq
-	fRyaYI2DVGoN4hEF9gAMTIhP9x8/fP/Kkn9c82wiWF0YQTfO/kJAZJqTuyxpyVvK2+EjjbVxo4Q
-	NR9mJ+pNHiV+rm3aMk12dFByCZgATd1++C4U7kgyMtEtCtsRhrOC+ThXGNShdqcOkzn+3J4tAIf
-	kKStT7NIUDS8zoAn4QmgsdPaaM8XzcX9cwiHmCfeG6n+Q4w+RWUulezFd8a1BLd8DpbXVR5fh5S
-	1xPv6TrBZrvJCxGl7IqcNYUHkF4rwMDU/BjF
-X-Google-Smtp-Source: AGHT+IGLgKzFbsWmFq6sHxnOSAOcAHZ8LpCXiCvq8SonzUfMjFA3G31B6U5QoMf8+KUqSpyXSGnKNw==
-X-Received: by 2002:a05:6512:1392:b0:542:213f:78fa with SMTP id 2adb3069b0e04-542295224demr17287062e87.7.1736247307140;
-        Tue, 07 Jan 2025 02:55:07 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223832ba9sm5226861e87.277.2025.01.07.02.55.04
+        d=1e100.net; s=20230601; t=1736247618; x=1736852418;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GgermC1KnnvFeBi+HFB4kuvSBtuR8pO8/HIDUgPUHKg=;
+        b=BdtRGYB72JCdSwkeREomolLGOyvj9upBRTdYrljmf8b6lIQTCCb8mws9coNFIOBy8D
+         xsjKSDmXBg+OIpLAFc/S6iTjnYSUvr4IlB4JbGQk3eV4wOMZZuw7Xc3PocqYFWutVoX/
+         YmX+SBR3c2Rn2bJpz0Y78LSTL6OUYoD2kNhaQ5295rHeogF3sMUrfk14zkmSZzPfMSB/
+         LfEHzOL+nDaCmoDH95hRwi8XwY17iutMB1wLsIsfNggcqDXV6bM1NXvC2fgpkACPPXhE
+         e7+5BuTKyDKd4BCTxrPXgLgfvF31v+mAWlEUOCG3kRVwgWx3wjjesFlktosdKOhm7vco
+         vplg==
+X-Forwarded-Encrypted: i=1; AJvYcCWqHbLIbS3r7x90MZa9BrqMKn8hd7GcbmAbfG+LbesLAJ9SH/YjXTVq2lnGz6wRN2QbOWSd/LtnGTpz@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywtgp0IBcer0m1B9cEXEQFLLl5KSYcgze8E9Dw8LXptO35Ykn9u
+	gGqlMKm36G74GpeEonIWLGRSHUR6PXuhYiK4nRoYvZ9M84yDd2bxjVwRc4fJf8k=
+X-Gm-Gg: ASbGncvi8sagbVOjY6omOZlD0E0uoBpq7M1MQbdAvFlyztf5BFBC9xzmL02DOwBEUiI
+	z53N52brRBrwkZaWFTVmXvUGDlihK90n7/3bYAFTG/cFN3POKyqFEqThrvt636cv9aPnHRkFrYl
+	wunDrTZoHoaFaJA7srlun+nkPdqwbq3rISq6isg92gw+0h24UN+rGRgvRmziMJVPi5bitjrcfNw
+	Io1ZFwncTn0pKRhHzK0ZzgOf0f7KQlip1KOifBUPKPhKMHnhUk2dVtCmrso
+X-Google-Smtp-Source: AGHT+IFbec8gno5r3txZurFgpWnFa2Tw0B1U6ohzIg8oPkTeYV0R3Aylb3f7FAu8YsrgrAe4AIIpRA==
+X-Received: by 2002:a05:600c:4f03:b0:435:1a2:2633 with SMTP id 5b1f17b1804b1-43668645cf5mr573322825e9.15.1736247617728;
+        Tue, 07 Jan 2025 03:00:17 -0800 (PST)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436611ea387sm599851945e9.6.2025.01.07.03.00.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2025 02:55:05 -0800 (PST)
-Date: Tue, 7 Jan 2025 12:55:03 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org, 
-	sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
-	andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com, 
-	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v4 07/17] phy: phy-rockchip-samsung-hdptx: Add support
- for eDP mode
-Message-ID: <pffzxwsqwkklur3b7c7hp6g5wonzam5fs35fwblil3cjfofozk@clwgt5gcb32a>
-References: <20241226063313.3267515-1-damon.ding@rock-chips.com>
- <20241226063313.3267515-8-damon.ding@rock-chips.com>
- <shr7ak7keqza3gw6wra2zra35qht2cxlzkvtuhzl3swzf2fwxy@i2v4o53lhese>
- <96f8310f-93f1-4bcb-8637-137e1159ff83@rock-chips.com>
+        Tue, 07 Jan 2025 03:00:17 -0800 (PST)
+Message-ID: <7178eb322fafaf0fbcdc4b91d9f9a65d996e4e6b.camel@linaro.org>
+Subject: Re: [PATCH v2 1/4] power: supply: add support for max77759 fuel
+ gauge
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Peter
+ Griffin <peter.griffin@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Date: Tue, 07 Jan 2025 11:00:16 +0000
+In-Reply-To: <20250102-b4-gs101_max77759_fg-v2-1-87959abeb7ff@uclouvain.be>
+References: <20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be>
+	 <20250102-b4-gs101_max77759_fg-v2-1-87959abeb7ff@uclouvain.be>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1-4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <96f8310f-93f1-4bcb-8637-137e1159ff83@rock-chips.com>
 
-On Tue, Jan 07, 2025 at 11:02:15AM +0800, Damon Ding wrote:
-> Hi Dmitry,
-> 
-> On 2024/12/30 20:45, Dmitry Baryshkov wrote:
-> > On Thu, Dec 26, 2024 at 02:33:03PM +0800, Damon Ding wrote:
-> > > Add basic support for RBR/HBR/HBR2 link rates, and the voltage swing and
-> > > pre-emphasis configurations of each link rate have been verified according
-> > > to the eDP 1.3 requirements.
-> > 
-> > Well... Please describe what's happening here. That the HDMI PHY on your
-> > platform also provides support for DP / eDP. Please document any design
-> > decisions that you had to make.
-> > 
-> 
-> Yes, I will add more relevant descriptions in the next version.
-> 
-> > > 
-> > > Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> > > 
-> > > ---
-> > > 
-> > > Changes in v2:
-> > > - Add the module author
-> > > 
-> > > Changes in v3:
-> > > - Split this patch into two, one for correction and the other for
-> > >    extension
-> > > 
-> > > Changes in v4:
-> > > - Add link_rate and lanes parameters in struct rk_hdptx_phy to store the
-> > >    phy_configure() result for &phy_configure_opts.dp.link_rate and
-> > >    &phy_configure_opts.dp.lanes
-> > > ---
-> > >   .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 896 +++++++++++++++++-
-> > >   1 file changed, 889 insertions(+), 7 deletions(-)
-> > > 
-> > > @@ -933,9 +1484,339 @@ static int rk_hdptx_phy_power_off(struct phy *phy)
-> > >   	return rk_hdptx_phy_consumer_put(hdptx, false);
-> > >   }
-> > > +static int rk_hdptx_phy_set_mode(struct phy *phy, enum phy_mode mode,
-> > > +				 int submode)
-> > > +{
-> > > +	return 0;
-> > > +}
-> > 
-> > No need for the stub, please drop it. The host controller driver can
-> > still call phy_set_mode() / _ext(), the call will return 0.
-> 
-> Without the &phy_ops.set_mode(), the phy driver can not get phy_mode to
-> distinguish between HDMI and DP mode via the phy_get_mode(), even if the
-> host driver calls phy_set_mode() / _ext(). Additionally, the previous
-> discussion [0] also mentioned future considerations for dynamic switching.
-> Indeed, I should add a related comment before the 'return 0;' to enhance
-> understandability.
+Hi Thomas,
 
-Oh... I see. Without .set_mode() callback the attrs.mode won't change.
-We should probably fix that, there should be no need to add dummy stubs.
+Thanks for your patch!
+
+On Thu, 2025-01-02 at 12:15 +0100, Thomas Antoine via B4 Relay wrote:
+> From: Thomas Antoine <t.antoine@uclouvain.be>
+>=20
+> The interface of the Maxim max77759 fuel gauge has a lot of common with t=
+he
+> Maxim max1720x. The major difference is the lack of non-volatile memory
+> slave address. No slave is available at address 0xb of the i2c bus, which
+> is coherent with the following driver from google: line 5836 disables
+> non-volatile memory for m5 gauge.
+>=20
+> Link: https://android.googlesource.com/kernel/google-modules/bms/+/1a68c3=
+6bef474573cc8629cc1d121eb6a81ab68c/max1720x_battery.c
+>=20
+> Other differences include the lack of V_BATT register to read the battery
+> level and a difference in the way to identify the chip (the same register
+> is used but not the same mask).
+
+It also seems the reported POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN is
+quite a bit off - on my Pixel 6, it reports ca. 1131mAh, but the downstream
+stack reports a more reasonable 4524mAh. Interestingly, this is an exact
+multiple of four.
+
+POWER_SUPPLY_PROP_CHARGE_FULL is off in a similar way, and I suspect that
+related properties like charge_avg, time_to_empty, time_to_full are
+reported incorrectly as well.
+
+[...]
+
+> @@ -483,14 +608,27 @@ static int max1720x_probe(struct i2c_client *client=
+)
+> =C2=A0	psy_cfg.drv_data =3D info;
+> =C2=A0	psy_cfg.fwnode =3D dev_fwnode(dev);
+> =C2=A0	i2c_set_clientdata(client, info);
+> -	info->regmap =3D devm_regmap_init_i2c(client, &max1720x_regmap_cfg);
+> +
+> +	data =3D device_get_match_data(dev);
+> +	if (!data)
+> +		return dev_err_probe(dev, ret, "Failed to get chip data\n");
+                                          ^^^
+This should be -EINVAL.
 
 
--- 
-With best wishes
-Dmitry
+Cheers,
+Andre'
+
 
