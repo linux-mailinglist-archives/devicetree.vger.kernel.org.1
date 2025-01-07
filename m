@@ -1,174 +1,170 @@
-Return-Path: <devicetree+bounces-136166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ADB9A041A9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:08:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 781ABA041B3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:09:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4097C3A5F39
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:06:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4165165F18
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:07:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DD11F3D43;
-	Tue,  7 Jan 2025 14:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8D7D1F429E;
+	Tue,  7 Jan 2025 14:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="LSqihZ5+";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HGdfjwK4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mYtQjzn3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B09C1F8686;
-	Tue,  7 Jan 2025 14:01:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296CC1F2368;
+	Tue,  7 Jan 2025 14:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736258518; cv=none; b=H61L+peE34DTBHKbw0lqjJqqCOaXGfKbT59h07YyDNu9kW3I/3b0H9v8WzIX+Wo1IJX7YfZIu+I0Qnqoi5n6ghJrMMe6huuYuwvH0U1dORROdg5OMeCanwThxGgKJlQ4oEaVn2g1p6Btpf+ZtnNgDZguQKiAcTcbRIVJv+vKmbw=
+	t=1736258567; cv=none; b=kW3tqWGgcbAFfuJ0StFoN+lPBUryKERZ2+QpW81xllKqYtWOMX7CFk2za2Ll6M6Kwnu/+NTWQvJ/rJ7UGTRktS1um3Jid7yHaabNMUOrtJl3URZpEZldPdmODQnXAiYw4b9Y5XMCp08nmLouzSoe1xzPhRGKomQiPNyClo7C/V0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736258518; c=relaxed/simple;
-	bh=emq4I8poCRzxXlLNiXctPcFQbuOrpyrDpdbtRdDP6+Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Y/pu4xH+1BzfIByCc3yM8aFLZGTB3IDRZYY3ll9lhr3m0IiHDLPKFX1LJrdWNAPjy6Jpfwy8J8X6Lj33SukItXT0sAkA5Zdf44iqshKVMTDr/MKky0kAV2O5yGyE2YUki13LaJaBdRDlWf6bZcCagHIpO1BZZ26JlpNXiHFardk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=LSqihZ5+; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HGdfjwK4 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1736258509; x=1767794509;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=u+m2gfDVhQV2u3o7sl05GzerTgcPQ9MIYG1lSSy1s58=;
-  b=LSqihZ5+Pq/0fx/27/A3FYdeezBUvP5f52Msg0/r7v+HsKR5FKXR3HWe
-   fYn5vH5G6ecAYh7qyUDALQlPRF6XbwhdFT5Umgx4jPeHDlEbPYJo8f/lP
-   V4AuMNPcy/cw3uPocTbTQ+Y4ZP/42eziDrK8dJ9RRNTmMDbD2/nD+jXg7
-   egOWIIPTXABPD/xWSO71YyRuNmRe9i69BZNCx3vg1ZINtHOoOsssWyrU4
-   VOTUOrwsYB6bMCAoW8EonpBsGaSgkaQfalyKdIyAQoqxJYYV8gHYbAsE5
-   hDvFNwPLFDuKlf9zrydlBjx7FhGKlRhRLADOfpQKQrLF6uMnAu8ki0xg7
-   w==;
-X-CSE-ConnectionGUID: g2Lg8GdfQIuZbOlKyGRR7g==
-X-CSE-MsgGUID: YD7ho+dbTQWHox3vQoozww==
-X-IronPort-AV: E=Sophos;i="6.12,295,1728943200"; 
-   d="scan'208";a="40896230"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Jan 2025 15:01:47 +0100
-X-CheckPoint: {677D33CB-3C-1CE016C0-E589DA3E}
-X-MAIL-CPID: FD2C55157575331A5F84E96D4CD20098_1
-X-Control-Analysis: str=0001.0A682F1E.677D33CB.00BC,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8325A164BC3;
-	Tue,  7 Jan 2025 15:01:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1736258503;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=u+m2gfDVhQV2u3o7sl05GzerTgcPQ9MIYG1lSSy1s58=;
-	b=HGdfjwK4NDupW3qBR5pTl8OrOgU6T00bOwteSkxdhpojr8EqQ/3V6bV9fO6kb9kn306E48
-	VUJzpDOidwafTM0ONOsX3sCTzFiSThWLJ+XwczzL8gZjLIlLQM239CO6SAEK26ibjqGU7I
-	YuvT+Z/XAqY5ZHq82SJfvsPTujLJ0J0ZGewFtcOttXR08ZX9C4m0iLGYNRADDmSu6YPY/x
-	qiFeQ1s9y2EbxkbFs5oCkmrWa4OKVC+OCTzDoggIU3KxEviAeJV0rnfVNzm2g6VfDutF5k
-	EIDW/n5uId3Ibhng+eCWDXF2qN9XlzWCsFpcH7OwG6+tYl1WyhkqnDP4cU71kg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux@ew.tq-group.com
-Subject: [PATCH 5/5] arm64: dts: mba8xx: Add PCIe support
-Date: Tue,  7 Jan 2025 15:01:10 +0100
-Message-Id: <20250107140110.982215-6-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250107140110.982215-1-alexander.stein@ew.tq-group.com>
-References: <20250107140110.982215-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1736258567; c=relaxed/simple;
+	bh=1y1trmqo4VZPTWM5xAydMhMQsybEilrtQDjuW11FTX4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EzBxP1UX3nzY1pi2imAqGPBcUdtinbWX1SK6+902VY6mpCtQHa+ActK3HMAaYdp+Aqj7vU0yMT7A8cArxAukcTma7BKDefp1f5pIuLtU+3OmZs2hulWUS5GCN6hzpJw4zWcekbNupcBFktzNeoGloxf2U5xsibC401PGJi4u+r4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mYtQjzn3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9F02C4CEDD;
+	Tue,  7 Jan 2025 14:02:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736258565;
+	bh=1y1trmqo4VZPTWM5xAydMhMQsybEilrtQDjuW11FTX4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mYtQjzn3Kr0oMbufGyVBS0J8tFdem8M6ETYf8k+gYZ9WSTcZ0ACMT4yTVBdIlHIpt
+	 JvK93tMzH50rvi8BNPyszkS07D04AzXTiNPGbmefbrL5dkKGyazQWLRS+rjJOVayFS
+	 LtXS6kYgsmb480EJpSTO/AcZSRCQpnOcU0tgcnybfU4jowvV3Zmqj/IA43v5A11n1L
+	 CGRDW9o55qVRSPW4WkEqBTaLgCdDoc65HtdUgJTVx3twmuA7mp3buRMHkLgE5vcyCQ
+	 Y+hXNQX90Z7AnaZhAZqDf2rjYeoR5rT1niXxcMHsbCtaA8hqp4G4uXQXhK9TpCU0VX
+	 eWuA1F4ePxXrQ==
+Message-ID: <f4a7e47c-f843-43cd-aac2-a98b8153a535@kernel.org>
+Date: Tue, 7 Jan 2025 16:02:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am62p5*/k3-j722s: Add bootph-all
+ property to necessary nodes to enable Ethernet boot
+To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Nishanth Menon <nm@ti.com>
+Cc: srk@ti.com, s-vadapalli@ti.com, danishanwar@ti.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250106123122.3531845-1-c-vankar@ti.com>
+ <20250106123122.3531845-3-c-vankar@ti.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20250106123122.3531845-3-c-vankar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add PCIe support for TQMa8Xx on MBa8Xx board.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/mba8xx.dtsi | 32 +++++++++++++++++++----
- 1 file changed, 27 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/mba8xx.dtsi b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
-index 276d1683b03bb..117f657283191 100644
---- a/arch/arm64/boot/dts/freescale/mba8xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
-@@ -36,6 +36,13 @@ chosen {
- 		stdout-path = &lpuart1;
- 	};
- 
-+	/* Non-controllable PCIe reference clock generator */
-+	pcie_refclk: clock-pcie-ref {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
-@@ -208,6 +215,12 @@ &flexcan2 {
- 	status = "okay";
- };
- 
-+&hsio_phy {
-+	fsl,hsio-cfg = "pciea-x2-pcieb";
-+	fsl,refclk-pad-mode = "input";
-+	status = "okay";
-+};
-+
- &i2c1 {
- 	tlv320aic3x04: audio-codec@18 {
- 		compatible = "ti,tlv320aic32x4";
-@@ -309,7 +322,16 @@ &lsio_gpio3 {
- 			  "", "", "", "";
- };
- 
--/* TODO: Mini-PCIe */
-+&pcieb {
-+	phys = <&hsio_phy 0 PHY_TYPE_PCIE 0>;
-+	phy-names = "pcie-phy";
-+	pinctrl-0 = <&pinctrl_pcieb>;
-+	pinctrl-names = "default";
-+	reset-gpios = <&lsio_gpio4 0 GPIO_ACTIVE_LOW>;
-+	disable-gpio = <&expander 7 GPIO_ACTIVE_LOW>;
-+	vpcie-supply = <&reg_pcie_1v5>;
-+	status = "okay";
-+};
- 
- &sai1 {
- 	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
-@@ -467,10 +489,10 @@ pinctrl_pca9538: pca9538grp {
- 		fsl,pins = <IMX8QXP_USDHC1_RESET_B_LSIO_GPIO4_IO19	0x00000020>;
- 	};
- 
--	pinctrl_pcieb: pcieagrp {
--		fsl,pins = <IMX8QXP_PCIE_CTRL0_PERST_B_LSIO_GPIO4_IO00	0x06000041>,
--			   <IMX8QXP_PCIE_CTRL0_CLKREQ_B_LSIO_GPIO4_IO01	0x06000041>,
--			   <IMX8QXP_PCIE_CTRL0_WAKE_B_LSIO_GPIO4_IO02	0x04000041>;
-+	pinctrl_pcieb: pciebgrp {
-+		fsl,pins = <IMX8QXP_PCIE_CTRL0_PERST_B_LSIO_GPIO4_IO00		0x06000041>,
-+			   <IMX8QXP_PCIE_CTRL0_CLKREQ_B_HSIO_PCIE0_CLKREQ_B	0x06000041>,
-+			   <IMX8QXP_PCIE_CTRL0_WAKE_B_LSIO_GPIO4_IO02		0x04000041>;
- 	};
- 
- 	pinctrl_reg_pcie_1v5: regpcie1v5grp {
+On 06/01/2025 14:31, Chintan Vankar wrote:
+> Ethernet boot requires CPSW nodes to be present starting from R5 SPL
+> stage. Add bootph-all property to necessary nodes for CPSW to enable those
+> nodes during SPL stage along with later boot stages for AM62p-SK and
+> J722s.
+> 
+> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 +++
+>  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts                | 2 ++
+>  arch/arm64/boot/dts/ti/k3-j722s-evm.dts                | 3 +++
+>  3 files changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> index 6e3beb5c2e01..96ddc5c17991 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> @@ -50,6 +50,7 @@ phy_gmii_sel: phy@4044 {
+>  			compatible = "ti,am654-phy-gmii-sel";
+>  			reg = <0x4044 0x8>;
+>  			#phy-cells = <1>;
+> +			bootph-all;
+
+
+Shouldn't bootph-all be the first property in the DT node?
+
+>  		};
+>  
+>  		epwm_tbclk: clock-controller@4130 {
+> @@ -714,6 +715,7 @@ ethernet-ports {
+>  			#size-cells = <0>;
+>  
+>  			cpsw_port1: port@1 {
+> +				bootph-all;
+>  				reg = <1>;
+>  				ti,mac-only;
+>  				label = "port1";
+> @@ -742,6 +744,7 @@ cpsw3g_mdio: mdio@f00 {
+>  			clock-names = "fck";
+>  			bus_freq = <1000000>;
+>  			status = "disabled";
+> +			bootph-all;
+>  		};
+>  
+>  		cpts@3d000 {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> index ad71d2f27f53..28b08eb79da3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+> @@ -226,6 +226,7 @@ main_mdio1_pins_default: main-mdio1-default-pins {
+>  			AM62PX_IOPAD(0x0160, PIN_OUTPUT, 0) /* (F17) MDIO0_MDC */
+>  			AM62PX_IOPAD(0x015c, PIN_INPUT, 0) /* (F16) MDIO0_MDIO */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	main_mmc1_pins_default: main-mmc1-default-pins {
+> @@ -495,6 +496,7 @@ &cpsw3g_mdio {
+>  
+>  	cpsw3g_phy0: ethernet-phy@0 {
+>  		reg = <0>;
+> +		bootph-all;
+>  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+>  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+>  		ti,min-output-impedance;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> index 796287c76b69..1785c9848664 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> @@ -303,6 +303,7 @@ mdio_pins_default: mdio-default-pins {
+>  			J722S_IOPAD(0x0160, PIN_OUTPUT, 0) /* (AC24) MDIO0_MDC */
+>  			J722S_IOPAD(0x015c, PIN_INPUT, 0) /* (AD25) MDIO0_MDIO */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	ospi0_pins_default: ospi0-default-pins {
+> @@ -337,6 +338,7 @@ J722S_IOPAD(0x0140, PIN_OUTPUT, 0) /* (AF24) RGMII1_TD3 */
+>  			J722S_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AG26) RGMII1_TXC */
+>  			J722S_IOPAD(0x012c, PIN_OUTPUT, 0) /* (AF25) RGMII1_TX_CTL */
+>  		>;
+> +		bootph-all;
+>  	};
+>  
+>  	main_usb1_pins_default: main-usb1-default-pins {
+> @@ -374,6 +376,7 @@ &cpsw3g_mdio {
+>  
+>  	cpsw3g_phy0: ethernet-phy@0 {
+>  		reg = <0>;
+> +		bootph-all;
+>  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+>  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+>  		ti,min-output-impedance;
+
 -- 
-2.34.1
+cheers,
+-roger
 
 
