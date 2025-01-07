@@ -1,164 +1,134 @@
-Return-Path: <devicetree+bounces-136053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9EE3A03A49
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:53:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E05EA03A66
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:59:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F67316105D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:53:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D4993A5203
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 828B21DF75E;
-	Tue,  7 Jan 2025 08:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D901DFDB3;
+	Tue,  7 Jan 2025 08:59:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6HguPPB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZJ3xLirp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 499DD1DED45;
-	Tue,  7 Jan 2025 08:53:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD681DF75E;
+	Tue,  7 Jan 2025 08:59:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736239984; cv=none; b=DmrReNwE98bwnsqpiuB1Sbjj1eh8c9RlpVgJa9Mxqq+/Z/ap2dWst/l82yhBdwu8cvvoRN0Ei4LYHUD8BRNMW+mv/m60O03E2Hyg3+a3X442w7cJi/zjd7yerAvHuvg1d2YBfC5MnHL8DSPC6MX5ZlTYvFyXG1IBmyWocfkx5E8=
+	t=1736240348; cv=none; b=eZDMdPHTaSXA7PYAkZ3DjOGNFnVBuO+m4LIWNM8Xv56JTEPhBpXRMpN631WSKUbpDLmMQjMZuJurVaKzMjYLgklkKYxcidEMw/ok0/HZSRGgSgl6Kv0TGONEREQeF5q46spx7MsYrsuETfSpNVPNZidWv/ACuASS4WllqEltbhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736239984; c=relaxed/simple;
-	bh=01xTrWdA2Ra774BNmcbW6I0L7KA7rprIQ4jaPnbAI/A=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=KVbpdkhNdc8Cdj3PJy6lpj/tkviw8SNtKegQ2DWwx3Gdca4VYejHNkm8VajHSExJk3aEUjpmcZAX15B4lZDXQzgakW4BwZ+bo3uqrHTv1wy0qM0CFbEI3voiyYpGm7RH7z3zzZh2PeUKqkLxNvP9l/sYxFtGvkSqdrFHVm2WxBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6HguPPB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA39C4CEDD;
-	Tue,  7 Jan 2025 08:53:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736239983;
-	bh=01xTrWdA2Ra774BNmcbW6I0L7KA7rprIQ4jaPnbAI/A=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=k6HguPPBzt4nxG0k2sYivWVxQSuI5DBuP9LLof+Q5gEW0o0skCgV3ARsGwJ6GpS7k
-	 Wxc0Ta1itxg9nuEt60vOLFhUu+VZ2LxEAnxEduSGsshO7JhszNya82NgIrZU5G6I/t
-	 tuFCuaU9v0YjOAvSR21T4t/gm3fRJOijZ8pWG6PzcJu8YbewFi8vcejUNXlYbnFgfu
-	 N994EPkLjAMDOFSaJNLjgquvBHxYlXQ/idQTkllU5ufM/KcrOZGFhk3aSydXhCYFov
-	 FcPFNx9TSuTu9oXuzG/26nR9VeSqT0FRQAVZd+xzhGQ7rsC18SttT+/Wm2qzaDbMmv
-	 4E2M82ggIT8kA==
-Content-Type: multipart/signed;
- boundary=60e47edfe38543925c72c751d549eb1c55a15e2be67c797b85027bd80743;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Tue, 07 Jan 2025 09:52:59 +0100
-Message-Id: <D6VPPFGFM884.1OUPHTCOA7HG3@kernel.org>
-Subject: Re: [PATCH v2 4/4] clk: fsl-sai: Add MCLK generation support
-Cc: "Conor Dooley" <conor+dt@kernel.org>, "Fabio Estevam"
- <festevam@gmail.com>, "Jaroslav Kysela" <perex@perex.cz>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>,
- "Mark Brown" <broonie@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Nicolin Chen" <nicoleotsuka@gmail.com>, "Rob
- Herring" <robh@kernel.org>, "Shengjiu Wang" <shengjiu.wang@gmail.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Takashi Iwai" <tiwai@suse.com>, "Xiubo
- Li" <Xiubo.Lee@gmail.com>, <devicetree@vger.kernel.org>,
- <linux-sound@vger.kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Marek Vasut" <marex@denx.de>, <linux-clk@vger.kernel.org>
-X-Mailer: aerc 0.16.0
-References: <20241226162234.40141-1-marex@denx.de>
- <20241226162234.40141-4-marex@denx.de>
- <D6OVE2W07NDX.2Q4AFF46TWCWJ@walle.cc>
- <36665ab9-16de-4f77-a55f-b7942dc0c1bf@denx.de>
- <D6RHZ8B051X5.3NA8EAPRI62XS@walle.cc>
- <72d4c42a-7ebf-484f-839b-631d61ac950f@denx.de>
-In-Reply-To: <72d4c42a-7ebf-484f-839b-631d61ac950f@denx.de>
+	s=arc-20240116; t=1736240348; c=relaxed/simple;
+	bh=rVcs0O05Z6Z2YXLoN5/VeJ1DYaF7H5xd1FgGhvI8wto=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MpPC0tYGpTHX4gJrU0mLBC5VW3onM0xRMFUAZpW2yg7VUQfa2IYmdN9Bc9lC9CrZo0C+U8HVRmOWN81bxJEL5q+PMnIBj2mSWSAKeOtXKKlRmNIybxU8jEeLZTNFs/0rQg7MPalT7XnBMq9k12+/7ipE3LwI3miMLx4nLP1kltA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZJ3xLirp; arc=none smtp.client-ip=209.85.217.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4afd56903b7so3952040137.1;
+        Tue, 07 Jan 2025 00:59:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736240346; x=1736845146; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=A5k3NToxRQQt5hVWAtotCRABNSeI0vG4aDCdlGfh6uQ=;
+        b=ZJ3xLirpTYPMmHrSocDtzrCK/3ZF4YWNu+Hn1+qZPcVLNOABZlKVgiBBi50LlxuKN3
+         ToqDAaS0fAZGiBDWF7/lDl9yP3PWzGqtcFxeATjJsEnVs5163WTRos/zDwwtDHkf/oBY
+         +aB92C+uqUYlcZHvG5LPLyWJk5GWN5qvo6et0EADO0OsaR1MQvVHJZpZH5gZv8NkXcW2
+         gFmE/gGe3TrTzXRIjd84YLsIQrH825Q47njj7eaSCxQ6ml6kFFV6be+EWOPQv92hmADA
+         EZNtv+8dqbCN2OFpbFsFCxb+ChY5539ykAT55z49Rh/VZ9FfteqyHKUn/ncgAAD7VVVk
+         Hlmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736240346; x=1736845146;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=A5k3NToxRQQt5hVWAtotCRABNSeI0vG4aDCdlGfh6uQ=;
+        b=VfrVWncPu2YCPzRPuPvtBOj23VS8iZoaBmDhj76IWGS+ZuDv61sm+My8s3sNh/gxYr
+         0lSjC92onJLVIGp/GTWerQdGyJattlSKZkdQRJfHdHPm2eNtY72/Ifby7iDH77GXB+rK
+         xzKYPnxs59Je1nEOoMF4afKPDLXeOb70gHe0ZCtKqVLDYP3B07Tf/qkr4i9qNTJTk291
+         6X/4Tp2e2ID4RaDrapWnIxTP9+PacdxXsbh8C8PVuyGUtJgj3K6P5ymZMdYsbjMrMlc7
+         /zAZ8WWAq2lOKSxC7Sf0dMA2cATc2BDXldvpXunjAtI/coH/C8+Sq+/FPMt6yDQaa7vQ
+         uVwg==
+X-Forwarded-Encrypted: i=1; AJvYcCVeVdAUhBC4M5ddpLSmeFvKSOi3cRc5we9E3X+Y2qY6pU3jNR/Fouxke5AG+g4n9soBDNdoDMkhQJVPmPhH@vger.kernel.org, AJvYcCVrbwd1XYRQ7waKmyEVgYeTc5MWjZ8KSKizzYdSAM+WoDfBCUZqbOaDjmQqxrN2LWqx01RtHI9o5QELQA==@vger.kernel.org, AJvYcCWUtbqKzBQsxuD5rSyi62xNLuuZzIK2KbE914/PVEkvFEJGHvTHZZmcynUsE8etfhlnTtoETsRp7s0=@vger.kernel.org, AJvYcCX9JYPEHAYJe87SIBddEtz1IXbEkfj8PRKc5iA9QR0X2tnd5ZYxBwPDWCmJ5Jlvexo454lO5Qrk5VaVUEk=@vger.kernel.org, AJvYcCXzz+rPXhqyOmjGBwBoGf4Rnd5XroJqU+8rL8F/gDFLHK6POC+KXwTMGMHbLZPjvITLS7LTFPGR7AB8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyaduh7U0P6fQ0wspqemwW3BLCRugM6IEc1qJetKGQHZ5SR/iCc
+	886xyDmyZ6A1z53K4HWivVICjrtQsVdgiZtPy/PUWyzsns2WBe6aNFY64VQRMk6CRcwSS0/5y1U
+	a7m8k9Dw2nIix5jV5NRHxvNXhIAV+v94g
+X-Gm-Gg: ASbGncuQAXLTt5UGWMx1RbaRNbBx/i3zoHFZ+5gr0L4wSdE8ANBzyHRDk7SNyfoDERj
+	fGi8OdczxUR5p0In5s3tvsQGprXbIUUc47qeZ8g==
+X-Google-Smtp-Source: AGHT+IF5brQYvtQ3S6qRtqDr9WJ51+hPCQzRYcrNLEaCVJqsUR025KhhTE/hiP11YXIVKUN2EXRpdYEOMY/j9oh77a4=
+X-Received: by 2002:a05:6102:38ce:b0:4af:f6e5:2b46 with SMTP id
+ ada2fe7eead31-4b2cc359cebmr41352893137.9.1736240346057; Tue, 07 Jan 2025
+ 00:59:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-
---60e47edfe38543925c72c751d549eb1c55a15e2be67c797b85027bd80743
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20241223-starqltechn_integration_upstream-v13-0-fbc610c70832@gmail.com>
+ <20241223-starqltechn_integration_upstream-v13-4-fbc610c70832@gmail.com> <olmxsr65fdrf7pphcqzjtrrayzfkt7zl4merqz2fkjpu75uqfx@362mo7yd6pcv>
+In-Reply-To: <olmxsr65fdrf7pphcqzjtrrayzfkt7zl4merqz2fkjpu75uqfx@362mo7yd6pcv>
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Tue, 7 Jan 2025 11:58:55 +0300
+X-Gm-Features: AbW1kvbEmY_6GA3HRxAHsMtSxnmmLROnBqk0uj9HJOptpgKh_rK26FlK2qAaSJM
+Message-ID: <CABTCjFBui7HMRb--5R0c1LCzmD8fx=C2wPzu-CPN0pw5FUE6mA@mail.gmail.com>
+Subject: Re: [PATCH v13 04/10] dt-bindings: mfd: add maxim,max77705
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-On Thu Jan 2, 2025 at 2:34 PM CET, Marek Vasut wrote:
-> On 1/2/25 10:58 AM, Michael Walle wrote:
-> > Hi,
+=D0=BF=D0=BD, 23 =D0=B4=D0=B5=D0=BA. 2024=E2=80=AF=D0=B3. =D0=B2 18:52, Krz=
+ysztof Kozlowski <krzk@kernel.org>:
+(...)
+> > +
+> > +  leds:
+> > +    type: object
+> > +    additionalProperties: false
+> > +    description:
+> > +      Up to 4 LED channels supported.
+> > +
+> > +    patternProperties:
+> > +      "^led@[0-3]$":
 >
-> Hi,
+> 0-2? 1-3? Preferred is the first, because we index unit addresses from
+> 0.
+
+max77705 supports 4 led channels, i.e. rgbw, hence 0-3.
+
 >
-> >>> ..Which is the
-> >>> normal use case for this pin. This driver was created because the
-> >>> LS1028A doesn't have a MCLK pin, so we've "misused" the BCLK pin,
-> >>> with the restriction that only integer dividers are possible.
-> >>
-> >> I have a system that is wired a bit unfortunately, I need to source
-> >> codec clock, where the codec is the clock consumer and needs to be abl=
-e
-> >> to control the clock (SGTL5000). SAI MCLK is the only way I can get th=
-em
-> >> out of the pin I need, hence this patch.
-> >=20
-> > Which is also the default case, no?
+> Please move "patternProperties" after the "properties:" block.
+> Compatible should be the first thing visible to the reader.
 >
-> Not quite, there is a difference.
+
+ok
+
+(...)
+> > +
+> > +        patternProperties:
+> > +          "^led@[0-3]$":
 >
-> If SAI (audio driver) is used to control the MCLK enablement, then MCLK=
-=20
-> clock is not always enabled, and it is not necessarily enabled when the=
-=20
-> codec may need the clock to be enabled. There is also no way for the=20
-> codec node to specify phandle to clock provider in DT, because the SAI=20
-> (audio driver) is not clock provider.
+> Same - 0-2
 >
-> If SAI (clock driver) is used to control the MCLK enablement, then MCLK=
-=20
-> clock is enabled when the codec needs the clock enabled, because the=20
-> codec is the clock consumer and the SAI (clock driver) is the clock=20
-> provider, and the codec driver can request the clock to be enabled when=
-=20
-> needed. There is also the usual phandle to clock provider in DT, because=
-=20
-> the SAI (clock driver) is clock provider.
->
-> >>> Also I'd expect that the imx
-> >>> SoCs already supports the MCLK for audio applications. Isn't that
-> >>> the case?
-> >>
-> >> That does not work if the MCLK has to be enabled/disabled by the MCLK
-> >> clock consumer .
-> >=20
-> > Why's that?
-> >=20
-> > Don't get me wrong. I don't have anything against this patch, I'm
-> > just confused, why that isn't already working with the current MCLK
-> > driver as this seems to be the usual requirements.
-> Which current MCLK driver, the SAI in audio driver role ?
 
-Yes.
+max77705 supports 4 led channels, i.e. rgbw, hence 0-3.
 
-> Does the paragraph in the middle of this email possibly answer this=20
-> question ?
-
-Yes thanks!
-
-For reference, IMHO the correct way to do it would be to add clock
-provider support to the original SAI, esp. because both drivers are
-mutually exclusive. But I'm fine to add MCLK support for this driver
-for hardware which has a spare SAI and to just use that as a MCLK
-source.
-
-Acked-by: Michael Walle <mwalle@kernel.org>
-
--michael
-
---60e47edfe38543925c72c751d549eb1c55a15e2be67c797b85027bd80743
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZ3zrbBIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/jGLwF/ZWmiJ2eGuY9CJRdtQ2c0YfLp47Jb92k9
-CLXIBvMSzZTWf1jTWoFprdUXFNI87QfbAYC7BgXfJeZcipGW+Gn8xnIhA9exkNMh
-eifER4VvKwpBdztoNKobUEO9e6Uya+wFtgg=
-=oTca
------END PGP SIGNATURE-----
-
---60e47edfe38543925c72c751d549eb1c55a15e2be67c797b85027bd80743--
+--=20
+Best regards and thanks for review,
+Dzmitry
 
