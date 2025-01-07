@@ -1,118 +1,104 @@
-Return-Path: <devicetree+bounces-136049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25D91A03A35
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:50:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6C54A03A4C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:53:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E8533A58F9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:50:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D338161CA3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2545F1E47CC;
-	Tue,  7 Jan 2025 08:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E5471AAA10;
+	Tue,  7 Jan 2025 08:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b="HkC9L15i"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QL5YGQtF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.systec-electronic.com (mail.systec-electronic.com [77.220.239.22])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBDB1D7E47;
-	Tue,  7 Jan 2025 08:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.220.239.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F084133CA;
+	Tue,  7 Jan 2025 08:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736239777; cv=none; b=YqTfr7wTROe/BcA2A8MEfNY1nDx3+1BqCxPhfRgjqnSmcenXzbKDX/5G7DW1p0HT3GABHrRay38cZPzJV0Xlo2TORADdP3L8LXGZrsqBb8OPNHead/egTTuaRBxREd8+E9StX75HQszVX6ddCgAmTCybG2crA1qrVYp3NZCaFXY=
+	t=1736239994; cv=none; b=W/SXP7KBZL7GQukZ5jWV0eJCbDGtnHgqe6MzK2uYONsiba/K8euXMncW3Xe0Q2EDzVAxXma6NiyBvUOytjYkQOo6J7f+zbb+wVzPEuOJa63sF2GFcBzjQR1GwCGhYrLVzj/gLZz++2ZVpscCK4vKZBV1qGjGk15BOBJ1rSjI6h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736239777; c=relaxed/simple;
-	bh=gjEPgqLkkiYS4kMyaL3xU0ZUnSKwvMLRGduQu6gI9zM=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=ViJl9+Fw7o9IzyUgayFoFbowRM08r5FtnJkJU5bMzYTofJWfYBcLjgEvPpM3qQmp3nhjuBpUy7wuF6CW47aK1FN3yyxZPYO/7/GoVRghZ/V+LoV8dUf8KSDpOqTzum9lE98sPzDCp1bt/Df8FgSnmPnheyhMuXRpVm6HMrDC+UQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com; spf=pass smtp.mailfrom=systec-electronic.com; dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b=HkC9L15i; arc=none smtp.client-ip=77.220.239.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=systec-electronic.com
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id 299F39400109;
-	Tue,  7 Jan 2025 09:49:30 +0100 (CET)
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id 09yDynO_7LEB; Tue,  7 Jan 2025 09:49:30 +0100 (CET)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id CA47894016AD;
-	Tue,  7 Jan 2025 09:49:29 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.systec-electronic.com CA47894016AD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=systec-electronic.com; s=B34D3B04-5DC7-11EE-83E3-4D8CAB78E8CD;
-	t=1736239770; bh=gjEPgqLkkiYS4kMyaL3xU0ZUnSKwvMLRGduQu6gI9zM=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=HkC9L15iZnXS0CIYDVVz7Zqf5G+oxTw3eQ/dF/sIB0oAxUtoIp3sSIJQYfNZIXYuf
-	 7AsiXlshIjO4p9dIPNV0Itu4HM+oktOCZnz4cJPnFncxURaf0A5KozNZKNi0i1SDem
-	 h6A8wNHWSnaWAX6BJ3EPXgqUZZSgB2Yir8tOLeT5IjlAPu25Qf6k3gUOVtGTzs+BLJ
-	 9Bg3swuXIYafYbwuiFLbqiGwAK+uL2S6U6ZYK70gizAcBDvCbc8fNRVAYvWgbX+U+8
-	 CXpcjg9kYtgvi1hS+hsZKFyuAhZc0vZ9wgj2T3lVjz3TdbFdpprjtf6THus8RhLUKe
-	 C8sWcqRa2AooA==
-X-Virus-Scanned: amavis at systec-electronic.com
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 8ROXOkz5FEcd; Tue,  7 Jan 2025 09:49:29 +0100 (CET)
-Received: from lt-278851.systec.local (unknown [212.185.67.148])
-	by mail.systec-electronic.com (Postfix) with ESMTPSA id 09D259400109;
-	Tue,  7 Jan 2025 09:49:28 +0100 (CET)
-Date: Tue, 7 Jan 2025 09:49:28 +0100 (CET)
-From: Andre Werner <andre.werner@systec-electronic.com>
-Reply-To: Andre Werner <andre.werner@systec-electronic.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-cc: Andre Werner <andre.werner@systec-electronic.com>, 
-    gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com, 
-    andy@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-    linux-serial@vger.kernel.org, lech.perczak@camlingroup.com, 
-    krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
-Subject: Re: [External Email] Re: [PATCH v2 1/2] dt-bindings: serial: sc16is7xx:
- Add description for polling mode
-In-Reply-To: <4pcgrt5zwtjxk3qa4twjzvmaxknu7sasmwrgphc364ril7aref@uurm62vwexr3>
-Message-ID: <5582697e-bbf1-9a35-c5a4-52f09fdc6067@systec-electronic.com>
-References: <20250106085051.50861-1-andre.werner@systec-electronic.com> <4pcgrt5zwtjxk3qa4twjzvmaxknu7sasmwrgphc364ril7aref@uurm62vwexr3>
+	s=arc-20240116; t=1736239994; c=relaxed/simple;
+	bh=xlVyBLCpQrwUDAmx1ICRCxa4whPFZar5sI+v8OCvqxs=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=BKb2cFkuXE1NvHALjQkFxooSZ0WaVH+Vc583HTdqxU17vgWCzWl8Sy1iAzZrEHAf0SoQoTmDw6wxvHsMQj7FRlRMhLAL3DwBJW/1Rf8A7/yRoedqSo/NbMjpD756EBrQRlytjIUDVRr1qMtx/Xc8D/34u7LKOyvjoMIeYUNEC/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QL5YGQtF; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736239991; x=1767775991;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=xlVyBLCpQrwUDAmx1ICRCxa4whPFZar5sI+v8OCvqxs=;
+  b=QL5YGQtFvX2odGCOKv0c06aXqxjjLvK6uBbApzxTiAAuwPzaMIePFgC4
+   G+DVan3GHC880gpPqqOrdiOSk4xq6svjr8t3yfl9l8L66aQj3ZfhoreAL
+   Bc2e9FFvXOfAp/hBTa/F2qzF41d49TR/3sLQmYxlPUZOQV60ZTC8oajBI
+   1DMKFl+5VZmohG9S5tL9fQkDyQXSJvUnQPSQ/289te+c1WUHWz3MmgGPI
+   6g5em1qf8fnpnwsZD1VAu1cm4zqz4lv4i2dvfXtGvEhc0QcEP68G+hu9r
+   USwjwzdtMMaD90TjeIuVSa4AJmS1W1LZMyj/3RHow4Z6Y93XJqt+iMJ0V
+   A==;
+X-CSE-ConnectionGUID: iWs83Y4nT2G7NT2S8TLzHw==
+X-CSE-MsgGUID: 0xqlRgHUSX+svmXC0n9p4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="53949445"
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; 
+   d="scan'208";a="53949445"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2025 00:53:09 -0800
+X-CSE-ConnectionGUID: ETCv23ooSTieFlFnGzjbAw==
+X-CSE-MsgGUID: fb53ka4jRe+CRKabgfIRTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; 
+   d="scan'208";a="102509282"
+Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
+  by fmviesa006.fm.intel.com with ESMTP; 07 Jan 2025 00:53:07 -0800
+From: niravkumar.l.rabara@intel.com
+To: Dinh Nguyen <dinguyen@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	niravkumar.l.rabara@intel.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: socfpga: agilex5: add clock-names property to nand node
+Date: Tue,  7 Jan 2025 16:49:55 +0800
+Message-Id: <20250107084955.2750154-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 
-Dear Krzysztof,
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-On Tue, 7 Jan 2025, Krzysztof Kozlowski wrote:
+Cadence nand controller driver requires clock-names = "nf_clk" property.
 
-> On Mon, Jan 06, 2025 at 09:50:50AM +0100, Andre Werner wrote:
-> > Polling mode is enabled if the "interrupts" property is missing.
-> > Thus, this commit deletes "interrupts" entry from "required" section
-> > and adds a description for the fallback to polling mode at the
-> > "interrupts" entry.
->
-> Can the device actually operate with interrupt line disconnected? I
-> skimmed through datasheet and they did not mention that as a valid
-> setup.
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+---
+ arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-For polling mode the datasheet said:
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+index 51c6e19e40b8..4357572e96e3 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+@@ -272,6 +272,7 @@ nand: nand-controller@10b80000 {
+ 			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clkmgr AGILEX5_NAND_NF_CLK>;
+ 			cdns,board-delay-ps = <4830>;
++			clock-names = "nf_clk";
+ 			status = "disabled";
+ 		};
+ 
+-- 
+2.25.1
 
-In Polled mode (IER[3:0] = 0000) the status of the receiver and transmitter can be
-checked by polling the Line Status Register (LSR). This mode is an alternative to the FIFO
-Interrupt mode of operation where the status of the receiver and transmitter is
-automatically known by means of interrupts sent to the CPU.
-
-This is what the driver does. It polls the LSR according to poll period
-used in the driver. Unfortunately, the internal TX and especially RX
-buffer is very small. So we need to poll in a very short period.
-
-
->
-> Best regards,
-> Krzysztof
->
->
-
-Regards,
-
-Andre
 
