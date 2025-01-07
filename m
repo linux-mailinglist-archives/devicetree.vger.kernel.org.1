@@ -1,127 +1,164 @@
-Return-Path: <devicetree+bounces-136052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2260CA03A47
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:52:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9EE3A03A49
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:53:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAF1318869B8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:52:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F67316105D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E199A1E2306;
-	Tue,  7 Jan 2025 08:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 828B21DF75E;
+	Tue,  7 Jan 2025 08:53:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IC+hdV2S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6HguPPB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4EE31E1A33;
-	Tue,  7 Jan 2025 08:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 499DD1DED45;
+	Tue,  7 Jan 2025 08:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736239947; cv=none; b=LKXFLaULc0lbemYENp0TgRhrDf864KH7tN3g+BItfo/4JBpEpWR2p7ixBvLxHhaNq4wik6JKSy7D3C7Axa8z4MrDbsHMJDaBJtsybr6wSHOvZnLwiE4k1xhK0J/dmY3/cH3ZdFZWjWmhv1RUkGxUL85YRLahqk+ksBhyQls0N3w=
+	t=1736239984; cv=none; b=DmrReNwE98bwnsqpiuB1Sbjj1eh8c9RlpVgJa9Mxqq+/Z/ap2dWst/l82yhBdwu8cvvoRN0Ei4LYHUD8BRNMW+mv/m60O03E2Hyg3+a3X442w7cJi/zjd7yerAvHuvg1d2YBfC5MnHL8DSPC6MX5ZlTYvFyXG1IBmyWocfkx5E8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736239947; c=relaxed/simple;
-	bh=TD4NTGiT/c7ACTMbbS4vLYcRuMRFsWgJzKZCpugtq2o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=eCRAgy3cWHLsEqQDL8WKCk6f1t8X/NKrcVFc78+ovNL1fgFxZz0rx7nWVe56aB6nnPAsA8uEAJ6BMcdsc2c5xIQ74fWhZxi4AjYlQQtQlAhkNCtIfmgkA1srekvcSOV/b/a+bkuRkgtaE0gqeX7/sHbx2AqL3clEI5OOsfvCYPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IC+hdV2S; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5073QC15007312;
-	Tue, 7 Jan 2025 08:52:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AOF+5w1gP+wOunvkUKJNFjxZNW2+9AggjH4Q2vEYWXQ=; b=IC+hdV2ST9E2GzPZ
-	sdJwEtF0rxvjfcautx8Y93oRisFkiF2sIulZY6e6RYOMB3FNy4qji3+TQcCq15u/
-	thO9aVgZYoh7nG0U/RoPcDGKem/MPIP5IihaWdVEapBceXisIkJJrfUcRSW8Y2Of
-	QwtY7sbhNMSmaPMM6O+oA+1bEnK2LT1usCoPxYAHH+vFaLmltegYFaJXJjHJl1yU
-	6cxMNPg5fnp6kFNV1ydaU0TGSCxVBoyovdBOBqj5V/l4x6VMleB6mjyj0YgtnJ/j
-	IgjAZhC/pXoPYQHdou2G98sUi2xEjl8yF+1zNDZV4Jp8jL2oYqATomd7lzGYnjmY
-	Bpki2Q==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 440vbu0nkp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Jan 2025 08:52:18 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5078qHLK015259
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 Jan 2025 08:52:17 GMT
-Received: from [10.239.133.114] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 Jan 2025
- 00:52:12 -0800
-Message-ID: <44020b6b-ae32-4910-b1dc-95d7d5f10204@quicinc.com>
-Date: Tue, 7 Jan 2025 16:52:09 +0800
+	s=arc-20240116; t=1736239984; c=relaxed/simple;
+	bh=01xTrWdA2Ra774BNmcbW6I0L7KA7rprIQ4jaPnbAI/A=;
+	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
+	 In-Reply-To; b=KVbpdkhNdc8Cdj3PJy6lpj/tkviw8SNtKegQ2DWwx3Gdca4VYejHNkm8VajHSExJk3aEUjpmcZAX15B4lZDXQzgakW4BwZ+bo3uqrHTv1wy0qM0CFbEI3voiyYpGm7RH7z3zzZh2PeUKqkLxNvP9l/sYxFtGvkSqdrFHVm2WxBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6HguPPB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA39C4CEDD;
+	Tue,  7 Jan 2025 08:53:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736239983;
+	bh=01xTrWdA2Ra774BNmcbW6I0L7KA7rprIQ4jaPnbAI/A=;
+	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
+	b=k6HguPPBzt4nxG0k2sYivWVxQSuI5DBuP9LLof+Q5gEW0o0skCgV3ARsGwJ6GpS7k
+	 Wxc0Ta1itxg9nuEt60vOLFhUu+VZ2LxEAnxEduSGsshO7JhszNya82NgIrZU5G6I/t
+	 tuFCuaU9v0YjOAvSR21T4t/gm3fRJOijZ8pWG6PzcJu8YbewFi8vcejUNXlYbnFgfu
+	 N994EPkLjAMDOFSaJNLjgquvBHxYlXQ/idQTkllU5ufM/KcrOZGFhk3aSydXhCYFov
+	 FcPFNx9TSuTu9oXuzG/26nR9VeSqT0FRQAVZd+xzhGQ7rsC18SttT+/Wm2qzaDbMmv
+	 4E2M82ggIT8kA==
+Content-Type: multipart/signed;
+ boundary=60e47edfe38543925c72c751d549eb1c55a15e2be67c797b85027bd80743;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Tue, 07 Jan 2025 09:52:59 +0100
+Message-Id: <D6VPPFGFM884.1OUPHTCOA7HG3@kernel.org>
+Subject: Re: [PATCH v2 4/4] clk: fsl-sai: Add MCLK generation support
+Cc: "Conor Dooley" <conor+dt@kernel.org>, "Fabio Estevam"
+ <festevam@gmail.com>, "Jaroslav Kysela" <perex@perex.cz>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>,
+ "Mark Brown" <broonie@kernel.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Nicolin Chen" <nicoleotsuka@gmail.com>, "Rob
+ Herring" <robh@kernel.org>, "Shengjiu Wang" <shengjiu.wang@gmail.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Takashi Iwai" <tiwai@suse.com>, "Xiubo
+ Li" <Xiubo.Lee@gmail.com>, <devicetree@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Marek Vasut" <marex@denx.de>, <linux-clk@vger.kernel.org>
+X-Mailer: aerc 0.16.0
+References: <20241226162234.40141-1-marex@denx.de>
+ <20241226162234.40141-4-marex@denx.de>
+ <D6OVE2W07NDX.2Q4AFF46TWCWJ@walle.cc>
+ <36665ab9-16de-4f77-a55f-b7942dc0c1bf@denx.de>
+ <D6RHZ8B051X5.3NA8EAPRI62XS@walle.cc>
+ <72d4c42a-7ebf-484f-839b-631d61ac950f@denx.de>
+In-Reply-To: <72d4c42a-7ebf-484f-839b-631d61ac950f@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: Add coresight node for SM8650
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250103-sm8650-cs-dt-v3-1-759a3f6a3cc8@quicinc.com>
- <770b35b7-27c0-4b55-af85-9d6170d43102@oss.qualcomm.com>
-Content-Language: en-US
-From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-In-Reply-To: <770b35b7-27c0-4b55-af85-9d6170d43102@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: adNS7ngqxVWeFqfaDMBCPek8Nfu0X74q
-X-Proofpoint-GUID: adNS7ngqxVWeFqfaDMBCPek8Nfu0X74q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=705
- lowpriorityscore=0 phishscore=0 malwarescore=0 impostorscore=0 bulkscore=0
- adultscore=0 clxscore=1015 mlxscore=0 priorityscore=1501 spamscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501070073
 
+--60e47edfe38543925c72c751d549eb1c55a15e2be67c797b85027bd80743
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
+On Thu Jan 2, 2025 at 2:34 PM CET, Marek Vasut wrote:
+> On 1/2/25 10:58 AM, Michael Walle wrote:
+> > Hi,
+>
+> Hi,
+>
+> >>> ..Which is the
+> >>> normal use case for this pin. This driver was created because the
+> >>> LS1028A doesn't have a MCLK pin, so we've "misused" the BCLK pin,
+> >>> with the restriction that only integer dividers are possible.
+> >>
+> >> I have a system that is wired a bit unfortunately, I need to source
+> >> codec clock, where the codec is the clock consumer and needs to be abl=
+e
+> >> to control the clock (SGTL5000). SAI MCLK is the only way I can get th=
+em
+> >> out of the pin I need, hence this patch.
+> >=20
+> > Which is also the default case, no?
+>
+> Not quite, there is a difference.
+>
+> If SAI (audio driver) is used to control the MCLK enablement, then MCLK=
+=20
+> clock is not always enabled, and it is not necessarily enabled when the=
+=20
+> codec may need the clock to be enabled. There is also no way for the=20
+> codec node to specify phandle to clock provider in DT, because the SAI=20
+> (audio driver) is not clock provider.
+>
+> If SAI (clock driver) is used to control the MCLK enablement, then MCLK=
+=20
+> clock is enabled when the codec needs the clock enabled, because the=20
+> codec is the clock consumer and the SAI (clock driver) is the clock=20
+> provider, and the codec driver can request the clock to be enabled when=
+=20
+> needed. There is also the usual phandle to clock provider in DT, because=
+=20
+> the SAI (clock driver) is clock provider.
+>
+> >>> Also I'd expect that the imx
+> >>> SoCs already supports the MCLK for audio applications. Isn't that
+> >>> the case?
+> >>
+> >> That does not work if the MCLK has to be enabled/disabled by the MCLK
+> >> clock consumer .
+> >=20
+> > Why's that?
+> >=20
+> > Don't get me wrong. I don't have anything against this patch, I'm
+> > just confused, why that isn't already working with the current MCLK
+> > driver as this seems to be the usual requirements.
+> Which current MCLK driver, the SAI in audio driver role ?
 
-On 1/3/2025 8:44 PM, Konrad Dybcio wrote:
-> On 3.01.2025 12:27 PM, Yuanfang Zhang wrote:
->> Add coresight components: Funnel, ETE and ETF for SM8650.
->>
->> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
->> ---
-> 
-> [...]
-> 
->> +
->> +		funnel@13810000 {
->> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
->> +
->> +			reg = <0x0 0x13810000 0x0 0x1000>;
-> 
-> This now looks good, please just re-sort these nodes (by address instead
-> of adding them at the end).
-updated in patch V4.
-> 
-> Also, did you give this patch a try on a production-fused device?
-> 
-Yes, it was verified on Snapdragon 8Gen3 platform device.
-> Konrad
+Yes.
 
+> Does the paragraph in the middle of this email possibly answer this=20
+> question ?
+
+Yes thanks!
+
+For reference, IMHO the correct way to do it would be to add clock
+provider support to the original SAI, esp. because both drivers are
+mutually exclusive. But I'm fine to add MCLK support for this driver
+for hardware which has a spare SAI and to just use that as a MCLK
+source.
+
+Acked-by: Michael Walle <mwalle@kernel.org>
+
+-michael
+
+--60e47edfe38543925c72c751d549eb1c55a15e2be67c797b85027bd80743
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZ3zrbBIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/jGLwF/ZWmiJ2eGuY9CJRdtQ2c0YfLp47Jb92k9
+CLXIBvMSzZTWf1jTWoFprdUXFNI87QfbAYC7BgXfJeZcipGW+Gn8xnIhA9exkNMh
+eifER4VvKwpBdztoNKobUEO9e6Uya+wFtgg=
+=oTca
+-----END PGP SIGNATURE-----
+
+--60e47edfe38543925c72c751d549eb1c55a15e2be67c797b85027bd80743--
 
