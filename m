@@ -1,114 +1,105 @@
-Return-Path: <devicetree+bounces-136018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 811E6A03804
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:36:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FFC0A03808
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:37:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68E9E3A4F35
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 06:36:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DFE918821F0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 06:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E83A1DE3D9;
-	Tue,  7 Jan 2025 06:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0741AAA10;
+	Tue,  7 Jan 2025 06:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mBpS4SAI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NURjcH0W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B10F818B46C;
-	Tue,  7 Jan 2025 06:36:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5E218641;
+	Tue,  7 Jan 2025 06:37:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736231788; cv=none; b=fI6wJyl97RirBd4J4hA7f9jhkf9ZyeBDlGLypspJwb8PKDk9d/Mdh4tSszuSJme4IjYDUCqn6SqXq3CbKklTEIFJyKm0BpNaFCs9ObpNAa7kNNj/5j4gevvhwyoAmmawFAB6o9qDjMUXGwAP/2e39XMON6f5SJIc7vX8dotiDLE=
+	t=1736231827; cv=none; b=iWAkPL4y5a6if/irfiB0nmnUneOPt6l3z1ZwWvkKltLnrLBDPTLL3nLHZAEMrU0EA7KXOx7OZ+e3rM+IoYlfppX/x0Zbx4nCGDyDE2kLTAhhdvQAqFEcWCci+5qUhkVfARAQOBG3n9dCkUCDDhy3IBnFKr8TfPRa2UZUO+xe1n4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736231788; c=relaxed/simple;
-	bh=Kng/mpbUzhaJx0h/7Fasw6w2qS0oY3rIDnnEx7pNUzQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gR1We0cgNE//WqSWxYr9krufhC9trQeEllJeNjvVUuYmunNo5pARMg/MTJJ/uYn2UWkxWESXdehFIAdWkr9P+9+YhX4NYsQgbQBHty4oDVCiNWvh8NYVSUJUTUPEvVasZaMg+2Z6jEAzxal+Bp4IYA/96f1FYhSYARjI5gMRGnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mBpS4SAI; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-21619108a6bso205274805ad.3;
-        Mon, 06 Jan 2025 22:36:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736231786; x=1736836586; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Kng/mpbUzhaJx0h/7Fasw6w2qS0oY3rIDnnEx7pNUzQ=;
-        b=mBpS4SAI3qyiuJ+XyXF9U8RNOKg/aNGWO8iFx6OvqWtHDqVF+2nwQoVF5DX2k7OJYn
-         b1jqtCjLY3EJdMFNViVeqM1TZIG7Cd2cdKZXrbwFQGeZR3vHb9oprMC2FfK6ZWMKh1Iu
-         DplY9h8og9KJNlGnOnYSas49ElkJ0EGq0pSScDbXsR3yFE5bJCLFaNPMc9YWRXSWzMX5
-         oov5emxwPUwe9LxtL/uyy8tn+fm8yZPelFEhXTRbVym4+W7BzCL8An43ZOORXD9DooDA
-         tt9r9CNDZpWtVR4UIzIUW/ecjdqMSF+WmbStXDO2REsnrq2t3isOeA6EkgJ7cpxV+ZIA
-         CAsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736231786; x=1736836586;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kng/mpbUzhaJx0h/7Fasw6w2qS0oY3rIDnnEx7pNUzQ=;
-        b=Oev4DdbCE7my05vl4rvYv1L+ZcYsk3drTGD/XIfix3QiYpuntM0tW22l0hrpAX/AD/
-         VzgKS0hMzfFnfvq168WY7XOe5j6kbpb1o8RzWItsN7thkgNxBfjjwUXsq+K2KZkgmVHc
-         +cxdSP/5+nQDGez/6epiRqzkRm4goMAa0VuI/ySnDShNBt2ROSoXLoLujP8puqXjSdmg
-         7QiAyes3ephZW16ATsFG0hnv4mZrrUubmjTs4c+k2vcdZwVcqKKOOCHWgDb1MKeAJRrS
-         rOoYyEpWB5VRIu7AXTXSyRYQb9uQFIgy2zfiq3oi4zQk3Dwr/GgOqZw0Ch1/fZ7hFbjX
-         0eFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuOa8VnnliEoZi4cSVPsuI1xAi8NK9Gz+l+3h2qwjbNJkS8BFR8fqLWqdEfGqjohyganOwu6TPm6jI@vger.kernel.org, AJvYcCV2iaZPVa7tZC87ISc0uucdsgC1yoseE7TEXG0YWXqEdZEEjS+rLcwm/iDSr8eMPm+jKSpdjqLd@vger.kernel.org, AJvYcCXUsCu3ldjfGq1/D8QpNLeTC8RQHSPrSq2QtzhT1aG03ss0AZwo9vrUvBGau4G3RjI03S9JayknTcNHzofg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDmmuzoxb07LsWLRZJpIDSafDdgExYP3cKaYkN/hMwJCyAHL9U
-	/3KS0td8+FZbhuIizkCVL+19lUywS/cmK2xv7kulf67oQsayaJQd
-X-Gm-Gg: ASbGncskwHmRChoU45N9kI4xb1rHwD8Xdrzni0+RZ2k+OSngsFeY63W2tvc3ZlLSBwU
-	Bpznj2JpVIY5GQM8S9BkAVaTyB36NkYnQUgmiiMPHTZUvv9+KQz01D8LZuIYiyQZwgHlmvPqJHK
-	EcM91m3GRS4DaPEQ8sW/dTBxJKl5kULWUcXKUmbzil+9tbrMtGi0L65irQSfZF2nQ/herL8yj/t
-	/eJTkHIq6Xn83bG2BOqe7UJoFVYlFHc4+tjBp3n+04f9jbUt+34tEYLy3LFGc2svSfYvvkgGXop
-	+P/m/v2Shfahm6ABvuGcEe9gCDcqcMjmTEU=
-X-Google-Smtp-Source: AGHT+IFB3swUN2iLMUEOpHvMus0FiubXQryQDXtAgLSPcX+ECwaEuxj3DZQ/Bf/+X66C3yI9GBLI7g==
-X-Received: by 2002:a17:903:94e:b0:212:68e2:6c81 with SMTP id d9443c01a7336-219e6ea0223mr977864255ad.24.1736231785959;
-        Mon, 06 Jan 2025 22:36:25 -0800 (PST)
-Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a739b423fsm23758445ad.198.2025.01.06.22.36.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jan 2025 22:36:25 -0800 (PST)
-Message-ID: <83c11616-ac3a-48b8-a513-ca000ff9d48e@gmail.com>
-Date: Tue, 7 Jan 2025 14:36:16 +0800
+	s=arc-20240116; t=1736231827; c=relaxed/simple;
+	bh=sRMNjrF5fzpZzIUgrg1K1oKsI7vH9kxNisy1gZ1Rk6I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ehw4utIZXcSroHKXHzgM22E3HkueFknyyNCwdWhovVQyWMQj3ktbqGSJe2F8HDYZNY7ou/SfDOTMa801GHyjERN/obP9rhbOXibHRWKDIeDhNFGbb/V5BMHNCd+OyQetzgvPy8WkF+0ZXB27x5uhEihVya9U+Af69zjajxwwQEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NURjcH0W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53543C4CED6;
+	Tue,  7 Jan 2025 06:37:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736231826;
+	bh=sRMNjrF5fzpZzIUgrg1K1oKsI7vH9kxNisy1gZ1Rk6I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NURjcH0WlnoxYYgY39RgR/KW/2Ft+UjGW3lICQbHRx7yOyQ235A/AmEKB/uG/uS+H
+	 NGHOLzVsbkt5dqryuy4S5ctw82f6JS0KaT4cLre6whIdY2j06y0P/eByDft7wsdfrH
+	 2Dreq3ni2S1b9Jj5PvHV9qf8mnwkfuZnWsPC/CrTSu8uOm/Z4XNf0Sibnv+12kTs2L
+	 CPi5Bb8Fqw6eZSvx9XTXA5GTieY4NOcdcIUu5epbtR+xbkEncuJVWl23asDwUOo3F8
+	 nfO1WSLdGiuv1P0E3QPdgNBPsWn8aZCrlDLc4vGSRyCRuNZs1Klsf9c52fV8O7ZYhr
+	 rud2hBuT0Qi/w==
+Date: Tue, 7 Jan 2025 07:37:02 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Borislav Petkov <bp@alien8.de>, Tony Luck <tony.luck@intel.com>, 
+	James Morse <james.morse@arm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Robert Richter <rric@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-edac@vger.kernel.org, git@amd.com
+Subject: Re: [PATCH v5 4/5] dt-bindings: memory-controllers: Add support for
+ Versal NET EDAC
+Message-ID: <ff7wj4atmh2xgn2pqqr3bxecdkrkgaybsph4crnq7eqyrojqlb@dcwa2hlg3umg>
+References: <20250106053358.21664-1-shubhrajyoti.datta@amd.com>
+ <20250106053358.21664-5-shubhrajyoti.datta@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v6 1/3] dt-bindings: net: nuvoton: Add schema for
- Nuvoton MA35 family GMAC
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: edumazet@google.com, peppe.cavallaro@st.com, andrew+netdev@lunn.ch,
- joabreu@synopsys.com, netdev@vger.kernel.org, schung@nuvoton.com,
- linux-stm32@st-md-mailman.stormreply.com, kuba@kernel.org,
- openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
- mcoquelin.stm32@gmail.com, linux-arm-kernel@lists.infradead.org,
- richardcochran@gmail.com, ychuang3@nuvoton.com, krzk+dt@kernel.org,
- pabeni@redhat.com, linux-kernel@vger.kernel.org, yclu4@nuvoton.com,
- conor+dt@kernel.org, alexandre.torgue@foss.st.com, davem@davemloft.net
-References: <20250103063241.2306312-1-a0987203069@gmail.com>
- <20250103063241.2306312-2-a0987203069@gmail.com>
- <173592330334.2414402.4730979254460270593.robh@kernel.org>
-Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <173592330334.2414402.4730979254460270593.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250106053358.21664-5-shubhrajyoti.datta@amd.com>
 
+On Mon, Jan 06, 2025 at 11:03:57AM +0530, Shubhrajyoti Datta wrote:
+> +description:
+> +  The integrated DDR Memory Controllers (DDRMCs) support both DDR5 and LPDDR5
+> +  compact and extended  memory interfaces. Versal NET DDR memory controller
+> +  has an optional ECC support which correct single bit ECC errors and detect
+> +  double bit ECC errors. It also has support for reporting other errors like
+> +  MMCM (Mixed-Mode Clock Manager) errors and General software errors.
+> +
+> +properties:
+> +  compatible:
+> +    const: amd,versal-net-ddrmc5
 
-Rob Herring (Arm) 於 1/4/2025 12:55 AM 寫道:
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches*only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
+git grep amd,versal-net - 0 results
 
-Got it. Thank you for the reminder.🙂
+Where is your soc?
 
-Joey
+> +
+> +  amd,rproc:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      phandle to the remoteproc_r5 rproc node using which APU interacts
+> +      with remote processor. APU primarily communicates with the RPU for
+> +      accessing the DDRMC address space and getting error notification.
+> +
+> +required:
+> +  - compatible
+> +  - amd,rproc
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    memory-controller {
+> +       compatible = "amd,versal-net-ddrmc5";
 
+Still wrong indentation. I commented on wrong alignment so that's on
+me. Use 4 spaces for example indentation. (or 2 spaces, but not three...
+there are no bindings like that).
 
