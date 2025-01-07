@@ -1,125 +1,128 @@
-Return-Path: <devicetree+bounces-136193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15E78A042B9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:38:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2ECAA042F0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:44:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 292787A129E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:38:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B58081885651
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:44:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D60D1E5738;
-	Tue,  7 Jan 2025 14:38:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jhbVWt/P"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377231F37D0;
+	Tue,  7 Jan 2025 14:42:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E591D958E
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 14:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76741F190E;
+	Tue,  7 Jan 2025 14:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736260715; cv=none; b=LcHWE8GqexKEMgVQ4+K7gVOj98GFtKlVgT7M08t6mF5bbrG1f9QBxN5ZbHoMgLAnj1ODOW0/h08qXDMZaNrhR9+2+1PMO/wBS4owQ02HOg/1HfP/5Usf7xP53mNjLJsxAWEZEjZRx/gevZmzwMOx5kShLzfhpKLB4QpjIbmv5sU=
+	t=1736260922; cv=none; b=iV0Pvst9wUtO7v8HoPbX40M4isOiGDZSrWKq6o47MJAHjMd7PLEYvuj83eyzBY20MnMoVLqfDX5nwR67Jdjhkd8liAW/PGUl6MVmUzjxIBjJEYm9A53gN7YWXdFi7WWzmuSJt6lg7IcoxvjGlwAytm8zwOJHlYS1z4EJMqwm2Pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736260715; c=relaxed/simple;
-	bh=EAOJ9Cy4whUatGc01tErXLm3u1bA9IGZtdlzgfVjk20=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lPZGqX35QyEWDfYKOolhL/4HczeeWrMGajBhUJFJ7EFq5dcaIpiCwleQeDJn9KpBSt8qtRxDH+YzuDlQZJWfl3ClTdbWT7MqhNtilSbwOhtIOewLtzckYMKUjO0vEdvTQO+5oojLJLvVNiFZHiNVmg6jAAaExrZpNzCZWVk/IdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jhbVWt/P; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-436a03197b2so59433865e9.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 06:38:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736260710; x=1736865510; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qo9P0YtQuqJXCqr05Qb0Bv72irxJaHvuePVGR1s+GJw=;
-        b=jhbVWt/PCJUaK4jCxtfVQcf/BqyhKHT1mcv/XIzkoA+pKCBd+kbyD2timM2jWDmKmt
-         h32X3FdDoyFb/IpWQV3BY+zV8QJ3Fv2PECWFtSnueoyDe/xtsm1JZzTtASshXUkXRdqX
-         uxuQZnHcs8va5viV5jlcO0NF9ZAoCTs39ZYAuT7pqPx54TBFc5eClGCdPLeOW8YYOtBy
-         1FiSvzhj3aPmGWRWkvdtosm0UM9XE606VmP8myXSC5N2e9UeeEzPNeMcjOudu+Q6Cm95
-         VU9q4NqZ4od6BacY9QNS9JLAri5TGpstkHHaWIYm4Ufx3YQJqqEZ0dWXpiW40SRQN/sb
-         u+Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736260710; x=1736865510;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Qo9P0YtQuqJXCqr05Qb0Bv72irxJaHvuePVGR1s+GJw=;
-        b=EF6XO3Li59jcwcvvzFCSisYyaw7hf8p0zXCDqzNzkmK2+h7GZ42Zn4+Ot4FA3NYX6p
-         GGHF9Ive3uzuLnFlr8UYDYpFM6JcBRUmmyESYmO3swQgf7YDunvnW6ILy7rsobTZOkbU
-         QZzaRbEkR5G3EmXNBeLaFV2bZCjhXHepdYit+yNWsvwi9OJszpcN2kraok0Pjc6lD3Ut
-         +HIKmsjhxkRzqIZVpxwaYd9qke/r5cW5svPI0JIR8nGRRktvomTzw/+tp8xZYqTnNfEz
-         zkaceMeOokEp64lmh+q2RcS9lsSnI9eQZus3ismjtZAAjQhYLotjcs0keQUmGTPlWTcS
-         FZXA==
-X-Forwarded-Encrypted: i=1; AJvYcCXqqOeWni6iNa9EZCHe7zvDDwOpmzOJdOLrs8xMpZUteBOWB+kFT77pLvlfdxhijHjDHK8LvilQUN5/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSf3Sqr4rFHYExRvYH68R5OWWAzCyY5Ypjf4vAii+AyBp4zcpZ
-	3aADbtXe6UOJXkIhRq4XfNU7/sLu8oqgKtNgbU5NFa6xI8Ct4rFAF9hvoywARoE=
-X-Gm-Gg: ASbGncuWMwWFJ8In9tLbjHwPT4ieWkR2k+mh/kYQP6EWhSor74S4013ENv1vhSuvmPd
-	yrdeKKXhrzjgKlxxOenIVLyyvJ6ctiABhv5SYKe+xryYP8lDSaT4/s+3vwzcOVW27HVcL7E829R
-	5mjkVq+gGE0OhkJJDMv5olkHWb8fifYSE2EL/oX4lyb2fKJGGyMWRl6xrYnciD8DhBG6gz7Zykf
-	AD/8YrMWasydpA4KVMhz0gGyqva5qP0j3Nz+5RQaT6uyAqGpSrBr5s=
-X-Google-Smtp-Source: AGHT+IFIF4I4xKP46VS5zqZ0+vproNT/iu73lhD9pH8Af1WZX6MRdbruwQE3ujvVRC8CO0SgR54++A==
-X-Received: by 2002:a05:600c:68d7:b0:434:f270:a513 with SMTP id 5b1f17b1804b1-4366d357401mr499304255e9.29.1736260710425;
-        Tue, 07 Jan 2025 06:38:30 -0800 (PST)
-Received: from linaro.org ([86.121.162.10])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8acadcsm50023052f8f.105.2025.01.07.06.38.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2025 06:38:29 -0800 (PST)
-Date: Tue, 7 Jan 2025 16:38:28 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e78100-t14s: Enable fingerprint
- reader
-Message-ID: <Z308ZCrnsaLReaIX@linaro.org>
-References: <20250107-x1e80100-t14-enable-fingerprint-sensor-v1-1-8fd911d39ad1@linaro.org>
+	s=arc-20240116; t=1736260922; c=relaxed/simple;
+	bh=wpYSL1UHSPpFPfk45/F7Zcc59XGpWsYpJkJdimXDfgA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ex9jyyzcVtTM9L9zgQaY5+BFibG/b9vf33DbIsMUHUszzCmoyjst/YXEzb18CO35zw0sluaiE/EBuFeS1Pb3wW+mRMkR7Frih7jZPXfN7FfR+UMle/FuNf8yZRAxS4m+noCgquDNgnM07429DpAgbus7CaL12l/aTaKdcdq5Z2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6E5FA1424;
+	Tue,  7 Jan 2025 06:42:26 -0800 (PST)
+Received: from [10.57.4.77] (unknown [10.57.4.77])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BDF0E3F59E;
+	Tue,  7 Jan 2025 06:41:56 -0800 (PST)
+Message-ID: <881c5084-3487-4ae2-9140-8d393e934652@arm.com>
+Date: Tue, 7 Jan 2025 14:41:55 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250107-x1e80100-t14-enable-fingerprint-sensor-v1-1-8fd911d39ad1@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] arm64: dts: morello: Add support for common
+ functionalities
+Content-Language: en-GB
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Russell King <linux@armlinux.org.uk>
+References: <20250103181623.1980433-1-vincenzo.frascino@arm.com>
+ <20250103181623.1980433-3-vincenzo.frascino@arm.com>
+ <CAL_JsqJ9y92aHUYhD9_YX8GKvZC-GioWbMr+gjcQiMA_XQ0RaQ@mail.gmail.com>
+From: Vincenzo Frascino <vincenzo.frascino@arm.com>
+In-Reply-To: <CAL_JsqJ9y92aHUYhD9_YX8GKvZC-GioWbMr+gjcQiMA_XQ0RaQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 25-01-07 15:35:07, Abel Vesa wrote:
-> On Lenovo ThinkPad T14s, the fingerprint reader placed in the power
-> button is connected via the usb_2 controller. The controller has only
-> a USB 2.0 PHY which is then connected via a NXP PTN3222 eUSB2 repeater,
-> which in turn is connected to the Goodix fingerprint reader.
+
+
+On 03/01/2025 22:26, Rob Herring wrote:
+> On Fri, Jan 3, 2025 at 12:16 PM Vincenzo Frascino
+> <vincenzo.frascino@arm.com> wrote:
+>>
+>> The Morello architecture is an experimental extension to Armv8.2-A,
+>> which extends the AArch64 state with the principles proposed in
+>> version 7 of the Capability Hardware Enhanced RISC Instructions
+>> (CHERI) ISA.
+>>
+>> The Morello Platform (soc) and the Fixed Virtual Platfom (fvp) share
+>> some functionalities that have conveniently been included in
+>> morello.dtsi to avoid duplication.
 > 
-> So enable all the usb_2 controller and PHY nodes, set dual-role mode to
-> host and describe the eUSB2 repeater in order to get the fingerprint
-> reader discovered.
+> One more thing...
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>> +               i2c0: i2c@1c0f0000 {
+>> +                       compatible = "cdns,i2c-r1p14";
+>> +                       reg = <0x0 0x1c0f0000 0x0 0x1000>;
+>> +                       interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+>> +                       clocks = <&dpu_aclk>;
+>> +
+>> +                       #address-cells = <1>;
+>> +                       #size-cells = <0>;
+>> +
+>> +                       status = "disabled";
+>> +
+>> +                       hdmi_tx: hdmi-transmitter@70 {
+>> +                               compatible = "nxp,tda998x";
+> 
+> It is odd that you add this node here, but don't enable i2c. If this
+> is shared with fvp, then enable i2c here. If it isn't, then move this
+> to the soc/sdb .dts.
+>
 
-Turns out that on resume a couple of things are broken w.r.t. to the usb_2 controller:
+This node should be on the dts file. I had it there in v2 and I can't recall the
+rationale for which I moved it here. It is clearly wrong. I will move it back in
+v5.
 
-[   41.104913] arm-smmu 15000000.iommu: Unhandled context fault: fsr=0x402, iova=0xe2010600, fsynr=0x110001, cbfrsynra=0x14e0, cb
-[   41.104936] arm-smmu 15000000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x14e0
-[   41.104950] arm-smmu 15000000.iommu: FSYNR0 = 00110001 [S1CBNDX=17 PLVL=1]
-[   51.420689] xhci-hcd xhci-hcd.6.auto: xHCI host not responding to stop endpoint command
-[   51.420702] xhci-hcd xhci-hcd.6.auto: xHCI host controller not responding, assume dead
-[   51.420720] xhci-hcd xhci-hcd.6.auto: HC died; cleaning up
-[   51.420836] usb 5-1: PM: dpm_run_callback(): usb_dev_resume returns -22
-[   51.420864] usb 5-1: PM: failed to resume async: error -22
+> I'd rather see the FVP dts now rather than later so we can review how
+> you split things. It's a little odd not being soc.dtsi and board.dts,
+> but that's fine I think.
 
-So do not apply this yet.
+I do not have a complete DTS for FVP yet (I was planning to work on after this
+series is merged). Is it OK if I post it with a future series and we move things
+around at that stage if there is a need?
 
-Sorry for not testing this properly before sending.
+>
+>> +                               reg = <0x70>;
+>> +                               video-ports = <0x234501>;
+>> +                               port {
+>> +                                       tda998x_0_input: endpoint {
+>> +                                               remote-endpoint = <&dp_pl0_out0>;
+>> +                                       };
+>> +                               };
+>> +                       };
+>> +               };
+
+-- 
+Regards,
+Vincenzo
 
 
