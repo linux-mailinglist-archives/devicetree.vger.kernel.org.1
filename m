@@ -1,168 +1,141 @@
-Return-Path: <devicetree+bounces-136230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7635FA0454B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 16:59:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2C57A0455A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 17:02:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 695287A1CC2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:59:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D55318874D0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 16:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA02E1F2C35;
-	Tue,  7 Jan 2025 15:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E901E377F;
+	Tue,  7 Jan 2025 16:01:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xd7tIbag"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="AeercKJv";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="weutAHrn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-a7-smtp.messagingengine.com (fout-a7-smtp.messagingengine.com [103.168.172.150])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 148FD1EF08A
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 15:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F39F1F3D5E;
+	Tue,  7 Jan 2025 16:01:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736265583; cv=none; b=heYLjnLWqK6vuIfj1rA4j9mjmlRafDJ7SKDplF0F+ChtLMQbFPPHBiGu0kEDZZXquizp6DVpyRk2/DO25AZiNKsiQGuNHyo1vEjZC7wOCMiIJY6fpRQsWE6qmh+KOa3HF35ydEp5s774Q7BPjHDvOd5Xx6B1iEQJ+SF/1Rd4Hm8=
+	t=1736265719; cv=none; b=Y6L0J9wGxA5FSJDdGFfCSqFmYidt5HzOI+GecPAExdBmo8HOwSWmYR4zOdGUjfatmD1fhH3dvXDV8TtLOtD1mgbYl7zK5I9oaTNRwSZXliwcxGI9lW1h/3rK2pSfbWTDTbw2YN5gLDdfYxKjAXLFr3mtgSdc7WtLYpg18tU7R9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736265583; c=relaxed/simple;
-	bh=l+Qrsw0fVCXtAQkM7h7C+anVR3mchFyzhSwGDio+GBs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sQzifcgTEyRdw2nLBYMMW9KSJ2rpopvet4IL1ld5PMthKFCRwRKHU9YXwWFVfSCDQKFBPEKzFTNWoFbEoMnDq5osZgDUs7jDXrc7CLUxcrYb7MUfkehCemFcJd+bK+BCX7Ld2nz+zFpFKBiJ3W3hRC6hCqfWxwMn7ejOk6bc5RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xd7tIbag; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-436ce2ab251so27294785e9.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 07:59:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736265578; x=1736870378; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=h+ADADWhOmPqLF2wl2yVt0du6NuOaHurQK2JRxbZmU4=;
-        b=Xd7tIbagBPTQIsbpJquxZLQsCUBXde7Gvj6lJ/s7YNb2g58Yrd2ShXMK7wKi6Bn/tE
-         N39xxrOTToiVCyTPu1pV0fipIbot+hrzHmnwespedpG1bcj4OYpwIHYneHa/RwONfwkV
-         OXqMayc52QOmYFoYie0PociqH9S3ZeG1iW/31a9Wi2gnOGyQV3A9bS/egPlU5D458BzJ
-         ehGwU5y3OXQmn1gm2kMQ0XxYKVzGIhaNgQX4+UnvIxlFscyv0o/9T8YMS9/gJWIBfp2m
-         Go2twDbJ0BQUXpdGxHb6mfs9DMPNib5PBncAdWT9N6jeTapI3Gc4EY8vJVCLDauL+eb7
-         MZWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736265578; x=1736870378;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h+ADADWhOmPqLF2wl2yVt0du6NuOaHurQK2JRxbZmU4=;
-        b=ZuO9nmiOjXWuX1opr41NBLHA96aKQeTOF5AucBki9HutZqWkUBppSSVSl/tI9ZtPny
-         UoaPO2G+vsdm5uJnxom1PQi4M+7cOIKSs0cKMls/V2LunVnDvaqAiK1Ijhy6gF/OgnKG
-         57TcJrf0wffKv4kFMGS9nNJH1j+Y+1ZBSDpyVIZEhKxxYO5p7z0nizcrHgf1bIcWf8uE
-         a1Zwk3+QdD8fNDNxAmUbHwANipyLJR6/dG7zwYBsaIG9pk1HuFWcbGR0IuKkJ4I7T3nv
-         ruVPYGfKUsdhgwZpP+qFhrX8SbcPTZWvjyJZspR+WCrreLuTdhQVvcOOjJuDYxROFi3e
-         r1Zw==
-X-Forwarded-Encrypted: i=1; AJvYcCUSClLercVQbITFFE1c0113xRjighZDnx9rGXIRQKs2ra1fnpNY85UVWm9G4zsOBYV+aq+MKZYi4hZQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyq20s3KRtn+gVpufsAwqTeYyjYgIcgSw2yky2Nd8pvmC1OPUDo
-	Tf+K1O2v0QLhHwh9kuGnK7qQFTggPCYa5EHo/752RjSxFbHqTwB/b8tWBQyEABk=
-X-Gm-Gg: ASbGncuUpj611Vfh4mqP8VF1cD11X7UWQoJsd8Skba/F1N3sgzzq+mtiNjbGDOzQ8L8
-	d19UI/1ev42ogavqNiOvNgMwmZGFoaCDwmEXUlW2o37jsUnfkR7D3fY0iJVRHfCoQTCjbeCvL2F
-	yABja7D/MVL36Z0LgxMifaJ8h6hjc7QhBRdI1ZuAeZrCys1XzR7scFrzrCrFLne7lZi5DWwzOI9
-	3BPBVf16YE7POyMEevUDgxT+olBSGvopNziHfeEV+Cl6XAgFZSpY+M=
-X-Google-Smtp-Source: AGHT+IHnKv0kLLNL0GG1YXgdtnDBlDk632FVanPGB41cQBbp9am5uqBkiza9lwphaCUvyiU4W9JsTA==
-X-Received: by 2002:a05:600c:3516:b0:434:fbda:1f44 with SMTP id 5b1f17b1804b1-436686464e7mr535176005e9.19.1736265578320;
-        Tue, 07 Jan 2025 07:59:38 -0800 (PST)
-Received: from linaro.org ([86.121.162.10])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436611ea47asm601467345e9.4.2025.01.07.07.59.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2025 07:59:37 -0800 (PST)
-Date: Tue, 7 Jan 2025 17:59:36 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e78100-t14s: Enable fingerprint
- reader
-Message-ID: <Z31PaEckuGQEZxyh@linaro.org>
-References: <20250107-x1e80100-t14-enable-fingerprint-sensor-v1-1-8fd911d39ad1@linaro.org>
- <Z308ZCrnsaLReaIX@linaro.org>
- <Z31F_sZahYrCSVlr@hovoldconsulting.com>
+	s=arc-20240116; t=1736265719; c=relaxed/simple;
+	bh=DigKA+vStn/3zCWaPcIYaeHdLK1EYRvFRsWN5zQvkQg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hupDt1l/Q9eZaAAO7eOjG5i437POpRsf6VlNCVW0qL+NDSRpso6C0+0vXLPCeKp6MWP8Zc/h2A70SI3eb4WJhFNoVKhOfJOFoeoQ3a9TX5lDhLFnQLy/tKxr/JvVOlLCNFbczqw9rY5eG74e2aK6OJEIJrSyJEt4ueOkYJSuGiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=AeercKJv; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=weutAHrn; arc=none smtp.client-ip=103.168.172.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
+	by mailfout.phl.internal (Postfix) with ESMTP id 9067A13800E8;
+	Tue,  7 Jan 2025 11:01:49 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-09.internal (MEProxy); Tue, 07 Jan 2025 11:01:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1736265709; x=1736352109; bh=Zx
+	WVXNdMSRCmfo4D1cTwjKHeBk9PMy+LTtpAiUGUQJ0=; b=AeercKJvPRX/RkYDvC
+	+wPtkAk4tQid0NQ6aiExQlZINf1WxFhMzMtZYFHaLV4v/JQ/eSmG5/gZwBdHtxLk
+	n1x+SsJMeMzfUw7wgqhcEi47RNiYLtwygq72NzNncSsCpSIW5lFZJtq0HpnIjhyl
+	KhTt57DcgkS+U7RqcA3GdRgBQNOhTbZBMcVq4QACLH9SZZGqgiiVGqMq66e9FZfF
+	4UgH6eEwx/GAQXwyr1FqtJYYFAo4fF0fSHMu/FvLdcI7h/utpPglj29MKKJFQlJs
+	xjyY6Y85iM+CSQOyOUePHScvDbeArfueCUUkpcfedZS3obH7KIRDE3d4cuQYk6C3
+	NM+Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1736265709; x=1736352109; bh=ZxWVXNdMSRCmfo4D1cTwjKHeBk9P
+	My+LTtpAiUGUQJ0=; b=weutAHrnn+Jo52czYzxkJacdVe6aoJ2bqLRR2gHeOJT9
+	75KQOt9MZP28sjeeMtChhG/ImWIlehlxleoOXiDF0FuktKjQRS4UeQUNj7lpufGc
+	pXuyjjd9JqcOLevxaaF0sLCy0lMYdV6dpRgowDllTR+Oq02IWmJPDH6bJxN7S47b
+	XhYk8jjZSpETjASchc223DrausJwm9wShQjp+DXtN56/GXrws4im7wVMaj2gdrqF
+	H1NiLA8l04m48FcIg7A5I2QnNgBKnTugkB5Wb2Pyd+9JrxiekPVz8JPgQo3ak+lP
+	/CSKFNLo/BOlmd5Nj+qk+bytWWCNS2Si55bC53RlhA==
+X-ME-Sender: <xms:7E99Z1HBlUSxdlNOOe2earQL8LZ_y7Xh81TmITWipYaL2DN6iPPNOQ>
+    <xme:7E99Z6UxFHzm3dhgoea5BVWkt2gmTePf9Sl_7Jt8EZXM9kZEKhhJsDDrDhpYN3hp4
+    -Y58qEEb94D-Wxj-Cs>
+X-ME-Received: <xmr:7E99Z3K5r8p4VmmJydgw2HM1eXK4HCC_E96Mk9tteJprufeaHB_gq57ITwDEr2uYh0gn_xxSAm1GqlWv2RYmV6m1UQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudegvddgkedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevuf
+    ffkffogggtgfesthekredtredtjeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhu
+    nhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrth
+    gvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepheduleetteekgffffedufeeuvdejiedv
+    kefhveeifeegffehledtvdevhfefteegnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+    hrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgr
+    thgvtghhrdhsvgdpnhgspghrtghpthhtohepgedpmhhouggvpehsmhhtphhouhhtpdhrtg
+    hpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtthho
+    pehlihhnuhigqdhrvghnvghsrghsqdhsohgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhr
+    tghpthhtohepnhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnh
+    grthgvtghhrdhsvg
+X-ME-Proxy: <xmx:7U99Z7HNaUOl3T1qNaWRWf3itk-dK03GGfdup4N95NbT1iZjGX4rgw>
+    <xmx:7U99Z7VeSRxpR4uAoaf-XVLRNJIELVwJplb0eM9mMCtkkSYPoc0fbg>
+    <xmx:7U99Z2ONFrxPnqBe6MKw1sFZKtsdhMtA2ksgsAgE1c6DmTxNUjME8A>
+    <xmx:7U99Z622gvxPdGLVMBslHkJiAFwShAiElSsC3lpBV0I_jBVGkYU7jw>
+    <xmx:7U99ZxyOQet68p-SzMUq97vUy1NxMzxYFJHoVrdBkS5s2BCxkFTFvRPT>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 7 Jan 2025 11:01:48 -0500 (EST)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 0/2] arm64: dts: renesas: gray-hawk-single: Describe Marvell 88Q2110 PHYs
+Date: Tue,  7 Jan 2025 17:01:25 +0100
+Message-ID: <20250107160127.528933-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z31F_sZahYrCSVlr@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 25-01-07 16:19:26, Johan Hovold wrote:
-> On Tue, Jan 07, 2025 at 04:38:28PM +0200, Abel Vesa wrote:
-> > On 25-01-07 15:35:07, Abel Vesa wrote:
-> > > On Lenovo ThinkPad T14s, the fingerprint reader placed in the power
-> > > button is connected via the usb_2 controller. The controller has only
-> > > a USB 2.0 PHY which is then connected via a NXP PTN3222 eUSB2 repeater,
-> > > which in turn is connected to the Goodix fingerprint reader.
-> > > 
-> > > So enable all the usb_2 controller and PHY nodes, set dual-role mode to
-> > > host and describe the eUSB2 repeater in order to get the fingerprint
-> > > reader discovered.
-> > > 
-> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > 
-> > Turns out that on resume a couple of things are broken w.r.t. to the usb_2 controller:
-> > 
-> > [   41.104913] arm-smmu 15000000.iommu: Unhandled context fault: fsr=0x402, iova=0xe2010600, fsynr=0x110001, cbfrsynra=0x14e0, cb
-> > [   41.104936] arm-smmu 15000000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x14e0
-> > [   41.104950] arm-smmu 15000000.iommu: FSYNR0 = 00110001 [S1CBNDX=17 PLVL=1]
-> > [   51.420689] xhci-hcd xhci-hcd.6.auto: xHCI host not responding to stop endpoint command
-> > [   51.420702] xhci-hcd xhci-hcd.6.auto: xHCI host controller not responding, assume dead
-> > [   51.420720] xhci-hcd xhci-hcd.6.auto: HC died; cleaning up
-> > [   51.420836] usb 5-1: PM: dpm_run_callback(): usb_dev_resume returns -22
-> > [   51.420864] usb 5-1: PM: failed to resume async: error -22
-> > 
-> > So do not apply this yet.
-> > 
-> > Sorry for not testing this properly before sending.
-> 
-> Heh, thanks for the heads up.
-> 
-> I was just about to reply with my:
-> 
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> Tested-by: Johan Hovold <johan+linaro@kernel.org>
-> 
-> after comparing with the schematics and verifying that the fingerprint
-> reader enumerates.
+Hi Geert,
 
-Thanks for reviewing.
+This series describes the two Marvell 88Q2110 PHYs connected to AVB1 and 
+AVB2 found on the Gray Hawk Single board.
 
-> 
-> But I do indeed see something similar here on resume:
-> 
-> [ 1891.737726] arm-smmu 15000000.iommu: Unhandled context fault: fsr=0x402, iova=0xe3f6ddbec0, fsynr=0x510000, cbfrsynra=0x14e0, cb=3
-> [ 1891.737738] arm-smmu 15000000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x14e0
-> [ 1891.737746] arm-smmu 15000000.iommu: FSYNR0 = 00510000 [S1CBNDX=81 PLVL=0]
-> [ 1891.804342] r8152 7-1:1.0 eth0: carrier on
-> [ 1902.039158] xhci-hcd xhci-hcd.1.auto: xHCI host not responding to stop endpoint command
-> [ 1902.039191] xhci-hcd xhci-hcd.1.auto: xHCI host controller not responding, assume dead
-> [ 1902.039795] xhci-hcd xhci-hcd.1.auto: HC died; cleaning up
-> [ 1902.040050] usb 1-1: PM: dpm_run_callback(): usb_dev_resume returns -5
-> [ 1902.040272] usb 1-1: PM: failed to resume async: error -5
-> [ 1902.581479] OOM killer enabled.
-> [ 1902.586673] Restarting tasks ...
-> [ 1902.587565] usb 1-1: USB disconnect, device number 2
+Patch 1/2 is a small cleanup patch preparing for the addition of the 
+88Q2110 PHYs which require the use of an MDIO node as the bus needs to 
+be reset before the PHY can be probed.
 
-Turns out it is the GDSC that has power status flags PWRSTS_OFF_ON when it
-should've had PWRSTS_RET_ON. Sent a fix here:
+While not strictly needed I also rework AVB0 to have a MDIO node for 
+consistency. Please note I do not move where the PHY is reset so the 
+controversy debated in [1] is not in play here. If that ever gets 
+positively resolved this will need to be updated as well.
 
-https://lore.kernel.org/all/20250107-x1e80100-clk-gcc-fix-usb2-gdsc-pwrsts-v1-1-e15d1a5e7d80@linaro.org/
+While patch 2/2 enables AVB1 and AVB2 and describe the two 88Q2110 PHYs.
 
-With this patch, the above resume issue goes away entirely.
+With this series applied all three AVB instances probe and can attach to 
+their respective PHY.
 
-> 
-> Johan
+  Micrel KSZ9031 Gigabit PHY e6800000.ethernet-ffffffff:00: attached PHY driver (mii_bus:phy_addr=e6800000.ethernet-ffffffff:00, irq=67)
+  mv88q2110 e6810000.ethernet-ffffffff:00: attached PHY driver (mii_bus:phy_addr=e6810000.ethernet-ffffffff:00, irq=POLL)
+  mv88q2110 e6820000.ethernet-ffffffff:00: attached PHY driver (mii_bus:phy_addr=e6820000.ethernet-ffffffff:00, irq=POLL)
 
-Abel
+Niklas Söderlund (2):
+  arm64: dts: renesas: r8a779h0: Remove address- and size-cells from
+    AVB[0-2]
+  arm64: dts: renesas: gray-hawk-single: Describe AVB1 and AVB2
+
+ .../dts/renesas/r8a779h0-gray-hawk-single.dts | 115 ++++++++++++++++--
+ arch/arm64/boot/dts/renesas/r8a779h0.dtsi     |   6 -
+ 2 files changed, 107 insertions(+), 14 deletions(-)
+
+-- 
+2.47.1
+
 
