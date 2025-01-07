@@ -1,58 +1,41 @@
-Return-Path: <devicetree+bounces-136030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E1DA038C3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:28:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99117A03939
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:04:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 536FE3A5249
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 07:28:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F59B7A1AE3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 08:04:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A0E19D891;
-	Tue,  7 Jan 2025 07:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54FF1459F6;
+	Tue,  7 Jan 2025 08:04:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="I11xgHOo"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="fFCSiGMi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mail-m127206.xmail.ntesmail.com (mail-m127206.xmail.ntesmail.com [115.236.127.206])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D784C9D;
-	Tue,  7 Jan 2025 07:28:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736234910; cv=pass; b=dHAx1GP4BpgnqtmhEqwATAnIsraoxeT5x3zZsmEm0xRz0xFgc9hSvEM5csRYJOH127knJVIzXX/wC7dnN73/TIRRpHeKCLfK9SnGBUp3R1zixmNf/giIFXCPOQSoJNYqwORoSGyseZs9QM6zz9niVfEwwkHNu/5mHirI/x2UJtc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736234910; c=relaxed/simple;
-	bh=ZjfsctGRj7JLYAlcs8F3LbxuckyzVEDF0M3T7hqgIOU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B21561862;
+	Tue,  7 Jan 2025 08:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.206
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736237052; cv=none; b=MaCdX5NfacyYPXfUtUXSHqnlCAkn9619iKnkGi30+zg/ugU86MfwUyLC9YtKPXCwJ+V3PALobrDZxWZQ4L+bpNtwUplMHcKM6FUZ11qNXZ8O2IzxzcTQat66+bUJCtqztIe1jBkRbTza2KsuDTqRC9JEpIqlxfryl8u2BMC9q6k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736237052; c=relaxed/simple;
+	bh=y99pSpOVIHq6vRYvbS8Aaoq5kTd2f/zbgWDDa9Ky06U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nh+C5v+1rlwKJzorjOP+a33mWuEtl25uGlOWJbAiE9U0dtWTjrGcpokh27D+kALm/LdbHqcVnjl/qydGTKMDNg6FOBLO1ovw6o+YG/6iAoR/l8+e8zIs/321L5ksl4wiZ8FhivtCJ6HmysltKis3Q4PHTR51Kx1/QQsQA2eZ/gM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=I11xgHOo; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1736234855; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=QXWTIpWVqxpOeg1IeOEIr6JsM+7G3I65kYd3BuGPw2DaD4EBqDAtPCzUiPfbVAb5ZnLza8qKVd+gZshlXHdLYwhz4624P1TCtV0CiQpC4zsTLQQnbxKL7+mEcQVs6bm2xs9m4Fr2nWEjimsTGpEkW7s6PZI77e1CgBXTy5dtLl0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1736234855; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=fyjpROUPKqz0yOrw3lpCO0/rz2teNQQiUnOciqqXxZA=; 
-	b=a644ozs87rf4CXJ3UrMuY7xEojRKhvbFWTnYevaNZcKizu4ZfTgHqzi7MxSBmyP657wJtPgR03IGkX8VHn1OjXaF9Wc9xBk5fC4w23kCGSpeUnG1fPMAY7eDBxaUPVuhYzO59d+bjwUNJJwG/EfF7NVPYyuM7Z0e4xbDJBDjjfw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1736234855;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=fyjpROUPKqz0yOrw3lpCO0/rz2teNQQiUnOciqqXxZA=;
-	b=I11xgHOoNC2rhJ7Jol1KFQIBNVrUn1IQUZyRgQ466AtyWmW+9w3Tyo69badWKgvt
-	WXAiBUUyomoo7Mj9jzemsOZyqHtZZnLWVg5DlYg+T31CZubU/TvCcyGMZcm2TohcslA
-	87cJKZguiA+tVchZMuuZHi9Ye15hzkkWu7o6KOig=
-Received: by mx.zohomail.com with SMTPS id 1736234853465966.2061584357726;
-	Mon, 6 Jan 2025 23:27:33 -0800 (PST)
-Message-ID: <a5226fac-2a5b-47f3-b32e-8662bf932bd4@collabora.com>
-Date: Tue, 7 Jan 2025 10:27:26 +0300
+	 In-Reply-To:Content-Type; b=W6SEy6ZyPalUzKJ9oMcw++JOvAsFQnCR94YY90HzvkcvFBGdO+HtTLsqfroWf4/jlKxnoLMPoE6FZqXRogHFdhyjKtZTXijCYA7m+zPh3N8Qulo4FqjnFaSs9eRNgC9I1dOLzlJPtbDCYNvKrR2q94GlWy4HzDHkFrw+ZoYenYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=fFCSiGMi; arc=none smtp.client-ip=115.236.127.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.67] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 7f2e6f8d;
+	Tue, 7 Jan 2025 15:28:41 +0800 (GMT+08:00)
+Message-ID: <df8983a4-5e0f-4eae-b163-05788b2bc7cd@rock-chips.com>
+Date: Tue, 7 Jan 2025 15:28:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,39 +43,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v5 0/4] Add Synopsys DesignWare HDMI RX Controller
-To: Tim Surber <me@timsurber.de>, Shreeya Patel
- <shreeya.patel@collabora.com>, heiko@sntech.de, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- jose.abreu@synopsys.com, nelson.costa@synopsys.com,
- shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
- hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20241210193904.883225-1-shreeya.patel@collabora.com>
- <acb91a34-c0f8-4f03-8945-755b4e42dcf3@timsurber.de>
- <925d7571-48e4-437d-b55c-3f7bbad8af1d@collabora.com>
- <fbb5016e-678c-4e54-a6a8-0ccaa2bdf45c@timsurber.de>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Subject: Re: [PATCH v3 5/7] dt-bindings: arm: rockchip: Sort for boards not in
+ correct order
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Chris Morgan <macromorgan@hotmail.com>, Rob Herring <robh@kernel.org>,
+ Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>,
+ linux-kernel@vger.kernel.org, Tim Lunn <tim@feathertop.org>,
+ linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Andy Yan <andyshrk@163.com>
+References: <20241223110637.3697974-1-kever.yang@rock-chips.com>
+ <20241223110637.3697974-6-kever.yang@rock-chips.com>
+ <dzrmlapgca6vwqpfxi7sub37z4taerinslfthqwqi7jltb4xxh@wtry22ybpd2r>
 Content-Language: en-US
-In-Reply-To: <fbb5016e-678c-4e54-a6a8-0ccaa2bdf45c@timsurber.de>
-Content-Type: text/plain; charset=UTF-8
+From: Kever Yang <kever.yang@rock-chips.com>
+In-Reply-To: <dzrmlapgca6vwqpfxi7sub37z4taerinslfthqwqi7jltb4xxh@wtry22ybpd2r>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkJMSlZJHxlMGUpLSxlLQk9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	JVSktLVUpCS0tZBg++
+X-HM-Tid: 0a943faa6dca03afkunm7f2e6f8d
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NhA6Cgw6NjIQExMCSxMuMU4K
+	DQMKFCxVSlVKTEhNSUhPQklJTUhKVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFMTE03Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=fFCSiGMiQG14SsmasmUq9Z2NiXJPBN9ENW4gZ8eVH++l8WiemtuurIUtbnrKpS3ut+xS0hrKcV43Nx+AEi4OB5U288HibqvS/M4t+NDtFwF4Pbu7Yl1DhD+uxpeWTnz3qiN4+j8ouxQc82bp3JfkRyuAHnGSjLJ6vH9HnbKbAgU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=W7Waz4qoMm7Thy7CdWwhTSGFNbjxkVcZlwArb6siD10=;
+	h=date:mime-version:subject:message-id:from;
 
-On 1/7/25 03:08, Tim Surber wrote:
-> Hi Dmitry,
-> 
-> that was my fault, my build script did not copy over the new ATF properly.
-> 
-> Now it works, I will update with test results with many different
-> resolutions/formats here soon.
+Hi Krzysztof
 
-Thanks for the quick update, please post the results once ready.
+On 2024/12/23 22:58, Krzysztof Kozlowski wrote:
+> On Mon, Dec 23, 2024 at 07:06:35PM +0800, Kever Yang wrote:
+>> The board entries should be sort in correct order.
+> And what is the sorting rule for this file? Board name? SoC compatible?
 
--- 
-Best regards,
-Dmitry
+This is sort by the description msg, which should be easy to find out if 
+look at
+
+the content in the file instead of the patch.
+
+Will update the commit msg.
+
+> Explain this in commit msg... and please test your patches before
+> posting. Public infrastructure is not replacement of your tests (see
+> failiure reported by Rob).
+I do run the test in my side, but the tool does not show this warning,
+not sure if because of my tool not up to date.
+
+Thanks,
+- Kever
+>
+> Best regards,
+> Krzysztof
+>
+>
 
