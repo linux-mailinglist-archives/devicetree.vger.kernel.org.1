@@ -1,152 +1,187 @@
-Return-Path: <devicetree+bounces-136176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95515A041D4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:12:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D33FA041D9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1288F166139
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:10:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23C9016608A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F751F5420;
-	Tue,  7 Jan 2025 14:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1185A1F2360;
+	Tue,  7 Jan 2025 14:05:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cPQo+dry"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pybg/ajI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D327B1F2C45;
-	Tue,  7 Jan 2025 14:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B51061F0E2A;
+	Tue,  7 Jan 2025 14:05:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736258666; cv=none; b=N9u7QLT6LNF+OP6ERp4xSrvh7D5zUKYzXdTDJEhuEMM1M4sy68OFrt83nRQ2MtuFSAEHJsy2illcc/N5+m1898zbZrp4OvmptPeDT7wWFMP0Xkf+bQViTvjULWWR+K7KKloXwQq+X6GBaOE+X/XhPmqRxvlmfuhgj3e4SnCjr/4=
+	t=1736258745; cv=none; b=YddYkDBoyH7kXeUZ0fPlzco575mcUswAwLg8KPOleS+fLYdnjo7hz0fntO/KjJ4y3W+nuiVcwh0x4vCCNHuSEMT3upnemsj5D12gTUF6/UyXspb89rs39hFcyynumriAYCWqS3OqcNiszi+qgubWD2jhQHRX0Pn2HUBrbfDkxUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736258666; c=relaxed/simple;
-	bh=zpLPFk4V34ySX+QVzjn/D76/5f0os4lfSRGEnv0cZmo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kMlHeMSJgh7I/SNHv21iooZM8TlxUXp1fchuyXlLaqLnUoArOvKENykS5nsdZTurjnCoCH8PACFza7kZhlkfcMeOGoB+4oZrmzE8UfRHLm/hRBsmZFqG3KDO1BV0FDs7K0yMeqegz+/HNh8lKHkbMdmW0EhBJ+Ttfnz16mRZS0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cPQo+dry; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71D84C4CED6;
-	Tue,  7 Jan 2025 14:04:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736258666;
-	bh=zpLPFk4V34ySX+QVzjn/D76/5f0os4lfSRGEnv0cZmo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cPQo+dryUksVlvwsThdiPNcOZjdgy2GBgF3ugnnXcIkb3I+4cu5UyoC3C0sRbzziD
-	 rgfw+OHTNySl15kiH2dUtB8Bcxd4mBdGfn4c4IFS4eZnywBoDaanhMCg3C109EA3Ef
-	 +V1DgZCfPEx+TfI6tIcP2v5AkFXkivpV+nDMPSmWd2sczNoWVRj7BNsaSJRLD2Rc8s
-	 3RCD44TYL5VjhWXrvz4s4Oyw2ejFXNXoHTULojlXW4qy+A5O1FNbn2IeVOQXIlyo0X
-	 ogdQk3zA1gQJt67myyI8Tht5FBrpkHs3340hAbGhNqfWgcTKBlUhahZT5fKbwEWpOg
-	 yQ6bEymwnXo7g==
-Message-ID: <dcbda522-eeed-43a9-ab34-a41e5239c6e8@kernel.org>
-Date: Tue, 7 Jan 2025 16:04:21 +0200
+	s=arc-20240116; t=1736258745; c=relaxed/simple;
+	bh=ogDvQuxZCfNt1Ru7I9JPhd99nAVbLXq1Mqqm/59cazg=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=H2pYB79dfp4+sWxnpXYDIsTtIy18vUfyCP4dJ/oDZcTr1imQ0KW2aJTYrZ+b+ZsvrzHEY2wVtBItTcoqtuRyV8OavrvfMGZBdrRh4F/BH8NA4OwlIENVVSK8jDYaMsFcIIyqjqytMc6BDmDaujb+cbKKkmc9WmQPkl8ClXQiwxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pybg/ajI; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-436637e8c8dso157962475e9.1;
+        Tue, 07 Jan 2025 06:05:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736258740; x=1736863540; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ogDvQuxZCfNt1Ru7I9JPhd99nAVbLXq1Mqqm/59cazg=;
+        b=Pybg/ajIESOYB8uohnhST5mIokHlU6QBt3KqgVncEG+v9kRnVcw444T6FaQF0WEOzN
+         4gdQ3w/Ux3ba0b2d4Oi5r7cDRdLwaLVWWPHI6/hi4KSzJWg1gkEU0+SOobRwzVJAMOXk
+         7uFsPmMzFrTKko4Z+LUTY9PTckMpu0lHybCwDNxpLMoNd3Aet2yOI8efy1pCfkIXaBBL
+         yrAFtGYGJ+6IX1XUKL9kUqSyk77kvXhuTK+oz07SGdmTmWUeWwvryEjDJy92Y6DaEuDV
+         cgY+ErySQ3jzrc+uGNFH0rIRDW9bxyyt+v9DJ/z8e+IzW/LK+NnJMGmMxuPUqSxEshvs
+         HWXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736258740; x=1736863540;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ogDvQuxZCfNt1Ru7I9JPhd99nAVbLXq1Mqqm/59cazg=;
+        b=G3TvGHr1rwidC+xF8n/6rOwGsJhYe1WbfOHfHSvZi8/nyWbV/zUQK4UCt+FMgQYgd/
+         RbmOaj2IYMtvJsT1aZQh/Bbe1ZcSwt5sC+q3zppwbptzfk9sBI9r5tFdVD9DQg1VEOIN
+         dKNCjOA13wAMX2tvN9c5jXjFsGbL/U53+ozFEuWEkeFZZLmwSGD7Xn7Cms45WUcP+7s3
+         loUmoLOxe/F4qrIxKtLA8kiz+44PuxGUq1zTqpVRmew3Bf0+9W8m7OwQMEKmZXauiTQY
+         xa7IFdq1INr327KQTB6+v6m0PixiNhTu+G27XMTDbpbU5D04d8MUqVWe0iRvAcb6tQYr
+         6tLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFfASg1iy82hMmsIhEO9QRVjt2NLGJ5ZzFVHvdiulZLQSCKl+ZUu5GnrjNJYFJ8tFJ6ecTkS/FW6VB@vger.kernel.org, AJvYcCVlt5h5K5Whs0BkswQzEbgIU8PxaCmCk7TrgZXbmEOo6M13PM1ZmztTrrMlyGmuJI5Ds+l6BEmYeY6T@vger.kernel.org, AJvYcCXw7S4duM0hUJpdRmCWbsShYM+g2FdHtNTl1hb6lOCcsixPXOfZQtwayXrCgI6T8Canf9fUnqHHcZuxHNDs@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQkizhsJyeGyGxPdU7875NpUHOreXFESDqSITadw2rMtT6B5+k
+	QosFEihZxXcdHd5K2dJslKd0A5mCzPa0e8WZnUu+4HYcTCeKImVNpLlViOHt6o0=
+X-Gm-Gg: ASbGncuLKHFYqmPQE3ZWReHnwygnxHJEeTRjIZa/Ldvd6IYYAtG7eYBK+ObcYdnRESK
+	husLDAoM4zqUHqCH61tsFIQPrs71CkjY/wdj1i4aawIySc11N3arRTtrl3iZUxjF2K6dqE1Uvsb
+	mKyMpmCg+WzsqokEwgupINesz44S54WcL5MNqdPb4pfzck08irDGy6N+9alfIlcqA0MIig/lli3
+	Ch8Vcxj97Y7lSHpFT7JvRfoOYY/ab5Qo1Ux9VzS+3oSub+Bcf+3cPXTeT5BPYcMuzcHU2Zd2o/z
+	XMvzmcaVpYRXR8QMiTYDLPzxR4S/
+X-Google-Smtp-Source: AGHT+IFfnR028agDjwlWikAvh1/VvkkB81kquDbtSxlA/ds53ntX4cuO1Pb8zCXNAsdBuSSK5XCcsA==
+X-Received: by 2002:a05:6000:4612:b0:385:df5d:622c with SMTP id ffacd0b85a97d-38a221f36e3mr46390632f8f.30.1736258739438;
+        Tue, 07 Jan 2025 06:05:39 -0800 (PST)
+Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c8ace0esm49742230f8f.106.2025.01.07.06.05.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jan 2025 06:05:39 -0800 (PST)
+Message-ID: <bc6a76d6e59c0271bf907cd2cf6dd3c03cc59c2e.camel@gmail.com>
+Subject: Re: [PATCH] dt-bindings: pwm: Correct indentation and style in DTS
+ example
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Michael Hennerich	
+ <michael.hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>,  Trevor Gamblin <tgamblin@baylibre.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>, Rob Herring	
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list	
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, Scott
+ Branden <sbranden@broadcom.com>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Date: Tue, 07 Jan 2025 14:05:37 +0000
+In-Reply-To: <20250107125831.225068-1-krzysztof.kozlowski@linaro.org>
+References: <20250107125831.225068-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am68-sk*: Add bootph-all property
- to necessary nodes to enable Ethernet boot
-To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
- Nishanth Menon <nm@ti.com>
-Cc: srk@ti.com, s-vadapalli@ti.com, danishanwar@ti.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250106123122.3531845-1-c-vankar@ti.com>
- <20250106123122.3531845-2-c-vankar@ti.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20250106123122.3531845-2-c-vankar@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-
-
-On 06/01/2025 14:31, Chintan Vankar wrote:
-> Ethernet boot requires CPSW nodes to be present starting from R5 SPL
-> stage. Add bootph-all property to necessary nodes for CPSW to enable those
-> nodes during SPL stage along with later boot stages for AM68-SK.
-> 
-> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+On Tue, 2025-01-07 at 13:58 +0100, Krzysztof Kozlowski wrote:
+> DTS example in the bindings should be indented with 2- or 4-spaces and
+> aligned with opening '- |', so correct any differences like 3-spaces or
+> mixtures 2- and 4-spaces in one binding.
+>=20
+> No functional changes here, but saves some comments during reviews of
+> new patches built on existing code.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 5 +++++
->  arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 ++
->  2 files changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> index 11522b36e0ce..f1f8b228926d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> @@ -333,6 +333,7 @@ J721S2_WKUP_IOPAD(0x008, PIN_OUTPUT, 0) /* (E22) MCU_RGMII1_TD3 */
->  			J721S2_WKUP_IOPAD(0x018, PIN_OUTPUT, 0) /* (F21) MCU_RGMII1_TXC */
->  			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (F22) MCU_RGMII1_TX_CTL */
->  		>;
-> +		bootph-all;
 
-Shouldn't bootph-all be the first property in the DT nodes?
+Acked-by: Nuno Sa <nuno.sa@analog.com>
 
->  	};
->  
->  	mcu_mdio_pins_default: mcu-mdio-default-pins {
-> @@ -340,6 +341,7 @@ mcu_mdio_pins_default: mcu-mdio-default-pins {
->  			J721S2_WKUP_IOPAD(0x034, PIN_OUTPUT, 0) /* (A21) MCU_MDIO0_MDC */
->  			J721S2_WKUP_IOPAD(0x030, PIN_INPUT, 0) /* (A22) MCU_MDIO0_MDIO */
->  		>;
-> +		bootph-all;
->  	};
->  
->  	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
-> @@ -610,11 +612,13 @@ &main_sdhci1 {
->  &mcu_cpsw {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&mcu_cpsw_pins_default>, <&mcu_mdio_pins_default>;
-> +	bootph-all;
->  };
->  
->  &davinci_mdio {
->  	phy0: ethernet-phy@0 {
->  		reg = <0>;
-> +		bootph-all;
->  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
->  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->  		ti,min-output-impedance;
-> @@ -624,6 +628,7 @@ phy0: ethernet-phy@0 {
->  &cpsw_port1 {
->  	phy-mode = "rgmii-rxid";
->  	phy-handle = <&phy0>;
-> +	bootph-all;
->  };
->  
->  &mcu_mcan0 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> index bc31266126d0..cfae226d3c63 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> @@ -154,12 +154,14 @@ mcu_conf: bus@40f00000 {
->  		cpsw_mac_syscon: ethernet-mac-syscon@200 {
->  			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
->  			reg = <0x200 0x8>;
-> +			bootph-all;
->  		};
->  
->  		phy_gmii_sel: phy@4040 {
->  			compatible = "ti,am654-phy-gmii-sel";
->  			reg = <0x4040 0x4>;
->  			#phy-cells = <1>;
-> +			bootph-all;
->  		};
->  
->  	};
-
--- 
-cheers,
--roger
+> =C2=A0Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml | 8 ++++-=
+---
+> =C2=A0.../devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 8 ++++----
+> =C2=A0Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml=C2=A0 | 8 =
+++++----
+> =C2=A03 files changed, 12 insertions(+), 12 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> index aa35209f74cf..45e112d0efb4 100644
+> --- a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+> @@ -41,8 +41,8 @@ unevaluatedProperties: false
+> =C2=A0examples:
+> =C2=A0=C2=A0 - |
+> =C2=A0=C2=A0=C2=A0=C2=A0 pwm@44b00000 {
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,axi-pwmgen-2.00=
+.a";
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x44b00000 0x1000>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&spi_clk>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #pwm-cells =3D <3>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "adi,axi-pwmge=
+n-2.00.a";
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x44b00000 0x1000>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&spi_clk>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #pwm-cells =3D <3>;
+> =C2=A0=C2=A0=C2=A0=C2=A0 };
+> diff --git a/Documentation/devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml
+> b/Documentation/devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml
+> index 119de3d7f9dd..44548a9da158 100644
+> --- a/Documentation/devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/brcm,bcm7038-pwm.yaml
+> @@ -35,8 +35,8 @@ additionalProperties: false
+> =C2=A0examples:
+> =C2=A0=C2=A0 - |
+> =C2=A0=C2=A0=C2=A0=C2=A0 pwm: pwm@f0408000 {
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "brcm,bcm7038-pwm";
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0xf0408000 0x28>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #pwm-cells =3D <2>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&upg_fixed>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "brcm,bcm7038-=
+pwm";
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0xf0408000 0x28>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #pwm-cells =3D <2>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&upg_fixed>;
+> =C2=A0=C2=A0=C2=A0=C2=A0 };
+> diff --git a/Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml
+> b/Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml
+> index e86c8053b366..fd785da5d3d7 100644
+> --- a/Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/brcm,kona-pwm.yaml
+> @@ -43,9 +43,9 @@ examples:
+> =C2=A0=C2=A0=C2=A0=C2=A0 #include <dt-bindings/clock/bcm281xx.h>
+> =C2=A0
+> =C2=A0=C2=A0=C2=A0=C2=A0 pwm@3e01a000 {
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "brcm,bcm11351-pwm",=
+ "brcm,kona-pwm";
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x3e01a000 0xcc>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&slave_ccu BCM281XX_SLA=
+VE_CCU_PWM>;
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #pwm-cells =3D <3>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "brcm,bcm11351=
+-pwm", "brcm,kona-pwm";
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x3e01a000 0xcc>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&slave_ccu BCM281=
+XX_SLAVE_CCU_PWM>;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #pwm-cells =3D <3>;
+> =C2=A0=C2=A0=C2=A0=C2=A0 };
+> =C2=A0...
 
 
