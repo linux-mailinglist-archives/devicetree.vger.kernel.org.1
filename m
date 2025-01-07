@@ -1,128 +1,236 @@
-Return-Path: <devicetree+bounces-136315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A001A04B2D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 21:42:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1C33A04B61
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 22:10:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 626473A10FA
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 20:42:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB39A166549
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 21:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BD171F668E;
-	Tue,  7 Jan 2025 20:42:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A1A31E0E1A;
+	Tue,  7 Jan 2025 21:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f1X6Fjoq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yBjf6UcX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5141F37C0;
-	Tue,  7 Jan 2025 20:42:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D60AA155300;
+	Tue,  7 Jan 2025 21:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736282551; cv=none; b=GS2dkOXNTAF69qjdSGf0n82ca9D7Tdu6le95THnDLLn8boeE/IesSK33AmFe4ldDKAAW2LlxZEkTvxff5W5tY6doLuOMrf9olGTmYG/OZPj+7+RxwlbtQQPnupSlPiisDb+Gcpr5TQE3c8gMzBm9ZxaCAJufC4KkXXl8/7xNhcY=
+	t=1736284221; cv=none; b=Yq7J601Po5K6D2vQTRAxda3yDiToNJ7GQf6/zN7PGIJDd+yrEKP2S8bS1Cao0AklHV4KAWjkOJzQ/Z45vrVz2YXb7vs71D08LDJUAMWUsBvYq2rmCyMOBm3G5aBcqI+KRtJIVuDSGP+0Mg6ATYU/Qf2CnHKhky6XSa5WwVFvHUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736282551; c=relaxed/simple;
-	bh=B1Ckc7g9BeYgu/ickCDB0Ca1bCjlvly28BndxYTw1HE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=SRdKL7ZWBfFrJl+e4QY0Q/lqTJTixoRZdQb0v1LGXyb/Ed+LB6jnpexZknEsEWWPoUic8A58qJFa3gODWymGuJXrIT/PF5WBPo9LMzL300ghVnUzNnyo5kILup1ZKLlP+6asOXLj6ROaJ9v6FvSIOwMpfbyHIH+2u7BV96sDzDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f1X6Fjoq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23916C4CED6;
-	Tue,  7 Jan 2025 20:42:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736282550;
-	bh=B1Ckc7g9BeYgu/ickCDB0Ca1bCjlvly28BndxYTw1HE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=f1X6FjoqgTjt1mJZyJ+Jl8CPM0ijT8X6zotnBSQ3+iWJO2VYUwttFLuC2UIyPTAih
-	 68qbHXpmh8kkKeqvLxQJPqwV3rBtzD7UuJOnmHnIIQ/JXlNovNudCiI3AiwWIi3CzL
-	 h5gb+c3sKucJIKeYdp/b7r2HEDcKZvXJZ/hx4LPgJseLkKlC0yulDeh8ciIfAHdWBt
-	 TAIy9K+7EqNi8q1HhQez/AJNsoYFkuXw+aE+5aA+KU3i2wUt7VE6B5KsDngi6wTso2
-	 MGf1iN7lfvazmT2Gvyu69WhQfg2x/kPiysSlJwTkLrUUUKAIUy5f7QPsVwKTMjBR4d
-	 YLaVUeqFa1IdQ==
-Date: Tue, 7 Jan 2025 14:42:28 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	andersson@kernel.org, dmitry.baryshkov@linaro.org,
-	manivannan.sadhasivam@linaro.org, krzk@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com
-Subject: Re: [PATCH V1] schemas: pci: bridge: Document PCI L0s & L1 entry
- delay and nfts
-Message-ID: <20250107204228.GA180123@bhelgaas>
+	s=arc-20240116; t=1736284221; c=relaxed/simple;
+	bh=97vgSVxDkR17ROnVmlX9z9br2xR5PxbgNyS4svH3F9E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PjinN5cfmy2z6Aocxqq9k4A5uq5lzw462M5onzbMmnUI0yf8uRJF+SD141vK7CWESM+5GRpJCXwB9QaDyHVgJ+1T4USXkWCQNzBBJ5ZcFn4/GcDph9ip/ai4c40byqsjsT8D7C5QhBhFTHUlGSsuk590Wn9BU1TeSkAHfPF7pyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yBjf6UcX; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 507L9p0a2908014
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 7 Jan 2025 15:09:51 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736284191;
+	bh=RQrt49SQJnW5KhOTZq58iZZ989plmL129FmUuARfmpE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=yBjf6UcXjQL10bWzXGXsd+mrcgAVJejVPplfnudj+UGw15L5pE8HMVttPN2+K+Jcz
+	 C7S677j5ZbIpQ9IE9rtgQ0Pa06vKj7z3POWFvk0yLyNTKK0D/+pwDkxCEzkEySBgoy
+	 SsMUNkNyeX1PQLBG2/bgtzWclv0VGGftOFTq9kog=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 507L9pDL051938
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 7 Jan 2025 15:09:51 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 7
+ Jan 2025 15:09:51 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 7 Jan 2025 15:09:51 -0600
+Received: from [128.247.29.228] (dmz007xyy.dhcp.ti.com [128.247.29.228])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 507L9pSt027995;
+	Tue, 7 Jan 2025 15:09:51 -0600
+Message-ID: <0746c757-e25a-4fa0-ba22-90ec123e87e6@ti.com>
+Date: Tue, 7 Jan 2025 15:09:51 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 6/7] regulator: tps65215: Define probe() helper
+ functions
+To: Andrew Davis <afd@ti.com>, Roger Quadros <rogerq@kernel.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>,
+        <andreas@kemnade.info>, <khilman@baylibre.com>, <tony@atomide.com>,
+        <jerome.neanne@baylibre.com>, <linux-omap@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <m-leonard@ti.com>, <praneeth@ti.com>
+References: <20241226215412.395822-1-s-ramamoorthy@ti.com>
+ <20241226215412.395822-7-s-ramamoorthy@ti.com>
+ <5ea0f7f1-caee-487d-bbda-e2f2361efb41@kernel.org>
+ <e8637049-ecb5-4e5e-b31d-d096bd517043@ti.com>
+ <0f7f8b5d-728b-4f97-9100-5879eacb8c93@ti.com>
+Content-Language: en-US
+From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+Organization: PMIC
+In-Reply-To: <0f7f8b5d-728b-4f97-9100-5879eacb8c93@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6d75827d-5285-35ff-bf9b-aec77cd8304e@quicinc.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Jan 07, 2025 at 07:49:00PM +0530, Krishna Chaitanya Chundru wrote:
-> On 1/6/2025 8:37 PM, Rob Herring wrote:
-> > On Mon, Jan 6, 2025 at 3:33 AM Krishna Chaitanya Chundru
-> > <krishna.chundru@oss.qualcomm.com> wrote:
-> > > 
-> > > Some controllers and endpoints provide provision to program the entry
-> > > delays of L0s & L1 which will allow the link to enter L0s & L1 more
-> > > aggressively to save power.
-> > > 
-> > > As per PCIe spec 6 sec 4.2.5.6, the number of Fast Training Sequence (FTS)
-> > > can be programmed by the controllers or endpoints that is used for bit and
-> > > Symbol lock when transitioning from L0s to L0 based upon the PCIe data rate
-> > > FTS value can vary. So define a array for each data rate for nfts.
-> > > 
-> > > These values needs to be programmed before link training.
+Hi,
 
-> > Do these properties apply to any link like downstream ports on a
-> > PCIe switch?
-> > 
-> These applies to downstream ports also on a switch.
+On 1/6/25 4:57 PM, Andrew Davis wrote:
+> On 1/6/25 4:02 PM, Shree Ramamoorthy wrote:
+>> Hi,
+>>
+>> On 1/4/2025 12:45 PM, Roger Quadros wrote:
+>>>
+>>> On 26/12/2024 23:54, Shree Ramamoorthy wrote:
+>>>> Factor register_regulators() and request_irqs() out into smaller 
+>>>> functions.
+>>>> These 2 helper functions are used in the next restructure probe() 
+>>>> patch to
+>>>> go through the common (overlapping) regulators and irqs first, then 
+>>>> the
+>>>> device-specific structs identifed in the chip_data struct.
+>>>>
+>>>> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+>>>> ---
+>>>>   drivers/regulator/tps65219-regulator.c | 64 
+>>>> ++++++++++++++++++++++++++
+>>>>   1 file changed, 64 insertions(+)
+>>>>
+>>>> diff --git a/drivers/regulator/tps65219-regulator.c 
+>>>> b/drivers/regulator/tps65219-regulator.c
+>>>> index 13f0e68d8e85..8469ee89802c 100644
+>>>> --- a/drivers/regulator/tps65219-regulator.c
+>>>> +++ b/drivers/regulator/tps65219-regulator.c
+>>>> @@ -346,6 +346,70 @@ static struct chip_data chip_info_table[] = {
+>>>>       },
+>>>>   };
+>>>>   +static int tps65219_register_regulators(const struct 
+>>>> regulator_desc *regulators,
+>>>> +                    struct tps65219 *tps,
+>>>> +                    struct device *dev,
+>>>> +                    struct regulator_config config,
+>>>> +                    unsigned int arr_size)
+>>>> +{
+>>>> +    int i;
+>>>> +    struct regulator_dev *rdev;
+>>> reverse xmas tree?
+>>
+>> Applied reverse xmas tree style to this file & will review other 
+>> files as well for this.
+>>
+>>>> +
+>>>> +    config.driver_data = tps;
+>>>> +    config.dev = tps->dev;
+>>>> +    config.regmap = tps->regmap;
+>>>> +
+>>>> +    for (i = 0; i < arr_size; i++) {
+>>>> +        rdev = devm_regulator_register(dev, &regulators[i],
+>>>> +                        &config);
+>>>> +        if (IS_ERR(rdev)) {
+>>>> +            dev_err(tps->dev,
+>>>> +                "Failed to register %s regulator\n",
+>>>> +                regulators[i].name);
+>>>> +
+>>>> +            return PTR_ERR(rdev);
+>>>> +        }
+>>>> +    }
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int tps65219_request_irqs(struct 
+>>>> tps65219_regulator_irq_type *irq_types,
+>>>> +                 struct tps65219 *tps, struct platform_device *pdev,
+>>>> +                 struct tps65219_regulator_irq_data *irq_data,
+>>>> +                 unsigned int arr_size)
+>>>> +{
+>>>> +    int i;
+>>>> +    int irq;
+>>>> +    int error;
+>>>> +    struct tps65219_regulator_irq_type *irq_type;
+>>> here too.
+>>>
+>>>> +
+>>>> +    for (i = 0; i < arr_size; ++i) {
+>>>> +        irq_type = &irq_types[i];
+>>>> +
+>>> unnecessary new line.
+>>>
+>>>> +        irq = platform_get_irq_byname(pdev, irq_type->irq_name);
+>>>> +        if (irq < 0)
+>>>> +            return -EINVAL;
+>>>> +
+>>>> +        irq_data[i].dev = tps->dev;
+>>>> +        irq_data[i].type = irq_type;
+>>>> +
+>>> here too
+>>
+>> Removed both new lines.
+>>
+>>>> +        error = devm_request_threaded_irq(tps->dev, irq, NULL,
+>>>> +                          tps65219_regulator_irq_handler,
+>>>> +                          IRQF_ONESHOT,
+>>>> +                          irq_type->irq_name,
+>>>> +                          &irq_data[i]);
+>>>> +        if (error) {
+>>>> +            dev_err(tps->dev,
+>>>> +                "Failed to request %s IRQ %d: %d\n",
+>>>> +                irq_type->irq_name, irq, error);
+>>>> +            return error;
+>>>> +        }
+>>>> +    }
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>>   static int tps65219_regulator_probe(struct platform_device *pdev)
+>>>>   {
+>>>>       struct tps65219 *tps = dev_get_drvdata(pdev->dev.parent);
+>>> This patch by itself will complain during build as there are no 
+>>> users for
+>>> these functions.
+>>> Could you please squash patches 6 and 7?
+>>
+>> I kept patch 6 and 7 separate as the diff was hard to read &
+>> the git diff options did not resolve this. Is there a way to keep 
+>> these 2 patches
+>> separate for user readability and avoid the build error? Or just 
+>> squash them to
+>> prevent build errors knowing the diff will be hard to read? Thank you 
+>> for your help!
+>>
+>>
+>
+> Instead of splitting the adding and the using of the functions, could you
+> split tps65219_register_regulators() and tps65219_request_irqs() into 
+> their
+> own patches? Each patch should add and also make use of the added 
+> function.
+>
+> Andrew
 
-IIUC every PCIe component with a Link, i.e., Upstream Ports (on a
-Switch or Endpoint) and Downstream Ports (a Root Port or Switch), has
-an N_FTS value that it advertises during Link training.
+I was able to split up the 2 helper functions & usage into their own patches. The diff is clean
+except for a mistaken new function, but it's easy to read compared to squashing this patch with 7/7.
 
-I suppose N_FTS depends on the component electrical design and maybe
-the Link, and it only makes sense to have this n-fts property for
-specific devices that support this kind of configuration, right?  I
-don't think we would know what to do with n-fts for random plug-in
-Switches or Endpoints because there's no generic way to configure
-N_FTS, and we *couldn't* do it before the Link is trained anyway
-unless there's some sideband mechanism.
 
-> > > +    description:
-> > > +      Number of Fast Training Sequence (FTS) used during L0s to L0 exit for bit
-> > > +      and Symbol lock.
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +    minItems: 1
-> > > +    maxItems: 5
-> > 
-> > Need to define what is each entry? Gen 1 to 5?
-> > 
-> yes there are from Gen1 to Gen 5, I will update this in next patch these
-> details.
+-- 
+Best,
+Shree Ramamoorthy
+PMIC Software Engineer
 
-Components are permitted to advertise different N_FTS values at
-different *speeds*, not "GenX" (PCIe r6.0, sec 4.2.5.6)
-
-The spec discourages use of Gen1, etc because they are ambiguous (sec
-1.2):
-
-  Terms like "PCIe Gen3" are ambiguous and should be avoided. For
-  example, "gen3" could mean (1) compliant with Base 3.0, (2)
-  compliant with Base 3.1 (last revision of 3.x), (3) compliant with
-  Base 3.0 and supporting 8.0 GT/s, (4) compliant with Base 3.0 or
-  later and supporting 8.0 GT/s, ....
-
-We're stuck with the use of genX for max-link-speed, but we should use
-speeds when we can for clarity, e.g., in the description here.
 
