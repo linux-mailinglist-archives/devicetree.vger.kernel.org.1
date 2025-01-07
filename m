@@ -1,88 +1,148 @@
-Return-Path: <devicetree+bounces-136333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E85A04D6A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 00:23:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47030A04D72
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 00:25:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18E58162CE8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 23:23:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BC1D7A20EF
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 23:24:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E091E0DF5;
-	Tue,  7 Jan 2025 23:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2951E5019;
+	Tue,  7 Jan 2025 23:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b9VmdG/r"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="NqiaaL9V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2C6273F9
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 23:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CA31E32DB
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 23:24:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736292189; cv=none; b=DlcATuiuqwDPttsH10hC5+rpa4Kqzi4K623sKDpJ3xR9NBX1STaftcbWlQlybwXphiFthnK7rkosvL9xq4BLp70BWFf3Idis79xEWXavWFx8pNRx+XJcrAKJgAik4BIHgOoxgW7wRyj0nLfxoIGqR4tPz/gCTIy9udAIHHOPx1s=
+	t=1736292293; cv=none; b=LwuxJnCYNFQsumaC4pz/rFvvOesnStjBpHoOc1G95CdAcVbpm/43XX0GyXSmK7WbyfFGC2ieaaIUYwxoF4xCf9ErFKzqFZHH2qJ47R+pwsFs4wozmdYAQgSLsQXK3xmSvcQNrg3p9EtYyn42w5vKeZwHuvnmycV5dGLOUUIBE48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736292189; c=relaxed/simple;
-	bh=Q3yRCHCX/2HbN6xwYgE3+FSs8cJMDQK71kn/k4aPaQw=;
+	s=arc-20240116; t=1736292293; c=relaxed/simple;
+	bh=/rXHGKUIoQHoGcJIrywVuVgzNts6B4F5PDPqIq7EeIc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vGTe8rX6FRixJjztD25VwQrr0UBOJmOvRYoWAHfoSgQh8iFpq4Tdquj9zu5wjI14kIWCS6a+8YaKgGlWAT4SgMzhPuaVtytcss6vC5d4hFC/NqnfEUBLf+/xY5enSUBp64ejVXBEtDEQHVyjHcKLpa+0eyc4t121cvVTPx9GfMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b9VmdG/r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D79EC4CED6;
-	Tue,  7 Jan 2025 23:23:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736292189;
-	bh=Q3yRCHCX/2HbN6xwYgE3+FSs8cJMDQK71kn/k4aPaQw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b9VmdG/r4WSM89OjKynkbHkiPCfh9P4hlp9oYCNkcTQghHJL9xZBzDox8rX2yIWP4
-	 ifly861Q0vzP/cTbQL2GWzWkcC9d03uF91VCvuhb0vAAszuQcsdvNK36MIh5IVWagN
-	 jhf6SxZRNiFonHDOyz/Wr+xBLp7burtrlwIoK3rHprzWTJEB4B53xAoRKm4uqBO9GQ
-	 3/rMTZqbpIfCSelNsD53b8vczvCGwnvbbhyy2MeXvfzyqbQbWoToeOnxyyxKwD8gpr
-	 Jegx+MpcBKmJVFKvdaFXJHmqbwdiX789KoyU3TMtQPCTLBO/5884lXby1TPY59fsiH
-	 Tisw5YZnw51WQ==
-Date: Tue, 7 Jan 2025 17:23:08 -0600
-From: Rob Herring <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] dt-bindings: samsung,mipi-dsim: Document
- fsl,imx7d-mipi-dsim
-Message-ID: <20250107232308.GA2039463-robh@kernel.org>
-References: <20241217131431.1464983-1-festevam@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=E5+95XMJZ3upg0ENP7TPNDXnJD3TH36ZsAOVVfdH2a4tLJocRyPVjIbEEBRxUzlGzzOsXyzAXtND+kHqQlfHQO39tcaMcSWNGMYVWVHKJxlRHOU8Jw5b6Gb10kcxm5P7/ENe/BNvPxGLNDYKVw6Hq1mlOtKEK7rqYdO/SIn+KnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=NqiaaL9V; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 99BA0240104
+	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 00:24:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1736292289; bh=/rXHGKUIoQHoGcJIrywVuVgzNts6B4F5PDPqIq7EeIc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=NqiaaL9V+ZJ+TTlLyK+w/G5/8HWh5ycmXEyIS9Ei55dR3Q6IzMoU/8OZY83lO5JKe
+	 ewkojb0uIWGNgHmLWnlutrBk5FqeaHwvJc4datO7sii/JHF9kbBgI8hk/x5H9LiOCt
+	 F6tjt894Xqs8/wdUGHT/pTPHkWKFPrPTX8GcyjWsT7tP9cSwB6MCTlV+3kWOrQ4fUt
+	 srZkQ4d97BhmZpyk8BVFdt8KIHCnv+uU5qYhj/XrAx2UXTipPohH+WBgHCr55ao5gH
+	 8jKJ/+7dKO7St59p+yzmd6eROG/GgE9ZxyQ0h0p7AnkgF3xKNzt01701kM5BICfjZk
+	 Umm5pO4wgiPCQ==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YSRwH60Yhz6tvZ;
+	Wed,  8 Jan 2025 00:24:47 +0100 (CET)
+Date: Tue,  7 Jan 2025 23:24:47 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: j.ne@posteo.net, Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Naveen N Rao <naveen@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>,
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 09/19] powerpc: boot: Build devicetrees when
+ CONFIG_MPC831x=y
+Message-ID: <Z323v2w74_lB2Ilo@probook>
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-9-86f78ba2a7af@posteo.net>
+ <6443434a-f810-4591-b1e4-cfea0bc0b993@csgroup.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241217131431.1464983-1-festevam@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6443434a-f810-4591-b1e4-cfea0bc0b993@csgroup.eu>
 
-On Tue, Dec 17, 2024 at 10:14:31AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Mon, Jan 06, 2025 at 02:55:22PM +0100, Christophe Leroy wrote:
+> Le 02/01/2025 à 19:31, J. Neuschäfer via B4 Relay a écrit :
+> > [Vous ne recevez pas souvent de courriers de devnull+j.ne.posteo.net@kernel.org. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
+> > 
+> > From: "J. Neuschäfer" <j.ne@posteo.net>
+> > 
+> > In order to produce useful FIT images, the kernel needs to know which
+> > devicetrees to build. To that end, follow the same approach as other
+> > architectures, and enable devicetrees per platform.
 > 
-> The i.MX7D MIPI DSIM block is compatible with i.MX8MM.
-> 
-> imx7s.dtsi uses the following compatible string:
-> 
-> compatible = "fsl,imx7d-mipi-dsim", "fsl,imx8mm-mipi-dsim";
-> 
-> Document "fsl,imx7d-mipi-dsim" to fix the following dt-schema warning:
-> 
-> ['fsl,imx7d-mipi-dsim', 'fsl,imx8mm-mipi-dsim'] is too long
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  .../devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+> Why do you need that ?
 
-I applied this one[1] instead as it reuses an existing items entry.
+The FIT infrastructure uses the dtbs-y variable and the dtbs-list file
+built from it in order to obtain a list of DTBs to include.
 
-Rob
+Having roughly the right DTBs included by setting a simple config
+option to =y is pretty convenient.
 
-[1] https://lore.kernel.org/r/20250107094943.518474-3-alexander.stein@ew.tq-group.com
+> Why not just use CONFIG_EXTRA_TARGETS for that ?
+
+To be honest, I didn't know about CONFIG_EXTRA_TARGETS until now.
+But I also don't quite understand it:
+
+  ()  Additional default image types
+
+I don't need an additional image type. I want additional device trees,
+if anything.
+
+One thing I specifically wanted to avoid by using FIT is having to add
+more per-board bootwrapper logic to arch/powerpc/boot/Makefile.
+
+> > 
+> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+> > ---
+> > 
+> > I've only enabled MPC831x devicetrees, because that's the hardware I have.
+> > ---
+> >   arch/powerpc/boot/dts/Makefile | 5 +++++
+> >   1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/arch/powerpc/boot/dts/Makefile b/arch/powerpc/boot/dts/Makefile
+> > index 0cd0d8558b475cfe342f36f4b78240ef88dd2e37..6aee895d5baaa2c978d4b1c82a6d198d9e166ea2 100644
+> > --- a/arch/powerpc/boot/dts/Makefile
+> > +++ b/arch/powerpc/boot/dts/Makefile
+> > @@ -3,3 +3,8 @@
+> >   subdir-y += fsl
+> > 
+> >   dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(src)/%.dts,%.dtb, $(wildcard $(src)/*.dts))
+> > +
+> > +dtb-$(CONFIG_MPC831x) += \
+> > +       kmeter1.dtb \
+> > +       mpc8313erdb.dtb \
+> > +       mpc8315erdb.dtb
+> 
+> How will it know which one of the three to put in the FIT image ?
+> Or do you want all three in the FIT image ?
+
+It includes all of them, which is an acceptable outcome.
+
+> In that case how do you select which one to use at boot ?
+
+The bootloader (most likely U-Boot) is expected to know the compatible
+string of the board and select the right devicetree based on it.
+
+
+Best regards,
+J. Neuschäfer
 
