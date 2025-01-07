@@ -1,103 +1,164 @@
-Return-Path: <devicetree+bounces-136187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28AEFA0427D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:29:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 172A3A04293
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 15:31:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C21601882940
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:27:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDAFA3A2374
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 14:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003531EE01F;
-	Tue,  7 Jan 2025 14:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84E4B1F2363;
+	Tue,  7 Jan 2025 14:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KoOAP5qk"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W+PH0fHY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130971EF0AF;
-	Tue,  7 Jan 2025 14:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB481F1934;
+	Tue,  7 Jan 2025 14:28:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736260056; cv=none; b=SQl8ANCV+EljPFQzVicPDZJzQLo4wijYv3GnEwr2jY+EITKWIGCslJ8Phky2QPVgQUMTioZeIgNkYjsnQgJI7myYSP6Kn+46pe8n9+Y8i1bm00kliBVzPtMWrHrIgH2vjINr5y7kKDxQGX/tAxVYXm4Mo00hEHwOxZTEaTA93D4=
+	t=1736260121; cv=none; b=qKro/9Mg4yWuCOy/FKKndKliNhk62Lwdai+wESnQZ9oYhXvjuQfN5dWAeaKTrsDEH9Xd4jFyX0wsQ0hRKblFj8YK5THu6fvIAQN2AKjAnNv4Hs2ygii5mKitRxBN18dUx3yB4tcUVWGKyVQ6b59/ozQKuB3/MgJD/ppqwEpHsas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736260056; c=relaxed/simple;
-	bh=DQOgxuU8KZZ7HfyFn2N5Umm7gqjFCbVTdxttiKZH66c=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=lfO4hZeSUH676JvMcwY9D+QNUFauGvWO3SIl9as2vIuwbBJ8GOof+BHgM/NzYPOHWComnBdA2tv5Fj6CNtOwX0M4npwIQ6CpVXzCThqRRofTcrz/U0ORynQmrjJpqYjnRy4gcZDVI2aineWNr+v+ny7i1Uca6YNVFtnJDL2rBPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KoOAP5qk; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 581ACFF804;
-	Tue,  7 Jan 2025 14:27:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736260051;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=eh2fGGQ10iT+x6CMppwD5qBvxhaDaxT3qsXajyTyxSM=;
-	b=KoOAP5qk2VeBswS48NSrfBUjCsA90qulpKGtbN5GiNzTCd2wnOAD++V7Jrt0vrtr0LAKUe
-	/yOMEDqy3P2jgcnmYVQYdj2TtrHKSR++MFKiqwT/ZnNk+18rUWFaKMEf954FMYEyFH67qy
-	EyhCEs9WF+sggQAAnFHV3oER76o6DHV5LX8BjH+/x+pUHsfqiwtnfOhvKLKFMKWiR2UZG9
-	m6dUsit62kpni4eIKVPC9xORGVzxSyL5FRP+xlQCYzqlDWW610+948YQZL/lFS73im2NAa
-	h1Hz25yYKO5aQ5wcJpSiCKYv7qNxJN3tNvypq28cmhiTja+WwI/Qevd4QEXU1A==
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH] dt-bindings: net: pse-pd: Fix unusual character in documentation
-Date: Tue,  7 Jan 2025 15:26:59 +0100
-Message-Id: <20250107142659.425877-1-kory.maincent@bootlin.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1736260121; c=relaxed/simple;
+	bh=jt0g4HQC2ApGULGRSdheIj7kpFpp7zOFQDxoRPUkF9s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=S4avYNDtzfBkHFgzzFCbfiOlSdH47raklE05l+lf1dns4UMJuuNpUYhUS7qBoKiO0ny3PNunCdr0Kum+ceDCns1ZmbwX5dXOu3B598Q7shsS4IFTi5iWIRdn6pUyJMvIWBPqFCUFMz0esn9SeyoZZqB46wfsM9RrDIiQMfjxy0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W+PH0fHY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5078Ah8B015107;
+	Tue, 7 Jan 2025 14:28:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mqrVUNW49lzpKto+HQEZxkSB8vhFVth/PJTNQPwkFXA=; b=W+PH0fHY9LS886oM
+	tiC3rRXgS7rxepEsnw2sE1wAAA2ndr8qPLAw3ziTcokbhFzAQ3X8ih5okOnW49NJ
+	SCaHiPkIWanDZ+lLk0RS1zv4XcAUEA98hPGXgvtuQ3Hlu9C/j333x3zSONOOxTDL
+	7hJi8x8TaH4yQt1d/izU1dqRzTqK7KpNuaEV4QMHMDJOCCBH4r/xsMQ7XG3Jp5Lv
+	QzT0/DHULm1dEwN3ebnWQ9OJeIpOzsAhd7Zi0v97khAC/Hx3Be7KGJwrI9qJv2mr
+	993PSMHF7I3yFQ6dYFzwNIfTYz7puGRxFLeCZQv9GNv72p0O7gtf5xYRylUYAaZz
+	4T7DTQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4410he8w2u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Jan 2025 14:28:28 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 507ESRok002693
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 Jan 2025 14:28:27 GMT
+Received: from [10.216.0.179] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 Jan 2025
+ 06:28:21 -0800
+Message-ID: <d4019981-1df2-0946-d093-7dc97c2d0ffe@quicinc.com>
+Date: Tue, 7 Jan 2025 19:58:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: kory.maincent@bootlin.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 1/6] dt-bindings: PCI: Add binding for qps615
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+CC: <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        "Dmitry
+ Baryshkov" <dmitry.baryshkov@linaro.org>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Manivannan
+ Sadhasivam" <manivannan.sadhasivam@linaro.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+        <quic_vbadigan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20241112-qps615_pwr-v3-0-29a1e98aa2b0@quicinc.com>
+ <20241112-qps615_pwr-v3-1-29a1e98aa2b0@quicinc.com>
+ <20241115161848.GA2961450-robh@kernel.org>
+ <74eaef67-18f2-c2a1-1b9c-ac97cefecc54@quicinc.com>
+ <kssmfrzgo7ljxveys4rh5wqyaottufhjsdjnro7k7h7e6fdgcl@i7tdpohtny2x>
+ <20241230182201.4nem2dvg4lg5vdjv@thinkpad>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <20241230182201.4nem2dvg4lg5vdjv@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: E7FtCkCRsb3BbOWdHcURCfaI4K4ENAeN
+X-Proofpoint-ORIG-GUID: E7FtCkCRsb3BbOWdHcURCfaI4K4ENAeN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 impostorscore=0 suspectscore=0 phishscore=0
+ priorityscore=1501 mlxscore=0 malwarescore=0 mlxlogscore=844 adultscore=0
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501070121
 
-The documentation contained an unusual character due to an issue in my
-personal b4 setup. Fix the problem by providing the correct PSE Pinout
-Alternatives table number description.
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
 
-I don't use net-next prefix as I suppose it would go in the devicetree
-tree.
+On 12/30/2024 11:52 PM, Manivannan Sadhasivam wrote:
+> On Mon, Dec 23, 2024 at 08:57:37PM +0200, Dmitry Baryshkov wrote:
+> 
+> [...]
+> 
+>>> This switch allows us to configure both upstream, downstream ports and
+>>> also embedded Ethernet port which is internal to the switch. These
+>>> properties are applicable for all of those.
+>>>>> +
+>>>>> +    allOf:
+>>>>> +      - $ref: /schemas/pci/pci-bus.yaml#
+>>>>
+>>>> pci-pci-bridge.yaml is more specific and closer to what this device is.
+>>>>
+>>> I tried this now, I was getting warning saying the compatible
+>>> /local/mnt/workspace/skales/kobj/Documentation/devicetree/bindings/pci/qcom,qps615.example.dtb:
+>>> pcie@0,0: compatible: ['pci1179,0623'] does not contain items matching the
+>>> given schema
+>>>          from schema $id: http://devicetree.org/schemas/pci/qcom,qps615.yaml#
+>>> /local/mnt/workspace/skales/kobj/Documentation/devicetree/bindings/pci/qcom,qps615.example.dtb:
+>>> pcie@0,0: Unevaluated properties are not allowed ('#address-cells',
+>>> '#size-cells', 'bus-range', 'device_type', 'ranges' were unexpected)
+>>>
+>>> I think pci-pci-bridge is expecting the compatible string in this format
+>>> only "pciclass,0604".
+>>
+>> I think the pci-pci-bridge schema requires to have "pciclass,0604" among
+>> other compatibles. So you should be able to do something like:
+>>
+>> compatible = "pci1179,0623", "pciclass,0604";
+>>
+> 
+> Even though a PCIe switch is supposed to be a network of PCI bridges, using
+> PCI bridge fallback for this switch is not technically correct IMO. Mostly
+> because, this switch requires other configurations which are not applicable to
+> PCI bridges. So the drivers matching against the bridge compatible won't be able
+> to use this switch.
+> 
+> - Mani
+Rob,
 
- .../devicetree/bindings/net/pse-pd/pse-controller.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Using pci-pci-bridge expects to use compatible as pciclass,0604, we
+can't  use as this switch is doing other configurations which are
+applicable to PCI bridges. can we continue to use pci-bus.yaml.
 
-diff --git a/Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml b/Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml
-index a12cda8aa764..cd09560e0aea 100644
---- a/Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml
-@@ -81,7 +81,7 @@ properties:
-               List of phandles, each pointing to the power supply for the
-               corresponding pairset named in 'pairset-names'. This property
-               aligns with IEEE 802.3-2022, Section 33.2.3 and 145.2.4.
--              PSE Pinout Alternatives (as per IEEE 802.3-2022 Table 145\u20133)
-+              PSE Pinout Alternatives (as per IEEE 802.3-2022 Table 145-3)
-               |-----------|---------------|---------------|---------------|---------------|
-               | Conductor | Alternative A | Alternative A | Alternative B | Alternative B |
-               |           |    (MDI-X)    |     (MDI)     |      (X)      |      (S)      |
--- 
-2.34.1
-
+- Krishna Chaitanya.
+> 
 
