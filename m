@@ -1,105 +1,129 @@
-Return-Path: <devicetree+bounces-136071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBBA0A03B77
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 10:48:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A84CA03B80
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 10:50:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AAF33A4C84
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:48:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37646165AEF
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 09:50:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9B41E883A;
-	Tue,  7 Jan 2025 09:46:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339EB1E2317;
+	Tue,  7 Jan 2025 09:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cPSbZn55"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="f6VcteZj";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="LLx2ow89"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2EAB1DE895;
-	Tue,  7 Jan 2025 09:46:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D74101E3789;
+	Tue,  7 Jan 2025 09:50:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736243192; cv=none; b=nunsz5fLUo2OW8PT3CKnGRyNOUkZbbL0Lulwq+rFFoH8wWdEifxOTmWHXBiIvp1/+jGGZwfi7ctKk6wVcH9PeFcbBzdyVl/4cGYoPj8ZrubplDxcuT+YunashZuSx0sS2xi0gezSa2lY5+cVJXEoPqcv+Y5nJIIUJMLtbIHQYow=
+	t=1736243411; cv=none; b=avpsQcQAZNOAo4ix98KRTXmBrC+ni/BbdvX9g2gcpYElDPJmt0OBV/lnToBEp2ViNURUdHTHHHnZTaCf/OBatS8sDqQngtzpkuN9TDUSk6ShJbBZlnRUhe5eymLfgCi83SNHY/pWxIZIujFZBu/qXy9lp6+jjAo1UwM5fNNPEpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736243192; c=relaxed/simple;
-	bh=yJqSbQ10V+vjR/1E36mOd8qVjRYd+V2tSgmwlu5jPjc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gELIJmTnlUUuZXEX3FKy5ZBYnEguHl4aWUPr/9f07Tyqf4b7Cz3+Ujay373JOS2dcn22hcnafhUYJu1L2B22/n+52OIysAWnLmXV7TyARt6L8AcpM6MhV8EjNoj9YIu4Tifb+5Cu2e9Yq50jeCD16+297j9ey6/PxinnzB3Q7fA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cPSbZn55; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19CB5C4CEDD;
-	Tue,  7 Jan 2025 09:46:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736243192;
-	bh=yJqSbQ10V+vjR/1E36mOd8qVjRYd+V2tSgmwlu5jPjc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cPSbZn557jZZukwH+EYcIO0DOy+1TXnANWWjibatDnEn/cOYP/A3ZAPjz5MT4xn0N
-	 8m29RtBF9PjK+WdA9ZQfrJJMqCxhoeYnxfBcQFMkBq8Kv32N07XHuVzVk1MG4QzcnX
-	 MvFhQgUeA8tV6AANanlom9Z1yz6AiCAGeiaHnZXOIFYambziwhJYpnPG1ViTvjgGI1
-	 kesRpE5dE+hJp/kYs6ZroocC8r5h83BWdXCdzILsTyx8vFPb4WFDFdtXZBGhDl0IYi
-	 xOTeb8Fk8X4yIW0CqlBpAfVh3HUrgizEetENleMiiuHWy5UPWphkBqWtP9FAEJXLF0
-	 QqRNX386Lc9Gw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tV6AP-000000007B1-3Ny5;
-	Tue, 07 Jan 2025 10:46:29 +0100
-Date: Tue, 7 Jan 2025 10:46:29 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	s=arc-20240116; t=1736243411; c=relaxed/simple;
+	bh=cHm2Pk3ZTkPBvgVVInIAKU+PEJ5lLzU6sKg/VpnGOAk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HxDTo7QZcWm2ycd2mjix3Ivl8WxUEebkwZHbvk5eAR0ab7lgPvPjJVqk7M2h8zIrYSImhFx2/a3WAcVLdggagFh4iaoikEk+eNc5FwbpIKxmxo8uVwhrPtqJJKyNr7H+dRXcPD/6ZhrhafH6WnyyL2JY8OSeKtx8QCnYKwZNCQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=f6VcteZj; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=LLx2ow89 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1736243408; x=1767779408;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=PcRc8LgBBacdtMgCc7Ma6Y3V6HlZ1g1g93eqellQlQc=;
+  b=f6VcteZjzLa4S1Dgn2mNFoeJYl7sRQLEXtip0eqfFyC6+N4i6E/Xz8UC
+   1kw4e2vAGzNiLcRN9Yat+B5zVdl1DcEqqPIfhGjPHMgztZrGG+bVVqmdL
+   i61WetL3R5safH5ewRGYSLlDdQDwAcy3FlNy7C2xA9vL19sFqXBD3+w8W
+   MnwcVW7I35em64mMaf+tB8a9OvEcPrbxeZ4OZtI4ARYtxr5jZ3G0IALKh
+   67gI1+vieOdAUGw5UZ44eQzbwo/egIyAWUkm8EvkXlzPi0vsctpdOQ6Fe
+   9P613a819LgYydT+IqHbh5IQ5rY+CS4B9kzFvQzJJfuG/zUOz6w4nEjJL
+   A==;
+X-CSE-ConnectionGUID: l89s+UkTQN+ueLLX4NvYZQ==
+X-CSE-MsgGUID: K6k3wwvwQbaOpsw6apa6vA==
+X-IronPort-AV: E=Sophos;i="6.12,295,1728943200"; 
+   d="scan'208";a="40889014"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 07 Jan 2025 10:50:05 +0100
+X-CheckPoint: {677CF8CD-13-1647E5E1-CA16D1A6}
+X-MAIL-CPID: E34F364A6D90C75BD1DDCF5165584C53_2
+X-Control-Analysis: str=0001.0A682F27.677CF8CD.009A,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 225FC163FA3;
+	Tue,  7 Jan 2025 10:49:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1736243400;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=PcRc8LgBBacdtMgCc7Ma6Y3V6HlZ1g1g93eqellQlQc=;
+	b=LLx2ow89MHuHd9LpAlM4yq0HD29ldcNyTMzcvUSFhgjGBjiN+6zBw6XtgZGQrJffzZZX2k
+	Cl5gh+qHs7IllTCWcOnlCGen5amj0/s7x0HVs6SyAecQ11yHLIC+QrGngkRHkU5jx07S6K
+	uR1+txFkYrxxSECqiEMrqbdND7BcOd1ZjDoeEjYlSMfQF25pioOqHbss7tZI3jIz1Z+ia7
+	uua1HxPKNH5asorsbOah3i4P5vJku95aD1HCfVXbd+XdwyO2sV16mdPffmAAwdu5BcDEVp
+	ynixKC1yEclGFixz4SE+6slCjYMLy2uj+qKU8ajpCSVfyMKXOdQ2vBcpBYX2Hw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Inki Dae <inki.dae@samsung.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Trilok Soni <quic_tsoni@quicinc.com>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/6] usb: typec: Add support for Parade PS8830 Type-C
- Retimer
-Message-ID: <Z3z39Z_BH1stsO0c@hovoldconsulting.com>
-References: <20241112-x1e80100-ps8830-v5-0-4ad83af4d162@linaro.org>
- <20241112-x1e80100-ps8830-v5-2-4ad83af4d162@linaro.org>
- <Z1CCVjEZMQ6hJ-wK@hovoldconsulting.com>
- <Z3vlTwR+SiZQWVh7@linaro.org>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/2] i.MX7 DT fixes
+Date: Tue,  7 Jan 2025 10:49:40 +0100
+Message-Id: <20250107094943.518474-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z3vlTwR+SiZQWVh7@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Jan 06, 2025 at 04:14:39PM +0200, Abel Vesa wrote:
-> On 24-12-04 17:24:54, Johan Hovold wrote:
-> > On Tue, Nov 12, 2024 at 07:01:11PM +0200, Abel Vesa wrote:
+Hi,
 
-> > > +	/* skip resetting if already configured */
-> > > +	if (regmap_test_bits(retimer->regmap, REG_USB_PORT_CONN_STATUS_0,
-> > > +			     CONN_STATUS_0_CONNECTION_PRESENT))
-> > > +		return 0;
-> > 
-> > What if the device is held in reset? This looks like it only works if
-> > the boot firmware has already enabled the retimer. Otherwise you may
-> > return success from probe here with the retimer still in reset.
-> 
-> Please correct me if I'm wrong, but if the read above fails or reads
-> anything else than "connection present", then below we go through the
-> resetting sequence. If it reads "connection present", then retimer can't
-> be in reset.
+this fixes two dtbs_check warnings by moving the video muxing node out of gpr
+and adding a new imx7 specific DSI compatible to DT schema.
 
-regmap_test_bits() returns a negative errno if the read fails, so you
-need to check that the return value is 1 here to avoid returning success
-from probe on failure.
+Best regards,
+Alexander
 
-Johan
+Alexander Stein (2):
+  ARM: dts: imx7s: Move csi-mux to below root
+  dt-bindings: samsung,mipi-dsim: Add imx7d specific compatible
+
+ .../display/bridge/samsung,mipi-dsim.yaml     |  4 +-
+ arch/arm/boot/dts/nxp/imx/imx7s.dtsi          | 56 +++++++++----------
+ 2 files changed, 31 insertions(+), 29 deletions(-)
+
+-- 
+2.34.1
+
 
