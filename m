@@ -1,141 +1,239 @@
-Return-Path: <devicetree+bounces-136258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08D16A0462B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 17:28:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D30FCA0465F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 17:31:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BABE164984
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 16:28:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B3EF7A2A6F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 16:31:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 138701F63F7;
-	Tue,  7 Jan 2025 16:27:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A001E47C8;
+	Tue,  7 Jan 2025 16:29:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b="JgJYzyfb";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="v7fL1/cF"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="lB9b6nPB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7C21E0E00;
-	Tue,  7 Jan 2025 16:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFCBE1F3D34
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 16:29:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736267253; cv=none; b=Tz4B7P0x3VOmxznFdGCMfolSsDy7njfHnszL6Enrwi5YW0E6iMpnUTD8sUpVC49Q4/Pkd2OSwbqNxYcZI48WSIS6IpbxyLwCHhg2rfNzICwJsZnCJ7IT2FRNWCfvXwyoUO6ZdwQxuOM2VjvXHvnWfeQj8tkDUITjCR7XpJQkNo0=
+	t=1736267363; cv=none; b=pTsKPcGPW3oKhJ8Q1uu2R6+GfhLQ0dlM5HtwJXvpgMADIVlRTpRyv5B9HOZ8aiY6aVIgBZcsHkUMvE6DPQrdsLpAyZ5NxcZ+rprd57KSIM16Zrt2iIw6PHy8z8KnXDQ07vPEp91APKu8KTTn03eAIZcJgFvtRQReUljjyLxZH48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736267253; c=relaxed/simple;
-	bh=dx1tgwqC+S4Vd0xAryqx5rnBZU0ZIgXSuvjftF9hy/I=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fPbWy0WLMdV/1fjyyYkIGBtHdB+e8wC2NbiV1fy0TLOqzOYU5Rk04civqnTV5GPL6Z04BqLOQq0C4hutR+6vEVTqJw5DqpBXwKbicGsbdNTsS7YMCTZDYC4BGMahpuUItqS4+VqxwiF16ZlVvKrJFYF1h/yJv8xKzEqJbE7p4ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz; spf=pass smtp.mailfrom=stwcx.xyz; dkim=pass (2048-bit key) header.d=stwcx.xyz header.i=@stwcx.xyz header.b=JgJYzyfb; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=v7fL1/cF; arc=none smtp.client-ip=103.168.172.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=stwcx.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=stwcx.xyz
-Received: from phl-compute-12.internal (phl-compute-12.phl.internal [10.202.2.52])
-	by mailfout.phl.internal (Postfix) with ESMTP id 8B6A5138021D;
-	Tue,  7 Jan 2025 11:27:28 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-12.internal (MEProxy); Tue, 07 Jan 2025 11:27:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
-	:cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to; s=fm1; t=1736267248; x=1736353648; bh=RIzROz9khoj2BhgYd0nIS
-	vi0RDBvOsblgFIn28Lq6mo=; b=JgJYzyfb6uWDMn3aPzlcl/3MJiH2QRXXcmkSK
-	I0kdbVlIvZ7X79l4EIKV9TQSUQ3D/hgLZrGsE2BBPn1VHqf7Jc6d1HcExifAI1PO
-	OE9q8rYyxLGuN73nUDDivs5+XYpFz6l4KIBJwT01fF4lDlX1ijgRZ4UGOYGYvC33
-	bGnDwM7yKi+5WCxfsVWZaR2W2/4HkTgcJRIadJYespfqKUTXbAtY2PhnIkQ+UUqy
-	rSj0+mF7g4xXp7A2XWd5CqBXctNlxt9qKvCx3tWAB+4dLovrXjMKzZ35yUHLp+xO
-	s+bOUJJU1WSQdDEmeNKwBtPMXi4tMvYCXeNLjtF6PHJ9q1i+g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-	1736267248; x=1736353648; bh=RIzROz9khoj2BhgYd0nISvi0RDBvOsblgFI
-	n28Lq6mo=; b=v7fL1/cFRe3LyWeEDJqbN+BHz84S4WxdXb/p2y2oyHbnQj7pIeb
-	RUg9q8dSrlCzbFr99KizNdUXCWV2/k9UgcWNPOtNvdVqeD6ErQsvzjxymNQ6w5ou
-	Z2vXTZwRhYdIBEaW1YLoH4wvMtsou8v7UhyJk8ksg9Q5IrDQgkYEk1ZFO5Mmjqpz
-	YYp/gY2Dy8C4M3TyjoBH4at9tQP7yNvfbEqTDl0/YzfvWZZKIvC6sBSRSg2SIPpf
-	OBmMf73L/QvH8IAMeN+d17mdMWlUVE63SMF1uQEvtgDcHM8BFMx9NuTn+W5GoGUW
-	zxa/VCMEmFThJ2F+QAVk5wZItGXWnywtiTQ==
-X-ME-Sender: <xms:8FV9Z1o58OmcY7bOpfDguii-4Dyq9EwnbKb2Rlia05Gm21v-ixVeqQ>
-    <xme:8FV9Z3pjvaGGvKkTq73WqoYzNFeC3e4iojEfGBlDjf2Lt14Wr0Q7InFJrJR-BJ2hJ
-    h1TSHm01SQFljv3v80>
-X-ME-Received: <xmr:8FV9ZyNP23xLO3nAt_k5WbX6SXsU2lnNr4fel_B8nM5WdGDi7mjgAMR7mwM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudegvddgkeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnegfrhhlucfvnfffucdljedtmdenucfjughrpefhvfevufffkffo
-    ggfgsedtkeertdertddtnecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoe
-    hprghtrhhitghksehsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpeevtdevgfdt
-    hfefveejudelheeghefhhfdtteetheehudeiueefhfetkeejleefteenucevlhhushhtvg
-    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehprghtrhhitghksehsthif
-    tgigrdighiiipdhnsggprhgtphhtthhopedutddpmhhouggvpehsmhhtphhouhhtpdhrtg
-    hpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdought
-    sehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrd
-    horhhgpdhrtghpthhtohepjhhovghlsehjmhhsrdhiugdrrghupdhrtghpthhtoheprghn
-    ughrvgifsegtohguvggtohhnshhtrhhutghtrdgtohhmrdgruhdprhgtphhtthhopehprg
-    htrhhitghksehsthiftgigrdighiiipdhrtghpthhtohepuggvvhhitggvthhrvggvsehv
-    ghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrh
-    hnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtoheplhhinhhu
-    gidqrghsphgvvggusehlihhsthhsrdhoiihlrggsshdrohhrgh
-X-ME-Proxy: <xmx:8FV9Zw6QocUaHzH3d5RerqE4_65ciJ2PP1FhCYjR4buSwlZCzyAkrA>
-    <xmx:8FV9Z06uYnqS91cIQ4aayYyOJP4doFTlVJpORD90oeKneZUjvlY8Yg>
-    <xmx:8FV9Z4jnbJkStym_1S2pHwtjzWRHvnu6bkb9dx1K0bC8vklsDMaF3A>
-    <xmx:8FV9Z25WYP8x5t4Io_naP6_mjO72FfUC1q5B4XAo1OBZS6DlO07Klw>
-    <xmx:8FV9ZxxwKaQde-S-bbq_i_gl61gnJfILwioB6CCwFQKbwmmaL8X9x4NQ>
-Feedback-ID: i68a1478a:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 7 Jan 2025 11:27:27 -0500 (EST)
-From: Patrick Williams <patrick@stwcx.xyz>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Patrick Williams <patrick@stwcx.xyz>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 REBASE] ARM: dts: aspeed: yosemite4: adjust secondary flash name
-Date: Tue,  7 Jan 2025 11:27:25 -0500
-Message-ID: <20250107162726.232402-1-patrick@stwcx.xyz>
-X-Mailer: git-send-email 2.44.2
+	s=arc-20240116; t=1736267363; c=relaxed/simple;
+	bh=KCtwF6vbca25t2bwwBZ4ELVCZXYEEAPsnYr6vKLfOqU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HJZ6G00ygFryvLhDgIm7m9Yia+aqu8uIgVCBrWbpj3lb+iH+nQCqDgeBcWVrAxpftmdWbiKYQpGwCD41+zwO80wbmWJOMZObNh5Qrge4xw/T/PmwjQr3RJHJS6Ov2Nute/VIs1DZHOlaGI91QW91Kt/Wx7vVsopaQ+5CabsvEcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=lB9b6nPB; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e53c9035003so19756028276.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 08:29:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1736267357; x=1736872157; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fc9TAWTYLPXygf26AxVFot53JgJe8sMA4p9Ceubb2BA=;
+        b=lB9b6nPBFjqKByMswiiGhp7wUKQXtz+Dj+rmkzK+cyugl0FAoFpQruxEwURtrPKfit
+         5jEIZ4O4zHUr13ZbfKBdzaq4e9gprjjTdFYJMq60bJTt0JkiITxo7NbuIgr/s5qo7MOX
+         F5MbnvpiaKKJ2naFpwoa5FsRiWV7GOvzALGSGo16dTnE5euPr5L98rhrTz0/5P7MOoMg
+         FS56p5Q0EkonPgMeeG4vzJj2a9xQnYw2BSjlXTMSy1xJ4GR38vFBa97icBJNwGdAumCF
+         IEXpQKCRebLfAgMPfpfp+mYpzjmcAHHxkyVjTPtOaPU6xLeE8hCOuhZ3d/AEB7LK/bUZ
+         GZhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736267357; x=1736872157;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fc9TAWTYLPXygf26AxVFot53JgJe8sMA4p9Ceubb2BA=;
+        b=qeE/c4+y9hjuTNS3NP3iq7lJcsthvb2V771P3DP3UceGT89cxSeBFNPHK4r/kd/fF5
+         T1ULIeENfx5NsT7oNtst3g+bGgAx32b9IZ/BQqVqd0e0J8pbGKpB+P0mlx6Nkl+c7ypX
+         pg0k+jyxqlND17C0aqBQ5gRufJk5oZuPRWG6b1GAKjwAWgnQd9tc+Pe31mSwUMC6kNhW
+         Xs02jWAwJu7zZRZf0EqS9eXdz8GEtUNcHpD4uBqsBQ6jAq3C3fOAx1HsETU7nZ0NKJyC
+         rg4UzmheNIH/xdndqWK+KQwsTMcaB+Mvh6PH3kMW+3FiryVXWILZwVygwpeouMRgYZe4
+         im8A==
+X-Forwarded-Encrypted: i=1; AJvYcCUzYVjhaZi8YTYjURfqPsWKuoehGJwz5MG1kz4LFDTJDHZqBbepJrKt9/Ftt6LYydHXqIPLEzeGFnyr@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywpgra+nHB0yW77oLomkEz7FKuJ8Kzh5mG2xP+mXHvPrWZQkGfc
+	vVj3OdrijdhNLmxpNgJxM8qkEntnKQdt+lQLmsgBoXdSZCSBBqQZezcLU7dzRrsV9drURj8jv7E
+	2LzlykJ6xmFmSoaXNAhEeEOy3zHXBJfcUjaCOAQ==
+X-Gm-Gg: ASbGnctQW8Nlmyyx4KTq6DljbwbyBEpLcweKzKhG1tDF4FyqdG5iPdkKj2yfCVBFW12
+	tiai91829CsIIqJjBeULidv1T2XIbpIhpSLjK7uOAn7MqIqQ3Egi9nd0nngLUT93hqlZrLg==
+X-Google-Smtp-Source: AGHT+IHE9JCAToCSl3COyvQMx5Y1P1UpkdQ9O+c29S+dQDMjILkfPa180zWfWuIGALyqsVOAyrBZX1J+I8N/WVKwvWM=
+X-Received: by 2002:a05:690c:6711:b0:6e3:15ad:a560 with SMTP id
+ 00721157ae682-6f3f8110608mr487206047b3.12.1736267354719; Tue, 07 Jan 2025
+ 08:29:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241220-media-rpi-hevc-dec-v1-0-0ebcc04ed42e@raspberrypi.com>
+ <20241220-media-rpi-hevc-dec-v1-3-0ebcc04ed42e@raspberrypi.com>
+ <d2f047cd-5c50-454f-95be-601edb79466d@collabora.com> <CAPY8ntBNse4Dq9E49QO3ipDbb+uMipe+MuLxW_Jpszu9gQgpww@mail.gmail.com>
+ <cfa4e4ebd9015a291e513fc22ec70821976e56ce.camel@ndufresne.ca>
+In-Reply-To: <cfa4e4ebd9015a291e513fc22ec70821976e56ce.camel@ndufresne.ca>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Tue, 7 Jan 2025 16:28:54 +0000
+Message-ID: <CAPY8ntAxkdyngsCFfYNGNv6ObJU1PCMPvr_61R14a2H+dbZm2Q@mail.gmail.com>
+Subject: Re: [PATCH 3/7] media: ioctl: Add pixel formats NV12MT_COL128 and NV12MT_10_COL128
+To: Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc: Robert Mader <robert.mader@collabora.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, John Cox <john.cox@raspberrypi.com>, 
+	Dom Cobley <dom@raspberrypi.com>, review list <kernel-list@raspberrypi.com>, 
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, John Cox <jc@kynesim.co.uk>, 
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Meta (Facebook) has a preference for all of our secondary flash
-chips to be labelled "alt-bmc" for consistency of userspace tools
-deal with updates.  Bletchley, Harma, Minerva, and Catalina all
-follow this convention but for some reason Yosemite4 is different.
+On Mon, 6 Jan 2025 at 20:52, Nicolas Dufresne <nicolas@ndufresne.ca> wrote:
+>
+> Le jeudi 02 janvier 2025 =C3=A0 12:52 +0000, Dave Stevenson a =C3=A9crit =
+:
+> > Hi Robert
+> >
+> > Resending this reply as replying from my phone before the Christmas
+> > break sent it as HTML :-(
+> >
+> > On Sat, 21 Dec 2024 at 17:38, Robert Mader <robert.mader@collabora.com>=
+ wrote:
+> > >
+> > > Hi, thanks for the patch.
+> > >
+> > > On 20.12.24 17:21, Dave Stevenson wrote:
+> > >
+> > > Add V4L2_PIXFMT_NV12MT_COL128 and V4L2_PIXFMT_NV12MT_10_COL128
+> > > to describe the Raspberry Pi HEVC decoder NV12 multiplanar formats.
+> > >
+> > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > ---
+> > >  drivers/media/v4l2-core/v4l2-ioctl.c | 2 ++
+> > >  include/uapi/linux/videodev2.h       | 5 +++++
+> > >  2 files changed, 7 insertions(+)
+> > >
+> > > diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l=
+2-core/v4l2-ioctl.c
+> > > index 0304daa8471d..e510e375a871 100644
+> > > --- a/drivers/media/v4l2-core/v4l2-ioctl.c
+> > > +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+> > > @@ -1377,7 +1377,9 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdes=
+c *fmt)
+> > >   case V4L2_PIX_FMT_NV16M: descr =3D "Y/UV 4:2:2 (N-C)"; break;
+> > >   case V4L2_PIX_FMT_NV61M: descr =3D "Y/VU 4:2:2 (N-C)"; break;
+> > >   case V4L2_PIX_FMT_NV12MT: descr =3D "Y/UV 4:2:0 (64x32 MB, N-C)"; b=
+reak;
+> > > + case V4L2_PIX_FMT_NV12MT_COL128: descr =3D "Y/CbCr 4:2:0 (128b cols=
+)"; break;
+> > >   case V4L2_PIX_FMT_NV12MT_16X16: descr =3D "Y/UV 4:2:0 (16x16 MB, N-=
+C)"; break;
+> > > + case V4L2_PIX_FMT_NV12MT_10_COL128: descr =3D "10-bit Y/CbCr 4:2:0 =
+(128b cols)"; break;
+> > >   case V4L2_PIX_FMT_P012M: descr =3D "12-bit Y/UV 4:2:0 (N-C)"; break=
+;
+> > >   case V4L2_PIX_FMT_YUV420M: descr =3D "Planar YUV 4:2:0 (N-C)"; brea=
+k;
+> > >   case V4L2_PIX_FMT_YVU420M: descr =3D "Planar YVU 4:2:0 (N-C)"; brea=
+k;
+> > > diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/vide=
+odev2.h
+> > > index e7c4dce39007..f8f97aa6a616 100644
+> > > --- a/include/uapi/linux/videodev2.h
+> > > +++ b/include/uapi/linux/videodev2.h
+> > > @@ -687,6 +687,11 @@ struct v4l2_pix_format {
+> > >  #define V4L2_PIX_FMT_NV12MT_16X16 v4l2_fourcc('V', 'M', '1', '2') /*=
+ 12  Y/CbCr 4:2:0 16x16 tiles */
+> > >  #define V4L2_PIX_FMT_NV12M_8L128      v4l2_fourcc('N', 'A', '1', '2'=
+) /* Y/CbCr 4:2:0 8x128 tiles */
+> > >  #define V4L2_PIX_FMT_NV12M_10BE_8L128 v4l2_fourcc_be('N', 'T', '1', =
+'2') /* Y/CbCr 4:2:0 10-bit 8x128 tiles */
+> > > +#define V4L2_PIX_FMT_NV12MT_COL128 v4l2_fourcc('N', 'c', '1', '2') /=
+* 12  Y/CbCr 4:2:0 128 pixel wide column */
+> > > +#define V4L2_PIX_FMT_NV12MT_10_COL128 v4l2_fourcc('N', 'c', '3', '0'=
+)
+> > >
+> > > Should these be upper-case Cs instead? So they compatible with the pr=
+eviously used downstream values?
+> >
+> > No, this is deliberate.
+> >
+> > Downstream was using a single planar format, with extra complexity for
+> > determining the chroma offset per column, and weird handling required
+> > on bytesperline.
+> > Having had discussions, switching to a multiplanar format (hence MT in
+> > the name) removes those complexities and means we don't need to do
+> > anything weird in the v4l2 format definitions.
+> >
+> > Reusing NC12 and NC30 fourccs will give us grief over backwards
+> > compatibility, hence lower case for the new version.
+> >
+> > I have a patch on [1] that adds back in NC12 and NC30 for downstream
+> > just so we don't break existing users, but see no point in upstreaming
+> > that.
+>
+> Yes, I think its fair to avoid incompatibility there. Are there matching =
+Mesa
+> patches coming, since without that we are back to square one, where the f=
+ormat
+> remains unusable. NC12 have a matching (mainline) DRM_FORMAT_NV12
+> DRM_FORMAT_MOD_BROADCOM_SAND128 pair. I believe a new modifier is needed =
+and
+> will serve both Nc12/30.
 
-Adjust the label in the dts to match the other platforms.
+The current DRM_FORMAT_MOD_BROADCOM_SAND128 taking the column height
+as the parameter is apparently contrary to how DRM modifiers are meant
+to be used. You're not allowed to have a genuine runtime parameter in
+there, and all potential values for parameters have to be listed out
+in the in_formats blob.
 
-Signed-off-by: Patrick Williams <patrick@stwcx.xyz>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I have a patch on [1] to add DRM_FORMAT_MOD_BROADCOM_SAND128(0) as a
+modifier which then takes the height passed in to addFB2 to be the
+column height. With luma and chroma now in independent buffers via the
+multi-planar API, that solves the problem, and we don't need a new
+modifier. I will submit that to dri-devel in the next week or so.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index ab4904cf2c0e..29f224bccd63 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -159,7 +159,7 @@ flash@0 {
- 	flash@1 {
- 		status = "okay";
- 		m25p,fast-read;
--		label = "bmc2";
-+		label = "alt-bmc";
- 		spi-tx-bus-width = <2>;
- 		spi-rx-bus-width = <2>;
- 		spi-max-frequency = <50000000>;
--- 
-2.44.2
+I've pinged Igalia to sort the equivalent Mesa patch for me.
 
+ Dave
+
+[1] https://github.com/6by9/linux/commits/rpi-6.12.y-hevc_dec patch
+"drm/vc4: Add algorithmic handling for SAND". I can't give a hash as I
+rebase that branch.
+
+
+> Nicolas
+>
+> >
+> > > P.S.: Coincidentally Gstreamer just landed support for NC12 in https:=
+//gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/7355 and ther=
+e is also a link to experimental NC30 patches. So happy to see this series =
+appear upstream :)
+> >
+> > Ooh, nice. I'll give it a test when I'm back in the office.
+> >
+> > Dave
+> >
+> > [1] https://github.com/6by9/linux/commits/rpi-6.12.y-hevc_dec/
+> >
+> > > + /* Y/CbCr 4:2:0 10bpc, 3x10 packed as 4 bytes in
+> > > + * a 128 bytes / 96 pixel wide column */
+> > > +
+> > >
+> > >  /* Bayer formats - see http://www.siliconimaging.com/RGB%20Bayer.htm=
+ */
+> > >  #define V4L2_PIX_FMT_SBGGR8  v4l2_fourcc('B', 'A', '8', '1') /*  8  =
+BGBG.. GRGR.. */
+> > >
+> >
+>
 
