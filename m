@@ -1,88 +1,91 @@
-Return-Path: <devicetree+bounces-136132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B9BA0401D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:59:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A2B9A0401E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 13:59:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED1C41887902
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:59:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B5C518882D1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 12:59:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644721F0E37;
-	Tue,  7 Jan 2025 12:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ABB21F0E5A;
+	Tue,  7 Jan 2025 12:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="boRt+cfz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vI7nhjo2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 627761F03D9
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C791F0E24
+	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 12:58:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736254729; cv=none; b=Iegk7bG/etxusgY6KL1u4F2YlonKCQYKKqu+6HnoM5IDdsrFzVG/BaXhMBME9E/i/dUezIql+TfAHHEIcxd0txHPmW0zI+s9GYod2ooo3oyBghL6xVN6AxxEicGEl09vMVd9L7ndaAzqw8JGSRzq7WAIiQVcRaQu/9W91ocgRdw=
+	t=1736254731; cv=none; b=IIvRLRVUzPFezAcOGIy7moDh6ffrr6GZzQVuw7uimBuBhdlyCrVlwG9F2N9L2PosCec+ZrntEYCJCg4Z2hdIJtNyay4LSK0nJsGq3+f1qOGpSqUdpMyB1lAJFkTNT3gWQxtZDnBeX37jrLXj/1AdSquke6RaNBKmDG6dnSecjU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736254729; c=relaxed/simple;
-	bh=6jPQMUA7BxWDkMjtJ3ogiHY1s0w4RUmiPNP+pjiZNMM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=P4ieh8xAddYs83UUV+I3b4CnNFy5T+y6rwky4kZFkdesmAm5xJDLXueMQndHOM4Ad9uggQrCNNmFl0V3bpa39D+4/S4Mbgvh5txLV5ZXvLTEcuqkIpBB9RHmYzq0Yj1wJQJjSwYKddmT5OWWTGBBUzcocLtSeWuj+TVwpiNibrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=boRt+cfz; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1736254731; c=relaxed/simple;
+	bh=wlaO3AJ9OYX0Qw7UHvKhMLm6zO8rWmjR4OwCAC6whc8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qRN5hu9kpTxpnRhfQCsEqq8or9a9xqLxPr3oDtZst/5Zo6lDWJbihv+xI7UXlGLDCULP3bx0W00atnowgFX2pssO38Tln4Ox7Wzn0DMZ5cn9OAfp0lEm2TrA05fuQ8Z/kE5JYSZDQ81JxOYLqpU4mkKZa/m129dL3MvUtddHB6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vI7nhjo2; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4363299010dso14966405e9.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:58:44 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-385e0d47720so983510f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 04:58:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736254722; x=1736859522; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1736254727; x=1736859527; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pYmy/ZFlRhEQrpy/3I/HaeTWSzbHsHs0t27m22eGelE=;
-        b=boRt+cfzo0ShvsHPMCS1kvGKcRs5Z4atuxcaXprQexBjCqxOBlRNyPlUFgmNVl2CnC
-         hE3Z4uw2mDCAO2BTSewPeE6R771RWWRchYZIOpmeaRg1Y/a4aDp/bpQ++oJMJsc3xgXP
-         i0X25kL4DOx8hd1TdiwE22Sa694dzqaY9NiTn4A6TvgHZ9sC+fOPQx1XIrgdzfH+4STa
-         4tZChuSCF9sNc+ul/ua+9kvd3nvb1lUwF5mmFD3+SODChnWWeIlD+ahEpw4ym6hvZd6R
-         tDZKcmn86OaztFjgdrhUSBIQX01YvZHP0ru45taY/JWpUfLsewYe9TdZ57Q5AlHxUaiG
-         yEWQ==
+        bh=5C/sFNAXY8klp3trjE/Y4l07v3FNmgHaHglxAlB5FO4=;
+        b=vI7nhjo2ultK/+6l4WypuSY6FwPnaOFAlLlCopH3I03YGE31gHbH/oJmjvLOqhkeuU
+         u/4Sj+DBsmoNBriBPEoE9xpHjle41qV9kjAvCh4WtVhLjWJi5Kg2vsUAs4hP38pEaw+Q
+         tkhP4kL1WpwV0WnpHMJFdmtM5ZjSLwCBxOGw/kWVdSy61qZnzbx5RNv7U1KMuwifif3n
+         WiAodCktCH+IGKNwdc2/vMVWRMA2nemPLTfaXphLykfSe5dSS3nGdS0Xcm22Qbi3NTn6
+         dsFutTDKXsdW2s/J/Fi6i7styn0e/zlKT5HNO2EMqbK/YiUk905CgTAC0vjNGVP7DOLv
+         4vFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736254722; x=1736859522;
+        d=1e100.net; s=20230601; t=1736254727; x=1736859527;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pYmy/ZFlRhEQrpy/3I/HaeTWSzbHsHs0t27m22eGelE=;
-        b=Cn+3nsjHBgHbeGmO1rENUdbaNcHxl3rnxu0imEDSl5cDbZw7ocVKslNTfQRU/QPEZC
-         zX4rlIzmewzW/RufEU1GKdnnpyB9OB1EbKwhejNkD7lKWHE3RZGW+mT+M0S/nzgYLth0
-         olIPfBfirNlCyDzVkBeo7nOVsBXgHCjKn6UQ4bsNNKlC7qH53VzTcamnOp3gfNWzVUO6
-         3HgyZVa+YvbY/nRT1qzwisDy0I2iAScY0md9R+X5WAVU6AwwD21bb+uhPYoUyfuBXLva
-         Pro+NDNHG/PbZZrJwERwdbQTf7Vw0rlaLl2l5CRw2h5ZmjDXkEw8E3Z5xQxAWIrJGGkg
-         NZQg==
-X-Forwarded-Encrypted: i=1; AJvYcCVTq79KaZD6elyoEGjbL+VuyvSynXaUhqrRWDI7jdOJkSWjawDQkDd+b9/2BHc9gXeGY/vQI+Q1ihsn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQDMDcpPqzrGAJQVSrvLdvM34Pn0Tr1xK7ah5AwNDO9O2igFTm
-	z27Sd0QdVVyds/8hV7lbbca8vTk0EUr/SERjTOb2achId2G9lVMmQUeOeOyHhmk=
-X-Gm-Gg: ASbGncvfBcUgUxEa++K84HQCd9PIyEq2imh98fGFjhwrXC8dtjVxhGBgsLjI3C2gaDJ
-	ag9K6XHp4gUOFDOL457llGvAVqUQ7mgghAzYlM0LY/Honr6JSyOX8XYnFKwnhhzhLzJ6BapfGpr
-	ipKExb8DnQV9Bl2OPaXfdnPE92sUhXF/wBts2jMOlJ9HILc89ZfVXx43OgwY9JDGYqgh6QJDYm5
-	PfFXa8MnKSE6umcE1i5RfeqIhVrHDg9W5o1w073C3Bn2Gsqr+vxHyflUnfDlIuuQq2Lj94=
-X-Google-Smtp-Source: AGHT+IHBl7XHmC1RA81mGhJt6SzB/Fa0mvqref325DHpS6shLKNQYqH/e3NarQU23diWE2Xv+3T06g==
-X-Received: by 2002:a05:6000:1a89:b0:385:fc70:829 with SMTP id ffacd0b85a97d-38a221f7726mr21400744f8f.6.1736254722572;
-        Tue, 07 Jan 2025 04:58:42 -0800 (PST)
+        bh=5C/sFNAXY8klp3trjE/Y4l07v3FNmgHaHglxAlB5FO4=;
+        b=rDDevDkxl2b+40yns9ESb5lem3rV2KnvXoZHjpv4x7ER0HG/3o3psG36/+0zne5rnX
+         065SL7b9CYuvVP4vj2D73HjiWsdjzBRtZq2JWoch/7KmbE4MdYMQE1TQ1OdoWP47TY5Z
+         DK6qImQ4RPqYJ18VHDkDelMyMsSbZ7BPTsWETcw3xRG3jxEJwukNNZ1g0JfkOqmoOKkQ
+         En8agD2ZGPgUrLxX2/7Hdtw/borPmvxtqxm/87/qt/vnCebjWzhrQRLfC7dEnERng9He
+         /HcZX9tbSfN1+9Ww5PFDNV6lkp/G/W9wExM2JFy3me+XwqT2MXz/dQscQb1pJszl6Ypa
+         tISQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUD7YF6cuHRFr+c+lFAfjVf5pbamZHccbJ3/Cm+EW+SKVxcVsdr+46faLhyitwZ5VwKxLGX9/TL4MtZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZ38lmUBDeghc1s4/Z0HF3WNQgZWoAZGR2xA+ZayR+mcj5Kk93
+	Hc37Tqr+hnD12O7jvIHVLlN5rM/xN5oPjwdGuSgNy7RyGijV9F0Ukry/lF6suo8=
+X-Gm-Gg: ASbGnctDS8Z2HONXoWNKQLHuXQ1E1RjZhrviS3lMUmLhYwbSRRM7Vw/vG1Fj4GtbDkK
+	2tRtZ1DJB/Y40cpL3rr66qWr6DgnUkKT/c4DhIzx3TJ+j+WYcpdikbGXHNssupFUJXYFr5aFIjz
+	Ij9gigIubZutq4ABzPCCprBWzVZMd+N4znf1W2t+Sc80ZetKFnE10HEg055JOSXHmMsgHraGeHx
+	3biito0A5sI0PxYUEQ7I3c/UwDqB7g/VYaTG5wSQpfusIgCWPendWa9G52+XZDDMV2K/cQ=
+X-Google-Smtp-Source: AGHT+IESBLWYlSIfi7wxN2DEKQk+daQDclS6+lJaW/+8/BxClMnBziT40HZf7Tg1VR2FDiFfnUZ+3g==
+X-Received: by 2002:a5d:5f8f:0:b0:385:dd10:213f with SMTP id ffacd0b85a97d-38a223f5cb1mr22351728f8f.9.1736254726977;
+        Tue, 07 Jan 2025 04:58:46 -0800 (PST)
 Received: from krzk-bin.. ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c828e3fsm50965003f8f.5.2025.01.07.04.58.41
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b11aecsm629480935e9.23.2025.01.07.04.58.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2025 04:58:42 -0800 (PST)
+        Tue, 07 Jan 2025 04:58:46 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	linux-phy@lists.infradead.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Marek Vasut <marex@denx.de>,
+	linux-arm-msm@vger.kernel.org,
+	linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: phy: Correct indentation and style in DTS example
-Date: Tue,  7 Jan 2025 13:58:39 +0100
-Message-ID: <20250107125840.225982-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: input: Correct indentation and style in DTS example
+Date: Tue,  7 Jan 2025 13:58:43 +0100
+Message-ID: <20250107125844.226466-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -101,139 +104,152 @@ new patches built on existing code.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/phy/calxeda-combophy.yaml        | 10 +-
- .../bindings/phy/ti,phy-j721e-wiz.yaml        | 98 +++++++++----------
- 2 files changed, 54 insertions(+), 54 deletions(-)
+ .../bindings/input/qcom,pm8921-keypad.yaml    | 46 +++++++++----------
+ .../bindings/input/qcom,pm8921-pwrkey.yaml    | 36 +++++++--------
+ .../input/touchscreen/ti,ads7843.yaml         | 30 ++++++------
+ 3 files changed, 56 insertions(+), 56 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/calxeda-combophy.yaml b/Documentation/devicetree/bindings/phy/calxeda-combophy.yaml
-index d05a7c793035..7d75678f2ec1 100644
---- a/Documentation/devicetree/bindings/phy/calxeda-combophy.yaml
-+++ b/Documentation/devicetree/bindings/phy/calxeda-combophy.yaml
-@@ -43,8 +43,8 @@ additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml b/Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
+index 88764adcd696..e03611eef93d 100644
+--- a/Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
++++ b/Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
+@@ -62,28 +62,28 @@ unevaluatedProperties: false
+ 
  examples:
    - |
-     combophy5: combo-phy@fff5d000 {
--                   compatible = "calxeda,hb-combophy";
--                   #phy-cells = <1>;
--                   reg = <0xfff5d000 0x1000>;
--                   phydev = <31>;
--               };
-+        compatible = "calxeda,hb-combophy";
-+        #phy-cells = <1>;
-+        reg = <0xfff5d000 0x1000>;
-+        phydev = <31>;
-+    };
-diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-index 3f16ff14484d..ce3071fc3553 100644
---- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-+++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-@@ -201,59 +201,59 @@ examples:
-     #include <dt-bindings/soc/ti,sci_pm_domain.h>
- 
-     wiz@5000000 {
--           compatible = "ti,j721e-wiz-16g";
--           #address-cells = <1>;
--           #size-cells = <1>;
--           power-domains = <&k3_pds 292 TI_SCI_PD_EXCLUSIVE>;
--           clocks = <&k3_clks 292 5>, <&k3_clks 292 11>, <&dummy_cmn_refclk>;
--           clock-names = "fck", "core_ref_clk", "ext_ref_clk";
--           assigned-clocks = <&k3_clks 292 11>, <&k3_clks 292 0>;
--           assigned-clock-parents = <&k3_clks 292 15>, <&k3_clks 292 4>;
--           num-lanes = <2>;
--           #reset-cells = <1>;
--           ranges = <0x5000000 0x5000000 0x10000>;
-+        compatible = "ti,j721e-wiz-16g";
+-   #include <dt-bindings/input/input.h>
+-   #include <dt-bindings/interrupt-controller/irq.h>
+-   pmic {
+-       #address-cells = <1>;
+-       #size-cells = <0>;
++    #include <dt-bindings/input/input.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    pmic {
 +        #address-cells = <1>;
-+        #size-cells = <1>;
-+        power-domains = <&k3_pds 292 TI_SCI_PD_EXCLUSIVE>;
-+        clocks = <&k3_clks 292 5>, <&k3_clks 292 11>, <&dummy_cmn_refclk>;
-+        clock-names = "fck", "core_ref_clk", "ext_ref_clk";
-+        assigned-clocks = <&k3_clks 292 11>, <&k3_clks 292 0>;
-+        assigned-clock-parents = <&k3_clks 292 15>, <&k3_clks 292 4>;
-+        num-lanes = <2>;
-+        #reset-cells = <1>;
-+        ranges = <0x5000000 0x5000000 0x10000>;
++        #size-cells = <0>;
  
--           pll0-refclk {
--                  clocks = <&k3_clks 293 13>, <&dummy_cmn_refclk>;
--                  #clock-cells = <0>;
--                  assigned-clocks = <&wiz1_pll0_refclk>;
--                  assigned-clock-parents = <&k3_clks 293 13>;
--           };
-+        pll0-refclk {
-+            clocks = <&k3_clks 293 13>, <&dummy_cmn_refclk>;
-+            #clock-cells = <0>;
-+            assigned-clocks = <&wiz1_pll0_refclk>;
-+            assigned-clock-parents = <&k3_clks 293 13>;
+-       keypad@148 {
+-           compatible = "qcom,pm8921-keypad";
+-           reg = <0x148>;
+-           interrupt-parent = <&pmicintc>;
+-           interrupts = <74 IRQ_TYPE_EDGE_RISING>, <75 IRQ_TYPE_EDGE_RISING>;
+-           linux,keymap = <
+-               MATRIX_KEY(0, 0, KEY_VOLUMEUP)
+-               MATRIX_KEY(0, 1, KEY_VOLUMEDOWN)
+-               MATRIX_KEY(0, 2, KEY_CAMERA_FOCUS)
+-               MATRIX_KEY(0, 3, KEY_CAMERA)
+-           >;
+-           keypad,num-rows = <1>;
+-           keypad,num-columns = <5>;
+-           debounce = <15>;
+-           scan-delay = <32>;
+-           row-hold = <91500>;
+-       };
+-   };
++        keypad@148 {
++            compatible = "qcom,pm8921-keypad";
++            reg = <0x148>;
++            interrupt-parent = <&pmicintc>;
++            interrupts = <74 IRQ_TYPE_EDGE_RISING>, <75 IRQ_TYPE_EDGE_RISING>;
++            linux,keymap = <
++                MATRIX_KEY(0, 0, KEY_VOLUMEUP)
++                MATRIX_KEY(0, 1, KEY_VOLUMEDOWN)
++                MATRIX_KEY(0, 2, KEY_CAMERA_FOCUS)
++                MATRIX_KEY(0, 3, KEY_CAMERA)
++            >;
++            keypad,num-rows = <1>;
++            keypad,num-columns = <5>;
++            debounce = <15>;
++            scan-delay = <32>;
++            row-hold = <91500>;
 +        };
++    };
+ ...
+diff --git a/Documentation/devicetree/bindings/input/qcom,pm8921-pwrkey.yaml b/Documentation/devicetree/bindings/input/qcom,pm8921-pwrkey.yaml
+index 12c74c083258..64590894857a 100644
+--- a/Documentation/devicetree/bindings/input/qcom,pm8921-pwrkey.yaml
++++ b/Documentation/devicetree/bindings/input/qcom,pm8921-pwrkey.yaml
+@@ -52,24 +52,24 @@ unevaluatedProperties: false
  
--           pll1-refclk {
--                  clocks = <&k3_clks 293 0>, <&dummy_cmn_refclk1>;
--                  #clock-cells = <0>;
--                  assigned-clocks = <&wiz1_pll1_refclk>;
--                  assigned-clock-parents = <&k3_clks 293 0>;
--           };
-+        pll1-refclk {
-+            clocks = <&k3_clks 293 0>, <&dummy_cmn_refclk1>;
-+            #clock-cells = <0>;
-+            assigned-clocks = <&wiz1_pll1_refclk>;
-+            assigned-clock-parents = <&k3_clks 293 0>;
-+        };
+ examples:
+   - |
+-   #include <dt-bindings/interrupt-controller/irq.h>
+-   ssbi {
+-     #address-cells = <1>;
+-     #size-cells = <0>;
++    #include <dt-bindings/interrupt-controller/irq.h>
++    ssbi {
++        #address-cells = <1>;
++        #size-cells = <0>;
  
--           cmn-refclk-dig-div {
--                  clocks = <&wiz1_refclk_dig>;
--                  #clock-cells = <0>;
--           };
-+        cmn-refclk-dig-div {
-+            clocks = <&wiz1_refclk_dig>;
-+            #clock-cells = <0>;
-+        };
- 
--           cmn-refclk1-dig-div {
--                  clocks = <&wiz1_pll1_refclk>;
--                  #clock-cells = <0>;
--           };
-+        cmn-refclk1-dig-div {
-+            clocks = <&wiz1_pll1_refclk>;
-+            #clock-cells = <0>;
-+        };
- 
--           refclk-dig {
--                  clocks = <&k3_clks 292 11>, <&k3_clks 292 0>,
--                          <&dummy_cmn_refclk>, <&dummy_cmn_refclk1>;
--                  #clock-cells = <0>;
--                  assigned-clocks = <&wiz0_refclk_dig>;
--                  assigned-clock-parents = <&k3_clks 292 11>;
--           };
-+        refclk-dig {
-+            clocks = <&k3_clks 292 11>, <&k3_clks 292 0>,
-+                     <&dummy_cmn_refclk>, <&dummy_cmn_refclk1>;
-+            #clock-cells = <0>;
-+            assigned-clocks = <&wiz0_refclk_dig>;
-+            assigned-clock-parents = <&k3_clks 292 11>;
-+        };
- 
--           serdes@5000000 {
--                  compatible = "ti,sierra-phy-t0";
--                  reg-names = "serdes";
--                  reg = <0x5000000 0x10000>;
--                  #address-cells = <1>;
--                  #size-cells = <0>;
--                  resets = <&serdes_wiz0 0>;
--                  reset-names = "sierra_reset";
--                  clocks = <&wiz0_cmn_refclk_dig_div>, <&wiz0_cmn_refclk1_dig_div>;
--                  clock-names = "cmn_refclk_dig_div", "cmn_refclk1_dig_div";
--           };
-+        serdes@5000000 {
-+            compatible = "ti,sierra-phy-t0";
-+            reg-names = "serdes";
-+            reg = <0x5000000 0x10000>;
+-     pmic@0 {
+-       reg = <0x0>;
+-       #address-cells = <1>;
+-       #size-cells = <0>;
++        pmic@0 {
++            reg = <0x0>;
 +            #address-cells = <1>;
 +            #size-cells = <0>;
-+            resets = <&serdes_wiz0 0>;
-+            reset-names = "sierra_reset";
-+            clocks = <&wiz0_cmn_refclk_dig_div>, <&wiz0_cmn_refclk1_dig_div>;
-+            clock-names = "cmn_refclk_dig_div", "cmn_refclk1_dig_div";
+ 
+-       pwrkey@1c {
+-         compatible = "qcom,pm8921-pwrkey";
+-         reg = <0x1c>;
+-         interrupt-parent = <&pmicint>;
+-         interrupts = <50 IRQ_TYPE_EDGE_RISING>, <51 IRQ_TYPE_EDGE_RISING>;
+-         debounce = <15625>;
+-         pull-up;
+-       };
+-     };
+-   };
++            pwrkey@1c {
++                compatible = "qcom,pm8921-pwrkey";
++                reg = <0x1c>;
++                interrupt-parent = <&pmicint>;
++                interrupts = <50 IRQ_TYPE_EDGE_RISING>, <51 IRQ_TYPE_EDGE_RISING>;
++                debounce = <15625>;
++                pull-up;
++            };
++        };
++    };
+ ...
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
+index 604921733d2c..8f6335d7da1c 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
+@@ -164,20 +164,20 @@ examples:
+         #size-cells = <0>;
+ 
+         touchscreen@0 {
+-           compatible = "ti,tsc2046";
+-           reg = <0>;	/* CS0 */
+-           interrupt-parent = <&gpio1>;
+-           interrupts = <8 0>;	/* BOOT6 / GPIO 8 */
+-           pendown-gpio = <&gpio1 8 0>;
+-           spi-max-frequency = <1000000>;
+-           vcc-supply = <&reg_vcc3>;
+-           wakeup-source;
++            compatible = "ti,tsc2046";
++            reg = <0>;	/* CS0 */
++            interrupt-parent = <&gpio1>;
++            interrupts = <8 0>;	/* BOOT6 / GPIO 8 */
++            pendown-gpio = <&gpio1 8 0>;
++            spi-max-frequency = <1000000>;
++            vcc-supply = <&reg_vcc3>;
++            wakeup-source;
+ 
+-           ti,pressure-max = /bits/ 16 <255>;
+-           ti,x-max = /bits/ 16 <8000>;
+-           ti,x-min = /bits/ 16 <0>;
+-           ti,x-plate-ohms = /bits/ 16 <40>;
+-           ti,y-max = /bits/ 16 <4800>;
+-           ti,y-min = /bits/ 16 <0>;
+-       };
++            ti,pressure-max = /bits/ 16 <255>;
++            ti,x-max = /bits/ 16 <8000>;
++            ti,x-min = /bits/ 16 <0>;
++            ti,x-plate-ohms = /bits/ 16 <40>;
++            ti,y-max = /bits/ 16 <4800>;
++            ti,y-min = /bits/ 16 <0>;
 +        };
      };
 -- 
