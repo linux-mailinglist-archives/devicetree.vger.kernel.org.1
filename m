@@ -1,132 +1,114 @@
-Return-Path: <devicetree+bounces-135987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-135988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B5AA033BF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 01:05:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F55DA033C5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 01:08:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DEEB1883A1B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 00:05:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C74117A230A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 00:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E588259C;
-	Tue,  7 Jan 2025 00:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C175680;
+	Tue,  7 Jan 2025 00:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+zczdMK"
+	dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b="OU4Xrsrb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E561615A8;
-	Tue,  7 Jan 2025 00:04:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53BB53AC;
+	Tue,  7 Jan 2025 00:08:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736208287; cv=none; b=Q/nc78Ee9JEzkyN6zcPkVYA5+cOa8ng7aW832OgGuMVERydFnoLMwvWQeNL3XX7sIek9Umwr4elh0IFs22g31rmrVCDfc7QVUuFlnd0axTyFqzSopeHLq6/SXiws5o/rcJDTM2IFGbvXunwFITPz0zk3VbIb6X+krmHq1Po8VCY=
+	t=1736208503; cv=none; b=nQUTCj0uE5KMkTmEguJqQaOa0VW95zEDPmFCksHhcGvd3BCGg+syEEkwepvyq2XVVmVwUTQCgF9L7c4WBKAupGtyFHcm01L8jtTzEzX+wcMBVy4F+Gm3pqF8/KGQoE7nQm1zJcRR/DIbLqpvkZM4ffl7DUDy+iDpl1U5Yn6BkBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736208287; c=relaxed/simple;
-	bh=nneDGW0N0cum5hpmpOoBmp7zkSGHFjVOpASa6IpSOgY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mwspkbrY7IkUSPUkM1RBBPxjD+yiFWWcSYLB1kd/2pCemRPohwTim+t0TH5keTBYZDMrIcwo54ptwMShvHE1vV1h33hoQpfOGz2MSslJuefJRek15J+7wSdB6RJ8kLzK3SMAUtXoqFtJyIRSxfYmFVVJVgYDBV5LnbsVARiIvZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i+zczdMK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B15AC4CED2;
-	Tue,  7 Jan 2025 00:04:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736208286;
-	bh=nneDGW0N0cum5hpmpOoBmp7zkSGHFjVOpASa6IpSOgY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i+zczdMKciUCWmpHyQXHNVJgSFI08P3LbyrRkpR0PyI2Fl0+NS8WevJr+qN5Pd2vF
-	 EGUkeD/tdZKM2OzB0LHqZBko6mkgQPLCYY8yMCUlMQlfqs4yRBViCp/fwdC21PDU+3
-	 a5a73+O97ELO6VUyEGbrI7iLrUCf29zzD3wTSq+pW4N1B+8SCcVhDX2EvxMfXhOV6w
-	 Ff/18zMeeI1MVJUlqmlvSMS65cZek3es/CKR2Mz2eC5iqHvlVMkH7XMvqEWC0Cu+s3
-	 R5rAOKfZYWDjDpy67u7bzkGCfYeSXUXW6CcpKW+DgwCQ7PYJvW+2x+jxn3jTvyS+xK
-	 ZguOLQSDHBVaw==
-Date: Mon, 6 Jan 2025 18:04:43 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, 
-	quic_vpernami@quicinc.com, quic_mrana@quicinc.com, mmareddy@quicinc.com, 
-	Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: sc7280: Increase config size to
- 256MB for ECAM feature
-Message-ID: <kxgscw5jm34ynejy6kg3at6i4kmgbq6jxmcrigtq2lpo5ga2pm@yu5hvicac5g2>
-References: <20241224-enable_ecam-v2-0-43daef68a901@oss.qualcomm.com>
- <20241224-enable_ecam-v2-1-43daef68a901@oss.qualcomm.com>
+	s=arc-20240116; t=1736208503; c=relaxed/simple;
+	bh=6cA+bP88r+xrQNQLl83g62AXenRkt39/3hl2c0w7gYw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W2ExKlLOisqDF/AvY3igediPgj5BTajnvukuOUhr+Fhyer6oCZd7uPOL/CtjVnBpQ0js2OlYFDE4HI8ahN0atE9wh1Ui9P3G+f23jJFbFKinWlmp36HS98vb7JQHmDZaPjFau1J8MGzfuBGTBOUPdtU5bJURM3aYStOkTtZY34E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de; spf=pass smtp.mailfrom=timsurber.de; dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b=OU4Xrsrb; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timsurber.de
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4YRrwt4ZMmz9sdQ;
+	Tue,  7 Jan 2025 01:08:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
+	s=MBO0001; t=1736208494;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BumHPRnrYrdKW/Ic+24BWv5+zL59cBJOtuFj5cevjs4=;
+	b=OU4XrsrbWs9vcf2e19/jiPqNgKYH3UHzjaCzxv/dan3sRB6e/fJ4Y041Ba+qewt0BsmnRE
+	4qriNDlldbPOBQu7tB1ST4p2eBmO5AqC9VxGtbgnl4Unhf57oVaHBxzgk+F47VZ19LZM9i
+	67/hY94UOle+T88knGv1GmzUba7oU/On1d1Krt0y5edcsfHV6LSLqDn5P9JszuwaQQc1Aj
+	942h7YG9kFBgh+udiWw+ZUQecroM8nlBdm+yQiSPEObspMeqAmmOQXSQrjXIppwYQVMqae
+	6+3YkYgnXEt11CLDp7/aXkiKyPdI3K44td89qllGN15pM7QzTkwX7OwdQubL0g==
+Message-ID: <fbb5016e-678c-4e54-a6a8-0ccaa2bdf45c@timsurber.de>
+Date: Tue, 7 Jan 2025 01:08:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241224-enable_ecam-v2-1-43daef68a901@oss.qualcomm.com>
+Subject: Re: [RESEND PATCH v5 0/4] Add Synopsys DesignWare HDMI RX Controller
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Shreeya Patel <shreeya.patel@collabora.com>, heiko@sntech.de,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20241210193904.883225-1-shreeya.patel@collabora.com>
+ <acb91a34-c0f8-4f03-8945-755b4e42dcf3@timsurber.de>
+ <925d7571-48e4-437d-b55c-3f7bbad8af1d@collabora.com>
+Content-Language: en-US
+From: Tim Surber <me@timsurber.de>
+In-Reply-To: <925d7571-48e4-437d-b55c-3f7bbad8af1d@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 4YRrwt4ZMmz9sdQ
 
-On Tue, Dec 24, 2024 at 07:40:15PM +0530, Krishna Chaitanya Chundru wrote:
-> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Hi Dmitry,
+
+that was my fault, my build script did not copy over the new ATF properly.
+
+Now it works, I will update with test results with many different 
+resolutions/formats here soon.
+
+Best regards,
+Tim
+
+
+On 1/6/25 12:22, Dmitry Osipenko wrote:
+> Hi,
 > 
-> Increase the configuration size to 256MB as required by the ECAM feature.
-> And also move config space, DBI, ELBI, iATU to upper PCIe region and use
-> lower PCIe region entierly for BAR region.
-
-This problem description seems to assume that the reader is familiar
-with some recent discussion elsewhere. Please ensure that what we enter
-into the git history can be understood by uninitiated readers.
-
-Also please follow the flow described in
-https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-(i.e. first describe your problem, then describe the solution)
-
+> On 1/6/25 03:16, Tim Surber wrote:
+>> I applied your patch to rockchip/next on an FriendlyElec CM3588 device with arm-
+>> trusted-firmware 2.12. This is the same hardware/cable/sources I used previously
+>> Sadly I could not get it to work at all.
+>>
+>> After connection to a HDMI source I get the following error with all devices and
+>> resolutions I tested
+>> # dmesg
+>> snps_hdmirx fdee0000.hdmi_receiver: hdmirx_controller_init wait timer base lock
+>> failed
+>> snps_hdmirx fdee0000.hdmi_receiver: hdmirx_phy_register_write wait cr write done
+>> failed (repeating multiple times)
 > 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-
-S-o-b doesn't match patch author.
-
-Regards,
-Bjorn
-
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+> Sounds like interrupt may be not working for you. Interrupt won't work
+> using downstream version of AT-F, though I assume you're using vanilla
+> version of the AT-F. Could you please show output of `cat
+> /proc/interrupts | grep rk_hdmirx` after plugging the HDMI cable.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 55db1c83ef55..bece859aee31 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2201,10 +2201,10 @@ wifi: wifi@17a10040 {
->  		pcie1: pcie@1c08000 {
->  			compatible = "qcom,pcie-sc7280";
->  			reg = <0 0x01c08000 0 0x3000>,
-> -			      <0 0x40000000 0 0xf1d>,
-> -			      <0 0x40000f20 0 0xa8>,
-> -			      <0 0x40001000 0 0x1000>,
-> -			      <0 0x40100000 0 0x100000>;
-> +			      <4 0x00000000 0 0xf1d>,
-> +			      <4 0x00000f20 0 0xa8>,
-> +			      <4 0x10000000 0 0x1000>,
-> +			      <4 0x00000000 0 0x10000000>;
->  
->  			reg-names = "parf", "dbi", "elbi", "atu", "config";
->  			device_type = "pci";
-> @@ -2215,8 +2215,8 @@ pcie1: pcie@1c08000 {
->  			#address-cells = <3>;
->  			#size-cells = <2>;
->  
-> -			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
-> -				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
-> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x40000000 0x0 0x100000>,
-> +				 <0x02000000 0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000>;
->  
->  			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-> 
-> -- 
-> 2.34.1
-> 
+
 
