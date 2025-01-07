@@ -1,79 +1,63 @@
-Return-Path: <devicetree+bounces-136005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21904A036C1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 04:57:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA39AA036DB
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 05:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AFA016647F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 03:57:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF9911622E2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 04:12:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0E213635B;
-	Tue,  7 Jan 2025 03:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBE51547E9;
+	Tue,  7 Jan 2025 04:12:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TL2xj0ln"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="M6ZFGZli"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B04179BD;
-	Tue,  7 Jan 2025 03:55:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F1E1419A9;
+	Tue,  7 Jan 2025 04:12:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736222122; cv=none; b=aZsHQcgvlQOKlPT0fIqk968s7A7kL7E9fJFmWB7L0h3aYdg4hrlrqVl2e7OSKZ3bAFKSzt1/XOZ9/mMJNmx7OraqxGSS7G8sJUuXmWRtl0mZ3RfLRR28PHsyAOtBuBXOYw+7/fT7L0D/hMolrC8extVfkaAgMBKlru+h0CiSY9I=
+	t=1736223133; cv=none; b=HJAYnBppAfWrRkvhTrQLWbmlom/KMKOp8+ZYaoKmLw8eSaFwfdkhTV1Rv/S30uvfNQIq7mg3yI+jpb3q65Tq3lCCJlRC+nGEy24bRQFulfcIcTEPmmjYdaIVkDVU5JnyjuBcSe/kGYtsI14T3tmH3XgBC91ULdJRK97UZm82E5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736222122; c=relaxed/simple;
-	bh=MCyi/Uq5xfm6lADiXWeYpnAzki3jw/DvNmQ0riZ4B0Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BWWqyOyUoYVf5+dIrKXhSSrM8XreAXiq4d5uY1pGSytziZaANco/paDTXcan1PuR70kohSWnl5ZAuC2CMkrxn4ve5CrlWkYSgt+Kk1LGr30nK/KL5TxtHLHfmmUKi1Bg724Y1DnHIzTp8brAyz4kUpPFDWM3sYqnqeiec+i85QA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TL2xj0ln; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2f441791e40so17724836a91.3;
-        Mon, 06 Jan 2025 19:55:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736222120; x=1736826920; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JkSX5xIdc8zBLFm+jjJZtb1iB0BmRRseeOTnpcRWYIA=;
-        b=TL2xj0lnIsrlEDjmeQIyqDD5Q9yXJEHWWiefMRESuRm2izR/qN9wBXZVV4/ajRjf9O
-         ADFPaQNPYcqVAb747q0/eqkXlb6Ev/2EHwWEeE4DI4K/aky7WmEsqhOsQzquSWE5MK6L
-         eelGlbjNOowCRj19jQs3MyuxhwsEciNpp+ItdGtVLyp+LP0383UF1XAoygSPJcLPfK7y
-         sMwVXSLvpH/4SYl+Ejm98uhjD1kof/SGMZ960MNWgMHZ/cCdwWuqNNB3qImHtBCMplhF
-         jtr337N0jlGUS+wKQ44mX+OFgUp128I1M8R/rjvY6iBJUb/1h7W8W4/Q/1hmcVOAme+n
-         fdew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736222120; x=1736826920;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JkSX5xIdc8zBLFm+jjJZtb1iB0BmRRseeOTnpcRWYIA=;
-        b=e01aSuXCfjsCVHgzkJCRiqNkQ+I5d8y//mzJqSHHF3ViIzwCDcjyuuwzwxfx4LvUY8
-         KEbdvAyOh2inFBy7PH9tepCDwBxflJbSugJmoJSbAi4zJE84gJOMyssJyclIQK3rh5E6
-         SxgVKLLnn5ZGrU6K7fyoBhY+TftdrtXBl7ySHAEwlkaYVu5h6pt7z77fwsNoVnj2RmDL
-         GdEC5kZzyVM2ltDGOYG0ZjthTzpkuDU+llEsdydw5ZEitAzt9eGslghXyAy0opYRMjiK
-         p05sp2MtqUlTHb1EoDubNcBjFwgTeXAhC/pcJCGwJf3Sb+RQoG0ZMhMD7Ds3SjzdkkC3
-         jBew==
-X-Forwarded-Encrypted: i=1; AJvYcCVYLEInIEroxCtgpeGgX21BCXfv0f+5ESdtw5WCAp/nll8EnG5NhDBlfoT5BhRzXsgw/AfmpOtp@vger.kernel.org, AJvYcCWyFOCTn1ZCOH8ouwOk1LJfwpABzD/uNyXIYDDqn9EtQ1oO+n7UUMREnIrMpYKt5TlDe7gjebAig12vDX/+@vger.kernel.org, AJvYcCXaTkINZCudD5K6WooX5gd/WH5BBa2EOHP+X129GFDDeeC5Q5zBxzxqm82ao9bF0822qqI8uiULj0Vr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzq/QTfmAXwxIRDn6P0q7ymPz3mwk4IkpQ/3vyIhZBQTxxdiwCR
-	oPBun/suqFs/2nKeIoB03vRMMnBrMxA8BWX5TTVL6iG6p+EhT+zl
-X-Gm-Gg: ASbGncviJt9nRwOroYi+kO2ZwshMzZSBQaQon6nRqXVPI67EXVCsn/X7fUpXac4v/mL
-	OfWYE5Db8F2IQqEz7HT0KN41qRhZOEwmxyeUNJB3dXV9IA25iCQ7MzxYhruiweu5yn3B+BlWRZz
-	R/cS5JmNLE9N2uZVq33KJxoS2efJqmMTMWt6WPmJTXDopYimhsmleVEx5PG1c2NzsOeE0ahdt04
-	1mA0nALFqzQ4P4m0Lr45hPDteUQADT7DFsf+33f339XyqRBpuW8Bl5WnPL4VlmAEdP7chcVHt/4
-	PZJDvkLmJHaFBOY3hgc9f6m0vg2D/4iZ2A0=
-X-Google-Smtp-Source: AGHT+IE2K2gRs1V2fgpYN0CLM9zdF4nwVbYze0GXJZkFBE9yEldHu2WRl6ZMw9QvCXUDA6422eZIOQ==
-X-Received: by 2002:a17:90b:2545:b0:2ee:a76a:820 with SMTP id 98e67ed59e1d1-2f452e3eebamr85264355a91.18.1736222120018;
-        Mon, 06 Jan 2025 19:55:20 -0800 (PST)
-Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f48db83c37sm26295046a91.47.2025.01.06.19.55.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jan 2025 19:55:19 -0800 (PST)
-Message-ID: <14ad5eae-e10d-426d-ace1-f841b5249e9f@gmail.com>
-Date: Tue, 7 Jan 2025 11:55:12 +0800
+	s=arc-20240116; t=1736223133; c=relaxed/simple;
+	bh=WQb+Lg7oHUTCY7usnLhhZDRG4ybHokIAYO+8a0Ja+9A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SOZ43gt/XOmaQRup9Csm4pETnQlu8v0L07g7hBbohvx0v5bK/EeaVOIbIyem/3M6AHUOSAdkThu3d+9i5R1MMDvsyNk5tS8cux9jrQBcjiR/QMBwVAnk1m2VtZTXA2qb8HIeZYPE/h3hdVQJoXXdmacGReggJXZZcxvKej0Pex4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=M6ZFGZli; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 507402i2013939;
+	Tue, 7 Jan 2025 04:12:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TEd9I9VSSshyxPbm36jCCoa1Sdl8qgvAkFMjILNPRVQ=; b=M6ZFGZli1u6Ljat7
+	O8DAM8sl+/7iTJ1Ms2gff4TgVsW3XCYCjNtI1F2wQtd+iPPbQJ4kuWuM8orN+Jf+
+	73hgUZV+JLm0hENDnbJMaP+Bw3viSD/gDdoZydTphsxIRHmtyik+cRJXY6zKLmAh
+	r0wXF2XT81xo7VR/kXHVrttfXGi3C3Pvi54/bLEqUJucrf+e0zo3aQhOuSzr00qf
+	YoS9PlVW/n7QzlPgbTIT3kv/n1YxUjk6h48G4LiFtDbfzq5Z7/9FoZ9R1UzglDij
+	hw8cZ7Qls4qM82G3FiLa0FKPLZ7Kwy4QA8j52FwamZ4ZyUVxDJUxjKIOpXmqiQaP
+	fKDAow==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 440vutg0nc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Jan 2025 04:12:04 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5074C3G0030197
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 Jan 2025 04:12:03 GMT
+Received: from [10.206.111.70] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 6 Jan 2025
+ 20:11:59 -0800
+Message-ID: <26b3aee7-5729-447b-983a-cfa5951595ba@quicinc.com>
+Date: Tue, 7 Jan 2025 09:41:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,88 +65,145 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v6 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
- glue for Nuvoton MA35 family
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com
-Cc: alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
- schung@nuvoton.com, yclu4@nuvoton.com, peppe.cavallaro@st.com,
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20250103063241.2306312-1-a0987203069@gmail.com>
- <20250103063241.2306312-4-a0987203069@gmail.com>
- <2736ccd3-680d-4f5d-a31a-156dec056f22@wanadoo.fr>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: enable venus node
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: <cros-qcom-dts-watchers@chromium.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Vikash Garodia
+ (QUIC)" <quic_vgarodia@quicinc.com>
+References: <20241004-venus_sc7280-v1-1-4d7d8fd7e95b@quicinc.com>
+ <kezh3lmysij56g2tjwwuas5r26ro5i777yxxitsdcjeg7zp67v@oknrdbkzison>
+ <78e6ff6b-efe1-496c-a1fb-c9a0a4aba2d2@quicinc.com>
+ <CAA8EJpqqZL7xybcbJMsbTQB+ht5-A+ocNs+Sq30j=v1zM3JL9g@mail.gmail.com>
+ <fbba794a-ba04-4790-b5e9-b4df3cba35b2@quicinc.com>
+ <D5KAUZHYJHFS.1NXF5SVWYL03G@fairphone.com>
+ <39206687-6fb3-434f-b2ba-a028cf6f8ed3@quicinc.com>
+ <D5KW7A8BZG6K.2L7FEV6SWRZ2D@fairphone.com>
 Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <2736ccd3-680d-4f5d-a31a-156dec056f22@wanadoo.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Vedang Nagar <quic_vnagar@quicinc.com>
+In-Reply-To: <D5KW7A8BZG6K.2L7FEV6SWRZ2D@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Znx-Bi8r9-yHM2DrBI7uVvAB1FNqSazo
+X-Proofpoint-ORIG-GUID: Znx-Bi8r9-yHM2DrBI7uVvAB1FNqSazo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ adultscore=0 malwarescore=0 mlxlogscore=571 phishscore=0
+ lowpriorityscore=0 impostorscore=0 bulkscore=0 priorityscore=1501
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501070030
 
+Hi Luca,
 
-Christophe JAILLET 於 1/4/2025 12:38 AM 寫道:
-> Le 03/01/2025 à 07:32, Joey Lu a écrit :
->> Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac 
->> driver.
+On 11/13/2024 1:33 PM, Luca Weiss wrote:
+> Hi Vedang,
+> 
+> On Wed Nov 13, 2024 at 8:01 AM CET, Vedang Nagar wrote:
+>> Hi Luca,
+>> On 11/12/2024 8:49 PM, Luca Weiss wrote:
+>>> Hi Vedang,
+>>>
+>>> On Tue Nov 12, 2024 at 3:39 PM CET, Vedang Nagar wrote:
+>>>>
+>>>>
+>>>> On 11/12/2024 6:43 PM, Dmitry Baryshkov wrote:
+>>>>> On Tue, 12 Nov 2024 at 08:17, Vedang Nagar <quic_vnagar@quicinc.com> wrote:
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> On 10/7/2024 1:20 AM, Dmitry Baryshkov wrote:
+>>>>>>> On Fri, Oct 04, 2024 at 04:22:31PM GMT, Vedang Nagar wrote:
+>>>>>>>> Enable the venus node on Qualcomm sc7280. It was made disabled
+>>>>>>>> earlier to avoid bootup crash, which is fixed now with [1].
+>>>>>>>
+>>>>>>> NAK, there might be other reasons to keep venus disabled, like the lack
+>>>>>>> of the vendor-signed firmware for the particular device.
+>>>>>> Can you pls elaborate more on this? Any device with sc7280 SOC can use
+>>>>>> venus.mbn which is already present in linux-firmware git.
+>>>>>
+>>>>> Can it though if the device is fused to use vendor keys and to check
+>>>>> the trust chain?
+>>>> Yes, infact the existing ones are signed and works with trustzone authentication.
+>>>
+>>> No, the venus firmware from linux-firmware does not work on a device
+>>> with secure boot on, like the (QCM6490) Fairphone 5 smartphone.
+>> Are you saying even after applying this [1] you are seeing the same ?
 >>
->> Signed-off-by: Joey Lu <a0987203069@gmail.com>
->
-> ...
->
->> +    /* Nuvoton DWMAC configs */
->> +    plat_dat->has_gmac = 1;
->> +    plat_dat->tx_fifo_size = 2048;
->> +    plat_dat->rx_fifo_size = 4096;
->> +    plat_dat->multicast_filter_bins = 0;
->> +    plat_dat->unicast_filter_entries = 8;
->> +    plat_dat->flags &= ~STMMAC_FLAG_USE_PHY_WOL;
->> +
->> +    priv_data = nvt_gmac_setup(pdev, plat_dat);
->> +    if (IS_ERR(priv_data))
->> +        return PTR_ERR(priv_data);
->> +
->> +    ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
->
-> stmmac_pltfr_remove() is called by the .remove function.
-> Is it correct to call stmmac_dvr_probe() here, and not 
-> stmmac_pltfr_probe()?
+>> [1]
+>> https://patchwork.kernel.org/project/linux-media/patch/20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
+> 
+> That patch has been in mainline since v6.9 and my tree is newer, so yes.
+> 
+> See e.g. Qualcomm doc KBA-161204232438 for some details.
+> 
+> Regards
+> Luca
+> 
+>>>
+>>> $ rm /lib/firmware/qcom/qcm6490/fairphone5/venus.mbn
+>>> $ cp /lib/firmware/qcom/vpu-2.0/venus.mbn.zst /lib/firmware/qcom/qcm6490/fairphone5/venus.mbn.zst
+>>>
+>>> leads to
+>>>
+>>> [   10.848191] qcom-venus aa00000.video-codec: Adding to iommu group 13
+>>> [   10.863062] qcom-venus aa00000.video-codec: non legacy binding
+>>> [   10.909555] qcom-venus aa00000.video-codec: error -22 initializing firmware qcom/qcm6490/fairphone5/venus.mbn
+>>> [   10.910099] qcom-venus aa00000.video-codec: fail to load video firmware
+>>> [   10.910849] qcom-venus aa00000.video-codec: probe with driver qcom-venus failed with error -22
+>>>
+We have seen similar issue with older firmware present in
+linux-firmware git due to a bug in singing of the firmware image.
 
-Thank you for the feedback. You're correct. I will update the code to 
-call stmmac_pltfr_probe().
+This issue seems to be resolved with below change:
+aeede7afb7a186b62f9e1f959c33fd5f2dea0f7a: qcom: update venus firmware file for SC7280
 
-BR,
+Can you pls give a try with latest firmware if you still see the same issue?
+We tried internally and do not see any such failure now.
 
-Joey
+Regards,
+Vedang Nagar
 
->
->> +    if (ret)
->> +        return ret;
->> +
->> +    /* The PMT flag is determined by the RWK property.
->> +     * However, our hardware is configured to support only MGK.
->> +     * This is an override on PMT to enable WoL capability.
->> +     */
->> +    plat_dat->pmt = 1;
->> +    device_set_wakeup_capable(&pdev->dev, 1);
->> +
->> +    return 0;
->> +}
->
-> ...
->
->> +static struct platform_driver nvt_dwmac_driver = {
->> +    .probe  = nvt_gmac_probe,
->> +    .remove = stmmac_pltfr_remove,
->> +    .driver = {
->> +        .name           = "nuvoton-dwmac",
->> +        .pm        = &stmmac_pltfr_pm_ops,
->> +        .of_match_table = nvt_dwmac_match,
->> +    },
->> +};
->
-> ...
->
-> CJ
+>>> It's the same with e.g. adsp firmware, modem firmware, etc.
+>>>
+>>> With secure boot off, yes, the hardware will load any firmware
+>>> regardless of the signature.
+>>>
+>>> Regards
+>>> Luca
+>>>
+>>>>>
+>>>>>>
+>>>>>> Regards,
+>>>>>> Vedang Nagar
+>>>>>>>
+>>>>>>>>
+>>>>>>>> [1]
+>>>>>>>> https://lore.kernel.org/linux-media/20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
+>>>>>>>>
+>>>>>>>> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
+>>>>>>>> ---
+>>>>>>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
+>>>>>>>>  1 file changed, 2 deletions(-)
+>>>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>
+
 
