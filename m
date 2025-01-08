@@ -1,305 +1,163 @@
-Return-Path: <devicetree+bounces-136805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D49CA06524
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:15:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 701DFA0653C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:20:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47E733A781F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 19:15:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CF8016831E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 19:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9F61FE475;
-	Wed,  8 Jan 2025 19:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2A820125D;
+	Wed,  8 Jan 2025 19:20:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="ozNjQgM5"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="P1Nhm7JJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+Received: from smtp.smtpout.orange.fr (smtp-30.smtpout.orange.fr [80.12.242.30])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C141AA782
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 19:15:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F8D200BB2;
+	Wed,  8 Jan 2025 19:20:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.30
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736363725; cv=none; b=aCcW6nc48/f9lEUsC4Xsd2VbLDnm4smISFJtZGGkizLUvjglE9EU0MmMnacNr342h7+2qettFFNWNKmRogxQGMDrdnU3el+NzfOb4s3GFGWRLlUfFut9JLX+9Xj+Vjq/9cbL/4MCSqIYiNuOe5tlhh6xsLBDKxTXbPwlvHDWT38=
+	t=1736364044; cv=none; b=fbJSywQOyn9KAVD8YRyZ0ZiYKeAdJnYGAE8EYBrAS6+yIeoyCtm4gGmk3HNXkfYpA0ktYqc3l8H5bOD6n0JuBRhJ0W4Sbb+zeWWXfwkvr1351oahRCouer8t371dS6+c1YwzcLCixMHUNvJTbk+EDBrTVyS+OUBxUFmA+BSiZbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736363725; c=relaxed/simple;
-	bh=QgNWnJfRMKF9JftIXvOcU4YXsS8mns9R9Kqe32yl08s=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LBpLhV3zjTmnSWXDpbekl7+Dl6nL+blsLlb1OswTNT4uhj8QGAUs13zSKQQ6QdtYIRfTAevO+AhYzoQe4kPVp1wI3iGJUnhz8f8CW5SIIR8yQrx2otdPjufwW0bRHJH/za8N9Fwo7dmASiYn8BYahsXAskFOaFSEU7BhZPoU3PM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=ozNjQgM5; arc=none smtp.client-ip=209.85.219.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6dd049b5428so1488756d6.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 11:15:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1736363723; x=1736968523; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=M52Mk44BkQ+7uLtkzi2LIqMxodSH7vZgOI4iwRWjrgY=;
-        b=ozNjQgM5PcexgOc8SFBFE9H52Ote5i0YMTtJ9fbwJ4/hoFkhC1VYHi5TUriXIThex+
-         cXv89DVQIxyW++ndFqBNxD4cCJhbYbXbbPy1UZLJZrQwemwkfyOch3S10lVZkDcQPlNq
-         42vqovoQu5z5U9Jtj1aXEu4r1r8ynQ+/FejYVnIWAB4IFD3m0u/MkBHbPa8vUCm33+be
-         8Tdt5Rax4X9Ko7sQ2vMXPoC7zF9Ho+EK7YEx8+ZNhAgNsH5lvIP0Bk+eLHARun3zfRd5
-         uNLRrUgeWUWGpb0lXT+ushozTBc53/7sqnY9+ysO3TKlOSSZmSUoLV85PX9qpJfFYmt/
-         Qxtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736363723; x=1736968523;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=M52Mk44BkQ+7uLtkzi2LIqMxodSH7vZgOI4iwRWjrgY=;
-        b=v5bQob185kOdPo/3++j0N2Uuxv8VzwJ9gkHWguHwHZoGfYiVhKMaAsbB36WPuMA6WV
-         Qh3JkUqarra7wKwPul2eGrtGTk7HYWJVrb1SgR26ghZ3NsIAM5mpGtcy0dGH0MXvFccn
-         exrNlBVHlLc3aOuRA5SJug12SHGYQ1sbsBnh+9SSwAeEQ4pNypisTvI5J9Ys2sXoXjGA
-         iZrjcccPvRg6+SSapDUxrUDl2wygTneLKrhcck2sHg/3tNSleVIh+E1iUipTttG1bWg1
-         PLLAzG4VTlfY/Fht5pxLRzgVB0YPXudV1DibhHFcQyQhpe8rwTbih1AVWoe9zFThUg0w
-         2LPg==
-X-Forwarded-Encrypted: i=1; AJvYcCW6SOo4pHvIoDLnn3476AQIU1EHwQCSjbBPTqTpoVzduspzH1PoZ+RnT/sYT+Tjc247X2f7/z80DXzs@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIP+ZljmKWtxI0mSBXdiCjJsfYK7why9ojTgzJzyPag/8hNmgE
-	DOz2D7huaKQ0zM/wx99Zuer/KAs27ULLK906r5QPBeCD9sl8Wrbc8wKyvXDYbZ4=
-X-Gm-Gg: ASbGnculp0wk3f83Ck48eRgrDbnO/iC2lYuWcJ5S4GOtpZaJ+ca7X9XkBTp7C+lfZ+/
-	By5GWtq93WcplK5z31RaMCjJgugWnBKp5n1T+b4PPBHshS7vB5W17WwVvmc+c7WPxNzOJeMMe1A
-	CZ3gugKGQKKQxXMalI7SbjTsf5DEhSlDNaRxfGEPOgFqlCOD/jXni4n2J9M/rvwQe0loVyrPsBH
-	6awGtS3sQ38hgV587zwQtWj3vFZVDUmrHV/aJO1M5tvSwyaUufro7KCfQ==
-X-Google-Smtp-Source: AGHT+IFRT5zib5m260fI2MIaNuGhzpZO4SOSY6igb4Cp9o+S/bihYNZRjajxrfPtzGlpTSuUDolwdA==
-X-Received: by 2002:a05:6214:570c:b0:6d9:2e0c:56c4 with SMTP id 6a1803df08f44-6df9b1b4d31mr65617576d6.1.1736363722785;
-        Wed, 08 Jan 2025 11:15:22 -0800 (PST)
-Received: from nicolas-tpx395.localdomain ([2606:6d00:15:862e::7a9])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6dd31faa052sm170937266d6.9.2025.01.08.11.15.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2025 11:15:22 -0800 (PST)
-Message-ID: <fd5b45f02e5a7dcc828a8e9ae9e6fb2948532dff.camel@ndufresne.ca>
-Subject: Re: [PATCH 0/7] Raspberry Pi HEVC decoder driver
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: John Cox <jc@kynesim.co.uk>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>, Sakari Ailus	
- <sakari.ailus@linux.intel.com>, Laurent Pinchart	
- <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Florian Fainelli
- <florian.fainelli@broadcom.com>, Broadcom internal kernel review list	
- <bcm-kernel-feedback-list@broadcom.com>, John Cox
- <john.cox@raspberrypi.com>,  Dom Cobley <dom@raspberrypi.com>, review list
- <kernel-list@raspberrypi.com>, Ezequiel Garcia	
- <ezequiel@vanguardiasur.com.ar>, linux-media@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-  John Cox <john.cox@raspberypi.com>
-Date: Wed, 08 Jan 2025 14:15:20 -0500
-In-Reply-To: <fnhsnjlvifnma1rqlsm9kqk7ao3bc174ic@4ax.com>
-References: <20241220-media-rpi-hevc-dec-v1-0-0ebcc04ed42e@raspberrypi.com>
-	 <6d6c49919af9e782bd8e9be5066e92c9704ad5b7.camel@ndufresne.ca>
-	 <fnhsnjlvifnma1rqlsm9kqk7ao3bc174ic@4ax.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+	s=arc-20240116; t=1736364044; c=relaxed/simple;
+	bh=L+RpQGow8xkrq65mketEkjUnqMJb37QojTR/a7ncITM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SlH/BrzEjXQbHkNxQkoDRrmoJkxtUCl6Ede7FIYnb0mkeh2eav97/hwq4SW2fZFNEPTNvkqy0yMwLIHoQMy8xpo3brUEA1aERq/kKwzQP8TDDnMX+Kd0LGiswINj2DQg8k5dX8A+EhAhSJN/Fe1vQnX4E3+Ro0PA7q3IQI8t75o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=P1Nhm7JJ; arc=none smtp.client-ip=80.12.242.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id VbaMtLzUGLSCnVbaPtFP0K; Wed, 08 Jan 2025 20:19:29 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1736363969;
+	bh=BXCOtKlMZhgvv0WlfFdcDBMt3DYEIWplOpebQIGJy6E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=P1Nhm7JJ6o4ex9Y/yOOLRkcQF7jcKeL2ucvGSpbqvzQjMOZNxvGt480Tl71nYwpnd
+	 ATAXa2VpWTMxf/KrvWNUVtA10mGILwI8GAit8w3D9/yBVGlsQyC4xspUEMTln5oujL
+	 cszRNcWnG+2RB4cKRjJhIdOGQIDR3xYPZ/rFG8s4yUb+ibnktuDG+/FLCd4bwojMy8
+	 ernhAytbnefHKV+LLSAVNxXSqJTCFB+CLf1xtU3yPf6Pk+lrBmlg88Ug2noNgIWz57
+	 ZRlZn+L8T2Ddv0MSdi5hN21d13ZQNzn5AVIk0jggt2qJf8iOcRe82O6oAgzncW34Z4
+	 JUyWNSlqfeY+Q==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Wed, 08 Jan 2025 20:19:29 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <29e742c9-82f5-41d5-a06f-70f010a3f39e@wanadoo.fr>
+Date: Wed, 8 Jan 2025 20:19:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 03/14] net: ethernet: qualcomm: Add PPE driver
+ for IPQ9574 SoC
+To: Luo Jie <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
+ Suruchi Agarwal <quic_suruchia@quicinc.com>,
+ Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
+ quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
+ srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+ john@phrozen.org
+References: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
+ <20250108-qcom_ipq_ppe-v2-3-7394dbda7199@quicinc.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20250108-qcom_ipq_ppe-v2-3-7394dbda7199@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi John,
+Le 08/01/2025 à 14:47, Luo Jie a écrit :
+> The PPE (Packet Process Engine) hardware block is available
+> on Qualcomm IPQ SoC that support PPE architecture, such as
+> IPQ9574.
+> 
+> The PPE in IPQ9574 includes six integrated ethernet MAC
+> (for 6 PPE ports), buffer management, queue management and
+> scheduler functions. The MACs can connect with the external
+> PHY or switch devices using the UNIPHY PCS block available
+> in the SoC.
+> 
+> The PPE also includes various packet processing offload
+> capabilities such as L3 routing and L2 bridging, VLAN and
+> tunnel processing offload. It also includes Ethernet DMA
+> function for transferring packets between ARM cores and
+> PPE ethernet ports.
+> 
+> This patch adds the base source files and Makefiles for
+> the PPE driver such as platform driver registration,
+> clock initialization, and PPE reset routines.
+> 
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
 
-Le mercredi 08 janvier 2025 =C3=A0 09:52 +0000, John Cox a =C3=A9crit=C2=A0=
-:
-> On Mon, 06 Jan 2025 15:46:51 -0500, you wrote:
->=20
-> > Hi Dave,
-> >=20
-> > Le vendredi 20 d=C3=A9cembre 2024 =C3=A0 16:21 +0000, Dave Stevenson a =
-=C3=A9crit=C2=A0:
-> > > Hi All
-> > >=20
-> > > This has been in the pipeline for a while, but I've finally cleaned
-> > > up our HEVC decoder driver to be in a shape to at least get a first
-> > > review.
-> > > John Cox has done almost all of the work under contract to Raspberry
-> > > Pi, and I'm largely just doing the process of patch curation and
-> > > sending.
-> > >=20
-> > > There are a couple of questions raised in frameworks.
-> > > The main one is that the codec has 2 independent phases to the decode=
-,
-> > > CABAC and reconstruction. To keep the decoder operating optimally
-> > > means that two requests need to be in process at once, whilst the
-> > > current frameworks don't want to allow as there is an implicit
-> > > assumption of only a single job being active at once, and
-> > > completition returns both buffers and releases the media request.
-> > >=20
-> > > The OUTPUT queue buffer is finished with and can be returned at the
-> > > end of phase 1, but the media request is still required for phase 2.
-> > > The frameworks currently force the driver to be returning both
-> > > together via v4l2_m2m_buf_done_and_job_finish. v4l2_m2m_job_finish
-> > > would complete the job without returning the buffer as we need,
-> > > however if the driver has set VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_B=
-UF
-> > > then we have a WARN in v4l2_m2m_job_finish.
-> > > Dropping the WARN as this series is currently doing isn't going to be
-> > > the right answer, but it isn't obvious what the right answer is.
-> > > Discussion required.
-> >=20
-> > I think part of the manual request completion RFC will be to evaluate t=
-he impact
-> > on VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF feature. MTK does not supp=
-ort
-> > interleaved interlaced decoding (only alternate), so they didn't have t=
-o
-> > implement that feature.
-> >=20
-> > Overall, It would be nice to get your feedback on the new manual reques=
-t
-> > proposal, which is I believe better then the pin/unpin API you have in =
-this
-> > serie.
->=20
-> Is the effect of the manual complete API different from the pin API? Pin
-> incs the ref count on the media object to prevent competion,
-> manaul_complete sets a flag to do the same thing. Or have I missed the
-> point?
+...
 
-The request contains "objects", usually controls and a src buffer. The stat=
-e of
-the request goes to complete implicitly when the last object is removed. Th=
-e
-manual completion avoids adding ref-count on top of this, and simply disabl=
-e the
-implicit signalling of the request. With that we can signal everything in t=
-he
-most logical order:
+> +static int qcom_ppe_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct ppe_device *ppe_dev;
+> +	void __iomem *base;
+> +	int ret, num_icc;
+> +
+> +	num_icc = ARRAY_SIZE(ppe_icc_data);
+> +	ppe_dev = devm_kzalloc(dev, struct_size(ppe_dev, icc_paths, num_icc),
+> +			       GFP_KERNEL);
+> +	if (!ppe_dev)
+> +		return dev_err_probe(dev, -ENOMEM, "PPE alloc memory failed\n");
 
-1. Program the register from controls -> mark controls complete
-2. Entropy decode the stream -> mark src buffer done
-3. Reconstruct the image -> mark dst buffer done
-4. Signal the request completion
+Usually, no error message in logged in case of devm_kzalloc().
+It is already loud enough.
 
-Before that, you always had to hold on the src buffer, and only mark it don=
-e
-after the reconstruction was complete and the dst buffer was marked done. T=
-hat
-didn't matter for single function HW of course.
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return dev_err_probe(dev, PTR_ERR(base), "PPE ioremap failed\n");
+> +
+> +	ppe_dev->regmap = devm_regmap_init_mmio(dev, base, &regmap_config_ipq9574);
+> +	if (IS_ERR(ppe_dev->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(ppe_dev->regmap),
+> +				     "PPE initialize regmap failed\n");
+> +	ppe_dev->dev = dev;
+> +	ppe_dev->clk_rate = PPE_CLK_RATE;
+> +	ppe_dev->num_ports = PPE_PORT_MAX;
+> +	ppe_dev->num_icc_paths = num_icc;
+> +
+> +	ret = ppe_clock_init_and_reset(ppe_dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "PPE clock config failed\n");
+> +
+> +	platform_set_drvdata(pdev, ppe_dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id qcom_ppe_of_match[] = {
+> +	{ .compatible = "qcom,ipq9574-ppe" },
+> +	{},
 
-Unlike the pin/unpin, manual completion mode removes the implicit completio=
-n
-bound to the fact the last "object" is removed from the request, and leave =
-it to
-the driver to decide when to actually signal the request. Internally, the g=
-ive a
-reference to the driver of course (similar to pin).
+The ending comma after a terminator like that is not needed.
 
->=20
-> I don't mind what call is used as long as the effect is to be able to
-> delay media object completion. (In my first veraion of the code I
-> created a dummy object and attached it to the media object, when I
-> wanted to unpin I deleted the dummy object - pin was just a cleaner
-> API.)
+> +};
 
-The manual completion patchset is very similar really in you step back.
+...
 
->=20
-> The pin API is counted and needs no new structure elements (which is
-> nice), but manual_complete does give a flag that allows other functions
-> to know that holding on to the media object whilst releasing OUTPUT is
-> intentional so can be made to work cleanly with things like
-> v4l2_m2m_job_finish so is probably the better solution (assuming my
-> understand of how it works is correct).=20
->=20
-> I'll try to build a version of the code using manual_complete in the
-> next few days.
-
-Thanks! your feedback will be very useful.
-
-Nicolas
-
->=20
-> Regards
->=20
-> JC
->=20
-> > >=20
-> > > We also have a need to hold on to the media request for phase 2. John
-> > > had discussed this with Ezequiel (and others) a couple of years back,
-> > > and hence suggested a patch that adds media_request_{pin,unpin} to
-> > > grab references on the media request. Discussion required on that
-> > > or a better way of handling it.
-> > >=20
-> > > I will apologise in advance for sending this V1 just before I head of=
-f
-> > > on the Christmas break, but will respond to things as soon as possibl=
-e.
-> >=20
-> > One thing missing in this summary is how this driver is being validated
-> > (specially that for this one requires a downstream fork of FFMPEG). To =
-this
-> > report we ask for:
-> >=20
-> > - v4l2-compliance results
-> > - Fluster conformance tests results [1] and I believe you need [2]
-> >=20
-> > [1]=C2=A0https://github.com/fluendo/fluster
-> > [2]=C2=A0https://github.com/fluendo/fluster/pull/179
-> >=20
-> > GStreamer support is there in main now, but without the needed software=
- video
-> > converter for you column tiling, we can't use it for that (i.e. only wo=
-rks
-> > through GL or Wayland).
-> >=20
-> > regards,
-> > Nicolas
-> >=20
-> > >=20
-> > > Thanks
-> > >   Dave
-> > >=20
-> > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > > ---
-> > > Dave Stevenson (4):
-> > >       docs: uapi: media: Document Raspberry Pi NV12 column format
-> > >       media: ioctl: Add pixel formats NV12MT_COL128 and NV12MT_10_COL=
-128
-> > >       media: dt-bindings: media: Add binding for the Raspberry Pi HEV=
-C decoder
-> > >       arm: dts: bcm2711-rpi: Add HEVC decoder node
-> > >=20
-> > > Ezequiel Garcia (1):
-> > >       RFC: media: Add media_request_{pin,unpin} API
-> > >=20
-> > > John Cox (2):
-> > >       media: platform: Add Raspberry Pi HEVC decoder driver
-> > >       RFC: v4l2-mem2mem: Remove warning from v4l2_m2m_job_finish
-> > >=20
-> > >  .../bindings/media/raspberrypi,hevc-dec.yaml       |   72 +
-> > >  .../userspace-api/media/v4l/pixfmt-yuv-planar.rst  |   42 +
-> > >  MAINTAINERS                                        |   10 +
-> > >  arch/arm/boot/dts/broadcom/bcm2711-rpi.dtsi        |    5 +
-> > >  arch/arm/boot/dts/broadcom/bcm2711.dtsi            |    9 +
-> > >  drivers/media/mc/mc-request.c                      |   35 +
-> > >  drivers/media/platform/raspberrypi/Kconfig         |    1 +
-> > >  drivers/media/platform/raspberrypi/Makefile        |    1 +
-> > >  .../media/platform/raspberrypi/hevc_dec/Kconfig    |   17 +
-> > >  .../media/platform/raspberrypi/hevc_dec/Makefile   |    5 +
-> > >  .../media/platform/raspberrypi/hevc_dec/hevc_d.c   |  443 ++++
-> > >  .../media/platform/raspberrypi/hevc_dec/hevc_d.h   |  190 ++
-> > >  .../platform/raspberrypi/hevc_dec/hevc_d_h265.c    | 2629 ++++++++++=
-++++++++++
-> > >  .../platform/raspberrypi/hevc_dec/hevc_d_hw.c      |  376 +++
-> > >  .../platform/raspberrypi/hevc_dec/hevc_d_hw.h      |  303 +++
-> > >  .../platform/raspberrypi/hevc_dec/hevc_d_video.c   |  685 +++++
-> > >  .../platform/raspberrypi/hevc_dec/hevc_d_video.h   |   38 +
-> > >  drivers/media/v4l2-core/v4l2-ioctl.c               |    2 +
-> > >  drivers/media/v4l2-core/v4l2-mem2mem.c             |    7 -
-> > >  include/media/media-request.h                      |   12 +
-> > >  include/uapi/linux/videodev2.h                     |    5 +
-> > >  21 files changed, 4880 insertions(+), 7 deletions(-)
-> > > ---
-> > > base-commit: e90c9612ac3969cb8206029a26bcd2b6f5d4a942
-> > > change-id: 20241212-media-rpi-hevc-dec-3b5be739f3bd
-> > >=20
-> > > Best regards,
+CJ
 
 
