@@ -1,87 +1,75 @@
-Return-Path: <devicetree+bounces-136744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D8AA0612D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:11:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33B10A060D5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:56:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22004166D1D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:11:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41B883AB63F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A5A1FCFF4;
-	Wed,  8 Jan 2025 16:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC631FECCC;
+	Wed,  8 Jan 2025 15:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Nmji8pdY"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FU0f/Lbg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E968C14A82;
-	Wed,  8 Jan 2025 16:11:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264FF2594BC;
+	Wed,  8 Jan 2025 15:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736352707; cv=none; b=hchsEVnnboI8wjqp0pfBAOEsWNL+AnxtDcl0WqWUe1l6qFfQ6jYTafS5eKna1v8UaJ5GV31Ag/Vq2DrQpBcOsnXO9ogH26kGGJIhXTEFfWiRiJS+iHqL64DWE/R4SieNWSSnDMUkgKrFCCmbC5C5Q8PAU9HlT82q7iSlJ2EImkc=
+	t=1736351470; cv=none; b=p5Ql5B22ebbCMC/xlI73D42/JT4HqQR6xRLWX/CYxDRAONEk1U47xhrONsA/9IxF9Fp4k4z87bFAb28ukKOTYECwojcHGeBKQZt+w6hNEbirour4mZ2oyEck9pjOMtNoTsOlqRS/56xjMStx2w+2btBhdMKVoHeA/bSdZTKRNgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736352707; c=relaxed/simple;
-	bh=FrKByJVfkzw5OezDNbqdFAqbP/sKp05kiOFF7OZjQvc=;
+	s=arc-20240116; t=1736351470; c=relaxed/simple;
+	bh=/iy058ASG+zil0SNKB4sVuheIrlq+EfosIfD5phqJvM=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ua3ynlRrhnG5utYlIM8NxmZCzzd3z59s5bHjLdN3ieRfWgCqXefFPREO/ks7U9dT8FrG03OuwcuCn0sv8agOs1h6h5pYtL6EkaUROQ/M55bbgdw7CCPpbOicNiH2xmo2TiONKbFRFMrrlH9LKNuUCLJd5yvNvi126ev9CPQ9a1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Nmji8pdY; arc=none smtp.client-ip=198.47.23.234
+	 MIME-Version:Content-Type; b=BMXZfDdGgvSKI1RIs2t4Z8aVxf52G6fBAXdotXmVfu3fbutPqc1KDyrHlSNRENVvXqR7TDhl5q0dddnPGahbCWATnm1UeOnHg5y86PPGxcgBlLH4AOm1u6MufeDN5cn9vFTUdzFKcnKq5F4drm3Z5Ghlhl5IsnX2BJA3AvjJ11I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FU0f/Lbg; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 508FoCNH2822969
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 8 Jan 2025 09:50:12 -0600
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 508Fp2Rx3124243
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Wed, 8 Jan 2025 09:51:02 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736351412;
-	bh=lqFtwVC5XSLD055A7clzERGo2EcKKQ93ePEvcJRgB3A=;
+	s=ti-com-17Q1; t=1736351462;
+	bh=pUzOK9WaNKQ4slSmgvifD1Cc8ImfbMvJaVSG1wm/zOE=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Nmji8pdYdBU8WzwXSqvdyMTCyc3OO3VxoKNDLp1lp1pE48z59z9UWBF0R6JqDGLj+
-	 Oopnntx5cT8HVK0eEP91IwygXvM48aAqV/zFMUL1dEHv2+biIkf7KeeY9q5z/N/CQ1
-	 NbEqHWEpiD3HDU2TJdx5MSs3dIZtGDL/To5xRxfU=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508FoCpk014885
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 8 Jan 2025 09:50:12 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
- Jan 2025 09:50:12 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+	b=FU0f/LbgzoNtYVlrZ6rFRDO/Tdki2cwqXm4JijHxUQhnp/Emd49E0gjL8n5vrcXgE
+	 akEl2s+lfY0eMGFYhqKSVYJF1KcZaQigPFKIQ80n4Nncp8q49d6YrHNVlJxEAYanTz
+	 IDw5kiZLxwsSOxsykXqqL2/dqdcOnV+AKbvvdgVU=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508Fp2k7098285;
+	Wed, 8 Jan 2025 09:51:02 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
  (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
+ Jan 2025 09:51:02 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 8 Jan 2025 09:50:12 -0600
+ Frontend Transport; Wed, 8 Jan 2025 09:51:02 -0600
 Received: from localhost ([10.249.32.182])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508FoC5J086600;
-	Wed, 8 Jan 2025 09:50:12 -0600
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508Fp2oe069429;
+	Wed, 8 Jan 2025 09:51:02 -0600
 From: Nishanth Menon <nm@ti.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Hari Nagalla <hnagalla@ti.com>, Andrew Davis
-	<afd@ti.com>,
-        Daniel Schultz <D.Schultz@phytec.de>
-CC: Nishanth Menon <nm@ti.com>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: (subset) [PATCH v11 0/9] TI K3 M4F support on AM62 and AM64 SoCs
-Date: Wed, 8 Jan 2025 09:49:59 -0600
-Message-ID: <173635131453.1207749.10651955130029971978.b4-ty@ti.com>
+To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>
+Subject: Re: [PATCH v4 0/4] Add PCIe Overlays for J721E, AM68 and AM69
+Date: Wed, 8 Jan 2025 09:51:00 -0600
+Message-ID: <173635143439.1208166.298500356758573677.b4-ty@ti.com>
 X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20240802152109.137243-1-afd@ti.com>
-References: <20240802152109.137243-1-afd@ti.com>
+In-Reply-To: <20241205105041.749576-1-s-vadapalli@ti.com>
+References: <20241205105041.749576-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,27 +80,30 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Andrew Davis,
+Hi Siddharth Vadapalli,
 
-On Fri, 02 Aug 2024 10:21:00 -0500, Andrew Davis wrote:
-> This is the continuation of the M4F RProc support series from here[0].
-> I'm helping out with the upstream task for Hari and so versions (v8+)
-> is a little different than the previous(v7-) postings[0]. Most notable
-> change I've introduced being the patches factoring out common support
-> from the current K3 R5 and DSP drivers have been dropped. I'd like
-> to do that re-factor *after* getting this driver in shape, that way
-> we have 3 similar drivers to factor out from vs trying to make those
-> changes in parallel with the series adding M4 support.
+On Thu, 05 Dec 2024 16:20:32 +0530, Siddharth Vadapalli wrote:
+> This series adds device-tree overlays for enabling Endpoint mode of
+> operation of the PCIe Controllers on TI's J721E, AM68 and AM69 SoCs.
+> 
+> Only the second patch of this series has a v3 while the rest of the
+> patches have been newly introduced in this series. The reason for
+> grouping patches is the dependency on the Makefile w.r.t. the changes
+> made in the patches when enabling overlays.
 > 
 > [...]
 
-I have applied the following to branch ti-k3-config-next on [1].
+I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[9/9] arm64: defconfig: Enable TI K3 M4 remoteproc driver
-      commit: 184caba444cfd4b90231de7d071b9966c115c29f
-
-Thanks for the headsup Daniel.
+[1/4] arm64: dts: ti: Makefile: Fix typo "k3-j7200-evm-pcie1-ep.dtbo"
+      commit: a7543eaeb31544b9c3f6248cac8189aa1480c0f5
+[2/4] arm64: dts: ti: k3-j721e-evm: Add overlay for PCIE1 Endpoint Mode
+      commit: c3015d4540a47ced846bf973e5a473fb4181662a
+[3/4] arm64: dts: ti: k3-am68-sk-base-board: Add overlay for PCIE1 Endpoint Mode
+      commit: 58efed5800e901cf9b320c56e8879878f09b8291
+[4/4] arm64: dts: ti: k3-am69-sk: Add overlay for PCIE0 Endpoint Mode
+      commit: b09cc758bc015a100b440d5c70098aebd0ddcd43
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
