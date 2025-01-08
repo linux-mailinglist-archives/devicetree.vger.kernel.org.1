@@ -1,122 +1,105 @@
-Return-Path: <devicetree+bounces-136809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EA3BA0655B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:30:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA712A065D3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 21:14:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82BF3A6D9D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 19:30:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51CF318896B9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1128F1A9B4A;
-	Wed,  8 Jan 2025 19:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B757F2036E2;
+	Wed,  8 Jan 2025 20:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="oyg0qeRt"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cokaGl5r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-29.smtpout.orange.fr [80.12.242.29])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B56126BF1;
-	Wed,  8 Jan 2025 19:30:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.29
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E7F120127E;
+	Wed,  8 Jan 2025 20:14:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736364638; cv=none; b=ixUQpkl9cjJD2mRRXDqFu50eaWPkm3hXy37gGg0khhZ1PD6fHNCkgnug2LwFRrptTL/fg0KL3dC3sHCBdwSggW/DhvhIFQ/nKjV7U6zRAlnoJA+bvcXyBo+/eEcGwaV/8OTl+x+a7UprPLHUMUvAwQYNUazuF7VadO7GWKU2f68=
+	t=1736367271; cv=none; b=uSlmRcoMi4/zXpS5OgYdhK7C3YWyOdXKvWT7Zko+zNH/9+b4JoiJghYj6Sv+7oaA5M6GtdttSoXSVrHlFOUNrw5UEgUHhhjOXv/W/2ORql0xwCnlXha8Wm1HufmMPK/CaNXhvLEMnR8WPGOcXz6YzwCUT30zTawadXG4Cv1hWrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736364638; c=relaxed/simple;
-	bh=nIiqJwgUAFtVpyksqLsfSNzy2JZ9A1KLXmCabtcF124=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ThMn1hOtEQgxUj90eAN72hGjvHNOXitjAhxwdCMXOBKmmGzaBAq2bAjjTWdi0ZcPmHW1sJFTWsxWTlkaK7hlvCLLuf494vgaSlQZhZa8Xr9XY002V3vqfvSXumNHxs1sZXqFz+wQt0ljIs0wre7O8Do2FkAOtMiA3BGynZDjANg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=oyg0qeRt; arc=none smtp.client-ip=80.12.242.29
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id VbjytM2bILSCnVbk1tFZHg; Wed, 08 Jan 2025 20:29:22 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1736364562;
-	bh=3W/qNrGfy6V4CsHDQcIGMo3JImJKU5XjyGyfj1Fe0Jc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=oyg0qeRtAZOgvOHU2jxOtU94ifwY2QbOKJPq1I/IU+5rV/sQC6N41QlptIxScYep0
-	 65ppcGd7XcTESq8CrBffrSKsYCGJiXyYtOwyTA8NKWDM79NVh8zxwaIiLLl45Afp19
-	 ZEMZImUt3kH8yfTbOfMdtf+yFzHErAuHdpeo33um0iCQDzEr9gwkpc0ej/64qzzGFl
-	 1U8qxrd1eAZKsExnNFCJFw4VCe11UAjS5nVbtRpSIGmHX5IPf1CiwBgnWrXo0qissf
-	 7h3ekCyF5fj2MtHC6nks5o7l1474pvCXluX6PE8VqRNdCYDK3GIPIZBYquYhhg+R3+
-	 YCZcHoIQUxwGA==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Wed, 08 Jan 2025 20:29:22 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <4916d329-4513-46e1-ac1c-34628f335dde@wanadoo.fr>
-Date: Wed, 8 Jan 2025 20:29:18 +0100
+	s=arc-20240116; t=1736367271; c=relaxed/simple;
+	bh=fWXWqOox9j68tKJYQQyfrzCuN3RmXdh/TDYs9UfDP7M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oCkm/zJYYG0aLZD0gEirxl0Xy8f6kQDuTzzMNnS5KdUFD71y4mA5+v5kuewgJWwBn4xQXTaJWQCkF7LPQDyDJi1n9YxBvF1/LNr8XUCILcKHGWd/KqFtPhBeyn6NZYQ7E+qlPrpfQscnStwJ6H7awLXHtnHBR/flWRamDTrsoh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cokaGl5r; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=hs8uP3N/mTdsE3JF6EEgjMUW9ubX3QrUliIYU0W1Efw=; b=cokaGl5rbCCWR5PLEEXlzlK4cg
+	61kIh8CGC74Kzu7whTHy6mmGZiSShEsvkL/AiJ79CgmLhcin6x2cZmY33bJNEFJBTn2rnElphfZ8A
+	QoBXD8JA3+CWcAR2AKXIabgI7RguloybklWjZ7s0SMDRD9wP03I3Y1lpAgkiPSW+xw0s=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tVcR0-002fvx-Ne; Wed, 08 Jan 2025 21:13:46 +0100
+Date: Wed, 8 Jan 2025 21:13:46 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ninad Palsule <ninad@linux.ibm.com>
+Cc: minyard@acm.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	ratbert@faraday-tech.com, openipmi-developer@lists.sourceforge.net,
+	netdev@vger.kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+	devicetree@vger.kernel.org, eajames@linux.ibm.com,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 05/10] ARM: dts: aspeed: system1: Add RGMII support
+Message-ID: <b80b9224-d428-4ad9-a30d-40e2d30be654@lunn.ch>
+References: <20250108163640.1374680-1-ninad@linux.ibm.com>
+ <20250108163640.1374680-6-ninad@linux.ibm.com>
+ <1dd0165b-22ff-4354-bfcb-85027e787830@lunn.ch>
+ <0aaa13de-2282-4ea3-a11b-4edefb7d6dd3@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 07/14] net: ethernet: qualcomm: Initialize PPE
- queue settings
-To: Luo Jie <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
- Suruchi Agarwal <quic_suruchia@quicinc.com>,
- Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
- quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
- srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
- john@phrozen.org
-References: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
- <20250108-qcom_ipq_ppe-v2-7-7394dbda7199@quicinc.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20250108-qcom_ipq_ppe-v2-7-7394dbda7199@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0aaa13de-2282-4ea3-a11b-4edefb7d6dd3@linux.ibm.com>
 
-Le 08/01/2025 à 14:47, Luo Jie a écrit :
-> Configure unicast and multicast hardware queues for the PPE
-> ports to enable packet forwarding between the ports.
+On Wed, Jan 08, 2025 at 12:43:07PM -0600, Ninad Palsule wrote:
+> Hello Andrew,
 > 
-> Each PPE port is assigned with a range of queues. The queue ID
-> selection for a packet is decided by the queue base and queue
-> offset that is configured based on the internal priority and
-> the RSS hash value of the packet.
 > 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> On 1/8/25 11:03, Andrew Lunn wrote:
+> > On Wed, Jan 08, 2025 at 10:36:33AM -0600, Ninad Palsule wrote:
+> > > system1 has 2 transceiver connected through the RGMII interfaces. Added
+> > > device tree entry to enable RGMII support.
+> > > 
+> > > ASPEED AST2600 documentation recommends using 'rgmii-rxid' as a
+> > > 'phy-mode' for mac0 and mac1 to enable the RX interface delay from the
+> > > PHY chip.
+> > You appear to if ignored my comment. Please don't do that. If you have
+> > no idea about RGMII delays, please say so, so i can help you debug
+> > what is wrong.
+> > 
+> > NACK
+> 
+> I think there is a misunderstanding. I did not ignore your comment. I have
+> contacted ASPEED and asked them to respond. I think Jacky from Aspeed
+> replied to your mail.
 
-...
+You did not mention in the cover letter, or the patch. I asked for a
+detailed explanation in the commit message why it is correct, which
+you did not do.
 
-> +		/* Initialize the queue offset of RSS hash as 0 to avoid the
-> +		 * random hardware value that will lead to the unexpected
-> +		 * destination queue generated.
-> +		 */
-> +		index = 0;
+Now we have more details, it is clear Ethernet support for this board
+needs to wait until we figure out how to fix the MAC driver. Please
+either wait with this patchset until that is done, or drop this one
+patch for the moment and submit it later once the MAC driver is fixed.
 
-Useless.
-
-> +		for (index = 0; index < PPE_QUEUE_HASH_NUM; index++) {
-> +			ret = ppe_queue_ucast_offset_hash_set(ppe_dev, port_id,
-> +							      index, 0);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-CJ
+      Andrew
 
 
