@@ -1,154 +1,163 @@
-Return-Path: <devicetree+bounces-136691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85B1BA05D8F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:54:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B07A05D95
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:54:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09839167A24
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:52:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0100F188446F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:54:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94865201004;
-	Wed,  8 Jan 2025 13:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B011FCFF2;
+	Wed,  8 Jan 2025 13:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="emoFXJKJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="j101E+6h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04ED81FCFE3;
-	Wed,  8 Jan 2025 13:49:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 795BF1FCF47;
+	Wed,  8 Jan 2025 13:53:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736344166; cv=none; b=aeZATRVSYn2c8DJZrblWWts88l96LvClLzDVNEYVxwZ43hd55Kxu4QV2JE2evqd9KssHKouvslwHzzllfazeKdzEBGhVDzNX9pTa0wxE1aKErsMhJwktgU+g5+k28j7ikA9bzvArAI30fZdp39asbrEaOjbwTzvJw62unn30FSY=
+	t=1736344420; cv=none; b=VF5PD8JjNjgl8l716opuluwJ2q/wxSGb/zEM9xuTMFFIB1G9/q/4UpVYEvVqlVP+XjbWz0C/kKr7+7r93MFDK/JJ9fIwWHt7y5HbtKLGdBZksYF+dfzi6MO/JZJYK24Ks1r1Hg4nBxmwlH0obA+7YLHfz1p8ymPyShz0ELar+c4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736344166; c=relaxed/simple;
-	bh=cCDHkZ2wAP8SDo4sypkCGeXeEPaAJKzTWColCfCmvrA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=XyAKiTo2twFnWPyqGQknxEu6xRJZDs1Pjk7Cmw2LpmDSGpGlWC23S22b45LfJaOSpmTTkJrxZsSOHca5HNFgToCiSVCjFTzyCbQGytcdZ9ED+LIH4nVpxSua/HIaVB9hdcBzbxQ7Nzqi1xZkSICtMxnjCWEQCpt36BZJj/FZm2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=emoFXJKJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508BkW5m018497;
-	Wed, 8 Jan 2025 13:49:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	d6dnygIWzmFi6NM6NfPTN73MAK3Nn4bsbCyhnRVmPLw=; b=emoFXJKJGxT1skTS
-	pAhk7iQB8B+2KfsEpeyYm68Sytv5jb67Rv/qtT9TxktjPUyKGVJAtR5C0qPGxnWg
-	TWbxU3TJUXPCmTtN2/IWymnu5qm0KxZ8vJg6Fv+x6irJiFvTDlWN/OKz4JOXdtyZ
-	m2ocYPgwAJEzWardJKdbVIxeK9kTDAnQI+3DIPlWDKBJAwJVbSAMNhVnBTuZitcN
-	P0uB5omRPdA5rMsnuD5+AWCcvIrwwF7Em2JDP418cRZ5tDK6hoxdPiI/j8ZRSdQQ
-	7NpwSjM7zrsWQW0DyLdkEO36bQFmKyUgFM3Uijf/Zs3Qs3EcqApBjWPh5nVBx1RT
-	5iaoPg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441nm18u37-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Jan 2025 13:49:13 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508DnCs7027787
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 Jan 2025 13:49:12 GMT
-Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 8 Jan 2025 05:49:06 -0800
-From: Luo Jie <quic_luoj@quicinc.com>
-Date: Wed, 8 Jan 2025 21:47:21 +0800
-Subject: [PATCH net-next v2 14/14] MAINTAINERS: Add maintainer for Qualcomm
- PPE driver
+	s=arc-20240116; t=1736344420; c=relaxed/simple;
+	bh=uct8ngrtAYFwmaDlO5TtIfQDb3EXImPieYEtv+ChXJY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uLo4dvOkclt/1fcC5yvokH/uobJa85NAwIhBSrI+173/HxAU5O1CNVmi+d5hogsUPDKY0zfQW6HuyQaMlK8O9BWU0kvwizdDrJUYmnvb282KfbT2AiBizjYbyCuubo2ZUU2P8TcsBtxR2xrjotTvCtR4yoNCprQcfd/zRrQvfv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=j101E+6h; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8DB021C0006;
+	Wed,  8 Jan 2025 13:53:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736344415;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+3Kh9FOtNOABfkcFw/vRG/uViQsqV0K16PlRC2zuhdE=;
+	b=j101E+6hfpDaOII7o8qnF6mR1fc7olv4PQ6l0r0/K6hxVDwAXRJu4o7lBS/fH4Y3cH2GS1
+	ejsRWmHcz2BXVgAP8n1uyWattPKWJ09TclfPYz0NOGEqJAvryaw8cxrGVewo47ZuKPwKlb
+	whPuWO7FSJQODopUA/rsRkwRdhjXOMQ8rshHdpGPHaDhv6s7pKnkM7WYtRYl1W66jo7A/H
+	pTu/pEEF7f434jPbQ8TnW7SVwLpzGoFOLnhxQh9jkwMlfPf4A4+qJlpczuuiNRr0MfOZvi
+	NIf/EyfHghbGLZPGXb6AAH4H/r/h1JEX7jQZBkxdPZuWppAA6WuU0SqSWhLyDg==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Subject:
+ Re: [PATCH v4 2/9] media: i2c: ds90ub960: Replace aliased clients list with
+ address list
+Date: Wed, 08 Jan 2025 14:50:13 +0100
+Message-ID: <2351676.ElGaqSPkdT@fw-rgant>
+In-Reply-To: <54985f33-a15a-4d9e-89ff-8999802e3a35@ideasonboard.com>
+References:
+ <20241230-fpc202-v4-0-761b297dc697@bootlin.com> <2762571.mvXUDI8C0e@fw-rgant>
+ <54985f33-a15a-4d9e-89ff-8999802e3a35@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250108-qcom_ipq_ppe-v2-14-7394dbda7199@quicinc.com>
-References: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
-In-Reply-To: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
-        Suruchi Agarwal
-	<quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>,
-        "Simon
- Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <john@phrozen.org>, Luo Jie <quic_luoj@quicinc.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736344057; l=880;
- i=quic_luoj@quicinc.com; s=20240808; h=from:subject:message-id;
- bh=cCDHkZ2wAP8SDo4sypkCGeXeEPaAJKzTWColCfCmvrA=;
- b=n7z2zrFo6S5QFEGO+/BQluzqyjUC/MWkTYjMpIUIO3qISyk6bs95yIjccFFoz3oWry92EK+rf
- Dlv3hCMQe6zCAbqMseDJE0C8Nye055of4NTUQzuE6PcAZZYu+Ml2UAx
-X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
- pk=P81jeEL23FcOkZtXZXeDDiPwIwgAHVZFASJV12w3U6w=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 49k_9S3gabn4TChp83q7PXInVM-ny4np
-X-Proofpoint-GUID: 49k_9S3gabn4TChp83q7PXInVM-ny4np
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 suspectscore=0 adultscore=0 malwarescore=0 phishscore=0
- bulkscore=0 lowpriorityscore=0 clxscore=1015 mlxlogscore=656 mlxscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501080115
+Content-Type: multipart/signed; boundary="nextPart4948939.GXAFRqVoOG";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Add maintainer entry for PPE (Packet Process Engine) driver
-supported for Qualcomm IPQ SoCs.
+--nextPart4948939.GXAFRqVoOG
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Date: Wed, 08 Jan 2025 14:50:13 +0100
+Message-ID: <2351676.ElGaqSPkdT@fw-rgant>
+In-Reply-To: <54985f33-a15a-4d9e-89ff-8999802e3a35@ideasonboard.com>
+MIME-Version: 1.0
 
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On mercredi 8 janvier 2025 14:32:54 heure normale d=E2=80=99Europe centrale=
+ Tomi=20
+Valkeinen wrote:
+> Hi,
+>=20
+> On 08/01/2025 15:27, Romain Gantois wrote:
+> > Hi Tomi,
+> >=20
+> > On lundi 6 janvier 2025 10:34:10 heure normale d=E2=80=99Europe central=
+e Tomi
+> >=20
+> > Valkeinen wrote:
+> >> Hi,
+> >=20
+> >> On 30/12/2024 15:22, Romain Gantois wrote:
+> > ...
+> >=20
+> >>> @@ -1031,17 +1031,17 @@ static int ub960_atr_attach_client(struct
+> >>> i2c_atr
+> >>> *atr, u32 chan_id,>
+> >>>=20
+> >>>    	struct device *dev =3D &priv->client->dev;
+> >>>    	unsigned int reg_idx;
+> >>>=20
+> >>> -	for (reg_idx =3D 0; reg_idx < ARRAY_SIZE(rxport->aliased_clients);
+> >>> reg_idx++) { -		if (!rxport->aliased_clients[reg_idx])
+> >>> +	for (reg_idx =3D 0; reg_idx < UB960_MAX_PORT_ALIASES; reg_idx++) {
+> >>=20
+> >> Any reason to drop the use of ARRAY_SIZE()? Usually when dealing with
+> >> fixed size arrays, it's nicer to use ARRAY_SIZE().
+> >=20
+> > No reason in particular, I just thought it was more explicit to use
+> > ARRAY_SIZE but I'll keep the UB960_MAX_PORT_ALIASES since you think it's
+> > nicer.
+> You got that the wrong way. The driver uses ARRAY_SIZE, but you change
+> it to UB960_MAX_PORT_ALIASES...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e930c7a58b1..ad7d56775f63 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19359,6 +19359,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
- F:	drivers/mtd/nand/raw/qcom_nandc.c
- 
-+QUALCOMM PPE DRIVER
-+M:	Luo Jie <quic_luoj@quicinc.com>
-+L:	netdev@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml
-+F:	Documentation/networking/device_drivers/ethernet/qualcomm/ppe/ppe.rst
-+F:	drivers/net/ethernet/qualcomm/ppe/
-+
- QUALCOMM QSEECOM DRIVER
- M:	Maximilian Luz <luzmaximilian@gmail.com>
- L:	linux-arm-msm@vger.kernel.org
+Yes indeed, I meant the opposite, I'll keep ARRAY_SIZE.
 
--- 
-2.34.1
+Thanks,
+
+=2D-=20
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart4948939.GXAFRqVoOG
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEYFZBShRwOvLlRRy+3R9U/FLj284FAmd+gpUACgkQ3R9U/FLj
+286cThAAoJuYYEDN1yt1QTy35tgWwGqUs77u4aQ6LzSFGn4S7zya0Ly6LwBUUwR3
+e1+cg0aSI/5fNN61eAWDQQP0dGC3fS34i3E3C5AsTV+lCjUN5a6wFR0Mazf0dTkl
+4Y1FiBdq7dobiATIg3j1tZFaZp7yCdUyXo2S72AOoNs3y1hG8ZNgdIrMOoJoUsky
+LZjRBIFTqCfWpQUXZ8t8//ef2XFNp/CnsCd81WY7QpH9OyFDGSSLDKoJxIqcQhOJ
+hgqGUgn1eHfeG7qgGcReqaSsKc2ubXjdPb90n0jrkU2oBDwSjRjyO4P95n1q8KX8
+WTXFpr3ORoacVpqKZpRegw/jgDi/y796gwXML9xVIRMvBpEPrqJ1bOkHoupWXZhT
++D84JuVxCVQ7z383A4M/9DsD6lmcS74vPTqMScULr54FZZtrgLPOuCd26WFBrTN+
+rq135zABgLi8u2CXD2GBWFtRfMoGfWHAtrqre21dU9HUYTy++M+lks8pH46TzX/2
+M3wqf3MkIzaMsN8+wO/pnobuDACQ+A8gotYUsV0KEpfa46qPQuw91G3LxAQbA3pr
+TstHTOw1IsiX5LbhAEaDUzaCFE7YNyn1OHaUDjo+MekzIz1pQtiTJOZKfIUF39Og
+VaArH0UHHwyK+elwx59F/cw/OwJV3kxljW9kG3jsg3xYGCEcw5M=
+=nweI
+-----END PGP SIGNATURE-----
+
+--nextPart4948939.GXAFRqVoOG--
+
+
 
 
