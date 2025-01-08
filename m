@@ -1,137 +1,296 @@
-Return-Path: <devicetree+bounces-136842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E04A068AB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:44:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C989A068B2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:45:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D5A87A2A37
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:44:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E87A1888FB7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:45:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F02204C2E;
-	Wed,  8 Jan 2025 22:43:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B5D204C12;
+	Wed,  8 Jan 2025 22:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FHr2/3Xt"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fo8+Sb/Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0F3204C2C;
-	Wed,  8 Jan 2025 22:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB752046A9
+	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 22:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736376223; cv=none; b=kjGBAk6INFnmmj4J7i4m2qmmAmLB0aNwbclT9GzesNrdEXFaTbFbYGrm2LStQryneFGPBbJwP42wOI2y0g3NpdiT8l2Kan9o7SjWn7IsH75eep9cWRnS6zulvM760mXdspC2m7PNadV5pB2suz2iXjgPc9WpGIzF02fqtfl0aQg=
+	t=1736376299; cv=none; b=g3H3+c9V/FIYmonwUoXeeF3uJgGZvUVJOGdxfB46TKrCKwMdM7jJCQtEiPxQ6Ayz1WPBQKjJ2FNNCiMMHxNAMAicq+u0j0TnRjV6yn5ry8D9IYhSFmc9qaR3Yl8LwFyhNgfDyn0iSft5XIxuD8VrPfdELvarRKP+ZuM2Ax2I7q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736376223; c=relaxed/simple;
-	bh=RAdH3xyNDjlY7o34z/lOpEGF3/pUFhzFt/n00JDaEko=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kr+/TryHXWef30OHxgUOb8WQq5tOKg70UWOMydqNYjCeShezXrlK9K7nDrUXZd1x2kj3pNM1b32Dxz295LvFWM+SNp54UE6G65NM7KgG18I32sgbm+44bE9yah1xL0m6WUS113vYyC3bRIm4h0ZlRnlr+4f0/fjfRYu9Uen3RTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FHr2/3Xt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12341C4CEE5;
-	Wed,  8 Jan 2025 22:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736376222;
-	bh=RAdH3xyNDjlY7o34z/lOpEGF3/pUFhzFt/n00JDaEko=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=FHr2/3Xtod4oakXCCFN4wWo/OA9XZqJa/PyBAbA98a1unn7kPTWVP9DLuMFh5w7PS
-	 0ONqdkXq9B+rb9bsHg15/Pseae6siRjANAOz1JMGwPzciLYxF2wkjSrpWC5CAb6BG9
-	 WDwGBT0GUEa3u0bYk7TpkO3QuxC0eLB2W5EdvXN0naUhMKH9cUGDLtzIBZvsXbZRxD
-	 d+auQiUO2QDsFf38zZkOXQYbjjJQkKU8e3WtVl0p0T+JLBad7tFBDl5UTHBtbKYM5z
-	 XH8CLdsHPHDoQrhdbU7kStJxiHxoy2qhUdEdnGuuM7sUICBUyF1L09kW2vrdjfKzTY
-	 MGnG5YpivBwWA==
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e549a71dd3dso503091276.0;
-        Wed, 08 Jan 2025 14:43:42 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUlIro8IEM2q/GtWZwFSLipfDXjvq49n1O9s8+alylC6VIWDa7UfQ5xxoaXG32v+hWpe0LttfNOEg32a8vv@vger.kernel.org, AJvYcCXBYUrnVLvmEnPls1aM83oNBDfQp9iZBZMZh2GK7NlA8qjYv2GcwCCb57m1bYdrS+FmqZ7fgyX91hHk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQde03oY76dS4LCKKqAlG63bdLRtAy0LdcXJo2we/v5o6tbQa6
-	9CWSfu8csKY1Ai0gLdpzVBW02LcKP3Vo/Z1SF6e7QG6Gnwp20B83Qld95H4ZRHTWJzvZM2K4RyU
-	JDgN5oxwiNLzTzx8IJfertv4AlQ==
-X-Google-Smtp-Source: AGHT+IHebptiUC2IooqZqj6nRRfRj+vGpf4w0zNYFHU3vSx9U6vxKXCpBBUSy1BHrnDt5zHmhbtAyv5ncJM6R6rhH0Y=
-X-Received: by 2002:a05:690c:6a85:b0:6ef:6e34:6561 with SMTP id
- 00721157ae682-6f5312dd8c2mr41203567b3.32.1736376221245; Wed, 08 Jan 2025
- 14:43:41 -0800 (PST)
+	s=arc-20240116; t=1736376299; c=relaxed/simple;
+	bh=c6qzH6M04EpmnrxrnTUrfn1gPyfm5fau7DjBH79aYXU=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Co9OaV3aFt/IY24S8oexYC+aExjmQ8wL8xMmQoT8uvMAuX2WOqqZPaXY9n+ndJI92SB+EgsNIyMpxDAmzcgDMNV1gmTJgG4JeiqW78tOYBqgVTaHjqARZ2+2nE2naonmVnFrxrNXH2ifpXEWvCmvBi4BI9n18g3dqfQvqm6BJ9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fo8+Sb/Z; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7b6f95d2eafso30652485a.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 14:44:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1736376294; x=1736981094; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ql9KgAfRTbaAqeZqn0FEB+3SVYZKcwjQsk+4GLgd/tQ=;
+        b=fo8+Sb/ZMIuhddnml4a7zam7rxlmNTsGE4RY+DrzORvBANXr5vOwzBgD//oxVRpxXO
+         vmDeYoXQRrdaMeOrL995I9VDZNfUh2XqyyfbgosGSW4RasMNZYn7teSZ3s69pWrFH/me
+         X3vSmc2ROY5gvwETYIatIdnG3MZ9ppW8snuEg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736376294; x=1736981094;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Ql9KgAfRTbaAqeZqn0FEB+3SVYZKcwjQsk+4GLgd/tQ=;
+        b=kyvquYgVMxDmM+fdwoYa1H6y4KmhYiYJCPvt93mgQ5EjDnBzta4nRyGgFfI9Qp2OQC
+         nDqb4o/yWeCMYMnvUu5DeoZPg3KUp2W7s3k87ZopYv00dqE1pfyetLHTmxh0jN3puMLa
+         dcr0gEsmYyIz6COpH9TGNKDHQfZiXDw6YmFJwsBe6tEfFqIZimbo0htD3rLM969VwoXf
+         xlKrfwDiQEDnDI/Ntir5kCzkF05k9qlSY3IxmMacyW7EKKe2/f1zlgtiJq6yllo5qqLI
+         XOgVnjBoft+a33Ku2oliMG+1wS54KoIVWtLUh2KWfIcYa1jnino9VGdfvlvaxciy2hRn
+         kqNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU2lB6r+oUZeCHEdebKRMpo5OXQoRCwIwLuiZX3A75oD2E8fwh5J2QUdL77lfl5q+2joc8/RkSNcQq4@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJH6biSUcONFqoaiqVsKRfxnk1dCeqkb1Rs1/wwTxIhlHtEYf6
+	AC0GYm9m+Z3HgXI82HLNsaOix9BudBF5EmrGn5MbCT3t+C5xSh9cgYwHy8PYxR9YbYfM93rfbM6
+	+P8CW5f0Ur8PvQsDQYBaCMP9PhurYnFxqUhNB
+X-Gm-Gg: ASbGncvpmbIB579gixdxVZtd8lpjQ5q5cdjhRfa2hQZnTLnpQOiayLsl3VHBPxh32BV
+	QepxMUamStdUjyrNzm4O+Ksff4g36kVTod4MKbVcOGKTA46Qa7PdQt5cnf9Du8PAiJQ==
+X-Google-Smtp-Source: AGHT+IEO1UjbzlWHUzA9Gg/J/8qMV0j9bHf+zPg27HIqSiBhM4IvZGuoAL+oAG1OVL66PaeXK53g4W+9J5Q0ff2nIrA=
+X-Received: by 2002:a05:620a:19a3:b0:7b6:d273:9b52 with SMTP id
+ af79cd13be357-7bcd9709522mr745480585a.24.1736376294544; Wed, 08 Jan 2025
+ 14:44:54 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 8 Jan 2025 14:44:54 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87mskbqher.fsf@mail.lhotse> <20250108140414.13530-1-basharath@couthit.com>
-In-Reply-To: <20250108140414.13530-1-basharath@couthit.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 8 Jan 2025 16:43:29 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLLGW_o9i6a5wcUj=Z=4nL-GhzHwAQMFtQkb9OSHuSgTA@mail.gmail.com>
-X-Gm-Features: AbW1kvYjEG7vM8QkFQpwL9KtJtQb_zQFjb2jzkS5oK731zVX9h8TThp663OOIXE
-Message-ID: <CAL_JsqLLGW_o9i6a5wcUj=Z=4nL-GhzHwAQMFtQkb9OSHuSgTA@mail.gmail.com>
-Subject: Re: [PATCH] of: address: Unify resource bounds overflow checking
-To: Basharath Hussain Khaja <basharath@couthit.com>
-Cc: mpe@ellerman.id.au, thomas.weissschuh@linutronix.de, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, saravanak@google.com, danishanwar@ti.com, 
-	krishna@couthit.com, mohan@couthit.com, parvathi@couthit.com, 
-	pmohan@couthit.com
+In-Reply-To: <CAL_JsqKMcHPhf8yzEZNC6280-k+aSmo3SQOBZLMjmfTR47BH=g@mail.gmail.com>
+References: <20250108012846.3275443-1-swboyd@chromium.org> <20250108012846.3275443-2-swboyd@chromium.org>
+ <CAL_JsqKMcHPhf8yzEZNC6280-k+aSmo3SQOBZLMjmfTR47BH=g@mail.gmail.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Date: Wed, 8 Jan 2025 14:44:54 -0800
+X-Gm-Features: AbW1kvb1_nWtQftRF6WxL1bcdIY5RMcBpQuHQK_ddNANpT_CioCq0Ftpnme_gUw
+Message-ID: <CAE-0n52k0Gg85Ry4KyjE7Ms_dJgj=aPA4aPB5gmC-VGWSNLZXA@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/6] bus: Extract simple-bus into self-contained driver
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-kernel@vger.kernel.org, patches@lists.linux.dev, 
+	devicetree@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>, 
+	Conor Dooley <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 8, 2025 at 8:04=E2=80=AFAM Basharath Hussain Khaja
-<basharath@couthit.com> wrote:
->
-> Hi,
->
-> >> Thomas Wei=C3=9Fschuh <thomas.weissschuh@linutronix.de> writes:
-> >> > The members "start" and "end" of struct resource are of type
-> >> > "resource_size_t" which can be 32bit wide.
-> >> > Values read from OF however are always 64bit wide.
-> >> >
-> >> > Refactor the diff overflow checks into a helper function.
-> >> > Also extend the checks to validate each calculation step.
-> >> >
-> >> > Signed-off-by: Thomas Wei=C3=9Fschuh <thomas.weissschuh@linutronix.d=
-e>
-> >> > ---
-> >> >  drivers/of/address.c | 45 ++++++++++++++++++++++++++---------------=
-----
-> >> >  1 file changed, 26 insertions(+), 19 deletions(-)
-> >> >
-> >> > diff --git a/drivers/of/address.c b/drivers/of/address.c
-> >> > index 7e59283a4472..df854bb427ce 100644
-> >> > --- a/drivers/of/address.c
-> >> > +++ b/drivers/of/address.c
-> >> > @@ -198,6 +198,25 @@ static u64 of_bus_pci_map(__be32 *addr, const _=
-_be32 *range, int na, int ns,
-> >> >
-> >> >  #endif /* CONFIG_PCI */
-> >> >
-> >> > +static int __of_address_resource_bounds(struct resource *r, u64 sta=
-rt, u64 size)
-> >> > +{
-> >> > +     u64 end =3D start;
-> >> > +
-> >> > +     if (overflows_type(start, r->start))
-> >> > +             return -EOVERFLOW;
-> >> > +     if (size =3D=3D 0)
-> >> > +             return -EOVERFLOW;
-> >> > +     if (check_add_overflow(end, size - 1, &end))
-> >> > +             return -EOVERFLOW;
-> >> > +     if (overflows_type(end, r->end))
-> >> > +             return -EOVERFLOW;
-> >>
-> >> This breaks PCI on powerpc qemu. Part of the PCI probe reads a resourc=
-e
-> >> that's zero sized, which used to succeed but now fails due to the size
-> >> check above.
-> >>
-> >> The diff below fixes it for me.
+Quoting Rob Herring (2025-01-08 06:11:28)
+> On Tue, Jan 7, 2025 at 7:28=E2=80=AFPM Stephen Boyd <swboyd@chromium.org>=
+ wrote:
 > >
-> > I fixed it up with your change.
+> > Extract the simple bus into a self contained driver so that devices are
+> > still populated when a node has two (or more) compatibles with the leas=
+t
+> > specific one being the generic "simple-bus". Allow the driver to be a
+> > module so that in a fully modular build a driver module for the more
+> > specific compatible will be loaded first before trying to match this
+> > driver.
+> >
+> > Cc: Rob Herring <robh@kernel.org>
+> > Cc: Saravana Kannan <saravanak@google.com>
+> > Cc: <devicetree@vger.kernel.org>
+> > Cc: Arnd Bergmann <arnd@arndb.de>
+> > Cc: "Uwe Kleine-K=C3=B6nig" <u.kleine-koenig@baylibre.com>
+> > Cc: Bjorn Andersson <andersson@kernel.org>
+> > Cc: Konrad Dybcio <konradybcio@kernel.org>
+> > Cc: <linux-arm-msm@vger.kernel.org>
+> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> > ---
+> >  drivers/bus/Kconfig         | 23 +++++++++++
+> >  drivers/bus/Makefile        |  3 ++
+> >  drivers/bus/simple-bus.c    | 79 +++++++++++++++++++++++++++++++++++++
+> >  drivers/bus/simple-pm-bus.c |  2 +
+> >  drivers/of/platform.c       | 50 +++++++++++++++++++++++
+> >  5 files changed, 157 insertions(+)
+> >  create mode 100644 drivers/bus/simple-bus.c
+> >
+> > diff --git a/drivers/bus/Kconfig b/drivers/bus/Kconfig
+> > index ff669a8ccad9..7c2aa1350578 100644
+> > --- a/drivers/bus/Kconfig
+> > +++ b/drivers/bus/Kconfig
+> > @@ -261,6 +261,29 @@ config DA8XX_MSTPRI
+> >           configuration. Allows to adjust the priorities of all master
+> >           peripherals.
+> >
+> > +config ALLOW_SIMPLE_BUS_OVERRIDE
+> > +       bool "Allow simple-bus compatible OF nodes to match other drive=
+rs"
+> > +       depends on OF
+> > +       help
+> > +         Allow nodes with the "simple-bus" compatible to use a more sp=
+ecific
+> > +         driver which populates child devices itself.
 >
+> A kconfig option for this is not going to work. What does a distro kernel=
+ pick?
+
+I was thinking a distro kernel would set it to =3DY
+
 >
-> This commit is breaking Ethernet functionality on the TI AM57xx platform =
-due to zero byte SRAM block size allocation during initialization. Prior to=
- this patch, zero byte block sizes were handled properly.
+> > +
+> > +config OF_SIMPLE_BUS
+> > +       tristate "OF Simple Bus Driver"
+> > +       depends on ALLOW_SIMPLE_BUS_OVERRIDE || COMPILE_TEST
+> > +       default ALLOW_SIMPLE_BUS_OVERRIDE
+> > +       help
+> > +         Driver for the "simple-bus" compatible nodes in DeviceTree. C=
+hild
+> > +         nodes are usually automatically populated on the platform bus=
+ when a
+> > +         node is compatible with "simple-bus". This driver maintains t=
+hat
+> > +         feature but it fails probe to allow other drivers to try to p=
+robe
+> > +         with a more specific compatible if possible.
+> > +
+> > +         Those other drivers depend on this kconfig symbol so that the=
+y match
+> > +         the builtin or modular status of this driver. Don't disable t=
+his
+> > +         symbol if ALLOW_SIMPLE_BUS_OVERRIDE is set and there isn't an=
+other
+> > +         driver for the simple-bus compatible.
+>
+> Giving users some rope to hang themselves?
 
-What driver and where exactly?
+Heh.
 
-Rob
+>
+> > +
+> >  source "drivers/bus/fsl-mc/Kconfig"
+> >  source "drivers/bus/mhi/Kconfig"
+> >
+> > diff --git a/drivers/bus/Makefile b/drivers/bus/Makefile
+> > index cddd4984d6af..f3968221d704 100644
+> > --- a/drivers/bus/Makefile
+> > +++ b/drivers/bus/Makefile
+> > @@ -40,5 +40,8 @@ obj-$(CONFIG_VEXPRESS_CONFIG) +=3D vexpress-config.o
+> >
+> >  obj-$(CONFIG_DA8XX_MSTPRI)     +=3D da8xx-mstpri.o
+> >
+> > +# Must be last for driver registration ordering
+> > +obj-$(CONFIG_OF_SIMPLE_BUS)    +=3D simple-bus.o
+> > +
+> >  # MHI
+> >  obj-y                          +=3D mhi/
+> > diff --git a/drivers/bus/simple-bus.c b/drivers/bus/simple-bus.c
+> > new file mode 100644
+> > index 000000000000..3e39b9818566
+> > --- /dev/null
+> > +++ b/drivers/bus/simple-bus.c
+> > @@ -0,0 +1,79 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Simple Bus Driver
+> > + */
+> > +
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +static struct platform_driver simple_bus_driver;
+> > +
+> > +static int has_specific_simple_bus_drv(struct device_driver *drv, void=
+ *dev)
+> > +{
+> > +       /* Skip if it's this simple bus driver */
+> > +       if (drv =3D=3D &simple_bus_driver.driver)
+> > +               return 0;
+> > +
+> > +       if (of_driver_match_device(dev, drv)) {
+> > +               dev_dbg(dev, "Allowing '%s' to probe more specifically\=
+n", drv->name);
+> > +               return 1;
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int simple_bus_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device *dev =3D &pdev->dev;
+> > +       const struct of_dev_auxdata *lookup =3D dev_get_platdata(dev);
+> > +       struct device_node *np =3D dev->of_node;
+> > +
+> > +       /*
+> > +        * If any other driver wants the device, leave the device to th=
+e other
+> > +        * driver. Only check drivers that come after this driver so th=
+at if an
+> > +        * earlier driver failed to probe we don't populate any devices=
+, and
+> > +        * only check if there's a more specific compatible.
+> > +        */
+> > +       if (of_property_match_string(np, "compatible", "simple-bus") !=
+=3D 0 &&
+> > +           bus_for_each_drv(&platform_bus_type, &simple_bus_driver.dri=
+ver, dev,
+> > +                            has_specific_simple_bus_drv))
+> > +               return -ENODEV;
+>
+> If this driver is built-in and the specific driver is a module, this
+> doesn't work, right?
+
+Yes. The thinking is that if the specific driver is a module we would
+make the simple bus driver be a module as well.
+
+>
+> I think we're going to have to have a list of specific compatibles
+> that have or don't have a specific driver. Today, the list with
+> specific drivers is short, but that could easily change if this
+> becomes the way to handle things.
+
+Are you talking about simple_pm_bus_probe()? I don't know how to make a
+list of specific compatibles work because we can't know if the more
+specific driver has been compiled or shipped as a module. We could get
+stuck waiting forever for the specific driver to be registered, leading
+to what looks like a non-working system because the simple-bus driver
+refused to probe. I decided to punt on that problem by relying on
+userspace to load the specific driver module before the simple-bus one.
+Or if the two drivers are builtin then the specific driver would be
+registered before the simple-bus driver via link ordering and it will
+work.
+
+> We should consider if new platforms
+> should just avoid 'simple-bus' and use something new.
+
+Yes, I think new platforms should entirely avoid "simple-bus" for their
+SoC node.
+
+One idea I had was to populate the devices for simple-bus and then
+remove them if a more specific driver registers to allow the specific
+driver to bind and do what it wants. That's not great because we would
+almost always cycle through deleting devices and repopulating them,
+unless we play tricks with initcall ordering. The benefit is that we
+don't have to do gymnastics to avoid the probe of the simple-bus driver.
+
+Maybe the best approach is to simply avoid all of this and drop the
+"simple-bus" compatible from the soc node? It introduces an annoying
+hurdle where you have to enable the new driver that does exactly the
+same thing as "simple-bus" does so you continue to have a working
+system, but it avoids the headaches of trying to make the fallback to
+"simple-bus" work and it would match how new DTs would be written. We
+could make the driver 'default ARCH_<SOC_VENDOR>' so that it gets built
+for olddefconfig users too.
 
