@@ -1,79 +1,82 @@
-Return-Path: <devicetree+bounces-136778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9C8A06252
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11EF5A0625A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:44:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E09DD1889BB3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:43:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A6051883D06
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F9C202C5D;
-	Wed,  8 Jan 2025 16:40:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F36831FF7C0;
+	Wed,  8 Jan 2025 16:41:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M6MjskTG"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="VeX5kEvv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 488141FFC5C
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 16:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C361FF61A;
+	Wed,  8 Jan 2025 16:41:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736354419; cv=none; b=C8XC7eDqx6tbrXWEEb11aoD3IPnSEx9by4UI1/PnhpCjmKYzMQL5ZzULu1qx1IXeLjTHI5zCOOYzg7VSGAM7MKIjntjwAEpfVMlDUAImEazLiAHkHvhXxW6zZaHRzM30S2R2vdEQO7ayri24LRzRqPFF/eC2GaxXdR4nwOmCgxo=
+	t=1736354494; cv=none; b=dFcVTJ2+LLqgBZ4GDfsb9RcCqvySBJyNPp1xmd+THSWLnS7wWyhKiVpFToNOtDW92e5E5cusqgNi1aV19bnwgzpYFO+7tF12g6JbZqGTbAUJ/INP5eWKgzBISy9GzHGhbcdYzK4a1einIe/J58mOZTb12b8+xopnlcxfFot5ETc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736354419; c=relaxed/simple;
-	bh=WcjTfDkH9dXfEqgNl1DnowyrGJESQ3gBR/y+8lDI0CI=;
+	s=arc-20240116; t=1736354494; c=relaxed/simple;
+	bh=ESBuGREyX9ruJ5iqYydbCjaDAKiWH0OavmwQOIvKwd0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q3M4XYB2KgVICYz0w4psW4oeEnW+ZF28zMGn3YnYgm5uZObMhLU5UFV3N1TpVAroljGX+N+r2DP4oDSVms64do4epaBb2TvgqutvT7k3qN4jRW/TOzMIQO7XAdpaRYEoAcA4HlCv5iWoODYS9fU/+yiyDH0kJBU8GtvJqdVfM8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M6MjskTG; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-38637614567so7790100f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 08:40:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736354415; x=1736959215; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=deCdOEFNOf75jPBBQAgdeMZQiPxVvZH3Ou1tOWSHr6o=;
-        b=M6MjskTGFGI3QL+xtNc/Ke4HbG9jUGMtzX1URRKgeAgZSG5EM3eDCSuMIHGcIZVoal
-         zK3HLG3jKH/K/ERWUyIATPKKepTiFSoQPA3YCW9Zw9ZqBA7cDuCazmsrNZ11qzshJLa2
-         MD7mDng4boOJpjcyCEjcbPYaDrA1mwtw+nlG+DFs3tZOJRYtciUgWu+RMEa88JrTk/sY
-         6Jxb4gOm5EOVCJ0P4XHtpDH6fVXN3M/eo8qRwh6ZI+l6g7QGSMzAwi3LBciXJG4SVWqE
-         EzW47aDjuUddczdcE+MIui1rMg0tlIJIpBBjR5dh9OutHMtlRNxrT0rrSoNO1u0Z4Fsm
-         XYXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736354415; x=1736959215;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=deCdOEFNOf75jPBBQAgdeMZQiPxVvZH3Ou1tOWSHr6o=;
-        b=UGCQCVTVrrTJ34hHuBztPsX6kH9L65i4zcPg006/ve9EYBVmA150pqxUA5CiVsKVPc
-         V3P+H6vB45xA3rNkpRj2hdl82bhCYqHCztSU5D72UJrWCofEFuo2cKHDS5ZOjuP+Vb67
-         st8CS2oQw8ZplzXSdPyQIftTe/Pa7e3wCr0bK+JnGQs8AC047b2aIVxlWmlXwq00/+qT
-         8snZh+Cb2NfmGCK8QLGBIU7zf5yphr+bA5FuhdvD4uS8NbUWh5lT61e4R+irQgGuFzqr
-         YnpBk+vlNekymuVE2Etx0f9N3RZI7XfbTeCV6v67UFnzo10H8tDD0JfccKVfaFm1nUPY
-         7AeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFhN9Xv33ATIB/Yg2sWFIA62yz1/RbjBEBBfB+9AVN3fe5wxSqSjebCiFALPLkrMn122pfbvvZ/xyb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyW28SaNrFp6cBWMOSFVEhI9kN3NLsQW/yt7VYrkBQUOaIB2pJq
-	tPTIqhyP9TR612FX0Oi943cISEMVdDPZnBZZfoHiB7brmD8zGfC8KK0VIkWdyfU=
-X-Gm-Gg: ASbGncv39Q9UBD9g1dNvkEeheHlMRnt00yeZalDcLY8w3WWt73Qn3HISigIZ6OfIurc
-	rOPKf7gqYjiuibtq3Bf9kdQ7KLBbmmTyZoyNcUBaUzHrn1k3fI95fNPNcTWQH11iT9WbKfCU6Gf
-	MQWTUkjFPAp3ef9P3YeU7VREZhlF/6mdPRXQXDwaRsrB3NVieEdUJI4adWy26GM0rkpmPmr74jP
-	OhJ9uHBYkH7+TrQFwHLKFbO84jjq0NbrXWVDa0GOk3NEn/KrZiv2N1Bai1qiQC6pbNq7nhq6EAY
-	CTLfmxLvOgzu0Syhj4Sh
-X-Google-Smtp-Source: AGHT+IE4abllXEGQrABSU9KaQSrAPNt2UJoX+UrddjzVaSi3eoBYN+JcyuNs9drr9UEmuphRRteJdQ==
-X-Received: by 2002:a5d:5f52:0:b0:38a:50f7:240c with SMTP id ffacd0b85a97d-38a8735760fmr2780072f8f.47.1736354415474;
-        Wed, 08 Jan 2025 08:40:15 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436e2dc0bb7sm25990875e9.16.2025.01.08.08.40.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jan 2025 08:40:15 -0800 (PST)
-Message-ID: <076daca7-55e0-40d4-8ea5-93254ecd19b8@linaro.org>
-Date: Wed, 8 Jan 2025 17:40:14 +0100
+	 In-Reply-To:Content-Type; b=qwxWS//51w6mhM/ViGUUWiU9UtEKQpVGt8vrSvmtHRl000+75UdZK1cWre/JCxzSLwfZy73XKIPLayJ0WiHEW5LurT+PGMbQ50sBl8LiOISPx+Q57HrXS7xSiIq3SvhH96mxJxXtu926+oxZ+6aiH89Lxoh+y6aW+7NdP2wnNo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=VeX5kEvv; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508E6Uf6000755;
+	Wed, 8 Jan 2025 16:40:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=5TOBBH
+	qOyMS3+b4kdmRdFAaeLkCWkCmxH8nM0f3matc=; b=VeX5kEvv6hbysgCW66F8P3
+	xB0o/Zqz2DzsETrksxR2urmZYNmnmrst2bOKwm3rz89l9uKn6aWTbq3RlfJCK8Dz
+	yzfi+ci+/6Olf+mnowpzBsdvJYWi+az/eVnRIUF0AzwVN6y5437YqdXLEbiFsJca
+	J+/tPn8MezziAbxu+1MDwmUbi+sSvX8nIo6cGsmQk95KPzCqx5N6R/l83WzpKIDU
+	BnCZmQAKrGpvC7HWtNfUHZ7WTtUwYk6+6LEP1arJqC5FW7uB0ggP3I3yAJSc77io
+	FpWaJy79dVbjtT7cwjm2GWJ5AiPillkLrV080eW3x/UXygC2elAXHKypp/e2Y/Ig
+	==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 441tu5gpw0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Jan 2025 16:40:42 +0000 (GMT)
+Received: from m0353725.ppops.net (m0353725.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 508GY3r1007659;
+	Wed, 8 Jan 2025 16:40:41 GMT
+Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 441tu5gpvu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Jan 2025 16:40:41 +0000 (GMT)
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma11.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 508Ei9SX026179;
+	Wed, 8 Jan 2025 16:40:40 GMT
+Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
+	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 43yj128drg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Jan 2025 16:40:40 +0000
+Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com [10.39.53.229])
+	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 508GeecU33096362
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 8 Jan 2025 16:40:40 GMT
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 3AFAE58058;
+	Wed,  8 Jan 2025 16:40:40 +0000 (GMT)
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id A6BDD58059;
+	Wed,  8 Jan 2025 16:40:38 +0000 (GMT)
+Received: from [9.24.12.86] (unknown [9.24.12.86])
+	by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Wed,  8 Jan 2025 16:40:38 +0000 (GMT)
+Message-ID: <eeee4fac-49b4-4ca5-96a7-d074a154c698@linux.ibm.com>
+Date: Wed, 8 Jan 2025 10:40:38 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,42 +84,147 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: timer: exynos4210-mct: Add
- samsung,exynos990-mct compatible
-To: Igor Belwon <igor.belwon@mentallysanemainliners.org>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-References: <20250104-cmu-nodes-v1-0-ae8af253bc25@mentallysanemainliners.org>
- <20250104-cmu-nodes-v1-1-ae8af253bc25@mentallysanemainliners.org>
+Subject: Re: [PATCH v2 02/10] bindings: ipmi: Add binding for IPMB device intf
+To: Rob Herring <robh@kernel.org>
+Cc: minyard@acm.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, ratbert@faraday-tech.com,
+        openipmi-developer@lists.sourceforge.net, netdev@vger.kernel.org,
+        joel@jms.id.au, andrew@codeconstruct.com.au,
+        devicetree@vger.kernel.org, eajames@linux.ibm.com,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+References: <20250107162350.1281165-1-ninad@linux.ibm.com>
+ <20250107162350.1281165-3-ninad@linux.ibm.com>
+ <20250107231311.GA1965288-robh@kernel.org>
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20250104-cmu-nodes-v1-1-ae8af253bc25@mentallysanemainliners.org>
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <20250107231311.GA1965288-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: _jrtb6V25uHEEaH06T2WnmoHwGUcggFZ
+X-Proofpoint-ORIG-GUID: XJ4GUB3CwPUykCi4vVr_Tm-vLPt7okCO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ mlxlogscore=999 adultscore=0 bulkscore=0 impostorscore=0 clxscore=1015
+ suspectscore=0 phishscore=0 malwarescore=0 spamscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501080137
 
-On 04/01/2025 21:54, Igor Belwon wrote:
-> Add a dedicated compatible for the MCT of the Exynos 990 SoC.
-> The design for the timer is reused from previous SoCs.
-> 
-> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-> ---
+Hello Rob,
 
-Applied patch 1/2
+Thanks for the review.
 
-Thanks
+On 1/7/25 17:13, Rob Herring wrote:
+> On Tue, Jan 07, 2025 at 10:23:39AM -0600, Ninad Palsule wrote:
+>> Add device tree binding document for the IPMB device interface driver.
+> Please mention this is already is already in use both in a driver and
+> .dts files.
+>
+>> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+>> ---
+>>   .../devicetree/bindings/ipmi/ipmb-dev.yaml    | 42 +++++++++++++++++++
+>>   1 file changed, 42 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/ipmi/ipmb-dev.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/ipmi/ipmb-dev.yaml b/Documentation/devicetree/bindings/ipmi/ipmb-dev.yaml
+>> new file mode 100644
+>> index 000000000000..9136ac8004dc
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/ipmi/ipmb-dev.yaml
+>> @@ -0,0 +1,42 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/ipmi/ipmb-dev.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: IPMB Device Driver
+> Bindings are for devices, not drivers. Drop 'Driver'. It's a stretch
+> that IPMB is even a device, but since there are already a few users, I
+> guess we're stuck with it.
+Updated the title.
+>
+>> +
+>> +description: IPMB Device Driver bindings
+> No point in a description that just repeats the title. Please expand
+> this. For example, AIUI, this is for the device end, not the BMC end.
+Updated the description.
+>> +
+>> +maintainers:
+>> +  - Ninad Palsule <ninad@linux.ibm.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ipmb-dev
+>> +
+>> +  reg:
+>> +    maxItems: 1
+> As this is the slave end, I2C_OWN_SLAVE_ADDRESS should be set. So:
+>
+> minimum: 0x40000000
+> maximum: 0x4000007f
 
-   -- Daniel
+The dt_check script doesn't allow min, max for the reg type.
 
+/home/ninad/dev/sbp1/linux/Documentation/devicetree/bindings/ipmi/ipmb-dev.yaml: 
+properties:reg: 'minimum' should not be valid under {'enum': ['const', 
+'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 
+'multipleOf', 'pattern']}
+     hint: Scalar and array keywords cannot be mixed
+     from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/home/ninad/dev/sbp1/linux/Documentation/devicetree/bindings/ipmi/ipmb-dev.yaml: 
+properties:reg: 'maximum' should not be valid under {'enum': ['const', 
+'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 
+'multipleOf', 'pattern']}
+     hint: Scalar and array keywords cannot be mixed
+     from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
 
+>
+> Maybe 10-bit addressing has to be supported too?
+Driver only uses 7 and 8 bit addresses
+>
+>> +
+>> +  i2c-protocol:
+>> +    description:
+>> +      This property specifies that the I2C block transfer should be performed
+>> +      instead of SMBUS block transfer.
+> This can be more concisely said:
+>
+> Use I2C block transfer instead of SMBUS block transfer.
+Done
+>
+>> +    type: boolean
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +        i2c@10 {
+> 'i2c' node name is for i2c buses and this is not one. 'ipmb' is probably
+> fine here.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Done
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Regards,
+
+Ninad
+
+>> +            compatible = "ipmb-dev";
+>> +            reg = <0x10>;
+>> +            i2c-protocol;
+>> +        };
+>> +    };
+>> -- 
+>> 2.43.0
+>>
 
