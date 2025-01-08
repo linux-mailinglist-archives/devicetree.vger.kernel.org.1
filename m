@@ -1,100 +1,170 @@
-Return-Path: <devicetree+bounces-136743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09112A06126
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:10:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DDC4A06141
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:14:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B0D8166DE9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:10:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 015AD1889297
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171E51FF5F5;
-	Wed,  8 Jan 2025 16:10:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072761FF1A7;
+	Wed,  8 Jan 2025 16:14:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pmK3jqfY"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FDjsaZgj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08C91FF5E3;
-	Wed,  8 Jan 2025 16:10:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAB5315B99E;
+	Wed,  8 Jan 2025 16:14:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736352617; cv=none; b=OtpPC8NiaPOBclZGLIVNl8ms/nbw9+pxWy2bsqgX07A6irFywOXhWpMJACgiw7S2zSyvJjHmuuLNIJWDYfoHjJJgeXNz10gRzAJlNm6T4UxzNLnQL+J31ZAHk8DdJ26SbUb8Ao1VCScRZ6U+K91ma89Z7bMImClqNnede6Oy8rA=
+	t=1736352860; cv=none; b=avT4QWfkpySOQUF2JhuZDkdV94vloeljJMYKs4EE1OscLTZCeb6gD4k0+NhGbtykhOYruP+w9sOR98f97iiHTRTKvweVluS1O2dMZStK5HC/LELyZHRelS0BUZWg4NRYNPY8YhTeFGlTi1MpI9k8DYQD1TjhLL7QbOAaga9ZYAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736352617; c=relaxed/simple;
-	bh=sIXYrLDh4aKsTXlsI3p99yuWRTuR2cFlH0iw5Y/uikY=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=DdBgbkUwWD5Mi0mlU8G1Q1B0HK1BkFnrAWTY5VVhodwXSgF8QCagl4X0KszORk8WCRsGXQj4LO5BDyygTlqO6i5H8/FINI4sjeTwOlOt/7g1ABWDrl8YM7qcIQg9HCSdElSjLgYFgWYCU0/aPYRMu7mbYAlv0d/xIS2hyTeUSJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pmK3jqfY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFE3CC4CED3;
-	Wed,  8 Jan 2025 16:10:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736352616;
-	bh=sIXYrLDh4aKsTXlsI3p99yuWRTuR2cFlH0iw5Y/uikY=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=pmK3jqfY0+MoixMACScjpa034KgcRc+lVtHcTm1q9NCdH7Altklqg32kngEq56eba
-	 G9xDkiFLC7GSEsVOA2wXXCzJzdxQsqsGdJq7DbU8TpZo9CDiuX5WRJLPavhO0zTj7M
-	 WsO1MRlQ5dtWZx/2Vfgv9H79Q6N39eblnjw0G2/awVtW/Qp2W2ggD/tSIuabYUKEEE
-	 TJ+IUQqvunjyUgpwMu7GtjAQzTe22ENSNWGrEI8tULRcZYYXoId3aXQJnwWirHbozd
-	 uPysCE/RDCbQARzMNwupNTnqChARZykoXPrtCGZKYUlFPPJZHtR3VP/P5RDhykgTqE
-	 7xAl+KAIZ8Epg==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 714C7380A965;
-	Wed,  8 Jan 2025 16:10:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1736352860; c=relaxed/simple;
+	bh=OimlhYfhEvYezHgnmUneJlEN0kOFMln6m5Z0HQRE+Dc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Gccv5o+45dhVcVy7LUcc/ndwkG7mu2MrB5xuuqvPJX948wzjnHxEpjucvwXFRLHX2WYvZ/gOCHk49J8n0UCdIRzoMSNhGf035gnFH77ioxJNUdqlFmgvuOA1wN6YBNHOL0RIb9Ig9wCYjixITGmlnbj0zA6gDUQKpBQ7LftycbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FDjsaZgj; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4D53C60003;
+	Wed,  8 Jan 2025 16:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736352849;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ltOp1lazBa+2SrC05korzws55yt4T6BvhTKZdfJI2y4=;
+	b=FDjsaZgjQLvDUX04oLMwtvq7hu83iBQmcxkYMqDAGkChNUZSHi4ZoXDjhgI25SezTCT6bF
+	AcAosmBYbMj+W2cbgFWmeqj2wqb8GjlhiQ1TPHx3SCQ77N5hDwCg3vpwKwAOuNMVjGStiX
+	WEDjVjbHofi/16iyXX2i+Btea3gVxqCAEM4paNApRrWvYDJ21wE9iAjdARjIN+2xfxeeNI
+	3mWOhGvIBn0+frjgRSRg9eV5iZrUR3HywL3INuHFVFaU2BO/EciF/AiFpPqcEccBtB/S9l
+	M7mSFjPXygAOQ/gbYedI0WnyL9+P3A8xEwg/XgCsXTOQwqCQiV/tbr3xhBh7qA==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH v5 0/9] misc: Support TI FPC202 dual-port controller
+Date: Wed, 08 Jan 2025 17:14:01 +0100
+Message-Id: <20250108-fpc202-v5-0-a439ab999d5a@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v6 RESEND 0/3] Expand firmware-name property to load specific
-From: patchwork-bot+bluetooth@kernel.org
-Message-Id: 
- <173635263823.697160.13231849851313043929.git-patchwork-notify@kernel.org>
-Date: Wed, 08 Jan 2025 16:10:38 +0000
-References: <20250107092650.498154-1-quic_chejiang@quicinc.com>
-In-Reply-To: <20250107092650.498154-1-quic_chejiang@quicinc.com>
-To: Cheng Jiang <quic_chejiang@quicinc.com>
-Cc: marcel@holtmann.org, luiz.dentz@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, quic_bgodavar@quicinc.com,
- quic_rjliao@quicinc.com, linux-bluetooth@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_jiaymao@quicinc.com, quic_shuaz@quicinc.com, quic_zijuhu@quicinc.com,
- quic_mohamull@quicinc.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEqkfmcC/2XO0Q6CIBQG4FdpXEeDA4J01Xu0LgQh2UqaNldzv
+ ntHW2rz7vxnfP+hJ61vom/JcdeTxnexjanGkO13xFVFffU0lpgJMJCccU3Dw+FMVWBWC4Ozzgk
+ +fjQ+xNdUdL5grmL7TM176u34uP1WcJb/KjpOGQ1eglMmt87Ayab0vMX64NKdjCUdrCBfICDUU
+ noZuIECyi0UKwjZDAVCIX2urLOZzdQWygWCYDOU40XFLRhd4nf1PxyG4QN/QUszSQEAAA==
+X-Change-ID: 20241017-fpc202-6f0b739c2078
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, 
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-media@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ Romain Gantois <romain.gantois@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Hello:
+Hello everyone,
 
-This series was applied to bluetooth/bluetooth-next.git (master)
-by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
+This is version five of my series which adds support for the TI FPC202
+dual-port controller. This is an unusual kind of device which is used as a
+low-speed signal aggregator for various types of SFP-like hardware ports.
 
-On Tue,  7 Jan 2025 17:26:47 +0800 you wrote:
-> Expand the firmware-name property to specify the names of NVM and
-> rampatch firmware to load.
-> 
-> This update will support loading specific firmware (nvm and rampatch)
-> for certain chips, like the QCA6698 Bluetooth chip, which shares the
-> same IP core as the WCN6855 but has different RF components and RAM
-> sizes, requiring new firmware files.
-> 
-> [...]
+The FPC202 exposes an I2C, or SPI (not supported in this series) control
+interface, which can be used to access two downstream I2C busses, along
+with a set of low-speed GPIO signals for each port. It also has I2C address
+translation (ATR) features, which allow multiple I2C devices with the same
+address (e.g. SFP EEPROMs at address 0x50) to be accessed from the upstream
+control interface on different addresses.
 
-Here is the summary with links:
-  - [v6,RESEND,1/3] dt-bindings: net: bluetooth: qca: Expand firmware-name property
-    https://git.kernel.org/bluetooth/bluetooth-next/c/8c6fb157eb03
-  - [v6,RESEND,2/3] Bluetooth: qca: Update firmware-name to support board specific nvm
-    https://git.kernel.org/bluetooth/bluetooth-next/c/ad3f4635a796
-  - [v6,RESEND,3/3] Bluetooth: qca: Expand firmware-name to load specific rampatch
-    https://git.kernel.org/bluetooth/bluetooth-next/c/be6ff38d6852
+I've chosen to add this driver to the misc subsystem, as it doesn't
+strictly belong in either the i2c or gpio sybsystem, and as far as I know
+it is the first device of its kind to be added to the kernel.
 
-You are awesome, thank you!
+Along with the FPC202 driver itself, this series also adds support for
+dynamic address translation to the i2c-atr module. This allows I2C address
+translators to update their translation table on-the-fly when they receive
+transactions to unmapped clients. This feature is needed by the FPC202
+driver to access up to three logical I2C devices per-port, given that the
+FPC202 address translation table only has two address slots.
+
+Best Regards,
+
+Romain
+
+Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+---
+Changes in v5:
+- Used mutex guards in ub960 and fpc202 drivers
+- Changed wording of some i2c-atr logs
+- Link to v4: https://lore.kernel.org/r/20241230-fpc202-v4-0-761b297dc697@bootlin.com
+
+Changes in v4:
+- Fixed unbalanced refcounting in FPC202 port probing path
+- Fixed KASAN bug by setting alias_pool "shared" flag properly
+- Dropped requirement for both FPC202 ports to be described in the DT
+- Enabled dynamic translation by default, dropped support for non dynamic translation
+- Used aliased_addrs list instead of insufficient bitmap in ub960 driver
+- Added i2c_atr_destroy_c2a() function matching i2c_atr_create_c2a()
+- Fixed list corruption bug in dynamic address translation
+- Indented Kconfig entry with tabs instead of spaces
+- Link to v3: https://lore.kernel.org/r/20241125-fpc202-v3-0-34e86bcb5b56@bootlin.com
+
+Changes in v3:
+- Described the "reg" property of downstream ports in the FPC202 bindings
+- Link to v2: https://lore.kernel.org/r/20241118-fpc202-v2-0-744e4f192a2d@bootlin.com
+
+Changes in v2:
+- Renamed port nodes to match i2c adapter bindings.
+- Declared atr ops struct as static const.
+- Free downstream ports during FPC202 removal.
+- Link to v1: https://lore.kernel.org/r/20241108-fpc202-v1-0-fe42c698bc92@bootlin.com
+
+---
+Romain Gantois (9):
+      dt-bindings: misc: Describe TI FPC202 dual port controller
+      media: i2c: ds90ub960: Replace aliased clients list with address list
+      media: i2c: ds90ub960: Protect alias_use_mask with a mutex
+      i2c: use client addresses directly in ATR interface
+      i2c: move ATR alias pool to a separate struct
+      i2c: rename field 'alias_list' of struct i2c_atr_chan to 'alias_pairs'
+      i2c: support per-channel ATR alias pools
+      i2c: Support dynamic address translation
+      misc: add FPC202 dual port controller driver
+
+ .../devicetree/bindings/misc/ti,fpc202.yaml        |  94 ++++
+ MAINTAINERS                                        |   7 +
+ drivers/i2c/i2c-atr.c                              | 483 ++++++++++++++-------
+ drivers/media/i2c/ds90ub913.c                      |   9 +-
+ drivers/media/i2c/ds90ub953.c                      |   9 +-
+ drivers/media/i2c/ds90ub960.c                      |  49 ++-
+ drivers/misc/Kconfig                               |  11 +
+ drivers/misc/Makefile                              |   1 +
+ drivers/misc/ti_fpc202.c                           | 440 +++++++++++++++++++
+ include/linux/i2c-atr.h                            |  54 ++-
+ 10 files changed, 966 insertions(+), 191 deletions(-)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20241017-fpc202-6f0b739c2078
+
+Best regards,
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Romain Gantois <romain.gantois@bootlin.com>
 
 
