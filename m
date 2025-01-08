@@ -1,120 +1,162 @@
-Return-Path: <devicetree+bounces-136836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C17A0686D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:35:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4338AA0686A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:35:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D91F7A03D6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:35:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3644A162EE7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:35:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D08B5204F66;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937B2204C32;
 	Wed,  8 Jan 2025 22:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EIHCTyPl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rx9HS+yp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F5EB204C37;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67845204C2A;
 	Wed,  8 Jan 2025 22:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736375696; cv=none; b=byCUajAHoTSyL/mzdeUlhaJDmU8WvQi1qmkDyD1lYE7zXgGI4pi0wu3zPq3tScixWEB3YSDaDfTjWIikRWKdf/2hI/LjyzTIAyTLMr03cR/Irlr2kYPM/38YgLTUbTvoy7qdiakExMUEASnRxwe8Td3wa1eQOOinVTlIinq7LgA=
+	t=1736375696; cv=none; b=MyhUoDhFU/2DDiUwKpQOcAgjOUgPyC19RTRGSLFzj3ntWqbzgzCKUp9/Tl1A6N5SoFgyJ/NG7km8xIE8VvFs7QY4MrnG5OXWmXwc3ARkynN0LVLsZMveaU4sWsiu6BmcSfyYz9jvwcT2woNgmZq4JsgGx5VefmJ4lJmJhyEwfpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1736375696; c=relaxed/simple;
-	bh=c1y6CJhU0MlPeCvA4ixwlFby2yJDyQrNFh2NOkdJtUE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gKf9CRGWfXv844HHfjjH+7VxW/E+gEo03uPmwlzCGi4u9vTQi/uqh+i6m1M0aELdfX0cuM+YECMVz674Ne5s61KPCigFHIOlf/BGVrttG0VSrdzNRI/PjQ4ApVqOqzeFF47gyv9u/XA44GUc2WiHPXtB1HzbyRfqXNZkxdp/E/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EIHCTyPl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D027C4CEE1;
+	bh=qUnfcLL7DmzaEUrl0dbIayBRi5xKxhUN4wvIeYtQsiE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=HPnYeI5Da3hgtkImZaWgmfqtl3b3sovJlDs9Y0HVdb9guKxINgfBgpZmlOKFOtvm1iKyfipFkw4LY6IXPO3E3UrbtgWec/9k/1aSPIMdn7oezwV3C2jiuU3/v2tlEGOxADrQhYU4X8GssRQw2WtvYoT6MuXUoQ4Fx7ArCcri5yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rx9HS+yp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4886C4CEE8;
 	Wed,  8 Jan 2025 22:34:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736375696;
-	bh=c1y6CJhU0MlPeCvA4ixwlFby2yJDyQrNFh2NOkdJtUE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EIHCTyPld8Y4L74iZF0RoQek8FV2iZ0i01TbFRDYQ4oC1lyy4jBGlD/WJaVrXJn9/
-	 fl6Qc3uQiSTjsLDEkLc3VQktvFqxjc8za0M4sCFAj3MsgkH+I7LGLWnaSeg8FVZF9F
-	 43hdwuGpOQS63V1Fw6AnRS4b2nA48yqzdmWUxZ0Xlm8c5OGG90ZzQhRlu13TUEjaNr
-	 f7KqwVobj/ysPQetvKWLMGFhV178sIxFlCMAQjSXFffYfkaCKbDV9wQs+SaFUcDF2J
-	 sAtXYFvG1PAUG2UIfbdW96eAEBRo0FnmVQIxJ855NnEhbYJOEfgj+hJit8SDNAd7l5
-	 HCvFXQOjTb4bg==
-Date: Wed, 8 Jan 2025 16:34:53 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Qingqing Zhou <quic_qqzhou@quicinc.com>
-Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, robimarko@gmail.com, will@kernel.org, robin.murphy@arm.com, 
-	joro@8bytes.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs615: add the GPU SMMU node
-Message-ID: <fgcpk3dxmhsqvjijzcben53f4gpihkc7fwyzafih4fgubbz7j6@qzpqjaudfnxi>
-References: <20241122074922.28153-1-quic_qqzhou@quicinc.com>
- <20241122074922.28153-3-quic_qqzhou@quicinc.com>
+	s=k20201202; t=1736375695;
+	bh=qUnfcLL7DmzaEUrl0dbIayBRi5xKxhUN4wvIeYtQsiE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=rx9HS+ypENvBSNz7FKOl8bkHLl1SbM8t+gqHIOQotCIDp8bxrVNiW9XYEW10gtsya
+	 W4rmJpKVx7zU0hdcdV/tWYhLOPfZy0bLJp0fZecRmssDaq/C+1bVug9adxB+qR4/6Q
+	 ywpU2mwAUOHD4FNWKVEiH3abDCvGLtqI96nzCdLeFe5UVqSxA15YHWJIkmn5JDDcwP
+	 IQYOdC/GZdQX81Q15tu3OubbAoulheSnKZ/JSB1/s1Pfhg2SNlUapeHecFPJnt43os
+	 e7DivjNux5+Pw9vGFxP0f7lX14mt4+Lzed1akpRCOMlar7IoD2RoBeC8O9CwKXOgWy
+	 sjWhU8zkbaHew==
+Date: Wed, 08 Jan 2025 16:34:54 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241122074922.28153-3-quic_qqzhou@quicinc.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: lpieralisi@kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pci@vger.kernel.org, joyce.ooi@intel.com, bhelgaas@google.com, 
+ krzk+dt@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+ devicetree@vger.kernel.org, matthew.gerlach@altera.com, dinguyen@kernel.org, 
+ conor+dt@kernel.org
+To: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+In-Reply-To: <20250108165909.3344354-1-matthew.gerlach@linux.intel.com>
+References: <20250108165909.3344354-1-matthew.gerlach@linux.intel.com>
+Message-Id: <173637565876.1164245.9757409308054353190.robh@kernel.org>
+Subject: Re: [PATCH v3 0/5] Add PCIe Root Port support for Agilex family of
+ chips
 
-On Fri, Nov 22, 2024 at 01:19:22PM +0530, Qingqing Zhou wrote:
-> Add the Adreno GPU SMMU node for QCS615 platform.
+
+On Wed, 08 Jan 2025 10:59:04 -0600, Matthew Gerlach wrote:
+> This patch set adds PCIe Root Port support for the Agilex family of FPGA chips.
+> Version 3 of this patch set removes patches that have been accepted.
+> 
+> Patch 1:
+>   Add new compatible strings for the three variants of the Agilex PCIe controller IP.
+> 
+> Patch 2:
+>   Add a label to the soc@0 device tree node to be used by patch 5.
+> 
+> Patch 3:
+>   Add base dtsi for PCIe Root Port support of the Agilex family of chips.
+> 
+> Patch 4:
+>   Add dts enabling PCIe Root Port support on an Agilex F-series Development Kit.
+> 
+> Patch 5:
+>   Update Altera PCIe controller driver to support the Agilex family of chips.
+> 
+> D M, Sharath Kumar (1):
+>   PCI: altera: Add Agilex support
+> 
+> Matthew Gerlach (4):
+>   dt-bindings: PCI: altera: Add binding for Agilex
+>   arm64: dts: agilex: add soc0 label
+>   arm64: dts: agilex: add dtsi for PCIe Root Port
+>   arm64: dts: agilex: add dts enabling PCIe Root Port
+> 
+>  .../bindings/pci/altr,pcie-root-port.yaml     |   9 +
+>  arch/arm64/boot/dts/intel/Makefile            |   1 +
+>  arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |   2 +-
+>  .../socfpga_agilex7f_socdk_pcie_root_port.dts |  16 ++
+>  .../intel/socfpga_agilex_pcie_root_port.dtsi  |  55 ++++
+>  drivers/pci/controller/pcie-altera.c          | 246 +++++++++++++++++-
+>  6 files changed, 319 insertions(+), 10 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+>  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+> 
+> --
+> 2.34.1
+> 
+> 
 > 
 
-Please resubmit this in a series together with gpucc, gmu and gpu nodes.
 
-Regards,
-Bjorn
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs615.dtsi | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> index 56af38d4f75f..4e0f26563db9 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> @@ -528,6 +528,33 @@
->  			#power-domain-cells = <1>;
->  		};
->  
-> +		adreno_smmu: iommu@50a0000 {
-> +			compatible = "qcom,qcs615-smmu-500", "qcom,adreno-smmu",
-> +				     "qcom,smmu-500", "arm,mmu-500";
-> +			reg = <0x0 0x50a0000 0x0 0x10000>;
-> +			#iommu-cells = <2>;
-> +			#global-interrupts = <1>;
-> +			dma-coherent;
-> +
-> +			power-domains = <&gpucc CX_GDSC>;
-> +			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
-> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>;
-> +			clock-names = "mem",
-> +				      "hlos",
-> +				      "iface";
-> +
-> +			interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 595 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 596 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
->  		dc_noc: interconnect@9160000 {
->  			reg = <0x0 0x09160000 0x0 0x3200>;
->  			compatible = "qcom,qcs615-dc-noc";
-> -- 
-> 2.17.1
-> 
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y intel/socfpga_agilex7f_socdk_pcie_root_port.dtb' for 20250108165909.3344354-1-matthew.gerlach@linux.intel.com:
+
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /firmware/svc: failed to match any schema with compatible: ['intel,agilex-svc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /firmware/svc/fpga-mgr: failed to match any schema with compatible: ['intel,agilex-soc-fpga-mgr']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: cb-intosc-hs-div2-clk: 'clock-frequency' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: cb-intosc-ls-clk: 'clock-frequency' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: f2s-free-clk: 'clock-frequency' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: clock-controller@ffd10000: 'clocks' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/intel,agilex.yaml#
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff800000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff800000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff802000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff802000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff804000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff804000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr: failed to match any schema with compatible: ['altr,socfpga-s10-ecc-manager', 'altr,socfpga-a10-ecc-manager']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr: failed to match any schema with compatible: ['altr,socfpga-s10-ecc-manager', 'altr,socfpga-a10-ecc-manager']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/sdramedac: failed to match any schema with compatible: ['altr,sdram-edac-s10']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/ocram-ecc@ff8cc000: failed to match any schema with compatible: ['altr,socfpga-s10-ocram-ecc', 'altr,socfpga-a10-ocram-ecc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/ocram-ecc@ff8cc000: failed to match any schema with compatible: ['altr,socfpga-s10-ocram-ecc', 'altr,socfpga-a10-ocram-ecc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/usb0-ecc@ff8c4000: failed to match any schema with compatible: ['altr,socfpga-s10-usb-ecc', 'altr,socfpga-usb-ecc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/usb0-ecc@ff8c4000: failed to match any schema with compatible: ['altr,socfpga-s10-usb-ecc', 'altr,socfpga-usb-ecc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/emac0-rx-ecc@ff8c0000: failed to match any schema with compatible: ['altr,socfpga-s10-eth-mac-ecc', 'altr,socfpga-eth-mac-ecc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/emac0-rx-ecc@ff8c0000: failed to match any schema with compatible: ['altr,socfpga-s10-eth-mac-ecc', 'altr,socfpga-eth-mac-ecc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/emac0-tx-ecc@ff8c0400: failed to match any schema with compatible: ['altr,socfpga-s10-eth-mac-ecc', 'altr,socfpga-eth-mac-ecc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/emac0-tx-ecc@ff8c0400: failed to match any schema with compatible: ['altr,socfpga-s10-eth-mac-ecc', 'altr,socfpga-eth-mac-ecc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/sdmmca-ecc@ff8c8c00: failed to match any schema with compatible: ['altr,socfpga-s10-sdmmc-ecc', 'altr,socfpga-sdmmc-ecc']
+arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/sdmmca-ecc@ff8c8c00: failed to match any schema with compatible: ['altr,socfpga-s10-sdmmc-ecc', 'altr,socfpga-sdmmc-ecc']
+
+
+
+
+
 
