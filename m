@@ -1,53 +1,78 @@
-Return-Path: <devicetree+bounces-136753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C487A06166
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:15:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35930A06184
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:18:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D9F4162E90
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:15:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3111B166C8E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122C420101F;
-	Wed,  8 Jan 2025 16:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D551FF7C2;
+	Wed,  8 Jan 2025 16:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AQQPVv15"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oSg0/fkP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14BF1FF1D9;
-	Wed,  8 Jan 2025 16:14:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FEC1FF61D
+	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 16:15:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736352865; cv=none; b=ArQWSSdzAZ645W/rusDPK2spIna3eiqX69poUoF93uq74XW5rGkYJtP9cgLvEDfbR13WpNQKcdr/hoATqDZg6AT8Qi2T2DJxFIe/ux0ssw2dSrk+PZJXpx/GtZMv8Afsa0DURI1jo/v4LxR0BSbF2BlfJPdfXOMCfwRgJei45VA=
+	t=1736352952; cv=none; b=iIf64QNJ1TxqjR1+6EIFaIRqjpQ2joC6qhOnxaNtQgSgavwlbNFPgeoB9q8sx6c3kJkcu6zMKEN36MR0MeKjc9gXfrHpeGE4M8jr44MMzKVcXN4uEU3h71EJaYBPqyQJQlOuWFjDvqdxgzE4vHDBug0g07FbPByBy/Aquy93wjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736352865; c=relaxed/simple;
-	bh=WNfXDPdSG6eniawazYH+PzGVkHaLuuiwwHqC0ol1kFE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VlfAeFK0atVFdwWEskUkYvBR+IxSDqJZv7WBZoTbtDVlBoNKxnSXTOvzOIm0/VC0VIpLkwBT4UpsvIN2Ui6J+GNgkoZllewDzVcy6odS0AlsRoD+0v/jv73skcV/EkugGk6iBWuiknlpjFvDdNc1NoL7r94BwIPeTY27n3HRP9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AQQPVv15; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 148FD60011;
-	Wed,  8 Jan 2025 16:14:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736352860;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=AeFWjpwRRSFYTDdyfQNzPckQyxB6BcLqkMuH3YbTxvQ=;
-	b=AQQPVv15j/ZGyM8rnMRIHa3WW+jI6hewlz7jyDWmVeXJQwr+vJ5vCyEvrtORviRS3uxLiu
-	CRxd+qxUVwm3VnBpWpZRs3I4CEYTOYMUpgMpU2nGlsxBrSJ/3tx1mHMynyJsuatgMYqMRX
-	5+czA6863kyItJHy7iDblk4Vb19kxG9nR6VeNftOQrufyofPl6sVbA96vhkoEiORfBgdsW
-	NVILDSd2wqJXn71hw26NC66udmqRg0QJFvOdSDdJHeYCj6ivn5h9EuIpQ2DPCzh/fLpErq
-	927P+/ttxjfIneSZvqJ3mwNsUyMhmXnDIkMmTMtr6hIo17YH4Gy0Yt0DTTib4g==
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Wed, 08 Jan 2025 17:14:10 +0100
-Subject: [PATCH v5 9/9] misc: add FPC202 dual port controller driver
+	s=arc-20240116; t=1736352952; c=relaxed/simple;
+	bh=9M5KGNUL9vwlasksx/eWxH2UHxU8J0vFX1+wbxwtEUA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iFisMXOLLXydkqeaR0FHEbSnKe969mtKPKboaI19LguqMGHEovvN+g4Ju4nIWuz890ETCXKx7Anobvc6nulNHGQH0sRPSOnJvi6LULR1dwkkZxfv/Q9mwl/mEGREpgd2A7Pg9sQ8ks6IbeZxvTP584LyQysnhLuxKAsMEHCCJ74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oSg0/fkP; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4361f664af5so6395e9.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 08:15:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736352947; x=1736957747; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cbxXwWR8AIKr2Z5xmtMFDic9EFUnqAlHiSI7jHWWslU=;
+        b=oSg0/fkPWKeWWvVsCUDZN3uVcZg3Lm9QPztinRYBti1kM6BNRUX0nu9vr871SuQmbb
+         wAE3BBsHVZWI284pWqzZ3T8PfHPeyFWciMlEa7tQJT2JncAdRX8YVTLfAuWaMp7OE9rx
+         bbJdCXwu39f74XAAikLwKD0n2k/mi50clrGhMvSVqh4rXm1HY/27JB301Os93qpEJdS7
+         jkK5neSzD9od9Uy/BljLQyS3+GoY6WDlRzvDBvILiMjHhxoOegN233ynRJ+Jh77zFa99
+         U0ioY2gBQU7D/b2NK7e3cTnMn/mdLDb2OiZPKRW2J37isuaJCTyA9pxLNfNa5xDeALqH
+         j2aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736352947; x=1736957747;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cbxXwWR8AIKr2Z5xmtMFDic9EFUnqAlHiSI7jHWWslU=;
+        b=ACtlBO5ZucroCtW+gmz2YCyHnYKVxZXxcz+LxtsOqY1RiEIDCDCs2kHgiS2yZNxkN8
+         vg5NiRulptVE0D+PHABAKWd+rXXnISaTPHcvGci+Tt/pgo5Z2zVhtng//p8t1qlbOmNa
+         +LLvyAHQmj4lSxGozyjTBrKgtNKLanSo+3ObGKGFXHy7lhXyXo+g7+0JRxay+PbceG+y
+         ROkOAnpQeYXebOGMZ+zgMCz5yfAMtPQ7XuTitNFNKJW6UAxzz029UDE1ohm6l0LdDzPJ
+         3e/krwHqv2lB/pLLPuybtqUfhqj6vg0cVGNoFT+gawaZeK6sIbWJU/VU8bm52CKsXkr8
+         yTOg==
+X-Forwarded-Encrypted: i=1; AJvYcCWcw2ymhJI7FVWHi2QeqlPHnmqaxNJjnozXClCePj32szVJX6malBuc3tiCTI/cwlpFOvEKp3no1gav@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnhcmdILQfa3imrNRP/Zk13cJvTNyVDo16S5t4q+T9iYAItT8x
+	mUsfVERCmk4l8Mn9AXWJfBoCVvVpBusymVnaAUagG7bgralDcAe23FNJqHHA58k=
+X-Gm-Gg: ASbGncuMO22t4UAXDu38FoUbhVtKR4XQ4j5QDMW4d1JCEXtLTQd6Jl16og90sW5m1SP
+	dVYDYZWeBgC9OxYQ+Jk8GN1JuAnjHjgrzCwHF5RHg4JT3g+4Dp9rXwnPHPIijcbs+uc2LBDTP72
+	MDVe66NY6AtyqJt/WbhMccPXnOCDeZzpezn5Zyut0VI+O34CK+LO6D39Y8NawE5hb3HpItFLQmi
+	XjTCI48il+AE2MyodN69hoht4Nmh6bGFB5+vGANxdIeIyKNA7aaWwk/YzwJ
+X-Google-Smtp-Source: AGHT+IGGAa64d+bPHxfOT6F6vJgh1xofOm1puRyf5Gg2Qx08bu4NygW/ia9oSmUPKTI5x+9zroEuLw==
+X-Received: by 2002:a05:600c:4e44:b0:434:e9ee:c3d with SMTP id 5b1f17b1804b1-436e27070b1mr31379705e9.20.1736352947285;
+        Wed, 08 Jan 2025 08:15:47 -0800 (PST)
+Received: from [127.0.1.1] ([2a01:e0a:5ee:79d0:a6ac:e6d2:88e3:8ea1])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436dd14dfcasm44378105e9.1.2025.01.08.08.15.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jan 2025 08:15:46 -0800 (PST)
+From: amergnat@baylibre.com
+Subject: [PATCH v5 0/7] Add display support for the MT8365-EVK board
+Date: Wed, 08 Jan 2025 17:15:42 +0100
+Message-Id: <20231023-display-support-v5-0-3905f1e4b835@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,537 +81,147 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250108-fpc202-v5-9-a439ab999d5a@bootlin.com>
-References: <20250108-fpc202-v5-0-a439ab999d5a@bootlin.com>
-In-Reply-To: <20250108-fpc202-v5-0-a439ab999d5a@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAK6kfmcC/4XOwQ6CMAwG4FcxOzvD1oHTk+9hPKxbkSUKZEMiI
+ by7G0ej4dDD36Tf35lFCp4iO+9mFmj00XdtCuV+x2xj2jtx71JmspAg0nDnY/8wE4+vvu/CwG2
+ lhEYoSIkTS1doInEMprVNvhsoDiLv+0C1f69N11vKjY9DF6a1eBR5+79jFLzgpdVVQa60AHhBM
+ z08BjrY7skyN8oNQiYCwJLWlUIpjz8I2CAgfwGgdQ3kQP36Qm0QKhHktCQUla5RfBHLsnwA7M2
+ QN5IBAAA=
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, 
- Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-media@vger.kernel.org, linux-gpio@vger.kernel.org, 
- Romain Gantois <romain.gantois@bootlin.com>
-X-Mailer: b4 0.14.2
-X-GND-Sasl: romain.gantois@bootlin.com
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Simona Vetter <simona@ffwll.ch>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Alexandre Mergnat <amergnat@baylibre.com>, 
+ Fabien Parent <fparent@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4389; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=9M5KGNUL9vwlasksx/eWxH2UHxU8J0vFX1+wbxwtEUA=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBnfqSx658xb7vf06grM0qAloaXvz/hrcb0mpGfxHdu
+ epVdHV6JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ36ksQAKCRArRkmdfjHURWiYEA
+ Cyi6gnp7YSYhtyIAMfKnndt3CITPF2/KZsZp9k2o8Npc50HP+C3COPSR1PQMuPYN5qv99iNVgVk2jV
+ +b5/tfraZgj/FEwguRiDgvTlapCQzSp8nSqKQUQOMBy9W1CfLr/0WJ+IDwAkbSh7cixYua6gxzwyS+
+ 7yW94h56RgX2IVNPtFkUcK6WS2J3pOPo2OyDwYyOkPZKH6sKOG/ylVjCNH7Df32gHohwQfUpJkghP0
+ mTtv5YPiHeTpc1sN9wFYzU6oeZXXtyMgLq9sofGPKzzSKbErqhXs1FYdg86nLE8lcJsWVQuBW05xFX
+ OED0xynO9dvCNkLZJfs4sGX4MMwKjIDCWyH1B7u9x0ecdQ4e1Y4qcdVVs4EMUfSlnN4smNUz1Bvsl2
+ EV7LdcTCDuvn69H7PuU3uuz0Fp/to1r08K5WbvWQKgDxLWMVLo/zA/aQEe3CoA8njD7DWu80/U9hTE
+ kEDp7JNjhW/GdXkftNE9DamK2naSaDxYVXyGYsomUCZXjH3HDWlnj3pMvb0hTFP9wG9nvBtDWz9UV9
+ PCRy6yw/n6dcDkIQ2DtbAv6Nv6t3DYj2OMJyv5OJMB0bTyTVJjienFJwn1Vylk+u7WJvWMZrSQfRnr
+ ylZ62ANrjmM9e9hcriyWlZi0fE+LEezrw5tE+Q/1cd7Cdav9hnYtQlyJjF7Q==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 
-The TI FPC202 dual port controller serves as a low-speed signal aggregator
-for common port types such as SFP, QSFP, Mini-SAS HD, and others.
+The purpose of this series is to add the display support for the mt8365-evk.
 
-It aggregates GPIO and I2C signals across two downstream ports, acting as
-both a GPIO controller and an I2C address translator for up to two logical
-devices per port.
+This is the list of HWs / IPs support added:
+- Connectors (HW):
+  - HDMI
+  - MIPI DSI (Mobile Industry Processor Interface Display Serial Interface)
+- HDMI bridge (it66121)
+- DSI pannel (startek,kd070fhfid015)
+- SoC display blocks (IP):
+  - OVL0 (Overlay)
+  - RDMA0 (Data Path Read DMA)
+  - Color0
+  - CCorr0 (Color Correction)
+  - AAL0 (Adaptive Ambient Light)
+  - GAMMA0
+  - Dither0
+  - DSI0 (Display Serial Interface)
+  - RDMA1 (Data Path Read DMA)
+  - DPI0 (Display Parallel Interface)
 
-Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+The Mediatek DSI, DPI and DRM drivers are also improved.
+
+The series is rebased on top of Angelo's series [1] to
+use the OF graphs support.
+
+Regards,
+Alex
+
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- MAINTAINERS              |   1 +
- drivers/misc/Kconfig     |  11 ++
- drivers/misc/Makefile    |   1 +
- drivers/misc/ti_fpc202.c | 440 +++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 453 insertions(+)
+Changes in v5:
+- Patch merged, then removed from the series:
+  - dt-bindings: display: mediatek: rdma: add compatible for MT8365 SoC
+  - dt-bindings: display: mediatek: ovl: add compatible for MT8365 SoC
+  - dt-bindings: display: mediatek: gamma: add compatible for MT8365 SoC
+  - dt-bindings: display: mediatek: dpi: add compatible for MT8365
+  - dt-bindings: display: mediatek: dsi: add compatible for MT8365 SoC
+  - dt-bindings: display: mediatek: dither: add compatible for MT8365 SoC
+  - dt-bindings: display: mediatek: color: add compatible for MT8365 SoC
+  - dt-bindings: display: mediatek: ccorr: add compatible for MT8365 SoC
+  - dt-bindings: display: mediatek: aal: add compatible for MT8365 SoC
+- Enable STARTEK KD070FHFID015 panel in the defconfig.
+- Rebase on top of 6.13-rc6.
+- Link to v4: https://lore.kernel.org/all/20231023-display-support-v4-0-ed82eb168fb1@baylibre.com
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2ef5c0d395b3668167dddbd27237a2177f85571e..865ef413b38c293e1c7b1405322fafe9df81ea96 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23502,6 +23502,7 @@ M:	Romain Gantois <romain.gantois@bootlin.com>
- L:	linux-kernel@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/misc/ti,fpc202.yaml
-+F:	drivers/misc/ti_fpc202.c
- 
- TI FPD-LINK DRIVERS
- M:	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 09cbe3f0ab1e56f85852c0cb50cfc03cae659d2b..3c7e82e86e4ae83eff84999d123cd8c0f018323c 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -114,6 +114,17 @@ config RPMB
- 
- 	  If unsure, select N.
- 
-+config TI_FPC202
-+	tristate "TI FPC202 Dual Port Controller"
-+	select GPIOLIB
-+	depends on I2C_ATR
-+	help
-+	  If you say yes here you get support for the Texas Instruments FPC202
-+	  Dual Port Controller.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called fpc202.
-+
- config TIFM_CORE
- 	tristate "TI Flash Media interface support"
- 	depends on PCI
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 40bf953185c773afa91f7784a286ae0752bb0b53..ba47db46a5ff2559de597447ce7e2d88e26efa61 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -12,6 +12,7 @@ obj-$(CONFIG_ATMEL_SSC)		+= atmel-ssc.o
- obj-$(CONFIG_DUMMY_IRQ)		+= dummy-irq.o
- obj-$(CONFIG_ICS932S401)	+= ics932s401.o
- obj-$(CONFIG_LKDTM)		+= lkdtm/
-+obj-$(CONFIG_TI_FPC202)         += ti_fpc202.o
- obj-$(CONFIG_TIFM_CORE)       	+= tifm_core.o
- obj-$(CONFIG_TIFM_7XX1)       	+= tifm_7xx1.o
- obj-$(CONFIG_PHANTOM)		+= phantom.o
-diff --git a/drivers/misc/ti_fpc202.c b/drivers/misc/ti_fpc202.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..e251d8e0a640f05d59e5b20665d8a8237b8c2724
---- /dev/null
-+++ b/drivers/misc/ti_fpc202.c
-@@ -0,0 +1,440 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ti_fpc202.c - FPC202 Dual Port Controller driver
-+ *
-+ * Copyright (C) 2024 Bootlin
-+ *
-+ */
-+
-+#include <linux/cleanup.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/i2c-atr.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/module.h>
-+
-+#define FPC202_NUM_PORTS 2
-+#define FPC202_ALIASES_PER_PORT 2
-+
-+/*
-+ * GPIO: port mapping
-+ *
-+ * 0: P0_S0_IN_A
-+ * 1: P0_S1_IN_A
-+ * 2: P1_S0_IN_A
-+ * 3: P1_S1_IN_A
-+ * 4: P0_S0_IN_B
-+ * ...
-+ * 8: P0_S0_IN_C
-+ * ...
-+ * 12: P0_S0_OUT_A
-+ * ...
-+ * 16: P0_S0_OUT_B
-+ * ...
-+ * 19: P1_S1_OUT_B
-+ *
-+ */
-+
-+#define FPC202_GPIO_COUNT 20
-+#define FPC202_GPIO_P0_S0_IN_B  4
-+#define FPC202_GPIO_P0_S0_OUT_A 12
-+
-+#define FPC202_REG_IN_A_INT    0x6
-+#define FPC202_REG_IN_C_IN_B   0x7
-+#define FPC202_REG_OUT_A_OUT_B 0x8
-+
-+#define FPC202_REG_OUT_A_OUT_B_VAL 0xa
-+
-+#define FPC202_REG_MOD_DEV(port, dev) (0xb4 + ((port) * 4) + (dev))
-+#define FPC202_REG_AUX_DEV(port, dev) (0xb6 + ((port) * 4) + (dev))
-+
-+/*
-+ * The FPC202 doesn't support turning off address translation on a single port.
-+ * So just set an invalid I2C address as the translation target when no client
-+ * address is attached.
-+ */
-+#define FPC202_REG_DEV_INVALID 0
-+
-+/* Even aliases are assigned to device 0 and odd aliases to device 1 */
-+#define fpc202_dev_num_from_alias(alias) ((alias) % 2)
-+
-+struct fpc202_priv {
-+	struct i2c_client *client;
-+	struct i2c_atr *atr;
-+	struct gpio_desc *en_gpio;
-+	struct gpio_chip gpio;
-+
-+	/* Lock REG_MOD/AUX_DEV and addr_caches during attach/detach */
-+	struct mutex reg_dev_lock;
-+
-+	/* Cached device addresses for both ports and their devices */
-+	u8 addr_caches[2][2];
-+
-+	/* Keep track of which ports were probed */
-+	DECLARE_BITMAP(probed_ports, FPC202_NUM_PORTS);
-+};
-+
-+static void fpc202_fill_alias_table(struct i2c_client *client, u16 *aliases, int port_id)
-+{
-+	u16 first_alias;
-+	int i;
-+
-+	/*
-+	 * There is a predefined list of aliases for each FPC202 I2C
-+	 * self-address.  This allows daisy-chained FPC202 units to
-+	 * automatically take on different sets of aliases.
-+	 * Each port of an FPC202 unit is assigned two aliases from this list.
-+	 */
-+	first_alias = 0x10 + 4 * port_id + 8 * ((u16)client->addr - 2);
-+
-+	for (i = 0; i < FPC202_ALIASES_PER_PORT; i++)
-+		aliases[i] = first_alias + i;
-+}
-+
-+static int fpc202_gpio_get_dir(int offset)
-+{
-+	return offset < FPC202_GPIO_P0_S0_OUT_A ? GPIO_LINE_DIRECTION_IN : GPIO_LINE_DIRECTION_OUT;
-+}
-+
-+static int fpc202_read(struct fpc202_priv *priv, u8 reg)
-+{
-+	int val;
-+
-+	val = i2c_smbus_read_byte_data(priv->client, reg);
-+	return val;
-+}
-+
-+static int fpc202_write(struct fpc202_priv *priv, u8 reg, u8 value)
-+{
-+	return i2c_smbus_write_byte_data(priv->client, reg, value);
-+}
-+
-+static void fpc202_set_enable(struct fpc202_priv *priv, int enable)
-+{
-+	if (!priv->en_gpio)
-+		return;
-+
-+	gpiod_set_value(priv->en_gpio, enable);
-+}
-+
-+static void fpc202_gpio_set(struct gpio_chip *chip, unsigned int offset,
-+			    int value)
-+{
-+	struct fpc202_priv *priv = gpiochip_get_data(chip);
-+	int ret;
-+	u8 val;
-+
-+	if (fpc202_gpio_get_dir(offset) == GPIO_LINE_DIRECTION_IN)
-+		return;
-+
-+	ret = fpc202_read(priv, FPC202_REG_OUT_A_OUT_B_VAL);
-+	if (ret < 0) {
-+		dev_err(&priv->client->dev, "Failed to set GPIO %d value! err %d\n", offset, ret);
-+		return;
-+	}
-+
-+	val = (u8)ret;
-+
-+	if (value)
-+		val |= BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
-+	else
-+		val &= ~BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
-+
-+	fpc202_write(priv, FPC202_REG_OUT_A_OUT_B_VAL, val);
-+}
-+
-+static int fpc202_gpio_get(struct gpio_chip *chip, unsigned int offset)
-+{
-+	struct fpc202_priv *priv = gpiochip_get_data(chip);
-+	u8 reg, bit;
-+	int ret;
-+
-+	if (offset < FPC202_GPIO_P0_S0_IN_B) {
-+		reg = FPC202_REG_IN_A_INT;
-+		bit = BIT(4 + offset);
-+	} else if (offset < FPC202_GPIO_P0_S0_OUT_A) {
-+		reg = FPC202_REG_IN_C_IN_B;
-+		bit = BIT(offset - FPC202_GPIO_P0_S0_IN_B);
-+	} else {
-+		reg = FPC202_REG_OUT_A_OUT_B_VAL;
-+		bit = BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
-+	}
-+
-+	ret = fpc202_read(priv, reg);
-+	if (ret < 0)
-+		return ret;
-+
-+	return !!(((u8)ret) & bit);
-+}
-+
-+static int fpc202_gpio_direction_input(struct gpio_chip *chip, unsigned int offset)
-+{
-+	if (fpc202_gpio_get_dir(offset) == GPIO_LINE_DIRECTION_OUT)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int fpc202_gpio_direction_output(struct gpio_chip *chip, unsigned int offset,
-+					int value)
-+{
-+	struct fpc202_priv *priv = gpiochip_get_data(chip);
-+	int ret;
-+	u8 val;
-+
-+	if (fpc202_gpio_get_dir(offset) == GPIO_LINE_DIRECTION_IN)
-+		return -EINVAL;
-+
-+	fpc202_gpio_set(chip, offset, value);
-+
-+	ret = fpc202_read(priv, FPC202_REG_OUT_A_OUT_B);
-+	if (ret < 0)
-+		return ret;
-+
-+	val = (u8)ret | BIT(offset - FPC202_GPIO_P0_S0_OUT_A);
-+
-+	return fpc202_write(priv, FPC202_REG_OUT_A_OUT_B, val);
-+}
-+
-+/*
-+ * Set the translation table entry associated with a port and device number.
-+ *
-+ * Each downstream port of the FPC202 has two fixed aliases corresponding to
-+ * device numbers 0 and 1. If one of these aliases is found in an incoming I2C
-+ * transfer, it will be translated to the address given by the corresponding
-+ * translation table entry.
-+ */
-+static int fpc202_write_dev_addr(struct fpc202_priv *priv, u32 port_id, int dev_num, u16 addr)
-+{
-+	int ret, reg_mod, reg_aux;
-+	u8 val;
-+
-+	guard(mutex)(&priv->reg_dev_lock);
-+
-+	reg_mod = FPC202_REG_MOD_DEV(port_id, dev_num);
-+	reg_aux = FPC202_REG_AUX_DEV(port_id, dev_num);
-+	val = addr & 0x7f;
-+
-+	ret = fpc202_write(priv, reg_mod, val);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The FPC202 datasheet is unclear about the role of the AUX registers.
-+	 * Empirically, writing to them as well seems to be necessary for
-+	 * address translation to function properly.
-+	 */
-+	ret = fpc202_write(priv, reg_aux, val);
-+
-+	priv->addr_caches[port_id][dev_num] = val;
-+
-+	return ret;
-+}
-+
-+static int fpc202_attach_addr(struct i2c_atr *atr, u32 chan_id,
-+			      u16 addr, u16 alias)
-+{
-+	struct fpc202_priv *priv = i2c_atr_get_driver_data(atr);
-+
-+	dev_dbg(&priv->client->dev, "attaching address 0x%02x to alias 0x%02x\n", addr, alias);
-+
-+	return fpc202_write_dev_addr(priv, chan_id, fpc202_dev_num_from_alias(alias), addr);
-+}
-+
-+static void fpc202_detach_addr(struct i2c_atr *atr, u32 chan_id,
-+			       u16 addr)
-+{
-+	struct fpc202_priv *priv = i2c_atr_get_driver_data(atr);
-+	int dev_num, reg_mod, val;
-+
-+	for (dev_num = 0; dev_num < 2; dev_num++) {
-+		reg_mod = FPC202_REG_MOD_DEV(chan_id, dev_num);
-+
-+		mutex_lock(&priv->reg_dev_lock);
-+
-+		val = priv->addr_caches[chan_id][dev_num];
-+
-+		mutex_unlock(&priv->reg_dev_lock);
-+
-+		if (val < 0) {
-+			dev_err(&priv->client->dev, "failed to read register 0x%x while detaching address 0x%02x\n",
-+				reg_mod, addr);
-+			return;
-+		}
-+
-+		if (val == (addr & 0x7f)) {
-+			fpc202_write_dev_addr(priv, chan_id, dev_num, FPC202_REG_DEV_INVALID);
-+			return;
-+		}
-+	}
-+}
-+
-+static const struct i2c_atr_ops fpc202_atr_ops = {
-+	.attach_addr = fpc202_attach_addr,
-+	.detach_addr = fpc202_detach_addr,
-+};
-+
-+static int fpc202_probe_port(struct fpc202_priv *priv, struct device_node *i2c_handle, int port_id)
-+{
-+	u16 aliases[FPC202_ALIASES_PER_PORT] = { };
-+	struct device *dev = &priv->client->dev;
-+	struct i2c_atr_adap_desc desc = { };
-+	int ret = 0;
-+
-+	desc.chan_id = port_id;
-+	desc.parent = dev;
-+	desc.bus_handle = of_node_to_fwnode(i2c_handle);
-+	desc.num_aliases = FPC202_ALIASES_PER_PORT;
-+
-+	fpc202_fill_alias_table(priv->client, aliases, port_id);
-+	desc.aliases = aliases;
-+
-+	ret = i2c_atr_add_adapter(priv->atr, &desc);
-+	if (ret)
-+		return ret;
-+
-+	set_bit(port_id, priv->probed_ports);
-+
-+	ret = fpc202_write_dev_addr(priv, port_id, 0, FPC202_REG_DEV_INVALID);
-+	if (ret)
-+		return ret;
-+
-+	return fpc202_write_dev_addr(priv, port_id, 1, FPC202_REG_DEV_INVALID);
-+}
-+
-+static void fpc202_remove_port(struct fpc202_priv *priv, int port_id)
-+{
-+	i2c_atr_del_adapter(priv->atr, port_id);
-+	clear_bit(port_id, priv->probed_ports);
-+}
-+
-+static int fpc202_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct device_node *i2c_handle;
-+	struct fpc202_priv *priv;
-+	int ret, port_id;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	mutex_init(&priv->reg_dev_lock);
-+
-+	priv->client = client;
-+	i2c_set_clientdata(client, priv);
-+
-+	priv->en_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
-+	if (IS_ERR(priv->en_gpio)) {
-+		ret = PTR_ERR(priv->en_gpio);
-+		dev_err(dev, "failed to fetch enable GPIO! err %d\n", ret);
-+		goto destroy_mutex;
-+	}
-+
-+	priv->gpio.label = "gpio-fpc202";
-+	priv->gpio.base = -1;
-+	priv->gpio.direction_input = fpc202_gpio_direction_input;
-+	priv->gpio.direction_output = fpc202_gpio_direction_output;
-+	priv->gpio.set = fpc202_gpio_set;
-+	priv->gpio.get = fpc202_gpio_get;
-+	priv->gpio.ngpio = FPC202_GPIO_COUNT;
-+	priv->gpio.parent = dev;
-+	priv->gpio.owner = THIS_MODULE;
-+
-+	ret = gpiochip_add_data(&priv->gpio, priv);
-+	if (ret) {
-+		priv->gpio.parent = NULL;
-+		dev_err(dev, "failed to add gpiochip err %d\n", ret);
-+		goto disable_gpio;
-+	}
-+
-+	priv->atr = i2c_atr_new(client->adapter, dev, &fpc202_atr_ops, 2);
-+	if (IS_ERR(priv->atr)) {
-+		ret = PTR_ERR(priv->atr);
-+		dev_err(dev, "failed to create i2c atr err %d\n", ret);
-+		goto disable_gpio;
-+	}
-+
-+	i2c_atr_set_driver_data(priv->atr, priv);
-+
-+	bitmap_zero(priv->probed_ports, FPC202_NUM_PORTS);
-+
-+	for_each_child_of_node(dev->of_node, i2c_handle) {
-+		ret = of_property_read_u32(i2c_handle, "reg", &port_id);
-+		if (ret) {
-+			if (ret == -EINVAL)
-+				continue;
-+
-+			dev_err(dev, "failed to read 'reg' property of child node, err %d\n", ret);
-+			goto unregister_chans;
-+		}
-+
-+		if (port_id > FPC202_NUM_PORTS) {
-+			dev_err(dev, "port ID %d is out of range!\n", port_id);
-+			ret = -EINVAL;
-+			goto unregister_chans;
-+		}
-+
-+		ret = fpc202_probe_port(priv, i2c_handle, port_id);
-+		if (ret) {
-+			dev_err(dev, "Failed to probe port %d, err %d\n", port_id, ret);
-+			goto unregister_chans;
-+		}
-+	}
-+
-+	dev_info(&client->dev, "%s FPC202 Dual Port controller found\n", client->name);
-+
-+	goto out;
-+
-+unregister_chans:
-+	for_each_set_bit(port_id, priv->probed_ports, FPC202_NUM_PORTS)
-+		fpc202_remove_port(priv, port_id);
-+
-+	i2c_atr_delete(priv->atr);
-+disable_gpio:
-+	fpc202_set_enable(priv, 0);
-+	gpiochip_remove(&priv->gpio);
-+destroy_mutex:
-+	mutex_destroy(&priv->reg_dev_lock);
-+out:
-+	return ret;
-+}
-+
-+static void fpc202_remove(struct i2c_client *client)
-+{
-+	struct fpc202_priv *priv = i2c_get_clientdata(client);
-+	int port_id;
-+
-+	for_each_set_bit(port_id, priv->probed_ports, FPC202_NUM_PORTS)
-+		fpc202_remove_port(priv, port_id);
-+
-+	mutex_destroy(&priv->reg_dev_lock);
-+
-+	i2c_atr_delete(priv->atr);
-+
-+	fpc202_set_enable(priv, 0);
-+	gpiochip_remove(&priv->gpio);
-+}
-+
-+static const struct of_device_id fpc202_of_match[] = {
-+	{ .compatible = "ti,fpc202" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, fpc202_of_match);
-+
-+static struct i2c_driver fpc202_driver = {
-+	.driver = {
-+		.name = "fpc202",
-+		.of_match_table = fpc202_of_match,
-+	},
-+	.probe = fpc202_probe,
-+	.remove = fpc202_remove,
-+};
-+
-+module_i2c_driver(fpc202_driver);
-+
-+MODULE_AUTHOR("Romain Gantois <romain.gantois@bootlin.com>");
-+MODULE_DESCRIPTION("TI FPC202 Dual Port Controller driver");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(I2C_ATR);
+Changes in v4:
+- Patch merged, then removed from the series:
+  - dt-bindings: display: mediatek: dpi: add power-domains property
+  - dt-bindings: pwm: mediatek,pwm-disp: add compatible for mt8365 SoC
+  - clk: mediatek: mt8365-mm: fix DPI0 parent
+- Remove mediatek,mt8365-dpi compatible from mtk_drm_drv.c because it
+  use the mt8192's data. It's a miss.
+- Add MT8365 OF graphs support, remove the hardcoded display path and
+  rebase on top of Angelo's series [1].
+- Link to v3: https://lore.kernel.org/r/20231023-display-support-v3-0-53388f3ed34b@baylibre.com
 
+Changes in v3:
+- Drop "drm/mediatek: add mt8365 dpi support" because it's the same
+  config as mt8192 SoC
+- Drop "dt-bindings: pwm: mediatek,pwm-disp: add power-domains property"
+  because an equivalent patch has been merge already.
+- Add DPI clock fix in a separate commit.
+- Improve DTS(I) readability.
+- Link to v2: https://lore.kernel.org/r/20231023-display-support-v2-0-33ce8864b227@baylibre.com
+
+Changes in v2:
+- s/binding/compatible/ in commit messages/titles.
+- Improve commit messages as Conor suggest.
+- pwm-disp: Set power domain property for MT8365. This one is optionnal
+  and can be used for other SoC.
+- Fix mediatek,dsi.yaml issue.
+- Remove the extra clock in the DPI node/driver and fix the dpi clock
+  parenting to be consistent with the DPI clock assignement.
+- Link to v1: https://lore.kernel.org/r/20231023-display-support-v1-0-5c860ed5c33b@baylibre.com
+
+[1] https://lore.kernel.org/lkml/20240516081104.83458-1-angelogioacchino.delregno@collabora.com/
+
+---
+Alexandre Mergnat (5):
+      drm/mediatek: dsi: Improves the DSI lane setup robustness
+      arm64: defconfig: enable display connector support
+      arm64: defconfig: enable STARTEK KD070FHFID015 panel
+      arm64: dts: mediatek: add display blocks support for the MT8365 SoC
+      arm64: dts: mediatek: add display support for mt8365-evk
+
+Fabien Parent (2):
+      dt-bindings: display: mediatek: dpi: add power-domains property
+      drm/mediatek: add MT8365 SoC support
+
+ .../bindings/display/mediatek/mediatek,dpi.yaml    |   5 +
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts        | 236 +++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           | 336 +++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |   2 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c             |   8 +
+ drivers/gpu/drm/mediatek/mtk_dsi.c                 |   2 +
+ 6 files changed, 589 insertions(+)
+---
+base-commit: 9d89551994a430b50c4fffcb1e617a057fa76e20
+change-id: 20231023-display-support-c6418b30e419
+
+Best regards,
 -- 
-2.47.1
+Alexandre Mergnat <amergnat@baylibre.com>
 
 
