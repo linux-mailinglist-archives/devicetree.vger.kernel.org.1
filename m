@@ -1,365 +1,143 @@
-Return-Path: <devicetree+bounces-136532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B533BA057D9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:16:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E40ACA057E4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:19:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 480711883E30
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:16:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9949B1885A87
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE2E1F8696;
-	Wed,  8 Jan 2025 10:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372191A76BC;
+	Wed,  8 Jan 2025 10:19:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Y0/KsGfb";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="P2uQifsd"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fML3M+Zl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFECA1F8693;
-	Wed,  8 Jan 2025 10:15:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A719D20B20;
+	Wed,  8 Jan 2025 10:19:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736331354; cv=none; b=hJVI3hv8UbBW1N7+uYECrNcE2db4opBwwq2f025Y0MNCXryt+rMiMBRY6sSHrNEvmMnIX34N6goiTXtkMI9Aa3XJJXpj7TyBL2l9WRFXwRz+3Akc5MXXsVRmr0d7K1K0BwTNRiDrDGsf3oIIkrocWlE/OH7+9mftqU77HPQZuIs=
+	t=1736331565; cv=none; b=VLiiQaBaeyon6LwBwpiERKduxyNasCRpsQ3ETNPuvqm+c3b4V0k9YOlLgEJjNGqiDluZjxroLk1+CblYml5rFKr540bHPb9GMf0nt1ft7Sk+Jm0CBNdL9nt9Y+yo3lK2uHBP7+POORKdZIzGvbcRFbEWnim1WkPeFj+U0GLGOMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736331354; c=relaxed/simple;
-	bh=IKzCuduos1YFeIU4aNXD11QZvENF1IVeQH2pxGjAtRo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Eo2Le8tmxGPQq8AIVMdSLxQ2WmyHJ97a81LmYOcMFioARvyVztEh9xRJQL2KmFhBgD7ugB/5nmmqbyD5d0IyAzCUyHlbdIR2whNI78ilJALVTWjxnuAfaVF4yQiARq/bZK0eNBA8Lky+oxijt+q6LVyEOyz9Fc2uZoTB2i8vjo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Y0/KsGfb; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=P2uQifsd reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1736331350; x=1767867350;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=rqUpwoDA+wnL7XDmIleta7smYCcZ7eiI2bxGZ/nAG9I=;
-  b=Y0/KsGfbuWE3Ikl8mjvCNHgfLJXSK6d2GlvM03uHO0uEQzrwEGdxwWbb
-   MJKfTRwQFuYsaE2jCNqQZSVONycGCqtgoI8Kirolf/l2FhQCGtam02m6V
-   0UgML4drxI0nM4x6E66gF0SuIcav2DCdXEngwsOksOigOZxseRVB3PHSW
-   IgyfCsTsoGWHhIc9J+vXzSexeomm97cqpA/QcmRJizLXr690EMQ+mH8lx
-   8Cc2dImeb2xktHVFET1FHC5acM9VlMqLmE0Rt+DpZu1HwTZLcfPk8gHTq
-   LC6AzKVCYfrH2VUB6Xo/eHG6pNSyq0yI3N4DorhRteXIh/mJffmAjDw/L
-   g==;
-X-CSE-ConnectionGUID: Ivxew5whSU2AHU/10MTWUw==
-X-CSE-MsgGUID: aULauu6RT+mzPRLeeAG+4g==
-X-IronPort-AV: E=Sophos;i="6.12,297,1728943200"; 
-   d="scan'208";a="40917071"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 08 Jan 2025 11:15:47 +0100
-X-CheckPoint: {677E5053-29-C6D8D88D-F91F9E6B}
-X-MAIL-CPID: FB0D07F9AF1E531774E54C986082FCB8_2
-X-Control-Analysis: str=0001.0A682F1E.677E5053.00D7,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 941801661C3;
-	Wed,  8 Jan 2025 11:15:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1736331343;
+	s=arc-20240116; t=1736331565; c=relaxed/simple;
+	bh=86rW5wZY5wP5+GsWOhajdWGnNLl8Gdx9lQg3mYLczlc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cG+D8O6DM3DNZEIu3b6nbtNPScQi5qK+QJd/vlUPrZTCqgLMr5NyRQ5Q9ZGRKcKLlzazvy6dcC1cHAbZfGvNVxYhtOxODqkpJKCTxnWbAQ3Qa3uG1vRSQoaRam0eBDY9jDhFjwe3OjUDrByMm4KbyoAj6O3YB4zZ4Xyvjq22WpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fML3M+Zl; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 3A385FF80A;
+	Wed,  8 Jan 2025 10:19:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736331560;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rqUpwoDA+wnL7XDmIleta7smYCcZ7eiI2bxGZ/nAG9I=;
-	b=P2uQifsdWvuLxnJ3LKeSnx2AOHu2MJdlDbZQbQhhEaJMxPaQEJoueeTkDsvwYf7nnKTdFg
-	XtuGx6MaU6Ovw8ucl4I8U43rjk3+m3i6NqUPxSJTqGmlEYoSPNZeQubAW7/BRF0YzSKOW2
-	sFO5j46TDBw13ga5TopR9v3KdWmWXIuLroCyenf8/GinUnQve12zEut6iTkxvV6ky9WCWr
-	bNYEswYXfCwDVwWMQgCkvSZmhmpR2FT5xJDCTeukav7fI36p6ZkjnG+rkRhkMzuNLORVLw
-	+Gj5UWlKibgRTHQTFwG3KlDTwbIpjnb/VrR9ooC3SLHkUgJ+r3/LMH02agAJkw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing controller for i.MX9
-Date: Wed, 08 Jan 2025 11:15:40 +0100
-Message-ID: <3823142.MHq7AAxBmi@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250108-imx-ocotp-v5-2-a6d90e18ebe9@nxp.com>
-References: <20250108-imx-ocotp-v5-0-a6d90e18ebe9@nxp.com> <20250108-imx-ocotp-v5-2-a6d90e18ebe9@nxp.com>
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ALgIVfCLQTLBbTDsLiWU4YPVyURu8kYumWn08CK6dJc=;
+	b=fML3M+ZlOxI6Ga49iJgvjKR0kLBARcGGCbqomOEHZptqddWFt2bjLleDkhLuUsuYahExU7
+	fIvmrtExY9La4Uau2e006eYRyWwPQdorb+TPj2A2M0b2zKdSOk64MihkWeUwfi4kw1ZE3A
+	vGc/clakM/4JzqTreTXlwMsyKp0801vB/FEnd7JpRD6NoDdYQLHq2MQcy+e//Eoo29HxgQ
+	8nqdCZ1tLHX6wzNw5yekfJmpdiVbSou0+Y+zPWgtBHNAAJI7nu6hzEEOWb1PvJEaEdfQME
+	aIY52OUcM5AWFgVhwZtYPWkj0QkBdDgi4j8FjhAVPTJ/4mk5UW1c7O1ttu3seQ==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marex@denx.de>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Louis Chauvet <louis.chauvet@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v3 0/3] Add support for errors recovery in the TI SN65DSI83 bridge driver
+Date: Wed,  8 Jan 2025 11:18:59 +0100
+Message-ID: <20250108101907.410456-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Peng,
+Hi,
 
-Am Mittwoch, 8. Januar 2025, 08:00:18 CET schrieb Peng Fan (OSS):
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> i.MX9 OCOTP supports a specific peripheral or function being fused
-> which means disabled, so
->  - Introduce ocotp_access_gates to be container of efuse gate info
->  - Iterate all nodes to check accessing permission. If not
->    allowed to be accessed, detach the node
->=20
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/nvmem/imx-ocotp-ele.c | 172 ++++++++++++++++++++++++++++++++++++=
-+++++-
->  1 file changed, 171 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/nvmem/imx-ocotp-ele.c b/drivers/nvmem/imx-ocotp-ele.c
-> index ca6dd71d8a2e29888c6e556aaea116c1a967cb5f..5ea6d959ce38760eeed44a989=
-992fb35c462c0b4 100644
-> --- a/drivers/nvmem/imx-ocotp-ele.c
-> +++ b/drivers/nvmem/imx-ocotp-ele.c
-> @@ -5,6 +5,8 @@
->   * Copyright 2023 NXP
->   */
-> =20
-> +#include <dt-bindings/nvmem/fsl,imx93-ocotp.h>
-> +#include <dt-bindings/nvmem/fsl,imx95-ocotp.h>
->  #include <linux/device.h>
->  #include <linux/io.h>
->  #include <linux/module.h>
-> @@ -27,6 +29,7 @@ struct ocotp_map_entry {
->  };
-> =20
->  struct ocotp_devtype_data {
-> +	const struct ocotp_access_gates *access_gates;
->  	u32 reg_off;
->  	char *name;
->  	u32 size;
-> @@ -36,6 +39,20 @@ struct ocotp_devtype_data {
->  	struct ocotp_map_entry entry[];
->  };
-> =20
-> +#define OCOTP_MAX_NUM_GATE_WORDS 4
-> +
-> +struct access_gate {
-> +	u32 word;
-> +	u32 mask;
-> +};
-> +
-> +struct ocotp_access_gates {
-> +	u32 num_words;
-> +	u32 words[OCOTP_MAX_NUM_GATE_WORDS];
-> +	u32 num_gates;
-> +	struct access_gate *gates;
-> +};
-> +
->  struct imx_ocotp_priv {
->  	struct device *dev;
->  	void __iomem *base;
-> @@ -131,6 +148,82 @@ static void imx_ocotp_fixup_dt_cell_info(struct nvme=
-m_device *nvmem,
->  	cell->read_post_process =3D imx_ocotp_cell_pp;
->  }
-> =20
-> +static int imx_ele_ocotp_check_access(struct imx_ocotp_priv *priv, u32 i=
-d)
-> +{
-> +	const struct ocotp_access_gates *access_gates =3D priv->data->access_ga=
-tes;
-> +	void __iomem *reg =3D priv->base + priv->data->reg_off;
-> +	u32 word, mask, val;
-> +
-> +	if (id >=3D access_gates->num_gates) {
-> +		dev_err(priv->config.dev, "Index %d too large\n", id);
-> +		return -EACCES;
-> +	}
-> +
-> +	word =3D access_gates->gates[id].word;
-> +	mask =3D access_gates->gates[id].mask;
-> +
-> +	reg =3D priv->base + priv->data->reg_off + (word << 2);
-> +	val =3D readl(reg);
-> +
-> +	dev_dbg(priv->config.dev, "id:%d word:%d mask:0x%08x\n", id, word, mask=
-);
-> +	/* true means not allow access */
-> +	if (val & mask)
-> +		return -EACCES;
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_ele_ocotp_grant_access(struct imx_ocotp_priv *priv, struc=
-t device_node *parent)
-> +{
-> +	struct device *dev =3D priv->config.dev;
-> +
-> +	for_each_available_child_of_node_scoped(parent, child) {
-> +		struct of_phandle_args args;
-> +		u32 id, idx =3D 0;
-> +
-> +		while (!of_parse_phandle_with_args(child, "access-controllers",
-> +						   "#access-controller-cells",
-> +						   idx++, &args)) {
-> +			of_node_put(args.np);
-> +			if (args.np !=3D dev->of_node)
-> +				continue;
-> +
-> +			/* Only support one cell */
-> +			if (args.args_count !=3D 1) {
-> +				dev_err(dev, "wrong args count\n");
-> +				continue;
-> +			}
-> +
-> +			id =3D args.args[0];
-> +
-> +			dev_dbg(dev, "Checking node: %pOF gate: %d\n", child, id);
-> +
-> +			if (imx_ele_ocotp_check_access(priv, id)) {
-> +				of_detach_node(child);
-> +				dev_info(dev, "%pOF: Not granted, device driver will not be probed\n=
-",
-> +					 child);
-> +			}
-> +		}
-> +
-> +		imx_ele_ocotp_grant_access(priv, child);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_ele_ocotp_access_control(struct imx_ocotp_priv *priv)
-> +{
-> +	struct device_node *root __free(device_node) =3D of_find_node_by_path("=
-/");
-> +
-> +	if (!priv->data->access_gates)
-> +		return 0;
-> +
-> +	/* This should never happen */
-> +	WARN_ON(!root);
-> +
-> +	return imx_ele_ocotp_grant_access(priv, root);
-> +}
-> +
->  static int imx_ele_ocotp_probe(struct platform_device *pdev)
->  {
->  	struct device *dev =3D &pdev->dev;
-> @@ -161,14 +254,45 @@ static int imx_ele_ocotp_probe(struct platform_devi=
-ce *pdev)
->  	priv->config.fixup_dt_cell_info =3D imx_ocotp_fixup_dt_cell_info;
->  	mutex_init(&priv->lock);
-> =20
-> +	platform_set_drvdata(pdev, priv);
-> +
->  	nvmem =3D devm_nvmem_register(dev, &priv->config);
->  	if (IS_ERR(nvmem))
->  		return PTR_ERR(nvmem);
-> =20
-> -	return 0;
-> +
-> +	return imx_ele_ocotp_access_control(priv);
+Usually the TI SN65DSI83 recovers from error by itself but during ESD
+tests, we have some cases where the TI SN65DSI83 didn't recover.
 
-In [1] you mentioned devlink should solve the probe order. How does this
-play when the driver is compiled in (e.g. ethernet for NFS boot) but
-this OCOTP driver is just a module?
-I'm not well versed with devlink, but is
-> access-controllers =3D <&ocotp IMX93_OCOTP_ENET1_GATE>;
-already enough to create that link?
+In order to handle those cases, this series adds support for a recovery
+mechanism.
+
+Compare to the previous iteration, this v3 series:
+  - move reset_pipe() from the VC4 HDMI driver to an new atomic helper
+  - Use this new helper
 
 Best regards,
-Alexander
+Hervé Codina
 
->  }
-> =20
-> +struct access_gate imx93_access_gate[] =3D {
-> +		[IMX93_OCOTP_NPU_GATE]		=3D { .word =3D 19, .mask =3D BIT(13) },
-> +		[IMX93_OCOTP_A550_GATE]		=3D { .word =3D 19, .mask =3D BIT(14) },
-> +		[IMX93_OCOTP_A551_GATE]		=3D { .word =3D 19, .mask =3D BIT(15) },
-> +		[IMX93_OCOTP_M33_GATE]		=3D { .word =3D 19, .mask =3D BIT(24) },
-> +		[IMX93_OCOTP_CAN1_FD_GATE]	=3D { .word =3D 19, .mask =3D BIT(28) },
-> +		[IMX93_OCOTP_CAN2_FD_GATE]	=3D { .word =3D 19, .mask =3D BIT(29) },
-> +		[IMX93_OCOTP_CAN1_GATE]		=3D { .word =3D 19, .mask =3D BIT(30) },
-> +		[IMX93_OCOTP_CAN2_GATE]		=3D { .word =3D 19, .mask =3D BIT(31) },
-> +		[IMX93_OCOTP_USB1_GATE]		=3D { .word =3D 20, .mask =3D BIT(3) },
-> +		[IMX93_OCOTP_USB2_GATE]		=3D { .word =3D 20, .mask =3D BIT(4) },
-> +		[IMX93_OCOTP_ENET1_GATE]	=3D { .word =3D 20, .mask =3D BIT(5) },
-> +		[IMX93_OCOTP_ENET2_GATE]	=3D { .word =3D 20, .mask =3D BIT(6) },
-> +		[IMX93_OCOTP_PXP_GATE]		=3D { .word =3D 20, .mask =3D BIT(10) },
-> +		[IMX93_OCOTP_MIPI_CSI1_GATE]	=3D { .word =3D 20, .mask =3D BIT(17) },
-> +		[IMX93_OCOTP_MIPI_DSI1_GATE]	=3D { .word =3D 20, .mask =3D BIT(19) },
-> +		[IMX93_OCOTP_LVDS1_GATE]	=3D { .word =3D 20, .mask =3D BIT(24) },
-> +		[IMX93_OCOTP_ADC1_GATE]		=3D { .word =3D 21, .mask =3D BIT(7) },
-> +};
-> +
-> +static const struct ocotp_access_gates imx93_access_gates_info =3D {
-> +	.num_words =3D 3,
-> +	.words =3D {19, 20, 21},
-> +	.num_gates =3D ARRAY_SIZE(imx93_access_gate),
-> +	.gates =3D imx93_access_gate,
-> +};
-> +
->  static const struct ocotp_devtype_data imx93_ocotp_data =3D {
-> +	.access_gates =3D &imx93_access_gates_info,
->  	.reg_off =3D 0x8000,
->  	.reg_read =3D imx_ocotp_reg_read,
->  	.size =3D 2048,
-> @@ -183,7 +307,53 @@ static const struct ocotp_devtype_data imx93_ocotp_d=
-ata =3D {
->  	},
->  };
-> =20
-> +struct access_gate imx95_access_gate[] =3D {
-> +		[IMX95_OCOTP_CANFD1_GATE]	=3D { .word =3D 17, .mask =3D BIT(20) },
-> +		[IMX95_OCOTP_CANFD2_GATE]	=3D { .word =3D 17, .mask =3D BIT(21) },
-> +		[IMX95_OCOTP_CANFD3_GATE]	=3D { .word =3D 17, .mask =3D BIT(22) },
-> +		[IMX95_OCOTP_CANFD4_GATE]	=3D { .word =3D 17, .mask =3D BIT(23) },
-> +		[IMX95_OCOTP_CANFD5_GATE]	=3D { .word =3D 17, .mask =3D BIT(24) },
-> +		[IMX95_OCOTP_CAN1_GATE]		=3D { .word =3D 17, .mask =3D BIT(25) },
-> +		[IMX95_OCOTP_CAN2_GATE]		=3D { .word =3D 17, .mask =3D BIT(26) },
-> +		[IMX95_OCOTP_CAN3_GATE]		=3D { .word =3D 17, .mask =3D BIT(27) },
-> +		[IMX95_OCOTP_CAN4_GATE]		=3D { .word =3D 17, .mask =3D BIT(28) },
-> +		[IMX95_OCOTP_CAN5_GATE]		=3D { .word =3D 17, .mask =3D BIT(29) },
-> +		[IMX95_OCOTP_NPU_GATE]		=3D { .word =3D 18, .mask =3D BIT(0) },
-> +		[IMX95_OCOTP_A550_GATE]		=3D { .word =3D 18, .mask =3D BIT(1) },
-> +		[IMX95_OCOTP_A551_GATE]		=3D { .word =3D 18, .mask =3D BIT(2) },
-> +		[IMX95_OCOTP_A552_GATE]		=3D { .word =3D 18, .mask =3D BIT(3) },
-> +		[IMX95_OCOTP_A553_GATE]		=3D { .word =3D 18, .mask =3D BIT(4) },
-> +		[IMX95_OCOTP_A554_GATE]		=3D { .word =3D 18, .mask =3D BIT(5) },
-> +		[IMX95_OCOTP_A555_GATE]		=3D { .word =3D 18, .mask =3D BIT(6) },
-> +		[IMX95_OCOTP_M7_GATE]		=3D { .word =3D 18, .mask =3D BIT(9) },
-> +		[IMX95_OCOTP_DCSS_GATE]		=3D { .word =3D 18, .mask =3D BIT(22) },
-> +		[IMX95_OCOTP_LVDS1_GATE]	=3D { .word =3D 18, .mask =3D BIT(27) },
-> +		[IMX95_OCOTP_ISP_GATE]		=3D { .word =3D 18, .mask =3D BIT(29) },
-> +		[IMX95_OCOTP_USB1_GATE]		=3D { .word =3D 19, .mask =3D BIT(2) },
-> +		[IMX95_OCOTP_USB2_GATE]		=3D { .word =3D 19, .mask =3D BIT(3) },
-> +		[IMX95_OCOTP_NETC_GATE]		=3D { .word =3D 19, .mask =3D BIT(4) },
-> +		[IMX95_OCOTP_PCIE1_GATE]	=3D { .word =3D 19, .mask =3D BIT(6) },
-> +		[IMX95_OCOTP_PCIE2_GATE]	=3D { .word =3D 19, .mask =3D BIT(7) },
-> +		[IMX95_OCOTP_ADC1_GATE]		=3D { .word =3D 19, .mask =3D BIT(8) },
-> +		[IMX95_OCOTP_EARC_RX_GATE]	=3D { .word =3D 19, .mask =3D BIT(11) },
-> +		[IMX95_OCOTP_GPU3D_GATE]	=3D { .word =3D 19, .mask =3D BIT(16) },
-> +		[IMX95_OCOTP_VPU_GATE]		=3D { .word =3D 19, .mask =3D BIT(17) },
-> +		[IMX95_OCOTP_JPEG_ENC_GATE]	=3D { .word =3D 19, .mask =3D BIT(18) },
-> +		[IMX95_OCOTP_JPEG_DEC_GATE]	=3D { .word =3D 19, .mask =3D BIT(19) },
-> +		[IMX95_OCOTP_MIPI_CSI1_GATE]	=3D { .word =3D 19, .mask =3D BIT(21) },
-> +		[IMX95_OCOTP_MIPI_CSI2_GATE]	=3D { .word =3D 19, .mask =3D BIT(22) },
-> +		[IMX95_OCOTP_MIPI_DSI1_GATE]	=3D { .word =3D 19, .mask =3D BIT(23) },
-> +};
-> +
-> +static const struct ocotp_access_gates imx95_access_gates_info =3D {
-> +	.num_words =3D 3,
-> +	.words =3D {17, 18, 19},
-> +	.num_gates =3D ARRAY_SIZE(imx95_access_gate),
-> +	.gates =3D imx95_access_gate,
-> +};
-> +
->  static const struct ocotp_devtype_data imx95_ocotp_data =3D {
-> +	.access_gates =3D &imx95_access_gates_info,
->  	.reg_off =3D 0x8000,
->  	.reg_read =3D imx_ocotp_reg_read,
->  	.size =3D 2048,
->=20
->=20
+Changes v2 -> v3
+  v2: https://lore.kernel.org/lkml/20241217143216.658461-1-herve.codina@bootlin.com/
 
+  - Patch 1:
+    No changes
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+  - Patch 2 (new in v3)
+    Move reset_pipe() from VC4 HDMI driver to a new atomic helper
 
+  - Patch 3
+    Use the new drm_atomic_helper_reset_pipe()
+
+  Patch removed in v3
+    - Patch 2 in v2
+      No more needed
+
+Changes v1 -> v2
+  v1: https://lore.kernel.org/lkml/20241024095539.1637280-1-herve.codina@bootlin.com/
+
+  - Patch 1:
+    Add 'Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>'
+    Add 'Acked-by: Conor Dooley <conor.dooley@microchip.com>'
+
+  - Patch 2 (new patch in v2)
+    Introduce drm_atomic_helper_disable_connector()
+
+  - Patch 3 (patch 2 in v1)
+    Reset the output path instead of the full pipeline.
+    Update and add more information related to the bridge in commit log.
+
+Herve Codina (3):
+  dt-bindings: display: bridge: sn65dsi83: Add interrupt
+  drm/vc4: Move reset_pipe() to an atomic helper
+  drm: bridge: ti-sn65dsi83: Add error recovery mechanism
+
+ .../bindings/display/bridge/ti,sn65dsi83.yaml |   3 +
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c         | 147 ++++++++++++++++++
+ drivers/gpu/drm/drm_atomic_helper.c           |  41 +++++
+ drivers/gpu/drm/vc4/vc4_hdmi.c                |  30 +---
+ include/drm/drm_atomic_helper.h               |   2 +
+ 5 files changed, 194 insertions(+), 29 deletions(-)
+
+-- 
+2.47.1
 
 
