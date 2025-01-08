@@ -1,123 +1,84 @@
-Return-Path: <devicetree+bounces-136349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A96FCA04DE4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 00:51:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FFCDA04E15
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 01:29:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3463C18879AA
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2025 23:51:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C59E3A5C9A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 00:29:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3984F1F708D;
-	Tue,  7 Jan 2025 23:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F59F4685;
+	Wed,  8 Jan 2025 00:29:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="yVBVnSbp"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="cS5aGQNn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E161F709F
-	for <devicetree@vger.kernel.org>; Tue,  7 Jan 2025 23:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0FD33D8;
+	Wed,  8 Jan 2025 00:29:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736293862; cv=none; b=aMUvOBXG/27k1YpClAgd76YQJ17fD/FwM5Sk6qeYSWKofya+VWhvFuxMm5eSJ5I6vdIF2981o20vi8oEJmGyT0Nn9rs7sPaAEv8iAehjGRUviUXD5/HFX7oNpdfETK8vlY2eB+NLocntk+x7aaUOIb+CemTXJz3az8LAxeg83tU=
+	t=1736296189; cv=none; b=Pd/gs2UnsbmF/vqAX3fF+b4k4VRbbUfeH0N/0yuZI0qgUKrkdg1yB0eunpbfqe4YDDFZWY4mYZfHw3jY8jHpFym8TGzgXWpDL3tZBWU/1aIh8DC9BDYIz7CxdQfg9cDjzXzYHSemxi4Y+iSvK9C+nVs5seFykTLXl56TAD0C2ds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736293862; c=relaxed/simple;
-	bh=9VpUmzYiTMqpRssvnvfD7S7WSlpD9f7LMaXqYjiaWl8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PVdafs2ef6ryVhdYp0waS9yS/B3NVgToxTET2x3qwqywYLjZuAd0I4ORvRAD7KIQfegwNJKOmsxCvXNR4xiqg5+M+t6izgibwYH/H5etAzMoqT8W0B9WYUZCtzr82jNlkCjTR3S/zUrTVBhA2egQjWSnvx4dNmzSVAWCQCuPmKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=yVBVnSbp; arc=none smtp.client-ip=209.85.210.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-71ded02b779so8681295a34.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2025 15:50:59 -0800 (PST)
+	s=arc-20240116; t=1736296189; c=relaxed/simple;
+	bh=4tB+AKwK6xdu1v/3V+Iq9VIwiOS52T8cwZzDZT5RoqA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=G0f0+bqwSOW8zKhmMbtK/DU4pl3JyQ7Ys1EhhZpvOf2F0a7WUI4atMKqJVXMFdQYZ74gvc8/VL6MVnyAG2qHnYaKsshzVIobCmThYlwKAvteTyGXToo701lCiHGgp6p8q/HlZsDLNyQui9gMD0VLZwCB7j19Hiy4fhC5rw+EJjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=cS5aGQNn; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736293859; x=1736898659; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xxe5fK9+PaockwMQ56BVWMGy02hAR06xAVeNpiyd0xw=;
-        b=yVBVnSbpqRG6uLjMdgTHjNK952b0ieTTYcBMnENts8CgZ9JJH1IIEPjMTFxE69SYt4
-         CBBLpU9sNIxIeWgjQZnV2W8o+uy0cGDU9PpgJ5SUevRyBGU2FxpDEqoIKF/H0SrVo2nu
-         /RpZjyxMWPK/hiu2J94ndQtqI20YU9Tu2kDWQjf0mHSwj52i2Y1lCx6FQr9+wM+oC+Rz
-         EYEgSxk009jgUuOJGtTnZc2j5xw0mZFbxccWnJGYOl11oXzuSt+dn6upgpin4yj1MSvj
-         5Mhj+eMbNiF3dvIWayLo+83DC0ESHtFmNJbEuL98wujMbnLBSUc2VfBwgLVhst7epm5V
-         ig7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736293859; x=1736898659;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xxe5fK9+PaockwMQ56BVWMGy02hAR06xAVeNpiyd0xw=;
-        b=NDFa+wnW96PzKwd7j/NXkBxf/9mFlHwiAGR+CJo3SFA6kMwCc3F7OY3YgZJoVm7L8o
-         nTFS1Y7l1kqP+rCKrLZiqsQfQPZ9oPKhn/3jIN8Mf1KXMow3//2wWbPeBDvTM8uW9LKk
-         rtqfTekI3p/w+d+KtKTjEjztmVRmzPMPyIIRYEKPgTz9BrVgGGO1ca7Z6R8x06k7L9KZ
-         lk+nk//ahzNktgjrNOgfNMtjkcyyG4/MAjTjsGDb2CPfKXcMPUxmcpudXxvYUFthBNQc
-         D6Hcl6mbjB89UO/X/SP6kMW9kaGTUTEiqOfVpymOfMx8OhI3RtIPi2eI78UPL4GF/wgs
-         X1uQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVdeSXeijLFjncd6eIxxaheuh5ooTL3EzTb+eTXl9p29JgeSI9mhmKF+BN99DaiZnnzL+y9t4iwes4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzmmkpwsj1krY5XtbGbAYCQgwp5h9yFh5w4QJo/dRz7220dJrMa
-	QAI0bpCi42et6IMc2/mxMp9FmTBOSrQhGvv+RU9RfrvbWkQM4VzJrvsiru5vzRA=
-X-Gm-Gg: ASbGncugUEzppUaMZh+yPtWqAg3dW/V9rIQ0FV7oVH3FY5R7PGtALn0Rx30jDUuEBmY
-	vZgKgRuULaPn/qhPNJDCoNOZmEr0HGhYhBx0FTzURq8LDWCDfFi0jIUGIaNj3W+wCA6TggvuWgs
-	DDF6XyPjTWxGwvET8aoe5ixgQ1irglShPTUzcuSkH/pfN8p71Fn5caBfIzLypE3ZVRGx6SlMuRU
-	vcu3vuyl+8xhXROIINxDp1aG9Oi1g0y9VZJt2WhvnfAanZY6AU5GMM5xB7sXmUJrSnkYFU71+dL
-	IAvtcnT9RXQMRMJSng==
-X-Google-Smtp-Source: AGHT+IE7yzxUi5oQvlLU3DlUFKJpeT4/XYqyGq1OtgTEXGDgGaina2HGVk3yHfNdQybXSvDKsrKkKw==
-X-Received: by 2002:a05:6830:3748:b0:71d:f239:c0b5 with SMTP id 46e09a7af769-721e2e52e47mr548687a34.18.1736293858780;
-        Tue, 07 Jan 2025 15:50:58 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71fc938998csm10831203a34.0.2025.01.07.15.50.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jan 2025 15:50:58 -0800 (PST)
-Message-ID: <5d492f38-b103-4850-8d13-ef1fd1d2c483@baylibre.com>
-Date: Tue, 7 Jan 2025 17:50:56 -0600
+	d=codeconstruct.com.au; s=2022a; t=1736296182;
+	bh=ngFxpbsAhBt46D4upIiQUrqXmQXQRu9BcTtfx/SuZrQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=cS5aGQNnH8pG8T95/gV34zVLaRqjpN019oKppskkOEPws+2cBRPC2LsXVWHWQbQK9
+	 2gswAEXTbEB2AweMzsHU2tfCGYYW7CZldvBxXOrunMD01odqogdtEmCo38bl9wDFju
+	 zYmvmmtlXjeY7dL7M/D0aO4deRxw8cxHj8JpZYWpzOc/xJ8KY1tAHRJgb02yrTtDna
+	 5p/J8Pp68UkUdV/Yv7tCBYc6le/IVT23pFr6Xt5PQy1rvbInQX3Gj5eEAhX62riQfV
+	 dUGGBqeX3a/7M2SOJs5mBn9+EsYVuOrE9vpdkcDOfOKGUZI3iPWsQKzRjq6k89dO3H
+	 sBHimNEPs1ChQ==
+Received: from [127.0.1.1] (ppp118-210-64-24.adl-adc-lon-bras32.tpg.internode.on.net [118.210.64.24])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E49F670B92;
+	Wed,  8 Jan 2025 08:29:40 +0800 (AWST)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Patrick Williams <patrick@stwcx.xyz>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250107162726.232402-1-patrick@stwcx.xyz>
+References: <20250107162726.232402-1-patrick@stwcx.xyz>
+Subject: Re: [PATCH v1 REBASE] ARM: dts: aspeed: yosemite4: adjust
+ secondary flash name
+Message-Id: <173629618084.481094.9284702547524010515.b4-ty@codeconstruct.com.au>
+Date: Wed, 08 Jan 2025 10:59:40 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 15/15] iio: adc: ad7768-1: add filter type and
- decimation rate attributes
-To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- marcelo.schmitt1@gmail.com, PopPaul2021 <paul.pop@analog.com>
-References: <cover.1736201898.git.Jonathan.Santos@analog.com>
- <b88a167234c49a66792c0d3e182bb40b5b695b5c.1736201898.git.Jonathan.Santos@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <b88a167234c49a66792c0d3e182bb40b5b695b5c.1736201898.git.Jonathan.Santos@analog.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On 1/7/25 9:27 AM, Jonathan Santos wrote:
-> Separate filter type and decimation rate from the sampling frequency
-> attribute. The new filter type attribute enables SINC3 and WIDEBAND
-> filters, which were previously unavailable.
-
-See related comments in my reply to the documentation patches about wideband vs.
-FIR and decimation rate vs. -3dB cutoff.
-
+On Tue, 07 Jan 2025 11:27:25 -0500, Patrick Williams wrote:
+> Meta (Facebook) has a preference for all of our secondary flash
+> chips to be labelled "alt-bmc" for consistency of userspace tools
+> deal with updates.  Bletchley, Harma, Minerva, and Catalina all
+> follow this convention but for some reason Yosemite4 is different.
 > 
-> Previously, combining decimation and MCLK divider in the sampling
-> frequency obscured performance trade-offs. Lower MCLK divider
-> settings increase power usage, while lower decimation rates reduce
-> precision by decreasing averaging. By creating a decimation attribute,
-> users gain finer control over performance.
-
-It seems like we would also want a power_mode attribute. We already have an
-attribute for this for used by accelerometers so there is some precedent for
-such an attribute.
-
+> Adjust the label in the dts to match the other platforms.
 > 
-> The addition of those attributes allows a wider range of sampling
-> frequencies and more access to the device features.
+> [...]
 
+Thanks, I've applied this to be picked up through the BMC tree.
+
+--
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
 
