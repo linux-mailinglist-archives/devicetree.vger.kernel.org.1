@@ -1,155 +1,160 @@
-Return-Path: <devicetree+bounces-136632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD724A05B03
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:08:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74869A05B0F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:10:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A10B3A31D3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:08:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F3B618889EE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B21791F9400;
-	Wed,  8 Jan 2025 12:08:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95071F9407;
+	Wed,  8 Jan 2025 12:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="S7d8Cst0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d/GQi6dW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A09F91F8F16
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 12:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16FE01F8AE0;
+	Wed,  8 Jan 2025 12:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736338132; cv=none; b=ZbdCVzjuCVVRUnnMLHNmrEVfrVvpUqM/U0cK8wNRWA0OnBgAojofCBFbq+kPYSOC2xTkTUUDXjx30xh7R4Gz7/NalXDVTyq3CsRy9ajxVHc9kxBi48VyjE0LgyNrkr/DKDuaLDxpX30j9iN8HZzdiW07J6Ht4nRs4FTy/N3KegE=
+	t=1736338226; cv=none; b=feRJY67bfn1FbmipLB1bDVZvjtjUtbTA0hRyu00hpWqNSHwJk8/oX8DAIrZvFDwuS5zCWXq+DTeUdFsi8pWULxJQlLk9c3+pP2MRKyZtErsIxIt1O7+SwH7QpVCjsqQw1n6q7lXRcNBRUUu/SHBGJveAgYOsmd/0EkvIwI0BC8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736338132; c=relaxed/simple;
-	bh=Q1GTUTmKjX8jfhiEVy0rIQ1l7Rafq0ylK8yASgB6NQw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U+Hh1giCL9S6sUsA6Kzno0KkKH7xMwt6AOZoiSsha1qjUyiORuYzO9wPuyEPRrbHbezfXDTrWSVs/MbBwyUOuX+bdbTMQTkYjqRrLnecwXV4P9ZNLp2fY3VgYSSis+kQOM83nkTJOcNz5evUpJutXp+90wepGJSVAcCHEz5ajvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=S7d8Cst0; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-3003c82c95cso137427441fa.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 04:08:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1736338129; x=1736942929; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WHYq9u3fK0PbCc5B7zHvSgROeh3nh7BEAUFJXMqDAtE=;
-        b=S7d8Cst0yPy3WaaIMzeRk+2dPoNgZlcinadmx3b/h3xpKcAuaj8ykoFIiux6b18iwW
-         t4YrljB6n4dqj5E0muBuRtEw1NZip+OIitAGdZ2rRfAuYiav+Jtd5WNw4cx8QWr//iwS
-         kTPZgK/WzWBaQChGrPPC35QLilbpMjTBJqGek0MLBT8rlLoDX26CyVz0x+jgxIgb+ImJ
-         ZSyQ2KwmZOiE4QttFrW0XYgRKi6yEP09knLZzoCsDYuEn6jcw2LKb1JgDK5CWVKutUh6
-         6R0R8TZRlfaEZsGryUwXHN3OJAAg8iollbyH3WkLJbr7GJOtc2XpcTa6OTAT57Nm8PBc
-         8N0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736338129; x=1736942929;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WHYq9u3fK0PbCc5B7zHvSgROeh3nh7BEAUFJXMqDAtE=;
-        b=VpnyXEolPuBJJqmjEy1wm9PB9Ib+grKXEn8Gf8n0sRQ30m7iD0g4mbmxlunpq+4TRm
-         SeXBpictZ234Bc6wYwpeWlvKTpPXvR7PRtoiOqvjvsWMPO2q5V7teR3cK081VTY3Vv59
-         h4Uej990w++6SubgnTBdK96sQH++esoqbvoq9n6aKjRyBnmnodaykPUvQ003aBhqWNE1
-         nbblkVNt/APdD0Pd3EHtssk7eR7FP65OedyvUJbj3EkdTZzHsyNroAcrnMynjI0ny75+
-         AiCe9hRxEw0VGNW02PQHQrUPrs+TjWjeWdozR82u1h/MoTC9b6wZC5ysWAuigbrPYGrx
-         Fpug==
-X-Forwarded-Encrypted: i=1; AJvYcCUWmA9zRSdPXI4SHzhRZMCst+0NttKmIQwiHSo7o08qkiH5O7knI5MMIRWvi5043RttZI0A26pl1Jg2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5DYmrXKx8Uh2/a6KyTA+pGhjOHTur6Y3r35EBaNjNBYe4YYFH
-	MlhkopLtsd13deSQXExH4jRKEFSsHedzVOr8fTtlzEJ5bCXwWFpOYcqaWqqUMVMRi1AWQwfagc7
-	Q4TIEIfM61SB3i6Ap5dqU60K1UTjWzFXGouloxg==
-X-Gm-Gg: ASbGncvnFC1ctxeRyrbw4uJGKl+kvtEq29EF3HjPc7wYsfXtMQPfpoAdgJwNFpy5IlZ
-	BLWXmzO/Ef24qR6MkMAhDyEDzEXH+ptSpjkiQ6lhNIUxsKT5ZeRzqRHfRjkCKojbRs0FvAQ==
-X-Google-Smtp-Source: AGHT+IFa3R2ndq55NhKWU1ao89iSflN8dGnIqgIJvNfkd7iWWkr+SCY7vOTKmYqjO3DLDzwPCXA/s7eaAZV3KmJo5mQ=
-X-Received: by 2002:a05:6512:138c:b0:540:2188:763c with SMTP id
- 2adb3069b0e04-542845b0b55mr753264e87.37.1736338128530; Wed, 08 Jan 2025
- 04:08:48 -0800 (PST)
+	s=arc-20240116; t=1736338226; c=relaxed/simple;
+	bh=7v6VJpeD1AHjtiI+PW6xiSL0EBTcYgEqbMYj30hmRf4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=I0TO/p3xGEVfJ+AqWoeBJHn2dTC6SrdO8TdWNcId4VM3sJxs3wo8G5S9EEw1VKyU39EY0+T0Ru2vJz0D0FxmWHexgzxSro0e2+CdKMoPCXWKTgB3TQLHWnxmzo8Kgi5TZYYodMj5GxHwZbc7BRk4z/oBSeZwJlhRyVvbx+M+GXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d/GQi6dW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508BkW7p011537;
+	Wed, 8 Jan 2025 12:10:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/wbi1dn1BaW4RjtF4+vYEtqjtJxT1Sw34X55ioOywDs=; b=d/GQi6dW4FKa35HK
+	RWJSqSTZcN+ZY9/MhVLRf/mCJDm7mUfvjnWnfWRn5r5BiRXKMc7V4tXyg7VXKS6V
+	WlhG908RYyyDqkosW8/VydtUZiqaqPHxtlpRObKo0sKOdpTkl1rIZD1tKzj1MAoR
+	Az/MH2hgHg8vX38g48KkWQrHx9luj6QZMXQUAJIEYlbIyiIOlHZiKkZ23qLpY6/1
+	0WWnhSAA1+XhKvk4xKIPFNfgtgIifVjw4vw/7YxuowMcJRh8GcF7SE5PJU57qDXz
+	/Sq+n/Hd80vKk9q36Zmk+Xi3cXyHkxbGs/8ljy8pMvdjiNTQPJMPoKLOkAO5tOQo
+	iHXLgw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441ppn0dtg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Jan 2025 12:10:22 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508CALNh003045
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 Jan 2025 12:10:21 GMT
+Received: from [10.219.57.57] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
+ 04:10:18 -0800
+Message-ID: <e7abe34c-9df9-425b-933e-cc744a63b80c@quicinc.com>
+Date: Wed, 8 Jan 2025 17:40:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241224-gpio74-v2-0-bbcf14183191@posteo.net> <173593634037.257292.1488097273042214180.b4-ty@linaro.org>
- <CAMuHMdUqvTrSsiGuJ=VvNqsQm4eQs9rNTU8VBg+FzHJZxRnXow@mail.gmail.com>
- <CAMRc=McAm3A1movK-8q67UbKuPb8FQzVwD_me7Q6x-gei2PA_A@mail.gmail.com> <192e97dd-698a-4434-bd32-c1181ec85ba3@prolan.hu>
-In-Reply-To: <192e97dd-698a-4434-bd32-c1181ec85ba3@prolan.hu>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 8 Jan 2025 13:08:37 +0100
-X-Gm-Features: AbW1kvZnk6_fgKN1eHWtfPj2SS6UYja6sVBaHC9BI-DUFwEoYlH6fNeZYLCvfd8
-Message-ID: <CAMRc=MewCR=W=_0RKFZR0gW2mvkMD-pKBWpXCeqOY4j8CXBSXw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] gpio: 74HC595 / 74x164 shift register improvements
-To: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>, 
-	=?UTF-8?B?Si4gTmV1c2Now6RmZXI=?= <j.ne@posteo.net>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
-	linux-spi <linux-spi@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs8300: Add device node for
+ gfx_smmu
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>
+CC: <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241227110024.30203-1-quic_pbrahma@quicinc.com>
+ <1c8af731-c551-4d72-84a0-f14d57bec4ec@oss.qualcomm.com>
+Content-Language: en-US
+From: Pratyush Brahma <quic_pbrahma@quicinc.com>
+In-Reply-To: <1c8af731-c551-4d72-84a0-f14d57bec4ec@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YoQtExhHSDPmSlFymms8lJD3RJu8-Ahl
+X-Proofpoint-ORIG-GUID: YoQtExhHSDPmSlFymms8lJD3RJu8-Ahl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ impostorscore=0 bulkscore=0 phishscore=0 priorityscore=1501 mlxscore=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=856 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501080099
 
-On Wed, Jan 8, 2025 at 11:26=E2=80=AFAM Cs=C3=B3k=C3=A1s Bence <csokas.benc=
-e@prolan.hu> wrote:
->
-> Hi all,
->
-> On 2025. 01. 06. 21:16, Bartosz Golaszewski wrote:
-> > On Mon, Jan 6, 2025 at 10:19=E2=80=AFAM Geert Uytterhoeven <geert@linux=
--m68k.org> wrote:
-> >> Do we really need to document and add driver support for all variants?
-> >> I can easily come up with a list of tens or perhaps even hundreds
-> >> of xx74yy595z parts that are all compatible, as far as software is
-> >> concerned.  As SPI was invented by Motorola, the original part is
-> >> probably named MC74595 or MC74LS595 (yes, ON Semiconductor bought the
-> >> logic division of Motorola).
->
-> I second this, no point of having a new compatible which is a guaranteed
-> 1:1 equivalent of an already existing one. Especially true if the only
-> change was that a different company bought the IP. By the same logic, I
-> could start to sumbit patches to change all `fsl,` compatible-s to
-> `nxp,`; `atmel,`, `maxim,`, `smsc,` etc. to `microchip,`; `ralink,` to
-> `mediatek,` and so on. There would be no end.
->
-> >> Perhaps we need a separate vendor prefix for the 74xx-series[1]?
->
-> I don't think that is the case. Rather, we should document that the
-> existing binding/compatible should be used for all such simple cases (it
-> is called _compatible_ for a reason, after all, and not
-> `exact-part-number`).
->
-> >> The xx-prefix and z-suffix don't matter; the yy-infix for semiconducto=
-r
-> >> technology rarely matters (there are a few exceptions, though, mostly
-> >> pinout, which doesn't matter for software).
-> >>
-> >
-> > I missed the fact that Rob actually responded to patch 1/3 with a
-> > similar suggestion (fallback, instead of a full compatible).
-> >
-> > I can drop this series from my queue if it needs more rework.
->
-> I think you can keep 3/3 (the one commenting the use of `latch` as CS).
-> The rest can be replaced by another commit commenting on what it means
-> to be `fairchild,74hc595`:
->
 
-J. Neusch=C3=A4fer: do you want to send a follow-up for this?
+On 12/30/2024 6:49 PM, Konrad Dybcio wrote:
+> On 27.12.2024 12:00 PM, Pratyush Brahma wrote:
+>> Add the device node for gfx smmu that is required for gpu
+>> specific address translations.
+>>
+>> This patch depends on the patch series [1] posted by Imran Shaik
+>> adding the clock support for gpu.
+>>
+>> [1] https://lore.kernel.org/all/802d32f1-ff7e-4d61-83f1-f804ee1750ed@oss.qualcomm.com/
+>>
+>> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 37 +++++++++++++++++++++++++++
+>>   1 file changed, 37 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> index 80226992a65d..8eb688e2df0a 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> @@ -816,6 +816,43 @@
+>>   			#power-domain-cells = <1>;
+>>   		};
+>>   
+>> +		adreno_smmu: iommu@3da0000 {
+>> +			compatible = "qcom,qcs8300-smmu-500", "qcom,adreno-smmu",
+>> +				   "qcom,smmu-500", "arm,mmu-500";
+>> +			reg = <0x0 0x3da0000 0x0 0x20000>;
+>> +			#iommu-cells = <2>;
+>> +			#global-interrupts = <2>;
+>> +			dma-coherent;
+>> +
+>> +			power-domains = <&gpucc GPU_CC_CX_GDSC>;
+>> +			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+>> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
+>> +				 <&gpucc GPU_CC_AHB_CLK>,
+>> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
+>> +				 <&gpucc GPU_CC_CX_GMU_CLK>,
+>> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+>> +				 <&gpucc GPU_CC_HUB_AON_CLK>;
+>> +			clock-names = "gcc_gpu_memnoc_gfx_clk",
+>> +				      "gcc_gpu_snoc_dvm_gfx_clk",
+>> +				      "gpu_cc_ahb_clk",
+>> +				      "gpu_cc_hlos1_vote_gpu_smmu_clk",
+>> +				      "gpu_cc_cx_gmu_clk",
+>> +				      "gpu_cc_hub_cx_int_clk",
+>> +				      "gpu_cc_hub_aon_clk";
+> Most of these entries look totally bogus, please make sure you only
+> reference the ones actually required
+These entries are exactly similar to the ones we use in sa8775p as well 
+[1] and the usecases
+haven't changed between qcs8300 and sa8775p.
 
-Bart
+Can you please let me know which entries you find irrelevant here?
 
-> * tri-state output
-> * 8-bit output
-> * OE pin (or latch or whatever it happens to be called in their chosen
-> manufacturer's datasheet)
-> * SRCLR does not seem to be used by the driver, so we can probably skip
-> that...
+[1] commit 1a1ff00c1626c "arm64: dts: qcom: sa8775p: add the GPU IOMMU node"
+
 >
-> And telling people NOT to add a new compatible if their part satisfies
-> these.
->
+> Konrad
+
+-- 
+Thanks and Regards
+Pratyush Brahma
+
 
