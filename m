@@ -1,63 +1,54 @@
-Return-Path: <devicetree+bounces-136443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32CF0A0534F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 07:39:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA994A05367
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 07:50:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A4F23A4BE6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 06:38:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94D66165AB4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 06:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 586B11A239B;
-	Wed,  8 Jan 2025 06:39:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="E201YjwP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D8EA1A83F8;
+	Wed,  8 Jan 2025 06:50:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05B91A725A;
-	Wed,  8 Jan 2025 06:38:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C9681A2396;
+	Wed,  8 Jan 2025 06:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736318339; cv=none; b=eGy64Fwf4zgk57a3i5sTcxCNB00Kqvs3ICis00keTEO1BSpDPVZoj8qTwd+iqPLvMk+HsRAmX0/PCoxvWKbjrOBa8tQfa3eO37Tu7ymQLuke1vEffpHGppJHW5Q6EME2qjdoqhgYDrYD+l3kC/ePicn2alWMuTO8jouk3sN8l9E=
+	t=1736319006; cv=none; b=aER5oJm+fqkev7A8S/YXt2s2r3tVpP/Oh7llcc5cvg0+kAEIFxwxzNUpfzaEZk1qCemeU/vXQahkYJvfsmxr0QqBZxyjZJ3pLViSq7d1yxydfW+YpcnI1kUurIYsQ5i+Ht2onx4O0WyclSofmFcUxTwHh9DhYgGCT/V1lR1UuPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736318339; c=relaxed/simple;
-	bh=YLhV3ED5XsXDU71YwqwfNjbJQyIYbUP9kLda7DVydc0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XDJlFcv94GXXpASqp/mEpSP/PdaDyq1Cv1ajuntbXXEVavVURnq6T7o2cetbj3kZyFYavVvHUiPzgcMXrgqvG6ZpZo8I6Ed9f8yuIM4DbzU4+9Oze3OkKHp1V9s2cEbfM5qbrRt8OZR4g9lKGASSVAKQefBxuMqjw5w7rDtR5Pk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=E201YjwP; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 507K5cYu019348;
-	Wed, 8 Jan 2025 06:38:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XFfyzcA7Lm6kRRoYwMuF7A+42NuA98iGiVzUrdklIT4=; b=E201YjwPbM7MFIuL
-	vVHqkqrm+6B88gWFT44Hro8CllKDPM2QtVzsSpbsn8mrMc/N8EcPqhYM4cMbk1Kz
-	WHqyR1uFudKnRIhBFzvJQqva+952dQCLiLUXZKr9clzkOz+rr7t/oI9CUGTyuMwJ
-	Pf8tHj/4b4Xdh3/DoXTfimfYw80KNKyT/mAvuDW7atG6KIH/kLTGHADK0NfkOuHb
-	nEmLhUqQH034KEYW6uYiEB+Sh1Q/l0A92FrNa912Im0m6gN2qyWeJ0A2VxMatVJh
-	X3YrE+7jQ4PHvBRlalpRmhuRvVaFK1cGNWrI8DeXU6TY9dE+qAWUQEr6S+Fx2zIk
-	jaI8QA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441b0k1739-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Jan 2025 06:38:45 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5086chNE022358
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 Jan 2025 06:38:43 GMT
-Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 7 Jan 2025
- 22:38:36 -0800
-Message-ID: <5d926560-4e90-4ff1-8d87-3286b469246d@quicinc.com>
-Date: Wed, 8 Jan 2025 14:38:33 +0800
+	s=arc-20240116; t=1736319006; c=relaxed/simple;
+	bh=D/tq161aMHc2DYLmuD4sPosxjAcF6kyg+0pfcbuMqfE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ahPHv5gsQcp74S8VltWP1dymbiANvHeJduDToqjqdbyJj+snGHBVmq6X8iKVLBLzxm0yaLmkXe/f47m9jaWA9ThzNpsfoM0PAL5WNT2YdttmfdhRbc94Lah3TRX8oqDFt1tIz7sSd1sw1lGz0mI5rvq97KSI0h8ZAncSriUu4GU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
+Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
+	by localhost (Postfix) with ESMTP id 4YSdXw6RjBz9sPd;
+	Wed,  8 Jan 2025 07:38:40 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id U78Fjo-CcYje; Wed,  8 Jan 2025 07:38:40 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4YSdXw59tPz9rvV;
+	Wed,  8 Jan 2025 07:38:40 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 955858B768;
+	Wed,  8 Jan 2025 07:38:40 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+	with ESMTP id IuATmTbrlDCX; Wed,  8 Jan 2025 07:38:40 +0100 (CET)
+Received: from [192.168.235.99] (unknown [192.168.235.99])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id CF7368B767;
+	Wed,  8 Jan 2025 07:38:39 +0100 (CET)
+Message-ID: <2311c126-804a-4aee-bddb-abf4929b1073@csgroup.eu>
+Date: Wed, 8 Jan 2025 07:38:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,106 +56,126 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] dt-bindings: phy: Add eDP PHY compatible for
- QCS8300
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kuogee Hsieh
-	<quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        "Kishon Vijay
- Abraham I" <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>
-References: <20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com>
- <20241226-mdssdt_qcs8300-v2-4-acba0db533ce@quicinc.com>
- <kz5qakmiy7n72p5yrrkgcjrmtvwl7knnkbzmh44g6cfunpjxad@3titlwwt32ux>
-Content-Language: en-US
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-In-Reply-To: <kz5qakmiy7n72p5yrrkgcjrmtvwl7knnkbzmh44g6cfunpjxad@3titlwwt32ux>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: YVcG7DL6uPoQdo5y-ArqX2_PZPAG8Flq
-X-Proofpoint-GUID: YVcG7DL6uPoQdo5y-ArqX2_PZPAG8Flq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
- mlxlogscore=999 impostorscore=0 priorityscore=1501 suspectscore=0
- malwarescore=0 spamscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501080052
+Subject: Re: [PATCH 01/19] powerpc: Generalize MPC831x platform support
+To: =?UTF-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin
+ <npiggin@gmail.com>, Naveen N Rao <naveen@kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-1-86f78ba2a7af@posteo.net>
+ <0b66e94d-7116-4916-b897-06b1199752b4@csgroup.eu> <Z32uk8VJqhlogY50@probook>
+Content-Language: fr-FR
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+In-Reply-To: <Z32uk8VJqhlogY50@probook>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
 
-On 2024/12/29 12:42, Dmitry Baryshkov wrote:
-> On Thu, Dec 26, 2024 at 05:40:48PM +0800, Yongxing Mou wrote:
->> Add compatible string for the supported eDP PHY on QCS8300 platform.
->> QCS8300 have the same eDP PHY with SA8775P.
->>
->> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
->> ---
->>   .../devicetree/bindings/phy/qcom,edp-phy.yaml         | 19 ++++++++++++-------
->>   1 file changed, 12 insertions(+), 7 deletions(-)
+Le 07/01/2025 à 23:45, J. Neuschäfer a écrit :
+> [Vous ne recevez pas souvent de courriers de j.ne@posteo.net. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
 > 
-> Everything else is display, this one is PHY. Consider separating this
-> one to a separate series.
-Got it. will separate in next version.
+> On Mon, Jan 06, 2025 at 02:50:31PM +0100, Christophe Leroy wrote:
+>>
+>>
+>> Le 02/01/2025 à 19:31, J. Neuschäfer via B4 Relay a écrit :
+>>> [Vous ne recevez pas souvent de courriers de devnull+j.ne.posteo.net@kernel.org. Découvrez pourquoi ceci est important à https://aka.ms/LearnAboutSenderIdentification ]
+>>>
+>>> From: "J. Neuschäfer" <j.ne@posteo.net>
+>>>
+>>> The Reference Design Boards (RDB) don't have the same relevance they had
+>>> then the MPC831x platform was new; if any work is done today, then
+>>> likely based on used production boards, which are more readily available
+>>> than NXP's discontinued devboards.
+>>>
+>>> To further reduce the focus on RDBs, add DT compatible strings for all
+>>> four MPC8314/5 variants.
+>>
+>> Seems like this patch does more than adding DT compatible strings.
+> 
+> I'll move the addition of DT compatibles to a new patch.
 > 
 >>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
->> index 293fb6a9b1c330438bceba15226c91e392c840fb..eb97181cbb9579893b4ee26a39c3559ad87b2fba 100644
->> --- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
->> @@ -16,13 +16,18 @@ description:
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - qcom,sa8775p-edp-phy
->> -      - qcom,sc7280-edp-phy
->> -      - qcom,sc8180x-edp-phy
->> -      - qcom,sc8280xp-dp-phy
->> -      - qcom,sc8280xp-edp-phy
->> -      - qcom,x1e80100-dp-phy
->> +    oneOf:
->> +      - enum:
->> +          - qcom,sa8775p-edp-phy
->> +          - qcom,sc7280-edp-phy
->> +          - qcom,sc8180x-edp-phy
->> +          - qcom,sc8280xp-dp-phy
->> +          - qcom,sc8280xp-edp-phy
->> +          - qcom,x1e80100-dp-phy
->> +      - items:
->> +          - enum:
->> +              - qcom,qcs8300-edp-phy
->> +          - const: qcom,sa8775p-edp-phy
->>   
->>     reg:
->>       items:
+>>>
+>>> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+>>> ---
+> [...]
+>>> diff --git a/arch/powerpc/platforms/83xx/Kconfig b/arch/powerpc/platforms/83xx/Kconfig
+>>> index d355ad40995fdc0fc3b4355126c65c761c21c296..944ec44a1fa6044b03ac71c295e891cd411ce444 100644
+>>> --- a/arch/powerpc/platforms/83xx/Kconfig
+>>> +++ b/arch/powerpc/platforms/83xx/Kconfig
+>>> @@ -18,12 +18,12 @@ config MPC830x_RDB
+>>>           help
+>>>             This option enables support for the MPC8308 RDB and MPC8308 P1M boards.
+>>>
+>>> -config MPC831x_RDB
+>>> -       bool "Freescale MPC831x RDB"
+>>> +config MPC831x
 >>
->> -- 
->> 2.34.1
->>
+>> That looks confusing. We already have CONFIG_PPC_MPC831x
 > 
+> Fair enough. How about CONFIG_MPC831x_BOARDS?
 
+Yes that would be more explicit.
+
+> 
+>>
+>>> +       bool "Freescale MPC831x boards"
+>>>           select DEFAULT_UIMAGE
+>>>           select PPC_MPC831x
+>>>           help
+>>> -         This option enables support for the MPC8313 RDB and MPC8315 RDB boards.
+>>> +         This option enables support for all MPC831x-based boards.
+>>>
+>>>    config MPC832x_RDB
+>>>           bool "Freescale MPC832x RDB"
+>>> diff --git a/arch/powerpc/platforms/83xx/Makefile b/arch/powerpc/platforms/83xx/Makefile
+>>> index 6fc3dba943dade4f63da090b520b0c35bb46a091..92fb0b34913e1113d3e6eac49acbb1c32fb06ab7 100644
+>>> --- a/arch/powerpc/platforms/83xx/Makefile
+>>> +++ b/arch/powerpc/platforms/83xx/Makefile
+>>> @@ -6,7 +6,7 @@ obj-y                           := misc.o
+>>>    obj-$(CONFIG_SUSPEND)          += suspend.o suspend-asm.o
+>>>    obj-$(CONFIG_MCU_MPC8349EMITX) += mcu_mpc8349emitx.o
+>>>    obj-$(CONFIG_MPC830x_RDB)      += mpc830x_rdb.o
+>>> -obj-$(CONFIG_MPC831x_RDB)      += mpc831x_rdb.o
+>>> +obj-$(CONFIG_MPC831x)          += mpc831x.o
+>>>    obj-$(CONFIG_MPC832x_RDB)      += mpc832x_rdb.o
+>>>    obj-$(CONFIG_MPC834x_ITX)      += mpc834x_itx.o
+>>>    obj-$(CONFIG_MPC836x_RDK)      += mpc836x_rdk.o
+>>> diff --git a/arch/powerpc/platforms/83xx/mpc831x_rdb.c b/arch/powerpc/platforms/83xx/mpc831x.c
+>>> similarity index 65%
+>>> rename from arch/powerpc/platforms/83xx/mpc831x_rdb.c
+>>> rename to arch/powerpc/platforms/83xx/mpc831x.c
+>>> index 5c39966762e4264d2ef91b2c4ef75fdf2c2c5d65..7250fc11c7ee80b266f39d0b3aebb0deb777c129 100644
+>>> --- a/arch/powerpc/platforms/83xx/mpc831x_rdb.c
+>>> +++ b/arch/powerpc/platforms/83xx/mpc831x.c
+>>> @@ -1,8 +1,8 @@
+>>>    // SPDX-License-Identifier: GPL-2.0-or-later
+>>>    /*
+>>> - * arch/powerpc/platforms/83xx/mpc831x_rdb.c
+>>> + * arch/powerpc/platforms/83xx/mpc831x.c
+>>
+>> Please remove the file name from the file.
+> 
+> Will do.
+> 
+>>>     *
+>>> - * Description: MPC831x RDB board specific routines.
+>>> + * Description: MPC831x board specific routines.
+>>
+>> s/board/boards ?
+> 
+> No, the "board" in "board specific" doesn't get pluralized when there
+> are multiple boards. How about the following?
+> 
+>        * Description: MPC831x specific routines.
+
+Ok
+
+Christophe
 
