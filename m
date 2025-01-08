@@ -1,246 +1,128 @@
-Return-Path: <devicetree+bounces-136613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F18A05A95
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:55:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16711A05AA8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:56:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C9561887B98
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:55:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 144FD166AB3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:56:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3CC1FC0FF;
-	Wed,  8 Jan 2025 11:53:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49D1C1FE44C;
+	Wed,  8 Jan 2025 11:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="GWy3ZByF"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="IJ9btuGC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD1B1FBEB4;
-	Wed,  8 Jan 2025 11:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736337213; cv=none; b=hB2feB6XnLYTjfC8zqxVbH9qBauSYCx+kX3kqbo8F5zjHsa5GL2qM9j5bdl9lllUNloHo8V9wmL8EDf8DEKDcwMK92slSRFbEIBCK1FRfDrKww2jmRd+DvOUvW6aQqSC0QXVOthIOvxKwJ6Au8qwHu8FZW91JH9LTdco+ki2QUY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736337213; c=relaxed/simple;
-	bh=8MLiNDAMT+HhMOJVve531F3Lkvn8J/are+dhtQQ7FdY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ttPu6uEFMJMBTZLtOxXVVKSN1Pu4JiG+ONvs8cFuXz6nEnRy7C3XdfOBG+B0dG9ZkhG9xbLU7xNXvn4HbGVnGof2M4/tvi3aZoLFuRlZYwx8hvNLUCwepdlTnAdrhwzx5CcHJ3NRC2xdAtopDTQH8luyiu+XfNOU/UzXzZfa9NQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=GWy3ZByF; arc=none smtp.client-ip=220.197.31.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=Fb7Vt
-	HZp4ZP+khwQrNOo4zrrHvRLsqIV0ZgKIF4ub3s=; b=GWy3ZByFEH468GsVN76MH
-	PUsRkmkL6I+oD5D/nNHzsTc1E2WvBSLgx1CJIz0V+NPImfzR4assJ51wQ2dX3JA2
-	oS+Yu9Bf+uWFZPzmsfKeBrp+S6Capfzj24XvEqGL+S+I63QQh8jwqmCebCecvFpO
-	3Uq9wpmTVWG7Z3JBC4fb2I=
-Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wDHpyUCZ35n8Xn7EQ--.26804S12;
-	Wed, 08 Jan 2025 19:52:50 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: hjc@rock-chips.com,
-	krzk+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	derek.foreman@collabora.com,
-	detlev.casanova@collabora.com,
-	daniel@fooishbar.org,
-	robh@kernel.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v9 10/11] dt-bindings: display: vop2: Add rk3576 support
-Date: Wed,  8 Jan 2025 19:52:27 +0800
-Message-ID: <20250108115233.17729-11-andyshrk@163.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250108115233.17729-1-andyshrk@163.com>
-References: <20250108115233.17729-1-andyshrk@163.com>
+Received: from sender4-pp-o94.zoho.com (sender4-pp-o94.zoho.com [136.143.188.94])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF461FE453;
+	Wed,  8 Jan 2025 11:53:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.94
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736337226; cv=pass; b=Iz1Eouy0qKFsnuMuJiczzFsZ6Mn1NfX4itFdjvJi07vIktFJP+T8c3p+VZ3eEmlLKk38FPqkmyHFHi2R+dRuX0UfGitDkc67I6VuskjONLO+G9bJ+VzhRgFCa/EqUlxoHiP3AgR7hZ7Qyjn0ULb4Xym7BSWl5rDk0etH9M6ekl4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736337226; c=relaxed/simple;
+	bh=EnhV95JOUiDqyhGhIVC7iHbwbXdz4k3QEDXdQCHiCmc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SrmAgjDcQHx3vdpLcu1TzueQda+XnLdxp/9R3el8YkcaU6Q1yl58oZ/cdq6YedZnwP+LdHT+PMdFta+4wwoVw8n+0S7rtbhBRz6oKGKawrOi7Qzhbg6ew7ynTlbEGRbbmikOd8TZ5Jc8K1EhByvtLYljduESlcS7K/soXD2tSJg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=IJ9btuGC; arc=pass smtp.client-ip=136.143.188.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1736337212; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=IKSlO00cPMt57MupNatC0bqx+ZcCv/3AqIBTsFRmMQIX8Fw95KgMhHPf0MZgHq9WV5wSWPVHH54aESNdwig8JqHnG+uVqY08sC9gPBYWpHDeIRGCZ5iGZTb249yrLY1kpo4gFKNpVJWvG0tnQrNOt8Ei2qJ3cfv2MTy4zaaXLDU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1736337212; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=SV6+dD61DjVjHaXAw4cZ7pAs5Ek4RvEv84oeJT7/Jlk=; 
+	b=HSU7GzNilwKbgdmSwLGH8+h7wQuQK91nvNdg5yOMMuHFMM1lD++hmI5OOxh8wq5Ox3NWTeq2NYheAsS/vCs4GirCJl3M/eaCZzlaC14Nmo34T3iDI8/NrIB7LWdg55vuU8kMPOAGT5sI5ieYv3QUaph9XBFqtvEBL/19mSytD5k=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1736337212;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Feedback-ID:Reply-To;
+	bh=SV6+dD61DjVjHaXAw4cZ7pAs5Ek4RvEv84oeJT7/Jlk=;
+	b=IJ9btuGC0yhbQD2brTNdxzro2kKi26IK2uQitLe7XtRq1HLNUV9aWuPVOa6Nv7DB
+	EpzV9gYsEUsvH+IQ0CHbDrJwzZynaY1yFgALDvFy/BhAbHbyUqkigO2c7OwKw5AMk/W
+	7r45h5knNXEWbGgFigxC4gv9rS9VbyMCcBat8gbo=
+Received: by mx.zohomail.com with SMTPS id 1736337209274483.6594892898389;
+	Wed, 8 Jan 2025 03:53:29 -0800 (PST)
+From: Xukai Wang <kingxukai@zohomail.com>
+Subject: [PATCH v2 0/3] riscv: canaan: Add support for K230-Canmv clock
+Date: Wed, 08 Jan 2025 19:53:06 +0800
+Message-Id: <20250108-b4-k230-clk-v2-0-27b30a2ca52d@zohomail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDHpyUCZ35n8Xn7EQ--.26804S12
-X-Coremail-Antispam: 1Uf129KBjvJXoWxWr1kWFW5XryrGr4xJrWDurg_yoWrJry7pa
-	93Ca4DXrW8Gr1UWw1ktF1rCwn5tFn5Ar4Ykrn7ta17KrsIqr4UWw4agrn8Xr13Wry7Zaya
-	9FsYk343G392vr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UXa9fUUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0h7OXmd+YSuOwAAAsB
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACJnfmcC/22PQW6DMBBFr4K8rit7bDCw6j2qLuyZcbESQgIUt
+ Y24ex3SRag6K39L7838q5h4TDyJtriKkZc0peGUAzwVAjt/emeZKGcBCqwGVclg5QGMkng8yAb
+ KaExkqhBEJs4jx/S52V7f7nnky0eWzvdPcfYzdlnZFsTkDVoHUeWJkaxCInIYKzKhZCBH3hHev
+ MFPLHHo+zS3hfOldiFQNIR148FzWSqVdZXjGkysI6CpIovbBV2a5mH82uotZjvht4nbNVmMzI+
+ gXVPqumbnXr6Hbuh9Oj7nvZtqsQ+4tnvcZlyjatBXwdja/4PrBxyaPa4zDqB9o3MHxfQHX9f1B
+ 6Kl8YypAQAA
+X-Change-ID: 20241206-b4-k230-clk-925f33fed6c2
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Troy Mitchell <TroyMitchell988@gmail.com>
+X-Mailer: b4 0.14.2
+Feedback-ID: rr08011227ba5e3a8d70608de2ce4996130000408bc3c13a028403076f2b5ffdfedb427aa725b96e6725753a:zu08011227cfa1dcabed92c2e71aefc7f100004979d722aff1144df9bddbf5ff30a1768dd220fb0d3d8df855:rf0801122d0f1e211bd97fcc46e25e04b6000059365634c4ba4e5beb21e0b6035ad86f2ed9372a290e72ac99dec17635970d:ZohoMail
+X-ZohoMailClient: External
 
-From: Andy Yan <andy.yan@rock-chips.com>
+This patch series adds clock controller support for the Canaan Kendryte
+K230 SoC. The K230 SoC includes an external 24MHz OSC and 4 internal
+PLLs, with the controller managing these sources and their derived clocks.
 
-Add vop found on rk3576, the main difference between rk3576 and the
-previous vop is that each VP has its own interrupt line.
+The clock tree and hardware-specific definition can be found in the
+vendor's DTS [1],
+and this series is based on the K230 initial series [2].
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+Link: https://github.com/kendryte/k230_sdk/blob/main/src/little/linux/arch/riscv/boot/dts/kendryte/clock_provider.dtsi [1]
+Link: https://lore.kernel.org/linux-clk/tencent_F76EB8D731C521C18D5D7C4F8229DAA58E08@qq.com/ [2]
+
+Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
+Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
 
 ---
-
-Changes in v9:
-- Drop 'vop-' prefix of interrupt-names.
-- Add blank line between DT properties
-- Remove list interrupt-names in top level
-
-Changes in v8:
-- Fix dt_binding_check errors
-- ordered by soc name
-- Link to the previous version:
-  https://lore.kernel.org/linux-rockchip/6pn3qjxotdtpzucpul24yro7ppddezwuizneovqvmgdwyv2j7p@ztg4mqyiqmjf/T/#u
-
-Changes in v4:
-- describe constraint SOC by SOC, as interrupts of rk3576 is very
-  different from others
-- Drop Krzysztof's Reviewed-by, as this version changed a lot.
-
-Changes in v3:
-- ordered by soc name
-- Add description for newly added interrupt
-
 Changes in v2:
-- Add dt bindings
+- Add items and description.
+- Rename k230-clk.h to canaan,k230-clk.h
+- Link to v1: https://lore.kernel.org/r/20241229-b4-k230-clk-v1-0-221a917e80ed@zohomail.com
 
- .../display/rockchip/rockchip-vop2.yaml       | 83 +++++++++++++++----
- 1 file changed, 67 insertions(+), 16 deletions(-)
+---
+Xukai Wang (3):
+      dt-bindings: clock: Add bindings for Canaan K230 clock controller
+      clk: canaan: Add clock driver for Canaan K230
+      riscv: dts: canaan: Add clock initial support for K230
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-index 2531726af306..44256cdcb877 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-@@ -20,6 +20,7 @@ properties:
-     enum:
-       - rockchip,rk3566-vop
-       - rockchip,rk3568-vop
-+      - rockchip,rk3576-vop
-       - rockchip,rk3588-vop
- 
-   reg:
-@@ -37,10 +38,17 @@ properties:
-       - const: gamma-lut
- 
-   interrupts:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 4
-     description:
--      The VOP interrupt is shared by several interrupt sources, such as
--      frame start (VSYNC), line flag and other status interrupts.
-+      For VOP version under rk3576, the interrupt is shared by several interrupt
-+      sources, such as frame start (VSYNC), line flag and other interrupt status.
-+      For VOP version from rk3576 there is a system interrupt for bus error, and
-+      every video port has it's independent interrupts for vsync and other video
-+      port related error interrupts.
-+
-+  interrupt-names:
-+    maxItems: 4
- 
-   # See compatible-specific constraints below.
-   clocks:
-@@ -120,43 +128,86 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: rockchip,rk3588-vop
-+            enum:
-+              - rockchip,rk3566-vop
-+              - rockchip,rk3568-vop
-     then:
-       properties:
-         clocks:
--          minItems: 7
-+          minItems: 5
-+
-         clock-names:
--          minItems: 7
-+          minItems: 5
- 
-         ports:
-           required:
-             - port@0
-             - port@1
-             - port@2
--            - port@3
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - rockchip,rk3576-vop
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+
-+        clock-names:
-+          minItems: 5
-+
-+        ports:
-+          required:
-+            - port@0
-+            - port@1
-+            - port@2
-+
-+        interrupts:
-+          items:
-+            - description: vop system interrupt, such as axi bus error
-+            - description: interrupts for video port0, such as vsync, dsp_hold.
-+            - description: interrupts for video port1, such as vsync, dsp_hold.
-+            - description: interrupts for video port2, such as vsync, dsp_hold.
-+
-+        interrupt-names:
-+          items:
-+            - const: sys
-+            - const: vp0
-+            - const: vp1
-+            - const: vp2
- 
-       required:
-         - rockchip,grf
--        - rockchip,vo1-grf
--        - rockchip,vop-grf
-         - rockchip,pmu
- 
--    else:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3588-vop
-+    then:
-       properties:
--        rockchip,vo1-grf: false
--        rockchip,vop-grf: false
--        rockchip,pmu: false
--
-         clocks:
--          maxItems: 5
-+          minItems: 7
-+
-         clock-names:
--          maxItems: 5
-+          minItems: 7
- 
-         ports:
-           required:
-             - port@0
-             - port@1
-             - port@2
-+            - port@3
-+
-+      required:
-+        - rockchip,grf
-+        - rockchip,vo1-grf
-+        - rockchip,vop-grf
-+        - rockchip,pmu
- 
- additionalProperties: false
- 
+ .../devicetree/bindings/clock/canaan,k230-clk.yaml |   42 +
+ arch/riscv/boot/dts/canaan/k230.dtsi               |   27 +
+ drivers/clk/Kconfig                                |    6 +
+ drivers/clk/Makefile                               |    1 +
+ drivers/clk/clk-k230.c                             | 1424 ++++++++++++++++++++
+ include/dt-bindings/clock/canaan,k230-clk.h        |   49 +
+ 6 files changed, 1549 insertions(+)
+---
+base-commit: 7a517bbdf3dc89a2ae5500ded67e823f8f2c36fe
+change-id: 20241206-b4-k230-clk-925f33fed6c2
+prerequisite-patch-id: deda3c472f0000ffd40cddd7cf6d3b5e2d7da7dc
+
+Best regards,
 -- 
-2.34.1
+Xukai Wang <kingxukai@zohomail.com>
 
 
