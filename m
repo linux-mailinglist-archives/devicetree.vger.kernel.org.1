@@ -1,135 +1,190 @@
-Return-Path: <devicetree+bounces-136490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5DC9A05594
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:42:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDC9EA0559A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:45:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39D5D188732A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:42:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71CCA1887F8E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48ADE1E9B2E;
-	Wed,  8 Jan 2025 08:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4CA11A83EF;
+	Wed,  8 Jan 2025 08:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C/kzDlGi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HwzY16Jk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10C81AB533;
-	Wed,  8 Jan 2025 08:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEED69476;
+	Wed,  8 Jan 2025 08:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736325731; cv=none; b=r98IV/CXGV+O42aAtJ0YEmcJGLmxGxxNZ6nKa2I1q90OV6NCVsk+vWsTfatZNmJwhgcZVhFcDZ5gqT4cY+6HSjRGvtO6pRA1zyr1fSrTkkJ5XnESCtNkWkEffaZzpSlqtx+r1bCFbrdIb4TbRjnA7vp8V20mDV4tLG6SDyL7oKY=
+	t=1736325951; cv=none; b=eBA+YQ76I746IBK1V233Cf4Lcb7IHgV27yXVT4lYMiShtUTc4/OTYwspFLu8jKtFuhBGH7FCWcnnouuTUb1WMCw4yP5j5NwtOGYpm+8Z61CItpvgO7/h915tVUuTOH8LZ6B6ur2AbEkpMVbxwiFzxhKKA7ZZ01rKD3qLTDxG8wA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736325731; c=relaxed/simple;
-	bh=WLiUJvTnbvwgJ2e2jizcFl9V81z98Y4LfozDSFDGzq0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q5gqu0T2s5awtGlAW+Xvlumx0f78rmzwHOnskbEPUOKklyeF73y+uF5UXqu0dvZLklteEjuvEIh/lNRkzFzP8PzECmO8XCZATwCXSLkvvvp68YL2pKytWS/T8LK1Ep8FMbPG6ogCLw07NggVYHovUS83OAsrY1zRbg5Vobou/Nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C/kzDlGi; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ef70c7efa5so19575575a91.2;
-        Wed, 08 Jan 2025 00:42:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736325729; x=1736930529; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dEV3nRHoiTlZpRaNa0mL8YmEmkzQLNj/99WGhY7D8xk=;
-        b=C/kzDlGiXU0EiffrmSuQHB0Uj4z99O9PbZC/3ZJ5eHxn8IVcCTfECcHT76MiJxHdNw
-         Gh21EV1NcXu9H28+sygBQrl0AsPEuMVV1JEfkG899saRioiV6oT0ZR1VvowmGX4MB6jC
-         Bo/IJpTExEFujaLcceL8YZ7N5Oj5GBMswInJyCYmBUlD0YbdIUZPjjvwnlrde3+A6d03
-         1PXOL4pp3N0HstNzkfwvHYW7s6Zgz2vhEdKSwhRlaMMBviKCY+5+/6wWhnzGyrM9RBR+
-         ciUx97LFDhsmviC0hv00Zba/2CNMrVyUvPQCXsdeDMvLtPJ+Ucagp2DJhssTy0cwD/w/
-         cShg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736325729; x=1736930529;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dEV3nRHoiTlZpRaNa0mL8YmEmkzQLNj/99WGhY7D8xk=;
-        b=d6uuSsx3eWCV0DHTdZLvAHAEFpndekHC8qEwFZoMK2tqmL5yc6tvICn5UAvo+axkmo
-         n0wgm1s0MpB0yXm0Tugl2NQIzblXf4s9Hq4mwlviyPUkGy8gbqKLkH/BlVE0lrpXCd97
-         9whYZh3fqwM9wx9jFmAzwNPhocOXc9k69SiyVtdmeVAJIr2Pw5HXaGDL9YGyhVrh/KxG
-         75egqIdf4+y87oUkblaJojb5up9vggS+NgkmSbHlvkimVyCb9fs+lpfmlRa/pklwk7Vy
-         AMvyyzc8lPwkYBsJ0+wHfjG5ZPd+tao5fV5V/Bnw4NVgn+4y61BQi2YR5kODB0PW7P8f
-         A9VA==
-X-Forwarded-Encrypted: i=1; AJvYcCUaTxlctgDY1f1aa0dvsYxWYx09AlgFMjfNC5HYNSkQXOeIwZk60dTl5DEXXniufyNyQdKsR49SJk2wfvI=@vger.kernel.org, AJvYcCXllMjCDPQkH0kXCPBYWz68CG4oVBuC3H4CyB9ELLgbgpPmNqV+ACmuEDi6wp0E58TytZGfCgC/OC6q@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWXXecUv6LwR4R0m94N/+keL1aink3b8Ap99vwNjH3LRLZhXwt
-	lzlX2h165bzVG4+TzFDlWBJigv0LEplVgvl2l9xu+ew18rWN6zB3
-X-Gm-Gg: ASbGnct4JnK6/fqY5ExYZ8ZNmZhgBLcnhrNJrfWt1JCeHLvQiOXhHFM8znCPxuYyVqS
-	dVj8ShpVhOSSHNpNAVf26Ny5FM8KN4EswRf+sUrBtXFyyKRtZdy6bH2dsfhZRUmIlRDKT1zXip9
-	BoPA4qSQwZaBn+C5wl+7jnTzmHEJHvkHiOOj62dYBHHiupuk67OLMqFd6SPoTqUBMPbTVllsYb2
-	F13DwkDt1shZYmX6swAuF+iLlLMdL326Ygvh1Ec26Hfzp5QHQX1ya8tkxmJuNHsyEPqb0eQTeCy
-	T2fiDpgXjERazl3bEFBxhMpY7Myv
-X-Google-Smtp-Source: AGHT+IFt6yglBzdu45lcZKpQn61qSWlD6NrmmN8E7eokh2PUNX0tWId0GEleVKxvnyjttHMEYAjgrw==
-X-Received: by 2002:a17:90b:54cb:b0:2ee:8e75:4aeb with SMTP id 98e67ed59e1d1-2f548ec9267mr3450483a91.17.1736325728988;
-        Wed, 08 Jan 2025 00:42:08 -0800 (PST)
-Received: from [10.0.2.15] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dc962940sm321592415ad.34.2025.01.08.00.42.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jan 2025 00:42:08 -0800 (PST)
-Message-ID: <820def99-4990-4391-a45a-0d3908d3306b@gmail.com>
-Date: Wed, 8 Jan 2025 16:42:05 +0800
+	s=arc-20240116; t=1736325951; c=relaxed/simple;
+	bh=RpR7u/xw+bJIICXFrAcpgUOZaGNz3DAFbHhm/PusoBo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kU/9jQ1ETSLolDqWg7m/mKCK1HtDOzysv5uDTsM5moFDMVPfwf0XVbWklozEnhuZ6p/pT+5ohHB7ADNQupXrRQrQgIm/j9Xgqrl/xpvT2dAETrLhnQji938YP5lWRecrxBLvlqIFkOwBaV17BhBVO3eHSK0ph/yRHrl0REbksug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HwzY16Jk; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736325950; x=1767861950;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=RpR7u/xw+bJIICXFrAcpgUOZaGNz3DAFbHhm/PusoBo=;
+  b=HwzY16Jk9KPkw5YnZIkzQwkg/tF+e5xOj8uGg/0c6HqTbQk9r36IG9Ns
+   00vvixLZoPSZf0TjVRHHrL0DMcnAwW2nd8IrG9urHkuROK75+1mRUh5wO
+   ZIxkyJQuAtvHS/vi2FgWdKWFLOv93kJzI8TOw39cN7K3ak0eXh8j8OHYp
+   3OX2Mk7Tvb45a27CjQ1yHRN0Ym0Rr5qzrunt0ETV85ogBN8NN2yYDkQFA
+   yQGROUCBE3KornZe7uHbQAq1j0am1+YK/15bRtUPARDy4b31UWAEGkGTB
+   +rfSE0PzECa5COeBxi1wtVrDfcRtORmVBJ0mM31OpNW5QLt4sDNfLnlfd
+   w==;
+X-CSE-ConnectionGUID: 9iXrekqxTmOMp4yuqGog7Q==
+X-CSE-MsgGUID: ln2DC81LSSWp4M5FP2c3ww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="36562900"
+X-IronPort-AV: E=Sophos;i="6.12,297,1728975600"; 
+   d="scan'208";a="36562900"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2025 00:45:49 -0800
+X-CSE-ConnectionGUID: nAMvODD5SMmWp+dpY2KmrQ==
+X-CSE-MsgGUID: 275BN3AoS7qNgc6Le4Kavw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,297,1728975600"; 
+   d="scan'208";a="102840321"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2025 00:45:44 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id C73EF11F9C0;
+	Wed,  8 Jan 2025 10:45:40 +0200 (EET)
+Date: Wed, 8 Jan 2025 08:45:40 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Ricardo Ribalda <ribalda@chromium.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Jacopo Mondi <jacopo@jmondi.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: usb-device: Add panel-location
+Message-ID: <Z347NA00DMiyl1VN@kekkonen.localdomain>
+References: <20241212-usb-orientation-v1-1-0b69adf05f37@chromium.org>
+ <20241217145612.GA1652259-robh@kernel.org>
+ <CANiDSCu_mFQQVkDb_gSyXeb1_Tu+DxSeHYvGsGp6XVDuOdPyjQ@mail.gmail.com>
+ <20241219122453.GA4008177-robh@kernel.org>
+ <CANiDSCt+LAE-LzCDZgrWP_V-Jc-ywTF1-PuQtyDJMfV9v_ZzGA@mail.gmail.com>
+ <CAL_JsqLON5xKoYtowKdk49s-YHbk9bq9akZSH1kHdQ_9vxKSQQ@mail.gmail.com>
+ <CANiDSCvRfZiMafeJ6==oyduZCzJsv74pg9LbswnjoXFS2nTm=g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- peng.fan@nxp.com, arnd@arndb.de, sudeep.holla@arm.com, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, dmitry.torokhov@gmail.com
-References: <20250108011812.627-1-mjchen0829@gmail.com>
- <20250108011812.627-2-mjchen0829@gmail.com>
- <ux55pgpmkngxjsl4semw2cfiljbszvotaydrxrihdu3zphsfqc@vsk72c3wqorc>
-Content-Language: en-US
-From: Ming-Jen Chen <mjchen0829@gmail.com>
-In-Reply-To: <ux55pgpmkngxjsl4semw2cfiljbszvotaydrxrihdu3zphsfqc@vsk72c3wqorc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANiDSCvRfZiMafeJ6==oyduZCzJsv74pg9LbswnjoXFS2nTm=g@mail.gmail.com>
 
+Hi Ricardo,
 
-Krzysztof Kozlowski 於 2025/1/8 16:13 寫道:
-> On Wed, Jan 08, 2025 at 01:18:11AM +0000, Ming-Jen wrote:
->> From: Ming-jen Chen <mjchen0829@gmail.com>
->>
->> Add YAML bindings for MA35D1 SoC keypad.
->>
->> Signed-off-by: Ming-jen Chen <mjchen0829@gmail.com>
->> ---
->>   .../bindings/input/nuvoton,ma35d1-keypad.yaml | 82 +++++++++++++++++++
->>   1 file changed, 82 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
->> new file mode 100644
->> index 000000000000..889f253b3bc2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
-> I don't see changes.
->
-> I already raised concern that you sent new versions without implementing
-> or responding to comments. So the fourth (!!!) time: Filename matching
-> compatible.
->
-> Best regards,
-> Krzysztof
+On Tue, Jan 07, 2025 at 11:37:18AM +0100, Ricardo Ribalda wrote:
+> On Fri, 20 Dec 2024 at 23:00, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Thu, Dec 19, 2024 at 6:42 AM Ricardo Ribalda <ribalda@chromium.org> wrote:
+> > >
+> > > On Thu, 19 Dec 2024 at 13:24, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Tue, Dec 17, 2024 at 04:24:27PM +0100, Ricardo Ribalda wrote:
+> > > > > Hi Rob
+> > > > >
+> > > > > On Tue, 17 Dec 2024 at 16:02, Rob Herring <robh@kernel.org> wrote:
+> > > > > >
+> > > > > > On Thu, Dec 12, 2024 at 09:44:37PM +0000, Ricardo Ribalda wrote:
+> > > > > > > For some devices like cameras the system needs to know where they are
+> > > > > > > mounted.
+> > > > > >
+> > > > > > Why do you need this and why only this property and not the dozens
+> > > > > > others ACPI has?
+> > > > >
+> > > > > Userspace needs that information to correctly show it in the UI. Eg;
+> > > > >
+> > > > > - User facing camera needs to be mirrored during preview.
+> > > > > - The user facing camera is selected by default during videoconferences
+> > > > > - The world facing camera is selected by default when taking a photo
+> > > > > - User facing camera have different parameter defaults than world facing.
+> > > >
+> > > > We already have "orientation" defined for this purpose.
+> > >
+> > > Do you mean orientation from
+> > > bindings/media/video-interface-devices.yaml ?
+> > >
+> > > I see a couple of issues:
+> > > - Orientation has a very specific meaning for USB typeC. I'd prefer if
+> > > we could avoid using that word.
+> >
+> > Yes, but this is tied to the class of the device, not the bus. I find
+> > defining the position for USB devices confusing.
+> >
+> > > - For other applications different than cameras it might be useful to
+> > > know the positions top, bottom, left, right, which are not available
+> > > in video-interface-devices
+> >
+> > Other devices may need some of the 20 other properties in the ACPI
+> > table as well.
+> >
+> > > - The value "external" does not makes too much sense for listed usb devices
+> >
+> > Then don't use it.
+> >
+> > > - It makes our lives easier if dt and acpi have the same meaning (less
+> > > conversion)
+> >
+> > We have little to no input into what ACPI does. If we're just going to
+> > copy ACPI, then just use ACPI instead.
+> >
+> > > All that said, for my specific usecase, reusing orientation from
+> > > bindings/media/video-interface-devices.yaml works... So if that is
+> > > what you all prefer I can send a v2 with that.
+> > > Let me know what you think
+> >
+> > We already have something for cameras. Use it.
+> 
+> So you are proposing a change like this?
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml
+> b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> index da890ee60ce6..5322772a4470 100644
+> --- a/Documentation/devicetree/bindings/usb/usb-device.yaml
+> +++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> @@ -37,6 +37,10 @@ properties:
+>        but a device adhering to this binding may leave out all except
+>        for "usbVID,PID".
+> 
+> +  orientation:
+> +    description: If present, specifies the orientation of the usb device.
+> +    $ref: /schemas/media/video-interface-devices.yaml#/properties/orientation
 
-Thank you for your feedback! I now understand the changes I need to make.
+Do you need this for a camera or for other kinds of USB devices, too?
 
-I will modify it as blow:
+What about e.g. the rotation property?
 
-   compatible:
-     const: nuvoton,ma35d1-keypad
+> +
+> 
+> 
+>    reg:
+>      description: the number of the USB hub port or the USB host-controller
+>        port to which this device is attached. The range is 1-255.
 
+-- 
+Regards,
 
-
+Sakari Ailus
 
