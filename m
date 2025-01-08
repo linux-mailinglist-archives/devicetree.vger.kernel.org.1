@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-136451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD5BAA05443
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:06:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BEE2A05449
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E42917A1ED3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 07:06:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CAA687A173D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 07:14:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485F91A9B4A;
-	Wed,  8 Jan 2025 07:06:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A5C1A9B48;
+	Wed,  8 Jan 2025 07:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d18kySWz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0DNDZ6S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 179581A8403;
-	Wed,  8 Jan 2025 07:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49B59476;
+	Wed,  8 Jan 2025 07:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736320004; cv=none; b=KGYoMd6l9xiG2PeD1cpKH0ij6EuOysmb0eBN8wjvfto/Bay6m3C81ki48RHGq8zVu0bh1BKvpPa68BDDE1iZqnWuFlVtK9Q9r/bw5ukGri4x3KsgQYHR07ne6t0KL9d4AsH4QSk7ttQCsCp3XdbGEHKleFY+3pdkW0WLRrEHH28=
+	t=1736320451; cv=none; b=W9yxR/2z9wQhlE8uyuDHTwfW9qFoBtxhyOsREnd/gzF3kORK1kFH5JyOfabeimODP1emlHxE89L9F/2sxMjP9UDqaXdyfPus7h1eNw6IeIjxkSjETjqJMmFXeRl2hwPdPHhXFV1RQK5MTKZO6To71cALZkK5T82LjvzKC9naw1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736320004; c=relaxed/simple;
-	bh=yIMSp5WnGh7eW9uSRl6t3uWp8P4TkIrNW2lpbwvx+hE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UaSt2sFuyhwyTWMGhgKgLQ7uulkjldQcLhjcf5jnGfwTVpnmBGFM0a70+NnmI1mWc1QLMw5Fvg7afWdCKx11S0t204rgfEK6sHu16thNEYdmGfksYsRBz9sGRy+hW9jA8fqRDKFYCBxosM7UGpxd6eNq9Fgn0zkWBP6QYyPx9zk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d18kySWz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED9B4C4CEE0;
-	Wed,  8 Jan 2025 07:06:39 +0000 (UTC)
+	s=arc-20240116; t=1736320451; c=relaxed/simple;
+	bh=YrfuhDiaN5Kk4H/BeG4EkczdwaVg2MneeVbXflmk6Q4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=bUSmahwwIAZWbC8rh/IKIENWVtdMZCR6DTsHyhV8e3t0XdOHVwvWksqsk8llckU1JGsNmLvVK+KVabM/a0HI27ydyqwpv8PCVSAwa85Yo2bKsxlkhVnxb6uz4cgseZi0z2IwF2IxePtpsV6JclYG+zfeiprBIu9Jl42JewFL3XQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0DNDZ6S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67124C4CEE0;
+	Wed,  8 Jan 2025 07:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736320003;
-	bh=yIMSp5WnGh7eW9uSRl6t3uWp8P4TkIrNW2lpbwvx+hE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d18kySWzf3sNTcSLyucnpRIv0pA0HdpakBK7W+0U2jFMxYdUUOUBPuDSk4l/svlUv
-	 08f9zt9e1Z0bi0vkQli7DWb2CmqnptDvga7BTOvr2cS9D/h21btA/VtV+lYN5aowzW
-	 HcODLHOAFPnScCYTfgd+LMDtWzzpTR0L+uw5KEVx21PZDSntkJOXPm28bqbgcyqCl8
-	 mSyhvSl4p46anwZOO3PbAxnQLqDmwyLr/W4+TMW9BhFmo6tEERpN7aiJjwtPf307vv
-	 snCGDGEJss8yESnLIgGVqR+L5BvxFnyDi5ZYuI8iicvIgyx5edgdj0RlzC9lTdgHyy
-	 X0zTGRhogNFpg==
-Message-ID: <450da9ec-d754-4dea-99c7-d5730e35a284@kernel.org>
-Date: Wed, 8 Jan 2025 08:06:37 +0100
+	s=k20201202; t=1736320451;
+	bh=YrfuhDiaN5Kk4H/BeG4EkczdwaVg2MneeVbXflmk6Q4=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=e0DNDZ6SpOjshUVtsv9Wk6fEF/1iM+vz6TAhJOGVRakSwUg5zdIsEn9SyKxOuJXmL
+	 tyNQv2gsFZFopXyl1itBGjV1FYJ5xMzK5fCWV/zCE6zt+Udmnghbu1N1m/3qsVC+Sj
+	 GAR8bJgump1mtXfRMgkGeK8RI61He+xiWyTiaMxziE+Tx9buBzxSXe4lhkhtyxDmNc
+	 hUjlFe3LA0YZgFMGXFajUzbfARam4dlmo2EjBvoL7cpvApct+QeUdyQ3swTga7iiWm
+	 cbqV1HyxL9HK7B3iffSVYr0FBsUzPKQQ8olhTfLuUV17x8ECE0ugxmfVo5EhE5p+ra
+	 VdTfp29Jc06oA==
+Message-ID: <e85dd7c3-0dfc-499b-bd74-f9be998e488a@kernel.org>
+Date: Wed, 8 Jan 2025 08:14:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
-To: Wenliang Yan <wenliang202407@163.com>
-Cc: conor+dt@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org,
- jdelvare@suse.com, krzk+dt@kernel.org, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux@roeck-us.net, robh@kernel.org
-References: <srkay6cpegcxwx6q4jexs7iajydqqossfjctwoq3tctsanruxk@t44w4tbq3t5x>
- <20250107130110.25525-1-wenliang202407@163.com>
+Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: add clock-names property to
+ nand node
+To: "Rabara, Niravkumar L" <niravkumar.l.rabara@intel.com>,
+ Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250107084955.2750154-1-niravkumar.l.rabara@intel.com>
+ <096f17cb-cb2a-4f09-8c31-e71348289c1b@kernel.org>
+ <BL3PR11MB65326A8A7F2E413B0D8162A6A2112@BL3PR11MB6532.namprd11.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,34 +106,63 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250107130110.25525-1-wenliang202407@163.com>
+In-Reply-To: <BL3PR11MB65326A8A7F2E413B0D8162A6A2112@BL3PR11MB6532.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/01/2025 14:01, Wenliang Yan wrote:
->>>  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
+On 07/01/2025 11:21, Rabara, Niravkumar L wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Tuesday, 7 January, 2025 5:21 PM
+>> To: Rabara, Niravkumar L <niravkumar.l.rabara@intel.com>; Dinh Nguyen
+>> <dinguyen@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+>> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: add clock-names property
+>> to nand node
+>>
+>> On 07/01/2025 09:49, niravkumar.l.rabara@intel.com wrote:
+>>> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>>>
+>>> Cadence nand controller driver requires clock-names = "nf_clk" property.
+>>>
+>>
+>> Fixes tag.
+>>
+>>> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>>> ---
+>>>  arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 1 +
 >>>  1 file changed, 1 insertion(+)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->>> index 05a9cb36cd82..f0b7758ab29f 100644
->>> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->>> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->>> @@ -20,6 +20,7 @@ description: |
->>>  properties:
->>>    compatible:
->>>      enum:
->>> +      - silergy,sq52206
+>>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>>> b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>>> index 51c6e19e40b8..4357572e96e3 100644
+>>> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>>> @@ -272,6 +272,7 @@ nand: nand-controller@10b80000 {
+>>>  			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+>>>  			clocks = <&clkmgr AGILEX5_NAND_NF_CLK>;
+>>>  			cdns,board-delay-ps = <4830>;
+>>> +			clock-names = "nf_clk";
 >>
->> So it is compatible or not? You said same bindings, but not compatible?
->>
+>> It does not look like you tested the DTS against bindings. Please run `make
+>> dtbs_check W=1` (see Documentation/devicetree/bindings/writing-
+>> schema.rst or https://www.linaro.org/blog/tips-and-tricks-for-validating-
+>> devicetree-sources-with-the-devicetree-schema/
+>> for instructions).
+>> Maybe you need to update your dtschema and yamllint. Don't rely on distro
+>> packages for dtschema and be sure you are using the latest released
+>> dtschema.
 > 
-> What I mean is that SQ52206 is compatible.the datasheet depends on 
+> I believe you are pointing to this error message
+> /soc@0/nand-controller@10b80000: failed to match any schema with
+> compatible: ['cdns,hp-nfc']
+> 
 
-
-Then compatibility should be expressed in fallback, but OTOH, your
-linked changes suggest these are not compatible. Confusing commit msg.
-
-
+No. I refer to this clock-names property. As you can easily see in the
+binding: there is no clock-names.
 
 Best regards,
 Krzysztof
