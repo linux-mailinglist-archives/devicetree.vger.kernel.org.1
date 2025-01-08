@@ -1,157 +1,164 @@
-Return-Path: <devicetree+bounces-136607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A839A05A7C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:53:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E54F4A05A8E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:54:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4416A3A5292
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:53:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2DBE16694E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F551F8ADB;
-	Wed,  8 Jan 2025 11:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A15FC1FAC5E;
+	Wed,  8 Jan 2025 11:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UDk41m6T"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="XZNhefNJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA51319D8A9;
-	Wed,  8 Jan 2025 11:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEEA21F9439;
+	Wed,  8 Jan 2025 11:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736337110; cv=none; b=BYFH2E1Nm0Nbw1PjAB1Mc6LLaaL5S9qbZutgGmtY2VrNl05srnjd162ZMClKc4Ey7w0aplpHfk6nw5v4O9XCxVQma1cn7EvwVEObzWwvrj5OXyqEcH/pzbxgR1fh6/zaCfR+XI2GEcJ6vbvkghClwv+EjjLN51R47Gc+oAwXU9g=
+	t=1736337208; cv=none; b=spLoRVCTevuejcvEwl5P2YSV69xvuKk8R25FEmpDNgi+BzhU3m9ZEZf557QAIX8Oy6LsVO5xk+AN9AmqcAp78Yk5R1a5fknNvucwaOiN+GtPkxEvTVNN1cnh24azCQuSy5JkjOFHfYG1jf/g+jkDJdXbulVS1QLusTOikEfHbeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736337110; c=relaxed/simple;
-	bh=R75k+x8bg6T+D8jdhZ+B2iw5PZ8kRKjd+Ar48dKNkws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nzyHzJDMli/vbUvl4D2mnH4mY80oXMdQst8IfFluGtHHzzLCmK0Bi836f3VHt3aj4eKect2rvFH9b5Pm+Y25eREP7qgYGHyFz2ZW5FNBMIZu6N38L/h2p2kJJJRRfhQ3pcv6cJTELRcFOMKf9fPrp1LyDLYUfoxdvtCLzjycr8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UDk41m6T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A6BDC4CEDD;
-	Wed,  8 Jan 2025 11:51:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736337109;
-	bh=R75k+x8bg6T+D8jdhZ+B2iw5PZ8kRKjd+Ar48dKNkws=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UDk41m6Ta8U3jIQVAnBcuvTvgKRa3hIWaqSN69qr5a9mRsGmS0rN/pAV4rRtJk0IP
-	 CkNt1mfbUddRDauhWEREWnTpIaTyEZay9FXhIG6qmi103miLK0g1BQ7Btll0cHYBrK
-	 xRiLs4gEtxeutyTsfTO3gT0gxEOA2JKc6XR74hQLAkDbRUD8CycwIZpMwD13qvAI1u
-	 fbXhpR7dUHz+OmD2QyLUvSV5BPozFOFga3OdXl3dzqUWg2el2aG3SmkfZF9Gg0x8NF
-	 BGPS7BJNxY1jWSFVnwJahhbGGA6hn9KNpVZqkDOvG/E9MZ/XhuOxXeMYM9PCuZp85W
-	 yP7a4qhYiRkzg==
-Message-ID: <7beda1b3-2fb2-490c-80fe-71f320d70ded@kernel.org>
-Date: Wed, 8 Jan 2025 12:51:41 +0100
+	s=arc-20240116; t=1736337208; c=relaxed/simple;
+	bh=o1Vn4nlp5io5VZ5I8SBEfGHqGVWI6p/1Hv4S4o0uaFo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZOX3OBKGZB8yUYiAYiBwFpCsWnVLMlqbYksqzje2ZGsOzMe6kzMTD3BVWQJZwmMQgzRrZhnGyM61nwrMx/irAy10Yg9xE6bNzrbUrYr4Zau8kSOntTLKg0gXfX89ctMhrgRNGI3rJLILVxGCOAviKtWoq4Hy/xx/667D0xqzutM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=XZNhefNJ; arc=none smtp.client-ip=117.135.210.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=4LcjG
+	yekeFEURKdSLZKry28vQydjU2mCOSzKHjhnX+w=; b=XZNhefNJ4KWubkSGIHFJS
+	yYHDGtoWCQIegcZsYNUbqvb3tY2R94NmML6akr4P+cq5Re4zDfXAKkK732d0P6Am
+	uSwZ7QudHoNzxRh9s0mq1j6rspcHNALSqZz/ZO0EAN3BZaX1MuNKEjKzrVltd2zn
+	oonBQxbWzPvxycY8U8DulE=
+Received: from ProDesk.. (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wDHpyUCZ35n8Xn7EQ--.26804S2;
+	Wed, 08 Jan 2025 19:52:40 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: hjc@rock-chips.com,
+	krzk+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	derek.foreman@collabora.com,
+	detlev.casanova@collabora.com,
+	daniel@fooishbar.org,
+	robh@kernel.org,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v9 00/11] VOP Support for rk3576
+Date: Wed,  8 Jan 2025 19:52:17 +0800
+Message-ID: <20250108115233.17729-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/8] dt-bindings: remoteproc: qcom: document hexagon
- based WCSS secure PIL
-To: "Gokul Sriram P (QUIC)" <quic_gokulsri@quicinc.com>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>
-Cc: "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "andersson@kernel.org" <andersson@kernel.org>,
- "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
- "konradybcio@kernel.org" <konradybcio@kernel.org>,
- "Manikanta Mylavarapu (QUIC)" <quic_mmanikan@quicinc.com>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
- "Vignesh Viswanathan (QUIC)" <quic_viswanat@quicinc.com>,
- "Sricharan Ramabadhran (QUIC)" <quic_srichara@quicinc.com>
-References: <20250107101647.2087358-1-quic_gokulsri@quicinc.com>
- <20250107101647.2087358-3-quic_gokulsri@quicinc.com>
- <pjm5wrxnfutixopeeqzgb6q75z6cilpgfcd2maigqlu4i34mta@2k6trubvrkp2>
- <f0eef19b-8497-4e7d-bed1-882cdb8c1ab1@quicinc.com>
- <0bcdbb63-e1a4-4e34-a038-218f843993e0@kernel.org>
- <f9059c312a2948568fef6d4f92c97cae@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <f9059c312a2948568fef6d4f92c97cae@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDHpyUCZ35n8Xn7EQ--.26804S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGw1xuryUZryfXryxtFyrZwb_yoW5CrW3p3
+	98Cr98XrWxGF12qr4kJw1DCFySqFsayFWSg3yfKw13Ja4qyrW7Krya9r1YvrnxX3W8ZF4j
+	9F4Sya1UKanFvF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UvD7-UUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0hHOXmd+YSuN9QAAs4
 
-On 08/01/2025 12:19, Gokul Sriram P (QUIC) wrote:
-> On 07/01/2025 13:56, Gokul Sriram P wrote:
->>>>> +examples:
->>>>> +  - |
->>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>> +    #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
->>>>> +    remoteproc@d100000 {
->>>>> +      compatible = "qcom,ipq5332-wcss-sec-pil";
->>>>> +      reg = <0xd100000 0x4040>;
->>>>> +      firmware-name = "ath12k/IPQ5332/hw1.0/q6_fw0.mdt";
->>>> Nit: .mbn
->>>>
->>>
->>> Hi Dmitry,
->>>
->>> Its .mdt format only in our case.
->>>
->> Then probably you need to fix your format.
-> 
-> Hi Dmitry/ Krzysztof,
-> We use split firmware image where  .mbn image is split into x  segments with .b00 to .bxx extension. The mbn header along with signing metadata will be part of the .mdt. The secure authenticatior (TrustZone) will expect metadata as part of .mdt and will authenticate the .bxx segments.
+From: Andy Yan <andy.yan@rock-chips.com>
 
-NAK, you got feedback which you refuse to implement.
 
-> 
-> Certain msm platforms already support .mdt format as in https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml?h=v6.13-rc6.
+Here is the V9
 
-That's an overlook, not support. Don't use arguments "someone sneaked
-it, so I can as well".
+Patches that have already been merged in drm-misc-next are dropped.
 
-Best regards,
-Krzysztof
+PATCH 1~9 are preparations for rk3576 support
+PATCH 10~11 are real support for rk376
+
+I test it with a 1080P/4K HDMI output with modetest and weston
+output.
+
+If there are some one want to have a try, I have a tree based on
+Linux 6.13-rc2 here[0]
+
+[0]https://github.com/andyshrk/linux/tree/rk3576-vop2-upstream-v6
+
+Changes in v9:
+- Drop 'vop-' prefix of interrupt-names.
+- Add blank line between DT properties in dt-binding
+- Remove list interrupt-names in top level in dt-binding
+- Link to V8:
+  https://lore.kernel.org/linux-rockchip/20241231090802.251787-10-andyshrk@163.com/T/#u
+
+Changes in v8:
+- Remove redundant blank line before drm_bus_format_enum_list
+- Add a blank line before DRM_ENUM_NAME_FN
+- Fix dt_binding_check errors
+- ordered by soc name
+- Link to the previous version:
+  https://lore.kernel.org/linux-rockchip/6pn3qjxotdtpzucpul24yro7ppddezwuizneovqvmgdwyv2j7p@ztg4mqyiqmjf/T/#u
+
+Changes in v7:
+- Fix rk3588 dp+dsi maxclk verification
+
+Changes in v6:
+- Add a blank line after hardware version check code
+-  More specific explanation about the AXI_BUS_ID register bit of
+   cluster window.
+
+Changes in v5:
+- Add axi id configuration
+- Remove the non-existent CBCR scale register.
+
+Changes in v4:
+- Typo fix: selet->select
+- describe constraint SOC by SOC, as interrupts of rk3576 is very
+  different from others
+- Drop Krzysztof's Reviewed-by, as this version changed a lot.
+
+Changes in v3:
+- Add comments for why we should treat rk3566 with special care.
+- Add hardware version check
+- Add comments for why we should treat rk3566 with special care.
+- ordered by soc name
+- Add description for newly added interrupt
+- Share the alpha setup function with rk3568
+- recoder the code block by soc
+
+Changes in v2:
+- Add platform specific callback
+- Introduce vop hardware version
+- Add dt bindings
+- Add platform specific callback
+
+Andy Yan (10):
+  drm/rockchip: vop2: Rename TRANSFORM_OFFSET to TRANSFORM_OFFS
+  drm/rockchip: vop2: Add platform specific callback
+  drm/rockchip: vop2: Merge vop2_cluster/esmart_init function
+  drm/rockchip: vop2: Support for different layer select configuration
+    between VPs
+  drm/rockchip: vop2: Introduce vop hardware version
+  drm/rockchip: vop2: Register the primary plane and overlay plane
+    separately
+  drm/rockchip: vop2: Set plane possible crtcs by possible vp mask
+  drm/rockchip: vop2: Add uv swap for cluster window
+  dt-bindings: display: vop2: Add rk3576 support
+  drm/rockchip: vop2: Add support for rk3576
+
+Heiko Stuebner (1):
+  drm/rockchip: vop2: use devm_regmap_field_alloc for cluster-regs
+
+ .../display/rockchip/rockchip-vop2.yaml       |   83 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 1473 +++-----------
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  275 ++-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  | 1798 ++++++++++++++++-
+ 4 files changed, 2361 insertions(+), 1268 deletions(-)
+
+-- 
+2.34.1
+
 
