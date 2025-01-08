@@ -1,238 +1,302 @@
-Return-Path: <devicetree+bounces-136482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1860A05553
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:28:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D3B6A05555
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:30:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87B0716103B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:28:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC1DF3A386D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 247681E9B26;
-	Wed,  8 Jan 2025 08:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EB61E9B16;
+	Wed,  8 Jan 2025 08:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="p6MeYy3W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aLzbnTMM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D411DE4D6
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 08:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97501ACDE7;
+	Wed,  8 Jan 2025 08:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736324897; cv=none; b=J3dDoZ52S19k6jUlAOB5fw0+66jBmfTDW0JJARp91cDCraZ4+fCAXc014/UvAj6WJKWvkOIyQ9cWZXoGSlKfxS3YpQWMYao9iRnzUOxqTSZ5hPr7+Zk3IQpTde9V5r8RpO/J4HtJDAstdK54xJdlO+gYlOVM0VygaIoq3S1kBuo=
+	t=1736325011; cv=none; b=pOe1N8Zm2P7woiiYEJAeV9lZ+KmilAsBWykc9LmHeC5vDdZ54+4dsouMjB3aC/uyRrMoyYrOvynaUG9tLrgm7Yo68Syc7p6fgv6Hquqfm2yf+0orj2NhdbZfoa4ziLBhosckvW7gyjwiZ6FGgQG9VcVfFbMzFJxwL4jDOn2m39k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736324897; c=relaxed/simple;
-	bh=3mZ5vtoOeY4eeomrlHFlW8D7/nhC1ZMpGJNE9zcPbB4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=boISNafDvqu4uNgyBVme6a411cFEr7WYVp1aEWW6DHOcUX6tD4cZQP/FSatNSxd+XqbrASWsyigE3TcIs4oXYWB9cnDDsLtZtFhL4leirgtlHCtC/lJ6tDEPnCKDgtzPq2h1v57HGdTl04mFYBtr+y75tzZ5Xdsq7fI4eVveV4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=p6MeYy3W; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2efded08c79so19170606a91.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 00:28:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1736324894; x=1736929694; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L5qGQeE8Ni6zPIaDoaP+YW8VihbqmTFfDZb3xW0nQFw=;
-        b=p6MeYy3W0ueThLLL5hoa0cBmw6lRc2FzPryaY9hjfSKtc7eNNTkIATlAFen1cE2DEf
-         tc7CqYB4D313jZLYXe5xXSC9te+vZshdGyNYMKhiDQps+AX+N0TdpjwHdJ06vET+vWK1
-         a7WAn2GQk+/PFuunnIR6ipARugP5tidcFmpVqpXpkq85ePMCG1yzy6ninq2dMScPPeTZ
-         cYe9coSS2GgrVMKLE+09rK96v5c6HsGpNlUCeH/ojvhxdOB8Q7g3kZC8V1h523qXRJ7T
-         EZb0GDK0gWrh4gAwTjsRzVuZNj2X+MonRYL3zpDe90+WdZa6YgZMY6rGzxgK0rgyhF3y
-         aEkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736324894; x=1736929694;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L5qGQeE8Ni6zPIaDoaP+YW8VihbqmTFfDZb3xW0nQFw=;
-        b=Q6NTadMgDMEq6IuPaVrkBCjuzkT2nRli6hNtuWoqqpjg7gaJ9RQauKS2E07ijKKzHI
-         BdYnl/CbOJ86Su0XT/+x7UQG36mDk706ZOD9rYi1crQRK6+sGKHngUGBuk6jrpPxaYeV
-         kngtRfCIyvcohATIeXtc/qbrKpvZ1kpNtdlV0u0VKI/SwL5ipP1hW8YHcLs/LbBJlY3R
-         wDxFQ6yUCrBc3oiS6FF4Ue6wYSdowfIKIBF4SQkNrqqfKt5hAUwvX/AeGmGrBTLSUMkV
-         thAbjHSYoxMX/2uNueZUqUPqt7PQKRBE56wm7MRU8w5U9JlPJGV++zyFmzMUppWK0j1x
-         QfFw==
-X-Forwarded-Encrypted: i=1; AJvYcCXTDMH7LsM9I/+cMb+yHbQeyzbdrZIaJdHX18/Dupip6pMqy/L/ybbsIq8sDpFQ/+NOxOGkaC0i30Q9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfXay5Q1eJBem4oo9ippNn+gcojER+1yY594igjqzruQEZjNEJ
-	M3FQRzDevmJQTc6/fby2Sp5RKmXtmZRr0EcgrEInqrwgp1JTdBjI1aSV52X3SA==
-X-Gm-Gg: ASbGncsMUIkKlPnDlhSsZvG5IcmdqPD8DfGy++PNYZJvNYmUSzcOLqrxPlHp6Eq7SBL
-	Ycv96l/ttoES1ITRJ8h5rtu+NLN7DaTyt/MAE8eR8tKCn+0P/qUN52EyS6wzyI1shDChpELz+07
-	I4Mzs3qdYYgwxCXA2vASfMzL4rmLzrykfJbfobF7QElmcR45V/3YZh0Q0ajE3hd6loD45l5921i
-	XsziHlasGBhZV5P+Ech1cqgm7KQptR5r0+cQMf0c3+baL4vd0JavRj+t3wn53I=
-X-Google-Smtp-Source: AGHT+IF2IJxP5p10X/719EBWtqLj4z+QhIIvLPwOq8iskKA4IVVKudQILHAc9gsyjaOiiBimXFQ7gA==
-X-Received: by 2002:aa7:88cd:0:b0:725:f097:ed21 with SMTP id d2e1a72fcca58-72d21f471d6mr2725263b3a.15.1736324893681;
-        Wed, 08 Jan 2025 00:28:13 -0800 (PST)
-Received: from [172.16.116.58] ([103.15.228.94])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-842dc7edbadsm31678867a12.65.2025.01.08.00.28.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jan 2025 00:28:12 -0800 (PST)
-Message-ID: <d25572fa-8f0c-4f19-874c-6698a1db40ae@beagleboard.org>
-Date: Wed, 8 Jan 2025 13:58:04 +0530
+	s=arc-20240116; t=1736325011; c=relaxed/simple;
+	bh=3JcTLjuITgq/DDD2A3JqldsGdYRSMSh/LyBDhJFq+Xo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CixIdKcfvy9He9sSXKjw+mPzyqieb5BdL79f5eUyXFrkocFNNEIm2kcMisy43tcPqNib/aAXwY/j0wOOVl5yvzRxy39Wak+WKVFNAFCE6p+4qwiN62OFTat8pN8lqJZXHgWTL5ZXDYlPwCF2ngJedAFX2EDvhWsv7D+1IOyYEpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aLzbnTMM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E468C4CEE0;
+	Wed,  8 Jan 2025 08:30:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736325011;
+	bh=3JcTLjuITgq/DDD2A3JqldsGdYRSMSh/LyBDhJFq+Xo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aLzbnTMM3rJJcLOJFd0WJ9PKG6mT0WbpfoCqRIXe5rsD5fgtrMm5hMVQ/GWfBuc73
+	 +QIyRDE7WUNGOnYimsj6fmNEhFnNWeTEWsZl5YIYT15Eg99kldf+iemdnnWCBc5Egg
+	 F/UQsAbYG3P29bB/9cbQXx5mtJkYX64SoleQubrlIU2XgkwoYb9n7Pf0zpkTTSWNeq
+	 dbE3XXgS/Son1FOkewEBaxHpZa6GSYbySDKOOodc1UVmG9qKbIUeybKzSOQoxnoZn4
+	 9E0/XokRRLLoqRqh2pF/jrFT4E7CQnd1JogR80sUGhrBKQkjlB080Yb+VEIwEulu5b
+	 jUw3RJaO25wew==
+Date: Wed, 8 Jan 2025 09:30:08 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] soc: samsung: usi: implement support for USIv1
+ and exynos8895
+Message-ID: <6y4mg6atqi6idyoppesg5owrnfrjhkzqh4im4po7urfry2qctb@yimp5y6sm7h6>
+References: <20250107113512.525001-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250107113512.525001-3-ivo.ivanov.ivanov1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
- feature
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Davis <afd@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- David Gibson <david@gibson.dropbear.id.au>
-References: <20241209151830.95723-1-herve.codina@bootlin.com>
- <33c61b28-c0b8-478d-8107-c6ed1ff9e466@beagleboard.org>
- <20241210104141.39acffb1@bootlin.com>
- <bab9f277-a366-48ec-acdd-0896c8307ad9@beagleboard.org>
- <20241210115515.1886f73f@bootlin.com>
- <6d48095d-59b1-4439-8e2a-927aa1aa1b55@beagleboard.org>
- <20250108090750.45685a50@bootlin.com>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20250108090750.45685a50@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250107113512.525001-3-ivo.ivanov.ivanov1@gmail.com>
 
-On 08/01/25 13:37, Herve Codina wrote:
-> Hi Ayush,
+On Tue, Jan 07, 2025 at 01:35:11PM +0200, Ivaylo Ivanov wrote:
+> USIv1 IP-core is found on some ARM64 Exynos SoCs (like Exynos8895) and
+> provides selectable serial protocols (one of: HSI2C0, HSI2C1, HSI2C0_1,
+> SPI, UART, UART_HSI2C1).
 > 
-> On Wed, 8 Jan 2025 13:06:03 +0530
-> Ayush Singh <ayush@beagleboard.org> wrote:
+> USIv1, unlike USIv2, doesn't have any known register map. Underlying
+> protocols that it implements have no offset, like with Exynos850.
+> Desired protocol can be chosen via SW_CONF register from System
+> Register block of the same domain as USI.
 > 
->> On 10/12/24 16:25, Herve Codina wrote:
->>> Hi Ayush,
->>>
->>> On Tue, 10 Dec 2024 15:26:44 +0530
->>> Ayush Singh <ayush@beagleboard.org> wrote:
->>>    
->>>> On 10/12/24 15:11, Herve Codina wrote:
->>>>> Hi Ayush,
->>>>>
->>>>> On Tue, 10 Dec 2024 14:52:22 +0530
->>>>> Ayush Singh <ayush@beagleboard.org> wrote:
->>>>>
->>>>> ...
->>>>>>
->>>>>> What is the reason for not using symbols directly as described here [3]?
->>>>>>
->>>>>> I do like this approach since it does not pollute the global symbols.
->>>>>> Just want to know if there are any other reasons for it.
->>>>>>      
->>>>>
->>>>> Modifying the __symbols__ node at runtime (adding / removing properties in
->>>>> it) exposes memory leaks if __symbols__ already exist in the live DT.
->>>>> This __symbols__ node exist if the dtb was compiled with '-@' or if you
->>>>> chain the overlay (i.e. __symbols__ node created by the first overlay).
->>>>
->>>> Yeah, that is a problem, specially in a setup which might involve
->>>> hot-plugging.
->>>>   
->>>>>
->>>>> I think also that some conflicts can appears. What happens if you want to
->>>>> add a new label but this label is already present for some other purpose?
->>>>
->>>> I do not think that actually is a problem. As described in the original
->>>> patch [0], the symbol and connector overlay is supposed to be applied as
->>>> a group (overwriting any conflicting symbols in the process).
->>>>
->>>> The reason why this is not a problem is that `__symbols__` are only used
->>>> to resolve the phandles (overlays do not support path references yet),
->>>> but do not really have a purpose in the livetree (at least far as I
->>>> know, but I can be wrong).
->>>>   
->>>>>
->>>>> Best regards,
->>>>> Hervé
->>>>
->>>> [0]: https://lore.kernel.org/lkml/20240702164403.29067-1-afd@ti.com/
->>>
->>>
->>> Also, in your first overlay (adding symbols in __sympbols__ node), you have
->>> something like:
->>>      GROVE_PIN1_MUX_I2C_SCL = "/bus@f0000/pinctrl@f4000/grove-i2c-pins";
->>>
->>> If I understood correctly, other overlays will have GROVE_PIN1_MUX_I2C_SCL
->>> as unresolved symbols and will use GROVE_PIN1_MUX_I2C_SCL to reference the
->>> grove-i2c-pins node.
->>> This unresolved symbol from the overlay is resolved thanks to the __symbols__
->>> table where you added GROVE_PIN1_MUX_I2C_SCL (first overlay operation).
->>>
->>> In order to work, you need to have a phandle property set in the
->>> grove-i2c-pins node.
->>>
->>> This is done by dtc when you compile the dtb containing the grove-i2c-pins
->>> node (i.e. k3-am625-beagleplay.dts)
->>>
->>> The phandle property will be set only if:
->>> - a label for grove-i2c-pins already exist and -@ option is used
->>> or
->>> - a label for grove-i2c-pins already exist and it is referenced as a phandle
->>>     in the dts (k3-am625-beagleplay.dts).
->>>
->>> Otherwise, dtc will not create the phandle property and without this
->>> property, the symbol resolution will not be correct.
->>>
->>> Best regards,
->>> Hervé
->>>    
->>
->> Hello Hervé
->>
->> Thanks for the clarification. things have changed a bit since the last
->> message and it seems like trying to add path reference support to
->> overlays is not the best way forward [0]. So I would love to help move
->> this approach forward.
->>
->> I do have a question regarding this approach, so here I go:
->>
->> Can the `export-symbols` node be added to devicetree spec and be
->> resolved by the devicetree compiler (and fdtoverlay) instead of being
->> runtime resolution.
+> In order to select a particular protocol, the protocol has to be
+> selected via the System Register. Unlike USIv2, there's no need for
+> any setup before the given protocol becomes accessible apart from
+> enabling the APB clock and the protocol operating clock.
 > 
-> Of course, a solution with fdtoverlay is welcome but it should not fully
-> replace the runtime resolution. In our case, we need runtime resolution
-> because the overlay is loaded by a driver.
+> Modify the existing driver in order to allow USIv1 instances in
+> Exynos8895 to probe and set their protocol. While we're at it,
+> make use of the new mode constants in place of the old ones
+> and add a removal routine.
 > 
-> Both resolutions (fdtoverlay and runtime) should work.
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> ---
+>  drivers/soc/samsung/exynos-usi.c | 108 +++++++++++++++++++++++++++----
+>  1 file changed, 95 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/soc/samsung/exynos-usi.c b/drivers/soc/samsung/exynos-usi.c
+> index 114352695..43c17b100 100644
+> --- a/drivers/soc/samsung/exynos-usi.c
+> +++ b/drivers/soc/samsung/exynos-usi.c
+> @@ -16,6 +16,18 @@
+>  
+>  #include <dt-bindings/soc/samsung,exynos-usi.h>
+>  
+> +/* USIv1: System Register: SW_CONF register bits */
+> +#define USI_V1_SW_CONF_NONE		0x0
+> +#define USI_V1_SW_CONF_I2C0		0x1
+> +#define USI_V1_SW_CONF_I2C1		0x2
+> +#define USI_V1_SW_CONF_I2C0_1		0x3
+> +#define USI_V1_SW_CONF_SPI		0x4
+> +#define USI_V1_SW_CONF_UART		0x8
+> +#define USI_V1_SW_CONF_UART_I2C1	0xa
+> +#define USI_V1_SW_CONF_MASK		(USI_V1_SW_CONF_I2C0 | USI_V1_SW_CONF_I2C1 | \
+> +					 USI_V1_SW_CONF_I2C0_1 | USI_V1_SW_CONF_SPI | \
+> +					 USI_V1_SW_CONF_UART | USI_V1_SW_CONF_UART_I2C1)
+> +
+>  /* USIv2: System Register: SW_CONF register bits */
+>  #define USI_V2_SW_CONF_NONE	0x0
+>  #define USI_V2_SW_CONF_UART	BIT(0)
+> @@ -34,7 +46,8 @@
+>  #define USI_OPTION_CLKSTOP_ON	BIT(2)
+>  
+>  enum exynos_usi_ver {
+> -	USI_VER2 = 2,
+> +	USI_VER1 = 1,
 
-I see, it seems linux does not use libfdt for applying overlays internally.
+Is this assignment=1 actually now helping? Isn't it creating empty item
+in exynos_usi_modes array? Basically it wastes space in the array for
+no benefits.
 
-> 
->>
->> To get some context, I would like to share the addon-board overlays
->> between ZephyrRTOS and Linux kernel. I would be happy to try adding
->> support to dtc compiler for it. I am also tagging David Gibson (dtc
->> maintainer) in this discussion since he also had some ideas regarding
->> the feasibility and pitfalls of adding it to devicetree compiler (and spec).
->>
->>
->> [0]:
->> https://lore.kernel.org/devicetree-compiler/6b2dba90-3c52-4933-88f3-b47f96dc7710@beagleboard.org/T/#m900b5ca13cfc28396d4d46d9c3130a7070fa8c90
->>
->> Best regards,
->> Ayush Singh
->>
-> 
-> Thanks for your help proposal!
-> 
-> Best regards,
-> Hervé
+> +	USI_VER2,
+>  };
+>  
+>  struct exynos_usi_variant {
+> @@ -66,19 +79,39 @@ struct exynos_usi_mode {
+>  	unsigned int val;		/* mode register value */
+>  };
+>  
+> -static const struct exynos_usi_mode exynos_usi_modes[] = {
+> -	[USI_V2_NONE] =	{ .name = "none", .val = USI_V2_SW_CONF_NONE },
+> -	[USI_V2_UART] =	{ .name = "uart", .val = USI_V2_SW_CONF_UART },
+> -	[USI_V2_SPI] =	{ .name = "spi",  .val = USI_V2_SW_CONF_SPI },
+> -	[USI_V2_I2C] =	{ .name = "i2c",  .val = USI_V2_SW_CONF_I2C },
+> +#define USI_MODES_MAX (USI_MODE_UART_I2C1 + 1)
+> +static const struct exynos_usi_mode exynos_usi_modes[][USI_MODES_MAX] = {
+> +	[USI_VER1] = {
+> +		[USI_MODE_NONE] =	{ .name = "none", .val = USI_V1_SW_CONF_NONE },
+> +		[USI_MODE_UART] =	{ .name = "uart", .val = USI_V1_SW_CONF_UART },
+> +		[USI_MODE_SPI] =	{ .name = "spi",  .val = USI_V1_SW_CONF_SPI },
+> +		[USI_MODE_I2C] =	{ .name = "i2c",  .val = USI_V1_SW_CONF_I2C0 },
+> +		[USI_MODE_I2C1] =	{ .name = "i2c1", .val = USI_V1_SW_CONF_I2C1 },
+> +		[USI_MODE_I2C0_1] =	{ .name = "i2c0_1", .val = USI_V1_SW_CONF_I2C0_1 },
+> +		[USI_MODE_UART_I2C1] =	{ .name = "uart_i2c1", .val = USI_V1_SW_CONF_UART_I2C1 },
+> +	}, [USI_VER2] = {
+> +		[USI_MODE_NONE] =	{ .name = "none", .val = USI_V2_SW_CONF_NONE },
+> +		[USI_MODE_UART] =	{ .name = "uart", .val = USI_V2_SW_CONF_UART },
+> +		[USI_MODE_SPI] =	{ .name = "spi",  .val = USI_V2_SW_CONF_SPI },
+> +		[USI_MODE_I2C] =	{ .name = "i2c",  .val = USI_V2_SW_CONF_I2C },
+> +	},
+>  };
+>  
+>  static const char * const exynos850_usi_clk_names[] = { "pclk", "ipclk" };
+>  static const struct exynos_usi_variant exynos850_usi_data = {
+>  	.ver		= USI_VER2,
+>  	.sw_conf_mask	= USI_V2_SW_CONF_MASK,
+> -	.min_mode	= USI_V2_NONE,
+> -	.max_mode	= USI_V2_I2C,
+> +	.min_mode	= USI_MODE_NONE,
+> +	.max_mode	= USI_MODE_I2C,
+> +	.num_clks	= ARRAY_SIZE(exynos850_usi_clk_names),
+> +	.clk_names	= exynos850_usi_clk_names,
+> +};
+> +
+> +static const struct exynos_usi_variant exynos8895_usi_data = {
+> +	.ver		= USI_VER1,
+> +	.sw_conf_mask	= USI_V1_SW_CONF_MASK,
+> +	.min_mode	= USI_MODE_NONE,
+> +	.max_mode	= USI_MODE_UART_I2C1,
+>  	.num_clks	= ARRAY_SIZE(exynos850_usi_clk_names),
+>  	.clk_names	= exynos850_usi_clk_names,
+>  };
+> @@ -88,6 +121,10 @@ static const struct of_device_id exynos_usi_dt_match[] = {
+>  		.compatible = "samsung,exynos850-usi",
+>  		.data = &exynos850_usi_data,
+>  	},
+> +	{
 
-I will experiment with adding support to dtc and see how things look. 
-Hopefully, 2025 is the year of addon board support.
+These two are in oone line.
+
+> +		.compatible = "samsung,exynos8895-usi",
+> +		.data = &exynos8895_usi_data,
+> +	},
+>  	{ } /* sentinel */
+>  };
+>  MODULE_DEVICE_TABLE(of, exynos_usi_dt_match);
+> @@ -109,14 +146,15 @@ static int exynos_usi_set_sw_conf(struct exynos_usi *usi, size_t mode)
+>  	if (mode < usi->data->min_mode || mode > usi->data->max_mode)
+>  		return -EINVAL;
+>  
+> -	val = exynos_usi_modes[mode].val;
+> +	val = exynos_usi_modes[usi->data->ver][mode].val;
+>  	ret = regmap_update_bits(usi->sysreg, usi->sw_conf,
+>  				 usi->data->sw_conf_mask, val);
+>  	if (ret)
+>  		return ret;
+>  
+>  	usi->mode = mode;
+> -	dev_dbg(usi->dev, "protocol: %s\n", exynos_usi_modes[usi->mode].name);
+> +	dev_dbg(usi->dev, "protocol: %s\n",
+> +		exynos_usi_modes[usi->data->ver][usi->mode].name);
+>  
+>  	return 0;
+>  }
+> @@ -160,6 +198,30 @@ static int exynos_usi_enable(const struct exynos_usi *usi)
+>  	return ret;
+>  }
+>  
+> +/**
+> + * exynos_usi_disable - Disable USI block
+> + * @usi: USI driver object
+> + *
+> + * USI IP-core needs the reset flag cleared in order to function. This
+> + * routine disables the USI block by setting the reset flag. It also disables
+> + * HWACG behavior. It should be performed on removal of the device.
+> + */
+> +static void exynos_usi_disable(const struct exynos_usi *usi)
+> +{
+> +	u32 val;
+> +
+> +	/* Make sure that we've stopped providing the clock to USI IP */
+> +	val = readl(usi->regs + USI_OPTION);
+> +	val &= ~USI_OPTION_CLKREQ_ON;
+> +	val |= ~USI_OPTION_CLKSTOP_ON;
+> +	writel(val, usi->regs + USI_OPTION);
+> +
+> +	/* Set USI block state to reset */
+> +	val = readl(usi->regs + USI_CON);
+> +	val |= USI_CON_RESET;
+> +	writel(val, usi->regs + USI_CON);
+> +}
+> +
+>  static int exynos_usi_configure(struct exynos_usi *usi)
+>  {
+>  	int ret;
+> @@ -169,9 +231,12 @@ static int exynos_usi_configure(struct exynos_usi *usi)
+>  		return ret;
+>  
+>  	if (usi->data->ver == USI_VER2)
+> -		return exynos_usi_enable(usi);
+> +		ret = exynos_usi_enable(usi);
+> +	else
+> +		ret = clk_bulk_prepare_enable(usi->data->num_clks,
+> +					      usi->clks);
+>  
+> -	return 0;
+> +	return ret;
+>  }
+>  
+>  static int exynos_usi_parse_dt(struct device_node *np, struct exynos_usi *usi)
+> @@ -253,10 +318,26 @@ static int exynos_usi_probe(struct platform_device *pdev)
+>  
+>  	ret = exynos_usi_configure(usi);
+>  	if (ret)
+> -		return ret;
+> +		goto fail_probe;
+>  
+>  	/* Make it possible to embed protocol nodes into USI np */
+>  	return of_platform_populate(np, NULL, NULL, dev);
+
+This also needs error handling.
+
+> +
+> +fail_probe:
+
+err_unconfigure:
+
+> +	if (usi->data->ver != USI_VER2)
+> +		clk_bulk_disable_unprepare(usi->data->num_clks, usi->clks);
+
+Move it to its own callback exynos_usi_unconfigure(), so naming will be
+symmetric. The probe does not prepare clocks directly, so above code is
+not that readable. The most readable is to have symmetrics calls -
+configure+unconfigure (or whatever we name it).
+
+> +
+> +	return ret;
+> +}
+> +
+> +static void exynos_usi_remove(struct platform_device *pdev)
+> +{
+> +	struct exynos_usi *usi = platform_get_drvdata(pdev);
+> +
+> +	if (usi->data->ver == USI_VER2)
+> +		exynos_usi_disable(usi);
+
+This is not related to the patch and should be separate patch, if at
+all.
+
+> +	else
+> +		clk_bulk_disable_unprepare(usi->data->num_clks, usi->clks);
+
+So the easiest would be to add devm reset action and then no need for
+goto-err handling and remove() callback.
 
 Best regards,
-Ayush Singh
+Krzysztof
 
 
