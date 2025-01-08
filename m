@@ -1,169 +1,152 @@
-Return-Path: <devicetree+bounces-136850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDD8CA068F7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:54:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06ADEA068FE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:55:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D08903A6A21
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:54:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC64B7A2E25
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A1B2046A3;
-	Wed,  8 Jan 2025 22:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F9A204C06;
+	Wed,  8 Jan 2025 22:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="elHDE0mp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FCMDMUeb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3872D205507;
-	Wed,  8 Jan 2025 22:53:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CEC82046AA;
+	Wed,  8 Jan 2025 22:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736376791; cv=none; b=tav3DQ29E0oCIJ+GEqsgVodp1LMvN38XMSEHeiNOknTsO4uixpOK+4JsbFy+O4l5oPBRdDKS+65xoezwINHHwQNv2Ust/O25my3LRApBLdquADgEsLLJQRZVbO04o9gxmAjUw88Pnb8MNXEAxI/4wo/gpUzG3HkBZbtYnZWnnns=
+	t=1736376838; cv=none; b=UbMS9/0vC6moeH/ivfp1uxhtO77novG+sRr0OhG93QfKbtxu0VbmnZsqzF8umwcmvczew3CO90xChMTUoq+7QPlJcVeMFsRPOadqF/iJSamf0RIkmryTBITNzdV0QnUoitmR6HGa7U8sBINxTMARj2Cg8DGvbVINnWC8draSJ5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736376791; c=relaxed/simple;
-	bh=CWw8l8Bx6HW4yS08hUfRB6a4ZMQVRspEptIwTdKru1Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=jN31mMqtaP83hPLnRfMvkHtFxtTnjwHfJ8+Z7+iRhKFTQBzcm4PEOfUfyw/NRWwtqBFL0Qmc1rNhGn/AU5bWzrgxtVtU+LWa4wuWszP4xKSPCIu4mOp9j0K93QKZs8Fk5oq6wx773i6jCn/1A7/RZN4crMdKXXot1VJT45P6SJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=elHDE0mp; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 508MqDVP081037;
-	Wed, 8 Jan 2025 16:52:13 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736376733;
-	bh=vOwRZpFoseOz9hM473nLmBBHXI/FXd6Ps4xPKvt35/k=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=elHDE0mpR9ctwrwK0FLxmCQgllmkqw0LpgU/mDuNJ+6DcorV5YT2qcgcYnRjAZO11
-	 NrfVKP7r1D5/CVuk2c/OLOEElKZExeoPD4wKCvUHlSPwrJEgC3z0vyPiI7yWDRrUd6
-	 liA/ZnZ+9TlbnYN8I8cEKXYznHfJqtVxHKA6EGvk=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508MqDYL080912
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 8 Jan 2025 16:52:13 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
- Jan 2025 16:52:13 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 8 Jan 2025 16:52:12 -0600
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508MqCMU038352;
-	Wed, 8 Jan 2025 16:52:12 -0600
-From: Bryan Brattlof <bb@ti.com>
-Date: Wed, 8 Jan 2025 16:51:55 -0600
-Subject: [PATCH v2 3/3] arm64: dts: ti: k3-am62l: add initial reference
- board file
+	s=arc-20240116; t=1736376838; c=relaxed/simple;
+	bh=nrbf/0s9qIBgFAh36LroJUzXgKF26iNjLFDrtg1CJz4=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=a8hNIYbefDK4VUq120QacczbuhRiP5CRAIdN/wm/NVJARFvYU7jmzzYnJ7f4dwOEjyVV60Qo2zDcb53dMrFG6lFEcdghv2Y0OV1gFtFjWhSl6iEI3ajrprEN68uBnU2egnHfQ4jjDjgYrBF/Z5YoP+0FEr0+sQjxG6OrXHm5sKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FCMDMUeb; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736376836; x=1767912836;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=nrbf/0s9qIBgFAh36LroJUzXgKF26iNjLFDrtg1CJz4=;
+  b=FCMDMUebdYH851HroSRXxLTTLH5aRmCkTSX6m5tn2Nf95t7oatL9U48H
+   UKFDSvocbrgO13cHgg4uEaKlYtIO/0cq+BzY9OGAMtSx/SVHixUJvuABu
+   qnE9S4xSPUvVetLPPeHXfZhZChdQaNLk+/GHyESDw3c8z8S+TAwwzApmp
+   1GGHvo/bzK2uZUnmpe48jaidg8X8QsuNkKA7B7WjO8MarFdMKsoQ5vP3c
+   wKnTJQaw9DnvVGyqkXzIupkyrZCeJRpDAcVTYRtGfqOmFUUKruWzZWnh9
+   vb8c7F9T1uXiuNwM8oBgN3tvdr/tX0azVmY8fJ6QRaeTpY3oUbCI3uqdC
+   g==;
+X-CSE-ConnectionGUID: AXmHkgRfRP6jbvjZe69IeA==
+X-CSE-MsgGUID: Deqd/oJgRPWgo1NlIi/m2Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="36317336"
+X-IronPort-AV: E=Sophos;i="6.12,299,1728975600"; 
+   d="scan'208";a="36317336"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2025 14:53:56 -0800
+X-CSE-ConnectionGUID: Gnjdy6tFSlSTx9A1VlbMjQ==
+X-CSE-MsgGUID: WjZ589A4RY6X8i/d1U0onw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="134120510"
+Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2025 14:53:55 -0800
+Date: Wed, 8 Jan 2025 14:53:50 -0800 (PST)
+From: matthew.gerlach@linux.intel.com
+To: Bjorn Helgaas <helgaas@kernel.org>
+cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
+    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
+    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com
+Subject: Re: [PATCH v3 3/5] arm64: dts: agilex: add dtsi for PCIe Root Port
+In-Reply-To: <20250108183739.GA222166@bhelgaas>
+Message-ID: <90879a6-979b-9b7f-1df8-44e8e1b7a23@linux.intel.com>
+References: <20250108183739.GA222166@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250108-am62lx-v2-3-581285a37d8f@ti.com>
-References: <20250108-am62lx-v2-0-581285a37d8f@ti.com>
-In-Reply-To: <20250108-am62lx-v2-0-581285a37d8f@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1783; i=bb@ti.com;
- h=from:subject:message-id; bh=aXWJV3lurQbpO8RjUHTuNWtjBXtYaKNXg8VgRBPGmWE=;
- b=owNCWmg5MUFZJlNZce+8qwAAaP////95Tv+lebvj70y6FvTv/Ox3855Kfnf/fP9u7XPO/u+wA
- RrIIepoADTQMgNBpoABoaaAaZDQaADRppo00AAAGhoMRoZGgeU09RptRpkM1PRtUQAaNAyDQaZD
- EBo0aDCMjINDIAADZTEBpoYCGnqAD1AxDJ6mmJiBk0GgYZACZGgHqNNNDQNANBgjEBpoBiAGTEZ
- AyAZDCMI0BiZGQ0DTIABpk0BAjPHWh4VKJ0YGGLk0wMgDO7hUpt0I3+tTIOzPyJGWA/GOt0gYw0
- NkaH3dFccVOuUZdkMEM4Oni7BG1BrCdwDK76ByoZA2zhEYuwqFToUCVgY7UiwYOWPby7gocV9KJ
- iT+SARfGllzBcj7AY54N3/OzD/hsaa1/yR0QHnS5yKKYN1DDsl1+seC1yJUJe+wsGZiVbcWEUK+
- THa1P0EQ3kB8T0u9os0EDdE+9EMYxhhjiQTNTDjNSFEUNzXgtoRZrwE4NiWyCCy1L0vfxHdSYMQ
- Pv9fIpeqNJfhBB0V23KvChLkTA/hedtIgmspTGOjpjfJgw545DmzS8yp9nY5NLf20Qm3HCvG+WI
- Vk2bwM2EqNtKukHZbv4zBQImkqeAF4/pU+J91rpWaGpx07x9HS5ZohiQsdgG0wpclQgxz/Q12lp
- xiD/F3JFOFCQce+8qw=
-X-Developer-Key: i=bb@ti.com; a=openpgp;
- fpr=D3D177E40A38DF4D1853FEEF41B90D5D71D56CE0
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
-From: Vignesh Raghavendra <vigneshr@ti.com>
 
-Add the initial board file for the AM62L3's Evaluation Module.
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Bryan Brattlof <bb@ti.com>
----
-Changes in v1:
- - switched to non-direct links so TRM updates are automatic
- - removed current-speed property from main_uart0
- - removed empty reserved-memory{} node
- - removed serial2 from aliases{} node
- - corrected main_uart0 pinmux
----
- arch/arm64/boot/dts/ti/k3-am62l3-evm.dts | 43 ++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+On Wed, 8 Jan 2025, Bjorn Helgaas wrote:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
-new file mode 100644
-index 0000000000000..ed0148ce1bea6
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
-@@ -0,0 +1,43 @@
-+// SPDX-License-Identifier: GPL-2.0-only or MIT
-+/*
-+ * Device Tree file for the AM62L3 Evaluation Module
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ *
-+ * Technical Reference Manual: https://www.ti.com/lit/pdf/sprujb4
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am62l3.dtsi"
-+
-+/ {
-+	compatible = "ti,am62l3-evm", "ti,am62l3";
-+	model = "Texas Instruments AM62L3 Evaluation Module";
-+
-+	chosen {
-+		stdout-path = &main_uart0;
-+	};
-+
-+	memory@80000000 {
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-+		device_type = "memory";
-+		bootph-all;
-+	};
-+};
-+
-+&pmx0 {
-+	main_uart0_pins_default: main_uart0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x01b4, PIN_INPUT, 0)	/* (D13) UART0_RXD */
-+			AM62PX_IOPAD(0x01b8, PIN_OUTPUT, 0)	/* (C13) UART0_TXD */
-+		>;
-+		bootph-all;
-+	};
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+	status = "okay";
-+	bootph-all;
-+};
+> On Wed, Jan 08, 2025 at 10:59:07AM -0600, Matthew Gerlach wrote:
+>> Add the base device tree for support of the PCIe Root Port
+>> for the Agilex family of chips.
+>>
+>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>> ---
+>> v3:
+>>  - Remove accepted patches from patch set.
+>>
+>> v2:
+>>  - Rename node to fix schema check error.
+>> ---
+>>  .../intel/socfpga_agilex_pcie_root_port.dtsi  | 55 +++++++++++++++++++
+>>  1 file changed, 55 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+>> new file mode 100644
+>> index 000000000000..50f131f5791b
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+>> @@ -0,0 +1,55 @@
+>> +// SPDX-License-Identifier:     GPL-2.0
+>> +/*
+>> + * Copyright (C) 2024, Intel Corporation
+>> + */
+>> +&soc0 {
+>> +	aglx_hps_bridges: fpga-bus@80000000 {
+>> +		compatible = "simple-bus";
+>> +		reg = <0x80000000 0x20200000>,
+>> +		      <0xf9000000 0x00100000>;
+>> +		reg-names = "axi_h2f", "axi_h2f_lw";
+>> +		#address-cells = <0x2>;
+>> +		#size-cells = <0x1>;
+>> +		ranges = <0x00000000 0x00000000 0x80000000 0x00040000>,
+>> +			 <0x00000000 0x10000000 0x90100000 0x0ff00000>,
+>> +			 <0x00000000 0x20000000 0xa0000000 0x00200000>,
+>> +			 <0x00000001 0x00010000 0xf9010000 0x00008000>,
+>> +			 <0x00000001 0x00018000 0xf9018000 0x00000080>,
+>> +			 <0x00000001 0x00018080 0xf9018080 0x00000010>;
+>> +
+>> +		pcie_0_pcie_aglx: pcie@200000000 {
+>> +			reg = <0x00000000 0x10000000 0x10000000>,
+>> +			      <0x00000001 0x00010000 0x00008000>,
+>> +			      <0x00000000 0x20000000 0x00200000>;
+>> +			reg-names = "Txs", "Cra", "Hip";
+>> +			interrupt-parent = <&intc>;
+>> +			interrupts = <GIC_SPI 0x14 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <0x1>;
+>> +			device_type = "pci";
+>> +			bus-range = <0x0000000 0x000000ff>;
+>
+> I don't think this bus-range is needed since
+> pci_parse_request_of_pci_ranges() defaults to 00-ff when bus-range is
+> absent.
+>
 
--- 
-2.47.1
+Yes, pci_parse_request_of_pci_ranges() does default to using 00-ff when 
+the bus-range property is absent. Removing the bus-range property does 
+result in an extra kernel message at startup:
+     No bus range found for ...,using [bus 00-ff].
 
+If the extra kernel message is not a problem, then removing the bus-range 
+property does result in a smaller device tree.
+
+Matthew Gerlach
 
