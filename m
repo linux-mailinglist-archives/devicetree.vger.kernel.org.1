@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-136810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA712A065D3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 21:14:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88240A065EA
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 21:17:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51CF318896B9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:14:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38F6D1889DE8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:18:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B757F2036E2;
-	Wed,  8 Jan 2025 20:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0228C20370B;
+	Wed,  8 Jan 2025 20:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cokaGl5r"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yHWYY4bS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E7F120127E;
-	Wed,  8 Jan 2025 20:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFD4202F70;
+	Wed,  8 Jan 2025 20:17:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736367271; cv=none; b=uSlmRcoMi4/zXpS5OgYdhK7C3YWyOdXKvWT7Zko+zNH/9+b4JoiJghYj6Sv+7oaA5M6GtdttSoXSVrHlFOUNrw5UEgUHhhjOXv/W/2ORql0xwCnlXha8Wm1HufmMPK/CaNXhvLEMnR8WPGOcXz6YzwCUT30zTawadXG4Cv1hWrw=
+	t=1736367457; cv=none; b=ReB3lroqwsnCXAiplGCcvqUabe26cRk8BffnFJrPwyaiOw3BtWshP6pBJ2RVVbCF0cG5SC8CZ7IHLGkBZonlkL9JdYVD18Vtjml6P9udtM2ItgbyKHJjZb1xczl00xctcbPLuDpTYa07juT0EPnveo5DL+zqpdYcYpTvVX542vA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736367271; c=relaxed/simple;
-	bh=fWXWqOox9j68tKJYQQyfrzCuN3RmXdh/TDYs9UfDP7M=;
+	s=arc-20240116; t=1736367457; c=relaxed/simple;
+	bh=Gll9HLWVOOQKKC615EkdeuTyuFaraBMcTg0OQ2aFT+c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oCkm/zJYYG0aLZD0gEirxl0Xy8f6kQDuTzzMNnS5KdUFD71y4mA5+v5kuewgJWwBn4xQXTaJWQCkF7LPQDyDJi1n9YxBvF1/LNr8XUCILcKHGWd/KqFtPhBeyn6NZYQ7E+qlPrpfQscnStwJ6H7awLXHtnHBR/flWRamDTrsoh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cokaGl5r; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=f2aZE2FBDQdUeaWTPFZ79lEj/A6k2D5pWpNMQ5vzvlXRb9GOI9yGgzpp3VoN//5Y9N2M1T6QnTOHh88+OIgew+jSX7CweFyOz3nf015P8SAhcGOEWzCwVaGQqRQ34rCDfigpeKaK7prWq82piHLFgnxVxtrJqG4RieNUxVuoZ8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yHWYY4bS; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,29 +36,40 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=hs8uP3N/mTdsE3JF6EEgjMUW9ubX3QrUliIYU0W1Efw=; b=cokaGl5rbCCWR5PLEEXlzlK4cg
-	61kIh8CGC74Kzu7whTHy6mmGZiSShEsvkL/AiJ79CgmLhcin6x2cZmY33bJNEFJBTn2rnElphfZ8A
-	QoBXD8JA3+CWcAR2AKXIabgI7RguloybklWjZ7s0SMDRD9wP03I3Y1lpAgkiPSW+xw0s=;
+	bh=b+Hjf7gL0CKGudF4dN19V3/6KMwWFZmCJ+Cv2U2rfsQ=; b=yHWYY4bSalT2gL8z3UpH+ZLEi/
+	wai17khUMCEbltTA0kvnb6fXjBq5v+YSRMg3YfdC7cEKYCdzJmBUPQykCFJpd8z5RWjq2Aaafejzj
+	yjoezsV6OMjJpgvGAYR7f7eLqXjF1Sw9KJQS0mizDmRURjHYiKh0ClvjbCq2KSaa/i3k=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1tVcR0-002fvx-Ne; Wed, 08 Jan 2025 21:13:46 +0100
-Date: Wed, 8 Jan 2025 21:13:46 +0100
+	id 1tVcUR-002g0l-Eh; Wed, 08 Jan 2025 21:17:19 +0100
+Date: Wed, 8 Jan 2025 21:17:19 +0100
 From: Andrew Lunn <andrew@lunn.ch>
 To: Ninad Palsule <ninad@linux.ibm.com>
-Cc: minyard@acm.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	ratbert@faraday-tech.com, openipmi-developer@lists.sourceforge.net,
-	netdev@vger.kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-	devicetree@vger.kernel.org, eajames@linux.ibm.com,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 05/10] ARM: dts: aspeed: system1: Add RGMII support
-Message-ID: <b80b9224-d428-4ad9-a30d-40e2d30be654@lunn.ch>
-References: <20250108163640.1374680-1-ninad@linux.ibm.com>
- <20250108163640.1374680-6-ninad@linux.ibm.com>
- <1dd0165b-22ff-4354-bfcb-85027e787830@lunn.ch>
- <0aaa13de-2282-4ea3-a11b-4edefb7d6dd3@linux.ibm.com>
+Cc: Jacky Chou <jacky_chou@aspeedtech.com>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"eajames@linux.ibm.com" <eajames@linux.ibm.com>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"joel@jms.id.au" <joel@jms.id.au>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"minyard@acm.org" <minyard@acm.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"openipmi-developer@lists.sourceforge.net" <openipmi-developer@lists.sourceforge.net>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
+	"robh@kernel.org" <robh@kernel.org>
+Subject: Re: [PATCH v2 05/10] ARM: dts: aspeed: system1: Add RGMII support
+Message-ID: <769c47ce-3183-4730-8702-ec85245e66df@lunn.ch>
+References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
+ <bebbba7b-f86e-4dc4-8253-65d34cb84804@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,39 +78,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0aaa13de-2282-4ea3-a11b-4edefb7d6dd3@linux.ibm.com>
+In-Reply-To: <bebbba7b-f86e-4dc4-8253-65d34cb84804@linux.ibm.com>
 
-On Wed, Jan 08, 2025 at 12:43:07PM -0600, Ninad Palsule wrote:
-> Hello Andrew,
+> I checked with out hardware team and they did not add any extra delay on the
+> board.
 > 
-> 
-> On 1/8/25 11:03, Andrew Lunn wrote:
-> > On Wed, Jan 08, 2025 at 10:36:33AM -0600, Ninad Palsule wrote:
-> > > system1 has 2 transceiver connected through the RGMII interfaces. Added
-> > > device tree entry to enable RGMII support.
-> > > 
-> > > ASPEED AST2600 documentation recommends using 'rgmii-rxid' as a
-> > > 'phy-mode' for mac0 and mac1 to enable the RX interface delay from the
-> > > PHY chip.
-> > You appear to if ignored my comment. Please don't do that. If you have
-> > no idea about RGMII delays, please say so, so i can help you debug
-> > what is wrong.
-> > 
-> > NACK
-> 
-> I think there is a misunderstanding. I did not ignore your comment. I have
-> contacted ASPEED and asked them to respond. I think Jacky from Aspeed
-> replied to your mail.
+> We have normal point to point clock without any delay added by line.
 
-You did not mention in the cover letter, or the patch. I asked for a
-detailed explanation in the commit message why it is correct, which
-you did not do.
+Thanks for checking. Thus phy-mode must be "rgmii-id". We now need to
+fix the MAC driver so it does the correct thing when passed that.
 
-Now we have more details, it is clear Ethernet support for this board
-needs to wait until we figure out how to fix the MAC driver. Please
-either wait with this patchset until that is done, or drop this one
-patch for the moment and submit it later once the MAC driver is fixed.
-
-      Andrew
-
+    Andrew
 
