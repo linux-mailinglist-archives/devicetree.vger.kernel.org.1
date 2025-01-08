@@ -1,153 +1,137 @@
-Return-Path: <devicetree+bounces-136652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACCDBA05C61
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:12:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BD3BA05C69
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:14:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 096A03A063E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:11:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22FAA1883861
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC8841F75A7;
-	Wed,  8 Jan 2025 13:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30A5A1F8AEC;
+	Wed,  8 Jan 2025 13:13:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="y5ecljwU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vhGmPGho"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B20E614A82;
-	Wed,  8 Jan 2025 13:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55F9D14A82
+	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 13:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736341916; cv=none; b=gktHKDfp+CRN1MF0nHfG8mw1mxrN4qbI/jv8JJnt9av7EVDCB2TVqncy/xvQE2D1SydBIpWvMeDAfLnOyeN6wZmqzTEZ1gzFGPnuAEfE5H5eAlm6JZ45BApj4eNGrq8ldo7DXaztx6xKvzVG+CpreDslynHYYeN+z9rOmHV7Q1g=
+	t=1736342036; cv=none; b=d2vHvyWJPnIYZpaW+Jmes0shEcMI4SGTbd4FvfrjlRX02Sg+LvlaQGtZa4c7c/Njjuq2D3DiZ1B3GnLez4VoBxjGjY1r7sk0tEyNoxyTg2NpyeOhiYaXKFPD5siU007zObambpwaDO0Iwd4qQwxHbSzIEvOAoJmsTcx/HPLNyZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736341916; c=relaxed/simple;
-	bh=OwFveQG5FQZSU90kN28HyK22KApFqq13i4qWFCRksuE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aAIi8aTcvaMYppITgiDevLRW4or7iJn+Bde2AAdy4MAoNsQK4vRdCXr1hO2B6F5SmgZBMiW5fzn1kNFM9T+q8FAlD+HMxIwYeU9R0vvSkbstT8pxmFPTEeBCrk7th5sbxW8fPlk6pyPwSRC7qHimr1A/L8FCyi1DgVKP7Z24dD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=y5ecljwU; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 508DBeR43008794
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 8 Jan 2025 07:11:40 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736341900;
-	bh=s0c2Sr/lCUPp+fZ6By3CztBWN7px0h5vAH48eSCXHxo=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=y5ecljwUR4/3FPqDcaEjgLXjYxVW/wnYoMVO4yFJaMRCU9n9R2cIL+aihKmcbS214
-	 hnLOriD26zxNGj7ZQcEWStUiOWeDV0Id0ZwJ7QaDwvZ/v4jTRBVCpLqCAhFFBERkzg
-	 bdnqcF4AUG/tSsqh7+F5mU0InBlP+f6ashtn8fJc=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508DBe2Z110371
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 8 Jan 2025 07:11:40 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
- Jan 2025 07:11:39 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 8 Jan 2025 07:11:39 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508DBdjE036677;
-	Wed, 8 Jan 2025 07:11:39 -0600
-Date: Wed, 8 Jan 2025 07:11:39 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Kevin Hilman <khilman@baylibre.com>
-CC: <devicetree@vger.kernel.org>, Romain Naour <romain.naour@smile.fr>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>,
-        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>,
-        Romain Naour <romain.naour@skf.com>, <afd@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCHv3 1/2] dt-bindings: mfd: syscon: Add
- ti,j721e-acspcie-proxy-ctrl compatible
-Message-ID: <20250108131139.dygei6ejamh5zaij@segment>
-References: <20241202143331.126800-1-romain.naour@smile.fr>
- <173344002250.407600.8303166891165540615.b4-ty@baylibre.com>
- <20250103212528.enq4ur5afxhwzh7n@outdoors>
- <7hr05eb5st.fsf@baylibre.com>
+	s=arc-20240116; t=1736342036; c=relaxed/simple;
+	bh=rbAuMdLeVIHJxGAmrFB4pU2Jv3N1FjIiysZFlVbIhmo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MKjVO6kPnUqxZO3NMhaaCdax6U2kqMppU+X85brpkeKGLvEVW0j4BX8U8gDVTTIGUoMejNHh1eu37e8QxUhWTLd4fFxzQRUmSvMd/Z6CtwKljeWqTORsqL8rEDDuYjl7eJkGcvonytYkgJk0Fso1ehVrvTea9HKYTQoLxjEzLpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vhGmPGho; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-54024aa9febso17717380e87.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 05:13:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736342032; x=1736946832; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YqZewggKXh0wm9IbjtQFexabLRuUSMGH6a4/lzMIbGw=;
+        b=vhGmPGho++a59EiUOaVnkV+Uz7UfSsKeCbzH+vocd9Iueu6E+NDFQRXQvCyOw22DYa
+         YfLBUEPCx2GR/R7asVv2eTwwn4M06li61nz/aqNzlR4C6CTEVC0uvLPb9Ti+pdrRHSdw
+         zcBVzScA8+OBk1tu5ywj4qufYJRUKfq8EPBWVDUwIxQEOqd+pLI40mSuUns5HBlaOLDt
+         rgjSJ0iaoIvJjxsVyHCF6kzyn/c+vnHOpG9ct7iGuCGpfNsnJ5O1CtzuP6o64Extwskk
+         ecW65Zd4hLSmtmqW/OBYfbfFgE4k00W7ib9feIlZgRuFgPx7MxBPF2lngXgqtkacYacn
+         IsQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736342032; x=1736946832;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YqZewggKXh0wm9IbjtQFexabLRuUSMGH6a4/lzMIbGw=;
+        b=EzkxfNua8udLsSMV/fRBoHaiyjTT8pWh4nJ7DXTCbj6RvW+AQYX8TV3NtyrXe/uG4Z
+         KDqWedm5QwWzXHMzPGygcl5R9m0roFGJyyinwTVuG2rC1w9GpzHzuDhtxIyfcbj/eAeZ
+         rYewf9DjTbXFEljgIFEL0uezOTuIRfWGoI36nLZyPh8tC0prpY/afUEaJVyIEDPr9bdT
+         haMq1euhmeili96+PyDx0p3APUPG8h0Qs65oaRblKAmoSi2TLmOwz8i0Tj7pTiKsxU41
+         pv/3vCxkuxZYDed8+OktTqJhS+yyBYjcSghONaVveDTIvAsBzKQ9SyYW2O+dtl2s2jdA
+         iSSg==
+X-Forwarded-Encrypted: i=1; AJvYcCXMpYJ0wNA6/ztRdTPSK826nFfaZgii4fH+u3x1dl9X/GADlN+71wGz9Pobjzfvx0P14z4zo2vWjr3Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrmWL4pyTiNskR0g9kAHRGzz5K4/jByvCmVDB52AHXWVEL8Y5H
+	XrtwqFyCcwzy3lfMNSpUpCgp28JQ1/9EKl/AFC1RwzYMZJOO7xyeD4Q3BdUjNc0=
+X-Gm-Gg: ASbGncteCg4D9dc1MoFRjG0uGu133Ku18XTxPZQhDeXofCgZDjVge4RziF7rBj1+rfY
+	TMYk6hHT1fieFYIeHPpjZs6dx8oSCGMhwM5OpS5R+oFzjQM5YwWiCh1IBowjGv9Z6rid4hZPCZ7
+	E9N9NsDToOKnG/9rewHICEX5S5SIXrRnFOuWkvxDFsJf64HO1NL/ZvLUl1oS42h7uZjoXMxJ3ju
+	UJ+/N7h7o2qHq7I2naGAqDN6HcB/PtceeOi0/wozt7s1rtMYbSMOqyAatMM4ZQDzdnMmDY56hYA
+	FtpSL9qPf3/tANsfj4I5L6O5NAiuuY5YB7/3
+X-Google-Smtp-Source: AGHT+IEkuQPiOLgGXs8zWdEMj0wAqNSMaSTV6vSQ/tkCnop+NG9gWvZpeLRpiajpdeM8K2LlU6tzqA==
+X-Received: by 2002:a05:6512:3c8a:b0:542:28dc:b692 with SMTP id 2adb3069b0e04-542845b9480mr694480e87.14.1736342032480;
+        Wed, 08 Jan 2025 05:13:52 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54269fd89e8sm1549488e87.91.2025.01.08.05.13.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jan 2025 05:13:52 -0800 (PST)
+Date: Wed, 8 Jan 2025 15:13:49 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, jie.qiu@mediatek.com, 
+	junzhi.zhao@mediatek.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com, lewis.liao@mediatek.com, 
+	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com, jason-jh.lin@mediatek.com
+Subject: Re: [PATCH v4 33/34] drm/mediatek: mtk_hdmi_common: Add var to
+ enable interlaced modes
+Message-ID: <bovw662duw6ufmjleicb4kuhyn3an6emo53mgg3477dfuarapq@zcmekc7zzeub>
+References: <20250108112744.64686-1-angelogioacchino.delregno@collabora.com>
+ <20250108112744.64686-34-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7hr05eb5st.fsf@baylibre.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <20250108112744.64686-34-angelogioacchino.delregno@collabora.com>
 
-On 14:46-20250107, Kevin Hilman wrote:
-> Nishanth Menon <nm@ti.com> writes:
+On Wed, Jan 08, 2025 at 12:27:43PM +0100, AngeloGioacchino Del Regno wrote:
+> Add an interlace_allowed bool member to struct mtk_hdmi_ver_conf
+> which will be used to signal whether interlaced modes are supported
+> by the bridge (in our case, the HDMI IP), and enable it for HDMIv2.
 > 
-> > On 15:07-20241205, Kevin Hilman wrote:
-> >> 
-> >> On Mon, 02 Dec 2024 15:33:30 +0100, Romain Naour wrote:
-> >> > The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
-> >> > SoC are used to drive the reference clock to the PCIe Endpoint device via
-> >> > the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
-> >> > obtain the regmap for the ACSPCIE_CTRL register within the System
-> >> > Controller device-tree node in order to enable the PAD IO Buffers.
-> >> > 
-> >> > The Technical Reference Manual for J721e SoC with details of the
-> >> > ASCPCIE_CTRL registers is available at:
-> >> > https://www.ti.com/lit/zip/spruil1
-> >> > 
-> >> > [...]
-> >> 
-> >> Applied, thanks!
-> >> 
-> >> [1/2] dt-bindings: mfd: syscon: Add ti,j721e-acspcie-proxy-ctrl compatible
-> >>       commit: d8efc0b428856137608ffcbb6994da6041c9fe2a
-> >> [2/2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE output for PCIe1
-> >>       commit: 1d5e14a20dc60b440c60bec8489acfd45cdf7508
-> >> 
-> >> Best regards,
-> >> -- 
-> >> Kevin Hilman <khilman@baylibre.com>
-> >> 
-> > This will need a bit of fixup - See along the lines of the following.
-> > Additionally, we should be a bit careful about the dependency of dts
-> > mix up from two trees.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 1 +
+>  drivers/gpu/drm/mediatek/mtk_hdmi_common.h | 1 +
+>  drivers/gpu/drm/mediatek/mtk_hdmi_v2.c     | 3 ++-
+>  3 files changed, 4 insertions(+), 1 deletion(-)
 > 
-> sorry, these should be going through your tree in the first place.  They
-> are now dropped from my tree, please go ahead and take them along with
-> Andrews fixup.  Sorry for complicating things.
+> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c b/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
+> index 4cecfef1466b..8841fa4e476a 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
+> @@ -1301,7 +1301,8 @@ static const struct mtk_hdmi_ver_conf mtk_hdmi_conf_v2 = {
+>  	.bridge_funcs = &mtk_v2_hdmi_bridge_funcs,
+>  	.codec_ops = &mtk_hdmi_v2_audio_codec_ops,
+>  	.mtk_hdmi_clock_names = mtk_hdmi_v2_clk_names,
+> -	.num_clocks = MTK_HDMI_V2_CLK_COUNT
+> +	.num_clocks = MTK_HDMI_V2_CLK_COUNT,
+> +	.interlace_allowed = true
 
+Nit: if you have a trailing comma, you don't have to change the last
+line when adding a new one.
 
-Romain,
-
-There is additional fixups needed, unfortunately as well: syscon yaml
-has two lists based on which dt-schema version you use.. your patch
-fixed one list, but missed the other as well. Could you integrate the
-fixes and resubmit, please?
-
+>  };
+>  
+>  static const struct mtk_hdmi_conf mtk_hdmi_conf_mt8188 = {
+> -- 
+> 2.47.0
+> 
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
-Something of this form needs to be squashed.
-
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index 348025870b0f7..dda489916bc54 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -216,6 +216,8 @@ properties:
-           - ti,am62p-cpsw-mac-efuse
-           - ti,am654-dss-oldi-io-ctrl
-           - ti,am654-icssg-ctrl
-+          - ti,j721e-acspcie-proxy-ctrl
-           - ti,j784s4-pcie-ctrl
-           - ti,keystone-pllctrl
-       - const: syscon 
-
+With best wishes
+Dmitry
 
