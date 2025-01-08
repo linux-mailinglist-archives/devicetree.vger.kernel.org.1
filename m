@@ -1,79 +1,63 @@
-Return-Path: <devicetree+bounces-136732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFC73A05F61
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:55:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FC06A05FA7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:09:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE1B51661C3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:55:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4DA83A7C1A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 258FE1FCFE7;
-	Wed,  8 Jan 2025 14:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB621FCFE7;
+	Wed,  8 Jan 2025 15:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gTQ9OZV5"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CQbgrhOq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5134B1FCF68
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 14:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FD2B644;
+	Wed,  8 Jan 2025 15:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736348137; cv=none; b=IyeyZgOTJrg2zURRh0GbpqfnrVhtHc0RlOtggNxbv4dN7WK+w2HZlelWp0SolegypEt6iiVr1Hom6aDPyg1Ess1Udbn1XBNqc+5bsVxCV10ziiCAjURrbeV6De3Ls6XZ6zEXp1HwVjQyXE7BXUoaZaXJazD5k7MrwxnaPURFnOs=
+	t=1736348993; cv=none; b=JeedThJ/kXRElFIxYPOu+42G4coq8nLUJs0i5jQ8rLv6J1Va5jhWvBbvujM4GGS+AYh7husHpz7J7doPUsCNg0/61pGSwj7ygXc1sOlRTL6kqpu6apThJ0OSdLibStYyahZTeGFjer37/UX1TcS1/mmc20mXoWe5uO3iNlS0Wg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736348137; c=relaxed/simple;
-	bh=67JK1rlmJtGcesXL4SPQSN/FDXqiuAIio1r2G9KnuLM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uy9XXaqF2KV3eQh6g6Z5h5lBRipPNDuKusUnbQ30X1NGLqcr/+cyn3WFx8QAfbPn2xRf4u29iawwyihNCc2Ld6/b7Fn4P/XLV4jlc3v/GxVpPwjC4tdX681wGsD+I0GlTk19AGiNdWjrwkm097PGxHXc8Tgz6xp52nyRWL78lTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gTQ9OZV5; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-aa69107179cso2807462466b.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 06:55:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736348134; x=1736952934; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x+O0NMpY6QzRmleywGIkKRE2USypKZLsxBppr3RZn6U=;
-        b=gTQ9OZV5Glt4NgQCChHsIO7gTRCxfCNANjgUeGdow3pdDXjJlUQZQBvV2GMGuoKe2t
-         30Q6zBXDekFd8Z1h6nI+uFXANA+Zzi/GIfciF7uBIyEbRaRlcH63KbR689EvLKqcp6uw
-         BJvCzjcPEfDXPz3JGS2qflBzoNOKc4CkOCfGJPeMJZs8jhNwAhr1Xzm04PEozucDQTCL
-         F3xRm6gzgIguPb1W2CASAOe7WNeiwqVwr9aSNQNSX9jCgYNd74b5xV5424lGqu7DzGg0
-         BAPqOwsCKGq/O2+3PUO9Gbw/jGolEvG5LUO1I7Zxg7KnWRHT1GtvLlCJHU1Z60T5VqfX
-         +mug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736348134; x=1736952934;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x+O0NMpY6QzRmleywGIkKRE2USypKZLsxBppr3RZn6U=;
-        b=ACvLRWWrJ2B815qdyKXlIqOw/fUYypLoAaTOBDcOBjPU9PCdV1wW/zCxHXUbiJOJMu
-         qzHKENbazytxNmpk/JR+JwXvqZSBUuc6jDN7waif5+YsXez5kbVlKhiQzBWRVycBWm4C
-         wD6y0PeOBkSCi+UqwOIP99x9ojn3aQB0ymkRCF1E5cNMls5P67ByN/7VE7z0zz4HXfhj
-         6emrDlPrGogD0FdLTlB84hyQiH4dQf7UOKDjJMKDyDrPJQnGBtR2AdFcv49VA951ZcUa
-         EYUbSdvL0hkpS8QefxUBD0pNrT99jvs4jkZfCUNobb89vu6cg+OszNJ1fotDbus1Pr0Y
-         Rx4A==
-X-Forwarded-Encrypted: i=1; AJvYcCWezSknBTD5oh0ANKjBWOiXEU0dqTcj5yRFEUg4aWCN08RiO0F8Os8nFKX9kz3ZLcol37osJf/3QGBt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5BpbUbs7GTjokkjoX8dZruh9A2LTh9+16cl/Xr2pTwKTKG4gc
-	rQ5Za5O7EFqNpHFKpLgg9s2eGumVRmcYqcDXD+ie0arj24VqRzbR7uWwZ63MYw4=
-X-Gm-Gg: ASbGncsh6I0eM5CIuCBMYzu4ZbWUuvSDawTEEH8EEBQ/TMZpL2atzMZkxEYOE1YtDFk
-	5TJLr/WjIJ77jN2sjU8597umfDT0VL7xZUzSl7VsOkP8ShZ+AkqT1+T/3zYq3FY6SJ4M3JrxshC
-	AYzuUVagYvLJRRxStu1KDH+Xwr/nh3krJBtofrbhl9jcHUsxPjrqcgJCZ0jcz/7BJcG9B8z2QX+
-	0qVlDKa9l6O4FQXRVdyq+o5giQedYv2VDeQTNnN+QhuhAxJoxkL4Cgg1ivV8BHEKfUpDLnD89FK
-	4FgygeT/U5ZpXf0hzhV3BOvmiotCay2MJ4ylTlU=
-X-Google-Smtp-Source: AGHT+IFnWVoDQuHcKTyFxi4kBSfHYu1d60lV+zwr2XqYC5cBIMfaq1XRcTiYwNflIFjII+AZubU8Uw==
-X-Received: by 2002:a17:907:7e91:b0:aa6:4a5b:b729 with SMTP id a640c23a62f3a-ab2ab6f3447mr256057366b.33.1736348133620;
-        Wed, 08 Jan 2025 06:55:33 -0800 (PST)
-Received: from ?IPV6:2a02:8109:888d:ff00:ca7f:54ff:fe52:4519? ([2a02:8109:888d:ff00:ca7f:54ff:fe52:4519])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d983a172d9sm73309a12.57.2025.01.08.06.55.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jan 2025 06:55:31 -0800 (PST)
-Message-ID: <fff03f10-7e87-48db-8e8f-b06a47d4545f@linaro.org>
-Date: Wed, 8 Jan 2025 15:55:29 +0100
+	s=arc-20240116; t=1736348993; c=relaxed/simple;
+	bh=3VBoarm65yidT0S1jwd5sJD6YGFWm/9XqSCzQEg27VQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AGwmCXLRehvj4OTlyTCJllMFulpmB+goLbevgaz3tzGbSchKs+/z/eIl+U06XuLj/KPEHwr8JvHn+pIcHxNwTdC5tTiB9itu6V+GUZB2mE/n3uvKvgBBLFykJlIGgWr+1pV7Mh47mLfWEbXNj+kArnpzrti71hSjT///B/9T7BA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CQbgrhOq; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 508F9cvb117690;
+	Wed, 8 Jan 2025 09:09:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736348978;
+	bh=EBFfvevMsK9ZA/ZNAz6Nk2cp2esfcvJVDFz4UaKdqR8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=CQbgrhOqLSVYVmwXK/H/RzO1Xn7vpeei2DD1QvXiDmBYEQj17RxbgWA4cRAT8jCjW
+	 2uU7EN76oAcgiOwctPkfCQ9e9nBOsxf/ZfOEXOhKAAt/kzGSthOuHEHn2yFkG3GY4V
+	 CYN4TFrcD6NWkis0PCzLV8YXm/0AOJCdUK+tEDAo=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508F9c2f056613
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 8 Jan 2025 09:09:38 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
+ Jan 2025 09:09:37 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 8 Jan 2025 09:09:37 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508F9bXo041516;
+	Wed, 8 Jan 2025 09:09:37 -0600
+Message-ID: <1251db38-5009-4e93-9603-3ae02f276e5b@ti.com>
+Date: Wed, 8 Jan 2025 09:09:37 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,62 +65,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: qcs9100: Add support for the
- QCS9100 Ride and Ride Rev3 boards
+Subject: Re: [PATCHv3 1/2] dt-bindings: mfd: syscon: Add
+ ti,j721e-acspcie-proxy-ctrl compatible
+To: Nishanth Menon <nm@ti.com>, Kevin Hilman <khilman@baylibre.com>
+CC: <devicetree@vger.kernel.org>, Romain Naour <romain.naour@smile.fr>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>,
+        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>,
+        Romain Naour <romain.naour@skf.com>, <s-vadapalli@ti.com>
+References: <20241202143331.126800-1-romain.naour@smile.fr>
+ <173344002250.407600.8303166891165540615.b4-ty@baylibre.com>
+ <20250103212528.enq4ur5afxhwzh7n@outdoors> <7hr05eb5st.fsf@baylibre.com>
+ <20250108131139.dygei6ejamh5zaij@segment>
 Content-Language: en-US
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Tengfei Fan <quic_tengfan@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240911-add_qcs9100_support-v2-0-e43a71ceb017@quicinc.com>
- <20240911-add_qcs9100_support-v2-4-e43a71ceb017@quicinc.com>
- <dc1216db-128f-4cb4-9df9-ba095dfe713d@kernel.org>
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <dc1216db-128f-4cb4-9df9-ba095dfe713d@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250108131139.dygei6ejamh5zaij@segment>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-
-
-On 17/09/2024 01:32, Konrad Dybcio wrote:
-> On 11.09.2024 1:10 PM, Tengfei Fan wrote:
->> Add device tree support for the QCS9100 Ride and Ride Rev3 boards. The
->> QCS9100 is a variant of the SA8775p, and they are fully compatible with
->> each other. The QCS9100 Ride/Ride Rev3 board is essentially the same as
->> the SA8775p Ride/Ride Rev3 board, with the QCS9100 SoC mounted instead
->> of the SA8775p.
+On 1/8/25 7:11 AM, Nishanth Menon wrote:
+> On 14:46-20250107, Kevin Hilman wrote:
+>> Nishanth Menon <nm@ti.com> writes:
 >>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
+>>> On 15:07-20241205, Kevin Hilman wrote:
+>>>>
+>>>> On Mon, 02 Dec 2024 15:33:30 +0100, Romain Naour wrote:
+>>>>> The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
+>>>>> SoC are used to drive the reference clock to the PCIe Endpoint device via
+>>>>> the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
+>>>>> obtain the regmap for the ACSPCIE_CTRL register within the System
+>>>>> Controller device-tree node in order to enable the PAD IO Buffers.
+>>>>>
+>>>>> The Technical Reference Manual for J721e SoC with details of the
+>>>>> ASCPCIE_CTRL registers is available at:
+>>>>> https://www.ti.com/lit/zip/spruil1
+>>>>>
+>>>>> [...]
+>>>>
+>>>> Applied, thanks!
+>>>>
+>>>> [1/2] dt-bindings: mfd: syscon: Add ti,j721e-acspcie-proxy-ctrl compatible
+>>>>        commit: d8efc0b428856137608ffcbb6994da6041c9fe2a
+>>>> [2/2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE output for PCIe1
+>>>>        commit: 1d5e14a20dc60b440c60bec8489acfd45cdf7508
+>>>>
+>>>> Best regards,
+>>>> -- 
+>>>> Kevin Hilman <khilman@baylibre.com>
+>>>>
+>>> This will need a bit of fixup - See along the lines of the following.
+>>> Additionally, we should be a bit careful about the dependency of dts
+>>> mix up from two trees.
+>>
+>> sorry, these should be going through your tree in the first place.  They
+>> are now dropped from my tree, please go ahead and take them along with
+>> Andrews fixup.  Sorry for complicating things.
 > 
-> Reviewed-by: Konrad Dybcio <konradybcio@kernel.org>
-
-I don't understand this, if both boards are identical except for the
-name of the SoC then why do we have two devicetree files?
-
-You can surely detect which SoC is in use at runtime if necessary, and
-maybe pick a name which doesn't have the SoC in it if you really want to
-avoid confusion.
-
-If there are differentiating features which will be added later, then I
-think this at least deserves a comment stating as such.
-
-Additionally, the files should be shuffled around to better represent
-that there's two very similar boards with just some minor differences,
-this is a common case already and there is a standard way to handle it
-(see e.g. sdm845-oneplus-common.dtsi and
-sdm845-oneplus-enchilada/fajita.dts)
-
-#include'ing a .dts file just seems like a mess here.
-
-Kind regards,
-
 > 
-> Konrad
+> Romain,
+> 
+> There is additional fixups needed, unfortunately as well: syscon yaml
+> has two lists based on which dt-schema version you use.. your patch
+> fixed one list, but missed the other as well. Could you integrate the
+> fixes and resubmit, please?
+> 
+> 
 
--- 
-// Caleb (they/them)
+Or since we already have 'ti,j784s4-acspcie-proxy-ctrl' for the same
+reason, you could drop the first patch and re-use this compatible.
 
+For the second patch, you'll still need to add in my suggested
+changes and re-send.
+
+Andrew
 
