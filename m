@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-136534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F6DA057E6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:19:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A45A057E8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:19:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7B69162432
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:19:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA7E218869F0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:19:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8348D1F76C3;
-	Wed,  8 Jan 2025 10:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC051F8670;
+	Wed,  8 Jan 2025 10:19:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AA1d+DIW"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="U0xpEIy0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFD918B463;
-	Wed,  8 Jan 2025 10:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5491B3938;
+	Wed,  8 Jan 2025 10:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736331566; cv=none; b=rk3Lw7TBE3EsBiPPEMtcWhvnM4YaMmwzhzjc4cDPhEhQeWZuCPNb3+0U36hlHNUlwvgdpNUHAdvsVchzfuSiyHmSJn+UH0ukveI+VFpxSYMDx+VXmb2IIqA/IQdPPTnN04W8b87i7khjnO8SdhB7NYSMJzxEPRDpXErqT6B/NWE=
+	t=1736331567; cv=none; b=SjUZg4SYnM8zqdPZ+B7WxwL+1fuSu4nNKGL+n4PYKpINcft/SP2kAHnVXCpxAertgX6fPyqRCKHuvRiIE9VHuziJ7LL70CUJZbqs1bpIbdTii277XuMj3nPwwm9dr/KDnDnt8H9/YWMltlvpFB4rDw1j/RoxkaeW18Jt/z2fBq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736331566; c=relaxed/simple;
-	bh=3IoH+ELFhAV5zHy8qN3Xg7pAtgBZ18L+drqkfTKvRRE=;
+	s=arc-20240116; t=1736331567; c=relaxed/simple;
+	bh=NxenpbW71x7OH6i+kNYGagbL8btyj/ql1HoLl2PnT/E=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oc/vasDmoZAtqAFmZt/MwBbUAAnhzd3N2rnQYmqeZaTmyAXyL1KRQ8zgcXNG5dubc79H/WNhjt7xzL6EuOxTSJLC1Wu18D6/uoHEORF5AuJp45qEfWTPXxh6YgCuDaZUhRAoJ2pac+iGjPZG32H9+7+7Z6PZYwHINo48WJpNFNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AA1d+DIW; arc=none smtp.client-ip=217.70.183.199
+	 MIME-Version; b=JYwkmDQNQvbI/Kx3sBWq2Ihk0YAx+HPysiSHD0vz0Zgy73PbLWGMIj14UsqC+Hu2PWZ/WM6kDRepzO5EtDX5fvObDWWVu24YtM/xfJVy3TGKRCOB8TySjHVqEIRVQTzP8WahIbEK4t/NbWeW2WTJL3casqakzK3Ee/gCOGt7DMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=U0xpEIy0; arc=none smtp.client-ip=217.70.183.199
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 139C4FF80E;
-	Wed,  8 Jan 2025 10:19:21 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPA id 8B88BFF812;
+	Wed,  8 Jan 2025 10:19:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736331562;
+	t=1736331563;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=4hTFK8qM+jaDV8khItNXyxdeGEFi1Kag68VAsFGm+3s=;
-	b=AA1d+DIWO96WsiXGbHeYiRvnXahtluWQGXeQwvGdi5EsEKdmBM7+Lpkw8YdU9AOGOAGo0E
-	mH3mDjt/6eHoI13MPfyNjZkwEaGJ798jOva/0CU7QHeFZTR/K121/nkxj/uc7LNanXAadG
-	FzY2kV2xV1eHJUyjb69z7uk94IPrnJdgWfp3vOZ7YiOJPhR0T+wLLYhvSRDtlzAEGOJvye
-	74F6uHnpbw9JJQzRbJp6XfLdx6ZKd5vuA2gxdRgf9e23kw9ZIk0aFYzcBPZE7ij1dV1q3k
-	MoxeWye+UuufivjzyKH/hXmiCpeOYOkhyQtFtgl+xUJ6568YPt/wC6okhQv1Mg==
+	bh=kh3U5m3wgK1XtUfGpSG9EzD3sFoAQ0yf6CZ/vPhNOfc=;
+	b=U0xpEIy0IvTo7jyCszT8zlGUXTfYiGZeypKc2E/C4cSDyQzgYpxYb3KMZtN7PZ8hbAc3Kf
+	tLWR1W/EJSCfn1wrUY8lnOQQTwhROTFckSw7cJUHDGtlTNYz5dE35zwBTa5kEXQ2FtJ/cM
+	SlgY5dG0DLfNiAwacgDHC0qtBMQxx/Lxl/5wp/FYa1V2kx92ReYDrG149BkgO8R/CnZACP
+	Aee4MJSJzJI++JXWaIeVWwc80ieWAjHgMsvWAyDiTj+2ef3L7yyhYNi3ZnKHVp09mxjBMA
+	xjx+oxYfnAlBcB7X06TyRgIfRZ1vbbn4W4ZYo/m+20GUr4plfcKc27ZgTzy+DA==
 From: Herve Codina <herve.codina@bootlin.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -67,12 +67,10 @@ Cc: dri-devel@lists.freedesktop.org,
 	Louis Chauvet <louis.chauvet@bootlin.com>,
 	Luca Ceresoli <luca.ceresoli@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 1/3] dt-bindings: display: bridge: sn65dsi83: Add interrupt
-Date: Wed,  8 Jan 2025 11:19:00 +0100
-Message-ID: <20250108101907.410456-2-herve.codina@bootlin.com>
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v3 2/3] drm/vc4: Move reset_pipe() to an atomic helper
+Date: Wed,  8 Jan 2025 11:19:01 +0100
+Message-ID: <20250108101907.410456-3-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20250108101907.410456-1-herve.codina@bootlin.com>
 References: <20250108101907.410456-1-herve.codina@bootlin.com>
@@ -85,34 +83,131 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-GND-Sasl: herve.codina@bootlin.com
 
-Both the TI SN65DSI83 and SN65DSI84 bridges have an IRQ pin to signal
-errors using interrupt.
+reset_pipe() allows to reset the CRTC active outputs.
 
-This interrupt is not documented in the binding.
-
-Add the missing interrupts property.
+In order to use it from other drivers without code duplication, move it
+to an atomic helper without any functional changes.
 
 Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml       | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/drm_atomic_helper.c | 41 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/vc4/vc4_hdmi.c      | 30 +--------------------
+ include/drm/drm_atomic_helper.h     |  2 ++
+ 3 files changed, 44 insertions(+), 29 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-index 48a97bb3e2e0..4505d2d83e0d 100644
---- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-@@ -35,6 +35,9 @@ properties:
-   vcc-supply:
-     description: A 1.8V power supply (see regulator/regulator.yaml).
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index 8ed186ddaeaf..4225b814ea35 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -3363,6 +3363,47 @@ int drm_atomic_helper_disable_all(struct drm_device *dev,
+ }
+ EXPORT_SYMBOL(drm_atomic_helper_disable_all);
  
-+  interrupts:
-+    maxItems: 1
++/**
++ * drm_atomic_helper_reset_pipe - reset the active outputs of a CRTC
++ * @crtc: DRM CRTC
++ * @ctx: lock acquisition context
++ *
++ * Reset the active outputs by indicating that connectors have changed.
++ * This implies a reset of all active components available between the CRTC and
++ * connectors.
++ *
++ * Returns:
++ * 0 on success or a negative error code on failure.
++ */
++int drm_atomic_helper_reset_pipe(struct drm_crtc *crtc,
++				 struct drm_modeset_acquire_ctx *ctx)
++{
++	struct drm_atomic_state *state;
++	struct drm_crtc_state *crtc_state;
++	int ret;
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
++	state = drm_atomic_state_alloc(crtc->dev);
++	if (!state)
++		return -ENOMEM;
++
++	state->acquire_ctx = ctx;
++
++	crtc_state = drm_atomic_get_crtc_state(state, crtc);
++	if (IS_ERR(crtc_state)) {
++		ret = PTR_ERR(crtc_state);
++		goto out;
++	}
++
++	crtc_state->connectors_changed = true;
++
++	ret = drm_atomic_commit(state);
++out:
++	drm_atomic_state_put(state);
++
++	return ret;
++}
++EXPORT_SYMBOL(drm_atomic_helper_reset_pipe);
++
+ /**
+  * drm_atomic_helper_shutdown - shutdown all CRTC
+  * @dev: DRM device
+diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+index e3818c48c9b8..19f6592a8cc5 100644
+--- a/drivers/gpu/drm/vc4/vc4_hdmi.c
++++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+@@ -269,34 +269,6 @@ static void vc4_hdmi_cec_update_clk_div(struct vc4_hdmi *vc4_hdmi)
+ static void vc4_hdmi_cec_update_clk_div(struct vc4_hdmi *vc4_hdmi) {}
+ #endif
  
+-static int reset_pipe(struct drm_crtc *crtc,
+-			struct drm_modeset_acquire_ctx *ctx)
+-{
+-	struct drm_atomic_state *state;
+-	struct drm_crtc_state *crtc_state;
+-	int ret;
+-
+-	state = drm_atomic_state_alloc(crtc->dev);
+-	if (!state)
+-		return -ENOMEM;
+-
+-	state->acquire_ctx = ctx;
+-
+-	crtc_state = drm_atomic_get_crtc_state(state, crtc);
+-	if (IS_ERR(crtc_state)) {
+-		ret = PTR_ERR(crtc_state);
+-		goto out;
+-	}
+-
+-	crtc_state->connectors_changed = true;
+-
+-	ret = drm_atomic_commit(state);
+-out:
+-	drm_atomic_state_put(state);
+-
+-	return ret;
+-}
+-
+ static int vc4_hdmi_reset_link(struct drm_connector *connector,
+ 			       struct drm_modeset_acquire_ctx *ctx)
+ {
+@@ -375,7 +347,7 @@ static int vc4_hdmi_reset_link(struct drm_connector *connector,
+ 	 * would be perfectly happy if were to just reconfigure
+ 	 * the SCDC settings on the fly.
+ 	 */
+-	return reset_pipe(crtc, ctx);
++	return drm_atomic_helper_reset_pipe(crtc, ctx);
+ }
+ 
+ static void vc4_hdmi_handle_hotplug(struct vc4_hdmi *vc4_hdmi,
+diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
+index 9aa0a05aa072..56eb6881cfb2 100644
+--- a/include/drm/drm_atomic_helper.h
++++ b/include/drm/drm_atomic_helper.h
+@@ -139,6 +139,8 @@ int drm_atomic_helper_set_config(struct drm_mode_set *set,
+ 
+ int drm_atomic_helper_disable_all(struct drm_device *dev,
+ 				  struct drm_modeset_acquire_ctx *ctx);
++int drm_atomic_helper_reset_pipe(struct drm_crtc *crtc,
++				 struct drm_modeset_acquire_ctx *ctx);
+ void drm_atomic_helper_shutdown(struct drm_device *dev);
+ struct drm_atomic_state *
+ drm_atomic_helper_duplicate_state(struct drm_device *dev,
 -- 
 2.47.1
 
