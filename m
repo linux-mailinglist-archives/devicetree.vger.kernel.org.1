@@ -1,128 +1,140 @@
-Return-Path: <devicetree+bounces-136646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66373A05BEB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:47:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2062DA05BDA
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:44:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19E921889071
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:47:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EE333A75C6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D988D1F940C;
-	Wed,  8 Jan 2025 12:46:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24091F940C;
+	Wed,  8 Jan 2025 12:44:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="u+222eb6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O1RddWch"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08143A59;
-	Wed,  8 Jan 2025 12:46:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B6F1F708D;
+	Wed,  8 Jan 2025 12:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736340415; cv=none; b=JzvT1PhaYgFWRXlv2kzii1IlsRDCd5iLTplnIzRKUuyQzZ0CsM7xvcD+bcuhj1hcVJStMrVXhwX5v+ksHy3Jmhl9Y9p113R5Dv9FXN9+72Xz2ug9qePKYZcnb5AILCMuSyBtUBTSLGeGayj4jwD+TXrRrReeTXLdg/fPpacC1bg=
+	t=1736340277; cv=none; b=ehjk4rOXaiZJXZwY/NT5QRhPAU36k3W/MSJARYPY1G74qT8qriqHxtWW5dvlTm2QUGEnwxx/SG6c+7Svp4wKJWzXDAQIMZXpjK4A/JoKSgGMpgLhej80zEAzArdhLccZdiJ11QPDxGWA71L70UYmhridRUsPUkP75xOEycvb3nU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736340415; c=relaxed/simple;
-	bh=TuIWTBah/Asxh1TzKSlDVFZRcyFjfydZeObO1sMI0ZE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ltRezepd7hhWsbZRsZrABlLKYvRI7Um7msooQRnq5U1uQiKAtWpeYd2RlCqFYSDkSTEPTUa/D4xHPKmOQX3XfSPUhh5CpKkUAPdVIiRL6gr8JokEJKfBbLHkD1au1KS0NXM/Y14fj13/IsnbHZOC+0ZCQoDM4iL/RKnf5dK4sd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=u+222eb6; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5089S7TW008396;
-	Wed, 8 Jan 2025 13:46:19 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=selector1; bh=k/Owhr//HyiKIqL7/U5rQbAg
-	BbQdC2z3Ac5xKTuO6zs=; b=u+222eb6IRU84rOdobLv4zvXbz9vCeYzMO/OV/NT
-	Z1w+sXnsAJoRJeR53GkDlCRiiDhAbZIt5F2QU91gKvzgvD04NfOUObaMvf0p1Wdv
-	3en+DH04GTdWX82bzf2HmN97+B+pvaonsbur68tyZAt56P8QF3KGUMKXiDFtpGrw
-	Ml/N0zVkDZFbKOutfjSrSFoQOUYE5wgXoOd4FCGiYI5DP4Z4OdYY2bqrhR4c2UWy
-	EjDacST5H03g6pFev/AXpgVJdAEKndj4RNAsRzeDRQLkZbjpeAmX9uoeN9I6wA+A
-	ZUYKeNfGl5d2xSeNP9PEmTwLD8NJyyhOxaUENOLdrvvByA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 441m7t9gj1-1
+	s=arc-20240116; t=1736340277; c=relaxed/simple;
+	bh=/tY8tBHHLGLx90YhOoUp47XWaX26k7ffZ0UgzOeqYn4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=GYVrTSOCwW+V0sCuoNSFdDUcH28BqPT5E+dcI5fBRs5OaxDd8GwpNClkK2sp2fPNM1w7dZM6UiDKrsaizfh+WxF3YjoVE2556iAxTQBt4CIpZ065XnguwQYExg6Zs9giJCnB+jzl4cbKZ8ryw2e2aE0ESHHO5fG+QushmTz8Meg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O1RddWch; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508Bqr7C028926;
+	Wed, 8 Jan 2025 12:44:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/tY8tBHHLGLx90YhOoUp47XWaX26k7ffZ0UgzOeqYn4=; b=O1RddWchVJXafVOZ
+	gtaTb3m7WiOn8EcjuddMHqkgsyZK8fiE8rKr8aJdytpPJNl2Ol7asl96zWZY99/n
+	XeBCierUjg5XXxlkAIgXKvenDo2sD6rZhSXdJe8NkSZu8SmKcx8Q/tMTGo0sDz2p
+	k+5Jt9dx5n9V0rzNhfjxSFRslsXIO30nAZ7W+hNJDkdC+edejKMUg2zQ4luRQVgZ
+	GbUBGwq2qi7/R9qhd8mpITIxb06bLQYmRq6Zm/QzzszPMLB/PTPpg5mWoNA96yZ2
+	zvdMtoLzd3VcViDS2MmBrF6lu1nRzrXQvsrWqet69wV5WX6ne0qoMqU/iOWgaUxD
+	P9tqFQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441rvh03f4-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Jan 2025 13:46:18 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2403440044;
-	Wed,  8 Jan 2025 13:45:11 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 591DE262B18;
-	Wed,  8 Jan 2025 13:42:12 +0100 (CET)
-Received: from gnbcxd0016.gnb.st.com (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 8 Jan
- 2025 13:42:11 +0100
-Date: Wed, 8 Jan 2025 13:42:06 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hugues Fruchet
-	<hugues.fruchet@foss.st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/9] dt-bindings: media: clarify stm32 csi & simplify
- example
-Message-ID: <20250108124206.GA153605@gnbcxd0016.gnb.st.com>
-References: <20241217-csi_dcmipp_mp25_enhancements-v1-0-2b432805d17d@foss.st.com>
- <20241217-csi_dcmipp_mp25_enhancements-v1-2-2b432805d17d@foss.st.com>
- <20241217-crawfish-tiring-792c535301d0@spud>
- <Z2HpVyVEs7jn0VPd@kekkonen.localdomain>
- <20241218-yelling-palm-da676b67afb9@spud>
+	Wed, 08 Jan 2025 12:44:31 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508CiUGC019062
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 Jan 2025 12:44:30 GMT
+Received: from nasanex01c.na.qualcomm.com (10.45.79.139) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 8 Jan 2025 04:44:30 -0800
+Received: from nasanex01c.na.qualcomm.com ([fe80::d28b:c308:bf27:8c82]) by
+ nasanex01c.na.qualcomm.com ([fe80::d28b:c308:bf27:8c82%13]) with mapi id
+ 15.02.1544.009; Wed, 8 Jan 2025 04:44:30 -0800
+From: "Gokul Sriram P (QUIC)" <quic_gokulsri@quicinc.com>
+To: "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>
+CC: "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "robh@kernel.org"
+	<robh@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "andersson@kernel.org"
+	<andersson@kernel.org>,
+        "mathieu.poirier@linaro.org"
+	<mathieu.poirier@linaro.org>,
+        "konradybcio@kernel.org"
+	<konradybcio@kernel.org>,
+        "Manikanta Mylavarapu (QUIC)"
+	<quic_mmanikan@quicinc.com>,
+        "linux-arm-msm@vger.kernel.org"
+	<linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-remoteproc@vger.kernel.org"
+	<linux-remoteproc@vger.kernel.org>,
+        "Vignesh Viswanathan (QUIC)"
+	<quic_viswanat@quicinc.com>,
+        "Sricharan Ramabadhran (QUIC)"
+	<quic_srichara@quicinc.com>
+Subject: RE: [PATCH V3 2/8] dt-bindings: remoteproc: qcom: document hexagon
+ based WCSS secure PIL
+Thread-Topic: [PATCH V3 2/8] dt-bindings: remoteproc: qcom: document hexagon
+ based WCSS secure PIL
+Thread-Index: AQHbYO1WRi1cDUkl3ket5j1QDVDWGbMLwboAgADzxiiAAB3TIA==
+Date: Wed, 8 Jan 2025 12:44:29 +0000
+Message-ID: <7a3c658a1b734b49a0e6df8ebaddfc30@quicinc.com>
+References: <20250107101647.2087358-1-quic_gokulsri@quicinc.com>
+ <20250107101647.2087358-3-quic_gokulsri@quicinc.com>
+ <pjm5wrxnfutixopeeqzgb6q75z6cilpgfcd2maigqlu4i34mta@2k6trubvrkp2>
+ <3e64b792-bfca-4b07-a13e-6deb966f3d4f@quicinc.com>
+ <CAA8EJprxYeNGvr7zed8eRcxDFczxM_TMdJ51GK+cHshhj4C1-g@mail.gmail.com>
+In-Reply-To: <CAA8EJprxYeNGvr7zed8eRcxDFczxM_TMdJ51GK+cHshhj4C1-g@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241218-yelling-palm-da676b67afb9@spud>
-X-Disclaimer: ce message est personnel / this message is private
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: wKMocoPN-8H5d91kfDNK6y36h52NNTZn
+X-Proofpoint-GUID: wKMocoPN-8H5d91kfDNK6y36h52NNTZn
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ priorityscore=1501 mlxscore=0 lowpriorityscore=0 malwarescore=0
+ suspectscore=0 impostorscore=0 adultscore=0 mlxlogscore=683 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501080105
 
-Hi Conor,
-
-On Wed, Dec 18, 2024 at 06:25:11PM +0000, Conor Dooley wrote:
-> On Tue, Dec 17, 2024 at 09:12:55PM +0000, Sakari Ailus wrote:
-> > Hi Conor,
-> > 
-> > On Tue, Dec 17, 2024 at 06:24:42PM +0000, Conor Dooley wrote:
-> > > On Tue, Dec 17, 2024 at 06:39:19PM +0100, Alain Volmat wrote:
-> > > > Clarify the description of the stm32 csi by mentioning CSI-2 and
-> > > > D-PHY.
-> > > 
-> > > > Remove the bus-type property from the example.
-> > > 
-> > > Why? What's there to gain from the example being (seemingly?) less
-> > > comprehensive?
-> > 
-> > As the device has D-PHY, other options are excluded. I.e. that property is
-> > redundant for this device.
-> 
-> That should be mentioned in the commit message.
-
-Ok, I'll push a v2 with that commit message fixed.
-
-Alain
-
-
+Pj4NCj4+ICtleGFtcGxlczoNCj4+ICsgIC0gfA0KPj4gKyAgICAjaW5jbHVkZSA8ZHQtYmluZGlu
+Z3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvYXJtLWdpYy5oPg0KPj4gKyAgICAjaW5jbHVkZSA8ZHQt
+YmluZGluZ3MvY2xvY2svcWNvbSxpcHE1MzMyLWdjYy5oPg0KPj4gKyAgICByZW1vdGVwcm9jQGQx
+MDAwMDAgew0KPj4gKyAgICAgIGNvbXBhdGlibGUgPSAicWNvbSxpcHE1MzMyLXdjc3Mtc2VjLXBp
+bCI7DQo+PiArICAgICAgcmVnID0gPDB4ZDEwMDAwMCAweDQwNDA+Ow0KPj4gKyAgICAgIGZpcm13
+YXJlLW5hbWUgPSAiYXRoMTJrL0lQUTUzMzIvaHcxLjAvcTZfZncwLm1kdCI7DQo+Pg0KPj4gTml0
+OiAubWJuDQo+Pg0KPj4gSGkgRG1pdHJ5LA0KPiANCj4gUGxlYXNlIGZpeCB5b3VyIGVtYWlsIGNs
+aWVudCB0byBuZXZlciBldmVyIHNlbmQgSFRNTCBlbWFpbHMgaWYgeW91IGFyZSBwYXJ0aWNpcGF0
+aW5nIGluIGRpc2N1c3Npb25zIG9uIHRoZSBwdWJsaWMgbWFpbGluZyBsaXN0cy4gRm9yIGV4YW1w
+bGUsIHF1b3RhdGlvbiBsZXZlbCBpcyBpbmNvcnJlY3QuDQo+IA0KPj4gSXRzIC5tZHQgZm9ybWF0
+IG9ubHkgaW4gb3VyIGNhc2UuDQo+IA0KPiBOQUssIHBsZWFzZSB3b3JrIHdpdGggS2FsbGUgdG8g
+cGlsLXNxdWFzaCB0aGUgcmVtb3RlcHJvYyBmaXJtd2FyZS4NCg0KU3VyZSBEbWl0cnkuIFdpbGwg
+Y2hlY2sgYW5kIGFkZHJlc3MuDQoNClJlZ2FyZHMsDQpHb2t1bA0K
 
