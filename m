@@ -1,178 +1,411 @@
-Return-Path: <devicetree+bounces-136475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04654A05529
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:21:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91965A05537
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:25:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F23D3A51B4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:21:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E14243A5346
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45CE61ACDE7;
-	Wed,  8 Jan 2025 08:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29FD1B0406;
+	Wed,  8 Jan 2025 08:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KTxR0P5u"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Sj0q/SWG";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="g3Hp0kVr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BAAF13B288;
-	Wed,  8 Jan 2025 08:21:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B6113B288;
+	Wed,  8 Jan 2025 08:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736324484; cv=none; b=EHSM4/Bgo/lKN3XJjUwInET/ixc41l/vg2wOypziTCaNPEoZiiPwUh1Fq7A+ta1Emxw93N1u173BI2Q47neGiPSGNYTkdRuBq2VZIR/2Tf1tgfu+2pWIW+X6qJcngAnyl1ygBJs8mWlwrHNgUdaakLVpd7p60zkrO0o+UKny3t4=
+	t=1736324738; cv=none; b=RebHjcN4n403C3FgMyFJGseYWq3n4k1qu5Nx4BGsGciKTwVBdy7ZKQeykAQ/TFf+rMappuwoynkXg5Ywe92RgB2lAYv8N8pURcP/0vTZQKCmSY8o7q8s155rXahVHr4QKItsW2VQDhxu98xfN3U4cQENKq+76T7xeo3lLL41HmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736324484; c=relaxed/simple;
-	bh=jwBW0HA5sSpZ3Sv+gxfQudRgUoee76TNfDEugDjn6tI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ate7TVUL9NfPGTU1HYBMYe6RYMQiNLV9lc6aLcPDV8uCoUhAfMVBJOARXaXrfnwD4PqK/psyzuhwDZ15Yb/1wzIXcJnJIaSIfvRJYyfY2MYpnUhfGrrWPEppI8HiHSfHuYpEos14aV+aJtv956OWMA0oxvHVVXnabfZ6xW2xtik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KTxR0P5u; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50829ps7017552;
-	Wed, 8 Jan 2025 08:21:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iGd/aoxmFfTgRJcu1d8QAEXd/JUUWfsl02GLKmPEa80=; b=KTxR0P5uiZaBkAXw
-	i7ZvaMfrm6eNIn9KhHsf9ZDJqoDu5nZJHSQQGS5KWrvakVZwuCHE/zdbKqi5zK/p
-	IcxdoxeTFf0HdHupMHXQtwXtICUlqAFqgn1zyE0Dyp/6Ikp8wkJduUj6Qj5baS3F
-	9DLAfVRYtD6F0rVeMZ5+Au+Zc48V0ZRK37DrK5QJ0M5juZxxsYRvVrY/xB//dmfN
-	B5oc4FJRXz4+MUEzqIoGXBEznbN3Gn45Y9vplZz4obXHxYDGgMRPW0RE8fOYGpsU
-	ffsFsNXUF6C0VjpsdU4UOLxN6rIFHAKxtS2JYaRSpOJuyRYZkOU8CO7zUyZo9kDo
-	KpR3tA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441gb58tpj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Jan 2025 08:21:18 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5088LAak025745
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 Jan 2025 08:21:10 GMT
-Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
- 00:21:07 -0800
-Message-ID: <8cb5aa2d-54a7-4f41-b07c-b3c8256bf762@quicinc.com>
-Date: Wed, 8 Jan 2025 16:21:04 +0800
+	s=arc-20240116; t=1736324738; c=relaxed/simple;
+	bh=kV28G1GL7ZC3HnCkZRiLZd6fPkRG+E7M38xkk777J9c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TydthzzKDe9+J9EjmoCLyc7jp+1ZE3nCrZs8TPBCo8fvGNsFJ7aVCN/vgkQ1xnGgZSxlc+XcxaiI4G0m438569avfZLpj0H+ERpi7xQ86dmEcbe2m9P771KC0gJ4nyH+PS3YO1CThDiDyFXGI2BZX6p1AAgE1mZx9FoprORK/wM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Sj0q/SWG; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=g3Hp0kVr reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1736324735; x=1767860735;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=f6eOXS4JzRW5k2gGRfsw+YLVhYqUIyp3RhkH6MdJOIw=;
+  b=Sj0q/SWGNUm8pRLE00HNwORLLVc4zXMUaIT53ArF0NeOWFdOYyXWDTPm
+   uNRMgNk4AFmrjP08YEhjodPE7e5iH+/c2OzDP7p4TSZg0zusCLUmxRI4Z
+   oyseZHyl7g7Sj+2bE6vDNq12yZaEeO8+II8yKmzwtw+0tCB4ob9v/vR6E
+   DEKy94J+qy80emHxdr9LEr+zYGibaOy6N3Dp8q2XUp66FNLjABIDm97PO
+   oB1Ia1I67eloMT8pn6p7JHaIBfWFUwDElxqIL/OmUU0reoHB0KqgEYe7Z
+   WGxaLmGPj665l6ItSjXMvHtLLYL+Xp8JSopZkpIXxK5eSwMMWLyfP7fSx
+   w==;
+X-CSE-ConnectionGUID: QkiaKRaqTx2Qh9ssCosMFw==
+X-CSE-MsgGUID: uM4oghMBQDyTDJCmhHSfAA==
+X-IronPort-AV: E=Sophos;i="6.12,297,1728943200"; 
+   d="scan'208";a="40913250"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 08 Jan 2025 09:25:26 +0100
+X-CheckPoint: {677E3676-24-31397509-E321C4C4}
+X-MAIL-CPID: B998A495D6FB15769D1220A8AE7CC4D2_0
+X-Control-Analysis: str=0001.0A682F17.677E3676.00FE,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C1A52165E9F;
+	Wed,  8 Jan 2025 09:25:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1736324722;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=f6eOXS4JzRW5k2gGRfsw+YLVhYqUIyp3RhkH6MdJOIw=;
+	b=g3Hp0kVrJ9fiTMrvR6mPO9hRMnCKT2Ar+DaIRewMgxic9eWtgRY4yXfjTm9Gba1NZS27Pa
+	p980LYsDZlAXQo4ZDhzG/mEKwy8VAtWBzERAXuroL0nG1QuGKS44Cyak0eNGSVSNRn8tiS
+	iGH4rFMVnYZtWSNHjcKbsFUcke7FUiU7E92Y9dWN+p4MdU/ZhlAGvxLAalcshqoMNrDPyp
+	4mdK6Yn8arN9+O/u4tLwn1Byu+yE4alqhiPISoKvRaV1RlHpuUJ61YxCtRsAPEWB+e/l7+
+	V7cDDgdAcNHKzm0q/iOvu9Sfcfyjf61PKOkBWqY4TGm4ju1YyVNYnesXQN05ZQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	"jonas@kwiboo.se" <jonas@kwiboo.se>,
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+	"airlied@gmail.com" <airlied@gmail.com>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"vkoul@kernel.org" <vkoul@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-phy@lists.infradead.org" <"li nux-phy"@lists.infradead.org>,
+	"mripard@kernel.org" <mripard@kernel.org>,
+	Sandor Yu <sandor.yu@nxp.com>
+Cc: "kernel@pengutronix.de" <kernel@pengutronix.de>, dl-linux-imx <linux-imx@nxp.com>, Oliver Brown <oliver.brown@nxp.com>, "sam@ravnborg.org" <sam@ravnborg.org>
+Subject: Re: [PATCH v20 0/8] Initial support Cadence MHDP8501(HDMI/DP) for i.MX8MQ
+Date: Wed, 08 Jan 2025 09:25:13 +0100
+Message-ID: <3289670.5fSG56mABF@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <PAXPR04MB9448B9928C1F7A64F32807F8F4122@PAXPR04MB9448.eurprd04.prod.outlook.com>
+References: <cover.1734340233.git.Sandor.yu@nxp.com> <7783214.EvYhyI6sBW@steina-w> <PAXPR04MB9448B9928C1F7A64F32807F8F4122@PAXPR04MB9448.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: qcs8300: add display dt nodes
- for MDSS, DPU, DisplayPort and eDP PHY
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241226-dts_qcs8300-v2-0-ec8d4fb65cba@quicinc.com>
- <20241226-dts_qcs8300-v2-1-ec8d4fb65cba@quicinc.com>
- <85d6703c-ffd2-4a57-93f2-db00f054a864@oss.qualcomm.com>
-Content-Language: en-US
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-In-Reply-To: <85d6703c-ffd2-4a57-93f2-db00f054a864@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8q8FuyOgDkR2FEi9ZjOQM_8RcMcxeNXd
-X-Proofpoint-ORIG-GUID: 8q8FuyOgDkR2FEi9ZjOQM_8RcMcxeNXd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- adultscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
- clxscore=1015 mlxlogscore=999 impostorscore=0 malwarescore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501080067
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
+
+Hi,
+
+Am Mittwoch, 8. Januar 2025, 01:31:11 CET schrieb Sandor Yu:
+> > Hi,
+> >
+> > Am Dienstag, 7. Januar 2025, 15:42:56 CET schrieb Sandor Yu:
+> > > Hi Alexander
+> > >
+> > > It may cause by the first preferred mode in EDID is not supported by =
+driver.
+> > > Please use modetest or other user application to change the video mod=
+e to
+> > CTA standard modes.
+> > > Such as148.5MHz 1080p60 or 594MHz 3840x2160p60.
+> >
+> > No, the EDID does not affect the issue. I resurrected series v14 and HD=
+MI
+> > does work without any issues at 1920x1080.
+> > If I can find a time slot maybe I can check which series version regres=
+ses.
+> >
+>=20
+> Could you please list the all video modes by modetest when device bootup?
+
+This is  the output of modeset command after directly bootup:
+> trying to open device 'imx-dcss'...done
+> Encoders:
+> id      crtc    type    possible crtcs  possible clones
+> 32      40      none    0x00000001      0x00000001
+>=20
+> Connectors:
+> id      encoder status          name            size (mm)       modes =20
+> encoders 33      32      connected       HDMI-A-1        510x290         =
+8=20
+>      32>=20
+>   modes:
+>         index name refresh (Hz) hdisp hss hse htot vdisp vss vse vtot
+>  =20
+>   #0 1920x1080 60.00 1920 2008 2052 2200 1080 1084 1089 1125 148500 flags:
+>   phsync, pvsync; type: preferred, driver #1 1920x1080 50.00 1920 2448 24=
+92
+>   2640 1080 1084 1089 1125 148500 flags: phsync, pvsync; type: driver #2
+>   1280x720 60.00 1280 1390 1430 1650 720 725 730 750 74250 flags: phsync,
+>   pvsync; type: driver #3 1280x720 50.00 1280 1720 1760 1980 720 725 730
+>   750 74250 flags: phsync, pvsync; type: driver #4 1440x576 50.00 1440 14=
+64
+>   1592 1728 576 581 586 625 54000 flags: nhsync, nvsync; type: driver #5
+>   1440x480 59.94 1440 1472 1596 1716 480 489 495 525 54000 flags: nhsync,
+>   nvsync; type: driver #6 720x576 50.00 720 732 796 864 576 581 586 625
+>   27000 flags: nhsync, nvsync; type: driver #7 720x480 59.94 720 736 798
+>   858 480 489 495 525 27000 flags: nhsync, nvsync; type: driver>  =20
+>   props:
+>         1 EDID:
+>                 flags: immutable blob
+>                 blobs:
+>                =20
+>                 value:
+>                         00ffffffffffff000469a2231f870200
+>                         0d1a010380331d782ae295a2554f9f26
+>                         115054b7ef00d1c0b300950081808140
+>                         81c0714f0101023a801871382d40582c
+>                         4500fd1e1100001e000000ff0047334c
+>                         4d54463136353636330a000000fd0032
+>                         4b185311000a202020202020000000fc
+>                         00415355532050423233380a20200194
+>                         020322714f0102031112130414050e0f
+>                         1d1e1f90230917078301000065030c00
+>                         10008c0ad08a20e02d10103e9600fd1e
+>                         11000018011d007251d01e206e285500
+>                         fd1e1100001e011d00bc52d01e20b828
+>                         5540fd1e1100001e8c0ad09020403120
+>                         0c405500fd1e11000018000000000000
+>                         00000000000000000000000000000069
+>        =20
+>         2 DPMS:
+>                 flags: enum
+>                 enums: On=3D0 Standby=3D1 Suspend=3D2 Off=3D3
+>                 value: 0
+>        =20
+>         5 link-status:
+>                 flags: enum
+>                 enums: Good=3D0 Bad=3D1
+>                 value: 0
+>        =20
+>         6 non-desktop:
+>                 flags: immutable range
+>                 values: 0 1
+>                 value: 0
+>        =20
+>         4 TILE:
+>                 flags: immutable blob
+>                 blobs:
+>        =20
+>                 value:
+>         34 max bpc:
+>                 flags: range
+>                 values: 8 8
+>                 value: 8
+>=20
+> CRTCs:
+> id      fb      pos     size
+> 40      43      (0,0)   (1920x1080)
+>=20
+>   #0 1920x1080 60.00 1920 2008 2052 2200 1080 1084 1089 1125 148500 flags:
+>   phsync, pvsync; type: preferred, driver>  =20
+>   props:
+>         24 VRR_ENABLED:
+>                 flags: range
+>                 values: 0 1
+>                 value: 0
+>=20
+> Planes:
+> id      crtc    fb      CRTC x,y        x,y     gamma size      possible
+> crtcs 35      40      43      0,0             0,0     0             =20
+> 0x00000001>=20
+>   formats: AR24 XR24 AB24 XB24 RA24 RX24 BA24 BX24 XR30 XB30 RX30 BX30 AR=
+30
+>   AB30 RA30 BA30>  =20
+>   props:
+>         8 type:
+>                 flags: immutable enum
+>                 enums: Overlay=3D0 Primary=3D1 Cursor=3D2
+>                 value: 1
+>        =20
+>         30 IN_FORMATS:
+>                 flags: immutable blob
+>                 blobs:
+>                =20
+>                 value:
+>                         01000000000000001000000018000000
+>                         03000000580000004152323458523234
+>                         41423234584232345241323452583234
+>                         42413234425832345852333058423330
+>                         52583330425833304152333041423330
+>                         52413330424133300310000000000000
+>                         00000000000000000100000000000006
+>                         03100000000000000000000000000000
+>                         0200000000000006ffff000000000000
+>                         00000000000000000000000000000000
+>                =20
+>                 in_formats blob decoded:
+>                          AR24:  VIVANTE_TILED(0x600000000000001)
+>                          VIVANTE_SUPER_TILED(0x600000000000002) LINEAR(0x=
+0)
+>                          XR24:  VIVANTE_TILED(0x600000000000001)
+>                          VIVANTE_SUPER_TILED(0x600000000000002) LINEAR(0x=
+0)
+>                          AB24:  LINEAR(0x0)
+>                          XB24:  LINEAR(0x0)
+>                          RA24:  LINEAR(0x0)
+>                          RX24:  LINEAR(0x0)
+>                          BA24:  LINEAR(0x0)
+>                          BX24:  LINEAR(0x0)
+>                          XR30:  LINEAR(0x0)
+>                          XB30:  LINEAR(0x0)
+>                          RX30:  LINEAR(0x0)
+>                          BX30:  LINEAR(0x0)
+>                          AR30:  VIVANTE_TILED(0x600000000000001)
+>                          VIVANTE_SUPER_TILED(0x600000000000002) LINEAR(0x=
+0)
+>                          AB30:  LINEAR(0x0)
+>                          RA30:  LINEAR(0x0)
+>                          BA30:  LINEAR(0x0)
+>        =20
+>         37 zpos:
+>                 flags: immutable range
+>                 values: 0 0
+>                 value: 0
+>        =20
+>         38 SCALING_FILTER:
+>                 flags: enum
+>                 enums: Default=3D0 Nearest Neighbor=3D1
+>                 value: 0
+>        =20
+>         39 rotation:
+>                 flags: bitmask
+>                 values: rotate-0=3D0x1 rotate-90=3D0x2 rotate-180=3D0x4
+>                 rotate-270=3D0x8 reflect-x=3D0x10 reflect-y=3D0x20 value:=
+ 1
+>=20
+> Frame buffers:
+> id      size    pitch
+
+The listed modes don't change over the series versions. The only
+significant difference is that since v16 there is a "max bpc" property
+Also since series v16 the HDMI screen stays blank, as in no signal.
+I tried all from v14 to v20, v14 and v15 work, the others don't.
+
+Best regards,
+Alexander
+
+> Sandor
+>=20
+> > Best regards,
+> > Alexander
+> >
+> > >
+> > > >
+> > > > Hi Sandor,
+> > > >
+> > > > thanks for the updates.
+> > > >
+> > > > Am Dienstag, 17. Dezember 2024, 07:51:42 CET schrieb Sandor Yu:
+> > > > > The patch set initial support Cadence MHDP8501(HDMI/DP) DRM bridge
+> > > > > driver and Cadence HDP-TX PHY(HDMI/DP) driver for Freescale
+> > i.MX8MQ.
+> > > > >
+> > > > > The patch set compose of DRM bridge drivers and PHY driver.
+> > > > >
+> > > > > Both of them need by patch #1 and #3 to pass build.
+> > > > >
+> > > > > DRM bridges driver patches:
+> > > > >   #1: soc: cadence: Create helper functions for Cadence MHDP
+> > > > >   #2: drm: bridge: cadence: Update mhdp8546 mailbox access
+> > functions
+> > > > >   #3: phy: Add HDMI configuration options
+> > > > >   #4: dt-bindings: display: bridge: Add Cadence MHDP8501
+> > > > >   #5: drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
+> > > > >
+> > > > > PHY driver patches:
+> > > > >   #1: soc: cadence: Create helper functions for Cadence MHDP
+> > > > >   #3: phy: Add HDMI configuration options
+> > > > >   #6: dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+> > > > >   #7: phy: freescale: Add DisplayPort/HDMI Combo-PHY driver for
+> > > > > i.MX8MQ
+> > > > >
+> > > > > i.MX8M/TQMa8Mx DT patches:
+> > > > >   #8: Add DT nodes for DCSS/HDMI pipeline
+> > > > >   #9: Enable HDMI for TQMa8Mx/MBa8Mx
+> > > > >
+> > > >
+> > > > I gave this version a new try but unfortunately the display stays b=
+lack.
+> > > > Although the display pipeline is intialized and even wayland starts.
+> > > > Do you have any idea where to start looking?
+> > > >
+> > > > Best regards,
+> > > > Alexander
+> > > > --
+> > > > TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Ge=
+rmany
+> > > > Amtsgericht M=FCnchen, HRB 105018
+> > > > Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schn=
+eider
+> > > >
+> > http://www/
+> > > > .tq%2F&data=3D05%7C02%7Csandor.yu%40nxp.com%7C23ba3321d4d5480
+> > 4b98f08dd
+> > > >
+> > 2f35f3db%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63871863
+> > 095591
+> > > >
+> > 6087%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIw
+> > LjAuMDA
+> > > >
+> > wMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%
+> > 7C&s
+> > > >
+> > data=3D4Ip3wEX207cu0EreOtf11F%2BS%2ByNzAcI2C2iPjjlQzVg%3D&reserved=3D
+> > 0
+> > > >
+> > -group.com%2F&data=3D05%7C02%7CSandor.yu%40nxp.com%7C734ea27ba98
+> > > >
+> > 140b7483e08dd2eed1276%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%
+> > > >
+> > 7C0%7C638718317967624410%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU
+> > > >
+> > 1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIs
+> > > >
+> > IldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3D1HdQdbye9p5AHoT7JCF3Md%
+> > > > 2FB9k9tyN%2FW25YKCEngvWM%3D&reserved=3D0
+> > > >
+> > >
+> > >
+> > >
+> >
+> >
+> > --
+> > TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+> > Amtsgericht M=FCnchen, HRB 105018
+> > Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+> > http://www.tq/
+> > -group.com%2F&data=3D05%7C02%7Csandor.yu%40nxp.com%7C23ba3321d4d
+> > 54804b98f08dd2f35f3db%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C
+> > 0%7C638718630955952151%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1h
+> > cGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIld
+> > UIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3Dn3QmrbJru4JcdZvEM%2FxJp4rVf
+> > Vmifjoxpq0o9Wxzh2Y%3D&reserved=3D0
+> >
+>=20
+>=20
+>=20
 
 
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-On 2024/12/30 22:34, Konrad Dybcio wrote:
-> On 26.12.2024 11:43 AM, Yongxing Mou wrote:
->> Add devicetree changes to enable MDSS display-subsystem,
->> display-controller(DPU), DisplayPort controller and eDP PHY for
->> Qualcomm QCS8300 platform.
->>
->> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 204 +++++++++++++++++++++++++++++++++-
->>   1 file changed, 203 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->> index 80226992a65d867124b33dfa490c3c9ca1030c75..8d88fe4a266432f05192d7ef0dd80362bdbdab85 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->> @@ -952,6 +952,206 @@ camcc: clock-controller@ade0000 {
->>   			#power-domain-cells = <1>;
->>   		};
->>   
->> +		mdss: display-subsystem@ae00000 {
->> +			compatible = "qcom,qcs8300-mdss";
->> +			reg = <0x0 0x0ae00000 0x0 0x1000>;
->> +			reg-names = "mdss";
->> +
->> +			interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ACTIVE_ONLY
->> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
->> +					<&mmss_noc MASTER_MDP1 QCOM_ICC_TAG_ACTIVE_ONLY
->> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
->> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
->> +					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
->> +			interconnect-names = "mdp0-mem",
->> +					     "mdp1-mem",
->> +					     "cpu-cfg";
-> 
-> Only the CPU path should be ACTIVE_ONLY, the rest should be
-> QCOM_ICC_TAG_ALWAYS
-> 
-Thank for point it. will update it in next patch.
->> +
->> +			resets = <&dispcc MDSS_DISP_CC_MDSS_CORE_BCR>;
->> +
->> +			power-domains = <&dispcc MDSS_DISP_CC_MDSS_CORE_GDSC>;
->> +
->> +			clocks = <&dispcc MDSS_DISP_CC_MDSS_AHB_CLK>,
->> +				 <&gcc GCC_DISP_HF_AXI_CLK>,
->> +				 <&dispcc MDSS_DISP_CC_MDSS_MDP_CLK>;
-> 
-> Please align the property order with x1e80100.dtsi
-> 
-Ok got it thanks. will update it as x1e80100.dtsi in next patch.
-> [...]
-> 
->> +			mdss_dp0_phy: phy@aec2a00 {
->> +				compatible = "qcom,qcs8300-edp-phy", "qcom,sa8775p-edp-phy";
->> +
->> +				reg = <0x0 0x0aec2a00 0x0 0x19c>,
->> +				      <0x0 0x0aec2200 0x0 0xec>,
->> +				      <0x0 0x0aec2600 0x0 0xec>,
->> +				      <0x0 0x0aec2000 0x0 0x1c8>;
->> +
->> +				clocks = <&dispcc MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
->> +					 <&dispcc MDSS_DISP_CC_MDSS_AHB_CLK>;
->> +				clock-names = "aux",
->> +					      "cfg_ahb";
->> +
->> +				power-domains = <&rpmhpd RPMHPD_MMCX>;
-> 
-> The PHYs generally sit on a MX-like rail, please verify this
-> 
-We are currently verifying this power domain. We will validate it and 
-update it accordingly. Thank you for pointing this out.
-> Konrad
 
 
