@@ -1,42 +1,43 @@
-Return-Path: <devicetree+bounces-136611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E54F4A05A8E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:54:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C555A05AC3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2DBE16694E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:54:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B2567A4040
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:55:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A15FC1FAC5E;
-	Wed,  8 Jan 2025 11:53:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338051FCF44;
+	Wed,  8 Jan 2025 11:53:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="XZNhefNJ"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Xs18ly4T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEEA21F9439;
-	Wed,  8 Jan 2025 11:53:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7945F1FC7ED;
+	Wed,  8 Jan 2025 11:53:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736337208; cv=none; b=spLoRVCTevuejcvEwl5P2YSV69xvuKk8R25FEmpDNgi+BzhU3m9ZEZf557QAIX8Oy6LsVO5xk+AN9AmqcAp78Yk5R1a5fknNvucwaOiN+GtPkxEvTVNN1cnh24azCQuSy5JkjOFHfYG1jf/g+jkDJdXbulVS1QLusTOikEfHbeQ=
+	t=1736337219; cv=none; b=G/xI6fPxD/YgYqeqObmIMg4awQ6BisTwRbSIlQP80wbYXP6ge3NCRqESJcgbRB2X9tf+1krDXmeKGjymf5T3YO76zYylg5O9uJ6+nYrQPMWVqzQFbeQ7pGP9nbfXfDBX5JQjaYMdqxsC00zgyR64XJFmU1wR/9im6zjIL4yKXYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736337208; c=relaxed/simple;
-	bh=o1Vn4nlp5io5VZ5I8SBEfGHqGVWI6p/1Hv4S4o0uaFo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZOX3OBKGZB8yUYiAYiBwFpCsWnVLMlqbYksqzje2ZGsOzMe6kzMTD3BVWQJZwmMQgzRrZhnGyM61nwrMx/irAy10Yg9xE6bNzrbUrYr4Zau8kSOntTLKg0gXfX89ctMhrgRNGI3rJLILVxGCOAviKtWoq4Hy/xx/667D0xqzutM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=XZNhefNJ; arc=none smtp.client-ip=117.135.210.5
+	s=arc-20240116; t=1736337219; c=relaxed/simple;
+	bh=1EAHW+FyvAX/f7KgRj5KTQz2RDV9KCGEYam/fdoMwPI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=bv60kfRtgoRRMIFJI97kIhU1PVZc9nGPVk0BDjcUY0hCofCy+hwRHGFwI09gVEb4u/n67wcTjV4x84UqBpkmriqvqfXzbXqvAeT2RADqojNW+xyxrUolWjVCd1cir3H72AwTJ14eDYJ/j/EBJYDEnye/xyr4ygPg00Sf/n1UcnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Xs18ly4T; arc=none smtp.client-ip=220.197.31.5
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=4LcjG
-	yekeFEURKdSLZKry28vQydjU2mCOSzKHjhnX+w=; b=XZNhefNJ4KWubkSGIHFJS
-	yYHDGtoWCQIegcZsYNUbqvb3tY2R94NmML6akr4P+cq5Re4zDfXAKkK732d0P6Am
-	uSwZ7QudHoNzxRh9s0mq1j6rspcHNALSqZz/ZO0EAN3BZaX1MuNKEjKzrVltd2zn
-	oonBQxbWzPvxycY8U8DulE=
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=6OdaZ
+	0sAspcn1/scGkVB+Ph2WVMvO525S4sSoRNZBI8=; b=Xs18ly4TGtrprgPHFhsIs
+	VhMJr4f6d3aZbWppqBk49c5P+IimW0CdtcgwNAEkqYo2ixjP2TnizVG/JefCOCzw
+	mssYrVijj6JxbsKE/T7GFTxB0sUCZNtcPtd9K1j3Seovyk63uNEi/tjxorruS7A4
+	ccg9ufy8KP7qZzY9EkaJBs=
 Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wDHpyUCZ35n8Xn7EQ--.26804S2;
-	Wed, 08 Jan 2025 19:52:40 +0800 (CST)
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wDHpyUCZ35n8Xn7EQ--.26804S3;
+	Wed, 08 Jan 2025 19:52:41 +0800 (CST)
 From: Andy Yan <andyshrk@163.com>
 To: heiko@sntech.de
 Cc: hjc@rock-chips.com,
@@ -51,10 +52,12 @@ Cc: hjc@rock-chips.com,
 	daniel@fooishbar.org,
 	robh@kernel.org,
 	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v9 00/11] VOP Support for rk3576
-Date: Wed,  8 Jan 2025 19:52:17 +0800
-Message-ID: <20250108115233.17729-1-andyshrk@163.com>
+Subject: [PATCH v9 01/11] drm/rockchip: vop2: use devm_regmap_field_alloc for cluster-regs
+Date: Wed,  8 Jan 2025 19:52:18 +0800
+Message-ID: <20250108115233.17729-2-andyshrk@163.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250108115233.17729-1-andyshrk@163.com>
+References: <20250108115233.17729-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,102 +65,138 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDHpyUCZ35n8Xn7EQ--.26804S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxGw1xuryUZryfXryxtFyrZwb_yoW5CrW3p3
-	98Cr98XrWxGF12qr4kJw1DCFySqFsayFWSg3yfKw13Ja4qyrW7Krya9r1YvrnxX3W8ZF4j
-	9F4Sya1UKanFvF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UvD7-UUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0hHOXmd+YSuN9QAAs4
+X-CM-TRANSID:_____wDHpyUCZ35n8Xn7EQ--.26804S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxGFW7GFWUWrykJr4fGF17Wrg_yoWrZr4xpF
+	4rCwnxuF45Grn29rykAr1DAF1Fk397ta1rCFn7uwnI9rnFgrZ7C3WDCw1jyrs0kryv9FZr
+	tFs8t3y3ua4Ygr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UWc_fUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqBLOXmd+X+etDgAAso
 
-From: Andy Yan <andy.yan@rock-chips.com>
+From: Heiko Stuebner <heiko@sntech.de>
 
+Right now vop2_cluster_init() copies the base vop2_cluster_regs
+and adapts the reg value with the current window's offset before
+adding the fields to the regmap.
 
-Here is the V9
+This conflicts with the notion of reg_fields being const, see
+https://lore.kernel.org/all/20240706-regmap-const-structs-v1-1-d08c776da787@weissschuh.net/
+for reference, which now causes checkpatch to actually warn about that.
 
-Patches that have already been merged in drm-misc-next are dropped.
+So instead of creating one big copy and changing it afterwards,
+add the reg_fields individually using devm_regmap_field_alloc().
 
-PATCH 1~9 are preparations for rk3576 support
-PATCH 10~11 are real support for rk376
+Functional it is the same, just that the reg_field we're handling
+can stay const.
 
-I test it with a 1080P/4K HDMI output with modetest and weston
-output.
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 
-If there are some one want to have a try, I have a tree based on
-Linux 6.13-rc2 here[0]
+---
 
-[0]https://github.com/andyshrk/linux/tree/rk3576-vop2-upstream-v6
+(no changes since v1)
 
-Changes in v9:
-- Drop 'vop-' prefix of interrupt-names.
-- Add blank line between DT properties in dt-binding
-- Remove list interrupt-names in top level in dt-binding
-- Link to V8:
-  https://lore.kernel.org/linux-rockchip/20241231090802.251787-10-andyshrk@163.com/T/#u
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 66 +++++++++-----------
+ 1 file changed, 31 insertions(+), 35 deletions(-)
 
-Changes in v8:
-- Remove redundant blank line before drm_bus_format_enum_list
-- Add a blank line before DRM_ENUM_NAME_FN
-- Fix dt_binding_check errors
-- ordered by soc name
-- Link to the previous version:
-  https://lore.kernel.org/linux-rockchip/6pn3qjxotdtpzucpul24yro7ppddezwuizneovqvmgdwyv2j7p@ztg4mqyiqmjf/T/#u
-
-Changes in v7:
-- Fix rk3588 dp+dsi maxclk verification
-
-Changes in v6:
-- Add a blank line after hardware version check code
--  More specific explanation about the AXI_BUS_ID register bit of
-   cluster window.
-
-Changes in v5:
-- Add axi id configuration
-- Remove the non-existent CBCR scale register.
-
-Changes in v4:
-- Typo fix: selet->select
-- describe constraint SOC by SOC, as interrupts of rk3576 is very
-  different from others
-- Drop Krzysztof's Reviewed-by, as this version changed a lot.
-
-Changes in v3:
-- Add comments for why we should treat rk3566 with special care.
-- Add hardware version check
-- Add comments for why we should treat rk3566 with special care.
-- ordered by soc name
-- Add description for newly added interrupt
-- Share the alpha setup function with rk3568
-- recoder the code block by soc
-
-Changes in v2:
-- Add platform specific callback
-- Introduce vop hardware version
-- Add dt bindings
-- Add platform specific callback
-
-Andy Yan (10):
-  drm/rockchip: vop2: Rename TRANSFORM_OFFSET to TRANSFORM_OFFS
-  drm/rockchip: vop2: Add platform specific callback
-  drm/rockchip: vop2: Merge vop2_cluster/esmart_init function
-  drm/rockchip: vop2: Support for different layer select configuration
-    between VPs
-  drm/rockchip: vop2: Introduce vop hardware version
-  drm/rockchip: vop2: Register the primary plane and overlay plane
-    separately
-  drm/rockchip: vop2: Set plane possible crtcs by possible vp mask
-  drm/rockchip: vop2: Add uv swap for cluster window
-  dt-bindings: display: vop2: Add rk3576 support
-  drm/rockchip: vop2: Add support for rk3576
-
-Heiko Stuebner (1):
-  drm/rockchip: vop2: use devm_regmap_field_alloc for cluster-regs
-
- .../display/rockchip/rockchip-vop2.yaml       |   83 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 1473 +++-----------
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  275 ++-
- drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  | 1798 ++++++++++++++++-
- 4 files changed, 2361 insertions(+), 1268 deletions(-)
-
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index 8e065199acfc..327ead907d44 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -3372,7 +3372,7 @@ static int vop2_find_rgb_encoder(struct vop2 *vop2)
+ 	return -ENOENT;
+ }
+ 
+-static struct reg_field vop2_cluster_regs[VOP2_WIN_MAX_REG] = {
++static const struct reg_field vop2_cluster_regs[VOP2_WIN_MAX_REG] = {
+ 	[VOP2_WIN_ENABLE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 0, 0),
+ 	[VOP2_WIN_FORMAT] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 1, 5),
+ 	[VOP2_WIN_RB_SWAP] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 14, 14),
+@@ -3443,28 +3443,26 @@ static struct reg_field vop2_cluster_regs[VOP2_WIN_MAX_REG] = {
+ static int vop2_cluster_init(struct vop2_win *win)
+ {
+ 	struct vop2 *vop2 = win->vop2;
+-	struct reg_field *cluster_regs;
+-	int ret, i;
+-
+-	cluster_regs = kmemdup(vop2_cluster_regs, sizeof(vop2_cluster_regs),
+-			       GFP_KERNEL);
+-	if (!cluster_regs)
+-		return -ENOMEM;
+-
+-	for (i = 0; i < ARRAY_SIZE(vop2_cluster_regs); i++)
+-		if (cluster_regs[i].reg != 0xffffffff)
+-			cluster_regs[i].reg += win->offset;
++	int i;
+ 
+-	ret = devm_regmap_field_bulk_alloc(vop2->dev, vop2->map, win->reg,
+-					   cluster_regs,
+-					   ARRAY_SIZE(vop2_cluster_regs));
++	for (i = 0; i < ARRAY_SIZE(vop2_cluster_regs); i++) {
++		const struct reg_field field = {
++			.reg = (vop2_cluster_regs[i].reg != 0xffffffff) ?
++					vop2_cluster_regs[i].reg + win->offset :
++					vop2_cluster_regs[i].reg,
++			.lsb = vop2_cluster_regs[i].lsb,
++			.msb = vop2_cluster_regs[i].msb
++		};
+ 
+-	kfree(cluster_regs);
++		win->reg[i] = devm_regmap_field_alloc(vop2->dev, vop2->map, field);
++		if (IS_ERR(win->reg[i]))
++			return PTR_ERR(win->reg[i]);
++	}
+ 
+-	return ret;
++	return 0;
+ };
+ 
+-static struct reg_field vop2_esmart_regs[VOP2_WIN_MAX_REG] = {
++static const struct reg_field vop2_esmart_regs[VOP2_WIN_MAX_REG] = {
+ 	[VOP2_WIN_ENABLE] = REG_FIELD(RK3568_SMART_REGION0_CTRL, 0, 0),
+ 	[VOP2_WIN_FORMAT] = REG_FIELD(RK3568_SMART_REGION0_CTRL, 1, 5),
+ 	[VOP2_WIN_DITHER_UP] = REG_FIELD(RK3568_SMART_REGION0_CTRL, 12, 12),
+@@ -3531,26 +3529,24 @@ static struct reg_field vop2_esmart_regs[VOP2_WIN_MAX_REG] = {
+ static int vop2_esmart_init(struct vop2_win *win)
+ {
+ 	struct vop2 *vop2 = win->vop2;
+-	struct reg_field *esmart_regs;
+-	int ret, i;
+-
+-	esmart_regs = kmemdup(vop2_esmart_regs, sizeof(vop2_esmart_regs),
+-			      GFP_KERNEL);
+-	if (!esmart_regs)
+-		return -ENOMEM;
+-
+-	for (i = 0; i < ARRAY_SIZE(vop2_esmart_regs); i++)
+-		if (esmart_regs[i].reg != 0xffffffff)
+-			esmart_regs[i].reg += win->offset;
++	int i;
+ 
+-	ret = devm_regmap_field_bulk_alloc(vop2->dev, vop2->map, win->reg,
+-					   esmart_regs,
+-					   ARRAY_SIZE(vop2_esmart_regs));
++	for (i = 0; i < ARRAY_SIZE(vop2_esmart_regs); i++) {
++		const struct reg_field field = {
++			.reg = (vop2_esmart_regs[i].reg != 0xffffffff) ?
++				vop2_esmart_regs[i].reg + win->offset :
++				vop2_esmart_regs[i].reg,
++			.lsb = vop2_esmart_regs[i].lsb,
++			.msb = vop2_esmart_regs[i].msb
++		};
+ 
+-	kfree(esmart_regs);
++		win->reg[i] = devm_regmap_field_alloc(vop2->dev, vop2->map, field);
++		if (IS_ERR(win->reg[i]))
++			return PTR_ERR(win->reg[i]);
++	}
+ 
+-	return ret;
+-};
++	return 0;
++}
+ 
+ static int vop2_win_init(struct vop2 *vop2)
+ {
 -- 
 2.34.1
 
