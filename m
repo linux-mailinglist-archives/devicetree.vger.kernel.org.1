@@ -1,147 +1,150 @@
-Return-Path: <devicetree+bounces-136665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90A9EA05CC1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:29:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C2D8A05CCF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:31:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0B703A6535
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:29:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1862E166FD5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5621FBE87;
-	Wed,  8 Jan 2025 13:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9791FA8CA;
+	Wed,  8 Jan 2025 13:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5MCclyIC"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NIkRI5uL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2522C1FBC89;
-	Wed,  8 Jan 2025 13:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2194E1F2C50;
+	Wed,  8 Jan 2025 13:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736342961; cv=none; b=jiQncj0OL3XbhqNdBqaQQYyP9jgwbm0rMWBOElEdpod6DHuWhN0kAHV1vLVhW1s3vB3fDOP8yFO7hO1qentxbKq6axrvWLAB/bUqsU3uftYjaJC3H8tyewJnSBHLHKHAMLLX8WWlnvGSyn5q6dDGLQHVOb2no3z/OfH4406OT/w=
+	t=1736343083; cv=none; b=iCmeOZ86E40dyG6DNkkiaDC3Z3axWEKpNXO9AFdSTAL7mzssvVnyrEFLiudbynAQ/h7op5ZP8lkmNPiNSV4LI/Ant0IW1yoWIcFOX9yny8cl8n7XntMUBsQIHF0Kc5IIir5iRa0XP5oKg0XMWceooGs7XwG8eANESLbxqqVwgvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736342961; c=relaxed/simple;
-	bh=Yz68hqMDSNBYAoDE8DUh/cL1zrZm7KmAwYqBHDhBMWs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GePtDEVK1W57FSBxeQEcuWGCxq2nO9ryU57cAV9MkKn9bENUwQJ8z7J7DhzMIYhRLKwu0KZGafiEjAM7sNxdNOEP0Ec3Z0c+8RiHWWlRn2BeoL6cFAH6EH89L8+0vcrzCbpmqgdoEuJKvQnCYhgVdKiv7Q6XJfaPs5qOj9fvx/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=5MCclyIC; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=8NWugOCTua3U4zM1I0sMTHCzc7ebPizCAQxQ1HTI358=; b=5MCclyICiavifLu+is6XHXo+lL
-	JMlKc9c2kEDa4HeGyBpaP//rY02AHLVjfDoVIPuhsn5rQCgm4I0NPI+i0f0mO8/a4sOcbRenvudAh
-	ZapVFOfxUZ3YvjWIQ85GWtVRltJHsKjePk3aA+9PwD7Hf1fTQTgzY8gES+EbDBsywjh4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tVW7L-002Zoo-A9; Wed, 08 Jan 2025 14:29:03 +0100
-Date: Wed, 8 Jan 2025 14:29:03 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Yijie Yang <quic_yijiyang@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] net: stmmac: qcom-ethqos: Enable RX programmable
- swap on qcs615
-Message-ID: <7e046761-7787-4f01-b47b-9374402489ac@lunn.ch>
-References: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
- <20241225-support_10m100m-v1-2-4b52ef48b488@quicinc.com>
- <4b4ef1c1-a20b-4b65-ad37-b9aabe074ae1@kernel.org>
- <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
- <e47f3b5c-9efa-4b71-b854-3a5124af06d7@lunn.ch>
- <87a7729d-ccdd-46f0-bcfd-3915452344fd@quicinc.com>
+	s=arc-20240116; t=1736343083; c=relaxed/simple;
+	bh=0ox4Gok/cDwc/lMCPWEFwROP9f7HnlHHvDoz5gzQkb8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DVKrzwoxFpKoahA1UsFQ/L1RYHjT5nuA2JDcBeb7kl4zMSs7tkXoj6u5GAwlpWzZ0z8wOMY5WJMAKz0prwgK/nWbbc8K/EaFCPilIYvGooF6AJXvkomtzXTLWYG9jr18GSJ8wbYG+dl001BjNvx7sGXzu6id+IxP+rzqYYoeCOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NIkRI5uL; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 297FC1BF20A;
+	Wed,  8 Jan 2025 13:31:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736343078;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Cf2NWmnc2Jen5D58ipG2WLWbqKZuYBjzjSVe9QJgIPs=;
+	b=NIkRI5uL7wk434caYW50oXj/MljX/TXQdQZaWLFHVy3edyf7sTb9UCMxSJP6ZB5+lPnvbz
+	775S5cVRAvJ4GNBNYHG39BHJiAVedY1HO6FVx6laj+jTy2hL817Z2CRppgpgSy8hBjnoyD
+	dv3OWCFasdJvbiwusnd1wBI9h/WE7oIsstJZh30+MxoBcPXN3Duy1RGDtgHramqm0S4zCx
+	Fl9ddkN35RTM7j+zrnf/6no3ypmtA/c2s5wtQMumoKFacO+4FQhihaoq2sdRzVkAhkBiDV
+	f72I5GajeTCCHYUnWhhMWFMdYhrbguep+t+j3scRvyTFZF6c7IvPTzpPqMegQA==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Subject:
+ Re: [PATCH v4 4/9] i2c: use client addresses directly in ATR interface
+Date: Wed, 08 Jan 2025 14:31:16 +0100
+Message-ID: <6115974.lOV4Wx5bFT@fw-rgant>
+In-Reply-To: <f63b7744-b86e-4dbe-aa49-10614a025b7e@ideasonboard.com>
+References:
+ <20241230-fpc202-v4-0-761b297dc697@bootlin.com>
+ <20241230-fpc202-v4-4-761b297dc697@bootlin.com>
+ <f63b7744-b86e-4dbe-aa49-10614a025b7e@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87a7729d-ccdd-46f0-bcfd-3915452344fd@quicinc.com>
+Content-Type: multipart/signed; boundary="nextPart4977285.31r3eYUQgx";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-GND-Sasl: romain.gantois@bootlin.com
 
-> > Why is it specific to this board? Does the board have a PHY which is
-> > broken and requires this property? What we are missing are the details
-> > needed to help you get to the correct way to solve the problem you are
-> > facing.
-> > 
-> 
-> Let me clarify why this bit is necessary and why it's board-specific. The RX
-> programming swap bit can introduce a time delay of half a clock cycle. This
-> bit, along with the clock delay adjustment functionality, is implemented by
-> a module called 'IO Macro.' This is a Qualcomm-specific hardware design
-> located between the MAC and PHY in the SoC, serving the RGMII interface. The
-> bit works in conjunction with delay adjustment to meet the sampling
-> requirements. The sampling of RX data is also handled by this module.
-> 
-> During the board design stage, the RGMII requirements may not have been
-> strictly followed, leading to uncertainty in the relationship between the
-> clock and data waveforms when they reach the IO Macro.
+--nextPart4977285.31r3eYUQgx
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Date: Wed, 08 Jan 2025 14:31:16 +0100
+Message-ID: <6115974.lOV4Wx5bFT@fw-rgant>
+In-Reply-To: <f63b7744-b86e-4dbe-aa49-10614a025b7e@ideasonboard.com>
+MIME-Version: 1.0
 
-So this indicates any board might need this feature, not just this one
-board. Putting the board name in the driver then does not scale.
+Hi,
 
-> This means the time
-> delay introduced by the PC board may not be zero. Therefore, it's necessary
-> for software developers to tune both the RX programming swap bit and the
-> delay to ensure correct sampling.
+On lundi 6 janvier 2025 10:51:20 heure normale d=E2=80=99Europe centrale To=
+mi=20
+Valkeinen wrote:
+> Hi,
+>=20
+> On 30/12/2024 15:22, Romain Gantois wrote:
+> > The I2C Address Translator (ATR) module defines mappings from i2c_client
+> > structs to aliases. However, only the physical address of each i2c_clie=
+nt
+=2E..
+> >=20
+> > -	dev_dbg(atr->dev, "chan%u: client 0x%02x mapped at alias 0x%02x (%s)
+\n",
+> > -		chan->chan_id, client->addr, alias, client->name);
+> > +	dev_dbg(atr->dev, "chan%u: addr 0x%02x mapped at alias 0x%02x\n",
+> > +		chan->chan_id, addr, alias);
+>=20
+> This, and the dev_dbg() below, sound a bit odd to my ear. But I'm not
+> sure what would be a good print... "added alias 0x12 for address 0x34"?
 
-O.K. Now look at how other boards tune their delays. There are
-standard properties for this:
+Maybe "assigned address 0x34 to alias 0x12"? Since the alias doesn't really=
+ go=20
+anywhere, we just assign different downstream addresses to it.
 
-        rx-internal-delay-ps:
-          description:
-            RGMII Receive Clock Delay defined in pico seconds. This is used for
-            controllers that have configurable RX internal delays. If this
-            property is present then the MAC applies the RX delay.
-        tx-internal-delay-ps:
-          description:
-            RGMII Transmit Clock Delay defined in pico seconds. This is used for
-            controllers that have configurable TX internal delays. If this
-            property is present then the MAC applies the TX delay.
+Thanks,
 
-I think you can use these properties, maybe with an additional comment
-in the binding. RGMII running at 1G has a clock of 125MHz. That is a
-period of 8ns. So a half clock cycle delay is then 4ns.
+=2D-=20
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-So an rx-internal-delay-ps of 0-2000 means this clock invert should be
-disabled. A rx-internal-delay-ps of 4000-6000 means the clock invert
-should be enabled.
+--nextPart4977285.31r3eYUQgx
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-Now, ideally, you want the PHY to add the RGMII delays, that is what i
-request all MAC/PHY pairs do, so we have a uniform setup across all
-boards. So unless the PHY does not support RGMII delays, you would
-expect rx-internal-delay-ps to be either just a small number of
-picoseconds for fine tuning, or a small number of picoseconds + 4ns
-for fine tuning.
+-----BEGIN PGP SIGNATURE-----
 
-This scales, since it can be used by an board with poor design, and it
-does not require anything proprietary to Qualcomm, except the extended
-range, and hopefully nobody except Qualcomms broken RDK will require
-it, because obviously you will document the issue with the RDK and
-tell customers how to correctly design their board to be RGMII
-compliant with the clocks.
+iQIzBAABCAAdFiEEYFZBShRwOvLlRRy+3R9U/FLj284FAmd+fiQACgkQ3R9U/FLj
+287kzhAAmx9rt3wn5w/RFRgHFY4GuprPGlHlzS4A/sIiGl08K3sd/NTa8HFad5Hw
+ZOTjBx2jYIAP6okEaYXNR1Jc2rMXqtVIFy+juU/Q6JdZPv9AKD8oQaX35bT2i5cH
+qgYVy/1B0f7Dx8r0SPrYIlHXftZxfcAwQguiO3vVuJKIEBYHNfCPrIIS++IY+D4E
+/JaOeymz0wiagnz8rZcSo5EdVKS6YFsbWp89CQrma/lrR7oe7ljV4l6Y37PuaDjv
+tZyQo21tDJ5fkzuUDXi69VHd4ZdhsAnToY4lZrN6/vl/Lft62UoI1PZ2M3ATpopr
+X/9REUhDPQszy16pOrPbakeCZT4wATrCpHyAKZSDaDofj0eR0FlNy6urTW2PqVUn
+fshpFdWw7+/a3zgchq/w1nUeijYTe9GShrRKQyH6MLl1DUVgSz5VHkePl8v+Rpjh
+Xy5ZKWgXN48CE7bCsDkfTB+6rWkj2N9p7W5DSQ68o8LkD/d2kGrzTcuo1F4RY0mj
+X7fIAK45gHxCUVCxbWXxlYdVvH70yQUvQu+ll8ZnauNVBeGE4RqvEnNjG4JD9mBU
+lW9onTWytYyu8/q5vlX577aZOi/iOpYAtFoNNQ0Nevx/D6eXuTLtiRhwVzD2tMss
+Wm9Q7rkksUWtWeIIO7QjNWjA/+oefM9qUyWmdGEa61sNGEh6ioI=
+=yP4c
+-----END PGP SIGNATURE-----
 
-	Andrew
+--nextPart4977285.31r3eYUQgx--
+
+
+
 
