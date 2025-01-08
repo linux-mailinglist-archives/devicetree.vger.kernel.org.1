@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-136515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE11A05735
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:43:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1145EA0572F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:43:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B70F87A2978
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:43:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 964D21888FD7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2031B3938;
-	Wed,  8 Jan 2025 09:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C011A00FE;
+	Wed,  8 Jan 2025 09:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HgmGUnVr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ha1F9tOS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519F1156F3F;
-	Wed,  8 Jan 2025 09:43:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8482319995E;
+	Wed,  8 Jan 2025 09:42:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736329388; cv=none; b=cSbmriW6tpOI/QFapnk6Xd6GqBexwMEP+3nCgF9QJkPyX8jSm70zczC8+BMR4LXitUQs8AWaRqO0rIiqnEEtW+f+ZsdWbyK5xdozCBb2xv53x2GMsioE6odfggCQ9TbXjdW796gVBp/wUcdcg8Z+cTTOGynwb6niP1V5z85lydo=
+	t=1736329377; cv=none; b=DNecJ9InZ2CH6WGur/6Pb30XTgCDihKqGovLAelquckc4ZFTHl0iJRa5FNcTu2t49ecHPkm6WaUeQaYS+xHQSAqC/ntChK0Bt0mimYQA9k09oFAK5advDfCY/0wGDpzfQnG0sE1shb3x5yGJIUr2wB4zdsTa55oumiuix8jVcek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736329388; c=relaxed/simple;
-	bh=27Wi/ioyqkeBKgglqlzrOBuNeT/IA7PHZ6rndp8yNpc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JAdx3RjwSjG/qfCqsKZOZxiGFXgtqrvWUzYb7u8DNzZAzF8BGnfplgEk408pijdjg5lB+ETJmlkI/L9gmw9BlXtET5CsVWsAbkLW7ZhzG0MzDTNe16VIimWdq8tmUt2AAJ7tyYLBzuPDIut+nTm9jTwIibY6+718+cP1lnEmPLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HgmGUnVr; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5089AvcF010610;
-	Wed, 8 Jan 2025 09:42:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jP2UVcYe43DrsnUl3Ch2ueDEccTyGDvlbJ9rlGh+p0I=; b=HgmGUnVr2aATS1Me
-	r+hwiVOHh7VfpTzPu1IuBNkweTByuEqtIMlIhVSiOEK/K2wRAdXaj7JOlT+dCj04
-	DNRcXixb+0Cya1PR9X1SSiPh2J354trIauOE6f02hZ7/GSfM08BSpa5oBkx2ArJJ
-	bUAnBTXc/f6siB6UAiTUyoQgsdvA8lXG0GxMxM7+xABCPX7rAo2VcwOPlj/Yg1CI
-	Uqkg+vZXAUZ6jrbrMawPQKZ0C1JyCv0MWjVuaLcS2ZHYkEpf0lfBcFNbEoN3X81a
-	8xFq5QvQX60QRTEmlSAWQ0v7m07WAtstKjm4T3e10sIWdcekqpBueTsQtJ0K9x+7
-	UPaRyw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441pgnr2nm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Jan 2025 09:42:46 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5089gjTL004331
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 Jan 2025 09:42:45 GMT
-Received: from [10.253.35.161] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
- 01:42:39 -0800
-Message-ID: <87a7729d-ccdd-46f0-bcfd-3915452344fd@quicinc.com>
-Date: Wed, 8 Jan 2025 17:42:37 +0800
+	s=arc-20240116; t=1736329377; c=relaxed/simple;
+	bh=63viRNtU92cC3Sq4KYkQMj1dhelzfXETfgdJzzPPyKk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Qid8OLa567invEZi8Qm0njY4e1lI358WezoVgO40uWITc0JwhaxOxMNwTyNt8hSBwfw8BB8SUHPnJna8duR9XyLjeVYAGoY1N80XcnHR5KxfkhDkGRpeaUkryBxK8HxX2jAF56K3V47V5e/L/Ai65uDL5T7kEyUldJK5U8Uk/GA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ha1F9tOS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1058DC4CEE0;
+	Wed,  8 Jan 2025 09:42:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736329377;
+	bh=63viRNtU92cC3Sq4KYkQMj1dhelzfXETfgdJzzPPyKk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ha1F9tOSh1dOLcyB58gE1vZQwzcy4VnjIT77LKqOSFnyn/SbuHtvsv9AWsfY7QT+h
+	 TeAQNrsIOyr9z11+R1PSyUyicvHgXxsSJrgY0zTRx07SDdK7UUBjESRLfSGWfYHBXn
+	 4ifLq947WKAjEcqRQhpLSnQoo42xD4nYD60rCjHuqpbnhp+AQq3AdlaRqTgl60JgM1
+	 f97zadQrXmezx0QI4hKj96wtfsNbz/UgOxwubyx/5RHkoFsd8GjFtbCmZcwfeRJwIX
+	 ag6pAGFbLWIIgB7UicZ8bd3cy5DwpThUXV0bm6jsqSLrZgTQOpISxRyZP6tgFrOI2t
+	 f6ETe9lxnNPmQ==
+Message-ID: <4a4f9773-186c-475c-bfac-72e696233501@kernel.org>
+Date: Wed, 8 Jan 2025 10:42:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,116 +50,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] net: stmmac: qcom-ethqos: Enable RX programmable swap
- on qcs615
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
- <20241225-support_10m100m-v1-2-4b52ef48b488@quicinc.com>
- <4b4ef1c1-a20b-4b65-ad37-b9aabe074ae1@kernel.org>
- <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
- <e47f3b5c-9efa-4b71-b854-3a5124af06d7@lunn.ch>
+Subject: Re: [PATCH 2/3] dt-bindings: hwmon: adi,max31827: add MAX31875
+To: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
+ devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+References: <20250108082531.15467-1-johnerasmusmari.geronimo@analog.com>
+ <20250108082531.15467-3-johnerasmusmari.geronimo@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Yijie Yang <quic_yijiyang@quicinc.com>
-In-Reply-To: <e47f3b5c-9efa-4b71-b854-3a5124af06d7@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250108082531.15467-3-johnerasmusmari.geronimo@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pqYADZSimNJLSAOnC9od8e9uOx41DZJZ
-X-Proofpoint-ORIG-GUID: pqYADZSimNJLSAOnC9od8e9uOx41DZJZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=891
- mlxscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0 spamscore=0
- adultscore=0 phishscore=0 priorityscore=1501 bulkscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501080079
 
-
-
-On 2024-12-27 01:21, Andrew Lunn wrote:
-> On Thu, Dec 26, 2024 at 10:29:45AM +0800, Yijie Yang wrote:
->>
->>
->> On 2024-12-25 19:37, Krzysztof Kozlowski wrote:
->>> On 25/12/2024 11:04, Yijie Yang wrote:
->>>
->>>>    static int qcom_ethqos_probe(struct platform_device *pdev)
->>>>    {
->>>> -	struct device_node *np = pdev->dev.of_node;
->>>> +	struct device_node *np = pdev->dev.of_node, *root;
->>>>    	const struct ethqos_emac_driver_data *data;
->>>>    	struct plat_stmmacenet_data *plat_dat;
->>>>    	struct stmmac_resources stmmac_res;
->>>> @@ -810,6 +805,15 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->>>>    	ret = of_get_phy_mode(np, &ethqos->phy_mode);
->>>>    	if (ret)
->>>>    		return dev_err_probe(dev, ret, "Failed to get phy mode\n");
->>>> +
->>>> +	root = of_find_node_by_path("/");
->>>> +	if (root && of_device_is_compatible(root, "qcom,sa8540p-ride"))
->>>
->>>
->>> Nope, your drivers are not supposed to poke root compatibles. Drop and
->>> fix your driver to behave correctly for all existing devices.
->>>
->>
->> Since this change introduces a new flag in the DTS, we must maintain ABI
->> compatibility with the kernel. The new flag is specific to the board, so I
->> need to ensure root nodes are matched to allow older boards to continue
->> functioning as before. I'm happy to adopt that approach if there are any
->> more elegant solutions.
+On 08/01/2025 09:25, John Erasmus Mari Geronimo wrote:
+> Add max31875 to dt-bindings of max31827
+> MAX31875 is low-power I2C temperature sensor similar to MAX31827
 > 
-> Why is it specific to this board? Does the board have a PHY which is
-> broken and requires this property? What we are missing are the details
-> needed to help you get to the correct way to solve the problem you are
-> facing.
+> Signed-off-by: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
+> ---
+>  .../bindings/hwmon/adi,max31827.yaml           | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> index f60e06ab7..9363fa371 100644
+> --- a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+> @@ -4,16 +4,19 @@
+>  $id: http://devicetree.org/schemas/hwmon/adi,max31827.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch
+> +title: Analog Devices MAX31827, MAX31828, MAX31829, MAX31875 Low-Power Temperature Switch
+>  
+>  maintainers:
+> -  - Daniel Matyas <daniel.matyas@analog.com>
+> +  - John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
 
-Let me clarify why this bit is necessary and why it's board-specific. 
-The RX programming swap bit can introduce a time delay of half a clock 
-cycle. This bit, along with the clock delay adjustment functionality, is 
-implemented by a module called 'IO Macro.' This is a Qualcomm-specific 
-hardware design located between the MAC and PHY in the SoC, serving the 
-RGMII interface. The bit works in conjunction with delay adjustment to 
-meet the sampling requirements. The sampling of RX data is also handled 
-by this module.
 
-During the board design stage, the RGMII requirements may not have been 
-strictly followed, leading to uncertainty in the relationship between 
-the clock and data waveforms when they reach the IO Macro. This means 
-the time delay introduced by the PC board may not be zero. Therefore, 
-it's necessary for software developers to tune both the RX programming 
-swap bit and the delay to ensure correct sampling.
+This needs to be explained in commit msg.
 
-> 	Andrew
-> 
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,max31875
+> +
+> +    then:
+> +      properties:
+> +        adi,fault-q:
+> +          enum: [1, 2, 4, 6]
 
--- 
-Best Regards,
-Yijie
+You need to update top-level property to allow 6. Then narrow the
+choices for rest of the variants.
 
+>  
+>  required:
+>    - compatible
+
+
+Best regards,
+Krzysztof
 
