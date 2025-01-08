@@ -1,169 +1,98 @@
-Return-Path: <devicetree+bounces-136826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 504B3A06770
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:47:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0549AA067B3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:01:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 323C41673C2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 21:47:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABB581886BEF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:01:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D1E1A8411;
-	Wed,  8 Jan 2025 21:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EEA1A2396;
+	Wed,  8 Jan 2025 22:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SDuoFvZh"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="M03c8Rdo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEE9C1A08CA;
-	Wed,  8 Jan 2025 21:47:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0F119EED0
+	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 22:01:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736372840; cv=none; b=mSv5JtzB0ewLE8mKKIlhsGDQ16D0DvVLrGoji+51PrCUFJau5Eu/qouAZv1npIfUDU6AfNIi8cHbuTUbrEAK6v5LkpFqAIyiHHXWEp9BYEYLD7OMMiRyFjz1JAcnLsGs2lqZ59+WZhEcv0QZjc7KcgtEmvnO8rR6y6NqOVo5sCg=
+	t=1736373665; cv=none; b=VFK/tLKSJvsr43yYQxASuFXujTNWRgNPGH/Jyfl306ACmAoYDMhhenExsb/fycARajD4H/aw0ePI8gr8kkwV2sQZFZe/lmvUnFojnTs+7IQn5DJPvRa9OWfAAbX3/M2xkqMosp7gU8hLeJOu/EKtz8OhR/KHW5OmPAlYJcrFzAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736372840; c=relaxed/simple;
-	bh=LV8hwJya1sojsl5TXA/ligv/Nq4PUx7OSws+PNyvpxw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KU/wD9tsAtIMNUzL+ov/ub5W/XyNSK9eSXA1OpDnxCh35KAF6Ge/jS/IdKqJRSERC+oVk8T/635+aP9c1zCARw2px7B4Xt47Cak+AckECHah3euXY82s8wGvvmEzJ68VWEwRR+ajAv+Cdlfd0rliDMlLwjAr5jySs4mcNwrDtuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SDuoFvZh; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508Ih1k7008541;
-	Wed, 8 Jan 2025 21:47:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TfjGdLbQbnpGXnI+p0OFDNuAVAISOAh6o7mQ1iTDrmI=; b=SDuoFvZhlfDrLmlq
-	FcgYKwKb+k/P/gdo+1Oc1ZSNcYkovT1r4UgAGvaa5kE+HxiG+XCrxT1mVqTCfahw
-	AUuilmujyq1C15DCeHEGl8V9LcSJwUDc9Qr8l6YlUxPtuG5umh6gKTXx2H20C145
-	FdCjbQqG+dFJVPU8+gNJ+We63jyVxLKyckfB0xoTDiIGeIXCGYSfBztumX6W6zuc
-	pKmF7A8FYT/Bdwz1Etq1pQ7y8yYgj2ng2jSAOByOfVga3yw1lxdJZVhw4PmPu+hm
-	QQ4afKSX2tHmQvGaT081q3adAl02uMtSBkTu13I/F4Ja5rlScH10uztbq/FuVHUB
-	XRAWZQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441xvnrca0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Jan 2025 21:47:14 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508LlDa2011389
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 Jan 2025 21:47:14 GMT
-Received: from [10.216.24.147] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
- 13:47:10 -0800
-Message-ID: <ae7f2d05-df0a-42e5-9e2e-586c35e5754d@quicinc.com>
-Date: Thu, 9 Jan 2025 03:17:08 +0530
+	s=arc-20240116; t=1736373665; c=relaxed/simple;
+	bh=TlnFWb3RE7FN5EMuPVjtYZjgCl+eCrIIS/gfTuxqPh0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aXRjpn/x0/hFXdI/dV7uRKxDLw4iVOw2MBQs5fTNGYzklLmmN1XSfUknfMPJ97KroiYVkLOOAo8uFB+RF/cPF1tNHwwtEdfs3Za46MdcdUiDPrZLT+EJ0UqE2LckE+DNHP+9Tp91GHbZEpe4zYbdFVOTDbtIRS1iGS7HIQfTzFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=M03c8Rdo; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=oyLRZMtr/tn1TO1iJcvNHZxC52/nmyO7VYgGHrOfQoU=; b=M03c8RdoER1QAdssr/pLl+Yiat
+	9s64n3CvH5aUO7YK7dBANJwaecT1ngqv+zqDH7cCcmbDieUUYfgdCKyUucwktNo8RsiTKU9A/C+VR
+	rQmoP/C1aB/UvG/Oy0iyF32Is6eSuQFbRlOO2XsipzygzgmbxB+eAMA4KzRSYzi7Bk6zeCAkWT+Wb
+	/wHr7lqvdBIuYGe8Dnvw7y8h3qKRq1Xhy9VnlNYFQi7vnJFymBE4f74JtVHn1oAG0s9zt+xTl7dxV
+	ku+u7HAOOCO/X+Qj+todeshX9m34j0JsIMhpuqGm1GuDpI29DHmBw5lr3pvsbH+X7jfJxOT4yS22K
+	ABh2o4YQ==;
+Received: from i53875aad.versanet.de ([83.135.90.173] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tVe6j-000415-Me; Wed, 08 Jan 2025 23:00:57 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Jimmy Hon <honyuenkwun@gmail.com>
+Cc: Ondrej Jirman <megi@xff.cz>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Jimmy Hon <honyuenkwun@gmail.com>
+Subject:
+ Re: [PATCH v7 1/4] arm64: dts: rockchip: refactor common
+ rk3588-orangepi-5.dtsi
+Date: Wed, 08 Jan 2025 23:00:56 +0100
+Message-ID: <2727495.q0ZmV6gNhb@diego>
+In-Reply-To: <20250105222614.2359-2-honyuenkwun@gmail.com>
+References:
+ <20250105222614.2359-1-honyuenkwun@gmail.com>
+ <20250105222614.2359-2-honyuenkwun@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] nvmem: core: fix bit offsets of more than one byte
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20250104-sar2130p-nvmem-v3-0-a94e0b7de2fa@linaro.org>
- <20250104-sar2130p-nvmem-v3-1-a94e0b7de2fa@linaro.org>
-Content-Language: en-US
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <20250104-sar2130p-nvmem-v3-1-a94e0b7de2fa@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8-3pyHGlTAYODU9JPn4thcPswq5CC96L
-X-Proofpoint-ORIG-GUID: 8-3pyHGlTAYODU9JPn4thcPswq5CC96L
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 clxscore=1015 suspectscore=0
- mlxlogscore=999 priorityscore=1501 spamscore=0 malwarescore=0 adultscore=0
- mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501080178
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 1/4/2025 11:49 AM, Dmitry Baryshkov wrote:
-> If the NVMEM specifies a stride to access data, reading particular cell
-> might require bit offset that is bigger than one byte. Rework NVMEM core
-> code to support bit offsets of more than 8 bits.
+Hi Jimmy,
+
+Am Sonntag, 5. Januar 2025, 23:26:10 CET schrieb Jimmy Hon:
+> Orange Pi now has multiple SBCs using the RK3588.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/nvmem/core.c | 24 +++++++++++++++++-------
->  1 file changed, 17 insertions(+), 7 deletions(-)
+> Refactor the common parts of the Orange Pi 5 Plus DTS so it can be
+> shared with the 5 Max and the 5 Ultra.
 > 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index d6494dfc20a7324bde6415776dcabbb0bfdd334b..c0af43a37195c3869507a203b370615309aeee67 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -834,7 +834,9 @@ static int nvmem_add_cells_from_dt(struct nvmem_device *nvmem, struct device_nod
->  		if (addr && len == (2 * sizeof(u32))) {
->  			info.bit_offset = be32_to_cpup(addr++);
->  			info.nbits = be32_to_cpup(addr);
-> -			if (info.bit_offset >= BITS_PER_BYTE || info.nbits < 1) {
-> +			if (info.bit_offset >= BITS_PER_BYTE * info.bytes ||
-> +			    info.nbits < 1 ||
-> +			    info.bit_offset + info.nbits >= BITS_PER_BYTE * info.bytes) {
+> Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
 
-Should it be ">" check instead of ">=" check here?
-For eg: bit_offset = 7, nbits = 1 and info.bytes = 1 is valid, isn't it?
+I'm sorry for having to ask you that, but I did apply Chen-Yu's
+patch enabling usb3 on the orange-pi-5-plus [0] which in turn
+causes your series to not apply anymore.
 
--Akhil
+So could you rebase once more?
 
->  				dev_err(dev, "nvmem: invalid bits on %pOF\n", child);
->  				of_node_put(child);
->  				return -EINVAL;
-> @@ -1627,21 +1629,29 @@ EXPORT_SYMBOL_GPL(nvmem_cell_put);
->  static void nvmem_shift_read_buffer_in_place(struct nvmem_cell_entry *cell, void *buf)
->  {
->  	u8 *p, *b;
-> -	int i, extra, bit_offset = cell->bit_offset;
-> +	int i, extra, bytes_offset;
-> +	int bit_offset = cell->bit_offset;
->  
->  	p = b = buf;
-> -	if (bit_offset) {
-> +
-> +	bytes_offset = bit_offset / BITS_PER_BYTE;
-> +	b += bytes_offset;
-> +	bit_offset %= BITS_PER_BYTE;
-> +
-> +	if (bit_offset % BITS_PER_BYTE) {
->  		/* First shift */
-> -		*b++ >>= bit_offset;
-> +		*p = *b++ >> bit_offset;
->  
->  		/* setup rest of the bytes if any */
->  		for (i = 1; i < cell->bytes; i++) {
->  			/* Get bits from next byte and shift them towards msb */
-> -			*p |= *b << (BITS_PER_BYTE - bit_offset);
-> +			*p++ |= *b << (BITS_PER_BYTE - bit_offset);
->  
-> -			p = b;
-> -			*b++ >>= bit_offset;
-> +			*p = *b++ >> bit_offset;
->  		}
-> +	} else if (p != b) {
-> +		memmove(p, b, cell->bytes - bytes_offset);
-> +		p += cell->bytes - 1;
->  	} else {
->  		/* point to the msb */
->  		p += cell->bytes - 1;
-> 
+Thanks a lot
+Heiko
+
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v6.14-armsoc/dts64&id=a15d12f36eb78692d5c3ebd8a5db7fddf3ea160c
+
 
 
