@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-136484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B688A05558
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:30:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CEC6A05567
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:32:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D46681886770
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:30:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78487166015
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAB661EB9F3;
-	Wed,  8 Jan 2025 08:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053651AC44D;
+	Wed,  8 Jan 2025 08:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FPiIwrOV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QtHrPcx6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B9CB1DFD85;
-	Wed,  8 Jan 2025 08:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76B41A0BE0;
+	Wed,  8 Jan 2025 08:32:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736325025; cv=none; b=kHW/uwYyK3+ZZtksd5dLxP2Q9nNO2FqAOpuUHcTVRhAc70JBPqwMxfbztd/tqkroMgLk9t2gOR3TyWbY3ViyROg8WAZ0GjYUi6ptqhwgU+cDSEYbEgjd0fDRShGCDBzGFuhHvg5AbbDLDNETwzdapnB520VDSMGeKHQwUkjc35Q=
+	t=1736325152; cv=none; b=Kh7Ngmx/AeLsMCyB/Ec20pGOsV04kiSqnXMf785iwdAKXXY4a6aqHXuxfXzVo+TAG/WzY2d3OiKnLj73g2K9KFwN8FjCKyrBomdEyPgS/mZ90qt2jbfiitClHOsbeUzychX9FukPz3wyjRIHagw3TAnk0/tGrreoCA9jANaPFFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736325025; c=relaxed/simple;
-	bh=lSdp/Tf14ZXeM2+DPwDlUFDomlBVvyqUfx1JcR+/Bag=;
+	s=arc-20240116; t=1736325152; c=relaxed/simple;
+	bh=rSwNJmQumvQ6HLnCy914vkABbR1LzlL3b8aJ3wNJL1k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N4pUSxhJ+gWtJ/V5QJ9oZlLLdkwehceOEm5EMK1vAyuuOKIkS02ZW8eUR4WgyQ/l3cwAsHtT9rj6HSMJUHsiTWoJAeMlPk97OBYQvrCFRV+x/XTfCgQGpezde4HHMHtG0FaOnzh7WLlBxkSRnRu8/Z/WM6gH+4idD9joL/iFHWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FPiIwrOV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39ECDC4CEE0;
-	Wed,  8 Jan 2025 08:30:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZW5N3AOuYgVdjkVx9lalPd7F3dQvR1R1zJU1qiv0BGGTURcXXvhaG2hIoV9L0fEBuVKR6bJ1ajEA2K3rczGjUD6qEBrh+DNZSr3NmA76pJ8sKfHrFonG9ke0jQ5/TETQ6NI9r8SytTaJHaqSGnSr584FvMPX4WmymAh4CDIGfI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QtHrPcx6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FF87C4CEE0;
+	Wed,  8 Jan 2025 08:32:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736325025;
-	bh=lSdp/Tf14ZXeM2+DPwDlUFDomlBVvyqUfx1JcR+/Bag=;
+	s=k20201202; t=1736325152;
+	bh=rSwNJmQumvQ6HLnCy914vkABbR1LzlL3b8aJ3wNJL1k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FPiIwrOVK8BEyg6KgQZ58eDlM1ck122ZWw7hRYUSiyScdiabQZTUjAQi9utpEqywd
-	 mQWNx15YyZY5QFOgOVNYf+AjiuqU4qooNB0AzyEIKea/T0jJXO3TZaRx8w8UtVZwaf
-	 KVEAynjsH7CxTOz5cRnot8Q4WpqPyey5QqVdxHfEWOZy/FpPmaBS4i6JwP97y11Zyq
-	 YlH7oMokk6NVI7OUjofoqovbZ/QQ6p/8jqsZdgT2QSz3G3hR/5F17Rx7NKyfoX+sVP
-	 bJCz93Y3YBUV/F5Q9xEkKCsC9V0WfXRI42BIyNFOetTga6JBW1jjSf2eJEXAg0rYj6
-	 PWQdn1cOIFlYQ==
-Date: Wed, 8 Jan 2025 09:30:21 +0100
+	b=QtHrPcx67CHBswFQZK7LZGPEWrTEepYRUfiw0+86hXNyTwfSG1XX2VmmoippnW9FT
+	 mGmUKGAKdSFmxcgzW43BstnNG5zrvdL1OIfdCYKBXU0FaJlqNNau28mp1aodu23enB
+	 4i2oSvdYhnI9YxMGvUGm8mveyM8w1E2UoXtsMLEIXb8EB2i3N/noWohX1W0U1GJNcY
+	 9I1gMajrBIBFARUnKcT6Rd7YSWT5Zl+hnTSQ0MFG/WN+sHuGFyNfhh5tgnUeobvxm0
+	 Yqq6LtF7v3Wt2lK+jv/F7Y+nmroFo2u5/+6gC6LjUfY3Gwgfq2j3k6dse1sCbn1igH
+	 1SAMYJUm85Oyg==
+Date: Wed, 8 Jan 2025 09:32:28 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: soc: samsung: usi: add USIv1 and
- samsung,exynos8895-usi
-Message-ID: <ataxete4izo3hpyuqve3isktvvbuwoosc6burnkhqcratfgv4c@ycejvdx6k3cr>
-References: <20250107113512.525001-1-ivo.ivanov.ivanov1@gmail.com>
- <20250107113512.525001-2-ivo.ivanov.ivanov1@gmail.com>
+To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andersson@kernel.org, mathieu.poirier@linaro.org, 
+	konradybcio@kernel.org, quic_mmanikan@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	dmitry.baryshkov@linaro.org, quic_viswanat@quicinc.com, quic_srichara@quicinc.com
+Subject: Re: [PATCH V3 3/8] dt-bindings: mailbox: qcom: Add IPQ5424 APCS
+ compatible
+Message-ID: <q4hetnqlpxivjy7ynse7yyjo2gebslhxuhayzfqtpput2hsa32@io3qpcsyv6es>
+References: <20250107101647.2087358-1-quic_gokulsri@quicinc.com>
+ <20250107101647.2087358-4-quic_gokulsri@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,30 +62,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250107113512.525001-2-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250107101647.2087358-4-quic_gokulsri@quicinc.com>
 
-On Tue, Jan 07, 2025 at 01:35:10PM +0200, Ivaylo Ivanov wrote:
-> Add new constants for choosing the additional USIv1 configuration modes
-> in device tree. Those are further used in the USI driver to figure out
-> which value to write into SW_CONF register. Modify the current USI IP-core
-> bindings to include information about USIv1 and a compatible for
-> exynos8895.
+On Tue, Jan 07, 2025 at 03:46:42PM +0530, Gokul Sriram Palanisamy wrote:
+> Add compatible for the Qualcomm IPQ5424 APCS block.
 > 
-> In the original bindings commit, protocol mode definitions were named
-> with the version of the supported USI (in this case, V2) with the idea of
-> leaving enough room in the future for other versions of this block. This,
-> however, is not how the modes should be modelled. The modes are not
-> version specific and you should not be able to tell USI which version of
-> a mode to use - that has to be handled in the driver - thus encoding this
-> information in the binding is meaningless. Only one constant per mode is
-> needed, so while we're at it, add new constants with the prefix USI_MODE
-> and mark the old ones as depracated.
-> 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
 > ---
->  .../bindings/soc/samsung/exynos-usi.yaml      | 99 ++++++++++++-------
->  include/dt-bindings/soc/samsung,exynos-usi.h  | 17 +++-
->  2 files changed, 79 insertions(+), 37 deletions(-)
+>  .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
