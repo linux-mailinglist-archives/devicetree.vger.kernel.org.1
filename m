@@ -1,120 +1,176 @@
-Return-Path: <devicetree+bounces-136517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDA3A05746
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:47:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A386A0574A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:49:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58E09161E92
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:47:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0FC77A1E7D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:48:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043331EE7D5;
-	Wed,  8 Jan 2025 09:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48ED91F1302;
+	Wed,  8 Jan 2025 09:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iZIO5axX"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dGlEkGEM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ECCA79FE;
-	Wed,  8 Jan 2025 09:47:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66DF71A8403
+	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 09:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736329647; cv=none; b=CZmxmTAnqAFMYkskWBJ4d/n1xqdG6svJt/rIg8Q5cS8LGsuFqRAj8Q3NAi6ADppOHB9aJ0fleN3rGxvtRKJ0+puqZeAKPOhtx8B9wdqx1F7EsY1wZR9Cw8nBDAdopw7Wmpq66u+hwm//2r5gVgLhGwn+IWQ7ROGbF7YJ8Z0lJgY=
+	t=1736329732; cv=none; b=Py8ERwkvlvvlalpk05sgcjmmNUpm06PF9n2VUbpE88x0x1REwtRkWYA4usaAgR/1pWwu7ZcA1lVQJ/R7M+luR0dLarSbj7mjSPX6m8N7M1lQ4Xma4Wf3pFao4zlhhmd6Ua9t7ZihKcnq83ALPONVRg7y4vKgBAW6k1XFEiw/65c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736329647; c=relaxed/simple;
-	bh=1D7ZC0rHwNo/nas3TA0kqG1f7+uEOZG4Yl5PtuHZDXk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EheYSoAd74grFLUhjg1Ll9/ovkLZPEvQ+bLUHUnPxdagKM6A0G9gx7JTS0Wowl6HvVc8GTjunKFWj0q3CvMSTiG4G+som9pv9OoX3P0bDZCn8NBFE7UmqlGXVR9s63oN3X9DeHlwWTizj3TeUhC+hteUnprG97/7mwq2Tyti2VE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iZIO5axX; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2786460003;
-	Wed,  8 Jan 2025 09:47:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736329643;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dt3WALCVLJCRW2cde7nrz+vlEW88l2pHvW21cOkQCWE=;
-	b=iZIO5axXsc/E5bA8k613vrh/0SQXeF8McKHH2Q/SJZYE+zWwFrhm8hNH0vsfZ2ZIRlbxlE
-	DWCNgQdDUNO7v6Nz4f1HoNiefjy57JGhiz8UTjkD4HZW6MX0GaEm6c+Ab3Hrc2Ahn8O2R0
-	10fyRgYSbGZVSNF2uCGSRESH+t3C1pAKkRzYI8/0nk5Gb2baoPmbb9rLiQsMecA4M2sseo
-	mPP6jN7xbKGitxvqgzgTzBEQ57n1kdyQJugDKeDzN/3B5VOc4NkqWM5Q/k4j3jIaXnCjJy
-	APt/tU5OvkUF/7mJgAAzpRtRWCUpNqKJSlwXfEDGmGTEmrX3AzUixBnkAFyfwg==
-Date: Wed, 8 Jan 2025 10:47:19 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: Andrew Davis <afd@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
- <saravanak@google.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, David Gibson
- <david@gibson.dropbear.id.au>
-Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
- feature
-Message-ID: <20250108104719.0412ad94@bootlin.com>
-In-Reply-To: <d25572fa-8f0c-4f19-874c-6698a1db40ae@beagleboard.org>
-References: <20241209151830.95723-1-herve.codina@bootlin.com>
-	<33c61b28-c0b8-478d-8107-c6ed1ff9e466@beagleboard.org>
-	<20241210104141.39acffb1@bootlin.com>
-	<bab9f277-a366-48ec-acdd-0896c8307ad9@beagleboard.org>
-	<20241210115515.1886f73f@bootlin.com>
-	<6d48095d-59b1-4439-8e2a-927aa1aa1b55@beagleboard.org>
-	<20250108090750.45685a50@bootlin.com>
-	<d25572fa-8f0c-4f19-874c-6698a1db40ae@beagleboard.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1736329732; c=relaxed/simple;
+	bh=dQncI0ktjel5xSqHF4JOm7H0UK94916iCb8DNc4ymJQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BWyGXehgCwAh73uqNSvk9wFU0reIlqDv2XVi2OdCPYMBWkWq507N5ndmDT3jS68vX66iFlV/xTtCxK0O1CHIg08s+1k5g34IigRbwAp0RLc1BOf+MgVYkTCQLueJsS/U4sXZIplhq3qMH8z7TpqCTeu+Ii38JZZFtX/pOxMJyhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dGlEkGEM; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5401c52000dso18136170e87.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 01:48:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1736329728; x=1736934528; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Flo+9iY1gDry166LdLpjdtxxxCGnY5ixUXhDKm+YgbI=;
+        b=dGlEkGEMVbMP9IS+MDbsXrQ0l65Wr/y5IfLcGzwqP4eGc0/IBdvYU/+cphFunVEsT6
+         s2BiOSPAOwSI8JOqgJno43RCjuBZtTxLoujUsGpVe8ZyIaBV0poMv0dxp7FhSOYLrlFH
+         6e9PSKpR2KQrWWuh38PgRqzv7nmDt+xehtNmI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736329728; x=1736934528;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Flo+9iY1gDry166LdLpjdtxxxCGnY5ixUXhDKm+YgbI=;
+        b=r8LPHYQYk7X1xE6bNrn053iwNW6Blp1vCvR+6Pr+Sm2RARLM/D3YIzquo3g6Gk8Fn4
+         3yTMo3mOItTyJsl7xdzmpexDCj4vYY7VqXI2xRAGKH3ncxFadJcaElavR1v2Yc0amle6
+         nrUdK/Q6qEgYiutesB3FpPGnbrSNdkFSX4YuQvZwyu6DJl1nw3YpkZnQ4vRGpmp+NKXQ
+         zO5By7pUVp4Vg0AJaXeln90TVa8KF0TYKH+QpEJJJ/iUZ+43a0cuIYCbKEv8D8DkMyLY
+         Fg2ZtA4o5IzvFGtGNmliMsby+oceLkXeS9AKJ6PxNtXfVgDSkfDwwJPj1gdOTifsnJj7
+         fgaA==
+X-Forwarded-Encrypted: i=1; AJvYcCXra2i3U2zSdhg6uB7HQZ/guXR5xuavDf45bXTOm00qJaYRfSL1hOfzTGYy0BL/plYAi5JLj8HAWgmj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBpWOmajgco6YVOvR0U2fbneg15EcXwhmDqgn0gsdupRKaEllv
+	SnuuFb8jyFpHcAxV6prE8PzH0SIUjJ8CHuW0+8Vw76UhYk/SxsMVK6YQP4R4Mn34vzZZJz5hyN9
+	TOA==
+X-Gm-Gg: ASbGncs07N7XO+SA7qTb9cf7k2821cSFRJyqi7EPR3s/pMcKbpw3lbBE1/ZHbsJNirB
+	qcMADwwgXNEhTRdqiwGiYDklLDvvxC8iinZPywsbOWCwSTAcolMA1QCJ+Tib4eNybqc9o5RPzBk
+	R8lxIaZ433cOKUKOzr/SresEQa9qW+HkG45kaKlKYj8SnlTKIvMHDyzFmkNI8Cyxj5/f0xsLQMP
+	e8OzDktDcLHtUuhhaSxaidKqR55kaO3zTyIGhANjOQFZDhT7DwMufTJgxvI7NjQVoSejKPV4wnh
+	fkbWjRjK6LWoav5jsbE=
+X-Google-Smtp-Source: AGHT+IHiD0MMVS0h11s3sanQ2aHHEuIjghH3ruioLGvSea+ZYDYaZASUfBD7jApu1b5Ca6YJE+E5Jg==
+X-Received: by 2002:a05:6512:3c85:b0:53e:3a7c:c0b5 with SMTP id 2adb3069b0e04-542845a703emr614601e87.10.1736329728495;
+        Wed, 08 Jan 2025 01:48:48 -0800 (PST)
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com. [209.85.167.41])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5422360010esm5524992e87.79.2025.01.08.01.48.47
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jan 2025 01:48:47 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5401c52000dso18136140e87.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 01:48:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXf9v1hT9Y4D8TnyT/4pTGXr/ZXuFi8VKAI4KskBstQtSK98YoymI2/xI4t1/sSVjKPwxuuCdImSSqr@vger.kernel.org
+X-Received: by 2002:a05:6512:b98:b0:53e:94f9:8c86 with SMTP id
+ 2adb3069b0e04-542848162f1mr595357e87.35.1736329726841; Wed, 08 Jan 2025
+ 01:48:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20241212-usb-orientation-v1-1-0b69adf05f37@chromium.org>
+ <20241217145612.GA1652259-robh@kernel.org> <CANiDSCu_mFQQVkDb_gSyXeb1_Tu+DxSeHYvGsGp6XVDuOdPyjQ@mail.gmail.com>
+ <20241219122453.GA4008177-robh@kernel.org> <CANiDSCt+LAE-LzCDZgrWP_V-Jc-ywTF1-PuQtyDJMfV9v_ZzGA@mail.gmail.com>
+ <CAL_JsqLON5xKoYtowKdk49s-YHbk9bq9akZSH1kHdQ_9vxKSQQ@mail.gmail.com>
+ <CANiDSCvRfZiMafeJ6==oyduZCzJsv74pg9LbswnjoXFS2nTm=g@mail.gmail.com>
+ <Z347NA00DMiyl1VN@kekkonen.localdomain> <CANiDSCs37N79MnFZxvBJn2Jw3062EdLRuVP4EkJVfJcfMMuPAg@mail.gmail.com>
+ <Z35BnplCOVyboSBs@kekkonen.localdomain>
+In-Reply-To: <Z35BnplCOVyboSBs@kekkonen.localdomain>
+From: Ricardo Ribalda <ribalda@chromium.org>
+Date: Wed, 8 Jan 2025 10:48:34 +0100
+X-Gmail-Original-Message-ID: <CANiDSCteoJ_Lk_G6KQKyK1MWikEHF36bYaSHwFEhJh0BFxb6Dw@mail.gmail.com>
+X-Gm-Features: AbW1kvbkaO87sj3WnOUVmKsmBXbh4rZ7j_XWg9A-agvWreDOsdce04sffPDW3Wg
+Message-ID: <CANiDSCteoJ_Lk_G6KQKyK1MWikEHF36bYaSHwFEhJh0BFxb6Dw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: usb: usb-device: Add panel-location
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Jacopo Mondi <jacopo@jmondi.org>, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Ayush,
+Hi Sakari
 
-On Wed, 8 Jan 2025 13:58:04 +0530
-Ayush Singh <ayush@beagleboard.org> wrote:
+On Wed, 8 Jan 2025 at 10:13, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Ricardo,
+>
+> On Wed, Jan 08, 2025 at 09:51:34AM +0100, Ricardo Ribalda wrote:
+> > > > diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml
+> > > > b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> > > > index da890ee60ce6..5322772a4470 100644
+> > > > --- a/Documentation/devicetree/bindings/usb/usb-device.yaml
+> > > > +++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+> > > > @@ -37,6 +37,10 @@ properties:
+> > > >        but a device adhering to this binding may leave out all except
+> > > >        for "usbVID,PID".
+> > > >
+> > > > +  orientation:
+> > > > +    description: If present, specifies the orientation of the usb device.
+> > > > +    $ref: /schemas/media/video-interface-devices.yaml#/properties/orientation
+> > >
+> > > Do you need this for a camera or for other kinds of USB devices, too?
+> > >
+> > > What about e.g. the rotation property?
+> >
+> > I need it for cameras. I do not have a usecase for rotation now, but I
+> > might have in the future.
+>
+> If it's specific for cameras (UVC kind I presume?), wouldn't it be
+> reasonable to add specific bindings for it?
+Yes, they are uvc cameras
 
-...
-> 
-> I will experiment with adding support to dtc and see how things look. 
-> Hopefully, 2025 is the year of addon board support.
-> 
+Do you mean something like this:
 
-Also one point different between fdtoverlay an runtime loading is
-that runtime loading allows to set the target node of the overlay
-at runtime.
+diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml
+b/Documentation/devicetree/bindings/usb/usb-device.yaml
+index da890ee60ce6..bc80c1e7360f 100644
+--- a/Documentation/devicetree/bindings/usb/usb-device.yaml
++++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
+@@ -75,6 +75,12 @@ patternProperties:
+           configuration value.
+         maxItems: 1
 
-For instance, on LAN966X PCI driver, an overlay is loaded and
-applied on a PCI device node.
-The overlay loading is done by the PCI driver device:
-  https://elixir.bootlin.com/linux/v6.13-rc1/source/drivers/misc/lan966x_pci.c#L131
-The overlay loaded is the following one:
-  https://elixir.bootlin.com/linux/v6.13-rc1/source/drivers/misc/lan966x_pci.dtso
++      image-sensor:
++        description: Video interface properties associated to USB cameras,
++          typically UVC compliant.
++        allOf:
++          - $ref: /schemas/media/video-interface-devices.yaml#
++
+ required:
+   - reg
 
-For addon boards, this feature is also useful because without any
-modification in the overlay itself, it can be applied on the correct
-connector. This allows to support, without any overlay modification the
-following cases:
- - A base board with multiple connectors where an addon board can be
-   connected.
- - An addon board with its own DT overlay used on different base board
+@@ -113,6 +119,9 @@ examples:
+             interface@0 {
+                 compatible = "usbif123,abcd.config1.0";
+                 reg = <0 1>;
++                image-sensor {
++                  orientation: 0;
++                };
+             };
 
-This feature is not supported by fdtoverlay. Maybe something like
-  fdtoverlay --base=/somewhere/my_connector
-could be implemented in fdtoverlay in order to choose the node where the
-overlay has to be applied.
+             interface@0,2 {
+>
+> --
+> Sakari Ailus
 
-Best regards,
-Hervé
+
+
+--
+Ricardo Ribalda
 
