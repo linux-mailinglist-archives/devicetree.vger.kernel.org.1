@@ -1,85 +1,79 @@
-Return-Path: <devicetree+bounces-136497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D4AAA05605
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:00:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF366A05660
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:11:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D15E7A05A5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:59:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B01718889A3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:11:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1E21EBFFC;
-	Wed,  8 Jan 2025 08:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DE51F63FC;
+	Wed,  8 Jan 2025 09:10:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="F3PTHolm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cJiKzHNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 508941A0BDB
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 08:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53B5E1F4E32;
+	Wed,  8 Jan 2025 09:10:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736326798; cv=none; b=ITYVAiUlNDrcEYjBSKCNBIzN18tZVy0JUGPlNVEweEMQKSD47EbVLRBDQiqkVvnhIeQLO3umKGB2y+tDV1t3mp6c+3ZcPTIMGxSwrgz+VO2ZvF43RiRUMUo6moqdA0FKpcUrdt9RJAdrizcg9Z/SQNgk05RDRpdxxYLnbE4SNho=
+	t=1736327404; cv=none; b=H19BNwa2rc8wyduuv+LsDRRNDdQpR1pf7q6hKfu871+j/ewk0+qzHxvGfC5l9QuL3WFuTL96hU1s1HcyMZkhKtuKWcD1+DELjURtjHcNswZhEtLARhUE4sjK3EocFtIdkOeVN6PjrG1kfZFowUl24TDBKohzhWXGCw8sa7TYAeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736326798; c=relaxed/simple;
-	bh=ikcm9AWlbwufaaWBaeBEV769l3hfzjKWwGCpeTlWg5o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=G+CAdh2JUNerJgxwifoRJ/VWkDVy2u0bl72tr3N2HS0nYFPMrl23HJ3CzVQStGiGj8GuZrXaAA1fb2ZqYg456MPs1F0xX8img1xfTT7oPZvo6DcUjMrb0nV1nsmeA/OvY0Hdd/pl5buC4jTVDdrUB11VO+344v6ce6h7lIRkERM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=F3PTHolm; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1736326795;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=vbnp6dppOJSaD1roIEtduY8gGhYGLVgiryJd/mNBLcc=;
-	b=F3PTHolmsTCdoVxxyFZTzmgu9D/Lzz6cThYmqce3d6tNdtXlP18LRPwiQn0Mso+Eb5N9ND
-	MTDNFiDaD02vpvv9M1waZtGmtVaSJNYU8sQaQTicPLvCTheQr2w8+yQhlQUbOQLTXeZG6B
-	wNQ214hCSkbZ8QghZMz9uMOxkkE615M=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-502-dBi65zFZP96IedKKWFFYRQ-1; Wed, 08 Jan 2025 03:59:53 -0500
-X-MC-Unique: dBi65zFZP96IedKKWFFYRQ-1
-X-Mimecast-MFC-AGG-ID: dBi65zFZP96IedKKWFFYRQ
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-4361ac2108aso16424335e9.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 00:59:53 -0800 (PST)
+	s=arc-20240116; t=1736327404; c=relaxed/simple;
+	bh=TYJnRulh9SsoN8lhqpA3Tk15WrSalmWYQbRKyBZQC+U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YiK49vxCJNECy4ZyUKSajdqTMEx/X7pBEgnPltYk3Ds/pLxfPOT025CtbjmPKEjrfg4iW0e6AdsblBhIaLX92s0wjUkfQhFOIbjIXIufFCo3PGCWuIqiwKidG4to3s+5WdPj5sxoW7eTayNRiPzYTXwiUMBMdJ9BCwm/ClcPnDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cJiKzHNc; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5401e6efffcso19069309e87.3;
+        Wed, 08 Jan 2025 01:10:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736327400; x=1736932200; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=17/YkGcoUt73Y2+AfuHrh6H6j0zCznkX+tUdDNoqtVE=;
+        b=cJiKzHNcZr9OXbDfzykoH42+ieq5GJGN4/vg+rpnkJRVTUe86g97wV8gbAcNYOxX3R
+         SjFd2go79NAF+s22zp4YfAcwLgGGAZ/fX94KQBQQcvGLTjMmRp8fP4BlCRVO60PAafYL
+         3rvrVtC+UyKRbc8/iVOUI8IE30lItN0xZDN3Q+zn50FtmLJ466HY9UyCwp1BEDDuKiQ6
+         HslzsoB0IPMi2GB85lAWWIVtax47WgW9Na8Wf4YtFL0GpMRftFgbGe7cjhgupnw5sbTd
+         tSSClJK0x+mY9rbLfzWT5J9+1jC+vdMRdtX4VgUQu1tmnX00Fwyc6yXTPTv6b/nqinUy
+         muxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736326792; x=1736931592;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1736327400; x=1736932200;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vbnp6dppOJSaD1roIEtduY8gGhYGLVgiryJd/mNBLcc=;
-        b=aUCc0/aWrpJtezyoSjyQuQWZ/khX1veT4Z7NSds0QBX3dXCP+Rq/gHVtfL4gWIlfKX
-         GiIl8wbjkkTsG1ZK3pR2pZakxW9drtfp/JIlEMwVwm5z+Vp97Tzb1ogoc9tZc2Kc46MG
-         8wqzkaQUPByHanWSFnwUl8HdHlKdLu4kjhAJbP9UnwZhA/NYkSHWzzMOxu7EhBKMHv7t
-         hJMKh/Lp5NgfZeuIkTCJj2TQ2RTOpzun9NrPobgJ+shdku1O3nc3R7Jh2PjcJhYpLA+f
-         Fxy4/Zio/bEicP0en4xkbPQaU8xGv8ZA4dXgZ6mGGAcoSXVm1ATTLEm47chKoBadWTnq
-         05Vw==
-X-Forwarded-Encrypted: i=1; AJvYcCUETtbLJDBe6PciDOZfiYp1iSiDRYqgsTe3HtaUZLAZZUziN1shhCsDJVywzmNgrNGPfiyrbkwOosyY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx79tQS8dKXLiBcWfwl4s1/McBRJWbzJu+cG/szoBnpvC3lwWgL
-	ime72Z7lgq8fKcBLgXk5GP9O/6jQtybdyN43T5VY4Aq8Kk9HLoaDl/Zeu7SYLyDNvwGbaeNlcAB
-	95QSJL4XJqh5chDUPNYirUcA2zWVNWfC1ZfGMKJnoBrDuaX9e9Ig6ISjvsNM=
-X-Gm-Gg: ASbGnct23Br2/j/jmdH1TOe1xu5vadDxlI/ygTjaXzRQNjSGXeW3z8KP/ZT6ixsfRfI
-	f/FW59eiDpb+uaCbthlMmkO6W9qSAF1i0owws2Z2q23D3ibU5U7bQer9krCpnQt8KUSv6V/uz0j
-	5bLR+t+2R4jSBhPbW5lUh02vGplXGbXh1TKeZD4UwNOC3IYoyxRAdAofdy/De4Sl3akDocLIG5a
-	Xipmm2S+N0xLHt/JqnmfPXtGIovvyzJqb3PbVeFWXG+twVQt6WDx7rRSRIG8o0w3heFzlclCVij
-	QVzGvyILTkfdvRmCGJy7TQ6i1w==
-X-Received: by 2002:a05:6000:1889:b0:385:e877:c03b with SMTP id ffacd0b85a97d-38a872c7e22mr503650f8f.2.1736326792664;
-        Wed, 08 Jan 2025 00:59:52 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGxs4nyMy+4efmQct8BG2ReZXARDKC9cyCw0D7i11y2guRVXjKoX0Z2AbGHoIJ69Iu3suyW5w==
-X-Received: by 2002:a05:6000:1889:b0:385:e877:c03b with SMTP id ffacd0b85a97d-38a872c7e22mr503640f8f.2.1736326792266;
-        Wed, 08 Jan 2025 00:59:52 -0800 (PST)
-Received: from [192.168.1.48] (162.red-83-45-90.dynamicip.rima-tde.net. [83.45.90.162])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2ddcda3sm13586785e9.22.2025.01.08.00.59.51
+        bh=17/YkGcoUt73Y2+AfuHrh6H6j0zCznkX+tUdDNoqtVE=;
+        b=WSScK03BozXRMY53etp8cZ0bsOycdONX6sl35s0yfLZukNNnFjoFAI2lJyA/H06gCM
+         9uh5WcRO7thSE2F/P9dxI4fKfI7ucl+Az64yMcu4qxFOS4M/rZvOVmoXAL0jqL02+2jC
+         +qvNtXybX4PwJwv4j3EwqYqJnrHriW1IHcdlbCRQz1lc8OxlJMTLGbKikuXl/ZXoQi84
+         SEknsIwTLTpp7z+D8sENR1MDiyXR1DVn4AqO7Hx47EqlZJqU8lUMBFJUn6GuKrZanFVr
+         G53AWibltwwdNEEHzbR+cuY33ePDpmM0UhKEmgj2oGPW8idlQli95bIH+CdR3In6gBf4
+         XBrw==
+X-Forwarded-Encrypted: i=1; AJvYcCULvbIQB/6AGFdtkmkqLIpsPYoxMdFjTtrct8YTV+wZdFnbTvflk0WADchAg+NmtKOESu1n8GEPT3OAia8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJwVHvzyndzvOEtvW6d5DjNavBUTZF/6x0ts7R5Mb5hw8MNYnT
+	dFQ27OHRUE8x6EYmZmPoFlUT47CY1HxgazScKQ3cpYwMlbwZtTMK
+X-Gm-Gg: ASbGncuLZnMW5y2uR9NU+RtWVBfucs7K1WvbEWjmNv7leqG8GwahtJuLYl7Z9/erqlB
+	rykQL8XAm7GR0CbpGYWZwypwmo9cqTDanrom/JIvAAb9DNoqGVyZ8b73ub0qnOfnnXBorFMn6Mj
+	BGvmV0eWIF8aaO9XeGxFLDRNjgsK+bvYgN/adQKIISrQjYvm4APayeM549xD3va2yyXsiwDGfJW
+	Wy/5PylW2aszs0mwT5pCImmKT3G2H3qqtxmg1wsZdGn7U6YtoO3USAh/Q==
+X-Google-Smtp-Source: AGHT+IG9vDEilGecqfIee0EPhs6XC/SdCMZE5b3FTq0kDLUNQVPbKIBsetat4pMP6r/SXGR3mknQPw==
+X-Received: by 2002:a05:6512:6d3:b0:542:2190:9d99 with SMTP id 2adb3069b0e04-542845b17e5mr550651e87.6.1736327400021;
+        Wed, 08 Jan 2025 01:10:00 -0800 (PST)
+Received: from [172.30.32.150] ([185.204.1.212])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54223813898sm5386450e87.154.2025.01.08.01.09.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2025 00:59:51 -0800 (PST)
-From: Enric Balletbo i Serra <eballetb@redhat.com>
-Date: Wed, 08 Jan 2025 09:59:46 +0100
-Subject: [PATCH v3] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
+        Wed, 08 Jan 2025 01:09:58 -0800 (PST)
+From: Alexey Charkov <alchark@gmail.com>
+Subject: [PATCH v2 0/3] arm64: dts: rockchip: Add H96 Max V58 (RK3588 based
+ TV box)
+Date: Wed, 08 Jan 2025 13:09:05 +0400
+Message-Id: <20250108-rk3588-h96-max-v58-v2-0-522301b905d6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,124 +82,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250108-am69sk-dt-usb-v3-1-bb4981534754@redhat.com>
-X-B4-Tracking: v=1; b=H4sIAIE+fmcC/3XMQQrCMBCF4atI1o40Y1MTV95DXEyTqQ3SVpIal
- NK7m3YjCi7fg++fROTgOYrjZhKBk49+6PPYbzfCttRfGbzLW2CBpZRYAXWViTdwIzxiDdpIXXC
- jdKOdyOYeuPHPtXe+5N36OA7hteaTXN5/pSRBApFSxO5Qa8OnwK6lcWeHTiyphB+ORfnLMXOnT
- I1kS2Wrbz7P8xsFcIVJ6gAAAA==
-X-Change-ID: 20241126-am69sk-dt-usb-89180ef58f8d
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>, 
- Enric Balletbo i Serra <eballetb@redhat.com>, 
- Roger Quadros <rogerq@kernel.org>
+X-B4-Tracking: v=1; b=H4sIALFAfmcC/22NQQ6CMBBFr0Jm7Zi2Ok1x5T0MCywtTBRKWtNgC
+ He3sHb5XvLfXyG5yC7BrVohusyJw1RAnSqwQzv1DrkrDEqoq9DSYHxdyBgcao1ju2Amg1ZZ+fT
+ G6brWUIZzdJ6XI/poCg+cPiF+j48sd7vnSEih/+WyRIGdIkXkDUlv7/3Y8vtswwjNtm0/BaJqP
+ rQAAAA=
+X-Change-ID: 20240618-rk3588-h96-max-v58-c2c1bf8e6996
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alexey Charkov <alchark@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736326791; l=2889;
- i=eballetb@redhat.com; s=20241113; h=from:subject:message-id;
- bh=rvcFoscZViVxDaJspALFWgoUr6T2RAOAuocr/57icVA=;
- b=Qkksndjyf8mnDQ0j6z34D8nnH2YTOy/nuMBKhsg0AHf6+rTAlJeqPNLm29cRE/pbdAyTPUUHG
- oQuYFDSYw9XDRtHbgNRvRmE6E4ftT9swXLieEjDXlpgJfPYsv0kMLD6
-X-Developer-Key: i=eballetb@redhat.com; a=ed25519;
- pk=xAM6APjLnjm98JkE7JdP1GytrxFUrcDLr+fvzW1Dlyw=
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736327393; l=2307;
+ i=alchark@gmail.com; s=20240125; h=from:subject:message-id;
+ bh=TYJnRulh9SsoN8lhqpA3Tk15WrSalmWYQbRKyBZQC+U=;
+ b=ENiXKmahLqDMSh0OkgiT4U78QvZnxHkxL2aKvLLsWtNqIGWeADtT6txSEE2zLdZltKXaCB0Fm
+ ofUft9c48d3BrZMsuu0DBbSPCqs/SNlVpIIG/2fwxuFlSGB76HxPg6g
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=xRO8VeD3J5jhwe0za0aHt2LDumQr8cm0Ls7Jz3YGimk=
 
-From: Dasnavis Sabiya <sabiya.d@ti.com>
+Add support for H96 Max V58: a compact TV box based on Rockchip
+RK3588 SoC [1] that ships with Android by default.
 
-AM69 SK board has two stacked USB3 connectors:
-   1. USB3 (Stacked TypeA + TypeC)
-   2. USB3 TypeA Hub interfaced through TUSB8041.
+Note that there is no publicly available hardware documentation,
+nor vendor sources to be used as a reference, so this implementation
+is best effort based on poking around my board and staring at the
+decompiled stock DTB. It works for me, but improvement suggestions
+are very much welcome.
 
-The board uses SERDES0 Lane 3 for USB3 IP. So update the
-SerDes lane info for PCIe and USB. Add the pin mux data
-and enable USB 3.0 support with its respective SERDES settings.
+HDMI output is not tested, but expected to work.
 
-Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
-Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+Auxiliary LED display is not enabled (no mainline driver available).
+The controller used is FD6551 connected to GPIO3 RK_PC7 (clk) and
+GPIO3 RK_PD0 (data), which happen to be the right pins for
+i2c5m0_xfer pinctrl config, and thus might potentially be used with
+the hardware I2C5 controller (to be verified). Out of tree drivers
+are available at [2] and another newer alternative at [3]
+
+SPDIF output tested using a 2-channel digital to analog converter
+box (higher channel counts not tested, but expected to work)
+
+[1] https://www.h96tvbox.com/product/h96max-v58/
+[2] https://github.com/arthur-liberman/linux_openvfd/blob/master/driver/controllers/fd650.c
+[3] https://github.com/jefflessard/tm16xx-display
+
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
-I've been carrying this patch for quite long time in my builds to have
-support for USB on my AM69-SK board without problems. For some reason this
-patch was never send to upstream or I couldn't find it. So I took the
-opportunity, now that I rebased my build, to send upstream.
-
-I have maintained the original author of the downstream patch as is
-basically his work.
----
-Changes in v3:
-- Set offset address in lower case for TIMER_IO1.USB0_DRVVBUS pin
-- Link to v2: https://lore.kernel.org/r/20241204-am69sk-dt-usb-v2-1-d59b2ac45c6e@redhat.com
-
 Changes in v2:
-- Set dr_mode to otg to fully describe the hardware proprieties
-- Link to v1: https://lore.kernel.org/r/20241126-am69sk-dt-usb-v1-1-aa55aed7b89e@redhat.com
----
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index 1e36965a14032ca07143230855e04b9549f1d0d1..734d81019d286f233ac03fbaad9e80a0f7ad3ae3 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -484,6 +484,12 @@ J784S4_IOPAD(0x09C, PIN_OUTPUT, 0) /* (AF35) MCAN7_TX */
- 		>;
- 	};
- 
-+	main_usbss0_pins_default: main-usbss0-default-pins {
-+		pinctrl-single,pins = <
-+			J784S4_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AN37) TIMER_IO1.USB0_DRVVBUS */
-+		>;
-+	};
-+
- };
- 
- &wkup_pmx0 {
-@@ -1299,6 +1305,14 @@ serdes0_pcie_link: phy@0 {
- 		cdns,phy-type = <PHY_TYPE_PCIE>;
- 		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>, <&serdes_wiz0 3>;
- 	};
-+
-+	serdes0_usb_link: phy@3 {
-+		reg = <3>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_USB3>;
-+		resets = <&serdes_wiz0 4>;
-+	};
- };
- 
- &serdes_wiz1 {
-@@ -1339,3 +1353,22 @@ &pcie3_rc {
- 	phy-names = "pcie-phy";
- 	num-lanes = <1>;
- };
-+
-+&usb_serdes_mux {
-+	idle-states = <0>; /* USB0 to SERDES0 */
-+};
-+
-+&usbss0 {
-+	status = "okay";
-+	pinctrl-0 = <&main_usbss0_pins_default>;
-+	pinctrl-names = "default";
-+	ti,vbus-divider;
-+};
-+
-+&usb0 {
-+	status = "okay";
-+	dr_mode = "otg";
-+	maximum-speed = "super-speed";
-+	phys = <&serdes0_usb_link>;
-+	phy-names = "cdns3,usb3-phy";
-+};
+- Added SPDIF support in SoC .dtsi files and board .dts
+- Fixed DT warnings found by Rob's bot
+- Reworded commit messages following Krzysztof's suggestion and
+  collected his A-b
+- Link to v1: https://lore.kernel.org/r/20250106-rk3588-h96-max-v58-v1-0-d25255f851fc@gmail.com
 
 ---
-base-commit: 7eef7e306d3c40a0c5b9ff6adc9b273cc894dbd5
-change-id: 20241126-am69sk-dt-usb-89180ef58f8d
+Alexey Charkov (3):
+      dt-bindings: arm: rockchip: Add H96 Max V58 TV box
+      arm64: dts: rockchip: Add SPDIF nodes to RK3588(s) device trees
+      arm64: dts: rockchip: Add H96 Max V58 TV Box based on RK3588 SoC
+
+ .../devicetree/bindings/arm/rockchip.yaml          |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |  64 ++
+ arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi     |  30 +
+ .../arm64/boot/dts/rockchip/rk3588-h96-max-v58.dts | 826 +++++++++++++++++++++
+ 5 files changed, 926 insertions(+)
+---
+base-commit: af349ca4d3f8659d84abc667125c826fda155109
+change-id: 20240618-rk3588-h96-max-v58-c2c1bf8e6996
 
 Best regards,
 -- 
-Enric Balletbo i Serra <eballetb@redhat.com>
+Alexey Charkov <alchark@gmail.com>
 
 
