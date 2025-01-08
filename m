@@ -1,150 +1,144 @@
-Return-Path: <devicetree+bounces-136797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121DCA063A2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 18:44:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9C0EA063BF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 18:53:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFED61888865
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:44:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9E91166FD4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:53:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7DB91FFC77;
-	Wed,  8 Jan 2025 17:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A48992010E1;
+	Wed,  8 Jan 2025 17:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OhzF/v3e"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XtQQjt1u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB3219B586;
-	Wed,  8 Jan 2025 17:44:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE33C1FFC67;
+	Wed,  8 Jan 2025 17:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736358292; cv=none; b=SLMuxNUMOYdQNRKbsbaJzIpXPTomRT/AyoukuPzYcIIn4lYVBu3xwu0HXEsbiRCLxju3RR7ymGTJkoelt8x3eZaj5RC90ZTsyD+KGLzLiRnnzhwGuEUGKQ1Hjlq4ddROHDH6N1X6g8Fvjxm9bOyIM1i1y6eVV2k0LoGb00cxt14=
+	t=1736358785; cv=none; b=V6N4bNpHs0hymyE4Eh5Y/8Krb7MB944AW7gyERpjTkFiL/JZyznSlvLT1hPDAgVlAfExj71rOe9uuAG6Fp7AxGtmQScM+n0oT8n7X//yM4Uu2XXBcA/YWeybYCRXJ/3ZS+uGBawr45olEdHm8hW0VuSaD0k684pr3DbGLd+gnKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736358292; c=relaxed/simple;
-	bh=oxIY8To//tDnkJG7ZagTIT37bBiPqu2UlpxhpeXyo9E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mrXsNbNgfo884QS2fooff1IRGCh5eTo7ttezXsQsh8ZZ3UGLLoKCqVn7D6nkfDx8Te7of7s2hq0Q0MxS/BrveTE8eAeK3nLc7n/pPlMeV6q4cggwO0CGfJxruLgqd+AVJdwSGHPMqNvvEr4Hsx+47U6DtnJpEuFD7RN9wpp7wwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OhzF/v3e; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 14DDD1C0003;
-	Wed,  8 Jan 2025 17:44:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736358286;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nVX6wM/yvs9o7iBktHEAa+W2nk3G2s2HD+9v+CoiRkk=;
-	b=OhzF/v3e/veSuhWNWeHA4zZZiEmhJtHWKroYPkZIQjQGdq76uUK7jNPyA1f0MO9pv//8hw
-	AqtTSYg52KBcv6fCr0kLCYk9vBNSt3WkZZQRH1Sokz76DmiXIvLyfSBSv3XzrJei/rzbrH
-	MXyap3cfVJSBSEyAMENcoYHdjWFY6TFwL47z0M6kgOVoS9bIVDmoBpxChGYPQEKHqhI5Eq
-	OOS2b2drhmpxXkne0Qo8ClU8fchuxgIvieWxH/ign1fa0pGlxMZnWlB8GCGYHbhRrXP6oX
-	i5d1cGOGxfzd8n8PYrqVQab3O9TkrfdYthiObV+qfjhfubc2hzat0PoTczt8+A==
-Date: Wed, 8 Jan 2025 18:44:42 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Louis Chauvet <louis.chauvet@bootlin.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-Message-ID: <20250108184442.64f38fbc@bootlin.com>
-In-Reply-To: <115787605.nniJfEyVGO@steina-w>
-References: <20250108101907.410456-1-herve.codina@bootlin.com>
-	<20250108101907.410456-4-herve.codina@bootlin.com>
-	<115787605.nniJfEyVGO@steina-w>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1736358785; c=relaxed/simple;
+	bh=NwN06BuwWws3Dy2bB2ldsOtGEyJBTTRxRTzJzhgbLhU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CRWv+Mo/HYDXb4XPDcgR4I5+jqwbvAfb5ZvHmZ3AzJtBNq5xh/G5Fq35V/QUA6v6RQnbVZIG0b2Qw3kJz4hyGrVySec8p+q9lLS/eTu5xFbXKizBkSsWHNuiaqP/2QNNYSFxTZu82mjK6vV8iO9UObedTAzgmfhbjRUwAaciJDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XtQQjt1u; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=TAAO1Chf6hDYV9mEVdFl4KLhPTl2u2J4AKlDsKfF4qk=; b=XtQQjt1um6jDIVerxn2G5x/9Yg
+	VigbPTw+BhyEl8UPKACYGGkerBa4/lPUaT3YGcbKd1+qBorH4cqWZMhxVgKqR4ZhTRpgw3i8Ktlw5
+	JCZJm55al/ky1Nbj3aK19x4uKztA8k/2F/fRu2z/UXlopcvNLhwaJkYa0mH4b/1CWbno=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tVaEW-002e68-6T; Wed, 08 Jan 2025 18:52:44 +0100
+Date: Wed, 8 Jan 2025 18:52:44 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"eajames@linux.ibm.com" <eajames@linux.ibm.com>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"joel@jms.id.au" <joel@jms.id.au>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"minyard@acm.org" <minyard@acm.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"ninad@linux.ibm.com" <ninad@linux.ibm.com>,
+	"openipmi-developer@lists.sourceforge.net" <openipmi-developer@lists.sourceforge.net>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
+	"robh@kernel.org" <robh@kernel.org>
+Subject: Re: [PATCH v2 05/10] ARM: dts: aspeed: system1: Add RGMII support
+Message-ID: <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
+References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
 
-Hi Alexander,
-
-On Wed, 08 Jan 2025 11:54:49 +0100
-Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
-
-[...]
-> >  #include <drm/drm_atomic_helper.h>
-> >  #include <drm/drm_bridge.h>
-> > +#include <drm/drm_drv.h> /* DRM_MODESET_LOCK_ALL_BEGIN() needs drm_drv_uses_atomic_modeset() */  
+> >Does the mac0 TX clock have an extra long clock line on the PCB?
+> >
+> >Does the mac1 TX and RX clocks have extra long clock lines on the PCB?
+> >
+> >Anything but rgmii-id is in most cases wrong, so you need a really
+> >good explanation why you need to use something else. Something that
+> >shows you understand what is going on, and why what you have is
+> >correct.
 > 
-> Shouldn't this include be added to include/drm/drm_modeset_lock.h instead?
-
-Yes indeed. I will change that in the next iteration.
-
+> Here I'll add some explanation.
 > 
-> >  #include <drm/drm_mipi_dsi.h>
-> >  #include <drm/drm_of.h>
-> >  #include <drm/drm_panel.h>
-> > @@ -147,6 +150,9 @@ struct sn65dsi83 {
-> >  	struct regulator		*vcc;
-> >  	bool				lvds_dual_link;
-> >  	bool				lvds_dual_link_even_odd_swap;
-> > +	bool				use_irq;
-> > +	struct delayed_work		monitor_work;
-> > +	struct work_struct		reset_work;  
+> In our design, we hope the TX and RX RGMII delay are configured by our MAC side.
+> We can control the TX/RX RGMII delay on MAC step by step, it is not a setting to delay to 2 ns.
+> We are not sure the all target PHYs are support for RX internal delay.
 > 
-> Can you please rebase? You are missing commit d2b8c6d549570
-> ("drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing optional properties")
-
-Sure, I will rebase.
-
-[...]
-> > +static void sn65dsi83_handle_errors(struct sn65dsi83 *ctx)
-> > +{
-> > +	unsigned int irq_stat;
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * Schedule a reset in case of:
-> > +	 *  - the bridge doesn't answer
-> > +	 *  - the bridge signals an error
-> > +	 */
-> > +
-> > +	ret = regmap_read(ctx->regmap, REG_IRQ_STAT, &irq_stat);
-> > +	if (ret || irq_stat)
-> > +		schedule_work(&ctx->reset_work);  
+> But ast2600 MAC1/2 delay cell cannot cover range to 2 ns, MAC 3/4 can do that.
+> Therefore, when using ast2600 MAC1/2, please enable the RX internal delay on the PHY side 
+> to make up for the part we cannot cover.
 > 
-> Shouldn't you clear the error bits as well?
+> Summarize our design and we recommend.
+> AST2600 MAC1/2: rgmii-rxid
+> (RGMII with internal RX delay provided by the PHY, the MAC should not add an RX delay in this 
+> case)
+> AST2600 MAC3/4: rgmii
+> (RX and TX delays are added by the MAC when required)
+> 
+> rgmii and rgmii-rxid are referred from ethernet-controller.yaml file.
 
-Thanks for pointing that.
+O.K, so you have the meaning of phy-mode wrong. phy-mode effectively
+described the PCB. Does the PCB implement the 2ns delay via extra long
+clock lines or not. If the PCB has long clock lines, phy-mode is
+'rgmii'. If the PCB does not have long clock lines, 'rgmii-id' is
+used, meaning either the MAC or the PHY needs to add the delays.
 
-I can clear the error bit but further more, I probably need to simply
-disable the interrupt.
+The MAC driver is the one that reads the phy-mode from the DT, and
+then it decides what to do. 95% of linux MAC drivers simply pass it
+direct to the PHY. If the phy-mode is 'rgmii', the PHY does nothing,
+because the PCB has added the delays. If it is rgmii-id, it adds
+delays in both directions. This works, because nearly very RGMII PHY
+on the market does support RGMII delays.
 
-In some cases, we observed i2c access failure. In that cases clearing error
-bits is simply not possible.
+There is however a very small number of MAC drivers which do things
+differently. Renesas produced an RDK with a PHY which could not do
+delays in the PHY, and so were forced to do the delays in the
+MAC. Please look at how the ravb driver works. If the PCB does not add
+the delays, rmgii-id, the MAC driver adds the delays. It then masks
+the phy-mode it passes to of_phy_connect() back to 'rgmii', so that
+the PHY does not add any delays. If the PCB did add the delays,
+'rgmii', the MAC driver does not add delays, and it passed rgmii to
+the PHY driver, and it also does not add delays.
 
-To avoid some possible interrupt storms (the chip detect a failure, set its
-interrupt line but could be not accessible anymore), the best thing to do
-is to disable the interrupt line here, let the reset work to do its job
-performing a full reset of the device and re-enabling the interrupt line
-when needed, probably in sn65dsi83_atomic_enable().
+So, your MAC driver is broken. It is not correctly handling the
+phy-mode. First question is, how many boards are there in mainline
+which have broken phy-modes. If this is the first board, we can fix
+the MAC driver. If there are already boards in mainline we have to be
+much more careful when fixing this, so as not to regress boards which
+are already merged.
 
-What do you think about that?
+Humm, interesting. Looking at ftgmac100.c, i don't see where you
+configure the RGMII delays in the MAC?
 
-Best regards,
-Hervé
+	  Andrew
+
 
