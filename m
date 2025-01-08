@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-136759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A39E2A06191
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:19:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78D88A0618E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:19:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B46907A0F51
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:18:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB298165E62
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:19:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE2B201011;
-	Wed,  8 Jan 2025 16:15:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB273204096;
+	Wed,  8 Jan 2025 16:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kumqiIYo"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="019Ly4Tr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820C51FFC7F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C323320011B
 	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 16:15:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736352956; cv=none; b=Fs6cgNgczbaYixmMb9kB4rV1JfJNxCYLPkVawSlNO1dJW7SWX7va+/IG+rCq1NeTEpxkmzsgTrVPBCbqmntTt9MMbACPTQa+iB6rruiuQE3NnWE2zVhc7u2jOokcY7RUE8JPqnU6qXLVBQLrONzlQJs5ROnHMnoCPtH2PRh7X/I=
+	t=1736352957; cv=none; b=C33WmVprLMWRZ3yGJdhnx/aVf4ilXwGilgCM9pV8eeHlWhZjTHCKwyGIppMFLM3O4ALS5sgx1lGYwRDtc7DqBSvBWFim7E7BuKZxfcgtZNC1K5/frBP1HpP7uzp8TzPIna4z6Hxlgl6fyxIcDl/TAjeRPJP0Z+fBtAONq8Vm3wU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736352956; c=relaxed/simple;
-	bh=z5v/37P5GAIdDLJPdviMCJVcm6R2ZLfW0o63bhtsj3k=;
+	s=arc-20240116; t=1736352957; c=relaxed/simple;
+	bh=/H4ZYocEqi4RE1sb0guDfUix0kyAfFw8e32hk6SxuDc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ezbxv3aTtpYpugpRfvu4ra6odRvLvMQ1o6wPlNXrUCcCzjwC9RN8vQZ98NoJ7jZ1IGD3oyTYfEdYt0yzAxkUb/xM/z5AnsRORcf4wLiZqhjpjWuALefHrUxgGhu22L6GhoGgd4JftscRCIzlhuTlgVSTNx01JWt+QygIHecv9mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kumqiIYo; arc=none smtp.client-ip=209.85.128.42
+	 In-Reply-To:To:Cc; b=VfrkFgSjkqnzpzJvnCEdRoeqhHW4jeBaHYnxgOOYTvmODe+Uz2nGEirK4CeHz2bF9Dp4pUpx9BFz6S1DMaqyjFbJ2/V6sq5WQhOQ/Lt0F937ARpjn+wC4jZPuNjFGVBPXnd0ud9QIQir2Pbk8lGpjaAhJUq40ivCYYEUTxOqdiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=019Ly4Tr; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43634b570c1so84585e9.0
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4361b6f9faeso7096345e9.1
         for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 08:15:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736352953; x=1736957753; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=EIN3+R/E8p4a1D64k2o8LyTex7GHx1foOgh0nVt0L10=;
-        b=kumqiIYoO0SbrOpvSsigDqBWLBpK9ApB7K9IBs2rbgwwfGSg9uZD7DOb9KgFe8w3FX
-         FdUbS8LimZGoWk0kq73ks5b8eZ/mMCPX3OfuEgXzXIxJ19oQDCjJvWGt4LtfiNGnN9Zw
-         2OG5Ue43vc5IclPkcZ8OmcEMOzLdhQJPwc0rWn2k+NoNT8J8BYzZofvGxlbXsxdUBaIm
-         5I32WtikzwoI5i7TB5TOCSF4mjFeJhIPiRIRsNXQuwZOBQQ5GiaMA5UAymid9uPma+9X
-         UYd0xQlt/y6blLtEDQGiSsvb+8n1atd1umVHODZFqexUDgRgAPhnmPGfqfdI6h3LOMvS
-         RsYw==
+        bh=bZRl/jIT8uB/r9kmnVgG5TBst8UCINOdajarq/Q+Phg=;
+        b=019Ly4TrAwBWGFa+AWFPMOtN8fpFofRaEs9OAi3CltIizhdFCl3MqF9W+kVp3Yoyeo
+         z2J8g1vSrdOiUc1ctTSLJrfKrPuDsWs43KV1Cifn8bIoFePDl+lsqPxCGb7W9eLqbusl
+         us5EV6ff0mGaDaZFkb6lHRCeDXBuvq8B9kRIPnzpUfP76xfWfu5U86P4Q6E2zU4E5MJX
+         3oH5JDTqta+UaisH9JYOv0b4ZkR6WVdCujfThpo7AIL9jdBqOXUzCfEdK5vP0lH228MY
+         0NdhbN7zDUchBv3XD5vD13MF/gbplA3i+R7rl7Qytb2dlFaBVUmW4M/1QcCkVlHKqTEt
+         1HGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1736352953; x=1736957753;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EIN3+R/E8p4a1D64k2o8LyTex7GHx1foOgh0nVt0L10=;
-        b=FCHHNoOU02zDYofH6fhn/BOt1CKVj4/knebafzySKfeNn0GXu+/IFqBmft99Dqw4o+
-         IQsh8ciLlK69VrVWOaGupTCiaGVRL1PUpUlRSy1Ro0O8h0rtXXTmWaBWquIEr+I87lLJ
-         4VVK668PROE5egQT065b6ahwZO0h0EsHTqDi2oPwQlKd0v95WP10/qxK+F1W+uAEymjf
-         LbdbnI4/QixjgBxCeOb4bGDRiEVAICUmZqiF5d74h99Ua1j9T0VXhlOQLgs6r0XWR3tX
-         bfF7WbfrbiLa+jfq0e9BsgHEfqJS59DG+/ZaAZgvdrl1KpIrb+VSle2F3EhhBOahE7LJ
-         ffmg==
-X-Forwarded-Encrypted: i=1; AJvYcCUUIEOx425z7RgnVtxasRE2BWp462UnOCHSmYvfvgqjKbaZiBrUzLO41WKILDuvgcGS/BwwXAy1zGBy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2DtF21R3Y38pVlw5x7AarxNHV89AdjfiT3Q/eYK4UHvsNpoAo
-	hHWtd4+7KtBKbnUpV65NGu3KFY2bKZVnWTiBhBBeEjt6W4svCdPJ2zA+qMBRTEQ=
-X-Gm-Gg: ASbGncu55SuVEqEQ0zPKHVNbPoR58N5/+EpzLGImwDHVWMSAp+M2BDdHFfwYz2IGdht
-	hKRbpY8ujtUJGXGW1w8zu22CJD5qGwuqFWntR9057HqPOpTWscATcRlEjZux72nzl4KXytFzULU
-	cK+bXFCUy6qvvdoAhdO+KNmlCl2KGHlIs/Rj8bop3+y/XZBqzcDuZ90ApL5Gp8vmnf2aco5AEDU
-	RPt6IoWU0Fti0X7oJjX8gh6AoiVNcIOPlfE+L9K0PkhehPDNmTHS9P95yIn
-X-Google-Smtp-Source: AGHT+IEosujTc3WZYpXQT40YfA80yrGf731lKmLgaCb0a9KQqnzVjj8O3xm82vCLoJawvZiZZYjb4w==
-X-Received: by 2002:a05:600c:35c1:b0:42f:7e87:3438 with SMTP id 5b1f17b1804b1-436e255ebb9mr33197665e9.0.1736352952087;
-        Wed, 08 Jan 2025 08:15:52 -0800 (PST)
+        bh=bZRl/jIT8uB/r9kmnVgG5TBst8UCINOdajarq/Q+Phg=;
+        b=d0D2kDFm2nWZNGX4LOiW/SSl+671lIaP6DKDLvCbbyDR7cY7BXxdlMe8d6S3dUZtQw
+         hYWpNQ9B9ktL3uETB5p4u5jlpybdcliPDcDi6ptUOR0ayplnrPE56Plzu9ZIPUOESAh+
+         sL49cY/A19uHer39FRE2Em/hqMr7lXO3zt23VRGDyUoLIWJ92pSudg0Fmu91oOxc83br
+         EfXux7/YeegxrjifEbhsUz0IuZe6LEzANQ+2Qdt70Q0tXLL1SsV5nQ4+8eGzBvwCSKNk
+         dAAPSX9egyDybuZhUxgbpkNnHRJZEUQeQ6Xxya+/oubmCUQPW89d8qxtpqSSuKYPs2Wn
+         GDgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWtWeUImYi8WViD5MQ/u2vAFpi7/BiMevQOiaHIKsW/xVOESEotju0weEk02/azNDrQgQkQttmV1pMe@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywexe1kK4r2WF/7NQqhuoBKvi3JZevpT5Xp5lVrHKdRwQrMO0mx
+	DeWUrYPjzdvCI1+STf25iiTcsmWhXOe3VRO2LvVRUJrRtZOYHGJyesIWVb+6KP4=
+X-Gm-Gg: ASbGncuwdtMuwYte67/rA1a1cOK7tpo3Qis223Yp5BWcvOu1Po5QXdDfJV7GSSby3CQ
+	AxKGTNLEpYYkEkUVTqQq8hzRLyOR+psZHxUN8vY/GEa/Ar5JkTwE9BPUoSyCaJ72knuGuc4XQqU
+	y+DZkPoyUIjnUos/UmU6GYenx8nDVcVfR3mukKCXqVMJu2UE0ONpYr4bKKxHfPaE/sEvfVCypoK
+	hlU3yW3o5Cbjjw7/FGTgJ5/UxOt6DzWwREu25IMFapKVp1ljIT7sjQntJlr
+X-Google-Smtp-Source: AGHT+IGT2W9yiRNnHWhCQFwEtFEOBt+fTSjqZ7msqjn6YQpc4lBgX0/mDPLImROOnOo9J0j7h9H6Gw==
+X-Received: by 2002:a05:600c:1c28:b0:434:ff08:202e with SMTP id 5b1f17b1804b1-436e1de8c6bmr31114125e9.8.1736352953222;
+        Wed, 08 Jan 2025 08:15:53 -0800 (PST)
 Received: from [127.0.1.1] ([2a01:e0a:5ee:79d0:a6ac:e6d2:88e3:8ea1])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436dd14dfcasm44378105e9.1.2025.01.08.08.15.51
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436dd14dfcasm44378105e9.1.2025.01.08.08.15.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2025 08:15:51 -0800 (PST)
+        Wed, 08 Jan 2025 08:15:52 -0800 (PST)
 From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Wed, 08 Jan 2025 17:15:46 +0100
-Subject: [PATCH v5 4/7] arm64: defconfig: enable display connector support
+Date: Wed, 08 Jan 2025 17:15:47 +0100
+Subject: [PATCH v5 5/7] arm64: defconfig: enable STARTEK KD070FHFID015
+ panel
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231023-display-support-v5-4-3905f1e4b835@baylibre.com>
+Message-Id: <20231023-display-support-v5-5-3905f1e4b835@baylibre.com>
 References: <20231023-display-support-v5-0-3905f1e4b835@baylibre.com>
 In-Reply-To: <20231023-display-support-v5-0-3905f1e4b835@baylibre.com>
 To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
@@ -102,23 +103,24 @@ Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, 
  Alexandre Mergnat <amergnat@baylibre.com>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=687; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=z5v/37P5GAIdDLJPdviMCJVcm6R2ZLfW0o63bhtsj3k=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBnfqSyJp38Z4BVjerOBBWOKbJ1Lv9thI8YXcWeAwmO
- 81RFWKWJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ36ksgAKCRArRkmdfjHURdS1EA
- CCAaOP4XUm/YJjD/FhPHZoz0GAp6Do0Jzcpqb39fjQf06aIytMLTKp7uIzjiLlvQrlpzW08KdneV3C
- Xge4Aw71aWaUII3nxuZC1I1ea/Ic3onBXuk2/vowGapquz6prNOTeqSv3dwJGtZRPT9RJlxPJjMWaR
- GUuFRfNEFtC9VU3wu695kAbau/zXGpWdQD3iKVxO6rQCVqOpShFNxSgc6yzkZd31K/gOWcS4aC/jeJ
- EyG5CDTrw75sHwlCLr1fwGiMqeTvqZP0OJF6pcg3vH6hoezfjKD40rSOHFq0N76BuFG/FVGTnNrYmM
- nvP4B04usjbOVqH7ObzhOTGthKNf9X44fgWBk6xJhtgPyAftkCbyWEXpJUtqGpXlIquxVJeNeplRJ7
- RQqcWC+RJFjLMNqeyqBuBaDd4MFftMEa3TnfetzylAG+RxJ8rVarswdVmWBzl3c7kCmaQO2VY9KhnE
- z83X7zmZDv0fZ8ZEKHbqvWbMLW4rOq14YJuu/MuUuCMd/op68zsHD/o2MFWXjGzqpc4EUb6ULU1roa
- 3KBIvljq9+WIQ14j8pSzbZfcpBwTlxXuAqJLAn9E0lxYkE2fDo0dkt1Lu7uv+j5V8QMev18XJPk90C
- lbNvmR+AJE2HPeQJ5UnDntTJ5fkXjqedj7dc+LZ4Ti4kNTFXMAIapcsA/k4Q==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=772; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=/H4ZYocEqi4RE1sb0guDfUix0kyAfFw8e32hk6SxuDc=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBnfqSyZUqWDoRMqRxRWHdPZ1OmxpMWlPUStE40NTbR
+ Qh5ok4mJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ36ksgAKCRArRkmdfjHURcKfD/
+ 4j0lpGO03jOuFcKFmvdaUaWEoZgiGAxt8XbpFYnaIbzTWK37FaYHEIf0bmWVzjb36+j7dMvjk3G0vE
+ tDu1yKnGhJNNZvpXYAotSbPYGfrG0wFGa53PDQ25CFHWfjw6AuBoMmQx89hkTD7WXlECivSkpMG9Ex
+ /dM+uCbl7m7BimpucKnVF8YrFNrw3vGeLald1Otgt9AWwjDSsCeU2Oy57L+BnP+/eBI+jmv9r0Dap2
+ M4p1qYPfkMm3ebiLkEUvu2THntvG+8inAV+RvNAoRWfLaGejPYVB5zrPi2DJoECyhMvYKLIu6m23Kj
+ gGa1P8jpok/dMlR58qCfw7xoFeSqTItsSI/W4p6Xymz2Htq+CQJjI0sQW6r52jj0GTGK1mE86Zkyh5
+ V43A6rJeF+D2c9KFPX/DU0TOts8T7yrae/3G4Kx9mIae1bYWIRqROUP027GtOiWt0Oid5EENR+fxWW
+ hrZONNg7KZIhiRHx2lgcdSCRSSawj8U5v/OFOVgl7n8aDGMm4L20ldq0upuGTEH0/58PvzDPNm1lxM
+ 5DnnNPlY2E3sd6V8WfmAMkOdZC4b6Z0cPzIq/yUilH6307scGsEPpoehZoNfiLRnAep0Mj4wsSrsM5
+ GWG7aY9McdcqYrM94dwZQtfzr98WvGjRc61h8Py9+LTeTBkcxSX/bKsb8KOg==
 X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
  fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 
-Enable this feature for the i350-evk HDMI connector support.
+Build Startek KD070FHFID015 panel driver. This MIPI-DSI display
+can be used for the mt8365-evk board for example.
 
 Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
@@ -126,17 +128,17 @@ Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c62831e61586..b2db31e010ff 100644
+index b2db31e010ff..1e2963a13500 100644
 --- a/arch/arm64/configs/defconfig
 +++ b/arch/arm64/configs/defconfig
-@@ -900,6 +900,7 @@ CONFIG_DRM_PANEL_SITRONIX_ST7703=m
+@@ -897,6 +897,7 @@ CONFIG_DRM_PANEL_NOVATEK_NT36672E=m
+ CONFIG_DRM_PANEL_RAYDIUM_RM67191=m
+ CONFIG_DRM_PANEL_SAMSUNG_ATNA33XC20=m
+ CONFIG_DRM_PANEL_SITRONIX_ST7703=m
++CONFIG_DRM_PANEL_STARTEK_KD070FHFID015=m
  CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA=m
  CONFIG_DRM_PANEL_VISIONOX_VTDR6130=m
  CONFIG_DRM_FSL_LDB=m
-+CONFIG_DRM_DISPLAY_CONNECTOR=m
- CONFIG_DRM_LONTIUM_LT8912B=m
- CONFIG_DRM_LONTIUM_LT9611=m
- CONFIG_DRM_LONTIUM_LT9611UXC=m
 
 -- 
 2.25.1
