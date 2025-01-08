@@ -1,73 +1,61 @@
-Return-Path: <devicetree+bounces-136799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9C0EA063BF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 18:53:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D10A06479
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 19:33:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9E91166FD4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:53:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8F3E167B43
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 18:33:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A48992010E1;
-	Wed,  8 Jan 2025 17:53:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E2E202F8E;
+	Wed,  8 Jan 2025 18:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XtQQjt1u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHD4sULt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE33C1FFC67;
-	Wed,  8 Jan 2025 17:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C72D202F80;
+	Wed,  8 Jan 2025 18:32:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736358785; cv=none; b=V6N4bNpHs0hymyE4Eh5Y/8Krb7MB944AW7gyERpjTkFiL/JZyznSlvLT1hPDAgVlAfExj71rOe9uuAG6Fp7AxGtmQScM+n0oT8n7X//yM4Uu2XXBcA/YWeybYCRXJ/3ZS+uGBawr45olEdHm8hW0VuSaD0k684pr3DbGLd+gnKI=
+	t=1736361158; cv=none; b=GQIbNoh+LyaTjMdumW7/xRlLUhAk7Bb5Y2XmOoh2o4PpUQFVgdWOwnYud+hxcF+U2gZtavDITfV35CSHod5Y1R2HgBS9UIibylh+sxV+IqbMCAkzYmCuzSDGpuD2sGxANri76oELlMCawen8yWwRL145+H41CJy0VqUd914tV1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736358785; c=relaxed/simple;
-	bh=NwN06BuwWws3Dy2bB2ldsOtGEyJBTTRxRTzJzhgbLhU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CRWv+Mo/HYDXb4XPDcgR4I5+jqwbvAfb5ZvHmZ3AzJtBNq5xh/G5Fq35V/QUA6v6RQnbVZIG0b2Qw3kJz4hyGrVySec8p+q9lLS/eTu5xFbXKizBkSsWHNuiaqP/2QNNYSFxTZu82mjK6vV8iO9UObedTAzgmfhbjRUwAaciJDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XtQQjt1u; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=TAAO1Chf6hDYV9mEVdFl4KLhPTl2u2J4AKlDsKfF4qk=; b=XtQQjt1um6jDIVerxn2G5x/9Yg
-	VigbPTw+BhyEl8UPKACYGGkerBa4/lPUaT3YGcbKd1+qBorH4cqWZMhxVgKqR4ZhTRpgw3i8Ktlw5
-	JCZJm55al/ky1Nbj3aK19x4uKztA8k/2F/fRu2z/UXlopcvNLhwaJkYa0mH4b/1CWbno=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tVaEW-002e68-6T; Wed, 08 Jan 2025 18:52:44 +0100
-Date: Wed, 8 Jan 2025 18:52:44 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"eajames@linux.ibm.com" <eajames@linux.ibm.com>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"joel@jms.id.au" <joel@jms.id.au>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"minyard@acm.org" <minyard@acm.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"ninad@linux.ibm.com" <ninad@linux.ibm.com>,
-	"openipmi-developer@lists.sourceforge.net" <openipmi-developer@lists.sourceforge.net>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
-	"robh@kernel.org" <robh@kernel.org>
-Subject: Re: [PATCH v2 05/10] ARM: dts: aspeed: system1: Add RGMII support
-Message-ID: <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
-References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
+	s=arc-20240116; t=1736361158; c=relaxed/simple;
+	bh=Z/FqmlnQQ8Fa68j6bChFWC2DGBjzCnP8xsatoFHrFa0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=TP4d3E7eLHVsalBM7d/FfRHyF5hyJ1CN4USzwgPkMwTYmlxXNGyLH4I/7UmIljSbj3WZRfHEaKYvMpsvwF34OefmgD9GR7MfBtqbouZ9ukwJavpn0iuFX8v4T82txlezueFNjJ4+aAHGrSrH0xHeqpXu08cLq8586VMbONtv0wM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHD4sULt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 552D0C4CED3;
+	Wed,  8 Jan 2025 18:32:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736361157;
+	bh=Z/FqmlnQQ8Fa68j6bChFWC2DGBjzCnP8xsatoFHrFa0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=iHD4sULtcyZpUayPhFv//GcGoNSqVRYgJYE9OKm5cbptvdlJ25utVjJ16eJHkr8q7
+	 YQaZkhGDSMeS+BDw39V0F8H4M55gcqks3fNM8e+ugbd6/fv+LHq/x2SGRwHfJ1rnpn
+	 iijBj0rfqdehYltGY6K2pGlFEyz1hfNGslo3V/tAdm8QMTswXGIteTclvIwz4zNKuH
+	 n4kItXVF/sjHioGsqhafWgZzQP7UtYfQ2tBXTxwmjwzyVPrZD36YQJGgFcGR4w/fPy
+	 MieYAlJNDLzlSAq70NftG/76gIto5sLe6w/j4KxIgHPIDMxBkO/kZhBU18/Tqppuvd
+	 z+BDbheJqLOdQ==
+Date: Wed, 8 Jan 2025 12:32:35 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+	kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+	p.zabel@pengutronix.de, quic_nsekar@quicinc.com,
+	dmitry.baryshkov@linaro.org, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	Praveenkumar I <quic_ipkumar@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v5 4/5] arm64: dts: qcom: ipq5332: Add PCIe related nodes
+Message-ID: <20250108183235.GA220566@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,69 +64,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
+In-Reply-To: <20250102113019.1347068-5-quic_varada@quicinc.com>
 
-> >Does the mac0 TX clock have an extra long clock line on the PCB?
-> >
-> >Does the mac1 TX and RX clocks have extra long clock lines on the PCB?
-> >
-> >Anything but rgmii-id is in most cases wrong, so you need a really
-> >good explanation why you need to use something else. Something that
-> >shows you understand what is going on, and why what you have is
-> >correct.
+On Thu, Jan 02, 2025 at 05:00:18PM +0530, Varadarajan Narayanan wrote:
+> From: Praveenkumar I <quic_ipkumar@quicinc.com>
 > 
-> Here I'll add some explanation.
-> 
-> In our design, we hope the TX and RX RGMII delay are configured by our MAC side.
-> We can control the TX/RX RGMII delay on MAC step by step, it is not a setting to delay to 2 ns.
-> We are not sure the all target PHYs are support for RX internal delay.
-> 
-> But ast2600 MAC1/2 delay cell cannot cover range to 2 ns, MAC 3/4 can do that.
-> Therefore, when using ast2600 MAC1/2, please enable the RX internal delay on the PHY side 
-> to make up for the part we cannot cover.
-> 
-> Summarize our design and we recommend.
-> AST2600 MAC1/2: rgmii-rxid
-> (RGMII with internal RX delay provided by the PHY, the MAC should not add an RX delay in this 
-> case)
-> AST2600 MAC3/4: rgmii
-> (RX and TX delays are added by the MAC when required)
-> 
-> rgmii and rgmii-rxid are referred from ethernet-controller.yaml file.
+> Add phy and controller nodes for pcie0_x1 and pcie1_x2.
 
-O.K, so you have the meaning of phy-mode wrong. phy-mode effectively
-described the PCB. Does the PCB implement the 2ns delay via extra long
-clock lines or not. If the PCB has long clock lines, phy-mode is
-'rgmii'. If the PCB does not have long clock lines, 'rgmii-id' is
-used, meaning either the MAC or the PHY needs to add the delays.
+> +		pcie1: pcie@18000000 {
+> +			compatible = "qcom,pcie-ipq5332", "qcom,pcie-ipq9574";
+> +			reg = <0x00088000 0x3000>,
+> +			      <0x18000000 0xf1d>,
+> +			      <0x18000f20 0xa8>,
+> +			      <0x18001000 0x1000>,
+> +			      <0x18100000 0x1000>,
+> +			      <0x0008b000 0x1000>;
+> +			reg-names = "parf",
+> +				    "dbi",
+> +				    "elbi",
+> +				    "atu",
+> +				    "config",
+> +				    "mhi";
+> +			device_type = "pci";
+> +			linux,pci-domain = <1>;
+> +			bus-range = <0x00 0xff>;
 
-The MAC driver is the one that reads the phy-mode from the DT, and
-then it decides what to do. 95% of linux MAC drivers simply pass it
-direct to the PHY. If the phy-mode is 'rgmii', the PHY does nothing,
-because the PCB has added the delays. If it is rgmii-id, it adds
-delays in both directions. This works, because nearly very RGMII PHY
-on the market does support RGMII delays.
+This bus-range isn't needed, is it?  pci_parse_request_of_pci_ranges()
+should default to 0x00-0xff if no bus-range property is present.
 
-There is however a very small number of MAC drivers which do things
-differently. Renesas produced an RDK with a PHY which could not do
-delays in the PHY, and so were forced to do the delays in the
-MAC. Please look at how the ravb driver works. If the PCB does not add
-the delays, rmgii-id, the MAC driver adds the delays. It then masks
-the phy-mode it passes to of_phy_connect() back to 'rgmii', so that
-the PHY does not add any delays. If the PCB did add the delays,
-'rgmii', the MAC driver does not add delays, and it passed rgmii to
-the PHY driver, and it also does not add delays.
+> +			num-lanes = <2>;
+> +			phys = <&pcie1_phy>;
+> +			phy-names = "pciephy";
 
-So, your MAC driver is broken. It is not correctly handling the
-phy-mode. First question is, how many boards are there in mainline
-which have broken phy-modes. If this is the first board, we can fix
-the MAC driver. If there are already boards in mainline we have to be
-much more careful when fixing this, so as not to regress boards which
-are already merged.
+I think num-lanes and PHY info are per-Root Port properties, not a
+host controller properties, aren't they?  Some of the clock and reset
+properties might also be per-Root Port.
 
-Humm, interesting. Looking at ftgmac100.c, i don't see where you
-configure the RGMII delays in the MAC?
+Ideally, I think per-Root Port properties should be in a child device
+as they are here:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/mvebu-pci.txt?id=v6.12#n137
+but it looks like the num-lanes parsing is done in
+dw_pcie_get_resources(), which can only handle a single num-lanes per
+DWC controller, so maybe it's impractical to add a child device here.
 
-	  Andrew
+But I wonder if it would be useful to at least group the per-Root Port
+things together in the binding to help us start thinking about the
+difference between the controller and the Root Port(s).
 
+Bjorn
 
