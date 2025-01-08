@@ -1,102 +1,147 @@
-Return-Path: <devicetree+bounces-136355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1273CA04E3F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 01:47:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73739A04E9D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 02:18:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D86A165E18
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 00:47:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68B0B7A0828
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 01:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05A796AAD;
-	Wed,  8 Jan 2025 00:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D256227713;
+	Wed,  8 Jan 2025 01:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="hI7UZIz6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZVRTlEGt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E9276FC5;
-	Wed,  8 Jan 2025 00:47:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A849259497;
+	Wed,  8 Jan 2025 01:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736297261; cv=none; b=Tlp7Q1cVsq8UkUO3/vy66lNLvxNSAmGdHlQ0UPDFJsJAQ6dQx/kc06yf2F4zglOcfdDvfVHg/69HnQMvu/gF3TRLaAG5HtPWU7tOMN1nG9XwE3ZGimvueblX2HAextq1wrrXqz+bELh5wK7ob474X8sKUV/uvat1YtIfye4LJp4=
+	t=1736299103; cv=none; b=t3/xqnokzxQSlMciDzq0059K7lMlzIBhpwwY3VvKGn/t9oH9JFz0IfTb4BRGMrG0Cm+G9ELdiuNnq83TPxpTSd+SGlOWb8zWceffMus30afZgd+GpILjN3DUwMzuH9WHO07AEVSDO+RtrNDEp8fUu72sWUAlvgvz4Z5c6EMFOI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736297261; c=relaxed/simple;
-	bh=0IuofUalrcy7DmrnwjI1oNb1zpstHlRi3sWa4Pj967M=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mec1SqDy7fG4mn6fXvJtpwYGBY0Qc3FOqr18fZfSiA0jgbiwRpRo44GsofBdkW6VC+SOJzYXe4z9fFopYGTklajRL8aiFH2IFdYCH663Uhq+yljMRVJqg8LpLA4RSKMV27kaQLahVr2s1aau5DAaJW6fab8eQJaWZCNYnTsqyW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=hI7UZIz6; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1736299103; c=relaxed/simple;
+	bh=jBOo1puqpX/q5ZAG/ImV4cok+3Wgvk1HYt+37Vk5hRw=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=L+LDgQ+KRCLH03+g4QyPaLsezR0/6Fd2ow7NDRMwwx/kH0AvyxXxYyA1UEA7SYAZOQQr68YrGGu07BuBeTbj9/0o9+8rDooYtuWioABYqvMv6H7eH3TG2WzfadNQ5In3JA18bA5Di4NaUK9XuTQMwOBI8SxDy2cvf9gXP7cL/xE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZVRTlEGt; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2162c0f6a39so6609615ad.0;
+        Tue, 07 Jan 2025 17:18:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1736297258;
-	bh=0IuofUalrcy7DmrnwjI1oNb1zpstHlRi3sWa4Pj967M=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=hI7UZIz6k5JCRm4/XEc1M7tAqD0h06F+76ojQyZf13GXD5UAfzt7ZL5idIoSGMMnD
-	 YMHibd8WZQDGdBy9+vYajCVCUx7+mO9ZdWG2QLbkBk/EOH2zEt6W3y7cK5jFGjNkwb
-	 bsRdd0tp3ZOf5+4jdu6Gx8ewCGm+qfV2hDhf8JuBI93rBmMq7GV/GQ/8rmWpwRD/eQ
-	 5PO1wUzuoDqbSFir8BpuZ9H/e6yg/MgieQy6t1PpdN4flhtwge0+xFfCylTSpObOXy
-	 y57X4hgAUXa4An1bR09vJPT2oI8cr/nxSWyH4v0b7TCY4DEdTQtU/BYuxJ6xoqlvcD
-	 1TSi9U9Acd2wA==
-Received: from [192.168.68.112] (ppp118-210-64-24.adl-adc-lon-bras32.tpg.internode.on.net [118.210.64.24])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 65E0870801;
-	Wed,  8 Jan 2025 08:47:37 +0800 (AWST)
-Message-ID: <59b47269065db207c2f0f8268d958b3f647fe05b.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: aspeed: catalina: update catalina dts file
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Potin Lai <potin.lai.pt@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	 <joel@jms.id.au>, Patrick Williams <patrick@stwcx.xyz>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, Cosmo Chou
-	 <cosmo.chou@quantatw.com>, Potin Lai <potin.lai@quantatw.com>
-Date: Wed, 08 Jan 2025 11:17:36 +1030
-In-Reply-To: <20250103-potin-catalina-dts-update-20250102-v1-1-b0b7a523c968@gmail.com>
-References: 
-	<20250103-potin-catalina-dts-update-20250102-v1-1-b0b7a523c968@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=gmail.com; s=20230601; t=1736299100; x=1736903900; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vx99Y8SQrugXLJ1+GA+aTfa0OBhtUac94dHDKuroZ0M=;
+        b=ZVRTlEGt/Rp/WCKeMBM3UutMYiMZLd9W1DUWtWOeYA8PzNpNb1AzOkgZ0p2m9rJii6
+         d/7l/i5fT8bNwvF5Gshh3TyoDFCvtlQA9PZ2aU8eVpZd4TGamMmQNVKzwDUNlFMMHhpH
+         KjYQCyn5f7lW2Ow/jvGwvUduNoEJHFq92bGcj7QqvlVEbe1HR7mw+Nyj0rhAffCJ0MiB
+         9tqMoPi4cIVmM0UdDbxfnByK2w4WvOKDPjEXrXqa3vNQVccgGR9ItNhvUZYnxD9kggoc
+         7riGytqqEnl6txv/1KZ60QoMx9oqySrU+MJhSfgvdgfB8olVB5XD7p3Ic9HlL1HIYHu1
+         TguQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736299100; x=1736903900;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vx99Y8SQrugXLJ1+GA+aTfa0OBhtUac94dHDKuroZ0M=;
+        b=i+XiLlG+Tdvk1+iBhhKFL42u1bZfSELpgZ23OI7ypqX6QkU4F5VVKU6RBqvWFHcO5B
+         vAmI5QLVus9RxUYtU2rIDI4V1Rh2rgnbs/SqgbI7yG13dD+TOCZumH9I5pnJ2P7NZR/6
+         2abxLMGiMmdURpq18j6mVp1Xr+w4QVkuuhdD9A0R9VB9TQb4ZYi213BBA+wYRrQ1t2Xw
+         2/p3PXn3gIO8/FdZcbjqBmQmJvJ87VuppRaL/jW1mMo57gXqzRULHDq7uul/eE5wsFiX
+         JPU7ai6GtVzdgxResBl5rO4wEKrbFrgbsTtumv7azYco34TIFkxZsTRq/z6TxMakbF9A
+         Wmew==
+X-Forwarded-Encrypted: i=1; AJvYcCU9zoSgxAzkuZisirNEpcLorYUSWl1umK+WzxYRXTDaWpqagqy6ZjWah2z0bcGkiYras6K7w9kfmd2Z@vger.kernel.org, AJvYcCWr4z5pN8+9dYXCIx5SUua5ukXn47UdDmHuzLG3WDXw9fDlfxyHK3VJJpUCESDFLt7ZLKnfQHBSZJniX4A=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxhyt248VSQNyLNugzRPK0on+bQb2asFYBO3SuGoV0wii5+yqzp
+	JV602c5/CcckIec9r6rAPVJZheSSuMOzoHPM+yoq59NqYhPPb1L2F0jdrUG4
+X-Gm-Gg: ASbGncsDx+BJCSE/rpvJhveyQ8wmQIbSo8KVYgY5cHipTnY+W8ZTzOfMB6EyIz1xLBj
+	fcW1oxrbJmSMR78vBorMsbM0iOdTc7/xOCwub/asbiUOJxmGv/fJTCVJNx/ZCDtoJTPyQ43Mr78
+	ZfSpzYqtyDDf2bM5U6Z98DWg2WhzrgRpI01AtCn+RfJu2F/FNfCR5rDAa53wwytP6nsN4eV9J02
+	V5hLZJ3QiMvFr1dtLJAaQnM37ibljXU69QfxhnZvnd3MkUYszuJEfrS0a++TUfOtqAzzY31aAtB
+	273xJ7m0HGOGoP+3YMARJTEkcptsfLy18TEwGHdflQ==
+X-Google-Smtp-Source: AGHT+IHBXjlnMHsFnSJ7x0oLswpnhQiItsRr5cWXQazhFwNjODFq+rz7pmKosjS34A3gO044xDQ+pg==
+X-Received: by 2002:a05:6a00:843:b0:72a:78a3:7f57 with SMTP id d2e1a72fcca58-72d2171f607mr2054335b3a.9.1736299100053;
+        Tue, 07 Jan 2025 17:18:20 -0800 (PST)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad83033esm34045009b3a.48.2025.01.07.17.18.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jan 2025 17:18:19 -0800 (PST)
+From: Ming-Jen <mjchen0829@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	mjchen0829@gmail.com,
+	peng.fan@nxp.com,
+	arnd@arndb.de,
+	sudeep.holla@arm.com,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	dmitry.torokhov@gmail.com
+Subject: [PATCH v5 0/2] Add support for nuvoton ma35d1 keypad controller
+Date: Wed,  8 Jan 2025 01:18:10 +0000
+Message-Id: <20250108011812.627-1-mjchen0829@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hi Potin,
+From: Ming-jen Chen <mjchen0829@gmail.com>
 
-On Fri, 2025-01-03 at 09:42 +0800, Potin Lai wrote:
-> Update device nodes list below for driver binding.
+This patch series adds keypad driver for the nuvoton ma35 ARMv8 SoC.
+It includes DT binding documentation and the ma35d1 keypad driver.
 
-The devicetree describes the hardware. I prefer we keep references to
-drivers out of the commit message here.
+v5:
+  - Update nuvoton,ma35d1-keypad.yaml
+    - Reorders the items in the properties and required blocks to ensure 
+      their order and items are consistent.
+v4:
+  - Update nuvoton,ma35d1-keypad.yaml
+    - Kept the same order of properties as in the required block.
+    - Changed register addresses to lowercase.
+v3:
+  - Update nuvoton,ma35d1-keypad.yaml
+    - Removed vendor-specific properties and replaced them with common properties
+  - Update ma35d1_keypad.c
+    - Modified the driver to reflect changes in the YAML properties
+v2:
+  - Update nuvoton,ma35d1-keypad.yaml
+    - Fixed warnings and errors generated by running checkpatch.pl
+    - Removed the previous version's properties and rewrote the
+      properties in the Device Tree schema.
+    - Renamed the Device Tree binding file to nuvoton,ma35d1-keypad.yaml
+  - Update Kconfig
+    - Added COMPILE_TEST to the depends on line in the Kconfig
+  - Update ma35d1_keypad.c
+    - Refactored error handling within the probe function.
+    - Fixed the mixed use of devm and non-devm resource management.
+    - Corrected alignment issues in the code.
+    - Updated suspend and resume handling methods.
+    - Fixed variable naming to remove camel casing.
+    - Used for_each_set_bit() to check key states.
+    - Modified the code to align with updates in the device tree binding
 
->=20
-> - Add IOB NIC thermal nodes (TMP421)
-> =C2=A0 - 24-001f, 26-001f, 36-001f, 38-001f
-> - Add FIO Remote thermal node (TMP75)
-> =C2=A0 - 23-001f
-> - Add Power sensor node (MP5990)
-> =C2=A0 - 16-0022
-> - Add main source fan controllers (MAX31790)
-> =C2=A0 - 18-0021, 18-0027
-> - Add 2nd source fan controllers (NCT7363)
-> =C2=A0 - 18-0001, 18-0002
-> - Add 2nd source HSC nodes (XDP710)
-> =C2=A0 - 20-0013, 20-001c
-> - Remove all ina238 nodes, move to userspace
-> =C2=A0 - 16-0041, 16-0042, 16-0044, 17-0041, 17-0043
+Ming-jen Chen (2):
+  dt-bindings: input: Add Nuvoton MA35D1 keypad
+  input: keypad: add new keypad driver for MA35D1
 
-This seems to reflect the patch itself, which isn't terribly helpful.
-The commit message should explain _why_ you're making the changes.
+ .../bindings/input/nuvoton,ma35d1-keypad.yaml |  82 ++++
+ drivers/input/keyboard/Kconfig                |  10 +
+ drivers/input/keyboard/Makefile               |   1 +
+ drivers/input/keyboard/ma35d1_keypad.c        | 387 ++++++++++++++++++
+ 4 files changed, 480 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
+ create mode 100644 drivers/input/keyboard/ma35d1_keypad.c
 
-Can you please rework it?
-
-Andrew
+-- 
+2.25.1
 
 
