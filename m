@@ -1,66 +1,62 @@
-Return-Path: <devicetree+bounces-136401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BEE5A0506A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 03:16:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 188D2A0507D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 03:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72654166B25
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 02:15:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 589D3164710
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 02:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35A5719408C;
-	Wed,  8 Jan 2025 02:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0789A1AC88A;
+	Wed,  8 Jan 2025 02:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s1ViOtYL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LtRYqq6W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067C51A3A8D;
-	Wed,  8 Jan 2025 02:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03791ABEA1;
+	Wed,  8 Jan 2025 02:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736302403; cv=none; b=jri3ri+eBhTSENV0+N8ZaUbp6Qov4lFMHjngYDWR9ZeR7TEvJaWo/9AQBkDTP/MM1uIsWKqLIKzulMm2qkztUIJV97nTJZP9UZANx9xlYzuJFYZWJUjLcYFVgzZ77PT09nKe0SCtAxhraITCxhadajVMnIVSpA4rgjHvOJqDX4E=
+	t=1736302406; cv=none; b=MUE/GTnXCuUNWmo7zr0dNrnE/ZyXm9ADex65eMuLdE6djkCfpLyEdAKFR/rhqBfiZE2Uh+hrpyILBIF135I/2vHndAS2TmZV9QlqU1Vu4qAn9V/KoqwoYFaykp98D2FdkvopBxt44f2sjiLB4uY8Us5UJUqdeTq60mXaz1wFkUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736302403; c=relaxed/simple;
-	bh=7zuqITzGSMcDjMXmuLrgmCwS3Z0imN3SO+TTtEpaF6U=;
+	s=arc-20240116; t=1736302406; c=relaxed/simple;
+	bh=gO2qYoM/cMMUqbPfQAIw6gGOoH+1B/4vdXQ86L583wc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=k8BuzpJ+KwbT8JcbYfu0uJadehoEUM6VIkCP9jIaI/RLcPO+LNBFDIIEcOAH1DsIQDySmINKQC+/wI7WCdqTe/EWB/KVgYD+tUXW/DAaZEFZnEoZgnRGIGD4rmeSu4hFORIDoEXNL41nKPp3pUL+FV71fxjitR6CxR/cb9+QTwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s1ViOtYL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D96D6C4CEE4;
-	Wed,  8 Jan 2025 02:13:20 +0000 (UTC)
+	 MIME-Version:Content-Type; b=ol1poKypq0tKAfwTdr9kGfdaChDrBUaBJg6nWy6RswvaqTM5Aqh8M9FiZAy57+tRvKEWyz4FeEGddrZnjpiE/N4LY04e7nC95hsAJWTI/c8a9agvKJSiLx4UIB0+a0F7KkkFBo57A5LjmOS022XZ/z/kiguT11KSSnzP6+3v+Nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LtRYqq6W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9492FC4CEE1;
+	Wed,  8 Jan 2025 02:13:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736302401;
-	bh=7zuqITzGSMcDjMXmuLrgmCwS3Z0imN3SO+TTtEpaF6U=;
+	s=k20201202; t=1736302406;
+	bh=gO2qYoM/cMMUqbPfQAIw6gGOoH+1B/4vdXQ86L583wc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=s1ViOtYLMIsx1Ceyk3dYEvwMr04IDN9OcCn/0zPxJnG8S83+njmUF23B83SVRIn1A
-	 D8GSENdBCnd2+9GT1RiDSW6RWucwEFKnDbHFKnZGGilUqaXv3QDiUOT/sdpcsnM+lZ
-	 0R1Zx8zY5vL+4HnPZt44N1ShfRv14sQfLFFmFJGsbTnwHo897HHmwTHoroHcJK9456
-	 pZsRtyNXqxwvAAE6CL9HEAZfBuna72NoxwnqwaJhU7dZ8LuHqRkaahfOeY+78PJfQd
-	 N6eH6LY0qHK+b6gfepgQZg+XV8/3kYOVXY1FcHSEdFF2xPFrEsorBPsUxpUAXZ5RYY
-	 xnkBMWiWmxOqA==
+	b=LtRYqq6WhukJF+uBw6xilppLOjbIKmKO+VJLSgEJm7Gz762vpvYzi9z79RwX84uVJ
+	 5jjygZ/+hS1nj8TXGkjiE43UfzIX7dSANsEesmZvalgeaCxJ+ynW2iFbHvOkugRZiF
+	 iQkwifzSx+Nde5kCEbFxOzHcFNQxhZ4HbWbpBxzxM29hZYRjlVmObEAtXV2ihiUh9n
+	 pAHirV2OW+E/0K2pjWnTHPIl9LXfbF7++ZdL9JtlkMod6HoW40C/3ZzjoupyUnGTSf
+	 RpB0sJARqMjHgMvkEqTvsPO3nR8OMxQCYP8Z66GFA32zS+E/LLBdeaJWdVYDyb0qUc
+	 rfauGcCjDXD1w==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Abel Vesa <abel.vesa@linaro.org>
-Cc: Johan Hovold <johan@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Yuanfang Zhang <quic_yuanfang@quicinc.com>
+Cc: kernel@quicinc.com,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Fix usb_2 controller interrupts
-Date: Tue,  7 Jan 2025 20:13:12 -0600
-Message-ID: <173630239533.95965.17986968259395887798.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] arm64: dts: qcom: Add coresight node for SM8650
+Date: Tue,  7 Jan 2025 20:13:17 -0600
+Message-ID: <173630239535.95965.17802549499867943782.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250107-x1e80100-fix-usb2-controller-irqs-v1-1-4689aa9852a7@linaro.org>
-References: <20250107-x1e80100-fix-usb2-controller-irqs-v1-1-4689aa9852a7@linaro.org>
+In-Reply-To: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
+References: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,21 +67,15 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 07 Jan 2025 15:15:16 +0200, Abel Vesa wrote:
-> Back when the CRD support was brought up, the usb_2 controller didn't
-> have anything connected to it in order to test it properly, so it was
-> never enabled.
+On Tue, 07 Jan 2025 16:48:26 +0800, Yuanfang Zhang wrote:
+> Add coresight components: Funnel, ETE and ETF for SM8650.
 > 
-> On the Lenovo ThinkPad T14s, the usb_2 controller has the fingerprint
-> controller connected to it. So enabling it, proved that the interrupts
-> lines were wrong from the start.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: x1e80100: Fix usb_2 controller interrupts
-      commit: 680421056216efe727ff4ed48f481691d5873b9e
+[1/1] arm64: dts: qcom: Add coresight node for SM8650
+      commit: 256e6937e48a14cc5ea02ce9e4e0fbb4463c4464
 
 Best regards,
 -- 
