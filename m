@@ -1,82 +1,72 @@
-Return-Path: <devicetree+bounces-136440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41691A0530C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 07:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D03A052EE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 06:59:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C4D4166A44
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 06:08:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4E45166EC3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 05:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB611A2398;
-	Wed,  8 Jan 2025 06:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EFF81A23A6;
+	Wed,  8 Jan 2025 05:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="VKRrvfEG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bQpCYlfu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663EA13790B
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 06:08:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B539D199939;
+	Wed,  8 Jan 2025 05:59:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736316503; cv=none; b=BByfLE07GeUqC0n7g/HEOa9RXTC03xFi8bovD1Y+rVo55hhZfzvMHLMklFCk54gSBOyEZoccWw9x+GeNWhSxJv1MV1zaRoCyiq5Bx+yxkvDmPV+j98+Lnuib9hqZYAD3VYCKikeyt831TE8MVKe2qQOjOexdkgiw+ZUbTobBmew=
+	t=1736315961; cv=none; b=dAZVofuTkmm2BE2qjvNOw4sfo8jiyf5su2SMjARrzPE0B4q0Ns+/5coLJdmsMOHroxBA+x+FCAYltNAMcnuKggjxfKn2C2NIEQJyLQf92ruL3mqdudLchourUSK/hUPzxbI8H4G6H9dvesdaK/ciWfrBQC+d2juRTRu/jAVO6uU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736316503; c=relaxed/simple;
-	bh=lDeLMzmKVzHzT05vFiARaqmMjW4CDFnYLMOjULvTcww=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
-	 References; b=Mx918eqQ/sBVCgYPdFtnhYS2q+vXkLQ3hC2hooM/DzTgn1z4z+LHwnyot2U55JcuBCbQK+gdqc21Rcc8taghsun9AJCocfaSOai+9Er3TZ8IZKC+crMU5knRkfVUKIHFJTOaypzinGP5C4mUCXfcKx2/AN8F29CFVtedNhZ+2zM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=VKRrvfEG; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250108060818epoutp04317b1332fe561d09ac30b14228862a51~YoqfSxGEi2767827678epoutp045
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 06:08:18 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250108060818epoutp04317b1332fe561d09ac30b14228862a51~YoqfSxGEi2767827678epoutp045
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1736316498;
-	bh=oDqO9IOD1jONV5GnbVGe8T0Coj4j77IrhqYsAza3Vfo=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=VKRrvfEGka9bubK610pZBQ0YTsqEFbnPaBa/HlhBGe/30EE5bTg+8UR7S1E8OxJh9
-	 6EGWXrJa8qHmWuJPjLoAkCzhFF8ad7fGRRNasf+gnCEDQ+MlqJMEQ1Zkt623RvQ1e+
-	 ZwwkUkbaGWWJvXMm1hZMrOZItHqkC6ZZSIrAD3zs=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
-	20250108060817epcas5p1f5805d78973d2adde4628d7f90e9b691~Yoqe7Lb770503505035epcas5p1d;
-	Wed,  8 Jan 2025 06:08:17 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.177]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4YScsq18d0z4x9QF; Wed,  8 Jan
-	2025 06:08:15 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-	epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	EE.FA.20052.F461E776; Wed,  8 Jan 2025 15:08:15 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250108054224epcas5p399f3d734f8d9f82e5ae75d183d1a5344~YoT3--ket0155601556epcas5p30;
-	Wed,  8 Jan 2025 05:42:24 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250108054223epsmtrp1731f1eec433c597767f0450345175a6a~YoT3-OVYQ2675826758epsmtrp1F;
-	Wed,  8 Jan 2025 05:42:23 +0000 (GMT)
-X-AuditID: b6c32a49-3fffd70000004e54-c0-677e164f4c2d
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	15.7C.18729.F301E776; Wed,  8 Jan 2025 14:42:23 +0900 (KST)
-Received: from bose.samsungds.net (unknown [107.108.83.9]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250108054222epsmtip29ba52c104d681642b1a890cebb401c8d~YoT2kK8Ew1928019280epsmtip2P;
-	Wed,  8 Jan 2025 05:42:22 +0000 (GMT)
-From: Devang Tailor <dev.tailor@samsung.com>
-To: alim.akhtar@samsung.com, dev.tailor@samsung.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	faraz.ata@samsung.com
-Subject: [PATCH v2] arm64: dts: add cpu cache information to ExynosAuto-v920
-Date: Wed,  8 Jan 2025 11:20:12 +0530
-Message-Id: <20250108055012.1938530-1-dev.tailor@samsung.com>
+	s=arc-20240116; t=1736315961; c=relaxed/simple;
+	bh=fVILe9MPXKsnTW/KkNXuvzWeTxy2iQqfFTFEyRhdRoQ=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cgO8R17faeeWD365RJh+5zC4B6ns+pOYykDYbjMCOFaOKWFDuWVwPeGa90ggFVtElYAiMBDoYYZ0kHGntYqbFaoYuWDiyNFIGnAUlVkAvX5B36bBB2ccP+3BDm0jx265KUkFeo46Y/bSywLznRY4EKznbq8Ray3MQ8REjGtGKg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bQpCYlfu; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5082iuXr014134;
+	Wed, 8 Jan 2025 05:59:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=r70xmafgYDGHDKE78AYPrw
+	Vh5XRh1ck5BYSlp7CBFsQ=; b=bQpCYlfu6lRK1cZoqWqV/I+ASyy6zNh5oas0/r
+	vKRuwvyn+XI2V/GK/Cj7TRpwZyrN6JyF491X7npoTuZOjqUdB+atNfZVF/QQdm8K
+	GSMg3NjcRpq/j1WFuOXYQeWOz+0IPPIXMBnVHrr0jIoG18lPebt2g1+AM/aNtsZ7
+	4HIthJbT7OFi4/UwcT5WymMyBubFf8JSVs04huIg4i+M3xQQLZtT0b8BtMFRwhTq
+	d/Liup/ZRcJYY5E+vYOXQWCjnb2OPXCUWW+D/yX+I6nGNu3sEfELa/iAeTethP+t
+	Ass4RGA2quXmFuJ3umhOPVH8rlH4x8YMIjqwBB9nUJ9OcUuw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441guk0cuj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Jan 2025 05:59:00 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5085x0aw020427
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 Jan 2025 05:59:00 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 7 Jan 2025 21:58:53 -0800
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <p.zabel@pengutronix.de>, <dmitry.baryshkov@linaro.org>,
+        <quic_nsekar@quicinc.com>, <quic_varada@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+Subject: [PATCH v6 0/5] Add PCIe support for Qualcomm IPQ5332
+Date: Wed, 8 Jan 2025 11:28:37 +0530
+Message-ID: <20250108055842.2042876-1-quic_varada@quicinc.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -85,265 +75,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupik+LIzCtJLcpLzFFi42LZdlhTQ9dfrC7d4Mg+NosH87axWazZe47J
-	4t6OZewW84+cY7W4dmMhu8XLWffYLDY9vsZqcXnXHDaLGef3MVn837OD3YHLY9OqTjaPzUvq
-	Pfq2rGL0+LxJLoAlKtsmIzUxJbVIITUvOT8lMy/dVsk7ON453tTMwFDX0NLCXEkhLzE31VbJ
-	xSdA1y0zB+geJYWyxJxSoFBAYnGxkr6dTVF+aUmqQkZ+cYmtUmpBSk6BSYFecWJucWleul5e
-	aomVoYGBkSlQYUJ2RtPUJ4wFFw0qXi36w9TA2KfaxcjBISFgInHwf1QXIxeHkMBuRomNU/4w
-	QzifGCVWTn3CDuF8Y5RYfPw5WxcjJ1jHpxv32CASexklPl85wAThvGeUuPe6gwWkik1AR+LZ
-	0dtMILaIQL7E9RO7WECKmAUWMEo839sKNkpYwEfi0NI5YA0sAqoSjdv/sIIcxStgK9H/VhJi
-	m7zE/oNnmUFsXgFBiZMzn4CVMwPFm7fOZoaouccu0XyTE8J2kVh4/w4jhC0s8er4FnYIW0ri
-	ZX8blJ0v8eXQLqjeHIn1r2ZAxe0lVi84A3YCs4CmxPpd+hBhWYmpp9YxQazlk+j9/YQJIs4r
-	sWMeiA0KRhWJ998tYTa9uLcHqsRD4v21WWDXCAnESmyd+Yh1AqP8LCTPzELyzCyExQsYmVcx
-	SqYWFOempxabFhjmpZbDozU5P3cTIzhRannuYLz74IPeIUYmDsZDjBIczEoivJaytelCvCmJ
-	lVWpRfnxRaU5qcWHGE2BATyRWUo0OR+YqvNK4g1NLA1MzMzMTCyNzQyVxHlft85NERJITyxJ
-	zU5NLUgtgulj4uCUamCa83NaQpsh/5IvN1ezRU63iZla9fFbmgDXmd9nVQu1TKyuZhrOZH+h
-	q5rvam4swcn/29Ve7uK2tU2uOxxXvT3uE6e7es8dgxu5KcF3j35V3e/5mcO8ZrbVLmn3I3yF
-	Fw6HBfkvLKsT4OWw4F4ipNO8dZVXaG1At7B3aiVbe+Qv87zXjz4Inw/VjLqhbvB7ytrPrRI+
-	J59NvXk8vbCtIS7FavVrd6lI5Ttv622qgqfMFwqrr101Y1aQWB2jqEmVSaiv2Myp8jLsi95d
-	O8j4U2ZWzj7O/99ivprGFHh3vf+6xGd25uddW+cXFLFue75nU+XWAybeYRkyXxq7wnq/PLrK
-	XiGxRi92XUd4zYT4cCWW4oxEQy3mouJEAIkNehwdBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrGLMWRmVeSWpSXmKPExsWy7bCSvK69QF26weXJFhYP5m1js1iz9xyT
-	xb0dy9gt5h85x2px7cZCdouXs+6xWWx6fI3V4vKuOWwWM87vY7L4v2cHuwOXx6ZVnWwem5fU
-	e/RtWcXo8XmTXABLFJdNSmpOZllqkb5dAldG09QnjAUXDSpeLfrD1MDYp9rFyMkhIWAi8enG
-	PbYuRi4OIYHdjBJvzz5ngkhISXS0bICyhSVW/nvODmILCbxllOjbLQ9iswnoSDw7ehuohoND
-	RKBU4vzDRJA5zAJLGCUW7GxhAakRFvCROLR0DpjNIqAq0bj9DytIPa+ArUT/W0mI8fIS+w+e
-	ZQaxeQUEJU7OfAJWzgwUb946m3kCI98sJKlZSFILGJlWMUqmFhTnpucWGxYY5qWW6xUn5haX
-	5qXrJefnbmIEB62W5g7G7as+6B1iZOJgPMQowcGsJMJrKVubLsSbklhZlVqUH19UmpNafIhR
-	moNFSZxX/EVvipBAemJJanZqakFqEUyWiYNTqoGJ5aGj2E7ftyknxY1M60uNp6bwPXZIqv7D
-	aGVZUpz5xPyH6+9nHR8iJGa7KB/rTTH87jC/skPVymTNRdEr31q0v7rtNa1efM8ha6LPviZJ
-	j7nm390YTd1zLxT/cJrXGvfq0bEtZ6sfhi37mRDjcDN2526TRac/7Xy827HqOa/C5mbv54ab
-	7j3hck76EawgelI5Kano1RW+vGc5s+bIJ7PeMaj5tjApJChL5y3T+WMbEj0KhFydyvk67GUM
-	bnr8XPyPpX/vMT+uJQV7Klb5twe4vyh3mdW45f3daZqv7HVFp5+133HfczfbHJM1fbelnybd
-	FHefaPdx0s2sry1XDSzVWiwEKviYDG65fmKQLlFiKc5INNRiLipOBAChA+UWyQIAAA==
-X-CMS-MailID: 20250108054224epcas5p399f3d734f8d9f82e5ae75d183d1a5344
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250108054224epcas5p399f3d734f8d9f82e5ae75d183d1a5344
-References: <CGME20250108054224epcas5p399f3d734f8d9f82e5ae75d183d1a5344@epcas5p3.samsung.com>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yjGVxOYBB9c1sGgtso6fC3F5YSayNr02
+X-Proofpoint-GUID: yjGVxOYBB9c1sGgtso6fC3F5YSayNr02
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ clxscore=1015 malwarescore=0 suspectscore=0 mlxscore=0 adultscore=0
+ phishscore=0 mlxlogscore=999 priorityscore=1501 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501080046
 
-Add CPU caches information to its dt nodes so that the same is
-available to userspace via sysfs. This SoC has 64/64 KB I/D cache and
-256KB of L2 cache for each core, 2 MB of shared L3 cache for each quad
-cpu cluster and 1 MB of shared L3 cache for the dual cpu cluster.
+Patch series adds support for enabling the PCIe controller and
+UNIPHY found on Qualcomm IPQ5332 platform. PCIe0 is Gen3 X1 and
+PCIe1 is Gen3 X2 are added.
 
-Signed-off-by: Devang Tailor <dev.tailor@samsung.com>
+This series combines [1] and [2]. [1] introduces IPQ5018 PCIe
+support and [2] depends on [1] to introduce IPQ5332 PCIe support.
+Since the community was interested in [2] (please see [3]), tried
+to revive IPQ5332's PCIe support with v2 of this patch series.
 
----
-Changes in v2:
-- Added L3 cache for all the three cpu clusters
-- Corrected L2 cache numbering as a part of review comments from Krzysztof
-  and updated as per cpus clusters.
-- Link to v1: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20241231064350.523713-1-dev.tailor@samsung.com/
----
- .../arm64/boot/dts/exynos/exynosautov920.dtsi | 127 ++++++++++++++++++
- 1 file changed, 127 insertions(+)
+v2 of this series pulled in the phy driver from [1] tried to
+address comments/feedback given in both [1] and [2].
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index eb446cdc4ab6..a3fd503c1b21 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -89,6 +89,13 @@ cpu0: cpu@0 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl0>;
- 		};
- 
- 		cpu1: cpu@100 {
-@@ -96,6 +103,13 @@ cpu1: cpu@100 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl0>;
- 		};
- 
- 		cpu2: cpu@200 {
-@@ -103,6 +117,13 @@ cpu2: cpu@200 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl0>;
- 		};
- 
- 		cpu3: cpu@300 {
-@@ -110,6 +131,13 @@ cpu3: cpu@300 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl0>;
- 		};
- 
- 		cpu4: cpu@10000 {
-@@ -117,6 +145,13 @@ cpu4: cpu@10000 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x10000>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl1>;
- 		};
- 
- 		cpu5: cpu@10100 {
-@@ -124,6 +159,13 @@ cpu5: cpu@10100 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x10100>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl1>;
- 		};
- 
- 		cpu6: cpu@10200 {
-@@ -131,6 +173,13 @@ cpu6: cpu@10200 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x10200>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl1>;
- 		};
- 
- 		cpu7: cpu@10300 {
-@@ -138,6 +187,13 @@ cpu7: cpu@10300 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x10300>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl1>;
- 		};
- 
- 		cpu8: cpu@20000 {
-@@ -145,6 +201,13 @@ cpu8: cpu@20000 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x20000>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl2>;
- 		};
- 
- 		cpu9: cpu@20100 {
-@@ -152,6 +215,70 @@ cpu9: cpu@20100 {
- 			compatible = "arm,cortex-a78ae";
- 			reg = <0x0 0x20100>;
- 			enable-method = "psci";
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_cl2>;
-+		};
-+
-+		l2_cache_cl0: l2-cache0 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x40000>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			next-level-cache = <&l3_cache_cl0>;
-+		};
-+
-+		l2_cache_cl1: l2-cache1 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x40000>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			next-level-cache = <&l3_cache_cl1>;
-+		};
-+
-+		l2_cache_cl2: l2-cache2 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x40000>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			next-level-cache = <&l3_cache_cl2>;
-+		};
-+
-+		l3_cache_cl0: l3-cache0 {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-unified;
-+			cache-size = <0x200000>;/* 2MB L3 cache for cpu cluster-0 */
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+		};
-+
-+		l3_cache_cl1: l3-cache1 {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-unified;
-+			cache-size = <0x200000>;/* 2MB L3 cache for cpu cluster-1 */
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+		};
-+
-+		l3_cache_cl2: l3-cache2 {
-+			compatible = "cache";
-+			cache-level = <3>;
-+			cache-unified;
-+			cache-size = <0x100000>;/* 1MB L3 cache for cpu cluster-2 */
-+			cache-line-size = <64>;
-+			cache-sets = <1365>;
- 		};
- 	};
- 
+1. Enable IPQ5018 PCI support (Nitheesh Sekar) - https://lore.kernel.org/all/20231003120846.28626-1-quic_nsekar@quicinc.com/
+2. Add PCIe support for Qualcomm IPQ5332 (Praveenkumar I) - https://lore.kernel.org/linux-arm-msm/20231214062847.2215542-1-quic_ipkumar@quicinc.com/
+3. Community interest - https://lore.kernel.org/linux-arm-msm/20240310132915.GE3390@thinkpad/
+
+v6: phy bindings:
+    * Fix num-lanes definition
+
+    phy driver:
+    * Fix num-lanes handling in probe to use generally followed pattern
+
+    controller bindings:
+    * Give more info in commit log
+
+    dtsi:
+    * Add assigned-clocks & assigned-clock-rates to controller nodes
+    * Add num-lanes to pcie0_phy
+
+v5: phy bindings:
+    * Drop '3x1' & '3x2' from compatible string
+    * Use 'num-lanes' to differentiate instead of '3x1' or '3x2'
+      in compatible string
+    * Describe clocks and resets instead of just maxItems
+
+    phy driver:
+    * Get num-lanes from DTS
+    * Drop compatible specific init data as there is only one
+      compatible string
+
+    controller bindings:
+    * Re-arrange 5332 and 9574 compatibles to handle fallback usage in dts
+
+    dtsi:
+    * Add 'num-lanes' to "pcie1_phy: phy@4b1000"
+    * Make ipq5332 as main and ipq9574 as fallback compatible
+    * Sort controller nodes per address
+
+    misc:
+    Add R-B tag from Konrad to dts and dtsi patches
+
+v4: * phy bindings - Create ipq5332 compatible instead of reusing ipq9574 for bindings
+    * phy bindings - Remove reset-names as the resets are handled with bulk APIs
+    * phy bindings - Fix order in the 'required' section
+    * phy bindings - Remove clock-output-names
+    * dtsi - Add missing reset for pcie1_phy
+    * dtsi - Convert 'reg-names' to a vertical list
+    * dts - Fix nodes sort order
+    * dts - Use property-n followed by property-names
+
+v3: * Update the cover letter with the sources of the patches
+    * Rename the dt-bindings yaml file similar to other phys
+    * Drop ipq5332 specific pcie controllor bindings and reuse
+      ipq9574 pcie controller bindings for ipq5332
+    * Please see patches for specific changes
+    * Set GPL license for phy-qcom-uniphy-pcie-28lp.c
+
+v2: Address review comments from V1
+    Drop the 'required clocks' change that would break ABI (in dt-binding, dts, gcc-ipq5332.c)
+    Include phy driver from the dependent series
+
+v1: https://lore.kernel.org/linux-arm-msm/20231214062847.2215542-1-quic_ipkumar@quicinc.com/
+
+Nitheesh Sekar (2):
+  dt-bindings: phy: qcom,uniphy-pcie: Document PCIe uniphy
+  phy: qcom: Introduce PCIe UNIPHY 28LP driver
+
+Praveenkumar I (2):
+  arm64: dts: qcom: ipq5332: Add PCIe related nodes
+  arm64: dts: qcom: ipq5332-rdp441: Enable PCIe phys and controllers
+
+Varadarajan Narayanan (1):
+  dt-bindings: PCI: qcom: Document the IPQ5332 PCIe controller
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  10 +-
+ .../phy/qcom,ipq5332-uniphy-pcie-phy.yaml     |  75 +++++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts   |  76 +++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 248 ++++++++++++++-
+ drivers/phy/qualcomm/Kconfig                  |  12 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ .../phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c  | 286 ++++++++++++++++++
+ 7 files changed, 704 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+
+
+base-commit: 8155b4ef3466f0e289e8fcc9e6e62f3f4dceeac2
 -- 
 2.34.1
 
