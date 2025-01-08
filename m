@@ -1,162 +1,172 @@
-Return-Path: <devicetree+bounces-136835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4338AA0686A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:35:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D59FAA06897
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:43:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3644A162EE7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:35:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C33437A2D1B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937B2204C32;
-	Wed,  8 Jan 2025 22:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0478204C06;
+	Wed,  8 Jan 2025 22:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rx9HS+yp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="p8eI7odL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67845204C2A;
-	Wed,  8 Jan 2025 22:34:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7D619EEBF;
+	Wed,  8 Jan 2025 22:43:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736375696; cv=none; b=MyhUoDhFU/2DDiUwKpQOcAgjOUgPyC19RTRGSLFzj3ntWqbzgzCKUp9/Tl1A6N5SoFgyJ/NG7km8xIE8VvFs7QY4MrnG5OXWmXwc3ARkynN0LVLsZMveaU4sWsiu6BmcSfyYz9jvwcT2woNgmZq4JsgGx5VefmJ4lJmJhyEwfpU=
+	t=1736376198; cv=none; b=qP+x0v38n5n2LI0GYlu+NS4p5q8owLolSVRoCtGc2FutyJFd/RZ5dg5W/oITMLdZbb/1yOitXAapGJrGYQBfo65iQpKGM/lMVuP4NIY5GZIOSD5Obg6mpEvidADqAktaSMWmfp7Fo95an7obR1m3VHddGq55vNTvgE3bmt6IyKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736375696; c=relaxed/simple;
-	bh=qUnfcLL7DmzaEUrl0dbIayBRi5xKxhUN4wvIeYtQsiE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=HPnYeI5Da3hgtkImZaWgmfqtl3b3sovJlDs9Y0HVdb9guKxINgfBgpZmlOKFOtvm1iKyfipFkw4LY6IXPO3E3UrbtgWec/9k/1aSPIMdn7oezwV3C2jiuU3/v2tlEGOxADrQhYU4X8GssRQw2WtvYoT6MuXUoQ4Fx7ArCcri5yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rx9HS+yp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4886C4CEE8;
-	Wed,  8 Jan 2025 22:34:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736375695;
-	bh=qUnfcLL7DmzaEUrl0dbIayBRi5xKxhUN4wvIeYtQsiE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=rx9HS+ypENvBSNz7FKOl8bkHLl1SbM8t+gqHIOQotCIDp8bxrVNiW9XYEW10gtsya
-	 W4rmJpKVx7zU0hdcdV/tWYhLOPfZy0bLJp0fZecRmssDaq/C+1bVug9adxB+qR4/6Q
-	 ywpU2mwAUOHD4FNWKVEiH3abDCvGLtqI96nzCdLeFe5UVqSxA15YHWJIkmn5JDDcwP
-	 IQYOdC/GZdQX81Q15tu3OubbAoulheSnKZ/JSB1/s1Pfhg2SNlUapeHecFPJnt43os
-	 e7DivjNux5+Pw9vGFxP0f7lX14mt4+Lzed1akpRCOMlar7IoD2RoBeC8O9CwKXOgWy
-	 sjWhU8zkbaHew==
-Date: Wed, 08 Jan 2025 16:34:54 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1736376198; c=relaxed/simple;
+	bh=r3LZagmstRy+0cAJl6J9Ympm911HbBDnPjEypiOum2o=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=l7A3np7S18B+YcrBc+7sfe55iFg0mFtWvyjv1OzhrbNvaZT43FKKS5MXXPSMUYuj/Bjtiw0oIuNaH+6hNmtNZzr9SBpBiUwE7KVM/ZbQJ0YAn72p/sFnTfmbFVkIYPcfvSQ7WFhDF7cHzzaMB3Q4BR6PZrpIgbUUymara+IGSmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=p8eI7odL; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508GcghN002476;
+	Wed, 8 Jan 2025 22:43:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=wyxLU4HGcoqrZXhlW57BYh
+	i0S8Wy5db6c1Gu3PhzACI=; b=p8eI7odLoFXMjE4rbj6QEhTU2fIztMT6OzzPpS
+	HEAJUUAJsDiocpMLFP0o9wLk7Q4AUo1Gb9268nNMAYFSpB9geWtynqvo9KjZdKRk
+	ZCxa0zdKSuL2wLSiD+up78HrCDG9PrAXFrHbnTgduSp6T1VGvS1M2IyA/YXV8a8P
+	2FVxqV0ud+544sK2PYtcVbt9zbCXEgid2QrwYRcsVy8Cu6t71Z17rKs7YrhjTxge
+	dlPSP5EOYk2DHzC3fe1b22Psvh7RIPnGlyPkXK57E/lgSUoxciKP9bG82BtNJZWC
+	VbdjBhvkWWvw8pC5mPql0awQXgnRk+cJWbmm3ldEAIhA0QVQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441w2j8sxq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Jan 2025 22:43:01 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508Mh0N0025205
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 Jan 2025 22:43:00 GMT
+Received: from [10.213.111.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
+ 14:42:54 -0800
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Subject: [PATCH RFC 0/4] Support for Adreno X1-85 Speedbin along with new
+ OPP levels
+Date: Thu, 9 Jan 2025 04:12:37 +0530
+Message-ID: <20250109-x1e-speedbin-b4-v1-0-009e812b7f2a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: lpieralisi@kernel.org, linux-kernel@vger.kernel.org, 
- linux-pci@vger.kernel.org, joyce.ooi@intel.com, bhelgaas@google.com, 
- krzk+dt@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
- devicetree@vger.kernel.org, matthew.gerlach@altera.com, dinguyen@kernel.org, 
- conor+dt@kernel.org
-To: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-In-Reply-To: <20250108165909.3344354-1-matthew.gerlach@linux.intel.com>
-References: <20250108165909.3344354-1-matthew.gerlach@linux.intel.com>
-Message-Id: <173637565876.1164245.9757409308054353190.robh@kernel.org>
-Subject: Re: [PATCH v3 0/5] Add PCIe Root Port support for Agilex family of
- chips
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF7/fmcC/23NTW7CMBAF4KtEXnei8Q+QZIVUqQdgi1hM7ElqC
+ TvBBgsJcfca2mWX743eNw+ROXnOYmgeInHx2S+xBvnRCPtNcWbwrmahUBnscAd3yZBXZjf6CKM
+ BQqvROKn7Tou6WhNP/v4Wj+Lw9SlOv2Xiy63q179L4JzprQ9NtTcosYd5vQFZB8UAAna04YkmQ
+ 0rv69b6aFu7hNeTf9YGMiUlNa4QS+AARVeEesM47hyrifZnHykt7ZLmlzFSZqhe8NehKdtWakh
+ 2K07P5w9L5rxdFQEAAA==
+X-Change-ID: 20240807-x1e-speedbin-b4-a0c304d13983
+To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736376174; l=2562;
+ i=quic_akhilpo@quicinc.com; s=20240726; h=from:subject:message-id;
+ bh=r3LZagmstRy+0cAJl6J9Ympm911HbBDnPjEypiOum2o=;
+ b=d96A1Q2Wxl04VIgIbFQciEsDUKBWZY5zkMDCRjF8P0Ggnf+6sRwXh5MYKgjOYNBOygnZI0ZIr
+ UqWfSXoE3jOCU2vGcicVGiZMMzv2RBjXVv20LT450R/Y+XwoK18ekD4
+X-Developer-Key: i=quic_akhilpo@quicinc.com; a=ed25519;
+ pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: S_2fqAHAsd_YVTA5HKsq_keyWzuyLNib
+X-Proofpoint-ORIG-GUID: S_2fqAHAsd_YVTA5HKsq_keyWzuyLNib
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=684
+ clxscore=1015 impostorscore=0 phishscore=0 spamscore=0 suspectscore=0
+ lowpriorityscore=0 adultscore=0 priorityscore=1501 malwarescore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501080186
 
+This series adds gpu speedbin support for Adreno X1-85 GPU along with
+additional OPP levels. Because the higher OPPs require GPU ACD feature,
+this series has dependency on the GPU ACD support series [1]. Also,
+there is dependency on dimtry's series which fixes dword alignment in
+nvmem driver [2]. We need a small fix up on top of that and that is
+being discussed there. Hence, the RFC tag.
 
-On Wed, 08 Jan 2025 10:59:04 -0600, Matthew Gerlach wrote:
-> This patch set adds PCIe Root Port support for the Agilex family of FPGA chips.
-> Version 3 of this patch set removes patches that have been accepted.
-> 
-> Patch 1:
->   Add new compatible strings for the three variants of the Agilex PCIe controller IP.
-> 
-> Patch 2:
->   Add a label to the soc@0 device tree node to be used by patch 5.
-> 
-> Patch 3:
->   Add base dtsi for PCIe Root Port support of the Agilex family of chips.
-> 
-> Patch 4:
->   Add dts enabling PCIe Root Port support on an Agilex F-series Development Kit.
-> 
-> Patch 5:
->   Update Altera PCIe controller driver to support the Agilex family of chips.
-> 
-> D M, Sharath Kumar (1):
->   PCI: altera: Add Agilex support
-> 
-> Matthew Gerlach (4):
->   dt-bindings: PCI: altera: Add binding for Agilex
->   arm64: dts: agilex: add soc0 label
->   arm64: dts: agilex: add dtsi for PCIe Root Port
->   arm64: dts: agilex: add dts enabling PCIe Root Port
-> 
->  .../bindings/pci/altr,pcie-root-port.yaml     |   9 +
->  arch/arm64/boot/dts/intel/Makefile            |   1 +
->  arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |   2 +-
->  .../socfpga_agilex7f_socdk_pcie_root_port.dts |  16 ++
->  .../intel/socfpga_agilex_pcie_root_port.dtsi  |  55 ++++
->  drivers/pci/controller/pcie-altera.c          | 246 +++++++++++++++++-
->  6 files changed, 319 insertions(+), 10 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
->  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
-> 
-> --
-> 2.34.1
-> 
-> 
-> 
+An interesting bit here is the non-contigous "hi" bit for speedbin fuse.
+Otherwise, it is business as usual.
 
+The device tree change has a dependency on the driver changes. So the
+driver changes should be picked up first.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+[1] https://lore.kernel.org/lkml/20250109-gpu-acd-v4-0-08a5efaf4a23@quicinc.com/
+[2] https://lore.kernel.org/linux-arm-msm/20250104-sar2130p-nvmem-v3-0-a94e0b7de2fa@linaro.org/
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+-Akhil
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+---
+Akhil P Oommen (4):
+      drm/msm/adreno: Add speedbin support for X1-85
+      dt-bindings: power: qcom,rpmpd: add Turbo L5 corner
+      dt-bindings: nvmem: qfprom: Add X1E80100 compatible
+      arm64: dts: qcom: x1e80100: Update GPU OPP table
 
-  pip3 install dtschema --upgrade
+ .../devicetree/bindings/nvmem/qcom,qfprom.yaml     |  1 +
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 47 ++++++++++++++++++++++
+ drivers/gpu/drm/msm/adreno/a6xx_catalog.c          |  5 +++
+ drivers/gpu/drm/msm/adreno/adreno_gpu.c            | 15 ++++++-
+ include/dt-bindings/power/qcom-rpmpd.h             |  1 +
+ 5 files changed, 68 insertions(+), 1 deletion(-)
+---
+base-commit: 5fcdd8fcd55d1da6fdf8deb78355a5c23ce94d39
+change-id: 20240807-x1e-speedbin-b4-a0c304d13983
+prerequisite-message-id: 20250109-gpu-acd-v4-0-08a5efaf4a23@quicinc.com
+prerequisite-patch-id: 2ac56343518c3c16229262051f52e448564f2286
+prerequisite-patch-id: 1c363fb7cd864279bd97ed50a02f05f72ca00a5d
+prerequisite-patch-id: 059608aac5a0a1fa11ea93a8871820f054771301
+prerequisite-patch-id: de12f1b879070aca3f42973b75ed04d4d835b244
+prerequisite-patch-id: 421ea499b3e901030f66f697dc0a0b718d9db20e
+prerequisite-patch-id: ca6d3a3c65bd17bbcd7785e4584941a438aafcb9
+prerequisite-patch-id: 017b7ba9e9bfd70719b77bf741bf0afa7f20cee0
+prerequisite-message-id: 20250104-sar2130p-nvmem-v3-0-a94e0b7de2fa@linaro.org
+prerequisite-patch-id: c1310808de89982d41261bab69c77be2e83a6339
+prerequisite-patch-id: 34a5a771be148f71d66acd4417493cc752e6d3a6
+prerequisite-patch-id: 30ac1f33b3dc8979f28fdfd6303595fcfce56b84
+prerequisite-patch-id: 2238546441608d9f5755b4ebc1d5ea6090c6c3bb
+prerequisite-patch-id: 7a260ae7850d966e8fecd3ebc5114ac157d23c87
 
-
-New warnings running 'make CHECK_DTBS=y intel/socfpga_agilex7f_socdk_pcie_root_port.dtb' for 20250108165909.3344354-1-matthew.gerlach@linux.intel.com:
-
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /firmware/svc: failed to match any schema with compatible: ['intel,agilex-svc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /firmware/svc/fpga-mgr: failed to match any schema with compatible: ['intel,agilex-soc-fpga-mgr']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: cb-intosc-hs-div2-clk: 'clock-frequency' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: cb-intosc-ls-clk: 'clock-frequency' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: f2s-free-clk: 'clock-frequency' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: clock-controller@ffd10000: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/clock/intel,agilex.yaml#
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff800000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff800000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff802000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff802000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff804000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/ethernet@ff804000: failed to match any schema with compatible: ['altr,socfpga-stmmac-a10-s10', 'snps,dwmac-3.74a', 'snps,dwmac']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr: failed to match any schema with compatible: ['altr,socfpga-s10-ecc-manager', 'altr,socfpga-a10-ecc-manager']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr: failed to match any schema with compatible: ['altr,socfpga-s10-ecc-manager', 'altr,socfpga-a10-ecc-manager']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/sdramedac: failed to match any schema with compatible: ['altr,sdram-edac-s10']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/ocram-ecc@ff8cc000: failed to match any schema with compatible: ['altr,socfpga-s10-ocram-ecc', 'altr,socfpga-a10-ocram-ecc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/ocram-ecc@ff8cc000: failed to match any schema with compatible: ['altr,socfpga-s10-ocram-ecc', 'altr,socfpga-a10-ocram-ecc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/usb0-ecc@ff8c4000: failed to match any schema with compatible: ['altr,socfpga-s10-usb-ecc', 'altr,socfpga-usb-ecc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/usb0-ecc@ff8c4000: failed to match any schema with compatible: ['altr,socfpga-s10-usb-ecc', 'altr,socfpga-usb-ecc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/emac0-rx-ecc@ff8c0000: failed to match any schema with compatible: ['altr,socfpga-s10-eth-mac-ecc', 'altr,socfpga-eth-mac-ecc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/emac0-rx-ecc@ff8c0000: failed to match any schema with compatible: ['altr,socfpga-s10-eth-mac-ecc', 'altr,socfpga-eth-mac-ecc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/emac0-tx-ecc@ff8c0400: failed to match any schema with compatible: ['altr,socfpga-s10-eth-mac-ecc', 'altr,socfpga-eth-mac-ecc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/emac0-tx-ecc@ff8c0400: failed to match any schema with compatible: ['altr,socfpga-s10-eth-mac-ecc', 'altr,socfpga-eth-mac-ecc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/sdmmca-ecc@ff8c8c00: failed to match any schema with compatible: ['altr,socfpga-s10-sdmmc-ecc', 'altr,socfpga-sdmmc-ecc']
-arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dtb: /soc@0/eccmgr/sdmmca-ecc@ff8c8c00: failed to match any schema with compatible: ['altr,socfpga-s10-sdmmc-ecc', 'altr,socfpga-sdmmc-ecc']
-
-
-
-
+Best regards,
+-- 
+Akhil P Oommen <quic_akhilpo@quicinc.com>
 
 
