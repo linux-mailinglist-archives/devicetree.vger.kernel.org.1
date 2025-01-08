@@ -1,177 +1,91 @@
-Return-Path: <devicetree+bounces-136471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23B4EA05501
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:09:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F26A05515
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:13:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA646188726A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:09:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F3CA1887FCF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:13:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8151B3938;
-	Wed,  8 Jan 2025 08:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B54E1DF255;
+	Wed,  8 Jan 2025 08:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gkgjmUHY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fhHdiyKp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC961AA781;
-	Wed,  8 Jan 2025 08:09:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE821B3938;
+	Wed,  8 Jan 2025 08:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736323758; cv=none; b=b1OaFozatnqZIExzb2++i+8KWoMGJFVyHtDT4EmdINdt+gh2vNA0H74rI3PstTD5RpPH7tDh7tE0OVhFVgHurSpxb3bkFl1kksYhJptCTLIwqQS11zKJk8AyykCiv2zfemDgTdHFQV0xL/bNyuj7z94fJcRfT6xzKIi0w5j+apA=
+	t=1736324011; cv=none; b=BOZjz+PgXMLCUyf7Wljl+tqzycaOMZ0DfdX07kF1apjt0g5MQJKe4Xkhge5c8GzCXXANh/qGSuB+LVChJC4YPhnCLiC2p1DH1l+yoTSiTKOMkjLDxDACOqcJUg8VOQftetJuBXkuIUG6FDXhXG5YyblGwjexUbRiGBRFPnYvFmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736323758; c=relaxed/simple;
-	bh=EhrXhmuugAUf9A+DMIseR62Qd2kdQD2Wz+y/yrl7k2I=;
+	s=arc-20240116; t=1736324011; c=relaxed/simple;
+	bh=jZHEfq+T+rhY8yWw+U8ne465e6CWj3IX1cnnsWkkfLE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dQ1Alhi6Jh+M0Lk7b+fQELSE4va6FwAwXQJY6MosxdePBUEv64c5GeZVnPdqephZ6uPflcQLu8a7AwbkQ7kR3Qu0Zbf/0ffbyBDrUzyQSiwjIcokWqk/SCPEVCcWWNStzays8j4vKLszfWaTebatQ3M8c/6PsXKXjdwS2t/xGHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gkgjmUHY; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736323757; x=1767859757;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EhrXhmuugAUf9A+DMIseR62Qd2kdQD2Wz+y/yrl7k2I=;
-  b=gkgjmUHYCZ4NTX2qN5OzFEMFm0A4QPTObL7ERn/M/nlP4+ScHC9+Rx2K
-   WEsPs4RW/PKeHfrSnDHBctm1MokLxFpr13mlweT2Yo5AS3ixCiKTbWbGR
-   /y0Xh0LU8Xs1HShJDWtRvpS/PzdDVsDtTUC8I2vIyK83eoX+ksll246KB
-   nfTK+mMJGB1Sz3gWverMm+4RV5NhecXb84kZZEUwqVIijciFfTD2vb5Ti
-   mSJlQDY66cmwVKHGd0H7Rlfq6SCzfHwGthMUswJVI75Go1K0L7KxW1+Mw
-   h7OqmQELDLY2Z4pL/H0aA8xlIQaXMiMZjVDgqbHU+GUYDomMizUyFmNCQ
-   A==;
-X-CSE-ConnectionGUID: hNx4Ct1dTLaKcUEV1qEIBA==
-X-CSE-MsgGUID: ZKg5XuoLSkqcCN3LXaqqUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="35829805"
-X-IronPort-AV: E=Sophos;i="6.12,297,1728975600"; 
-   d="scan'208";a="35829805"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2025 00:09:16 -0800
-X-CSE-ConnectionGUID: Q/6a6sUtS72jFyRGUWyEyA==
-X-CSE-MsgGUID: O1DVggeYQWW+EAckMs19MQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="108075856"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2025 00:09:12 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 1359B11F9C0;
-	Wed,  8 Jan 2025 10:09:09 +0200 (EET)
-Date: Wed, 8 Jan 2025 08:09:09 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	John Cox <john.cox@raspberrypi.com>,
-	Dom Cobley <dom@raspberrypi.com>,
-	review list <kernel-list@raspberrypi.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	John Cox <jc@kynesim.co.uk>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/7] docs: uapi: media: Document Raspberry Pi NV12 column
- format
-Message-ID: <Z34ypbE2mNp1tC5V@kekkonen.localdomain>
-References: <20241220-media-rpi-hevc-dec-v1-0-0ebcc04ed42e@raspberrypi.com>
- <20241220-media-rpi-hevc-dec-v1-2-0ebcc04ed42e@raspberrypi.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=X/9rrXU+D9ADQi6js0y0uofVyk0Ly85AidBPSPjUQthzqOw6oucWPbXZg+2A1AmV8Jf31/KT6f5QLidfll9G+hyOlPvHcHXDekJMQ7yloEptdeDmka6fY3ILo+Jsqah/rHkgrjChW9aKW1fj9kuuSZI6HDfDAqNxXFgM0ehe8+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fhHdiyKp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5C3AC4CEE0;
+	Wed,  8 Jan 2025 08:13:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736324010;
+	bh=jZHEfq+T+rhY8yWw+U8ne465e6CWj3IX1cnnsWkkfLE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fhHdiyKpLTvWmHD+PArkrJ6XMwjvfiydeJrQZN7OAwVwEqQNvLZOSc8pEbTDbUmJV
+	 qEjbUiPKa6zgSKYnxGwVnOmZ3CN5+x+fwLCpcXI1GqpzVigzG486Vtop3o98/pvQLU
+	 NBBEOxnNHCkUYUfKgseAqYM2pPd3N/x75NuBAbXuu5qSDnUhYledRmo389cC0OF9cF
+	 /6c3C9vuulfjOdKFSyg2oKAxv64m1Tyzd/oAQyAfRz3qBNi4ryMYrcmb7+QhWuc2Xx
+	 BrXNuHL9C9aH0KOlvhrq4R9XiD648p3+ecRN6IMhpAry5BEuOfn8KF3+D/4YfvW1TN
+	 chFFnpNpY33jg==
+Date: Wed, 8 Jan 2025 09:13:26 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ming-Jen <mjchen0829@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org, peng.fan@nxp.com, 
+	arnd@arndb.de, sudeep.holla@arm.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
+	robh@kernel.org, dmitry.torokhov@gmail.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
+Message-ID: <ux55pgpmkngxjsl4semw2cfiljbszvotaydrxrihdu3zphsfqc@vsk72c3wqorc>
+References: <20250108011812.627-1-mjchen0829@gmail.com>
+ <20250108011812.627-2-mjchen0829@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241220-media-rpi-hevc-dec-v1-2-0ebcc04ed42e@raspberrypi.com>
+In-Reply-To: <20250108011812.627-2-mjchen0829@gmail.com>
 
-Hi Dave,
-
-Thanks for the set.
-
-On Fri, Dec 20, 2024 at 04:21:13PM +0000, Dave Stevenson wrote:
-> The Raspberry Pi HEVC decoder uses a tiled format based on
-> columns for 8 and 10 bit YUV images, so document them as
-> NV12MT_COL128 and NV12MT_10_COL128.
+On Wed, Jan 08, 2025 at 01:18:11AM +0000, Ming-Jen wrote:
+> From: Ming-jen Chen <mjchen0829@gmail.com>
 > 
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Add YAML bindings for MA35D1 SoC keypad.
+> 
+> Signed-off-by: Ming-jen Chen <mjchen0829@gmail.com>
 > ---
->  .../userspace-api/media/v4l/pixfmt-yuv-planar.rst  | 42 ++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
+>  .../bindings/input/nuvoton,ma35d1-keypad.yaml | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
 > 
-> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-> index b788f6933855..90414491d7b5 100644
-> --- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-> +++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
-> @@ -827,6 +827,48 @@ Data in the 12 high bits, zeros in the 4 low bits, arranged in little endian ord
->        - Cb\ :sub:`11`
->        - Cr\ :sub:`11`
->  
-> +NV12MT_COL128 and NV12MT_10_COL128
+> diff --git a/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
+> new file mode 100644
+> index 000000000000..889f253b3bc2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
 
-Please use full macro names of the formats here.
+I don't see changes.
 
-> +----------------------------------
-> +
-> +``V4L2_PIX_FMT_NV12MT_COL128`` is a tiled version of
-> +``V4L2_PIX_FMT_NV12M`` where the two planes are split into 128 byte wide columns
-> +of Y or interleaved CbCr.
-> +
-> +NV12MT_10_COL128 expands that as a 10 bit format where 3 10 bit values are
+I already raised concern that you sent new versions without implementing
+or responding to comments. So the fourth (!!!) time: Filename matching
+compatible.
 
-Ditto.
+Best regards,
+Krzysztof
 
-> +packed into a 32bit word. A 128 byte wide column therefore holds 96 samples
-> +(either Y or interleaved CrCb). That effectively makes it 6 values in a 64 bit
-> +word for the CbCr plane, as the values always go in pairs.
-> +
-> +Bit-packed representation.
-> +
-> +.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3.2cm}|
-> +
-> +.. flat-table::
-> +    :header-rows:  0
-> +    :stub-columns: 0
-> +    :widths: 8 8 8 8
-> +
-> +    * - Y'\ :sub:`00[7:0]`
-> +      - Y'\ :sub:`01[5:0] (bits 7--2)` Y'\ :sub:`00[9:8]`\ (bits 1--0)
-> +      - Y'\ :sub:`02[3:0] (bits 7--4)` Y'\ :sub:`01[9:6]`\ (bits 3--0)
-> +      - unused (bits 7--6)` Y'\ :sub:`02[9:4]`\ (bits 5--0)
-> +
-> +.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3.2cm}|
-> +
-> +.. flat-table::
-> +    :header-rows:  0
-> +    :stub-columns: 0
-> +    :widths: 12 12 12 12 12 12 12 12
-> +
-> +    * - Cb\ :sub:`00[7:0]`
-> +      - Cr\ :sub:`00[5:0]`\ (bits 7--2) Cb\ :sub:`00[9:8]`\ (bits 1--0)
-> +      - Cb\ :sub:`01[3:0]`\ (bits 7--4) Cr\ :sub:`00[9:6]`\ (bits 3--0)
-> +      - unused (bits 7--6) Cb\ :sub:`02[9:4]`\ (bits 5--0)
-> +      - Cr\ :sub:`01[7:0]`
-> +      - Cb\ :sub:`02[5:0]`\ (bits 7--2) Cr\ :sub:`01[9:8]`\ (bits 1--0)
-> +      - Cr\ :sub:`02[3:0]`\ (bits 7--4) Cb\ :sub:`02[9:6]`\ (bits 3--0)
-> +      - unused (bits 7--6) Cr\ :sub:`02[9:4]`\ (bits 5--0)
-> +
->  
->  Fully Planar YUV Formats
->  ========================
-> 
-
--- 
-Kind regards,
-
-Sakari Ailus
 
