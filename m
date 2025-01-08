@@ -1,63 +1,79 @@
-Return-Path: <devicetree+bounces-136635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E04A05B23
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:13:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACAA5A05B58
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:19:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29EB21888E11
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:13:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C784A161F77
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:19:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5521F8F19;
-	Wed,  8 Jan 2025 12:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 977D11F9A8C;
+	Wed,  8 Jan 2025 12:19:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BRh3p/i7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cq6zl1ZA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42E7B1F76C3;
-	Wed,  8 Jan 2025 12:13:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11501A00FE;
+	Wed,  8 Jan 2025 12:19:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736338402; cv=none; b=bbAGGb9yFPbz8kqdKx/HqeTYU4O5fhVZuzB8VhqsxAoK2vTrDTCcDvJSADD5932tC0O2xYEx6HFWiEG87aG23h6k/QX695bVAUETLIXGezZeB3Z0P5yr9B9DZOWTnNuKkNeb6KRrTLT11fVq3bSxo+nYkOu2VSAFHQC1CQH73W4=
+	t=1736338761; cv=none; b=iiqKyHu3FQWrn2YY37UsqfX0KWwJBepmwr1Um0b9HGz8mBnXGx/+iysugkFr2HrgQDyIhQmspJre4hcqH6AnwYH4ZWb77FnxbLhWwsdhoHZuH+b8fwOCvTAFdFDhp5HI7x9Px6ObKLbuhXXKcEt+Fm58INDFcirhQ0OIv8m8xYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736338402; c=relaxed/simple;
-	bh=YsPBQ3E0ASSxV/GSZxKRqIgvMWIYsJO2oaJpavYp0J8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZojJqUJpbvjeToIyKf8XlnQaT+fJNgHusFbYDiFP58rUIW+8Wb2X/YIELuFnb6QUYO5x0aIQQEIguP0xlLJlqX/d/PGHTuybm6pBNaXCOg+WLICn0aXKRLMyWVCA0YO+id7Z/fLs3tXp7rWVA+jGHlTCQg4Cm/qTIEKbMlcMUKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BRh3p/i7; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508BkTd0029426;
-	Wed, 8 Jan 2025 12:13:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aMh+t18gQrKLkd2MQJomreIlFaS4QzSHKw4FstOCKVU=; b=BRh3p/i7LAzHlKRe
-	74G4xFEkd2wYUFWllWagAsrk38lAVcnQuNEOb9ZxIKiY7GtcStxIjB7S5/mCIEQL
-	UvKyn/D1J2H5x3BWFsjXEI0djF4TrijOxYfeGZACMeHr6GFD1fBNrmYlJKycy/uv
-	sfMvgq8xteCPNzDqZR0Q/tnf7MT2buVbCXQkndzqa6/Vw1NNbYM354c6UIPYzRBC
-	Y/hglrR8EVk+J7HrhNF0LNEVXIaI+YWCTTPeaJoy7Wd5wUfNloOU8G9EfKjWI0U1
-	XQpTi8iPyoPJP7WozYUPjZKuqjXu0L0z3Uj5CAEohrQkLuXHfpSUw/pvJ0rEDCk+
-	yuELdA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441ms8rrjv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Jan 2025 12:13:17 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508CDGpa006505
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 Jan 2025 12:13:16 GMT
-Received: from [10.219.57.57] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
- 04:13:14 -0800
-Message-ID: <18327fca-2c9e-4b33-8085-270cd2c29aa4@quicinc.com>
-Date: Wed, 8 Jan 2025 17:43:11 +0530
+	s=arc-20240116; t=1736338761; c=relaxed/simple;
+	bh=l2wuy6uutmjlMwmvqqU1Go/FyQ3viVYg51+dLSMo4CA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ANeq76Ox1LgkN7vHGWpHYCHmTWAdKMBOgXm/DjTi7sec8fJNeptSRiAkEdIjvn7CIQlHDdFwnr6ID10BYTWjTKdNHfOgfYCRzARDwFjVrjcwXKZOoE/Cbo1knDkKBFEK7PnINEbQo2KWKU8K/OogsOKXvp2I89WqteKxzshjYOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cq6zl1ZA; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4361b6f9faeso4998085e9.1;
+        Wed, 08 Jan 2025 04:19:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736338758; x=1736943558; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=D0wrsrPGAdDXBV5iPTRGFFFX12teH6issL2b7lrnEgE=;
+        b=Cq6zl1ZAzlNj7lYYxdfbm13gFcewsFaVqxkG2Ru6DHxB6Re4SKrps65qL7IZUzlt6d
+         tHmBBFosWI8QX215hzRDx+2g7tiQTtbPYjukuuO9wv9KpUbnsVAeHT/z9je68ZsP4/7n
+         zq7E0wf4b5pvpPz1xHffxKEQ8g5QmFQtw/kjF6c9naWWdA9sO56ANlweW7OMNgeZf0yA
+         6fv6NAVJUCpii123Xbf9ap0Xj0L5QVx3uHY6/IIgA7fH7I3b44QmWmR2xRSfcwlDYaxn
+         JfSfFDV2wVxDkyWML9AkjQen7xLRZ7Z36XgT5g96ArnBG/Ncm7ZEx8961YqhldBQHHoC
+         klwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736338758; x=1736943558;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=D0wrsrPGAdDXBV5iPTRGFFFX12teH6issL2b7lrnEgE=;
+        b=awi187fE3UN4rxxJOxdN1V6+m0d/FIvbGZn/sNx4F5FwEKoFzJMFgJvH37LaTrjL83
+         QHCztQO8T1Kv2fn702j2Z6jPhqPZb2JgyRDaHrJmLnQmy8WBAXG2mfzDFc/gUtgjxCFa
+         U9u0jM8kz8BWrspHDaUduJiE1sOL2QeeiaVBAdYoi5L+adjZy3FBop2gnzs08tGkiHde
+         lNMb0aV+pZAq2YhcZu8iQCqL87F19DFemt9lFRzVL4GyFliZCMVxZ0sEufzloJywT8PG
+         ljKEAZMX8BkjqmpNByePiM+/XnsmG0HxqLjQ3QaBV5b8NdLx92pPi8Bat1bzcLGTKKpO
+         UpXg==
+X-Forwarded-Encrypted: i=1; AJvYcCU7yHwDIHTvDZ2b7uI/+aBrMKXtRu2EukfouRjTux7OI3SX45x3tJ8HtbHiROthyLYDCjv/rdRhZq+9QEY=@vger.kernel.org, AJvYcCVZ7P4OVndYkBZakkPtbgwOQtHJw8TGXDyidd7vKRMeIpafgffBv0HfBaWoAG8A4W58yEQ+daQ0pjee@vger.kernel.org, AJvYcCXjfRYyLVwU29TcWFLUloGbUEe6C92uolhYShxodq85Qf+6SQI9eIgq8YdCh4kvXzvpYhFRCfL0juA1rBJO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/rElMXjc5GHCFKBT7mQuPsj1ArCn1NzdC04og3bn7N32JZztu
+	D4vWJKhByZbgN/M78tco0SrOJGE6anaGJjz6mog05A1TbaLorzAI
+X-Gm-Gg: ASbGncu2c1LlZSK4Lh5TTOBQ+6Wf5opBiDd80jzqIYiRsVyMXQw/aHvZVANXwx1wicH
+	FSdHUElz4h7gJm57en1N7pMNcW1OBpogF0rb1KhawmcCYyVwSoKWehA6sGICgnkQw7hZuhp5e+5
+	lXhx/k6OIV3zq0sI0FmspKfFjfjqRttdjZG5jyu2HgFYPLBO1T5q5NyYsARPMOpYGoya0IJq21M
+	pMDbnJ2GneRSaaFXTR6DPox6Skn8Xm7bTnT/BP8E0OgrCckPuO1fSzmd7J/u92kULrjDmavZckZ
+	cF5EtQ==
+X-Google-Smtp-Source: AGHT+IEZ2TsyG7bFlOCK2TmeGPogWLKZEqI34rc1uiTT2N6nITdoJEt+KA1su4EcHw8h6jyV9z9qzA==
+X-Received: by 2002:a05:600c:510b:b0:434:fb8b:deee with SMTP id 5b1f17b1804b1-436e1e4ae91mr23270555e9.16.1736338757809;
+        Wed, 08 Jan 2025 04:19:17 -0800 (PST)
+Received: from [192.168.4.226] ([92.120.5.1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2c27008sm19375005e9.0.2025.01.08.04.19.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jan 2025 04:19:17 -0800 (PST)
+Message-ID: <e5665b6a-c2ad-470f-8a36-b7adc05c1cf0@gmail.com>
+Date: Wed, 8 Jan 2025 14:19:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,128 +81,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs8300: Add device node for
- gfx_smmu
-To: Bjorn Andersson <andersson@kernel.org>
-CC: <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241227110024.30203-1-quic_pbrahma@quicinc.com>
- <64ak7h5pwqinmcymas5i4xexa6bntvti7zkwfhzx7qrsmgaow3@zmn7jffcrp5f>
+Subject: Re: [PATCH v3 3/5] ASoC: dt-bindings: audio-graph-card2: add widgets
+ and hp-det-gpios support
 Content-Language: en-US
-From: Pratyush Brahma <quic_pbrahma@quicinc.com>
-In-Reply-To: <64ak7h5pwqinmcymas5i4xexa6bntvti7zkwfhzx7qrsmgaow3@zmn7jffcrp5f>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Daniel Baluta <daniel.baluta@nxp.com>,
+ Mark Brown <broonie@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Takashi Iwai <tiwai@suse.com>, Bard Liao <yung-chuan.liao@linux.intel.com>,
+ Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+ Jaroslav Kysela <perex@perex.cz>, Frank Li <Frank.li@nxp.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, imx@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20241216145039.3074-1-laurentiumihalcea111@gmail.com>
+ <20241216145039.3074-4-laurentiumihalcea111@gmail.com>
+ <nxcoukgiwtcsowi2uxytxa32mdp5dhl4tvnetpd2spti7oiiu3@mpqbv43ivznc>
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+In-Reply-To: <nxcoukgiwtcsowi2uxytxa32mdp5dhl4tvnetpd2spti7oiiu3@mpqbv43ivznc>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: t5TbF3v8GW2b-3XMqRm-mFYPsn9XjjnF
-X-Proofpoint-GUID: t5TbF3v8GW2b-3XMqRm-mFYPsn9XjjnF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 mlxlogscore=879 lowpriorityscore=0
- adultscore=0 impostorscore=0 clxscore=1015 phishscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501080100
 
 
-On 12/28/2024 9:05 AM, Bjorn Andersson wrote:
-> On Fri, Dec 27, 2024 at 04:30:24PM +0530, Pratyush Brahma wrote:
->> Add the device node for gfx smmu that is required for gpu
->> specific address translations.
+
+
+On 12/17/2024 9:07 AM, Krzysztof Kozlowski wrote:
+> On Mon, Dec 16, 2024 at 09:50:37AM -0500, Laurentiu Mihalcea wrote:
+>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 >>
->> This patch depends on the patch series [1] posted by Imran Shaik
->> adding the clock support for gpu.
+>> Introduce the 'widgets' property, allowing the creation of widgets from
+>> 4 template widgets: Microphone, Line, Headphone, and Speaker. Also
+>> introduce the 'hp-det-gpios' property, which allows using headphone
+>> detection using the specified GPIO.
 >>
->> [1] https://lore.kernel.org/all/802d32f1-ff7e-4d61-83f1-f804ee1750ed@oss.qualcomm.com/
-> It's over a month since Konrad rejected that patch so you're just
-> wasting out time sending this to the list.
->
-> Further, this dependency has no value in the git history, and as such it
-> should not be mentioned in the commit message, but rather under the
-> '---' line.
->
-> Lastly, you sent this same patch both as part of a series and then
-> alone, within 2 minutes. go/upstream has instructions on how to use b4
-> instead of making these manual mistakes.
->
->
-> PS. Just to be clear, either make sure this patch is sent together with
-> the next version of [1], or wait for that to have become available in
-> linux-next before resubmitting it.
-I see the patch [1] has been merged now [2]. Will resend another version 
-of this on top of
-the merged commit using b4.
-
-[2] 
-https://lore.kernel.org/all/173631205044.113795.272368168541784140.b4-ty@kernel.org/
-
->
-> Regards,
-> Bjorn
->
->> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+>> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 >> ---
->>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 37 +++++++++++++++++++++++++++
->>   1 file changed, 37 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->> index 80226992a65d..8eb688e2df0a 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->> @@ -816,6 +816,43 @@
->>   			#power-domain-cells = <1>;
->>   		};
->>   
->> +		adreno_smmu: iommu@3da0000 {
->> +			compatible = "qcom,qcs8300-smmu-500", "qcom,adreno-smmu",
->> +				   "qcom,smmu-500", "arm,mmu-500";
->> +			reg = <0x0 0x3da0000 0x0 0x20000>;
->> +			#iommu-cells = <2>;
->> +			#global-interrupts = <2>;
->> +			dma-coherent;
->> +
->> +			power-domains = <&gpucc GPU_CC_CX_GDSC>;
->> +			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
->> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
->> +				 <&gpucc GPU_CC_AHB_CLK>,
->> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
->> +				 <&gpucc GPU_CC_CX_GMU_CLK>,
->> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
->> +				 <&gpucc GPU_CC_HUB_AON_CLK>;
->> +			clock-names = "gcc_gpu_memnoc_gfx_clk",
->> +				      "gcc_gpu_snoc_dvm_gfx_clk",
->> +				      "gpu_cc_ahb_clk",
->> +				      "gpu_cc_hlos1_vote_gpu_smmu_clk",
->> +				      "gpu_cc_cx_gmu_clk",
->> +				      "gpu_cc_hub_cx_int_clk",
->> +				      "gpu_cc_hub_aon_clk";
->> +			interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
->> +		};
->> +
->>   		pmu@9091000 {
->>   			compatible = "qcom,qcs8300-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
->>   			reg = <0x0 0x9091000 0x0 0x1000>;
->> -- 
->> 2.17.1
->>
--- 
-Thanks and Regards
-Pratyush Brahma
+>>  .../devicetree/bindings/sound/audio-graph-card2.yaml          | 4 ++++
+> I have impression you are duplicating audio graph properties instead of
+> referencing proper schema, but considering that the bindings
+> audio-graph-card and audio-graph-card2 differ only by number "2" without
+> any description, not sure what is correct here.
+
+Please correct me if I'm wrong here.
+
+As things stand now and based on Kuninori Morimoto's comment on this
+(https://lore.kernel.org/lkml/87cyhw8lg5.wl-kuninori.morimoto.gx@renesas.com/) I'd say we can't
+(or, rather, shouldn't) directly reference audio-graph.yaml here.
+
+Now, I wonder if the "proper" solution here would be to take the common properties
+of audio-graph.yaml and audio-graph-card2.yaml and create a new binding that can be
+referenced by both aforementioned bindings? Would that make things even more confusing
+(we'd probably end up with audio-graph.yaml, audio-graph-card.yaml, audio-graph-card2.yaml,
+and audio-graph-common.yaml)? Should this be addressed as part of this series?
 
 
