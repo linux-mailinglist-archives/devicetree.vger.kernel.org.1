@@ -1,126 +1,175 @@
-Return-Path: <devicetree+bounces-136741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E69A2A060D0
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:55:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2053EA0611A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:08:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9D89169338
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:55:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ADAF166B2D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:08:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94F911FA8C0;
-	Wed,  8 Jan 2025 15:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B96B1FCFF4;
+	Wed,  8 Jan 2025 16:08:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="coBYJ4kc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HdKApLP1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B904F1FDE29;
-	Wed,  8 Jan 2025 15:55:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58DEF13D52E;
+	Wed,  8 Jan 2025 16:08:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736351717; cv=none; b=tUbnTKXH5jUt3AcePY1RGQlfMV0/VZkkQ8yIHU4A7QhMx1SEYKvdQTkotdHc/8kugZmWBJFW6CEavHx9inryUBQh0g34HhLegVxPkCINa/Zk7w3vRnv7Rfz/vE6v0JQOQSeRB3fiHVfRyXf0rA/09WLwSL42aLgrocQUkE4+3wQ=
+	t=1736352516; cv=none; b=C+cOJDKL8wGSD61DixkYtBIRJmbqZp/S+5E2OPQMW96Jf/RgjY1inyQuGYjFolcUzizCwPZgEs/I3HuXBexSQEq0G5NPaYQh2e+/1/poRP/Iw90iFavPqoiK3i41BQNvdTmVqV3wBgI7w4A/wHtdHTZVrsEUtcjMcLmc5tLBxwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736351717; c=relaxed/simple;
-	bh=GDL3oLakZK4vCW/l+bakn3/h3Brr57D3TZtv+muUx6g=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NdAuCeKsHj8ts1s63FmKIckRawHjQhZLSqHWvLuN6WNLZZ5qsM1eTloyNg2FJaiMNIw+/3KNsGVo+LFe+PWumULyr/Rk9B3aetzACYDO7c0F3TF5J3smr4fGVI8t610N+hoX1N/jKXbwVq2JUCdbimr5ecqlO9hJmBs0IZx8ERs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=coBYJ4kc; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 508Ft28S005993;
-	Wed, 8 Jan 2025 09:55:02 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736351702;
-	bh=MTgdRGCrjZVs332wXwjRkWCPapMl7/eRuP5w9RmhYD8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=coBYJ4kc6YvpDID8zVRljQH7PuAY7mftWPRpuNg0aKHmEVA5rM9tUmV7w7hiFGFSD
-	 Aj5VFuDXoPpahcNG7lB9tEMGXj+CHJYm6DJ0Lor3SPTt6zKD5crzlmlumm1FZcaQo8
-	 D/GWZW3zDvTPeAqugqc7LqLD2AFhJ2KrIgPVPrfs=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508Ft2X9084233
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 8 Jan 2025 09:55:02 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
- Jan 2025 09:55:02 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 8 Jan 2025 09:55:02 -0600
-Received: from localhost ([10.249.32.182])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508Ft2KJ091324;
-	Wed, 8 Jan 2025 09:55:02 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Tony Lindgren <tony@atomide.com>,
-        Markus
- Schneider-Pargmann <msp@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62a-wakeup: Configure ti-sysc for wkup_uart0
-Date: Wed, 8 Jan 2025 09:55:00 -0600
-Message-ID: <173635169682.1209268.16035989059453940874.b4-ty@ti.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241231-am62a-dt-ti-sysc-wkup-v1-1-a9b0d18a2649@ti.com>
-References: <20241231-am62a-dt-ti-sysc-wkup-v1-1-a9b0d18a2649@ti.com>
+	s=arc-20240116; t=1736352516; c=relaxed/simple;
+	bh=H9kr5sv6YWuWgucBcqUXv6Qq59FuW6uIHCVUtJA2/s0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=sALnYJMrVkdoqn2drIUvaSWVzM+ut53nvMwOZBdaCOfvqkg3fZXPBnzGAAt+wDHqLx/QylpqZUbOWD3PLzSEwxdbFN6kVxbR7Xa5MSG/vCpnu/7S20QDcN71wFMwiXnTev8rQ9vfkawWkQK/3EculKJqTIgX7xkCytv+jVueRFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HdKApLP1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508BkTED002282;
+	Wed, 8 Jan 2025 16:08:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	C/+q++c4M8S7wUaTOFqJ/qehcs3vC7iAAFMLaVVM1i4=; b=HdKApLP1PmwUXucN
+	IwFOOFE2zoOMg5EX68O481mGFTfyvxbaipVAJIltJ4pvMO0LgAGGgJFkUAAsWjYK
+	ZIv7GAn3fG/8DeouOz9WqzWiM5GtiP2fjB55d7Gaygvzfzsmt5x745sDxLoTMEwl
+	9vjK0V6ygUT+lMBebefZK50iZj8IkFP5W+L4T+KN6bEVm3uq5Eptb/G7DkR36/N4
+	tfODsq16vunuiZ5xTEUvPGQVPo4r4BlLP5kjwERWIMmQ0NmiujibK0Byk5aSheWj
+	QDs7CNd4PQ0i4yndMrRscAxZ+W3W0CNkBl3aoODKQQ/o0vrRp2w9glg/8v2qwmvp
+	QJCpkQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441md31c97-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Jan 2025 16:08:29 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508G8Scr018269
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 Jan 2025 16:08:28 GMT
+Received: from [10.216.3.216] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
+ 08:08:22 -0800
+Message-ID: <cf2ad828-d00d-133b-f310-1688fc0ed59b@quicinc.com>
+Date: Wed, 8 Jan 2025 21:38:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v5 6/6] arm64: dts: qcom: Enable cpu cooling devices for
+ QCS9075 platforms
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Wasim Nazir <quic_wasimn@quicinc.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
+ <20241229152332.3068172-7-quic_wasimn@quicinc.com>
+ <zn4uf3mmlmt3who474hwkr44poycfqtjtidshybbg55a3hr63y@zxefqbhiwkbg>
+ <d54c6706-3c6b-211c-6acb-fa3984c30c67@quicinc.com>
+ <ubasbsyspn5euygihgphyw3xg4ckveytvgnjpwdiyg4pv7degr@6y44ya4gvaqj>
+ <07c41571-28ca-6f9e-bcee-899bbf77f687@quicinc.com>
+ <sufmykle5inyk73i3qfmy3xqq7plgfr7txiruyahc5wgvvn6uo@kytxtb5zc3tg>
+From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
+In-Reply-To: <sufmykle5inyk73i3qfmy3xqq7plgfr7txiruyahc5wgvvn6uo@kytxtb5zc3tg>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XIv7h7sffdi3Tv5mQvI9td5vzseq8BhY
+X-Proofpoint-ORIG-GUID: XIv7h7sffdi3Tv5mQvI9td5vzseq8BhY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
+ mlxlogscore=378 lowpriorityscore=0 adultscore=0 malwarescore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501080134
 
-Hi Dhruva Gole,
 
-On Tue, 31 Dec 2024 14:44:19 +0530, Dhruva Gole wrote:
-> Similar to the TI K3-AM62x SoC commit ce27f7f9e328c8582a169f97f1466976561f1
-> ("arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for wkup_uart0"),
-> The devices in the wkup domain are capable of waking up the system from
-> suspend. We can configure the wkup domain devices in a generic way using
-> the ti-sysc interconnect target module driver like we have done with the
-> earlier TI SoCs.
-> 
-> [...]
+Hi Dmitry,
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
 
-[1/1] arm64: dts: ti: k3-am62a-wakeup: Configure ti-sysc for wkup_uart0
-      commit: 5532b8a9ce0e80514e37a1e082824934663580a3
+On 1/8/2025 6:16 PM, Dmitry Baryshkov wrote:
+> On Wed, Jan 08, 2025 at 05:57:06PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
+>> Hi Dmitry,
+>>
+>>
+>> On 1/3/2025 11:21 AM, Dmitry Baryshkov wrote:
+>>> On Tue, Dec 31, 2024 at 05:31:41PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
+>>>> Hi Dmitry,
+>>>>
+>>>> On 12/30/2024 9:10 PM, Dmitry Baryshkov wrote:
+>>>>> On Sun, Dec 29, 2024 at 08:53:32PM +0530, Wasim Nazir wrote:
+>>>>>> From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
+>>>>>>
+>>>>>> In QCS9100 SoC, the safety subsystem monitors all thermal sensors and
+>>>>>> does corrective action for each subsystem based on sensor violation
+>>>>>> to comply safety standards. But as QCS9075 is non-safe SoC it
+>>>>>> requires conventional thermal mitigation to control thermal for
+>>>>>> different subsystems.
+>>>>>>
+>>>>>> The cpu frequency throttling for different cpu tsens is enabled in
+>>>>>> hardware as first defense for cpu thermal control. But QCS9075 SoC
+>>>>>> has higher ambient specification. During high ambient condition, even
+>>>>>> lowest frequency with multi cores can slowly build heat over the time
+>>>>>> and it can lead to thermal run-away situations. This patch restrict
+>>>>>> cpu cores during this scenario helps further thermal control and
+>>>>>> avoids thermal critical violation.
+>>>>>>
+>>>>>> Add cpu idle injection cooling bindings for cpu tsens thermal zones
+>>>>>> as a mitigation for cpu subsystem prior to thermal shutdown.
+>>>>>>
+>>>>>> Add cpu frequency cooling devices that will be used by userspace
+>>>>>> thermal governor to mitigate skin thermal management.
+>>>>> Does anything prevent us from having this config as a part of the basic
+>>>>> sa8775p.dtsi setup? If HW is present in the base version but it is not
+>>>>> accessible for whatever reason, please move it the base device config
+>>>>> and use status "disabled" or "reserved" to the respective board files.
+>>>> Sure,  I will move idle injection node for each cpu to sa8775p.dtsi and keep
+>>>> it disabled state. #cooling cells property for CPU, still wanted to keep it
+>>>> in board files as we don't want to enable any cooling device in base DT.
+>>> "we don't want" is not a proper justification. So, no.
+>> As noted in the commit, thermal cooling mitigation is only necessary for
+>> non-safe SoCs. Adding this cooling cell property to the CPU node in the base
+>> DT (sa8775p.dtsi), which is shared by both safe and non-safe SoCs, would
+>> violate the requirements for safe SoCs. Therefore, we will include it only
+>> in non-safe SoC boards.
+> "is only necessary" is fine. It means that it is an optional part which
+> is going to be unused / ignored / duplicate functionality on the "safe"
+> SoCs. What kind of requirement is going to be violated in this way?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+ From the perspective of a safe SoC, any software mitigation that 
+compromises the safety subsystem’s compliance should not be allowed. 
+Enabling the cooling device also opens up the sysfs interface for 
+userspace, which we may not fully control. Userspace apps or partner 
+apps might inadvertently use it. Therefore, we believe it is better not 
+to expose such an interface, as it is not required for that SoC and 
+helps to avoid opening up an interface that could potentially lead to a 
+safety failure.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Best Regards,
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Manaf
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+>
 
