@@ -1,76 +1,65 @@
-Return-Path: <devicetree+bounces-136430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E25A05245
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 05:45:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B361DA05265
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 05:54:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44A0B3A6F65
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 04:45:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD8177A2953
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 04:54:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 862841AA782;
-	Wed,  8 Jan 2025 04:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99F9198851;
+	Wed,  8 Jan 2025 04:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I4NG0S0g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P9vlJnGY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5778C1AA1EE;
-	Wed,  8 Jan 2025 04:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA1E12CD88;
+	Wed,  8 Jan 2025 04:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736311439; cv=none; b=rMXBNAmPlMKJq9n5N8EiKRYMm9kSymeQC5DP9mwC7hjn4X/2toibs+9Xz7iJGXTsv1IM8A3ljGYUhlgo4icKEF0zT95BkVsZviIUpXVMsBw1qPIPw3389o7Co9LQ/D2f0niu12Wlm6Ed5KYywTDhUimX3aj8Sp6rUX6d/1+bE7A=
+	t=1736312060; cv=none; b=oWZMQQsoekJ+k8GHfH8/JpEhQZJr8mGHj/t6sdIaRP+Iu3n6qc8o5Km22rk4LzS1S1nyhpafmnnB7WFWkYw7ELDEVlaaGyFh4+YL3NKGGGJlgkAhlzRo1nAYmPurMWG0eE9T6nb/HynR53JXFEmjq8P5/2G+nLqmxTny/hnV1k4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736311439; c=relaxed/simple;
-	bh=36ms4CYMKb/pnrih3Z2etPkGz7WnBHowpU5ewuBqfYM=;
+	s=arc-20240116; t=1736312060; c=relaxed/simple;
+	bh=Nhhf0txthHdTrOg7Wvf/SNnBmBiXEtINz2CaZl2J0PY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=P2SjkITr/TKdLrsGSiJ8xRQyMkriInhIQnzYKwuqBBUkBGPMrTd/G7CvLjE9Q34wvNcV9It2kQz/HSpf1pYAqkBnnS2CHZEcgJEVUSdbDy8vm1pdaP6E4CvwbUti4/S9/BagMMX3ysAzpOuaa7szQbeRzh1v03u6GKh063fh2/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I4NG0S0g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88207C4CEE0;
-	Wed,  8 Jan 2025 04:43:57 +0000 (UTC)
+	 MIME-Version:Content-Type; b=D5iPt7ZMDVBaV5h8dBNd8yzP2fzCBOrjVrD1vnUfNk7LNsHwXmujobFeigHDHNJyKJhAMRUeOmAiqcFVzOe3QAzxRQ+C9ubdhEyDFwjqCPG5NHetamJsADvdEbEpBrm3zoVsHvZYKma7HrmNzSQV6K3Px917RnpbskY0gDgprOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P9vlJnGY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7828C4CED0;
+	Wed,  8 Jan 2025 04:54:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736311439;
-	bh=36ms4CYMKb/pnrih3Z2etPkGz7WnBHowpU5ewuBqfYM=;
+	s=k20201202; t=1736312058;
+	bh=Nhhf0txthHdTrOg7Wvf/SNnBmBiXEtINz2CaZl2J0PY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=I4NG0S0gX0VQVyZahsaoKb1VplzrZ2UelxGPw/VIgWu/VDdgFwcDMbPpxIvqkujT9
-	 l6QRlthj7vxiKx5FuzDX8w3IbaihM6ICxVpui0+LYhU1rqvd5bLrDj/adFlcMdvXgT
-	 66ASxLeAlLP+AywURD7sY4WtxuVBAykMTYMI1TZG8BAU5D4mPIA8lRnWCRmK4YlZiV
-	 7GMbbMoRWH3egw7YVlCJ0FvtcndRkP+ObQ3RU6U3NAPzQVAVE5Hds6iRAdwb049mue
-	 OYjxBBO6wuQMu9isSvlG9B2AUFJP52hv1ixoOGEbKaJtHnd45ZTQEVrt9MexHSC83S
-	 px+nO3eFMspeQ==
+	b=P9vlJnGY37+FynCjvGGCQuZ3sEIwLpTaVSgqbrjWMl3d/s+NREAe02q7Vfn2C+sWC
+	 VSpAXxOmke/m8fxQj56WGYQAQAQ5jdTuq14/Z1rRTJ99LAiRaFUCH0H3tHNlyyyRM+
+	 /nVGnl3O2dNMIzR4Q4ZA0EtvQyx2olryS5gJo5lZGbctj/qr9ClNL2qsNNFeoG1Ezk
+	 DVD+0ioi3XOxyl+ptNrU4iqGA2WMbKmH4tklZ4+nKvY5ZokX78IuO5iGZdTncKISFW
+	 DaXU2zFCqAeDZytSWvdgv3DDA1hM+2rFRdm3fzWItc0ltqY9a08J4Uwa+/CbAoPtB3
+	 TiPMX6JuMVQEg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Luo Jie <quic_luoj@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
+	Imran Shaik <quic_imrashai@quicinc.com>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	quic_kkumarcs@quicinc.com,
-	quic_suruchia@quicinc.com,
-	quic_pavir@quicinc.com,
-	quic_linchen@quicinc.com,
-	quic_leiwei@quicinc.com,
-	bartosz.golaszewski@linaro.org,
-	srinivas.kandagatla@linaro.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v8 0/5] Add CMN PLL clock controller driver for IPQ9574
-Date: Tue,  7 Jan 2025 22:43:46 -0600
-Message-ID: <173631142079.110881.10241987285937979220.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qcs8300: Add support for clock controllers
+Date: Tue,  7 Jan 2025 22:54:13 -0600
+Message-ID: <173631205044.113795.272368168541784140.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250103-qcom_ipq_cmnpll-v8-0-c89fb4d4849d@quicinc.com>
-References: <20250103-qcom_ipq_cmnpll-v8-0-c89fb4d4849d@quicinc.com>
+In-Reply-To: <20241114-qcs8300-mm-cc-dt-patch-v1-1-7a974508c736@quicinc.com>
+References: <20241114-qcs8300-mm-cc-dt-patch-v1-1-7a974508c736@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,23 +70,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 03 Jan 2025 15:31:33 +0800, Luo Jie wrote:
-> The CMN PLL clock controller in Qualcomm IPQ chipsets provides
-> the clocks to the networking hardware blocks that are internal
-> or external to the SoC, and to the GCC. This driver configures
-> the CMN PLL clock controller to enable the output clocks. The
-> networking blocks include the internal blocks such as PPE
-> (Packet Process Engine) and PCS blocks, and external hardware
-> such as Ethernet PHY or switch. The CMN PLL block also outputs
-> fixed rate clocks to GCC, such as 24 MHZ as XO clock and 32 KHZ
-> as sleep clock supplied to GCC.
+On Thu, 14 Nov 2024 16:35:55 +0530, Imran Shaik wrote:
+> Add support for GPU, Video, Camera and Display clock controllers on
+> Qualcomm QCS8300 platform.
 > 
-> [...]
+> 
 
 Applied, thanks!
 
-[3/5] arm64: defconfig: Enable Qualcomm IPQ CMN PLL clock controller
-      commit: 1fe6c70fec8fd8c823afee66467f85f028b0d22c
+[1/1] arm64: dts: qcom: qcs8300: Add support for clock controllers
+      commit: 795255cb4cd4388cac930e3bb3524e1ca84dd0bf
 
 Best regards,
 -- 
