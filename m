@@ -1,150 +1,273 @@
-Return-Path: <devicetree+bounces-136793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ABC9A06300
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 18:06:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A20A063B8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 18:50:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4980A3A8107
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:06:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37A913A16BB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D1241FFC71;
-	Wed,  8 Jan 2025 17:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE2C1FFC65;
+	Wed,  8 Jan 2025 17:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WsJnBZQF"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="AR9bG/tw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542B518D
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 17:06:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E0F185939;
+	Wed,  8 Jan 2025 17:50:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736355975; cv=none; b=SI2ShwJoWpxotnfbAPDyhTFb59IDEoXe9lsOHopVIocT7mbRFawc6OvBcV60cqzhp6LlzUT/R9vZ9iVg3nwz7wTctLRjHkGus1F+X8mQ18lgo/VPQUW180tSpV4KJD9l8C5RImIUbxFp6m5V/uQ2PeqgYkm4ZxjKm1GFMm7WPdc=
+	t=1736358645; cv=none; b=SvvPe56YxcX8SyGtT8Mfs61MeiasjUuD1g6FWKzLxeSkeftaGneP8BQgQNFwxsmJvTXHSgCWW7h83oBA9sqDKLgKnbF5zby5FohyMG1DC3E1FyKfF0uM7jOlfhV4H0UMaMrqJQDTNddCYQkMhYqnlJGuSb/e7r/Sy6q7TaxAtBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736355975; c=relaxed/simple;
-	bh=jCamsfLpcBDv0KT7qF02it6Id78FDWwVeoi+mD41IZg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=um5BdAZWvln9W8XluO2/PEYCss3t39fDmW6jq6y/mye3rME/+BB6z3Ntbwcy680FKgv6a1TEsJpOcjUTrBqCroRgq3a3AuhxhbZct3RreOzlKd4Bv3I19WmgqN2K6f+1YoHLhXlvbwWj1fhFkabZcTKKE5FikNky+ZWQpzW8b2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WsJnBZQF; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3eb98b3b63dso3661238b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 09:06:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736355972; x=1736960772; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n/b4Xzx1xkuwA/wx5BhKWtA/mjZMQ0mArLR9j53cJLo=;
-        b=WsJnBZQFZnH1CSsoN9fIHXN5k800U4yja6SiLWiBRwNgBxjwMCzcYinOUwsyMxE0fr
-         lElSqVqS2KOC35bk8BJJrhi9DnFlBOkTkeS/p192FqfJHFoUEglhpXs2amTo+mW4V7g1
-         r/dK89OLsP4oQAElb554Z23uNObr/VrzEzH7wibOWGlxRSHgfnCD9eHAig1eNkB6lIhk
-         kVJSDvGgGYQDd6TMS5G6vQkaI01p3quOqigX7hwh75/H+TkBlFwHUBo8MOo7dmmzb/aa
-         J+PpYlzIDbFv0L8H8iWZKFrqm1P8z/WwsnU0MDE6f1RwIDRJzpZhnAzLJtJ1D3m3kx+j
-         SkRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736355972; x=1736960772;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n/b4Xzx1xkuwA/wx5BhKWtA/mjZMQ0mArLR9j53cJLo=;
-        b=EFjhfMbdwCYSbba1uBnRqxcG/5OdLD/1CFp3/6YT9ZRwiDTvgn4fpuX3M+fm7zZH45
-         KRq1PFkgvIwRe1mBUQebQ2ua0Kr+/uHj15HuUJFEfaTuM386Kpqq6IQAFTQ09QaxZ3by
-         K1Nz/X0hhdXOfiVGYoE6dR0Vy5fl00kUAI9tnHMewZAZov7Ea0fHJSLQuQffBKJRhSgk
-         fmHN6eHh8kpenbyydiubrdpQHtajXLp5KJ0vsxRQEK5iz8Siz/QngniKqfvNx7aK1KQj
-         jwC33fwgXKGKIgzNAtaljlfiftV/MCD2oUImA1OH+87npNdMsDeUulG/VULppz/mRmib
-         X6hA==
-X-Forwarded-Encrypted: i=1; AJvYcCVc0jxc2qqc7HytXnFwxNsD2g+cdoUeGLvm7tBfxPBOn9brnKsi8KJLabnOpKp3ILOcpln7MyJvthcE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrilVAvC8z6S0t84dDafJHIMj1J1UvCrBmtiUBKadgc/vQRsxX
-	m1dNPCXPZ07RaILtnyUqbXzMjgi6z5JOhdv3KLhBrRLz0aXKVOxMpR0ijUv+gJE=
-X-Gm-Gg: ASbGnct1nHxsjtcS/fQqvoivVyj8xv62RLOD040tcNH5Bq8K4xeLUKthl+RuVeHbjk0
-	KFGeX/M2OYcYj47fD3QoJ8pUojMW2SFkw8KJETuquXM5KFCc7SKchmh8D1vNYxIKIYSbrqR0cg2
-	hQ9e7MGfMdcFwhVVHddkoJkG+g3eUEp5jvwLds9pOQeai9t5lHY5euQbpj5/pKAQq4ow0u8e8SV
-	WU0oHp79SIhqu3kUSpJjBexz3eP0oMuqUWDn1cnIsHquBL7xxHMeu/cjIzehLl0pmsHsWj8CeID
-	+dxjalneCinA0eylzQ==
-X-Google-Smtp-Source: AGHT+IEWotvyiUKl/k0KXLMw0knOeNaJYVLSpncNojbcFb3g/TMcabu1SuBV0WZUGqsskizMdV4GPA==
-X-Received: by 2002:a05:6808:913:b0:3eb:5d13:f688 with SMTP id 5614622812f47-3ef2edd34d7mr1881257b6e.26.1736355972541;
-        Wed, 08 Jan 2025 09:06:12 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3ece244e86asm11434861b6e.5.2025.01.08.09.06.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jan 2025 09:06:11 -0800 (PST)
-Message-ID: <b650f023-19f6-4f84-ae07-4383376268e6@baylibre.com>
-Date: Wed, 8 Jan 2025 11:06:09 -0600
+	s=arc-20240116; t=1736358645; c=relaxed/simple;
+	bh=TBUTuwERXtmICMrHwSDUzL3N0toSZf+QlY/PGhBBBbA=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=dQAapHqcqbkMmyaqa1TsnP85ZP9YnNu4tHy6CK3n2EFPJlrBCBD+BLKntYkvN9FisxZxGfba44fyfOuxSz/1d03n0qcGOBECpyg5nNY6+lmFwbR8HmSEMAwTQa/AnqMkzSGUK5Tp0xG00v+90zdkQUMjZOmqxzcUPdgBiE3cLlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=AR9bG/tw; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=SxtzBLuuidIkuxwvxCWZOj9ToRGIb/PwrO6tLxteOGg=; b=AR9bG/twJt3de+DlUGX3sIy2ua
+	YjkRhe5dMOVHWv3GeKsuEWWfZRVjTXheQOIzplPLbkdaeU0yJJGaNvXw+23BS5GOB0Ka0w5FoF2Zd
+	MFHBmldUxYRdR9th9FQ2F0Ub7e3tTNY8Gx9x0nDi2X06EcJ9+fLSjhVJxL7lJUb5mxWo=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:51086 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1tVZYI-0002lK-Lh; Wed, 08 Jan 2025 12:09:07 -0500
+Date: Wed, 8 Jan 2025 12:09:06 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Andre Werner <andre.werner@systec-electronic.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org,
+ hvilleneuve@dimonoff.com, andy@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ lech.perczak@camlingroup.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+ robh@kernel.org
+Message-Id: <20250108120906.92cda1fba339b072aceec039@hugovil.com>
+In-Reply-To: <20250107142947.327508-2-andre.werner@systec-electronic.com>
+References: <20250107142947.327508-1-andre.werner@systec-electronic.com>
+	<20250107142947.327508-2-andre.werner@systec-electronic.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 8/8] iio: adc: ad4851: add ad485x driver
-To: Jonathan Cameron <jic23@kernel.org>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org
-References: <20241220120134.42760-1-antoniu.miclaus@analog.com>
- <20241220120134.42760-8-antoniu.miclaus@analog.com>
- <20241223120005.1bc9a208@jic23-huawei>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20241223120005.1bc9a208@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -2.9 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v3 2/2] serial: sc16is7xx: Add polling feature if no IRQ
+ usage possible
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On 12/23/24 6:00 AM, Jonathan Cameron wrote:
-> On Fri, 20 Dec 2024 14:01:34 +0200
-> Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+On Tue,  7 Jan 2025 15:29:47 +0100
+Andre Werner <andre.werner@systec-electronic.com> wrote:
+
+Hi Andre,
+
+> Fall back to polling mode if no interrupt is configured because not
+> possible. If "interrupts" property is missing in devicetree the driver
+> uses a delayed worker to pull state of interrupt status registers.
+
+"not possible" is confusing. Maybe:
+
+"Fall back to polling mode if interrupt pin is not connected
+or available."
+
+You also could change the commit title in a similar way (Add polling
+feature if no IRQ pin is available).
+
+I would also replace "feature" with "mode" for consistency with your
+other comments below.
+
+> 
+> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+> ---
+> V2:
+> - Change warning for polling mode to debug log entry
+> - Correct typo: Resuse -> Reuse
+> - Format define with missing tabs for SC16IS7XX_POLL_PERIOD
+> - Format struct declaration sc16is7xx_one_config with missing tabs for polling and shutdown
+> - Adapt dtbinding with new polling feature
+> V3:
+> - Use suffix with units and drop a comment SC16IS7XX_POLL_PERIOD_MS. Sorry for that miss.
+> - Make Kernel lowercase.
+> ---
+> ---
+>  drivers/tty/serial/sc16is7xx.c | 40 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> index a3093e09309f..57be5d55205a 100644
+> --- a/drivers/tty/serial/sc16is7xx.c
+> +++ b/drivers/tty/serial/sc16is7xx.c
+> @@ -314,6 +314,7 @@
+>  #define SC16IS7XX_FIFO_SIZE		(64)
+>  #define SC16IS7XX_GPIOS_PER_BANK	4
+>  
+> +#define SC16IS7XX_POLL_PERIOD_MS	10
+>  #define SC16IS7XX_RECONF_MD		BIT(0)
+>  #define SC16IS7XX_RECONF_IER		BIT(1)
+>  #define SC16IS7XX_RECONF_RS485		BIT(2)
+> @@ -348,6 +349,9 @@ struct sc16is7xx_port {
+>  	u8				mctrl_mask;
+>  	struct kthread_worker		kworker;
+>  	struct task_struct		*kworker_task;
+> +	struct kthread_delayed_work	poll_work;
+> +	bool				polling;
+> +	bool				shutdown;
+>  	struct sc16is7xx_one		p[];
+>  };
+>  
+> @@ -861,6 +865,19 @@ static irqreturn_t sc16is7xx_irq(int irq, void *dev_id)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static void sc16is7xx_transmission_poll(struct kthread_work *work)
+
+Maybe drop "transmission", as this is used for tx/rx?
+
+And other kthread work functions use _proc suffix, so rename to follow
+the same convention -> sc16is7xx_poll_proc()
+
+They also use "wk" as argument name, so also rename it for consistency.
+
+> +{
+> +	struct sc16is7xx_port *s = container_of(work, struct sc16is7xx_port, poll_work.work);
+> +
+> +	/* Reuse standard IRQ handler. Interrupt ID is unused in this context. */
+> +	sc16is7xx_irq(0, s);
+> +
+> +	/* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
+> +	if (!s->shutdown)
+> +		kthread_queue_delayed_work(&s->kworker, &s->poll_work,
+> +					   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
+> +}
+> +
+>  static void sc16is7xx_tx_proc(struct kthread_work *ws)
+>  {
+>  	struct uart_port *port = &(to_sc16is7xx_one(ws, tx_work)->port);
+> @@ -1149,6 +1166,7 @@ static int sc16is7xx_config_rs485(struct uart_port *port, struct ktermios *termi
+>  static int sc16is7xx_startup(struct uart_port *port)
+>  {
+>  	struct sc16is7xx_one *one = to_sc16is7xx_one(port, port);
+> +	struct sc16is7xx_port *s = dev_get_drvdata(port->dev);
+>  	unsigned int val;
+>  	unsigned long flags;
+>  
+> @@ -1210,6 +1228,11 @@ static int sc16is7xx_startup(struct uart_port *port)
+>  	uart_port_lock_irqsave(port, &flags);
+>  	sc16is7xx_enable_ms(port);
+>  	uart_port_unlock_irqrestore(port, flags);
+
+Insert blank line
+
+> +	if (s->polling) {
+> +		s->shutdown = false;
+> +		kthread_queue_delayed_work(&s->kworker, &s->poll_work,
+> +					   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -1232,6 +1255,10 @@ static void sc16is7xx_shutdown(struct uart_port *port)
+>  
+>  	sc16is7xx_power(port, 0);
+>  
+> +	if (s->polling) {
+> +		s->shutdown = true;
+
+Can we avoid using this shutdown variable?
+
+From what I see, kthread_cancel_delayed_work_sync()
+itself will call kthread_cancel_work_sync(), and doc for it states that:
+
+    "This function can be used even if the work re-queues itself"
+
+
+> +		kthread_cancel_delayed_work_sync(&s->poll_work);
+> +	}
+
+Blank line
+
+>  	kthread_flush_worker(&s->kworker);
+>  }
+>  
+> @@ -1537,7 +1564,13 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  
+>  	/* Always ask for fixed clock rate from a property. */
+>  	device_property_read_u32(dev, "clock-frequency", &uartclk);
+
+Blank line
+
+> +	s->polling = !device_property_present(dev, "interrupts");
+>  
+
+Remove blank line
+
+> +	if (s->polling) {
+> +		dev_dbg(dev,
+> +			"No interrupt definition found. Falling back to polling mode.\n");
+
+Maybe: "No interrupt pin definition, falling back to polling mode\n"
+
+(add pin and gets rid of trailing point)
+
+> +		irq = 0;
+> +	}
+
+Blank line
+
+>  	s->clk = devm_clk_get_optional(dev, NULL);
+>  	if (IS_ERR(s->clk))
+>  		return PTR_ERR(s->clk);
+> @@ -1664,6 +1697,11 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  	if (ret)
+>  		goto out_ports;
+>  #endif
+
+Blank line
+
+> +	if (s->polling) {
+> +		/* Initialize kernel thread for polling */
+> +		kthread_init_delayed_work(&s->poll_work, sc16is7xx_transmission_poll);
+> +		return 0;
+> +	}
+>  
+>  	/*
+>  	 * Setup interrupt. We first try to acquire the IRQ line as level IRQ.
+> @@ -1724,6 +1762,8 @@ void sc16is7xx_remove(struct device *dev)
+>  		sc16is7xx_power(&s->p[i].port, 0);
+>  	}
+>  
+> +	if (s->polling)
+> +		kthread_cancel_delayed_work_sync(&s->poll_work);
+
+Blank line
+
+>  	kthread_flush_worker(&s->kworker);
+>  	kthread_stop(s->kworker_task);
+>  
+> -- 
+> 2.47.1
+> 
+> 
 > 
 
-...
 
->> +	ret = devm_regulator_get_enable_optional(dev, "vddh");
->> +	if (ret < 0 && ret != -ENODEV)
->> +		return dev_err_probe(dev, ret, "failed to enable vddh voltage\n");
->> +
->> +	ret = devm_regulator_get_enable_optional(dev, "vddl");
->> +	if (ret < 0 && ret != -ENODEV)
->> +		return dev_err_probe(dev, ret, "failed to enable vddl voltage\n");
->> +
->> +	ret = devm_regulator_get_enable_optional(dev, "vrefbuf");
->> +	if (ret < 0 && ret != -ENODEV)
->> +		return dev_err_probe(dev, ret, "failed to enable vrefbuf voltage\n");
->> +
->> +	if (ret > 0)
-> 
-> I'm fairly sure that call never returns a positive.  Will return 0 for success so I think this
-> should be if (ret == 0)
-
-Even better, make it 1 line instead of 4 and use the specific error code we are
-checking for:
-
-		st->vrefbuf_en = ret != -ENODEV;
-> 
->> +		st->vrefbuf_en = true;
->> +	else
->> +		st->vrefbuf_en = false;
->> +
->> +	ret = devm_regulator_get_enable_optional(dev, "vrefio");
->> +	if (ret < 0 && ret != -ENODEV)
->> +		return dev_err_probe(dev, ret, "failed to enable vrefio voltage\n");
->> +
->> +	if (ret > 0)
-> 
-> Same here.
-  ^
-> 
->> +		st->vrefio_en = true;
->> +	else
->> +		st->vrefio_en = false;
->> +
-> ...
-> 
->> +}
-> 
-
+-- 
+Hugo Villeneuve
 
