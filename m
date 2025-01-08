@@ -1,134 +1,152 @@
-Return-Path: <devicetree+bounces-136735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CB3A06021
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:30:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39B0BA060BB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:52:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2505F167105
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:30:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3974F3AB0C6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA1D6178CC8;
-	Wed,  8 Jan 2025 15:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2031FE46B;
+	Wed,  8 Jan 2025 15:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="axSj8eh/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eP8P8W/N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 465282AF16;
-	Wed,  8 Jan 2025 15:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A661F949;
+	Wed,  8 Jan 2025 15:46:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736350248; cv=none; b=kusZACdSGG7lPlJyFW9gkUrJOlqiY2WUAGxKlO+jbbdJhbeEmLFAdoTcQDp21D10FhQf2KLKevp4krf18cbzu06uYBm7K1DuYoXHAY6hwrmRaxqJI9iKx+r74ho6My90fkIKnpIleL+0oShwjm4TEtjBwgBWIi7RViDEzvnyUxg=
+	t=1736351190; cv=none; b=QxTbxZiZzrfWEsBUIMmax7PNGaegdj/ZBclvT7pA39i+JwsCksCwqbe/acylLUXDV9aBQ1GLuGtEdGXza27G1IbunM+3CaMS7wSQ/F/R9FxFgrll1scR+tR2nqqTuUWgdPIqK/BEfNnRoP0u0cwnMdyiYQyWiQCwMzaHRcomWJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736350248; c=relaxed/simple;
-	bh=4QBeGhiJKl0BLWTJvIaclvU0rNNe19EjbUo9ENqWZ38=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EFQsH3E8HvfJQBKa/sih3mLHWf3prHHPiU850Ozu1PHc0tGzBEEfhFO07uROnt2uHujGQANF9TegCz2hOausOYEcMscVLzQaFpQBv1/oxBdXYVbzCCYONKjH+8ut2IKaaic8g5QNK43JTWDivJzffLz8CfkOmCN7KnUCHudnHxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=axSj8eh/; arc=none smtp.client-ip=209.85.160.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-467b086e0easo85402071cf.1;
-        Wed, 08 Jan 2025 07:30:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736350246; x=1736955046; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YrhJ08F+g99/pDpHcc0SfE5usAMSb6pyknS9o1Vrtpc=;
-        b=axSj8eh/KY2u4x9CPXKzawH1wQ0RQtDlLenqmRv72Plj2dqPNbSCuh0n0PQeYvlORL
-         6XylPoLFlEkFCeDVHB530NVBijT93juAkXWn3cIbEJEbstpUnmFTZ2W+Q74aVe2k3Vwl
-         l/LDz5yTkfqkX7pG9Qj6GkADVDn31fFeVF4rV0DMi4dKKNcMUmDCb+W2PHpeiMf4paVm
-         zxFsqD4vBIEErBdSyDOpPBHBMYG2YTFpYtyJ61RjypQWrBykLZCBJ5ipnXxdZrSm1a7H
-         6ZVqHiW4KUh9eR6o2sUBoJOcQWHPldr3OtLJReq3xncbIOpvpGcobyL8XcbCn5ecES4S
-         dAFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736350246; x=1736955046;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YrhJ08F+g99/pDpHcc0SfE5usAMSb6pyknS9o1Vrtpc=;
-        b=r7rtf75l9mLm/sHPb+jYZRwsM9UuHsCz9AiVpTreBmKB87iAgC6D6j6z9gjo3rleY5
-         hjH92Zmy4grZv2+pu9U+UT9v6jkdyL+EBWbtOBFErO+0DHMUhD+gRyXog7L5KcgrxpHW
-         FalxCBSs+UJqPJyOupIeyRtuEV3JMiS6EbegxmVI87/x+nyznCsa4rvlgxaODpymfZxy
-         vYklLx9CtemzXV+vy/1B+om9DFeIZ4DLFKgrjTTpiQLLmKt969Nk5yw56EXnDxCvO6W6
-         fgY6OiCmOI4HRp45E4TF0ae1QmLxdKR7zE8NNFkF0vEQqRIKvmmvM8NMkRo3+A0CJgoq
-         0qhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQPlYtkpY1Z8ztJo4E4qvhAHUC3jzI3Nkrcx2FMyW0xZcJoYFBnoNiyVewemyCrdIXl6BINGChTx5C6pXg@vger.kernel.org, AJvYcCX0zYHF35jyC3ug3tkrOqQiMwWv5TCc5L2yH5ZWoQM++U+2S3pjN2SWPZ1HthjCwFzs1K/v2x3fp63i@vger.kernel.org
-X-Gm-Message-State: AOJu0YzN7GYx08q1ky8fVYMqfgQfsFx1b9qGBqckPZa2uR8jAp9kw6jQ
-	zrHb5JwsVCv1fbmtxoWIXA0ZlZGoxJfUtANhcGiPD9e6GwSkX6d2O4grOetkCEdGG4fGb/ENZiW
-	begOKLvNI95xgyP77IGQmYt5J+qg=
-X-Gm-Gg: ASbGncvIRTsAbljRw6scaJq9eQRawOSGelhmbTc9llac3pQRuKzkkZzFlGjSuP9H/xz
-	HdwI8x+GrINZpwtOaBvwDSEBEY0edQq5+d29GmLiXcYIar572Sg==
-X-Google-Smtp-Source: AGHT+IFKoNRB02f9LEFBsjP1jngmLgnZ+gqmlVlhb4sD5ormVLieH9nwZeRMYU+GK1pDFpGelYsoVARAQOsSY3XSoak=
-X-Received: by 2002:a05:622a:144e:b0:467:81ef:1953 with SMTP id
- d75a77b69052e-46c71079ec7mr43270661cf.7.1736350246055; Wed, 08 Jan 2025
- 07:30:46 -0800 (PST)
+	s=arc-20240116; t=1736351190; c=relaxed/simple;
+	bh=G77Y0I4A7jJfb4q/9tbn9uE81MU1urLunbTDRyBooCU=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jYVY/AIilNcXL6Y0XuGTQIUas5ejbO2hqD7mjUkuqRpQ+pNshYWwgkLi18J0ydYpbh/8srxB47mkRqnPAPf1gEI5Sa8xC0rk1XDh/F/6Qf3WX318KcCE8/QMeWiYqqfGgR2NeOe+3pIgxMg2/z2DE5QAl+mZqWdbADdLdywDAQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eP8P8W/N; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 508FkFxI004464;
+	Wed, 8 Jan 2025 09:46:15 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736351175;
+	bh=yjeBkPMQqyR7BlVmHv45XiZ11hoiUcvKXfiavZCHrmk=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=eP8P8W/Nn7cQREinI07bmmXbKiT0mWO9ZlPbh1GW6bBXa3nNUjggp8XXMZbSkdoFY
+	 Nb4UP6Bg3A33yyhJxvpyHtI+i6OfmNgxdYZ415QuNy+cS6pkNZaNgMdaWgwuKJY/yD
+	 OtzGchb2qkd46p8aoiEn/bSold/ZCJrH6ptoh+So=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508FkFef012739
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 8 Jan 2025 09:46:15 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
+ Jan 2025 09:46:15 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 8 Jan 2025 09:46:15 -0600
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.104])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508FkE9v082617;
+	Wed, 8 Jan 2025 09:46:14 -0600
+Date: Wed, 8 Jan 2025 21:16:13 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+        <devicetree@vger.kernel.org>, Romain Naour <romain.naour@smile.fr>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>,
+        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>,
+        Romain Naour <romain.naour@skf.com>, <s-vadapalli@ti.com>
+Subject: Re: [PATCHv3 1/2] dt-bindings: mfd: syscon: Add
+ ti,j721e-acspcie-proxy-ctrl compatible
+Message-ID: <ikfjvrqi7jbqmeyjejuhpe4iw7uzaqeuqc3ijf4t6wjqgvextt@j4w5cift7ev3>
+References: <20241202143331.126800-1-romain.naour@smile.fr>
+ <173344002250.407600.8303166891165540615.b4-ty@baylibre.com>
+ <20250103212528.enq4ur5afxhwzh7n@outdoors>
+ <7hr05eb5st.fsf@baylibre.com>
+ <20250108131139.dygei6ejamh5zaij@segment>
+ <1251db38-5009-4e93-9603-3ae02f276e5b@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250108-rk3588-h96-max-v58-v2-0-522301b905d6@gmail.com>
- <20250108-rk3588-h96-max-v58-v2-2-522301b905d6@gmail.com> <1950286.IobQ9Gjlxr@diego>
-In-Reply-To: <1950286.IobQ9Gjlxr@diego>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 8 Jan 2025 19:30:35 +0400
-X-Gm-Features: AbW1kvbaSD6420vb9Z-krZSCK7YnPn-rkLl-OwWfP77vCyeVbOh_HhHdHm1BmrY
-Message-ID: <CABjd4Yy4Qd1rD43u3B-s=HxVBnaQt7fSgP9NFY2YeY0eKMESvQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: Add SPDIF nodes to RK3588(s)
- device trees
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1251db38-5009-4e93-9603-3ae02f276e5b@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Wed, Jan 8, 2025 at 2:01=E2=80=AFPM Heiko St=C3=BCbner <heiko@sntech.de>=
- wrote:
->
-> Hi Alexey,
->
-> Am Mittwoch, 8. Januar 2025, 10:09:07 CET schrieb Alexey Charkov:
-> > RK3588s has four SPDIF transmitters, and the full RK3588 has six.
-> > They are fully compatible to RK3568 ones. Add respective nodes
-> > to .dtsi files.
->
-> While it may seem that way, we still want soc-specific compatibles,
-> to future-proof this.
->
-> I.e. going the the
->         compatible =3D "rockchip,rk3588-spdif", "rockchip,rk3568-spdif";
-> way, so that now things can just match against the rk3568, but if some
-> fault emerges later on the code can be fixed with the DT staying just
-> compatible.
->
-> The spdif also has an example already for all the spdif variants that are
-> compatible to the rk3066 [3], so it'd need another "items" block for thin=
-gs
-> being compatible with the rk3568.
+On Wed, Jan 08, 2025 at 09:09:37AM -0600, Andrew Davis wrote:
 
-Hmm, if we are to believe the driver ([4], [5]), they are all the same
-as the good old RK3366, which in turn is software compatible to the
-good old RK3066. Same seems to apply to RK3576, given that its current
-.dtsi just references the "rockchip,rk3568-spdif" compatible.
+Hello Andrew,
 
-Does it mean that the binding needs to be restructured so that the
-required fallback compatible ("rockchip,rk3066-spdif") applies to all
-variants? Or shall the existing ones be left alone, and just RK3588
-and RK3576 added inside that "items" block?
+> On 1/8/25 7:11 AM, Nishanth Menon wrote:
+> > On 14:46-20250107, Kevin Hilman wrote:
+> > > Nishanth Menon <nm@ti.com> writes:
+> > > 
+> > > > On 15:07-20241205, Kevin Hilman wrote:
+> > > > > 
+> > > > > On Mon, 02 Dec 2024 15:33:30 +0100, Romain Naour wrote:
+> > > > > > The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
+> > > > > > SoC are used to drive the reference clock to the PCIe Endpoint device via
+> > > > > > the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
+> > > > > > obtain the regmap for the ACSPCIE_CTRL register within the System
+> > > > > > Controller device-tree node in order to enable the PAD IO Buffers.
+> > > > > > 
+> > > > > > The Technical Reference Manual for J721e SoC with details of the
+> > > > > > ASCPCIE_CTRL registers is available at:
+> > > > > > https://www.ti.com/lit/zip/spruil1
+> > > > > > 
+> > > > > > [...]
+> > > > > 
+> > > > > Applied, thanks!
+> > > > > 
+> > > > > [1/2] dt-bindings: mfd: syscon: Add ti,j721e-acspcie-proxy-ctrl compatible
+> > > > >        commit: d8efc0b428856137608ffcbb6994da6041c9fe2a
+> > > > > [2/2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE output for PCIe1
+> > > > >        commit: 1d5e14a20dc60b440c60bec8489acfd45cdf7508
+> > > > > 
+> > > > > Best regards,
+> > > > > -- 
+> > > > > Kevin Hilman <khilman@baylibre.com>
+> > > > > 
+> > > > This will need a bit of fixup - See along the lines of the following.
+> > > > Additionally, we should be a bit careful about the dependency of dts
+> > > > mix up from two trees.
+> > > 
+> > > sorry, these should be going through your tree in the first place.  They
+> > > are now dropped from my tree, please go ahead and take them along with
+> > > Andrews fixup.  Sorry for complicating things.
+> > 
+> > 
+> > Romain,
+> > 
+> > There is additional fixups needed, unfortunately as well: syscon yaml
+> > has two lists based on which dt-schema version you use.. your patch
+> > fixed one list, but missed the other as well. Could you integrate the
+> > fixes and resubmit, please?
+> > 
+> > 
+> 
+> Or since we already have 'ti,j784s4-acspcie-proxy-ctrl' for the same
+> reason, you could drop the first patch and re-use this compatible.
 
-Thanks a lot,
-Alexey
+I had suggested this in the past since the ACSPCIE IP on J784S4 and J721E
+is the same, but Krzysztof insists that there will be hardware differences
+in the ACSPCIE block across J784S4 and J721E irrespective of what the
+datasheet says, as mentioned by Krzysztof at:
+https://lore.kernel.org/r/1bfdf1f1-7542-4149-a85d-2ac4b659b26b@kernel.org/
+Therefore Romain had to introduce a new compatible for J721E.
 
-[4] https://github.com/rockchip-linux/kernel/blob/develop-5.10/sound/soc/ro=
-ckchip/rockchip_spdif.c
-[5] https://github.com/torvalds/linux/blob/master/sound/soc/rockchip/rockch=
-ip_spdif.c
+Regards,
+Siddharth.
 
