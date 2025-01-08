@@ -1,66 +1,64 @@
-Return-Path: <devicetree+bounces-136853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC1EFA068FC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:55:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E28A068F9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:55:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 912FB3A623E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:55:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6D217A1773
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 22:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556A3205AAF;
-	Wed,  8 Jan 2025 22:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2C8620551D;
+	Wed,  8 Jan 2025 22:53:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MrCWlt++"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Zcnos1hV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B85204690;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3567B2054F7;
 	Wed,  8 Jan 2025 22:53:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736376792; cv=none; b=uhoBOT06F1nty5HbKucbvUMQokmtTzgEz5Wt4Z2Wa7lcAoW2CwjhCWUCN9iluih16yqZUwCfAGYB2BEuhQ2Q7tEJQbLVAcvXt+VwL+qIadBKm+eNFhb300KEUoEUUkcq1+ogtMu/M+A43Uy53wGDhemfHcjOHBIL/ck1E95q300=
+	t=1736376791; cv=none; b=ZvR6Wlf2mDZXqYTPcJqJmhuzqSQhy8VNyhjmjVQ4WAbzj6+H9m2N36WqgVSFVW6mRflfG+uI9LezKL8jCVOSLU2rkE5HvpuvUbEDb3oYt6JXl/lQbNU9/Qp42HAqkcM0Lh53+Frxhx3gSXUtj7WADCCNBSiNqUECH2kHCnzYn1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736376792; c=relaxed/simple;
-	bh=l555czrwlTYLjBIpGqV4/yEAVsCJ3BvifL46ZgYveB8=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ssp32aV8hveS+lO1t5nW1OA3jqY3WGhb6b5yLyFLuYOQI0KCM/Qqfsak8dF97fxcthWf0MsbUzOfCxwmryT/z29IO/peKKHTa7hTpZnHqpXNdeik+CBHf7I6kFHEX7WmrqrrXFYPaSx8r0g0cheRwLBNH/ASAI9Crkdj2G7tlDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MrCWlt++; arc=none smtp.client-ip=198.47.23.234
+	s=arc-20240116; t=1736376791; c=relaxed/simple;
+	bh=9zjr0PfSafrvP01TZ+70pbAdUxS74CrMPxKjkg4gfL0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=XnCjYAFjUG2J7aUEI5+HNXOBHicvRXXUj0RVquzvGXp3pMRyJJ6lUrfAbLcsaEw1AJr1O5bl1qEBWH+sxPBd1K3SRCyp8ua5kubuHN628TIEjKRVkAVLye6kd0PntzyL7bX9srFShVUnzdYsKW9My2kne0kNmkkPujKNkBUOzFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Zcnos1hV; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 508MqDer2870978
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 508MqDwv081041;
 	Wed, 8 Jan 2025 16:52:13 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1736376733;
-	bh=ibuURv4xTWoCUb0ZYBZvQr63MwW5FsH8r9nGct30E+4=;
-	h=From:Subject:Date:To:CC;
-	b=MrCWlt++a9BQ4SkU925mAzQes2r7fpCUuCf5olDCD9s/mD+9KY3vkHATUPzrAs+ms
-	 +A1LG9KJrBzuRCbll4wJDTZdlkpe9nG+Yb004YTqVMx2w+W5YnVWTTdRCEBPC3XCbh
-	 Whar4zGI5xqQBf520uAurF/JIWctZmMfqhCozFs4=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508MqD82019336
+	bh=B9mvSUZhe0Gs54mE7MNJ44HT1A+T/9sT90UthccBd5g=;
+	h=From:Date:Subject:References:In-Reply-To:To:CC;
+	b=Zcnos1hVIL9p58Nrt4+8ae4JuYezcAdOHGqMqKq2dKtSw1H+DBfKN6C++l0xqaQd4
+	 lqjvw7QdNxPtc3SYTVOLHoqkOgIYj568lYwU+XHucGDVgtD0N5pMXfe+Z+7mHNNIbO
+	 lZYkUrvnEp80CxNbjuNQVq+CMof4GecEFOBurSTs=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508MqDhv080915
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Wed, 8 Jan 2025 16:52:13 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
  Jan 2025 16:52:12 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Wed, 8 Jan 2025 16:52:12 -0600
 Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508MqC0W038346;
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508MqCNw019025;
 	Wed, 8 Jan 2025 16:52:12 -0600
 From: Bryan Brattlof <bb@ti.com>
-Subject: [PATCH v2 0/3] arm64: dts: ti: introduce basic support for the
- AM62L
-Date: Wed, 8 Jan 2025 16:51:52 -0600
-Message-ID: <20250108-am62lx-v2-0-581285a37d8f@ti.com>
+Date: Wed, 8 Jan 2025 16:51:53 -0600
+Subject: [PATCH v2 1/3] dt-bindings: arm: ti: Add binding for AM62L SoCs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,10 +66,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAIgBf2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
- vPSU3UzU4B8JSMDIxNDIyMD3cRcM6OcCt3kREsTS4vUtBQL81QloOKCotS0zAqwQdGxtbUAERy
- LWFgAAAA=
+Content-Transfer-Encoding: 7bit
+Message-ID: <20250108-am62lx-v2-1-581285a37d8f@ti.com>
+References: <20250108-am62lx-v2-0-581285a37d8f@ti.com>
+In-Reply-To: <20250108-am62lx-v2-0-581285a37d8f@ti.com>
 To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         Tero
  Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -81,101 +79,51 @@ To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
 CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3407; i=bb@ti.com;
- h=from:subject:message-id; bh=l555czrwlTYLjBIpGqV4/yEAVsCJ3BvifL46ZgYveB8=;
- b=owNCWmg5MUFZJlNZbm55xQAAcH///7/fe7Wv/xf8+v/Imfv3vZXq7pfqy99vV/7c63b99v0wA
- RtqB2oBpoaNAaA0AGmmmhiGRkNAGjQBoNAaDQaDIAAaaDTI0yGRppo09RkaaZGDTUQAaaA00Gmm
- gyaGgDQDRoaNNBpobUGIAwmgaAyANAGgaMhp6QaDJoaAGMjSYZTR6QYg0aYjQBoAwmQ0DQA000A
- AMAJhAwjIyNGgDIGQaGIANGgAZNAEFWGNBU9ytSAQYkVEaorGKdP1NQzS7nMKvsIrvdSA0A10AF
- qLuSA+dou5979Phm59UH8vfiFbGVBNJYWMrw49RgEr3K3N24rLO7Lm/LOLMerX0sydhToPWNA7K
- T0JkyyD8HhX668eMxR043YJEDUqOMI8dP07Di95qQsToHscgGrzr9vcgLNSsU9SUIfycGFtLVIk
- AEAdJpd+Zw5vG9u5S7B06ptvCDeaj4w4hwV1KAunPWgIetsSGStELk5RMqQ1VoKVtu0YwK8QNqs
- MNY1mLCkldWtLiAwWjkSIRHiEUEMgtcyxRrz5rLABN+aE90MmkzipcMicGurliy+pdzIfBQWOls
- ZKs+f1uFCC21C1hjSAfcOy4bZEA4CVAOXbsyJBWqAyvOBx2RFRoQ7XIJPC5o0UCenz25Th6wcCk
- AdEjZBYXDNplX+LuSKcKEg3NzzigA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=890; i=bb@ti.com;
+ h=from:subject:message-id; bh=9zjr0PfSafrvP01TZ+70pbAdUxS74CrMPxKjkg4gfL0=;
+ b=owNCWmg5MUFZJlNZI8PS+QAAYf///v5txq1/7/+1nuXF392TnNd/9teT7///3O/+/9Nv8c2wA
+ RswIeoGgNDQ0AGgyBoNNDRkBkGhpkAaAAaaGhoANBpk0BoNDRoNPUyBkyaaMTGmUQaZDTRpo2oM
+ gNBkAAyMjQYgaMhkAyZpND1GjIAAaBpoAA0NMEA0GhpoyaZNCGRiMIGgyNBkAMjBDENNGmQ0BkN
+ GmhgIZGgaMgYQABkGgyA0yNAAADAQLBDVQNPh3PkBPQYlRDxc7bjgiHaNBpCNEwBwa6ALVsmV1r
+ rKO9wDQCT3m6/Uw3tKgJEoXoOY4BXgRmujnRrqRhZ39kv2u6YChMSsq+9A9IQTzz2/F028fVXkX
+ nsqXiAWG64LLwPn9qFgJdzctFQ7zJcqSjVtclqrzriFUcIWXKhE9xw0APaChMlJpl2QIr4+tsHO
+ Px9GxjbEhsUCh2PEloxOdGOGUUjpsUoKSLSiir7FISr1Larnq5ktqBENOgOEQmuc4CP+Biozpoi
+ ogGag72BB2Cl+JYaHaPo0LsDMZXU7HD5Ty8WrI/hzueWwO6iKm25dd9qQycCLucdIfljDUQaCzF
+ FzjcmAyXymYA4Gm2SFymWDRwRZstAqrPBJNUBhwcQ4Wk2sAxCI8q6CtmYYpOI6OhSoSUCHF5wPm
+ JvC2Z10IJ/i7kinChIEeHpfIA==
 X-Developer-Key: i=bb@ti.com; a=openpgp;
  fpr=D3D177E40A38DF4D1853FEEF41B90D5D71D56CE0
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello Everyone,
-
-This small series adds the initial support (currently just a UART) for 
-TI's AM62L SoC family.
-
-The AM62L is a lite, low power and performance optimized family of 
-application processors that are built for Linux application development. 
-AM62L is well suited for a wide range of general-purpose applications 
-with scalable ARM Cortex-A53 core performance and embedded features such 
-as: Multimedia DSI/DPI support, integrated ADC on chip, advanced lower 
-power management modes, and extensive security options for IP protection 
-with the built-in security features.
-
-Additionally, the AM62Lx devices includes an extensive set of 
-peripherals that make it a well-suited for a broad range of industrial 
-applications while offering intelligent features and optimized power 
-architecture as well. In addition, the extensive set of peripherals 
-included in AM62Lx enables system-level connectivity, such as: USB, 
-MMC/SD, OSPI, CAN-FD and an ADC.
- 
-AM62L is a general purpose processor, however some of the applications 
-well suited for it include: Human Machine Interfaces (HMI), Medical 
-patient monitoring , Building automation, Smart secure gateways, Smart 
-Thermostats, EV charging stations, Smart Metering, Solar energy and 
-more.
- 
-Some highlights of AM62L SoC are:
- - Single to Dual 64-bit Arm® Cortex®-A53 microprocessor subsystem up to 
-   1.25GHz Integrated Giga-bit Ethernet switch supporting up to a total 
-   of two external
- - 16-bit DDR Subsystem that supports LPDDR4, DDR4 memory types.
- - Display support: 1x display support over MIPI DSI (4 lanes DPHY) or 
-   DPI (24-bit RGB LVCMOS)
- - Multiple low power modes support, ex: Deep sleep and Standby
- - Support for secure boot, Trusted Execution Environment (TEE) & 
-   Cryptographic Acceleration
-
-For more information check out our Technical Reference Manual (TRM) 
-which is located here:
-
-	https://www.ti.com/lit/pdf/sprujb4
-
-Happy Hacking
-~Bryan
-
-Changes in v1:
- - switched to non-direct links so TRM updates are automatic
- - fixed indentation issues with a few nodes
- - separated bindings into a different patch
- - removed current-speed property from main_uart0{}
- - removed empty reserved-memory{} node
- - removed serial2 from aliases{} node
- - corrected the main_uart0{} pinmux
- - Link: https://lore.kernel.org/all/20241117-am62lx-v1-0-4e71e42d781d@ti.com/
+Add the binding for TI's AM62L family of devices.
 
 Signed-off-by: Bryan Brattlof <bb@ti.com>
 ---
-Bryan Brattlof (1):
-      dt-bindings: arm: ti: Add binding for AM62L SoCs
-
-Vignesh Raghavendra (2):
-      arm64: dts: ti: k3-am62l: add initial infrastructure
-      arm64: dts: ti: k3-am62l: add initial reference board file
-
- Documentation/devicetree/bindings/arm/ti/k3.yaml |  6 ++
- arch/arm64/boot/dts/ti/Makefile                  |  3 +
- arch/arm64/boot/dts/ti/k3-am62l-main.dtsi        | 52 ++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi      | 33 +++++++++
- arch/arm64/boot/dts/ti/k3-am62l.dtsi             | 89 ++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62l3-evm.dts         | 43 ++++++++++++
- arch/arm64/boot/dts/ti/k3-am62l3.dtsi            | 67 ++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-pinctrl.h              |  2 +
- 8 files changed, 295 insertions(+)
+Changes in v1:
+ - separated out devicetree bindings
 ---
-base-commit: 6b51892b31fe83fe7cc8cf69e4bf7721cf08951b
-change-id: 20241220-am62lx-ca9498efd87e
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 18f155cd06c84..b109e854879cb 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -31,6 +31,12 @@ properties:
+           - const: phytec,am62a-phycore-som
+           - const: ti,am62a7
+ 
++      - description: K3 AM62L3 SoC and Boards
++        items:
++          - enum:
++              - ti,am62l3-evm
++          - const: ti,am62l3
++
+       - description: K3 AM62P5 SoC and Boards
+         items:
+           - enum:
+
 -- 
-Bryan Brattlof <bb@ti.com>
+2.47.1
 
 
