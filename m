@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-136452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BEE2A05449
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:14:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34249A05453
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:16:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CAA687A173D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 07:14:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65D497A2383
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 07:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A5C1A9B48;
-	Wed,  8 Jan 2025 07:14:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6871F1A83F1;
+	Wed,  8 Jan 2025 07:16:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0DNDZ6S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HLsyw3M+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49B59476;
-	Wed,  8 Jan 2025 07:14:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 382451A7264;
+	Wed,  8 Jan 2025 07:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736320451; cv=none; b=W9yxR/2z9wQhlE8uyuDHTwfW9qFoBtxhyOsREnd/gzF3kORK1kFH5JyOfabeimODP1emlHxE89L9F/2sxMjP9UDqaXdyfPus7h1eNw6IeIjxkSjETjqJMmFXeRl2hwPdPHhXFV1RQK5MTKZO6To71cALZkK5T82LjvzKC9naw1c=
+	t=1736320579; cv=none; b=IM9UF7dFUadreAt5vQKb6lKf+AcwWi2e4VcHfS2hoR11zUlE/a9QA9ubjnN2e/BCzgfZ4NuARE3JKdgJtBDK6y8jYPVIprJahzQy9Q13qCuRwEqSDF0cb3o4y0pxLis9QqAiTuceFN84jizcLQVvTUzgmLPeeHbMrwpne5mIQsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736320451; c=relaxed/simple;
-	bh=YrfuhDiaN5Kk4H/BeG4EkczdwaVg2MneeVbXflmk6Q4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=bUSmahwwIAZWbC8rh/IKIENWVtdMZCR6DTsHyhV8e3t0XdOHVwvWksqsk8llckU1JGsNmLvVK+KVabM/a0HI27ydyqwpv8PCVSAwa85Yo2bKsxlkhVnxb6uz4cgseZi0z2IwF2IxePtpsV6JclYG+zfeiprBIu9Jl42JewFL3XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0DNDZ6S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67124C4CEE0;
-	Wed,  8 Jan 2025 07:14:08 +0000 (UTC)
+	s=arc-20240116; t=1736320579; c=relaxed/simple;
+	bh=/nZWOZiAApJjEeZw8vk1otC1prkpz+lJLIdowQPpjys=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dHZshh7ROcs8R3GiU2D2xZhAlBImKqCMEAZzwRCL1EEn/yEbwpxM4RHfw+ehSN6FpPyW4RNvgaCmmIgTJsk8iGoPCQkqgeRcuf1iC6UqZoerqmXD6o/o1m09ad6YkEz4J2AeKQOWpFtF29aKZOmGhKaGHD4Uz20nAe0i4bjkyCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HLsyw3M+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C136C4CEE0;
+	Wed,  8 Jan 2025 07:16:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736320451;
-	bh=YrfuhDiaN5Kk4H/BeG4EkczdwaVg2MneeVbXflmk6Q4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=e0DNDZ6SpOjshUVtsv9Wk6fEF/1iM+vz6TAhJOGVRakSwUg5zdIsEn9SyKxOuJXmL
-	 tyNQv2gsFZFopXyl1itBGjV1FYJ5xMzK5fCWV/zCE6zt+Udmnghbu1N1m/3qsVC+Sj
-	 GAR8bJgump1mtXfRMgkGeK8RI61He+xiWyTiaMxziE+Tx9buBzxSXe4lhkhtyxDmNc
-	 hUjlFe3LA0YZgFMGXFajUzbfARam4dlmo2EjBvoL7cpvApct+QeUdyQ3swTga7iiWm
-	 cbqV1HyxL9HK7B3iffSVYr0FBsUzPKQQ8olhTfLuUV17x8ECE0ugxmfVo5EhE5p+ra
-	 VdTfp29Jc06oA==
-Message-ID: <e85dd7c3-0dfc-499b-bd74-f9be998e488a@kernel.org>
-Date: Wed, 8 Jan 2025 08:14:06 +0100
+	s=k20201202; t=1736320578;
+	bh=/nZWOZiAApJjEeZw8vk1otC1prkpz+lJLIdowQPpjys=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HLsyw3M+3Pa17joy1bRfI9u5T7eGbFbYAN7qMyv6s4H7l3qY/73g5yCdSRi0ekuGu
+	 BcbvrPAYZARHS91tJHAZZFjSU/aStVwPmvzvSiOaDYAB4fJYVLCBGb65dNvncQJ8Gn
+	 SG8RV9/wt2UiEgcRioOKfDjOMJii6lKSDksNKz1pVgppcgBxPCkNkp73PWIryu5Dah
+	 grvp4BEdC82tXh7y/aps8o7mLM+nUGgu9vJn+19Y4Z7j1X0hkfUOKP41nnCsPzkQpO
+	 gD2O0A4As1KPr8uxaBKr+NaGsGjwTZayoEuIslvDtFbFqABWqdGezA/IGO2yCZg6X+
+	 ttyihQrsxJRLg==
+Message-ID: <14a456bd-3f24-4daf-9329-873d0f051a83@kernel.org>
+Date: Wed, 8 Jan 2025 08:16:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: add clock-names property to
- nand node
-To: "Rabara, Niravkumar L" <niravkumar.l.rabara@intel.com>,
- Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
+Subject: Re: [PATCH 1/5] dt-bindings: PCI: mediatek-gen3: Add MT8196 support
+To: =?UTF-8?B?Smlhbmp1biBXYW5nICjnjovlu7rlhpsp?= <Jianjun.Wang@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ Ryder Lee <Ryder.Lee@mediatek.com>,
  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250107084955.2750154-1-niravkumar.l.rabara@intel.com>
- <096f17cb-cb2a-4f09-8c31-e71348289c1b@kernel.org>
- <BL3PR11MB65326A8A7F2E413B0D8162A6A2112@BL3PR11MB6532.namprd11.prod.outlook.com>
+ "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ =?UTF-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "bhelgaas@google.com" <bhelgaas@google.com>
+References: <20250103060035.30688-1-jianjun.wang@mediatek.com>
+ <20250103060035.30688-2-jianjun.wang@mediatek.com>
+ <ndj6j2mmylipr7mxg42f3lcwgx55cvcjnuuofmlk6n6t5uz5pr@bxugolyfublc>
+ <04ae2a07e2c2d3c03e82596034b1b7711450a0ae.camel@mediatek.com>
+ <eb2088d3-81f6-4cb8-a4d7-6ef985aedbda@kernel.org>
+ <9b0a463312702fb78e4ca2ba79c9ec6b62e33c58.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,63 +119,83 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <BL3PR11MB65326A8A7F2E413B0D8162A6A2112@BL3PR11MB6532.namprd11.prod.outlook.com>
+In-Reply-To: <9b0a463312702fb78e4ca2ba79c9ec6b62e33c58.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/01/2025 11:21, Rabara, Niravkumar L wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Tuesday, 7 January, 2025 5:21 PM
->> To: Rabara, Niravkumar L <niravkumar.l.rabara@intel.com>; Dinh Nguyen
->> <dinguyen@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
->> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
->> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
->> Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: add clock-names property
->> to nand node
+On 07/01/2025 09:43, Jianjun Wang (王建军) wrote:
+> On Mon, 2025-01-06 at 13:27 +0100, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
 >>
->> On 07/01/2025 09:49, niravkumar.l.rabara@intel.com wrote:
->>> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>>
+>> On 06/01/2025 10:26, Jianjun Wang (王建军) wrote:
+>>> On Fri, 2025-01-03 at 10:10 +0100, Krzysztof Kozlowski wrote:
+>>>> External email : Please do not click links or open attachments
+>>>> until
+>>>> you have verified the sender or the content.
+>>>>
+>>>>
+>>>> On Fri, Jan 03, 2025 at 02:00:11PM +0800, Jianjun Wang wrote:
+>>>>> +        clock-names:
+>>>>> +          items:
+>>>>> +            - const: pl_250m
+>>>>> +            - const: tl_26m
+>>>>> +            - const: peri_26m
+>>>>> +            - const: peri_mem
+>>>>> +            - const: ahb_apb
+>>>>> +            - const: low_power
+>>>>> +
+>>>>> +        resets:
+>>>>> +          minItems: 1
+>>>>> +          maxItems: 2
+>>>>> +
+>>>>> +        reset-names:
+>>>>> +          minItems: 1
+>>>>> +          maxItems: 2
+>>>>
+>>>> Why resets are flexible?
 >>>
->>> Cadence nand controller driver requires clock-names = "nf_clk" property.
->>>
+>>> There are two resets, one for MAC and another for PHY, some
+>>> platforms
+>>> may only use one of them.
 >>
->> Fixes tag.
->>
->>> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
->>> ---
->>>  arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->>> b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->>> index 51c6e19e40b8..4357572e96e3 100644
->>> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->>> @@ -272,6 +272,7 @@ nand: nand-controller@10b80000 {
->>>  			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
->>>  			clocks = <&clkmgr AGILEX5_NAND_NF_CLK>;
->>>  			cdns,board-delay-ps = <4830>;
->>> +			clock-names = "nf_clk";
->>
->> It does not look like you tested the DTS against bindings. Please run `make
->> dtbs_check W=1` (see Documentation/devicetree/bindings/writing-
->> schema.rst or https://www.linaro.org/blog/tips-and-tricks-for-validating-
->> devicetree-sources-with-the-devicetree-schema/
->> for instructions).
->> Maybe you need to update your dtschema and yamllint. Don't rely on distro
->> packages for dtschema and be sure you are using the latest released
->> dtschema.
+>> Even more questions. What does it mean use? Is it there or is it not?
 > 
-> I believe you are pointing to this error message
-> /soc@0/nand-controller@10b80000: failed to match any schema with
-> compatible: ['cdns,hp-nfc']
-> 
+> It will be used by calling the reset controller's APIs in the PCIe
+> controller driver. Ideally, it should be de-asserted before PCIe
+> initialization and should be asserted if PCIe powers down or the driver
+> is removed.
 
-No. I refer to this clock-names property. As you can easily see in the
-binding: there is no clock-names.
+So it is there? Then drop minItems.
+
+> 
+>> Platform like SoC? But this is one specific SoC, it cannot be used on
+>> different SoC.
+> 
+> Yes, it should be SoC, each SoC have its own resets, and the number of
+> resets for each SoC is defined by the hardware design, most SoCs should
+> have one reset for MAC and one reset for PHY.
+
+You respond with some obvious things, so this review won't work.
+Properties are supposed to be constrained. Your arguments that something
+else has something else, do not apply. It does not matter what something
+else has.
+
+> 
+>>
+>>>
+>>> Would you prefer to set the number of resets to a fixed value for
+>>> specific platforms?
+>>
+>> Everything should be constrained to match hardware.
+> 
+> For MT8196, there are 2 resets. Should I use a fixed item in this case?
+
+Yes. I asked why this soc has this flexible and you speak about some
+other socs.
+
+
 
 Best regards,
 Krzysztof
