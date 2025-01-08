@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-136530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7256A057A3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:09:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C77A9A057B4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:11:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2FB21627C1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:09:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFF4E7A2E9F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:11:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E031F5407;
-	Wed,  8 Jan 2025 10:09:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A611F76C5;
+	Wed,  8 Jan 2025 10:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BgNqGBTg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tksCyIxg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7B91F3D3C;
-	Wed,  8 Jan 2025 10:09:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904041AB511;
+	Wed,  8 Jan 2025 10:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736330943; cv=none; b=XRKzLgtEK9SAvBWNhd2lBbv0Bi6jbAjCkYMwqpU3JxLbxNZ2am5UTBS3k1RtjWEi5wEQKjk8PiOyy9gcCz1+JYHzc3XDw8KAP1qUa1NifF6l/yZJl+q5dxH8/KtZxVbjM7sW3oUrxwStCdk7JsjzqVn5MvTdWR8n1gOKFimx8cQ=
+	t=1736331063; cv=none; b=K05qWS5sH67FGHZCU9JgxBfpBfgpCu/x6o9ky7/Hlg3/YeWqm2jimXtvJEIfrKjguEqDtwzTUl2uxqHU4NZ+1wImwN6E3zpzqNyFdL4XDBJZ/HvOjF0xvMWbASnJgE4T7B67/2+YZ3bfbjX3YzVsO4Inpo1OzhuBYbP93QH+LHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736330943; c=relaxed/simple;
-	bh=j3XzxW4WHy3pYYMnlBG5fG+D54Ql2GcPQzwfO7+nZB0=;
+	s=arc-20240116; t=1736331063; c=relaxed/simple;
+	bh=SlVmib1m1310d4/mE0OzqhXLkoQrPL2iREBvRmzMl/g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bHUXHKtNdLTbxUVKq/KcGR6uzCpcUqMXkpeu3GM2aqrUVWfnO08OpUzSrhxtZkMlCz26vaReQxBUghfx+4Gv2PfCvXE5D8PgwqQZCkjrP+nYFC23o+3jy6xdA6fshjusZENbvm6ncXy0N9VKKuLEZnL9CzbetL1mRbBcwAmb2g4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BgNqGBTg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C57FC4CEE0;
-	Wed,  8 Jan 2025 10:08:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=laWG+wcJhP4W2KqAY2GHrr8loZ/+r3nLyfrG6edb2SjA9VQCOTsySDp6+HLmoJO2bl8PA+wpk3GbKfNP3t6Eo0tEHfrnMlXYgCJA7PI7dwwYnsR7dUTINCvijCMtuax0AM0W5zL/x2LGU8lRREikM4auPf+qweQImtugqPt0lCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tksCyIxg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD248C4CEE0;
+	Wed,  8 Jan 2025 10:10:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736330943;
-	bh=j3XzxW4WHy3pYYMnlBG5fG+D54Ql2GcPQzwfO7+nZB0=;
+	s=k20201202; t=1736331063;
+	bh=SlVmib1m1310d4/mE0OzqhXLkoQrPL2iREBvRmzMl/g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BgNqGBTg+FU5Fn9rnghB6ceKvcZS4JFJ9aTeE308wTPxkiB31zPCxARSIJro0kBN8
-	 H4OJs/wXoIknmkDH4dJNn+Xnu08pxKGL9L6eGWi6Hvi4uSCRWdnF5NJpBEtR+DMKs7
-	 PoLsf2V/dN25UcaXTBVNG9M331QIsT9tiK8pisLVw/2e9kNtdGi9t2B0AmVCnypeqD
-	 4XEI3XIy35Yb13haZ642wxp/1POMC/D8TbWNQr4EnNzGnlnVndClIfewSvUiwqJVmz
-	 RgD+mmYanSz001I7yHDk9wCbFLRD4xJ2qOkZsp9Z2DVvTrY29AqK0Lg/NXLC0rhpZG
-	 Ip3elJRW8l9sQ==
-Message-ID: <d0271581-c250-465a-aa0f-2f10548cc89b@kernel.org>
-Date: Wed, 8 Jan 2025 11:08:57 +0100
+	b=tksCyIxgPEhLV+IRSQPxYyzDt5/4KneOuLKlZC0Q7sd4niHxofs0vK9OWJXK1Nc+O
+	 i9LdwEiQcG9DdL2cuOLkMrbYzoNagDoevbGzwb/SnsftDtEFizNuR4OcTVYJt+378v
+	 X/Wj1UiRbXUbfSN9T+A9LfiI3TOWP6bxRfDP/WX/+fkjRvSIbQYHwcbW3oTviCWUVr
+	 hsyUllUCjoqeCUyi380ST5gREWNz8B8hgWQ31y4lJRzT8N77cNBeBMv88U/C/e6FVV
+	 CxX3IK8HVUBns8+on5z8XPZo6xWFuRFjrPOD2XSqdKBLzbvo9EDdSVbuGxH7w/CmmJ
+	 00Cf3B60eYqDA==
+Message-ID: <9cf60fb9-c4ab-49f0-bb48-102333fe411e@kernel.org>
+Date: Wed, 8 Jan 2025 11:10:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] soc: samsung: usi: implement support for USIv1 and
- exynos8895
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250107113512.525001-1-ivo.ivanov.ivanov1@gmail.com>
- <20250107113512.525001-3-ivo.ivanov.ivanov1@gmail.com>
- <6y4mg6atqi6idyoppesg5owrnfrjhkzqh4im4po7urfry2qctb@yimp5y6sm7h6>
- <907e1169-ceea-4d41-93bb-925041de005e@gmail.com>
- <e28abf31-3d91-4d1b-97e6-202df5ebb3f5@kernel.org>
- <c30a6f1b-b1a9-40db-b673-e6fc47bdb224@gmail.com>
+Subject: Re: [PATCH v5 3/5] dt-bindings: PCI: qcom: Document the IPQ5332 PCIe
+ controller
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, p.zabel@pengutronix.de,
+ quic_nsekar@quicinc.com, dmitry.baryshkov@linaro.org,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20250102113019.1347068-1-quic_varada@quicinc.com>
+ <20250102113019.1347068-4-quic_varada@quicinc.com>
+ <4hwclzotaowog6rzfejiixqvvg7iumg4udbvq3h72mmh42dbki@piphsf37vhpv>
+ <Z30KZM1RGdFvB1dy@hu-varada-blr.qualcomm.com>
+ <50b03189-bf2c-46c8-b7c2-4aa5eed97c35@kernel.org>
+ <Z34r9D8htoDNvagK@hu-varada-blr.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,32 +112,73 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <c30a6f1b-b1a9-40db-b673-e6fc47bdb224@gmail.com>
+In-Reply-To: <Z34r9D8htoDNvagK@hu-varada-blr.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/01/2025 10:45, Ivaylo Ivanov wrote:
->>>>> +
->>>>> +	return ret;
->>>>> +}
->>>>> +
->>>>> +static void exynos_usi_remove(struct platform_device *pdev)
->>>>> +{
->>>>> +	struct exynos_usi *usi = platform_get_drvdata(pdev);
->>>>> +
->>>>> +	if (usi->data->ver == USI_VER2)
->>>>> +		exynos_usi_disable(usi);
->>>> This is not related to the patch and should be separate patch, if at
->>>> all.
->>> Well I though that since didn't have any removal routine before it'd be good
->>> to introduce that and not leave USIv2 with hwacg set.
->> Sure, but separate commit, please. Can be preceeding the USIv1 support.
+On 08/01/2025 08:40, Varadarajan Narayanan wrote:
+> On Wed, Jan 08, 2025 at 08:19:19AM +0100, Krzysztof Kozlowski wrote:
+>> On 07/01/2025 12:05, Varadarajan Narayanan wrote:
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 10 ++++++++--
+>>>>>  1 file changed, 8 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>>> index bd87f6b49d68..9f37eca1ce0d 100644
+>>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>>> @@ -26,7 +26,6 @@ properties:
+>>>>>            - qcom,pcie-ipq8064-v2
+>>>>>            - qcom,pcie-ipq8074
+>>>>>            - qcom,pcie-ipq8074-gen3
+>>>>> -          - qcom,pcie-ipq9574
+>>>>
+>>>> I don't understand this change at all and your commit msg explains
+>>>> here nothing.
+>>>
+>>> All DT entries except "reg" is similar between ipq5332 and
+>>> ipq9574. ipq9574 has 5 registers while ipq5332 has 6. MHI is the
+>>> additional (i.e. sixth) entry for ipq5332.
+>>>
+>>> If ipq9574 is not removed from here, dt_binding_check gives the
+>>> following errors
+>>>
+>>> 1.	/local/mnt/workspace/varada/upstream/pci-v6/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dtb: pcie@18000000: reg: [[557056, 12288], [402653184, 3869], [402657056, 168], [402657280, 4096], [403701760, 4096], [569344, 4096]] is too long
+>>>
+>>> 	Failed validating 'maxItems' in schema['allOf'][2]['then']['properties']['reg']:
+>>> 	    {'maxItems': 5, 'minItems': 5}
+>>>
+>>> 2.	/local/mnt/workspace/varada/upstream/pci-v6/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dtb: pcie@18000000: reg-names: ['parf', 'dbi', 'elbi', 'atu', 'config', 'mhi'] is too long
+>>>
+>>> 	Failed validating 'maxItems' in schema['allOf'][2]['then']['properties']['reg-names']:
+>>> 	    {'items': [{'const': 'dbi'},
+>>> 		       {'const': 'elbi'},
+>>> 		       {'const': 'atu'},
+>>> 		       {'const': 'parf'},
+>>> 		       {'const': 'config'}],
+>>> 	     'maxItems': 5,
+>>> 	     'minItems': 5,
+>>> 	     'type': 'array'}
+>>>
+>>> Hence had to remove it from here and add it to the sdx55 reg
+>>> definition.
+>>
+>> So you entirely dropped constrain for regs. No. This has to be fixed,
+>> not dropped.
 > 
-> What about right after the USIv1 support? It would be less messy in my
-> opinion.
-Fixes should be before new features and why messy? You add devm cleanup
-handler for unconfigure and in next commit you grow it with clk disable
-for USIv1?
+> ipq9574 is not dropped entirely. It is clubbed with sdx55's
+> constraints. Please see this
+> 
+> 	@@ -206,6 +208,8 @@ allOf:
+> 		 compatible:
+> 		   contains:
+> 		     enum:
+> 	+              - qcom,pcie-ipq5332
+> 	+              - qcom,pcie-ipq9574
+> 		       - qcom,pcie-sdx55
+Correct, not dropped entirely, but now it receives mhi for no reason.
+This should be separate commit with its own explanation - why ipq9574
+has now MHI address space.
 
 Best regards,
 Krzysztof
