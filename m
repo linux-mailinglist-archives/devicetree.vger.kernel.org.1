@@ -1,137 +1,153 @@
-Return-Path: <devicetree+bounces-136651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BE52A05C4B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:02:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACCDBA05C61
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:12:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A01D161F6F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:02:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 096A03A063E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 13:11:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADA561FA8C0;
-	Wed,  8 Jan 2025 13:02:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC8841F75A7;
+	Wed,  8 Jan 2025 13:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OhIuPgv1"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="y5ecljwU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75931FA8D9
-	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 13:02:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B20E614A82;
+	Wed,  8 Jan 2025 13:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736341339; cv=none; b=jqZHfJYalEoLXiEya2hBLaaCqivu4yMtkSCIV/WJ41pDV9GvSN8K14y6VDlmFgP1XcqptH3pqEZtoy/fL2aE3PuLXBSk6ni629UqPK8xxg9KcewFXymC/xa4gtx/2d4lu/V3YOwCU99wGjXpwvD1UMI2qQ3IWEA6P6A0RHFqCXw=
+	t=1736341916; cv=none; b=gktHKDfp+CRN1MF0nHfG8mw1mxrN4qbI/jv8JJnt9av7EVDCB2TVqncy/xvQE2D1SydBIpWvMeDAfLnOyeN6wZmqzTEZ1gzFGPnuAEfE5H5eAlm6JZ45BApj4eNGrq8ldo7DXaztx6xKvzVG+CpreDslynHYYeN+z9rOmHV7Q1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736341339; c=relaxed/simple;
-	bh=pfXKttkEL2SWWU2rinTk0BU61tt2kEqGuqQajYKioxY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CQqBOKNnP58ueJ/2EvglSNo6Fxjdm+p4Ldik1ptG4xIWTR5jiA6NeohVD4nxpT1swUIEAZGZNk7t7pjeOW4sR8icxzHJqiZ/I5kcXnZLV/fCPMOcHPEVmJxqHgWq938SY8ZR+vXrifMGmliGJ6tOCh+sHw5Lbu3XUJ2Zkyvj/7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OhIuPgv1; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53ff1f7caaeso17670985e87.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 05:02:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736341336; x=1736946136; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LtdjdENjpDlREgBVNAk/GURw9RLq4teFMIc2Gk3yyCc=;
-        b=OhIuPgv1Qu6NoixcFS6zJJFc+GeYERk45gQGBMqJ1YO6ppsxXaVjPp2YitVY/ynS0j
-         O195VUw6K/gfx0vzlmqjZbWEdL8FAwBs23WWcmA8O4pT21evMIrOoya5XHBUd5L84plQ
-         1hWcx8151ZsaZsMwIot5Brj+Ek4rF1Nbe1Xfn2xwmDCAFSrHoFTHcBIuNT7w6DCzEtEd
-         1oWDNqXWITabYAqkgCyuCISarSDsJVqEF5luMDwdqbddUk2vagQgIgKA8tV2qbFrviop
-         3IvTnp/ZF67zf76wwBsCjw0WTAV1VgQwBOZJPgu5ahPgRjpprFbtvpp12J34S0MFkQ7b
-         jxQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736341336; x=1736946136;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LtdjdENjpDlREgBVNAk/GURw9RLq4teFMIc2Gk3yyCc=;
-        b=YTZ/sqNMQncORtiZooYkSlL+YKfgV4tmmo8TQ60Zf7fpywIzmsDh5Bnavr8QwtgKqK
-         i0J1f16msHw90CzBPsdQ3eMBIrHCLkxlRcpsBM4/0fupMjnKUUI5E2n91LgCvL7JvC86
-         tgX3zn/+9NV3T9V3d0I6Iemb8M+jqJDt/LqbPKVhDgCpK58TGD8yZ3ZtRoK/LKXXKgFt
-         4D/J4Vod20U0HFtlkOHvHLq3uT9GCRXCwo4XAJz2Heq0V7aJShsKcNTfqN0SxxHtQ+Jo
-         3GMeybzt5Uy5SJTUwtgOCSKgYXumxzE6Cc/lgwSTkJ4+pseYcxlqdvruD+QdT4/WFtN3
-         jxMg==
-X-Forwarded-Encrypted: i=1; AJvYcCUxYqrMUCl9eg1KX73DxmdRlw0QuwfhAOhYnMPOXFQ5JKyRLoOHfREr+pQ8QNQ4YFAOklfZMU0MS5v9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLU1uZRXILajcgPtWkt9Qhl2AdBUf5+5miMivHRx8MaKJEenbE
-	AS1jUYWRgn6GfK3c7nwpN/F9O3dMnAX5Xraui0obN3vpNI8uO34dGQgNw+IyQyg=
-X-Gm-Gg: ASbGncsmQEf8loAeIdff8waI5+XVT6E2oEV3KXhffRZ9/jwViD3XySMFNK7MuRCbQPx
-	xcv0dj8b30BQWkBy3MGNLeqakulTTwJtVd5tLqjjyjCi8obL7fMONhJYma3GVgr5LdbKEMItvTK
-	lL1yJxVubdmYjQG+rRz1LGUaYIXZ8gV19N+fjNyaefBH86Uuai0IeTdisSbWOGUoM395cCsX3cg
-	i8tNdcUgVbmUOG29cmnoDMROphfvu9qm7YL9Tq/NEu7kapvJNvnK79My8u37A0BOAuNaFhrr/Df
-	ZUtHPwQKEBGD6mVVWXLbgapa3NsYcwSryQ9c
-X-Google-Smtp-Source: AGHT+IF11Wgw4NNBGE9Alqz5c2ikDMgSytLQymr22qioeMYiszQ6HPLJGryvXEb7CVA6I7N4H4lGkQ==
-X-Received: by 2002:ac2:4e08:0:b0:542:23b3:d81b with SMTP id 2adb3069b0e04-5428450707amr631936e87.5.1736341335696;
-        Wed, 08 Jan 2025 05:02:15 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542236000ddsm5590003e87.82.2025.01.08.05.02.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2025 05:02:15 -0800 (PST)
-Date: Wed, 8 Jan 2025 15:02:12 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org, patches@lists.linux.dev, 
-	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>, 
-	Conor Dooley <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Subject: Re: [RFC PATCH 6/6] arm64: dts: qcom: sc7180: Add SoC specific
- compatible to soc node
-Message-ID: <n3fn5mnrrinrgrvadqgymv3cx355qpx5kk27nlrz2emoxfmjyt@ymwpfxf7lv4r>
-References: <20250108012846.3275443-1-swboyd@chromium.org>
- <20250108012846.3275443-7-swboyd@chromium.org>
+	s=arc-20240116; t=1736341916; c=relaxed/simple;
+	bh=OwFveQG5FQZSU90kN28HyK22KApFqq13i4qWFCRksuE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aAIi8aTcvaMYppITgiDevLRW4or7iJn+Bde2AAdy4MAoNsQK4vRdCXr1hO2B6F5SmgZBMiW5fzn1kNFM9T+q8FAlD+HMxIwYeU9R0vvSkbstT8pxmFPTEeBCrk7th5sbxW8fPlk6pyPwSRC7qHimr1A/L8FCyi1DgVKP7Z24dD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=y5ecljwU; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 508DBeR43008794
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 8 Jan 2025 07:11:40 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736341900;
+	bh=s0c2Sr/lCUPp+fZ6By3CztBWN7px0h5vAH48eSCXHxo=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=y5ecljwUR4/3FPqDcaEjgLXjYxVW/wnYoMVO4yFJaMRCU9n9R2cIL+aihKmcbS214
+	 hnLOriD26zxNGj7ZQcEWStUiOWeDV0Id0ZwJ7QaDwvZ/v4jTRBVCpLqCAhFFBERkzg
+	 bdnqcF4AUG/tSsqh7+F5mU0InBlP+f6ashtn8fJc=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508DBe2Z110371
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 8 Jan 2025 07:11:40 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
+ Jan 2025 07:11:39 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 8 Jan 2025 07:11:39 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508DBdjE036677;
+	Wed, 8 Jan 2025 07:11:39 -0600
+Date: Wed, 8 Jan 2025 07:11:39 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Kevin Hilman <khilman@baylibre.com>
+CC: <devicetree@vger.kernel.org>, Romain Naour <romain.naour@smile.fr>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>,
+        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>,
+        Romain Naour <romain.naour@skf.com>, <afd@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCHv3 1/2] dt-bindings: mfd: syscon: Add
+ ti,j721e-acspcie-proxy-ctrl compatible
+Message-ID: <20250108131139.dygei6ejamh5zaij@segment>
+References: <20241202143331.126800-1-romain.naour@smile.fr>
+ <173344002250.407600.8303166891165540615.b4-ty@baylibre.com>
+ <20250103212528.enq4ur5afxhwzh7n@outdoors>
+ <7hr05eb5st.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250108012846.3275443-7-swboyd@chromium.org>
+In-Reply-To: <7hr05eb5st.fsf@baylibre.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Jan 07, 2025 at 05:28:43PM -0800, Stephen Boyd wrote:
-> Allow an SoC driver to probe for these devices. Add the SoC specific
-> compatible to the soc node. Leave the original simple-bus compatible in
-> place so that everything keeps working.
+On 14:46-20250107, Kevin Hilman wrote:
+> Nishanth Menon <nm@ti.com> writes:
 > 
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Konrad Dybcio <konradybcio@kernel.org>
-> Cc: <linux-arm-msm@vger.kernel.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> > On 15:07-20241205, Kevin Hilman wrote:
+> >> 
+> >> On Mon, 02 Dec 2024 15:33:30 +0100, Romain Naour wrote:
+> >> > The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
+> >> > SoC are used to drive the reference clock to the PCIe Endpoint device via
+> >> > the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
+> >> > obtain the regmap for the ACSPCIE_CTRL register within the System
+> >> > Controller device-tree node in order to enable the PAD IO Buffers.
+> >> > 
+> >> > The Technical Reference Manual for J721e SoC with details of the
+> >> > ASCPCIE_CTRL registers is available at:
+> >> > https://www.ti.com/lit/zip/spruil1
+> >> > 
+> >> > [...]
+> >> 
+> >> Applied, thanks!
+> >> 
+> >> [1/2] dt-bindings: mfd: syscon: Add ti,j721e-acspcie-proxy-ctrl compatible
+> >>       commit: d8efc0b428856137608ffcbb6994da6041c9fe2a
+> >> [2/2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE output for PCIe1
+> >>       commit: 1d5e14a20dc60b440c60bec8489acfd45cdf7508
+> >> 
+> >> Best regards,
+> >> -- 
+> >> Kevin Hilman <khilman@baylibre.com>
+> >> 
+> > This will need a bit of fixup - See along the lines of the following.
+> > Additionally, we should be a bit careful about the dependency of dts
+> > mix up from two trees.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index 76fe314d2ad5..257890a193e6 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -782,7 +782,7 @@ soc: soc@0 {
->  		#size-cells = <2>;
->  		ranges = <0 0 0 0 0x10 0>;
->  		dma-ranges = <0 0 0 0 0x10 0>;
-> -		compatible = "simple-bus";
-> +		compatible = "qcom,soc-sc7180", "simple-bus";
+> sorry, these should be going through your tree in the first place.  They
+> are now dropped from my tree, please go ahead and take them along with
+> Andrews fixup.  Sorry for complicating things.
 
-If the new driver requires this compatible, it will break compatibility
-with older DT files (and it should be avoided).
 
->  
->  		gcc: clock-controller@100000 {
->  			compatible = "qcom,gcc-sc7180";
-> -- 
-> https://chromeos.dev
-> 
+Romain,
+
+There is additional fixups needed, unfortunately as well: syscon yaml
+has two lists based on which dt-schema version you use.. your patch
+fixed one list, but missed the other as well. Could you integrate the
+fixes and resubmit, please?
+
 
 -- 
-With best wishes
-Dmitry
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
+Something of this form needs to be squashed.
+
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index 348025870b0f7..dda489916bc54 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -216,6 +216,8 @@ properties:
+           - ti,am62p-cpsw-mac-efuse
+           - ti,am654-dss-oldi-io-ctrl
+           - ti,am654-icssg-ctrl
++          - ti,j721e-acspcie-proxy-ctrl
+           - ti,j784s4-pcie-ctrl
+           - ti,keystone-pllctrl
+       - const: syscon 
+
 
