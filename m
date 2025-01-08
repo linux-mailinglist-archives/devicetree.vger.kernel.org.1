@@ -1,98 +1,170 @@
-Return-Path: <devicetree+bounces-136859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BBDEA0694B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:08:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B206A0695D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:17:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B242C3A6D08
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:08:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BF683A3263
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:17:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257B02046A0;
-	Wed,  8 Jan 2025 23:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813BE2046A7;
+	Wed,  8 Jan 2025 23:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DRFgas6V"
+	dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b="JAfvD+pd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 268B5202C4A;
-	Wed,  8 Jan 2025 23:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B7D422611;
+	Wed,  8 Jan 2025 23:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736377733; cv=none; b=PzSB5o/Wduj01YQ8KjzSm97c5tjers6UoBhaFdBgvMS8ha6ox9JO1rKON1mcg6UuqEvna+zH9Gck+aZQNCHiVyGTs7CjDMP3WALYE8Jb4atX7nmCkiMz6y49rsf5yD8zpfhIBomM8Y4RcaoCQPr/760rsJxuah/V7Pey4W2VMwY=
+	t=1736378272; cv=none; b=KXBPhJmi7+H8nn/AF4J0tJMYvazc5RUO5waQraFTkgKKTySiDXk7em4L7yekfN3tC5tjXw/1XGJoUVSjZsifWsxGXnsqSmn1UsoIT4j9hvOskgOruDYKCXgR+a5c85MNKxuOeKMYp7L1V2P9qYMFDe6WJU+sMtOmpJBt6aBkR6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736377733; c=relaxed/simple;
-	bh=OD4n4Ihhod1YWFLQrPlUmorM01sR8f6EOYUcmNeagwo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GtyT/DZApJfWweR7uc/mxRLgCJMy8bWzhqd2xrroQiwtg221ih/MBSVFcDQOaEK6r5ww6L1Qw94fxgAng+6/gAsOwY5IUMnqSc4KoAg2xZcp9lKqAirWLZKyMuacaSCWxMF41myvdTujNeCjkwysRY5rXXu+MSRtqbOO92NW3JI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DRFgas6V; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=QOtK78nI5rgA0uceIpeywrkch6lrzYwEKPd0Sio4ZFM=; b=DRFgas6VTsmXXXEGrkB5OiPOvF
-	n24ZB8sfIZX6LOwyK9VXZLMMtiqAnersB31MXoV7NMLPgq2vZNJ+TswKCUlCkXPhdnLhF6ZHpY2mp
-	k2vWGt8YIjABDZl9Tw+M6ErieZZOm2BpuusTUIiCS3UvQTF2viEAcvlZYFTHJjNl3fDg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tVf9p-002iOJ-BJ; Thu, 09 Jan 2025 00:08:13 +0100
-Date: Thu, 9 Jan 2025 00:08:13 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ninad Palsule <ninad@linux.ibm.com>
-Cc: Jacky Chou <jacky_chou@aspeedtech.com>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"eajames@linux.ibm.com" <eajames@linux.ibm.com>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"joel@jms.id.au" <joel@jms.id.au>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"minyard@acm.org" <minyard@acm.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"openipmi-developer@lists.sourceforge.net" <openipmi-developer@lists.sourceforge.net>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
-	"robh@kernel.org" <robh@kernel.org>
-Subject: Re: [PATCH v2 05/10] ARM: dts: aspeed: system1: Add RGMII support
-Message-ID: <59116067-0caa-4666-b8dc-9b3125a37e6f@lunn.ch>
-References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
- <b2aec97b-63bc-44ed-9f6b-5052896bf350@linux.ibm.com>
+	s=arc-20240116; t=1736378272; c=relaxed/simple;
+	bh=uYnNNV3Og25ZrR7XwJS/aCY9o38HMm12OOUgkHL2jD4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KpMwCimZ3UVo7Soz/dfXlxeW8YTsAx+HsoTkRZJLKftyFwgyu7LzOql8dACPe26Cs57PlY7tyI+cCSICqukxuVifkcCkFz0uKCHMv0DiS2uCq45RiaUhC/vGU5DiHpfs6p70mESqhRamNINiqvglHOqZg+OCeqtO59QrgqyaHtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de; spf=pass smtp.mailfrom=timsurber.de; dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b=JAfvD+pd; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timsurber.de
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4YT3jZ39S2z9sWt;
+	Thu,  9 Jan 2025 00:17:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
+	s=MBO0001; t=1736378258;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/X0WBBqCGRGq8C7ulGGLTNywZC6aKr6ETbimA2Nz/ns=;
+	b=JAfvD+pdAeKiUoArfy+4UiHiMzwvFhIWF4V+OQwYFiWD/VVanEpTe4A8wZyA1kbIX8BJUo
+	SAAr4juuBaNYIFru96NwPHEUIKW+huo2bLKGcpeDJ+4NpMhlIZ6txOMtBSWQQeGy4OyQk2
+	+bkUXr4rLVN355a1wSzrClAizugbundksLMsHnAZANUGDfa0vzbl7DujtfKduX2wNX3VeB
+	jk8aC5a/47RI/z6NprAcs4FVPw9zvAlsqTQIi3BprYTgOYRUMBguoKJbypnwcCIWQy5U/b
+	0l2eK9G1+vT48+OCF1P3MVrSIvSoZZx7ll/rsvGQp3LAFaGueuary2JZNmhjtQ==
+Message-ID: <d61e344f-fcdd-47af-a142-e8d42edec045@timsurber.de>
+Date: Thu, 9 Jan 2025 00:17:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b2aec97b-63bc-44ed-9f6b-5052896bf350@linux.ibm.com>
+Subject: Re: [RESEND PATCH v5 0/4] Add Synopsys DesignWare HDMI RX Controller
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Shreeya Patel <shreeya.patel@collabora.com>, heiko@sntech.de,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20241210193904.883225-1-shreeya.patel@collabora.com>
+ <acb91a34-c0f8-4f03-8945-755b4e42dcf3@timsurber.de>
+ <925d7571-48e4-437d-b55c-3f7bbad8af1d@collabora.com>
+ <fbb5016e-678c-4e54-a6a8-0ccaa2bdf45c@timsurber.de>
+ <a5226fac-2a5b-47f3-b32e-8662bf932bd4@collabora.com>
+Content-Language: en-US
+From: Tim Surber <me@timsurber.de>
+In-Reply-To: <a5226fac-2a5b-47f3-b32e-8662bf932bd4@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 4YT3jZ39S2z9sWt
 
-> There are around 11 boards in Aspeed SOC with phy-mode set to "rgmii" (some
-> of them are mac0&1 and others are mac2&3). "rgmii-rxid" is only mine.
-> 
-> No one in aspeed SOC using "rgmii-id".
+Hi,
 
-O.K, so we have to be careful how we fix this. But the fact they are
-all equally broken might help here.
+I tested your patch with the command
 
-> > Humm, interesting. Looking at ftgmac100.c, i don't see where you
-> > configure the RGMII delays in the MAC?
+# gst-launch-1.0 -v v4l2src device=/dev/video1 ! fakesink
 
-This is going to be important. How are delays configured if they are
-not in the MAC driver?
+If this worked I moved on to a visual test using
 
-    Andrew
+# gst-launch-1.0 -v v4l2src device=/dev/video1 ! queue ! v4l2convert ! 
+waylandsink
+
+I used a Windows PC  with a Nvidia GTX 4060 as my source for the 
+following tests.
+
+| Format       | Result                                      |
+| ------------ | ------------------------------------------- |
+| 4k60p RGB    | Recognized as 1080p / 120 fps - no output   |
+| 4k60p 4:2:2  | Recognized as 1080p / 120 fps - no output   |
+| 4k60p 4:4:4  | Error: Device wants 1 planes                |
+| 4k30p RGB    | ok                                          |
+| 4k30p 4:2:2  | ok                                          |
+| 4k30p 4:4:4  | Error: Device wants 1 planes                |
+| FHD60p RGB   | ok                                          |
+| FHD60p 4:2:2 | ok                                          |
+| FHD60p 4:4:4 | Error: Device wants 1 planes                |
+
+
+When testing 4:4:4 chroma I got the following error:
+
+# gst-launch-1.0 -v v4l2src device=/dev/video1 ! fakesink
+/sys/v4l2/gstv4l2object.c(4344): gst_v4l2_object_set_format_full (): 
+/GstPipeline:pipeline0/GstV4l2Src:v4l2src0:
+Device wants 1 planes
+
+I could record and convert (with errors) the files with 4:4:4 chroma 
+using the command Shreeya posted, but the resulting video had wrong 
+colors and was flashing.
+
+I was not able to test 4:2:0 chroma. I tried to generate an custom EDID 
+with support for it but I could not select it in the graphics driver in 
+the source, maybe this is just an issue with my setup.
+
+I also observed that the the framerate is reported wrong, for example 
+setting the source to FHD60p RGB resulted in the following:
+
+# v4l2-ctl --all -L --list-formats-ext -d /dev/video0
+Active width: 1920
+	Active height: 1080
+	Total width: 2200
+	Total height: 1125
+	Frame format: progressive
+	Polarities: -vsync -hsync
+	Pixelclock: 214076000 Hz (86.50 frames per second)
+
+This wrong framerate reporting seemed to happen across all framerates 
+and resolutions. Gstreamer Pipeline negotation showed the same results.
+
+During my testing I got sometimes an error
+
+
+# dmesg
+dma alloc of size 24883200 failed
+
+
+I'm not sure when this happened and how to reproduce it.
+
+Then I tried to use an AppleTV 4k as source. I don't know what 
+resolution it tried to negotiate but I got this error in addition to the 
+previous "Device wants 1 planes" and no connection:
+
+# dmesg
+fdee0000.hdmi_receiver: hdmirx_query_dv_timings: signal is not locked
+fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: signal not lock, 
+tmds_clk_ratio:0
+fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: mu_st:0x0, scdc_st:0x0, 
+dma_st10:0x10
+fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: signal not lock, 
+tmds_clk_ratio:0
+fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: mu_st:0x0, scdc_st:0x0, 
+dma_st10:0x14
+
+
+Best regards,
+Tim
+
+
+
 
