@@ -1,145 +1,196 @@
-Return-Path: <devicetree+bounces-136694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FD71A05DEE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:04:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87F25A05E06
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:09:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0510F16144C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:04:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 341951883E5F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 14:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AEF542AA6;
-	Wed,  8 Jan 2025 14:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8311FC7DF;
+	Wed,  8 Jan 2025 14:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="GLgEGooG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dVNxBQqC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB6E134AB;
-	Wed,  8 Jan 2025 14:04:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 793AB1A9B3F;
+	Wed,  8 Jan 2025 14:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736345068; cv=none; b=f390jn2ssEzIT/bKpBHLPMOVEcNpp2OC9nRouLo28K1WbVs2Y8vrqNDOR9bQhryTKcG/fq1dQrvt8Ni1k/UEu1r9yjPlkWG5bKd4Rvd3ACD1S2xXptjIjEXSz8JxOLcMLNxcrt4+vhPQtjKQDu6rjBNxoquUe1dY06DVJpaB/Cc=
+	t=1736345358; cv=none; b=BzKYq6M82tdck8vINpEaHqNVvnvY99cdRJK7q4DvLqNs+jaGaR2PNJq6/vyA16ySjtWvCm/mm1Xdb8abqZYHojQ8TeUwkHq57DNQGhQ/thvmyy5OtsBrB4rKiFvHCZkMFUQ53Uu793pM8LlG3EM7pMYE9iC7U8IifimYqfk0guU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736345068; c=relaxed/simple;
-	bh=h5cAr9bIdM4OZf+yzeVEaIUenRFVRHC849CjgfS5IFk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DUpYTZmOLyW2nIFphLmEwib7WB95lZ4VCU3BifBL6htMOkCV78uK/LszHvuVWGWh99mk3Oj00Rl/a2t7D3mo2JkACpiHCvRaHN93IdaQX9U22b599CclP/IF/pmS5NmKzesqflmh3OI2gsIWWQ1ZtyP4WSWojEinNyRsi9us5i0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=GLgEGooG; arc=none smtp.client-ip=162.240.238.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:References
-	:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=o3+neP8aeeIFPqI/lL7EOOrgM0uRKroB1bs8o3zpJWY=; b=GLgEGooG7UkcsXby1uEwokCfe9
-	s7iqTJT6t7fQ4bL0NWVQMCEd65TTxjAFKf2+LqVADVmFKTCVURhW1aCfK8Trf65EDbc4KVqSV1ltD
-	lSGtUlzcMkXUU5yDZ/k7C1puX4VVmPeOxgWAP8bAlDLPpUnt+MgzkKma8BGraXxrxAX/yiYF9EQVD
-	6xQYRtKfMLjxsM3coBB6+X8FTlZL4w8iAHs5O2jw6Vf+mT82Vn1U8n+xvb6u+f0XHVKwtyMSEBeFP
-	x7pTMmGFOo36RpQTGWOd5Fayup4mYlEPt6DmvG2igOHvsqIVolcaygPwdnk26spE8ENxUQsdFlb1q
-	LObjzvOQ==;
-Received: from [122.175.9.182] (port=22813 helo=cypher.couthit.local)
-	by server.wki.vra.mybluehostin.me with esmtpa (Exim 4.96.2)
-	(envelope-from <basharath@couthit.com>)
-	id 1tVWfY-0001mA-0L;
-	Wed, 08 Jan 2025 19:34:24 +0530
-From: Basharath Hussain Khaja <basharath@couthit.com>
-To: robh@kernel.org,
-	mpe@ellerman.id.au,
-	thomas.weissschuh@linutronix.de
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	saravanak@google.com,
-	basharath@couthit.com,
-	danishanwar@ti.com,
-	krishna@couthit.com,
-	mohan@couthit.com,
-	parvathi@couthit.com,
-	pmohan@couthit.com
-Subject: Re: [PATCH] of: address: Unify resource bounds overflow checking
-Date: Wed,  8 Jan 2025 19:34:14 +0530
-Message-Id: <20250108140414.13530-1-basharath@couthit.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <87mskbqher.fsf@mail.lhotse>
-References: <87mskbqher.fsf@mail.lhotse>
+	s=arc-20240116; t=1736345358; c=relaxed/simple;
+	bh=LX133Dc3thZtji5CpjH5Sk1o+MOEpI6ZbvkftrnYjGg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MJqo8KdIObyCSlnB9My3Whn2B9k6hQpgadu+ACY5uEWtttIzCd98zrccfdIGlrkJAky4KJ97zrumA6HYce6MWkB+a2LdR5K+mhJ08x5GXQoAUEOHVGUaSFKXtNhOzfG1kWHqzCgU0QUtfc8+FNJnAw4zaT+mzbaYsjnBKJdY8fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dVNxBQqC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 017F3C4CED3;
+	Wed,  8 Jan 2025 14:09:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736345355;
+	bh=LX133Dc3thZtji5CpjH5Sk1o+MOEpI6ZbvkftrnYjGg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dVNxBQqC8tlyjhC3+GZpNQsr++VJNuYCuiqUa0j1xWIKAXDCAJTZ1SXokzYJlOVsQ
+	 zCl6e2eKAFQEvSr8+7ZLGpDxcbZOFq1REwJ5CbFonpcKmpBSVIAfBcJ6CNsyUnCTwx
+	 rpOqQ2/WL5+4n7/gCEeXqNH6natNLvg/XrU/YuKIUJr88N1t83LsWGuKzXgjNcuQG7
+	 YK1Uxpq7DU0oQ4jvhqfkKtVWuZa2tpjLvYSH1yHQXg2s/+FhCGlTLq/sctltnP4wiy
+	 jQBJCHhyuq+2qGWvIhk7uq2DS8myhTv/ox0jxTyRPNzmf5jvj6aIMciAtBYprhLVlf
+	 9HCsMxyKbEnlA==
+Message-ID: <67b888fb-2207-4da5-b52e-ce84a53ae1f9@kernel.org>
+Date: Wed, 8 Jan 2025 15:09:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
+ Ride-r3
+To: Wasim Nazir <quic_wasimn@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
+ <20241229152332.3068172-6-quic_wasimn@quicinc.com>
+ <tjrg5zqggupjo36udpyv3vynsij76f4qlus6lkbqotuimusqgq@hosmksp77sif>
+ <Z3ZXWxoBtMNPJ9kk@hu-wasimn-hyd.qualcomm.com>
+ <4wmxjxcvt7un7wk5v43q3jpxqjs2jbc626mgah2fxbfuouu4q6@ptzibxe2apmx>
+ <Z3eMxl1Af8TOAQW/@hu-wasimn-hyd.qualcomm.com>
+ <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
+ <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
+ <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: basharath@couthit.com
-X-Authenticated-Sender: server.wki.vra.mybluehostin.me: basharath@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
->> Thomas Weißschuh <thomas.weissschuh@linutronix.de> writes:
->> > The members "start" and "end" of struct resource are of type
->> > "resource_size_t" which can be 32bit wide.
->> > Values read from OF however are always 64bit wide.
->> >
->> > Refactor the diff overflow checks into a helper function.
->> > Also extend the checks to validate each calculation step.
->> >
->> > Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
->> > ---
->> >  drivers/of/address.c | 45 ++++++++++++++++++++++++++-------------------
->> >  1 file changed, 26 insertions(+), 19 deletions(-)
->> >
->> > diff --git a/drivers/of/address.c b/drivers/of/address.c
->> > index 7e59283a4472..df854bb427ce 100644
->> > --- a/drivers/of/address.c
->> > +++ b/drivers/of/address.c
->> > @@ -198,6 +198,25 @@ static u64 of_bus_pci_map(__be32 *addr, const __be32 *range, int na, int ns,
->> >
->> >  #endif /* CONFIG_PCI */
->> >
->> > +static int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
->> > +{
->> > +     u64 end = start;
->> > +
->> > +     if (overflows_type(start, r->start))
->> > +             return -EOVERFLOW;
->> > +     if (size == 0)
->> > +             return -EOVERFLOW;
->> > +     if (check_add_overflow(end, size - 1, &end))
->> > +             return -EOVERFLOW;
->> > +     if (overflows_type(end, r->end))
->> > +             return -EOVERFLOW;
+On 03/01/2025 20:58, Dmitry Baryshkov wrote:
+>>>>>> Initially, we included the DTS [1] file to avoid duplication. However,
+>>>>>> based on Krzysztof's previous suggestion [2], we change to this format.
+>>>>>>
+>>>>>> Please let us know how to proceed further on this.
+>>>>>
+>>>>> Krzysztof asked you to include DTSI files instead of including DTS
+>>>>> files. Hope this helps.
+>>>>
+>>>> Are you suggesting that we should also modify the 9100-ride files to
+>>>> include DTSI instead of DTS for consistency between QCS9100 and QCS9075?
+>>>> However, this would result in the duplication of Ethernet nodes in all
+>>>> the ride board files. Would that be acceptable?
+>>>
+>>> git mv foo.dts foo.dtsi
+>>> echo '#include "foo.dtsi"' > foo.dts
+>>> git add foo.dts
+>>> git commit
+>>>
 >>
->> This breaks PCI on powerpc qemu. Part of the PCI probe reads a resource
->> that's zero sized, which used to succeed but now fails due to the size
->> check above.
+>> We cannot convert sa8775p-ride-r3.dts and sa8775p-ride.dts to .dtsi as
+>> they represent different platforms. In patch [1], we included these DTS
+>> files to reuse the common hardware nodes.
 >>
->> The diff below fixes it for me.
->
-> I fixed it up with your change.
+>> Could you please advise on how we should proceed with the following
+>> approaches?
+>>
+>> a) Previous approach [1]:
+>> Include sa8775p-ride-r3.dts and sa8775p-ride.dts in the qcs9075-ride
+>> platform DTS, similar to the qcs9100-ride platform DTS. This approach
+>> avoids duplicating Ethernet nodes and maintains uniformity. However, it
+>> involves including the DTS file directly.
+>>
+>> b) Current suggestion:
+>> Include sa8775p-ride.dtsi in the qcs9075-ride platform DTS and also
+>> modify the qcs9100-ride platform DTS files to maintain uniformity. This
+>> approach results in duplicating Ethernet nodes.
+>>
+>> Please let us know your recommendation to finalize the DT structure.
+> 
+> sa8775p.dtsi
+> `__sa8775p-ride.dtsi
+>    `__sa8775p-ride-r2.dtsi
+>       `__sa8775p-ride.dts
+>       `__qcs9100-ride.dts
+>       `__qcs9075-ride.dts
+>    `__sa8775p-ride-r3.dtsi
+>       `__sa8775p-ride-r3.dts
+>       `__qcs9100-ride-r3.dts
+>       `__qcs9075-ride-r3.dts
+> 
+Wasim and all other copy-pasters of sa8775p-ride,
 
+Just to recap, qcs9100 contributions started this terrible pattern of
+board including a board. Unfortunately qcs9100 was merged, so that ship
+has sailed.
 
-This commit is breaking Ethernet functionality on the TI AM57xx platform due to zero byte SRAM block size allocation during initialization. Prior to this patch, zero byte block sizes were handled properly.
+This patchset was going the same way, because poor choices like to keep
+spreading, but at one of previous versions I noticed it and objected.
 
-The issue is with the following line of code:
+This v5 however solves above problem by duplicating the nodes.
 
-if (size && check_add_overflow(end, size - 1, &end))  // check_add_overflow not called when size is zero
+Apparently all these designs - sa8755p, qcs9100 and qcs9075 - use the
+same board, but none of this was communicated. I checked all the commit
+msgs in this patchset and nothing explained about it. What annoys me is
+that you do not communicate your design forcing us to accept poor DTS or
+forcing us to guess and make poor judgments.
 
-We feel check_add_overflow() should be invoked even when the size is zero to ensure correct block size allocation.
+Come with proper hardware description and split out shared parts, like
+motherboard. Look how other vendors are doing it, e.g. NXP or Renesas.
+But assuming there are shared parts because I am pretty sure you will
+pick my comments when it suits you without actually following them fully
+and without understanding and explaining to us your own hardware.
 
-Thanks & Best Regards,
-Basharath
+Best regards,
+Krzysztof
 
