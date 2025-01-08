@@ -1,92 +1,124 @@
-Return-Path: <devicetree+bounces-136811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88240A065EA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 21:17:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34992A06638
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 21:34:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38F6D1889DE8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:18:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3510A167B9D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:34:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0228C20370B;
-	Wed,  8 Jan 2025 20:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F90202C5D;
+	Wed,  8 Jan 2025 20:33:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yHWYY4bS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KY33ogob"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFD4202F70;
-	Wed,  8 Jan 2025 20:17:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F1320126A;
+	Wed,  8 Jan 2025 20:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736367457; cv=none; b=ReB3lroqwsnCXAiplGCcvqUabe26cRk8BffnFJrPwyaiOw3BtWshP6pBJ2RVVbCF0cG5SC8CZ7IHLGkBZonlkL9JdYVD18Vtjml6P9udtM2ItgbyKHJjZb1xczl00xctcbPLuDpTYa07juT0EPnveo5DL+zqpdYcYpTvVX542vA=
+	t=1736368425; cv=none; b=CL0As6fAk8kk6Z4BHPMv478DVb9cfxr/WzIrPrNZgDBWXiZNAwzo1M2j0K5FCBmr00LvQgb0SWs92w6Vw1Uy5pQYO5wwlEIO67JNkRNmg2eA18OBakHta6KElRkjPwOcy+JEWOjvIOYe48rUvJ5NOru+GfOLR/D0IqiWYC/5xpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736367457; c=relaxed/simple;
-	bh=Gll9HLWVOOQKKC615EkdeuTyuFaraBMcTg0OQ2aFT+c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f2aZE2FBDQdUeaWTPFZ79lEj/A6k2D5pWpNMQ5vzvlXRb9GOI9yGgzpp3VoN//5Y9N2M1T6QnTOHh88+OIgew+jSX7CweFyOz3nf015P8SAhcGOEWzCwVaGQqRQ34rCDfigpeKaK7prWq82piHLFgnxVxtrJqG4RieNUxVuoZ8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yHWYY4bS; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=b+Hjf7gL0CKGudF4dN19V3/6KMwWFZmCJ+Cv2U2rfsQ=; b=yHWYY4bSalT2gL8z3UpH+ZLEi/
-	wai17khUMCEbltTA0kvnb6fXjBq5v+YSRMg3YfdC7cEKYCdzJmBUPQykCFJpd8z5RWjq2Aaafejzj
-	yjoezsV6OMjJpgvGAYR7f7eLqXjF1Sw9KJQS0mizDmRURjHYiKh0ClvjbCq2KSaa/i3k=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tVcUR-002g0l-Eh; Wed, 08 Jan 2025 21:17:19 +0100
-Date: Wed, 8 Jan 2025 21:17:19 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ninad Palsule <ninad@linux.ibm.com>
-Cc: Jacky Chou <jacky_chou@aspeedtech.com>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"eajames@linux.ibm.com" <eajames@linux.ibm.com>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"joel@jms.id.au" <joel@jms.id.au>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"minyard@acm.org" <minyard@acm.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"openipmi-developer@lists.sourceforge.net" <openipmi-developer@lists.sourceforge.net>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
-	"robh@kernel.org" <robh@kernel.org>
-Subject: Re: [PATCH v2 05/10] ARM: dts: aspeed: system1: Add RGMII support
-Message-ID: <769c47ce-3183-4730-8702-ec85245e66df@lunn.ch>
-References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
- <bebbba7b-f86e-4dc4-8253-65d34cb84804@linux.ibm.com>
+	s=arc-20240116; t=1736368425; c=relaxed/simple;
+	bh=8lLqropqEcU0FdGW/MRNj8mjGkDzyxZe+T1gGsw1v2Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oU4L83ChXxDbjo6pjpPoRc8OrYfL5VzrmREPMb54twNZH8hWXUGjpNR2vXVk84Vkgg6pWBwawty0ro6s+fIDPRnaomKgGRDTbSqT8jNzIxM8GSRwQPP+126piJd0s7Y83yVmFpXC/IFcfA5+XGZ+xRve6/YVX2sT9VHZZqEcXVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KY33ogob; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508EmENC028206;
+	Wed, 8 Jan 2025 20:33:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8lLqropqEcU0FdGW/MRNj8mjGkDzyxZe+T1gGsw1v2Y=; b=KY33ogoboEb81TD3
+	e5T3gaIDmGuhY9HCW/RjaDIAShLEActXm+o1zcoZQHqMdmkY7JAztyBag4e2u7W/
+	GhGqgkRsR5twyaUKpU5iRh2bFBstw/bMoyi0IG8JTGtIQvJk4ruTMpOwBwIFiTG7
+	lpuYbq2EPT+Qt2aQgDlIkt4FtshLcCNafrZMRjpejG1NA35/2NziU9ZTzpkLm+jd
+	I3+Wy5HumR7s3pwnv/djSL+8hcBtRDog/069/sAPbjtEiyOSpzIooYiEv6ml+eXp
+	UJxrcIt/HXp2zO+NXD8i393k+j6AhohfYI9C8dNlmhyi8rSJ1BrQI8ERzRKiSyxT
+	lldtzA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441uefru2h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Jan 2025 20:33:17 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508KXGDK010892
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 Jan 2025 20:33:16 GMT
+Received: from [10.71.114.255] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
+ 12:33:15 -0800
+Message-ID: <90f16650-933b-4ad8-8ee9-9d1b4aebecbf@quicinc.com>
+Date: Wed, 8 Jan 2025 12:33:15 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bebbba7b-f86e-4dc4-8253-65d34cb84804@linux.ibm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v31 00/32] Introduce QC USB SND audio offloading support
+To: Greg KH <gregkh@linuxfoundation.org>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <tiwai@suse.com>, <krzk+dt@kernel.org>,
+        <pierre-louis.bossart@linux.dev>, <Thinh.Nguyen@synopsys.com>,
+        <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20241213235403.4109199-1-quic_wcheng@quicinc.com>
+ <f5e5ef90-f9b2-4d0d-b127-b3f2490fbdc4@quicinc.com>
+ <2025010713-stack-recycler-7f05@gregkh>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <2025010713-stack-recycler-7f05@gregkh>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: XlEgttEZsXkM4jDaYJ-XUa9i8SmVuv6H
+X-Proofpoint-GUID: XlEgttEZsXkM4jDaYJ-XUa9i8SmVuv6H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ lowpriorityscore=0 phishscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ clxscore=1015 adultscore=0 suspectscore=0 mlxlogscore=609
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501080167
 
-> I checked with out hardware team and they did not add any extra delay on the
-> board.
-> 
-> We have normal point to point clock without any delay added by line.
 
-Thanks for checking. Thus phy-mode must be "rgmii-id". We now need to
-fix the MAC driver so it does the correct thing when passed that.
+On 1/7/2025 2:32 AM, Greg KH wrote:
+> On Mon, Jan 06, 2025 at 03:02:37PM -0800, Wesley Cheng wrote:
+>> Hi,
+>>
+>> On 12/13/2024 3:53 PM, Wesley Cheng wrote:
+>>> Requesting to see if we can get some Acked-By tags, and merge on usb-next.
+>>
+>> Happy new years to everyone.  Before sending out another revision to
+>> update the year for the license, did anyone have any feedback yet for
+>> the current revision?
+> Let's just send a new version and if no one complains, I'll queue it up,
+> I feel like this has gone on too long...
+>
 
-    Andrew
+Sounds good.  Thanks, Greg.  Submitted v32 with the updated year.
+
+
+Thanks
+
+Wesley Cheng
+
 
