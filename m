@@ -1,198 +1,120 @@
-Return-Path: <devicetree+bounces-136516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7650CA0573F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:45:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BDA3A05746
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:47:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B6E0161B4C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:45:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58E09161E92
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6338A1F4E32;
-	Wed,  8 Jan 2025 09:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043331EE7D5;
+	Wed,  8 Jan 2025 09:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HtWwcKez"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iZIO5axX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CAA51F4E5F;
-	Wed,  8 Jan 2025 09:45:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ECCA79FE;
+	Wed,  8 Jan 2025 09:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736329514; cv=none; b=FEUT9S3YGSMMRRR36WdGYpuFy1Ost/mGnormbirwBZ/kD8syvEI/CvRBw8Y5qtj2qQ8vcQHGaL35HXIlT/p+ajZ/2xRhdwBaW5efsrMnMQWBiBxdrTUrMhjjUSp9W0d6AiqUtlmj8bj4tK0X+ng9psQffuTcwJ+Re8s7KgnUOvU=
+	t=1736329647; cv=none; b=CZmxmTAnqAFMYkskWBJ4d/n1xqdG6svJt/rIg8Q5cS8LGsuFqRAj8Q3NAi6ADppOHB9aJ0fleN3rGxvtRKJ0+puqZeAKPOhtx8B9wdqx1F7EsY1wZR9Cw8nBDAdopw7Wmpq66u+hwm//2r5gVgLhGwn+IWQ7ROGbF7YJ8Z0lJgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736329514; c=relaxed/simple;
-	bh=NDgavOw8gmq7yStYWCODAHmKJuSOutCdpJM3iiok/Kg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RwwaN+VfBXZbzB7gsE55OL+GqLntU9Viym61iX745ttBlpVz3SQilMasV2+3tHF+7dVsgBnTfSs5fpZAna0UnV4YujdkYvOKBwW0li+GTll0X7R1bXCGX7dWBrvcqYS27WxB/jSojz778JmN2/NypMBVvPav12V1ep9z0deHXao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HtWwcKez; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4361815b96cso110296335e9.1;
-        Wed, 08 Jan 2025 01:45:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736329510; x=1736934310; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jJFc6aCEYuELsqOgEP3eTfZoZbcGrNAKeEe94fE4tQQ=;
-        b=HtWwcKez0EUkxRpYvgQrhfTfq5ytWEjsTsLZaRutr1cvJ2NbcKzBBOpMTYBnkDDUBu
-         6lM0DXXaUlVT9OagkeR5pHTH9Vro14UbkICKUE/HKDf2bJmEsXQqAP2ou70s1y4wJx9j
-         bbiVdn+rLBE7ukaDGIM9aQTZJ2OXj8idR5V7tv71p5byLsxfhCsO0E+bw/fw1kmkRy4m
-         la1su3Bac4WSurluLCC7QIGmhE8EqDIYilCQenNLda2IfsEVC4Xxxka1OSZFzZwW8Ym2
-         42F3cr8OWAK9QUY2JaFLZvygr3wFKyzQWLtqRY9ooSqe9mQir1nD02oAIltXQndePeQT
-         wB/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736329510; x=1736934310;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jJFc6aCEYuELsqOgEP3eTfZoZbcGrNAKeEe94fE4tQQ=;
-        b=tEFUhcxwja2yNhSFqgufsahZ5jS+hy6hWJc7xunxBcNy+mIP4RMaFvp2iKn5xUYPlR
-         OO9jokUnanZ0d0swmoIfiUf0yfEKD5r7GmG7jV10XE5LBJf9sGIMJQLvvZyvcijT/1Lc
-         8R3S4RPF70RJNqPVGusXMZUUJxqfqe36dWmFNywsk4K96WXOt5+Esuqf3voTuSInnHZA
-         0Ys29NH67RUd0yjSG6T1pyGrqMkb803reqZCZV2RxOV4PKU8n316Q9SE9QWibcYk9t98
-         mwL5r6sZQsI+UcbiQHRttbwCR6kZR1v3vE5tGouOx77oxqi/+EmVwkvGwgpICqmOu9z4
-         haLg==
-X-Forwarded-Encrypted: i=1; AJvYcCV4PArK/VMavh2XjLcQPFOUuOSMB9MZIwRyFFnqnKrExPC6OwGhbaql1IU0ZAnbAj6NFvrMU1lvbeKT@vger.kernel.org, AJvYcCWoAemJ4cN4RT9fm4Uh08wtPA6evaNGis+pFBy2JNo41JuAkP5FQBQEP56vlo6c4UGXrOLm1B3sBLX/xL1AZcrBUB8=@vger.kernel.org, AJvYcCX8O7YV+fWJv67fieQYkDkpTMVNM+bhsZrQUS+KCfbzLejGYV8sIQltgrnLw0L+U+JflmusQyDoeAc7AGyG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzk0J/ax9nN3Bbkv7NYfcN9mKtxhtLw9OfzLaRkhDbc/eVvAlxN
-	dA0G9L+DDrtojPbZcHplI5fwZ5/nPboWT7HSoJgnC5jf8B2GKi8J
-X-Gm-Gg: ASbGncsDB407VuaXOUQv8OZcRXLDu9dhIuqXpTZq4AKWiprEe8CEfZZNN7B9XrW4Hlm
-	qQTykLcDoAtrCqP6hYjuyCG494oC/SEcv84zRsLNoOdowCio69I0SXka+5r3KSxE8DEbaih1ybA
-	s9FaPqe7xHk2tpzlP7eGr5VlrJb3AuXkI/sRComCgIb3q0XeWAGvpza6qmnCjVGoPEhdTC6CVWF
-	y0UjnMAHsh+c7gv1yqKoEGRq5cjsSYgzKpa5ImL+qypKHSwd+gn/Koi80CJQy9P1W3pDK+vLX+0
-	+lrrQyfFlVvlUBD6Fwfy/w==
-X-Google-Smtp-Source: AGHT+IGBYhtKcH+43aBsDTk5Gv4pcjmdDTwgBqDi6cgn0y4vI6q88YFJFw98p8iVkmiXs+yHyqRHrg==
-X-Received: by 2002:a05:600c:3c9e:b0:431:5e3c:2ff0 with SMTP id 5b1f17b1804b1-436e26a6727mr16110965e9.8.1736329509711;
-        Wed, 08 Jan 2025 01:45:09 -0800 (PST)
-Received: from [172.16.20.210] (62-73-104-42.ip.btc-net.bg. [62.73.104.42])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2dc207csm14729785e9.15.2025.01.08.01.45.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jan 2025 01:45:09 -0800 (PST)
-Message-ID: <c30a6f1b-b1a9-40db-b673-e6fc47bdb224@gmail.com>
-Date: Wed, 8 Jan 2025 11:45:02 +0200
+	s=arc-20240116; t=1736329647; c=relaxed/simple;
+	bh=1D7ZC0rHwNo/nas3TA0kqG1f7+uEOZG4Yl5PtuHZDXk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EheYSoAd74grFLUhjg1Ll9/ovkLZPEvQ+bLUHUnPxdagKM6A0G9gx7JTS0Wowl6HvVc8GTjunKFWj0q3CvMSTiG4G+som9pv9OoX3P0bDZCn8NBFE7UmqlGXVR9s63oN3X9DeHlwWTizj3TeUhC+hteUnprG97/7mwq2Tyti2VE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iZIO5axX; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2786460003;
+	Wed,  8 Jan 2025 09:47:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736329643;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dt3WALCVLJCRW2cde7nrz+vlEW88l2pHvW21cOkQCWE=;
+	b=iZIO5axXsc/E5bA8k613vrh/0SQXeF8McKHH2Q/SJZYE+zWwFrhm8hNH0vsfZ2ZIRlbxlE
+	DWCNgQdDUNO7v6Nz4f1HoNiefjy57JGhiz8UTjkD4HZW6MX0GaEm6c+Ab3Hrc2Ahn8O2R0
+	10fyRgYSbGZVSNF2uCGSRESH+t3C1pAKkRzYI8/0nk5Gb2baoPmbb9rLiQsMecA4M2sseo
+	mPP6jN7xbKGitxvqgzgTzBEQ57n1kdyQJugDKeDzN/3B5VOc4NkqWM5Q/k4j3jIaXnCjJy
+	APt/tU5OvkUF/7mJgAAzpRtRWCUpNqKJSlwXfEDGmGTEmrX3AzUixBnkAFyfwg==
+Date: Wed, 8 Jan 2025 10:47:19 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Ayush Singh <ayush@beagleboard.org>
+Cc: Andrew Davis <afd@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
+ <saravanak@google.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, David Gibson
+ <david@gibson.dropbear.id.au>
+Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
+ feature
+Message-ID: <20250108104719.0412ad94@bootlin.com>
+In-Reply-To: <d25572fa-8f0c-4f19-874c-6698a1db40ae@beagleboard.org>
+References: <20241209151830.95723-1-herve.codina@bootlin.com>
+	<33c61b28-c0b8-478d-8107-c6ed1ff9e466@beagleboard.org>
+	<20241210104141.39acffb1@bootlin.com>
+	<bab9f277-a366-48ec-acdd-0896c8307ad9@beagleboard.org>
+	<20241210115515.1886f73f@bootlin.com>
+	<6d48095d-59b1-4439-8e2a-927aa1aa1b55@beagleboard.org>
+	<20250108090750.45685a50@bootlin.com>
+	<d25572fa-8f0c-4f19-874c-6698a1db40ae@beagleboard.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] soc: samsung: usi: implement support for USIv1 and
- exynos8895
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250107113512.525001-1-ivo.ivanov.ivanov1@gmail.com>
- <20250107113512.525001-3-ivo.ivanov.ivanov1@gmail.com>
- <6y4mg6atqi6idyoppesg5owrnfrjhkzqh4im4po7urfry2qctb@yimp5y6sm7h6>
- <907e1169-ceea-4d41-93bb-925041de005e@gmail.com>
- <e28abf31-3d91-4d1b-97e6-202df5ebb3f5@kernel.org>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <e28abf31-3d91-4d1b-97e6-202df5ebb3f5@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 1/8/25 11:26, Krzysztof Kozlowski wrote:
-> On 08/01/2025 10:17, Ivaylo Ivanov wrote:
->> On 1/8/25 10:30, Krzysztof Kozlowski wrote:
->>> On Tue, Jan 07, 2025 at 01:35:11PM +0200, Ivaylo Ivanov wrote:
->>>> USIv1 IP-core is found on some ARM64 Exynos SoCs (like Exynos8895) and
->>>> provides selectable serial protocols (one of: HSI2C0, HSI2C1, HSI2C0_1,
->>>> SPI, UART, UART_HSI2C1).
->>>>
->>>> USIv1, unlike USIv2, doesn't have any known register map. Underlying
->>>> protocols that it implements have no offset, like with Exynos850.
->>>> Desired protocol can be chosen via SW_CONF register from System
->>>> Register block of the same domain as USI.
->>>>
->>>> In order to select a particular protocol, the protocol has to be
->>>> selected via the System Register. Unlike USIv2, there's no need for
->>>> any setup before the given protocol becomes accessible apart from
->>>> enabling the APB clock and the protocol operating clock.
->>>>
->>>> Modify the existing driver in order to allow USIv1 instances in
->>>> Exynos8895 to probe and set their protocol. While we're at it,
->>>> make use of the new mode constants in place of the old ones
->>>> and add a removal routine.
->>>>
->>>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->>>> ---
->>>>  drivers/soc/samsung/exynos-usi.c | 108 +++++++++++++++++++++++++++----
->>>>  1 file changed, 95 insertions(+), 13 deletions(-)
->>>>
->>>> diff --git a/drivers/soc/samsung/exynos-usi.c b/drivers/soc/samsung/exynos-usi.c
->>>> index 114352695..43c17b100 100644
->>>> --- a/drivers/soc/samsung/exynos-usi.c
->>>> +++ b/drivers/soc/samsung/exynos-usi.c
->>>> @@ -16,6 +16,18 @@
->>>>  
->>>>  #include <dt-bindings/soc/samsung,exynos-usi.h>
->>>>  
->>>> +/* USIv1: System Register: SW_CONF register bits */
->>>> +#define USI_V1_SW_CONF_NONE		0x0
->>>> +#define USI_V1_SW_CONF_I2C0		0x1
->>>> +#define USI_V1_SW_CONF_I2C1		0x2
->>>> +#define USI_V1_SW_CONF_I2C0_1		0x3
->>>> +#define USI_V1_SW_CONF_SPI		0x4
->>>> +#define USI_V1_SW_CONF_UART		0x8
->>>> +#define USI_V1_SW_CONF_UART_I2C1	0xa
->>>> +#define USI_V1_SW_CONF_MASK		(USI_V1_SW_CONF_I2C0 | USI_V1_SW_CONF_I2C1 | \
->>>> +					 USI_V1_SW_CONF_I2C0_1 | USI_V1_SW_CONF_SPI | \
->>>> +					 USI_V1_SW_CONF_UART | USI_V1_SW_CONF_UART_I2C1)
->>>> +
->>>>  /* USIv2: System Register: SW_CONF register bits */
->>>>  #define USI_V2_SW_CONF_NONE	0x0
->>>>  #define USI_V2_SW_CONF_UART	BIT(0)
->>>> @@ -34,7 +46,8 @@
->>>>  #define USI_OPTION_CLKSTOP_ON	BIT(2)
->>>>  
->>>>  enum exynos_usi_ver {
->>>> -	USI_VER2 = 2,
->>>> +	USI_VER1 = 1,
->>> Is this assignment=1 actually now helping? Isn't it creating empty item
->>> in exynos_usi_modes array? Basically it wastes space in the array for
->>> no benefits.
->> I wanted to keep the USIv2 enum the same.
-> Is there any need for keeping it the same?
+Hi Ayush,
 
-No, not really.
+On Wed, 8 Jan 2025 13:58:04 +0530
+Ayush Singh <ayush@beagleboard.org> wrote:
 
->
->>>> +	USI_VER2,
->>>>  };
->
-> ...
->
->>>> +
->>>> +	return ret;
->>>> +}
->>>> +
->>>> +static void exynos_usi_remove(struct platform_device *pdev)
->>>> +{
->>>> +	struct exynos_usi *usi = platform_get_drvdata(pdev);
->>>> +
->>>> +	if (usi->data->ver == USI_VER2)
->>>> +		exynos_usi_disable(usi);
->>> This is not related to the patch and should be separate patch, if at
->>> all.
->> Well I though that since didn't have any removal routine before it'd be good
->> to introduce that and not leave USIv2 with hwacg set.
-> Sure, but separate commit, please. Can be preceeding the USIv1 support.
+...
+> 
+> I will experiment with adding support to dtc and see how things look. 
+> Hopefully, 2025 is the year of addon board support.
+> 
 
-What about right after the USIv1 support? It would be less messy in my
-opinion.
+Also one point different between fdtoverlay an runtime loading is
+that runtime loading allows to set the target node of the overlay
+at runtime.
 
->
-> Best regards,
-> Krzysztof
+For instance, on LAN966X PCI driver, an overlay is loaded and
+applied on a PCI device node.
+The overlay loading is done by the PCI driver device:
+  https://elixir.bootlin.com/linux/v6.13-rc1/source/drivers/misc/lan966x_pci.c#L131
+The overlay loaded is the following one:
+  https://elixir.bootlin.com/linux/v6.13-rc1/source/drivers/misc/lan966x_pci.dtso
 
+For addon boards, this feature is also useful because without any
+modification in the overlay itself, it can be applied on the correct
+connector. This allows to support, without any overlay modification the
+following cases:
+ - A base board with multiple connectors where an addon board can be
+   connected.
+ - An addon board with its own DT overlay used on different base board
+
+This feature is not supported by fdtoverlay. Maybe something like
+  fdtoverlay --base=/somewhere/my_connector
+could be implemented in fdtoverlay in order to choose the node where the
+overlay has to be applied.
+
+Best regards,
+Hervé
 
