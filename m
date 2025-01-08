@@ -1,65 +1,68 @@
-Return-Path: <devicetree+bounces-136553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEA7FA058FC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:01:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4BF5A05919
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 12:04:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34211188693B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:01:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B61077A1556
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 11:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96F81F63E9;
-	Wed,  8 Jan 2025 11:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414FD1F1906;
+	Wed,  8 Jan 2025 11:04:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Jz0DVb0k"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Ylbh2QTa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328391F37CF;
-	Wed,  8 Jan 2025 11:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E4DB1A9B23;
+	Wed,  8 Jan 2025 11:04:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736334090; cv=none; b=S9FCdiiPYdNatGDKPwjQAJuAI0+SmTT4u9QW8DMllVgbHBlyBivBHwz4WlU+2OoZQ+w71KbA2b49eiat1MWo4dANSL4Irb9BHWDfX3LBngWXAfwUBxOBlpP1WITEt8+nWL1l5GlIPORI6f/P6VnvIN/bu4hm2V/0l9DcfyUJFlc=
+	t=1736334246; cv=none; b=KBpp4ufG5EfGQTihxImcHJJSTiDZwg0hcpbPesqPZlu+7kOHP6DE6+agpY8Ezt+ckavQLM4BJ5X1jaOwzpiTF5fKCBdIqlWoWyjs5EINJbkLejozTcdEEgeJ8zJAnGzb8FIPS3MZYnAnBlRCG+7EcVJBvvAGjaPCHPRJf1myMhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736334090; c=relaxed/simple;
-	bh=NkyI/5dgBu89sD0+odABHfN3F56mzex7aAJlm8Vsx9w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=EmpPRQCff7ch5KGth/ykMK+hK72wq5TKntx1iKctxNcgkPemuOk3yRqi8qhbC29A9QAbf68Oh6HonHwiLeG69u8T3G9ab1FAhOkwkgimgJk4SPrzXsLLQFzBuYef2dFEJSvuCFQUMnElCj19qQZ6zKTm2WtikAIiGfgHBK9mdT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Jz0DVb0k; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508Ad3Rd011446;
-	Wed, 8 Jan 2025 11:01:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vbBCQwo5zDeuscb6difukIiwr0RMZzDvKUX4XqNpXAE=; b=Jz0DVb0kaVYCtyTw
-	GEdX0m4IEjA8fSxWzThi3Ub1xwXCZ/q3IckBY/iq7+NIZ6aLVgzx+FMKC/TJDbMW
-	hcYGoMVXA3NMXt7CS0px/X8PRzLLd3NDa5HfEk3v37+fYX+578pTkc/+gJEXecZy
-	3MR4Wg4T3PYEhaxmARuyK+MjuNU7Ys3khqLATwYdXCxFI3XFXCr1up03LywbKH4S
-	DcnU8u0yWPcQaTvvisEx7qair0ln0R2aoInziSlYvEguyupnTcOgrm8eJk+cj3Y8
-	qmQL8CUdjOlAxZTcODpvPWAr+zALYy2+HPftGkFW+QzQkBHBPNqeNpFldLp/RNjd
-	tjd2ow==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441pgnra3f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Jan 2025 11:01:25 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508B18pC023878
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 Jan 2025 11:01:08 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 8 Jan 2025 03:01:02 -0800
-From: Tingguo Cheng <quic_tingguoc@quicinc.com>
-Date: Wed, 8 Jan 2025 19:00:18 +0800
-Subject: [PATCH v3 2/2] arm64: dts: qcom: qcs8300-ride: Enable PMIC
- peripherals
+	s=arc-20240116; t=1736334246; c=relaxed/simple;
+	bh=uVSwqrK2sFKF4BW4zvF3Z0pyZ2mwkr+8G8UkNFgcY2s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dp7agrVM+K1EXxYuaxXJtqG7LaPL/ctNYB1muRc6W3UpykXZItt1dPk+UTQ3AAVPTw3aRiFu66EEu/yM37RmkSoW/xM0tvm0bAGe6Oyt1/eEkB25Jrl0YfjJ4NARUJL1nRk0e9+rJ6LyQZ8h91JzD4xR5F4nlz3KjDgHj3W1h8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Ylbh2QTa; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=yzL9Apxx9PBwEi1gxO5jcG1dhq3hPMCgrw+SZsgCon4=; b=Ylbh2QTaU8quP4cFdlfsmw0sSi
+	HvsL9hrKYUTXoghA79EvxZq5M4bIcYOoujtYJAhTol4h3881Z3+/73XykMiH1e7qlRDoan2nYLQcC
+	Up01P+t18nySj04MnsBY5BhqPKsF5//EI7/Hy4WAzjcmbgAIYkMolJbuQbnIL+WvM/6Ni472pNY5E
+	nfnv0DDyBBNyOvb4To18LXuE1EzyNIXPEyC4TpXVrCx1Ic3Ccg2YteRLzb5grnV7GXEYdHEPdxBE6
+	vKVDSJ8BVX/nXqwrQK/8psG5n3EVFFlphCF8qaL8izjgUrsyl/Zwn+9OFcrneuxvbyhRQA3b9GS59
+	b4rye7pQ==;
+Received: from i53875aad.versanet.de ([83.135.90.173] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tVTqu-000507-Aa; Wed, 08 Jan 2025 12:03:56 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Chen-Yu Tsai <wens@csie.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: orangepi-5-plus: Enable USB 3.0 ports
+Date: Wed,  8 Jan 2025 12:03:46 +0100
+Message-ID: <173633412683.2758244.11920236524646659506.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241220161240.109253-1-wens@kernel.org>
+References: <20241220161240.109253-1-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,126 +70,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250108-adds-spmi-pmic-peripherals-for-qcs8300-v3-2-ee94642279ff@quicinc.com>
-References: <20250108-adds-spmi-pmic-peripherals-for-qcs8300-v3-0-ee94642279ff@quicinc.com>
-In-Reply-To: <20250108-adds-spmi-pmic-peripherals-for-qcs8300-v3-0-ee94642279ff@quicinc.com>
-To: <quic_fenglinw@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <kernel@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Tingguo Cheng <quic_tingguoc@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736334055; l=2686;
- i=quic_tingguoc@quicinc.com; s=20240917; h=from:subject:message-id;
- bh=NkyI/5dgBu89sD0+odABHfN3F56mzex7aAJlm8Vsx9w=;
- b=hhJilNCCXaNTZWrHnx2Al183MeniLi3/F8oHG1I8P19Ye+NgamfBvX+rhmyA6rILWqL9k80En
- WQIbACKXSUbDP2dEUGxaAg6nUwy+Z7etWb5xQ9keSEC6akk6o4tVtOG
-X-Developer-Key: i=quic_tingguoc@quicinc.com; a=ed25519;
- pk=PiFYQPN5GCP7O6SA43tuKfHAbl9DewSKOuQA/GiHQrI=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: WzyVAkCEiZxjJTSNk6oeTORbyHXhgiLt
-X-Proofpoint-ORIG-GUID: WzyVAkCEiZxjJTSNk6oeTORbyHXhgiLt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=752
- mlxscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0 spamscore=0
- adultscore=0 phishscore=0 priorityscore=1501 bulkscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501080090
+Content-Transfer-Encoding: 8bit
 
-Enable PMIC and PMIC peripherals for qcs8300-ride board. The qcs8
-300-ride uses 2 pmics(pmm8620au:0,pmm8650au:1) on the board, which
-are variants of pmm8654au used on sa8775p/qcs9100 -ride(4x pmics).
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi | 51 +++++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts   |  1 +
- 2 files changed, 52 insertions(+)
+On Sat, 21 Dec 2024 00:12:40 +0800, Chen-Yu Tsai wrote:
+> The Orange Pi 5 Plus has its first USB 3.0 interface on the SoC wired
+> directly to the USB type C port next to the MASKROM button, and the
+> second interface wired to a USB 3.0 hub which in turn is connected to
+> the USB 3.0 host ports on the board, as well as the USB 2.0 connection
+> on the M.2 E-key slot.
+> 
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi b/arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..a94b0bfa98dc39e41d1a0de3373753953609b95c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+&spmi_bus {
-+	pmm8620au_0: pmic@0 {
-+		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-+		reg = <0x0 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmm8620au_0_rtc: rtc@6100 {
-+			compatible = "qcom,pmk8350-rtc";
-+			reg = <0x6100>, <0x6200>;
-+			reg-names = "rtc", "alarm";
-+			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-+			allow-set-time;
-+		};
-+
-+		pmm8620au_0_gpios: gpio@8800 {
-+			compatible = "qcom,pmm8654au-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pmm8620au_0_gpios 0 0 12>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	pmm8650au_1: pmic@2 {
-+		compatible = "qcom,pmm8654au", "qcom,spmi-pmic";
-+		reg = <0x2 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmm8650au_1_gpios: gpio@8800 {
-+			compatible = "qcom,pmm8654au-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pmm8650au_1_gpios 0 0 12>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index 85b84778e85ae712473eee78a8e090c49dfc3721..1c8f0e7774a6044bd09d9e7a5e12166a83087708 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -9,6 +9,7 @@
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
- #include "qcs8300.dtsi"
-+#include "qcs8300-pmics.dtsi"
- / {
- 	model = "Qualcomm Technologies, Inc. QCS8300 Ride";
- 	compatible = "qcom,qcs8300-ride", "qcom,qcs8300";
+Applied, thanks!
 
+[1/1] arm64: dts: rockchip: orangepi-5-plus: Enable USB 3.0 ports
+      commit: a15d12f36eb78692d5c3ebd8a5db7fddf3ea160c
+
+Renamed the regulator node according to convention (regulator-foo)
+and moved it to its correct alphabetical position.
+
+Best regards,
 -- 
-2.34.1
-
+Heiko Stuebner <heiko@sntech.de>
 
