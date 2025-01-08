@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-136456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5760FA05469
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:22:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F9AA0546F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:24:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F11571886AA7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 07:22:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C837B3A05C8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 07:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E94D81AA1E6;
-	Wed,  8 Jan 2025 07:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D03C1AA781;
+	Wed,  8 Jan 2025 07:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iL4+0nOX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T6NPK5uU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE171A76BC;
-	Wed,  8 Jan 2025 07:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246481A76BC;
+	Wed,  8 Jan 2025 07:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736320971; cv=none; b=tnIIGmS/lVngAxAzqgXHL5X5ZvIJfJ29KTFI5ilqtSEq+TTSOLy6TJRhd4aGLWmgFl0PYeE2s6xK9mItsSoFdK/sz0I4GyY85JYFuW6tjd/S8akMP7P/iStch9jumMzNwKqamB15WfSSFkTLM9PniU6aTxJ7B0RSgU8/RIbcQHk=
+	t=1736321043; cv=none; b=OdPzyM3TY7Z0lumpgeuv5+jCLUJE7ajq5OSHaa+JFCmg/750lxxT4DPn7dj8MwP1+/G7MyIOAHLBugdAzzGzik/4rmrn8wLg8J7ZDuQiLuOLO9dWwVCXpvYgCzv/cF3zI0YzlePCQYZf7N4JqRzWJVwDvCQCxpsD75/AxzcLvdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736320971; c=relaxed/simple;
-	bh=71v/PN/KUPaFt1lALHvvRmi2eeKUFQSOIdwA0lOKGT0=;
+	s=arc-20240116; t=1736321043; c=relaxed/simple;
+	bh=XvcTGD7m7sgC2qk6m2fXxGRq9qLPraf6ZsECLYyo6Kw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=CLg3ann2p2Dn94phNbUsaKcB3qNzV1GABgXy+Z3aUggSuVn/O8e6VFZ3NAxLzQf3yVsHPbvPHWc9EedtVguw7FdRNEHNXLxCwl8jxol5kP757WkU0T8IZ7w4JVpJQ5nvTVBPF73sT/bsmh8MqU82xS0wcWbljaglNkZ4+wJXBaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iL4+0nOX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DF1AC4CEE0;
-	Wed,  8 Jan 2025 07:22:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kWdbV9gUtjWf6IV80VXEts0gu78+hFj0uz6Mu2RoSagakCwoiRsAp3d9etp7fuRRrtqjNDW9HoO9gARQnnIOBMtdSzDYRgJxP1wXxvXJkrmZYJi0gbxGADwT0IlJSj6eU7quLgRbw1PPiuyIxed0IfWv0ALdwvEumcmti2HyNU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T6NPK5uU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EA19C4CEE2;
+	Wed,  8 Jan 2025 07:24:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736320971;
-	bh=71v/PN/KUPaFt1lALHvvRmi2eeKUFQSOIdwA0lOKGT0=;
+	s=k20201202; t=1736321043;
+	bh=XvcTGD7m7sgC2qk6m2fXxGRq9qLPraf6ZsECLYyo6Kw=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=iL4+0nOXNzJ7aMD78txadgiyKEpMvUSuVqNBT9FvDO6Cn/eV2KLhaQejhvuYc0jrH
-	 H+PgKTfP3w0Nhp/vNIH7l5COhJ6lFZeD7CrN/4V50GgQBgkCLFDhWtQU44f5ttPamK
-	 OVcqy8eXynHjC3fC2LbzQQLeuzv0alpx2wF6BTpa1S794qMpCidSaJVcxSQLxwj+sj
-	 uMdlzhYf5MuN21dmFWwymI7rILjToZprV1mxhudUVo150yE2gi4KbqbxabW5999Ep8
-	 5O7/bBCiinzKnG6QeOsizG5QuyWBerWYkQkTXzFUO465xlWZADDL+uVxKHI5ZRpixa
-	 Yp6r+dZ2mmiEg==
-Message-ID: <3019d16c-4d60-4d86-82b3-2200f30911d7@kernel.org>
-Date: Wed, 8 Jan 2025 08:22:43 +0100
+	b=T6NPK5uUUT+DQnmuVrj/05T5k+htf5zEoHIeiDnpR2rC59o0LbkmDw1VHlFIX5cU+
+	 DGXcb2G7d/zxhnwVgokRS0G10SFFZ4JJ8CcJFbTQtkWNrAF2tR7U6vzo+cgmD9QCrP
+	 imbYg3Z6Y7x1lo0shxnWpsm9JmdMIpAZE0ElWDjiM8bOFoC81xR4GPQIs3odyePkuy
+	 OdcUa8sUVFLZDk4VqCr52Ez9EHoToS8FZyJ4l9xLDcQXSS0FGh4CoXdDThF/HwIbZI
+	 m355zS5f8XsBzICEP2Hk/qRzY+g9MthGTQruu12+ugV0oQ2SuOn5ve0SSuNnScyqU6
+	 Oh9jH0DZgVp+w==
+Message-ID: <025ed6d9-4c18-41a3-83b1-671f36d56558@kernel.org>
+Date: Wed, 8 Jan 2025 08:23:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/5] dt-bindings: phy: qcom,uniphy-pcie: Document PCIe
- uniphy
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, bhelgaas@google.com,
- lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
- kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- p.zabel@pengutronix.de, dmitry.baryshkov@linaro.org,
- quic_nsekar@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20250108055842.2042876-1-quic_varada@quicinc.com>
- <20250108055842.2042876-2-quic_varada@quicinc.com>
+Subject: Re: [PATCH v2] arm64: dts: socfpga: agilex: Add dma channel id for
+ spi
+To: niravkumar.l.rabara@intel.com, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250106073110.2460870-1-niravkumar.l.rabara@intel.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,22 +102,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250108055842.2042876-2-quic_varada@quicinc.com>
+In-Reply-To: <20250106073110.2460870-1-niravkumar.l.rabara@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/01/2025 06:58, Varadarajan Narayanan wrote:
-> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+On 06/01/2025 08:31, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > 
-> Document the Qualcomm UNIPHY PCIe 28LP present in IPQ5332.
+> Add DMA channel ids for spi0 and spi1 nodes in device tree.
 > 
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > ---
-> v6: * Fix num-lanes definition
+> 
+> changes in v2:
+> - Include missing space.
 
-
-I saw only part of comment implemented.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
