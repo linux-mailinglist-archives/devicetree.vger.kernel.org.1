@@ -1,60 +1,63 @@
-Return-Path: <devicetree+bounces-136473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D1EA0551E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:16:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 935DEA05522
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:19:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 089843A1AAC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:16:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD3493A3E24
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 08:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24DA1AA1FA;
-	Wed,  8 Jan 2025 08:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2C91AA1FA;
+	Wed,  8 Jan 2025 08:19:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SN9rihRi"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Etj9eUPu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96DAD2594B3;
-	Wed,  8 Jan 2025 08:16:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2DF32594B3;
+	Wed,  8 Jan 2025 08:19:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736324199; cv=none; b=kmMJs3ddpUqumYx2s+lXE/oXnuoydscbxRWrSjwVLR0f1mIVUpE77qVuSndyIWqiL2NlrXD6w9zPpDTgEm+gpKF2uZVAoHAcVwDJHPEqyRBYWBoacLeJF/Uo7Rpc+ndyCgw7V+VzGhrqyXfT5zG5ji0bAvB2rpuZZWaCDeQ+C9k=
+	t=1736324349; cv=none; b=CVF3w1EZ80w6lChGRf0Hvq0yueZmW2bfE7sr0HHkYY5399GnFYuogdUYUlrKeUocLGRryVHcFTaLoDN59rm7sRdD6ghIC7ncPGnxurTsz0uJeTGiCD54JEEw0vWvz8Wh45e3ltDz3vDKywA1RHpiJH/7OQShWfwA6poj+eQ/IhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736324199; c=relaxed/simple;
-	bh=RYpqzehaxcbuCAQe6zrPlG3oflSe5JINhcfNw0oboaw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=asFocF7PjHVBovXA+WUtz611NNiSfm3IkhQT64egIJSQBlRZ+BUXGLSkgHiw+wEOydSNpjJtfdeEulQHD3fi670MLeWn1BuFbT8md/LwHpbjGL+AS0dR4zmZX0Ta1QyA/8WbjQgzCL2z0BNgZ3VKvzy1oKiJZxPiz7hBOwy4Hb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SN9rihRi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63AC8C4CEE0;
-	Wed,  8 Jan 2025 08:16:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736324199;
-	bh=RYpqzehaxcbuCAQe6zrPlG3oflSe5JINhcfNw0oboaw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SN9rihRiNeZ6JiTIV9G8AhvKNqTV65xqUUlJ6zm3F6KFLgu21kpDjS7GaMDz/nlj1
-	 7AEZWS6jajD7fdAa9NdRFU+z29OUbylvSL9N2/fvCjkH1itEXOr8uovDc/n5pmRRR/
-	 pRd6B9NjZhNcQhFeuTU9YRYRgvnbY7LdgOcPQ9eBwJ0GeT8OGD1jLY2QcRTcomk9/b
-	 eGJf/tY+XVwTrCLBpR1qGY0M2vDb5DlKLyFkJvyG4EuLPUmXzfhEJvA0GqP1Zb8/Ps
-	 6stQQ35xCMsudVnMco5Sv8x8WNMIgXprRSzPzULtFEWsJEFROzMEXEERRovyteLcHh
-	 4c5v4d0woNtMQ==
-Date: Wed, 8 Jan 2025 09:16:35 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kever Yang <kever.yang@rock-chips.com>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
-	Simon Xue <xxm@rock-chips.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Shawn Lin <shawn.lin@rock-chips.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/7] dt-bindings: PCI: dw: rockchip: Add rk3576 support
-Message-ID: <tsxho4vhadrl6tsb2k5e2vxaeuun3k5pdkojzwjruqkof54dyd@gs3wsuxzwu4a>
-References: <20250107074911.550057-1-kever.yang@rock-chips.com>
- <20250107074911.550057-3-kever.yang@rock-chips.com>
+	s=arc-20240116; t=1736324349; c=relaxed/simple;
+	bh=ZRB0FhMUfFUYdAhPULWjcZuUz1DaECOTZZh1zJtfv3A=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=CBbQgJgJFh9lLX9DhvyFoIB9+/xfndSFIJx25f41RxPZNK8THlcEoqBYBdQWIHWx8rwq0kcsZj/ixy1zH9O/Fqqjc+sBKr/r+RDC1mwPtBIk/iBBqmPRCbT8v0gYkofEcpoBlYlf9f1P8tsHkwzP5VRSuRs57V0pbmwhdg6uaIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Etj9eUPu; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 59B52C0004;
+	Wed,  8 Jan 2025 08:18:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736324339;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m6iG3dvDjNjTNtk0IMyCf+/wWXsMSA8Fz5H1e91qnKU=;
+	b=Etj9eUPuKvWQW+jtgmXty90yegxXd/DTNdnvN0CXinHbIxtERael7Ypambb4J2H4HiCN2T
+	EOnzD4J/Q1kSseqJxP41+WhiK2XZeRz+qqbu9QhmCEchYi9fntmgctQbe9CRdAnv66LFDW
+	LAxit1aWNa/h0Vdav5dgzXb9fevekH/mkz6Gw3q8awNqPxLOedRQ5mDX4M2fCPBkFRuGOt
+	Tju9v0Npzdq44ytLx8YAnfXtxCYQZGgbWwYaI0Ln+PGU4057RyiVWIV08KF+1E3eF0WjEm
+	rpVOwnhVEd7/bmfQ+sJgHdTJYo52MxwBVkMB7NeTRCMOBeYDTF4KZjGl1IugGw==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
+Subject: Re: [PATCH] arm64: dts: marvell: cn9131-cf-solidwan: fix cp1 comphy
+ links
+In-Reply-To: <20241119-cn9131-solidwan-comphy-fixup-v1-1-6e7446434204@solid-run.com>
+References: <20241119-cn9131-solidwan-comphy-fixup-v1-1-6e7446434204@solid-run.com>
+Date: Wed, 08 Jan 2025 09:18:58 +0100
+Message-ID: <87o70hyaz1.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,53 +65,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250107074911.550057-3-kever.yang@rock-chips.com>
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On Tue, Jan 07, 2025 at 03:49:06PM +0800, Kever Yang wrote:
-> rk3576 is using dwc controller, with msi interrupt directly to gic instead
-> of to gic its, so
-> - no its support is required and the 'msi-map' is not need anymore,
-> - a new 'msi' interrupt is needed.
-> 
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+Josua Mayer <josua@solid-run.com> writes:
+
+> Marvell CN913x platforms use common phy framework for configuring and
+> linking serdes lanes according to their usage.
+> Each CP (X) features 5 serdes lanes (Y) represented by cpX_comphyY
+> nodes.
+>
+> CN9131 SolidWAN uses CP1 serdes lanes 3 and 5 for eth1 and eth2 of CP1
+> respectively. Devicetree however wrongly links from these ports to the
+> comphy of CP0.
+>
+> Replace the wrong links to cp0_comphy with cp1_comphy inside cp1_eth1,
+> cp1_eth2.
+>
+> Fixes: 1280840d2030 ("arm64: dts: add description for solidrun cn9131 sol=
+idwan board")
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+
+
+Applied on mvebu/dt64
+
+Thanks,
+
+Gregory
+
 > ---
-> 
-> Changes in v4:
-> - Fix wrong indentation in dt_binding_check report by Rob
-> 
-> Changes in v3:
-> - Fix dtb check broken on rk3588
-> - Update commit message
-> 
-> Changes in v2:
-> - remove required 'msi-map'
-> - add interrupt name 'msi'
-> 
->  .../devicetree/bindings/pci/rockchip-dw-pcie-common.yaml      | 4 +++-
->  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml   | 4 +---
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
-> index cc9adfc7611c..e4fcc2dff413 100644
-> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
-> @@ -81,7 +81,9 @@ properties:
->        - const: msg
->        - const: legacy
->        - const: err
-> -      - const: dma0
-> +      - enum:
-> +          - msi
-> +          - dma0
+>  arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts b/arch/ar=
+m64/boot/dts/marvell/cn9131-cf-solidwan.dts
+> index b1ea7dcaed17dc0205d1ae91d4178dd1f8313a5b..47234d0858dd2195bb1485f25=
+768ad3c757b7ac2 100644
+> --- a/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
+> +++ b/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
+> @@ -435,7 +435,7 @@ &cp1_eth1 {
+>  	managed =3D "in-band-status";
+>  	phy-mode =3D "sgmii";
+>  	phy =3D <&cp1_phy0>;
+> -	phys =3D <&cp0_comphy3 1>;
+> +	phys =3D <&cp1_comphy3 1>;
+>  	status =3D "okay";
+>  };
+>=20=20
+> @@ -444,7 +444,7 @@ &cp1_eth2 {
+>  	managed =3D "in-band-status";
+>  	phy-mode =3D "sgmii";
+>  	phy =3D <&cp1_phy1>;
+> -	phys =3D <&cp0_comphy5 2>;
+> +	phys =3D <&cp1_comphy5 2>;
+>  	status =3D "okay";
+>  };
+>=20=20
+>
+> ---
+> base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+> change-id: 20241119-cn9131-solidwan-comphy-fixup-aa1870913d0a
+>
+> Best regards,
+> --=20
+> Josua Mayer <josua@solid-run.com>
+>
 
-Commit msg said new interrupt, but this basically replaces existing DMA0
-interrupt. Maybe that's the problem with this common binding and you
-just miss constraining in each device binding. If so: fix also them.
-
-Also: your interrupts property does not match this anymore.
-
-Best regards,
-Krzysztof
-
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
