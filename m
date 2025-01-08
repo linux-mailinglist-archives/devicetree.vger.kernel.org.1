@@ -1,90 +1,147 @@
-Return-Path: <devicetree+bounces-136863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D9CBA0699B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:43:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6724CA069A2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:45:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EF051638B9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:43:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E0A17A1897
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:45:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56BB2204C34;
-	Wed,  8 Jan 2025 23:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5B1204F73;
+	Wed,  8 Jan 2025 23:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EYbEEhm1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PmqFPOLf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0E71F4E50;
-	Wed,  8 Jan 2025 23:43:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0792204F6E;
+	Wed,  8 Jan 2025 23:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736379783; cv=none; b=NDp0oc+YELf6SXwe9wH8gcthKaW1h1vVNAFnX5jL7bSoZJvH6tBzObWNKnv6d21Uiva7KiD6FOY3Ip6YaMOR8ax6T9VF7LBI1jwB4BjPRfbpp/UO9iY6E66Dc9X2y62A0d1AyXhO0zjK3Abis9GWW6AbCHjsQP22eAiPwOvZD5o=
+	t=1736379934; cv=none; b=txfq7XCyIj+zOsowghmVRLKegwCuwhNqLXY+twGrqmUYAjJ4A7kfcKdVUA7mYPMxHW9QO9X0nkvYX6hG6eJKwxuISDFoy05U1QyZQ9XgJYmeRwpgU6ZWMRKWOnq1sMoaTrthBr5m/iM+Q2jnYvXbjr155gUFfeVfsbWE9B9pJMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736379783; c=relaxed/simple;
-	bh=s4LvSNjHxIP96RzfdWGBTy4l/TRP9WawToXBJ3jEbDQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qzKRtupX1rrbJQKf+2pVKDg87CTwvoV28ZUr/digt9UJcYYAtWNTIB/OxNj8cR27vTyhmc++wH+vX+1mk0pJYdzPIZ8dnizpySMnDP8MXy5FWHRJ/O95VBgMGZih4aOuCxxay4RfzgNwUVQUeM4zhfpwuki4kcYl2ln0DYMPasM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EYbEEhm1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63875C4CED3;
-	Wed,  8 Jan 2025 23:43:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736379782;
-	bh=s4LvSNjHxIP96RzfdWGBTy4l/TRP9WawToXBJ3jEbDQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EYbEEhm1CFBpKOF7XnweDcLAexyqeuTzkSHkQExDipKQUUT8VqGRxtVRR4dh0wNzJ
-	 +sdP3Kpo/GvGYKkMtl4NPRFmhDVaRlLh8KOW1lQaM5fyt3gOqXEalHIYuhCUQ9FBoY
-	 WrIHnWX9FMf4cpRnH55Lwo8akkfr+n7jiarjTG4viRX93g9VY4Fl2kv/hstGRv9dY5
-	 SBogs/jPPHr6sfa4Ibq0awgNNOEyTxvj7xqN1FReEhTBKgomCG+sk/ojFLE+U+YSX8
-	 qM17op01B0H02HLbCp/zw7IteLZmUV9FmdzVNM/o1Qgjt/x1/sJr22ceBIahG4BaiF
-	 Hy9aEoCXOGQLg==
-Date: Wed, 8 Jan 2025 17:43:01 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: linux-pm@vger.kernel.org, magnus.damm@gmail.com,
-	linux-renesas-soc@vger.kernel.org, lukasz.luba@arm.com,
-	mturquette@baylibre.com, ulf.hansson@linaro.org,
-	linux-clk@vger.kernel.org, geert+renesas@glider.be,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	rui.zhang@intel.com, p.zabel@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
-	conor+dt@kernel.org, krzk+dt@kernel.org, daniel.lezcano@linaro.org,
-	sboyd@kernel.org
-Subject: Re: [PATCH 3/6] dt-bindings: thermal: r9a08g045-tsu: Document the
- TSU unit
-Message-ID: <173637978084.1245245.17902878993210680410.robh@kernel.org>
-References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
- <20250103163805.1775705-4-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1736379934; c=relaxed/simple;
+	bh=pCRonceF+3kKidCUGHFBSWeegu0kSBwKhIfjOTWr0HY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=naa9hmfI/Qx5/6v4FkwpqZg87licvZHvqsM46QjpU3spATtGq+6XsWFE5pE66+H4LvKNrUlh2HiUaOX8Dk1Fx4vjpoALArJQQvgToiNRj+ACZ0bj9K8kMPyygp6F4ivBgBVpzXYNAvwqP4PsgzOkEkeakLInLrXR6DzfI+shsJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PmqFPOLf; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5d8c1950da7so452470a12.3;
+        Wed, 08 Jan 2025 15:45:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736379931; x=1736984731; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SECkPKJp7olf8hsN2/MKwLopk2Qt5x7gzI2g06FByEs=;
+        b=PmqFPOLfHKwWYtQ90oerl3BjJ6IqNIBunR83w/1hXHBzUaVq1gkDaNg/iFeQO8lBcw
+         ynsmxXUQJVU5wzJxbXC2TcXR0n6rbqiuCektb+zyQwZoSApuvVdiJhYSxRAZdNlQw7Vy
+         o1J9+fyafoaNlgfx1lM+yx/GG68Hgfb5n9ja/nPMUlJLkXXwNJe6kqd2BJPBwEhqTLc2
+         6NGB3lvqKXlDFIBsLWLUArzGTKxLfuKLxwocy9MKXV7IsIyeA0Fv4TkDzqu1qb5m1PWG
+         mtfMeJWjvY46sgV6zRua65eTrKlnazwkXqL+5QOo7K8ICsMi04/pcZHwgMmq5Hj/F7Y6
+         bA1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736379931; x=1736984731;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SECkPKJp7olf8hsN2/MKwLopk2Qt5x7gzI2g06FByEs=;
+        b=YUpIqWclDQ4cpOCoEV7ZiqM6EoF1UBnfq4cnC4TrpaX2GAdGIpFRJRpilLj7OsdF9g
+         i5EzjLF4huf456u/1WaWfTJrZBQpyacRLHwLxmlP97BXEhx7cKPxBPJapGoWd5VStkrP
+         H0WIY9dxUtSO+otj208ezGC/isMh3vMbCzwXmsWCHiyWgHLutnQZ5IhNrag0DtfIKInv
+         bE5ERjV+DekgGa8WYseJsaxT/zSbVn8y4eC8ED3H2fXc0j02mqb5BOJ6pW2iSGUJq2ZH
+         rYv++zBHLm0bWyfCVviq1ApTg631DfCJKf9oxqdFxQrazAK25ZIa0+rhb3LWNP5pDNpz
+         Lp/w==
+X-Forwarded-Encrypted: i=1; AJvYcCUR6pcpKZ09lGQDdrpasdFxK7TrC9zhEV+YMdMmXIAw0QGR6HdKXGkRMBAhcPO+/Hvb8+kfeLijZjIRlVWT@vger.kernel.org, AJvYcCWzum23krVDVAXOFt+JeXqNfFxt1xfDGwuOxfGISGt7Pikptlqm88d8HS4AZ+XcTTh45Jt5s1gchtfR@vger.kernel.org, AJvYcCX5B9lMQ1ZNkxAMGJUg/Lm9Nst4ZDT6fKxavMcC6FRbaUcYNrEN2xPSMbUPwCuspDiWVzIw8UI66M43@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6cj15+H9K0NGG0ARsjjafhM4qnJUbHZTsNudaBB37r0zxp5H0
+	UAX0cV8WOE6j1KXWlQQNwIfuIhfJWWi5Z3Zpz6ryzt6I6UHwAhrI
+X-Gm-Gg: ASbGncvUCdyGRS1A0p+HZDpclA+6k9Q5zs8CHs2ALS/5ket5X64c9VcCDq9YxF//J4I
+	NBAr8CPFjGhOVJDwr2lwhX2IMnN1zSwMy1zNbjR6GAiAnUAFtSVZ6WbrRg/Uu4mSOAJIT0vSLHa
+	Yy7VI8W2+aBfCsqX9LO2J3mdXYxXCmTnWaYQlhpdglGYLrVTe0IXaM1Q5/hb7a1hWImPSpShpvg
+	Fzv40xdYDEF9aUSD878vZ6iw3MboRTEpbqRdMl9Psai50GptWCJyw==
+X-Google-Smtp-Source: AGHT+IGChRua7rl+mRK+31YnwCUUW6Svgbv5KjGhWy5soOEQjoWl94wrDlLAsfLDYMmdeA6iy73IAA==
+X-Received: by 2002:a05:6402:5205:b0:5d2:7199:ae6 with SMTP id 4fb4d7f45d1cf-5d972e04bbemr3756490a12.9.1736379930871;
+        Wed, 08 Jan 2025 15:45:30 -0800 (PST)
+Received: from localhost.localdomain ([37.161.103.37])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d9903c32a0sm3108a12.44.2025.01.08.15.45.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jan 2025 15:45:29 -0800 (PST)
+From: Antoni Pokusinski <apokusinski01@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrej.skvortzov@gmail.com,
+	neil.armstrong@linaro.org,
+	icenowy@aosc.io,
+	megi@xff.cz,
+	danila@jiaxyga.com,
+	javier.carrasco.cruz@gmail.com,
+	and@kernel.org
+Cc: apokusinski01@gmail.com,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] iio: magnetometer: add support for Si7210
+Date: Thu,  9 Jan 2025 00:44:09 +0100
+Message-Id: <20250108234411.882768-1-apokusinski01@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250103163805.1775705-4-claudiu.beznea.uj@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
 
+This patch series adds support for the Si7210 Hall effect I2C sensor.
+The driver currently supports the basic functionalities (i.e. making
+temperature and magnetic field measurements and changing the
+measurements scale) but I plan to add support for some other features in
+the future as well (e.g. the digital output interrupt).
 
-On Fri, 03 Jan 2025 18:38:02 +0200, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> The Renesas RZ/G3S SoC includes a Thermal Sensor Unit (TSU) block designed
-> to measure the junction temperature. The temperature is measured using
-> the RZ/G3S ADC, with a dedicated ADC channel directly connected to the TSU.
-> Add documentation for it.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->  .../thermal/renesas,r9a08g045-tsu.yaml        | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/renesas,r9a08g045-tsu.yaml
-> 
+---
+Hello,
+Thanks for the review. In the v2, I implemented all the necessary
+improvements, the most important ones being the `vdd-supply` in DT-binding
+together with a regulator, changing the temperature measurement scale to
+milli-celsius and removal of the `otp_lock`. The lock removal could be
+done since we read the OTP memory in probe only.
+Best regards,
+Antoni
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Changes since v1:
+* dt-binding: add `vdd-supply`
+* si7210: reorder includes in alphabetic order
+* si7210: add comment for `fetch_lock`
+* si7210: remove `otp_lock`
+* si7210: fetch_measurement: change result type to __be16
+* si7210: use guard(mutex) instead of scoped_guard
+* si7210: read_raw: use FIELD_GET to get raw temperature value
+* si7210: read_raw: return temperature in milli-celsius
+* si7210: use regulator for getting the voltage
+* si7210: si7210_device_wake: remove unnecessary cast
+* si7210: si7210_device_init: use fsleep instead of usleep_range
+* si7210: si7210_probe: remove i2c_set_clientdata()
+* si7210: minor alignment and formatting fixes
+
+Antoni Pokusinski (2):
+  dt-bindings: iio: magnetometer: add binding for Si7210
+  iio: magnetometer: si7210: add driver for Si7210
+
+ .../iio/magnetometer/silabs,si7210.yaml       |  48 ++
+ drivers/iio/magnetometer/Kconfig              |  11 +
+ drivers/iio/magnetometer/Makefile             |   2 +
+ drivers/iio/magnetometer/si7210.c             | 428 ++++++++++++++++++
+ 4 files changed, 489 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml
+ create mode 100644 drivers/iio/magnetometer/si7210.c
+
+-- 
+2.25.1
 
 
