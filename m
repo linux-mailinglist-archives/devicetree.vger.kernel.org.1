@@ -1,79 +1,55 @@
-Return-Path: <devicetree+bounces-136506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81EDDA0568F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:18:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48AC1A0569A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 10:23:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D174A3A1485
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:18:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1A6518883C9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 09:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842431EF0A5;
-	Wed,  8 Jan 2025 09:18:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA2F1F0E2F;
+	Wed,  8 Jan 2025 09:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RWNWh8Ie"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="J/iPZDPd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8446314883F;
-	Wed,  8 Jan 2025 09:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF201DFE0F;
+	Wed,  8 Jan 2025 09:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736327885; cv=none; b=XyPKXEs5K39tygwQwZXM9Sg2vgV8HuZeoeVoj5cOOJ/9xVUl+VJwfaDpd2teELm2Z2AXJ9YLJca4XZ35sF9gHXJqGJdIy3Jx2z6y3Ji7NzDJUUzZ3XlfsvVvcOwU7fcnS5wPQIxuJ/LNmZj0VZsXTTOGI9E/QuKRXVGpTLD64BQ=
+	t=1736328192; cv=none; b=tVgulsQh4jjrnf/JLa7JZ1A5H/L25pj7z2IFca0PmypiI0I4hCDbftFvBWdifrXf9eMUn7aCU3KugGAnOWnPr2fizmAGcWPI9yMK9XJVV7SNz4dtTBHcTNLOBKljMy7WPodjVIBzO/Dh/ObB9HPdPmcRqfKN1pFtT0kSQmjWOc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736327885; c=relaxed/simple;
-	bh=Os4eCbx+49RreVsN2lPFHWZbkUCVULlHECA91K/8hZM=;
+	s=arc-20240116; t=1736328192; c=relaxed/simple;
+	bh=qd19nRPwbCvUMi/KiQbuvAWtRBU4wH1adFt9H0ZLYm4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sCDSW28/VG4DnrxDN/7CTaFt7I+9d/npRsBh1OI7my1uXmhk4Q5p15RFsbFM3vGjoCRTwRLrrdf8Igk4BANCxMEAGQ9UKLvDGLIH82jicuR5PAPWiQJI0k404QwOqAW73x6pz02UxMsgPQmppvvkchQ9dWq+uE/OugaSSRBq2T8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RWNWh8Ie; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4362f61757fso163463915e9.2;
-        Wed, 08 Jan 2025 01:18:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736327882; x=1736932682; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2vgCrtOmP3fMOm81ZkcP04u4uUigFjMyWEu/8yFPY2c=;
-        b=RWNWh8IeWBU3onAi+7xEiSfRdcG/iQ3X07q9+MPbdBsBhy3YvOElTYPx10vVVSHK6y
-         fgLvqbrQ+MxjnqqJmK9mqsuKwQkSvCTtJ2Sj+dDIWdcrsfNkOtRqrQW5P4gdCg0xYOuK
-         KCoPhWiZlLf4CUi6ToWidQk9ogSgvC9OCtWLauKZVjZpZ9sQ3TCYe0D4fDbgNVPrQspE
-         1Cd2ti3O/rTBahZJFCGgzIuc1jF79TPPWqfAwneforS9vDc+XZy2M43P99KCKeFzzINy
-         zH1zXbD7y376I5kJsqR4Vhaxefm94CMFkPbZTGECOnw7/y/EF2wXGyLPDAu/NZvehW/M
-         HFuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736327882; x=1736932682;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2vgCrtOmP3fMOm81ZkcP04u4uUigFjMyWEu/8yFPY2c=;
-        b=rpLzFJRICdDn9EXlJMgGz73doSMdMwfSnQT5Nc69/8uVpTBLoIX1nbaJuYMSCIzed7
-         w2fHdd596fiSuX5rx0l04cWDsV7Q4tQFcPLk/mQH0n6wsdA5byiStXeTmSPm4BiFqdeL
-         z7h8unPZRhBV1+IxIwkmuEOF72F8ZNOmDx1/uV9AxT1FOnhMwR3JJJMsTFOAnBQw1mlX
-         cGQD+LlktK1vew34saQFtCOMHy0s8YFEQtbs2+Ib/mdA2F2pCjp9UgpyNzK8diIpI7Z0
-         nhrekYWnkpyeAkEFM3RPOXw7Ik6FocDY6ZojF2Uv4wEdGJBlCoV3qVvODL6VjIjq/x8p
-         vlYg==
-X-Forwarded-Encrypted: i=1; AJvYcCUoaBkCl1MtXz3AAAazgwQiyrDSRrhGlirqz/8yfbzQSn1K124pUQf/ai/qE75rfM/wN8yqfFNQRrKa2keSsqoDs2I=@vger.kernel.org, AJvYcCXp7rgl0dkgeDDu/MFwgXtimgYeWF4tlufAYuJKSrfUJ0J8+e9yfxfwqkxV5JBQcuPnXCHOGNxyQaMA3ZGJ@vger.kernel.org, AJvYcCXwUxSnkt5DLh2l4otr7JKLTgOYD75ydNOnJ4ASGd5U1xyB2N/k66tg3ErDdW8Jpl6ViSepA/MCNxTn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGbvgrGZ2Pt5hzVG0lrEsda1gC1elNAEc0YQLXoookbDak6+Nr
-	kyNU7pXGV/a1fSthRIWtqUsPoXAC7BmPpPs9It6JIJaio3JTwL9q
-X-Gm-Gg: ASbGnctIe5nqDuaDI7nhLtWFPJ/B9LZ9b7xZm7YvEOpmY4Ic0/yRetiZP3oJhwLqfIg
-	VW0VsrfPMLGuzIXsVwbbv7sIn3fz2uv9oaH/GE7b1BCjUp5VViSHPl4lw4eTqNBDg6chAMrhv8j
-	p94YmBC/UfjRe0P4AtjGKaf8Y7VsQpn/6W3SxJTreQp8LcK0NefjOg5qdRW/wbmyeQlbSn90t3k
-	VyqhLu9Al20hNtJNOMCjJlvF6pJ09QUvLnG0mFCzFEDSwhZSLrbkRvyuaXinB2dTtfuu+kXLASL
-	kLumW1kOcJtoP2Pd20cG3g==
-X-Google-Smtp-Source: AGHT+IF25RyfmHYR8rxHUwWamhEEYdeAEyyzo+cfrf76RzBh0JsXJhCzQDdi/Yez7lnMabSTGdWjVQ==
-X-Received: by 2002:a05:6000:1acb:b0:385:edd1:2249 with SMTP id ffacd0b85a97d-38a87316a81mr1314020f8f.50.1736327881617;
-        Wed, 08 Jan 2025 01:18:01 -0800 (PST)
-Received: from [172.16.20.210] (62-73-104-42.ip.btc-net.bg. [62.73.104.42])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c89e150sm52311147f8f.66.2025.01.08.01.18.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jan 2025 01:18:01 -0800 (PST)
-Message-ID: <907e1169-ceea-4d41-93bb-925041de005e@gmail.com>
-Date: Wed, 8 Jan 2025 11:17:59 +0200
+	 In-Reply-To:Content-Type; b=nVo+6dt5UjG4k3FcJdKxwNDM4KuKqa1RhPAr3d6L7a2vqvzoNOksHZB7G6RB8H7ZmNrpoZl5ultY+dWyIfmX/uE6eYaIkw+IIYjP4UNAgewuu/Ut3dHjh2u0ikqnAWaRt8+VnnyK2EliNCYii1lupTs3s/tZhXUFKTYCp8i4dWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=J/iPZDPd; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1736328188;
+	bh=qd19nRPwbCvUMi/KiQbuvAWtRBU4wH1adFt9H0ZLYm4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=J/iPZDPdgXw2RBeEUVXQ1CswpShssY0E40y7+6XgOHC5JCgIeWxfXaA9zQRSNXwdk
+	 r8rwtOaovegOo6o1HUJCg/s9ui+ahQx8i81Ilep0lRCVM1YL5Ya7eLM3XPcall2wdr
+	 NEU3r2veQiMqBBTkAKxXV0Z0hGWMrQ49LZ2Oc9EIKIlmd8e/P96we3PJ3k+xm87Iyd
+	 PjqHluCtgI4TdG3aR74Bm4/HowFJphatSUb0uJtGrSjVvBG3tohnSstK/XswWd1Nlh
+	 LEF1e0LOWZZ8wy3N6EZs1+FE1mjDJfDt665eEig6JIIhluVghGUm8HKOL6Nfom89lU
+	 /iohHw7aGBnig==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B20B917E1544;
+	Wed,  8 Jan 2025 10:23:07 +0100 (CET)
+Message-ID: <9f8c2da3-8cce-4fb2-a863-4d79f524f58b@collabora.com>
+Date: Wed, 8 Jan 2025 10:23:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,265 +57,153 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] soc: samsung: usi: implement support for USIv1 and
- exynos8895
+Subject: Re: [PATCH v3 14/33] drm/mediatek: mtk_hdmi: Move audio params
+ selection to new function
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
+ <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
+ <jitao.shi@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "kernel@collabora.com" <kernel@collabora.com>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
+References: <20241217154345.276919-1-angelogioacchino.delregno@collabora.com>
+ <20241217154345.276919-15-angelogioacchino.delregno@collabora.com>
+ <03d20d6d77b54c25b9d7e65899a67359fae6130a.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250107113512.525001-1-ivo.ivanov.ivanov1@gmail.com>
- <20250107113512.525001-3-ivo.ivanov.ivanov1@gmail.com>
- <6y4mg6atqi6idyoppesg5owrnfrjhkzqh4im4po7urfry2qctb@yimp5y6sm7h6>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <6y4mg6atqi6idyoppesg5owrnfrjhkzqh4im4po7urfry2qctb@yimp5y6sm7h6>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <03d20d6d77b54c25b9d7e65899a67359fae6130a.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 1/8/25 10:30, Krzysztof Kozlowski wrote:
-> On Tue, Jan 07, 2025 at 01:35:11PM +0200, Ivaylo Ivanov wrote:
->> USIv1 IP-core is found on some ARM64 Exynos SoCs (like Exynos8895) and
->> provides selectable serial protocols (one of: HSI2C0, HSI2C1, HSI2C0_1,
->> SPI, UART, UART_HSI2C1).
+Il 20/12/24 04:47, CK Hu (胡俊光) ha scritto:
+> Hi, Angelo:
+> 
+> On Tue, 2024-12-17 at 16:43 +0100, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until you have verified the sender or the content.
 >>
->> USIv1, unlike USIv2, doesn't have any known register map. Underlying
->> protocols that it implements have no offset, like with Exynos850.
->> Desired protocol can be chosen via SW_CONF register from System
->> Register block of the same domain as USI.
 >>
->> In order to select a particular protocol, the protocol has to be
->> selected via the System Register. Unlike USIv2, there's no need for
->> any setup before the given protocol becomes accessible apart from
->> enabling the APB clock and the protocol operating clock.
+>> In preparation for splitting common bits of this driver, move the
+>> audio params (codec, sample rate/size, input type, i2s format, etc)
+>> selection to a new function called mtk_hdmi_audio_params().
 >>
->> Modify the existing driver in order to allow USIv1 instances in
->> Exynos8895 to probe and set their protocol. While we're at it,
->> make use of the new mode constants in place of the old ones
->> and add a removal routine.
->>
->> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 >> ---
->>  drivers/soc/samsung/exynos-usi.c | 108 +++++++++++++++++++++++++++----
->>  1 file changed, 95 insertions(+), 13 deletions(-)
+>>   drivers/gpu/drm/mediatek/mtk_hdmi.c | 46 +++++++++++++++++------------
+>>   1 file changed, 27 insertions(+), 19 deletions(-)
 >>
->> diff --git a/drivers/soc/samsung/exynos-usi.c b/drivers/soc/samsung/exynos-usi.c
->> index 114352695..43c17b100 100644
->> --- a/drivers/soc/samsung/exynos-usi.c
->> +++ b/drivers/soc/samsung/exynos-usi.c
->> @@ -16,6 +16,18 @@
->>  
->>  #include <dt-bindings/soc/samsung,exynos-usi.h>
->>  
->> +/* USIv1: System Register: SW_CONF register bits */
->> +#define USI_V1_SW_CONF_NONE		0x0
->> +#define USI_V1_SW_CONF_I2C0		0x1
->> +#define USI_V1_SW_CONF_I2C1		0x2
->> +#define USI_V1_SW_CONF_I2C0_1		0x3
->> +#define USI_V1_SW_CONF_SPI		0x4
->> +#define USI_V1_SW_CONF_UART		0x8
->> +#define USI_V1_SW_CONF_UART_I2C1	0xa
->> +#define USI_V1_SW_CONF_MASK		(USI_V1_SW_CONF_I2C0 | USI_V1_SW_CONF_I2C1 | \
->> +					 USI_V1_SW_CONF_I2C0_1 | USI_V1_SW_CONF_SPI | \
->> +					 USI_V1_SW_CONF_UART | USI_V1_SW_CONF_UART_I2C1)
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+>> index d2f1d6286fbc..8f5ab97a0261 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+>> @@ -1479,12 +1479,11 @@ static int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi,
+>>    * HDMI audio codec callbacks
+>>    */
+>>
+>> -static int mtk_hdmi_audio_hw_params(struct device *dev, void *data,
+>> -                                   struct hdmi_codec_daifmt *daifmt,
+>> -                                   struct hdmi_codec_params *params)
+>> +static int mtk_hdmi_audio_params(struct mtk_hdmi *hdmi,
+>> +                                struct hdmi_codec_daifmt *daifmt,
+>> +                                struct hdmi_codec_params *params)
+>>   {
+>> -       struct mtk_hdmi *hdmi = dev_get_drvdata(dev);
+>> -       struct hdmi_audio_param hdmi_params;
+>> +       struct hdmi_audio_param aud_params = { 0 };
+>>          unsigned int chan = params->cea.channels;
+>>
+>>          dev_dbg(hdmi->dev, "%s: %u Hz, %d bit, %d channels\n", __func__,
+>> @@ -1495,16 +1494,16 @@ static int mtk_hdmi_audio_hw_params(struct device *dev, void *data,
+>>
+>>          switch (chan) {
+>>          case 2:
+>> -               hdmi_params.aud_input_chan_type = HDMI_AUD_CHAN_TYPE_2_0;
+>> +               aud_params.aud_input_chan_type = HDMI_AUD_CHAN_TYPE_2_0;
+>>                  break;
+>>          case 4:
+>> -               hdmi_params.aud_input_chan_type = HDMI_AUD_CHAN_TYPE_4_0;
+>> +               aud_params.aud_input_chan_type = HDMI_AUD_CHAN_TYPE_4_0;
+>>                  break;
+>>          case 6:
+>> -               hdmi_params.aud_input_chan_type = HDMI_AUD_CHAN_TYPE_5_1;
+>> +               aud_params.aud_input_chan_type = HDMI_AUD_CHAN_TYPE_5_1;
+>>                  break;
+>>          case 8:
+>> -               hdmi_params.aud_input_chan_type = HDMI_AUD_CHAN_TYPE_7_1;
+>> +               aud_params.aud_input_chan_type = HDMI_AUD_CHAN_TYPE_7_1;
+>>                  break;
+>>          default:
+>>                  dev_err(hdmi->dev, "channel[%d] not supported!\n", chan);
+>> @@ -1528,26 +1527,35 @@ static int mtk_hdmi_audio_hw_params(struct device *dev, void *data,
+>>
+>>          switch (daifmt->fmt) {
+>>          case HDMI_I2S:
+>> -               hdmi_params.aud_codec = HDMI_AUDIO_CODING_TYPE_PCM;
+>> -               hdmi_params.aud_sample_size = HDMI_AUDIO_SAMPLE_SIZE_16;
+>> -               hdmi_params.aud_input_type = HDMI_AUD_INPUT_I2S;
+>> -               hdmi_params.aud_i2s_fmt = HDMI_I2S_MODE_I2S_24BIT;
+>> -               hdmi_params.aud_mclk = HDMI_AUD_MCLK_128FS;
+>> +               aud_params.aud_codec = HDMI_AUDIO_CODING_TYPE_PCM;
+>> +               aud_params.aud_sample_size = HDMI_AUDIO_SAMPLE_SIZE_16;
+>> +               aud_params.aud_input_type = HDMI_AUD_INPUT_I2S;
+>> +               aud_params.aud_i2s_fmt = HDMI_I2S_MODE_I2S_24BIT;
+>> +               aud_params.aud_mclk = HDMI_AUD_MCLK_128FS;
+>>                  break;
+>>          case HDMI_SPDIF:
+>> -               hdmi_params.aud_codec = HDMI_AUDIO_CODING_TYPE_PCM;
+>> -               hdmi_params.aud_sample_size = HDMI_AUDIO_SAMPLE_SIZE_16;
+>> -               hdmi_params.aud_input_type = HDMI_AUD_INPUT_SPDIF;
+>> +               aud_params.aud_codec = HDMI_AUDIO_CODING_TYPE_PCM;
+>> +               aud_params.aud_sample_size = HDMI_AUDIO_SAMPLE_SIZE_16;
+>> +               aud_params.aud_input_type = HDMI_AUD_INPUT_SPDIF;
+>>                  break;
+>>          default:
+>>                  dev_err(hdmi->dev, "%s: Invalid DAI format %d\n", __func__,
+>>                          daifmt->fmt);
+>>                  return -EINVAL;
+>>          }
+>> +       memcpy(&aud_params.codec_params, params, sizeof(aud_params.codec_params));
+> 
+> You copy to local variable, so this function does nothing.
+> 
 >> +
->>  /* USIv2: System Register: SW_CONF register bits */
->>  #define USI_V2_SW_CONF_NONE	0x0
->>  #define USI_V2_SW_CONF_UART	BIT(0)
->> @@ -34,7 +46,8 @@
->>  #define USI_OPTION_CLKSTOP_ON	BIT(2)
->>  
->>  enum exynos_usi_ver {
->> -	USI_VER2 = 2,
->> +	USI_VER1 = 1,
-> Is this assignment=1 actually now helping? Isn't it creating empty item
-> in exynos_usi_modes array? Basically it wastes space in the array for
-> no benefits.
-
-I wanted to keep the USIv2 enum the same.
-
->
->> +	USI_VER2,
->>  };
->>  
->>  struct exynos_usi_variant {
->> @@ -66,19 +79,39 @@ struct exynos_usi_mode {
->>  	unsigned int val;		/* mode register value */
->>  };
->>  
->> -static const struct exynos_usi_mode exynos_usi_modes[] = {
->> -	[USI_V2_NONE] =	{ .name = "none", .val = USI_V2_SW_CONF_NONE },
->> -	[USI_V2_UART] =	{ .name = "uart", .val = USI_V2_SW_CONF_UART },
->> -	[USI_V2_SPI] =	{ .name = "spi",  .val = USI_V2_SW_CONF_SPI },
->> -	[USI_V2_I2C] =	{ .name = "i2c",  .val = USI_V2_SW_CONF_I2C },
->> +#define USI_MODES_MAX (USI_MODE_UART_I2C1 + 1)
->> +static const struct exynos_usi_mode exynos_usi_modes[][USI_MODES_MAX] = {
->> +	[USI_VER1] = {
->> +		[USI_MODE_NONE] =	{ .name = "none", .val = USI_V1_SW_CONF_NONE },
->> +		[USI_MODE_UART] =	{ .name = "uart", .val = USI_V1_SW_CONF_UART },
->> +		[USI_MODE_SPI] =	{ .name = "spi",  .val = USI_V1_SW_CONF_SPI },
->> +		[USI_MODE_I2C] =	{ .name = "i2c",  .val = USI_V1_SW_CONF_I2C0 },
->> +		[USI_MODE_I2C1] =	{ .name = "i2c1", .val = USI_V1_SW_CONF_I2C1 },
->> +		[USI_MODE_I2C0_1] =	{ .name = "i2c0_1", .val = USI_V1_SW_CONF_I2C0_1 },
->> +		[USI_MODE_UART_I2C1] =	{ .name = "uart_i2c1", .val = USI_V1_SW_CONF_UART_I2C1 },
->> +	}, [USI_VER2] = {
->> +		[USI_MODE_NONE] =	{ .name = "none", .val = USI_V2_SW_CONF_NONE },
->> +		[USI_MODE_UART] =	{ .name = "uart", .val = USI_V2_SW_CONF_UART },
->> +		[USI_MODE_SPI] =	{ .name = "spi",  .val = USI_V2_SW_CONF_SPI },
->> +		[USI_MODE_I2C] =	{ .name = "i2c",  .val = USI_V2_SW_CONF_I2C },
->> +	},
->>  };
->>  
->>  static const char * const exynos850_usi_clk_names[] = { "pclk", "ipclk" };
->>  static const struct exynos_usi_variant exynos850_usi_data = {
->>  	.ver		= USI_VER2,
->>  	.sw_conf_mask	= USI_V2_SW_CONF_MASK,
->> -	.min_mode	= USI_V2_NONE,
->> -	.max_mode	= USI_V2_I2C,
->> +	.min_mode	= USI_MODE_NONE,
->> +	.max_mode	= USI_MODE_I2C,
->> +	.num_clks	= ARRAY_SIZE(exynos850_usi_clk_names),
->> +	.clk_names	= exynos850_usi_clk_names,
->> +};
->> +
->> +static const struct exynos_usi_variant exynos8895_usi_data = {
->> +	.ver		= USI_VER1,
->> +	.sw_conf_mask	= USI_V1_SW_CONF_MASK,
->> +	.min_mode	= USI_MODE_NONE,
->> +	.max_mode	= USI_MODE_UART_I2C1,
->>  	.num_clks	= ARRAY_SIZE(exynos850_usi_clk_names),
->>  	.clk_names	= exynos850_usi_clk_names,
->>  };
->> @@ -88,6 +121,10 @@ static const struct of_device_id exynos_usi_dt_match[] = {
->>  		.compatible = "samsung,exynos850-usi",
->>  		.data = &exynos850_usi_data,
->>  	},
->> +	{
-> These two are in oone line.
->
->> +		.compatible = "samsung,exynos8895-usi",
->> +		.data = &exynos8895_usi_data,
->> +	},
->>  	{ } /* sentinel */
->>  };
->>  MODULE_DEVICE_TABLE(of, exynos_usi_dt_match);
->> @@ -109,14 +146,15 @@ static int exynos_usi_set_sw_conf(struct exynos_usi *usi, size_t mode)
->>  	if (mode < usi->data->min_mode || mode > usi->data->max_mode)
->>  		return -EINVAL;
->>  
->> -	val = exynos_usi_modes[mode].val;
->> +	val = exynos_usi_modes[usi->data->ver][mode].val;
->>  	ret = regmap_update_bits(usi->sysreg, usi->sw_conf,
->>  				 usi->data->sw_conf_mask, val);
->>  	if (ret)
->>  		return ret;
->>  
->>  	usi->mode = mode;
->> -	dev_dbg(usi->dev, "protocol: %s\n", exynos_usi_modes[usi->mode].name);
->> +	dev_dbg(usi->dev, "protocol: %s\n",
->> +		exynos_usi_modes[usi->data->ver][usi->mode].name);
->>  
->>  	return 0;
->>  }
->> @@ -160,6 +198,30 @@ static int exynos_usi_enable(const struct exynos_usi *usi)
->>  	return ret;
->>  }
->>  
->> +/**
->> + * exynos_usi_disable - Disable USI block
->> + * @usi: USI driver object
->> + *
->> + * USI IP-core needs the reset flag cleared in order to function. This
->> + * routine disables the USI block by setting the reset flag. It also disables
->> + * HWACG behavior. It should be performed on removal of the device.
->> + */
->> +static void exynos_usi_disable(const struct exynos_usi *usi)
->> +{
->> +	u32 val;
->> +
->> +	/* Make sure that we've stopped providing the clock to USI IP */
->> +	val = readl(usi->regs + USI_OPTION);
->> +	val &= ~USI_OPTION_CLKREQ_ON;
->> +	val |= ~USI_OPTION_CLKSTOP_ON;
->> +	writel(val, usi->regs + USI_OPTION);
->> +
->> +	/* Set USI block state to reset */
->> +	val = readl(usi->regs + USI_CON);
->> +	val |= USI_CON_RESET;
->> +	writel(val, usi->regs + USI_CON);
+>> +       return 0;
 >> +}
->> +
->>  static int exynos_usi_configure(struct exynos_usi *usi)
->>  {
->>  	int ret;
->> @@ -169,9 +231,12 @@ static int exynos_usi_configure(struct exynos_usi *usi)
->>  		return ret;
->>  
->>  	if (usi->data->ver == USI_VER2)
->> -		return exynos_usi_enable(usi);
->> +		ret = exynos_usi_enable(usi);
->> +	else
->> +		ret = clk_bulk_prepare_enable(usi->data->num_clks,
->> +					      usi->clks);
->>  
->> -	return 0;
->> +	return ret;
->>  }
->>  
->>  static int exynos_usi_parse_dt(struct device_node *np, struct exynos_usi *usi)
->> @@ -253,10 +318,26 @@ static int exynos_usi_probe(struct platform_device *pdev)
->>  
->>  	ret = exynos_usi_configure(usi);
->>  	if (ret)
->> -		return ret;
->> +		goto fail_probe;
->>  
->>  	/* Make it possible to embed protocol nodes into USI np */
->>  	return of_platform_populate(np, NULL, NULL, dev);
-> This also needs error handling.
->
->> +
->> +fail_probe:
-> err_unconfigure:
->
->> +	if (usi->data->ver != USI_VER2)
->> +		clk_bulk_disable_unprepare(usi->data->num_clks, usi->clks);
-> Move it to its own callback exynos_usi_unconfigure(), so naming will be
-> symmetric. The probe does not prepare clocks directly, so above code is
-> not that readable. The most readable is to have symmetrics calls -
-> configure+unconfigure (or whatever we name it).
-
-Alright.
-
->
->> +
->> +	return ret;
->> +}
->> +
->> +static void exynos_usi_remove(struct platform_device *pdev)
+>>
+>> -       memcpy(&hdmi_params.codec_params, params,
+>> -              sizeof(hdmi_params.codec_params));
+>> +static int mtk_hdmi_audio_hw_params(struct device *dev, void *data,
+>> +                                   struct hdmi_codec_daifmt *daifmt,
+>> +                                   struct hdmi_codec_params *params)
 >> +{
->> +	struct exynos_usi *usi = platform_get_drvdata(pdev);
->> +
->> +	if (usi->data->ver == USI_VER2)
->> +		exynos_usi_disable(usi);
-> This is not related to the patch and should be separate patch, if at
-> all.
+>> +       struct mtk_hdmi *hdmi = dev_get_drvdata(dev);
+>> +       struct hdmi_audio_param hdmi_params;
+>>
+>> +       mtk_hdmi_audio_params(hdmi, daifmt, params);
+>>          mtk_hdmi_audio_set_param(hdmi, &hdmi_params);
+> 
+> hdmi_params has not been initialized.
 
-Well I though that since didn't have any removal routine before it'd be good
-to introduce that and not leave USIv2 with hwacg set.
+That was done on purpose: we are anyway rewriting all fields of that structure
+with the call to mtk_hdmi_audio_set_param(), so if that was stack-initialized
+to zero, that would be a double initialization.
 
-Best regards,
-Ivaylo
-
->> +	else
->> +		clk_bulk_disable_unprepare(usi->data->num_clks, usi->clks);
-> So the easiest would be to add devm reset action and then no need for
-> goto-err handling and remove() callback.
->
-> Best regards,
-> Krzysztof
->
+Cheers,
+Angelo
 
 
