@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-136856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 244BFA06938
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:05:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E27FAA06940
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:07:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDC30166952
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:05:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C664D16599A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9440D204C2A;
-	Wed,  8 Jan 2025 23:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62BD62040B9;
+	Wed,  8 Jan 2025 23:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tbB9nSuh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JfIOAwu5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D57204C16;
-	Wed,  8 Jan 2025 23:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3717620408C;
+	Wed,  8 Jan 2025 23:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736377515; cv=none; b=Y2T2kOSrW+STp+3qsuDM3gHHlD6q4UC+eCuJzPGci+ITWQuAHtQBm0UnYoDbTyUbBnGM3qHF2+THE2oXptps5BcKBbQFqSWeId44JmvlESRcU8IOSytFnHT6SWxmQbbDkwnCcGa3fmzjRITjIMtwMuN5wGhNwowN9pJ7UWbXCOc=
+	t=1736377606; cv=none; b=iRFTrv0Td6NT5+TK4Izzy6iBZ6iuf19yDKzq7suhZ+3fffaH8MI/tIzciyUWUXvOhN8j7FNmkpLBrEXMXLXgYN9fWoSyuiuR99dSiz3ogjtfBVMEx9zf8U6QKNIJFtlAfHj4u1x6zo8SsrwkEvPCzov2AiKn2EwwAzww1JRQ5qI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736377515; c=relaxed/simple;
-	bh=CEx2keLXyISFWzlAHM0elee+jBtbjpYzQM1lS6MyArU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=BjDSvsnsBMXUa2xlsb4EqMbbbqfpWFerbAbtVGFzLnLhSzJUS4AXoSupQgmtB2UdzQpeqviBQg3KSzt1FJ4YN5+15Srj6hE/h7X6F+MaXl2D6WDiVhCO85TazRDVBoU5qWwFqKADstLutv4+70D+7RkcWAxjvbVYT8SMZvo/PEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tbB9nSuh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF094C4CEE2;
-	Wed,  8 Jan 2025 23:05:13 +0000 (UTC)
+	s=arc-20240116; t=1736377606; c=relaxed/simple;
+	bh=J+U+yhlYBX1Ru6IKBhFSVtiWh/39ZLzNukqrakBvyV8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TbryIOUhtO0ibjw6Q7+tVWu9C52UjM1rQM7QtEdjWpT6mv9ZHgcNWX96LfiDjDH5PHptiUUgRnGXonZDlNBeieyIrZeWU8Qajr4EgYpFVNYpVRgjuER7/zQw4EVYqDjMWR4aw8VycfOTYJnMnQq5xkbQjssZ7F95ReEvz6Yymmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JfIOAwu5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D3B9C4CED3;
+	Wed,  8 Jan 2025 23:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736377514;
-	bh=CEx2keLXyISFWzlAHM0elee+jBtbjpYzQM1lS6MyArU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=tbB9nSuhdajIDS7pQiJIo2+q3uAMn87KxtdHXkPpvfdPTxNhfSzeFokVYcPOMgZw4
-	 JA/BeKa6wL6YYWUmZpLJmlbfhetQm0dQtUbP6JgoUGZ4nK2nXMGOJijIIPU0XEwCtf
-	 ZwULP4wYQ+t9YBPZIhEhjCPjouY4ZVKkJQXSBP5fAn7RbvUp8z4+kEqJiIhu4xF6i4
-	 IiAytL+PUu6ghZRbOaPj3yskJOy1dDHLf+nwK5N5JXeBT8Rxelre1HVEG40MSPFyhJ
-	 q0ULbwgTrsKfZ5MkrYi7d93gRd7f3A4Z/jWzpntohjg5MWKv1PwAgrO20LSVvc5pFt
-	 l0Nzt0mQnoCjA==
-Date: Wed, 8 Jan 2025 17:05:12 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: matthew.gerlach@linux.intel.com
-Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
-	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, matthew.gerlach@altera.com
-Subject: Re: [PATCH v3 3/5] arm64: dts: agilex: add dtsi for PCIe Root Port
-Message-ID: <20250108230512.GA236229@bhelgaas>
+	s=k20201202; t=1736377606;
+	bh=J+U+yhlYBX1Ru6IKBhFSVtiWh/39ZLzNukqrakBvyV8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JfIOAwu5x/SiplQFto5kc7hrNamCRgMGsBMYi/DsZ8fdumVpSNVyvphcCWgdmw8OC
+	 buQIuXyKQX7ZZtYHXsmbUbkplm7nKdUhpZqSEfPb5axnMvYQvkiMXYWbnqAibMkzxJ
+	 1WcgfdAoUNSBqZDnN+v81NiVDuIPDXsLw35JKFqfEK2cr+HiefanZgLSvbSV88F0ei
+	 8FdLmNfEx5ZLOu7DdFYCman9epXASYLMZ732og/z3OO8VYKPoqG8m76+9Ue5Wxe4ym
+	 Pb4szbfFqdvfXA4Ew+oA9WODZqbsFA+xPhVzEtBG/x0t8EBB6xyaQrW4R9dVURpUmN
+	 Ln61dauaKzroQ==
+Date: Wed, 8 Jan 2025 17:06:42 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Yongxing Mou <quic_yongmou@quicinc.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Ritesh Kumar <quic_riteshk@quicinc.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: qcs8300: add DisplayPort device
+ nodes
+Message-ID: <3kiih4tfuvr3lgczqnkrropmzs64na7nx37zo7bp3336cz5zje@22nwstjqwrvu>
+References: <20241127-dp_dts_qcs8300-v1-0-e3d13dec4233@quicinc.com>
+ <20241127-dp_dts_qcs8300-v1-1-e3d13dec4233@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,74 +61,166 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <90879a6-979b-9b7f-1df8-44e8e1b7a23@linux.intel.com>
+In-Reply-To: <20241127-dp_dts_qcs8300-v1-1-e3d13dec4233@quicinc.com>
 
-On Wed, Jan 08, 2025 at 02:53:50PM -0800, matthew.gerlach@linux.intel.com wrote:
-> On Wed, 8 Jan 2025, Bjorn Helgaas wrote:
-> > On Wed, Jan 08, 2025 at 10:59:07AM -0600, Matthew Gerlach wrote:
-> > > Add the base device tree for support of the PCIe Root Port
-> > > for the Agilex family of chips.
-> > > 
-> > > Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-> > > ---
-> > > v3:
-> > >  - Remove accepted patches from patch set.
-> > > 
-> > > v2:
-> > >  - Rename node to fix schema check error.
-> > > ---
-> > >  .../intel/socfpga_agilex_pcie_root_port.dtsi  | 55 +++++++++++++++++++
-> > >  1 file changed, 55 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
-> > > new file mode 100644
-> > > index 000000000000..50f131f5791b
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
-> > > @@ -0,0 +1,55 @@
-> > > +// SPDX-License-Identifier:     GPL-2.0
-> > > +/*
-> > > + * Copyright (C) 2024, Intel Corporation
-> > > + */
-> > > +&soc0 {
-> > > +	aglx_hps_bridges: fpga-bus@80000000 {
-> > > +		compatible = "simple-bus";
-> > > +		reg = <0x80000000 0x20200000>,
-> > > +		      <0xf9000000 0x00100000>;
-> > > +		reg-names = "axi_h2f", "axi_h2f_lw";
-> > > +		#address-cells = <0x2>;
-> > > +		#size-cells = <0x1>;
-> > > +		ranges = <0x00000000 0x00000000 0x80000000 0x00040000>,
-> > > +			 <0x00000000 0x10000000 0x90100000 0x0ff00000>,
-> > > +			 <0x00000000 0x20000000 0xa0000000 0x00200000>,
-> > > +			 <0x00000001 0x00010000 0xf9010000 0x00008000>,
-> > > +			 <0x00000001 0x00018000 0xf9018000 0x00000080>,
-> > > +			 <0x00000001 0x00018080 0xf9018080 0x00000010>;
-> > > +
-> > > +		pcie_0_pcie_aglx: pcie@200000000 {
-> > > +			reg = <0x00000000 0x10000000 0x10000000>,
-> > > +			      <0x00000001 0x00010000 0x00008000>,
-> > > +			      <0x00000000 0x20000000 0x00200000>;
-> > > +			reg-names = "Txs", "Cra", "Hip";
-> > > +			interrupt-parent = <&intc>;
-> > > +			interrupts = <GIC_SPI 0x14 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-controller;
-> > > +			#interrupt-cells = <0x1>;
-> > > +			device_type = "pci";
-> > > +			bus-range = <0x0000000 0x000000ff>;
-> > 
-> > I don't think this bus-range is needed since
-> > pci_parse_request_of_pci_ranges() defaults to 00-ff when bus-range is
-> > absent.
+On Wed, Nov 27, 2024 at 06:45:13PM +0800, Yongxing Mou wrote:
+> Add device tree nodes for the DPTX0 controller with their
+> corresponding PHYs found on Qualcomm QCS8300 SoC.
 > 
-> Yes, pci_parse_request_of_pci_ranges() does default to using 00-ff when the
-> bus-range property is absent. Removing the bus-range property does result in
-> an extra kernel message at startup:
->     No bus range found for ...,using [bus 00-ff].
-> 
-> If the extra kernel message is not a problem, then removing the bus-range
-> property does result in a smaller device tree.
+> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
 
-Interesting, I think we should remove that message.
+Please rebase, test and resubmit this together, in the same series, with
+the mdss patch.
+
+Regards,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 115 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 114 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> index 1642e2863affd5af0b4f68118a47b7a74b76df95..28deba0a389641b4dddbf4505d6f44c6607aa03b 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> @@ -987,6 +987,19 @@ mdss_mdp: display-controller@ae01000 {
+>  				interrupt-parent = <&mdss>;
+>  				interrupts = <0>;
+>  
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +
+> +						dpu_intf0_out: endpoint {
+> +							remote-endpoint = <&mdss_dp0_in>;
+> +						};
+> +					};
+> +				};
+> +
+>  				mdp_opp_table: opp-table {
+>  					compatible = "operating-points-v2";
+>  
+> @@ -1011,6 +1024,104 @@ opp-650000000 {
+>  					};
+>  				};
+>  			};
+> +
+> +			mdss_dp0_phy: phy@aec2a00 {
+> +				compatible = "qcom,qcs8300-edp-phy";
+> +
+> +				reg = <0x0 0x0aec2a00 0x0 0x200>,
+> +				      <0x0 0x0aec2200 0x0 0xd0>,
+> +				      <0x0 0x0aec2600 0x0 0xd0>,
+> +				      <0x0 0x0aec2000 0x0 0x1c8>;
+> +
+> +				clocks = <&dispcc MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
+> +					 <&dispcc MDSS_DISP_CC_MDSS_AHB_CLK>;
+> +				clock-names = "aux",
+> +					      "cfg_ahb";
+> +
+> +				#clock-cells = <1>;
+> +				#phy-cells = <0>;
+> +
+> +				status = "disabled";
+> +			};
+> +
+> +			mdss_dp0: displayport-controller@af54000 {
+> +				compatible = "qcom,qcs8300-dp";
+> +
+> +				reg = <0x0 0x0af54000 0x0 0x104>,
+> +				      <0x0 0x0af54200 0x0 0x0c0>,
+> +				      <0x0 0x0af55000 0x0 0x770>,
+> +				      <0x0 0x0af56000 0x0 0x09c>;
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <12>;
+> +
+> +				clocks = <&dispcc MDSS_DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
+> +					 <&dispcc MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK>,
+> +					 <&dispcc MDSS_DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
+> +					 <&dispcc MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
+> +				clock-names = "core_iface",
+> +					      "core_aux",
+> +					      "ctrl_link",
+> +					      "ctrl_link_iface",
+> +					      "stream_pixel";
+> +				assigned-clocks = <&dispcc MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
+> +						  <&dispcc MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
+> +				assigned-clock-parents = <&mdss_dp0_phy 0>,
+> +							 <&mdss_dp0_phy 1>;
+> +				phys = <&mdss_dp0_phy>;
+> +				phy-names = "dp";
+> +
+> +				operating-points-v2 = <&dp_opp_table>;
+> +				power-domains = <&rpmhpd RPMHPD_MMCX>;
+> +
+> +				#sound-dai-cells = <0>;
+> +
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +
+> +						mdss_dp0_in: endpoint {
+> +							remote-endpoint = <&dpu_intf0_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +
+> +						mdss_dp0_out: endpoint { };
+> +					};
+> +				};
+> +
+> +				dp_opp_table: opp-table {
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-160000000 {
+> +						opp-hz = /bits/ 64 <160000000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-270000000 {
+> +						opp-hz = /bits/ 64 <270000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-540000000 {
+> +						opp-hz = /bits/ 64 <540000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +
+> +					opp-810000000 {
+> +						opp-hz = /bits/ 64 <810000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+> +					};
+> +				};
+> +			};
+>  		};
+>  
+>  		dispcc: clock-controller@af00000 {
+> @@ -1020,7 +1131,9 @@ dispcc: clock-controller@af00000 {
+>  				 <&rpmhcc RPMH_CXO_CLK>,
+>  				 <&rpmhcc RPMH_CXO_CLK_A>,
+>  				 <&sleep_clk>,
+> -				 <0>, <0>, <0>, <0>,
+> +				 <&mdss_dp0_phy 0>,
+> +				 <&mdss_dp0_phy 1>,
+> +				 <0>, <0>,
+>  				 <0>, <0>, <0>, <0>;
+>  			power-domains = <&rpmhpd RPMHPD_MMCX>;
+>  			#clock-cells = <1>;
+> 
+> -- 
+> 2.34.1
+> 
 
