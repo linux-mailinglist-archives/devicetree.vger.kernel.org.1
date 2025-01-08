@@ -1,167 +1,122 @@
-Return-Path: <devicetree+bounces-136777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2775A06231
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:41:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9C8A06252
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:43:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3D8C166CFB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:40:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E09DD1889BB3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:43:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F811FF7B8;
-	Wed,  8 Jan 2025 16:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F9C202C5D;
+	Wed,  8 Jan 2025 16:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yye6XYiL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M6MjskTG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4022594BC;
-	Wed,  8 Jan 2025 16:38:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 488141FFC5C
+	for <devicetree@vger.kernel.org>; Wed,  8 Jan 2025 16:40:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736354309; cv=none; b=bW39zTzNupHO1QnTJMTOyz/O5tFpgbOecwM50V9ObXpam3AlWxdOpHAkZ9hGoNaSk1YSfxPbjukJbILY3IW/ErXSmq3QYgjR/H0ynTyE3h2c/12CyFrZZRja36aL5nSv/srcCey1KCVFZNDsTay64GNShvYtoW46pct1Uz5LT+s=
+	t=1736354419; cv=none; b=C8XC7eDqx6tbrXWEEb11aoD3IPnSEx9by4UI1/PnhpCjmKYzMQL5ZzULu1qx1IXeLjTHI5zCOOYzg7VSGAM7MKIjntjwAEpfVMlDUAImEazLiAHkHvhXxW6zZaHRzM30S2R2vdEQO7ayri24LRzRqPFF/eC2GaxXdR4nwOmCgxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736354309; c=relaxed/simple;
-	bh=1PTvZkB7v2l5pzhBkf42/i+DDfV/d369bK2eZRiNNuU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QiSUQSkAUe7oSJeLZL4tyIcme8sK0HJSCsE33DX7IUwtI3XT3LPqM1+dLroDRl7rWnoyxiaoAc8JVwomqWX1Wmv6Y/SpSSDih7evnwjHgJ3dcX1afFwZOLOX03l8i5y4CE9X3IFT66XDcbmOaBaJBVn3It8Jyt1Kntx/hxV4mr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yye6XYiL; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-436249df846so113015e9.3;
-        Wed, 08 Jan 2025 08:38:25 -0800 (PST)
+	s=arc-20240116; t=1736354419; c=relaxed/simple;
+	bh=WcjTfDkH9dXfEqgNl1DnowyrGJESQ3gBR/y+8lDI0CI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=q3M4XYB2KgVICYz0w4psW4oeEnW+ZF28zMGn3YnYgm5uZObMhLU5UFV3N1TpVAroljGX+N+r2DP4oDSVms64do4epaBb2TvgqutvT7k3qN4jRW/TOzMIQO7XAdpaRYEoAcA4HlCv5iWoODYS9fU/+yiyDH0kJBU8GtvJqdVfM8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M6MjskTG; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-38637614567so7790100f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 08:40:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736354304; x=1736959104; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4cuSrltjvkzxAoQOtMu4WRHfXq6bp8x92iDHnihbR3k=;
-        b=Yye6XYiLoPl2jU5/AvsRFLfNGPBqA9P6JtTJw7Gfv9kQ+o9W2NlZa+4WpWqD9qVFoo
-         G0vTq4FXSVfOFTpLQouSlimPjAPi5o2Tfc7b6/k6h4sz5E4DbnZEZMFKFSbkceigfJn1
-         QEOMnT8vq5vu3ozDrxSXWaCRvHJW5wp9sDs1dOqway1G5sOPtJZAhQiwMpRCzyKXTscU
-         o20j4LqN1QhCq52NwxRbMuw0nvdjyIKAhtH0yobJ1xvTyDsNOM608jEDshJL7zB52FvO
-         QyQRv9iHj2tzLruhfcI9GvhlhAEExioCWQI9J7oYvHf4uWeS/DQOIeXMrzRTO442OAmu
-         49SA==
+        d=linaro.org; s=google; t=1736354415; x=1736959215; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=deCdOEFNOf75jPBBQAgdeMZQiPxVvZH3Ou1tOWSHr6o=;
+        b=M6MjskTGFGI3QL+xtNc/Ke4HbG9jUGMtzX1URRKgeAgZSG5EM3eDCSuMIHGcIZVoal
+         zK3HLG3jKH/K/ERWUyIATPKKepTiFSoQPA3YCW9Zw9ZqBA7cDuCazmsrNZ11qzshJLa2
+         MD7mDng4boOJpjcyCEjcbPYaDrA1mwtw+nlG+DFs3tZOJRYtciUgWu+RMEa88JrTk/sY
+         6Jxb4gOm5EOVCJ0P4XHtpDH6fVXN3M/eo8qRwh6ZI+l6g7QGSMzAwi3LBciXJG4SVWqE
+         EzW47aDjuUddczdcE+MIui1rMg0tlIJIpBBjR5dh9OutHMtlRNxrT0rrSoNO1u0Z4Fsm
+         XYXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736354304; x=1736959104;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4cuSrltjvkzxAoQOtMu4WRHfXq6bp8x92iDHnihbR3k=;
-        b=PYLzYEyBnZP67nkFpfjdG7kgoBmgwSHQtD3auCRkDFV/ieG35y7dWiBw5SV+lI+2q6
-         jxdSbmJuX21+yFGEjkWAFbjYXVIqheuI/q3NxEyw3g0mUoHaSxQzCfcQ4cMsK850fE4H
-         gH7S9sNJ60XpgYdpIUSESzqFW+UJJmZoACxReW0pZXcmN6fg9u4gtpuFkH9ZCoMIYBc7
-         ZYAL0D/mR0JpiWGntBK3CJvoGN+xgBvPHkLGIFLguCg2xZAEA1ov+2C2R5NAJdXWH926
-         FqS0SSFerTug8SJ4+wwohEYc1w9/Gw2PROoMbnpFPFeasJr8ve8Bcqkso3lqNw9i0/6y
-         BTUA==
-X-Forwarded-Encrypted: i=1; AJvYcCVh2PW40r0bJDCPqqczgvbtNI3bsOBz0eNMM04TmJyIwLMiqO0Hf1TdiQqZVXd3mcg9YjsFFj0pzU0Vkj4=@vger.kernel.org, AJvYcCWHLmoTZQYVgQZyZ0KsmCSnnkL4NUKuoMtD5geUqbQd+hS1wQguw1igCXtMlbnST0YOBiS5+xyjTSaJDWHPLsjzD7o=@vger.kernel.org, AJvYcCX937NuJKwI4+TpK0yl2ElvuV+U+nw5xe8bpx/Q7p9C3Gu9zFOh3XWhW9Pt1uEhcrqZutufiXYHkEGmo2lP@vger.kernel.org, AJvYcCXWz263V2MI1BNVOrp2NhHTCTlLGj2l99yv002dtOX4I7UV/vSPuUWZgq/lgrxluRGznPd+e6IuxxPM@vger.kernel.org, AJvYcCXrDvzTLLNN0Q4x0yaBP5Skf8OKgpFqiAlL7WTxSa/ynTQTmxxG3TCU1QdSl9zIyLD01QlVeTEqBBiF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzE9jx6dKg6qCzXQbNzwNVfiM+9pUXyyWv2Gq/5f5oFjnakVJF
-	o9Ov3AtTTtvwNdj+Pyp01edVCn586tSNSrNwWwwK3RiD20u87mwZ
-X-Gm-Gg: ASbGncveqgEUcH6pXxTUggLeWe2ss7tbtJg8m1Vup1Sd1F4UVNgoImoIcL3GVuWCfDR
-	xcH/ulgApJlmO4G5E2JcCsU4/vLnyLCA/03gLaSsCb8JIULzFdO4PKUuoIfSfz+TLMjywnoL588
-	Ek3frgh8wlV1dh52BKVXqm6MOLoLw+TWAA7jZwVwHVRZ6q3FHFLBV8gb43zOIxLgPeFDRol5fBt
-	QcAOzQkPPUQafD6zd+IvaF4Ld4TszByDdf91jescP0t2HlA/DcguARUqsIi4WZCrzOy996RZQjt
-	8DKLS8NOq5EvDXRAX8SqNQapnKN/EnC2MzBnspm12SA=
-X-Google-Smtp-Source: AGHT+IGp1cgCy8Xm3K9YW0ye3mjPWJQZ9C81gUBXymA3f6FFEe37p3slvzHvRuRGSFy39baH4a7Gig==
-X-Received: by 2002:a05:6000:184e:b0:385:f560:7911 with SMTP id ffacd0b85a97d-38a872c93e3mr2679293f8f.10.1736354303999;
-        Wed, 08 Jan 2025 08:38:23 -0800 (PST)
-Received: from orome (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2e22767sm25890945e9.39.2025.01.08.08.38.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2025 08:38:23 -0800 (PST)
-Date: Wed, 8 Jan 2025 17:38:20 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, Justin Chen <justin.chen@broadcom.com>, 
-	Al Cooper <alcooperx@gmail.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>, Florian Fainelli <f.fainelli@gmail.com>, 
-	Benjamin Bara <benjamin.bara@skidata.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>, Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Tianping Fang <tianping.fang@mediatek.com>, Jassi Brar <jaswinder.singh@linaro.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	Francesco Dolcini <francesco.dolcini@toradex.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: Correct indentation and style in DTS
- example
-Message-ID: <uyld4j6frger6oe332c4i32lkk5ue7ifrhu3565lrcn2xwc5xc@hgfyaryobqz2>
-References: <20250107131015.246461-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20230601; t=1736354415; x=1736959215;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=deCdOEFNOf75jPBBQAgdeMZQiPxVvZH3Ou1tOWSHr6o=;
+        b=UGCQCVTVrrTJ34hHuBztPsX6kH9L65i4zcPg006/ve9EYBVmA150pqxUA5CiVsKVPc
+         V3P+H6vB45xA3rNkpRj2hdl82bhCYqHCztSU5D72UJrWCofEFuo2cKHDS5ZOjuP+Vb67
+         st8CS2oQw8ZplzXSdPyQIftTe/Pa7e3wCr0bK+JnGQs8AC047b2aIVxlWmlXwq00/+qT
+         8snZh+Cb2NfmGCK8QLGBIU7zf5yphr+bA5FuhdvD4uS8NbUWh5lT61e4R+irQgGuFzqr
+         YnpBk+vlNekymuVE2Etx0f9N3RZI7XfbTeCV6v67UFnzo10H8tDD0JfccKVfaFm1nUPY
+         7AeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFhN9Xv33ATIB/Yg2sWFIA62yz1/RbjBEBBfB+9AVN3fe5wxSqSjebCiFALPLkrMn122pfbvvZ/xyb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyW28SaNrFp6cBWMOSFVEhI9kN3NLsQW/yt7VYrkBQUOaIB2pJq
+	tPTIqhyP9TR612FX0Oi943cISEMVdDPZnBZZfoHiB7brmD8zGfC8KK0VIkWdyfU=
+X-Gm-Gg: ASbGncv39Q9UBD9g1dNvkEeheHlMRnt00yeZalDcLY8w3WWt73Qn3HISigIZ6OfIurc
+	rOPKf7gqYjiuibtq3Bf9kdQ7KLBbmmTyZoyNcUBaUzHrn1k3fI95fNPNcTWQH11iT9WbKfCU6Gf
+	MQWTUkjFPAp3ef9P3YeU7VREZhlF/6mdPRXQXDwaRsrB3NVieEdUJI4adWy26GM0rkpmPmr74jP
+	OhJ9uHBYkH7+TrQFwHLKFbO84jjq0NbrXWVDa0GOk3NEn/KrZiv2N1Bai1qiQC6pbNq7nhq6EAY
+	CTLfmxLvOgzu0Syhj4Sh
+X-Google-Smtp-Source: AGHT+IE4abllXEGQrABSU9KaQSrAPNt2UJoX+UrddjzVaSi3eoBYN+JcyuNs9drr9UEmuphRRteJdQ==
+X-Received: by 2002:a5d:5f52:0:b0:38a:50f7:240c with SMTP id ffacd0b85a97d-38a8735760fmr2780072f8f.47.1736354415474;
+        Wed, 08 Jan 2025 08:40:15 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436e2dc0bb7sm25990875e9.16.2025.01.08.08.40.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jan 2025 08:40:15 -0800 (PST)
+Message-ID: <076daca7-55e0-40d4-8ea5-93254ecd19b8@linaro.org>
+Date: Wed, 8 Jan 2025 17:40:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5borij4dhzmoodud"
-Content-Disposition: inline
-In-Reply-To: <20250107131015.246461-1-krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: timer: exynos4210-mct: Add
+ samsung,exynos990-mct compatible
+To: Igor Belwon <igor.belwon@mentallysanemainliners.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20250104-cmu-nodes-v1-0-ae8af253bc25@mentallysanemainliners.org>
+ <20250104-cmu-nodes-v1-1-ae8af253bc25@mentallysanemainliners.org>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250104-cmu-nodes-v1-1-ae8af253bc25@mentallysanemainliners.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
---5borij4dhzmoodud
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] dt-bindings: usb: Correct indentation and style in DTS
- example
-MIME-Version: 1.0
-
-On Tue, Jan 07, 2025 at 02:10:13PM +0100, Krzysztof Kozlowski wrote:
-> DTS example in the bindings should be indented with 2- or 4-spaces and
-> aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.
->=20
-> No functional changes here, but saves some comments during reviews of
-> new patches built on existing code.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 04/01/2025 21:54, Igor Belwon wrote:
+> Add a dedicated compatible for the MCT of the Exynos 990 SoC.
+> The design for the timer is reused from previous SoCs.
+> 
+> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 > ---
->  .../bindings/usb/aspeed,usb-vhub.yaml         | 40 +++++++++----------
->  .../devicetree/bindings/usb/brcm,bdc.yaml     | 14 +++----
->  .../devicetree/bindings/usb/cypress,hx3.yaml  | 24 +++++------
->  .../devicetree/bindings/usb/dwc2.yaml         |  4 +-
->  .../devicetree/bindings/usb/fcs,fsa4480.yaml  | 20 +++++-----
->  .../bindings/usb/intel,keembay-dwc3.yaml      | 30 +++++++-------
->  .../devicetree/bindings/usb/ite,it5205.yaml   | 18 ++++-----
->  .../bindings/usb/maxim,max3420-udc.yaml       | 28 ++++++-------
->  .../bindings/usb/nvidia,tegra210-xusb.yaml    |  4 +-
->  .../bindings/usb/renesas,rzv2m-usb3drd.yaml   | 36 ++++++++---------
->  .../bindings/usb/renesas,usb3-peri.yaml       | 24 +++++------
->  .../devicetree/bindings/usb/ti,hd3ss3220.yaml | 38 +++++++++---------
->  .../bindings/usb/ti,tusb73x0-pci.yaml         |  6 +--
->  .../devicetree/bindings/usb/ti,usb8020b.yaml  | 20 +++++-----
->  .../devicetree/bindings/usb/ti,usb8041.yaml   | 16 ++++----
->  15 files changed, 161 insertions(+), 161 deletions(-)
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+Applied patch 1/2
 
---5borij4dhzmoodud
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks
 
------BEGIN PGP SIGNATURE-----
+   -- Daniel
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmd+qfwACgkQ3SOs138+
-s6Er4Q//VZl8qzubU2vGD+vYdws9AIeAPkYgq0YF3ngrrr5mGTubUKQ7Zz8JK///
-i/3WJevwDy2USeH86kJMNE9iNo4IreDdz2QsYaZzAb8lArTFezDCTHJrqyBDniQM
-OCCNB7QNsWqaUe9H6g4NpfD75Bwmhe114ywlB7hj3WzOVa/KTYF3TtE/Ktp4JdQg
-MSVpkv9wmN3RIY09OVtpmgIjbJ+te1tQHALu405trlrtG6HtjSmcVGAdrA1U+A8Q
-x+miGhfUBdnoXQehPW7PVLzMCqo92ToQPmsjhRgKVMNixRqDJlLHhTICIuaNgtFB
-KnO3meD4Z9Tz5H+ZXdRwIL6/HkCr5ofoqKll8Q0ihoDsq02auv7O50m078coyQv5
-kyLOjhVr8e1BxNv/gQ1msux6UH3R7oOeB2Dz+tkzgheVbE4sbgsrxc0qA9smcB7X
-G57z8Kau0/nZiUEKKsnleEhEtyNMfOFE+Jw1evYNp24D4OzykGpuaJfzOlG1Lse2
-jGaqgnw5EqRNF85hVVOHXqVzZVVFQzw5gRoBBbbcsXnC9iYXdvmRWSMZzdBUEVto
-vwTMpeMD4fFfQbxub/u81Q8800zwF8jow8+ivNd8cPJrzWznKDQRubvPOoTl+HZU
-ODkzlPRv8vnNYUHt+Ug3/L00O6fTOdZ/+MtCX7hFZNA4Rde2Ewk=
-=DdZu
------END PGP SIGNATURE-----
 
---5borij4dhzmoodud--
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
