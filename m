@@ -1,128 +1,150 @@
-Return-Path: <devicetree+bounces-136796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC44FA0633F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 18:23:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121DCA063A2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 18:44:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1C2E1606DB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:23:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFED61888865
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 17:44:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C52D200106;
-	Wed,  8 Jan 2025 17:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7DB91FFC77;
+	Wed,  8 Jan 2025 17:44:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GDRWwEs0"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OhzF/v3e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7BB11FFC70;
-	Wed,  8 Jan 2025 17:22:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB3219B586;
+	Wed,  8 Jan 2025 17:44:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736356978; cv=none; b=Przt530xGLKrfqnTrd2y7zs7R7PmNwFOiigpkqyN0XeHKQRm7E0oAEuFTFl2Px1MzNs0dGZG2W2DzTw9EuT+PxFE0CL2ohBj0bR+t5X36K1HoUw/cTOmh2XNeBfa07Wnc50+bS5J2hA5e3r0YnVX+ApVu9A9VJf7DwUx4UUpfM0=
+	t=1736358292; cv=none; b=SLMuxNUMOYdQNRKbsbaJzIpXPTomRT/AyoukuPzYcIIn4lYVBu3xwu0HXEsbiRCLxju3RR7ymGTJkoelt8x3eZaj5RC90ZTsyD+KGLzLiRnnzhwGuEUGKQ1Hjlq4ddROHDH6N1X6g8Fvjxm9bOyIM1i1y6eVV2k0LoGb00cxt14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736356978; c=relaxed/simple;
-	bh=4Ydr7yi76iazvT8hxdJ9xbcASYnOkd7PlygWZLznx94=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=XsJEX+/0AcHGAG6zqLWcGZQCEr2DXiZm/5S6p5styAazGwypZJUoeCPvpMqbnyy695eGHAWgmsR/8VJl0gs/C/OOUbpSC081OOMRPJeeFSxA7xzIuArLlKjxG8FzBwr/hgiY+zS8aQ5pjkL16yDIgw01IAKcNHvkqzeDXvatInc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GDRWwEs0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 263CFC4CEDF;
-	Wed,  8 Jan 2025 17:22:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736356977;
-	bh=4Ydr7yi76iazvT8hxdJ9xbcASYnOkd7PlygWZLznx94=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=GDRWwEs0sFFQZz5pukUgBa5/qHIharZsVrjp1Szv1XZIYq0mcJXwXDunw7TSdJy7C
-	 EWSuURzoOEzEgNYnzZCYUCbwLRVi9nR128FbshAobTXsy+1mu5xKEmPFIolpIbgC/x
-	 c691CtShFY4nzDQoiNjEjgMKpFqPFZlsF0nPzQ8UQKsCSZR0rmpPP7m4qhgOFz7/tV
-	 uIyKvHIV6GWw01qEuTgzpGeZxLIPZPZV8jgUMi8n++Ojqf9wm6Sgug/nZqzzEJoG2n
-	 toK05X/FADFN4YwW92OsYHJp5ib0Va06sfG+pGr15t4gtkJHA1gZA0fwb8zWeasZ+1
-	 jJEYP31wh0oNw==
-Date: Wed, 08 Jan 2025 11:22:55 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1736358292; c=relaxed/simple;
+	bh=oxIY8To//tDnkJG7ZagTIT37bBiPqu2UlpxhpeXyo9E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mrXsNbNgfo884QS2fooff1IRGCh5eTo7ttezXsQsh8ZZ3UGLLoKCqVn7D6nkfDx8Te7of7s2hq0Q0MxS/BrveTE8eAeK3nLc7n/pPlMeV6q4cggwO0CGfJxruLgqd+AVJdwSGHPMqNvvEr4Hsx+47U6DtnJpEuFD7RN9wpp7wwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OhzF/v3e; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 14DDD1C0003;
+	Wed,  8 Jan 2025 17:44:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736358286;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nVX6wM/yvs9o7iBktHEAa+W2nk3G2s2HD+9v+CoiRkk=;
+	b=OhzF/v3e/veSuhWNWeHA4zZZiEmhJtHWKroYPkZIQjQGdq76uUK7jNPyA1f0MO9pv//8hw
+	AqtTSYg52KBcv6fCr0kLCYk9vBNSt3WkZZQRH1Sokz76DmiXIvLyfSBSv3XzrJei/rzbrH
+	MXyap3cfVJSBSEyAMENcoYHdjWFY6TFwL47z0M6kgOVoS9bIVDmoBpxChGYPQEKHqhI5Eq
+	OOS2b2drhmpxXkne0Qo8ClU8fchuxgIvieWxH/ign1fa0pGlxMZnWlB8GCGYHbhRrXP6oX
+	i5d1cGOGxfzd8n8PYrqVQab3O9TkrfdYthiObV+qfjhfubc2hzat0PoTczt8+A==
+Date: Wed, 8 Jan 2025 18:44:42 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Louis Chauvet <louis.chauvet@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+Message-ID: <20250108184442.64f38fbc@bootlin.com>
+In-Reply-To: <115787605.nniJfEyVGO@steina-w>
+References: <20250108101907.410456-1-herve.codina@bootlin.com>
+	<20250108101907.410456-4-herve.codina@bootlin.com>
+	<115787605.nniJfEyVGO@steina-w>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Maxime Ripard <mripard@kernel.org>, Fabien Parent <fparent@baylibre.com>, 
- Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Simona Vetter <simona.vetter@ffwll.ch>, CK Hu <ck.hu@mediatek.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- linux-kernel@vger.kernel.org, Jitao Shi <jitao.shi@mediatek.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: amergnat@baylibre.com
-In-Reply-To: <20231023-display-support-v5-1-3905f1e4b835@baylibre.com>
-References: <20231023-display-support-v5-0-3905f1e4b835@baylibre.com>
- <20231023-display-support-v5-1-3905f1e4b835@baylibre.com>
-Message-Id: <173635697547.725897.5297567835361998238.robh@kernel.org>
-Subject: Re: [PATCH v5 1/7] dt-bindings: display: mediatek: dpi: add
- power-domains property
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Alexander,
 
-On Wed, 08 Jan 2025 17:15:43 +0100, amergnat@baylibre.com wrote:
-> From: Fabien Parent <fparent@baylibre.com>
+On Wed, 08 Jan 2025 11:54:49 +0100
+Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
+
+[...]
+> >  #include <drm/drm_atomic_helper.h>
+> >  #include <drm/drm_bridge.h>
+> > +#include <drm/drm_drv.h> /* DRM_MODESET_LOCK_ALL_BEGIN() needs drm_drv_uses_atomic_modeset() */  
 > 
-> DPI is part of the display / multimedia block in MediaTek SoCs, and
-> always have a power-domain (at least in the upstream device-trees).
-> Add the power-domains property to the binding documentation.
+> Shouldn't this include be added to include/drm/drm_modeset_lock.h instead?
+
+Yes indeed. I will change that in the next iteration.
+
 > 
-> Fixes: 9273cf7d3942 ("dt-bindings: display: mediatek: convert the dpi bindings to yaml")
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> >  #include <drm/drm_mipi_dsi.h>
+> >  #include <drm/drm_of.h>
+> >  #include <drm/drm_panel.h>
+> > @@ -147,6 +150,9 @@ struct sn65dsi83 {
+> >  	struct regulator		*vcc;
+> >  	bool				lvds_dual_link;
+> >  	bool				lvds_dual_link_even_odd_swap;
+> > +	bool				use_irq;
+> > +	struct delayed_work		monitor_work;
+> > +	struct work_struct		reset_work;  
 > 
+> Can you please rebase? You are missing commit d2b8c6d549570
+> ("drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing optional properties")
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Sure, I will rebase.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml:100:3: [error] duplication of key "power-domains" in mapping (key-duplicates)
+[...]
+> > +static void sn65dsi83_handle_errors(struct sn65dsi83 *ctx)
+> > +{
+> > +	unsigned int irq_stat;
+> > +	int ret;
+> > +
+> > +	/*
+> > +	 * Schedule a reset in case of:
+> > +	 *  - the bridge doesn't answer
+> > +	 *  - the bridge signals an error
+> > +	 */
+> > +
+> > +	ret = regmap_read(ctx->regmap, REG_IRQ_STAT, &irq_stat);
+> > +	if (ret || irq_stat)
+> > +		schedule_work(&ctx->reset_work);  
+> 
+> Shouldn't you clear the error bits as well?
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml: ignoring, error parsing file
-./Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml:100:3: found duplicate key "power-domains" with value "{}" (original value: "{}")
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.example.dts'
-Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml:100:3: found duplicate key "power-domains" with value "{}" (original value: "{}")
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
+Thanks for pointing that.
 
-doc reference errors (make refcheckdocs):
+I can clear the error bit but further more, I probably need to simply
+disable the interrupt.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231023-display-support-v5-1-3905f1e4b835@baylibre.com
+In some cases, we observed i2c access failure. In that cases clearing error
+bits is simply not possible.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+To avoid some possible interrupt storms (the chip detect a failure, set its
+interrupt line but could be not accessible anymore), the best thing to do
+is to disable the interrupt line here, let the reset work to do its job
+performing a full reset of the device and re-enabling the interrupt line
+when needed, probably in sn65dsi83_atomic_enable().
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+What do you think about that?
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Hervé
 
