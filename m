@@ -1,76 +1,79 @@
-Return-Path: <devicetree+bounces-136738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 031CEA060C2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:53:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47FE8A060DF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 16:58:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09860169298
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:53:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B6CB3AE145
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 15:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DC521FF1DC;
-	Wed,  8 Jan 2025 15:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3031FECCE;
+	Wed,  8 Jan 2025 15:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qUIYBp9c"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DxsMLt3p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9607D1FF1D5;
-	Wed,  8 Jan 2025 15:51:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A131F949;
+	Wed,  8 Jan 2025 15:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736351502; cv=none; b=l9hZzElmZkJ+BBPf/+bsVUBw73Nuay5i+QcRMYjJGFmXypb9UjKOXg3c/Sr59qG7t/k7vDv4LBHKWoi+fT1cbWIEIRFBPz6ZwQcZlbX6k3rrdDyG8tiZeHon4Lh9HvnWqMmqyaba7Vuts0yGBspYfCFs7p+jkLAVoya/H9/s4pU=
+	t=1736351666; cv=none; b=T+VvXHEIIy48xPZV+O0eyRmNmb5vJDMwnT/v0jxVb7u1Yhm8HBWbruY284MN9TQ3Xi/8j3RBfnfwenIS93417uLBFjtNc7fBa37zG+2ea9GIs6zSCr3EcI3TBe9IuwdsL3tskWJA3VuEO6b5tQ2lFnxvPxWPpmgJ/dBzvk3gNZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736351502; c=relaxed/simple;
-	bh=SfKhbPlQQcIKjJeVmBU289sQgrG7Wag7cyt2NlnkfrM=;
+	s=arc-20240116; t=1736351666; c=relaxed/simple;
+	bh=pHO5t6HWZBEgA+vpFkE01K3D5M5yuKOpqN1Oy+XeFLM=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZRB3GEu6SQGv6RoqyeZInDd+QEmvAKtpA3ti9ENSr3CmlpsEHyaSdFt2CyrMFGYoMIeT3n7JT6xdTlRGuVyzY/jcDJLT1zMM3ztvKirEq4skvFQKd9yGpthPxC43RmaX4GBmgknHsSaj7c0l5j+/8HVqVRO2Y8ps0EIT/UzY0w4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qUIYBp9c; arc=none smtp.client-ip=198.47.19.141
+	 MIME-Version:Content-Type; b=DSkwKIxCdKBNtNhQa2CO+OzpUoMaIrqtnq0gsbIpVZraUBDe03aYuV53OT004eKO7EIRny9j5QzdEZabFvxExOsrseYiiOwRHQHLgrtd4gHQzEI9vCIYpKOI5C0OruRbUMOuwnFsWdwvAtuiG2rr9N3Ime11wFvHTKgiCbQjRL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DxsMLt3p; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 508FpRHP048297;
-	Wed, 8 Jan 2025 09:51:27 -0600
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 508FsIew3124762
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 8 Jan 2025 09:54:18 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736351487;
-	bh=hXSnLLVYUK030RfldFL8WTF5ObExafHj71Q25/dTBMo=;
+	s=ti-com-17Q1; t=1736351658;
+	bh=64sf4vFWXUtRCTKp6MKv/dKdEAltmJ9vWjr7dOLoKtA=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=qUIYBp9cs5X0jvaqsO1yooYRoGNBOFZf7EnOSRudOpZrb30h680/5l0doAA5Gcz94
-	 OOWKNtlcc+yrdmx54cqTHH5Qi8Z99MUHd0sfms4cfM2L5WL/rLTmqJ4ETkIPByLAo2
-	 cJgLu0k9T74NJyMWs6AxJTT1RZWmbLH6pXd1kMUg=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508FpRmC098543;
-	Wed, 8 Jan 2025 09:51:27 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	b=DxsMLt3p+y/IOfeanzoyiJpvdk7MK+7egEESF4+/HASLM5qz+NFbWnGGyYW70sDgX
+	 HCtRqr5qekJsZibsUeB5GMeQP8VkpmciYtqW6/8U+Pw9Bh9CH+HRQ0CQcFJiMHYoNe
+	 nKNFpHESevx+QuL4Q2hlgLMCOPtR545NzKWjD4aA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 508FsI8e083886
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 8 Jan 2025 09:54:18 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
- Jan 2025 09:51:26 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2025 09:54:18 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 8 Jan 2025 09:51:26 -0600
+ Frontend Transport; Wed, 8 Jan 2025 09:54:17 -0600
 Received: from localhost ([10.249.32.182])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508FpQ7F069921;
-	Wed, 8 Jan 2025 09:51:26 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 508FsHju090583;
+	Wed, 8 Jan 2025 09:54:17 -0600
 From: Nishanth Menon <nm@ti.com>
-To: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Josua
- Mayer <josua@solid-run.com>
-CC: Nishanth Menon <nm@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am642-hummingboard-t: convert overlay to board dts
-Date: Wed, 8 Jan 2025 09:51:25 -0600
-Message-ID: <173635146906.1208341.13754676191717145508.b4-ty@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Enric Balletbo i Serra
+	<eballetb@redhat.com>
+CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Dasnavis Sabiya
+	<sabiya.d@ti.com>, Roger Quadros <rogerq@kernel.org>
+Subject: Re: [PATCH v3] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
+Date: Wed, 8 Jan 2025 09:54:15 -0600
+Message-ID: <173635164802.1208994.2287155534270142245.b4-ty@ti.com>
 X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250101-am64-hb-fix-overlay-v2-1-78143f5da28c@solid-run.com>
-References: <20250101-am64-hb-fix-overlay-v2-1-78143f5da28c@solid-run.com>
+In-Reply-To: <20250108-am69sk-dt-usb-v3-1-bb4981534754@redhat.com>
+References: <20250108-am69sk-dt-usb-v3-1-bb4981534754@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,26 +84,24 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Josua Mayer,
+Hi Enric Balletbo i Serra,
 
-On Wed, 01 Jan 2025 13:30:22 +0100, Josua Mayer wrote:
-> SolidRun HummingBoard-T has two options for M.2 connector, supporting
-> either PCI-E or USB-3.1 Gen 1 - depending on configuration of a mux
-> on the serdes lane.
-> The required configurations in device-tree were modeled as overlays.
+On Wed, 08 Jan 2025 09:59:46 +0100, Enric Balletbo i Serra wrote:
+> AM69 SK board has two stacked USB3 connectors:
+>    1. USB3 (Stacked TypeA + TypeC)
+>    2. USB3 TypeA Hub interfaced through TUSB8041.
 > 
-> The USB-3.1 overlay uses /delete-property/ to unset a boolean property
-> on the usb controller limiting it to USB-2.0 by default.
-> Overlays can not delete a property from the base dtb, therefore this
-> overlay is at this time useless.
+> The board uses SERDES0 Lane 3 for USB3 IP. So update the
+> SerDes lane info for PCIe and USB. Add the pin mux data
+> and enable USB 3.0 support with its respective SERDES settings.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-am642-hummingboard-t: convert overlay to board dts
-      commit: e2b69180431968250bf3c0c581155f1b37d057c1
+[1/1] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
+      commit: ff7b5e93f16ab68231fd039a33fea8c67fd25955
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
