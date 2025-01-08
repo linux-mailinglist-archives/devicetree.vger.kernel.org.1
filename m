@@ -1,163 +1,162 @@
-Return-Path: <devicetree+bounces-136819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69D9A06672
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 21:42:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 771E7A0668E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 21:45:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6ADC1675D6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:42:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C06363A42F7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 20:44:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4023E2040B2;
-	Wed,  8 Jan 2025 20:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE09204F64;
+	Wed,  8 Jan 2025 20:43:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KaNvMVv3"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="eNflmo6S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB3C91B042D;
-	Wed,  8 Jan 2025 20:41:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CEF8204C34;
+	Wed,  8 Jan 2025 20:43:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736368882; cv=none; b=L0F/T8Tog63Cdj7uN2TK3qmBiUguwf0Dgp2rTkQSQSTvGsfJ1KGps9apzdfy7fuTtO9FaC9fQG/jfJzqmSNACZ8prjLvm5QlLGQ9qHYtbtXM8bqWC/zzUHh3JSPWXgm3g/OB4l1Bu/HO90L0Z9itTzh4EiWxRPnVZDzqRZLqcyM=
+	t=1736369023; cv=none; b=gsKnalZHsb4hbxZpLsWGJqyfYIvgebXCsYDUcI1Uz5qwN9IlrToyuZvXTu55KawrT9YDgPhkXTu6+pidFis2iNYlj0IoZDo1vxvjo9EyYVwbE2CCMzSUl4pQvvF1pqWnnYh5ALD36KKABF+08/nx6nNqOjDKyNBpUWmFf42glvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736368882; c=relaxed/simple;
-	bh=eu/hhvVvgclHii1r94EBUS3tiCI0h4oiHiattns3nC8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=jTeMyVWo/vD6Q6ToQqYeixBfY9uTNSbv+1sWEg73k5sObptZ3o//3yx8OliFMoitvlA9KbpCSVRgRij6UC833co6LoRHhAz2HBlmglTJLB0g9K/fFPQV6yOEmj0k2TzdF1PQ79oEoWTmcqWs9hGJHRFFqygYpGHpMfQmSFiXays=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KaNvMVv3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508HMV08014703;
-	Wed, 8 Jan 2025 20:41:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	II+9tTdCD7xr/nUhuVRr7cQjsHxkXM1WgKAVqkFla3g=; b=KaNvMVv3GC/hYwbW
-	Err9wghcqqDNj39DRJFIBzu7lQBG7jj6y0WqqO0k4WtQ5TF3oJlitZPCI9ArHEBn
-	a8oY2yu/ivyma2COCq7MjT906109Qzu2FYd3/6x9HWJ77XV2TneBiJ/bLD9+lO01
-	jt8lnEEMQx0xVNoFYNoCN7W3SO3ENjHYa4Qy1C1cFmf57kP3hcRTX3pbw5QqGbup
-	/dzXi8hmO8MyT0CyFDI63aBmWXa6QpfBe5KGRD5SUflMFYo3c2uQ4Byqazucc2ik
-	iMKHmvh0VP0J1pB6oQaffmuBTCKVUcEetz/1P5lPTI172uRPKuFLlaYrsPhaP8qS
-	qSMSwA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441wq50f4v-1
+	s=arc-20240116; t=1736369023; c=relaxed/simple;
+	bh=l74pdHhuNB7cTbmXFcaaQo3J46KqlmB/Say0v2Vg7y4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TxbeJqDx4pcxehcIdTqarpqM2Fodfp2o+HHOul6saR/MzaeCQxo6XeU6r3WjP1JmPBjz9z2PVR321C8qJ1pkraNmJoDCcT3urbzyB/zid/nlOpSFXG2uCWWD2b/g8gpNmr6ayqjE+ppzpIORFWVqNrsrEbTQqpztX9q8ZwrhImc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=eNflmo6S; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508DXA9J028918;
+	Wed, 8 Jan 2025 20:42:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=NL/s9B
+	aV7zaTxsqmUo1LrDXYoClwJBwlRVE6OKrf/cc=; b=eNflmo6SvxUT0BrJA7hQ7J
+	FkF9So2pLcLA9eVZqXDTGW/9YLnkk5c1p/oKlmfcQumcxgZcyLedR2TkiJcqmWJJ
+	tANBa5wyvicB9wAwflQVAcC8D2gfnNDRlZhyCXNqfk7WFaA8axghP53szr27Dez2
+	Ju7yCNCEFiOSerFe6mGd/rpVhH0S3tnjlQ9Rh/x+F3y+Mdsuq+fTPxOVhHl5musO
+	o7/d0Jnqys48h1B8rB0r8I4IXe+F5dQxIlVmHo5+4cHUWRgjxApEfWh3tHF/1I9g
+	ch5chv8Zs+thoyxslTA98TU0q5xBQmoGtRPORle0bFsa78U257ItHPtKn4sHzRZw
+	==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 441e3b504h-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Jan 2025 20:41:12 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508KfBUl021251
+	Wed, 08 Jan 2025 20:42:41 +0000 (GMT)
+Received: from m0356516.ppops.net (m0356516.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 508Kgf9C023841;
+	Wed, 8 Jan 2025 20:42:41 GMT
+Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 441e3b504d-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 8 Jan 2025 20:41:11 GMT
-Received: from [10.213.111.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
- 12:41:05 -0800
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Date: Thu, 9 Jan 2025 02:10:03 +0530
-Subject: [PATCH v4 7/7] arm64: dts: qcom: x1e80100: Add OPPs up to Turbo L3
- for GPU
+	Wed, 08 Jan 2025 20:42:41 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 508H6MFx013698;
+	Wed, 8 Jan 2025 20:42:40 GMT
+Received: from smtprelay03.dal12v.mail.ibm.com ([172.16.1.5])
+	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 43ygap1mk0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Jan 2025 20:42:40 +0000
+Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
+	by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 508KgdEJ32244282
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 8 Jan 2025 20:42:40 GMT
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id D2A9C5805E;
+	Wed,  8 Jan 2025 20:42:39 +0000 (GMT)
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id E114C58055;
+	Wed,  8 Jan 2025 20:42:36 +0000 (GMT)
+Received: from [9.61.139.65] (unknown [9.61.139.65])
+	by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Wed,  8 Jan 2025 20:42:35 +0000 (GMT)
+Message-ID: <ffcf60ec-1096-477d-a176-8e0006e19537@linux.ibm.com>
+Date: Wed, 8 Jan 2025 14:42:35 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 05/10] ARM: dts: aspeed: system1: Add RGMII support
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: minyard@acm.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, ratbert@faraday-tech.com,
+        openipmi-developer@lists.sourceforge.net, netdev@vger.kernel.org,
+        joel@jms.id.au, andrew@codeconstruct.com.au,
+        devicetree@vger.kernel.org, eajames@linux.ibm.com,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+References: <20250108163640.1374680-1-ninad@linux.ibm.com>
+ <20250108163640.1374680-6-ninad@linux.ibm.com>
+ <1dd0165b-22ff-4354-bfcb-85027e787830@lunn.ch>
+ <0aaa13de-2282-4ea3-a11b-4edefb7d6dd3@linux.ibm.com>
+ <b80b9224-d428-4ad9-a30d-40e2d30be654@lunn.ch>
+Content-Language: en-US
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <b80b9224-d428-4ad9-a30d-40e2d30be654@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250109-gpu-acd-v4-7-08a5efaf4a23@quicinc.com>
-References: <20250109-gpu-acd-v4-0-08a5efaf4a23@quicinc.com>
-In-Reply-To: <20250109-gpu-acd-v4-0-08a5efaf4a23@quicinc.com>
-To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
-	<nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736368821; l=1396;
- i=quic_akhilpo@quicinc.com; s=20240726; h=from:subject:message-id;
- bh=eu/hhvVvgclHii1r94EBUS3tiCI0h4oiHiattns3nC8=;
- b=4aslV3BTsDtYT2UgOGk+yRajrrM2croasgY9RpomOELdXDxO1alep7YiYyPQekPMX9V7jwuUW
- 85Vs63kU5iPALk/KHnc8VqFarNhOoYZNHnqvYntlpNpolnAUqDGb8D8
-X-Developer-Key: i=quic_akhilpo@quicinc.com; a=ed25519;
- pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: B8TLtuKi4fH4XcADykmwRqSHIQtuNoNk
-X-Proofpoint-ORIG-GUID: B8TLtuKi4fH4XcADykmwRqSHIQtuNoNk
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: uuLbOCNnCqgmUzbDmEULaBTqgYB73fYD
+X-Proofpoint-GUID: jiNFDMoRHnfifok2G5gq4nJjzYBletlg
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 spamscore=0
- clxscore=1015 malwarescore=0 mlxlogscore=813 adultscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501080168
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 phishscore=0 impostorscore=0 clxscore=1015 bulkscore=0
+ lowpriorityscore=0 mlxlogscore=999 adultscore=0 suspectscore=0 spamscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501080167
 
-Now that we have ACD support for GPU, add additional OPPs up to
-Turbo L3 which are supported across all existing SKUs.
+Hi Andrew,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+On 1/8/25 14:13, Andrew Lunn wrote:
+> On Wed, Jan 08, 2025 at 12:43:07PM -0600, Ninad Palsule wrote:
+>> Hello Andrew,
+>>
+>>
+>> On 1/8/25 11:03, Andrew Lunn wrote:
+>>> On Wed, Jan 08, 2025 at 10:36:33AM -0600, Ninad Palsule wrote:
+>>>> system1 has 2 transceiver connected through the RGMII interfaces. Added
+>>>> device tree entry to enable RGMII support.
+>>>>
+>>>> ASPEED AST2600 documentation recommends using 'rgmii-rxid' as a
+>>>> 'phy-mode' for mac0 and mac1 to enable the RX interface delay from the
+>>>> PHY chip.
+>>> You appear to if ignored my comment. Please don't do that. If you have
+>>> no idea about RGMII delays, please say so, so i can help you debug
+>>> what is wrong.
+>>>
+>>> NACK
+>> I think there is a misunderstanding. I did not ignore your comment. I have
+>> contacted ASPEED and asked them to respond. I think Jacky from Aspeed
+>> replied to your mail.
+> You did not mention in the cover letter, or the patch. I asked for a
+> detailed explanation in the commit message why it is correct, which
+> you did not do.
+Ah, ok. Sorry about that.
+>
+> Now we have more details, it is clear Ethernet support for this board
+> needs to wait until we figure out how to fix the MAC driver. Please
+> either wait with this patchset until that is done, or drop this one
+> patch for the moment and submit it later once the MAC driver is fixed.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 2cf16f904aaa..444723ab4f11 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -3337,10 +3337,24 @@ zap-shader {
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2-adreno", "operating-points-v2";
- 
-+				opp-1250000000 {
-+					opp-hz = /bits/ 64 <1250000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L3>;
-+					opp-peak-kBps = <16500000>;
-+					qcom,opp-acd-level = <0xa82a5ffd>;
-+				};
-+
-+				opp-1175000000 {
-+					opp-hz = /bits/ 64 <1175000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L2>;
-+					opp-peak-kBps = <14398438>;
-+					qcom,opp-acd-level = <0xa82a5ffd>;
-+				};
-+
- 				opp-1100000000 {
- 					opp-hz = /bits/ 64 <1100000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
--					opp-peak-kBps = <16500000>;
-+					opp-peak-kBps = <14398438>;
- 					qcom,opp-acd-level = <0xa82a5ffd>;
- 				};
- 
+ok, Thanks!
 
--- 
-2.45.2
+Regards,
 
+Ninad
+
+>
+>        Andrew
+>
+>
 
