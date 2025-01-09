@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-137095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AEEDA0776A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:30:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EF99A07769
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:30:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E65E73A8F65
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:30:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B27D41885291
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FB9219A70;
-	Thu,  9 Jan 2025 13:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E11E218E88;
+	Thu,  9 Jan 2025 13:29:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="wYkDvcTo"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="P404Aq6D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from pv50p00im-zteg10011401.me.com (pv50p00im-zteg10011401.me.com [17.58.6.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EBCA218EBD
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17027219A80
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:29:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736429343; cv=none; b=ATjvbMgZ3YoEPPC/Fh6DSX2B/JNhIVxkIS/iXgWNvQWbXxYhzXPubgIFsmfoQk6ApWA2e6HlvgBzLu/si4jTY/IKUAqnIsGym7yhGH3y35v4ylilyyZQgAHJfQY3oUARAGpG5c1VX74vU9BfQHqzfH+W2bsJsw+dI9etg2XhsUY=
+	t=1736429350; cv=none; b=QjkokCaKlTCLEgP+uR3Evywl3bDVTLUOX1hUdwgtoG/aBSd+5EliD7Ce79k5FGGy1r4EC8aAp4pFaNUJgEBOkPrfYNL52taVer7tqfX95jzYfpywlMc1Cxi1cAC58deYfVtIkAAMhKLOP2jM1vMb37GA3w92APXcSu3YqqBfyxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736429343; c=relaxed/simple;
-	bh=djHI9QaNvRdvMkYQkWhpIntu1Jr72xcPcI7VXA0JBdc=;
+	s=arc-20240116; t=1736429350; c=relaxed/simple;
+	bh=3gkUALn9+NB6/ofCJz/GwddV8tFmIWMBEl64x6rz1hw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=agRhpCRjnQoR6S0R35cAPlzdS9Ngh91CAoW0ON5Uk0UAFn2CEJ4fIcQPrG2mChw3SMTglUzrGGWs5tGzMfnY9OQDUPAa4BvSFYXQEE28w0sWGjVEcadEGI+7pW4GmAAeL3oBt4o7497v+ln3B77CQzzCM34YS8QjI/J+wRe1lRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=wYkDvcTo; arc=none smtp.client-ip=17.58.6.41
+	 In-Reply-To:To:Cc; b=Vv5wj3sO7TbMJoPYmTQwthyzZ4s3I72L9CK8etdEmspOd6Y30eRztdTemQMs/Og/vk5QzCIodj16gbwzqZlZPub8jENcG3JLsxO34syhkCyRyTMDjhh5TD6fmzi6Q8wCU3aybRL3EpKkhQWHetT95bypvROSjEjnpj+Yo32th0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=P404Aq6D; arc=none smtp.client-ip=17.58.6.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1736429342;
-	bh=VHN2cTDwwhL4M4NNiTnqYEnr4mSRlDoOGxTUWdvBfV8=;
+	s=1a1hai; t=1736429348;
+	bh=RM7PGJ/ggDBiewYKpe35tdRJkSx6Q2TZ8sgtiIjl2gk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:
 	 x-icloud-hme;
-	b=wYkDvcTonPNAn1aINi6N306QytOZbnw3S5jdQlGv+wYihRWQYE+AAJa1UfxSV3A7p
-	 8E1W9csatvofRSczEbJvlzkJ85p1ftCENPsuNuMajSfAX8E+r3MNC+dX++9sW03m7L
-	 ue0sDBH9rG3LG93oUoBl154WMPtRUvrK8Argok0YnuPw/ScOlMx8uQvER/Q7jeCZm5
-	 MSRCQ8CjEc7JpzpmljwSIMy8aJzHRueLY1njPeMZlTWZNzcq8BPhdVnFE1+K9fESG2
-	 hMr36DR68QxxB/HGmVq6X2ppceYj4dlaJpGbf/+KhfWx8bWF7QniD3YmQwj5kM1YSR
-	 EMQLsy3JhjpCg==
+	b=P404Aq6DqSgs1Gm2pcazDfNJ+D1/mWNHALSDB9Tf5lZfBIu1gk4v1adk/SMwEESZW
+	 QzcV9DFxeNUW6lZZQKm1p894HV4xI7hicaGiaKDBjav8v5e4+3pwuV5jgaosA7aCMB
+	 TvezfoDp8w8aYhjbcw9sNWieXj7Jw8//AWes8kzOemcGXF0Fz4DOh09q6+iH3ZueOn
+	 +2BJcHXKc1kPAF7EkwCENv0LHbPlmDWDO7jfq0ByJqujgVuX9NzQU2p1MHT5tS2z11
+	 x9XP6zlJ5B0xXoT++W/Z3dF7cAAOjorefXGEiYCRlIiZeauQz4u8na73wVm/bhhPYJ
+	 VEInCwsm6VHag==
 Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-zteg10011401.me.com (Postfix) with ESMTPSA id CDB1D34BAADA;
-	Thu,  9 Jan 2025 13:28:55 +0000 (UTC)
+	by pv50p00im-zteg10011401.me.com (Postfix) with ESMTPSA id DDDB834BA8E0;
+	Thu,  9 Jan 2025 13:29:02 +0000 (UTC)
 From: Zijun Hu <zijun_hu@icloud.com>
-Date: Thu, 09 Jan 2025 21:27:01 +0800
-Subject: [PATCH v4 10/14] of: reserved-memory: Do not make kmemleak ignore
- freed address
+Date: Thu, 09 Jan 2025 21:27:02 +0800
+Subject: [PATCH v4 11/14] of: reserved-memory: Warn for missing static
+ reserved memory regions
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250109-of_core_fix-v4-10-db8a72415b8c@quicinc.com>
+Message-Id: <20250109-of_core_fix-v4-11-db8a72415b8c@quicinc.com>
 References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
 In-Reply-To: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
 To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
@@ -68,54 +68,51 @@ To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
  Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>, 
  Oreoluwa Babatunde <quic_obabatun@quicinc.com>
 Cc: Zijun Hu <zijun_hu@icloud.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
+ linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>, 
+ stable@vger.kernel.org
 X-Mailer: b4 0.14.2
-X-Proofpoint-GUID: 3PqQJNLjIOC6dU21eIaYnHtYxDB7TCD4
-X-Proofpoint-ORIG-GUID: 3PqQJNLjIOC6dU21eIaYnHtYxDB7TCD4
+X-Proofpoint-GUID: Sx2HeXIt3f-tKm-aNM272E87DfxWy3af
+X-Proofpoint-ORIG-GUID: Sx2HeXIt3f-tKm-aNM272E87DfxWy3af
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-01-09_05,2025-01-09_01,2024-11-22_01
 X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 bulkscore=0 adultscore=0
- suspectscore=0 mlxlogscore=936 clxscore=1015 malwarescore=0 mlxscore=0
+ suspectscore=0 mlxlogscore=651 clxscore=1015 malwarescore=0 mlxscore=0
  spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2308100000 definitions=main-2501090108
 X-Apple-Remote-Links: v=1;h=KCk=;charset=UTF-8
 
 From: Zijun Hu <quic_zijuhu@quicinc.com>
 
-early_init_dt_alloc_reserved_memory_arch() will free address @base when
-suffers memblock_mark_nomap() error, but it still makes kmemleak ignore
-the freed address @base via kmemleak_ignore_phys().
+For child node of /reserved-memory, its property 'reg' may contain
+multiple regions, but fdt_scan_reserved_mem_reg_nodes() only takes
+into account the first region, and miss remaining regions.
 
-That is unnecessary, besides, also causes unnecessary warning messages:
+Give warning message when missing remaining regions.
 
-kmemleak_ignore_phys()
- -> make_black_object()
-    -> paint_ptr()
-       -> kmemleak_warn() // warning message here.
-
-Fix by avoiding kmemleak_ignore_phys() when suffer the error.
-
-Fixes: 658aafc8139c ("memblock: exclude MEMBLOCK_NOMAP regions from kmemleak")
+Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
+Cc: stable@vger.kernel.org
 Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
 ---
- drivers/of/of_reserved_mem.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/of/of_reserved_mem.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index d2753756d7c30adcbd52f57338e281c16d821488..03a8f03ed1da165d6d7bf907d931857260888225 100644
+index 03a8f03ed1da165d6d7bf907d931857260888225..e2da88d7706ab3c208386e29f31350178e67cd14 100644
 --- a/drivers/of/of_reserved_mem.c
 +++ b/drivers/of/of_reserved_mem.c
-@@ -52,7 +52,8 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
- 			memblock_phys_free(base, size);
- 	}
+@@ -263,6 +263,11 @@ void __init fdt_scan_reserved_mem_reg_nodes(void)
+ 			       uname);
+ 			continue;
+ 		}
++
++		if (len > t_len)
++			pr_warn("%s() ignores %d regions in node '%s'\n",
++				__func__, len / t_len - 1, uname);
++
+ 		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
+ 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
  
--	kmemleak_ignore_phys(base);
-+	if (!err)
-+		kmemleak_ignore_phys(base);
- 
- 	return err;
- }
 
 -- 
 2.34.1
