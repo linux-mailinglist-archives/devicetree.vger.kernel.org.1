@@ -1,177 +1,142 @@
-Return-Path: <devicetree+bounces-137048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84AA7A075D7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:37:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0576A075E1
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:39:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B0FB166E18
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:37:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEB283A2B4B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:39:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D999217663;
-	Thu,  9 Jan 2025 12:37:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352D1217668;
+	Thu,  9 Jan 2025 12:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fkBHoY1X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s6OXPtcN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 514551E531;
-	Thu,  9 Jan 2025 12:37:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589762163BF
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 12:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736426270; cv=none; b=tpj+3W29336o5oyalYzZ5W4WlZF2RMuG2IccVbOrPntJidNbHseDfnuiZx2gBZzCUd+6oVEKXlFholLakromkduzFAAgf2EVCdzy98Jx2kvMJJIoeTdIVFo07sKRbSo4flzdrBiSHAfiJXJvSK+cu3L3xBNe6Y4+bvE6udUkenM=
+	t=1736426359; cv=none; b=o9ApO/+qfzohplzH3BfZaRfMBwDZah/FUX3oCABaPTQ9NwF2ghC0chchQYRCBv22Ust2AS8T8R1gmfVSxrCSiFJ7WtFbn5A3KoQsfoinQ8D6HPGndULFXKXgLElfgGcNszq2atE8KANRACqZNmuAGTO0Jri6KGVbE001Ov4bEYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736426270; c=relaxed/simple;
-	bh=wBEvPp+6ym9NHVCszd31Lb7q4+yZktU1wYpGEvJzfgM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Phi6aVTPPbVmgSKfN5kSHWR1pbnJO0I373DGPZ2YpVue8roXBeX4VFrKEo9AtVDan3ZwuCxQ3XWfP2qiWOj6lXjPp6oUbVQaxKM4KOkm5o3AyBTywd3qpVedFZxo+6A531/Z/oUUYFUn2nh6/XNRsWLjGvtYxGjzi00zAWW6NJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fkBHoY1X; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5094gdcF018333;
-	Thu, 9 Jan 2025 12:37:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GPfG7RdUu5wH4i/HyaERh1sXPvlqbbemmgHvrUfdTgY=; b=fkBHoY1XhG6pdnGG
-	biabeN38CM9K2YomX9SDdwS1E0WZ9BCGKvDKoUPXMdvNwYnAQo2+FAZ6eFe2VFdj
-	Op8yvTdANB9ej8qFxgSnYZltTxVsEkv0jRfuT3mUopOGbwmfg5xXx64tKGUcrhNi
-	azv5m+jBFgHIX1CyjmOod0/bFRagzLfaRuRYiIh0hJ4qESMJ2AFP+QR0CVTzfL5l
-	fzYDBPMnuAmBCuY6qjs0VUJvxqi7qSta6HoBW+GhZWA4Q6IGAqbw10wSoRots7fm
-	QXsQX88YMwMndtxV/W/S6z10l6fqsTsTp3yYLpaNyaLBUqi5c8S56NXbpT8yBjSG
-	4w7Gnw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4427nws2e9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jan 2025 12:37:42 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 509Cbf7l021431
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 9 Jan 2025 12:37:41 GMT
-Received: from [10.216.26.158] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 9 Jan 2025
- 04:37:35 -0800
-Message-ID: <cd2c9d3c-b2b1-49f4-a427-16592be1cf0d@quicinc.com>
-Date: Thu, 9 Jan 2025 18:07:32 +0530
+	s=arc-20240116; t=1736426359; c=relaxed/simple;
+	bh=PX7sTsrGoog0yImAKzdqPlF4UT52kWY626UmHcCKHJQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LCvtQ2Eb00IHMKzTxwKjNa51Ce3uxLfd41Ol+XU4GhddE8YfOSD2YHRCamSLgiY3tu4fA0MsbfPjJ4EhJrYgvSMli5SibQ3rZMAuNbd3COQSMHnBQn0b0gfQx1pE7kzQP+r79CNAnJ9XJMOfLpSNhHY94WsB9QZJHkGnYOvR7mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s6OXPtcN; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54024ecc33dso930779e87.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 04:39:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736426355; x=1737031155; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+fqi2sB9Eo33cd+pF6AS06tGvsYXM7VDT81xCwEBraw=;
+        b=s6OXPtcNkCYArlGoS8XdM9wJpQfgKdn2+Fx51l8LWSvckkP8LM74NS13b79t5968Qy
+         lgMM68IHPXZ+er8YBrVW2EH5vT0ZJUGc2Vy68baD2o/gVTrgqjn2C/sCG8B0ZBcnCXIg
+         Rkma2867aFeFKFdq1O/WqWwFmdTOvPiDAU3NnLpV4LvewDdiTynppCcSPpZpUi0DUNvE
+         WNKM4kvku7HWviXnxYs70uKQWEQKQUOz+iW5f2pJQq3sQRBAeJ7pwIuc4qrEwQyheh+A
+         mI1myOHl1Uk5IqPAR2PCBJWQqw1cZfoANynD7vDbJtU4q++KrWuokw9yV5ukNWgGdhkH
+         M5TQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736426355; x=1737031155;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+fqi2sB9Eo33cd+pF6AS06tGvsYXM7VDT81xCwEBraw=;
+        b=idWDLZtdyPLrKBN3kiuHEpaIghxK6tIrQu7HdAFJWtW/p3IjnmPhOGwb/o7WWvpxJJ
+         aV/kuSdKcOjNKnXZrTC5vpf+hYKkdwivZh8J89jFsufcuPmAU0zl4qKPAd9rtYoMqtxj
+         l070rVLg9jfvP9LinTTgCsmMGY+GLRFieFOw2fEH+X08+YpU6erCJHrAGx4a34REuv3V
+         GHxcAhvxx03awuZC8ZMhSv4Tkd5OER7ClkryXU9Jwoy8EHA2iHRFHGCby4T89oFpkwuW
+         /cEWNAjiWx9DX0ceqR8VJMoN1h5vRBOiw8v7rJeEvfB8ea3ok+2Pfw8/VSh6dOXj8czY
+         TIdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWb28jF0MM+6AOur3a+wTj2DHMbcHCr7sNUy0bgPyGi04QBDbyMzGx/q1JpNZCkAbOs/yBkgzJkGeah@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYDKwCKsXYD5GWuRUhXHgrYSPqP4WSHxh9eCMIEyntmLhuC9AP
+	69AC7Z5xUtuX501aOJ53A8c1jUGz5IVBdGCEE2kFQuqvnBNokmI10MK/luuF4/kY1c8vpZsiXID
+	8
+X-Gm-Gg: ASbGncvug7ii1HE0SkAmhWETeWmFPHel+OKcPavqTio2EXvQxchsRS0HTvJR3BJ/I31
+	OunmDi3QkzUpBcWOEJwpjS8yD8thpneWmLtXuZq1LMvz47rU+38dLj5WBpiLAOBzEJAFI8oH93V
+	iErWmodrNQJDIJDOO3F5vnXUrfZPwAS9sWsYu8qY9MULSIxWEwCqZIFnvX+NWuXhEKmX1UPGSDT
+	r3P8W2deVAPaJp/djkSlbyptj7VY4YYNOau09RsYGPPcsEB5EP1cNdwx581VZ/ywQn1tXb4qJ9q
+	iJcmCJi7kgHDwsXnyoDFHAa0gZibn8M3YMvD
+X-Google-Smtp-Source: AGHT+IF8KTbR4QB2nrxLqa6lQMCAzL4XCQ4k/7mYRphIWqgLup+TimV/WVu8MCf6LAMcOCZjoERp1Q==
+X-Received: by 2002:a05:6512:1242:b0:542:8da7:242f with SMTP id 2adb3069b0e04-5428da724c7mr359076e87.10.1736426355407;
+        Thu, 09 Jan 2025 04:39:15 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428bea686dsm187270e87.156.2025.01.09.04.39.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jan 2025 04:39:14 -0800 (PST)
+Date: Thu, 9 Jan 2025 14:39:12 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org, 
+	sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
+	andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com, 
+	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v5 04/20] phy: phy-rockchip-samsung-hdptx: Add eDP mode
+ support for RK3588
+Message-ID: <kanqmwi4yzmqjxyxbd3ccmabitko3zfgockmhx22swz46zeqz2@klq3dkaukrxz>
+References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
+ <20250109032725.1102465-5-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] i2c: tegra: Add Tegra264 support
-To: Thierry Reding <thierry.reding@gmail.com>
-CC: Kartik Rajput <kkartik@nvidia.com>, <akhilrajeev@nvidia.com>,
-        <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <jonathanh@nvidia.com>, <ldewangan@nvidia.com>,
-        <digetx@gmail.com>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250108110620.86900-1-kkartik@nvidia.com>
- <20250108110620.86900-4-kkartik@nvidia.com>
- <fc239699-d3ea-441a-ab48-0191fcda09d2@quicinc.com>
- <37faddynpvhj7nfp5si26tajnuhb4cuzkf5gveqsl2ewuazcut@tpcp4b67gtae>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <37faddynpvhj7nfp5si26tajnuhb4cuzkf5gveqsl2ewuazcut@tpcp4b67gtae>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: bM69nFFFzUQIApyAPaMo8z0cHiqzhdBh
-X-Proofpoint-GUID: bM69nFFFzUQIApyAPaMo8z0cHiqzhdBh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 phishscore=0 bulkscore=0 adultscore=0 mlxlogscore=999
- mlxscore=0 clxscore=1015 impostorscore=0 spamscore=0 priorityscore=1501
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501090100
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250109032725.1102465-5-damon.ding@rock-chips.com>
 
-Thanks Thierry !
+On Thu, Jan 09, 2025 at 11:27:09AM +0800, Damon Ding wrote:
+> The PHY is based on a Samsung IP block that supports HDMI 2.1, and eDP
+> 1.4b. RK3588 integrates the Analogix eDP 1.3 TX controller IP and the
+> HDMI/eDP TX Combo PHY to support eDP display.
+> 
+> Add basic support for RBR/HBR/HBR2 link rates, and the voltage swing and
+> pre-emphasis configurations of each link rate are set according to the
+> eDP 1.3 requirements.
+> 
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> 
+> ---
+> 
+> Changes in v2:
+> - Add the module author
+> 
+> Changes in v3:
+> - Split this patch into two, one for correction and the other for
+>   extension
+> 
+> Changes in v4:
+> - Add link_rate and lanes parameters in struct rk_hdptx_phy to store the
+>   phy_configure() result for &phy_configure_opts.dp.link_rate and
+>   &phy_configure_opts.dp.lanes
+> 
+> Changes in v5:
+> - Reuse the existing functions rk_hdptx_phy_consumer_get() and
+>   rk_hdptx_phy_consumer_put()
+> - Return 0 instead of -EINVAL in rk_hdptx_phy_configure()
+> - Remove rk_hdptx_phy_lane_disable() and related check of 0 lanes
+> - Mention the design details in the commit message
+> - Remove unnecessary rk_hdptx_phy_set_mode()
+> ---
+>  .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 879 +++++++++++++++++-
+>  1 file changed, 869 insertions(+), 10 deletions(-)
+> 
 
-On 1/9/2025 3:54 PM, Thierry Reding wrote:
-> On Thu, Jan 09, 2025 at 10:13:48AM +0530, Mukesh Kumar Savaliya wrote:
->> Hi Kartik,
->>
->> On 1/8/2025 4:36 PM, Kartik Rajput wrote:
->>> From: Akhil R <akhilrajeev@nvidia.com>
->>>
->>> Add support for Tegra264 SoC which supports 17 generic I2C controllers,
->>> two of which are in the AON (always-on) partition of the SoC. Tegra264
->>> I2C supports all the features supported by Tegra194 I2C controllers.
->>>
->>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
->>> Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
->>> ---
->>>    drivers/i2c/busses/i2c-tegra.c | 28 ++++++++++++++++++++++++++++
->>>    1 file changed, 28 insertions(+)
->>>
->>> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
->>> index 7b97c6d347ee..cf05937cb826 100644
->>> --- a/drivers/i2c/busses/i2c-tegra.c
->>> +++ b/drivers/i2c/busses/i2c-tegra.c
->>> @@ -1646,7 +1646,35 @@ static const struct tegra_i2c_hw_feature tegra194_i2c_hw = {
->>>    	.has_hs_mode_support = true,
->>>    };
->>> +static const struct tegra_i2c_hw_feature tegra264_i2c_hw = {
->> I could see 7 controllers have been already added. And this may keep
->> growing.
-> 
-> I'm not sure I understand the concern here. This is IP that's been in
-> use ever since the first Tegra chip was released about 15 years ago.
-> It's quite normal that the list of supported hardware will grow over
-> time. At the same time there will be occasional improvements of the
-> hardware that require certain parameterization.
-> 
-yes, i understand it can grow with new controllers. Was trying to 
-optimize the growing list with common fields.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Example: tegra30_i2c_hw and tegra20_i2c_hw has one field changing
-from 20 fields. So was thinking after seeing this commonality.
-
-One suggestion: can one structure be default and then delta can be 
-overridden ?
-
-No concern if no other way as you mentioned below.
-
->> Can we make either default set which is common for most of and change only
->> sepcific fields ?
-> 
-> It's difficult to do. These are const structures on purpose so that they
-> can go into .rodata, so as such there's no good way to reuse defaults. I
-> suppose we could do something like add preprocessor defines, but I doubt
-> that they would make things any better (these are quite fine-grained, so
-> macros would likely only cover one or two fields at a time).
-> 
-Sure. Let's wait for others opinion. I understand complexity.
-
->> Second option - read these fields from DT and overwrite default if it's
->> mentioned in DTSI.
-> 
-> Some information is already parsed from DT. What's in this structure can
-> all be derived from the compatible string, hence why it's associated
-> with the compatible string via the of_device_id table. Moreover, we
-> cannot move any of this information out into device tree (at least not
-> for existing chips) because it would break DT ABI.
-> 
-Got it.
->> Please review and see if this makes sense. what others say ?
-> 
-> I'm always open to suggestions, but I also don't see this as very
-> problematic. It's data that is cleanly structured out, not difficult to
-> maintain and doesn't take up a huge amount of space.
-> 
-I Agree.
-> Thierry
-
+-- 
+With best wishes
+Dmitry
 
