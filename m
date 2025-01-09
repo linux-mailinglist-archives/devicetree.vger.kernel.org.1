@@ -1,168 +1,170 @@
-Return-Path: <devicetree+bounces-137149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86B03A079B6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:51:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5300A079CB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:54:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BA63167A02
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:50:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6B4E188AB77
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DAC218EB4;
-	Thu,  9 Jan 2025 14:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D5D21B1BF;
+	Thu,  9 Jan 2025 14:54:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VqJhCfXk"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="e5HM2Lc7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4A08F4A;
-	Thu,  9 Jan 2025 14:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B3C54769;
+	Thu,  9 Jan 2025 14:54:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736434255; cv=none; b=IvnB8//U80raTANslAvHTrG20kW4mip4fNV1EDLQ+TRXBYPpR01NuVisI/bzuACcdJqRUFMk2tsgfdGfhtjwSHVvNa4WrF1pyGAsd1BvhbFhtJux+DrJAd26ntjYUrgAMMdpOjF4okIem8jfED73QdDpizxtC3ziiQSSXkT5Q+s=
+	t=1736434463; cv=none; b=o5sjYejYdOYv/zAPKpnXt+wBQOMvhkqH7GOi/2IGLgDz9vTafVKiogdMXPiDl3zEJdRw9NJF+rh8wyk+mEqoH9j1MBCe4IqfS2JxayZIzBjxW92ftrThbX/AXXWvKWEovBXqdx6yblKOc84WyDBR4DQT7MmLsoFvWVT9TYQ0FXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736434255; c=relaxed/simple;
-	bh=3LgF0zv4c4dacowD9+6H06zwOq7Mhc/SP+Mk3BKPuxQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Av3f/Z151zP/NBLRan06XJr1e7qE5Clt6nMyfHP7idhRTuB+9xWtsWt/xv6coww0KBE+GpMDzn+en2MA+tIyPIW0RiNgKJhHoJgpVE99aWZDMXG1ZNKKhUIwN61LN8TZ+kCVGvcb5AFz5ZQUOrwkUIChgnDdh7rQ/629H5vXbSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VqJhCfXk; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 56A2120004;
-	Thu,  9 Jan 2025 14:50:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736434244;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LtaQCAfVpC5phcNBcjS77EwWPeSgl2U8pwTLOU1Od44=;
-	b=VqJhCfXkn2snSlj5/z0nn2AcrHXgyZX4rNHvQiWrN4h9FcGTraRiBwMOoW4O8dpw5kU7SC
-	xbYftV1xMf2mjqaS6RboHuuvDzbNnJI8cCz/VA7pRB9mKgdTGI1uyv2H9FOFvMmLwHe/jd
-	6gcEZ4JzMnzrqH2ZuK30m14KUPVjtjbjBAxdbWulUYa0vj4/TFwBDCAbY3aTQYxyOKQKxA
-	yvQeHf3+zdTxGDFPG63dJ0S2oedHvZAb4UHoDg2LxEF87M41iYEfn53RyYG59hOxNjyDSg
-	/XXgCua/sEe4IGTVRoLDO6rHPcXxasd0m+dT9nZDlq2nGODc/yi2hbZVdoxN6Q==
-Date: Thu, 9 Jan 2025 15:50:36 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Rob Herring <robh@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Florian
- Fainelli <florian.fainelli@broadcom.com>, Broadcom internal kernel review
- list <bcm-kernel-feedback-list@broadcom.com>, Lorenzo Pieralisi
- <lpieralisi@kernel.org>, Krzysztof Wilczynski <kw@linux.com>, Manivannan
- Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Linus Walleij <linus.walleij@linaro.org>, Catalin
- Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>, Derek Kiernan <derek.kiernan@amd.com>, Dragan
- Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
- <saravanak@google.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org, Masahiro Yamada
- <masahiroy@kernel.org>, Stefan Wahren <wahrenst@gmx.net>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v5 08/10] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <20250109155036.27b82b7e@bootlin.com>
-In-Reply-To: <Z3_ZlvbszezcanA4@apocalypse>
-References: <cover.1733136811.git.andrea.porta@suse.com>
-	<28fe72eec1c08781770cee65032bb10a6d5994a9.1733136811.git.andrea.porta@suse.com>
-	<20241210224837.GA702616-robh@kernel.org>
-	<Z2A0aAPotT0NvoCl@apocalypse>
-	<Z3_ZlvbszezcanA4@apocalypse>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1736434463; c=relaxed/simple;
+	bh=aOXcsgZfAVNkKZO0+XDIyJ7zoKqgKgPtWSiV7gryWSQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W0iwhcqmAZCDgVXRpiVOvi4svKGttgF2c59e3OZJg043JZd6H36EMiV+Im3atqO1ccK1Hi0QzSTAvdtxJfEDggyaFEmSGUlXN2sgoJKOzxl6AA3Hxe0BXCYy/Lya/o22Sq0ld5KUsGCiJtZO8ehuRFf7lqIN0LIQLG7ycXBeBBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=e5HM2Lc7; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=XS2zHmL8eJvwlmo1sEnhOq6r1rAGjvGYbp8ZEUGFl1Q=; b=e5HM2Lc7Oc/aGxpK7LuQgCbm00
+	xw1HYHPDQtPmf7zSBPtz8vsJNAAMNfQQ2FuneHutnkBVy2KVQ1n5a4kMYJuQUBEgP+7S2ZbiK6OMw
+	aaSH+H26CrsWNk4ic2+hnuMT9zDDAai41SWYjVi8Ia+UDfujLoXB0n/Kfdvx9zRwKk4g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tVtvB-002vFx-GY; Thu, 09 Jan 2025 15:54:05 +0100
+Date: Thu, 9 Jan 2025 15:54:05 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ninad Palsule <ninad@linux.ibm.com>
+Cc: Jacky Chou <jacky_chou@aspeedtech.com>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"eajames@linux.ibm.com" <eajames@linux.ibm.com>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"joel@jms.id.au" <joel@jms.id.au>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"minyard@acm.org" <minyard@acm.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"openipmi-developer@lists.sourceforge.net" <openipmi-developer@lists.sourceforge.net>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
+	"robh@kernel.org" <robh@kernel.org>
+Subject: Re: =?utf-8?B?5Zue6KaGOiBbUEFUQw==?= =?utf-8?Q?H?= v2 05/10] ARM:
+ dts: aspeed: system1: Add RGMII support
+Message-ID: <c05c0476-c8bd-42f4-81da-7fe96e8e503b@lunn.ch>
+References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
+ <b2aec97b-63bc-44ed-9f6b-5052896bf350@linux.ibm.com>
+ <59116067-0caa-4666-b8dc-9b3125a37e6f@lunn.ch>
+ <SEYPR06MB51344BA59830265A083469489D132@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <8042c67c-04d3-41c0-9e88-8ce99839f70b@lunn.ch>
+ <c0b653ea-3fe0-4bdb-9681-bf4e3ef1364a@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c0b653ea-3fe0-4bdb-9681-bf4e3ef1364a@linux.ibm.com>
 
-Hi Andrea,
-
-On Thu, 9 Jan 2025 15:13:42 +0100
-Andrea della Porta <andrea.porta@suse.com> wrote:
-
-> Hi Rob,
+On Thu, Jan 09, 2025 at 08:25:28AM -0600, Ninad Palsule wrote:
+> Hello Andrew,
 > 
-> On 15:08 Mon 16 Dec     , Andrea della Porta wrote:
-> > Hi Rob,
-> > 
-> > On 16:48 Tue 10 Dec     , Rob Herring wrote:  
-> > > On Mon, Dec 02, 2024 at 12:19:32PM +0100, Andrea della Porta wrote:  
-> > > > The RaspberryPi RP1 is a PCI multi function device containing
-> > > > peripherals ranging from Ethernet to USB controller, I2C, SPI
-> > > > and others.  
-> 
-> ...
-> 
-> > > > +#define RP1_INT_ADC_FIFO	52
-> > > > +#define RP1_INT_PCIE_OUT	53
-> > > > +#define RP1_INT_SPI6		54
-> > > > +#define RP1_INT_SPI7		55
-> > > > +#define RP1_INT_SPI8		56
-> > > > +#define RP1_INT_SYSCFG		58
-> > > > +#define RP1_INT_CLOCKS_DEFAULT	59
-> > > > +#define RP1_INT_VBUSCTRL	60
-> > > > +#define RP1_INT_PROC_MISC	57  
+> On 1/9/25 07:21, Andrew Lunn wrote:
+> > On Thu, Jan 09, 2025 at 10:33:20AM +0000, Jacky Chou wrote:
+> > > Hi Andrew,
 > > > 
-> > > Why all these defines which will never be used because they come from 
-> > > DT?
-> > >  
+> > > > > There are around 11 boards in Aspeed SOC with phy-mode set to "rgmii"
+> > > > > (some of them are mac0&1 and others are mac2&3). "rgmii-rxid" is only
+> > > > mine.
+> > > > > No one in aspeed SOC using "rgmii-id".
+> > > > O.K, so we have to be careful how we fix this. But the fact they are all equally
+> > > > broken might help here.
+> > > > 
+> > > > > > Humm, interesting. Looking at ftgmac100.c, i don't see where you
+> > > > > > configure the RGMII delays in the MAC?
+> > > > This is going to be important. How are delays configured if they are not in the
+> > > > MAC driver?
+> > > The RGMII delay is adjusted on clk-ast2600 driver. Please refer to the following link.
+> > > https://github.com/AspeedTech-BMC/linux/blob/f52a0cf7c475dc576482db46759e2d854c1f36e4/drivers/clk/clk-ast2600.c#L1008
+> > O.K. So in your vendor tree, you have additional DT properties
+> > mac1-clk-delay, mac2-clk-delay, mac3-clk-delay. Which is fine, you can
+> > do whatever you want in your vendor tree, it is all open source.
 > > 
-> > Right, those defines where originally designed to be included from dts, but
-> > previous discussion deemed interrupt numbers to be hardcoded instead of being
-> > specified as mnemonics. In the driver source code I just use RP1_INT_END as the
-> > number of interrupts but I thought that the specific interrupt numbers should
-> > be documented in some way or another. Since no one is currently referencing
-> > those defines, would it be better to just turn those in a multiline comment
-> > just to describe them in a more compact form?  
+> > But for mainline, this will not be accepted. We have standard
+> > properties defined for configuring MAC delays in picoseconds:
+> > 
+> >          rx-internal-delay-ps:
+> >            description:
+> >              RGMII Receive Clock Delay defined in pico seconds. This is used for
+> >              controllers that have configurable RX internal delays. If this
+> >              property is present then the MAC applies the RX delay.
+> >          tx-internal-delay-ps:
+> >            description:
+> >              RGMII Transmit Clock Delay defined in pico seconds. This is used for
+> >              controllers that have configurable TX internal delays. If this
+> >              property is present then the MAC applies the TX delay.
+> > 
+> > 
+> > You need to use these, and in the MAC driver, not a clock driver. That
+> > is also part of the issue. Your MAC driver looks correct, it just
+> > silently passes phy-mode to the PHY just like every other MAC
+> > driver. But you have some code hidden away in the clock controller
+> > which adds the delays. If this was in the MAC driver, where it should
+> > be, this broken behaviour would of been found earlier.
+> > 
+> > So, looking at mainline, i see where you create a gated clock. But
+> > what i do not see is where you set the delays.
+> > 
+> > How does this work in mainline? Is there more hidden code somewhere
+> > setting the ASPEED_MAC12_CLK_DLY register?
 > 
-> So, here's a couple of proposals about the interrupt defines:
+> I think the code already exist in the mainline:
+> https://github.com/torvalds/linux/blob/master/drivers/clk/clk-ast2600.c#L595
 > 
-> - since they were banned from devicetree, and are not used anywhere in the code,
->   turn them into a (admittedly long) multiline comment, so they are still at
->   least documented
-> 
-> - since they were banned from devicetree, and are not use anywhere in the code,
->   just drop them, we don't currently need them after all
-> 
-> Not sure what's the best way here, anyone can advise?
+> It is configuring SCU register in the ast2600 SOC to introduce delays. The
+> mac is part of the SOC.
 
-Maybe in the #interrupt-cells description in the device-tree binding?
+I could be reading this wrong, but that appears to create a gated
+clock.
 
-In your patch 4, you describe this interrupt controller and you have:
-  '#interrupt-cells':
-    const: 2
-    description:
-      Specifies respectively the interrupt number and flags as defined
-      in include/dt-bindings/interrupt-controller/irq.h.
+hw = clk_hw_register_gate(dev, "mac1rclk", "mac12rclk", 0,
+	       		scu_g6_base + ASPEED_MAC12_CLK_DLY, 29, 0,
+			&aspeed_g6_clk_lock);
 
-In this description, why not add the supported interrupt number values?
-    description: |
-      Specifies respectively the interrupt number and flags as defined
-      in include/dt-bindings/interrupt-controller/irq.h.
-      The supported values for the interrupt number are:
-        - IO BANK0: 0
-        - IO BANK1: 1
-...
+/**
+ * clk_hw_register_gate - register a gate clock with the clock framework
+ * @dev: device that is registering this clock
+ * @name: name of this clock
+ * @parent_name: name of this clock's parent
+ * @flags: framework-specific flags for this clock
+ * @reg: register address to control gating of this clock
+ * @bit_idx: which bit in the register controls gating of this clock
+ * @clk_gate_flags: gate-specific flags for this clock
+ * @lock: shared register lock for this clock
+ */
 
-Or something similar.
+There is nothing here about writing a value into @reg at creation time
+to give it a default value. If you look at the vendor code, it has
+extra writes, but i don't see anything like that in mainline.
 
-This kind of description is already available. For instance:
-  https://elixir.bootlin.com/linux/v6.13-rc1/source/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml#L64
-
-Does it make sense?
-
-Best regards,
-Hervé
+	Andrew
 
