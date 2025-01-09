@@ -1,63 +1,76 @@
-Return-Path: <devicetree+bounces-136968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90927A071E5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:46:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8180AA071E7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 557B23A1BF5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:46:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15C8F188A511
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:47:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D70D21772B;
-	Thu,  9 Jan 2025 09:44:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92EAF215F73;
+	Thu,  9 Jan 2025 09:45:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qx4vbTQK"
+	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="TC4IHJCn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF6F2594BA;
-	Thu,  9 Jan 2025 09:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C13D215782
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 09:45:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736415843; cv=none; b=US/J5OrRebEnRg+DSwMGpAVLj7Jx0JBtQF48jziGVB/esCOQMOblaStwESWitc6MVX07bJjVbhcm8QPdGxK8l8NyrGCmIeo6VgUUiJjcvUpdvSVgGBIUI/CPYgwjBh8IjXftk7R3/vjc2ZxNCvQlPh9N+qwF9uxYRgOxEq/gOyk=
+	t=1736415914; cv=none; b=Zm5KKLq6y/M6Lr1xU3lOlFOk3P3vNeEG7IAyfgI4rLJuDt68mA5IkoTLG580DFM1sy/fn3ODiIjXRMyvxOX8KgYrLga/V5XYJZkXFwZ9h1rc68FwobhGx4Ji0WgyfJqxToMCmhHj0BEwzx2A22QMGZYuRzBjmIx5kDmWMY+MYWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736415843; c=relaxed/simple;
-	bh=nsQyhGoaQLXw2qSVb//aqPbyuDOfD11N3n4PJju0rfo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lRntAh2CwbWN/NCwZoFiJ8NbSAHMpIpwa3dCWnj3yuCJYW8YqV5o2kl9x/CBgNHGiJ/XXB115EXGmC7HmgKBy0DMV8gAG7lnLO23jxjIThbQATbT6ehvZjeEzahlR6t0rHT0Uuv8/7uPqpWe/hodEBQ0ODdTfud53+oI5sNI41o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qx4vbTQK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5096hdpb022335;
-	Thu, 9 Jan 2025 09:43:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Z94bWyW9CvPwiZS3eqs9OEzmqL01I+uvzlcVZnz4Ia8=; b=Qx4vbTQKsVfVGPUv
-	xbMshr5spy8devzEicFJPyzAclNOsafV++igMZG2HsiO2hotv9dOG1uaPyA//9GR
-	kOwPBOTQGnPBPmZTz+vg+3YHEg6eSL5PEaPRk6W2ytkpiIJxV7YKpVKT858KxFAc
-	xORZRRQQnp+V+XSMycIKRC5OzDALqpkwPtaIL4U2qIEReRqWSInLR2nG5q6vIjq1
-	xqxbxKDB1ATeS5TE88hPM9L0jrZrAK+tB557ppFCs6QPjuIleLnP0I4SpwzzCb6C
-	UVm4ADPNDrdWb2Gyj5Ngz4eUOy++uZtFDhlnITLNNhFvjJLaqJ4Eafo6dYxawj5I
-	1u2xng==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4429epge60-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jan 2025 09:43:58 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5099hvKg012875
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 9 Jan 2025 09:43:57 GMT
-Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 9 Jan 2025
- 01:43:53 -0800
-Message-ID: <7585ba2b-589c-4f85-98cd-76a989b537d7@quicinc.com>
-Date: Thu, 9 Jan 2025 17:43:51 +0800
+	s=arc-20240116; t=1736415914; c=relaxed/simple;
+	bh=R6mwAl9baUgnw3ojda9dPNWRWNJoGpQ5aTw/9M5eh5M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=StP8wM5ISgjvjC6WYInEJGU2S5yyT/pFZffBweRmsldoT74uUIao0zcPMMD6FlnEZwADQAOGjodj4eiR0wpuqZgaC9pghLKdcbdYueC88s5vg/y3770qQDG9SLitlK3AZiB2z7jIAO7BznX4t5J+/yMpLcizujnDhtRvu3cAxNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=TC4IHJCn; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-385dece873cso358404f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 01:45:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile.fr; s=google; t=1736415909; x=1737020709; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QjUrbd/qyBIrwVYguIl0LkFHj1ajciZuIbkp22FfPvk=;
+        b=TC4IHJCngwcGELYSzU0EyXoauSXCPtafJHUvbrz2/Od/TLwKO5QGLgjC5RrKkChFTd
+         +xWolMHyFYOsqxmW3+H/+3/u8Ws1IbC/8HIxt1vdhZds2hpOeGnt3PwoMROJpDCVqtrQ
+         DMrxNg7YWtCMsugZQEXKZMK5RZosio4X+0GDU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736415909; x=1737020709;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QjUrbd/qyBIrwVYguIl0LkFHj1ajciZuIbkp22FfPvk=;
+        b=wsobw9aGeLbdLsGkR5wD8bivNpNHPtu0UXKq859y/Se2jXrEzQoW/HKR3OR1dQ9Vx3
+         QDQqt9I0QbNQI4WlGwfubhNqKL0Q4IBStbefZApooXd/QqAB7tiy6h2njAJ5+IWH0AtW
+         FjDlwGnjqlqOymNl5W1+uVPtT7wDAFCIgfhxM2YxXnIvIbT5ShgvQWcnp+msBItXwAn2
+         bnnBPjs+mWAsSuqQbDRTs6WqIyYlAvD6/HxN01N8M5rOIiXtTGs4xzHYOsQ7GuOxxo5C
+         8/ZYo7L/US/SUnr7/7yRgR1IT56IkJvNrNyM71z+5IEYHvPEZaJLKWJy2VIdUe3H74DY
+         h1YA==
+X-Gm-Message-State: AOJu0YznIk98b7NApXC77s5pxW/wncSQnH6hJ82U1JJHvFQp6Iu3IgoJ
+	o+Ks2GXp2EFU1xqJVDkVbH4t8IaejQlCdAo7ulZLSYBT5qV/lf8WWyDUrKPpc0g=
+X-Gm-Gg: ASbGncuPTrqx9t0TxYxn5e1agKv4ms7/5aKRQW1btvQ+F38tGEGybcgCd+NdOwbMvQg
+	h2+CF+0fG64WPxeYqoNI1ZRi6E7t0X7dDm7rNlX//2QT3OFO8f9cSebOZZ9Z/0ClEYXQenX8go9
+	5MXDiqdX1ev9F/40KcQQBoleas2uyIQqad7yqg2ZeRp9hvPJHMh+YGGpb3jZ5iVSwyjBP9qxZVk
+	NG3wZyMuB7EgXOse2aJlSCw9vgrI8/mc9PiFfxmIDRWWD1qBb2gbwVY0Tszmad3YlkMivj18nld
+	lagSR+A51shVpRFblofc+N0pubo71nycFrNyM4zFjCLOrXbzTkBkvcYUtZXDZe4nmHSWP93Xh11
+	CMlhe3LFVwzctMt+K
+X-Google-Smtp-Source: AGHT+IEXiuvVkmJ7AL2tGOF6iA49ygnCOhlUmGSUVyATTE58C1L+r6gHuct2aTzJUUjQraxsDuGRkA==
+X-Received: by 2002:a5d:47a6:0:b0:385:d7a7:ad60 with SMTP id ffacd0b85a97d-38a872f6a32mr5249989f8f.3.1736415909241;
+        Thu, 09 Jan 2025 01:45:09 -0800 (PST)
+Received: from ?IPV6:2a01:cb05:949d:5800:e3ef:2d7a:4131:71f? (2a01cb05949d5800e3ef2d7a4131071f.ipv6.abo.wanadoo.fr. [2a01:cb05:949d:5800:e3ef:2d7a:4131:71f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e385026sm1317325f8f.42.2025.01.09.01.45.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jan 2025 01:45:08 -0800 (PST)
+Message-ID: <728922f4-7e83-4117-ac9d-623680e6e87a@smile.fr>
+Date: Thu, 9 Jan 2025 10:45:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,102 +78,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: qcs8300: add DisplayPort device
- nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Ritesh Kumar <quic_riteshk@quicinc.com>
-References: <20241127-dp_dts_qcs8300-v1-0-e3d13dec4233@quicinc.com>
- <20241127-dp_dts_qcs8300-v1-1-e3d13dec4233@quicinc.com>
- <45643708-c138-4c77-85ce-fa7d49f2aa72@oss.qualcomm.com>
- <d536bbf0-4e8a-424b-b885-a22870bfbf31@quicinc.com>
- <71c6609e-e853-4680-939e-f3c9ec15233e@oss.qualcomm.com>
-Content-Language: en-US
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-In-Reply-To: <71c6609e-e853-4680-939e-f3c9ec15233e@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: syscon: Fix
+ ti,j784s4-acspcie-proxy-ctrl compatible
+To: Andrew Davis <afd@ti.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Siddharth Vadapalli
+ <s-vadapalli@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+ Romain Naour <romain.naour@skf.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250103174524.28768-1-afd@ti.com>
+ <20250103174524.28768-2-afd@ti.com>
+Content-Language: fr
+From: Romain Naour <romain.naour@smile.fr>
+In-Reply-To: <20250103174524.28768-2-afd@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: L5PQXoebQu0nL2a5ghQQs3UGSjnCBkBF
-X-Proofpoint-ORIG-GUID: L5PQXoebQu0nL2a5ghQQs3UGSjnCBkBF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
- bulkscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0 adultscore=0
- mlxlogscore=886 phishscore=0 priorityscore=1501 clxscore=1015
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501090078
 
+Hello Andrew, All,
 
-
-On 2024/12/30 21:27, Konrad Dybcio wrote:
-> On 26.12.2024 8:03 AM, Yongxing Mou wrote:
->>
->>
->> On 2024/12/6 5:36, Konrad Dybcio wrote:
->>> On 27.11.2024 11:45 AM, Yongxing Mou wrote:
->>>> Add device tree nodes for the DPTX0 controller with their
->>>> corresponding PHYs found on Qualcomm QCS8300 SoC.
->>>>
->>>> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
->>>> ---
+Le 03/01/2025 à 18:45, Andrew Davis a écrit :
+> This compatible was only added to the list for compatibility with older
+> dtschema (<2024.02). Add it to the other list also so both new and old
+> tools work.
 > 
-> [...]
+> Fixes: 0d078d47cd3e ("dt-bindings: mfd: syscon: Add ti,j784s4-acspcie-proxy-ctrl compatible")
+> Signed-off-by: Andrew Davis <afd@ti.com>
+
+Reviewed-by: Romain Naour <romain.naour@smile.fr>
+
+Best regards,
+Romain
+
+
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
->>>> +            mdss_dp0_phy: phy@aec2a00 {
->>>> +                compatible = "qcom,qcs8300-edp-phy";
->>>> +
->>>> +                reg = <0x0 0x0aec2a00 0x0 0x200>,
->>>
->>> 0x19c
->>>
->> got it.thanks.
->>>> +                      <0x0 0x0aec2200 0x0 0xd0>,
->>>
->>> 0xec
->> got it.thanks.
->>>> +                      <0x0 0x0aec2600 0x0 0xd0>,
->>>
->>> 0xec
->>>
->>> For lengths
->> got it.thanks.
->>>
->>>> +                      <0x0 0x0aec2000 0x0 0x1c8>;
->>>
->>> This one's correct
->>>
->>>> +
->>>> +                clocks = <&dispcc MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
->>>> +                     <&dispcc MDSS_DISP_CC_MDSS_AHB_CLK>;
->>>> +                clock-names = "aux",
->>>> +                          "cfg_ahb";
->>>
->>> power-domains = <&rpmhpd RPMHPD_MX>;
->>>
->> emm,we use RPMHPD_MMCX in qcs8300 mdss and dpu..
->>> (or maybe even MXC?)
-> 
-> Please verify what backs the PHY and update accordingly
-> 
-> Konrad
-
-Thank you for the reminder. it should use RPMHPD_MX.My previous 
-understanding that using MMCX was incorrect.
-
-
-
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index 032cdd30d95f1..717b616349e3d 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -214,6 +214,7 @@ properties:
+>            - ti,am625-dss-oldi-io-ctrl
+>            - ti,am62p-cpsw-mac-efuse
+>            - ti,am654-dss-oldi-io-ctrl
+> +          - ti,j784s4-acspcie-proxy-ctrl
+>            - ti,j784s4-pcie-ctrl
+>            - ti,keystone-pllctrl
+>        - const: syscon
 
 
