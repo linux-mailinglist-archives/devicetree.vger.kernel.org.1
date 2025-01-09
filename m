@@ -1,133 +1,114 @@
-Return-Path: <devicetree+bounces-137194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97598A07F18
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 18:43:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 463D3A07F20
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 18:44:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCAE9169049
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 17:43:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B8711621A5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 17:44:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53D7519DF6A;
-	Thu,  9 Jan 2025 17:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DFD21922ED;
+	Thu,  9 Jan 2025 17:44:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p7qV75z4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="b3Odd8fC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1491F192D7E;
-	Thu,  9 Jan 2025 17:42:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D1618C93C;
+	Thu,  9 Jan 2025 17:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736444563; cv=none; b=ru29GR42VRQTzOE5v3mLbOoSKrJVM76zexm/AglEvs9GPELxa8vP7fnR4EQ3jn0ikZdwAgXvJ1Er/GdPirqgPT+IVLDmp3znwrudSlk8pOtuAykEAg/lNhx2kLmZq3bO0cEVKostu43o34JuLJs4G6ERUCJwcvFB1JZ+q5Xw6XQ=
+	t=1736444687; cv=none; b=BiEjKoMhaSjCDM3baFw9/G5fq2sQlNxe6gMlPXyHQQvzxBR/ocTeU3ujKkiI6j/OvLD0wEC5gy5/kr3Mb5pIQ6prYqS6U+ycluJvd7+zWr9+q6mYYcH1pemgiDY5QbXRrHDdDaoNptkXCyaQq534uJgaMaQfKtcUgEBfRxbUXwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736444563; c=relaxed/simple;
-	bh=EijKJl28wp+gcuB4mOs6c/TVvHLtx/iw+sxnVMthWYE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uUSUOFJeoo1vCSgon1yjWfBZ8qlMsubpJKKHcP/0fDN23awdwgc1GE9tqam5y0Ya+kTq1azQMCE7DP+miRW6IAghnMwIe6SMe6aA36U/Mze0IWDQ9MeikS8es1tDjZYh2Uj5iRvbCG0EjY7qxE5zFiAczzwZhSB5VsHdgYALRho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p7qV75z4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7544C4CED2;
-	Thu,  9 Jan 2025 17:42:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736444561;
-	bh=EijKJl28wp+gcuB4mOs6c/TVvHLtx/iw+sxnVMthWYE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p7qV75z4FmBSLJbt39+WewUqPOjCeSu1TiqeR1vuQkGR/v/WEhXbohOlZi0J+cNg6
-	 EYZtY1F9KLKvJfwJtHMO0ly3KoBUnd6Yx0UxjqPCCkuuU0GcqPM2pOxcrpOqts8nVl
-	 3oBUhaXCkkdMsevFFbau9KMsobHOlKvyKbG2dO89xQ4HEZ+69koBU+V1BUF3BC9YyB
-	 Q6G2KRzajkCcw7rzt9BZLP9jPvwOuonRLKt5grRbl+8fBYT19skPaRWWdkSzzxxngt
-	 pPUT9KinyWtt1hMxSE+5M9d/2iC3OTsea25obE9autsUMHykBLcZkLdMz3ZduwJaG9
-	 0BSS/fh5yCDbQ==
-Date: Thu, 9 Jan 2025 17:42:34 +0000
-From: Simon Horman <horms@kernel.org>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lei Wei <quic_leiwei@quicinc.com>,
-	Suruchi Agarwal <quic_suruchia@quicinc.com>,
-	Pavithra R <quic_pavir@quicinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
-	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
-	john@phrozen.org
-Subject: Re: [PATCH net-next v2 06/14] net: ethernet: qualcomm: Initialize
- the PPE scheduler settings
-Message-ID: <20250109174234.GO7706@kernel.org>
-References: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
- <20250108-qcom_ipq_ppe-v2-6-7394dbda7199@quicinc.com>
+	s=arc-20240116; t=1736444687; c=relaxed/simple;
+	bh=H3RsMtQ/zKwyakaNedqtyJcU7K/Z+DkOPTEApOf7dDM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=slL9Dx0dWRAMIgF3sk+CI0mUpqStp+/BsQPs0X1EaCNdIhwf0IfaNBsK2F4KhtY0ij2sLF/Lxa/OYW/vULjlx5n0ofvCvu9TmNYIxfd5ptesp6tuQ0h5zCNVwji+tS0Q61tQn6uuAUcJ03jxwLzu+7mgPbjD8VEFZH1zpJ3U7hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=b3Odd8fC; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 509HidtP3193060
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 9 Jan 2025 11:44:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736444679;
+	bh=9/aeQ0SmN9ckvhhXxxG1o/4+2WE4rBItBoD6Q9SjHVM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=b3Odd8fCdhXk11gHRGneyhJucj1PLIxNwBuKbMjzFTEfxndgJvmJK93x3+Gx2aQXD
+	 7/Woy8UDtsaOEWbbuVA/9hQpgUXXqwaqxbhV71y1qJrati62rK/jx8/LPlOeZsdUi9
+	 UDDFZ4A2Rum6oV0EBEk9N4samcBeYzj/NZ6Q1Tyk=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 509HidcF115876
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 9 Jan 2025 11:44:39 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 9
+ Jan 2025 11:44:38 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 9 Jan 2025 11:44:38 -0600
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 509Hictj125965;
+	Thu, 9 Jan 2025 11:44:38 -0600
+Date: Thu, 9 Jan 2025 11:44:38 -0600
+From: Bryan Brattlof <bb@ti.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: k3-am62l: add initial reference
+ board file
+Message-ID: <20250109174438.w4nwmvk3yf6in2kl@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20250108-am62lx-v2-0-581285a37d8f@ti.com>
+ <20250108-am62lx-v2-3-581285a37d8f@ti.com>
+ <wbi7xppldoroq2okv4s43njug7x2yzgvnkhtjrtsij77fn6vsv@zzzzq6qzfeyh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20250108-qcom_ipq_ppe-v2-6-7394dbda7199@quicinc.com>
+In-Reply-To: <wbi7xppldoroq2okv4s43njug7x2yzgvnkhtjrtsij77fn6vsv@zzzzq6qzfeyh>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Wed, Jan 08, 2025 at 09:47:13PM +0800, Luo Jie wrote:
-> The PPE scheduler settings determine the priority of scheduling the
-> packet across the different hardware queues per PPE port.
+Hi Krzysztof!
+
+On January  9, 2025 thus sayeth Krzysztof Kozlowski:
+> On Wed, Jan 08, 2025 at 04:51:55PM -0600, Bryan Brattlof wrote:
+> > +	chosen {
+> > +		stdout-path = &main_uart0;
+> > +	};
+> > +
+> > +	memory@80000000 {
+> > +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
+> > +		device_type = "memory";
+> > +		bootph-all;
+> > +	};
+> > +};
+> > +
+> > +&pmx0 {
+> > +	main_uart0_pins_default: main_uart0-default-pins {
 > 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> ---
->  drivers/net/ethernet/qualcomm/ppe/ppe_config.c | 789 ++++++++++++++++++++++++-
->  drivers/net/ethernet/qualcomm/ppe/ppe_config.h |  37 ++
->  drivers/net/ethernet/qualcomm/ppe/ppe_regs.h   |  97 +++
->  3 files changed, 922 insertions(+), 1 deletion(-)
+> Avoid underscore in node names.
 > 
-> diff --git a/drivers/net/ethernet/qualcomm/ppe/ppe_config.c b/drivers/net/ethernet/qualcomm/ppe/ppe_config.c
 
-...
+Ah thanks! yeah apparently I didn't pay enough attention when updating 
+this node. Thanks for the review
 
-> +/**
-> + * ppe_queue_scheduler_set - Configure scheduler for PPE hardware queue
-> + * @ppe_dev: PPE device
-> + * @node_id: PPE queue ID or flow ID
-> + * @flow_level: Flow level scheduler or queue level scheduler
-> + * @port: PPE port ID set scheduler configuration
-> + * @scheduler_cfg: PPE scheduler configuration
-> + *
-> + * PPE scheduler configuration supports queue level and flow level on
-> + * the PPE egress port.
-> + *
-> + * Return 0 on success, negative error code on failure.
-
-Nit: The tooling would prefer this last line formatted as;
-
-    * Return: ...
-
-or
-
-    * Returns: ...
-
-Flagged by ./scripts/kernel-doc -none -Wall
-
-> + */
-> +int ppe_queue_scheduler_set(struct ppe_device *ppe_dev,
-> +			    int node_id, bool flow_level, int port,
-> +			    struct ppe_scheduler_cfg scheduler_cfg)
-> +{
-> +	if (flow_level)
-> +		return ppe_scheduler_l1_queue_map_set(ppe_dev, node_id,
-> +						      port, scheduler_cfg);
-> +
-> +	return ppe_scheduler_l0_queue_map_set(ppe_dev, node_id,
-> +					      port, scheduler_cfg);
-> +}
-
-...
+~Bryan
 
