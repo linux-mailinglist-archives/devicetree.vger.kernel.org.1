@@ -1,58 +1,70 @@
-Return-Path: <devicetree+bounces-137226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE90BA0834C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:14:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7AD3A0834F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:15:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07500188AF8E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 23:14:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE065168E51
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 23:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A10DD205E08;
-	Thu,  9 Jan 2025 23:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA89E205E33;
+	Thu,  9 Jan 2025 23:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y6PdrNw+"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="VLMDRBo0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8A6171658;
-	Thu,  9 Jan 2025 23:14:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60230205E37;
+	Thu,  9 Jan 2025 23:15:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736464482; cv=none; b=jTKILshpyKhndiEhTAF+aahFNUcFvYUtA2u2ZyNgoFmBrZH+ANOKHUOcuj6q2V4Sb8Vp/rOC7GCDpB7rcVmNMMC1xAkbtZCWU5OFQaAoi2S9mvuAsO7H+g1M7xQA+4YSQgdjIaQ2Eeko52GCMETU4MqyeRRaEotftZQuLtHdcLg=
+	t=1736464517; cv=none; b=f7GzGceH8/+fqggKUsVuF+2SHk3M9xh7dTJ0N+XnutUS/8KaGqhhEO4wYM+TTV8RVxn9jyiHtyWedDK1ebFruTXY6g04KKXTgpSS0bzrDPwqrZ4RynUW3fjjOaAgVn1NoLZq/PVVaBgNqCiTsYmv5KW1Enp7YSh81XSiBmIHP+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736464482; c=relaxed/simple;
-	bh=7RNYoRoouwMMHLrRUrcH49Z1dH1ydp4Nxs2+oz3MYGM=;
+	s=arc-20240116; t=1736464517; c=relaxed/simple;
+	bh=HznCb0V66Eh/wgloVhCI/l+lkOgEx8kQIjfNELNCpkQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lYjeFrIbII5qgUthnbjZjejm0svP4ZwCDFUDcsQBfjwCvR5rB2btyY9VjlQk5NcvmyCxqntSyvVGV3yZR9eIJPR/lHvedSLds8e92tm/RfOF+IpgRm6IIfvKWPf4te8PQCBi7parJVtZnPrHVABoGWG2pjXghytfdzn5l9RWlsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y6PdrNw+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72574C4CED2;
-	Thu,  9 Jan 2025 23:14:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736464481;
-	bh=7RNYoRoouwMMHLrRUrcH49Z1dH1ydp4Nxs2+oz3MYGM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Y6PdrNw+8WUUWULRgG7A/7cFVo+4zqbHdTRtAuKiHXcbgMLKpqnO6IjNyV3L39NEz
-	 3T6msHfRaADcMz6OoO2N0bHQvWMibmMHArmpSf7OgUo4cQitrdL1oyHYJZTMEa5zbR
-	 RNdcqyGnYiZQajAQ6cIxu7aUsxRQ8j/LOmpEz+wMugypBXqdTsr9hUvo846f2UAPSI
-	 zKBwE6Yhe7mV1KYlcwpj2w0urcIF1W3arwzPIwh+TuO49Z18ADUctCAl31Y9NEVdV5
-	 geNQh7vSg3GH30R3UjxzQaUhXRFKHZGdzPRqPQH9x3Xc7ALdWy9UNFcW+ASFdv0mc7
-	 xnI7n0zUh9PVg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Joel Stanley <joel@jms.id.au>
-Cc: linux-arm-msm@vger.kernel.org,
+	 MIME-Version:Content-Type; b=FxNM5snw3i17WZrWENdMa1Gsr8RqYrmuoulXYg4yvC6hOK6wGc6b0EFuWQo/gIeWqVK89JiqbJteyWvYsnz5VQboFkUCaB5OzId4b8NQmmiHKABPnYzzrSUBxF60HSHEoM4W7qZBnJ0MUB8sXb7ru4XfqrR41/0sZmzDGopxASM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=VLMDRBo0; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=DMXLTKZv7aPQSaOukCeYXiGlmyqmXrYyjrj2l+DZP5Q=; b=VLMDRBo0Fhxksbi/ChrY9gaNRh
+	o12d4T6RURl9lbQ51vCzjGjUq9nTsq4uAnKCKqM86LZS0Du0OHDSwH/h9jND8AwaCIEWJZcIIfTI6
+	6Jauton0lBxcEHROkEGLVW1/Fm0RsdkiReO3f73GQzzaWeoM4FZQqHYDmrDy1rsE+siE+UjyOYxhS
+	rBka+Yl1YXrd+yqdkOhTn+48LdB+ZrKhCw8RI/bmk7YK/4f5/IeRG686DrjaQO37o++1bXbxnyas9
+	wq3nuWEQPyTRuUSb2jkGY3y+f0SkkLy9zyGRWW089m9VEywmqRPGrv9oP+zLHlraiwZNSL0+CTDrm
+	+DOU59Kw==;
+Received: from i5e860d05.versanet.de ([94.134.13.5] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tW1k9-0005wG-FP; Fri, 10 Jan 2025 00:15:13 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org,
+	Shimrra Shai <shimrrashai@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: qcom: romulus: Update firmware names
-Date: Thu,  9 Jan 2025 17:14:39 -0600
-Message-ID: <173646447668.213428.15301324993031009963.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250108124500.44011-1-joel@jms.id.au>
-References: <20250108124500.44011-1-joel@jms.id.au>
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org
+Subject: Re: [PATCH v4 0/2] arm64: dts: rockchip: Add Firefly ITX-3588J Board
+Date: Fri, 10 Jan 2025 00:15:03 +0100
+Message-ID: <173646444755.2945728.11659314833812280538.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241216214152.58387-1-shimrrashai@gmail.com>
+References: <20241216214152.58387-1-shimrrashai@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +75,37 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 08 Jan 2025 23:14:59 +1030, Joel Stanley wrote:
-> Other x1e machines use _dtbs.elf for these firmwares, which matches the
-> filenames shipped by Windows.
+On Mon, 16 Dec 2024 15:41:50 -0600, Shimrra Shai wrote:
+> Draft 4 for the device trees for this board. I hope this one finally
+> addresses all outstanding style and organization issues. Note that the
+> technical functionality limitations from the preceding versions remain.
 > 
+> Changes since draft 3:
+>  * Removed the rockchip-pca9555.h header and used the pin numbers directly
+>    in the .dts.
+>  * Removed the display-subsystem node in the .dts. No other board seems to
+>    have one like the one that was there and it was causing warnings.
+>  * Removed extraneous property "rk806_dvs1_pwrdn" on the PMIC subnode on
+>    SPI2.
+>  * Removed an extraneous property "rockchip,skip-scan-in-resume" on the
+>    PCIe node pcie2x1l0.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: qcom: romulus: Update firmware names
-      commit: 983833061d9599a534e44fd6d335080d1a0ba985
+[1/2] dt-bindings: arm: rockchip: Add Firefly ITX-3588J board
+      commit: 8886252102bd774656d19423b7d85e1ddd78f9c0
+[2/2] arm64: dts: rockchip: add DTs for Firefly ITX-3588J and its Core-3588J SoM
+      commit: ebe82df46fba0f0fe45d7e03ddf5ca0f6e758a06
+
+I've sorted some properties and dropped the status="okay" from the
+fixed regulators added in the board dts.
+status=okay is the default, so there is no need to add this to new
+nodes.
+
 
 Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Heiko Stuebner <heiko@sntech.de>
 
