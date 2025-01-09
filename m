@@ -1,144 +1,125 @@
-Return-Path: <devicetree+bounces-137040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C67F6A07515
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:50:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4CD3A07534
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:02:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02DB83A7DFA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:50:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E937D1650E0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77834216E27;
-	Thu,  9 Jan 2025 11:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6B52163AA;
+	Thu,  9 Jan 2025 12:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lGhWg8zT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lw/9ZmFe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7861A1FF1BF;
-	Thu,  9 Jan 2025 11:50:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E3A195;
+	Thu,  9 Jan 2025 12:02:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736423413; cv=none; b=qF8Mo32gPoTnZ+Zp8joZ76Toz7I94ujxTXLHWNxoj1V7gpC/JnqTiAd1C64K+xBEuabFTNsCLPDMUgyMtaJijmc2PYGEJeoeF4rOdXyL8Qh4OyfIpALyD8vqcSNWQxF+ghnbIbzw2jvRMWvgx5LuamlZSLNTtw1lIBV/XjcfnYw=
+	t=1736424125; cv=none; b=OG3XSyndA6y+CIy4ola7QYKk0QBoKSztcpmii1gi1yw9CoKEMUeUs06bhPh+OQIpS3GoM2iDiER1Uys1MXlp9QSgSbOoflrsqUjBWetTRyTV36MvEzmpeGLO8WttPCNQd4oEkOzGWeEgp59GS2YSWxStBYibG7oNNX0dQkmVBMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736423413; c=relaxed/simple;
-	bh=nRmbhT3eiEsY8u7OXDBFzc0T4sjK9WyP0gIatVKdbAM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tmVYZPpPjhBchhyo4cgsCJdN681RYxY4dD/N91oWMkctcvOk67fOgmQ32A7qD22YFdNOOjxiMW+cGemXfSbKuwkKUXuvxLdA4HqEUKZokfH9Fq8ozg/kmepGVqOO2rLHp6jpSx5Lo+hX3A9wNAfqSuDN48vzrUx4CsRVFj3d+t4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lGhWg8zT; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 509BnwEK3155882
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Thu, 9 Jan 2025 05:49:58 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736423398;
-	bh=cjlJPdHZfFlnWi9zFpTiPy4i/wlFmKUpofmp/B7kgII=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=lGhWg8zTGMA3RxVhxbjdXCKCKTUWgoiq2kq6TVUfw/I+NMSKnEE27ZSy2j1e+81YF
-	 HzOzK/i2xsxpEDD9zXQf96TTA3Oj/RgXSMX9sJHlaQZUr3Z+MVulXwonWjzOgCI7x9
-	 YmaJaB3UvRFMuIGnGrSkV7nSFFBGVwjlVqhD3URY=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 509BnwYF041983;
-	Thu, 9 Jan 2025 05:49:58 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 9
- Jan 2025 05:49:57 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 9 Jan 2025 05:49:57 -0600
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.104])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 509BnukD112901;
-	Thu, 9 Jan 2025 05:49:57 -0600
-Date: Thu, 9 Jan 2025 17:19:55 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Romain Naour <romain.naour@smile.fr>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
-        <vigneshr@ti.com>, <nm@ti.com>, <afd@ti.com>,
-        Romain Naour <romain.naour@skf.com>,
-        Siddharth Vadapalli
-	<s-vadapalli@ti.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable
- ACSPCIE output for PCIe1
-Message-ID: <eu5xmihnffmqas2x2ioleuzzvyfbffl5eqlwuqfe4mh6qa2rzy@7mmuxsbkmz4o>
-References: <20250109102627.1366753-1-romain.naour@smile.fr>
- <20250109102627.1366753-2-romain.naour@smile.fr>
+	s=arc-20240116; t=1736424125; c=relaxed/simple;
+	bh=44XC/PoinYXBD7pTczVCDvbpws2IBUMxEXAauXTCGG8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o3IH6SGzqUVmLkZnAlL8e6pf7n5EAArlBPu3i/7PNkYiCYylRJ8JDcUpwfTDCd4mkx/W/i0WAOA3wDHTlq6u/OBHj6/MrzIeE4qUvWNRC1xp5zO3F9VMpHVeaD2NZDu0ZcRAAWM27Ef1yRaQOGUlrIhB2405dITK23Pg4u6w8mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lw/9ZmFe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41250C4CEE7;
+	Thu,  9 Jan 2025 12:02:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736424124;
+	bh=44XC/PoinYXBD7pTczVCDvbpws2IBUMxEXAauXTCGG8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Lw/9ZmFeEQJ+wTxulF0TE5jHA5xXgi+sWJirHx/0MOKs9NDGFlAXJ8X1Szz3vS+a2
+	 PNxJ8qwlx1Y0yq7jtDSZM8/ramIS8h9Wf1dGfKjXUv3FMOQiYc2r7L90bfmMgAvYbu
+	 oUyFeL68Bm/fpa0UNr4kvdC3vgvBsWqeIp/uozshaPdQJd5rMKEwBYK1/anhwDgEXq
+	 nsS2T+JmozfTh0NoRFXBP/jnV/+J2Q9Wy4zGpxnnEVXOxKm33n3osizYBGHCHqtgkG
+	 2CrtQR62mIJNOjAdkJjx7dRn4F01WOLBRyu628vTY+Da8c+/nqEC5x0gkDCUmQJWL4
+	 xbs4JkTNu6S9g==
+Date: Thu, 9 Jan 2025 12:01:58 +0000
+From: Lee Jones <lee@kernel.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>, Hans de Goede <hdegoede@redhat.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v14 07/10] mfd: simple-mfd-i2c: Add MAX77705 support
+Message-ID: <20250109120158.GH6763@google.com>
+References: <20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com>
+ <20250108-starqltechn_integration_upstream-v14-7-f6e84ec20d96@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250109102627.1366753-2-romain.naour@smile.fr>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250108-starqltechn_integration_upstream-v14-7-f6e84ec20d96@gmail.com>
 
-On Thu, Jan 09, 2025 at 11:26:27AM +0100, Romain Naour wrote:
+On Wed, 08 Jan 2025, Dzmitry Sankouski wrote:
 
-Hello Romain,
-
-> From: Romain Naour <romain.naour@skf.com>
+> Add MAX77705 support - fuel gauge and hwmon devices.
+> Hwmon provides charger input and system bus measurements.
 > 
-> Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
-> (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
-> provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
-> provide refclk through PCIe_REFCLK pins.
-> 
-> Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
-> module's PAD IO Buffers.
-> 
-> Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
-> Signed-off-by: Romain Naour <romain.naour@skf.com>
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 > ---
-> With this patch, we can remove "HACK: Sierra: Drive clock out" patch
-> applied on vendor kernel for BeagleBone AI-64:
-> https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
-
-[trimmed]
-
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index af3d730154ac..32a232a90100 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -5,6 +5,7 @@
->   * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  #include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/phy/phy-cadence.h>
->  #include <dt-bindings/phy/phy-ti.h>
->  #include <dt-bindings/mux/mux.h>
+> Changes in v13:
+> - remove compatible from cells
+> - change mfd compatible to match max77705 fuel gauge node
+> ---
+>  drivers/mfd/simple-mfd-i2c.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+> index 6eda79533208..22159913bea0 100644
+> --- a/drivers/mfd/simple-mfd-i2c.c
+> +++ b/drivers/mfd/simple-mfd-i2c.c
+> @@ -83,11 +83,22 @@ static const struct simple_mfd_data maxim_max5970 = {
+>  	.mfd_cell_size = ARRAY_SIZE(max5970_cells),
+>  };
 >  
-> @@ -82,6 +83,11 @@ ehrpwm_tbclk: clock-controller@4140 {
->  			reg = <0x4140 0x18>;
->  			#clock-cells = <1>;
->  		};
+> +static const struct mfd_cell max77705_sensor_cells[] = {
+> +	{ .name = "max77705-battery" },
+> +	{ .name = "max77705-hwmon", },
+> +};
 > +
-> +		acspcie0_proxy_ctrl: syscon@18090 {
-> +			compatible = "ti,j721e-acspcie-proxy-ctrl", "syscon";
-> +			reg = <0x18090 0x4>;
+> +static const struct simple_mfd_data maxim_mon_max77705 = {
+> +	.mfd_cell = max77705_sensor_cells,
+> +	.mfd_cell_size = ARRAY_SIZE(max77705_sensor_cells),
+> +};
+> +
+>  static const struct of_device_id simple_mfd_i2c_of_match[] = {
+>  	{ .compatible = "kontron,sl28cpld" },
+>  	{ .compatible = "silergy,sy7636a", .data = &silergy_sy7636a},
+>  	{ .compatible = "maxim,max5970", .data = &maxim_max5970},
+>  	{ .compatible = "maxim,max5978", .data = &maxim_max5970},
+> +	{ .compatible = "maxim,max77705-battery", .data = &maxim_mon_max77705},
 
-0x_0011_8090 is probably *not* the "PROXY" register i.e. it could be
-locked with the help of "CTRLMMR_LOCK0_KICK0" and "CTRLMMR_LOCK0_KICK1"
-registers, in which case the CTRL_MMR region needs to be unlocked to write
-to that register. On J784S4, that happens to be true, which is why the
-proxy register 0x_0011_a090 was used at [0]. Please test with 0x_0011_a090
-which is the "PROXY" register on J721E as well, i.e. it can be written to
-unconditionally.
+Drop the battery part from the MFD (group) name please.
 
-[0]:
-https://lore.kernel.org/r/20240930111505.3101047-1-s-vadapalli@ti.com/
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
+> 
+> -- 
+> 2.39.5
+> 
 
-[trimmed]
-
-Regards,
-Siddharth.
+-- 
+Lee Jones [李琼斯]
 
