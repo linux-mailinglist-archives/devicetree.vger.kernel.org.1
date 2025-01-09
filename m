@@ -1,127 +1,159 @@
-Return-Path: <devicetree+bounces-136936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 965F2A0705E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:54:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A331A07079
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:59:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9CA53A6F92
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 08:54:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 942201885525
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 08:59:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17FAA1F8EF5;
-	Thu,  9 Jan 2025 08:54:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EBAE2147ED;
+	Thu,  9 Jan 2025 08:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpzT/UaH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Wb4YXfsQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FB32F2D;
-	Thu,  9 Jan 2025 08:54:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA0491FDA;
+	Thu,  9 Jan 2025 08:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736412884; cv=none; b=esz779usymijE4e3TidRiDfPa1kOTv1+WlG9oQUzZ+VHaHqNXptoMykpnWNjoQifwpqdR5c7bn2lM3pU4fELhVtg0QDrSx6xJWH8yEB9GFmagO/KGowtoQRMv/9dKk0peWMd+1QRSbe4BCJImogfvOwa1FBYoUO5vQTOwxKM6Us=
+	t=1736413179; cv=none; b=lGSF/IYxCNuXSq1L2X3LyCKGM5GG6gNbI0Li75451u4hk54kgvH8N2oviJUDYtvVF6+lJUPqqydmo/vU4lIFwJKaYTnPrni1Ltrdl/7MA5dh2rdSK8ym1MZFWUgid95IB+vBuYIa/hKR551iwvVIzNMzAHfol02AM7FXEhyZTmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736412884; c=relaxed/simple;
-	bh=LombH1FD70xGrzs2x51pntDQW6o2Z1wYpa9hFitkHlE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XLFgXOcaTxKuNtVQEKrcjbjFhK+Nt7apF2dfrlmzQwWUAebUiorSapKfX6Zv9MlfCmdYtUCNBP/HvzuiKamvontHelby+JA8iE71z3jGycmatpump4S4AACvlbY6MV2cYP+uFb2kiJRfusuS9OIBMLEzxh9h3cTrYH0A6A2X6uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LpzT/UaH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18D48C4CED2;
-	Thu,  9 Jan 2025 08:54:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736412883;
-	bh=LombH1FD70xGrzs2x51pntDQW6o2Z1wYpa9hFitkHlE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LpzT/UaHrYznnPqZq03T5+rn1MsO3ikIHjM++A+fSpNYpveoizqxWcg1FM7AARFy+
-	 uFTDL9ym1zgSHu1Go5E0lNhq+YjNmAVRRAwQ5bHn+/EvsjxrQdaInuFa5FA815DPST
-	 12BQgzy84zAw308jBjHtERr+wafzu9ujZLlmrfuNpRlwtJRl2KrtrYAaGW2R5VMMYR
-	 zPiSQLoN3HLnQt0dnqdhL/8MAhj5MR27OPBFch0W76lnS9enoxZEPcRt7z+h5eVd0U
-	 v0HmSl+a49k/GhFBnUAd475JIsgqZUGKDYHOIjpCYgqbo/fRMfxorrloywtbUx/zAC
-	 Pw9Qiqf64Lifg==
-Date: Thu, 9 Jan 2025 09:54:40 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org, 
-	sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
-	dmitry.baryshkov@linaro.org, andy.yan@rock-chips.com, hjc@rock-chips.com, 
-	algea.cao@rock-chips.com, kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 13/20] dt-bindings: display: rockchip: analogix-dp:
- Add support for RK3588
-Message-ID: <gmwmnjc4pzyzzstyozlfcdaw2ntfxg6ixofio2j746hmixhblc@sjbcvwcgitmy>
-References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
- <20250109032725.1102465-14-damon.ding@rock-chips.com>
+	s=arc-20240116; t=1736413179; c=relaxed/simple;
+	bh=KS1VjAxRQg3CRRKtln5ixibrNRlGZhqRwsa8jyFa/xs=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=o5/q+b3Cc9pvmYUn5ajpFXrsoR6uSre53ZThNbCPaVKfLrw4VkXoaThSK7oi/mtS1DHCXcfiGpbunHUVd/hZXm4yX+iY1kqB2vYF91eqXkLJKhkpNCsIX5AQWlwYQ8FCqGTg9yAs/87obfxnSPfoiYJ9h+Wm7yuMbBuqBRuC8/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Wb4YXfsQ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5098wbf1007216;
+	Thu, 9 Jan 2025 08:59:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=rz/rmzpthgZXQlGx2R90n1
+	ahxgvYFOkuOwt4caxMvG8=; b=Wb4YXfsQj6XLCvdaA0+Zxy+6BO94F6aAzxcG68
+	UQXNAbUpNCMPmWi7NyzPSu4LJdFPChNClkBYV8V86LBdt0iOGbgSR8kz74/f5QcH
+	x55ij5EZLKygwUTzfBEMv4/C1kHq+d+/Qa6kfnRaDWfp72qfOVa/edaz4Kyz/O22
+	Se71x92ZsZOA8dazgAI+ntcMDe2oDkNW9IwKkfdrXT7nuhoJM4uHUyIxhJ4Qr/iq
+	GJi7x3kRNrW1i7t8Ra9K0v8PV9iAjEr234n23oeHjKB62Ggtlu8EYUHSxADDhhpN
+	IoYsgRWJo7Zyea46EmZSgSU+91Nthw6simG3jiiqWeNo1o1g==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442bdxg02e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jan 2025 08:59:33 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5098xXpA021014
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Jan 2025 08:59:33 GMT
+Received: from hu-imrashai-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 9 Jan 2025 00:59:27 -0800
+From: Imran Shaik <quic_imrashai@quicinc.com>
+Subject: [PATCH v4 0/6] Add support for GPUCC, CAMCC and VIDEOCC on
+ Qualcomm QCS8300 platform
+Date: Thu, 9 Jan 2025 14:27:43 +0530
+Message-ID: <20250109-qcs8300-mm-patches-new-v4-0-63e8ac268b02@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250109032725.1102465-14-damon.ding@rock-chips.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIePf2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyTHQUlJIzE
+ vPSU3UzU4B8JSMDI1MDQwNL3cLkYgtjAwPd3FzdgsSS5IzUYt281HLdJEPzJGOLJEszQwsLJaD
+ mgqLUtMwKsMHRsbW1AAEu851oAAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Satya Priya Kakitapalli
+	<quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Vladimir Zapolskiy
+	<vladimir.zapolskiy@linaro.org>
+X-Mailer: b4 0.14.1
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: OHSX5XI_OUj0Rf86w9TRAJH964xXsfFo
+X-Proofpoint-ORIG-GUID: OHSX5XI_OUj0Rf86w9TRAJH964xXsfFo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxlogscore=999 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 bulkscore=0 clxscore=1015 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090073
 
-On Thu, Jan 09, 2025 at 11:27:18AM +0800, Damon Ding wrote:
-> Compared with RK3288/RK3399, the HBR2 link rate support is the main
-> improvement of RK3588 eDP TX controller, and there are also two
-> independent eDP display interfaces on RK3588 Soc.
-> 
-> The newly added 'apb' reset is to ensure the APB bus of eDP controller
-> works well on the RK3588 SoC.
-> 
-> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> 
-> ---
-> 
-> Changes in v2:
-> - Add the main defferences of the RK3588 eDP and the previous versions
->   in commit message
-> 
-> Changes in v3:
-> - Expand the property clock-names, resets and reset-names
-> 
-> Changes in v4:
-> - Remove 'spdif' clock which added in v3
-> - Add the comment of newly added 'apb' reset in commit message
-> 
-> Changes in v5:
-> - Put the differences between RK3288/RK3399 and RK3588 into 'allOf'
-> ---
->  .../rockchip/rockchip,analogix-dp.yaml        | 37 ++++++++++++++++---
->  1 file changed, 31 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-> index eaf4e67e232e..3cdea9e63522 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-> @@ -15,6 +15,7 @@ properties:
->      enum:
->        - rockchip,rk3288-dp
->        - rockchip,rk3399-edp
-> +      - rockchip,rk3588-edp
->  
->    clocks:
->      minItems: 2
-> @@ -30,12 +31,6 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> -  resets:
-> -    maxItems: 1
-> -
-> -  reset-names:
-> -    const: dp
+This patch series add support for GPUCC, CAMCC and VIDEOCC on Qualcomm
+QCS8300 platform.
 
-Widest constraints are always here. You only needed to add allOf.
+Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+---
+Changes in v4:
+- Updated the commit text as per the comment from Bjorn.
+- Fixed the CamCC QDSS clock offset.
+- Link to v3: https://lore.kernel.org/all/20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com/
 
-https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+Changes in v3:
+- Added new GPUCC and CAMCC binding headers for QCS8300 as per the review comments
+- Updated the new bindings header files for GPUCC and CAMCC drivers. 
+- Added the R-By tags received in v2.
+- Link to v2: https://lore.kernel.org/r/20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com
+
+Changes in v2:
+- Updated commit text details in bindings patches as per the review comments.
+- Sorted the compatible order and updated comment in VideoCC driver patch as per the review comments.
+- Added the R-By tags received in V1.
+- Link to v1: https://lore.kernel.org/r/20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com
+
+Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+
+---
+Imran Shaik (6):
+      dt-bindings: clock: qcom: Add GPU clocks for QCS8300
+      clk: qcom: Add support for GPU Clock Controller on QCS8300
+      dt-bindings: clock: qcom: Add CAMCC clocks for QCS8300
+      clk: qcom: Add support for Camera Clock Controller on QCS8300
+      dt-bindings: clock: qcom: Add QCS8300 video clock controller
+      clk: qcom: Add support for Video Clock Controller on QCS8300
+
+ .../devicetree/bindings/clock/qcom,gpucc.yaml      |   3 +
+ .../bindings/clock/qcom,sa8775p-camcc.yaml         |   6 +-
+ .../bindings/clock/qcom,sa8775p-videocc.yaml       |   1 +
+ drivers/clk/qcom/camcc-sa8775p.c                   | 103 ++++++++++++++++++++-
+ drivers/clk/qcom/gpucc-sa8775p.c                   |  49 +++++++++-
+ drivers/clk/qcom/videocc-sa8775p.c                 |   8 ++
+ include/dt-bindings/clock/qcom,qcs8300-camcc.h     |  16 ++++
+ include/dt-bindings/clock/qcom,qcs8300-gpucc.h     |  17 ++++
+ 8 files changed, 196 insertions(+), 7 deletions(-)
+---
+base-commit: 4b90165c7d1173e0f65538d25aa718ec7ecdd5d6
+change-id: 20250109-qcs8300-mm-patches-new-b17b38b96188
 
 Best regards,
-Krzysztof
+-- 
+Imran Shaik <quic_imrashai@quicinc.com>
 
 
