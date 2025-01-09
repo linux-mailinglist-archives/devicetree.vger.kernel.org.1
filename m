@@ -1,139 +1,124 @@
-Return-Path: <devicetree+bounces-137055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20810A07620
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:54:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F92AA0762B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:55:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D30531888CE2
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:54:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E95F3A46C2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7235217F4E;
-	Thu,  9 Jan 2025 12:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFC89218599;
+	Thu,  9 Jan 2025 12:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VJwj5/fj"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="MjP2z39a";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="CdQoiOMc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-b8-smtp.messagingengine.com (fout-b8-smtp.messagingengine.com [202.12.124.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30497215074;
-	Thu,  9 Jan 2025 12:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23225215074;
+	Thu,  9 Jan 2025 12:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736427240; cv=none; b=GkQOMrwpPu4lRNgMsilwNeqSa40xSV8f/7IvHItuHQML91OBjKOmBycZq9XTL/V7paipvsokDKmfUnlRwMGxKVpMuRIW9W6J36eCTi9s6XkImtwmiadBTWWQEB6DerLCE8mCc9IjpFvQD5kbz1RL20DPs7pwAwAqJEYwXvA5cBU=
+	t=1736427297; cv=none; b=YO3+vuUfijGTkzCQNXhWRh0SY6P3heoo9UP9frlabtcMhcIOLjOwssxP8d+8oD4+a2JtybqYfZNjUzVjJ1ZWGRC2ESEW4fMiZc5NOrAk5WHELy9rn6mUxLMeFWJF308v8b7Y6f34DMuqAlaSzBuAgaf9iemtuwVpsNoydasiqwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736427240; c=relaxed/simple;
-	bh=XngCrPFnKYJnX4wmtZJNVByjfsD6XAwJEe6yUvrW7Ok=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ucWbLF87LTs9ROz5CrdRg4KxYcDf/IBUjo4ngz4WskGf9t+hJrs8ZKq+UPGY8u8Op8JLVUVvKJ9dQUsKmszY7wfTLEbpLgU8iITEyRKaQZmBwxNYT+Uyma8BsJZ28uHzybd/3xl3nS6751zljUhzw4M7JWnrsmBcekGMQWJTlik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VJwj5/fj; arc=none smtp.client-ip=209.85.222.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-85bad7be09dso524851241.0;
-        Thu, 09 Jan 2025 04:53:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736427238; x=1737032038; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bOwGmglZgSOm6Gk1CXqHJczAaEbPrQw+u7E9D/ELwX8=;
-        b=VJwj5/fj+JeUMhJvH+jUgP/k+YZKZ+62aBqpgRaCKX6GDNUHxlAZ+GwlSZsQDmPTZB
-         TN5ZbyxgGVOQcRYrLO+5zduzohsMqEKPT/G+dYbppsV8DOLgaO8mpj67yJLF3Jv0fLhJ
-         UHbzvOkvCimvjMUJg3szwebzPLOBPD7G6WJsbRdRbscJ8VQ4+7LxPboRU/1QJqjilyRL
-         Djh042nA5Ogpkj+E17q25Qn3KeZ4X9+sVYniu5+VWjI2mX+n8QKU53fD99yuANrS6Lqr
-         WsFZoSu8FyFH8mf1/eT6HsvcnpL9DkxR1f5d5KdtHu7LPQVi6y9lCOiuVPUKDnOMSOCw
-         JjTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736427238; x=1737032038;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bOwGmglZgSOm6Gk1CXqHJczAaEbPrQw+u7E9D/ELwX8=;
-        b=pQi8owKthUGWHzvYKYHvPwNBs/+7g1WipoZpmiJ2dJURHPRVyz5sIgYNH9uCpnsuvO
-         2/oYN0ycAYkEyLT2hTOjDmSD3z0tU7brDK4vt5BEBIqO4FaVGd7A3OJRm7bxaXPxcn/t
-         jJERQPiFAXvxXUM9XIta1MSAjrnz+A109sa46pajEPlGQrHK7mwcAsTLx0pQlXX7xaN5
-         Gp1ryl3pcxICLu0RsaX4tu43scM+rkZBk685r8n8uk2kIq+M1i0AAioaqlCOheirJOty
-         EnvFo5rdPK9X97374fb38O8JaFLKkeDVU7WYbM+sGQJC+kdfddkeK+Y61LxaLCFXUMrY
-         EEmA==
-X-Forwarded-Encrypted: i=1; AJvYcCU/XyD0HbWhGnxFTvl7Jun1/weLMcVzoSfTzt1WV3CzfyJTvzezLN6s5sw0yNZaFivlOjreisZr2OKKXQ==@vger.kernel.org, AJvYcCVYxn/Mo0q/Gry25nD/81OENKqhrjg8ZCDuFiNAxPHnHlLtgx4/Q4oDSOUSxHu1qQGj35LWzQBEGFPYogQ=@vger.kernel.org, AJvYcCViGuItW0SwnG7JoJ7fpKQMGDI75U7VGxd+4H+XIqZBXR+T9DccAu0SQJ5gPeSRhvZKCNfqUgP3MsY=@vger.kernel.org, AJvYcCWyj5GyXXDJi1KikdHHNFhOlzdPJRRv25K+WGy4n6ScCzwimEjllgWgwOo/YJZA39I3ys0VutrGxYcf@vger.kernel.org, AJvYcCXDVT6jiKRj0lhfhZhc2O1bgEYT3MUijXzSYwmO7lvx637gMvJO8YuBfxDo2vifHb5UDd76b3YrnNYzrTNU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYFvOl+rE/g6bToGcTskE/Fmv4RxkZgmVjpzo9gIW0pg7NjCmR
-	arXYyAwembbRB0eOLAsFCqPUbCjG6B2f1dmV0ed1+WXkDg/XDwQRV//521sI2VJqp8qE3rqZPKq
-	fd3w0sPETJY7OHc3zgpqUt5W+hjc=
-X-Gm-Gg: ASbGncvfPXRHzAMKWmhm/ZiWxVW3i/ePQTEC5EfxxpBMXmc7ULZDUHkNNfPUwEqu79W
-	3P46ibr5vfWcCWezbLynVLSMznzU3Qq1/I1HF/w==
-X-Google-Smtp-Source: AGHT+IH1XwcQ9+xLozO4Q3bu65QRU8W1LZuyVdusoys5faul4KaN3rPauBxadAiPSUOGB0xJz1gY3MkUHKo9TFNuZko=
-X-Received: by 2002:a05:6102:d87:b0:4af:c5c8:bb4c with SMTP id
- ada2fe7eead31-4b3d0e0f3eemr5260422137.16.1736427237410; Thu, 09 Jan 2025
- 04:53:57 -0800 (PST)
+	s=arc-20240116; t=1736427297; c=relaxed/simple;
+	bh=UKuzNOAq2BRVIFbQ/ptyooIkT5PzFtsm0StZofvGJz0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eMsEppeVqEsQ+I3c6bv4pTBAWsSiHbPPSFRScn28ja1toh79sLUUL65vnU35cxDzVhg8uEgmM6e9jW2Zuis0ptQ8Qtcxt5KdSq6/STQPFkobOS3LGDef0i+bxdwmXzmAokYAfyME7YE8uAeJWKv/m+J0MAYFVBhdEqnhINR60tc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=MjP2z39a; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=CdQoiOMc; arc=none smtp.client-ip=202.12.124.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
+	by mailfout.stl.internal (Postfix) with ESMTP id D9DF51140126;
+	Thu,  9 Jan 2025 07:54:54 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-04.internal (MEProxy); Thu, 09 Jan 2025 07:54:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1736427294; x=1736513694; bh=wS
+	ZUeLCqrfniYeuIT4ZZysXNB9aEjuUp58VNinew1GA=; b=MjP2z39anX4TtXT6SE
+	5S+0/W8TvAc5XoRDVa4vDf8mTVeme8yBzGRLhh93v8jf5ZAlc2fHW1gJbS4QUwpr
+	U4ERpb/O3sfw7zjv8fHyZQuGtGtx2Z7LwryzI+/pBfQgEsNJnrbUlZrF5Q+3/ag0
+	pUqnyb5wMHtPWh9++42FbpVvqPYpODG+ENZY0eeoMj/ntgzIvdgCzaXyw/BkBosX
+	Fl1Au7NkSFdtAX1Ok75RSfUHKCn09kBLCawBr2WaGuSj8JvILBNbDXk0o8JyOTij
+	HQAXghjGB92KaUi0ZCFPFKrYRKH+iKAgFr1EACqWDLD0uBq3Xmorgo8zbuD3O+7x
+	LjEA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1736427294; x=1736513694; bh=wSZUeLCqrfniYeuIT4ZZysXNB9aE
+	juUp58VNinew1GA=; b=CdQoiOMcQapACJeOsQVQDn7OM1JVWDl+IM+8C8+lKH8N
+	O/1gx39djYmQJeNu+hhBu23bl2YxIKRakb9AfGRPc+ZsOsEb+chZLG5Z+r8JSdjn
+	IBzAypgSJWobZ5Vs03kYd6AqiM7s8vJSgBqQHSyTKxSjBeDFwdhSAOs74U7DMQGh
+	3ScMFGhwO13e8jfDV+nBjcuWa0i+FWDwRMuklH42XIKVayvmiAt0CUzR+3bPDNYz
+	t49avhqIe74VaF9DZcMbxi8fUNFXE5akeQofM0JWov9D5n2kKzN0vOr8bSmOiI4l
+	h7mhnWG6lc8OmdwSgf5Q8VwGRcfZhupzGhvN+xjsAg==
+X-ME-Sender: <xms:Hsd_Z_mfkCma1aMV7jA6gr8bho6ITWWC18--wzoUbKrgZCKlG70-pA>
+    <xme:Hsd_Zy3vz1H_ofJJuL7-Vw3Fdw2xu_Ea7_ANDLqR_7sYSTjfPYFVnbJu0KhBnLWB7
+    aasBwhC4QnWWiFzjik>
+X-ME-Received: <xmr:Hsd_Z1qcRyF9nWRDFREZ1aZesDX7pZ2K3H1bWYxJKvaS9_pKk-AYn1d-qezNd5CmCqqR8kTQYhqbaxIMOO0nGFju9A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudegiedggeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevuf
+    ffkffogggtgfesthekredtredtjeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhu
+    nhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrth
+    gvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepheduleetteekgffffedufeeuvdejiedv
+    kefhveeifeegffehledtvdevhfefteegnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+    hrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgr
+    thgvtghhrdhsvgdpnhgspghrtghpthhtohephedpmhhouggvpehsmhhtphhouhhtpdhrtg
+    hpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtthho
+    pehjrggtohhpohdrmhhonhguihdorhgvnhgvshgrshesihguvggrshhonhgsohgrrhgurd
+    gtohhmpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvghrrdhk
+    vghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvg
+    hrnhgvlhdrohhrghdprhgtphhtthhopehnihhklhgrshdrshhouggvrhhluhhnugdorhgv
+    nhgvshgrshesrhgrghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:Hsd_Z3na0fWkxWZzuBNASMF_ikhP9sv9kdDbbAKUZ7z-X4PDp7L-6A>
+    <xmx:Hsd_Z91_csZh_RBGTerzAM0ln5LdtfUOw0oxj98NM8P5SImu6RZtWQ>
+    <xmx:Hsd_Z2ubQ2TZMSiFKmJtFYCKV2SIHTJFRYcN6zb1zg1aLHI-cl9Dwg>
+    <xmx:Hsd_ZxXgrPH2HZiJqtHOsZlv1yNSj-LXakVEEKSVBgMn5QLjl36jCg>
+    <xmx:Hsd_Z1-SvMq380hmAtjlyiiR261y0sfNaOHDZJaDpe6OhyY5Ipd_tiXh>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 9 Jan 2025 07:54:54 -0500 (EST)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Jacopo Mondi <jacopo.mondi+renesas@ideasonboard.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 0/2] arm64: dts: renesas: r8a779a0: Describe FCPVX and VSPX
+Date: Thu,  9 Jan 2025 13:54:31 +0100
+Message-ID: <20250109125433.2402045-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com>
- <20250108-starqltechn_integration_upstream-v14-7-f6e84ec20d96@gmail.com>
- <20250109120158.GH6763@google.com> <20250109120308.GI6763@google.com>
-In-Reply-To: <20250109120308.GI6763@google.com>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Thu, 9 Jan 2025 15:53:44 +0300
-X-Gm-Features: AbW1kvbYBA43BadlmghIi3O6FKD8wTkjV5Cw7rRDl9rkqTnWC7Han4ju5QPlKqg
-Message-ID: <CABTCjFCMky1kRZ0a8q999_WNdeOhqsDwtqxMCcWsmUoWv_rhDw@mail.gmail.com>
-Subject: Re: [PATCH v14 07/10] mfd: simple-mfd-i2c: Add MAX77705 support
-To: Lee Jones <lee@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
-	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-=D1=87=D1=82, 9 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 15:03, Lee =
-Jones <lee@kernel.org>:
->
-> On Thu, 09 Jan 2025, Lee Jones wrote:
->
-> > On Wed, 08 Jan 2025, Dzmitry Sankouski wrote:
-> >
-> > > Add MAX77705 support - fuel gauge and hwmon devices.
-> > > Hwmon provides charger input and system bus measurements.
-> > >
-> > > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> > > ---
-> > > Changes in v13:
-> > > - remove compatible from cells
-> > > - change mfd compatible to match max77705 fuel gauge node
-> > > ---
-> > >  drivers/mfd/simple-mfd-i2c.c | 11 +++++++++++
-> > >  1 file changed, 11 insertions(+)
-> > >
-> > > diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2=
-c.c
-> > > index 6eda79533208..22159913bea0 100644
-> > > --- a/drivers/mfd/simple-mfd-i2c.c
-> > > +++ b/drivers/mfd/simple-mfd-i2c.c
-> > > @@ -83,11 +83,22 @@ static const struct simple_mfd_data maxim_max5970=
- =3D {
-> > >     .mfd_cell_size =3D ARRAY_SIZE(max5970_cells),
-> > >  };
-> > >
-> > > +static const struct mfd_cell max77705_sensor_cells[] =3D {
-> > > +   { .name =3D "max77705-battery" },
-> > > +   { .name =3D "max77705-hwmon", },
-> > > +};
->
-> Why not register these from the proper MFD driver?
->
+Hi Geert,
 
-Because the fuel gauge address is different from the max77705 mfd device.
+This series series describes the four FCPVX and VSPX devices found on 
+V3U. The power-domains reflects that of the ISP they are connected to, 
+{FCPVX,VSPX}n is connected to ISPn.
 
---=20
-Best regards and thanks for review,
-Dzmitry
+Niklas Söderlund (2):
+  arm64: dts: renesas: r8a779a0: Add FCPVX instances
+  arm64: dts: renesas: r8a779a0: Add VSPX instances
+
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 80 +++++++++++++++++++++++
+ 1 file changed, 80 insertions(+)
+
+-- 
+2.47.1
+
 
