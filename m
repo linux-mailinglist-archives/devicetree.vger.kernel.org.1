@@ -1,88 +1,148 @@
-Return-Path: <devicetree+bounces-137162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00DD6A07BF3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:29:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79913A07C0B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:32:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36A383A4044
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:29:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2F9D167273
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:32:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8303B21C9FB;
-	Thu,  9 Jan 2025 15:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C3F21C193;
+	Thu,  9 Jan 2025 15:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="MK0ZJC8W"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="drknysd0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4DF21B8E1;
-	Thu,  9 Jan 2025 15:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F8E219A97;
+	Thu,  9 Jan 2025 15:32:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736436575; cv=none; b=blrOx7TKnbzpE2ECw+QuDWkI4JxKRXjZbQi7ZOMV6kKqHb0F5V7UhbFF2TDWMPGgf37rxatACZztuhzeR5BBQ1923pZ2NBjE136FZ5AM3ey0ORLCn6yuw+WG/aPY0x152JktqlhE4/ylFc+SWlRY97MthMNFCsdKX8YegrKEmj4=
+	t=1736436738; cv=none; b=r0HVql4kgPhQDVOtxw/A+ASBYycWZxQmNzVMDtN+SGu/QYFFljV0aTdAsQIyMmL8B4e6gRyPhsPobkKEJ3L/IcT5QUBJj0Rmj1Ux4oteRNIRQuPNRIKD46dyACugxOUlH2d4BXVG1QKn30G8DYB0MQE0BnOzhm6AThGSq8CWSBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736436575; c=relaxed/simple;
-	bh=58HVzZDTeeq12T3m5Pqmj8JqNJNkcnkN3ln5yGhsGDg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GEFwD5APdEuZEs2xd0KBKYjH1fO0HV2x4GKRnUsyJ0L7GN6Q3X2GVaT3c2/462JTKHmrwy6Q/rgCiAZ5E9uSCl77km35IndZ7+9gq1A3d00SGa5fkxKz1TKwn+h+EzTPeVDlaqLr0f852kH3WVby1/8CPjLnVHB0za5R7q4Wdgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=MK0ZJC8W; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=wcaRzf1RZiP/gm4yLAggbk3sbQOwg2d/qtzzehpcOxk=; b=MK0ZJC8W5UcLMhS3mEZHKpkP5j
-	jcsIassyc/rfjr2EjrAMMQHB7Nb2vg8/skeP/V5yyjfMd/0QSWIEETM8DhVJztGwcyh7t9ad/Qhgq
-	6F6NXhYb8ZJ0UtlaYAbbmQ6VQiY2/cTJIGHTB3/XsFJjufqaln3BBsehb7Pb7ghGJ9FzQfCb2pC/n
-	d0OeknWls6OHOLJtsS2YAZ3Glp7BPrvltxCRrnfz8sX2lwsphvKQumtejtI1MoFoNJBkQ3TuJ7LF3
-	22WYO0zQ0POflmMsm/mkDlcv8VxO1iep/HpIwaNOgUPcmKOJc4EFhO9Yw1aTpv2Ej+NECmTY77q7S
-	uqJlzNuQ==;
-Received: from i5e860d05.versanet.de ([94.134.13.5] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tVuTN-00034G-R7; Thu, 09 Jan 2025 16:29:25 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- Frank Wang <frawang.cn@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- william.wu@rock-chips.com, yubing.zhang@rock-chips.com,
- tim.chen@rock-chips.com, kever.yang@rock-chips.com,
- Frank Wang <frank.wang@rock-chips.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: add usb related nodes for rk3576
-Date: Thu, 09 Jan 2025 16:29:24 +0100
-Message-ID: <2261019.ZfL8zNpBrT@diego>
-In-Reply-To: <20241210085053.64294-1-frawang.cn@gmail.com>
-References: <20241210085053.64294-1-frawang.cn@gmail.com>
+	s=arc-20240116; t=1736436738; c=relaxed/simple;
+	bh=JVDZ97GiaRCzRrAZe9qbKxP2mzrC+lSfFhTq0cnbnA4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=A+hjcsjhhMwMYK/zfUGTjc9jpYlqwb7Ja0MrmIVNwzk6A+/d9fzDC0YoUutKWe2hQ6c1DLA1r/9EB1T9jibhJILN/uU8ckkgDzTkPs5RgyHRDYod3eQ6fvoJbhNXs1BNufpYuJyfmf6GAnhXAxXfoP4YSbo166hHU6dnKB6r6wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=drknysd0; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2900C1040DBDB;
+	Thu,  9 Jan 2025 16:32:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1736436733;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6qIQP4o8cPCcK84STUOS+5JskiZRRSumAKuNK/Xi2io=;
+	b=drknysd0IoZnLaRgsToztlyqJxLx4IHPiJhqIK3UmFsqqzRZOkWOKFbRxN8iNWWLneD7om
+	twjqlg62pARiKDodOxy7DMj5Gf9U7rP1B9YpjBdZyQwrvliKbbi9Ack8TUfL+ePJ7zrk1i
+	JSJUxxYErz+Eg+Jc+7Z7UESVgib4BBN7eblcvPrYDPt1vBdLyrx1d7JLOTAuVwRZGDG4jR
+	CWdlscCAMxYxUTLDohyFdAm68gRXqfBguMoHUfoa52FLxiIMl63VKN1RwbTiBgHtFJuMzm
+	UxXT9klNMQcTBYCRn+0bQfx0l9PvuXjEhwVX01EZiSswQ4YH6B1s+6pe3XoiYQ==
+Date: Thu, 9 Jan 2025 16:32:10 +0100
+From: Lukasz Majewski <lukma@denx.de>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Stefan
+ Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH v11 1/3] dt-bindings: display: Add
+ powertip,{st7272|hx8238a} as DT Schema description
+Message-ID: <20250109163210.4c547941@wsk>
+In-Reply-To: <CAOMZO5ABPnB9ov7jtEmDSZ=efNh_yx3JcqqS_UMTXgie=8PcTA@mail.gmail.com>
+References: <20241107085705.490940-1-lukma@denx.de>
+	<20241209105240.72d8d84a@wsk>
+	<20241220112950.4673bb3f@wsk>
+	<20250109153702.2d149023@wsk>
+	<CAOMZO5ABPnB9ov7jtEmDSZ=efNh_yx3JcqqS_UMTXgie=8PcTA@mail.gmail.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; boundary="Sig_/4jR4l4k1/ssXQBq5AITFnzz";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-Am Dienstag, 10. Dezember 2024, 09:50:53 CET schrieb Frank Wang:
-> From: Frank Wang <frank.wang@rock-chips.com>
-> 
-> This adds USB and USB-PHY related nodes for RK3576 SoC.
-> 
-> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
-> ---
-> The compatible string "rockchip,rk3576-naneng-combphy" in the patch
-> depends on the following commit which has not merged into this branch.
->  - https://patchwork.kernel.org/project/linux-phy/patch/20241106021357.19782-1-frawang.cn@gmail.com/
+--Sig_/4jR4l4k1/ssXQBq5AITFnzz
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-just as a note to myself, Kever picked this patch into his series adding
-the rk3576-evb1 board and I used the one from there.
+Hi Fabio,
+
+> Hi Lukasz,
+>=20
+> On Thu, Jan 9, 2025 at 11:37=E2=80=AFAM Lukasz Majewski <lukma@denx.de> w=
+rote:
+>=20
+> > Gentle ping on this patch ... =20
+>=20
+> You missed copying the drm folks:
+>=20
+
+Ech....
+
+Thanks for pointing it out...
+
+> ./scripts/get_maintainer.pl
+> Documentation/devicetree/bindings/display/panel Neil Armstrong
+> <neil.armstrong@linaro.org> (maintainer:DRM PANEL DRIVERS) Jessica
+> Zhang <quic_jesszhan@quicinc.com> (reviewer:DRM PANEL DRIVERS) David
+> Airlie <airlied@gmail.com> (maintainer:DRM DRIVERS) Simona Vetter
+> <simona@ffwll.ch> (maintainer:DRM DRIVERS) Maarten Lankhorst
+> <maarten.lankhorst@linux.intel.com> (maintainer:DRM DRIVERS AND MISC
+> GPU PATCHES) Maxime Ripard <mripard@kernel.org> (maintainer:DRM
+> DRIVERS AND MISC GPU PATCHES) Thomas Zimmermann <tzimmermann@suse.de>
+> (maintainer:DRM DRIVERS AND MISC GPU PATCHES)
+> Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED
+> DEVICE TREE BINDINGS)
+> Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AND
+> FLATTENED DEVICE TREE BINDINGS)
+> Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND
+> FLATTENED DEVICE TREE BINDINGS)
+> dri-devel@lists.freedesktop.org (open list:DRM PANEL DRIVERS)
+> devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+> DEVICE TREE BINDINGS)
+> linux-kernel@vger.kernel.org (open list)
 
 
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/4jR4l4k1/ssXQBq5AITFnzz
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmd/6/oACgkQAR8vZIA0
+zr0f4gf/f8yftAgVjy6z69N/UrrRfN2tMTztQtXrjdV0XCD5sm67rgsZL5NQKzet
+2AzvICsWK+dZYUSRXnolPAKQEsOiRhBQskEi4q6GlmnHYQE7cIH8P9pTo01QXmYv
+K6qYnujJDAD0sqB1cVPbRVcn0a4vKq3oQqJ8EkfZcJhmkZ90gbheaoYri5rcat3z
+qw5UolyLN0xQ0WH49k2fWUDIVh5gwCdmrbOCfB8zi6rTjdbpAThRSim7ZVBqVblC
+y4mT4zfG3xd2x71vvpNb95bcgfw5sG/slrQaZOU6W+BlmL3ov9MHBFOk1xdQIUEe
+yIT60upWr2ovwklJlyeKFywq/99fwA==
+=TdZH
+-----END PGP SIGNATURE-----
+
+--Sig_/4jR4l4k1/ssXQBq5AITFnzz--
 
