@@ -1,235 +1,316 @@
-Return-Path: <devicetree+bounces-136885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D88BDA06BCB
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 04:04:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59A90A06AF5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 03:28:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0E06165EEA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 03:04:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D2803A5027
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 02:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D9E126BFF;
-	Thu,  9 Jan 2025 03:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C540742052;
+	Thu,  9 Jan 2025 02:28:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RV4MVTmc"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="h6ri60TE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2057.outbound.protection.outlook.com [40.107.103.57])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A294DDDC;
-	Thu,  9 Jan 2025 03:04:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736391867; cv=none; b=B5llVd0Qk+ZEMYL/HivClqU6ci+Ko9IoKBF5kr2vdlw6KTiKigeXgk49mbV0uZg8fA4tpNuT0IvQHMKV5SEacHN5fcje/3m9B6hCsvsvW5r3tAIwMZaGnSSLoV+0ueXZ8VbnfxUUfJLgZ+L/PfF3iuC1dWbc4wAbeHe2YSfuvbg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736391867; c=relaxed/simple;
-	bh=H+efbh5BGCH2wkrZmg9BbCvhr2NcFys/9Aemx96z4qU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jO9JQDXUsijs9Sl2aSzOhIMC1kBrB2cxGUwg5RFAqgxZQRMfrLuuI3INl9ZyrRKrIIqDsT+Okcoeve9bEvCP1CuUJ4GOlZh02iQDkUokK0ev+huBb0PFsrDcKHYu/Yuy0ld+6xBqem44/IOYMZ3w3vQHriBMYGEL68GXukpuSQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RV4MVTmc; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2164b662090so5962105ad.1;
-        Wed, 08 Jan 2025 19:04:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736391865; x=1736996665; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=TbVa9AGOBMOZjVwfIhOO8Ux0mTrqTFTDIDsrP0opqQg=;
-        b=RV4MVTmcLIr1HsnSUm6PFYGdyNJbHDxdRaKeSW1npEZsV9g5O9qu07HJGGVZ98gDIg
-         kBq+xd8Py3tg7Ba9B6do7ir7CzoWNg5GzYSuxjk/7eICZ8eTQk4TrK8TyY8JSLYUTtMR
-         dvTr3mM4bjOhD6HCDRD34VLownk01awYKZkuk1CrivE/WaFgFrp5gdz99hVAs+xKuEZc
-         vONUZ+2nsh54RMPYeOMic0U5pELUujDnlNL1qXv9C6kbKWreuulVmkYkwIu+SfF7y0UU
-         +49jpjI5tjR7+OZSUaqGo9i2EUiNh+J6+5gxQIewht0xu30NpvHA75rqr7f2frcwkqH6
-         CtIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736391865; x=1736996665;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TbVa9AGOBMOZjVwfIhOO8Ux0mTrqTFTDIDsrP0opqQg=;
-        b=HQ7tVv7eNyoF/ovci/Y0hXjGyX4VnSiRaljXp7Ab1S2dNkJR4HLiMBBa/MKKR4Dvqr
-         Eg53mbtWaA0UaASBqLOE9FI+fpKdtThTTVpsXSwxDoQ4/ySKC1wZ7QRF3HPfVFqBn4Zt
-         0GPAgA3M3VjhiWroR4JAkM10qwXK28/dqsaG3+/OyJlpeVhthNfY5a12hRNSZw2WsDwD
-         qv2CfRH3Lm69cnBLKMJT0YjDOqCRFlgJVgpsM3Q1LX6JKUusBur0OWrV8/K2PFpzo21k
-         AHmKUZ6SQhRge0VQER92iG+Z+GjBfLulTlE4QM+1tq18fovGB3py3rFjNaEsDYQ5rouD
-         B1Nw==
-X-Forwarded-Encrypted: i=1; AJvYcCUrF9FRUvXiaSfL5amZJFKZQEmRcqi4C4q8dAOzWgXt9xQSWX9u51Ign9oMazZ99257Q9ROEgnD7FXP@vger.kernel.org, AJvYcCVBVoMpYzPkZPhbjF4UQ9K7Zv2xdWtEtsI6iOUGlRV2BsK5KhUqgGitFFJfAHNID9/yMfD2WQOPmA5/HijK@vger.kernel.org, AJvYcCXHJQEj+4mZkQ9hgeeQ1fghO+uaYyTc98XnkRxg85bwZnE0Zvl/ABWru1guOVts7FYtBH13tiBWTNLV@vger.kernel.org, AJvYcCXJizVmpCVxMJirJdwfx5EpAR0Nl9USrn8R9nOQ0OfY9Q4k6lxMujj808otzBFxJVIOY7B0Y/rpmYbfGSs=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzwgth2O3gqSq6iDKw5gmIl5jGsj06Da/Y5bx7zzg3Ck3k9xfwj
-	XDvc3vZ78c0Asd66eqrKc4bFoANdhXQLHo6TqJSJMSvBMUnRsTAM
-X-Gm-Gg: ASbGncvYNdHdbj42J10daDCIv7+Atxvk/715WIRKytu+dOIJP9pnhvPR4kgoVWuX6vr
-	o2Yqw/DMaGYNMaOLG7YtGIJpLLNd2Cr8fdJLYhnDnPD+XAZiM+KXw6V6HAm9d4Os2OkJmWiqCJ7
-	LG4eTpRfsspYVL5YqimY/gqazhztPZahfm5yyffKbNWnjzPEzycsUSiK+29JHnf9dA8yHBHNmRa
-	BfTjRjVuox/VhwrVkuzRuvBNeorBMPMN/ZuiF1vl51LknP6YmrrtUoP5NJ1TXg+QrdlgvIIUsFi
-	IETEO8iBMwXvAbHyhIOE+DU2foQhNQ==
-X-Google-Smtp-Source: AGHT+IHr3XalJCgdndpm2YtOGGTwzIlMq7ZeKDnaqt2kyfSXPCVMC1duy7eDXmCgpopHUkAA4n3oIg==
-X-Received: by 2002:a17:902:f68b:b0:216:2a5a:89d3 with SMTP id d9443c01a7336-21a83f70d13mr72465125ad.25.1736391864688;
-        Wed, 08 Jan 2025 19:04:24 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a317a07d050sm213759a12.15.2025.01.08.19.04.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jan 2025 19:04:23 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <f1e16043-4841-411c-8feb-435b59d7f65a@roeck-us.net>
-Date: Wed, 8 Jan 2025 19:04:22 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BBF737160;
+	Thu,  9 Jan 2025 02:28:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736389718; cv=fail; b=o7sxu3zDw7PhKZG+D/GnNlUwp6coSCNifqOE9Pn5g/GfYd4MmZaVCrWCVm4JNOHkVP1OcCkRsTTZfwJICpPdQ039XA7qQfkjPJ+BENAXwzOzDpSAaXJqApuutXlor9kg/Ki97xzxzStB5ngBTRZB+1gvEReX4sYp4jTQXwd4saM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736389718; c=relaxed/simple;
+	bh=mFJZ17hA9c2XARqLUQuQ7k8Fh4QVlL99z3EV+TFUxR0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=He3o+fdFohksJrAwQZZt5J2W2tBUoSV0cWB1rRm8T90edWuSR/fjRPP3INh3715p14k3nR1CGcQRLB9Mk3gMf8YL4XQQxekqICB7x+Tf69klboNcOpGxhPOyTrSFsfgfkZODz3eKhwNOiKQkTFf3Na9OFR9PdRt02qoE227YW2E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=fail (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=h6ri60TE reason="signature verification failed"; arc=fail smtp.client-ip=40.107.103.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=asLiZUKxyTPV+9sqB6YGbTXrn5/I51wqEfEVPWn1wouRXhbh4zhWW0bmT20ljC+Gt2nOZhqKnSCIKGqABFDOS4zFV2hKIGqGxO5Ge05/ncAGQiTJLhEpgwHLFp48FPqY1HuScf/Upg/MdlvN8xJ3RoZt2squAgSqLkbe7bBiuUMXFG6i+eSjoV6c09KloRS3uy44njrJdclL3/dScLKl7JjcKlNHfHA1fhpsFahcaF9+puSUiJbsklqAPC7SZ9uiBDy2opcb+FlSLAv421OUVg6ih+JY0Yblfs/P0MUDp2vHVQVWdpq5l0qPeSxEqHo72dryzxCuSfD2DfkSyG+yOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GIFZE3Yp1nh93BeVR9xtEVwt6jHpgzpKWqkbLFXz0sE=;
+ b=KTJqzrQdEk+jsbBKbtVkNYZSLdcC7c+DuHLKcoEWdl4kBoT1DNatEGCl1LqwzkJ64WmZX81TYakGVTjbqzD0sshzKnUY0W57irvtf3Dap+CnfIJIGb16i6IdhF89kpJweF8/Q0eGiuFh0sOLLTi+W2+PciUYHsLZf7d6tbXVbetRm5Ey6/Lj/qu6XtH5lBX5Ekv/Za595zt64H7Ba7O2iAdZ/XPS4nTP6DLqRdjyg0pDGu5hoCM4OHNR6sJv1dywaLuDkEg2gw58YbbhD1mi//OaP5rS4bGAlPXqd9Vcf8qwDrozQKuXO7tF/GVM54BWI1zjrnjvcA9E5UjKRoMqFw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GIFZE3Yp1nh93BeVR9xtEVwt6jHpgzpKWqkbLFXz0sE=;
+ b=h6ri60TEoi+nhCl90fpMFzP89aVS+DlFq1CyxBPt/0p5Gy0YuV11ACLXwGEV6U+47Q8FjrOkCpTEEnusxNyQZLnzYUtQWFWtbXpSomvZL3va65h4ScA1WcdREkhOWgNsHhF+3Pab3/7H+7H4HSPVTp/ZGdwAgkUjI/IxgUjBmZZ1Q3qDfHznj2asYHsW+sz7eiNqN8YUImDio4WrEvOGC0Iuf/DGsUX2pLEYPBLcv6V00U26FPYUxbQo5s7ySPkpcALUiE5TEvZvjjvyidS9aV5jvVIz9k+SbyyGA5zxh6wr5e9jXmA26MNQ7D6opfPFoE3A7n7YdwhBfAYz33SBJA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DB9PR04MB8461.eurprd04.prod.outlook.com (2603:10a6:10:2cf::20)
+ by GV1PR04MB11063.eurprd04.prod.outlook.com (2603:10a6:150:20c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.10; Thu, 9 Jan
+ 2025 02:28:28 +0000
+Received: from DB9PR04MB8461.eurprd04.prod.outlook.com
+ ([fe80::b1b9:faa9:901b:c197]) by DB9PR04MB8461.eurprd04.prod.outlook.com
+ ([fe80::b1b9:faa9:901b:c197%4]) with mapi id 15.20.8335.011; Thu, 9 Jan 2025
+ 02:28:28 +0000
+Date: Thu, 9 Jan 2025 11:34:18 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing
+ controller for i.MX9
+Message-ID: <20250109033418.GB31833@localhost.localdomain>
+References: <20250108-imx-ocotp-v5-0-a6d90e18ebe9@nxp.com>
+ <20250108-imx-ocotp-v5-2-a6d90e18ebe9@nxp.com>
+ <3823142.MHq7AAxBmi@steina-w>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3823142.MHq7AAxBmi@steina-w>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: SI2PR02CA0053.apcprd02.prod.outlook.com
+ (2603:1096:4:196::16) To DB9PR04MB8461.eurprd04.prod.outlook.com
+ (2603:10a6:10:2cf::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon: Add driver for TI INA233 Current and Power
- Monitor
-To: Leo Yang <leo.yang.sy0@gmail.com>
-Cc: jdelvare@suse.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, Leo-Yang@quantatw.com, corbet@lwn.net,
- Delphine_CC_Chiu@wiwynn.com, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20250106071337.3017926-1-Leo-Yang@quantatw.com>
- <20250106071337.3017926-3-Leo-Yang@quantatw.com>
- <b2a336dc-c029-4a95-9807-8e8b82f75ec9@roeck-us.net>
- <CAAfUjZE2x_Fafogna2yhnnohZrGmtW5G3Q64AVhYwVEXuGoaBw@mail.gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <CAAfUjZE2x_Fafogna2yhnnohZrGmtW5G3Q64AVhYwVEXuGoaBw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB8461:EE_|GV1PR04MB11063:EE_
+X-MS-Office365-Filtering-Correlation-Id: 21c901d7-0261-4265-ef3b-08dd30554d2a
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|52116014|7416014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?iso-8859-1?Q?Cb10DobNSGnl5pfaPnQuGE0V/fU1Ttl0v3Dlh/jX5efzDrRPaB4HJ3VMtb?=
+ =?iso-8859-1?Q?RsNe/92R3f3pwXr9P7BIJ063jEZJFk20efCX14KJsSBvMQycOd9n4oiiFQ?=
+ =?iso-8859-1?Q?y2jDhcB4qgk9TZMCt5jXQrxSVFJtRhQ08uRFJx2jeArzKRJLAgclgeo5JT?=
+ =?iso-8859-1?Q?C7X+8UzzEblgCZzh4ntdDjJEtGJZZJNMhHTX7X9j9V4vi5zNhx8M3k/VcH?=
+ =?iso-8859-1?Q?ZPh8C0m3yB2slarMbQjUXCYihEkz2juRKVf7P9QgERYOThhjQxtyPx7To3?=
+ =?iso-8859-1?Q?8UWdAATOJWcuNMbPA6qohm914b6Y1MdM4eIZ/ZR6M3Ra3sleufTLpM7tjF?=
+ =?iso-8859-1?Q?At5Rk74RVu9YEppYcjeD+9s7nNt5cG39Uot47QgHgt0ZFSCEC0nMp2Ina6?=
+ =?iso-8859-1?Q?Rx0hwMBAb/U1UU8MTNfpdH/rXbTbcxQYrLHqDH89w96Nkkirgg4LxvOBMO?=
+ =?iso-8859-1?Q?+O+l/g3f/TIyP0pt1eU1Oz/Zo9sPhW32kGgMSO+JKr1z+zd/Ze6WZWY1V5?=
+ =?iso-8859-1?Q?l4lcaaFLevZyN4aQUkvzuS1o7JanGzRSkaHoTzUKvOXhVJOf90xUSeVZEe?=
+ =?iso-8859-1?Q?RJpotqmeSydO9ZXnLAUEj1rLWE/sIdVXC7+S+NjupE/QDdKUhcXtpGdIVw?=
+ =?iso-8859-1?Q?dW34GMqSAce1zmyfCDGBlFBJdNLEBU5qXfc8bSGb0Q8jKibB3FZmJuavTV?=
+ =?iso-8859-1?Q?RFoh8MzDk9VLXWCmVSl8doGimLcX6Tpyk+JsZc7626+ZJQ9UnTFtRLLxK4?=
+ =?iso-8859-1?Q?hhSRJviUp6695LUuRcDTsJxgHm8feACw9pLYan1trSNC63PKUQwSgxlLZP?=
+ =?iso-8859-1?Q?rbhVmHsMkJogNohh3GwcMmbAqRUUPa2jAw3lrak2nRUY92HSFOGoAZ9ZWO?=
+ =?iso-8859-1?Q?T5iiQjxxBzVp1z/pwh4XzSR4cR45zL36uXuIYD/m/NeCWmG4HkXUzOA2C3?=
+ =?iso-8859-1?Q?XuEHjyH0IiuidAJZv810KeW5AUnXTqlGXsoXo2iLC0X/0oCYeqWg8xEtNG?=
+ =?iso-8859-1?Q?rrry4BokZ7Vth40joPZe2C7kKx+I2ROFe6PuVAif13UGIxaAKsG9adrZcl?=
+ =?iso-8859-1?Q?/YRv70cBtdanwL4QekKRybGix+fC+LvFGnAr5p0bmmQhiL/AxqRhvZCgid?=
+ =?iso-8859-1?Q?GXDU3j8Q9UEypDMuddD0FIT7oZgBmpmAZB1DMU4xBNX+NJMDh0mHwjinxa?=
+ =?iso-8859-1?Q?2qnFP/EX2zDxkd6khUf7SQi5+5n+vTigibLct/fIMcqW0Upng2aERgrsKx?=
+ =?iso-8859-1?Q?7p4kCbpQxR5+1dO0o/HT+2d1AZcAIaEMEsYi0247GWb443HCpQ3iLF5oOq?=
+ =?iso-8859-1?Q?MaSjDUWtG7eHgy+oKVJa2JQClAGUhMRssVUQfijqp7YcZ0xTFmDLi+wvMW?=
+ =?iso-8859-1?Q?4jN7BOsDphaF+J5rbiyS6CXjU9gLGUQt4Wcw7kPftJnR/XorgXcr0eQHCt?=
+ =?iso-8859-1?Q?LTDgUJjqjsL9m+6a?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8461.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(52116014)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?U+vm+dGj8AQ7ak54/2bJEb4tKJtJh3DcCNxB9C+mNw9NLUSl839OyNhy/0?=
+ =?iso-8859-1?Q?CiXmh8BojsYLrvm0grYJBjZwLlpxKtzEg/t+MZxCrabFYmSPbx6X+pvQZ3?=
+ =?iso-8859-1?Q?qkIgGIfaUf/zM1/cbMM8vHlrelwuu2JCCiiNwZoBgPW9vJ9dJyiYsN0S4g?=
+ =?iso-8859-1?Q?NpJ+6yhEkodFUeXy9fay7P2VESg+H9MUT0oA8rN2Yd5PkVElG5bkd+zpCH?=
+ =?iso-8859-1?Q?56rmR1SePDMojp8AEpkJD01X8dM8tnOkoNeDrdqiarlzkZvNBE7rK/x0Nt?=
+ =?iso-8859-1?Q?UOGiEPtpZGA8sXI+gx/+K28pp+sI2uRmsyIYELXDW+1xy6ORT8usds7hy5?=
+ =?iso-8859-1?Q?75opMiB+Au3T/6mgaVzh7vGcIS8DaStERIYp1jYP7avwd9rvI805agIA5F?=
+ =?iso-8859-1?Q?z8xF7dCT+Z3KuAzKuSR479yPw35GuYZfXiguuEQJxFaFbiREATUfhpz2WK?=
+ =?iso-8859-1?Q?Qe8hIByEF5z7NG0GqOBVgH7j0ysFa7s2+wTbaiTk8h1MJ2TK3TeXCZGHHg?=
+ =?iso-8859-1?Q?a3MiJlIYymKpyP7oHCTvMjX82XqBePmIi6+ot44It1mniToD8Dzja2GBwO?=
+ =?iso-8859-1?Q?zNX0HickWaFBgHCDnxNl87oAV1o/VqUjJFJSgmx9pcH9zhEgnnyknM72XH?=
+ =?iso-8859-1?Q?fGoSMD2T6ilT7C6F0mv0W+uH7O5enfR+oyJ+LX9lDYDAOiA7qjcZ1KoO66?=
+ =?iso-8859-1?Q?Z8Uy9n1A/GzqO5Oby0b9XurOnliL8wTckek13b+KN0mmkyVWPkA4eFQ7NN?=
+ =?iso-8859-1?Q?22qAwPYDArQyDB6sZOSADHJAI5IK5VuIjicVQmzbayvHrexaa/W14VhO3S?=
+ =?iso-8859-1?Q?ibuFq6DLZZs6Ta5YL0zF8m6bEb4gTXiD8NAYCPhEQfYJlsChyoP2Skx0D9?=
+ =?iso-8859-1?Q?/UfU9DfADur+ukNrewXV2pBNkr4zCahzP8isiY7FEmonuGwAkT25c1fO4w?=
+ =?iso-8859-1?Q?eUE6s+xI6l0aTbn5IDvi9z5alKP3xjDXp9HLs9xFKcdxg1dJQd+nx7oxnl?=
+ =?iso-8859-1?Q?UYzOp/t978oBf1iX2bk4aD3SHYhKdKE5MQzGDG/HhhM2tIUe3q3voHTHFv?=
+ =?iso-8859-1?Q?ZYuDftif0d5FMhV52F8K0/dAWIVLOxWlAkbQ7qRMFS+P1WXU8eNWPVAU5F?=
+ =?iso-8859-1?Q?xvvDw3xr7XaM2TOGBAHZwYU98Zwt+gk01+3kyYu3EquCaVljDIn6Rh9ssl?=
+ =?iso-8859-1?Q?7jWphOZ8JjQy4odSaAKSLJNHbsE2DKkL/9LJ2MgYOVMnXCQdMGLo2TWVHM?=
+ =?iso-8859-1?Q?uyGmBs1r2CAk/vtJT3TR6HH0aBUqtyBBFzUwkzEyWa/odIMI+j/Adwj50V?=
+ =?iso-8859-1?Q?ADSR25jq2F/bu+vGS+we9UEA5+xqTUVuRIRN14xaUx8M62AHmcE4dBJm6K?=
+ =?iso-8859-1?Q?KAECCg9wvZDCq1+5vTlUfUoHN5gq9KDKngdve3fHzw09yHtVtoV37tWno9?=
+ =?iso-8859-1?Q?xjqiAO2hcgD2iT0tBZxuzWDW7v7kIBrSicw2smaiJsW44fgRGwi/LV88Q7?=
+ =?iso-8859-1?Q?at0MFd6eQw+ENQW4JCpv5ILN/kfZo0Q2HnHrOYs7axpt/g3EOUOdarmws6?=
+ =?iso-8859-1?Q?Len8w7pNC3IFFeTIJXAuV7hZgyJOcX94zNXFuHQ+ujqBQLGXrIZxGaJzUA?=
+ =?iso-8859-1?Q?2fqUaicvXSq8W/YYgi4FUy2j31JKEqfYDU?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21c901d7-0261-4265-ef3b-08dd30554d2a
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8461.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2025 02:28:28.2882
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hX47de0zprdtZFvI+K8WUKthJqWB/sgMgxHpezpxokWbf0FLYadEGGswZYNbMMH/7ufOSeKs7Tj/JLWxkhCAhQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11063
 
-On 1/8/25 16:50, Leo Yang wrote:
-> Hi Guenter,
-> 
-> On Mon, Jan 6, 2025 at 11:31â€¯PM Guenter Roeck <linux@roeck-us.net> wrote:
->>
->> Besides, while I did point out a number of problems, but I did not suggest
->> to "rewrite the driver".
->>
->> Since this is v2 of this driver, the submission should have been versioned,
->> and a change log should have been provided.
->>
-> 
-> Sorry this is my first v2 patch,
-> I should have been more aware of this problem, thank you.
-> 
->>
->> Why not just pass the power coefficient directly as parameter ?
->>
->>> +     if (1000000 % *m) {
->>
->> I fail to understand the logic here. Why scale if and only if m is a clean
->> multiple of 1000000 ? Scale if m == 1000001 but not if m == 1000000 ?
->> Please explain.
->>
->>> +             /* Default value, Scaling to keep integer precision,
->>> +              * Change it if you need
->>
->> This comment does not provide any actual information and thus does not
->> add any value. Change to what ? Why ? And, again, why not scale if
->> m is a multiple of 1000000, no matter how large or small it is ?
->>
-> 
-> When we calculate the Telemetry and Warning Conversion Coefficients,
-> the m-value of the current needs to be calculated via Equation:
-> 1(A)/Current_LSB(A).
-> 
-> The number 1000000 comes from A->uA to match the unit uA of Current_LSB.
-> Try to prevent the loss of fractional precision in integer.
-> 
-> But this is not enough,
-> according to spec 7.5.4 Reading Telemetry Data and Warning Thresholds
-> If there is decimal information in m, we should try to move the decimal point
-> so that the value of m is between -32768 and 32767 and maximize it as much
-> as possible to minimize rounding errors.
-> 
-> Therefore, if m does not have decimal information, even if the value of m is
-> scaled up, it is not possible to minimize rounding errors.
-> 
-> But my comments are not clear enough, I'll fix it.
-> 
->>> +
->>> +     /* Maximize while keeping it bounded.*/
->>> +     while (scaled_m > MAX_M_VAL || scaled_m < MIN_M_VAL) {
->>> +             scaled_m /= 10;
->>
->> This looks wrong. If scaled_m < MIN_M_VAL it doesn't make sense
->> to decrease it even more.
->>
-> 
-> In this part, I try to move the decimal point so that the value of m is between
-> -32768 and 32767.
-> Assuming scaled_m = -40001, I can scale it to m = -4000 and adjust it by R++
-> 
-Sorry, I missed that MIN_M_VAL is negative.
+On Wed, Jan 08, 2025 at 11:15:40AM +0100, Alexander Stein wrote:
+>Hi Peng,
+>
+>Am Mittwoch, 8. Januar 2025, 08:00:18 CET schrieb Peng Fan (OSS):
+>> From: Peng Fan <peng.fan@nxp.com>
+>> 
+>> i.MX9 OCOTP supports a specific peripheral or function being fused
+>> which means disabled, so
+>>  - Introduce ocotp_access_gates to be container of efuse gate info
+>>  - Iterate all nodes to check accessing permission. If not
+>>    allowed to be accessed, detach the node
+>> 
+>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>> ---
+>>  drivers/nvmem/imx-ocotp-ele.c | 172 +++++++++++++++++++++++++++++++++++++++++-
+>>  1 file changed, 171 insertions(+), 1 deletion(-)
+>> 
+[....]
+>> +
+>> +	return imx_ele_ocotp_access_control(priv);
+>
+>In [1] you mentioned devlink should solve the probe order. How does this
+>play when the driver is compiled in (e.g. ethernet for NFS boot) but
+>this OCOTP driver is just a module?
 
-Guenter
+OCOTP needs to built in for using devlink. Or the users needs to be
+built as module.
 
->>> +             scale_factor++;
->>> +     }
->>> +     /* Scale up only if fractional part exists. */
->>> +     while (scaled_m * 10 < MAX_M_VAL && scaled_m * 10 > MIN_M_VAL && !is_integer) {
->>
->> This looks just as wrong. If scaled_m > 10 * MIN_M_VAL, why increase it even more ?
->>
-> 
-> I think the purpose of spec is to keep as many integers as possible in m, and
-> then save the information in decimals via R to minimize rounding errors.
-> So here I keep the positive numbers as close to 32767 as possible, and the
-> negative numbers as close to -32768 as possible.
-> 
-> And thank you for the suggestions, they are very helpful and I will
-> try to fix them.
-> 
-> 
-> Best Regards,
-> 
-> Leo Yang
+>I'm not well versed with devlink, but is
+>> access-controllers = <&ocotp IMX93_OCOTP_ENET1_GATE>;
+>already enough to create that link?
 
+Yes, the drivers/of/property.c has this
+"DEFINE_SIMPLE_PROP(access_controllers, "access-controllers", "#access-controller-cells")"
+
+The fw_devlink driver will create consumer/supplier to make sure proper
+order.
+
+Regards,
+Peng
+
+>
+>Best regards,
+>Alexander
+>
+>>  }
+>>  
+>> +struct access_gate imx93_access_gate[] = {
+>> +		[IMX93_OCOTP_NPU_GATE]		= { .word = 19, .mask = BIT(13) },
+>> +		[IMX93_OCOTP_A550_GATE]		= { .word = 19, .mask = BIT(14) },
+>> +		[IMX93_OCOTP_A551_GATE]		= { .word = 19, .mask = BIT(15) },
+>> +		[IMX93_OCOTP_M33_GATE]		= { .word = 19, .mask = BIT(24) },
+>> +		[IMX93_OCOTP_CAN1_FD_GATE]	= { .word = 19, .mask = BIT(28) },
+>> +		[IMX93_OCOTP_CAN2_FD_GATE]	= { .word = 19, .mask = BIT(29) },
+>> +		[IMX93_OCOTP_CAN1_GATE]		= { .word = 19, .mask = BIT(30) },
+>> +		[IMX93_OCOTP_CAN2_GATE]		= { .word = 19, .mask = BIT(31) },
+>> +		[IMX93_OCOTP_USB1_GATE]		= { .word = 20, .mask = BIT(3) },
+>> +		[IMX93_OCOTP_USB2_GATE]		= { .word = 20, .mask = BIT(4) },
+>> +		[IMX93_OCOTP_ENET1_GATE]	= { .word = 20, .mask = BIT(5) },
+>> +		[IMX93_OCOTP_ENET2_GATE]	= { .word = 20, .mask = BIT(6) },
+>> +		[IMX93_OCOTP_PXP_GATE]		= { .word = 20, .mask = BIT(10) },
+>> +		[IMX93_OCOTP_MIPI_CSI1_GATE]	= { .word = 20, .mask = BIT(17) },
+>> +		[IMX93_OCOTP_MIPI_DSI1_GATE]	= { .word = 20, .mask = BIT(19) },
+>> +		[IMX93_OCOTP_LVDS1_GATE]	= { .word = 20, .mask = BIT(24) },
+>> +		[IMX93_OCOTP_ADC1_GATE]		= { .word = 21, .mask = BIT(7) },
+>> +};
+>> +
+>> +static const struct ocotp_access_gates imx93_access_gates_info = {
+>> +	.num_words = 3,
+>> +	.words = {19, 20, 21},
+>> +	.num_gates = ARRAY_SIZE(imx93_access_gate),
+>> +	.gates = imx93_access_gate,
+>> +};
+>> +
+>>  static const struct ocotp_devtype_data imx93_ocotp_data = {
+>> +	.access_gates = &imx93_access_gates_info,
+>>  	.reg_off = 0x8000,
+>>  	.reg_read = imx_ocotp_reg_read,
+>>  	.size = 2048,
+>> @@ -183,7 +307,53 @@ static const struct ocotp_devtype_data imx93_ocotp_data = {
+>>  	},
+>>  };
+>>  
+>> +struct access_gate imx95_access_gate[] = {
+>> +		[IMX95_OCOTP_CANFD1_GATE]	= { .word = 17, .mask = BIT(20) },
+>> +		[IMX95_OCOTP_CANFD2_GATE]	= { .word = 17, .mask = BIT(21) },
+>> +		[IMX95_OCOTP_CANFD3_GATE]	= { .word = 17, .mask = BIT(22) },
+>> +		[IMX95_OCOTP_CANFD4_GATE]	= { .word = 17, .mask = BIT(23) },
+>> +		[IMX95_OCOTP_CANFD5_GATE]	= { .word = 17, .mask = BIT(24) },
+>> +		[IMX95_OCOTP_CAN1_GATE]		= { .word = 17, .mask = BIT(25) },
+>> +		[IMX95_OCOTP_CAN2_GATE]		= { .word = 17, .mask = BIT(26) },
+>> +		[IMX95_OCOTP_CAN3_GATE]		= { .word = 17, .mask = BIT(27) },
+>> +		[IMX95_OCOTP_CAN4_GATE]		= { .word = 17, .mask = BIT(28) },
+>> +		[IMX95_OCOTP_CAN5_GATE]		= { .word = 17, .mask = BIT(29) },
+>> +		[IMX95_OCOTP_NPU_GATE]		= { .word = 18, .mask = BIT(0) },
+>> +		[IMX95_OCOTP_A550_GATE]		= { .word = 18, .mask = BIT(1) },
+>> +		[IMX95_OCOTP_A551_GATE]		= { .word = 18, .mask = BIT(2) },
+>> +		[IMX95_OCOTP_A552_GATE]		= { .word = 18, .mask = BIT(3) },
+>> +		[IMX95_OCOTP_A553_GATE]		= { .word = 18, .mask = BIT(4) },
+>> +		[IMX95_OCOTP_A554_GATE]		= { .word = 18, .mask = BIT(5) },
+>> +		[IMX95_OCOTP_A555_GATE]		= { .word = 18, .mask = BIT(6) },
+>> +		[IMX95_OCOTP_M7_GATE]		= { .word = 18, .mask = BIT(9) },
+>> +		[IMX95_OCOTP_DCSS_GATE]		= { .word = 18, .mask = BIT(22) },
+>> +		[IMX95_OCOTP_LVDS1_GATE]	= { .word = 18, .mask = BIT(27) },
+>> +		[IMX95_OCOTP_ISP_GATE]		= { .word = 18, .mask = BIT(29) },
+>> +		[IMX95_OCOTP_USB1_GATE]		= { .word = 19, .mask = BIT(2) },
+>> +		[IMX95_OCOTP_USB2_GATE]		= { .word = 19, .mask = BIT(3) },
+>> +		[IMX95_OCOTP_NETC_GATE]		= { .word = 19, .mask = BIT(4) },
+>> +		[IMX95_OCOTP_PCIE1_GATE]	= { .word = 19, .mask = BIT(6) },
+>> +		[IMX95_OCOTP_PCIE2_GATE]	= { .word = 19, .mask = BIT(7) },
+>> +		[IMX95_OCOTP_ADC1_GATE]		= { .word = 19, .mask = BIT(8) },
+>> +		[IMX95_OCOTP_EARC_RX_GATE]	= { .word = 19, .mask = BIT(11) },
+>> +		[IMX95_OCOTP_GPU3D_GATE]	= { .word = 19, .mask = BIT(16) },
+>> +		[IMX95_OCOTP_VPU_GATE]		= { .word = 19, .mask = BIT(17) },
+>> +		[IMX95_OCOTP_JPEG_ENC_GATE]	= { .word = 19, .mask = BIT(18) },
+>> +		[IMX95_OCOTP_JPEG_DEC_GATE]	= { .word = 19, .mask = BIT(19) },
+>> +		[IMX95_OCOTP_MIPI_CSI1_GATE]	= { .word = 19, .mask = BIT(21) },
+>> +		[IMX95_OCOTP_MIPI_CSI2_GATE]	= { .word = 19, .mask = BIT(22) },
+>> +		[IMX95_OCOTP_MIPI_DSI1_GATE]	= { .word = 19, .mask = BIT(23) },
+>> +};
+>> +
+>> +static const struct ocotp_access_gates imx95_access_gates_info = {
+>> +	.num_words = 3,
+>> +	.words = {17, 18, 19},
+>> +	.num_gates = ARRAY_SIZE(imx95_access_gate),
+>> +	.gates = imx95_access_gate,
+>> +};
+>> +
+>>  static const struct ocotp_devtype_data imx95_ocotp_data = {
+>> +	.access_gates = &imx95_access_gates_info,
+>>  	.reg_off = 0x8000,
+>>  	.reg_read = imx_ocotp_reg_read,
+>>  	.size = 2048,
+>> 
+>> 
+>
+>
+>-- 
+>TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+>Amtsgericht München, HRB 105018
+>Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+>http://www.tq-group.com/
+>
+>
 
