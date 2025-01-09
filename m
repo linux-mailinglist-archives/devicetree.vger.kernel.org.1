@@ -1,80 +1,77 @@
-Return-Path: <devicetree+bounces-137150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5300A079CB
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:54:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C08BA079F2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:58:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6B4E188AB77
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:54:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82A4A3A83B8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D5D21B1BF;
-	Thu,  9 Jan 2025 14:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E3F21C163;
+	Thu,  9 Jan 2025 14:58:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="e5HM2Lc7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ma/QunMp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B3C54769;
-	Thu,  9 Jan 2025 14:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB6721B1BF;
+	Thu,  9 Jan 2025 14:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736434463; cv=none; b=o5sjYejYdOYv/zAPKpnXt+wBQOMvhkqH7GOi/2IGLgDz9vTafVKiogdMXPiDl3zEJdRw9NJF+rh8wyk+mEqoH9j1MBCe4IqfS2JxayZIzBjxW92ftrThbX/AXXWvKWEovBXqdx6yblKOc84WyDBR4DQT7MmLsoFvWVT9TYQ0FXQ=
+	t=1736434733; cv=none; b=R+VMwMKNKpHaf+x27lpnTc4pqH9O9IeYqu8XHnF8IOMhXYAoKXViyqBuLXKJsZ0hiLesKXXYRhuIyReKH/fN1fen0fNWdLmv9NyLcoq/JvroJhAN76Qx/W3De7YgOB+a6j+HAMpI2KT5v/5Xt84V9nWI5x5cTQs2JKe0UGvxLVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736434463; c=relaxed/simple;
-	bh=aOXcsgZfAVNkKZO0+XDIyJ7zoKqgKgPtWSiV7gryWSQ=;
+	s=arc-20240116; t=1736434733; c=relaxed/simple;
+	bh=CDsK2ol5aehDfnV6LhUEdFF8jxR9hEEyAE1pkOvdgKQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W0iwhcqmAZCDgVXRpiVOvi4svKGttgF2c59e3OZJg043JZd6H36EMiV+Im3atqO1ccK1Hi0QzSTAvdtxJfEDggyaFEmSGUlXN2sgoJKOzxl6AA3Hxe0BXCYy/Lya/o22Sq0ld5KUsGCiJtZO8ehuRFf7lqIN0LIQLG7ycXBeBBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=e5HM2Lc7; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=XS2zHmL8eJvwlmo1sEnhOq6r1rAGjvGYbp8ZEUGFl1Q=; b=e5HM2Lc7Oc/aGxpK7LuQgCbm00
-	xw1HYHPDQtPmf7zSBPtz8vsJNAAMNfQQ2FuneHutnkBVy2KVQ1n5a4kMYJuQUBEgP+7S2ZbiK6OMw
-	aaSH+H26CrsWNk4ic2+hnuMT9zDDAai41SWYjVi8Ia+UDfujLoXB0n/Kfdvx9zRwKk4g=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tVtvB-002vFx-GY; Thu, 09 Jan 2025 15:54:05 +0100
-Date: Thu, 9 Jan 2025 15:54:05 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ninad Palsule <ninad@linux.ibm.com>
-Cc: Jacky Chou <jacky_chou@aspeedtech.com>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"eajames@linux.ibm.com" <eajames@linux.ibm.com>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"joel@jms.id.au" <joel@jms.id.au>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"minyard@acm.org" <minyard@acm.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"openipmi-developer@lists.sourceforge.net" <openipmi-developer@lists.sourceforge.net>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
-	"robh@kernel.org" <robh@kernel.org>
-Subject: Re: =?utf-8?B?5Zue6KaGOiBbUEFUQw==?= =?utf-8?Q?H?= v2 05/10] ARM:
- dts: aspeed: system1: Add RGMII support
-Message-ID: <c05c0476-c8bd-42f4-81da-7fe96e8e503b@lunn.ch>
-References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
- <b2aec97b-63bc-44ed-9f6b-5052896bf350@linux.ibm.com>
- <59116067-0caa-4666-b8dc-9b3125a37e6f@lunn.ch>
- <SEYPR06MB51344BA59830265A083469489D132@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <8042c67c-04d3-41c0-9e88-8ce99839f70b@lunn.ch>
- <c0b653ea-3fe0-4bdb-9681-bf4e3ef1364a@linux.ibm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WJF48pSAl7iLjlUH5ZuWS/rakDwO0sFB9ochLMuSFFr1aTXypf1v/4ZoDr6HqGEJCSg1fBqCQ3t/fQQdKsjiGC9UpGGo0Wr34nsZgoDwwUIZfkyzKYJ4cP/PPnClplK33owSGjdl1CG1nfq0svK2F8LCHfaNmJFOoJjrgMfjhtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ma/QunMp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A653C4CED2;
+	Thu,  9 Jan 2025 14:58:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736434732;
+	bh=CDsK2ol5aehDfnV6LhUEdFF8jxR9hEEyAE1pkOvdgKQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ma/QunMp+TxfyjG7kYIat0v+nwIrJiXDuzHweK/wmV3e35j0Vy8lGffSuz+cyCKxR
+	 lW/kFpkkwVqR/fNWbzbYmkgBJqexTSV/fNci9lWL7fyR+zGcoMJ5msQwM6WuUawEaM
+	 z/ulF/mihe2Ta6ap+yY55zE/dS4jJM67DiBvsSxXLDzVMctB6l7IW0A2dJhNgVdJzL
+	 lnRd783/0J8gddL0e7kiIC5OS1lrE+VLi0EVSEMd5xkbXsxFMQ8bdN5yGpGk+hrRw3
+	 fe4v6T/j/m+0d7S22X8P3tiv0EO/nIQVM9MxPAhfpL0I8palBIZNCT4hAW+336UIX6
+	 VIus/r05CoK2A==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tVtzo-000000007tf-2gk4;
+	Thu, 09 Jan 2025 15:58:53 +0100
+Date: Thu, 9 Jan 2025 15:58:52 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nicolas Dufresne <nicolas@ndufresne.ca>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Jianhua Lu <lujianhua000@gmail.com>,
+	Stefan Schmidt <stefan.schmidt@linaro.org>,
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Vedang Nagar <quic_vnagar@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH v9 00/28] Qualcomm iris video decoder driver
+Message-ID: <Z3_kLJ6Oy6m9D_wU@hovoldconsulting.com>
+References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,88 +80,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c0b653ea-3fe0-4bdb-9681-bf4e3ef1364a@linux.ibm.com>
+In-Reply-To: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
 
-On Thu, Jan 09, 2025 at 08:25:28AM -0600, Ninad Palsule wrote:
-> Hello Andrew,
-> 
-> On 1/9/25 07:21, Andrew Lunn wrote:
-> > On Thu, Jan 09, 2025 at 10:33:20AM +0000, Jacky Chou wrote:
-> > > Hi Andrew,
-> > > 
-> > > > > There are around 11 boards in Aspeed SOC with phy-mode set to "rgmii"
-> > > > > (some of them are mac0&1 and others are mac2&3). "rgmii-rxid" is only
-> > > > mine.
-> > > > > No one in aspeed SOC using "rgmii-id".
-> > > > O.K, so we have to be careful how we fix this. But the fact they are all equally
-> > > > broken might help here.
-> > > > 
-> > > > > > Humm, interesting. Looking at ftgmac100.c, i don't see where you
-> > > > > > configure the RGMII delays in the MAC?
-> > > > This is going to be important. How are delays configured if they are not in the
-> > > > MAC driver?
-> > > The RGMII delay is adjusted on clk-ast2600 driver. Please refer to the following link.
-> > > https://github.com/AspeedTech-BMC/linux/blob/f52a0cf7c475dc576482db46759e2d854c1f36e4/drivers/clk/clk-ast2600.c#L1008
-> > O.K. So in your vendor tree, you have additional DT properties
-> > mac1-clk-delay, mac2-clk-delay, mac3-clk-delay. Which is fine, you can
-> > do whatever you want in your vendor tree, it is all open source.
-> > 
-> > But for mainline, this will not be accepted. We have standard
-> > properties defined for configuring MAC delays in picoseconds:
-> > 
-> >          rx-internal-delay-ps:
-> >            description:
-> >              RGMII Receive Clock Delay defined in pico seconds. This is used for
-> >              controllers that have configurable RX internal delays. If this
-> >              property is present then the MAC applies the RX delay.
-> >          tx-internal-delay-ps:
-> >            description:
-> >              RGMII Transmit Clock Delay defined in pico seconds. This is used for
-> >              controllers that have configurable TX internal delays. If this
-> >              property is present then the MAC applies the TX delay.
-> > 
-> > 
-> > You need to use these, and in the MAC driver, not a clock driver. That
-> > is also part of the issue. Your MAC driver looks correct, it just
-> > silently passes phy-mode to the PHY just like every other MAC
-> > driver. But you have some code hidden away in the clock controller
-> > which adds the delays. If this was in the MAC driver, where it should
-> > be, this broken behaviour would of been found earlier.
-> > 
-> > So, looking at mainline, i see where you create a gated clock. But
-> > what i do not see is where you set the delays.
-> > 
-> > How does this work in mainline? Is there more hidden code somewhere
-> > setting the ASPEED_MAC12_CLK_DLY register?
-> 
-> I think the code already exist in the mainline:
-> https://github.com/torvalds/linux/blob/master/drivers/clk/clk-ast2600.c#L595
-> 
-> It is configuring SCU register in the ast2600 SOC to introduce delays. The
-> mac is part of the SOC.
+[ +CC: Bjorn ]
 
-I could be reading this wrong, but that appears to create a gated
-clock.
+On Thu, Dec 12, 2024 at 05:21:22PM +0530, Dikshita Agarwal wrote:
+> Introduce support for Qualcomm new video acceleration hardware i.e. 
+> iris, used for video stream decoding.
 
-hw = clk_hw_register_gate(dev, "mac1rclk", "mac12rclk", 0,
-	       		scu_g6_base + ASPEED_MAC12_CLK_DLY, 29, 0,
-			&aspeed_g6_clk_lock);
+> Note: A harmless onetime error log "Lucid PLL latch failed. Output may
+> be unstable!" is seen during bootup.  It doesn't impact any video 
+> usecase and is currently under discussion.
 
-/**
- * clk_hw_register_gate - register a gate clock with the clock framework
- * @dev: device that is registering this clock
- * @name: name of this clock
- * @parent_name: name of this clock's parent
- * @flags: framework-specific flags for this clock
- * @reg: register address to control gating of this clock
- * @bit_idx: which bit in the register controls gating of this clock
- * @clk_gate_flags: gate-specific flags for this clock
- * @lock: shared register lock for this clock
- */
+This could be an indication that some resources are not described
+correctly and could potentially require both binding and driver changes
+to address.
 
-There is nothing here about writing a value into @reg at creation time
-to give it a default value. If you look at the vendor code, it has
-extra writes, but i don't see anything like that in mainline.
+This is also something which could cause trouble later (e.g. during
+suspend) even if you manage to get the clock running after boot.
 
-	Andrew
+Generally, you should not be introducing any new warnings; they are
+there to let you know that something is wrong.
+
+Where is this issue being discussed?
+
+I think we at least need a public analysis and understanding of the
+problem before merging this.
+
+> Dikshita Agarwal (18):
+>       dt-bindings: media: Add video support for QCOM SM8550 SoC
+
+Could you please post the DT changes required for sm8550 so that people
+can test this series more easily? You can do it in a separate series if
+you prefer (with a link to this series in the cover letter) or as part
+of this one (at the end, with a note saying that those changes should go
+through the qcom SoC tree).
+
+>       media: iris: add platform driver for iris video device
+>       media: iris: implement iris v4l2 file ops
+>       media: iris: introduce iris core state management with shared queues
+>       media: iris: implement video firmware load/unload
+>       media: iris: implement boot sequence of the firmware
+>       media: iris: introduce host firmware interface with necessary hooks
+>       media: iris: implement power management
+>       media: iris: implement reqbuf ioctl with vb2_queue_setup
+>       media: iris: implement iris v4l2_ctrl_ops
+>       media: iris: implement vb2 streaming ops
+>       media: iris: allocate, initialize and queue internal buffers
+>       media: iris: implement vb2 ops for buf_queue and firmware response
+>       media: iris: add support for dynamic resolution change
+>       media: iris: handle streamoff/on from client in dynamic resolution change
+>       media: iris: add support for drain sequence
+>       media: iris: enable video driver probe of SM8250 SoC
+
+You should also say something in the cover letter about sm8250 now being
+supported by two mainline drivers and how you propose to handle that
+conflict.
+
+>       media: MAINTAINERS: add Qualcomm iris video accelerator driver
+
+Johan
 
