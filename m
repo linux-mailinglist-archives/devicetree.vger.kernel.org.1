@@ -1,250 +1,144 @@
-Return-Path: <devicetree+bounces-137100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7583A07773
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:31:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BABAA07789
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:35:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A15D3188B2F7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:31:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15BAE188A518
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E7CC218EA3;
-	Thu,  9 Jan 2025 13:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 387202185B2;
+	Thu,  9 Jan 2025 13:35:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m9zJK7l6"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="OxNzW9un"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33CA4218AC7
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:29:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0B11A83E1;
+	Thu,  9 Jan 2025 13:35:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736429382; cv=none; b=lQSE7I0yLs9MiStp6VfAdhmkCECddzorMrevOMiWfrxFoPuzFkiujURTPd/SkjmVdYtFw9BoB6NxCryuSldWcjKqn9bdhP80AQt6IHSYJl/LD033mxDuy4hAWGMpBY5MrG4Pa6AQgfYjoE0WQzW+UKx8ejG8DI+LlITxlo3//K8=
+	t=1736429736; cv=none; b=iQjqyEunhLKUg/gaINbNOYI8SY2hr5nXQsQoiSQF4kTybv2Dba9h3ttX4zITfxpmkla4JkK/UebxdcwYE7WaXr0RxQRZusAe7XgXufDanICfy//1rfHinTUjp+UPbCg6hn0vWB0b6wgz6X+KmUM4qE72Gz+8myLiQr3uX//MbiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736429382; c=relaxed/simple;
-	bh=8rSBoPoWgYw8GMcczoRWMMy4LnGGJTErpNLaqkb7AD0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ln/0lO+kxVGCIeFNjckELIEpeuRJTZqmteHDmZutPA3oF/HYPKb+QIctL+Rpm5sd9nGoveRuyfxLdVXLwuLz1LRibM8IappuEZMcc9u69K3O91kWZV12sZoaMLp8lF+bqFauLHR7Fqrk+p2nVzbvcMjjjMlX9eolMxTR9sqew2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m9zJK7l6; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5d122cf8e52so1348872a12.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 05:29:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736429378; x=1737034178; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fajyQwiVg0bVHBQztObwTfCvnjgOz4VRKV2sqAloBqo=;
-        b=m9zJK7l66XCEklF1FlgV+q8B4DIV8mJsSW6WNPVZAV/vFL2Nm/LRehW5F1vEkGGtEG
-         9DUWMJ4OSFLMNfRUF8v2mTqA2FoTnLexx5GbG7GZuoOAiPWWLkCVc3HnXKK+tIUZNzHv
-         0vmryeHT7JGvOaGJC0zbR0KTlhvuF2SinR5b3YHwJxCcy06EE+SFWgFbE74uhhxoT5HV
-         fjp17SuIPiI70jSRuEkK9ChCIIY7v8CaZrJGrB7OoUH2t4lhzhPWdMiy4pTysJ+uTt+2
-         BIkqXU+OwkJMl8wlH+kiIa7nLbWsO1B8lwhCqaKm2JIAXoL54EZ3SOJNawzEGCX0otg7
-         QXrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736429378; x=1737034178;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fajyQwiVg0bVHBQztObwTfCvnjgOz4VRKV2sqAloBqo=;
-        b=dUUIMLkRh4rTWHe3aOntT2AfPlYzclsLyPm+m/83oTnlE7WAMWzZqoNgXS823yNAHQ
-         jni5f8ht9GaLPIji4V7KZYVpPNg05B9j0MHQNYy7ieDHtHOYcEjTLfpoXiMqYyJAphxI
-         GQ5LFbTAf3wmHBwZWD1beck4Wx3AlXUf5nNLkvGUQm/G9CDKenNHqnL0MmVAmZOJ2mST
-         8KqXxtc5nB/d3uy9B1cdnMBH39gtUiz2Z5QaXly9889H3s5AL8qIttqAwobvtiOIX4b4
-         u+XF0QyyAANue06YeTO36PyoLm0tYBN9zCTPREWLI7+e/TC3BOz8AMFu0L/JqODDRLhx
-         IVYw==
-X-Forwarded-Encrypted: i=1; AJvYcCWztkPBCgKc1WGVgEIjv1kjGjs55aVJM9p9GXjjw/Co9PoMSCqDFdbbBScTCefHADLo0svSYwrDD7Kh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQkv0FHjYq1t6GOVJLj8mER0S2rPoSCA1NRCPmdIbL1wEEBHRe
-	hzYjJIA13BWrXJBnV4sOl1kFHwtwqLfDx2GK9f/ZhmGMLllLcpBsOqTMwWVPqZs=
-X-Gm-Gg: ASbGncsP4GJ9TZHFQjz1imCHbGak8/3tkYig/ZHKoY30mMfs8FQB1jA4ZyAbAWkiJRi
-	Io6E70/1mJqi/jFyFmJ/QU3W/mR+plZG3W+traPv+CJVl8GAMI9sj7eamWDjWZo/6MwDM8Opp8a
-	jSeQebAbl2LhpwjG/ucGLg/2EMNlIsZFjPT3kMiEj67tzHfK1ktSYU+krNMN6hRYGksaqMOqZKo
-	EA0yeEGhCPgfBNx6aFSPP833P2whL5b0AsvbbGyotnTkcBbVRf+peR9M2g56AHM7vDy
-X-Google-Smtp-Source: AGHT+IEFes9axgrHAFPFaU+53c5yDyInEuXS9Nfpvc/FG4NRcFYXnFr3fQp6r1KVwEPD3nweimDy4w==
-X-Received: by 2002:a05:6402:354b:b0:5cf:d19c:e21c with SMTP id 4fb4d7f45d1cf-5d972e149e8mr6029099a12.20.1736429378415;
-        Thu, 09 Jan 2025 05:29:38 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef30:32eb:2ece:5e7f:f59b])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d9903c2fffsm628444a12.43.2025.01.09.05.29.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 05:29:37 -0800 (PST)
-Date: Thu, 9 Jan 2025 14:29:32 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-	Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-crd: Drop duplicate DMIC
- supplies
-Message-ID: <Z3_PPOwPNOPkZPkz@linaro.org>
-References: <20241203-x1e80100-va-mic-bias-v1-0-0dfd4d9b492c@linaro.org>
- <20241203-x1e80100-va-mic-bias-v1-2-0dfd4d9b492c@linaro.org>
- <f65e1559-b409-4906-aabb-eb24b5b0fcf2@linaro.org>
- <Z1ATxAsXFhQraQwH@linaro.org>
- <afd010c9-8c24-482e-a479-2396f08c972b@oss.qualcomm.com>
- <Z1H1BHAeO-0832Ea@linaro.org>
- <6vfrlwir6sfommhn3met6wnjm76lnnxw4rdwzq75b7lzcy4jep@2cbcfvb3tvr2>
- <Z3-XoDgUgdS7DDvm@linaro.org>
- <0f9e456b-cd54-4496-a2d2-795aae744385@oss.qualcomm.com>
+	s=arc-20240116; t=1736429736; c=relaxed/simple;
+	bh=9xpajja8yxYHoRUKRft3X9m1o7b+Ai2scAJrzWDOJHQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PZxEZXXDsQgyCjo082/GD0Xtus6ivyYSxpzQpq999G9yMfQ/3LPTo9T3GEqqqZhXUe06okDhay/CUkGZ4tcg23ScCDNvaw/55DDQqKNMfXzwOHHoq9Sv+eRVnAhzyCB2XD0hH4j+s6iDgfEVrhy/lJqGNy/yRAWhusNPeYPH1gg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=OxNzW9un; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 944a8156ce8e11ef99858b75a2457dd9-20250109
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Q7IqtAzsqRyq2MV5yJRjbh9Wk4+9FAZ/gH0fjGvtH5o=;
+	b=OxNzW9unI0DY2kGLvksThCOmnVwI9xxsCSzS0cTx6SCGCStgNv/hyiTfF0ZLfcNkBLdz8BSUepxenlSa9/TgXSYSFCuE4n51OVc/SQxujXuoEeXYEOVQgp3Z6J0/CllLXFp9pafY0j7Hs05g1cIHjhzkRS1OmWrY49E6JmO8XG4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:665d547c-e449-4c2e-b0a5-c830c43bf7e5,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:60aa074,CLOUDID:ce02a30e-078a-483b-8929-714244d25c49,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_ULS,TF_CID_SPAM_SNR
+X-UUID: 944a8156ce8e11ef99858b75a2457dd9-20250109
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 338430475; Thu, 09 Jan 2025 21:35:24 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 9 Jan 2025 21:35:23 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 9 Jan 2025 21:35:22 +0800
+From: kyrie.wu <kyrie.wu@mediatek.com>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, Tzung-Bi Shih <tzungbi@chromium.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Bin Liu <bin.liu@mediatek.com>,
+	kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
+	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, kyrie.wu <kyrie.wu@mediatek.com>
+Subject: [V1,00/12] Enable jpeg enc & dec multi-hardwares for MT8196
+Date: Thu, 9 Jan 2025 21:35:00 +0800
+Message-ID: <20250109133513.20151-1-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0f9e456b-cd54-4496-a2d2-795aae744385@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Thu, Jan 09, 2025 at 01:57:17PM +0100, Konrad Dybcio wrote:
-> On 9.01.2025 10:32 AM, Stephan Gerhold wrote:
-> > On Wed, Jan 08, 2025 at 05:07:47PM -0600, Bjorn Andersson wrote:
-> >> On Thu, Dec 05, 2024 at 07:46:28PM +0100, Stephan Gerhold wrote:
-> >>> On Thu, Dec 05, 2024 at 06:11:47PM +0100, Konrad Dybcio wrote:
-> >>>> On 4.12.2024 9:33 AM, Stephan Gerhold wrote:
-> >>>>> On Wed, Dec 04, 2024 at 08:20:15AM +0100, Krzysztof Kozlowski wrote:
-> >>>>>> On 03/12/2024 18:44, Stephan Gerhold wrote:
-> >>>>>>> The WCD938x codec provides two controls for each of the MIC_BIASn outputs:
-> >>>>>>>
-> >>>>>>>  - "MIC BIASn" enables an internal regulator to generate the output
-> >>>>>>>    with a configurable voltage (qcom,micbiasN-microvolt).
-> >>>>>>>
-> >>>>>>>  - "VA MIC BIASn" enables "pull-up mode" that bypasses the internal
-> >>>>>>>    regulator and directly outputs fixed 1.8V from the VDD_PX pin.
-> >>>>>>>    This is intended for low-power VA (voice activation) use cases.
-> >>>>>>>
-> >>>>>>> The audio-routing setup for the X1E80100 CRD currently specifies both
-> >>>>>>> as power supplies for the DMICs, but only one of them can be active
-> >>>>>>> at the same time. In practice, only the internal regulator is used
-> >>>>>>> with the current setup because the driver prefers it over pull-up mode.
-> >>>>>>>
-> >>>>>>> Make this more clear by dropping the redundant routes to the pull-up
-> >>>>>>> "VA MIC BIASn" supply. There is no functional difference except that we
-> >>>>>>> skip briefly switching to pull-up mode when shutting down the microphone.
-> >>>>>>>
-> >>>>>>> Fixes: 4442a67eedc1 ("arm64: dts: qcom: x1e80100-crd: add sound card")
-> >>>>>>
-> >>>>>> If there is no functional difference and this is just redundant, then
-> >>>>>> there is nothing to fix, so drop the tag. But the point is that users
-> >>>>>> might want the low-power VA. You claim they don't want... sure, I am
-> >>>>>> fine with that but there is nothing to fix in such case.
-> >>>>>>
-> >>>>>
-> >>>>> The fix here is that two mutually exclusive power supplies for the DMIC
-> >>>>> are specified in the device tree. You can only have one of them active
-> >>>>> at the same time. The Linux driver handles that gracefully, but the
-> >>>>> device tree is still wrong and IMO deserves a fixes tag.
-> >>>>>
-> >>>>> The functional difference is that we skip briefly switching to pull-up
-> >>>>> mode when shutting down the microphone. Users won't notice that, but
-> >>>>> it's not the intended behavior.
-> >>>>>
-> >>>>> I don't claim that users don't want to switch to the low-power pull-up
-> >>>>> mode (VA MIC BIASn). However, we would need a different mechanism to
-> >>>>> give them the option to switch at runtime. "audio-routing" just
-> >>>>> specifies static routes, so the current description does not allow
-> >>>>> switching between the two modes either.
-> >>>>
-> >>>> Is there no existing mechanism to alter this at runtime?
-> >>>>
-> >>>
-> >>> I don't think so... Since it's currently exposed as two separate DAPM
-> >>> supplies (instead of a mux or similar) you can only choose between one
-> >>> of them in the static routes specified by "audio-routing" in the DT.
-> >>>
-> >>> I tried looking at how downstream handles this, but this left me even
-> >>> more confused than I was before. :-) On CRD we currently have the
-> >>> following routes in DT:
-> >>>
-> >>> 	"VA DMIC0", "MIC BIAS3",
-> >>> 	"VA DMIC1", "MIC BIAS3",
-> >>> 	"VA DMIC2", "MIC BIAS1",
-> >>> 	"VA DMIC3", "MIC BIAS1",
-> >>> 	"VA DMIC0", "VA MIC BIAS3",
-> >>> 	"VA DMIC1", "VA MIC BIAS3",
-> >>> 	"VA DMIC2", "VA MIC BIAS1",
-> >>> 	"VA DMIC3", "VA MIC BIAS1",
-> >>>
-> >>> MIC BIAS and VA MIC BIAS are mutually exclusive, so this is not correct.
-> >>> But if you look at e.g. SM8550 downstream they have:
-> >>>
-> >>> 	"TX DMIC0", "MIC BIAS3",
-> >>> 	"TX DMIC1", "MIC BIAS3",
-> >>> 	"TX DMIC2", "MIC BIAS1",
-> >>> 	"TX DMIC3", "MIC BIAS1",
-> >>> 	"VA DMIC0", "VA MIC BIAS3",
-> >>> 	"VA DMIC1", "VA MIC BIAS3",
-> >>> 	"VA DMIC2", "VA MIC BIAS1",
-> >>> 	"VA DMIC3", "VA MIC BIAS1";
-> >>>
-> >>> Note the TX DMIC vs VA DMIC. So they specify one of the supplies for the
-> >>> TX macro DMIC, and the low-power one for the VA macro DMIC. That would
-> >>> be fine.
-> >>>
-> >>> Now the question is: If we can use the DMIC through both the TX and the
-> >>> VA macro, and we're not doing voice activation, why are we using the VA
-> >>> macro in the first place?
-> >>>
-> >>> @Srini: Do you remember why?
-> >>>
-> >>
-> >> What's the verdict regarding this?
-> >>
-> > 
-> > We started discussing this, but did not come to a conclusion yet if we
-> > should be recording from the DMICs using the TX macro instead of the VA
-> > macro.
-> > 
-> > The patch I submitted is still valid though, independent of that
-> > question. Since we're not doing voice activation we want to have the
-> > "full quality" MIC BIAS supply, not the low-power one.
-> 
-> Can/should we discuss a new sound API to make this toggleable?
-> 
-> Do these microphones physically connect to muxable inputs, or does this
-> depend on board wiring?
-> 
+This series adds support for mt8196 multi-hardwares jpeg enc & dec,
+by first adding mt8196 jpegdec and jpegenc compatible to install
+kernel driver. Add smmu setting to support smmu and iommu at the
+same time.
+Secondly refactor buffer and clock setting to support multi-hw jpeg
+working.
+Lastly, fix some bugs, including resolution change handleing, stop
+streaming sw flow and others.
 
-The WCD938x codec has 4 MIC_BIAS output pins that are typically used as
-power supply for microphones. Inside the codec there is an option to
-drive these output pins in one of two modes:
+This series has been tested with MT8196 tast test.
+Encoding and decoding worked for this chip.
 
- 1. Internal regulator to generate the output with a configurable
-    voltage (qcom,micbiasN-microvolt). Exposed as "MIC BIASn" supply in
-    the Linux driver.
+Patches 1-3 Adds jpeg encoder and decoder compatible.
+Patches 4 add jpeg smmu sid setting.
+Patches 5 fix jpeg hw count setting to support different chips.
+Patches 6 refactor jpeg buffer payload setting to handle buffer
+size bug while resolution changed.
+Patches 7 reconstruct jpeg dst buffer layout.
+Patches 8 fix multi-core stop streaming flow
+Patches 9 refactor multi-core clk suspend/resume setting
+Patches 10 fix decoding buffer number setting timing issue
+Patches 11 refactor decoding resolution change operation
+Patches 12 fix remove buffer operation
 
- 2. "Pull-up mode" that bypasses the internal regulator and directly
-    outputs fixed 1.8V from the VDD_PX pin. Exposed as "VA MIC BIASn"
-    supply in the Linux driver.
+---
+This series patches dependent on:
+[1]
+https://patchwork.kernel.org/project/linux-mediatek/patch/20240808092555.12999-1-jianhua.lin@mediatek.com/
 
-The board-specific part here is only which microphone is wired to which
-MIC BIAS pin (e.g. DMIC0 -> MIC BIAS3, DMIC2 -> MIC BIAS1 etc). 
+kyrie.wu (11):
+  dt-bindings: mediatek: Add mediatek, mt8196-jpgdec compatible
+  dt-bindings: mediatek: Add mediatek, mt8196-jpgenc compatible
+  media: mediatek: jpeg: add jpeg compatible
+  media: mediatek: jpeg: add jpeg smmu sid setting
+  media: mediatek: jpeg: fix jpeg hw count setting
+  media: mediatek: jpeg: refactor jpeg buffer payload setting
+  media: mediatek: jpeg: refactor jpeg dst buffer layout
+  media: mediatek: jpeg: fix stop streaming flow for multi-core
+  media: mediatek: jpeg: refactor multi-core clk suspend and resume
+    setting
+  media: mediatek: jpeg: fix decoding buffer number setting timing issue
+  media: mediatek: jpeg: refactor decoding resolution change operation
+  media: mediatek: jpeg: fix remove buffer operation for multi-core
 
-Both options will work if the microphone can operate at 1.8V. In that
-case, I think generally we want (1) for normal audio use cases and (2)
-for low-power use cases (like "voice activation").
+ ....yaml => mediatek,multi-core-jpegdec.yaml} |  10 +-
+ ....yaml => mediatek,multi-core-jpegenc.yaml} |  10 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 126 ++++++++++++------
+ .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  17 ++-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 116 +++++++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.h  |   4 +
+ .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 113 +++++++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.h  |   4 +
+ 8 files changed, 343 insertions(+), 57 deletions(-)
+ rename Documentation/devicetree/bindings/media/{mediatek,mt8195-jpegdec.yaml => mediatek,multi-core-jpegdec.yaml} (95%)
+ rename Documentation/devicetree/bindings/media/{mediatek,mt8195-jpegenc.yaml => mediatek,multi-core-jpegenc.yaml} (94%)
 
-Apparently the same applies for the "macro" to use. TX macro should be
-used for normal audio, and VA macro only for low-power use cases. With
-that there is a clear mapping:
+-- 
+2.46.0
 
- - TX macro DMICs -> full power "MIC BIAS" supply
- - VA macro DMICs -> low-power "VA MIC BIAS" supply
-
-I don't see why someone would want to change this mapping, so I don't
-think it's worth making this user configurable.
-
-Given that we're currently using the VA macro for normal audio, we
-should describe VA macro DMICs -> full power "MIC BIAS" supply for now
-and ideally migrate to using the TX macro later.
-
-Thanks,
-Stephan
 
