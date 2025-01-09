@@ -1,120 +1,139 @@
-Return-Path: <devicetree+bounces-137054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E521DA07615
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:49:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20810A07620
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:54:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D191E1674C9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:49:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D30531888CE2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA41217F29;
-	Thu,  9 Jan 2025 12:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7235217F4E;
+	Thu,  9 Jan 2025 12:54:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S/q5XqT7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VJwj5/fj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1BC217707
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 12:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30497215074;
+	Thu,  9 Jan 2025 12:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736426950; cv=none; b=g1s8Y4lzmop2WodLFUtRxzkwKC8G0vKFTmTXounwy4MpaxKCCxhNsySNsvik5q1+He0Vcj/CDyvB0/Yd9O2UlpQNI+QJ8PrCDXXFMuOtexKjk2rLRHRFy4h32ybkunoNvELNb5wKEAV/4M7G4oibsKJg1XnplCUPPt0WOtzdNn8=
+	t=1736427240; cv=none; b=GkQOMrwpPu4lRNgMsilwNeqSa40xSV8f/7IvHItuHQML91OBjKOmBycZq9XTL/V7paipvsokDKmfUnlRwMGxKVpMuRIW9W6J36eCTi9s6XkImtwmiadBTWWQEB6DerLCE8mCc9IjpFvQD5kbz1RL20DPs7pwAwAqJEYwXvA5cBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736426950; c=relaxed/simple;
-	bh=hHMk51qTLQfW3zKY9KUNXYTiCBfM7At6KtyvRwbn/+s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UaW4Mjg/KpqTTx6tCw0ltWYbOyTv66HWHGLzJiOXF5KDKW+MTShH4Yuc+sAhUulgWIpYX/Ba4P3WGwD82LCiF84UsfrLTgrxqODK3hedXsoczj6nzSv2aDUu1QiBUdIPk/1Aefqgz3qWsgS5r+Re61bNbpam5KbximaKhX8F+8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S/q5XqT7; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-54024aa9febso829215e87.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 04:49:08 -0800 (PST)
+	s=arc-20240116; t=1736427240; c=relaxed/simple;
+	bh=XngCrPFnKYJnX4wmtZJNVByjfsD6XAwJEe6yUvrW7Ok=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ucWbLF87LTs9ROz5CrdRg4KxYcDf/IBUjo4ngz4WskGf9t+hJrs8ZKq+UPGY8u8Op8JLVUVvKJ9dQUsKmszY7wfTLEbpLgU8iITEyRKaQZmBwxNYT+Uyma8BsJZ28uHzybd/3xl3nS6751zljUhzw4M7JWnrsmBcekGMQWJTlik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VJwj5/fj; arc=none smtp.client-ip=209.85.222.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-85bad7be09dso524851241.0;
+        Thu, 09 Jan 2025 04:53:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736426947; x=1737031747; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ISAvUvnxrJppDS2oaPXGBaXepNKXj9gL7beVEXrneoM=;
-        b=S/q5XqT7hlUDm3Av6wGsjxHEMEfLmQGgfG+SFysETh/zTPMV4yDDV44UpGCdobDypX
-         WRolfwMmMJrZuXryUmiPJc5+YxnrmOr6xV1uqQILCcjQOMq9sDz4mQrQrdRTzg3VBgeR
-         6phtZkgTZIvn3CzzZKA5McZOqy3hcTtpuzwGV2XBQ3TNtTpLVqkIesIKprz3DoNXX+hL
-         ypiI5W3Qpb9LrCEcy8MiAeZ4dmVloo8P7zxlh8U9ZjQ9HOIY9yBeSvuR/ufbrpV4I3BT
-         L4If0EUFFuG+mRYwQptGGihy/2xSKUI7JPy4jAiwpa1HNInf3XU8/cyvf/KEEy6TvekM
-         4t2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736426947; x=1737031747;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1736427238; x=1737032038; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ISAvUvnxrJppDS2oaPXGBaXepNKXj9gL7beVEXrneoM=;
-        b=XgEPesh1HThsBGFaFufdSxGg8IWW+mHR6L/4AtNarhf5N1bhShIyK217bS65jpKTr9
-         +ZAdEE8EvOQZME0BRcIGOUGQK2C0sxOArFHJCghDkJ4Y40rer2PZ8roDZUsA/c9H8T9W
-         eiZf8ASi0o2QZwVDSaqwXdflEUYHnr6bV1vx3s3F+ZWnY3BZFJSnSztegv6k+Ts+jYG6
-         M0xTsr38+FJeW5MOUOUemEgFl2cYasCZGC6nr4ZaiCBiJhh21uX4WuS+V+C+/K2C27gz
-         9CDI+gkkLK2AzEUabWW4s7HTWzu0v+fzrVF9ZT/QSaiwpC/zgrdEW1Yh/i4uzVKr2lcu
-         MCLg==
-X-Forwarded-Encrypted: i=1; AJvYcCWfQ6GdcYZ+jM57PNYsL2K2wP9Sp/jcig5jYA04pYOyOEEyE1RQV0bo2Ic8e0ZOXP7UMDpq+ro9xHA4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqGeFeMkCVHvCAsA8BBOr7cwuboFM1tEOEl0kSSx900GZkwxye
-	sBd2FtLey434BiNy+GmeznJ8pkCiSIImMhtM4ADF7eStnWW1VNRJuqXc4aympmg=
-X-Gm-Gg: ASbGnct8M04n1FTaDb0ze26+jdaXJLjAgLPSETlOnMqSmmbsIKqt2vbHp9KSAuUkgNM
-	0MiiQC6jN5cELGMwFRiDpnwiMcQSsckJ7C8Pyt5i3eSUFDoE02s78DG7UpiTpDKW23VALkjEO5b
-	LS3BD760jfJ2j1Yr+UU6IkMsTuQAtGvYEYZerr3t0K4BoeNO9CeSKEvOPLxxo+2zloVuWEFa7Bj
-	BQQWNGvBSEcQ+lPDnp6Io66mWNwbAc5yfimUyTZFZ8QVHJlkbQUL4HK1AaZrio7XrC3C09Tw+df
-	kFUQV1Nb1hGjEXCGdsGr5rpRFtHucxYfO5e2
-X-Google-Smtp-Source: AGHT+IFtzPf5r/L8vL1E/ZArSF/N5lVRhLbGlgYJHuErJi9BwgLOD62Gve10/GJMoU02S8ksLbRDSg==
-X-Received: by 2002:a05:6512:1281:b0:540:30df:b3ea with SMTP id 2adb3069b0e04-542845b972emr1634434e87.15.1736426946964;
-        Thu, 09 Jan 2025 04:49:06 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428be496c4sm193126e87.24.2025.01.09.04.49.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 04:49:05 -0800 (PST)
-Date: Thu, 9 Jan 2025 14:49:04 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org, 
-	sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
-	andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com, 
-	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 14/20] drm/bridge: analogix_dp: Add support for RK3588
-Message-ID: <q522hpxpoxwierd3uwtijvnmaia5tec3gzazuzblhxeqgqgavy@d6yhljsiyvrn>
-References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
- <20250109032725.1102465-15-damon.ding@rock-chips.com>
+        bh=bOwGmglZgSOm6Gk1CXqHJczAaEbPrQw+u7E9D/ELwX8=;
+        b=VJwj5/fj+JeUMhJvH+jUgP/k+YZKZ+62aBqpgRaCKX6GDNUHxlAZ+GwlSZsQDmPTZB
+         TN5ZbyxgGVOQcRYrLO+5zduzohsMqEKPT/G+dYbppsV8DOLgaO8mpj67yJLF3Jv0fLhJ
+         UHbzvOkvCimvjMUJg3szwebzPLOBPD7G6WJsbRdRbscJ8VQ4+7LxPboRU/1QJqjilyRL
+         Djh042nA5Ogpkj+E17q25Qn3KeZ4X9+sVYniu5+VWjI2mX+n8QKU53fD99yuANrS6Lqr
+         WsFZoSu8FyFH8mf1/eT6HsvcnpL9DkxR1f5d5KdtHu7LPQVi6y9lCOiuVPUKDnOMSOCw
+         JjTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736427238; x=1737032038;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bOwGmglZgSOm6Gk1CXqHJczAaEbPrQw+u7E9D/ELwX8=;
+        b=pQi8owKthUGWHzvYKYHvPwNBs/+7g1WipoZpmiJ2dJURHPRVyz5sIgYNH9uCpnsuvO
+         2/oYN0ycAYkEyLT2hTOjDmSD3z0tU7brDK4vt5BEBIqO4FaVGd7A3OJRm7bxaXPxcn/t
+         jJERQPiFAXvxXUM9XIta1MSAjrnz+A109sa46pajEPlGQrHK7mwcAsTLx0pQlXX7xaN5
+         Gp1ryl3pcxICLu0RsaX4tu43scM+rkZBk685r8n8uk2kIq+M1i0AAioaqlCOheirJOty
+         EnvFo5rdPK9X97374fb38O8JaFLKkeDVU7WYbM+sGQJC+kdfddkeK+Y61LxaLCFXUMrY
+         EEmA==
+X-Forwarded-Encrypted: i=1; AJvYcCU/XyD0HbWhGnxFTvl7Jun1/weLMcVzoSfTzt1WV3CzfyJTvzezLN6s5sw0yNZaFivlOjreisZr2OKKXQ==@vger.kernel.org, AJvYcCVYxn/Mo0q/Gry25nD/81OENKqhrjg8ZCDuFiNAxPHnHlLtgx4/Q4oDSOUSxHu1qQGj35LWzQBEGFPYogQ=@vger.kernel.org, AJvYcCViGuItW0SwnG7JoJ7fpKQMGDI75U7VGxd+4H+XIqZBXR+T9DccAu0SQJ5gPeSRhvZKCNfqUgP3MsY=@vger.kernel.org, AJvYcCWyj5GyXXDJi1KikdHHNFhOlzdPJRRv25K+WGy4n6ScCzwimEjllgWgwOo/YJZA39I3ys0VutrGxYcf@vger.kernel.org, AJvYcCXDVT6jiKRj0lhfhZhc2O1bgEYT3MUijXzSYwmO7lvx637gMvJO8YuBfxDo2vifHb5UDd76b3YrnNYzrTNU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYFvOl+rE/g6bToGcTskE/Fmv4RxkZgmVjpzo9gIW0pg7NjCmR
+	arXYyAwembbRB0eOLAsFCqPUbCjG6B2f1dmV0ed1+WXkDg/XDwQRV//521sI2VJqp8qE3rqZPKq
+	fd3w0sPETJY7OHc3zgpqUt5W+hjc=
+X-Gm-Gg: ASbGncvfPXRHzAMKWmhm/ZiWxVW3i/ePQTEC5EfxxpBMXmc7ULZDUHkNNfPUwEqu79W
+	3P46ibr5vfWcCWezbLynVLSMznzU3Qq1/I1HF/w==
+X-Google-Smtp-Source: AGHT+IH1XwcQ9+xLozO4Q3bu65QRU8W1LZuyVdusoys5faul4KaN3rPauBxadAiPSUOGB0xJz1gY3MkUHKo9TFNuZko=
+X-Received: by 2002:a05:6102:d87:b0:4af:c5c8:bb4c with SMTP id
+ ada2fe7eead31-4b3d0e0f3eemr5260422137.16.1736427237410; Thu, 09 Jan 2025
+ 04:53:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250109032725.1102465-15-damon.ding@rock-chips.com>
+References: <20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com>
+ <20250108-starqltechn_integration_upstream-v14-7-f6e84ec20d96@gmail.com>
+ <20250109120158.GH6763@google.com> <20250109120308.GI6763@google.com>
+In-Reply-To: <20250109120308.GI6763@google.com>
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Thu, 9 Jan 2025 15:53:44 +0300
+X-Gm-Features: AbW1kvbYBA43BadlmghIi3O6FKD8wTkjV5Cw7rRDl9rkqTnWC7Han4ju5QPlKqg
+Message-ID: <CABTCjFCMky1kRZ0a8q999_WNdeOhqsDwtqxMCcWsmUoWv_rhDw@mail.gmail.com>
+Subject: Re: [PATCH v14 07/10] mfd: simple-mfd-i2c: Add MAX77705 support
+To: Lee Jones <lee@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 09, 2025 at 11:27:19AM +0800, Damon Ding wrote:
-> Expand enum analogix_dp_devtype with RK3588_EDP, and add max_link_rate
-> and max_lane_count configs for it.
-> 
-> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> 
-> ---
-> 
-> Changes in v5:
-> - Add the RK3588_EDP related modification in analogix_dp.h
-> - Move this commit above related commit on the Rockchip side
-> ---
->  drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 4 ++++
->  include/drm/bridge/analogix_dp.h                   | 3 ++-
->  2 files changed, 6 insertions(+), 1 deletion(-)
-> 
+=D1=87=D1=82, 9 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 15:03, Lee =
+Jones <lee@kernel.org>:
+>
+> On Thu, 09 Jan 2025, Lee Jones wrote:
+>
+> > On Wed, 08 Jan 2025, Dzmitry Sankouski wrote:
+> >
+> > > Add MAX77705 support - fuel gauge and hwmon devices.
+> > > Hwmon provides charger input and system bus measurements.
+> > >
+> > > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> > > ---
+> > > Changes in v13:
+> > > - remove compatible from cells
+> > > - change mfd compatible to match max77705 fuel gauge node
+> > > ---
+> > >  drivers/mfd/simple-mfd-i2c.c | 11 +++++++++++
+> > >  1 file changed, 11 insertions(+)
+> > >
+> > > diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2=
+c.c
+> > > index 6eda79533208..22159913bea0 100644
+> > > --- a/drivers/mfd/simple-mfd-i2c.c
+> > > +++ b/drivers/mfd/simple-mfd-i2c.c
+> > > @@ -83,11 +83,22 @@ static const struct simple_mfd_data maxim_max5970=
+ =3D {
+> > >     .mfd_cell_size =3D ARRAY_SIZE(max5970_cells),
+> > >  };
+> > >
+> > > +static const struct mfd_cell max77705_sensor_cells[] =3D {
+> > > +   { .name =3D "max77705-battery" },
+> > > +   { .name =3D "max77705-hwmon", },
+> > > +};
+>
+> Why not register these from the proper MFD driver?
+>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Because the fuel gauge address is different from the max77705 mfd device.
 
--- 
-With best wishes
-Dmitry
+--=20
+Best regards and thanks for review,
+Dzmitry
 
