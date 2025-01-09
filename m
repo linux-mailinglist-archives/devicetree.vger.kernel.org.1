@@ -1,139 +1,258 @@
-Return-Path: <devicetree+bounces-137141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54537A07950
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:34:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3F9A0795E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:37:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A0BE3A1100
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:34:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EE883A5E0E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA9F21A44B;
-	Thu,  9 Jan 2025 14:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6A121A45F;
+	Thu,  9 Jan 2025 14:37:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XNZG5qKp"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="bXnEQ+r3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3797521578A
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 14:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C2F21578A;
+	Thu,  9 Jan 2025 14:37:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736433271; cv=none; b=TcQGFfyr8fZu21Mj6pA9LDe0m3lOzqO9pBlGyXPCmaZhoQRtQkE0tRBPdblJWCPsoqfD5L+GqCII9Pp3mTLvcNTYvehJlFLVl51FU0imTTPubCYaEzBc9DX7vKjfpiawKmdgJcjOBPB+09uvpjRGhBmtYMiFgkmXe2SUFJ0ahbQ=
+	t=1736433437; cv=none; b=nhn+1Ek/jg5CZrIcEqN1xB6sU61TtCPQPuOP6caL5/Ai0IqYLeeifOQKLLgiLFi5c7aNeiXzRlZXPkDmzdDs0dwzpTPckOngt9fw173/pWqbZtiFLfTkCHf+jHpZliR1+CxvmbEGSJR92LN7WRjv/BhgaULbAO4jKO349HHE5yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736433271; c=relaxed/simple;
-	bh=JzZsAVX22mxjMUIPiLN1cRpqa12FwCd+0+1ZWGrou/s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dyoF0XBYzh1tyPr6f5AGBan/IMV5E14QwsVR4g4EOjgi1Wsd7Mppppb/ztURSGZDm6W8DvuGlPNGLdTe7VVEZtr3fRSeHY+U8ALBiIA1uI2WzfsuCSy3Luk0iKt1irJP9/lwXipZx6mn+TWtzET9kGjYZm4MG596ZbIYekzWCHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XNZG5qKp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 509CBa8E002547
-	for <devicetree@vger.kernel.org>; Thu, 9 Jan 2025 14:34:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7sRminSKYuT4CUEwQi0mIyGX5qLVxMETdC4eOaSoVHw=; b=XNZG5qKpHTc52B88
-	OIOw6pOje4hziOfg9JPOvmjxiHJOE970otoO6oqUZ1Wa1EeXTCkecb1nsFJcRAFZ
-	2jObhzdoWuIZ2cBRcXkviuDmjPaF6M2ZIbOOwzkFvhOdHl0VnQ8xuo2CB/m6jEqC
-	utP9+yMn/6lJoxGTKdQQfP0lX6m2XooWshjiYKE844yX2B+lyTn0OP3hONWST4yC
-	FZM+gSn6NObUCM3wiLI6ubkRyj+crlAIE/8X2YuUCOV0gXv6nj3P5U2huIzCr4oN
-	r1iHCqo4LToww7N622DRnDfNC9GNF39cS+/Z0yKtuzWljg6oC0MEQ31PlWhkO2sp
-	ZQtckw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442e8cgaj7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 14:34:29 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-467a437e5feso2535301cf.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 06:34:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736433268; x=1737038068;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7sRminSKYuT4CUEwQi0mIyGX5qLVxMETdC4eOaSoVHw=;
-        b=FLVJEN89oLQaO9ev1o/eKLYiDQewTqL2mf8Rf8LxMzuCvxt7p2sUgxEQvB9ml3R2A7
-         d4iD8sqIAPPSbJ+AvyJWhEjjro+u2RaojGl0eLVbklpmfxExeVye0w8V8rtuK64mKiMj
-         sl7NbgGbtbSuX4VYu3UB4TBAg47E4WwrnJa2FmLXnKFiw1cEuOUgCc1lADGivHLgXLLI
-         1AR2hEPut/Kr5fmQC978y5UYOcwT/xm03oMO9Syc26TYXEhY5vYw31J+gErERgSl+SxT
-         l26kxmrPrU/q/zf0VPwxUDf1O3CPXeqIV7KYSTuC88FNsb0G9iPdSE/nT2rwhbF8l2di
-         kpew==
-X-Forwarded-Encrypted: i=1; AJvYcCXghDxuSAPH2T0MPeNSOLOyQpOY24Ecg+ixaCcrGRs3u7Ii9/uhyyq2PB6cpgufmZ/CViQB2i2oE74i@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCUChHpDu+yYGsOf1gO9ldkDc8WV2birQ5wlBlZka4ps1clFj5
-	k5SNyCuyNP+/DVApaC5/SvaJ84e9/Xg9fumuYeByLr2EFcUolqBDCeFUNQaF37t+cFX/bJkFiJh
-	os+5nNgBvS2ET19pGXYRbziJz9EyQEtZIGLzyjbGT714LVi+Mru8b7hOiBfLj
-X-Gm-Gg: ASbGnctE1UhabwAWERPVtYlJNzovABGrPJ5SQphL/7WKgn4mmrsOuj8PJR9tmJSEGft
-	XpZhVqItMNaloQbwcOedgzNySKSBHeBlYbH5fMpmdEgbiYj21Ss+neVLeVwgzJActjZle7QtiY6
-	8RAHtfpUZsYiHUPhiFTnZ5ASS4msIVOZSBXDuvc15aOXACYz2qvLo8UmrAOMUdj4bzZ8wv6cLJ2
-	NAunFXbxcQ3+HhP/5/oZ5EjOhMyhJCDMtirQmqNMUld3SKKBrL/9F6h3QTByUB5qJXc27P5cyLX
-	RpFNqviu73/jc7SODAFS3uj5PbwYB4SwYvU=
-X-Received: by 2002:a05:622a:450:b0:460:9026:6861 with SMTP id d75a77b69052e-46c7102be4cmr40531161cf.9.1736433268371;
-        Thu, 09 Jan 2025 06:34:28 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH883oKXzGRrTilIgV/N2e+QQvov9AilqN39UqLmkXr4L20TmKo/V9bG0B0YVs80AyZaQqlfA==
-X-Received: by 2002:a05:622a:450:b0:460:9026:6861 with SMTP id d75a77b69052e-46c7102be4cmr40531051cf.9.1736433268041;
-        Thu, 09 Jan 2025 06:34:28 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c9649939sm76309866b.182.2025.01.09.06.34.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jan 2025 06:34:27 -0800 (PST)
-Message-ID: <daf612e8-1369-49cb-ba99-15218ad2f224@oss.qualcomm.com>
-Date: Thu, 9 Jan 2025 15:34:25 +0100
+	s=arc-20240116; t=1736433437; c=relaxed/simple;
+	bh=k9ZU2U4p5XuvziVR5uSHFYVltJ1IhGYYMGVoIiq9MHA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WUDMfxUtC4X/ibmqI27smQya4qE5pmoy+OQqDg+3bV6uHQLguTVwklp1PCG7jpCfNUB5/osQyN4VruaTd218LYqSPoP3KkocCtNEH7qgXVsDUoEk4iFPAnVTGx8ZbrWDolBCqvzMveyT3/U2ZIlQa5myzBmHgs8/q6xMkAJrjHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=bXnEQ+r3; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 54FC110408FB6;
+	Thu,  9 Jan 2025 15:37:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1736433425;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=is0wzx5VfaQSS39zqezax6hpD2UoDB/5ZSK9ROPQWV4=;
+	b=bXnEQ+r3aWt8kayLcG4mq6vJk5x/OzJlwKfDOKs5xgBItImGeL82S77YsUyZ34sEAF+aqB
+	ffV/5Hi5Ty2KKupNvZ0Wz8uFqn6YBbF4l++7uaK2RrtOj2FGA3dfNCe6Dx0rT6uURjv95B
+	N7/ndSXrr85RSHpONv9m20IUvNAqa6POq2KCLDjzqXu4IWcJy9SJDkTxd/p8VP9EKlbukR
+	UhvYa1qh1OBbtm3iIQ3a2VRcWoJ44JqSkgExRA9AgINcxuFWWW9Rd+h9IrWEyyReluOZdK
+	M8cQIpkf1EUsLQDuRZHJQ+2TDSPLyE6f+wqkXENJzWXWhe2pJ09o31tgvdhljw==
+Date: Thu, 9 Jan 2025 15:37:02 +0100
+From: Lukasz Majewski <lukma@denx.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Stefan
+ Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH v11 1/3] dt-bindings: display: Add
+ powertip,{st7272|hx8238a} as DT Schema description
+Message-ID: <20250109153702.2d149023@wsk>
+In-Reply-To: <20241220112950.4673bb3f@wsk>
+References: <20241107085705.490940-1-lukma@denx.de>
+	<20241209105240.72d8d84a@wsk>
+	<20241220112950.4673bb3f@wsk>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: qcom: romulus: Update firmware names
-To: Joel Stanley <joel@jms.id.au>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250108124500.44011-1-joel@jms.id.au>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250108124500.44011-1-joel@jms.id.au>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 6DcaaMRXtot2LqlFmnW8tqNmvcEfZSB9
-X-Proofpoint-ORIG-GUID: 6DcaaMRXtot2LqlFmnW8tqNmvcEfZSB9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- impostorscore=0 adultscore=0 spamscore=0 suspectscore=0 phishscore=0
- clxscore=1015 malwarescore=0 bulkscore=0 mlxlogscore=999
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501090115
+Content-Type: multipart/signed; boundary="Sig_/zzrtl27UrGiMrDDp8vKZoSh";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 8.01.2025 1:44 PM, Joel Stanley wrote:
-> Other x1e machines use _dtbs.elf for these firmwares, which matches the
-> filenames shipped by Windows.
-> 
-> Fixes: 09d77be56093 ("arm64: dts: qcom: Add support for X1-based Surface Laptop 7 devices")
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
-> ---
+--Sig_/zzrtl27UrGiMrDDp8vKZoSh
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Right, I renamed these locally.. but it's definitely better to keep
-those as-shipped
+Dear Community,
 
-The commit title should like:
+> Dear Community,
+>=20
+> > Dear Community,
+> >  =20
+> > > This patch provides the DT Schema description of:
+> > > - powertip,st7272  320 x 240 LCD display
+> > > - powertip,hx8238a 320 x 240 LCD display
+> > >=20
+> > > Used with the different HW revisions of btt3 devices.
+> > >=20
+> > > Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>   =20
+> >=20
+> > Are there any more comments for this particular patch?
+> >=20
+> > If not - can it be applied as it prevents dts patchs to be pull by
+> > Shawn. =20
+>=20
+> Gentle ping on this patch ...
 
-arm64: dts: qcom: x1e80100-romulus: Update firmware nodes
+Gentle ping on this patch ...
 
-(see git log --oneline path/to/dir for the general format)
+>=20
+> >  =20
+> > > ---
+> > >=20
+> > > Changes for v9:
+> > > - New patch
+> > >=20
+> > > Changes for v10:
+> > > - None
+> > >=20
+> > > Changes for v11:
+> > > - Combine both separate dt-bindings patches for powertip,st7272
+> > > and powertip,hx8238a into one
+> > > - Drop the quotes for in "title" entry of powertip*.yaml files
+> > > ---
+> > >  .../display/panel/powertip,hx8238a.yaml       | 29
+> > > +++++++++++++++++++ .../display/panel/powertip,st7272.yaml
+> > > | 29 +++++++++++++++++++ 2 files changed, 58 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
+> > > create mode 100644
+> > > Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+> > >=20
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.ya=
+ml
+> > > b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.ya=
+ml
+> > > new file mode 100644 index 000000000000..b7d74faeb5d5 ---
+> > > /dev/null +++
+> > > b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.ya=
+ml
+> > > @@ -0,0 +1,29 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
+> > > BSD-2-Clause +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > http://devicetree.org/schemas/display/panel/powertip,hx8238a.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml# +
+> > > +title: Powertip Electronic Technology Co. 320 x 240 LCD panel
+> > > +
+> > > +maintainers:
+> > > +  - Lukasz Majewski <lukma@denx.de>
+> > > +
+> > > +allOf:
+> > > +  - $ref: panel-dpi.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - const: powertip,hx8238a
+> > > +      - {} # panel-dpi, but not listed here to avoid false select
+> > > +
+> > > +  height-mm: true
+> > > +  panel-timing: true
+> > > +  port: true
+> > > +  power-supply: true
+> > > +  width-mm: true
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +...
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+> > > b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+> > > new file mode 100644 index 000000000000..f3622800f13f ---
+> > > /dev/null +++
+> > > b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+> > > @@ -0,0 +1,29 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
+> > > BSD-2-Clause +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > http://devicetree.org/schemas/display/panel/powertip,st7272.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml# +
+> > > +title: Powertip Electronic Technology Co. 320 x 240 LCD panel
+> > > +
+> > > +maintainers:
+> > > +  - Lukasz Majewski <lukma@denx.de>
+> > > +
+> > > +allOf:
+> > > +  - $ref: panel-dpi.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - const: powertip,st7272
+> > > +      - {} # panel-dpi, but not listed here to avoid false select
+> > > +
+> > > +  height-mm: true
+> > > +  panel-timing: true
+> > > +  port: true
+> > > +  power-supply: true
+> > > +  width-mm: true
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +...   =20
+> >=20
+> >=20
+> >=20
+> >=20
+> > Best regards,
+> >=20
+> > Lukasz Majewski
+> >=20
+> > --
+> >=20
+> > DENX Software Engineering GmbH,      Managing Director: Erika Unter
+> > HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell,
+> > Germany Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email:
+> > lukma@denx.de =20
+>=20
+>=20
+>=20
+>=20
+> Best regards,
+>=20
+> Lukasz Majewski
+>=20
+> --
+>=20
+> DENX Software Engineering GmbH,      Managing Director: Erika Unter
+> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+> Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email:
+> lukma@denx.de
 
-but maybe Bjorn can fix that up when applying
 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Thanks!
+Best regards,
 
-Konrad
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/zzrtl27UrGiMrDDp8vKZoSh
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmd/3w4ACgkQAR8vZIA0
+zr1Jfwf/XyJG7WjdWC+SAb10s3s+rrOoXQCD+ORWLwk/26QdW4FdjElnNmXlEVgz
+o/yvu1+OE3UFXmX/LNrwLaZB5NtA+qK57AMIAKg+ukxoft5Qa3bHrq2H/N5Usyew
+lIwUKJzsibEbzfRlPJzltIKJ5k+303iwBE4BRa6FHHrtpVoPkEIx2HUJ0YVVfZa7
+nIke3BNs3MlseuZh0LHY2344IWZcBaifpiaokADVsoCME2mQtdmguIGBNpZmSv3P
+Xf0dylY/DV0BcHR698IZGJYVmW7+sryhWfM1l0MeSaZ5vW+WR2SiZ0vfHM5mEntD
+bCh5eRq/Png33nWF5TMyi/+ZjPk1dA==
+=dl+C
+-----END PGP SIGNATURE-----
+
+--Sig_/zzrtl27UrGiMrDDp8vKZoSh--
 
