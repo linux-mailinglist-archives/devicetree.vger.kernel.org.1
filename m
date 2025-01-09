@@ -1,178 +1,216 @@
-Return-Path: <devicetree+bounces-137008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE6BA073B1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:49:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C694A073B8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:50:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B21663A5BDE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:49:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D2CC7A2F1D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94E4B2153F9;
-	Thu,  9 Jan 2025 10:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82348215F4C;
+	Thu,  9 Jan 2025 10:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="JUkZ6akZ";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="kIxlrJyl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A0lJJM3x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565131FCFF4;
-	Thu,  9 Jan 2025 10:49:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5263E1FCFF4;
+	Thu,  9 Jan 2025 10:50:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736419766; cv=none; b=rtQikhvCYTGap3lEz3/rlSPsfw0i1NuFkNYr8SgufXwTVXCba6Z5ZsX4KEG+uRY6V0m7ZCXcd7L0m3gUB//NBL6jN8RI7oExq51nwYuGKqcBISuRQCZt1JDkPjpgJKD5Ggil5nbKlax382PpdEAPKYVcssTHd+ISCUiKq41YLB0=
+	t=1736419803; cv=none; b=rwLh3JoZo68vWCDxC8f5nBKosTatYvVOiWZVQfjPd2op8kkirFq9xThKPsnU6bibAOKSBzP98j7VXJRz1hHt0t+/dicgFUm1Rtcrv/BW9ytd52eN8/4te1B7y4Y+Wl23ZiCHfFMnLKq+1KLYgJn/MYhEXZ2pQ1NTS8SJgeSZaxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736419766; c=relaxed/simple;
-	bh=ysliMxaD4QrRmUxrUyt0cwWGOGbxoxogsyYj7C2nB6Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qAtiuDHJT9AVAngGYx/BWFSEa2qtC7vwpKnaxEvNLLClIKF7o47WxgXG49060EodpHrMMhVAB57GBWRZaQjcqPDqsB//EUwQFK722iYOk9x4vfF5L4fZyKa4L3PtT2dcY7Rn4ZcOrTK0ufu3grmdXnRjUr565BTACBhfg6qLzrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=JUkZ6akZ; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=kIxlrJyl reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1736419764; x=1767955764;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=tVp/68k41NkFcAhuu7KioYy3MSHOTjh5xj32/pjsGg4=;
-  b=JUkZ6akZL9kIsiVL90hmjLTuRmxcSWzqA/IrTVVJKEro38rP5xuaGt8X
-   6/llVqwScC6FIoToFe6bL8VLCl3ETC9jNfvhdIcwyAt7bZhWtxjI4rXxO
-   qHnQk5GsZzQF1Ze9PjeGqR59Nx1MHB5LL/dZ9KSM2OqZxec2C8EP2DVUb
-   NA6QioF8sJHOeeiT67qgy0WCEB4aL5TFZHtBV5GsnhuW4pED1NwrePTb2
-   cSz8eioTow3YSvZDjn2Pwqmox2orMYJskcNzIcJeAOnc7yxZB8mfwbwIr
-   qIYRamLH6DW7gqrKtN5IvEhsE/8aKuw60rHC1CIgMKgHdUoOb2StwccTR
-   A==;
-X-CSE-ConnectionGUID: fA/fH8SWQ86/Mj4HifBiqw==
-X-CSE-MsgGUID: X6CWfte9SgCHKg57VIV8lw==
-X-IronPort-AV: E=Sophos;i="6.12,301,1728943200"; 
-   d="scan'208";a="40947954"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 09 Jan 2025 11:49:20 +0100
-X-CheckPoint: {677FA9B0-28-C6D8D88D-F91F9E6B}
-X-MAIL-CPID: 18EC4340A80C5DF26CABB0818066624A_2
-X-Control-Analysis: str=0001.0A682F29.677FA9B1.0063,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5A721168153;
-	Thu,  9 Jan 2025 11:49:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1736419756;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tVp/68k41NkFcAhuu7KioYy3MSHOTjh5xj32/pjsGg4=;
-	b=kIxlrJylsUFKd9k4Ug86GqQ8f1FamKE6IjXoic8MT26rz0nZAbIK7svuRMcr3ki5JDpbus
-	NetzVPx9ArCf5zpUoAIrw654dEfrLbkpVbzDlAB/xBo2yN73oIJ5/fJ99j0kW6wsZcZ4Vl
-	MLYHMAYphVJZxFvfon/b0XxLJxRjAFYOhO5RuRf4V2XzLtOAT0mLBzPAU2qBnuthDicWFh
-	eNvHZEjxTvJ2XUaAp2tCDJfy0Jh8tAvcYUqvNnECT3Kn/LtrMm4MdNIvFVloCsqYk6cmNn
-	2pOc/pEdvKQCm0e+u0iXvV6F65J6rLYvCJ3yowc5taUUNwZm1FhqzoRB3uNadg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 3/3] drm: bridge: ti-sn65dsi83: Add error recovery mechanism
-Date: Thu, 09 Jan 2025 11:49:13 +0100
-Message-ID: <15398572.tv2OnDr8pf@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250108184442.64f38fbc@bootlin.com>
-References: <20250108101907.410456-1-herve.codina@bootlin.com> <115787605.nniJfEyVGO@steina-w> <20250108184442.64f38fbc@bootlin.com>
+	s=arc-20240116; t=1736419803; c=relaxed/simple;
+	bh=v/ZX0nveeTxcISRHnJrYeW7lXV7b87UAzk1p1JK2HOM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oD5B+YNFFfoanwr8adIAAWXwrOGVmAIAS/LmTmh653gGmpF08hD4nZ+mlsZ7vRwqg+oPuGPP3tG+DRIzWqRUbjYtIHt93erWTVvAhKkjPEbw8J25PgkyFeW55tcj2JmNTv9Jc2PlGXioj+U7+r800wFB8jEulxK/CIr3a7OVEH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A0lJJM3x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9720EC4CED2;
+	Thu,  9 Jan 2025 10:49:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736419802;
+	bh=v/ZX0nveeTxcISRHnJrYeW7lXV7b87UAzk1p1JK2HOM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=A0lJJM3x2c41USk6C1JeDOTyGVuQDXXz+gVmijXo5AF6XODcuMFfbeyN3RhLJKsIc
+	 7nvDO4/F2HBHIyIUumizh8oEQVPlHX6e838VeZDg4/DMRNd6RrMh7fNm1LcAvaLkZj
+	 rtonkX8nKUpZ8fjzLlrXkYgiGwA1qpWbC1T/Erw9fSUeJdYMkUW9xZ4OtWc23lMAek
+	 nGxeOG68VhSgFJWuV1uRA+143PyrPFO8AhA1mWvrSvcuSvKCODY/a08+SPeeIptZwV
+	 pp31jI1Qe0/TV7ANXsJdMYkXS8rYjsb+5jW81lAkVGroF72VsuR29rafu1/J+iks4G
+	 7KYNknZjuxZLA==
+Date: Thu, 9 Jan 2025 10:49:56 +0000
+From: Lee Jones <lee@kernel.org>
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	alexandre.torgue@foss.st.com, wbg@kernel.org, jic23@kernel.org,
+	ukleinek@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	olivier.moysan@foss.st.com
+Subject: Re: [PATCH 2/9] mfd: stm32-timers: add support for stm32mp25
+Message-ID: <20250109104956.GD6763@google.com>
+References: <20241218090153.742869-1-fabrice.gasnier@foss.st.com>
+ <20241218090153.742869-3-fabrice.gasnier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241218090153.742869-3-fabrice.gasnier@foss.st.com>
 
-Hi Herve,
+On Wed, 18 Dec 2024, Fabrice Gasnier wrote:
 
-Am Mittwoch, 8. Januar 2025, 18:44:42 CET schrieb Herve Codina:
-> Hi Alexander,
->=20
-> On Wed, 08 Jan 2025 11:54:49 +0100
-> Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
->=20
-> [...]
-> > >  #include <drm/drm_atomic_helper.h>
-> > >  #include <drm/drm_bridge.h>
-> > > +#include <drm/drm_drv.h> /* DRM_MODESET_LOCK_ALL_BEGIN() needs drm_d=
-rv_uses_atomic_modeset() */ =20
-> >=20
-> > Shouldn't this include be added to include/drm/drm_modeset_lock.h inste=
-ad?
->=20
-> Yes indeed. I will change that in the next iteration.
->=20
-> >=20
-> > >  #include <drm/drm_mipi_dsi.h>
-> > >  #include <drm/drm_of.h>
-> > >  #include <drm/drm_panel.h>
-> > > @@ -147,6 +150,9 @@ struct sn65dsi83 {
-> > >  	struct regulator		*vcc;
-> > >  	bool				lvds_dual_link;
-> > >  	bool				lvds_dual_link_even_odd_swap;
-> > > +	bool				use_irq;
-> > > +	struct delayed_work		monitor_work;
-> > > +	struct work_struct		reset_work; =20
-> >=20
-> > Can you please rebase? You are missing commit d2b8c6d549570
-> > ("drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing optional properties")
->=20
-> Sure, I will rebase.
->=20
-> [...]
-> > > +static void sn65dsi83_handle_errors(struct sn65dsi83 *ctx)
-> > > +{
-> > > +	unsigned int irq_stat;
-> > > +	int ret;
-> > > +
-> > > +	/*
-> > > +	 * Schedule a reset in case of:
-> > > +	 *  - the bridge doesn't answer
-> > > +	 *  - the bridge signals an error
-> > > +	 */
-> > > +
-> > > +	ret =3D regmap_read(ctx->regmap, REG_IRQ_STAT, &irq_stat);
-> > > +	if (ret || irq_stat)
-> > > +		schedule_work(&ctx->reset_work); =20
-> >=20
-> > Shouldn't you clear the error bits as well?
->=20
-> Thanks for pointing that.
->=20
-> I can clear the error bit but further more, I probably need to simply
-> disable the interrupt.
->=20
-> In some cases, we observed i2c access failure. In that cases clearing err=
-or
-> bits is simply not possible.
->=20
-> To avoid some possible interrupt storms (the chip detect a failure, set i=
-ts
-> interrupt line but could be not accessible anymore), the best thing to do
-> is to disable the interrupt line here, let the reset work to do its job
-> performing a full reset of the device and re-enabling the interrupt line
-> when needed, probably in sn65dsi83_atomic_enable().
->=20
-> What do you think about that?
+> Add support for STM32MP25 SoC. Use newly introduced compatible, to handle
+> new features.
+> Identification and hardware configuration registers allow to read the
+> timer version and capabilities (counter width, number of channels...).
+> So, rework the probe to avoid touching ARR register by simply read the
+> counter width when available. This may avoid messing with a possibly
+> running timer.
+> Also add useful bit fields to stm32-timers header file.
+> 
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> ---
+>  drivers/mfd/stm32-timers.c       | 32 +++++++++++++++++++++++++++++++-
+>  include/linux/mfd/stm32-timers.h |  9 +++++++++
+>  2 files changed, 40 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mfd/stm32-timers.c b/drivers/mfd/stm32-timers.c
+> index 650724e19b88..6f217c32482c 100644
+> --- a/drivers/mfd/stm32-timers.c
+> +++ b/drivers/mfd/stm32-timers.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/property.h>
+>  #include <linux/reset.h>
+>  
+>  #define STM32_TIMERS_MAX_REGISTERS	0x3fc
+> @@ -173,6 +174,32 @@ static void stm32_timers_get_arr_size(struct stm32_timers *ddata)
+>  	regmap_write(ddata->regmap, TIM_ARR, arr);
+>  }
+>  
+> +static int stm32_timers_probe_hwcfgr(struct device *dev, struct stm32_timers *ddata)
+> +{
+> +	u32 val;
+> +
+> +	ddata->ipidr = (uintptr_t)device_get_match_data(dev);
 
-As I read the datasheet this is a active-high level interrupt, so as
-long as some enabled IRQs are pending the signal will stay high.
-There are 3 notes in section 9.1.3. IRQ usage that in various situations
-IRQ bits may be set/pending and have to be cleared.
-At least clear the interrupts before enabling it again to be on the
-safe side.
+Are you sure this cast is needed?
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+> +	if (!ddata->ipidr) {
+> +		/* fallback to legacy method for probing counter width */
 
+Sentences start with uppercase chars.
 
+> +		stm32_timers_get_arr_size(ddata);
+> +		return 0;
+> +	}
+> +
+> +	regmap_read(ddata->regmap, TIM_IPIDR, &val);
+> +	/* Sanity check on IP identification register */
+
+This seems obvious, thus superfluous.
+
+> +	if (val != ddata->ipidr) {
+> +		dev_err(dev, "Unexpected identification: %u\n", val);
+
+"Unexpected model number"?
+"Unsupported device detected"?
+
+> +		return -EINVAL;
+> +	}
+> +
+> +	regmap_read(ddata->regmap, TIM_HWCFGR2, &val);
+
+'/n' here.
+
+> +	/* Counter width in bits, max reload value is BIT(width) - 1 */
+> +	ddata->max_arr = BIT(FIELD_GET(TIM_HWCFGR2_CNT_WIDTH, val)) - 1;
+> +	dev_dbg(dev, "TIM width: %ld\n", FIELD_GET(TIM_HWCFGR2_CNT_WIDTH, val));
+
+How useful is this now the driver has been developed?
+
+> +	return 0;
+> +}
+> +
+>  static int stm32_timers_dma_probe(struct device *dev,
+>  				   struct stm32_timers *ddata)
+>  {
+> @@ -285,7 +312,9 @@ static int stm32_timers_probe(struct platform_device *pdev)
+>  	if (IS_ERR(ddata->clk))
+>  		return PTR_ERR(ddata->clk);
+>  
+> -	stm32_timers_get_arr_size(ddata);
+> +	ret = stm32_timers_probe_hwcfgr(dev, ddata);
+> +	if (ret)
+> +		return ret;
+>  
+>  	ret = stm32_timers_irq_probe(pdev, ddata);
+>  	if (ret)
+> @@ -320,6 +349,7 @@ static void stm32_timers_remove(struct platform_device *pdev)
+>  
+>  static const struct of_device_id stm32_timers_of_match[] = {
+>  	{ .compatible = "st,stm32-timers", },
+> +	{ .compatible = "st,stm32mp25-timers", .data = (void *)STM32MP25_TIM_IPIDR },
+>  	{ /* end node */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, stm32_timers_of_match);
+> diff --git a/include/linux/mfd/stm32-timers.h b/include/linux/mfd/stm32-timers.h
+> index f09ba598c97a..23b0cae4a9f8 100644
+> --- a/include/linux/mfd/stm32-timers.h
+> +++ b/include/linux/mfd/stm32-timers.h
+> @@ -33,6 +33,9 @@
+>  #define TIM_DCR		0x48			/* DMA control register			*/
+>  #define TIM_DMAR	0x4C			/* DMA register for transfer		*/
+>  #define TIM_TISEL	0x68			/* Input Selection			*/
+> +#define TIM_HWCFGR2	0x3EC			/* hardware configuration 2 Reg (MP25)	*/
+> +#define TIM_HWCFGR1	0x3F0			/* hardware configuration 1 Reg (MP25)	*/
+> +#define TIM_IPIDR	0x3F8			/* IP identification Reg (MP25)		*/
+>  
+>  #define TIM_CR1_CEN		BIT(0)					/* Counter Enable				*/
+>  #define TIM_CR1_DIR		BIT(4)					/* Counter Direction				*/
+> @@ -100,6 +103,9 @@
+>  #define TIM_BDTR_BKF(x)		(0xf << (16 + (x) * 4))
+>  #define TIM_DCR_DBA		GENMASK(4, 0)				/* DMA base addr				*/
+>  #define TIM_DCR_DBL		GENMASK(12, 8)				/* DMA burst len				*/
+> +#define TIM_HWCFGR1_NB_OF_CC	GENMASK(3, 0)				/* Capture/compare channels			*/
+> +#define TIM_HWCFGR1_NB_OF_DT	GENMASK(7, 4)				/* Complementary outputs & dead-time generators */
+> +#define TIM_HWCFGR2_CNT_WIDTH	GENMASK(15, 8)				/* Counter width				*/
+>  
+>  #define MAX_TIM_PSC				0xFFFF
+>  #define MAX_TIM_ICPSC				0x3
+> @@ -113,6 +119,8 @@
+>  #define TIM_BDTR_BKF_MASK			0xF
+>  #define TIM_BDTR_BKF_SHIFT(x)			(16 + (x) * 4)
+>  
+> +#define STM32MP25_TIM_IPIDR	0x00120002
+> +
+>  enum stm32_timers_dmas {
+>  	STM32_TIMERS_DMA_CH1,
+>  	STM32_TIMERS_DMA_CH2,
+> @@ -151,6 +159,7 @@ struct stm32_timers_dma {
+>  
+>  struct stm32_timers {
+>  	struct clk *clk;
+> +	u32 ipidr;
+>  	struct regmap *regmap;
+>  	u32 max_arr;
+>  	struct stm32_timers_dma dma; /* Only to be used by the parent */
+> -- 
+> 2.25.1
+> 
+
+-- 
+Lee Jones [李琼斯]
 
