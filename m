@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-137086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3B0A07752
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10B1BA07755
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:28:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94562164E6C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:28:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 072831650C5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F8C21882B;
-	Thu,  9 Jan 2025 13:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C75A218AB0;
+	Thu,  9 Jan 2025 13:28:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="n0sunCGs"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="Ot+a3Kg4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from pv50p00im-zteg10011401.me.com (pv50p00im-zteg10011401.me.com [17.58.6.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21B5214A6D
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58A3218AA7
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736429289; cv=none; b=l2GHuCUG7vNnlbNF9kxe6VpsgRpV0B9bULYyGE8wZGQQpyPBiRFtJBMEsCBxWkMZ1Pz6ILYYTLTQYjUS9jwgh+2e1J/AASx35xeN9i7IADts8qzC9CmwMSgq+++nHAg1UIUCCOrjzxp5mbRwvKCSOwoH/mKmJ3NKxnF4DSooLT4=
+	t=1736429295; cv=none; b=FYKx0cIQvIjrYuDe3p7VY0jjNE54ZEcajcIZVncIrSjO8gcZBJ6vpm9u+bPHPdIwpvHZXEunbRkxnv2EOyRBA0f56f2JWoCSVM1y63Z9WbePhRBwoPxZ/bd7aanNRy7WqzKS60Vu2CnpxrIO2umKREw/qk3ny8vHwlBXvUEnVHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736429289; c=relaxed/simple;
-	bh=F7VAazrVJ3p7QlbMjlcZ0vd+3ltdvGaw1yJxrtSHdRM=;
+	s=arc-20240116; t=1736429295; c=relaxed/simple;
+	bh=uSgl6tmpjcKrpfU+/rRT4WEOic2miN6oQ63t67Qe7qc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FQE1xZyDOW6sp9KK3PtqPaRLpZsz3HNx/4l6xDuD4nMBqRVVTT0oMnkCg66yaHxbzJSSTXBY53HbX9PT7ovh96SGBSj4LZPxpkuM78ojoOYHRfhwm4IaxKq7ZGlQez1an/UO74YcuPfeSLkzHU/WqYRGd8jp1yJDU/Fv2z94Sbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=n0sunCGs; arc=none smtp.client-ip=17.58.6.41
+	 In-Reply-To:To:Cc; b=XyLoyR7qEAA5kko9SqxldHHiQ8JH9SWqo2VjyDHNYPezTLNRVKuIx1JSmafrBDPZbBan2NBEiOPTB8TpDEkXAMhm1mTuHO6acbv4rOuzQ4L78UD2ZYr9TeCtrGTfS8bt0QsJM8pGInt+1WVNc1dc2roQwUoUVbiwcCEQ2l1p6N8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=Ot+a3Kg4; arc=none smtp.client-ip=17.58.6.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1736429287;
-	bh=1qAwxeqobZh1wxnxdDloQZW9DdsopGVNulsZoYj9sn8=;
+	s=1a1hai; t=1736429293;
+	bh=lxh3lTkHEDaNLjOBBiXkDjAykRGLwhRpR2ibcxXXYlY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:
 	 x-icloud-hme;
-	b=n0sunCGsVChe+sX6BG5xfiYqow+ESjbPYVZs3rJRlcit5QFq5wj1dk32kSFyHQNbV
-	 QfAXv8JCmNV/1vzYv5gxJJNf5lU8pXmIzes4cCM4QDfzHkMp+TBue4jlldKknFUWto
-	 j5gQocd4ODb7Z3WyPBUn1tCIAFmwVJw5+rAFBKtTjs7Kp+hfsnSLvksxAzjI3wIk+C
-	 4dYy86UkreIAzR3iIiRKOPt3Fawk6mheEQWQKs8LCEOzATjndXxwBaKnYbbCDPwo4W
-	 YUl91dxLl4fY4wV4IdzZpAorQyuhm/tQdGQKMQgDAjujbJClNdOeU+r9r7zbFIcWtM
-	 W4SfVRnviyxOg==
+	b=Ot+a3Kg40Ce1n953u8pFd4eVZiE5D4zWXNwCip+izENcICL1VHEzp87CxpmatdCQl
+	 phKvPAeM6EiWOOTCrfZeB64FcmCY/c45INsaRfWT5nnN1hRsdFrGOicvM+rmdtOCm+
+	 6Fkld2yBehuHBjEoSCqrI6zwVPJDKhz9jmGcOpgnU5/fQwGp3gzyrcy2GAU+Q87BC4
+	 NZFe/lUaSpfdEflnQ3JSydZ8cV6nD3xkO7ntNx2ZM2yH2rN8VtdXP7WVCkoIqbXNEW
+	 8qpaOP+SqD4GgeenHeFMhw3tNJ8RzTbU5NznCBD32fHy4zaQ/MReTE/kLuy16KDTaa
+	 0KKz1Vv/CXogQ==
 Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-zteg10011401.me.com (Postfix) with ESMTPSA id 57F1C34BAA4B;
-	Thu,  9 Jan 2025 13:28:02 +0000 (UTC)
+	by pv50p00im-zteg10011401.me.com (Postfix) with ESMTPSA id 57BFA34BAA94;
+	Thu,  9 Jan 2025 13:28:08 +0000 (UTC)
 From: Zijun Hu <zijun_hu@icloud.com>
-Date: Thu, 09 Jan 2025 21:26:52 +0800
-Subject: [PATCH v4 01/14] of: Correct child specifier used as input of the
- 2nd nexus node
+Date: Thu, 09 Jan 2025 21:26:53 +0800
+Subject: [PATCH v4 02/14] of: Do not expose of_alias_scan() and correct its
+ comments
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250109-of_core_fix-v4-1-db8a72415b8c@quicinc.com>
+Message-Id: <20250109-of_core_fix-v4-2-db8a72415b8c@quicinc.com>
 References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
 In-Reply-To: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
 To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
@@ -68,11 +68,10 @@ To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
  Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>, 
  Oreoluwa Babatunde <quic_obabatun@quicinc.com>
 Cc: Zijun Hu <zijun_hu@icloud.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>, 
- stable@vger.kernel.org
+ linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
 X-Mailer: b4 0.14.2
-X-Proofpoint-GUID: otQngs-fv2H_5hbv8UXVR-1zY8u42B3r
-X-Proofpoint-ORIG-GUID: otQngs-fv2H_5hbv8UXVR-1zY8u42B3r
+X-Proofpoint-GUID: 94Z9K7bOSa_MFRxgzsJ8FlMdjPif0lRD
+X-Proofpoint-ORIG-GUID: 94Z9K7bOSa_MFRxgzsJ8FlMdjPif0lRD
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-01-09_05,2025-01-09_01,2024-11-22_01
@@ -84,46 +83,79 @@ X-Apple-Remote-Links: v=1;h=KCk=;charset=UTF-8
 
 From: Zijun Hu <quic_zijuhu@quicinc.com>
 
-API of_parse_phandle_with_args_map() will use wrong input for nexus node
-Nexus_2 as shown below:
+For of_alias_scan():
+- Do not expose it since it has no external callers.
+- Correct its comments shown below:
+  1) Replace /* with /** to start comments since it is not a API.
+  2) Delete return value descriptions since it is a void function.
 
-    Node_1		Nexus_1                              Nexus_2
-&Nexus_1,arg_1 -> arg_1,&Nexus_2,arg_2' -> &Nexus_2,arg_2 -> arg_2,...
-		  map-pass-thru=<...>
-
-Nexus_1's output arg_2 should be used as input of Nexus_2, but the API
-wrongly uses arg_2' instead which != arg_2 due to Nexus_1's map-pass-thru.
-
-Fix by always making @match_array point to @initial_match_array into
-which to store nexus output.
-
-Fixes: bd6f2fd5a1d5 ("of: Support parsing phandle argument lists through a nexus node")
-Cc: stable@vger.kernel.org
 Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
 ---
- drivers/of/base.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/of/base.c       | 5 ++---
+ drivers/of/of_private.h | 2 ++
+ drivers/of/pdt.c        | 2 ++
+ include/linux/of.h      | 1 -
+ 4 files changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/of/base.c b/drivers/of/base.c
-index bf18d5997770eb81e47e749198dd505a35203d10..969b99838655534915882abe358814d505c6f748 100644
+index 969b99838655534915882abe358814d505c6f748..5485307e2a3a3d3a216d271c60bdfc346dd38460 100644
 --- a/drivers/of/base.c
 +++ b/drivers/of/base.c
-@@ -1536,7 +1536,6 @@ int of_parse_phandle_with_args_map(const struct device_node *np,
- 		 * specifier into the out_args structure, keeping the
- 		 * bits specified in <list>-map-pass-thru.
- 		 */
--		match_array = map - new_size;
- 		for (i = 0; i < new_size; i++) {
- 			__be32 val = *(map - new_size + i);
+@@ -1806,14 +1806,13 @@ static void of_alias_add(struct alias_prop *ap, struct device_node *np,
+ 		 ap->alias, ap->stem, ap->id, np);
+ }
  
-@@ -1545,6 +1544,7 @@ int of_parse_phandle_with_args_map(const struct device_node *np,
- 				val |= cpu_to_be32(out_args->args[i]) & pass[i];
- 			}
+-/**
++/*
+  * of_alias_scan - Scan all properties of the 'aliases' node
+  * @dt_alloc:	An allocator that provides a virtual address to memory
+  *		for storing the resulting tree
+  *
+  * The function scans all the properties of the 'aliases' node and populates
+- * the global lookup table with the properties.  It returns the
+- * number of alias properties found, or an error code in case of failure.
++ * the global lookup table with the properties.
+  */
+ void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
+ {
+diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+index ea5a0951ec5e107bab265ab5f6c043e2bfb15ecc..3433ccd330e84fd3a4b54638e0e922069757c8f0 100644
+--- a/drivers/of/of_private.h
++++ b/drivers/of/of_private.h
+@@ -119,6 +119,8 @@ extern void *__unflatten_device_tree(const void *blob,
+ 			      void *(*dt_alloc)(u64 size, u64 align),
+ 			      bool detached);
  
-+			initial_match_array[i] = val;
- 			out_args->args[i] = be32_to_cpu(val);
- 		}
- 		out_args->args_count = list_size = new_size;
++void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align));
++
+ /**
+  * General utilities for working with live trees.
+  *
+diff --git a/drivers/of/pdt.c b/drivers/of/pdt.c
+index 7eda43c66c916198b1c2d8fc5043fcb1edaede7a..cb0cb374b21ff89323e11f34bd767b183e7a401e 100644
+--- a/drivers/of/pdt.c
++++ b/drivers/of/pdt.c
+@@ -19,6 +19,8 @@
+ #include <linux/of.h>
+ #include <linux/of_pdt.h>
+ 
++#include "of_private.h"
++
+ static struct of_pdt_ops *of_pdt_prom_ops __initdata;
+ 
+ #if defined(CONFIG_SPARC)
+diff --git a/include/linux/of.h b/include/linux/of.h
+index f921786cb8ac782286ed5ff4425a35668204d050..d451c46132b01efe6d4e0b6cf83a3e2084bb3ec6 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -397,7 +397,6 @@ extern int of_phandle_iterator_args(struct of_phandle_iterator *it,
+ 				    uint32_t *args,
+ 				    int size);
+ 
+-extern void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align));
+ extern int of_alias_get_id(const struct device_node *np, const char *stem);
+ extern int of_alias_get_highest_id(const char *stem);
+ 
 
 -- 
 2.34.1
