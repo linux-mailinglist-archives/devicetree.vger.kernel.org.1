@@ -1,139 +1,162 @@
-Return-Path: <devicetree+bounces-136913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7786DA06D24
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 05:37:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B2B5A06D3A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 05:44:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C99CD167735
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 04:37:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E1B1166EB3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 04:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E3672147FC;
-	Thu,  9 Jan 2025 04:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF0DB2135D1;
+	Thu,  9 Jan 2025 04:44:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pj0tpkKH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PGBSGW6E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B23C2144B6
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 04:36:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3FA2F2F;
+	Thu,  9 Jan 2025 04:44:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736397366; cv=none; b=hmV3/mcDw+an4fikDuq2y9e7FYlpmnspXO/yLF5RbzXKorh552ZPiRBGU5CzfbEkDMcX12Qkr5aXztGyYg3tQKr72t4L0N50TsOuOoJqxveL5N1FzecdQ9voJWHf8mCFgROVltLQgAzj3I2f90zexg66MhnXSDHpLremoZ5a0KI=
+	t=1736397843; cv=none; b=Z7juLMkupqrwBNOpR36MTivyT5ozjx9I7XybkH7zLZXYRODt/VSLYqmhZ3d2OlmYkJLXIz277Z4qkEHf5Poi/ML3XvenASKd8kFZaGdJfhBk4Ih6El0MF4s4FsO5CXW+OVVWb049dymkUuU5aRGfDy6tJPRs/eeRy9Iwv3/l6NE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736397366; c=relaxed/simple;
-	bh=bFoUxd13xqGzTL8i0Uke1VWxv8nz0uckVKpDL5fYKp4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lazKRYmjMRq05M293xNzH3rnlydQnsFIcqpTpoZ3T3fEymgFNPTn4CRDG/kNrIWgJK6p5YIfaSnvCuAT/3/pZNPKl2Ptp2JF/KtbQ6y6PIugtRM0PY7Rsqo0VDSVoCExEu88uDczg7UiM65oqL9bmlXaHVRwVB/7i8L/m90J7MA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pj0tpkKH; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53e3a227b82so419772e87.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2025 20:36:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736397362; x=1737002162; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tBnHSa/ei6D2pomsNrU1v/8n3usXWfC08yobzI09Jro=;
-        b=Pj0tpkKHWmRfq9IupCpqdtxOrU0ZJnk2tNicleGk3isY33BEPZ132l/2UyX9xB4K1f
-         TAMOUjd++y+/sG1gxLgptuQiGOP3nT91i+ZGa+cPcQGGNg3KrU6+4nuZx8svAPveyWNY
-         BUNWYn1aYTlR7/5wsngTB6teLEqyUq55jOL1XurX5i9o1hNKatMQXFpib4RkgRpa6Qmx
-         pqmevoBglaIgbeQG23sNyGOVcw0mbMU7ytuR8DZvVxXhNC0uOn2zgJ4f2qipC1a2ofOq
-         c9UlfbyIBuHMNzDFuP9YyzxeJuT7TLeZs/eUOe5QKpBqvYq3uRmOg2FzWhyn7aclciyy
-         U/6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736397362; x=1737002162;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tBnHSa/ei6D2pomsNrU1v/8n3usXWfC08yobzI09Jro=;
-        b=vz3IMa9yUphmGKHNomwjJBQuhRurFWYymndH7yw/LYbhl5zLcbR0TtBtf3a/rU3vai
-         +NDIwWicquy7Ol735QemzlWDA+zfHiRxBYHFsDwwkFpo8X/6SCrb/NK+2r+nTbaVKprw
-         NT9SiFb5bb917d5ZbBf3nYNRlI6TR5f4cR3wxfqKuLzRlmCm1QF9TNNyOoebJX+DM1k5
-         IwDKMyJjA052FW9w1jUeYKunExwXDbfGbAsiKSVnISugiRiHnTCzsY715D/RXbejkqqn
-         1aGDQXtd4O3V2H6F+whmHBEvEd+ujEXh+kHLMx4OEckJI3CBrjNACstfStK1dMIc3CcO
-         dWlg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6HlNJlubrFbTqckpz7pj4t/uNxZjILVpavecIz1t0ZqYYeTnXzUfUpp6yLqZPuTlBCkssnaB2BIiy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yws5wuLEhzEnyIXnhTnBbE1/QOXUZLF49dlKFoWHKINDW2+rf2w
-	zMH+eyyARuUsuJtnoH/K0zWXRkuc2xk24DtYiWlxktmCTfwVL5QYLMcWsCdcx1+jxXq4C5BdD8P
-	s
-X-Gm-Gg: ASbGncvxj4uq4JDf0XZtJS7xwVwseIj7EOBXm4dQGMGyIqcmWoGoFhycHo3RBPOMdqU
-	eEjyuXa9Y08dtAVl2ncQelfO6P9TZ55IEJM8tzTXijrrqZzo4zMvfaawAHpIZxKT1VuvQYyqYHO
-	JMZoqbl4GBAJQv8BbYUajfpKTAULaZytu4tgGvrVKTtgisO6YSOYv//H0P4/+C5/Z4n5Q4KoW2D
-	wtb3+z/J0i9F23TWraSS8LeyAzq/L5xAdK9e7A0jhoAbLFy6UnhPTshEDnXmZTxibcFHiWyjUFT
-	HNIhAKeOAGwWSonNm/5UrD8D
-X-Google-Smtp-Source: AGHT+IHNpliUbCzShTHU3YELA4A2kOZ8c3cc6bdarZT0RN/YgBassMDYaqQENO1wTf98MuMXuQ9xwg==
-X-Received: by 2002:a05:6512:220b:b0:540:1dca:52bb with SMTP id 2adb3069b0e04-542845c52a3mr1607860e87.28.1736397362546;
-        Wed, 08 Jan 2025 20:36:02 -0800 (PST)
-Received: from [127.0.1.1] (2001-14ba-a0c3-3a00--782.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::782])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428bec06e1sm73866e87.191.2025.01.08.20.36.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2025 20:36:01 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 09 Jan 2025 06:35:49 +0200
-Subject: [PATCH v4 5/5] dt-bindings: nvmem: qcom,qfprom: Add SAR2130P
- compatible
+	s=arc-20240116; t=1736397843; c=relaxed/simple;
+	bh=ydz09o9V7x3nsaLliyty2ABuRQdbqwxdgXTZ5Il9UpI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=tPqRup40BeQUiye851FEQC7Q3b3/oDTYGJQ9STRwkZmMLwBEBjxM8i2jrGHoZ/4Mv1/G7GoKeDA1H/lbHR+GH99vcLQKGwu/sebEvDwnNWNYvW9uFPjN5Mj0r8hvzS8Rv/Hr4gIhMOGFIlrRPS9kTCjPuBtAe2Jta6ZJExyogb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PGBSGW6E; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508JsZNl012283;
+	Thu, 9 Jan 2025 04:43:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	bEtdu6QkdcZZBwwoPjH+dmoZjpYJxR0K9af/9H7wCF8=; b=PGBSGW6E8ZlBWdLW
+	ZPJP407kMJ8rNYjHWUAGxNscyi+KA74/mSzDIVbe7+dvzAF723pHS71CLDjUf2Vk
+	KLOljTmKscBpFyCdVw5Mef0cmajvssaorE12WxgU8N1tAaP6U1Oe0Co7oeacU5MJ
+	xrxoO2EGKCz73Ln9MTdvGCkuYz4oBdjBYBM4I/BXzJD7fb3FQ4KAlcCF3/f5udgx
+	HIXlXFIfR6MPpJ4pR0dlb/3Vf2Xj9TwGsABfIChVr51rxAjpf+zDryBV4d184XOc
+	OlWVhs6qqurs9YUgV7B3+K35zmGajPRjTnyLJUb6PqSYSZXklLbt4iWrspRPlQuY
+	jOafEg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441yxbs13q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jan 2025 04:43:57 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5094hvLg029980
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Jan 2025 04:43:57 GMT
+Received: from [10.216.26.158] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
+ 20:43:52 -0800
+Message-ID: <fc239699-d3ea-441a-ab48-0191fcda09d2@quicinc.com>
+Date: Thu, 9 Jan 2025 10:13:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] i2c: tegra: Add Tegra264 support
+To: Kartik Rajput <kkartik@nvidia.com>, <akhilrajeev@nvidia.com>,
+        <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <ldewangan@nvidia.com>, <digetx@gmail.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250108110620.86900-1-kkartik@nvidia.com>
+ <20250108110620.86900-4-kkartik@nvidia.com>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <20250108110620.86900-4-kkartik@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250109-sar2130p-nvmem-v4-5-633739fe5f11@linaro.org>
-References: <20250109-sar2130p-nvmem-v4-0-633739fe5f11@linaro.org>
-In-Reply-To: <20250109-sar2130p-nvmem-v4-0-633739fe5f11@linaro.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=866;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=bFoUxd13xqGzTL8i0Uke1VWxv8nz0uckVKpDL5fYKp4=;
- b=owEBbQKS/ZANAwAKARTbcu2+gGW4AcsmYgBnf1IkEzuENDcUEcO0yq8IH9HJSBlZNlZ96P5un
- s4G2pMI+vyJAjMEAAEKAB0WIQRdB85SOKWMgfgVe+4U23LtvoBluAUCZ39SJAAKCRAU23LtvoBl
- uK/UEACfZKDyD2ZRlKrK0nQ7XUI4Xg0II/U+NjC//mQGfymuOwLzxtzekZ76kaNWGnUtcnbmvIQ
- 7byw02C76jPzUi+g9MLHcFllLdEYRX2o4JTveJo5ZfOTNGe7bkVdJpsAcFr5rcLUhdUsmL3ex+k
- Olj3xZ4gGDGy2c6RNiM5EdLfIwgeO795TpSK1UanTuE2vi2OJz9ZCDjrczsw5Fw3hS/8R+NGMby
- XDnv9a9WIEdZdx6QX+CPF2Z2Bffg1pELrm5lupfLMakBoqKfBeVxx+Aul9/xDxPWctGoSsg2puz
- +0Sn4RdLOCv7UX1M7kNR1HXlyhnAvxgw31cGrGXqgXhrrY+WTqChJf6LqK6VZi8+H0jdIFTQfX8
- kWEgJt0sOj/K3PKEZoTYxshnv+nQNxAS8H5isSDoybOqQlqDdFNpoqXtVvg9W4cNysNZbBtpqHc
- dw5/PQVJEJn8nS4vzkR1txVQ0oKV0rfEdMtNQG8LRNud8nxqwjolYU4HAChN6xj6fC8SdVpHlQG
- n+Wg6zpQ25LJmvkqFnwSxl6D3lO0gWkwsfU8oj2z2HLzm1HBMbuS3p4nc2aPLP9JhFIol4/FcxG
- e+2IAnE8NAPgaIR61l04tbHdNlQyAKVPJe3jLerCltmW3lTRROUHo7tLftXKGvkHnucY+Rw5Oi1
- cKfwlasmdca2hRw==
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 1Tyv2Y10k8JIkFWtJkQMUh-7tFLQc5K5
+X-Proofpoint-ORIG-GUID: 1Tyv2Y10k8JIkFWtJkQMUh-7tFLQc5K5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 adultscore=0
+ suspectscore=0 lowpriorityscore=0 bulkscore=0 mlxscore=0 phishscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090035
 
-Document compatible for the QFPROM on SAR2130P platform.
+Hi Kartik,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On 1/8/2025 4:36 PM, Kartik Rajput wrote:
+> From: Akhil R <akhilrajeev@nvidia.com>
+> 
+> Add support for Tegra264 SoC which supports 17 generic I2C controllers,
+> two of which are in the AON (always-on) partition of the SoC. Tegra264
+> I2C supports all the features supported by Tegra194 I2C controllers.
+> 
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
+> ---
+>   drivers/i2c/busses/i2c-tegra.c | 28 ++++++++++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
+> 
+> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
+> index 7b97c6d347ee..cf05937cb826 100644
+> --- a/drivers/i2c/busses/i2c-tegra.c
+> +++ b/drivers/i2c/busses/i2c-tegra.c
+> @@ -1646,7 +1646,35 @@ static const struct tegra_i2c_hw_feature tegra194_i2c_hw = {
+>   	.has_hs_mode_support = true,
+>   };
+>   
+> +static const struct tegra_i2c_hw_feature tegra264_i2c_hw = {
+I could see 7 controllers have been already added. And this may keep 
+growing.
+Can we make either default set which is common for most of and change 
+only sepcific fields ?
 
-diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-index 80845c722ae46611c722effeaaf014a0caf76e4a..9755b31946bf9d4c1055a993145d06c274b61a37 100644
---- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-@@ -32,6 +32,7 @@ properties:
-           - qcom,msm8998-qfprom
-           - qcom,qcm2290-qfprom
-           - qcom,qcs404-qfprom
-+          - qcom,sar2130p-qfprom
-           - qcom,sc7180-qfprom
-           - qcom,sc7280-qfprom
-           - qcom,sc8280xp-qfprom
+Second option - read these fields from DT and overwrite default if it's 
+mentioned in DTSI.
 
--- 
-2.39.5
+Please review and see if this makes sense. what others say ?
+> +	.has_continue_xfer_support = true,
+> +	.has_per_pkt_xfer_complete_irq = true,
+> +	.clk_divisor_hs_mode = 1,
+> +	.clk_divisor_std_mode = 0x1d,
+> +	.clk_divisor_fast_mode = 0x15,
+> +	.clk_divisor_fast_plus_mode = 0x8,
+> +	.has_config_load_reg = true,
+> +	.has_multi_master_mode = true,
+> +	.has_slcg_override_reg = true,
+> +	.has_mst_fifo = true,
+> +	.quirks = &tegra194_i2c_quirks,
+> +	.supports_bus_clear = true,
+> +	.has_apb_dma = false,
+> +	.tlow_std_mode = 0x8,
+> +	.thigh_std_mode = 0x7,
+> +	.tlow_fast_fastplus_mode = 0x2,
+> +	.thigh_fast_fastplus_mode = 0x2,
+> +	.tlow_hs_mode = 0x4,
+> +	.thigh_hs_mode = 0x2,
+> +	.setup_hold_time_std_mode = 0x08080808,
+> +	.setup_hold_time_fast_fast_plus_mode = 0x02020202,
+> +	.setup_hold_time_hs_mode = 0x090909,
+> +	.has_interface_timing_reg = true,
+> +	.has_hs_mode_support = true,
+> +};
+> +
+>   static const struct of_device_id tegra_i2c_of_match[] = {
+> +	{ .compatible = "nvidia,tegra264-i2c", .data = &tegra264_i2c_hw, },
+>   	{ .compatible = "nvidia,tegra194-i2c", .data = &tegra194_i2c_hw, },
+>   	{ .compatible = "nvidia,tegra186-i2c", .data = &tegra186_i2c_hw, },
+>   #if IS_ENABLED(CONFIG_ARCH_TEGRA_210_SOC)
 
 
