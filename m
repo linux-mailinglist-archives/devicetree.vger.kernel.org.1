@@ -1,153 +1,217 @@
-Return-Path: <devicetree+bounces-137196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D20EA07F31
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 18:46:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1C63A07F3D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 18:49:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28D193A89C1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 17:45:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C98261694CC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 17:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCD51990C4;
-	Thu,  9 Jan 2025 17:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29097192D8E;
+	Thu,  9 Jan 2025 17:48:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KHFQlwRW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Hhn91vB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B3118A6D2;
-	Thu,  9 Jan 2025 17:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BE02192B85;
+	Thu,  9 Jan 2025 17:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736444734; cv=none; b=dCA3Q1DUQqwkrb1zf3kx7CXdgPlZa0YAkaZgLiuLG9P9+VsKzQ0T0WV7Cb+VFUwlDvtCfU7kheCBjxLwM0O4yny8MZoW8+V2f33LHnyUzUjEf/zwpPFSYWO89LAPthRr24vkD3rAQQczsUbVT9VkYuRtlcSI6Sxa72RFaRYiZgs=
+	t=1736444934; cv=none; b=TMjKgULdAueyPNR5ddhCiqcONWYSYbfZMsyiGrloWbXlVNcDztmryckB7uzlPXRnjB9tYUrBOfAIJ60qm7St58yZ6E/IP2FXigLLkCNM6S1fgyCA1g5TmTHvBeLf8HRo5oeM5Jiwxg0iUuxhwcOgQgRfMdBqwHij/z0qHfXWYjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736444734; c=relaxed/simple;
-	bh=2d7KairLh2/3vxnOG7jCwIkDkT0wRyz0MxBu6X7g5Aw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B14hk2VRy3zpwSLYEN/uw9ABZyQ7uU7EPM/tNhGSd9aYSO2aazFPnGVYkc04fKgj0Y71lIYEAQmOTJTOcTEEym7RbGwbWKMa6U5/WqErB0o6IsvKqTPGiXt4FlcCjYhNpXLvoQtkCnowd8aAXj8+g97bFXiL1vKJqTOeMi+9M/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KHFQlwRW; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 509HjOVE038425;
-	Thu, 9 Jan 2025 11:45:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736444724;
-	bh=WossqK9t7qt/somrlykgNmv9HqmdtOqk2g4fIHGXdAg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=KHFQlwRWF4fHUiW+S5dknoqi4XpRqGZ3lGPwaVmyeXT6aX9nn3CIpMwnHIn9PofO4
-	 c2AJA6xWqE71f9CrP9sJZSa/vDv5bO5YRbBxHmwPfzUiFI7XQidW7jkO7vw1labZDg
-	 BmittDWQE8sqZnbFXHrVbXNiEzkT0sDEbuuI6spw=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 509HjOPB061224
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 9 Jan 2025 11:45:24 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 9
- Jan 2025 11:45:24 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 9 Jan 2025 11:45:24 -0600
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 509HjOsF108072;
-	Thu, 9 Jan 2025 11:45:24 -0600
-Date: Thu, 9 Jan 2025 11:45:24 -0600
-From: Bryan Brattlof <bb@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] arm64: dts: ti: k3-am62l: add initial reference
- board file
-Message-ID: <20250109174524.mfk5o4myhvy4577n@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20250108-am62lx-v2-0-581285a37d8f@ti.com>
- <20250108-am62lx-v2-3-581285a37d8f@ti.com>
- <2f9b9ea6-f99d-4883-bd3d-f7ee8f0f5bd5@ti.com>
+	s=arc-20240116; t=1736444934; c=relaxed/simple;
+	bh=8QqYbCt6WatfmiIAot7P7MYKDIQi4GbdHhEb5n9ofwE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=h9Gyoaf5YLPUVu3W0LdtOWyl+hrXQ/FqZZYDzlDXXO98/ErxjpbOKVTohja4dS4rzEbv53RMc1wHG41sGrpEyx+imchCRKduv//vItmZY8kfS9OoajGY8mnurLvaxMimPamDtBy/aPtUeFLaHrEmqr3ieS/UhEi97zbFViUHo/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Hhn91vB7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 509D7h0L009940;
+	Thu, 9 Jan 2025 17:48:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UOJcTVlMeEO28eOXItiv/fjqlqGkaT07u2vxtTbwYts=; b=Hhn91vB7NfS9w/K0
+	k5ANtPHdkMUYFQ9NyZP+DhvnJScCmyK+6KMc+XmELB97vfr4CXd1qf4YV+VzAoat
+	DeL487tB6GvyeSfQ7wB94r3fHLjx5qJ/Yknds3CsniUJM/Kro3OdDAD4yGLshWgl
+	qf2la9LnAWoY65fD+KoqvJ2psYac3k9v1F7o8W4WFgsFHMj9lPD703emEiTY+Xwi
+	4hlnajcnJDMEH/9ezGDCe14S8OYOyy9E75OlY41Fg+DPdT7iyl2Dusl4RwMmtcKi
+	khF1tHiezFkiKAW/XHgULXGDjkLh1K05Fr+QoqQ3FlFJp8WOvzcOBWo+S4C2Nu4i
+	mLHWMw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442f2krnq8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jan 2025 17:48:39 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 509HmdC0018354
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Jan 2025 17:48:39 GMT
+Received: from [10.216.48.143] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 9 Jan 2025
+ 09:48:32 -0800
+Message-ID: <64f8bebd-35e1-c743-b212-e1a3292bade2@quicinc.com>
+Date: Thu, 9 Jan 2025 23:18:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <2f9b9ea6-f99d-4883-bd3d-f7ee8f0f5bd5@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of SM8250
+ SoC
+Content-Language: en-US
+To: Johan Hovold <johan@kernel.org>,
+        Dikshita Agarwal
+	<quic_dikshita@quicinc.com>
+CC: Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Sebastian Fricke
+	<sebastian.fricke@collabora.com>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Nicolas Dufresne
+	<nicolas@ndufresne.ca>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
+	<u.kleine-koenig@baylibre.com>,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        "Stefan
+ Schmidt" <stefan.schmidt@linaro.org>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
+ <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
+ <Z3_nCPk_g8znto4A@hovoldconsulting.com>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <Z3_nCPk_g8znto4A@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 2QMg_BoYsf6-JkouaDwtAnat4Towmysy
+X-Proofpoint-ORIG-GUID: 2QMg_BoYsf6-JkouaDwtAnat4Towmysy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 mlxlogscore=999 clxscore=1011 lowpriorityscore=0
+ impostorscore=0 spamscore=0 phishscore=0 bulkscore=0 malwarescore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090142
 
-On January  9, 2025 thus sayeth Vignesh Raghavendra:
-> On 09/01/25 04:21, Bryan Brattlof wrote:
-> > From: Vignesh Raghavendra <vigneshr@ti.com>
-> > 
-> > Add the initial board file for the AM62L3's Evaluation Module.
-> > 
-> > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> > Signed-off-by: Bryan Brattlof <bb@ti.com>
-> > ---
-> > Changes in v1:
-> >  - switched to non-direct links so TRM updates are automatic
-> >  - removed current-speed property from main_uart0
-> >  - removed empty reserved-memory{} node
-> >  - removed serial2 from aliases{} node
-> >  - corrected main_uart0 pinmux
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am62l3-evm.dts | 43 ++++++++++++++++++++++++++++++++
-> >  1 file changed, 43 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
-> > new file mode 100644
-> > index 0000000000000..ed0148ce1bea6
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
-> > @@ -0,0 +1,43 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only or MIT
-> > +/*
-> > + * Device Tree file for the AM62L3 Evaluation Module
-> > + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-> > + *
-> > + * Technical Reference Manual: https://www.ti.com/lit/pdf/sprujb4
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "k3-am62l3.dtsi"
-> > +
-> > +/ {
-> > +	compatible = "ti,am62l3-evm", "ti,am62l3";
-> > +	model = "Texas Instruments AM62L3 Evaluation Module";
-> > +
-> > +	chosen {
-> > +		stdout-path = &main_uart0;
-> > +	};
-> > +
-> > +	memory@80000000 {
-> > +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-> > +		device_type = "memory";
-> > +		bootph-all;
-> > +	};
-> > +};
-> > +
-> > +&pmx0 {
-> > +	main_uart0_pins_default: main_uart0-default-pins {
-> > +		pinctrl-single,pins = <
-> 
-> 
-> > +			AM62PX_IOPAD(0x01b4, PIN_INPUT, 0)	/* (D13) UART0_RXD */
-> > +			AM62PX_IOPAD(0x01b8, PIN_OUTPUT, 0)	/* (C13) UART0_TXD */
-> 
-> 			^^^^ AM62LX_IOPAD()
+Hi Johan,
 
-Oops! thanks Vignesh
+On 1/9/2025 8:41 PM, Johan Hovold wrote:
+> On Thu, Dec 12, 2024 at 05:21:49PM +0530, Dikshita Agarwal wrote:
+>> Initialize the platform data and enable video driver probe of SM8250
+>> SoC. Add a kernel param to select between venus and iris drivers for
+>> platforms supported by both drivers, for ex: SM8250.
+> 
+> Why do you want to use a module parameter for this? What would be the
+> default configuration? (Module parameters should generally be avoided.)
+This was discussed during v4 [1] and implemented as per suggestion
 
-~Bryan
+[1]
+https://lore.kernel.org/linux-media/eea14133-2152-37bb-e2ff-fcc7ed4c47f5@quicinc.com/
+
+> 
+> Why not simply switch to the new driver (and make sure that the new
+> driver is selected if the old one was enabled in the kernel config)?
+Its about the platform in migration i.e sm8250. Since new driver is not yet
+feature parity with old driver, choice is provided to client if it wants to use
+the new driver (default being old driver for sm8250)
+
+Regards,
+Vikash
+>> Tested-by: Stefan Schmidt <stefan.schmidt@linaro.org> # x1e80100 (Dell
+> 
+> Looks like something is missing from Stefan's Tested-by tag throughout
+> the series ("Dell XPS13"?)
+> 
+>> Reviewed-by: Stefan Schmidt <stefan.schmidt@linaro.org>
+>> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+>  
+>> +static bool prefer_venus = true;
+>> +MODULE_PARM_DESC(prefer_venus, "Select whether venus or iris driver should be preferred");
+>> +module_param(prefer_venus, bool, 0444);
+>> +
+>> +/* list all platforms supported by only iris driver */
+>> +static const char *const iris_only_platforms[] = {
+>> +	"qcom,sm8550-iris",
+>> +	NULL,
+>> +};
+> 
+> Surely you don't want to have to add every new platform to two tables
+> (i.e. the id table and again here).
+> 
+>> +
+>> +/* list all platforms supported by both venus and iris drivers */
+>> +static const char *const venus_to_iris_migration[] = {
+>> +	"qcom,sm8250-venus",
+>> +	NULL,
+>> +};
+>> +
+>> +static bool video_drv_should_bind(struct device *dev, bool is_iris_driver)
+>> +{
+>> +	if (of_device_compatible_match(dev->of_node, iris_only_platforms))
+>> +		return is_iris_driver;
+>> +
+>> +	/* If it is not in the migration list, use venus */
+>> +	if (!of_device_compatible_match(dev->of_node, venus_to_iris_migration))
+>> +		return !is_iris_driver;
+>> +
+>> +	return prefer_venus ? !is_iris_driver : is_iris_driver;
+>> +}
+>> +
+>>  static int iris_probe(struct platform_device *pdev)
+>>  {
+>>  	struct device *dev = &pdev->dev;
+>> @@ -196,6 +224,9 @@ static int iris_probe(struct platform_device *pdev)
+>>  	u64 dma_mask;
+>>  	int ret;
+>>  
+>> +	if (!video_drv_should_bind(&pdev->dev, true))
+>> +		return -ENODEV;
+> 
+> AFAICT nothing is preventing venus from binding even when 'prefer_venus'
+> is false.
+> 
+>> +
+>>  	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
+>>  	if (!core)
+>>  		return -ENOMEM;
+>> @@ -324,6 +355,10 @@ static const struct of_device_id iris_dt_match[] = {
+>>  		.compatible = "qcom,sm8550-iris",
+>>  		.data = &sm8550_data,
+>>  	},
+>> +	{
+>> +		.compatible = "qcom,sm8250-venus",
+>> +		.data = &sm8250_data,
+>> +	},
+>>  	{ },
+>>  };
+>>  MODULE_DEVICE_TABLE(of, iris_dt_match);
+> 
+> Johan
 
