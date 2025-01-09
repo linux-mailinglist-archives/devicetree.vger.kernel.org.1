@@ -1,180 +1,288 @@
-Return-Path: <devicetree+bounces-137165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 062B6A07C27
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:42:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC06FA07C4D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:46:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F8A67A1EFE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:42:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA731169806
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E42821D003;
-	Thu,  9 Jan 2025 15:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D79021D5BA;
+	Thu,  9 Jan 2025 15:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="MwNH6SxM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zLjXV+Sq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C12219A76;
-	Thu,  9 Jan 2025 15:42:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D830A21E0A6
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 15:46:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736437343; cv=none; b=UVbFyj/d+baTWW+yNCMEHBZh5ZdSGB1uuume0aUQ54a471mMbBqwSyoXRivwOBJudv/PEPK5PHwxiyvg/9EzJxeH5eyqAX4nexIcQ/K7ieKfFTBL8eWLvm+1OOyUmpJEM/2y2BA/EhqFvIU22uTbdpO81WOKKHRtni6jHVrsmZo=
+	t=1736437565; cv=none; b=hu4/GfIPTgxkI+yhYnaFujEWwxapLF9xH9RIWXHLFIvL0GAAPiwHB5k4U+/Bla2HxubpS3wDKeJJ2o1e3/6LxA47nZ4GQuFTuXgMAxifsO0DqqWRd10NxH6LiO45AbCA6L4e1oY7YOOM7ybvLcZHqqLwjMaip0G48SR30a0e1Rs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736437343; c=relaxed/simple;
-	bh=5Y2bIJcXUVeRq/52yqMTXRgAjwKnGM1KYGlk8qkGwzY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NcBREpUmevMByC8Y+flzDZpkeCKOccDmwBKu8TKvqhFLpB6HQufZM0ov4pcWceLlExxAxexzF34VpQTrNn4WNMqt3TOXWtmdp1IWG05Mp49nUvGTERdsBDCtgJ0u+XtAZ1JrV3mIPRm+YLIkqu2DK9jo7DKQCN4BzMSF+SzWfR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=MwNH6SxM; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 970BF1047DC25;
-	Thu,  9 Jan 2025 16:42:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1736437338;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Juwn84S5vUX2aH6VsMCIM7pJOc3sVKVbXwLzJq3+1Jw=;
-	b=MwNH6SxMOaF55Up/l3Tbf4uOwxVhmBCllDmFgpH7//hYrGxM7H+0Ry1PZlNWv6O1LYpUjQ
-	47GI2VUN+e63rGR3ifUmACUxkWVg5p/7+BHx4UkyGGv6BNsbCNYsBy8tc3n8tRQfjN5ZVf
-	EWOQiOfXsJrI1PwfvqoI0hwvw22+QMmvs7Y9Bu8T7EW/Vx/EBZuDo8Bl2Y4daqtmcxf3Te
-	VQaZ8557tEVpnF7AeNmla4MqVZsmfzePK3xqh4rNy9PJyCjbtsTA3msaSDk/vPj7qT6bvV
-	EeYVUAnKOZIK+5u26nbaz5kj8qgWC0vYIZPTxeU+IQ/hGx6VnpWeeKLOU1m15w==
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Lukasz Majewski <lukma@denx.de>
-Subject: [RESEND PATCH v11 1/3] dt-bindings: display: Add powertip,{st7272|hx8238a} as DT Schema description
-Date: Thu,  9 Jan 2025 16:41:49 +0100
-Message-Id: <20250109154149.1212631-1-lukma@denx.de>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1736437565; c=relaxed/simple;
+	bh=BS/MX1QXS8P16euJNL/gkW579BFNpOJeMb4GcXH8A90=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WI8FJn+gXp7qxsQeYcYdarMBt5QBHDOznQ2x1srA1JMx66ke2PTNJ5t2ENXY9nj891u45f39XY3OQcsfW0cHtIgyevgGWGcA9ehkvDGLxc4b2gjONi7hRNGCqBPNcf3dYKMlJ+4NL4ofYlYVMiWjNXriuSTXgenlHV0cejNsKeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zLjXV+Sq; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-aaee0b309adso184808766b.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 07:46:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736437560; x=1737042360; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lj7zF9yCT6iI8nTXFn7pM7jMwkdbgRLxACERXiTTYDw=;
+        b=zLjXV+SqSeRCL0ALr1vSC4S6mqLyJu+LPt17nm6Q2NXmcTe+QbP0xaSfMZMLsVH4fI
+         oDECkJNMo31PmBQyx0w8S0zZSJpoHb11xo+mb/W8igtCOv3dQZ8gLD7RY9mlZ4l2bgDx
+         VW/9gf0Da+aojrMiXP4rIW1GB417rtC65qzC+1JB/VHamk3k5OxJYRsQLJ9kkubj+ZqL
+         RhnKYJsZdi1s3UwJWMJwVxyUZn1+iSz39Z41VXwoCpSYKVPfQfwZYC1zK48RXF7ygQlg
+         GwG9xfaFUc/Csj/6+CEZSCwJZl9Fjhrg6Asz0IIlVD53u78YgS2LGsmM0hBMCCI3GfB0
+         AXrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736437560; x=1737042360;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lj7zF9yCT6iI8nTXFn7pM7jMwkdbgRLxACERXiTTYDw=;
+        b=DwMmJMHczysGx9ldf4rfrIcImjom9Fzkyh/WZfN4xu7RqyqsEY8kimnxX3xYaqzmTy
+         zYZGwgrPkUlS3ufXMDZCvN6Udt3wsPMFkAOCKsasKPjIWKDT9mtk+QrUsrC5QFRTRaBW
+         ttbf+TGcuUKlhB//beUSQTxPpVRHrX2o+i0wjMfDjKDiLVPz12UAPyp3noRvzvhILruG
+         Y7izwLaSos0Ouq/OFTb6awUQmVUmDlhp09dvpZnuFUAQMF/QM7mkJtagL2kAduagh9HT
+         J+aEeIwE5Ftb0K17+fKhoMdncP/0MjhYTI48A9M8cqNZCr8wQLVI7+dO1vKOX050boyG
+         N3sw==
+X-Forwarded-Encrypted: i=1; AJvYcCWetp72qGweQyJHP15jnoBhBgp0WKxUkd+zW/1BS8ZmxdXg8xrjHEg+4UsvdKqzcucAzYKmvI6yJBpO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCm7jpSMzvtMn9wASOURpLH9vD54dCNGdniOdkHv0Fht2u7RsB
+	esdaUOG8UUEnWTh2iELHYht3pjQqcE+1LH6pmI5hJLLBn9IO1ReS346dtJv9fdI=
+X-Gm-Gg: ASbGnctxU6K2pt84V1wWMc7MgRYnxPW3JMLwS95s/Hz2v84/EEeIdYHVVYoHPLwiG2U
+	ussfRcoZ3yLy2u2GmsM6SihW14ZtNry0gFVkgv+jASbjO9Qb8WjCsyifQKwixIyyu9yk3o5WFHk
+	ftPwSFR+08+Xt6xXleCpU34BZTffkdugMovMFtiaQJepHGZhEVxyM6GPomP5K0GMv7wtMHhx7pp
+	+qbQnCxK8m1981ImLp/IuTowOnbwA6p8UJOgc1vHrxziR6JrxUPCMLJneEDuKH0Ra/L
+X-Google-Smtp-Source: AGHT+IG9s1bF4yLCeTCYPm6xNv7HsJRyhyn0nm+PfjOfIoW5V8+Nrr1yYd+O5a84ncBZlJ+Vq51yNQ==
+X-Received: by 2002:a17:907:72cf:b0:aa6:a33c:70a7 with SMTP id a640c23a62f3a-ab2abc8ecb0mr629646366b.49.1736437560082;
+        Thu, 09 Jan 2025 07:46:00 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff21:ef30:ad4b:8bbc:31c3:a8b7])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c905f067sm84488566b.14.2025.01.09.07.45.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jan 2025 07:45:59 -0800 (PST)
+Date: Thu, 9 Jan 2025 16:45:54 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+	Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-crd: Drop duplicate DMIC
+ supplies
+Message-ID: <Z3_vMrFfdIne4yVl@linaro.org>
+References: <20241203-x1e80100-va-mic-bias-v1-2-0dfd4d9b492c@linaro.org>
+ <f65e1559-b409-4906-aabb-eb24b5b0fcf2@linaro.org>
+ <Z1ATxAsXFhQraQwH@linaro.org>
+ <afd010c9-8c24-482e-a479-2396f08c972b@oss.qualcomm.com>
+ <Z1H1BHAeO-0832Ea@linaro.org>
+ <6vfrlwir6sfommhn3met6wnjm76lnnxw4rdwzq75b7lzcy4jep@2cbcfvb3tvr2>
+ <Z3-XoDgUgdS7DDvm@linaro.org>
+ <0f9e456b-cd54-4496-a2d2-795aae744385@oss.qualcomm.com>
+ <Z3_PPOwPNOPkZPkz@linaro.org>
+ <4f0ca97e-ac6c-4b73-ab19-c91c6f3eb697@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4f0ca97e-ac6c-4b73-ab19-c91c6f3eb697@oss.qualcomm.com>
 
-This patch provides the DT Schema description of:
-- powertip,st7272  320 x 240 LCD display
-- powertip,hx8238a 320 x 240 LCD display
+On Thu, Jan 09, 2025 at 03:00:01PM +0100, Konrad Dybcio wrote:
+> On 9.01.2025 2:29 PM, Stephan Gerhold wrote:
+> > On Thu, Jan 09, 2025 at 01:57:17PM +0100, Konrad Dybcio wrote:
+> >> On 9.01.2025 10:32 AM, Stephan Gerhold wrote:
+> >>> On Wed, Jan 08, 2025 at 05:07:47PM -0600, Bjorn Andersson wrote:
+> >>>> On Thu, Dec 05, 2024 at 07:46:28PM +0100, Stephan Gerhold wrote:
+> >>>>> On Thu, Dec 05, 2024 at 06:11:47PM +0100, Konrad Dybcio wrote:
+> >>>>>> On 4.12.2024 9:33 AM, Stephan Gerhold wrote:
+> >>>>>>> On Wed, Dec 04, 2024 at 08:20:15AM +0100, Krzysztof Kozlowski wrote:
+> >>>>>>>> On 03/12/2024 18:44, Stephan Gerhold wrote:
+> >>>>>>>>> The WCD938x codec provides two controls for each of the MIC_BIASn outputs:
+> >>>>>>>>>
+> >>>>>>>>>  - "MIC BIASn" enables an internal regulator to generate the output
+> >>>>>>>>>    with a configurable voltage (qcom,micbiasN-microvolt).
+> >>>>>>>>>
+> >>>>>>>>>  - "VA MIC BIASn" enables "pull-up mode" that bypasses the internal
+> >>>>>>>>>    regulator and directly outputs fixed 1.8V from the VDD_PX pin.
+> >>>>>>>>>    This is intended for low-power VA (voice activation) use cases.
+> >>>>>>>>>
+> >>>>>>>>> The audio-routing setup for the X1E80100 CRD currently specifies both
+> >>>>>>>>> as power supplies for the DMICs, but only one of them can be active
+> >>>>>>>>> at the same time. In practice, only the internal regulator is used
+> >>>>>>>>> with the current setup because the driver prefers it over pull-up mode.
+> >>>>>>>>>
+> >>>>>>>>> Make this more clear by dropping the redundant routes to the pull-up
+> >>>>>>>>> "VA MIC BIASn" supply. There is no functional difference except that we
+> >>>>>>>>> skip briefly switching to pull-up mode when shutting down the microphone.
+> >>>>>>>>>
+> >>>>>>>>> Fixes: 4442a67eedc1 ("arm64: dts: qcom: x1e80100-crd: add sound card")
+> >>>>>>>>
+> >>>>>>>> If there is no functional difference and this is just redundant, then
+> >>>>>>>> there is nothing to fix, so drop the tag. But the point is that users
+> >>>>>>>> might want the low-power VA. You claim they don't want... sure, I am
+> >>>>>>>> fine with that but there is nothing to fix in such case.
+> >>>>>>>>
+> >>>>>>>
+> >>>>>>> The fix here is that two mutually exclusive power supplies for the DMIC
+> >>>>>>> are specified in the device tree. You can only have one of them active
+> >>>>>>> at the same time. The Linux driver handles that gracefully, but the
+> >>>>>>> device tree is still wrong and IMO deserves a fixes tag.
+> >>>>>>>
+> >>>>>>> The functional difference is that we skip briefly switching to pull-up
+> >>>>>>> mode when shutting down the microphone. Users won't notice that, but
+> >>>>>>> it's not the intended behavior.
+> >>>>>>>
+> >>>>>>> I don't claim that users don't want to switch to the low-power pull-up
+> >>>>>>> mode (VA MIC BIASn). However, we would need a different mechanism to
+> >>>>>>> give them the option to switch at runtime. "audio-routing" just
+> >>>>>>> specifies static routes, so the current description does not allow
+> >>>>>>> switching between the two modes either.
+> >>>>>>
+> >>>>>> Is there no existing mechanism to alter this at runtime?
+> >>>>>>
+> >>>>>
+> >>>>> I don't think so... Since it's currently exposed as two separate DAPM
+> >>>>> supplies (instead of a mux or similar) you can only choose between one
+> >>>>> of them in the static routes specified by "audio-routing" in the DT.
+> >>>>>
+> >>>>> I tried looking at how downstream handles this, but this left me even
+> >>>>> more confused than I was before. :-) On CRD we currently have the
+> >>>>> following routes in DT:
+> >>>>>
+> >>>>> 	"VA DMIC0", "MIC BIAS3",
+> >>>>> 	"VA DMIC1", "MIC BIAS3",
+> >>>>> 	"VA DMIC2", "MIC BIAS1",
+> >>>>> 	"VA DMIC3", "MIC BIAS1",
+> >>>>> 	"VA DMIC0", "VA MIC BIAS3",
+> >>>>> 	"VA DMIC1", "VA MIC BIAS3",
+> >>>>> 	"VA DMIC2", "VA MIC BIAS1",
+> >>>>> 	"VA DMIC3", "VA MIC BIAS1",
+> >>>>>
+> >>>>> MIC BIAS and VA MIC BIAS are mutually exclusive, so this is not correct.
+> >>>>> But if you look at e.g. SM8550 downstream they have:
+> >>>>>
+> >>>>> 	"TX DMIC0", "MIC BIAS3",
+> >>>>> 	"TX DMIC1", "MIC BIAS3",
+> >>>>> 	"TX DMIC2", "MIC BIAS1",
+> >>>>> 	"TX DMIC3", "MIC BIAS1",
+> >>>>> 	"VA DMIC0", "VA MIC BIAS3",
+> >>>>> 	"VA DMIC1", "VA MIC BIAS3",
+> >>>>> 	"VA DMIC2", "VA MIC BIAS1",
+> >>>>> 	"VA DMIC3", "VA MIC BIAS1";
+> >>>>>
+> >>>>> Note the TX DMIC vs VA DMIC. So they specify one of the supplies for the
+> >>>>> TX macro DMIC, and the low-power one for the VA macro DMIC. That would
+> >>>>> be fine.
+> >>>>>
+> >>>>> Now the question is: If we can use the DMIC through both the TX and the
+> >>>>> VA macro, and we're not doing voice activation, why are we using the VA
+> >>>>> macro in the first place?
+> >>>>>
+> >>>>> @Srini: Do you remember why?
+> >>>>>
+> >>>>
+> >>>> What's the verdict regarding this?
+> >>>>
+> >>>
+> >>> We started discussing this, but did not come to a conclusion yet if we
+> >>> should be recording from the DMICs using the TX macro instead of the VA
+> >>> macro.
+> >>>
+> >>> The patch I submitted is still valid though, independent of that
+> >>> question. Since we're not doing voice activation we want to have the
+> >>> "full quality" MIC BIAS supply, not the low-power one.
+> >>
+> >> Can/should we discuss a new sound API to make this toggleable?
+> >>
+> >> Do these microphones physically connect to muxable inputs, or does this
+> >> depend on board wiring?
+> >>
+> > 
+> > The WCD938x codec has 4 MIC_BIAS output pins that are typically used as
+> > power supply for microphones. Inside the codec there is an option to
+> > drive these output pins in one of two modes:
+> > 
+> >  1. Internal regulator to generate the output with a configurable
+> >     voltage (qcom,micbiasN-microvolt). Exposed as "MIC BIASn" supply in
+> >     the Linux driver.
+> > 
+> >  2. "Pull-up mode" that bypasses the internal regulator and directly
+> >     outputs fixed 1.8V from the VDD_PX pin. Exposed as "VA MIC BIASn"
+> >     supply in the Linux driver.
+> > 
+> > The board-specific part here is only which microphone is wired to which
+> > MIC BIAS pin (e.g. DMIC0 -> MIC BIAS3, DMIC2 -> MIC BIAS1 etc). 
+> > 
+> > Both options will work if the microphone can operate at 1.8V. In that
+> > case, I think generally we want (1) for normal audio use cases and (2)
+> > for low-power use cases (like "voice activation").
+> > 
+> > Apparently the same applies for the "macro" to use. TX macro should be
+> > used for normal audio, and VA macro only for low-power use cases. With
+> > that there is a clear mapping:
+> > 
+> >  - TX macro DMICs -> full power "MIC BIAS" supply
+> >  - VA macro DMICs -> low-power "VA MIC BIAS" supply
+> > 
+> > I don't see why someone would want to change this mapping, so I don't
+> > think it's worth making this user configurable.
+> > 
+> > Given that we're currently using the VA macro for normal audio, we
+> > should describe VA macro DMICs -> full power "MIC BIAS" supply for now
+> > and ideally migrate to using the TX macro later.
+> 
+> So, in short, if I understood you correctly, audio comes in through a
+> hardwired connection to a given macro, but the bias pins can be configured
+> to output the bias voltage through any of the macros.
+> 
 
-Used with the different HW revisions of btt3 devices.
+That's not entirely right. In our case here, the digital data from the
+DMIC goes directly to both the TX and VA macro. The power supply comes
+directly from the WCD983x codec. So the macro isn't involved in the bias
+voltage at all. Perhaps a picture will help:
 
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
+                             +------+                         
+                        Data |      |  Power                  
+                          +--+ DMIC |<----------------+       
+                          |  |      |                 |       
+                          |  +------+                 |       
+    +---------------------+---+    +------------------+------+
+    | SoC  +----------+   |   |    | WCD983x       MIC_BIAS1 |
+    |      | TX Macro |<--+   |    |                  ^      |
+    |      +----------+   |   |    | +-----------+    |      |
+    |      +----------+   |   |    | | Regulator +----X--+   |
+    |      | VA Macro |<--+   |    | +-----------+       |   |
+    |      +----------+       |    |       ^          VDD_PX |
+    +-------------------------+    +-------+-----------------+
+                                           |             ^    
+                                           |             |    
 
-Changes for v9:
-- New patch
+X inside the WCD983x is where we can make the choice, if we want to use
+the internal regulator or output VDD_PX on MIC_BIAS1 directly. 
 
-Changes for v10:
-- None
+We can also choose to consume the microphone data either via the TX
+macro or the VA macro. IIRC there is no mux for this, the data just ends
+up in both at the same time.
 
-Changes for v11:
-- Combine both separate dt-bindings patches for powertip,st7272 and
-  powertip,hx8238a into one
-- Drop the quotes for in "title" entry of powertip*.yaml files
----
- .../display/panel/powertip,hx8238a.yaml       | 29 +++++++++++++++++++
- .../display/panel/powertip,st7272.yaml        | 29 +++++++++++++++++++
- 2 files changed, 58 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
- create mode 100644 Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
+Does that help explain it?
 
-diff --git a/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-new file mode 100644
-index 000000000000..b7d74faeb5d5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-@@ -0,0 +1,29 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/powertip,hx8238a.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Powertip Electronic Technology Co. 320 x 240 LCD panel
-+
-+maintainers:
-+  - Lukasz Majewski <lukma@denx.de>
-+
-+allOf:
-+  - $ref: panel-dpi.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: powertip,hx8238a
-+      - {} # panel-dpi, but not listed here to avoid false select
-+
-+  height-mm: true
-+  panel-timing: true
-+  port: true
-+  power-supply: true
-+  width-mm: true
-+
-+additionalProperties: false
-+
-+...
-diff --git a/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
-new file mode 100644
-index 000000000000..f3622800f13f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
-@@ -0,0 +1,29 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/powertip,st7272.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Powertip Electronic Technology Co. 320 x 240 LCD panel
-+
-+maintainers:
-+  - Lukasz Majewski <lukma@denx.de>
-+
-+allOf:
-+  - $ref: panel-dpi.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: powertip,st7272
-+      - {} # panel-dpi, but not listed here to avoid false select
-+
-+  height-mm: true
-+  panel-timing: true
-+  port: true
-+  power-supply: true
-+  width-mm: true
-+
-+additionalProperties: false
-+
-+...
--- 
-2.39.5
-
+Thanks,
+Stephan
 
