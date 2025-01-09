@@ -1,82 +1,87 @@
-Return-Path: <devicetree+bounces-137140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64B4FA0794A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:33:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54537A07950
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:34:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 762543A1D21
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:33:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A0BE3A1100
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:34:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89E421A432;
-	Thu,  9 Jan 2025 14:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA9F21A44B;
+	Thu,  9 Jan 2025 14:34:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="D35v4Vwv"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XNZG5qKp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B45414F98;
-	Thu,  9 Jan 2025 14:33:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3797521578A
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 14:34:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736433196; cv=none; b=lXYyDh4byG1L2cAgAUWS7UXzjp0efs7fF8CQX9ESCJx0luDXaWw79magWlXO5cu1LXSxX06Z66WNljB/FBTuUaYn5gB2Y1+Thdu/2LMlouYXH0c1jT0H9GCtgTjBo5erWZTIWgsgoMzqy/c4RXeHmRrUJGQf1MPDo/KzEyIId00=
+	t=1736433271; cv=none; b=TcQGFfyr8fZu21Mj6pA9LDe0m3lOzqO9pBlGyXPCmaZhoQRtQkE0tRBPdblJWCPsoqfD5L+GqCII9Pp3mTLvcNTYvehJlFLVl51FU0imTTPubCYaEzBc9DX7vKjfpiawKmdgJcjOBPB+09uvpjRGhBmtYMiFgkmXe2SUFJ0ahbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736433196; c=relaxed/simple;
-	bh=+Kr9JFrQYHHYKs/mJDEC+JVjR8TiSrLUD0MX98tsqd0=;
+	s=arc-20240116; t=1736433271; c=relaxed/simple;
+	bh=JzZsAVX22mxjMUIPiLN1cRpqa12FwCd+0+1ZWGrou/s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UhrRhp/SwQQjBfU92+V8tWOJhXMWuiOQjTmu04+kzuhU1xx/iXRx+41umauVn1HDbBs4p23w8lsBalc57FHtqzEzRmpZgz2OSEscrdTbJxervO/G4+aGduotbqmuPmLzRq7i+TX8Nk4OIlWf3WeaMY57nAyYubgD2Udi8Iq5T7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=D35v4Vwv; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50985ZkV022344;
-	Thu, 9 Jan 2025 14:32:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=a4WYV/
-	lBqDuwS3x6xguYcEfUiXeq4SXjFmogzAE4jlY=; b=D35v4VwvI1M8HpJsAPOasd
-	eRruPQqZXqyJ3WhcCy+1kV6fZMnmxpu77zFS/dz+AJCA/cwwldDnkUESVzSkIdXa
-	X3dOeIYO7HiD2dLeHTdQdSJzLcTeYLaC0e1bJs9Uh4qiMjaGOsq1SNj/qk2BC/Fe
-	lPGrWYuifpNnalP+5rpCV58S5RiDHJGzj1XmozxSj01OBRSE2Q5ot+Hvl26rdr/7
-	RQS94A14lVPvKTc5/imLR8zz5fBf8nLoT1EHClzJ0BCIzKYe2zje0YAV7ttYT958
-	PKluzbXSlvdV82p8RlR2Q7dfJCeMPUxiGIcfTJO2fo5Vu6ZsCykGFWOPdDaLl/VQ
-	==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 442an2hkvy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jan 2025 14:32:22 +0000 (GMT)
-Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 509EOrxJ010500;
-	Thu, 9 Jan 2025 14:32:21 GMT
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 442an2hkvv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jan 2025 14:32:21 +0000 (GMT)
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 509CG5VP003593;
-	Thu, 9 Jan 2025 14:32:20 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 43yfatdqdm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jan 2025 14:32:20 +0000
-Received: from smtpav04.wdc07v.mail.ibm.com (smtpav04.wdc07v.mail.ibm.com [10.39.53.231])
-	by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 509EWKN847776206
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 9 Jan 2025 14:32:20 GMT
-Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 404F158056;
-	Thu,  9 Jan 2025 14:32:20 +0000 (GMT)
-Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 2BFCA58045;
-	Thu,  9 Jan 2025 14:32:16 +0000 (GMT)
-Received: from [9.61.139.65] (unknown [9.61.139.65])
-	by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Thu,  9 Jan 2025 14:32:16 +0000 (GMT)
-Message-ID: <6ac77e5d-e931-494a-9777-6ed0bc4aa1e9@linux.ibm.com>
-Date: Thu, 9 Jan 2025 08:32:15 -0600
+	 In-Reply-To:Content-Type; b=dyoF0XBYzh1tyPr6f5AGBan/IMV5E14QwsVR4g4EOjgi1Wsd7Mppppb/ztURSGZDm6W8DvuGlPNGLdTe7VVEZtr3fRSeHY+U8ALBiIA1uI2WzfsuCSy3Luk0iKt1irJP9/lwXipZx6mn+TWtzET9kGjYZm4MG596ZbIYekzWCHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XNZG5qKp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 509CBa8E002547
+	for <devicetree@vger.kernel.org>; Thu, 9 Jan 2025 14:34:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7sRminSKYuT4CUEwQi0mIyGX5qLVxMETdC4eOaSoVHw=; b=XNZG5qKpHTc52B88
+	OIOw6pOje4hziOfg9JPOvmjxiHJOE970otoO6oqUZ1Wa1EeXTCkecb1nsFJcRAFZ
+	2jObhzdoWuIZ2cBRcXkviuDmjPaF6M2ZIbOOwzkFvhOdHl0VnQ8xuo2CB/m6jEqC
+	utP9+yMn/6lJoxGTKdQQfP0lX6m2XooWshjiYKE844yX2B+lyTn0OP3hONWST4yC
+	FZM+gSn6NObUCM3wiLI6ubkRyj+crlAIE/8X2YuUCOV0gXv6nj3P5U2huIzCr4oN
+	r1iHCqo4LToww7N622DRnDfNC9GNF39cS+/Z0yKtuzWljg6oC0MEQ31PlWhkO2sp
+	ZQtckw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442e8cgaj7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 14:34:29 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-467a437e5feso2535301cf.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 06:34:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736433268; x=1737038068;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7sRminSKYuT4CUEwQi0mIyGX5qLVxMETdC4eOaSoVHw=;
+        b=FLVJEN89oLQaO9ev1o/eKLYiDQewTqL2mf8Rf8LxMzuCvxt7p2sUgxEQvB9ml3R2A7
+         d4iD8sqIAPPSbJ+AvyJWhEjjro+u2RaojGl0eLVbklpmfxExeVye0w8V8rtuK64mKiMj
+         sl7NbgGbtbSuX4VYu3UB4TBAg47E4WwrnJa2FmLXnKFiw1cEuOUgCc1lADGivHLgXLLI
+         1AR2hEPut/Kr5fmQC978y5UYOcwT/xm03oMO9Syc26TYXEhY5vYw31J+gErERgSl+SxT
+         l26kxmrPrU/q/zf0VPwxUDf1O3CPXeqIV7KYSTuC88FNsb0G9iPdSE/nT2rwhbF8l2di
+         kpew==
+X-Forwarded-Encrypted: i=1; AJvYcCXghDxuSAPH2T0MPeNSOLOyQpOY24Ecg+ixaCcrGRs3u7Ii9/uhyyq2PB6cpgufmZ/CViQB2i2oE74i@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCUChHpDu+yYGsOf1gO9ldkDc8WV2birQ5wlBlZka4ps1clFj5
+	k5SNyCuyNP+/DVApaC5/SvaJ84e9/Xg9fumuYeByLr2EFcUolqBDCeFUNQaF37t+cFX/bJkFiJh
+	os+5nNgBvS2ET19pGXYRbziJz9EyQEtZIGLzyjbGT714LVi+Mru8b7hOiBfLj
+X-Gm-Gg: ASbGnctE1UhabwAWERPVtYlJNzovABGrPJ5SQphL/7WKgn4mmrsOuj8PJR9tmJSEGft
+	XpZhVqItMNaloQbwcOedgzNySKSBHeBlYbH5fMpmdEgbiYj21Ss+neVLeVwgzJActjZle7QtiY6
+	8RAHtfpUZsYiHUPhiFTnZ5ASS4msIVOZSBXDuvc15aOXACYz2qvLo8UmrAOMUdj4bzZ8wv6cLJ2
+	NAunFXbxcQ3+HhP/5/oZ5EjOhMyhJCDMtirQmqNMUld3SKKBrL/9F6h3QTByUB5qJXc27P5cyLX
+	RpFNqviu73/jc7SODAFS3uj5PbwYB4SwYvU=
+X-Received: by 2002:a05:622a:450:b0:460:9026:6861 with SMTP id d75a77b69052e-46c7102be4cmr40531161cf.9.1736433268371;
+        Thu, 09 Jan 2025 06:34:28 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH883oKXzGRrTilIgV/N2e+QQvov9AilqN39UqLmkXr4L20TmKo/V9bG0B0YVs80AyZaQqlfA==
+X-Received: by 2002:a05:622a:450:b0:460:9026:6861 with SMTP id d75a77b69052e-46c7102be4cmr40531051cf.9.1736433268041;
+        Thu, 09 Jan 2025 06:34:28 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c9649939sm76309866b.182.2025.01.09.06.34.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jan 2025 06:34:27 -0800 (PST)
+Message-ID: <daf612e8-1369-49cb-ba99-15218ad2f224@oss.qualcomm.com>
+Date: Thu, 9 Jan 2025 15:34:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,120 +89,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/10] ARM: dts: aspeed: system1: Add RGMII support
-To: Andrew Lunn <andrew@lunn.ch>, Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-        "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "eajames@linux.ibm.com" <eajames@linux.ibm.com>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "joel@jms.id.au"
- <joel@jms.id.au>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "minyard@acm.org" <minyard@acm.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "openipmi-developer@lists.sourceforge.net"
- <openipmi-developer@lists.sourceforge.net>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
-        "robh@kernel.org" <robh@kernel.org>
-References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
+Subject: Re: [PATCH] arm64: qcom: romulus: Update firmware names
+To: Joel Stanley <joel@jms.id.au>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250108124500.44011-1-joel@jms.id.au>
 Content-Language: en-US
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250108124500.44011-1-joel@jms.id.au>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: 8L7sZPoUTETvRf7B5TvBSMQ-8W5xEmny
-X-Proofpoint-ORIG-GUID: py666dZ04-ObN4IbDM5590QG7o3LXVlq
+X-Proofpoint-GUID: 6DcaaMRXtot2LqlFmnW8tqNmvcEfZSB9
+X-Proofpoint-ORIG-GUID: 6DcaaMRXtot2LqlFmnW8tqNmvcEfZSB9
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 priorityscore=1501 spamscore=0 suspectscore=0
- clxscore=1015 impostorscore=0 mlxlogscore=999 phishscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501090116
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ impostorscore=0 adultscore=0 spamscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 malwarescore=0 bulkscore=0 mlxlogscore=999
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090115
 
-Hi Andrew,
+On 8.01.2025 1:44 PM, Joel Stanley wrote:
+> Other x1e machines use _dtbs.elf for these firmwares, which matches the
+> filenames shipped by Windows.
+> 
+> Fixes: 09d77be56093 ("arm64: dts: qcom: Add support for X1-based Surface Laptop 7 devices")
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> ---
 
-Thanks for the explanation.
+Right, I renamed these locally.. but it's definitely better to keep
+those as-shipped
 
-On 1/8/25 11:52, Andrew Lunn wrote:
->>> Does the mac0 TX clock have an extra long clock line on the PCB?
->>>
->>> Does the mac1 TX and RX clocks have extra long clock lines on the PCB?
->>>
->>> Anything but rgmii-id is in most cases wrong, so you need a really
->>> good explanation why you need to use something else. Something that
->>> shows you understand what is going on, and why what you have is
->>> correct.
->> Here I'll add some explanation.
->>
->> In our design, we hope the TX and RX RGMII delay are configured by our MAC side.
->> We can control the TX/RX RGMII delay on MAC step by step, it is not a setting to delay to 2 ns.
->> We are not sure the all target PHYs are support for RX internal delay.
->>
->> But ast2600 MAC1/2 delay cell cannot cover range to 2 ns, MAC 3/4 can do that.
->> Therefore, when using ast2600 MAC1/2, please enable the RX internal delay on the PHY side
->> to make up for the part we cannot cover.
->>
->> Summarize our design and we recommend.
->> AST2600 MAC1/2: rgmii-rxid
->> (RGMII with internal RX delay provided by the PHY, the MAC should not add an RX delay in this
->> case)
->> AST2600 MAC3/4: rgmii
->> (RX and TX delays are added by the MAC when required)
->>
->> rgmii and rgmii-rxid are referred from ethernet-controller.yaml file.
-> O.K, so you have the meaning of phy-mode wrong. phy-mode effectively
-> described the PCB. Does the PCB implement the 2ns delay via extra long
-> clock lines or not. If the PCB has long clock lines, phy-mode is
-> 'rgmii'. If the PCB does not have long clock lines, 'rgmii-id' is
-> used, meaning either the MAC or the PHY needs to add the delays.
->
-> The MAC driver is the one that reads the phy-mode from the DT, and
-> then it decides what to do. 95% of linux MAC drivers simply pass it
-> direct to the PHY. If the phy-mode is 'rgmii', the PHY does nothing,
-> because the PCB has added the delays. If it is rgmii-id, it adds
-> delays in both directions. This works, because nearly very RGMII PHY
-> on the market does support RGMII delays.
->
-> There is however a very small number of MAC drivers which do things
-> differently. Renesas produced an RDK with a PHY which could not do
-> delays in the PHY, and so were forced to do the delays in the
-> MAC. Please look at how the ravb driver works. If the PCB does not add
-> the delays, rmgii-id, the MAC driver adds the delays. It then masks
-> the phy-mode it passes to of_phy_connect() back to 'rgmii', so that
-> the PHY does not add any delays. If the PCB did add the delays,
-> 'rgmii', the MAC driver does not add delays, and it passed rgmii to
-> the PHY driver, and it also does not add delays.
+The commit title should like:
 
-When does someone use rgmii-txid and rgmii-rxid?
+arm64: dts: qcom: x1e80100-romulus: Update firmware nodes
 
-Regards,
+(see git log --oneline path/to/dir for the general format)
 
-Ninad
+but maybe Bjorn can fix that up when applying
 
->
-> So, your MAC driver is broken. It is not correctly handling the
-> phy-mode. First question is, how many boards are there in mainline
-> which have broken phy-modes. If this is the first board, we can fix
-> the MAC driver. If there are already boards in mainline we have to be
-> much more careful when fixing this, so as not to regress boards which
-> are already merged.
->
-> Humm, interesting. Looking at ftgmac100.c, i don't see where you
-> configure the RGMII delays in the MAC?
->
-> 	  Andrew
->
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+Thanks!
+
+Konrad
 
