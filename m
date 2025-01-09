@@ -1,181 +1,142 @@
-Return-Path: <devicetree+bounces-137216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F58DA08223
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 22:19:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2120A08255
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 22:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 080AE167B9F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 21:19:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E9CC7A24DE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 21:41:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E21204F74;
-	Thu,  9 Jan 2025 21:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46218204C20;
+	Thu,  9 Jan 2025 21:41:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="KIct9FBm"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="SUmfK0jV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 322F3204F78
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 21:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6992046A3
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 21:41:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736457563; cv=none; b=IrsdK2PJXb+Zt8d56UcmbKHmZ73RywNS0VeUhIiO9unBD4iHpFPTfnYbAVTDOQ+hXT4eDA51ocYmly8rG+I0DH36pjq1CN/H52dHrScavAl6izuCD/apnZDt2bHQnPg/9esgXfqyzN76I36f6JiRGrrG5ru9BVmNCpdAU1SBy1g=
+	t=1736458867; cv=none; b=rOgIz8qAKN1QTYrsRJtumrTaCNHnBkCQKiT1l6MIDY1wgklgVCCeo1tGI8zr8LAcuMh0Yi+x7Y0a3N84ZJFtEuBwWa+Nm/kjVkXy5rqrzVuGoMSb+UmUUbBokjuqPKY5zdppHMkjZgpkXYwrSu//IvT+hxwq+VuljvZahtFSwmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736457563; c=relaxed/simple;
-	bh=lm8eiZDlfcHQJ0MS0bnwvslqyw2imRABsvWe0la5PQI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Cao9VnVmvyjKzx4NGr4NKUZLfRGxqD8AqnUmWICe89AdsB+3Eze7UPAMK/6aTzdE73fkJxKBAFGv0V/r+k6RorzARTmFFdbq/2SAuQmKDAwIgY3OheKi1ZPwIcIa2e9IUsex7SUQEEtK//KiFO4YVOnJwT7FW7UkmYRomOy6uCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=KIct9FBm; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5d122cf8dd1so2113374a12.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 13:19:20 -0800 (PST)
+	s=arc-20240116; t=1736458867; c=relaxed/simple;
+	bh=UYseOpURRh9hqApQgpIM/XepY4WChUBZ1jGMRsNQHcs=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hiD/eLSRiOLPKrInQ/53f/jfwx/hYxQ49WGU21U9bUskQsr6NMPDTKNnksn+rzGSjs5iWpLXZ/epNgJeztWnQ7LHrpVFRXGTeqntb0N/E8IV7sLdlVcB1RKzN1KESPa+mf+fSuBuKzrj9JRkpQsl/w4IlusZj5ugxTFBIFTucvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=SUmfK0jV; arc=none smtp.client-ip=209.85.219.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6dcd4f1aaccso19076026d6.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 13:41:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1736457559; x=1737062359; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1736458864; x=1737063664; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=68CdHAZCqU/700PS8wNVBBVrBBOJwhpJC23uvX7+CAE=;
-        b=KIct9FBmT7L6NKGb2ue6Mhp5HghrUBoGW3ABvKpq+cOvw4F/65fG0Z3bMZANptW1FI
-         KdErekULAY/Ny7H6yQKPFIeJyofFUIz+Q3pu4rYML3fRJl2MPlywSmndMizvogzjd3hg
-         1+6EL+XcHJT8x2eI1B8TZctQ0TajEXeSAjIgI=
+        bh=UYseOpURRh9hqApQgpIM/XepY4WChUBZ1jGMRsNQHcs=;
+        b=SUmfK0jVEE0JrWF4jtRKdlxR1wMYQixwjWUUQH/4Gne3mvrorDyVPAx7JydlcH4eWi
+         5/HWdUwt2o4RrYvJ+adA1mQOo+G3Uek2QPxs9n89//9Kt3Bo3jXb/O/uWGGKQhgrpDrp
+         PRJeCvxP36gF53yS6YUVg5lK0etG7+yJuU7ms=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736457559; x=1737062359;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=68CdHAZCqU/700PS8wNVBBVrBBOJwhpJC23uvX7+CAE=;
-        b=Au31+OtwvhvUTLfjnQR1KZvHCZvPI5sLxoOUp2AdqM3oGd8gefEINx0UpSyeJE3JaG
-         Hyb8h1KtlZfHg16h7vn3FFqsHjaMM5h8AbbNOfIjJPkyH0UKUmIK/pXhMsi75ZOlxiwg
-         7aL2qioFpQfy/dCrP7rIydda3rgn2iswwSi0SqHrZ1FkppgFj2wpBKVgjacy5rIOWfTZ
-         ZUhiBgZLxYBaDj0JwiiSu2x+gnrH0dTf4qQ+n792OxJ5cZEbdJ9gtmDd8zW6kpdbRojK
-         XJFE99EkYRvbzJsoeoV92ldd35zcepmXGotKUyJznKtBaqAA9ghqYGYLZcu19ph5Pw5j
-         hWSA==
-X-Forwarded-Encrypted: i=1; AJvYcCXCOBKkMj9TcTxUfxP+qTOG4pzy6lXe9kYXIsGZqxpTc7+M4rVo19pUaD/OA9yZ37dzMSC8XNI1Tm15@vger.kernel.org
-X-Gm-Message-State: AOJu0Yykp1AtPeFvOJnap8psE9WBVNoRcjXufHK4RmfBi1Fmf5xtnc56
-	/0Z1Zz6uKMYyC9vHvSYKWryhUg5ipmW1NMMv+xz7/q+EeQu5A2fUOsD9sigmBN0=
-X-Gm-Gg: ASbGncsT0l1Yd1p8P9FE/mfm1i4xlQjGHCdTlcIYPKL7INdL4wYuvBYQPzbOfzRODK7
-	zD0gd/an2voaslHhn4NaV+NSZVOLDPypufspdBsIU1A7qG3J3fxrtCF2mWyEtTlDH0R5UWo8hAa
-	llohIvKtySWxP1qz1aJ8OXLUJVJEG08rEOcdcOpnySRb1lf8Tseeq324WL2LZqJuZQh9r1L/Rf0
-	goOT9/CXyIIRaFqP7IAuWQVU4AjJCtfqpGPjh1l+2qLngAfW1i+J51llycct5IP3evs3jWa313Q
-	EvPj2Jxr6vRcNj99sl7cVIc8tmpJ+uhn5rlbJuPdTglPN5XQGPVfdRtI/HZIyLA6AO7yB8E84wB
-	sfOhfn60NWkVRNPy6ag==
-X-Google-Smtp-Source: AGHT+IFfiDSYYvGnEgMP2QwNnIkAkHlHP9l0zHJQ4yI1SUJQxTP9wEsEdwJ81wysyqIM0rn1EM70nA==
-X-Received: by 2002:a05:6402:4407:b0:5d3:d733:7ad4 with SMTP id 4fb4d7f45d1cf-5d972dfe6abmr8251883a12.3.1736457559390;
-        Thu, 09 Jan 2025 13:19:19 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-41-6-15.retail.telecomitalia.it. [79.41.6.15])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d9900c4b56sm925567a12.32.2025.01.09.13.19.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 13:19:18 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v2 2/4] dt-bindings: clock: st,stm32-rcc: support spread spectrum clocking
-Date: Thu,  9 Jan 2025 22:18:29 +0100
-Message-ID: <20250109211908.1553072-3-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250109211908.1553072-1-dario.binacchi@amarulasolutions.com>
-References: <20250109211908.1553072-1-dario.binacchi@amarulasolutions.com>
+        d=1e100.net; s=20230601; t=1736458864; x=1737063664;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
+         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=UYseOpURRh9hqApQgpIM/XepY4WChUBZ1jGMRsNQHcs=;
+        b=EvuZPogpWuS5ZUqetYuGNZKQJIVMOcEWEzWkuIUkZGooAJDT5WU6TP69Y1SaQvQQyy
+         6oZDIUK5KA6TPeBbae60zbOIZ3Am/2ePZtMhPdX7Gf145BRJJK45tdHv8aUj9hWDWa38
+         iQyDrwRGsb6fo03Sdi6jCJ7CVpsFF+Esv6Sa/jj3WUVyJgycN/AXEBVGRwHFlkP+CIaQ
+         bML8RG/Aqfh9M3NIxp0yVCjz9ADrXOnm8El3aYZbIHi7/FChvFwvay/Etm1B5mWZvq81
+         OzHAbs57weEUXeDBtQ7rOH/27+VD0yRtRC4i3GZHZTJgZGjcJ4ilJoMXxr+NKvy5LaDL
+         YPuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUacEjx4zljnkgqgMQE/a3Bx4VZ8mXHanflJQIbM73ydgfw78q7SsZY+lKI4HKKKBxbPAYGTg4/QnQs@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfLgnQsmleRrmYVaXbnaWN+XHrci4hRy7LbGXdGs13a9252iv7
+	j2FTsEBdIVrCcWJkW6tuunhIPfcBPow+wnXfgCcFE7aggwH8R1uA7KUQrDasw8F88ZX61ZR6UoY
+	fMWqrtRN15ZIT9oyGV3HLTYZN8WurtclvP5YG
+X-Gm-Gg: ASbGncumI+hftWukzR4/sMGZogGp0Jv8/Zig5udv3cVAv8cIrk124D8HD0yN80ZZtRT
+	9DS0f9cWB0NEDTTzy9XXEahifsnG8IDXO51rRVyMzIXUPcFvRHKEqebhO4I9XZIJGSg==
+X-Google-Smtp-Source: AGHT+IEKX5fqLs19Nj5Euy3b+3ANgHmr60cplFk0CNeQmGP21sPNoKthsCxbKzmMS125ujK0B00l23Ab59zEPd3mFGE=
+X-Received: by 2002:ad4:5d61:0:b0:6d4:dae:6250 with SMTP id
+ 6a1803df08f44-6df9b28c6aemr137634956d6.34.1736458864590; Thu, 09 Jan 2025
+ 13:41:04 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 9 Jan 2025 16:41:04 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <53b83a66-c0b3-4227-8dcd-022f70810ccf@oss.qualcomm.com>
+References: <20250108012846.3275443-1-swboyd@chromium.org> <20250108012846.3275443-2-swboyd@chromium.org>
+ <CAL_JsqKMcHPhf8yzEZNC6280-k+aSmo3SQOBZLMjmfTR47BH=g@mail.gmail.com>
+ <CAE-0n52k0Gg85Ry4KyjE7Ms_dJgj=aPA4aPB5gmC-VGWSNLZXA@mail.gmail.com> <53b83a66-c0b3-4227-8dcd-022f70810ccf@oss.qualcomm.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Date: Thu, 9 Jan 2025 16:41:04 -0500
+X-Gm-Features: AbW1kvaEYHdRDja_xzTNJbc0kQa8ep2z24O4PgYaJif2dmWpmU8qkWy48lGlWcY
+Message-ID: <CAE-0n51f_RQqQgH+FidFiFigY7koZCRZoOtDqQeTGKNsKtBSbQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/6] bus: Extract simple-bus into self-contained driver
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-kernel@vger.kernel.org, patches@lists.linux.dev, 
+	devicetree@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>, 
+	Conor Dooley <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The addition of DT bindings for enabling and tuning spread spectrum
-clocking generation is available only for the main PLL of stm32f{4,7}
-platforms.
+Quoting Konrad Dybcio (2025-01-09 06:02:17)
+> On 8.01.2025 11:44 PM, Stephen Boyd wrote:
+> > Quoting Rob Herring (2025-01-08 06:11:28)
+> >> On Tue, Jan 7, 2025 at 7:28=E2=80=AFPM Stephen Boyd <swboyd@chromium.o=
+rg> wrote:
+> >>>
+> >>> Extract the simple bus into a self contained driver so that devices a=
+re
+> >>> still populated when a node has two (or more) compatibles with the le=
+ast
+> >>> specific one being the generic "simple-bus". Allow the driver to be a
+> >>> module so that in a fully modular build a driver module for the more
+> >>> specific compatible will be loaded first before trying to match this
+> >>> driver.
+> >>>
+> >>> Cc: Rob Herring <robh@kernel.org>
+> >>> Cc: Saravana Kannan <saravanak@google.com>
+> >>> Cc: <devicetree@vger.kernel.org>
+> >>> Cc: Arnd Bergmann <arnd@arndb.de>
+> >>> Cc: "Uwe Kleine-K=C3=B6nig" <u.kleine-koenig@baylibre.com>
+> >>> Cc: Bjorn Andersson <andersson@kernel.org>
+> >>> Cc: Konrad Dybcio <konradybcio@kernel.org>
+> >>> Cc: <linux-arm-msm@vger.kernel.org>
+> >>> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> >>> ---
+>
+> [...]
+>
+> > Maybe the best approach is to simply avoid all of this and drop the
+> > "simple-bus" compatible from the soc node? It introduces an annoying
+> > hurdle where you have to enable the new driver that does exactly the
+> > same thing as "simple-bus" does so you continue to have a working
+> > system, but it avoids the headaches of trying to make the fallback to
+> > "simple-bus" work and it would match how new DTs would be written. We
+> > could make the driver 'default ARCH_<SOC_VENDOR>' so that it gets built
+> > for olddefconfig users too.
+>
+> I think it even makes logical sense for the /soc node's compatible to
+> be.. you know.. the model of the SoC we're modeling
+>
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-
----
-
-Changes in v2:
-- Update the commit message
-- Change st,ssc-modmethod type from non-unique-string-array to string
-
- .../bindings/clock/st,stm32-rcc.yaml          | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-index 779e547700be..628bbbcf2875 100644
---- a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-@@ -56,6 +56,26 @@ properties:
-       Phandle to system configuration controller. It can be used to control the
-       power domain circuitry.
- 
-+  st,ssc-modfreq-hz:
-+    description:
-+      The modulation frequency for main PLL (in Hz)
-+
-+  st,ssc-moddepth-permyriad:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The modulation rate for main PLL (in permyriad, i.e. 0.01%)
-+    minimum: 25
-+    maximum: 200
-+
-+  st,ssc-modmethod:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      The modulation techniques for main PLL.
-+    items:
-+      enum:
-+        - center-spread
-+        - down-spread
-+
- required:
-   - compatible
-   - reg
-@@ -81,6 +101,10 @@ allOf:
-             - description: high speed external (HSE) clock input
-             - description: low speed external (LSE) clock input
-             - description: Inter-IC sound (I2S) clock input
-+        st,ssc-modfreq-hz: false
-+        st,ssc-moddepth-permyriad: false
-+        st,ssc-modmethod: false
-+
-     else:
-       properties:
-         '#clock-cells':
-@@ -98,6 +122,18 @@ additionalProperties: false
- 
- examples:
-   # Reset and Clock Control Module node:
-+  - |
-+    clock-controller@40023800 {
-+        compatible = "st,stm32f42xx-rcc", "st,stm32-rcc";
-+        reg = <0x40023800 0x400>;
-+        #clock-cells = <2>;
-+        #reset-cells = <1>;
-+        clocks = <&clk_hse>, <&clk_i2s_ckin>;
-+        st,syscfg = <&pwrcfg>;
-+        st,ssc-modfreq-hz = <10000>;
-+        st,ssc-moddepth-permyriad = <200>;
-+        st,ssc-modmethod = "center-spread";
-+    };
-   - |
-     clock-controller@58024400 {
-         compatible = "st,stm32h743-rcc", "st,stm32-rcc";
--- 
-2.43.0
-
+Sure. The annoying thing is that we'll have to enable the new kernel
+driver to keep things working if we don't have some way to fallback to
+how it used to work before. I was trying to do that with this patch but
+it's easier to just force folks using new DT to use new kernels so
+probably we should just do that.
 
