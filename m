@@ -1,178 +1,373 @@
-Return-Path: <devicetree+bounces-137119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA33DA0782B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:51:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31E5AA07830
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:52:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEAA0161C20
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:51:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26C541655AE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:52:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BCE1FFC4E;
-	Thu,  9 Jan 2025 13:51:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B18217729;
+	Thu,  9 Jan 2025 13:52:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="SQNeILdH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pNNPWm8Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32602213E8F
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E5DD17C60;
+	Thu,  9 Jan 2025 13:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736430689; cv=none; b=MOU/RiE3koKCS/6IkCsti/woEA1l6gNf1zgXWim7ZqTn+1HD4qrZydLxQTkOkUMdJ0XqzPNkMGGKnI4gZf6SUOuCRaJ86mkmhFg02y7JQ6XSdP/ETN2035i5nFgGg3R1d9p2/hxkrAyg1Kwk+80owUHQw6ipYg4JJYz4tR4KgYo=
+	t=1736430770; cv=none; b=I7JrLRJCIM6crvvK5KxWcTqJkJBl0kHUGEfYlaf3YCUj7QAjtBbY2MIeAR0vysRFc2X4qoJF91oeRMU0qorDuSKEt5VIK0isRXH2stB/6hghZkncpm8hir6MwMNey5dFAjYMqv1EkyV/xm+NLQVgO7KQDPJskVLD4C/0VfX2hiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736430689; c=relaxed/simple;
-	bh=nPPGU/5i0/4rNcuCnNSlIB/B0EGtcfFTfauQ9U1+gFc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aBOi4PtCsj7e1BDC6Y7uvtlrbqEt5mj3tjYWa6ELDz1w+KlAjKZm0xBgi1XPNCg+b6B5icQdoJdXDpiti48wzDCzlsEVYbXU10TOmYLrUt3uVdH88JEh/YJSSJtNT/bpXp9aMdUp0Q7D11ux+zMDBg1r+DxikVBf4kgP8XPS+tc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=SQNeILdH; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4361f65ca01so10010245e9.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 05:51:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1736430684; x=1737035484; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QqXsToV0HiRvEsZnF5hoveg3aYzeGpkKlIECOe2VD8g=;
-        b=SQNeILdH1JpkQ4jbPX0rCNfwsW7egxtJqMZYCHxxfnI8JyVE1vT+BCusXDs6S1yrC5
-         Iib27BOp0TdkycfknITzCa0IGs2c4k16zuoIa3qmcUjXI4ntu/Cs9wG4ogluHF3V1mZk
-         xPIM3wk+Hnybozdz5jRcTd4OkEb7eTeEe9SIE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736430684; x=1737035484;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QqXsToV0HiRvEsZnF5hoveg3aYzeGpkKlIECOe2VD8g=;
-        b=jSq/atTpuVLyjvNPH7bLEFCan745ohHhm8cfjrB9jsiXZt854xsck9rwAlOOmfOGte
-         k/Fxmuc144sekRfy02sklrGKMhVtJEfVjFn1bePEgOK93u8fetaIwWUILTzkIZmSM2j6
-         opxK/byDls4E/TyWoTitQCvWULXH1Bm0XACpsHNSds+q1F+VP80ChU8NMa4DzV9vyAIr
-         UVvC/rXvcA9BqNbLODRD6TKAlkgm3dWXid0MRm2l8UBn7VVRS2r3fHiGYwQmPq1LXBDo
-         k//CFQdzB8aaRfM+wrJbCNbGWtTcp6M0M3X2cIjTEyoO+4hK48FeRmSzI+sfkUQzXeKN
-         J6kQ==
-X-Gm-Message-State: AOJu0YwhcrUPe2fiwuTXXwNopKeRKRzLweUYkN4Rq1yHhEkvdXpzm0fF
-	37iWR+eNjfMf3KwRwpvy/X5W3LucrGKmfJXpfec9Wwu5ZGA7pvLrpfWnn8AzBVM=
-X-Gm-Gg: ASbGncsJ3W9mAgjViNBjwCsZ124gXspXe8DJjZPpFdQL0UgHWYx/fI4XcdwxPXli/Qk
-	Y4bkqS5CGEUdtF19DEj834dSVc5DQpT81F1FiEafPqLjUuz66EQGaqK2uIv0TYFCmB07ERrFX1S
-	EO9YpVJH0/CybmEWqIutHHg5XzbpnvjlptSLxuCR7i/lpLaP5AQTfKxO40v5cWHw65qIPo7kdqi
-	KcyFCDd3gEkvq4qMZB2aFaa7LCgtv2TITaAW992XzvYA3HmWRLb4bGAsEGNmc2j2RXNSG22Dpv4
-	P+S/G3SPRCorRGZHyeCa/ZGSTFzznySLdr04qzW0qdqlIWEQ73HARNaO/RR8qL719rBzHjLi45t
-	3M0hAom0H0e82i8UK
-X-Google-Smtp-Source: AGHT+IGCwLti8xz/uAXqjvFyEfZu8OW3NVEiOzPgOAaQKlMAAsxOUKHoSy2tGbVe3mXX1vMem7j5oQ==
-X-Received: by 2002:a05:600c:1d1f:b0:434:f99e:a5b5 with SMTP id 5b1f17b1804b1-436e271cf4amr47062045e9.28.1736430684252;
-        Thu, 09 Jan 2025 05:51:24 -0800 (PST)
-Received: from ?IPV6:2a01:cb05:949d:5800:e3ef:2d7a:4131:71f? (2a01cb05949d5800e3ef2d7a4131071f.ipv6.abo.wanadoo.fr. [2a01:cb05:949d:5800:e3ef:2d7a:4131:71f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2dc0f69sm55525035e9.13.2025.01.09.05.51.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jan 2025 05:51:23 -0800 (PST)
-Message-ID: <8ff7ca4f-227d-40c5-867d-497e03bef72a@smile.fr>
-Date: Thu, 9 Jan 2025 14:51:23 +0100
+	s=arc-20240116; t=1736430770; c=relaxed/simple;
+	bh=JFYyZToHH6eltx3HQ06c8sjSsRFqTsRJh67eLjM1IqQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e9ongkOZYfdHudGjSYP45w8ClrQAbSclrzcLZ99wlsdeUFzImwiG9/sxhdZ+Owm+25m1zzKh/uhTBqX7Wq/ABivxuRhFA1LDlqxbonteIIiZ159RBv4o9OiJMmxeka76yU9VkFe0Ndm59LSFRTyEko3M3eIdXvcKCi1SkITLNSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pNNPWm8Y; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 509Bcvs5000945;
+	Thu, 9 Jan 2025 13:52:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=k8c8+K7xNdhKN6ObZDvGKYyU
+	JWrTBdBVGuHiMj38LUo=; b=pNNPWm8YjpDRQH8HFBp9A11N5kMUWUgxKQD5eY/f
+	ffn7MdFIcDRqDEZjNQ8KmZ6xlqD9yXQ6s/KfaDYs6K2AZ8zONsstC7poCFUVPEvN
+	1cC+qcAdo/sLtWjHR0IsNexXX6um2A290PmtX0Lge2W1abAk0tw7h4eic/RtzITj
+	dMS3M6G7Ke32QU8HfZ+8Fqm3ZTkakClWbabUi7xssdwnMzvPYFr5f6YkWzXYWpmF
+	RyMLkJbuVMLUHJ08A5i+7SoSoxj2NMFa/p1qhI5X25lvzOXBDbgt9bKbh28d+LTq
+	oFW/unVE4RMJ5QvGFxfOncJpC5SBAS3k/dNfKeZEtr2w9w==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442drwra3j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jan 2025 13:52:43 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 509DqgUU030445
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Jan 2025 13:52:42 GMT
+Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 9 Jan 2025 05:52:35 -0800
+Date: Thu, 9 Jan 2025 19:22:31 +0530
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
+ Ride-r3
+Message-ID: <Z3/UnzkkiexjXNbF@hu-wasimn-hyd.qualcomm.com>
+References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
+ <20241229152332.3068172-6-quic_wasimn@quicinc.com>
+ <tjrg5zqggupjo36udpyv3vynsij76f4qlus6lkbqotuimusqgq@hosmksp77sif>
+ <Z3ZXWxoBtMNPJ9kk@hu-wasimn-hyd.qualcomm.com>
+ <4wmxjxcvt7un7wk5v43q3jpxqjs2jbc626mgah2fxbfuouu4q6@ptzibxe2apmx>
+ <Z3eMxl1Af8TOAQW/@hu-wasimn-hyd.qualcomm.com>
+ <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
+ <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
+ <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable
- ACSPCIE output for PCIe1
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-omap@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org, kristo@kernel.org, vigneshr@ti.com, nm@ti.com, afd@ti.com,
- Romain Naour <romain.naour@skf.com>
-References: <20250109102627.1366753-1-romain.naour@smile.fr>
- <20250109102627.1366753-2-romain.naour@smile.fr>
- <eu5xmihnffmqas2x2ioleuzzvyfbffl5eqlwuqfe4mh6qa2rzy@7mmuxsbkmz4o>
-Content-Language: en-US
-From: Romain Naour <romain.naour@smile.fr>
-In-Reply-To: <eu5xmihnffmqas2x2ioleuzzvyfbffl5eqlwuqfe4mh6qa2rzy@7mmuxsbkmz4o>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: L8tROaV_HNWGSCoNYZAYaW79L5pem04Z
+X-Proofpoint-GUID: L8tROaV_HNWGSCoNYZAYaW79L5pem04Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ impostorscore=0 adultscore=0 mlxscore=0 mlxlogscore=999 spamscore=0
+ clxscore=1015 phishscore=0 priorityscore=1501 lowpriorityscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090111
 
-Hello Siddharth, All,
-
-Le 09/01/2025 à 12:49, Siddharth Vadapalli a écrit :
-> On Thu, Jan 09, 2025 at 11:26:27AM +0100, Romain Naour wrote:
+On Fri, Jan 03, 2025 at 09:58:40PM +0200, Dmitry Baryshkov wrote:
+> On Sat, Jan 04, 2025 at 12:29:07AM +0530, Wasim Nazir wrote:
+> > On Fri, Jan 03, 2025 at 12:31:55PM +0200, Dmitry Baryshkov wrote:
+> > > On Fri, Jan 03, 2025 at 12:37:50PM +0530, Wasim Nazir wrote:
+> > > > On Fri, Jan 03, 2025 at 07:50:43AM +0200, Dmitry Baryshkov wrote:
+> > > > > On Thu, Jan 02, 2025 at 02:37:39PM +0530, Wasim Nazir wrote:
+> > > > > > On Mon, Dec 30, 2024 at 05:45:39PM +0200, Dmitry Baryshkov wrote:
+> > > > > > > On Sun, Dec 29, 2024 at 08:53:31PM +0530, Wasim Nazir wrote:
+> > > > > > > > Add device tree support for QCS9075 Ride & Ride-r3 boards.
+> > > > > > > > 
+> > > > > > > > QCS9075 lacks the safety monitoring features of Safety-Island (SAIL)
+> > > > > > > > subsystem which is available in QCS9100, and it affects thermal
+> > > > > > > > management.
+> > > > > > > > 
+> > > > > > > > Also, between ride and ride-r3 ethernet phy is different.
+> > > > > > > > Ride uses 1G ethernet phy while ride-r3 uses 2.5G ethernet phy.
+> > > > > > > 
+> > > > > > > Your board files duplicate sa8775p-ride-r3.dts and sa8775p-ride.dts, but
+> > > > > > > include them. Existing qcs9100-ride-r3.dts and qcs9100-ride-r3.dts just
+> > > > > > > include corresponding SA8775P files.
+> > > > > > > 
+> > > > > > > This is not ideal for the following reasons:
+> > > > > > > - The approach is not uniform (between QCS9100 and QCS9075), which might
+> > > > > > >   lead to mistakes.
+> > > > > > > - The approach ends up duplicating DT code unnecessarily, which can lead
+> > > > > > >   to issues being patches in the one board file, but not in the other
+> > > > > > >   file.
+> > > > > > > 
+> > > > > > > If there are any reasons why you want to follow this approach, they must
+> > > > > > > be a part of the commit message.
+> > > > > > > 
+> > > > > > 
+> > > > > > Hi Dmitry,
+> > > > > > 
+> > > > > > Initially, we included the DTS [1] file to avoid duplication. However,
+> > > > > > based on Krzysztof's previous suggestion [2], we change to this format.
+> > > > > > 
+> > > > > > Please let us know how to proceed further on this.
+> > > > > 
+> > > > > Krzysztof asked you to include DTSI files instead of including DTS
+> > > > > files. Hope this helps.
+> > > > 
+> > > > Are you suggesting that we should also modify the 9100-ride files to
+> > > > include DTSI instead of DTS for consistency between QCS9100 and QCS9075?
+> > > > However, this would result in the duplication of Ethernet nodes in all
+> > > > the ride board files. Would that be acceptable?
+> > > 
+> > > git mv foo.dts foo.dtsi
+> > > echo '#include "foo.dtsi"' > foo.dts
+> > > git add foo.dts
+> > > git commit
+> > > 
+> > 
+> > We cannot convert sa8775p-ride-r3.dts and sa8775p-ride.dts to .dtsi as
+> > they represent different platforms. In patch [1], we included these DTS
+> > files to reuse the common hardware nodes.
+> > 
+> > Could you please advise on how we should proceed with the following
+> > approaches?
+> > 
+> > a) Previous approach [1]:
+> > Include sa8775p-ride-r3.dts and sa8775p-ride.dts in the qcs9075-ride
+> > platform DTS, similar to the qcs9100-ride platform DTS. This approach
+> > avoids duplicating Ethernet nodes and maintains uniformity. However, it
+> > involves including the DTS file directly.
+> > 
+> > b) Current suggestion:
+> > Include sa8775p-ride.dtsi in the qcs9075-ride platform DTS and also
+> > modify the qcs9100-ride platform DTS files to maintain uniformity. This
+> > approach results in duplicating Ethernet nodes.
+> > 
+> > Please let us know your recommendation to finalize the DT structure.
 > 
-> Hello Romain,
-> 
->> From: Romain Naour <romain.naour@skf.com>
->>
->> Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
->> (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
->> provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
->> provide refclk through PCIe_REFCLK pins.
->>
->> Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
->> module's PAD IO Buffers.
->>
->> Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
->> Signed-off-by: Romain Naour <romain.naour@skf.com>
->> ---
->> With this patch, we can remove "HACK: Sierra: Drive clock out" patch
->> applied on vendor kernel for BeagleBone AI-64:
->> https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
-> 
-> [trimmed]
-> 
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> index af3d730154ac..32a232a90100 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> @@ -5,6 +5,7 @@
->>   * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
->>   */
->>  #include <dt-bindings/phy/phy.h>
->> +#include <dt-bindings/phy/phy-cadence.h>
->>  #include <dt-bindings/phy/phy-ti.h>
->>  #include <dt-bindings/mux/mux.h>
->>  
->> @@ -82,6 +83,11 @@ ehrpwm_tbclk: clock-controller@4140 {
->>  			reg = <0x4140 0x18>;
->>  			#clock-cells = <1>;
->>  		};
->> +
->> +		acspcie0_proxy_ctrl: syscon@18090 {
->> +			compatible = "ti,j721e-acspcie-proxy-ctrl", "syscon";
->> +			reg = <0x18090 0x4>;
-> 
-> 0x_0011_8090 is probably *not* the "PROXY" register i.e. it could be
-> locked with the help of "CTRLMMR_LOCK0_KICK0" and "CTRLMMR_LOCK0_KICK1"
-> registers, in which case the CTRL_MMR region needs to be unlocked to write
-> to that register. On J784S4, that happens to be true, which is why the
-> proxy register 0x_0011_a090 was used at [0]. Please test with 0x_0011_a090
-> which is the "PROXY" register on J721E as well, i.e. it can be written to
-> unconditionally.
-> 
-> [0]:
-> https://lore.kernel.org/r/20240930111505.3101047-1-s-vadapalli@ti.com/
+> sa8775p.dtsi
+> `__sa8775p-ride.dtsi
+>    `__sa8775p-ride-r2.dtsi
+>       `__sa8775p-ride.dts
+>       `__qcs9100-ride.dts
+>       `__qcs9075-ride.dts
+>    `__sa8775p-ride-r3.dtsi
+>       `__sa8775p-ride-r3.dts
+>       `__qcs9100-ride-r3.dts
+>       `__qcs9075-ride-r3.dts
 
-Thanks for the review!
+Thanks Dmitry, we need slight modification to the above structure as
+we don't have any ride-r2 boards, so we want to go ahead with this structure:
 
-Actually the Proxy0 vs Proxy1 choice is not really clear for me. We have two
-proxy to reach the same register:
-
-  CTRLMMR_ACSPCIE0_CTRL Register (Proxy0 Offset = 18090h; Proxy1 Offset = 1A090h)
-
-From my testing both addresses works (maybe since my SoC is a general purpose one).
-
-When and why Proxy1 must be used?
-
-Otherwise I'm fine to use  0x_0011_a090.
-
-Best regards,
-Romain
-
+sa8775p.dtsi
+`__sa8775p-ride-common.dtsi
+   `__sa8775p-ride.dtsi
+      `__sa8775p-ride.dts
+      `__qcs9100-ride.dts
+      `__qcs9075-ride.dts
+   `__sa8775p-ride-r3.dtsi
+      `__sa8775p-ride-r3.dts
+      `__qcs9100-ride-r3.dts
+      `__qcs9075-ride-r3.dts
 
 > 
-> [trimmed]
+> > 
+> > [1] https://lore.kernel.org/all/20241119174954.1219002-6-quic_wasimn@quicinc.com/
+> > 
+> > > > 
+> > > > > 
+> > > > > > 
+> > > > > > [1] https://lore.kernel.org/all/20241119174954.1219002-6-quic_wasimn@quicinc.com/
+> > > > > > [2] https://lore.kernel.org/all/8cf9edc0-a0cb-4fd0-b10e-2138784dfba3@kernel.org/
+> > > > > > 
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
+> > > > > > > > ---
+> > > > > > > >  arch/arm64/boot/dts/qcom/Makefile            |  2 +
+> > > > > > > >  arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts | 46 ++++++++++++++++++++
+> > > > > > > >  arch/arm64/boot/dts/qcom/qcs9075-ride.dts    | 46 ++++++++++++++++++++
+> > > > > > > >  3 files changed, 94 insertions(+)
+> > > > > > > >  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> > > > > > > >  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> > > > > > > > 
+> > > > > > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > > > > > > > index 78613a1bd34a..41cb2bbd3472 100644
+> > > > > > > > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > > > > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > > > > > > @@ -118,6 +118,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
+> > > > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
+> > > > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+> > > > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-rb8.dtb
+> > > > > > > > +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-ride.dtb
+> > > > > > > > +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-ride-r3.dtb
+> > > > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+> > > > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
+> > > > > > > >  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+> > > > > > > > diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> > > > > > > > new file mode 100644
+> > > > > > > > index 000000000000..d9a8956d3a76
+> > > > > > > > --- /dev/null
+> > > > > > > > +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> > > > > > > > @@ -0,0 +1,46 @@
+> > > > > > > > +// SPDX-License-Identifier: BSD-3-Clause
+> > > > > > > > +/*
+> > > > > > > > + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> > > > > > > > + */
+> > > > > > > > +/dts-v1/;
+> > > > > > > > +
+> > > > > > > > +#include "sa8775p-ride.dtsi"
+> > > > > > > > +
+> > > > > > > > +/ {
+> > > > > > > > +	model = "Qualcomm Technologies, Inc. QCS9075 Ride Rev3";
+> > > > > > > > +	compatible = "qcom,qcs9075-ride-r3", "qcom,qcs9075", "qcom,sa8775p";
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +&ethernet0 {
+> > > > > > > > +	phy-mode = "2500base-x";
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +&ethernet1 {
+> > > > > > > > +	phy-mode = "2500base-x";
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +&mdio {
+> > > > > > > > +	compatible = "snps,dwmac-mdio";
+> > > > > > > > +	#address-cells = <1>;
+> > > > > > > > +	#size-cells = <0>;
+> > > > > > > > +
+> > > > > > > > +	sgmii_phy0: phy@8 {
+> > > > > > > > +		compatible = "ethernet-phy-id31c3.1c33";
+> > > > > > > > +		reg = <0x8>;
+> > > > > > > > +		device_type = "ethernet-phy";
+> > > > > > > > +		interrupts-extended = <&tlmm 7 IRQ_TYPE_EDGE_FALLING>;
+> > > > > > > > +		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
+> > > > > > > > +		reset-assert-us = <11000>;
+> > > > > > > > +		reset-deassert-us = <70000>;
+> > > > > > > > +	};
+> > > > > > > > +
+> > > > > > > > +	sgmii_phy1: phy@0 {
+> > > > > > > > +		compatible = "ethernet-phy-id31c3.1c33";
+> > > > > > > > +		reg = <0x0>;
+> > > > > > > > +		device_type = "ethernet-phy";
+> > > > > > > > +		interrupts-extended = <&tlmm 26 IRQ_TYPE_EDGE_FALLING>;
+> > > > > > > > +		reset-gpios = <&pmm8654au_2_gpios 9 GPIO_ACTIVE_LOW>;
+> > > > > > > > +		reset-assert-us = <11000>;
+> > > > > > > > +		reset-deassert-us = <70000>;
+> > > > > > > > +	};
+> > > > > > > > +};
+> > > > > > > > diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> > > > > > > > new file mode 100644
+> > > > > > > > index 000000000000..3b524359a72d
+> > > > > > > > --- /dev/null
+> > > > > > > > +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> > > > > > > > @@ -0,0 +1,46 @@
+> > > > > > > > +// SPDX-License-Identifier: BSD-3-Clause
+> > > > > > > > +/*
+> > > > > > > > + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> > > > > > > > + */
+> > > > > > > > +/dts-v1/;
+> > > > > > > > +
+> > > > > > > > +#include "sa8775p-ride.dtsi"
+> > > > > > > > +
+> > > > > > > > +/ {
+> > > > > > > > +	model = "Qualcomm Technologies, Inc. QCS9075 Ride";
+> > > > > > > > +	compatible = "qcom,qcs9075-ride", "qcom,qcs9075", "qcom,sa8775p";
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +&ethernet0 {
+> > > > > > > > +	phy-mode = "sgmii";
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +&ethernet1 {
+> > > > > > > > +	phy-mode = "sgmii";
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +&mdio {
+> > > > > > > > +	compatible = "snps,dwmac-mdio";
+> > > > > > > > +	#address-cells = <1>;
+> > > > > > > > +	#size-cells = <0>;
+> > > > > > > > +
+> > > > > > > > +	sgmii_phy0: phy@8 {
+> > > > > > > > +		compatible = "ethernet-phy-id0141.0dd4";
+> > > > > > > > +		reg = <0x8>;
+> > > > > > > > +		device_type = "ethernet-phy";
+> > > > > > > > +		interrupts-extended = <&tlmm 7 IRQ_TYPE_EDGE_FALLING>;
+> > > > > > > > +		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
+> > > > > > > > +		reset-assert-us = <11000>;
+> > > > > > > > +		reset-deassert-us = <70000>;
+> > > > > > > > +	};
+> > > > > > > > +
+> > > > > > > > +	sgmii_phy1: phy@a {
+> > > > > > > > +		compatible = "ethernet-phy-id0141.0dd4";
+> > > > > > > > +		reg = <0xa>;
+> > > > > > > > +		device_type = "ethernet-phy";
+> > > > > > > > +		interrupts-extended = <&tlmm 26 IRQ_TYPE_EDGE_FALLING>;
+> > > > > > > > +		reset-gpios = <&pmm8654au_2_gpios 9 GPIO_ACTIVE_LOW>;
+> > > > > > > > +		reset-assert-us = <11000>;
+> > > > > > > > +		reset-deassert-us = <70000>;
+> > > > > > > > +	};
+> > > > > > > > +};
+> > > > > > > > --
+> > > > > > > > 2.47.0
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > -- 
+> > > > > > > With best wishes
+> > > > > > > Dmitry
+> > > > > > 
+> > > > > > 
+> > > > > > Thanks & Regards,
+> > > > > > Wasim
+> > > > > 
+> > > > > -- 
+> > > > > With best wishes
+> > > > > Dmitry
+> > > > 
+> > > > 
+> > > > Thanks & Regards,
+> > > > Wasim
+> > > 
+> > > -- 
+> > > With best wishes
+> > > Dmitry
+> > 
+> > Thanks & Regards,
+> > Wasim
 > 
-> Regards,
-> Siddharth.
+> -- 
+> With best wishes
+> Dmitry
 
+Thanks & Regards,
+Wasim
 
