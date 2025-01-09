@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-137187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EFC2A07E2D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 17:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2876FA07E23
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 17:55:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81211188CA85
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:56:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6DA7188BF3B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33C74191F7A;
-	Thu,  9 Jan 2025 16:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8E3188A3A;
+	Thu,  9 Jan 2025 16:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="ALA+qVOY"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="HOmVK8rg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A446C191F83;
-	Thu,  9 Jan 2025 16:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AFB318595F;
+	Thu,  9 Jan 2025 16:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736441744; cv=none; b=kSQZR4J/fcn2eMyXiz/fB/GDg68wK4TCNP/WE09bmsDugWXR06FTj8FJ62cfhfl/abI/ra+KxeTOy/C5zlDBB+fjT+SjXuXq7eWoA3z6cVfjFO/TJwGzVsIzo7kdDyQxPd6HhyxLaWExcm9PSI/2B5nGInaL8+pfJg1+jGblqPA=
+	t=1736441738; cv=none; b=fA9e38iPD0RwmVVKq72hCqJArjc0vrDp8nGa5m7mPavypJN86otK3E/QTQZDXFDKmtanFFerjDJ/D6urWDFs5Ssd8EF7PUpWT0eP3n8mKjAtiYF83YIwhhq/WAq8NxWhIj6MczzpO3Fc1tlLwNOgL9ELmlKecFY6uw89hxRDOC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736441744; c=relaxed/simple;
-	bh=TJdQgKasUJiU9oU5FdVyHqy0elp3KTJnN34FDJOqkws=;
+	s=arc-20240116; t=1736441738; c=relaxed/simple;
+	bh=XygXBeMhJmlSUrxet+An3n4rWMTZDJfiTZ8oHHUXAWk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WO3Z/ycD6GiqTsAGcngXWOu6l6KCLujkWutvhhboAH9qw+xyZPJiCZPXpA3pmsizXDMMppl/q7mFDOWFPZGa/9QCJBH8p3gkfJ43+YfsNaKFgIIjrBgdMhKdLjdQ0Z4Wu91dEVUMEBB7yrq0JGcVQr2FJ1yqSAdJeHg61GlGKK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=ALA+qVOY; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=SqQk9PJxMDpDLHtZIClt1eoGrC/2QeEsZvT7Hsm94kTAdGAYh/bQbKtRRRc2aNGiKqYQR6u44YKcyGbAiptKprDTSNZJwPrcxDAucN0zni0vwGMnBWsJM55No1LEdx5/F9KB54ukUD47c6VXgyf8lH6OMhVnz+L1ZLSGQoh2Ak8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=HOmVK8rg; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,42 +37,34 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=yG1bQCbW33R256XkWNU4fJepnPv28LylkVyxqX0Jz9E=; b=ALA+qVOYXRcMdnZ9WJcVHI/pdj
-	mUuifzN0CluQdS4IaG76LIDPyrepX0z41bDX3x7oz66Ae11H3PO1ZvvDhtTyquuF4oGX4RbvdBD7s
-	riGFg7rZa7Y6LWQGtTXK1FJ+GNgGPdn30pt+ms2t20lUjVq8zHIyFh7WpS5jbejJqA7pJvptC0oXR
-	It8AaQNL9+bFhh9AOuir5B0Bq8gsDmYN3YRmODlHMt1IquRM8IXs4fbcfdZr2e4MQtVd7vgLgWnp8
-	19v/k88JRr4F0xpzaINi1MlvgDXP95FMfGY0wlDL8VPFQmxz+pdJnRveV3OOJjcXIaNUO9Ggx0sNp
-	SVJ+hQQA==;
+	bh=dYYn2ZoAryPtkBNugm6MsBpPD4hnKv21592PMgEbOWQ=; b=HOmVK8rgEgDpn8qRVh9kLMZnaM
+	eUeC8Gs3VFTkMtvfYdcom32TbnDmz7+3k4CllqXrAxUhLXNd91rFDTsY+c4OHSPPCfKk1QmGKXuCI
+	cBQUY5FEnIrlPphA9h2RtrHKLTV19ldMEqP2nmWWwr6XuxZcChMaM04j8yB1nnXsG01/7G+0JpuUz
+	mClh6QYY4MSMI0rPWtOb+nOqsKD94FBzYwO9iseSwNoAj5uWmJ0n7JM9Ug0f5qpXI3RDkeCO4FWlH
+	0n9CVDMZ+OtcSZIFe4feJIAJHhRT3NEf1HJzNcfCTFcITLX87zRd/Zn3Ld6Hp3DfG3367OvvTAHtn
+	eksUCxUw==;
 Received: from i5e860d05.versanet.de ([94.134.13.5] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tVvoj-0003hx-RU; Thu, 09 Jan 2025 17:55:33 +0100
+	id 1tVvok-0003hx-9w; Thu, 09 Jan 2025 17:55:34 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: linux-clk@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	huangtao@rock-chips.com,
-	andy.yan@rock-chips.com,
-	Michal Tomek <mtdev79b@gmail.com>,
-	Ilya K <me@0upti.me>,
-	Chad LeClair <leclair@gmail.com>,
-	devicetree@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	kernel@collabora.com
-Subject: Re: [PATCH v12 0/5] rockchip: clk: add GATE_LINK support
-Date: Thu,  9 Jan 2025 17:55:20 +0100
-Message-ID: <173644170626.2899934.2363636508136913470.b4-ty@sntech.de>
+Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3588-evb1: add WLAN controller
+Date: Thu,  9 Jan 2025 17:55:21 +0100
+Message-ID: <173644170632.2899934.6782599288073727936.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241211165957.94922-1-sebastian.reichel@collabora.com>
-References: <20241211165957.94922-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20241210162452.116767-1-sebastian.reichel@collabora.com>
+References: <20241210162452.116767-1-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,31 +75,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 11 Dec 2024 17:58:49 +0100, Sebastian Reichel wrote:
-> This implements proper GATE_LINK support following the suggestion from Stephen
-> Boyd to use clk PM operations by creating MFD dynamically. This required some
-> restructuring, since CLK_OF_DECLARE() is called before devices are available.
+On Tue, 10 Dec 2024 17:24:04 +0100, Sebastian Reichel wrote:
+> The RK3588 EVB1 has an onboard AP6275P WLAN/BT module. This adds
+> support for the WLAN side, which is connected to the second
+> PCIe bus. The Bluetooth side is connected to UART and handled
+> separately.
 > 
-> Apart from improved power consumption, this fixes the runtime errors from the
-> pmdomain driver (failed to set idle on domain '%s'). Last but not least it is
-> a first step towards reducing usage of CLK_OF_DECLARE_DRIVER() registered
-> clocks, which should only be used for early clocks needed for the system
-> timer (see this talk from LPC: https://www.youtube.com/watch?v=dofbbVuIAPk ).
 > 
-> [...]
 
 Applied, thanks!
 
-[1/5] clk: rockchip: support clocks registered late
-      commit: 9e89f02da718bc912f7f253b58804d4a52efed30
-[2/5] clk: rockchip: rk3588: register GATE_LINK later
-      commit: 33af96244a66f855baa43d424844bb437c79c30c
-[3/5] clk: rockchip: expose rockchip_clk_set_lookup
-      commit: fe0fb6675fa48cade97d8bcd46226479c4a704df
-[4/5] clk: rockchip: implement linked gate clock support
-      commit: c62fa612cfa66ab58ab215e5afc95c43c613b513
-[5/5] clk: rockchip: rk3588: drop RK3588_LINKED_CLK
-      commit: e9cdd7d6cf2a5031a968dc21f4f566101b602150
+[1/1] arm64: dts: rockchip: rk3588-evb1: add WLAN controller
+      commit: 3948b4a9bbbb7366b277d9adfcee77b270482749
 
 Best regards,
 -- 
