@@ -1,87 +1,63 @@
-Return-Path: <devicetree+bounces-137078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85EEAA076D0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:13:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F31A076DC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:14:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1EA7188B1C1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:13:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3640D7A2C65
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:13:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CB7221883B;
-	Thu,  9 Jan 2025 13:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42180218593;
+	Thu,  9 Jan 2025 13:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YvIKrjkJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="h9TUdCY3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E38B319D087
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:12:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99CB2BA2E;
+	Thu,  9 Jan 2025 13:13:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736428361; cv=none; b=VxILMmzNGC7+Gdynv/fEKpSybum5FKFgpvfa/6v1f0+eJtANk8zBg9LHE7g27quzREEJAHjbyQWYnKxacdBSoGnOHAmuJf/i+91Xqso0yeKf754SeSkcUMyWoqx62wcReBJGZ0Z7o6B4C+jMuHrozFDvGg7GmdAMh+iVmTIjqVU=
+	t=1736428409; cv=none; b=ltVkveeULsQuFIM8nUFoUy7GaWTKzOdA9bijJ5AaoAR0vS88hr9pUAPp88+KNxDqpemOqMjhah3KGcBSwGeaJuiSMhe3vw8F0O1zqSqXaZFvrUdMS0j5Czk5h3JrlB7xvhbXypBsMgrQZj5uBV4g33mgOQmm4gcnYzsJEOnlRyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736428361; c=relaxed/simple;
-	bh=jpwNmvkXoNR6B+tH8Sx83R+MPfKaIHFv2zRN1lJcpYU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hrkdugzrdg+9GXsdTQwB12tOJVf4Fl+BziGK94EPKYc3e8Ffx27VtPsR2LY+RBB4o6wizqNuKvfdOrQ2Ea2WQTXRASWljsECzrHEwBqGOzV/B6c/FtIXncowMf7zXkFqjqNjZmCRXGd7isnN6GUpOHX9wGo/0QIItWauS9cMHGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YvIKrjkJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5099NWCT007923
-	for <devicetree@vger.kernel.org>; Thu, 9 Jan 2025 13:12:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	s=arc-20240116; t=1736428409; c=relaxed/simple;
+	bh=jdPkn4vYM34eenbS5m/VZB0Nj0rr/B/XeqIWGbLF7Yo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=djzCNkWITwCEAVGPQg+kx2uq/WBgdbF5o8pdSVDzJf/1fyGajwuY6ORqJi9jbjE/3IaQZvsq0BFdB6+1pvZMsUeWh1DTJrt13QTOpy8dEnYnU+HLeumLrc0tzHl/y2i5N4ilf3BeWUq15PLX+HMF3gsl6yKgo33SGDLU8lksFUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=h9TUdCY3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 509CBb1S002551;
+	Thu, 9 Jan 2025 13:13:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aVaJFDIFSQan13L04M0avNtyYD02w5zrm6M+LsFD+O4=; b=YvIKrjkJxoxcyDKD
-	Wwq7jWSrdkyzrqBahfEJEIZD3W+Mt5F18dVqf+y4yksk0VzjsErY9/AKn++PcmDU
-	4q4PENSVxb36XDj4O2MYS1psXJpWl1n+kyTIVMxhOypKgC5ym1tD/QwJwJYg1axy
-	1m8ufri1XSTZckvJYt8h229KQ2EwUNAxGQsWHSPVQIh89QPWahH88O7LPppUZFBb
-	oLoyYQzMZaVCVPG7lTUOgGehtItH4v6WnzajmQz8Icz7XQLFGvAVpgutPMZuRUFZ
-	CCqDJGZeRnKfRiULALWmzI3S7iwzEYMEAvm3ved76setlAoogX0eFMKNQYPLwdxq
-	KOyssA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442bsm8h36-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 13:12:39 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-467922cf961so623991cf.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 05:12:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736428358; x=1737033158;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aVaJFDIFSQan13L04M0avNtyYD02w5zrm6M+LsFD+O4=;
-        b=rau4iDiaSapUKJ68zB7XkG3N+xpgOLvUbAPfCD2YpIgpI8E98vxLhKk8jbs4/EaZGV
-         2J/Vh4XDbvf8TDfpGNrUiaLMuu1dYTH5DTpORDxxLkSS+qJIsDXkQwB17otyCri70xPY
-         ndD3IgLOLGN9gVBQeelM28JbQt0c9D3MyAYPswTyPO1DxwyXucJZ3IOG9Epg7cCrMLwx
-         w444CVD09LCDhLcq8spL4AgqP+wjyRVkf+cJX8R5PlD7p2YqDkvhlrBcTN1nGBLVEo1z
-         sgaRXAboFBi8vEBIdRULYZVutI2eW9r760k/s3pgiuVTG1da8WMu8qa60qPnFbX9w47M
-         wkUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXdn+psrB6C3ppyKO4BnU/tubv4owLPVO6TiwJkkWv8r3h7QeIx/lmJej3EoD3rPenIdu9lw/tQdr4I@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgRuhPIXgD2h5LTt4sAuYMF6wTOxtjm7GDNmb4wyZH8gNfOaR8
-	vYhQ8PC3bVThZd5EPN2OEWtqgDMW5uPttVGzVbxX1q2jkJBvRFmTIHegYzdRWWiU2a1YwNWZXEs
-	maeMGUJBMYD/jRhkNQov8Hi/nfpGRpg24I5sHIEj320OQCFcoBSuBdE6iaq0+
-X-Gm-Gg: ASbGncufNZHFq+rtAvK0k1FMBUS95YjCK7aUWGBX78mFj+yOelaJUlyvM0NtjL2DgsY
-	kHaItEJHiUiG6//qLw+ztmhtfY4Uh+gu1Lyp8IYi7m6Qhlio0HwxWvfI7oguRmz7WzJkKp63zJ6
-	3N9d/Jq8DpRxTgxIl2SISEHdUB2RFptF0eS5USYL9aiecozZvTSxxUYpJQMXaEnvRG5/YGoxXmp
-	mr2aPl4KtBQk3UIoRstIGFu88rHbDdhK6Ozg0WfmL/k405XweOofqcj+xvVrHBU2iKSuo3jfKmt
-	bGquTWmjmlY9hD7Ea14nYAS/O9l+p5OxmOw=
-X-Received: by 2002:ac8:5a16:0:b0:467:6b59:42e with SMTP id d75a77b69052e-46c7102b634mr38200151cf.7.1736428357820;
-        Thu, 09 Jan 2025 05:12:37 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGkwHMLW9GjZHWcKUH2RSnFzZoO8UTVYRg9nJFkeAjeMJoOIke56jqRMFk/LL/dquo5VojYhw==
-X-Received: by 2002:ac8:5a16:0:b0:467:6b59:42e with SMTP id d75a77b69052e-46c7102b634mr38200061cf.7.1736428357436;
-        Thu, 09 Jan 2025 05:12:37 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d99008c37csm607503a12.6.2025.01.09.05.12.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jan 2025 05:12:37 -0800 (PST)
-Message-ID: <20abe9a9-34dc-4712-8fde-b959eb3e22c6@oss.qualcomm.com>
-Date: Thu, 9 Jan 2025 14:12:34 +0100
+	1gQktWs35Nmmkh/sMqLzL8W2a4Lz5CykJx6IWqAG9OQ=; b=h9TUdCY3TyGO1rvb
+	Lg/PLJ3pXAi2rqaHVzz48wD7BhXBmDLHpe6uLPGS4dsfeYCRp/KyilNMFMeJpAq4
+	HiCuPsBre0966UgFvKDlAi7SANKIJgjlyYLZ661qzY+kVhT5xU8IPZjyVu19yPKb
+	GC9baDS2tDl2vCPtpPyXV9YRWoOd0WN4GF/ZeMyISZDRPV0Eo3ruLElhZPJGiKYo
+	1G1qtxdignNR8HZZCt19oeAkj7FuLohQKHqknufoM1ToAy25+jfw3j4J8YeS4ntO
+	jp7vhSG1k1Ym5wuStVZAXMskxgvn3HCJYr2ihwrTAUiz2bDBIUY1tRFyc+lpdTz0
+	0CAGBQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442e8cg4ep-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jan 2025 13:13:15 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 509DDES3002039
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Jan 2025 13:13:14 GMT
+Received: from [10.206.104.82] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 9 Jan 2025
+ 05:13:07 -0800
+Message-ID: <d23fe626-4025-4a6c-8916-1771641b2a78@quicinc.com>
+Date: Thu, 9 Jan 2025 18:43:04 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,44 +65,112 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 7/8] arm64: dts: qcom: ipq9574: add nodes to bring up
- q6
-To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
-        jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, mathieu.poirier@linaro.org,
-        konradybcio@kernel.org, quic_mmanikan@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        dmitry.baryshkov@linaro.org
-Cc: quic_viswanat@quicinc.com, quic_srichara@quicinc.com
-References: <20250107101647.2087358-1-quic_gokulsri@quicinc.com>
- <20250107101647.2087358-8-quic_gokulsri@quicinc.com>
+Subject: Re: [PATCH v4 5/7] dt-bindings: opp: Add v2-qcom-adreno vendor
+ bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
+	<nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Maya Matuszczyk
+	<maccraft123mc@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250109-gpu-acd-v4-0-08a5efaf4a23@quicinc.com>
+ <20250109-gpu-acd-v4-5-08a5efaf4a23@quicinc.com>
+ <67mvekrysu2ms5dsvjyh37wbl5dmcnk2r3xnow2e5xeeqahhrr@ar5zsq3wzip3>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250107101647.2087358-8-quic_gokulsri@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+In-Reply-To: <67mvekrysu2ms5dsvjyh37wbl5dmcnk2r3xnow2e5xeeqahhrr@ar5zsq3wzip3>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: t8RoIXgREtAY_5svXdVRba-Dp3yerXpR
-X-Proofpoint-GUID: t8RoIXgREtAY_5svXdVRba-Dp3yerXpR
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3_pSrayeErXbfbNvNBO-6K67rUMmKZxn
+X-Proofpoint-ORIG-GUID: 3_pSrayeErXbfbNvNBO-6K67rUMmKZxn
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- mlxlogscore=606 spamscore=0 impostorscore=0 priorityscore=1501
- clxscore=1015 adultscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ impostorscore=0 adultscore=0 spamscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 malwarescore=0 bulkscore=0 mlxlogscore=999
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2411120000 definitions=main-2501090105
 
-On 7.01.2025 11:16 AM, Gokul Sriram Palanisamy wrote:
-> From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+On 1/9/2025 1:36 PM, Krzysztof Kozlowski wrote:
+> On Thu, Jan 09, 2025 at 02:10:01AM +0530, Akhil P Oommen wrote:
+>> Add a new schema which extends opp-v2 to support a new vendor specific
+>> property required for Adreno GPUs found in Qualcomm's SoCs. The new
+>> property called "qcom,opp-acd-level" carries a u32 value recommended
+>> for each opp needs to be shared to GMU during runtime.
+>>
+>> Also, update MAINTAINERS file include the new opp-v2-qcom-adreno.yaml.
+>>
+>> Cc: Rob Clark <robdclark@gmail.com>
+>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>> ---
+>>  .../bindings/opp/opp-v2-qcom-adreno.yaml           | 97 ++++++++++++++++++++++
+>>  MAINTAINERS                                        |  1 +
+>>  2 files changed, 98 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+>> new file mode 100644
+>> index 000000000000..de1f7c6c4f0e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+>> @@ -0,0 +1,97 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/opp/opp-v2-qcom-adreno.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Adreno compatible OPP supply
+>> +
+>> +description:
+>> +  Adreno GPUs present in Qualcomm's Snapdragon chipsets uses an OPP specific
+>> +  ACD related information tailored for the specific chipset. This binding
+>> +  provides the information needed to describe such a hardware value.
+>> +
+>> +maintainers:
+>> +  - Rob Clark <robdclark@gmail.com>
+>> +
 > 
-> Enable nodes required for q6 remoteproc bring up.
+> You need select: here. See bot's warnings and other schemas, like
+> primecell, how they do it.
+
+Somehow this error is not reproducible on my setup. I have upgraded both
+Dtschema (2024.11) and and yamllint.
+
+Anyway, could you please confirm if the below addition would be sufficient?
+
+select:
+  required:
+    - compatible
+  properties:
+    compatible:
+      contains:
+        const: operating-points-v2-adreno
+
+-Akhil
+
 > 
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> ---
+> Best regards,
+> Krzysztof
+> 
 
-The comments you got on patch 6 apply here and to patch 8 too
-
-Konrad
 
