@@ -1,144 +1,170 @@
-Return-Path: <devicetree+bounces-136921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49835A06DEE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 07:04:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68186A06E40
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 07:29:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A3727A2175
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 06:04:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 047F81888316
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 06:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04CE43169;
-	Thu,  9 Jan 2025 06:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B4C4213E8F;
+	Thu,  9 Jan 2025 06:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="esdHq4FD"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="MhG1HV36"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A7C225949C;
-	Thu,  9 Jan 2025 06:04:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79EE11F76D1;
+	Thu,  9 Jan 2025 06:29:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736402670; cv=none; b=Ilck3MPcBQKsT7aoYeMmv5RBVaBOqkX4laAnb9x+XXLPJUT6PzEroxJmrmrQLAGqWzwXbHl0wH46GOhV94dIu6hCGDE9rmYgY4mDnYMi+v2jiQ5eJJNJs3GP7XETBHsyJPMWJ7c+OQ5JVprnOzrAsXorpEsRmzYl0yAnd9Dp3n4=
+	t=1736404192; cv=none; b=U/TW1RT5QnHFnkq8uczlki3icjHDVsjDZLkog/eLfWoHxdwwn3Yg+ttdzD3b9ClWCp2Qx7gwu6liMqPi2WgTxuFqDhC1uoO96SKLxHOflbtnEuy+2lbmaM6qIm572tRrWXNS2ipxAj15i+pSTwAmTY65WvsInYlrO4faoKfVbRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736402670; c=relaxed/simple;
-	bh=nVg3zEaBC6FcqZTiH9+gkOCoGBqWxbC5xBa6U2KriQc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VkArGPBxxRk+E0AVss/zaMRam8O7dC2vcE2VDXfJamBY18IxUXBep/GzU1bq5+i0CUbhvIWPtaTHNsYpQOJbMR9TRyxuZxv2J8ESapn9FLBPxzJ7WE0C/k7cmdyb6KLp/QWnN5Roh1op3YpmeKIp7gmZNWvhG7oNP8D32FCLZW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=esdHq4FD; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-216426b0865so7766325ad.0;
-        Wed, 08 Jan 2025 22:04:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736402668; x=1737007468; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ux7roB9eckSlaz2AmU2ncsvtwlL3uXNDE8irTROzKb8=;
-        b=esdHq4FDfs3c1T9TaJpUs2pc0pyCV8W/4gc+I2aFFOKYk7od0SjPE11eDAN042NHNZ
-         08oxoadoSkwnAuODO/IlzC7WENZLanfMKIzTSnOinL+FCQtS/zuuxdewlzmywjKVPorX
-         P0Ly0+9sIbQWTwDStvckavKEUgkCA8Pf/9f1m5ojIHYOcHfMunpKP+F098c2YefzrjbU
-         Nx9b0ClbjPlzWqPXo2Uv0cDEsKpaj8eHAsOzD0JsKAjxZ1wy3XXJvLp3CEdOb4nv9+hn
-         0u+NrFzYtwcX5mJSSfcVAlfNeUUDrdTc5uDaTI13FNOW0knq/cMNVNe1zquDoqQVJ3zg
-         RzEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736402668; x=1737007468;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ux7roB9eckSlaz2AmU2ncsvtwlL3uXNDE8irTROzKb8=;
-        b=nWzRT9FDI13iiR9CstuBw1AaNbYLQJLM0dohXFs0hcbxaXUYziNILDjhW3DxIOOYqB
-         rUef4MSLSr7AWxB49zpYwR+jXw/o0pOul50cweJHkreKLiJQ7TaxIaJWkFo96DcOuKPl
-         8WS78f+cvsIYAUm+MOXBANB1qI7iZRqq4z7W/dVVW2KUxqFakfQW98+4Lo9iKnlUdpQ0
-         6oEslfdRPEY3fBeDXSmc5LJr22wLLwQ0JHo80hi4arv4L9iYROgFTJxVc66M1xdncZ7b
-         7kcA0E+zpqU9geamSKA2A8vI2nJC0NhMunqY76c+YjUGommQ7xMKK9z4oOT/1c5Qj9DY
-         Cjvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUUaREfEvkgpjl58WujIrSQcIsqmgiXiHcYtbW6WqmERewEtiDVNzcMDvCUGIhr1Y60+GvAy/HWF5AjIJM=@vger.kernel.org, AJvYcCWCORIWVCiQb/DngJMFkqUfpdKjLbLbd2hc5LZ6LNTFbCEUwd/gp4ytLB95Xxl2TNKuAZe7hsgzIkIBGh8T@vger.kernel.org, AJvYcCWp9gaTWEKzDusa3rGcDOmHytcVjQdRhu2r/5iIrSv2kQFb6y1DY1tyX+zQmggwuIq83K/GOQX1xeQG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/EaX3y+cSPPL0//osRPKrubwXdWeKhVvpvxpYSXF296eXlVYw
-	dHknsQKnbQjaq5PhksyDnNUDi1AkcLrakkW+bnxDwHjje+5n5rk4
-X-Gm-Gg: ASbGncvxh/REsVkqP2MSs33NYzz6WFld4I6UYhmbsX2D/gq5gdzrC0XFBDwyKf6Yy5U
-	fDFDagLCC2CDENqoG7tF0cxhTesDgZ9QcjMca99y21PkN0uxhcQsLdyyPFwpMvcj6k/UbLJjqtt
-	S3DHye4gkD6zJrwEsAljpwjDCrBPIWu8FvZ50/PJNvQgUoDc/txcr2tkvjOJGzeviU70Vv+NJPP
-	DQqtZatupMTlHDBZVGEclOKAeynfPF7poH+W4jxFBAdcwwHu1+XNnge
-X-Google-Smtp-Source: AGHT+IHupHHa/c7ax8iA7M5uwfcqicJpuYdMnw+M6BqyXs62Om1D69+E/s6MVoDACISBiVTW3fZjyQ==
-X-Received: by 2002:a05:6a21:8cc4:b0:1e1:9fef:e96a with SMTP id adf61e73a8af0-1e88cf7b937mr9065240637.6.1736402668307;
-        Wed, 08 Jan 2025 22:04:28 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:d200:de01:af7:7458])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad8fa328sm36121112b3a.134.2025.01.08.22.04.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2025 22:04:27 -0800 (PST)
-Date: Wed, 8 Jan 2025 22:04:24 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Markus Burri <markus.burri@mt.com>, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marek.vasut@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/7] dt-bindings: input: matrix_keypad - add missing
- property
-Message-ID: <Z39m6JKPOuL7eikT@google.com>
-References: <20250107135659.185293-1-markus.burri@mt.com>
- <20250107135659.185293-5-markus.burri@mt.com>
- <20250107192701.GA1329697-robh@kernel.org>
+	s=arc-20240116; t=1736404192; c=relaxed/simple;
+	bh=fKevdL6XJvw8X3+K8YjT8crzLKYzqUBP9YP17pUUZc8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=TO+XxQWrlmPDl2IHpHb1Ord+/vXOzokwfe79u1Uc46lQLO9Sg+15/5fvHmy208cAEJJA7B5buGfX7N7eWfD6WdfJ7ihT9lsNhu5U8/jjbgl4JRNpq07neyOIZ3U2QgsGp65OtBv2UFUpAGudRfSkgDU0P3tei/OGAzwfHD9NJHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=MhG1HV36 reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=xNVUF8UGN6na3JrIgXHKi8KH+dFuTcPxSWvpjZfV1NQ=; b=M
+	hG1HV36d/CdYz4NXULcYtzLAuec5UGZaWJwrxZivAkvc0bhSgoT14b5DpKPk5pzC
+	SKx1QMDkvmKUzRzQAvLd99t5RVJ72eiJqKUN0niG13FCs0UR58DEu69ljGeqs/1T
+	9CIdaXsLTZVNhE/LvFloXmmC8wDp0W4zDJwDmgsq0c=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-121 (Coremail) ; Thu, 9 Jan 2025 14:28:36 +0800 (CST)
+Date: Thu, 9 Jan 2025 14:28:36 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Damon Ding" <damon.ding@rock-chips.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com, 
+	cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
+	dmitry.baryshkov@linaro.org, andy.yan@rock-chips.com, 
+	hjc@rock-chips.com, algea.cao@rock-chips.com, 
+	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org
+Subject: Re:[PATCH v5 05/20] drm/rockchip: analogix_dp: Replace DRM_...()
+ functions with drm_...() or dev_...()
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <20250109032725.1102465-6-damon.ding@rock-chips.com>
+References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
+ <20250109032725.1102465-6-damon.ding@rock-chips.com>
+X-NTES-SC: AL_Qu2YBPibu0kq4COQZekfmkcVgOw9UcO5v/Qk3oZXOJF8jArp+TAefEJSMWvIws60LDKUmgmGdih16sFZbLt8cLIWzZj7DHW+VdjsZkBgVygZtw==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250107192701.GA1329697-robh@kernel.org>
+Message-ID: <40b09942.533e.19449c023a1.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:eSgvCgB3PMeUbH9ndwBTAA--.16079W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqR3PXmd-YuGrTwACsY
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Tue, Jan 07, 2025 at 01:27:01PM -0600, Rob Herring wrote:
-> On Tue, Jan 07, 2025 at 02:56:56PM +0100, Markus Burri wrote:
-> > The property is implemented in the driver but not described in dt-bindings.
-> > Add missing property 'gpio-activelow' to DT schema.
-> > 
-> > Signed-off-by: Markus Burri <markus.burri@mt.com>
-> > 
-> > ---
-> >  .../devicetree/bindings/input/gpio-matrix-keypad.yaml          | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-> > index 75975a1..b10da65 100644
-> > --- a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-> > +++ b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
-> > @@ -38,6 +38,9 @@ properties:
-> >      type: boolean
-> >      description: Do not enable autorepeat feature.
-> >  
-> > +  gpio-activelow:
-> > +    type: boolean
-> > +    description: The GPIOs are low active.
-> 
-> Ideally this should be defined correctly in the gpio properties. The 
-> problem is that does a 0 flag value mean active high or I forgot to 
-> define it. There's a similar issue in spi-controller.yaml. I *think* the 
-> problem is better here since this is an active low boolean rather than 
-> an active high boolean.
-> 
-> Of the users in the kernel tree, only 
-> arch/arm/boot/dts/ti/omap/am335x-guardian.dts got this right.
-> 
-> So I think we should mark this deprecated and put a note to use GPIO 
-> flags instead.
-
-So is the proposal to force GPIO as active low if the property is
-present and leave as is if it is missing? Because current driver
-behavior is to force GPIOs as active high if the property is missing.
-
-Also, what is the benefit from having property marked as deprecated vs
-not documenting it in hopes that DTSes will fail validation and be
-fixed?
-
-Thanks.
-
--- 
-Dmitry
+CkhpIERhbW9uLAoKQXQgMjAyNS0wMS0wOSAxMToyNzoxMCwgIkRhbW9uIERpbmciIDxkYW1vbi5k
+aW5nQHJvY2stY2hpcHMuY29tPiB3cm90ZToKPkFjY29yZGluZyB0byB0aGUgY29tbWVudHMgaW4g
+aW5jbHVkZS9kcm0vZHJtX3ByaW50LmgsIHRoZSBEUk1fLi4uKCkKPmZ1bmN0aW9ucyBhcmUgZGVw
+cmVjYXRlZCBpbiBmYXZvciBvZiBkcm1fLi4uKCkgb3IgZGV2Xy4uLigpIGZ1bmN0aW9ucy4KPgo+
+VXNlIGRybV9lcnIoKS9kcm1fZGJnX2NvcmUoKS9kcm1fZGJnX2ttcygpIGluc3RlYWQgb2YKPkRS
+TV9ERVZfRVJST1IoKS9EUk1fRVJST1IoKS9EUk1fREVWX0RFQlVHKCkvRFJNX0RFQlVHX0tNUygp
+IGFmdGVyCj5yb2NrY2hpcF9kcF9iaW5kKCkgaXMgY2FsbGVkLCBhbmQgcmVwbGFjZSBEUk1fREVW
+X0VSUk9SKCkgd2l0aCBkZXZfZXJyKCkKPmJlZm9yZSBjYWxsaW5nIGl0Lgo+Cj5TaWduZWQtb2Zm
+LWJ5OiBEYW1vbiBEaW5nIDxkYW1vbi5kaW5nQHJvY2stY2hpcHMuY29tPgo+LS0tCj4gLi4uL2dw
+dS9kcm0vcm9ja2NoaXAvYW5hbG9naXhfZHAtcm9ja2NoaXAuYyAgIHwgMjkgKysrKysrKysrKy0t
+LS0tLS0tLQo+IDEgZmlsZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCAxNCBkZWxldGlvbnMo
+LSkKPgo+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9hbmFsb2dpeF9kcC1y
+b2NrY2hpcC5jIGIvZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL2FuYWxvZ2l4X2RwLXJvY2tjaGlw
+LmMKPmluZGV4IDU0NmQxM2YxOWY5Yi4uODExNGMzMjM4NjA5IDEwMDY0NAo+LS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL3JvY2tjaGlwL2FuYWxvZ2l4X2RwLXJvY2tjaGlwLmMKPisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9yb2NrY2hpcC9hbmFsb2dpeF9kcC1yb2NrY2hpcC5jCj5AQCAtMTAwLDEzICsxMDAs
+MTMgQEAgc3RhdGljIGludCByb2NrY2hpcF9kcF9wb3dlcm9uKHN0cnVjdCBhbmFsb2dpeF9kcF9w
+bGF0X2RhdGEgKnBsYXRfZGF0YSkKPiAKPiAJcmV0ID0gY2xrX3ByZXBhcmVfZW5hYmxlKGRwLT5w
+Y2xrKTsKPiAJaWYgKHJldCA8IDApIHsKPi0JCURSTV9ERVZfRVJST1IoZHAtPmRldiwgImZhaWxl
+ZCB0byBlbmFibGUgcGNsayAlZFxuIiwgcmV0KTsKPisJCWRybV9lcnIoZHAtPmRybV9kZXYsICJm
+YWlsZWQgdG8gZW5hYmxlIHBjbGsgJWRcbiIsIHJldCk7CgogICAgICAgICAgICAgICBZb3UganVz
+dCBuZWVkIHRvIHBhc3MgZHAgaGVyZToKICAgICAgICAgICAgICAgIGRybV9lcnIoZHAsICJmYWls
+ZWQgdG8gZW5hYmxlIHBjbGsgJWRcbiIsIHJldCk7Cgo+IAkJcmV0dXJuIHJldDsKPiAJfQo+IAo+
+IAlyZXQgPSByb2NrY2hpcF9kcF9wcmVfaW5pdChkcCk7Cj4gCWlmIChyZXQgPCAwKSB7Cj4tCQlE
+Uk1fREVWX0VSUk9SKGRwLT5kZXYsICJmYWlsZWQgdG8gZHAgcHJlIGluaXQgJWRcbiIsIHJldCk7
+Cj4rCQlkcm1fZXJyKGRwLT5kcm1fZGV2LCAiZmFpbGVkIHRvIGRwIHByZSBpbml0ICVkXG4iLCBy
+ZXQpOwo+IAkJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGRwLT5wY2xrKTsKPiAJCXJldHVybiByZXQ7
+Cj4gCX0KPkBAIC0xMjYsMTIgKzEyNiwxMyBAQCBzdGF0aWMgaW50IHJvY2tjaGlwX2RwX3Bvd2Vy
+ZG93bihzdHJ1Y3QgYW5hbG9naXhfZHBfcGxhdF9kYXRhICpwbGF0X2RhdGEpCj4gc3RhdGljIGlu
+dCByb2NrY2hpcF9kcF9nZXRfbW9kZXMoc3RydWN0IGFuYWxvZ2l4X2RwX3BsYXRfZGF0YSAqcGxh
+dF9kYXRhLAo+IAkJCQkgc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKPiB7Cj4rCXN0
+cnVjdCByb2NrY2hpcF9kcF9kZXZpY2UgKmRwID0gcGRhdGFfZW5jb2Rlcl90b19kcChwbGF0X2Rh
+dGEpOwo+IAlzdHJ1Y3QgZHJtX2Rpc3BsYXlfaW5mbyAqZGkgPSAmY29ubmVjdG9yLT5kaXNwbGF5
+X2luZm87Cj4gCS8qIFZPUCBjb3VsZG4ndCBvdXRwdXQgWVVWIHZpZGVvIGZvcm1hdCBmb3IgZURQ
+IHJpZ2h0bHkgKi8KPiAJdTMyIG1hc2sgPSBEUk1fQ09MT1JfRk9STUFUX1lDQkNSNDQ0IHwgRFJN
+X0NPTE9SX0ZPUk1BVF9ZQ0JDUjQyMjsKPiAKPiAJaWYgKChkaS0+Y29sb3JfZm9ybWF0cyAmIG1h
+c2spKSB7Cj4tCQlEUk1fREVCVUdfS01TKCJTd2FwcGluZyBkaXNwbGF5IGNvbG9yIGZvcm1hdCBm
+cm9tIFlVViB0byBSR0JcbiIpOwo+KwkJZHJtX2RiZ19rbXMoZHAtPmRybV9kZXYsICJTd2FwcGlu
+ZyBkaXNwbGF5IGNvbG9yIGZvcm1hdCBmcm9tIFlVViB0byBSR0JcbiIpOwo+IAkJZGktPmNvbG9y
+X2Zvcm1hdHMgJj0gfm1hc2s7Cj4gCQlkaS0+Y29sb3JfZm9ybWF0cyB8PSBEUk1fQ09MT1JfRk9S
+TUFUX1JHQjQ0NDsKPiAJCWRpLT5icGMgPSA4Owo+QEAgLTIwMSwxNyArMjAyLDE3IEBAIHN0YXRp
+YyB2b2lkIHJvY2tjaGlwX2RwX2RybV9lbmNvZGVyX2VuYWJsZShzdHJ1Y3QgZHJtX2VuY29kZXIg
+KmVuY29kZXIsCj4gCWVsc2UKPiAJCXZhbCA9IGRwLT5kYXRhLT5sY2RzZWxfYmlnOwo+IAo+LQlE
+Uk1fREVWX0RFQlVHKGRwLT5kZXYsICJ2b3AgJXMgb3V0cHV0IHRvIGRwXG4iLCAocmV0KSA/ICJM
+SVQiIDogIkJJRyIpOwo+Kwlkcm1fZGJnX2NvcmUoZHAtPmRybV9kZXYsICJ2b3AgJXMgb3V0cHV0
+IHRvIGRwXG4iLCAocmV0KSA/ICJMSVQiIDogIkJJRyIpOwo+IAo+IAlyZXQgPSBjbGtfcHJlcGFy
+ZV9lbmFibGUoZHAtPmdyZmNsayk7Cj4gCWlmIChyZXQgPCAwKSB7Cj4tCQlEUk1fREVWX0VSUk9S
+KGRwLT5kZXYsICJmYWlsZWQgdG8gZW5hYmxlIGdyZmNsayAlZFxuIiwgcmV0KTsKPisJCWRybV9l
+cnIoZHAtPmRybV9kZXYsICJmYWlsZWQgdG8gZW5hYmxlIGdyZmNsayAlZFxuIiwgcmV0KTsKPiAJ
+CXJldHVybjsKPiAJfQo+IAo+IAlyZXQgPSByZWdtYXBfd3JpdGUoZHAtPmdyZiwgZHAtPmRhdGEt
+PmxjZHNlbF9ncmZfcmVnLCB2YWwpOwo+IAlpZiAocmV0ICE9IDApCj4tCQlEUk1fREVWX0VSUk9S
+KGRwLT5kZXYsICJDb3VsZCBub3Qgd3JpdGUgdG8gR1JGOiAlZFxuIiwgcmV0KTsKPisJCWRybV9l
+cnIoZHAtPmRybV9kZXYsICJDb3VsZCBub3Qgd3JpdGUgdG8gR1JGOiAlZFxuIiwgcmV0KTsKPiAK
+PiAJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGRwLT5ncmZjbGspOwo+IH0KPkBAIC0yMzYsNyArMjM3
+LDcgQEAgc3RhdGljIHZvaWQgcm9ja2NoaXBfZHBfZHJtX2VuY29kZXJfZGlzYWJsZShzdHJ1Y3Qg
+ZHJtX2VuY29kZXIgKmVuY29kZXIsCj4gCj4gCXJldCA9IHJvY2tjaGlwX2RybV93YWl0X3ZhY3Rf
+ZW5kKGNydGMsIFBTUl9XQUlUX0xJTkVfRkxBR19USU1FT1VUX01TKTsKPiAJaWYgKHJldCkKPi0J
+CURSTV9ERVZfRVJST1IoZHAtPmRldiwgImxpbmUgZmxhZyBpcnEgdGltZWQgb3V0XG4iKTsKPisJ
+CWRybV9lcnIoZHAtPmRybV9kZXYsICJsaW5lIGZsYWcgaXJxIHRpbWVkIG91dFxuIik7Cj4gfQo+
+IAo+IHN0YXRpYyBpbnQKPkBAIC0yNzcsNyArMjc4LDcgQEAgc3RhdGljIGludCByb2NrY2hpcF9k
+cF9vZl9wcm9iZShzdHJ1Y3Qgcm9ja2NoaXBfZHBfZGV2aWNlICpkcCkKPiAKPiAJZHAtPmdyZiA9
+IHN5c2Nvbl9yZWdtYXBfbG9va3VwX2J5X3BoYW5kbGUobnAsICJyb2NrY2hpcCxncmYiKTsKPiAJ
+aWYgKElTX0VSUihkcC0+Z3JmKSkgewo+LQkJRFJNX0RFVl9FUlJPUihkZXYsICJmYWlsZWQgdG8g
+Z2V0IHJvY2tjaGlwLGdyZiBwcm9wZXJ0eVxuIik7Cj4rCQlkZXZfZXJyKGRldiwgImZhaWxlZCB0
+byBnZXQgcm9ja2NoaXAsZ3JmIHByb3BlcnR5XG4iKTsKPiAJCXJldHVybiBQVFJfRVJSKGRwLT5n
+cmYpOwo+IAl9Cj4gCj5AQCAtMjg3LDE5ICsyODgsMTkgQEAgc3RhdGljIGludCByb2NrY2hpcF9k
+cF9vZl9wcm9iZShzdHJ1Y3Qgcm9ja2NoaXBfZHBfZGV2aWNlICpkcCkKPiAJfSBlbHNlIGlmIChQ
+VFJfRVJSKGRwLT5ncmZjbGspID09IC1FUFJPQkVfREVGRVIpIHsKPiAJCXJldHVybiAtRVBST0JF
+X0RFRkVSOwo+IAl9IGVsc2UgaWYgKElTX0VSUihkcC0+Z3JmY2xrKSkgewo+LQkJRFJNX0RFVl9F
+UlJPUihkZXYsICJmYWlsZWQgdG8gZ2V0IGdyZiBjbG9ja1xuIik7Cj4rCQlkZXZfZXJyKGRldiwg
+ImZhaWxlZCB0byBnZXQgZ3JmIGNsb2NrXG4iKTsKPiAJCXJldHVybiBQVFJfRVJSKGRwLT5ncmZj
+bGspOwo+IAl9Cj4gCj4gCWRwLT5wY2xrID0gZGV2bV9jbGtfZ2V0KGRldiwgInBjbGsiKTsKPiAJ
+aWYgKElTX0VSUihkcC0+cGNsaykpIHsKPi0JCURSTV9ERVZfRVJST1IoZGV2LCAiZmFpbGVkIHRv
+IGdldCBwY2xrIHByb3BlcnR5XG4iKTsKPisJCWRldl9lcnIoZGV2LCAiZmFpbGVkIHRvIGdldCBw
+Y2xrIHByb3BlcnR5XG4iKTsKPiAJCXJldHVybiBQVFJfRVJSKGRwLT5wY2xrKTsKPiAJfQo+IAo+
+IAlkcC0+cnN0ID0gZGV2bV9yZXNldF9jb250cm9sX2dldChkZXYsICJkcCIpOwo+IAlpZiAoSVNf
+RVJSKGRwLT5yc3QpKSB7Cj4tCQlEUk1fREVWX0VSUk9SKGRldiwgImZhaWxlZCB0byBnZXQgZHAg
+cmVzZXQgY29udHJvbFxuIik7Cj4rCQlkZXZfZXJyKGRldiwgImZhaWxlZCB0byBnZXQgZHAgcmVz
+ZXQgY29udHJvbFxuIik7Cj4gCQlyZXR1cm4gUFRSX0VSUihkcC0+cnN0KTsKPiAJfQo+IAo+QEAg
+LTMxNSwxMiArMzE2LDEyIEBAIHN0YXRpYyBpbnQgcm9ja2NoaXBfZHBfZHJtX2NyZWF0ZV9lbmNv
+ZGVyKHN0cnVjdCByb2NrY2hpcF9kcF9kZXZpY2UgKmRwKQo+IAo+IAllbmNvZGVyLT5wb3NzaWJs
+ZV9jcnRjcyA9IGRybV9vZl9maW5kX3Bvc3NpYmxlX2NydGNzKGRybV9kZXYsCj4gCQkJCQkJCSAg
+ICAgZGV2LT5vZl9ub2RlKTsKPi0JRFJNX0RFQlVHX0tNUygicG9zc2libGVfY3J0Y3MgPSAweCV4
+XG4iLCBlbmNvZGVyLT5wb3NzaWJsZV9jcnRjcyk7Cj4rCWRybV9kYmdfa21zKGRybV9kZXYsICJw
+b3NzaWJsZV9jcnRjcyA9IDB4JXhcbiIsIGVuY29kZXItPnBvc3NpYmxlX2NydGNzKTsKPiAKPiAJ
+cmV0ID0gZHJtX3NpbXBsZV9lbmNvZGVyX2luaXQoZHJtX2RldiwgZW5jb2RlciwKPiAJCQkJICAg
+ICAgRFJNX01PREVfRU5DT0RFUl9UTURTKTsKPiAJaWYgKHJldCkgewo+LQkJRFJNX0VSUk9SKCJm
+YWlsZWQgdG8gaW5pdGlhbGl6ZSBlbmNvZGVyIHdpdGggZHJtXG4iKTsKPisJCWRybV9lcnIoZHJt
+X2RldiwgImZhaWxlZCB0byBpbml0aWFsaXplIGVuY29kZXIgd2l0aCBkcm1cbiIpOwo+IAkJcmV0
+dXJuIHJldDsKPiAJfQo+IAo+QEAgLTM0MCw3ICszNDEsNyBAQCBzdGF0aWMgaW50IHJvY2tjaGlw
+X2RwX2JpbmQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZGV2aWNlICptYXN0ZXIsCj4gCj4g
+CXJldCA9IHJvY2tjaGlwX2RwX2RybV9jcmVhdGVfZW5jb2RlcihkcCk7Cj4gCWlmIChyZXQpIHsK
+Pi0JCURSTV9FUlJPUigiZmFpbGVkIHRvIGNyZWF0ZSBkcm0gZW5jb2RlclxuIik7Cj4rCQlkcm1f
+ZXJyKGRybV9kZXYsICJmYWlsZWQgdG8gY3JlYXRlIGRybSBlbmNvZGVyXG4iKTsKPiAJCXJldHVy
+biByZXQ7Cj4gCX0KPiAKPi0tIAo+Mi4zNC4xCj4K
 
