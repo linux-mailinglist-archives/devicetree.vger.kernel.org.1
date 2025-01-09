@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-137052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA844A075FA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:45:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD51EA07612
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:48:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2560B3A1385
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:45:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F10383A2062
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:48:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6742421660C;
-	Thu,  9 Jan 2025 12:45:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F32217F22;
+	Thu,  9 Jan 2025 12:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="abEftvuJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hOjlKQkj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70253201036
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 12:45:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4B6216E37
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 12:48:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736426738; cv=none; b=Na9JNYrd3CtahvB25ZJoAkZXspSgYpfkdpdLV6NrzzayIaCL9Cea+kF4tVITIn9rMI1cHZrKlzlSiJc5p18lD5PUnSrcoplSI14moMS6Wzo7yUfGABsVHmMWKdVtbk8GkBCkw7V31rsqyzN+AMjqAqzQ2y42tUsZ86JnE5NZdfM=
+	t=1736426902; cv=none; b=VQITWhUPUHJo6fKYDit8rDcdcR0e75s+AXOZGGEk/xmqSw2L95EJZyEgyIEYHN4Pzd8QhYPTehX6EisBLYrbAmoWANJZYv/zNjwoaV6M76GB8dIT9fK4yHs9h8f+xeo6HBH2DX7UsnO4CIa+ETriUPlGWosPsyzhadhry1G0HHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736426738; c=relaxed/simple;
-	bh=5PPwz3VkKzGEpX2aNq+UQg7iDH6hid4EKXhJy2PcjHU=;
+	s=arc-20240116; t=1736426902; c=relaxed/simple;
+	bh=e6nNquHNsvr6NKfc4Cfs1Tlaempp1OaD5QtCz/lZvEk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LUFW+wP1Vb8RLpBcX75nzVI1+Ip/xWLjnCfwXvSxk4B09vdV6nRxUNWRFaRLlloA6VqnxAYih8rEA7Tz87z+eYTUkF55oJ9V9VVqFlzNjogxZHhibWgJpSwHuBqvIHQvUH6rY1UZsjA74IY3XbOJSFfQeZn94pHkgMrOkCEvRHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=abEftvuJ; arc=none smtp.client-ip=209.85.208.181
+	 Content-Type:Content-Disposition:In-Reply-To; b=AfMwXDiiWDDmzVI5y/Aoz+RGtROIDNJEti00NF8ijv0GyIerQGSIGSHfVwE6B/XnmdSeb6tlYoyDTk+QFlsn6KogHx80qz7Kk/U3mctKz/pXbT1P+GauhlC1n3Nxdq/TLU/Uxy6Rf7QAu33ZR0lqXhfyNjf9a6oAYD9WYAPifTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hOjlKQkj; arc=none smtp.client-ip=209.85.208.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-304d760f12aso6628161fa.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 04:45:36 -0800 (PST)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3022484d4e4so8528051fa.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 04:48:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736426734; x=1737031534; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1736426898; x=1737031698; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VHN/5X/Qy69qyMpCWb8kneKgFMU5IOAUBhcGNPPugoM=;
-        b=abEftvuJwAPsqOodWe0VLwpr/pVdGd03+a1T65Tq+Ie6va+q+9Slhbnw70T6hAIe+V
-         ej8SWNfy8baFODtAgHa0AOwzwRVPff9qz6PNZgeRIJsgDE+Y//UP7fI+BsczZfnoWxTW
-         QKUykouKnqXvzHidsRmQShtml1WNULPrrGkfR1Qslee/69jrq6xq6o3a3Kr47o7M+18r
-         4JpGB/1CG32k0v5uLZyUYOhIWcf+XoqA3i7aCZlfp1Q57gFn5iTQt7Dg90ndpcNn2ota
-         nRLz38luejyoj1kAcMMijqFljLo4+cERQ9zBAb+7oGKE6pHdUY+GuK1yUl6FYDogRfsl
-         yiKg==
+        bh=h8hd6QQPe6WsmCvGJJcJ/fM8HdXFIRmyRc/10BLVlxA=;
+        b=hOjlKQkjxR4JYxXY7qLlJ0SbEf3ziuMIszC45q32q1V2gKufSL1+DVBgTXuAalY9A2
+         8U/JxEVP+Dan9f8WwgoP3iaqH3Y5nfLlh4eSokDEGDJ4QHj+B8+rq+5GjbpxL4qyYflq
+         wXqWB0R85IpA3p/1Tj9/WqF8ETJYb0LX5JhaCPGkrlcwzszy2kLRP1wPy6PkCNm0O/Ac
+         R4qTWJ77YEvEJVnADRDWs4/d3oGIZWG6z8NPUB2uHBxq1RlcPwRLCdeUzYmoXr1fHYZC
+         0o9ggNslEK7GN110gBmkM0gwwXLZjnxbwJ6gRCeuvEegsTp0PqIt68JjgbqNUtyroCO+
+         axCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736426734; x=1737031534;
+        d=1e100.net; s=20230601; t=1736426898; x=1737031698;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VHN/5X/Qy69qyMpCWb8kneKgFMU5IOAUBhcGNPPugoM=;
-        b=wUyIe6ypPTSxIoZM9EbNY72QkU3eA7OZgyPaKR2pHdN5R/OGr4U+Qzf/M7lkK9u2o1
-         KydZc46bWLCAtPOPeveSssST4BPIjqLol4UrfG542fv1Fi+OBrDslmKC/FrphkLbVcXO
-         C/B0GeBuYNGvk8qPHYqhJIz2nxktNrWrpSMype68I+956PgTgnVeDWvzIVVPO/WzBE6s
-         WbeiW+ywJ2JVgP1XWAwxqhU8GJgLm3vhCkywAtSbzqq1JWYV57YCCsmINce4wF67VqUj
-         K+Lp9Dbcv9LN3wBopWwv4FmMxrF1beMtavjGQGvr0ihKAIf/gQvqquWUR07f/FL9JSwi
-         0q0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVSLXuChOq9ZN2KxJUzgQpa7E1oTWdv8Nuby0dsURDWfhNDuKlc+0SK/ss7B/pmYzEhCKP7s+QWgEW3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4C+ap3n78NX1ILsC0B221h931XIsBFbhXXOSDzAVeNnwsZeQW
-	leZhbPfvgYY/f7YVILon0NGR7UsgGOYZchNIaRRYvwnE6vPqlzAxOuD1wD3fBCc=
-X-Gm-Gg: ASbGncs+W/EEi31Kg25wEVYHO3C10ZIEs4Eiusn4r8LkxuaddZtNQsmZyrzgIWO6k8/
-	YykbgljglgNW7ABTIi5n7FfLx0XX5daeXW1eHweAWWfx44BPxLdtNeBlUsp7oz6A6Y6n7PuHTWf
-	Cuh8jbRaX1tKYr/nXZ5AexTr6GKVVF6fS1UMmNqlwLwV9O9eeY9mEpEs9AKHHjUq4cmkNQn/YO4
-	ZJ99ufSXQd92kb+InhDUxB3hPQmJqT+EH4LL7gljbGYFFL9AcRXIAX4uPYNBlBeU92w+xvlmXlM
-	Nv9clO/49VE65+qDnFdIdYBlx2jPYIyexa8P
-X-Google-Smtp-Source: AGHT+IElPQjul5XrLoFmXQxy4bhtqUX4GjET6+7h8yvFk+lQX7gbeGOus+f4biXivZj6ML5v9KKwQQ==
-X-Received: by 2002:a05:651c:f11:b0:301:2d8d:a3ba with SMTP id 38308e7fff4ca-305f45a06d8mr18524331fa.23.1736426734459;
-        Thu, 09 Jan 2025 04:45:34 -0800 (PST)
+        bh=h8hd6QQPe6WsmCvGJJcJ/fM8HdXFIRmyRc/10BLVlxA=;
+        b=olYeUIO2h7/VcfVQQGdrT2icqYBtGrU7CSmqBSsJNar8pWtmHantVb3At2Vj3v8t8h
+         tfnqUkOH6lDpV6wSDYYpdLHrxaLL9OYOgTmnm9Hubtpa3VvvyuOS90VnlT/vYAmZeiVI
+         oHx5T01fSR5ZKljawcSgMpJDKT6yzYpONaYyzkNT6peuMlTqdOsC08yP6X/klfwGQM16
+         Ilnylsy7liQoSGqZT7nejY16aKnTyE0Pbzngy4CGaAaCIcmShu10kiMt8Gu5rjxiy2dc
+         zjjX70zOBWy6hxK1zSW2KOMLHRsAh0YDf0cAGIoyyOpjvnJoj0Ma7EmY1oNPKkSgZRNh
+         A4lg==
+X-Forwarded-Encrypted: i=1; AJvYcCWNkHDFnacLLa33/lZ0obrQxQwcwMYdo9bJwnxyZCbNwp19Utd+ynziKVCvSRzqQdju+pDQK7bzDTP6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCd14pax919YFL9d4ZbzQei++M7iCDeW85b779PmSYVoaCAWNy
+	45E1xz+bZ9zJU0u2Wh6g8GVauUJDJpGjPYw6cYR+PoNhlD2bWJuijlil4ZlxaXw=
+X-Gm-Gg: ASbGncvzOHW+j8MqGifltz7X9YjTO2/dOlKMBK1Et8so9RfwIMAW2fkZX3qwr8a3xK5
+	QajmBdOIxWvcUtC6bose6zQcBGrTFhNxF1ND9I5Et925uT+vzgagiXBJsI7q5ItaFgH7NKFqVYy
+	n8A4K8FO9aTW3poJGjqGRPrBI1o+JKhWqIwWeLzsVLi8HwITjyZCtGyRRiHCWxMC1vZs8gO7Qeq
+	zzWMj2wvQpXEaiqaMo1TgeFXw718MkiStm3SgI+rV6A7ou8hmpvv6SQMytB9buNIBtD91QwZXoo
+	NQX9jYwXWJANYIbNISO+q1ySOXFL9Vik4lZh
+X-Google-Smtp-Source: AGHT+IFxJ3zGC3CDmY37DlIYBY9oRzAVUXgzKckNzpAHdg+Ck4ZfBSulYaV0hud+81kqukRgXfjP1g==
+X-Received: by 2002:a2e:a7ca:0:b0:302:1c90:58ee with SMTP id 38308e7fff4ca-305f4571db2mr17630521fa.18.1736426898468;
+        Thu, 09 Jan 2025 04:48:18 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-305ff0cfc32sm1877911fa.45.2025.01.09.04.45.33
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-305ff1ec1a0sm1889261fa.105.2025.01.09.04.48.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 04:45:34 -0800 (PST)
-Date: Thu, 9 Jan 2025 14:45:32 +0200
+        Thu, 09 Jan 2025 04:48:17 -0800 (PST)
+Date: Thu, 9 Jan 2025 14:48:15 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Damon Ding <damon.ding@rock-chips.com>
 Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
@@ -81,11 +81,11 @@ Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
 	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
 	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 11/20] drm/bridge: analogix_dp: Add support to get
+Subject: Re: [PATCH v5 12/20] drm/rockchip: analogix_dp: Add support to get
  panel from the DP AUX bus
-Message-ID: <v3is3v3fpx42i2eh2qrfkx3qx3z7iema3honi544qoc4j2whdo@h6ajv5h53gry>
+Message-ID: <d7zpv6qt52mhny54dejw4yqlp2k2c437op7qmepqe27pufplqk@64xvohrz7h2q>
 References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
- <20250109032725.1102465-12-damon.ding@rock-chips.com>
+ <20250109032725.1102465-13-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,13 +94,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250109032725.1102465-12-damon.ding@rock-chips.com>
+In-Reply-To: <20250109032725.1102465-13-damon.ding@rock-chips.com>
 
-On Thu, Jan 09, 2025 at 11:27:16AM +0800, Damon Ding wrote:
-> The main modification is moving the DP AUX initialization from function
-> analogix_dp_bind() to analogix_dp_probe(). In order to get the EDID of
-> eDP panel during probing, it is also needed to advance PM operaions to
-> ensure that eDP controller and phy are prepared for AUX transmission.
+On Thu, Jan 09, 2025 at 11:27:17AM +0800, Damon Ding wrote:
+> Move drm_of_find_panel_or_bridge() a little later and combine it with
+> component_add() into a new function rockchip_dp_link_panel(). The function
+> will serve as done_probing() callback of devm_of_dp_aux_populate_bus(),
+> aiding to support for obtaining the eDP panel via the DP AUX bus.
+> 
+> If failed to get the panel from the DP AUX bus, it will then try the other
+> way to get panel information through the platform bus.
+> 
+> In addition, use dev_err() instead of drm_err() in rockchip_dp_poweron()
+> , which will be called before rockchip_dp_bind().
 > 
 > Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 > 
@@ -111,125 +117,38 @@ On Thu, Jan 09, 2025 at 11:27:16AM +0800, Damon Ding wrote:
 >   component_add() when getting panel from the DP AUX bus
 > 
 > Changes in v5:
-> - Advance PM operations to make eDP AUX work well
+> - Use the functions exported by the Analogix side to get the pointers of
+>   struct analogix_dp_plat_data and struct drm_dp_aux.
+> - Use dev_err() instead of drm_err() in rockchip_dp_poweron().
+> 
 > ---
->  .../drm/bridge/analogix/analogix_dp_core.c    | 62 ++++++++++---------
->  1 file changed, 34 insertions(+), 28 deletions(-)
+>  .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 41 ++++++++++++++-----
+>  1 file changed, 30 insertions(+), 11 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-> index 8251adfce2f9..78e78fb474d3 100644
-> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-> @@ -1548,6 +1548,18 @@ static ssize_t analogix_dpaux_transfer(struct drm_dp_aux *aux,
->  	return ret;
->  }
+> diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> index 0957d3c5d31d..3ae01b870f49 100644
+> --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> @@ -124,13 +124,13 @@ static int rockchip_dp_poweron(struct analogix_dp_plat_data *plat_data)
 >  
-> +static void analogix_dp_runtime_disable(void *data)
-> +{
-> +	struct analogix_dp_device *dp = (struct analogix_dp_device *)data;
-> +
-> +	if (IS_ENABLED(CONFIG_PM)) {
-> +		pm_runtime_dont_use_autosuspend(dp->dev);
-> +		pm_runtime_disable(dp->dev);
-> +	} else {
-> +		analogix_dp_suspend(dp);
-> +	}
-> +}
-> +
->  struct analogix_dp_device *
->  analogix_dp_probe(struct device *dev, struct analogix_dp_plat_data *plat_data)
->  {
-> @@ -1658,8 +1670,29 @@ analogix_dp_probe(struct device *dev, struct analogix_dp_plat_data *plat_data)
->  	}
->  	disable_irq(dp->irq);
->  
-> +	dp->aux.name = "DP-AUX";
-> +	dp->aux.transfer = analogix_dpaux_transfer;
-> +	dp->aux.dev = dp->dev;
-> +	drm_dp_aux_init(&dp->aux);
-> +
-> +	if (IS_ENABLED(CONFIG_PM)) {
-> +		pm_runtime_use_autosuspend(dp->dev);
-> +		pm_runtime_set_autosuspend_delay(dp->dev, 100);
-> +		pm_runtime_enable(dp->dev);
-> +	} else {
-> +		ret = analogix_dp_resume(dp);
-> +		if (ret)
-> +			goto err_disable_clk;
-> +	}
-> +
-> +	ret = devm_add_action_or_reset(dev, analogix_dp_runtime_disable, dp);
+>  	ret = clk_prepare_enable(dp->pclk);
+>  	if (ret < 0) {
+> -		drm_err(dp->drm_dev, "failed to enable pclk %d\n", ret);
+> +		dev_err(dp->dev, "failed to enable pclk %d\n", ret);
 
-This looks like a local version of devm_pm_runtime_enable()
 
-> +	if (ret)
-> +		goto err_disable_pm_runtime;
-> +
->  	return dp;
->  
-> +err_disable_pm_runtime:
-> +	analogix_dp_runtime_disable((void *)dp);
->  err_disable_clk:
->  	clk_disable_unprepare(dp->clock);
->  	return ERR_PTR(ret);
-> @@ -1708,25 +1741,12 @@ int analogix_dp_bind(struct analogix_dp_device *dp, struct drm_device *drm_dev)
->  	dp->drm_dev = drm_dev;
->  	dp->encoder = dp->plat_data->encoder;
->  
-> -	if (IS_ENABLED(CONFIG_PM)) {
-> -		pm_runtime_use_autosuspend(dp->dev);
-> -		pm_runtime_set_autosuspend_delay(dp->dev, 100);
-> -		pm_runtime_enable(dp->dev);
-> -	} else {
-> -		ret = analogix_dp_resume(dp);
-> -		if (ret)
-> -			return ret;
-> -	}
-> -
-> -	dp->aux.name = "DP-AUX";
-> -	dp->aux.transfer = analogix_dpaux_transfer;
-> -	dp->aux.dev = dp->dev;
->  	dp->aux.drm_dev = drm_dev;
->  
->  	ret = drm_dp_aux_register(&dp->aux);
->  	if (ret) {
->  		DRM_ERROR("failed to register AUX (%d)\n", ret);
-> -		goto err_disable_pm_runtime;
-> +		return ret;
+why?
+
+>  		return ret;
 >  	}
 >  
->  	ret = analogix_dp_create_bridge(drm_dev, dp);
-> @@ -1739,13 +1759,6 @@ int analogix_dp_bind(struct analogix_dp_device *dp, struct drm_device *drm_dev)
->  
->  err_unregister_aux:
->  	drm_dp_aux_unregister(&dp->aux);
-> -err_disable_pm_runtime:
-> -	if (IS_ENABLED(CONFIG_PM)) {
-> -		pm_runtime_dont_use_autosuspend(dp->dev);
-> -		pm_runtime_disable(dp->dev);
-> -	} else {
-> -		analogix_dp_suspend(dp);
-> -	}
->  
->  	return ret;
->  }
-> @@ -1762,13 +1775,6 @@ void analogix_dp_unbind(struct analogix_dp_device *dp)
+>  	ret = rockchip_dp_pre_init(dp);
+>  	if (ret < 0) {
+> -		drm_err(dp->drm_dev, "failed to dp pre init %d\n", ret);
+> +		dev_err(dp->dev, "failed to dp pre init %d\n", ret);
+>  		clk_disable_unprepare(dp->pclk);
+>  		return ret;
 >  	}
->  
->  	drm_dp_aux_unregister(&dp->aux);
-> -
-> -	if (IS_ENABLED(CONFIG_PM)) {
-> -		pm_runtime_dont_use_autosuspend(dp->dev);
-> -		pm_runtime_disable(dp->dev);
-> -	} else {
-> -		analogix_dp_suspend(dp);
-> -	}
->  }
->  EXPORT_SYMBOL_GPL(analogix_dp_unbind);
->  
-> -- 
-> 2.34.1
-> 
 
 -- 
 With best wishes
