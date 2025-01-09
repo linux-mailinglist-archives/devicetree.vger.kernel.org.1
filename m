@@ -1,234 +1,132 @@
-Return-Path: <devicetree+bounces-136966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBFADA071AD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:39:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 496D2A071BB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:41:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A89E163D70
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:38:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7756D3A205F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:41:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D074E215777;
-	Thu,  9 Jan 2025 09:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022BE2153CF;
+	Thu,  9 Jan 2025 09:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b="a8ql6N7r"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="h+cSdeHF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.systec-electronic.com (mail.systec-electronic.com [77.220.239.22])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56E72153E7;
-	Thu,  9 Jan 2025 09:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.220.239.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5C22594BA;
+	Thu,  9 Jan 2025 09:41:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736415528; cv=none; b=cbYHAtM3aVNe2TkDmqb2F0j2uhFvEw7NxSWnekQMdxvezEjSOMT629M2NTQ0ilpNx2OxNSSqXnB6b/Tb4JpwsE5IY0E1eYpaSdC7Ye+PyJLakxoy22P7wYbsp8H+LcCujAbKr+d3C9oSV7Xx+wPNb9F/5HttoXAo1oL71CIGx5k=
+	t=1736415703; cv=none; b=OguxVyqsxAaNhfa+eTJd6LLE7m9mD7KiSv3lsuzbaD1gt5PwPaIXi8rWniOyj1KF18+K4OSOxEtV0bs3/WQD5ddcAJFmWh16GDIGDU209pWB9xbhEewzm+Ct8FDwTmD726qtAA3qFWLYFipa98EsMTXtvS9m6t1jHQte9E17KQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736415528; c=relaxed/simple;
-	bh=NhV0zKnxD0nXPl/yA1mV81GFXcJFs7fIc7ULO/XTE/c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cZkvA1ajSJ8fCTckVBBDTxbKT0m++hURDK+mD9xkqneV8tlL2Br9n6tzVcjLIhIzDH6RePjN6vRuxsrqMSZcSBCRb7NVI5gvNcr2x0idWsF1kYTxd9n/bf4c0ZmX4Egg521aYPW+sX3nfJBX7SJu0GPIAXjokGxeAM28migjJxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com; spf=pass smtp.mailfrom=systec-electronic.com; dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b=a8ql6N7r; arc=none smtp.client-ip=77.220.239.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=systec-electronic.com
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id 3BACF94016AB;
-	Thu,  9 Jan 2025 10:38:37 +0100 (CET)
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id W7H-G_mMwSVp; Thu,  9 Jan 2025 10:38:37 +0100 (CET)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id 112CA9400101;
-	Thu,  9 Jan 2025 10:38:37 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.systec-electronic.com 112CA9400101
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=systec-electronic.com; s=B34D3B04-5DC7-11EE-83E3-4D8CAB78E8CD;
-	t=1736415517; bh=o1d+KF4FJmWPNJkRJNTAIM78vHnfRx5Wb1F5cZERHlw=;
-	h=From:To:Date:Message-ID:MIME-Version;
-	b=a8ql6N7r8cP1flrycl6JKrhvsW8D/516thU/tri+JmHVGMdYmhqL3KwyQ9M2z7ZdC
-	 bBmDUFO9KEdj0xDipqV+rE6j4NQDRHRxk82K+0vvoCzfCZqsGvd5SJ5/IsU09Hriis
-	 KEwG6CE5qqc7Bz8Upvd/SYoBfMV9bPTcQK/FOoddqrl9rvRsN5USoNLvDkowqJ/O/5
-	 +50so/JVactCkdfdJey5Fr9vvQrQICMvhXKDulxE+euyavSXA6p1uGzHyfW+UR+CZe
-	 xZZqGjmw/WXb3bieADTAHXGURg9dUCTGASD1/J/RgO7YfmnZDBeBCPgMNlN5lJsJmJ
-	 L1/+EUiD28IaQ==
-X-Virus-Scanned: amavis at systec-electronic.com
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 1uaQJ_Ko3jLK; Thu,  9 Jan 2025 10:38:36 +0100 (CET)
-Received: from ws565760.. (unknown [212.185.67.148])
-	by mail.systec-electronic.com (Postfix) with ESMTPSA id B068094016AB;
-	Thu,  9 Jan 2025 10:38:36 +0100 (CET)
-From: Andre Werner <andre.werner@systec-electronic.com>
-To: gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	hvilleneuve@dimonoff.com,
-	andy@kernel.org,
-	devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	lech.perczak@camlingroup.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robh@kernel.org,
-	Andre Werner <andre.werner@systec-electronic.com>
-Subject: [PATCH v4 2/2] serial: sc16is7xx: Add polling mode if no IRQ pin is available
-Date: Thu,  9 Jan 2025 10:38:34 +0100
-Message-ID: <20250109093834.1013025-2-andre.werner@systec-electronic.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250109093834.1013025-1-andre.werner@systec-electronic.com>
-References: <20250109093834.1013025-1-andre.werner@systec-electronic.com>
+	s=arc-20240116; t=1736415703; c=relaxed/simple;
+	bh=vuEZG1PMLchMh3XQ4elhZSmleMf1TzbztnvViOcgimk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mzM7BBd5Q+lG5PAliOsJEJ8eSsJd5h27IrJTQRaYgGeaBCCAHFUxSkM9FrQRMctlOKjw8e8dEdHKr3RuOH/LY2FUFUleY1yDb4u8MRg2teXrK8oCHBHg+X7qdi8aMvL5/fj32VjiTGhWmHmZvjrvyRGBb63arnUdLJoeFhlJun8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=h+cSdeHF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 509418HD030410;
+	Thu, 9 Jan 2025 09:41:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	udUa7bk/hrwoFCjuZkG/t6Uv8mEKZl/WvNR7tJspIQY=; b=h+cSdeHFs5Fpp3Ge
+	7pxlauZAboPy03Kv+6WJFFA35OMOiMDBsk9KwEP1Uo/M/0FbKwf2Bp+uWbkp4nPm
+	FTB9c+fgEFUhfYo9vZ0ybrj9xl7C31rfqneSq5qOC8N0Dhyz7kJ2euA4rvBq1ZP3
+	lhY9ZStyTVuknZCh56pzu/7Qza6/6yXFvSisnjNs6yVoneZgsq1XkCsBAzTdeWQb
+	fdQleOTZ9aN9ORdV1TFfbrUJecB9KvwSP5W3hGLDvuR60QqmWVs3t0QjYI46Pb94
+	LCncfKLlE3oIL3PYc2mq241uModofTgP0UqJfWsYaab9Crsql03k+955ONhdNETY
+	BjIfPA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442727rrhx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jan 2025 09:41:37 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5099faVB004432
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Jan 2025 09:41:36 GMT
+Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 9 Jan 2025
+ 01:41:32 -0800
+Message-ID: <7ef6b1ff-b2ee-4b6e-a645-440c0af11c59@quicinc.com>
+Date: Thu, 9 Jan 2025 17:41:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: qcs8300: add DisplayPort device
+ nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ritesh Kumar
+	<quic_riteshk@quicinc.com>
+References: <20241127-dp_dts_qcs8300-v1-0-e3d13dec4233@quicinc.com>
+ <20241127-dp_dts_qcs8300-v1-1-e3d13dec4233@quicinc.com>
+ <45643708-c138-4c77-85ce-fa7d49f2aa72@oss.qualcomm.com>
+ <d536bbf0-4e8a-424b-b885-a22870bfbf31@quicinc.com>
+ <fcio2ikemgmvy636vpyvhth7qbzp43x2nebbo2qh7roalxjlvw@ssgsc5cfh4w3>
+Content-Language: en-US
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+In-Reply-To: <fcio2ikemgmvy636vpyvhth7qbzp43x2nebbo2qh7roalxjlvw@ssgsc5cfh4w3>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4PrmmePzwUUxGq-cFfI1UT1k1a01bliq
+X-Proofpoint-ORIG-GUID: 4PrmmePzwUUxGq-cFfI1UT1k1a01bliq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 bulkscore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=788 mlxscore=0 impostorscore=0 phishscore=0 malwarescore=0
+ suspectscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090078
 
-Fall back to polling mode if no interrupt is configured because there
-is no possibility to connect the interrupt pin.
-If "interrupts" property is missing in devicetree the driver
-uses a delayed worker to pull the state of interrupt status registers.
 
-Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
----
-V2:
-- Change warning for polling mode to debug log entry
-- Correct typo: Resuse -> Reuse
-- Format define with missing tabs for SC16IS7XX_POLL_PERIOD
-- Format struct declaration sc16is7xx_one_config with missing tabs for po=
-lling and shutdown
-- Adapt dtbinding with new polling feature
-V3:
-- Use suffix with units and drop a comment SC16IS7XX_POLL_PERIOD_MS. Sorr=
-y for that miss.
-- Make Kernel lowercase.
-V4:
-- Reword commit messages for better understanding.
-- Remove 'shutdown' property for canceling delayed worker.
-- Rename worker function: sc16is7xx_transmission_poll -> sc16is7xx_poll_p=
-roc
-- Unify argument for worker functions: kthread_work *work -> kthread_work=
- *ws
----
- drivers/tty/serial/sc16is7xx.c | 38 ++++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
 
-diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7x=
-x.c
-index a3093e09309f..6645cab2ae5f 100644
---- a/drivers/tty/serial/sc16is7xx.c
-+++ b/drivers/tty/serial/sc16is7xx.c
-@@ -314,6 +314,7 @@
- #define SC16IS7XX_FIFO_SIZE		(64)
- #define SC16IS7XX_GPIOS_PER_BANK	4
-=20
-+#define SC16IS7XX_POLL_PERIOD_MS	10
- #define SC16IS7XX_RECONF_MD		BIT(0)
- #define SC16IS7XX_RECONF_IER		BIT(1)
- #define SC16IS7XX_RECONF_RS485		BIT(2)
-@@ -348,6 +349,8 @@ struct sc16is7xx_port {
- 	u8				mctrl_mask;
- 	struct kthread_worker		kworker;
- 	struct task_struct		*kworker_task;
-+	struct kthread_delayed_work	poll_work;
-+	bool				polling;
- 	struct sc16is7xx_one		p[];
- };
-=20
-@@ -861,6 +864,18 @@ static irqreturn_t sc16is7xx_irq(int irq, void *dev_=
-id)
- 	return IRQ_HANDLED;
- }
-=20
-+static void sc16is7xx_poll_proc(struct kthread_work *ws)
-+{
-+	struct sc16is7xx_port *s =3D container_of(ws, struct sc16is7xx_port, po=
-ll_work.work);
-+
-+	/* Reuse standard IRQ handler. Interrupt ID is unused in this context. =
-*/
-+	sc16is7xx_irq(0, s);
-+
-+	/* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
-+	kthread_queue_delayed_work(&s->kworker, &s->poll_work,
-+				   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
-+}
-+
- static void sc16is7xx_tx_proc(struct kthread_work *ws)
- {
- 	struct uart_port *port =3D &(to_sc16is7xx_one(ws, tx_work)->port);
-@@ -1149,6 +1164,7 @@ static int sc16is7xx_config_rs485(struct uart_port =
-*port, struct ktermios *termi
- static int sc16is7xx_startup(struct uart_port *port)
- {
- 	struct sc16is7xx_one *one =3D to_sc16is7xx_one(port, port);
-+	struct sc16is7xx_port *s =3D dev_get_drvdata(port->dev);
- 	unsigned int val;
- 	unsigned long flags;
-=20
-@@ -1211,6 +1227,10 @@ static int sc16is7xx_startup(struct uart_port *por=
-t)
- 	sc16is7xx_enable_ms(port);
- 	uart_port_unlock_irqrestore(port, flags);
-=20
-+	if (s->polling)
-+		kthread_queue_delayed_work(&s->kworker, &s->poll_work,
-+					   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
-+
- 	return 0;
- }
-=20
-@@ -1232,6 +1252,9 @@ static void sc16is7xx_shutdown(struct uart_port *po=
-rt)
-=20
- 	sc16is7xx_power(port, 0);
-=20
-+	if (s->polling)
-+		kthread_cancel_delayed_work_sync(&s->poll_work);
-+
- 	kthread_flush_worker(&s->kworker);
- }
-=20
-@@ -1537,6 +1560,12 @@ int sc16is7xx_probe(struct device *dev, const stru=
-ct sc16is7xx_devtype *devtype,
-=20
- 	/* Always ask for fixed clock rate from a property. */
- 	device_property_read_u32(dev, "clock-frequency", &uartclk);
-+	s->polling =3D !device_property_present(dev, "interrupts");
-+	if (s->polling) {
-+		dev_dbg(dev,
-+			"No interrupt pin definition, falling back to polling mode\n");
-+		irq =3D 0;
-+	}
-=20
- 	s->clk =3D devm_clk_get_optional(dev, NULL);
- 	if (IS_ERR(s->clk))
-@@ -1665,6 +1694,12 @@ int sc16is7xx_probe(struct device *dev, const stru=
-ct sc16is7xx_devtype *devtype,
- 		goto out_ports;
- #endif
-=20
-+	if (s->polling) {
-+		/* Initialize kernel thread for polling */
-+		kthread_init_delayed_work(&s->poll_work, sc16is7xx_poll_proc);
-+		return 0;
-+	}
-+
- 	/*
- 	 * Setup interrupt. We first try to acquire the IRQ line as level IRQ.
- 	 * If that succeeds, we can allow sharing the interrupt as well.
-@@ -1724,6 +1759,9 @@ void sc16is7xx_remove(struct device *dev)
- 		sc16is7xx_power(&s->p[i].port, 0);
- 	}
-=20
-+	if (s->polling)
-+		kthread_cancel_delayed_work_sync(&s->poll_work);
-+
- 	kthread_flush_worker(&s->kworker);
- 	kthread_stop(s->kworker_task);
-=20
---=20
-2.47.1
-
+On 2024/12/27 3:57, Dmitry Baryshkov wrote:
+> On Thu, Dec 26, 2024 at 03:03:46PM +0800, Yongxing Mou wrote:
+>>
+>>
+>> On 2024/12/6 5:36, Konrad Dybcio wrote:
+>>> On 27.11.2024 11:45 AM, Yongxing Mou wrote:
+>>>
+>>>> +
+>>>> +				clocks = <&dispcc MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
+>>>> +					 <&dispcc MDSS_DISP_CC_MDSS_AHB_CLK>;
+>>>> +				clock-names = "aux",
+>>>> +					      "cfg_ahb";
+>>>
+>>> power-domains = <&rpmhpd RPMHPD_MX>;
+>>>
+>> emm,we use RPMHPD_MMCX in qcs8300 mdss and dpu..
+>>> (or maybe even MXC?)
+> 
+> But it is a DP PHY, not a MDSS or DPU. Is the PLL being sourced by MMCX
+> or by MX?
+> 
+Hi, thank for pointing it.We confirm it, and this should use RPMHPD_MX 
+not RPMHPD_MMCX.
 
