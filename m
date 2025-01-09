@@ -1,223 +1,161 @@
-Return-Path: <devicetree+bounces-137223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D5CA08300
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 23:54:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4483FA0833E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:03:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 159D1188AAEC
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 22:54:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7478188BBDC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 23:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9DC3205E04;
-	Thu,  9 Jan 2025 22:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 637BE2063C7;
+	Thu,  9 Jan 2025 23:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UEzam1dX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RZQJUnd/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B774A1A;
-	Thu,  9 Jan 2025 22:54:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA18205AD7
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 23:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736463278; cv=none; b=jqUPTbOZLS2Qpvy/0QdK+PP78Q7Qxc/6Cqkwbim7s0c+j7EfgKtTD6bK1a21GLypbvmXmW/rtRuO9jxwZ8P2Qq8NvZwemHSZUR0NuAOPjKvM2usP/rHkSveKZe1jmlqOa7NltUpNvALJy4eggiZKj0xZyGNYx3LuCW6YuPt+h1k=
+	t=1736463794; cv=none; b=IDEpJSloDi1iMV0S/OoZhYMQ2nDA2esq13lmoHM5LGhtZ6GABivv/zBs1/cLrkZG58/1aYGCasRC+98gKvZ8zfB2FaV7VgopraIKeUEGWvmsgaNiZTuHoprlfmoKr85N8dPTcWCEHXGFg/Duj0Z+hvGRBCA1Qd7QTlU3ZYTeY/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736463278; c=relaxed/simple;
-	bh=86eS17qLlvfqrKxaqobXK+iP+4uMsU62Gln9pxxozEQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TCqb3AgTVb9K2fwlR9hiDMHUdUoeA9ojEjPDF//PEtSGs8KsjYHM0+q6M7tkz4o0ArUsgxRiVosuiGgkDJocdTwA2nybI4CkWr10+iuVyQhEGbgJLCqeO6A2otoSrvAQvAqyZTT2KxjYXDNsi1WvrzSV7RwPS1HWED8oPo1G4NI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UEzam1dX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D82FC4CED2;
-	Thu,  9 Jan 2025 22:54:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736463278;
-	bh=86eS17qLlvfqrKxaqobXK+iP+4uMsU62Gln9pxxozEQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=UEzam1dXGAeXOCMIiWcMXSxJcurtAJcKHcN/u/dv0z2I8CNvv42G+jWPcvQtnXkjM
-	 AsQNO88cTeibiFrpO6sDGT60EMfCcFvAV/f7LsJW9ZMEGDQg7LsMUxcEExX8jekdJW
-	 4yKh5FThcEJCV9HPN30amhkCqm4AMo8+LaqdaNB0itA3WBjYoGbb0fNHnBwDEZb5nh
-	 YIzih78TqKB6K4IgdVrlD7eZaz+JSF56RsM0o7pMMeYO8z6gAmJlj3JOKEYrnIHui5
-	 /OoyqkAeyk+Py8dPoTjGqBeoJ5yI31meRuqf9Ne4TuFJDuqZb7LI+P8rpt+AauRHg5
-	 SYf3KBIXqtdvw==
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e549a71dd3dso2670132276.0;
-        Thu, 09 Jan 2025 14:54:38 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW9l8mO72fYFutGSzghNJgz7GvAEBNKMBOpdUqpGB9hPdcjegXn+mREXCo4f8dgro+cIIVe3Uwdy4oj8ms=@vger.kernel.org, AJvYcCXTuszCsILAVfx58404hxOhwlqNAIiMZLo/QcS3QiTOL+BF0I45ZTo+0Fsp0HDwJYrF0Oh9DDoTzu9UYH0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZ5/1H0vucQVuyQuZ6LddIg5LKsix+m77rgdVuCzIQQbEEAgwb
-	CUpibKx98lw5SXo773prTa7MWYuvT8wcQngRmQuYBvRB2F3YmCtbfjUEJz2Lv5JL74e6n1r4LxI
-	bv/zdisM6+9VwXzjmBh51G+pkgA==
-X-Google-Smtp-Source: AGHT+IG5HG1/6CNvcuH1Keqm2doHJzzNVTXCdWaxY8J03PSbymHlzH+SWYuq5FCI7XWxCKruJYH2Ve4c5r24YnO9/RQ=
-X-Received: by 2002:a05:6902:1b0f:b0:e54:a3c7:a313 with SMTP id
- 3f1490d57ef6-e54edf415f3mr6643385276.9.1736463277233; Thu, 09 Jan 2025
- 14:54:37 -0800 (PST)
+	s=arc-20240116; t=1736463794; c=relaxed/simple;
+	bh=hY2rkJrYPz6wESPMCkN5cJxZr3WT7E7660Vjmz+mNt4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F4df8CnExfC/ozonMU/kLY0m/pWtmgPCQzsmWutb/tKQzn2hU+hvtPw+3xOhANaCj5DFcJRszGorgS1HzHqpw2hIep/I4pk7JZ93zBm/DZEoRMxDpQwqgGypazaFJpCgzOMPJ1Hpe294IhECP8BL741hjx/SFLyVQ0vDxcPIm60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RZQJUnd/; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5401c52000fso1375538e87.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 15:03:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736463791; x=1737068591; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=AAcNvBDLCMVwN0Us4db6UaMc6t+XPG2++mfdFKlIJ/k=;
+        b=RZQJUnd/FGH+nbmDO5+xiYdCL9WICwF/J3hFzRivXaBzvBqy5Hy8eu7fy82Ikc6km9
+         exhv5Inj4gyuiU5AIkO1BIbq0H2cYEZkV56rmhUDIFT6Xb7snk8h0jWIESeg8U3Ikr9J
+         KnfS+EI7NNJ9vsAjvVui7xBp5u0f4g/U0VNlK5RKjS3Ws0xQvy2COCq5JyXWJEu8i2y1
+         +jydnhIV2hP9/t3x4FXEwsP6q0xrT/jBi2uCvMXUDPbG1aPyjtns8UId4zPsM7Yb/Uul
+         vRiYNiOAnGyugVVAx1DiYAP6lSo3IHII6aF77RAbPFqA4cZa5oSfY3dJmT+JIx9mTE6P
+         jfwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736463791; x=1737068591;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AAcNvBDLCMVwN0Us4db6UaMc6t+XPG2++mfdFKlIJ/k=;
+        b=tR3rrV82114zhzVePt/2483pS0nFFnRO/El/64OsdmZO0Svs70wGrugbdmujB3CAqV
+         PqsyPR35HVS5WWLAQGe2K3PjUWfSjHtye66Id7KWnyFqshuiQOPN6qga5XG0+s0Td8Qe
+         Hna8biZ4IR+MkSR4D3rtkUWHKWZKu2845zk93SucOVXbCiDnGMngntJXB4L17BKo4DHU
+         n/eAjLLOfIM0kgda6tOCeHBcdRxm05yoPcM+Kr/5ycEwR5mkHrj+h0gskoh9zB6WxjG0
+         7qruutBgnTXexzwOjqFOiBPz4m5jjllj+dunFRUxufO5Ap6+zUaJR5Tu23AI80NIKGI5
+         Y5fA==
+X-Forwarded-Encrypted: i=1; AJvYcCVBW959yJ9vd0WcqsksTHzt8ZD9zNs1xyFC82P/SmyheCpuw3brmp10GcfDmAFlB10yER+BPTA2axOg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyihOw3hC+Pye64AbauTDThShLhsNH8siK5iECdKy8WjXLJnGOj
+	iLdHisl2jjUB2Uue42D3qAOdXRfgNL/WtLdh6TsUcAOWtWrEK9IKcIdkQ0EYfXc=
+X-Gm-Gg: ASbGnctuKDsFBjpiT3QgFFoIeLtNWd4FmmovD4laExmLBRQUWfEkBQqgmPAbdpoZb+6
+	EfszO3qCeN69DPZIkAI+CJl0iT2ECnXUrYnRMG6oTBjAJYwSfypA4AZKLvuG5bKiCNJDme5DNNB
+	uDfvVllOJ8o/mJdT3WsObliOtF4d35/8OkW39wV43BBGs0XbXDAWz54NCK1nV4t9fbD+/e1SN30
+	3fQ9UxTJyU1o9UIt/1DgJXkWmD62SB7wTVlKXCwplSgTutW+aBVBO2FfHDelq5z+ZRgI1wRPVXr
+	Ez/vMc+H596NUNj4hdj+4i4ysho9lpVlNDQF
+X-Google-Smtp-Source: AGHT+IHf6pkAtxzAARwiQGzNbECIXTffJ/LFIaL0vm4+LTZtTr/waEIktn0uMxncfhNuRu6tqNYP7A==
+X-Received: by 2002:a05:6512:3e02:b0:53e:38fd:7518 with SMTP id 2adb3069b0e04-542845b1a57mr3023380e87.3.1736463790653;
+        Thu, 09 Jan 2025 15:03:10 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428becac3esm327366e87.233.2025.01.09.15.03.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jan 2025 15:03:10 -0800 (PST)
+Date: Fri, 10 Jan 2025 01:03:07 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
+	Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH RFC / WIP 11/11] drm/msm/dpu: WIP: CTL_LAYER_EXT is gone
+Message-ID: <h5eabjdgzsvn2hutcc6osndieg3v6hkusfdxnrfhy77gmyx4eq@4wwltux4erz5>
+References: <20250109-b4-sm8750-display-v1-0-b3f15faf4c97@linaro.org>
+ <20250109-b4-sm8750-display-v1-11-b3f15faf4c97@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241115193445.3619074-1-robh@kernel.org>
-In-Reply-To: <20241115193445.3619074-1-robh@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 9 Jan 2025 16:54:26 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+9jNNF2yWCbSiiey2ubn2WAX8PdA69+cbXpWCDwPEm_Q@mail.gmail.com>
-X-Gm-Features: AbW1kvZCPWZ0ePVuAp2wPpIypayv0F_QgNtby49jFmmImQegWdE-lffw2n8o7oc
-Message-ID: <CAL_Jsq+9jNNF2yWCbSiiey2ubn2WAX8PdA69+cbXpWCDwPEm_Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: nvidia: Remove unused and undocumented
- "regulator-ramp-delay-scale" property
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250109-b4-sm8750-display-v1-11-b3f15faf4c97@linaro.org>
 
-On Fri, Nov 15, 2024 at 1:34=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
->
-> Remove "regulator-ramp-delay-scale" property which is both unused in the
-> kernel and undocumented. Most likely they are leftovers from downstream.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+On Thu, Jan 09, 2025 at 02:08:38PM +0100, Krzysztof Kozlowski wrote:
+> Not finished. Looking around, maybe someone already did some works
+> around new CTL_PIPE_ACTIVE and CTL_LAYER_ACTIVE registers?
+
+This is not enough, the whole blend setup is to be moved to LM
+block.
+
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 10 ----------
->  1 file changed, 10 deletions(-)
+>  drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_12_0_sm8750.h | 12 ++++++------
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c          |  3 +++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h          |  3 +++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c              | 10 ++++++++--
+>  4 files changed, 20 insertions(+), 8 deletions(-)
+> 
 
-Ping!
+[...]
 
->
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/ar=
-m64/boot/dts/nvidia/tegra210-p3450-0000.dts
-> index c56824d7f4d8..0ecdd7243b2e 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-> @@ -266,7 +266,6 @@ vdd_soc: sd0 {
->                                         regulator-max-microvolt =3D <1170=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-146>;
->                                         regulator-ramp-delay =3D <27500>;
-> -                                       regulator-ramp-delay-scale =3D <3=
-00>;
->                                         regulator-always-on;
->                                         regulator-boot-on;
->
-> @@ -281,7 +280,6 @@ vdd_ddr: sd1 {
->                                         regulator-max-microvolt =3D <1150=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-176>;
->                                         regulator-ramp-delay =3D <27500>;
-> -                                       regulator-ramp-delay-scale =3D <3=
-00>;
->                                         regulator-always-on;
->                                         regulator-boot-on;
->
-> @@ -296,7 +294,6 @@ vdd_pre: sd2 {
->                                         regulator-max-microvolt =3D <1350=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-176>;
->                                         regulator-ramp-delay =3D <27500>;
-> -                                       regulator-ramp-delay-scale =3D <3=
-50>;
->                                         regulator-always-on;
->                                         regulator-boot-on;
->
-> @@ -311,7 +308,6 @@ vdd_1v8: sd3 {
->                                         regulator-max-microvolt =3D <1800=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-242>;
->                                         regulator-ramp-delay =3D <27500>;
-> -                                       regulator-ramp-delay-scale =3D <3=
-60>;
->                                         regulator-always-on;
->                                         regulator-boot-on;
->
-> @@ -326,7 +322,6 @@ vdd_sys_1v2: ldo0 {
->                                         regulator-max-microvolt =3D <1200=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-26>;
->                                         regulator-ramp-delay =3D <100000>=
-;
-> -                                       regulator-ramp-delay-scale =3D <2=
-00>;
->                                         regulator-always-on;
->                                         regulator-boot-on;
->
-> @@ -341,7 +336,6 @@ vdd_pex_1v05: ldo1 {
->                                         regulator-max-microvolt =3D <1050=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-22>;
->                                         regulator-ramp-delay =3D <100000>=
-;
-> -                                       regulator-ramp-delay-scale =3D <2=
-00>;
->
->                                         maxim,active-fps-source =3D <MAX7=
-7620_FPS_SRC_NONE>;
->                                         maxim,active-fps-power-up-slot =
-=3D <0>;
-> @@ -354,7 +348,6 @@ vddio_sdmmc: ldo2 {
->                                         regulator-max-microvolt =3D <3300=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-62>;
->                                         regulator-ramp-delay =3D <100000>=
-;
-> -                                       regulator-ramp-delay-scale =3D <2=
-00>;
->
->                                         maxim,active-fps-source =3D <MAX7=
-7620_FPS_SRC_NONE>;
->                                         maxim,active-fps-power-up-slot =
-=3D <0>;
-> @@ -371,7 +364,6 @@ vdd_rtc: ldo4 {
->                                         regulator-max-microvolt =3D <1100=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-22>;
->                                         regulator-ramp-delay =3D <100000>=
-;
-> -                                       regulator-ramp-delay-scale =3D <2=
-00>;
->                                         regulator-disable-active-discharg=
-e;
->                                         regulator-always-on;
->                                         regulator-boot-on;
-> @@ -395,7 +387,6 @@ avdd_1v05_pll: ldo7 {
->                                         regulator-max-microvolt =3D <1050=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-24>;
->                                         regulator-ramp-delay =3D <100000>=
-;
-> -                                       regulator-ramp-delay-scale =3D <2=
-00>;
->
->                                         maxim,active-fps-source =3D <MAX7=
-7620_FPS_SRC_1>;
->                                         maxim,active-fps-power-up-slot =
-=3D <3>;
-> @@ -408,7 +399,6 @@ avdd_1v05: ldo8 {
->                                         regulator-max-microvolt =3D <1050=
-000>;
->                                         regulator-enable-ramp-delay =3D <=
-22>;
->                                         regulator-ramp-delay =3D <100000>=
-;
-> -                                       regulator-ramp-delay-scale =3D <2=
-00>;
->
->                                         maxim,active-fps-source =3D <MAX7=
-7620_FPS_SRC_1>;
->                                         maxim,active-fps-power-up-slot =
-=3D <6>;
-> --
-> 2.45.2
->
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+> index 06b01cd36ce2442ee6e1b85be227851a234cc96b..502449cbbddcb21b7008f139ac065d187a16b68e 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+> @@ -40,6 +40,8 @@
+>  #define   CTL_INTF_FLUSH                0x110
+>  #define   CTL_CDM_FLUSH                0x114
+>  #define   CTL_PERIPH_FLUSH              0x128
+> +#define   CTL_PIPE_ACTIVE               0x12C
+> +#define   CTL_LAYER_ACTIVE              0x130
+>  #define   CTL_INTF_MASTER               0x134
+>  #define   CTL_DSPP_n_FLUSH(n)           ((0x13C) + ((n) * 4))
+>  
+> @@ -729,8 +731,12 @@ static void _setup_ctl_ops(struct dpu_hw_ctl_ops *ops,
+>  	ops->trigger_pending = dpu_hw_ctl_trigger_pending;
+>  	ops->reset = dpu_hw_ctl_reset_control;
+>  	ops->wait_reset_status = dpu_hw_ctl_wait_reset_status;
+> -	ops->clear_all_blendstages = dpu_hw_ctl_clear_all_blendstages;
+> -	ops->setup_blendstage = dpu_hw_ctl_setup_blendstage;
+> +	if (cap & BIT(DPU_CTL_NO_LAYER_EXT)) {
+
+I'd prefer if this is was an explicit MDSS / DPU version check rather
+than an extra feature bit, enable new functions for version >= 11.0
+
+> +		// TODO: NOT COMPLETE, This has to be implemented
+> +	} else {
+> +		ops->clear_all_blendstages = dpu_hw_ctl_clear_all_blendstages;
+> +		ops->setup_blendstage = dpu_hw_ctl_setup_blendstage;
+> +	}
+>  	ops->update_pending_flush_sspp = dpu_hw_ctl_update_pending_flush_sspp;
+>  	ops->update_pending_flush_mixer = dpu_hw_ctl_update_pending_flush_mixer;
+>  	if (cap & BIT(DPU_CTL_DSPP_SUB_BLOCK_FLUSH))
+> 
+> -- 
+> 2.43.0
+> 
+
+-- 
+With best wishes
+Dmitry
 
