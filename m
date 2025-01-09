@@ -1,235 +1,150 @@
-Return-Path: <devicetree+bounces-136995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35216A07365
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:37:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E40A0736B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:37:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C981D188147E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:37:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DC6B166AB9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:37:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FE4216388;
-	Thu,  9 Jan 2025 10:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A4B215F58;
+	Thu,  9 Jan 2025 10:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XKAt68km"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642D1215F7B;
-	Thu,  9 Jan 2025 10:37:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41E9F21576D;
+	Thu,  9 Jan 2025 10:37:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736419035; cv=none; b=twsWQc55cK0C6XqUO0jdB/l6A300sL2rHUjlNcBRzrGWwsOX/450mV+EuV04ea+TZaOksYgnhmTuah+ieK+eHuNx8xapNJF1uB5iWUnE4t3YR+qh+XtfdlDQlSpRSPmgQb6HDoJe/PTrlD8pgVcz+TpPcckZaIZ0OJe9QWMU+OA=
+	t=1736419056; cv=none; b=c+Bkc40HTRtHpsqy/9PYA4iYNX387vFrx7pyJWVW/ejBIN1BTPafHbgzEMcahdeSIJXncKPBdqWQ6T4LuSGuLqFvOE7fIBh1n4H7KqMS88ntUqv9SOoARtTOhjRZ1ktsy62Y77I0eNqckbB8Myr71Kb8Bn5hUJ5Ak3kg3EEBvxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736419035; c=relaxed/simple;
-	bh=ygBHJkQp0Y34pt4vk9hozJg+Ik4F+/vP/52yR31soVw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LReqVZPTdsq0EtmFUqGATWl4kRjEb9LkP/rpIzYa5RR2b9yD8TjqC7TU3dnhq727tA7fiDHCUYMffgF1uX1J8VJkJhYy4Pk1JC03bDcy8kvK6q4FhZoDHt9cjte4Zm2kzIY+LMZKZf77dA1FFffC+D0lDk+3MEJ/u6EmORcgXUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACE88C4CEE2;
-	Thu,  9 Jan 2025 10:37:10 +0000 (UTC)
-Message-ID: <0d69e79f-e14f-4636-8360-8b5c2a6c2735@xs4all.nl>
-Date: Thu, 9 Jan 2025 11:37:09 +0100
+	s=arc-20240116; t=1736419056; c=relaxed/simple;
+	bh=mXGI7eCABvaWcg47dxoQxUN2x8i3guMzfrgsTpJp5jw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YdkO3dsYvgs4KUNIkEZ+IwinlJJxvytRPsPDRtkh89YHWMDeWOO/sLtfqcg1iPNL2ujMgZL/CkEO2IOs1xFlakwp5XPCGnglrJn3jvIXNF1Df/goYa/lP0wf1y63SBDqq34NGAEmOXfWvxoYWKM7V91i1U8gYw9h2d8G4jCNZyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XKAt68km; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4361f796586so8023245e9.3;
+        Thu, 09 Jan 2025 02:37:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736419053; x=1737023853; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=61IvdtmT2mQUDJhTOWteJAEPNyC6vRcEpkkgoyFVRyM=;
+        b=XKAt68kmNSMEZSBLKlEVG1XC3cPsKkEfJxA+bBtUCgAGkDlQff4DAQO0VKGrU4u6lv
+         8+3jMysJlL2XvE10DHMTjlJ7GUWFYrrkLjCqMW07XGbPGync76WDvXEMc5Kk5g805FE1
+         TNerjf0yDS7Z2gVCqzG8hzSDY+em7qAXpaAuCRAEnSrjGY0ZY1GCKF52QulZZwo2OaO2
+         NgfLp1JxyEh0L4n33NO5vvwatVXXZgPbFPyPEbqquzzWxe1NCtRZAwFEHN+I5keXdSyc
+         7dIFmft6nmDkxXyUKXt5ngcHzIAdSDC9yimp2qpPnawV/FSYO9e35AXk23U+pfB+jlKD
+         1miw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736419053; x=1737023853;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=61IvdtmT2mQUDJhTOWteJAEPNyC6vRcEpkkgoyFVRyM=;
+        b=sUEk6eXOGQvKq87/yBtKpAktbHpzPIvOLCjd+iwUmKH7KWmSduXl0kGtfjq8VF16dF
+         M1x7vVSmaJ+XOGtlu0ilU1Na4qCpDeIOmLm53o+lYTL1biBE5t3Sz9EMp765nAA8KCE5
+         6TB0x2J+82mh1ZIUoFkH1QFevSDqBj68lhMGnJ5jtKVIblwU0JwmNgQS08H2j5/hexo0
+         f+YMo8r2wGflbiP18WdrsvUK3bzDPWoxjiuw06fYDN3L1pCcULKC4jNjmuVWg/DM+cbr
+         Miwx61w/20e0o1EWO5yfd2SyRJe7Z8IwrNkUuiPsapQLOiPcdzXXWWtiwNNMMHP9WoLr
+         tlZw==
+X-Forwarded-Encrypted: i=1; AJvYcCULUmmiJdeoHFAaiprfcghUnHUSZ/2jnmMrLJp34WPHX6zbOjc+CkPuzX3rMAksToTeGDtkIseAyjh146E=@vger.kernel.org, AJvYcCVVHimGUp4Q7f2iYbs3yZ7XRr7cU7p80OIYKqN9NzWbt6R3P9sx6MHEMcgxE60enMkV7/4C9YGq1i2h@vger.kernel.org, AJvYcCWIAmecG9tB8Yfmd0LC0QN+7A4YhuXxCW+9qumYdHFUmJ4E/Rdc4hFqi+tdC4Mw1U4uKYJasO79rW6PirN+@vger.kernel.org, AJvYcCX9k00hp/TGfD7QthERs1L8YjujZpxA09zycSXm4JlDdwiVnHHiA+sPcIEkIezLaXo6YGRfxMhhikVt@vger.kernel.org
+X-Gm-Message-State: AOJu0YxORlWU5TzNvDmsomcsQfj4YXgh/zx4Y15C38ZBoNgExx43HP9D
+	2kblcbz5TTAQJf7RIojtrmaJlfmdb+ODgJMJrcAnwr0xc+6eIVYh
+X-Gm-Gg: ASbGncvvhTqK+hc2CemmR2p5PKXDJRmXtuoQHBcgqnC1f84TM5Wt2ERJwf48sHiWxQM
+	nPZFl1HNeyp8pTE79eB5ZLMi6ReUNXBRotedEfw+un7TPjo6ewU0tv4EeAssja04HqM8ygxBT1f
+	tn4vLFYd4GVHzhG0kwTEWhJJgiBfebLNyLkUoBQzc9RbE1hyT0ItEdWJADpiJDkpb+eUFmm7ucm
+	/C/hQQtFE3JczlQpeAPe+rNgA2xVUv0i8uxIr21LoiKl5XdMavQL16hIUQoIF/OknSn1kWw+S9C
+	y9doCbRp4NRRmsh8n6TghqEKTfmwUWxldB/vvgrzDJU=
+X-Google-Smtp-Source: AGHT+IHA+3nDPFq31WnFthRYk0qa24qBaCM76y6C0117feNDReAEnBZLZt0UZpPX28YCwj4hqXXPKg==
+X-Received: by 2002:a05:600c:1da8:b0:436:6460:e67a with SMTP id 5b1f17b1804b1-436e889dff0mr20253275e9.25.1736419052459;
+        Thu, 09 Jan 2025 02:37:32 -0800 (PST)
+Received: from orome (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436ed48f4b2sm2519895e9.24.2025.01.09.02.37.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jan 2025 02:37:31 -0800 (PST)
+Date: Thu, 9 Jan 2025 11:37:29 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Kartik Rajput <kkartik@nvidia.com>
+Cc: akhilrajeev@nvidia.com, andi.shyti@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, jonathanh@nvidia.com, ldewangan@nvidia.com, 
+	digetx@gmail.com, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/5] Add I2C support for Tegra264
+Message-ID: <fbulujgwqziyxxzokrtxzhysybuqep6p5pqt7jbqbclirllzp6@jbslthf3zh5f>
+References: <20250108110620.86900-1-kkartik@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of SM8250
- SoC
-To: Stanimir Varbanov <svarbanov@suse.de>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc: Nicolas Dufresne <nicolas@ndufresne.ca>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Jianhua Lu <lujianhua000@gmail.com>,
- Stefan Schmidt <stefan.schmidt@linaro.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
- <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
- <20241223113027.21b8f7ab@foz.lan>
- <fbe0d935-a3cf-dfa0-aad8-56834a0a002c@quicinc.com>
- <635ce4ed82aaca422b869f467300b0eccf9c8703.camel@ndufresne.ca>
- <c0f59149-713b-45e4-3755-4a52cfaa93f6@quicinc.com>
- <498a99e1-77ca-4acf-8850-cb74417ae88c@xs4all.nl>
- <9fc76dd1-ef49-a9d2-0271-eacb50943b03@quicinc.com>
- <9b33ba28-5aa9-4863-8fde-535841ddbc10@xs4all.nl>
- <6654d78e-d16b-489a-3532-e2fbc788b0ef@quicinc.com>
- <067d0deb-50ea-46bd-9f09-827b0ba61aa3@xs4all.nl>
- <5953bea1-194d-fe2e-251a-d4ef3e7544d3@quicinc.com>
- <20250108155237.5cf0ba10@foz.lan>
- <e2716cd5-4765-d8da-888b-bcdcd86df5c4@quicinc.com>
- <b0bf27f8-ea31-42f5-864d-f769bcbb3833@suse.de>
-Content-Language: en-US, nl
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <b0bf27f8-ea31-42f5-864d-f769bcbb3833@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="kuba22guk62kecbm"
+Content-Disposition: inline
+In-Reply-To: <20250108110620.86900-1-kkartik@nvidia.com>
 
-On 09/01/2025 10:49, Stanimir Varbanov wrote:
-> Hi,
-> 
-> On 1/9/25 10:43 AM, Dikshita Agarwal wrote:
->>
->>
->> On 1/8/2025 8:22 PM, Mauro Carvalho Chehab wrote:
->>> Em Wed, 8 Jan 2025 16:42:03 +0530
->>> Dikshita Agarwal <quic_dikshita@quicinc.com> escreveu:
->>>
->>>> On 1/8/2025 4:13 PM, Hans Verkuil wrote:
->>>>> On 1/8/25 11:21, Dikshita Agarwal wrote:  
->>>>>>
->>>>>>
->>>>>> On 1/8/2025 2:25 PM, Hans Verkuil wrote:  
->>>>>>> On 08/01/2025 09:51, Dikshita Agarwal wrote:  
->>>>>>>>
->>>>>>>>
->>>>>>>> On 1/8/2025 1:17 PM, Hans Verkuil wrote:  
->>>>>>>>> On 08/01/2025 08:43, Dikshita Agarwal wrote:  
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> On 1/7/2025 7:27 PM, Nicolas Dufresne wrote:  
->>>>>>>>>>> Le lundi 23 décembre 2024 à 16:21 +0530, Dikshita Agarwal a écrit :  
->>>>>>>>>>>>
->>>>>>>>>>>> On 12/23/2024 4:00 PM, Mauro Carvalho Chehab wrote:  
->>>>>>>>>>>>> Em Thu, 12 Dec 2024 17:21:49 +0530
->>>>>>>>>>>>> Dikshita Agarwal <quic_dikshita@quicinc.com> escreveu:
->>>>>>>>>>>>>  
->>>>>>>>>>>>>> +	.dma_mask = GENMASK(31, 29) - 1,  
->>>>>>>>>>>>>
->>>>>>>>>>>>> Setting a mask to GENMASK() - 1 sounds weird. Is it really what you want?
->>>>>>>>>>>>> I so, why?
->>>>>>>>>>>>>  
->>>>>>>>>>>> Hi Mauro,
->>>>>>>>>>>>
->>>>>>>>>>>> the value of this dma mask should be 0xe0000000 -1.
->>>>>>>>>>>>
->>>>>>>>>>>> The background for the same is, 0xe0000000 onward memory space is allocated
->>>>>>>>>>>> for IO register space so we are restricting the driver buffer allocations
->>>>>>>>>>>> to 0xe0000000 - 1.
->>>>>>>>>>>>
->>>>>>>>>>>> Based on the comments received in the past, we are using GENMASK to
->>>>>>>>>>>> generate 0xe0000000.
->>>>>>>>>>>>
->>>>>>>>>>>> Does this answer your query or I missed something?  
->>>>>>>>>>>
->>>>>>>>>>> I'm not sure it will do what you want. (0xe0000000 -1) matches ~BIT(29). Perhaps
->>>>>>>>>>> you wanted to use ~0xe0000000. 
->>>>>>>>>>>  
->>>>>>>>>> value of dma mask is coming as expected with GENMASK(31, 29) - 1
->>>>>>>>>>
->>>>>>>>>> qcom-iris aa00000.video-codec: dma_mask DFFFFFFF (0xe0000000 -1)  
->>>>>>>>>
->>>>>>>>> Isn't this just the equivalent of GENMASK(28, 0)? Can't you use that?  
->>>>>>>
->>>>>>> Too early in the morning, this suggestion was clearly wrong.
->>>>>>>  
->>>>>>>>>
->>>>>>>>> It's much easier to understand than GENMASK()-1.  
->>>>>>>>
->>>>>>>> Sure, I can use either ~GENMASK(29, 29) or ~BIT(29),  
->>>>>>>
->>>>>>> ~BIT(29).
->>>>>>>
->>>>>>> It's really weird to just disable a single bit, so I think some comments
->>>>>>> explaining why this mask is needed would be good (if there aren't comments
->>>>>>> already).
->>>>>>>  
->>>>>> I tested this some more, and seems ~BIT(29) doesn't work, as its still
->>>>>> conflicting with the register space.  
->>>>>
->>>>> Odd, perhaps a 64 vs 32 bit issue?
->>>>>   
->>>>>> Correct value would be GENMASK(31,30) + GENMASK(28,0) to set the exact bits
->>>>>> to get the desired value i.e 0xe0000000 -1  
->>>>> Honestly, in this case I would prefer to just go with the actual hex value
->>>>> 0xdfffffff together with an explanatory comment.
->>>>>   
->>>> We moved to GENMASK way to address comment on previous version, but sure
->>>> can directly use 0xdfffffff with a comment.
->>>
->>> If I understood it right, bits 0-31 can be used, but the hardware has some
->>> issue using bit 29 at the mask. Could you please comment why it can't be
->>> used?
->>>
->> That would not be a correct statement, We don't have issue with using BIT
->> 29 with mask but upper limit of DMA address available to use is 0xdfffffff.
-> 
-> I'd keep the original representation of the DMA address mask. This is
-> not an register to represent it via GENMASK. It is used by the driver to
-> set the hardware limitation on the upper bound of DMA address range.
-> 
-> .dma_mask = 0xe0000000 - 1
-> 
-> because we set it through dma_set_mask_and_coherent() which expects a
-> mask we subtract 1.
 
-Yes, I agree. I see the venus driver does the same thing, so let's follow
-that example for consistency.
+--kuba22guk62kecbm
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 0/5] Add I2C support for Tegra264
+MIME-Version: 1.0
 
-Regards,
+On Wed, Jan 08, 2025 at 04:36:15PM +0530, Kartik Rajput wrote:
+> Following series of patches add support for Tegra264 and High Speed (HS)
+> Mode in i2c-tegra.c driver.
+>=20
+> Akhil R (3):
+>   i2c: tegra: Add HS mode support
+>   i2c: tegra: Add Tegra264 support
+>   i2c: tegra: Add support for SW Mutex register
+>=20
+> Kartik Rajput (2):
+>   dt-bindings: i2c: nvidia,tegra20-i2c: Document Tegra264 I2C
+>   i2c: tegra: Do not configure DMA if not supported
 
-	Hans
+It'd probably make sense to restructure this series a little bit. It's
+customary to have the DT patch first. It would then make more sense to
+add preparatory patches and then follow those up by the Tegra264 support
+patches, so something like this:
 
-> 
-> ~Stan
-> 
-> 
+	dt-bindings: i2c: nvidia,tegra20-i2c: Document Tegra264 I2C
+	i2c: tegra: Do not configure DMA if not supported
+	i2c: tegra: Add HS mode support
+	i2c: tegra: Add support for SW Mutex register
+	i2c: tegra: Add Tegra264 support
 
+Thierry
+
+--kuba22guk62kecbm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmd/pukACgkQ3SOs138+
+s6HpUw/+LIwzNqC/+AeU00nSfAFTNyCoXIi92PsDN6YMEh5GjJeEfbnXvYUer2g2
+7RMWgMmFt4Az4oKmmpRY1ztOas6nFfe3HkmTJ7C5glTxwO76H90Flv5ufC2C5Tsg
+gX3nAPT5usAX31cSntDvlV4OWn5eAHYaqhnmxxqTws2xQynhYKaAvc6+WT7xrxeo
++uBvA2K4EesEHJkJ8MgmWvbhA6ESOObCs+3pKnu50srJasmTlCRKvygG/6mD7knH
+UexSnECAkHxmUcB6PAZaFJzicDUS8RbiKuQ9fUyQuuoAjAkYUuV24qDRBJO4MaXd
+qUh6j89Ffdrv7mJrMFwg9EsPAyEQlkoXhNrn8oIZJUbxuPJCx64x+oqb7P2LmHT3
++SFeuPUGhiuYm8kw4iv5x0swcrR4QTbSazV2GlCfojjvSyLl0R0hKu2uLBej3h++
+CKncnamcISlFec6pM5R4aIpPIyY0M1D3tX1XBPhb9IKiX+Z8kZQWh+L2Oszqx4AG
+zNZY+2Khx+YOK8jUSDZu5XciyDtPMQd7JK7fEdwAExBjC4r+Jvi/t3AiYiZf7ira
+qwiHg1PCab//3z47iE+C7sQNjiaW+Racdr2FYMjSVTVTd3uWc1+/drlAbHvMM1si
+xgUJRelongzqqOj1ArXx4R6z6bO0J4FZIG/GBA7PjeftTzE2Zug=
+=QBhh
+-----END PGP SIGNATURE-----
+
+--kuba22guk62kecbm--
 
