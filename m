@@ -1,220 +1,592 @@
-Return-Path: <devicetree+bounces-137154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9F07A07B13
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:05:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B007A07AF8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:05:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E04C1694CA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:05:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6C7B169895
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B8721C9E3;
-	Thu,  9 Jan 2025 15:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256C922256B;
+	Thu,  9 Jan 2025 15:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L4V/ADLW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U3xUV+54"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F50C21517A;
-	Thu,  9 Jan 2025 15:03:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF701222567;
+	Thu,  9 Jan 2025 15:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736435029; cv=none; b=U11MmADZC74g8EGk5PN/DbOGRNVRFWzP5veJv22lnri/UmcYF2A5VxoDupp/SbmMThCYzw2DR8MD5bwKWf1SkpomPneV7nYWl3AIBCNwpduy9GDFG0GmTV2jP1+IaEGRN4eiC3xby4TaKbTavV3RXMBy0r8YRp3PRE479sG2r1w=
+	t=1736435010; cv=none; b=d7vqzEXZhHKltALMJY5Sic8fq4qVZ0flv1NN/hAwpQ89zeP9Pl2l/Bo1a0qttd+o9oMxV6pC8NN/00RAPJKv76O1bBt4SrNviBYelhHZi0dnM/KlrUsEXUZ+MeZpNuPy+w+kOLmJMhAxHc4NQqIKp/E4p91RV5bpSH6umWx8DJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736435029; c=relaxed/simple;
-	bh=ho9ulicaiUn3lPNKtJQPpJPNP6nkB26RPwtwvVpSZJ4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K08GqYXPpr1XzEuLcnumGL7EtPgwR4ka08nyHkzWIYIHtgNb7xVWMRGdUDqdT0xXNG003Ds7dFUtoJxE+sUZG+3T+AYUQzEUdEJp/mZ/wA0qdPdmNwlEO/IniQdQKhpQpFLWpesacVU8BMnTIa+h5zIBvfLueA/DudvhaZ0diII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L4V/ADLW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 509E7bLI006683;
-	Thu, 9 Jan 2025 15:03:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=X7cARWDlvKovXJOvzSYehNzZ
-	81bZtEsg4IY8TnPR3ak=; b=L4V/ADLWforsITWUd9YZMiQW+xdRaIG0s3GoHiXr
-	Yr4006gu8z/aXCvZ1DTBD78cSNqCtOsmAMbQHHhBSBeAbzdV6/gmTu77rYofjjBd
-	MskZxP3w1VzBcKZk6UGmnnct/33Ib703h4GDv4D3cLrU8ouhfUXx/DF9+PI4YR3m
-	UVSiqiY3TGi8LH+DB9UDpCQcnB9+t4sVFu2ZWNBLkyl7iCpM8Ldg8WXGh2pRA5zL
-	zIW5t7hGbECbmhQqAIRRK5eud5VTo7naMRSGZA9A/IoOQxFgwhLpDfpvyGles7hV
-	ZX5cKOQVysUsjuVQe/D56ucjGCBYXK3ahmIUfrZ+Jo0C4A==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442fxs047a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jan 2025 15:03:42 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 509F3f4V000982
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 9 Jan 2025 15:03:41 GMT
-Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 9 Jan 2025 07:03:35 -0800
-Date: Thu, 9 Jan 2025 20:33:26 +0530
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
- Ride-r3
-Message-ID: <Z3/lA+w7BoazNeWk@hu-wasimn-hyd.qualcomm.com>
-References: <20241229152332.3068172-6-quic_wasimn@quicinc.com>
- <tjrg5zqggupjo36udpyv3vynsij76f4qlus6lkbqotuimusqgq@hosmksp77sif>
- <Z3ZXWxoBtMNPJ9kk@hu-wasimn-hyd.qualcomm.com>
- <4wmxjxcvt7un7wk5v43q3jpxqjs2jbc626mgah2fxbfuouu4q6@ptzibxe2apmx>
- <Z3eMxl1Af8TOAQW/@hu-wasimn-hyd.qualcomm.com>
- <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
- <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
- <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
- <67b888fb-2207-4da5-b52e-ce84a53ae1f9@kernel.org>
- <Z3/hmncCDG8OzVkc@hu-wasimn-hyd.qualcomm.com>
+	s=arc-20240116; t=1736435010; c=relaxed/simple;
+	bh=agrun0DrMxLjidSALo8ukoreGK4+AaGIYdl9e4F0pr8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K5Drox/0CWEqyJvrRKfYVs4lXRSm9yVSAJfDeGQjO7eQiELpVQPJhGzECr/sDaJHZeVW/LCHXRuw1bo0fZ3LOzFoC+wAOKxQmb9wBTvDAzmylk90ACf15IT8EPOejKMa8DWXC3LEU+/NDu0ZTSxLNP7ZMKX71EphRgZXcTm7uAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U3xUV+54; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5266C4CEE2;
+	Thu,  9 Jan 2025 15:03:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736435009;
+	bh=agrun0DrMxLjidSALo8ukoreGK4+AaGIYdl9e4F0pr8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U3xUV+54WCTwzeLWyT+yQxHBm/LN8QacCSjyVqvJJ4de2jNpX9tsFAzu+PE8lY/OW
+	 Jwvv4OOu70oicR0jDRRp6uys6sGYcZzZcatHdhME0s90bWO2Kea7WhqnZRm0hXJONB
+	 MXNi1/L/zJIn4qJy6hfCRsdPH1pET7NjXaQ1ttg+VI61IwurXNVc5xqqx84oVLRajb
+	 okswrEFJ9Z6V0MqVBMDQUgnIVy9GTJ4AvuG7wS8AmYTHg2dXYfSVNlLMnMuiofZYSe
+	 K1Kyr6XnSZ+Bgipd8Dlt+no1TroW+WN1UvR/Gwk+fr72FYfeYHBV29EnLYvKLP1vGe
+	 0AtX+swCdNslw==
+Date: Thu, 9 Jan 2025 09:03:27 -0600
+From: Rob Herring <robh@kernel.org>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: Re: [PATCH] arm64: dts: renesas: r8a779g0: Fix graph_child_address
+ warnings from capture pipeline
+Message-ID: <20250109150327.GA3352888-robh@kernel.org>
+References: <20241016134819.1434340-1-niklas.soderlund+renesas@ragnatech.se>
+ <20241209153536.GA74826@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <Z3/hmncCDG8OzVkc@hu-wasimn-hyd.qualcomm.com>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: L8mC5HWXF_Lwq2FkVMxQ2BNVBZGh4Uni
-X-Proofpoint-ORIG-GUID: L8mC5HWXF_Lwq2FkVMxQ2BNVBZGh4Uni
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- mlxlogscore=999 malwarescore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 phishscore=0 mlxscore=0 impostorscore=0 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501090120
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241209153536.GA74826@ragnatech.se>
 
-On Thu, Jan 09, 2025 at 08:17:54PM +0530, Wasim Nazir wrote:
-> On Wed, Jan 08, 2025 at 03:09:09PM +0100, Krzysztof Kozlowski wrote:
-> > On 03/01/2025 20:58, Dmitry Baryshkov wrote:
-> > >>>>>> Initially, we included the DTS [1] file to avoid duplication. However,
-> > >>>>>> based on Krzysztof's previous suggestion [2], we change to this format.
-> > >>>>>>
-> > >>>>>> Please let us know how to proceed further on this.
-> > >>>>>
-> > >>>>> Krzysztof asked you to include DTSI files instead of including DTS
-> > >>>>> files. Hope this helps.
-> > >>>>
-> > >>>> Are you suggesting that we should also modify the 9100-ride files to
-> > >>>> include DTSI instead of DTS for consistency between QCS9100 and QCS9075?
-> > >>>> However, this would result in the duplication of Ethernet nodes in all
-> > >>>> the ride board files. Would that be acceptable?
-> > >>>
-> > >>> git mv foo.dts foo.dtsi
-> > >>> echo '#include "foo.dtsi"' > foo.dts
-> > >>> git add foo.dts
-> > >>> git commit
-> > >>>
-> > >>
-> > >> We cannot convert sa8775p-ride-r3.dts and sa8775p-ride.dts to .dtsi as
-> > >> they represent different platforms. In patch [1], we included these DTS
-> > >> files to reuse the common hardware nodes.
-> > >>
-> > >> Could you please advise on how we should proceed with the following
-> > >> approaches?
-> > >>
-> > >> a) Previous approach [1]:
-> > >> Include sa8775p-ride-r3.dts and sa8775p-ride.dts in the qcs9075-ride
-> > >> platform DTS, similar to the qcs9100-ride platform DTS. This approach
-> > >> avoids duplicating Ethernet nodes and maintains uniformity. However, it
-> > >> involves including the DTS file directly.
-> > >>
-> > >> b) Current suggestion:
-> > >> Include sa8775p-ride.dtsi in the qcs9075-ride platform DTS and also
-> > >> modify the qcs9100-ride platform DTS files to maintain uniformity. This
-> > >> approach results in duplicating Ethernet nodes.
-> > >>
-> > >> Please let us know your recommendation to finalize the DT structure.
-> > > 
-> > > sa8775p.dtsi
-> > > `__sa8775p-ride.dtsi
-> > >    `__sa8775p-ride-r2.dtsi
-> > >       `__sa8775p-ride.dts
-> > >       `__qcs9100-ride.dts
-> > >       `__qcs9075-ride.dts
-> > >    `__sa8775p-ride-r3.dtsi
-> > >       `__sa8775p-ride-r3.dts
-> > >       `__qcs9100-ride-r3.dts
-> > >       `__qcs9075-ride-r3.dts
-> > > 
-> > Wasim and all other copy-pasters of sa8775p-ride,
-> > 
-> > Just to recap, qcs9100 contributions started this terrible pattern of
-> > board including a board. Unfortunately qcs9100 was merged, so that ship
-> > has sailed.
-> > 
-> > This patchset was going the same way, because poor choices like to keep
-> > spreading, but at one of previous versions I noticed it and objected.
-> > 
-> > This v5 however solves above problem by duplicating the nodes.
-> > 
-> > Apparently all these designs - sa8755p, qcs9100 and qcs9075 - use the
-> > same board, but none of this was communicated. I checked all the commit
-> > msgs in this patchset and nothing explained about it. What annoys me is
-> > that you do not communicate your design forcing us to accept poor DTS or
-> > forcing us to guess and make poor judgments.
-> > 
-> > Come with proper hardware description and split out shared parts, like
-> > motherboard. Look how other vendors are doing it, e.g. NXP or Renesas.
-> > But assuming there are shared parts because I am pretty sure you will
-> > pick my comments when it suits you without actually following them fully
-> > and without understanding and explaining to us your own hardware.
-> > 
+On Mon, Dec 09, 2024 at 04:35:36PM +0100, Niklas Söderlund wrote:
+> Hi Rob,
 > 
-> Hi Krzysztof,
+> Sorry to bother you but I wonder if you could help me understand why the 
+> dtc checker warns for the issues I tried to work around in this patch,
+> and if possible how I can improve my solution to get rid of the 
+> warnings.
 > 
-> Here is the pictorial flow showing how SoCs are derived and what all boards
-> are supported.
+> This patch addresses the same problem for a few different devices. I 
+> will focus on the last one (/soc/isp@fed00000/ports/port@0) for my 
+> question, but all warnings here have the same issue.
 > 
-+-----------------------------------------------------------------------+
-|                                                                       |
-|                                sa8775p                                |
-|                                   |                                   |
-|           +-----------------------+-----------------------+           |
-|           |                       |                       |           |
-|           v                       |                       v           |
-|        qcs9100                    |                    qcs9075        |
-|           |                       |                       |           |
-|           v                       v                       v           |
-|         (IOT)                  (AUTO)                   (IOT)         |
-|   qcs9100-ride.dts        sa8775p-ride.dts        qcs9075-ride.dts    |
-|   qcs9100-ride-r3.dts     sa8775p-ride-r3.dts     qcs9075-ride-r3.dts |
-|                                                   qcs9075-rb8.dts     |
-|                                                                       |
-+-----------------------------------------------------------------------+
-Updating it as previous one is messed up with whitespaces.
+> I have a port node the represents a sink for a video input. This sink 
+> can either be connected to source A or source B, but not both at the 
+> same time. So each possible source is represented by an endpoint in the 
+> port node. Each endpoint have specific register address on the port bus 
+> that is described in the bindings as they map to different physical pins 
+> on the hardware.
+> 
+> The issue I have is that not all hardware configurations have both 
+> source A and B populated. All combinations of A, B and C are possible 
+> depending on the platform.
+> 
+> A)
+>     ports {
+>         ...
+>         port@0 {
+>             ...
+>             sourceA: endpoint@0 {
+>                 reg = <0>
+>             };
+>             sourceB: endpoint@1 {
+>                 reg = <1>
+>             };
+>         };
+>     };
+> 
+> B)
+>     ports {
+>         ...
+>         port@0 {
+>             ...
+>             sourceA: endpoint@0 {
+>                 reg = <0>
+>             };
+>         };
+>     };
+> 
+> C)
+>     ports {
+>         ...
+>         port@0 {
+>             ...
+>             sourceB: endpoint@1 {
+>                 reg = <1>
+>             };
+>         };
+>     };
+> 
+> For option A and C the checker is happy, but for option B the warnings 
+> this patch tries to address are triggered. While reading the 
+> dtc/checks.c I find check_graph_child_address() is the one that is 
+> triggering the warning. And this function explicitly checks for port 
+> buses with a single endpoint with a register value of 0.
+> 
+> This check was added way back in 2018 in commit df536831d02c ("checks: 
+> add graph binding checks"). But I can't find any information on the 
+> specifics. Is this design a bad idea for port buses for some reason I 
+> don't understand? AFIU this design is possible on other type of buses? 
+> And do you have any guidance on how I can dig myself out of this hole?
+
+Don't.
+
+The check is only with W=1. It is for cases where there is never more 
+than 1 endpoint. dtc can't distinguish when that is the case, so there's 
+going to be cases to ignore. Perhaps we could demote it W=2, but I'd 
+prefer not to. Making W=1 warning free may be a platform goal, but 
+that's not an overall go. If we fix something everywhere, then the check 
+is promoted.
+
+Rob
 
 > 
-> Although we included details about the QCS9075 and QCS9100 in the cover
-> letter and commit message, explaining their differences and common
-> origin from the SA8775P SOC, the new DT structure suggested by Dmitry
-> should make things clearer. This structure properly splits common parts
-> and enhances reusability.
+> Thanks for your help.
 > 
-> > Best regards,
-> > Krzysztof
+> On 2024-10-16 15:48:19 +0200, Niklas Söderlund wrote:
+> > The bindings for the R-Car video capture pipeline uses ports and
+> > endpoints to describe which IP is wired up and present on the different
+> > SoCs. It is needed to describe both which instance of an IP is
+> > connected, and to which port. The bindings try to be as reusable as
+> > possible across the different R-Car generations.
+> > 
+> > For example R-Car VIN IP bindings have three ports, where two of them
+> > can have multiple endpoints. Not all ports or endpoints are physically
+> > present on each generation and/or model of R-Car SoCs.
+> > 
+> > The users of the VIN bindings needs to know not only that a port have
+> > one, or more, endpoints but also which particular hardware instance it
+> > is. The bindings defines endpoint indexes to correspond to particular
+> > hardware instances that can be routed to a port to describe this.
+> > 
+> > This design leads to warnings when compiling the DTB if a port that can
+> > describe more then one endpoint only describes a single endpoint. And
+> > that endpoint corresponds to be the hardware the bindings defined to
+> > index 0. For example compiling R-Car V4H which includes r8a779g0.dtsi,
+> > 
+> >    ../r8a779g0.dtsi:1200.12-1210.7: Warning (graph_child_address): /soc/video@e6ef0000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+> >    ../r8a779g0.dtsi:1228.12-1238.7: Warning (graph_child_address): /soc/video@e6ef1000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+> >    ../r8a779g0.dtsi:1256.12-1266.7: Warning (graph_child_address): /soc/video@e6ef2000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+> >    ../r8a779g0.dtsi:1284.12-1294.7: Warning (graph_child_address): /soc/video@e6ef3000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+> >    ../r8a779g0.dtsi:1312.12-1322.7: Warning (graph_child_address): /soc/video@e6ef4000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+> >    ../r8a779g0.dtsi:1340.12-1350.7: Warning (graph_child_address): /soc/video@e6ef5000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+> >    ../r8a779g0.dtsi:1368.12-1378.7: Warning (graph_child_address): /soc/video@e6ef6000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+> >    ../r8a779g0.dtsi:1396.12-1406.7: Warning (graph_child_address): /soc/video@e6ef7000/ports/port@2: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+> >    ../r8a779g0.dtsi:2076.12-2086.7: Warning (graph_child_address): /soc/isp@fed00000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are
+> > 
+> > To avoid these warnings define all possible endpoints for each port in
+> > the video capture pipeline, but only set the remote-endpoint property if
+> > there is hardware present. This takes care of the warnings, but it also
+> > adds empty endpoints that are not connected to anything on that
+> > particular SoC.
+> > 
+> > Suggested-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > ---
+> > Hi Geert,
+> > 
+> > This only addresses the warnings on V4H. More boards do trigger these
+> > warnings but before I address them I thought it was a good idea we
+> > agreed if this is a good way forward.
+> > 
+> > In this design I have defined every possible endpoint for the ports
+> > involved. This might be a bit excessive as we define endpoints that are
+> > not physically possible for V4H. For example V4H only have 2 CSISP
+> > instances, while the bindings allow for up-to 4 CSISP as that is
+> > possible on V3U which the CSISP bindings are shared with.
+> > 
+> > I'm not sure where to best draw the line. Only adding empty endpoints if
+> > they are possible on the SoC sounds good, but what if we get a board
+> > with only a single CSISP for example? That would be a single endpoint
+> > with an index of 0, this triggering the warning.
+> > 
+> > Maybe do the minimum and only define an extra endpoint for ports that
+> > trigger the warning? And if it nots pysically possible for that SoC add
+> > a comment? This feels wrong however.
+> > 
+> > Let me know what you think. But it would be nice to get rid of these
+> > warnings one way or another.
+> > 
+> > Kind Regards,
+> > Niklas
+> > ---
+> >  arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 200 ++++++++++++++++++++++
+> >  1 file changed, 200 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> > index 61c6b8022ffd..e3079562fe65 100644
+> > --- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> > @@ -1364,6 +1364,18 @@ vin00isp0: endpoint@0 {
+> >  						reg = <0>;
+> >  						remote-endpoint = <&isp0vin00>;
+> >  					};
+> > +
+> > +					vin00isp1: endpoint@1 {
+> > +						reg = <1>;
+> > +					};
+> > +
+> > +					vin00isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin00isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1393,6 +1405,18 @@ vin01isp0: endpoint@0 {
+> >  						reg = <0>;
+> >  						remote-endpoint = <&isp0vin01>;
+> >  					};
+> > +
+> > +					vin01isp1: endpoint@1 {
+> > +						reg = <1>;
+> > +					};
+> > +
+> > +					vin01isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin01isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1422,6 +1446,18 @@ vin02isp0: endpoint@0 {
+> >  						reg = <0>;
+> >  						remote-endpoint = <&isp0vin02>;
+> >  					};
+> > +
+> > +					vin02isp1: endpoint@1 {
+> > +						reg = <1>;
+> > +					};
+> > +
+> > +					vin02isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin02isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1451,6 +1487,18 @@ vin03isp0: endpoint@0 {
+> >  						reg = <0>;
+> >  						remote-endpoint = <&isp0vin03>;
+> >  					};
+> > +
+> > +					vin03isp1: endpoint@1 {
+> > +						reg = <1>;
+> > +					};
+> > +
+> > +					vin03isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin03isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1480,6 +1528,18 @@ vin04isp0: endpoint@0 {
+> >  						reg = <0>;
+> >  						remote-endpoint = <&isp0vin04>;
+> >  					};
+> > +
+> > +					vin04isp1: endpoint@1 {
+> > +						reg = <1>;
+> > +					};
+> > +
+> > +					vin04isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin04isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1509,6 +1569,18 @@ vin05isp0: endpoint@0 {
+> >  						reg = <0>;
+> >  						remote-endpoint = <&isp0vin05>;
+> >  					};
+> > +
+> > +					vin05isp1: endpoint@1 {
+> > +						reg = <1>;
+> > +					};
+> > +
+> > +					vin05isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin05isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1538,6 +1610,18 @@ vin06isp0: endpoint@0 {
+> >  						reg = <0>;
+> >  						remote-endpoint = <&isp0vin06>;
+> >  					};
+> > +
+> > +					vin06isp1: endpoint@1 {
+> > +						reg = <1>;
+> > +					};
+> > +
+> > +					vin06isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin06isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1567,6 +1651,18 @@ vin07isp0: endpoint@0 {
+> >  						reg = <0>;
+> >  						remote-endpoint = <&isp0vin07>;
+> >  					};
+> > +
+> > +					vin07isp1: endpoint@1 {
+> > +						reg = <1>;
+> > +					};
+> > +
+> > +					vin07isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin07isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1592,10 +1688,22 @@ port@2 {
+> >  
+> >  					reg = <2>;
+> >  
+> > +					vin08isp0: endpoint@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> >  					vin08isp1: endpoint@1 {
+> >  						reg = <1>;
+> >  						remote-endpoint = <&isp1vin08>;
+> >  					};
+> > +
+> > +					vin08isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin08isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1621,10 +1729,22 @@ port@2 {
+> >  
+> >  					reg = <2>;
+> >  
+> > +					vin09isp0: endpoint@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> >  					vin09isp1: endpoint@1 {
+> >  						reg = <1>;
+> >  						remote-endpoint = <&isp1vin09>;
+> >  					};
+> > +
+> > +					vin09isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin09isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1650,10 +1770,22 @@ port@2 {
+> >  
+> >  					reg = <2>;
+> >  
+> > +					vin10isp0: endpoint@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> >  					vin10isp1: endpoint@1 {
+> >  						reg = <1>;
+> >  						remote-endpoint = <&isp1vin10>;
+> >  					};
+> > +
+> > +					vin10isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin10isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1679,10 +1811,22 @@ port@2 {
+> >  
+> >  					reg = <2>;
+> >  
+> > +					vin11isp0: endpoint@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> >  					vin11isp1: endpoint@1 {
+> >  						reg = <1>;
+> >  						remote-endpoint = <&isp1vin11>;
+> >  					};
+> > +
+> > +					vin11isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin11isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1708,10 +1852,22 @@ port@2 {
+> >  
+> >  					reg = <2>;
+> >  
+> > +					vin12isp0: endpoint@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> >  					vin12isp1: endpoint@1 {
+> >  						reg = <1>;
+> >  						remote-endpoint = <&isp1vin12>;
+> >  					};
+> > +
+> > +					vin12isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin12isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1737,10 +1893,22 @@ port@2 {
+> >  
+> >  					reg = <2>;
+> >  
+> > +					vin13isp0: endpoint@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> >  					vin13isp1: endpoint@1 {
+> >  						reg = <1>;
+> >  						remote-endpoint = <&isp1vin13>;
+> >  					};
+> > +
+> > +					vin13isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin13isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1766,10 +1934,22 @@ port@2 {
+> >  
+> >  					reg = <2>;
+> >  
+> > +					vin14isp0: endpoint@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> >  					vin14isp1: endpoint@1 {
+> >  						reg = <1>;
+> >  						remote-endpoint = <&isp1vin14>;
+> >  					};
+> > +
+> > +					vin14isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin14isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -1795,10 +1975,22 @@ port@2 {
+> >  
+> >  					reg = <2>;
+> >  
+> > +					vin15isp0: endpoint@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> >  					vin15isp1: endpoint@1 {
+> >  						reg = <1>;
+> >  						remote-endpoint = <&isp1vin15>;
+> >  					};
+> > +
+> > +					vin15isp2: endpoint@2 {
+> > +						reg = <2>;
+> > +					};
+> > +
+> > +					vin15isp3: endpoint@3 {
+> > +						reg = <3>;
+> > +					};
+> >  				};
+> >  			};
+> >  		};
+> > @@ -2251,6 +2443,10 @@ isp0csi40: endpoint@0 {
+> >  						reg = <0>;
+> >  						remote-endpoint = <&csi40isp0>;
+> >  					};
+> > +
+> > +					isp0csi41: endpoint@1 {
+> > +						reg = <1>;
+> > +					};
+> >  				};
+> >  
+> >  				port@1 {
+> > @@ -2331,6 +2527,10 @@ port@0 {
+> >  
+> >  					reg = <0>;
+> >  
+> > +					isp1csi40: endpoint@0 {
+> > +						reg = <0>;
+> > +					};
+> > +
+> >  					isp1csi41: endpoint@1 {
+> >  						reg = <1>;
+> >  						remote-endpoint = <&csi41isp1>;
+> > -- 
+> > 2.46.2
+> > 
 > 
-> Thanks & Regards,
-> Wasim
+> -- 
+> Kind Regards,
+> Niklas Söderlund
 
