@@ -1,257 +1,235 @@
-Return-Path: <devicetree+bounces-136994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2771EA07355
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:35:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35216A07365
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:37:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96255188AB1B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:34:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C981D188147E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A938A2153FA;
-	Thu,  9 Jan 2025 10:34:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="fiBnofoy";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="P0G9oAvd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FE4216388;
+	Thu,  9 Jan 2025 10:37:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16BD215F6E;
-	Thu,  9 Jan 2025 10:34:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642D1215F7B;
+	Thu,  9 Jan 2025 10:37:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736418876; cv=none; b=EljnNDbTA+v/iCU2qG05f8WBwvfzrHOxHyUkEXtc6lm44WbS2u2sxPpgXfainZTds4kE8cnewhnNoTVHO/tJeWC/YVLNxoA+4NzAaa0WJmZZ+dIm2ph+UEjGNQ4C8yjhi+cKErXspGt8pWmvfvGPoNFwhkoJo6cI6VBQZ9f/EPQ=
+	t=1736419035; cv=none; b=twsWQc55cK0C6XqUO0jdB/l6A300sL2rHUjlNcBRzrGWwsOX/450mV+EuV04ea+TZaOksYgnhmTuah+ieK+eHuNx8xapNJF1uB5iWUnE4t3YR+qh+XtfdlDQlSpRSPmgQb6HDoJe/PTrlD8pgVcz+TpPcckZaIZ0OJe9QWMU+OA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736418876; c=relaxed/simple;
-	bh=b2mFnURgBYhW3tPe2jkEMh6houBMg8MkQqm87ns/fXw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PPdB9TQRmhGcWoCoXQvTVhGp4rm047uX0uIRit0e0DI/MlYyDC5tmlB3pRMGQbW+MnyA8uTdixVG+xgTManb3QdKYfcYeC0TmE4eMr0UsjFL7gskbSv7Un8nJRa4io6HNcb/YLBvrxx9V3+slZK/PNTjW23nTpat2P9rNM6nrw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=fiBnofoy; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=P0G9oAvd reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1736418873; x=1767954873;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0MTN/uQ1fj1sjFZFU29nzAA7q3WAULF2DQMtFspMm54=;
-  b=fiBnofoyn7/pBm6Q1mWOazrIG8z3RcG5dFx4szljSTISZyg+aP4u/XDS
-   IkI8wHWJfegLjMBXJHCedGjHrhkxWKLGmBlaW/meUIZ51Uo5UshB+CEdt
-   tkX2QwY4wvwlehumyoaTkxZD8rnXq2c0i0/YeCa2ao5tmyZNbrhMRbGNa
-   gsCUka0EPJ0MBamJ+I348O1tcdTVH8SqCgs8bhKCdMLmYHK2S7MJcc+w0
-   NKaIoIsrlzngGlyM0TGWuASHnAjt8voQ0vc2kM/2sBkxbqjaEh2EKOjUn
-   4QF0vqzvW6Inz8gAnp6yc1rz0F7mFDl/+tmzlrPcwVN4iWTj1W3btbbTa
-   g==;
-X-CSE-ConnectionGUID: +JTc6dEsTZ60x0BbnUIENQ==
-X-CSE-MsgGUID: fLjUKfk6TjaaKBsrd1u3mg==
-X-IronPort-AV: E=Sophos;i="6.12,301,1728943200"; 
-   d="scan'208";a="40947499"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 09 Jan 2025 11:34:25 +0100
-X-CheckPoint: {677FA631-4-C6D8D88D-F91F9E6B}
-X-MAIL-CPID: DAEE3929AC4BF68E40EE46756A13F4E5_2
-X-Control-Analysis: str=0001.0A682F1D.677FA631.0057,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 085C1166C27;
-	Thu,  9 Jan 2025 11:34:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1736418860;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0MTN/uQ1fj1sjFZFU29nzAA7q3WAULF2DQMtFspMm54=;
-	b=P0G9oAvddIJbYBTchLqPNFA/W8Ahm04hcZ4n4w9aN9X3yAs4hsjvxeX2/9AFsF60X8nyGd
-	xXk2jEKOXvXXA3tpxUfXxdwAEndVs5uOnnK/BUrAp3mAGVjTNF0A6Zi6bqjTBZQhz0Qseh
-	J03hbNgSysrkUSJBRZEV9DUPMUIb9TwYPm+UNzoxnhZTvxXMcU4yH1zxGFHL0RgvFjFYJ/
-	65kipP5yJuQGlN7YQy7CpQ8SzP8pCrAK72e3lKcdZC2CmwnvkpYZkLuW93w+gVWhlj7Y5a
-	jC4OplR+oh3C64I2iWSoWK9MLz48DxcWwwbzootiP27bRJja1m5Whp8AGeWvWg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing controller for i.MX9
-Date: Thu, 09 Jan 2025 11:34:18 +0100
-Message-ID: <868241455.0ifERbkFSE@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250109033418.GB31833@localhost.localdomain>
-References: <20250108-imx-ocotp-v5-0-a6d90e18ebe9@nxp.com> <3823142.MHq7AAxBmi@steina-w> <20250109033418.GB31833@localhost.localdomain>
+	s=arc-20240116; t=1736419035; c=relaxed/simple;
+	bh=ygBHJkQp0Y34pt4vk9hozJg+Ik4F+/vP/52yR31soVw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LReqVZPTdsq0EtmFUqGATWl4kRjEb9LkP/rpIzYa5RR2b9yD8TjqC7TU3dnhq727tA7fiDHCUYMffgF1uX1J8VJkJhYy4Pk1JC03bDcy8kvK6q4FhZoDHt9cjte4Zm2kzIY+LMZKZf77dA1FFffC+D0lDk+3MEJ/u6EmORcgXUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACE88C4CEE2;
+	Thu,  9 Jan 2025 10:37:10 +0000 (UTC)
+Message-ID: <0d69e79f-e14f-4636-8360-8b5c2a6c2735@xs4all.nl>
+Date: Thu, 9 Jan 2025 11:37:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of SM8250
+ SoC
+To: Stanimir Varbanov <svarbanov@suse.de>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Jianhua Lu <lujianhua000@gmail.com>,
+ Stefan Schmidt <stefan.schmidt@linaro.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
+ <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
+ <20241223113027.21b8f7ab@foz.lan>
+ <fbe0d935-a3cf-dfa0-aad8-56834a0a002c@quicinc.com>
+ <635ce4ed82aaca422b869f467300b0eccf9c8703.camel@ndufresne.ca>
+ <c0f59149-713b-45e4-3755-4a52cfaa93f6@quicinc.com>
+ <498a99e1-77ca-4acf-8850-cb74417ae88c@xs4all.nl>
+ <9fc76dd1-ef49-a9d2-0271-eacb50943b03@quicinc.com>
+ <9b33ba28-5aa9-4863-8fde-535841ddbc10@xs4all.nl>
+ <6654d78e-d16b-489a-3532-e2fbc788b0ef@quicinc.com>
+ <067d0deb-50ea-46bd-9f09-827b0ba61aa3@xs4all.nl>
+ <5953bea1-194d-fe2e-251a-d4ef3e7544d3@quicinc.com>
+ <20250108155237.5cf0ba10@foz.lan>
+ <e2716cd5-4765-d8da-888b-bcdcd86df5c4@quicinc.com>
+ <b0bf27f8-ea31-42f5-864d-f769bcbb3833@suse.de>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <b0bf27f8-ea31-42f5-864d-f769bcbb3833@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 09/01/2025 10:49, Stanimir Varbanov wrote:
+> Hi,
+> 
+> On 1/9/25 10:43 AM, Dikshita Agarwal wrote:
+>>
+>>
+>> On 1/8/2025 8:22 PM, Mauro Carvalho Chehab wrote:
+>>> Em Wed, 8 Jan 2025 16:42:03 +0530
+>>> Dikshita Agarwal <quic_dikshita@quicinc.com> escreveu:
+>>>
+>>>> On 1/8/2025 4:13 PM, Hans Verkuil wrote:
+>>>>> On 1/8/25 11:21, Dikshita Agarwal wrote:  
+>>>>>>
+>>>>>>
+>>>>>> On 1/8/2025 2:25 PM, Hans Verkuil wrote:  
+>>>>>>> On 08/01/2025 09:51, Dikshita Agarwal wrote:  
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On 1/8/2025 1:17 PM, Hans Verkuil wrote:  
+>>>>>>>>> On 08/01/2025 08:43, Dikshita Agarwal wrote:  
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> On 1/7/2025 7:27 PM, Nicolas Dufresne wrote:  
+>>>>>>>>>>> Le lundi 23 décembre 2024 à 16:21 +0530, Dikshita Agarwal a écrit :  
+>>>>>>>>>>>>
+>>>>>>>>>>>> On 12/23/2024 4:00 PM, Mauro Carvalho Chehab wrote:  
+>>>>>>>>>>>>> Em Thu, 12 Dec 2024 17:21:49 +0530
+>>>>>>>>>>>>> Dikshita Agarwal <quic_dikshita@quicinc.com> escreveu:
+>>>>>>>>>>>>>  
+>>>>>>>>>>>>>> +	.dma_mask = GENMASK(31, 29) - 1,  
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Setting a mask to GENMASK() - 1 sounds weird. Is it really what you want?
+>>>>>>>>>>>>> I so, why?
+>>>>>>>>>>>>>  
+>>>>>>>>>>>> Hi Mauro,
+>>>>>>>>>>>>
+>>>>>>>>>>>> the value of this dma mask should be 0xe0000000 -1.
+>>>>>>>>>>>>
+>>>>>>>>>>>> The background for the same is, 0xe0000000 onward memory space is allocated
+>>>>>>>>>>>> for IO register space so we are restricting the driver buffer allocations
+>>>>>>>>>>>> to 0xe0000000 - 1.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Based on the comments received in the past, we are using GENMASK to
+>>>>>>>>>>>> generate 0xe0000000.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Does this answer your query or I missed something?  
+>>>>>>>>>>>
+>>>>>>>>>>> I'm not sure it will do what you want. (0xe0000000 -1) matches ~BIT(29). Perhaps
+>>>>>>>>>>> you wanted to use ~0xe0000000. 
+>>>>>>>>>>>  
+>>>>>>>>>> value of dma mask is coming as expected with GENMASK(31, 29) - 1
+>>>>>>>>>>
+>>>>>>>>>> qcom-iris aa00000.video-codec: dma_mask DFFFFFFF (0xe0000000 -1)  
+>>>>>>>>>
+>>>>>>>>> Isn't this just the equivalent of GENMASK(28, 0)? Can't you use that?  
+>>>>>>>
+>>>>>>> Too early in the morning, this suggestion was clearly wrong.
+>>>>>>>  
+>>>>>>>>>
+>>>>>>>>> It's much easier to understand than GENMASK()-1.  
+>>>>>>>>
+>>>>>>>> Sure, I can use either ~GENMASK(29, 29) or ~BIT(29),  
+>>>>>>>
+>>>>>>> ~BIT(29).
+>>>>>>>
+>>>>>>> It's really weird to just disable a single bit, so I think some comments
+>>>>>>> explaining why this mask is needed would be good (if there aren't comments
+>>>>>>> already).
+>>>>>>>  
+>>>>>> I tested this some more, and seems ~BIT(29) doesn't work, as its still
+>>>>>> conflicting with the register space.  
+>>>>>
+>>>>> Odd, perhaps a 64 vs 32 bit issue?
+>>>>>   
+>>>>>> Correct value would be GENMASK(31,30) + GENMASK(28,0) to set the exact bits
+>>>>>> to get the desired value i.e 0xe0000000 -1  
+>>>>> Honestly, in this case I would prefer to just go with the actual hex value
+>>>>> 0xdfffffff together with an explanatory comment.
+>>>>>   
+>>>> We moved to GENMASK way to address comment on previous version, but sure
+>>>> can directly use 0xdfffffff with a comment.
+>>>
+>>> If I understood it right, bits 0-31 can be used, but the hardware has some
+>>> issue using bit 29 at the mask. Could you please comment why it can't be
+>>> used?
+>>>
+>> That would not be a correct statement, We don't have issue with using BIT
+>> 29 with mask but upper limit of DMA address available to use is 0xdfffffff.
+> 
+> I'd keep the original representation of the DMA address mask. This is
+> not an register to represent it via GENMASK. It is used by the driver to
+> set the hardware limitation on the upper bound of DMA address range.
+> 
+> .dma_mask = 0xe0000000 - 1
+> 
+> because we set it through dma_set_mask_and_coherent() which expects a
+> mask we subtract 1.
 
-Am Donnerstag, 9. Januar 2025, 04:34:18 CET schrieb Peng Fan:
-> On Wed, Jan 08, 2025 at 11:15:40AM +0100, Alexander Stein wrote:
-> >Hi Peng,
-> >
-> >Am Mittwoch, 8. Januar 2025, 08:00:18 CET schrieb Peng Fan (OSS):
-> >> From: Peng Fan <peng.fan@nxp.com>
-> >>=20
-> >> i.MX9 OCOTP supports a specific peripheral or function being fused
-> >> which means disabled, so
-> >>  - Introduce ocotp_access_gates to be container of efuse gate info
-> >>  - Iterate all nodes to check accessing permission. If not
-> >>    allowed to be accessed, detach the node
-> >>=20
-> >> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> >> ---
-> >>  drivers/nvmem/imx-ocotp-ele.c | 172 +++++++++++++++++++++++++++++++++=
-++++++++-
-> >>  1 file changed, 171 insertions(+), 1 deletion(-)
-> >>=20
-> [....]
-> >> +
-> >> +	return imx_ele_ocotp_access_control(priv);
-> >
-> >In [1] you mentioned devlink should solve the probe order. How does this
-> >play when the driver is compiled in (e.g. ethernet for NFS boot) but
-> >this OCOTP driver is just a module?
->=20
-> OCOTP needs to built in for using devlink. Or the users needs to be
-> built as module.
+Yes, I agree. I see the venus driver does the same thing, so let's follow
+that example for consistency.
 
-I don't like this kind of assumption. Would it make more sense to make
-CONFIG_NVMEM_IMX_OCOTP_ELE as bool instead of tristate?
+Regards,
 
-> >I'm not well versed with devlink, but is
-> >> access-controllers =3D <&ocotp IMX93_OCOTP_ENET1_GATE>;
-> >already enough to create that link?
->=20
-> Yes, the drivers/of/property.c has this
-> "DEFINE_SIMPLE_PROP(access_controllers, "access-controllers", "#access-co=
-ntroller-cells")"
->=20
-> The fw_devlink driver will create consumer/supplier to make sure proper
-> order.
+	Hans
 
-Okay, thanks for confirming.
-
-Best regards,
-Alexander
-
-> Regards,
-> Peng
->=20
-> >
-> >Best regards,
-> >Alexander
-> >
-> >>  }
-> >> =20
-> >> +struct access_gate imx93_access_gate[] =3D {
-> >> +		[IMX93_OCOTP_NPU_GATE]		=3D { .word =3D 19, .mask =3D BIT(13) },
-> >> +		[IMX93_OCOTP_A550_GATE]		=3D { .word =3D 19, .mask =3D BIT(14) },
-> >> +		[IMX93_OCOTP_A551_GATE]		=3D { .word =3D 19, .mask =3D BIT(15) },
-> >> +		[IMX93_OCOTP_M33_GATE]		=3D { .word =3D 19, .mask =3D BIT(24) },
-> >> +		[IMX93_OCOTP_CAN1_FD_GATE]	=3D { .word =3D 19, .mask =3D BIT(28) },
-> >> +		[IMX93_OCOTP_CAN2_FD_GATE]	=3D { .word =3D 19, .mask =3D BIT(29) },
-> >> +		[IMX93_OCOTP_CAN1_GATE]		=3D { .word =3D 19, .mask =3D BIT(30) },
-> >> +		[IMX93_OCOTP_CAN2_GATE]		=3D { .word =3D 19, .mask =3D BIT(31) },
-> >> +		[IMX93_OCOTP_USB1_GATE]		=3D { .word =3D 20, .mask =3D BIT(3) },
-> >> +		[IMX93_OCOTP_USB2_GATE]		=3D { .word =3D 20, .mask =3D BIT(4) },
-> >> +		[IMX93_OCOTP_ENET1_GATE]	=3D { .word =3D 20, .mask =3D BIT(5) },
-> >> +		[IMX93_OCOTP_ENET2_GATE]	=3D { .word =3D 20, .mask =3D BIT(6) },
-> >> +		[IMX93_OCOTP_PXP_GATE]		=3D { .word =3D 20, .mask =3D BIT(10) },
-> >> +		[IMX93_OCOTP_MIPI_CSI1_GATE]	=3D { .word =3D 20, .mask =3D BIT(17) =
-},
-> >> +		[IMX93_OCOTP_MIPI_DSI1_GATE]	=3D { .word =3D 20, .mask =3D BIT(19) =
-},
-> >> +		[IMX93_OCOTP_LVDS1_GATE]	=3D { .word =3D 20, .mask =3D BIT(24) },
-> >> +		[IMX93_OCOTP_ADC1_GATE]		=3D { .word =3D 21, .mask =3D BIT(7) },
-> >> +};
-> >> +
-> >> +static const struct ocotp_access_gates imx93_access_gates_info =3D {
-> >> +	.num_words =3D 3,
-> >> +	.words =3D {19, 20, 21},
-> >> +	.num_gates =3D ARRAY_SIZE(imx93_access_gate),
-> >> +	.gates =3D imx93_access_gate,
-> >> +};
-> >> +
-> >>  static const struct ocotp_devtype_data imx93_ocotp_data =3D {
-> >> +	.access_gates =3D &imx93_access_gates_info,
-> >>  	.reg_off =3D 0x8000,
-> >>  	.reg_read =3D imx_ocotp_reg_read,
-> >>  	.size =3D 2048,
-> >> @@ -183,7 +307,53 @@ static const struct ocotp_devtype_data imx93_ocot=
-p_data =3D {
-> >>  	},
-> >>  };
-> >> =20
-> >> +struct access_gate imx95_access_gate[] =3D {
-> >> +		[IMX95_OCOTP_CANFD1_GATE]	=3D { .word =3D 17, .mask =3D BIT(20) },
-> >> +		[IMX95_OCOTP_CANFD2_GATE]	=3D { .word =3D 17, .mask =3D BIT(21) },
-> >> +		[IMX95_OCOTP_CANFD3_GATE]	=3D { .word =3D 17, .mask =3D BIT(22) },
-> >> +		[IMX95_OCOTP_CANFD4_GATE]	=3D { .word =3D 17, .mask =3D BIT(23) },
-> >> +		[IMX95_OCOTP_CANFD5_GATE]	=3D { .word =3D 17, .mask =3D BIT(24) },
-> >> +		[IMX95_OCOTP_CAN1_GATE]		=3D { .word =3D 17, .mask =3D BIT(25) },
-> >> +		[IMX95_OCOTP_CAN2_GATE]		=3D { .word =3D 17, .mask =3D BIT(26) },
-> >> +		[IMX95_OCOTP_CAN3_GATE]		=3D { .word =3D 17, .mask =3D BIT(27) },
-> >> +		[IMX95_OCOTP_CAN4_GATE]		=3D { .word =3D 17, .mask =3D BIT(28) },
-> >> +		[IMX95_OCOTP_CAN5_GATE]		=3D { .word =3D 17, .mask =3D BIT(29) },
-> >> +		[IMX95_OCOTP_NPU_GATE]		=3D { .word =3D 18, .mask =3D BIT(0) },
-> >> +		[IMX95_OCOTP_A550_GATE]		=3D { .word =3D 18, .mask =3D BIT(1) },
-> >> +		[IMX95_OCOTP_A551_GATE]		=3D { .word =3D 18, .mask =3D BIT(2) },
-> >> +		[IMX95_OCOTP_A552_GATE]		=3D { .word =3D 18, .mask =3D BIT(3) },
-> >> +		[IMX95_OCOTP_A553_GATE]		=3D { .word =3D 18, .mask =3D BIT(4) },
-> >> +		[IMX95_OCOTP_A554_GATE]		=3D { .word =3D 18, .mask =3D BIT(5) },
-> >> +		[IMX95_OCOTP_A555_GATE]		=3D { .word =3D 18, .mask =3D BIT(6) },
-> >> +		[IMX95_OCOTP_M7_GATE]		=3D { .word =3D 18, .mask =3D BIT(9) },
-> >> +		[IMX95_OCOTP_DCSS_GATE]		=3D { .word =3D 18, .mask =3D BIT(22) },
-> >> +		[IMX95_OCOTP_LVDS1_GATE]	=3D { .word =3D 18, .mask =3D BIT(27) },
-> >> +		[IMX95_OCOTP_ISP_GATE]		=3D { .word =3D 18, .mask =3D BIT(29) },
-> >> +		[IMX95_OCOTP_USB1_GATE]		=3D { .word =3D 19, .mask =3D BIT(2) },
-> >> +		[IMX95_OCOTP_USB2_GATE]		=3D { .word =3D 19, .mask =3D BIT(3) },
-> >> +		[IMX95_OCOTP_NETC_GATE]		=3D { .word =3D 19, .mask =3D BIT(4) },
-> >> +		[IMX95_OCOTP_PCIE1_GATE]	=3D { .word =3D 19, .mask =3D BIT(6) },
-> >> +		[IMX95_OCOTP_PCIE2_GATE]	=3D { .word =3D 19, .mask =3D BIT(7) },
-> >> +		[IMX95_OCOTP_ADC1_GATE]		=3D { .word =3D 19, .mask =3D BIT(8) },
-> >> +		[IMX95_OCOTP_EARC_RX_GATE]	=3D { .word =3D 19, .mask =3D BIT(11) },
-> >> +		[IMX95_OCOTP_GPU3D_GATE]	=3D { .word =3D 19, .mask =3D BIT(16) },
-> >> +		[IMX95_OCOTP_VPU_GATE]		=3D { .word =3D 19, .mask =3D BIT(17) },
-> >> +		[IMX95_OCOTP_JPEG_ENC_GATE]	=3D { .word =3D 19, .mask =3D BIT(18) },
-> >> +		[IMX95_OCOTP_JPEG_DEC_GATE]	=3D { .word =3D 19, .mask =3D BIT(19) },
-> >> +		[IMX95_OCOTP_MIPI_CSI1_GATE]	=3D { .word =3D 19, .mask =3D BIT(21) =
-},
-> >> +		[IMX95_OCOTP_MIPI_CSI2_GATE]	=3D { .word =3D 19, .mask =3D BIT(22) =
-},
-> >> +		[IMX95_OCOTP_MIPI_DSI1_GATE]	=3D { .word =3D 19, .mask =3D BIT(23) =
-},
-> >> +};
-> >> +
-> >> +static const struct ocotp_access_gates imx95_access_gates_info =3D {
-> >> +	.num_words =3D 3,
-> >> +	.words =3D {17, 18, 19},
-> >> +	.num_gates =3D ARRAY_SIZE(imx95_access_gate),
-> >> +	.gates =3D imx95_access_gate,
-> >> +};
-> >> +
-> >>  static const struct ocotp_devtype_data imx95_ocotp_data =3D {
-> >> +	.access_gates =3D &imx95_access_gates_info,
-> >>  	.reg_off =3D 0x8000,
-> >>  	.reg_read =3D imx_ocotp_reg_read,
-> >>  	.size =3D 2048,
-> >>=20
-> >>=20
-> >
-> >
->=20
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+> 
+> ~Stan
+> 
+> 
 
 
