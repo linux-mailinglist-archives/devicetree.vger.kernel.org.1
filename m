@@ -1,161 +1,112 @@
-Return-Path: <devicetree+bounces-137225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4483FA0833E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:03:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9929FA0833C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:03:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7478188BBDC
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 23:03:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 677267A136B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 23:03:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 637BE2063C7;
-	Thu,  9 Jan 2025 23:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 905A9205E21;
+	Thu,  9 Jan 2025 23:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RZQJUnd/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="oBB+UDtl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA18205AD7
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 23:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF469204F98;
+	Thu,  9 Jan 2025 23:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736463794; cv=none; b=IDEpJSloDi1iMV0S/OoZhYMQ2nDA2esq13lmoHM5LGhtZ6GABivv/zBs1/cLrkZG58/1aYGCasRC+98gKvZ8zfB2FaV7VgopraIKeUEGWvmsgaNiZTuHoprlfmoKr85N8dPTcWCEHXGFg/Duj0Z+hvGRBCA1Qd7QTlU3ZYTeY/w=
+	t=1736463792; cv=none; b=afJ1G0uUa2nmcs0bc/ZidQN9js1f66DkXLzZ0C5qzQPjzHH32UuKEKyZozLeETF5FtkmfWte2ainr0Hh/jGaRY1349pWIme/C1U+2N5ojzDQ5KEq7CqD70RHUsdZbZzCUxie+3YhnH/hVeAWHIqOIpCe7kvZqwQvJPAIE/4s91o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736463794; c=relaxed/simple;
-	bh=hY2rkJrYPz6wESPMCkN5cJxZr3WT7E7660Vjmz+mNt4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F4df8CnExfC/ozonMU/kLY0m/pWtmgPCQzsmWutb/tKQzn2hU+hvtPw+3xOhANaCj5DFcJRszGorgS1HzHqpw2hIep/I4pk7JZ93zBm/DZEoRMxDpQwqgGypazaFJpCgzOMPJ1Hpe294IhECP8BL741hjx/SFLyVQ0vDxcPIm60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RZQJUnd/; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5401c52000fso1375538e87.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 15:03:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736463791; x=1737068591; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AAcNvBDLCMVwN0Us4db6UaMc6t+XPG2++mfdFKlIJ/k=;
-        b=RZQJUnd/FGH+nbmDO5+xiYdCL9WICwF/J3hFzRivXaBzvBqy5Hy8eu7fy82Ikc6km9
-         exhv5Inj4gyuiU5AIkO1BIbq0H2cYEZkV56rmhUDIFT6Xb7snk8h0jWIESeg8U3Ikr9J
-         KnfS+EI7NNJ9vsAjvVui7xBp5u0f4g/U0VNlK5RKjS3Ws0xQvy2COCq5JyXWJEu8i2y1
-         +jydnhIV2hP9/t3x4FXEwsP6q0xrT/jBi2uCvMXUDPbG1aPyjtns8UId4zPsM7Yb/Uul
-         vRiYNiOAnGyugVVAx1DiYAP6lSo3IHII6aF77RAbPFqA4cZa5oSfY3dJmT+JIx9mTE6P
-         jfwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736463791; x=1737068591;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AAcNvBDLCMVwN0Us4db6UaMc6t+XPG2++mfdFKlIJ/k=;
-        b=tR3rrV82114zhzVePt/2483pS0nFFnRO/El/64OsdmZO0Svs70wGrugbdmujB3CAqV
-         PqsyPR35HVS5WWLAQGe2K3PjUWfSjHtye66Id7KWnyFqshuiQOPN6qga5XG0+s0Td8Qe
-         Hna8biZ4IR+MkSR4D3rtkUWHKWZKu2845zk93SucOVXbCiDnGMngntJXB4L17BKo4DHU
-         n/eAjLLOfIM0kgda6tOCeHBcdRxm05yoPcM+Kr/5ycEwR5mkHrj+h0gskoh9zB6WxjG0
-         7qruutBgnTXexzwOjqFOiBPz4m5jjllj+dunFRUxufO5Ap6+zUaJR5Tu23AI80NIKGI5
-         Y5fA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBW959yJ9vd0WcqsksTHzt8ZD9zNs1xyFC82P/SmyheCpuw3brmp10GcfDmAFlB10yER+BPTA2axOg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyihOw3hC+Pye64AbauTDThShLhsNH8siK5iECdKy8WjXLJnGOj
-	iLdHisl2jjUB2Uue42D3qAOdXRfgNL/WtLdh6TsUcAOWtWrEK9IKcIdkQ0EYfXc=
-X-Gm-Gg: ASbGnctuKDsFBjpiT3QgFFoIeLtNWd4FmmovD4laExmLBRQUWfEkBQqgmPAbdpoZb+6
-	EfszO3qCeN69DPZIkAI+CJl0iT2ECnXUrYnRMG6oTBjAJYwSfypA4AZKLvuG5bKiCNJDme5DNNB
-	uDfvVllOJ8o/mJdT3WsObliOtF4d35/8OkW39wV43BBGs0XbXDAWz54NCK1nV4t9fbD+/e1SN30
-	3fQ9UxTJyU1o9UIt/1DgJXkWmD62SB7wTVlKXCwplSgTutW+aBVBO2FfHDelq5z+ZRgI1wRPVXr
-	Ez/vMc+H596NUNj4hdj+4i4ysho9lpVlNDQF
-X-Google-Smtp-Source: AGHT+IHf6pkAtxzAARwiQGzNbECIXTffJ/LFIaL0vm4+LTZtTr/waEIktn0uMxncfhNuRu6tqNYP7A==
-X-Received: by 2002:a05:6512:3e02:b0:53e:38fd:7518 with SMTP id 2adb3069b0e04-542845b1a57mr3023380e87.3.1736463790653;
-        Thu, 09 Jan 2025 15:03:10 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428becac3esm327366e87.233.2025.01.09.15.03.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 15:03:10 -0800 (PST)
-Date: Fri, 10 Jan 2025 01:03:07 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
-	Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH RFC / WIP 11/11] drm/msm/dpu: WIP: CTL_LAYER_EXT is gone
-Message-ID: <h5eabjdgzsvn2hutcc6osndieg3v6hkusfdxnrfhy77gmyx4eq@4wwltux4erz5>
-References: <20250109-b4-sm8750-display-v1-0-b3f15faf4c97@linaro.org>
- <20250109-b4-sm8750-display-v1-11-b3f15faf4c97@linaro.org>
+	s=arc-20240116; t=1736463792; c=relaxed/simple;
+	bh=J5pbfu2P0SRouzuCOwQ6Fg1ZXF6bjH6Vvi/1m3tza4Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jJ5eNXRMGAw+G1nrvag1Cqt8TDfGq23Ak7L/O7v31qClRs8jAeWvLGLGre9fuYfbv1FdAqY9U2C1XqV3jbDXn/mU4/NaP/4ahXZSdWHQhxv56lJgYQF3uS6/KYFdNXjT85OPzbO+B2OX3E+SrRqkIfcAJIMPodwmYf7Mm0oDpxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=oBB+UDtl; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=2Hc9m1dPBDPuWb47dArImrMSzilYfkcFH6qpnwe202U=; b=oBB+UDtlo9fsDTebtDxQhn7Nwm
+	VKSxQCiJa5SPi0oW7hlItnioj/0wI8JwrcvxDaLtvGdFsFHWCb5KOmX7ClMseKRNv7Wz63nrRA0aH
+	v9GacM01qGUr/QxcjQwfkp7Y7XLFORZnvt2BMrkKHhn5lE/NjizZY/zciikJcplKNCH4Gqb2jW4Js
+	9g+Wf9Q5SPYl6g4p07DZfTvBgM7q6lxACDf5rVl4z3IB41nRugDEzZGKSptD3xK+Y0sPEXwJFlmHs
+	MAoEso/qR+dr0XXBcvPh3vi+gcLHCzPFip6DsShz/68IY+aH7PGIcl28OYAG94aKMU+1YdvSfcUr1
+	UagzyiLQ==;
+Received: from i5e860d05.versanet.de ([94.134.13.5] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tW1YT-0005pB-Aj; Fri, 10 Jan 2025 00:03:09 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org, Shimrra Shai <shimrrashai@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, robh@kernel.org,
+ Shimrra Shai <shimrrashai@gmail.com>
+Subject:
+ Re: [PATCH v4 1/2] dt-bindings: arm: rockchip: Add Firefly ITX-3588J board
+Date: Fri, 10 Jan 2025 00:03:08 +0100
+Message-ID: <2999810.o0KrE1Onz3@diego>
+In-Reply-To: <20241216214152.58387-2-shimrrashai@gmail.com>
+References:
+ <20241216214152.58387-1-shimrrashai@gmail.com>
+ <20241216214152.58387-2-shimrrashai@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250109-b4-sm8750-display-v1-11-b3f15faf4c97@linaro.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Thu, Jan 09, 2025 at 02:08:38PM +0100, Krzysztof Kozlowski wrote:
-> Not finished. Looking around, maybe someone already did some works
-> around new CTL_PIPE_ACTIVE and CTL_LAYER_ACTIVE registers?
-
-This is not enough, the whole blend setup is to be moved to LM
-block.
-
+Am Montag, 16. Dezember 2024, 22:41:51 CET schrieb Shimrra Shai:
+> Document board compatible bindings.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Shimrra Shai <shimrrashai@gmail.com>
 > ---
->  drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_12_0_sm8750.h | 12 ++++++------
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c          |  3 +++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h          |  3 +++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c              | 10 ++++++++--
->  4 files changed, 20 insertions(+), 8 deletions(-)
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-
-[...]
-
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> index 06b01cd36ce2442ee6e1b85be227851a234cc96b..502449cbbddcb21b7008f139ac065d187a16b68e 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> @@ -40,6 +40,8 @@
->  #define   CTL_INTF_FLUSH                0x110
->  #define   CTL_CDM_FLUSH                0x114
->  #define   CTL_PERIPH_FLUSH              0x128
-> +#define   CTL_PIPE_ACTIVE               0x12C
-> +#define   CTL_LAYER_ACTIVE              0x130
->  #define   CTL_INTF_MASTER               0x134
->  #define   CTL_DSPP_n_FLUSH(n)           ((0x13C) + ((n) * 4))
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index 753199a12..fc7ee86e2 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -167,6 +167,13 @@ properties:
+>            - const: engicam,px30-core
+>            - const: rockchip,px30
 >  
-> @@ -729,8 +731,12 @@ static void _setup_ctl_ops(struct dpu_hw_ctl_ops *ops,
->  	ops->trigger_pending = dpu_hw_ctl_trigger_pending;
->  	ops->reset = dpu_hw_ctl_reset_control;
->  	ops->wait_reset_status = dpu_hw_ctl_wait_reset_status;
-> -	ops->clear_all_blendstages = dpu_hw_ctl_clear_all_blendstages;
-> -	ops->setup_blendstage = dpu_hw_ctl_setup_blendstage;
-> +	if (cap & BIT(DPU_CTL_NO_LAYER_EXT)) {
-
-I'd prefer if this is was an explicit MDSS / DPU version check rather
-than an extra feature bit, enable new functions for version >= 11.0
-
-> +		// TODO: NOT COMPLETE, This has to be implemented
-> +	} else {
-> +		ops->clear_all_blendstages = dpu_hw_ctl_clear_all_blendstages;
-> +		ops->setup_blendstage = dpu_hw_ctl_setup_blendstage;
-> +	}
->  	ops->update_pending_flush_sspp = dpu_hw_ctl_update_pending_flush_sspp;
->  	ops->update_pending_flush_mixer = dpu_hw_ctl_update_pending_flush_mixer;
->  	if (cap & BIT(DPU_CTL_DSPP_SUB_BLOCK_FLUSH))
-> 
-> -- 
-> 2.43.0
+> +      - description: Firefly Core-3588J-based boards
+> +        items:
+> +          - enum:
+> +              - firefly,itx-3588j
+> +          - const: firefly,core-3588j
+> +          - const: rockchip,rk3588
+> +
+>        - description: Firefly Core-PX30-JD4 on MB-JD4-PX30 baseboard
+>          items:
+>            - const: firefly,px30-jd4-core-mb
 > 
 
--- 
-With best wishes
-Dmitry
+In v3 [0] the board dt-binding got an
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+so Krzysztof already noted, please carry those forward into new versions.
+
+
+[0] https://lore.kernel.org/linux-arm-kernel/x7y24y3bkbj5fzx5pdprjr5umg6egxsy2xscfbj3xgzgzubvdk@ppncjiqoekk7/
+
+
 
