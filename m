@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-137089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F749A0775B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:29:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 423CDA0775F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:29:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A977164D72
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:29:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E55F3A87B6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B5A218AA0;
-	Thu,  9 Jan 2025 13:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2598219A8F;
+	Thu,  9 Jan 2025 13:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="aH/3opQg"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="zy7rSUXm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from pv50p00im-zteg10011401.me.com (pv50p00im-zteg10011401.me.com [17.58.6.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4A6219A74
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB8F218AB2
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:28:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736429306; cv=none; b=QALEZxQkre/iZSEABHc2xb1eT20IGnSsKOZUuyhnN9nWUt9+RSn9b3vKkMVx0EqGL5ML9aVtMGZtH+Ng3xLHg9mxxPwkRXgUa5SQa16Mb7l/AGdJ2VJ1km0IRN3lLhvLWgwf1cybhzag/wy0ODCudS8yoskTwm1u6OAsFgb8yJk=
+	t=1736429313; cv=none; b=XoWtxWGH9gFT2jmD+okg2wi9RWohWyJ/DJoUFamN7ZwGAzl5uH9fHDAgZviGtfuVbGEjOxsngrBJAKIJUjQrW4QwaHlf5fF5D5MgArn/KBnudTRmiImcjnfbr+phYVETRo3xvN63s08F9u9SQpjRqKY3EOryU83nZlSH41m9seE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736429306; c=relaxed/simple;
-	bh=80kccgYvnj9G84Nx3IR+WA53NzpjDh/0RaEOK5puNy8=;
+	s=arc-20240116; t=1736429313; c=relaxed/simple;
+	bh=bc6lzGgIEQ1cBkFQ7KiFXTLCSQur3IQsBxM4lNEjjT8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VjuBvczoJYMgttxw7rH8RPpFcEVSK+5PUVIm4u88HcmMxqV4rJ0/RSxeZtor5T85jUP9TzvuroYREidw9b1zSiKfwN5bwXwvkfvEt3x4ttE4S/3cXSDVA2HsjfZ35/cZHUUuOxN72MxQUHBBO4ejF6yTuXZCSuMiTL/jJfuCtRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=aH/3opQg; arc=none smtp.client-ip=17.58.6.41
+	 In-Reply-To:To:Cc; b=scYQBLmCX5p3CoH8ruflNGaPP0Mbo4tTMDPlrv7cfNFZBiD3ANuYRRPJSapl6Qbp7G3V+rix4okfxauXeCQhkjUE/tA/Zt8szdlWCZ9JqLta35foDu+rqc9OsDzLEJmmLn4OHK0CRkSkN/n99jUq4Jdj9JG0eecQe1jzqKSgahM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=zy7rSUXm; arc=none smtp.client-ip=17.58.6.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1736429305;
-	bh=lMZVZTNsgFOCxTCYXq6jCFsMl6EKNzODNeFIS1bvHJg=;
+	s=1a1hai; t=1736429311;
+	bh=2a/BC8NRIh0uh85HCJfRd8BdlVkBEXk7Aqyv3gynJAM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:
 	 x-icloud-hme;
-	b=aH/3opQgZzMKVDIwkHeb7UgA/QKLtOoWv2DXfz0sLNhxXUxyL9IoPe67kJXvaEtk3
-	 tivjr77641FrzPoQFAplN26KJ3bZk8wqGHg8v7cdsxjwWNt4wivutZK4ycGBLmipY6
-	 6RVqhfu5ctxvmV9HdrY94Nqo03uibQdhio/dLmaeo0AhYrIJZoITXRkIu4dUqDfSZQ
-	 mBLphN6Sn8c8oysbS84/Wyw2VwM1P60qofeO3XMkZP5n7AT5wphrKX5UzUZiLJ0rVh
-	 LlY2S8By6pxclswvAzRabPNg2FQ/4vVoOLgUu/mduQEr6wix0PUPCmY5wQgfQyY/0y
-	 eC7Hc217YnC3w==
+	b=zy7rSUXmkus7HexLxBcV84qoD/XumqA+L3xN522a38Gqx5OXRR4Izkn2IDJ+G5UD8
+	 dIwHfvkTwx9ia1aqXTfS8d/4Qsa7YyRYmq2C50gsNk78MX0Mc/rS7yjxJDRgn7jgEG
+	 15Rh8zllyG395g/U7AP9rU5m2RBoyTmEGRXb9pwAs3pyquXpoILw3+kwDr+wfms3hB
+	 N/XkiK1oea3JUxhztA85BLqONx8Da0U6PSguoNlzVnkkmzvVJymaQLMVQ04U+31bxE
+	 rJTH/tHRsBJ6lN+ChNw6RA+muYbnTDXFkIdTnMbZ+/9Mph+c+81lQCprgbG4edVOp6
+	 +RCyDyubgXGkQ==
 Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-zteg10011401.me.com (Postfix) with ESMTPSA id DD5B534BAA77;
-	Thu,  9 Jan 2025 13:28:19 +0000 (UTC)
+	by pv50p00im-zteg10011401.me.com (Postfix) with ESMTPSA id EF7A934BA9F0;
+	Thu,  9 Jan 2025 13:28:25 +0000 (UTC)
 From: Zijun Hu <zijun_hu@icloud.com>
-Date: Thu, 09 Jan 2025 21:26:55 +0800
-Subject: [PATCH v4 04/14] of: property: Use of_property_present() for
- of_fwnode_property_present()
+Date: Thu, 09 Jan 2025 21:26:56 +0800
+Subject: [PATCH v4 05/14] of: Fix available buffer size calculating error
+ in API of_device_uevent_modalias()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250109-of_core_fix-v4-4-db8a72415b8c@quicinc.com>
+Message-Id: <20250109-of_core_fix-v4-5-db8a72415b8c@quicinc.com>
 References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
 In-Reply-To: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
 To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
@@ -70,8 +70,8 @@ To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
 Cc: Zijun Hu <zijun_hu@icloud.com>, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
 X-Mailer: b4 0.14.2
-X-Proofpoint-GUID: hxgLa_XSkJDj_1KlQ5Jg57sJg8To2bAN
-X-Proofpoint-ORIG-GUID: hxgLa_XSkJDj_1KlQ5Jg57sJg8To2bAN
+X-Proofpoint-GUID: 34RVrnDgEFOXyeM9Ufz85vXOBdzZSPdw
+X-Proofpoint-ORIG-GUID: 34RVrnDgEFOXyeM9Ufz85vXOBdzZSPdw
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-01-09_05,2025-01-09_01,2024-11-22_01
@@ -83,39 +83,54 @@ X-Apple-Remote-Links: v=1;h=KCk=;charset=UTF-8
 
 From: Zijun Hu <quic_zijuhu@quicinc.com>
 
-Use of_property_present() instead of of_property_read_bool() for
-of_fwnode_property_present() since the former is more applicable
-obviously.
+of_device_uevent_modalias() saves MODALIAS value from offset
+(@env->buflen - 1), so the available buffer size should be
+(sizeof(@env->buf) - @env->buflen + 1), but it uses the wrong
+size (sizeof(@env->buf) - @env->buflen).
 
+Fix by using size of space from char '\0' inclusive which ends "MODALIAS=".
+
+Fixes: dd27dcda37f0 ("of/device: merge of_device_uevent")
 Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
-
 ---
-Hi Rob,
+ drivers/of/device.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-i pick up this change again after some considerations as below:
-
-1) of_property_present() is more suitable than of_property_read_bool()
-   here, deprecated API is not main reason.
-
-2) it does not conflict with your job which warns when use
-   of_property_read_bool() for non-bool property.
----
- drivers/of/property.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 519bf9229e613906547b57d8c68e7b8558eff327..dca1a3ebccae1093b2b11f51e8e692bca854d0e3 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -966,7 +966,7 @@ of_fwnode_device_get_dma_attr(const struct fwnode_handle *fwnode)
- static bool of_fwnode_property_present(const struct fwnode_handle *fwnode,
- 				       const char *propname)
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index edf3be1972658f6dc165f577da53b10c7eebc116..f24c19e7aba8e01656f503ae328a4e08aab5a5f3 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -257,6 +257,7 @@ EXPORT_SYMBOL_GPL(of_device_uevent);
+ int of_device_uevent_modalias(const struct device *dev, struct kobj_uevent_env *env)
  {
--	return of_property_read_bool(to_of_node(fwnode), propname);
-+	return of_property_present(to_of_node(fwnode), propname);
- }
+ 	int sl;
++	int pos;
  
- static int of_fwnode_property_read_int_array(const struct fwnode_handle *fwnode,
+ 	if ((!dev) || (!dev->of_node) || dev->of_node_reused)
+ 		return -ENODEV;
+@@ -265,13 +266,18 @@ int of_device_uevent_modalias(const struct device *dev, struct kobj_uevent_env *
+ 	if (add_uevent_var(env, "MODALIAS="))
+ 		return -ENOMEM;
+ 
+-	sl = of_modalias(dev->of_node, &env->buf[env->buflen-1],
+-			 sizeof(env->buf) - env->buflen);
++	/*
++	 * @env->buflen is pointing to the char after '\0' now
++	 * override the '\0' to save MODALIAS value.
++	 */
++	pos = env->buflen - 1;
++	sl = of_modalias(dev->of_node, &env->buf[pos],
++			 sizeof(env->buf) - pos);
+ 	if (sl < 0)
+ 		return sl;
+-	if (sl >= (sizeof(env->buf) - env->buflen))
++	if (sl >= (sizeof(env->buf) - pos))
+ 		return -ENOMEM;
+-	env->buflen += sl;
++	env->buflen = pos + sl + 1;
+ 
+ 	return 0;
+ }
 
 -- 
 2.34.1
