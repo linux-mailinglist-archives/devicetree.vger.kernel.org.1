@@ -1,102 +1,135 @@
-Return-Path: <devicetree+bounces-137023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D71A9A07468
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:16:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3B1A07475
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:18:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FA8B3A7000
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:16:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C777E188B49A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:18:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE38215F7A;
-	Thu,  9 Jan 2025 11:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D4D216381;
+	Thu,  9 Jan 2025 11:18:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TttcAB05"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b="WxtasFGf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8D48C2FB;
-	Thu,  9 Jan 2025 11:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736421415; cv=none; b=MYD2jbdF1r+Gl47PspxtTZJGS4OU1OYlv9oZj5FZL5jaZCnM8ueCwlkuPya1is4doIL2zJw4FmEZi5WCBCx1jX618OSGjRB1eafzSQugnpvDsq+vfgXVdA6TWQXUy2GJLIh+HcImvfRUs15EiUQAYl7VqoydSt7jFJDvsT5Bhus=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736421415; c=relaxed/simple;
-	bh=YcZdDFbElFyrvYg6aIkXG68xEeUr20BZuwHJ1ihrfrk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EvvkPexBRrQlpCChvhlrER+LComVlkqqnSrCso/ujS7/mraucceDloo384GuyMXVbR7Bc56az+oFdXRyU5wsClmXg9Z06WaFI9wZa3omttsJ9IMRVLGKKW4ekBmw1unjQv1ireO30pmjncwvoSanzyz5RXR01+i8VyQmqP/VBLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TttcAB05; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 509BGUKa3254463
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 9 Jan 2025 05:16:30 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736421390;
-	bh=3JW9egJ7f52YOb2GHg6TSZuAgk3LsTV+d13hlGlvQeQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=TttcAB053cAYKIrQpQ7BUR3TCPMIcJKE4IGrSUPIPWnV+A77n3CA5gmwt2tWfFNZe
-	 k8CN5qM8wN5vaL9lxcMe1GAdFVUZD1SkAEWaWQVFk9eYhQVsDRgr6VIKx79QF0NiO9
-	 aw4LyHg1+ecnqFIGCMqhzDMyJns/KW0pL39FF438=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 509BGUS1014635
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 9 Jan 2025 05:16:30 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 9
- Jan 2025 05:16:29 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 9 Jan 2025 05:16:29 -0600
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.104])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 509BGSDk080394;
-	Thu, 9 Jan 2025 05:16:29 -0600
-Date: Thu, 9 Jan 2025 16:46:28 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Romain Naour <romain.naour@smile.fr>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
-        <vigneshr@ti.com>, <nm@ti.com>, <afd@ti.com>,
-        Romain Naour <romain.naour@skf.com>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: mfd: syscon: Add
- ti,j721e-acspcie-proxy-ctrl compatible
-Message-ID: <s22zegpea2vjcrnx5jdhuat2lfunh36v5ynuxrsh5fp2o5pn4b@mxtyqch4eujx>
-References: <20250109102627.1366753-1-romain.naour@smile.fr>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71CC0202C43;
+	Thu,  9 Jan 2025 11:18:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736421493; cv=pass; b=mIxwWRLxSYYwjNE9F2mDnYTq3jC9+Q4LU9TTTFtPN2GeVK6E4IyROzOoSBtC+ksbpsHvTcUX31uF+oAZRbKeXoAnIsyDtu4ahBVJsFgdjm+tCYwND4cKzWoOwT3QtbrTB7U6WqE9bSTOWThn9WbSgL+y77JycByuDEZBhvCVZ2g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736421493; c=relaxed/simple;
+	bh=AAyJMEPGFicQjxjBLs2Jg6RighRP0xnvkCEDgFav9yI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=QUw+d8KeD3ay2mBO6LRVHGtmFfRyJ5e4Sc2UEtBcZpmvcFkk+0itH+yXRsbEoENBqcl0KTAG1yujRoFDH7BT+SHwjaxPW/4l38jG4hRjjPAg7oZze4QOFNvJFP+gJJwkDwIe5O2efCwW318sAwyZnp2xECQ99Xv4xLy520LfbX8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b=WxtasFGf; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1736421472; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=FU5KSMf263TKumyWxFMqLfNE+cFtnJw2a8dV5Kh2qp5JpedheEaovznh0fS4U5LktiWX89afhauEQR8N9h8F/0lgsDWftj7fqAQ7R2w5h18W8hCY4NLeFqxyV8WZqg7YtCmYbUYXyXiG5QhODZ9CXrKVlTRSp4Bjkg2S1stEPfo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1736421472; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=MTgw6gbVtvZdS5LhGt1QizBU8c5RNoZ7cW3EzXYxH7A=; 
+	b=MAZnIEhEOymSuKYFA3wL+4r+D/u7nQpnIIgVcFfVTAhsI3KtXySW98jYJTBZ/XREHXZqcJayW9pXtdvf/c0TQFxNY7CbeEadT7vhfC0F4C5W1MY1zlDloCbL1LnB7lB93n1ESFNfPmfdEkDj32MQPzRHi3OCn9CkDa/uue0hSpE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sjoerd@collabora.com;
+	dmarc=pass header.from=<sjoerd@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1736421472;
+	s=zohomail; d=collabora.com; i=sjoerd@collabora.com;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=MTgw6gbVtvZdS5LhGt1QizBU8c5RNoZ7cW3EzXYxH7A=;
+	b=WxtasFGfhUpiFmmRjWGErQ7dGMIsN2BuA3gSex+y2+dlVrD0jx5rWgUFcC0OpR9f
+	1ZvJkb50leCAyqUWv1+5S+mzdw5BiBAmZe6j0lgYPu2KcJ0Cyv2KzlrbxobIAok33Xl
+	HLPwQ9SpBvAwtkxaIkCQTdSOLq+rsWzyqJdV/bQo=
+Received: by mx.zohomail.com with SMTPS id 1736421470387292.3010936205511;
+	Thu, 9 Jan 2025 03:17:50 -0800 (PST)
+Message-ID: <4c0561dfe414720c979058802cc2930c9d0c08fb.camel@collabora.com>
+Subject: Re: [PATCH v6 6/6] arm64: dts: mediatek: add display support for
+ mt8365-evk
+From: Sjoerd Simons <sjoerd@collabora.com>
+To: Alexandre Mergnat <amergnat@baylibre.com>, Chun-Kuang Hu	
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann	 <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Rob Herring	 <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,  AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Jitao Shi
+ <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>,  Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Simona Vetter
+ <simona@ffwll.ch>,  Simona Vetter <simona.vetter@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Date: Thu, 09 Jan 2025 12:17:44 +0100
+In-Reply-To: <20231023-display-support-v6-6-c6af4f34f4d8@baylibre.com>
+References: <20231023-display-support-v6-0-c6af4f34f4d8@baylibre.com>
+	 <20231023-display-support-v6-6-c6af4f34f4d8@baylibre.com>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250109102627.1366753-1-romain.naour@smile.fr>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-ZohoMailClient: External
 
-On Thu, Jan 09, 2025 at 11:26:26AM +0100, Romain Naour wrote:
-> From: Romain Naour <romain.naour@skf.com>
-> 
-> The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
-> SoC are used to drive the reference clock to the PCIe Endpoint device via
-> the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
-> obtain the regmap for the ACSPCIE_CTRL register within the System
-> Controller device-tree node in order to enable the PAD IO Buffers.
-> 
-> The Technical Reference Manual for J721e SoC with details of the
-> ASCPCIE_CTRL registers is available at:
-> https://www.ti.com/lit/zip/spruil1
-> 
-> Signed-off-by: Romain Naour <romain.naour@skf.com>
+On Thu, 2025-01-09 at 11:37 +0100, Alexandre Mergnat wrote:
+> MIPI DSI:
+> - Add "vsys_lcm_reg" regulator support and setup the
+> "mt6357_vsim1_reg",
+> to power the pannel plugged to the DSI connector.
+> - Setup the Display Parallel Interface.
+> =C2=A0 - Add the startek kd070fhfid015 pannel support.
+>=20
+> HDMI:
+> - Add HDMI connector support.
+> - Add the "ite,it66121" HDMI bridge support, driven by I2C1.
+> - Setup the Display Parallel Interface.
+>=20
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+> =C2=A0arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 236
+> ++++++++++++++++++++++++++++
+> =C2=A01 file changed, 236 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> index 7d90112a7e27..70bd49a9d02f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> [...]
+> @@ -131,6 +156,88 @@ &cpu3 {
+> =C2=A0	sram-supply =3D <&mt6357_vsram_proc_reg>;
+> =C2=A0};
+> =C2=A0
+> +&dither0_out {
+> +	remote-endpoint =3D <&dsi0_in>;
+> +};
+> +
+> +&dpi0 {
+> +	pinctrl-0 =3D <&dpi_default_pins>;
+> +	pinctrl-1 =3D <&dpi_idle_pins>;
+> +	pinctrl-names =3D "default", "sleep";
 
-Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+Would be good to document that these pins clash with ethernet support,
+similar to what is done in the ethernet node.  Also some notes on what
+nodes to enable/disable when selecting either ethernet or hdmi output
+would be appreciated :)
 
-Regards,
-Siddharth.
+
+--=20
+Sjoerd Simons <sjoerd@collabora.com>
+Collabora
 
