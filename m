@@ -1,164 +1,224 @@
-Return-Path: <devicetree+bounces-137145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B44CA0797C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:41:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E5A6A07988
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:43:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BABC7A1DD1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:41:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 707F43A1693
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:43:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB45721C160;
-	Thu,  9 Jan 2025 14:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD4021B195;
+	Thu,  9 Jan 2025 14:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NbcN3wu0"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="R9YduRrN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8789F21B196
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 14:40:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCE7219E8F;
+	Thu,  9 Jan 2025 14:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736433635; cv=none; b=Mq4FwjYkZWvvDNkIQJjBu4gPIm6pTocfdA0U7J7/4qYrIzde01ReF23bx7FgVOqqYery0nHHKiN9Q1Y6jXnJJg/xhMtFjqNGM65tqm9G3cBVulZjjSRUK8lA7zoFh0A3jf6J39LoXaFnIxBepRZNfzxify2/w0luL27cqRhq5OU=
+	t=1736433794; cv=none; b=abvEoVKYKkhdFNjOzJ+Z/qA/c0lXomD5TrTwjteOUUOl8qrDEuvijiV10Z2oL/3f6unPlX9fFgdajYt/3acJoCNo9hOoJKKYv5zweTehYXO524fsNFbaZB/R4REvYHkfClt9++IxnBcioDz1lPHj7WP5eFLOrjh+2q0S1NxeipY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736433635; c=relaxed/simple;
-	bh=WEPy2Kk6ELjxMxCeSWF+5rEwWmbuF3T8scXw8OvdrcY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=FG9JGaaPxVuhdJc9SLO/GNblJvYHztv0tdkuqn+hMNqOCmg3659fZjKftR4Wet+YmfofAfe81BOLkTXddpIpx+PQXNkueWw96eVIrEKbKxdeDMr1r3lf2Yf7QMDM33aelcRB9tgwSDlIC74wXFHdZXsjt7N1TbiTxOzlDXyJpqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NbcN3wu0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB671C4CEE5;
-	Thu,  9 Jan 2025 14:40:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736433634;
-	bh=WEPy2Kk6ELjxMxCeSWF+5rEwWmbuF3T8scXw8OvdrcY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=NbcN3wu0tMOv2DnTxIm69tdAuSF61YG63xEjOzUKI+E6ZiJI6pMsftlEeEoG78ECE
-	 en8SPdJBI4KtWubzbcIHyFSp4prApnbB26wNL3Geq/2FzvL8hyLtPsiBbwWI7ECjDy
-	 lUYyN2LveduW9A3hsmtHWGfAY4Xzz8lfwJGEUhvGGK4RU3lcfe8KdLvifHARGbwB0y
-	 jwMrXKr1Am5cqJMExVyEXlph+Sd4H+Scm85OgwYDK77FCfcfBoEF7clkoRAwpoxrd/
-	 xyB+h94mrgEmwqbIt67QDnGxPs/oTYwSlAJz3ta9nc/QgH+Ox0OR+IgaPe7wrKNCNo
-	 JnYTamJIHXaBw==
-Date: Thu, 09 Jan 2025 08:40:33 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1736433794; c=relaxed/simple;
+	bh=0KqcZfWV5+pbBzCM6o36XeWrJStQxVyG5TedUi5+s4w=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=TMNe+0afOr9wWsH6HIS/eRXpVL7yxgyDq00D13R8RVC4jfP2JwwaNl7VE7ya1Xes6rQpxweTXve4fSyW9Ld0HX5mQ5aW+IBTFJ2eCNPpdZ1rETwNT1VTY08azHuecOD7w2LS03tJMBQXCc8yFI1R199YmGPtlseFNqWmBVN8vPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=R9YduRrN; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=5D2Irp/LDipB7s2VJEUMGWiFyWW8CK6K/zuc0+qnBtg=; b=R9YduRrNsikfVdC06kZfZfd0Xp
+	3qojyCZVzKhXfOAAvqHtI0wjk9+6/1rKQl6hvkPcQaG2ceTQy0WPnZ8eUBqA/PZT6pOmGzGmZnvBt
+	zVFdoWmqw1IJbokGrDVVKflSYZd3i3vu+yRY8ifaQljunEdJkBl+nNbBQZfsaRDpMhPQ=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:33694 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1tVtkW-00013s-8Q; Thu, 09 Jan 2025 09:43:05 -0500
+Date: Thu, 9 Jan 2025 09:43:03 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Andre Werner <andre.werner@systec-electronic.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org,
+ hvilleneuve@dimonoff.com, andy@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ lech.perczak@camlingroup.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+ robh@kernel.org
+Message-Id: <20250109094303.9c1917e2e8704ff265dac4e2@hugovil.com>
+In-Reply-To: <20250109093834.1013025-2-andre.werner@systec-electronic.com>
+References: <20250109093834.1013025-1-andre.werner@systec-electronic.com>
+	<20250109093834.1013025-2-andre.werner@systec-electronic.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- Ondrej Jirman <megi@xff.cz>, linux-arm-kernel@lists.infradead.org, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Jimmy Hon <honyuenkwun@gmail.com>
-In-Reply-To: <20250109051619.1825-1-honyuenkwun@gmail.com>
-References: <20250109051619.1825-1-honyuenkwun@gmail.com>
-Message-Id: <173643343615.3320269.13009413932712361979.robh@kernel.org>
-Subject: Re: [PATCH v8 0/4] Orange Pi 5 Max
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.1 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v4 2/2] serial: sc16is7xx: Add polling mode if no IRQ
+ pin is available
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
+Hi Andre,
 
-On Wed, 08 Jan 2025 23:16:14 -0600, Jimmy Hon wrote:
-> Add device-tree for Orange Pi 5 Max
+On Thu,  9 Jan 2025 10:38:34 +0100
+Andre Werner <andre.werner@systec-electronic.com> wrote:
+
+> Fall back to polling mode if no interrupt is configured because there
+> is no possibility to connect the interrupt pin.
+> If "interrupts" property is missing in devicetree the driver
+> uses a delayed worker to pull the state of interrupt status registers.
 > 
-> Orange Pi now has 3 SBCs using the RK3588 SOC. Refactor the common parts
-> of the 5 Plus DTS so it can be shared with the 5 Max and the 5 Ultra.
-> The 5 Max and 5 Ultra have a similar credit-card sized board layout and
-> will also share a DTSI between them.
+> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+> ---
+> V2:
+> - Change warning for polling mode to debug log entry
+> - Correct typo: Resuse -> Reuse
+> - Format define with missing tabs for SC16IS7XX_POLL_PERIOD
+> - Format struct declaration sc16is7xx_one_config with missing tabs for polling and shutdown
+> - Adapt dtbinding with new polling feature
+> V3:
+> - Use suffix with units and drop a comment SC16IS7XX_POLL_PERIOD_MS. Sorry for that miss.
+> - Make Kernel lowercase.
+> V4:
+> - Reword commit messages for better understanding.
+> - Remove 'shutdown' property for canceling delayed worker.
+> - Rename worker function: sc16is7xx_transmission_poll -> sc16is7xx_poll_proc
+> - Unify argument for worker functions: kthread_work *work -> kthread_work *ws
+> ---
+>  drivers/tty/serial/sc16is7xx.c | 38 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 > 
-> 5 Plus: HDMI0, HDMI1, HDMI RX, M.2 E-key, USB-C
-> 5 Max: HDMI0, HDMI1, WiFi/BT using SDIO/UART
-> 5 Ultra: HDMI1, HDMI RX, WiFi/BT using SDIO/UART
-> 
-> Changes in v8:
-> - Rebase with updated 5 Plus USB 3 patch
-> 
-> Changes in v7:
-> - Add signed-off to first commit
-> - Expand first commit description
-> 
-> Changes in v6:
-> - Remove clock-names from incorrect merge conflict
-> 
-> Changes in v5:
-> - Include Orange Pi 5 Plus USB 3.0 change in baseline before refactor
-> - Defer Orange Pi 5 Ultra to a later series
-> - Defer Orange Pi 5 Plus HDMI1 to a later series
-> 
-> Changes in v4:
-> - Orange Pi 5 Ultra was released and does not use VP0 to HDMI0
-> - Move HDMI0 from common to the board level
-> - Make DTSI to be shared by the credit card sized 5 Max and 5 Ultra
-> - Updates for the newly submitted HDMI1 support
-> - Add Ack for dt-binding
-> 
-> Changes in v3:
-> - Refactor to share common include with Orange Pi 5 Plus
-> 
-> Changes in v2:
-> - squashed commits together for initial board file
-> 
-> Link to v1: https://lore.kernel.org/linux-rockchip/20241026100310.52679-1-honyuenkwun@gmail.com/
-> 
-> Jimmy Hon (4):
->   arm64: dts: rockchip: refactor common rk3588-orangepi-5.dtsi
->   dt-bindings: arm: rockchip: Add Xunlong Orange Pi 5 Max
->   arm64: dts: rockchip: Add Orange Pi 5 Max board
->   arm64: dts: rockchip: Enable HDMI1 on Orange Pi 5 Max
-> 
->  .../devicetree/bindings/arm/rockchip.yaml     |   6 +-
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../rockchip/rk3588-orangepi-5-compact.dtsi   | 151 ++++
->  .../dts/rockchip/rk3588-orangepi-5-max.dts    | 101 +++
->  .../dts/rockchip/rk3588-orangepi-5-plus.dts   | 855 ++----------------
->  .../boot/dts/rockchip/rk3588-orangepi-5.dtsi  | 805 +++++++++++++++++
->  6 files changed, 1127 insertions(+), 792 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-compact.dtsi
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-max.dts
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-orangepi-5.dtsi
-> 
-> 
-> base-commit: 2859e1ac3110f2d428a794bda26ea0d90b2254c6
-> prerequisite-patch-id: 4672b745f4308a7be527749279edb71625d120e6
-> prerequisite-patch-id: 2743fb64eba2a29eaf993ebc8a5d6ee445b69dfa
-> --
+> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> index a3093e09309f..6645cab2ae5f 100644
+> --- a/drivers/tty/serial/sc16is7xx.c
+> +++ b/drivers/tty/serial/sc16is7xx.c
+> @@ -314,6 +314,7 @@
+>  #define SC16IS7XX_FIFO_SIZE		(64)
+>  #define SC16IS7XX_GPIOS_PER_BANK	4
+>  
+> +#define SC16IS7XX_POLL_PERIOD_MS	10
+>  #define SC16IS7XX_RECONF_MD		BIT(0)
+>  #define SC16IS7XX_RECONF_IER		BIT(1)
+>  #define SC16IS7XX_RECONF_RS485		BIT(2)
+> @@ -348,6 +349,8 @@ struct sc16is7xx_port {
+>  	u8				mctrl_mask;
+>  	struct kthread_worker		kworker;
+>  	struct task_struct		*kworker_task;
+> +	struct kthread_delayed_work	poll_work;
+> +	bool				polling;
+>  	struct sc16is7xx_one		p[];
+>  };
+>  
+> @@ -861,6 +864,18 @@ static irqreturn_t sc16is7xx_irq(int irq, void *dev_id)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static void sc16is7xx_poll_proc(struct kthread_work *ws)
+> +{
+> +	struct sc16is7xx_port *s = container_of(ws, struct sc16is7xx_port, poll_work.work);
+> +
+> +	/* Reuse standard IRQ handler. Interrupt ID is unused in this context. */
+> +	sc16is7xx_irq(0, s);
+> +
+> +	/* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
+> +	kthread_queue_delayed_work(&s->kworker, &s->poll_work,
+> +				   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
+> +}
+> +
+>  static void sc16is7xx_tx_proc(struct kthread_work *ws)
+>  {
+>  	struct uart_port *port = &(to_sc16is7xx_one(ws, tx_work)->port);
+> @@ -1149,6 +1164,7 @@ static int sc16is7xx_config_rs485(struct uart_port *port, struct ktermios *termi
+>  static int sc16is7xx_startup(struct uart_port *port)
+>  {
+>  	struct sc16is7xx_one *one = to_sc16is7xx_one(port, port);
+> +	struct sc16is7xx_port *s = dev_get_drvdata(port->dev);
+>  	unsigned int val;
+>  	unsigned long flags;
+>  
+> @@ -1211,6 +1227,10 @@ static int sc16is7xx_startup(struct uart_port *port)
+>  	sc16is7xx_enable_ms(port);
+>  	uart_port_unlock_irqrestore(port, flags);
+>  
+> +	if (s->polling)
+> +		kthread_queue_delayed_work(&s->kworker, &s->poll_work,
+> +					   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
+> +
+>  	return 0;
+>  }
+>  
+> @@ -1232,6 +1252,9 @@ static void sc16is7xx_shutdown(struct uart_port *port)
+>  
+>  	sc16is7xx_power(port, 0);
+>  
+> +	if (s->polling)
+> +		kthread_cancel_delayed_work_sync(&s->poll_work);
+> +
+>  	kthread_flush_worker(&s->kworker);
+>  }
+>  
+> @@ -1537,6 +1560,12 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  
+>  	/* Always ask for fixed clock rate from a property. */
+>  	device_property_read_u32(dev, "clock-frequency", &uartclk);
+
+You are still missing a blank line here to better separate logical
+blocks (polling is not related to clock-frequency).
+
+> +	s->polling = !device_property_present(dev, "interrupts");
+> +	if (s->polling) {
+> +		dev_dbg(dev,
+> +			"No interrupt pin definition, falling back to polling mode\n");
+> +		irq = 0;
+> +	}
+>  
+>  	s->clk = devm_clk_get_optional(dev, NULL);
+>  	if (IS_ERR(s->clk))
+> @@ -1665,6 +1694,12 @@ int sc16is7xx_probe(struct device *dev, const struct sc16is7xx_devtype *devtype,
+>  		goto out_ports;
+>  #endif
+>  
+> +	if (s->polling) {
+> +		/* Initialize kernel thread for polling */
+> +		kthread_init_delayed_work(&s->poll_work, sc16is7xx_poll_proc);
+> +		return 0;
+> +	}
+> +
+>  	/*
+>  	 * Setup interrupt. We first try to acquire the IRQ line as level IRQ.
+>  	 * If that succeeds, we can allow sharing the interrupt as well.
+> @@ -1724,6 +1759,9 @@ void sc16is7xx_remove(struct device *dev)
+>  		sc16is7xx_power(&s->p[i].port, 0);
+>  	}
+>  
+> +	if (s->polling)
+> +		kthread_cancel_delayed_work_sync(&s->poll_work);
+> +
+>  	kthread_flush_worker(&s->kworker);
+>  	kthread_stop(s->kworker_task);
+>  
+> -- 
 > 2.47.1
 > 
 > 
 > 
 
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250109051619.1825-1-honyuenkwun@gmail.com:
-
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-pi2.dtb: /i2c@fe5c0000/touchscreen@48: failed to match any schema with compatible: ['ti,tsc2007']
-arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dtb: /serial@fdd50000/mcu: failed to match any schema with compatible: ['qnap,ts433-mcu']
-arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: /soc/phy@2b050000: failed to match any schema with compatible: ['rockchip,rk3576-naneng-combphy']
-arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtb: /soc/phy@2b060000: failed to match any schema with compatible: ['rockchip,rk3576-naneng-combphy']
-arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dtb: /spi@fe610000/fram@0: failed to match any schema with compatible: ['fujitsu,mb85rs128ty']
-arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dtb: /soc/phy@2b050000: failed to match any schema with compatible: ['rockchip,rk3576-naneng-combphy']
-arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dtb: /soc/phy@2b060000: failed to match any schema with compatible: ['rockchip,rk3576-naneng-combphy']
-arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2-manta.dtb: /i2c@fe5c0000/touchscreen@48: failed to match any schema with compatible: ['ti,tsc2007']
-
-
-
-
-
+-- 
+Hugo Villeneuve
 
