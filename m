@@ -1,80 +1,102 @@
-Return-Path: <devicetree+bounces-137022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC156A0745E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:13:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D71A9A07468
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:16:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5AC01606B7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:13:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FA8B3A7000
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 11:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06852163BC;
-	Thu,  9 Jan 2025 11:13:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE38215F7A;
+	Thu,  9 Jan 2025 11:16:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P3Osmzss"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TttcAB05"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9911B2163AA;
-	Thu,  9 Jan 2025 11:13:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8D48C2FB;
+	Thu,  9 Jan 2025 11:16:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736421222; cv=none; b=D6ql5R8+5UYrUy2utvNFNIO1CD6yNhCM/mamhgDQplcZgVDfqfVZhdcL3maDAep+xDyQX5a5vPmtMjcszYecBzH88sFt1yby28kN1KQ+3nLomLPBJnnjpOWzEnm4F2W0fsgyc6KqOy6fD8u0G4heCWI1Fn7sLbyN5gmqC/J9pRA=
+	t=1736421415; cv=none; b=MYD2jbdF1r+Gl47PspxtTZJGS4OU1OYlv9oZj5FZL5jaZCnM8ueCwlkuPya1is4doIL2zJw4FmEZi5WCBCx1jX618OSGjRB1eafzSQugnpvDsq+vfgXVdA6TWQXUy2GJLIh+HcImvfRUs15EiUQAYl7VqoydSt7jFJDvsT5Bhus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736421222; c=relaxed/simple;
-	bh=p9TIhZ7OX45tv8xEyiNTKxCq5RRiqfzvRAm+X/81d7E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=kTCKA17r0vClPvLOoqsBCVj9E5dgrt9IgH50WOJI+oRxPvjc8VbAoNaB4tBt08ZMbQr+WL/RK12fOttqBNKIt1daWgvvVKohUrycy6OhfGTVvzATpYDSx0huk1NNho7rWOmtl4610vTyhcyO4I9BOgK/rK50x8cMP6SRyGEeNdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P3Osmzss; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E413C4CED2;
-	Thu,  9 Jan 2025 11:13:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736421222;
-	bh=p9TIhZ7OX45tv8xEyiNTKxCq5RRiqfzvRAm+X/81d7E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=P3Osmzss9bivLlAXPP80FDZzf6i4wCubrYw4m30ieMYEX66TKKpeBb4gwp/iaDKn8
-	 kHuURrzwslSw57vBc0Hq+KqWTVGWoET3kYvSZNJOESlkNOnz3TucmliRrRf3o2yjBc
-	 uwpF57uRS2o7KSfIVXtA8G0D5WNrXDlN3/19iyPOxvyPQesho77n8v2cYEGiVUecw8
-	 nRnn53J+ZaAiHDGTD7LWeTfyEDr+k6AWv8vnIT5brFe9NOSaFP4aV9e4FoczeYezSd
-	 tiClthcn+T6qJNW6PNdZiw9jMc1NPD0t4xKDv60ziltqnLfUPhyL4+sERxuQYg3v4s
-	 KWHb3X1YSiThA==
-From: Lee Jones <lee@kernel.org>
-To: heiko@sntech.de, Kever Yang <kever.yang@rock-chips.com>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-In-Reply-To: <20241224094920.3821861-16-kever.yang@rock-chips.com>
-References: <20241224094920.3821861-1-kever.yang@rock-chips.com>
- <20241224094920.3821861-16-kever.yang@rock-chips.com>
-Subject: Re: (subset) [PATCH v2 15/17] dt-bindings: mfd: syscon: Add rk3562
- QoS register compatible
-Message-Id: <173642122026.2601082.8486356764608570006.b4-ty@kernel.org>
-Date: Thu, 09 Jan 2025 11:13:40 +0000
+	s=arc-20240116; t=1736421415; c=relaxed/simple;
+	bh=YcZdDFbElFyrvYg6aIkXG68xEeUr20BZuwHJ1ihrfrk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EvvkPexBRrQlpCChvhlrER+LComVlkqqnSrCso/ujS7/mraucceDloo384GuyMXVbR7Bc56az+oFdXRyU5wsClmXg9Z06WaFI9wZa3omttsJ9IMRVLGKKW4ekBmw1unjQv1ireO30pmjncwvoSanzyz5RXR01+i8VyQmqP/VBLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TttcAB05; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 509BGUKa3254463
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 9 Jan 2025 05:16:30 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736421390;
+	bh=3JW9egJ7f52YOb2GHg6TSZuAgk3LsTV+d13hlGlvQeQ=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=TttcAB053cAYKIrQpQ7BUR3TCPMIcJKE4IGrSUPIPWnV+A77n3CA5gmwt2tWfFNZe
+	 k8CN5qM8wN5vaL9lxcMe1GAdFVUZD1SkAEWaWQVFk9eYhQVsDRgr6VIKx79QF0NiO9
+	 aw4LyHg1+ecnqFIGCMqhzDMyJns/KW0pL39FF438=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 509BGUS1014635
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 9 Jan 2025 05:16:30 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 9
+ Jan 2025 05:16:29 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 9 Jan 2025 05:16:29 -0600
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.104])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 509BGSDk080394;
+	Thu, 9 Jan 2025 05:16:29 -0600
+Date: Thu, 9 Jan 2025 16:46:28 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Romain Naour <romain.naour@smile.fr>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
+        <vigneshr@ti.com>, <nm@ti.com>, <afd@ti.com>,
+        Romain Naour <romain.naour@skf.com>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: mfd: syscon: Add
+ ti,j721e-acspcie-proxy-ctrl compatible
+Message-ID: <s22zegpea2vjcrnx5jdhuat2lfunh36v5ynuxrsh5fp2o5pn4b@mxtyqch4eujx>
+References: <20250109102627.1366753-1-romain.naour@smile.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250109102627.1366753-1-romain.naour@smile.fr>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, 24 Dec 2024 17:49:18 +0800, Kever Yang wrote:
-> Document rk3562 compatible for QoS registers.
+On Thu, Jan 09, 2025 at 11:26:26AM +0100, Romain Naour wrote:
+> From: Romain Naour <romain.naour@skf.com>
 > 
+> The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
+> SoC are used to drive the reference clock to the PCIe Endpoint device via
+> the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
+> obtain the regmap for the ACSPCIE_CTRL register within the System
+> Controller device-tree node in order to enable the PAD IO Buffers.
 > 
+> The Technical Reference Manual for J721e SoC with details of the
+> ASCPCIE_CTRL registers is available at:
+> https://www.ti.com/lit/zip/spruil1
+> 
+> Signed-off-by: Romain Naour <romain.naour@skf.com>
 
-Applied, thanks!
+Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 
-[15/17] dt-bindings: mfd: syscon: Add rk3562 QoS register compatible
-        commit: aba4f736fc5553b936808ccdfd3ce21ee3ec7ae0
-
---
-Lee Jones [李琼斯]
-
+Regards,
+Siddharth.
 
