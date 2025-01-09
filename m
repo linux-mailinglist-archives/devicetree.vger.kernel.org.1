@@ -1,82 +1,78 @@
-Return-Path: <devicetree+bounces-137137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D32A07925
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:26:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECA5A0792A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:28:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B16651888F91
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:26:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6155C3A5708
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F50621A438;
-	Thu,  9 Jan 2025 14:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78C821A450;
+	Thu,  9 Jan 2025 14:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="qm6PuVaJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kP2X/W+B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E01E2290F;
-	Thu,  9 Jan 2025 14:26:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA28F21A436
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 14:28:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736432792; cv=none; b=AB4zznD5VLmBTYWySzhSYszQ6Ty++TOIEgk+EVE1UQutR6HLjQee/GIbrHeZu4vCZ4hAAeHgSeInnPtz41K6jcE0lgzq0iOAAXkj5CkgKFIR9tDED9mvay0X463jMOhRvyr0MX02y02FwQwrJ7bFc4MWTuZvZ3YsVB9Ap5P6qGs=
+	t=1736432923; cv=none; b=bsHlyNsFFMUqqB1ecR/08obNDGw+J6kmRTkKIH4qep+8QPlq96F4+T6whQT9Uw4ScmJ32lGdIFQBSVd/EnykvH2yFUcGNZjCkWedUjQuFTrwI2cm/fnSvGj2jtk85HCodI9By9VA/tG8ClQIP5Az/ISCflkRisUL2+4Ab7a7gv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736432792; c=relaxed/simple;
-	bh=YB3gzFrTPi87rhzQr77QsXrBOT0oJZz7B8rnBh4GwbA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JnsoBTi8/vd4knzy/hbKNWi4avkZO98VEmmIfqJb1GrFst8oFlg36vIVpcOZcxH/TgXWV/MMHY8ywK2PpUQx9t42jpciB+BC7zjai6P8dpGRxAW1DrAhDBT4frSePhn2xqY39HA6vN2BqxXkmAiAvjrg4DMknG1mArw1Fo0kQ6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=qm6PuVaJ; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5093qwuF005687;
-	Thu, 9 Jan 2025 14:25:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=YGI476
-	X2i0MFtZ7SlukxL+5rG/T9Y7O8a6nsh6mbAB0=; b=qm6PuVaJR4WO9WPmhDm0tC
-	vBUUCSCbyNbnz1u0O+lidpWDmgcn020O/OhoN8RIw9HZsMsK9InAAkUf24btjcq4
-	92SbmvNAcF8Aq77oStfScS+nrmu0vGyyoa3pBrPXRfnCNE7Nnh3xBm6gZnh7kd+q
-	f9NSwkw/y+g+1Cvo2dBVKmHInaoYYcos7TDJXSwRDK5tZUxMuB2TPtgBafodbZvD
-	ca5ihOi7zLyvRlArKSfkf3RkWmB2pXvQNYLkprCreNoNOIMfCAWppL3TSkr0bBcz
-	QEF6Tc2qDhOg/CQD2cNRJsDGMWw34IMxGrUksl2GtvleUipj1uG6GC+tXP2klygA
-	==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4426xcake8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jan 2025 14:25:36 +0000 (GMT)
-Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 509E6eqs029952;
-	Thu, 9 Jan 2025 14:25:35 GMT
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4426xcake4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jan 2025 14:25:35 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 509Cp7bf008861;
-	Thu, 9 Jan 2025 14:25:34 GMT
-Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 43yfq05mne-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Jan 2025 14:25:34 +0000
-Received: from smtpav04.wdc07v.mail.ibm.com (smtpav04.wdc07v.mail.ibm.com [10.39.53.231])
-	by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 509EPXrE33751356
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 9 Jan 2025 14:25:34 GMT
-Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id D4D3358050;
-	Thu,  9 Jan 2025 14:25:33 +0000 (GMT)
-Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3A78658045;
-	Thu,  9 Jan 2025 14:25:29 +0000 (GMT)
-Received: from [9.61.139.65] (unknown [9.61.139.65])
-	by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Thu,  9 Jan 2025 14:25:28 +0000 (GMT)
-Message-ID: <c0b653ea-3fe0-4bdb-9681-bf4e3ef1364a@linux.ibm.com>
-Date: Thu, 9 Jan 2025 08:25:28 -0600
+	s=arc-20240116; t=1736432923; c=relaxed/simple;
+	bh=D3nrlPeKz+EraqHs1Lv/LnyIsKAqlgwjO/7hNLdXvNc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=kU+C+whYC+nRt6AT4psim/dYcvMSyY3O3pnvSKN4cbfXzHvrMIgiCgSDOUJZE9VaPgbgb9gz6r48rYNjOPS0vLYKe56Oe7dzBDXLxWk5BkTRqOfuYJKtyAkIZUZxf7XTBLhQzjGWmi9AYz+D5SQQFi24YxdlV6Q5Fm+Fiwkgu2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kP2X/W+B; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43637977fa4so1021065e9.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 06:28:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736432920; x=1737037720; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OjsOqBKaPCYw0mzOU9ehmec2qZoVEQy6XE1Qe/YGZlY=;
+        b=kP2X/W+BZeCAYmWwCRwFFxB243Jog5bKKepRTUjNRr6NdvgBNC/Okw6QDnbWzrEZ0F
+         /y2Mp6SRTi+NNOBvzAWA7APeYJZN7eeudzM0Yd5sbJPT1RrZP/nfYDFJHzXO44DehhKq
+         rIvVlo3uWSX9llzmjbMU4dtukCdoFd8W+MGei477g4V+AkH5fHZ45limlOJh4EPjqV9l
+         F6LF9y/irqmvyYkCtew9IR14K7eYf5gXeATwCAgjEU/+sC7HM7f+3JfBaX+yxRkPoSgZ
+         hiF9q7tOFhoXhInFYOpQOrUZI0C0Vh09DBnukJaJiRS1tSWbpcIlXPcY089+V95g5rx5
+         ojiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736432920; x=1737037720;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OjsOqBKaPCYw0mzOU9ehmec2qZoVEQy6XE1Qe/YGZlY=;
+        b=whA/w+9D1QeShD3eNyLNb31Q9hrMqtWjS5aDn0Up6b1IVPO7q1fueow9yftPyUhr8V
+         TwfX0f51mJoXBtS5iLtWYKymjd3Xr9jc3ROi1Kax7uE6UopmF1Xr6U5tbhyFhHHGvLct
+         wEkpfnqIZ3bohzuEUcoqtIdIi0KmRCQMn9DbtzweRDGsb0TnEDWevjXEVBdmD9uf4EpS
+         4j5F0HkJLI28CGNTVlTwCJQhTngj7Drp8bcMRXaZwSTVi229Przy1Xo++gXCZQdjt7zZ
+         QriaL5KhBsSRcpbSeNNLFmGFvst1o3KB1FFh1srhV5d1xve5xn8WTO4Ip7CeN4cdA44I
+         ThIA==
+X-Forwarded-Encrypted: i=1; AJvYcCWGAoTHt+6J0uTVz+pFs8ddzYWBE6R2mwJ/Doxd/uW7ZOpQgwX6aIAT7Y0CCOTkEel9J3XSOHGQUCmN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFKrLabPIhrE3Xhy9aML5A5GCPt3Zjhxb61yFkdhUOt7O+RrUg
+	FMfWy6r5glPzw1TBibcUg3Ofww7oOoVKWnc2BdS+aXbtG0nqm144LASVOBxsjNA=
+X-Gm-Gg: ASbGnctGT6IUHeTKJ4uFLomT8ChnglQ3kbsGdsSHQNeU6NI8K/Km0tmEqJEQ5qpHMBq
+	vlvJ8HLv6xw0ZjvnHGnl1aIx1d8iNGfbx2CNuXw8k0tGAq7pHmI5L+sjbQzOGQ5NYN/1WkKM4QA
+	QoBeOt8JCqx6go27Sin6NkfQJM+IKeap0HFLC+GlCyZqme+EFaRV3FyhoPOYucEzvqYiMAZ0bTq
+	k3a0WzczMlanCrue6+JmjXwaZF1ZaNi6SrIRJubaqYPa8CXGIvw30o614xhtfFU9C3fQJe6UJqX
+X-Google-Smtp-Source: AGHT+IFJny6smGwOaWzlpqJJj0YzREKzb8CgNKKUdghyHsdeDtJJP0uQBGyF68Eno0Bqca6p0a66xg==
+X-Received: by 2002:a05:600c:3d06:b0:434:9cb7:7321 with SMTP id 5b1f17b1804b1-436e2691021mr26949245e9.1.1736432920286;
+        Thu, 09 Jan 2025 06:28:40 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e6236bsm22483525e9.37.2025.01.09.06.28.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jan 2025 06:28:39 -0800 (PST)
+Message-ID: <dc0a61a9-6c38-4c8e-a82f-d984f2322725@linaro.org>
+Date: Thu, 9 Jan 2025 15:28:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,115 +80,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuimhjogW1BBVENIIHYyIDA1LzEwXSBBUk06IGR0czogYXNw?=
- =?UTF-8?Q?eed=3A_system1=3A_Add_RGMII_support?=
-To: Andrew Lunn <andrew@lunn.ch>, Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-        "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "eajames@linux.ibm.com" <eajames@linux.ibm.com>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "joel@jms.id.au"
- <joel@jms.id.au>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "minyard@acm.org" <minyard@acm.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "openipmi-developer@lists.sourceforge.net"
- <openipmi-developer@lists.sourceforge.net>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
-        "robh@kernel.org" <robh@kernel.org>
-References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
- <b2aec97b-63bc-44ed-9f6b-5052896bf350@linux.ibm.com>
- <59116067-0caa-4666-b8dc-9b3125a37e6f@lunn.ch>
- <SEYPR06MB51344BA59830265A083469489D132@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <8042c67c-04d3-41c0-9e88-8ce99839f70b@lunn.ch>
+Subject: Re: [PATCH] arm64: dts: qcom: Use recommended MBN firmware format in
+ DTS example
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250108120530.156928-1-krzysztof.kozlowski@linaro.org>
+ <fb988217-cc2c-45e2-b102-6e85c5aa0238@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <8042c67c-04d3-41c0-9e88-8ce99839f70b@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <fb988217-cc2c-45e2-b102-6e85c5aa0238@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: D4QGmI7uFNHCuYmtN7glAX-odTtQtAzr
-X-Proofpoint-ORIG-GUID: S-tApofsNQipGoyAdP32TWBQKlVxTdeb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 phishscore=0 suspectscore=0 adultscore=0
- impostorscore=0 mlxscore=0 malwarescore=0 spamscore=0 bulkscore=0
- mlxlogscore=999 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2501090112
 
-Hello Andrew,
-
-On 1/9/25 07:21, Andrew Lunn wrote:
-> On Thu, Jan 09, 2025 at 10:33:20AM +0000, Jacky Chou wrote:
->> Hi Andrew,
+On 09/01/2025 15:21, Konrad Dybcio wrote:
+> On 8.01.2025 1:05 PM, Krzysztof Kozlowski wrote:
+>> All Qualcomm firmwares uploaded to linux-firmware are in MBN format,
+>> instead of split MDT.  Firmware for boards here is not yet in
+>> linux-firmware, but if it gets accepted it will be MBN, not MDT.
 >>
->>>> There are around 11 boards in Aspeed SOC with phy-mode set to "rgmii"
->>>> (some of them are mac0&1 and others are mac2&3). "rgmii-rxid" is only
->>> mine.
->>>> No one in aspeed SOC using "rgmii-id".
->>> O.K, so we have to be careful how we fix this. But the fact they are all equally
->>> broken might help here.
->>>
->>>>> Humm, interesting. Looking at ftgmac100.c, i don't see where you
->>>>> configure the RGMII delays in the MAC?
->>> This is going to be important. How are delays configured if they are not in the
->>> MAC driver?
->> The RGMII delay is adjusted on clk-ast2600 driver. Please refer to the following link.
->> https://github.com/AspeedTech-BMC/linux/blob/f52a0cf7c475dc576482db46759e2d854c1f36e4/drivers/clk/clk-ast2600.c#L1008
-> O.K. So in your vendor tree, you have additional DT properties
-> mac1-clk-delay, mac2-clk-delay, mac3-clk-delay. Which is fine, you can
-> do whatever you want in your vendor tree, it is all open source.
->
-> But for mainline, this will not be accepted. We have standard
-> properties defined for configuring MAC delays in picoseconds:
->
->          rx-internal-delay-ps:
->            description:
->              RGMII Receive Clock Delay defined in pico seconds. This is used for
->              controllers that have configurable RX internal delays. If this
->              property is present then the MAC applies the RX delay.
->          tx-internal-delay-ps:
->            description:
->              RGMII Transmit Clock Delay defined in pico seconds. This is used for
->              controllers that have configurable TX internal delays. If this
->              property is present then the MAC applies the TX delay.
->
->
-> You need to use these, and in the MAC driver, not a clock driver. That
-> is also part of the issue. Your MAC driver looks correct, it just
-> silently passes phy-mode to the PHY just like every other MAC
-> driver. But you have some code hidden away in the clock controller
-> which adds the delays. If this was in the MAC driver, where it should
-> be, this broken behaviour would of been found earlier.
->
-> So, looking at mainline, i see where you create a gated clock. But
-> what i do not see is where you set the delays.
->
-> How does this work in mainline? Is there more hidden code somewhere
-> setting the ASPEED_MAC12_CLK_DLY register?
+>> Change might affect users of DTS which rely on manually placed firmware
+>> files, not coming from linux-firmware package.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+> 
+> As unlikely as it is for most of the boards, I do like this change
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-I think the code already exist in the mainline: 
-https://github.com/torvalds/linux/blob/master/drivers/clk/clk-ast2600.c#L595
+Thanks. I need to correct subject, so I will send a v2 with your tag.
 
-It is configuring SCU register in the ast2600 SOC to introduce delays. 
-The mac is part of the SOC.
-
-Regards,
-
-Ninad
-
->
-> 	Andrew
+Best regards,
+Krzysztof
 
