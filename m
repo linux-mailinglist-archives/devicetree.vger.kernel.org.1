@@ -1,498 +1,206 @@
-Return-Path: <devicetree+bounces-136882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DAD6A06B1F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 03:33:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA40DA06A5A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 02:35:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22727163CE1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 02:33:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B6113A60FD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 01:35:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6AB513C3CD;
-	Thu,  9 Jan 2025 02:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47ECD15E8B;
+	Thu,  9 Jan 2025 01:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="jhfmprFi"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="BSNUOQlx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2113.outbound.protection.outlook.com [40.107.255.113])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2043.outbound.protection.outlook.com [40.107.22.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FAB81732;
-	Thu,  9 Jan 2025 02:33:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.113
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CBCC4A06;
+	Thu,  9 Jan 2025 01:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.43
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736389983; cv=fail; b=W8wHyyCM5/dTwc86LPT32RRBoNULAyiUKNjJQFKtjAJxBX6cTcBS3e7dgbZ74nrFbINiQKE3RYaXg2L1ngxYiC8MHxFYtAvv1FRalzGokQXs9PrL7x4xoSD9n2jJ1NTK4PIq4WbqVdBkeFsdCejrnDCxFzDoZx3xMcdEZQi2HHs=
+	t=1736386520; cv=fail; b=ONbvOnJZCXIghkTzvUigwK61UderUHxd7g0YhF6YMLXnzDkKwA903t2ugcpwayqDtQvYO+xpFvNR2sOw0TkQLQW0BP8pbePuSISzbmQrPBKmeq8y+0Q+B2UVhUhvP0H1VtXGNbTxwBZN9F0UJ3kRNfFHS6VzTZxrbm9alj6JN7Q=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736389983; c=relaxed/simple;
-	bh=79haj9UGCHs/uoxGzRErU7Wv5GiZaeFvZ62KMg3VDPE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=b8woo6nRMlMxY+92TuTILVye/UeOIJ/Dp6XgWL6IKtDTBZ6iSbJUt4KAELK2tCgONo7e+grdSTCZN/nIG+56nSBwpVIpA9ljM189qOLZhroTPbio20+gsmI/YiYu7lybmUNxNs94EzPca/B6mXWAJnQGObBjo4Az319H4noJL4U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=jhfmprFi; arc=fail smtp.client-ip=40.107.255.113
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+	s=arc-20240116; t=1736386520; c=relaxed/simple;
+	bh=UJ+r9JMouQZ+fyZ8flkj3ia3vTrnKPjlHDwp1QKP9rE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=qnwOGiNfkXUuRsXyLD7wfRaYs1asU4gjvBSkHcUnBRija3Q8XjSuetwCu6INvJ6iMALqF9prngkNeaoAlmnOBOwcd0Tam2ODU+xUxw7b3hihePIWkTxhgfpSQxCMjOWuiwz3C3u6I5xV9ICjq4My3cWuFDyhgdA24ybXccEM88Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=BSNUOQlx; arc=fail smtp.client-ip=40.107.22.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GFQRRjJ/xOllgtJCsjOejhXX6GxM7R5z/poEIpcEcscL7eFem1tiZGeFEPy+vzpDTikkjUdNZOGsMzIhIKhba/xh7WWBhmZJ19wfL7rTeTET/RysILh/KzQUX6MD6SO5cXYxnkAQqbRVGICn72NOB25wqzDHouY4pGtfY3nUux+yVz3Z8Bm0f2iD1okJaenJj3pPZFTDy5K6QV6aDQbWZ9fQEPosM5jdbnFBv9H86onpZled+a1zNkJ+tvenTSwwP5B3/WhJ1+Egc+tcZXGexnzB+hZVTL5zFcw0ENEVniAyTiVjn7qhpE50Y04nTMU3NzLdvhFHiX7+9sOKSPmkOw==
+ b=IWWpS+kVj6joibrHaoRtFmuCdu7HeQlXdVR/ZBTI1EqK9BZsZo+94npsGssW14Exf0RxmJAi5/1yzKn5pysIQNjEdefy1gOi5gKjnuqGPN2weBANclFURFask+tho2r2odkn9rkhEugoli20Z4WUVCev6utIboPyXJ2peHvpEOEQkP+ZDa0QIAauIUEw5v7fD3vy6fWJmW1Og0wbxVhe7Iez2CpLoyZLgTfsgn7N3Obt+KzKQSaPa1L2W3xMx5D7qboyVU2qgBvm48phQtumCWI7RbsbqnMjpMEG85SBloZn353kTwlDw22N4/OoCpCKHiCMbGuTDS0vtvqjulzB/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rGMzp78C09ETjvzu/jCvVd+/cb/9tclMNdfhak5fr0M=;
- b=m02uZBs6LXZwgcoYMhglEd6frLsQNDiMdhFWY4WIpDYxRQqa/vJIFvl8SEfnZNBrfcE+YOV8ARFnOQhuvUyP4Dsjo/TsFWduuLBGRWXeB2WV9+ROeKoEGRcfmK3ZNLieyHP9D4o5bnenJ7TAeqdyjjoyEi0aOrY74I2Q6wEmPlQQhmLv/htW3u/JlFrJkxsn1Et+uo661+ytMpTO1nuv1tfp6RRICyVuAmmOe2MId6mnDNPjKE6GHuZauAODnvx92sgc3YD7IdS01SB/gf/tUFvhYFB0f3PH+RWZ7fa7dNzlfJXDZ2rkkN1cJq5uzhZETCzbiHbd7aBTMmSu+DPflQ==
+ bh=ReqfuJlq+4yrwcfnCCRTOIH3G0AJ4wfTn7pusQDxYTw=;
+ b=d/jmlCC5TFo1E5Lycm1OsECgLTJps6Kb/Nm+l83sSmWfglCarro/IiqTkG8BMY1DpehBeG1T+GnzXKHazxVeTXrgisRXzfaMk+fG4f48x16uKsempV32DAhJvZpvhIFVoZMTGv4QZeVqui9nZ3KK9s9Ja3QD4dQ/yi/kgiRUrVDoRifs1yI7nFL4hj/XOodXx51f8TCFc8PzymYyaREtwcxvY+ItsVkj4OncxNqmFA7ISdxpZXJErxmFohpo9cbxTBbQcJMSQiYXCf8BMrImJYrrRFMLSJwS0FHv7eRpR61P1DRC7/c1AH5o5n9hBzOWl39beMO+n9IuSu8g8AGs6A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rGMzp78C09ETjvzu/jCvVd+/cb/9tclMNdfhak5fr0M=;
- b=jhfmprFi6FdolWYvF5H1nDVFebpQsIHeepKskY+1lWl358rmAJk2rzLniQgA+cYKAjtgjNpCujG9Kf0u7zK1riNz9GchSPhuS1GioD0GKR4m4SFVBLkOvOqg14G9eBWsTOh90Ay05yvoZBfkpoc+PjV2smEcaokvc94fLxWKxHPAe2/j3UyfqEBE+gEJAfQcWXoZP5cqdCqF5WOkAjec1aURiB/PePsN8Z2xjoBZw8VEWyAs7Isfbo/22DGp6gfI2Vh9t7cJq9662poFKmZURFwS97AYDX2D+4JUnv7hFE2htEcS/Q3gIKcXyUxhK2UDPsALXBCbEWLBdjMQBnEsrg==
+ bh=ReqfuJlq+4yrwcfnCCRTOIH3G0AJ4wfTn7pusQDxYTw=;
+ b=BSNUOQlx7FAd70mEqX19S93jlGBig09y0fKJAIAwo8at9+7I5X4FsAusxhKoWABb23AqP4IRu6/tGQYg+cKqU/9seQDKf/2OmvslmXgfWT7Pcmpu6/3ue2aovWNZdKGp5HeYWKjtLUr3IB6MBPTwjkQiAvPkUX4ASc5qMuIgzyN0npW5EQeAEK7lVYiiOV1CIdlYqoHVdydqR+y47J0nDRpmFJ/Rk6dyuVaFldE4ISOeD1ip51bkcu/t1n9bsxy07Zx6OSWVm82ccbdBPOUD+jy9dNfpaxpQpMJUKrKq+9XBHGZMgYHxUEdw7cjVb4Gacu5ShxVfnfQrLleO12QA3g==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SEYPR03MB7814.apcprd03.prod.outlook.com (2603:1096:101:178::13) with
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Thu, 9 Jan
- 2025 02:32:57 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%7]) with mapi id 15.20.8314.015; Thu, 9 Jan 2025
- 02:32:57 +0000
-Message-ID: <8ae1ee73-d710-40d2-bc70-605680421fb8@amlogic.com>
-Date: Thu, 9 Jan 2025 10:32:52 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: Add support for Amlogic SoCs
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20241226-amlogic-pinctrl-v2-0-cdae42a67b76@amlogic.com>
- <20241226-amlogic-pinctrl-v2-1-cdae42a67b76@amlogic.com>
- <20250102212422.GA554486-robh@kernel.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20250102212422.GA554486-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR02CA0030.apcprd02.prod.outlook.com
- (2603:1096:4:195::17) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.11; Thu, 9 Jan
+ 2025 01:35:14 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%5]) with mapi id 15.20.8335.011; Thu, 9 Jan 2025
+ 01:35:14 +0000
+Date: Thu, 9 Jan 2025 10:40:58 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Update i.MX95 compatible
+Message-ID: <20250109024058.GA31833@localhost.localdomain>
+References: <20250104-imx9-machine-v1-0-18a78e41456b@nxp.com>
+ <20250104-imx9-machine-v1-1-18a78e41456b@nxp.com>
+ <4666f8e9-d19e-45bd-be9c-a7f111168d66@kernel.org>
+ <PAXPR04MB845922D5BCAA88C26C0149B488102@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <8d2746ba-47d2-429b-9df0-9448a4516ef1@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8d2746ba-47d2-429b-9df0-9448a4516ef1@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: SI2PR01CA0021.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::19) To PAXPR04MB8459.eurprd04.prod.outlook.com
+ (2603:10a6:102:1da::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB7814:EE_
-X-MS-Office365-Filtering-Correlation-Id: 84b328bd-b87f-41be-d63a-08dd3055ed6a
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|PAXPR04MB8829:EE_
+X-MS-Office365-Filtering-Correlation-Id: fb904785-6cd8-4375-9d12-08dd304ddd70
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?YUVWQ1BGMDIrY0FxUTBrNFBlSGREUmRsQjgwdG1DNTBOOXNxeU1GOGxkTTVi?=
- =?utf-8?B?Q3FwVmVsWngydk5mcDBoTzViUzQ0emU3Yyt2aFAxNXdjUmk5UUlyUVhBaGUz?=
- =?utf-8?B?R2oxekRINTZBU0FPdzVxVzQ4SFAyS05rNTdKRGc3Z2lSdUIwMkRDak5IS0NB?=
- =?utf-8?B?ZFdZcFcvTHJaNzJRSXNqUVREV3hKeVZtTk1nbVVGWnhJa3hlSCt5VHpyWVVu?=
- =?utf-8?B?VWx5Q2EwWWJZUmliKzJuYzFiM1R1bUFBUC8vOXpjUTRZMElkQkFYMU80Q25Z?=
- =?utf-8?B?VUw4V1htQnVQYmJuRW9RbXc1Z3oyWXdGRmVJRHA2SG1Xck1nTUdxak10c3g5?=
- =?utf-8?B?MTYrcGhnc21jT3JBRkZ3ZjAydmhJZlk0bjFNVHlNaVlMbjMxdmdoR3hMUU1J?=
- =?utf-8?B?MGwzQVpmT2QzT0dLTVFYOUNtSHlaclZ3WUZOWjhPRDZ4SE4zS3VnTUJRTFlZ?=
- =?utf-8?B?blUwQ2dTZGFrOFBMSmM4NEZWS1dkSHFuVXljd2c4eTM3ZUtkeWhtalFrSWhp?=
- =?utf-8?B?SExPdHZzTTM1WXZBTCt1b3FJNGVMMkc4clp6M043MUc3UmUwd1QwRHF2RitN?=
- =?utf-8?B?cDQ5ZG9VcmZQdXJIQ0w2R2VQeUFBRTJ1YURmb3lLQlk1MmdpcTlsK3p4WENX?=
- =?utf-8?B?SDNvcUtRSUhDOXBLQkpBNWRHLzYwOWlGbHpKeVM1RVFJeUpiRFFQbDZSNTY4?=
- =?utf-8?B?UUczNFNFZGVMUTQ0RXRmVytkRnhTRUtYVDZJTXFjK0NoMTN0RmZCbC84NG9W?=
- =?utf-8?B?OURXOU5VQ3pmWi9VMWpzV3MyeXBJWWQ0SWM2MHFtSzJIRFdmdWN5NnhhT0Zv?=
- =?utf-8?B?ck81eEplZ0FXVkxSUUpxT1dJNlduV0RVUFVrSVI5NnBZRmg2VUFJUTdkeStQ?=
- =?utf-8?B?RjVkK01LSGNuZGd2NzNzM1oxaUxDejJOVjkxcjlpck9pbk9McDMwN1pnOGZ6?=
- =?utf-8?B?bWs3UmJnTzJnRGJ6RjRodEdjRUplL0Uwd05TUE1wVlZ2NEtjWmZUSEEySzhx?=
- =?utf-8?B?ZDY5Zysvd2JxWFduek9MVlhGTmkxd0gvMWN0UWZjeFNoMEtNRjJ1Qjg4cDFl?=
- =?utf-8?B?MTI2blNqK2Q0NXlWWUJOZjhLeUFNN1JMVGVpVDRPdFpDdFBITk1BWVh3Qnls?=
- =?utf-8?B?T2FiQkcwZ1dMek8wSkw5blVpVTRLSmZnTThiT2l2SXlHK2REanNSdncxYjFQ?=
- =?utf-8?B?bFF2b01ndEdNMEdVeThsR00rODhMdXF3R0Q5UHU5Yy9mUUp3ektSSWo4SklJ?=
- =?utf-8?B?Ty85UDhBTVZTQnI3RWZ2NS90a2NCKytOM3VMVG1xeFpDYUZwMGV5cDNMcG1u?=
- =?utf-8?B?NjE1bEhXZDVaTFBVR05zbUFoSHlwajc3cG5VbzE0UjRkM29pZ1k4eHdwS3hx?=
- =?utf-8?B?VG1SYzJuUkZCdVcvTzFRRERVdVZyc2x4YWdJb1NtVGZDUzhkVUM3UHp6dmFo?=
- =?utf-8?B?cHluVGd3a1dnNHdhS3Y3L0MyZUtCTFZCajJFWWFTUXV2VHpndWs5TFZJR1ds?=
- =?utf-8?B?Q3ArWi9OcFgzRmJMeUN2YjN1WExCQzhTems2eHFFR0x6Q1dOVWdtMm1tTlFK?=
- =?utf-8?B?NURSeHNWdVdtRm5qeGJONUlkdHFUcXFDZStCY0JPQmMxYmdkaXVyRlhBb3Bu?=
- =?utf-8?B?YVVKWEdLZnk0cUhmYnA1Nk9iNlQ5VWRMRUR4Q010TFV6UzNlbnd3dmJQc3Zs?=
- =?utf-8?B?QjkyeTdIcXlFTFJBNURKSkxQUWFNbXZ5aWN3aWlycG1oOUEvaHhOemdzTm9i?=
- =?utf-8?B?dWZTMmZtVFlGeTU1ZlZ3emJkSDRGZlpSbE15aUxXUDE4M0pQSXBkdWErYnpH?=
- =?utf-8?B?WkV3dUd1N0t3Q0JjNU5tZz09?=
+	=?us-ascii?Q?hVPLYqrRRXsQMzam1G167vtIwSu4xF7otsLvEU20JAka9KZZA1GnxRL1Vvuc?=
+ =?us-ascii?Q?QFZW97jhy2O5fv3iOzPSf2KPmKOZm0M8iMx1YOUGeHMFeRYlQHmPltdzjkXg?=
+ =?us-ascii?Q?lgV6cNoJVF8hfEf7tdq0/JKeOV5zRXR2p4POX9ZLWPG+oq8hQr6jgjPwTIrm?=
+ =?us-ascii?Q?kII8a+xYHs1WfDgqYJjnMZn+MStWO9k/4uepEwfeDymr+bLjH2pQxMa0g8+A?=
+ =?us-ascii?Q?xPUwXcMvLjdyS3dnFM4VON5YsaA6IGDSbxF672W8jBFcZat3sC9eayvPLfTV?=
+ =?us-ascii?Q?Sf/WFzqyq9UvhU/QhYPy97UBHgOMB0qSNVNCIKGehDHM5w0l9QXmy71V9nnG?=
+ =?us-ascii?Q?73T9+NhlB5swZWdQAjbRw/+fMPAu1botwUXZWglW6F8zMzS6xSeJ1EGri9KE?=
+ =?us-ascii?Q?WQbduGaopOaJsPRhT21rRezrjBALbjUUgVgI3k6GgMX34NNHXMsnLfUE0Mj9?=
+ =?us-ascii?Q?zyttYZ6opcjAqw6GVqBH21sgd+L8nBxlAcYOtvpohzicGEKBrz7Lyy7S4d53?=
+ =?us-ascii?Q?ptKTM4BarsDb9o9VWGpWq0I4pHz3XoYM0phKXP0g1hv4+jqXNEJrjuS8dxUt?=
+ =?us-ascii?Q?2qa3tNFrDzqh2MbgxhVvQc++/bcG6sPnfZKZFQaFbWO+8SpZzHdaF5WrvR9t?=
+ =?us-ascii?Q?H/kAy4Ed68WNuuWvLVQ/Rj4cLR+ZUirV89mDtx+tfT9k8ww7ueQBRCfxguO0?=
+ =?us-ascii?Q?TqsEgSTxDk9oiAAbSFJhBehiqv7UJot5GPBuk5XVSPRbCSvY1JYj7PKE/d8q?=
+ =?us-ascii?Q?qb77N6apS0kGUCbobgob6HsCy5D43FWVafA/LvO7QIioHsB6rH+o3UjHemG0?=
+ =?us-ascii?Q?pI9mWuS5LHmbTMpeddhIqscegaSamc31xHNb9bNm+V4JcSk2LfUmcZq5zP00?=
+ =?us-ascii?Q?lAYMMDJLU9q4QAj4P+IDweJ9bi5mpShCAhJ3nafI6FFb/kXSdvFTy3DgU8QY?=
+ =?us-ascii?Q?yoUjsuVuE6u1/ZB+lX1kzGaS/E/ZJUpdo5THACtkNTKNSgfOH0vNonQT6Ee2?=
+ =?us-ascii?Q?vM25keYe/KNjFbRf95m3TgJbqDa7jjHe99cy1tMb2eFjiysAvBm48317zcmm?=
+ =?us-ascii?Q?f/ITTDA2x1fnsutE3Ii782ug9D8ywnCnwITvBhthUBuTvema4fXfTd4nSznb?=
+ =?us-ascii?Q?l1aIlBvH/j7nFagIZAMox/UBaREGBd7YJRIEYEt79hj4MpqbFuMszV5f/2zo?=
+ =?us-ascii?Q?xKt/lSvP3PG3jGpBji0jRfgsDGkbFHHy/A7mCqXc77WuhbszIv/jgIg2DtjR?=
+ =?us-ascii?Q?6YyKxQw5TRPTqIzc26vSw7nOljO/wMXKCq5hGXcxAI58oV+q+jf88nL2AS+o?=
+ =?us-ascii?Q?pdx5PqOPJS95S4m4JYolOBgmOuPDR1qjkrJjHF+BhsCVo4XbJuwnVyKxhawY?=
+ =?us-ascii?Q?IQs6I7V6mBmJ7o7c3nkU19SffAzLBJtrF8zgc3UgYObSh4w4Rg=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Z0gvekUvRnl3MjdYY1NSMUlMc2dLMWc1Um95bE9nbm9aVkp5REtsbnlGeUtF?=
- =?utf-8?B?Z3A1ZmdvcjVLck5Ia2NpRFJ0Sm42YUNvMjRiZ294T2gvamJzc2VwSUdwWWpI?=
- =?utf-8?B?MWRnVnh4d3lxeGdsUzVPVkxFanB1OUJPS3lVdHBLeUk2U1BhbDgxTlBJK1d6?=
- =?utf-8?B?bkNqQ3J0Tkh4VHBCdm9RYUU0KzBieCtMeC9qemtkZU4vMHcva0Z2R0VDcGF3?=
- =?utf-8?B?Zkg1SmpDSEdBMDA3eEFacFBIUnZtaHJHKzBpbVJwemRPcmJ2QkwvWStJaXRM?=
- =?utf-8?B?NWE2RUE3TWxGZjBuR2hjMWsydzFDZ0JFT2lzczlKaENhUWdraVdtMmlEUVJM?=
- =?utf-8?B?bXF0akMyZXpBWjZCRC9NbWN1NFd4TTU4anpBeEdYZklCQmxOYzl4Q1RuUUVw?=
- =?utf-8?B?a1RxaW9xU2E4L1kyTzBCYjBKVEx6Y29IR2QvRWY5aHd0Vk1mQjhQMER6UjFU?=
- =?utf-8?B?cjZ4T0dxZlZxUm9GcWs2MURYYlJ0YTRjUGpsK0JlV0d2eGNnTzR4am5FbU9w?=
- =?utf-8?B?cjBRY3JlWlFsRm5DN1BBWWp4aHlWaE1jZFpneWVuZjdWb0lLRGdFdWR4N3Ni?=
- =?utf-8?B?NW41TzNPM05Cc3gzTU4rTU1PV0ZTcDMrTzd1Z0hnUi9telhIZXYrSC9TVTVV?=
- =?utf-8?B?d2ZMWWN3VmFIbHVUZHRDVC9rYWtxV1U3cVNBeEZQSkNibDFvRUt2cUl1MmpX?=
- =?utf-8?B?SUI5OXZtZm5mQ3VQY0hxcTVjVzYvV3c4MnN6cVU2MHRwaEFaY0o2SlVpampV?=
- =?utf-8?B?d2srdW1EcDRROWRBc2t3SFQ2VURXWmFNME1lbDRVQmZ0c2xSWkJraCtIMHEz?=
- =?utf-8?B?blpiMnR3MFUxRzhFRy9PbUtzRTZpUlVOWmpYR3psQXFzMWdCTFVTNDBPYjhs?=
- =?utf-8?B?aFUwTklRZ2NMZHFyL1FDN0kxM0JFMXBXdGRVTXg4b2tBMjZMSTVnSzVUWTBD?=
- =?utf-8?B?ZjN4U0NKUkExbjJ4MUdmVkNiZ2o2Qy82YmdJZDJUM3RoSldJem5ZRWhOREJF?=
- =?utf-8?B?VVhlQjJtUWZhU3dGYUErQndEQ0pWTmlsSXliaFRsaUpDd29FWmpHcVloUitw?=
- =?utf-8?B?ZWw4bjMyTVlaMmJWcmErYXVaS1hMZWExT2dSVFhaU2RLcXdBZFlEVzlteW9F?=
- =?utf-8?B?dCsrVjh4NXZ0UFdWMmJ3Z1JHRTh2blBiaSswcjk4bVkybUhxR1V4ZWNLdFVB?=
- =?utf-8?B?K3B5cUo0d0p1MDJWSUFaK1BrZlhtdkdEd0V1UWozZjE0K0lMQVE3MzdKMDVY?=
- =?utf-8?B?UFpVMVhMN3BEaVZPRHNubS95bmJLNVhmaHJjcFFndU5oQ0NYZXpLU2QzdDQx?=
- =?utf-8?B?eFd2LzZuT3dia2h4S002YkxNWXF1YUxnSDZUVkRsRHg3ak1NU3Ftb05uM0VZ?=
- =?utf-8?B?T0d0Q3p2QldzcVFFVEZhOVpXb0ZUR29FZkRFbFRQcFVucGFJWlNaMk92MEpx?=
- =?utf-8?B?WlV3bWtjcVhWRTZpSTB4MjlNNVBkdHo3OGtaR1htUDlHR0oyN3ZjUXJTY29P?=
- =?utf-8?B?YXlUbDV0R0RPZnFhRjhGaWl0M2laSUozZnhkSHVJNFh3RTBoME1lYnpibUs4?=
- =?utf-8?B?TzRuVGFQWlA1Vnl5VE05VTVHM3ExU3BqMkt5Mk5JZFV0ZnBGLzN2enRWbVZh?=
- =?utf-8?B?L0tUSTJDUDJmUktsZFBGK2pONWdLanFCMXZuT2VWMlJ6MFB1a2xHLzlrUTJy?=
- =?utf-8?B?Qlp6aWtPdW1IZ0lXemFOTTVtMmpHNjJoeGo4QnFhVlBLTDdDV1l0bHZscitR?=
- =?utf-8?B?Z1pxZ2R2WVVTZmNGaGYyeEYxMHk1U0VWamp1RU0wQTY2K1FSbTVZQ2V5MmMr?=
- =?utf-8?B?dGZKK21mMXR6MnhKVmVyTE94STNTWS9qNmZVMGhjdDZYYm9YbjJyZmNkVncy?=
- =?utf-8?B?OUpQRGhWSVFSRldaWjVQTy9KMFNhblVIbS9BWEgxUkxXMWtRcENLRzNFMWtB?=
- =?utf-8?B?TEFhQ1RTMXA1L2NTN0poQy85K1ozR2x3bTJWbFpiQk93K2xSVmRHYm5VOVkw?=
- =?utf-8?B?bWc4RVhVekhlWlZGdDI3REhUVnk3QVgySlV5SjBDWTZ1aFRodGR5dUJvbG9a?=
- =?utf-8?B?WGdkbEFDZ3RNU0NDRkRZK1huSXVxcytqY0dkU0M3Um5mQVRkUGM2NUVodUIw?=
- =?utf-8?B?N1p1N2dZQ2g5OHM5ajVDQTNlRW85THVFNmcxSnNjdlRvWXRyWWVuTCsvaFBK?=
- =?utf-8?B?S3c9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84b328bd-b87f-41be-d63a-08dd3055ed6a
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+	=?us-ascii?Q?4m/VfL2wKfhW1/KyFUOvZomTTwh0CLyNh/7xapVbd2qp4qs/slpuZnlTq1GQ?=
+ =?us-ascii?Q?1j8mo9oDn5DRrdCv8yyAPfi0uG+3WY0Kzz2dT+syhJuAl9ixo7qYlLS6sASH?=
+ =?us-ascii?Q?3OrmZCe0xYn84xEdxEqse4oROBIznARa5Z4WmkvA/QIhJTscIFLK+U6eDXPD?=
+ =?us-ascii?Q?Y8w/xVv2kTzfLvwc0SWjVlbBP40F16L/3d6YsWZad1O4CQ7b4QnW9Nu+Jc9n?=
+ =?us-ascii?Q?/4EM8VIO+uPnSMvkjRKdyVNoJd/Wfx6/U9no3GY1IvP+eGFQQrUPpJdfYMbp?=
+ =?us-ascii?Q?34ooQS6ozCj2yjkJm1Fq8Mxc8dQSTWX+CWx+bwx3J3yIxqLtT138q+qQih0i?=
+ =?us-ascii?Q?zTkwTH07OIFDFp7d4wqde/hyOWUTEg09NqlAljzzxSOst+GiirGqK2BVKDcj?=
+ =?us-ascii?Q?aTJ3I/wssf2xTknnjxfbNeAnRFxHCIpNXsJPKTv4UX7NcNpblFAMMrK199+P?=
+ =?us-ascii?Q?H3YMfxCVF1gzIx01lr5Cy/GsTGj5d90xvgaiR0QgEeqwoLu5SsxMQE16QOyr?=
+ =?us-ascii?Q?HSSFRsOffoqgPkbZvUUqpMbHwoqcsT8/0V0d91haOxuCDRvqIuYuwuRjKTY3?=
+ =?us-ascii?Q?mxn2pu4iWIZY6fUiIfE4JXgVlqXmEn83L3MpJKPkvMN9WQWMNQFlXdZX57as?=
+ =?us-ascii?Q?3C0GbzF03Lzj/QBxf5O/iKYDFXBF8FGZ/ngJWS2q6SvWNwBBciVJc197WNaf?=
+ =?us-ascii?Q?X+rxYqYINF+FzNN5y7uy2zHNRogBy8iu6O8enddILHw1QUYZ/Z5u5q5Oip/f?=
+ =?us-ascii?Q?qR47j0H0YNrpkPAs5p4FsXuRRaVdtnbhyEvKOJeB6CUa4hlTXmtAe6X5XVUm?=
+ =?us-ascii?Q?iN6Gf6iOf3XiZGugdxJzw/1BpFb3KByOPEfLTUlLBNtlEELWUlqm+Q5jFfNF?=
+ =?us-ascii?Q?RoiIU4EdCFo5G4hZAgr/2GZHYHQ5Mkxi8jd2q96EMVw7vfCLSCTY4zJbZiYr?=
+ =?us-ascii?Q?2DsONWdI+Rh4WwGTunjQTnZjpKY7Q5KVQ/OP6AwbSSyLcEh4sFPFYBe07QpJ?=
+ =?us-ascii?Q?NI7P/vHIYGOjbQXXIa8whll5XO6NdSale+uJVvsNu/7C5lNd22Nz75aV/4FP?=
+ =?us-ascii?Q?RLOhEciCDCRhojZfU+UTJvgsZwa/iPISg9TN04YPpPPYQfAPT/7B8XNRwWZ5?=
+ =?us-ascii?Q?lSIC/wIYOZPxnQ1OJOFCcREHGKzn9vwcyqL5gqpr3ntWeJl1/SID3xhsHmKP?=
+ =?us-ascii?Q?4oyTr3rEv3RR1u1AeAACWkjewC06oqqncatmTQv/p7i2Fvwqf+qSU6xzvzGQ?=
+ =?us-ascii?Q?TD9YaTYSZyXwlJPo+/SbpCVzmUxgckxjUyzsWF/KL4VIL5co2zV9bN6GkwBK?=
+ =?us-ascii?Q?6nPPNJA7bjmbvdxU6QwFB24fpAZue234WyY1Y67V5dk8WSKt5lPKE9egsIK1?=
+ =?us-ascii?Q?jMft+DVAdgXY/K6OX7YM+aeirAQIynSpaPReNf3eryQprD6+mUje0KO4fdtY?=
+ =?us-ascii?Q?QFjX5SjJvZ4vGUA8PfXAQUV05c3HzCgIkXeQUirntr10DdjkdmPnZnpUToKE?=
+ =?us-ascii?Q?5kKOnhLHeav62ddRZg/aiH+bPQDPVbIl8FKd4eMGh2lJR7RFUg7d0Gz0lAMG?=
+ =?us-ascii?Q?3/W0BTUkWIdxJW2z9k1Lm/5gra1hOzyr+FB3vV4S?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fb904785-6cd8-4375-9d12-08dd304ddd70
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2025 02:32:57.1821
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2025 01:35:14.5658
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GKhFscyFUYPlJ6xuKqguTZgHD1jWTd5KIqliS17fVsGI3+f3nbXPvOzAIrrsB2elay/q0U9noR+cKNKe8jbtpat7VodDxUzJlixomW0KUOE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB7814
+X-MS-Exchange-CrossTenant-UserPrincipalName: rMVTa7w/YVyuQT3Bf36I6ZA5fNCEoe4qyn5L097AU27Qw/UWz+bSxbeoWWFbWBy0KFe/ujXjWaiB/2CQN96rtQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8829
 
-Hi Rob,
-    Thanks for your reply.
-
-On 2025/1/3 05:24, Rob Herring wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Thu, Dec 26, 2024 at 03:57:41PM +0800, Xianwei Zhao wrote:
->> Add the dt-bindings for Amlogic pin controller, and add a new
->> dt-binding header file which document the GPIO bank names and
->> alternative func value of all Amlogic subsequent SoCs.
->>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   .../bindings/pinctrl/amlogic,pinctrl-a4.yaml       | 155 +++++++++++++++++++++
->>   include/dt-bindings/pinctrl/amlogic,pinctrl.h      |  68 +++++++++
->>   2 files changed, 223 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
->> new file mode 100644
->> index 000000000000..75863d179933
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
->> @@ -0,0 +1,155 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pinctrl/amlogic,pinctrl-a4.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic pinmux controller
->> +
->> +maintainers:
->> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
->> +
->> +allOf:
->> +  - $ref: pinctrl.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: amlogic,pinctrl-a4
->> +
->> +  reg:
->> +    minItems: 2
->> +
->> +  reg-names:
->> +    items:
->> +      - const: mux
->> +      - const: gpio
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
-> 
-> The addresses in 'reg' below are MMIO, right? If so, #size-cells can't
-> be 0 and you also need 'ranges' here.
-> 
-
-Will add ranges here, reg and reg-names move into gpio object.
-
->> +
->> +required:
-> 
-> Move after 'patternProperties'.
-> 
-Will do.
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +
->> +patternProperties:
->> +  "^gpio@[0-9a-f]+$":
->> +    type: object
->> +
->> +    properties:
->> +      reg:
->> +        minItems: 2
-> 
-> You need to describe what each entry is:
-> 
-> items:
->    - description: foo
->    - description: bar
-> 
-Will add description in next version
->> +
->> +      mask:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +      gpio-controller: true
->> +
->> +      "#gpio-cells":
->> +        const: 2
->> +
->> +      ngpios:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> Don't need a type here.
-> 
-
-Will drop ngpios, use gpio_rangs instead.
-
->> +        minimum: 1
->> +        maximum: 32
->> +
->> +      identity:
-> 
-> Needs a better name. This is the bank number?
-> 
-
-named 'bank-number'.
-
-> But shouldn't you be able to use gpio-ranges here:
-> 
-> gpio-ranges = <&periphs_pinctrl 0 (bank# << 8) (value of npgios)>;
-> 
-> And do you really need ngpios if you have the value here?
-> 
->> +        description: |
->> +          identifier are provided by the pin controller header file at:
->> +          <include/dt-bindings/pinctrl/amlogic,pinctrl.h>
->> +
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +
->> +    required:
->> +      - reg
->> +      - gpio-controller
->> +      - "#gpio-cells"
->> +      - ngpios
->> +      - identity
->> +
->> +    additionalProperties: false
->> +
->> +  "^func-[0-9a-z-]+$":
->> +    type: object
->> +    additionalProperties:
-> 
-> Define a pattern for the node names instead. We only allow anything for
-> existing bindings.
+On Mon, Jan 06, 2025 at 07:12:29AM +0100, Krzysztof Kozlowski wrote:
+>On 06/01/2025 03:51, Peng Fan wrote:
+>>> Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Update i.MX95
+>>> compatible
+>>>
+>>> On 04/01/2025 13:13, Peng Fan (OSS) wrote:
+>>>> From: Peng Fan <peng.fan@nxp.com>
+>>>>
+>>>> i.MX95 features a System Controller and SCMI Spec 3.2 compatible
+>>>> firmware System Manager(SM) runs on the controller.
+>>>> Add "fsl,imx-sm" compatible string as fallback for "fsl,imx95" to
+>>>> indicate it is compatible with i.MX System Manager.
+>>>
+>>> I see little value in generic compatible like that. All these are
+>>> aarch64 so why not adding that compatible?
+>>>
+>>> How this generic compatible would be used?
+>>>
+>>> And by what exactly?
+>> 
+>> There will be more i.MX9 chips with System Manager. I would
+>> not expand the list here each time to support a new SoC.
+>> 
+>> https://elixir.bootlin.com/linux/v6.13-rc3/source/drivers/pinctrl/pinctrl-scmi.c#L508
+>> https://elixir.bootlin.com/linux/v6.13-rc3/source/drivers/pinctrl/freescale/pinctrl-imx-scmi.c#L290
 >
+>Problem is that compatible is way too generic to be used by Linux drivers.
 
-Will use patternProperies
+Is "fsl,imx9-sm" feasible here?
 
->> +      type: object
->> +      allOf:
->> +        - $ref: pincfg-node.yaml#
->> +        - $ref: pinmux-node.yaml#
->> +
->> +      description:
->> +        A pin multiplexing sub-node describes how to configure a set of (or a
->> +        single) pin in some desired alternate function mode.
->> +        A single sub-node may define several pin configurations.
->> +
->> +      properties:
->> +        pinmux:
->> +          description: |
->> +            Integer array representing pin number and pin multiplexing
->> +            configuration.
->> +            When a pin has to be configured in alternate function mode, use
->> +            this property to identify the pin by its global index, and provide
->> +            its alternate function configuration number along with it.
->> +            bank identifier are provided by the pin controller header file at:
->> +            <include/dt-bindings/pinctrl/amlogic,pinctrl.h>
->> +            Integers values in "pinmux" argument list are assembled as:
->> +            (((BANK << 8) + PIN) << 8)  | MUX_FUNC))
->> +
->> +      required:
->> +        - pinmux
->> +
->> +      additionalProperties: true
-> 
-> No, not allowed to be true except on common schemas.
-> 
+Thanks,
+Peng
 
-This object  I will only save
-      allOf:
-        - $ref: pincfg-node.yaml#
-        - $ref: pinmux-node.yaml#
-others(description, properties,required,  additionalProperties) will be 
-dropped.
-
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
->> +    apb {
->> +      #address-cells = <2>;
->> +      #size-cells = <2>;
->> +      periphs_pinctrl: pinctrl@8e700 {
->> +        compatible = "amlogic,pinctrl-a4";
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        reg = <0x0 0x8e700 0x0 0x04>,
->> +              <0x0 0x8e704 0x0 0x60>;
->> +        reg-names = "mux", "gpio";
->> +
->> +        gpio@14 {
->> +          reg = <0x14>,<0x30>;
->> +          gpio-controller;
->> +          #gpio-cells = <2>;
->> +          ngpios = <10>;
->> +          identity = <AMLOGIC_GPIO_B>;
->> +        };
->> +
->> +        func-uart-b {
->> +          uart-b-default {
->> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 1, AF4)>;
->> +            bias-pull-up;
->> +            drive-strength-microamp = <4000>;
->> +          };
->> +
->> +          uart-b-pins1 {
->> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 5, AF2)>;
->> +            bias-pull-up;
->> +            drive-strength-microamp = <4000>;
->> +          };
->> +        };
->> +
->> +        func-uart-c {
->> +          uart-c-default {
->> +            pinmux = <AML_PINMUX(AMLOGIC_GPIO_B, 3, AF1)>,
->> +                     <AML_PINMUX(AMLOGIC_GPIO_B, 2, AF1)>;
->> +            bias-pull-up;
->> +            drive-strength-microamp = <4000>;
->> +          };
->> +        };
->> +      };
->> +    };
->> diff --git a/include/dt-bindings/pinctrl/amlogic,pinctrl.h b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
->> new file mode 100644
->> index 000000000000..03db0a730e8b
->> --- /dev/null
->> +++ b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
->> @@ -0,0 +1,68 @@
->> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->> +/*
->> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> + */
->> +
->> +#ifndef _DT_BINDINGS_AMLOGIC_PINCTRL_H
->> +#define _DT_BINDINGS_AMLOGIC_PINCTRL_H
->> +
->> +/* define PIN modes */
->> +#define AF0  0x0
->> +#define AF1  0x1
->> +#define AF2  0x2
->> +#define AF3  0x3
->> +#define AF4  0x4
->> +#define AF5  0x5
->> +#define AF6  0x6
->> +#define AF7  0x7
->> +#define AF8  0x8
->> +#define AF9  0x9
->> +#define AF10 0xa
->> +#define AF11 0xb
->> +#define AF12 0xc
->> +#define AF13 0xd
->> +#define AF14 0xe
->> +#define AF15 0xf
-> 
-> There's no need for defines in the form "FOOn n".
-> 
-
-Will do.
-
->> +
->> +#define AML_PIN_ALT_FUNC_MASK        0xf
->> +
->> +/* Normal PIN bank */
->> +#define AMLOGIC_GPIO_A               0
->> +#define AMLOGIC_GPIO_B               1
->> +#define AMLOGIC_GPIO_C               2
->> +#define AMLOGIC_GPIO_D               3
->> +#define AMLOGIC_GPIO_E               4
->> +#define AMLOGIC_GPIO_F               5
->> +#define AMLOGIC_GPIO_G               6
->> +#define AMLOGIC_GPIO_H               7
->> +#define AMLOGIC_GPIO_I               8
->> +#define AMLOGIC_GPIO_J               9
->> +#define AMLOGIC_GPIO_K               10
->> +#define AMLOGIC_GPIO_L               11
->> +#define AMLOGIC_GPIO_M               12
->> +#define AMLOGIC_GPIO_N               13
->> +#define AMLOGIC_GPIO_O               14
->> +#define AMLOGIC_GPIO_P               15
->> +#define AMLOGIC_GPIO_Q               16
->> +#define AMLOGIC_GPIO_R               17
->> +#define AMLOGIC_GPIO_S               18
->> +#define AMLOGIC_GPIO_T               19
->> +#define AMLOGIC_GPIO_U               20
->> +#define AMLOGIC_GPIO_V               21
->> +#define AMLOGIC_GPIO_W               22
->> +#define AMLOGIC_GPIO_X               23
->> +#define AMLOGIC_GPIO_Y               24
->> +#define AMLOGIC_GPIO_Z               25
->> +
->> +/* Special PIN bank */
->> +#define AMLOGIC_GPIO_DV              26
->> +#define AMLOGIC_GPIO_AO              27
->> +#define AMLOGIC_GPIO_CC              28
->> +#define AMLOGIC_GPIO_TEST_N  29
->> +
->> +#define AML_PINMUX(bank, offset, mode)       (((((bank) << 8) + (offset)) << 8) | (mode))
->> +#define AML_PINMUX_TO_BANK(pinmux)   (((pinmux) >> 16) & 0xff)
->> +#define AML_PINMUX_TO_OFFSET(pinmux) (((pinmux) >> 8) & 0xff)
->> +
->> +#endif /* _DT_BINDINGS_AMLOGIC_PINCTRL_H */
->>
->> --
->> 2.37.1
->>
+>
+>Best regards,
+>Krzysztof
 
