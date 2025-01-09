@@ -1,124 +1,138 @@
-Return-Path: <devicetree+bounces-137082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25D5EA07720
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:19:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE8AA07724
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:20:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00BEA188729C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:19:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2693188BBD6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:20:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3DE3219A6F;
-	Thu,  9 Jan 2025 13:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF28218ADB;
+	Thu,  9 Jan 2025 13:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nXiPYGIx"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YdGSnLKO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0E7218AA5;
-	Thu,  9 Jan 2025 13:18:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5A7218AB8
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 13:19:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736428732; cv=none; b=XA0S9SRIuLyRSWQXtMOZ3HqSYtTXT23rQQO0QkCjJ4uenxEg7LFxZe6KNRNfo239IhWZEsjCiVLNiD8xvJlZQLHrwnLWl8CT7AOT9ElEY/dFUIelDPai8xZRN8GuddEmIeSG49eZVNZibT8xhgBG2F0UiRyb/VqrooJX4Vnr/RI=
+	t=1736428779; cv=none; b=rTSGu7ClSH01dRbyrbFWsx4AiyHQwO5xZXyvqXCLcz3b5XUrPLEST0jJE0AgDtKkIXbgIyfcZyB97E8xyYemxQ4VirgGdlXvGIUXWzyw1aSxga7II5zYVXFIcw6l9foarvZV0DdJbRyOcBLDxm3BzkMISf2b7izYwoX3P8C0uYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736428732; c=relaxed/simple;
-	bh=aaAdhIzKA78xC2paqwvEjCJViZA9UpaWCJZgCILa4dU=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OqH8Ge9EI8eoHs5fLrjKbwVAuMyUYd87b5VszbaGzW8xyvLoH0V9L1eF1clgUynxngjWAigHH8QpTaLfoHYP3pOAa1n4ykxd5OJmqpxC6FhgLKuE0LcSEg3Ll9WxbNySN8RxgZjPK0POCnUIofNJJfiYuPzmV2Vm+sofBxK8Zhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nXiPYGIx; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-436326dcb1cso7209675e9.0;
-        Thu, 09 Jan 2025 05:18:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736428729; x=1737033529; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=geH8zqs5UHg7Rn3R0KPP4iOdZUnnE1Hnpb/c3/QF4ZY=;
-        b=nXiPYGIxqbTCS4nR29Mn4OZpxaX1Vnl4+FlS3ysRPOz57vmtZDiGXEyjV8jEKL0lhB
-         /vVQye4h18CH/u8/4O/JbWN+/SKFc1/yXbQIqHPjS61BzugnvNKdI66+gzRPKe9bWMk5
-         aDGgwXftsiVUEkEFAzoM+dXqUqutshYPhdxbF054096G/yBjbfp6YtrtH3ElG3/zY5zw
-         nKMIWUkICLo7p/BCTtY+GPsgEyQHrToxMARkJU40PuFvUUKPa/2Wdm03TznAqTw4vzUy
-         Yl0chBhDQuV2QOXa0rSqVkO8SARXKLrYz3xQ/lWBInz+D65a6PB5y5meb6t08ApeCkQY
-         /ENA==
+	s=arc-20240116; t=1736428779; c=relaxed/simple;
+	bh=AYjdAEOYuPDRCWNJSOnBFlWUUzqWKjZ0mo8fUf3mMbs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OmlPP89U8QzijQtUaAROVIX2i4IRzgluUZfLkIOp3VpMcZr3e/aVVGx759N2HTndJHGV2TO4pGTjdbHPhlj4zRwtdK+FudVEQSYQQmR+ttoizMwXcduk6oISRwKenw4KqW67B3tIvmXU7S8DjV1K3vlsH+CS3QEnboPrG5m9Dlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YdGSnLKO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5099Nbi5007963
+	for <devicetree@vger.kernel.org>; Thu, 9 Jan 2025 13:19:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Fcos2SHO3ylh+6v6GhnN1Oisu/ti+XpNhYVMWRKSLHk=; b=YdGSnLKO6VXCIH94
+	0ZjB6fK6UEn4Ma4aoX2U2CpiTksmAKD+ufsTRyLezBVcTuLBpTViUziSe/60UVzA
+	Gku0n6i2MPLm0BemBkKYA3FIsmPTbmUbeTUYLxDhgrpwdJhFnldyKggUOhRp4NOa
+	isUF8so41gZ3isp4fGk+W/7uE8nZ+Q4bZf/8stE7qhBr4NpXYC0fMYXhgQ8yUtNV
+	RY3diK/zimLaQL7FsBuCWG2cuLKf24QwkUq5Z/tKfGw+fUd9mFBk/XdhEe/Q9Ajr
+	oqeal4vnGqCcEsjTRxkPGsdGiiQKj4rtOWkmmxZzrereH2KThgZVsKboHBez+rV8
+	yodguA==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442bsm8hn9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 13:19:37 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-467a437e5feso2376781cf.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 05:19:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736428729; x=1737033529;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=geH8zqs5UHg7Rn3R0KPP4iOdZUnnE1Hnpb/c3/QF4ZY=;
-        b=eyZyqK3xSyWC+gQqfWusI/SgYKFsk+bKJz46Kseg/Tjdp796aSfIcJSonruPB+t9fl
-         d1OhySiNEtTYGG7gLlS26yA9VvnK1LAq2DM71NSmGHThjcCKKZocAxkiruzpAMyO3fn3
-         BFkcps4/LnF56Z/pfvlst13DJhifgN2eEmHRFkP/DtUHk/St4aU4lQMZDsYiChkE8w0H
-         WYkp8+RMn4+SNFiaO59yNDhvsgPLQRTF9xX8K4ceTUs9UkwqhHjJmZxzOz1mOuOmCe9n
-         yoXCvcUqo97EYlxa1STIYqQxP5nbZ9iBYx8RQADTExB3cqTVGLRS34i0Z/1KyrIeReKC
-         R0mg==
-X-Forwarded-Encrypted: i=1; AJvYcCUWAzepkeR/MmoQ5JuqiOuXh9HdTedcUEiFEWTwsfyCT3lXtMBMtpu8k98KuGV8loTm/xS6nzaDygNp@vger.kernel.org, AJvYcCUwBYQThr6HKEOqdHrgG38aZEkLPw+fihZ2L3XhBrSDcqxsz5ho8vjiuSju27vWO7MNnSY1LI229Dr5axs=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHwBQuFPNk3dLH8fE2pYWV79o4dUVSEp6N1FdqKMCnV5n/KPeZ
-	62QxOqKWD8U7guCy950X3okH9Gp17laF2QJXL628uUcSQL2XNSRD
-X-Gm-Gg: ASbGncvXXFAiN8CzfQj0QnuP2R93OHCTmxua9HNdP9LIQvyCzR6QZWo745FB7T5m5kE
-	raGeGcOQPfFDRV+vDPtAVL+G+JOu3pki5VdjdH3GqvxwR8PuzJIrP6+zYvzjLMAQ+FsCxUfmXCh
-	uXCXI0SkX3T72y9s8ZZMQUr9CJeecdGp7pL5vSwM7eNMSfCD5GdH+0zHddHUpFIQea7PIpwtAOT
-	Mf6mypIsYLUQypNBz8AgtKtDAIPhr/qUUpfJs1TYTvpwo6IEvw66toSDWrgO+RZ4CnjNlnNGpJh
-	sB5LV0k3PG03zFIWWvEzAxI9cNekdKM5Mf3dZlDttGp3Hi8E
-X-Google-Smtp-Source: AGHT+IHMOuDwHD6Wb10sgnNvXodwERFLU4HYJAJJ+5x54X5pGiI+63vCh/mzBDwiXTwj1vMVoHOAWA==
-X-Received: by 2002:a05:600c:138f:b0:434:a4fe:cd71 with SMTP id 5b1f17b1804b1-436e26a88d9mr63535475e9.12.1736428729154;
-        Thu, 09 Jan 2025 05:18:49 -0800 (PST)
-Received: from localhost (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2dc08bbsm54761245e9.12.2025.01.09.05.18.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 05:18:48 -0800 (PST)
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	Brad Griffis <bgriffis@nvidia.com>,
-	Ivy Huang <yijuh@nvidia.com>
-Subject: Re: [PATCH v2 0/2] Tegra234 fabric fixes
-Date: Thu,  9 Jan 2025 14:18:40 +0100
-Message-ID: <173642870288.2612387.1935592889756224857.b4-ty@nvidia.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241218000737.1789569-1-yijuh@nvidia.com>
-References: <20241218000737.1789569-1-yijuh@nvidia.com>
+        d=1e100.net; s=20230601; t=1736428776; x=1737033576;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fcos2SHO3ylh+6v6GhnN1Oisu/ti+XpNhYVMWRKSLHk=;
+        b=uwv7T5AE5uNq1STjkxYXkFHUAR27LZkHmROw8YlszFx88tNUTVYWdMmB901jdJJnUw
+         XXnfGMl9Iu6KS4xmIayE8dNHbo514WSA/LguIf7nC4feg1zcrUPilLVy0R6d2Sg4O5e6
+         CPgkNv7uemqZ4L9scu2OxAULY4Lod534WFGbVXk1fRihRRqMLSv7BHupUoOnEf7+j0nU
+         7HVWomGuZT6pBMjHTYUK445tbc8G0tE7Pmpdqz/HzlEo9qa3ebm10Ti1wEEvnHUSnLe9
+         XBQTONBMMrguqkb+SghfYxE24SkiXNFsQylFeh/4bjXETAajUgjCFx/lXnyquZEKfCTJ
+         bwvw==
+X-Forwarded-Encrypted: i=1; AJvYcCX2aNUBO/N/ZhtPMZvp8vy+emVAOgu7Qo2RZJoKhp0estzHhmKq2mwnEZLtPZ/tkqJ3eR5tv6gt/51H@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCs4JFvsCgc+mPvjwgZnEPEAzNW9XIJgv1jgLk2zei0jtRgNBy
+	d8ZauWzqaSQeyBoIrWUJgH80mKzLR5F/bwjAnmLwPbvSP1yi0/3ywEXnTzW8p7w0Q+r92LmcoRi
+	B1PG7rb9h8MyLv2obp9djXTdFlOOtZ3oQjiOCqzeo6c/iZ/+mZ5gmY5+8H4NU
+X-Gm-Gg: ASbGncsouw9dpx5Hk2QZOADYPaKlCUxbA55yLsvug4SFujbmrB+D5VYdmimZdz4415u
+	tnC1wvfD3cpHNYCg550U3ACsIf3YFHSWs/xDIiIaq0uGCRmjnWBEajpPk7U3YWAiWgv2SHjACWS
+	6KhKsLYsinopBL/QAWIv/9Fkj3qjRSwUsMzyOdRXHUY1KmiCHVdJ1dwlIwGNJaWclCzo2/boC7C
+	QLlXxhcpDmVVWplSft40FuSyC3Kl4tMAjqPhCdEGYVuTVZvspDkPyTRD/TbA+kyMBCpTPFhL7Q2
+	GaTWh5Yv9d0SzHgI7nplPLtQ9K2DJYEqGuo=
+X-Received: by 2002:a05:622a:401a:b0:46c:78cc:e53 with SMTP id d75a77b69052e-46c78cc0f32mr24138101cf.0.1736428775878;
+        Thu, 09 Jan 2025 05:19:35 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHe3uxKGrbYLEc68rCffIx6PrIJfHwygB8OQEV7vN9RWdcNYSGKjSw7IYaLbJUpoBaf4Idqfg==
+X-Received: by 2002:a05:622a:401a:b0:46c:78cc:e53 with SMTP id d75a77b69052e-46c78cc0f32mr24137781cf.0.1736428775411;
+        Thu, 09 Jan 2025 05:19:35 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c905f0c9sm73056566b.19.2025.01.09.05.19.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jan 2025 05:19:34 -0800 (PST)
+Message-ID: <1c27fada-e283-4058-b944-1b49f7e5d1c2@oss.qualcomm.com>
+Date: Thu, 9 Jan 2025 14:19:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/7] arm64: dts: qcom: x1e80100: Add ACD levels for GPU
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Rob Clark
+ <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250109-gpu-acd-v4-0-08a5efaf4a23@quicinc.com>
+ <20250109-gpu-acd-v4-6-08a5efaf4a23@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250109-gpu-acd-v4-6-08a5efaf4a23@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: fllC6KXVXCpYUyX6rfSzwTqVEOSUQ9Tp
+X-Proofpoint-GUID: fllC6KXVXCpYUyX6rfSzwTqVEOSUQ9Tp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ mlxlogscore=634 spamscore=0 impostorscore=0 priorityscore=1501
+ clxscore=1015 adultscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090106
 
-From: Thierry Reding <treding@nvidia.com>
-
-
-On Wed, 18 Dec 2024 00:07:35 +0000, Ivy Huang wrote:
-> From: Yi Ju Huang <yijuh@nvidia.com>
+On 8.01.2025 9:40 PM, Akhil P Oommen wrote:
+> Update GPU node to include acd level values.
 > 
-> These patches fix issues related to sce-fabric and dce-fabric nodes of Tegra234.
-> 
-> v2:
-> - Add explanation why typo fix is needed
-> - Add fixes and CC stable
-> 
-> [...]
+> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> ---
 
-Applied, thanks!
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-[1/2] arm64: tegra: fix typo in Tegra234 dce-fabric compatible
-      commit: 604120fd9e9df50ee0e803d3c6e77a1f45d2c58e
-[2/2] arm64: tegra: disable Tegra234 sce-fabric node
-      commit: a5e6fc0a10fe280989f1367a3b4f8047c7d00ea6
-
-Best regards,
--- 
-Thierry Reding <treding@nvidia.com>
+Konrad
 
