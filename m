@@ -1,687 +1,384 @@
-Return-Path: <devicetree+bounces-137046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DEDBA075A2
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:22:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EAC6A075BA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:27:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39E9A3A884C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:22:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BD6C1655A7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEC7217653;
-	Thu,  9 Jan 2025 12:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 930FD217670;
+	Thu,  9 Jan 2025 12:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nxabOXwW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bXGXIqSt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F090720551B;
-	Thu,  9 Jan 2025 12:21:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB774217653
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 12:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736425315; cv=none; b=izxdDDK2NrGFmImoePuLlEFLVMWPAdnkuczUQDGmoSxsZuOnunxwJLCX9v2KaRjtpoCswq8PD65ZKcwXoJ9eXRdeopKzLHHLRrqPwZWoQ8dPU1WZ1bHRPKfBZOEkGzRJslgP3jOej9ukrWHZuFkDPQU2G65sggeux60SeXVzVaU=
+	t=1736425662; cv=none; b=fchefyom4sgy6MEgLPZF1i1m9+SkPCn8+diols1GAi2ClSaU/Eafjs2GVV1+jMumdKoNHNE8kMEUar85Kl6tboFtSw1C7td4XptNRxPe5cK6yMPREpn75aoIzvtgfvGBBSRSFrY997mIFmIoK+xJcm+Fy7caf/QGAymVRrX9Jdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736425315; c=relaxed/simple;
-	bh=E7heViLUD+DtQ4Zyf5Qh4BQFUf6L66Mzu923Rml5T2k=;
+	s=arc-20240116; t=1736425662; c=relaxed/simple;
+	bh=ilXg/LRsqzkUEXABpJXraHW4qSL6am7p2dO4eeV9qHQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PpH6LCGDHYJTNYkfmUv2hGBHfOPMiGnisSIKuj3NwcrfUlGikABtM9/y104n16ft2aLfmZxBnrep3oJtpqFde5mQqu5A49JvDw2BxjigW1MVHj3u7Umdqrf2YQ5TXfSAWJ4o9URY9v4cxHbV/u+Z/hu0rD8zGxKDAI0et59pvOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nxabOXwW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31BBFC4CED2;
-	Thu,  9 Jan 2025 12:21:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736425314;
-	bh=E7heViLUD+DtQ4Zyf5Qh4BQFUf6L66Mzu923Rml5T2k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nxabOXwWFZ3pOEKrpWaKMsyi9ZAaabXii5eetvctzYI0lJpTY8iVu84vtmD6SgztT
-	 wbzXC0Fgd0JWTaCFICDNTGEOLTjZD+XT33HIfhqPF9rzse8Zr6MgQ56VySn6M6ZvEw
-	 cleK48INeblclrCAVYsqLWPQf8pX5PXVie0W3dYi5kr3nq2VIeTkXg0awDQtS/bCJ+
-	 RsLK8VzTmvQsnEAB55YkNwbHoJu8IANEOb0cr+PEz7N2FJc4LaLlueVx4q9MoefWa5
-	 ddVo/ipQjiIUmzPQim2ZPCwHMJqDhCQmL8WPM9Oe+WTY7ENpjVQW2KyJdp/7i782Id
-	 cGI7bmIGerxjQ==
-Date: Thu, 9 Jan 2025 12:21:48 +0000
-From: Lee Jones <lee@kernel.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>, Hans de Goede <hdegoede@redhat.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v14 08/10] mfd: Add new driver for MAX77705 PMIC
-Message-ID: <20250109122148.GJ6763@google.com>
-References: <20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com>
- <20250108-starqltechn_integration_upstream-v14-8-f6e84ec20d96@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FaOEpWdDezW1q/QReObSEh9VOmlg+uyoTSpzG564g8Fo/P0PtTANG55cYsEwnIfeIgQH7IAsBLgDPUCTmlyzyqK1DKVUBOkaLt7wQDF+DqzznA84tp1irRJBGkVoHrjD+GLx/thsTCZrJdzh4++yL8Q0zjRRq8W98NddzclBLfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bXGXIqSt; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-540218726d5so826694e87.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 04:27:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736425658; x=1737030458; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NW4fi0sqeQx720jZiS/7zPuqhYpeVSuRx2XvwIuoUTU=;
+        b=bXGXIqStpP22oFO7ahqsCU/dpwezqAnb9jup2ffkRy8AURnJmstCT+pklip/5kpdil
+         caSl1fhqdHRZtRZUZdvBr+RvuhXMf8vN5EBF0Ehq6iXhwnywdJhVsv2X/hQG+EwZCQss
+         D4H4sqTKHGjP4jk9nMH1/JwTePmtnV+V5O2iV1gRQU0/Ppk/P1URZV7470kkxtpsBiYb
+         i8U9KFXxm7V5liFMeuwBZ2Xc6heiB85WAzagsmZ/GXWIOC+W1os5GbdlvzHKfVXo9s9Y
+         zZzW3uMXD5AjbWqIsWEI0UmHVCs2Y+KOcLEHIF85FrznN0ddds3IZNGyMppZaVGrneuN
+         k79A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736425658; x=1737030458;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NW4fi0sqeQx720jZiS/7zPuqhYpeVSuRx2XvwIuoUTU=;
+        b=CYEbv64v+nhK+D3WzpbsBHUbArfIH7kcXRUic6tKW5LosGOxdWnJwqTKeKWojuqF14
+         8tgwYguNfNETgs7kyB6uqP9BY/QDQdJU9lSW80vsrtpWtOftKNlUI3QBdzyfmtcPqKJZ
+         /T2MT9bIp0YGlkf9ns/htbgAmOyYTwMeIFrFvjKePQudxpkICTJ+Ol2n7fG0/qvwr3nR
+         TJK36O7zrkP1AQo9fO8PnNPd1QeBL1oMcB0+VWXT/Bv9FvCpwpdxz368urKStxTuNk9q
+         lME1zlhFAQyfZ+LTQMa/skYzmYwhWbpxWmM7JYuZvGi1BDkkSiRtvMrUDe3pWW1k4zJM
+         og3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW+djPY05lRufRwakWHDTLOEDCfcdVAET2k8oZr5tljjU93zMuYUEyLGe+TSAmR7mSYFAorGZTVowln@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjeUHB+/NwO3lQbfuiOww0e5ESbnOt+TuTIR6KEHFD7nJ1AWmY
+	1bmVBC8wFozEUD/BBqqYFiLrOzhT/apTalr51RUt2lQxv0+MzZCH9KCsYGWKh4E=
+X-Gm-Gg: ASbGncuwKhM+FD88BYoM/g4qDCz00V/gzyIBU/hDiNjVoC4LqjxwCIYmI9AAKrhrgTz
+	Em6HbAHLfbCHiXTGaS693OvcofDbP4uO0yxvhXUgyP84yVZfhxc+h87kqMhv4qQYidUvfQokIRp
+	LOsBLBgQMmw7m6cm8v/BeaTpR/3XkR/0mXpTCheMvR38mQgYec8czRe3zfxoAyXfoRRGu5k+j+X
+	H5oRkBoXXz45xMk/UfRMJBFxcuEsJIZtpnu4aqSNOmwXRTspgsOaUv9PF/+3dahkqQz/t3j6afX
+	SkhsgZNe5BYnSOyUi99y+rhdxpS8UCJ9Ple3
+X-Google-Smtp-Source: AGHT+IGVxnaWpnca7pnR1vOgIprZHdldk8KoRcJuuOvSARsqHc+j5TR93/bj6fOsAREWPZBIhWE88Q==
+X-Received: by 2002:a05:6512:1190:b0:540:1e51:b919 with SMTP id 2adb3069b0e04-542845d5602mr2264317e87.31.1736425658010;
+        Thu, 09 Jan 2025 04:27:38 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428becb12esm180434e87.244.2025.01.09.04.27.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jan 2025 04:27:36 -0800 (PST)
+Date: Thu, 9 Jan 2025 14:27:35 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Pratyush Brahma <quic_pbrahma@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, konradybcio@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qcs8300: Update memory map
+Message-ID: <7ikzwgi6h7xsuzb2opqwsqeehftg6bcdkzi3xtccifr465rfjh@2jdmiqatokna>
+References: <20241217092636.17482-1-quic_pbrahma@quicinc.com>
+ <hhwc5euwxjpg5r4nfoh77do2g5sm26r7vfs6ibboqw3x4qkwze@zld5mnznijvu>
+ <829e68c7-1a9f-45e9-9a81-77bd9985d85f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250108-starqltechn_integration_upstream-v14-8-f6e84ec20d96@gmail.com>
+In-Reply-To: <829e68c7-1a9f-45e9-9a81-77bd9985d85f@quicinc.com>
 
-On Wed, 08 Jan 2025, Dzmitry Sankouski wrote:
-
-> Add the core MFD driver for max77705 PMIC. Drivers for sub-devices
-> will be added in subsequent patches.
+On Thu, Jan 09, 2025 at 03:59:32PM +0530, Pratyush Brahma wrote:
 > 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> 
-> ---
-> Changes for v12:
-> - remove fuelgauge support (it's moved to simple-mfd-i2c, to reflect
->     the fact it's a separate device with it's own i2c client)
-> - remove unneeded ending comma
-> - remove struct dev_pm_ops because defined by DEFINE_SIMPLE_DEV_PM_OPS
-> - Kconfig: select MFD_SIMPLE_MFD_I2C
-> 
-> Changes for v10:
-> - never blank line between call and its error check
-> - remove unnecessary line wrap
-> - revert wrong changes in max77693-common.h
-> - move max77705_pm_ops from header to c file
-> - fail probe, when fuelgauge is not found in sub device list
-> - remove fuelgauge compatible, because with compatible,
->   platform matches using compatible, and platform_device
->   id_entry is empty. With no compatible, platform matches
->   by device id, and id_entry is populated.
-> - use dev_err_probe for error handling
-> 
-> Changes for v9:
-> - use max17042 as fuel gauge chip
-> - initialize max17042 i2c dummy device in mfd device,
->   because bus can be used for reading additional values,
->   not related to fuelgauge, like chip input current, system
->   bus current
-> - fix pmic_rev kernel test robot error
-> 
-> Changes for v8:
-> - fix comment style C++ -> C
-> - remove unused pmic_ver
-> 
-> Changes for v6:
-> - add PMIC suffix in Kconfig
-> - remove filename from file header
-> - reorder headers alphabetically
-> - move out fg and chg adresses definitions
-> - rename led name and compatible
-> - remove overbracketing
-> - move charger and fuel gauge i2c initialization
->   to their drivers
-> - fix max77705_i2c_driver tabbing
-> - formatting fixes
-> Changes for v5:
-> - license change to 2.0
-> - use same hardware name in Kconfig and module descriptions
-> Changes for v4:
-> - rework driver from scratch
-> - migrate to regmap_add_irq_chip, remove max77705-irq.c,
->   rename max77705-core.c to max77705.c
-> - cleanup headers
-> - remove debugfs code
-> - migrate to use max77693_dev structure
-> - remove max77705.h
-> ---
->  MAINTAINERS                          |   2 ++
->  drivers/mfd/Kconfig                  |  13 +++++++++
->  drivers/mfd/Makefile                 |   2 ++
->  drivers/mfd/max77705.c               | 209 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/max77693-common.h  |   4 ++-
->  include/linux/mfd/max77705-private.h | 178 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  6 files changed, 407 insertions(+), 1 deletion(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 98a77dece2f1..eb5222a833f8 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14294,6 +14294,7 @@ F:	drivers/*/*max77843.c
->  F:	drivers/*/max14577*.c
->  F:	drivers/*/max77686*.c
->  F:	drivers/*/max77693*.c
-> +F:	drivers/*/max77705*.c
->  F:	drivers/clk/clk-max77686.c
->  F:	drivers/extcon/extcon-max14577.c
->  F:	drivers/extcon/extcon-max77693.c
-> @@ -14301,6 +14302,7 @@ F:	drivers/rtc/rtc-max77686.c
->  F:	include/linux/mfd/max14577*.h
->  F:	include/linux/mfd/max77686*.h
->  F:	include/linux/mfd/max77693*.h
-> +F:	include/linux/mfd/max77705*.h
->  
->  MAXIRADIO FM RADIO RECEIVER DRIVER
->  M:	Hans Verkuil <hverkuil@xs4all.nl>
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 6b0682af6e32..5064b1b42f76 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -916,6 +916,19 @@ config MFD_MAX77693
->  	  additional drivers must be enabled in order to use the functionality
->  	  of the device.
->  
-> +config MFD_MAX77705
-> +	tristate "Maxim MAX77705 PMIC Support"
-> +	depends on I2C
-> +	select MFD_CORE
-> +	select MFD_SIMPLE_MFD_I2C
-> +	help
-> +	  Say yes here to add support for Maxim Integrated MAX77705 PMIC.
-> +	  This is a Power Management IC with Charger, safe LDOs, Flash, Haptic
-> +	  and MUIC controls on chip.
-> +	  This driver provides common support for accessing the device;
-> +	  additional drivers must be enabled in order to use the functionality
-> +	  of the device.
-> +
->  config MFD_MAX77714
->  	tristate "Maxim Semiconductor MAX77714 PMIC Support"
->  	depends on I2C
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 9220eaf7cf12..c18bb5a57734 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -168,6 +168,7 @@ obj-$(CONFIG_MFD_MAX77620)	+= max77620.o
->  obj-$(CONFIG_MFD_MAX77650)	+= max77650.o
->  obj-$(CONFIG_MFD_MAX77686)	+= max77686.o
->  obj-$(CONFIG_MFD_MAX77693)	+= max77693.o
-> +obj-$(CONFIG_MFD_MAX77705)	+= max77705.o
->  obj-$(CONFIG_MFD_MAX77714)	+= max77714.o
->  obj-$(CONFIG_MFD_MAX77843)	+= max77843.o
->  obj-$(CONFIG_MFD_MAX8907)	+= max8907.o
-> @@ -233,6 +234,7 @@ obj-$(CONFIG_MFD_RK8XX_I2C)	+= rk8xx-i2c.o
->  obj-$(CONFIG_MFD_RK8XX_SPI)	+= rk8xx-spi.o
->  obj-$(CONFIG_MFD_RN5T618)	+= rn5t618.o
->  obj-$(CONFIG_MFD_SEC_CORE)	+= sec-core.o sec-irq.o
-> +obj-$(CONFIG_MFD_S2DOS05)	+= s2dos05.o
->  obj-$(CONFIG_MFD_SYSCON)	+= syscon.o
->  obj-$(CONFIG_MFD_LM3533)	+= lm3533-core.o lm3533-ctrlbank.o
->  obj-$(CONFIG_MFD_VEXPRESS_SYSREG)	+= vexpress-sysreg.o
-> diff --git a/drivers/mfd/max77705.c b/drivers/mfd/max77705.c
-> new file mode 100644
-> index 000000000000..18d344620755
-> --- /dev/null
-> +++ b/drivers/mfd/max77705.c
-> @@ -0,0 +1,209 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
+> On 1/7/2025 5:45 AM, Bjorn Andersson wrote:
+> > On Tue, Dec 17, 2024 at 02:56:36PM +0530, Pratyush Brahma wrote:
+> > > This is based on Jingyi Wang's patches [1] to introduce the
+> > > initial dtsi for QCS8300 SOC.
+> > > 
+> > > New updates to the memory map of qcs8300 have brought in some
+> > > new carveouts (viz. sail_ss, firmware memory, tz memory, etc.) and
+> > > also the base addresses of some of the pil carveouts (q6_cdsp_dtb_mem
+> > > and cdsp_mem) have changed.
+> > > 
+> > > Incorporate these changes in the new memory map for qcs8300. Also
+> > > modify the labels of some of the carveouts to indicate pil carveouts.
+> > > 
+> > > [1] https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-3-494c40fa2a42@quicinc.com/
+> > Does QCS8300 not boot using the efi-stub and get a memory map with most
+> > of these regions removed already?
+> > 
+> > The excessive representation of reserved-memory regions should only be
+> > required for targets using ABL. (And the regions that the OS is expected
+> > to actually interact with, such as smem and PIL regions).
+> Yes, it boots with the efi-stub but there are some carveouts like gunyah_md,
+> hyp_mem, etc
+> which it doesn't pass as holes. The OS has no use of it but there are S2
+> protections
+> on these regions by hypervisor. When buddy tries to allocate from these
+> regions, it results into external aborts.
 
-Only the SPDX should have C++ style comments.
+So, it sounds like your UEFI providing incorrect memory map to the
+running OS. Please fix the bootloader instead.
 
-> +// Maxim MAX77705 PMIC core driver
-> +//
-> +// Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.com>
-
-Update the date when you resubmit.
-
-> +#include <linux/i2c.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/mfd/max77705-private.h>
-> +#include <linux/mfd/max77693-common.h>
-> +#include <linux/pm.h>
-> +#include <linux/power/max17042_battery.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/of.h>
-> +
-> +static struct mfd_cell max77705_devs[] = {
-> +	{
-> +		.name = "max77705-rgb",
-> +		.of_compatible = "maxim,max77705-rgb",
-> +	},
-> +	{
-> +		.name = "max77705-charger",
-> +		.of_compatible = "maxim,max77705-charger",
-> +	},
-> +	{
-> +		.name = "max77705-haptic",
-> +		.of_compatible = "maxim,max77705-haptic",
-> +	},
-> +};
-
-Use MFD_CELL_OF()
-
-> +static const struct regmap_range max77705_readable_ranges[] = {
-> +	regmap_reg_range(MAX77705_PMIC_REG_PMICID1,		MAX77705_PMIC_REG_BSTOUT_MASK),
-> +	regmap_reg_range(MAX77705_PMIC_REG_INTSRC,		MAX77705_PMIC_REG_RESERVED_29),
-> +	regmap_reg_range(MAX77705_PMIC_REG_BOOSTCONTROL1,	MAX77705_PMIC_REG_BOOSTCONTROL1),
-> +	regmap_reg_range(MAX77705_PMIC_REG_MCONFIG,		MAX77705_PMIC_REG_MCONFIG2),
-> +	regmap_reg_range(MAX77705_PMIC_REG_FORCE_EN_MASK,	MAX77705_PMIC_REG_FORCE_EN_MASK),
-> +	regmap_reg_range(MAX77705_PMIC_REG_BOOSTCONTROL1,	MAX77705_PMIC_REG_BOOSTCONTROL1),
-> +	regmap_reg_range(MAX77705_PMIC_REG_BOOSTCONTROL2,	MAX77705_PMIC_REG_BOOSTCONTROL2),
-> +	regmap_reg_range(MAX77705_PMIC_REG_SW_RESET,		MAX77705_PMIC_REG_USBC_RESET),
-> +};
-> +
-> +static const struct regmap_range max77705_writable_ranges[] = {
-> +	regmap_reg_range(MAX77705_PMIC_REG_MAINCTRL1,		MAX77705_PMIC_REG_BSTOUT_MASK),
-> +	regmap_reg_range(MAX77705_PMIC_REG_INTSRC,		MAX77705_PMIC_REG_RESERVED_29),
-> +	regmap_reg_range(MAX77705_PMIC_REG_BOOSTCONTROL1,	MAX77705_PMIC_REG_BOOSTCONTROL1),
-> +	regmap_reg_range(MAX77705_PMIC_REG_MCONFIG,		MAX77705_PMIC_REG_MCONFIG2),
-> +	regmap_reg_range(MAX77705_PMIC_REG_FORCE_EN_MASK,	MAX77705_PMIC_REG_FORCE_EN_MASK),
-> +	regmap_reg_range(MAX77705_PMIC_REG_BOOSTCONTROL1,	MAX77705_PMIC_REG_BOOSTCONTROL1),
-> +	regmap_reg_range(MAX77705_PMIC_REG_BOOSTCONTROL2,	MAX77705_PMIC_REG_BOOSTCONTROL2),
-> +	regmap_reg_range(MAX77705_PMIC_REG_SW_RESET,		MAX77705_PMIC_REG_USBC_RESET),
-> +
-
-Remove this line.
-
-> +};
-> +
-> +static const struct regmap_access_table max77705_readable_table = {
-> +	.yes_ranges = max77705_readable_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(max77705_readable_ranges),
-> +};
-> +
-> +static const struct regmap_access_table max77705_writable_table = {
-> +	.yes_ranges = max77705_writable_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(max77705_writable_ranges),
-> +};
-> +
-> +static const struct regmap_config max77705_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.rd_table = &max77705_readable_table,
-> +	.wr_table = &max77705_writable_table,
-> +	.max_register = MAX77705_PMIC_REG_USBC_RESET,
-> +};
-> +
-> +static const struct regmap_config max77705_leds_regmap_config = {
-> +	.reg_base = MAX77705_RGBLED_REG_BASE,
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = MAX77705_LED_REG_END,
-> +};
-> +
-> +static const struct regmap_irq max77705_topsys_irqs[] = {
-> +	{ .mask = MAX77705_SYSTEM_IRQ_BSTEN_INT,  },
-> +	{ .mask = MAX77705_SYSTEM_IRQ_SYSUVLO_INT,  },
-> +	{ .mask = MAX77705_SYSTEM_IRQ_SYSOVLO_INT,  },
-> +	{ .mask = MAX77705_SYSTEM_IRQ_TSHDN_INT,  },
-> +	{ .mask = MAX77705_SYSTEM_IRQ_TM_INT,  },
-
-Remove the double spaces.
-
-> +};
-> +
-> +static const struct regmap_irq_chip max77705_topsys_irq_chip = {
-> +	.name			= "max77705-topsys",
-> +	.status_base		= MAX77705_PMIC_REG_SYSTEM_INT,
-> +	.mask_base		= MAX77705_PMIC_REG_SYSTEM_INT_MASK,
-> +	.num_regs		= 1,
-> +	.irqs			= max77705_topsys_irqs,
-> +	.num_irqs		= ARRAY_SIZE(max77705_topsys_irqs),
-
-Remove the superfluous tab.
-
-> +};
-> +
-> +static int max77705_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct max77693_dev *max77705;
-> +	struct regmap_irq_chip_data *irq_data;
-> +	struct irq_domain *domain;
-> +	int ret;
-> +	unsigned int pmic_rev_value;
-> +	enum max77705_hw_rev pmic_rev;
-
-Please reorder these.  At the very least, put ret at the bottom.
-
-> +
-> +	max77705 = devm_kzalloc(&i2c->dev, sizeof(*max77705), GFP_KERNEL);
-> +	if (!max77705)
-> +		return -ENOMEM;
-> +
-> +	max77705->i2c = i2c;
-> +	max77705->dev = &i2c->dev;
-> +	max77705->irq = i2c->irq;
-
-If you're saving i2c, you can derive the other two.
-
-> +	max77705->type = TYPE_MAX77705;
-> +	i2c_set_clientdata(i2c, max77705);
-> +
-> +	max77705->regmap = devm_regmap_init_i2c(i2c, &max77705_regmap_config);
-> +	if (IS_ERR(max77705->regmap))
-> +		return PTR_ERR(max77705->regmap);
-> +
-> +	if (regmap_read(max77705->regmap, MAX77705_PMIC_REG_PMICREV, &pmic_rev_value) < 0)
-
-Take the function all out of the if statement please.
-
-> +		return -ENODEV;
-> +
-> +	pmic_rev = pmic_rev_value & MAX77705_REVISION_MASK;
-> +	if (pmic_rev != MAX77705_PASS3)
-> +		return dev_err_probe(max77705->dev, -ENODEV,
-
-Place dev into a local variable and save yourself lots of chars each time.
-
-> +				"Rev.0x%x is not tested\n", pmic_rev);
-
-Use up to 100-chars to neaten this up.
-
-> +
-> +	max77705->regmap_leds = devm_regmap_init_i2c(i2c, &max77705_leds_regmap_config);
-
-Why not create this in the LEDs driver?
-
-> +	if (IS_ERR(max77705->regmap_leds))
-> +		return dev_err_probe(max77705->dev, PTR_ERR(max77705->regmap_leds),
-> +				"Failed to register leds regmap\n");
-
-LEDs
-
-> +	ret = devm_regmap_add_irq_chip(max77705->dev, max77705->regmap,
-> +					max77705->irq,
-> +					IRQF_ONESHOT | IRQF_SHARED, 0,
-> +					&max77705_topsys_irq_chip,
-> +					&irq_data);
-> +	if (ret)
-> +		return dev_err_probe(max77705->dev, ret, "Failed to add irq chip\n");
-
-IRQ
-
-> +
-> +	/* Unmask interrupts from all blocks in interrupt source register */
-> +	ret = regmap_update_bits(max77705->regmap,
-> +				 MAX77705_PMIC_REG_INTSRC_MASK,
-> +				 MAX77705_SRC_IRQ_ALL, (unsigned int)~MAX77705_SRC_IRQ_ALL);
-
-I don't see this much.  Are you sure the cast is required?
-
-> +	if (ret < 0)
-> +		return dev_err_probe(max77705->dev, ret,
-> +			"Could not unmask interrupts in INTSRC\n");
-> +
-> +	domain = regmap_irq_get_domain(irq_data);
-> +
-> +	ret = devm_mfd_add_devices(max77705->dev, PLATFORM_DEVID_NONE,
-> +				   max77705_devs, ARRAY_SIZE(max77705_devs),
-> +				   NULL, 0, domain);
-> +	if (ret)
-> +		return dev_err_probe(max77705->dev, ret, "Failed to register child devices\n");
-> +
-> +	device_init_wakeup(max77705->dev, true);
-> +
-> +	return 0;
-> +}
-> +
-> +static int max77705_suspend(struct device *dev)
-> +{
-> +	struct i2c_client *i2c = to_i2c_client(dev);
-> +	struct max77693_dev *max77705 = i2c_get_clientdata(i2c);
-
-You're given a `struct device` use that instead of converting.
-
-> +
-> +	disable_irq(max77705->irq);
-> +
-> +	if (device_may_wakeup(dev))
-> +		enable_irq_wake(max77705->irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static int max77705_resume(struct device *dev)
-> +{
-> +	struct i2c_client *i2c = to_i2c_client(dev);
-> +	struct max77693_dev *max77705 = i2c_get_clientdata(i2c);
-> +
-> +	if (device_may_wakeup(dev))
-> +		disable_irq_wake(max77705->irq);
-> +
-> +	enable_irq(max77705->irq);
-> +
-> +	return 0;
-> +}
-> +DEFINE_SIMPLE_DEV_PM_OPS(max77705_pm_ops, max77705_suspend, max77705_resume);
-> +
-> +static const struct of_device_id max77705_i2c_of_match[] = {
-> +	{ .compatible = "maxim,max77705" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, max77705_i2c_of_match);
-> +
-> +static struct i2c_driver max77705_i2c_driver = {
-> +	.driver = {
-> +		.name			= "max77705",
-> +		.of_match_table		= max77705_i2c_of_match,
-> +		.pm			= pm_sleep_ptr(&max77705_pm_ops),
-> +		.suppress_bind_attrs	= true,
-> +	},
-> +	.probe = max77705_i2c_probe
-> +};
-> +module_i2c_driver(max77705_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("Maxim MAX77705 PMIC core driver");
-> +MODULE_AUTHOR("Dzmitry Sankouski <dsankouski@gmail.com>");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mfd/max77693-common.h b/include/linux/mfd/max77693-common.h
-> index a5bce099f1ed..ec2e1b2dceb8 100644
-> --- a/include/linux/mfd/max77693-common.h
-> +++ b/include/linux/mfd/max77693-common.h
-> @@ -1,6 +1,6 @@
->  /* SPDX-License-Identifier: GPL-2.0+ */
->  /*
-> - * Common data shared between Maxim 77693 and 77843 drivers
-> + * Common data shared between Maxim 77693, 77705 and 77843 drivers
->   *
->   * Copyright (C) 2015 Samsung Electronics
->   */
-> @@ -11,6 +11,7 @@
->  enum max77693_types {
->  	TYPE_MAX77693_UNKNOWN,
->  	TYPE_MAX77693,
-> +	TYPE_MAX77705,
->  	TYPE_MAX77843,
->  
->  	TYPE_MAX77693_NUM,
-> @@ -32,6 +33,7 @@ struct max77693_dev {
->  	struct regmap *regmap_muic;
->  	struct regmap *regmap_haptic;	/* Only MAX77693 */
->  	struct regmap *regmap_chg;	/* Only MAX77843 */
-> +	struct regmap *regmap_leds;	/* Only MAX77705 */
->  
->  	struct regmap_irq_chip_data *irq_data_led;
->  	struct regmap_irq_chip_data *irq_data_topsys;
-> diff --git a/include/linux/mfd/max77705-private.h b/include/linux/mfd/max77705-private.h
-> new file mode 100644
-> index 000000000000..e4309d3b6f2a
-> --- /dev/null
-> +++ b/include/linux/mfd/max77705-private.h
-> @@ -0,0 +1,178 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Maxim MAX77705 definitions.
-> + *
-> + * Copyright (C) 2015 Samsung Electronics, Inc.
-> + * Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.com>
-> + */
-> +
-> +#ifndef __LINUX_MFD_MAX77705_PRIV_H
-> +#define __LINUX_MFD_MAX77705_PRIV_H
-> +
-> +#define MAX77705_SRC_IRQ_CHG	BIT(0)
-> +#define MAX77705_SRC_IRQ_TOP	BIT(1)
-> +#define MAX77705_SRC_IRQ_FG	BIT(2)
-> +#define MAX77705_SRC_IRQ_USBC	BIT(3)
-> +#define MAX77705_SRC_IRQ_ALL	(MAX77705_SRC_IRQ_CHG | MAX77705_SRC_IRQ_TOP | \
-> +				MAX77705_SRC_IRQ_FG | MAX77705_SRC_IRQ_USBC)
-> +
-> +/* MAX77705_PMIC_REG_PMICREV register */
-> +#define MAX77705_VERSION_SHIFT	3
-> +#define MAX77705_REVISION_MASK	GENMASK(2, 0)
-> +#define MAX77705_VERSION_MASK	GENMASK(7, MAX77705_VERSION_SHIFT)
-> +/* MAX77705_PMIC_REG_MAINCTRL1 register */
-> +#define MAX77705_MAINCTRL1_BIASEN_SHIFT	7
-> +#define MAX77705_MAINCTRL1_BIASEN_MASK	BIT(MAX77705_MAINCTRL1_BIASEN_SHIFT)
-> +/* MAX77705_PMIC_REG_MCONFIG2 (haptics) register */
-> +#define MAX77705_CONFIG2_MEN_SHIFT	6
-> +#define MAX77705_CONFIG2_MODE_SHIFT	7
-> +#define MAX77705_CONFIG2_HTYP_SHIFT	5
-> +/* MAX77705_PMIC_REG_SYSTEM_INT_MASK register */
-> +#define MAX77705_SYSTEM_IRQ_BSTEN_INT	BIT(3)
-> +#define MAX77705_SYSTEM_IRQ_SYSUVLO_INT	BIT(4)
-> +#define MAX77705_SYSTEM_IRQ_SYSOVLO_INT	BIT(5)
-> +#define MAX77705_SYSTEM_IRQ_TSHDN_INT	BIT(6)
-> +#define MAX77705_SYSTEM_IRQ_TM_INT	BIT(7)
-> +
-> +enum max77705_hw_rev {
-> +	MAX77705_PASS1 = 1,
-> +	MAX77705_PASS2,
-> +	MAX77705_PASS3
-> +};
-> +
-> +enum max77705_reg {
-> +	MAX77705_PMIC_REG_PMICID1		= 0x00,
-> +	MAX77705_PMIC_REG_PMICREV		= 0x01,
-> +	MAX77705_PMIC_REG_MAINCTRL1		= 0x02,
-> +	MAX77705_PMIC_REG_BSTOUT_MASK		= 0x03,
-> +	MAX77705_PMIC_REG_FORCE_EN_MASK		= 0x08,
-> +	MAX77705_PMIC_REG_MCONFIG		= 0x10,
-> +	MAX77705_PMIC_REG_MCONFIG2		= 0x11,
-> +	MAX77705_PMIC_REG_INTSRC		= 0x22,
-> +	MAX77705_PMIC_REG_INTSRC_MASK		= 0x23,
-> +	MAX77705_PMIC_REG_SYSTEM_INT		= 0x24,
-> +	MAX77705_PMIC_REG_RESERVED_25		= 0x25,
-> +	MAX77705_PMIC_REG_SYSTEM_INT_MASK	= 0x26,
-> +	MAX77705_PMIC_REG_RESERVED_27		= 0x27,
-> +	MAX77705_PMIC_REG_RESERVED_28		= 0x28,
-> +	MAX77705_PMIC_REG_RESERVED_29		= 0x29,
-> +	MAX77705_PMIC_REG_BOOSTCONTROL1		= 0x4C,
-> +	MAX77705_PMIC_REG_BOOSTCONTROL2		= 0x4F,
-> +	MAX77705_PMIC_REG_SW_RESET		= 0x50,
-> +	MAX77705_PMIC_REG_USBC_RESET		= 0x51,
-> +
-> +	MAX77705_PMIC_REG_END
-> +};
-> +
-> +enum max77705_chg_reg {
-> +	MAX77705_CHG_REG_BASE			= 0xB0,
-> +	MAX77705_CHG_REG_INT			= 0,
-> +	MAX77705_CHG_REG_INT_MASK,
-> +	MAX77705_CHG_REG_INT_OK,
-> +	MAX77705_CHG_REG_DETAILS_00,
-> +	MAX77705_CHG_REG_DETAILS_01,
-> +	MAX77705_CHG_REG_DETAILS_02,
-> +	MAX77705_CHG_REG_DTLS_03,
-> +	MAX77705_CHG_REG_CNFG_00,
-> +	MAX77705_CHG_REG_CNFG_01,
-> +	MAX77705_CHG_REG_CNFG_02,
-> +	MAX77705_CHG_REG_CNFG_03,
-> +	MAX77705_CHG_REG_CNFG_04,
-> +	MAX77705_CHG_REG_CNFG_05,
-> +	MAX77705_CHG_REG_CNFG_06,
-> +	MAX77705_CHG_REG_CNFG_07,
-> +	MAX77705_CHG_REG_CNFG_08,
-> +	MAX77705_CHG_REG_CNFG_09,
-> +	MAX77705_CHG_REG_CNFG_10,
-> +	MAX77705_CHG_REG_CNFG_11,
-> +
-> +	MAX77705_CHG_REG_CNFG_12,
-> +	MAX77705_CHG_REG_CNFG_13,
-> +	MAX77705_CHG_REG_CNFG_14,
-> +	MAX77705_CHG_REG_SAFEOUT_CTRL
-> +};
-> +
-> +enum max77705_fuelgauge_reg {
-> +	STATUS_REG				= 0x00,
-> +	VALRT_THRESHOLD_REG			= 0x01,
-> +	TALRT_THRESHOLD_REG			= 0x02,
-> +	SALRT_THRESHOLD_REG			= 0x03,
-> +	REMCAP_REP_REG				= 0x05,
-> +	SOCREP_REG				= 0x06,
-> +	TEMPERATURE_REG				= 0x08,
-> +	VCELL_REG				= 0x09,
-> +	TIME_TO_EMPTY_REG			= 0x11,
-> +	FULLSOCTHR_REG				= 0x13,
-> +	CURRENT_REG				= 0x0A,
-> +	AVG_CURRENT_REG				= 0x0B,
-> +	SOCMIX_REG				= 0x0D,
-> +	SOCAV_REG				= 0x0E,
-> +	REMCAP_MIX_REG				= 0x0F,
-> +	FULLCAP_REG				= 0x10,
-> +	RFAST_REG				= 0x15,
-> +	AVR_TEMPERATURE_REG			= 0x16,
-> +	CYCLES_REG				= 0x17,
-> +	DESIGNCAP_REG				= 0x18,
-> +	AVR_VCELL_REG				= 0x19,
-> +	TIME_TO_FULL_REG			= 0x20,
-> +	CONFIG_REG				= 0x1D,
-> +	ICHGTERM_REG				= 0x1E,
-> +	REMCAP_AV_REG				= 0x1F,
-> +	FULLCAP_NOM_REG				= 0x23,
-> +	LEARN_CFG_REG				= 0x28,
-> +	FILTER_CFG_REG				= 0x29,
-> +	MISCCFG_REG				= 0x2B,
-> +	QRTABLE20_REG				= 0x32,
-> +	FULLCAP_REP_REG				= 0x35,
-> +	RCOMP_REG				= 0x38,
-> +	VEMPTY_REG				= 0x3A,
-> +	FSTAT_REG				= 0x3D,
-> +	DISCHARGE_THRESHOLD_REG			= 0x40,
-> +	QRTABLE30_REG				= 0x42,
-> +	ISYS_REG				= 0x43,
-> +	DQACC_REG				= 0x45,
-> +	DPACC_REG				= 0x46,
-> +	AVGISYS_REG				= 0x4B,
-> +	QH_REG					= 0x4D,
-> +	VSYS_REG				= 0xB1,
-> +	TALRTTH2_REG				= 0xB2,
-> +	VBYP_REG				= 0xB3,
-> +	CONFIG2_REG				= 0xBB,
-> +	IIN_REG					= 0xD0,
-> +	OCV_REG					= 0xEE,
-> +	VFOCV_REG				= 0xFB,
-> +	VFSOC_REG				= 0xFF,
-> +
-> +	MAX77705_FG_END
-> +};
-> +
-> +enum max77705_led_reg {
-> +	MAX77705_RGBLED_REG_BASE		= 0x30,
-> +	MAX77705_RGBLED_REG_LEDEN		= 0,
-> +	MAX77705_RGBLED_REG_LED0BRT,
-> +	MAX77705_RGBLED_REG_LED1BRT,
-> +	MAX77705_RGBLED_REG_LED2BRT,
-> +	MAX77705_RGBLED_REG_LED3BRT,
-> +	MAX77705_RGBLED_REG_LEDRMP,
-> +	MAX77705_RGBLED_REG_LEDBLNK,
-> +	MAX77705_LED_REG_END
-> +};
-> +
-> +enum max77705_charger_battery_state {
-> +	MAX77705_BATTERY_NOBAT,
-> +	MAX77705_BATTERY_PREQUALIFICATION,
-> +	MAX77705_BATTERY_DEAD,
-> +	MAX77705_BATTERY_GOOD,
-> +	MAX77705_BATTERY_LOWVOLTAGE,
-> +	MAX77705_BATTERY_OVERVOLTAGE,
-> +	MAX77705_BATTERY_RESERVED
-> +};
-> +
-> +enum max77705_charger_charge_type {
-> +	MAX77705_CHARGER_CONSTANT_CURRENT	= 1,
-> +	MAX77705_CHARGER_CONSTANT_VOLTAGE,
-> +	MAX77705_CHARGER_END_OF_CHARGE,
-> +	MAX77705_CHARGER_DONE
-> +};
-> +
-> +#endif /* __LINUX_MFD_MAX77705_PRIV_H */
-> 
+> Manually finding out the regions which are not passed as holes but need to
+> be no-map wastes
+> significant development efforts. To err on the side of caution, I felt it
+> would be better to mention
+> all the regions that kernel isn't supposed to touch anyway.
+> > 
+> > Regards,
+> > Bjorn
+> > 
+> > > Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 180 ++++++++++++++++++++++++--
+> > >   1 file changed, 170 insertions(+), 10 deletions(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> > > index 2c35f96c3f28..e16d11c05515 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> > > @@ -377,6 +377,21 @@
+> > >   		#size-cells = <2>;
+> > >   		ranges;
+> > > +		sail_ss_mem: sail-ss-region@80000000 {
+> > > +			reg = <0x0 0x80000000 0x0 0x10000000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		hyp_mem: hyp-region@90000000 {
+> > > +			reg = <0x0 0x90000000 0x0 0x600000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		xbl_boot_mem: xbl-boot-region@90600000 {
+> > > +			reg = <0x0 0x90600000 0x0 0x200000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > >   		aop_image_mem: aop-image-region@90800000 {
+> > >   			reg = <0x0 0x90800000 0x0 0x60000>;
+> > >   			no-map;
+> > > @@ -388,6 +403,26 @@
+> > >   			no-map;
+> > >   		};
+> > > +		uefi_logs_mem: uefi-logs-region@908b0000 {
+> > > +			reg = <0x0 0x908b0000 0x0 0x10000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		ddr_training_checksum_data_mem: ddr-training-checksum-data-region@908c0000 {
+> > > +			reg = <0x0 0x908c0000 0x0 0x1000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		reserved_mem: reserved-region@908f0000 {
+> > > +			reg = <0x0 0x908f0000 0x0 0xe000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		secdata_apps_mem: secdata-apps-region@908fe000 {
+> > > +			reg = <0x0 0x908fe000 0x0 0x2000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > >   		smem_mem: smem@90900000 {
+> > >   			compatible = "qcom,smem";
+> > >   			reg = <0x0 0x90900000 0x0 0x200000>;
+> > > @@ -395,6 +430,61 @@
+> > >   			hwlocks = <&tcsr_mutex 3>;
+> > >   		};
+> > > +		tz_sail_mailbox_mem: tz-sail-mailbox-region@90c00000 {
+> > > +			reg = <0x0 0x90c00000 0x0 0x100000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		sail_mailbox_mem: sail-mailbox-region@90d00000 {
+> > > +			reg = <0x0 0x90d00000 0x0 0x100000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		sail_ota_mem: sail-ota-region@90e00000 {
+> > > +			reg = <0x0 0x90e00000 0x0 0x300000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		xbl_dtlog_mem: xbl-dtlog-region@91a40000 {
+> > > +			reg = <0x0 0x91a40000 0x0 0x40000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		gunyah_md_mem: gunyah-md-region@91a80000 {
+> > > +			reg = <0x0 0x91a80000 0x0 0x80000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		aoss_backup_mem: aoss-backup-region@91b00000 {
+> > > +			reg = <0x0 0x91b00000 0x0 0x40000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		cpucp_backup_mem: cpucp-backup-region@91b40000 {
+> > > +			reg = <0x0 0x91b40000 0x0 0x40000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		tz_config_backup_mem: tz-config-backup-region@91b80000 {
+> > > +			reg = <0x0 0x91b80000 0x0 0x10000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		ddr_training_data_mem: ddr-training-data-region@91b90000 {
+> > > +			reg = <0x0 0x91b90000 0x0 0x10000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		cdt_data_backup_mem: cdt-data-backup-region@91ba0000 {
+> > > +			reg = <0x0 0x91ba0000 0x0 0x1000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		tzffi_mem: tzffi-region@91c00000 {
+> > > +			reg = <0x0 0x91c00000 0x0 0x1400000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > >   		lpass_machine_learning_mem: lpass-machine-learning-region@93b00000 {
+> > >   			reg = <0x0 0x93b00000 0x0 0xf00000>;
+> > >   			no-map;
+> > > @@ -405,12 +495,12 @@
+> > >   			no-map;
+> > >   		};
+> > > -		camera_mem: camera-region@95200000 {
+> > > +		camera_mem: pil-camera-region@95200000 {
+> > >   			reg = <0x0 0x95200000 0x0 0x500000>;
+> > >   			no-map;
+> > >   		};
+> > > -		adsp_mem: adsp-region@95c00000 {
+> > > +		adsp_mem: pil-adsp-region@95c00000 {
+> > >   			no-map;
+> > >   			reg = <0x0 0x95c00000 0x0 0x1e00000>;
+> > >   		};
+> > > @@ -425,35 +515,105 @@
+> > >   			no-map;
+> > >   		};
+> > > -		gpdsp_mem: gpdsp-region@97b00000 {
+> > > +		gpdsp_mem: pil-gpdsp-region@97b00000 {
+> > >   			reg = <0x0 0x97b00000 0x0 0x1e00000>;
+> > >   			no-map;
+> > >   		};
+> > > -		q6_cdsp_dtb_mem: q6-cdsp-dtb-region@99900000 {
+> > > -			reg = <0x0 0x99900000 0x0 0x80000>;
+> > > +		q6_cdsp_dtb_mem: q6-cdsp-dtb-region@9b700000 {
+> > > +			reg = <0x0 0x9b700000 0x0 0x80000>;
+> > >   			no-map;
+> > >   		};
+> > > -		cdsp_mem: cdsp-region@99980000 {
+> > > -			reg = <0x0 0x99980000 0x0 0x1e00000>;
+> > > +		cdsp_mem: pil-cdsp-region@99900000 {
+> > > +			reg = <0x0 0x99900000 0x0 0x1e00000>;
+> > >   			no-map;
+> > >   		};
+> > > -		gpu_microcode_mem: gpu-microcode-region@9b780000 {
+> > > +		gpu_microcode_mem: pil-gpu-region@9b780000 {
+> > >   			reg = <0x0 0x9b780000 0x0 0x2000>;
+> > >   			no-map;
+> > >   		};
+> > > -		cvp_mem: cvp-region@9b782000 {
+> > > +		cvp_mem: pil-cvp-region@9b782000 {
+> > >   			reg = <0x0 0x9b782000 0x0 0x700000>;
+> > >   			no-map;
+> > >   		};
+> > > -		video_mem: video-region@9be82000 {
+> > > +		video_mem: pil-video-region@9be82000 {
+> > >   			reg = <0x0 0x9be82000 0x0 0x700000>;
+> > >   			no-map;
+> > >   		};
+> > > +
+> > > +		audio_mdf_mem: audio-mdf-region@ae000000 {
+> > > +			reg = <0x0 0xae000000 0x0 0x1000000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		firmware_mem: firmware-region@b0000000 {
+> > > +			reg = <0x0 0xb0000000 0x0 0x800000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		hyptz_reserved_mem: hyptz-reserved@beb00000 {
+> > > +			reg = <0x0 0xbeb00000 0x0 0x11500000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		firmware_scmi_mem: scmi-region@d0000000 {
+> > > +			reg = <0x0 0xd0000000 0x0 0x40000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		firmware_logs_mem: firmware-logs-region@d0040000 {
+> > > +			reg = <0x0 0xd0040000 0x0 0x10000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		firmware_audio_mem: firmware-audio-region@d0050000 {
+> > > +			reg = <0x0 0xd0050000 0x0 0x4000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		firmware_reserved_mem: firmware-reserved-region@d0054000 {
+> > > +			reg = <0x0 0xd0054000 0x0 0x9c000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		firmwarequantum_test_mem: firmwarequantum-test-region@d00f0000 {
+> > > +			reg = <0x0 0xd00f0000 0x0 0x10000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		tags_mem: tags-region@d0100000 {
+> > > +			reg = <0x0 0xd0100000 0x0 0x800000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		qtee_mem: qtee-region@d1300000 {
+> > > +			reg = <0x0 0xd1300000 0x0 0x500000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		deep_sleep_back_up_mem: deep-sleep-back-up-region@d1800000 {
+> > > +			reg = <0x0 0xd1800000 0x0 0x100000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		trusted_apps_mem: trusted-apps-region@d1900000 {
+> > > +			reg = <0x0 0xd1900000 0x0 0x1900000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		tz_stat_mem: tz-stat-region@db100000 {
+> > > +			reg = <0x0 0xdb100000 0x0 0x100000>;
+> > > +			no-map;
+> > > +		};
+> > > +
+> > > +		cpucp_fw_mem: cpucp-fw-region@db200000 {
+> > > +			reg = <0x0 0xdb200000 0x0 0x100000>;
+> > > +			no-map;
+> > > +		};
+> > >   	};
+> > >   	smp2p-adsp {
+> > > -- 
+> > > 2.17.1
+> > > 
 > -- 
-> 2.39.5
+> Thanks and Regards
+> Pratyush Brahma
 > 
 
 -- 
-Lee Jones [李琼斯]
+With best wishes
+Dmitry
 
