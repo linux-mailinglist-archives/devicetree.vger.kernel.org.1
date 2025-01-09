@@ -1,384 +1,177 @@
-Return-Path: <devicetree+bounces-137047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EAC6A075BA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:27:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84AA7A075D7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 13:37:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BD6C1655A7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:27:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B0FB166E18
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 12:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 930FD217670;
-	Thu,  9 Jan 2025 12:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D999217663;
+	Thu,  9 Jan 2025 12:37:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bXGXIqSt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fkBHoY1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB774217653
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 12:27:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 514551E531;
+	Thu,  9 Jan 2025 12:37:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736425662; cv=none; b=fchefyom4sgy6MEgLPZF1i1m9+SkPCn8+diols1GAi2ClSaU/Eafjs2GVV1+jMumdKoNHNE8kMEUar85Kl6tboFtSw1C7td4XptNRxPe5cK6yMPREpn75aoIzvtgfvGBBSRSFrY997mIFmIoK+xJcm+Fy7caf/QGAymVRrX9Jdk=
+	t=1736426270; cv=none; b=tpj+3W29336o5oyalYzZ5W4WlZF2RMuG2IccVbOrPntJidNbHseDfnuiZx2gBZzCUd+6oVEKXlFholLakromkduzFAAgf2EVCdzy98Jx2kvMJJIoeTdIVFo07sKRbSo4flzdrBiSHAfiJXJvSK+cu3L3xBNe6Y4+bvE6udUkenM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736425662; c=relaxed/simple;
-	bh=ilXg/LRsqzkUEXABpJXraHW4qSL6am7p2dO4eeV9qHQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FaOEpWdDezW1q/QReObSEh9VOmlg+uyoTSpzG564g8Fo/P0PtTANG55cYsEwnIfeIgQH7IAsBLgDPUCTmlyzyqK1DKVUBOkaLt7wQDF+DqzznA84tp1irRJBGkVoHrjD+GLx/thsTCZrJdzh4++yL8Q0zjRRq8W98NddzclBLfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bXGXIqSt; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-540218726d5so826694e87.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 04:27:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736425658; x=1737030458; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NW4fi0sqeQx720jZiS/7zPuqhYpeVSuRx2XvwIuoUTU=;
-        b=bXGXIqStpP22oFO7ahqsCU/dpwezqAnb9jup2ffkRy8AURnJmstCT+pklip/5kpdil
-         caSl1fhqdHRZtRZUZdvBr+RvuhXMf8vN5EBF0Ehq6iXhwnywdJhVsv2X/hQG+EwZCQss
-         D4H4sqTKHGjP4jk9nMH1/JwTePmtnV+V5O2iV1gRQU0/Ppk/P1URZV7470kkxtpsBiYb
-         i8U9KFXxm7V5liFMeuwBZ2Xc6heiB85WAzagsmZ/GXWIOC+W1os5GbdlvzHKfVXo9s9Y
-         zZzW3uMXD5AjbWqIsWEI0UmHVCs2Y+KOcLEHIF85FrznN0ddds3IZNGyMppZaVGrneuN
-         k79A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736425658; x=1737030458;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NW4fi0sqeQx720jZiS/7zPuqhYpeVSuRx2XvwIuoUTU=;
-        b=CYEbv64v+nhK+D3WzpbsBHUbArfIH7kcXRUic6tKW5LosGOxdWnJwqTKeKWojuqF14
-         8tgwYguNfNETgs7kyB6uqP9BY/QDQdJU9lSW80vsrtpWtOftKNlUI3QBdzyfmtcPqKJZ
-         /T2MT9bIp0YGlkf9ns/htbgAmOyYTwMeIFrFvjKePQudxpkICTJ+Ol2n7fG0/qvwr3nR
-         TJK36O7zrkP1AQo9fO8PnNPd1QeBL1oMcB0+VWXT/Bv9FvCpwpdxz368urKStxTuNk9q
-         lME1zlhFAQyfZ+LTQMa/skYzmYwhWbpxWmM7JYuZvGi1BDkkSiRtvMrUDe3pWW1k4zJM
-         og3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW+djPY05lRufRwakWHDTLOEDCfcdVAET2k8oZr5tljjU93zMuYUEyLGe+TSAmR7mSYFAorGZTVowln@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjeUHB+/NwO3lQbfuiOww0e5ESbnOt+TuTIR6KEHFD7nJ1AWmY
-	1bmVBC8wFozEUD/BBqqYFiLrOzhT/apTalr51RUt2lQxv0+MzZCH9KCsYGWKh4E=
-X-Gm-Gg: ASbGncuwKhM+FD88BYoM/g4qDCz00V/gzyIBU/hDiNjVoC4LqjxwCIYmI9AAKrhrgTz
-	Em6HbAHLfbCHiXTGaS693OvcofDbP4uO0yxvhXUgyP84yVZfhxc+h87kqMhv4qQYidUvfQokIRp
-	LOsBLBgQMmw7m6cm8v/BeaTpR/3XkR/0mXpTCheMvR38mQgYec8czRe3zfxoAyXfoRRGu5k+j+X
-	H5oRkBoXXz45xMk/UfRMJBFxcuEsJIZtpnu4aqSNOmwXRTspgsOaUv9PF/+3dahkqQz/t3j6afX
-	SkhsgZNe5BYnSOyUi99y+rhdxpS8UCJ9Ple3
-X-Google-Smtp-Source: AGHT+IGVxnaWpnca7pnR1vOgIprZHdldk8KoRcJuuOvSARsqHc+j5TR93/bj6fOsAREWPZBIhWE88Q==
-X-Received: by 2002:a05:6512:1190:b0:540:1e51:b919 with SMTP id 2adb3069b0e04-542845d5602mr2264317e87.31.1736425658010;
-        Thu, 09 Jan 2025 04:27:38 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428becb12esm180434e87.244.2025.01.09.04.27.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 04:27:36 -0800 (PST)
-Date: Thu, 9 Jan 2025 14:27:35 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Pratyush Brahma <quic_pbrahma@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, konradybcio@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qcs8300: Update memory map
-Message-ID: <7ikzwgi6h7xsuzb2opqwsqeehftg6bcdkzi3xtccifr465rfjh@2jdmiqatokna>
-References: <20241217092636.17482-1-quic_pbrahma@quicinc.com>
- <hhwc5euwxjpg5r4nfoh77do2g5sm26r7vfs6ibboqw3x4qkwze@zld5mnznijvu>
- <829e68c7-1a9f-45e9-9a81-77bd9985d85f@quicinc.com>
+	s=arc-20240116; t=1736426270; c=relaxed/simple;
+	bh=wBEvPp+6ym9NHVCszd31Lb7q4+yZktU1wYpGEvJzfgM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Phi6aVTPPbVmgSKfN5kSHWR1pbnJO0I373DGPZ2YpVue8roXBeX4VFrKEo9AtVDan3ZwuCxQ3XWfP2qiWOj6lXjPp6oUbVQaxKM4KOkm5o3AyBTywd3qpVedFZxo+6A531/Z/oUUYFUn2nh6/XNRsWLjGvtYxGjzi00zAWW6NJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fkBHoY1X; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5094gdcF018333;
+	Thu, 9 Jan 2025 12:37:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	GPfG7RdUu5wH4i/HyaERh1sXPvlqbbemmgHvrUfdTgY=; b=fkBHoY1XhG6pdnGG
+	biabeN38CM9K2YomX9SDdwS1E0WZ9BCGKvDKoUPXMdvNwYnAQo2+FAZ6eFe2VFdj
+	Op8yvTdANB9ej8qFxgSnYZltTxVsEkv0jRfuT3mUopOGbwmfg5xXx64tKGUcrhNi
+	azv5m+jBFgHIX1CyjmOod0/bFRagzLfaRuRYiIh0hJ4qESMJ2AFP+QR0CVTzfL5l
+	fzYDBPMnuAmBCuY6qjs0VUJvxqi7qSta6HoBW+GhZWA4Q6IGAqbw10wSoRots7fm
+	QXsQX88YMwMndtxV/W/S6z10l6fqsTsTp3yYLpaNyaLBUqi5c8S56NXbpT8yBjSG
+	4w7Gnw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4427nws2e9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jan 2025 12:37:42 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 509Cbf7l021431
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Jan 2025 12:37:41 GMT
+Received: from [10.216.26.158] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 9 Jan 2025
+ 04:37:35 -0800
+Message-ID: <cd2c9d3c-b2b1-49f4-a427-16592be1cf0d@quicinc.com>
+Date: Thu, 9 Jan 2025 18:07:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <829e68c7-1a9f-45e9-9a81-77bd9985d85f@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] i2c: tegra: Add Tegra264 support
+To: Thierry Reding <thierry.reding@gmail.com>
+CC: Kartik Rajput <kkartik@nvidia.com>, <akhilrajeev@nvidia.com>,
+        <andi.shyti@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <jonathanh@nvidia.com>, <ldewangan@nvidia.com>,
+        <digetx@gmail.com>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250108110620.86900-1-kkartik@nvidia.com>
+ <20250108110620.86900-4-kkartik@nvidia.com>
+ <fc239699-d3ea-441a-ab48-0191fcda09d2@quicinc.com>
+ <37faddynpvhj7nfp5si26tajnuhb4cuzkf5gveqsl2ewuazcut@tpcp4b67gtae>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <37faddynpvhj7nfp5si26tajnuhb4cuzkf5gveqsl2ewuazcut@tpcp4b67gtae>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: bM69nFFFzUQIApyAPaMo8z0cHiqzhdBh
+X-Proofpoint-GUID: bM69nFFFzUQIApyAPaMo8z0cHiqzhdBh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 phishscore=0 bulkscore=0 adultscore=0 mlxlogscore=999
+ mlxscore=0 clxscore=1015 impostorscore=0 spamscore=0 priorityscore=1501
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090100
 
-On Thu, Jan 09, 2025 at 03:59:32PM +0530, Pratyush Brahma wrote:
+Thanks Thierry !
+
+On 1/9/2025 3:54 PM, Thierry Reding wrote:
+> On Thu, Jan 09, 2025 at 10:13:48AM +0530, Mukesh Kumar Savaliya wrote:
+>> Hi Kartik,
+>>
+>> On 1/8/2025 4:36 PM, Kartik Rajput wrote:
+>>> From: Akhil R <akhilrajeev@nvidia.com>
+>>>
+>>> Add support for Tegra264 SoC which supports 17 generic I2C controllers,
+>>> two of which are in the AON (always-on) partition of the SoC. Tegra264
+>>> I2C supports all the features supported by Tegra194 I2C controllers.
+>>>
+>>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+>>> Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
+>>> ---
+>>>    drivers/i2c/busses/i2c-tegra.c | 28 ++++++++++++++++++++++++++++
+>>>    1 file changed, 28 insertions(+)
+>>>
+>>> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
+>>> index 7b97c6d347ee..cf05937cb826 100644
+>>> --- a/drivers/i2c/busses/i2c-tegra.c
+>>> +++ b/drivers/i2c/busses/i2c-tegra.c
+>>> @@ -1646,7 +1646,35 @@ static const struct tegra_i2c_hw_feature tegra194_i2c_hw = {
+>>>    	.has_hs_mode_support = true,
+>>>    };
+>>> +static const struct tegra_i2c_hw_feature tegra264_i2c_hw = {
+>> I could see 7 controllers have been already added. And this may keep
+>> growing.
 > 
-> On 1/7/2025 5:45 AM, Bjorn Andersson wrote:
-> > On Tue, Dec 17, 2024 at 02:56:36PM +0530, Pratyush Brahma wrote:
-> > > This is based on Jingyi Wang's patches [1] to introduce the
-> > > initial dtsi for QCS8300 SOC.
-> > > 
-> > > New updates to the memory map of qcs8300 have brought in some
-> > > new carveouts (viz. sail_ss, firmware memory, tz memory, etc.) and
-> > > also the base addresses of some of the pil carveouts (q6_cdsp_dtb_mem
-> > > and cdsp_mem) have changed.
-> > > 
-> > > Incorporate these changes in the new memory map for qcs8300. Also
-> > > modify the labels of some of the carveouts to indicate pil carveouts.
-> > > 
-> > > [1] https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-3-494c40fa2a42@quicinc.com/
-> > Does QCS8300 not boot using the efi-stub and get a memory map with most
-> > of these regions removed already?
-> > 
-> > The excessive representation of reserved-memory regions should only be
-> > required for targets using ABL. (And the regions that the OS is expected
-> > to actually interact with, such as smem and PIL regions).
-> Yes, it boots with the efi-stub but there are some carveouts like gunyah_md,
-> hyp_mem, etc
-> which it doesn't pass as holes. The OS has no use of it but there are S2
-> protections
-> on these regions by hypervisor. When buddy tries to allocate from these
-> regions, it results into external aborts.
-
-So, it sounds like your UEFI providing incorrect memory map to the
-running OS. Please fix the bootloader instead.
-
-> Manually finding out the regions which are not passed as holes but need to
-> be no-map wastes
-> significant development efforts. To err on the side of caution, I felt it
-> would be better to mention
-> all the regions that kernel isn't supposed to touch anyway.
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> > > Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 180 ++++++++++++++++++++++++--
-> > >   1 file changed, 170 insertions(+), 10 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> > > index 2c35f96c3f28..e16d11c05515 100644
-> > > --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> > > @@ -377,6 +377,21 @@
-> > >   		#size-cells = <2>;
-> > >   		ranges;
-> > > +		sail_ss_mem: sail-ss-region@80000000 {
-> > > +			reg = <0x0 0x80000000 0x0 0x10000000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		hyp_mem: hyp-region@90000000 {
-> > > +			reg = <0x0 0x90000000 0x0 0x600000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		xbl_boot_mem: xbl-boot-region@90600000 {
-> > > +			reg = <0x0 0x90600000 0x0 0x200000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > >   		aop_image_mem: aop-image-region@90800000 {
-> > >   			reg = <0x0 0x90800000 0x0 0x60000>;
-> > >   			no-map;
-> > > @@ -388,6 +403,26 @@
-> > >   			no-map;
-> > >   		};
-> > > +		uefi_logs_mem: uefi-logs-region@908b0000 {
-> > > +			reg = <0x0 0x908b0000 0x0 0x10000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		ddr_training_checksum_data_mem: ddr-training-checksum-data-region@908c0000 {
-> > > +			reg = <0x0 0x908c0000 0x0 0x1000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		reserved_mem: reserved-region@908f0000 {
-> > > +			reg = <0x0 0x908f0000 0x0 0xe000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		secdata_apps_mem: secdata-apps-region@908fe000 {
-> > > +			reg = <0x0 0x908fe000 0x0 0x2000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > >   		smem_mem: smem@90900000 {
-> > >   			compatible = "qcom,smem";
-> > >   			reg = <0x0 0x90900000 0x0 0x200000>;
-> > > @@ -395,6 +430,61 @@
-> > >   			hwlocks = <&tcsr_mutex 3>;
-> > >   		};
-> > > +		tz_sail_mailbox_mem: tz-sail-mailbox-region@90c00000 {
-> > > +			reg = <0x0 0x90c00000 0x0 0x100000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		sail_mailbox_mem: sail-mailbox-region@90d00000 {
-> > > +			reg = <0x0 0x90d00000 0x0 0x100000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		sail_ota_mem: sail-ota-region@90e00000 {
-> > > +			reg = <0x0 0x90e00000 0x0 0x300000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		xbl_dtlog_mem: xbl-dtlog-region@91a40000 {
-> > > +			reg = <0x0 0x91a40000 0x0 0x40000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		gunyah_md_mem: gunyah-md-region@91a80000 {
-> > > +			reg = <0x0 0x91a80000 0x0 0x80000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		aoss_backup_mem: aoss-backup-region@91b00000 {
-> > > +			reg = <0x0 0x91b00000 0x0 0x40000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		cpucp_backup_mem: cpucp-backup-region@91b40000 {
-> > > +			reg = <0x0 0x91b40000 0x0 0x40000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		tz_config_backup_mem: tz-config-backup-region@91b80000 {
-> > > +			reg = <0x0 0x91b80000 0x0 0x10000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		ddr_training_data_mem: ddr-training-data-region@91b90000 {
-> > > +			reg = <0x0 0x91b90000 0x0 0x10000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		cdt_data_backup_mem: cdt-data-backup-region@91ba0000 {
-> > > +			reg = <0x0 0x91ba0000 0x0 0x1000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		tzffi_mem: tzffi-region@91c00000 {
-> > > +			reg = <0x0 0x91c00000 0x0 0x1400000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > >   		lpass_machine_learning_mem: lpass-machine-learning-region@93b00000 {
-> > >   			reg = <0x0 0x93b00000 0x0 0xf00000>;
-> > >   			no-map;
-> > > @@ -405,12 +495,12 @@
-> > >   			no-map;
-> > >   		};
-> > > -		camera_mem: camera-region@95200000 {
-> > > +		camera_mem: pil-camera-region@95200000 {
-> > >   			reg = <0x0 0x95200000 0x0 0x500000>;
-> > >   			no-map;
-> > >   		};
-> > > -		adsp_mem: adsp-region@95c00000 {
-> > > +		adsp_mem: pil-adsp-region@95c00000 {
-> > >   			no-map;
-> > >   			reg = <0x0 0x95c00000 0x0 0x1e00000>;
-> > >   		};
-> > > @@ -425,35 +515,105 @@
-> > >   			no-map;
-> > >   		};
-> > > -		gpdsp_mem: gpdsp-region@97b00000 {
-> > > +		gpdsp_mem: pil-gpdsp-region@97b00000 {
-> > >   			reg = <0x0 0x97b00000 0x0 0x1e00000>;
-> > >   			no-map;
-> > >   		};
-> > > -		q6_cdsp_dtb_mem: q6-cdsp-dtb-region@99900000 {
-> > > -			reg = <0x0 0x99900000 0x0 0x80000>;
-> > > +		q6_cdsp_dtb_mem: q6-cdsp-dtb-region@9b700000 {
-> > > +			reg = <0x0 0x9b700000 0x0 0x80000>;
-> > >   			no-map;
-> > >   		};
-> > > -		cdsp_mem: cdsp-region@99980000 {
-> > > -			reg = <0x0 0x99980000 0x0 0x1e00000>;
-> > > +		cdsp_mem: pil-cdsp-region@99900000 {
-> > > +			reg = <0x0 0x99900000 0x0 0x1e00000>;
-> > >   			no-map;
-> > >   		};
-> > > -		gpu_microcode_mem: gpu-microcode-region@9b780000 {
-> > > +		gpu_microcode_mem: pil-gpu-region@9b780000 {
-> > >   			reg = <0x0 0x9b780000 0x0 0x2000>;
-> > >   			no-map;
-> > >   		};
-> > > -		cvp_mem: cvp-region@9b782000 {
-> > > +		cvp_mem: pil-cvp-region@9b782000 {
-> > >   			reg = <0x0 0x9b782000 0x0 0x700000>;
-> > >   			no-map;
-> > >   		};
-> > > -		video_mem: video-region@9be82000 {
-> > > +		video_mem: pil-video-region@9be82000 {
-> > >   			reg = <0x0 0x9be82000 0x0 0x700000>;
-> > >   			no-map;
-> > >   		};
-> > > +
-> > > +		audio_mdf_mem: audio-mdf-region@ae000000 {
-> > > +			reg = <0x0 0xae000000 0x0 0x1000000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		firmware_mem: firmware-region@b0000000 {
-> > > +			reg = <0x0 0xb0000000 0x0 0x800000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		hyptz_reserved_mem: hyptz-reserved@beb00000 {
-> > > +			reg = <0x0 0xbeb00000 0x0 0x11500000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		firmware_scmi_mem: scmi-region@d0000000 {
-> > > +			reg = <0x0 0xd0000000 0x0 0x40000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		firmware_logs_mem: firmware-logs-region@d0040000 {
-> > > +			reg = <0x0 0xd0040000 0x0 0x10000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		firmware_audio_mem: firmware-audio-region@d0050000 {
-> > > +			reg = <0x0 0xd0050000 0x0 0x4000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		firmware_reserved_mem: firmware-reserved-region@d0054000 {
-> > > +			reg = <0x0 0xd0054000 0x0 0x9c000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		firmwarequantum_test_mem: firmwarequantum-test-region@d00f0000 {
-> > > +			reg = <0x0 0xd00f0000 0x0 0x10000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		tags_mem: tags-region@d0100000 {
-> > > +			reg = <0x0 0xd0100000 0x0 0x800000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		qtee_mem: qtee-region@d1300000 {
-> > > +			reg = <0x0 0xd1300000 0x0 0x500000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		deep_sleep_back_up_mem: deep-sleep-back-up-region@d1800000 {
-> > > +			reg = <0x0 0xd1800000 0x0 0x100000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		trusted_apps_mem: trusted-apps-region@d1900000 {
-> > > +			reg = <0x0 0xd1900000 0x0 0x1900000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		tz_stat_mem: tz-stat-region@db100000 {
-> > > +			reg = <0x0 0xdb100000 0x0 0x100000>;
-> > > +			no-map;
-> > > +		};
-> > > +
-> > > +		cpucp_fw_mem: cpucp-fw-region@db200000 {
-> > > +			reg = <0x0 0xdb200000 0x0 0x100000>;
-> > > +			no-map;
-> > > +		};
-> > >   	};
-> > >   	smp2p-adsp {
-> > > -- 
-> > > 2.17.1
-> > > 
-> -- 
-> Thanks and Regards
-> Pratyush Brahma
+> I'm not sure I understand the concern here. This is IP that's been in
+> use ever since the first Tegra chip was released about 15 years ago.
+> It's quite normal that the list of supported hardware will grow over
+> time. At the same time there will be occasional improvements of the
+> hardware that require certain parameterization.
 > 
+yes, i understand it can grow with new controllers. Was trying to 
+optimize the growing list with common fields.
 
--- 
-With best wishes
-Dmitry
+Example: tegra30_i2c_hw and tegra20_i2c_hw has one field changing
+from 20 fields. So was thinking after seeing this commonality.
+
+One suggestion: can one structure be default and then delta can be 
+overridden ?
+
+No concern if no other way as you mentioned below.
+
+>> Can we make either default set which is common for most of and change only
+>> sepcific fields ?
+> 
+> It's difficult to do. These are const structures on purpose so that they
+> can go into .rodata, so as such there's no good way to reuse defaults. I
+> suppose we could do something like add preprocessor defines, but I doubt
+> that they would make things any better (these are quite fine-grained, so
+> macros would likely only cover one or two fields at a time).
+> 
+Sure. Let's wait for others opinion. I understand complexity.
+
+>> Second option - read these fields from DT and overwrite default if it's
+>> mentioned in DTSI.
+> 
+> Some information is already parsed from DT. What's in this structure can
+> all be derived from the compatible string, hence why it's associated
+> with the compatible string via the of_device_id table. Moreover, we
+> cannot move any of this information out into device tree (at least not
+> for existing chips) because it would break DT ABI.
+> 
+Got it.
+>> Please review and see if this makes sense. what others say ?
+> 
+> I'm always open to suggestions, but I also don't see this as very
+> problematic. It's data that is cleanly structured out, not difficult to
+> maintain and doesn't take up a huge amount of space.
+> 
+I Agree.
+> Thierry
+
 
