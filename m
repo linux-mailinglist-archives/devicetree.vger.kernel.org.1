@@ -1,76 +1,63 @@
-Return-Path: <devicetree+bounces-136970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26728A0721D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:52:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A20F9A07226
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 10:53:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84D801885B75
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:52:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C72B7A48B6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73FCE2163AD;
-	Thu,  9 Jan 2025 09:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA1572163A3;
+	Thu,  9 Jan 2025 09:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="LF9I+Da4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YwyYDwRm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ADD5215071
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 09:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B604B216388;
+	Thu,  9 Jan 2025 09:47:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736416050; cv=none; b=HtrBOjYs/Ha7c5s4IFoVjYh4AoD8Qfo6Nz2P2zdqDHwRZBT9U5Xtk/E0mTmoRjpjRRga4MDcwruVI/2HeNML9pUwGLairUdtWJfCJVHLDz6LPQIoVgq3Sw0Hm+vAy00MlxX93BWbUueQZ/eHUXLQfYTf2NHpT45ub7yLYMY9jgk=
+	t=1736416070; cv=none; b=OIFnNZkzHyb33u4FGKZeHCMfWI5jzCAjlBRmmDCxH2Mm+ZjjE9w2zJjKb7zD3cII5a64oQUvUFMIHGAbYeKR7dCF0aawimE3Vw/H9OlmceTO48qvs+DAGVp06yWYouvcpgcqFFZhqjLyz2LJSffgtssszDmF7Yfcr/k34+B4Fl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736416050; c=relaxed/simple;
-	bh=YwwxyFbVp9ubIV3L7upBp0vXKsn8m+dSbxfnVrARW4M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qh33vRP9OY+bGYJ8eipfcAkQIUwlDgKbX7kzpMTYPHWwBNwjnpf8EVNd8dFMqpnVm6R6q1cc5ztUMrxt4xSGWTzacsVP6eBrAPVvIRol2GkH4Qx7M3EdOQGO2UzsmmegaHh+U3AsNh04FLLwOG9WTyLrD97KX79StOXa3aWFkCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=LF9I+Da4; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43621d27adeso5225555e9.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 01:47:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1736416047; x=1737020847; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SNbH3iM15P24tabab4r4Hq7fEcHPzSMR1Jc7980FDXI=;
-        b=LF9I+Da4JnAQxM8JDZ6wZxuxcZbUiUL3/Kkzxlh62d/JWa6ZiZkTUKkqyDhZCu51wR
-         KETRwt5pcOIYDUbk+G69VE8oi/zjRZMyMb1xeiOqzclxDBAP1dPJ2bZAYD57nsEigeQG
-         G+5AtVhh2OAR+WulfQWkfIIx9OvOBXZtsiGD8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736416047; x=1737020847;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SNbH3iM15P24tabab4r4Hq7fEcHPzSMR1Jc7980FDXI=;
-        b=I520pZmyn21XN8Z0IKS3C5H9UxIsVsqgTeLfU8kMy1pVpjSFsYNNuUidpnafh3GAWB
-         o9SiCVCWml14IqZ7kxp1nWg+IC4fRv52WX5Qj8ycHaVw/ELLqYL430yJfHGe5TQmrzuE
-         i0oHglqtDA9cTYSPFHvwXOI97iN+BnsZjMqucLTTnqDIOzWz3H31hBYXqewqe1AJjWYz
-         jodyPiediqPZmlc/fiwn12gII4E+JkkHQRuSN77HPCxgb5JQDLuVW4NNGinXd1ZQPMKh
-         gieW/udqN1tuqpK7QAtosIvnXW98dDFTyX8bvzpx2ot7xHhXcLnqfV2t04SO0CIEX7DV
-         UfJQ==
-X-Gm-Message-State: AOJu0Yypnnv8XaF8IghxwuuG39DHriHQYorAOtPH/sRr2o3HHuzNhhsh
-	GVfiNLZ/EFTF1E3Iek6/dkerelElJPI76R6nUXItaNuZY/FxqLotBHk5TgMqImA=
-X-Gm-Gg: ASbGnctXQ3lMkA6XgxuRrhdsgY6ga7VudE7oeZc42Ta4hC5tgAuv5zUCuZV23jSB4If
-	wRKIk8c0oVPIFD/hgM+y9ld0lzIUKiQCyjvhDVZUF9M5tZYSIVDdECnTh6Cnl4ekqmXiZhjFs4D
-	KHvh3xmPodOLiOmsGwXAVahSlKSGNI0lnjaH3fH/lg3vUWU9JPuS2REYXqq4lgD0Vyc/lxlTOun
-	Flx9+Nr48YofC6S1ZRE6rAUF1BKoPkuuJiBhQ3BGeuJ2QhwXxl/qQrFgHJ4l5y5DBvJGw+iClqk
-	RQ8dQoiV7fjf5ZkTE3EcXdPNZKnKzIAKk342UaAcdyaHA5XCCgLaTYxWIr+Zo12IEu7lhbrSFnC
-	RW8PQ2gJvIspw35nI
-X-Google-Smtp-Source: AGHT+IGxeeEpa2MSG1HmncReA6RTWEyrPQVHEZhLn7pD8r5sQuTCISWUhneBbPalmpM3tNQNUSfMrw==
-X-Received: by 2002:a5d:47c4:0:b0:385:f69a:7e5f with SMTP id ffacd0b85a97d-38a87308ae0mr6196848f8f.38.1736416046797;
-        Thu, 09 Jan 2025 01:47:26 -0800 (PST)
-Received: from ?IPV6:2a01:cb05:949d:5800:e3ef:2d7a:4131:71f? (2a01cb05949d5800e3ef2d7a4131071f.ipv6.abo.wanadoo.fr. [2a01:cb05:949d:5800:e3ef:2d7a:4131:71f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e4c3428sm1285643f8f.87.2025.01.09.01.47.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jan 2025 01:47:26 -0800 (PST)
-Message-ID: <48075e22-3231-4169-99d4-20fee4ad9b7b@smile.fr>
-Date: Thu, 9 Jan 2025 10:47:25 +0100
+	s=arc-20240116; t=1736416070; c=relaxed/simple;
+	bh=zK4v9I3f+UYpZWSLOKpiNuCAvZKtt7CcKQsscyXJbfg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OhAi8kKUBvnBlwsJD7Ir7gHU523go0m8c+uYl2oZ4t+RQNcONLdr5aQ97Mu3TbyF6TDB1KdEw0XqrF2rVKr/9tWr5CdkDYswo4dC+udyP2P/K/VKnmPWOFHzMoCAMramtueMnohDHFKrAp0K9EIWHYIE4VSWxUwCuWPizCSgQ30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YwyYDwRm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5096hfOh022354;
+	Thu, 9 Jan 2025 09:47:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nv93r9SftHibZEEuZLNp9EmlUvJ2gisPmBYhHiJXM0U=; b=YwyYDwRmGvTnHqqN
+	D6ycftXA9qA/Yl3jtjpUi2TsZItkb2XDOrJBbjmoAgCzELVnkDpE8eHXkx97txZ3
+	ECekmwTWmdGLz//9681mlTZ7Kiq/OswSUjTl8iSCpBZ953Jeybqx0UqL/D03zdph
+	lWrIwtKg5RnYglBcKJ+PPzT6KVNWSAaYFpP2FK7SAucW7hNGY2FaRcplByaFQ0UW
+	FTizizxBxVHLgPDvR82WZwZvEoydJfx5Wn2Ocm8NphhKVBZk5wcTDLa/El+ffk9F
+	3VpvTqQHTED6mPeOaZzV4d1dnsZ5UbwLzfvTfbgjyuXSIIYtzqdrVspEtsoFYJno
+	4mNxIQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4429epgegy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jan 2025 09:47:44 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5099liUm018709
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Jan 2025 09:47:44 GMT
+Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 9 Jan 2025
+ 01:47:40 -0800
+Message-ID: <07f09c8a-c797-4142-a339-6c0bdff466e7@quicinc.com>
+Date: Thu, 9 Jan 2025 17:47:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,57 +65,201 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: syscon: Fix
- ti,j721e-acspcie-proxy-ctrl compatible
-To: Andrew Davis <afd@ti.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Siddharth Vadapalli
- <s-vadapalli@ti.com>, Kevin Hilman <khilman@baylibre.com>,
- Romain Naour <romain.naour@skf.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250103174524.28768-1-afd@ti.com>
- <20250103174524.28768-3-afd@ti.com>
-Content-Language: fr
-From: Romain Naour <romain.naour@smile.fr>
-In-Reply-To: <20250103174524.28768-3-afd@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: qcs8300: add DisplayPort device
+ nodes
+To: Bjorn Andersson <andersson@kernel.org>
+CC: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ritesh Kumar <quic_riteshk@quicinc.com>
+References: <20241127-dp_dts_qcs8300-v1-0-e3d13dec4233@quicinc.com>
+ <20241127-dp_dts_qcs8300-v1-1-e3d13dec4233@quicinc.com>
+ <3kiih4tfuvr3lgczqnkrropmzs64na7nx37zo7bp3336cz5zje@22nwstjqwrvu>
+Content-Language: en-US
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+In-Reply-To: <3kiih4tfuvr3lgczqnkrropmzs64na7nx37zo7bp3336cz5zje@22nwstjqwrvu>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: fYNFrn2AbrdfHBGJTt5ZkkHnmJbiAwTX
+X-Proofpoint-ORIG-GUID: fYNFrn2AbrdfHBGJTt5ZkkHnmJbiAwTX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ bulkscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0 adultscore=0
+ mlxlogscore=848 phishscore=0 priorityscore=1501 clxscore=1015
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090079
 
-Hello Andrew,
 
-Le 03/01/2025 à 18:45, Andrew Davis a écrit :
-> This compatible was only added to the list for compatibility with older
-> dtschema (<2024.02). Add it to the other list also so both new and old
-> tools work.
+
+On 2025/1/9 7:06, Bjorn Andersson wrote:
+> On Wed, Nov 27, 2024 at 06:45:13PM +0800, Yongxing Mou wrote:
+>> Add device tree nodes for the DPTX0 controller with their
+>> corresponding PHYs found on Qualcomm QCS8300 SoC.
+>>
+>> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
 > 
-> Fixes: 8dfc4a014086 ("dt-bindings: mfd: syscon: Add ti,j721e-acspcie-proxy-ctrl compatible")
-
-This commit is no longer part of the kernel git tree, I'll resend the series for
-the j721e with your fix applied.
-
-Thanks!
-
-Best regards,
-Romain
-
-
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Please rebase, test and resubmit this together, in the same series, with
+> the mdss patch.
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index 717b616349e3d..1f3e67f432e7b 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -214,6 +214,7 @@ properties:
->            - ti,am625-dss-oldi-io-ctrl
->            - ti,am62p-cpsw-mac-efuse
->            - ti,am654-dss-oldi-io-ctrl
-> +          - ti,j721e-acspcie-proxy-ctrl
->            - ti,j784s4-acspcie-proxy-ctrl
->            - ti,j784s4-pcie-ctrl
->            - ti,keystone-pllctrl
+> Regards,
+> Bjorn
+> 
+sure. got it. I will integrate the mdss dts change with this and submit 
+it together.thanks.
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 115 +++++++++++++++++++++++++++++++++-
+>>   1 file changed, 114 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> index 1642e2863affd5af0b4f68118a47b7a74b76df95..28deba0a389641b4dddbf4505d6f44c6607aa03b 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> @@ -987,6 +987,19 @@ mdss_mdp: display-controller@ae01000 {
+>>   				interrupt-parent = <&mdss>;
+>>   				interrupts = <0>;
+>>   
+>> +				ports {
+>> +					#address-cells = <1>;
+>> +					#size-cells = <0>;
+>> +
+>> +					port@0 {
+>> +						reg = <0>;
+>> +
+>> +						dpu_intf0_out: endpoint {
+>> +							remote-endpoint = <&mdss_dp0_in>;
+>> +						};
+>> +					};
+>> +				};
+>> +
+>>   				mdp_opp_table: opp-table {
+>>   					compatible = "operating-points-v2";
+>>   
+>> @@ -1011,6 +1024,104 @@ opp-650000000 {
+>>   					};
+>>   				};
+>>   			};
+>> +
+>> +			mdss_dp0_phy: phy@aec2a00 {
+>> +				compatible = "qcom,qcs8300-edp-phy";
+>> +
+>> +				reg = <0x0 0x0aec2a00 0x0 0x200>,
+>> +				      <0x0 0x0aec2200 0x0 0xd0>,
+>> +				      <0x0 0x0aec2600 0x0 0xd0>,
+>> +				      <0x0 0x0aec2000 0x0 0x1c8>;
+>> +
+>> +				clocks = <&dispcc MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
+>> +					 <&dispcc MDSS_DISP_CC_MDSS_AHB_CLK>;
+>> +				clock-names = "aux",
+>> +					      "cfg_ahb";
+>> +
+>> +				#clock-cells = <1>;
+>> +				#phy-cells = <0>;
+>> +
+>> +				status = "disabled";
+>> +			};
+>> +
+>> +			mdss_dp0: displayport-controller@af54000 {
+>> +				compatible = "qcom,qcs8300-dp";
+>> +
+>> +				reg = <0x0 0x0af54000 0x0 0x104>,
+>> +				      <0x0 0x0af54200 0x0 0x0c0>,
+>> +				      <0x0 0x0af55000 0x0 0x770>,
+>> +				      <0x0 0x0af56000 0x0 0x09c>;
+>> +
+>> +				interrupt-parent = <&mdss>;
+>> +				interrupts = <12>;
+>> +
+>> +				clocks = <&dispcc MDSS_DISP_CC_MDSS_AHB_CLK>,
+>> +					 <&dispcc MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
+>> +					 <&dispcc MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK>,
+>> +					 <&dispcc MDSS_DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
+>> +					 <&dispcc MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
+>> +				clock-names = "core_iface",
+>> +					      "core_aux",
+>> +					      "ctrl_link",
+>> +					      "ctrl_link_iface",
+>> +					      "stream_pixel";
+>> +				assigned-clocks = <&dispcc MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
+>> +						  <&dispcc MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
+>> +				assigned-clock-parents = <&mdss_dp0_phy 0>,
+>> +							 <&mdss_dp0_phy 1>;
+>> +				phys = <&mdss_dp0_phy>;
+>> +				phy-names = "dp";
+>> +
+>> +				operating-points-v2 = <&dp_opp_table>;
+>> +				power-domains = <&rpmhpd RPMHPD_MMCX>;
+>> +
+>> +				#sound-dai-cells = <0>;
+>> +
+>> +				status = "disabled";
+>> +
+>> +				ports {
+>> +					#address-cells = <1>;
+>> +					#size-cells = <0>;
+>> +
+>> +					port@0 {
+>> +						reg = <0>;
+>> +
+>> +						mdss_dp0_in: endpoint {
+>> +							remote-endpoint = <&dpu_intf0_out>;
+>> +						};
+>> +					};
+>> +
+>> +					port@1 {
+>> +						reg = <1>;
+>> +
+>> +						mdss_dp0_out: endpoint { };
+>> +					};
+>> +				};
+>> +
+>> +				dp_opp_table: opp-table {
+>> +					compatible = "operating-points-v2";
+>> +
+>> +					opp-160000000 {
+>> +						opp-hz = /bits/ 64 <160000000>;
+>> +						required-opps = <&rpmhpd_opp_low_svs>;
+>> +					};
+>> +
+>> +					opp-270000000 {
+>> +						opp-hz = /bits/ 64 <270000000>;
+>> +						required-opps = <&rpmhpd_opp_svs>;
+>> +					};
+>> +
+>> +					opp-540000000 {
+>> +						opp-hz = /bits/ 64 <540000000>;
+>> +						required-opps = <&rpmhpd_opp_svs_l1>;
+>> +					};
+>> +
+>> +					opp-810000000 {
+>> +						opp-hz = /bits/ 64 <810000000>;
+>> +						required-opps = <&rpmhpd_opp_nom>;
+>> +					};
+>> +				};
+>> +			};
+>>   		};
+>>   
+>>   		dispcc: clock-controller@af00000 {
+>> @@ -1020,7 +1131,9 @@ dispcc: clock-controller@af00000 {
+>>   				 <&rpmhcc RPMH_CXO_CLK>,
+>>   				 <&rpmhcc RPMH_CXO_CLK_A>,
+>>   				 <&sleep_clk>,
+>> -				 <0>, <0>, <0>, <0>,
+>> +				 <&mdss_dp0_phy 0>,
+>> +				 <&mdss_dp0_phy 1>,
+>> +				 <0>, <0>,
+>>   				 <0>, <0>, <0>, <0>;
+>>   			power-domains = <&rpmhpd RPMHPD_MMCX>;
+>>   			#clock-cells = <1>;
+>>
+>> -- 
+>> 2.34.1
+>>
 
 
