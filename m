@@ -1,224 +1,135 @@
-Return-Path: <devicetree+bounces-137213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57ABA08215
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 22:18:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8030CA0821D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 22:19:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD2263A8057
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 21:18:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 517FD188C1F1
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 21:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7CDF204087;
-	Thu,  9 Jan 2025 21:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F177A20469D;
+	Thu,  9 Jan 2025 21:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="UwOQj2mX"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="ZjAGvlaL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B02E34A1A
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 21:18:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C7BA1ACEC6
+	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 21:19:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736457499; cv=none; b=O4MmRvc6NBeot7J597q9jf6EAsPW9RVH8bnpa5myQQD0D1HWf3T6zl0zsXQ/JJQNBPmf619kpQ59DaJLz9rY0YW/bJ7haj/qtq0ruPcIXbvtJl3fPqEiw0YtquyFzDoiFqWxtVjUyXej/TRRfscqZY8GDNMyCUQ2FtWj9d1/l6Y=
+	t=1736457557; cv=none; b=dY27g6R5VRgP7y6VfIXW16A9AC16aYNK59Fp4bvoXkNpeYb9jXcxdAGZM5FmzxqEULWHrVb1svOlzB3tY8EKLq1JlUTfHNb4LfoR48ew8d50ZOD9pvKoUr4HqzaMSq8MpHsC+pkPNQ7myd2aRxa5gKTaCcR53lVHlfCSx2PyzLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736457499; c=relaxed/simple;
-	bh=s32GlVgBBdY+VzkOiKMWTVWQS+O27/8Vp6BLAnA/bdQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FZ8lLcwfeIrTmY25InB8JHkJ1Qe1/xSYrVs33cr7PFO4KqKxpBTZOxR4dTauNJKGLp6jXyytyTyDfP9QTxDHPqvHlObIuPlnCgzxSX4Vt90nmRBTrXt7gr6KPxhz/6AzPyxBFi+Be0SjgRcvHlpd+vVaLG4g5ir4xF1z/7Ty0ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=UwOQj2mX; arc=none smtp.client-ip=209.85.219.180
+	s=arc-20240116; t=1736457557; c=relaxed/simple;
+	bh=4kR3KOquOvIAUcDgyxq24Py1Sqt5uauPaJ1AzQww15w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sZzfRpXg6CoOza+AlPXG3A00ReXqcVOZJXpdgLW+WjACiPPZKJHhc1+wpUioYfgxpF7pBXdmevGVkyTUK37fSlkKQW4EhFqnKgioHld0bBFeHGoknBrFDry2QIHCQkbff2Md2UiNGYFJ9A/wojBGWTnvVT3YrwHBAEuauu77qHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=ZjAGvlaL; arc=none smtp.client-ip=209.85.208.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e3c9ec344efso2201400276.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 13:18:16 -0800 (PST)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5d88c355e0dso2269592a12.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 13:19:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1736457496; x=1737062296; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=id1sh3FCg/7RMCobM0hb+35jgQaJrBVPFNS3Z4VpXrU=;
-        b=UwOQj2mXV/I9arM6rXgRM0AucxHWw5TD0fpL30Mj8bNETCRP23E3DauS7llse+WRGe
-         L0PVCxvl+cyOMp8P69F75GXzwm14moYdjF2NBqX3qKTWiReVa0A2Dqd9P3bdzWO+AFuj
-         yEkRTcJWWF1t0aimT9jH1qxD4zbCD7euxbMUY=
+        d=amarulasolutions.com; s=google; t=1736457554; x=1737062354; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nYWwEHMv7Pi4/aMuIfIEd0m898Lr2Kb8/a+FILyxHPY=;
+        b=ZjAGvlaLGRdpfiEJs2KF8uBNysFg2ZUrXbw702sYku9/4MQZz6F7S4UiFRQ+7mBQAa
+         1RFBwqLa+VSsjZva+j3PK1GHfVwn5TIrp0xy6smsAlsDAVqolXtl7L41hTVzOQv+N7fI
+         kLvQLW6Jkn865rsA3ul6w36kZNp6pu5wnoJSs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736457496; x=1737062296;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=id1sh3FCg/7RMCobM0hb+35jgQaJrBVPFNS3Z4VpXrU=;
-        b=S2NcvNHGgYx8nJ4jDdPXTggLjDUKWoit8MHONyFoZ7SRWphFvE/Ha2PZvySw3mUOrh
-         WCUNV8joh9SZxTs/3YF8EIxADUsYYKKIs2AqWl6GwmvcN8MX3bn717PWYjJ42s9Nhqb3
-         olTdV4SAoHYNtrHmI91XPmQZIMcJ7XgCYdk0kUMIeJZfuJcm4bAokxKYW1KIyD82h9KG
-         G4+rjSTbjLkODmBdaNuyBad6HdnfAXizTFzubdPVRohcOqxXs3dVDgpMAQkdLRJD2Wmc
-         Ltcv4bm5ANeuVDh1WPxtU1tmuXieAG1gs7DhzM5p5PPjLlmWKY82ZmIw7QwHXNl5oPQe
-         PIQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUnkDxp6A3PvyhIexLTgPL8qPWibcZIpjeOkvXWHY0xJNqjruvK0guwskjAsZNbm4M8osQcl3QUSkCB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYi2blxmzTFFBjPuV5TCJ7e2mloknoasJOQ3UjUAXFhX/N//o1
-	ufbjEQdsXnNLQME9JWux8HOcP3DKru3XNwzhWbtVGuQgAKhLwbJnjD/AkzEMuI/j9KebWamqmI7
-	ho34PvvfflT3Z44CYC+hADvtKsJi1sKcI6uIC9w==
-X-Gm-Gg: ASbGncsl+6g/ZNM9ohsFPwIgBl3QnYPutzWXSmb9g39nGZLakTWxU9wyUjsAE8Zk2r4
-	+62Nyz+xbnxpKqfxWDIav87/uaM+23laXSg==
-X-Google-Smtp-Source: AGHT+IEitao6xkL4KuruOiZLl8pzkE0Tr8U9XGdZMOjjPpiCZSWKdvOna0N9OTnQBhhi7O+5g4P8CEDUT7rp7zQGK3E=
-X-Received: by 2002:a05:6902:10ce:b0:e4a:9ef8:804b with SMTP id
- 3f1490d57ef6-e54ee138dfcmr7114871276.19.1736457495749; Thu, 09 Jan 2025
- 13:18:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736457554; x=1737062354;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nYWwEHMv7Pi4/aMuIfIEd0m898Lr2Kb8/a+FILyxHPY=;
+        b=c81HvhrwgyaJIo7mnJ77ly4jel+fpX/SfJZT0gNrGwApN6//daUDnWQkBkRP5uoGb7
+         MoQmlekCYX0aKsu2jbBUZMymzTvKnvhUkvKF2JcOXNvN8iji7F1am8Xr9C8Tgk1BNQdj
+         Yisbnffxpf4tdrbL/Pi7ALTM54eIqcvoeYm6yd4Im+Z8uI5heY4QqkYT90/GEEw+utbe
+         PwPiQU9OIv1yXdhEnnkX9vq+cmLA02u1ok2rwsC4G8w3+z4sML3uisej0CdLi6nSVo8e
+         Ql14iRnYzuv0bgj9+BaWGh8Ztoi23/go83GHdTy6FF59CeuAdaLpJ4ktmmBg2UDIR6sP
+         pZhw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRb51xqZgV2j20wDrZS3kpsmj45U2YW8aRtNWPBzNeouDR+7FqVBsmITyK2X87FscPOeAYehKX5A7q@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAX4X5Z95Rs/QTrcxdTIwtGKB9eguJMaY15eDlzscsmp/JtsZw
+	t62h0i6qiuiZ+0atsD3JzzannopkAc/TgZLBBf2R/azeekmYFLnvSiIt7oG2/WY=
+X-Gm-Gg: ASbGnct1vHuhY75RhUMQMmja2kXEUeYal9kFx8O1M2JERI72PPyT2MOqR1QVTtwR7HS
+	gaDtnR1FM8+nmWQnCsGz69Q4/Z+bwWC8cc6nNSRr6j8ncDeR3Uu8Pzb0hC/c6NGRggRuE0DMHbx
+	i1NbNe5nHdufEwAuGQ9Hkk/RaLGuz5Nekb1bOg//44GR+wAuw660Aw7QBy2ad5PZflWBRz34GOM
+	T6v7x8dGkSc0daPgxeeZZsvzAd9RA1BHu1dSnwMcSCmzrypqsqDFxKTBk86/dAHm2/grCJJOyev
+	FeGRGXIP87t/8KR+n/UXhXwO7s8mgA869Ua1OUQuujSaKIejjf05oyVjENKzu28gjnajwQR9577
+	HHd5UK0VmzzjF+gXaVw==
+X-Google-Smtp-Source: AGHT+IGDVisAyEQwSigpcUtiYjGMdYnHM9AmzlwjHAKTXZuLBmm721gRf+PfVKaw25o+OkloXI5uXA==
+X-Received: by 2002:a05:6402:430c:b0:5d3:e45d:ba7c with SMTP id 4fb4d7f45d1cf-5d972e7148bmr6635147a12.29.1736457553855;
+        Thu, 09 Jan 2025 13:19:13 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-41-6-15.retail.telecomitalia.it. [79.41.6.15])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d9900c4b56sm925567a12.32.2025.01.09.13.19.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jan 2025 13:19:12 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v2 0/4] Support spread spectrum clocking for stm32f{4,7} platforms
+Date: Thu,  9 Jan 2025 22:18:27 +0100
+Message-ID: <20250109211908.1553072-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250105181525.1370822-1-dario.binacchi@amarulasolutions.com>
- <20250105181525.1370822-5-dario.binacchi@amarulasolutions.com> <20250108234807.GA1247672-robh@kernel.org>
-In-Reply-To: <20250108234807.GA1247672-robh@kernel.org>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Thu, 9 Jan 2025 22:18:05 +0100
-X-Gm-Features: AbW1kvaz0srWd9-CXkLWbJC4L5aCPg18CSB1xlYjDSOC4DOcE56GKg2Kqa2-Of4
-Message-ID: <CABGWkvpgGNitRfe+qxT9faZ=Oa5+OzbE06dr-0O+w31JOmOQfw@mail.gmail.com>
-Subject: Re: [PATCH 4/6] dt-bindings: clock: st,stm32-rcc: support spread
- spectrum clocking
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hello Rob,
+The series adds support for spread spectrum clocking for stm32f{4,7}
+main PLL.
 
-On Thu, Jan 9, 2025 at 12:48=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Sun, Jan 05, 2025 at 07:14:16PM +0100, Dario Binacchi wrote:
-> > The addition of DT bindings for enabling and tuning spread spectrum
-> > clocking generation is available only for the main PLL.
-> >
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > ---
-> >
-> >  .../bindings/clock/st,stm32-rcc.yaml          | 27 +++++++++++++++++++
-> >  1 file changed, 27 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml =
-b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-> > index ae9e5b26d876..c345d3ff3fc4 100644
-> > --- a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-> > @@ -77,6 +77,26 @@ properties:
-> >        Phandle to system configuration controller. It can be used to co=
-ntrol the
-> >        power domain circuitry.
-> >
-> > +  st,ssc-modfreq-hz:
-> > +    description:
-> > +      The modulation frequency for main PLL (in Hz)
->
-> No constraints?
+To achieve this, it was considered necessary to also apply patches to
+improve the documentation (conversion of `st,stm32-rcc.txt` according to
+the json-schema) and the code (use of FIELD helpers).
 
-They vary depending on the HSE clock frequency used.
+The series has been tested on the STM32F469I-DISCO board.
 
->
-> > +
-> > +  st,ssc-moddepth-permyriad:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      The modulation rate for main PLL (in permyriad, i.e. 0.01%)
-> > +    minimum: 25
-> > +    maximum: 200
-> > +
-> > +  st,ssc-modmethod:
-> > +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> > +    description:
-> > +      The modulation techniques for main PLL.
-> > +    items:
-> > +      enum:
-> > +        - center-spread
-> > +        - down-spread
->
-> What's the default? If there's only 2 possibilities, then you can use a
-> boolean instead. Though I assume you want to support spread-spectrum
-> disabled.
+Changes in v2:
+- Fixup patches:
+  2/6 dt-bindings: reset: st,stm32-rcc: update reference due to rename
+  3/6 dt-bindings: clock: stm32fx: update reference due to rename
+  to
+  1/6 dt-bindings: clock: convert stm32 rcc bindings to json-schema
+- Changes to dt-bindings: clock: convert stm32 rcc bindings to json-schema
+- Changes to dt-bindings: clock: st,stm32-rcc: support spread spectrum clocking
 
-Generally, there can also be more than two options. For example, in
-the case of the imx8m platform, there are three possibilities:
-- down-spread
-- center-spread
-- up-spread
-In our case, using a boolean would hide one of the two pieces of informatio=
-n,
-meaning that if I'm not using center-spread, what am I using?
+Dario Binacchi (4):
+  dt-bindings: clock: convert stm32 rcc bindings to json-schema
+  dt-bindings: clock: st,stm32-rcc: support spread spectrum clocking
+  clk: stm32f4: use FIELD helpers to access the PLLCFGR fields
+  clk: stm32f4: support spread spectrum clock generation
 
-IMHO, I would keep the string type, changing it from
-on-unique-string-array to string.
+ .../bindings/clock/st,stm32-rcc.txt           | 138 ----------------
+ .../bindings/clock/st,stm32-rcc.yaml          | 147 +++++++++++++++++
+ .../bindings/reset/st,stm32-rcc.txt           |   2 +-
+ drivers/clk/clk-stm32f4.c                     | 155 +++++++++++++++++-
+ include/dt-bindings/clock/stm32fx-clock.h     |   2 +-
+ 5 files changed, 298 insertions(+), 146 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/st,stm32-rcc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
 
->
-> Are there dependencies between these properties?
+-- 
+2.43.0
 
-The values moddepth and modfreq are used to calculate, according to specifi=
-c
-relationships, two values MODPER and INCSTEP, which are bit fields of
-a suitable
-register for managing the SSCG. There is a constraint between these two val=
-ues,
-namely that MODPER * INCSTEP < 32768. This constraint will be managed
-at the driver level.
-
-Thanks and regards,
-Dario
->
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -97,6 +117,10 @@ allOf:
-> >            const: 1
-> >            description: |
-> >              The clock index for the specified type.
-> > +        st,ssc-modfreq-hz: false
-> > +        st,ssc-moddepth-permyriad: false
-> > +        st,ssc-modmethod: false
-> > +
-> >      else:
-> >        properties:
-> >          '#clock-cells':
-> > @@ -118,6 +142,9 @@ examples:
-> >          reg =3D <0x40023800 0x400>;
-> >          clocks =3D <&clk_hse>, <&clk_i2s_ckin>;
-> >          st,syscfg =3D <&pwrcfg>;
-> > +        st,ssc-modfreq-hz =3D <10000>;
-> > +        st,ssc-moddepth-permyriad =3D <200>;
-> > +        st,ssc-modmethod =3D "center-spread";
-> >      };
-> >
-> >    - |
-> > --
-> > 2.43.0
-> >
-
-
-
---=20
-
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
 
