@@ -1,173 +1,220 @@
-Return-Path: <devicetree+bounces-137152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CCA5A079FA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:59:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F07A07B13
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:05:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E43621881856
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 14:59:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E04C1694CA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCFA21C178;
-	Thu,  9 Jan 2025 14:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B8721C9E3;
+	Thu,  9 Jan 2025 15:03:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YoAYw1Uq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L4V/ADLW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E84021B1BF;
-	Thu,  9 Jan 2025 14:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F50C21517A;
+	Thu,  9 Jan 2025 15:03:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736434755; cv=none; b=bnmcedMDhyvciu2lZ89/HrDBllbrmij4E+Sz8qrlLkzWoqttb2u6kt+gGa8hUefDvDgVqGsWQZiBEGlj6YSVU8y3mHa9yNam9utrV/YhBUkDitLg7/9gq8mU8D/ymV0kvbgRwtV9wP1LfSFee4GeBRG5HYi3aBLB2HiHzATOs9s=
+	t=1736435029; cv=none; b=U11MmADZC74g8EGk5PN/DbOGRNVRFWzP5veJv22lnri/UmcYF2A5VxoDupp/SbmMThCYzw2DR8MD5bwKWf1SkpomPneV7nYWl3AIBCNwpduy9GDFG0GmTV2jP1+IaEGRN4eiC3xby4TaKbTavV3RXMBy0r8YRp3PRE479sG2r1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736434755; c=relaxed/simple;
-	bh=QCz/F6D39yrq5YHjo8W2G2CPuj8D7Rf/NYf0VnAbVMk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q8GES7q5tTYMlAkklXm9rbM65Agys8mcNeDbCsBXW9C09ROuh98uvG7Ba6OXZ9BWgogrSYdYC6zgcFjtiE9fFcisl4yd/QoLbYppVT1OUzzg24U4TfYDhcgGaCzXg6UuXbm+9p5qhAO4fPP0VsiF+bTJ1f4L0QXlvoWUfYDXqbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YoAYw1Uq; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736434753; x=1767970753;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QCz/F6D39yrq5YHjo8W2G2CPuj8D7Rf/NYf0VnAbVMk=;
-  b=YoAYw1Uq0z0oXfV6MJSdketpvbObca+iah4U1C9m9sLV4HERvxHCmRRf
-   /CVn1DCl3N2OpTr9xbOjmFMyrZDk1sLMc4RwE7ssTUa+yU7Fn81ptKcFP
-   9wXDm8zGKBkTrLTl/NzweF/GG3hkS9gOnGS31w0riczfV3vc5Vw1+Z4fY
-   EUA3+rc006LlZyGhz8k0W1koyNRBdFJ0bl72fCoSrCJzfeZp3gQNMEHA6
-   wXM2L4kWjO1UiYh8qca2JbdYi0W5ysKz9wqO31oAc65N5Amr+dJ/aVC/A
-   UV0RkThgf+uaX9aYl+rZTi5ZIcWepOyeMhPj9PaCfN06YICZVmGejsjVt
-   Q==;
-X-CSE-ConnectionGUID: hsmGbBJCRBaSNIuMAXw+tA==
-X-CSE-MsgGUID: kDEh+enqQw68krG9HezC9A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="40642630"
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; 
-   d="scan'208";a="40642630"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2025 06:59:10 -0800
-X-CSE-ConnectionGUID: NgsS1z6RSWytKefcAdP0NQ==
-X-CSE-MsgGUID: JLgDTiHwRtuWSBtyVqWD2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; 
-   d="scan'208";a="103950378"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 09 Jan 2025 06:59:07 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tVu01-000HhL-0W;
-	Thu, 09 Jan 2025 14:59:05 +0000
-Date: Thu, 9 Jan 2025 22:59:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: Leo Yang <leo.yang.sy0@gmail.com>, jdelvare@suse.com,
-	linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Leo-Yang@quantatw.com, corbet@lwn.net,
-	Delphine_CC_Chiu@wiwynn.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/2] hwmon: Add driver for TI INA233 Current and Power
- Monitor
-Message-ID: <202501092213.X9mbPW5Q-lkp@intel.com>
-References: <20250106071337.3017926-3-Leo-Yang@quantatw.com>
+	s=arc-20240116; t=1736435029; c=relaxed/simple;
+	bh=ho9ulicaiUn3lPNKtJQPpJPNP6nkB26RPwtwvVpSZJ4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K08GqYXPpr1XzEuLcnumGL7EtPgwR4ka08nyHkzWIYIHtgNb7xVWMRGdUDqdT0xXNG003Ds7dFUtoJxE+sUZG+3T+AYUQzEUdEJp/mZ/wA0qdPdmNwlEO/IniQdQKhpQpFLWpesacVU8BMnTIa+h5zIBvfLueA/DudvhaZ0diII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L4V/ADLW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 509E7bLI006683;
+	Thu, 9 Jan 2025 15:03:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=X7cARWDlvKovXJOvzSYehNzZ
+	81bZtEsg4IY8TnPR3ak=; b=L4V/ADLWforsITWUd9YZMiQW+xdRaIG0s3GoHiXr
+	Yr4006gu8z/aXCvZ1DTBD78cSNqCtOsmAMbQHHhBSBeAbzdV6/gmTu77rYofjjBd
+	MskZxP3w1VzBcKZk6UGmnnct/33Ib703h4GDv4D3cLrU8ouhfUXx/DF9+PI4YR3m
+	UVSiqiY3TGi8LH+DB9UDpCQcnB9+t4sVFu2ZWNBLkyl7iCpM8Ldg8WXGh2pRA5zL
+	zIW5t7hGbECbmhQqAIRRK5eud5VTo7naMRSGZA9A/IoOQxFgwhLpDfpvyGles7hV
+	ZX5cKOQVysUsjuVQe/D56ucjGCBYXK3ahmIUfrZ+Jo0C4A==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442fxs047a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Jan 2025 15:03:42 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 509F3f4V000982
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Jan 2025 15:03:41 GMT
+Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 9 Jan 2025 07:03:35 -0800
+Date: Thu, 9 Jan 2025 20:33:26 +0530
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
+ Ride-r3
+Message-ID: <Z3/lA+w7BoazNeWk@hu-wasimn-hyd.qualcomm.com>
+References: <20241229152332.3068172-6-quic_wasimn@quicinc.com>
+ <tjrg5zqggupjo36udpyv3vynsij76f4qlus6lkbqotuimusqgq@hosmksp77sif>
+ <Z3ZXWxoBtMNPJ9kk@hu-wasimn-hyd.qualcomm.com>
+ <4wmxjxcvt7un7wk5v43q3jpxqjs2jbc626mgah2fxbfuouu4q6@ptzibxe2apmx>
+ <Z3eMxl1Af8TOAQW/@hu-wasimn-hyd.qualcomm.com>
+ <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
+ <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
+ <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
+ <67b888fb-2207-4da5-b52e-ce84a53ae1f9@kernel.org>
+ <Z3/hmncCDG8OzVkc@hu-wasimn-hyd.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250106071337.3017926-3-Leo-Yang@quantatw.com>
+In-Reply-To: <Z3/hmncCDG8OzVkc@hu-wasimn-hyd.qualcomm.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: L8mC5HWXF_Lwq2FkVMxQ2BNVBZGh4Uni
+X-Proofpoint-ORIG-GUID: L8mC5HWXF_Lwq2FkVMxQ2BNVBZGh4Uni
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ mlxlogscore=999 malwarescore=0 clxscore=1015 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 mlxscore=0 impostorscore=0 spamscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501090120
 
-Hi Leo,
+On Thu, Jan 09, 2025 at 08:17:54PM +0530, Wasim Nazir wrote:
+> On Wed, Jan 08, 2025 at 03:09:09PM +0100, Krzysztof Kozlowski wrote:
+> > On 03/01/2025 20:58, Dmitry Baryshkov wrote:
+> > >>>>>> Initially, we included the DTS [1] file to avoid duplication. However,
+> > >>>>>> based on Krzysztof's previous suggestion [2], we change to this format.
+> > >>>>>>
+> > >>>>>> Please let us know how to proceed further on this.
+> > >>>>>
+> > >>>>> Krzysztof asked you to include DTSI files instead of including DTS
+> > >>>>> files. Hope this helps.
+> > >>>>
+> > >>>> Are you suggesting that we should also modify the 9100-ride files to
+> > >>>> include DTSI instead of DTS for consistency between QCS9100 and QCS9075?
+> > >>>> However, this would result in the duplication of Ethernet nodes in all
+> > >>>> the ride board files. Would that be acceptable?
+> > >>>
+> > >>> git mv foo.dts foo.dtsi
+> > >>> echo '#include "foo.dtsi"' > foo.dts
+> > >>> git add foo.dts
+> > >>> git commit
+> > >>>
+> > >>
+> > >> We cannot convert sa8775p-ride-r3.dts and sa8775p-ride.dts to .dtsi as
+> > >> they represent different platforms. In patch [1], we included these DTS
+> > >> files to reuse the common hardware nodes.
+> > >>
+> > >> Could you please advise on how we should proceed with the following
+> > >> approaches?
+> > >>
+> > >> a) Previous approach [1]:
+> > >> Include sa8775p-ride-r3.dts and sa8775p-ride.dts in the qcs9075-ride
+> > >> platform DTS, similar to the qcs9100-ride platform DTS. This approach
+> > >> avoids duplicating Ethernet nodes and maintains uniformity. However, it
+> > >> involves including the DTS file directly.
+> > >>
+> > >> b) Current suggestion:
+> > >> Include sa8775p-ride.dtsi in the qcs9075-ride platform DTS and also
+> > >> modify the qcs9100-ride platform DTS files to maintain uniformity. This
+> > >> approach results in duplicating Ethernet nodes.
+> > >>
+> > >> Please let us know your recommendation to finalize the DT structure.
+> > > 
+> > > sa8775p.dtsi
+> > > `__sa8775p-ride.dtsi
+> > >    `__sa8775p-ride-r2.dtsi
+> > >       `__sa8775p-ride.dts
+> > >       `__qcs9100-ride.dts
+> > >       `__qcs9075-ride.dts
+> > >    `__sa8775p-ride-r3.dtsi
+> > >       `__sa8775p-ride-r3.dts
+> > >       `__qcs9100-ride-r3.dts
+> > >       `__qcs9075-ride-r3.dts
+> > > 
+> > Wasim and all other copy-pasters of sa8775p-ride,
+> > 
+> > Just to recap, qcs9100 contributions started this terrible pattern of
+> > board including a board. Unfortunately qcs9100 was merged, so that ship
+> > has sailed.
+> > 
+> > This patchset was going the same way, because poor choices like to keep
+> > spreading, but at one of previous versions I noticed it and objected.
+> > 
+> > This v5 however solves above problem by duplicating the nodes.
+> > 
+> > Apparently all these designs - sa8755p, qcs9100 and qcs9075 - use the
+> > same board, but none of this was communicated. I checked all the commit
+> > msgs in this patchset and nothing explained about it. What annoys me is
+> > that you do not communicate your design forcing us to accept poor DTS or
+> > forcing us to guess and make poor judgments.
+> > 
+> > Come with proper hardware description and split out shared parts, like
+> > motherboard. Look how other vendors are doing it, e.g. NXP or Renesas.
+> > But assuming there are shared parts because I am pretty sure you will
+> > pick my comments when it suits you without actually following them fully
+> > and without understanding and explaining to us your own hardware.
+> > 
+> 
+> Hi Krzysztof,
+> 
+> Here is the pictorial flow showing how SoCs are derived and what all boards
+> are supported.
+> 
++-----------------------------------------------------------------------+
+|                                                                       |
+|                                sa8775p                                |
+|                                   |                                   |
+|           +-----------------------+-----------------------+           |
+|           |                       |                       |           |
+|           v                       |                       v           |
+|        qcs9100                    |                    qcs9075        |
+|           |                       |                       |           |
+|           v                       v                       v           |
+|         (IOT)                  (AUTO)                   (IOT)         |
+|   qcs9100-ride.dts        sa8775p-ride.dts        qcs9075-ride.dts    |
+|   qcs9100-ride-r3.dts     sa8775p-ride-r3.dts     qcs9075-ride-r3.dts |
+|                                                   qcs9075-rb8.dts     |
+|                                                                       |
++-----------------------------------------------------------------------+
+Updating it as previous one is messed up with whitespaces.
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on linus/master v6.13-rc6 next-20250109]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Leo-Yang/dt-bindings-Add-INA233-device/20250106-151934
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-patch link:    https://lore.kernel.org/r/20250106071337.3017926-3-Leo-Yang%40quantatw.com
-patch subject: [PATCH 2/2] hwmon: Add driver for TI INA233 Current and Power Monitor
-config: i386-randconfig-r072-20250109 (https://download.01.org/0day-ci/archive/20250109/202501092213.X9mbPW5Q-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250109/202501092213.X9mbPW5Q-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501092213.X9mbPW5Q-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   ld: drivers/hwmon/pmbus/ina233.o: in function `calculate_coef':
->> drivers/hwmon/pmbus/ina233.c:59: undefined reference to `__divdi3'
-
-
-vim +59 drivers/hwmon/pmbus/ina233.c
-
-    23	
-    24	static int calculate_coef(int *m, int *R, bool power)
-    25	{
-    26		s64 scaled_m;
-    27		int scale_factor = 0;
-    28		int scale_coef = 1;
-    29		int power_coef = 1;
-    30		bool is_integer = false;
-    31	
-    32		if (*m == 0) {
-    33			*R = 0;
-    34			return -1;
-    35		}
-    36	
-    37		if (power)
-    38			power_coef = 25;
-    39	
-    40		if (1000000 % *m) {
-    41			/* Default value, Scaling to keep integer precision,
-    42			 * Change it if you need
-    43			 */
-    44			scale_factor = -3;
-    45			scale_coef = 1000;
-    46		} else {
-    47			is_integer = true;
-    48		}
-    49	
-    50		/*
-    51		 * Unit Conversion (Current_LSB A->uA) and use scaling(scale_factor)
-    52		 * to keep integer precision.
-    53		 * Formulae referenced from spec.
-    54		 */
-    55		scaled_m = div_s64(1000000 * scale_coef, *m * power_coef);
-    56	
-    57		/* Maximize while keeping it bounded.*/
-    58		while (scaled_m > MAX_M_VAL || scaled_m < MIN_M_VAL) {
-  > 59			scaled_m /= 10;
-    60			scale_factor++;
-    61		}
-    62		/* Scale up only if fractional part exists. */
-    63		while (scaled_m * 10 < MAX_M_VAL && scaled_m * 10 > MIN_M_VAL && !is_integer) {
-    64			scaled_m *= 10;
-    65			scale_factor--;
-    66		}
-    67	
-    68		*m = scaled_m;
-    69		*R = scale_factor;
-    70		return 0;
-    71	}
-    72	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> Although we included details about the QCS9075 and QCS9100 in the cover
+> letter and commit message, explaining their differences and common
+> origin from the SA8775P SOC, the new DT structure suggested by Dmitry
+> should make things clearer. This structure properly splits common parts
+> and enhances reusability.
+> 
+> > Best regards,
+> > Krzysztof
+> 
+> Thanks & Regards,
+> Wasim
 
