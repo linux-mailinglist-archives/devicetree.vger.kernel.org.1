@@ -1,116 +1,117 @@
-Return-Path: <devicetree+bounces-136932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DE9A06FAE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:06:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B15A07000
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 09:29:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E9921888947
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 08:06:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A12B167C8F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 08:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0545B214A6B;
-	Thu,  9 Jan 2025 08:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8868215049;
+	Thu,  9 Jan 2025 08:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jgMMWCEh"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="AXLsHX3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C397310A3E;
-	Thu,  9 Jan 2025 08:06:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D551474A9;
+	Thu,  9 Jan 2025 08:29:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736409983; cv=none; b=YSkXpRNmK4QOGg6YodrBbc/zZATZigvi/oKHb0W9HQ6odboPJPaWzSgICq6pVvqaf8QuZP44WivrLtLALCo/kEODzOMqoH+eOyHYzK/wYEJWt6gwggdD0bxR9gnx8ocHLkt4Z1POlv0M82SYkvFxYy15XeIREfoWdj5aqCWPklk=
+	t=1736411376; cv=none; b=hf9Fa22kpBpHlCPmS7F568ul7LC8/T5Rjhudr13bh/4Ofb4zllQ4SOqdk8UWq6t6RMD92BCiYYv/1PROjspt9YxSs9Nodk185QR5ckW6eoAjvNzj6r+Cdo0ttRHDC5qnBdU2ew7B7wKNNQsH5IuMZ21spU+6bzOkXR6XZmGuuA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736409983; c=relaxed/simple;
-	bh=qBbfHEZ+8VkJLNdIID51HsKf3XuVcwLbfONladZVSUM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YBdpoXMIzIUKhfn4DbNhAuAYyDrAprpySGsxMD0X+45IrkrsJYl9yCNRzM/BXzOoSS3DfV8UB4Gc+Tq6tJrcgBsvsIL639HX3ahtFjIBsBs2kn8dstX38UpjVNC58ig+zAG7tVh8AeD/AHkEGQdBrJMla564BrdvQ03pqkjgjLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jgMMWCEh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 647B8C4CEDF;
-	Thu,  9 Jan 2025 08:06:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736409983;
-	bh=qBbfHEZ+8VkJLNdIID51HsKf3XuVcwLbfONladZVSUM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jgMMWCEhgqpNMX/qhjYAeRmSm/nEpjyi3jemX8LF8QGzlD4TYuKJcqXLIFzEYeSys
-	 nZPQs+hlvqI6FyW5ABCW6v8X+F+nJwtRwMTuoXkYJQ2hZ11WR+VkaMAfuPWz1fcbln
-	 w1ao17MeZ4sJ2fqfZkWmlw8Y2OgKayAngY2KmRfShsVLJzgB6//nIZM9XiQnK9gsz/
-	 RMyLLm8DY55upYh3rysEVEUV3E10uPPiHO37FZZGylwyrQ1vnQOXZfSApMW7ioDAfr
-	 jUIuNT5g3o613iycsvA0cs1aNILv5dYCjNRI/R/GfB8n32dvdgLoGbU3Y0wjcjiCpv
-	 EhbUhVHyreMRA==
-Date: Thu, 9 Jan 2025 09:06:19 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Maya Matuszczyk <maccraft123mc@gmail.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 5/7] dt-bindings: opp: Add v2-qcom-adreno vendor
- bindings
-Message-ID: <67mvekrysu2ms5dsvjyh37wbl5dmcnk2r3xnow2e5xeeqahhrr@ar5zsq3wzip3>
-References: <20250109-gpu-acd-v4-0-08a5efaf4a23@quicinc.com>
- <20250109-gpu-acd-v4-5-08a5efaf4a23@quicinc.com>
+	s=arc-20240116; t=1736411376; c=relaxed/simple;
+	bh=UpbSePfstfrp/6wEgb8RztdKWfui9cMd3AagZlmCnFs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=AbAthUjRzfwA4RD4uufYgnDzRSAmsF0mCw698VMi/fHDwYI/X44AYrT3+zCoIVEK+mfysfPjWJhhJZz8/UnfP91xxJ4YRmyaVUSVt7TCp76J88zlyo2uY/EpSd2BMidaXY1KT59ig+7dXLz5cOHqQKmjlke1TieYOwgTMR1NmPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=AXLsHX3h; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=BDqOP
+	gSUP3+b245ejO/DQwuuKV0SZcIhL5zU/cTxllE=; b=AXLsHX3hfKJV7gn7RdF7h
+	8Ea4NHOoyMlAKUnKC0DuvB84673sQtBx4gLOsX9kaN2ns/pjKgHStJZfS9Yu7WrR
+	iBzld/xqBBcnshtWpFN+wwy7JENBaRC0hjkdbBNhVmWTV5Y36md7toJ0VPRfZG8G
+	VCxMK3gEcDVBL321x9Nl5w=
+Received: from silergy-System-Product-Name.silergy.inc (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wAnoCuriH9nIhp3Ew--.21794S4;
+	Thu, 09 Jan 2025 16:28:28 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net,
+	krzk@kernel.org
+Cc: conor+dt@kernel.org,
+	corbet@lwn.net,
+	devicetree@vger.kernel.org,
+	jdelvare@suse.com,
+	krzk+dt@kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	wenliang202407@163.com
+Subject: Re: [PATCH 3/3] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
+Date: Thu,  9 Jan 2025 16:28:12 +0800
+Message-ID: <20250109082812.136268-1-wenliang202407@163.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <f96bdc15-1308-4b9e-9fe4-e92505eb9d8b@roeck-us.net>
+References: <f96bdc15-1308-4b9e-9fe4-e92505eb9d8b@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250109-gpu-acd-v4-5-08a5efaf4a23@quicinc.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wAnoCuriH9nIhp3Ew--.21794S4
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJrWkCF47CF1fKFyUKr4rKrg_yoW8Xw1rp3
+	yxAFWDtF4Fqr12q3yqq3W8Ga1jqw4kCayUWF1DtF1j9w1vgFySqFWfKFn5uFn5Xr1fZFW7
+	WF1vg34ftrWIvaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JUfl1kUUUUU=
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbiNQrP02d-h1ccvQAAsK
 
-On Thu, Jan 09, 2025 at 02:10:01AM +0530, Akhil P Oommen wrote:
-> Add a new schema which extends opp-v2 to support a new vendor specific
-> property required for Adreno GPUs found in Qualcomm's SoCs. The new
-> property called "qcom,opp-acd-level" carries a u32 value recommended
-> for each opp needs to be shared to GMU during runtime.
-> 
-> Also, update MAINTAINERS file include the new opp-v2-qcom-adreno.yaml.
-> 
-> Cc: Rob Clark <robdclark@gmail.com>
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> ---
->  .../bindings/opp/opp-v2-qcom-adreno.yaml           | 97 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 98 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
-> new file mode 100644
-> index 000000000000..de1f7c6c4f0e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/opp/opp-v2-qcom-adreno.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Adreno compatible OPP supply
-> +
-> +description:
-> +  Adreno GPUs present in Qualcomm's Snapdragon chipsets uses an OPP specific
-> +  ACD related information tailored for the specific chipset. This binding
-> +  provides the information needed to describe such a hardware value.
-> +
-> +maintainers:
-> +  - Rob Clark <robdclark@gmail.com>
-> +
 
-You need select: here. See bot's warnings and other schemas, like
-primecell, how they do it.
 
-Best regards,
-Krzysztof
+At 2025-01-08 22:18:38, "Guenter Roeck" <linux@roeck-us.net> wrote:
+>On 1/7/25 23:06, Krzysztof Kozlowski wrote:
+>> On 07/01/2025 14:01, Wenliang Yan wrote:
+>>>>>   Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
+>>>>>   1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+>>>>> index 05a9cb36cd82..f0b7758ab29f 100644
+>>>>> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+>>>>> @@ -20,6 +20,7 @@ description: |
+>>>>>   properties:
+>>>>>     compatible:
+>>>>>       enum:
+>>>>> +      - silergy,sq52206
+>>>>
+>>>> So it is compatible or not? You said same bindings, but not compatible?
+>>>>
+>>>
+>>> What I mean is that SQ52206 is compatible.the datasheet depends on
+>> 
+>> 
+>> Then compatibility should be expressed in fallback, but OTOH, your
+>> linked changes suggest these are not compatible. Confusing commit msg.
+>> 
+>
+>It is 'backward compatible' with additional features. That means it is not
+>'compatible' in devicetree terminology.
+>
+
+Thank you for your explanation.
+Although SQ52206 has added some new features, it has not affected the
+hardware properties.The properties described in the ina2xx.yaml are
+applicable to the sq52206 hardware.
+So I will just add the sq52206 compatible to the ina2xx.yaml.yaml
+from that series. Would that be fine from your side?
+
+Thanks,
+Wenliang Yan
+
+
 
 
