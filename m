@@ -1,213 +1,204 @@
-Return-Path: <devicetree+bounces-137168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E560A07C8F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:53:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2E3A07CA6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 16:58:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2ABC3A89F2
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:53:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 015071884E88
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 15:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3C172206BC;
-	Thu,  9 Jan 2025 15:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81F8321D5BF;
+	Thu,  9 Jan 2025 15:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Bl/mYVoK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CwuvB0MW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com [209.85.208.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C194220693
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 15:53:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62305219A76;
+	Thu,  9 Jan 2025 15:58:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736437988; cv=none; b=XKJkrNIBsgdN+Ub7MLVZYKS6Z6eZuL1fol7O1KDDxGhNGs4BFrKd1yVkImmbh5BcBsZCVzktIW4B/ESyEDtfAxdZhygzyGmqXpdKvl/L8CuiRHVEphBgUWhwzyDpRbeC6TMsY73dxYRO4QagWtCr3UccYYsOpB0/wh3bichZ7tA=
+	t=1736438311; cv=none; b=D9qDrgn2lB0QUA+U9fAle0lqkWPfIrKSzxqXvqOHkn+JNJYwd4R9HtSuXU1wbKWtMiQifzeJ4CzPD11exmoLziFCdT8B6kWu/ydOlVDYw4JgXYtMlIcBlQjetgWo5E1/V0D9h2NIs4nR5lBqvU9Bb318zdF34k90kPVCl5IE/XU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736437988; c=relaxed/simple;
-	bh=pJgGVj88K8V7gJ0zgIUhUwlsCxKgV+W4Ci2hCN34mIY=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k7lo93uN4xkqPBa8UuyG0LZ9h8ZAw6FVwE6yHgWBQIiaJWf5J8vIYbhYyoz3yHVXBNKkcR16HLSdGMiYD00BrzCMYt7sC8XO2TY2CNF4hDaHRWF53pscIcqtTasDGEs0sp3wIHgBYGOf/RfryEOufrGTgteylVS5z12wsAJti5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Bl/mYVoK; arc=none smtp.client-ip=209.85.208.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f68.google.com with SMTP id 4fb4d7f45d1cf-5d4e2aa7ea9so2067668a12.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 07:53:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1736437985; x=1737042785; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aiM8y2KF3+onAr2SvicvIVsqQjxBJ+k4H+eZXUhohgA=;
-        b=Bl/mYVoKctKrr4gURZuPaipQQxFpkN47P0NlpCMfjizKqQNYQVhLEN+Rrs1NmO6Bbl
-         Pk0gJ699p+KTMEwouYyn5iWanH06Zfa8lCBNjlTFl7Vsb1+MZr/5bicGx9uRLFleFiT9
-         rgTppDeph9xyTknOcMsi/Zma8kkEErYrwCbAfR1jbPcBNswOMQzcWUXL1mXsaCVhauMl
-         fUvIGf+9SAIUDmL+1Y+f+DiF9C7JPvtot6yczg+M574vA9tgtRKVZ84mdAClQqcWYUrP
-         Jiag7lXRPPPKmsgTX0C42XLBThXjXic+pkAAjgFyP0NONL0CF0HPhMXwbySw60jCxTvB
-         vQIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736437985; x=1737042785;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aiM8y2KF3+onAr2SvicvIVsqQjxBJ+k4H+eZXUhohgA=;
-        b=OwOTOIW8WLpBAOGYu86jnJyk0K9eo+wuveePiylnSY9Rok1sC7kGZlVOY61AJp29ms
-         JooNwAc0nGGBwoIbxeXUpfahTm+MemYl38v58MD6myryB+N4XdHYV6i23Chb9H7DSXbb
-         fjcSPYDApigBgiDQ/puEsk9FHY9fd4jujcLiwOPgKN5jxcohQr+nl6xCnVyw1Ifuz5EX
-         Mp8LL4pb3COQi0WshnSiJ0iIRm5cRggr5hxBNcjRct7KAg3f8La4IGmHzriEqPaEUYL9
-         FipvWr50p6Xl7mZM1cUiFBlFOpKv3bDJdW4GxuBfvP/RavXiZyXsq3Hm94R3zYPn/Ozm
-         l4Yw==
-X-Forwarded-Encrypted: i=1; AJvYcCWDObU33qO5rzYwxo6QiU4v7sAQRzbvOPYasKM+6Nd3etJ+XzyoxKoqAjIqNZcHjOYGUsQMSNaf43VA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1BPSJSU4b+VJavBvFa1wMd1I3ewkbvMBI4P/P6yCwVmrNH7vM
-	wI8sYC8Pf5XOr+NSsAG0t6BvKOGsrZ7Q7pxfA9Qn3DQKAZyVhw6XHt9Z2rJBSbo=
-X-Gm-Gg: ASbGnculM60+ReLjkwmfUdJbww+7xRCjj5vtI30K4aY9GT2eKGZAzp2wlkqZ8BQohZw
-	XOYet5eXNpOlESRdLC+TsBoyvPbjIwDw+GhcbmMYap3LbzRutKTI7VKm2RbxErTPLMVyWCn/JIL
-	tE9TAy5wot5Uk+JjtMOlAoebOFdGjcvVfD3squEdIMqGTVZmCLAul6/clACCpFFMTg8iehZFur2
-	5dyd4EZDYci6WE41aspPc4a31NVPWIj84mr3L0ukO09AmtQ3gzwQztFsm/AH37obM+NU9NzZBjj
-	LsZwdFtjziCYrYcf4DDMd+gwUubDiA==
-X-Google-Smtp-Source: AGHT+IHcBvpBouxzG2xA8PisFV1s3Jhs8UiQjwM9GQq0MdUzIaP9cn8QbUIcgBfqgLqpN4NyhXITew==
-X-Received: by 2002:a17:906:fd87:b0:aab:cce0:f8b4 with SMTP id a640c23a62f3a-ab2abc9ed6cmr644656666b.52.1736437984935;
-        Thu, 09 Jan 2025 07:53:04 -0800 (PST)
-Received: from localhost (host-79-40-232-186.business.telecomitalia.it. [79.40.232.186])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c9563b32sm82250366b.122.2025.01.09.07.53.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 07:53:04 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 9 Jan 2025 16:53:52 +0100
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v5 08/10] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <Z3_xEEGVWFu-bDjT@apocalypse>
-References: <cover.1733136811.git.andrea.porta@suse.com>
- <28fe72eec1c08781770cee65032bb10a6d5994a9.1733136811.git.andrea.porta@suse.com>
- <20241210224837.GA702616-robh@kernel.org>
- <Z2A0aAPotT0NvoCl@apocalypse>
- <Z3_ZlvbszezcanA4@apocalypse>
- <20250109155036.27b82b7e@bootlin.com>
+	s=arc-20240116; t=1736438311; c=relaxed/simple;
+	bh=Hqi+JOWEYgd/GYB9R3xCcW+kNQGqERXI7bl76ItzSgk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QQcjh/41zQDAXbNOUUAWP7hwhlzv0l6ftiTqzUuH4K5NKtydohwyPMM2hqmXbJqKL5MVI3A7MCl8vlFRqUNFfOr5k1HbIXl0euHjKOABnrYbFxA3mMegLlDftSvxKZWbAMvi67B3QMPpzKLjQk/WYdeB1NCEjraFfs5b6ykZeMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CwuvB0MW; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 509Fw31P2983124
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 9 Jan 2025 09:58:03 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736438283;
+	bh=siW7vfCoksPXHtZa/15GuRuHr9BAfX44jN6/44ucx+4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=CwuvB0MWu+dRhb5JRiybB5efrVRPM5uAYynmW5DtCp/TpFIrgFOHkWKnBoPsEBvMr
+	 HNAV1IV2nyT5qCV0fzPMEU9dNvhJh0mYowpk589BW1mm0/IVWlzxhw8tfA5cjP9//y
+	 6UPZYjNJtNikpO7jQHz0GGxm4IBXgxvVSGAhceEs=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 509Fw3qf053208
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 9 Jan 2025 09:58:03 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 9
+ Jan 2025 09:58:02 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 9 Jan 2025 09:58:02 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 509Fw2Pi128225;
+	Thu, 9 Jan 2025 09:58:02 -0600
+Message-ID: <90f47fae-a493-471d-8fe6-e7df741161be@ti.com>
+Date: Thu, 9 Jan 2025 09:58:02 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250109155036.27b82b7e@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable
+ ACSPCIE output for PCIe1
+To: Romain Naour <romain.naour@smile.fr>, <devicetree@vger.kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>,
+        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>,
+        Romain Naour
+	<romain.naour@skf.com>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>
+References: <20250109102627.1366753-1-romain.naour@smile.fr>
+ <20250109102627.1366753-2-romain.naour@smile.fr>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250109102627.1366753-2-romain.naour@smile.fr>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Herve,
+On 1/9/25 4:26 AM, Romain Naour wrote:
+> From: Romain Naour <romain.naour@skf.com>
+> 
+> Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
+> (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
+> provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
+> provide refclk through PCIe_REFCLK pins.
+> 
+> Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
+> module's PAD IO Buffers.
+> 
+> Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Signed-off-by: Romain Naour <romain.naour@skf.com>
+> ---
+> With this patch, we can remove "HACK: Sierra: Drive clock out" patch
+> applied on vendor kernel for BeagleBone AI-64:
+> https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
+> 
+> v4: no change
+> 
+> v3:
+>   - update "acspcie0_proxy_ctrl" compatible to "ti,j721e-acspcie-proxy-ctrl"
+>     since this property is specific to j721e variant.
+> 
+> v2:
+>   - use generic style comments
+>   - use "syscon" as generic node name for "acspcie0_proxy_ctrl" node
+>   - Keep the compatible "ti,j784s4-acspcie-proxy-ctrl" since the
+>     ACSPCIE buffer and its functionality is the same across all K3 SoCs.
+>     (Siddharth Vadapalli)
+> 
+>     "The compatible "ti,j784s4-acspcie-pcie-ctrl" should be reused for
+>     J721E and all other K3 SoCs.
+>     For example, see:
+>     https://lore.kernel.org/r/20240402105708.4114146-1-s-vadapalli@ti.com/
+>     which introduced "ti,am62p-cpsw-mac-efuse" compatible.
+> 
+>     The same compatible is reused across all K3 SoCs:
+>     https://lore.kernel.org/r/20240628151518.40100-1-afd@ti.com/ "
+> ---
+>   arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts |  5 +++++
+>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi          | 10 ++++++++--
+>   2 files changed, 13 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> index fb899c99753e..741ad2ba6fdb 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> @@ -859,6 +859,11 @@ &pcie1_rc {
+>   	num-lanes = <2>;
+>   	max-link-speed = <3>;
+>   	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
+> +	/*
+> +	 * There is no on-board or external reference clock generators,
+> +	 * use refclk from the ACSPCIE module's PAD IO Buffers.
+> +	 */
+> +	ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
+>   };
+>   
+>   &ufs_wrapper {
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index af3d730154ac..32a232a90100 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -5,6 +5,7 @@
+>    * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   #include <dt-bindings/phy/phy.h>
+> +#include <dt-bindings/phy/phy-cadence.h>
+>   #include <dt-bindings/phy/phy-ti.h>
+>   #include <dt-bindings/mux/mux.h>
+>   
+> @@ -82,6 +83,11 @@ ehrpwm_tbclk: clock-controller@4140 {
+>   			reg = <0x4140 0x18>;
+>   			#clock-cells = <1>;
+>   		};
+> +
+> +		acspcie0_proxy_ctrl: syscon@18090 {
+> +			compatible = "ti,j721e-acspcie-proxy-ctrl", "syscon";
+> +			reg = <0x18090 0x4>;
+> +		};
 
-On 15:50 Thu 09 Jan     , Herve Codina wrote:
-> Hi Andrea,
-> 
-> On Thu, 9 Jan 2025 15:13:42 +0100
-> Andrea della Porta <andrea.porta@suse.com> wrote:
-> 
-> > Hi Rob,
-> > 
-> > On 15:08 Mon 16 Dec     , Andrea della Porta wrote:
-> > > Hi Rob,
-> > > 
-> > > On 16:48 Tue 10 Dec     , Rob Herring wrote:  
-> > > > On Mon, Dec 02, 2024 at 12:19:32PM +0100, Andrea della Porta wrote:  
-> > > > > The RaspberryPi RP1 is a PCI multi function device containing
-> > > > > peripherals ranging from Ethernet to USB controller, I2C, SPI
-> > > > > and others.  
-> > 
-> > ...
-> > 
-> > > > > +#define RP1_INT_ADC_FIFO	52
-> > > > > +#define RP1_INT_PCIE_OUT	53
-> > > > > +#define RP1_INT_SPI6		54
-> > > > > +#define RP1_INT_SPI7		55
-> > > > > +#define RP1_INT_SPI8		56
-> > > > > +#define RP1_INT_SYSCFG		58
-> > > > > +#define RP1_INT_CLOCKS_DEFAULT	59
-> > > > > +#define RP1_INT_VBUSCTRL	60
-> > > > > +#define RP1_INT_PROC_MISC	57  
-> > > > 
-> > > > Why all these defines which will never be used because they come from 
-> > > > DT?
-> > > >  
-> > > 
-> > > Right, those defines where originally designed to be included from dts, but
-> > > previous discussion deemed interrupt numbers to be hardcoded instead of being
-> > > specified as mnemonics. In the driver source code I just use RP1_INT_END as the
-> > > number of interrupts but I thought that the specific interrupt numbers should
-> > > be documented in some way or another. Since no one is currently referencing
-> > > those defines, would it be better to just turn those in a multiline comment
-> > > just to describe them in a more compact form?  
-> > 
-> > So, here's a couple of proposals about the interrupt defines:
-> > 
-> > - since they were banned from devicetree, and are not used anywhere in the code,
-> >   turn them into a (admittedly long) multiline comment, so they are still at
-> >   least documented
-> > 
-> > - since they were banned from devicetree, and are not use anywhere in the code,
-> >   just drop them, we don't currently need them after all
-> > 
-> > Not sure what's the best way here, anyone can advise?
-> 
-> Maybe in the #interrupt-cells description in the device-tree binding?
-> 
-> In your patch 4, you describe this interrupt controller and you have:
->   '#interrupt-cells':
->     const: 2
->     description:
->       Specifies respectively the interrupt number and flags as defined
->       in include/dt-bindings/interrupt-controller/irq.h.
-> 
-> In this description, why not add the supported interrupt number values?
->     description: |
->       Specifies respectively the interrupt number and flags as defined
->       in include/dt-bindings/interrupt-controller/irq.h.
->       The supported values for the interrupt number are:
->         - IO BANK0: 0
->         - IO BANK1: 1
-> ...
-> 
-> Or something similar.
-> 
-> This kind of description is already available. For instance:
->   https://elixir.bootlin.com/linux/v6.13-rc1/source/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml#L64
-> 
-> Does it make sense?
+You'll still need to add to the J721e system controller binding or this
+will throw a DT check warning, something like this:
 
-Seems fine to me, if there's no concern from anyone I will procede like that.
-Thanks for the suggestion.
+diff --git a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+index 378e9cc5fac2a..3323f3bc976e0 100644
+--- a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
++++ b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+@@ -68,6 +68,12 @@ patternProperties:
+      description:
+        The node corresponding to SoC chip identification.
+  
++  "^acspcie-ctrl@[0-9a-f]+$":
++    type: object
++    $ref: /schemas/mfd/syscon.yaml#
++    description:
++      This is the ASPCIe control region.
++
+  required:
+    - compatible
+    - reg
 
-Andrea
-
-> 
-> Best regards,
-> Hervé
+>   	};
+>   
+>   	main_ehrpwm0: pwm@3000000 {
+> @@ -979,8 +985,8 @@ pcie1_rc: pcie@2910000 {
+>   		max-link-speed = <3>;
+>   		num-lanes = <2>;
+>   		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
+> -		clocks = <&k3_clks 240 1>;
+> -		clock-names = "fck";
+> +		clocks = <&k3_clks 240 1>, <&serdes1 CDNS_SIERRA_DERIVED_REFCLK>;
+> +		clock-names = "fck", "pcie_refclk";
+>   		#address-cells = <3>;
+>   		#size-cells = <2>;
+>   		bus-range = <0x0 0xff>;
 
