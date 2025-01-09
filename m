@@ -1,88 +1,91 @@
-Return-Path: <devicetree+bounces-136868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C31A069B9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 01:05:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D9DDA069DF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 01:26:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57A2A7A2434
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:05:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C4763A6B9E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B34173;
-	Thu,  9 Jan 2025 00:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AA3B1373;
+	Thu,  9 Jan 2025 00:26:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q/tsVrtU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bts0J3o6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9C6163;
-	Thu,  9 Jan 2025 00:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77E9736D;
+	Thu,  9 Jan 2025 00:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736381122; cv=none; b=gxb/fIVWz+rtfmDw8OEtVoKBjk9sZKxuRQgpductxcrWM+d/lPp8A5QisakjKzagnbezYAD3gGzOk9U740iiydA/2GrAUDTzGbUbz6xSPnGmOKEJaPpra5vwWTOLQa9+qblxrMt+8anfa6H8OxaOmOKhRvONmE9c8gkSoFHuQRk=
+	t=1736382393; cv=none; b=HT6/DT1uX5cqsiPgTLZNNAuhvN6q//3rjtwiSDMXeWuj6AhMGNAmwdHvtDrK3I/boiaX8xUeAj3FRWwvenMwTI6IvGHwVUOFMR1SJjox6dzPTZ+2SCeBVBusI+t092VX9usLp5Re7H4LfNPlNBgDqXTrq1BJ5t8sz/fq9wBqW5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736381122; c=relaxed/simple;
-	bh=MuybQNTD6vkBEQCACRnlGknRtbj6kNLuHuGRK6TfrFM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DB4bEhBr/Y38q6m9whZ/OdEp4DhodT90nYqSKozckH1YfmrLBdnj3CHKaJjriiA3X8KpKeXePhMV+LLRRmFHiBde5nY8qv5IFaaqP9Gmvxj7IGVzbEs/FO6CauwmWPdQw+/Zyrr3Iq1T9iGtvtIxZBIPld5jLxac53nPRc1XmxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q/tsVrtU; arc=none smtp.client-ip=209.85.217.54
+	s=arc-20240116; t=1736382393; c=relaxed/simple;
+	bh=LBF6TkranJlJcESrnhVBNWMobGr3PJYv7XqE0Tab0s4=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=scELngbsU0ERo1TDaGrkYHu18UxKq5GD2VOR1ShgKUeeDj6KfaTcI6sDjkGIX31lVca0Zeda7ALq/Bpz++NWi0IRLRIAhbLs0U8vjEX2W57HimM0o1/rNQVdOIGjEMOBkBO6VCDmNFiUDSjxXctnK5jx9AzOVcUTBGAKEaZAzQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bts0J3o6; arc=none smtp.client-ip=209.85.214.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4aff04f17c7so889559137.0;
-        Wed, 08 Jan 2025 16:05:21 -0800 (PST)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-216395e151bso4514415ad.0;
+        Wed, 08 Jan 2025 16:26:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736381120; x=1736985920; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=C1fI7C+N6siuCGFLVurlsomCAwtk684DRCJ4t7sfZs8=;
-        b=Q/tsVrtUg8Uv6RNbktJHG84ER0wBaXDxzGeJAlgBF8K7IVL3rvnG9vO7yY2oTxjUMF
-         9+c2SrQwe/Fkb+jMRT4+nHnZmdGWeZLltjIiMeUVcFByOGs3kmQd6Q9a2kxvX+Y9BU+O
-         bKiTne5EzLaAIheuJ4ekahOAqut+J9r0o57m3+CIfHQpst5211gKtu1zuPtGX0jO0OvK
-         xN2CQ0/WnGC71JhlxxayBEoouY55w4DI9oijdUfG13XxuZeOgKyD4MbTHIed8s348pPV
-         KJdIugf2bFe/Z419pcCNJmDFZy6Mm9BzGl5Riyj9xmtCWl2xQfNim5L45P3uZEFj0UxF
-         1rlw==
+        d=gmail.com; s=20230601; t=1736382390; x=1736987190; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AO3soVr9XeZIH5pXIRja1M9WT+SGZCTLZzJASS8mqEs=;
+        b=Bts0J3o6pmF1LO7GuBB8o4fPv4Ti4RPGpEK2Ktt9aIYtkFDz0Qs1FD+5gd2gU18nxT
+         sMJHKjPFU++t6i6mTtkPF1fyAu9iof/dP1gwlZXZA6dyhIcIX1fZLQjnzVoO7i+JBxru
+         e488de9inAzXYVaf6pnS3ObTOIA0xrYf+doeR2Zt+gp0pYS0JmGfwmg04REwZykApDur
+         T9NvQpj0x3Rz+OS+worGHBS2C7IPtIgxJCNhXkQjpInmSRAAV0XJDSbSvgTIehR0oX7c
+         X7ftFcKaGS5WlucCe2QMVrTRjD8OvMQXKoctO3gW24ByUjwMV+naXWEh2X9lQ5nombXX
+         DE5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736381120; x=1736985920;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C1fI7C+N6siuCGFLVurlsomCAwtk684DRCJ4t7sfZs8=;
-        b=sAsZebOqBGIsxlFEpanWlVaN1osKukErRVMSPsBuV3ECx6G3MrsZO6nkbOXO5+XbKl
-         HnKkTnJEJOASHl5aX+CXoSbcQxCLxofhlrPVXKHvaD0PoaOVDZMrghpwDgPZ7vLPa5Ac
-         IBRxkuZ0H7uuHMUjixmfV/CEtt9ycoAOe29LcA8rSinDNIrRSrCPThw01QC0dHjNOaLN
-         gjvW08e7IlzW4RoATCHUbubbVv8XOnS/k1F6gsa1vD5O8cDVy/QlUF3haK+DKDFK2Ix7
-         foTFX73j793rPvtsbMgLlIkrSrBasGeqOx75vQLfwlWFWPdaUsiLuNiaYdHOv43V5bHW
-         +5Ow==
-X-Forwarded-Encrypted: i=1; AJvYcCVMCC2h6sLYukWb6FmZ21tLOYJ9e1Ac6DPDxdtDYDur+Cy3VIyqj07uCCWpvF6gcOM40SWDJ3YGHdocwRo=@vger.kernel.org, AJvYcCXyQx7OFkCOT/31Ult/sp9snBNbeU8DbYcZpUg/zFmOcGh0ARa9wLzoeW/gWWrQJEN3jr9WZdRRjSHw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8qVyXs2PzSP/wYAwh6to2nXN1ldb6iFNjSlNi59CMvnWKW8Y8
-	f2o6BHlVufC5crTgyNlbdUl/XKsqUZPMw0NtLywgyuESIAUzy+EX
-X-Gm-Gg: ASbGncsjomWmdl6iuvp37zz7sZbun1J0RHX88qUsoEkwxVYS2uQ53YHXzy9qjvoJRv7
-	CTfN5xPTjEZxN6UCPKv6PlORHvhWLVoILqEAovsG8p89nL/8LIc6BCbgI+Vggtlcagx3yldcmel
-	Eo2v8rAuBX317Z5q3YfdPktX7vWjzgdumb5Dt9qhAVdjphuCqQuv3osdM9tAq7E8mtKjsYOt/5I
-	Nr0LZq6zR+BO8E0f1AMz9DFHTeT7IsxtgOmW9zh+qDR67iwyCntiYR3lEeJP+Glh5VboQ==
-X-Google-Smtp-Source: AGHT+IHveRTKTZH8gb56DQxgpcRLIxrh6qWER6qYt9jRgeCc55dTkNQkK4DkhXhIv7CyGYijYKAN8Q==
-X-Received: by 2002:a05:6102:468d:b0:4b2:bc6b:c73c with SMTP id ada2fe7eead31-4b580726e29mr889658137.6.1736381120232;
-        Wed, 08 Jan 2025 16:05:20 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:32cc:f64f:9e3:fa63])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-86231362217sm31166241.12.2025.01.08.16.05.16
+        d=1e100.net; s=20230601; t=1736382390; x=1736987190;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AO3soVr9XeZIH5pXIRja1M9WT+SGZCTLZzJASS8mqEs=;
+        b=v/y6CW7ny7qT0Qzn25TuQ+jDmSzCQtK5e6tbfiEXUpMBfwhq1y4DIsIKljQ/u5EtB3
+         5GZgeEEOrFgVrHAcXkXIn7YbbZQmLYYWjQv/QjJZbt9Eg6oNeI8gGQi/2rqOUizoqfsV
+         TH77zhLz7eKRJPnvwvyd2/v6tdllWk6J8XIhBLyU04Jl6pryFIwenyqKU5gXPiNiD36G
+         Nf2uYZByYs7rrdYPvZoleBnLqW9PSe4ZRD1aT7YA1DBQQ7fB899Iim7Fb/+bxu/4FRjZ
+         66Hz3BeNTa8x411QzCcLokyw+cbMJliHaWTXVosJG3C3YsmUTsO9NKj76O9kHrj8sJQD
+         eHSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXY2d0tawGqUgLR+3RbrTgTw0tMU1hESh4Vd08AP8aRvFH9dm0tpgROq498qbe5/YOsNFHPzLgAuK8j@vger.kernel.org, AJvYcCXk5vfH1gf/wmezCpnUGWRigKETFS9lDOpCOTtG8qrdafT/4ppmARVL9ZTBrguyeF6xjIIKjAz1YYSiNEw=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTvPGfViEyre6Xyd+EudxgFMAQHsR+arkNYx0SL2n0/0btDvxT
+	qT3QC1e3X5LXt0qMxgauRsnJCdU21oK4Zi97ZtdW7Ue7bOoIy45BqOqHnYG6
+X-Gm-Gg: ASbGncv0qZ1hd0me1ckbhlXWa2uUpfgwLY/luojNwI4o8HmrStiQSNSkjOYh/jF+4l4
+	R0b02/8KKKLjDqB2q6dBtsvsGMV7DA5UeUDKEwAfh8jlh+DHqoPHDC6sB5k34GC0rM69DPuW/KB
+	HJGz7PaJ/HH4NzyfKCLlJ/iZ0oVw78I9tSPxMz1gK8t5Wmjttzp0UXfoxRhjxKl0OS5fisx4UL6
+	ravuEFHfW2ldUNzIvIb/WX5Fi/Z1zGnQJkvaMBIMF4KX9tWyOrdSnXt1tScDRpZeoXtPI7ANMli
+	fpGw1kcJej4XZpDohuM2Og00Npg5D0XSugL0neSzIw==
+X-Google-Smtp-Source: AGHT+IGZ19XFod5H279cQEJQxq+N9mtr7cuGpxjJ//cedm5qqwrbk5U+JAChJTS472ukQNG6oHnvyA==
+X-Received: by 2002:a17:903:22c7:b0:215:3998:189f with SMTP id d9443c01a7336-21a8d64ebe1mr22385795ad.6.1736382389772;
+        Wed, 08 Jan 2025 16:26:29 -0800 (PST)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-219dca01989sm333481435ad.239.2025.01.08.16.26.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2025 16:05:19 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: hverkuil-cisco@xs4all.nl
-Cc: mchehab@kernel.org,
-	lars@metafoo.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-media@vger.kernel.org,
+        Wed, 08 Jan 2025 16:26:29 -0800 (PST)
+From: Ming-Jen <mjchen0829@gmail.com>
+To: linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] media: dt-bindings: adv7180: Document the 'interrupts' property
-Date: Wed,  8 Jan 2025 21:05:03 -0300
-Message-Id: <20250109000503.45264-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	linux-input@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	mjchen0829@gmail.com,
+	sudeep.holla@arm.com,
+	arnd@arndb.de,
+	peng.fan@nxp.com,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	dmitry.torokhov@gmail.com
+Subject: [PATCH v6 0/2] Add support for nuvoton ma35d1 keypad controller
+Date: Thu,  9 Jan 2025 00:26:20 +0000
+Message-Id: <20250109002622.771-1-mjchen0829@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,35 +94,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+From: Ming-jen Chen <mjchen0829@gmail.com>
 
-The ADV7180 family of chips have an INTRQ pin that can be connected
-to a SoC GPIO.
+v6:
+  - Update nuvoton,ma35d1-keypad.yaml
+    - Modify 'compatible' to make filename matching compatible.
+  - Update ma35d1_keypad.c
+    - Modify 'compatible' to match the name in the .yaml file.
 
-Allow the 'interrupts' property to be described to fix the following
-dt-schema warning:
+v5:
+  - Update nuvoton,ma35d1-keypad.yaml
+    - Reorders the items in the properties and required blocks to ensure 
+      their order and items are consistent.
+v4:
+  - Update nuvoton,ma35d1-keypad.yaml
+    - Kept the same order of properties as in the required block.
+    - Changed register addresses to lowercase.
+v3:
+  - Update nuvoton,ma35d1-keypad.yaml
+    - Removed vendor-specific properties and replaced them with common properties
+  - Update ma35d1_keypad.c
+    - Modified the driver to reflect changes in the YAML properties
+v2:
+  - Update nuvoton,ma35d1-keypad.yaml
+    - Fixed warnings and errors generated by running checkpatch.pl
+    - Removed the previous version's properties and rewrote the
+      properties in the Device Tree schema.
+    - Renamed the Device Tree binding file to nuvoton,ma35d1-keypad.yaml
+  - Update Kconfig
+    - Added COMPILE_TEST to the depends on line in the Kconfig
+  - Update ma35d1_keypad.c
+    - Refactored error handling within the probe function.
+    - Fixed the mixed use of devm and non-devm resource management.
+    - Corrected alignment issues in the code.
+    - Updated suspend and resume handling methods.
+    - Fixed variable naming to remove camel casing.
+    - Used for_each_set_bit() to check key states.
+    - Modified the code to align with updates in the device tree binding
 
-camera@21: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
+Ming-jen Chen (2):
+  dt-bindings: input: Add Nuvoton MA35D1 keypad
+  input: keypad: add new keypad driver for MA35D1
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- Documentation/devicetree/bindings/media/i2c/adv7180.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/input/nuvoton,ma35d1-keypad.yaml |  82 ++++
+ drivers/input/keyboard/Kconfig                |  10 +
+ drivers/input/keyboard/Makefile               |   1 +
+ drivers/input/keyboard/ma35d1_keypad.c        | 387 ++++++++++++++++++
+ 4 files changed, 480 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
+ create mode 100644 drivers/input/keyboard/ma35d1_keypad.c
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-index 4371a0ef2761..572f06d12a39 100644
---- a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-@@ -49,6 +49,8 @@ properties:
-       Indicates that the output is a BT.656-4 compatible stream.
-     type: boolean
- 
-+  interrupts: true
-+
-   port:
-     $ref: /schemas/graph.yaml#/$defs/port-base
-     unevaluatedProperties: false
 -- 
-2.34.1
+2.25.1
 
 
