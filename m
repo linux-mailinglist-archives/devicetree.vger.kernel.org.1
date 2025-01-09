@@ -1,187 +1,191 @@
-Return-Path: <devicetree+bounces-136872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B6B8A06A01
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 01:51:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1508DA06A31
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 02:27:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA5203A4344
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:51:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A8703A484E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 01:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FE328F4;
-	Thu,  9 Jan 2025 00:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DF34A33;
+	Thu,  9 Jan 2025 01:27:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VnBJOaUZ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HQ/Vfx4v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2051.outbound.protection.outlook.com [40.107.22.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6BA1853;
-	Thu,  9 Jan 2025 00:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736383872; cv=none; b=r4FMchSH79GgTFNboR9Azr0FcMiWp+DO3veTGTrDd6KNyQZxqh/SUlN2LOTtXZNlIb6ZZ0JgrzCCR2nbECDg0OWZ+LwyC49tVQK0t7DL8UoRKiPi++XIdWgahOrk++a8CwdZePV2EaS6KVm2lH5LqE/1k3p4jWaq20nbm9N/31A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736383872; c=relaxed/simple;
-	bh=WF6PXhCuFVDkJxCjbmfIHrcpq+9we7XTVrtKCaAt5DE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NldImsvqwpv1L57WfzRMWHatdGoZebqbKSWr5zg5xRZHQ5opFVT79RkcKh81CcjP1U8wJNkMwPmVErkx0Snc3wBaYVl+W7uvvqsOwR3MdgdBTNzyKiRO7WMcuQIcenhon/uiMQ3jFJDWf3eakzUtWyn7/rYIAO9jdVuklYIqmic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VnBJOaUZ; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-29e2a50586dso222188fac.0;
-        Wed, 08 Jan 2025 16:51:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736383870; x=1736988670; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4fWK8fRu3RMh7WwL5FXvWKO33j9VYYVjRQD32mqDumo=;
-        b=VnBJOaUZPRbFm/6p7B7VK+6t8MaV0ilH7H9UW8n4i1yOgTK08wqe4nJ7z0e91eapq4
-         WobTzh7ma8ZfQmNN4CsptZQPLb9hmwzy/2Xl+hJwyr1j4bQol8y7TUK94IPJQMORkQ5e
-         myvTXQNkRXPUZlGbBxZvO0ysQCiGDwWnDbYYkuWJQ/5O9tL3B9vzGt9dhwboQEODdlZ5
-         CTq3lZOU3VQJNwlGMBUORePIupnf4QrOBBeCSws2ECOxWeV6jghZ/fWyXDyfsyyDudxY
-         6EBKEAeTUTXTurytp0nEnQ0g7qNYtddl1+0IDnba/2IyLvmgIfb0hzzBfVF7ElUI6Xja
-         j3Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736383870; x=1736988670;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4fWK8fRu3RMh7WwL5FXvWKO33j9VYYVjRQD32mqDumo=;
-        b=F0dWIZps4fhF7qpblXwiEIEmfheFafm3PXfwyIO5Se9gcsgKkf2OuSIWpILQ++c8qt
-         GW69Ws0L8HtoisyJV3Exi/em3oT4hmxiQLUNJpS6RrzpMVGu6gL3hCzpVSFjhhmaL1U8
-         D/CY7A+NhgxMoUXdJ/fyj2g+Uwt26iA+XuIguMpSGJkeTafBVb+V8ImtU0GGkl69lvmS
-         ZPfZHZo7r1NfYo5JbK8oHQt/w0rbPL5rH1w3rAGLMxm0zD9Ovy4HnLm9JDzPtgEC1fo4
-         u8YTrJME9rv3V06gy8EqkMDpwNBUXY7sg6XmfOxfJ7x/KS65Ul+L5LcNl861hGsXhRIl
-         0Yew==
-X-Forwarded-Encrypted: i=1; AJvYcCVomc8Hxdz09CaZSd+shfXJDmD+dHtdS5PKnqrI/XIISWQEhwGSPtl3VoXgfwp3gAH5+zJbRyYL0lP1@vger.kernel.org, AJvYcCVtHu8uWMICgXYQrVYDwUV1VY8011YomHPmi0DyQl2lGZzjvJ/Cjuf1+oodJtuA8JTcNhAXw8IEu4f8@vger.kernel.org, AJvYcCWCXfIFSd7WOo6sQXoXwDeKX654eE6Hx5msxnUjJMavAApkpGCsXsms+a3bh7VC8IGhpTLY8TRolbjyF30=@vger.kernel.org, AJvYcCWRR59hvQ5FJKULYHWubodiUNk1yzhMyT8m7DEozmUxy6V5xZNW1kDkY9fATBUkNndWidISdvlcb4f+RK6I@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1h3J4+T/utwT/DblM9wfkPThitHvH082iYbjWldSBO51BqhXS
-	dHrbclTEOpaodTpmSiBJAymMIi5vduBJH6QKqHqVzCGpxBrLNg3JuOianxwtY1idO28v4SRgh7v
-	bOpvfvaxmw0UdQklRexpzOvtez4qPLA==
-X-Gm-Gg: ASbGncuR6UgOB8rmqoDmFVfFln3xadH0QilQCP0f5xusxxgi2wDTLjKIG2JpH+TA29J
-	SxSOKcpk7ubwUdqf3BSY2xchOrQZqZCafyLIc7No=
-X-Google-Smtp-Source: AGHT+IEeSNtcgAJlHfEykhhMAk5h1lzhfCmyoyAjtiALw616MK9IddiTwG1sOTTjAfW2W2QxEFcSLKMYKytLFPwMpOI=
-X-Received: by 2002:a05:6871:8083:b0:29e:5a89:8ed8 with SMTP id
- 586e51a60fabf-2aa06687b11mr2647289fac.11.1736383870354; Wed, 08 Jan 2025
- 16:51:10 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16EB3747F;
+	Thu,  9 Jan 2025 01:27:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736386066; cv=fail; b=AaJZU6SM0mFVY0aBU6hWDrPCQRF4JoYkOhyPWcWTcacKsX3txKyzZA5SjeafmCMhA690sQWDFeZo9WAmJisEA/pLlRtkr+t7wDOj5hbxFgBQXog4f8JYXhSBHzrTipd5qIL6bbtHhJtndshx94x9UCoDELKpkW5ZwB2q72/BQPA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736386066; c=relaxed/simple;
+	bh=xAoTdxYw6llIF/kGoB0/Gw6Mtp4ul0uw/NlSful8Dv4=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=odAl8Vno5wgC+4tG3W0XsTN62ZQCxTHGTMcJycHLrJQ6qyDj6i42vJBGSIgFLTtMUxP7KIUR7QaoCscPAlXFZTjPZblHufLiehfC2vrBeXDF7DbOJrLLj+3vtFtJRXwXV0RAkueba1YadXZksdz9IZBtmAU1skUtJbBxbfcIZrY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HQ/Vfx4v; arc=fail smtp.client-ip=40.107.22.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tViS0NXzZjlycXQ7EjRGQAi4uDs71APWeA3IkE+EJ0TsFFgHt8E5y6UP2+WbLBJRHzAvu3cnbUdatxDK7In4xI2qmEmafA7onYE538pb2FTKaVycWJZnGE0c0knPz6tWXMIRZ1by8rNYSxt3kZXzvutrjuV/ojd8IdmuqLNkowRwO39OF7EKqqhqQqR8tgs29qOuuDOiQ+7F3J5hzq/FaGI9EHZl073L59eaKAqkG7ZDQzJofB9EToiThAGj+2/Kmo4ZaVFLZwPnhbWmASF7YnkBGevlM78Q7AJv/xa5Qk1Mjq9Xu7kUBoAbAa5a27WD/S5+v059m/O+FMOvy6vHOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9HWbvx+x+w4KsPaJffDRG2FWQVXMwMr7So5YX/IYycc=;
+ b=d0u28+CG44MWLLyFdL9TBQ+ExBCTmmROSv8COjb2WI83zYIRYyA1zkCSoc+Aazy/6FJC4Gv2j5r89RPDMpsb3kTTxYmomxatWzENqwDCOuSmCUQy0MF60OXFN6HF8EI5Kg0x0/n71Qstg6o8nhtfqMu390DNfoCQsqHir17oKaKgS090stbPVHQolcRxRXAzN5qEtxcezU0I1bGIB/EklxhcaJUwtpXf6gi3iUMSriTxXWZeKqTHfiRxd+eiP190+nbS41VE9oeLA5zqUYfV3xWEjLlQP0wnWxFdLnQVt9io7Xrc6Flr3x9RtPTbGGexoaGpP07+0iVdClwwXNNXcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9HWbvx+x+w4KsPaJffDRG2FWQVXMwMr7So5YX/IYycc=;
+ b=HQ/Vfx4vwhQ6LRMFmmAALNDPik2X4Il6pxtXt6iFEEE9vw77rhwmELXKYKATugdIuaJUSlWh/0GWVVozm07NDOdJ0G7jBY74RRhDlDIjyiDvPWIlf/mVTNYe/DD0ET/mCEXxOjgkvX+19naipm+ApJ6FIydsmv3IR5NaKKqvdeNIDdW2zuTDtdb0X8wHkAWUeeNzr24CisCf2Bezj6qXtRzmX7pKUqO01K+lOr9t4ZmjE+Ou3tH+lBvxDRT2aq+lSbucogTH13GYbzMkPp+339jYmyS+SMOPSTqViPycXGwYojo1t1qc32n8FVCfeUmfEmZnuHALkEydSaPzW3/jEg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by AM9PR04MB7668.eurprd04.prod.outlook.com (2603:10a6:20b:2dd::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.12; Thu, 9 Jan
+ 2025 01:27:40 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::24fa:6f9:8247:c5dc]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::24fa:6f9:8247:c5dc%4]) with mapi id 15.20.8314.015; Thu, 9 Jan 2025
+ 01:27:40 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: shengjiu.wang@gmail.com
+Subject: [PATCH 0/6] Complete WM8960 power supplies for i.MX boards
+Date: Thu,  9 Jan 2025 10:27:12 +0900
+Message-ID: <20250109012718.328692-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.47.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0046.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::18) To DB9PR04MB9498.eurprd04.prod.outlook.com
+ (2603:10a6:10:360::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250106071337.3017926-1-Leo-Yang@quantatw.com>
- <20250106071337.3017926-3-Leo-Yang@quantatw.com> <b2a336dc-c029-4a95-9807-8e8b82f75ec9@roeck-us.net>
-In-Reply-To: <b2a336dc-c029-4a95-9807-8e8b82f75ec9@roeck-us.net>
-From: Leo Yang <leo.yang.sy0@gmail.com>
-Date: Thu, 9 Jan 2025 08:50:59 +0800
-X-Gm-Features: AbW1kvZ6rvrMeK2ArX4UrvAMISLLpyhQLIATUxtoPWwOefncaT3aGzhpR6TwQjA
-Message-ID: <CAAfUjZE2x_Fafogna2yhnnohZrGmtW5G3Q64AVhYwVEXuGoaBw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] hwmon: Add driver for TI INA233 Current and Power Monitor
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: jdelvare@suse.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Leo-Yang@quantatw.com, corbet@lwn.net, 
-	Delphine_CC_Chiu@wiwynn.com, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9498:EE_|AM9PR04MB7668:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2a9fd9da-03dd-4fbb-06b0-08dd304ccf02
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?hYv/zc4IaKPG/MMHHOx3Y6k/roktOSMjTUQtgF5hLgxOpW/Q51cuc/+YKJuo?=
+ =?us-ascii?Q?bXOdezZum13BXEcLlijdLWhc9EwqgREpGb+uw4aEjvy2Re+8b52Bs7UC7YxD?=
+ =?us-ascii?Q?weSJ2JzlpSKt1hfBuykrPCIGqaNtKR3TkuIRd+8DmM6+c4w567eHZpferL1b?=
+ =?us-ascii?Q?Q+69Uefmp4BLGjM45fnr8kZhowiSpCS910f8fhvW3x4LVqxVHGi/ZcqZXqnY?=
+ =?us-ascii?Q?rH+Sj1I0nbZbPjUike6jWpZUg0yol45neMDFO+5PL7CwToDbKlJ/ew9GkgjB?=
+ =?us-ascii?Q?QxqQyty9n94nTpEw1jHsKU/NSjYo4TORpVo6lb8+W90lv6b5BoGSnwXxSHQG?=
+ =?us-ascii?Q?ttOSDnDUfFZtDdZcEljDcUsAO6NdkW0H59lYOoSpsLK3dCxLI1MX2K7sR20x?=
+ =?us-ascii?Q?lCa+JcMIdnJB1JU2YzrfMkScgviNV3PQRcHSoJvCtrkWlQ30kC+iW/Zn5/s2?=
+ =?us-ascii?Q?OgUcxw6AOaTSC1MJGUHT/40a+Vx5SFW/jgbSrzsdmeNvSUkBeZHW5gA64T37?=
+ =?us-ascii?Q?DP+N4LSIzczvVeNzJQ27vvI7xylpMQ2wwuLma9kohNu2cZDBr0P9o5fLc3s2?=
+ =?us-ascii?Q?VCfAi3M5by+CIYHVmnwQRiGWMeCSLKOqNH1u88bodqCggNqsw9cidcQeQTQi?=
+ =?us-ascii?Q?BTadVQdHT0ddz0aXtH6un5IoWHjO3f7kCCC66lgsiZuGPFdQkPnyDJ+t1YQT?=
+ =?us-ascii?Q?5ZnvjM+gisNEBEXPCJ8wG790hZ+ZzRtjEe4i1NfhEeyFmQsXgv7XrQPgSIIS?=
+ =?us-ascii?Q?4F/9rVWokBvZ8eZa7OR8M8YPoGOBsUDMmSBYi3O4et1HyODHwbQumJoZyzmW?=
+ =?us-ascii?Q?ThpGAO4yxsuBT5n5IkZKBzE0qqFZuRwhjVG8Vc15fgMsRwSQ9Gecx54NIzwi?=
+ =?us-ascii?Q?YLMhQetbofM4WCPeNLWswvUFPdylnk14ZziQfgT9xPTFifu7R+1H6UOAALPg?=
+ =?us-ascii?Q?9SFFV/JOCXTtI0alO+DTwwFC21z93X3DmUocL/5aOtrbz68j4suK+hCbZRGD?=
+ =?us-ascii?Q?0fXqi+QnKsR/2k+0mdxvETNI+kiL9LXCgD0xGJo0dWWCsEL/tDbsw4BQGDc+?=
+ =?us-ascii?Q?ng5r7CXMNFo5HM/YZLVKD6H7l4flbN7De+1wmnUtpR2YucJ+4FHwijwdgJg/?=
+ =?us-ascii?Q?lN4DJ6iTcMPkZAufdThedFlHjnjRQR2zq/R0DuePp8uJq1DI2s1AhqV/4G5h?=
+ =?us-ascii?Q?scpdCIm5Mx7URTPVeu2XLNT10OCZ+58PBnpXPYJDJvWYMMCm98Xegzo8IIiM?=
+ =?us-ascii?Q?c9d83v6UinNOy5fgmM9DDYIweagaqOxNGTjl2sqsd/Kt/RNKOF0vqRQdV0AF?=
+ =?us-ascii?Q?CPDL09EeQGTtKRoY5G0L3qUhwb8JpKm6kXm/cXtBe0ecri6NJc3nJPdFCgR3?=
+ =?us-ascii?Q?wYTH5SYeAWpOkr7DkdpbMpCbqyO3wJQEQrpBkBG0iL/8Tdx6XDIXqsAYzqlJ?=
+ =?us-ascii?Q?pnhwrAi4XQwWWwwCCNfhXndrj/1Jk7CdxG8wsAWTYd0u2ovZ5LeWkA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?xlsjsvuCCzCWPcT0a11JmHBRUmBMIpiwYIMjpF6kxqXVw6oMOYZ2BVIiZjN4?=
+ =?us-ascii?Q?W0Lg915GBcLGTJXc08rDaKnzPJ3Kq6cuIPxaHdelnkwCpCEOUddeSY/DT8kE?=
+ =?us-ascii?Q?bMXcQgnw0Gd9ecTWX9EXAYOCWWF4Tt+5Fhg190DIP7uJnsN6qIdR1Alymu05?=
+ =?us-ascii?Q?R/p4+sI3YiDi+1E4m0LCWff0YhPQkoGmDQB/AHoGtudiIPZ9sa2hJdU/M3O8?=
+ =?us-ascii?Q?1oYUNqZcYD6pw3XUlL/UfzOIB2eJ2roCD+kjZOwpvEB3WCgIVA5HkmC3akeC?=
+ =?us-ascii?Q?bxPMTKeEST8IWAwXCM7DBe5ZHGx41WoxXvbJ1DKhKTJFtm2gjDg5Njy5JI0Q?=
+ =?us-ascii?Q?gJI1UCgyitxrB3dNw4KWgqT+xeyi7zYuCtZADWK9Tl3hZj51VsUMxnzO4fku?=
+ =?us-ascii?Q?crYapLXAs4mvPSqM45DGf08q5WVREhvueja/1tA/wEd2s7CpMVUIkjkJPtw/?=
+ =?us-ascii?Q?+FJLsycwjJB944gqEMwkaAPLS2d5WwxSfHbol6rUNevF7IPSGuBmY98/kWRS?=
+ =?us-ascii?Q?bb24fOUb/T9XvgHVtxKsacB0hlQ+xD0Ldj3WG+LJsQbjrZM2/SOJMGJltSY6?=
+ =?us-ascii?Q?UKMgD9J97OtyV0lTjtlk211IenfVvIjOL3B9Pvazrw+kuFFvnBNFJEpKdaB+?=
+ =?us-ascii?Q?9e/ZheTZYO5hmv08rBkH4lk83OYcw6VzZwDKnXwDvbvkQvlDnDWlVFzVVsZY?=
+ =?us-ascii?Q?NDk2Hg2t90oD569uirdMJiAoKMKL8PgA+x3Jl/QdkSQMsjK/WcmCeuioIQ23?=
+ =?us-ascii?Q?CxQtZ5BUiFptU/KFCaDWmnpyd8Sasqfu5RCB6f0FaP4L+kMJLlhS9a595DrS?=
+ =?us-ascii?Q?szjkSTFWAUqKE/7H1AMuaQI/wFyr+gxgAfO66dxAYaGWo/9ydUfI9q3T2K2w?=
+ =?us-ascii?Q?agLit9Y/PUp1DTsF0RcZkUzUJipvfhyhee+NdEm/scGOJlCKVXbXFdWL64UA?=
+ =?us-ascii?Q?ck+5BWaMTqAkpx5AuLTfnDnLjBPlFL7rjJ1Pn4Rpp12Z20PzJK7mzfuYNbcn?=
+ =?us-ascii?Q?47CwKL5kFbHwzo9DrWqaM/QMtt6/Si+YOibcTU9gPyULcso85gOXOFtzpy0+?=
+ =?us-ascii?Q?U/rlRlzVHCRWA2ehZCbnVFcITBS48tx+92ggcDDCBzs9ueqpqzwFEq/V9J2q?=
+ =?us-ascii?Q?KBQDTPO4Whr4t4uNEtKMLt94p387dxrAZMFdZgvOjkPSSQ7qN/uEhZnYYQm7?=
+ =?us-ascii?Q?PzNW34V3GXnHkgMY/EeWwNlIBsVboWZEsdTn6Wz/vjcABDg29/W9SOGVuaNh?=
+ =?us-ascii?Q?FIDbePax9UoQuTmgANah1RJWiUwBndWueX4fyyzHpgGgbb4xJ02PQwRgsBz6?=
+ =?us-ascii?Q?62PyUxZ4J9wr4m0KimzmbIbHHbB4+CE0Sc40MnGNRqk4dlWK7ypAtw/ztBtB?=
+ =?us-ascii?Q?vs8c5QZAtl4kMA2R90UG3iU16EP6lW72Zi/Baylx6uqmW98dj7apSypgrvB8?=
+ =?us-ascii?Q?QKiQjdiPCo37SFJvWRti8zmlydV69sN1jCUflTPjtjmqmgqIoFizhRj4A9r8?=
+ =?us-ascii?Q?f5cXQMZmm6c7JySdZQ+QDQarss2N0w6034kjl9/tfoC9901hGtYu6HZQgZaj?=
+ =?us-ascii?Q?hnoNx9XnpSRc4VhuzqFzl6zjaHMn6tzytDZ7iSjv?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a9fd9da-03dd-4fbb-06b0-08dd304ccf02
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2025 01:27:40.8336
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2/O9r5ecyKFVhfSDQyN+lntYaoc1JSPcxkj9RU2MvdY/qYCS0Iv2kRIu4QvvqLVsbjOVQtMF3d9/67ocb5Y/wg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7668
 
-Hi Guenter,
+WM8960 has the following power supplies:
+- AVDD
+- DBVDD
+- DCVDD
+- SPKVDD1
+- SPKVDD2
 
-On Mon, Jan 6, 2025 at 11:31=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> =
-wrote:
->
-> Besides, while I did point out a number of problems, but I did not sugges=
-t
-> to "rewrite the driver".
->
-> Since this is v2 of this driver, the submission should have been versione=
-d,
-> and a change log should have been provided.
->
+Add new audio regulators to reflect the schematic and complete missed
+power supplies.
 
-Sorry this is my first v2 patch,
-I should have been more aware of this problem, thank you.
+Chancel Liu (6):
+  arm64: dts: imx8mp-evk: Complete WM8960 power supplies
+  arm64: dts: imx8dxl-evk: Complete WM8960 power supplies
+  arm64: dts: imx8qm-mek: Complete WM8960 power supplies
+  arm64: dts: imx8qxp-mek: Complete WM8960 power supplies
+  ARM: dts: imx6ul-14x14-evk: Complete WM8960 power supplies
+  ARM: dts: imx7d-sdb: Complete WM8960 power supplies
 
->
-> Why not just pass the power coefficient directly as parameter ?
->
-> > +     if (1000000 % *m) {
->
-> I fail to understand the logic here. Why scale if and only if m is a clea=
-n
-> multiple of 1000000 ? Scale if m =3D=3D 1000001 but not if m =3D=3D 10000=
-00 ?
-> Please explain.
->
-> > +             /* Default value, Scaling to keep integer precision,
-> > +              * Change it if you need
->
-> This comment does not provide any actual information and thus does not
-> add any value. Change to what ? Why ? And, again, why not scale if
-> m is a multiple of 1000000, no matter how large or small it is ?
->
+ .../boot/dts/nxp/imx/imx6ul-14x14-evk.dtsi    | 32 ++++++++++++++
+ arch/arm/boot/dts/nxp/imx/imx7d-sdb.dts       | 32 ++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 42 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts  | 22 ++++++++++
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 32 ++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 32 ++++++++++++++
+ 6 files changed, 192 insertions(+)
 
-When we calculate the Telemetry and Warning Conversion Coefficients,
-the m-value of the current needs to be calculated via Equation:
-1(A)/Current_LSB(A).
+--
+2.47.1
 
-The number 1000000 comes from A->uA to match the unit uA of Current_LSB.
-Try to prevent the loss of fractional precision in integer.
-
-But this is not enough,
-according to spec 7.5.4 Reading Telemetry Data and Warning Thresholds
-If there is decimal information in m, we should try to move the decimal poi=
-nt
-so that the value of m is between -32768 and 32767 and maximize it as much
-as possible to minimize rounding errors.
-
-Therefore, if m does not have decimal information, even if the value of m i=
-s
-scaled up, it is not possible to minimize rounding errors.
-
-But my comments are not clear enough, I'll fix it.
-
-> > +
-> > +     /* Maximize while keeping it bounded.*/
-> > +     while (scaled_m > MAX_M_VAL || scaled_m < MIN_M_VAL) {
-> > +             scaled_m /=3D 10;
->
-> This looks wrong. If scaled_m < MIN_M_VAL it doesn't make sense
-> to decrease it even more.
->
-
-In this part, I try to move the decimal point so that the value of m is bet=
-ween
--32768 and 32767.
-Assuming scaled_m =3D -40001, I can scale it to m =3D -4000 and adjust it b=
-y R++
-
-> > +             scale_factor++;
-> > +     }
-> > +     /* Scale up only if fractional part exists. */
-> > +     while (scaled_m * 10 < MAX_M_VAL && scaled_m * 10 > MIN_M_VAL && =
-!is_integer) {
->
-> This looks just as wrong. If scaled_m > 10 * MIN_M_VAL, why increase it e=
-ven more ?
->
-
-I think the purpose of spec is to keep as many integers as possible in m, a=
-nd
-then save the information in decimals via R to minimize rounding errors.
-So here I keep the positive numbers as close to 32767 as possible, and the
-negative numbers as close to -32768 as possible.
-
-And thank you for the suggestions, they are very helpful and I will
-try to fix them.
-
-
-Best Regards,
-
-Leo Yang
 
