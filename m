@@ -1,164 +1,163 @@
-Return-Path: <devicetree+bounces-136923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F08DA06E69
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 07:57:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1796A06D65
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 06:06:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2C6718869A4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 06:57:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FFC51888E16
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 05:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F108020D4EB;
-	Thu,  9 Jan 2025 06:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADBD22144C2;
+	Thu,  9 Jan 2025 05:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="a2hk+6GO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="T9fqrVSg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49248.qiye.163.com (mail-m49248.qiye.163.com [45.254.49.248])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298EF19F489;
-	Thu,  9 Jan 2025 06:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA112139A1;
+	Thu,  9 Jan 2025 05:06:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736405825; cv=none; b=TaXMTPC4RdovBr3y3TrX1nLo34uxdC3L63/XIeEorDA35hVmGkoghXQZg6qSsPqyrSXTeMW5/lM5f8CtyOafYgFrRF7AaGeuFuVdZU06fqeDbbL3D5Mfa45f/CSnz0z5O3prbf2w+J1nbnqELf5OFw148TZoeX5bPhpoP1r/HZE=
+	t=1736399201; cv=none; b=CK3c3Ll5cD2IJpQo60n4TYNhF5JVsRYqCg7TqGoN47xR9LIwdulWsJ0xrlH7VFDy1JI/mRvca1p2L4oV0H6/SmOJJsMbCeI1xgs6p3nQP6dwcP9bwfhCVdr+MLH+enWGVl9SPp6r+OZbOL/OcbUmgAshCV/VIdYCaURGJsftlbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736405825; c=relaxed/simple;
-	bh=ymfaVMguQr04MzDT80uQ+lgBIunQTkn6RAeQAewv63s=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PXZGAGNAPuAPTplhm6COul/3+vqkYuuMyQpn+esH6mAUqlgvkKCgOtpwbIShJ1pIsHpYEK2SMUY1lWdz6yNVotzm2bJb/Be2fcA50ggo17J52RynDArxfW94fbg+BCEKpew6CI2x5lKrjccDpuLI5gln3Dqu3SuQmLnqUVIg3O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=a2hk+6GO; arc=none smtp.client-ip=45.254.49.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 82c0195e;
-	Thu, 9 Jan 2025 11:27:43 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	rfoss@kernel.org,
-	vkoul@kernel.org,
-	sebastian.reichel@collabora.com,
-	cristian.ciocaltea@collabora.com,
-	l.stach@pengutronix.de,
-	dmitry.baryshkov@linaro.org,
-	andy.yan@rock-chips.com,
-	hjc@rock-chips.com,
-	algea.cao@rock-chips.com,
-	kever.yang@rock-chips.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v5 00/20] Add eDP support for RK3588
-Date: Thu,  9 Jan 2025 11:27:05 +0800
-Message-Id: <20250109032725.1102465-1-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1736399201; c=relaxed/simple;
+	bh=CtGctgHU9yLvubsT9bMm0yStuOWITuMnMgbPCQ9TtW8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CVu6O1m4QIKLRrkrs3Up8aopfF0wc5osmZGUlXDFIDedsKGgCislTQt2irS9Wv3TKJDyBy+5QdFXZN6TkZI8neL0wYFzRdi/wahlAOVgYoOA2qG39KG+r8Li4AIDi6Kdt291+UzGr+WLPqGOIskbvJdHbQ1AgGF1khQGA+pDhKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=T9fqrVSg; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736399200; x=1767935200;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CtGctgHU9yLvubsT9bMm0yStuOWITuMnMgbPCQ9TtW8=;
+  b=T9fqrVSgBbGMKPExY/l9LWsVufqMHGeND0TeYG3atbguAl43g+P3ApyN
+   5wnXj36eeJS2+gpRGFwL416EUqr6PwbxG1PEhOJSRSCRP4x80Ih/2QtJQ
+   gaEIIEZ6x6skW8p87Wh05h373E8OyOO2BtcmMTPlcx7J0o+Ijt3APJDKT
+   WZSOcUbyqHuNnnxots1k+wshPtCS4qqffQSdpDo5bNOamAnQ1OJFJKc6Y
+   +YSE/OZCpGu8LnnP88lH08G3yqzw3YPVWmijXfmW6T9/DL94Tc40UhDHw
+   N2ilFa4pGLMdKcG0h9rGd+KfZPP3Z7YKuMy2H19n+Pk7Lmq89TJ7J9rJh
+   A==;
+X-CSE-ConnectionGUID: cg93iW7kSNWSpVC/R0kLCw==
+X-CSE-MsgGUID: 8AicqMy2Ss2Qk/8h9clheA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="36340334"
+X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; 
+   d="scan'208";a="36340334"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jan 2025 21:06:39 -0800
+X-CSE-ConnectionGUID: h4Hq8411SWS6j/HUs6rxIQ==
+X-CSE-MsgGUID: xTEzb9jUT/u/CW+2t7y7KA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; 
+   d="scan'208";a="103801982"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 08 Jan 2025 21:06:35 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tVkkb-000H4J-0s;
+	Thu, 09 Jan 2025 05:06:33 +0000
+Date: Thu, 9 Jan 2025 13:05:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH 1/3] hwmon: (max31827) refactor enum chips to chip info
+Message-ID: <202501091228.9APcsnSs-lkp@intel.com>
+References: <20250108082531.15467-2-johnerasmusmari.geronimo@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxlPSlYeQklNTEhPH05CThlWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a94491a88dc03a3kunm82c0195e
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pgg6Djo6EzIKFxQwLAJLTCwI
-	LT8KCgtVSlVKTEhNSEJISU1OS0xLVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFPS05JNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=a2hk+6GOC6v2e0a4ANeM4MO77pNsnsbtFVc/JQsu/z6E7nQIqOjRgDB9Qz1XLv6zmOgeaiTffyuUc2VCTXAIIk5ja7XU/Db3u0FolxWJCbfa2sr2TOVyL6+mjDPZi3N47vY5cXa4H2Rwum7m4HjqioJy2by2b1MQcjPc4uJXFaw=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=kOAA9iSyzFQMTnJ/IrrO9xw8dXd24x9YPykOwNf/caA=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250108082531.15467-2-johnerasmusmari.geronimo@analog.com>
 
-These patchs have been tested with a 1536x2048p60 eDP panel on
-RK3588S EVB1 board, and HDMI 1080P/4K display also has been verified
-on RK3588 EVB1 board. Furthermore, the eDP display has been rechecked
-on RK3399 sapphire excavator board.
+Hi John,
 
-Patch 1~4   are the eDP mode support of samsung hdptx phy driver.
-Patch 5~8   are preparations for the RK3588 eDP support on both Analogix
-            side and Rockchip side.
-Patch 9~12  are to support to get panel from the DP AUX bus.
-Patch 13~15 are the RK3588 Analogix DP driver support.
-Patch 16    is to add the power sequencing delays for panel model
-            LP079QX1-SP0V.
-Patch 17~18 are the renaming of hdptxphy node. It is not only used by
-            HDMI display but also for the eDP display.
-Patch 19    is the addition of RK3588 eDP0 node.
-Patch 20    is to enable the eDP0 display on RK3588S EVB1 board.
+kernel test robot noticed the following build warnings:
 
-Damon Ding (20):
-  phy: phy-rockchip-samsung-hdptx: Swap the definitions of LCPLL_REF and
-    ROPLL_REF
-  phy: phy-rockchip-samsung-hdptx: Supplement some register names with
-    their full version
-  phy: phy-rockchip-samsung-hdptx: Add the '_MASK' suffix to all
-    registers
-  phy: phy-rockchip-samsung-hdptx: Add eDP mode support for RK3588
-  drm/rockchip: analogix_dp: Replace DRM_...() functions with drm_...()
-    or dev_...()
-  drm/rockchip: analogix_dp: Use formalized struct definition for grf
-    field
-  drm/rockchip: analogix_dp: Expand device data to support multiple edp
-    display
-  drm/bridge: analogix_dp: Add support for phy configuration.
-  dt-bindings: display: rockchip: analogix-dp: Add support to get panel
-    from the DP AUX bus
-  drm/bridge: analogix_dp: support to get &analogix_dp_device.plat_data
-    and &analogix_dp_device.aux
-  drm/bridge: analogix_dp: Add support to get panel from the DP AUX bus
-  drm/rockchip: analogix_dp: Add support to get panel from the DP AUX
-    bus
-  dt-bindings: display: rockchip: analogix-dp: Add support for RK3588
-  drm/bridge: analogix_dp: Add support for RK3588
-  drm/rockchip: analogix_dp: Add support for RK3588
-  drm/edp-panel: Add LG Display panel model LP079QX1-SP0V
-  dt-bindings: display: rockchip: Fix label name of hdptxphy for RK3588
-    HDMI TX Controller
-  arm64: dts: rockchip: Fix label name of hdptxphy for RK3588
-  arm64: dts: rockchip: Add eDP0 node for RK3588
-  arm64: dts: rockchip: Enable eDP0 display on RK3588S EVB1 board
+[auto build test WARNING on adc52dd4078067fabf1431036ba180eafd8a7eee]
 
- .../rockchip/rockchip,analogix-dp.yaml        |  40 +-
- .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |   2 +-
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  32 +-
- .../dts/rockchip/rk3588-coolpi-cm5-evb.dts    |   2 +-
- .../rockchip/rk3588-coolpi-cm5-genbook.dts    |   2 +-
- .../boot/dts/rockchip/rk3588-evb1-v10.dts     |   2 +-
- .../rk3588-friendlyelec-cm3588-nas.dts        |   2 +-
- .../arm64/boot/dts/rockchip/rk3588-jaguar.dts |   2 +-
- .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   |   2 +-
- .../dts/rockchip/rk3588-orangepi-5-plus.dts   |   2 +-
- .../boot/dts/rockchip/rk3588-rock-5b.dts      |   2 +-
- .../boot/dts/rockchip/rk3588-tiger-haikou.dts |   2 +-
- .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   |   2 +-
- .../boot/dts/rockchip/rk3588s-evb1-v10.dts    |  54 +
- .../dts/rockchip/rk3588s-indiedroid-nova.dts  |   2 +-
- .../boot/dts/rockchip/rk3588s-nanopi-r6.dtsi  |   2 +-
- .../boot/dts/rockchip/rk3588s-odroid-m2.dts   |   2 +-
- .../boot/dts/rockchip/rk3588s-orangepi-5.dtsi |   2 +-
- .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   2 +-
- .../boot/dts/rockchip/rk3588s-rock-5c.dts     |   2 +-
- .../drm/bridge/analogix/analogix_dp_core.c    |  81 +-
- .../drm/bridge/analogix/analogix_dp_core.h    |   1 +
- .../gpu/drm/bridge/analogix/analogix_dp_reg.c |  52 +
- drivers/gpu/drm/panel/panel-edp.c             |   8 +
- .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 233 +++--
- .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 971 +++++++++++++++++-
- include/drm/bridge/analogix_dp.h              |   7 +-
- 27 files changed, 1344 insertions(+), 169 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/John-Erasmus-Mari-Geronimo/hwmon-max31827-refactor-enum-chips-to-chip-info/20250108-162739
+base:   adc52dd4078067fabf1431036ba180eafd8a7eee
+patch link:    https://lore.kernel.org/r/20250108082531.15467-2-johnerasmusmari.geronimo%40analog.com
+patch subject: [PATCH 1/3] hwmon: (max31827) refactor enum chips to chip info
+config: hexagon-randconfig-001-20250109 (https://download.01.org/0day-ci/archive/20250109/202501091228.9APcsnSs-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250109/202501091228.9APcsnSs-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501091228.9APcsnSs-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/hwmon/max31827.c:93:40: warning: tentative definition of variable with internal linkage has incomplete non-array type 'const struct max31827_chip_info' [-Wtentative-definition-incomplete-type]
+   static const struct max31827_chip_info max31827;
+                                          ^
+   drivers/hwmon/max31827.c:93:21: note: forward declaration of 'struct max31827_chip_info'
+   static const struct max31827_chip_info max31827;
+                       ^
+   drivers/hwmon/max31827.c:94:40: warning: tentative definition of variable with internal linkage has incomplete non-array type 'const struct max31827_chip_info' [-Wtentative-definition-incomplete-type]
+   static const struct max31827_chip_info max31828;
+                                          ^
+   drivers/hwmon/max31827.c:93:21: note: forward declaration of 'struct max31827_chip_info'
+   static const struct max31827_chip_info max31827;
+                       ^
+   drivers/hwmon/max31827.c:95:40: warning: tentative definition of variable with internal linkage has incomplete non-array type 'const struct max31827_chip_info' [-Wtentative-definition-incomplete-type]
+   static const struct max31827_chip_info max31829;
+                                          ^
+   drivers/hwmon/max31827.c:93:21: note: forward declaration of 'struct max31827_chip_info'
+   static const struct max31827_chip_info max31827;
+                       ^
+   drivers/hwmon/max31827.c:96:40: warning: tentative definition of variable with internal linkage has incomplete non-array type 'const struct max31827_chip_info' [-Wtentative-definition-incomplete-type]
+   static const struct max31827_chip_info max31875;
+                                          ^
+   drivers/hwmon/max31827.c:93:21: note: forward declaration of 'struct max31827_chip_info'
+   static const struct max31827_chip_info max31827;
+                       ^
+   drivers/hwmon/max31827.c:602:1: error: expected expression
+   static const struct max31827_chip_info max31829 = {
+   ^
+   drivers/hwmon/max31827.c:677:23: error: expected '}'
+   MODULE_LICENSE("GPL");
+                         ^
+   drivers/hwmon/max31827.c:598:51: note: to match this '{'
+   static const struct max31827_chip_info max31828 = {
+                                                     ^
+   drivers/hwmon/max31827.c:677:23: error: expected ';' after top level declarator
+   MODULE_LICENSE("GPL");
+                         ^
+                         ;
+   4 warnings and 3 errors generated.
+
+
+vim +93 drivers/hwmon/max31827.c
+
+    91	
+    92	struct max31827_state;
+  > 93	static const struct max31827_chip_info max31827;
+    94	static const struct max31827_chip_info max31828;
+    95	static const struct max31827_chip_info max31829;
+    96	static const struct max31827_chip_info max31875;
+    97	
 
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
