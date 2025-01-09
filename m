@@ -1,146 +1,125 @@
-Return-Path: <devicetree+bounces-136867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-136868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078B3A069AE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:48:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C31A069B9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 01:05:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFC4C188814C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2025 23:48:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57A2A7A2434
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 00:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61F9204C01;
-	Wed,  8 Jan 2025 23:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B34173;
+	Thu,  9 Jan 2025 00:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ugheSgSb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q/tsVrtU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7DBA3FBB3;
-	Wed,  8 Jan 2025 23:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9C6163;
+	Thu,  9 Jan 2025 00:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736380088; cv=none; b=PE7/bEZwj0h8TCIPiTPeAdS9+/83Q8iFkEVzZtjKMPesy8JGwkBRPB3LXJjw2J1ryKcJAZ41DHY0UyFqCxMMLtlbQch7k9yE6CX+NKAkBJrS/gjeIyB3OUU7DIjTgg0M8BKFe3Jdeq4UmSF1p1UKbaq27HBfpxxtvZeWPVXPtXY=
+	t=1736381122; cv=none; b=gxb/fIVWz+rtfmDw8OEtVoKBjk9sZKxuRQgpductxcrWM+d/lPp8A5QisakjKzagnbezYAD3gGzOk9U740iiydA/2GrAUDTzGbUbz6xSPnGmOKEJaPpra5vwWTOLQa9+qblxrMt+8anfa6H8OxaOmOKhRvONmE9c8gkSoFHuQRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736380088; c=relaxed/simple;
-	bh=ESRJ1GfGU3MEBCTm3oBsNj+1YXHsyQuA8Y9s6R22loo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Aj5woMPM65DpN6ThXtg/QGK56x6bQYi1vpVFo5l+VpT585V44gzUpwG4FdIqdHjK+1ggnwCOr+kNWSPpnqYLUUuJjuWfnIReGIq13PrNTytdwr+1iy7JmgE78EMg9sei9IxzR/n7MjHG8MffvfHZOyo+wFaSHfX5LRTPr6vm1Cw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ugheSgSb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24ECDC4CED3;
-	Wed,  8 Jan 2025 23:48:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736380088;
-	bh=ESRJ1GfGU3MEBCTm3oBsNj+1YXHsyQuA8Y9s6R22loo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ugheSgSbDS6hkRB7HGXL3laCrlZxbxaHkELksEr8U6G2shFSLX5jXoxpp/lQF/XDX
-	 fKZX05yJSKLKNDhgHUtDtEP05NbPvlI/9+cbhQI0l+PE/FDN7lJWGDz42j7gq/udmf
-	 kBoUCzqLu5Ywl23r5nW3c5wvpZCZ7UGWhxnLIymHPGVlIwYuQjQQENYEVdo4pmEjca
-	 pdcq4X3bRJvuNuUP32F7QuOq3p2BzT2bbkbQeVFTb3XmLhHRoYNLt1xPBrqBCQeY3p
-	 UdWIQBAaN10nJVjRsMrCJzH5izPzpeCcG5dukXzA0PjpmXt03ga4GHH0fS6SQs+Z9O
-	 SXqyTL9IkqaXA==
-Date: Wed, 8 Jan 2025 17:48:07 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 4/6] dt-bindings: clock: st,stm32-rcc: support spread
- spectrum clocking
-Message-ID: <20250108234807.GA1247672-robh@kernel.org>
-References: <20250105181525.1370822-1-dario.binacchi@amarulasolutions.com>
- <20250105181525.1370822-5-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1736381122; c=relaxed/simple;
+	bh=MuybQNTD6vkBEQCACRnlGknRtbj6kNLuHuGRK6TfrFM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DB4bEhBr/Y38q6m9whZ/OdEp4DhodT90nYqSKozckH1YfmrLBdnj3CHKaJjriiA3X8KpKeXePhMV+LLRRmFHiBde5nY8qv5IFaaqP9Gmvxj7IGVzbEs/FO6CauwmWPdQw+/Zyrr3Iq1T9iGtvtIxZBIPld5jLxac53nPRc1XmxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q/tsVrtU; arc=none smtp.client-ip=209.85.217.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4aff04f17c7so889559137.0;
+        Wed, 08 Jan 2025 16:05:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736381120; x=1736985920; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C1fI7C+N6siuCGFLVurlsomCAwtk684DRCJ4t7sfZs8=;
+        b=Q/tsVrtUg8Uv6RNbktJHG84ER0wBaXDxzGeJAlgBF8K7IVL3rvnG9vO7yY2oTxjUMF
+         9+c2SrQwe/Fkb+jMRT4+nHnZmdGWeZLltjIiMeUVcFByOGs3kmQd6Q9a2kxvX+Y9BU+O
+         bKiTne5EzLaAIheuJ4ekahOAqut+J9r0o57m3+CIfHQpst5211gKtu1zuPtGX0jO0OvK
+         xN2CQ0/WnGC71JhlxxayBEoouY55w4DI9oijdUfG13XxuZeOgKyD4MbTHIed8s348pPV
+         KJdIugf2bFe/Z419pcCNJmDFZy6Mm9BzGl5Riyj9xmtCWl2xQfNim5L45P3uZEFj0UxF
+         1rlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736381120; x=1736985920;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C1fI7C+N6siuCGFLVurlsomCAwtk684DRCJ4t7sfZs8=;
+        b=sAsZebOqBGIsxlFEpanWlVaN1osKukErRVMSPsBuV3ECx6G3MrsZO6nkbOXO5+XbKl
+         HnKkTnJEJOASHl5aX+CXoSbcQxCLxofhlrPVXKHvaD0PoaOVDZMrghpwDgPZ7vLPa5Ac
+         IBRxkuZ0H7uuHMUjixmfV/CEtt9ycoAOe29LcA8rSinDNIrRSrCPThw01QC0dHjNOaLN
+         gjvW08e7IlzW4RoATCHUbubbVv8XOnS/k1F6gsa1vD5O8cDVy/QlUF3haK+DKDFK2Ix7
+         foTFX73j793rPvtsbMgLlIkrSrBasGeqOx75vQLfwlWFWPdaUsiLuNiaYdHOv43V5bHW
+         +5Ow==
+X-Forwarded-Encrypted: i=1; AJvYcCVMCC2h6sLYukWb6FmZ21tLOYJ9e1Ac6DPDxdtDYDur+Cy3VIyqj07uCCWpvF6gcOM40SWDJ3YGHdocwRo=@vger.kernel.org, AJvYcCXyQx7OFkCOT/31Ult/sp9snBNbeU8DbYcZpUg/zFmOcGh0ARa9wLzoeW/gWWrQJEN3jr9WZdRRjSHw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8qVyXs2PzSP/wYAwh6to2nXN1ldb6iFNjSlNi59CMvnWKW8Y8
+	f2o6BHlVufC5crTgyNlbdUl/XKsqUZPMw0NtLywgyuESIAUzy+EX
+X-Gm-Gg: ASbGncsjomWmdl6iuvp37zz7sZbun1J0RHX88qUsoEkwxVYS2uQ53YHXzy9qjvoJRv7
+	CTfN5xPTjEZxN6UCPKv6PlORHvhWLVoILqEAovsG8p89nL/8LIc6BCbgI+Vggtlcagx3yldcmel
+	Eo2v8rAuBX317Z5q3YfdPktX7vWjzgdumb5Dt9qhAVdjphuCqQuv3osdM9tAq7E8mtKjsYOt/5I
+	Nr0LZq6zR+BO8E0f1AMz9DFHTeT7IsxtgOmW9zh+qDR67iwyCntiYR3lEeJP+Glh5VboQ==
+X-Google-Smtp-Source: AGHT+IHveRTKTZH8gb56DQxgpcRLIxrh6qWER6qYt9jRgeCc55dTkNQkK4DkhXhIv7CyGYijYKAN8Q==
+X-Received: by 2002:a05:6102:468d:b0:4b2:bc6b:c73c with SMTP id ada2fe7eead31-4b580726e29mr889658137.6.1736381120232;
+        Wed, 08 Jan 2025 16:05:20 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:32cc:f64f:9e3:fa63])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-86231362217sm31166241.12.2025.01.08.16.05.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jan 2025 16:05:19 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: hverkuil-cisco@xs4all.nl
+Cc: mchehab@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] media: dt-bindings: adv7180: Document the 'interrupts' property
+Date: Wed,  8 Jan 2025 21:05:03 -0300
+Message-Id: <20250109000503.45264-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250105181525.1370822-5-dario.binacchi@amarulasolutions.com>
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jan 05, 2025 at 07:14:16PM +0100, Dario Binacchi wrote:
-> The addition of DT bindings for enabling and tuning spread spectrum
-> clocking generation is available only for the main PLL.
-> 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> ---
-> 
->  .../bindings/clock/st,stm32-rcc.yaml          | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-> index ae9e5b26d876..c345d3ff3fc4 100644
-> --- a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-> @@ -77,6 +77,26 @@ properties:
->        Phandle to system configuration controller. It can be used to control the
->        power domain circuitry.
->  
-> +  st,ssc-modfreq-hz:
-> +    description:
-> +      The modulation frequency for main PLL (in Hz)
+From: Fabio Estevam <festevam@denx.de>
 
-No constraints?
+The ADV7180 family of chips have an INTRQ pin that can be connected
+to a SoC GPIO.
 
-> +
-> +  st,ssc-moddepth-permyriad:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The modulation rate for main PLL (in permyriad, i.e. 0.01%)
-> +    minimum: 25
-> +    maximum: 200
-> +
-> +  st,ssc-modmethod:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description:
-> +      The modulation techniques for main PLL.
-> +    items:
-> +      enum:
-> +        - center-spread
-> +        - down-spread
+Allow the 'interrupts' property to be described to fix the following
+dt-schema warning:
 
-What's the default? If there's only 2 possibilities, then you can use a 
-boolean instead. Though I assume you want to support spread-spectrum 
-disabled.
+camera@21: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-Are there dependencies between these properties? 
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ Documentation/devicetree/bindings/media/i2c/adv7180.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> +
->  required:
->    - compatible
->    - reg
-> @@ -97,6 +117,10 @@ allOf:
->            const: 1
->            description: |
->              The clock index for the specified type.
-> +        st,ssc-modfreq-hz: false
-> +        st,ssc-moddepth-permyriad: false
-> +        st,ssc-modmethod: false
-> +
->      else:
->        properties:
->          '#clock-cells':
-> @@ -118,6 +142,9 @@ examples:
->          reg = <0x40023800 0x400>;
->          clocks = <&clk_hse>, <&clk_i2s_ckin>;
->          st,syscfg = <&pwrcfg>;
-> +        st,ssc-modfreq-hz = <10000>;
-> +        st,ssc-moddepth-permyriad = <200>;
-> +        st,ssc-modmethod = "center-spread";
->      };
->  
->    - |
-> -- 
-> 2.43.0
-> 
+diff --git a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
+index 4371a0ef2761..572f06d12a39 100644
+--- a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
+@@ -49,6 +49,8 @@ properties:
+       Indicates that the output is a BT.656-4 compatible stream.
+     type: boolean
+ 
++  interrupts: true
++
+   port:
+     $ref: /schemas/graph.yaml#/$defs/port-base
+     unevaluatedProperties: false
+-- 
+2.34.1
+
 
