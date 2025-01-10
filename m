@@ -1,137 +1,217 @@
-Return-Path: <devicetree+bounces-137461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F383A09159
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:01:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB32A0915C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:01:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CA1A1882254
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:01:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57186188E696
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E18C20E32D;
-	Fri, 10 Jan 2025 13:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF3120DD47;
+	Fri, 10 Jan 2025 13:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="HMf6eD4n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O2YEowuu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351EE20D4FD
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 13:00:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C4420D4FD;
+	Fri, 10 Jan 2025 13:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736514041; cv=none; b=c1K4ZUJuqkMvKOrbtpRBvvZDGjmlJzydUg4b2vTsdRq6bMaJ+q43rSNVWZHHVdbyQ5xNEssE3mte4qLJKEIRqIoGfLtbId/plkxRpSHTBTbTMqMlFM9AK9N4oNc4nFDqG8Gc62U0kvTplw8K9De/DN1lXxvrXGPO0lx6fD59r5c=
+	t=1736514081; cv=none; b=XvThAqWXsrpdsF6hbK+DckMkXtwc3H+xgRZJJQBqdrfRb1y9x53di2jMa9NA4d8+rwb+0d2i6d3tzmbfc+dhJbyk+P61vQwJ4KoUd3fNlo/6voCgSEJNoK9zMIQgmXSPKvNBG2zpo8IBD7FduabQoKjHZWa8LwZzSCdjnNDaX84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736514041; c=relaxed/simple;
-	bh=NI94rkazrHFiOl0XdQvbczTPb0hren50HBQrX3tChuU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MAz/Sf48CeRyRYGMFJ1n5AOznf2x5gHKZ9iz9J7wOFhp7AcNFQf/cppw4sDdiSkHsT+jB/SAc3bHxYgzDUicQifYOfdAaU/UgmQgCSpm6+y0SINipTlBAMPIf0f/CQMf5HWNKh7U7ddp9fjDjURxH1MZNabF94HU6Hkvgpxehf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=HMf6eD4n; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-385ddcfc97bso1763140f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 05:00:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1736514036; x=1737118836; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mDCD62Pui8+0UkwiGsBc4nPgO3uBLewidrJs9+oBlXo=;
-        b=HMf6eD4nprPWZDSj/opVtLIXWW5ofyOxBAYyqTKnMk1F+Vst0jl8y12ArINzO/pnXg
-         GAaq0PwPoRa/8XjJKI0w4sOOTb7oj48k7v7IRcxUY616vwTmFRC7bW6rUy5axKRFE5qj
-         vYSlFVTtBTLVEDBSTpFBb4Zwqa63MAocDhx2/lhMw3QbLgfiY2PDSAqWs/ujsnNUi2ej
-         qDNYPs7hBUenHY6GjXTpgpRBi9QJdjnp66k2UdIgFtZafdmZET8ZsWR+fjzhCd0C6yFv
-         YaG70R+2zmv2c48J9Thpf92xUiKMQAKg5SHP+ZVmaxpPxcUWSMbEwKgnu7D18mMFFxjX
-         C31w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736514036; x=1737118836;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mDCD62Pui8+0UkwiGsBc4nPgO3uBLewidrJs9+oBlXo=;
-        b=CWEv3uvg/Wr+M7z9nr+vXphbAoIoe28JI/IWmTsgZqvi++4ZSa4fdbke4Hk2V2EoLC
-         nQPtjhmm7sfj+8Q9m5C1XS6uIhyFNQMy6nl9NKrtmFUGqaV3H2EcuD/y+m24l4dMhzDU
-         bOuaDy+ls0ca5awDb21Wt9OEfobDygkccnNKaYSjeY3xfdggfOPmdIy2XRqLWJiadbUt
-         taVEU7a0IhparukI97AAWO92+WLrG9n1h+2s4UmZOnp/tgpHRLHK5tVHeNeTVwvqtIDS
-         c9p2Mv/zKMPUfXt7IxTLQV1oVPzzi+0mADW9PhGwGTfg8+WlBm0fvI+RVaMsNR1/Ts1A
-         sNnw==
-X-Forwarded-Encrypted: i=1; AJvYcCUF3CZGJFuLJWA8k0P3usZdO5ZPPDUsBQbr1zIIWSPl/0Gop04zJUadZn96SJ4vXWuK8atHjI/ZZgPe@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxndOSZOGQX1YWoAEga+vpX+I6NvczfeNRXOdZBANaJU5X+1Jj
-	MNEzVaG0mwteQzelr799XoMEW/B8CPQptsIQuCKd+wg5kYQDcDLi/CHpOmHkxoQ=
-X-Gm-Gg: ASbGncsVntCdVIbpJ5cjrBg/3xaPYpAWtzbhmS4asLMiV3mrwuDx10xsxRoF5CjIWf6
-	qDVnHL5drf+whHDTBPahVcgC3wLH9u+nGxcSTvPTK/f7onKSGJ0UDcKNk5ATkc+7kmZER70+zKe
-	jPhiEoGYyNWxIAUM7f9I8IFIzgfuongj9kOaT4J8mtuM+I2FO73aaBT7K7RiypMiysFd8q5Uilq
-	blGfKusQ3PWOb2tI6Pbn6hBRlOZ+gNRIAAI4LH8AMQIH2IvsB5Zygw=
-X-Google-Smtp-Source: AGHT+IG/Z301PbNUmfwGgNeewmZnvFfB+D5Qh8Yoe/mPcCOg5S5xly8CpbeGJdRKhVQh5rwbALv9ZA==
-X-Received: by 2002:a5d:598d:0:b0:38a:624b:e7fe with SMTP id ffacd0b85a97d-38a872d121bmr9293319f8f.7.1736514036429;
-        Fri, 10 Jan 2025 05:00:36 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:5581:e96f:97e:b3a7])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e37c2esm51360745e9.28.2025.01.10.05.00.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 05:00:35 -0800 (PST)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	=?UTF-8?q?J=20=2E=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	=?UTF-8?q?Cs=C3=B3k=C3=A1s=20Bence?= <csokas.bence@prolan.hu>,
-	"Geert Uytterhoeven via gmail . com" <geert@linux-m68k.org>
-Cc: linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: gpio: fairchild,74hc595: use a fallback for Semi MC74HC595A
-Date: Fri, 10 Jan 2025 14:00:25 +0100
-Message-ID: <20250110130025.55004-3-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250110130025.55004-1-brgl@bgdev.pl>
-References: <20250110130025.55004-1-brgl@bgdev.pl>
+	s=arc-20240116; t=1736514081; c=relaxed/simple;
+	bh=3SaG2X4A14Z+aNuM4b3tAa4QmuX6xnPyFTL3KYwz/EM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cZAiBZCdFSXd1JLwHAUXtbGGAyLKYsHfCvs87pZLWOBzp1L0BnuD5TvncR9E91gqdJDVYwk/17/sugsLYjxR4jN9Ap51dtbgmbGscmSPh4POL5X6pgDYtpqJKTi0xtOMNuROLtZhWkjY2RiztExg3lA2x6xyuVg7k8CKtbrGKuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2YEowuu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBD11C4CEE1;
+	Fri, 10 Jan 2025 13:01:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736514081;
+	bh=3SaG2X4A14Z+aNuM4b3tAa4QmuX6xnPyFTL3KYwz/EM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=O2YEowuu4ljUMKW6FkFVFPRc6Rtb57pnQa669pPo0D1cbzn/j5khTAzTU/nK6gGb1
+	 XRN2vQ9g2cY9AIjL+rL8O3wk5HtAAddCxXN692Oa+Hj4VyuWcnqr3ApvLRCX9DsfBw
+	 qWpHjPbqy/GAB18g+KuyL2qEZh5/pV7FmFAcLx5i4FH47Rcn9EC5zjFq5XJr2n4Sko
+	 zCu3EKiL9w9CaZI1e2WvK/8dWsG1AaRNBcOtjBkfs4O467VZWlR5lQi03QaLcT1nbg
+	 0Arxq701wg5Fdsm0h41S29XIGnxVW3SF0twXjpS4nvCg4ddo8O1lIB50OPb/IjYXo9
+	 ft16TPVsw5tYQ==
+Message-ID: <abadfae8-56f7-499c-83ff-7d79e3fe1f52@kernel.org>
+Date: Fri, 10 Jan 2025 14:01:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/12] dt-bindings: display: mediatek: add EXDMA yaml for
+ MT8196
+To: "paul-pl.chen" <paul-pl.chen@mediatek.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, chunkuang.hu@kernel.org,
+ angelogioacchino.delregno@collabora.com
+Cc: matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+ jason-jh.lin@mediatek.com, nancy.lin@mediatek.com, singo.chang@mediatek.com,
+ xiandong.wang@mediatek.com, sirius.wang@mediatek.com,
+ sunny.shen@mediatek.com, fshao@chromium.org, treapking@chromium.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
+ <20250110123835.2719824-4-paul-pl.chen@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20250110123835.2719824-4-paul-pl.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 10/01/2025 13:33, paul-pl.chen wrote:
+> From: "Paul-pl.Chen" <paul-pl.chen@mediatek.com>
+> 
+> Add mediatek,exdma.yaml to support EXDMA for MT8196.
+> 
+> Signed-off-by: Paul-pl.Chen <paul-pl.chen@mediatek.com>
+> ---
+> The header used in examples:
+> #include <dt-bindings/clock/mt8196-clk.h>
+> #include <dt-bindings/power/mt8196-power.h>
+> are not upstreamed yet.
 
-This model is 1:1 compatible with fairchild,74hc595 so use the latter as
-a fallback instead of adding a new stand-alone compatible.
+Which makes this untestable and unmergeable.
 
-Fixes: 0ba6cec7acbb ("dt-bindings: gpio: fairchild,74hc595: Add On Semi MC74HC595A compat")
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../devicetree/bindings/gpio/fairchild,74hc595.yaml    | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+This cannot be accepted. Fix your dependencies or decouple from them.
 
-diff --git a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
-index a209c5b4f6e0..da462dddb140 100644
---- a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
-+++ b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
-@@ -28,10 +28,12 @@ maintainers:
- 
- properties:
-   compatible:
--    enum:
--      - fairchild,74hc595
--      - nxp,74lvc594
--      - onnn,74hc595a
-+    oneOf:
-+      - const: fairchild,74hc595
-+      - const: nxp,74lvc594
-+      - items:
-+          - const: onnn,74hc595a
-+          - const: fairchild,74hc595
- 
-   reg:
-     maxItems: 1
--- 
-2.45.2
+> It will be sent by related owner soon.
 
+Still this won't build and won't be possible to apply.
+
+> ---
+>  .../display/mediatek/mediatek,exdma.yaml      | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,exdma.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,exdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,exdma.yaml
+> new file mode 100644
+> index 000000000000..385f5549dfaa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,exdma.yaml
+
+Filename matching compatible.
+
+Why is this in display? DMA goes to dma.
+
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,exdma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek EXDMA
+> +
+> +maintainers:
+> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +
+> +description:
+> +  The MediaTek display overlap extended DMA engine, namely OVL_EXDMA or EXDMA,
+> +  primarily functions as a DMA engine for reading data from DRAM with various
+> +  DRAM footprints and data formats. For input sources in certain color formats
+> +  and color domains, OVL_EXDMA also includes a color transfer function
+> +  to process pixels into a consistent color domain.
+> +
+
+Missing ref to dma schemas.
+
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8196-exdma
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: EXDMA Clock
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  mediatek,larb:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+
+Why array? And isn't the property named mediatek,larbs?
+
+
+> +    maxItems: 1
+> +    items:
+> +      maxItems: 1
+> +    description: |
+> +      A phandle to the local arbiters node in the current SoCs.
+> +      Refer to bindings/memory-controllers/mediatek,smi-larb.yaml.
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  '#dma-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - power-domains
+> +  - mediatek,larb
+> +  - iommus
+Best regards,
+Krzysztof
 
