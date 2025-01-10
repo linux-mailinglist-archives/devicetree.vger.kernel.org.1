@@ -1,302 +1,122 @@
-Return-Path: <devicetree+bounces-137567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD348A0980E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 18:02:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E845A09825
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 18:11:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9AFB16142B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 17:02:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FD57188D436
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 17:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC342212B0A;
-	Fri, 10 Jan 2025 17:02:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 136D3213230;
+	Fri, 10 Jan 2025 17:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="SGLNghZt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD821C5F2A;
-	Fri, 10 Jan 2025 17:02:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF56207E0C
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 17:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736528542; cv=none; b=ZKgelf0fSehEZay4ozAslxy4mWdxs5j8hPN9b5n7LAusrJzYtV/Lb50g4mcY6UQr3CKvg7WqyD/fwK2uSAmUziCOXP4ySiPPo21QDcAk/qIAn69x3Rxr5yMF9ymcBsqDcj6NsoVeuXgkyhYL8V0k+ED+Xtq3lmrrPS9et1L1pfM=
+	t=1736529056; cv=none; b=sUDRAjbfwqopoLYIqx2CoTckfejz9oKRYRppA/aEsSt3SFbYuhNu+97eDAyviACm9ny5JWM7L33iAvPWw+6g1dXihTXTLuQy9edC1tGlmPEakMUmZxU+McXLMSRe9uq0m2JAMTV97iyNc349pdaf1Z9ZTMcTOuBYOUtem+iYYDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736528542; c=relaxed/simple;
-	bh=J6M9dhk4IIFE56GZx3HkDdu0CLJOZM4bllASwBo0miQ=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YVKEH6GqtEYiGve+1IOSy6k0i6zns2sHzsi9Wv5j3pKDypYVYRcP7eNglMkH5W0wsFrEjctB3Al/EGbTFdx+OH6sYwO3s8JWOLbT54wzroTJK5WWp/rnwVv1kXgmrMVg5+XVGGA1NCMOIJwL8dDAk4BoymlG2esBEd9syJjfqBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4YV7G72NMwz67K2K;
-	Sat, 11 Jan 2025 01:01:03 +0800 (CST)
-Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
-	by mail.maildlp.com (Postfix) with ESMTPS id 30E121408F9;
-	Sat, 11 Jan 2025 01:02:18 +0800 (CST)
-Received: from localhost (10.203.177.99) by frapeml500003.china.huawei.com
- (7.182.85.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 10 Jan
- 2025 18:02:17 +0100
-Date: Fri, 10 Jan 2025 17:02:11 +0000
-From: Alireza Sanaee <alireza.sanaee@huawei.com>
-To: Mark Rutland <mark.rutland@arm.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <robh@kernel.org>, <linuxarm@huawei.com>,
-	<shameerali.kolothum.thodi@huawei.com>, <Jonathan.Cameron@huawei.com>,
-	<jiangkunkun@huawei.com>, <yangyicong@hisilicon.com>, <zhao1.liu@intel.com>
-Subject: Re: [PATCH] arm64: of: handle multiple threads in ARM cpu node
-Message-ID: <20250110170211.00004ac2@huawei.com>
-In-Reply-To: <Z4FJZPRg75YIUR2l@J2N7QTR9R3>
-References: <20250110161057.445-1-alireza.sanaee@huawei.com>
-	<Z4FJZPRg75YIUR2l@J2N7QTR9R3>
-Organization: Huawei
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1736529056; c=relaxed/simple;
+	bh=AOmEQRuXjkSD5R3WL5P7ffE1L4Z0MFgQj5vEGPUPTx0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KDa2edDjBqmTk4Q+fkqSCWtDnXZYc/oayS/7UayzgHJa88m/t7WbIRV5dZSxEELJln/ydaT1DaKQsiGvn+xQlCEev0ZKEWH9/vHjLTEiT2lWtq50/blbjPzPsFNNfT+eRS2cYPkUElonzwkI3GyErYgM0qwVv7KnRozuOI+lh0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=SGLNghZt; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 9AB0D240029
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 18:10:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1736529053; bh=AOmEQRuXjkSD5R3WL5P7ffE1L4Z0MFgQj5vEGPUPTx0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=SGLNghZtZWUvYW9e8yNrfReqiIiOidejL+5a8H3lEclTuNXgd5iSAKsBLOb74sPsY
+	 yO8Gk4Q0kDBQntn3VlZ5ZV21/C+NlohZyqzMkn7CsPhR83Y2G5VCGpyjn1eotU7RQW
+	 pJrh0NqYHW9Tfpe6wxa9x1bUfbnfrAekuvGl+qcv6HSSLqhfjUBzwT7lCfdX0NnQ/v
+	 2QEIqLjNPCbAyh7NhZL8YwoDDJ/8z6MtdnxLWzXNqoAig746/VcAE+ZOYcn03NorKv
+	 4/7LF97uuOtrM4aAKGRRIfdfv7GFgbA6VXIdMxKSOkJsxJyN50c9Q0VOD8ms2D+vVL
+	 q3o3qp2f7YwXQ==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YV7TR1mHbz9rxB;
+	Fri, 10 Jan 2025 18:10:51 +0100 (CET)
+Date: Fri, 10 Jan 2025 17:10:51 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: j.ne@posteo.net, Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>,
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 16/19] powerpc: dts: Add LANCOM NWAPP2 board devicetree
+Message-ID: <Z4FUmxeokwjGhdCJ@probook>
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-16-86f78ba2a7af@posteo.net>
+ <b1e0fa68-6f55-4c21-8d61-f8d58d932afc@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100010.china.huawei.com (7.191.174.197) To
- frapeml500003.china.huawei.com (7.182.85.28)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b1e0fa68-6f55-4c21-8d61-f8d58d932afc@kernel.org>
 
-On Fri, 10 Jan 2025 16:23:00 +0000
-Mark Rutland <mark.rutland@arm.com> wrote:
-
-Hi Mark,
-
-Thanks for prompt feedback.
-
-Please look inline.
-
-> On Fri, Jan 10, 2025 at 04:10:57PM +0000, Alireza Sanaee wrote:
-> > Update `of_parse_and_init_cpus` to parse reg property of CPU node as
-> > an array based as per spec for SMT threads.
-> > 
-> > Spec v0.4 Section 3.8.1:  
-> 
-> Which spec, and why do we care?
-
-For the spec, this is what I looked
-into https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4/devicetree-specification-v0.4.pdf 
-Section 3.8.1 
-
-Sorry I didn't put the link in there.
-
-One limitation with the existing approach is that it is not really
-possible to describe shared caches for SMT cores as they will be seen
-as separate CPU cores in the device tree. Is there anyway to do so?
-
-More discussion over sharing caches for threads
-here https://lore.kernel.org/kvm/20241219083237.265419-1-zhao1.liu@intel.com/
-
-> 
-> > The value of reg is a <prop-encoded-**array**> that defines a unique
-> > CPU/thread id for the CPU/threads represented by the CPU node.
-> > **If a CPU supports more than one thread (i.e.  multiple streams of
-> > execution) the reg property is an array with 1 element per
-> > thread**.  The address-cells on the /cpus node specifies how many
-> > cells each element of the array takes. Software can determine the
-> > number of threads by dividing the size of reg by the parent node's
-> > address-cells.  
-> 
-> We already have systems where each thread gets a unique CPU node under
-> /cpus, so we can't rely on this to determine the topology.
-
-I assume we can generate unique values even in reg array, but probably
-makes things more complicated.
-
-> 
-> Further, there are bindings which rely on being able to address each
-> CPU/thread with a unique phandle (e.g. for affinity of PMU
-> interrupts), which this would break.
-> 
-> > An accurate example of 1 core with 2 SMTs:
-> > 
-> > 	cpus {
-> > 		#size-cells = <0x00>;
-> > 		#address-cells = <0x01>;
-> > 
-> > 		cpu@0 {
-> > 			phandle = <0x8000>;
-> > 			**reg = <0x00 0x01>;**
-> > 			enable-method = "psci";
-> > 			compatible = "arm,cortex-a57";
-> > 			device_type = "cpu";
-> > 		};
-> > 	};
-> > 
-> > Instead of:
-> > 
-> > 	cpus {
-> > 		#size-cells = <0x00>;
-> > 		#address-cells = <0x01>;
-> > 
-> > 		cpu@0 {
-> > 			phandle = <0x8000>;
-> > 			reg = <0x00>;
-> > 			enable-method = "psci";
-> > 			compatible = "arm,cortex-a57";
-> > 			device_type = "cpu";
-> > 		};
-> > 
-> > 		cpu@1 {
-> > 			phandle = <0x8001>;
-> > 			reg = <0x01>;
-> > 			enable-method = "psci";
-> > 			compatible = "arm,cortex-a57";
-> > 			device_type = "cpu";
-> > 		};
-> > 	};
-> > 
-> > which is **NOT** accurate.  
-> 
-> It might not follow "the spec" you reference (and haven't named), but
-> I think it's a stretch to say it's inaccurate.
-> 
-> Regardless, as above I do not think this is a good idea. While it
-> allows the DT to be written in a marginally simpler way, it makes
-> things more complicated for the kernel and is incompatible with
-> bindings that we already support.
-> 
-> If anything "the spec" should be relaxed here.
-
-Hi Rob,
-
-If this approach is too disruptive, then shall we fallback to the
-approach where go share L1 at next-level-cache entry?
-
-Thanks,
-Alireza
-> 
-> Mark.
-> 
-> > 
-> > Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
-> > ---
-> >  arch/arm64/kernel/smp.c | 74
-> > +++++++++++++++++++++++------------------ 1 file changed, 41
-> > insertions(+), 33 deletions(-)
-> > 
-> > diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
-> > index 3b3f6b56e733..8dd3b3c82967 100644
-> > --- a/arch/arm64/kernel/smp.c
-> > +++ b/arch/arm64/kernel/smp.c
-> > @@ -689,53 +689,61 @@ static void __init
-> > acpi_parse_and_init_cpus(void) static void __init
-> > of_parse_and_init_cpus(void) {
-> >  	struct device_node *dn;
-> > +	u64 hwid;
-> > +	u32 tid;
-> >  
-> >  	for_each_of_cpu_node(dn) {
-> > -		u64 hwid = of_get_cpu_hwid(dn, 0);
-> > +		tid = 0;
-> >  
-> > -		if (hwid & ~MPIDR_HWID_BITMASK)
-> > -			goto next;
-> > +		while (1) {
-> > +			hwid = of_get_cpu_hwid(dn, tid++);
-> > +			if (hwid == ~0ULL)
-> > +				break;
-> >  
-> > -		if (is_mpidr_duplicate(cpu_count, hwid)) {
-> > -			pr_err("%pOF: duplicate cpu reg properties
-> > in the DT\n",
-> > -				dn);
-> > -			goto next;
-> > -		}
-> > +			if (hwid & ~MPIDR_HWID_BITMASK)
-> > +				goto next;
-> >  
-> > -		/*
-> > -		 * The numbering scheme requires that the boot CPU
-> > -		 * must be assigned logical id 0. Record it so that
-> > -		 * the logical map built from DT is validated and
-> > can
-> > -		 * be used.
-> > -		 */
-> > -		if (hwid == cpu_logical_map(0)) {
-> > -			if (bootcpu_valid) {
-> > -				pr_err("%pOF: duplicate boot cpu
-> > reg property in DT\n",
-> > -					dn);
-> > +			if (is_mpidr_duplicate(cpu_count, hwid)) {
-> > +				pr_err("%pOF: duplicate cpu reg
-> > properties in the DT\n",
-> > +				       dn);
-> >  				goto next;
-> >  			}
-> >  
-> > -			bootcpu_valid = true;
-> > -			early_map_cpu_to_node(0,
-> > of_node_to_nid(dn)); -
-> >  			/*
-> > -			 * cpu_logical_map has already been
-> > -			 * initialized and the boot cpu doesn't
-> > need
-> > -			 * the enable-method so continue without
-> > -			 * incrementing cpu.
-> > +			 * The numbering scheme requires that the
-> > boot CPU
-> > +			 * must be assigned logical id 0. Record
-> > it so that
-> > +			 * the logical map built from DT is
-> > validated and can
-> > +			 * be used.
-> >  			 */
-> > -			continue;
-> > -		}
-> > +			if (hwid == cpu_logical_map(0)) {
-> > +				if (bootcpu_valid) {
-> > +					pr_err("%pOF: duplicate
-> > boot cpu reg property in DT\n",
-> > +					       dn);
-> > +					goto next;
-> > +				}
+On Fri, Jan 10, 2025 at 04:24:27PM +0100, Krzysztof Kozlowski wrote:
+> On 02/01/2025 19:31, J. Neuschäfer via B4 Relay wrote:
+[...]
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/leds/common.h>
+> > +#include <dt-bindings/input/input.h>
 > > +
-> > +				bootcpu_valid = true;
-> > +				early_map_cpu_to_node(0,
-> > of_node_to_nid(dn)); +
-> > +				/*
-> > +				 * cpu_logical_map has already been
-> > +				 * initialized and the boot cpu
-> > doesn't need
-> > +				 * the enable-method so continue
-> > without
-> > +				 * incrementing cpu.
-> > +				 */
-> > +				continue;
-> > +			}
-> >  
-> > -		if (cpu_count >= NR_CPUS)
-> > -			goto next;
-> > +			if (cpu_count >= NR_CPUS)
-> > +				goto next;
-> >  
-> > -		pr_debug("cpu logical map 0x%llx\n", hwid);
-> > -		set_cpu_logical_map(cpu_count, hwid);
-> > +			pr_debug("cpu logical map 0x%llx\n", hwid);
-> > +			set_cpu_logical_map(cpu_count, hwid);
-> >  
-> > -		early_map_cpu_to_node(cpu_count,
-> > of_node_to_nid(dn));
-> > +			early_map_cpu_to_node(cpu_count,
-> > of_node_to_nid(dn)); next:
-> > -		cpu_count++;
-> > +			cpu_count++;
-> > +		}
-> >  	}
-> >  }
-> >  
-> > -- 
-> > 2.43.0
-> > 
-> >   
+> > +/ {
+> > +	compatible = "lancom,nwapp2", "fsl,mpc8314e";
 > 
+> Missing bindings. Please run scripts/checkpatch.pl and fix reported
+> warnings. After that, run also `scripts/checkpatch.pl --strict` and
+> (probably) fix more warnings. Some warnings can be ignored, especially
+> from --strict run, but the code here looks like it needs a fix. Feel
+> free to get in touch if the warning is not clear.
 
+Alright, I'll write the bindings.
+
+> > +	model = "LANCOM NWAPP2";
+> > +
+> > +	memory {
+> > +		reg = <0x00000000 0x08000000>;	// 128MB at 0
+> > +	};
+[...]
+> > +&localbus {
+> > +	status = "okay";
+> > +	ranges = <0x0 0x0 0xfe000000 0x00008000>;
+> > +
+> > +	nand@0,0 {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <1>;
+> > +		compatible = "fsl,mpc8315-fcm-nand",
+> 
+> Compatible is always the first property.
+> 
+> > +			     "fsl,elbc-fcm-nand";
+> > +		reg = <0x0 0x0 0x2000>;
+> 
+> reg follows.
+
+Ok, will fix.
 
