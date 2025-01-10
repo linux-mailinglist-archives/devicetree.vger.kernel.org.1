@@ -1,133 +1,121 @@
-Return-Path: <devicetree+bounces-137477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C9FA0928F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:54:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7529A09296
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:54:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61804169B30
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:54:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 105E2188DCD9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:54:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0302120FA85;
-	Fri, 10 Jan 2025 13:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B00C220E71B;
+	Fri, 10 Jan 2025 13:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TOvaP1he"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H1i7iDdo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FC120E719;
-	Fri, 10 Jan 2025 13:54:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8657120E717;
+	Fri, 10 Jan 2025 13:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736517251; cv=none; b=b7f1OO+CP5NJ6ALpgv5dq3/YFz3UuGXq9bbPJAzvBmn7xrXLVT/XWjWqgWI+jUOjoooubEH31gxolO3BORK4WrsoVBUJ9hRacF0gX2eFoNQK1gSBSve2OEIcZa5OsYyaFuqE/WEHZvZRxknPBuUuV1zSMbrwG5ZzHnqiCkks/mk=
+	t=1736517258; cv=none; b=FzV1Bv0jjjd/gHiWvgxZ+PKxKylSMkDnUKHwIynDgMDNd3L8vt8ct7ZP1r7t92doKSxQK9FSQHFmeFcLghPQDBumtzgx5gd9SMpgK9vjILi0D8DKBYcVzhI1pFtn1yDRt1rgkE9YMR4dh8/r8Q/PHw3iqgnJpZsppbN/UDeEC8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736517251; c=relaxed/simple;
-	bh=jEVCuEZV5Gr8pXT1qYg9b6tzkbYnHjzSBCglmFu48nc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cGkKdBRr6Akp5Z8msDKyPZepnJCE1ZKmczw1g9aQvR3Y0YNvg7tbfdnJhDEQ5ChYg/aqwAs/onFDN+aEGRQImgJ64/ZJ5SavaAyPmayX9yAYHJZXvrlntJ+dbvsZtwBFkvAZtT+AeEOGfCNC8RxcsN4+wzJk3O4cBoKmz0q67eQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TOvaP1he; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 921FDC4CED6;
-	Fri, 10 Jan 2025 13:54:01 +0000 (UTC)
+	s=arc-20240116; t=1736517258; c=relaxed/simple;
+	bh=LPyn4zGg07EcDbmN8qbWXQu2T7iAh+g4Zanw4aY6Nh8=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=M+ayl2UdrwJyaXIICmo+mq0VjIoLV9Ink1AbFd8AMUpolNw4UuwjNRnaxxc0wFvC2MXeq54lWhl1oBAlLDIx5Ik9pSYq6R44wcVrLFCWyljSaTVIi6TA5fMmEUxebDX2LRcLQqL7ffvPrEPz739B/Iio3yeRwaQB1bvlXwRek4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H1i7iDdo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A59C4CED6;
+	Fri, 10 Jan 2025 13:54:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736517251;
-	bh=jEVCuEZV5Gr8pXT1qYg9b6tzkbYnHjzSBCglmFu48nc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TOvaP1heR4Ub7inpuLtgEwGwSQ9y1fkA0FVa+8VWiaH7mpstEm+NodxZX4p2rqV+8
-	 hVGLu+HrHOPv3Dw6I5QoH7fxzVP96CFx0ysGgCWCCz2VZ7iuQL6FNoIKeHDu+oWrN/
-	 vg4Fa8TFAEy0Yr1lWYQQLjxM7I8iiDwRUkABALDu6gUjmDLY89ORHTE1ouHE41wTrH
-	 RGABTcBwqjrxKihT1ugdZTHSO8iq9RlKCAxSnD/kxXTh4WogbecrMkdJ2H5070TN42
-	 GktNsn1wPo6V7DwW8Ek2n/CN5QraK8D7Z9da0orkvRJ9WKGuGp588JtQf+2Gy8Jive
-	 FOe3yARaYywmw==
-Message-ID: <f3712c29-47b0-42bc-9135-c35a24fafb35@kernel.org>
-Date: Fri, 10 Jan 2025 14:53:59 +0100
+	s=k20201202; t=1736517258;
+	bh=LPyn4zGg07EcDbmN8qbWXQu2T7iAh+g4Zanw4aY6Nh8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=H1i7iDdofr9qkOBohfvLG/GVjtxC9Z00nO04TIA58X6C+keS8dUXICi6bBaeuj2Dt
+	 Pko98ZdIdgOUMCofPtQTgxwmYZ4PP0hvo9WK3mPj0/7ZauGM1Ad5oD0iBtoZWe0IDX
+	 y2L2PvkOLyFXzC2q2C6TaNSeaEzT3XXnmfCGR+3Vy1eiN0UuxU0ftygmGgz699MRId
+	 3jxq4Jpt78UNbLt0mhHc0gPZqS2v6IhEXsEwHweBQ0ZYYdLaZI8jmM0Sjgdy9I1Osr
+	 umyM4/UBnwruuY8eBJ+Hlv2zVHLS9NOGSm35xNbSseytgAIT0635GCHA5xEBPJf60E
+	 CcSS/oesWAREg==
+Date: Fri, 10 Jan 2025 07:54:16 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/12] dt-bindings: power: add V853 ppu bindings
-To: Andras Szemzo <szemzo.andras@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20250110123923.270626-1-szemzo.andras@gmail.com>
- <20250110123923.270626-10-szemzo.andras@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250110123923.270626-10-szemzo.andras@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 10/01/2025 13:39, Andras Szemzo wrote:
-> The device-tree needs ppu indexes, add it.
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: conor+dt@kernel.org, singo.chang@mediatek.com, sunny.shen@mediatek.com, 
+ chunkuang.hu@kernel.org, Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ fshao@chromium.org, sirius.wang@mediatek.com, 
+ dri-devel@lists.freedesktop.org, matthias.bgg@gmail.com, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ xiandong.wang@mediatek.com, treapking@chromium.org, nancy.lin@mediatek.com, 
+ linux-mediatek@lists.infradead.org, p.zabel@pengutronix.de, 
+ jason-jh.lin@mediatek.com, angelogioacchino.delregno@collabora.com, 
+ linux-arm-kernel@lists.infradead.org, krzk+dt@kernel.org
+To: "paul-pl.chen" <paul-pl.chen@mediatek.com>
+In-Reply-To: <20250110123835.2719824-5-paul-pl.chen@mediatek.com>
+References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
+ <20250110123835.2719824-5-paul-pl.chen@mediatek.com>
+Message-Id: <173651725269.2671643.2891127782637834272.robh@kernel.org>
+Subject: Re: [PATCH 03/12] dt-bindings: display: mediatek: add EXDMA yaml
+ for MT8196
 
 
-This belongs to the commit introducing binding. Squash it.
+On Fri, 10 Jan 2025 20:33:59 +0800, paul-pl.chen wrote:
+> From: "Paul-pl.Chen" <paul-pl.chen@mediatek.com>
+> 
+> Add mediatek,exdma.yaml to support EXDMA for MT8196.
+> 
+> Signed-off-by: Paul-pl.Chen <paul-pl.chen@mediatek.com>
+> ---
+> The header used in examples:
+> #include <dt-bindings/clock/mt8196-clk.h>
+> #include <dt-bindings/power/mt8196-power.h>
+> are not upstreamed yet.
+> It will be sent by related owner soon.
+> ---
+>  .../display/mediatek/mediatek,exdma.yaml      | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,exdma.yaml
+> 
 
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/mediatek/mediatek,exdma.example.dts:18:18: fatal error: dt-bindings/clock/mt8196-clk.h: No such file or directory
+   18 |         #include <dt-bindings/clock/mt8196-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/display/mediatek/mediatek,exdma.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250110123835.2719824-5-paul-pl.chen@mediatek.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
