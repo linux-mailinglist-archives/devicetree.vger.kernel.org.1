@@ -1,173 +1,277 @@
-Return-Path: <devicetree+bounces-137538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C49A0965D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:49:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7AC8A09671
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:54:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1D4F3A2F70
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:49:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60A96188C9AA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5AF212B34;
-	Fri, 10 Jan 2025 15:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7815C211A00;
+	Fri, 10 Jan 2025 15:54:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Rz/9sZ8b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qqo2nWRt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C0221170D;
-	Fri, 10 Jan 2025 15:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A62B2066E5;
+	Fri, 10 Jan 2025 15:54:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736524093; cv=none; b=sQatOijsUzXx3iYLnVglnSJxQDAxKy+N4ceNNpcLSf9YCuUJw8Qym6ybcBDio/Q1cJceTIGrovu8RnhMokwe1T18Jrt6JKzU56M2CI6LUd6R4C/amGizO2P/TNx5yYJ6wXEIz4e+kTWGfND5rRbMNHRZhQMs2GcVvS0dQkvrBvI=
+	t=1736524446; cv=none; b=MxT1XFLZc2NOxO0xAuoCRyxzQDX0Kz1vGdSYkNVkDwMym1n5bEACXGVQHsr/uWmUY/ycztO6spD5ZBvlCzlzojkneTuyZ9CU8JUmLlRygEcBkrGOETAQMukJVuIy0NBHbfkVYTA8ZwPma7Ws8BwxqargY9P+o1PX4BjYhShbxNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736524093; c=relaxed/simple;
-	bh=Jr7VyUoIkNG6d6YfdaHSLfBibIZqC8OHDL6BhW1ySfA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sI9mphXbNn6MaP1IypSFdPIIbCqnCROSpOWRdl60H9azc9iNjHq8TTYPUmNAhBJygVRTlPBYfeR1hfxO25BLqW4kcEls549FQhwn7ST/TTefpvF+ELnYDMsFl1XV3oYndjTy6N+oJ31yHT6ycKJO5MK2YgScXhlB/Xlx2BIVNdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Rz/9sZ8b; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50A7olJV012118;
-	Fri, 10 Jan 2025 15:47:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZH7NsnaYQIW3uhD4vIZYW7ne4Qj4WFMGNxG1ZfvEkA0=; b=Rz/9sZ8bLsPm/Mlc
-	rMH6+rA1TL9WorOU4fxoEwi3arfsQ9REqvD/W5EmGVaCtSF7O29lo0f7Sx9lwDtb
-	hflo76Y6gbQW2bzBfCgVl/DEwImkUzorHNIjD2q74a0t5P74sc++dwCCpYvGTDxx
-	g0KrkBikd+jinAFp8WeTpmbcbAqau1rqO9lkJP+yX9e1VCYOSdib6DwBOP0t1xi/
-	+iRvzn7WseJrvhVc1VpQaDOfXVOC7kKTBCItUc0ai0ABlFNtACKsIEWvscIdARLf
-	SUl1ot8KXOA/w7uTQgSpiUdKKh5H8nhu40APEpdoXJhc+z34nyWnQ64WpihchUwH
-	IMcCOw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442yh3had4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Jan 2025 15:47:58 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50AFlvjM002538
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Jan 2025 15:47:57 GMT
-Received: from [10.253.12.10] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 10 Jan
- 2025 07:47:51 -0800
-Message-ID: <800001ff-7fb6-46ad-b4a0-9b7b4a6ba977@quicinc.com>
-Date: Fri, 10 Jan 2025 23:47:49 +0800
+	s=arc-20240116; t=1736524446; c=relaxed/simple;
+	bh=KtZ4c7jWTzK/1RwsYWEQ3b4sPV8HEvuExiQjmVNRQaQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jh6Gdg4VmGgaY37q/4BFnwAE24sHZkRr+LFlak7841VfDUBqr7+BbkZEs5LL2wDnZpOXCxfNuqi8vWpvUH8Cg1rkokLOKg0D4HyaEqeVlBmeybrracgoI8Jocf8nMOpDc7h0TsXrB3cMB4l9Xnw2DdjKjY7OXfTOcKXkIctS2YQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qqo2nWRt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3500C4CED6;
+	Fri, 10 Jan 2025 15:54:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736524445;
+	bh=KtZ4c7jWTzK/1RwsYWEQ3b4sPV8HEvuExiQjmVNRQaQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qqo2nWRtkTXHYUIcAvGXBfFz9lRjc90pKSWJa3X5Rt1ujIb/Zfnhbs3zoTHzUnZKS
+	 reXKrHisV3jT85sYHUYGWu2GG2+M3aKs8lyIE0WUXx3dwmlBJtEanCJzsQ6oqekaCq
+	 2NYie+vO8run7Cf1nlJJsbiQsrip82LufKuN+HshH3W0GpZUAfOn5yvWT8NTov4Xez
+	 BX81epoL9777exAxcqECpJnGfTixE4bc4vv3AIdQoF4BNqfyPCDcJi10VzyzCL1tVA
+	 7zysNjo68cGIj9mxNi9/FLuUFdGFjJNFZ+GdPv/qtXylav7Ugpae9E899Nm3XG6TDx
+	 W/f9aIUS8o5ow==
+Date: Fri, 10 Jan 2025 09:54:04 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Chuan Liu <chuan.liu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+	devicetree <devicetree@vger.kernel.org>,
+	linux-clk <linux-clk@vger.kernel.org>,
+	linux-amlogic <linux-amlogic@lists.infradead.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>,
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: clock: add Amlogic T7 PLL clock
+ controller
+Message-ID: <20250110155404.GA2928945-robh@kernel.org>
+References: <20250108094025.2664201-1-jian.hu@amlogic.com>
+ <20250108094025.2664201-2-jian.hu@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 01/14] dt-bindings: net: Add PPE for Qualcomm
- IPQ9574 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
-        Suruchi Agarwal
-	<quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>,
-        "Simon
- Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <john@phrozen.org>
-References: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
- <20250108-qcom_ipq_ppe-v2-1-7394dbda7199@quicinc.com>
- <s7z6d6mza3a6bzmokwnuszpgkjqh2gnnxowdqklewzswogaapn@rhb5uhes7gbw>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <s7z6d6mza3a6bzmokwnuszpgkjqh2gnnxowdqklewzswogaapn@rhb5uhes7gbw>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 1jDwvpzfPFOwTHI6_vwQpNr1Mk-yCQxw
-X-Proofpoint-GUID: 1jDwvpzfPFOwTHI6_vwQpNr1Mk-yCQxw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 mlxscore=0 mlxlogscore=720 spamscore=0 impostorscore=0
- priorityscore=1501 bulkscore=0 phishscore=0 clxscore=1015 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501100123
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250108094025.2664201-2-jian.hu@amlogic.com>
 
-
-
-On 1/9/2025 5:15 PM, Krzysztof Kozlowski wrote:
-> On Wed, Jan 08, 2025 at 09:47:08PM +0800, Luo Jie wrote:
->> +    required:
->> +      - clocks
->> +      - clock-names
->> +      - resets
->> +      - interrupts
->> +      - interrupt-names
->> +
->> +  ethernet-ports:
+On Wed, Jan 08, 2025 at 05:40:21PM +0800, Jian Hu wrote:
+> Add DT bindings for the PLL clock controller of the Amlogic T7 SoC family.
 > 
-> This device really looks like DSA or other ethernet switch, so I would
-> really expect proper $ref in top-level.
-
-Sure, agree that the PPE is better modeled as an Ethernet switch. I will
-add and use the $ref ethernet-switch.yaml in the top-level.
-
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  .../bindings/clock/amlogic,t7-pll-clkc.yaml   | 103 ++++++++++++++++++
+>  .../dt-bindings/clock/amlogic,t7-pll-clkc.h   |  57 ++++++++++
+>  2 files changed, 160 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,t7-pll-clkc.h
 > 
->> +    type: object
->> +    additionalProperties: false
->> +    properties:
->> +      '#address-cells':
->> +        const: 1
->> +      '#size-cells':
->> +        const: 0
->> +
->> +    patternProperties:
->> +      "^port@[1-6]$":
->> +        type: object
->> +        $ref: ethernet-controller.yaml#
-> 
-> Everything here is duplicating DSA or ethernet-switch, so that's
-> surprising.
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+> new file mode 100644
+> index 000000000000..fd0323678d37
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +# Copyright (C) 2024 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,t7-pll-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic T7 PLL Clock Control Controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@amlogic.com>
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +if:
 
-I will remove the current 'ethernet-ports' node and the "$ref: ethernet-
-controller.yaml#" from the port node. As the top-level $ref, will use 
-ethernet-switch.yaml instead.
+Move this after 'required' section.
 
-The PPE Ethernet port node requires the additional DT properties clocks
-and resets, which will be added into the switch port node. Thanks.
+Generally we put 'if' under 'allOf' because we're likely to have another 
+if/then schema on the next compatible added. If you don't think this 
+binding will ever get used on another chip, then it is fine as-is.
 
-> 
->> +        unevaluatedProperties: false
->> +        description:
->> +          PPE port that includes the MAC used to connect the external
->> +          switch or PHY via the PCS.
-> 
-> Best regards,
-> Krzysztof
-> 
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: amlogic,t7-pll-mclk
+> +
+> +then:
+> +  properties:
+> +    clocks:
+> +      items:
+> +        - description: mclk pll input oscillator gate
+> +        - description: 24M oscillator input clock source for mclk_sel_0
+> +        - description: fix 50Mhz input clock source for mclk_sel_0
+> +
+> +    clock-names:
+> +      items:
+> +        - const: input
+> +        - const: mclk_in0
+> +        - const: mclk_in1
 
+Move these to top-level and then both of these are just 'minItems: 3'.
+
+> +
+> +else:
+> +  properties:
+> +    clocks:
+> +      items:
+> +        - description: pll input oscillator gate
+> +
+> +    clock-names:
+> +      items:
+> +        - const: input
+
+And 'maxItems: 1' here.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,t7-pll-gp0
+> +      - amlogic,t7-pll-gp1
+> +      - amlogic,t7-pll-hifi
+> +      - amlogic,t7-pll-pcie
+> +      - amlogic,t7-mpll
+> +      - amlogic,t7-pll-hdmi
+> +      - amlogic,t7-pll-mclk
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 3
+
+These are the 'top-level' definitions if that's not clear.
+
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clock-controller@8080 {
+> +            compatible = "amlogic,t7-pll-gp0";
+> +            reg = <0 0x8080 0 0x20>;
+> +            clocks = <&scmi_clk 2>;
+> +            clock-names = "input";
+> +            #clock-cells = <1>;
+> +        };
+> +
+> +        clock-controller@8300 {
+> +            compatible = "amlogic,t7-pll-mclk";
+> +            reg = <0 0x8300 0 0x18>;
+> +            clocks = <&scmi_clk 2>,
+> +                     <&xtal>,
+> +                     <&scmi_clk 31>;
+> +            clock-names = "input", "mclk_in0", "mclk_in1";
+> +            #clock-cells = <1>;
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/clock/amlogic,t7-pll-clkc.h b/include/dt-bindings/clock/amlogic,t7-pll-clkc.h
+> new file mode 100644
+> index 000000000000..e88c342028db
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,t7-pll-clkc.h
+> @@ -0,0 +1,57 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + */
+> +
+> +#ifndef __T7_PLL_CLKC_H
+> +#define __T7_PLL_CLKC_H
+> +
+> +/* GP0 */
+> +#define CLKID_GP0_PLL_DCO	0
+> +#define CLKID_GP0_PLL		1
+> +
+> +/* GP1 */
+> +#define CLKID_GP1_PLL_DCO	0
+> +#define CLKID_GP1_PLL		1
+> +
+> +/* HIFI */
+> +#define CLKID_HIFI_PLL_DCO	0
+> +#define CLKID_HIFI_PLL		1
+> +
+> +/* PCIE */
+> +#define CLKID_PCIE_PLL_DCO	0
+> +#define CLKID_PCIE_PLL_DCO_DIV2	1
+> +#define CLKID_PCIE_PLL_OD	2
+> +#define CLKID_PCIE_PLL		3
+> +
+> +/* MPLL */
+> +#define CLKID_MPLL_PREDIV	0
+> +#define CLKID_MPLL0_DIV		1
+> +#define CLKID_MPLL0		2
+> +#define CLKID_MPLL1_DIV		3
+> +#define CLKID_MPLL1		4
+> +#define CLKID_MPLL2_DIV		5
+> +#define CLKID_MPLL2		6
+> +#define CLKID_MPLL3_DIV		7
+> +#define CLKID_MPLL3		8
+> +
+> +/* HDMI */
+> +#define CLKID_HDMI_PLL_DCO	0
+> +#define CLKID_HDMI_PLL_OD	1
+> +#define CLKID_HDMI_PLL		2
+> +
+> +/* MCLK */
+> +#define CLKID_MCLK_PLL_DCO	0
+> +#define CLKID_MCLK_PRE		1
+> +#define CLKID_MCLK_PLL		2
+> +#define CLKID_MCLK_0_SEL	3
+> +#define CLKID_MCLK_0_DIV2	4
+> +#define CLKID_MCLK_0_PRE	5
+> +#define CLKID_MCLK_0		6
+> +#define CLKID_MCLK_1_SEL	7
+> +#define CLKID_MCLK_1_DIV2	8
+> +#define CLKID_MCLK_1_PRE	9
+> +#define CLKID_MCLK_1		10
+> +
+> +#endif /* __T7_PLL_CLKC_H */
+> -- 
+> 2.47.1
+> 
 
