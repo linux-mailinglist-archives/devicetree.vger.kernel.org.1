@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-137457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37425A09130
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:56:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A70A09149
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:59:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04D277A3518
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 12:56:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F8B33A5217
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 12:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C1E20D4F2;
-	Fri, 10 Jan 2025 12:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C6120DD65;
+	Fri, 10 Jan 2025 12:58:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PhDqwEiP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/rJhxP/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E2F20B807;
-	Fri, 10 Jan 2025 12:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C066C20B807;
+	Fri, 10 Jan 2025 12:58:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736513797; cv=none; b=l7QbNCvO5s6GQm1iu7rsXMIrFNq15Kj6HPBVKIWnuqkeh2wF5fIO73tMczr3oBSyNb0jRPGuqtM4TGoO/0AvXeX7Ol0r61v28hqshEzOI1kSYgtICbu9qkruTm78KYt18KSzpj8lWNsmFIYF1SWEQ6lQYtqRxNJC7VLc65BN0oc=
+	t=1736513907; cv=none; b=ta2vq6TPOi9o0xQnoRQmj5F4Gde/mRUnrvx7xfG6lTKTJ6uRfXlrDL/O8DyNr2EhkUPanEq/C1+bJUszFvbdCCIeoRHJCyd7PHVT6A8k0HLbI/Fr0Qf0TYkGGqYt62jxkE6XYAbak4hGSbomg4m+hk3TygnGzZ3atLlFNz+He88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736513797; c=relaxed/simple;
-	bh=5UPIwkiu1h9JsN3Iu8XOkVZsHUpA/X+H3eUb5eeSgyc=;
+	s=arc-20240116; t=1736513907; c=relaxed/simple;
+	bh=XZt40d7lk7aYWQUmstyqSQy2fHiY4SGEmmPx9wjkcQI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D3f1wfKKowNJXrraPuKV1SBUzsjMKIanwGRbLuke0uMNY7Eu9WWMb+hFKv/o0GuuFZZdIAsjnQTEJ08UfYZWZ52WIYMpxtcoavyrxQCUWXQ1IdPFEkblj5KxuoEgPZMP5TrzLuOujEUCSJ6ytx5wNsCtfVzRT26KjiG8ht6lLUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PhDqwEiP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21A1EC4CEE0;
-	Fri, 10 Jan 2025 12:56:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OJXlaoYFzLLWoh39QpXuxA9dfllqb6R+iEYvC7oYW/JYVB249My07tZyjOqQadapzgog/fkdvogUt2RET40fPaITnzsT9cu8FdW7SJqDqj+SxR5N+1RQjpHjBvamRzp4tSTPWa5cJfGAzg43EW8qxfa4zzzyOP2SUk93wqSYXYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/rJhxP/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 201BFC4CED6;
+	Fri, 10 Jan 2025 12:58:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736513797;
-	bh=5UPIwkiu1h9JsN3Iu8XOkVZsHUpA/X+H3eUb5eeSgyc=;
+	s=k20201202; t=1736513907;
+	bh=XZt40d7lk7aYWQUmstyqSQy2fHiY4SGEmmPx9wjkcQI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PhDqwEiPOOwi25y2oYc9XI8ooYW63187JFXu4rl4D/02Qb4c7PpRceZTO2szIl+Az
-	 6kBCW2LuvkruNMzxMu6lThDKrHHmOl7oeY60bQxKm3tzbLv4S7suqD56eENAAJPDY7
-	 bgjoWg4CD9jvXjikymTQghi2gZ0t6KOAlc16GU7TvCoJ3ppDPdfmZjZgtUfAsyWcQ1
-	 DuTMVXtm6KnytwdSudGVIttzer1J8bnbJaxPalUxHyZ40bB8LVe1Mf3hQjib38qZee
-	 p/SAlVm60rG1UXaXNzuuIOpR0LL7wbcwu9UPCE8PNp3b2LjON+FFoPUun5gOIa1uCo
-	 B0GI/LOhdhftw==
-Message-ID: <a4f38646-df2b-4f58-afc6-399e58b29c9f@kernel.org>
-Date: Fri, 10 Jan 2025 13:56:31 +0100
+	b=c/rJhxP/U7eXuHD3g5AFaGBrh7lsXeeKdZrlyyKVO/VGKPCMUtbBM3TJWaaRdLDQx
+	 4ntfAn+yUcGvx4JsZTu4Atr9xNGWVZ6WkQWvjP6kzZKuDOZsGpd/uQiEAZPPk1wzpe
+	 jB54evtZQMdty3JhUXMbhr07U/9hmm+bg/BT+karWIu6Cb2h3WzpoIdYcuW6iK3myf
+	 Us3cb3MGaFSeW12GpOILmZxHO7qibXVgbGkDOc75S/cJB/B9tOlKfk2FbZwPj8z2Se
+	 DVKLsxJCmbgRW6pb30mjjF1pC07vk85n/ejVskSsQIppX7RzuY3hKhbrS0Mnv2MDfF
+	 VPdJQiGjpA2mw==
+Message-ID: <0499ee04-0fcc-42e1-aab8-3cb8daa88c88@kernel.org>
+Date: Fri, 10 Jan 2025 13:58:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: socfpga: stratix10_swvp: remove invalid
- sysmgr properties
-To: "Rabara, Niravkumar L" <niravkumar.l.rabara@intel.com>,
- Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: lkp <lkp@intel.com>
-References: <20250110112654.3475361-1-niravkumar.l.rabara@intel.com>
- <cd4f2221-34a4-4fff-b5ad-9faf4190c849@kernel.org>
- <BL3PR11MB6532C0F5634AC46C04B78733A21C2@BL3PR11MB6532.namprd11.prod.outlook.com>
+Subject: Re: [PATCH 01/12] dt-bindings: arm: mediatek: mmsys: add compatible
+ for MT8196
+To: "paul-pl.chen" <paul-pl.chen@mediatek.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, chunkuang.hu@kernel.org,
+ angelogioacchino.delregno@collabora.com
+Cc: matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+ jason-jh.lin@mediatek.com, nancy.lin@mediatek.com, singo.chang@mediatek.com,
+ xiandong.wang@mediatek.com, sirius.wang@mediatek.com,
+ sunny.shen@mediatek.com, fshao@chromium.org, treapking@chromium.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
+ <20250110123835.2719824-2-paul-pl.chen@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,28 +110,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <BL3PR11MB6532C0F5634AC46C04B78733A21C2@BL3PR11MB6532.namprd11.prod.outlook.com>
+In-Reply-To: <20250110123835.2719824-2-paul-pl.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/01/2025 13:39, Rabara, Niravkumar L wrote:
->>>  &sysmgr {
->>>  	reg = <0xffd12000 0x1000>;
->>> -	interrupts = <0x0 0x10 0x4>;
->>
->> Is this correct? Some background would be useful.
+On 10/01/2025 13:33, paul-pl.chen wrote:
+> From: "Paul-pl.Chen" <paul-pl.chen@mediatek.com>
 > 
-> stratix10_swvp.dts is for legacy Stratix10 SW Virtual Platform.
-> The socfpga system manager dt binding does not include "interrupt" property
-> and the existing socfpga board files does not use it for sysmgr.
-> (e.g. Cyclon5/Arria10/stratix10/Agilex)
+> Add compatible for mmsys yaml of MT8196
 > 
-> Socfpga system manager drivers (altera-sysmgr.c/socfpga.c) also does not use
-> interrupt property.
-> The stratix10_swvp.dts has this property since beginning(unused) but 
-> dtbs_check warning only appeared recently when I convert system manger binding
-> from txt to yaml.
-All this I deduced from the change, but it still not answer about hardware.
+> Signed-off-by: Paul-pl.Chen <paul-pl.chen@mediatek.com>
+
+
+This is a wide pattern now in Mediatek: login name is used as family
+name. Repeating the same comment to every Mediatek employee is a bit
+tedious, so maybe you could fix it internally?
+
+Create some guideline for your colleagues so you won't repeat the same
+things over and over?
 
 Best regards,
 Krzysztof
