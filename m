@@ -1,116 +1,125 @@
-Return-Path: <devicetree+bounces-137419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F30A08F77
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 12:32:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15041A08F64
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 12:30:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3A6A1888A18
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:31:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C67EF188C8CB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF3A20C47A;
-	Fri, 10 Jan 2025 11:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09D720B216;
+	Fri, 10 Jan 2025 11:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OE3U2qC9"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="JrDYpn1G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F5920ADFF;
-	Fri, 10 Jan 2025 11:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736508617; cv=none; b=RAaQ/J38E1iEpz2rCquedGrTyPDqr/56y9zax0xrsMYZy2m4Irw/9aslOi1QfpJyh1B56T+mwdgSHcfAPeWtQBKXyWO6M9ruWdfFhy8NOGbtCTzAcWRKbjWp3a48K/3WmZp1fsdi5jcmx9rf1YV886+F+csKoD09mo22L4cEekg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736508617; c=relaxed/simple;
-	bh=ncvOBp1G28yV0qvok4auutoNJFjt8SDloW3TqJL32T0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LMdVU3++XmpBVv11I36Mvdpej1Z2WJe5pskeFBNlxLRDcX/EE9EZ/Ch6wF09/vfTJ/mlNfHGh2Xlb1rJylwHVj7O7vuhYsYBtoDjhXOXr47BNkH+XfvIU/FB0jRi517CIQx32GW7suNVcKgspGQmHFpW9oe4g4cRU85j/DZj5TM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OE3U2qC9; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736508616; x=1768044616;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=ncvOBp1G28yV0qvok4auutoNJFjt8SDloW3TqJL32T0=;
-  b=OE3U2qC9nRAHCQurW7pr/f9wOWzvua058683v7LkGDfpmICIm6i+Syv3
-   n2fTg9Wu0llkMmW057t1QHe+efT/7Y9G4obAnbXfXmeqljrKpGPYSvjLT
-   KBT/9D/MXfZMDWINMrd+imziKc14J1uzjKGh+aVUJvLuQLeSd3XowlrqH
-   ovhG2gw5EAJatv77xhu5o8KhnSl7IiVCNqSVJ3gkiCow9/hpHlKg/hiz0
-   QMGIfCIx6goiHdQJbsfISzcon9WvaiVod0Y1z7yd8L+QQTbeT1lQiwR2l
-   5CWcCFShU6GhR4dKJl5o164w9FbTRme6sbaQZSzJFktH4gE/7UoM1y2DK
-   g==;
-X-CSE-ConnectionGUID: x0EYRv7TQGejjXH1Q2kmtQ==
-X-CSE-MsgGUID: 7R8UvKwfTIKAJz4eR4N96g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="54339653"
-X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; 
-   d="scan'208";a="54339653"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2025 03:30:15 -0800
-X-CSE-ConnectionGUID: E0xe+VlcTRmNfCkwAqHz8w==
-X-CSE-MsgGUID: /RwU2LvMS0OGbTPHxHr5Vg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; 
-   d="scan'208";a="103897410"
-Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
-  by fmviesa008.fm.intel.com with ESMTP; 10 Jan 2025 03:30:13 -0800
-From: niravkumar.l.rabara@intel.com
-To: Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	niravkumar.l.rabara@intel.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: kernel test robot <lkp@intel.com>
-Subject: [PATCH] arm64: dts: socfpga: stratix10_swvp: remove invalid sysmgr properties
-Date: Fri, 10 Jan 2025 19:26:54 +0800
-Message-Id: <20250110112654.3475361-1-niravkumar.l.rabara@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D62205ABA;
+	Fri, 10 Jan 2025 11:28:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736508533; cv=pass; b=lqDo0JDLg3U8QW6ZfQc4PQCSwG4FjL1mClKOCaXj59Q+vFvYVjs0XzAiSBoyDDLxyL8DTEM3KXbi/lnvaUDiy5eBJrl/TvJerQLvemSPLd9Tgb7orJge2z5mDbfnhtuEjIPiEm5XSLkE5Ft+lSwZhQ7+yN2hRFzwWIg8Xc78S4o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736508533; c=relaxed/simple;
+	bh=tGMWP22lRZiF4apXgcb505FMdg6oFsqiueeDoZ6ayTw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BxcDSMvfxVrBFdPSkZBHDsz2YIU7WW+19W0MxfzS3G16BJqZXUHLOfplKQ5NplfZ/hlLbUXtZhXcKp/jZ6GwUXpgWJq6R1LuDndZBgT7h/S+BcgPEoJOTZ4J5G/hPpBt39uGJNwAPG0quVB5YBhxEVpaPTaNiT86223BqVBiPKI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=JrDYpn1G; arc=pass smtp.client-ip=136.143.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1736508520; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=HOsZMRubUSsrTtq3uc4mGcMRc+Gx2Why+/bdWNpqiEgMpsP2Ew0urbMMdTEqP52S1ZsQ2nLTDF+wwmD7PDc0zPNjoUEIdYvoN4yQDOctTBguelQItIrrfPnNEFLk/tV3wvLQlhgwSzamA7jlwZneOXLgSHcHqVW0kupcbjFYNPY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1736508520; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=XHW0skSs3z9DAkFAXG0k1p6sJGwaFKMr+xHEcjQkUDs=; 
+	b=d2Bm5Yn/FZgbUkTijCqIh5zyYFYoe+3pnRLwtsFO08fbrSJiVzNa2L3EecyBMZJC4sg7OhFCuSXRizB7cHFRQ0r02Rq5K6wqqRFUnFjpTOowIJCpNa6p+tTl7UtCbMlTPvPKuzOwx3RXrtok9vOETi9Yzrg6Dhdu44OlysbmsSM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1736508520;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
+	bh=XHW0skSs3z9DAkFAXG0k1p6sJGwaFKMr+xHEcjQkUDs=;
+	b=JrDYpn1GZtOtp6yhVlp0v3+kEZdRX1Uhq7D4JEj4kMCnXCWulhoIi2ndiOp7qPsG
+	Jp2LHWZO/WNJNhJVnJVGrV/fLbdwPd6VqXCJGXOnKrfTjFdTEtjeJTzTc+oWCUyoykG
+	UdQ1342QT0A2P1H2hbTJB61o6D0lGnTTH9GLCynk=
+Received: by mx.zohomail.com with SMTPS id 1736508517025335.50238890288267;
+	Fri, 10 Jan 2025 03:28:37 -0800 (PST)
+Message-ID: <a5f8fd53-2519-441d-8931-31cb9aa2eba0@zohomail.com>
+Date: Fri, 10 Jan 2025 19:28:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: Add bindings for Canaan K230
+ clock controller
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Troy Mitchell <TroyMitchell988@gmail.com>
+References: <20250108-b4-k230-clk-v2-0-27b30a2ca52d@zohomail.com>
+ <20250108-b4-k230-clk-v2-1-27b30a2ca52d@zohomail.com>
+ <nvfvyy7vajbskfn542lxbvfkxuhasmnyni2uudy3cdybzlddiu@u46fcydzgxsw>
+Content-Language: en-US
+From: Xukai Wang <kingxukai@zohomail.com>
+In-Reply-To: <nvfvyy7vajbskfn542lxbvfkxuhasmnyni2uudy3cdybzlddiu@u46fcydzgxsw>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Feedback-ID: rr0801122709f634376509b2493cc2e97200001096a1de42159b5406b81eaba735507eb9a8d3bb1521ea2f3c:zu08011227444e24f6f4ad2d26b942796c000060cbfad896ead820a72bac243b820dd7b4ea8ff2fada4817c6:rf0801122c7f5264423e9b8c4dfdda28080000ba302a89ede9433c226f7a94c3dcf4cc1662c260caa3fa6865a3335b41cb:ZohoMail
+X-ZohoMailClient: External
 
-From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-Removed invalid sys-mgr properties for stratix10 and fixed
-dtbs_check warnings like:
 
-socfpga_stratix10_swvp.dtb: sysmgr@ffd12000: cpu1-start-addr: False schema
-does not allow 4291846704
-from schema $id:
-http://devicetree.org/schemas/soc/altera/altr,sys-mgr.yaml#
-socfpga_stratix10_swvp.dtb: sysmgr@ffd12000: 'interrupts' does not match
-any of the regexes: 'pinctrl-[0-9]+'
-from schema $id:
-http://devicetree.org/schemas/soc/altera/altr,sys-mgr.yaml#
+On 2025/1/9 17:02, Krzysztof Kozlowski wrote:
+> On Wed, Jan 08, 2025 at 07:53:07PM +0800, Xukai Wang wrote:
+>> +properties:
+>> +  compatible:
+>> +    const: canaan,k230-clk
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: PLL control registers.
+>> +      - description: Sysclk control registers.
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+> 
+> If there is going to be any new version, then keep the same order in
+> required: as in properties:
+> 
+> In any case:
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+Thank you for the review and your suggestions.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202501091748.L2W2RwE5-lkp@intel.com/
-Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
----
- arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts | 2 --
- 1 file changed, 2 deletions(-)
+I will ensure that the order of `required:` matches the order in 
+`properties:` in any future versions of the patch.
 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-index 0d837d3e65a5..fce1dc2ebad0 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-@@ -110,6 +110,4 @@ &rst {
- 
- &sysmgr {
- 	reg = <0xffd12000 0x1000>;
--	interrupts = <0x0 0x10 0x4>;
--	cpu1-start-addr = <0xffd06230>;
- };
--- 
-2.25.1
+> Best regards,
+> Krzysztof
+> 
 
 
