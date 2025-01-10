@@ -1,128 +1,142 @@
-Return-Path: <devicetree+bounces-137599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A83EA09E2C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 23:38:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1717AA09E22
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 23:37:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 085E33AAC6C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 22:36:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DB577A4792
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 22:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BBC02248AB;
-	Fri, 10 Jan 2025 22:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF54224880;
+	Fri, 10 Jan 2025 22:34:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="fbqKdkfY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UqEL/ehY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mr85p00im-hyfv06011401.me.com (mr85p00im-hyfv06011401.me.com [17.58.23.191])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBBFA217712
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 22:34:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.23.191
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32A002135DF;
+	Fri, 10 Jan 2025 22:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736548474; cv=none; b=ZfW2JA+7wG1LYT9Sqw5mqJ+O6wl5FR3xAr5JsIZnITel4FZ0tqTn5yFfHnrgXw2TzImpBTJYgemcM5d9QY9/VblPnSzGhK2tGgXzZlIUdywWeCUnUveT3lyAeuDOXOrShsGoJ8QwtUDwvZebxX0G+juYGECXdbFqCVIvYJhWnfc=
+	t=1736548443; cv=none; b=H5m/lFIxPndli721v95q4fzsh+ecIQLZI/Kxt6sbnZVOydJ2kFSLveA7QnxOHRGa4CTzvoJEeLOgzgDmryxDWIaabPPXPPAgSf+rIEEiBIEsV/XUAVU53K3cTZRF3Gdtkfo5A5jgquX+EmUWc/BvRZ8OZPsix3GLAdpYKh0SN7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736548474; c=relaxed/simple;
-	bh=NyT/TlNP+fecD/ylGy1NfPDaaofw/fWhiFKIdTZaCfY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dsIx/bygWSNd66uaQOuo38xcoo0RS/IqZqZPWJ0f1fiIoQL+agquiAL0q9f14XGZNrh6k+F7SndUhWdtwIHNYjZgCzdNCTcIpqk1iK6HPYaz8oBelfFmrrWG0tzZqdVgEaYux0Fyv4OSgQmviFet6GQRTOJVyC3GzGVpayy7x8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=fbqKdkfY; arc=none smtp.client-ip=17.58.23.191
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1736548471;
-	bh=wHy6Zon4xDwDb200OfbfzqcvdhouDGirFCJvj9qv2tw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
-	 x-icloud-hme;
-	b=fbqKdkfY/rV8gSHGBdr0TlCUWkzLRvj5B1m7GDgE3a1IHEs+tc6TxdTTbXdzdgeID
-	 I1Vnb/t1JJM04Lp+txJaqJC0rxn8eU58JnLbIILa1jxWZIH5hfnExYx4ghgprwAt8S
-	 Uxcfa+oR2HJiszWwY+LDl4ulB4JjkU/4+fkZ/MUiLxuObP48qCqzii0v+IEUb8JUaO
-	 2qzM8QbBH0v5RtrBLzOFwAn1YSkBWnoqpp86NsxGznPynHCXqE8h7lXP5ZpjlYnhaX
-	 SgeQc20dO79ZmIWl092ZB3EYizb5+QpZnqcwS8GFGWLlyTLjvGIh3B7yixEjVRXI9Z
-	 sI5mSkrxFjmMw==
-Received: from [192.168.1.25] (mr38p00im-dlb-asmtp-mailmevip.me.com [17.57.152.18])
-	by mr85p00im-hyfv06011401.me.com (Postfix) with ESMTPSA id D22DC357B028;
-	Fri, 10 Jan 2025 22:34:26 +0000 (UTC)
-Message-ID: <dc7328d2-502c-4d10-af8f-f3ae02f636b8@icloud.com>
-Date: Sat, 11 Jan 2025 06:34:21 +0800
+	s=arc-20240116; t=1736548443; c=relaxed/simple;
+	bh=TeNFSjKjy8UcROaFLJc1GjjDATnrGgDfmChPlfsoqWg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NfwphQzGHMtJGmFrNWOEGmmkGKIcvW4eyrk6GGRJY5tMJg4wACogYfbN7TraNmr9APjs3uEwUrjglbQ23mVV0vNO8QuxHnTAStvQQkTvS9EiOlzoCly7x/6b5EdGOrQqS9WmwYHtLz04y30QCBm/HdQIawiHEZm4iiXrdRYD65Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UqEL/ehY; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-5187aa2c97dso981060e0c.2;
+        Fri, 10 Jan 2025 14:34:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736548441; x=1737153241; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y+7m1HUJMB9GF2AZ+eHqMjKdwSe1SFU0f8P4kZQFjZo=;
+        b=UqEL/ehYvj9VRhOkMxrS3xieCxOWye9T5oA8/9IDf+rZYQSBVzWKJadsxBl+K/qSMr
+         gcRLibeib3OiGrGLDr6obo/aqX0KgEbzTCwnv0snzv3286qH5hyDHCm+3+KG/fS5Fbc1
+         qmqYlwS6CxieXibZkYIgMsLLagPpcgpDfbzWbEVQsW/ieFp3CNqlFm59HdFHokvgFuQ3
+         zo307DiVwpvIYXgRlkIcSwCcLKt5KyXEE7J4OCPC9nF7V+muLzpUi9lwakxIec7+zVwZ
+         0D1nitYrWAph/mOoslrjNZkKVyTmPd9183xPMDA8wCXWgFOoG0bJPko4LKVRBJvB0xbX
+         EI/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736548441; x=1737153241;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y+7m1HUJMB9GF2AZ+eHqMjKdwSe1SFU0f8P4kZQFjZo=;
+        b=ZBry/N3fiWvZHeT+S2BiY1IvSYxD2a5oqWVT/do3jzUunE6ZLpQvGYI9l6VQi/+oTv
+         pM4x9EZoDbFL6PQR+slrk/6kxePvzi9FER5wado9xIUznfWwLe8uSNjyOM+kvw3TDAPt
+         dkspS2KW4lLo/khRwDVcU2sg5NskhRsncMsHm0AeV3Yu8hWCbNt5VwhFM6u5qUptI1Nl
+         UrxW2PUEVQpuqfJN085r7cm0na8M035fSPP1Mil0oMIOcjBZVw2bhvZP5H65dP0VP/zN
+         6uP7emzi1X39ZYTmc6nXwA9dflDL4SwwvEASwkFr48B8Wik1kZxDiUzEQHEg0gMLJwA0
+         5Jmw==
+X-Forwarded-Encrypted: i=1; AJvYcCVEfI19RDaHuneO4xMIsUnqSN1rKzL18XKNtDkqnsWXv00UJfN8dHrAIvojcHMEL/QGgjz5mm798JuL@vger.kernel.org, AJvYcCXfH2J/Aew3OuGp6Wv/gp7vB8fCZm/kDTB1Bhu7jVMDo3ek5NUcIrMHVavPxaDwLE7q2x4p4EXlaoRGKIWD@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo7JdcGD4k3gcO8CKEd7HmhonC6L8Bt00n0OnL944bZlKNsatC
+	T9PeBAVCKd76pD01HVNhN53fHTPGkW2ZngHdWJbIUxZibZljlvvdaPoDp7qd
+X-Gm-Gg: ASbGncuZR06UgVZr1USc5FOCzLVgcjuE4WLWSwb3MntEYEEYPof/aXbKkJMfWT+YYuH
+	JzGmXuid2/nK2iCccgjL+2uHVTOpLmEYCg95FnSW5Ev1+Jc57JiQPGiJMrQxkTKpqfFw0cXMh7Q
+	yiDWM66MPNdHL2rKOL8/4yPjrDd3Kw8Y8ypgygy5kn81kIcYs8e8/RINoRWKdANg4j3fIk1lLXW
+	cPvaCKqrRaCuZClV0dzBQVd06uUCPfvlh5dHsIWrrHh5p9TsU3ZFrnqbvUw5nvzAms=
+X-Google-Smtp-Source: AGHT+IHyzH5pNIEDMBF4z67ygBR9xYH0Unc7xpWSo32Po/JnjZ0KY+O5PN/uz73T521gyVkiMNlzyQ==
+X-Received: by 2002:a05:6122:926:b0:50d:a31c:678c with SMTP id 71dfb90a1353d-51c6c356692mr12969887e0c.2.1736548441037;
+        Fri, 10 Jan 2025 14:34:01 -0800 (PST)
+Received: from localhost ([2804:30c:1f79:9d00:c6c6:ec89:7531:7838])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-51c7fb9bcefsm2756906e0c.7.2025.01.10.14.33.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jan 2025 14:34:00 -0800 (PST)
+Date: Fri, 10 Jan 2025 19:34:31 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v1 11/15] iio: adc: ad7768-1: Add reg_write_masked
+ function
+Message-ID: <Z4GgdxU-EuR_xYrJ@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1736201898.git.Jonathan.Santos@analog.com>
+ <67649c43050d161621bc0494638bfa71fed82ea8.1736201898.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/14] of: property: Avoiding using uninitialized
- variable @imaplen in parse_interrupt_map()
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, Maxime Ripard
- <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Grant Likely <grant.likely@secretlab.ca>, Marc Zyngier <maz@kernel.org>,
- Andreas Herrmann <andreas.herrmann@calxeda.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>,
- Oreoluwa Babatunde <quic_obabatun@quicinc.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
-References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
- <20250109-of_core_fix-v4-6-db8a72415b8c@quicinc.com>
- <20250110202649.GA3227291-robh@kernel.org>
-Content-Language: en-US
-From: Zijun Hu <zijun_hu@icloud.com>
-In-Reply-To: <20250110202649.GA3227291-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 1IiCdYC92CucYCalf19-LrsRuOsRlUbF
-X-Proofpoint-ORIG-GUID: 1IiCdYC92CucYCalf19-LrsRuOsRlUbF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-10_09,2025-01-10_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0 suspectscore=0
- clxscore=1015 phishscore=0 malwarescore=0 mlxscore=0 spamscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2501100174
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <67649c43050d161621bc0494638bfa71fed82ea8.1736201898.git.Jonathan.Santos@analog.com>
 
-On 2025/1/11 04:26, Rob Herring wrote:
-> On Thu, Jan 09, 2025 at 09:26:57PM +0800, Zijun Hu wrote:
->> From: Zijun Hu <quic_zijuhu@quicinc.com>
->>
->> parse_interrupt_map() will use uninitialized variable @imaplen if fails
->> to get property 'interrupt-map'.
->>
->> Fix by using the variable after successfully getting the property.
->>
->> Fixes: e7985f43609c ("of: property: Fix fw_devlink handling of interrupt-map")
->> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
->> ---
->>  drivers/of/property.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/of/property.c b/drivers/of/property.c
->> index dca1a3ebccae1093b2b11f51e8e692bca854d0e3..6245cbff3527d762c16e7f4b7b7b3d4f2e9ddbe6 100644
->> --- a/drivers/of/property.c
->> +++ b/drivers/of/property.c
->> @@ -1391,9 +1391,9 @@ static struct device_node *parse_interrupt_map(struct device_node *np,
->>  	addrcells = of_bus_n_addr_cells(np);
->>  
->>  	imap = of_get_property(np, "interrupt-map", &imaplen);
->> -	imaplen /= sizeof(*imap);
->>  	if (!imap)
->>  		return NULL;
->> +	imaplen /= sizeof(*imap);
+On 01/07, Jonathan Santos wrote:
+> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
 > 
-> sizeof() is a compile time constant, there's not an actual dereference 
-> here.
+> This commit adds the ad7768_spi_reg_write_masked() which is a helper
+> function for writing specific bits inside a register, without interfering
+> with the other bit values.
 > 
+> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> ---
+>  drivers/iio/adc/ad7768-1.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> index 574d735f2c3a..675af9ea856d 100644
+> --- a/drivers/iio/adc/ad7768-1.c
+> +++ b/drivers/iio/adc/ad7768-1.c
+> @@ -242,6 +242,21 @@ static int ad7768_spi_reg_write(struct ad7768_state *st,
+>  	return spi_write(st->spi, st->data.d8, 2);
+>  }
+>  
+> +static int ad7768_spi_reg_write_masked(struct ad7768_state *st,
+> +				       unsigned int addr,
+> +				       unsigned int mask,
+> +				       unsigned int val)
+> +{
+> +	unsigned int reg_val;
+> +	int ret;
+> +
+> +	ret = ad7768_spi_reg_read(st, addr, &reg_val, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return ad7768_spi_reg_write(st, addr, (reg_val & ~mask) | val);
+> +}
+> +
+ad7768_spi_reg_write_masked() should be added together with at least one
+user of it otherwise it leads to build warnings.
+Though, better if able to convert to regmap as David suggested.
+regmap_set_bits() and regmap_update_bits() come for free.
 
-the uninitialized variable is @imaplen, and not sizeof(*imap).
-
->>  
->>  	imap_end = imap + imaplen;
->>  
->>
->> -- 
->> 2.34.1
->>
-
+>  static int ad7768_set_mode(struct ad7768_state *st,
+>  			   enum ad7768_conv_mode mode)
+>  {
+> -- 
+> 2.34.1
+> 
 
