@@ -1,121 +1,152 @@
-Return-Path: <devicetree+bounces-137421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C16A4A08F8C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 12:36:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D04DA08F8E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 12:36:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A85A2188328D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:36:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D32E1188328B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:36:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B538D20B213;
-	Fri, 10 Jan 2025 11:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F2220B213;
+	Fri, 10 Jan 2025 11:36:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="tevw5jgZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FT+OjZpK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1E01F5435;
-	Fri, 10 Jan 2025 11:36:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99661F5435;
+	Fri, 10 Jan 2025 11:36:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736508965; cv=none; b=mEyeMnPee8tDfcFyLriT4V1ytQtk5DOnst5TQYhEDF4seI5Hp6BYs+Ciweg1tM3Diub8KlVM0FicYp1+0xUnyjJJ4BcqZQvymI+lIbR20Ag6W3hyQ8etjisjK4FhFLHL0rqrwZpPMVZaFhyM4i0Mcxjlm3tf55fWgh7uN8zA834=
+	t=1736508996; cv=none; b=BoYQODFiMtj2Xweo2p4ocwkauqrdnHjH6HwJStglKFZq2mrO2uUvD0ERdgkSd4af8nHbJHQb5KBG0Gy45cf4Vl0JOZepFLWkcFa2q7t1uUJsZz18foKgtFsIchK5mk9ceay/A4azX/BjQXCKGsNQssGpBGqV2EywFS7rXyvPHio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736508965; c=relaxed/simple;
-	bh=kwC+vuxIyyNJprbjpHkXY2NNAC/jFXJ9EGCU+TXHnN0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fG/zULkY/wHdUae0Qi6jol8hU2+pLHjtFSlteLOcPKtsXTq0rjzTv0p/4qvOf8VffQyv7z1xhgMlgvbQm1ydyUuYgYWrTXy0irNsGNPvfaZqMwE8JA6eo+rC3uZhDqBuzXwVrnjvLzrTilUrI9QAKu+xjyWjUwJRuZhlUwQtgm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=tevw5jgZ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 00A53641;
-	Fri, 10 Jan 2025 12:35:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1736508908;
-	bh=kwC+vuxIyyNJprbjpHkXY2NNAC/jFXJ9EGCU+TXHnN0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tevw5jgZuL9lGj20UrL6TT3Yi6ippAnnimR2EDi8zLFm2aYDySg0NW7JmxC4OrVON
-	 9SVPRA4um0V346wQrCInwwuXdlNZRKM6uCWp9hzvIbDebDMGrNY/cOnTt/UM89qN/7
-	 CRRQxzRv3P2Ha6QX4I4CJhdBLu/sRStXXgv8sDS0=
-Date: Fri, 10 Jan 2025 12:35:58 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, 
-	Jacopo Mondi <jacopo.mondi+renesas@ideasonboard.com>, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: r8a779a0: Add FCPVX instances
-Message-ID: <yszbtnmghspdxwdsv2bhoaej3hooo4ck52moirnmqtnfazpk6u@wwbdjqquwyzb>
-References: <20250109125433.2402045-1-niklas.soderlund+renesas@ragnatech.se>
- <20250109125433.2402045-2-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdW1D=o8aaPOAQLPEZw-Y-9MVzzCRGEykEU=39CYeuRW2A@mail.gmail.com>
- <20250110105833.GC308750@ragnatech.se>
+	s=arc-20240116; t=1736508996; c=relaxed/simple;
+	bh=0M2vPNsnXdh9zwuS6VjKGZKThBTSSytgAVoCH0qTmUY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GZ+0AqsCw1Rw1g8Rg+UXNJYrHsGPxibcz3ZTRB2FeX22fTGfCuvL2mSTpPoWbKYXEkBuXkA/dCBzTTy57d43y35PgosbEyjOHLjRqAu3G+aBsR8Ozc7EkAsMxPAb1ehIj3IV3WN7yxp1+xb/78WLveNEl+6bi3GcCItQc7xmDwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FT+OjZpK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85C13C4CED6;
+	Fri, 10 Jan 2025 11:36:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736508996;
+	bh=0M2vPNsnXdh9zwuS6VjKGZKThBTSSytgAVoCH0qTmUY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FT+OjZpKiCa+gmxHbre7eM7w6hBnqEISqEGumvuADRz0zp1ncuq+WkTSAvQhKMli6
+	 cI2um/yQqfQeUKT1zHTfXuIID5WAjph1EhqMF4p4m+iY9mLfsFftQau672FRRoQeJJ
+	 RVYGtAGmJH2IUp0bH+tT4aMp5Hy2VbxBkrOuFa5zQx4NB+HDmred5ICJszNsiPVfRR
+	 ZA2p/Aeqa4/4nWdRxOvPfc6H7FDOZ5qrMeYIEJ3IsFtgB9kEtZcc2Zx53Sj9WbGZqj
+	 Md1lVD3vbU2SUgHfwk3B23P7PiNRNcYl+/n+hzw7iI19tnWt7EYWhD9IW3J/szNOf3
+	 8w1zdH3A6cJWg==
+Message-ID: <cd4f2221-34a4-4fff-b5ad-9faf4190c849@kernel.org>
+Date: Fri, 10 Jan 2025 12:36:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250110105833.GC308750@ragnatech.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: socfpga: stratix10_swvp: remove invalid
+ sysmgr properties
+To: niravkumar.l.rabara@intel.com, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: kernel test robot <lkp@intel.com>
+References: <20250110112654.3475361-1-niravkumar.l.rabara@intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250110112654.3475361-1-niravkumar.l.rabara@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jan 10, 2025 at 11:58:33AM +0100, Niklas Söderlund wrote:
-> Hi Geert,
->
-> Thanks for your review.
->
-> On 2025-01-10 11:44:21 +0100, Geert Uytterhoeven wrote:
-> > Hi Niklas,
-> >
-> > On Thu, Jan 9, 2025 at 1:55 PM Niklas Söderlund
-> > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > Add device nodes for the FCPVX instances on R-Car V3U.
-> > >
-> > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> >
-> > Thanks for your patch!
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > i.e. will queue in renesas-devel for v6.15.
-> >
-> > > --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > > +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > > @@ -2890,6 +2890,42 @@ port@1 {
-> > >                         };
-> > >                 };
-> > >
-> > > +               fcpvx0: fcp@fedb0000 {
-> >
-> > I think it makes sense to move these next to the existing fcp nodes.
-> > If you agree, I can do that while applying.
->
-> The rational here was I sorted it based on addresses, but I'm fine
-> either way. If you can fix this when applying I would be grateful,
-> thanks!
->
-> Same for patch 2/2.
->
+On 10/01/2025 12:26, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> 
+> Removed invalid sys-mgr properties for stratix10 and fixed
 
-Just a note: for r8a779g0 I sorted the VSPX nodes by unit address
-as well.
+"Remove"
 
-> >
-> > Gr{oetje,eeting}s,
-> >
-> >                         Geert
-> >
-> > --
-> > Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> >
-> > In personal conversations with technical people, I call myself a hacker. But
-> > when I'm talking to journalists I just say "programmer" or something like that.
-> >                                 -- Linus Torvalds
->
-> --
-> Kind Regards,
-> Niklas Söderlund
+> dtbs_check warnings like:
+> 
+> socfpga_stratix10_swvp.dtb: sysmgr@ffd12000: cpu1-start-addr: False schema
+> does not allow 4291846704
+> from schema $id:
+> http://devicetree.org/schemas/soc/altera/altr,sys-mgr.yaml#
+> socfpga_stratix10_swvp.dtb: sysmgr@ffd12000: 'interrupts' does not match
+> any of the regexes: 'pinctrl-[0-9]+'
+> from schema $id:
+> http://devicetree.org/schemas/soc/altera/altr,sys-mgr.yaml#
+
+This message is not readable. Don't wrap it.
+
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202501091748.L2W2RwE5-lkp@intel.com/
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> ---
+>  arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+> index 0d837d3e65a5..fce1dc2ebad0 100644
+> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+> @@ -110,6 +110,4 @@ &rst {
+>  
+>  &sysmgr {
+>  	reg = <0xffd12000 0x1000>;
+> -	interrupts = <0x0 0x10 0x4>;
+
+Is this correct? Some background would be useful.
+
+Best regards,
+Krzysztof
 
