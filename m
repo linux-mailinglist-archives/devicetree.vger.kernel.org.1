@@ -1,99 +1,91 @@
-Return-Path: <devicetree+bounces-137322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8207A089B0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:16:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03C47A089BD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:20:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C69153A2BA1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:16:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F20CC160A11
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1602207E07;
-	Fri, 10 Jan 2025 08:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A882080D0;
+	Fri, 10 Jan 2025 08:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jNcxTght"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="m2Djh5DM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2079.outbound.protection.outlook.com [40.107.20.79])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16E5207A37;
-	Fri, 10 Jan 2025 08:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736496982; cv=none; b=qevE/5xNiXesukfr3nIaHGZUicgEB71TV9Ygcaaps1qtN/RWrXLRU8ZQwJtvgutFkfR+jqUwYPJ2HV5Tbm8uRceWLu6wk8OwjGBlmTzMqJ3eIOAAnLvhyBwtnGWLLvh1Qa75Goad5Nnd5oJsXu7WfztM8Iq56pLfZsyaMv2uoRk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736496982; c=relaxed/simple;
-	bh=5cDHMm8zqYMlgAvrdjcgPKx2dRioGoYY10CNWEYe66U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Q0Zs9wVlMyjX2MClV0jXBnVK0Q5fuFzlrE+Hjwxi1+PbHMgSpFS1uAl5OWNyW7DjWXBq3cfH3XuNV8avRywzG5BeYfqcRI6zc7TGJ0S88tXSHbxNaaOICHGmK7P4Vj7PU1kXCV+axL0k2JOD2lmUuFbyAD7tVYdk6HCBTp+Et5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jNcxTght; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-21619108a6bso29410425ad.3;
-        Fri, 10 Jan 2025 00:16:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736496979; x=1737101779; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wnhZLLXJ2aX3YuqYzOsKJOKWAboLeQSltfdW2e1AXgk=;
-        b=jNcxTghtA/DQ78/SFMqXGIvVB9IJ/93Zavrf8pcrMcs1ja7gv+0FeSXTNP8yAvpbrj
-         Z+/E0yaU0ATptrD++CKbFGlic3a7dMjgdS/uTWVdZRXg0hI9v33Lss7As1S9UhZLAG2P
-         vTRtqj4Y/13swGYb3wmwfhxNORhMeotpp+BwKNy7AmIqYhutZJfMp8yTXvy/u+460N0q
-         z3MhMSz9p0462edZ4qgc2vv8/pGEPApEsBC9Y8G95grUMA86um0xGbVJvcjtQJ5K7vSm
-         eAm91+ZAG18z/cXcc6ookDqzNQCXMchv4iTOwAXhcBLsr6UxBOHOhJ4cBygCtdc1mFv6
-         YlGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736496979; x=1737101779;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wnhZLLXJ2aX3YuqYzOsKJOKWAboLeQSltfdW2e1AXgk=;
-        b=KAEQC4FpBzQF/gWNWJsvG/RaRzzdNurMOBNofDr54Lcrl4+ztBpZk3rwcVmdGJUU+w
-         AZINCi6S5AGbDfllCdIzVePbd5qu7n5EZOipDQRpcy0ryUe/mgqfYfVsT0Y9mM2FY7sx
-         PMZrRjazuRcmQdXpem2fNBhpUheoPPtEpIfbma/0/pTuL5uYAwOBg6IUhePRMO2HRE/p
-         sbbLCrcZ6pVxyEgbhr5cg3ZqneGQyFtyPy7xiM46hWJRk2T2E8wzz4MdledzeKlG9kSR
-         EftYj3cNSHFNpnzXcvPqbH2SeHLkN0Crccv1ner3FlOXUzssBDiK5DriBiHvABoJvII6
-         p6qg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOLlKACbhtlvwEQvUdj8bgwKqUyclfvlw+JOzfW1J6UFHf8IZXOBf9tmTp2GGV1zAJGE7uySuHlGHymMy3@vger.kernel.org, AJvYcCVUDJ5GNrtk4ZgsKvzpY66EnvKpco2YNLmTS/jRHpjkZ3Mf4/pe4j+7syibGXUpKIvRV1OnvXZrGSn3@vger.kernel.org, AJvYcCVinrzJIri+xFSNxkGdOBxI0vTWMxvOSihwjwuiKDkAlW1EYf5keu8oAiPSbXS4vQzCLGHsyEStekaYX9g=@vger.kernel.org, AJvYcCW5TG9lkg+8fLCYMiY1VgLz6r/EsalA2MiIfnJVerNzRf0Wc1N/ckfCoGRiqRvyNjNt7KZbK9ASoWVG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yybm+r8DouDboMByWuOFqGAPPE/+9k/b7oMKZWN6CQp/5ftX9Rc
-	0yYK40U3XEAwOcWagwytwrhRn+Xs6jkZd5KufOG/2goKMsy6pa7W
-X-Gm-Gg: ASbGncsb+DD2YqR7fkOOLwyXFHtiJ6Jhyd1ZVNJzb+jqeI6ikpm1Ybg6+ec2CUuF2C5
-	tdrB9MpHbCEWfupjpW0EO9Xjs3jWy8N5UB6Eb3n3YgCGcIA/MJWtumCevrQTpKPRp7TXr+Z3uGp
-	/EMIjwn04YFeb4TZMVIcSfcbC8/ht6dUKorumyjDFdc9/ZsHTTssmWOwQn3U0n2FNF1nXjVPzU5
-	UtHtq0hu4bHPh4lPJdA0MCwL95YfElvR7Af9pYXrVh9WUv7EoaKRXRc9dLWqfNAchN3tYlJrStb
-	VhUs8lP2F3K7Pj5ce3k03sFXOE71PuNVvxNs
-X-Google-Smtp-Source: AGHT+IFkHm8Tzz9wAYoE4cdcEpYxvLUIMuxK1gfkX0pB7hS5Pi0SptJtXRIwTkSSSYZEdU8MS3NuMg==
-X-Received: by 2002:a05:6a20:3943:b0:1e8:bd15:6819 with SMTP id adf61e73a8af0-1e8bd156be3mr526154637.22.1736496978921;
-        Fri, 10 Jan 2025 00:16:18 -0800 (PST)
-Received: from leo-pc.tail3f5402.ts.net (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a31de806694sm2431837a12.69.2025.01.10.00.16.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 00:16:18 -0800 (PST)
-From: Leo Yang <leo.yang.sy0@gmail.com>
-X-Google-Original-From: Leo Yang <Leo-Yang@quantatw.com>
-To: jdelvare@suse.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D9C207E02;
+	Fri, 10 Jan 2025 08:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.79
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736497220; cv=fail; b=Oem+PCnpr7fUHHNitfuDmKzmUDSfBI+5fheSQPoAi4bYmXbOKlNYMGirwbKXNsCuddqHL/pB+NvgAbX8OgLvl4c9wBgjGtHsulrvMdXFic4fukCtL8/e2M6OMYDjMBBEdG5Ugwbtmd2al4rs1nnrRLMy2m9V2OWLag+iaaSxNag=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736497220; c=relaxed/simple;
+	bh=qobj6G+593UvCJ2IHCUHccFnL6Fclzm+HsyFp194Bao=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=kXyp6xu4XNiPHGcu9xKexBat/tlb6akLos5rVX9NcglFnCjF6hjOH2DkBHtys2NUxXNny6rSgQC8wB6ygZRBzDgM/pEowYZPA9Qj9ibcwRAHz+aB8TD/BgI6OwjEwOLBgHM3aE1Nex55F8rCE5K0Ig+DRdCFJjvdCEOYVS0sPWM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=m2Djh5DM; arc=fail smtp.client-ip=40.107.20.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ijrPPYY8b7AMN3VzLKLMFcO/vNySCLmmX5eyyGbCUrorfOZCJGi53l9G/+h47QBMPktfaXzUpEdXQG0uZc75t8GBJDBGLoJYcsjIEAGbabMgojMMCH+BWpaDWnUE9wonNwPEXNzy8WKumExmsK4CM2faO6dmni5yLYupV30Lz3VVe1F27PDWWZyesov/z6Jar6G3foz3pRdPZO0CkogALuIA5/wN1DEevkRWSoq7JfpYnaE61jxXQ7H8QbDR+ZMVPMs/lLYkCzrBwrBBXTDrY/qg3X49szPWU07o804xe9ZVO3AVJMYQueqvjtYGTuVsLWKCcb28TRVSj/ZNogIKFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ObuvQrM6K7PmVdpYk05YI2HrEhMl3SOEwV5saoVTjyc=;
+ b=Wc90wG5pa8BJ+HELTqnAtP7itJ04wVIeYFsDZh5ytN9AYCR0w2HQ0DNl6l/F8Fh26MFiovWWWIsp6ox+ML9dLYtCQ6RL2j1VvnCs23z5AMPYRMGNm0fnqs7IDkBVSH7raWrI8WVKrftB/y9Kj34nOxossyXXXhEmWEPClfDrmt1WLlGXVqBSZW0WR4NgejUjaVpg6mEA0EVUlV56bnH+Ufn1dk/d5zv1KbA4aHTEpbNNesByp88m1Z+vPW61On99jpYKwYzi50D/gptiFic/hjaMRPIqK2Uwxr4hUAXPeuOpsE67ig9WGGvVXUISh8O+t0MGOp16xjhhhksYRVJEJQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com; dmarc=temperror action=none
+ header.from=leica-geosystems.com; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ObuvQrM6K7PmVdpYk05YI2HrEhMl3SOEwV5saoVTjyc=;
+ b=m2Djh5DMpqxnw2SouOMYLSPu6RrJ/jWlD3YqkCKyREssAAsaug288rcHV2B9/nUWJz4UKnMUvSH89KLOCq5OWYBW8ZMSS7Iyf8l5+FDc9eCtK0ZgZ10PoCMf092hrqP3j1pVyW18+nuNlZKJR6MJ+zKEBPY2n+XUif0v5aNBd3I=
+Received: from AS8PR07CA0045.eurprd07.prod.outlook.com (2603:10a6:20b:459::16)
+ by GVXPR06MB9609.eurprd06.prod.outlook.com (2603:10a6:150:1e6::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.12; Fri, 10 Jan
+ 2025 08:20:09 +0000
+Received: from AM4PEPF00025F9C.EURPRD83.prod.outlook.com
+ (2603:10a6:20b:459:cafe::27) by AS8PR07CA0045.outlook.office365.com
+ (2603:10a6:20b:459::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.6 via Frontend Transport; Fri,
+ 10 Jan 2025 08:20:09 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
+ header.d=none;dmarc=temperror action=none header.from=leica-geosystems.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of leica-geosystems.com: DNS Timeout)
+Received: from hexagon.com (193.8.40.94) by
+ AM4PEPF00025F9C.mail.protection.outlook.com (10.167.16.11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8356.0 via Frontend Transport; Fri, 10 Jan 2025 08:20:07 +0000
+Received: from aherlnxbspsrv01.lgs-net.com ([10.60.34.116]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Fri, 10 Jan 2025 09:20:07 +0100
+From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+To: andrew+netdev@lunn.ch,
 	davem@davemloft.net,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Leo-Yang@quantatw.com,
-	corbet@lwn.net,
-	Delphine_CC_Chiu@Wiwynn.com,
-	linux-hwmon@vger.kernel.org,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org
+Cc: netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: kernel test robot <lkp@intel.com>
-Subject: [PATCH v2 2/2] hwmon: Add driver for TI INA232 Current and Power Monitor
-Date: Fri, 10 Jan 2025 16:15:46 +0800
-Message-Id: <20250110081546.61667-3-Leo-Yang@quantatw.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20250110081546.61667-1-Leo-Yang@quantatw.com>
-References: <20250110081546.61667-1-Leo-Yang@quantatw.com>
+	linux-wireless@vger.kernel.org,
+	m.felsch@pengutronix.de,
+	bsp-development.geo@leica-geosystems.com,
+	Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Subject: [PATCH net-next 1/2] dt-bindings: net: rfkill-gpio: enable booting in blocked state
+Date: Fri, 10 Jan 2025 09:19:01 +0100
+Message-Id: <20250110081902.1846296-1-catalin.popescu@leica-geosystems.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,352 +93,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 10 Jan 2025 08:20:07.0511 (UTC) FILETIME=[7550CE70:01DB6338]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM4PEPF00025F9C:EE_|GVXPR06MB9609:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 09e97ef2-3c1b-491c-f71d-08dd314f97df
+X-SET-LOWER-SCL-SCANNER: YES
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?EOFCgJeDqHXgNjNCRbB7xy27RLjLK7w2pt0vadxE0lI6+Vz1jWfBYlZKumbZ?=
+ =?us-ascii?Q?+Q8X6smrwVkxz5YwjgEDKvzGkd/cFLyZrBf7WZuufayA3loz81eG+sgf1Tin?=
+ =?us-ascii?Q?tKMmXeZczAnMJx9H/myUldPOtEMaloprVpfaiDDz3ir9xBNELRTPrNGj0gp2?=
+ =?us-ascii?Q?07vZKq4nCPpatPwRtfMZnR3PpEmF4Di9OVYLgmhIPmpzwDK6Jg0AbSwslBFC?=
+ =?us-ascii?Q?V8CzExJBO82iFd5KchNgG96pfhUlRqUMWs+yHPZoMY6m3NAryAONpVB+sQMZ?=
+ =?us-ascii?Q?CfAVefHuBNKQva6xIcUZjpmCQ8D61yoBOTePuNwUcfGB7PaO/2jouBGkujK4?=
+ =?us-ascii?Q?6f+nSkT+1fmbbw3lJMmW4/1mr/PvJfag5xoisWcnjcEcQaTkivG5jZm+qJEX?=
+ =?us-ascii?Q?w1XRu2UR9XjV9PBRCaHpTozCddnOV/L2lVjydr7e4+OSkydsD6be1oxAgK4t?=
+ =?us-ascii?Q?LxEZzn1drHQmCG+sZ6hrdOllnu77HMgubXcnbS9B+fQlxBNSXbSHqIk1a7Cr?=
+ =?us-ascii?Q?ch9RMnkXHoZBPAMNIiHkYh+JgIsMiQGiRCk3Lwj/yuXUPOHnGaamLu8KTJJk?=
+ =?us-ascii?Q?Fnhq51FbHikWxTGUxo5Jbc/FqiPJYk7VfotMcbzbIPzvLhuR0zmGyWJQfkzZ?=
+ =?us-ascii?Q?ooit4iUy06070sGjj2yD0LypOAMmfIXgwS+yOgKpzbtVk4rzCCIzDAIFFTNe?=
+ =?us-ascii?Q?W9pbh3atplfSeeqU3mQOflpd6xqyltOgnjHO90VFdkSVallQvCKMPdvqC0YH?=
+ =?us-ascii?Q?sUl4bQRMbJ4HpOtrISG+aNod1WW8xsLsV2fTJ6DG/A6Fcfa9gusGLftdSOV9?=
+ =?us-ascii?Q?2ihML9iFnRoBOF8xNWCtzxdjpJ+baoJuA963Z/OCvJt/DoYrltmGQ9FiJKwN?=
+ =?us-ascii?Q?4G0wA12Q4eV12q9Z47fE5IyZVa+Yd4YnaIWsWlrV5FiXgJAvYq006DcFyDf9?=
+ =?us-ascii?Q?sAmLARPGi0ULnBObK0JNqWp/WIkjhXfAiAAJ0nzECYzXSHjDl8zZWBUH0t3A?=
+ =?us-ascii?Q?vr/4FTrBk8f+7uoQ+i3W4R2LM44uYUZMCPVRsksiOB9FkHPHHL4Qst5cfiIa?=
+ =?us-ascii?Q?Z09n91HdP3bHA0iTFBBW0tNwHZGqIChs6EmxLKmx6xRZPz+aI6kPZa67Jfeo?=
+ =?us-ascii?Q?/9aj9hS8h7QoC0MDWlsyWeXDixOM5SWFWVHfgH+sVaFUMupfwjC90k2VEWXf?=
+ =?us-ascii?Q?JCprgmbEAzuZoy5faGaSOsRAjONewjgrxE7dPvWkXiOe6DLoZPJNqmILcKuV?=
+ =?us-ascii?Q?CqxW4GeZ8+fmVuUG8+C2oRoArzNmA4CS6KTHcFZ6JdrV7HCG2K5AALbg46v6?=
+ =?us-ascii?Q?WJxylRxmRfLAvfn1D2Ok3D87IxhpGtfp2O+PbByGlAJLyRk5HIjXzmZKODue?=
+ =?us-ascii?Q?zJxYdPyJKxObf8UTf29bawHGOiqGsrKzT4Rzws5iIE4zM4w9BT1gqk088bHD?=
+ =?us-ascii?Q?3yvrbwUrVno2cbGMxtYXydWU28b4+ZWa4s74IOW32uw0KwCX2slI1Ua3au++?=
+ =?us-ascii?Q?p73DiiSj4eSC4wQ=3D?=
+X-Forefront-Antispam-Report:
+	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2025 08:20:07.5755
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09e97ef2-3c1b-491c-f71d-08dd314f97df
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM4PEPF00025F9C.EURPRD83.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR06MB9609
 
-Support ina233 driver for Meta Yosemite V4.
+By default, rfkill state is set to unblocked. Sometimes, we want to boot
+in blocked state and let the application unblock the rfkill.
 
-Driver for Texas Instruments INA233 Current and Power Monitor
-With I2C-, SMBus-, and PMBus-Compatible Interface
-
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202501092213.X9mbPW5Q-lkp@intel.com/
-Closes: https://lore.kernel.org/oe-kbuild-all/202501061734.nPNdRKqO-lkp@intel.com/
-Signed-off-by: Leo Yang <Leo-Yang@quantatw.com>
+Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
 ---
- Documentation/hwmon/ina233.rst |  77 ++++++++++++++
- MAINTAINERS                    |   8 ++
- drivers/hwmon/pmbus/Kconfig    |   9 ++
- drivers/hwmon/pmbus/Makefile   |   1 +
- drivers/hwmon/pmbus/ina233.c   | 184 +++++++++++++++++++++++++++++++++
- 5 files changed, 279 insertions(+)
- create mode 100644 Documentation/hwmon/ina233.rst
- create mode 100644 drivers/hwmon/pmbus/ina233.c
+ Documentation/devicetree/bindings/net/rfkill-gpio.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/hwmon/ina233.rst b/Documentation/hwmon/ina233.rst
-new file mode 100644
-index 000000000000..41537f89bed5
---- /dev/null
-+++ b/Documentation/hwmon/ina233.rst
-@@ -0,0 +1,77 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver ina233
-+====================
-+
-+Supported chips:
-+
-+  * TI INA233
-+
-+    Prefix: 'ina233'
-+
-+  * Datasheet
-+
-+    Publicly available at the TI website : https://www.ti.com/lit/ds/symlink/ina233.pdf
-+
-+Author:
-+
-+	Leo Yang <Leo-Yang@quantatw.com>
-+
-+Usage Notes
-+-----------
-+
-+The shunt resistor value can be configured by a device tree property;
-+see Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml for details.
-+
-+
-+Description
-+-----------
-+
-+This driver supports hardware monitoring for TI INA233.
-+
-+The driver is a client driver to the core PMBus driver. Please see
-+Documentation/hwmon/pmbus.rst for details on PMBus client drivers.
-+
-+The driver provides the following attributes for input voltage:
-+
-+**in1_input**
-+
-+**in1_label**
-+
-+**in1_max**
-+
-+**in1_max_alarm**
-+
-+**in1_min**
-+
-+**in1_min_alarm**
-+
-+The driver provides the following attributes for shunt voltage:
-+
-+**in2_input**
-+
-+**in2_label**
-+
-+The driver provides the following attributes for output voltage:
-+
-+**in3_input**
-+
-+**in3_label**
-+
-+**in3_alarm**
-+
-+The driver provides the following attributes for output current:
-+
-+**curr1_input**
-+
-+**curr1_label**
-+
-+**curr1_max**
-+
-+**curr1_max_alarm**
-+
-+The driver provides the following attributes for input power:
-+
-+**power1_input**
-+
-+**power1_label**
-\ No newline at end of file
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c575de4903db..fde1713dff9d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11226,6 +11226,14 @@ L:	linux-fbdev@vger.kernel.org
- S:	Orphan
- F:	drivers/video/fbdev/imsttfb.c
+diff --git a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+index 9630c8466fac..22f26f1a3856 100644
+--- a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
++++ b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+@@ -32,6 +32,10 @@ properties:
+   shutdown-gpios:
+     maxItems: 1
  
-+INA233 HARDWARE MONITOR DRIVER
-+M:	Leo Yang <Leo-Yang@quantatw.com>
-+M:	Leo Yang <leo.yang.sy0@gmail.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Odd Fixes
-+F:	Documentation/hwmon/ina233.rst
-+F:	drivers/hwmon/pmbus/ina233.c
++  default-blocked:
++    description: configure rfkill state as blocked at boot
++    type: boolean
 +
- INDEX OF FURTHER KERNEL DOCUMENTATION
- M:	Carlos Bilbao <carlos.bilbao.osdev@gmail.com>
- S:	Maintained
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index f6d352841953..55db0ddc94ed 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -124,6 +124,15 @@ config SENSORS_DPS920AB
- 	  This driver can also be built as a module. If so, the module will
- 	  be called dps920ab.
- 
-+config SENSORS_INA233
-+	tristate "Texas Instruments INA233 and compatibles"
-+	help
-+	  If you say yes here you get hardware monitoring support for Texas
-+	  Instruments INA233.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called ina233.
-+
- config SENSORS_INSPUR_IPSPS
- 	tristate "INSPUR Power System Power Supply"
- 	help
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index d00bcc758b97..3c4b06fb939e 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_SENSORS_DELTA_AHE50DC_FAN) += delta-ahe50dc-fan.o
- obj-$(CONFIG_SENSORS_FSP_3Y)	+= fsp-3y.o
- obj-$(CONFIG_SENSORS_IBM_CFFPS)	+= ibm-cffps.o
- obj-$(CONFIG_SENSORS_DPS920AB)	+= dps920ab.o
-+obj-$(CONFIG_SENSORS_INA233)	+= ina233.o
- obj-$(CONFIG_SENSORS_INSPUR_IPSPS) += inspur-ipsps.o
- obj-$(CONFIG_SENSORS_IR35221)	+= ir35221.o
- obj-$(CONFIG_SENSORS_IR36021)	+= ir36021.o
-diff --git a/drivers/hwmon/pmbus/ina233.c b/drivers/hwmon/pmbus/ina233.c
-new file mode 100644
-index 000000000000..7899c3e99eeb
---- /dev/null
-+++ b/drivers/hwmon/pmbus/ina233.c
-@@ -0,0 +1,184 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Hardware monitoring driver for ina233
-+ *
-+ * Copyright (c) 2025 Leo Yang
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include "pmbus.h"
-+
-+#define MFR_READ_VSHUNT 0xd1
-+#define MFR_CALIBRATION 0xd4
-+
-+#define INA233_CURRENT_LSB_DEFAULT	1000 /* uA */
-+#define INA233_RSHUNT_DEFAULT		2000 /* uOhm */
-+
-+#define MAX_M_VAL 32767
-+#define MIN_M_VAL -32768
-+
-+static void calculate_coef(int *m, int *R, int power_coef)
-+{
-+	s64 scaled_m;
-+	int scale_factor = 0;
-+	int scale_coef = 1;
-+	bool is_integer = false;
-+
-+	/*
-+	 * 1000000 from Current_LSB A->uA .
-+	 * scale_coef is for scaling up to minimize rounding errors,
-+	 * If there is no decimal information, No need to scale.
-+	 */
-+	if (1000000 % *m) {
-+		/* Scaling to keep integer precision */
-+		scale_factor = -3;
-+		scale_coef = 1000;
-+	} else {
-+		is_integer = true;
-+	}
-+
-+	/*
-+	 * Unit Conversion (Current_LSB A->uA) and use scaling(scale_factor)
-+	 * to keep integer precision.
-+	 * Formulae referenced from spec.
-+	 */
-+	scaled_m = div_s64(1000000 * scale_coef, *m * power_coef);
-+
-+	/* Maximize while keeping it bounded.*/
-+	while (scaled_m > MAX_M_VAL || scaled_m < MIN_M_VAL) {
-+		scaled_m = div_s64(scaled_m, 10);
-+		scale_factor++;
-+	}
-+	/* Scale up only if fractional part exists. */
-+	while (scaled_m * 10 < MAX_M_VAL && scaled_m * 10 > MIN_M_VAL && !is_integer) {
-+		scaled_m *= 10;
-+		scale_factor--;
-+	}
-+
-+	*m = scaled_m;
-+	*R = scale_factor;
-+}
-+
-+static int ina233_read_word_data(struct i2c_client *client, int page,
-+				 int phase, int reg)
-+{
-+	int ret;
-+
-+	switch (reg) {
-+	case PMBUS_VIRT_READ_VMON:
-+		ret = pmbus_read_word_data(client, 0, 0xff, MFR_READ_VSHUNT);
-+
-+		/* Adjust returned value to match VIN coefficients */
-+		/* VIN: 1.25 mV VSHUNT: 2.5 uV LSB */
-+		ret = DIV_ROUND_CLOSEST(ret * 25, 12500);
-+		break;
-+	default:
-+		ret = -ENODATA;
-+		break;
-+	}
-+	return ret;
-+}
-+
-+static int ina233_probe(struct i2c_client *client)
-+{
-+	int ret, m, R;
-+	u32 rshunt;
-+	u16 current_lsb;
-+	u16 calibration;
-+	struct pmbus_driver_info *info;
-+
-+	info = devm_kzalloc(&client->dev, sizeof(struct pmbus_driver_info),
-+			    GFP_KERNEL);
-+	if (!info)
-+		return -ENOMEM;
-+
-+	info->pages = 1;
-+	info->format[PSC_VOLTAGE_IN] = direct;
-+	info->format[PSC_VOLTAGE_OUT] = direct;
-+	info->format[PSC_CURRENT_OUT] = direct;
-+	info->format[PSC_POWER] = direct;
-+	info->func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_INPUT
-+		| PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
-+		| PMBUS_HAVE_POUT
-+		| PMBUS_HAVE_VMON | PMBUS_HAVE_STATUS_VMON;
-+	info->m[PSC_VOLTAGE_IN] = 8;
-+	info->R[PSC_VOLTAGE_IN] = 2;
-+	info->m[PSC_VOLTAGE_OUT] = 8;
-+	info->R[PSC_VOLTAGE_OUT] = 2;
-+	info->read_word_data = ina233_read_word_data;
-+
-+	/* If INA233 skips current/power, shunt-resistor and current-lsb aren't needed.	*/
-+	/* read rshunt value (uOhm) */
-+	if (of_property_read_u32(client->dev.of_node, "shunt-resistor", &rshunt) < 0)
-+		rshunt = INA233_RSHUNT_DEFAULT;
-+
-+	/* read current_lsb value (uA) */
-+	if (of_property_read_u16(client->dev.of_node, "ti,current-lsb", &current_lsb) < 0)
-+		current_lsb = INA233_CURRENT_LSB_DEFAULT;
-+
-+	if (!rshunt || !current_lsb) {
-+		dev_err(&client->dev, "shunt-resistor and current-lsb cannot be zero.\n");
-+		return -EINVAL;
-+	}
-+
-+	/* calculate current coefficient */
-+	m = current_lsb;
-+	calculate_coef(&m, &R, 1);
-+	info->m[PSC_CURRENT_OUT] = m;
-+	info->R[PSC_CURRENT_OUT] = R;
-+
-+	/* calculate power coefficient */
-+	m = current_lsb;
-+	calculate_coef(&m, &R, 25);
-+	info->m[PSC_POWER] = m;
-+	info->R[PSC_POWER] = R;
-+
-+	/* write MFR_CALIBRATION register, Apply formula from spec with unit scaling. */
-+	calibration = div64_u64(5120000000ULL, (u64)rshunt * current_lsb);
-+	if (calibration > 0x7FFF) {
-+		dev_err(&client->dev, "Exceeds MFR_CALIBRATION limit, Use a reasonable Current_LSB with Shunt resistor value.\n");
-+		return -EINVAL;
-+	}
-+	ret = i2c_smbus_write_word_data(client, MFR_CALIBRATION, calibration);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "Unable to write calibration\n");
-+		return ret;
-+	}
-+
-+	dev_dbg(&client->dev, "power monitor %s (Rshunt = %u uOhm, Current_LSB = %u uA/bit)\n",
-+		client->name, rshunt, current_lsb);
-+
-+	return pmbus_do_probe(client, info);
-+}
-+
-+static const struct i2c_device_id ina233_id[] = {
-+	{"ina233", 0},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, ina233_id);
-+
-+static const struct of_device_id __maybe_unused ina233_of_match[] = {
-+	{ .compatible = "ti,ina233" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, ina233_of_match);
-+
-+static struct i2c_driver ina233_driver = {
-+	.driver = {
-+		   .name = "ina233",
-+		   .of_match_table = of_match_ptr(ina233_of_match),
-+	},
-+	.probe = ina233_probe,
-+	.id_table = ina233_id,
-+};
-+
-+module_i2c_driver(ina233_driver);
-+
-+MODULE_AUTHOR("Leo Yang <Leo-Yang@quantatw.com>");
-+MODULE_DESCRIPTION("PMBus driver for INA233 and compatible chips");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
+ required:
+   - compatible
+   - radio-type
+@@ -48,4 +52,5 @@ examples:
+         label = "rfkill-pcie-wlan";
+         radio-type = "wlan";
+         shutdown-gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
++        default-blocked;
+     };
+
+base-commit: 25cc469d6d344f5772e9fb6a5cf9d82a690afe68
+prerequisite-patch-id: 0000000000000000000000000000000000000000
 -- 
-2.39.2
+2.34.1
 
 
