@@ -1,55 +1,81 @@
-Return-Path: <devicetree+bounces-137366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 724C5A08C66
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:41:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF41BA08C7C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:43:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D8DF161B23
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:41:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A39853A8E9B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:41:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34B3209F53;
-	Fri, 10 Jan 2025 09:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9EA207E07;
+	Fri, 10 Jan 2025 09:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iNXFVmOI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jm7OeBpS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D5EF209F3F;
-	Fri, 10 Jan 2025 09:39:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21FC320A5F3
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 09:40:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736501989; cv=none; b=p9MvhunzewsFmFQ6cz7H6RXfP6LyVtbsJXN9W9ivy5s8MCju3ccAdcSPNNGhD8NyaOsiAf8EFADnb5ymzEO7ti11I091f4At+CMLjjecuBruanDmF9ln3DIltNhMatcryUPNJDzQ5AETO7Vjgpzkzm8Ch9LFGZDH+FwykghdR1s=
+	t=1736502011; cv=none; b=UtMUlxrR2t1sAgr3bqEqjiQqqEghTixeXYfmK5N162DgxnI2k30CzGBLXHigkktGKiF2WlOvjSCD6LmhEFOFcuoaujJpEeFpMgIRFS9NnWx38uBUB5SF5ltvjS3zixrXGdCxYKaLfFSexJwgCuI3Rtr63yHILUmMMdlCM+SV0Yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736501989; c=relaxed/simple;
-	bh=mAGSSYgPDghIBQGBzXCxEaknVfzgfmOXuOBboqhcRAw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EyQi4OFzm80UrXQsfn+gmIxECIVlq6uNMtgto13/794uH+H8B/o5MRbu62uBdHibf0qDgqGAKAYqKuksJh19wS1JqjtWFOt+rNFWUbUCSJXYr1uhMYWn+an66NaDc3aDGwSvSMy0q53yHNX2I3o3NpYlNt9HYVDfLnSQLvJ/wuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iNXFVmOI; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736501980;
-	bh=mAGSSYgPDghIBQGBzXCxEaknVfzgfmOXuOBboqhcRAw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iNXFVmOI18fsXMXKHE5f5cxJPB6Cker365AsEnhJuV9zXoRL+nQIwpkGiqcjQMF79
-	 PVii5OVXLcXwPmOB0Tl6tp8D8rWQSiOPzITKI0vtiHQWph1MCx/E1gAk0u5GRq6TC1
-	 VAJr2acJYyJdyjIRHojbyp7bKnoLkccMLx9dlFJpF1vCBVnDOc2Rt2jQAFEcVCdjw7
-	 3/OEySXJqDQsjwvKsa80L4tx7fLbIA2zCy8ET0yAVMiIH+ysZ069IyUOxQHPwqrEvY
-	 bqPdKRpZJWhgQEHJms2AqfJLgMqq2JB6Swt/YGkhFjQ7UNx2bAOhxkYiozlsIzoLM8
-	 4PPaBYQaW12+A==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2BD4317E0AE5;
-	Fri, 10 Jan 2025 10:39:39 +0100 (CET)
-Message-ID: <73144187-7f7f-4f68-aa5a-5fc019e646ec@collabora.com>
-Date: Fri, 10 Jan 2025 10:39:38 +0100
+	s=arc-20240116; t=1736502011; c=relaxed/simple;
+	bh=B9gQoAZcHEbkCb38aULLmmHJebE+z+93gfYSVCV5ers=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=KU//mUU1xrJVQ2I68/Q5vHBdRXEjPKDinlg0NM3X6k+A2FN1APXOLOXFp7+fcCXaW1P5lHHkUunmkJNxDf+ZxRg9y343OI/V5IoYMPXddcjRg1rPG55JpxhHsJgp2ALf4emCO2igAcGio5BqeB2fYC3OZGRD/1QM9ln/Hj0EDVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jm7OeBpS; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4361b6f9faeso11736315e9.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 01:40:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736502008; x=1737106808; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SF3crOlWCGj1R8oqDRPXYGGY0Mj9v0tyYCeWQYdroig=;
+        b=jm7OeBpS3cZRncHU6O9B3Z5IBAtpTMEg/ZFGTWRl83+euMNGqCPy3Ye4AqbgFJ1/28
+         D1ymbQpFbEDh7UKrYAiweFN3VFhQUffUZlNcma1kJnMj0KT2P2/rcp4pmbCKxTrXm+s7
+         x3WVKsrW7RLdXVtcsP9faztl45hULWzW607mwUv2XSjblZnJONgo7EPKKET0/nUVkLYi
+         vMda00EKEr5pnEY33LwTVY07fYjwgVj6Ihz6M+2WmS4378l/WovGeh1HNLFteMoGVpNq
+         ImIa8kc1Wx+Ihu7A+jZ0/MuQhbO9gsPaPKNqaloOGf5gm2mda75Xm34nu9znj2IKY7kO
+         Ly3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736502008; x=1737106808;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=SF3crOlWCGj1R8oqDRPXYGGY0Mj9v0tyYCeWQYdroig=;
+        b=Pf0TDjjGqa/Rb/o1vlnhfJ4Pvm8plU61uR/qlmoOF5Rdazm9iS6BS1yGDkIltQwn3m
+         YpCISt08syRh6C2Eb3dRNDnRW7g5XP4OjRD0UnFJis8gHYNGiJ2fzGAOXWgk4eVi7hYy
+         HEpyMXDv2PeDWhf1q9uIfm1aCxdHZL2eHZVj+7JEDAr6FhF/1ZPZEn9+E7tVynYIi24V
+         ujhxdi30q7u26wfoUBkbIj7zqkwS94KE6kzR+1GH6A0oezxxsc37NrZesYRKECDWHAFy
+         gAkK+qkFmC1iGY+NBPZGerVKqbsBAyuQh/+xbJH7HitHwclJXUnpIPwjUC3keljQYIqF
+         8QHg==
+X-Forwarded-Encrypted: i=1; AJvYcCXEwE3MQUPIw5x5WN687hZKBQCgm9Bf1rRJLZ1orQVDfzFvntXcnChaztEdO029dXN74LW0vygfjfK8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5bTiW8AJZBGyp0cDFmWumqZKFc6Hh0eKgztSKvUzZdm+Yk5kK
+	NUfWnzMCk3dmeuWFB3rQESkjUYomzlNlucYu+BF1KkOMYG3rVbFx9/6RILRiSwE=
+X-Gm-Gg: ASbGncuNokbzBh1YaeE9W64FpZMS7mHjsojqdFSCgmpnrDTrK664gmn56hlICN8/ypk
+	sba4ThgcrfTea46qNJ5SxSdUdiii13SH19ih9qmw6LZSmd9enPIy2xqiaotFzrjejyxvi4QGimA
+	H8Au36gccuuml5RULi9k9NJV+lbebq2luv0KWRV3nNYrCXPS4xxZBsxmPqoBJzCJVgq7TdqXCVQ
+	Rn0Zw8Kn/e+oYyRlhXwsSuHyS3BRTkI8vovoD8pQQBRiiEnBWHjF6V5LUm9Ra48p7PWJKe+UXr5
+	fV1dFyhcIPpo69mDnNX1SOubtzxrBonJMQ==
+X-Google-Smtp-Source: AGHT+IHLuzKdaVCxIByL/2fBsJ6AX9cp70n4uEZ2RwQeZXgcDqCMPp9zQG1Mnv5ZNffB/PAKd+1Xgg==
+X-Received: by 2002:a05:600c:1d2a:b0:435:edb0:5d27 with SMTP id 5b1f17b1804b1-436e8827fbcmr57830335e9.9.1736502008509;
+        Fri, 10 Jan 2025 01:40:08 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:bf4e:5758:59ef:deb8? ([2a01:e0a:982:cbb0:bf4e:5758:59ef:deb8])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2df3610sm80749405e9.20.2025.01.10.01.40.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jan 2025 01:40:07 -0800 (PST)
+Message-ID: <35a678a8-4282-4891-8a12-7efdaf4bb129@linaro.org>
+Date: Fri, 10 Jan 2025 10:40:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,169 +83,132 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [V1,04/12] media: mediatek: jpeg: add jpeg smmu sid setting
-To: "kyrie.wu" <kyrie.wu@mediatek.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Tzung-Bi Shih <tzungbi@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bin Liu <bin.liu@mediatek.com>,
- kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20250109133513.20151-1-kyrie.wu@mediatek.com>
- <20250109133513.20151-5-kyrie.wu@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250109133513.20151-5-kyrie.wu@mediatek.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8650: setup cpu thermal with idle
+ on high temperatures
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250103-topic-sm8650-thermal-cpu-idle-v1-0-faa1f011ecd9@linaro.org>
+ <20250103-topic-sm8650-thermal-cpu-idle-v1-1-faa1f011ecd9@linaro.org>
+ <qszkxmtrqr62wgd3qx7uctu22w4qrkietasvffinzwmzt7ccum@r26dikuqp7a4>
+ <11ca788f-67e6-4e5c-9ace-083b730bc9ce@linaro.org>
+ <2xp2xz4w7drpnql5khevz4wenlmiu3omwcilfisb3vvq2jlnwg@tcmjb475kghk>
+ <2fcd9a10-ae9e-480f-87a1-5b49e5082ef5@linaro.org>
+ <rcoviajiv4wrtnggbrd3l7toysxohu3ysu6xzynjr4fx7j6s5q@5dcepoujtupw>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <rcoviajiv4wrtnggbrd3l7toysxohu3ysu6xzynjr4fx7j6s5q@5dcepoujtupw>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 09/01/25 14:35, kyrie.wu ha scritto:
-> Add a configuration to set jpeg dec & enc smmu sid
+On 09/01/2025 22:01, Bjorn Andersson wrote:
+> On Wed, Jan 08, 2025 at 10:15:34AM +0100, Neil Armstrong wrote:
+>> On 08/01/2025 04:11, Bjorn Andersson wrote:
+>>> On Tue, Jan 07, 2025 at 09:13:18AM +0100, Neil Armstrong wrote:
+>>>> Hi,
+>>>>
+>>>> On 07/01/2025 00:39, Bjorn Andersson wrote:
+>>>>> On Fri, Jan 03, 2025 at 03:38:26PM +0100, Neil Armstrong wrote:
+>>>>>> On the SM8650, the dynamic clock and voltage scaling (DCVS) is done in an
+>>>>>> hardware controlled loop using the LMH and EPSS blocks with constraints and
+>>>>>> OPPs programmed in the board firmware.
+>>>>>>
+>>>>>> Since the Hardware does a better job at maintaining the CPUs temperature
+>>>>>> in an acceptable range by taking in account more parameters like the die
+>>>>>> characteristics or other factory fused values, it makes no sense to try
+>>>>>> and reproduce a similar set of constraints with the Linux cpufreq thermal
+>>>>>> core.
+>>>>>>
+>>>>>> In addition, the tsens IP is responsible for monitoring the temperature
+>>>>>> across the SoC and the current settings will heavily trigger the tsens
+>>>>>> UP/LOW interrupts if the CPU temperatures reaches the hardware thermal
+>>>>>> constraints which are currently defined in the DT. And since the CPUs
+>>>>>> are not hooked in the thermal trip points, the potential interrupts and
+>>>>>> calculations are a waste of system resources.
+>>>>>>
+>>>>>> Instead, set higher temperatures in the CPU trip points, and hook some CPU
+>>>>>> idle injector with a 100% duty cycle at the highest trip point in the case
+>>>>>> the hardware DCVS cannot handle the temperature surge, and try our best to
+>>>>>> avoid reaching the critical temperature trip point which should trigger an
+>>>>>> inevitable thermal shutdown.
+>>>>>>
+>>>>>
+>>>>> Are you able to hit these higher temperatures? Do you have some test
+>>>>> case where the idle-injection shows to be successful in blocking us from
+>>>>> reaching the critical temp?
+>>>>
+>>>> No, I've been able to test idle-injection and observed a noticeable effect
+>>>> but I had to set lower trip, do you know how I can easily "block" LMH/EPSS from
+>>>> scaling down and let the temp go higher ?
+>>>>
+>>>
+>>> I don't know how to override that configuration.
+>>>
+>>>>>
+>>>>> E.g. in X13s (SC8280XP) we opted for relying on LMH/EPSS and define only
+>>>>> the critical trip for when the hardware fails us.
+>>>>
+>>>> It's the goal here aswell
+>>>>
+>>>
+>>> How about simplifying the patch by removing the idle-injection step and
+>>> just rely on LMH/EPSS and the "critical" trip (at least until someone
+>>> can prove that there's value in the extra mitigation)?
+>>
+>> OK, but I see value in this idle injection mitigation in that case LMH/EPSS
+>> fails, the only factor in control of HLOS is by stopping scheduling tasks
+>> since frequency won't be able to scale anymore.
+>>
 > 
-> Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
-> ---
->   .../platform/mediatek/jpeg/mtk_jpeg_core.c    |  6 ++++
->   .../platform/mediatek/jpeg/mtk_jpeg_core.h    | 11 +++++++
->   .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 30 +++++++++++++++++--
->   .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.h  |  4 +++
->   .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 26 ++++++++++++++++
->   .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.h  |  4 +++
->   6 files changed, 78 insertions(+), 3 deletions(-)
+> I think that sounds good, but afaict we don't have any indication of
+> this being a problem and we don't have any way to test that it actually
+> solves that problem.
+
+Sure, let's postpone the idle injection when we can actually test it.
+
 > 
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> index c3ccc525d9fd..77b3bd6c4d3f 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> @@ -1655,6 +1655,9 @@ static void mtk_jpegenc_worker(struct work_struct *work)
->   	jpeg_dst_buf->frame_num = ctx->total_frame_num;
->   	ctx->total_frame_num++;
->   	mtk_jpeg_enc_reset(comp_jpeg[hw_id]->reg_base);
-> +#if IS_ENABLED(CONFIG_ARM_SMMU_V3)
-> +	mtk_jpeg_enc_set_smmu_sid(hw_id);
-> +#endif
->   	mtk_jpeg_set_enc_dst(ctx,
->   			     comp_jpeg[hw_id]->reg_base,
->   			     &dst_buf->vb2_buf);
-> @@ -1771,6 +1774,9 @@ static void mtk_jpegdec_worker(struct work_struct *work)
->   	spin_lock_irqsave(&comp_jpeg[hw_id]->hw_lock, flags);
->   	ctx->total_frame_num++;
->   	mtk_jpeg_dec_reset(comp_jpeg[hw_id]->reg_base);
-> +#if IS_ENABLED(CONFIG_ARM_SMMU_V3)
+>> Anyway, I agree it can be added later on, so should I drop the 2 trip points
+>> and only leave the critical one ?
+>>
+> 
+> I think that's a simple and functional starting point - and it solves
+> your IRQ issue.
 
-You can avoid using preprocessor conditionals - and then, this doesn't look like an
-ARM SMMUv3 configuration, but rather a JPEG dec/enc HW config, so in that case the
-enclosing of this in the proposed config option would even be wrong.
+Ack
 
-Use platform data for that.
+Thanks,
+Neil
 
-> +	mtk_jpeg_dec_set_smmu_sid(hw_id);
-> +#endif
->   	mtk_jpeg_dec_set_config(comp_jpeg[hw_id]->reg_base,
->   				jpeg->variant->support_34bit,
->   				&jpeg_src_buf->dec_param,
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-> index 8fddc133c46c..d3aba1e6cae8 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-> @@ -36,6 +36,17 @@
->   
->   #define MTK_JPEG_ADDR_MASK GENMASK(1, 0)
->   
-> +#if IS_ENABLED(CONFIG_ARM_SMMU_V3)
-> +#define JPG_REG_CORE0_GUSER_ID                          0x380d0000
-> +#define JPG_REG_CORE1_GUSER_ID                          0x388d0000
-
-At least these two definitions shall go in the devicetree reg node.
-
-> +#define JPG_REG_GUSER_ID_MASK                           0x7
-> +#define JPG_REG_GUSER_ID_DEC_SID                        0x4
-> +#define JPG_REG_GUSER_ID_ENC_SID                        0x5
-> +#define JPG_REG_DEC_GUSER_ID_SHIFT                      8
-> +#define JPG_REG_ENC_GUSER_ID_SHIFT                      4
-
-If this is setting an IOMMU SID, then you can just use the "iommus" property
-to pass a handle to the IOMMU that this device is using plus the streamid,
-which you can retrieve and write to the guser_id_{dec,enc}_sid register.
-
-There's no reason to hardcode that in this header, and actually hardcoding
-will give you a number of issues (example: unpowered/unclocked access to the
-IOMMU, and many others).
-
-> +#define GUSER_ID_MAPRANGE                               4
-> +#endif
-> +
->   /**
->    * enum mtk_jpeg_ctx_state - states of the context state machine
->    * @MTK_JPEG_INIT:		current state is initialized
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> index d868e46aaf37..fadfc4b5e366 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> @@ -274,6 +274,32 @@ void mtk_jpeg_dec_reset(void __iomem *base)
->   }
->   EXPORT_SYMBOL_GPL(mtk_jpeg_dec_reset);
->   
-> +#if IS_ENABLED(CONFIG_ARM_SMMU_V3)
-> +void mtk_jpeg_dec_set_smmu_sid(int hwid)
-> +{
-> +	void __iomem *dec_reg_base;
-> +	u32 val, mask;
-> +
-> +	if (hwid)
-> +		dec_reg_base = ioremap(JPG_REG_CORE1_GUSER_ID, GUSER_ID_MAPRANGE);
-> +	else
-> +		dec_reg_base = ioremap(JPG_REG_CORE0_GUSER_ID, GUSER_ID_MAPRANGE);
-> +	if (!dec_reg_base) {
-> +		dev_err(jpeg->dev, "Failed to map jpgdec JPG_REG_GUSER_ID\n");
-> +		return;
-> +	}
-> +
-> +	val = ioread32(dec_reg_base);
-> +	mask = ~(JPG_REG_GUSER_ID_MASK << JPG_REG_DEC_GUSER_ID_SHIFT);
-> +	val &= mask;
-> +	val |= (JPG_REG_GUSER_ID_DEC_SID << JPG_REG_DEC_GUSER_ID_SHIFT);
-> +
-> +	iowrite32(val, dec_reg_base);
-> +	iounmap(dec_reg_base);
-> +}
-> +EXPORT_SYMBOL_GPL(mtk_jpeg_dec_set_smmu_sid);
-> +#endif
-> +
->   static void mtk_jpeg_dec_set_brz_factor(void __iomem *base, u8 yscale_w,
->   				u8 yscale_h, u8 uvscale_w, u8 uvscale_h)
->   {
-> @@ -552,7 +578,6 @@ static irqreturn_t mtk_jpegdec_hw_irq_handler(int irq, void *priv)
->   	struct vb2_v4l2_buffer *src_buf, *dst_buf;
->   	struct mtk_jpeg_src_buf *jpeg_src_buf;
->   	enum vb2_buffer_state buf_state;
-> -	struct mtk_jpeg_ctx *ctx;
->   	u32 dec_irq_ret;
->   	u32 irq_status;
->   	int i;
-> @@ -562,7 +587,6 @@ static irqreturn_t mtk_jpegdec_hw_irq_handler(int irq, void *priv)
->   
->   	cancel_delayed_work(&jpeg->job_timeout_work);
->   
-> -	ctx = jpeg->hw_param.curr_ctx;
->   	src_buf = jpeg->hw_param.src_buffer;
->   	dst_buf = jpeg->hw_param.dst_buffer;
->   	v4l2_m2m_buf_copy_metadata(src_buf, dst_buf, true);
-> @@ -585,7 +609,7 @@ static irqreturn_t mtk_jpegdec_hw_irq_handler(int irq, void *priv)
->   	buf_state = VB2_BUF_STATE_DONE;
->   	v4l2_m2m_buf_done(src_buf, buf_state);
->   	mtk_jpegdec_put_buf(jpeg);
-> -	pm_runtime_put(ctx->jpeg->dev);
-> +	pm_runtime_put(jpeg->dev);
-
-You're doing more than what you're describing in the commit title and description.
-
-If this change was intentional, please move it to a diffrent commit.
-
-Regards,
-Angelo
+> 
+> Regards,
+> Bjorn
 
 
