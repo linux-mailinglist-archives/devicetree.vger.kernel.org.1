@@ -1,247 +1,165 @@
-Return-Path: <devicetree+bounces-137490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F431A09301
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:10:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B9D4A09303
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:10:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59051188E410
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:09:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF4C0188A4E3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A45F20FA99;
-	Fri, 10 Jan 2025 14:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N6X4Ck3D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9938B20FAA5;
+	Fri, 10 Jan 2025 14:10:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C8F20E701;
-	Fri, 10 Jan 2025 14:09:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA2E207A15;
+	Fri, 10 Jan 2025 14:10:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736518177; cv=none; b=ARnSXtSkHooPEWYUdByBT/M/OZW4dsthctPEDrkYQUluziaifhzhMOjSjGuOQYWGPvzB/VnBH7QURTALP2OYqeYihMsxYNuJk/yrY9Fg5diKy/HOSRXRAgwGmpRRSwyqc33gWb6x0J7tohpPPVeXSuuTMb1huG1yaKomWXnf4UI=
+	t=1736518207; cv=none; b=CZVrg9zkUe3xwLJAJpx/eiF/ST1jQFCKVBdacyg+x9UQuj6CQTR5jegzoNQ7+LX4kUeYiTbd+jMw7nf6LA2cALYUtLXYdF3l1khBXWCu6so0H8FQ22hOd7Gz4hz4z8zYK0omONllLGnlHHS+IQd40PD8q8nNvx+jA/NYlrEmgss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736518177; c=relaxed/simple;
-	bh=BzqU8k0ICGCf9P2lsYRHW6RrSoUUVhJhmDeNcCF/upo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H0TnM7gEWpZgggHfSrPg6xvdgHtqJ7c9w1JP6AQHIhGwiORPewFsR9EaI1uJTnA6YWexxfLD2fhf73KyzMUF9gEUt0BICPfPIUVEY/8T4b8o/jGAvlqIZx0BnDDYPpGh5E+AKlqVBTqwrTCwE6ysv3RqLhCoxobyWCdN/Vynd8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N6X4Ck3D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D57E6C4CED6;
-	Fri, 10 Jan 2025 14:09:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736518176;
-	bh=BzqU8k0ICGCf9P2lsYRHW6RrSoUUVhJhmDeNcCF/upo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N6X4Ck3DIAaxq3dwu9LnBtCtQSYh1wtLY1sQXIYSQN56fTof/Xt1fvalaxdOFbTLi
-	 Xwv27NKD1oxDtn6rSZxzZSxBEJOyFvIm9GhEQlykxWNvYlbtJ5WAeUuD/p03dP3Yrn
-	 jOJehV+J3FPIWMqhSQtixHYW4fv6TN6peeBW7F1guMNAwVwWyK/hg0d/wLIdGsZ3qy
-	 H9aSS2gzYJ29a3ssBvXWE/Uyq00zQxi+0Km5opq1OUpxzMim2zzufjoIcHKxC1qBBx
-	 E/+7FbVph1WDoZuWuNt19NHrJQfzAfUiGIzKJcn+xuv1gpZ/GqNj1FDCKRxx8aRhBE
-	 HcKWtu0yCHMJQ==
-Date: Fri, 10 Jan 2025 08:09:34 -0600
-From: Rob Herring <robh@kernel.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Arnd Bergmann <arnd@arndb.de>, Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
-Subject: Re: [RFC PATCH 5/6] bus: qcom-sc7180: Attach pm domain to watchdog
- device
-Message-ID: <20250110140934.GB2630182-robh@kernel.org>
-References: <20250108012846.3275443-1-swboyd@chromium.org>
- <20250108012846.3275443-6-swboyd@chromium.org>
+	s=arc-20240116; t=1736518207; c=relaxed/simple;
+	bh=VrJW/Msg9cKcKQeHP0xMzAnaj+mPc/7eBP8bzgfg2pY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BAae2KOZyrJRqtgxSyqiiUKkDLKboawQRZuoL2VbSycmElK8q85rOSHzSPYWvG0gTrDOhxxXMH+FjEPLmAfmJStTfdednS3TRzBB6buWdteCQ7CO2FI/5HNTi6S42wJvDZoh9EFZSwFI2wM4jjTNkhgeVrwRzxxc8ZLI5Dx8iyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-6dccccd429eso15577756d6.3;
+        Fri, 10 Jan 2025 06:10:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736518203; x=1737123003;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GDyk57/J8HQ3yVwzMvPhMpXmN7YUAwR/lulQQxt0euo=;
+        b=IFBdL/vrb5GMhPIDa4ucaDCmVO+FuUSYV8f6aUJgmJLAwm0IdrLR5fzbJAAUKVRkgK
+         Lw9uFlsiuxSCa2Ojl65hOO3Vv5AC2SZJecFKAr4Srwrfk5V5yhuvSegK5Npo0WWIh8VO
+         daf8jgEftd6pSAGqtzgjb66H+vKnXqox7n6er1KrnFbsmedhMq4icy1q7P4HCcxJfe+b
+         KxovdFw/wCIL22Fxkt1R1waHrm4g/QzypSk14xMopzZpWVQOXg/uQ1P/cyywPXDa1Ik+
+         AyDLfDfTyb5WXesW+yOrrs3wR3UNfkIIQAscH6Jct7Qt2pnd48r/aA061Y+lUFiprQIf
+         CABw==
+X-Forwarded-Encrypted: i=1; AJvYcCUw/YVy7dLJbbpy0aPJeMbEKttucRddVIyHtrOAZQ3/vuWSoK5Z1OmkAyMjJ5chUXp1WpgRpb3wxoZu@vger.kernel.org, AJvYcCUwaQHjKk1wZeZpTIjBTwvVgPgRlzeLRb//5rKqNs5E10b76CVMxOT+b9PbZAN2oE0TG0PmKYmInNGFPg==@vger.kernel.org, AJvYcCVo8+3fK515xIG+rJbd94O2G3lrJuu9OthzKQ2DwAVaB+mGXTgajCsX25quJsgRNCNXwOW97lcQKY4G2Qza@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxK5T5BQPRm+s7V0pFehXAleVWQ3jpvQuM4IOiwaeR2gSV6k6H
+	I25USIJ0Mve9HpbpKVslLgbkBBigGralN0WA8qEYTAYDGe3zW6BLi5do2xW/
+X-Gm-Gg: ASbGncsiy0JFntzzzyNXurvQWbMQtCx4gzSRVArLn8BSDQviDC0F5klNkbIGC8jImBx
+	gWyDTYwH3jcEANudweRUjXCShmcD9nbk3yB7NkOWOJ1j9j9EVrcIEDAj2jXgWE2RUNeS47Xy1IE
+	m3L6KUyq4XkxmI2GlZ6RID5rsNQGUcehXNkuJk/RFXLFqTwlP8CgPeECYZJ8BncICo0siu3GNa5
+	wC/8VuBOaPs3vqrqXt12QpqQO+usP3IxsnS+KN5Xo+BvvECxmrQFflB+JbwpNC7D16/tZfQ3V1a
+	Crv8Mv280/FuJb2GUoXe0xw=
+X-Google-Smtp-Source: AGHT+IHy+H/vYgNkSdCvHfdbX7xnIJDqe3JLN4r5wVQVnoHFYNff/u5iu6OlwaMMhAzGiE+1PKpzvw==
+X-Received: by 2002:a05:6214:3112:b0:6d8:a1b4:b591 with SMTP id 6a1803df08f44-6df9b232915mr201071566d6.23.1736518201654;
+        Fri, 10 Jan 2025 06:10:01 -0800 (PST)
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com. [209.85.160.181])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6dfad85f658sm9524546d6.5.2025.01.10.06.10.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jan 2025 06:10:01 -0800 (PST)
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-46792996074so19120311cf.0;
+        Fri, 10 Jan 2025 06:10:01 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV2ox5VTusqHJYm+2X572uXhPsI7NKXXYCog89ybUYIPyTwXE0zC7ZfZXyDKqAv5N3TN0Hat2CIwy8wT8RN@vger.kernel.org, AJvYcCWdaiPnZKjpsddXHVUDKhlh3wGsi9DRE4gAPmXroi45Hfd+4sAGYTHmXG64K40JhPgahb8JYGIasjTt@vger.kernel.org, AJvYcCX8iDphDKU20IJbcIw2LGSOhnNbx8c28WZjyK3t40NesAko547YUEbB2BiHZA3gYdwAmuJSxenaI+1eMQ==@vger.kernel.org
+X-Received: by 2002:ac8:7d8f:0:b0:467:45b7:c495 with SMTP id
+ d75a77b69052e-46c7108f867mr165009211cf.15.1736518201275; Fri, 10 Jan 2025
+ 06:10:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250108012846.3275443-6-swboyd@chromium.org>
+References: <20250110130025.55004-1-brgl@bgdev.pl> <de6b70f2-8fd6-4e2a-a6c1-466698be8a6b@prolan.hu>
+ <CAMRc=MckJfEBK_ZUZ31hh7SMdbr4a-vZLtTGDCFttGK65wbXdA@mail.gmail.com>
+In-Reply-To: <CAMRc=MckJfEBK_ZUZ31hh7SMdbr4a-vZLtTGDCFttGK65wbXdA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 10 Jan 2025 15:09:49 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWhEZ0No8mXdymE8O8+rMCkD2SXAifZwReb1BbfYASOeQ@mail.gmail.com>
+X-Gm-Features: AbW1kva3r81VnGwR0hoVjKuOvjAbpVCjw3rRXMh10wLDbHLY9-8QeHpWdyHl4p0
+Message-ID: <CAMuHMdWhEZ0No8mXdymE8O8+rMCkD2SXAifZwReb1BbfYASOeQ@mail.gmail.com>
+Subject: Re: [PATCH 0/2] gpio: 74x164: use a compatible fallback and don't
+ extend the driver
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Ripard <mripard@kernel.org>, =?UTF-8?B?SiAuIE5ldXNjaMOkZmVy?= <j.ne@posteo.net>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 07, 2025 at 05:28:42PM -0800, Stephen Boyd wrote:
-> Find the watchdog device described as a child node of the sc7180 SoC
-> node and attach a generic pm domain to the device before registering the
-> device with the platform bus. The domain simply gets the clk and turns
-> it on when the pm domain is powered on and turns it off when the pm
-> domain is powered off.
-> 
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Konrad Dybcio <konradybcio@kernel.org>
-> Cc: <linux-arm-msm@vger.kernel.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  drivers/bus/qcom/qcom-sc7180.c | 122 +++++++++++++++++++++++++++++++++
->  1 file changed, 122 insertions(+)
-> 
-> diff --git a/drivers/bus/qcom/qcom-sc7180.c b/drivers/bus/qcom/qcom-sc7180.c
-> index a615cf5a2129..7dfe6b32efef 100644
-> --- a/drivers/bus/qcom/qcom-sc7180.c
-> +++ b/drivers/bus/qcom/qcom-sc7180.c
-> @@ -3,18 +3,140 @@
->   * SoC bus driver for Qualcomm SC7180 SoCs
->   */
->  
-> +#include <linux/cleanup.h>
-> +#include <linux/clk.h>
->  #include <linux/device.h>
-> +#include <linux/dev_printk.h>
->  #include <linux/init.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm.h>
-> +#include <linux/pm_domain.h>
-> +
-> +struct qcom_soc_pm_domain {
-> +	struct clk *clk;
-> +	struct generic_pm_domain pd;
-> +};
-> +
-> +static struct qcom_soc_pm_domain *
-> +gpd_to_qcom_soc_pm_domain(struct generic_pm_domain *gpd)
-> +{
-> +	return container_of(gpd, struct qcom_soc_pm_domain, pd);
-> +}
-> +
-> +static struct qcom_soc_pm_domain *pd_to_qcom_soc_pm_domain(struct dev_pm_domain *pd)
-> +{
-> +	struct generic_pm_domain *gpd;
-> +
-> +	gpd = container_of(pd, struct generic_pm_domain, domain);
-> +
-> +	return gpd_to_qcom_soc_pm_domain(gpd);
-> +}
-> +
-> +static struct qcom_soc_pm_domain *dev_to_qcom_soc_pm_domain(struct device *dev)
-> +{
-> +	struct dev_pm_domain *pd;
-> +
-> +	pd = dev->pm_domain;
-> +	if (!pd)
-> +		return NULL;
-> +
-> +	return pd_to_qcom_soc_pm_domain(pd);
-> +}
-> +
-> +static struct platform_device *
-> +qcom_soc_alloc_device(struct platform_device *socdev, const char *compatible)
-> +{
-> +	struct device_node *np __free(device_node);
-> +
-> +	np = of_get_compatible_child(socdev->dev.of_node, compatible);
-> +
-> +	return of_platform_device_alloc(np, NULL, &socdev->dev);
-> +}
-> +
-> +static int qcom_soc_domain_activate(struct device *dev)
-> +{
-> +	struct qcom_soc_pm_domain *soc_domain;
-> +
-> +	dev_info(dev, "Activating device\n");
-> +	soc_domain = dev_to_qcom_soc_pm_domain(dev);
-> +
-> +	soc_domain->clk = devm_clk_get(dev, NULL);
-> +
-> +	return PTR_ERR_OR_ZERO(soc_domain->clk);
-> +}
-> +
-> +static int qcom_soc_domain_power_on(struct generic_pm_domain *domain)
-> +{
-> +	struct qcom_soc_pm_domain *soc_domain;
-> +
-> +	pr_info("Powering on device\n");
-> +	soc_domain = gpd_to_qcom_soc_pm_domain(domain);
-> +
-> +	return clk_prepare_enable(soc_domain->clk);
-> +}
-> +
-> +static int qcom_soc_domain_power_off(struct generic_pm_domain *domain)
-> +{
-> +	struct qcom_soc_pm_domain *soc_domain;
-> +
-> +	pr_info("Powering off device\n");
-> +	soc_domain = gpd_to_qcom_soc_pm_domain(domain);
-> +
-> +	clk_disable_unprepare(soc_domain->clk);
+Hi Bartosz,
 
-How's this going to scale when there are multiple clocks and it's not 
-just turn on/off all the clocks in any order? Or when there's ordering 
-requirements between different resources.
+On Fri, Jan 10, 2025 at 2:38=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
+ wrote:
+> On Fri, Jan 10, 2025 at 2:32=E2=80=AFPM Cs=C3=B3k=C3=A1s Bence <csokas.be=
+nce@prolan.hu> wrote:
+> > On 2025. 01. 10. 14:00, Bartosz Golaszewski wrote:
+> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > >
+> > > There were other suggested solutions (for instance: just use the
+> > > existing compatible for the On Semi variant) but I figured the most
+> > > common approach is to use a fallback value for 100% compatible models
+> > > and this is what Rob suggested as well.
+> > >
+> > > This reverts the driver change and makes the "onnn,74hc595a" compatib=
+le
+> > > use "fairchild,74hc595" as fallback.
+> >
+> > Is there any reason to introduce a new compatible name at all? Does som=
+e
+> > pre-existing, widely-used DT blob use it in the wild already? If not,
+> > then I don't think it's necessary; for any new boards, their DT's
+> > authors should just use the pre-existing names.
+>
+> I don't have a strong opinion on this and will defer to DT maintainers
+> but a similar case I'm familiar with is the at24 EEPROM driver where
+> we've got lots of 1:1 compatible chips and we tend to add new
+> compatibles to DT bindings (with fallbacks to associated atmel models)
+> just for the sake of correct HW description in DTS.
 
-I'm pretty sure I've seen attempts to order clock entries in DT based on 
-the order they want to enable them.
+At24 EEPROMs differ from '595 shift registers in that they provide an
+API with multiple commands, and some commands or parameter bits may
+differ among different implementations (but usually these differences
+are called quirks).
 
-> +
-> +	return 0;
-> +}
-> +
-> +static int qcom_soc_add_clk_domain(struct platform_device *socdev,
-> +				   struct platform_device *pdev)
-> +{
-> +	struct qcom_soc_pm_domain *domain;
-> +	struct generic_pm_domain *pd;
-> +	int ret;
-> +
-> +	domain = devm_kzalloc(&socdev->dev, sizeof(*domain), GFP_KERNEL);
-> +	if (!domain)
-> +		return -ENOMEM;
-> +
-> +	pd = &domain->pd;
-> +	pd->name = "wdog";
-> +	ret = pm_genpd_init(pd, NULL, false);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* TODO: Wrap this in a generic_pm_domain function similar to power_on() */
-> +	pd->domain.activate = qcom_soc_domain_activate;
-> +	pd->power_on = qcom_soc_domain_power_on;
-> +	pd->power_off = qcom_soc_domain_power_off;
-> +
-> +	dev_info(&socdev->dev, "adding pm domain for %s\n", dev_name(&pdev->dev));
-> +	dev_pm_domain_set(&pdev->dev, &pd->domain);
-> +
-> +	return 0;
-> +}
->  
->  static int qcom_soc_sc7180_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct device_node *np = dev->of_node;
-> +	struct platform_device *sdev;
-> +	int ret;
-> +
-> +	sdev = qcom_soc_alloc_device(pdev, "qcom,apss-wdt-sc7180");
+All '595 (I'm deliberately writing it like that) shift registers
+should be 100% compatible, modulo some electrical specifications
+(voltage levels, maximum speed, power consumption, ...).
 
-We're going to have to have an explicit call for every child node?
+Interestingly, the driver is called gpio-74x164.c, while no '164
+compatible value is present. Most important difference is that the
+'164 lacks the output latch, which is used as chip-select with SPI[1].
 
-> +	if (!sdev)
-> +		return dev_err_probe(dev, -ENODEV, "Failed to alloc sdev\n");
-> +
-> +	ret = qcom_soc_add_clk_domain(pdev, sdev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to add clk domain to sdev\n");
-> +
-> +	ret = of_platform_device_add(sdev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to add sdev to bus\n");
->  
->  	return of_platform_populate(np, NULL, NULL, dev);
->  }
-> -- 
-> https://chromeos.dev
-> 
+> > I'm especially against introducing a new, vendor-specific (On Semi, in
+> > this case) name; if we really want to introduce a new compatible, at
+> > least make it as generic as possible, i.e. `generic,74x595`, or even
+> > `generic,spi-shift-register-output`.
+>
+> If anything, that would have to be the fallback that the driver knows.
+> The first string in the compatible property has to have an actual
+> vendor (I think, I'll let DT maintainers correct me).
+
+For the inverse operation (parallel in, serial out), there's just
+"pisosr-gpio".
+
+[1] https://www.ovaga.com/blog/transistor/74hc164-vs-74hc595#simple-list-it=
+em-2
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
