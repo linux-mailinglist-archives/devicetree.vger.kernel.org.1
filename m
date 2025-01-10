@@ -1,198 +1,184 @@
-Return-Path: <devicetree+bounces-137570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2177A0988C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 18:31:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B820AA098A4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 18:35:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6765D3A086A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 17:31:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFA163A1D94
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 17:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D47A7212B17;
-	Fri, 10 Jan 2025 17:31:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C679F2144AE;
+	Fri, 10 Jan 2025 17:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="De+Jd7sX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6cAy4m7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA282F3E;
-	Fri, 10 Jan 2025 17:31:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6E02144AC;
+	Fri, 10 Jan 2025 17:35:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736530266; cv=none; b=ea6kgMNNYdZIUdsa0uSyO2sSbZcZcExTWcB9L/sPeD2+InAY0c8eRidy++xqXrVHPyhZ7md50zkjsHNueiLMdEeNu/DKor0tWSad99VBr3bJWU68aUICXQw6s28IHFEtxFAv26CHw3h/963Osnz371UnSIWo60/MjZJLQzgQ5jQ=
+	t=1736530532; cv=none; b=f8VSdI8I4UdCv4Z5GD46uIzS4s5NM/FtRuE0SYHnAPM9M4EHG0UbDdJ724RfV6OZ14DAxj3w8v+XLsyZrUFa1p97iLbvTLXJdVV8YmpBEkxaRlb7w+dy5eJeaBYoag18I1EETbPKLmkI+GgNubZkZ0tsht8563DI5S9To097CCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736530266; c=relaxed/simple;
-	bh=7wOoi5BL4PGqLi6xxs/yRouAop1bhN6SW6OEDPgLT1k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Rr+3pZIlO/xiqPMZYrd7KKl7ea8enEl13S843fEF/mM5yHj0zUBjHoROhMqPepwVxfcjcy7B6TYaBTkJpg1dI9RdTu694buiolf3AMYkV9SZOnzh2VV3PquqpafPrDNi4MXJsMn85Mdq1bPeKHnDfhOs0varL+9d+QUdHgtWd6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=De+Jd7sX; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50ACLZ0H004159;
-	Fri, 10 Jan 2025 17:30:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	e+kWxiIhP4hu1teMb6i3Fkujoch1HtnRL/3mOiQeN1w=; b=De+Jd7sXD2Gdkoyv
-	9yIoZPtIL3hV0kukSgE5ytjoiqQhuu37Et6KKaBXLO2wwIvgIevd1tp2mbVq+Blk
-	AhxVzsMn77QcI+1OPmUfvYbEGgLFUhjabKFeMbBvIy+FqdFB5KcbEfIsqrG3x1pA
-	NemOxhJW5HjsbOqJzKzWad9yiv6fGGITNI4FGhxIH+5AwJ4GZcUaMtCFklmrJe50
-	FQhuJzImFI8O2NSjHTMTuXCQz6XS3er9A9OdKVPbHIlBJZ3iHB1i59RLg8K4dPfw
-	h4W5QgP0VdeYUgp/TTgh42E47utnewzKxv4PFUD2bttuHFTGHOJPUktIJFWRfq4f
-	XLtawg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4433g0rtmx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Jan 2025 17:30:50 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50AHUntn029605
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Jan 2025 17:30:49 GMT
-Received: from [10.50.21.116] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 10 Jan
- 2025 09:30:42 -0800
-Message-ID: <24334fb8-4d83-eb06-aee3-dfe1f8e4937b@quicinc.com>
-Date: Fri, 10 Jan 2025 23:00:30 +0530
+	s=arc-20240116; t=1736530532; c=relaxed/simple;
+	bh=5KZvj0UJW7q8uEo+QUesHwTgLnEO03HmGRUGeRMyG9w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XMZQsgCdPh3CiPo5B4fgNzU6H8jdOhCt0kLsXmktixh9jG239j3+yiC74UwR306/J4znkFw3pnvgjexLeZWlGmSxNHRd5L/uDEvRJiLmBQL2asXBE9hYhD78Xm2b9ZCzeET/BuHeQMM3QELlO+jcd/vHck9+Lalrb+hF2yIv/S0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6cAy4m7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF36CC4CED6;
+	Fri, 10 Jan 2025 17:35:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736530532;
+	bh=5KZvj0UJW7q8uEo+QUesHwTgLnEO03HmGRUGeRMyG9w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U6cAy4m7SRrKAMozBVgurC2+n8aTsRrKOBvoQ5NLYDdDlrY9cdKkI5fgC7/S8DAVT
+	 rxbDnkw+r+Q8B+ta9wVNFD1w6kCXYyEpDox2porATxo/MLopH5aerCTCkca5IekCMd
+	 DW9q147yCTUYucmR/Ot3GuBZ82XVGzJ8ywViymVOSTCn6ykR9/7XMcc9KLiHKWfGk4
+	 GtqsOj3msFi7UF3o4Kp7GGEeU6Jsm96kuHoxBG+VlMXkgjnjmLaztqp+bLw8rQltb8
+	 tNuLX5qCNFVJQ/tmmhVsUBojKgLPF7CWGLnRZD/U/zVCqh/sxSZamn1QWaHxQ1ISLQ
+	 c71EwuPgpOksA==
+Date: Fri, 10 Jan 2025 11:35:31 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andrew Davis <afd@ti.com>
+Cc: Romain Naour <romain.naour@smile.fr>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+	conor+dt@kernel.org, krzk+dt@kernel.org, kristo@kernel.org,
+	vigneshr@ti.com, nm@ti.com, Romain Naour <romain.naour@skf.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: mfd: syscon: Add
+ ti,j721e-acspcie-proxy-ctrl compatible
+Message-ID: <20250110173531.GA3025883-robh@kernel.org>
+References: <20250110100331.1642242-1-romain.naour@smile.fr>
+ <20250110153520.GA2904744-robh@kernel.org>
+ <3e8ccd7d-0bc1-4ccb-8446-c9d10efbc969@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of SM8250
- SoC
-To: Johan Hovold <johan@kernel.org>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>
-CC: Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Nicolas Dufresne
-	<nicolas@ndufresne.ca>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?=
-	<u.kleine-koenig@baylibre.com>,
-        Jianhua Lu <lujianhua000@gmail.com>,
-        "Stefan
- Schmidt" <stefan.schmidt@linaro.org>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
- <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
- <Z3_nCPk_g8znto4A@hovoldconsulting.com>
- <64f8bebd-35e1-c743-b212-e1a3292bade2@quicinc.com>
- <Z4EuiPEw8mvDQ2gv@hovoldconsulting.com>
-Content-Language: en-US
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <Z4EuiPEw8mvDQ2gv@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: n8QyieWjDtJJz8Dl3kmrUHQzsCIfPxak
-X-Proofpoint-ORIG-GUID: n8QyieWjDtJJz8Dl3kmrUHQzsCIfPxak
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 spamscore=0 clxscore=1011 malwarescore=0 phishscore=0
- mlxscore=0 mlxlogscore=999 lowpriorityscore=0 impostorscore=0
- suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2501100135
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3e8ccd7d-0bc1-4ccb-8446-c9d10efbc969@ti.com>
 
+On Fri, Jan 10, 2025 at 10:17:15AM -0600, Andrew Davis wrote:
+> On 1/10/25 9:35 AM, Rob Herring wrote:
+> > On Fri, Jan 10, 2025 at 11:03:30AM +0100, Romain Naour wrote:
+> > > From: Romain Naour <romain.naour@skf.com>
+> > > 
+> > > The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
+> > > SoC are used to drive the reference clock to the PCIe Endpoint device via
+> > > the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
+> > > obtain the regmap for the ACSPCIE_CTRL register within the System
+> > > Controller device-tree node in order to enable the PAD IO Buffers.
+> > > 
+> > > Using the ti,j721e-acspcie-proxy-ctrl compatible imply to use "Proxy1"
+> > > address (1A090h) instead of "Proxy0" (18090h) to access
+> > > CTRLMMR_ACSPCIE0_CTRL register:
+> > > 
+> > >    CTRLMMR_ACSPCIE0_CTRL Register (Proxy0 Offset = 18090h; Proxy1 Offset = 1A090h)
+> > > 
+> > > "Proxy0" is used as the default access path that can be locked with the
+> > > help of "CTRLMMR_LOCK0_KICK0" and "CTRLMMR_LOCK0_KICK1" registers.
+> > > 
+> > > The Technical Reference Manual for J721e SoC with details of the
+> > > ASCPCIE_CTRL registers is available at:
+> > > https://www.ti.com/lit/zip/spruil1
+> > > 
+> > > Signed-off-by: Romain Naour <romain.naour@skf.com>
+> > > ---
+> > > v5:
+> > >    - Add missing change to the J721e system controller binding
+> > >      to avoid DT check warning when the new acspcie0_proxy_ctrl (syscon)
+> > >      will be added to J721e system controller node (Andrew Davis).
+> > > 
+> > >    https://lore.kernel.org/linux-devicetree/90f47fae-a493-471d-8fe6-e7df741161be@ti.com/
+> > > 
+> > >    - Explain why "Proxy1" address (1A090h) should be used while using
+> > >      ti,j721e-acspcie-proxy-ctrl compatible (Siddharth Vadapalli).
+> > > 
+> > >    https://lore.kernel.org/linux-devicetree/begojbvvrpyjfr3pye7mqwiw73ucw5ynepdfujssr4jx4vs33a@pwahnph3qesl/
+> > > 
+> > > v4: Add missing change in the second list (From Andrew Davis) [1]
+> > >    Rebase after the ti,j784s4-acspcie-proxy-ctrl compatible fix [2]
+> > >    [1] https://lore.kernel.org/linux-devicetree/20250103174524.28768-1-afd@ti.com/
+> > >    [2] https://lore.kernel.org/linux-devicetree/20250103174524.28768-2-afd@ti.com/
+> > > 
+> > > v3: new commit
+> > > ---
+> > >   Documentation/devicetree/bindings/mfd/syscon.yaml           | 2 ++
+> > >   .../bindings/soc/ti/ti,j721e-system-controller.yaml         | 6 ++++++
+> > >   2 files changed, 8 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > > index 0e68c69e7bc9..1f3e67f432e7 100644
+> > > --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > > +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > > @@ -115,6 +115,7 @@ select:
+> > >             - ti,am625-dss-oldi-io-ctrl
+> > >             - ti,am62p-cpsw-mac-efuse
+> > >             - ti,am654-dss-oldi-io-ctrl
+> > > +          - ti,j721e-acspcie-proxy-ctrl
+> > >             - ti,j784s4-acspcie-proxy-ctrl
+> > >             - ti,j784s4-pcie-ctrl
+> > >             - ti,keystone-pllctrl
+> > > @@ -213,6 +214,7 @@ properties:
+> > >             - ti,am625-dss-oldi-io-ctrl
+> > >             - ti,am62p-cpsw-mac-efuse
+> > >             - ti,am654-dss-oldi-io-ctrl
+> > 
+> > > +          - ti,j721e-acspcie-proxy-ctrl
+> > >             - ti,j784s4-acspcie-proxy-ctrl
+> > 
+> > How do these 2 compare? Are they compatible?
+> > 
+> 
+> Yes, they are 100% identical and compatible, but we were told
+> to make a new string anyway.. [0]
+> 
+> [0] https://lore.kernel.org/all/1bfdf1f1-7542-4149-a85d-2ac4b659b26b@kernel.org/
 
+Then you should have:
 
-On 1/10/2025 7:58 PM, Johan Hovold wrote:
-> On Thu, Jan 09, 2025 at 11:18:29PM +0530, Vikash Garodia wrote:
->> On 1/9/2025 8:41 PM, Johan Hovold wrote:
->>> On Thu, Dec 12, 2024 at 05:21:49PM +0530, Dikshita Agarwal wrote:
->>>> Initialize the platform data and enable video driver probe of SM8250
->>>> SoC. Add a kernel param to select between venus and iris drivers for
->>>> platforms supported by both drivers, for ex: SM8250.
->>>
->>> Why do you want to use a module parameter for this? What would be the
->>> default configuration? (Module parameters should generally be avoided.)
-> 
->> This was discussed during v4 [1] and implemented as per suggestion
->>
->> [1]
->> https://lore.kernel.org/linux-media/eea14133-2152-37bb-e2ff-fcc7ed4c47f5@quicinc.com/
-> 
-> First, the background and motivation for this still needs to go in the
-> commit message (and be mentioned in the cover letter).
-> 
-> Second, what you implemented here is not even equivalent to what was
-> done in the mdm drm driver since that module parameter is honoured by
-> both drivers so that at most one driver tries to bind to the platform
-> device.
-> 
-> With this patch as it stands, which driver ends up binding depends on
-> things like link order and what driver has been built a module, etc. (as
-> I pointed out below).
-> 
->>> Why not simply switch to the new driver (and make sure that the new
->>> driver is selected if the old one was enabled in the kernel config)?
-> 
->> Its about the platform in migration i.e sm8250. Since new driver is not yet
->> feature parity with old driver, choice is provided to client if it wants to use
->> the new driver (default being old driver for sm8250)
-> 
-> This should be described in the commit message, along with details on
-> what the delta is so that the reasoning can be evaluated.
-> 
-> And I'm still not sure using a module parameter for this is the right
-> thing to do as it is generally something that should be avoided.
-> 
-I understand your concern of using module params.
-I will modify it to rely on Kconfig to select the driver (suggested by
-Hans) instead of module param.
-something like:
-config VIDEO_QCOM_IRIS
-        tristate "Qualcomm iris V4L2 decoder driver"
-       ...
-        depends on VIDEO_QCOM_VENUS=n || COMPILE_TEST
+"ti,j721e-acspcie-proxy-ctrl", "ti,j784s4-acspcie-proxy-ctrl", "syscon"
 
-Thanks,
-Dikshita
->>>>  static int iris_probe(struct platform_device *pdev)
->>>>  {
->>>>  	struct device *dev = &pdev->dev;
->>>> @@ -196,6 +224,9 @@ static int iris_probe(struct platform_device *pdev)
->>>>  	u64 dma_mask;
->>>>  	int ret;
->>>>  
->>>> +	if (!video_drv_should_bind(&pdev->dev, true))
->>>> +		return -ENODEV;
->>>
->>> AFAICT nothing is preventing venus from binding even when 'prefer_venus'
->>> is false.
->>>
->>>> +
->>>>  	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
->>>>  	if (!core)
->>>>  		return -ENOMEM;
 > 
-> Johan
+> 
+> > >             - ti,j784s4-pcie-ctrl
+> > >             - ti,keystone-pllctrl
+> > > diff --git a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+> > > index 378e9cc5fac2..16929218d611 100644
+> > > --- a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+> > > +++ b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
+> > > @@ -68,6 +68,12 @@ patternProperties:
+> > >       description:
+> > >         The node corresponding to SoC chip identification.
+> > > +  "^syscon@[0-9a-f]+$":
+> > > +    type: object
+> > > +    $ref: /schemas/mfd/syscon.yaml#
+> > > +    description:
+> > > +      This is the ASPCIe control region.
+> > 
+> > So this is a syscon child of a syscon. The primary reason for 'syscon'
+> > compatible is to create a regmap. Why can't you use the parent's syscon?
+> > 
+> 
+> The parent node will not be a syscon soon. We made this whole bus a "syscon"
+> so we could just poke any register we wanted which was a hacky solution we
+> want to fix. The parent will be converted into a normal "simple-bus".
+
+Sigh... And that can be done without ABI breakage?
+
+> Most of the IP in this region can be described using normal DT devices,
+> but there are still just a couple registers like this where we need a raw
+> syscon (or we could make a proper device driver for these registers, but
+> that might be excessive, instead seems easy enough to just poke them
+> directly from the PCIe driver).
+
+Given it was already a syscon, keeping that is fine.
+
+Rob
 
