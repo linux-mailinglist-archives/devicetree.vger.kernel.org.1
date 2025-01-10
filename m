@@ -1,144 +1,318 @@
-Return-Path: <devicetree+bounces-137250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7FEDA08630
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 05:26:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8D83A08638
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 05:37:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D08FB1670B7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 04:26:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56D92161D85
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 04:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9FD1E3762;
-	Fri, 10 Jan 2025 04:26:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC431C5F27;
+	Fri, 10 Jan 2025 04:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="bfx0E5Xq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kYwAh1WD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24C81A9B45;
-	Fri, 10 Jan 2025 04:26:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA75C8F54;
+	Fri, 10 Jan 2025 04:36:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736483197; cv=none; b=GtfkVUyvuxRI4t1zYWu5eTHjVpydjEa7pmeRDEvDoHsj6uWjeFHZPXJ3j6tkTN8keFvwhK9x/t1QXImwFp02RJg3oVEi7obBVEXMxAMc9U7NPBYs62mZZa0rZFIZLAikOsEI/JMQimhHOiPzVIZ/wT0RMD6WHztCVZfZTkxYyXg=
+	t=1736483815; cv=none; b=m3d/jho3b0aBjRESjtBcfi/YKfNcvjdZjKg3P59aufezOkHpVKXo7v94YBoBX8cVsvj5TsN344tISrObvBqsv/4wHHvxlhTpRXaZ5uPZxIlSYgOEVPsUJfKrqdR7RtUv4PzJt5yqi10Oy84vIPUMf/P0N3p3eTHym0YmeYcPJRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736483197; c=relaxed/simple;
-	bh=XiavKDCGwseegksBFnd6HYkxoq9SlADHV6l+lpVAs34=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k07t8CGt+A3teiP+gDWEZjZ+ABTuDWQ9lIb0GPTPJKfWqE5iHpWXVpreCnNMf12hjiVTa1c3swVetUU1dkW8OJdozLBqalqM+cjdQ8EG2c3i8YwVfVQQdoqm6wX5yw1Q33aqjVab1p05RtiVwS2kpemYBvDKH2UzNLJnLFliRw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=bfx0E5Xq; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202412; t=1736483184;
-	bh=jvC9WPsGbTe6wW25y1cUtNv8ORad7QsqaECEljmg0ao=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bfx0E5XqQaVCGraqgaTkNO19rV4wUVMufdheW+SFcYsGgf1ERK0GRtJQohVXu1hxD
-	 e2q1bL1J8y98vDdNTzD1rWyP82oCPGKMcW8SZeelNfbog0MFPA3DAXYwO5oklgngo3
-	 xPooB4ZXZubVrokGDCZZVIOVEsTmUmsBFZ/YzfbunFL0A+YnuQp2drq+Rpi3K5CSWc
-	 O3r3DUYctO/Ed4ijpKGkf9WLJPcWY9+inFrI4YYo1i0ZsEDkVWpl6J9sLi24XXsUbW
-	 IwDNkyjZe7KxDnX0YU9LeX6CY3wF8SCgfvZI380r7/fXKKa1Br2iKIwNpqI2npTtCr
-	 +AmbSXW+NqWeg==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4YTpWN08RKz4wcw; Fri, 10 Jan 2025 15:26:24 +1100 (AEDT)
-Date: Fri, 10 Jan 2025 15:26:23 +1100
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Ayush Singh <ayush@beagleboard.org>, Andrew Davis <afd@ti.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
- feature
-Message-ID: <Z4Chb_nEDTHms_ZN@zatzit>
-References: <20241209151830.95723-1-herve.codina@bootlin.com>
- <33c61b28-c0b8-478d-8107-c6ed1ff9e466@beagleboard.org>
- <20241210104141.39acffb1@bootlin.com>
- <bab9f277-a366-48ec-acdd-0896c8307ad9@beagleboard.org>
- <20241210115515.1886f73f@bootlin.com>
- <6d48095d-59b1-4439-8e2a-927aa1aa1b55@beagleboard.org>
- <20250108090750.45685a50@bootlin.com>
- <d25572fa-8f0c-4f19-874c-6698a1db40ae@beagleboard.org>
- <20250108104719.0412ad94@bootlin.com>
+	s=arc-20240116; t=1736483815; c=relaxed/simple;
+	bh=APD83ixTjkgIL6sDveyllfSkGtkEUiL9rAk7xFlL0Y4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NA2Hmsw4giozTCCztRgDa8UV8WU5R/Xe41XmS4LNrDQIwILfK9lE1GZk5BI9O3aA4XukdBeLlqCZoG1g78cyOkB8JmZEbixdQ0pCOG8ANA5iL831GETpeyfqGxMgj6aTUQZJZYYTKRJA4M3Z9ByXDXAwENQY+55AsvtIjNC2ky8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kYwAh1WD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50A1W32t023421;
+	Fri, 10 Jan 2025 04:36:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=M8AynVnJMRD2H0YVv/u0Whl6
+	0TNKLKUVltGlZet2XLU=; b=kYwAh1WDRJHpEllGQa7Eb560nz40k+zX2rgYk6tS
+	JqQnv/PVftHz2yaODeZ9tZN8h03bS8TtxUh5/IUi+1Q9PdIYWPbs6JFGc5jc3qLb
+	yS6OmHf4qPfOLOJ1cG9wjBm4qspTCo+NEVxWk9C2g+8KTm79tqP2JZesfP4wbXus
+	XVZBXhWrjuHWM06HKJi2cX3quZeSrlKWYLMBSg35b/Zxxno20WCSBoO8nStcHCQ9
+	qk2I8PhF46/qg3Uu4mY9W2EVHlnwBtvzNlVxIambseWeY4qNMOI/jn9TKAnz9e6S
+	5WxBpoQCP1vGEAsrmb+xvjXRDqPCxqmgkg9WRQ4aAFBDPA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442syc0bxf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jan 2025 04:36:39 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50A4acmP017036
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jan 2025 04:36:38 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 9 Jan 2025 20:36:32 -0800
+Date: Fri, 10 Jan 2025 10:06:29 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <vkoul@kernel.org>, <kishon@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <p.zabel@pengutronix.de>,
+        <quic_nsekar@quicinc.com>, <dmitry.baryshkov@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>,
+        Praveenkumar I <quic_ipkumar@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v5 4/5] arm64: dts: qcom: ipq5332: Add PCIe related nodes
+Message-ID: <Z4Cjzc5nyOv0R9tS@hu-varada-blr.qualcomm.com>
+References: <20250102113019.1347068-1-quic_varada@quicinc.com>
+ <20250102113019.1347068-5-quic_varada@quicinc.com>
+ <20250108132235.gh6p5d6t7wklzpm7@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="I6CnIClgeg0FhNdR"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250108104719.0412ad94@bootlin.com>
+In-Reply-To: <20250108132235.gh6p5d6t7wklzpm7@thinkpad>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PDsGTaYB_0n28TRswOJR4j5vfPdyrjOL
+X-Proofpoint-ORIG-GUID: PDsGTaYB_0n28TRswOJR4j5vfPdyrjOL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
+ malwarescore=0 phishscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0
+ clxscore=1015 mlxscore=0 suspectscore=0 priorityscore=1501 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501100036
 
+On Wed, Jan 08, 2025 at 06:52:35PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Jan 02, 2025 at 05:00:18PM +0530, Varadarajan Narayanan wrote:
+> > From: Praveenkumar I <quic_ipkumar@quicinc.com>
+> >
+> > Add phy and controller nodes for pcie0_x1 and pcie1_x2.
+> >
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > ---
+> > v5: Add 'num-lanes' to "pcie1_phy: phy@4b1000"
+> >     Make ipq5332 as main and ipq9574 as fallback compatible
+> >     Move controller nodes per address
+> >     Having Konrad's Reviewed-By
+> >
+> > v4: Remove 'reset-names' as driver uses bulk APIs
+> >     Remove 'clock-output-names' as driver uses bulk APIs
+> >     Add missing reset for pcie1_phy
+> >     Convert 'reg-names' to a vertical list
+> >     Move 'msi-map' before interrupts
+> >
+> > v3: Fix compatible string for phy nodes
+> >     Use ipq9574 as backup compatible instead of new compatible for ipq5332
+> >     Fix mixed case hex addresses
+> >     Add "mhi" space
+> >     Removed unnecessary comments and stray blank lines
+> >
+> > v2: Fix nodes' location per address
+> > ---
+> >  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 221 +++++++++++++++++++++++++-
+> >  1 file changed, 219 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> > index d3c3e215a15c..89daf955e4bd 100644
+> > --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+> > @@ -186,6 +186,43 @@ rng: rng@e3000 {
+> >  			clock-names = "core";
+> >  		};
+> >
+> > +		pcie0_phy: phy@4b0000 {
+> > +			compatible = "qcom,ipq5332-uniphy-pcie-phy";
+> > +			reg = <0x004b0000 0x800>;
+> > +
+> > +			clocks = <&gcc GCC_PCIE3X1_0_PIPE_CLK>,
+> > +				 <&gcc GCC_PCIE3X1_PHY_AHB_CLK>;
+> > +
+> > +			resets = <&gcc GCC_PCIE3X1_0_PHY_BCR>,
+> > +				 <&gcc GCC_PCIE3X1_PHY_AHB_CLK_ARES>,
+> > +				 <&gcc GCC_PCIE3X1_0_PHY_PHY_BCR>;
+> > +
+> > +			#clock-cells = <0>;
+> > +
+> > +			#phy-cells = <0>;
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		pcie1_phy: phy@4b1000 {
+> > +			compatible = "qcom,ipq5332-uniphy-pcie-phy";
+> > +			reg = <0x004b1000 0x1000>;
+> > +
+> > +			clocks = <&gcc GCC_PCIE3X2_PIPE_CLK>,
+> > +				 <&gcc GCC_PCIE3X2_PHY_AHB_CLK>;
+> > +
+> > +			resets = <&gcc GCC_PCIE3X2_PHY_BCR>,
+> > +				 <&gcc GCC_PCIE3X2_PHY_AHB_CLK_ARES>,
+> > +				 <&gcc GCC_PCIE3X2PHY_PHY_BCR>;
+> > +
+> > +			#clock-cells = <0>;
+> > +
+> > +			#phy-cells = <0>;
+> > +
+> > +			num-lanes = <2>;
+> > +
+> > +			status = "disabled";
+> > +		};
+> > +
+> >  		tlmm: pinctrl@1000000 {
+> >  			compatible = "qcom,ipq5332-tlmm";
+> >  			reg = <0x01000000 0x300000>;
+> > @@ -212,8 +249,8 @@ gcc: clock-controller@1800000 {
+> >  			#interconnect-cells = <1>;
+> >  			clocks = <&xo_board>,
+> >  				 <&sleep_clk>,
+> > -				 <0>,
+> > -				 <0>,
+> > +				 <&pcie1_phy>,
+> > +				 <&pcie0_phy>,
+> >  				 <0>;
+> >  		};
+> >
+> > @@ -479,6 +516,186 @@ frame@b128000 {
+> >  				status = "disabled";
+> >  			};
+> >  		};
+> > +
+> > +		pcie1: pcie@18000000 {
+>
+> pcie@
 
---I6CnIClgeg0FhNdR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Not able to understand. Can you please let me know if you want
+the label 'pcie1' to be dropped? This label is used in the board
+dts to enable this node, so cannot drop.
 
-On Wed, Jan 08, 2025 at 10:47:19AM +0100, Herve Codina wrote:
-> Hi Ayush,
->=20
-> On Wed, 8 Jan 2025 13:58:04 +0530
-> Ayush Singh <ayush@beagleboard.org> wrote:
->=20
-> ...
-> >=20
-> > I will experiment with adding support to dtc and see how things look.=
-=20
-> > Hopefully, 2025 is the year of addon board support.
-> >=20
->=20
-> Also one point different between fdtoverlay an runtime loading is
-> that runtime loading allows to set the target node of the overlay
-> at runtime.
+> > +			compatible = "qcom,pcie-ipq5332", "qcom,pcie-ipq9574";
+> > +			reg = <0x00088000 0x3000>,
+> > +			      <0x18000000 0xf1d>,
+> > +			      <0x18000f20 0xa8>,
+> > +			      <0x18001000 0x1000>,
+> > +			      <0x18100000 0x1000>,
+> > +			      <0x0008b000 0x1000>;
+> > +			reg-names = "parf",
+> > +				    "dbi",
+> > +				    "elbi",
+> > +				    "atu",
+> > +				    "config",
+> > +				    "mhi";
+> > +			device_type = "pci";
+> > +			linux,pci-domain = <1>;
+> > +			bus-range = <0x00 0xff>;
+> > +			num-lanes = <2>;
+> > +			#address-cells = <3>;
+> > +			#size-cells = <2>;
+> > +
+> > +			ranges = <0x01000000 0 0x18200000 0x18200000 0 0x00100000>,
+>
+> I/O address space should start from 0. Please refer other SoCs.
+>
+> Also, use 0x0 for consistency.
 
-I'm not really sure what you mean by "runtime loading".  Do you mean
-the kernel's implementation of loading dtbo overlays?
+Ok.
 
-While that is a different implementation from the one in fdtoverlay
-(AIUI), they're both working from the same dtb format.  As we
-discovered attempting Ayush's proposal, it turns out that the dtbo
-simply doesn't have the information we need to correctly path
-substitutions; and it's not at all easy to add it.
+> > +				 <0x02000000 0 0x18300000 0x18300000 0 0x07d00000>;
+> > +
+> > +			msi-map = <0x0 &v2m0 0x0 0xffd>;
+> > +
+> > +			interrupts = <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>;
+> > +			interrupt-names = "msi0",
+> > +					  "msi1",
+> > +					  "msi2",
+> > +					  "msi3",
+> > +					  "msi4",
+> > +					  "msi5",
+> > +					  "msi6",
+> > +					  "msi7";
+>
+> Is there a 'global' interrupt? If so, please add it.
 
-So, the problem of the encoding format needs to be solved regardless
-of which implementation is actually processing the overlays.
+Ok.
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+> > +
+> > +			#interrupt-cells = <1>;
+> > +			interrupt-map-mask = <0 0 0 0x7>;
+> > +			interrupt-map = <0 0 0 1 &intc 0 0 412 IRQ_TYPE_LEVEL_HIGH>,
+> > +					<0 0 0 2 &intc 0 0 413 IRQ_TYPE_LEVEL_HIGH>,
+> > +					<0 0 0 3 &intc 0 0 414 IRQ_TYPE_LEVEL_HIGH>,
+> > +					<0 0 0 4 &intc 0 0 415 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +			clocks = <&gcc GCC_PCIE3X2_AXI_M_CLK>,
+> > +				 <&gcc GCC_PCIE3X2_AXI_S_CLK>,
+> > +				 <&gcc GCC_PCIE3X2_AXI_S_BRIDGE_CLK>,
+> > +				 <&gcc GCC_PCIE3X2_RCHG_CLK>,
+> > +				 <&gcc GCC_PCIE3X2_AHB_CLK>,
+> > +				 <&gcc GCC_PCIE3X2_AUX_CLK>;
+> > +			clock-names = "axi_m",
+> > +				      "axi_s",
+> > +				      "axi_bridge",
+> > +				      "rchng",
+> > +				      "ahb",
+> > +				      "aux";
+> > +
+> > +			resets = <&gcc GCC_PCIE3X2_PIPE_ARES>,
+> > +				 <&gcc GCC_PCIE3X2_CORE_STICKY_ARES>,
+> > +				 <&gcc GCC_PCIE3X2_AXI_S_STICKY_ARES>,
+> > +				 <&gcc GCC_PCIE3X2_AXI_S_CLK_ARES>,
+> > +				 <&gcc GCC_PCIE3X2_AXI_M_STICKY_ARES>,
+> > +				 <&gcc GCC_PCIE3X2_AXI_M_CLK_ARES>,
+> > +				 <&gcc GCC_PCIE3X2_AUX_CLK_ARES>,
+> > +				 <&gcc GCC_PCIE3X2_AHB_CLK_ARES>;
+> > +			reset-names = "pipe",
+> > +				      "sticky",
+> > +				      "axi_s_sticky",
+> > +				      "axi_s",
+> > +				      "axi_m_sticky",
+> > +				      "axi_m",
+> > +				      "aux",
+> > +				      "ahb";
+> > +
+> > +			phys = <&pcie1_phy>;
+> > +			phy-names = "pciephy";
+> > +
+> > +			interconnects = <&gcc MASTER_SNOC_PCIE3_2_M &gcc SLAVE_SNOC_PCIE3_2_M>,
+> > +					<&gcc MASTER_ANOC_PCIE3_2_S &gcc SLAVE_ANOC_PCIE3_2_S>;
+> > +			interconnect-names = "pcie-mem", "cpu-pcie";
+>
+> Can you check if the controller supports cache coherency? If so, you need to add
+> 'dma-coherent'.
 
---I6CnIClgeg0FhNdR
-Content-Type: application/pgp-signature; name="signature.asc"
+Ok.
 
------BEGIN PGP SIGNATURE-----
+> > +
+> > +			status = "disabled";
+>
+> Please define the root port node as well.
+>
+> All the above comments applies to 2nd controller node as well.
 
-iQIzBAEBCAAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmeAoW4ACgkQzQJF27ox
-2GfLog/+P7Wj9gzwpwULE/5lN5A6TZi1DTLT+j598F724X4jnSkskg8rraKb8e57
-DrwF2ZbkO9na/fk5Cw1i9HCSuUBC32Eg17td734AsR6eOsInewGgEiuT5qAJJtqu
-zs+rFYm9ApD2IjgeTMpxiC8fLzq2ks2sB+jJkU2jv/zrOB39wU5dex57yrVtl+T0
-QSor87cw3qtY8mBXzcffpE7NJKRLwdzXTvDABL5k5PSADy5F1uehrv2ZItWK592z
-qxJXQL5+MVIxNzXKnSEkQoc7zXfc4KtVJsiDGYArkAJWTsuD7ZE+lITGFedJUxoQ
-JC0gbVsOZikJe0c7Uh/X23lQXJofQTU6+TOq6yu/Qiwv6Mx3fHh9Q8z7WMRFkutt
-kVEOuI2IKgBdhQZ/PfJn5tzqInDFbVIYE+7wgSOA57hrnQXfkI6G8X0ON7Js91lN
-dBHKEkGtUUmkDVaqR7lbYnmtoAXsn0fGl1eskDo2rrRT1Mmg2VCuMsOkIauu8QLn
-+gl3i+NpjkQICM0Rk2x6+QEOj2+fiiTXXvpfzc77+BbuPZSHhkBl/LqvFto/nrZX
-blU550tg0stF+8XOSkprLh0N8yexKPrMARHF/viUreTZrPxJZsWDsj+4E/VtL88X
-XYuWitVJ2H0wlUTFQfLbY0CLkAsY+h/5qEwTZNsmnEUZUzSCiWU=
-=7Tfh
------END PGP SIGNATURE-----
+Ok.
 
---I6CnIClgeg0FhNdR--
+Thanks
+Varada
 
