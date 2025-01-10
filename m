@@ -1,308 +1,213 @@
-Return-Path: <devicetree+bounces-137263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 279C9A086AB
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 06:40:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D71A086EC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 06:50:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5EBE7A3EE4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 05:40:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6591618894C5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 05:50:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7346206F14;
-	Fri, 10 Jan 2025 05:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D60D204F87;
+	Fri, 10 Jan 2025 05:49:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PW596HQI"
+	dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b="eYwMlA5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2051.outbound.protection.outlook.com [40.107.21.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1A42066F4;
-	Fri, 10 Jan 2025 05:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736487596; cv=none; b=JAj3TGfUQFzbT9IfqWoNvvQkklBOAsSgHnUyRKPu6OSVq1kW8YTYoF/My2vIWy1CxUkwPTNmiiH9xBN5QtysdNggZCZ+QkMTljiSh2x9cIaYFw67IfTBkGwSKTMh8VqXyxZrV0C5nnAcN55l+4ySRuqA+ww3+LiRr9+ncWwhBuU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736487596; c=relaxed/simple;
-	bh=9MtPhIjy6P6cV5dwakS8D2BmioMMImw5E9OwIvy4wrE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NBJLr8q8jkaJmC8zyZUf2Xxn5gGTdi+Y0+zSkNSmV4LksVNb6Jwe7A++uE4JInbOEiZi14VHgc3h2nI0v1gQ/TvytRnDq5OJCQZvhPBahJZmqcmi0J097PNYoUSPkdc7fsJO2xzx5laSMmxd+fxQvr585Oi6FkpXUUMRD5SNu5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PW596HQI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 563E9C4CEFB;
-	Fri, 10 Jan 2025 05:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736487596;
-	bh=9MtPhIjy6P6cV5dwakS8D2BmioMMImw5E9OwIvy4wrE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=PW596HQIG8jRxZHALIXJgzRPO188NhYDoMZvqpKkNXkupM+fnGU2YnMv+VRuMER6G
-	 EhTOEzUfJt9XLaPE+xwmCydL8nZbg8lhg+3PTQ/UAx1uSVwNxPpRJvkTt2WY6FZhcf
-	 qiBF/0HLBeahQ9anlaSEoW5UQLZgrWuECmU3jwFn74iXi7RuhWOtfa2+Ip99SSS+UO
-	 hE/TzAaaV04Z2QOF4ZYw0OYNUw3saWlrAeO73Rbm47wq5y1a3iuBObIN3m3cJ9WmUO
-	 uBgR0OfKbSx4EJ+xaxwhgK62nK7I2IpuqxWIXgDgJCLiXUfy8vel7J/p9aN1G8PzDS
-	 oG6M3iCOT7Ujw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CDFCE77188;
-	Fri, 10 Jan 2025 05:39:56 +0000 (UTC)
-From: Ao Xu via B4 Relay <devnull+ao.xu.amlogic.com@kernel.org>
-Date: Fri, 10 Jan 2025 13:40:01 +0800
-Subject: [PATCH 11/11] arm64: dts: amlogic: s4: add DRM support [1/1]
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0510A746E;
+	Fri, 10 Jan 2025 05:49:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736488197; cv=fail; b=Teu0NqJzfSUsHLuyei3cnDUg8GWpkTddeAtPTv/HC7BDfMFNFCdCZFgv1QzfjlG/Uhon26T3REeKTFd2lwTLHq9/mo0P/EX7gfMuNvuqh9JYgZJ+QXr3tFgW7mt0MQeUFj3aagkj8yfW390MF7sW23S7qEaYWz/52DR3MerhHQk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736488197; c=relaxed/simple;
+	bh=4tNLmq7VD7rWPfsy5TKsccodxLqAYv4L4Vo1OF4xwnM=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Q2GDOH9tuIxgJRD88Vsy8xxmjzXd8tXh0W+HTTITpXR79/6Bcodg0VM/N8EW2VBCOuIlApcc0lwcRWueQSZkKCT6mgEqwJ+ryciBtuNZqRZWZ7fWhvrD1Xg04iO/OQ4JQ/S9DHEC0SQkStGwaG/oMNNDaQYbrGmTqKbyqGwuK5w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com; spf=pass smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=eYwMlA5e; arc=fail smtp.client-ip=40.107.21.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mt.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=o9CSiMbZRmbHsuoVe0UGu9HGtajg+yL/+KKTNUF8kOAI8rBNGf0oalP9nugtglVB/ezFMXxyCmq7+OBWRXqoW1IXsu/N5BmXSbgYPcjJMaxX07z1O/JKoIQ0Pgrwvi1SkHW5q/qWD6LwTlkPN97D5zfdYOcWJbmJM3Gu+FNqUdmIJEMUZtUovA6ha64rMveH3yI/j9HxhRfmyWl1HwI0AsXb/IAfZQoFcFxQuVS7G65IxN4Mz2Zf1z3fIT5PFbdlnrNy4Cc1snk9OxxBBSncJG2wW+N9M0cHm+wZ28kedI0ur3GBjVwjKJJKGimKlYb0w8Ge2lE8EhAIHKDZ30iWEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=J55ApGHmRuM0X84KK4cSWJnXzMvKyBMS6mxWiupd80o=;
+ b=orTyZONlx/AnRdeceUwVHX1Z+ER3zVPvQE8aF/jbCJuvzLOrrFn6nEfgKGHhhxyfuCgE3Tpa0Id5FAZk7CqxMtDM033LRgMPR2J1uH2ft/vHBaVr1QNwWno01CLl5vnsEw0Tux5ZDY4yGYmsexYMo9KO6Kv4d0MGc5MQMVvK0jH1EUzCDomcnL/mynIWiZbGnTVa1hp0jJfuo+nDQm4f7nyCdCrc8jLNUPvv+2FHNOUxP6X//SZOE5m7BH88PTgO4V8I/mFUQyX5tN3/tymhKm7yfmYFVxyCGIl6QCo3K9vr9pbnrGhtLUCbw/0ss8RrBRzKqSszzfZ+w0tD/EJCow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
+ header.d=mt.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=J55ApGHmRuM0X84KK4cSWJnXzMvKyBMS6mxWiupd80o=;
+ b=eYwMlA5etRfB+Sbrro00vM3EWmMoaxBBlSk+ReoxhZt+pi1cIF8ASm6EBInXgln55uLKG2bJL2p880xCfQ9/HHazzKJiWvefNPLJDhfKgo0YSWoGqep15L6Pzjq0Q3OZUwhrE/jcvfCyfKVRrdooYAMaFO8GS2HrHSQbW+NcjEVqsnjHCNC1trtmPfD5aM1F6lQSt2s6jMiW7mYYSW1p8wXdBVwWipOEYtLrJhvliaFxrwLbOIzcJ5GFrCJhlv6W1dkcK2YqQHJsxm5eNMUEPYGuazFP+U5wp8ZQI40UgBuo8RpJGrpbB7A8mzagUBOfREVokU6J8cqZ/lXJDtrIQA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mt.com;
+Received: from DBBPR03MB5399.eurprd03.prod.outlook.com (2603:10a6:10:f5::22)
+ by AM7PR03MB6435.eurprd03.prod.outlook.com (2603:10a6:20b:1bf::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.13; Fri, 10 Jan
+ 2025 05:49:51 +0000
+Received: from DBBPR03MB5399.eurprd03.prod.outlook.com
+ ([fe80::2fec:64f5:1893:f53a]) by DBBPR03MB5399.eurprd03.prod.outlook.com
+ ([fe80::2fec:64f5:1893:f53a%3]) with mapi id 15.20.8335.011; Fri, 10 Jan 2025
+ 05:49:51 +0000
+From: Markus Burri <markus.burri@mt.com>
+To: linux-kernel@vger.kernel.org
+Cc: Markus Burri <markus.burri@mt.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marek.vasut@gmail.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Manuel Traut <manuel.traut@mt.com>
+Subject: [PATCH v5 0/7] Input: matrix-keypad: Various performance improvements
+Date: Fri, 10 Jan 2025 06:48:59 +0100
+Message-Id: <20250110054906.354296-1-markus.burri@mt.com>
+X-Mailer: git-send-email 2.39.5
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZR0P278CA0105.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:23::20) To DBBPR03MB5399.eurprd03.prod.outlook.com
+ (2603:10a6:10:f5::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250110-drm-s4-v1-11-cbc2d5edaae8@amlogic.com>
-References: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
-In-Reply-To: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Ao Xu <ao.xu@amlogic.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736487593; l=6247;
- i=ao.xu@amlogic.com; s=20250103; h=from:subject:message-id;
- bh=XuHerOPR1COry4ixXJL2bKpILc0PgbExEjuuK22BMs8=;
- b=PJJmhdfuiVW6iCkU5sshDWKvx3mCxxGLTp2FuK353sgQWkCzjibuRHzv/pfGySXCJx4j4+VVW
- wPBh2MRtFvvCW5LiVkBYILuGYfU6rDpUG5mlAT/xe/vVK7vzU4tPPrU
-X-Developer-Key: i=ao.xu@amlogic.com; a=ed25519;
- pk=c0TSXrwQuL4EhPVf3lJ676U27ax2yfFTqmRoseP/fA8=
-X-Endpoint-Received: by B4 Relay for ao.xu@amlogic.com/20250103 with
- auth_id=308
-X-Original-From: Ao Xu <ao.xu@amlogic.com>
-Reply-To: ao.xu@amlogic.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DBBPR03MB5399:EE_|AM7PR03MB6435:EE_
+X-MS-Office365-Filtering-Correlation-Id: d0e5a8e3-ba88-4683-63c1-08dd313a99a8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|1800799024|376014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?272K7QiGcTVM4h460yHt2VBP3VkrIV0hxcF0bvOvloZm9+zVDMYvw4TzMoQP?=
+ =?us-ascii?Q?kpWljNBNuZzyq36toOFuJY910CnA5UN7XuUaEcxuMMFzRn+co3WaJfs6PkZW?=
+ =?us-ascii?Q?xFui7lhoDFkTJOgEHXsw4daUD+SY+pEXpdUfpD8QVnn0LsUKXKIQqVhJ3ooG?=
+ =?us-ascii?Q?0WEdhQxE5CTDMVT/05pGizYXUyKmD33X/RngWW/6qcvsTuhoClihWfBQW5dg?=
+ =?us-ascii?Q?FkJ0IpbR8eLymPeo9FIiO1k2SqqYO2fwMVIhIkXHOxxflybfKVmBUmM4GlBd?=
+ =?us-ascii?Q?FQORUQaRXPzwn0fHdrzZ5acoUTCYFVirVY3z/U5+I2o4Q4yTPa7bbjC2Vj/j?=
+ =?us-ascii?Q?50f239jHnhyT2ZlJ2b2O8iWmoapm0peZ3iIcJ8/QaqJ2vT8RG2DwIykZSI9+?=
+ =?us-ascii?Q?I6LvTw2f2YnS13HZWos2JIQoqr2qKzBeOfPSscRrHKtVkGfyrFd2La2O7DO7?=
+ =?us-ascii?Q?TdkaVVnjbp52w74dRUYla5h+hXdGCXdES3u2dA+KsXlwxHoPjVGhSx1gO4sj?=
+ =?us-ascii?Q?HeLD4XSFlSYIRDQA95to9BbInMtJmgs1Q8sfOwicigeHpTs/WBP0Pdrr/7Nv?=
+ =?us-ascii?Q?98NAE2MHmcKVYCQz6czuYDd66AqnGhk+r5cQ28AhGdAbel+aDj7mpFEheIPj?=
+ =?us-ascii?Q?JxbL957i9X1fNuCZVM+I7NZgOA0U3A7DBRNiaa01AgJbMYLP9+I0vw2CVf4Z?=
+ =?us-ascii?Q?fCfI3OqhD/PWde3gG1mQ/SaI5VhKqHnHR3dcp52qjhWaWlC2tsCbEHTWvIz2?=
+ =?us-ascii?Q?5hfodSkPRjtJdHMhXmA3m8CSJtcXmEBDOhJYjYtUzmv06aNKg83QeXmVpRiv?=
+ =?us-ascii?Q?djnnYIRX3aiFv7X4a2C5HWYBnqen+x5chK24VGt17DKD6rvhDBs//NmyPmD1?=
+ =?us-ascii?Q?q93qfA+WTUwaZAyVJ6vYglTnURujimIII9MCvMEzixpEZ5aGQKQdU0mAfigG?=
+ =?us-ascii?Q?WanSu785y4VkbDEftpEMYLommEjNkTy1enGNnGTtOdqRj1UcJ4tYRYNQEMnb?=
+ =?us-ascii?Q?zVPWeKeQHA5PjEwaQBzPuk0bd0KOGJYcJinunMwMoZES8mhCl8KFROjgZ3/m?=
+ =?us-ascii?Q?Keeo1m8GHFuFsNulfV0Br9M2BSv1s8n9VMU4JbihYCgTTcw017T+kEnRhXLG?=
+ =?us-ascii?Q?mR/HgNi7AN1ekAIXsX8WDYik1zyGLFNnIxiZI5eidLPv1G/9Jf7d1rhvf3am?=
+ =?us-ascii?Q?v9Svse9AIypjxsnPUYvDr1DbnCb7zQOF9p5qrN5lLLxlZcdweCGCEsXQNmTr?=
+ =?us-ascii?Q?OSMNpAH6d+JVMQOL0Y3EyF/aXSsh3XIEFC6Xg3E0R10eNeP2IfyzeCz9wPZv?=
+ =?us-ascii?Q?sjnx+0Je+HnMvd9HA3EaJRvO3lHe64aHxSSmZ4xe1QeReg5B8BOMquMXAYx2?=
+ =?us-ascii?Q?2Y7nyMHlguquDuiE41IsBSfOd8hKOwJNhVpEB5+SPd7VD5lpBf9I6DbBUStC?=
+ =?us-ascii?Q?HGLEchh5cPCy8d6iaTQvwV8SHLpM8itA?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR03MB5399.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?MoAyHKHlMV3K/1bEGXO6g7FVSSAnkWzbUEX/1nSyVxMAkKslpwpm5EN4jzzw?=
+ =?us-ascii?Q?//y7AuevtcrgSy6IlhXOxNH+lWGXi9tv0zFs9UXeLDRz9m4N+nuZVlTcNFA0?=
+ =?us-ascii?Q?9v5pFdwZwKDk1vRtkEknW9NFWgDhaF9sztN5AqBh7/fyC5ypqtjOg+pFiZnQ?=
+ =?us-ascii?Q?QQSYy8rOOeGQp3GaROXio+foyGV2vXwEGvBHBCuhr7xTjRnVcBRfaaoiN94U?=
+ =?us-ascii?Q?LkAYtWOVlz6vQ/yeCKeT6bzM1JpEzQ6jR94umcrwSQhUjIWN1JadW2qxiGEF?=
+ =?us-ascii?Q?WQ3fxt7W2CFbRoWFGax3DuK4IPYIjZcMFxsCAi2urClQMHP+K51SP/Z4XwjO?=
+ =?us-ascii?Q?v364+n6E0C/1SeWbvC+pkQXAK+crJyW9BvUAZjtSwHCE/IBXPhY7M8O5cwHC?=
+ =?us-ascii?Q?Sxdzw0op5PN8Hvx3JD1st9GgB/X483tlMRBCM+dFgnmRxOH6sPAMVCDuIM8C?=
+ =?us-ascii?Q?Ot4CQiA814fySl9sPoxO94ynB6bYHpjdGf2U5FUdlNG+k6hZsoH5XPvabWcr?=
+ =?us-ascii?Q?8pO4S6WNPIRaafofjRdWbYFnbK4yGPjTp9jOvcRvgMvIaOn4pAWAm4+tv6Ig?=
+ =?us-ascii?Q?YGiBmxUaYR+AdZW95vX5w3SL4yyF1oIAoLcibHIVOsrImsXVBwstCGADsPOV?=
+ =?us-ascii?Q?QR7F/7iFFDxIlkVCljjOF0OL9a+Oacl9D9K0Vur6GzcJ39vx3mOQGgah6egB?=
+ =?us-ascii?Q?O15C/8cn0AWZunK5brUziELQ26BvO6TwWkbDoHlOpQrHr6ixYGZynmV891jb?=
+ =?us-ascii?Q?4fJaIO2zrP+S/3/hIDsOcybFVB83pTjennNMwm2gaozrnhq5UQOVT164SMHt?=
+ =?us-ascii?Q?PjUPuXAWDIHjqo+GwDowdqmrC59M5X/vAXzzMijva7Gs6SRPSJaSe5FP9yOH?=
+ =?us-ascii?Q?CFCvW5/5CoeT2q3OemKV4EvtnIl+O19aSocYQf84otVhGqhqJcPjVbcecVO4?=
+ =?us-ascii?Q?24mbD9GF6Y8ufHPym2vNOCDlZfweprEXgsvtn2/jDhefOH0BbyXfpMzwb+Fu?=
+ =?us-ascii?Q?3gDm0FUj96E+JLzZplJUEkBvOjd0VXZo7IvfYy6PCXKqf0Y2IwTZMi8IHL5/?=
+ =?us-ascii?Q?FCQYyg5Nh0yVHL7SdZh+IRtnt6UZiX9vT+OqbQEbXvswiQuK8CTyY3zjrONB?=
+ =?us-ascii?Q?MxtPpymUtF9ruCvKOwuNbkjNnizYC/4pPF0EdeLrSWYbxb9g277zfryabNEn?=
+ =?us-ascii?Q?0u9MiCAum2Qw3MGPau+SSGM1TI8KKSwGvKeH7zgxvF/ZpROQXeIW4YBo8opk?=
+ =?us-ascii?Q?anp1UnK1FrIEW2wT000yyWovNHunNK5udVppSLrMP8SrerhjVkFDCtu1rHw6?=
+ =?us-ascii?Q?xagdytNXkTywPD8P6MNq9kgX6lcZcHEgEgUQL8U4mDUih3Dix7Wn/MKFNVKa?=
+ =?us-ascii?Q?9jkWdERHKq5CucL+FIMfWh4zl99Q10kjuG//PKuUaFiAffklEPTxowYYlbtN?=
+ =?us-ascii?Q?WJClGv8x3+zhEEovo8ET/p2dCmqLx80XRflHbavvWa7NGlv1xHu0dVOWjNd9?=
+ =?us-ascii?Q?vBy6vUo7sCZ+EcoFODN7Gu/FHAlDPkOw5lUla4bnLL8piFrnt3gvoYmmTTuI?=
+ =?us-ascii?Q?BJeCJeb7iJXvR5nDAES4TQ2euDZJkU+1VUkfJ7PU?=
+X-OriginatorOrg: mt.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0e5a8e3-ba88-4683-63c1-08dd313a99a8
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR03MB5399.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2025 05:49:51.3700
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WRTlvu3rzbEh2oAb6IuswXPrVFe2JqJRJd0R2Artvn9vI8Mo1c0MkcEOdfoCxhBZBE1Jr/AGEan1MZGb49w2uQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR03MB6435
 
-From: Ao Xu <ao.xu@amlogic.com>
+This series is needed to avoid key-loss if the GPIOs are connected via a
+I2C GPIO MUX that introduces additional latencies between key change and
+matrix scan.
 
-Add Device Tree support for the DRM subsystem on the Amlogic S4 SoC.
-Enable nodes for canvas, vpu, and HDMI controllers.
-Enable nodes for CVBS and HDMI bridge connector components.
+This series applies on 6.13-rc6
 
-Signed-off-by: Ao Xu <ao.xu@amlogic.com>
+Changes in V5:
+* formatting and typo
+
+Changes in V4:
+* deprecate gpio-activelow in gpio-matrix-keypad.yaml
+* change reference to linux,keymap in gpio-matrix-keypad.yaml
+
+Changes in V3:
+* fix 'references a file that doesn't exist' in wakeup-source.txt
+* remove copied and deprecated properties from gpio-matrix-keypad.yaml
+* extend patch description to clarify the changes
+* rebase to 6.13-rc6
+
+Changes in V2:
+* added patch to convert dt-bindings to YAML
+* added missing dt-bindings properties description
+* removed [PATCH 1/6] Input: matrix_keypad - move gpio-row init to the init
+  it would revert 01c84b03d80aab9f04c4e3e1f9085f4202ff7c29
+* removed internally given Tested-by and Reviewed-by tags
+
+[V4] https://lore.kernel.org/lkml/20250108134507.257268-1-markus.burri@mt.com/
+[V3] https://lore.kernel.org/lkml/20250107135659.185293-1-markus.burri@mt.com/
+[V2] https://lore.kernel.org/lkml/20241105130322.213623-1-markus.burri@mt.com/
+[V1] https://lore.kernel.org/lkml/20241031063004.69956-1-markus.burri@mt.com/
+
 ---
- .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     |  39 +++++++
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 121 +++++++++++++++++++++
- 2 files changed, 160 insertions(+)
+Markus Burri (7):
+  Input: matrix_keypad - use fsleep for variable delay duration
+  Input: matrix_keypad - add function for reading row state
+  dt-bindings: input: matrix_keypad - convert to YAML
+  dt-bindings: input: matrix_keypad - add missing property
+  dt-bindings: input: matrix_keypad - add settle time after enable all
+    columns
+  Input: matrix_keypad - add settle time after enable all columns
+  Input: matrix_keypad - detect change during scan
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-index 6730c44642d2910d42ec0c4adf49fefc3514dbec..e40206192ac0f7b80da23e629aa3044c04f7e969 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-@@ -129,6 +129,27 @@ vddcpu: regulator-vddcpu {
- 				<699000 98>,
- 				<689000 100>;
- 	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
- };
- 
- &pwm_ef {
-@@ -235,3 +256,21 @@ &ethmac {
- 	phy-handle = <&internal_ephy>;
- 	phy-mode = "rmii";
- };
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index 957577d986c0675a503115e1ccbc4387c2051620..ce4a24f0880c09cf4fd06d2046b520335d62a6cd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/gpio/meson-s4-gpio.h>
- #include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
- #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
-+#include <dt-bindings/reset/amlogic,meson-s4-reset.h>
- #include <dt-bindings/power/meson-s4-power.h>
- #include <dt-bindings/reset/amlogic,meson-s4-reset.h>
- 
-@@ -102,6 +103,50 @@ apb4: bus@fe000000 {
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
- 
-+			dmc: bus@36000 {
-+				compatible = "simple-bus";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges = <0x0 0x0 0x0 0x36000 0x0 0x2000>;
-+
-+				canvas: video-lut@48 {
-+					compatible = "amlogic,canvas";
-+					reg = <0x0 0x48 0x0 0x14>;
-+				};
-+			};
-+
-+			hdmi_tx: hdmi-tx@300000 {
-+				compatible = "amlogic,meson-s4-dw-hdmi";
-+				reg = <0x0 0x300000 0x0 0x10000>;
-+				interrupts = <GIC_SPI 204 IRQ_TYPE_EDGE_RISING>;
-+				resets = <&reset RESET_HDMITX_APB>,
-+					 <&reset RESET_HDMITXPHY>,
-+					 <&reset RESET_HDMI_TX>;
-+				reset-names = "hdmitx_apb", "hdmitx", "hdmitx_phy";
-+				clocks = <&clkc_periphs CLKID_HDMI>,
-+					 <&clkc_periphs CLKID_HDMITX_APB>,
-+					 <&clkc_periphs CLKID_VPU_INTR>;
-+				clock-names = "isfr", "iahb", "venci";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				#sound-dai-cells = <0>;
-+				status = "disabled";
-+
-+				/* VPU VENC Input */
-+				hdmi_tx_venc_port: port@0 {
-+					reg = <0>;
-+
-+					hdmi_tx_in: endpoint {
-+						remote-endpoint = <&hdmi_tx_out>;
-+					};
-+				};
-+
-+				/* TMDS Output */
-+				hdmi_tx_tmds_port: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+
- 			clkc_periphs: clock-controller@0 {
- 				compatible = "amlogic,s4-peripherals-clkc";
- 				reg = <0x0 0x0 0x0 0x49c>;
-@@ -584,6 +629,24 @@ mux {
- 					};
- 				};
- 
-+				hdmitx_hpd_pins: hdmitx-hpd {
-+					mux {
-+						groups = "hdmitx_hpd_in";
-+						function = "hdmitx";
-+						bias-disable;
-+					};
-+				};
-+
-+				hdmitx_ddc_pins: hdmitx-ddc {
-+					mux {
-+						groups = "hdmitx_sda",
-+								"hdmitx_sck";
-+						function = "hdmitx";
-+						bias-disable;
-+						drive-strength-microamp = <4000>;
-+					};
-+				};
-+
- 			};
- 
- 			gpio_intc: interrupt-controller@4080 {
-@@ -848,5 +911,63 @@ emmc: mmc@fe08c000 {
- 			no-sd;
- 			status = "disabled";
- 		};
-+
-+		vpu: vpu@ff000000 {
-+			compatible = "amlogic,meson-s4-vpu";
-+			reg = <0x0 0xff000000 0x0 0x40000>,
-+				  <0x0 0xfe008000 0x0 0x2000>,
-+				  <0x0 0xfe000000 0x0 0x2000>,
-+				  <0x0 0xfe00c000 0x0 0x0800>,
-+				  <0x0 0xfe010000 0x0 0x0100>;
-+			reg-names = "vpu", "hhi", "clkctrl", "pwrctrl", "sysctrl";
-+			interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			amlogic,canvas = <&canvas>;
-+			power-domains = <&pwrc PWRC_S4_VPU_HDMI_ID>;
-+
-+			clocks = <&clkc_periphs CLKID_VPU>,
-+				 <&clkc_periphs CLKID_VAPB>;
-+			clock-names = "vpu", "vapb";
-+
-+			/*
-+			 * VPU clocking is provided by two identical clock paths
-+			 * VPU_0 and VPU_1 muxed to a single clock by a glitch
-+			 * free mux to safely change frequency while running.
-+			 * Same for VAPB but with a final gate after the glitch free mux.
-+			 */
-+			assigned-clocks = <&clkc_periphs CLKID_VPU_0_SEL>,
-+					  <&clkc_periphs CLKID_VPU_0>,
-+					  <&clkc_periphs CLKID_VPU>, /* Glitch free mux */
-+					  <&clkc_periphs CLKID_VAPB_0_SEL>,
-+					  <&clkc_periphs CLKID_VAPB_0>,
-+					  <&clkc_periphs CLKID_VAPB>; /* Glitch free mux */
-+			assigned-clock-parents = <&clkc_periphs CLKID_FCLK_DIV3>,
-+						 <0>, /* Do Nothing */
-+						 <&clkc_periphs CLKID_VPU_0>,
-+						 <&clkc_periphs CLKID_FCLK_DIV4>,
-+						 <0>, /* Do Nothing */
-+						 <&clkc_periphs CLKID_VAPB_0>;
-+			assigned-clock-rates = <0>, /* Do Nothing */
-+					       <666666666>,
-+					       <0>, /* Do Nothing */
-+					       <0>, /* Do Nothing */
-+					       <250000000>,
-+					       <0>; /* Do Nothing */
-+
-+			/* CVBS VDAC output port */
-+			cvbs_vdac_port: port@0 {
-+				reg = <0>;
-+			};
-+
-+			/* HDMI-TX output port */
-+			hdmi_tx_port: port@1 {
-+				reg = <1>;
-+
-+				hdmi_tx_out: endpoint {
-+					remote-endpoint = <&hdmi_tx_in>;
-+				};
-+			};
-+		};
- 	};
- };
+ .../bindings/input/gpio-matrix-keypad.txt     |  49 ---------
+ .../bindings/input/gpio-matrix-keypad.yaml    | 100 ++++++++++++++++++
+ .../bindings/power/wakeup-source.txt          |   2 +-
+ drivers/input/keyboard/matrix_keypad.c        |  38 ++++++-
+ 4 files changed, 135 insertions(+), 54 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
+ create mode 100644 Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
 
 -- 
-2.43.0
-
+2.39.5
 
 
