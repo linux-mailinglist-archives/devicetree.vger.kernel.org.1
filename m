@@ -1,169 +1,129 @@
-Return-Path: <devicetree+bounces-137588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F7DCA09D18
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 22:20:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EBF2A09D65
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 22:50:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DCBE3A41B8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 21:19:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C3E23AA1CD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 21:50:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0458720967E;
-	Fri, 10 Jan 2025 21:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F65217645;
+	Fri, 10 Jan 2025 21:50:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="RCjSDNhp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MKPMpSK2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-16.smtpout.orange.fr [80.12.242.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4B3192D9E;
-	Fri, 10 Jan 2025 21:19:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A896C209696;
+	Fri, 10 Jan 2025 21:50:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736543962; cv=none; b=fqM7SG/TayG9RpIZpssl1U/695esoOTkh+3WsOsNK/3BA2CIS0nkhhTnQpRjVs1yNFYhA2c/Fh2OLd+uul28qeDLSN6mhG3a6cSKyMZ7eUSCdU/wGg5+AUspI1sCtLSVzBPANbTxeYXNHne8Nj8M6cs2DyK3abbhqzBacOdEl2Q=
+	t=1736545842; cv=none; b=CME9LVAOdYhbFRyKDeDHIw3iSjBedF7s2BSxekAPu/Yx2Sl+24U1ICQhkFNARlu0EAAtYdD37fAgiw6qi24cxuld9tWh1sic0HxbZhgzZXotpiMZZQRyh1Hnj2Foeww86zldkkWzH3oZ7o5gYBS0t9rVDl08+in+5vsgAX2ImQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736543962; c=relaxed/simple;
-	bh=uKQYAnkdMhoNRbbZhzCKvQ2Ixb7zPiNPh9W5dl9s8Zc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mUgdx7gODnp39z1RMgCXvSfoW+8WiEbFcX7u6JYw5wi1PrYARTcPAyByZHhvFJPj348vAXsWha/Z4HVjj2cAR1MQxVbgg2euct20dL7o6rk6RK2bTZu8DrkhviT+WyUnT4nCuEGF6K8Zig9cJnD+Z2gx/pEGCSdU4abr7uRQNm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=RCjSDNhp; arc=none smtp.client-ip=80.12.242.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id WMPHtmDvDhEBsWMPKtNibi; Fri, 10 Jan 2025 22:19:10 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1736543950;
-	bh=unfU3jicRZHEqL7YpQ2zP+WWKs9cxmjXPFawE9Fxelw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=RCjSDNhpYQ1Gq+hJ5oE+QTNL+Mm9Jn+7cYaKEtJPnp99zlhWpHApclrpVJWokzoua
-	 ruPSBwJWe6vqR3DeVOkXoh9kRKjAS8IKbCLRcnblBvYLqKZpQ4TVQd8559HP5nQ5lR
-	 5FO0fUlANIkd2rZpC9cL3vOLTJrIEQICxH/EHvTjY/OBxKKyM6l57dh8GEqhSK85/7
-	 HvVhFUaO/V+M/CpezOtgLCox/CuSefZQM3f6zeHZIjPjTFeFV4hpCz6vtrr0pk7doc
-	 we4Jkni0+QJ05dwCOJIDb/6DRrPV9S413YXOy3Wf+hLxV1g6Bz5X3UEz5cCp4lNOLu
-	 5445JrXss/j7Q==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Fri, 10 Jan 2025 22:19:10 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <dc0bba60-72e1-46a5-a341-a2aa30095042@wanadoo.fr>
-Date: Fri, 10 Jan 2025 22:19:02 +0100
+	s=arc-20240116; t=1736545842; c=relaxed/simple;
+	bh=nF9tyrRFwuKiGYC39fPM/9Oxc52IGKv4m7s/YvKeu+E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JKIT83r2g/BYG4aRzBcuTT8C3vcgwKxVArUaKZSH3kCXlisuHPLJZ9f1x0tfPZE+Vo2wK+erl3EOZh6v4/2C6W2x7Q4ponWeD7wL8Sf7+0D/T0dsUBAs73jgUZbXX9izKUxFrbxQit/nhJqU4ngsVzBPsRMOZ512zMLXQTHIMIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MKPMpSK2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 278D7C4CED6;
+	Fri, 10 Jan 2025 21:50:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736545842;
+	bh=nF9tyrRFwuKiGYC39fPM/9Oxc52IGKv4m7s/YvKeu+E=;
+	h=From:To:Cc:Subject:Date:From;
+	b=MKPMpSK2ev82viPQmRmSq1VjRI4UxlFVNqnLgJXvB9fQUkjSJ+yCoDpzl+LiR/B79
+	 bpkIfQDSgQsppcOem98Md3iDaG9ZvFBj3stuINPneYa+HNSeT391Nu3uwZX0r8PubW
+	 KqITaiWNlpIhTZI5yEEttV6JIZ35DEH0OFhKvp4rmIOg5TrP3hfR86cNkUH2yHsdyq
+	 tk8pIGsfKevCBPgQTWvHks43eqxiALaL6RK3HKJBbAcVBP1VPYSitf4TixifPs8KKx
+	 5SyemmlWeAI8R57zwQMw68QjuZNnqElWHLCpWrZbycB3zlVr7aIGkGGoHx0iTk3wC/
+	 X7fqJ51aPkxuQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Michael Ellerman <mpe@ellerman.id.au>,
+	Saravana Kannan <saravanak@google.com>
+Cc: linuxppc-dev@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] of/unittest: Add test that of_address_to_resource() fails on non-translatable address
+Date: Fri, 10 Jan 2025 15:50:28 -0600
+Message-ID: <20250110215030.3637845-1-robh@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] hwmon: Add driver for TI INA232 Current and Power
- Monitor
-To: Leo Yang <leo.yang.sy0@gmail.com>, jdelvare@suse.com, linux@roeck-us.net,
- robh@kernel.org, davem@davemloft.net, krzk+dt@kernel.org,
- conor+dt@kernel.org, Leo-Yang@quantatw.com, corbet@lwn.net,
- Delphine_CC_Chiu@Wiwynn.com, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20250110081546.61667-1-Leo-Yang@quantatw.com>
- <20250110081546.61667-3-Leo-Yang@quantatw.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20250110081546.61667-3-Leo-Yang@quantatw.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
- > Re: [PATCH v2 2/2] hwmon: Add driver for TI INA232 Current and Power 
-Monitor
+of_address_to_resource() on a non-translatable address should return an
+error. Additionally, this case also triggers a spurious WARN for
+missing #address-cells/#size-cells.
 
-Should the subject be INA233?
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ drivers/of/unittest-data/tests-platform.dtsi | 13 +++++++++++++
+ drivers/of/unittest.c                        | 14 ++++++++++++++
+ 2 files changed, 27 insertions(+)
 
+diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
+index fa39611071b3..cd310b26b50c 100644
+--- a/drivers/of/unittest-data/tests-platform.dtsi
++++ b/drivers/of/unittest-data/tests-platform.dtsi
+@@ -34,5 +34,18 @@ dev@100 {
+ 				};
+ 			};
+ 		};
++
++		platform-tests-2 {
++			// No #address-cells or #size-cells
++			node {
++				#address-cells = <1>;
++				#size-cells = <1>;
++
++				test-device@100 {
++					compatible = "test-sub-device";
++					reg = <0x100 1>;
++				};
++			};
++		};
+ 	};
+ };
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 80483e38d7b4..34c957add8b9 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -1380,6 +1380,7 @@ static void __init of_unittest_bus_3cell_ranges(void)
+ static void __init of_unittest_reg(void)
+ {
+ 	struct device_node *np;
++	struct resource res;
+ 	int ret;
+ 	u64 addr, size;
+ 
+@@ -1396,6 +1397,19 @@ static void __init of_unittest_reg(void)
+ 		np, addr);
+ 
+ 	of_node_put(np);
++
++	np = of_find_node_by_path("/testcase-data/platform-tests-2/node/test-device@100");
++	if (!np) {
++		pr_err("missing testcase data\n");
++		return;
++	}
++
++	ret = of_address_to_resource(np, 0, &res);
++	unittest(ret == -EINVAL, "of_address_to_resource(%pOF) expected error on untranslatable address\n",
++		 np);
++
++	of_node_put(np);
++
+ }
+ 
+ struct of_unittest_expected_res {
+-- 
+2.45.2
 
-Le 10/01/2025 à 09:15, Leo Yang a écrit :
-> Support ina233 driver for Meta Yosemite V4.
-> 
-> Driver for Texas Instruments INA233 Current and Power Monitor
-> With I2C-, SMBus-, and PMBus-Compatible Interface
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202501092213.X9mbPW5Q-lkp@intel.com/
-> Closes: https://lore.kernel.org/oe-kbuild-all/202501061734.nPNdRKqO-lkp@intel.com/
-> Signed-off-by: Leo Yang <Leo-Yang@quantatw.com>
-
-...
-
-> +static void calculate_coef(int *m, int *R, int power_coef)
-> +{
-> +	s64 scaled_m;
-> +	int scale_factor = 0;
-> +	int scale_coef = 1;
-> +	bool is_integer = false;
-
-Is is_integer really needed?
-
-See below.
-
-> +
-> +	/*
-> +	 * 1000000 from Current_LSB A->uA .
-> +	 * scale_coef is for scaling up to minimize rounding errors,
-> +	 * If there is no decimal information, No need to scale.
-> +	 */
-> +	if (1000000 % *m) {
-> +		/* Scaling to keep integer precision */
-> +		scale_factor = -3;
-> +		scale_coef = 1000;
-> +	} else {
-> +		is_integer = true;
-> +	}
-> +
-> +	/*
-> +	 * Unit Conversion (Current_LSB A->uA) and use scaling(scale_factor)
-> +	 * to keep integer precision.
-> +	 * Formulae referenced from spec.
-> +	 */
-> +	scaled_m = div_s64(1000000 * scale_coef, *m * power_coef);
-> +
-> +	/* Maximize while keeping it bounded.*/
-> +	while (scaled_m > MAX_M_VAL || scaled_m < MIN_M_VAL) {
-> +		scaled_m = div_s64(scaled_m, 10);
-> +		scale_factor++;
-> +	}
-> +	/* Scale up only if fractional part exists. */
-> +	while (scaled_m * 10 < MAX_M_VAL && scaled_m * 10 > MIN_M_VAL && !is_integer) {
-
-s/!is_integer/scale_coef != 1/
-?
-
-> +		scaled_m *= 10;
-> +		scale_factor--;
-> +	}
-> +
-> +	*m = scaled_m;
-> +	*R = scale_factor;
-> +}
-
-...
-
-> +static const struct i2c_device_id ina233_id[] = {
-> +	{"ina233", 0},
-
-Extra spaces to be consistant with ina233_of_match below?
-
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, ina233_id);
-> +
-> +static const struct of_device_id __maybe_unused ina233_of_match[] = {
-> +	{ .compatible = "ti,ina233" },
-> +	{ },
-
-No need for an extra comma after a terminator.
-
-> +};
-> +MODULE_DEVICE_TABLE(of, ina233_of_match);
-
-...
-
-CJ
 
