@@ -1,111 +1,123 @@
-Return-Path: <devicetree+bounces-137320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29819A089A8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:16:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA908A08978
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:03:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7A5C1884A27
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:16:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF5737A3AE8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:02:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AFC820766F;
-	Fri, 10 Jan 2025 08:16:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2981C2063EA;
+	Fri, 10 Jan 2025 08:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ac3gz2WA"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="P+R2kCmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m12762.qiye.163.com (mail-m12762.qiye.163.com [115.236.127.62])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14150207E00;
-	Fri, 10 Jan 2025 08:16:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.62
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87BF033987;
+	Fri, 10 Jan 2025 08:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736496969; cv=none; b=GAhCP2TH7In9c3Xq78DR+G1nEBm273PSy5tkxndfWXnh577utBXvlMSR8dzr8UpyEWj40iJLIf+4MS9VXZinjlkNmskU6OBe93XIg69nxTDEU4mUPbWa9adK5HioQneIJm5EecRbhSxLGgNm005obuiDtzD4pw4Wr1dihhiGuQQ=
+	t=1736496180; cv=none; b=NI0+lY039d/kkKGlwR+rWBcJJyom+al9CNRYZsXRGmtUUhQ/h0wfbXmN0T8OmkjEqbabsGcFdpmS68cpNG/dsShQ0Du5jxd4iAbF9ylVuin6+0IIYacd0Hcjo/U99QEJVevf7wjNEKw31w/H+05UWFB9EYl7fy8Mi531Hw//Gew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736496969; c=relaxed/simple;
-	bh=DGw9xAgzScUiguLDjnG7bYniyXMlyHF5DSnqEqzO+FQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UxCMFOqPPFVjbZQu7ulr6kDoenlgFS5lI/KcJvRxj9LoRp/WQTKpy5NVWd6qPP4Iyq0fQv0DM06IkHzWqS2oyrKq3KWYNyBCh3M9znUlj0Pb/29NSWRf+GqP3qhZlGBoHKxggAp2asZr2olXiV+dFYWNk454Ke7fu7sZxmyYUrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ac3gz2WA; arc=none smtp.client-ip=115.236.127.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.67] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 851fbfa0;
-	Fri, 10 Jan 2025 16:00:38 +0800 (GMT+08:00)
-Message-ID: <b4df8a73-58a2-4765-a9e4-3513cb2bc720@rock-chips.com>
-Date: Fri, 10 Jan 2025 16:00:38 +0800
+	s=arc-20240116; t=1736496180; c=relaxed/simple;
+	bh=yxnjeX/5FGWHlvXKApmqczkkMULfrrdeVX/qPS4qWDI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YLI4dkZeEJp9iV+kzciSlugMpQjfWXWaP3n5ioCOU0CGpbZhws4TjUxVC7Rk3UFKtL0g01Kg58oNqd1yVZdDcxsZX8b6GbqmAFbCN256tu46AvILh29/uS8qvy0rucz181AgGuLwK8yFa+gE3qapnYf77zREqoIf8eVYPqFzgzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=P+R2kCmQ; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50A6oHnG020302;
+	Fri, 10 Jan 2025 03:02:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=HHSQ50cdgE/zjzBVZqmakpzICSW
+	OmTHO+wVWvM6XecE=; b=P+R2kCmQLW66H6V2d8I+/3CqONxYiS8wxYIuvpFB+1G
+	TF7FPt/mx/+2Nn5qt1WcLZQka9tsKMojEvYSFzJRv6l3H9yQye9VMlZoPlVs6B/I
+	dxOANYqBeYwkUnxphg+XEB6G6TdYqmdXWdfbPh+mJxIg7s1J8xljY4QpOSVRLOEU
+	UWr1KQGOixnJM4DQocM1+0vYFUZO3RJHUAw1H9PKqF+DXF6fUIw5EbSrDWKuOj3A
+	Qz7FOcz5ghQXkWKbkdEsdXASzObzpxr8rN9gxYcCkWZIELmShw32NKa0jJV6rF9e
+	8qJEnv8dYQR+4jr6SzA5XqB2awxFSEtPULaeLPXS5gw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 442xmr88rd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jan 2025 03:02:55 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 50A82s8g053904
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 10 Jan 2025 03:02:54 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 10 Jan 2025 03:02:54 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 10 Jan 2025 03:02:54 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 10 Jan 2025 03:02:54 -0500
+Received: from JGERONI2-L01.ad.analog.com (JGERONI2-L01.ad.analog.com [10.117.223.12])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 50A82hMH006597;
+	Fri, 10 Jan 2025 03:02:46 -0500
+From: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>
+To: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH 0/2] Add LT8491 driver
+Date: Fri, 10 Jan 2025 16:02:33 +0800
+Message-ID: <20250110080235.54808-1-johnerasmusmari.geronimo@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/17] dt-bindings: mmc: rockchip-dw-mshc: Add rk3562
- compatible string
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Ulf Hansson <ulf.hansson@linaro.org>
-References: <20241224094920.3821861-1-kever.yang@rock-chips.com>
- <20241224094920.3821861-4-kever.yang@rock-chips.com>
- <13860713.uLZWGnKmhe@phil>
-Content-Language: en-US
-From: Kever Yang <kever.yang@rock-chips.com>
-In-Reply-To: <13860713.uLZWGnKmhe@phil>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0pCS1YdThlPQxlPHR5DSBpWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a944f3ac48a03afkunm851fbfa0
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MRQ6LTo*OTISOQ8oIhYhESo0
-	LB9PCUtVSlVKTEhNT0JNS09LSU9PVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKSk5CNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=ac3gz2WAq5OUJlbH0VXidvDlgJ29scrwRqUnnOQXeZRh/XMPCGCiBVj7R+Pfe75GTH5wKDH7hAZK7+JFEskSZ7z8gC55pv8cgvHUm8uto0wBQ/SSCj0iIU6fG2wbgW2yQgJWlEfjNZ1M+vxI48sw16vlhbx5GnQlk0BjE8n/ipc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=ePfcZ2p/T1m/EvSrH7frcAMuiJufoadhcrRBzNxT72g=;
-	h=date:mime-version:subject:message-id:from;
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: wkZg7pSjSDUmJP9LojDVnUvD1Md-Iv1f
+X-Proofpoint-GUID: wkZg7pSjSDUmJP9LojDVnUvD1Md-Iv1f
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ mlxscore=0 impostorscore=0 clxscore=1011 suspectscore=0 mlxlogscore=823
+ bulkscore=0 phishscore=0 malwarescore=0 priorityscore=1501
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501100065
+
+This patch series adds a driver and device tree bindings for the LT8491
+battery charge controller.
+
+The LT8491 is a buck-boost switching regulator battery charger that
+implements a constant-current constant-voltage (CCCV) charging profile
+used for most battery types, including sealed lead-acid (SLA), flooded,
+gel and lithium-ion.
+
+John Erasmus Mari Geronimo (2):
+  dt-bindings: power: supply: add adi,lt8491.yaml
+  power: supply: add LT8491 battery charger driver
+
+ .../bindings/power/supply/adi,lt8491.yaml     |  89 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/power/supply/Kconfig                  |   9 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/lt8491_charger.c         | 410 ++++++++++++++++++
+ 5 files changed, 516 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/adi,lt8491.yaml
+ create mode 100644 drivers/power/supply/lt8491_charger.c
 
 
-On 2024/12/26 08:39, Heiko Stuebner wrote:
-> Am Dienstag, 24. Dezember 2024, 10:49:06 CET schrieb Kever Yang:
->> Add RK3588 compatible string for SD interface.
-> 	^ this still says rk3588
-Sorry, will update in next version.
+base-commit: a3a8799165ff83bb764fd800c6559c3cba0ddac3
+-- 
+2.34.1
 
-Thanks,
-- Kever
->
->> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
->> ---
->>
->> Changes in v2: None
->>
->>   Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
->> index 06df1269f247..772f592291bf 100644
->> --- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
->> +++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
->> @@ -38,6 +38,7 @@ properties:
->>                 - rockchip,rk3328-dw-mshc
->>                 - rockchip,rk3368-dw-mshc
->>                 - rockchip,rk3399-dw-mshc
->> +              - rockchip,rk3562-dw-mshc
->>                 - rockchip,rk3568-dw-mshc
->>                 - rockchip,rk3588-dw-mshc
->>                 - rockchip,rv1108-dw-mshc
->>
->
->
->
->
 
