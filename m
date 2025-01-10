@@ -1,137 +1,80 @@
-Return-Path: <devicetree+bounces-137348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE5ACA08B0F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:15:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD4AA08B07
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:14:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7EF5169690
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:15:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9369188BF04
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:14:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5BC6209F41;
-	Fri, 10 Jan 2025 09:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF33620967A;
+	Fri, 10 Jan 2025 09:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="atEai1jX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mY4+8LdJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BBF2209F30;
-	Fri, 10 Jan 2025 09:15:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFC7206F06;
+	Fri, 10 Jan 2025 09:14:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736500511; cv=none; b=E7FTn16ep3SWPI3IK9Cf07CogegOTIV4TpOdNfuzyz6lSD5QZb9FYzh1fS6fpUVN9ahl+BTAwqWQq/9X89zMWl+Z0eeHYTcQsvqOt/93w6vnTpa69utxPb1IP6haHWw/gceQfG+xsN2xszr3E14bE8NrYhxZNBeKyXifQLfgmy0=
+	t=1736500447; cv=none; b=Fvc0Rj1H1+8ULQLlkYQ5oFLYeDyKKZpUL6sig+GL/t55EoS0d43WaXTbY6rCPc4xtTf9HBHzL3h4Asd8BLwz2C4+/4s+caR5Qd8+x74fdxLh5XJ5Vnw2JVJT6X+jsTqajaT5FlOnrqiV2qTn8U/2icnfOKzgSAXD/1BOmG3gYFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736500511; c=relaxed/simple;
-	bh=vumpMH+3ZcMqaMA7FHswjjvzbgPFHUllLrCl6sZ3qEc=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fhzzu8Au53XznEqEjvLT3JPbyCZY8/OrCjMxhPr57GlebcYVXoKqEy6Kytc2ktx0nKWUf5jnMbtJPXowLD5kuSi2YyJrn4EBy0ZOmDliQ03tvN0i4AJ/I74+X1sxCEIwEdI/JQ9/ZgO/JSMyuxySbKSRKPdk87TVdWp6+zcq06o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=atEai1jX; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [127.0.1.1] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 31087CE6;
-	Fri, 10 Jan 2025 10:14:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1736500450;
-	bh=vumpMH+3ZcMqaMA7FHswjjvzbgPFHUllLrCl6sZ3qEc=;
-	h=From:Subject:Date:To:Cc:From;
-	b=atEai1jX8SbWIa32/o8Tv3DhOYifnMj8P+i1w+8aHmYfDyRgSeBTe5OaTlv4yDn+X
-	 AKTmfkV2sMBnAh9qAoKzjtU44N4JmXyRrTkA3Ngc1qRFFNYH6JJU7Eouw6mrj1A+3M
-	 wFK4mntFaiJXH9xwiKvU+HuPuKi7a2j4q+sagKIY=
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: [PATCH 00/19] media: i2c: ds90ub9xx: Error handling, UB9702
- improvements
-Date: Fri, 10 Jan 2025 11:14:00 +0200
-Message-Id: <20250110-ub9xx-improvements-v1-0-e0b9a1f644da@ideasonboard.com>
+	s=arc-20240116; t=1736500447; c=relaxed/simple;
+	bh=bTb+Hv5dd65gTmFTMoGmoxuUTsLgAnIzpNiXYBrn/No=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=VDCWUjBU0CEyI4yQHBgj+SXB+1JP+7YqqxJKYGW4D5UIj7Wkv0d8Wru401RER65js/JPT1rA3U6+GnEGR4q9UTNcpLpaftL/oiHnRddJ4ljS4THtS0hR9PRRfO13ngwVEyvpX/fFE4fJa/ti3cXTKZw/qvaasDOG60zWoxTTK2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mY4+8LdJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBB2FC4CEE0;
+	Fri, 10 Jan 2025 09:14:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736500447;
+	bh=bTb+Hv5dd65gTmFTMoGmoxuUTsLgAnIzpNiXYBrn/No=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=mY4+8LdJ/dLWVYJ/nrLMS/GRbnBhb1f+0H3LKNOJ5KwMUcjF8aR4BpkUE/gwvo+MC
+	 BYecpo4l5Az8XN/tAy4fzue6NC5UZVo0pvFpDrOBHG45N+guiYDOq5UF+Wv/lifuMy
+	 0NnmiR4U+T6cqRz82OF5KGi+3Xpnpygscjx/SBmyqng5jyFBual3Gd8+9pMOy88Lqt
+	 BZxqbdsv4Ix1mhkNDaAb37YuMXhJVYXZVjOBWcBA+lOe4VbqhWSJwoqEYM3Z3hzwAk
+	 aQjRv1m2IgUUR3l80vqVHu4j2HhPyuNhpmLiFwhfJvQHgGDJt0qvEnvSCCpkxaPy8O
+	 ahrFW8GZWcaWA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Cc: andrew+netdev@lunn.ch,  davem@davemloft.net,  edumazet@google.com,
+  kuba@kernel.org,  pabeni@redhat.com,  robh@kernel.org,
+  netdev@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  linux-wireless@vger.kernel.org,
+  m.felsch@pengutronix.de,  bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: rfkill-gpio: enable
+ booting in blocked state
+References: <20250110081902.1846296-1-catalin.popescu@leica-geosystems.com>
+Date: Fri, 10 Jan 2025 11:14:02 +0200
+In-Reply-To: <20250110081902.1846296-1-catalin.popescu@leica-geosystems.com>
+	(Catalin Popescu's message of "Fri, 10 Jan 2025 09:19:01 +0100")
+Message-ID: <87frlrowth.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIANnkgGcC/x3MQQqAIBBA0avErBNUjLCrRIu0qWahhpYI0t2Tl
- m/xf4WEkTDB1FWImClR8A2i78Ceqz+Q0dYMksuBC8HZY3QpjNwVQ0aH/k5Mi1EapdBwY6GFV8S
- dyj+dl/f9APskSMdkAAAA
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <jai.luthra@ideasonboard.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2378;
- i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
- bh=vumpMH+3ZcMqaMA7FHswjjvzbgPFHUllLrCl6sZ3qEc=;
- b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBngOUMLSUSFwj5+JSZDa6hkAQSXMs0M+T32a9px
- Ns60XlOKs+JAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCZ4DlDAAKCRD6PaqMvJYe
- 9YoiD/4lMNb5qWz8gwxciRmKAWmoZJLL5zj+dTPLlfxPm5LJffMR+IDzydr+StZarmSlqRrwfoh
- uB0jexcMWYC0M1/GL9Juaju6ki4BvgdUpIm0AxsPayOkEpWaz3ROGICAugE75O2Vgd+27KZfLLR
- y/FVWNuLc2/YikcKmORg0UVPiDF2NipeL+ntt9TFLITOslbRrvXGgx37TF59wYsKrVCdwPLK8L6
- AoL87+8v6gWzyiTrhHU2OGRn7ugdLhGS7ZdvlipZGoVAG5CrrwdFmiVgT3UbQ4kviFPxNj3Y4I6
- MASsgyxSR5/sYlwFIlTTeONHYMPjF34R6TDE46/pR+bS51CGCOkfwTb3NObvWoUZk0Pzb+/BoEW
- FNeNFMlaoyxr9sybvJoDDfulsKQzZlyGoHsMtBiIk/oMVEUIvQyzwF2rNrB5X+fXzB+iJOtKJvj
- WOWuGb0XZD1kg/r16u9NtuoGRIWtj0gkb5MvZIHxybckbjACx7KDg5fbMcTcW7pyOzj2uJfMFPB
- 6isJAbw+Mby+u0YdrqfbU1hKNcHGUR8Pgq3rrLkvRG4sGztmiBX52pWRh4B/haoGk8MCwyt4I9O
- knkFLupieKzCBbSSpU8bGGsghyID9eXg4hWzqnkTMF3XiPb32qRT5IqHX3WP74ToysnLEWL0kLZ
- j+rbD3gAAjtHJCQ==
-X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
- fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
+Content-Type: text/plain
 
-Hi,
+Catalin Popescu <catalin.popescu@leica-geosystems.com> writes:
 
-This series has two main parts: 1) add error handling all around, and 2)
-update the drivers according to latest (mostly non-public) information
-from TI.
+> By default, rfkill state is set to unblocked. Sometimes, we want to boot
+> in blocked state and let the application unblock the rfkill.
+>
+> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
 
-The "Update UB9702 init sequences" patch basically rewrites the init
-sequence from scratch, and to make that patch easier to read, the
-previous patch first removes the current init sequence. In the final
-version these two patches need to be squashed together.
+Don't rfkill patches go via wireless-next, not net-next?
 
- Tomi
-
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
----
-Jai Luthra (5):
-      media: i2c: ds90ub953: Speed-up I2C watchdog timer
-      media: i2c: ds90ub960: Enable SSCG for UB9702
-      media: dt-bindings: ti,ds90ub960: Add "i2c-addr" link property
-      media: i2c: ds90ub960: Configure serializer using back-channel
-      media: i2c: ds90ub9xx: Set serializer temperature ramp
-
-Tomi Valkeinen (14):
-      media: i2c: ds90ub953: Fix error prints
-      media: i2c: ds90ub913: Align ub913_read() with other similar functions
-      media: i2c: ds90ub9xx: Add err parameter to read/write funcs
-      media: i2c: ds90ub960: Add error handling to multiple places
-      media: i2c: ds90ub953: Add error handling to ub953_log_status()
-      media: i2c: ds90ub913: Add error handling to ub913_log_status()
-      media: i2c: ds90ub960: Move UB9702 registers to a separate section
-      media: i2c: ds90ub960: Add UB9702 specific registers
-      media: i2c: ds90ub960: Split ub960_init_tx_ports()
-      media: i2c: ds90ub960: Refresh ub960_init_tx_ports_ub9702()
-      media: i2c: ds90ub960: Add RX port iteration support
-      media: i2c: ds90ub960: Move all RX port init code into ub960_init_rx_ports()
-      media: i2c: ds90ub960: Remove old ub9702 RX port init code (SQUASH)
-      media: i2c: ds90ub960: Update UB9702 init sequences
-
- .../bindings/media/i2c/ti,ds90ub960.yaml           |    7 +
- drivers/media/i2c/ds90ub913.c                      |   78 +-
- drivers/media/i2c/ds90ub953.c                      |  170 +-
- drivers/media/i2c/ds90ub960.c                      | 2266 +++++++++++++++-----
- include/media/i2c/ds90ub9xx.h                      |   15 +
- 5 files changed, 1927 insertions(+), 609 deletions(-)
----
-base-commit: 40ed9e9b2808beeb835bd0ed971fb364c285d39c
-change-id: 20250110-ub9xx-improvements-9172b44eb0bc
-
-Best regards,
 -- 
-Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
