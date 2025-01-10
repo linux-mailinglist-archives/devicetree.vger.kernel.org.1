@@ -1,156 +1,132 @@
-Return-Path: <devicetree+bounces-137505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA6DA094E2
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:19:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D158EA094EB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:20:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A8267A0764
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:19:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6CA2188AF86
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD437210F65;
-	Fri, 10 Jan 2025 15:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6CF0211299;
+	Fri, 10 Jan 2025 15:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W14AQlqF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RvaJ/8RP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29FB210F7A;
-	Fri, 10 Jan 2025 15:19:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB72920B80D;
+	Fri, 10 Jan 2025 15:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736522346; cv=none; b=YMwP6TNUGsMOwoKcvQPZrgApSBaUVFVeWrxzrTBy+aMvL6CA/vj1DlLGha4U7geCWCym2/YMOGf0XyIt8K/bE7V4/Qd5mNOGmCjQf7g0JqcJg7bEzAWG8op0NnUaSJu8sGTsDeeyQwHYrAALzc4NnhLk6tPi+M6mP5iGOK+tJUc=
+	t=1736522403; cv=none; b=P/Q00fMnbm2q31aBE46pH6fkKQvyiNXIgU1jwfHjsFyAdUkm8HG8jWrb1qJkkiEIB/JadnFOhRuFuSamflz13TMBoLUjnnWxDa/QiJiTYfYY1gGyYnzPudlMUSTMtH4gbjC6l2GuRdalUDsjFSYqP6U1si/+gG+IvbSKJPEclPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736522346; c=relaxed/simple;
-	bh=GdxQAAhkvYNc45ogZEOTdokhwj27OmZxfHC7bNT6WS4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Lt84ipP5xY+6tU5+GjNRrLdNoV1PdVUP8MLqTdGVUF5057c8EgsP3eQB8jwgTg/7MVmsf9r5kUUtXiPIuxgBF50lD3WI/c1tJO0puzclSf3v1xWjO4FTg067ZU55Zd1R7jZvnQSWfLQhBGqd7lV0tfSejuR7KK6oEwwa+ZpcwP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W14AQlqF; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43623f0c574so16516995e9.2;
-        Fri, 10 Jan 2025 07:19:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736522343; x=1737127143; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=e5aEpMmoZZCQQPaRUNn2M/cjTXlmafGJ+ljwOWiSLUI=;
-        b=W14AQlqF+3O9P4HZT06GxD2w9nRuLl+03Uqxw7fUQDZeUwKY0/psJeZyEVaGUA9+b1
-         IjH1fWOL+UHwatF0gPvD1HJhktHU3ozWcrQ95Q8Kb9pTi3lAJJoqLenvkDg7lhu/l7mG
-         6u/c2uplmVi6GVl/jdTKu4zg6GB6OlPBqhm0RTK3tm2eQs1lFPYwkj9z6D8+zlWGeHj2
-         Gg5xvBID3cpnSJrFglWM7oOZB94e+sXYabsuh8g9pfVqnGsutp5J/IQHtd3yHp/bPPkw
-         nPsw7Q26gLfMU58GaFNU2pAFBMSvHpl2c4Aal/wL3CNHJLBRRcxHjbYoI/HYyMs+Vg1O
-         x3Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736522343; x=1737127143;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e5aEpMmoZZCQQPaRUNn2M/cjTXlmafGJ+ljwOWiSLUI=;
-        b=rMkiPDbHaJGZRgqa8W+vitqbxsuxXYmpc672gaQWDZTZGbxBY9M+RP24YDLNjV1zMy
-         /jRYKCEHn/1PNJpZBNaf69XDK643pTBYbITZPJnY3Puljisi5HvHMrMvDZMhAwGR3uW1
-         GsXU+STTz2zcsc39c9JSLD9K6N3WiRa5lftpXH+oEVrXLThzlgwPwT/k5ua5PoAyk5s2
-         Ha2lShza6U13HvpdwF0wdH28byM6DKF0w6OnZce1eLC0UaqIougGJyBhqyXIEKoK+rMO
-         vOU4+bIG75Cpwi8Fh65jGC2KfYWTBeajLuxrPM2vpmmsuTU1+B5X9jkxin1x/b3vR8/9
-         E9yQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWVKVOHWaEyWTGERWUwksmvUEWbHoD+xOjv4lHjYePJ/Dy4TAUjACUrjpV6Bp/ycw9Net3HudYH0VHdOXY=@vger.kernel.org, AJvYcCX5+KZ7jq8EGPy6tWM41yfxcp8a72dQ+2uJj5ravZJ9HFN5shb5+c1HBzS9iB177xEQdUaFz4Vh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgSauNUqytED1XsXHEuKuR38yUumk2wYWwE/Ont2AT43wypnME
-	cKbnuEOgp7Gidpi2v0xcoY8dgUYePdGFrTbvaufCADEffa0iGtwj
-X-Gm-Gg: ASbGnctUjvpuq26U992mvMeEd4unQ/dTAUrDTuIcHAx7JoFijHy4L2y28hI1Q+/EsHA
-	vdrfTxa+YrbuVxLCw1d2vhkJHJRr3lzefgSQx4hxxAlzLh4mNhBgFeyd22rCw5dT5qgtnnCGtUP
-	HIRaqWKIqZorhpDINLEZDwAzPDtEnjBjplUExgstOEGtxaOpa4s0G/ZdWCDnmoIP31CJWyoN1pK
-	Ueelcot6CKcq0IqaMD5KiFmUKaXz0xjOXA0dy7WzVZJU+4FpGms3y9+8uPUQh3j8HgIWDem
-X-Google-Smtp-Source: AGHT+IECfAJ2WoCuNj7wvzCw79nESfWsenN47zMVWMkB4VRz8D5aWBaZsf1e+N3uhc6SbLU9mvw4vw==
-X-Received: by 2002:a05:600c:1e17:b0:434:9d62:aa23 with SMTP id 5b1f17b1804b1-436e26dda97mr99240525e9.20.1736522343081;
-        Fri, 10 Jan 2025 07:19:03 -0800 (PST)
-Received: from eichest-laptop.toradex.int ([2a02:168:af72:0:d0fc:3598:a372:ece6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e6249csm54511425e9.38.2025.01.10.07.19.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 07:19:02 -0800 (PST)
-From: Stefan Eichenberger <eichest@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	max.krummenacher@toradex.com,
-	francesco.dolcini@toradex.com
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v1] ARM: dts: imx6qdl-apalis: Fix poweroff on Apalis iMX6
-Date: Fri, 10 Jan 2025 16:18:29 +0100
-Message-ID: <20250110151846.214234-1-eichest@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1736522403; c=relaxed/simple;
+	bh=vJz5A3Iyvu3C/+n7qtfQNrWyvtUQrC/CwMoE1IiuCL0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rFBLHEc8qxOcmKhkdJTN5raZ7hegr94ylC8f+qT2TGTxhBa9zfGQMgnWgw91EVqIKnNxHGe60bLz6MeDmPrR3nLa7sS7QJqk0slBTLQPDWEP4zNW7+MuzCLsbaNlcnNoQw6GS6bYIH5h9N+dgw+6bHaEivB7CUGpDNmnDuC7OUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RvaJ/8RP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AEBEC4CED6;
+	Fri, 10 Jan 2025 15:19:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736522403;
+	bh=vJz5A3Iyvu3C/+n7qtfQNrWyvtUQrC/CwMoE1IiuCL0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RvaJ/8RPjtitawdGt+7/WR+xjkgYxArByXAWywOqtQvb/p01MYHqqIzjAszGcOlYF
+	 rAtFeY97cWnLr8sq66ZjsOb75CgAb6Z5l3c44wNfE/241FH6keyKWzWg6XvM9l3GlL
+	 du53lh+bC/aYUYWd6nbJ3q7GlLtxa0j8GTtmPdc3iSXT0I5jHrA8SN0BMvRNrA43uC
+	 KpSn2RHQdK9hgmq0At34UKiCsfDb4VXwam3XRb6tpav6l5oi7ua9WWc8/uDLyq6yyZ
+	 2rWfktQ2HVU4PHMM7fpDujygt3toIcFMP0tRlJlQbyYb1D2+pJl94eY1JCe0M0r838
+	 BlhWgmIO5hT8Q==
+Message-ID: <9a517e08-8ed0-40df-940d-10c57c59f2d0@kernel.org>
+Date: Fri, 10 Jan 2025 16:19:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/19] powerpc: dts: mpc8315e: Add labels to peripherals
+To: j.ne@posteo.net, Michael Ellerman <mpe@ellerman.id.au>,
+ Nicholas Piggin <npiggin@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Naveen N Rao <naveen@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Frank Li <Frank.Li@nxp.com>
+Cc: linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-4-86f78ba2a7af@posteo.net>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250102-mpc83xx-v1-4-86f78ba2a7af@posteo.net>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+On 02/01/2025 19:31, J. Neuschäfer via B4 Relay wrote:
+> From: "J. Neuschäfer" <j.ne@posteo.net>
+> 
+> Labels can be used in board-specific devicetrees to refer to nodes more
+> conveniently.
+> 
+> mpc8315erdb.dtb remains identical after this patch.
+> 
+> Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 
-The current solution for powering off the Apalis iMX6 is not functioning
-as intended. To resolve this, it is necessary to power off the
-vgen2_reg, which will also set the POWER_ENABLE_MOCI signal to a low
-state. This ensures the carrier board is properly informed to initiate
-its power-off sequence.
 
-The new solution uses the regulator-poweroff driver, which will power
-off the regulator during a system shutdown.
+Adding labels just to add labels is usually pointless. Instead add
+labels and their user in the same commit - that's the expected style
+with DTS.
 
-CC: stable@vger.kernel.org
-Fixes: 4eb56e26f92e ("ARM: dts: imx6q-apalis: Command pmic to standby for poweroff")
-Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
----
- arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-index 1c72da417011..614b65821995 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-@@ -108,6 +108,11 @@ lvds_panel_in: endpoint {
- 		};
- 	};
- 
-+	poweroff {
-+		compatible = "regulator-poweroff";
-+		cpu-supply = <&vgen2_reg>;
-+	};
-+
- 	reg_module_3v3: regulator-module-3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-always-on;
-@@ -236,10 +241,6 @@ &can2 {
- 	status = "disabled";
- };
- 
--&clks {
--	fsl,pmic-stby-poweroff;
--};
--
- /* Apalis SPI1 */
- &ecspi1 {
- 	cs-gpios = <&gpio5 25 GPIO_ACTIVE_LOW>;
-@@ -527,7 +528,6 @@ &i2c2 {
- 
- 	pmic: pmic@8 {
- 		compatible = "fsl,pfuze100";
--		fsl,pmic-stby-poweroff;
- 		reg = <0x08>;
- 
- 		regulators {
--- 
-2.45.2
-
+Best regards,
+Krzysztof
 
