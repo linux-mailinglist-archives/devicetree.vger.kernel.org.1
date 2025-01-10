@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-137300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB06A0891D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:39:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61AD9A08930
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:41:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55AD93A92ED
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:39:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 867513A9073
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9F12080E1;
-	Fri, 10 Jan 2025 07:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B587C2066C0;
+	Fri, 10 Jan 2025 07:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q6ePQjo8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VkoAa/36"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55E4CC2C6;
-	Fri, 10 Jan 2025 07:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863BDBA33;
+	Fri, 10 Jan 2025 07:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736494693; cv=none; b=LbNmBlQ1Xu7hguQicUWYbaih4AirPOHxZaaTXZYe9uezV8JScjDLDgn2flQPz+J6q43mhHg6v9rvB/GncPa0eUi8hm2wtrdO2Ah8o97Cd4X+/pKGH6MkMSM7IxeYfgbcS5dMaA/no1kWEeSEvQSxE/WMzsAHx1enycM0Sl8wYPw=
+	t=1736494858; cv=none; b=PFWPGdAPyuOhhstLerAa5K/qtRsPiX4WrmcaiT6ubkYQ+WqoRW58I6TV8MMJpZv+LpL3J63fIdTU1IPWC9CHtMf7xeISra26UfyMtaLHWAPefSoK+UPL4vpjmdyxluvB+3ylJiHVok9H93eamCqC/O7LJnmlq1JTgD2F9M6HL30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736494693; c=relaxed/simple;
-	bh=DqiUgrBfB2mIxC6rOUWpzRzt8vBXTPO7YhlHrtsAwYI=;
+	s=arc-20240116; t=1736494858; c=relaxed/simple;
+	bh=GIaLhCWvt+Vh85V9nMvOQFuhW8mxQRShtxXN7QjsIBc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JAhBVaFdNe3tx6EmKB7wZgPFVEoLyAIr3WP095rN8Vjtcj/KPNN+RUcIHsF2lJxGSsxse4PDBHO0UorSoWYLNgZlDkDiPyBsKaksigUOwo8GpB8hhPNejLfqxH161h9AcInijVTtS/lsjBmtifoVgj+UaWYjyfwyEsPgrUYyA6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q6ePQjo8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2908EC4CEE0;
-	Fri, 10 Jan 2025 07:38:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dV3HINRzCp1vUflRfRRHOITBsgVtQnph1ZCarXq/0WQUJZRX6KYTwgisFYuW1mU1ua6jXxcEh0CajzEmTtcrdVc7mH9e5QIwFclhoEWgwYVxUJ6DiJWmuzeTXJiG1BSFQK0aGB7onCRAEqItBGTvY+fW+I6ujz5WODftxCMJ1sU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VkoAa/36; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CA03C4CED6;
+	Fri, 10 Jan 2025 07:40:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736494693;
-	bh=DqiUgrBfB2mIxC6rOUWpzRzt8vBXTPO7YhlHrtsAwYI=;
+	s=k20201202; t=1736494858;
+	bh=GIaLhCWvt+Vh85V9nMvOQFuhW8mxQRShtxXN7QjsIBc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q6ePQjo80FMX+1C2j32EpENhkgM0uWdOG7jYiLnGLhtMAg5r5nqZr4+SVFCxLk2OJ
-	 0v/w7A8R8jT7ggyqZyEoBZD1bmiX8GypWqZWHTqL8GiOA5EvTC0SgFIXyR3bAkx4wE
-	 sg6SCSpDiHR3MpSf06paOT6haJQwy95ThqZ9oKdl8xCthQMrzQC9mTGTXqyS9YcXft
-	 fY6ze/2m7KT73OazUoW9uJ4x34mQgcXtPTRa8aLa74yC33U285HYUJtzOo+PLlJJEg
-	 H0UJGlrxmC0DerLu+qrtDzoF9EWqmEvva63G2Wh0YPFFFdpq9sUR1qcrwlvU9VurXa
-	 72rlY6vX5RWpg==
-Message-ID: <f5859a83-975b-46a3-a33d-ab203efd9e21@kernel.org>
-Date: Fri, 10 Jan 2025 08:38:04 +0100
+	b=VkoAa/36y1lbhaSFgumFc2uFspLcnN/8mAeiFEf3eMbR5tP6AKWnq7g8N/+jiqBuM
+	 w4WqoQvZ4AVTxPjjyBZEvlbCtParJxI30G/Txw36bBhvP47H00hglz2adAx14Ncnp6
+	 23Qh2FpxklQjXS75fxvYeDNMRtq7fT40kDAuJPX2KQUouU+EiroglQDFx+cbMux7Ck
+	 1wXtDpYTAzpVz1GSRTPBZcBDDC+Xodvog6/19X1DuDjdnzSrf94Mc07QQJCl2ZBu6A
+	 XjTUL3okndmbG5b2zmaK4p61TAXxyQ5QhNgH/m7rPT4fJ2A/zk1dneR5tDoXFN7yNN
+	 VjMtnDHdjtN7g==
+Message-ID: <e6019aea-b097-4a24-afd2-e1d638a5a8a7@kernel.org>
+Date: Fri, 10 Jan 2025 08:40:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/6] arm64: defconfig: enable display support for
- mt8365-evk
-To: Alexandre Mergnat <amergnat@baylibre.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+Subject: Re: [RESEND,V1,01/12] dt-bindings: mediatek: Add mediatek,
+ mt8196-jpgdec compatible
+To: "kyrie.wu" <kyrie.wu@mediatek.com>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Tzung-Bi Shih <tzungbi@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231023-display-support-v6-0-c6af4f34f4d8@baylibre.com>
- <20231023-display-support-v6-4-c6af4f34f4d8@baylibre.com>
+ kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250110012749.30072-1-kyrie.wu@mediatek.com>
+ <20250110012749.30072-2-kyrie.wu@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,15 +111,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20231023-display-support-v6-4-c6af4f34f4d8@baylibre.com>
+In-Reply-To: <20250110012749.30072-2-kyrie.wu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/01/2025 11:37, Alexandre Mergnat wrote:
-> Enable the DRM HDMI connector support.
-> Enable the MIPI-DSI display Startek KD070FHFID015 panel.
+On 10/01/2025 02:27, kyrie.wu wrote:
+> Add mediatek,mt8196-jpgdec compatible to binding document.
+> 
+> Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
+> ---
+No, why are you resending without improving anything here?
 
-Why? It was in previous commit, now its missing.
+You got comments. Respond to them, implement them, not resend same stuff.
+
+NAK
 
 Best regards,
 Krzysztof
