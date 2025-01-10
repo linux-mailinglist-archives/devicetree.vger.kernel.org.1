@@ -1,206 +1,140 @@
-Return-Path: <devicetree+bounces-137231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D83B2A083D1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 01:12:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96ECAA08406
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 01:29:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9ED10188BAD9
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:12:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BCF8188C75E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3702C6AA7;
-	Fri, 10 Jan 2025 00:12:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6B91B59A;
+	Fri, 10 Jan 2025 00:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vnVsI+Ut"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="FcPo409J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 455881FA4
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 00:12:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C5216415
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 00:29:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736467953; cv=none; b=Wz4bXRbGFtt1tE1S5rPH90jf1sGd7DhqEyj8fPsKxfMrrcdvNa2G+YR5U1lWoow00TMnBPT+ZQg3Hmjh2hfBF+VTItKMIX/oqzVaoM6hdQSt3+D2EheIGmkCAmqy3tGF8hW4hpemcTsmZ11Lx+X8guXBidfpZjf4gi/L4FhJ4nI=
+	t=1736468980; cv=none; b=NF/FukMEl3Rrm4uB0hUrZbzS8j8FIT+zkcItt+PNW+gO/4JI9xS97idiy+cnjJEVQnSrzeNjLPxJr5sLyiO2EJTBLyoHcUqFPZkAVvZhWuBuHV2DDSK/aaAMQNlgGWIEfGlmwHIcZyNwSujMPh5EPT5ZdIkLr1xNmRlxlTiSJh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736467953; c=relaxed/simple;
-	bh=9HYxOlBVMJGp+kYa5cCj+uVdCLrvkLZ1Yp+RYPBpmpE=;
+	s=arc-20240116; t=1736468980; c=relaxed/simple;
+	bh=NmF9OpBmOlyhdjWseD2lyW2G8XKj6Wz2ZngKw21hv48=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CJoM4uJPlVeo5o0b4+14mripOh4zlETNgPp1EO4o8PxZ0GeG7+it5tcie2s6pV7D0Qi2s4UA28u+SvmuxLSxAKbF0vQEPJrIlcRfxBpnsUz/h4VLQ+xKZ6S5c1HgzMOXOgDIfJRBJxFjFp1tQWOlsDbU9TE4Y5Od+0gFkizTuTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vnVsI+Ut; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54021daa6cbso1319459e87.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 16:12:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736467949; x=1737072749; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bOM8iTrS8cJotx5OK5PF3W6RZdr+BZepKPQm6WfCyO8=;
-        b=vnVsI+UtEqXLL4qXpUUlt0sn36RKLG3V1y/RISqU/HKa6x89dDnYUN/Z4KKt78jIse
-         4CwEB/udzjGJtXqhMUXKncZOlmM4vD4yYbP3CmbciFwp0N6hI/jQjtFOfd8KMKLmh6mb
-         ZZ/UymStrjHnxi1UvWzxxNMJseJXXg68rrch9cbqd2E9niekFMLkSiaRQrbqNNfo0dOC
-         HyVpnWHzol+UdMkhOtajj8TGBXO0mCyZCZvYe/2b20tQOL6M7k5Hhl8tq0nL9x2pzTXh
-         t++fnGkxlT+3ncpAh8M+S9h3racyOVjzsmAotT1xs97MfyaveuWu1SHAMBpOr+sMUXhH
-         o0NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736467949; x=1737072749;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bOM8iTrS8cJotx5OK5PF3W6RZdr+BZepKPQm6WfCyO8=;
-        b=hbdINMQqy6SGLBABsr0wmJrnTYmbxxPvRvZegajTij+bsNvL3NBYcab907gGFrx5ZK
-         1UChYBVaggaolvlcBoO/sKMGrrzohbqUpzeIYWENztNky/353Ie9/r9TPv2eaZtXuzWk
-         wYE2rmEbbpnHAH4AyNWEpvXqwl7c/RoHwi/57aCdMH9S9M6F91s9oRD1tbfxAoeIxg1J
-         15iWpwhTYBgl4xLS5ZPp7UQk/psZHHgWIOgj6Oa+Z4S96QFRZmG7J7p7xwuFNoBeBYZQ
-         RfpnOrfUIVcAREwh1wb9Df9yNhqI7kZ8XNOaY2zvxQ3DthT4qdVFPUaSxGFixfgEFOtG
-         q4BQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVTKPWNJ2wIKCkaOOvZX6mhAtMzfTvPyHeugduIjcrwgzZp6btXWrzTWj6m6RbkvRiBM5lwvd/PCX3V@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5I7AADE0YWqwfcQZK1uAa7DmDw34uasBpDRyZq18jAKT55Edf
-	2XC7sm/2R0cT4drC0H7BQtvnLKnG9h7rQNJdRkvraclr3pF4HCvxCUEDx2hmCLg=
-X-Gm-Gg: ASbGnctSDHIJpPRN3j2HLCf5rdrwDWxY+sxuoGLPtPOtyyOJvx1K24iwl1MGQidYA8E
-	GUvcLVUbcGZc3jv2yveaO198TMRL1WrtaG7+xsfQS3inCYnZ50MigsCnrAc34NbTjhiB+X4KDYJ
-	dIGbr4wHHZ5BlSjSiSFkS9/S7IAU3iPeSbUiILvTfOODD0xxRjRZTPxk6pSnZPdzL0SBMAbcBPQ
-	seeKkjYFnG2nI6kv706hQdxfZNe7Wms30ZzJPtfODSPL4FTRPMbsQUzi6PGDq8fonhXMiRXrbX+
-	8bPtKquagUX6KXQJoVGSP8Orfo+Z7ZdBLdnv
-X-Google-Smtp-Source: AGHT+IGwIl2CKZkBwjuoikiFYrtznIYuYloYMjubKPdN284XWv1Xg6SBpze2m0OXrZNk5dsJj+ecLw==
-X-Received: by 2002:a05:6512:3b9d:b0:542:6d01:f55f with SMTP id 2adb3069b0e04-5428481ceaamr2920549e87.48.1736467949461;
-        Thu, 09 Jan 2025 16:12:29 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428becafaasm339014e87.239.2025.01.09.16.12.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 16:12:28 -0800 (PST)
-Date: Fri, 10 Jan 2025 02:12:26 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>, 
-	Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, Jianhua Lu <lujianhua000@gmail.com>, 
-	Stefan Schmidt <stefan.schmidt@linaro.org>, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of
- SM8250 SoC
-Message-ID: <te2nhzkl2mx3y7vknokzwtr7szfge7dum7sy37ndy6laot5yqn@urv7svjqgmk7>
-References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
- <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
- <Z3_nCPk_g8znto4A@hovoldconsulting.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kUi2fmIeUK0IfWkJ+ZfyzP2a0bdI+TI2YFVFOQP7soTpPwKojADuw3lFgJg4PaGwZdP0aLRVAS7J0No4AW5wWyGfdoZPZpXoaGHMfJFfKm8WtW8PDdGLy7T68nppvU2XkSGfLZY4tRL4jEtIuINJk24rF28TxtT97Nigj1iYIy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=FcPo409J; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 0695C24002B
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 01:29:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1736468976; bh=NmF9OpBmOlyhdjWseD2lyW2G8XKj6Wz2ZngKw21hv48=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=FcPo409J66WIu73Ng0FSXXEddwXGcFmmK2NzKQ6SSIC+/HMZM9Dmd3zw09LP326Mv
+	 GtLS6WO6ymQzJdB1UKeFd+x+9llhZRaRva+zWuy+m6LjtbUNysjuYhGL1h7mgMnsDn
+	 aiEb2k87+isixL9j1WioTcC9ndzzSmi60Erj3EQP7O0T4JdUYu4rsFC5U1GfZooNsV
+	 JYJEl3MOEIC1jbK2x7IR1orbzY0Me9KKwvtMAzzpNcFdWeVAfVtPGY5cGZ5gPX2Lm9
+	 wk/rC6RyocusQB+FWYTx6O2W9RaZ6rQKWIHqi8OWDOgQ5f45tQ0XZTBg2lPgidQNFB
+	 b2c9UcICTaxcA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YTjG60LNbz9rxK;
+	Fri, 10 Jan 2025 01:29:33 +0100 (CET)
+Date: Fri, 10 Jan 2025 00:29:33 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: =?utf-8?B?Q3PDs2vDoXM=?= Bence <csokas.bence@prolan.hu>,
+	=?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	linux-spi <linux-spi@vger.kernel.org>
+Subject: Re: [PATCH v2 0/3] gpio: 74HC595 / 74x164 shift register improvements
+Message-ID: <Z4Bp7aBWWYehVucf@probook>
+References: <20241224-gpio74-v2-0-bbcf14183191@posteo.net>
+ <173593634037.257292.1488097273042214180.b4-ty@linaro.org>
+ <CAMuHMdUqvTrSsiGuJ=VvNqsQm4eQs9rNTU8VBg+FzHJZxRnXow@mail.gmail.com>
+ <CAMRc=McAm3A1movK-8q67UbKuPb8FQzVwD_me7Q6x-gei2PA_A@mail.gmail.com>
+ <192e97dd-698a-4434-bd32-c1181ec85ba3@prolan.hu>
+ <CAMRc=MewCR=W=_0RKFZR0gW2mvkMD-pKBWpXCeqOY4j8CXBSXw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Z3_nCPk_g8znto4A@hovoldconsulting.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMRc=MewCR=W=_0RKFZR0gW2mvkMD-pKBWpXCeqOY4j8CXBSXw@mail.gmail.com>
 
-On Thu, Jan 09, 2025 at 04:11:04PM +0100, Johan Hovold wrote:
-> On Thu, Dec 12, 2024 at 05:21:49PM +0530, Dikshita Agarwal wrote:
-> > Initialize the platform data and enable video driver probe of SM8250
-> > SoC. Add a kernel param to select between venus and iris drivers for
-> > platforms supported by both drivers, for ex: SM8250.
-> 
-> Why do you want to use a module parameter for this? What would be the
-> default configuration? (Module parameters should generally be avoided.)
-> 
-> Why not simply switch to the new driver (and make sure that the new
-> driver is selected if the old one was enabled in the kernel config)?
+On Wed, Jan 08, 2025 at 01:08:37PM +0100, Bartosz Golaszewski wrote:
+> On Wed, Jan 8, 2025 at 11:26 AM Csókás Bence <csokas.bence@prolan.hu> wrote:
+> >
+> > Hi all,
 
-Because the new driver doesn't yet have feature parity with the venus
-driver. So it was agreed that developers provide upgrade path to allow
-users to gradually test and switch to the new driver. When the feature
-parity is achieved, the plan is to switch default to point to the Iris
-driver, then after a few releases start removing platforms from Venus.
+Hi,
 
-> > Tested-by: Stefan Schmidt <stefan.schmidt@linaro.org> # x1e80100 (Dell
-> 
-> Looks like something is missing from Stefan's Tested-by tag throughout
-> the series ("Dell XPS13"?)
-> 
-> > Reviewed-by: Stefan Schmidt <stefan.schmidt@linaro.org>
-> > Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
->  
-> > +static bool prefer_venus = true;
-> > +MODULE_PARM_DESC(prefer_venus, "Select whether venus or iris driver should be preferred");
-> > +module_param(prefer_venus, bool, 0444);
-> > +
-> > +/* list all platforms supported by only iris driver */
-> > +static const char *const iris_only_platforms[] = {
-> > +	"qcom,sm8550-iris",
-> > +	NULL,
-> > +};
-> 
-> Surely you don't want to have to add every new platform to two tables
-> (i.e. the id table and again here).
 
-I'd agree here, this list should go. We should only list platforms under
-the migration.
-
+> >
+> > On 2025. 01. 06. 21:16, Bartosz Golaszewski wrote:
+> > > On Mon, Jan 6, 2025 at 10:19 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > >> Do we really need to document and add driver support for all variants?
+> > >> I can easily come up with a list of tens or perhaps even hundreds
+> > >> of xx74yy595z parts that are all compatible, as far as software is
+> > >> concerned.  As SPI was invented by Motorola, the original part is
+> > >> probably named MC74595 or MC74LS595 (yes, ON Semiconductor bought the
+> > >> logic division of Motorola).
+> >
+> > I second this, no point of having a new compatible which is a guaranteed
+> > 1:1 equivalent of an already existing one. Especially true if the only
+> > change was that a different company bought the IP. By the same logic, I
+> > could start to sumbit patches to change all `fsl,` compatible-s to
+> > `nxp,`; `atmel,`, `maxim,`, `smsc,` etc. to `microchip,`; `ralink,` to
+> > `mediatek,` and so on. There would be no end.
+> >
+> > >> Perhaps we need a separate vendor prefix for the 74xx-series[1]?
+> >
+> > I don't think that is the case. Rather, we should document that the
+> > existing binding/compatible should be used for all such simple cases (it
+> > is called _compatible_ for a reason, after all, and not
+> > `exact-part-number`).
+> >
+> > >> The xx-prefix and z-suffix don't matter; the yy-infix for semiconductor
+> > >> technology rarely matters (there are a few exceptions, though, mostly
+> > >> pinout, which doesn't matter for software).
+> > >>
+> > >
+> > > I missed the fact that Rob actually responded to patch 1/3 with a
+> > > similar suggestion (fallback, instead of a full compatible).
+> > >
+> > > I can drop this series from my queue if it needs more rework.
+> >
+> > I think you can keep 3/3 (the one commenting the use of `latch` as CS).
+> > The rest can be replaced by another commit commenting on what it means
+> > to be `fairchild,74hc595`:
+> >
 > 
-> > +
-> > +/* list all platforms supported by both venus and iris drivers */
-> > +static const char *const venus_to_iris_migration[] = {
-> > +	"qcom,sm8250-venus",
-> > +	NULL,
-> > +};
-> > +
-> > +static bool video_drv_should_bind(struct device *dev, bool is_iris_driver)
+> J. Neuschäfer: do you want to send a follow-up for this?
 
-The name should follow other names in the driver.
-`video_drv_should_bind` doesn't have a common prefix.
+I'm fine with this outcome, but I'd prefer not to prepare this proposed
+patch (for reasons of time management on my end, mostly).  So if anyone
+else would take it up, I'd greatly appreciate that.
 
-Also export it and use it from the venus driver if Iris is enabled.
 
-> > +{
-> > +	if (of_device_compatible_match(dev->of_node, iris_only_platforms))
-> > +		return is_iris_driver;
-> > +
-> > +	/* If it is not in the migration list, use venus */
-> > +	if (!of_device_compatible_match(dev->of_node, venus_to_iris_migration))
-> > +		return !is_iris_driver;
-> > +
-> > +	return prefer_venus ? !is_iris_driver : is_iris_driver;
-> > +}
-> > +
-> >  static int iris_probe(struct platform_device *pdev)
-> >  {
-> >  	struct device *dev = &pdev->dev;
-> > @@ -196,6 +224,9 @@ static int iris_probe(struct platform_device *pdev)
-> >  	u64 dma_mask;
-> >  	int ret;
-> >  
-> > +	if (!video_drv_should_bind(&pdev->dev, true))
-> > +		return -ENODEV;
-> 
-> AFAICT nothing is preventing venus from binding even when 'prefer_venus'
-> is false.
-> 
-> > +
-> >  	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
-> >  	if (!core)
-> >  		return -ENOMEM;
-> > @@ -324,6 +355,10 @@ static const struct of_device_id iris_dt_match[] = {
-> >  		.compatible = "qcom,sm8550-iris",
-> >  		.data = &sm8550_data,
-> >  	},
-> > +	{
-> > +		.compatible = "qcom,sm8250-venus",
-> > +		.data = &sm8250_data,
-> > +	},
-> >  	{ },
-> >  };
-> >  MODULE_DEVICE_TABLE(of, iris_dt_match);
-> 
-> Johan
-
--- 
-With best wishes
-Dmitry
+Best regards,
+ jn
 
