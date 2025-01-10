@@ -1,163 +1,118 @@
-Return-Path: <devicetree+bounces-137493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F3C0A0931B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:14:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FE23A09343
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:17:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 849F716A8E1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:14:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5333F7A21AE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:17:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF3A21019B;
-	Fri, 10 Jan 2025 14:14:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="qph8c4NQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251C7210F50;
+	Fri, 10 Jan 2025 14:17:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AEB020FABB
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 14:14:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD8020E70F;
+	Fri, 10 Jan 2025 14:17:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736518460; cv=none; b=JP8WMqg/+y60p59iF/6C7Mtk9FsvGodJfl8le/1Z/WX9yT8W+FG65NM2kww8UL9sBmSq+b/dY3mD+Yqf/eDgY9lzjtOSFvDtnskhTIgAI6Drlvoyj3U3ROTyj3fq7oSWPAnWm2ve0Ply9cYdxCSGZrQBSg4IjDUOB32PYSR5wrA=
+	t=1736518626; cv=none; b=ZKNlwk84js0E8X8oxwp28As7JS0DpKZ6WOYimFjRvkQylHU/nOVvaIg/bPYwSdXFtzPNOdfHQTXleG8aqPXmQVqD/ZKgK6mR0CHseCsJ75fK5g40cJSseAYSbhjmgnDI0KUSRS6bSqBv7iXfxxlX5hClOPF4SJqNd0+eI0xs+WM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736518460; c=relaxed/simple;
-	bh=8I3v7VZnwG3yJtmmte/m5ikbbyJCFVAui04XhklcZMc=;
+	s=arc-20240116; t=1736518626; c=relaxed/simple;
+	bh=G8V2jhFGtgWlOHG4Qtq684e7x4Mx+F2Tmo67ZfatLO0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WUAu9ekc9bKRXxWmuOPh0A/4dQwlIFF2IFFuV/Lm/kT2gUoICvB33oADqlxBxV5JogkpGaEhawv4daC5X/ENrPPjkKxl+2Y1h/kedZrlIIkxSzvxN/YVqeiEPXHFZFS8z90kqMILjWU4OFsABxqIHNC8VX/+Jv3lDQU/rSN4gys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=qph8c4NQ; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53e3778bffdso2222859e87.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 06:14:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1736518454; x=1737123254; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8I3v7VZnwG3yJtmmte/m5ikbbyJCFVAui04XhklcZMc=;
-        b=qph8c4NQt5OeUCph4uxtvRBEEe4pFoNwju2yoDgV2Xee0MaVZeH7WPGOyNwK6ZVDHc
-         RXRPKBaAE+oouTzBiC7xFQkluCBZhoSvucnGCaSGgjQo468YCXoOpPHE4fBIUp2kTRYp
-         CXPGlHwJhOAA72gEezQju7O9W1uFA/jRcxzUZR+ANrRNsnYvhBM99FUtjdgt6WhDRFMz
-         4QZeVnkRqfgngw5740CkMi314rEk95AluZwgxsYQtlE4dUcQSRC2m1fxTLXfqoTCxL88
-         sOTQ0a9NfiCwQjpmQ+S5Z1NCChWMomFtd1yeA7EEhI/Eq/msiMN7MK3EIH/nPX7A48/j
-         BYvA==
+	 To:Cc:Content-Type; b=M96Y4aJuOad+E+NfAU6oLGXUiPHnSfCenSPmJyrSWI8wYl36Lk7GrZaPfeuMYFw2G9XtT5C4qJYpSp1oaE5QqwlnNxQgZCg1DaT6DV23ZpwU78QFpfYYASV95UQwxTxHhwlqCKawEOWqRUkTSg4Y0z1fz1TEL2B+QQQBsqp24yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7b6e8fe401eso173287185a.2;
+        Fri, 10 Jan 2025 06:17:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736518454; x=1737123254;
+        d=1e100.net; s=20230601; t=1736518621; x=1737123421;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8I3v7VZnwG3yJtmmte/m5ikbbyJCFVAui04XhklcZMc=;
-        b=eLbgfEIihwPk0RCtjesME0c3GET537eQkZQIWQhDEWrquNtNB0rgED+4wtfr9pE+BR
-         r6N3uIjKGUjN/0MoQipMLcm6OjkgdALioU66RyK3A0jWTt4yCHoj2uYx0ljjYXr1Q+0W
-         Y/fR5bQMWupXRGDlqBXdG89TH/M8j57VYxyH3hVtY/5iDi3WHoTRphNTCzFMRXUkYLlN
-         gLzgDhtkGToBJ/j1utpI9x+JPUUbVtF8AaWWWUkYg6TyRDFeAEuOiEyVonXn99KY6Gw9
-         diHuzFLZZYwz2zbNvxAX+v8TdVVDeaQP6rvRBeG9PjLDVY5aUHmssdWFJsckF4BAp2e2
-         uCWw==
-X-Forwarded-Encrypted: i=1; AJvYcCXln+H8eSu+LJ4iaX7M92KSVGnZ4lwL99119tkIR1ucDmY2gYnuiOaFBUFGxJLw2BM9QWWZPDBEwVnH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyrdn2qwnowiI4+1oVwaw5DqUPDALDQqxFeRQM8dQMbrbZnAJQt
-	ZallY+eoGIQ1ROplTU/6T0cf5lYpwztJkpWCxqlmPeX+Q3L7IY1PfmRVhiC4+wqEGP3644oEsfc
-	dxr8hRUx9IMkDm2UUCjULtGHRsuu5IZlhq023QQ==
-X-Gm-Gg: ASbGncvMdL7xf6btoyvctLflX3CkL5JcC9kzaj8RsuBWM0XmJCLWGGardDd6f55K080
-	41x9Y91K2FMG5ALBOqa4kyMNUqjJtcena3VsD1lo78teUq+xRGaHFMwMbFKfZ8AVa8soZ
-X-Google-Smtp-Source: AGHT+IF8d6s3rBxAFTGyuIns2Nn52yhlp9rng67dFXsb3y4itQ58MfWXZn3JMkdbszQnpF798VB4w9QdWTVvaXLyU80=
-X-Received: by 2002:a05:6512:3082:b0:540:2122:fad7 with SMTP id
- 2adb3069b0e04-542844f6933mr3281624e87.6.1736518454247; Fri, 10 Jan 2025
- 06:14:14 -0800 (PST)
+        bh=/NJ/3l/9PI4oWXepQOlqsgt9YAjfDzU4Qje7tYA2ecQ=;
+        b=LJGGfhdQg+PiH6gerAHVg+vUI4TnpZS+myULE177c+TMQ2JO1N1LJTffeyJg3nPyTE
+         PKFTkDjKRKN/Mtd7GBIAjnM8DUTE864GLVkXSiHZMgXhDs0mDxx1HWdLUHrFL9LNgT2n
+         YeSeQH/hmThMwXqCJo6NiUWoS+2w425+aVtIsd0QI+bzXkrxfl3NpIrdwY2ISuwZqJkK
+         x5hN8IXE/WfPq+T/qCUtB6bbRYrX9NZwSXgUdROexbdxNVVU5B6W9IRNhjj6NDspshPy
+         g5fL+R8HsmddauSH3hoBdUM7k5HmlcAcIc+aBZYoDSkLcomiuW73iN84maXZFm1uB422
+         SUmA==
+X-Forwarded-Encrypted: i=1; AJvYcCV9uXbY9ZGybeMRxIbwSRRZBsYEiddDhaKhwb7k1AcAxLOxCPpmN4ZanrXOQppkx0oCe1+5EK9JGxqq@vger.kernel.org, AJvYcCVetb7W3jsQ+6Ds7BgddVxv0jBs46Q1gwY+xSdaza2XUOzmwPX894TbgLCMJFplpJvTdmYqpWxyGKA=@vger.kernel.org, AJvYcCWoix0ULFuPxnCzkhTX6n3zZRYq5+Op8lEXcDek6wKHiwPvRDoHtJPLQ5CnmhbpeETYUc5gwwS1DZMNIIF6@vger.kernel.org, AJvYcCWwEJuUbxnVeeNzIM/myLHPcg1VrYGQPT9cNAhxd5C7sBK1k/oeVHZzMRTAeCg6UMPQ1w1y+6XkQphckcFbK8i/W+A=@vger.kernel.org, AJvYcCXeu7WEr4C/jMS9PfmOoQVkdN1Ke6HKcutD2ViW6STASFt8iuIBdCMuvKkhL3qOmTfhgXG05k5V80em@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCDxTn+2LzISzSnJ+el1zlF/mK2P5+X3Y0KbZmBfaccokB/ok+
+	5INBkpRBRnKW8gSoytn1Pz+nToBbTaDUVCbLt7YRMKQWY/ZkB1EZOWe2uGat
+X-Gm-Gg: ASbGncsh3FmpzQJC/3ZXZ2z2XoLS7LknJdKzooyrV1BFuYknvSmpgX1RIQ3RjXIcotZ
+	XsKNiOFLvh2ch6YgH2moHIa/IygIaXs4eQ7V9XBxlycxOfkQQ8r/zC+/6eRkSb5jsVHlSkgOjlH
+	esO7qUbbjglLP6y0eYldZrdy1wKDfKX+RSFE1Yp8ebujdlx+Hsrmg3hdruiHDc3hzr7cnKHC40G
+	bx+D4D7k8EFZ/bmR5DdneW2d3HX24o4y99PA3kmdnL0g5Gfu0osXMFOIVlXQsVe5GuwdDHs48dc
+	tO2rh8sOGTNE+yoW3ESU8FA=
+X-Google-Smtp-Source: AGHT+IE5tNwrA25wnZ0jYbpj8xbYwxXFJ94FzLv+CS2Q+NK/ocjsTyOokiI6E0irfOtnsiOrnKXoMw==
+X-Received: by 2002:a05:620a:1903:b0:7b6:c6f8:1d25 with SMTP id af79cd13be357-7bcd97ce10emr1767249385a.55.1736518621170;
+        Fri, 10 Jan 2025 06:17:01 -0800 (PST)
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com. [209.85.222.175])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7bce3503185sm175978785a.95.2025.01.10.06.16.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jan 2025 06:17:00 -0800 (PST)
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7b6f19a6c04so176124085a.0;
+        Fri, 10 Jan 2025 06:16:59 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVsG1B1D3oXkQbwcnU4kMo5FVthNQ8h3RAGrMFe6UpbcNjg8dTcc65LHOoGtmXySXUbHDfO5aOI8pY=@vger.kernel.org, AJvYcCWovhDXgMXmuREcSHqsTdqmfafqKnr45Z/v9syX4jH2+LYcRs12OI4OwBxcCgggfebcaTlG3KnRg+6Fgwoo@vger.kernel.org, AJvYcCWtYpVkRbeH98IluxRjzOkHjoiD1jKqdjxH3BdC/KCG93Q3xOypB/z34Yu8kLcaLfW3SluIxF/oJVyr@vger.kernel.org, AJvYcCWzCnTGjz726iQFoxViQ/3hfbXQj0M+mmqkdZb0qeqtb7bNmwrc5Ke828BV6oklfy1Cw9E0LAE6H+7n@vger.kernel.org, AJvYcCXn4cKnGIP4PHFvygK6ljQxaYUMoDiMeTJJ0qFWEs9lW5huo/z0sj58arXByQL4gnDQxdT3sTt1bPGoYsMy1e9Z8Gg=@vger.kernel.org
+X-Received: by 2002:a05:620a:2a08:b0:7b7:5d6:3976 with SMTP id
+ af79cd13be357-7bcd97d6489mr1484170685a.58.1736518619196; Fri, 10 Jan 2025
+ 06:16:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250110130025.55004-1-brgl@bgdev.pl> <de6b70f2-8fd6-4e2a-a6c1-466698be8a6b@prolan.hu>
- <CAMRc=MckJfEBK_ZUZ31hh7SMdbr4a-vZLtTGDCFttGK65wbXdA@mail.gmail.com> <CAMuHMdWhEZ0No8mXdymE8O8+rMCkD2SXAifZwReb1BbfYASOeQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdWhEZ0No8mXdymE8O8+rMCkD2SXAifZwReb1BbfYASOeQ@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 10 Jan 2025 15:14:03 +0100
-X-Gm-Features: AbW1kvZiIcaLZ1SjcnNuC6Spd3ghTXmzaPyefVUbdK3Rljxg68KY4qnj6f-FAQI
-Message-ID: <CAMRc=Me+syDKW6sycGZ86rBJysaccsm3QUYd1+5cnfzRCo6P7A@mail.gmail.com>
-Subject: Re: [PATCH 0/2] gpio: 74x164: use a compatible fallback and don't
- extend the driver
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, =?UTF-8?B?SiAuIE5ldXNjaMOkZmVy?= <j.ne@posteo.net>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com> <20250103163805.1775705-2-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20250103163805.1775705-2-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 10 Jan 2025 15:16:47 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX1y7szsqRqE3iCGOV2gWX2Vq37KheZZbk+cEkwXgV6+Q@mail.gmail.com>
+X-Gm-Features: AbW1kvbRaFn4g_AO_oKMfA_tFxNUhSMjIGVqHRYJogvxNkj5hs0eIT7UrCBBWSw
+Message-ID: <CAMuHMdX1y7szsqRqE3iCGOV2gWX2Vq37KheZZbk+cEkwXgV6+Q@mail.gmail.com>
+Subject: Re: [PATCH 1/6] clk: renesas: r9a08g045: Add clocks, resets and power
+ domain support for the TSU IP
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
+	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
+	p.zabel@pengutronix.de, ulf.hansson@linaro.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 10, 2025 at 3:10=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
+On Fri, Jan 3, 2025 at 5:38=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> w=
+rote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> Hi Bartosz,
+> Add clocks, resets and power domains for the TSU IP available on the
+> Renesas RZ/G3S SoC.
 >
-> On Fri, Jan 10, 2025 at 2:38=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.p=
-l> wrote:
-> > On Fri, Jan 10, 2025 at 2:32=E2=80=AFPM Cs=C3=B3k=C3=A1s Bence <csokas.=
-bence@prolan.hu> wrote:
-> > > On 2025. 01. 10. 14:00, Bartosz Golaszewski wrote:
-> > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > > >
-> > > > There were other suggested solutions (for instance: just use the
-> > > > existing compatible for the On Semi variant) but I figured the most
-> > > > common approach is to use a fallback value for 100% compatible mode=
-ls
-> > > > and this is what Rob suggested as well.
-> > > >
-> > > > This reverts the driver change and makes the "onnn,74hc595a" compat=
-ible
-> > > > use "fairchild,74hc595" as fallback.
-> > >
-> > > Is there any reason to introduce a new compatible name at all? Does s=
-ome
-> > > pre-existing, widely-used DT blob use it in the wild already? If not,
-> > > then I don't think it's necessary; for any new boards, their DT's
-> > > authors should just use the pre-existing names.
-> >
-> > I don't have a strong opinion on this and will defer to DT maintainers
-> > but a similar case I'm familiar with is the at24 EEPROM driver where
-> > we've got lots of 1:1 compatible chips and we tend to add new
-> > compatibles to DT bindings (with fallbacks to associated atmel models)
-> > just for the sake of correct HW description in DTS.
->
-> At24 EEPROMs differ from '595 shift registers in that they provide an
-> API with multiple commands, and some commands or parameter bits may
-> differ among different implementations (but usually these differences
-> are called quirks).
->
-> All '595 (I'm deliberately writing it like that) shift registers
-> should be 100% compatible, modulo some electrical specifications
-> (voltage levels, maximum speed, power consumption, ...).
->
-> Interestingly, the driver is called gpio-74x164.c, while no '164
-> compatible value is present. Most important difference is that the
-> '164 lacks the output latch, which is used as chip-select with SPI[1].
->
-> > > I'm especially against introducing a new, vendor-specific (On Semi, i=
-n
-> > > this case) name; if we really want to introduce a new compatible, at
-> > > least make it as generic as possible, i.e. `generic,74x595`, or even
-> > > `generic,spi-shift-register-output`.
-> >
-> > If anything, that would have to be the fallback that the driver knows.
-> > The first string in the compatible property has to have an actual
-> > vendor (I think, I'll let DT maintainers correct me).
->
-> For the inverse operation (parallel in, serial out), there's just
-> "pisosr-gpio".
->
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Ok, I admit I don't know the correct next step. I'll wait for
-Krzysztof, Rob or Conor to chime in (on the subject of representing
-reality - the actual manufacturer - in DTS) and then possibly just
-remove patches 1-2 from my tree.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v6.15.
 
-Bartosz
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
