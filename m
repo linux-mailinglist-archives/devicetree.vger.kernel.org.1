@@ -1,156 +1,150 @@
-Return-Path: <devicetree+bounces-137595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EF38A09D88
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 23:01:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73365A09D91
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 23:04:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D19F188D06D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 22:01:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 926733A2C97
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 22:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC98320A5FC;
-	Fri, 10 Jan 2025 22:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB431213E84;
+	Fri, 10 Jan 2025 22:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wpy70fo9"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="VU6wzF3m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0980B18C928;
-	Fri, 10 Jan 2025 22:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF94524B254
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 22:04:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736546467; cv=none; b=sp1aZZWxRb3mD6v/lfUrckK1hwLN/qHlwEskl0uDHuC5jF5rd7p52umwpNOE+yBkgy7OFniRm72/yTc9iKbXFhGANptQlE8hVUZQxhhiNaYE2u+WP+TlXJq6hVo8pLV7nx62th5QlehTGl2x5MqQf5+zQsfe6Zunkg4yhxygDc8=
+	t=1736546692; cv=none; b=DOF7IDCMs/Btas1N5piBWRJYfVB0ZDi8gYadzy/6GAA2v41UPL57Tir6qclvp95yz+hR34UiQavCUxej6bcHOAqWf5zRDQADvWHB/0SuLzTuAZ6XYXWAzgVIT67eo3r2tQ5kQH6u5PaqakwF5eOOlLRMoPKOsUWBgiqvmpjkq2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736546467; c=relaxed/simple;
-	bh=nx0vGlst7NSN4iEe+wwVWxAZXqvm+NL66haZXdwOBis=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZYKV4FiwBoDiXi56tV1I1vVyXIWmn3nQ9cXolUrd3rysBRLuSsO3OxXzGIL8WgfMgClC/dsu2A4t60HY5X3oCl/0V6U57rOpOAjBHMR3t6VQFnPxXoPXWiucVhOp5/xmrmQx52wT9aKUDkRcCz+KAkEHhgHKEFsB7+eCf4x8X9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wpy70fo9; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-5174f9c0e63so892368e0c.1;
-        Fri, 10 Jan 2025 14:01:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736546465; x=1737151265; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=J0Q6a8eREW8baTupRj9YbB+04vbxGTMHixhz17VyCiI=;
-        b=Wpy70fo9RBZlB3qg8KxAWbP0h5dxlH51U8rd3xWkB8Oos664GtEMQf2fKKyU89KL04
-         txQOlpE5kmHDOYXJJ7sI1USYHNqovs1wEEJ6iSJg9AYaY30cAeJ3dVzFmYkigzye1lA+
-         ZVp0lIQESVmBAdm8ybAJIf8viU/yryTT33ZeZ20+JRDEO9mETi+JlcuV4iGzWjRO1VpZ
-         twrOqB4NzC9zO4ZdMf+J+hZcKdrOzZ5hVkqQDYhRPquJZlH1g6AP34yUN7Mju3lFEHh7
-         3rDGB4BXfTdxopoXR8yGHf/Rskbs9X8r4D3jGQgYV7twOAetoMS4QboBJPlzVwXklMVY
-         QOlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736546465; x=1737151265;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J0Q6a8eREW8baTupRj9YbB+04vbxGTMHixhz17VyCiI=;
-        b=lHhNAz5YD5x9jYgDL3pZn8lQmO/3Q5lsoWipbGaQVsqE6EsO9bVrkSS8za6e13NRID
-         tpARfq6g/G7jytFDyj6lM+QBfvQtp7y0cU00vbIcYghB+4+mtffuT+xS00JWLQh0F1Q/
-         ezxtVBFBRkQdBmPoniXBmyCaPpvEtaZoJqQO/T9hz5ipcJFs1JYQpKYYhB7TzCRvbhhB
-         z21kHCQ48YDfp58DTb7lYziNXXz91KNMU4cnjqj/I2VGPLABjc9CVIH5WaX/hCo/t4Zu
-         539ljB7rUxvRLSFhaqmcONeDNjya4v9mxj08CIbC4a1lFaiI0Zlnt5qGKQuXNBh3hyle
-         3GWg==
-X-Forwarded-Encrypted: i=1; AJvYcCVNYnhuMhli734FMw5pWHACok1jMVoON+y8VC5AW0ZdXSNBkTOkahZ7VMZsQ0AcEg6GP77TSzvZPUxY@vger.kernel.org, AJvYcCWodqtv9YgODitDD5Qnr9ISSM+AgYzKFfA3Cf1NSSUkgBojHdojRQFVCMppCQU7s1zDZZPk11Rq0G2JJII7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMlNhPw6wafxRQswA+qFm2yQwJdUsJ/J1FzKcT/XDCji2u5I+S
-	P0g/CNpY9dJwSjcXWmxTy8mE/j9p3AJ++k2g89m+/6abLWIJPYmB5cmY+niM
-X-Gm-Gg: ASbGnctL0fU3XBgcmNidlijZVVpXfy7T0y2XVFuSSxSJnopBPMkyamVRG5iGyEN4iox
-	Clzt4mjbB3llP2A8sAE7ZqS3FU5HwdkXpcuYNak3UgjdrB6Fr4nD/jaziLS94r654klYuPAQN17
-	6lxHRxd7XwarDRzvTZTjMpsBCgBQEzS9nmDnSB4PlLNNVCjaJPdYwM4MIqBOPxPnEt1oext+RZm
-	H4DZ2INm05lPSjXd7C2TIidbpE6TpLOBOOOq+bGTuXz9bwsh6BDgMDetmuFiwmdnxc=
-X-Google-Smtp-Source: AGHT+IHu1td+hk53+PxpazOkg2dTWM45c2TMPP6yHl25ZxUe70jCvcyhi1IKfkJM/J0MAavivwj5gg==
-X-Received: by 2002:a05:6122:2008:b0:517:83d1:d448 with SMTP id 71dfb90a1353d-51c6c2b9570mr11408445e0c.0.1736546464755;
-        Fri, 10 Jan 2025 14:01:04 -0800 (PST)
-Received: from localhost ([2804:30c:1f79:9d00:c6c6:ec89:7531:7838])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-51c7fbd495dsm2736381e0c.20.2025.01.10.14.01.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 14:01:03 -0800 (PST)
-Date: Fri, 10 Jan 2025 19:01:35 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de,
-	Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v1 09/15] iio: adc: ad7768-1: Move buffer allocation to a
- separate function
-Message-ID: <Z4GYv9YmT38OgQAn@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1736201898.git.Jonathan.Santos@analog.com>
- <319a685855eb4b942e05e456a37319d3f73f7cd4.1736201898.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1736546692; c=relaxed/simple;
+	bh=b9WKBQ8NuViU/bZ0HeL+7P1wKdEpWaLgYphdVF4bMoE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Izd1EGSeQbudrSFxZKrlSTzs/6vDRzRBeDn+75KMiRuNByWzQ1gLEmL+gcgP6s+kVWFaV9WiN7WBjely26WnPCvjQ13Dj5XFPaW3aiVxsRL1kpVJo0r3m3tTNvhcJCLoKui8/irBpRynAZDkL2AiJ5JXOO9R9H12b3Ls92HUuc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=VU6wzF3m; arc=none smtp.client-ip=95.215.58.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <ba885c8c-c5f0-4902-8515-3c133a00d7f1@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1736546679;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2x5BxF/3ZkUkZ+08VxDfgNb3JHhNGdhbGCSwU27BGaM=;
+	b=VU6wzF3mE866i1no/6U66csETxez/bREQM53MmiNGv1XnD0PmIbPMQpAz7P1cHr+ry40jW
+	6RMUzfnkgYIoplHz5iotr5rTv8Kd9snuwjrJqwmLPxQE4200bmPgNzApeRG79EpcFVqIDY
+	oWOrLT1Lseiz3xI8SPo8HyEsEA8aMP4=
+Date: Fri, 10 Jan 2025 17:04:34 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <319a685855eb4b942e05e456a37319d3f73f7cd4.1736201898.git.Jonathan.Santos@analog.com>
+Subject: Re: [PATCH 2/2] of/address: Fix WARN when attempting translating
+ non-translatable addresses
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Michael Ellerman <mpe@ellerman.id.au>, Saravana Kannan <saravanak@google.com>
+Cc: linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250110215030.3637845-1-robh@kernel.org>
+ <20250110215030.3637845-2-robh@kernel.org>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <20250110215030.3637845-2-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On 01/07, Jonathan Santos wrote:
-> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+On 1/10/25 16:50, Rob Herring (Arm) wrote:
+> The recently added WARN() for deprecated #address-cells and #size-cells
+> triggered a WARN when of_platform_populate() (which calls
+> of_address_to_resource()) is used on nodes with non-translatable
+> addresses. This case is expected to return an error.
 > 
-> This change moves the buffer allocation in a separate function, making
-> space for adding another type of iio buffer if needed.
+> Rework the bus matching to allow no match and make the default require
+> an #address-cells property. That should be safe to do as any platform
+> missing #address-cells would have a warning already.
 > 
-> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> Fixes: 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-cells handling")
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  drivers/iio/adc/ad7768-1.c | 64 ++++++++++++++++++++++----------------
->  1 file changed, 37 insertions(+), 27 deletions(-)
+>  drivers/of/address.c | 18 +++++++++++++++---
+>  1 file changed, 15 insertions(+), 3 deletions(-)
 > 
-...
-> @@ -625,37 +661,11 @@ static int ad7768_probe(struct spi_device *spi)
->  		return ret;
->  	}
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index c1f1c810e810..8770004d9b08 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -340,6 +340,15 @@ static int of_bus_default_flags_match(struct device_node *np)
+>  	return of_property_present(np, "#address-cells") && (of_bus_n_addr_cells(np) == 3);
+>  }
 >  
-> -	st->trig = devm_iio_trigger_alloc(&spi->dev, "%s-dev%d",
-> -					  indio_dev->name,
-> -					  iio_device_id(indio_dev));
-> -	if (!st->trig)
-> -		return -ENOMEM;
-> -
-> -	st->trig->ops = &ad7768_trigger_ops;
-> -	iio_trigger_set_drvdata(st->trig, indio_dev);
-> -	ret = devm_iio_trigger_register(&spi->dev, st->trig);
-> -	if (ret)
-> -		return ret;
-> -
-> -	indio_dev->trig = iio_trigger_get(st->trig);
-> -
-> -	init_completion(&st->completion);
+> +static int of_bus_default_match(struct device_node *np)
+> +{
+> +	/*
+> +	 * Check for presence first since of_bus_n_addr_cells() will warn when
+> +	 * walking parent nodes.
+> +	 */
+> +	return of_property_present(np, "#address-cells");
+> +}
+> +
+>  /*
+>   * Array of bus specific translators
+>   */
+> @@ -384,7 +393,7 @@ static const struct of_bus of_busses[] = {
+>  	{
+>  		.name = "default",
+>  		.addresses = "reg",
+> -		.match = NULL,
+> +		.match = of_bus_default_match,
+>  		.count_cells = of_bus_default_count_cells,
+>  		.map = of_bus_default_map,
+>  		.translate = of_bus_default_translate,
+> @@ -399,7 +408,6 @@ static const struct of_bus *of_match_bus(struct device_node *np)
+>  	for (i = 0; i < ARRAY_SIZE(of_busses); i++)
+>  		if (!of_busses[i].match || of_busses[i].match(np))
+>  			return &of_busses[i];
+> -	BUG();
+>  	return NULL;
+>  }
+>  
+> @@ -521,6 +529,8 @@ static u64 __of_translate_address(struct device_node *node,
+>  	if (parent == NULL)
+>  		return OF_BAD_ADDR;
+>  	bus = of_match_bus(parent);
+> +	if (!bus)
+> +		return OF_BAD_ADDR;
+>  
+>  	/* Count address cells & copy address locally */
+>  	bus->count_cells(dev, &na, &ns);
+> @@ -564,6 +574,8 @@ static u64 __of_translate_address(struct device_node *node,
+>  
+>  		/* Get new parent bus and counts */
+>  		pbus = of_match_bus(parent);
+> +		if (!pbus)
+> +			return OF_BAD_ADDR;
+>  		pbus->count_cells(dev, &pna, &pns);
+>  		if (!OF_CHECK_COUNTS(pna, pns)) {
+>  			pr_err("Bad cell count for %pOF\n", dev);
+> @@ -703,7 +715,7 @@ const __be32 *__of_get_address(struct device_node *dev, int index, int bar_no,
+>  
+>  	/* match the parent's bus type */
+>  	bus = of_match_bus(parent);
+> -	if (strcmp(bus->name, "pci") && (bar_no >= 0))
+> +	if (!bus || (strcmp(bus->name, "pci") && (bar_no >= 0)))
+>  		return NULL;
+>  
+>  	/* Get "reg" or "assigned-addresses" property */
 
-Isn't the completion also used for single-shot reads?
-Well, if triggered_buffer_setup fails the whole probe fails and we never get to
-do a single-shot read, but that makes me wonder ... why don't we ever try to
-recover from iio_triggered_buffer_setup()? Should we ever do so?
-
-> -
->  	ret = ad7768_set_channel_label(indio_dev, ARRAY_SIZE(ad7768_channels));
->  	if (ret)
->  		return ret;
->  
-> -	ret = devm_request_irq(&spi->dev, spi->irq,
-> -			       &ad7768_interrupt,
-> -			       IRQF_TRIGGER_RISING | IRQF_ONESHOT,
-> -			       indio_dev->name, indio_dev);
-> -	if (ret)
-> -		return ret;
-> -
-> -	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-> -					      &iio_pollfunc_store_time,
-> -					      &ad7768_trigger_handler,
-> -					      &ad7768_buffer_ops);
-> +	ret = ad7768_triggered_buffer_alloc(indio_dev);
->  	if (ret)
->  		return ret;
->  
-> -- 
-> 2.34.1
-> 
+Tested-by: Sean Anderson <sean.anderson@linux.dev>
 
