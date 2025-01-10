@@ -1,113 +1,163 @@
-Return-Path: <devicetree+bounces-137583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93462A09BC8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 20:23:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FCEEA09C2A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 21:07:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F5E116AA5B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 19:23:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BB1516ADFA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 20:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 880CA2144C1;
-	Fri, 10 Jan 2025 19:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b="HD73YyIG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A16C206F33;
+	Fri, 10 Jan 2025 20:07:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.183])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD5C24B240
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 19:23:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.121.94.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C18BA50;
+	Fri, 10 Jan 2025 20:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736537023; cv=none; b=cDtQkP37Mgqv4dP1jdKKkt61jK7eZFYL4atQ8D1Q0LmEtkPpcYzJjPjuun91g8J8NiUjVj1AZm9QR3fcij7YhvA4RrrCy49zXEQ1C86fiDUea8w95fvkJmgu68e1L8RqMjxaCaLEo5Gd1s/X3UsV8LZMOi0TWdAWm0NZm0AaKIU=
+	t=1736539627; cv=none; b=U77gjd5zaCeTBsMSQeQgfQkiQL2ZqVCA3o8lZYCBe9/NrxYQzuwDCnbWG0rD+IkPgc2tX5e4N5Fnr4O0qMZyyAgAHvPbR4xtvjzLdxLvnDXNIvCB6FpVbGKncl4Bapqa0Ptds1pzfC3glQcv1ultzIgWgqIaorfmJL2q88lKXdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736537023; c=relaxed/simple;
-	bh=SKvv2wL/SHI91AQ3qMk4EbzIXzqQAPhYnMO18KKIh2Q=;
-	h=Date:Message-Id:From:To:Cc:In-Reply-To:Subject:References; b=ZBZ6jEzod8wbuJE2wGdaj9Pnz9ewRvzGeDUDkHeculWNmpr6IucJyNQurmNnCmz3fUq5DqdLf4+fpbnDhXUxNaRE67sZ6wxTIS+zZNziJGweYNZ9eG8U8jUUIvOHAhxp5u8xYsiGBUM1E0hFD1cf+Ryytc9Cd3VY//tgCNjhW1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xs4all.nl; spf=pass smtp.mailfrom=xs4all.nl; dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b=HD73YyIG; arc=none smtp.client-ip=195.121.94.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xs4all.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xs4all.nl
-X-KPN-MessageId: 3fb7d581-cf88-11ef-bc52-005056992ed3
-Received: from smtp.kpnmail.nl (unknown [10.31.155.8])
-	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-	id 3fb7d581-cf88-11ef-bc52-005056992ed3;
-	Fri, 10 Jan 2025 20:22:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=xs4all.nl; s=xs4all01;
-	h=subject:to:from:message-id:date;
-	bh=/KJAI6rZMyrjpAxu9pgZwMk+8GZtTyA5Rf3XMKlCiTs=;
-	b=HD73YyIGE4gHpyjA22GJ4eiyLk505qcsE/l17BfsqrNxP+Hw1YLEX6XnVmA31Z8zgJAaf94nAlfQC
-	 6SrW3Bxcr+D7J78tlaAsOIphNVdVdpbKuUS2YQp+j6scSZ2pljOSTZ+8anemWEZzKwOMeQR2OhmmFg
-	 cH8Pt4rQO4ktGfAD4aX5kPJTLYT1NExihK2OtXcf9dfRaCIcbmIhqPTS4vMcko6tM3ETJn/oNVH05z
-	 VF4RM9kT7x6ZNmUaTMg0tE8LK292W5yCF4cY+qUm0NONBpyDBGQb8hr0cHGuuGt0tiJsMX6jJuTdds
-	 I8hjIOajc9qnX/NyaPnEFMUdmGSd8zA==
-X-KPN-MID: 33|wXVuMNrdWrxB13ZpC56pa88QK1GxPQ79V/REObUI/8pgxD9phj+Km3IoP4/kr8O
- prt/2tQ9SZAuwssehM1qU6BOaIPRzbWre//eXY0yPfeU=
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|GIHfWUSF6CnM6ln1WfNvLbA1HdK5TvV7mkIicrjwkf4raD1jjTjLhpE9wgEGJNf
- 2zudQ8lIqYHBT29xAk5yxtg==
-Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-	by smtp.xs4all.nl (Halon) with ESMTPSA
-	id 3c6a1ca4-cf88-11ef-894c-00505699d6e5;
-	Fri, 10 Jan 2025 20:22:31 +0100 (CET)
-Date: Fri, 10 Jan 2025 20:22:30 +0100
-Message-Id: <87frlqv5hl.fsf@bloch.sibelius.xs4all.nl>
-From: Mark Kettenis <mark.kettenis@xs4all.nl>
-To: Johan Hovold <johan@kernel.org>
-Cc: kettenis@openbsd.org, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, quic_rjendra@quicinc.com,
-	abel.vesa@linaro.org, quic_sibis@quicinc.com,
-	johan+linaro@kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <Z4FND-b-gEb6YJw6@hovoldconsulting.com> (message from Johan
-	Hovold on Fri, 10 Jan 2025 17:38:39 +0100)
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Mark usb_2 as dma-coherent
-References: <20250109205232.92336-1-kettenis@openbsd.org> <Z4FND-b-gEb6YJw6@hovoldconsulting.com>
+	s=arc-20240116; t=1736539627; c=relaxed/simple;
+	bh=LF9XYXci0MeCLYuEFF59z8ZcKzUi287BWnweDLP6qrU=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=CVdEamhEfzrPOFAXgDu2pDpV9aMtEweVW8HM7kWjfETmvW+BhzExj5Hz1KJ08e44xHC+eSPYbiULsOEym3tewc1BWmjbdauSzqs59a/whmGa5fz6IPkCjUqQJJIBdsp5nQu9HNWqNcGW/4ULC3UGbAus2IK7KpfTq1qm2X2FwmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com; spf=pass smtp.mailfrom=korsgaard.com; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=korsgaard.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8CDA9C0003;
+	Fri, 10 Jan 2025 20:07:00 +0000 (UTC)
+Received: from peko by dell.be.48ers.dk with local (Exim 4.96)
+	(envelope-from <peter@korsgaard.com>)
+	id 1tWLHX-009inj-1p;
+	Fri, 10 Jan 2025 21:06:59 +0100
+From: Peter Korsgaard <peter@korsgaard.com>
+To: Guenter Roeck <linux@roeck-us.net>,  Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org,  linux-hwmon@vger.kernel.org,  Jean Delvare
+ <jdelvare@suse.com>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document
+ default-pwm property
+References: <20250103101448.890946-1-peter@korsgaard.com>
+	<20250103195810.GA2624225-robh@kernel.org>
+	<dbf7cdd3-c5ab-4801-be85-163124b8a898@korsgaard.com>
+	<20250106173805.GA501301-robh@kernel.org>
+Date: Fri, 10 Jan 2025 21:06:59 +0100
+In-Reply-To: <20250106173805.GA501301-robh@kernel.org> (Rob Herring's message
+	of "Mon, 6 Jan 2025 11:38:05 -0600")
+Message-ID: <87sepq8mcc.fsf@dell.be.48ers.dk>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-GND-Sasl: peter@korsgaard.com
 
-> Date: Fri, 10 Jan 2025 17:38:39 +0100
-> From: Johan Hovold <johan@kernel.org>
+>>>>> "Rob" == Rob Herring <robh@kernel.org> writes:
+On 1/6/25 18:38, Rob Herring wrote:
+
+>> I am not sure I what you mean with the RPM reference here? The
+>> cooling-levels support in the fan-pwm.c driver is a mapping between cooling
+>> levels and PWM values, NOT RPM value.
 > 
-> On Thu, Jan 09, 2025 at 09:52:31PM +0100, Mark Kettenis wrote:
-> > Make this USB controller consistent with the others on this platform.
-> > 
-> > Fixes: 4af46b7bd66f ("arm64: dts: qcom: x1e80100: Add USB nodes")
-> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index 4936fa5b98ff..aad1153a443d 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -4814,6 +4814,8 @@ usb_2_dwc3: usb@a200000 {
-> >  				snps,dis-u1-entry-quirk;
-> >  				snps,dis-u2-entry-quirk;
-> >  
-> > +				dma-coherent;
-> > +
+> Did I say RPM anywhere for this option?
 > 
-> Can someone from Qualcomm please confirm that this is correct, and that
-> it's not the other way round and this property should be removed from
-> the other controllers (e.g. if this was just some copy-pasta from sm8550
-> which is the only other Qualcomm platform that claims to have
-> dma-coherent USB controllers).
+> It is the index of the array that is meaningful to anything outside of
+> the driver. The values are opaque. They are duty cycle in some cases
+> and RPMs in other cases. The thermal subsystem knows nothing about PWM
+> duty cycle nor RPMs.
+> 
+> Defining a default-cooling-level would be useful to anyone, not just
+> your usecase.
+> 
+> IOW, you are proposing:
+> 
+> default-pwm = <123>;
+> 
+> I'm proposing doing this instead:
+> 
+> cooling-levels = <0 123 255>;
+> default-cooling-level = <1>;
 
-It certainly wouldn't hurt to have confirmation from someone familliar
-with the SoC design.
+I don't have CONFIG_THERMAL enabled in my builds (and don't know the
+subsystem), but I see the pwm-fan driver has some logic to default to
+the highest cooling level, it just forgets to actually set the PWM to
+match it, so perhaps we can just fix that?
 
-However treating the controllers as DMA coherent when they're not
-would almost certainly resulted in reports of USB devices being
-unreliable on these machines as the OS would skip necessary cache
-flushes.  I did test this patch on the ASUS Vivobook S 15 where the
-microSD-card reader uses the usb_2 controller.
+E.G. something like:
+
+commit 02c8ba74eb7dddf210ceefa253385bc8e40f49ae
+Author: Peter Korsgaard <peter@korsgaard.com>
+Date:   Thu Jan 2 18:26:45 2025 +0100
+
+    hwmon: (pwm-fan): Default to the Maximum cooling level if provided
+    
+    The pwm-fan driver uses full PWM (255) duty cycle at startup, which may not
+    always be desirable because of noise or power consumption peaks.
+    
+    The driver optionally accept a list of "cooling-levels" for the thermal
+    subsystem.  If provided, use the PWM value corresponding to the maximum
+    cooling level rather than the full level.
+    
+    Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+
+diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c
+index 53a1a968d00d..33525096f1e7 100644
+--- a/drivers/hwmon/pwm-fan.c
++++ b/drivers/hwmon/pwm-fan.c
+@@ -499,6 +499,7 @@ static int pwm_fan_probe(struct platform_device *pdev)
+ 	const struct hwmon_channel_info **channels;
+ 	u32 pwm_min_from_stopped = 0;
+ 	u32 *fan_channel_config;
++	u32 default_pwm = MAX_PWM;
+ 	int channel_count = 1;	/* We always have a PWM channel. */
+ 	int i;
+ 
+@@ -545,11 +546,18 @@ static int pwm_fan_probe(struct platform_device *pdev)
+ 
+ 	ctx->enable_mode = pwm_disable_reg_enable;
+ 
++	ret = pwm_fan_get_cooling_data(dev, ctx);
++	if (ret)
++		return ret;
++
++	if (ctx->pwm_fan_cooling_levels)
++		default_pwm = ctx->pwm_fan_cooling_levels[ctx->pwm_fan_max_state];
++
+ 	/*
+-	 * Set duty cycle to maximum allowed and enable PWM output as well as
++	 * Set duty cycle to default and enable PWM output as well as
+ 	 * the regulator. In case of error nothing is changed
+ 	 */
+-	ret = set_pwm(ctx, MAX_PWM);
++	ret = set_pwm(ctx, default_pwm);
+ 	if (ret) {
+ 		dev_err(dev, "Failed to configure PWM: %d\n", ret);
+ 		return ret;
+@@ -661,10 +669,6 @@ static int pwm_fan_probe(struct platform_device *pdev)
+ 		return PTR_ERR(hwmon);
+ 	}
+ 
+-	ret = pwm_fan_get_cooling_data(dev, ctx);
+-	if (ret)
+-		return ret;
+-
+ 	ctx->pwm_fan_state = ctx->pwm_fan_max_state;
+ 	if (IS_ENABLED(CONFIG_THERMAL)) {
+ 		cdev = devm_thermal_of_cooling_device_register(dev,
+
+
+Guenter, what do you say? This way we don't need any new device tree
+properties. I personally find it less clear than a default-pwm property,
+but oh well.
+
+-- 
+Bye, Peter Korsgaard
 
