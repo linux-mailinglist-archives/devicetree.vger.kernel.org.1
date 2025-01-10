@@ -1,140 +1,118 @@
-Return-Path: <devicetree+bounces-137285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C53A0884D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:25:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10FEAA0887B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:39:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C23F1188A265
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 06:25:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7BD5188B341
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 06:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599362066F4;
-	Fri, 10 Jan 2025 06:25:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F14206F04;
+	Fri, 10 Jan 2025 06:39:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HT3h9Qc0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WnPAFUcv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9124A2063E7;
-	Fri, 10 Jan 2025 06:25:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3E141B4F14;
+	Fri, 10 Jan 2025 06:39:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736490309; cv=none; b=b1b9r7S763u1K3fi2OwOykKmowLUWb1WFadRpbaQtCvTg/POvVTaMkcvuvkZRss7XHHJt8DMMq/EdAudL03VxF7IM0uJX5bAMgeBDS0mBqaGPD1la9n1ZZBiSoJH1NKocV6GtkNfpkU/1MbBxkX9oFNYqKtQRSSAH4SVSTeV3Qo=
+	t=1736491166; cv=none; b=AiAHt7meEHBgfj+1J6jbxxJ3dkch9gdNKcIMsvjHnYTvrGbdP4qiDinQ2NPiXbQ7uxsF23R8Ajoy+APSdcO9FMrB7MSVUVzzQ+/AEBxp7WxMc4cMPhUEAhWAWD8yjBDun/JX7S12kAjmlZg22iO1lTVjoSAn77C0/mGlfBeqOcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736490309; c=relaxed/simple;
-	bh=JNRPGPlyUeOYSMCCIReZWx4/A6kB9kI6sWqUW61ccvw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M36MH93XW20oes27H6i57PL6qaHV18mdUWCleu7CuYGNz2Ff5M7AepUr9NLxuCtG8+L5RyWgXXR7+jsTEpuRqFmcbCNUh8HOgFzX0FGECtMkbi09GPBATHYGi0PzfOBDC1ogSO/xx2i80E0Jq6jRli8/mx5TCJtU48qLhkWad0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HT3h9Qc0; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736490307; x=1768026307;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JNRPGPlyUeOYSMCCIReZWx4/A6kB9kI6sWqUW61ccvw=;
-  b=HT3h9Qc0SZGf6OJ7FUnICZU0URomWietu5z54JCgpZGtp4tSIc1XSDxl
-   u7NoLvB3WlrfE/PwUzlm8SvGoSDZm/YdTmJS+vIwfz4yPBTQ9TmrIucYX
-   re1WuoFz6SIv3nUCH35FqeVUTQO53JVPIGiKYYgm0roDsGBfE0q5NXTQg
-   HJIfUlqhBHhhxtPLgNG72BsR7DWusG2+fJ33xO38w4v1w6aJxZUsN5OX0
-   5XLII8HUXg63JdJOjzeV8ksQjnQYllF7DR+8SCmio4ixnQ9M+gaqP6JjY
-   ijBPIQ1GVW0AmfNCJXxNfgf0JiZxKM0W3thx4omYIXYrR7nhP2kk7Tb1F
-   Q==;
-X-CSE-ConnectionGUID: SjEQx3HHQnW7iUFhtjTNGQ==
-X-CSE-MsgGUID: 2GXQfS4SSfmHFX5xKIM+ag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="36935793"
-X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; 
-   d="scan'208";a="36935793"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2025 22:25:07 -0800
-X-CSE-ConnectionGUID: wHSmfOucTXOWrcz09KdPMQ==
-X-CSE-MsgGUID: hPBfvydBS6uD27k00ZqUVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="104162427"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 09 Jan 2025 22:25:03 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tW8S3-000IdZ-36;
-	Fri, 10 Jan 2025 06:24:59 +0000
-Date: Fri, 10 Jan 2025 14:24:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Damon Ding <damon.ding@rock-chips.com>, heiko@sntech.de
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, rfoss@kernel.org,
-	vkoul@kernel.org, sebastian.reichel@collabora.com,
-	cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
-	dmitry.baryshkov@linaro.org, andy.yan@rock-chips.com,
-	hjc@rock-chips.com, algea.cao@rock-chips.com,
-	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: Re: [PATCH v5 07/20] drm/rockchip: analogix_dp: Expand device data
- to support multiple edp display
-Message-ID: <202501101445.xlso2z73-lkp@intel.com>
-References: <20250109032725.1102465-8-damon.ding@rock-chips.com>
+	s=arc-20240116; t=1736491166; c=relaxed/simple;
+	bh=dkM5RIqorCclu9bzpl50+uih3w0XzKZYvHWERd2uCME=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=e8Yzoxdi7W9AIRBvu3aM7cHyC0asJjWANqerKTtERIgIdK21k8bd4szNjFTof3UJZqK5kF0rZkqeuREHTIWcd/VF35I8XvfQsJqd9OHV9Yec/cXQ2xL+PnMGBBdVAElHExSyVuoKazIYeMjOPvSBH97rV+66ppycgEoXqNw9IIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WnPAFUcv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50A3bXis002587;
+	Fri, 10 Jan 2025 06:39:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=hrVjIc/LcmoNUqL0F5o690iiUubHNCLxTYE
+	RaJWRRPk=; b=WnPAFUcvt+AKA46Hwd4w3985gdg1v4R67GUbh3jFfEqLr+AEJd2
+	OOl3ULMl6isFDdBiDqQUiuj85YdZY1hnO+0n+k9XFMmNNb29rpvfLzWyHmqYPutm
+	ECo+h9XAC25cJbSAVcZ+GlEWAzpfyqPRdcVA/hDeN5M8zMKituanWnrgxXR9tF9M
+	QBRmLgVFadT77Uuhmu4Ezu477IQjZwk+OYEc0GqIFXkZk2y9DeQri1r8XlLtbUWz
+	R38vNg6WsgfVxY7CJr+HuEuTu9sj2Reb/pf8z+bST8O31VP4mBb6pmx0VuNy31it
+	8HcoWfwalUXmZk8qxxWvrYbUgqa0PeS3IRA==
+Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442utegbd1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jan 2025 06:39:20 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 50A6dHaf000512;
+	Fri, 10 Jan 2025 06:39:17 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 43xx2m2jc3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jan 2025 06:39:17 +0000
+Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 50A6dHje000507;
+	Fri, 10 Jan 2025 06:39:17 GMT
+Received: from chejiang-gv.ap.qualcomm.com (chejiang-gv.qualcomm.com [10.233.43.239])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 50A6dGJ1000503
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jan 2025 06:39:17 +0000
+Received: by chejiang-gv.ap.qualcomm.com (Postfix, from userid 37913)
+	id 073F0FF0; Fri, 10 Jan 2025 14:39:16 +0800 (CST)
+From: Cheng Jiang <quic_chejiang@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_chejiang@quicinc.com,
+        quic_jiaymao@quicinc.com, quic_shuaz@quicinc.com,
+        quic_zijuhu@quicinc.com, quic_mohamull@quicinc.com
+Subject: [PATCH v1 0/1] Add firmware-name in BT node
+Date: Fri, 10 Jan 2025 14:39:13 +0800
+Message-Id: <20250110063914.28001-1-quic_chejiang@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250109032725.1102465-8-damon.ding@rock-chips.com>
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BcF4PpkGpvFOhnuqG8HL0e_nYv2_LfMj
+X-Proofpoint-ORIG-GUID: BcF4PpkGpvFOhnuqG8HL0e_nYv2_LfMj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ mlxlogscore=878 lowpriorityscore=0 adultscore=0 bulkscore=0
+ impostorscore=0 suspectscore=0 mlxscore=0 phishscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501100053
 
-Hi Damon,
+Add the firmware-name for sa9775p-ride platform.
 
-kernel test robot noticed the following build warnings:
+---
+The previous disccuss can be found on
+https://lore.kernel.org/all/20250107092650.498154-1-quic_chejiang@quicinc.com/
+---
 
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on robh/for-next drm/drm-next drm-exynos/exynos-drm-next linus/master v6.13-rc6 next-20250109]
-[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Cheng Jiang (1):
+  arm64: dts: qcom: sa8775p-ride: Add firmware-name in BT node
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Damon-Ding/phy-phy-rockchip-samsung-hdptx-Swap-the-definitions-of-LCPLL_REF-and-ROPLL_REF/20250109-113114
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20250109032725.1102465-8-damon.ding%40rock-chips.com
-patch subject: [PATCH v5 07/20] drm/rockchip: analogix_dp: Expand device data to support multiple edp display
-config: hexagon-randconfig-002-20250110 (https://download.01.org/0day-ci/archive/20250110/202501101445.xlso2z73-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project f5cd181ffbb7cb61d582fe130d46580d5969d47a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250110/202501101445.xlso2z73-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501101445.xlso2z73-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/rockchip/analogix_dp-rockchip.c:60: warning: Function parameter or struct member 'reg' not described in 'rockchip_dp_chip_data'
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
 
-vim +60 drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-
-8f0ac5c4835291 Yakir Yang 2016-07-24  50  
-d9c900b0270a18 Yakir Yang 2016-06-29  51  /**
-d9c900b0270a18 Yakir Yang 2016-06-29  52   * struct rockchip_dp_chip_data - splite the grf setting of kind of chips
-bbb8c3102ebf3b Damon Ding 2025-01-09  53   * @lcdc_sel: grf register field of lcdc_sel
-d9c900b0270a18 Yakir Yang 2016-06-29  54   * @chip_type: specific chip type
-d9c900b0270a18 Yakir Yang 2016-06-29  55   */
-d9c900b0270a18 Yakir Yang 2016-06-29  56  struct rockchip_dp_chip_data {
-bbb8c3102ebf3b Damon Ding 2025-01-09  57  	const struct rockchip_grf_reg_field lcdc_sel;
-d9c900b0270a18 Yakir Yang 2016-06-29  58  	u32	chip_type;
-26f1f37804f0d4 Damon Ding 2025-01-09  59  	u32	reg;
-d9c900b0270a18 Yakir Yang 2016-06-29 @60  };
-9e32e16e9e989f Yakir Yang 2016-03-29  61  
-
+base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
