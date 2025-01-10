@@ -1,78 +1,48 @@
-Return-Path: <devicetree+bounces-137475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB27BA09280
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:50:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E064DA09289
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:53:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7355A188DCD7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:50:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 031413A9D2B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:53:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F98920E6F9;
-	Fri, 10 Jan 2025 13:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB8920E6FE;
+	Fri, 10 Jan 2025 13:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x/MHSryn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZgHwmnCp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96824400
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 13:50:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 508224400;
+	Fri, 10 Jan 2025 13:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736517045; cv=none; b=B8fEYYsJ4fA1vixFWPWrR8TAar1P3U/gLe8ZgGDyD3UcwzbauJRSyvaaL9BS/wM34bpcwX2UQ8ecdUwuYfV6lXCPhSLA44INoDxE14cAgOyDpZIKb5iDSRHuNcAnpFognDC3U4HTa9MtvLTnGUkYDX+VmGJuPxT2petOTl1puLA=
+	t=1736517212; cv=none; b=ntpCkrrMvHBr/g7VuQ4sDIM7DES2QJ7CXHN8iptsEZJv10IMQk2AIBjmMGovrzCDWc/w6yu6pylWctT+oaSdWYUDuIK3NA1g/a5Be9PMhLSwYgw7J1ZUU1FyyOp9YRKhAUYLxfzRSQLTrT2vhbkD+tiuzRCVM376b/QfsYt9P9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736517045; c=relaxed/simple;
-	bh=ciJAEmo8xS1YodmCHYYwU3P0gYxHOe/kHbBoWXH+FFY=;
+	s=arc-20240116; t=1736517212; c=relaxed/simple;
+	bh=0riks6cOaH09jocWG7yCJOIFBOexy2n5FPMx4nlkjLE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cQpJCV4WHAa6UL/1Fd4tn8NSQDdW+s+xkQL+BDYg84zjyYqh2N2S7qtBI/94xR78SNrDtrPA9TcbbO0s1isFsCwreGAp98GAwL1/MeUtTMKIAhTRao3e8r84pv4deCfowRbRihLnh03tXkN0YsS3/ntQ9rhxGQP89oBLrDPKIfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x/MHSryn; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3862d16b4f5so1323108f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 05:50:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736517042; x=1737121842; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+KDUqAsdGT0AfuSaRdiWzIkDzcUh2fPCqtIyZmpfwLg=;
-        b=x/MHSrynt13XPwt5cR6U2vDjhnPDRvjhJU3njGCW0HypqxMCRAldIYAnC7Im9gv3dV
-         ElqKmmPe76cCcAjmNxQwtQ9D2HfkH3vHoFQ5KPx68UdnCB7E0kvSh/7h68JgineZTIT/
-         e3UKu9wpn/CWUXx+pejAeFFrZt6d+pYqLvDnGv4U+2aOmkWa+PHUukY9GVyBm0QfPN0/
-         DNU9rjOf0DKp/0rIk1QWA6A+rM4VYAmPsXEd834rWyHJpwJCkt/pLwaTsEJEuxw0kad7
-         avNTh+877+90GmCX/1Mbcb0V0WCWdrq6B1AWlkJY2hpt7ft3cP8RksbZG2OVMpysJ3V8
-         CYYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736517042; x=1737121842;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+KDUqAsdGT0AfuSaRdiWzIkDzcUh2fPCqtIyZmpfwLg=;
-        b=MDYP5GY7aHDP+VtIQp0VBvfuHq9ndTSzzNklYr9bjX4clqisPv0UiJQT4jdbzIPxRg
-         wjWgOmvDC+MDuPr65+e7OVRkEIDSu/WiMv/Lg4YlgN0gcssVwDUhAR6U/Ntf0KxNmmGq
-         F7OCWpLM+f5d3szH/A8sTZvbJF18GWsL4Xz4WXUhcYU02Di6sCnTcrVemzHnhxaAdQt9
-         QoxaNrkB5+pKneBrrwLxtlVR2hkedrvzN9dtg1MqclfD/2LN8AYt6bK/IDAfVrVuMMC9
-         Tg3sRz2X1hrgjtQXHSAXbJnxt2tmIItmjBnQOk63iC0kwUrGxOWgWdE89UB0ukl3xf98
-         X9Qw==
-X-Forwarded-Encrypted: i=1; AJvYcCVTk2Otfg8P0vi4Ej58TXADiFuwpGmtStix6w1fouoNskJ9OJUXFAtOAI/+Fcht+8M68De9pwntjwgh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5lIMmO3LWF9DfNHP8nvsFzRdbUUQPqgut+WBS5FEztEnEa6We
-	TP6Dcp2revcVgszg9YsyqCxm/R0n0elXon4UKxhZEnTPBBcDPKq6LEnTbfSShUU=
-X-Gm-Gg: ASbGncs5Cf741sX0zmDa9vCLwP2CXI/3peqTqylN6IDYuVgfVYdWAJjEurAkSHTxRGU
-	lzzxklXy4bI6XYNLu425Yk2FWLu5FtkLK/qiUcebcYWDkeQaGwXU3bGZVpTLADp/lbm8bzWnjmy
-	ikDCeM26Yokp9+2IGVvn2JHRNP0BAqJlgJc1n6+lYh6dpfrskAxl6jJCIDto30o3kLAMpH2W+o1
-	7CYHT/M+6d/41/rpQHhFZpQx9t7gFvN1QrOMm/VFNK6myB5NN8W3m6UE1//04L2e9KBsw==
-X-Google-Smtp-Source: AGHT+IEgRpwnL9+2BYjn1UjqK+ab40fSxMxuHo8PKVl2h8lrY3ULkx3M7dtkhojEPsThVIBzRXZZGg==
-X-Received: by 2002:a05:6000:2a9:b0:38a:88bc:aea6 with SMTP id ffacd0b85a97d-38a8b0b816dmr6511542f8f.6.1736517042032;
-        Fri, 10 Jan 2025 05:50:42 -0800 (PST)
-Received: from [192.168.0.43] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e03f62sm52506215e9.22.2025.01.10.05.50.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Jan 2025 05:50:41 -0800 (PST)
-Message-ID: <cc1f4718-2553-4c49-b1c8-6f6f3bbeeb56@linaro.org>
-Date: Fri, 10 Jan 2025 13:50:40 +0000
+	 In-Reply-To:Content-Type; b=NQgYJVJDtf1aZfj934fDI3RZ88cOzu4n275nLZrbjVLigtUsVYGE8xvOXvdM8pnZLJVlHgnLQx3q0gmMcqw0vxz8sJrGtv6DIdZ7wr7Jhwjo8v29cYwcVG3iEPUqFllWGvZuZirl2rG5Z2rU5DrVncg1/1NMscr4E/adsBbJIcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZgHwmnCp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1FE1C4CED6;
+	Fri, 10 Jan 2025 13:53:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736517211;
+	bh=0riks6cOaH09jocWG7yCJOIFBOexy2n5FPMx4nlkjLE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZgHwmnCpsG+wlKwA7BiVSLSUQmmVPtr0WHYYHNolJhRpbZKLzOJdzA4IxudfAXvUX
+	 yZXWmjLrPMuzWkWzeecfvwvCqMa2921CIDdZvc1QUzn2iYa/qONmycv+SKJTjH+LyU
+	 oiTUVsOIKfr87cobD2FAOEE1CGRUNMyG47okfVc31hA4JAGYVkRiPeLWWdCoAIgjTf
+	 3VljjVP/WMfiohJzFLYoygBLLc6jVVlGIFCWohjYsGxNnz7QoGzYYYdNr6md2u0fTi
+	 KUOVnWnSEr7+CK8HSqijO5q7KkHq04ZMSqpqmoRic4+UUebotWq8Zp0BVqm2Ks8XwJ
+	 9vgs0nAQDijug==
+Message-ID: <39444068-0996-4699-b1f9-d34c911dbd6a@kernel.org>
+Date: Fri, 10 Jan 2025 14:53:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,92 +50,175 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 00/16] media: qcom: camss: Add sm8550 support
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, vladimir.zapolskiy@linaro.org,
- hverkuil@xs4all.nl
-Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20250108143733.2761200-1-quic_depengs@quicinc.com>
+Subject: Re: [PATCH 10/12] dt-bindings: phy: allwinner: add v853 usb phy
+To: Andras Szemzo <szemzo.andras@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-11-szemzo.andras@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250108143733.2761200-1-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250110123923.270626-11-szemzo.andras@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 08/01/2025 14:37, Depeng Shao wrote:
-> v8:
-> - Add correct version number for each patch - Krzysztof, Hans, Bryan
-> - Correct the copyright in patches [15/16] and [16/16]
-> - Link to v7: https://lore.kernel.org/all/20241225133523.4034820-1-quic_depengs@quicinc.com/
-Patch #9 doesn't apply to media.git/next
+On 10/01/2025 13:39, Andras Szemzo wrote:
+> +
+> +properties:
+> +  "#phy-cells":
+> +    const: 1
+> +
+> +  compatible:
+> +    const:
+> +	- allwinner,sun8i-v853-usb-phy
 
-git remote add media git://linuxtv.org/media.git
-git fetch media
+Wrong indentation, never tested.
 
-git checkout -b media-next-25-10-01-camss-8550 media/next
+Compatible is always the first property.
 
-b4 shazam 20250108143733.2761200-1-quic_depengs@quicinc.com 
+> +
+> +  reg:
+> +    items:
+> +      - description: PHY Control registers
+> +      - description: PHY PMU0 registers
+> +
+> +  reg-names:
+> +    items:
+> +      - const: phy_ctrl
+> +      - const: pmu0
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: USB OHCI PHY bus clock
 
-Grabbing thread from 
-lore.kernel.org/all/20250108143733.2761200-1-quic_depengs@quicinc.com/t.mbox.gz
-Checking for newer revisions
-Grabbing search results from lore.kernel.org
-Analyzing 17 messages in the thread
-Analyzing 260 code-review messages
-Checking attestation on all messages, may take a moment...
----
-   ✓ [PATCH v8 1/16] media: qcom: camss: csiphy-3ph: Fix trivial 
-indentation fault in defines
-   ✓ [PATCH v8 2/16] media: qcom: camss: csiphy-3ph: Remove redundant 
-PHY init sequence control loop
-   ✓ [PATCH v8 3/16] media: qcom: camss: csiphy-3ph: Rename struct
-   ✓ [PATCH v8 4/16] media: qcom: camss: csiphy: Add an init callback to 
-CSI PHY devices
-   ✓ [PATCH v8 5/16] media: qcom: camss: csiphy-3ph: Move CSIPHY 
-variables to data field inside csiphy struct
-   ✓ [PATCH v8 6/16] media: qcom: camss: csiphy-3ph: Use an offset 
-variable to find common control regs
-   ✓ [PATCH v8 7/16] media: qcom: camss: csid: Move common code into 
-csid core
-   ✓ [PATCH v8 8/16] media: qcom: camss: vfe: Move common code into vfe core
-   ✓ [PATCH v8 9/16] media: qcom: camss: Add callback API for RUP update 
-and buf done
-   ✓ [PATCH v8 10/16] media: qcom: camss: Add default case in 
-vfe_src_pad_code
-   ✓ [PATCH v8 11/16] media: qcom: camss: csid: Only add TPG v4l2 ctrl 
-if TPG hardware is available
-   ✓ [PATCH v8 12/16] dt-bindings: media: camss: Add qcom,sm8550-camss 
-binding
-   ✓ [PATCH v8 13/16] media: qcom: camss: Add sm8550 compatible
-   ✓ [PATCH v8 14/16] media: qcom: camss: csiphy-3ph: Add Gen2 v2.1.2 
-two-phase MIPI CSI-2 DPHY support
-   ✓ [PATCH v8 15/16] media: qcom: camss: Add CSID 780 support
-   ✓ [PATCH v8 16/16] media: qcom: camss: Add support for VFE 780
-   ---
-   ✓ Signed: DKIM/quicinc.com
----
-Total patches: 16
----
-  Base: using specified base-commit 8155b4ef3466f0e289e8fcc9e6e62f3f4dceeac2
-Applying: media: qcom: camss: csiphy-3ph: Fix trivial indentation fault 
-in defines
-Applying: media: qcom: camss: csiphy-3ph: Remove redundant PHY init 
-sequence control loop
-Applying: media: qcom: camss: csiphy-3ph: Rename struct
-Applying: media: qcom: camss: csiphy: Add an init callback to CSI PHY 
-devices
-Applying: media: qcom: camss: csiphy-3ph: Move CSIPHY variables to data 
-field inside csiphy struct
-Applying: media: qcom: camss: csiphy-3ph: Use an offset variable to find 
-common control regs
-Applying: media: qcom: camss: csid: Move common code into csid core
-Applying: media: qcom: camss: vfe: Move common code into vfe core
-Applying: media: qcom: camss: Add callback API for RUP update and buf done
-Patch failed at 0009 media: qcom: camss: Add callback API for RUP update 
-and buf done
-error: patch failed: drivers/media/platform/qcom/camss/camss.c:2454
+Redundant description really...
 
+> +
+> +  clock-names:
+> +    const: usb0_phy
+
+Drop clock-names, not really helpful.
+
+
+> +
+> +  resets:
+> +    maxItems: 1
+> +    description: USB OHCI reset
+> +
+> +  reset-names:
+> +    const: usb0_reset
+
+Drop names, also not really helping.
+
+> +
+> +  usb0_id_det-gpios:
+
+There are no properties with underscores.
+
+I don't get why you are using "usb0" prefix. Document all pins, so
+"usb1" as well, assuming it exists.
+
+It anyway looks questionable - aren't these properties of connector?
+
+
+> +    maxItems: 1
+> +    description: GPIO to the USB OTG ID pin
+> +
+> +  usb0_vbus_det-gpios:
+> +    maxItems: 1
+> +    description: GPIO to the USB OTG VBUS detect pin
+> +
+> +  usb0_vbus_power-supply:
+> +    description: Power supply to detect the USB OTG VBUS
+> +
+> +  usb0_vbus-supply:
+> +    description: Regulator controlling USB OTG VBUS
+
+Regulator and power supply are here synonyms, so I don't understand
+these two properties.
+
+> +
+> +required:
+> +  - "#phy-cells"
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - reg
+> +  - reg-names
+> +  - resets
+> +  - reset-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/clock/sun8i-v853-ccu.h>
+> +    #include <dt-bindings/reset/sun8i-v853-ccu.h>
+> +
+> +    usbphy: phy@4100400 {
+> +        #phy-cells = <1>;
+Please follow DTS coding style.
+
+Best regards,
+Krzysztof
 
