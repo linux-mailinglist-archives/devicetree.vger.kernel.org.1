@@ -1,287 +1,153 @@
-Return-Path: <devicetree+bounces-137521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 069EFA095DA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:37:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A1B8A095EA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:38:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B197E16B02B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:37:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34E1B7A39C7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE30D20FAB5;
-	Fri, 10 Jan 2025 15:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C5F3211470;
+	Fri, 10 Jan 2025 15:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IO/BUphE"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DGBA6mWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6FE42063E3;
-	Fri, 10 Jan 2025 15:37:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C70920E035;
+	Fri, 10 Jan 2025 15:38:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736523435; cv=none; b=IT1gI7mdUb13i20QmoA936Ji1Muz+JiNtZ8cY7boAazoAl+lW89MpWeVAh89Vl/FT46I2e5kQxHebBnusGcuy6FqedFmy2T1UJK6shmiSj2vTx+v47UHqsQAzovf9KX3ki7aVYNIw1jWJzGRI1HmXMOy9lF1t2UHdcRDoUagXyM=
+	t=1736523528; cv=none; b=CnJQONVWwN8x/T/JcUcJ16ooDCvNcedSIy8+YPDITPrMLj8fie5yMKn2PFysFQLZ4+NaufxAx5AL8zmw4x+BFxl22dBlTrPw0EYLg+Iw5mdfy4C+p0OBC5V3Plhf1UWiOFX/iWsGqurOhjyQTFT371WXGYbc59OBA3kJsGTk6yA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736523435; c=relaxed/simple;
-	bh=t/DCLtxTAMc6j2jDTGiXPzE5QLvYDxwka7Xtc0lpisQ=;
+	s=arc-20240116; t=1736523528; c=relaxed/simple;
+	bh=0O3EkU0RPlxCHGr0yIks5lMvozMStcD+7GteeL08l8U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PiTzwrvOHNpGHgo5Cz5xCz6tofI8qi+CCtVzkwnDhLwIRm+5oje6zCXdX94hhjvmXzn2/NApNhnihzYGEyFEAl6v6AdHzDeRR4NbBAzn0bdj4K8LlN33zj0lFpAhKgjSWaTvA6EsmxlCM5ZvNjKWMKzH4xzJrqsMgtp9uJMIrM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IO/BUphE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12DD9C4CED6;
-	Fri, 10 Jan 2025 15:37:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736523435;
-	bh=t/DCLtxTAMc6j2jDTGiXPzE5QLvYDxwka7Xtc0lpisQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IO/BUphEXrds0kt8ktdN0EDh4YXbN7rr/hC1yO0J37SC1Gf5SF1IInMlU2ChMaG9n
-	 jyi516GoF+AEOuts7KPRJgOJ3Vt01PRePBb8m7AByK7bvvSLzbNKRvpDBhlkjBSRm6
-	 a2bnT4yA9HcMpovdLCe06Gw/aabyimLWOWzKjwMW+hJLZ+O0fz+PMLcpwpSY9X/dJC
-	 i8ap8sl4v64+KuA4NfQ+aJs20O2vDqHf0OCOsiTQz/XJvPM4fijMfHtSkr2EU9B/nl
-	 5LpRTtflSz9orIksuejhxc0WaQsM7L4I9eP9bmEg6Wx8tDFw3ClpH8Mh8RD0Uxa2fA
-	 6myCtPjBgNLxQ==
-Date: Fri, 10 Jan 2025 09:37:14 -0600
-From: Rob Herring <robh@kernel.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, derek.foreman@collabora.com,
-	detlev.casanova@collabora.com, daniel@fooishbar.org,
-	sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v10 10/11] dt-bindings: display: vop2: Add rk3576 support
-Message-ID: <20250110153714.GA2912633-robh@kernel.org>
-References: <20250110100832.27551-1-andyshrk@163.com>
- <20250110100832.27551-11-andyshrk@163.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bT6gza1QXo+gRA3pvyrjdSyE1EYRXsct6dhZOP1UPOKHLmpl89VyyxJwr+497pShZLDYXZo/FBktR87BKJZs3bgwmpOLyunrF8XBXqY+ReN0wfM+O+iKZT8E1tXPsl8S9DPLiqOOpix871lGm2xZTLEIj8pZeI3bcvZnpLgQgoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DGBA6mWp; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=kef15OjRvGqUB+zEmVxSQr9gAePzm85eOXIQPtstMZs=; b=DG
+	BA6mWpmmAcZhO/CuBfQGcX7JmP6/Py9BPkLAtM4dcpF7xielUeAvTdam9teBM6d8R+TU4t3ti/rmG
+	5kvDb2vcZnoJKvHEIfvTu+13nvFyh/86ESthfE7J3KBr0sdMpeAeientgN+zgEa9KW+ZcpgyxUjgf
+	RM+DgRd225AUVZU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tWH5W-003H4u-HL; Fri, 10 Jan 2025 16:38:18 +0100
+Date: Fri, 10 Jan 2025 16:38:18 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ninad Palsule <ninad@linux.ibm.com>
+Cc: Jacky Chou <jacky_chou@aspeedtech.com>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"eajames@linux.ibm.com" <eajames@linux.ibm.com>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"joel@jms.id.au" <joel@jms.id.au>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"minyard@acm.org" <minyard@acm.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"openipmi-developer@lists.sourceforge.net" <openipmi-developer@lists.sourceforge.net>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
+	"robh@kernel.org" <robh@kernel.org>
+Subject: Re: =?utf-8?B?5Zue6KaGOiDlm57opoY6IFtQQVRD?= =?utf-8?Q?H?= v2 05/10]
+ ARM: dts: aspeed: system1: Add RGMII support
+Message-ID: <0ee94fd3-d099-4d82-9ba8-eb1939450cc3@lunn.ch>
+References: <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
+ <b2aec97b-63bc-44ed-9f6b-5052896bf350@linux.ibm.com>
+ <59116067-0caa-4666-b8dc-9b3125a37e6f@lunn.ch>
+ <SEYPR06MB51344BA59830265A083469489D132@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <8042c67c-04d3-41c0-9e88-8ce99839f70b@lunn.ch>
+ <c0b653ea-3fe0-4bdb-9681-bf4e3ef1364a@linux.ibm.com>
+ <c05c0476-c8bd-42f4-81da-7fe96e8e503b@lunn.ch>
+ <SEYPR06MB5134A63DBE28AA1305967A0C9D1C2@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <9fbc6f4c-7263-4783-8d41-ac2abe27ba95@lunn.ch>
+ <81567190-a683-4542-a530-0fb419f5f9be@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250110100832.27551-11-andyshrk@163.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <81567190-a683-4542-a530-0fb419f5f9be@linux.ibm.com>
 
-On Fri, Jan 10, 2025 at 06:08:25PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+> Do we need updates on this description. It doesn't talk about external PCB
+> level delays?
 > 
-> Add vop found on rk3576, the main difference between rk3576 and the
-> previous vop is that each VP has its own interrupt line.
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L77-L90
 > 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> This is what you explained:
 > 
-> ---
+> MAC driver reads following phy-mode from device tree. 95% of mac driver
+> directly
+>  pass it to PHY through phy_connect.
 > 
-> Changes in v10:
-> - Move interrupt-names back to top level
-> - Add constraint of interrupts for all platform
-> - Add constraint for all grf phandles
-> - Reorder some properties
-> 
-> Changes in v9:
-> - Drop 'vop-' prefix of interrupt-names.
-> - Add blank line between DT properties
-> - Remove list interrupt-names in top level
-> 
-> Changes in v8:
-> - Fix dt_binding_check errors
-> - ordered by soc name
-> - Link to the previous version:
->   https://lore.kernel.org/linux-rockchip/6pn3qjxotdtpzucpul24yro7ppddezwuizneovqvmgdwyv2j7p@ztg4mqyiqmjf/T/#u
-> 
-> Changes in v4:
-> - describe constraint SOC by SOC, as interrupts of rk3576 is very
->   different from others
-> - Drop Krzysztof's Reviewed-by, as this version changed a lot.
-> 
-> Changes in v3:
-> - ordered by soc name
-> - Add description for newly added interrupt
-> 
-> Changes in v2:
-> - Add dt bindings
-> 
->  .../display/rockchip/rockchip-vop2.yaml       | 101 +++++++++++++++---
->  1 file changed, 87 insertions(+), 14 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> index 2531726af306..3bae71142018 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> @@ -14,12 +14,14 @@ description:
->  maintainers:
->    - Sandy Huang <hjc@rock-chips.com>
->    - Heiko Stuebner <heiko@sntech.de>
-> +  - Andy Yan <andyshrk@163.com>
->  
->  properties:
->    compatible:
->      enum:
->        - rockchip,rk3566-vop
->        - rockchip,rk3568-vop
-> +      - rockchip,rk3576-vop
->        - rockchip,rk3588-vop
->  
->    reg:
-> @@ -37,10 +39,21 @@ properties:
->        - const: gamma-lut
->  
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
->      description:
-> -      The VOP interrupt is shared by several interrupt sources, such as
-> -      frame start (VSYNC), line flag and other status interrupts.
-> +      For VOP version under rk3576, the interrupt is shared by several interrupt
-> +      sources, such as frame start (VSYNC), line flag and other interrupt status.
-> +      For VOP version from rk3576 there is a system interrupt for bus error, and
-> +      every video port has it's independent interrupts for vsync and other video
-> +      port related error interrupts.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: sys
-> +      - const: vp0
-> +      - const: vp1
-> +      - const: vp2
->  
->    # See compatible-specific constraints below.
->    clocks:
-> @@ -120,43 +133,102 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: rockchip,rk3588-vop
-> +            enum:
-> +              - rockchip,rk3566-vop
-> +              - rockchip,rk3568-vop
->      then:
->        properties:
->          clocks:
-> -          minItems: 7
-> +          minItems: 5
-> +
->          clock-names:
-> -          minItems: 7
-> +          minItems: 5
-> +
-> +        interrupts:
-> +          minItems: 1
-> +          maxItems: 1
-> +
-> +        interrupt-names: false
->  
->          ports:
->            required:
->              - port@0
->              - port@1
->              - port@2
-> -            - port@3
-> +
-> +        rockchip,vo1-grf: false
-> +        rockchip,vop-grf: false
-> +        rockchip,pmu: false
->  
->        required:
->          - rockchip,grf
-> -        - rockchip,vo1-grf
-> -        - rockchip,vop-grf
-> -        - rockchip,pmu
->  
-> -    else:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - rockchip,rk3576-vop
-> +    then:
->        properties:
-> +        clocks:
-> +          minItems: 5
-> +
-> +        clock-names:
-> +          minItems: 5
-> +
-> +        interrupts:
-> +          minItems: 4
-> +          maxItems: 4
+> rgmii - PCB has long clock lines so delay is added by PCB
+>         On this mode PHY does nothing.
+> rgmii-id - PCB doesn't add delay. Either MAC or PHY needs to add the delay
+>            Add delays in both directions. Some PHY may not add delay in that
+>            case MAC needs to add the delay mask rgmii-id to rgmii.
+> rgmii-rxid - If there is an extra long TX clock line, but not RX clock,
+>              you would use rgmii-rxid
+> rgmii-txid - When there is an extra long RX clock line on the PCB, but not
+>              the TX clock line, you would use rgmii-txid
 
-max is already 4, so drop.
+The documentation is not great, that has been said a few times.  What
+is described here is the view from the PHY, which is not ideal.
 
-> +
-> +        interrupt-names:
-> +          minItems: 4
-> +          maxItems: 4
+      # RX and TX delays are added by the MAC when required
+      - rgmii
 
-same here.
+From the perspective of the PHY, this means it does not need to add
+delays, because the MAC has added the delays, if required, e.g. the
+PCB has not added the delays.
 
-> +
-> +        ports:
-> +          required:
-> +            - port@0
-> +            - port@1
-> +            - port@2
-> +
->          rockchip,vo1-grf: false
->          rockchip,vop-grf: false
-> -        rockchip,pmu: false
->  
-> +      required:
-> +        - rockchip,grf
-> +        - rockchip,pmu
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3588-vop
-> +    then:
-> +      properties:
->          clocks:
-> -          maxItems: 5
-> +          minItems: 7
-> +
->          clock-names:
-> -          maxItems: 5
-> +          minItems: 7
-> +
-> +        interrupts:
-> +          minItems: 1
+We have the problem that DT is supposed to describe the
+hardware. Saying the PHY should add the delays, but if the MAC adds
+the delays it needs to mask the value passed to the PHY does not
+describe the hardware, it is Linix implementation details. The DT
+Maintainers don't want that in the DT binding because other OSes might
+decide to implement the details differently.
 
-min is already 1, so drop.
+So your description becomes:
 
-> +          maxItems: 1
-> +
-> +        interrupt-names: false
->  
->          ports:
->            required:
->              - port@0
->              - port@1
->              - port@2
-> +            - port@3
-> +
-> +      required:
-> +        - rockchip,grf
-> +        - rockchip,vo1-grf
-> +        - rockchip,vop-grf
-> +        - rockchip,pmu
->  
->  additionalProperties: false
->  
-> @@ -184,6 +256,7 @@ examples:
->                                "dclk_vp1",
->                                "dclk_vp2";
->                  power-domains = <&power RK3568_PD_VO>;
-> +                rockchip,grf = <&grf>;
->                  iommus = <&vop_mmu>;
->                  vop_out: ports {
->                      #address-cells = <1>;
-> -- 
-> 2.34.1
-> 
+rgmii      - PCB has long clock lines so delays are added by the PCB
+rgmii-id   - PCB doesn't add delay. Either MAC or PHY needs to add the delays
+             in both directions.
+rgmii-rxid - There is an extra long TX clock line on the PCB, but not the RX clock.
+rgmii-txid - There is an extra long RX clock line on the PCB, but not the TX clock.
+
+It is correct, but leaves so much unsaid developers will still get it
+wrong. What we really want is that developers:
+
+1) Read the mailing list. Patches for RGMII delays are posted at least
+   once an month and i point out how they are wrong. If developers
+   actually read the mails, they would not make the same mistake again
+   and again.
+
+2) Developers for some reason like to invent their own code, rather
+   than taking the easy route of copy from a driver already in Linux.
+   The majority of drivers in Linux get this right, so if you copy
+   another driver, you should get it right for free as well.
+
+	Andrew
 
