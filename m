@@ -1,238 +1,139 @@
-Return-Path: <devicetree+bounces-137294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920DAA088E9
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:31:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B842A0892A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:39:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C9641692E3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:31:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BFA7188B189
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAFC720766D;
-	Fri, 10 Jan 2025 07:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0760920764B;
+	Fri, 10 Jan 2025 07:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b="culnParI"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="cUCg55WI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.systec-electronic.com (mail.systec-electronic.com [77.220.239.22])
+Received: from mail-m127206.xmail.ntesmail.com (mail-m127206.xmail.ntesmail.com [115.236.127.206])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921B514A08E;
-	Fri, 10 Jan 2025 07:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.220.239.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FCB207656;
+	Fri, 10 Jan 2025 07:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.206
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736494287; cv=none; b=F17zIPe3GBfEJYV3dRQhILfcqPlhw1c+/ll96vlHXuLNt7Vho75XIsptQ6hGw7Iu+kSaIZ9ZWUiobq4/hr4hbBzd+nPZgCHaeAb/3eaR3pLob+h+xTSZ6tJP1pKqWQheTL3fxS89jzMoGH+/576xYNK8GX1iMKP/lf2Kw932pSM=
+	t=1736494745; cv=none; b=c4VBG5W0RZ27KJZYdA9AVtxbba/1NTePJMAgbS1FZejR8zrFZPulXQKXR/6OxPIMraaZgqJkmx+uoK48sjbvcVCYxebP8+fgEjklJg9FsedGTIyUy4ZOqTF8rBPa7hJzQRPAtH9rSZCg1R/zg72aw7++H3Acc450yXKnW5RHKvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736494287; c=relaxed/simple;
-	bh=Ar2rp2BY4xgYjEiaPKVkvF+xIeDRJqYb/u9PQ6wwuE4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZSx0RND9Fn5u6nH8fO8U2ZRH4PSuBP8+te0IEMO7ka1ytvYcs96Dp+JOE7jQbDOMjvVBaoCXaGfnRrRJqlhp78mlOL9GqkEUfxf73jri5uWvfqaq1ebrA71VvXoc9QoIbvuEW0zMccdN/xjqy1GULSDnPj+v26p38hLDSr483rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com; spf=pass smtp.mailfrom=systec-electronic.com; dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b=culnParI; arc=none smtp.client-ip=77.220.239.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=systec-electronic.com
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id E7DC59400101;
-	Fri, 10 Jan 2025 08:31:23 +0100 (CET)
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id MOQdy3tHCIUP; Fri, 10 Jan 2025 08:31:23 +0100 (CET)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id BB6269400109;
-	Fri, 10 Jan 2025 08:31:23 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.systec-electronic.com BB6269400109
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=systec-electronic.com; s=B34D3B04-5DC7-11EE-83E3-4D8CAB78E8CD;
-	t=1736494283; bh=+5/EtE2IxqaBXW5nnyFfet9W6SYj7yFRk2JQ1bUVH10=;
-	h=From:To:Date:Message-ID:MIME-Version;
-	b=culnParIG8MvHv2Ck5QqEKAw5t3pyrVpewPlw9KJeoVKd5HtNwRKRBiPivzLKMKn2
-	 y78CJCuCCFxHztUlKbpqL15LFWe/nLGDbBlKqZtX2gkXOXosMm/D/rDS3CaFoXN+Sq
-	 eVl5aXa54G4UP9UZmUdpGb1rTd6NdaFFiq5qkwM9unrxqqkqb0XROue3Kayf3Jn9Os
-	 X5Rj6LJUXfTuxXiOCEsLuuVRwLFsggfULIzdpI+i9Go3HeehdbR7yhS6DTkDNrtsND
-	 TUBqDTYpsU5fq0J4wTtWfqaPzFTjHNAAk0PrsNXYAopt7bxIlGBVJAJDP+J0EUsoXX
-	 ATVMGM1eoZe5w==
-X-Virus-Scanned: amavis at systec-electronic.com
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id jZYGOCdA_J5D; Fri, 10 Jan 2025 08:31:23 +0100 (CET)
-Received: from ws565760.. (unknown [212.185.67.148])
-	by mail.systec-electronic.com (Postfix) with ESMTPSA id 619ED9400101;
-	Fri, 10 Jan 2025 08:31:23 +0100 (CET)
-From: Andre Werner <andre.werner@systec-electronic.com>
-To: gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	hvilleneuve@dimonoff.com,
-	andy@kernel.org,
-	devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	lech.perczak@camlingroup.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	robh@kernel.org,
-	Andre Werner <andre.werner@systec-electronic.com>
-Subject: [PATCH v5 2/2] serial: sc16is7xx: Add polling mode if no IRQ pin is available
-Date: Fri, 10 Jan 2025 08:31:04 +0100
-Message-ID: <20250110073104.1029633-2-andre.werner@systec-electronic.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250110073104.1029633-1-andre.werner@systec-electronic.com>
-References: <20250110073104.1029633-1-andre.werner@systec-electronic.com>
+	s=arc-20240116; t=1736494745; c=relaxed/simple;
+	bh=qZYG4Qfz84oaePgwKuQ+EMUlJvfwgjR748WmO28agoE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n2ggFxEzi4pdoDLVZFEfrftj6qJu/gOlo+5tFSce3IUbOJPk521VZcuvzqWrxm8CTbnsdtVsIRmQE4PZpoSi56BsYQUeuoZjIWdHkXTaUNDrQ5yi1HauHcntzECSaDgouJFozRib/JOt6ITXWFxP12Rvf+RHuy/5EXmZXvfu0h4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=cUCg55WI; arc=none smtp.client-ip=115.236.127.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.67] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 8511728f;
+	Fri, 10 Jan 2025 15:33:49 +0800 (GMT+08:00)
+Message-ID: <5025409d-5021-41b4-99ef-94ebde6f9828@rock-chips.com>
+Date: Fri, 10 Jan 2025 15:33:49 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/7] dt-bindings: PCI: dw: rockchip: Add rk3576 support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
+ Simon Xue <xxm@rock-chips.com>, Conor Dooley <conor+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-pci@vger.kernel.org, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ linux-arm-kernel@lists.infradead.org
+References: <20250107074911.550057-1-kever.yang@rock-chips.com>
+ <20250107074911.550057-3-kever.yang@rock-chips.com>
+ <tsxho4vhadrl6tsb2k5e2vxaeuun3k5pdkojzwjruqkof54dyd@gs3wsuxzwu4a>
+Content-Language: en-US
+From: Kever Yang <kever.yang@rock-chips.com>
+In-Reply-To: <tsxho4vhadrl6tsb2k5e2vxaeuun3k5pdkojzwjruqkof54dyd@gs3wsuxzwu4a>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0NCHVZNSEhOSh5OGUtDHh1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a944f22372003afkunm8511728f
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6K0k6HRw5TTIPTA8jFiMXPzIs
+	AxIaFBhVSlVKTEhNT0JPT0hKTUJLVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJS0xPNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=cUCg55WIgxh7Krkfj5w+j2tmu5+OrqTz198q9yBn6KHGeWg4DqxM0S6ixBBrvTZlZThXX+QKAfbbYtXiZwoJVDrTYlZaFbNtNpWcybdvlQCOGmN7aIjPj4YT37Y9zkC7vhcUdAbJsavbzJHWRLuLsPev/ZlwcdV9gywUhcaRSHw=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=TOxPOUhClqqhDKpCo7Jmi3oX0GLglQHl4yT+VgEP/lI=;
+	h=date:mime-version:subject:message-id:from;
 
-Fall back to polling mode if no interrupt is configured because there
-is no possibility to connect the interrupt pin.
-If "interrupts" property is missing in devicetree the driver
-uses a delayed worker to pull the state of interrupt status registers.
+Hi Krzysztof,
 
-Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
----
-V2:
-- Change warning for polling mode to debug log entry
-- Correct typo: Resuse -> Reuse
-- Format define with missing tabs for SC16IS7XX_POLL_PERIOD
-- Format struct declaration sc16is7xx_one_config with missing tabs for po=
-lling and shutdown
-- Adapt dtbinding with new polling feature
-V3:
-- Use suffix with units and drop a comment SC16IS7XX_POLL_PERIOD_MS. Sorr=
-y for that miss.
-- Make Kernel lowercase.
-V4:
-- Reword commit messages for better understanding.
-- Remove 'shutdown' property for canceling delayed worker.
-- Rename worker function: sc16is7xx_transmission_poll -> sc16is7xx_poll_p=
-roc
-- Unify argument for worker functions: kthread_work *work -> kthread_work=
- *ws
-V5:
-- Replace of_property check with IRQ number check to set polling
-  property. This will add support for usage without device tree
-  definitions. Thanks for that advice.
-- Add blank line es requested.
----
- drivers/tty/serial/sc16is7xx.c | 37 ++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+On 2025/1/8 16:16, Krzysztof Kozlowski wrote:
+> On Tue, Jan 07, 2025 at 03:49:06PM +0800, Kever Yang wrote:
+>> rk3576 is using dwc controller, with msi interrupt directly to gic instead
+>> of to gic its, so
+>> - no its support is required and the 'msi-map' is not need anymore,
+>> - a new 'msi' interrupt is needed.
+>>
+>> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+>> ---
+>>
+>> Changes in v4:
+>> - Fix wrong indentation in dt_binding_check report by Rob
+>>
+>> Changes in v3:
+>> - Fix dtb check broken on rk3588
+>> - Update commit message
+>>
+>> Changes in v2:
+>> - remove required 'msi-map'
+>> - add interrupt name 'msi'
+>>
+>>   .../devicetree/bindings/pci/rockchip-dw-pcie-common.yaml      | 4 +++-
+>>   Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml   | 4 +---
+>>   2 files changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+>> index cc9adfc7611c..e4fcc2dff413 100644
+>> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+>> @@ -81,7 +81,9 @@ properties:
+>>         - const: msg
+>>         - const: legacy
+>>         - const: err
+>> -      - const: dma0
+>> +      - enum:
+>> +          - msi
+>> +          - dma0
+> Commit msg said new interrupt, but this basically replaces existing DMA0
+> interrupt. Maybe that's the problem with this common binding and you
+> just miss constraining in each device binding. If so: fix also them.
+rk3588 has 9 interrupt, and the 6th-9th is dma0-3;
+rk3568 only has 5 interrupts, no dma0-3;
+rk3576 add one more "msi" interrupt which is the 6th interrupt;
+The upcomming rk3562 is the same as rk3576.
+I'm sorry I'm not so good at this yaml grammar, how should I take care 
+of this case?
 
-diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7x=
-x.c
-index a3093e09309f..7b51cdc274fd 100644
---- a/drivers/tty/serial/sc16is7xx.c
-+++ b/drivers/tty/serial/sc16is7xx.c
-@@ -314,6 +314,7 @@
- #define SC16IS7XX_FIFO_SIZE		(64)
- #define SC16IS7XX_GPIOS_PER_BANK	4
-=20
-+#define SC16IS7XX_POLL_PERIOD_MS	10
- #define SC16IS7XX_RECONF_MD		BIT(0)
- #define SC16IS7XX_RECONF_IER		BIT(1)
- #define SC16IS7XX_RECONF_RS485		BIT(2)
-@@ -348,6 +349,8 @@ struct sc16is7xx_port {
- 	u8				mctrl_mask;
- 	struct kthread_worker		kworker;
- 	struct task_struct		*kworker_task;
-+	struct kthread_delayed_work	poll_work;
-+	bool				polling;
- 	struct sc16is7xx_one		p[];
- };
-=20
-@@ -861,6 +864,18 @@ static irqreturn_t sc16is7xx_irq(int irq, void *dev_=
-id)
- 	return IRQ_HANDLED;
- }
-=20
-+static void sc16is7xx_poll_proc(struct kthread_work *ws)
-+{
-+	struct sc16is7xx_port *s =3D container_of(ws, struct sc16is7xx_port, po=
-ll_work.work);
-+
-+	/* Reuse standard IRQ handler. Interrupt ID is unused in this context. =
-*/
-+	sc16is7xx_irq(0, s);
-+
-+	/* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
-+	kthread_queue_delayed_work(&s->kworker, &s->poll_work,
-+				   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
-+}
-+
- static void sc16is7xx_tx_proc(struct kthread_work *ws)
- {
- 	struct uart_port *port =3D &(to_sc16is7xx_one(ws, tx_work)->port);
-@@ -1149,6 +1164,7 @@ static int sc16is7xx_config_rs485(struct uart_port =
-*port, struct ktermios *termi
- static int sc16is7xx_startup(struct uart_port *port)
- {
- 	struct sc16is7xx_one *one =3D to_sc16is7xx_one(port, port);
-+	struct sc16is7xx_port *s =3D dev_get_drvdata(port->dev);
- 	unsigned int val;
- 	unsigned long flags;
-=20
-@@ -1211,6 +1227,10 @@ static int sc16is7xx_startup(struct uart_port *por=
-t)
- 	sc16is7xx_enable_ms(port);
- 	uart_port_unlock_irqrestore(port, flags);
-=20
-+	if (s->polling)
-+		kthread_queue_delayed_work(&s->kworker, &s->poll_work,
-+					   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
-+
- 	return 0;
- }
-=20
-@@ -1232,6 +1252,9 @@ static void sc16is7xx_shutdown(struct uart_port *po=
-rt)
-=20
- 	sc16is7xx_power(port, 0);
-=20
-+	if (s->polling)
-+		kthread_cancel_delayed_work_sync(&s->poll_work);
-+
- 	kthread_flush_worker(&s->kworker);
- }
-=20
-@@ -1538,6 +1561,11 @@ int sc16is7xx_probe(struct device *dev, const stru=
-ct sc16is7xx_devtype *devtype,
- 	/* Always ask for fixed clock rate from a property. */
- 	device_property_read_u32(dev, "clock-frequency", &uartclk);
-=20
-+	s->polling =3D !!irq;
-+	if (s->polling)
-+		dev_dbg(dev,
-+			"No interrupt pin definition, falling back to polling mode\n");
-+
- 	s->clk =3D devm_clk_get_optional(dev, NULL);
- 	if (IS_ERR(s->clk))
- 		return PTR_ERR(s->clk);
-@@ -1665,6 +1693,12 @@ int sc16is7xx_probe(struct device *dev, const stru=
-ct sc16is7xx_devtype *devtype,
- 		goto out_ports;
- #endif
-=20
-+	if (s->polling) {
-+		/* Initialize kernel thread for polling */
-+		kthread_init_delayed_work(&s->poll_work, sc16is7xx_poll_proc);
-+		return 0;
-+	}
-+
- 	/*
- 	 * Setup interrupt. We first try to acquire the IRQ line as level IRQ.
- 	 * If that succeeds, we can allow sharing the interrupt as well.
-@@ -1724,6 +1758,9 @@ void sc16is7xx_remove(struct device *dev)
- 		sc16is7xx_power(&s->p[i].port, 0);
- 	}
-=20
-+	if (s->polling)
-+		kthread_cancel_delayed_work_sync(&s->poll_work);
-+
- 	kthread_flush_worker(&s->kworker);
- 	kthread_stop(s->kworker_task);
-=20
---=20
-2.47.1
 
+Thanks,
+- Kever
+>
+> Also: your interrupts property does not match this anymore.
+>
+> Best regards,
+> Krzysztof
+>
+>
 
