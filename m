@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-137460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C1AA09156
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:00:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4CF1A09152
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:00:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEC9118868AC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:00:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82C3418856AF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B364520E004;
-	Fri, 10 Jan 2025 13:00:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D226020DD47;
+	Fri, 10 Jan 2025 13:00:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="1eKCEyXC"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="r/dECvPx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93A361BDA91
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 13:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314A020B7F8
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 13:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736514039; cv=none; b=LwnziOh6tZZTUjJIAqc4sHSU90ZHf5HKYlXVie6M6Ijjohm4eUG1/cX/0ISlDt1vqYJcyQ+t9zrBCK8kw4+bXLe8wjBuOWXWEGAV8HGnYGUvq43Mb1elkdymtp8KPEtK4pi5aCX1oDxGPS2gU91vh093WsnWxjO7rr6LZcS3T0s=
+	t=1736514038; cv=none; b=GHUla1FNcL+8G/kCEP0Qqs4DofiyDlm9vM9pIw1tLVILYPXZF4B+3Hau6DZfglztZxfpOQgNJzGtMLopE9BLsdDKtVdwnoR9C1S7VO5chcUlEQZjAJQXb0K1zyMj4h5kyoC4P3Xct+rJMdtsLmCsdH53D5aRd49JZGaxqokVHww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736514039; c=relaxed/simple;
-	bh=6Xd6m6Qf56pAA0+r0Q/cgq86ljFZzMNIsMNJ9dxTWeg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bVTLMTeiOJO6umb+iTLgIIxJ+5gP2rVs/vRXCiibKV0uBwKVKJ9BRwA7NJEUsd2akuhIu14QM74x4rrMxDdhDdhB0HpIBgUHXU0dd/i+h6kF+8e6qbAnR99lif+RMIrgycrUPG2kvAW9mDkWB9TCBWx/rSRpHdxBNRUg8kUipBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=1eKCEyXC; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1736514038; c=relaxed/simple;
+	bh=Ox0b+t8m6a7nsdtijT2HhmYrccXzYcL5Kx6tcfsgmzE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=oa9i/0J9PsJ8uyKSI7gSjBGOVbX4PCZibA3zskGhn2vNNW/95nyN2ZUIy8eTlRD0Fv3gDpPgrq+DKZ1ffigd8Bya1Gv76kqWdanbDeyw9sU/8HwsQLTzP4Ttx/L77dOGAzXFf0/tKPL7k+5AEN3qa/nKaeS9oMu47uRMavNoRNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=r/dECvPx; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43624b2d453so21512315e9.2
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43635796b48so13260075e9.0
         for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 05:00:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1736514035; x=1737118835; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eGbNecL+K9WiUO3ggBl6xJgcZQagKJNakaKpat4Nv20=;
-        b=1eKCEyXC8TYuH1ymu/AQZGx7z3pnfuw2qw+UHfOiKh/mBOuJqkwS71H178hV9+FMaM
-         oPxAU9ON40xm3OxGBDm+v9ShUKQCapTsh1Z5X1brx7EbC7rQ9MzmBT30ZVvpwaZBDidC
-         skRiniUEOWMwL1hF3NJbS4i5IuMyoi5YVLURXQPtyPandtYnV24WpKQX1+FxcQWcGvP5
-         ynZyo+wXK6JuopLuqBQyjQ3klYzDlkahxqyTuBPZZgcG+5+hSafmooonXerXU+bF9AFL
-         ahSkAxTmP1UKnbeqPVSlSmyxtBCwboluxySzPmF8FTLVThcX3aUroIHcGKtrCIRuS8W5
-         1YFw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UumBL8EipTk8x3xnWxwvytHrJarKXZ95qoxDRHZZGmU=;
+        b=r/dECvPxzlgH+eUJHTTCJqP9HTd2e5jNEV3LTvfvyBZwuOshbRm/TkUXYWWr/19ulA
+         ixqu3KauKwViACzYGDFHJUvN3brDIPo2UnK7DtbYOM6qJchpg+dWtFDIH5gLzAYEnBFm
+         zpHljJQt/37I8AZTRMPvkgZtmAxF2l5s3vYm43g/fCRTpyGJCchjTfciY8DpAQI7Djlj
+         x/cILZk1lZVHBrNIgEc8qRr1+rVYBA83CTmEL1q1+TXGehUJKAhy47FdLW/3o2Af//Cm
+         /5T81N2t2xIFFMk7QrE5VJCDjiBBOEVDG1+GlFFPuRwdD1oQ59TJMX1inBQQZ3jHIUxm
+         fveg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1736514035; x=1737118835;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eGbNecL+K9WiUO3ggBl6xJgcZQagKJNakaKpat4Nv20=;
-        b=shv4PqunnVaitAq1d1qJyxufeVg+p4TYdeu8dnxgWZFape1v7aqFXeS5Q9oyNyMUHS
-         2wyRczApzfvytlxLAJc7/ptL1zfqq54FSiTcdSzz/yLtYKg+0mpxaokWF5ETSrNQYn6T
-         DrPP5W89OuyzzvwfnZHbKuSbMMZnlyXVyzhTBoaC+hdYsyCHQynz8x3D3lJhVyxWbdDo
-         bLkUXuikt8BWp37/QAdcLHlxeDWPGYe7WTXsRjk3va2pdYDI0IAPfiV5lLC/bgA5iqH6
-         G6xtao7+ozL2P0lHB7fXBSWRUyTK1qEo+HEZ20V8vC94WO6Ie9PbxihbS31qplQjzbhI
-         KAxg==
-X-Forwarded-Encrypted: i=1; AJvYcCXoVH4uq3SQdGnx0Y/xTG65REQMdSNZ2J7bSYsNbzSHuEpFP2ru1c+lueEfBECfkLbCRF1Rvy0Bu9vv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+s9T9T0+ljaTH+9cum6/YoNkiqwe4t1gsmcz6F9Y6vLDBRAaM
-	IXPsPLkdgnyIRLxH7JvQIcLMabb65xjjxmOeLep360Zy+I3RFF/YhI7GQXu3I8Q=
-X-Gm-Gg: ASbGncssQkFRiTsE8AshjaQ2Xa598+pG+LXzVLbD0KLJkQUHvm4cYgvm1c5MEPMjq6/
-	MsBm777E5O2O0Oa+wUVL1/vdm+flsAlvvk+a5iemmy/0A5plQvA0uEzVVtUxjBY7h6U4/GN6hcX
-	h5GGcvGCoBn/tGlOonWDbGVgalaYzt38Na3BAA6WXixbHId2NJbsM7mdzv3Vk8pdXf4iIhrwtuq
-	YF97Id/eeKX/TXund4kivcsBCM88dqFxAvpBglXVNNmkc3PsSjgEM4=
-X-Google-Smtp-Source: AGHT+IErf/j35AOiqc0OKlKOsILU9Y+ZiwnfYZ14qASoSj6/d+9GEQHuJ8eFf/7JBQ7iQNhmyBvRUA==
-X-Received: by 2002:a05:600c:1987:b0:434:fddf:5c0c with SMTP id 5b1f17b1804b1-436e2679e05mr101882715e9.4.1736514034398;
-        Fri, 10 Jan 2025 05:00:34 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UumBL8EipTk8x3xnWxwvytHrJarKXZ95qoxDRHZZGmU=;
+        b=uLyGosaER1eIbDfMGsngGMuNytr7wSfksZu4HTVmejk8YaGKlNpK7msrbk4QLLqkAE
+         A05DUsNXQpxp0A70x1+EJ5o60LotXVSk6Jtjjs+oIkvepLYUkbBESI28HJglFNPeK6RZ
+         oNDlwD1QankNIYVOFQ0e89Xg+rpUW2pvS/wsYXxtWFPtY7YQl4NjSr/ds3uBHcO72Jr1
+         WEKu9P9tN2zRIdb/4aRJLXx/eoNUDqnBBPYOaVwmXPMhcHspSsXag9xiDsGhPXwLUvhs
+         KZYIWTg72viaEaZQpVfnP8B1QzuoP3xrhFYcO9WWudGd7Pglvxx8g9y5al4V3Xk9LDca
+         chGg==
+X-Forwarded-Encrypted: i=1; AJvYcCXIzclDgU0rS3Bua2GgKicijC32QlnKQmbozjT11CN0KQdqeg5viKg68kjVVJMFH1wu69SLFyEGVVyd@vger.kernel.org
+X-Gm-Message-State: AOJu0YykxVhH0UNoD4PvBjgza6CWbujM+PYhRo6aqhCuP8ACzZpO6aXb
+	LrZrZpxW2lRBuKb+Kd6N4P1LQGPoaZjfX/WIApWdJFGM03/vNd7mmzFABzRxul0=
+X-Gm-Gg: ASbGnct+dUQMBXaYVGtyhdAeH9s82AXYW9ygt4VcqCzcZCi6mFT4VMh1b2jagM+mEcx
+	uuIhDV6Y2CS5KPCzer8tQIS3mLpFmXm+YQ+OVRU23GeedMwIDsVXUv0nnfAoJWHBhKYLzpgtPCY
+	iz9LoTlCf8wDhDinJ+Jka6jz7AUJYKyPc2Pq8nxgTE9UmC30Mg+kaAj3rHhZfVa7cXPFzbeZbec
+	j5omHTaUkAvdsJHa5p75U0btVhqKynq/YiePtXGY+pzkLy87K+IQyk=
+X-Google-Smtp-Source: AGHT+IHu+3YW9KFmIbdwXeSMENWMKFjtkxFiR3VHsAUnnkL2+C4k2bV8dvw7WIeaSgTQI82r7Xq/fQ==
+X-Received: by 2002:a05:600c:83ca:b0:42c:b8c9:16c8 with SMTP id 5b1f17b1804b1-436e9d7b51bmr54548015e9.10.1736514035335;
+        Fri, 10 Jan 2025 05:00:35 -0800 (PST)
 Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:5581:e96f:97e:b3a7])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e37c2esm51360745e9.28.2025.01.10.05.00.33
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e37c2esm51360745e9.28.2025.01.10.05.00.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 05:00:33 -0800 (PST)
+        Fri, 10 Jan 2025 05:00:34 -0800 (PST)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
 To: Linus Walleij <linus.walleij@linaro.org>,
 	Bartosz Golaszewski <brgl@bgdev.pl>,
@@ -83,10 +85,12 @@ Cc: linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 0/2] gpio: 74x164: use a compatible fallback and don't extend the driver
-Date: Fri, 10 Jan 2025 14:00:23 +0100
-Message-ID: <20250110130025.55004-1-brgl@bgdev.pl>
+Subject: [PATCH 1/2] Revert "gpio: 74x164: Add On Semi MC74HC595A compat"
+Date: Fri, 10 Jan 2025 14:00:24 +0100
+Message-ID: <20250110130025.55004-2-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250110130025.55004-1-brgl@bgdev.pl>
+References: <20250110130025.55004-1-brgl@bgdev.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,23 +101,36 @@ Content-Transfer-Encoding: 8bit
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-There were other suggested solutions (for instance: just use the
-existing compatible for the On Semi variant) but I figured the most
-common approach is to use a fallback value for 100% compatible models
-and this is what Rob suggested as well.
+This reverts commit b1468db9d865deb5271c9a20d05201b1c0636895.
 
-This reverts the driver change and makes the "onnn,74hc595a" compatible
-use "fairchild,74hc595" as fallback.
+There's no need to add a new compatible to the driver code, we can
+handle it with a DT fallback.
 
-Bartosz Golaszewski (2):
-  Revert "gpio: 74x164: Add On Semi MC74HC595A compat"
-  dt-bindings: gpio: fairchild,74hc595: use a fallback for Semi
-    MC74HC595A
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ drivers/gpio/gpio-74x164.c | 2 --
+ 1 file changed, 2 deletions(-)
 
- .../devicetree/bindings/gpio/fairchild,74hc595.yaml    | 10 ++++++----
- drivers/gpio/gpio-74x164.c                             |  2 --
- 2 files changed, 6 insertions(+), 6 deletions(-)
-
+diff --git a/drivers/gpio/gpio-74x164.c b/drivers/gpio/gpio-74x164.c
+index 2ce00e90ea56..fca6cd2eb1dd 100644
+--- a/drivers/gpio/gpio-74x164.c
++++ b/drivers/gpio/gpio-74x164.c
+@@ -165,7 +165,6 @@ static void gen_74x164_remove(struct spi_device *spi)
+ 
+ static const struct spi_device_id gen_74x164_spi_ids[] = {
+ 	{ .name = "74hc595" },
+-	{ .name = "74hc595a" },
+ 	{ .name = "74lvc594" },
+ 	{},
+ };
+@@ -174,7 +173,6 @@ MODULE_DEVICE_TABLE(spi, gen_74x164_spi_ids);
+ static const struct of_device_id gen_74x164_dt_ids[] = {
+ 	{ .compatible = "fairchild,74hc595" },
+ 	{ .compatible = "nxp,74lvc594" },
+-	{ .compatible = "onnn,74hc595a" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, gen_74x164_dt_ids);
 -- 
 2.45.2
 
