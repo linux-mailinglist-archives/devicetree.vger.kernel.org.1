@@ -1,124 +1,101 @@
-Return-Path: <devicetree+bounces-137563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CAEFA0977F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 17:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD93A097A1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 17:38:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37BB316AF58
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:30:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69BFA16A9FF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E38213E7B;
-	Fri, 10 Jan 2025 16:28:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C7720E714;
+	Fri, 10 Jan 2025 16:38:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="WdpPGeH9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DdVlef0q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DB3213E84
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 16:28:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0087205507;
+	Fri, 10 Jan 2025 16:38:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736526516; cv=none; b=YqUrSyOaOaUvXr0Ar787RRjxF6YCmVrqZMTrX3QCnZSWGzVQrdbpC/DTuIVR/Dewsa28gqv5L+QA5lQSE5zH9BQV0E3E6CC2Nvu7lLuwsBBxB4F5/rCmFKcxFbrul8Wjv/olH1PQIEsyZum4Dv1wMxTlGdMg7fPHVN0luv30o5Y=
+	t=1736527118; cv=none; b=K8zclfhSDLHFN0IaYZGADZdL9Vr3MoenokdsbaRS0O4EuYBXtP9ZOCvKmqK05zBk/GKT9fXh6YxvgkM80G9aH+cAVxxRXf32Qa+X0LaRR/iD3MMRHoewQ8JgDky8qlT+btbUOJ5DEkXarMOXaq1DsUyM06bLslafcKC2JIWFDWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736526516; c=relaxed/simple;
-	bh=OWts1cTfEcqvunfpgiC/6+tnJNk+ma0tlrEZc31g47A=;
+	s=arc-20240116; t=1736527118; c=relaxed/simple;
+	bh=J5bdc2X9Rsmw5euopx3iH5iYQSDoe5mcSUUJdV3mzYc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cdvGIaspPz4n4ewSCnFN1Dk8XBkdtJIxA9cx2ozsElwjpZPR/bRs0OJJhI7ZViQZ1dAm7oXj2ONKMIBfgTX3Kzp4tMlqV/YDTshHYfcY5ZPFcs2qTrp2tXQVoQ1kdX6gpse4alqyn8DQsngZMegFs2sAXRkTMZbMTMaqTwgIGhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=WdpPGeH9; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 937BC240101
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 17:28:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1736526512; bh=OWts1cTfEcqvunfpgiC/6+tnJNk+ma0tlrEZc31g47A=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=WdpPGeH9npb33QnUOY81diFY2jW+kyyugTdHJvEGF9G1zEGqfaHygQjPTDm7UKCk/
-	 XODtKbK5/zkMQq0bnsn88xVPtv5G3mTxL+2zuIPAhUXocsyDWkeB4iJMKmqM/YPcfq
-	 0JYd6Jdo/D7qUbErY0X9l0skU86O9QV+pmS2T0MklAIlRGrdZION88sxqbUUTKi7xo
-	 hUrQu9IbnbIN9cpZScAEgnqBVP4LNiQCvlggmDSpj6k3IqcogSH9ZwG8hLQ+ugbt4/
-	 dzIAqPYeUQAazbBgdAE/RvL8TIzZG14jcE8aQJmJ+0C98uUDVKnoIXp+cTT49Cn2NF
-	 1nD3E2eP4C0eg==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4YV6Xb2P9Xz6tw1;
-	Fri, 10 Jan 2025 17:28:31 +0100 (CET)
-Date: Fri, 10 Jan 2025 16:28:31 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: j.ne@posteo.net, Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=PNlwdHfkv4w0GMp5PYqR6IpUSztTKHtl7R1AtJc+ZQ11C8qXRzDZpPrZTl81yczZLNX4kZcDlq/hY+g4FN2C0za7fYWb/pelYFIMz10DTjqkMmTqK5qq1EJCBgdSYqLgxK5HPyhukN5i8agKc9awHjKPQ/XCJw7RAN4mDxgtZAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DdVlef0q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53E08C4CEE1;
+	Fri, 10 Jan 2025 16:38:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736527118;
+	bh=J5bdc2X9Rsmw5euopx3iH5iYQSDoe5mcSUUJdV3mzYc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DdVlef0qJImen6hc/+ad13GgTHvTqcDyKzeRAi/usRuNfLO/U/vwcD05SvLtlS+9d
+	 dYrd5E1ahVwFujDk29RCPneEkgGojP4fOvp/JvM2nhk3sg9vhXKGhPdHBgPDMDqqmE
+	 k8B3jSFZJucZrtFz7SzUXbuFH3u3Ur1lN0YHOIbYjSa41FcQhQiWicQlK9M5itHFVF
+	 Eyf50PLAibMdExb/4iF4WuagWV1MkWvDGVdpHK1x7SVfXnLx7ZP2WfHihaaP0nQeg2
+	 lOH34iWWrmGJXAsQr/xzkmT65159PCIwZuPQZB665boEAMd4F1k1ZdyQWTGuaDEsvc
+	 9mxv6fRZuwI6Q==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tWI1v-000000002KG-1ptw;
+	Fri, 10 Jan 2025 17:38:40 +0100
+Date: Fri, 10 Jan 2025 17:38:39 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Mark Kettenis <kettenis@openbsd.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>,
-	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 10/19] powerpc: dts: Add MPC8314E devicetree
-Message-ID: <Z4FKrwH1oEssxuWi@probook>
-References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
- <20250102-mpc83xx-v1-10-86f78ba2a7af@posteo.net>
- <e1c8ebd5-b01d-4338-a465-889853d1ef9f@kernel.org>
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Sibi Sankar <quic_sibis@quicinc.com>, johan+linaro@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Mark usb_2 as dma-coherent
+Message-ID: <Z4FND-b-gEb6YJw6@hovoldconsulting.com>
+References: <20250109205232.92336-1-kettenis@openbsd.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e1c8ebd5-b01d-4338-a465-889853d1ef9f@kernel.org>
+In-Reply-To: <20250109205232.92336-1-kettenis@openbsd.org>
 
-On Fri, Jan 10, 2025 at 04:21:58PM +0100, Krzysztof Kozlowski wrote:
-> On 02/01/2025 19:31, J. Neuschäfer via B4 Relay wrote:
-> > From: "J. Neuschäfer" <j.ne@posteo.net>
-> > 
-> > The MPC8314E is a variant of the MPC8315E without SATA controllers.
-> > 
-> > Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
-> > ---
-> >  arch/powerpc/boot/dts/mpc8314e.dtsi | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/arch/powerpc/boot/dts/mpc8314e.dtsi b/arch/powerpc/boot/dts/mpc8314e.dtsi
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..65a96a485dded5d4918d96b38778399d2f348190
-> > --- /dev/null
-> > +++ b/arch/powerpc/boot/dts/mpc8314e.dtsi
-> > @@ -0,0 +1,7 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +// Copyright 2024 J. Neuschäfer
-> > +#include "mpc8315e.dtsi"
-> > +
-> > +/* MPC8314E does not support SATA */
-> > +/delete-node/ &sata0;
-> > +/delete-node/ &sata1;
+On Thu, Jan 09, 2025 at 09:52:31PM +0100, Mark Kettenis wrote:
+> Make this USB controller consistent with the others on this platform.
 > 
+> Fixes: 4af46b7bd66f ("arm64: dts: qcom: x1e80100: Add USB nodes")
+> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> You should not delete nodes. That's not really maintainable code. Either
-> this is in base DTSI or it does not. If it does exist, then this delete
-> is incorrect.
-> 
-> If it does not delete, you are not supposed to include other SoC/device
-> which is not the subset of this one, so your includes are not correct.
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index 4936fa5b98ff..aad1153a443d 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -4814,6 +4814,8 @@ usb_2_dwc3: usb@a200000 {
+>  				snps,dis-u1-entry-quirk;
+>  				snps,dis-u2-entry-quirk;
+>  
+> +				dma-coherent;
+> +
 
-With that in mind, I think it makes sense to structure these (up to)
-four devices the other way around:
+Can someone from Qualcomm please confirm that this is correct, and that
+it's not the other way round and this property should be removed from
+the other controllers (e.g. if this was just some copy-pasta from sm8550
+which is the only other Qualcomm platform that claims to have
+dma-coherent USB controllers).
 
-- MPC8314 as the base, because it has the least features
-- MPC8314E, MPC8315E, and the currently unused MPC8315 based on MPC8314
-
-I'll do that.
-
-Best regards,
-J. Neuschäfer
+Johan
 
