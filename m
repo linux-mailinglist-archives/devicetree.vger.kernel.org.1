@@ -1,165 +1,134 @@
-Return-Path: <devicetree+bounces-137491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B9D4A09303
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:10:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F259A09306
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:10:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF4C0188A4E3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:10:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29AB4169E87
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9938B20FAA5;
-	Fri, 10 Jan 2025 14:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43EC820FAA5;
+	Fri, 10 Jan 2025 14:10:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P0GPqE6l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA2E207A15;
-	Fri, 10 Jan 2025 14:10:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B48B207A15;
+	Fri, 10 Jan 2025 14:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736518207; cv=none; b=CZVrg9zkUe3xwLJAJpx/eiF/ST1jQFCKVBdacyg+x9UQuj6CQTR5jegzoNQ7+LX4kUeYiTbd+jMw7nf6LA2cALYUtLXYdF3l1khBXWCu6so0H8FQ22hOd7Gz4hz4z8zYK0omONllLGnlHHS+IQd40PD8q8nNvx+jA/NYlrEmgss=
+	t=1736518222; cv=none; b=map8lTNYcdbkSK3AB+NWJW3rkfNdX6Yf9gIFsIEXxvoCbl+cjtzuXq92h7Syhs7M5RhkkN2RYpDJw7JmRqn9PXPlfUn9gHMM3rGkSKB6UNNdY58BVKiDixaBg3zImd3XFzChiuwfXyMq0a5ZQhVjeTIkpi75nNqWRgQPiL+igSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736518207; c=relaxed/simple;
-	bh=VrJW/Msg9cKcKQeHP0xMzAnaj+mPc/7eBP8bzgfg2pY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BAae2KOZyrJRqtgxSyqiiUKkDLKboawQRZuoL2VbSycmElK8q85rOSHzSPYWvG0gTrDOhxxXMH+FjEPLmAfmJStTfdednS3TRzBB6buWdteCQ7CO2FI/5HNTi6S42wJvDZoh9EFZSwFI2wM4jjTNkhgeVrwRzxxc8ZLI5Dx8iyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-6dccccd429eso15577756d6.3;
-        Fri, 10 Jan 2025 06:10:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736518203; x=1737123003;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GDyk57/J8HQ3yVwzMvPhMpXmN7YUAwR/lulQQxt0euo=;
-        b=IFBdL/vrb5GMhPIDa4ucaDCmVO+FuUSYV8f6aUJgmJLAwm0IdrLR5fzbJAAUKVRkgK
-         Lw9uFlsiuxSCa2Ojl65hOO3Vv5AC2SZJecFKAr4Srwrfk5V5yhuvSegK5Npo0WWIh8VO
-         daf8jgEftd6pSAGqtzgjb66H+vKnXqox7n6er1KrnFbsmedhMq4icy1q7P4HCcxJfe+b
-         KxovdFw/wCIL22Fxkt1R1waHrm4g/QzypSk14xMopzZpWVQOXg/uQ1P/cyywPXDa1Ik+
-         AyDLfDfTyb5WXesW+yOrrs3wR3UNfkIIQAscH6Jct7Qt2pnd48r/aA061Y+lUFiprQIf
-         CABw==
-X-Forwarded-Encrypted: i=1; AJvYcCUw/YVy7dLJbbpy0aPJeMbEKttucRddVIyHtrOAZQ3/vuWSoK5Z1OmkAyMjJ5chUXp1WpgRpb3wxoZu@vger.kernel.org, AJvYcCUwaQHjKk1wZeZpTIjBTwvVgPgRlzeLRb//5rKqNs5E10b76CVMxOT+b9PbZAN2oE0TG0PmKYmInNGFPg==@vger.kernel.org, AJvYcCVo8+3fK515xIG+rJbd94O2G3lrJuu9OthzKQ2DwAVaB+mGXTgajCsX25quJsgRNCNXwOW97lcQKY4G2Qza@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxK5T5BQPRm+s7V0pFehXAleVWQ3jpvQuM4IOiwaeR2gSV6k6H
-	I25USIJ0Mve9HpbpKVslLgbkBBigGralN0WA8qEYTAYDGe3zW6BLi5do2xW/
-X-Gm-Gg: ASbGncsiy0JFntzzzyNXurvQWbMQtCx4gzSRVArLn8BSDQviDC0F5klNkbIGC8jImBx
-	gWyDTYwH3jcEANudweRUjXCShmcD9nbk3yB7NkOWOJ1j9j9EVrcIEDAj2jXgWE2RUNeS47Xy1IE
-	m3L6KUyq4XkxmI2GlZ6RID5rsNQGUcehXNkuJk/RFXLFqTwlP8CgPeECYZJ8BncICo0siu3GNa5
-	wC/8VuBOaPs3vqrqXt12QpqQO+usP3IxsnS+KN5Xo+BvvECxmrQFflB+JbwpNC7D16/tZfQ3V1a
-	Crv8Mv280/FuJb2GUoXe0xw=
-X-Google-Smtp-Source: AGHT+IHy+H/vYgNkSdCvHfdbX7xnIJDqe3JLN4r5wVQVnoHFYNff/u5iu6OlwaMMhAzGiE+1PKpzvw==
-X-Received: by 2002:a05:6214:3112:b0:6d8:a1b4:b591 with SMTP id 6a1803df08f44-6df9b232915mr201071566d6.23.1736518201654;
-        Fri, 10 Jan 2025 06:10:01 -0800 (PST)
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com. [209.85.160.181])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6dfad85f658sm9524546d6.5.2025.01.10.06.10.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Jan 2025 06:10:01 -0800 (PST)
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-46792996074so19120311cf.0;
-        Fri, 10 Jan 2025 06:10:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV2ox5VTusqHJYm+2X572uXhPsI7NKXXYCog89ybUYIPyTwXE0zC7ZfZXyDKqAv5N3TN0Hat2CIwy8wT8RN@vger.kernel.org, AJvYcCWdaiPnZKjpsddXHVUDKhlh3wGsi9DRE4gAPmXroi45Hfd+4sAGYTHmXG64K40JhPgahb8JYGIasjTt@vger.kernel.org, AJvYcCX8iDphDKU20IJbcIw2LGSOhnNbx8c28WZjyK3t40NesAko547YUEbB2BiHZA3gYdwAmuJSxenaI+1eMQ==@vger.kernel.org
-X-Received: by 2002:ac8:7d8f:0:b0:467:45b7:c495 with SMTP id
- d75a77b69052e-46c7108f867mr165009211cf.15.1736518201275; Fri, 10 Jan 2025
- 06:10:01 -0800 (PST)
+	s=arc-20240116; t=1736518222; c=relaxed/simple;
+	bh=AU9hR0CcSXn9Z4fcVQkbb4nXaU8sh9WB+5t9rzKXNuE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=niDLYLnb9xJ0zh7DGD9NXW2Sd/RU3Z/JkACv4TN7oL63h8COxLNW+DRk09u4nyuNoTe8cEuwMOPOKBldyBhXv7+fhoCRlavJivKDL6rFDavyvvZVqDBBc8DbIqewVeGvqUSCa/dACh5cvMYm/wrxuf1SQa6cVftY5MWEdAy7WEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P0GPqE6l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B94DC4CED6;
+	Fri, 10 Jan 2025 14:10:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736518221;
+	bh=AU9hR0CcSXn9Z4fcVQkbb4nXaU8sh9WB+5t9rzKXNuE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=P0GPqE6l/aMBVJbGZcrKFV78fPxIf3LsxZpj/BUa9g7SIyZKmBkcJJDq+r8MW1SjH
+	 stom6T5DhGIZbEoY1vQP7JDG+qCzSXjyCe21nFcU19Q72px62/XxrMkwLhnI4YZBDr
+	 HsFxjJABd2ZSHRY0tqb6iDaCyDHTsv0/f/STSHIB5lmvWx37Bb8r6G6thrsu87sDXT
+	 aSNbxvvfI71OvlWCZCrkc+yjZmT0C2aR0U8tSp3RlI8PkyM9a3ZPJEBrh6XWWvV7dx
+	 gSUYkTJBNBWH3NZJDHWr4b0LD2BjdPvO02SEVNOR+NbBPR0ai19G//VESgeWKYZzQe
+	 t9SRGCdaaP5Xw==
+Message-ID: <4377ceaf-dd7a-47ff-89d8-37ffc80e7d18@kernel.org>
+Date: Fri, 10 Jan 2025 15:10:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250110130025.55004-1-brgl@bgdev.pl> <de6b70f2-8fd6-4e2a-a6c1-466698be8a6b@prolan.hu>
- <CAMRc=MckJfEBK_ZUZ31hh7SMdbr4a-vZLtTGDCFttGK65wbXdA@mail.gmail.com>
-In-Reply-To: <CAMRc=MckJfEBK_ZUZ31hh7SMdbr4a-vZLtTGDCFttGK65wbXdA@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 10 Jan 2025 15:09:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWhEZ0No8mXdymE8O8+rMCkD2SXAifZwReb1BbfYASOeQ@mail.gmail.com>
-X-Gm-Features: AbW1kva3r81VnGwR0hoVjKuOvjAbpVCjw3rRXMh10wLDbHLY9-8QeHpWdyHl4p0
-Message-ID: <CAMuHMdWhEZ0No8mXdymE8O8+rMCkD2SXAifZwReb1BbfYASOeQ@mail.gmail.com>
-Subject: Re: [PATCH 0/2] gpio: 74x164: use a compatible fallback and don't
- extend the driver
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, =?UTF-8?B?SiAuIE5ldXNjaMOkZmVy?= <j.ne@posteo.net>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/6] arm64: defconfig: enable display support for
+ mt8365-evk
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231023-display-support-v7-0-6703f3e26831@baylibre.com>
+ <20231023-display-support-v7-4-6703f3e26831@baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20231023-display-support-v7-4-6703f3e26831@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Bartosz,
+On 10/01/2025 14:31, Alexandre Mergnat wrote:
+> Enable the DRM HDMI connector support and the MIPI-DSI display
+> Startek KD070FHFID015 panel to have HDMI and DSI display working
+> on the mt8365-evk board.
+> 
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
 
-On Fri, Jan 10, 2025 at 2:38=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
- wrote:
-> On Fri, Jan 10, 2025 at 2:32=E2=80=AFPM Cs=C3=B3k=C3=A1s Bence <csokas.be=
-nce@prolan.hu> wrote:
-> > On 2025. 01. 10. 14:00, Bartosz Golaszewski wrote:
-> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > >
-> > > There were other suggested solutions (for instance: just use the
-> > > existing compatible for the On Semi variant) but I figured the most
-> > > common approach is to use a fallback value for 100% compatible models
-> > > and this is what Rob suggested as well.
-> > >
-> > > This reverts the driver change and makes the "onnn,74hc595a" compatib=
-le
-> > > use "fairchild,74hc595" as fallback.
-> >
-> > Is there any reason to introduce a new compatible name at all? Does som=
-e
-> > pre-existing, widely-used DT blob use it in the wild already? If not,
-> > then I don't think it's necessary; for any new boards, their DT's
-> > authors should just use the pre-existing names.
->
-> I don't have a strong opinion on this and will defer to DT maintainers
-> but a similar case I'm familiar with is the at24 EEPROM driver where
-> we've got lots of 1:1 compatible chips and we tend to add new
-> compatibles to DT bindings (with fallbacks to associated atmel models)
-> just for the sake of correct HW description in DTS.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-At24 EEPROMs differ from '595 shift registers in that they provide an
-API with multiple commands, and some commands or parameter bits may
-differ among different implementations (but usually these differences
-are called quirks).
-
-All '595 (I'm deliberately writing it like that) shift registers
-should be 100% compatible, modulo some electrical specifications
-(voltage levels, maximum speed, power consumption, ...).
-
-Interestingly, the driver is called gpio-74x164.c, while no '164
-compatible value is present. Most important difference is that the
-'164 lacks the output latch, which is used as chip-select with SPI[1].
-
-> > I'm especially against introducing a new, vendor-specific (On Semi, in
-> > this case) name; if we really want to introduce a new compatible, at
-> > least make it as generic as possible, i.e. `generic,74x595`, or even
-> > `generic,spi-shift-register-output`.
->
-> If anything, that would have to be the fallback that the driver knows.
-> The first string in the compatible property has to have an actual
-> vendor (I think, I'll let DT maintainers correct me).
-
-For the inverse operation (parallel in, serial out), there's just
-"pisosr-gpio".
-
-[1] https://www.ovaga.com/blog/transistor/74hc164-vs-74hc595#simple-list-it=
-em-2
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
