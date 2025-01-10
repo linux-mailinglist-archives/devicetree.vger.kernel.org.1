@@ -1,141 +1,143 @@
-Return-Path: <devicetree+bounces-137498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4E23A093B6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:42:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F481A09437
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:50:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48BC8188C537
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:42:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57A3C3ABBFF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DC72211295;
-	Fri, 10 Jan 2025 14:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EFD221171C;
+	Fri, 10 Jan 2025 14:46:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="RGXH9KoV"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="mQTX3y8t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 531E621128A;
-	Fri, 10 Jan 2025 14:42:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A6A7213E89
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 14:46:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736520131; cv=none; b=GPKbk/KmEKHFCTjNga72rH46XDDBjgkvgxMxbgL1ybHEWWpxzVkUQgYJ//WJ9z7vZf9gH/MQUMj8uAhunOSW9CXaMhtBXWMHGD/6px8t2BIuKQSi24n1wyuuzydmQmRX1SIeNTImbRx4wWG/x3D5MX2uwqzf/ZfwY/GUr34lO3w=
+	t=1736520362; cv=none; b=qC6weoFQZBuw6A1PMG2FucF569Dogr/pO/UDBaT/TROC1XJuuVZ8EPbvcUqRyof3XcXkhMaOnoFnAi0cUG0fvoQ6jQaad26Elg451QirQM+Plhz0jjNVujnbloyFmZDCnar0FIsDinurmqgi9tjkMb5oQHq7QY/ENhwpDmNQz+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736520131; c=relaxed/simple;
-	bh=paTMVghMKdv6dJ3HRwcGaOqQGhNfa6gD/p3U82HvoWQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sItDMvaaZsMJkbT4oI6CG3CSe3FdEKFOmixP+Azy9ecD6NOpXsP23TEgVc3CXmWjpX5MPoDYurNyGHanVducaoAHZG0u9wU9yQJXsy2upNux87UiJonsZKvI2f+V/6+iXzzJGP5ZeS9NHiaVlPosYmp2eY+oIlszc6OsJpVgMWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=RGXH9KoV; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 652E414867A3;
-	Fri, 10 Jan 2025 15:42:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1736520125;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=3B+7xW3A+hBNawXWpX5L5XqlvWj4cEiq29OLLyd2VrE=;
-	b=RGXH9KoVGDkvTHzliSDjEYC2PihHK/MND2FYnQ4tUGDudInB3lgPPP7BkoIjjhr7SvQItX
-	05nAST2vJ+0XqWz4pHod24BKyVyG7zOE47umIXYewTY7B4dGRzy+Gu5LoSB2PmVmrsvdRT
-	cqTo7jhgJSV3b8pXt90/fU+wvE//kgro+LLat67zhX5Co5O5IsRttv/wx4G+ZgLKhaz8+x
-	OnkTVTMfR3Smqym/pSFJ5GyVnRmbH095SUBYUO87dQcd8Yhr5DtmJpaIy354uD+sc/7p5f
-	0HqHCKE8kUGuMSG9ElI2u3HLJS7P/Ob/MBGMMj3ANcgqGQtBRLXMtmx8O4wbeA==
-From: Alexander Dahl <ada@thorsis.com>
-To: devicetree@vger.kernel.org
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1736520362; c=relaxed/simple;
+	bh=dYYaYFEM24+iiQPImiW+lLFpDQ1hFqc+9xNycR8IE3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LSQiW2bpO0fxtbejm262vL9ic/DUCXbAd4nrfa13J1S57cDrgWBFqeEnBdxTBnw7ZmX8Lmnq5ZJRFv2KEONHE3g+9omfnGktRvvPKyElI3UJxRPgw9A2dqafLXlPY1vdNFaJ1qxkMjLacozmhQ4ujV8DSMIfs5vN6EF5+yOnjbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=mQTX3y8t; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id CED7824002A
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 15:45:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1736520352; bh=dYYaYFEM24+iiQPImiW+lLFpDQ1hFqc+9xNycR8IE3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=mQTX3y8tMVkoUzUoLoHNqk6Efo9PMc+vYEnVnhkKokT0BwTiK9uzovbdH4tps0r0c
+	 WNYDYn6tkkBBp60NiXOpxTW8tCoTu3iHhx0cGxfHa9CqcJiaHp3yUJaXa+XZty6r0Y
+	 jBh46z7ei2dg4UGJOIkBmcLwvekAcO/CX9eOqm4wrqJGDW8veA8mSo+t3++itJntsE
+	 cP28ijJ8ZfvQYjVkTY1QbTVH1NypaPifrVjdlxuv7OePJbLYs3WMpSBvr2EFvvQRn+
+	 yV/7+CROrI92h4qg9fk+xWYMRjZLnUgnQ4g6T3gis5vyOlIEYEctkUl4x9msX4V66g
+	 JLiNfydXYIAbg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YV4G56d9Bz6tx7;
+	Fri, 10 Jan 2025 15:45:49 +0100 (CET)
+Date: Fri, 10 Jan 2025 14:45:49 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Rob Herring <robh@kernel.org>
+Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Microchip (AT91) SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] ARM: dts: microchip: sam9x60: Add missing address/size cells for spi nodes
-Date: Fri, 10 Jan 2025 15:41:59 +0100
-Message-Id: <20250110144159.379344-1-ada@thorsis.com>
-X-Mailer: git-send-email 2.39.5
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>,
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 14/19] powerpc: mpc83xx: Switch to of_platform_populate
+Message-ID: <Z4EynSpNghUpjY8W@probook>
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-14-86f78ba2a7af@posteo.net>
+ <CAL_JsqKU0AQ+ym_iDZSN5hNUTMF0bgjqu-aAVtG792Mw_eZTbg@mail.gmail.com>
+ <Z3lKqLXphxeI1Gvo@probook>
+ <CAL_Jsq+HrXpqi-mDJF+vyg5zL5mTD5FsCTSq_39U8DffKW+XYQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <CAL_Jsq+HrXpqi-mDJF+vyg5zL5mTD5FsCTSq_39U8DffKW+XYQ@mail.gmail.com>
 
-Complies with generic spi-controller and atmel,at91rm9200-spi bindings.
-Fixes dtc warnings, when actually adding spi target device nodes on
-board dts files including this soc dtsi.
+On Sun, Jan 05, 2025 at 02:28:37PM -0600, Rob Herring wrote:
+> On Sat, Jan 4, 2025 at 8:50 AM J. Neuschäfer <j.ne@posteo.net> wrote:
+> >
+> > On Thu, Jan 02, 2025 at 12:51:47PM -0600, Rob Herring wrote:
+> > > On Thu, Jan 2, 2025 at 12:32 PM J. Neuschäfer via B4 Relay
+> > > <devnull+j.ne.posteo.net@kernel.org> wrote:
+[...]
+> > > >  static const struct of_device_id of_bus_ids[] __initconst = {
+> > > >         { .type = "soc", },
+> > >
+> > > of_platform_populate() won't work on this match unless there's a
+> > > compatible in the node, too. Can we use compatible instead or are
+> > > there a bunch of them?
+> >
+> > In arch/powerpc/boot/dts, I can find the following cases of device_type
+> > = "soc" without compatible = "simple-bus":
+> >
+[...]
+> > - arch/powerpc/boot/dts/asp834x-redboot.dts  (MPC83xx!)
+> > - arch/powerpc/boot/dts/ksi8560.dts          (MPC85xx)
+> >
+> > i.e. there is one affected devicetree. I can simply patch that one in
+> > the next iteration.
+> 
+> You can, but that doesn't fix existing DTBs with your kernel change.
+> 
+> We either have to determine no one cares about that platform or the
+> ABI or add a fixup to add the compatible property.
 
-Signed-off-by: Alexander Dahl <ada@thorsis.com>
----
- arch/arm/boot/dts/microchip/sam9x60.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+The last substantial change to asp834x-redboot.dts happened in 2009,
+so I think it's fairly safe to suspect that any remaining users are
+stuck with old software versions; new or recurring users will have to do
+some debugging to get the board up and running anyway.
 
-diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-index 36944e18a329..b8b2c1ddf3f1 100644
---- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
-+++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-@@ -197,6 +197,8 @@ spi4: spi@400 {
- 					compatible = "microchip,sam9x60-spi", "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <13 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 13>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
-@@ -268,6 +270,8 @@ spi5: spi@400 {
- 					compatible = "microchip,sam9x60-spi", "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <14 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 14>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
-@@ -768,6 +772,8 @@ spi0: spi@400 {
- 					compatible = "microchip,sam9x60-spi", "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <5 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 5>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
-@@ -839,6 +845,8 @@ spi1: spi@400 {
- 					compatible = "microchip,sam9x60-spi", "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <6 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 6>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
-@@ -910,6 +918,8 @@ spi2: spi@400 {
- 					compatible = "microchip,sam9x60-spi", "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <7 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 7>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
-@@ -981,6 +991,8 @@ spi3: spi@400 {
- 					compatible = "microchip,sam9x60-spi", "atmel,at91rm9200-spi";
- 					reg = <0x400 0x200>;
- 					interrupts = <8 IRQ_TYPE_LEVEL_HIGH 7>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
- 					clocks = <&pmc PMC_TYPE_PERIPHERAL 8>;
- 					clock-names = "spi_clk";
- 					dmas = <&dma0
 
-base-commit: 9d89551994a430b50c4fffcb1e617a057fa76e20
--- 
-2.39.5
+> > >
+> > > > -       { .compatible = "soc", },
+> > > >         { .compatible = "simple-bus" },
+> > > >         { .compatible = "gianfar" },
+> > > > -       { .compatible = "gpio-leds", },
+> > > > -       { .type = "qe", },
+> > > > -       { .compatible = "fsl,qe", },
+> > >
+> > > Better still would be if we could move the remaining ones to the
+> > > default table and just call of_platform_default_populate().
+> >
+> > of_platform_default_populate does sound preferable.
+> >
+> > I'll investigate why exactly the "gianfar" match is necessary and how to
+> > fix it in the corresponding driver (I don't think it's general enough to
+> > warrant being listed in of_default_bus_match_table).
+> 
+> That may work too.
 
+I have investigated this issue now and will include a patch in the next
+version.
+
+
+Best regards,
+J. Neuschäfer
 
