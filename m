@@ -1,78 +1,80 @@
-Return-Path: <devicetree+bounces-137464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 349FBA09205
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:31:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F726A09204
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 891583A1F48
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:31:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68EDC164690
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C087520E6EA;
-	Fri, 10 Jan 2025 13:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DCFD20E325;
+	Fri, 10 Jan 2025 13:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PBJzEKuG"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RlRdOdMg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD6E620E022
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 13:31:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A60120E32F
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 13:31:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736515885; cv=none; b=j+yCufcobAv5UpGHNYgw9fPNIkQmMhOACH/SDU0OE7rHMIYR+JK3MQKnL15QR0eohcX2vbEdrcefMsd8OHlviTU5uZMNPsiK9u3yC1jltt5BUB0ckzsJHyI1++jAnOZiXJ2ShDOPLxf4VUea7GKw67wggG44Ht4r/0GKlHc4MPU=
+	t=1736515886; cv=none; b=GbB/BAUCC8SimvrseDSymaSmX0SDn6Z8lXNzfU3HQd5uCh4jRpD3yZDRIby3ycRt0BNoiJBQDWC7/uPJ3n4u6rkntzmRA4FXLkvDlTa3qkJl/IPkELZmQB5L6nqfp4VrS3r5ommPUXq8ewNI2JHLS3dFDxtRK+eta7ldqMdHu34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736515885; c=relaxed/simple;
-	bh=/0JXe0fwWtlGrtBrYJBc+5+8TOE60mCncIXc9dv8OUc=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BgnB9dxxN4GRl5boTVmokXFBN2C4wbvOWEEtAlMPnUdmndPKQ4wR4k/wG54+ZyEGtmXGTed/AhMPFzkZaqMNq+Ht/yp4g2FNKOOpzLe56FIzYBARX3vv+WNdsniFT6sxPoH9DTPCAu/pX4AFfOcHTxn8D88W8WkSMQDTJNrkk00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PBJzEKuG; arc=none smtp.client-ip=209.85.221.52
+	s=arc-20240116; t=1736515886; c=relaxed/simple;
+	bh=Kcf1SUIN5vEzdUGN68JCSdbwN+b1Z/rJ8Jmg6uwRfvo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Ga3VTVA6ycSt9M6aQEJmoO6S/pRgm1wgFGgRNSM6BEyyVr50JRRMorv5NskHEi9CUv1xq9rH3ztnNiVu4IaGB2A6ysiCGkmlL7+HdwD0/wtAdgXoc6FOCeedRHF8Y4IMMo09MC9L2Jkr4eJzPYUs8tjaUMpefyDOXL3Q29eZo/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RlRdOdMg; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-385d7f19f20so1098019f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 05:31:22 -0800 (PST)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-38a8b35e168so1310756f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 05:31:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736515881; x=1737120681; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gOb4dYM1XeOQNmpz4gbuJFETpHF0usdU2GeAkqe7Bjs=;
-        b=PBJzEKuGCDhUKyNM+W0aX/5PlM1h75OficKaqyCnA6B7P0Y9LKVufTEgfM8J7sYedd
-         n9E9piXVE9O+z1FEIanQ3LPpKkGwma8G/yth+27F+KZHoKqfKUW819TVfl2BCW9GxS9I
-         Rq8NuT3wbhwfa835UIRbOGOt3WOkiLx3exwTX3LRdGUojm4y/IXUcxb+RSY26YxhA94q
-         OBbEIbC+5VzwSoS/rHAIHa70w53CCu0f5tsqRs4/7irHL1zpscwlLP51nd+ykSvXtlQ5
-         J8tReTZu7FICPpbL1RkayXD3dwq3Vw8fmhOtaPoRSTBqRTqUJ3Q68QdtH5AaFwC+lWGa
-         4TKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736515881; x=1737120681;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736515882; x=1737120682; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gOb4dYM1XeOQNmpz4gbuJFETpHF0usdU2GeAkqe7Bjs=;
-        b=oKBJmKfNVyK8KcUY3g2AGpgY8Fjn5ejaaUGAn8bzQ+9xhqg7uk4z2fT6IE7MQ2bwEy
-         31KTNWaT84/y+LMZYtD32y0kRrY85YUpPWd186mm7KdZUZGdLo0DfQJgALfyZDKxqihb
-         Mu/dCZXxPBkqfD9Qo2Q0iTRoxO4+ITiLw9a6j6YKKMKI6S1boogdlvAVC9Mf+aI4DJLS
-         o5d5h7F8D6hv4GSYvxlhy3g0ZIiLBVRyEPLHcqU5GNZWDXlgYU7khUpxFASB/gDOK3G2
-         U7lJwIC4wfRH5GMUkP5fkBvfFA9Mv1ZikRxxzpYU2j/Jzugh1kS/otJFd8oNm0dMhLex
-         kwTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV/EBbWQ5QHHcGoFkBkx4qytkfyj2WT/VJdNGrioRy/jZgRCDLBZYkHT+l6/s+pVItKCq4sKFF7J9nz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3DpIQE4fH7eoaqzaj4IW+vGhj8a9em7I2GbGysQYnUDC+TXSK
-	m1d8Byc4oOEvn8ZdwrDkdAIS9aNpnXqIV+qzcp2L1cAXOxHJPNSd2xai6ClxXI8=
-X-Gm-Gg: ASbGnctCDcdsiKxiJkPkAvSmZ4Ufq3lnpWFTfa6g8DMqGLvWwdnh8k25+H46cjdPWH0
-	VKbKwKtAp07E2Qe5O9RAL6cZDDmH0zGmrtE8waPwNn2O/WqCM798LwHfCrLIKQgU/3fHry98QTR
-	dOSHPrWFgYyuFsrb85Qup1XI1Pr9L73ryEWpmpWRfjioTLAlU0ZOxCkgA6k6CBh7OgIymTiXJYr
-	MKvZFFtwVHQ/WiZqa9Fmj6moEH6el6xAWOKZ+0vbDXrnGqdAAeR76IrhixO
-X-Google-Smtp-Source: AGHT+IHgSDYD+oLBXez7p6Gm0Z9SWiWVmD2PPaCg5Lo8JetzTzttPSXxYsdjGCYoiYqxFKM0JSsVsQ==
-X-Received: by 2002:a5d:47c4:0:b0:385:ed16:c8b with SMTP id ffacd0b85a97d-38a87309d20mr11317257f8f.23.1736515881130;
-        Fri, 10 Jan 2025 05:31:21 -0800 (PST)
+        bh=/CRkSXWyXf0xsAqoBIGl0gizy0vMiUiEuhlip5XNNFI=;
+        b=RlRdOdMgxRaGsu+dh+WhXSMwBIr3VU8FFK9MgOhKDmlcaxxr9p+LfbHmDAP/jqbwH9
+         AvxvzxbfpCS/CNT2lSQFjETSGY+5EBanXjTn54xmV/zusK6n368J2raMcGwnZyyRbubW
+         SLIVL5fWJjm3Kzb8MLYN1vB9zBFQ1PNCvYSrSKiakEvxvnbJqf7fyk+qYVvh9lPmEpXr
+         aD/aY9cQ4OKRN1CVTELKgB7QAZd3RiBF6n4Dm9GDSj5Ah9oBuYaMFJu3OTieSkYY6fDw
+         75Pl8aEppwhd6pEaiuulysmmPeXqnrKN4UG8kDtCq6NEonlahUdbodYLIgd4o07vrxCs
+         g7Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736515882; x=1737120682;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/CRkSXWyXf0xsAqoBIGl0gizy0vMiUiEuhlip5XNNFI=;
+        b=wbXrsxR4Cfr0ePcgchyi43YxkwlRkRJWmxVwRo0zi6okM8NBLI4ECDE729RDET9deA
+         oRbgG2ois9Oa4AR4nNDE6BWi3qfW/Ykfd0SrYfBfjq/m1utmtJZL879F5zIv/K7YnwFV
+         k0MVeXC5laBWClXO/BurFPO73Tztjcx2Y2delN9ttLC2yLixw1YIBc5u106JJCCt3TTZ
+         VUOr7A51Y9VQYNlycEU4O00u60riFNPphmvFdLDbL66G9llPB4ZkhkO78GE4zKmcgr98
+         kINgmUmylzvpCJRK2A6MY1msql0FGNWiGTOULnBOA2jay4eiynikGyvGpAxh/CIm8CNB
+         USbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVOx6m4z6+BPeJ2Mg9CZssfvilqHhvBVBwif8hU6xYwjHM2SdzqA337sxol0yaHxcXIJjEQ1USQvb+V@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSR4bjef2yKoqkVOp118C3eetVh16eEU9D7npZBHnToEbmPxvv
+	17VwBwUYNGQFWHbv4ktS8l6sXjTsHcGEIUObasXQYBS1SBnyqWIDh04HIC/chHc=
+X-Gm-Gg: ASbGnct0w65S4iKAydsY82wC0tUtCZnKsbM5txGr6Kn3EHLf6B/7Rc7bGZ+7tlTE56n
+	ryjKeBoyeIjIDAw7ycstmHl7VBECbvDSktNv3XXaSfHFVAViC6vmES1wGfbdNiUdvv+eYGz25lX
+	xcjKZ2ECRUR25lrdWJrvD04laYHmvHADPxf1PY2YCdJPFKWPV8m+02f/NJE+ghYRtk105En/naQ
+	eUCYwPKxJxrG9mo7/6dXlGFN+ajjY59YuZyh6kyCy4II7hk3fJq3WN9PInC
+X-Google-Smtp-Source: AGHT+IEeT/k14BcIEcdwF/8jsOntipWrqikOfy+83Y1jOalU/MN+akEWeVXNGmRe7c17qKDi731Pvg==
+X-Received: by 2002:a05:6000:410a:b0:385:e8e7:d09a with SMTP id ffacd0b85a97d-38a8b0c71cbmr6605006f8f.2.1736515882478;
+        Fri, 10 Jan 2025 05:31:22 -0800 (PST)
 Received: from [127.0.1.1] ([2a01:e0a:5ee:79d0:2555:edac:4d05:947d])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38a8e38c990sm4598193f8f.56.2025.01.10.05.31.19
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38a8e38c990sm4598193f8f.56.2025.01.10.05.31.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 05:31:20 -0800 (PST)
+        Fri, 10 Jan 2025 05:31:21 -0800 (PST)
 From: amergnat@baylibre.com
-Subject: [PATCH v7 0/6] Add display support for the MT8365-EVK board
-Date: Fri, 10 Jan 2025 14:31:10 +0100
-Message-Id: <20231023-display-support-v7-0-6703f3e26831@baylibre.com>
+Date: Fri, 10 Jan 2025 14:31:11 +0100
+Subject: [PATCH v7 1/6] dt-bindings: display: mediatek: dpi: add
+ power-domains example
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,11 +83,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAB4hgWcC/4XPTW7DIBAF4KtErEsFDBCSVe8RdcHPUCOltgWuF
- Svy3QtZVq5YsHgjzfeGJymYExZyPT1JxjWVNI01nN9OxA92/EKaQs1EMAG8PhpSme92o+Vnnqe
- 8UK8lNw4YSn4hdcvZgtRlO/qh7S1YFt7mc8aYHq+m22fNQyrLlLdX8crb9P+OlVNGlTeaYVAew
- H04u92Ty/jup2/SuFV0CFEJAI/GaOmEOB8Q0CGgXQFgTAQMII+ukB1CVgKDEei4NtHxA0J1CNU
- +cmEqcpTOgDogdIfQlfDaRhlBRhnMH2Lf91+2AikpGAIAAA==
+Message-Id: <20231023-display-support-v7-1-6703f3e26831@baylibre.com>
+References: <20231023-display-support-v7-0-6703f3e26831@baylibre.com>
+In-Reply-To: <20231023-display-support-v7-0-6703f3e26831@baylibre.com>
 To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
  Philipp Zabel <p.zabel@pengutronix.de>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -104,134 +104,58 @@ Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
  Alexandre Mergnat <amergnat@baylibre.com>, 
  Fabien Parent <fparent@baylibre.com>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4825; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=/0JXe0fwWtlGrtBrYJBc+5+8TOE60mCncIXc9dv8OUc=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBngSEnsrSlHb849yrVjHRbuAtAZoecmTQBJGX5G7lh
- KH2cSzyJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ4EhJwAKCRArRkmdfjHURUfzEA
- CYv/Zza/8usW8Ij+qBfzlFEhg6kMzJ65XY/77heiRT4LAzc6eqMzNpN1g7ZEkpjGaql0584Po1m8oT
- anLSFwqw0IFJsrunAyXirWg/RKY7Ytdi9aheiAysFdD8u6QpzTkDpMp77K6OoD6/MhGSdDJa+v4ZAG
- zFYCmZqyWIV8dALLIdC7HSC8O06RjoJuxJ07G7nFeQ9JfsZ7AfXtFnj6mp0BnHpX5uSKKgbR+U0nxN
- 7KFMRXrqcx+rKW5tJIrp2JQrx3SV8Jxqbt+XMzXuCR8RS+ElXyzqcemGMNpSkDVpOAHGnJd+kaFbFC
- v5BEetLS9PTdj7dlPBrBhJxZdmLGa/ysWLKB8HmQkjpfXTz425crctcXVFCvyaZhS7W5SMHpPPBH02
- jXRYoTbbkSKCMk2jzipwHLPbKvQcLtJZJtsRRdppXSk0TS5XFaLyYroAd9wzL30QNTD8Z8+KRMmRZG
- 2Zpej/jcyGbPYscyv9PpsIHbzrDthvJJIV+zPxxhJ9z5HcukLyFBAxYTewBbTyrW5o9t+AAjGFih1b
- uTSFaxtDb3hm0Uv/UmxYftDo47pY7POhbTjcvIMMcFFEi48qp4WFcUzvisI+zTwG8SorDTC9XY6Hvi
- vCvsmYlfUmf3fEKzfxouAz0PwuuxSw5gu0d14weZfqf4s9OiMIt/2kRI9fQw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1612; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=1JKrAs8ef9/G6ny5cfhuHd3DFIbQFHxMMv9wBH5/HqA=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBngSEneE6zOf8vEEwrluvT4BlZNUmmzfnh8+dgMnkc
+ OKzALE+JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ4EhJwAKCRArRkmdfjHURYjpEA
+ DGf6hGHBkuj/S8FHNwSNHu+zjuNgTJivuTPoZm6K2uGhF9lAzwXa43mbbEEJya8ShfFWrU/m3v9KHP
+ 1Dzgk9DJTlOO1lvgkRv+N6DK8ptMx1C6Aef4kKpP6+dBg5x3dP5J4zL//RyEIZODOEq8GpIRXZMHxn
+ HcNdOkYOM65h8eFd/qcfkRbgOH8zSSUUhdoaqPedu3H0TreyDnOD7i8q7k4SIOYYnnXsjxSiPqh3RE
+ FPmcXUYg2ui411JC5xLGwyK/ui6RIx0/KpfKiH/ZJeT1SvepMvt4bme6wiqZDJjLKFYqkH6SRX5QDP
+ FkMuLf2eqqkjko8WqYCdK2peo26/J/hwDlpMuokN9uJbQ3WR2zIxYjHy5xiexOtkqAjtxeXdJLlJUB
+ FAhBmKw6sLzd/9K/D4r1sCSi4FcGfN7VSvIaL51H44UPdMl0etiRaMmMr+8upGdIF/KW1F+d+CAEbi
+ eLKoW0d2PUIV2IeBfqXMEnZA+6J1jLZBLdsNdMvUmSoOhyB7utbOF9r7axjT8szg47IsXC6vB+4n8B
+ md1my3Uh1z/civLxqDjHZblMSbEhyNglYKeXBleWsc2Dxqs2/dMiWkAslxuxoFbOxq3xPY2yICClKB
+ 32h3cbGNzGnVEne9TVLq23Z5N0xPqsYSqBDfnDJv+PV0Ihw8CS0a2PEsuYIg==
 X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
  fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 
-The purpose of this series is to add the display support for the mt8365-evk.
+From: Fabien Parent <fparent@baylibre.com>
 
-This is the list of HWs / IPs support added:
-- Connectors (HW):
-  - HDMI
-  - MIPI DSI (Mobile Industry Processor Interface Display Serial Interface)
-- HDMI bridge (it66121)
-- DSI pannel (startek,kd070fhfid015)
-- SoC display blocks (IP):
-  - OVL0 (Overlay)
-  - RDMA0 (Data Path Read DMA)
-  - Color0
-  - CCorr0 (Color Correction)
-  - AAL0 (Adaptive Ambient Light)
-  - GAMMA0
-  - Dither0
-  - DSI0 (Display Serial Interface)
-  - RDMA1 (Data Path Read DMA)
-  - DPI0 (Display Parallel Interface)
+DPI is part of the display / multimedia block in MediaTek SoCs, and
+always have a power-domain (at least in the upstream device-trees).
+Add the power-domains property to the binding example.
 
-The Mediatek DSI, DPI and DRM drivers are also improved.
-
-The series is rebased on top of Angelo's series [1] to
-use the OF graphs support.
-
-Regards,
-Alex
-
+Fixes: 9273cf7d3942 ("dt-bindings: display: mediatek: convert the dpi bindings to yaml")
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: CK Hu <ck.hu@mediatek.com>
 Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
-Changes in v7:
-- Improve defconfig commit description
-- Add comment in the DTS about pins clash with ethernet and HDMI (DPI0)
-- Link to v6: https://lore.kernel.org/r/20231023-display-support-v6-0-c6af4f34f4d8@baylibre.com
+ Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes in v6:
-- Fix DPI binding: remove the duplicated property (power-domains).
-- Squash defconfig commit.
-- Fix the property order in the DTS.
-- Link to v5: https://lore.kernel.org/r/20231023-display-support-v5-0-3905f1e4b835@baylibre.com
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+index 0f1e556dc8ef..d5ee52ea479b 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+@@ -116,11 +116,13 @@ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/clock/mt8173-clk.h>
++    #include <dt-bindings/power/mt8173-power.h>
+ 
+     dpi: dpi@1401d000 {
+         compatible = "mediatek,mt8173-dpi";
+         reg = <0x1401d000 0x1000>;
+         interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_LOW>;
++        power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
+         clocks = <&mmsys CLK_MM_DPI_PIXEL>,
+              <&mmsys CLK_MM_DPI_ENGINE>,
+              <&apmixedsys CLK_APMIXED_TVDPLL>;
 
-Changes in v5:
-- Patch merged, then removed from the series:
-  - dt-bindings: display: mediatek: rdma: add compatible for MT8365 SoC
-  - dt-bindings: display: mediatek: ovl: add compatible for MT8365 SoC
-  - dt-bindings: display: mediatek: gamma: add compatible for MT8365 SoC
-  - dt-bindings: display: mediatek: dpi: add compatible for MT8365
-  - dt-bindings: display: mediatek: dsi: add compatible for MT8365 SoC
-  - dt-bindings: display: mediatek: dither: add compatible for MT8365 SoC
-  - dt-bindings: display: mediatek: color: add compatible for MT8365 SoC
-  - dt-bindings: display: mediatek: ccorr: add compatible for MT8365 SoC
-  - dt-bindings: display: mediatek: aal: add compatible for MT8365 SoC
-- Enable STARTEK KD070FHFID015 panel in the defconfig.
-- Rebase on top of 6.13-rc6.
-- Link to v4: https://lore.kernel.org/all/20231023-display-support-v4-0-ed82eb168fb1@baylibre.com
-
-Changes in v4:
-- Patch merged, then removed from the series:
-  - dt-bindings: display: mediatek: dpi: add power-domains property
-  - dt-bindings: pwm: mediatek,pwm-disp: add compatible for mt8365 SoC
-  - clk: mediatek: mt8365-mm: fix DPI0 parent
-- Remove mediatek,mt8365-dpi compatible from mtk_drm_drv.c because it
-  use the mt8192's data. It's a miss.
-- Add MT8365 OF graphs support, remove the hardcoded display path and
-  rebase on top of Angelo's series [1].
-- Link to v3: https://lore.kernel.org/r/20231023-display-support-v3-0-53388f3ed34b@baylibre.com
-
-Changes in v3:
-- Drop "drm/mediatek: add mt8365 dpi support" because it's the same
-  config as mt8192 SoC
-- Drop "dt-bindings: pwm: mediatek,pwm-disp: add power-domains property"
-  because an equivalent patch has been merge already.
-- Add DPI clock fix in a separate commit.
-- Improve DTS(I) readability.
-- Link to v2: https://lore.kernel.org/r/20231023-display-support-v2-0-33ce8864b227@baylibre.com
-
-Changes in v2:
-- s/binding/compatible/ in commit messages/titles.
-- Improve commit messages as Conor suggest.
-- pwm-disp: Set power domain property for MT8365. This one is optionnal
-  and can be used for other SoC.
-- Fix mediatek,dsi.yaml issue.
-- Remove the extra clock in the DPI node/driver and fix the dpi clock
-  parenting to be consistent with the DPI clock assignement.
-- Link to v1: https://lore.kernel.org/r/20231023-display-support-v1-0-5c860ed5c33b@baylibre.com
-
-[1] https://lore.kernel.org/lkml/20240516081104.83458-1-angelogioacchino.delregno@collabora.com/
-
----
-Alexandre Mergnat (4):
-      drm/mediatek: dsi: Improves the DSI lane setup robustness
-      arm64: defconfig: enable display support for mt8365-evk
-      arm64: dts: mediatek: add display blocks support for the MT8365 SoC
-      arm64: dts: mediatek: add display support for mt8365-evk
-
-Fabien Parent (2):
-      dt-bindings: display: mediatek: dpi: add power-domains example
-      drm/mediatek: add MT8365 SoC support
-
- .../bindings/display/mediatek/mediatek,dpi.yaml    |   2 +
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts        | 245 ++++++++++++++-
- arch/arm64/boot/dts/mediatek/mt8365.dtsi           | 336 +++++++++++++++++++++
- arch/arm64/configs/defconfig                       |   2 +
- drivers/gpu/drm/mediatek/mtk_drm_drv.c             |   8 +
- drivers/gpu/drm/mediatek/mtk_dsi.c                 |   2 +
- 6 files changed, 594 insertions(+), 1 deletion(-)
----
-base-commit: 9d89551994a430b50c4fffcb1e617a057fa76e20
-change-id: 20231023-display-support-c6418b30e419
-
-Best regards,
 -- 
-Alexandre Mergnat <amergnat@baylibre.com>
+2.25.1
 
 
