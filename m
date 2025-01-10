@@ -1,59 +1,65 @@
-Return-Path: <devicetree+bounces-137571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B820AA098A4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 18:35:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D930A098AD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 18:38:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFA163A1D94
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 17:35:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58D983A144E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 17:38:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C679F2144AE;
-	Fri, 10 Jan 2025 17:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 409F7214231;
+	Fri, 10 Jan 2025 17:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6cAy4m7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uyPnzk7w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6E02144AC;
-	Fri, 10 Jan 2025 17:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1345B212B17;
+	Fri, 10 Jan 2025 17:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736530532; cv=none; b=f8VSdI8I4UdCv4Z5GD46uIzS4s5NM/FtRuE0SYHnAPM9M4EHG0UbDdJ724RfV6OZ14DAxj3w8v+XLsyZrUFa1p97iLbvTLXJdVV8YmpBEkxaRlb7w+dy5eJeaBYoag18I1EETbPKLmkI+GgNubZkZ0tsht8563DI5S9To097CCE=
+	t=1736530710; cv=none; b=PMVY51L9tpePgSstiuBYFgI3cERcuULrqLj1VgAVAsYJH5+KaIGSEa1jcPMDWmbwrC9kcvlhnBki/XHdrTl5P+5lWDYqJMEJ/H02v6fOsxsrc2MGMIHYJGPZt2Vn6KYV+FI6BWW4AYcPl5UpLJjvlj5fAEA6WXpyeoA+w92/kaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736530532; c=relaxed/simple;
-	bh=5KZvj0UJW7q8uEo+QUesHwTgLnEO03HmGRUGeRMyG9w=;
+	s=arc-20240116; t=1736530710; c=relaxed/simple;
+	bh=Sh83PnEWnHDXBwVSqxmjLspOETkOihQ+AZ7/lgmMC2s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XMZQsgCdPh3CiPo5B4fgNzU6H8jdOhCt0kLsXmktixh9jG239j3+yiC74UwR306/J4znkFw3pnvgjexLeZWlGmSxNHRd5L/uDEvRJiLmBQL2asXBE9hYhD78Xm2b9ZCzeET/BuHeQMM3QELlO+jcd/vHck9+Lalrb+hF2yIv/S0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6cAy4m7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF36CC4CED6;
-	Fri, 10 Jan 2025 17:35:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jg88mkL484smPi/GOPojD6YPxvngSg3raUi9cU7UNF1+kk11cwzJe+auXXOt5XiZBiPHNqW/8Oxqz/1IwO/b8L+cq1LnAa7ciGuunj6CVOoi4Hcur0VCVpKURz5CzoH2r7LUnV/VuLh0ovtTjhJXZ1EODJM1JAkh/21KGuRRRww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uyPnzk7w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74C7CC4CED6;
+	Fri, 10 Jan 2025 17:38:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736530532;
-	bh=5KZvj0UJW7q8uEo+QUesHwTgLnEO03HmGRUGeRMyG9w=;
+	s=k20201202; t=1736530709;
+	bh=Sh83PnEWnHDXBwVSqxmjLspOETkOihQ+AZ7/lgmMC2s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U6cAy4m7SRrKAMozBVgurC2+n8aTsRrKOBvoQ5NLYDdDlrY9cdKkI5fgC7/S8DAVT
-	 rxbDnkw+r+Q8B+ta9wVNFD1w6kCXYyEpDox2porATxo/MLopH5aerCTCkca5IekCMd
-	 DW9q147yCTUYucmR/Ot3GuBZ82XVGzJ8ywViymVOSTCn6ykR9/7XMcc9KLiHKWfGk4
-	 GtqsOj3msFi7UF3o4Kp7GGEeU6Jsm96kuHoxBG+VlMXkgjnjmLaztqp+bLw8rQltb8
-	 tNuLX5qCNFVJQ/tmmhVsUBojKgLPF7CWGLnRZD/U/zVCqh/sxSZamn1QWaHxQ1ISLQ
-	 c71EwuPgpOksA==
-Date: Fri, 10 Jan 2025 11:35:31 -0600
-From: Rob Herring <robh@kernel.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Romain Naour <romain.naour@smile.fr>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-	conor+dt@kernel.org, krzk+dt@kernel.org, kristo@kernel.org,
-	vigneshr@ti.com, nm@ti.com, Romain Naour <romain.naour@skf.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: mfd: syscon: Add
- ti,j721e-acspcie-proxy-ctrl compatible
-Message-ID: <20250110173531.GA3025883-robh@kernel.org>
-References: <20250110100331.1642242-1-romain.naour@smile.fr>
- <20250110153520.GA2904744-robh@kernel.org>
- <3e8ccd7d-0bc1-4ccb-8446-c9d10efbc969@ti.com>
+	b=uyPnzk7w4AicheOsXux1iyMjkYXV5FIm5Wm2KaCthQ/p3mATVgtykZ8opf0G7Sdna
+	 PUaQOZ1dMPInjPS2P6KVDu8HatoT+njo77pZpUtN+8CdEpQTIJ/1ZY6odaoXjbQtNT
+	 dpDCpcKCZJ4EgIMxZGsMxKMDVN8f0EFbnjMHKqrk3PUtqZxknCNCw3Vu49FlRal0YJ
+	 os5KHe3jKYeHuThvBgSIE1Rr76ooEHiWmDXQUSjyA9SpZhk5DJxHq3l7JrGpXpiFUl
+	 0y5t6cMRNFr5q8thgm+LbsYFS/jOv4DgAkcQLdjWaKWXCkjP5pa4BiAyZkTWgRcvbV
+	 R1imBOKzuGf9g==
+Date: Fri, 10 Jan 2025 11:38:28 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+	Oreoluwa Babatunde <quic_obabatun@quicinc.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Zijun Hu <quic_zijuhu@quicinc.com>, linux-kernel@vger.kernel.org,
+	Grant Likely <grant.likely@secretlab.ca>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Andreas Herrmann <andreas.herrmann@calxeda.com>,
+	stable@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 01/14] of: Correct child specifier used as input of
+ the 2nd nexus node
+Message-ID: <173653070694.3215354.8498734202934097478.robh@kernel.org>
+References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
+ <20250109-of_core_fix-v4-1-db8a72415b8c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,123 +68,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3e8ccd7d-0bc1-4ccb-8446-c9d10efbc969@ti.com>
+In-Reply-To: <20250109-of_core_fix-v4-1-db8a72415b8c@quicinc.com>
 
-On Fri, Jan 10, 2025 at 10:17:15AM -0600, Andrew Davis wrote:
-> On 1/10/25 9:35 AM, Rob Herring wrote:
-> > On Fri, Jan 10, 2025 at 11:03:30AM +0100, Romain Naour wrote:
-> > > From: Romain Naour <romain.naour@skf.com>
-> > > 
-> > > The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
-> > > SoC are used to drive the reference clock to the PCIe Endpoint device via
-> > > the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
-> > > obtain the regmap for the ACSPCIE_CTRL register within the System
-> > > Controller device-tree node in order to enable the PAD IO Buffers.
-> > > 
-> > > Using the ti,j721e-acspcie-proxy-ctrl compatible imply to use "Proxy1"
-> > > address (1A090h) instead of "Proxy0" (18090h) to access
-> > > CTRLMMR_ACSPCIE0_CTRL register:
-> > > 
-> > >    CTRLMMR_ACSPCIE0_CTRL Register (Proxy0 Offset = 18090h; Proxy1 Offset = 1A090h)
-> > > 
-> > > "Proxy0" is used as the default access path that can be locked with the
-> > > help of "CTRLMMR_LOCK0_KICK0" and "CTRLMMR_LOCK0_KICK1" registers.
-> > > 
-> > > The Technical Reference Manual for J721e SoC with details of the
-> > > ASCPCIE_CTRL registers is available at:
-> > > https://www.ti.com/lit/zip/spruil1
-> > > 
-> > > Signed-off-by: Romain Naour <romain.naour@skf.com>
-> > > ---
-> > > v5:
-> > >    - Add missing change to the J721e system controller binding
-> > >      to avoid DT check warning when the new acspcie0_proxy_ctrl (syscon)
-> > >      will be added to J721e system controller node (Andrew Davis).
-> > > 
-> > >    https://lore.kernel.org/linux-devicetree/90f47fae-a493-471d-8fe6-e7df741161be@ti.com/
-> > > 
-> > >    - Explain why "Proxy1" address (1A090h) should be used while using
-> > >      ti,j721e-acspcie-proxy-ctrl compatible (Siddharth Vadapalli).
-> > > 
-> > >    https://lore.kernel.org/linux-devicetree/begojbvvrpyjfr3pye7mqwiw73ucw5ynepdfujssr4jx4vs33a@pwahnph3qesl/
-> > > 
-> > > v4: Add missing change in the second list (From Andrew Davis) [1]
-> > >    Rebase after the ti,j784s4-acspcie-proxy-ctrl compatible fix [2]
-> > >    [1] https://lore.kernel.org/linux-devicetree/20250103174524.28768-1-afd@ti.com/
-> > >    [2] https://lore.kernel.org/linux-devicetree/20250103174524.28768-2-afd@ti.com/
-> > > 
-> > > v3: new commit
-> > > ---
-> > >   Documentation/devicetree/bindings/mfd/syscon.yaml           | 2 ++
-> > >   .../bindings/soc/ti/ti,j721e-system-controller.yaml         | 6 ++++++
-> > >   2 files changed, 8 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > > index 0e68c69e7bc9..1f3e67f432e7 100644
-> > > --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > > +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > > @@ -115,6 +115,7 @@ select:
-> > >             - ti,am625-dss-oldi-io-ctrl
-> > >             - ti,am62p-cpsw-mac-efuse
-> > >             - ti,am654-dss-oldi-io-ctrl
-> > > +          - ti,j721e-acspcie-proxy-ctrl
-> > >             - ti,j784s4-acspcie-proxy-ctrl
-> > >             - ti,j784s4-pcie-ctrl
-> > >             - ti,keystone-pllctrl
-> > > @@ -213,6 +214,7 @@ properties:
-> > >             - ti,am625-dss-oldi-io-ctrl
-> > >             - ti,am62p-cpsw-mac-efuse
-> > >             - ti,am654-dss-oldi-io-ctrl
-> > 
-> > > +          - ti,j721e-acspcie-proxy-ctrl
-> > >             - ti,j784s4-acspcie-proxy-ctrl
-> > 
-> > How do these 2 compare? Are they compatible?
-> > 
+
+On Thu, 09 Jan 2025 21:26:52 +0800, Zijun Hu wrote:
+> From: Zijun Hu <quic_zijuhu@quicinc.com>
 > 
-> Yes, they are 100% identical and compatible, but we were told
-> to make a new string anyway.. [0]
+> API of_parse_phandle_with_args_map() will use wrong input for nexus node
+> Nexus_2 as shown below:
 > 
-> [0] https://lore.kernel.org/all/1bfdf1f1-7542-4149-a85d-2ac4b659b26b@kernel.org/
-
-Then you should have:
-
-"ti,j721e-acspcie-proxy-ctrl", "ti,j784s4-acspcie-proxy-ctrl", "syscon"
-
+>     Node_1		Nexus_1                              Nexus_2
+> &Nexus_1,arg_1 -> arg_1,&Nexus_2,arg_2' -> &Nexus_2,arg_2 -> arg_2,...
+> 		  map-pass-thru=<...>
 > 
+> Nexus_1's output arg_2 should be used as input of Nexus_2, but the API
+> wrongly uses arg_2' instead which != arg_2 due to Nexus_1's map-pass-thru.
 > 
-> > >             - ti,j784s4-pcie-ctrl
-> > >             - ti,keystone-pllctrl
-> > > diff --git a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
-> > > index 378e9cc5fac2..16929218d611 100644
-> > > --- a/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
-> > > +++ b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
-> > > @@ -68,6 +68,12 @@ patternProperties:
-> > >       description:
-> > >         The node corresponding to SoC chip identification.
-> > > +  "^syscon@[0-9a-f]+$":
-> > > +    type: object
-> > > +    $ref: /schemas/mfd/syscon.yaml#
-> > > +    description:
-> > > +      This is the ASPCIe control region.
-> > 
-> > So this is a syscon child of a syscon. The primary reason for 'syscon'
-> > compatible is to create a regmap. Why can't you use the parent's syscon?
-> > 
+> Fix by always making @match_array point to @initial_match_array into
+> which to store nexus output.
 > 
-> The parent node will not be a syscon soon. We made this whole bus a "syscon"
-> so we could just poke any register we wanted which was a hacky solution we
-> want to fix. The parent will be converted into a normal "simple-bus".
+> Fixes: bd6f2fd5a1d5 ("of: Support parsing phandle argument lists through a nexus node")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> ---
+>  drivers/of/base.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Sigh... And that can be done without ABI breakage?
+Applied, thanks!
 
-> Most of the IP in this region can be described using normal DT devices,
-> but there are still just a couple registers like this where we need a raw
-> syscon (or we could make a proper device driver for these registers, but
-> that might be excessive, instead seems easy enough to just poke them
-> directly from the PCIe driver).
-
-Given it was already a syscon, keeping that is fine.
-
-Rob
 
