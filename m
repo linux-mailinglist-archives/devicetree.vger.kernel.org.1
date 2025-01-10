@@ -1,163 +1,111 @@
-Return-Path: <devicetree+bounces-137584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FCEEA09C2A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 21:07:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E15BA09C6A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 21:27:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BB1516ADFA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 20:07:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FB8F3ABBC7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 20:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A16C206F33;
-	Fri, 10 Jan 2025 20:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02E972144BC;
+	Fri, 10 Jan 2025 20:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vK+0sq6P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C18BA50;
-	Fri, 10 Jan 2025 20:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBCC20DD43;
+	Fri, 10 Jan 2025 20:26:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736539627; cv=none; b=U77gjd5zaCeTBsMSQeQgfQkiQL2ZqVCA3o8lZYCBe9/NrxYQzuwDCnbWG0rD+IkPgc2tX5e4N5Fnr4O0qMZyyAgAHvPbR4xtvjzLdxLvnDXNIvCB6FpVbGKncl4Bapqa0Ptds1pzfC3glQcv1ultzIgWgqIaorfmJL2q88lKXdI=
+	t=1736540810; cv=none; b=QYt5d+gONl0DtKFxEHIkem/Sd3M4glxvwOJ+8suVg82/WOTzVzOr3c1rbx3XB3ChAnjeAYWbGwIdK1olgAQew9Pe/z815YCpp0aRHPm2+M7osnpmXOWhnHxefmdQZoL+g9uRg0EgyfWw44SFAhUuLGbLthosKijVlvLJ/z/E+K0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736539627; c=relaxed/simple;
-	bh=LF9XYXci0MeCLYuEFF59z8ZcKzUi287BWnweDLP6qrU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=CVdEamhEfzrPOFAXgDu2pDpV9aMtEweVW8HM7kWjfETmvW+BhzExj5Hz1KJ08e44xHC+eSPYbiULsOEym3tewc1BWmjbdauSzqs59a/whmGa5fz6IPkCjUqQJJIBdsp5nQu9HNWqNcGW/4ULC3UGbAus2IK7KpfTq1qm2X2FwmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com; spf=pass smtp.mailfrom=korsgaard.com; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=korsgaard.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8CDA9C0003;
-	Fri, 10 Jan 2025 20:07:00 +0000 (UTC)
-Received: from peko by dell.be.48ers.dk with local (Exim 4.96)
-	(envelope-from <peter@korsgaard.com>)
-	id 1tWLHX-009inj-1p;
-	Fri, 10 Jan 2025 21:06:59 +0100
-From: Peter Korsgaard <peter@korsgaard.com>
-To: Guenter Roeck <linux@roeck-us.net>,  Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org,  linux-hwmon@vger.kernel.org,  Jean Delvare
- <jdelvare@suse.com>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document
- default-pwm property
-References: <20250103101448.890946-1-peter@korsgaard.com>
-	<20250103195810.GA2624225-robh@kernel.org>
-	<dbf7cdd3-c5ab-4801-be85-163124b8a898@korsgaard.com>
-	<20250106173805.GA501301-robh@kernel.org>
-Date: Fri, 10 Jan 2025 21:06:59 +0100
-In-Reply-To: <20250106173805.GA501301-robh@kernel.org> (Rob Herring's message
-	of "Mon, 6 Jan 2025 11:38:05 -0600")
-Message-ID: <87sepq8mcc.fsf@dell.be.48ers.dk>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1736540810; c=relaxed/simple;
+	bh=9sJhhLhbcY18Tf7+Gh1rbIJx51Zmsf3h1iDV5xcql8k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e6QA8iTRaIuTb37PElcCY1uQPDC2eNmCQI6BPvx0IW3ivkXPOo/BZuGTHhxY5eU2lNo/3TXy6xGuDA9yD5CYBPv3OBuBxy1eBCpu9Qpe8iv9DvE1o1GWHBBWcG1UVJXtfq+6BzHoIb66AcGv21/G1IjnRPjopTWvcigI4QpLRVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vK+0sq6P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21CBEC4CED6;
+	Fri, 10 Jan 2025 20:26:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736540810;
+	bh=9sJhhLhbcY18Tf7+Gh1rbIJx51Zmsf3h1iDV5xcql8k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vK+0sq6P0IHLDRsJVpcFuiWvwB+fMH96Ldot5bk7nU8OJuSwhnqYvgsipTA286DXA
+	 4KY7yZJ8pR1rH7v9yz/qBn/FxAsw029v61y6A1SqD/sbUu2PxP9tmvIQ/DkBkWE8o/
+	 4Lx5EvlW12EJ+UfX07O6dvsG2wD8P5EFfZvXb0TeTRW49zzMzkMptrvVJLDdNIhYhN
+	 cXopzd1PNq5Fq9DGUTqctS5kAAs2P8Jk+mTW/JME/cFhgkgqGxLs93O+9G9FL9F5Gx
+	 dA8mNYVwIF/e4FpG7/lhukTdPzVWea1uPG40Bddq79eAI/zW8fsInN8fX07s+TG9vp
+	 oJ+V+3ElACwbg==
+Date: Fri, 10 Jan 2025 14:26:49 -0600
+From: Rob Herring <robh@kernel.org>
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Grant Likely <grant.likely@secretlab.ca>,
+	Marc Zyngier <maz@kernel.org>,
+	Andreas Herrmann <andreas.herrmann@calxeda.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Mike Rapoport <rppt@kernel.org>,
+	Oreoluwa Babatunde <quic_obabatun@quicinc.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Zijun Hu <quic_zijuhu@quicinc.com>
+Subject: Re: [PATCH v4 06/14] of: property: Avoiding using uninitialized
+ variable @imaplen in parse_interrupt_map()
+Message-ID: <20250110202649.GA3227291-robh@kernel.org>
+References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
+ <20250109-of_core_fix-v4-6-db8a72415b8c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-GND-Sasl: peter@korsgaard.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250109-of_core_fix-v4-6-db8a72415b8c@quicinc.com>
 
->>>>> "Rob" == Rob Herring <robh@kernel.org> writes:
-On 1/6/25 18:38, Rob Herring wrote:
-
->> I am not sure I what you mean with the RPM reference here? The
->> cooling-levels support in the fan-pwm.c driver is a mapping between cooling
->> levels and PWM values, NOT RPM value.
+On Thu, Jan 09, 2025 at 09:26:57PM +0800, Zijun Hu wrote:
+> From: Zijun Hu <quic_zijuhu@quicinc.com>
 > 
-> Did I say RPM anywhere for this option?
+> parse_interrupt_map() will use uninitialized variable @imaplen if fails
+> to get property 'interrupt-map'.
 > 
-> It is the index of the array that is meaningful to anything outside of
-> the driver. The values are opaque. They are duty cycle in some cases
-> and RPMs in other cases. The thermal subsystem knows nothing about PWM
-> duty cycle nor RPMs.
+> Fix by using the variable after successfully getting the property.
 > 
-> Defining a default-cooling-level would be useful to anyone, not just
-> your usecase.
+> Fixes: e7985f43609c ("of: property: Fix fw_devlink handling of interrupt-map")
+> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> ---
+>  drivers/of/property.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> IOW, you are proposing:
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index dca1a3ebccae1093b2b11f51e8e692bca854d0e3..6245cbff3527d762c16e7f4b7b7b3d4f2e9ddbe6 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1391,9 +1391,9 @@ static struct device_node *parse_interrupt_map(struct device_node *np,
+>  	addrcells = of_bus_n_addr_cells(np);
+>  
+>  	imap = of_get_property(np, "interrupt-map", &imaplen);
+> -	imaplen /= sizeof(*imap);
+>  	if (!imap)
+>  		return NULL;
+> +	imaplen /= sizeof(*imap);
+
+sizeof() is a compile time constant, there's not an actual dereference 
+here.
+
+>  
+>  	imap_end = imap + imaplen;
+>  
 > 
-> default-pwm = <123>;
+> -- 
+> 2.34.1
 > 
-> I'm proposing doing this instead:
-> 
-> cooling-levels = <0 123 255>;
-> default-cooling-level = <1>;
-
-I don't have CONFIG_THERMAL enabled in my builds (and don't know the
-subsystem), but I see the pwm-fan driver has some logic to default to
-the highest cooling level, it just forgets to actually set the PWM to
-match it, so perhaps we can just fix that?
-
-E.G. something like:
-
-commit 02c8ba74eb7dddf210ceefa253385bc8e40f49ae
-Author: Peter Korsgaard <peter@korsgaard.com>
-Date:   Thu Jan 2 18:26:45 2025 +0100
-
-    hwmon: (pwm-fan): Default to the Maximum cooling level if provided
-    
-    The pwm-fan driver uses full PWM (255) duty cycle at startup, which may not
-    always be desirable because of noise or power consumption peaks.
-    
-    The driver optionally accept a list of "cooling-levels" for the thermal
-    subsystem.  If provided, use the PWM value corresponding to the maximum
-    cooling level rather than the full level.
-    
-    Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
-
-diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c
-index 53a1a968d00d..33525096f1e7 100644
---- a/drivers/hwmon/pwm-fan.c
-+++ b/drivers/hwmon/pwm-fan.c
-@@ -499,6 +499,7 @@ static int pwm_fan_probe(struct platform_device *pdev)
- 	const struct hwmon_channel_info **channels;
- 	u32 pwm_min_from_stopped = 0;
- 	u32 *fan_channel_config;
-+	u32 default_pwm = MAX_PWM;
- 	int channel_count = 1;	/* We always have a PWM channel. */
- 	int i;
- 
-@@ -545,11 +546,18 @@ static int pwm_fan_probe(struct platform_device *pdev)
- 
- 	ctx->enable_mode = pwm_disable_reg_enable;
- 
-+	ret = pwm_fan_get_cooling_data(dev, ctx);
-+	if (ret)
-+		return ret;
-+
-+	if (ctx->pwm_fan_cooling_levels)
-+		default_pwm = ctx->pwm_fan_cooling_levels[ctx->pwm_fan_max_state];
-+
- 	/*
--	 * Set duty cycle to maximum allowed and enable PWM output as well as
-+	 * Set duty cycle to default and enable PWM output as well as
- 	 * the regulator. In case of error nothing is changed
- 	 */
--	ret = set_pwm(ctx, MAX_PWM);
-+	ret = set_pwm(ctx, default_pwm);
- 	if (ret) {
- 		dev_err(dev, "Failed to configure PWM: %d\n", ret);
- 		return ret;
-@@ -661,10 +669,6 @@ static int pwm_fan_probe(struct platform_device *pdev)
- 		return PTR_ERR(hwmon);
- 	}
- 
--	ret = pwm_fan_get_cooling_data(dev, ctx);
--	if (ret)
--		return ret;
--
- 	ctx->pwm_fan_state = ctx->pwm_fan_max_state;
- 	if (IS_ENABLED(CONFIG_THERMAL)) {
- 		cdev = devm_thermal_of_cooling_device_register(dev,
-
-
-Guenter, what do you say? This way we don't need any new device tree
-properties. I personally find it less clear than a default-pwm property,
-but oh well.
-
--- 
-Bye, Peter Korsgaard
 
