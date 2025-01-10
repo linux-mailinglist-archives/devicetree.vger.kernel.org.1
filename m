@@ -1,146 +1,217 @@
-Return-Path: <devicetree+bounces-137332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88DAEA08A0A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:27:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A27FAA08A2C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:31:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C448164050
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:27:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C1AF188AC06
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41872080F2;
-	Fri, 10 Jan 2025 08:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E077A207DFF;
+	Fri, 10 Jan 2025 08:31:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aJ22BO3c"
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="rvJHPC1p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2087.outbound.protection.outlook.com [40.107.22.87])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F9BA2080E6;
-	Fri, 10 Jan 2025 08:26:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736497600; cv=none; b=L+mmi2yoNdQKi3Ufv98b5YgJz/d/uyn+kK4oBu7VncAqNK/OhQ2KfGyjUFu7r++L8f1TvpMFltfqXwXnnj1wIsulHBex7u54RSTJMC4MHWHGa32qtu9UJC1scX16Sk5v+Zh6iNp5zCXYcShl3YDBinelpfUCLk3hltvkNn40Wa8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736497600; c=relaxed/simple;
-	bh=SciGJRCmi+0dEFWV/P49VyNcsADs8YerTsNvmxG4tng=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DTYsPVaS1jk/y9y+uTZccYYMsBLmpu1N84+BKSkLUW4mu24AzgYQOnFzoDMG8RRmLvu6ypS+P9yyVJheBv8IcelLB0CVSFYadcpdOyREQvBWsB/F+mSKkL0Uf7xlCcY8M0HKet8ugq+0PxlIEwaSA+r8cZbLjyTANca3nGOboKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aJ22BO3c; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-219f8263ae0so29638865ad.0;
-        Fri, 10 Jan 2025 00:26:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736497599; x=1737102399; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3CjURWEZjlpMd0rMJuVHjwg/chXpPrhzbqpxOKVUWUU=;
-        b=aJ22BO3cClPEshxP7QE83YIPytvXHrAjEWFFt1JsoikSd7OxNXQFZBjzw7XApiyFCg
-         dgkCvpIBa8iETIbC9AZLfNk6H+wy40DdfS83sXAcaeEHbsDogNI2BQWQWfhiW6ackBMV
-         IEOWJdnML9CN1l7RwRnAKKtPy6G/2jXDeHU2nGoRVHh/avfh4THqWnfwtAtdW7uth4qp
-         XiYED5SqzlS/qu4PY7Vyw7k+oMxm24pdPdCXoPtAaWlLbXxiCbm0GZgb5vDCNMg2fnDP
-         TZRdjorWDp9YRYc9GIAqd7QfdaccYjyq46HrqNnvhl6R94L2K5auWG4neuX5AdoWDUuP
-         khdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736497599; x=1737102399;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3CjURWEZjlpMd0rMJuVHjwg/chXpPrhzbqpxOKVUWUU=;
-        b=glYzzmKna22oyLGbfM60w9sbje6YFygKdhYWMfar0zTQRjeWYfUYxwx69muhSZUVMw
-         azaWjAKM0rkwbXJCOQwwbVoNo//ixu+RPY1RIcvzeyBE1InaWXWkfIF683RJddR979WB
-         wDBAwK/T4dO7yk0wrtNPoJLpofU9iAHQFTyJZX9DgLU9LCpKw5SWs11R6knm0TcH+1W6
-         Wai68F3poCWWD7PjyQCeA5RGZwbT6srqKJSt0urq9djQCc6OWUvNR31k+eQC90g0Oi97
-         +VJ+UDIdBQZ+dTAYIQQU4TqsZfzpvhFh0a8RbM9Uw2cjCxA3ZSzDDaV4UzLo4jadgaow
-         wEzw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMNTx8Sbsld+BiwyVgfa5XGovcT3i4E3l20/85f8yMwmp6fe+cGOuZVZl5tWZOPoUqsTardUUpDJvO+oRX@vger.kernel.org, AJvYcCVlDyN/SHjhItXnIYikElCRhjTJgHDuYGMxeokl7fTGO1rPcEGfloZ3xVwEGL6mAa880k3gepJ1NwGA@vger.kernel.org, AJvYcCVs6FBt9WQQMC31fUsfSxYhORcCtU7A/gtxlxtUdJOp4FCenAJDENWF4xc7s6BETMzIz2aUjCFJjWvn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGQFLQDSduIp0i4l0Mmez+KHSwgBR5gDVbWn7ivaTV9LobySbK
-	h1laNWXsW3vE4sdfsVpM1NdLtF/GbB+vAdzDDh8q2nQiIRRLBC9xSkcrbg==
-X-Gm-Gg: ASbGncvU9IcKl9hu5hNzQDPIqoWVS+0KaapXfmPa/N5+D9u8fxRSkjqvQJCZfqyXS4K
-	jsh/6XiCg0Ci9pqPROi5pu2p1tLh9nnDYgvb3hz0qoG+2VrIUR2I8hqOJyKRWz4jXj4wl5rX47/
-	At/B/rcfRZh99L1aw4ppUd0uDKggtPHWTCtSIRaPtVj1Vq84nVSWohKS14AI7VmfV9wMPfLcu74
-	l+KKZKFBd4MLDJKFxIVxJ7EeuJYKNH4H6gsDfAjRsaOFRfc92uFE4efAoCl072Zppzowy6P977f
-	bHDUqDbYyKxYbY04NAC2npAN
-X-Google-Smtp-Source: AGHT+IE1ay5Rfntve2eKGTe7p/iyv8boF0i1TX7FP+zYowSZtpV6RkFz3/9SGXznDYsNhhCveKVzvg==
-X-Received: by 2002:a17:903:2348:b0:215:9d29:9724 with SMTP id d9443c01a7336-21a83fc05c9mr159260855ad.38.1736497598599;
-        Fri, 10 Jan 2025 00:26:38 -0800 (PST)
-Received: from hcdev-d520mt2.. (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f22d0eesm9346815ad.169.2025.01.10.00.26.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 00:26:37 -0800 (PST)
-From: Ming Yu <a0282524688@gmail.com>
-To: tmyu0@nuvoton.com,
-	jdelvare@suse.com,
-	linux@roeck-us.net,
-	corbet@lwn.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Ming Yu <a0282524688@gmail.com>
-Subject: [PATCH v1 2/2] dt-bindings: hwmon: Add support for NCT7716, NCT7717 and NCT7718 in lm90
-Date: Fri, 10 Jan 2025 16:26:12 +0800
-Message-Id: <20250110082612.4107571-3-a0282524688@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250110082612.4107571-1-a0282524688@gmail.com>
-References: <20250110082612.4107571-1-a0282524688@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2000207E04;
+	Fri, 10 Jan 2025 08:31:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.87
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736497892; cv=fail; b=Iaorh5/Il7iqIacArwjbHqTDx3EpxslyPVjtjT/BguGHESQMiXlPGWoVm5ajF8aT2eSoIOSdBvpYmmnKfhT13qcJ8UIEl+HPcGojr2Fw2w9n9r2omDsTRtjxbKYspME6NnqYkNNA68Q4qifOuUU0zDWGwjPhrom+2y4raL0HJ4Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736497892; c=relaxed/simple;
+	bh=WsJTtm3IZLpgCxuU655q0e4i/Zkyxvm8nTFhQIcOxow=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=kvgsHvIFxsVxX/Nmp2I2EPqJhIUEBjVrWzN2x+AESCn8GiUCLgxwvdwCMVVSQGPJ+YpSIX/TSlhII/YQxXHzgJkCuuuuwEPM+pXGxEP7/RZw2iDCT5IUn4i6yshDtVthUZCRxliRhN4C/YhNPnCzxs7f0wHvHZBU27rw1hx5i44=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=rvJHPC1p; arc=fail smtp.client-ip=40.107.22.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SaZRyOEYLqVxA23PaD9Ez1vHTE8mwbPf7Zuak+RQLQbaZXdA7jVhTVHlXiH7HaSuVJM1aLsEGxyPHRBPTydUMPtT1/qJlQfxDpePjbQ2Q8uFHXtHmwLnai78iA4KXuRcKG3jNjYh0MmMcZFaz6ITzs7JLwLY99z5YBz8VKCe7rwxIZUL64Ml08DMKGW/BpjGgXwZdWMuDRk8zZICO29frWfbaL3l+XYYT93o6bqPgerSMAt7Vvp8a2NsQiaECU3gGGp141lEYgiu3U2t0ZB6JGyNDRtLIpacN0c+EYKbyyBLPGAWE3Pagwz+rWotpvkiihBQH+UO6BJ9V2drY3k/0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WsJTtm3IZLpgCxuU655q0e4i/Zkyxvm8nTFhQIcOxow=;
+ b=mzFZvoWbzcDZqK5Z4QqtGQOi4JQviV1Aakn0hEkTliRhmwnPg8bzp/PWg+iBqAsjAgGMqbsXyOdOAel/Y9dl2B9CeN7j0/jxfQHiWjxX9mCH8jNu2Q/8OOBVvFfhb0JUiw1Ebk1lDdDLuScGC8QgUwGdHLrbu1VxWvjG5l8Wkesi5gDSbrgSX1bJDKz3G8zFqeSXYESLOFRgUOFZ5I/vqHjdQS2hN59POcAz+YIyvLUIIxmjTulRZCwVUoApcJ7En5b4Yq+zNl6lmYlEJ/MZponBdhin6Imb3qkyI9nGDT9xlBt+GyVIYELhu3rQlt9oeo2/s8i+pDTCEQNjeWkyow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=leica-geosystems.com; dmarc=pass action=none
+ header.from=leica-geosystems.com; dkim=pass header.d=leica-geosystems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WsJTtm3IZLpgCxuU655q0e4i/Zkyxvm8nTFhQIcOxow=;
+ b=rvJHPC1pLeVOUYpgFreDpxkTQXfO8YDYS4XlTAayGQHUrSqJ9B7R2nLr5WgulSoPvHGecl8Dz/0dJin0HEYvrK2kVloB0Q3ohxMuKe9aFBmJK0Bs7h9tUS1+xiUbO0XaeihmvSly/u/BvqyHKXP8NTl1I0JDZG6y0+fTu4kuPpQ=
+Received: from DBAPR06MB6901.eurprd06.prod.outlook.com (2603:10a6:10:1a0::11)
+ by DB9PR06MB7642.eurprd06.prod.outlook.com (2603:10a6:10:256::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.12; Fri, 10 Jan
+ 2025 08:31:27 +0000
+Received: from DBAPR06MB6901.eurprd06.prod.outlook.com
+ ([fe80::3988:68ff:8fd1:7ea0]) by DBAPR06MB6901.eurprd06.prod.outlook.com
+ ([fe80::3988:68ff:8fd1:7ea0%7]) with mapi id 15.20.8335.011; Fri, 10 Jan 2025
+ 08:31:27 +0000
+From: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
+To: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
+	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"johannes@sipsolutions.net" <johannes@sipsolutions.net>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+CC: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+	"m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: rfkill-gpio: enable
+ booting in blocked state
+Thread-Topic: [PATCH net-next 1/2] dt-bindings: net: rfkill-gpio: enable
+ booting in blocked state
+Thread-Index: AQHbYzh2w1YJSGJUlk+ax+ZtkGGI2LMPraOA
+Date: Fri, 10 Jan 2025 08:31:27 +0000
+Message-ID: <eb2d95fd-ae79-4bab-b4f8-8fc56e10c7bc@leica-geosystems.com>
+References: <20250110081902.1846296-1-catalin.popescu@leica-geosystems.com>
+In-Reply-To: <20250110081902.1846296-1-catalin.popescu@leica-geosystems.com>
+Accept-Language: en-CH, en-US
+Content-Language: aa
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=leica-geosystems.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DBAPR06MB6901:EE_|DB9PR06MB7642:EE_
+x-ms-office365-filtering-correlation-id: 7ad77271-2f27-4108-0c66-08dd31512d3c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018|921020;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?ZWNydUNkNU4xTDZ0MkNqRjhkZFNSQkhkelRBYWZWVDBVKzVHNWdvaDg0QTdH?=
+ =?utf-8?B?MmV0VGI3ZDMxK2R1T0prbnFiak8rOVFBK3lsT1lTcFJwMncxanpNYnlicnpM?=
+ =?utf-8?B?L251ZWY3WGpNWDM3dldhdXhEVldFbitiTU9wQlo2YWNWeit0bXdsWWJ6ZmRs?=
+ =?utf-8?B?eU9BZWtrZ1cvWitKL1lpYmRRZjMxTWxiK2QzRGJwWkxJZ01RNEQyRnlBajBJ?=
+ =?utf-8?B?Qk9jVm5iRVpkVzZ2bVBDa2Nyb3hUd1RiNmg5bTVqY2dsa0EwTkdsOHBhTHN5?=
+ =?utf-8?B?SmhMQ1FtdzFGYUNicVdnbU1OQUlLTVlPYWJUQlpIVEVhT2w1clpUeFJDQU1w?=
+ =?utf-8?B?V1RMM2tWNTdReWJTSkdwcmp2OTBUSW9HOEo3SEtKMk8wTjdmTmdlS05kNHpN?=
+ =?utf-8?B?L3RjV09jeENRRVVYdys2ZG8ydGkwbUQ5WmowNVFnTHhqZWpEVTF2NTVRdWVq?=
+ =?utf-8?B?K2RuS0pVSnM1aVRGRFVYeVdUclVQZmN4WWZGU0NZV3A2MEtPd2lOZm5kRUtQ?=
+ =?utf-8?B?RUhiUkl1QUtlV3c1THNLN3ZEd2lCYUhnU0dlNmJmdEt1YUFCNm5Fc3kzS0M1?=
+ =?utf-8?B?Q2lOM21nR3FVQkhPc21Ea3lYS0l4TEdJRng0WXRDZ1RDSzJuQ25idEJFZ2d6?=
+ =?utf-8?B?K1BTT2tQeXhhZ0lnTzRINVlJa3pVakVWK0dLeVVCUzdqd2EwcitNTGptaXVP?=
+ =?utf-8?B?d2x5VGVVNXViR2tzcmNWbWQ4TVZENGpobXhMK09yaHBvSXJnc1l4V0w5THBI?=
+ =?utf-8?B?d3Uva0lTZnBPRVlhRUVkN0xSRlJqNHNLZjJkRzF5aTNZUzRodXpuL21lM2NU?=
+ =?utf-8?B?WDY4QVJsRTREK3duYUZEZlJkdGVTNjViN0dmdkdhOWlieW9GbzY3VU01ZzZT?=
+ =?utf-8?B?cGNlWlYyejR0Sm1KMzdXUTRudTFFZTFkWGtnejV0c3pRbDYwUVkzVDN4WW1V?=
+ =?utf-8?B?YVZJU1hRQ1hzQTY4R0d2SnZtOGUvVDYrOFY0U056bEppbGNveHBIeSthdjJK?=
+ =?utf-8?B?SGI3TUVDcFhraVo4cnMzd2txMTV4eDhMcmV4Z0xNUGtzMEhrdFhZTmJiNERM?=
+ =?utf-8?B?dFNwa1J2OENoSitqWnJjS2ZnMWhYaWlROFJIU2RxVVl0bk54QU1zS05wM2lq?=
+ =?utf-8?B?VU5aR28yTFZxZ0ZXeXNxZnBwNDRiNXZNVk1DTFpVRGtwL2o1VWU1ZkZRaHVy?=
+ =?utf-8?B?aFJHUGV3V2xFRnJrR0RUOUxVN0FyalpZWlNTdnlUOGJrVlp1eXZoUFpmZXV0?=
+ =?utf-8?B?R3FzcTh2c2lxZWhHdm9lTlV4R1VnMmYzNDBEZ3AzZ2F2WlUxUFB1eGpxR0kw?=
+ =?utf-8?B?SDhQcmtMa0FrNWVWVWlEbXJ1Zm9qUzVhUHBjZVNrZkx3d1FyckpZbERVT0NX?=
+ =?utf-8?B?c2k3blpXOGVEM0VvZkRKTTBqMDY0VXd0NWdCT1JOODZlUHEzU0haa01iY2Rs?=
+ =?utf-8?B?NTlqMVJqNXlranVsQlFHbWxKdis4QUNpdEhOWHM3bVpGSC9GMjlvWm9XVGZl?=
+ =?utf-8?B?Ulc1cmVIbXBkODBzT3pNd1hrd0dib2dsSm5uSW1hL2tGSUYwbUcyMDh3Y0pv?=
+ =?utf-8?B?V2dzWHVWcXc3VUhhblhNZGNndjdtQlNoc21nWWV3dlRqb0NVbytaYVdKcE53?=
+ =?utf-8?B?TytpbU1oR3NXT24rODA0cklZOFdSQmhHV2pWWDZZbXl4OVBUZUtXaUQvY29X?=
+ =?utf-8?B?RkQ2dTdGL1dRczRjSEl0Ty90M1VLcHNmYW5VZ0hvQ1NJMkNFNkloRVdJM0FQ?=
+ =?utf-8?B?MGZoOVdNUFpsNGtMMUM2L1JsSjd1S1UvQkRpNUZ4OU14ZUw3SjNRUDE0RlBB?=
+ =?utf-8?B?OHhXK3VoeTVsNHVBYnd3cmRkaW1ZUGJQMUhHMlozTkYrakpCMTJ1YlVsUWVQ?=
+ =?utf-8?B?Mkt1czJkOUxNNUZDL0ErZ2w2M1V5WjhUTklqR3d6Ni9tdk9ZVGFBcjczL3lP?=
+ =?utf-8?B?UlVTZWNIeWVPVDJReEc0aWFVd1JrSUtHd0JKRmhXVDlrN3FCV1Q5K1RYekUr?=
+ =?utf-8?B?VUh1ZHRWbGZnPT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBAPR06MB6901.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?VGpXTnUra1pVdThDVVAwNnh1NXltc0UvWkxZSU1SeFNCTitsS2FYdndFQktV?=
+ =?utf-8?B?VytvRnVVV0hDQTZrcVRObFpVRGx2dTZ2c0hzeVY5MzFHeEJUN3Q0d0FmUHFB?=
+ =?utf-8?B?amFJTVVqZUlIa1RlSkdMb3NjT3pCQkdMaUZtdTUyUGJSd3VWRlBJVzJldlc0?=
+ =?utf-8?B?SXhjWkVXWm8rRFFqWDBscnI4bVd3SlFrT0pNemFVbTRMQUQvZDFBN3ZINnE2?=
+ =?utf-8?B?RDRZYnNWaHhndTJhNS9DRmJTeTJHaDA4MnkwYTdvdFJQQXlraWphbDZZZXZi?=
+ =?utf-8?B?L3loc3ZPMnBPOVFlVUNrckRqaEI0U3JNWXZpZEdsZ1lIdU1tQ0RYY3JnMUk1?=
+ =?utf-8?B?dUZ2Yk9KckpyWkE2NnlOTEtscHhqdkYrM0FXejZWc2JhQ2NtbU8rRVk0M1hn?=
+ =?utf-8?B?cjZUNWlnRkcweE96N3l0RjJheXB4bTRmeGxJM2NhWjFoSjNoQnNEUXB3d0JE?=
+ =?utf-8?B?TmY3WThydEZ4MzJHZGtZdy9QNFBlZldYcDJ0MjBEQzYxbEpwbW5rZ05GRGg4?=
+ =?utf-8?B?V0xTYkRWV0ZJMUo1enRyNks0eWJiQ1JzRVJqejVHTitIdUQrSWhtbFBvcFNM?=
+ =?utf-8?B?T0JJLzAxY1BhMWpwenYwSWVWTG9aK1B5MDZCMEc5TmQ0K3p4bkY0bmFVNmV0?=
+ =?utf-8?B?TE15ZndidnlYSm5Tcm5HZFBwYWE4aVlOWVl3cmRpSGNOdHFzQXN2Q3NrWVg0?=
+ =?utf-8?B?QS90QnNLaXgxeXU3eVZRYklTdVFJNE9LdVBOMWFwYWpQdVdvYTN5RGtreUlD?=
+ =?utf-8?B?cUxCY3M2WWRmdE5xcWh3TnVMdlFweDN4eVFFbU52SnNhNGpMV1RXblJjb0gz?=
+ =?utf-8?B?c2dPWHpoQ1N2RGdBUjhoUU91ekh6bjNoaVpyNnpKcm5UZ2pqNnB4ZkFuUmY1?=
+ =?utf-8?B?dXVhV3VCRndkMzdpNVREVHNMMHpvUmtxVDAraWFNbUpoMURyZmo3WVpWM1Fx?=
+ =?utf-8?B?QTJFYmY0WkhrMVc4cDVCVkdBNXFUWVRDZU9CM2xXUzN2U0lrcndIdjk5TkFz?=
+ =?utf-8?B?eUxiSmIxb1NkL1c2RlJabVNaM2hPYUpkVGNSUlBHd3lWcFc5RVE1Q0ZBMFFt?=
+ =?utf-8?B?S2gwSUUrUHl5eGw2b3UrVHFhRjg4QVhkNFY1RWpmVFdsWmV5UmJTQk9LbGVn?=
+ =?utf-8?B?eWhZa0lXNVp2THlrSUxNSU1CY2VxV0NCYjlNeG13ZWNOYW5GRDRFUWNXQ3pt?=
+ =?utf-8?B?Rlg5MndtWURtbGliVURMNkoyQ2xoc0ZKTUdhS3BjTXN5NzFycnRtYVJCanQx?=
+ =?utf-8?B?b2UxWDNaVE9TanBJR3VMWTlLWDVmWU5YN0hGTytndkNoMlhBZWVlakxCZ2V3?=
+ =?utf-8?B?TTdDZENtWEswd2FCbmRtYXBTSlZ3QTFWYTBzRXR2bjFBNHZ0L3NKc3pmaDlI?=
+ =?utf-8?B?c2J4ZWliRTRpeGg3MlBvNDRNa1NXS1ZSdVdjVVliWHBrVTBBZkRubElNMDhv?=
+ =?utf-8?B?bGRlR2R6MEdSZVhIWTFNYVpEbzI0em00M0xHZ043ZGh3aW0rbmZTU1h3bWxp?=
+ =?utf-8?B?U0dTZVdIM1djam52WGx2SkRXMytZdXpEcHJYNXB1ZjVseEJWY1l1OWRDMElo?=
+ =?utf-8?B?aEx2NFkvKzdaU0lYaEQyaFBPR080VGdrWDJqajJjczU3WWFoemlFalRDUVBV?=
+ =?utf-8?B?UUNZbHd4b1UxUXp3a2pYS1llM0ZYR0ptNmxaUXlDak9JR1ZMOHAxeFFJSncr?=
+ =?utf-8?B?b0NLR3JEZ2o0TFllbXo1T3hWYkZXaENEZnFsMUxacFdwT0xNV0ZudzlxOVBs?=
+ =?utf-8?B?NXJnK0ZHK0IvODZoVU5KeFhFcHN0bFBIR3pEb1JZY3MyUDZ4VVRwQlFrY1NV?=
+ =?utf-8?B?UGRKTVJnQ29GTzE1UXdpcUZWNHNmYlJMbG1hS0E2NXNUR0FwSGVZVEwrSXJp?=
+ =?utf-8?B?a3R4NG1KT2FFazhXcVdjNGJHOHd5RG8xTUc3T3ZXWXM3Z1U4UGRZRlQ2aVEw?=
+ =?utf-8?B?V1RiU0RNL01zVTZCWkdWRWJvZHlOVVdjWEdkWDMwbFJZbUNIeWVXQ1huRjU0?=
+ =?utf-8?B?Vy96Tk9ERXZkZFFsNGJYS3EzdmZWL2FmN0xUZTFMc3g4emFpMjRadzVlcGx1?=
+ =?utf-8?B?WjNCRmIyWTIzSm9nR2QxRHd1U21wYTBqa2dnUlZiZ25VOWN2VjlsK2JLR2JV?=
+ =?utf-8?B?cThsYnBwbmQ3ZW1MaWtzdzdPMzA4L3ZXQlNVc3M1OHdJMU1wY2t5VUhUSTV3?=
+ =?utf-8?B?U1E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <7CC071C023B4DA40A86309BE81D820FE@eurprd06.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DBAPR06MB6901.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ad77271-2f27-4108-0c66-08dd31512d3c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jan 2025 08:31:27.7388
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: c66uxVd4VP85wFMIe7RZ8eo/7iFVqIybjZpJZp6hWr/FHjRDI91KTCO6/NFYJMKaNk+jschBJpaodiuUNejTmVVjhahIL9xfnqXCLPnoouckLn+iTXL+wJcYHwm2CqRm
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR06MB7642
 
-This will allow binding the driver with the device from the device tree.
-
-NCT7716 and NCT7717 do not support to add temperature offset.
-The maximum offset supported by NCT7718 is 127875 millicelsius
-
-Signed-off-by: Ming Yu <a0282524688@gmail.com>
----
- Documentation/devicetree/bindings/hwmon/national,lm90.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-index 6e59c8fdef30..4feb76919404 100644
---- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-@@ -32,6 +32,9 @@ properties:
-       - national,lm89
-       - national,lm90
-       - national,lm99
-+      - nuvoton,nct7716
-+      - nuvoton,nct7717
-+      - nuvoton,nct7718
-       - nxp,sa56004
-       - onnn,nct1008
-       - ti,tmp451
-@@ -120,6 +123,8 @@ allOf:
-               - dallas,max6659
-               - dallas,max6695
-               - dallas,max6696
-+              - nuvoton,nct7716
-+              - nuvoton,nct7717
-     then:
-       patternProperties:
-         "^channel@([0-2])$":
-@@ -155,6 +160,7 @@ allOf:
-               - national,lm89
-               - national,lm90
-               - national,lm99
-+              - nuvoton,nct7718
-               - nxp,sa56004
-               - winbond,w83l771
-     then:
--- 
-2.34.1
-
+RHVlIHRvIHR5cG8gaW4gbXkgc2VuZC1lbWFpbCBjb21tYW5kLCBzb21lIHJlY2lwaWVudHMgd2Vy
+ZSB0cnVuY2F0ZWQuDQpBZGRpbmcgdGhlbSBoZXJlLg0KDQpCUiwNCkNhdGFsaW4NCg0KT24gMTAv
+MDEvMjAyNSAwOToxOSwgQ2F0YWxpbiBQb3Blc2N1IHdyb3RlOg0KPiBCeSBkZWZhdWx0LCByZmtp
+bGwgc3RhdGUgaXMgc2V0IHRvIHVuYmxvY2tlZC4gU29tZXRpbWVzLCB3ZSB3YW50IHRvIGJvb3QN
+Cj4gaW4gYmxvY2tlZCBzdGF0ZSBhbmQgbGV0IHRoZSBhcHBsaWNhdGlvbiB1bmJsb2NrIHRoZSBy
+ZmtpbGwuDQo+DQo+IFNpZ25lZC1vZmYtYnk6IENhdGFsaW4gUG9wZXNjdSA8Y2F0YWxpbi5wb3Bl
+c2N1QGxlaWNhLWdlb3N5c3RlbXMuY29tPg0KPiAtLS0NCj4gICBEb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvbmV0L3Jma2lsbC1ncGlvLnlhbWwgfCA1ICsrKysrDQo+ICAgMSBmaWxl
+IGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKQ0KPg0KPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9yZmtpbGwtZ3Bpby55YW1sIGIvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9yZmtpbGwtZ3Bpby55YW1sDQo+IGluZGV4IDk2MzBj
+ODQ2NmZhYy4uMjJmMjZmMWEzODU2IDEwMDY0NA0KPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvbmV0L3Jma2lsbC1ncGlvLnlhbWwNCj4gKysrIGIvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9yZmtpbGwtZ3Bpby55YW1sDQo+IEBAIC0zMiw2ICsz
+MiwxMCBAQCBwcm9wZXJ0aWVzOg0KPiAgICAgc2h1dGRvd24tZ3Bpb3M6DQo+ICAgICAgIG1heEl0
+ZW1zOiAxDQo+ICAgDQo+ICsgIGRlZmF1bHQtYmxvY2tlZDoNCj4gKyAgICBkZXNjcmlwdGlvbjog
+Y29uZmlndXJlIHJma2lsbCBzdGF0ZSBhcyBibG9ja2VkIGF0IGJvb3QNCj4gKyAgICB0eXBlOiBi
+b29sZWFuDQo+ICsNCj4gICByZXF1aXJlZDoNCj4gICAgIC0gY29tcGF0aWJsZQ0KPiAgICAgLSBy
+YWRpby10eXBlDQo+IEBAIC00OCw0ICs1Miw1IEBAIGV4YW1wbGVzOg0KPiAgICAgICAgICAgbGFi
+ZWwgPSAicmZraWxsLXBjaWUtd2xhbiI7DQo+ICAgICAgICAgICByYWRpby10eXBlID0gIndsYW4i
+Ow0KPiAgICAgICAgICAgc2h1dGRvd24tZ3Bpb3MgPSA8JmdwaW8yIDI1IEdQSU9fQUNUSVZFX0hJ
+R0g+Ow0KPiArICAgICAgICBkZWZhdWx0LWJsb2NrZWQ7DQo+ICAgICAgIH07DQo+DQo+IGJhc2Ut
+Y29tbWl0OiAyNWNjNDY5ZDZkMzQ0ZjU3NzJlOWZiNmE1Y2Y5ZDgyYTY5MGFmZTY4DQo+IHByZXJl
+cXVpc2l0ZS1wYXRjaC1pZDogMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
+MA0KDQoNCg==
 
