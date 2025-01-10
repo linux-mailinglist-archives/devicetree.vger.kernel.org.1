@@ -1,134 +1,120 @@
-Return-Path: <devicetree+bounces-137458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A70A09149
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:59:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42C1AA09156
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:00:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F8B33A5217
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 12:59:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEC9118868AC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 13:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C6120DD65;
-	Fri, 10 Jan 2025 12:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B364520E004;
+	Fri, 10 Jan 2025 13:00:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/rJhxP/"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="1eKCEyXC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C066C20B807;
-	Fri, 10 Jan 2025 12:58:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93A361BDA91
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 13:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736513907; cv=none; b=ta2vq6TPOi9o0xQnoRQmj5F4Gde/mRUnrvx7xfG6lTKTJ6uRfXlrDL/O8DyNr2EhkUPanEq/C1+bJUszFvbdCCIeoRHJCyd7PHVT6A8k0HLbI/Fr0Qf0TYkGGqYt62jxkE6XYAbak4hGSbomg4m+hk3TygnGzZ3atLlFNz+He88=
+	t=1736514039; cv=none; b=LwnziOh6tZZTUjJIAqc4sHSU90ZHf5HKYlXVie6M6Ijjohm4eUG1/cX/0ISlDt1vqYJcyQ+t9zrBCK8kw4+bXLe8wjBuOWXWEGAV8HGnYGUvq43Mb1elkdymtp8KPEtK4pi5aCX1oDxGPS2gU91vh093WsnWxjO7rr6LZcS3T0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736513907; c=relaxed/simple;
-	bh=XZt40d7lk7aYWQUmstyqSQy2fHiY4SGEmmPx9wjkcQI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OJXlaoYFzLLWoh39QpXuxA9dfllqb6R+iEYvC7oYW/JYVB249My07tZyjOqQadapzgog/fkdvogUt2RET40fPaITnzsT9cu8FdW7SJqDqj+SxR5N+1RQjpHjBvamRzp4tSTPWa5cJfGAzg43EW8qxfa4zzzyOP2SUk93wqSYXYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/rJhxP/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 201BFC4CED6;
-	Fri, 10 Jan 2025 12:58:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736513907;
-	bh=XZt40d7lk7aYWQUmstyqSQy2fHiY4SGEmmPx9wjkcQI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c/rJhxP/U7eXuHD3g5AFaGBrh7lsXeeKdZrlyyKVO/VGKPCMUtbBM3TJWaaRdLDQx
-	 4ntfAn+yUcGvx4JsZTu4Atr9xNGWVZ6WkQWvjP6kzZKuDOZsGpd/uQiEAZPPk1wzpe
-	 jB54evtZQMdty3JhUXMbhr07U/9hmm+bg/BT+karWIu6Cb2h3WzpoIdYcuW6iK3myf
-	 Us3cb3MGaFSeW12GpOILmZxHO7qibXVgbGkDOc75S/cJB/B9tOlKfk2FbZwPj8z2Se
-	 DVKLsxJCmbgRW6pb30mjjF1pC07vk85n/ejVskSsQIppX7RzuY3hKhbrS0Mnv2MDfF
-	 VPdJQiGjpA2mw==
-Message-ID: <0499ee04-0fcc-42e1-aab8-3cb8daa88c88@kernel.org>
-Date: Fri, 10 Jan 2025 13:58:16 +0100
+	s=arc-20240116; t=1736514039; c=relaxed/simple;
+	bh=6Xd6m6Qf56pAA0+r0Q/cgq86ljFZzMNIsMNJ9dxTWeg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bVTLMTeiOJO6umb+iTLgIIxJ+5gP2rVs/vRXCiibKV0uBwKVKJ9BRwA7NJEUsd2akuhIu14QM74x4rrMxDdhDdhB0HpIBgUHXU0dd/i+h6kF+8e6qbAnR99lif+RMIrgycrUPG2kvAW9mDkWB9TCBWx/rSRpHdxBNRUg8kUipBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=1eKCEyXC; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43624b2d453so21512315e9.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 05:00:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1736514035; x=1737118835; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eGbNecL+K9WiUO3ggBl6xJgcZQagKJNakaKpat4Nv20=;
+        b=1eKCEyXC8TYuH1ymu/AQZGx7z3pnfuw2qw+UHfOiKh/mBOuJqkwS71H178hV9+FMaM
+         oPxAU9ON40xm3OxGBDm+v9ShUKQCapTsh1Z5X1brx7EbC7rQ9MzmBT30ZVvpwaZBDidC
+         skRiniUEOWMwL1hF3NJbS4i5IuMyoi5YVLURXQPtyPandtYnV24WpKQX1+FxcQWcGvP5
+         ynZyo+wXK6JuopLuqBQyjQ3klYzDlkahxqyTuBPZZgcG+5+hSafmooonXerXU+bF9AFL
+         ahSkAxTmP1UKnbeqPVSlSmyxtBCwboluxySzPmF8FTLVThcX3aUroIHcGKtrCIRuS8W5
+         1YFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736514035; x=1737118835;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eGbNecL+K9WiUO3ggBl6xJgcZQagKJNakaKpat4Nv20=;
+        b=shv4PqunnVaitAq1d1qJyxufeVg+p4TYdeu8dnxgWZFape1v7aqFXeS5Q9oyNyMUHS
+         2wyRczApzfvytlxLAJc7/ptL1zfqq54FSiTcdSzz/yLtYKg+0mpxaokWF5ETSrNQYn6T
+         DrPP5W89OuyzzvwfnZHbKuSbMMZnlyXVyzhTBoaC+hdYsyCHQynz8x3D3lJhVyxWbdDo
+         bLkUXuikt8BWp37/QAdcLHlxeDWPGYe7WTXsRjk3va2pdYDI0IAPfiV5lLC/bgA5iqH6
+         G6xtao7+ozL2P0lHB7fXBSWRUyTK1qEo+HEZ20V8vC94WO6Ie9PbxihbS31qplQjzbhI
+         KAxg==
+X-Forwarded-Encrypted: i=1; AJvYcCXoVH4uq3SQdGnx0Y/xTG65REQMdSNZ2J7bSYsNbzSHuEpFP2ru1c+lueEfBECfkLbCRF1Rvy0Bu9vv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+s9T9T0+ljaTH+9cum6/YoNkiqwe4t1gsmcz6F9Y6vLDBRAaM
+	IXPsPLkdgnyIRLxH7JvQIcLMabb65xjjxmOeLep360Zy+I3RFF/YhI7GQXu3I8Q=
+X-Gm-Gg: ASbGncssQkFRiTsE8AshjaQ2Xa598+pG+LXzVLbD0KLJkQUHvm4cYgvm1c5MEPMjq6/
+	MsBm777E5O2O0Oa+wUVL1/vdm+flsAlvvk+a5iemmy/0A5plQvA0uEzVVtUxjBY7h6U4/GN6hcX
+	h5GGcvGCoBn/tGlOonWDbGVgalaYzt38Na3BAA6WXixbHId2NJbsM7mdzv3Vk8pdXf4iIhrwtuq
+	YF97Id/eeKX/TXund4kivcsBCM88dqFxAvpBglXVNNmkc3PsSjgEM4=
+X-Google-Smtp-Source: AGHT+IErf/j35AOiqc0OKlKOsILU9Y+ZiwnfYZ14qASoSj6/d+9GEQHuJ8eFf/7JBQ7iQNhmyBvRUA==
+X-Received: by 2002:a05:600c:1987:b0:434:fddf:5c0c with SMTP id 5b1f17b1804b1-436e2679e05mr101882715e9.4.1736514034398;
+        Fri, 10 Jan 2025 05:00:34 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:5581:e96f:97e:b3a7])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e37c2esm51360745e9.28.2025.01.10.05.00.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jan 2025 05:00:33 -0800 (PST)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	=?UTF-8?q?J=20=2E=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
+	=?UTF-8?q?Cs=C3=B3k=C3=A1s=20Bence?= <csokas.bence@prolan.hu>,
+	"Geert Uytterhoeven via gmail . com" <geert@linux-m68k.org>
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH 0/2] gpio: 74x164: use a compatible fallback and don't extend the driver
+Date: Fri, 10 Jan 2025 14:00:23 +0100
+Message-ID: <20250110130025.55004-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/12] dt-bindings: arm: mediatek: mmsys: add compatible
- for MT8196
-To: "paul-pl.chen" <paul-pl.chen@mediatek.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, chunkuang.hu@kernel.org,
- angelogioacchino.delregno@collabora.com
-Cc: matthias.bgg@gmail.com, p.zabel@pengutronix.de,
- jason-jh.lin@mediatek.com, nancy.lin@mediatek.com, singo.chang@mediatek.com,
- xiandong.wang@mediatek.com, sirius.wang@mediatek.com,
- sunny.shen@mediatek.com, fshao@chromium.org, treapking@chromium.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
- <20250110123835.2719824-2-paul-pl.chen@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250110123835.2719824-2-paul-pl.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/01/2025 13:33, paul-pl.chen wrote:
-> From: "Paul-pl.Chen" <paul-pl.chen@mediatek.com>
-> 
-> Add compatible for mmsys yaml of MT8196
-> 
-> Signed-off-by: Paul-pl.Chen <paul-pl.chen@mediatek.com>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
+There were other suggested solutions (for instance: just use the
+existing compatible for the On Semi variant) but I figured the most
+common approach is to use a fallback value for 100% compatible models
+and this is what Rob suggested as well.
 
-This is a wide pattern now in Mediatek: login name is used as family
-name. Repeating the same comment to every Mediatek employee is a bit
-tedious, so maybe you could fix it internally?
+This reverts the driver change and makes the "onnn,74hc595a" compatible
+use "fairchild,74hc595" as fallback.
 
-Create some guideline for your colleagues so you won't repeat the same
-things over and over?
+Bartosz Golaszewski (2):
+  Revert "gpio: 74x164: Add On Semi MC74HC595A compat"
+  dt-bindings: gpio: fairchild,74hc595: use a fallback for Semi
+    MC74HC595A
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/gpio/fairchild,74hc595.yaml    | 10 ++++++----
+ drivers/gpio/gpio-74x164.c                             |  2 --
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+-- 
+2.45.2
+
 
