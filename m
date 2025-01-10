@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-137302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61AD9A08930
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:41:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1F5A08935
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:42:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 867513A9073
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:40:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C446B3A2BB4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B587C2066C0;
-	Fri, 10 Jan 2025 07:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010A7206F1B;
+	Fri, 10 Jan 2025 07:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VkoAa/36"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nRQ5DgAT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863BDBA33;
-	Fri, 10 Jan 2025 07:40:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56BCBA33;
+	Fri, 10 Jan 2025 07:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736494858; cv=none; b=PFWPGdAPyuOhhstLerAa5K/qtRsPiX4WrmcaiT6ubkYQ+WqoRW58I6TV8MMJpZv+LpL3J63fIdTU1IPWC9CHtMf7xeISra26UfyMtaLHWAPefSoK+UPL4vpjmdyxluvB+3ylJiHVok9H93eamCqC/O7LJnmlq1JTgD2F9M6HL30=
+	t=1736494967; cv=none; b=XtnpdS+CwREJ0rh/xf1odic+ygmutHlFVKR/YUQStOUSDH7pykooILXZjW6ylXwb+huvk8UP5AY7E423AwMCTMQqvRnAw2JJHUHnqGzCJ870c2H/bIVXwBtwwBBoQ6ZVBEkkbB4DzMmUhnOn23OU9JVNYP0WmFD4AGlp6tw5hRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736494858; c=relaxed/simple;
-	bh=GIaLhCWvt+Vh85V9nMvOQFuhW8mxQRShtxXN7QjsIBc=;
+	s=arc-20240116; t=1736494967; c=relaxed/simple;
+	bh=XmYgjpNvIDSw8Yc0EFTFMPiabKK7MhC3gK3twFF80Ac=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dV3HINRzCp1vUflRfRRHOITBsgVtQnph1ZCarXq/0WQUJZRX6KYTwgisFYuW1mU1ua6jXxcEh0CajzEmTtcrdVc7mH9e5QIwFclhoEWgwYVxUJ6DiJWmuzeTXJiG1BSFQK0aGB7onCRAEqItBGTvY+fW+I6ujz5WODftxCMJ1sU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VkoAa/36; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CA03C4CED6;
-	Fri, 10 Jan 2025 07:40:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YZYQBsPzwEiOswS6EzpqYhOC4ZWtFO1iO0mw6KLcAHpJtbTxkgDcGP6W/5FPGA4+NmfMNqCSyMg/2W/GiHpodrMvSpemqUXnhrf8VrCAyoyuXyTOfsHo6Uxa0yBwKms9kOzdzichamva76lKzNIqsDQ46YqVFrmCvkdxF2IX+50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nRQ5DgAT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57A5EC4CED6;
+	Fri, 10 Jan 2025 07:42:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736494858;
-	bh=GIaLhCWvt+Vh85V9nMvOQFuhW8mxQRShtxXN7QjsIBc=;
+	s=k20201202; t=1736494967;
+	bh=XmYgjpNvIDSw8Yc0EFTFMPiabKK7MhC3gK3twFF80Ac=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VkoAa/36y1lbhaSFgumFc2uFspLcnN/8mAeiFEf3eMbR5tP6AKWnq7g8N/+jiqBuM
-	 w4WqoQvZ4AVTxPjjyBZEvlbCtParJxI30G/Txw36bBhvP47H00hglz2adAx14Ncnp6
-	 23Qh2FpxklQjXS75fxvYeDNMRtq7fT40kDAuJPX2KQUouU+EiroglQDFx+cbMux7Ck
-	 1wXtDpYTAzpVz1GSRTPBZcBDDC+Xodvog6/19X1DuDjdnzSrf94Mc07QQJCl2ZBu6A
-	 XjTUL3okndmbG5b2zmaK4p61TAXxyQ5QhNgH/m7rPT4fJ2A/zk1dneR5tDoXFN7yNN
-	 VjMtnDHdjtN7g==
-Message-ID: <e6019aea-b097-4a24-afd2-e1d638a5a8a7@kernel.org>
-Date: Fri, 10 Jan 2025 08:40:52 +0100
+	b=nRQ5DgATufb9Jd8uFEtMIRU41Hpb/TPoJIf+hkKZ/nRNW/luySUcdtBZ4czDpb0KW
+	 sX8eyy6em8haxZbjBvtlJsdbnM0OFxm8VWAEBjRXQgp8jN4IvLP/IiAiDZj9v81cj7
+	 zLWIJMLYnZRlbPhSjkcA8NtxNAB+LuqVwBHL9ExbyKHQWBSzdcMyVYa/yr8Y+B/0it
+	 ITSd7yFHyuVejzo+gBhsw8LCtn91JzH04IaqvXICgJ9SQJAtV0OMi1I3R11BJU6sst
+	 GtYqSG0YmQF6hEPz9GSVT0wV5su/6lAp6CdbmN9dSJZl04/q00XVfTv0+DRrZH4FHN
+	 qxfkAF9QAicxw==
+Message-ID: <9caddd6a-fe1b-468a-ba1e-0513e46404dc@kernel.org>
+Date: Fri, 10 Jan 2025 08:42:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND,V1,01/12] dt-bindings: mediatek: Add mediatek,
- mt8196-jpgdec compatible
-To: "kyrie.wu" <kyrie.wu@mediatek.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Tzung-Bi Shih <tzungbi@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20250110012749.30072-1-kyrie.wu@mediatek.com>
- <20250110012749.30072-2-kyrie.wu@mediatek.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: clock: Document clock and reset unit
+ of RK3528
+To: Yao Zi <ziyao@disroot.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250108114605.1960-2-ziyao@disroot.org>
+ <20250108114605.1960-3-ziyao@disroot.org>
+ <tep74dy3oc6y2wwhp6bthv6brhkge7cojzrtj6x53lvtsws4g5@areqtyxhyayq>
+ <Z3-T3JwcsW0xYKvk@pie>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,20 +109,89 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250110012749.30072-2-kyrie.wu@mediatek.com>
+In-Reply-To: <Z3-T3JwcsW0xYKvk@pie>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/01/2025 02:27, kyrie.wu wrote:
-> Add mediatek,mt8196-jpgdec compatible to binding document.
+On 09/01/2025 10:16, Yao Zi wrote:
+> On Thu, Jan 09, 2025 at 09:59:25AM +0100, Krzysztof Kozlowski wrote:
+>> On Wed, Jan 08, 2025 at 11:46:02AM +0000, Yao Zi wrote:
+>>> There are two types of clocks in RK3528 SoC, CRU-managed and
+>>> SCMI-managed. Independent IDs are assigned to them.
+>>>
+>>> For the reset part, differing from previous Rockchip SoCs and
+>>> downstream bindings which embeds register offsets into the IDs, gapless
+>>> numbers starting from zero are used.
+>>>
+>>> Signed-off-by: Yao Zi <ziyao@disroot.org>
+>>> ---
+>>>  .../bindings/clock/rockchip,rk3528-cru.yaml   |  67 +++
+>>>  .../dt-bindings/clock/rockchip,rk3528-cru.h   | 453 ++++++++++++++++++
+>>>  .../dt-bindings/reset/rockchip,rk3528-cru.h   | 241 ++++++++++
+>>>  3 files changed, 761 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
+>>>  create mode 100644 include/dt-bindings/clock/rockchip,rk3528-cru.h
+>>>  create mode 100644 include/dt-bindings/reset/rockchip,rk3528-cru.h
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
+>>> new file mode 100644
+>>> index 000000000000..19dbda858172
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
+>>> @@ -0,0 +1,67 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/clock/rockchip,rk3528-cru.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Rockchip RK3528 Clock and Reset Controller
+>>> +
+>>> +maintainers:
+>>> +  - Yao Zi <ziyao@disroot.org>
+>>> +
+>>> +description: |
+>>> +  The RK3528 clock controller generates the clock and also implements a reset
+>>> +  controller for SoC peripherals. For example, it provides SCLK_UART0 and
+>>> +  PCLK_UART0 as well as SRST_P_UART0 and SRST_S_UART0 for the first UART
+>>> +  module.
+>>> +  Each clock is assigned an identifier, consumer nodes can use it to specify
+>>> +  the clock. All available clock and reset IDs are defined in dt-binding
+>>> +  headers.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: rockchip,rk3528-cru
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  assigned-clocks: true
+>>> +
+>>> +  assigned-clock-rates: true
+>>
+>> Drop both, totally redundant.
 > 
-> Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
-> ---
-No, why are you resending without improving anything here?
-
-You got comments. Respond to them, implement them, not resend same stuff.
-
-NAK
+> Okay, will fix in next version.
+> 
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: External 24MHz oscillator clock
+>>> +      - description: 50MHz clock generated by PHY module
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: xin24m
+>>> +      - const: gmac0
+>>
+>> gmac
+>> (unless you have gmac1 here as well but then please add it now)
+> 
+> RK3528 comes with two onchip gmacs. This input clock is only used for
+> the first one and I think keeping the number would give the reader an
+> extra hint. What do you think about it?
+You don't get the point. What clock is from this module perspective? gmac.
 
 Best regards,
 Krzysztof
